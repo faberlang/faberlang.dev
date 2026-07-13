@@ -10,6 +10,11 @@ community surface while the Radix compiler, lowering architecture, private
 tests, and internal factory plans remain private. The site should feel like a
 credible developer-product launch, not an implementation wiki.
 
+The dedicated agent-first documentation intake is
+[`AGENT-FIRST-DOCUMENTATION-WEBSITE-PLAN.md`](AGENT-FIRST-DOCUMENTATION-WEBSITE-PLAN.md).
+It is queued after the Faber 1.0 RC process and must pass Goal Forge and Goal
+Check before lowering into implementation.
+
 ## Desired End State
 
 - A visitor understands in one minute what Faber is, who it is for, and why it
@@ -75,12 +80,16 @@ positioning brief and the V1 release contract.*
 
 ### Stage 2 — Information Architecture And Content Model
 
-- Required journeys: evaluate Faber, install it, learn it, look up a construct,
-  browse examples, understand targets, find packages, follow releases
-- Gate: page map, content ownership, freshness rules, and public/private source
-  for every page family
-- Batching: batch-by-default
-- Lowers to: delivery
+- Status: queued after Faber 1.0 RC closeout
+- Intake: [`AGENT-FIRST-DOCUMENTATION-WEBSITE-PLAN.md`](AGENT-FIRST-DOCUMENTATION-WEBSITE-PLAN.md)
+- Required process: Goal Forge → Goal Check → delivery/factory implementation
+- Required journeys: agent cold start, evaluate Faber, install it, learn it,
+  look up a construct, build/test a package, diagnose errors, browse examples,
+  understand targets, find external packages, follow releases
+- Gate: page map, agent-discovery contract, content ownership, freshness rules,
+  public/private source for every page family, and passing Goal Check
+- Batching: batch-by-default after one generated content family proves the model
+- Lowers to: Goal Forge first; implementation only after Goal Check
 
 ### Stage 3 — Visual Direction And Interactive Prototype
 
