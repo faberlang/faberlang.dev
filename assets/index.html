@@ -1,0 +1,71 @@
+"<!DOCTYPE html>
+<html lang=\"en\">
+<head>
+  <meta charset=\"UTF-8\">
+  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
+  <title>Faber — compiled systems language</title>
+  <link rel=\"stylesheet\" href=\"/index.css\">
+  <link rel=\"alternate\" type=\"text/markdown\" href=\"/llms.txt\">
+  <meta name=\"description\" content=\"Faber is a compiled, multi-target systems language with declarative effects, native host routing, and a deterministic package build toolchain.\">
+</head>
+<body>
+  <header>
+    <h1>Faber</h1>
+    <p class=\"version\">__DOCS_VERSION__</p>
+    <p class=\"tagline\">A compiled, multi-target systems language with declarative effects
+    and deterministic, reproducible builds.</p>
+  </header>
+
+  <nav>
+    <a href=\"/docs/__DOCS_VERSION__/quickstart.md\">Quickstart</a>
+    <a href=\"/docs/__DOCS_VERSION__/language/index.md\">Language</a>
+    <a href=\"/docs/__DOCS_VERSION__/packages/index.md\">Packages</a>
+    <a href=\"/docs/__DOCS_VERSION__/effects/index.md\">Effects</a>
+    <a href=\"/docs/__DOCS_VERSION__/diagnostics/index.md\">Diagnostics</a>
+    <a href=\"/llms.txt\">Agent primer</a>
+  </nav>
+
+  <main>
+    <section>
+      <h2>For Humans</h2>
+      <p>Start with the <a href=\"/docs/__DOCS_VERSION__/quickstart.md\">Quickstart</a> to
+      create your first Faber package. Read the <a href=\"/docs/__DOCS_VERSION__/language/index.md\">Language
+      Reference</a> for syntax and semantics. Browse <a href=\"/docs/__DOCS_VERSION__/packages/index.md\">Packages
+      &amp; Tools</a> for layout, build, and test workflows.</p>
+    </section>
+
+    <section>
+      <h2>For Agents</h2>
+      <p>Read <a href=\"/llms.txt\"><code>/llms.txt</code></a> for the canonical
+      orientation, versioned reference routing, and explicit constraints. Browse
+      <a href=\"/.well-known/agent-skills/index.json\">Agent Skills</a> for task-specific
+      routing. Use <a href=\"/contracts/__DOCS_VERSION__/grammar.ebnf\">Machine Contracts</a>
+      for exact syntax and types.</p>
+    </section>
+
+    <section>
+      <h2>Product Lane</h2>
+      <ul>
+        <li><strong>Rust packages with native binaries</strong> — the supported, tested
+          product surface.</li>
+        <li><strong>Go, TypeScript, S-expression targets</strong> — emit-only research
+          protototypes; not a supported runtime.</li>
+        <li><strong>Wasm, LLVM, Metal, WGSL</strong> — host-backend compiler lanes.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>External Projects</h2>
+      <p><strong>Norma</strong> — standard library. <strong>Triga</strong> — GPU/compute host.
+      <strong>Cista</strong> — package registry. Each owns its own documentation and release
+      cycle.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Faber __DOCS_VERSION__ &middot; <a href=\"/robots.txt\">robots.txt</a> &middot;
+    <a href=\"/sitemap.xml\">sitemap.xml</a> &middot;
+    <a href=\"/.well-known/faber-language.json\">language catalog</a></p>
+  </footer>
+</body>
+</html>"

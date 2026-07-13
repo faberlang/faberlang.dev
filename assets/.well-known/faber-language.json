@@ -1,0 +1,24 @@
+{
+  "$schema": "https://faberlang.dev/schemas/language-catalog/1.0.0/schema.json",
+  "language": "Faber",
+  "version": "__DOCS_VERSION__",
+  "product_lane": {
+    "kind": "rust-native-binary",
+    "supported_dimensions": ["parse/check", "emit", "validate", "build", "run", "package"]
+  },
+  "provided_by": {
+    "compiler": "radix",
+    "compiler_repository": "faberlang/radix",
+    "compiler_visibility": "private"
+  },
+  "external_projects": {
+    "norma": { "role": "standard-library", "docs_owned": true },
+    "triga": { "role": "gpu-compute-host", "docs_owned": true },
+    "cista": { "role": "package-registry", "docs_owned": true }
+  },
+  "agent_entrypoints": {
+    "llms_txt": "__PUBLIC_ORIGIN__/llms.txt",
+    "agent_skills": "__PUBLIC_ORIGIN__/.well-known/agent-skills/index.json",
+    "machine_contracts": "__PUBLIC_ORIGIN__/contracts/__DOCS_VERSION__/"
+  }
+}

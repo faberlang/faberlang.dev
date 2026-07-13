@@ -1,0 +1,31 @@
+{
+  "$schema": "https://faberlang.dev/schemas/contract/documents/1.0.0/schema.json",
+  "version": "__DOCS_VERSION__",
+  "documents": {
+    "/llms.txt": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/llms-full.txt": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/docs/__DOCS_VERSION__/quickstart.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/docs/__DOCS_VERSION__/language/index.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/docs/__DOCS_VERSION__/packages/index.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/docs/__DOCS_VERSION__/effects/index.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/docs/__DOCS_VERSION__/diagnostics/index.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/contracts/__DOCS_VERSION__/grammar.ebnf": { "content_type": "text/plain", "sha256": "PLACEHOLDER" },
+    "/contracts/__DOCS_VERSION__/keywords.json": { "content_type": "application/json", "sha256": "PLACEHOLDER" },
+    "/contracts/__DOCS_VERSION__/types.json": { "content_type": "application/json", "sha256": "PLACEHOLDER" },
+    "/contracts/__DOCS_VERSION__/operators.json": { "content_type": "application/json", "sha256": "PLACEHOLDER" },
+    "/contracts/__DOCS_VERSION__/targets.json": { "content_type": "application/json", "sha256": "PLACEHOLDER" },
+    "/contracts/__DOCS_VERSION__/diagnostics.json": { "content_type": "application/json", "sha256": "PLACEHOLDER" },
+    "/contracts/__DOCS_VERSION__/providers.json": { "content_type": "application/json", "sha256": "PLACEHOLDER" },
+    "/.well-known/agent-skills/quickstart/SKILL.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/.well-known/agent-skills/language-syntax/SKILL.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/.well-known/agent-skills/packages/SKILL.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/.well-known/agent-skills/build-run/SKILL.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/.well-known/agent-skills/testing/SKILL.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/.well-known/agent-skills/diagnostics/SKILL.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/.well-known/agent-skills/effects/SKILL.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/.well-known/agent-skills/targets/SKILL.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/.well-known/agent-skills/libraries/SKILL.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/.well-known/agent-skills/fmir/SKILL.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" }
+  },
+  "_note": "Digests populated at build time. Version placeholder replaced at serve time."
+}

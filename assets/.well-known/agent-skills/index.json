@@ -1,0 +1,75 @@
+{
+  "$schema": "https://schemas.agentskills.io/discovery/0.2.0/schema.json",
+  "skills": [
+    {
+      "name": "quickstart",
+      "type": "skill-md",
+      "description": "Cold-start a new Faber package: create, check, build, run, and test from zero context.",
+      "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/quickstart/SKILL.md",
+      "sha256": "PLACEHOLDER"
+    },
+    {
+      "name": "language-syntax",
+      "type": "skill-md",
+      "description": "Faber grammar, types, semantics, and reference routing. Do not invent syntax.",
+      "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/language-syntax/SKILL.md",
+      "sha256": "PLACEHOLDER"
+    },
+    {
+      "name": "packages",
+      "type": "skill-md",
+      "description": "Faber package layout, manifests, imports, dependencies, and lockfiles.",
+      "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/packages/SKILL.md",
+      "sha256": "PLACEHOLDER"
+    },
+    {
+      "name": "build-run",
+      "type": "skill-md",
+      "description": "Build, run, format, explain, and script workflows for Faber packages.",
+      "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/build-run/SKILL.md",
+      "sha256": "PLACEHOLDER"
+    },
+    {
+      "name": "testing",
+      "type": "skill-md",
+      "description": "Faber test patterns, assertions, and verification workflow.",
+      "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/testing/SKILL.md",
+      "sha256": "PLACEHOLDER"
+    },
+    {
+      "name": "diagnostics",
+      "type": "skill-md",
+      "description": "Stable Faber diagnostic codes, meanings, causes, and repair workflows.",
+      "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/diagnostics/SKILL.md",
+      "sha256": "PLACEHOLDER"
+    },
+    {
+      "name": "effects",
+      "type": "skill-md",
+      "description": "Faber `ad` routes, runtime builtins, native host, and the five provider families.",
+      "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/effects/SKILL.md",
+      "sha256": "PLACEHOLDER"
+    },
+    {
+      "name": "targets",
+      "type": "skill-md",
+      "description": "Faber target capability dimensions: parse/check, emit, validate, build, run, package.",
+      "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/targets/SKILL.md",
+      "sha256": "PLACEHOLDER"
+    },
+    {
+      "name": "libraries",
+      "type": "skill-md",
+      "description": "External Faber library resolution: Norma, Triga, Cista.",
+      "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/libraries/SKILL.md",
+      "sha256": "PLACEHOLDER"
+    },
+    {
+      "name": "fmir",
+      "type": "skill-md",
+      "description": "Advanced Faber executable package and runtime path (FMIR). Not the public release name.",
+      "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/fmir/SKILL.md",
+      "sha256": "PLACEHOLDER"
+    }
+  ]
+}

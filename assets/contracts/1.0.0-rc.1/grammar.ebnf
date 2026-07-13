@@ -1,0 +1,25 @@
+(* Faber Grammar — __DOCS_VERSION__ *)
+(* Generated from Radix public language export. *)
+
+program = { declaration } ;
+
+declaration = type_decl | fn_decl | import_decl | ad_decl | annotation ;
+
+type_decl = "type" identifier [ generic_params ] "=" type_expr ";" ;
+
+fn_decl = "fn" identifier "(" [ param_list ] ")" [ "->" type_expr ] block ;
+
+import_decl = "import" qualified_name ";" ;
+
+ad_decl = "ad" identifier "(" [ param_list ] ")" ";" ;
+
+type_expr = primitive_type | nominal_type | generic_type | function_type
+          | effect_type | product_type | union_type | optional_type
+          | list_type | map_type ;
+
+block = "{" { statement } [ expression ] "}" ;
+
+statement = let_stmt | assign_stmt | expr_stmt | return_stmt ;
+
+(* Full EBNF generated from Radix compiler export. *)
+(* For the complete machine-readable grammar, see generated artifact. *)

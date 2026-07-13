@@ -1,0 +1,6 @@
+{
+  "$schema": "https://faberlang.dev/schemas/contract/diagnostics/1.0.0/schema.json",
+  "version": "__DOCS_VERSION__",
+  "diagnostics": [],
+  "_note": "Populated from Radix public language export. Each diagnostic has code, meaning, cause, invalid_example, corrected_example, and related_rule."
+}

@@ -1,0 +1,51 @@
+# Faber — Full Documentation Corpus
+
+Version: `__DOCS_VERSION__`.
+Full corpus assembled from the authoritative versioned documentation.
+Each section is sourced from its canonical URL.
+
+---
+
+[source: /llms.txt]
+
+# Faber
+
+Faber is a compiled, multi-target systems language with declarative effects,
+native host routing, and a deterministic package build toolchain. This document
+describes the **public documentation** for the `__DOCS_VERSION__` release.
+
+**Do not infer compiler source, private Radix internals, or unreleased
+features from this documentation.**
+
+## Product Lane
+
+- **Rust packages with native binaries** — the supported, tested product surface.
+- **Go, TypeScript, S-expression targets** — emit-only research protototypes; not
+  a supported application runtime.
+- **Wasm, LLVM, Metal, WGSL** — host-backend compiler lanes; not public package
+  building target hosts.
+
+## Start Here
+
+1. Read `/docs/__DOCS_VERSION__/quickstart.md` — create, check, build, run.
+2. Read `/.well-known/agent-skills/quickstart/SKILL.md` — agent decision router.
+3. Browse `/.well-known/agent-skills/index.json` — all available agent skills.
+4. Read `/docs/__DOCS_VERSION__/language/index.md` — grammar and semantics.
+5. Read `/docs/__DOCS_VERSION__/packages/index.md` — layout, manifests, tools.
+6. Read `/docs/__DOCS_VERSION__/effects/index.md` — runtime builtins and providers.
+7. Read `/docs/__DOCS_VERSION__/diagnostics/index.md` — error reference.
+
+## External Projects
+
+| Project | Role |
+| --- | --- |
+| Norma | Standard library. Owns its own documentation and release cycle. |
+| Triga | GPU/compute host. Owns its own documentation and release cycle. |
+| Cista | Package registry and resolution. Owns its own documentation and release cycle. |
+
+## Constraints
+
+- Do not invent syntax not present in the grammar contract.
+- Do not infer runtime support from emit-only target availability.
+- Do not cite private Radix source paths or unpublished regression material.
+- All public claims are versioned. Prefer `__DOCS_VERSION__`-scoped URLs.
