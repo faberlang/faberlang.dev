@@ -20,7 +20,7 @@ Public-eligible but **not yet published** (no git remote, no release):
 - `norma` — default standard library (`norma:json`, `norma:solum`, `norma:chorda`, …).
 - `triga` — graphics/geometry library. Vector3/Matrix4 transform family typechecks and emits Rust. **GPU/provider execution and render pipeline are tracked blockers, not shipped.**
 - `cista` — package manager. Local loop works (install/inspect/remove/exec/meta/filesystem dev registry). Remote `cista.dev` login/logout/fetch/publish contract exists but is **environment-gated, not live**.
-- `examples` — corpus (keyword reference, source of `faber explain`), plus application packages: `coreutils` (GNU coreutils reimplementation), `vivilite` (Faber-native mailspace CLI), `gpu-workload` (matmul/softmax/MLP), `ai-workbench` (AI CLI), `air`, `script-kernel`.
+- `examples` — corpus (keyword reference, source of `faber explain`), plus application packages: `coreutils` (GNU coreutils reimplementation), `vivilite` (Faber-native mailspace CLI), `gpu-workload` (matmul/softmax/MLP), `ai-workbench` (AI CLI), `air`, `script-kernel`. **V1-carrying today:** `coreutils`, `vivilite`, and `automation` across native applications, self-contained package binaries, and a narrow Go CLI. `gpu-workload` and `ai-workbench` are in-progress lanes, not V1 proof.
 
 Language identity facts (safe to claim):
 - Latin-derived keyword vocabulary: `incipit`, `itera`, `ab/per/de/ex`, `fixum`, `functio`, `nota`, `valor`, `solum`, `mori`. Distinctive and memorable; a learnability variable to manage.
@@ -29,7 +29,7 @@ Language identity facts (safe to claim):
 
 ## 1. Positioning statement
 
-**For** developers who write application logic that has to survive more than one execution surface **(native applications, systems, and accelerated workloads)**, **Faber is** the intent-first application language whose readable source is the same source that carries across those execution lanes **—** unlike rewriting intent per target (the status quo) or learning each target's compiler internals (the systems-language cost), Faber lets the readable version and the deployed version stay the same program.
+**For** developers who write application logic that has to survive more than one execution surface **(today: native applications, self-contained package binaries, and a narrow, experimental Go CLI; systems and accelerated lanes are in progress, not in this release)**, **Faber is** the intent-first application language whose readable source is the same source that carries across those execution lanes **—** unlike rewriting intent per target (the status quo) or learning each target's compiler internals (the systems-language cost), Faber lets the readable version and the deployed version stay the same program.
 
 Category framing (category-of-one, not "another programming language"):
 - Not competing with Rust/Go (systems languages) or Python (dynamic scripting).
@@ -41,7 +41,7 @@ Category framing (category-of-one, not "another programming language"):
 **Recommended primary (pending message-test validation):** Audience Hypothesis 1 — *builders who want application code to remain readable while targeting more than one runtime or deployment environment.*
 
 Why this audience, on today's evidence:
-- It has the most shipped proof: `coreutils` (native app), `vivilite` (CLI app), `gpu-workload` (accelerated), `ai-workbench` (AI) are all Faber packages. The multi-lane claim is demonstrable, not aspirational.
+- It has the most V1-carrying proof: `coreutils` (native app, package binary, narrow Go CLI), `vivilite` (native app + real library persistence), and `automation` (multi-module native app). The multi-lane claim is demonstrable today on three evidenced lanes; `gpu-workload`, `ai-workbench`, and browser are in progress and are not V1 proof.
 - It is the most differentiated framing — "write intent once, carry it across lanes" is unusual and maps directly to the runtime/lane architecture without exposing compiler internals.
 - It tolerates pre-launch state best: the *idea* and the *examples* can be shown before the binary install path is live.
 
@@ -55,7 +55,7 @@ Caveat: Stage 0 is discovery. This recommendation is the **default to act on**, 
 
 **Problem.** Application intent dies at execution boundaries. Every time logic crosses from a reviewable native app into a system, a data pipeline, or an accelerated workload, it gets rewritten in the target's terms. The readable version stops matching the deployed version, and the original intent is buried under target-specific machinery.
 
-**Promise.** Write Faber once; carry that same readable intent across execution lanes — reviewable native applications, systems, and accelerated workloads — without learning each target's compiler internals.
+**Promise.** Write Faber once; carry that same readable intent across the lanes Faber ships today — native applications, self-contained package binaries, and a narrow Go CLI — without learning each target's compiler internals. Systems and accelerated lanes are in progress.
 
 **Proof hierarchy (each item must map to released public evidence; if the evidence is not yet public, the claim waits).**
 
@@ -63,9 +63,11 @@ Caveat: Stage 0 is discovery. This recommendation is the **default to act on**, 
 | --- | --- | --- | --- |
 | 1 | Readable, intentional source | Real `.fab` snippets from `corpus`, `coreutils`, `vivilite` | Ready when repos are public |
 | 2 | Toolable today | `faber check/build/run/test/script/format/explain/targets` + tree-sitter highlighting | CLI claim waits on binary; highlighting claim ready |
-| 3 | One intent, many lanes | `coreutils` + `vivilite` + `gpu-workload` + `ai-workbench` as Faber packages | Ready when `examples` is public |
+| 3 | One intent, three evidenced lanes | `coreutils` across native application + package binary + narrow Go CLI; `vivilite` (native application + library persistence); `automation` (multi-module native application) | Ready when `examples` is public |
 | 4 | Portable artifacts | Generated code against `faber-runtime`; `cista` packaged interfaces + compiled artifacts | Ready when `faber-runtime`/`cista` public |
 | 5 | Library ecosystem in progress | Norma stdlib tours; Triga geometry mirroring three.js | Partial (Triga CPU-only today) |
+
+`gpu-workload`, `ai-workbench`, and browser are tracked in-progress lanes, not V1 proof.
 
 ## 4. Prohibited claims
 
@@ -81,15 +83,21 @@ These cannot appear in any public surface until the cited evidence ships.
 - Adoption, star, or traction numbers (none exist).
 - Compiler internals as proof: MIR, lowering, codegen, hygiene, arena. The only user-visible internal vocabulary is `faber script "interprets"` — nothing deeper.
 - Roadmap dates or shipping commitments.
-- "Production ready" / "stable" / version stability claims (pre-launch).
+- "Write once, run on GPU / in the browser" — GPU execution has a stable blocker and browser is deferred until after V1.
+- "Faber targets N backends" by counting LLVM/Wasm/WGSL/Metal text leaves — those are emit/validate stages, not runnable lanes. Only native applications and package binaries run; Go is build-only.
+- "Go is a supported target" — Go is an experimental, narrow CLI emit surface that rejects most data features.
+- "Backend API framework shipped" — the G9 work is packet-only; it must merge to main and rerun before any public mention.
+- "Full coreutils" / "multi-backend coreutils" — only the declared slices (echo/grep/cp native; true/false/echo Go; touch package binary) are V1 evidence.
+- "HIR v1" or "MIR v1" as an external release name or in user docs — those are internal labels. External language = a single Faber language release.
+- "Production ready" / "stable" / cross-host outcome parity — V1 is experimental/preview; only source portability and fail-closed rejection are honest.
 
 ## 5. Content pillars
 
 Each pillar is evidence-grounded and has at least one owner artifact.
 
 1. **Language design in public** — keyword vocabulary, explicit contracts, readability. Artifacts: `corpus`, `faber explain`, real `.fab` snippets.
-2. **What you can build today** — deep dives on `coreutils`, `vivilite`, `gpu-workload`, `ai-workbench`.
-3. **The execution-lane idea** — how one intent targets native / systems / accelerated surfaces. User-visible only; no compiler internals.
+2. **What you can build in V1** — deep dives on `coreutils` (across the three lanes), `vivilite` (library + persistence), and `automation` (multi-module application). `gpu-workload` and `ai-workbench` become spotlights only when their lanes clear.
+3. **The execution-lane idea** — how one intent targets the lanes shipped today (native application, package binary, narrow Go CLI), with systems and accelerated lanes tracked as in progress. User-visible only; no compiler internals and no HIR/MIR labels.
 4. **Library ecosystem in progress** — Norma stdlib tours; Triga geometry and the three.js mirror rationale.
 5. **Release and capability updates** — honest capability matrix (what works today vs tracked), release notes.
 6. **Engineering lessons, sanitized** — design rationale and trade-offs without private implementation detail.
@@ -109,7 +117,7 @@ Ordered for the launch sequence; each assumes the relevant evidence is public. E
 1. **Why Faber exists** — application intent shouldn't die when it crosses an execution lane. (Founder narrative + positioning. Evidence: the problem/promise hierarchy.)
 2. **Read Faber out loud** — tour the Latin keyword vocabulary with a real `.fab` snippet. (Evidence: `corpus`, `vivilite` or `coreutils` source.)
 3. **`faber explain`** — a language reference that lives inside your toolchain. (Evidence: corpus as `faber explain` source; CLI command surface.)
-4. **One intent, many lanes** — coreutils, a mailspace CLI, and a GPU workload, all Faber. (Evidence: `coreutils`, `vivilite`, `gpu-workload`.)
+4. **One intent, three evidenced lanes** — `coreutils` as a native application, a self-contained package binary, and a narrow Go CLI. (Evidence: `coreutils` across lanes, `vivilite`, `automation`.)
 5. **Rebuilding a coreutils tool in Faber** — runnable deep dive. (Evidence: `coreutils`; requires public repo.)
 6. **Triga** — Faber's geometry types and why they mirror three.js. (Evidence: `triga` types; honest about CPU-only status.)
 7. **Norma in practice** — JSON, async, iteration. (Evidence: `norma:json`, async exempla.)

@@ -38,6 +38,10 @@ compiler's internal machinery. The public story must lead with user outcomes:
 readability, trustworthy tooling, deployable artifacts, and a growing package
 ecosystem. Lane internals are evidence, not the homepage pitch.
 
+*Vision framing. The evidenced V1 lanes are narrower: native applications,
+self-contained package binaries, and a narrow Go CLI. See the Stage 0
+positioning brief and the V1 release contract.*
+
 ## Current State
 
 | Track | State | Next action |
