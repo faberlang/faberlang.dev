@@ -781,7 +781,7 @@ fn is_sha256_hex(value: &str) -> bool {
 }
 
 fn verify_internal_route_references(root: &Path, failures: &mut Vec<String>) {
-    let known_routes = served_asset_routes(root);
+    let known_routes = served_asset_routes(root, failures);
     let mut files = Vec::new();
     collect_text_assets(&root.join("assets"), &mut files);
 
@@ -809,7 +809,7 @@ fn verify_internal_route_references(root: &Path, failures: &mut Vec<String>) {
 
 fn verify_root_discovery_links(root: &Path, failures: &mut Vec<String>) {
     let main = read_to_string(root, Path::new("src/main.rs"), failures);
-    let known_routes = served_asset_routes(root);
+    let known_routes = served_asset_routes(root, failures);
 
     for route in ROOT_DISCOVERY_ROUTES {
         let versioned = route.replace("__DOCS_VERSION__", DOCS_VERSION);
@@ -859,20 +859,32 @@ fn contract_archive_claim_scan_files(root: &Path) -> Vec<PathBuf> {
     files
 }
 
-fn served_asset_routes(root: &Path) -> Vec<String> {
-    let mut files = Vec::new();
-    collect_asset_files(&root.join("assets"), &mut files);
-
+fn served_asset_routes(root: &Path, failures: &mut Vec<String>) -> Vec<String> {
+    let main = read_to_string(root, Path::new("src/main.rs"), failures);
     let mut routes = vec!["/".to_string()];
-    for file in files {
-        if file.extension().is_some_and(|extension| extension == "zst") {
-            continue;
-        }
-        if let Ok(relative) = file.strip_prefix(root.join("assets")) {
-            routes.push(format!("/{}", relative.to_string_lossy()));
-        }
-    }
+    routes.extend(extract_served_asset_routes(&main));
     routes.sort();
+    routes.dedup();
+    routes
+}
+
+fn extract_served_asset_routes(source: &str) -> Vec<String> {
+    let mut routes = Vec::new();
+    let mut rest = source;
+
+    while let Some(start) = rest.find("asset!(") {
+        rest = &rest[start + "asset!(".len()..];
+        let Some(quote_start) = rest.find('"') else {
+            break;
+        };
+        rest = &rest[quote_start + 1..];
+        let Some(quote_end) = rest.find('"') else {
+            break;
+        };
+        routes.push(rest[..quote_end].to_string());
+        rest = &rest[quote_end + 1..];
+    }
+
     routes
 }
 
@@ -1239,20 +1251,6 @@ fn collect_json_assets(dir: &Path, files: &mut Vec<PathBuf>) {
     }
 }
 
-fn collect_asset_files(dir: &Path, files: &mut Vec<PathBuf>) {
-    let Ok(entries) = fs::read_dir(dir) else {
-        return;
-    };
-    for entry in entries.flatten() {
-        let path = entry.path();
-        if path.is_dir() {
-            collect_asset_files(&path, files);
-        } else {
-            files.push(path);
-        }
-    }
-}
-
 fn is_text_asset(path: &Path) -> bool {
     path.extension().is_some_and(|extension| {
         matches!(
@@ -1281,6 +1279,7 @@ fn read_to_string(root: &Path, path: &Path, failures: &mut Vec<String>) -> Strin
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::time::{SystemTime, UNIX_EPOCH};
 
     fn known_routes() -> Vec<String> {
         vec![
@@ -1313,6 +1312,71 @@ mod tests {
             "__PUBLIC_ORIGIN__/contracts/__DOCS_VERSION__/*",
             &known_routes()
         ));
+    }
+
+    #[test]
+    fn served_asset_routes_are_extracted_from_server_asset_map() {
+        let source = r#"
+            asset!("/index.html", "text/html; charset=utf-8"),
+            asset!(
+                "/contracts/1.0.0-rc.1/documents.json",
+                "application/json; charset=utf-8"
+            ),
+        "#;
+
+        assert_eq!(
+            extract_served_asset_routes(source),
+            vec![
+                "/index.html".to_string(),
+                "/contracts/1.0.0-rc.1/documents.json".to_string()
+            ]
+        );
+    }
+
+    #[test]
+    fn internal_route_validation_rejects_assets_only_ghost_routes() {
+        let root = temp_root("ghost-route");
+        let assets = root.join("assets");
+        let src = root.join("src");
+        fs::create_dir_all(&assets).expect("create assets");
+        fs::create_dir_all(&src).expect("create src");
+        fs::write(
+            assets.join("index.html"),
+            r#"<a href="/ghost.md">ghost route</a>"#,
+        )
+        .expect("write index asset");
+        fs::write(assets.join("ghost.md"), "exists on disk only").expect("write ghost asset");
+        fs::write(
+            src.join("main.rs"),
+            r#"
+            fn assets() {
+                asset!("/index.html", "text/html; charset=utf-8");
+            }
+            "#,
+        )
+        .expect("write server map");
+
+        let mut failures = Vec::new();
+        verify_internal_route_references(&root, &mut failures);
+        fs::remove_dir_all(&root).expect("remove temp root");
+
+        assert!(
+            failures
+                .iter()
+                .any(|failure| failure.contains("unresolved internal route reference `/ghost.md`")),
+            "failures: {failures:?}"
+        );
+    }
+
+    fn temp_root(label: &str) -> PathBuf {
+        let nanos = SystemTime::now()
+            .duration_since(UNIX_EPOCH)
+            .expect("clock after epoch")
+            .as_nanos();
+        std::env::temp_dir().join(format!(
+            "faber-web-validator-{label}-{}-{nanos}",
+            std::process::id()
+        ))
     }
 
     #[test]
