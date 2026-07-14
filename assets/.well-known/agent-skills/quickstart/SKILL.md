@@ -1,19 +1,19 @@
-# Faber Quickstart
+# Faber Quickstart Preview
 
-Use this skill when you need to create, check, build, run, or test a Faber
-package from zero context.
+Use this skill to understand the intended create/check/build/run/test workflow.
+Do not present it as a public install guide.
 
 Version: `__DOCS_VERSION__`.
 
 ## Use When
 
-- An agent is asked to build something with Faber for the first time.
-- A new package needs to be created without prior layout knowledge.
-- A quick verification of toolchain and package health is needed.
+- An agent is evaluating the local RC1 packet.
+- A future package workflow needs layout context.
+- A toolchain is available in an approved local environment.
 
 ## Canonical Choices
 
-1. Use `faber new <name>` to scaffold a package. Never hand-create layout files.
+1. Treat `faber new <name>` as intended workflow shape until install gates clear.
 2. Use `faber check` for fast syntax/type validation without a full build.
 3. Use `faber build` for a complete compile. The default output is a native binary.
 4. Use `faber run` to build and execute the default binary target.
@@ -38,11 +38,11 @@ hello/
 
 ## Constraints
 
-- Do not hand-write `faber.toml` or layout directories. Use `faber new`.
+- Do not claim a public install path or source-build path.
 - Do not assume Go, TypeScript, or Wasm packages work like native Rust packages.
   The supported lane is Rust packages producing native binaries.
 - Run `faber check` before `faber build` — it is faster and catches more errors.
-- Do not invent Capabilities not listed in the providers contract.
+- Do not invent capabilities not listed in the providers contract.
 - Prefer the versioned docs at `/docs/__DOCS_VERSION__/` over stale cached
   references.
 

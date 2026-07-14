@@ -1,15 +1,20 @@
-# Faber Quickstart
+# Faber Quickstart Preview
 
-Create, check, build, run, and test your first Faber package.
+Preview the package workflow shape for Faber.
 
 Version: `__DOCS_VERSION__`.
 
+Status: local draft. Public installation and runnable quickstart claims are
+gated on a released binary or operator-approved install route.
+
 ## Prerequisites
 
-- Faber toolchain installed (`faber --version` to verify).
+- A future Faber toolchain release or approved local evaluation environment.
 - A terminal and text editor.
 
 ## Create a Package
+
+The intended workflow shape is:
 
 ```sh
 faber new hello
@@ -39,7 +44,7 @@ This is faster than `faber build` and catches most errors immediately.
 
 ## Build
 
-Compile the package:
+Compile the package when the toolchain is available:
 
 ```sh
 faber build
@@ -78,8 +83,15 @@ faber format
 faber check
 ```
 
+## Gates
+
+- Do not publish this as an install guide until a binary or approved install
+  route exists.
+- Do not claim public source-build support.
+- Do not mark examples runnable without public source and run evidence.
+
 ## Next Steps
 
-- Read `/docs/__DOCS_VERSION__/language/index.md` for the language reference.
-- Read `/docs/__DOCS_VERSION__/effects/index.md` for native effects and providers.
-- Read `/docs/__DOCS_VERSION__/diagnostics/index.md` for error codes and repair.
+- Read `/docs/__DOCS_VERSION__/evaluate/index.md` for the public claim boundary.
+- Read `/docs/__DOCS_VERSION__/learn/index.md` for the learning path.
+- Read `/docs/__DOCS_VERSION__/targets/index.md` before assuming runtime support.

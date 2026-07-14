@@ -1,5 +1,5 @@
 (* Faber Grammar — __DOCS_VERSION__ *)
-(* Generated from Radix public language export. *)
+(* Placeholder for the approved public language export. *)
 
 program = { declaration } ;
 
@@ -21,5 +21,5 @@ block = "{" { statement } [ expression ] "}" ;
 
 statement = let_stmt | assign_stmt | expr_stmt | return_stmt ;
 
-(* Full EBNF generated from Radix compiler export. *)
+(* Full EBNF generated from the approved public language export. *)
 (* For the complete machine-readable grammar, see generated artifact. *)

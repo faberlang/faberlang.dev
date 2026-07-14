@@ -1,70 +1,57 @@
 # Faber
 
-Faber is a compiled, multi-target systems language with declarative effects,
-native host routing, and a deterministic package build toolchain. This document
-describes the **public documentation** for the `__DOCS_VERSION__` release.
+Version: `__DOCS_VERSION__`.
 
-**Do not infer compiler source, private Radix internals, or unreleased
-features from this documentation.**
+This is a local RC1 evaluation and learning packet for Faber. It is not a
+public release announcement, install guide, package registry launch, source
+publication, deployment, analytics setup, or roadmap promise.
 
-## Product Lane
-
-- **Rust packages with native binaries** — the supported, tested product surface.
-- **Go, TypeScript, S-expression targets** — emit-only research protototypes; not
-  a supported application runtime.
-- **Wasm, LLVM, Metal, WGSL** — host-backend compiler lanes; not public package
-  building target hosts.
+Faber is an intent-first application language for readable source that can be
+checked, explained, and carried across evidenced execution lanes.
 
 ## Start Here
 
-1. Read `/docs/__DOCS_VERSION__/quickstart.md` — create, check, build, run.
-2. Read `/.well-known/agent-skills/quickstart/SKILL.md` — agent decision router.
-3. Browse `/.well-known/agent-skills/index.json` — all available agent skills.
-4. Read `/docs/__DOCS_VERSION__/language/index.md` — grammar and semantics.
-5. Read `/docs/__DOCS_VERSION__/packages/index.md` — layout, manifests, tools.
-6. Read `/docs/__DOCS_VERSION__/effects/index.md` — runtime builtins and providers.
-7. Read `/docs/__DOCS_VERSION__/diagnostics/index.md` — error reference.
+1. `/docs/__DOCS_VERSION__/evaluate/index.md` — allowed claim boundary.
+2. `/docs/__DOCS_VERSION__/learn/index.md` — learning path and vocabulary.
+3. `/docs/__DOCS_VERSION__/reference/index.md` — contract routes.
+4. `/docs/__DOCS_VERSION__/targets/index.md` — capability labels.
+5. `/docs/__DOCS_VERSION__/examples/index.md` — example status labels.
+6. `/reports/stage-1-leakage-check.md` — local export/leakage report.
 
-## Quick Reference
+## Capability Snapshot
 
-| Need | Read |
-| --- | --- |
-| Learn syntax | `/.well-known/agent-skills/language-syntax/SKILL.md` |
-| Create a package | `/.well-known/agent-skills/packages/SKILL.md` |
-| Build and run | `/.well-known/agent-skills/build-run/SKILL.md` |
-| Write tests | `/.well-known/agent-skills/testing/SKILL.md` |
-| Use native effects | `/.well-known/agent-skills/effects/SKILL.md` |
-| Understand targets | `/.well-known/agent-skills/targets/SKILL.md` |
-| Fix errors | `/.well-known/agent-skills/diagnostics/SKILL.md` |
-| Use external libraries | `/.well-known/agent-skills/libraries/SKILL.md` |
-| Advanced execution | `/.well-known/agent-skills/fmir/SKILL.md` |
+- Native applications: locally evidenced product lane; public run claims need
+  release/export evidence.
+- Package binaries: locally evidenced package-store direction; live registry
+  claims remain gated.
+- Go CLI: narrow and experimental; do not describe as general Go support.
+- TypeScript and S-expression: emit-only research surfaces.
+- Wasm, LLVM, Metal, WGSL, GPU, and browser lanes: tracked or host-backend
+  work; not RC1 product claims.
+
+## Hard Gates
+
+Do not claim any of the following without explicit evidence and approval:
+
+- installability, one-command install, downloads, Homebrew, curl, or public
+  source builds;
+- public source repositories beyond what is already public;
+- live `cista.dev`, package publishing, registry login, or ecosystem
+  availability;
+- deployment, DNS, analytics, email capture, public posting, roadmap dates, or
+  production readiness;
+- runnable examples without public source and run evidence.
 
 ## Machine Contracts
 
-- `/contracts/__DOCS_VERSION__/grammar.ebnf` — exact parseable grammar.
-- `/contracts/__DOCS_VERSION__/keywords.json` — reserved words.
-- `/contracts/__DOCS_VERSION__/types.json` — type system contract.
-- `/contracts/__DOCS_VERSION__/operators.json` — operator precedence and semantics.
-- `/contracts/__DOCS_VERSION__/targets.json` — target capability dimensions.
-- `/contracts/__DOCS_VERSION__/diagnostics.json` — diagnostic codes and arguments.
-- `/contracts/__DOCS_VERSION__/providers.json` — host provider manifests.
-- `/contracts/__DOCS_VERSION__/documents.json` — document index with digests.
-- `/contracts/__DOCS_VERSION__/checksums.json` — contract artifact checksums.
+- `/contracts/__DOCS_VERSION__/grammar.ebnf`
+- `/contracts/__DOCS_VERSION__/keywords.json`
+- `/contracts/__DOCS_VERSION__/types.json`
+- `/contracts/__DOCS_VERSION__/operators.json`
+- `/contracts/__DOCS_VERSION__/targets.json`
+- `/contracts/__DOCS_VERSION__/diagnostics.json`
+- `/contracts/__DOCS_VERSION__/providers.json`
+- `/contracts/__DOCS_VERSION__/documents.json`
+- `/contracts/__DOCS_VERSION__/checksums.json`
 
-## External Projects
-
-| Project | Role |
-| --- | --- |
-| Norma | Standard library. Owns its own documentation and release cycle. |
-| Triga | GPU/compute host. Owns its own documentation and release cycle. |
-| Cista | Package registry and resolution. Owns its own documentation and release cycle. |
-
-Faber documentation explains how to resolve and use external projects but does
-not absorb their full reference material.
-
-## Constraints
-
-- Do not invent syntax not present in the grammar contract.
-- Do not infer runtime support from emit-only target availability.
-- Do not cite private Radix source paths or unpublished regression material.
-- All public claims are versioned. Prefer `__DOCS_VERSION__`-scoped URLs.
+Placeholder digests and empty catalogs are blockers, not public evidence.

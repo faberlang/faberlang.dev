@@ -1,7 +1,9 @@
 # Campaign: Faber Public Surface
 
 Date: 2026-07-11
-Status: draft — ready for discovery delivery
+Status: active — local Faber 1.0 RC1 public-site/docs packet in implementation;
+public export, deployment, analytics, DNS, and announcement remain
+operator-gated
 
 ## Summary
 
@@ -51,12 +53,12 @@ positioning brief and the V1 release contract.*
 
 | Track | State | Next action |
 | --- | --- | --- |
-| Site repo | Clean, README-only dedicated repo exists. | Discovery-first design/content delivery spec. |
-| Public language truth | Boundary plan exists; public repo/export flow not yet established. | Freeze source authority and leakage gate. |
-| Positioning | No accepted audience/problem narrative. | CPO positioning brief and message tests. |
-| Information architecture | Not selected. | Map startup narrative + docs/reference journeys. |
-| Visual system | Not selected. | Produce design directions after positioning. |
-| Publishing | No selected stack or deployment flow. | Select only after content/build constraints are known. |
+| Site repo | Local static/Rust asset surface is in implementation for the RC1 packet. | Finish private-review packet and validation. |
+| Public language truth | RC1 contracts/docs are being staged locally; source authority and export approval remain gated. | Freeze source authority and leakage gate. |
+| Positioning | Initial RC1 evaluation/learning positioning exists locally; not yet accepted for public launch. | Executive/product review against release evidence. |
+| Information architecture | Evaluate, learn, reference, examples, targets, diagnostics, effects, packages, and quickstart pages exist as local drafts. | Validate journeys and remove stale/private claims. |
+| Visual system | Local homepage/docs styling exists; not a final public brand system. | Private review and accessibility/performance pass. |
+| Publishing | No approved public deployment flow; local packet only. | Select preview/deploy path only after gates pass. |
 | Community | No public update/support cadence. | Route to launch-and-growth campaign. |
 
 ## Campaign Path

@@ -1,8 +1,10 @@
-# Faber Packages & Tools
+# Faber Packages & Tools Preview
 
 Package layout, manifests, imports, dependencies, and tool workflows.
 
 Version: `__DOCS_VERSION__`.
+
+Status: local draft. Public package registry and install claims remain gated.
 
 ## Package Layout
 
@@ -28,7 +30,7 @@ name = "hello"
 version = "0.1.0"
 
 [dependencies]
-norma = "0.1.0"
+mathesis = "0.1.0"
 ```
 
 The lockfile `faber.lock` records exact resolved versions. Commit it.
@@ -60,9 +62,10 @@ The import path mirrors the file path under `src/`. A file at
 
 ## Dependencies
 
-External dependencies are resolved through Cista, the Faber package registry.
-Declare them in `faber.toml` under `[dependencies]`. Do not pin to local
-filesystem paths.
+External dependency resolution is part of the package-store direction. Do not
+claim a live public registry or public package ecosystem from this local packet.
+Declare dependencies in `faber.toml` under `[dependencies]` when the package
+workflow is available.
 
 ## Constraints
 
@@ -70,6 +73,8 @@ filesystem paths.
 - Do not import from sibling filesystem paths outside the package.
 - Run `faber format` before committing.
 - Run `faber check` before `faber build`.
+- Do not publish Cista registry, login, fetch, or publish claims until the live
+  registry gate clears.
 
 ## Related
 

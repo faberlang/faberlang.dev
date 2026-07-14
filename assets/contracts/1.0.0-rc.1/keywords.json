@@ -5,5 +5,5 @@
     "reserved": ["fn", "type", "import", "ad", "let", "var", "if", "else", "match", "return", "true", "false", "null", "as", "is"],
     "contextual": ["test", "assert", "assert_eq"]
   },
-  "_note": "Generated from Radix public language export."
+  "_note": "Placeholder for the approved public language export."
 }

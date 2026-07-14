@@ -4,5 +4,5 @@
   "builtin_types": ["Int", "Float", "String", "Bool", "Unit", "Never"],
   "compound_types": ["List", "Map", "Optional", "Result", "Tuple"],
   "type_kinds": ["primitive", "nominal", "generic", "function", "effect", "union", "product"],
-  "_note": "Generated from Radix public language export."
+  "_note": "Placeholder for the approved public language export."
 }

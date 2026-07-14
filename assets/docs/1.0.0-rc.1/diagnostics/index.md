@@ -1,13 +1,17 @@
-# Faber Diagnostics
+# Faber Diagnostics Preview
 
 Stable diagnostic codes, meanings, and repair workflows.
 
 Version: `__DOCS_VERSION__`.
 
+Status: local draft. Public diagnostic claims require populated diagnostic
+contracts.
+
 ## Overview
 
-Every `faber check` or `faber build` error carries a stable diagnostic code.
-Each code has a documented meaning, common causes, and a corrected example.
+The intended public diagnostic surface is a stable code with meaning, common
+causes, and a corrected example. This packet does not yet contain the populated
+diagnostic catalog.
 
 ## Using Diagnostics
 
@@ -31,8 +35,7 @@ Each diagnostic includes:
 
 ## Constraints
 
-- Diagnostic codes are stable within a release. Do not reference unreleased
-  codes.
+- Do not reference diagnostic codes absent from the public contract.
 - The corrected example is authoritative. Apply it exactly.
 
 ## Related

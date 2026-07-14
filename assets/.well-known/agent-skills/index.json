@@ -4,7 +4,7 @@
     {
       "name": "quickstart",
       "type": "skill-md",
-      "description": "Cold-start a new Faber package: create, check, build, run, and test from zero context.",
+      "description": "Preview the Faber package workflow shape. Install and run claims are gated.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/quickstart/SKILL.md",
       "sha256": "PLACEHOLDER"
     },
@@ -25,7 +25,7 @@
     {
       "name": "build-run",
       "type": "skill-md",
-      "description": "Build, run, format, explain, and script workflows for Faber packages.",
+      "description": "Preview build, run, format, explain, and script workflows. Requires a released or approved local toolchain.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/build-run/SKILL.md",
       "sha256": "PLACEHOLDER"
     },
@@ -60,15 +60,8 @@
     {
       "name": "libraries",
       "type": "skill-md",
-      "description": "External Faber library resolution: Norma, Triga, Cista.",
+      "description": "External Faber library orientation. Public package and live registry claims are gated.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/libraries/SKILL.md",
-      "sha256": "PLACEHOLDER"
-    },
-    {
-      "name": "fmir",
-      "type": "skill-md",
-      "description": "Advanced Faber executable package and runtime path (FMIR). Not the public release name.",
-      "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/fmir/SKILL.md",
       "sha256": "PLACEHOLDER"
     }
   ]

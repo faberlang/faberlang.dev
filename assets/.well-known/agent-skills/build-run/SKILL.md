@@ -1,21 +1,21 @@
-# Faber Build and Run
+# Faber Build and Run Preview
 
-Use this skill when you need to build, run, format, explain, or script Faber
-package workflows.
+Use this skill to understand build/run workflow shape in an approved local
+environment. Do not present these commands as public installation evidence.
 
 Version: `__DOCS_VERSION__`.
 
 ## Use When
 
-- Compiling a Faber package.
-- Running a Faber binary.
+- Evaluating command semantics from the local packet.
+- Running a Faber binary only in an approved local environment.
 - Formatting source code.
 - Explaining compiler decisions or target selections.
 - Scripting build and test workflows.
 
 ## Canonical Choices
 
-1. `faber check` — fast syntax and type validation (no codegen).
+1. `faber check` — intended fast syntax and type validation.
 2. `faber build` — full compile producing native binary output.
 3. `faber run` — build and execute the default binary target.
 4. `faber test` — run all package tests.
@@ -48,8 +48,10 @@ faber check
 
 - Run `faber check` before `faber build` — faster feedback loop.
 - Run `faber format` before committing source changes.
-- The supported product lane is native binary output. Do not expect Go,
-  TypeScript, or Wasm targets to produce runnable applications.
+- Public build/run claims require a released binary or operator-approved
+  install route.
+- The local product-lane draft is native binary output. Do not expect Go,
+  TypeScript, or Wasm lanes to produce runnable applications.
 - Use `faber explain` when a build result is unexpected — it surfaces
   the compiler's routing decisions.
 

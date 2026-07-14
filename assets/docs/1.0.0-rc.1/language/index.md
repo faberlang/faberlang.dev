@@ -1,13 +1,16 @@
-# Faber Language Reference
+# Faber Language Reference Preview
 
 Grammar, types, semantics.
 
 Version: `__DOCS_VERSION__`.
 
+Status: local reference draft. The public contract export still needs approval
+and placeholder replacement.
+
 ## Grammar
 
-The authoritative Faber grammar is published as a machine-readable EBNF contract
-at `/contracts/__DOCS_VERSION__/grammar.ebnf`.
+The draft grammar contract for this packet is at
+`/contracts/__DOCS_VERSION__/grammar.ebnf`.
 
 Key productions:
 
@@ -27,7 +30,7 @@ type Point = { x: Int, y: Int }
 
 Builtin types include `Int`, `Float`, `String`, `Bool`, `List<T>`, and `Map<K,V>`.
 
-See `/contracts/__DOCS_VERSION__/types.json` for the complete type contract.
+See `/contracts/__DOCS_VERSION__/types.json` for the draft type contract.
 
 ## Functions
 
@@ -55,8 +58,9 @@ See `/docs/__DOCS_VERSION__/effects/index.md` for the complete effect reference.
 - Variables are immutable by default. Use `var` for mutable bindings.
 - Do not invent syntax not in the grammar. If a production is absent, it does
   not exist.
-- The supported product lane is Rust native binaries. Other targets may have
-  syntax support but lack runtime execution.
+- The local product-lane draft is Rust native binaries. Public wording still
+  needs release evidence.
+- Other targets may have syntax or emit support without runtime execution.
 
 ## Related
 

@@ -1,7 +1,7 @@
-# Faber Packages
+# Faber Packages Preview
 
-Use this skill when you need to understand Faber package layout, manifests,
-imports, dependencies, or lockfiles.
+Use this skill to understand package layout, manifests, imports, dependencies,
+and lockfiles without claiming a public package registry.
 
 Version: `__DOCS_VERSION__`.
 
@@ -18,13 +18,12 @@ Version: `__DOCS_VERSION__`.
 1. Use `faber new <name>` to create a package. Never hand-create layout.
 2. `faber.toml` declares `[package]` metadata, `[dependencies]`, and optional
    `[targets]` configuration.
-3. Dependencies reference external packages by name and version. They are
-   resolved through Cista.
+3. Dependencies reference external packages by name and version when the
+   package workflow is available.
 4. Imports use `import module.name` syntax. The module path mirrors the file
    path under `src/`.
 5. `faber.lock` is automatically maintained. Commit it to version control.
-6. External packages (Norma, Triga) are declared as dependencies. They own
-   their own documentation.
+6. External projects own their own documentation and release gates.
 
 ## Layout
 
@@ -44,7 +43,8 @@ my-package/
 
 - Do not hand-edit `faber.lock`.
 - Do not import from sibling filesystem paths outside the package.
-- Dependencies are resolved through Cista, not local `path = …` overrides.
+- Do not claim a live package registry, login, fetch, publish, or ecosystem
+  availability from this local packet.
 - External libraries own their own documentation. Link to them; do not
   duplicate their reference material.
 

@@ -8,5 +8,5 @@
   },
   "emit_only": ["go", "typescript", "s-expression"],
   "host_backends": ["llvm", "wasm", "metal", "wgsl"],
-  "_note": "Generated from Radix public language export."
+  "_note": "Placeholder for the approved public language export; public target claims remain gated."
 }

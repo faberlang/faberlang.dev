@@ -1,8 +1,11 @@
-# Faber Effects
+# Faber Effects Preview
 
 Declarative `ad` routes, runtime builtins, native host, and provider families.
 
 Version: `__DOCS_VERSION__`.
+
+Status: local draft. Provider capability lists require the public language
+export before publication.
 
 ## Ad Routes
 
@@ -24,9 +27,9 @@ Builtin effects are always available without provider declaration:
 
 ## Native Host
 
-The native host (`host-kernel-rs`, `host-native-rs`) provides the bridge
-between Faber programs and the operating system. Generated native packages
-always link the host adapters.
+The native host provides the bridge between Faber programs and the operating
+system. Public docs should describe user-visible behavior, not private host
+implementation paths.
 
 ## Provider Families
 
@@ -40,7 +43,7 @@ Five provider crates ship with the Faber toolchain:
 | `solum` | Filesystem | read_file, write_file, stat |
 | `tempus` | Time, clocks | now, sleep, timer |
 
-Each provider publishes a capability manifest at
+Each provider has a draft capability manifest at
 `/contracts/__DOCS_VERSION__/providers.json`.
 
 ## Constraints

@@ -2,10 +2,10 @@ use std::collections::BTreeMap;
 use std::net::{Ipv4Addr, SocketAddr};
 
 use axum::extract::OriginalUri;
-use axum::http::{HeaderMap, HeaderValue, StatusCode, header};
+use axum::http::{header, HeaderMap, HeaderValue, StatusCode};
 use axum::response::{IntoResponse, Response};
 use axum::routing::get;
-use axum::{Router, serve};
+use axum::{serve, Router};
 use tower_http::trace::TraceLayer;
 
 const PUBLIC_ORIGIN_PLACEHOLDER: &str = "__PUBLIC_ORIGIN__";
@@ -84,12 +84,28 @@ fn assets() -> BTreeMap<&'static str, Asset> {
             "text/markdown; charset=utf-8"
         ),
         asset!(
-            "/.well-known/agent-skills/fmir/SKILL.md",
+            "/.well-known/faber-language.json",
+            "application/json; charset=utf-8"
+        ),
+        asset!(
+            "/docs/1.0.0-rc.1/evaluate/index.md",
             "text/markdown; charset=utf-8"
         ),
         asset!(
-            "/.well-known/faber-language.json",
-            "application/json; charset=utf-8"
+            "/docs/1.0.0-rc.1/learn/index.md",
+            "text/markdown; charset=utf-8"
+        ),
+        asset!(
+            "/docs/1.0.0-rc.1/reference/index.md",
+            "text/markdown; charset=utf-8"
+        ),
+        asset!(
+            "/docs/1.0.0-rc.1/targets/index.md",
+            "text/markdown; charset=utf-8"
+        ),
+        asset!(
+            "/docs/1.0.0-rc.1/examples/index.md",
+            "text/markdown; charset=utf-8"
         ),
         asset!(
             "/docs/1.0.0-rc.1/quickstart.md",
@@ -146,6 +162,10 @@ fn assets() -> BTreeMap<&'static str, Asset> {
         asset!(
             "/contracts/1.0.0-rc.1/checksums.json",
             "application/json; charset=utf-8"
+        ),
+        asset!(
+            "/reports/stage-1-leakage-check.md",
+            "text/markdown; charset=utf-8"
         ),
         // faber-contract.tar.zst is a build-time artifact; not embedded as source.
     ])
@@ -234,14 +254,12 @@ async fn asset(
     }
     // Content negotiation header
     if path == "/" {
-        response.headers_mut().insert(
-            header::VARY,
-            HeaderValue::from_static("Accept"),
-        );
-        response.headers_mut().insert(
-            header::LINK,
-            link_value(&public_origin),
-        );
+        response
+            .headers_mut()
+            .insert(header::VARY, HeaderValue::from_static("Accept"));
+        response
+            .headers_mut()
+            .insert(header::LINK, link_value(&public_origin));
     }
 
     response
@@ -251,9 +269,7 @@ fn prefers_markdown(headers: &HeaderMap) -> bool {
     headers
         .get(header::ACCEPT)
         .and_then(|v| v.to_str().ok())
-        .map(|accept| {
-            accept.contains("text/markdown") || accept.contains("text/plain")
-        })
+        .map(|accept| accept.contains("text/markdown") || accept.contains("text/plain"))
         .unwrap_or(false)
 }
 
@@ -297,10 +313,7 @@ fn guess_public_origin(headers: &HeaderMap) -> String {
         }
     }
     // Try Host header
-    if let Some(host) = headers
-        .get(header::HOST)
-        .and_then(|v| v.to_str().ok())
-    {
+    if let Some(host) = headers.get(header::HOST).and_then(|v| v.to_str().ok()) {
         let scheme = if headers.get("x-forwarded-proto").map(|v| v.as_bytes()) == Some(b"https") {
             "https"
         } else {

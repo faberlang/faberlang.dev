@@ -2,19 +2,16 @@
   "$schema": "https://faberlang.dev/schemas/language-catalog/1.0.0/schema.json",
   "language": "Faber",
   "version": "__DOCS_VERSION__",
+  "status": "local-rc1-preview",
   "product_lane": {
     "kind": "rust-native-binary",
-    "supported_dimensions": ["parse/check", "emit", "validate", "build", "run", "package"]
-  },
-  "provided_by": {
-    "compiler": "radix",
-    "compiler_repository": "faberlang/radix",
-    "compiler_visibility": "private"
+    "claim_status": "local-evidence-public-gated",
+    "dimensions": ["parse/check", "emit", "validate", "build", "run", "package"]
   },
   "external_projects": {
     "norma": { "role": "standard-library", "docs_owned": true },
-    "triga": { "role": "gpu-compute-host", "docs_owned": true },
-    "cista": { "role": "package-registry", "docs_owned": true }
+    "triga": { "role": "geometry-compute-project", "docs_owned": true, "accelerated_lanes": "tracked" },
+    "cista": { "role": "package-store-registry-client", "docs_owned": true, "live_registry": "gated" }
   },
   "agent_entrypoints": {
     "llms_txt": "__PUBLIC_ORIGIN__/llms.txt",

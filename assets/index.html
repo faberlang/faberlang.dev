@@ -1,71 +1,63 @@
-"<!DOCTYPE html>
-<html lang=\"en\">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset=\"UTF-8\">
-  <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-  <title>Faber — compiled systems language</title>
-  <link rel=\"stylesheet\" href=\"/index.css\">
-  <link rel=\"alternate\" type=\"text/markdown\" href=\"/llms.txt\">
-  <meta name=\"description\" content=\"Faber is a compiled, multi-target systems language with declarative effects, native host routing, and a deterministic package build toolchain.\">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Faber — intent-first application language</title>
+  <link rel="stylesheet" href="/index.css">
+  <link rel="alternate" type="text/markdown" href="/llms.txt">
+  <meta name="description" content="Faber is an intent-first application language for readable source that carries across execution lanes. This is a local RC1 evaluation preview, not a public release.">
 </head>
 <body>
-  <header>
+  <header class="hero">
+    <p class="eyebrow">Local RC1 evaluation preview</p>
     <h1>Faber</h1>
-    <p class=\"version\">__DOCS_VERSION__</p>
-    <p class=\"tagline\">A compiled, multi-target systems language with declarative effects
-    and deterministic, reproducible builds.</p>
+    <p class="version">__DOCS_VERSION__</p>
+    <p class="tagline">Readable application intent that can be checked, explained, and carried across evidenced execution lanes.</p>
+    <p class="notice">This packet is for local review. Installation, public source, package registry, deployment, analytics, and launch claims remain gated.</p>
   </header>
 
-  <nav>
-    <a href=\"/docs/__DOCS_VERSION__/quickstart.md\">Quickstart</a>
-    <a href=\"/docs/__DOCS_VERSION__/language/index.md\">Language</a>
-    <a href=\"/docs/__DOCS_VERSION__/packages/index.md\">Packages</a>
-    <a href=\"/docs/__DOCS_VERSION__/effects/index.md\">Effects</a>
-    <a href=\"/docs/__DOCS_VERSION__/diagnostics/index.md\">Diagnostics</a>
-    <a href=\"/llms.txt\">Agent primer</a>
+  <nav aria-label="Primary">
+    <a href="/docs/__DOCS_VERSION__/evaluate/index.md">Evaluate</a>
+    <a href="/docs/__DOCS_VERSION__/learn/index.md">Learn</a>
+    <a href="/docs/__DOCS_VERSION__/reference/index.md">Reference</a>
+    <a href="/docs/__DOCS_VERSION__/targets/index.md">Targets</a>
+    <a href="/docs/__DOCS_VERSION__/examples/index.md">Examples</a>
+    <a href="/llms.txt">Agent primer</a>
   </nav>
 
   <main>
     <section>
-      <h2>For Humans</h2>
-      <p>Start with the <a href=\"/docs/__DOCS_VERSION__/quickstart.md\">Quickstart</a> to
-      create your first Faber package. Read the <a href=\"/docs/__DOCS_VERSION__/language/index.md\">Language
-      Reference</a> for syntax and semantics. Browse <a href=\"/docs/__DOCS_VERSION__/packages/index.md\">Packages
-      &amp; Tools</a> for layout, build, and test workflows.</p>
+      <h2>Evaluate</h2>
+      <p>Faber is for builders who want application code to stay readable when it crosses runtime and deployment boundaries. The honest RC1-era story is native applications, self-contained package binaries, and a narrow Go CLI lane; systems and accelerated lanes are tracked, not promised.</p>
+      <pre><code>functio greet(name: Text) -> Text {
+    redit "salve, " + name
+}</code></pre>
     </section>
 
     <section>
-      <h2>For Agents</h2>
-      <p>Read <a href=\"/llms.txt\"><code>/llms.txt</code></a> for the canonical
-      orientation, versioned reference routing, and explicit constraints. Browse
-      <a href=\"/.well-known/agent-skills/index.json\">Agent Skills</a> for task-specific
-      routing. Use <a href=\"/contracts/__DOCS_VERSION__/grammar.ebnf\">Machine Contracts</a>
-      for exact syntax and types.</p>
+      <h2>Learn</h2>
+      <p>The first learning packet focuses on public-safe language concepts: intent-first source, the Latin keyword vocabulary, versioned contracts, diagnostics, and target capability labels. It avoids compiler implementation details and private proof vocabulary.</p>
     </section>
 
     <section>
-      <h2>Product Lane</h2>
-      <ul>
-        <li><strong>Rust packages with native binaries</strong> — the supported, tested
-          product surface.</li>
-        <li><strong>Go, TypeScript, S-expression targets</strong> — emit-only research
-          protototypes; not a supported runtime.</li>
-        <li><strong>Wasm, LLVM, Metal, WGSL</strong> — host-backend compiler lanes.</li>
+      <h2>Capability Snapshot</h2>
+      <ul class="status-list">
+        <li><strong>Native application lane:</strong> evidenced locally, public run proof still requires release/export gates.</li>
+        <li><strong>Package binary lane:</strong> evidenced locally through Cista package-store work, live registry remains gated.</li>
+        <li><strong>Go CLI lane:</strong> narrow and experimental; do not describe it as a supported target.</li>
+        <li><strong>GPU, browser, and broader backend lanes:</strong> tracked work, not RC1 product claims.</li>
       </ul>
     </section>
 
     <section>
-      <h2>External Projects</h2>
-      <p><strong>Norma</strong> — standard library. <strong>Triga</strong> — GPU/compute host.
-      <strong>Cista</strong> — package registry. Each owns its own documentation and release
-      cycle.</p>
+      <h2>Release Gates</h2>
+      <p>Before public use, this packet still needs a public/private export gate, release artifact or operator-approved install route, selected public examples with run evidence, link scrub, checksums, and operator approval for deployment or announcement.</p>
     </section>
   </main>
 
   <footer>
-    <p>Faber __DOCS_VERSION__ &middot; <a href=\"/robots.txt\">robots.txt</a> &middot;
-    <a href=\"/sitemap.xml\">sitemap.xml</a> &middot;
-    <a href=\"/.well-known/faber-language.json\">language catalog</a></p>
+    <p>Faber __DOCS_VERSION__ local preview · <a href="/reports/stage-1-leakage-check.md">leakage check</a> · <a href="/robots.txt">robots.txt</a> · <a href="/sitemap.xml">sitemap.xml</a></p>
   </footer>
 </body>
-</html>"
+</html>
