@@ -390,10 +390,8 @@ fn route_reference_resolves(reference: &str, known_routes: &[String]) -> bool {
         .to_string();
     route = route.replace("__DOCS_VERSION__", DOCS_VERSION);
 
-    if let Some(prefix) = route.strip_suffix("/*") {
-        return known_routes
-            .iter()
-            .any(|known_route| known_route.starts_with(prefix));
+    if route.contains('*') {
+        return false;
     }
 
     known_routes.iter().any(|known_route| known_route == &route)
@@ -557,5 +555,43 @@ fn read_to_string(root: &Path, path: &Path, failures: &mut Vec<String>) -> Strin
             failures.push(format!("failed to read {}: {error}", path.display()));
             String::new()
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn known_routes() -> Vec<String> {
+        vec![
+            "/".to_string(),
+            "/contracts/1.0.0-rc.1/documents.json".to_string(),
+            "/contracts/1.0.0-rc.1/grammar.ebnf".to_string(),
+            "/docs/1.0.0-rc.1/reference/index.md".to_string(),
+        ]
+    }
+
+    #[test]
+    fn route_reference_resolves_concrete_version_placeholders() {
+        assert!(route_reference_resolves(
+            "/contracts/__DOCS_VERSION__/documents.json",
+            &known_routes()
+        ));
+    }
+
+    #[test]
+    fn route_reference_rejects_wildcard_prefixes() {
+        assert!(!route_reference_resolves(
+            "/contracts/__DOCS_VERSION__/*",
+            &known_routes()
+        ));
+    }
+
+    #[test]
+    fn route_reference_rejects_public_origin_wildcards() {
+        assert!(!route_reference_resolves(
+            "__PUBLIC_ORIGIN__/contracts/__DOCS_VERSION__/*",
+            &known_routes()
+        ));
     }
 }

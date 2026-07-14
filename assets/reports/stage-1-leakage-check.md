@@ -76,7 +76,15 @@ Primary local preview files:
 - `/docs/__DOCS_VERSION__/packages/index.md`
 - `/docs/__DOCS_VERSION__/effects/index.md`
 - `/docs/__DOCS_VERSION__/diagnostics/index.md`
-- `/contracts/__DOCS_VERSION__/*`
+- `/contracts/__DOCS_VERSION__/grammar.ebnf`
+- `/contracts/__DOCS_VERSION__/keywords.json`
+- `/contracts/__DOCS_VERSION__/types.json`
+- `/contracts/__DOCS_VERSION__/operators.json`
+- `/contracts/__DOCS_VERSION__/targets.json`
+- `/contracts/__DOCS_VERSION__/diagnostics.json`
+- `/contracts/__DOCS_VERSION__/providers.json`
+- `/contracts/__DOCS_VERSION__/documents.json`
+- `/contracts/__DOCS_VERSION__/checksums.json`
 - `/reports/rc1-private-preview-checklist.md`
 - `/reports/stage-1-leakage-check.md`
 
