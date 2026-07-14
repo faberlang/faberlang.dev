@@ -11,7 +11,28 @@
   <url><loc>__PUBLIC_ORIGIN__/docs/__DOCS_VERSION__/targets/index.md</loc></url>
   <url><loc>__PUBLIC_ORIGIN__/docs/__DOCS_VERSION__/examples/index.md</loc></url>
   <url><loc>__PUBLIC_ORIGIN__/docs/__DOCS_VERSION__/quickstart.md</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/docs/__DOCS_VERSION__/language/index.md</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/docs/__DOCS_VERSION__/packages/index.md</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/docs/__DOCS_VERSION__/effects/index.md</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/docs/__DOCS_VERSION__/diagnostics/index.md</loc></url>
   <url><loc>__PUBLIC_ORIGIN__/contracts/__DOCS_VERSION__/grammar.ebnf</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/contracts/__DOCS_VERSION__/keywords.json</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/contracts/__DOCS_VERSION__/types.json</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/contracts/__DOCS_VERSION__/operators.json</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/contracts/__DOCS_VERSION__/targets.json</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/contracts/__DOCS_VERSION__/diagnostics.json</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/contracts/__DOCS_VERSION__/providers.json</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/contracts/__DOCS_VERSION__/documents.json</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/contracts/__DOCS_VERSION__/checksums.json</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/.well-known/agent-skills/quickstart/SKILL.md</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/.well-known/agent-skills/language-syntax/SKILL.md</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/.well-known/agent-skills/packages/SKILL.md</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/.well-known/agent-skills/build-run/SKILL.md</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/.well-known/agent-skills/testing/SKILL.md</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/.well-known/agent-skills/diagnostics/SKILL.md</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/.well-known/agent-skills/effects/SKILL.md</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/.well-known/agent-skills/targets/SKILL.md</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/.well-known/agent-skills/libraries/SKILL.md</loc></url>
   <url><loc>__PUBLIC_ORIGIN__/reports/rc1-private-preview-checklist.md</loc></url>
   <url><loc>__PUBLIC_ORIGIN__/reports/stage-1-leakage-check.md</loc></url>
 </urlset>

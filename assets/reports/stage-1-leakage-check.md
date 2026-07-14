@@ -38,6 +38,9 @@ Primary local preview files:
 - `/index.css`
 - `/llms.txt`
 - `/llms-full.txt`
+- `/.well-known/faber-language.json`
+- `/.well-known/agent-skills/index.json`
+- `/.well-known/agent-skills/*/SKILL.md`
 - `/docs/__DOCS_VERSION__/evaluate/index.md`
 - `/docs/__DOCS_VERSION__/learn/index.md`
 - `/docs/__DOCS_VERSION__/reference/index.md`
@@ -50,6 +53,7 @@ Primary local preview files:
 - `/docs/__DOCS_VERSION__/diagnostics/index.md`
 - `/contracts/__DOCS_VERSION__/*`
 - `/reports/rc1-private-preview-checklist.md`
+- `/reports/stage-1-leakage-check.md`
 
 ## Leakage Result
 
@@ -97,4 +101,5 @@ Results:
   internal skill route returned `404`.
 - public packet validator: checks required routes, forbidden private/source
   terms, prohibited public claims, local-only labels, removed internal route
-  references, sitemap/document coverage, embedded routes, and JSON syntax.
+  references, cataloged document assets, sitemap/document coverage, embedded
+  routes, and JSON syntax.

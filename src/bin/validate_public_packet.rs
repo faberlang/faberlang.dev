@@ -66,6 +66,7 @@ fn main() {
     verify_local_status_labels(&root, &mut failures);
     verify_removed_fmir_route(&root, &mut failures);
     verify_route_coverage(&root, &mut failures);
+    verify_document_catalog_coverage(&root, &mut failures);
     verify_local_binary_evidence(&root, &mut failures);
     verify_private_preview_checklist(&root, &mut failures);
     verify_json(&root, &mut failures);
@@ -173,6 +174,55 @@ fn verify_route_coverage(root: &Path, failures: &mut Vec<String>) {
             failures.push(format!("src/main.rs does not embed {versioned}"));
         }
     }
+}
+
+fn verify_document_catalog_coverage(root: &Path, failures: &mut Vec<String>) {
+    let routes = document_catalog_routes(root, failures);
+    let sitemap = read_to_string(root, Path::new("assets/sitemap.xml"), failures);
+    let main = read_to_string(root, Path::new("src/main.rs"), failures);
+
+    for route in routes {
+        let asset = route_to_asset_path(&route);
+        let versioned = route.replace("__DOCS_VERSION__", DOCS_VERSION);
+
+        if !root.join(&asset).is_file() {
+            failures.push(format!(
+                "documents.json route {route} has no asset at {}",
+                asset.display()
+            ));
+        }
+        if !sitemap.contains(&route) {
+            failures.push(format!("sitemap.xml missing cataloged route {route}"));
+        }
+        if !main.contains(&versioned) {
+            failures.push(format!(
+                "src/main.rs does not embed cataloged route {versioned}"
+            ));
+        }
+    }
+}
+
+fn document_catalog_routes(root: &Path, failures: &mut Vec<String>) -> Vec<String> {
+    let text = read_to_string(
+        root,
+        Path::new("assets/contracts/1.0.0-rc.1/documents.json"),
+        failures,
+    );
+    let Ok(value) = serde_json::from_str::<serde_json::Value>(&text) else {
+        failures.push("documents.json is not valid JSON for route coverage".to_string());
+        return Vec::new();
+    };
+    let Some(documents) = value
+        .get("documents")
+        .and_then(|documents| documents.as_object())
+    else {
+        failures.push("documents.json missing object field `documents`".to_string());
+        return Vec::new();
+    };
+
+    let mut routes = documents.keys().cloned().collect::<Vec<_>>();
+    routes.sort();
+    routes
 }
 
 fn verify_local_binary_evidence(root: &Path, failures: &mut Vec<String>) {

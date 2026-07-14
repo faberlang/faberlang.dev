@@ -4,6 +4,8 @@
   "documents": {
     "/llms.txt": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
     "/llms-full.txt": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/.well-known/faber-language.json": { "content_type": "application/json", "sha256": "PLACEHOLDER" },
+    "/.well-known/agent-skills/index.json": { "content_type": "application/json", "sha256": "PLACEHOLDER" },
     "/docs/__DOCS_VERSION__/evaluate/index.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
     "/docs/__DOCS_VERSION__/learn/index.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
     "/docs/__DOCS_VERSION__/reference/index.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
@@ -21,6 +23,8 @@
     "/contracts/__DOCS_VERSION__/targets.json": { "content_type": "application/json", "sha256": "PLACEHOLDER" },
     "/contracts/__DOCS_VERSION__/diagnostics.json": { "content_type": "application/json", "sha256": "PLACEHOLDER" },
     "/contracts/__DOCS_VERSION__/providers.json": { "content_type": "application/json", "sha256": "PLACEHOLDER" },
+    "/contracts/__DOCS_VERSION__/documents.json": { "content_type": "application/json", "sha256": "PLACEHOLDER" },
+    "/contracts/__DOCS_VERSION__/checksums.json": { "content_type": "application/json", "sha256": "PLACEHOLDER" },
     "/.well-known/agent-skills/quickstart/SKILL.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
     "/.well-known/agent-skills/language-syntax/SKILL.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
     "/.well-known/agent-skills/packages/SKILL.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
