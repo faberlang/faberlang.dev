@@ -49,6 +49,7 @@ Primary local preview files:
 - `/docs/__DOCS_VERSION__/effects/index.md`
 - `/docs/__DOCS_VERSION__/diagnostics/index.md`
 - `/contracts/__DOCS_VERSION__/*`
+- `/reports/rc1-private-preview-checklist.md`
 
 ## Leakage Result
 

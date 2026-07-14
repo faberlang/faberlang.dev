@@ -16,7 +16,8 @@ checked, explained, and carried across evidenced execution lanes.
 3. `/docs/__DOCS_VERSION__/reference/index.md` — contract routes.
 4. `/docs/__DOCS_VERSION__/targets/index.md` — capability labels.
 5. `/docs/__DOCS_VERSION__/examples/index.md` — example status labels.
-6. `/reports/stage-1-leakage-check.md` — local export/leakage report.
+6. `/reports/rc1-private-preview-checklist.md` — private-preview readiness gates.
+7. `/reports/stage-1-leakage-check.md` — local export/leakage report.
 
 ## Capability Snapshot
 

@@ -18,6 +18,7 @@ gated.
 - `/docs/__DOCS_VERSION__/packages/index.md`
 - `/docs/__DOCS_VERSION__/effects/index.md`
 - `/docs/__DOCS_VERSION__/diagnostics/index.md`
+- `/reports/rc1-private-preview-checklist.md`
 - `/reports/stage-1-leakage-check.md`
 
 ## Public Claim Rule

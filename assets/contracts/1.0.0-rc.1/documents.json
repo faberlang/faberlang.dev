@@ -30,7 +30,8 @@
     "/.well-known/agent-skills/effects/SKILL.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
     "/.well-known/agent-skills/targets/SKILL.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
     "/.well-known/agent-skills/libraries/SKILL.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
-    "/reports/stage-1-leakage-check.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" }
+    "/reports/stage-1-leakage-check.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" },
+    "/reports/rc1-private-preview-checklist.md": { "content_type": "text/markdown", "sha256": "PLACEHOLDER" }
   },
   "_note": "Digests populated at build time. Version placeholder replaced at serve time."
 }

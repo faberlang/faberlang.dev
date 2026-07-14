@@ -12,5 +12,6 @@
   <url><loc>__PUBLIC_ORIGIN__/docs/__DOCS_VERSION__/examples/index.md</loc></url>
   <url><loc>__PUBLIC_ORIGIN__/docs/__DOCS_VERSION__/quickstart.md</loc></url>
   <url><loc>__PUBLIC_ORIGIN__/contracts/__DOCS_VERSION__/grammar.ebnf</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/reports/rc1-private-preview-checklist.md</loc></url>
   <url><loc>__PUBLIC_ORIGIN__/reports/stage-1-leakage-check.md</loc></url>
 </urlset>

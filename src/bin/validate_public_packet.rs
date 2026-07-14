@@ -10,6 +10,7 @@ const REQUIRED_ROUTES: &[&str] = &[
     "/docs/__DOCS_VERSION__/targets/index.md",
     "/docs/__DOCS_VERSION__/examples/index.md",
     "/reports/stage-1-leakage-check.md",
+    "/reports/rc1-private-preview-checklist.md",
 ];
 
 const LOCAL_STATUS_FILES: &[&str] = &[
@@ -17,6 +18,7 @@ const LOCAL_STATUS_FILES: &[&str] = &[
     "assets/llms.txt",
     "assets/docs/1.0.0-rc.1/evaluate/index.md",
     "assets/reports/stage-1-leakage-check.md",
+    "assets/reports/rc1-private-preview-checklist.md",
 ];
 
 const FORBIDDEN_PRIVATE_TERMS: &[&str] = &[
@@ -65,6 +67,7 @@ fn main() {
     verify_removed_fmir_route(&root, &mut failures);
     verify_route_coverage(&root, &mut failures);
     verify_local_binary_evidence(&root, &mut failures);
+    verify_private_preview_checklist(&root, &mut failures);
     verify_json(&root, &mut failures);
 
     if failures.is_empty() {
@@ -189,6 +192,27 @@ fn verify_local_binary_evidence(root: &Path, failures: &mut Vec<String>) {
     ] {
         if !report.contains(expected) {
             failures.push(format!("local binary evidence missing `{expected}`"));
+        }
+    }
+}
+
+fn verify_private_preview_checklist(root: &Path, failures: &mut Vec<String>) {
+    let checklist = read_to_string(
+        root,
+        Path::new("assets/reports/rc1-private-preview-checklist.md"),
+        failures,
+    );
+    for expected in [
+        "private-preview checklist",
+        "not public launch approval",
+        "clean HEAD `5d508d7`",
+        "faber 1.0.0-rc.1",
+        "d0b23f8b9e03422a467d5ab2ccf7c4e78e0e3f497662ab29b4826af6953ab92e",
+        "not create a public artifact",
+        "Required Before Public Use",
+    ] {
+        if !checklist.contains(expected) {
+            failures.push(format!("private-preview checklist missing `{expected}`"));
         }
     }
 }
