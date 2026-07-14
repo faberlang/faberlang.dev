@@ -83,8 +83,15 @@ const DENIED_PUBLIC_CLAIM_PATTERNS: &[&str] = &[
     "published diagnostic",
     "Only those published",
     "generated autograd",
+    "pytorch session",
     "pytorch equivalence",
     "pytorch equivalent",
+    "inference runtime",
+    "llama.cpp",
+    "llama cpp",
+    "GGUF",
+    "model loading",
+    "GPU execution",
     "rendering claim",
     "render pipeline",
     "browser execution",
@@ -278,7 +285,7 @@ fn boundary_intro_line(line: &str) -> Option<String> {
 }
 
 fn push_paragraph_segments(paragraph: &str, segments: &mut Vec<String>) {
-    for segment in paragraph.split(|ch| matches!(ch, '.' | '!' | '?')) {
+    for segment in paragraph.split(['.', '!', '?']) {
         if !segment.trim().is_empty() {
             segments.push(segment.to_owned());
         }
@@ -1042,6 +1049,15 @@ mod tests {
                 "The compiler has PyTorch equivalent behavior today.",
                 "pytorch equivalent",
             ),
+            ("PyTorch sessions are supported today.", "pytorch session"),
+            (
+                "Faber ships an inference runtime for models.",
+                "inference runtime",
+            ),
+            ("llama.cpp support is ready.", "llama.cpp"),
+            ("GGUF models load out of the box.", "gguf"),
+            ("Model loading is built in.", "model loading"),
+            ("GPU execution is supported.", "gpu execution"),
             ("The rendering claim is public evidence.", "rendering claim"),
             ("Browser execution is supported.", "browser execution"),
             ("Triga mirrors three.js with shipped rendering.", "three js"),
@@ -1081,13 +1097,20 @@ mod tests {
 
     #[test]
     fn denied_claim_matching_allows_explicit_boundary_language() {
-        let boundary = "Do not claim generated-autograd, PyTorch-equivalence, rendering, \
-             source export, public deploy, install route, or live registry from \
-             this evidence.";
+        let boundary = "Do not claim generated-autograd, PyTorch-session, \
+             PyTorch-equivalence, inference runtime, llama cpp, GGUF, model loading, \
+             GPU execution, rendering, source export, public deploy, install route, \
+             or live registry from this evidence.";
 
         for claim in [
             "generated autograd",
+            "pytorch session",
             "pytorch equivalence",
+            "inference runtime",
+            "llama.cpp",
+            "gguf",
+            "model loading",
+            "gpu execution",
             "rendering claim",
             "source export",
             "public deploy",
