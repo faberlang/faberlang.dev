@@ -67,6 +67,7 @@ fn main() {
     verify_removed_fmir_route(&root, &mut failures);
     verify_route_coverage(&root, &mut failures);
     verify_document_catalog_coverage(&root, &mut failures);
+    verify_internal_route_references(&root, &mut failures);
     verify_local_binary_evidence(&root, &mut failures);
     verify_private_preview_checklist(&root, &mut failures);
     verify_json(&root, &mut failures);
@@ -225,6 +226,147 @@ fn document_catalog_routes(root: &Path, failures: &mut Vec<String>) -> Vec<Strin
     routes
 }
 
+fn verify_internal_route_references(root: &Path, failures: &mut Vec<String>) {
+    let known_routes = served_asset_routes(root);
+    let mut files = Vec::new();
+    collect_text_assets(&root.join("assets"), &mut files);
+
+    for file in files {
+        let text = read_to_string(root, &file, failures);
+        let references = if file
+            .extension()
+            .is_some_and(|extension| extension == "json")
+        {
+            json_route_references(&text, failures, &file)
+        } else {
+            text_route_references(&text)
+        };
+
+        for reference in references {
+            if !route_reference_resolves(&reference, &known_routes) {
+                failures.push(format!(
+                    "unresolved internal route reference `{reference}` in {}",
+                    file.display()
+                ));
+            }
+        }
+    }
+}
+
+fn served_asset_routes(root: &Path) -> Vec<String> {
+    let mut files = Vec::new();
+    collect_asset_files(&root.join("assets"), &mut files);
+
+    let mut routes = vec!["/".to_string()];
+    for file in files {
+        if file.extension().is_some_and(|extension| extension == "zst") {
+            continue;
+        }
+        if let Ok(relative) = file.strip_prefix(root.join("assets")) {
+            routes.push(format!("/{}", relative.to_string_lossy()));
+        }
+    }
+    routes.sort();
+    routes
+}
+
+fn text_route_references(text: &str) -> Vec<String> {
+    let mut references = Vec::new();
+    for line in text.lines() {
+        collect_attribute_routes(line, "href=\"", &mut references);
+        collect_attribute_routes(line, "src=\"", &mut references);
+        collect_markdown_link_routes(line, &mut references);
+        collect_backtick_routes(line, &mut references);
+    }
+    references
+}
+
+fn collect_attribute_routes(line: &str, marker: &str, references: &mut Vec<String>) {
+    let mut rest = line;
+    while let Some(start) = rest.find(marker) {
+        rest = &rest[start + marker.len()..];
+        let Some(end) = rest.find('"') else {
+            break;
+        };
+        push_internal_route(&rest[..end], references);
+        rest = &rest[end + 1..];
+    }
+}
+
+fn collect_markdown_link_routes(line: &str, references: &mut Vec<String>) {
+    let mut rest = line;
+    while let Some(start) = rest.find("](") {
+        rest = &rest[start + 2..];
+        let Some(end) = rest.find(')') else {
+            break;
+        };
+        push_internal_route(&rest[..end], references);
+        rest = &rest[end + 1..];
+    }
+}
+
+fn collect_backtick_routes(line: &str, references: &mut Vec<String>) {
+    for (index, segment) in line.split('`').enumerate() {
+        if index % 2 == 1 {
+            push_internal_route(segment, references);
+        }
+    }
+}
+
+fn json_route_references(text: &str, failures: &mut Vec<String>, file: &Path) -> Vec<String> {
+    let Ok(value) = serde_json::from_str::<serde_json::Value>(text) else {
+        failures.push(format!(
+            "invalid JSON in {} while checking route references",
+            file.display()
+        ));
+        return Vec::new();
+    };
+
+    let mut references = Vec::new();
+    collect_json_route_strings(&value, &mut references);
+    references
+}
+
+fn collect_json_route_strings(value: &serde_json::Value, references: &mut Vec<String>) {
+    match value {
+        serde_json::Value::String(value) => push_internal_route(value, references),
+        serde_json::Value::Array(items) => {
+            for item in items {
+                collect_json_route_strings(item, references);
+            }
+        }
+        serde_json::Value::Object(fields) => {
+            for value in fields.values() {
+                collect_json_route_strings(value, references);
+            }
+        }
+        _ => {}
+    }
+}
+
+fn push_internal_route(value: &str, references: &mut Vec<String>) {
+    let value = value.trim();
+    if value.starts_with('/') || value.starts_with("__PUBLIC_ORIGIN__/") {
+        references.push(value.to_string());
+    }
+}
+
+fn route_reference_resolves(reference: &str, known_routes: &[String]) -> bool {
+    let mut route = reference
+        .strip_prefix("__PUBLIC_ORIGIN__")
+        .unwrap_or(reference)
+        .to_string();
+    route = route.replace("__DOCS_VERSION__", DOCS_VERSION);
+
+    if let Some(prefix) = route.strip_suffix("/*") {
+        return known_routes
+            .iter()
+            .any(|known_route| known_route.starts_with(prefix));
+    }
+
+    known_routes.iter().any(|known_route| known_route == &route)
+}
+
 fn verify_local_binary_evidence(root: &Path, failures: &mut Vec<String>) {
     let report = read_to_string(
         root,
@@ -312,6 +454,20 @@ fn collect_json_assets(dir: &Path, files: &mut Vec<PathBuf>) {
             .extension()
             .is_some_and(|extension| extension == "json")
         {
+            files.push(path);
+        }
+    }
+}
+
+fn collect_asset_files(dir: &Path, files: &mut Vec<PathBuf>) {
+    let Ok(entries) = fs::read_dir(dir) else {
+        return;
+    };
+    for entry in entries.flatten() {
+        let path = entry.path();
+        if path.is_dir() {
+            collect_asset_files(&path, files);
+        } else {
             files.push(path);
         }
     }

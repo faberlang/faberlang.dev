@@ -16,6 +16,6 @@
   "agent_entrypoints": {
     "llms_txt": "__PUBLIC_ORIGIN__/llms.txt",
     "agent_skills": "__PUBLIC_ORIGIN__/.well-known/agent-skills/index.json",
-    "machine_contracts": "__PUBLIC_ORIGIN__/contracts/__DOCS_VERSION__/"
+    "machine_contracts": "__PUBLIC_ORIGIN__/contracts/__DOCS_VERSION__/documents.json"
   }
 }

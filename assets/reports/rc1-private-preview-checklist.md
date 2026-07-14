@@ -24,8 +24,9 @@ setup, announcement, public source export, or live registry proof.
 | --- | --- | --- |
 | Local website packet | Ready for private review after validator and route smoke pass. | Public/private export approval and deployment approval. |
 | Local CLI binary evidence | Ready for private review from clean HEAD `5d508d7`. | Public artifact build, signing/checksum publication, and install route approval. |
-| Language contracts | Draft routes exist under `/contracts/1.0.0-rc.1/`. | Approved public export, real document digests, and checksum replacement. |
+| Language contracts | Draft contract routes are cataloged in `/contracts/1.0.0-rc.1/documents.json`. | Approved public export, real document digests, and checksum replacement. |
 | Discovery/catalog coverage | `documents.json`, `sitemap.xml`, and embedded route validation cover the same local preview route set. | Replace placeholder digests and approve public export before publication. |
+| Broken/internal link scrub | Validator checks internal route-like links and discovery JSON URLs against served local assets. | Public link scrub and approved external-link policy before publication. |
 | Evaluate/learn copy | Ready as local private-preview copy. | Public source/example authority and launch approval. |
 | Quickstart | Workflow preview only. | Released artifact or operator-approved install route. |
 | Examples | Indexed as gated/tracked/blocked. | Public source plus run evidence for anything marked runnable. |

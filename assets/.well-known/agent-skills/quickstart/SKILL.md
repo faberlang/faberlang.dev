@@ -43,8 +43,7 @@ hello/
   The supported lane is Rust packages producing native binaries.
 - Run `faber check` before `faber build` — it is faster and catches more errors.
 - Do not invent capabilities not listed in the providers contract.
-- Prefer the versioned docs at `/docs/__DOCS_VERSION__/` over stale cached
-  references.
+- Prefer `/docs/__DOCS_VERSION__/quickstart.md` over stale cached references.
 
 ## Related Skills
 

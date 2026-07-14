@@ -40,7 +40,15 @@ Primary local preview files:
 - `/llms-full.txt`
 - `/.well-known/faber-language.json`
 - `/.well-known/agent-skills/index.json`
-- `/.well-known/agent-skills/*/SKILL.md`
+- `/.well-known/agent-skills/quickstart/SKILL.md`
+- `/.well-known/agent-skills/language-syntax/SKILL.md`
+- `/.well-known/agent-skills/packages/SKILL.md`
+- `/.well-known/agent-skills/build-run/SKILL.md`
+- `/.well-known/agent-skills/testing/SKILL.md`
+- `/.well-known/agent-skills/diagnostics/SKILL.md`
+- `/.well-known/agent-skills/effects/SKILL.md`
+- `/.well-known/agent-skills/targets/SKILL.md`
+- `/.well-known/agent-skills/libraries/SKILL.md`
 - `/docs/__DOCS_VERSION__/evaluate/index.md`
 - `/docs/__DOCS_VERSION__/learn/index.md`
 - `/docs/__DOCS_VERSION__/reference/index.md`
@@ -102,4 +110,4 @@ Results:
 - public packet validator: checks required routes, forbidden private/source
   terms, prohibited public claims, local-only labels, removed internal route
   references, cataloged document assets, sitemap/document coverage, embedded
-  routes, and JSON syntax.
+  routes, internal route-like links, discovery JSON URLs, and JSON syntax.
