@@ -4,12 +4,13 @@ Preview the package workflow shape for Faber.
 
 Version: `__DOCS_VERSION__`.
 
-Status: local draft. Public installation and runnable quickstart claims are
-gated on a released binary or operator-approved install route.
+Status: local draft. A local release-profile CLI build has been verified, but
+public installation and runnable quickstart claims remain gated on a released
+artifact or operator-approved install route.
 
 ## Prerequisites
 
-- A future Faber toolchain release or approved local evaluation environment.
+- A verified local evaluation environment or future Faber toolchain release.
 - A terminal and text editor.
 
 ## Create a Package

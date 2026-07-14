@@ -21,7 +21,8 @@ checked, explained, and carried across evidenced execution lanes.
 ## Capability Snapshot
 
 - Native applications: locally evidenced product lane; public run claims need
-  release/export evidence.
+  release/export evidence. A local release-profile CLI build reports
+  `faber 1.0.0-rc.1`.
 - Package binaries: locally evidenced package-store direction; live registry
   claims remain gated.
 - Go CLI: narrow and experimental; do not describe as general Go support.

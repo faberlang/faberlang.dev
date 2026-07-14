@@ -21,7 +21,7 @@ while targeting more than one runtime or deployment environment.
 
 | Area | Local packet claim | Public gate |
 | --- | --- | --- |
-| Native applications | Locally evidenced as the main product lane. | Public example source plus run evidence. |
+| Native applications | Locally evidenced as the main product lane; a release-profile CLI build reports `faber 1.0.0-rc.1`. | Public example source plus run evidence. |
 | Package binaries | Locally evidenced through package-store work. | Public Cista/package evidence; no live registry claim. |
 | Go CLI lane | Narrow and experimental. | Must not be described as general Go support. |
 | GPU/browser/backend lanes | Tracked or host-backend work. | No product claim for RC1. |

@@ -6,12 +6,30 @@ Status: local-only report
 
 ## RC1 Evidence
 
-Local evidence for `1.0.0-rc.1` exists as a website asset version and local
+Local evidence for `1.0.0-rc.1` exists as a website asset version, local
 contract directory under `assets/docs/1.0.0-rc.1/` and
-`assets/contracts/1.0.0-rc.1/`. I did not find a released public binary,
-public source export, deployed site, live registry proof, or operator-approved
-install route in this repo. Therefore the packet uses RC1 as a local preview
-label and keeps public release/install claims gated.
+`assets/contracts/1.0.0-rc.1/`, and a local release-profile Faber CLI build.
+I did not find a released public artifact, public source export, deployed site,
+live registry proof, or operator-approved install route in this repo.
+Therefore the packet uses RC1 as a local preview label and keeps public
+release/install claims gated.
+
+## Local Binary Evidence
+
+Evidence source:
+
+- Faber checkout: `cd24854` (`Align Faber CLI version with RC1`).
+- Build command: `cargo build --release --bin faber`.
+- Version command result: `faber 1.0.0-rc.1`.
+- Local binary path: `target/release/faber`.
+- Local SHA-256: `1e2efc7a85c192aa857dccc4b392b0298d5bc9232593bfbb183bb7b9092c1ee7`.
+- Size observed locally: `16M`.
+
+This is private-review evidence for the local tree only. It is not a public
+download, install route, pushed tag, or deployment. During verification, the
+Faber checkout was at HEAD `cd24854` and also had an uncommitted local change in
+`src/package/compile.rs`; do not treat the checksum above as a clean public
+release artifact checksum.
 
 ## Export Manifest
 
@@ -46,7 +64,7 @@ The packet is intended to avoid:
 
 Known remaining gates:
 
-- replace placeholder checksums and document digests;
+- replace placeholder public artifact checksums and document digests;
 - generate or approve the public language export;
 - select public examples and attach run evidence;
 - approve install route, licensing, repository publication, deployment,
@@ -60,7 +78,10 @@ Commands run for this packet:
 cargo fmt --check
 cargo test
 cargo run --bin validate_public_packet
-PORT=18084 cargo run
+cargo build --release --bin faber
+target/release/faber --version
+sha256sum target/release/faber
+PORT=18084 cargo run --bin faber-web
 HTTP smoke check against `http://127.0.0.1:18084/docs/1.0.0-rc.1/evaluate/index.md`
 ```
 
@@ -68,6 +89,9 @@ Results:
 
 - `cargo fmt --check`: pass.
 - `cargo test`: pass.
+- local Faber release-profile build: pass.
+- local Faber version check: `faber 1.0.0-rc.1`.
+- local Faber SHA-256 recorded above.
 - route smoke: homepage, evaluate, learn, reference, targets, examples,
   `llms.txt`, agent-skill index, and leakage report returned `200`; removed
   internal skill route returned `404`.

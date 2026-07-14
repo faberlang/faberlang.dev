@@ -58,6 +58,7 @@ fn main() {
     verify_local_status_labels(&root, &mut failures);
     verify_removed_fmir_route(&root, &mut failures);
     verify_route_coverage(&root, &mut failures);
+    verify_local_binary_evidence(&root, &mut failures);
     verify_json(&root, &mut failures);
 
     if failures.is_empty() {
@@ -161,6 +162,26 @@ fn verify_route_coverage(root: &Path, failures: &mut Vec<String>) {
         }
         if !main.contains(&versioned) {
             failures.push(format!("src/main.rs does not embed {versioned}"));
+        }
+    }
+}
+
+fn verify_local_binary_evidence(root: &Path, failures: &mut Vec<String>) {
+    let report = read_to_string(
+        root,
+        Path::new("assets/reports/stage-1-leakage-check.md"),
+        failures,
+    );
+    for expected in [
+        "cd24854",
+        "cargo build --release --bin faber",
+        "faber 1.0.0-rc.1",
+        "1e2efc7a85c192aa857dccc4b392b0298d5bc9232593bfbb183bb7b9092c1ee7",
+        "pushed tag",
+        "deployment",
+    ] {
+        if !report.contains(expected) {
+            failures.push(format!("local binary evidence missing `{expected}`"));
         }
     }
 }
