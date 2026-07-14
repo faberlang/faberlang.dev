@@ -53,6 +53,9 @@ const FORBIDDEN_PRIVATE_TERMS: &[&str] = &[
 
 const DENIED_PUBLIC_CLAIM_PATTERNS: &[&str] = &[
     "Install with one command",
+    "public release",
+    "install guide",
+    "released binary",
     "Build from source",
     "source build",
     "Homebrew",
@@ -81,6 +84,7 @@ const DENIED_PUBLIC_CLAIM_PATTERNS: &[&str] = &[
     "Only those published",
     "generated autograd",
     "pytorch equivalence",
+    "pytorch equivalent",
     "rendering claim",
     "render pipeline",
     "browser execution",
@@ -155,9 +159,8 @@ fn verify_public_asset_terms(root: &Path, failures: &mut Vec<String>) {
                 ));
             }
         }
-        let normalized_text = normalize_claim_text(&text);
         for claim in DENIED_PUBLIC_CLAIM_PATTERNS {
-            if contains_denied_public_claim(&normalized_text, claim) {
+            if contains_denied_public_claim(&text, claim) {
                 failures.push(format!(
                     "forbidden public claim `{claim}` in {}",
                     file.display()
@@ -177,30 +180,118 @@ fn normalize_claim_text(text: &str) -> String {
         .join(" ")
 }
 
-fn contains_denied_public_claim(normalized_text: &str, claim: &str) -> bool {
+fn contains_denied_public_claim(text: &str, claim: &str) -> bool {
     let normalized_claim = normalize_claim_text(claim);
-    let mut search_from = 0;
+    for segment in claim_context_segments(text) {
+        let normalized_segment = normalize_claim_text(&segment);
+        let mut search_from = 0;
 
-    while let Some(relative_start) = normalized_text[search_from..].find(&normalized_claim) {
-        let start = search_from + relative_start;
-        let end = start + normalized_claim.len();
-        if !is_gated_or_negative_context(normalized_text, start, end) {
-            return true;
+        while let Some(relative_start) = normalized_segment[search_from..].find(&normalized_claim) {
+            let start = search_from + relative_start;
+            let end = start + normalized_claim.len();
+            if !is_gated_or_negative_context(&normalized_segment, start, end) {
+                return true;
+            }
+            search_from = end;
         }
-        search_from = end;
     }
 
     false
 }
 
-fn is_gated_or_negative_context(normalized_text: &str, start: usize, end: usize) -> bool {
-    let context_start = start.saturating_sub(192);
-    let context_end = normalized_text.len().min(end + 192);
-    let context = &normalized_text[context_start..context_end];
+fn claim_context_segments(text: &str) -> Vec<String> {
+    let mut segments = Vec::new();
+    let mut paragraph = String::new();
+    let mut boundary_intro: Option<String> = None;
 
+    for line in text.lines() {
+        let trimmed = line.trim();
+        if trimmed.is_empty() {
+            push_paragraph_segments(&paragraph, &mut segments);
+            paragraph.clear();
+            continue;
+        }
+        if trimmed.starts_with('#') {
+            push_paragraph_segments(&paragraph, &mut segments);
+            paragraph.clear();
+            boundary_intro = boundary_intro_line(trimmed);
+            continue;
+        }
+        if line.contains('|') {
+            push_paragraph_segments(&paragraph, &mut segments);
+            paragraph.clear();
+            segments.push(line.to_owned());
+            continue;
+        }
+        if trimmed.ends_with(':') {
+            push_paragraph_segments(&paragraph, &mut segments);
+            paragraph.clear();
+            boundary_intro = boundary_intro_line(trimmed);
+            if boundary_intro.is_none() {
+                segments.push(line.to_owned());
+            }
+            continue;
+        }
+        if trimmed.starts_with("- ") {
+            push_paragraph_segments(&paragraph, &mut segments);
+            paragraph.clear();
+            if let Some(intro) = &boundary_intro {
+                segments.push(format!("{intro} {line}"));
+            } else {
+                segments.push(line.to_owned());
+            }
+            continue;
+        }
+        if line.starts_with(char::is_whitespace) {
+            push_paragraph_segments(&paragraph, &mut segments);
+            paragraph.clear();
+            if let Some(previous) = segments.last_mut() {
+                previous.push(' ');
+                previous.push_str(line);
+            } else if let Some(intro) = &boundary_intro {
+                segments.push(format!("{intro} {line}"));
+            }
+            continue;
+        }
+        boundary_intro = None;
+        paragraph.push(' ');
+        paragraph.push_str(line);
+    }
+    push_paragraph_segments(&paragraph, &mut segments);
+    segments
+}
+
+fn boundary_intro_line(line: &str) -> Option<String> {
+    let normalized = normalize_claim_text(line);
     [
-        "no ",
-        "not ",
+        "do not",
+        "do not claim",
+        "do not infer",
+        "avoid",
+        "hard gates",
+        "known remaining gates",
+        "required before public use",
+    ]
+    .iter()
+    .any(|marker| contains_marker(&normalized, marker))
+    .then(|| line.to_owned())
+}
+
+fn push_paragraph_segments(paragraph: &str, segments: &mut Vec<String>) {
+    for segment in paragraph.split(|ch| matches!(ch, '.' | '!' | '?')) {
+        if !segment.trim().is_empty() {
+            segments.push(segment.to_owned());
+        }
+    }
+}
+
+fn is_gated_or_negative_context(normalized_segment: &str, start: usize, end: usize) -> bool {
+    let before = &normalized_segment[..start];
+    let after = &normalized_segment[end..];
+
+    let prefix_markers = [
+        "no",
+        "not",
         "do not",
         "does not",
         "did not",
@@ -209,14 +300,14 @@ fn is_gated_or_negative_context(normalized_text: &str, start: usize, end: usize)
         "must not be",
         "cannot",
         "without",
-        "remain gated",
-        "remains gated",
-        "claim remains gated",
-        "claims remain gated",
+        "avoid",
+        "avoids",
+        "gate",
         "gated",
         "blocker",
         "blocked",
-        "hard gate",
+        "require",
+        "requires",
         "do not claim",
         "not claim",
         "no claim",
@@ -231,11 +322,48 @@ fn is_gated_or_negative_context(normalized_text: &str, start: usize, end: usize)
         "not a public",
         "not create",
         "do not publish",
-        "until",
         "before any",
-    ]
-    .iter()
-    .any(|marker| context.contains(marker))
+    ];
+    let suffix_markers = [
+        "remain gated",
+        "remains gated",
+        "claim remains gated",
+        "claims remain gated",
+        "claims gated",
+        "is gated",
+        "are gated",
+        "stays gated",
+        "remain blocked",
+        "remains blocked",
+        "is blocked",
+        "are blocked",
+        "is a blocker",
+        "are blockers",
+        "without",
+        "until",
+        "before",
+        "gate",
+        "gated",
+        "blocker",
+        "blocked",
+        "proof",
+        "claim",
+        "claims",
+    ];
+
+    prefix_markers
+        .iter()
+        .any(|marker| contains_marker(before, marker))
+        || suffix_markers
+            .iter()
+            .any(|marker| contains_marker(after, marker))
+}
+
+fn contains_marker(text: &str, marker: &str) -> bool {
+    text.split_whitespace()
+        .collect::<Vec<_>>()
+        .windows(marker.split_whitespace().count())
+        .any(|window| window.join(" ") == marker)
 }
 
 fn verify_local_status_labels(root: &Path, failures: &mut Vec<String>) {
@@ -910,9 +1038,16 @@ mod tests {
                 "The compiler has PyTorch-equivalence today.",
                 "pytorch equivalence",
             ),
+            (
+                "The compiler has PyTorch equivalent behavior today.",
+                "pytorch equivalent",
+            ),
             ("The rendering claim is public evidence.", "rendering claim"),
             ("Browser execution is supported.", "browser execution"),
             ("Triga mirrors three.js with shipped rendering.", "three js"),
+            ("Faber is a public release today.", "public release"),
+            ("This page is an install guide.", "install guide"),
+            ("Download the released binary.", "released binary"),
             ("Public source export is complete.", "public source export"),
             ("The public deployed site is ready.", "deployed site"),
             ("Public deployment is approved.", "public deployment"),
@@ -933,12 +1068,22 @@ mod tests {
     }
 
     #[test]
+    fn denied_claim_matching_rejects_unrelated_nearby_gating() {
+        let text = "Install with one command is ready for everyone. Public source remains gated.";
+        assert!(contains_denied_public_claim(
+            text,
+            "Install with one command"
+        ));
+
+        let text = "Faber is a public release. Install route approval remains gated.";
+        assert!(contains_denied_public_claim(text, "public release"));
+    }
+
+    #[test]
     fn denied_claim_matching_allows_explicit_boundary_language() {
-        let boundary = normalize_claim_text(
-            "Do not claim generated-autograd, PyTorch-equivalence, rendering, \
+        let boundary = "Do not claim generated-autograd, PyTorch-equivalence, rendering, \
              source export, public deploy, install route, or live registry from \
-             this evidence.",
-        );
+             this evidence.";
 
         for claim in [
             "generated autograd",
@@ -949,8 +1094,35 @@ mod tests {
             "live registry",
         ] {
             assert!(
-                !contains_denied_public_claim(&boundary, claim),
+                !contains_denied_public_claim(boundary, claim),
                 "boundary text should not trip {claim:?}"
+            );
+        }
+    }
+
+    #[test]
+    fn denied_claim_matching_allows_private_preview_non_claims() {
+        for (text, claim) in [
+            (
+                "This is not a public release announcement.",
+                "public release",
+            ),
+            (
+                "Do not publish this as an install guide until a binary or approved install route exists.",
+                "install guide",
+            ),
+            (
+                "No released binary is attached to this local packet.",
+                "released binary",
+            ),
+            (
+                "This packet makes no PyTorch equivalent claim.",
+                "pytorch equivalent",
+            ),
+        ] {
+            assert!(
+                !contains_denied_public_claim(text, claim),
+                "boundary text should not trip {claim:?}: {text:?}"
             );
         }
     }
