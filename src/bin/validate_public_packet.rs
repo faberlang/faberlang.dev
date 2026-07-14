@@ -374,10 +374,12 @@ fn verify_local_binary_evidence(root: &Path, failures: &mut Vec<String>) {
         failures,
     );
     for expected in [
-        "clean HEAD `edbb54f`",
+        "Evidence commit: `1a7001f`",
+        "Compiler provenance: `82d6230ec`",
+        "Faber provenance: `edbb54f496e5`",
         "cargo build --release --bin faber",
         "faber 1.0.0-rc.1",
-        "05239e9901d2a6e7a390b9882fc8a52a6d2aed01eafcd4e8ae309235ae9c2202",
+        "77203c7302eb025bbf3ddd01aae798a96f0ca97cc0219066a6a64a991405700b",
         "public release artifact checksum",
         "pushed tag",
         "deployment",
@@ -397,9 +399,11 @@ fn verify_private_preview_checklist(root: &Path, failures: &mut Vec<String>) {
     for expected in [
         "private-preview checklist",
         "not public launch approval",
-        "clean HEAD `edbb54f`",
+        "Evidence commit: `1a7001f`",
+        "Compiler provenance: `82d6230ec`",
+        "Faber provenance: `edbb54f496e5`",
         "faber 1.0.0-rc.1",
-        "05239e9901d2a6e7a390b9882fc8a52a6d2aed01eafcd4e8ae309235ae9c2202",
+        "77203c7302eb025bbf3ddd01aae798a96f0ca97cc0219066a6a64a991405700b",
         "not create a public artifact",
         "Required Before Public Use",
     ] {

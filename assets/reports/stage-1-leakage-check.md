@@ -18,17 +18,19 @@ release/install claims gated.
 
 Evidence source:
 
-- Faber checkout: clean HEAD `edbb54f` (`Refresh RC1 binary evidence after namespace fix`).
+- Evidence commit: `1a7001f` (`Refresh RC1 evidence after provider fix`).
+- Compiler provenance: `82d6230ec`.
+- Faber provenance: `edbb54f496e5`.
 - Build command: `cargo build --release --bin faber`.
 - Version command result: `faber 1.0.0-rc.1`.
 - Local binary path: `target/release/faber`.
-- Local SHA-256: `05239e9901d2a6e7a390b9882fc8a52a6d2aed01eafcd4e8ae309235ae9c2202`.
+- Local SHA-256: `77203c7302eb025bbf3ddd01aae798a96f0ca97cc0219066a6a64a991405700b`.
 - Size observed locally: `16M`.
 
 This is private-review evidence for the local tree only. It is not a public
 download, install route, pushed tag, or deployment. During verification, the
-Faber checkout was clean at HEAD `edbb54f`; do not treat the checksum above as
-a public release artifact checksum.
+evidence record was refreshed at `1a7001f` from the provenance above; do not
+treat the checksum above as a public release artifact checksum.
 
 ## Export Manifest
 
