@@ -1,8 +1,10 @@
 {
   "$schema": "https://faberlang.dev/schemas/contract/types/1.0.0/schema.json",
   "version": "__DOCS_VERSION__",
-  "builtin_types": ["Int", "Float", "String", "Bool", "Unit", "Never"],
-  "compound_types": ["List", "Map", "Optional", "Result", "Tuple"],
-  "type_kinds": ["primitive", "nominal", "generic", "function", "effect", "union", "product"],
-  "_note": "Placeholder for the approved public language export."
+  "status": "quarantined",
+  "authoritative": false,
+  "builtin_types": [],
+  "compound_types": [],
+  "type_kinds": [],
+  "_note": "Quarantined placeholder. This route is not an approved type export; use local `faber check` and compiler diagnostics for executable truth in this packet."
 }

@@ -18,7 +18,7 @@ artifact or operator-approved install route.
 The intended workflow shape is:
 
 ```sh
-faber new hello
+faber init hello
 cd hello
 ```
 
@@ -28,9 +28,7 @@ This creates:
 hello/
 ├── faber.toml
 ├── src/
-│   └── main.fb
-└── tests/
-    └── test_main.fb
+│   └── main.fab
 ```
 
 ## Check
@@ -38,17 +36,17 @@ hello/
 Validate syntax and types without a full build:
 
 ```sh
-faber check
+faber check .
 ```
 
-This is faster than `faber build` and catches most errors immediately.
+This is faster than `faber build .` and catches most errors immediately.
 
 ## Build
 
 Compile the package when the toolchain is available:
 
 ```sh
-faber build
+faber build .
 ```
 
 The default output is a native binary in the package root.
@@ -58,7 +56,7 @@ The default output is a native binary in the package root.
 Build and execute:
 
 ```sh
-faber run
+faber run .
 ```
 
 ## Test
@@ -66,13 +64,13 @@ faber run
 Run the test suite:
 
 ```sh
-faber test
+faber test .
 ```
 
 Add `-- --nocapture` to see print output:
 
 ```sh
-faber test -- --nocapture
+faber test . --nocapture
 ```
 
 ## Format
@@ -80,8 +78,8 @@ faber test -- --nocapture
 Apply canonical formatting before committing:
 
 ```sh
-faber format
-faber check
+faber format .
+faber check .
 ```
 
 ## Gates

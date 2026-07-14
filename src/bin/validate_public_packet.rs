@@ -1,6 +1,8 @@
 use std::collections::BTreeMap;
 use std::fs;
+use std::io::Write;
 use std::path::{Path, PathBuf};
+use std::process::{Command, Stdio};
 
 use serde::Deserialize;
 use sha2::{Digest, Sha256};
@@ -141,6 +143,35 @@ const DENIED_PUBLIC_CLAIM_PATTERNS: &[&str] = &[
     "stable language",
 ];
 
+const SERVED_DOC_TRUTH_DENIED_PATTERNS: &[&str] = &[
+    "faber new",
+    "main.fb",
+    "test_main.fb",
+    "src/utils/math.fb",
+    "import module.name",
+    "import norma.collections",
+    "type Point",
+    "fn add",
+    "ad ConsoleWrite",
+    "functio greet",
+    "redit",
+];
+
+const QUARANTINED_CONTRACTS: &[(&str, &str)] = &[
+    (
+        "assets/contracts/1.0.0-rc.1/grammar.ebnf",
+        "quarantined placeholder",
+    ),
+    (
+        "assets/contracts/1.0.0-rc.1/keywords.json",
+        "\"status\": \"quarantined\"",
+    ),
+    (
+        "assets/contracts/1.0.0-rc.1/types.json",
+        "\"status\": \"quarantined\"",
+    ),
+];
+
 fn main() {
     let root = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
     let mut failures = Vec::new();
@@ -163,6 +194,7 @@ fn main() {
     verify_private_preview_checklist(&root, &mut failures);
     verify_provenance_manifest_contract(&root, &mut failures);
     verify_autograd_boundary(&root, &mut failures);
+    verify_served_doc_truth_gate(&root, &mut failures);
     verify_json(&root, &mut failures);
 
     if failures.is_empty() {
@@ -1276,6 +1308,247 @@ fn verify_json(root: &Path, failures: &mut Vec<String>) {
             failures.push(format!("invalid JSON in {}: {error}", file.display()));
         }
     }
+}
+
+fn verify_served_doc_truth_gate(root: &Path, failures: &mut Vec<String>) {
+    verify_faber_cli_truth(root, failures);
+    verify_quarantined_contracts(root, failures);
+    verify_served_truth_patterns(root, failures);
+    verify_served_faber_snippets_parse(root, failures);
+}
+
+fn verify_faber_cli_truth(root: &Path, failures: &mut Vec<String>) {
+    let Some(help) = run_faber_text(root, &["--help"], None, failures) else {
+        return;
+    };
+    if !help.contains("faber init hello") {
+        failures.push("faber --help does not advertise `faber init hello`".to_string());
+    }
+    if help.contains("faber new") {
+        failures.push("faber --help unexpectedly advertises stale `faber new`".to_string());
+    }
+
+    let Some(build_help) = run_faber_text(root, &["build", "--help"], None, failures) else {
+        return;
+    };
+    if !build_help.contains("Usage: faber build [OPTIONS] <INPUT>") {
+        failures.push("faber build --help does not require `<INPUT>`".to_string());
+    }
+
+    let Some(script_help) = run_faber_text(root, &["script", "--help"], None, failures) else {
+        return;
+    };
+    if !script_help.contains("Source path to interpret") {
+        failures
+            .push("faber script --help does not describe source-path interpretation".to_string());
+    }
+
+    let scaffold_root =
+        std::env::temp_dir().join(format!("faberlang-dev-truth-gate-{}", std::process::id()));
+    let package = scaffold_root.join("hello");
+    if scaffold_root.exists() {
+        if let Err(error) = fs::remove_dir_all(&scaffold_root) {
+            failures.push(format!(
+                "could not clean stale init scaffold temp dir {}: {error}",
+                scaffold_root.display()
+            ));
+            return;
+        }
+    }
+    if let Err(error) = fs::create_dir_all(&scaffold_root) {
+        failures.push(format!(
+            "could not create init scaffold temp dir {}: {error}",
+            scaffold_root.display()
+        ));
+        return;
+    }
+
+    let init_path = package.to_string_lossy().to_string();
+    let _ = run_faber_text(root, &["init", &init_path], None, failures);
+    if !package.join("faber.toml").is_file() {
+        failures.push("faber init scaffold missing faber.toml".to_string());
+    }
+    if !package.join("src/main.fab").is_file() {
+        failures.push("faber init scaffold missing src/main.fab".to_string());
+    }
+    for stale in ["src/main.fb", "tests/test_main.fb"] {
+        if package.join(stale).exists() {
+            failures.push(format!("faber init scaffold unexpectedly created {stale}"));
+        }
+    }
+    if let Err(error) = fs::remove_dir_all(&scaffold_root) {
+        failures.push(format!(
+            "could not remove init scaffold temp dir {}: {error}",
+            scaffold_root.display()
+        ));
+    }
+}
+
+fn verify_quarantined_contracts(root: &Path, failures: &mut Vec<String>) {
+    for (file, marker) in QUARANTINED_CONTRACTS {
+        let text = read_to_string(root, Path::new(file), failures);
+        if !text.contains(marker) {
+            failures.push(format!("{file} missing quarantine marker `{marker}`"));
+        }
+    }
+}
+
+fn verify_served_truth_patterns(root: &Path, failures: &mut Vec<String>) {
+    let mut files = Vec::new();
+    collect_text_assets(&root.join("assets"), &mut files);
+
+    for file in files {
+        let text = read_to_string(root, &file, failures);
+        for pattern in SERVED_DOC_TRUTH_DENIED_PATTERNS {
+            if text.contains(pattern) {
+                failures.push(format!(
+                    "served executable-truth drift pattern `{pattern}` in {}",
+                    file.display()
+                ));
+            }
+        }
+        for bare in ["faber build", "faber run"] {
+            if contains_bare_shell_command(&text, bare) {
+                failures.push(format!(
+                    "served bare command `{bare}` without package/input path in {}",
+                    file.display()
+                ));
+            }
+        }
+    }
+}
+
+fn contains_bare_shell_command(text: &str, command: &str) -> bool {
+    text.lines().any(|line| {
+        let trimmed = line.trim();
+        trimmed == command || trimmed == format!("{command} -- --nocapture")
+    })
+}
+
+fn verify_served_faber_snippets_parse(root: &Path, failures: &mut Vec<String>) {
+    let mut files = Vec::new();
+    collect_text_assets(&root.join("assets"), &mut files);
+
+    let mut snippet_count = 0;
+    for file in files {
+        let text = read_to_string(root, &file, failures);
+        for snippet in fenced_faber_snippets(&text) {
+            snippet_count += 1;
+            let Some(output) = run_faber_text(root, &["parse", "-"], Some(&snippet), failures)
+            else {
+                continue;
+            };
+            let Ok(value) = serde_json::from_str::<serde_json::Value>(&output) else {
+                failures.push(format!(
+                    "faber parse output for snippet in {} was not JSON",
+                    file.display()
+                ));
+                continue;
+            };
+            if value.get("success").and_then(|success| success.as_bool()) != Some(true) {
+                failures.push(format!(
+                    "served faber code fence in {} does not parse: {output}",
+                    file.display()
+                ));
+            }
+        }
+    }
+
+    if snippet_count == 0 {
+        failures
+            .push("served-doc truth gate found no fenced `faber` snippets to parse".to_string());
+    }
+}
+
+fn fenced_faber_snippets(text: &str) -> Vec<String> {
+    let mut snippets = Vec::new();
+    let mut current = Vec::new();
+    let mut in_faber = false;
+
+    for line in text.lines() {
+        let trimmed = line.trim();
+        if in_faber {
+            if trimmed == "```" {
+                snippets.push(current.join("\n"));
+                current.clear();
+                in_faber = false;
+            } else {
+                current.push(line.to_owned());
+            }
+        } else if trimmed == "```faber" {
+            in_faber = true;
+        }
+    }
+
+    snippets
+}
+
+fn run_faber_text(
+    root: &Path,
+    args: &[&str],
+    stdin: Option<&str>,
+    failures: &mut Vec<String>,
+) -> Option<String> {
+    let manifest = root
+        .parent()
+        .unwrap_or(root)
+        .join("faber")
+        .join("Cargo.toml");
+    let mut command = Command::new("cargo");
+    command
+        .arg("run")
+        .arg("--quiet")
+        .arg("--manifest-path")
+        .arg(&manifest)
+        .arg("--")
+        .args(args)
+        .stdout(Stdio::piped())
+        .stderr(Stdio::piped());
+    if stdin.is_some() {
+        command.stdin(Stdio::piped());
+    }
+
+    let mut child = match command.spawn() {
+        Ok(child) => child,
+        Err(error) => {
+            failures.push(format!(
+                "failed to spawn faber via {}: {error}",
+                manifest.display()
+            ));
+            return None;
+        }
+    };
+
+    if let Some(stdin_text) = stdin {
+        if let Some(mut child_stdin) = child.stdin.take() {
+            if let Err(error) = child_stdin.write_all(stdin_text.as_bytes()) {
+                failures.push(format!(
+                    "failed to write faber stdin for {:?}: {error}",
+                    args
+                ));
+                return None;
+            }
+        }
+    }
+
+    let output = match child.wait_with_output() {
+        Ok(output) => output,
+        Err(error) => {
+            failures.push(format!("failed to wait for faber {:?}: {error}", args));
+            return None;
+        }
+    };
+    let stdout = String::from_utf8_lossy(&output.stdout).to_string();
+    let stderr = String::from_utf8_lossy(&output.stderr).to_string();
+    if !output.status.success() {
+        failures.push(format!(
+            "faber {:?} failed with status {}: stdout={stdout:?} stderr={stderr:?}",
+            args, output.status
+        ));
+        return None;
+    }
+
+    Some(format!("{stdout}{stderr}"))
 }
 
 fn route_to_asset_path(route: &str) -> PathBuf {

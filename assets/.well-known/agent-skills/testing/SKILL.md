@@ -13,9 +13,9 @@ Version: `__DOCS_VERSION__`.
 
 ## Canonical Choices
 
-1. Place test files in `tests/` with the `test_` prefix (e.g. `test_main.fb`).
-2. Use `faber test` to run all tests.
-3. Add `-- --nocapture` for println/debug output: `faber test -- --nocapture`.
+1. Place package test files under `tests/` when the package test surface is available.
+2. Use `faber test <path>` to run package tests.
+3. Add `--nocapture` for output: `faber test <path> --nocapture`.
 4. Test functions are annotated with `@test`.
 5. Assertions use the builtin `assert` and `assert_eq` forms.
 6. Each test function is a self-contained unit with no shared mutable state.

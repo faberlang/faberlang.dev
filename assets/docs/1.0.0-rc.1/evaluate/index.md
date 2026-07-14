@@ -31,14 +31,13 @@ while targeting more than one runtime or deployment environment.
 ## Read-It-Out-Loud Example
 
 ```faber
-functio greet(name: Text) -> Text {
-    redit "salve, " + name
+functio saluta(textus nomen) → textus {
+    redde "salve"
 }
 ```
 
-This snippet is illustrative local copy for the language story. Before public
-use, examples need source authority, syntax verification against the released
-grammar, and runnability labels.
+This snippet is syntax-checked local copy only. Before public use, examples
+still need source authority, released-reference linkage, and runnability labels.
 
 ## Do Not Infer
 

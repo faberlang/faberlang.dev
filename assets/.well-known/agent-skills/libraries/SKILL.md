@@ -22,7 +22,8 @@ Version: `__DOCS_VERSION__`.
 ## Canonical Choices
 
 1. Keep external project claims scoped to their evidence and release gates.
-2. Import library modules with `import norma.collections` or similar paths.
+2. Import library modules with the current Faber import surface, for example
+   `importa ex "norma:chorda" privata chorda`.
 3. Do not claim live Cista registry resolution until the registry gate clears.
 4. Link to each library's own documentation. Do not duplicate their reference
    material in Faber docs.

@@ -12,11 +12,8 @@ route entries.
 
 ## Ad Routes
 
-Effects use the `ad` keyword in source-shape examples:
-
-```
-ad ConsoleWrite(msg: String)
-```
+Effects use `ad` route calls in source, but this packet does not publish an
+approved effect syntax example.
 
 The public packet does not currently expose provider route coverage or provider
 selection rules for `ad` declarations.

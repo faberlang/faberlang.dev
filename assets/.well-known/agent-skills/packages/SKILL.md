@@ -15,13 +15,13 @@ Version: `__DOCS_VERSION__`.
 
 ## Canonical Choices
 
-1. Use `faber new <name>` to create a package. Never hand-create layout.
+1. Use `faber init <path>` to create a package. Never hand-create layout.
 2. `faber.toml` declares `[package]` metadata, `[dependencies]`, and optional
    `[targets]` configuration.
 3. Dependencies reference external packages by name and version when the
    package workflow is available.
-4. Imports use `import module.name` syntax. The module path mirrors the file
-   path under `src/`.
+4. Imports use the current Faber import surface. Standard-library modules use
+   forms such as `importa ex "norma:chorda" privata chorda`.
 5. `faber.lock` is automatically maintained. Commit it to version control.
 6. External projects own their own documentation and release gates.
 
@@ -32,10 +32,9 @@ my-package/
 ├── faber.toml       # package manifest
 ├── faber.lock       # resolution lockfile (committed)
 ├── src/
-│   ├── main.fb      # default entrypoint
-│   └── lib.fb       # additional modules
-├── tests/
-│   └── test_main.fb # test files
+│   ├── main.fab     # default entrypoint
+│   └── lib.fab      # additional modules
+├── tests/           # package tests when present
 └── scripts/         # optional build scripts
 ```
 

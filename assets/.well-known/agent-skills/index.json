@@ -6,35 +6,35 @@
       "type": "skill-md",
       "description": "Preview the Faber package workflow shape. Install and run claims are gated.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/quickstart/SKILL.md",
-      "sha256": "1c4a96e692fb388666b1588894ea3136343ff7d438f9890960f8c9e8ddee109e"
+      "sha256": "f28e5cb2c0ed7dbda7aa9be4977a423b95307e63840f906e9842794430e0f8bd"
     },
     {
       "name": "language-syntax",
       "type": "skill-md",
       "description": "Faber grammar, types, semantics, and reference routing. Do not invent syntax.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/language-syntax/SKILL.md",
-      "sha256": "32ec247243bdf410ead024e2fc8c4855b32bf2b730201c312fa47e43649d328d"
+      "sha256": "aab03ef2ae4ff852445f392f0bf4ab64acb08a162ae8bd6a9b93d982f9109106"
     },
     {
       "name": "packages",
       "type": "skill-md",
       "description": "Faber package layout, manifests, imports, dependencies, and lockfiles.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/packages/SKILL.md",
-      "sha256": "1eafd1efb98dc3497a7a71af6297d46dca692ac8d14ad1836645bc1dfe2205a8"
+      "sha256": "c4e321a35c92a1749427729b5fcb9904930883a289724e8c1a266f7fbd83fbb0"
     },
     {
       "name": "build-run",
       "type": "skill-md",
       "description": "Preview build, run, format, explain, and script workflows. Requires a released or approved local toolchain.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/build-run/SKILL.md",
-      "sha256": "5cf8b16f2d1d3404fa026da8e608c25b74c2f40c6259d5eb5d2b9118962b692f"
+      "sha256": "437d55737376489d5b412be1bb21fd9093098d1d1a8e477fb065040333a0eb6b"
     },
     {
       "name": "testing",
       "type": "skill-md",
       "description": "Faber test patterns, assertions, and verification workflow.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/testing/SKILL.md",
-      "sha256": "02e82841df14c076adc1c223c20cb736a8cc037fc1171165f0725b1fb016b075"
+      "sha256": "a7c4d39e3464e9e1c486014743bfff0566d2ba8fc1dbe79794ea7f0e3ce13854"
     },
     {
       "name": "diagnostics",
@@ -62,7 +62,7 @@
       "type": "skill-md",
       "description": "External Faber library orientation. Public package and live registry claims are gated.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/libraries/SKILL.md",
-      "sha256": "895b63903246058bba23730c4e4d3e2ec3d97b8f3bc4b9a3a8327c2a11bd298d"
+      "sha256": "1d4ce38492bfa97f73ccf76215501a07d4490212edf6af92739bc2d62246d74d"
     }
   ]
 }

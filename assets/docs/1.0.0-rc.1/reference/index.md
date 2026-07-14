@@ -9,9 +9,9 @@ from the same corpus intended for in-tool language explanation.
 
 | Contract | Route |
 | --- | --- |
-| Grammar | `/contracts/__DOCS_VERSION__/grammar.ebnf` |
-| Keywords | `/contracts/__DOCS_VERSION__/keywords.json` |
-| Types | `/contracts/__DOCS_VERSION__/types.json` |
+| Grammar | `/contracts/__DOCS_VERSION__/grammar.ebnf` (quarantined placeholder) |
+| Keywords | `/contracts/__DOCS_VERSION__/keywords.json` (quarantined placeholder) |
+| Types | `/contracts/__DOCS_VERSION__/types.json` (quarantined placeholder) |
 | Operators | `/contracts/__DOCS_VERSION__/operators.json` |
 | Diagnostics | `/contracts/__DOCS_VERSION__/diagnostics.json` |
 | Target capabilities | `/contracts/__DOCS_VERSION__/targets.json` |
@@ -20,7 +20,10 @@ from the same corpus intended for in-tool language explanation.
 
 - Prefer versioned routes.
 - Treat empty or placeholder contract fields as export blockers, not evidence.
-- Do not invent syntax missing from the grammar contract.
+- Do not use quarantined grammar, keyword, or type placeholders as syntax
+  authority.
+- Use `faber parse`, `faber check`, and `faber explain` as the local
+  executable truth source for this private-preview packet.
 - Keep examples close to their diagnostics or grammar rules.
 - Keep package, target, and external-project reference material separate from
   the core language reference.

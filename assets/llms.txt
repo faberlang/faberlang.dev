@@ -46,9 +46,9 @@ Do not claim any of the following without explicit evidence and approval:
 
 ## Machine Contracts
 
-- `/contracts/__DOCS_VERSION__/grammar.ebnf`
-- `/contracts/__DOCS_VERSION__/keywords.json`
-- `/contracts/__DOCS_VERSION__/types.json`
+- `/contracts/__DOCS_VERSION__/grammar.ebnf` — quarantined placeholder, not an approved syntax export.
+- `/contracts/__DOCS_VERSION__/keywords.json` — quarantined placeholder.
+- `/contracts/__DOCS_VERSION__/types.json` — quarantined placeholder.
 - `/contracts/__DOCS_VERSION__/operators.json`
 - `/contracts/__DOCS_VERSION__/targets.json`
 - `/contracts/__DOCS_VERSION__/diagnostics.json`

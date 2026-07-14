@@ -9,7 +9,8 @@ leakage gate.
 
 1. Read Faber source as application intent first.
 2. Learn the keyword vocabulary.
-3. Check syntax against the versioned grammar contract.
+3. Check syntax with `faber parse` or `faber check`; the grammar contract route
+   in this packet is quarantined.
 4. Use diagnostics to repair source.
 5. Read target capability labels before assuming runtime behavior.
 

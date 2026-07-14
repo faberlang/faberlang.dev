@@ -4,52 +4,47 @@ Grammar, types, semantics.
 
 Version: `__DOCS_VERSION__`.
 
-Status: local reference draft. The public contract export still needs approval
-and placeholder replacement.
+Status: local reference draft. The grammar, keyword, and type contract routes
+are quarantined in this packet; they are not approved syntax exports.
 
 ## Grammar
 
-The draft grammar contract for this packet is at
-`/contracts/__DOCS_VERSION__/grammar.ebnf`.
+The grammar contract route for this packet is served at
+`/contracts/__DOCS_VERSION__/grammar.ebnf`, but it is intentionally
+quarantined. Use the local Faber toolchain (`faber parse`, `faber check`, and
+`faber explain`) as the executable truth source for this private-preview packet.
 
-Key productions:
+Current file and declaration facts that are locally checked:
 
 - **Package:** a collection of modules under a `faber.toml`.
-- **Module:** a `.fb` file containing declarations.
-- **Declaration:** `type`, `fn`, `import`, `ad`, or annotation.
-- **Expression:** literal, variable, call, lambda, match, block.
-- **Type:** primitive, generic, nominal, effect, or union.
+- **Module file:** a `.fab` file.
+- **Function keyword:** `functio`.
+- **Return keyword:** `redde`.
+- **Entrypoint keyword:** `incipit`.
 
 ## Types
 
-Faber is statically typed with generics. Types are declared with `type`:
+The approved public type contract is not exported in this packet. A minimal
+syntax-checked function shape is:
 
-```
-type Point = { x: Int, y: Int }
-```
-
-Builtin types include `Int`, `Float`, `String`, `Bool`, `List<T>`, and `Map<K,V>`.
-
-See `/contracts/__DOCS_VERSION__/types.json` for the draft type contract.
-
-## Functions
-
-```
-fn add(a: Int, b: Int) -> Int {
-    a + b
+```faber
+functio saluta(textus nomen) → textus {
+    redde "salve"
 }
 ```
 
-Functions are first-class values. Closures capture their environment by
-reference when the compiler can prove safety.
+See `/contracts/__DOCS_VERSION__/types.json` for the quarantined type-contract
+placeholder.
+
+## Functions
+
+Function examples in this packet are parse-checked only. Do not infer full type
+semantics or closure behavior from this local reference draft.
 
 ## Effects
 
-Declarative effects use the `ad` keyword as source-shape declarations:
-
-```
-ad ConsoleWrite(msg: String)
-```
+Declarative effect route syntax appears in source, but provider route entries
+are not published in this packet.
 
 See `/docs/__DOCS_VERSION__/effects/index.md` for the current effect boundary.
 This packet does not publish provider route entries or provider selection
@@ -57,17 +52,16 @@ rules.
 
 ## Constraints
 
-- Variables are immutable by default. Use `var` for mutable bindings.
-- Do not invent syntax not in the grammar. If a production is absent, it does
-  not exist.
+- Do not treat quarantined contracts as approved syntax references.
+- Do not invent syntax that `faber parse` or `faber check` does not accept.
 - The local product-lane draft is Rust native binaries. Public wording still
   needs release evidence.
 - Other targets may have syntax or emit support without runtime execution.
 
 ## Related
 
-- `/contracts/__DOCS_VERSION__/grammar.ebnf` — draft grammar.
-- `/contracts/__DOCS_VERSION__/keywords.json` — reserved words.
-- `/contracts/__DOCS_VERSION__/types.json` — type system contract.
+- `/contracts/__DOCS_VERSION__/grammar.ebnf` — quarantined grammar placeholder.
+- `/contracts/__DOCS_VERSION__/keywords.json` — quarantined keyword placeholder.
+- `/contracts/__DOCS_VERSION__/types.json` — quarantined type placeholder.
 - `/contracts/__DOCS_VERSION__/operators.json` — operator precedence.
 - `/docs/__DOCS_VERSION__/effects/index.md` — effect system and providers.

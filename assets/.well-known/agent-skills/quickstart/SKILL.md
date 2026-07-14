@@ -13,35 +13,34 @@ Version: `__DOCS_VERSION__`.
 
 ## Canonical Choices
 
-1. Treat `faber new <name>` as intended workflow shape until install gates clear.
-2. Use `faber check` for fast syntax/type validation without a full build.
-3. Use `faber build` for a complete compile. The default output is a native binary.
-4. Use `faber run` to build and execute the default binary target.
-5. Use `faber test` to run all package tests. Add `-- --nocapture` for output.
-6. Use `faber format` to apply the canonical formatter before committing.
+1. Use `faber init <path>` to create a package.
+2. Use `faber check <path>` for fast syntax/type validation without a full build.
+3. Use `faber build <path>` for a complete compile. The default output is a native binary.
+4. Use `faber run <path>` to build and execute the package.
+5. Use `faber test <path>` to run package tests. Add `--nocapture` for output.
+6. Use `faber format <path>` to apply the canonical formatter before committing.
 
 ## Package Layout
 
-A Faber package created by `faber new hello` contains:
+A Faber package created by `faber init hello` contains:
 
 ```text
 hello/
 ├── faber.toml
 ├── src/
-│   └── main.fb
-└── tests/
-    └── test_main.fb
+│   └── main.fab
 ```
 
 `faber.toml` declares the package name, version, and optional dependencies.
-`main.fb` is the entrypoint. `tests/` contains test files.
+`main.fab` is the entrypoint. Package tests are added when the test surface is
+available for the package.
 
 ## Constraints
 
 - Do not claim a public install path or source-build path.
 - Do not assume Go, TypeScript, or Wasm packages work like native Rust packages.
   The supported lane is Rust packages producing native binaries.
-- Run `faber check` before `faber build` — it is faster and catches more errors.
+- Run `faber check <path>` before `faber build <path>` — it is faster and catches more errors.
 - Do not invent capabilities not listed in the providers contract.
 - Prefer `/docs/__DOCS_VERSION__/quickstart.md` over stale cached references.
 
@@ -57,4 +56,4 @@ hello/
 
 - `/docs/__DOCS_VERSION__/quickstart.md`
 - `/docs/__DOCS_VERSION__/packages/index.md`
-- `/contracts/__DOCS_VERSION__/grammar.ebnf`
+- `/contracts/__DOCS_VERSION__/grammar.ebnf` — quarantined placeholder

@@ -15,38 +15,38 @@ Version: `__DOCS_VERSION__`.
 
 ## Canonical Choices
 
-1. `faber check` — intended fast syntax and type validation.
-2. `faber build` — full compile producing native binary output.
-3. `faber run` — build and execute the default binary target.
-4. `faber test` — run all package tests.
-5. `faber format` — apply canonical formatting.
+1. `faber check <path>` — intended fast syntax and type validation.
+2. `faber build <path>` — full compile producing native binary output.
+3. `faber run <path>` — build and execute the package.
+4. `faber test <path>` — run package tests.
+5. `faber format <path>` — apply canonical formatting.
 6. `faber explain <target>` — explain compiler choices for a target.
 7. `faber targets` — list available target dimensions.
-8. `faber script <name>` — run a named build script defined in the package.
+8. `faber script <path>` — interpret a source file, package directory, manifest, or archive.
 
 ## Workflow
 
 ```sh
 # Create and verify
-faber new hello
+faber init hello
 cd hello
-faber check
+faber check .
 
 # Build and run
-faber build
-faber run
+faber build .
+faber run .
 
 # Test
-faber test
+faber test .
 
 # Format before commit
-faber format
-faber check
+faber format .
+faber check .
 ```
 
 ## Constraints
 
-- Run `faber check` before `faber build` — faster feedback loop.
+- Run `faber check <path>` before `faber build <path>` — faster feedback loop.
 - Run `faber format` before committing source changes.
 - Public build/run claims require a released binary or operator-approved
   install route.

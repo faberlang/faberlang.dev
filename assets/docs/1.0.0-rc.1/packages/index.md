@@ -13,10 +13,9 @@ my-package/
 ├── faber.toml       # package manifest
 ├── faber.lock       # resolution lockfile (commit this)
 ├── src/
-│   ├── main.fb      # default entrypoint
-│   └── lib.fb       # additional modules
-├── tests/
-│   └── test_main.fb # test files
+│   ├── main.fab     # default entrypoint
+│   └── lib.fab      # additional modules
+├── tests/           # package tests when present
 └── scripts/         # optional build scripts
 ```
 
@@ -37,28 +36,30 @@ The lockfile `faber.lock` records exact resolved versions. Commit it.
 
 ## Imports
 
-Import modules with `import module.name`:
+Import package-local and library modules through the current Faber import
+surface. For example, standard-library modules use the `importa ex` form:
 
-```
-import norma.collections
+```faber
+importa ex "norma:chorda" privata chorda
 ```
 
-The import path mirrors the file path under `src/`. A file at
-`src/utils/math.fb` is imported as `import utils.math`.
+The package source extension is `.fab`. Nested source files under `src/` are
+package-local modules; external `norma:*` modules come from the configured
+library home or package store.
 
 ## Tools
 
 | Command | Purpose |
 | --- | --- |
-| `faber new <name>` | Scaffold a new package. |
-| `faber check` | Fast syntax and type validation. |
-| `faber build` | Full compile to native binary. |
-| `faber run` | Build and execute. |
-| `faber test` | Run all tests. |
-| `faber format` | Canonical source formatting. |
+| `faber init <path>` | Scaffold a new package. |
+| `faber check <path>` | Fast syntax and type validation for a file or package. |
+| `faber build <path>` | Full compile to native binary or selected target artifact. |
+| `faber run <path>` | Build and execute a package. |
+| `faber test <path>` | Run package tests. |
+| `faber format <path>` | Canonical source formatting. |
 | `faber explain <target>` | Explain compiler choices. |
 | `faber targets` | List target capability dimensions. |
-| `faber script <name>` | Run a named build script. |
+| `faber script <path>` | Interpret a source file, package directory, manifest, or archive. |
 
 ## Dependencies
 
@@ -72,7 +73,7 @@ workflow is available.
 - Do not hand-edit `faber.lock`.
 - Do not import from sibling filesystem paths outside the package.
 - Run `faber format` before committing.
-- Run `faber check` before `faber build`.
+- Run `faber check <path>` before `faber build <path>`.
 - Do not publish Cista registry, login, fetch, or publish claims until the live
   registry gate clears.
 
