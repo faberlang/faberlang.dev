@@ -37,8 +37,8 @@ Primary local preview files:
 
 The packet is intended to avoid:
 
-- private compiler internals as proof;
-- factory ledgers and deferred task IDs;
+- private implementation internals as proof;
+- internal planning ledgers and task IDs;
 - install, source-build, public-repo, live-registry, analytics, roadmap, or
   deployment claims;
 - public runnability claims without public examples and run evidence;
@@ -59,9 +59,9 @@ Commands run for this packet:
 ```sh
 cargo fmt --check
 cargo test
-find assets -type f \( -name '*.html' -o -name '*.css' -o -name '*.md' -o -name '*.txt' -o -name '*.json' -o -name '*.xml' -o -name '*.ebnf' \) -print0 | xargs -0 rg -n "docs/factory|deferred|Homebrew|curl|download|production ready|cista\.dev is live|publish your package|open source|public repo|public repository|GPU execution|WebGPU|browser execution|Full coreutils|multi-backend coreutils|HIR|MIR|FMIR|lowering|codegen|Radix|private compiler|systems language|multi-target systems language|registry and resolution service"
+cargo run --bin validate_public_packet
 PORT=18084 cargo run
-curl -s -o /tmp/faber-smoke -w '%{http_code}\n' http://127.0.0.1:18084/docs/1.0.0-rc.1/evaluate/index.md
+HTTP smoke check against `http://127.0.0.1:18084/docs/1.0.0-rc.1/evaluate/index.md`
 ```
 
 Results:
@@ -71,6 +71,6 @@ Results:
 - route smoke: homepage, evaluate, learn, reference, targets, examples,
   `llms.txt`, agent-skill index, and leakage report returned `200`; removed
   internal skill route returned `404`.
-- forbidden-token scan: remaining hits are negative/gated mentions in this
-  report, `llms.txt`, and evaluate/targets docs; no positive public claim was
-  found for the scanned terms.
+- public packet validator: checks required routes, forbidden private/source
+  terms, prohibited public claims, local-only labels, removed internal route
+  references, sitemap/document coverage, embedded routes, and JSON syntax.

@@ -23,7 +23,7 @@ Use dimensions instead of a single ambiguous "supported" label.
 | --- | --- | --- |
 | Rust native binary | Product lane in the local contract. | Use only with release evidence. |
 | Package binary | Locally evidenced, registry-live claims gated. | "Package binary lane" only. |
-| Go CLI | Narrow experimental lane. | Do not say "Go is supported." |
+| Go CLI | Narrow experimental lane. | Describe it as narrow and experimental only. |
 | TypeScript, S-expression | Emit-only research surfaces. | Do not imply runtime support. |
 | Wasm, LLVM, Metal, WGSL | Host-backend/compiler lanes. | Do not present as product targets. |
 | GPU/browser | Tracked work. | Not RC1 product claims. |

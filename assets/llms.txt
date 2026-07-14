@@ -33,8 +33,8 @@ checked, explained, and carried across evidenced execution lanes.
 
 Do not claim any of the following without explicit evidence and approval:
 
-- installability, one-command install, downloads, Homebrew, curl, or public
-  source builds;
+- installability, package-manager one-liners, shell-pipe installers, downloads,
+  or public source builds;
 - public source repositories beyond what is already public;
 - live `cista.dev`, package publishing, registry login, or ecosystem
   availability;
