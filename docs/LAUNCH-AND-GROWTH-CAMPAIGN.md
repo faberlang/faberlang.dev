@@ -81,6 +81,11 @@ collection.
 - Keep launch sequence dependencies explicit: public export, install route,
   runnable example evidence, licensing/repo order, deployment/DNS, analytics
   policy, announcement approval.
+- Record `faber-runtime 4f8d452` and `examples 310cef1` exact rung3 oracle
+  fixtures as autograd-first proximity evidence only; keep generated-autograd,
+  PyTorch-equivalence, rendering, source-export, install, and registry claims
+  blocked until Faber-generated output is checked through the approved release
+  path.
 - Prepare copy-review prompts that ask whether each claim is locally evidenced,
   public-evidence-backed, or blocked.
 - Prepare measurement questions and event names as a design artifact, without

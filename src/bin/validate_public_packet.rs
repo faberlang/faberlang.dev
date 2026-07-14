@@ -70,6 +70,7 @@ fn main() {
     verify_internal_route_references(&root, &mut failures);
     verify_local_binary_evidence(&root, &mut failures);
     verify_private_preview_checklist(&root, &mut failures);
+    verify_autograd_boundary(&root, &mut failures);
     verify_json(&root, &mut failures);
 
     if failures.is_empty() {
@@ -409,6 +410,32 @@ fn verify_private_preview_checklist(root: &Path, failures: &mut Vec<String>) {
     ] {
         if !checklist.contains(expected) {
             failures.push(format!("private-preview checklist missing `{expected}`"));
+        }
+    }
+}
+
+fn verify_autograd_boundary(root: &Path, failures: &mut Vec<String>) {
+    for (file, label) in [
+        (
+            "assets/reports/rc1-private-preview-checklist.md",
+            "private-preview autograd boundary",
+        ),
+        (
+            "assets/reports/stage-1-leakage-check.md",
+            "leakage autograd boundary",
+        ),
+    ] {
+        let text = read_to_string(root, Path::new(file), failures);
+        for expected in [
+            "faber-runtime 4f8d452",
+            "examples 310cef1",
+            "rung3 oracle fixtures",
+            "no generated-autograd claim",
+            "Output-checked device/autograd floor: 0",
+        ] {
+            if !text.contains(expected) {
+                failures.push(format!("{label} missing `{expected}`"));
+            }
         }
     }
 }

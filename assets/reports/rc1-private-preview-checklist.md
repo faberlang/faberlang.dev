@@ -15,10 +15,17 @@ Current local evidence:
 - Local release-profile build command: `cargo build --release --bin faber`.
 - Local CLI version result: `faber 1.0.0-rc.1`.
 - Local SHA-256: `77203c7302eb025bbf3ddd01aae798a96f0ca97cc0219066a6a64a991405700b`.
+- Autograd-first proximity evidence: `faber-runtime 4f8d452` and
+  `examples 310cef1` have exact rung3 oracle fixtures.
+- Output-checked device/autograd floor: 0.
+- Boundary statement: no generated-autograd claim.
 
 This evidence supports private review of the current local tree only. It does
 not create a public artifact, install route, pushed tag, deployment, analytics
-setup, announcement, public source export, or live registry proof.
+setup, announcement, public source export, or live registry proof. The rung3
+oracle fixtures are strategy evidence only. This packet makes no
+generated-autograd claim, PyTorch-equivalence claim, rendering claim,
+source-export claim, install claim, or registry claim for Faber.
 
 ## Private Preview Checklist
 
@@ -26,6 +33,7 @@ setup, announcement, public source export, or live registry proof.
 | --- | --- | --- |
 | Local website packet | Ready for private review after validator and route smoke pass. | Public/private export approval and deployment approval. |
 | Local CLI binary evidence | Ready for private review from evidence commit `1a7001f`. | Public artifact build, signing/checksum publication, and install route approval. |
+| Autograd-first evidence boundary | `faber-runtime 4f8d452` and `examples 310cef1` exact rung3 oracle fixtures may be used as private-preview proximity/strategy evidence only. Output-checked device/autograd floor remains 0. | Faber-generated autograd output must be emitted and output-checked through the approved release path before any generated-autograd, PyTorch-equivalence, rendering, device, source-export, install, or registry claim. |
 | Language contracts | Draft contract routes are cataloged in `/contracts/1.0.0-rc.1/documents.json`. | Approved public export, real document digests, and checksum replacement. |
 | Discovery/catalog coverage | `documents.json`, `sitemap.xml`, and embedded route validation cover the same local preview route set. | Replace placeholder digests and approve public export before publication. |
 | Broken/internal link scrub | Validator checks internal route-like links and discovery JSON URLs against served local assets. | Public link scrub and approved external-link policy before publication. |

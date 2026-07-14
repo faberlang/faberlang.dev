@@ -32,6 +32,21 @@ download, install route, pushed tag, or deployment. During verification, the
 evidence record was refreshed at `1a7001f` from the provenance above; do not
 treat the checksum above as a public release artifact checksum.
 
+## Autograd-First Boundary
+
+Current proximity evidence:
+
+- `faber-runtime 4f8d452`.
+- `examples 310cef1`.
+- Exact rung3 oracle fixtures exist for private strategy review.
+
+Boundary:
+
+- This packet makes no generated-autograd claim.
+- Output-checked device/autograd floor: 0.
+- Do not claim PyTorch-equivalence, rendering, source export, public deploy,
+  install route, or live registry from this evidence.
+
 ## Export Manifest
 
 Primary local preview files:
