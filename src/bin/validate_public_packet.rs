@@ -1,7 +1,10 @@
 use std::fs;
 use std::path::{Path, PathBuf};
 
+use sha2::{Digest, Sha256};
+
 const DOCS_VERSION: &str = "1.0.0-rc.1";
+const CANONICAL_PUBLIC_ORIGIN: &str = "https://faberlang.dev";
 
 const REQUIRED_ROUTES: &[&str] = &[
     "/docs/__DOCS_VERSION__/evaluate/index.md",
@@ -103,6 +106,9 @@ fn main() {
     verify_removed_fmir_route(&root, &mut failures);
     verify_route_coverage(&root, &mut failures);
     verify_document_catalog_coverage(&root, &mut failures);
+    verify_document_catalog_digests(&root, &mut failures);
+    verify_contract_checksums(&root, &mut failures);
+    verify_agent_skill_digests(&root, &mut failures);
     verify_internal_route_references(&root, &mut failures);
     verify_root_discovery_links(&root, &mut failures);
     verify_contract_archive_claim_gate(&root, &mut failures);
@@ -335,6 +341,159 @@ fn document_catalog_routes(root: &Path, failures: &mut Vec<String>) -> Vec<Strin
     let mut routes = documents.keys().cloned().collect::<Vec<_>>();
     routes.sort();
     routes
+}
+
+fn verify_document_catalog_digests(root: &Path, failures: &mut Vec<String>) {
+    let text = read_to_string(
+        root,
+        Path::new("assets/contracts/1.0.0-rc.1/documents.json"),
+        failures,
+    );
+    let Ok(value) = serde_json::from_str::<serde_json::Value>(&text) else {
+        failures.push("documents.json is not valid JSON for digest validation".to_string());
+        return;
+    };
+    let Some(documents) = value
+        .get("documents")
+        .and_then(|documents| documents.as_object())
+    else {
+        failures.push("documents.json missing object field `documents`".to_string());
+        return;
+    };
+
+    for (route, metadata) in documents {
+        let Some(sha256) = metadata.get("sha256").and_then(|value| value.as_str()) else {
+            failures.push(format!("documents.json route {route} missing sha256"));
+            continue;
+        };
+        if !is_sha256_hex(sha256) {
+            failures.push(format!(
+                "documents.json route {route} has invalid sha256 `{sha256}`"
+            ));
+            continue;
+        }
+        let Some(actual) = served_asset_sha256(root, route, failures) else {
+            continue;
+        };
+        if sha256 != actual {
+            failures.push(format!(
+                "documents.json route {route} sha256 mismatch: expected {sha256}, got {actual}"
+            ));
+        }
+    }
+}
+
+fn verify_contract_checksums(root: &Path, failures: &mut Vec<String>) {
+    let text = read_to_string(
+        root,
+        Path::new("assets/contracts/1.0.0-rc.1/checksums.json"),
+        failures,
+    );
+    let Ok(value) = serde_json::from_str::<serde_json::Value>(&text) else {
+        failures.push("checksums.json is not valid JSON for digest validation".to_string());
+        return;
+    };
+    let Some(contracts) = value
+        .get("contracts")
+        .and_then(|contracts| contracts.as_object())
+    else {
+        failures.push("checksums.json missing object field `contracts`".to_string());
+        return;
+    };
+
+    for (route, digest) in contracts {
+        let Some(sha256) = digest.as_str() else {
+            failures.push(format!(
+                "checksums.json route {route} sha256 is not a string"
+            ));
+            continue;
+        };
+        if !is_sha256_hex(sha256) {
+            failures.push(format!(
+                "checksums.json route {route} has invalid sha256 `{sha256}`"
+            ));
+            continue;
+        }
+        let Some(actual) = served_asset_sha256(root, route, failures) else {
+            continue;
+        };
+        if sha256 != actual {
+            failures.push(format!(
+                "checksums.json route {route} sha256 mismatch: expected {sha256}, got {actual}"
+            ));
+        }
+    }
+}
+
+fn verify_agent_skill_digests(root: &Path, failures: &mut Vec<String>) {
+    let text = read_to_string(
+        root,
+        Path::new("assets/.well-known/agent-skills/index.json"),
+        failures,
+    );
+    let Ok(value) = serde_json::from_str::<serde_json::Value>(&text) else {
+        failures.push("agent skill index is not valid JSON for digest validation".to_string());
+        return;
+    };
+    let Some(skills) = value.get("skills").and_then(|skills| skills.as_array()) else {
+        failures.push("agent skill index missing array field `skills`".to_string());
+        return;
+    };
+
+    for skill in skills {
+        let name = skill
+            .get("name")
+            .and_then(|value| value.as_str())
+            .unwrap_or("<unnamed>");
+        let Some(url) = skill.get("url").and_then(|value| value.as_str()) else {
+            failures.push(format!("agent skill `{name}` missing url"));
+            continue;
+        };
+        let Some(sha256) = skill.get("sha256").and_then(|value| value.as_str()) else {
+            failures.push(format!("agent skill `{name}` missing sha256"));
+            continue;
+        };
+        if !is_sha256_hex(sha256) {
+            failures.push(format!(
+                "agent skill `{name}` has invalid sha256 `{sha256}`"
+            ));
+            continue;
+        }
+        let Some(actual) = served_asset_sha256(root, url, failures) else {
+            continue;
+        };
+        if sha256 != actual {
+            failures.push(format!(
+                "agent skill `{name}` sha256 mismatch: expected {sha256}, got {actual}"
+            ));
+        }
+    }
+}
+
+fn served_asset_sha256(root: &Path, route: &str, failures: &mut Vec<String>) -> Option<String> {
+    let asset = route_to_asset_path(route);
+    if !root.join(&asset).is_file() {
+        failures.push(format!(
+            "digest route {route} has no asset at {}",
+            asset.display()
+        ));
+        return None;
+    }
+    let text = read_to_string(root, &asset, failures);
+    Some(sha256_hex(&render_served_text(&text)))
+}
+
+fn render_served_text(text: &str) -> String {
+    text.replace("__PUBLIC_ORIGIN__", CANONICAL_PUBLIC_ORIGIN)
+        .replace("__DOCS_VERSION__", DOCS_VERSION)
+}
+
+fn sha256_hex(text: &str) -> String {
+    format!("{:x}", Sha256::digest(text.as_bytes()))
+}
+
+fn is_sha256_hex(value: &str) -> bool {
+    value.len() == 64 && value.chars().all(|ch| ch.is_ascii_hexdigit())
 }
 
 fn verify_internal_route_references(root: &Path, failures: &mut Vec<String>) {
@@ -618,6 +777,8 @@ fn verify_json(root: &Path, failures: &mut Vec<String>) {
 
 fn route_to_asset_path(route: &str) -> PathBuf {
     let route = route
+        .strip_prefix("__PUBLIC_ORIGIN__")
+        .unwrap_or(route)
         .trim_start_matches('/')
         .replace("__DOCS_VERSION__", DOCS_VERSION);
     PathBuf::from("assets").join(route)

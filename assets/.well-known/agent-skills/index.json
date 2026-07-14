@@ -6,63 +6,63 @@
       "type": "skill-md",
       "description": "Preview the Faber package workflow shape. Install and run claims are gated.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/quickstart/SKILL.md",
-      "sha256": "PLACEHOLDER"
+      "sha256": "1c4a96e692fb388666b1588894ea3136343ff7d438f9890960f8c9e8ddee109e"
     },
     {
       "name": "language-syntax",
       "type": "skill-md",
       "description": "Faber grammar, types, semantics, and reference routing. Do not invent syntax.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/language-syntax/SKILL.md",
-      "sha256": "PLACEHOLDER"
+      "sha256": "bc53331f09121329260472c280e1847c2871f6c4a0d16c90b09732d52cf0435f"
     },
     {
       "name": "packages",
       "type": "skill-md",
       "description": "Faber package layout, manifests, imports, dependencies, and lockfiles.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/packages/SKILL.md",
-      "sha256": "PLACEHOLDER"
+      "sha256": "1eafd1efb98dc3497a7a71af6297d46dca692ac8d14ad1836645bc1dfe2205a8"
     },
     {
       "name": "build-run",
       "type": "skill-md",
       "description": "Preview build, run, format, explain, and script workflows. Requires a released or approved local toolchain.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/build-run/SKILL.md",
-      "sha256": "PLACEHOLDER"
+      "sha256": "5cf8b16f2d1d3404fa026da8e608c25b74c2f40c6259d5eb5d2b9118962b692f"
     },
     {
       "name": "testing",
       "type": "skill-md",
       "description": "Faber test patterns, assertions, and verification workflow.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/testing/SKILL.md",
-      "sha256": "PLACEHOLDER"
+      "sha256": "02e82841df14c076adc1c223c20cb736a8cc037fc1171165f0725b1fb016b075"
     },
     {
       "name": "diagnostics",
       "type": "skill-md",
       "description": "Stable Faber diagnostic codes, meanings, causes, and repair workflows.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/diagnostics/SKILL.md",
-      "sha256": "PLACEHOLDER"
+      "sha256": "e3164445ac0dcc2a8bf70b180c7da216c32dd1945cc26a3b776c3d438b020d60"
     },
     {
       "name": "effects",
       "type": "skill-md",
       "description": "Faber `ad` routes, runtime builtins, native host, and the five provider families.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/effects/SKILL.md",
-      "sha256": "PLACEHOLDER"
+      "sha256": "6828d26ac0f7e2618ee705c9f5522aa1bc4559fadc2cf9ab50d123d3a5d67be1"
     },
     {
       "name": "targets",
       "type": "skill-md",
       "description": "Faber target capability dimensions: parse/check, emit, validate, build, run, package.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/targets/SKILL.md",
-      "sha256": "PLACEHOLDER"
+      "sha256": "0c3a527220421c61a85cd5e78caf554f22518bd02087aa63ecd272384d0d9d58"
     },
     {
       "name": "libraries",
       "type": "skill-md",
       "description": "External Faber library orientation. Public package and live registry claims are gated.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/libraries/SKILL.md",
-      "sha256": "PLACEHOLDER"
+      "sha256": "895b63903246058bba23730c4e4d3e2ec3d97b8f3bc4b9a3a8327c2a11bd298d"
     }
   ]
 }
