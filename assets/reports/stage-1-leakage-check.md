@@ -18,16 +18,16 @@ release/install claims gated.
 
 Evidence source:
 
-- Faber checkout: clean HEAD `5d508d7` (`Wire library namespace info into package Rust generation`).
+- Faber checkout: clean HEAD `edbb54f` (`Refresh RC1 binary evidence after namespace fix`).
 - Build command: `cargo build --release --bin faber`.
 - Version command result: `faber 1.0.0-rc.1`.
 - Local binary path: `target/release/faber`.
-- Local SHA-256: `d0b23f8b9e03422a467d5ab2ccf7c4e78e0e3f497662ab29b4826af6953ab92e`.
+- Local SHA-256: `05239e9901d2a6e7a390b9882fc8a52a6d2aed01eafcd4e8ae309235ae9c2202`.
 - Size observed locally: `16M`.
 
 This is private-review evidence for the local tree only. It is not a public
 download, install route, pushed tag, or deployment. During verification, the
-Faber checkout was clean at HEAD `5d508d7`; do not treat the checksum above as
+Faber checkout was clean at HEAD `edbb54f`; do not treat the checksum above as
 a public release artifact checksum.
 
 ## Export Manifest
