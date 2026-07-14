@@ -1,21 +1,25 @@
 # Faber Effects Preview
 
-Declarative `ad` routes, runtime builtins, native host, and provider families.
+Declarative `ad` shape, runtime builtins, native host boundary, and provider
+family planning notes.
 
 Version: `__DOCS_VERSION__`.
 
-Status: local draft. Provider capability lists require the public language
-export before publication.
+Status: local draft. `/contracts/__DOCS_VERSION__/providers.json` currently
+lists provider families with empty `routes` arrays. Treat provider family names
+as planning/source-shape context only until exported provider manifests populate
+route entries.
 
 ## Ad Routes
 
-Effects are declared with the `ad` keyword and routed to host providers:
+Effects use the `ad` keyword in source-shape examples:
 
 ```
 ad ConsoleWrite(msg: String)
 ```
 
-The compiler analyzes `ad` declarations and links only the required providers.
+The public packet does not currently expose provider route coverage or provider
+selection rules for `ad` declarations.
 
 ## Runtime Builtins
 
@@ -31,27 +35,31 @@ The native host provides the bridge between Faber programs and the operating
 system. Public docs should describe user-visible behavior, not private host
 implementation paths.
 
-## Provider Families
+## Provider Family Planning
 
-Five provider crates ship with the Faber toolchain:
+The draft provider contract names five families but exposes no capability
+routes for `__DOCS_VERSION__`:
 
-| Provider | Domain | Example Routes |
+| Provider | Domain | Published routes |
 | --- | --- | --- |
-| `aleator` | Randomness, entropy | random_int, shuffle |
-| `consolum` | Console I/O | write_line, read_line |
-| `processus` | Process management | spawn, wait, signal |
-| `solum` | Filesystem | read_file, write_file, stat |
-| `tempus` | Time, clocks | now, sleep, timer |
+| `aleator` | Randomness, entropy | none in this packet |
+| `consolum` | Console I/O | none in this packet |
+| `processus` | Process management | none in this packet |
+| `solum` | Filesystem | none in this packet |
+| `tempus` | Time, clocks | none in this packet |
 
-Each provider has a draft capability manifest at
-`/contracts/__DOCS_VERSION__/providers.json`.
+The draft provider manifest is
+`/contracts/__DOCS_VERSION__/providers.json`. Its empty route arrays are the
+claim boundary for this packet.
 
 ## Constraints
 
-- Do not route to unsupported providers. The five listed families are the
-  complete set for `__DOCS_VERSION__`.
-- Do not assume a capability is synchronous unless documented.
-- Unknown provider capability produces a structured build error.
+- Do not claim provider capability selection from this packet.
+- Do not publish example provider route names until exported provider manifests
+  include those route entries.
+- Do not infer shipped-provider behavior from the provider family table.
+- Do not assume a capability is synchronous or available unless a future
+  provider manifest documents it.
 
 ## Related
 

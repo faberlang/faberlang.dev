@@ -1,26 +1,29 @@
 # Faber Effects
 
-Use this skill to understand Faber's `ad` effect system, runtime builtins,
-native host routing, and the five provider families.
+Use this skill to understand Faber's `ad` effect source shape, runtime
+builtins, native host boundary, and the provider family names currently listed
+without route entries.
 
 Version: `__DOCS_VERSION__`.
 
 ## Use When
 
-- Declaring or routing an effect in Faber source.
-- Choosing a capability from a host provider.
+- Reading `ad` effect source-shape examples.
+- Checking whether provider route entries are published.
 - Understanding the difference between runtime builtins and provider effects.
-- Diagnosing an effect routing error.
+- Avoiding provider capability claims before route manifests are populated.
 
 ## Canonical Choices
 
 1. Use the `ad` keyword to declare effect requirements.
 2. Runtime builtins are always available and require no provider declaration.
-3. Provider effects are routed through one of the five provider families:
+3. The current provider contract lists five provider families:
    `aleator`, `consolum`, `processus`, `solum`, `tempus`.
-4. Select provider capabilities by their documented route name and opener type.
-5. Generated native packages link only the providers selected by analysis.
-6. Unsupported or unknown provider capability is a structured build error.
+4. `/contracts/__DOCS_VERSION__/providers.json` currently has empty `routes`
+   arrays for those families.
+5. Treat provider family names as planning/source-shape context only until a
+   future exported manifest publishes route entries.
+6. Do not choose or describe provider capabilities from this packet.
 
 ## Provider Families
 
@@ -33,14 +36,17 @@ Version: `__DOCS_VERSION__`.
 | `tempus` | Time, clocks, timers, scheduling. |
 
 Each provider has a draft manifest at
-`/contracts/__DOCS_VERSION__/providers.json`.
+`/contracts/__DOCS_VERSION__/providers.json`; its empty route arrays are the
+claim boundary for this packet.
 
 ## Constraints
 
-- Do not invent provider capabilities not in the draft manifest.
-- Do not assume a capability is synchronous unless documented.
-- Do not route effects to unsupported or unknown providers.
-- Do not bypass the provider routing layer.
+- Do not invent provider capabilities or route names not in the draft manifest.
+- Do not assume a capability is synchronous or available unless a future
+  provider manifest documents it.
+- Do not present provider routing as usable product guidance while routes are
+  empty.
+- Do not infer shipped-provider behavior from family names alone.
 
 ## Related Skills
 

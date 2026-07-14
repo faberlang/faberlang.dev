@@ -46,9 +46,9 @@
     {
       "name": "effects",
       "type": "skill-md",
-      "description": "Faber `ad` routes, runtime builtins, native host, and the five provider families.",
+      "description": "Faber `ad` source shape, runtime builtins, native host boundary, and provider family names with gated route claims.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/effects/SKILL.md",
-      "sha256": "6828d26ac0f7e2618ee705c9f5522aa1bc4559fadc2cf9ab50d123d3a5d67be1"
+      "sha256": "647a77b2665a31b40a1ffdc0dc62926b2636f991aa286538ab7635abc015c10b"
     },
     {
       "name": "targets",

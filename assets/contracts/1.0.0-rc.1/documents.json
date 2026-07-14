@@ -16,7 +16,7 @@
     },
     "/.well-known/agent-skills/index.json": {
       "content_type": "application/json",
-      "sha256": "8ee96d3fb6fb569aa9dce367da43d5e11ead169058b57d9da7f64c64ced524f1"
+      "sha256": "12ee4ba64059e245d716419b6f2b0f0ef811ef891d4e26d4adf0dfbde0981f60"
     },
     "/docs/__DOCS_VERSION__/evaluate/index.md": {
       "content_type": "text/markdown",
@@ -52,7 +52,7 @@
     },
     "/docs/__DOCS_VERSION__/effects/index.md": {
       "content_type": "text/markdown",
-      "sha256": "acb394a5f9a6fb9887e770c2f1a64eeeaaf71d535610fb4d08764652d5bc9c30"
+      "sha256": "1214d0df993a4555b8d3b6e9f6fee7bc50236fedab87331abca011d29dc64508"
     },
     "/docs/__DOCS_VERSION__/diagnostics/index.md": {
       "content_type": "text/markdown",
@@ -112,7 +112,7 @@
     },
     "/.well-known/agent-skills/effects/SKILL.md": {
       "content_type": "text/markdown",
-      "sha256": "6828d26ac0f7e2618ee705c9f5522aa1bc4559fadc2cf9ab50d123d3a5d67be1"
+      "sha256": "647a77b2665a31b40a1ffdc0dc62926b2636f991aa286538ab7635abc015c10b"
     },
     "/.well-known/agent-skills/targets/SKILL.md": {
       "content_type": "text/markdown",

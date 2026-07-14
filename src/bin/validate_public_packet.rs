@@ -52,6 +52,27 @@ const PROVENANCE_REPORTS: &[(&str, &str)] = &[
     ),
 ];
 
+const PROVIDER_CLAIM_GATE_FILES: &[&str] = &[
+    "assets/docs/1.0.0-rc.1/effects/index.md",
+    "assets/.well-known/agent-skills/effects/SKILL.md",
+    "assets/.well-known/agent-skills/index.json",
+];
+
+const EMPTY_PROVIDER_ROUTE_DENIED_PHRASES: &[&str] = &[
+    "example routes",
+    "five provider crates ship",
+    "choosing a capability from a host provider",
+    "select provider capabilities",
+    "documented route name",
+    "generated native packages link only",
+    "providers selected by analysis",
+    "provider capability is a structured build error",
+    "unknown provider capability produces",
+    "complete set for",
+    "provider effects are routed through",
+    "faber `ad` routes",
+];
+
 const FORBIDDEN_PRIVATE_TERMS: &[&str] = &[
     "docs/factory",
     "deferred",
@@ -132,6 +153,7 @@ fn main() {
     verify_document_catalog_coverage(&root, &mut failures);
     verify_document_catalog_digests(&root, &mut failures);
     verify_contract_checksums(&root, &mut failures);
+    verify_empty_provider_route_claim_gate(&root, &mut failures);
     verify_agent_skill_digests(&root, &mut failures);
     verify_internal_route_references(&root, &mut failures);
     verify_root_discovery_links(&root, &mut failures);
@@ -435,6 +457,10 @@ fn contains_marker(text: &str, marker: &str) -> bool {
         .any(|window| window.join(" ") == marker)
 }
 
+fn contains_normalized_phrase(text: &str, phrase: &str) -> bool {
+    normalize_claim_text(text).contains(&normalize_claim_text(phrase))
+}
+
 fn verify_local_status_labels(root: &Path, failures: &mut Vec<String>) {
     for file in LOCAL_STATUS_FILES {
         let text = read_to_string(root, Path::new(file), failures).to_lowercase();
@@ -620,6 +646,49 @@ fn verify_contract_checksums(root: &Path, failures: &mut Vec<String>) {
             ));
         }
     }
+}
+
+fn verify_empty_provider_route_claim_gate(root: &Path, failures: &mut Vec<String>) {
+    if !provider_contract_has_empty_routes(root, failures) {
+        return;
+    }
+
+    for file in PROVIDER_CLAIM_GATE_FILES {
+        let text = read_to_string(root, Path::new(file), failures);
+        for phrase in EMPTY_PROVIDER_ROUTE_DENIED_PHRASES {
+            if contains_normalized_phrase(&text, phrase) {
+                failures.push(format!(
+                    "{file} uses provider capability phrase `{phrase}` while providers.json has empty routes"
+                ));
+            }
+        }
+    }
+}
+
+fn provider_contract_has_empty_routes(root: &Path, failures: &mut Vec<String>) -> bool {
+    let text = read_to_string(
+        root,
+        Path::new("assets/contracts/1.0.0-rc.1/providers.json"),
+        failures,
+    );
+    let Ok(value) = serde_json::from_str::<serde_json::Value>(&text) else {
+        failures.push("providers.json is not valid JSON for provider route gate".to_string());
+        return false;
+    };
+    let Some(providers) = value
+        .get("providers")
+        .and_then(|providers| providers.as_object())
+    else {
+        failures.push("providers.json missing object field `providers`".to_string());
+        return false;
+    };
+
+    providers.values().any(|metadata| {
+        metadata
+            .get("routes")
+            .and_then(|routes| routes.as_array())
+            .is_none_or(|routes| routes.is_empty())
+    })
 }
 
 fn verify_agent_skill_digests(root: &Path, failures: &mut Vec<String>) {
@@ -1251,6 +1320,41 @@ mod tests {
         assert!(!is_git_commit_hex(
             "1a7001fe4bb26b0f20361e12aa4df8f4dcd604d1x"
         ));
+    }
+
+    #[test]
+    fn empty_provider_route_gate_matches_claim_phrases() {
+        assert!(contains_normalized_phrase(
+            "Select provider capabilities by their documented route name.",
+            "select provider capabilities"
+        ));
+        assert!(contains_normalized_phrase(
+            "Generated native packages link only the providers selected by analysis.",
+            "generated native packages link only"
+        ));
+        assert!(!contains_normalized_phrase(
+            "Do not claim provider capability selection from this packet.",
+            "select provider capabilities"
+        ));
+    }
+
+    #[test]
+    fn provider_contract_empty_routes_detects_missing_route_coverage() {
+        let text = r#"{
+            "providers": {
+                "aleator": { "routes": [] },
+                "consolum": { "routes": ["console.write"] }
+            }
+        }"#;
+        let value = serde_json::from_str::<serde_json::Value>(text).unwrap();
+        let providers = value
+            .get("providers")
+            .and_then(|providers| providers.as_object())
+            .unwrap();
+        assert!(providers.values().any(|metadata| metadata
+            .get("routes")
+            .and_then(|routes| routes.as_array())
+            .is_none_or(|routes| routes.is_empty())));
     }
 
     #[test]
