@@ -241,11 +241,11 @@ available when Goal Forge runs. Versioned URLs are immutable after publication.
 /contracts/<version>/documents.json
 /contracts/<version>/examples.json
 /contracts/<version>/checksums.json
-/contracts/<version>/faber-contract.tar.zst
 ```
 
-The contract archive contains public documentation facts, not compiler source or
-private implementation material.
+Do not advertise a bundled contract archive until it is generated with bytes,
+served by the website, assigned a content type, and covered by checksum
+validation.
 
 ## `llms.txt` contract
 

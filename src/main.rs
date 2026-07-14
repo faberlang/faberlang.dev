@@ -195,7 +195,6 @@ fn assets() -> BTreeMap<&'static str, Asset> {
             "/reports/rc1-private-preview-checklist.md",
             "text/markdown; charset=utf-8"
         ),
-        // faber-contract.tar.zst is a build-time artifact; not embedded as source.
     ])
 }
 

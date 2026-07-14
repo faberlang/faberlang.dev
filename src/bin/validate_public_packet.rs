@@ -21,6 +21,13 @@ const ROOT_DISCOVERY_ROUTES: &[&str] = &[
     "/llms.txt",
 ];
 
+const REMOVED_CONTRACT_ARCHIVE_MARKERS: &[&str] = &[
+    "faber-contract.tar.zst",
+    "/contracts/<version>/faber-contract.tar.zst",
+    "/contracts/__DOCS_VERSION__/faber-contract.tar.zst",
+    "/contracts/1.0.0-rc.1/faber-contract.tar.zst",
+];
+
 const LOCAL_STATUS_FILES: &[&str] = &[
     "assets/index.html",
     "assets/llms.txt",
@@ -98,6 +105,7 @@ fn main() {
     verify_document_catalog_coverage(&root, &mut failures);
     verify_internal_route_references(&root, &mut failures);
     verify_root_discovery_links(&root, &mut failures);
+    verify_contract_archive_claim_gate(&root, &mut failures);
     verify_local_binary_evidence(&root, &mut failures);
     verify_private_preview_checklist(&root, &mut failures);
     verify_autograd_boundary(&root, &mut failures);
@@ -376,6 +384,36 @@ fn verify_root_discovery_links(root: &Path, failures: &mut Vec<String>) {
             ));
         }
     }
+}
+
+fn verify_contract_archive_claim_gate(root: &Path, failures: &mut Vec<String>) {
+    let stale_archive = root.join("assets/contracts/1.0.0-rc.1/faber-contract.tar.zst");
+    if stale_archive.exists() {
+        failures.push(format!(
+            "contract archive placeholder exists but is not served: {}",
+            stale_archive.display()
+        ));
+    }
+
+    for path in contract_archive_claim_scan_files(root) {
+        let text = read_to_string(root, &path, failures);
+        for marker in REMOVED_CONTRACT_ARCHIVE_MARKERS {
+            if text.contains(marker) {
+                failures.push(format!(
+                    "unserved contract archive claim `{marker}` in {}",
+                    path.display()
+                ));
+            }
+        }
+    }
+}
+
+fn contract_archive_claim_scan_files(root: &Path) -> Vec<PathBuf> {
+    let mut files = Vec::new();
+    collect_text_assets(&root.join("assets"), &mut files);
+    collect_text_assets(&root.join("docs"), &mut files);
+    files.push(root.join("src/main.rs"));
+    files
 }
 
 fn served_asset_routes(root: &Path) -> Vec<String> {
@@ -748,6 +786,21 @@ mod tests {
             assert!(
                 !contains_denied_public_claim(&boundary, claim),
                 "boundary text should not trip {claim:?}"
+            );
+        }
+    }
+
+    #[test]
+    fn removed_contract_archive_markers_cover_versioned_and_placeholder_claims() {
+        for claim in [
+            "faber-contract.tar.zst",
+            "/contracts/<version>/faber-contract.tar.zst",
+            "/contracts/__DOCS_VERSION__/faber-contract.tar.zst",
+            "/contracts/1.0.0-rc.1/faber-contract.tar.zst",
+        ] {
+            assert!(
+                REMOVED_CONTRACT_ARCHIVE_MARKERS.contains(&claim),
+                "missing removed archive marker {claim:?}"
             );
         }
     }
