@@ -41,28 +41,49 @@ const FORBIDDEN_PRIVATE_TERMS: &[&str] = &[
     "private compiler",
 ];
 
-const FORBIDDEN_PUBLIC_CLAIMS: &[&str] = &[
+const DENIED_PUBLIC_CLAIM_PATTERNS: &[&str] = &[
     "Install with one command",
     "Build from source",
+    "source build",
     "Homebrew",
     "curl",
     "binary download",
     "open source",
     "public repo",
     "public repository",
+    "source export",
+    "public source export",
+    "public deploy",
+    "public deployment",
+    "deployed site",
+    "site is deployed",
+    "live site",
     "Package registry live",
+    "registry is live",
+    "registry live",
+    "live registry",
     "cista.dev is live",
     "publish your package",
+    "package publishing",
     "published manifest",
     "published manifests",
     "published diagnostic",
     "Only those published",
+    "generated autograd",
+    "pytorch equivalence",
+    "rendering claim",
+    "render pipeline",
+    "browser execution",
+    "three js",
+    "threejs",
     "authoritative syntax reference",
     "authoritative grammar",
     "Go is supported",
     "Full coreutils",
     "multi-backend coreutils",
     "production ready",
+    "production ready language",
+    "stable language",
 ];
 
 fn main() {
@@ -120,8 +141,9 @@ fn verify_public_asset_terms(root: &Path, failures: &mut Vec<String>) {
                 ));
             }
         }
-        for claim in FORBIDDEN_PUBLIC_CLAIMS {
-            if text.contains(claim) {
+        let normalized_text = normalize_claim_text(&text);
+        for claim in DENIED_PUBLIC_CLAIM_PATTERNS {
+            if contains_denied_public_claim(&normalized_text, claim) {
                 failures.push(format!(
                     "forbidden public claim `{claim}` in {}",
                     file.display()
@@ -129,6 +151,77 @@ fn verify_public_asset_terms(root: &Path, failures: &mut Vec<String>) {
             }
         }
     }
+}
+
+fn normalize_claim_text(text: &str) -> String {
+    text.to_lowercase()
+        .chars()
+        .map(|ch| if ch.is_ascii_alphanumeric() { ch } else { ' ' })
+        .collect::<String>()
+        .split_whitespace()
+        .collect::<Vec<_>>()
+        .join(" ")
+}
+
+fn contains_denied_public_claim(normalized_text: &str, claim: &str) -> bool {
+    let normalized_claim = normalize_claim_text(claim);
+    let mut search_from = 0;
+
+    while let Some(relative_start) = normalized_text[search_from..].find(&normalized_claim) {
+        let start = search_from + relative_start;
+        let end = start + normalized_claim.len();
+        if !is_gated_or_negative_context(normalized_text, start, end) {
+            return true;
+        }
+        search_from = end;
+    }
+
+    false
+}
+
+fn is_gated_or_negative_context(normalized_text: &str, start: usize, end: usize) -> bool {
+    let context_start = start.saturating_sub(192);
+    let context_end = normalized_text.len().min(end + 192);
+    let context = &normalized_text[context_start..context_end];
+
+    [
+        "no ",
+        "not ",
+        "do not",
+        "does not",
+        "did not",
+        "did not find",
+        "must not",
+        "must not be",
+        "cannot",
+        "without",
+        "remain gated",
+        "remains gated",
+        "claim remains gated",
+        "claims remain gated",
+        "gated",
+        "blocker",
+        "blocked",
+        "hard gate",
+        "do not claim",
+        "not claim",
+        "no claim",
+        "no live",
+        "no product claim",
+        "claim boundary",
+        "claims gated",
+        "claims remain gated",
+        "claims without",
+        "boundary statement",
+        "not public",
+        "not a public",
+        "not create",
+        "do not publish",
+        "until",
+        "before any",
+    ]
+    .iter()
+    .any(|marker| context.contains(marker))
 }
 
 fn verify_local_status_labels(root: &Path, failures: &mut Vec<String>) {
@@ -593,5 +686,69 @@ mod tests {
             "__PUBLIC_ORIGIN__/contracts/__DOCS_VERSION__/*",
             &known_routes()
         ));
+    }
+
+    #[test]
+    fn denied_claim_matching_normalizes_case_and_separators() {
+        let text = normalize_claim_text("Faber has GENERATED-AUTOGRAD support.");
+        assert!(contains_denied_public_claim(&text, "generated autograd"));
+
+        let text = normalize_claim_text("Faber is a production-ready language.");
+        assert!(contains_denied_public_claim(
+            &text,
+            "production ready language"
+        ));
+    }
+
+    #[test]
+    fn denied_claim_matching_covers_representative_hard_gates() {
+        for (text, claim) in [
+            (
+                "The compiler has PyTorch-equivalence today.",
+                "pytorch equivalence",
+            ),
+            ("The rendering claim is public evidence.", "rendering claim"),
+            ("Browser execution is supported.", "browser execution"),
+            ("Triga mirrors three.js with shipped rendering.", "three js"),
+            ("Public source export is complete.", "public source export"),
+            ("The public deployed site is ready.", "deployed site"),
+            ("Public deployment is approved.", "public deployment"),
+            ("The live site is ready for launch.", "live site"),
+            ("The package registry is live.", "registry is live"),
+            (
+                "Install with one command using Homebrew or cURL.",
+                "homebrew",
+            ),
+            ("Install with one command using cURL.", "curl"),
+            ("Users can build-from-source today.", "build from source"),
+        ] {
+            assert!(
+                contains_denied_public_claim(&normalize_claim_text(text), claim),
+                "{text:?} should trip {claim:?}"
+            );
+        }
+    }
+
+    #[test]
+    fn denied_claim_matching_allows_explicit_boundary_language() {
+        let boundary = normalize_claim_text(
+            "Do not claim generated-autograd, PyTorch-equivalence, rendering, \
+             source export, public deploy, install route, or live registry from \
+             this evidence.",
+        );
+
+        for claim in [
+            "generated autograd",
+            "pytorch equivalence",
+            "rendering claim",
+            "source export",
+            "public deploy",
+            "live registry",
+        ] {
+            assert!(
+                !contains_denied_public_claim(&boundary, claim),
+                "boundary text should not trip {claim:?}"
+            );
+        }
     }
 }
