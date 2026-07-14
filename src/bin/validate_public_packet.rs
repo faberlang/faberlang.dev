@@ -13,6 +13,14 @@ const REQUIRED_ROUTES: &[&str] = &[
     "/reports/rc1-private-preview-checklist.md",
 ];
 
+const ROOT_DISCOVERY_ROUTES: &[&str] = &[
+    "/docs/__DOCS_VERSION__/reference/index.md",
+    "/contracts/__DOCS_VERSION__/documents.json",
+    "/.well-known/agent-skills/index.json",
+    "/.well-known/faber-language.json",
+    "/llms.txt",
+];
+
 const LOCAL_STATUS_FILES: &[&str] = &[
     "assets/index.html",
     "assets/llms.txt",
@@ -68,6 +76,7 @@ fn main() {
     verify_route_coverage(&root, &mut failures);
     verify_document_catalog_coverage(&root, &mut failures);
     verify_internal_route_references(&root, &mut failures);
+    verify_root_discovery_links(&root, &mut failures);
     verify_local_binary_evidence(&root, &mut failures);
     verify_private_preview_checklist(&root, &mut failures);
     verify_autograd_boundary(&root, &mut failures);
@@ -250,6 +259,28 @@ fn verify_internal_route_references(root: &Path, failures: &mut Vec<String>) {
                     file.display()
                 ));
             }
+        }
+    }
+}
+
+fn verify_root_discovery_links(root: &Path, failures: &mut Vec<String>) {
+    let main = read_to_string(root, Path::new("src/main.rs"), failures);
+    let known_routes = served_asset_routes(root);
+
+    for route in ROOT_DISCOVERY_ROUTES {
+        let versioned = route.replace("__DOCS_VERSION__", DOCS_VERSION);
+        if !known_routes
+            .iter()
+            .any(|known_route| known_route == &versioned)
+        {
+            failures.push(format!(
+                "root discovery Link target {versioned} is not a served asset route"
+            ));
+        }
+        if !main.contains(&versioned) {
+            failures.push(format!(
+                "src/main.rs root discovery Link set missing {versioned}"
+            ));
         }
     }
 }

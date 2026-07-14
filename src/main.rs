@@ -12,6 +12,30 @@ const PUBLIC_ORIGIN_PLACEHOLDER: &str = "__PUBLIC_ORIGIN__";
 const DOCS_VERSION_PLACEHOLDER: &str = "__DOCS_VERSION__";
 const DOCS_VERSION: &str = "1.0.0-rc.1";
 
+const ROOT_DISCOVERY_LINKS: &[(&str, &str, Option<&str>)] = &[
+    (
+        "/docs/1.0.0-rc.1/reference/index.md",
+        "documentation",
+        Some("text/markdown"),
+    ),
+    (
+        "/contracts/1.0.0-rc.1/documents.json",
+        "contracts",
+        Some("application/json"),
+    ),
+    (
+        "/.well-known/agent-skills/index.json",
+        "agent-skills",
+        Some("application/json"),
+    ),
+    (
+        "/.well-known/faber-language.json",
+        "language-catalog",
+        Some("application/json"),
+    ),
+    ("/llms.txt", "alternate", Some("text/markdown")),
+];
+
 #[derive(Clone)]
 struct AppState {
     assets: BTreeMap<&'static str, Asset>,
@@ -261,9 +285,6 @@ async fn asset(
         response
             .headers_mut()
             .insert(header::VARY, HeaderValue::from_static("Accept"));
-        response
-            .headers_mut()
-            .insert(header::LINK, link_value(&public_origin));
     }
 
     response
@@ -279,34 +300,25 @@ fn prefers_markdown(headers: &HeaderMap) -> bool {
 
 fn inject_discovery_headers(response: &mut Response, public_origin: &str) {
     let headers = response.headers_mut();
-    // Link discovery: docs, contracts, agent-skills, llms.txt alternate
-    let links = vec![
-        format!("<{public_origin}/docs/{DOCS_VERSION}/>; rel=\"documentation\""),
-        format!("<{public_origin}/contracts/{DOCS_VERSION}/>; rel=\"contracts\""),
-        format!(
-            "<{public_origin}/.well-known/agent-skills/index.json>; \
-             rel=\"agent-skills\""
-        ),
-        format!(
-            "<{public_origin}/.well-known/faber-language.json>; \
-             rel=\"language-catalog\""
-        ),
-        format!(
-            "<{public_origin}/llms.txt>; rel=\"alternate\"; \
-             type=\"text/markdown\""
-        ),
-    ];
     headers.insert(
         header::LINK,
-        HeaderValue::from_str(&links.join(", ")).unwrap_or(HeaderValue::from_static("")),
+        HeaderValue::from_str(&discovery_link_value(public_origin))
+            .unwrap_or(HeaderValue::from_static("")),
     );
 }
 
-fn link_value(public_origin: &str) -> HeaderValue {
-    HeaderValue::from_str(&format!(
-        "<{public_origin}/llms.txt>; rel=\"alternate\"; type=\"text/markdown\""
-    ))
-    .unwrap_or(HeaderValue::from_static(""))
+fn discovery_link_value(public_origin: &str) -> String {
+    ROOT_DISCOVERY_LINKS
+        .iter()
+        .map(|(route, rel, content_type)| {
+            let mut link = format!("<{public_origin}{route}>; rel=\"{rel}\"");
+            if let Some(content_type) = content_type {
+                link.push_str(&format!("; type=\"{content_type}\""));
+            }
+            link
+        })
+        .collect::<Vec<_>>()
+        .join(", ")
 }
 
 fn guess_public_origin(headers: &HeaderMap) -> String {
@@ -334,4 +346,28 @@ async fn shutdown_signal() {
         .await
         .expect("failed to install Ctrl+C handler");
     tracing::info!("shutting down");
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn root_discovery_link_value_is_complete_and_concrete() {
+        let links = discovery_link_value("https://faberlang.dev");
+
+        for (route, rel, content_type) in ROOT_DISCOVERY_LINKS {
+            assert!(links.contains(&format!("<https://faberlang.dev{route}>")));
+            assert!(links.contains(&format!("rel=\"{rel}\"")));
+            if let Some(content_type) = content_type {
+                assert!(links.contains(&format!("type=\"{content_type}\"")));
+            }
+            assert!(
+                !route.ends_with('/'),
+                "root discovery route is not concrete: {route}"
+            );
+        }
+
+        assert_eq!(links.matches('<').count(), ROOT_DISCOVERY_LINKS.len());
+    }
 }
