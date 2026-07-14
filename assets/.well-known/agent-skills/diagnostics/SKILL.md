@@ -22,7 +22,7 @@ Version: `__DOCS_VERSION__`.
 
 ## Diagnostic Format
 
-Each published diagnostic includes:
+Each diagnostic in the approved public export should include:
 
 - **Code** — stable identifier.
 - **Meaning** — plain-language description.
@@ -34,8 +34,8 @@ Each published diagnostic includes:
 
 ## Constraints
 
-- Do not invent diagnostic codes. Only those published in
-  `/contracts/__DOCS_VERSION__/diagnostics.json` exist.
+- Do not invent diagnostic codes. Treat codes absent from
+  `/contracts/__DOCS_VERSION__/diagnostics.json` as unavailable.
 - Do not infer a fix without reading the diagnostic page. The corrected
   example is the authoritative repair.
 

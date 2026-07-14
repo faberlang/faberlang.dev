@@ -14,9 +14,9 @@ Version: `__DOCS_VERSION__`.
 
 ## Canonical Choices
 
-1. Prefer the **grammar contract** at `/contracts/__DOCS_VERSION__/grammar.ebnf`
-   as the authoritative syntax reference. Never invent productions not in the
-   grammar.
+1. Prefer the draft **grammar contract** at
+   `/contracts/__DOCS_VERSION__/grammar.ebnf`. Never invent productions not in
+   the grammar.
 2. Use `faber check` for immediate syntax and type validation.
 3. Use `faber format` to canonicalize layout before reviewing.
 4. Types are declared with `type Name = …`. Generics use `<T>`.
@@ -29,8 +29,8 @@ Version: `__DOCS_VERSION__`.
 - Do **not** infer runtime behavior from emit-only target support.
 - Do **not** assume Go/TypeScript syntax maps to Faber syntax.
 - Variables are immutable by default.
-- The supported product lane is Rust native binaries. This limits which effects
-  and targets are available.
+- The local product-lane draft is Rust native binaries. Public wording still
+  needs release evidence.
 
 ## Related Skills
 

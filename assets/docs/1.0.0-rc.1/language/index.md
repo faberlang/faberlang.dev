@@ -64,7 +64,7 @@ See `/docs/__DOCS_VERSION__/effects/index.md` for the complete effect reference.
 
 ## Related
 
-- `/contracts/__DOCS_VERSION__/grammar.ebnf` — authoritative grammar.
+- `/contracts/__DOCS_VERSION__/grammar.ebnf` — draft grammar.
 - `/contracts/__DOCS_VERSION__/keywords.json` — reserved words.
 - `/contracts/__DOCS_VERSION__/types.json` — type system contract.
 - `/contracts/__DOCS_VERSION__/operators.json` — operator precedence.

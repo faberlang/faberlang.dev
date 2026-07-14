@@ -32,12 +32,12 @@ Version: `__DOCS_VERSION__`.
 | `solum` | Filesystem operations, paths, I/O, permissions. |
 | `tempus` | Time, clocks, timers, scheduling. |
 
-Each provider has a published manifest at
+Each provider has a draft manifest at
 `/contracts/__DOCS_VERSION__/providers.json`.
 
 ## Constraints
 
-- Do not invent provider capabilities not in the published manifests.
+- Do not invent provider capabilities not in the draft manifest.
 - Do not assume a capability is synchronous unless documented.
 - Do not route effects to unsupported or unknown providers.
 - Do not bypass the provider routing layer.
