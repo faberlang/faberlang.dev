@@ -1,3 +1,4 @@
+use std::collections::BTreeMap;
 use std::fs;
 use std::path::{Path, PathBuf};
 
@@ -150,6 +151,7 @@ fn main() {
     verify_removed_fmir_route(&root, &mut failures);
     verify_route_coverage(&root, &mut failures);
     verify_document_catalog_coverage(&root, &mut failures);
+    verify_document_catalog_content_types(&root, &mut failures);
     verify_document_catalog_digests(&root, &mut failures);
     verify_contract_checksums(&root, &mut failures);
     verify_empty_provider_route_claim_gate(&root, &mut failures);
@@ -605,6 +607,48 @@ fn verify_document_catalog_digests(root: &Path, failures: &mut Vec<String>) {
     }
 }
 
+fn verify_document_catalog_content_types(root: &Path, failures: &mut Vec<String>) {
+    let text = read_to_string(
+        root,
+        Path::new("assets/contracts/1.0.0-rc.1/documents.json"),
+        failures,
+    );
+    let Ok(value) = serde_json::from_str::<serde_json::Value>(&text) else {
+        failures.push("documents.json is not valid JSON for content-type validation".to_string());
+        return;
+    };
+    let Some(documents) = value
+        .get("documents")
+        .and_then(|documents| documents.as_object())
+    else {
+        failures.push("documents.json missing object field `documents`".to_string());
+        return;
+    };
+
+    let served_content_types = served_asset_content_types(root, failures);
+    for (route, metadata) in documents {
+        let Some(catalog_content_type) = metadata
+            .get("content_type")
+            .and_then(|value| value.as_str())
+        else {
+            failures.push(format!("documents.json route {route} missing content_type"));
+            continue;
+        };
+        let route = route.replace("__DOCS_VERSION__", DOCS_VERSION);
+        let Some(served_content_type) = served_content_types.get(&route) else {
+            failures.push(format!(
+                "documents.json route {route} has no served asset content type"
+            ));
+            continue;
+        };
+        if !media_types_match(catalog_content_type, served_content_type) {
+            failures.push(format!(
+                "documents.json route {route} content_type mismatch: catalog `{catalog_content_type}`, served `{served_content_type}`"
+            ));
+        }
+    }
+}
+
 fn verify_contract_checksums(root: &Path, failures: &mut Vec<String>) {
     let text = read_to_string(
         root,
@@ -862,30 +906,53 @@ fn contract_archive_claim_scan_files(root: &Path) -> Vec<PathBuf> {
 fn served_asset_routes(root: &Path, failures: &mut Vec<String>) -> Vec<String> {
     let main = read_to_string(root, Path::new("src/main.rs"), failures);
     let mut routes = vec!["/".to_string()];
-    routes.extend(extract_served_asset_routes(&main));
+    routes.extend(extract_served_assets(&main).into_keys());
     routes.sort();
     routes.dedup();
     routes
 }
 
-fn extract_served_asset_routes(source: &str) -> Vec<String> {
-    let mut routes = Vec::new();
+fn served_asset_content_types(root: &Path, failures: &mut Vec<String>) -> BTreeMap<String, String> {
+    let main = read_to_string(root, Path::new("src/main.rs"), failures);
+    extract_served_assets(&main)
+}
+
+fn extract_served_assets(source: &str) -> BTreeMap<String, String> {
+    let mut assets = BTreeMap::new();
     let mut rest = source;
 
     while let Some(start) = rest.find("asset!(") {
         rest = &rest[start + "asset!(".len()..];
-        let Some(quote_start) = rest.find('"') else {
+        let Some((route, after_route)) = next_quoted(rest) else {
             break;
         };
-        rest = &rest[quote_start + 1..];
-        let Some(quote_end) = rest.find('"') else {
+        let Some((content_type, after_content_type)) = next_quoted(after_route) else {
             break;
         };
-        routes.push(rest[..quote_end].to_string());
-        rest = &rest[quote_end + 1..];
+        assets.insert(route.to_string(), content_type.to_string());
+        rest = after_content_type;
     }
 
-    routes
+    assets
+}
+
+fn next_quoted(input: &str) -> Option<(&str, &str)> {
+    let quote_start = input.find('"')?;
+    let after_start = &input[quote_start + 1..];
+    let quote_end = after_start.find('"')?;
+    Some((&after_start[..quote_end], &after_start[quote_end + 1..]))
+}
+
+fn media_types_match(catalog: &str, served: &str) -> bool {
+    media_type(catalog) == media_type(served)
+}
+
+fn media_type(content_type: &str) -> String {
+    content_type
+        .split_once(';')
+        .map_or(content_type, |(media_type, _)| media_type)
+        .trim()
+        .to_ascii_lowercase()
 }
 
 fn text_route_references(text: &str) -> Vec<String> {
@@ -1315,7 +1382,7 @@ mod tests {
     }
 
     #[test]
-    fn served_asset_routes_are_extracted_from_server_asset_map() {
+    fn served_assets_are_extracted_from_server_asset_map() {
         let source = r#"
             asset!("/index.html", "text/html; charset=utf-8"),
             asset!(
@@ -1325,11 +1392,110 @@ mod tests {
         "#;
 
         assert_eq!(
-            extract_served_asset_routes(source),
+            extract_served_assets(source),
+            BTreeMap::from([
+                (
+                    "/contracts/1.0.0-rc.1/documents.json".to_string(),
+                    "application/json; charset=utf-8".to_string()
+                ),
+                (
+                    "/index.html".to_string(),
+                    "text/html; charset=utf-8".to_string()
+                )
+            ])
+        );
+    }
+
+    #[test]
+    fn media_type_comparison_ignores_charset_parameters() {
+        assert!(media_types_match(
+            "text/markdown",
+            "text/markdown; charset=utf-8"
+        ));
+        assert!(media_types_match(
+            "APPLICATION/JSON; charset=utf-8",
+            "application/json"
+        ));
+        assert!(!media_types_match("application/json", "text/markdown"));
+    }
+
+    #[test]
+    fn served_asset_routes_are_extracted_from_server_asset_map() {
+        let source = r#"
+            asset!("/index.html", "text/html; charset=utf-8"),
+            asset!(
+                "/contracts/1.0.0-rc.1/documents.json",
+                "application/json; charset=utf-8"
+            ),
+        "#;
+
+        let mut failures = Vec::new();
+        let root = temp_root("served-routes");
+        let src = root.join("src");
+        fs::create_dir_all(&src).expect("create src");
+        fs::write(src.join("main.rs"), source).expect("write source");
+
+        assert_eq!(
+            served_asset_routes(&root, &mut failures),
             vec![
-                "/index.html".to_string(),
-                "/contracts/1.0.0-rc.1/documents.json".to_string()
+                "/".to_string(),
+                "/contracts/1.0.0-rc.1/documents.json".to_string(),
+                "/index.html".to_string()
             ]
+        );
+        assert!(failures.is_empty(), "failures: {failures:?}");
+        fs::remove_dir_all(&root).expect("remove temp root");
+    }
+
+    #[test]
+    fn document_catalog_rejects_wrong_content_type_even_with_matching_digest() {
+        let root = temp_root("wrong-content-type");
+        let assets = root.join("assets");
+        let contracts = assets.join("contracts/1.0.0-rc.1");
+        let src = root.join("src");
+        fs::create_dir_all(&contracts).expect("create contracts");
+        fs::create_dir_all(&src).expect("create src");
+
+        let body = "local model context\n";
+        fs::write(assets.join("llms.txt"), body).expect("write llms");
+        fs::write(
+            contracts.join("documents.json"),
+            format!(
+                r#"{{
+                    "documents": {{
+                        "/llms.txt": {{
+                            "content_type": "application/json",
+                            "sha256": "{}"
+                        }}
+                    }}
+                }}"#,
+                sha256_hex(&render_served_text(body))
+            ),
+        )
+        .expect("write documents catalog");
+        fs::write(
+            src.join("main.rs"),
+            r#"
+            fn assets() {
+                asset!("/llms.txt", "text/markdown; charset=utf-8");
+            }
+            "#,
+        )
+        .expect("write server map");
+
+        let mut digest_failures = Vec::new();
+        verify_document_catalog_digests(&root, &mut digest_failures);
+        assert!(digest_failures.is_empty(), "failures: {digest_failures:?}");
+
+        let mut content_type_failures = Vec::new();
+        verify_document_catalog_content_types(&root, &mut content_type_failures);
+        fs::remove_dir_all(&root).expect("remove temp root");
+
+        assert!(
+            content_type_failures
+                .iter()
+                .any(|failure| failure.contains("content_type mismatch")),
+            "failures: {content_type_failures:?}"
         );
     }
 
