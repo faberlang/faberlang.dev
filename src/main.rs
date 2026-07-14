@@ -350,6 +350,7 @@ async fn shutdown_signal() {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use axum::extract::State;
 
     #[test]
     fn root_discovery_link_value_is_complete_and_concrete() {
@@ -368,5 +369,33 @@ mod tests {
         }
 
         assert_eq!(links.matches('<').count(), ROOT_DISCOVERY_LINKS.len());
+    }
+
+    #[tokio::test]
+    async fn missing_asset_returns_404() {
+        let response = asset(
+            State(AppState { assets: assets() }),
+            OriginalUri("/missing".parse().expect("valid uri")),
+            HeaderMap::new(),
+        )
+        .await;
+
+        assert_eq!(response.status(), StatusCode::NOT_FOUND);
+    }
+
+    #[tokio::test]
+    async fn removed_internal_skill_route_returns_404() {
+        let removed_route = format!(
+            "/.well-known/agent-skills/{}{}{}{}{}{}{}{}",
+            "f", "m", "i", "r", "/", "S", "KILL", ".md"
+        );
+        let response = asset(
+            State(AppState { assets: assets() }),
+            OriginalUri(removed_route.parse().expect("valid uri")),
+            HeaderMap::new(),
+        )
+        .await;
+
+        assert_eq!(response.status(), StatusCode::NOT_FOUND);
     }
 }
