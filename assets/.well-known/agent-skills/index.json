@@ -13,7 +13,7 @@
       "type": "skill-md",
       "description": "Faber grammar, types, semantics, and reference routing. Do not invent syntax.",
       "url": "__PUBLIC_ORIGIN__/.well-known/agent-skills/language-syntax/SKILL.md",
-      "sha256": "bc53331f09121329260472c280e1847c2871f6c4a0d16c90b09732d52cf0435f"
+      "sha256": "32ec247243bdf410ead024e2fc8c4855b32bf2b730201c312fa47e43649d328d"
     },
     {
       "name": "packages",

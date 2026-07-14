@@ -52,13 +52,11 @@ const PROVENANCE_REPORTS: &[(&str, &str)] = &[
     ),
 ];
 
-const PROVIDER_CLAIM_GATE_FILES: &[&str] = &[
-    "assets/docs/1.0.0-rc.1/effects/index.md",
-    "assets/.well-known/agent-skills/effects/SKILL.md",
-    "assets/.well-known/agent-skills/index.json",
-];
-
 const EMPTY_PROVIDER_ROUTE_DENIED_PHRASES: &[&str] = &[
+    "ad routing and providers",
+    "effects route to host providers",
+    "effects are declared via the ad keyword and route to host providers",
+    "route to host providers",
     "example routes",
     "five provider crates ship",
     "choosing a capability from a host provider",
@@ -71,6 +69,7 @@ const EMPTY_PROVIDER_ROUTE_DENIED_PHRASES: &[&str] = &[
     "complete set for",
     "provider effects are routed through",
     "faber `ad` routes",
+    "faber ad routes",
 ];
 
 const FORBIDDEN_PRIVATE_TERMS: &[&str] = &[
@@ -653,16 +652,35 @@ fn verify_empty_provider_route_claim_gate(root: &Path, failures: &mut Vec<String
         return;
     }
 
-    for file in PROVIDER_CLAIM_GATE_FILES {
-        let text = read_to_string(root, Path::new(file), failures);
-        for phrase in EMPTY_PROVIDER_ROUTE_DENIED_PHRASES {
-            if contains_normalized_phrase(&text, phrase) {
-                failures.push(format!(
-                    "{file} uses provider capability phrase `{phrase}` while providers.json has empty routes"
-                ));
-            }
+    for route in provider_claim_gate_routes(root, failures) {
+        let file = route_to_asset_path(&route);
+        let text = read_to_string(root, &file, failures);
+        for phrase in empty_provider_route_claim_phrases(&text) {
+            failures.push(format!(
+                "{} uses provider capability phrase `{phrase}` while providers.json has empty routes",
+                file.display()
+            ));
         }
     }
+}
+
+fn provider_claim_gate_routes(root: &Path, failures: &mut Vec<String>) -> Vec<String> {
+    document_catalog_routes(root, failures)
+        .into_iter()
+        .filter(|route| {
+            route.starts_with("/docs/")
+                || route.starts_with("/.well-known/agent-skills/")
+                || route == "/.well-known/faber-language.json"
+        })
+        .collect()
+}
+
+fn empty_provider_route_claim_phrases(text: &str) -> Vec<&'static str> {
+    EMPTY_PROVIDER_ROUTE_DENIED_PHRASES
+        .iter()
+        .copied()
+        .filter(|phrase| contains_normalized_phrase(text, phrase))
+        .collect()
 }
 
 fn provider_contract_has_empty_routes(root: &Path, failures: &mut Vec<String>) -> bool {
@@ -1336,6 +1354,35 @@ mod tests {
             "Do not claim provider capability selection from this packet.",
             "select provider capabilities"
         ));
+    }
+
+    #[test]
+    fn empty_provider_route_gate_rejects_language_doc_false_pass() {
+        let phrases = empty_provider_route_claim_phrases(
+            "Declarative effects use the `ad` keyword and route to host providers:",
+        );
+        assert!(phrases.contains(&"route to host providers"));
+
+        let phrases = empty_provider_route_claim_phrases(
+            "Effects are declared via the `ad` keyword and route to host providers.",
+        );
+        assert!(
+            phrases
+                .contains(&"effects are declared via the ad keyword and route to host providers"),
+            "phrases: {phrases:?}"
+        );
+    }
+
+    #[test]
+    fn empty_provider_route_gate_allows_source_shape_language() {
+        assert!(empty_provider_route_claim_phrases(
+            "Effects are declared via the `ad` keyword as source-shape declarations."
+        )
+        .is_empty());
+        assert!(empty_provider_route_claim_phrases(
+            "Do not infer provider routing from `ad` syntax; provider route entries are not published in this packet."
+        )
+        .is_empty());
     }
 
     #[test]

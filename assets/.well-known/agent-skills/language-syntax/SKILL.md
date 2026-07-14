@@ -21,7 +21,7 @@ Version: `__DOCS_VERSION__`.
 3. Use `faber format` to canonicalize layout before reviewing.
 4. Types are declared with `type Name = …`. Generics use `<T>`.
 5. Functions use `fn name(args) -> RetType { … }`.
-6. Effects are declared via the `ad` keyword and route to host providers.
+6. Effects are declared via the `ad` keyword as source-shape declarations.
 
 ## Key Constraints
 
@@ -29,13 +29,15 @@ Version: `__DOCS_VERSION__`.
 - Do **not** infer runtime behavior from emit-only target support.
 - Do **not** assume Go/TypeScript syntax maps to Faber syntax.
 - Variables are immutable by default.
+- Do **not** infer provider routing from `ad` syntax; provider route entries
+  are not published in this packet.
 - The local product-lane draft is Rust native binaries. Public wording still
   needs release evidence.
 
 ## Related Skills
 
 - `packages` — layout, manifests, imports.
-- `effects` — `ad` routing and providers.
+- `effects` — `ad` source shape and provider-route claim boundary.
 - `diagnostics` — error codes and repair.
 
 ## Links

@@ -45,13 +45,15 @@ reference when the compiler can prove safety.
 
 ## Effects
 
-Declarative effects use the `ad` keyword and route to host providers:
+Declarative effects use the `ad` keyword as source-shape declarations:
 
 ```
 ad ConsoleWrite(msg: String)
 ```
 
-See `/docs/__DOCS_VERSION__/effects/index.md` for the complete effect reference.
+See `/docs/__DOCS_VERSION__/effects/index.md` for the current effect boundary.
+This packet does not publish provider route entries or provider selection
+rules.
 
 ## Constraints
 
