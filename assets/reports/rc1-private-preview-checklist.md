@@ -9,7 +9,9 @@ Status: private-preview checklist; not public launch approval
 Current local evidence:
 
 - Website packet version: `1.0.0-rc.1`.
-- Evidence commit: `1a7001f`.
+- Evidence commit: `faber 1a7001fe4bb26b0f20361e12aa4df8f4dcd604d1`.
+- Website sync commit:
+  `faberlang.dev 08390f9a9234629fbaaabff38488f196da74d10e`.
 - Compiler provenance: `82d6230ec`.
 - Faber provenance: `edbb54f496e5`.
 - Local release-profile build command: `cargo build --release --bin faber`.
@@ -32,7 +34,7 @@ source-export claim, install claim, or registry claim for Faber.
 | Gate | Private-preview status | Public-release blocker |
 | --- | --- | --- |
 | Local website packet | Ready for private review after validator and route smoke pass. | Public/private export approval and deployment approval. |
-| Local CLI binary evidence | Ready for private review from evidence commit `1a7001f`. | Public artifact build, signing/checksum publication, and install route approval. |
+| Local CLI binary evidence | Ready for private review from `faber 1a7001fe4bb26b0f20361e12aa4df8f4dcd604d1`, incorporated into this site at `faberlang.dev 08390f9a9234629fbaaabff38488f196da74d10e`. | Public artifact build, signing/checksum publication, and install route approval. |
 | Autograd-first evidence boundary | `faber-runtime 4f8d452` and `examples 310cef1` exact rung3 oracle fixtures may be used as private-preview proximity/strategy evidence only. Output-checked device/autograd floor remains 0. | Faber-generated autograd output must be emitted and output-checked through the approved release path before any generated-autograd, PyTorch-equivalence, rendering, device, source-export, install, or registry claim. |
 | Language contracts | Draft contract routes are cataloged in `/contracts/1.0.0-rc.1/documents.json`. | Approved public export, real document digests, and checksum replacement. |
 | Discovery/catalog coverage | `documents.json`, `sitemap.xml`, and embedded route validation cover the same local preview route set. | Replace placeholder digests and approve public export before publication. |

@@ -18,7 +18,11 @@ release/install claims gated.
 
 Evidence source:
 
-- Evidence commit: `1a7001f` (`Refresh RC1 evidence after provider fix`).
+- Evidence commit: `faber 1a7001fe4bb26b0f20361e12aa4df8f4dcd604d1`
+  (`Refresh RC1 evidence after provider fix`).
+- Website sync commit:
+  `faberlang.dev 08390f9a9234629fbaaabff38488f196da74d10e`
+  (`Sync private preview evidence to latest RC1 hash`).
 - Compiler provenance: `82d6230ec`.
 - Faber provenance: `edbb54f496e5`.
 - Build command: `cargo build --release --bin faber`.
@@ -29,8 +33,11 @@ Evidence source:
 
 This is private-review evidence for the local tree only. It is not a public
 download, install route, pushed tag, or deployment. During verification, the
-evidence record was refreshed at `1a7001f` from the provenance above; do not
-treat the checksum above as a public release artifact checksum.
+evidence record was refreshed at
+`faber 1a7001fe4bb26b0f20361e12aa4df8f4dcd604d1` from the provenance above,
+then incorporated into
+`faberlang.dev 08390f9a9234629fbaaabff38488f196da74d10e`; do not treat the
+checksum above as a public release artifact checksum.
 
 ## Autograd-First Boundary
 

@@ -535,7 +535,9 @@ fn verify_local_binary_evidence(root: &Path, failures: &mut Vec<String>) {
         failures,
     );
     for expected in [
-        "Evidence commit: `1a7001f`",
+        "Evidence commit: `faber 1a7001fe4bb26b0f20361e12aa4df8f4dcd604d1`",
+        "Website sync commit:",
+        "`faberlang.dev 08390f9a9234629fbaaabff38488f196da74d10e`",
         "Compiler provenance: `82d6230ec`",
         "Faber provenance: `edbb54f496e5`",
         "cargo build --release --bin faber",
@@ -560,7 +562,9 @@ fn verify_private_preview_checklist(root: &Path, failures: &mut Vec<String>) {
     for expected in [
         "private-preview checklist",
         "not public launch approval",
-        "Evidence commit: `1a7001f`",
+        "Evidence commit: `faber 1a7001fe4bb26b0f20361e12aa4df8f4dcd604d1`",
+        "Website sync commit:",
+        "`faberlang.dev 08390f9a9234629fbaaabff38488f196da74d10e`",
         "Compiler provenance: `82d6230ec`",
         "Faber provenance: `edbb54f496e5`",
         "faber 1.0.0-rc.1",
