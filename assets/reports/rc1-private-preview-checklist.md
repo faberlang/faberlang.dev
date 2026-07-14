@@ -31,6 +31,7 @@ setup, announcement, public source export, or live registry proof.
 | Quickstart | Workflow preview only. | Released artifact or operator-approved install route. |
 | Examples | Indexed as gated/tracked/blocked. | Public source plus run evidence for anything marked runnable. |
 | Packages/registry | Local package-store direction only. | Public Cista/package evidence and explicit live registry gate. |
+| Launch/growth preparation | Local editorial checklist and reviewer notes may be prepared without external actions. | Operator approval for deployment, public posts, analytics, email capture, roadmap, support/community commitments, and channel changes. |
 | Announcement surface | Not enabled. | Operator approval for public posting, DNS, deployment, analytics, and channels. |
 
 ## Required Before Public Use

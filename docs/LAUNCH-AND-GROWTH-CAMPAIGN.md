@@ -70,6 +70,51 @@ Do not target all three equally until evidence selects a primary audience.
   package discovery, returning readers, issue quality—not follower count alone
 - External analytics or mailing-list tooling requires operator approval.
 
+## Local Preparation Checklist
+
+These items may be prepared in the repository as private-preview planning work.
+They do not authorize publication, account activity, analytics, deployment, or
+collection.
+
+- Draft editorial themes and post outlines against existing local claim gates.
+- Maintain reviewer-facing readiness notes that name current public blockers.
+- Keep launch sequence dependencies explicit: public export, install route,
+  runnable example evidence, licensing/repo order, deployment/DNS, analytics
+  policy, announcement approval.
+- Prepare copy-review prompts that ask whether each claim is locally evidenced,
+  public-evidence-backed, or blocked.
+- Prepare measurement questions and event names as a design artifact, without
+  installing analytics, creating tracking links, or collecting addresses.
+- Prepare channel inventory and owner notes, without logging into accounts,
+  changing profiles, posting, scheduling, or opening community channels.
+
+## Operator-Gated Public Activation
+
+The following actions are activation, not preparation. They require explicit
+operator approval at action time:
+
+- deploying or previewing the site outside a local/private-review environment;
+- changing DNS, production hosting, redirects, robots policy, or analytics;
+- posting to X or any other public channel, scheduling posts, or updating
+  public profiles;
+- collecting email, creating mailing lists, adding forms, or enabling outbound
+  messaging;
+- announcing installability, downloads, source-build paths, package publishing,
+  public repo availability, roadmap dates, or production readiness;
+- opening moderation commitments, support channels, partnerships, or community
+  programs.
+
+## Private-Preview Reviewer Notes
+
+Before any activation proposal, reviewers should verify:
+
+- the local packet still labels itself as local/private-preview only;
+- placeholder digests and checksum catalogs are still treated as blockers;
+- install, source, download, registry, analytics, DNS, and announcement claims
+  remain absent or explicitly gated;
+- runnable examples are not promoted without public source and run evidence;
+- any suggested growth metric can be reviewed without adding instrumentation.
+
 ## Routing Rules
 
 - CMO owns message and channel strategy; CPO owns product truth and audience
