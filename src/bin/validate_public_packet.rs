@@ -179,10 +179,11 @@ fn verify_local_binary_evidence(root: &Path, failures: &mut Vec<String>) {
         failures,
     );
     for expected in [
-        "cd24854",
+        "clean HEAD `5d508d7`",
         "cargo build --release --bin faber",
         "faber 1.0.0-rc.1",
-        "1e2efc7a85c192aa857dccc4b392b0298d5bc9232593bfbb183bb7b9092c1ee7",
+        "d0b23f8b9e03422a467d5ab2ccf7c4e78e0e3f497662ab29b4826af6953ab92e",
+        "public release artifact checksum",
         "pushed tag",
         "deployment",
     ] {

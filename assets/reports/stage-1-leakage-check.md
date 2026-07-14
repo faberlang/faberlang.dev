@@ -18,18 +18,17 @@ release/install claims gated.
 
 Evidence source:
 
-- Faber checkout: `cd24854` (`Align Faber CLI version with RC1`).
+- Faber checkout: clean HEAD `5d508d7` (`Wire library namespace info into package Rust generation`).
 - Build command: `cargo build --release --bin faber`.
 - Version command result: `faber 1.0.0-rc.1`.
 - Local binary path: `target/release/faber`.
-- Local SHA-256: `1e2efc7a85c192aa857dccc4b392b0298d5bc9232593bfbb183bb7b9092c1ee7`.
+- Local SHA-256: `d0b23f8b9e03422a467d5ab2ccf7c4e78e0e3f497662ab29b4826af6953ab92e`.
 - Size observed locally: `16M`.
 
 This is private-review evidence for the local tree only. It is not a public
 download, install route, pushed tag, or deployment. During verification, the
-Faber checkout was at HEAD `cd24854` and also had an uncommitted local change in
-`src/package/compile.rs`; do not treat the checksum above as a clean public
-release artifact checksum.
+Faber checkout was clean at HEAD `5d508d7`; do not treat the checksum above as
+a public release artifact checksum.
 
 ## Export Manifest
 
