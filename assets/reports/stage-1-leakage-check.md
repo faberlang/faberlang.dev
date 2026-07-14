@@ -6,9 +6,12 @@ Status: local-only report
 
 ## RC1 Evidence
 
-Local evidence for `1.0.0-rc.1` exists as a website asset version, local
-contract directory under `assets/docs/1.0.0-rc.1/` and
+Frozen private-preview evidence for `1.0.0-rc.1` exists as a website asset
+version, local contract directory under `assets/docs/1.0.0-rc.1/` and
 `assets/contracts/1.0.0-rc.1/`, and a local release-profile Faber CLI build.
+The machine-readable evidence source is
+`/reports/rc1-provenance-manifest.json`; the report prose must match that
+manifest rather than revalidating independent hard-coded provenance strings.
 I did not find a released public artifact, public source export, deployed site,
 live registry proof, or operator-approved install route in this repo.
 Therefore the packet uses RC1 as a local preview label and keeps public
@@ -16,7 +19,11 @@ release/install claims gated.
 
 ## Local Binary Evidence
 
-Evidence source:
+Frozen snapshot source:
+
+- Evidence contract: `frozen_private_preview_snapshot`.
+- Snapshot date: `2026-07-14`.
+- Manifest route: `/reports/rc1-provenance-manifest.json`.
 
 - Evidence commit: `faber 1a7001fe4bb26b0f20361e12aa4df8f4dcd604d1`
   (`Refresh RC1 evidence after provider fix`).
@@ -27,13 +34,13 @@ Evidence source:
 - Faber provenance: `edbb54f496e5`.
 - Build command: `cargo build --release --bin faber`.
 - Version command result: `faber 1.0.0-rc.1`.
-- Local binary path: `target/release/faber`.
+- Frozen local binary path: `target/release/faber`.
 - Local SHA-256: `77203c7302eb025bbf3ddd01aae798a96f0ca97cc0219066a6a64a991405700b`.
 - Size observed locally: `16M`.
 
-This is private-review evidence for the local tree only. It is not a public
-download, install route, pushed tag, or deployment. During verification, the
-evidence record was refreshed at
+This is frozen private-review evidence for the named commits only. It is not a
+public download, install route, pushed tag, or deployment. During verification,
+the evidence record was refreshed at
 `faber 1a7001fe4bb26b0f20361e12aa4df8f4dcd604d1` from the provenance above,
 then incorporated into
 `faberlang.dev 08390f9a9234629fbaaabff38488f196da74d10e`; do not treat the
@@ -45,7 +52,7 @@ Current proximity evidence:
 
 - `faber-runtime 4f8d452`.
 - `examples 310cef1`.
-- Exact rung3 oracle fixtures exist for private strategy review.
+- exact rung3 oracle fixtures exist for private strategy review.
 
 Boundary:
 

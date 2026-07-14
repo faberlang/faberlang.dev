@@ -6,26 +6,33 @@ Status: private-preview checklist; not public launch approval
 
 ## Evidence Boundary
 
-Current local evidence:
+Frozen private-preview evidence snapshot:
 
 - Website packet version: `1.0.0-rc.1`.
-- Evidence commit: `faber 1a7001fe4bb26b0f20361e12aa4df8f4dcd604d1`.
+- Evidence contract: `frozen_private_preview_snapshot`.
+- Snapshot date: `2026-07-14`.
+- Manifest route: `/reports/rc1-provenance-manifest.json`.
+- Evidence commit: `faber 1a7001fe4bb26b0f20361e12aa4df8f4dcd604d1`
+  (`Refresh RC1 evidence after provider fix`).
 - Website sync commit:
-  `faberlang.dev 08390f9a9234629fbaaabff38488f196da74d10e`.
+  `faberlang.dev 08390f9a9234629fbaaabff38488f196da74d10e`
+  (`Sync private preview evidence to latest RC1 hash`).
 - Compiler provenance: `82d6230ec`.
 - Faber provenance: `edbb54f496e5`.
 - Local release-profile build command: `cargo build --release --bin faber`.
 - Local CLI version result: `faber 1.0.0-rc.1`.
+- Frozen local binary path: `target/release/faber`.
 - Local SHA-256: `77203c7302eb025bbf3ddd01aae798a96f0ca97cc0219066a6a64a991405700b`.
+- Size observed locally: `16M`.
 - Autograd-first proximity evidence: `faber-runtime 4f8d452` and
   `examples 310cef1` have exact rung3 oracle fixtures.
 - Output-checked device/autograd floor: 0.
 - Boundary statement: no generated-autograd claim.
 
-This evidence supports private review of the current local tree only. It does
-not create a public artifact, install route, pushed tag, deployment, analytics
-setup, announcement, public source export, or live registry proof. The rung3
-oracle fixtures are strategy evidence only. This packet makes no
+This frozen evidence supports private review of the named commits only. It
+does not create a public artifact, install route, pushed tag, deployment,
+analytics setup, announcement, public source export, or live registry proof.
+The rung3 oracle fixtures are strategy evidence only. This packet makes no
 generated-autograd claim, PyTorch-equivalence claim, rendering claim,
 source-export claim, install claim, or registry claim for Faber.
 

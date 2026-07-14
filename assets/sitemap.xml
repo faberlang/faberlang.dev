@@ -34,5 +34,6 @@
   <url><loc>__PUBLIC_ORIGIN__/.well-known/agent-skills/targets/SKILL.md</loc></url>
   <url><loc>__PUBLIC_ORIGIN__/.well-known/agent-skills/libraries/SKILL.md</loc></url>
   <url><loc>__PUBLIC_ORIGIN__/reports/rc1-private-preview-checklist.md</loc></url>
+  <url><loc>__PUBLIC_ORIGIN__/reports/rc1-provenance-manifest.json</loc></url>
   <url><loc>__PUBLIC_ORIGIN__/reports/stage-1-leakage-check.md</loc></url>
 </urlset>

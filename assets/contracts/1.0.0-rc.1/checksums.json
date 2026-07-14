@@ -9,7 +9,7 @@
     "/contracts/__DOCS_VERSION__/targets.json": "e5d9057cd3cb6ad1b0fa736689f363c52edc4527722100a3555f90755b3b97b0",
     "/contracts/__DOCS_VERSION__/diagnostics.json": "574e383c87c9c1a4296506ed0376d8905c86cf2247975776c50e41838a2aa344",
     "/contracts/__DOCS_VERSION__/providers.json": "b6065715e05b37ca234a31eb9da123c89c8f4c40c5debaec61d94439fb7348fd",
-    "/contracts/__DOCS_VERSION__/documents.json": "4435a3d0a657628887a646c8016df20476085ad66bc8eea1e9e5434aa933cc0e"
+    "/contracts/__DOCS_VERSION__/documents.json": "f5a7898555e323dd4a986b4f0841badf4026014900a499ae00e12e48fc1b8c26"
   },
   "_note": "SHA-256 digests are computed over served contract bytes after public origin and docs version placeholder substitution. checksums.json is intentionally excluded to avoid a self-referential digest."
 }

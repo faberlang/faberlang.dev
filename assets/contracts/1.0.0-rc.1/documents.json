@@ -124,11 +124,15 @@
     },
     "/reports/stage-1-leakage-check.md": {
       "content_type": "text/markdown",
-      "sha256": "833ce540551b6b3aba03bb8aa8a4622ebc25fbbf108410c428d8bac65958c5f1"
+      "sha256": "e3c6556c59985cd0015acb510c3865688b3a254d211a1ed5ecaeffdaa986cfe3"
     },
     "/reports/rc1-private-preview-checklist.md": {
       "content_type": "text/markdown",
-      "sha256": "c06132eb3b47ab31be38883e558146d9d056f1ca9e4f72f3a314da411a306124"
+      "sha256": "0765411d73a77455fd0e93e4ab8d9e12233db305cd47d4e1fca9596b068e07dc"
+    },
+    "/reports/rc1-provenance-manifest.json": {
+      "content_type": "application/json",
+      "sha256": "1eb3cf2ec31383ed4f6ce36dd8cfaef4d110244a4b9215c7c09998e5dd416a35"
     }
   },
   "_note": "SHA-256 digests are computed over served bytes after public origin and docs version placeholder substitution. Self-describing catalog routes are covered by checksums.json rather than by documents.json."

@@ -195,6 +195,10 @@ fn assets() -> BTreeMap<&'static str, Asset> {
             "/reports/rc1-private-preview-checklist.md",
             "text/markdown; charset=utf-8"
         ),
+        asset!(
+            "/reports/rc1-provenance-manifest.json",
+            "application/json; charset=utf-8"
+        ),
     ])
 }
 

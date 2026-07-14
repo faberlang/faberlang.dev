@@ -1,6 +1,7 @@
 use std::fs;
 use std::path::{Path, PathBuf};
 
+use serde::Deserialize;
 use sha2::{Digest, Sha256};
 
 const DOCS_VERSION: &str = "1.0.0-rc.1";
@@ -37,6 +38,18 @@ const LOCAL_STATUS_FILES: &[&str] = &[
     "assets/docs/1.0.0-rc.1/evaluate/index.md",
     "assets/reports/stage-1-leakage-check.md",
     "assets/reports/rc1-private-preview-checklist.md",
+];
+
+const PROVENANCE_MANIFEST: &str = "assets/reports/rc1-provenance-manifest.json";
+const PROVENANCE_REPORTS: &[(&str, &str)] = &[
+    (
+        "assets/reports/stage-1-leakage-check.md",
+        "local binary evidence",
+    ),
+    (
+        "assets/reports/rc1-private-preview-checklist.md",
+        "private-preview checklist",
+    ),
 ];
 
 const FORBIDDEN_PRIVATE_TERMS: &[&str] = &[
@@ -125,6 +138,7 @@ fn main() {
     verify_contract_archive_claim_gate(&root, &mut failures);
     verify_local_binary_evidence(&root, &mut failures);
     verify_private_preview_checklist(&root, &mut failures);
+    verify_provenance_manifest_contract(&root, &mut failures);
     verify_autograd_boundary(&root, &mut failures);
     verify_json(&root, &mut failures);
 
@@ -138,6 +152,54 @@ fn main() {
         eprintln!("- {failure}");
     }
     std::process::exit(1);
+}
+
+#[derive(Deserialize)]
+struct ProvenanceManifest {
+    version: String,
+    contract: String,
+    snapshot_date: String,
+    frozen_at: FrozenAt,
+    provenance: Provenance,
+    local_binary: LocalBinary,
+    autograd_proximity: AutogradProximity,
+    claim_boundary: Vec<String>,
+}
+
+#[derive(Deserialize)]
+struct FrozenAt {
+    faber: CommitEvidence,
+    faberlang_dev: CommitEvidence,
+}
+
+#[derive(Deserialize)]
+struct CommitEvidence {
+    commit: String,
+    subject: String,
+}
+
+#[derive(Deserialize)]
+struct Provenance {
+    compiler: String,
+    faber: String,
+}
+
+#[derive(Deserialize)]
+struct LocalBinary {
+    build_command: String,
+    version_result: String,
+    path: String,
+    sha256: String,
+    size_observed: String,
+}
+
+#[derive(Deserialize)]
+struct AutogradProximity {
+    faber_runtime: String,
+    examples: String,
+    fixture_scope: String,
+    output_checked_device_autograd_floor: u64,
+    boundary_statement: String,
 }
 
 fn verify_required_files(root: &Path, failures: &mut Vec<String>) {
@@ -828,20 +890,17 @@ fn verify_local_binary_evidence(root: &Path, failures: &mut Vec<String>) {
         Path::new("assets/reports/stage-1-leakage-check.md"),
         failures,
     );
-    for expected in [
-        "Evidence commit: `faber 1a7001fe4bb26b0f20361e12aa4df8f4dcd604d1`",
-        "Website sync commit:",
-        "`faberlang.dev 08390f9a9234629fbaaabff38488f196da74d10e`",
-        "Compiler provenance: `82d6230ec`",
-        "Faber provenance: `edbb54f496e5`",
-        "cargo build --release --bin faber",
-        "faber 1.0.0-rc.1",
-        "77203c7302eb025bbf3ddd01aae798a96f0ca97cc0219066a6a64a991405700b",
-        "public release artifact checksum",
-        "pushed tag",
-        "deployment",
-    ] {
-        if !report.contains(expected) {
+    let manifest = provenance_manifest(root, failures);
+    let mut expected = vec![
+        "public release artifact checksum".to_string(),
+        "pushed tag".to_string(),
+        "deployment".to_string(),
+    ];
+    if let Some(manifest) = manifest.as_ref() {
+        expected.extend(provenance_report_expectations(manifest));
+    }
+    for expected in expected {
+        if !report.contains(&expected) {
             failures.push(format!("local binary evidence missing `{expected}`"));
         }
     }
@@ -853,23 +912,166 @@ fn verify_private_preview_checklist(root: &Path, failures: &mut Vec<String>) {
         Path::new("assets/reports/rc1-private-preview-checklist.md"),
         failures,
     );
-    for expected in [
-        "private-preview checklist",
-        "not public launch approval",
-        "Evidence commit: `faber 1a7001fe4bb26b0f20361e12aa4df8f4dcd604d1`",
-        "Website sync commit:",
-        "`faberlang.dev 08390f9a9234629fbaaabff38488f196da74d10e`",
-        "Compiler provenance: `82d6230ec`",
-        "Faber provenance: `edbb54f496e5`",
-        "faber 1.0.0-rc.1",
-        "77203c7302eb025bbf3ddd01aae798a96f0ca97cc0219066a6a64a991405700b",
-        "not create a public artifact",
-        "Required Before Public Use",
-    ] {
-        if !checklist.contains(expected) {
+    let manifest = provenance_manifest(root, failures);
+    let mut expected = vec![
+        "private-preview checklist".to_string(),
+        "not public launch approval".to_string(),
+        "not create a public artifact".to_string(),
+        "Required Before Public Use".to_string(),
+    ];
+    if let Some(manifest) = manifest.as_ref() {
+        expected.extend(provenance_report_expectations(manifest));
+    }
+    for expected in expected {
+        if !checklist.contains(&expected) {
             failures.push(format!("private-preview checklist missing `{expected}`"));
         }
     }
+}
+
+fn verify_provenance_manifest_contract(root: &Path, failures: &mut Vec<String>) {
+    let Some(manifest) = provenance_manifest(root, failures) else {
+        return;
+    };
+
+    if manifest.version != "__DOCS_VERSION__" {
+        failures.push(format!(
+            "provenance manifest version must use __DOCS_VERSION__, got `{}`",
+            manifest.version
+        ));
+    }
+    if manifest.contract != "frozen_private_preview_snapshot" {
+        failures.push(format!(
+            "provenance manifest has unsupported contract `{}`",
+            manifest.contract
+        ));
+    }
+    if !is_iso_date(&manifest.snapshot_date) {
+        failures.push(format!(
+            "provenance manifest snapshot_date is not YYYY-MM-DD: `{}`",
+            manifest.snapshot_date
+        ));
+    }
+    for (label, commit) in [
+        (
+            "faber frozen commit",
+            manifest.frozen_at.faber.commit.as_str(),
+        ),
+        (
+            "faberlang.dev frozen commit",
+            manifest.frozen_at.faberlang_dev.commit.as_str(),
+        ),
+    ] {
+        if !is_git_commit_hex(commit) {
+            failures.push(format!("{label} is not a full git commit: `{commit}`"));
+        }
+    }
+    if !is_sha256_hex(&manifest.local_binary.sha256) {
+        failures.push(format!(
+            "provenance manifest local_binary.sha256 is invalid: `{}`",
+            manifest.local_binary.sha256
+        ));
+    }
+    if manifest
+        .claim_boundary
+        .iter()
+        .any(|boundary| boundary.contains("public artifact"))
+        && !manifest
+            .claim_boundary
+            .iter()
+            .any(|boundary| boundary.contains("not a public artifact"))
+    {
+        failures.push(
+            "provenance manifest claim boundary mentions public artifact without a negative gate"
+                .to_string(),
+        );
+    }
+
+    let expected = provenance_report_expectations(&manifest);
+    for (file, label) in PROVENANCE_REPORTS {
+        let text = read_to_string(root, Path::new(file), failures);
+        if uses_current_local_evidence_wording(&text) {
+            failures.push(format!(
+                "{label} uses current/local evidence wording for a frozen snapshot contract"
+            ));
+        }
+        for expected in &expected {
+            if !text.contains(expected) {
+                failures.push(format!(
+                    "{label} missing manifest-backed evidence `{expected}`"
+                ));
+            }
+        }
+    }
+}
+
+fn provenance_manifest(root: &Path, failures: &mut Vec<String>) -> Option<ProvenanceManifest> {
+    let text = read_to_string(root, Path::new(PROVENANCE_MANIFEST), failures);
+    match serde_json::from_str(&text) {
+        Ok(manifest) => Some(manifest),
+        Err(error) => {
+            failures.push(format!("invalid provenance manifest: {error}"));
+            None
+        }
+    }
+}
+
+fn provenance_report_expectations(manifest: &ProvenanceManifest) -> Vec<String> {
+    vec![
+        format!("Evidence contract: `{}`", manifest.contract),
+        format!("Snapshot date: `{}`", manifest.snapshot_date),
+        "Manifest route: `/reports/rc1-provenance-manifest.json`".to_string(),
+        format!(
+            "Evidence commit: `faber {}`",
+            manifest.frozen_at.faber.commit
+        ),
+        format!("`{}`", manifest.frozen_at.faber.subject),
+        "Website sync commit:".to_string(),
+        format!(
+            "`faberlang.dev {}`",
+            manifest.frozen_at.faberlang_dev.commit
+        ),
+        format!("`{}`", manifest.frozen_at.faberlang_dev.subject),
+        format!("Compiler provenance: `{}`", manifest.provenance.compiler),
+        format!("Faber provenance: `{}`", manifest.provenance.faber),
+        manifest.local_binary.build_command.clone(),
+        manifest.local_binary.version_result.clone(),
+        manifest.local_binary.path.clone(),
+        manifest.local_binary.sha256.clone(),
+        manifest.local_binary.size_observed.clone(),
+        format!(
+            "faber-runtime {}",
+            manifest.autograd_proximity.faber_runtime
+        ),
+        format!("examples {}", manifest.autograd_proximity.examples),
+        manifest.autograd_proximity.fixture_scope.clone(),
+        format!(
+            "Output-checked device/autograd floor: {}",
+            manifest
+                .autograd_proximity
+                .output_checked_device_autograd_floor
+        ),
+        manifest.autograd_proximity.boundary_statement.clone(),
+    ]
+}
+
+fn is_iso_date(value: &str) -> bool {
+    let bytes = value.as_bytes();
+    bytes.len() == 10
+        && bytes[4] == b'-'
+        && bytes[7] == b'-'
+        && bytes
+            .iter()
+            .enumerate()
+            .all(|(index, byte)| matches!(index, 4 | 7) || byte.is_ascii_digit())
+}
+
+fn is_git_commit_hex(value: &str) -> bool {
+    value.len() == 40 && value.chars().all(|ch| ch.is_ascii_hexdigit())
+}
+
+fn uses_current_local_evidence_wording(text: &str) -> bool {
+    text.contains("Current local evidence") || text.contains("current local tree")
 }
 
 fn verify_autograd_boundary(root: &Path, failures: &mut Vec<String>) {
@@ -1023,6 +1225,31 @@ mod tests {
         assert!(!route_reference_resolves(
             "__PUBLIC_ORIGIN__/contracts/__DOCS_VERSION__/*",
             &known_routes()
+        ));
+    }
+
+    #[test]
+    fn frozen_provenance_contract_rejects_current_local_wording() {
+        assert!(uses_current_local_evidence_wording(
+            "Current local evidence: commit abc"
+        ));
+        assert!(uses_current_local_evidence_wording(
+            "This evidence supports private review of the current local tree only."
+        ));
+        assert!(!uses_current_local_evidence_wording(
+            "Frozen private-preview evidence snapshot:"
+        ));
+    }
+
+    #[test]
+    fn provenance_manifest_date_and_commit_shapes_are_strict() {
+        assert!(is_iso_date("2026-07-14"));
+        assert!(!is_iso_date("2026-7-14"));
+        assert!(is_git_commit_hex(
+            "1a7001fe4bb26b0f20361e12aa4df8f4dcd604d1"
+        ));
+        assert!(!is_git_commit_hex(
+            "1a7001fe4bb26b0f20361e12aa4df8f4dcd604d1x"
         ));
     }
 
