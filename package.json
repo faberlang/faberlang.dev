@@ -1,0 +1,13 @@
+{
+  "name": "faberlang.dev",
+  "private": true,
+  "scripts": {
+    "cf:dev": "wrangler dev",
+    "cf:dry-run": "wrangler deploy --dry-run",
+    "cf:deploy": "wrangler deploy",
+    "cf:types": "wrangler types"
+  },
+  "devDependencies": {
+    "wrangler": "4.85.0"
+  }
+}

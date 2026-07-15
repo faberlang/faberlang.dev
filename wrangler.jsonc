@@ -1,0 +1,10 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "faberlang-dev",
+  "main": "cloudflare-worker/src/index.js",
+  "compatibility_date": "2025-07-18",
+  "assets": {
+    "directory": "./assets",
+    "binding": "ASSETS"
+  }
+}
