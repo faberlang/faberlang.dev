@@ -29,10 +29,22 @@ jobs:
         with:
           enablement: true
 
+      - name: Build static site artifact
+        env:
+          PUBLIC_ORIGIN: https://faberlang.dev
+          DOCS_VERSION: 1.0.0-rc.1
+        run: |
+          cp -R assets dist
+          find dist -type f -exec sed -i \
+            -e "s|__PUBLIC_ORIGIN__|${PUBLIC_ORIGIN}|g" \
+            -e "s|__DOCS_VERSION__|${DOCS_VERSION}|g" \
+            {} +
+          ! grep -R -n -E '__PUBLIC_ORIGIN__|__DOCS_VERSION__' dist
+
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./assets
+          path: ./dist
 
       - name: Deploy to GitHub Pages
         id: deployment
