@@ -43,6 +43,10 @@ export default {
 
     const assetResponse = await env.ASSETS.fetch(new Request(assetUrl, request));
     const headers = new Headers(assetResponse.headers);
+    const contentType = contentTypeFor(assetUrl.pathname, headers.get("content-type"));
+    if (contentType) {
+      headers.set("content-type", contentType);
+    }
     const publicOrigin = guessPublicOrigin(request, env);
     const docsVersion = docsVersionFor(env);
 
@@ -71,6 +75,20 @@ export default {
     );
   },
 };
+
+function contentTypeFor(path, fallback) {
+  if (path.endsWith(".html")) return "text/html; charset=utf-8";
+  if (path.endsWith(".css")) return "text/css; charset=utf-8";
+  if (path.endsWith(".md") || path === "/llms.txt" || path === "/llms-full.txt") {
+    return "text/markdown; charset=utf-8";
+  }
+  if (path.endsWith(".json")) return "application/json; charset=utf-8";
+  if (path.endsWith(".xml")) return "application/xml; charset=utf-8";
+  if (path.endsWith(".txt") || path.endsWith(".ebnf")) {
+    return "text/plain; charset=utf-8";
+  }
+  return fallback;
+}
 
 function isTextual(contentType) {
   return (
