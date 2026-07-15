@@ -388,6 +388,40 @@ mod tests {
     }
 
     #[tokio::test]
+    async fn index_markdown_variant_sets_cache_variance() {
+        let mut headers = HeaderMap::new();
+        headers.insert(header::ACCEPT, HeaderValue::from_static("text/markdown"));
+        let response = asset(
+            State(AppState { assets: assets() }),
+            OriginalUri("/index.html".parse().expect("valid uri")),
+            headers,
+        )
+        .await;
+
+        assert_eq!(response.status(), StatusCode::OK);
+        assert_eq!(
+            response
+                .headers()
+                .get(header::CONTENT_TYPE)
+                .and_then(|value| value.to_str().ok()),
+            Some("text/markdown; charset=utf-8")
+        );
+        assert_eq!(
+            response
+                .headers()
+                .get(header::VARY)
+                .and_then(|value| value.to_str().ok()),
+            Some("Accept")
+        );
+        let body = axum::body::to_bytes(response.into_body(), usize::MAX)
+            .await
+            .expect("markdown body should be readable");
+        let body = String::from_utf8(body.to_vec()).expect("markdown body should be UTF-8");
+        assert!(body.starts_with("# Faber\n"));
+        assert!(body.contains("Version: `1.0.0-rc.1`."));
+    }
+
+    #[tokio::test]
     async fn removed_internal_skill_route_returns_404() {
         let removed_route = format!(
             "/.well-known/agent-skills/{}{}{}{}{}{}{}{}",
