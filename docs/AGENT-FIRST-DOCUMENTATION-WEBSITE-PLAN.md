@@ -28,7 +28,11 @@ Do not begin implementation during the Faber 1.0 RC release campaign.
 The release process supplies the documentation version, supported capabilities,
 CLI behavior, release notes, target matrix, diagnostics, provider manifests, and
 clean installed-layout evidence. Starting the website first would cause it to
-publish moving or invented claims.
+publish moving or invented claims. Versioned documentation must also consume
+Faber's [major-parity and language-lock policy](../../faber/docs/release/policy.md):
+Faber 1 is an odd-major development line, while an even-major LTS line requires
+its own lock evidence. A version number alone is never evidence that a language
+contract is locked.
 
 After the release campaign closes:
 
@@ -102,7 +106,8 @@ representation in addition to human HTML.
 
 ### Versioned and cacheable
 
-Every document identifies the Faber version it describes. Stable versioned URLs
+Every document identifies the Faber version and release lane it describes.
+Stable versioned URLs
 are authoritative; `latest` is only a convenience alias.
 
 ## Abbotik patterns to carry forward

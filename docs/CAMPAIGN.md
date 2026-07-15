@@ -17,6 +17,12 @@ The dedicated agent-first documentation intake is
 It is queued after the Faber 1.0 RC process and must pass Goal Forge and Goal
 Check before lowering into implementation.
 
+The public documentation must classify releases using Faber's major-parity
+policy: Faber 1 is an odd-major development line, while even-major LTS lines
+are language-locked only after their explicit compatibility gate. A website
+version label must not imply a language lock, and public material must not make
+corporate or legal-series claims from a release label.
+
 ## Desired End State
 
 - A visitor understands in one minute what Faber is, who it is for, and why it
@@ -104,7 +110,9 @@ positioning brief and the V1 release contract.*
 ### Stage 4 — Documentation And Example Pipeline
 
 - Export or curate public grammar, guides, Norma source/API, examples, CLI
-  reference, and released capability matrix.
+  reference, and released capability matrix. Include the release lane and
+  lock-status metadata from the authoritative release policy with each
+  versioned corpus.
 - Gate: forbidden-path scan, example runnability, stale-claim scan, idempotent
   export, public-source manifest
 - Batching: batch-by-default after one proven content family
