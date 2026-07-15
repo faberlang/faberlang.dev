@@ -1,5 +1,0 @@
-(* Faber Grammar Contract - __DOCS_VERSION__ *)
-(* Status: quarantined placeholder, not an approved syntax export. *)
-(* This route intentionally publishes no language productions. *)
-(* Use the local Faber toolchain (`faber parse`, `faber check`, `faber explain`) *)
-(* as the executable truth source for this private-preview packet. *)
