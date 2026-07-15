@@ -393,7 +393,7 @@ mod tests {
         headers.insert(header::ACCEPT, HeaderValue::from_static("text/markdown"));
         let response = asset(
             State(AppState { assets: assets() }),
-            OriginalUri("/index.html".parse().expect("valid uri")),
+            OriginalUri("/".parse().expect("valid uri")),
             headers,
         )
         .await;
