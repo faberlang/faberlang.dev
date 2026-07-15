@@ -17,8 +17,8 @@ not evidence that an account, domain, route, or public deployment exists.
 
 - Worker name: `faberlang-dev`.
 - Entrypoint: `cloudflare-worker/src/index.js`.
-- Compatibility date: `2025-07-18`.
-- Static asset directory: `./assets`, bound as `ASSETS`.
+- Compatibility date: `2026-05-01` (the newest local runtime date supported by pinned Wrangler 4.85.0).
+- Static asset directory: `./assets`, bound as `ASSETS`, with `run_worker_first: true` so Worker-owned health, negotiation, headers, and placeholder substitution run before static fallback.
 
 The npm scripts are:
 
