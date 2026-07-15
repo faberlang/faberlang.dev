@@ -284,7 +284,7 @@ async fn asset(
         inject_discovery_headers(&mut response, &public_origin);
     }
     // Content negotiation header
-    if path == "/" {
+    if path == "/" || path == "/index.html" {
         response
             .headers_mut()
             .insert(header::VARY, HeaderValue::from_static("Accept"));
