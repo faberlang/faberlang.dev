@@ -70,6 +70,26 @@ preview is a public deployment. Preparation does not authenticate to
 Cloudflare, reserve a domain, configure DNS, attach a route, or prove that an
 edge deployment is reachable.
 
+## Local validation record
+
+The local deployment seam was validated without Cloudflare authentication or
+publication:
+
+- `npm ci --ignore-scripts` installed the locked Wrangler `4.85.0` toolchain.
+- `npm run cf:dry-run -- --outdir .wrangler/dry-run-final2` read 64 assets and exited at `--dry-run` without publishing.
+- `npm run cf:dev -- --local --port 8787` was smoke-tested for `/health`, HTML
+  root response, Markdown root negotiation, `Vary: Accept`, discovery `Link`,
+  `text/markdown` content type, placeholder substitution, and the language
+  catalog route.
+- `cargo test --all-targets` passed 24 tests; `cargo build --release` passed;
+  `cargo run --bin validate_public_packet` passed.
+- `node --check cloudflare-worker/src/index.js` and `git diff --check` passed.
+
+The first local smoke exposed that static assets bypassed the Worker when
+`run_worker_first` was absent; the config now sets it explicitly. The initial
+compatibility date was also adjusted to `2026-05-01`, the newest runtime date
+supported by pinned Wrangler `4.85.0`.
+
 ## Manual re-authentication and deployment
 
 Only an authorized operator should perform these steps. They are intentionally
