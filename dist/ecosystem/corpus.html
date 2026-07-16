@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Language corpus — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/" class="active">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>Language corpus</h1>
+<div class="content">
+<p>The Faber language corpus is the public language dictionary: one top-level
+directory per keyword, operator group, or language type surface. It is the
+development source for <code>faber explain</code> and the primary input for
+multi-target compile matrices.</p>
+<h2 id="stats">Stats</h2>
+<ul>
+<li>292 <code>.fab</code> exemplar files</li>
+<li>174 registry terms in <code>index.toml</code></li>
+<li>~135 keyword and concept directories</li>
+</ul>
+<h2 id="layout">Layout</h2>
+<pre class="faber-code"><code>corpus/
+  functio/           # function keyword exemplars
+  genus/             # record type exemplars
+  si/                # conditional branch exemplars
+  itera/             # iteration exemplars
+  lista/ tabula/     # collection type exemplars
+  tensor/ sparsa/    # tensor exemplars
+  ad/                # capability call exemplars
+  operatores/        # glyph / operator groups
+  ...
+  index.toml         # generated explain manifest</code></pre>
+<h2 id="file-format">File format</h2>
+<p>Each <code>.fab</code> file begins with TOML frontmatter describing the term:</p>
+<pre class="faber-code"><code class="lang-toml">+++
+term = "functio"
+kind = "keyword"
+category = "function"
+canonical = true
+summary = "Declares a named function or method."
+syntax = "functio &lt;name&gt;(&lt;params&gt;) [modifiers] [→ &lt;type&gt;] [⇥ &lt;error-type&gt;] &lt;block&gt;"
+aliases = ["function"]
+related = ["→", "⇥", "redde", "sponte"]
++++
+
+functio saluta() {
+    nota "Salve, Mundus!"
+}</code></pre>
+<h2 id="usage">Usage</h2>
+<pre class="faber-code"><code class="lang-bash">faber explain functio       # show keyword reference
+faber explain ≡             # show glyph reference
+faber explain --search query # search across corpus
+faber explain --list         # list all terms</code></pre>
+<h2 id="categories">Categories</h2>
+<p>Terms are organised by category: <code>function</code>, <code>control-flow</code>, <code>type</code>,
+<code>collection</code>, <code>transfer</code>, <code>annotation</code>, <code>iteration</code>, <code>destructuring</code>,
+<code>testing</code>, <code>cli</code>, <code>concept</code>, <code>operator-group</code>, <code>existing-home</code>.</p>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

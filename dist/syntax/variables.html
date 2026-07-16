@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Variables and binding — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/" class="active">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>Variables and binding</h1>
+<div class="content">
+<p>Faber has three variable keywords and a dedicated assignment glyph. The key
+distinction is between <code class="kw">fixum</code> (write-once) and <code class="kw">varia</code> (freely reassignable),
+and between <code>←</code> (runtime flow) and <code>=</code> (structural field shape).</p>
+<h2 id="fixum-immutable-binding">fixum — immutable binding</h2>
+<p><code class="kw">fixum</code> bindings are write-once. They may be declared with or without an
+initializer; if declared without, they must be assigned exactly once before
+reading. A second assignment is rejected.</p>
+<pre class="faber-code"><code class="lang-faber">fixum numerus count ← 0
+fixum textus name ← "Marcus"
+fixum _ inferred ← [1, 2, 3]</code></pre>
+<p>Deferred initialisation:</p>
+<pre class="faber-code"><code class="lang-faber">incipit {
+    fixum numerus factor
+    si verum {
+        factor ← 10
+    } secus {
+        factor ← 100
+    }
+    nota factor
+}</code></pre>
+<h2 id="varia-mutable-binding">varia — mutable binding</h2>
+<p><code class="kw">varia</code> bindings are freely reassignable:</p>
+<pre class="faber-code"><code class="lang-faber">incipit {
+    varia numerus count ← 0
+    count ← count + 1
+    count ← count * 2
+}</code></pre>
+<h2 id="sit-inferred-immutable-sugar">sit — inferred immutable sugar</h2>
+<p><code>sit</code> is sugar for <code>fixum _</code> — an immutable binding with inferred type:</p>
+<pre class="faber-code"><code class="lang-faber">incipit {
+    sit salve ← "Salve"
+    sit nomen ← "Marcus"
+    sit x ← 42
+
+    # Deferred form
+    sit label
+    label ← "deferred"
+}</code></pre>
+<h2 id="runtime-binding-vs-structural-definition">Runtime binding vs structural definition</h2>
+<p>Faber splits what most languages collapse into <code>=</code>:</p>
+<table>
+<thead><tr><th>Glyph</th><th>Role</th><th>Use for</th></tr></thead>
+<tbody>
+<tr><td><code>←</code></td><td>Runtime flow</td><td>Initial binding, reassignment, mutation</td></tr>
+<tr><td><code>=</code></td><td>Structural shape</td><td>Field names inside literals and metadata</td></tr>
+</tbody></table>
+<pre class="faber-code"><code class="lang-faber">genus Point {
+    numerus x
+    numerus y
+}
+
+incipit {
+    # Runtime: ← attaches a value to a name at execution time
+    varia numerus count ← 0
+    varia textus label ← "ready"
+    count ← count + 1
+
+    # Structural: = defines field values inside a type literal
+    fixum _ p ← Point {
+        x = 10,
+        y = 20
+    }
+}</code></pre>
+<h2 id="ex-field-extraction">Ex field extraction</h2>
+<p><code class="kw">ex</code> extracts fields from a value into local bindings:</p>
+<pre class="faber-code"><code class="lang-faber">genus Persona {
+    textus nomen
+    numerus aetas
+}
+
+incipit {
+    fixum _ p ← Persona { nomen = "Marcus", aetas = 30 }
+    ex p fixum nomen, aetas
+    # prints "Marcus"
+    nota nomen
+}</code></pre>
+<h2 id="postfix-increment-and-decrement">Postfix increment and decrement</h2>
+<p><code>⊕</code> and <code>⊖</code> are postfix increment/decrement statements for mutable
+<code class="typ">numerus</code> places. They are statement-only — no expression value, no
+prefix forms:</p>
+<pre class="faber-code"><code class="lang-faber">incipit {
+    varia numerus i ← 0
+    # i becomes 1
+    i ⊕
+    # i becomes 0
+    i ⊖
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cista package manager — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/" class="active">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>Cista package manager</h1>
+<div class="content">
+<p>Cista is the Faber package manager. It handles package resolution,
+dependency management, and the public package store.</p>
+<h2 id="overview">Overview</h2>
+<p>Cista manages Faber packages defined by <code>faber.toml</code> manifests. Each
+package declares its name, entry point, target backend, and dependencies.</p>
+<h2 id="manifest">Package manifest</h2>
+<pre class="faber-code"><code class="lang-text">faber.toml
+
+[nomen]
+speculum-gen
+
+[ingressus]
+main.fab
+
+[scopulus]
+rust
+
+[genus]
+bin</code></pre>
+<p>The <code>[nomen]</code> field is the package name, <code>[ingressus]</code> is the entry
+point module, <code>[scopulus]</code> selects the codegen target, and <code>[genus]</code>
+declares the package kind (<code>bin</code> for executables, <code>lib</code> for libraries).</p>
+<h2 id="dependencies">Dependencies</h2>
+<p>Packages declare dependencies that Cista resolves from the package store.
+Dependency resolution produces a lock file that ensures reproducible
+builds.</p>
+<h2 id="status">Status</h2>
+<p>Cista is under active development. The public package registry
+(<code>cista.dev</code>) is a separate campaign from the site implementation. Local
+package resolution works for packages within the same workspace.</p>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EBNF grammar — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/" class="active">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>EBNF grammar</h1>
+<div class="content">
+<p>The canonical Faber grammar is defined in the Radix repository at
+<code>radix/EBNF.md</code>. It is the formal authority for all language syntax.</p>
+<p>The grammar covers:</p>
+<ul>
+<li>Lexical structure (glyphs, keywords, literals, comments)</li>
+<li>Declarations (functio, genus, implendum, typus, discretio, ordo)</li>
+<li>Statements (binding, control flow, returns, iteration)</li>
+<li>Expressions (calls, operators, conversions, literals)</li>
+<li>Annotations (@ syntax)</li>
+<li>CLI annotations (@ cli, @ optio, @ operandus, @ imperium)</li>
+<li>Type expressions (primitives, generics, sugar forms)</li>
+<li>Module system (importa)</li>
+</ul>
+<pre class="faber-code"><code class="lang-ebnf">(* excerpt: function declaration *)
+funcDecl = 'functio' ident genericParams? '(' paramList ')' ('→' type)? ('⇥' type)? block;
+block    = '{' stmt* '}';</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

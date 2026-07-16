@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nullability and optionality — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/" class="active">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>Nullability and optionality</h1>
+<div class="content">
+<p>Faber distinguishes absence in a value from optional provision at a
+declaration site.</p>
+<h2 id="nullable-values">Nullable values — T ∪ nihil</h2>
+<p>Use <code>T ∪ nihil</code> when the value can be absent:</p>
+<pre class="faber-code"><code class="lang-faber">functio find(textus key) → numerus ∪ nihil {
+    redde nihil
+}
+
+functio divide(numerus a, numerus b) → numerus ∪ nihil {
+    si b ≡ 0 ∴ redde nihil
+    redde a / b
+}</code></pre>
+<h2 id="optional-declaration-slots">Optional declaration slots — sponte</h2>
+<p>Use <code>sponte</code> after the name when a parameter or field may be omitted
+by the caller or constructor:</p>
+<pre class="faber-code"><code class="lang-faber">functio connect(textus host, numerus port sponte) → vacuum { }
+
+genus User {
+    textus email sponte
+}</code></pre>
+<p>Borrow markers can combine with optional parameters:</p>
+<pre class="faber-code"><code class="lang-faber">functio process(de numerus depth sponte) → vacuum { }</code></pre>
+<h2 id="non-null-assertion">Non-null assertion — !</h2>
+<p>Use <code>!.</code>, <code>![</code>, <code>!(</code> to assert a nullable value is not <code class="kw">nihil</code>:</p>
+<pre class="faber-code"><code class="lang-faber">genus Box { numerus ∪ nihil val }
+fixum Box ∪ nihil maybe_name ← Box { val = 7 }
+fixum _ name ← maybe_name!.val</code></pre>
+<p>A non-null assertion on <code class="kw">nihil</code> aborts at runtime.</p>
+<h2 id="nullish-coalescing">Nullish coalescing — vel</h2>
+<pre class="faber-code"><code class="lang-faber">fixum textus ∪ nihil provided ← nihil
+fixum _ name ← provided vel "default"</code></pre>
+<h2 id="ignotum">ignotum</h2>
+<p><code>ignotum</code> is the top-level unknown type for escape hatches and incomplete
+knowledge. It is not a nullability mechanism.</p>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

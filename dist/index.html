@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faber — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/" class="active">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>Faber</h1>
+<div class="content">
+<p><strong>Faber</strong> is a package-oriented programming language with a Latin
+behavioural vocabulary, a small regular grammar, and a type-first static
+type system. Source is compiled through the Radix compiler to reviewable
+Rust and native binaries. Its defining architectural property is that
+meaning lives in a semantic core — the HIR (high-level intermediate
+representation) — rather than in any particular rendering.</p>
+<p>The name derives from the Latin word for *maker* or *craftsman*. The
+compiler is named Radix, from the Latin *root*. The language is
+developed by Ian Zepp and released under the MIT license.</p>
+<table>
+<thead><tr></tr></thead>
+<tbody>
+<tr><td><strong>Paradigm</strong></td><td>Package-oriented; semantic staging</td></tr>
+<tr><td><strong>Typing</strong></td><td>Static, type-first; nullable via <code>T ∪ nihil</code></td></tr>
+<tr><td><strong>Glyphs</strong></td><td><code>← → ∴ ≡ ∪ ⇥</code></td></tr>
+<tr><td><strong>Designed by</strong></td><td>Ian Zepp</td></tr>
+<tr><td><strong>First appeared</strong></td><td>2024</td></tr>
+<tr><td><strong>Compiler</strong></td><td>Radix (Rust)</td></tr>
+<tr><td><strong>Lanes</strong></td><td>Application (HIR) · Systems (MIR)</td></tr>
+<tr><td><strong>Primary target</strong></td><td>Rust → native binary</td></tr>
+<tr><td><strong>Reader locales</strong></td><td>7 shipped (la, ar, hi, vi, th-TH, zh-Hans, zh-Hant)</td></tr>
+<tr><td><strong>Standard library</strong></td><td>Norma (<code>norma:*</code>)</td></tr>
+<tr><td><strong>License</strong></td><td>MIT</td></tr>
+</tbody></table>
+<h2 id="overview">Overview</h2>
+<p>Faber is designed around a core insight: the intermediate representation
+is the truth, and no target or human-language surface is privileged. A
+Faber program written in Latin keywords can be rendered into Thai,
+Arabic, or Chinese keywords through the same mechanism that renders it
+into Rust, Go, or WebAssembly — because the HIR is the authority and
+every output is a *rendering* of it.</p>
+<p>The language makes three deliberate signal choices that work together:</p>
+<ul>
+<li><strong>Type-first declarations</strong> — shape reads toward binding: <code>textus nomen</code>,</li>
+</ul>
+<p>not <code>nomen: textus</code>.</p>
+<ul>
+<li><strong>Latin behavioural words</strong> — declarations, statements, and lifecycle:</li>
+</ul>
+<p><code class="kw">functio</code>, <code class="kw">genus</code>, <code class="kw">fixum</code>, <code class="kw">redde</code>, <code class="kw">si</code>.</p>
+<ul>
+<li><strong>Structural glyphs</strong> — value flow and type joints: <code>←</code> (bind), <code>→</code></li>
+</ul>
+<p>(return type), <code>∴</code> (compact branch), <code>≡</code> (equality), <code>∪</code> (union).</p>
+<p>The result is source with stable grammatical shape that can be reviewed,
+transformed, and lowered without losing the reader's sense of intent.</p>
+<h2 id="documentation">Documentation</h2>
+<table>
+<thead><tr><th>Section</th><th>Description</th></tr></thead>
+<tbody>
+<tr><td>[History](/history/index.html)</td><td>Development timeline, influences, and release history</td></tr>
+<tr><td>[Features](/features/index.html)</td><td>Reader locale, compilation lanes, Latin vocabulary, glyph system, design principles</td></tr>
+<tr><td>[Syntax](/syntax/index.html)</td><td>Complete reference: types, functions, control flow, errors, generics, collections</td></tr>
+<tr><td>[Tooling](/tooling/index.html)</td><td>Radix compiler pipeline, Faber CLI, codegen targets, scripting</td></tr>
+<tr><td>[Ecosystem](/ecosystem/index.html)</td><td>Norma, Cista, Triga, coreutils, AI Workbench, corpus</td></tr>
+<tr><td>[References](/references/index.html)</td><td>EBNF grammar, design documents, repositories</td></tr>
+</tbody></table>
+<h2 id="quick-example">Quick example</h2>
+<p>A simple function demonstrating key Faber patterns — type-first
+parameters, glyph return type, nullable union, Latin control words:</p>
+<pre class="faber-code"><code class="lang-text">functio divide(numerus a, numerus b) → numerus ∪ nihil {
+    si b ≡ 0 ∴ redde nihil
+    redde a / b
+}</code></pre>
+<h2 id="live-rendering">Live rendering</h2>
+<p>The divide function above is rendered in the Latin pack by default. The
+compiler can render the same program in seven reader locales — Thai,
+Chinese, Arabic, Hindi, Vietnamese — each remapping keywords and types
+to that language while glyphs and identifiers remain unchanged. This is
+not a translation layer applied to the page; it is the same mechanism
+the compiler uses to produce localized source.</p>
+<p>See the [reader locale](/features/reader-locale.html) documentation for
+the full discussion.</p>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

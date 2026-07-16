@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Generics — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/" class="active">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>Generics</h1>
+<div class="content">
+<p>Functions, type aliases, <code class="kw">genus</code>, and <code>implendum</code> accept type parameters
+with <code><T></code> syntax.</p>
+<h2 id="generic-functions">Generic functions</h2>
+<pre class="faber-code"><code class="lang-faber">functio identitas&lt;T&gt;(T valor) → T {
+    redde valor
+}
+
+functio primum&lt;T&gt;(lista&lt;T&gt; res) → T ∪ nihil {
+    redde res.primus()
+}</code></pre>
+<h2 id="explicit-callsite-type-arguments">Explicit call-site type arguments</h2>
+<pre class="faber-code"><code class="lang-faber">functio identitas&lt;T&gt;(T valor) → T { redde valor }
+
+functio primum&lt;T&gt;(lista&lt;T&gt; res) → T ∪ nihil {
+    redde nihil
+}
+
+fixum _ value ← identitas&lt;numerus&gt;(7)
+fixum _ maybe ← primum&lt;numerus&gt;([value])</code></pre>
+<h2 id="generic-genus">Generic genus</h2>
+<pre class="faber-code"><code class="lang-faber">genus Par&lt;T&gt; {
+    T primus
+    T secundus
+}</code></pre>
+<h2 id="size-parameters">Size parameters</h2>
+<p><code>magnitudo</code> declares a size/index parameter in generic parameter lists:</p>
+<pre class="faber-code"><code class="lang-faber">functio crea&lt;T, magnitudo N&gt;() → tensor&lt;T, [N]&gt; {
+    redde vacua
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

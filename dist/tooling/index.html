@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tooling and compiler — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/" class="active">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>Tooling and compiler</h1>
+<div class="content">
+<p>The Faber toolchain spans three tools: the <code>faber</code> CLI for building and
+testing, the Radix compiler for code generation, and the Cista package
+manager for dependency resolution.</p>
+<h2 id="faber-cli">Faber build tool</h2>
+<p>The primary developer interface. Build, check, run, test, format, and
+explain — all through one command. [Read more →](/tooling/faber-build-tool.html)</p>
+<h2 id="radix">Radix compiler</h2>
+<p>The compiler backend. Lowers Faber source through HIR → MIR → AIR to
+multiple target lanes. [Read more →](/tooling/radix-compiler.html)</p>
+<h2 id="cista">Cista package manager</h2>
+<p>Package resolution and the public package store. Manages <code>faber.toml</code>
+manifests and dependency locks. [Read more →](/tooling/cista-package-manager.html)</p>
+<h2 id="codegen-targets">Codegen targets</h2>
+<p>Faber compiles to Rust (default), WASM, TypeScript, Go, and GPU/WGSL.
+Each target lane has its own IR path and runtime binding.
+[Read more →](/tooling/codegen-targets.html)</p>
+<h2 id="performance">Performance</h2>
+<p>Measured compilation and execution performance across target lanes.
+[Read more →](/tooling/performance.html)</p>
+<h2 id="scripting">Scripting</h2>
+<p>Using Faber as a scripting language with the <code>faber run</code> command.
+[Read more →](/tooling/scripting.html)</p>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

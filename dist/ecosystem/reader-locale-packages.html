@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reader-locale packages — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/" class="active">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>Reader-locale packages</h1>
+<div class="content">
+<p>Each non-Latin reader locale has a complete Faber package under
+<code>examples/reader-locale/</code> with localised source, diagnostic test cases,
+and a <code>faber.toml</code> manifest.</p>
+<h2 id="available-packages">Available packages</h2>
+<table>
+<thead><tr><th>Locale</th><th>Path</th><th>Source example</th></tr></thead>
+<tbody>
+<tr><td>th-TH</td><td><code>examples/reader-locale/th-TH/</code></td><td><code>ฟังก์ชัน salve(ข้อความ nomen) → ข้อความ</code></td></tr>
+<tr><td>zh-Hans</td><td><code>examples/reader-locale/zh-Hans/</code></td><td><code>函数 问候(文本 名字) → 文本</code></td></tr>
+<tr><td>zh-Hant</td><td><code>examples/reader-locale/zh-Hant/</code></td><td><code>函式 問候(文字 名字) → 文字</code></td></tr>
+<tr><td>ar</td><td><code>examples/reader-locale/ar/</code></td><td><code>دالة تحية(نص اسم) → نص</code></td></tr>
+<tr><td>hi</td><td><code>examples/reader-locale/hi/</code></td><td><code>फलन नमस्कार(पाठ नाम) → पाठ</code></td></tr>
+<tr><td>vi</td><td><code>examples/reader-locale/vi/</code></td><td><code>hàm chào(vănbản tên) → vănbản</code></td></tr>
+</tbody></table>
+<h2 id="diagnostic-test-cases">Diagnostic test cases</h2>
+<p>Each package includes test cases proving the full compiler pipeline is
+locale-aware:</p>
+<ul>
+<li><code>type-mismatch.fab</code> — localised type error diagnostics</li>
+<li><code>undefined-variable.fab</code> — localised name resolution errors</li>
+<li><code>non-ascii-number.fab</code> — NFKC handling</li>
+<li><code>keyword-suggestion.fab</code> — localised "did you mean?" hints</li>
+</ul>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

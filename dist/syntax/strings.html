@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>String and template literals — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/" class="active">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>String and template literals</h1>
+<div class="content">
+<p>Faber uses delimiter semantics — each quote form means a different source
+shape. They are not interchangeable synonyms.</p>
+<h2 id="literal-forms">Literal forms</h2>
+<table>
+<thead><tr><th>Form</th><th>Type</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td><code>'…'</code></td><td><code>ascii</code></td><td>Fixed machine tokens; no <code>§</code>; no <code>(…)</code></td></tr>
+<tr><td><code>"…"</code></td><td><code class="typ">textus</code></td><td>Short Unicode line strings; <code>(…)</code> renders</td></tr>
+<tr><td><code>«…»</code></td><td><code class="typ">textus</code></td><td>Block/multiline Unicode; <code>(…)</code> renders</td></tr>
+<tr><td><code></code> <code>…</code> <code></code></td><td><code>forma</code></td><td>Captured templates; <code>(…)</code> captures</td></tr>
+<tr><td><code>{ … }</code></td><td><code class="typ">json</code></td><td>Compile-time JSON document</td></tr>
+<tr><td>`</td><td>…</td><td>`</td><td><code class="typ">octeti</code></td><td>Compile-time hex bytes</td></tr>
+<tr><td><code>[ … ]</code></td><td><code>lista<T></code></td><td>Faber list literal</td></tr>
+</tbody></table>
+<h2 id="string-template-application">String-template application</h2>
+<p>Faber formats text with string-template application: a <code>"…"</code> or <code>«…»</code>
+literal with <code>§</code> holes, then parenthesised arguments:</p>
+<pre class="faber-code"><code class="lang-faber">functio greet(textus nomen) → textus {
+    redde "Salve, §!"(nomen)
+}
+
+fixum numerus pagina ← 3
+fixum numerus totum ← 10
+fixum textus code ← "200"
+fixum textus label ← "OK"
+
+fixum _ msg ← "Page § of §"(pagina, totum)
+fixum _ block ← «status: § (§)»(code, label)</code></pre>
+<p>Key rules:</p>
+<ul>
+<li><code>§</code> (U+00A7) is the template hole</li>
+<li>Positional holes: <code>§0</code>, <code>§1</code>, … for explicit ordering</li>
+<li>Trailing <code>!</code> selects display formatting: <code>"Salve, §!"(nomen)</code></li>
+<li>The <code>(args)</code> suffix is template application, not a function call</li>
+</ul>
+<h2 id="block-strings">Block strings</h2>
+<p>Multiline blocks use guillemets <code>«…»</code>:</p>
+<pre class="faber-code"><code class="lang-faber">fixum _ sql ← «
+    select id, email
+    from accounts
+»</code></pre>
+<h2 id="captured-templates">Captured templates (forma)</h2>
+<p>Backtick templates capture text and parameters without rendering.
+Safe for bound SQL/URL payloads:</p>
+<pre class="faber-code"><code class="lang-faber">fixum numerus user_id ← 42
+fixum _ query ← `select * from users where id = §`(user_id)</code></pre>
+<h2 id="inline-json">Inline JSON</h2>
+<p>A bare <code>{ … }</code> is inline JSON: a compile-time <code class="typ">json</code> document, not an
+anonymous Faber object. Keys are quoted strings separated by <code>:</code>:</p>
+<pre class="faber-code"><code class="lang-faber">fixum _ empty ← {}
+fixum _ user ← { "name": "Marcus", "age": 30, "active": true }
+fixum _ nested ← { "meta": { "version": 1 }, "tags": ["alpha", "beta"] }</code></pre>
+<p>For typed genus construction, use the type name and <code>=</code> field shape:</p>
+<pre class="faber-code"><code class="lang-faber">genus Point {
+    numerus x
+    numerus y
+}
+fixum _ p ← Point { x = 10, y = 20 }</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

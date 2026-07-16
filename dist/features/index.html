@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Features — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/" class="active">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>Features</h1>
+<div class="content">
+<p>Faber's design rests on three signal choices: type-first declarations,
+Latin behavioural vocabulary, and structural glyphs. These features
+compound — each one reinforces the others to produce source that is
+readable, checkable, and portable across execution lanes.</p>
+<h2 id="reader-locale">Reader locale</h2>
+<p>The compiler is the translator. Reader locale packs allow the same
+source to render in multiple natural languages without changing
+semantics. [Read more →](/features/reader-locale.html)</p>
+<h2 id="compilation-lanes">Compilation lanes</h2>
+<p>Faber lowers through three intermediate representations (HIR, MIR, AIR)
+to multiple target backends including Rust runtime, WASM, TypeScript,
+Go, and GPU/WGSL. [Read more →](/features/compilation-lanes.html)</p>
+<h2 id="latin-and-glyphs">Latin vocabulary and glyphs</h2>
+<p>Types come before names. Latin words carry behaviour. Structural glyphs
+carry value flow and type shape. The result reads like intent, not
+mechanism. [Read more →](/features/latin-and-glyphs.html)</p>
+<h2 id="commandments">Commandments</h2>
+<p>Nine design laws govern every language decision, from keyword choice to
+error handling. These are the review criteria for new features.
+[Read more →](/features/commandments.html)</p>
+<h2 id="canonical-vs-sugar">Canonical vs sugar</h2>
+<p>Every sugar surface has a canonical expansion. The formatter can move
+between them. Sugar is convenience; canonical is the contract.
+[Read more →](/features/canonical-vs-sugar.html)</p>
+<h2 id="frames">Capability calls and frames</h2>
+<p>The <code>ad</code> primitive provides capability-based dispatch. Frame types
+define the I/O boundary between Faber code and host providers.
+[Read more →](/features/frames.html)</p>
+<h2 id="testing">Inline testing</h2>
+<p>Test suites live alongside source code using three keywords:
+<code>probandum</code>, <code>proba</code>, and <code>adfirma</code>. No separate test binary needed.
+[Read more →](/features/testing.html)</p>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

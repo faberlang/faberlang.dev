@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capability calls and frames — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/" class="active">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>Capability calls and frames</h1>
+<div class="content">
+<p>*The seam between Faber and every way an operating system can implement I/O.*</p>
+<p><code>ad</code> is Faber's low-level capability call primitive — the boundary
+between Faber code and the outside world. It opens a typed conversation
+(<code>sermo</code>) with a host resource identified by a route string, then
+exchanges structured frames (<code>scrinium</code>) over directional half-streams.
+The host kernel dispatches each route to a pluggable provider crate, which
+implements the actual I/O — filesystem, networking, console, time, randomness,
+or anything else the OS can do.</p>
+<h2 id="ad">The <code>ad</code> primitive</h2>
+<p><code>ad</code> is a keyword, not a function. It opens an opaque conversation
+with a route named by an <code>ascii</code> literal and optional opener data:</p>
+<pre class="faber-code"><code class="lang-text"># Simple materialized call: open, send opener, drain response
+fixum textus content ← ad 'solum:lege' ("config.toml") ↦ textus
+
+# Typed conversation handle for streaming interaction
+fixum sermo s ← ad 'processus:curre' ("ls", ["-la"])</code></pre>
+<p>The route string follows a <code>prefix:verb</code> pattern. The host kernel
+matches on the <strong>prefix only</strong> — the provider owns all verbs under that
+prefix:</p>
+<pre class="faber-code"><code class="lang-text">solum:lege   ─┐
+solum:modum  ─┼─►  prefix "solum"  ──►  solum provider crate
+solum:vincula─┘</code></pre>
+<p><code>ad</code> is not a foreign function interface. It does not call C
+functions, load dynamic libraries, or embed inline assembly. It is a
+structured message passing boundary: Faber sends typed frames and receives
+typed frames, without knowing whether the provider is implemented in Rust,
+runs in-process, delegates to a system call, or forwards to a remote host.</p>
+<h2 id="types">Frame types</h2>
+<p>Five compiler-owned types form the frame system:</p>
+<table>
+<thead><tr><th>Type</th><th>Role</th><th>Key surface</th></tr></thead>
+<tbody>
+<tr><td><code>sermo</code></td><td>Conversation handle — an in-flight bidirectional exchange</td><td>Created by <code>ad</code>; drained via <code>↦ T</code> or split into views</td></tr>
+<tr><td><code>scrinium<T></code></td><td>Frame envelope — one structured message in a conversation</td><td>Fields: <code>id</code>, <code>call</code>, <code>status</code>, <code>data</code>, <code>created_ms</code>, <code>from</code>, <code>trace</code></td></tr>
+<tr><td><code>status</code></td><td>Lifecycle marker enum</td><td><code>request</code>, <code>item</code>, <code>byte</code>, <code>bulk</code>, <code>done</code>, <code>error</code>, <code>cancel</code></td></tr>
+<tr><td><code>meus<T></code></td><td>Outbound half-stream — send frames to the provider</td><td><code>da(T)</code>, <code>fini() → status</code></td></tr>
+<tr><td><code>tuus<T></code></td><td>Inbound half-stream — receive frames from the provider</td><td><code>accipe()</code>, <code>cursor()</code>, <code>exhauri()</code>, <code>fini()</code></td></tr>
+</tbody></table>
+<h3 id="using-directional-views">Using directional views</h3>
+<pre class="faber-code"><code class="lang-text"># Open a conversation, get directional views
+fixum sermo s ← ad 'solum:scribe' ("output.txt")
+fixum meus&lt;textus&gt; out ← s.meus&lt;textus&gt;()
+fixum tuus&lt;textus&gt; input ← s.tuus&lt;textus&gt;()
+
+# Send content frames
+out.da("line one")
+out.da("line two")
+out.fini()
+
+# Read response frames
+itera ex input.cursor() fixum frame {
+    nota frame.data
+}
+fixum status inbound ← input.fini()</code></pre>
+<h3 id="simple-materialization">Simple materialization</h3>
+<p>For the common case — open, send opener, drain all response frames into one
+value — <code>sermo ↦ T</code> collapses the conversation:</p>
+<pre class="faber-code"><code class="lang-text"># Read a file: open + drain into textus
+fixum textus body ← ad 'solum:lege' ("config.toml") ↦ textus
+
+# Parse JSON from an HTTP response
+fixum json data ← ad 'http:peti' ("https://api.example.com/data") ↦ json</code></pre>
+<p>Materialization uses a type-directed collector: <code>↦ textus</code>
+concatenates all inbound frames, <code>↦ json</code> parses the concatenated
+payload, <code>↦ lista<T></code> collects frames into a list.</p>
+<h2 id="providers">Host providers</h2>
+<p>Effect families are implemented as separate provider crates under
+<code>faberlang/host-providers-rs</code>. Each provider owns all verbs under
+its prefix:</p>
+<table>
+<thead><tr><th>Provider</th><th>Prefix</th><th>I/O domain</th></tr></thead>
+<tbody>
+<tr><td><code>solum</code></td><td><code>solum:*</code></td><td>Filesystem: read, write, metadata, directory operations</td></tr>
+<tr><td><code>processus</code></td><td><code>processus:*</code></td><td>Process execution: spawn, pipe, exit codes</td></tr>
+<tr><td><code>consolum</code></td><td><code>consolum:*</code></td><td>Console I/O: stdin, stdout, stderr</td></tr>
+<tr><td><code>tempus</code></td><td><code>tempus:*</code></td><td>Time: now, sleep, timers</td></tr>
+<tr><td><code>aleator</code></td><td><code>aleator:*</code></td><td>Randomness: entropy, distributions</td></tr>
+<tr><td><code>http</code></td><td><code>http:*</code></td><td>HTTP client (Tier D, when landed)</td></tr>
+</tbody></table>
+<p>Providers are separate crates with their own dependencies — <code>solum</code>
+does not pull in HTTP, <code>http</code> does not pull in filesystem code.
+Each provider exports a <code>register()</code> function that the generated
+host manifest calls at startup.</p>
+<h2 id="layers">Layer stack</h2>
+<pre class="faber-code"><code class="lang-text">Faber source:     ad 'solum:lege' (path) ↦ textus
+Compiler:         sermo open + generic attach (no provider crate names)
+Runtime:          HostDispatch + conversation protocol (faber-runtime)
+Kernel:           route(frame) → provider for prefix
+Provider:         solum provider reads file, returns content</code></pre>
+<p>The compiler emits generic dispatch — it never embeds provider crate names
+into generated code. The runtime provides <code>HostDispatch</code> and the
+conversation protocol. The kernel (from <code>host-kernel-rs</code>) routes
+frames to the correct provider based on prefix. The provider (from
+<code>host-providers-rs</code>) performs the actual I/O.</p>
+<p>This means generated Faber code is <strong>provider-neutral</strong>. The same compiled
+binary can be linked against different provider implementations — a real
+filesystem provider for production, a mock provider for testing — by changing
+the compile manifest.</p>
+<h2 id="manifest">Compile manifest</h2>
+<p>Which providers to link is controlled by the generated compile manifest and
+the <code>faber.toml</code> <code>[dispatch]</code> table:</p>
+<pre class="faber-code"><code class="lang-text">[target.rust]
+host = "native"
+
+[dispatch]
+providers = ["solum", "processus", "consolum", "tempus", "aleator"]
+
+[dispatch.providers.http]
+enabled = true</code></pre>
+<p>During authoring, missing providers produce a runtime <code>E_NO_ROUTE</code>
+error. In strict mode (future), every <code>ad</code> prefix in the program
+must appear in the compile manifest, and the compiler validates that the
+provider's capability manifest covers the routes used.</p>
+<h2 id="architecture">Architecture</h2>
+<p>The host platform is split across three repositories in the
+<code>faberlang</code> organisation:</p>
+<table>
+<thead><tr><th>Repository</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td><code>host-kernel-rs</code></td><td>Thin router — owns <code>Frame</code>, <code>Conversation</code>, terminal lifecycle, prefix dispatch, structured errors (<code>E_NO_ROUTE</code>), capability manifest aggregation</td></tr>
+<tr><td><code>host-native-rs</code></td><td>Native attach — workers, <code>register_providers</code> startup hook, generated <code>host_register.rs</code> integration</td></tr>
+<tr><td><code>host-providers-rs</code></td><td>Provider implementations — Cargo workspace with per-family crates (<code>solum</code>, <code>processus</code>, etc.)</td></tr>
+</tbody></table>
+<p>Each provider crate owns its own native dependencies. The <code>http</code>
+provider pulls in <code>hyper</code> and <code>tokio</code> only when HTTP
+is enabled. The <code>solum</code> provider uses standard file APIs with no
+additional network dependencies.</p>
+<p>> <strong>Same route, any host.</strong> Because <code>ad</code> dispatches on route strings and providers are pluggable, the same Faber source can target a native binary (host-native-rs), a WASM runtime (host-kernel as a Frame/Wasm adapter), or a TypeScript Node.js process (host-providers-ts) without changing a single line of Faber code.</p>
+<h2 id="stdlib">Norma wrappers</h2>
+<p>Most Faber code does not call <code>ad</code> directly. The Norma standard
+library wraps common <code>ad</code> routes in typed functions:</p>
+<pre class="faber-code"><code class="lang-text"># Norma wraps ad in typed, reviewed functions
+functio lege(textus via) → textus {
+    redde ad 'solum:lege' (via) ↦ textus
+}
+
+functio scribe(textus via, textus content) → vacuum {
+    fixum vacuum _ ← ad 'solum:scribe' (via, content) ↦ vacuum
+}
+
+functio curre(textus command, lista&lt;textus&gt; args) → textus {
+    redde ad 'processus:curre' (command, args) ↦ textus
+}</code></pre>
+<p>These wrapper functions provide type safety, documentation, and error
+handling without hiding the fact that I/O crosses the <code>ad</code>
+boundary. The Norma wrappers are open source and live under
+<code>norma/src/</code>.</p>
+<h2 id="references">References</h2>
+<p>1. <code>radix/docs/design/frame-stream-types.md</code> — full spec for sermo, scrinium, status, meus, tuus
+2. <code>radix/docs/design/host-provider-gateway.md</code> — thin router architecture, provider contracts, compile manifest
+3. <code>faberlang/host-kernel-rs/</code> — kernel router implementation
+4. <code>faberlang/host-native-rs/</code> — native attach and registration
+5. <code>faberlang/host-providers-rs/</code> — provider crates (solum, processus, consolum, tempus, aleator, http)
+6. <code>examples/corpus/ad/</code> — sermo exempla files</p>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

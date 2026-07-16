@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Commandments — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/" class="active">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>Commandments</h1>
+<div class="content">
+<p>*Nine rules that make Faber feel like Faber.*</p>
+<p>These are the design laws that define Faber's character. Syntax can evolve and
+features can be added, but changes should preserve these principles. A program
+that violates them may be valid Faber, but it does not feel like Faber.</p>
+<p>The commandments apply at every level — from the grammar itself down to how
+standard library APIs are named. They are the reason a reader can identify
+Faber source at a glance, regardless of which human language the keywords are
+rendered in or which target backend the code compiles to.</p>
+<h2 id="i-types-before-names">I. Types before names</h2>
+<p>Declarations read from shape to binding. The type comes first because the
+reader needs to know *what kind of thing* this is before the name
+tells them *which* thing. This aligns with languages whose
+grammatical order reads from category to instance — Chinese, Hindi, Arabic
+— and produces declarations that scan uniformly.</p>
+<pre class="faber-code"><code class="lang-text"># Type before name in every declaration
+textus nomen
+numerus aetas
+functio salve(textus name) → textus</code></pre>
+<h2 id="ii-mechanical-over-magical">II. Mechanical over magical</h2>
+<p>The same construct should mean the same thing everywhere. If a reader needs
+distant context to know what a symbol does, the syntax is suspect. Faber
+prefers explicit, local reasoning — the declaration site carries enough
+information to understand what will happen at the use site.</p>
+<pre class="faber-code"><code class="lang-faber"># The meaning of a call is determined by the function's signature,
+# not by invisible trait resolution or implicit conversions.
+functio duplica(numerus n) → numerus {
+    redde n * 2
+}</code></pre>
+<h2 id="iii-glyphs-carry-structure">III. Glyphs carry structure</h2>
+<p>Structural and operator meaning uses glyphs, not words: <code>←</code>
+for binding, <code>→</code> for return type, <code>⇥</code>
+for error exit, <code>∴</code> for compact branch body,
+<code>≡</code> for equality, <code>∪</code> for union
+types. Glyphs are universal — they never localise and never change meaning
+across renderings. A Thai reader and a French reader see the same glyphs,
+even if the keywords around them differ.</p>
+<h2 id="iv-latin-carries-behaviour">IV. Latin carries behaviour</h2>
+<p>Words are for declarations, statements, lifecycle, and behavioural intent:
+<code class="kw">functio</code>, <code class="kw">genus</code>, <code class="kw">fixum</code>,
+<code class="kw">varia</code>, <code class="kw">redde</code>, <code class="kw">cape</code>.
+These are bindable through reader-locale packs — they are the vocabulary,
+not the grammar. The Latin choice is not about Latin superiority; it is
+about picking *one* consistent classical source so that all keywords
+belong to the same register and no keyword is privileged by being the
+language the implementation was written in.</p>
+<h2 id="v-conjugation-carries-time-and-flow">V. Conjugation carries time and flow</h2>
+<p>When the same root logic can run synchronously, asynchronously, or as a
+generator, the conjugated form of the verb should carry that execution mode.
+Ownership pairs — mutate vs copy-out — use related forms of the same stem.
+This is the morphologia principle. The standard library (Norma) follows this
+convention for all method names: <code>lege</code> (sync read) vs
+<code>leget</code> (async read), <code>adde</code> (mutate in place) vs
+<code>addita</code> (return new copy). The compiler does not enforce or
+derive conjugations — it is a naming policy, not a language feature.</p>
+<h2 id="vi-one-sign-one-job">VI. One sign, one job</h2>
+<p>A glyph or keyword may have exact aliases, but it should not carry unrelated
+meanings. Aliases must point back to one canonical concept. This is the
+principle that drives Faber's split between <code>←</code>
+(runtime binding) and <code>=</code> (structural field shape) — most
+languages collapse both into <code>=</code>, but that overloading hides
+whether a line is a data-flow operation or a type-level definition.</p>
+<pre class="faber-code"><code class="lang-text"># ← is always runtime flow
+fixum numerus count ← 0
+count ← count + 1
+
+# = is always structural shape inside Type { }
+fixum _ p ← Point {
+    x = 10,
+    y = 20
+}</code></pre>
+<h2 id="vii-runtime-flow-is-explicit">VII. Runtime flow is explicit</h2>
+<p>Runtime binding, reassignment, and mutation use <code>←</code>;
+structural definition uses <code>=</code>. A reader scanning source can see
+every data-flow operation immediately: every <code>←</code> is a
+runtime event. There is no syntactic ambiguity about whether a particular
+<code>=</code> means "store into this variable" or "define this field."</p>
+<h2 id="viii-absence-is-typed">VIII. Absence is typed</h2>
+<p>Nullable value types are written as unions: <code>T ∪ nihil</code>. Optional
+declaration slots use post-name markers: <code>sponte</code>. These are
+distinct concepts — *a value that may be absent* vs *a slot the
+caller may omit* — and Faber keeps them syntactically separate rather
+than collapsing both into <code>T?</code> or <code>Option<T></code>.</p>
+<pre class="faber-code"><code class="lang-text"># Absence in a value: T ∪ nihil
+functio find(textus key) → numerus ∪ nihil
+
+# Omission at declaration: sponte
+functio connect(textus host, numerus port sponte) → vacuum</code></pre>
+<h2 id="ix-compiler-does-not-guess">IX. The compiler does not guess to hide missing information</h2>
+<p>Missing type information is an analysis problem to fix upstream, not a codegen
+detail to paper over. The compiler never silently infers a type that the
+programmer did not provide when the information is genuinely absent — it
+reports the gap and stops. This is the rule that keeps Faber honest: if a
+reader cannot determine what a symbol means from local source, the compiler
+should not pretend it can.</p>
+<h2 id="purpose">Purpose</h2>
+<p>The commandments exist to answer a question that comes up in every language
+design discussion: "Is this change still Faber?" They are the invariant
+check — not against a feature list, but against a character. A change that
+violates a commandment may still be a good idea, but it should be recognised
+as a departure from Faber's design character rather than a routine addition.</p>
+<p>In practice, the commandments most often serve as review criteria for new
+syntax proposals. A proposal that weakens "types before names" by adding a
+name-first alternative, or blurs "one sign one job" by overloading a glyph,
+must justify why Faber should bend its character for that feature.</p>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

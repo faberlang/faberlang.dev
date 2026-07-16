@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Canonical vs sugar surfaces — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/" class="active">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>Canonical vs sugar surfaces</h1>
+<div class="content">
+<p>*Multiple parseable surfaces, one semantic shape.*</p>
+<p>A recurring pattern in Faber's design: the language defines **one canonical
+spelling<strong> for each construct, but accepts multiple </strong>sugar spellings**
+that are semantically identical. The compiler does not prefer one over the
+other — both parse to the same AST node. The formatter decides which spelling
+to emit based on context and mode.</p>
+<p>> <strong>The rule:</strong> Sugar spellings are semantically identical to long form.
+> Multiple surfaces parse to the same <code>HirAnnotation</code> or type node.
+> <code>faber format --canonical</code> prefers canonical spellings; author
+> mode preserves the sugar the author wrote.</p>
+<h2 id="numeric-type-sugar">Numeric type sugar</h2>
+<p>Numeric types have long-form canonical spellings and compact sugar forms.
+The choice is per-module, not per-repository — a CLI package may use long
+form everywhere, while a tensor kernel module uses sugar:</p>
+<table>
+<thead><tr><th>Sugar</th><th>Canonical form</th><th>Domain</th></tr></thead>
+<tbody>
+<tr><td><code>f32</code>, <code>f64</code>, <code>i32</code>, <code>u64</code></td><td><code>fractus<f32></code>, <code>numerus<i32></code></td><td>Width markers — scalar numeric types</td></tr>
+<tr><td><code>tf32</code>, <code>tf32[4]</code>, <code>ti64[2, 3]</code></td><td><code>tensor<f32, _></code>, <code>tensor<f32, [4]></code></td><td>Dense tensor — <code>t</code> + width + optional shape</td></tr>
+<tr><td><code>sf32</code>, <code>sf32[2, 3]</code>, <code>si64[N]</code></td><td><code>sparsa<f32, _></code>, <code>sparsa<f32, [2, 3]></code></td><td>Sparse tensor — <code>s</code> + width + optional shape</td></tr>
+<tr><td><code>mf32[4, 4]</code>, <code>mu32[3, 3]</code></td><td><code>matrix<f32, [4, 4]></code></td><td>Register-class matrix — <code>m</code> + width + shape</td></tr>
+<tr><td><code>lf32</code>, <code>lu32</code>, <code>li64</code></td><td><code>lista<f32></code>, <code>lista<u32></code></td><td>List — <code>l</code> + width</td></tr>
+<tr><td><code>f16</code></td><td><code>fractus<f16></code></td><td>Half-float width marker (semantic/layout only)</td></tr>
+</tbody></table>
+<p><strong>General Faber (prefer long form):</strong></p>
+<pre class="faber-code"><code class="lang-faber">fixum lista&lt;f32&gt; values ← vacua
+fixum tensor&lt;f32, [2, 3]&gt; grid ← vacua
+fixum numerus&lt;i32&gt; narrow ← 7</code></pre>
+<p><strong>Numeric modules (prefer sugar):</strong></p>
+<pre class="faber-code"><code class="lang-faber">fixum lf32 values ← vacua
+fixum tf32[2, 3] grid ← vacua
+fixum i32 narrow ← 7</code></pre>
+<p>Sugar is <strong>type-position only</strong>. Value identifiers named <code>f32</code>,
+<code>tf32</code>, or <code>mf32</code> are unchanged — the compiler only
+interprets these as sugar when they appear in type positions. A file that
+consistently uses sugar should say so once at the top:</p>
+<pre class="faber-code"><code class="lang-faber"># STYLE: numeric sugar (tf32, mf32, sf32, lf32, lu32)</code></pre>
+<h2 id="annotation-sugar">Annotation sugar</h2>
+<p>Faber annotations follow the same dual-surface model as numeric types.
+Annotations are compiler-owned metadata attached to declarations — like
+<code>@ optio</code> for CLI option definitions or <code>@ futura</code>
+for async functions.</p>
+<p><strong>Canonical form:</strong> a braced record with explicit field names:</p>
+<pre class="faber-code"><code class="lang-text">@ optio {
+    binding = verbose,
+    brevis = "v",
+    longum = "verbose",
+    typus = bivalens,
+    ubique = verum,
+    descriptio = "Enable verbose output"
+}</code></pre>
+<p><strong>Sugar form:</strong> positional arguments and named aliases:</p>
+<pre class="faber-code"><code class="lang-text">@ optio verbose brevis "v" longum "verbose" typus bivalens ubique descriptio "Enable verbose output"</code></pre>
+<p>Both forms produce the same <code>HirAnnotation</code> record. The canonical
+form is explicit and self-documenting; the sugar form is concise for
+frequently-used annotations where the field order is well-known.
+<code>faber format --canonical</code> prefers braced records; author mode
+preserves the author's chosen form.</p>
+<h2 id="author-vs-canonical-formatting">Author vs canonical formatting</h2>
+<p>The <code>faber format</code> command operates in two modes that mirror the
+canonical-vs-sugar principle:</p>
+<table>
+<thead><tr><th>Mode</th><th>Command</th><th>Input</th><th>Output</th></tr></thead>
+<tbody>
+<tr><td>Author</td><td><code>faber format</code></td><td>Parsed AST + leading trivia</td><td>Faber source preserving <code>#</code> comments, blank lines, and sugar spellings</td></tr>
+<tr><td>Canonical</td><td><code>faber format --canonical</code></td><td>Analysed HIR + <code>TypeTable</code></td><td>Normalised Faber — no comments, canonical spellings, no sugar</td></tr>
+</tbody></table>
+<p>Both modes run through the compiler's full front half (lex, parse, analyse
+for canonical). Invalid source produces compiler diagnostics — the formatter
+does not silently format broken input.</p>
+<p>Key rules for both modes:</p>
+<ul>
+<li>Four-space indentation</li>
+<li>Stroustrup braces: opening <code>{</code> on the same line as the controlling header</li>
+<li>Author mode preserves the *presence* of blank lines but collapses runs of more than one</li>
+<li>Author mode does not insert blank lines the source did not contain</li>
+<li>Canonical mode normalises type spellings to long form, tensor sugar to canonical, annotations to braced records</li>
+<li>Canonical mode emits <code>T ∪ nihil</code> for nullable unions, <code>sponte</code> for optional parameters</li>
+</ul>
+<h2 id="design-principle">Design principle</h2>
+<p>The canonical-vs-sugar pattern appears in multiple places because it is a
+deliberate design principle, not a collection of one-off conveniences:</p>
+<table>
+<thead><tr><th>Domain</th><th>Canonical</th><th>Sugar</th></tr></thead>
+<tbody>
+<tr><td>Numeric types</td><td><code>numerus<i32></code></td><td><code>i32</code></td></tr>
+<tr><td>Tensor types</td><td><code>tensor<f32, [4]></code></td><td><code>tf32[4]</code></td></tr>
+<tr><td>Annotations</td><td><code>@ optio { binding = verbose }</code></td><td><code>@ optio verbose ...</code></td></tr>
+<tr><td>Formatting</td><td><code>faber format --canonical</code></td><td><code>faber format</code> (author mode)</td></tr>
+<tr><td>Reader locale</td><td>Latin (<code>la</code>)</td><td>Any locale pack</td></tr>
+</tbody></table>
+<p>The pattern serves two goals. First, it lowers the barrier to entry — new
+users can write <code>tf32[4]</code> without typing
+<code>tensor<fractus<f32>, [4]></code>. Second, it keeps the
+canonical language unambiguous — when precision matters, the long form says
+exactly what it means. The formatter bridges the two: authors write sugar,
+reviewers can request canonical, and CI can enforce either.</p>
+<h2 id="references">References</h2>
+<p>1. <code>radix/docs/design/numeric-type-sugar.md</code> — full sugar families, spelling preferences
+2. <code>radix/docs/design/annotation-sugar.md</code> — dual-surface annotation model
+3. <code>radix/docs/design/faber-canonical-surface.md</code> — author vs canonical format policy
+4. <code>radix/EBNF.md</code> — grammar tables for sugar forms</p>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

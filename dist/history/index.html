@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>History — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>History</h1>
+<div class="content">
+<h2 id="origins">Origins</h2>
+<p>The first commit to the Radix compiler was made on <strong>December 20, 2024</strong>
+as a Bun + TypeScript project with a single <code>docs/decisions.md</code> file. The
+second commit codified five Architecture Decision Records that still shape
+the language today.</p>
+<p><strong>ADR-003</strong>, titled "Case endings carry semantic meaning," established at
+the very beginning that Latin morphology would be more than a
+keyword-skin — the compiler would understand declension and conjugation
+to infer program intent. The original case mappings were:</p>
+<pre class="faber-code"><code class="lang-text">Nominative  (subject)       →  return value, caller
+Accusative  (direct object)  →  primary argument
+Dative      (indirect obj.)  →  recipient, callback, destination
+Genitive    (possession)     →  property access, "of" relationships
+Ablative    (instrument)     →  dependencies, context, "using X"</code></pre>
+<p>The same document noted: *"Verb conjugation is a natural follow-on
+question (future tense → async?)."* This seed grew into the modern
+<strong>morphologia</strong> naming convention, where the standard library uses
+conjugated Latin verb forms to signal sync vs async and mutate vs
+copy-out — without requiring the compiler itself to understand Latin
+grammar.</p>
+<p>The project began in TypeScript, was later rewritten in Rust, and the
+grammar was frozen for the 1.x line with edition 2026. The original five
+ADRs (file extension <code>.fab</code>, error hints, case endings, recursive descent
+parser, custom AST) are still visible in the git history.</p>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

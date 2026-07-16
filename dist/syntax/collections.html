@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Collections — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/" class="active">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>Collections</h1>
+<div class="content">
+<p>Faber has several compiler-owned collection types. Their canonical methods
+live in the compiler, not in the standard library.</p>
+<h2 id="lista">Lista — ordered dynamic collection</h2>
+<pre class="faber-code"><code class="lang-faber">fixum lista&lt;numerus&gt; empty ← vacua
+fixum _ numbers ← [1, 2, 3, 4, 5]
+fixum _ names ← ["Marcus", "Julia", "Gaius"]
+fixum _ nested ← [[1, 2], [3, 4]]</code></pre>
+<p>Spread with <code>sparge</code>:</p>
+<pre class="faber-code"><code class="lang-faber">fixum _ a ← [1, 2, 3]
+fixum _ b ← [4, 5, 6]
+fixum _ combined ← [sparge a, sparge b]
+fixum _ headed ← [0, sparge a, 99]</code></pre>
+<p>Key methods: <code>longitudo</code>, <code>accipe</code>, <code>appende</code>, <code>summa</code>, <code>primus</code>, <code>novissimus</code>.</p>
+<h2 id="tabula">Tabula — key-value map</h2>
+<pre class="faber-code"><code class="lang-faber">fixum tabula&lt;textus, numerus&gt; scores ← { "alice": 10, "bob": 20 }</code></pre>
+<h2 id="tensor">Tensor — dense fixed-shape buffer</h2>
+<pre class="faber-code"><code class="lang-faber">fixum tensor&lt;fractus&lt;f32&gt;, []&gt; scalar ← vacua
+fixum tensor&lt;numerus, [4]&gt; vector ← [1, 2, 3, 4] ↦ tensor&lt;numerus, [4]&gt;
+fixum numerus ∪ nihil first ← vector[0]</code></pre>
+<p>Tensor sugar (numeric-heavy code):</p>
+<pre class="faber-code"><code class="lang-faber">fixum tf32[] seed ← vacua
+fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])</code></pre>
+<p>Key methods: <code>forma</code>, <code>accipe</code>, <code>ponde</code>, <code>crea</code>, <code>structa</code>, <code>strue</code>, plus
+elementwise arithmetic, matrix multiplication (<code>multiplicatio</code>), and
+reductions (<code>summa</code>, <code>productum</code>).</p>
+<h2 id="sparsa">Sparsa — sparse fixed-shape buffer</h2>
+<pre class="faber-code"><code class="lang-faber">fixum sparsa&lt;fractus&lt;f32&gt;, [2, 3]&gt; sparse ← vacua
+sparse.ponde([0, 1], 4.0)
+sparse.ponde([1, 2], 9.0)
+
+# accipe returns the stored value, here 4.0
+nota sparse.accipe([0, 1])
+# count of stored entries
+nota sparse.nonnihil()</code></pre>
+<p>Conversion between dense and sparse:</p>
+<pre class="faber-code"><code class="lang-faber">fixum tf32[2, 2] dense ← [[1.0, 0.0], [0.0, 2.0]] ↦ tf32[2, 2]
+fixum sf32[2, 2] sparse ← dense ↦ sf32[2, 2]
+fixum tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]</code></pre>
+<h2 id="cursors">Cursors — lazy streams</h2>
+<p><code>cursor<T></code> is a lazy stream type. Created from collection iterators,
+tuus views, or generator functions. Consumed via <code>itera ex</code>:</p>
+<pre class="faber-code"><code class="lang-faber">fixum _ items ← [1, 2, 3]
+itera ex items fixum item {
+    nota item
+}</code></pre>
+<h2 id="intervallum">Intervallum — ranges</h2>
+<pre class="faber-code"><code class="lang-faber"># exclusive range: 0, 1, 2, 3, 4
+itera ab 0‥5 fixum i {
+    nota i
+}
+# inclusive range: 0, 1, 2, 3, 4, 5
+itera ab 0…5 fixum i {
+    nota i
+}</code></pre>
+<p><code>‥</code> is exclusive range endpoint; <code>…</code> is inclusive.</p>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Norma standard library — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/" class="active">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>Norma standard library</h1>
+<div class="content">
+<p>Norma is Faber's standard library. It provides flat Latin-named modules
+accessed through <code>norma:*</code> paths. Stdlib declarations are Faber source
+under the sibling <code>norma</code> repository.</p>
+<h2 id="modules">Modules</h2>
+<table>
+<thead><tr><th>Module</th><th>Domain</th></tr></thead>
+<tbody>
+<tr><td><code>norma:solum</code></td><td>Filesystem operations</td></tr>
+<tr><td><code>norma:solum/path</code></td><td>Pure pathname operations</td></tr>
+<tr><td><code>norma:http</code></td><td>HTTP client</td></tr>
+<tr><td><code>norma:processus</code></td><td>Process execution</td></tr>
+<tr><td><code>norma:consolum</code></td><td>Console I/O (stdin, stdout, stderr)</td></tr>
+<tr><td><code>norma:json</code></td><td>JSON parsing and serialisation</td></tr>
+<tr><td><code>norma:toml</code></td><td>TOML parsing</td></tr>
+<tr><td><code>norma:yaml</code></td><td>YAML parsing</td></tr>
+<tr><td><code>norma:valor</code></td><td>Codec navigation</td></tr>
+<tr><td><code>norma:tensor</code></td><td>Tensor bridge helpers</td></tr>
+<tr><td><code>norma:tempus</code></td><td>Time and duration</td></tr>
+<tr><td><code>norma:aleator</code></td><td>Randomness</td></tr>
+</tbody></table>
+<h2 id="morphologia-naming-convention">Morphologia naming convention</h2>
+<p>Norma follows the morphologia policy for all method names. Latin verb
+conjugation carries execution mode:</p>
+<table>
+<thead><tr><th>Stem</th><th>Sync</th><th>Async</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>leg-</code></td><td><code>lege</code></td><td><code>leget</code></td><td>Read</td></tr>
+<tr><td><code>scrib-</code></td><td><code class="kw">scribe</code></td><td><code>scribet</code></td><td>Write</td></tr>
+<tr><td><code>quaer-</code></td><td>—</td><td><code>quaeret</code></td><td>Query (finite)</td></tr>
+<tr><td><code>quaer-</code></td><td>—</td><td><code>quaerent</code></td><td>Query (stream)</td></tr>
+</tbody></table>
+<p>Ownership pairs (mutate vs copy-out):</p>
+<table>
+<thead><tr><th>Mutate</th><th>Copy-out</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>adde</code></td><td><code>addita</code></td><td>Add</td></tr>
+<tr><td><code>inverte</code></td><td><code>inversa</code></td><td>Reverse</td></tr>
+<tr><td><code>filtra</code></td><td><code>filtrata</code></td><td>Filter</td></tr>
+</tbody></table>
+<h2 id="usage">Usage</h2>
+<pre class="faber-code"><code class="lang-faber">importa ex "norma:solum" privata solum
+
+functio legeConfig() → textus {
+    redde solum.lege("config.toml")
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

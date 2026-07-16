@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Glyphs and operators — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/" class="active">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>Glyphs and operators</h1>
+<div class="content">
+<p>Faber uses glyphs where the symbol is structural. Below is the full inventory
+of source glyphs recognised by the lexer.</p>
+<h2 id="value-flow">Value flow</h2>
+<table>
+<thead><tr><th>Glyph</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>←</code></td><td>Runtime binding, reassignment, and mutation</td></tr>
+<tr><td><code>→</code></td><td>Function return type</td></tr>
+<tr><td><code>⇥</code></td><td>Alternate exit — error-channel type or inline conversion recovery</td></tr>
+<tr><td><code>∴</code></td><td>Compact therefore body (<code>si cond ∴ redde x</code>)</td></tr>
+</tbody></table>
+<h2 id="type-shape">Type shape</h2>
+<table>
+<thead><tr><th>Glyph</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>∷</code></td><td>Static type ascription (compile-time cast)</td></tr>
+<tr><td><code>↦</code></td><td>Runtime conversion (can-fail parse/coerce)</td></tr>
+<tr><td><code>∪</code></td><td>Inline union type (<code>T ∪ nihil</code>)</td></tr>
+</tbody></table>
+<h2 id="comparison">Comparison</h2>
+<table>
+<thead><tr><th>Glyph</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>≡</code> <code>≠</code></td><td>Exact equality and inequality</td></tr>
+<tr><td><code><</code> <code>></code> <code>≤</code> <code>≥</code></td><td>Ordering</td></tr>
+<tr><td><code>≈</code> <code>≉</code></td><td>Numeric value equality</td></tr>
+</tbody></table>
+<h2 id="logical-and-bitwise">Logical and bitwise</h2>
+<table>
+<thead><tr><th>Glyph</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>∧</code> <code>∨</code> <code>⊻</code> <code>¬</code></td><td>And, or, xor, not</td></tr>
+<tr><td><code>⇐</code> <code>⇒</code></td><td>Left and right bit shift</td></tr>
+</tbody></table>
+<h2 id="assignment-updates">Assignment updates</h2>
+<table>
+<thead><tr><th>Glyph</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>←</code></td><td>The only assignment operator in expressions</td></tr>
+<tr><td><code>⊕</code> <code>⊖</code></td><td>Postfix increment/decrement statements (mutable numerus only)</td></tr>
+</tbody></table>
+<h2 id="optional-chaining-and-non-null-assertion">Optional chaining and non-null assertion</h2>
+<table>
+<thead><tr><th>Glyph</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>?</code> <code>?.</code> <code>?[</code> <code>?(</code></td><td>Optional chaining</td></tr>
+<tr><td><code>!</code> <code>!.</code> <code>![</code> <code>!(</code></td><td>Non-null assertion</td></tr>
+</tbody></table>
+<h2 id="ranges">Ranges</h2>
+<table>
+<thead><tr><th>Glyph</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>‥</code></td><td>Exclusive range endpoint</td></tr>
+<tr><td><code>…</code></td><td>Inclusive range endpoint</td></tr>
+</tbody></table>
+<h2 id="literal-delimiters">Literal delimiters</h2>
+<table>
+<thead><tr><th>Glyph</th><th>Type</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td><code>'</code></td><td><code>ascii</code></td><td>Fixed machine tokens</td></tr>
+<tr><td><code>"</code></td><td><code class="typ">textus</code></td><td>Line string</td></tr>
+<tr><td><code>«</code> <code>»</code></td><td><code class="typ">textus</code></td><td>Block string (guillemets)</td></tr>
+<tr><td><code></code> <code> </code>`</td><td><code>forma</code></td><td>Captured template</td></tr>
+<tr><td>`</td><td>`</td><td><code class="typ">octeti</code></td><td>Hex literal</td></tr>
+<tr><td><code>§</code></td><td>template hole</td><td>Placeholder inside <code>"…"</code>, <code>«…»</code>, <code></code> <code>…</code> <code></code></td></tr>
+</tbody></table>
+<h2 id="punctuation">Punctuation</h2>
+<table>
+<thead><tr><th>Glyph</th><th>Role</th></tr></thead>
+<tbody>
+<tr><td><code>(</code> <code>)</code></td><td>Grouping and call</td></tr>
+<tr><td><code>{</code> <code>}</code></td><td>Block, genus literal, or JSON document</td></tr>
+<tr><td><code>[</code> <code>]</code></td><td>List literal and indexing</td></tr>
+<tr><td><code>.</code></td><td>Member access</td></tr>
+<tr><td><code>,</code></td><td>Separator</td></tr>
+<tr><td><code>;</code></td><td>Statement separator</td></tr>
+<tr><td><code>:</code></td><td>JSON field separator</td></tr>
+<tr><td><code>=</code></td><td>Structural field shape (not runtime assignment)</td></tr>
+<tr><td><code>@</code></td><td>Annotation marker</td></tr>
+<tr><td><code>#</code></td><td>Line comment</td></tr>
+</tbody></table>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

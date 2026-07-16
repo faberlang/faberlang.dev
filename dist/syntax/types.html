@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Data types — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/" class="active">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>Data types</h1>
+<div class="content">
+<p>Faber has a static, type-first type system. Every declaration places the type
+before the name: <code>textus nomen</code>, not <code>nomen: textus</code>. The type system covers
+scalar primitives, generic collections, sized numerics, tensors, and GPU-facing
+register types.</p>
+<h2 id="primitive-types">Primitive types</h2>
+<table>
+<thead><tr><th>Type</th><th>Role</th><th>Example literal</th></tr></thead>
+<tbody>
+<tr><td><code class="typ">textus</code></td><td>Unicode string</td><td><code>"Salve, munde"</code></td></tr>
+<tr><td><code>ascii</code></td><td>Fixed machine token</td><td><code>'solum:lege'</code></td></tr>
+<tr><td><code class="typ">numerus</code></td><td>Signed integer (default i64)</td><td><code>42</code></td></tr>
+<tr><td><code class="typ">fractus</code></td><td>Floating-point (default f64)</td><td><code>3.14</code></td></tr>
+<tr><td><code class="typ">bivalens</code></td><td>Boolean</td><td><code class="kw">verum</code>, <code class="kw">falsum</code></td></tr>
+<tr><td><code class="typ">vacuum</code></td><td>Unit / no value</td><td>—</td></tr>
+<tr><td><code class="kw">nihil</code></td><td>Null / absent</td><td><code class="kw">nihil</code></td></tr>
+<tr><td><code class="typ">instans</code></td><td>Duration / time instant</td><td>—</td></tr>
+<tr><td><code class="typ">json</code></td><td>Compile-time JSON value</td><td><code>{ "key": "value" }</code></td></tr>
+<tr><td><code class="typ">octeti</code></td><td>Hex byte sequence</td><td>\|00ff\|</td></tr>
+</tbody></table>
+<h2 id="sized-numeric-types">Sized numeric types</h2>
+<p><code class="typ">numerus</code> and <code class="typ">fractus</code> have default widths (i64 and f64) and explicit width
+forms:</p>
+<pre class="faber-code"><code class="lang-faber">fixum numerus&lt;i32&gt; narrow ← 7 ∷ numerus&lt;i32&gt;
+fixum numerus&lt;u64&gt; wide ← 255 ∷ numerus&lt;u64&gt;
+fixum fractus&lt;f32&gt; single ← 1.5 ∷ fractus&lt;f32&gt;</code></pre>
+<p>Width sugar is available in type position: <code>i8</code> … <code>u64</code>, <code>f16</code>, <code>f32</code>, <code>f64</code>
+are equivalent to <code>numerus<W></code> / <code>fractus<W></code>.</p>
+<h2 id="nullable-types">Nullable types</h2>
+<p>Nullable values use the union syntax <code>T ∪ nihil</code>:</p>
+<pre class="faber-code"><code class="lang-faber">functio find(textus key) → numerus ∪ nihil {
+    redde nihil
+}
+
+functio maybe() → textus ∪ nihil {
+    redde nihil
+}</code></pre>
+<p>There is no <code>T?</code> or <code>Option<T></code> syntax in Faber. The union is explicit.</p>
+<h2 id="type-aliases">Type aliases</h2>
+<pre class="faber-code"><code class="lang-faber">typus UserId = numerus</code></pre>
+<h2 id="generics">Generics</h2>
+<p>Functions, type aliases, <code class="kw">genus</code>, and <code>implendum</code> accept type parameters with
+<code><T></code> syntax:</p>
+<pre class="faber-code"><code class="lang-faber">functio identitas&lt;T&gt;(T valor) → T {
+    redde valor
+}
+
+functio primum&lt;T&gt;(lista&lt;T&gt; res) → T ∪ nihil {
+    redde res.primus()
+}</code></pre>
+<p>Explicit call-site type arguments are supported:</p>
+<pre class="faber-code"><code class="lang-faber">functio identitas&lt;T&gt;(T valor) → T { redde valor }
+
+fixum numerus value ← identitas&lt;numerus&gt;(7)</code></pre>
+<h2 id="collections">Collections</h2>
+<table>
+<thead><tr><th>Type</th><th>Role</th><th>Sugar</th></tr></thead>
+<tbody>
+<tr><td><code>lista<T></code></td><td>Ordered dynamic collection</td><td><code>lf32</code>, <code>lu32</code></td></tr>
+<tr><td><code>tabula<K, V></code></td><td>Key-value map</td><td>—</td></tr>
+<tr><td><code>tensor<T, Figura></code></td><td>Dense fixed-shape buffer</td><td><code>tf32[4]</code>, <code>ti64[2,3]</code></td></tr>
+<tr><td><code>sparsa<T, Figura></code></td><td>Sparse fixed-shape buffer</td><td><code>sf32[4]</code>, <code>si64[2,3]</code></td></tr>
+<tr><td><code>intervallum</code></td><td>Range type</td><td>—</td></tr>
+<tr><td><code>copia<T></code></td><td>Unordered set</td><td>—</td></tr>
+<tr><td><code>cursor<T></code></td><td>Lazy stream</td><td>—</td></tr>
+</tbody></table>
+<pre class="faber-code"><code class="lang-faber">fixum lista&lt;numerus&gt; nums ← [1, 2, 3]
+fixum tabula&lt;textus, numerus&gt; scores ← { "alice": 10, "bob": 20 }</code></pre>
+<h2 id="tensor-types">Tensor types</h2>
+<p><code>tensor<T, Figura></code> is the dense fixed-shape container:</p>
+<table>
+<thead><tr><th>Form</th><th>Meaning</th></tr></thead>
+<tbody>
+<tr><td><code>tensor<T, Figura></code></td><td>Canonical spelling</td></tr>
+<tr><td><code>tensor<T, []></code></td><td>Rank-0 (scalar container)</td></tr>
+<tr><td><code>tensor<T, _></code></td><td>Shape inference hole</td></tr>
+<tr><td><code>tensor<T, [N]></code></td><td>Rank-1 vector</td></tr>
+<tr><td><code>tensor<T, [N, M]></code></td><td>Rank-2 matrix</td></tr>
+</tbody></table>
+<pre class="faber-code"><code class="lang-faber">fixum tensor&lt;fractus&lt;f32&gt;, []&gt; scalar ← vacua
+fixum tensor&lt;numerus, [4]&gt; vector ← [1, 2, 3, 4] ↦ tensor&lt;numerus, [4]&gt;
+fixum numerus ∪ nihil first ← vector[0]</code></pre>
+<h2 id="gpu-core-types">GPU core types</h2>
+<p>These are recognised by the systems lane for GPU and register work.
+Package targets that lack hardware support reject them:</p>
+<pre class="faber-code"><code class="lang-faber">functio half(f16 x) → f16 { redde x }
+
+functio add(matrix&lt;f32, [2, 2]&gt; a, matrix&lt;f32, [2, 2]&gt; b) → matrix&lt;f32, [2, 2]&gt; {
+    redde a.addita(b)
+}
+
+functio swap(atomic&lt;i32&gt; cell, i32 value) → i32 {
+    redde cell.exchange(value)
+}</code></pre>
+<h2 id="borrow-markers">Borrow markers on types</h2>
+<p>Borrow markers (<code class="kw">de</code>, <code class="kw">in</code>, <code class="kw">ex</code>) can appear on types in parameter
+positions to indicate how a value is passed:</p>
+<pre class="faber-code"><code class="lang-faber"># shared borrow — caller retains ownership
+functio imprime(de textus label) → vacuum { }
+
+# mutable borrow — caller lends mutable access
+functio duplica(in numerus value) → vacuum { }
+
+# move — caller gives up ownership
+functio consume(ex textus buffer) → textus {
+    redde buffer
+}</code></pre>
+<h2 id="comparison-policy">Comparison policy</h2>
+<table>
+<thead><tr><th>Operator</th><th>Family</th><th>Behaviour</th></tr></thead>
+<tbody>
+<tr><td><code>≡</code>, <code>≠</code></td><td>Exact equality</td><td>Identical types required; <code class="kw">nihil</code> bypass</td></tr>
+<tr><td><code>≈</code>, <code>≉</code></td><td>Numeric value equality</td><td>Numeric lattice only</td></tr>
+<tr><td><code><</code>, <code>≤</code>, <code>></code>, <code>≥</code></td><td>Ordering</td><td>Numeric, instant, scalar text</td></tr>
+<tr><td><code>intra</code></td><td>Range containment</td><td>Numeric in range</td></tr>
+<tr><td><code>inter</code></td><td>Collection membership</td><td>Element in collection</td></tr>
+</tbody></table>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

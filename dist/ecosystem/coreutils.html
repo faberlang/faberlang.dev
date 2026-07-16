@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Coreutils — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/" class="active">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>Coreutils</h1>
+<div class="content">
+<p>Faber reimplements GNU coreutils as application-lane proof. These are real
+CLI programs demonstrating Faber building working binaries with argv, stdio,
+exit codes, and host I/O, verified against host GNU utilities via a parity
+harness.</p>
+<h2 id="implemented-utilities">Implemented utilities</h2>
+<p><strong>Stage 1 — scaffold + true/false</strong>
+<code>true</code>, <code>false</code></p>
+<p><strong>Stage 2 — shared common helpers + inline tests</strong>
+<code>echo</code>, <code>basename</code>, <code>dirname</code>, <code>printf</code>, <code>seq</code></p>
+<p><strong>Stage 3 — nullable-stdin slices</strong>
+<code>cat</code>, <code>head</code>, <code>tail</code>, <code>wc</code>, <code>tac</code>, <code>uniq</code>, <code>fold</code>, <code>nl</code>, <code>expand</code>,
+<code>unexpand</code>, <code>sort</code>, <code>cut</code>, <code>grep</code>, <code>tr</code>, <code>tee</code>, <code>paste</code></p>
+<p><strong>Scaffolded — Stage 5+</strong>
+<code>rm</code>, <code>cp</code>, <code>mv</code>, <code>mkdir</code>, <code>touch</code>, <code>pwd</code>, <code>readlink</code>, <code>realpath</code>,
+<code>join</code>, <code>comm</code>, <code>od</code>, <code>cksum</code>, <code>split</code>, <code>yes</code>, <code>printenv</code></p>
+<h2 id="example--echo">Example — echo</h2>
+<p>The <code>echo</code> package demonstrates Faber patterns used throughout coreutils:
+CLI annotations, option parsing, inline tests with <code>probandum</code>/<code>proba</code>/<code>adfirma</code>,
+and shared common modules:</p>
+<pre class="faber-code"><code class="lang-faber">importa ex "norma:consolum" privata consolum
+importa ex "../../../common/gnu/format" privata gnu_format
+
+functio echo_textus(lista&lt;textus&gt; words) → textus {
+    redde ""
+}
+
+functio echo_novam_lineam(lista&lt;textus&gt; words) → bivalens {
+    redde falsum
+}
+
+probandum "echo formatting" tag "coreutils" {
+    proba "empty operands" {
+        adfirma echo_textus([]) ≡ ""
+    }
+    proba "-n suppresses newline" {
+        adfirma echo_novam_lineam(["-n", "hello"]) ≡ falsum
+    }
+}
+
+@ cli "echo"
+@ descriptio "GNU coreutils echo parity exemplum"
+@ operandus ceteri textus words
+incipit argumenta args {
+    # ... CLI logic here
+}</code></pre>
+<h2 id="running">Running</h2>
+<pre class="faber-code"><code class="lang-bash">faber check coreutils/packages/echo
+faber test coreutils/packages/echo
+faber run coreutils/packages/echo -- hello world</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>[</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>
