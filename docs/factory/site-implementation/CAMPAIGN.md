@@ -167,7 +167,7 @@ homepage code block lex bug is caught by the fence extractor.
 
 ### Stage 2 — Annotate Authored Pages
 
-**Status**: planned
+**Status**: ✅ gate closed (2026-07-16) — all pages annotated, all fences pass
 **Source**: `CONTENT-PLAN.md` §§ Machine contracts, Inline code spans, Heading anchors
 **Why now**: Stage 1 proved the contracts; now apply them uniformly.
 **Lowers to**: `factory`
@@ -183,6 +183,15 @@ Deliverables:
 
 **Gate**: All 23 Markdown pages render through the generator with validated
 fences and stable anchors. CI passes on all extracted fences.
+
+**Status — 2026-07-16**: **Stage 2 gate closed.**
+
+- **Heading anchors**: All `##` and `###` headings across all 23 pages now
+  carry explicit `{#id}` kebab-case anchor IDs (146 total).
+- **Fence validation**: 72 code fences across 12 pages, 72 pass / 0 fail.
+  Fixed 42 content bugs: `//` comments → `#`, function declarations without
+  bodies, undefined variables/types, pseudo-code placeholders.
+- **All 23 pages render** successfully through the generator.
 
 ### Stage 3 — Port HTML Pages to Markdown
 
