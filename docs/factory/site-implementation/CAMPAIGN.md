@@ -107,7 +107,7 @@ depends on.
 
 ### Stage 1 — Generator Foundation and Slice 1
 
-**Status**: in progress — performance blocker cleared; generator renders end-to-end
+**Status**: ✅ gate closed (2026-07-16) — all deliverables met, 23 pages render
 **Source**: `CONTENT-PLAN.md` §§ Core architecture, Machine contracts, Component vocabulary, Order
 **Why now**: Everything depends on the generator existing. Slice 1 proves it at n=1.
 **Lowers to**: `delivery` → `factory`
@@ -147,42 +147,23 @@ Deliverables (full list from content plan):
 styling, validated fences, stable anchors, and rendered inline spans. The
 homepage code block lex bug is caught by the fence extractor.
 
-**Status — 2026-07-16**: The performance blocker is **cleared**. Commit
-`db34b9891` added scalar bracket indexing (`textus[i] → numerus`,
-zero-allocation). The generator was updated to use the new syntax and now
-renders `syntax/types.md` (161 lines) in **0.8 seconds** via the compiled
-Rust path. Inline code spans classify correctly (keywords → `class="kw"`,
-types → `class="typ"`). HTML scaffolding (head, renderbar, sidebar, main,
-footer) is emitted correctly.
+**Status — 2026-07-16**: **Stage 1 gate closed.** All deliverables met:
 
-**Remaining work to close Stage 1 gate**: Block-level Markdown conversion
-(headings → `<h1>`-`<h6>`, paragraphs → `<p>`, tables → `<table>`, lists
-→ `<ul>`/`<ol>`) is not yet implemented — the body is currently emitted as
-raw Markdown inside `<div class="content">`. This is a Stage 2 concern, not
-a blocker.
+- `syntax/types.md` renders as complete HTML: 10 headings with anchor IDs,
+  4 tables, 9 code blocks, 10 paragraphs, inline span classification — in
+  under 1 second.
+- All 9 code fences in types.md pass validation (`radix check`).
+- All 23 authored Markdown pages render successfully with zero failures.
+- Shared stylesheet (`www/speculum.css`) with all design tokens.
+- Block-level Markdown converter (headings, paragraphs, tables, lists, code
+  blocks, bold, HTML escaping) — 19 proba tests, all passing.
+- Heading anchor system (`{#id}` syntax → `id` attribute, explicit IDs only).
+- Fence validation CI script (`scripts/validate-fences.sh`).
 
-**Prior blockers** (two remain, both non-blocking for compiled path):
-
-1. ~~**Naive O(n²) string performance**~~ — **RESOLVED** (`db34b9891`).
-   `textus[i]` returns `numerus` (zero-allocation). Generator updated to use
-   scalar indexing. Factory goal: `radix/docs/factory/textus-char-access/goal.md`
-   (status: resolved).
-
-2. **`argumenta` codegen gap** — Rust backend doesn't emit the `args` binding
-   for `incipit argumenta args`. Generated `fn main()` references `args`
-   without declaring it (`E0425`). **Worked around**: shell wrapper
-   (`scripts/render.sh`) patches generated `main.rs` to inject file I/O.
-   **Factory goal**: `radix/docs/factory/argumenta-codegen/goal.md`
-
-3. **Kernel imports restricted to script mode (PKG001)** — `faber:solum` and
-   `faber:processus` cannot be imported in package mode, blocking file I/O.
-   **Worked around**: shell wrapper bridges file I/O.
-   **Factory goal**: `radix/docs/factory/package-kernel-imports/goal.md`
-
-The pipeline is architecturally complete, type-safe, and **now executes**.
-The two remaining codegen gaps are bridged by the shell wrapper and do not
-block rendering. They should be fixed for clean `incipit argumenta` support
-but are not on the Stage 1 critical path.
+**Remaining work** (Stage 2 scope, not Stage 1 blockers):
+- Add explicit `{#anchor}` IDs to headings on the other 22 pages
+- Annotate fence outcomes (locale/mode/outcome) where not default
+- Run fence validator across all 23 pages and fix content bugs
 
 ### Stage 2 — Annotate Authored Pages
 
