@@ -13,7 +13,7 @@ sources = [
 Faber uses delimiter semantics — each quote form means a different source
 shape. They are not interchangeable synonyms.
 
-## Literal forms
+## Literal forms {#literal-forms}
 
 | Form | Type | Role |
 |------|------|------|
@@ -25,7 +25,7 @@ shape. They are not interchangeable synonyms.
 | `|…|` | `octeti` | Compile-time hex bytes |
 | `[ … ]` | `lista<T>` | Faber list literal |
 
-## String-template application
+## String-template application {#string-template-application}
 
 Faber formats text with string-template application: a `"…"` or `«…»`
 literal with `§` holes, then parenthesised arguments:
@@ -35,9 +35,13 @@ functio greet(textus nomen) → textus {
     redde "Salve, §!"(nomen)
 }
 
+fixum numerus pagina ← 3
+fixum numerus totum ← 10
+fixum textus code ← "200"
+fixum textus label ← "OK"
+
 fixum _ msg ← "Page § of §"(pagina, totum)
 fixum _ block ← «status: § (§)»(code, label)
-nota "Value: §"(p.x)
 ```
 
 Key rules:
@@ -46,7 +50,7 @@ Key rules:
 - Trailing `!` selects display formatting: `"Salve, §!"(nomen)`
 - The `(args)` suffix is template application, not a function call
 
-## Block strings
+## Block strings {#block-strings}
 
 Multiline blocks use guillemets `«…»`:
 
@@ -57,16 +61,17 @@ fixum _ sql ← «
 »
 ```
 
-## Captured templates (forma)
+## Captured templates (forma) {#captured-templates}
 
 Backtick templates capture text and parameters without rendering.
 Safe for bound SQL/URL payloads:
 
 ```faber
+fixum numerus user_id ← 42
 fixum _ query ← `select * from users where id = §`(user_id)
 ```
 
-## Inline JSON
+## Inline JSON {#inline-json}
 
 A bare `{ … }` is inline JSON: a compile-time `json` document, not an
 anonymous Faber object. Keys are quoted strings separated by `:`:
@@ -80,5 +85,9 @@ fixum _ nested ← { "meta": { "version": 1 }, "tags": ["alpha", "beta"] }
 For typed genus construction, use the type name and `=` field shape:
 
 ```faber
+genus Point {
+    numerus x
+    numerus y
+}
 fixum _ p ← Point { x = 10, y = 20 }
 ```

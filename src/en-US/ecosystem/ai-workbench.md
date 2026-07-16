@@ -12,14 +12,14 @@ metadata inspection, embedding, indexing, and inference workflows. It
 demonstrates Faber building a substantial multi-command CLI application
 with real I/O, JSON output, and Python harness validation.
 
-## Package
+## Package {#package}
 
 `examples/ai-workbench/packages/faber-ai/` with CLI subcommands:
 
 - `model inspect` — query local model aliases, routes, and status
 - `embed` — generate embeddings from text input
 
-## Commands
+## Commands {#commands}
 
 ```bash
 faber check examples/ai-workbench/packages/faber-ai
@@ -27,7 +27,7 @@ faber test examples/ai-workbench/packages/faber-ai
 faber run examples/ai-workbench/packages/faber-ai -- model inspect basic/minilm --format json
 ```
 
-## Validation
+## Validation {#validation}
 
 The AI Workbench includes 20+ Python harness scripts that compare Faber
 output against fixture maps for model inventory, inference, GPU evidence,

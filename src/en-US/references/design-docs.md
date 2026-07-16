@@ -10,7 +10,7 @@ sources = [
 The Radix repository contains authoritative design documents for how Faber
 works as a language and compiler. They live under `radix/docs/design/`.
 
-## Index
+## Index {#index}
 
 | Area | Files |
 |------|-------|
@@ -24,7 +24,7 @@ works as a language and compiler. They live under `radix/docs/design/`.
 | Tooling surface | `faber-scripting.md` |
 | Naming debt | `mixed-case-naming-debt.md` |
 
-## Stdlib design docs
+## Stdlib design docs {#stdlib-design-docs}
 
 The `radix/docs/stdlib/` directory contains:
 

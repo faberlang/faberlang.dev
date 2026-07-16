@@ -20,7 +20,7 @@ shape:
 | `T ∪ nihil` | Absence in the success value domain |
 | `⇥ E` | Recoverable alternate-exit channel for errors |
 
-## Normal return
+## Normal return {#normal-return}
 
 ```faber
 functio porta(numerus x) → numerus {
@@ -29,7 +29,7 @@ functio porta(numerus x) → numerus {
 }
 ```
 
-## Failable functions
+## Failable functions {#failable-functions}
 
 Use `⇥` when a function can leave by an error channel:
 
@@ -40,7 +40,7 @@ functio divide(numerus a, numerus b) → numerus ⇥ textus {
 }
 ```
 
-## Throwing — iace
+## Throwing — iace {#throwing--iace}
 
 `iace` sends a value on the error channel:
 
@@ -50,11 +50,18 @@ functio exigePositivum(numerus value) ⇥ textus {
 }
 ```
 
-## Recovery — fac / cape
+## Recovery — fac / cape {#recovery--fac--cape}
 
 Callers recover locally with a `fac` block and a `cape` handler:
 
 ```faber
+functio divide(numerus a, numerus b) → numerus {
+    si b ≡ 0 {
+        redde 0
+    }
+    redde a / b
+}
+
 functio tutum(numerus a, numerus b) → numerus {
     fac {
         redde divide(a, b)
@@ -69,15 +76,16 @@ functio tutum(numerus a, numerus b) → numerus {
 A direct failable call is not an ordinary expression. Place calls to
 `→ T ⇥ E` functions inside an active `fac` / `cape` boundary.
 
-## Inline conversion recovery
+## Inline conversion recovery {#inline-conversion-recovery}
 
 `⇥` can also specify an inline recovery value on `↦` conversions:
 
 ```faber
+fixum textus raw ← "42"
 fixum _ n ← raw ↦ numerus ⇥ 0
 ```
 
-## Effect-only failable
+## Effect-only failable {#effectonly-failable}
 
 For functions that error but do not return a success value, omit `→ T`:
 
@@ -87,7 +95,7 @@ functio exigePositivum(numerus value) ⇥ textus {
 }
 ```
 
-## Current status
+## Current status {#current-status}
 
 `→`, `redde`, `⇥`, `iace`, and `fac` / `cape` are live grammar and checker
 surfaces. Rust and Go lowering for full `⇥` / `iace` / `cape` runtime

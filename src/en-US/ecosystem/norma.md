@@ -14,7 +14,7 @@ Norma is Faber's standard library. It provides flat Latin-named modules
 accessed through `norma:*` paths. Stdlib declarations are Faber source
 under the sibling `norma` repository.
 
-## Modules
+## Modules {#modules}
 
 | Module | Domain |
 |--------|--------|
@@ -31,7 +31,7 @@ under the sibling `norma` repository.
 | `norma:tempus` | Time and duration |
 | `norma:aleator` | Randomness |
 
-## Morphologia naming convention
+## Morphologia naming convention {#morphologia-naming-convention}
 
 Norma follows the morphologia policy for all method names. Latin verb
 conjugation carries execution mode:
@@ -51,7 +51,7 @@ Ownership pairs (mutate vs copy-out):
 | `inverte` | `inversa` | Reverse |
 | `filtra` | `filtrata` | Filter |
 
-## Usage
+## Usage {#usage}
 
 ```faber
 importa ex "norma:solum" privata solum

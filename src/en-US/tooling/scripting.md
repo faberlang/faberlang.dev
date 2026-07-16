@@ -10,7 +10,7 @@ sources = [
 Alongside the compiled Rust path, Faber supports in-process interpreted
 execution through the MIR stepper.
 
-## Usage
+## Usage {#usage}
 
 ```bash
 faber run --interpret script.fab
@@ -20,7 +20,7 @@ This runs Faber source in-process after the normal front half of the
 compiler (parse through typecheck + MIR lowering), without invoking
 `rustc` or spawning a build process.
 
-## How it works
+## How it works {#how-it-works}
 
 The compiler produces analysed HIR, validated MIR, and a resolved
 runtime-intrinsic table. The MIR stepper dispatches MIR blocks straight
@@ -34,7 +34,7 @@ Source → Lex → Parse → Collect → Resolve → Lower → Typecheck
                                               MIR stepper + Host
 ```
 
-## Latency
+## Latency {#latency}
 
 The scripting path runs the same linear frontend as the compiled path,
 plus stepper time proportional to what the script actually executes:
@@ -47,7 +47,7 @@ plus stepper time proportional to what the script actually executes:
 The stepper never invokes `rustc` or spawns a process, so startup is
 fast enough to feel like a shell script.
 
-## Limitations
+## Limitations {#limitations}
 
 - The MIR stepper does not support all host I/O routes that the compiled
   path does — some `norma:*` wrappers remain compiled-only

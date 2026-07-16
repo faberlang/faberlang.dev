@@ -13,7 +13,7 @@ Faber has one language and many compilation contracts. Not every feature
 must lower to every target. This page documents which features each target
 supports, erases, warns on, or rejects.
 
-## Policy verbs
+## Policy verbs {#policy-verbs}
 
 | Verb | Meaning |
 |------|---------|
@@ -24,7 +24,7 @@ supports, erases, warns on, or rejects.
 | **Defer** | Parses/binds; lowering not implemented for any target |
 | **Limited** | Stable contract with explicit subset gates |
 
-## Target table
+## Target table {#target-table}
 
 | Target | Lane | Build | Run | Package | Policy |
 |--------|------|-------|-----|---------|--------|
@@ -42,7 +42,7 @@ supports, erases, warns on, or rejects.
 | `wgsl-text` | MIR | yes | no | no | **Limited** |
 | `sexp` | MIR | yes | no | no | **Limited** |
 
-## Pipeline routing
+## Pipeline routing {#pipeline-routing}
 
 ```
 Source → Lex → Parse → Collect → Resolve → Lower → Typecheck → Analysis
@@ -54,7 +54,7 @@ Source → Lex → Parse → Collect → Resolve → Lower → Typecheck → Ana
             Rust · Faber · TS · Go            fmir · wasm · llvm · metal · wgsl · sexp
 ```
 
-## Application lane (HIR)
+## Application lane (HIR) {#application-lane-hir}
 
 | Target | Measured floor |
 |--------|---------------|
@@ -63,7 +63,7 @@ Source → Lex → Parse → Collect → Resolve → Lower → Typecheck → Ana
 | TypeScript | 288/318 analysed · 268/318 typecheck-valid · 262/318 runnable |
 | Go | 146/216 pass. Borrow modes erased; `ad` rejected. |
 
-## Systems lane (MIR)
+## Systems lane (MIR) {#systems-lane-mir}
 
 | Target | Measured floor |
 |--------|---------------|

@@ -13,7 +13,7 @@ CLI programs demonstrating Faber building working binaries with argv, stdio,
 exit codes, and host I/O, verified against host GNU utilities via a parity
 harness.
 
-## Implemented utilities
+## Implemented utilities {#implemented-utilities}
 
 **Stage 1 — scaffold + true/false**
 `true`, `false`
@@ -29,7 +29,7 @@ harness.
 `rm`, `cp`, `mv`, `mkdir`, `touch`, `pwd`, `readlink`, `realpath`,
 `join`, `comm`, `od`, `cksum`, `split`, `yes`, `printenv`
 
-## Example — echo
+## Example — echo {#example--echo}
 
 The `echo` package demonstrates Faber patterns used throughout coreutils:
 CLI annotations, option parsing, inline tests with `probandum`/`proba`/`adfirma`,
@@ -38,6 +38,14 @@ and shared common modules:
 ```faber
 importa ex "norma:consolum" privata consolum
 importa ex "../../../common/gnu/format" privata gnu_format
+
+functio echo_textus(lista<textus> words) → textus {
+    redde ""
+}
+
+functio echo_novam_lineam(lista<textus> words) → bivalens {
+    redde falsum
+}
 
 probandum "echo formatting" tag "coreutils" {
     proba "empty operands" {
@@ -52,11 +60,11 @@ probandum "echo formatting" tag "coreutils" {
 @ descriptio "GNU coreutils echo parity exemplum"
 @ operandus ceteri textus words
 incipit argumenta args {
-    // ...
+    # ... CLI logic here
 }
 ```
 
-## Running
+## Running {#running}
 
 ```bash
 faber check coreutils/packages/echo

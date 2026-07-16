@@ -10,7 +10,7 @@ sources = [
 Radix's frontend scales roughly linearly with source size, in-process and
 single-threaded.
 
-## Frontend compile times
+## Frontend compile times {#frontend-compile-times}
 
 | Program size | Source | Median compile |
 |-------------|--------|---------------|
@@ -21,7 +21,7 @@ single-threaded.
 
 The largest real example today is ~140 lines, well below the noise floor.
 
-## Backend costs (Rust target)
+## Backend costs (Rust target) {#backend-costs-rust-target}
 
 For `faber build`, the user-perceived time is dominated by Cargo/rustc,
 not by Faber's frontend:
@@ -33,7 +33,7 @@ not by Faber's frontend:
 | Warm per-program build (cached deps) | ~30–110 ms |
 | Per-program Cargo invocation overhead | ~400 ms |
 
-## Incremental compilation
+## Incremental compilation {#incremental-compilation}
 
 The `faber-runtime` crate compiles once per target directory and is cached
 as `.rlib` artifacts:

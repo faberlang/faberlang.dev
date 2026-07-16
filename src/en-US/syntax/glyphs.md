@@ -13,7 +13,7 @@ sources = [
 Faber uses glyphs where the symbol is structural. Below is the full inventory
 of source glyphs recognised by the lexer.
 
-## Value flow
+## Value flow {#value-flow}
 
 | Glyph | Meaning |
 |-------|---------|
@@ -22,7 +22,7 @@ of source glyphs recognised by the lexer.
 | `⇥` | Alternate exit — error-channel type or inline conversion recovery |
 | `∴` | Compact therefore body (`si cond ∴ redde x`) |
 
-## Type shape
+## Type shape {#type-shape}
 
 | Glyph | Meaning |
 |-------|---------|
@@ -30,7 +30,7 @@ of source glyphs recognised by the lexer.
 | `↦` | Runtime conversion (can-fail parse/coerce) |
 | `∪` | Inline union type (`T ∪ nihil`) |
 
-## Comparison
+## Comparison {#comparison}
 
 | Glyph | Meaning |
 |-------|---------|
@@ -38,35 +38,35 @@ of source glyphs recognised by the lexer.
 | `<` `>` `≤` `≥` | Ordering |
 | `≈` `≉` | Numeric value equality |
 
-## Logical and bitwise
+## Logical and bitwise {#logical-and-bitwise}
 
 | Glyph | Meaning |
 |-------|---------|
 | `∧` `∨` `⊻` `¬` | And, or, xor, not |
 | `⇐` `⇒` | Left and right bit shift |
 
-## Assignment updates
+## Assignment updates {#assignment-updates}
 
 | Glyph | Meaning |
 |-------|---------|
 | `←` | The only assignment operator in expressions |
 | `⊕` `⊖` | Postfix increment/decrement statements (mutable numerus only) |
 
-## Optional chaining and non-null assertion
+## Optional chaining and non-null assertion {#optional-chaining-and-non-null-assertion}
 
 | Glyph | Meaning |
 |-------|---------|
 | `?` `?.` `?[` `?(` | Optional chaining |
 | `!` `!.` `![` `!(` | Non-null assertion |
 
-## Ranges
+## Ranges {#ranges}
 
 | Glyph | Meaning |
 |-------|---------|
 | `‥` | Exclusive range endpoint |
 | `…` | Inclusive range endpoint |
 
-## Literal delimiters
+## Literal delimiters {#literal-delimiters}
 
 | Glyph | Type | Role |
 |-------|------|------|
@@ -77,7 +77,7 @@ of source glyphs recognised by the lexer.
 | `|` | `octeti` | Hex literal |
 | `§` | template hole | Placeholder inside `"…"`, `«…»`, `` `…` `` |
 
-## Punctuation
+## Punctuation {#punctuation}
 
 | Glyph | Role |
 |-------|------|

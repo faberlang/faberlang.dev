@@ -11,7 +11,7 @@ Each non-Latin reader locale has a complete Faber package under
 `examples/reader-locale/` with localised source, diagnostic test cases,
 and a `faber.toml` manifest.
 
-## Available packages
+## Available packages {#available-packages}
 
 | Locale | Path | Source example |
 |--------|------|---------------|
@@ -22,7 +22,7 @@ and a `faber.toml` manifest.
 | hi | `examples/reader-locale/hi/` | `फलन नमस्कार(पाठ नाम) → पाठ` |
 | vi | `examples/reader-locale/vi/` | `hàm chào(vănbản tên) → vănbản` |
 
-## Diagnostic test cases
+## Diagnostic test cases {#diagnostic-test-cases}
 
 Each package includes test cases proving the full compiler pipeline is
 locale-aware:

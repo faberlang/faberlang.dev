@@ -10,7 +10,7 @@ sources = [
 Faber is developed across multiple repositories under the `faberlang`
 organisation.
 
-## Public repositories
+## Public repositories {#public-repositories}
 
 | Repository | Description |
 |-----------|-------------|
@@ -22,13 +22,13 @@ organisation.
 | `examples` | Language corpus, coreutils, AI Workbench, reader-locale packages |
 | `faberlang.dev` | This website |
 
-## Private repositories
+## Private repositories {#private-repositories}
 
 | Repository | Description |
 |-----------|-------------|
 | `radix` | Compiler: lexing, parsing, semantic analysis, HIR/MIR/AIR, diagnostics, codegen |
 
-## Host platform repositories
+## Host platform repositories {#host-platform-repositories}
 
 | Repository | Description |
 |-----------|-------------|

@@ -15,47 +15,47 @@ sources = [
 Functions in Faber are declared with `functio`, using type-first parameter
 syntax and a glyph return type.
 
-## Basic syntax
+## Basic syntax {#basic-syntax}
 
 ```faber
-functio name(parameter_list) → return_type {
-    body
+functio twice(numerus n) → numerus {
+    redde n
 }
 ```
 
 With an error channel:
 
 ```faber
-functio name(parameters) → return_type ⇥ error_type {
-    body
+functio parse(textus input) → numerus ⇥ textus {
+    redde 0
 }
 ```
 
-## Examples
+## Examples {#examples}
 
 ```faber
-// No parameters, no return
+# No parameters, no return
 functio saluta() {
     nota "Salve, Mundus!"
 }
 
-// Parameter, no explicit return
+# Parameter, no explicit return
 functio dic(textus verbum) {
     nota verbum
 }
 
-// Parameter and return type
+# Parameter and return type
 functio duplica(numerus n) → numerus {
     redde n * 2
 }
 
-// Multiple parameters
+# Multiple parameters
 functio adde(numerus a, numerus b) → numerus {
     redde a + b
 }
 ```
 
-## Return values
+## Return values {#return-values}
 
 Use `redde` for normal returns:
 
@@ -74,7 +74,7 @@ functio tace() → vacuum {
 }
 ```
 
-## Borrowing and mutability (de, in, ex)
+## Borrowing and mutability (de, in, ex) {#borrowing-and-mutability}
 
 Faber marks how a value is passed with short prepositions on parameters:
 
@@ -86,22 +86,22 @@ Faber marks how a value is passed with short prepositions on parameters:
 | `ex` | Consume (move into callee) | `T` by move |
 
 ```faber
-// Shared borrow
+# Shared borrow
 functio imprime(de textus label) → vacuum {
     nota label
 }
 
-// Mutable borrow
+# Mutable borrow
 functio duplica(in numerus value) → vacuum {
     value ← value * 2
 }
 
-// Consume
+# Consume
 functio consume(ex textus buffer) → textus {
     redde buffer
 }
 
-// Owned
+# Owned
 functio salve(textus nomen) → textus {
     redde "Salve, §!"(nomen)
 }
@@ -120,7 +120,7 @@ every `ex` as "consume":
 | `ex source fixum x, ceteri rest` | Destructure fields |
 | `importa ex "path"` | Import from module |
 
-## Entry point
+## Entry point {#entry-point}
 
 The program entry point is `incipit`:
 
@@ -130,7 +130,7 @@ incipit {
 }
 ```
 
-## CLI entry point
+## CLI entry point {#cli-entry-point}
 
 For CLI programs, `incipit argumenta` receives parsed command arguments:
 
@@ -145,10 +145,12 @@ incipit argumenta args {
 }
 ```
 
-## Passing mode — `sponte`
+## Passing mode — `sponte` {#passing-mode-sponte}
 
 `sponte` marks a parameter that may be omitted by the caller:
 
 ```faber
-functio connect(textus host, numerus port sponte) → vacuum
+functio connect(textus host, numerus port sponte) → vacuum {
+    nota host
+}
 ```

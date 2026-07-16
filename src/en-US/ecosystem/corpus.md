@@ -13,13 +13,13 @@ directory per keyword, operator group, or language type surface. It is the
 development source for `faber explain` and the primary input for
 multi-target compile matrices.
 
-## Stats
+## Stats {#stats}
 
 - 292 `.fab` exemplar files
 - 174 registry terms in `index.toml`
 - ~135 keyword and concept directories
 
-## Layout
+## Layout {#layout}
 
 ```
 corpus/
@@ -35,7 +35,7 @@ corpus/
   index.toml         # generated explain manifest
 ```
 
-## File format
+## File format {#file-format}
 
 Each `.fab` file begins with TOML frontmatter describing the term:
 
@@ -56,7 +56,7 @@ functio saluta() {
 }
 ```
 
-## Usage
+## Usage {#usage}
 
 ```bash
 faber explain functio       # show keyword reference
@@ -65,7 +65,7 @@ faber explain --search query # search across corpus
 faber explain --list         # list all terms
 ```
 
-## Categories
+## Categories {#categories}
 
 Terms are organised by category: `function`, `control-flow`, `type`,
 `collection`, `transfer`, `annotation`, `iteration`, `destructuring`,
