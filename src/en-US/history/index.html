@@ -33,7 +33,43 @@
   <div class="back"><a href="../index.html">← Faber</a></div>
   <h1>History</h1>
   <p class="placeholder">This section is under construction.</p>
-  <p>Topics to cover: development timeline, influences, release history, current status.</p>
+  <h2>Origins</h2>
+  <p>
+    The first commit to the Radix compiler was made on <b>December 20, 2024</b> as a
+    Bun + TypeScript project with a single <code>docs/decisions.md</code> file. The
+    second commit codified five Architecture Decision Records that still shape the
+    language today.
+  </p>
+
+  <p>
+    <b>ADR-003</b>, titled "Case endings carry semantic meaning," established at the
+    very beginning that Latin morphology would be more than a keyword-skin — the
+    compiler would understand declension and conjugation to infer program intent.
+    The original case mappings were:
+  </p>
+
+  <pre style="font-family:var(--mono);font-size:12px;line-height:22px;background:var(--paper-alt);border:1px solid var(--rule);padding:12px 14px;margin:12px 0;overflow-x:auto">Nominative  (subject)       →  return value, caller
+Accusative  (direct object)  →  primary argument
+Dative      (indirect obj.)  →  recipient, callback, destination
+Genitive    (possession)     →  property access, "of" relationships
+Ablative    (instrument)     →  dependencies, context, "using X"</pre>
+
+  <p>
+    The same document noted: <i>"Verb conjugation is a natural follow-on question
+    (future tense → async?)."</i> This seed grew into the modern
+    <b>morphologia</b> naming convention, where the standard library uses
+    conjugated Latin verb forms to signal sync vs async and mutate vs copy-out
+    — without requiring the compiler itself to understand Latin grammar.
+  </p>
+
+  <p>
+    The project began in TypeScript, was later rewritten in Rust, and the grammar
+    was frozen for the 1.x line with edition 2026. The original five ADRs (file
+    extension <code>.fab</code>, error hints, case endings, recursive descent parser,
+    custom AST) are still visible in the git history.
+  </p>
+
+  <p class="placeholder">More history to come: development timeline, influences, release history.</p>
   <footer>Faber · MIT license</footer>
 </div>
 </body>
