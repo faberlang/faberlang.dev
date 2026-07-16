@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faber — Inline testing</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+Thai:wght@400;700&family=Noto+Sans:wght@400;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+  :root {
+    --paper: #faf9f6; --paper-alt: #f0efea; --ink: #1a1a18; --ink-dim: #5f5e58;
+    --ink-faint: #8c8a82; --rule: #dcdad2; --glyph: #2f4faa; --glyph-soft: #e8ecf8;
+    --support: #2f6b4c; --defer: #6b6a64;
+    --serif: 'Noto Serif', Georgia, serif; --sans: 'Noto Sans', -apple-system, 'Segoe UI', sans-serif;
+    --mono: 'Noto Sans Mono', 'Noto Sans Thai', 'Noto Sans Arabic', 'Noto Sans Devanagari', 'Noto Sans SC', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 16.5px; line-height: 28px; }
+  a { color: var(--ink); border-bottom: 1px solid var(--rule); text-decoration: none; }
+  a:hover { border-bottom-color: var(--glyph); }
+  code { font-family: var(--mono); font-size: 0.88em; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+  h1 { font-family: var(--serif); font-size: 38px; line-height: 46px; font-weight: 400; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
+  .sub { font-family: var(--sans); font-size: 13px; color: var(--ink-faint); margin: 8px 0 28px; }
+  .bread { font-family: var(--sans); font-size: 12px; color: var(--ink-faint); margin-bottom: 20px; }
+  .bread a { border: none; color: var(--ink-dim); }
+  .bread a:hover { border-bottom: 1px solid var(--glyph); }
+  h2 { font-family: var(--serif); font-size: 24px; font-weight: 400; margin: 40px 0 12px; border-bottom: 1px solid var(--rule); padding-bottom: 7px; scroll-margin-top: 20px; }
+  h3 { font-family: var(--serif); font-size: 18px; font-weight: 700; margin: 28px 0 8px; }
+  p { margin-bottom: 15px; max-width: 74ch; }
+  .lead { font-size: 17.5px; line-height: 30px; }
+  ul.body { margin: 0 0 16px 22px; }
+  ul.body li { margin-bottom: 6px; max-width: 72ch; }
+  pre.faber-code { font-family: var(--mono); font-size: 13px; line-height: 24px; background: var(--paper-alt); border: 1px solid var(--rule); padding: 14px 16px; margin: 12px 0; overflow-x: auto; white-space: pre; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 8px; font-family: var(--sans); font-size: 13px; }
+  th { text-align: left; font-weight: 400; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); border-bottom: 1px solid var(--ink); padding: 0 10px 7px 0; }
+  td { border-bottom: 1px solid var(--rule); padding: 9px 10px 9px 0; vertical-align: baseline; line-height: 21px; }
+  td.t { font-family: var(--mono); font-size: 12px; color: var(--ink); white-space: nowrap; }
+  td.m { color: var(--ink-dim); font-size: 12px; }
+  .callout { border-left: 3px solid var(--glyph); background: var(--glyph-soft); padding: 14px 18px; margin: 18px 0; font-size: 15px; line-height: 26px; max-width: 74ch; }
+  footer { border-top: 1px solid var(--rule); margin-top: 48px; padding: 20px 0 40px; font-family: var(--sans); font-size: 12px; color: var(--ink-faint); }
+  footer a { border-bottom: 1px solid var(--rule); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bread"><a href="index.html">← Features</a></div>
+  <h1>Inline testing</h1>
+  <div class="sub">Test suites that live alongside source code</div>
+
+  <p class="lead">
+    Faber has a first-class testing framework built into the language with three
+    keywords: <code>probandum</code> declares a test suite, <code>proba</code>
+    declares a single test case, and <code>adfirma</code> asserts a condition.
+    Tests live in the same file as the code they test, run through
+    <code>faber test</code>, and support the same compiler pipeline as production
+    code — locale-aware, type-checked, and multi-target.
+  </p>
+
+  <!-- ================================================================== -->
+  <h2 id="keywords">The three keywords</h2>
+
+  <table>
+    <thead><tr><th>Keyword</th><th>Role</th><th>Approximate equivalent</th></tr></thead>
+    <tbody>
+      <tr><td class="t"><code>probandum</code></td><td class="m">Declares a named test suite</td><td class="m"><code>describe</code>, <code>#[cfg(test)] mod</code></td></tr>
+      <tr><td class="t"><code>proba</code></td><td class="m">Declares a single test case</td><td class="m"><code>it</code>, <code>#[test]</code></td></tr>
+      <tr><td class="t"><code>adfirma</code></td><td class="m">Asserts a condition at runtime</td><td class="m"><code>assert!</code>, <code>assert_eq!</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>probandum — test suite</h3>
+
+  <p>
+    A <code>probandum</code> block groups related test cases. Suites can be
+    nested to organise tests hierarchically:
+  </p>
+
+  <pre class="faber-code" data-locale="la">probandum "arithmetica" {
+    proba "unum plus unum" {
+        adfirma 1 + 1 ≡ 2
+    }
+
+    proba "multiplicatio" {
+        adfirma 3 * 4 ≡ 12
+    }
+
+    probandum "implicata" {
+        proba "comparatio" {
+            fixum _ x ← 10
+            adfirma x ≥ 10
+        }
+    }
+}</pre>
+
+  <h3>proba — test case</h3>
+
+  <p>
+    A <code>proba</code> block contains the test logic. It can use any Faber
+    code — variable bindings, function calls, control flow — and ends with one
+    or more <code>adfirma</code> assertions. Tests can be tagged with an
+    optional <code>tag</code> marker for selective execution:
+  </p>
+
+  <pre class="faber-code" data-locale="la">proba "echo formats operands with one space" tag "coreutils" {
+    adfirma echo_textus(["hello", "world"]) ≡ "hello world"
+}</pre>
+
+  <h3>adfirma — assertion</h3>
+
+  <p>
+    <code>adfirma</code> evaluates a boolean expression and reports failure if
+    it is false. An optional message string provides context on failure:
+  </p>
+
+  <pre class="faber-code" data-locale="la">incipit {
+    fixum _ x ← 10
+
+    // Simple assertion
+    adfirma x > 0
+
+    // With custom message
+    adfirma x ≡ 10, "x decem esse debet"
+
+    // Multiple assertions in sequence
+    fixum _ nomen ← "Marcus"
+    adfirma nomen ≡ "Marcus"
+    adfirma nomen ≠ "", "nomen vacuum non sit"
+}</pre>
+
+  <!-- ================================================================== -->
+  <h2 id="workflow">Workflow</h2>
+
+  <p>Tests run through the <code>faber test</code> command:</p>
+
+  <pre class="faber-code" data-locale="la">faber test                        # run all tests in the current package
+faber test examples/coreutils/packages/echo  # run tests for a specific package</pre>
+
+  <p>
+    Because tests live alongside source in the same <code>.fab</code> file,
+    there is no separate test directory structure, no test module declaration,
+    and no build script distinction between test and production builds. The
+    compiler knows which blocks are test code and which are production code
+    by the keywords used — <code>probandum</code> and <code>proba</code> are
+    parsed but excluded from production builds.
+  </p>
+
+  <!-- ================================================================== -->
+  <h2 id="real-world">Real-world example</h2>
+
+  <p>
+    The coreutils <code>echo</code> package demonstrates the testing framework
+    in practice. Tests live in the same file as the implementation, covering
+    option parsing, escape expansion, and edge cases:
+  </p>
+
+  <pre class="faber-code" data-locale="la">probandum "echo formatting" tag "coreutils" {
+    proba "empty operands format as empty text" {
+        fixum lista&lt;textus&gt; words ← vacua
+        adfirma echo_textus(words) ≡ ""
+    }
+
+    proba "single operand is unchanged" {
+        adfirma echo_textus(["hello"]) ≡ "hello"
+    }
+
+    proba "-E is a leading no-op option" {
+        adfirma echo_textus(["-E", "hello", "world"]) ≡ "hello world"
+    }
+
+    proba "-n suppresses the trailing newline flag" {
+        adfirma echo_novam_lineam(["-n", "hello"]) ≡ falsum
+    }
+
+    proba "-e expands the declared escape subset" {
+        adfirma echo_textus(["-e", "a\\nb"]) ≡ "a\nb"
+        adfirma echo_textus(["-e", "a\\tb"]) ≡ "a\tb"
+    }
+}</pre>
+
+  <!-- ================================================================== -->
+  <h2 id="design">Design notes</h2>
+
+  <p>
+    Several design choices distinguish Faber's testing framework from
+    conventional approaches:
+  </p>
+
+  <ul class="body">
+    <li><b>No separate test binary.</b> Tests are declarations in the same source file, not a separate compilation target. The compiler filters test blocks from production output.</li>
+    <li><b>Tags, not directories.</b> Tests are organised by <code>tag</code> markers rather than directory structure. A test can belong to multiple organisational axes without being moved.</li>
+    <li><b>Full compiler pipeline.</b> Tests are type-checked, analysed, and locale-aware — the same <code>--reader-locale</code> flag applies to test output.</li>
+    <li><b>Multi-target.</b> Tests run through whichever backend the package targets — MIR stepper for <code>faber test --interpret</code>, compiled Rust for <code>faber test</code>.</li>
+    <li><b>Nested suites.</b> <code>probandum</code> blocks can nest, mirroring the structure of the code they test.</li>
+  </ul>
+
+  <!-- ================================================================== -->
+  <h2 id="references">References</h2>
+  <ol style="font-size:13px;line-height:23px;color:var(--ink-dim);margin-top:8px">
+    <li style="margin-bottom:5px"><code>examples/corpus/probandum/</code> — probandum exemplar files</li>
+    <li style="margin-bottom:5px"><code>examples/corpus/proba/</code> — proba exemplar files</li>
+    <li style="margin-bottom:5px"><code>examples/corpus/adfirma/</code> — adfirma exemplar files</li>
+    <li style="margin-bottom:5px"><code>examples/coreutils/packages/echo/src/main.fab</code> — real-world usage with tags</li>
+  </ol>
+
+  <footer>
+    <span>Faber · <a href="index.html">Features</a></span>
+    <span><a href="https://github.com/faberlang">github.com/faberlang</a></span>
+  </footer>
+</div>
+</body>
+</html>
