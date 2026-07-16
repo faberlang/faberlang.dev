@@ -1,0 +1,410 @@
+# Block-level Markdown → HTML converter.
+#
+# Handles the subset of Markdown used in faberlang.dev content pages:
+#   - Headings: h2 (##) and h3 (###)
+#   - Paragraphs (consecutive non-blank lines wrapped in <p>)
+#   - Pipe tables (GFM-style with |---| separator)
+#   - Unordered lists (- prefix, flat single-level)
+#   - Fenced code blocks (``` with optional info string)
+#   - Inline bold (**text** → <strong>)
+#
+# Inline code spans are delegated to span_mod.genera_line() (the 48-
+# identifier keyword/type lookup). Frontmatter (+++ blocks) is stripped
+# by frontmatter.fab before reaching this module.
+#
+# See CONTENT-PLAN.md § Machine contracts.
+
+importa ex "./string_util" privata * ut su
+importa ex "./span" privata * ut span_mod
+
+
+# ──────────────────────────────────────────────
+# Inline helpers
+# ──────────────────────────────────────────────
+
+# HTML-escape special characters in code block content.
+# Handles & < > — the only chars that break HTML rendering of code.
+functio html_escape(textus text) → textus {
+    fixum numerus len ← text.longitudo()
+    varia textus result ← ""
+    varia numerus plain_start ← 0
+    varia numerus i ← 0
+
+    dum i < len {
+        fixum numerus ch ← text[i]
+        # & = 38, < = 60, > = 62
+        si ch ≡ 38 aut ch ≡ 60 aut ch ≡ 62 {
+            si i > plain_start {
+                result ← result + text.sectio(plain_start, i)
+            }
+            si ch ≡ 38 { result ← result + "&amp;" }
+            si ch ≡ 60 { result ← result + "&lt;" }
+            si ch ≡ 62 { result ← result + "&gt;" }
+            plain_start ← i + 1
+        }
+        i ← i + 1
+    }
+
+    si len > plain_start {
+        result ← result + text.sectio(plain_start, len)
+    }
+    redde result
+}
+
+# Convert **bold** markers to <strong> tags.
+# Uses textus[i] (zero-allocation scalar) for ** detection, bulk sectio
+# for flushing plain text runs.
+functio converte_bold(textus text) → textus {
+    fixum numerus len ← text.longitudo()
+    varia textus result ← ""
+    varia numerus i ← 0
+    varia numerus plain_start ← 0
+
+    dum i + 1 < len {
+        # 42 = '*'
+        si text[i] ≡ 42 et text[i + 1] ≡ 42 {
+            # Search for closing **
+            varia numerus j ← i + 2
+            varia bivalens found ← falsum
+            dum j + 1 < len {
+                si text[j] ≡ 42 et text[j + 1] ≡ 42 {
+                    found ← verum
+                    rumpe
+                }
+                j ← j + 1
+            }
+            si found {
+                si i > plain_start {
+                    result ← result + text.sectio(plain_start, i)
+                }
+                fixum textus inner ← text.sectio(i + 2, j)
+                result ← result + «<strong>§</strong>»(inner)
+                i ← j + 2
+                plain_start ← i
+                perge
+            }
+            # No closing ** — treat as literal, keep scanning
+        }
+        i ← i + 1
+    }
+
+    si len > plain_start {
+        result ← result + text.sectio(plain_start, len)
+    }
+    redde result
+}
+
+# Apply all inline transforms: code spans then bold.
+functio genera_inline(textus text) → textus {
+    fixum textus with_code ← span_mod.genera_line(text)
+    redde converte_bold(with_code)
+}
+
+
+# ──────────────────────────────────────────────
+# Table helpers
+# ──────────────────────────────────────────────
+
+# Check if a line is a GFM table separator (|---|---| or |:--|:-:|---|).
+functio est_separator(textus line) → bivalens {
+    si su.initium_index(line, "|---") ≥ 0 ergo redde verum
+    si su.initium_index(line, "|:--") ≥ 0 ergo redde verum
+    si su.initium_index(line, "| ---") ≥ 0 ergo redde verum
+    redde falsum
+}
+
+# Split a table row by unescaped | delimiters.
+# Leading/trailing | are stripped; empty cells are skipped.
+functio split_table_row(textus row) → lista<textus> {
+    varia lista<textus> cells ← vacua
+    fixum textus trimmed ← su.recide(row)
+    fixum numerus len ← trimmed.longitudo()
+
+    si len ≡ 0 ergo redde cells
+
+    varia numerus start ← 0
+    varia numerus i ← 0
+
+    # Skip leading |
+    si trimmed[0] ≡ 124 {
+        start ← 1
+        i ← 1
+    }
+
+    dum i < len {
+        # 124 = '|', 92 = '\' (escape)
+        si trimmed[i] ≡ 124 et non (i > 0 et trimmed[i - 1] ≡ 92) {
+            fixum textus cell ← su.recide(trimmed.sectio(start, i))
+            si cell.longitudo() > 0 {
+                cells.appende(cell)
+            }
+            start ← i + 1
+        }
+        i ← i + 1
+    }
+
+    # Trailing cell (after last |)
+    si start < len {
+        fixum textus cell ← su.recide(trimmed.sectio(start, len))
+        si cell.longitudo() > 0 {
+            cells.appende(cell)
+        }
+    }
+
+    redde cells
+}
+
+
+# ──────────────────────────────────────────────
+# Main converter
+# ──────────────────────────────────────────────
+
+# Convert full Markdown body to HTML blocks.
+#
+# Processes line by line with a state index that advances past consumed
+# lines. Each branch detects a block type, consumes all its lines, emits
+# HTML, and calls perge to continue the main loop.
+functio converte(textus source) → textus {
+    fixum textus nl ← su.nl()
+    fixum lista<textus> lines ← su.divide(source, nl)
+    fixum numerus n ← lines.longitudo()
+    varia textus result ← ""
+    varia numerus i ← 0
+
+    dum i < n {
+        fixum textus line ← su.recide(lines[i])
+
+        # ── Skip blank lines ──
+        si line.longitudo() ≡ 0 {
+            i ← i + 1
+            perge
+        }
+
+        # ── Fenced code block ──
+        si su.initium_cum(line, "```") {
+            fixum textus info ← su.recide(line.sectio(3, line.longitudo()))
+            varia textus code ← ""
+            i ← i + 1
+            dum i < n {
+                fixum textus fence_check ← su.recide(lines[i])
+                si su.initium_cum(fence_check, "```") {
+                    i ← i + 1
+                    rumpe
+                }
+                si code.longitudo() > 0 {
+                    code ← code + nl
+                }
+                code ← code + lines[i]
+                i ← i + 1
+            }
+            fixum textus escaped ← html_escape(code)
+            si info.longitudo() > 0 {
+                result ← result + «<pre class="faber-code"><code class="lang-§">§</code></pre>»(info, escaped) + nl
+            } secus {
+                result ← result + «<pre class="faber-code"><code>§</code></pre>»(escaped) + nl
+            }
+            perge
+        }
+
+        # ── Heading h3 ──
+        si su.initium_cum(line, "### ") {
+            fixum textus title ← line.sectio(4, line.longitudo())
+            result ← result + «<h3>§</h3>»(genera_inline(title)) + nl
+            i ← i + 1
+            perge
+        }
+
+        # ── Heading h2 ──
+        si su.initium_cum(line, "## ") {
+            fixum textus title ← line.sectio(3, line.longitudo())
+            result ← result + «<h2>§</h2>»(genera_inline(title)) + nl
+            i ← i + 1
+            perge
+        }
+
+        # ── Pipe table (requires separator on next line) ──
+        si line[0] ≡ 124 {
+            si i + 1 < n et est_separator(su.recide(lines[i + 1])) {
+                fixum lista<textus> headers ← split_table_row(line)
+                varia textus table ← "<table>" + nl + "<thead><tr>"
+                itera ex headers fixum h {
+                    table ← table + «<th>§</th>»(genera_inline(h))
+                }
+                table ← table + "</tr></thead>" + nl + "<tbody>" + nl
+
+                # Skip header + separator
+                i ← i + 2
+
+                dum i < n {
+                    fixum textus l ← su.recide(lines[i])
+                    si l.longitudo() ≡ 0 { rumpe }
+                    si non (l[0] ≡ 124) { rumpe }
+
+                    fixum lista<textus> cells ← split_table_row(l)
+                    table ← table + "<tr>"
+                    itera ex cells fixum c {
+                        table ← table + «<td>§</td>»(genera_inline(c))
+                    }
+                    table ← table + "</tr>" + nl
+                    i ← i + 1
+                }
+
+                table ← table + "</tbody></table>"
+                result ← result + table + nl
+                perge
+            }
+        }
+
+        # ── Unordered list (- prefix, flat) ──
+        si line.longitudo() ≥ 2 et line[0] ≡ 45 et line[1] ≡ 32 {
+            varia textus list_html ← "<ul>" + nl
+            dum i < n {
+                fixum textus l ← su.recide(lines[i])
+                si l.longitudo() < 2 { rumpe }
+                si non (l[0] ≡ 45) aut non (l[1] ≡ 32) { rumpe }
+
+                fixum textus item ← l.sectio(2, l.longitudo())
+                list_html ← list_html + «<li>§</li>»(genera_inline(item)) + nl
+                i ← i + 1
+            }
+            list_html ← list_html + "</ul>"
+            result ← result + list_html + nl
+            perge
+        }
+
+        # ── Paragraph (accumulate until blank or block boundary) ──
+        varia textus para ← genera_inline(line)
+        i ← i + 1
+        dum i < n {
+            fixum textus l ← su.recide(lines[i])
+            si l.longitudo() ≡ 0 { rumpe }
+            si su.initium_cum(l, "##") { rumpe }
+            si su.initium_cum(l, "```") { rumpe }
+            si l.longitudo() ≥ 2 et l[0] ≡ 45 et l[1] ≡ 32 { rumpe }
+
+            para ← para + nl + genera_inline(l)
+            i ← i + 1
+        }
+        result ← result + «<p>§</p>»(para) + nl
+    }
+
+    redde result
+}
+
+
+# ──────────────────────────────────────────────
+# Tests (proba)
+# ──────────────────────────────────────────────
+
+probandum "markdown converter" tag "core" {
+
+    proba "h2 heading" {
+        fixum textus html ← converte("## Title")
+        adfirma su.initium_index(html, "<h2>Title</h2>") ≥ 0
+    }
+
+    proba "h3 heading" {
+        fixum textus html ← converte("### Subtitle")
+        adfirma su.initium_index(html, "<h3>Subtitle</h3>") ≥ 0
+    }
+
+    proba "paragraph wrapping" {
+        fixum textus html ← converte("Hello world")
+        adfirma su.initium_index(html, "<p>Hello world</p>") ≥ 0
+    }
+
+    proba "multi-line paragraph" {
+        fixum textus input ← "Line one\nLine two"
+        fixum textus html ← converte(input)
+        adfirma su.initium_index(html, "<p>") ≥ 0
+        adfirma su.initium_index(html, "Line one") ≥ 0
+        adfirma su.initium_index(html, "Line two") ≥ 0
+        adfirma su.initium_index(html, "</p>") ≥ 0
+    }
+
+    proba "unordered list" {
+        fixum textus input ← "- Item one\n- Item two"
+        fixum textus html ← converte(input)
+        adfirma su.initium_index(html, "<ul>") ≥ 0
+        adfirma su.initium_index(html, "<li>Item one</li>") ≥ 0
+        adfirma su.initium_index(html, "<li>Item two</li>") ≥ 0
+        adfirma su.initium_index(html, "</ul>") ≥ 0
+    }
+
+    proba "pipe table" {
+        fixum textus input ← "| A | B |\n|---|---|\n| 1 | 2 |"
+        fixum textus html ← converte(input)
+        adfirma su.initium_index(html, "<table>") ≥ 0
+        adfirma su.initium_index(html, "<th>A</th>") ≥ 0
+        adfirma su.initium_index(html, "<th>B</th>") ≥ 0
+        adfirma su.initium_index(html, "<td>1</td>") ≥ 0
+        adfirma su.initium_index(html, "<td>2</td>") ≥ 0
+        adfirma su.initium_index(html, "</table>") ≥ 0
+    }
+
+    proba "code block with info string" {
+        fixum textus input ← "```faber\nfixum numerus x ← 42\n```"
+        fixum textus html ← converte(input)
+        adfirma su.initium_index(html, "lang-faber") ≥ 0
+        adfirma su.initium_index(html, "<pre") ≥ 0
+        adfirma su.initium_index(html, "</pre>") ≥ 0
+    }
+
+    proba "code block html escape" {
+        fixum textus input ← "```\nlista<textus>\n```"
+        fixum textus html ← converte(input)
+        adfirma su.initium_index(html, "&lt;") ≥ 0
+        adfirma su.initium_index(html, "&gt;") ≥ 0
+    }
+
+    proba "bold inline" {
+        fixum textus result ← converte_bold("**bold**")
+        adfirma su.initium_index(result, "<strong>bold</strong>") ≥ 0
+    }
+
+    proba "bold preserves surrounding text" {
+        fixum textus result ← converte_bold("a **b** c")
+        adfirma su.initium_index(result, "a ") ≥ 0
+        adfirma su.initium_index(result, "<strong>b</strong>") ≥ 0
+        adfirma su.initium_index(result, " c") ≥ 0
+    }
+
+    proba "bold without closing markers passes through" {
+        fixum textus result ← converte_bold("**no closing")
+        adfirma su.initium_index(result, "**no closing") ≥ 0
+    }
+
+    proba "html escape" {
+        fixum textus escaped ← html_escape("a < b > c & d")
+        adfirma su.initium_index(escaped, "&lt;") ≥ 0
+        adfirma su.initium_index(escaped, "&gt;") ≥ 0
+        adfirma su.initium_index(escaped, "&amp;") ≥ 0
+    }
+
+    proba "table separator detection" {
+        adfirma est_separator("|---|---|")
+        adfirma est_separator("|------|---------|")
+        adfirma est_separator("|:--|:-:|")
+        adfirma non est_separator("| A | B |")
+        adfirma non est_separator("Some text")
+    }
+
+    proba "split table row basic" {
+        fixum lista<textus> cells ← split_table_row("| A | B | C |")
+        adfirma cells.longitudo() ≡ 3
+    }
+
+    proba "mixed blocks" {
+        fixum textus input ← "## Title\n\nSome text.\n\n- A\n- B"
+        fixum textus html ← converte(input)
+        adfirma su.initium_index(html, "<h2>Title</h2>") ≥ 0
+        adfirma su.initium_index(html, "<p>Some text.</p>") ≥ 0
+        adfirma su.initium_index(html, "<ul>") ≥ 0
+        adfirma su.initium_index(html, "<li>A</li>") ≥ 0
+    }
+
+    proba "empty source produces empty output" {
+        fixum textus html ← converte("")
+        adfirma html.longitudo() ≡ 0
+    }
+}

@@ -5,7 +5,7 @@
 
 importa ex "./types" privata * ut types_mod
 importa ex "./string_util" privata * ut su
-importa ex "./span" privata * ut span_mod
+importa ex "./markdown" privata * ut markdown_mod
 
 # Render a full HTML page from a Pagina.
 functio genera_paginam(types_mod.Pagina pag, textus stylesheet_link) → textus {
@@ -78,7 +78,7 @@ functio genera_nav_link(textus label, textus href, bivalens active) → textus {
 # Generate the main content area.
 functio genera_main(types_mod.Pagina pag) → textus {
     fixum textus h1 ← «<h1>§</h1>»(pag.titulus)
-    fixum textus body ← genera_body(span_mod.genera_corpora(pag.corpus))
+    fixum textus body ← genera_body(markdown_mod.converte(pag.corpus))
     redde «<main>
 §
 §
