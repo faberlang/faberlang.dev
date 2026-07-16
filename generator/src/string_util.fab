@@ -1,63 +1,46 @@
-# String utility functions for the Speculum generator.
-# Centralizes textus operations so the rest of the generator reads clearly.
-
-# Newline character constant.
 functio nl() → textus {
     redde "\n"
 }
 
-# Find the first index of needle in haystack. Returns -1 if not found.
-# Uses textus[i] (zero-allocation numerus) for first-char quick check,
-# falling back to sectio only on first-character match.
 functio initium_index(textus haystack, textus needle) → numerus {
     si needle.longitudo() ≡ 0 ergo redde 0
     si haystack.longitudo() < needle.longitudo() ergo redde -1
-
     fixum numerus hlen ← haystack.longitudo()
     fixum numerus nlen ← needle.longitudo()
     fixum numerus first_char ← needle[0]
     varia numerus i ← 0
-
     dum i ≤ hlen - nlen {
-        # Zero-allocation first-char check
         si haystack[i] ≡ first_char {
             si nlen ≡ 1 ergo redde i
             si haystack.sectio(i, i + nlen) ≡ needle ergo redde i
         }
         i ← i + 1
     }
-
     redde -1
 }
 
-# Find first index of needle in haystack, starting from position start.
 functio initium_index_post(textus haystack, textus needle, numerus start) → numerus {
     si needle.longitudo() ≡ 0 ergo redde start
     fixum numerus hlen ← haystack.longitudo()
     si start ≥ hlen ergo redde -1
     si hlen - start < needle.longitudo() ergo redde -1
-
     fixum textus post ← haystack.sectio(start, hlen)
     fixum numerus relative ← initium_index(post, needle)
     si relative < 0 ergo redde -1
     redde start + relative
 }
 
-# Check if text starts with prefix.
 functio initium_cum(textus text, textus prefix) → bivalens {
     si text.longitudo() < prefix.longitudo() ergo redde falsum
     redde text.sectio(0, prefix.longitudo()) ≡ prefix
 }
 
-# Split text by a delimiter, returning a lista of parts.
 functio divide(textus text, textus delim) → lista<textus> {
     varia lista<textus> parts ← vacua
     varia numerus start ← 0
     fixum numerus dlen ← delim.longitudo()
     fixum textus nl_char ← nl()
-
     si dlen ≡ 0 ergo redde [text]
-
     dum start ≤ text.longitudo() {
         fixum numerus pos ← initium_index_post(text, delim, start)
         si pos < 0 {
@@ -67,11 +50,9 @@ functio divide(textus text, textus delim) → lista<textus> {
         parts.appende(text.sectio(start, pos))
         start ← pos + dlen
     }
-
     redde parts
 }
 
-# Trim leading and trailing whitespace.
 functio recide(textus text) → textus {
     redde text.recide()
 }

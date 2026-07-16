@@ -93,14 +93,14 @@ functio genera_span(textus span) → textus {
     fixum textus cls ← classifica(span)
     si cls ≡ "kw" ergo redde «<code class="kw">§</code>»(span)
     si cls ≡ "typ" ergo redde «<code class="typ">§</code>»(span)
-    redde «<code>§</code>»(span)
+    redde "<code>§</code>"(span)
 }
 
 # Render all inline code spans in a line of Markdown.
 # Finds backtick-delimited spans and replaces them with HTML.
 #
 # Uses textus[i] (zero-allocation numerus scalar) for character comparison
-# and bulk sectio for flushing plain-text runs — avoids O(n²) allocation.
+# and bulk sectio for flushing plain-text runs — avoids O(n2) allocation.
 functio genera_line(textus line) → textus {
     varia textus result ← ""
     varia numerus i ← 0
@@ -165,16 +165,16 @@ functio genera_corpora(textus source) → textus {
     itera ex lines fixum line {
         si su.initium_cum(line, "```") {
             in_fence ← non in_fence
-            result ← result + line + nl_char
+            result ← (result + line) + nl_char
             perge
         }
 
         si in_fence {
-            result ← result + line + nl_char
+            result ← (result + line) + nl_char
             perge
         }
 
-        result ← result + genera_line(line) + nl_char
+        result ← (result + genera_line(line)) + nl_char
     }
 
     redde result

@@ -60,7 +60,7 @@ functio strip_quotes(textus value) → textus {
     fixum textus primus_char ← value.sectio(0, 1)
     fixum textus ultimus_char ← value.sectio(len - 1, len)
 
-    si primus_char ≡ "\"" et ultimus_char ≡ "\"" {
+    si primus_char ≡ «\"» et ultimus_char ≡ «\"» {
         redde value.sectio(1, len - 1)
     }
 

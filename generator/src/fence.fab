@@ -105,11 +105,5 @@ functio parse_info(textus info, textus source, numerus line) → Fence {
         }
     }
 
-    redde Fence {
-        locale = locale,
-        modus = modus,
-        outcome = outcome,
-        source = source,
-        line = line,
-    }
+    redde Fence { locale = locale, modus = modus, outcome = outcome, source = source, line = line }
 }

@@ -48,19 +48,9 @@ functio parse_heading(numerus level, textus rest, numerus line_num) → Heading 
             fixum textus anchor ← trimmed.sectio(brace_start + 2, brace_end)
             fixum textus text ← su.recide(trimmed.sectio(0, brace_start))
 
-            redde Heading {
-                level = level,
-                text = text,
-                anchor = anchor,
-                line = line_num,
-            }
+            redde Heading { level = level, text = text, anchor = anchor, line = line_num }
         }
     }
 
-    redde Heading {
-        level = level,
-        text = trimmed,
-        anchor = "",
-        line = line_num,
-    }
+    redde Heading { level = level, text = trimmed, anchor = "", line = line_num }
 }

@@ -16,11 +16,11 @@ functio genera_paginam(types_mod.Pagina pag, textus stylesheet_link) → textus 
     fixum textus main_content ← genera_main(pag)
     fixum textus footer ← genera_source_list(pag.sources)
 
-    redde «<!DOCTYPE html>
+    redde ((((((((((((«<!DOCTYPE html>
 <html lang="§">
-»(pag.locale) + head + nl_char + «<body>
-» + renderbar + nl_char + «<div class="page">
-» + sidebar + nl_char + main_content + nl_char + footer + nl_char + «</div>
+    »(pag.locale) + head) + nl_char) + «<body>
+    ») + renderbar) + nl_char) + «<div class="page">
+    ») + sidebar) + nl_char) + main_content) + nl_char) + footer) + nl_char) + «</div>
 </body>
 </html>»
 }
@@ -77,7 +77,7 @@ functio genera_nav_link(textus label, textus href, bivalens active) → textus {
 
 # Generate the main content area.
 functio genera_main(types_mod.Pagina pag) → textus {
-    fixum textus h1 ← «<h1>§</h1>»(pag.titulus)
+    fixum textus h1 ← "<h1>§</h1>"(pag.titulus)
     fixum textus body ← genera_body(markdown_mod.converte(pag.corpus))
     redde «<main>
 §
@@ -100,10 +100,10 @@ functio genera_source_list(lista<textus> sources) → textus {
 <div class="source-list">
 <span class="side-h">Sources</span>
 <ul>
-»
+    »
     itera ex sources fixum src {
         html ← html + «  <li>§</li>
-»(src)
+        »(src)
     }
     html ← html + «</ul>
 </div>

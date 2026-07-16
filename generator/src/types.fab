@@ -41,18 +41,7 @@ functio aedifica_paginam(textus iter, textus source, textus locale) → Pagina {
     fixum lista<anchor_mod.Heading> headings ← anchor_mod.extract(split.body)
     fixum lista<textus> sources ← field_lista(split.fields, "sources")
 
-    redde Pagina {
-        iter = iter,
-        titulus = titulus,
-        section = section,
-        positio = 0,
-        corpus = split.body,
-        metadata = split.fields,
-        fences = fences,
-        headings = headings,
-        sources = sources,
-        locale = locale,
-    }
+    redde Pagina { iter = iter, titulus = titulus, section = section, positio = 0, corpus = split.body, metadata = split.fields, fences = fences, headings = headings, sources = sources, locale = locale }
 }
 
 # Get a string value from frontmatter, with fallback.
