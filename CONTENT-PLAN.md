@@ -51,46 +51,48 @@ staleness strategy, and what an LLM is allowed to touch.
 | **Source** | corpus frontmatter, compiler, EBNF | human/LLM prose |
 | **Pages** | ~154 corpus terms, syntax reference, EBNF, targets matrix, `llms.txt` | getting-started, feature explanations, history |
 | **Correctness** | correct by construction; a wrong page is a failing test | verified indirectly (see staleness oracle) |
-| **Translation cost** | zero *once transcode exists* — see **Blocking dependency** below | LLM pass per locale, must be tracked |
+| **Translation cost** | zero for keyword/type/sentinel vocabulary — **canonical transcode shipped** (see below) | LLM pass per locale, must be tracked |
 | **Drift** | impossible; source of truth is the compiler's own test corpus | detected, not prevented |
 
 The generated half is the large half. That is the point: it is also the half that becomes
-multilingual for free — **conditional on a compiler feature that does not exist yet.**
+multilingual for free — **the core transcode is now implemented** (see below).
 
-### Blocking dependency: output reader formatting (in flight)
+### Output reader formatting: shipped 2026-07-15 (faber 1.1.0 / radix)
 
-**Verified against `faber` 1.0.0 (repo build) on 2026-07-15.** The claim "the compiler is
-the translator" is *not true today*.
+**Verified against `faber` 1.1.0 (repo build).** Localized Faber re-emission is live.
 
-`--reader-locale <LOCALE>` exists on `build`, `check`, `run`, `emit`, `format`, and
-`explain`. But it is an **input declaration**, not an output transform — it tells the
-compiler what locale the source is *already written in*. Feeding it Latin source:
+`faber emit -t faber --reader-locale=<X>` and `faber format --reader-locale=<X>` now
+produce localized output — keywords, primitive types, and sentinel literals (`nihil`,
+`verum`, `falsum`) render through the selected reader pack's surface. The implementation
+adds a reverse-lookup accessor on `ReaderLocalePack` (`TokenKind → localized spelling`)
+and threads it as a borrow through the canonical emitter's `CodeWriter` call sites. An
+Arabic round-trip integration test proves logical-codepoint preservation.
 
-```
-$ faber format --canonical --reader-locale=th-TH --stdout src/main.fab
-warning: READER001  (×6)
-functio salve(textus nomen) → textus { ... }      ← still Latin
-```
+**What shipped:** canonical-path keyword/type/sentinel re-emission. The `--canonical`
+gate is removed; `--reader-locale=<X>` alone selects the localized canonical re-emit.
+`--canonical` remains as the explicit `la` alias. Visible Latin fallback (READER001-style)
+fires when a `TokenKind` has no row in the selected pack.
 
-Byte-identical output for `th-TH`, `zh-Hans`, and `ar`. `faber explain READER001` confirms
-it is a lint:
+**Remaining limitation: canonical path, not author mode.** `format --reader-locale=<X>`
+routes through `compile_canonical`, which is a HIR→text re-emit. Sugar syntax and
+trivia (comments) are not preserved on this path because the HIR does not carry them:
 
-> `reader locale {pack} used Latin fallback keyword {keyword}; use {localized}`
+| | author mode (not shipped) | canonical path (shipped) |
+|---|---|---|
+| `# WHY: documents the contract` | preserved | **stripped** (trivia-free) |
+| `redde "Salve, §!"(nomen)` | preserved | **`redde scriptum("Salve, §!", nomen)`** |
 
-This is why `examples/reader-locale/th-TH/src/main.fab` is authored directly in Thai
-(`ฟังก์ชัน ทักทาย(ข้อความ name)`). Nothing in the CLI parses pack A and emits pack B.
-
-**It is close.** To emit READER001 the compiler already computes the localized spelling —
-it knows `functio` → `ฟังก์ชัน` and reaches for it. It uses the mapping to write a warning
-rather than to rewrite the token.
-
-**A separate factory goal is implementing output reader formatting.** This plan assumes it
-lands. Until it does, treat "zero translation cost" as a projection, not a fact.
+For the docs pipeline this means generated corpus pages should render `summary` from
+frontmatter and suppress in-code comments (see *Unresolved: comments* below). Sugar
+desugaring is acceptable for canonical examples but would change the rendering surface of
+`features/canonical-vs-sugar` — those pinned blocks should use hand-authored locale
+variants, not the transcode path.
 
 #### Requirement on that work: author mode, not canonical-only
 
-`format --reader-locale` currently errors with `requires --canonical`. If that restriction
-is lifted by making **canonical** the transcode path, the output is unusable for docs:
+`format --reader-locale` now works without `--canonical`, but still routes through the
+canonical re-emit path. If author mode is eventually added as an alternative, it would
+preserve sugar and trivia. Today the canonical path desugars:
 
 | | author mode | `--canonical` |
 |---|---|---|
@@ -101,7 +103,11 @@ Thai readers would get desugared, comment-free code while English readers get th
 surface — and `features/canonical-vs-sugar`, a page whose entire subject is that
 distinction, would render in the wrong surface in six of seven locales.
 
-**The docs pipeline needs: parse pack A → emit pack B, sugar and trivia preserved.**
+**Mitigation:** generated corpus pages render canonical examples through the transcode
+(this is the correct path — corpus `.fab` files are already canonical). Pinned blocks on
+`features/canonical-vs-sugar` and similar pages use hand-authored locale variants, not
+the transcode. Author-mode transcode (sugar + trivia preserved) remains a future goal but
+is no longer a blocker — the canonical path covers the bulk of generated pages.
 
 #### Unresolved: comments inside `.fab` files
 
@@ -174,7 +180,8 @@ listing:
    → **Consequence:** the file path is authoritative and `title` is free prose. A
    generator must never slugify `title`.
 3. **English/Latin ships first**, and defines URL structure, filesystem paths, and the
-   generation scripts. Multilingual is deferred but designed for.
+   generation scripts. Multilingual generation is unblocked — the canonical transcode
+   shipped (faber 1.1.0).
 4. **The corpus is not merged into the site yet**, pending the generator.
 5. **`llms.txt` is deferred**, but see the open decision on generating rather than
    authoring it.
@@ -214,8 +221,8 @@ listing:
    along block boundaries also lets step 3's LLM be denied write access to code entirely —
    it cannot corrupt a sample it is not allowed to touch.
 
-   **Cost:** `th-TH/*.md` cannot be created until the transcode lands, so step 3 cannot
-   start early. Accepted in exchange for the git-diff property.
+   **Cost:** `th-TH/*.md` generation can begin now that the canonical transcode has
+   shipped. Step 3 (prose translation) can proceed in parallel.
 
 9. **Fence outcome: positional, closed vocab, `reject`** — matching the corpus's existing
    `kind = "reject"` rather than inventing a parallel word.
@@ -326,8 +333,8 @@ listing:
 
 Two things claim to turn `.fab` into display:
 
-- `faber format` — the compiler; will know all 7 packs once output reader formatting lands
-  (see *Blocking dependency*); ground truth by construction
+- `faber format` — the compiler; knows all 7 packs via the shipped canonical transcode
+  (see *Output reader formatting*); ground truth by construction
 - tree-sitter / Shiki (`grammars/faber.wasm`, `fab.tmLanguage.json`) — browser-capable
 
 But `tree-sitter-faber` has exactly one entry in `languages/` and one in `grammars/`:
@@ -431,12 +438,14 @@ diagnostics/LLM artifacts; pack-aware lexing and type resolution; manifest and C
 selection; visible fallback and suggestions; pack-owned diagnostic rendering; `faber
 explain`; bidi-isolated source display; canonical formatting.
 
-Marked **Partial / not shipped**: localized Faber re-emission — corroborating this plan's
-*Blocking dependency* section and the empirical 1.0.0 testing exactly.
+Marked **Shipped** as of faber 1.1.0 (2026-07-15): localized Faber re-emission via the
+canonical transcode path. The reader-locale substrate is now closed at the compiler/CLI
+layer; the remaining gap is author-mode (sugar/trivia preservation), which does not block
+generated corpus pages.
 
-**The honest line for the site: seven packs ship and are live; localized re-emission does
-not.** Speculum draws that line in the wrong place and would make the site lie in the
-modest direction. Its "non-negotiable honesty" rule is adopted in *spirit* — every
+**The honest line for the site: seven packs ship and are live; localized canonical
+re-emission is shipped.** Speculum's original framing assumed re-emission was not wired;
+it now is.
 capability claim carries a policy verb and evidence — and rejected on *facts*.
 
 **Binding upstream constraint**, from that same doc's own row for this project:
@@ -459,7 +468,7 @@ is encyclopedic in register — a plainly-worded route to installation, not a CT
 reference work may say where to obtain the thing it documents. No hero, no testimonial, no
 marketing voice anywhere.
 
-### The portal is not blocked on the transcode
+### The portal has real code in every language
 
 Every pack ships a hand-authored exemplar — `salve-munde.{ar,hi,la,th-TH,vi,zh-Hans,
 zh-Hant}.fab`, all seven verified present, each declared by its pack's `[llm] exemplars`.
@@ -762,8 +771,9 @@ bugs*). So the funnel would read: portal demonstrates that Faber speaks your lan
 banner sends you to install → install hands you a compiler that cannot do the thing you
 came for.
 
-**The brew formula needs a 1.0.0 release before this page can be written honestly.**
-Blocks the funnel, not slice 1.
+**The brew formula needs a 1.1.0+ release before this page can be written honestly.**
+Blocks the funnel, not slice 1. The repo is at 1.1.0; the published Homebrew formula is
+still 0.38.0.
 
 ### Authored — History
 
@@ -891,7 +901,7 @@ reference-only or reference-plus-on-ramp is still open.
 
 ## Next steps
 
-**Strategy: build the framework in English now; wire up transcode when it lands.**
+**Strategy: build the framework in English now; multilingual generation is unblocked.**
 
 ### English-first does not mean Latin-only
 
@@ -900,24 +910,24 @@ shows Thai, Arabic, Hindi, Chinese, and Vietnamese samples *to an English reader
 the page's entire point. The old HTML carried `data-locale` across 6 non-Latin values
 because the **English** site needed it.
 
-So of the whole "multilingual" bucket, exactly one item is deferrable:
+Of the whole "multilingual" bucket, the canonical transcode is now live:
 
-| | needed for the English site | why |
+| | needed for the English site | status |
 |---|---|---|
 | fence **locale** | **day one** | reader-locale's 6 non-Latin blocks must parse under their own packs |
 | fence **mode** (pinned/fluid) | **day one** | those blocks are pinned, the rest are fluid, and nothing distinguishes them today |
 | fence **outcome** | **day one** | the homepage's code does not lex — live, in English, right now (see below) |
-| **transcode** | deferred | ← the only one |
+| **transcode** | **shipped** (canonical path, faber 1.1.0) | keyword/type/sentinel re-emission is live; author-mode (sugar/trivia preserved) remains a future goal |
 
 The contracts are not scaffolding built on spec. They are load-bearing for the English
 site and pay off immediately.
 
-### Seams — cheap now, a refactor later
+### Seams — wiring points for the generator
 
 - **`render_example(source, from_locale, to_locale)`** — every generated page calls it.
-  Today it asserts `from == to` and returns the source unchanged. When the factory goal
-  lands it is one function body, because every call site already passes the right
-  arguments. This is the wiring point.
+  The transcode is shipped: implement as `faber emit -t faber --reader-locale=<to_locale>`
+  (canonical path). Sugar/trivia preservation requires the future author-mode path; until
+  then, generated pages use canonical examples and pinned blocks stay hand-authored.
 - **Locale stays a parameter everywhere.** `src/{locale}/` is already right — do not let
   `en-US` reach template lookups or path joins.
 - **Translation-provenance field in the frontmatter schema** (O7) even though nothing
@@ -951,7 +961,7 @@ it.
    and three more `//` comments. Faber uses `#`; `//` is `LEX006.c_style_line_comment`. The
    first code a visitor sees is invalid Faber. → the fence extractor catches this on day one.
 2. **The documented install path ships a stale compiler.** `/opt/homebrew/bin/faber` is
-   **0.38.0** (symlinked 2026-06-29); the repo builds **1.0.0**. 0.38.0 cannot parse
+   **0.38.0** (symlinked 2026-06-29); the repo builds **1.1.0**. 0.38.0 cannot parse
    `[reader]` in `faber.toml` at all — it rejects this repo's own reader-locale examples
    with a TOML parse error. → exactly the class of lie the getting-started container check
    is for. Note for anyone testing compiler behaviour: **use the repo build, not `which
