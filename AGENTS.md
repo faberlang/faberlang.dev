@@ -64,26 +64,32 @@ assets/
   reports/           RC1 checklists, provenance
 ```
 
-### What is NOT wired yet
+### What is live now (Stage 3 complete)
 
-The working branch (`docs/content-plan-architecture`) replaced the old
-infrastructure with Markdown content + the Speculum generator. Commit
-`6f95be7` cleared out `assets/`, the deploy workflow, `.gitignore`, and
-all prior infrastructure to make way for the new design. **The generator
-is not yet connected to the deploy pipeline.** Merging the working branch
-to main without a deploy workflow would delete the live site without
-replacing it.
+The site is generated from Markdown sources through the Speculum generator.
+The deploy pipeline is:
 
-### Path to live update
+1. **Local render:** `generator/scripts/build-site.sh` renders all `.md`
+   files in `src/en-US/` to `dist/` as static HTML + CSS
+2. **Commit:** `dist/` is committed to the repo (the generator requires
+   the Faber compiler, which is not available in CI)
+3. **Deploy:** Push to `main` triggers `.github/workflows/deploy-pages.yml`,
+   which uploads `dist/` as a GitHub Pages artifact and deploys it
 
-To update the live site with the new generator output:
+**To update the live site after content changes:**
 
-1. Run the Speculum generator across all 23 Markdown pages → static HTML
-2. Place rendered output in `assets/` (or `dist/`)
-3. Restore `.github/workflows/deploy-pages.yml` pointing at the rendered output
-4. Merge to `main` → push triggers the deploy
+```bash
+# 1. Render all pages
+bash generator/scripts/build-site.sh
 
-This is Stage 3+ work per the campaign.
+# 2. Commit both source and rendered output
+git add src/ dist/
+git commit -m "content: update pages"
+git push origin main
+```
+
+The push triggers the deploy automatically. GitHub Pages typically updates
+within 1-2 minutes.
 
 ## Speculum generator
 
@@ -123,7 +129,7 @@ inject file I/O, then compiling and running.
 |---|---|---|
 | 1 — Generator foundation | ✅ Closed | 9 modules, `faber check` clean, renders end-to-end |
 | 2 — Annotate authored pages | ✅ Closed | 72/72 fences pass, 146 heading anchors, all 23 pages render |
-| 3 — Port HTML to Markdown | Pending | 18 HTML pages → Markdown, write missing hub pages, delete HTML |
+| 3 — Port HTML to Markdown | ✅ Closed | 0 HTML files remain, 40 pages live, deploy pipeline wired |
 | 4 — Corpus generation | Pending | 154 corpus terms → ~167 canonical pages per locale |
 | 5 — Portal + getting-started | Pending | Speculum Porta entry point, install/tutorial track |
 | 6 — Multilingual | Pending | Canonical transcode per locale |

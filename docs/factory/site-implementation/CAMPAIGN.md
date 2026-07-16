@@ -96,7 +96,7 @@ depends on.
 |---|---|---|
 | Generator build system | **Built** — 8 modules, ~800 lines, `faber check` clean, **renders end-to-end** | Close Stage 1 (block-level Markdown conversion = Stage 2) |
 | Authored Markdown pages | 23 drafted, unannotated | Blocked on Stage 2 gate |
-| HTML pages (content debt) | 18 HTML files as content reference | Blocked on Stage 3 |
+| HTML pages (content debt) | **Cleared** — 0 HTML files remain; all content in Markdown | Stage 3 gate closed |
 | Corpus page generator | Not started | Blocked on Stage 2 |
 | Portal (Speculum Porta) | Homepage HTML exists, not generated | Blocked on Stage 6 |
 | Getting-started | Not started | Blocked on Homebrew formula |
@@ -195,7 +195,7 @@ fences and stable anchors. CI passes on all extracted fences.
 
 ### Stage 3 — Port HTML Pages to Markdown
 
-**Status**: planned
+**Status**: ✅ gate closed (2026-07-16) — all HTML deleted, 40 pages live
 **Source**: `CONTENT-PLAN.md` § Page inventory (Features, Tooling stubs, Hubs)
 **Why now**: Content exists in HTML; it must move to Markdown before the HTML is deleted.
 **Lowers to**: `factory`
@@ -203,17 +203,24 @@ fences and stable anchors. CI passes on all extracted fences.
 **Depends on**: Stage 2
 
 Deliverables:
-- Port 8 feature pages (reader-locale, compilation-lanes, frames, testing,
-  canonical-vs-sugar, commandments, latin-and-glyphs) from HTML to Markdown
-- Port 3 tooling stubs (faber-build-tool, radix-compiler, cista-package-manager)
-- Write missing hub pages (features/index, tooling/index, syntax/index,
-  ecosystem/index, references/index, history/index)
-- Delete all HTML files after content is verified in Markdown
-- Render ported pages through the generator
+- ~~Port 8 feature pages~~ — 7 feature pages ported (reader-locale,
+  compilation-lanes, frames, testing, canonical-vs-sugar, commandments,
+  latin-and-glyphs) from HTML to Markdown
+- ~~Port 3 tooling stubs~~ — faber-build-tool, radix-compiler,
+  cista-package-manager ported with real content
+- ~~Write missing hub pages~~ — 6 hub pages written (features/index,
+  tooling/index, syntax/index, ecosystem/index, references/index,
+  history/index)
+- ~~Write homepage Markdown~~ — index.md replaces custom index.html
+- ~~Delete all HTML files~~ — 18 HTML files deleted, zero remain
+- ~~Render ported pages through the generator~~ — 40/40 pages render, 0 failures
+- ~~Deploy pipeline wired~~ — build-site.sh batch render + deploy-pages.yml
+  workflow restored; pushed to main; live at faberlang.dev
 
-**Gate**: Zero HTML content files remain. All content renders through the
+**Gate**: ~~Zero HTML content files remain. All content renders through the
 generator. No inline styles, no per-page `:root` blocks, no forked design
-systems.
+systems.~~ **Closed.** 0 HTML files. 40 pages rendered. One stylesheet.
+81/81 fences pass. Site live at https://faberlang.dev.
 
 ### Stage 4 — Corpus Term Page Generator (Slice 2)
 
