@@ -88,7 +88,7 @@ release history need to be compiled from release notes and git history.
 | Page | Path | Source documents |
 |---|---|---|
 | Ecosystem hub | `ecosystem/index.html` | Overview, links to sub-pages |
-| Norma standard library | `ecosystem/norma.html` | `README.md` (Standard Library section), sibling `norma/`, `norma/exempla/` |
+| Norma standard library | `ecosystem/norma.html` | `README.md` (Standard Library section), sibling `norma/`, `norma/exempla/`, `radix/docs/stdlib/morphologia.md` (naming convention — method conjugation policy for all stdlib APIs) |
 | Triga graphics | `ecosystem/triga.html` | `README.md` (mentions triga), sibling `triga/` |
 | Coreutils | `ecosystem/coreutils.html` | `examples/coreutils/` (38 packages, README.md with campaign docs), `examples/coreutils/packages/echo/src/main.fab` (representative exemplar) |
 | AI Workbench | `ecosystem/ai-workbench.html` | `examples/ai-workbench/` (README.md, package, harness) |

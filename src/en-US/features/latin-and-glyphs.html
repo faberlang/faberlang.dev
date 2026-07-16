@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faber — Latin vocabulary and structural glyphs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+Thai:wght@400;700&family=Noto+Sans:wght@400;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+  :root {
+    --paper: #faf9f6; --paper-alt: #f0efea; --ink: #1a1a18; --ink-dim: #5f5e58;
+    --ink-faint: #8c8a82; --rule: #dcdad2; --glyph: #2f4faa; --glyph-soft: #e8ecf8;
+    --support: #2f6b4c; --limited: #9a7420; --defer: #6b6a64;
+    --serif: 'Noto Serif', Georgia, serif; --sans: 'Noto Sans', -apple-system, 'Segoe UI', sans-serif;
+    --mono: 'Noto Sans Mono', 'Noto Sans Thai', 'Noto Sans Arabic', 'Noto Sans Devanagari', 'Noto Sans SC', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 16.5px; line-height: 28px; }
+  a { color: var(--ink); border-bottom: 1px solid var(--rule); text-decoration: none; }
+  a:hover { border-bottom-color: var(--glyph); }
+  code { font-family: var(--mono); font-size: 0.88em; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+  h1 { font-family: var(--serif); font-size: 38px; line-height: 46px; font-weight: 400; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
+  .sub { font-family: var(--sans); font-size: 13px; color: var(--ink-faint); margin: 8px 0 28px; }
+  .bread { font-family: var(--sans); font-size: 12px; color: var(--ink-faint); margin-bottom: 20px; }
+  .bread a { border: none; color: var(--ink-dim); }
+  .bread a:hover { border-bottom: 1px solid var(--glyph); }
+  h2 { font-family: var(--serif); font-size: 24px; font-weight: 400; margin: 40px 0 12px; border-bottom: 1px solid var(--rule); padding-bottom: 7px; scroll-margin-top: 20px; }
+  h3 { font-family: var(--serif); font-size: 18px; font-weight: 700; margin: 28px 0 8px; }
+  h4 { font-family: var(--sans); font-size: 13px; font-weight: 700; margin: 20px 0 6px; color: var(--ink-dim); }
+  p { margin-bottom: 15px; max-width: 74ch; }
+  .lead { font-size: 17.5px; line-height: 30px; }
+  .dim { color: var(--ink-dim); }
+  ul.body { margin: 0 0 16px 22px; }
+  ul.body li { margin-bottom: 6px; max-width: 72ch; }
+  pre.faber-code { font-family: var(--mono); font-size: 13px; line-height: 24px; background: var(--paper-alt); border: 1px solid var(--rule); padding: 14px 16px; margin: 12px 0; overflow-x: auto; white-space: pre; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 8px; font-family: var(--sans); font-size: 13px; }
+  th { text-align: left; font-weight: 400; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); border-bottom: 1px solid var(--ink); padding: 0 10px 7px 0; }
+  td { border-bottom: 1px solid var(--rule); padding: 9px 10px 9px 0; vertical-align: baseline; line-height: 21px; }
+  td.t { font-family: var(--mono); font-size: 12px; color: var(--ink); white-space: nowrap; }
+  td.m { color: var(--ink-dim); font-size: 12px; }
+  caption { caption-side: bottom; text-align: left; font-family: var(--sans); font-size: 11.5px; color: var(--ink-faint); padding-top: 8px; line-height: 19px; }
+  .callout { border-left: 3px solid var(--glyph); background: var(--glyph-soft); padding: 14px 18px; margin: 18px 0; font-size: 15px; line-height: 26px; max-width: 74ch; }
+  .glyph-demo { color: var(--glyph); font-weight: 700; font-family: var(--mono); font-size: 1.2em; }
+  footer { border-top: 1px solid var(--rule); margin-top: 48px; padding: 20px 0 40px; font-family: var(--sans); font-size: 12px; color: var(--ink-faint); }
+  footer a { border-bottom: 1px solid var(--rule); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bread"><a href="index.html">← Features</a></div>
+  <h1>Latin vocabulary and structural glyphs</h1>
+  <div class="sub">Three signal choices that make Faber source recognisable at a glance</div>
+
+  <p class="lead">
+    Faber makes three deliberate signal choices that work together to produce source
+    with stable grammatical shape. A reader can see the semantic role of every
+    construct before knowing which target backend the code will be compiled to.
+  </p>
+
+  <!-- ================================================================== -->
+  <h2 id="three">The three signals</h2>
+
+  <table>
+    <thead><tr><th>Signal</th><th>Examples</th><th>Role</th></tr></thead>
+    <tbody>
+      <tr><td class="t">Type-first declarations</td><td class="t"><code>textus nomen</code>, <code>numerus aetas</code></td><td class="m">Shape reads toward binding — type, then name.</td></tr>
+      <tr><td class="t">Latin behavioural words</td><td class="t"><code>functio</code>, <code>genus</code>, <code>si</code>, <code>redde</code>, <code>fixum</code></td><td class="m">Declarations, statements, lifecycle, and behavioural intent.</td></tr>
+      <tr><td class="t">Structural glyphs</td><td class="t"><span class="glyph-demo">← → ∴ ≡ ∪ ⇥</span></td><td class="m">Value flow, type flow, and structural joints — universal, never localise.</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    These three are designed to be mutually reinforcing. A reader who knows Faber in
+    one locale can read it in any locale because the glyphs and structure never change.
+    A reader who knows the Rust backend can still recognise the Faber source because
+    the Latin keywords and type-first order produce a distinct visual register.
+  </p>
+
+  <!-- ================================================================== -->
+  <h2 id="type-first">Type-first declarations</h2>
+
+  <p>
+    Faber puts the type before the name in every declaration. This is the opposite of
+    mainstream C-family syntax, and it is deliberate:
+  </p>
+
+  <table>
+    <thead><tr><th>Construct</th><th>C-family habit</th><th>Faber</th></tr></thead>
+    <tbody>
+      <tr><td class="t">Variable</td><td class="t"><code>int count = 0</code></td><td class="t"><code>numerus count ← 0</code></td></tr>
+      <tr><td class="t">Function</td><td class="t"><code>fn greet(name: String) → String</code></td><td class="t"><code>functio salve(textus nomen) → textus</code></td></tr>
+      <tr><td class="t">Parameter</td><td class="t"><code>(String name)</code></td><td class="t"><code>(textus nomen)</code></td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Type-first declarations mean the shape of data is the first thing the reader sees.
+    This aligns naturally with languages that read left-to-right for semantic breadth
+    — Chinese, Hindi, and Arabic declarations follow the same order.
+  </p>
+
+  <pre class="faber-code" data-locale="la">functio divide(numerus a, numerus b) → numerus ∪ nihil {
+    si b ≡ 0 ∴ redde nihil
+    redde a / b
+}</pre>
+
+  <!-- ================================================================== -->
+  <h2 id="latin">Latin behavioural vocabulary</h2>
+
+  <p>
+    Faber uses Latin words for every construct that has behavioural or grammatical
+    shape. The vocabulary is small and regular, drawn from a single classical source
+    rather than the mixed etymologies of most programming languages.
+  </p>
+
+  <h3>Declarations</h3>
+  <table>
+    <thead><tr><th>Keyword</th><th>Role</th><th>Approximate equivalent</th></tr></thead>
+    <tbody>
+      <tr><td class="t"><code>functio</code></td><td class="m">Declares a named function or method</td><td class="m"><code>fn</code>, <code>def</code>, <code>function</code></td></tr>
+      <tr><td class="t"><code>genus</code></td><td class="m">Declares a concrete type with fields</td><td class="m"><code>class</code>, <code>struct</code></td></tr>
+      <tr><td class="t"><code>implendum</code></td><td class="m">Declares a behavioural contract</td><td class="m"><code>interface</code>, <code>trait</code></td></tr>
+      <tr><td class="t"><code>typus</code></td><td class="m">Declares a type alias</td><td class="m"><code>typedef</code>, <code>type</code></td></tr>
+      <tr><td class="t"><code>discretio</code></td><td class="m">Declares a tagged union</td><td class="m"><code>enum</code>, <code>sum type</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Bindings and transfer</h3>
+  <table>
+    <thead><tr><th>Keyword</th><th>Role</th><th>Approximate equivalent</th></tr></thead>
+    <tbody>
+      <tr><td class="t"><code>fixum</code></td><td class="m">Immutable binding (write-once)</td><td class="m"><code>let</code>, <code>const</code></td></tr>
+      <tr><td class="t"><code>varia</code></td><td class="m">Mutable binding</td><td class="m"><code>let mut</code>, <code>var</code></td></tr>
+      <tr><td class="t"><code>sit</code></td><td class="m">Concise inferred immutable</td><td class="m"><code>let</code> (inferred)</td></tr>
+      <tr><td class="t"><code>redde</code></td><td class="m">Return a value from a function</td><td class="m"><code>return</code></td></tr>
+      <tr><td class="t"><code>iace</code></td><td class="m">Throw on the error channel</td><td class="m"><code>throw</code>, <code>raise</code></td></tr>
+      <tr><td class="t"><code>mori</code></td><td class="m">Deferred — behaviour not yet expressible</td><td class="m"><code>unimplemented!</code>, <code>todo</code></td></tr>
+    </tbody>
+  </table>
+
+  <h3>Control flow</h3>
+  <table>
+    <thead><tr><th>Keyword</th><th>Role</th><th>Approximate equivalent</th></tr></thead>
+    <tbody>
+      <tr><td class="t"><code>si</code></td><td class="m">Conditional branch</td><td class="m"><code>if</code></td></tr>
+      <tr><td class="t"><code>sin</code></td><td class="m">Else-if branch</td><td class="m"><code>else if</code></td></tr>
+      <tr><td class="t"><code>secus</code></td><td class="m">Else branch</td><td class="m"><code>else</code></td></tr>
+      <tr><td class="t"><code>dum</code></td><td class="m">While loop</td><td class="m"><code>while</code></td></tr>
+      <tr><td class="t"><code>itera</code></td><td class="m">Iteration (values, keys, or range)</td><td class="m"><code>for</code></td></tr>
+      <tr><td class="t"><code>elige</code></td><td class="m">Pattern-match (first arm wins)</td><td class="m"><code>match</code>, <code>switch</code></td></tr>
+      <tr><td class="t"><code>fac</code></td><td class="m">Try block with error recovery</td><td class="m"><code>try</code>, <code>do</code></td></tr>
+      <tr><td class="t"><code>cape</code></td><td class="m">Error handler for fac</td><td class="m"><code>catch</code></td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    The Latin vocabulary is <b>bindable</b> — it ships with the canonical pack but
+    can be remapped through reader locale. A Thai programmer sees <code>ถ้า</code>
+    instead of <code>si</code>; a Chinese programmer sees <code>函数</code> instead of
+    <code>functio</code>. The vocabulary is not privileged; only the grammar is.
+  </div>
+
+  <!-- ================================================================== -->
+  <h2 id="glyphs">Structural glyphs</h2>
+
+  <p>
+    Where behavioural vocabulary uses Latin words, structural meaning uses universal
+    glyphs. These never localise and never change their meaning across renderings.
+    They are the visual anchor that makes Faber source recognisable regardless of
+    which human language the keywords are rendered in.
+  </p>
+
+  <h3>Value flow</h3>
+  <table>
+    <thead><tr><th>Glyph</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td class="t"><span class="glyph-demo">←</span></td><td class="m">Runtime binding, reassignment, and mutation — the only assignment operator</td></tr>
+      <tr><td class="t"><span class="glyph-demo">→</span></td><td class="m">Function return type declaration</td></tr>
+      <tr><td class="t"><span class="glyph-demo">⇥</span></td><td class="m">Alternate exit: error-channel type or inline conversion recovery</td></tr>
+      <tr><td class="t"><span class="glyph-demo">∴</span></td><td class="m">Compact therefore body — introduces a single-statement branch body</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Type shape</h3>
+  <table>
+    <thead><tr><th>Glyph</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td class="t"><span class="glyph-demo">∷</span></td><td class="m">Static type ascription — compile-time assertion about a value's type</td></tr>
+      <tr><td class="t"><span class="glyph-demo">↦</span></td><td class="m">Runtime conversion — parsing or coercion that may fail</td></tr>
+      <tr><td class="t"><span class="glyph-demo">∪</span></td><td class="m">Inline union type — connects two types (as in <code>T ∪ nihil</code>)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Comparison and logic</h3>
+  <table>
+    <thead><tr><th>Glyph</th><th>Meaning</th></tr></thead>
+    <tbody>
+      <tr><td class="t"><span class="glyph-demo">≡</span> <span class="glyph-demo">≠</span></td><td class="m">Exact equality and inequality — strict type match required</td></tr>
+      <tr><td class="t"><span class="glyph-demo">&lt;</span> <span class="glyph-demo">&gt;</span> <span class="glyph-demo">≤</span> <span class="glyph-demo">≥</span></td><td class="m">Ordering comparisons</td></tr>
+      <tr><td class="t"><span class="glyph-demo">∧</span> <span class="glyph-demo">∨</span> <span class="glyph-demo">⊻</span> <span class="glyph-demo">¬</span></td><td class="m">Logical and bitwise: and, or, xor, not</td></tr>
+    </tbody>
+  </table>
+
+  <h3>The binding convention matters</h3>
+
+  <p>
+    One glyph choice deserves special attention because it is the most common
+    point of confusion for new readers:
+  </p>
+
+  <table>
+    <thead><tr><th>Glyph</th><th>Role</th><th>Use for</th></tr></thead>
+    <tbody>
+      <tr><td class="t"><span class="glyph-demo">←</span></td><td class="m"><b>Runtime flow</b></td><td class="m">Initial binding, reassignment, and mutation at execution time</td></tr>
+      <tr><td class="t"><code>=</code></td><td class="m"><b>Structural shape</b></td><td class="m">Field names inside literals and declaration metadata — not runtime stores</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Most languages overload <code>=</code> for both "define this field in a type"
+    and "put a runtime value in this variable." Faber splits those jobs. Every
+    <code>←</code> is live data flow; every <code>=</code> inside <code>Type { … }</code>
+    is genus field layout.
+  </p>
+
+  <pre class="faber-code" data-locale="la">// Runtime binding: ← attaches a value to a name
+fixum numerus count ← 0
+varia textus label ← "ready"
+count ← count + 1
+
+// Structural shape: = defines field values inside a literal
+fixum _ p ← Point {
+    x = 10,
+    y = 20
+}</pre>
+
+  <!-- ================================================================== -->
+  <h2 id="compare">Compared to mainstream languages</h2>
+
+  <p>
+    The table below shows how common programming language patterns map to Faber's
+    three-signal system. The Faber column uses a different glyph or keyword for
+    each distinct semantic job — no overloading.
+  </p>
+
+  <table>
+    <thead><tr><th>Semantic job</th><th>Common in other languages</th><th>Faber</th></tr></thead>
+    <tbody>
+      <tr><td class="m">Parameter type declaration</td><td class="t"><code>name: String</code></td><td class="t"><code>textus nomen</code></td></tr>
+      <tr><td class="m">Return type</td><td class="t"><code>→ String</code>, <code>: String</code></td><td class="t"><span class="glyph-demo">→</span> <code>textus</code></td></tr>
+      <tr><td class="m">Runtime assignment</td><td class="t"><code>x = value</code></td><td class="t"><span class="glyph-demo">←</span></td></tr>
+      <tr><td class="m">Equality test</td><td class="t"><code>==</code></td><td class="t"><span class="glyph-demo">≡</span></td></tr>
+      <tr><td class="m">Nullability</td><td class="t"><code>T?</code>, <code>Option&lt;T&gt;</code></td><td class="t"><code>T ∪ nihil</code></td></tr>
+      <tr><td class="m">Branch + one statement</td><td class="t"><code>if (cond) return x</code></td><td class="t"><code>si cond ∴ redde x</code></td></tr>
+      <tr><td class="m">Type cast</td><td class="t"><code>(T)value</code>, <code>value as T</code></td><td class="t"><code>value ∷ T</code></td></tr>
+      <tr><td class="m">Conversion (may fail)</td><td class="t"><code>try_into()</code></td><td class="t"><code>value ↦ T</code></td></tr>
+    </tbody>
+  </table>
+
+  <!-- ================================================================== -->
+  <h2 id="references">References</h2>
+  <ol style="font-size:13px;line-height:23px;color:var(--ink-dim);margin-top:8px">
+    <li style="margin-bottom:5px">EBNF grammar — full glyph and keyword inventory</li>
+    <li style="margin-bottom:5px">examples/corpus/ — language corpus with 292 exemplar files across all keywords</li>
+    <li style="margin-bottom:5px">examples/corpus/operatores/ — operator and glyph exemplars</li>
+    <li style="margin-bottom:5px">Commandments — the nine design laws that preserve these signals</li>
+  </ol>
+
+  <footer>
+    <span>Faber · <a href="index.html">Features</a></span>
+    <span><a href="commandments.html">Next: Commandments →</a></span>
+  </footer>
+</div>
+</body>
+</html>

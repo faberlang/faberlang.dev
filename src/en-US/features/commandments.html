@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faber — Commandments</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+Thai:wght@400;700&family=Noto+Sans:wght@400;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+  :root {
+    --paper: #faf9f6; --paper-alt: #f0efea; --ink: #1a1a18; --ink-dim: #5f5e58;
+    --ink-faint: #8c8a82; --rule: #dcdad2; --glyph: #2f4faa; --glyph-soft: #e8ecf8;
+    --support: #2f6b4c; --serif: 'Noto Serif', Georgia, serif; --sans: 'Noto Sans', -apple-system, 'Segoe UI', sans-serif;
+    --mono: 'Noto Sans Mono', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 16.5px; line-height: 28px; }
+  a { color: var(--ink); border-bottom: 1px solid var(--rule); text-decoration: none; }
+  a:hover { border-bottom-color: var(--glyph); }
+  code { font-family: var(--mono); font-size: 0.88em; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+  h1 { font-family: var(--serif); font-size: 38px; line-height: 46px; font-weight: 400; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
+  .sub { font-family: var(--sans); font-size: 13px; color: var(--ink-faint); margin: 8px 0 28px; }
+  .bread { font-family: var(--sans); font-size: 12px; color: var(--ink-faint); margin-bottom: 20px; }
+  .bread a { border: none; color: var(--ink-dim); }
+  .bread a:hover { border-bottom: 1px solid var(--glyph); }
+  h2 { font-family: var(--serif); font-size: 24px; font-weight: 400; margin: 40px 0 12px; border-bottom: 1px solid var(--rule); padding-bottom: 7px; }
+  h3 { font-family: var(--serif); font-size: 18px; font-weight: 700; margin: 28px 0 8px; }
+  p { margin-bottom: 15px; max-width: 74ch; }
+  .lead { font-size: 17.5px; line-height: 30px; }
+  .dim { color: var(--ink-dim); }
+  ul.body { margin: 0 0 16px 22px; }
+  ul.body li { margin-bottom: 6px; max-width: 72ch; }
+  pre.faber-code { font-family: var(--mono); font-size: 13px; line-height: 24px; background: var(--paper-alt); border: 1px solid var(--rule); padding: 14px 16px; margin: 12px 0; overflow-x: auto; white-space: pre; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 8px; font-family: var(--sans); font-size: 13px; }
+  th { text-align: left; font-weight: 400; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); border-bottom: 1px solid var(--ink); padding: 0 10px 7px 0; }
+  td { border-bottom: 1px solid var(--rule); padding: 9px 10px 9px 0; vertical-align: baseline; line-height: 21px; }
+  td.t { font-family: var(--mono); font-size: 12px; color: var(--ink); white-space: nowrap; }
+  td.m { color: var(--ink-dim); font-size: 12px; }
+  td.num { font-family: var(--sans); font-size: 14px; font-weight: 700; color: var(--ink-faint); width: 36px; padding-right: 0; }
+  .callout { border-left: 3px solid var(--glyph); background: var(--glyph-soft); padding: 14px 18px; margin: 18px 0; font-size: 15px; line-height: 26px; max-width: 74ch; }
+  .commandment { margin: 24px 0; border: 1px solid var(--rule); }
+  .commandment .cm-h { font-family: var(--sans); color: var(--ink); background: var(--paper-alt); padding: 10px 16px; border-bottom: 1px solid var(--rule); display: flex; align-items: baseline; gap: 10px; }
+  .commandment .cm-h .cm-num { font-size: 14px; font-weight: 700; color: var(--ink-faint); }
+  .commandment .cm-h .cm-title { font-size: 16px; font-weight: 700; }
+  .commandment .cm-body { padding: 12px 16px; font-size: 15px; line-height: 26px; }
+  .commandment pre.faber-code { margin: 0; border-top: 1px solid var(--rule); border-left: none; border-right: none; border-bottom: none; }
+  footer { border-top: 1px solid var(--rule); margin-top: 48px; padding: 20px 0 40px; font-family: var(--sans); font-size: 12px; color: var(--ink-faint); }
+  footer a { border-bottom: 1px solid var(--rule); }
+  .glyph { color: var(--glyph); font-weight: 700; font-family: var(--mono); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bread"><a href="index.html">← Features</a></div>
+  <h1>Commandments</h1>
+  <div class="sub">Nine rules that make Faber feel like Faber</div>
+
+  <p class="lead">
+    These are the design laws that define Faber's character. Syntax can evolve and
+    features can be added, but changes should preserve these principles. A program
+    that violates them may be valid Faber, but it does not feel like Faber.
+  </p>
+
+  <p>
+    The commandments apply at every level — from the grammar itself down to how
+    standard library APIs are named. They are the reason a reader can identify
+    Faber source at a glance, regardless of which human language the keywords are
+    rendered in or which target backend the code compiles to.
+  </p>
+
+  <!-- ================================================================== -->
+  <div class="commandment">
+    <div class="cm-h">
+      <span class="cm-num">I</span>
+      <span class="cm-title">Types before names</span>
+    </div>
+    <div class="cm-body">
+      Declarations read from shape to binding. The type comes first because the
+      reader needs to know <em>what kind of thing</em> this is before the name
+      tells them <em>which</em> thing. This aligns with languages whose
+      grammatical order reads from category to instance — Chinese, Hindi, Arabic
+      — and produces declarations that scan uniformly.
+    </div>
+    <pre class="faber-code" data-locale="la">// Type before name in every declaration
+textus nomen
+numerus aetas
+functio salve(textus name) → textus</pre>
+  </div>
+
+  <div class="commandment">
+    <div class="cm-h">
+      <span class="cm-num">II</span>
+      <span class="cm-title">Mechanical over magical</span>
+    </div>
+    <div class="cm-body">
+      The same construct should mean the same thing everywhere. If a reader needs
+      distant context to know what a symbol does, the syntax is suspect. Faber
+      prefers explicit, local reasoning — the declaration site carries enough
+      information to understand what will happen at the use site.
+    </div>
+    <pre class="faber-code" data-locale="la">// The meaning of a call is determined by the function's signature,
+// not by invisible trait resolution or implicit conversions.
+functio duplica(numerus n) → numerus {
+    redde n * 2
+}</pre>
+  </div>
+
+  <div class="commandment">
+    <div class="cm-h">
+      <span class="cm-num">III</span>
+      <span class="cm-title">Glyphs carry structure</span>
+    </div>
+    <div class="cm-body">
+      Structural and operator meaning uses glyphs, not words: <span class="glyph">←</span>
+      for binding, <span class="glyph">→</span> for return type, <span class="glyph">⇥</span>
+      for error exit, <span class="glyph">∴</span> for compact branch body,
+      <span class="glyph">≡</span> for equality, <span class="glyph">∪</span> for union
+      types. Glyphs are universal — they never localise and never change meaning
+      across renderings. A Thai reader and a French reader see the same glyphs,
+      even if the keywords around them differ.
+    </div>
+  </div>
+
+  <div class="commandment">
+    <div class="cm-h">
+      <span class="cm-num">IV</span>
+      <span class="cm-title">Latin carries behaviour</span>
+    </div>
+    <div class="cm-body">
+      Words are for declarations, statements, lifecycle, and behavioural intent:
+      <code>functio</code>, <code>genus</code>, <code>fixum</code>,
+      <code>varia</code>, <code>redde</code>, <code>cape</code>.
+      These are bindable through reader-locale packs — they are the vocabulary,
+      not the grammar. The Latin choice is not about Latin superiority; it is
+      about picking <em>one</em> consistent classical source so that all keywords
+      belong to the same register and no keyword is privileged by being the
+      language the implementation was written in.
+    </div>
+  </div>
+
+  <div class="commandment">
+    <div class="cm-h">
+      <span class="cm-num">V</span>
+      <span class="cm-title">Conjugation carries time and flow</span>
+    </div>
+    <div class="cm-body">
+      When the same root logic can run synchronously, asynchronously, or as a
+      generator, the conjugated form of the verb should carry that execution mode.
+      Ownership pairs — mutate vs copy-out — use related forms of the same stem.
+      This is the morphologia principle. The standard library (Norma) follows this
+      convention for all method names: <code>lege</code> (sync read) vs
+      <code>leget</code> (async read), <code>adde</code> (mutate in place) vs
+      <code>addita</code> (return new copy). The compiler does not enforce or
+      derive conjugations — it is a naming policy, not a language feature.
+    </div>
+  </div>
+
+  <div class="commandment">
+    <div class="cm-h">
+      <span class="cm-num">VI</span>
+      <span class="cm-title">One sign, one job</span>
+    </div>
+    <div class="cm-body">
+      A glyph or keyword may have exact aliases, but it should not carry unrelated
+      meanings. Aliases must point back to one canonical concept. This is the
+      principle that drives Faber's split between <span class="glyph">←</span>
+      (runtime binding) and <code>=</code> (structural field shape) — most
+      languages collapse both into <code>=</code>, but that overloading hides
+      whether a line is a data-flow operation or a type-level definition.
+    </div>
+    <pre class="faber-code" data-locale="la">// ← is always runtime flow
+fixum numerus count ← 0
+count ← count + 1
+
+// = is always structural shape inside Type { }
+fixum _ p ← Point {
+    x = 10,
+    y = 20
+}</pre>
+  </div>
+
+  <div class="commandment">
+    <div class="cm-h">
+      <span class="cm-num">VII</span>
+      <span class="cm-title">Runtime flow is explicit</span>
+    </div>
+    <div class="cm-body">
+      Runtime binding, reassignment, and mutation use <span class="glyph">←</span>;
+      structural definition uses <code>=</code>. A reader scanning source can see
+      every data-flow operation immediately: every <span class="glyph">←</span> is a
+      runtime event. There is no syntactic ambiguity about whether a particular
+      <code>=</code> means "store into this variable" or "define this field."
+    </div>
+  </div>
+
+  <div class="commandment">
+    <div class="cm-h">
+      <span class="cm-num">VIII</span>
+      <span class="cm-title">Absence is typed</span>
+    </div>
+    <div class="cm-body">
+      Nullable value types are written as unions: <code>T ∪ nihil</code>. Optional
+      declaration slots use post-name markers: <code>sponte</code>. These are
+      distinct concepts — <em>a value that may be absent</em> vs <em>a slot the
+      caller may omit</em> — and Faber keeps them syntactically separate rather
+      than collapsing both into <code>T?</code> or <code>Option&lt;T&gt;</code>.
+    </div>
+    <pre class="faber-code" data-locale="la">// Absence in a value: T ∪ nihil
+functio find(textus key) → numerus ∪ nihil
+
+// Omission at declaration: sponte
+functio connect(textus host, numerus port sponte) → vacuum</pre>
+  </div>
+
+  <div class="commandment">
+    <div class="cm-h">
+      <span class="cm-num">IX</span>
+      <span class="cm-title">The compiler does not guess to hide missing information</span>
+    </div>
+    <div class="cm-body">
+      Missing type information is an analysis problem to fix upstream, not a codegen
+      detail to paper over. The compiler never silently infers a type that the
+      programmer did not provide when the information is genuinely absent — it
+      reports the gap and stops. This is the rule that keeps Faber honest: if a
+      reader cannot determine what a symbol means from local source, the compiler
+      should not pretend it can.
+    </div>
+  </div>
+
+  <!-- ================================================================== -->
+  <h2 id="purpose">Purpose</h2>
+
+  <p>
+    The commandments exist to answer a question that comes up in every language
+    design discussion: "Is this change still Faber?" They are the invariant
+    check — not against a feature list, but against a character. A change that
+    violates a commandment may still be a good idea, but it should be recognised
+    as a departure from Faber's design character rather than a routine addition.
+  </p>
+
+  <p>
+    In practice, the commandments most often serve as review criteria for new
+    syntax proposals. A proposal that weakens "types before names" by adding a
+    name-first alternative, or blurs "one sign one job" by overloading a glyph,
+    must justify why Faber should bend its character for that feature.
+  </p>
+
+  <footer>
+    <span>Faber · <a href="index.html">Features</a></span>
+    <span><a href="latin-and-glyphs.html">← Latin vocabulary and glyphs</a></span>
+  </footer>
+</div>
+</body>
+</html>
