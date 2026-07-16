@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faber</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+Thai:wght@400;700&family=Noto+Sans:wght@400;700&family=Noto+Sans:wght@400;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+  :root {
+    --paper: #faf9f6;
+    --paper-alt: #f0efea;
+    --ink: #1a1a18;
+    --ink-dim: #5f5e58;
+    --ink-faint: #8c8a82;
+    --rule: #dcdad2;
+    --glyph: #2f4faa;
+    --glyph-soft: #e8ecf8;
+    --fallback: #a8a49a;
+    --support: #2f6b4c;
+    --limited: #9a7420;
+    --reject: #a33f30;
+    --defer: #6b6a64;
+    --serif: 'Noto Serif', Georgia, serif;
+    --sans: 'Noto Sans', -apple-system, 'Segoe UI', sans-serif;
+    --mono: 'Noto Sans Mono', 'Noto Sans Thai', 'Noto Sans Arabic', 'Noto Sans Devanagari', 'Noto Sans SC', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 16.5px; line-height: 28px; }
+  a { color: var(--ink); border-bottom: 1px solid var(--rule); text-decoration: none; }
+  a:hover { border-bottom-color: var(--glyph); }
+  code { font-family: var(--mono); font-size: 0.88em; }
+
+  /* ---------- rendering bar ---------- */
+  .renderbar { border-bottom: 1px solid var(--rule); background: var(--paper-alt); }
+  .renderbar .in {
+    max-width: 1180px; margin: 0 auto; padding: 9px 24px;
+    display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
+    font-family: var(--sans); font-size: 12px;
+  }
+  .renderbar .lbl { color: var(--ink-faint); letter-spacing: 0.1em; text-transform: uppercase; font-size: 10.5px; }
+  .locbtns { display: flex; gap: 2px; flex-wrap: wrap; }
+  .locbtn {
+    font-family: var(--sans); font-size: 12.5px; border: 1px solid transparent;
+    background: none; color: var(--ink-dim); padding: 4px 11px; cursor: pointer; border-radius: 2px;
+  }
+  .locbtn:hover { border-color: var(--rule); color: var(--ink); }
+  .locbtn[aria-pressed="true"] { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .locbtn .th { font-family: 'Noto Sans Thai', var(--sans); }
+  .locbtn .ar { font-family: 'Noto Sans Arabic', var(--sans); }
+  .locbtn .hi { font-family: 'Noto Sans Devanagari', var(--sans); }
+  .locbtn .zh { font-family: 'Noto Sans SC', var(--sans); }
+  .renderbar .canon { margin-left: auto; color: var(--ink-faint); font-size: 11.5px; }
+
+  /* ---------- layout ---------- */
+  .page { max-width: 1180px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: 244px 1fr; gap: 44px; }
+  aside { padding: 30px 0 60px; border-right: 1px solid var(--rule); padding-right: 24px; }
+  main { padding: 30px 0 60px; min-width: 0; }
+
+  aside .side-h {
+    font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-faint); border-bottom: 1px solid var(--rule); padding-bottom: 6px; margin-bottom: 10px;
+  }
+  aside ol { list-style: none; counter-reset: toc; margin-bottom: 30px; }
+  aside ol li { counter-increment: toc; font-size: 14px; line-height: 25px; }
+  aside ol li::before { content: counter(toc) ". "; color: var(--ink-faint); font-family: var(--sans); font-size: 11px; }
+  aside ol li a { border: none; }
+  aside ol li a:hover { border-bottom: 1px solid var(--glyph); }
+  aside .sidelist { list-style: none; margin-bottom: 30px; }
+  aside .sidelist li { font-size: 14px; line-height: 25px; display: flex; justify-content: space-between; gap: 8px; }
+  aside .sidelist .v { font-family: var(--sans); font-size: 10.5px; }
+
+  /* ---------- article ---------- */
+  h1 { font-family: var(--serif); font-size: 38px; line-height: 46px; font-weight: 400; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
+  .sub { font-family: var(--sans); font-size: 13px; color: var(--ink-faint); margin: 8px 0 24px; }
+  h2 {
+    font-family: var(--serif); font-size: 24px; font-weight: 400; margin: 40px 0 12px;
+    border-bottom: 1px solid var(--rule); padding-bottom: 7px; scroll-margin-top: 20px;
+  }
+  h3 { font-family: var(--serif); font-size: 18px; font-weight: 700; margin: 24px 0 8px; }
+  h4 { font-family: var(--sans); font-size: 13px; font-weight: 700; margin: 18px 0 6px; color: var(--ink-dim); }
+  p { margin-bottom: 15px; max-width: 74ch; }
+  .lead { font-size: 17.5px; line-height: 30px; }
+  .dim { color: var(--ink-dim); }
+  ul.body { margin: 0 0 16px 22px; }
+  ul.body li { margin-bottom: 6px; max-width: 72ch; }
+  ol.body { margin: 0 0 16px 22px; }
+  ol.body li { margin-bottom: 6px; max-width: 72ch; }
+
+  /* infobox */
+  .infobox {
+    float: right; width: 300px; margin: 4px 0 20px 28px;
+    border: 1px solid var(--rule); background: var(--paper-alt);
+    font-family: var(--sans); font-size: 12.5px; line-height: 20px;
+  }
+  .infobox .ib-h {
+    background: var(--ink); color: var(--paper); padding: 8px 12px;
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; text-align: center;
+  }
+  .infobox .ib-g { padding: 5px 12px; border-top: 1px solid var(--rule); display: grid; grid-template-columns: 96px 1fr; gap: 10px; }
+  .infobox .k { color: var(--ink-faint); }
+  .infobox .glyphs { color: var(--glyph); font-family: var(--mono); letter-spacing: 0.16em; }
+
+  /* ---------- the living sample ---------- */
+  .sample-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); margin: 20px 0 12px; }
+  .panel { background: var(--paper-alt); min-width: 0; }
+  .panel + .panel { border-left: 1px solid var(--rule); }
+  .panel-h {
+    font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-faint); padding: 8px 16px; border-bottom: 1px solid var(--rule);
+    display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap;
+  }
+  .codewell {
+    font-family: var(--mono); font-size: 13.5px; line-height: 30px;
+    padding: 16px 18px; overflow-x: auto; white-space: pre; color: var(--ink);
+  }
+  .codewell .g { color: var(--glyph); font-weight: 700; }
+  .codewell .kw { font-weight: 700; }
+  .codewell .fb {
+    color: var(--fallback); font-weight: 400;
+    border-bottom: 1px dotted var(--fallback);
+  }
+  .codewell .id { color: var(--ink-dim); font-style: italic; }
+  .codewell .n { color: var(--ink); }
+  .codewell .p { color: var(--ink-faint); }
+  .codewell .cm { color: var(--ink-faint); }
+  .codewell .rkw { font-weight: 700; }
+
+  .readout {
+    font-family: var(--sans); font-size: 12px; line-height: 21px; color: var(--ink-dim);
+    border: 1px solid var(--rule); border-top: none; background: var(--paper);
+    padding: 11px 16px; margin: 0 0 14px;
+    display: flex; gap: 20px; flex-wrap: wrap; justify-content: space-between;
+  }
+  .readout b { color: var(--ink); }
+  .readout .warn { color: var(--limited); }
+
+  .legend { font-family: var(--sans); font-size: 12px; line-height: 22px; color: var(--ink-dim); margin-bottom: 18px; }
+  .legend span.sw { display: inline-block; margin-right: 16px; }
+  .legend .g { color: var(--glyph); font-weight: 700; font-family: var(--mono); }
+  .legend .fb { color: var(--fallback); border-bottom: 1px dotted var(--fallback); }
+
+  /* ---------- code blocks ---------- */
+  pre.codeblock {
+    font-family: var(--mono); font-size: 13px; line-height: 24px;
+    background: var(--paper-alt); border: 1px solid var(--rule);
+    padding: 14px 16px; margin: 12px 0; overflow-x: auto;
+  }
+  pre.codeblock .g { color: var(--glyph); font-weight: 700; }
+  pre.codeblock .kw { font-weight: 700; }
+  pre.codeblock .id { color: var(--ink-dim); font-style: italic; }
+  pre.codeblock .p { color: var(--ink-faint); }
+  pre.codeblock .n { color: var(--ink); }
+  pre.codeblock .cm { color: var(--ink-faint); }
+  pre.codeblock .comment { color: var(--ink-faint); }
+  pre.codeblock .unsupported { color: var(--ink-faint); background: #fdf0ef; }
+
+  /* ---------- tables ---------- */
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 8px; font-family: var(--sans); font-size: 13px; }
+  th {
+    text-align: left; font-weight: 400; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--ink-faint); border-bottom: 1px solid var(--ink); padding: 0 10px 7px 0;
+  }
+  td { border-bottom: 1px solid var(--rule); padding: 9px 10px 9px 0; vertical-align: baseline; line-height: 21px; }
+  td.t { font-family: var(--mono); font-size: 12px; color: var(--ink); white-space: nowrap; }
+  td.m { color: var(--ink-dim); font-size: 12px; }
+  td.r { text-align: right; }
+  .v { font-weight: 700; font-size: 11.5px; letter-spacing: 0.04em; white-space: nowrap; }
+  .v.s { color: var(--support); }
+  .v.l { color: var(--limited); }
+  .v.r { color: var(--reject); }
+  .v.d { color: var(--defer); }
+  caption { caption-side: bottom; text-align: left; font-family: var(--sans); font-size: 11.5px; color: var(--ink-faint); padding-top: 8px; line-height: 19px; }
+
+  .diagram {
+    font-family: var(--mono); font-size: 12px; line-height: 21px; white-space: pre; overflow-x: auto;
+    background: var(--paper-alt); border: 1px solid var(--rule); padding: 18px; margin: 16px 0; color: var(--ink-dim);
+  }
+  .diagram b { color: var(--ink); font-weight: 700; }
+  .diagram .g { color: var(--glyph); }
+
+  .callout {
+    border-left: 3px solid var(--glyph); background: var(--glyph-soft);
+    padding: 14px 18px; margin: 18px 0; font-size: 15px; line-height: 26px; max-width: 74ch;
+  }
+  .refs { font-size: 13px; line-height: 23px; color: var(--ink-dim); }
+  .refs li { margin-bottom: 5px; margin-left: 20px; }
+  .refs code { font-size: 12px; }
+  details { margin: 12px 0; }
+  details summary { font-family: var(--sans); font-weight: 700; font-size: 13px; cursor: pointer; color: var(--ink-dim); }
+
+  footer {
+    border-top: 1px solid var(--rule); margin-top: 48px; padding: 22px 0 56px;
+    font-family: var(--sans); font-size: 12px; color: var(--ink-faint);
+    display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap;
+  }
+  footer a { border-bottom: 1px solid var(--rule); }
+
+  @media (max-width: 900px) {
+    .page { grid-template-columns: 1fr; gap: 0; }
+    aside { border-right: none; border-bottom: 1px solid var(--rule); padding-right: 0; }
+    .infobox { float: none; width: 100%; margin: 16px 0; }
+    .sample-grid { grid-template-columns: 1fr; }
+    .panel + .panel { border-left: none; border-top: 1px solid var(--rule); }
+  }
+</style>
+</head>
+<body>
+
+<!-- rendering bar: the front door, not a footer menu -->
+<div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <div class="locbtns" id="locbtns"></div>
+    <span class="canon" id="canonnote"></span>
+  </div>
+</div>
+
+<div class="page">
+
+  <aside>
+    <div class="side-h">Contents</div>
+    <ol>
+      <li><a href="#why">Why Faber</a></li>
+      <li><a href="#commandments">Commandments</a></li>
+      <li><a href="#snapshot">Language Snapshot</a></li>
+      <li><a href="#sample">One function, three renderings</a></li>
+      <li><a href="#lanes">Compilation lanes</a></li>
+      <li><a href="#quickstart">Quick start</a></li>
+      <li><a href="#cli">CLI roles</a></li>
+      <li><a href="#stdlib">Standard library</a></li>
+      <li><a href="#reader-locale">Reader locale</a></li>
+      <li><a href="#orientation">Language orientation</a></li>
+      <li><a href="#types">Core type surfaces</a></li>
+      <li><a href="#errors">Return and error channels</a></li>
+      <li><a href="#binding">Runtime binding vs structural</a></li>
+      <li><a href="#strings">String and template literals</a></li>
+      <li><a href="#json">Inline JSON</a></li>
+      <li><a href="#glyphs">Glyphs and words</a></li>
+      <li><a href="#nullability">Nullability</a></li>
+      <li><a href="#conversion">Conversion and construction</a></li>
+      <li><a href="#codebase">Codebase index</a></li>
+      <li><a href="#matrix">Rendering support</a></li>
+      <li><a href="#status">Status</a></li>
+    </ol>
+
+    <div class="side-h">Core Tooling</div>
+    <ul class="sidelist">
+      <li><a href="tooling/faber-build-tool.html">Faber Build Tool</a></li>
+      <li><a href="tooling/radix-compiler.html">Radix Compiler</a></li>
+      <li><a href="tooling/cista-package-manager.html">Cista Package Manager</a></li>
+    </ul>
+
+    <div class="side-h">HIR — Application lane</div>
+    <ul class="sidelist">
+      <li><a href="#matrix">Rust</a> <span class="v" style="color:var(--support)">support</span></li>
+      <li><a href="#matrix">Faber</a> <span class="v" style="color:var(--support)">support</span></li>
+      <li><a href="#matrix">TypeScript</a> <span class="v" style="color:var(--limited)">probe</span></li>
+      <li><a href="#matrix">Go</a> <span class="v" style="color:var(--limited)">erase</span></li>
+    </ul>
+
+    <div class="side-h">MIR — Systems lane</div>
+    <ul class="sidelist">
+      <li><a href="#matrix">fmir</a> <span class="v" style="color:var(--support)">support</span></li>
+      <li><a href="#matrix">wasm</a> <span class="v" style="color:var(--limited)">limited</span></li>
+      <li><a href="#matrix">llvm-text</a> <span class="v" style="color:var(--limited)">limited</span></li>
+      <li><a href="#matrix">metal-text</a> <span class="v" style="color:var(--limited)">limited</span></li>
+      <li><a href="#matrix">wgsl-text</a> <span class="v" style="color:var(--limited)">limited</span></li>
+      <li><a href="#matrix">sexp</a> <span class="v" style="color:var(--limited)">limited</span></li>
+    </ul>
+  </aside>
+
+  <main>
+    <h1>Faber</h1>
+    <div class="sub">Programming language · package-oriented · Latin behavioral vocabulary · editio 1.0.0</div>
+
+    <div class="infobox">
+      <div class="ib-h">Faber</div>
+      <div class="ib-g"><span class="k">Editio</span><span>1.0.0 — grammar frozen for the 1.x line</span></div>
+      <div class="ib-g"><span class="k">Paradigm</span><span>Package-oriented; semantic staging language</span></div>
+      <div class="ib-g"><span class="k">Typing</span><span>Static, type-first; nullable via <code>T ∪ nihil</code></span></div>
+      <div class="ib-g"><span class="k">Glyphs</span><span class="glyphs">← → ∴ ≡ ∪ ⇥</span></div>
+      <div class="ib-g"><span class="k">Compiler</span><span>Radix — Rust; private source</span></div>
+      <div class="ib-g"><span class="k">Lanes</span><span>Application (HIR) · Systems (MIR)</span></div>
+      <div class="ib-g"><span class="k">Primary target</span><span>Rust → native binary</span></div>
+      <div class="ib-g"><span class="k">Toolchain</span><span><code>faber</code> CLI · <code>radix</code> compiler</span></div>
+      <div class="ib-g"><span class="k">Interchange</span><span>Latin (human) · HIR (machine)</span></div>
+    </div>
+
+    <p class="lead">
+      <b>Faber</b> is a package-oriented programming language with a Latin behavioral
+      vocabulary and a small, regular grammar. Source lowers through the Radix compiler
+      to reviewable Rust and native binaries. Its defining architectural property is that
+      <b>meaning lives in the semantic core, not in any rendering</b> — neither the Latin
+      you read nor the Rust it emits is the real program. Both are renderings of the same
+      intermediate representation. The application lane ships packages and CLI tools through
+      Rust; the systems lane lowers through MIR for tensors, GPU kernels, and low-level
+      staging.
+    </p>
+
+    <p>
+      The name means <i>maker</i> or <i>craftsman</i>. Its compiler is named Radix — <i>root</i>.
+      Status: experimental, pre-1.0.
+    </p>
+
+    <!-- ================================================================== -->
+    <h2 id="why">1. Why Faber</h2>
+
+    <p>
+      Faber is a <b>readable semantic staging language</b>. You write program intent in a
+      small, regular source language, then lower it through one of two lanes: the
+      <b>application lane</b> (HIR → Rust packages and native binaries) or the
+      <b>systems lane</b> (MIR → FMIR packages, GPU text, validation artifacts, and
+      low-level staging). Faber's own grammar is the centre; target backends exist to ship,
+      test, and inspect that source.
+    </p>
+
+    <p>The guiding question for Faber source:</p>
+
+    <div class="callout">
+      Can a reader see the semantic role of every construct before knowing the target backend?
+    </div>
+
+    <p>Faber stands on three deliberate signals that work together:</p>
+
+    <ul class="body">
+      <li><b>Type-first declarations</b> — shape reads toward binding: <code>textus nomen</code>, not <code>nomen: textus</code>.</li>
+      <li><b>Latin behavioural words</b> — declarations, statements, lifecycle, and intent: <code>functio</code>, <code>genus</code>, <code>fixum</code>, <code>redde</code>, <code>si</code>.</li>
+      <li><b>Structural glyphs</b> — value flow, type flow, and structural joints: <code>←</code>, <code>→</code>, <code>∴</code>, <code>≡</code>, <code>∪</code>.</li>
+    </ul>
+
+    <p>
+      The net effect: source with stable grammatical shape before it lowers to any backend.
+      Its value is strongest when the source needs to be reviewed, transformed, and lowered
+      without losing the reader's sense of intent.
+    </p>
+
+    <!-- ================================================================== -->
+    <h2 id="commandments">2. Commandments</h2>
+
+    <p>These are the rules that make Faber feel like Faber. Syntax can evolve, but changes should preserve these laws.</p>
+
+    <ol class="body">
+      <li><b>Types before names.</b> Declarations read from shape to binding: <code>textus nomen</code>, <code>numerus aetas</code>, <code>functio salve(textus name) → textus</code>.</li>
+      <li><b>Mechanical over magical.</b> The same construct should mean the same thing everywhere. If a reader needs distant context to know what a symbol does, the syntax is suspect.</li>
+      <li><b>Glyphs carry structure.</b> Use glyphs for operators, control-flow joints, and value-flow edges: <code>←</code>, <code>→</code>, <code>⇥</code>, <code>∴</code>, <code>≡</code>, <code>∪</code>.</li>
+      <li><b>Latin carries behaviour.</b> Use Latin words for declarations, statements, lifecycle, and behavioural intent: <code>functio</code>, <code>genus</code>, <code>fixum</code>, <code>varia</code>, <code>redde</code>, <code>cape</code>.</li>
+      <li><b>Conjugation carries time and flow.</b> When the same root logic can run synchronously, asynchronously, or as a generator, the conjugated form should carry that execution mode.</li>
+      <li><b>One sign, one job.</b> A glyph or keyword may have exact aliases, but it should not carry unrelated meanings.</li>
+      <li><b>Runtime flow is explicit.</b> Runtime binding, reassignment, and mutation use <code>←</code>; structural definition uses <code>=</code>.</li>
+      <li><b>Absence is typed.</b> Nullable value types are written as unions, such as <code>T ∪ nihil</code>; optional declaration slots use post-name markers such as <code>sponte</code>.</li>
+      <li><b>The compiler does not guess to hide missing information.</b> Missing type information is an analysis problem to fix upstream, not a codegen detail to paper over.</li>
+    </ol>
+
+    <!-- ================================================================== -->
+    <h2 id="snapshot">3. Language Snapshot</h2>
+
+    <p>Faber is type-first and glyph-forward:</p>
+
+    <pre class="codeblock"><span class="kw">functio</span> <span class="id">divide</span>(<span class="kw">numerus</span> <span class="id">a</span>, <span class="kw">numerus</span> <span class="id">b</span>) <span class="g">→</span> <span class="kw">numerus</span> <span class="g">∪</span> <span class="kw">nihil</span> {
+    <span class="kw">si</span> <span class="id">b</span> <span class="g">≡</span> <span class="n">0</span> <span class="g">∴</span> <span class="kw">redde</span> <span class="kw">nihil</span>
+    <span class="kw">redde</span> <span class="id">a</span> <span class="p">/</span> <span class="id">b</span>
+}
+
+<span class="kw">functio</span> <span class="id">quotient</span>(<span class="kw">numerus</span> <span class="id">a</span>, <span class="kw">numerus</span> <span class="id">b</span>) <span class="g">→</span> <span class="kw">numerus</span> <span class="g">⇥</span> <span class="kw">textus</span> {
+    <span class="kw">si</span> <span class="id">b</span> <span class="g">≡</span> <span class="n">0</span> <span class="g">∴</span> <span class="kw">iace</span> <span class="p">"division by zero"</span>
+    <span class="kw">redde</span> <span class="id">a</span> <span class="p">/</span> <span class="id">b</span>
+}
+
+<span class="kw">genus</span> <span class="id">Point</span> {
+    <span class="kw">numerus</span> <span class="id">x</span>
+    <span class="kw">numerus</span> <span class="id">y</span>
+}
+
+<span class="kw">incipit</span> {
+    <span class="kw">fixum</span> <span class="id">_</span> <span class="id">p</span> <span class="g">←</span> <span class="id">Point</span> {
+        <span class="id">x</span> <span class="p">=</span> <span class="n">10</span>,
+        <span class="id">y</span> <span class="p">=</span> <span class="n">20</span>
+    }
+
+    <span class="kw">nota</span> <span class="p">"Salve, §!"(</span><span class="id">p.x</span><span class="p">)</span>
+}</pre>
+
+    <p>The fastest way to recognise Faber:</p>
+
+    <ul class="body">
+      <li>Types come before names: <code>textus nomen</code>, not <code>nomen: textus</code>.</li>
+      <li>Runtime binding and reassignment use <code>←</code>; <code>=</code> is for structural field shape only.</li>
+      <li>Function returns use <code>→</code>.</li>
+      <li>Recoverable alternate exits use <code>⇥</code>; <code>iace</code> throws on that channel and <code>fac</code> / <code>cape</code> catches it.</li>
+      <li>Compact branch bodies use <code>∴</code> or accepted alias <code>ergo</code>.</li>
+      <li>Nullable values use <code>T ∪ nihil</code>.</li>
+      <li>Latin words carry declarations, statements, lifecycle, and behaviour.</li>
+      <li>Glyphs carry value flow, type flow, and structural joints.</li>
+      <li>Formatted <code>textus</code> uses string-template application: <code>"…"(args…)</code> with <code>§</code> holes.</li>
+    </ul>
+
+    <!-- ================================================================== -->
+    <h2 id="sample">4. One function, three renderings</h2>
+
+    <p>
+      The panel on the left is rendered in the locale selected at the top of this page.
+      The panel on the right is what Radix emits. Switch the rendering and watch what moves.
+    </p>
+
+    <div class="sample-grid">
+      <div class="panel">
+        <div class="panel-h">
+          <span>Up — reader surface · <span id="loc-label">la</span></span>
+          <span id="loc-status"></span>
+        </div>
+        <div class="codewell" id="sample-code"></div>
+      </div>
+      <div class="panel">
+        <div class="panel-h">
+          <span>Down — emitted Rust</span>
+          <span style="color:var(--support)">unchanged by locale</span>
+        </div>
+        <div class="codewell"><span class="cm">// same HIR · same binary · every rendering</span>
+<span class="rkw">pub fn</span> <span class="id">divide</span><span class="p">(</span><span class="id">a</span><span class="p">:</span> i64<span class="p">,</span> <span class="id">b</span><span class="p">:</span> i64<span class="p">)</span> -&gt; <span class="rkw">Option</span>&lt;i64&gt; <span class="p">{</span>
+    <span class="rkw">if</span> <span class="id">b</span> == <span class="n">0</span> <span class="p">{</span> <span class="rkw">return</span> <span class="rkw">None</span><span class="p">;</span> <span class="p">}</span>
+    <span class="rkw">Some</span><span class="p">(</span><span class="id">a</span> / <span class="id">b</span><span class="p">)</span>
+<span class="p">}</span></div>
+      </div>
+    </div>
+
+    <div class="readout" id="readout"></div>
+
+    <div class="legend">
+      <span class="sw"><span class="g">← → ∴ ≡ ∪</span> &nbsp;glyphs — never localize, never move</span>
+      <span class="sw"><b>bold</b> — keyword bound by this pack</span>
+      <span class="sw"><span class="fb">dotted</span> — Latin fallback: no pack row for this token</span>
+      <span class="sw"><i>italic</i> — identifier, preserved byte-for-byte</span>
+      <span class="sw"><b>0</b> — numerals stay ASCII in every locale</span>
+    </div>
+
+    <div class="callout">
+      The right panel is the point. Switching the reader surface changes every keyword on
+      the left and <b>nothing</b> on the right — because the locale never touched the
+      semantics. Rendering this file to Thai is the same operation as rendering it to
+      Rust: both are <code>HIR → surface</code>. Neither is privileged. This is also why
+      <code>faber format --canonical</code> is exactly <code>faber format --reader-locale=la</code>.
+    </div>
+
+    <!-- ================================================================== -->
+    <h2 id="lanes">5. Two compilation lanes</h2>
+
+    <p>
+      Faber is one language with two compilation lanes. They share the same frontend
+      (parser, typechecker, exempla) but differ in what they optimise for and how you
+      ship the result.
+    </p>
+
+    <div class="diagram">Source <span class="g">→</span> Lex <span class="g">→</span> Parse <span class="g">→</span> Collect <span class="g">→</span> Resolve <span class="g">→</span> Lower <span class="g">→</span> Typecheck <span class="g">→</span> Analysis
+                                                              │
+                                    ┌─────────────────────────┴─────────────────────────┐
+                                    │                                                   │
+                              <b>HIR backends</b>                                      <b>MIR backends</b>
+                                    │                                                   │
+            <b>Rust</b> · Faber · TypeScript · Go         fmir · wasm · llvm-text · metal-text · wgsl-text · sexp</div>
+
+    <h3>Application lane (primary product)</h3>
+
+    <p>
+      Write Faber packages with <code>faber.toml</code>, import Latin libraries through flat
+      <code>norma:*</code> modules, and ship <b>reviewable Rust</b> that Cargo links into a native
+      binary. This is the path for CLI tools, OS-level programs, API servers, and script-style hosts.
+    </p>
+
+    <table>
+      <thead><tr><th>Deliverable</th><th>Backend</th><th>Package <code>build</code> / <code>run</code></th></tr></thead>
+      <tbody>
+        <tr><td class="t">Rust binary</td><td class="m">HIR → <code>codegen/rust</code></td><td class="m" style="color:var(--support)"><b>Yes</b> — primary</td></tr>
+        <tr><td class="t">TypeScript files</td><td class="m">HIR → <code>codegen/ts</code></td><td class="m">No — file emission</td></tr>
+        <tr><td class="t">Go files</td><td class="m">HIR → <code>codegen/go</code></td><td class="m">No — file emission</td></tr>
+        <tr><td class="t">Canonical Faber source</td><td class="m"><code>forma</code> formatter</td><td class="m">No — use <code>faber format</code></td></tr>
+      </tbody>
+      <caption>TypeScript and Go help prove Faber's semantics across target shapes; Rust is the only supported way to build and run Faber applications today.</caption>
+    </table>
+
+    <h3>Systems lane (advanced compilation)</h3>
+
+    <p>
+      For tensors, GPU kernels, and low-level staging, Faber lowers through <b>MIR</b>.
+      <code>fmir-text</code>, <code>fmir</code>, and <code>fmir-bin</code> are executable
+      MIR package/runtime targets. Systems MIR text/binary emitters
+      (<code>wasm*</code>, <code>llvm-text</code>, <code>metal-text</code>, <code>wgsl-text</code>,
+      <code>sexp</code>) are supported-with-limitations targets with fail-closed subsets.
+    </p>
+
+    <p>
+      In-process interpretation is <code>faber script</code> (MIR stepper). The systems lane
+      is where systems-level engineering happens — not the default HIR → Rust package path.
+    </p>
+
+    <div class="callout" style="border-left-color:var(--limited);background:#f7f2e6">
+      <b>Rust is the behavioural reference.</b> When a systems target can name a tensor
+      runtime symbol but not execute tensor semantics, that is recorded as
+      import/probe-only — the target can print the shape, not run it.
+    </div>
+
+    <!-- ================================================================== -->
+    <h2 id="quickstart">6. Quick start</h2>
+
+    <p>Install the released CLI from the Homebrew tap:</p>
+
+    <pre class="codeblock">brew install ianzepp/tap/faber
+faber --version</pre>
+
+    <p>
+      <b>Naming note:</b> the <code>faber</code> crate name on crates.io is a <i>different</i> project.
+      This project ships via the Homebrew tap above or by building from source.
+    </p>
+
+    <p>From a checkout, the fastest path to "it works":</p>
+
+    <pre class="codeblock">./scripta/ci                                         <span class="cm"># release validation gate</span>
+cargo run --manifest-path ../faber/Cargo.toml -- check ../examples/corpus/incipit/salve-munde.fab
+cargo run --manifest-path ../faber/Cargo.toml -- build ../examples/corpus/incipit/salve-munde.fab
+cargo run --manifest-path ../faber/Cargo.toml -- explain <span class="g">≡</span>  <span class="cm"># glyph reference, disk-backed</span>
+cargo run --manifest-path ../faber/Cargo.toml -- targets       <span class="cm"># live backend capability flags</span></pre>
+
+    <p>Create a starter package:</p>
+
+    <pre class="codeblock">cargo run --manifest-path ../faber/Cargo.toml -- init hello</pre>
+
+    <p>The disk-backed reference pack covers the current package and test contracts:</p>
+
+    <pre class="codeblock">cargo run --manifest-path ../faber/Cargo.toml -- explain manifest
+cargo run --manifest-path ../faber/Cargo.toml -- explain proba
+cargo run --manifest-path ../faber/Cargo.toml -- explain probandum</pre>
+
+    <h3>Package manifest</h3>
+
+    <p>Faber packages are the <b>application lane</b> unit of delivery. A <code>faber.toml</code> manifest describes project metadata and Rust build configuration:</p>
+
+    <pre class="codeblock">[<span class="kw">package</span>]
+name = "salve"
+version = "0.1.0"
+edition = "2026"
+
+[<span class="kw">paths</span>]
+source = "src"
+entry = "main.fab"
+
+[<span class="kw">build</span>]
+target = "rust"
+kind = "bin"</pre>
+
+    <!-- ================================================================== -->
+    <h2 id="cli">7. CLI roles</h2>
+
+    <p>
+      <b>Faber</b> is the user-facing project and package tool:
+    </p>
+
+    <ul class="body">
+      <li><code>faber check</code>, <code>faber build</code>, <code>faber targets</code></li>
+      <li><code>faber explain &lt;term&gt;</code>, <code>faber explain --search &lt;query&gt;</code></li>
+      <li><code>faber init</code></li>
+      <li><code>faber run</code>; <code>faber test</code></li>
+      <li><code>faber format</code></li>
+      <li>Compatibility aliases: <code>faber lex</code>, <code>faber parse</code>, <code>faber hir</code>, <code>faber emit</code>, <code>faber cli-ir</code></li>
+    </ul>
+
+    <p>
+      <b>Radix</b> is the compiler-developer tool:
+    </p>
+
+    <ul class="body">
+      <li><code>radix lex</code>, <code>radix parse</code>, <code>radix hir</code>, <code>radix mir</code>, <code>radix emit</code>, <code>radix check</code>, <code>radix targets</code></li>
+    </ul>
+
+    <p>Package policy lives in Faber; use <code>faber check &lt;package-dir&gt;</code> and <code>faber build</code> for local packages.</p>
+
+    <h3>Compiler performance</h3>
+
+    <p>
+      Radix's frontend scales roughly linearly with source size at ~16 MB/s, ~60 ns per byte,
+      in-process and single-threaded:
+    </p>
+
+    <table>
+      <thead><tr><th>Program size</th><th>Source</th><th class="r" style="text-align:right">Median compile</th></tr></thead>
+      <tbody>
+        <tr><td class="t">100 functions / ~650 lines</td><td class="m">~10 KB</td><td class="m r">~0.6 ms</td></tr>
+        <tr><td class="t">500 functions / ~3.3K lines</td><td class="m">~52 KB</td><td class="m r">~3 ms</td></tr>
+        <tr><td class="t">1,000 functions / ~6.5K lines</td><td class="m">~105 KB</td><td class="m r">~6 ms</td></tr>
+        <tr><td class="t">5,000 functions / ~32K lines</td><td class="m">~530 KB</td><td class="m r">~37 ms</td></tr>
+      </tbody>
+      <caption>Release build, target=rust, full pipeline including codegen. The largest real example today is ~140 lines.</caption>
+    </table>
+
+    <p>
+      For the Rust target, <code>faber build</code> emits a Rust crate and hands it to Cargo.
+      Faber's dependency model is designed so the heavy parts compile <b>once and are reused</b>:
+    </p>
+
+    <table>
+      <thead><tr><th>Phase</th><th class="r" style="text-align:right">Cost</th></tr></thead>
+      <tbody>
+        <tr><td class="t">cold <code>faber</code> dep compile (once per target dir)</td><td class="m r">~2.8 s</td></tr>
+        <tr><td class="t">cold <code>tokio</code> dep compile (only when needed)</td><td class="m r">~2.3 s</td></tr>
+        <tr><td class="t">warm per-program build (cached deps)</td><td class="m r">~30–110 ms</td></tr>
+        <tr><td class="t">per-program Cargo invocation overhead</td><td class="m r">~400 ms</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ================================================================== -->
+    <h2 id="stdlib">8. Standard library</h2>
+
+    <p>
+      On the <b>application lane</b>, Faber programs import Latin library and data modules
+      through flat <code>norma:*</code> paths:
+    </p>
+
+    <ul class="body">
+      <li><b>Filesystem:</b> <code>norma:solum</code>, <code>norma:solum/path</code></li>
+      <li><b>HTTP:</b> <code>norma:http</code></li>
+      <li><b>Processes:</b> <code>norma:processus</code></li>
+      <li><b>Data formats:</b> <code>norma:json</code>, <code>norma:toml</code>, <code>norma:yaml</code></li>
+      <li><b>Tensor helpers:</b> <code>norma:tensor</code></li>
+      <li><b>Codec navigation:</b> <code>norma:valor</code></li>
+    </ul>
+
+    <p>
+      Stdlib declarations are Faber source under the sibling <code>norma</code> repository.
+      Native Faber bodies are the default implementation tier; effectful modules open
+      <code>ad</code> route conversations, and behaviour not yet expressible natively
+      carries an explicit <code>mori</code> deferred body.
+    </p>
+
+    <pre class="codeblock"><span class="kw">functio</span> <span class="id">leget</span>(<span class="kw">textus</span> <span class="id">via</span>) <span class="g">→</span> <span class="kw">textus</span> {
+    <span class="kw">redde</span> <span class="kw">ad</span> <span class="p">'solum:leget' (</span><span class="id">via</span><span class="p">) </span><span class="g">↦</span> <span class="kw">textus</span>
+}</pre>
+
+    <p>
+      <b>Graphics and geometry:</b> the optional <code>triga:*</code> library provides geometry,
+      scene, and GPU-facing type contracts. Resolved through <code>FABER_LIBRARY_HOME</code> and
+      installable as a Cista source package.
+    </p>
+
+    <!-- ================================================================== -->
+    <h2 id="reader-locale">9. Reader locale and diagnostics</h2>
+
+    <p>
+      Reader-language packs are a first-class compiler surface. A pack maps Faber keywords,
+      primitive type spellings, and <b>code-first diagnostics</b> into a reader locale.
+      Seven packs ship today: <code>la</code>, <code>ar</code>, <code>hi</code>, <code>vi</code>,
+      <code>th-TH</code>, <code>zh-Hans</code>, <code>zh-Hant</code>.
+    </p>
+
+    <p>
+      <code>la</code> is the default reader surface — Latin Faber keywords and canonical type
+      spellings mapped to themselves, with English diagnostic message templates. Other locales
+      remap keyword/type spelling and render the same structured diagnostics in the reader language.
+    </p>
+
+    <p>
+      Diagnostics are <b>structured facts before prose</b>: each carries a stable code
+      (<code>LEX###</code>, <code>READER###</code>, <code>PARSE###</code>, <code>SEM###</code>,
+      <code>WARN###</code>) and named arguments; the pack owns the rendered template text.
+    </p>
+
+    <p>Select a locale with the <code>--reader-locale &lt;locale&gt;</code> flag or the <code>faber.toml</code> <code>[reader]</code> table:</p>
+
+    <pre class="codeblock">[<span class="kw">reader</span>]
+locale = "zh-Hans"</pre>
+
+    <p>
+      The compiler validates installed packs against the generated Latin scaffold. See
+      <code>radix::reader_locale</code> for the runtime API.
+    </p>
+
+    <h3>The reference set is chosen for architectural stress</h3>
+
+    <p>
+      Five reference locales, picked so that <i>collectively</i> they force every Unicode
+      and emission problem the substrate must survive:
+    </p>
+
+    <table>
+      <thead><tr><th>Rendering</th><th>Access</th><th>Reach</th><th>Unique architectural stress</th></tr></thead>
+      <tbody>
+        <tr><td class="t">th-TH · ไทย</td><td class="m">High</td><td class="m">Medium</td><td class="m">Spaceless script; the tokenizer stress test.</td></tr>
+        <tr><td class="t">zh-Hans / zh-Hant</td><td class="m">Medium</td><td class="m">Very high</td><td class="m">Paired keywords; sibling packs with inheritance.</td></tr>
+        <tr><td class="t">ar · العربية</td><td class="m">High</td><td class="m">High</td><td class="m">Right-to-left and bidi; contextual shaping.</td></tr>
+        <tr><td class="t">hi · हिन्दी</td><td class="m">High</td><td class="m">Very high</td><td class="m">Matra/virama clusters; Indic numerals.</td></tr>
+        <tr><td class="t">vi · Tiếng Việt</td><td class="m">Medium</td><td class="m">High</td><td class="m">Heavy diacritics on Latin script; NFKC edge cases.</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ================================================================== -->
+    <h2 id="orientation">10. Language orientation</h2>
+
+    <p>
+      This section is a practical orientation to Faber source. It occasionally uses other
+      languages as contrast, but Faber's grammar is the authority; it is not a variant spelling
+      of another language.
+    </p>
+
+    <h3>How Faber feels</h3>
+
+    <p>Faber feels declarative, narrated, and review-oriented.</p>
+
+    <table>
+      <thead><tr><th>Habit readers often carry over</th><th>Not Faber</th><th>Faber</th></tr></thead>
+      <tbody>
+        <tr><td class="m">Parameter and return types</td><td class="t"><code>a: numerus</code>, <code>-&gt; numerus?</code></td><td class="t"><code>numerus a</code>, <code>→ numerus ∪ nihil</code></td></tr>
+        <tr><td class="m">Absence / nullability</td><td class="t"><code>?</code>, <code>Option&lt;…&gt;</code>, <code>null</code></td><td class="t"><code>T ∪ nihil</code>, <code>nihil</code></td></tr>
+        <tr><td class="m">Branch + return</td><td class="t"><code>if (…) return …</code></td><td class="t"><code>si … ∴ redde …</code></td></tr>
+        <tr><td class="m">Equality</td><td class="t"><code>==</code></td><td class="t"><code>≡</code></td></tr>
+        <tr><td class="m">Return keyword</td><td class="t"><code>return</code></td><td class="t"><code>redde</code></td></tr>
+      </tbody>
+    </table>
+
+    <p>Local binding:</p>
+
+    <pre class="codeblock"><span class="kw">fixum</span> <span class="kw">numerus</span> <span class="id">count</span> <span class="g">←</span> <span class="n">0</span>
+<span class="kw">varia</span> <span class="kw">textus</span> <span class="id">label</span> <span class="g">←</span> <span class="p">"ready"</span>
+<span class="kw">fixum</span> <span class="id">_</span> <span class="id">names</span> <span class="g">←</span> <span class="p">["Marcus", "Julia"]</span>
+<span class="kw">sit</span> <span class="id">salve</span> <span class="g">←</span> <span class="p">"Salve"</span>
+<span class="kw">sit</span> <span class="id">nomen</span> <span class="g">←</span> <span class="p">"Marcus"</span></pre>
+
+    <h3>Borrowing and mutability (<code>de</code>, <code>in</code>, <code>ex</code>)</h3>
+
+    <p>Faber marks <b>how a value is passed</b> with short prepositions on parameters:</p>
+
+    <table>
+      <thead><tr><th>Faber (parameter)</th><th>Intent</th><th>Typical Rust lowering</th></tr></thead>
+      <tbody>
+        <tr><td class="t"><i>(none)</i></td><td class="m">Owned value at the call boundary</td><td class="t"><code>T</code> by value</td></tr>
+        <tr><td class="t"><code>de</code></td><td class="m">Shared borrow — read, do not mutate</td><td class="t"><code>&amp;T</code></td></tr>
+        <tr><td class="t"><code>in</code></td><td class="m">Mutable borrow — caller's value may change</td><td class="t"><code>&amp;mut T</code></td></tr>
+        <tr><td class="t"><code>ex</code></td><td class="m">Consume — value is moved into the callee</td><td class="t"><code>T</code> (by move)</td></tr>
+      </tbody>
+    </table>
+
+    <pre class="codeblock"><span class="kw">functio</span> <span class="id">imprime</span>(<span class="kw">de</span> <span class="kw">textus</span> <span class="id">label</span>) <span class="g">→</span> <span class="kw">vacuum</span> {
+    <span class="kw">nota</span> <span class="id">label</span>
+}
+
+<span class="kw">functio</span> <span class="id">duplica</span>(<span class="kw">in</span> <span class="kw">numerus</span> <span class="id">value</span>) <span class="g">→</span> <span class="kw">vacuum</span> {
+    <span class="id">value</span> <span class="g">←</span> <span class="id">value</span> <span class="p">*</span> <span class="n">2</span>
+}
+
+<span class="kw">functio</span> <span class="id">consume</span>(<span class="kw">ex</span> <span class="kw">textus</span> <span class="id">buffer</span>) <span class="g">→</span> <span class="kw">textus</span> {
+    <span class="kw">redde</span> <span class="id">buffer</span>
+}
+
+<span class="kw">functio</span> <span class="id">salve</span>(<span class="kw">textus</span> <span class="id">nomen</span>) <span class="g">→</span> <span class="kw">textus</span> {
+    <span class="kw">redde</span> <span class="p">"Salve, §!"(</span><span class="id">nomen</span><span class="p">)</span>
+}</pre>
+
+    <h4>Same words, different jobs</h4>
+
+    <p>Faber reuses <code>de</code> and <code>ex</code> in other constructs; do not read every <code>ex</code> as "consume":</p>
+
+    <table>
+      <thead><tr><th>Surface</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td class="t"><code>de textus name</code> on a parameter</td><td class="m">Shared borrow</td></tr>
+        <tr><td class="t"><code>in numerus count</code> on a parameter</td><td class="m">Mutable borrow</td></tr>
+        <tr><td class="t"><code>ex textus buffer</code> on a parameter</td><td class="m">Move / consume into callee</td></tr>
+        <tr><td class="t"><code>itera ex items fixum item</code></td><td class="m">Iterate <b>values</b> (for-of shape)</td></tr>
+        <tr><td class="t"><code>itera de tabula fixum key</code></td><td class="m">Iterate <b>keys</b> (for-in shape)</td></tr>
+        <tr><td class="t"><code>ex source fixum x, ceteri rest</code></td><td class="m">Destructure fields into locals</td></tr>
+        <tr><td class="t"><code>importa ex "path"</code></td><td class="m">Import from a module path</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Structural declarations</h3>
+
+    <pre class="codeblock"><span class="kw">typus</span> <span class="id">UserId</span> <span class="p">=</span> <span class="kw">numerus</span>
+
+<span class="kw">implendum</span> <span class="id">Drawable</span> {
+    <span class="kw">functio</span> <span class="id">draw</span>() <span class="g">→</span> <span class="kw">vacuum</span>
+}
+
+<span class="kw">genus</span> <span class="id">Point</span> {
+    <span class="kw">numerus</span> <span class="id">x</span>
+    <span class="kw">numerus</span> <span class="id">y</span>
+}
+
+<span class="kw">fixum</span> <span class="id">_</span> <span class="id">p</span> <span class="g">←</span> <span class="id">Point</span> {
+    <span class="id">x</span> <span class="p">=</span> <span class="n">10</span>,
+    <span class="id">y</span> <span class="p">=</span> <span class="n">20</span>,
+}</pre>
+
+    <h3>Control flow shape</h3>
+
+    <pre class="codeblock"><span class="cm">// values</span>
+<span class="kw">itera</span> <span class="kw">ex</span> <span class="id">items</span> <span class="kw">fixum</span> <span class="id">item</span> {
+    <span class="kw">si</span> <span class="id">item</span> <span class="g">≡</span> <span class="id">target</span> <span class="g">∴</span> <span class="kw">redde</span> <span class="id">item</span>
+}
+
+<span class="cm">// keys</span>
+<span class="kw">itera</span> <span class="kw">de</span> <span class="id">table</span> <span class="kw">fixum</span> <span class="id">key</span> { ... }
+
+<span class="cm">// range</span>
+<span class="kw">itera</span> <span class="kw">ab</span> <span class="n">0</span><span class="g">‥</span><span class="n">10</span> <span class="kw">fixum</span> <span class="id">i</span> { ... }
+
+<span class="cm">// compact branch</span>
+<span class="kw">si</span> <span class="id">score</span> <span class="g">≥</span> <span class="n">90</span> <span class="g">∴</span> <span class="kw">redde</span> <span class="p">"A"</span>
+<span class="kw">sin</span> <span class="id">score</span> <span class="g">≥</span> <span class="n">80</span> <span class="g">∴</span> <span class="kw">redde</span> <span class="p">"B"</span>
+<span class="kw">secus</span> <span class="g">∴</span> <span class="kw">redde</span> <span class="p">"C"</span>
+
+<span class="cm">// guard section</span>
+<span class="kw">custodi</span> {
+    <span class="kw">si</span> <span class="id">b</span> <span class="g">≡</span> <span class="n">0</span> {
+        <span class="kw">redde</span> <span class="n">0</span>
+    }
+}</pre>
+
+    <h3>Canonical surface</h3>
+
+    <p>When generating or reviewing Faber, default to these forms:</p>
+
+    <pre class="codeblock"><span class="kw">fixum</span> <span class="kw">textus</span> <span class="id">name</span> <span class="g">←</span> <span class="p">"Marcus"</span>
+<span class="kw">varia</span> <span class="kw">numerus</span> <span class="id">count</span> <span class="g">←</span> <span class="n">0</span>
+<span class="kw">functio</span> <span class="id">greet</span>(<span class="kw">textus</span> <span class="id">name</span>) <span class="g">→</span> <span class="kw">textus</span> { ... }
+<span class="kw">functio</span> <span class="id">parse</span>(<span class="kw">textus</span> <span class="id">raw</span>) <span class="g">→</span> <span class="kw">numerus</span> <span class="g">⇥</span> <span class="kw">textus</span> { ... }
+<span class="kw">si</span> <span class="id">ready</span> <span class="g">∴</span> <span class="kw">redde</span> <span class="id">value</span>
+<span class="kw">si</span> <span class="id">invalid</span> <span class="g">∴</span> <span class="kw">iace</span> <span class="p">"bad input"</span>
+<span class="kw">fixum</span> <span class="id">_</span> <span class="id">n</span> <span class="g">←</span> <span class="p">"42"</span> <span class="g">↦</span> <span class="kw">numerus</span> <span class="g">⇥</span> <span class="n">0</span>
+<span class="kw">fixum</span> <span class="id">_</span> <span class="id">x</span> <span class="g">←</span> <span class="id">value</span> <span class="g">∷</span> <span class="kw">textus</span>
+<span class="kw">functio</span> <span class="id">maybe</span>() <span class="g">→</span> <span class="kw">textus</span> <span class="g">∪</span> <span class="kw">nihil</span></pre>
+
+    <p>Error handling:</p>
+
+    <pre class="codeblock"><span class="kw">fac</span> {
+    <span class="kw">iace</span> <span class="p">"bad input"</span>
+}
+<span class="kw">cape</span> <span class="id">err</span> {
+    <span class="kw">nota</span> <span class="id">err</span>
+}</pre>
+
+    <!-- ================================================================== -->
+    <h2 id="types">11. Core type surfaces</h2>
+
+    <h3>Type and size generics</h3>
+
+    <p>Functions, type aliases, <code>genus</code>, and <code>implendum</code> declarations accept type parameters with <code>&lt;T&gt;</code> syntax:</p>
+
+    <pre class="codeblock"><span class="kw">functio</span> <span class="id">identitas</span>&lt;<span class="kw">T</span>&gt;(<span class="kw">T</span> <span class="id">valor</span>) <span class="g">→</span> <span class="kw">T</span> {
+    <span class="kw">redde</span> <span class="id">valor</span>
+}
+
+<span class="kw">fixum</span> <span class="id">_</span> <span class="id">value</span> <span class="g">←</span> <span class="id">identitas</span>&lt;<span class="kw">numerus</span>&gt;(<span class="n">7</span>)</pre>
+
+    <h3>Numeric widths</h3>
+
+    <p><code>numerus</code> and <code>fractus</code> have default widths (<code>i64</code> and <code>f64</code>) and explicit width forms:</p>
+
+    <pre class="codeblock"><span class="kw">fixum</span> <span class="kw">numerus</span>&lt;<span class="kw">i32</span>&gt; <span class="id">narrow</span> <span class="g">←</span> <span class="n">7</span> <span class="g">∷</span> <span class="kw">numerus</span>&lt;<span class="kw">i32</span>&gt;
+<span class="kw">fixum</span> <span class="kw">numerus</span>&lt;<span class="kw">u64</span>&gt; <span class="id">wide</span> <span class="g">←</span> <span class="n">255</span> <span class="g">∷</span> <span class="kw">numerus</span>&lt;<span class="kw">u64</span>&gt;
+<span class="kw">fixum</span> <span class="kw">fractus</span>&lt;<span class="kw">f32</span>&gt; <span class="id">single</span> <span class="g">←</span> <span class="n">1.5</span> <span class="g">∷</span> <span class="kw">fractus</span>&lt;<span class="kw">f32</span>&gt;</pre>
+
+    <h3>Tensors and sparsa</h3>
+
+    <p>
+      <code>tensor&lt;T, Figura&gt;</code> is the dense form: every coordinate in the static shape
+      has a stored value. <code>sparsa&lt;T, Figura&gt;</code> is the sparse sibling.
+      Both use the same <code>Figura</code> discipline.
+    </p>
+
+    <pre class="codeblock"><span class="kw">fixum</span> <span class="kw">tensor</span>&lt;<span class="kw">fractus</span>&lt;<span class="kw">f32</span>&gt;, []&gt; <span class="id">scalar</span> <span class="g">←</span> <span class="kw">vacua</span>
+<span class="kw">fixum</span> <span class="kw">tensor</span>&lt;<span class="kw">numerus</span>, [4]&gt; <span class="id">vector</span> <span class="g">←</span> <span class="p">[1, 2, 3, 4]</span> <span class="g">↦</span> <span class="kw">tensor</span>&lt;<span class="kw">numerus</span>, [4]&gt;
+<span class="kw">fixum</span> <span class="kw">numerus</span> <span class="g">∪</span> <span class="kw">nihil</span> <span class="id">first</span> <span class="g">←</span> <span class="id">vector</span><span class="p">[0]</span>
+
+<span class="cm">// Sugar for numeric/tensor-heavy code:</span>
+<span class="kw">fixum</span> <span class="kw">tf32</span>[4] <span class="id">lanes</span> <span class="g">←</span> <span class="p">[1.0, 2.0, 3.0, 4.0]</span> <span class="g">↦</span> <span class="kw">tf32</span>[4]</pre>
+
+    <p>
+      <code>↦</code> converts between dense and sparse only when the element type and shape are
+      the same. The <code>t</code> and <code>s</code> sugar families mirror each other:
+      <code>tf32[2, 3]</code> means <code>tensor&lt;f32, [2, 3]&gt;</code>,
+      <code>sf32[2, 3]</code> means <code>sparsa&lt;f32, [2, 3]&gt;</code>.
+    </p>
+
+    <h3>GPU core types</h3>
+
+    <p>
+      The systems lane recognises GPU-facing register and storage types: <code>f16</code>,
+      <code>matrix&lt;T, [R, C]&gt;</code> (register-class value type), and
+      <code>atomic&lt;T&gt;</code> (storage-sensitive cell type for <code>i32</code> and
+      <code>u32</code>). These types are intentionally target-gated: targets that lack a real
+      carrier fail closed.
+    </p>
+
+    <!-- ================================================================== -->
+    <h2 id="errors">12. Return and error channels</h2>
+
+    <p>Faber separates three related ideas that many languages collapse into one shape:</p>
+
+    <ul class="body">
+      <li><code>→ T</code> declares the normal success return channel.</li>
+      <li><code>T ∪ nihil</code> makes absence part of the success value domain.</li>
+      <li><code>⇥ E</code> declares a recoverable alternate-exit channel for errors.</li>
+    </ul>
+
+    <pre class="codeblock"><span class="cm">// Normal return</span>
+<span class="kw">functio</span> <span class="id">porta</span>(<span class="kw">numerus</span> <span class="id">x</span>) <span class="g">→</span> <span class="kw">numerus</span> {
+    <span class="kw">si</span> <span class="id">x</span> <span class="g">&lt;</span> <span class="n">0</span> <span class="g">∴</span> <span class="kw">redde</span> <span class="n">0</span>
+    <span class="kw">redde</span> <span class="id">x</span> <span class="p">*</span> <span class="n">2</span>
+}
+
+<span class="cm">// Alternate exit channel</span>
+<span class="kw">functio</span> <span class="id">divide</span>(<span class="kw">numerus</span> <span class="id">a</span>, <span class="kw">numerus</span> <span class="id">b</span>) <span class="g">→</span> <span class="kw">numerus</span> <span class="g">⇥</span> <span class="kw">textus</span> {
+    <span class="kw">si</span> <span class="id">b</span> <span class="g">≡</span> <span class="n">0</span> <span class="g">∴</span> <span class="kw">iace</span> <span class="p">"division by zero"</span>
+    <span class="kw">redde</span> <span class="id">a</span> <span class="p">/</span> <span class="id">b</span>
+}
+
+<span class="cm">// Local recovery with fac / cape</span>
+<span class="kw">functio</span> <span class="id">tutum</span>(<span class="kw">numerus</span> <span class="id">a</span>, <span class="kw">numerus</span> <span class="id">b</span>) <span class="g">→</span> <span class="kw">numerus</span> {
+    <span class="kw">fac</span> {
+        <span class="kw">redde</span> <span class="id">divide</span>(<span class="id">a</span>, <span class="id">b</span>)
+    }
+    <span class="kw">cape</span> <span class="id">err</span> {
+        <span class="kw">mone</span> <span class="id">err</span>
+        <span class="kw">redde</span> <span class="n">0</span>
+    }
+}
+
+<span class="cm">// Effect-only failable</span>
+<span class="kw">functio</span> <span class="id">exigePositivum</span>(<span class="kw">numerus</span> <span class="id">value</span>) <span class="g">⇥</span> <span class="kw">textus</span> {
+    <span class="kw">si</span> <span class="id">value</span> <span class="g">&lt;</span> <span class="n">0</span> <span class="g">∴</span> <span class="kw">iace</span> <span class="p">"negative value"</span>
+}</pre>
+
+    <!-- ================================================================== -->
+    <h2 id="binding">13. Runtime binding (<code>←</code>) vs structural definition (<code>=</code>)</h2>
+
+    <table>
+      <thead><tr><th>Glyph</th><th>Role</th><th>Use for</th></tr></thead>
+      <tbody>
+        <tr><td class="t"><code>←</code></td><td class="m"><b>Runtime flow</b></td><td class="m">Initial binding, reassignment, and mutation at execution time</td></tr>
+        <tr><td class="t"><code>=</code></td><td class="m"><b>Structural shape</b></td><td class="m">Field names inside literals and declaration metadata — not runtime stores</td></tr>
+      </tbody>
+    </table>
+
+    <pre class="codeblock"><span class="kw">fixum</span> <span class="kw">numerus</span> <span class="id">count</span> <span class="g">←</span> <span class="n">0</span>
+<span class="kw">varia</span> <span class="kw">textus</span> <span class="id">label</span> <span class="g">←</span> <span class="p">"ready"</span>
+<span class="id">count</span> <span class="g">←</span> <span class="id">count</span> <span class="p">+</span> <span class="n">1</span>
+
+<span class="kw">genus</span> <span class="id">Point</span> {
+    <span class="kw">numerus</span> <span class="id">x</span>
+    <span class="kw">numerus</span> <span class="id">y</span>
+}
+
+<span class="kw">fixum</span> <span class="id">_</span> <span class="id">p</span> <span class="g">←</span> <span class="id">Point</span> {
+    <span class="id">x</span> <span class="p">=</span> <span class="n">10</span>,
+    <span class="id">y</span> <span class="p">=</span> <span class="n">20</span>,
+}</pre>
+
+    <p>
+      <code>fixum</code> bindings are write-once: you may declare without an initializer and assign
+      exactly once later, or bind immediately. A second assignment to the same <code>fixum</code>
+      local is rejected. <code>varia</code> bindings remain freely reassignable.
+    </p>
+
+    <!-- ================================================================== -->
+    <h2 id="strings">14. String and template literals</h2>
+
+    <table>
+      <thead><tr><th>Form</th><th>Type</th><th>Role</th></tr></thead>
+      <tbody>
+        <tr><td class="t"><code>'…'</code></td><td class="m"><code>ascii</code></td><td class="m">Fixed machine tokens; no <code>§</code>; no <code>(…)</code></td></tr>
+        <tr><td class="t"><code>"…"</code></td><td class="m"><code>textus</code></td><td class="m">Short Unicode line strings; <code>(…)</code> renders</td></tr>
+        <tr><td class="t"><code>«…»</code></td><td class="m"><code>textus</code></td><td class="m">Block/multiline Unicode; <code>(…)</code> renders</td></tr>
+        <tr><td class="t"><code>`…`</code></td><td class="m"><code>forma</code></td><td class="m">Captured templates; <code>(…)</code> captures</td></tr>
+        <tr><td class="t"><code>{ … }</code></td><td class="m"><code>json</code></td><td class="m">Compile-time object-rooted JSON document</td></tr>
+        <tr><td class="t"><code>|…|</code></td><td class="m"><code>octeti</code></td><td class="m">Compile-time hex bytes</td></tr>
+        <tr><td class="t"><code>[ … ]</code></td><td class="m"><code>lista&lt;T&gt;</code></td><td class="m">Faber list</td></tr>
+      </tbody>
+    </table>
+
+    <p>
+      <code>§</code> (U+00A7) is the template hole in Unicode <code>textus</code>/<code>forma</code>
+      forms only. String-template application uses <code>"…"(args…)</code>:
+    </p>
+
+    <pre class="codeblock"><span class="kw">functio</span> <span class="id">greet</span>(<span class="kw">textus</span> <span class="id">nomen</span>) <span class="g">→</span> <span class="kw">textus</span> {
+    <span class="kw">redde</span> <span class="p">"Salve, §!"(</span><span class="id">nomen</span><span class="p">)</span>
+}
+
+<span class="kw">fixum</span> <span class="id">_</span> <span class="id">msg</span> <span class="g">←</span> <span class="p">"Page § of §"(</span><span class="id">pagina</span>, <span class="id">totum</span><span class="p">)</span>
+<span class="kw">fixum</span> <span class="id">_</span> <span class="id">block</span> <span class="g">←</span> <span class="p">«status: § (§)»(</span><span class="id">code</span>, <span class="id">label</span><span class="p">)</span>
+
+<span class="cm">// Captured templates (forma) for bound SQL/URL payloads:</span>
+<span class="kw">fixum</span> <span class="id">_</span> <span class="id">query</span> <span class="g">←</span> <span class="p">`select * from users where id = §`(</span><span class="id">user_id</span><span class="p">)</span></pre>
+
+    <!-- ================================================================== -->
+    <h2 id="json">15. Inline JSON (<code>json</code>)</h2>
+
+    <p>
+      A bare <code>{ … }</code> is <b>inline JSON</b>: a compile-time <code>json</code> document,
+      not an anonymous Faber object. Keys are quoted JSON strings separated by <code>:</code>;
+      the root must be an object.
+    </p>
+
+    <pre class="codeblock"><span class="kw">fixum</span> <span class="id">_</span> <span class="id">empty</span> <span class="g">←</span> {}
+<span class="kw">fixum</span> <span class="id">_</span> <span class="id">user</span> <span class="g">←</span> { <span class="p">"name"</span>: <span class="p">"Marcus"</span>, <span class="p">"age"</span>: <span class="n">30</span>, <span class="p">"active"</span>: <span class="n">true</span> }
+<span class="kw">fixum</span> <span class="id">_</span> <span class="id">nested</span> <span class="g">←</span> { <span class="p">"meta"</span>: { <span class="p">"version"</span>: <span class="n">1</span> }, <span class="p">"tags"</span>: [<span class="p">"alpha"</span>, <span class="p">"beta"</span>] }</pre>
+
+    <p>
+      For typed genus construction with Faber expressions, use the type name and <code>=</code>
+      field shape — not JSON <code>:</code> syntax:
+    </p>
+
+    <pre class="codeblock"><span class="kw">fixum</span> <span class="id">_</span> <span class="id">p</span> <span class="g">←</span> <span class="id">Point</span> { <span class="id">x</span> <span class="p">=</span> <span class="n">10</span>, <span class="id">y</span> <span class="p">=</span> <span class="n">20</span> }</pre>
+
+    <!-- ================================================================== -->
+    <h2 id="glyphs">16. Glyphs and words</h2>
+
+    <p>Faber uses glyphs where the symbol is structural. Below is the full inventory of source glyphs the lexer recognises.</p>
+
+    <h3>Value flow</h3>
+    <table>
+      <thead><tr><th>Glyph</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td class="t"><span class="g">←</span></td><td class="m">Runtime binding, reassignment, and mutation</td></tr>
+        <tr><td class="t"><span class="g">→</span></td><td class="m">Function return type</td></tr>
+        <tr><td class="t"><span class="g">⇥</span></td><td class="m">Alternate exit: error-channel type or inline conversion recovery</td></tr>
+        <tr><td class="t"><span class="g">∴</span></td><td class="m">Compact therefore body (e.g. <code>si cond ∴ redde x</code>)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Type shape</h3>
+    <table>
+      <thead><tr><th>Glyph</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td class="t"><span class="g">∷</span></td><td class="m">Static type ascription (compile-time cast)</td></tr>
+        <tr><td class="t"><span class="g">↦</span></td><td class="m">Runtime conversion (can-fail parse/coerce)</td></tr>
+        <tr><td class="t"><span class="g">∪</span></td><td class="m">Inline union type (<code>T ∪ nihil</code>)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Comparison and logic</h3>
+    <table>
+      <thead><tr><th>Glyph</th><th>Meaning</th></tr></thead>
+      <tbody>
+        <tr><td class="t"><span class="g">≡</span> <span class="g">≠</span></td><td class="m">Equality and inequality</td></tr>
+        <tr><td class="t"><span class="g">&lt;</span> <span class="g">&gt;</span> <span class="g">≤</span> <span class="g">≥</span></td><td class="m">Ordering</td></tr>
+        <tr><td class="t"><span class="g">∧</span> <span class="g">∨</span> <span class="g">⊻</span> <span class="g">¬</span></td><td class="m">And, or, xor, not</td></tr>
+        <tr><td class="t"><span class="g">⊕</span> <span class="g">⊖</span></td><td class="m">Postfix increment/decrement statements</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Keywords (Latin behavioural vocabulary)</h3>
+
+    <p>Faber uses Latin words where the construct has behavioural or grammatical shape:</p>
+
+    <table>
+      <thead><tr><th>Category</th><th>Keywords</th></tr></thead>
+      <tbody>
+        <tr><td class="t">Declarations</td><td class="m"><code>functio</code>, <code>genus</code>, <code>implendum</code>, <code>typus</code>, <code>ordo</code>, <code>discretio</code></td></tr>
+        <tr><td class="t">Bindings</td><td class="m"><code>fixum</code>, <code>varia</code>, <code>sit</code>, <code>redde</code>, <code>iace</code>, <code>mori</code>, <code>tacet</code></td></tr>
+        <tr><td class="t">Control flow</td><td class="m"><code>si</code>, <code>sin</code>, <code>secus</code>, <code>dum</code>, <code>itera</code>, <code>elige</code>, <code>discerne</code></td></tr>
+        <tr><td class="t">Error handling</td><td class="m"><code>fac</code>, <code>cape</code>, <code>cura</code></td></tr>
+      </tbody>
+    </table>
+
+    <!-- ================================================================== -->
+    <h2 id="nullability">17. Nullability and optionality</h2>
+
+    <p>
+      Use <code>T ∪ nihil</code> when the value can be absent. Use <code>sponte</code> after the
+      name when a parameter or field may be omitted by the caller or constructor.
+    </p>
+
+    <pre class="codeblock"><span class="kw">functio</span> <span class="id">find</span>(<span class="kw">textus</span> <span class="id">key</span>) <span class="g">→</span> <span class="kw">numerus</span> <span class="g">∪</span> <span class="kw">nihil</span>
+
+<span class="kw">functio</span> <span class="id">connect</span>(<span class="kw">textus</span> <span class="id">host</span>, <span class="kw">numerus</span> <span class="id">port</span> <span class="kw">sponte</span>) <span class="g">→</span> <span class="kw">vacuum</span>
+
+<span class="kw">genus</span> <span class="id">User</span> {
+    <span class="kw">textus</span> <span class="id">email</span> <span class="kw">sponte</span>
+}</pre>
+
+    <!-- ================================================================== -->
+    <h2 id="conversion">18. Conversion and construction</h2>
+
+    <p>Two important conversion operators:</p>
+
+    <pre class="codeblock"><span class="kw">fixum</span> <span class="id">_</span> <span class="id">parsed</span> <span class="g">←</span> <span class="p">"42"</span> <span class="g">↦</span> <span class="kw">numerus</span>
+<span class="kw">fixum</span> <span class="id">_</span> <span class="id">safe</span> <span class="g">←</span> <span class="id">input</span> <span class="g">↦</span> <span class="kw">numerus</span> <span class="g">⇥</span> <span class="n">0</span>
+<span class="kw">fixum</span> <span class="id">_</span> <span class="id">text</span> <span class="g">←</span> <span class="id">value</span> <span class="g">∷</span> <span class="kw">textus</span></pre>
+
+    <ul class="body">
+      <li>Use <code>↦</code> for runtime conversion, especially parsing or coercion that may fail.</li>
+      <li>Use <code>∷</code> for explicit static type ascription (postfix, target-type driven).</li>
+      <li>Use <code>Type { field = value }</code> for records.</li>
+      <li>Use <code>value ↦ Type</code> for type-directed materialization.</li>
+    </ul>
+
+    <!-- ================================================================== -->
+    <h2 id="codebase">19. Codebase index</h2>
+
+    <table>
+      <thead><tr><th>Area</th><th>Path</th><th>Use when</th></tr></thead>
+      <tbody>
+        <tr><td class="t">User CLI</td><td class="m">sibling <code>faber</code></td><td class="m">Public <code>faber</code> CLI</td></tr>
+        <tr><td class="t">Compiler</td><td class="m">sibling <code>radix/crates/radix</code></td><td class="m">Lexing, parsing, semantic analysis, HIR/MIR, diagnostics, target codegen</td></tr>
+        <tr><td class="t">Language runtime</td><td class="m">sibling <code>faber-runtime</code></td><td class="m">Core runtime types; package <code>faber-runtime</code>, crate name <code>faber</code></td></tr>
+        <tr><td class="t">Package store</td><td class="m">sibling <code>cista</code></td><td class="m">Faber package publishing/storage; experimental</td></tr>
+        <tr><td class="t">Stdlib source</td><td class="m">sibling <code>norma</code></td><td class="m">Public Faber stdlib (<code>norma:*</code>)</td></tr>
+        <tr><td class="t">Graphics / geometry</td><td class="m">sibling <code>triga</code></td><td class="m">Optional <code>triga:*</code> library</td></tr>
+        <tr><td class="t">Language corpus</td><td class="m">sibling <code>examples/corpus</code></td><td class="m">Keyword / language reference programs</td></tr>
+        <tr><td class="t">Grammar</td><td class="m"><code>EBNF.md</code></td><td class="m">Canonical grammar and spec commentary</td></tr>
+        <tr><td class="t">Design docs</td><td class="m"><code>docs</code></td><td class="m">Delivery plans, release notes, design history</td></tr>
+        <tr><td class="t">Public website</td><td class="m"><code>faberlang/faberlang.dev</code></td><td class="m">Public website and documentation destination</td></tr>
+      </tbody>
+      <caption>Compiler (Radix) source is private. All other repositories are public.</caption>
+    </table>
+
+    <!-- ================================================================== -->
+    <h2 id="matrix">20. Rendering support</h2>
+
+    <p>
+      All three axes (down, up, in) use the same table and the same policy verbs.
+      One verb per <code>(feature, rendering)</code> pair; nothing silently miscompiles,
+      and nothing silently half-localises.
+    </p>
+
+    <p class="dim" style="font-family:var(--sans);font-size:12.5px">
+      <b class="v s">SUPPORT</b> lowers with intended semantics ·
+      <b class="v l">ERASE</b> typechecks, codegen drops target semantics ·
+      <b class="v l">WARN</b> legal, no effect ·
+      <b class="v r">REJECT</b> fails with an explicit diagnostic ·
+      <b class="v d">DEFER</b> parses, lowering unimplemented ·
+      <b class="v l">LIMITED</b> stable contract with explicit subset gates
+    </p>
+
+    <h3>Down — machine renderings</h3>
+    <table>
+      <thead><tr><th>Target</th><th>Lane</th><th>Run</th><th>Pkg</th><th>Policy</th><th>Measured floor</th></tr></thead>
+      <tbody>
+        <tr><td class="t">rust</td><td class="m">HIR</td><td class="m">yes</td><td class="m">yes</td><td><span class="v s">SUPPORT</span></td><td class="m">Production path. Borrow modes, CLI generation, failable <code>Result</code> lowering.</td></tr>
+        <tr><td class="t">fmir · fmir-text · fmir-bin</td><td class="m">MIR</td><td class="m">yes</td><td class="m">yes</td><td><span class="v s">SUPPORT</span></td><td class="m">Package MIR images; runner proves source independence and relocation.</td></tr>
+        <tr><td class="t">faber</td><td class="m">HIR</td><td class="m">no</td><td class="m">no</td><td><span class="v s">SUPPORT</span></td><td class="m">Canonical source view / round-trip. Not an execution backend.</td></tr>
+        <tr><td class="t">ts</td><td class="m">HIR</td><td class="m">no</td><td class="m">no</td><td><span class="v l">PROBE</span></td><td class="m">analyzed 288/318 · emitted 288/318 · typecheck-valid 268/318 · runnable 262/318 · behavior-checked 60/318</td></tr>
+        <tr><td class="t">go</td><td class="m">HIR</td><td class="m">no</td><td class="m">no</td><td><span class="v l">ERASE</span></td><td class="m">146/216 pass. Borrow modes erased; <code>ad</code> rejected at driver; ~58 expected failures.</td></tr>
+        <tr><td class="t">wasm · wasm-text</td><td class="m">MIR</td><td class="m">no</td><td class="m">no</td><td><span class="v l">LIMITED</span></td><td class="m">emitted 200/289 · validate 195/289 · stub-host runnable 171/289 · output-checked 15/289</td></tr>
+        <tr><td class="t">llvm-text</td><td class="m">MIR</td><td class="m">no</td><td class="m">no</td><td><span class="v l">LIMITED</span></td><td class="m">emitted 249/289 · verifier-valid 232/289 · runnable 65/289 · output-checked 0/289</td></tr>
+        <tr><td class="t">metal-text</td><td class="m">MIR</td><td class="m">no</td><td class="m">no</td><td><span class="v l">LIMITED</span></td><td class="m">Device-safe kernel subset; rank-1 <code>f32</code> views. 88 focused tests.</td></tr>
+        <tr><td class="t">wgsl-text</td><td class="m">MIR</td><td class="m">no</td><td class="m">no</td><td><span class="v l">LIMITED</span></td><td class="m">Validates with naga 30.x. 87 focused tests. Reflection sidecar for bind-group metadata.</td></tr>
+        <tr><td class="t">sexp</td><td class="m">MIR</td><td class="m">no</td><td class="m">no</td><td><span class="v l">LIMITED</span></td><td class="m">193 emitted · 190 Racket-compiled · 190 Racket-run. Validation target.</td></tr>
+      </tbody>
+      <caption><code>run</code> and <code>package</code> describe Faber workflows, not whether an external toolchain can execute the emitted artifact.</caption>
+    </table>
+
+    <h3>Up — human renderings</h3>
+    <table>
+      <thead><tr><th>Rendering</th><th>Axis</th><th>Policy</th><th>State</th></tr></thead>
+      <tbody>
+        <tr><td class="t">la · Latina</td><td class="m">canonical interchange</td><td><span class="v s">SUPPORT</span></td><td class="m"><code>format --canonical</code> = <code>--reader-locale=la</code></td></tr>
+        <tr><td class="t">th-TH</td><td class="m">access wedge</td><td><span class="v d">DEFER</span></td><td class="m">Proposed — first reference proof (phase 4)</td></tr>
+        <tr><td class="t">zh-Hans · zh-Hant</td><td class="m">reach + script</td><td><span class="v d">DEFER</span></td><td class="m">Proposed — phase 5</td></tr>
+        <tr><td class="t">ar</td><td class="m">bidi</td><td><span class="v d">DEFER</span></td><td class="m">Proposed — phase 5</td></tr>
+        <tr><td class="t">hi</td><td class="m">clusters + numerals</td><td><span class="v d">DEFER</span></td><td class="m">Proposed — phase 5</td></tr>
+        <tr><td class="t">vi</td><td class="m">NFKC on Latin</td><td><span class="v d">DEFER</span></td><td class="m">Proposed — phase 5</td></tr>
+      </tbody>
+      <caption>NFKC normalization at lex entry has <b>landed</b>. Keyword tables, diagnostic renderer, and pack delivery are open.</caption>
+    </table>
+
+    <h3>In — author rendering</h3>
+    <table>
+      <thead><tr><th>Rendering</th><th>Bet</th><th>Policy</th><th>State</th></tr></thead>
+      <tbody>
+        <tr><td class="t">terse model surface</td><td class="m">Training alignment beats every other lever</td><td><span class="v d">DEFER</span></td><td class="m">Proposed. Best near-term guess.</td></tr>
+        <tr><td class="t">named delimiters</td><td class="m">Kills bracket-loss at depth</td><td><span class="v d">DEFER</span></td><td class="m">Proposed. Unmeasured.</td></tr>
+        <tr><td class="t">HIR serialization</td><td class="m">No surface to drift from</td><td><span class="v d">DEFER</span></td><td class="m">Proposed. Fluency unproven.</td></tr>
+      </tbody>
+    </table>
+
+    <!-- ================================================================== -->
+    <h2 id="status">21. Status</h2>
+
+    <p>
+      Faber 1.0.0 freezes the grammar for the major line. The compiler, Radix,
+      is private; its output is not — the grammar, runtime, examples, tree-sitter package,
+      and every lowered artifact are public and reviewable. The staging language exists so
+      that the thing you review is the thing that runs.
+    </p>
+
+    <p>
+      <b>Reader locale is proposed.</b> It is a north-star design with real substrate
+      prerequisites and an open pack-delivery architecture. This page renders illustrative
+      pack spellings taken from the design document; no pack has been authored.
+    </p>
+
+    <h3>References</h3>
+    <ol class="refs">
+      <li><code>radix/docs/design/reader-locale.md</code> — reader locale; the five reference locales; the twelve architectural requirements.</li>
+      <li><code>radix/docs/design/target-capability-matrix.md</code> — policy verbs; pipeline routing; per-target contracts and measured floors.</li>
+      <li><code>radix/EBNF.md</code> — canonical grammar and spec commentary.</li>
+      <li><code>radix/docs/design/faber-canonical-surface.md</code> — <code>faber format</code> author vs canonical modes.</li>
+      <li><code>radix/docs/design/frame-stream-types.md</code> — <code>sermo</code>, <code>scrinium</code>, <code>status</code>.</li>
+      <li><code>radix/docs/design/tensor-intrinsics.md</code> — <code>tensor&lt;T, Figura&gt;</code> v1 surface.</li>
+    </ol>
+
+    <footer>
+      <span>Faber 1.0.0 · the grammar is frozen for the 1.x line</span>
+      <span><a href="https://github.com/faberlang">github.com/faberlang</a></span>
+    </footer>
+  </main>
+</div>
+
+<script>
+// ---- pack data -------------------------------------------------------------
+const PACKS = {
+  'la':      { native:'Latina',  script:'',   dir:'ltr', status:'canonical',
+               rows:{ functio:'functio', numerus:'numerus', si:'si', redde:'redde', nihil:'nihil' } },
+  'th':      { native:'ไทย',      script:'th', dir:'ltr', status:'proposed · reference proof',
+               rows:{ functio:'ฟังก์ชัน', si:'ถ้า', redde:'คืน' } },
+  'zh-Hans': { native:'简体中文',  script:'zh', dir:'ltr', status:'proposed · coverage proof',
+               rows:{ functio:'函数', si:'如果' } },
+  'ar':      { native:'العربية',   script:'ar', dir:'rtl', status:'proposed · coverage proof',
+               rows:{ functio:'دالة' } },
+  'hi':      { native:'हिन्दी',      script:'hi', dir:'ltr', status:'proposed · coverage proof',
+               rows:{ functio:'फलन' } },
+  'vi':      { native:'Tiếng Việt', script:'', dir:'ltr', status:'proposed · pack not authored',
+               rows:{} }
+};
+
+const SCRIPT_FONT = {
+  th: "'Noto Sans Thai', monospace",
+  ar: "'Noto Sans Arabic', monospace",
+  hi: "'Noto Sans Devanagari', monospace",
+  zh: "'Noto Sans SC', monospace"
+};
+
+// ---- the sample, as tokens (not text) --------------------------------------
+const K = k => ({t:'kw', v:k});
+const I = v => ({t:'id', v});
+const G = v => ({t:'g',  v});
+const P = v => ({t:'p',  v});
+const N = v => ({t:'n',  v});
+const S = { t:'s' };
+const O = v => ({t:'o',  v});
+
+const LINES = [
+  [K('functio'), S, I('divide'), P('('), K('numerus'), S, I('a'), P(', '), K('numerus'), S, I('b'), P(')'), S, G('→'), S, K('numerus'), S, G('∪'), S, K('nihil'), S, P('{')],
+  [P('    '), K('si'), S, I('b'), S, G('≡'), S, N('0'), S, G('∴'), S, K('redde'), S, K('nihil')],
+  [P('    '), K('redde'), S, I('a'), S, O('/'), S, I('b')],
+  [P('}')]
+];
+
+const esc = s => s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+function render(code) {
+  const pack = PACKS[code];
+  let html = '', total = 0, fell = 0;
+  const distinct = new Set(), hit = new Set();
+
+  for (const line of LINES) {
+    for (const tok of line) {
+      if (tok.t === 's') { html += ' '; continue; }
+      if (tok.t === 'g') { html += '<span class="g">' + esc(tok.v) + '</span>'; continue; }
+      if (tok.t === 'id') { html += '<span class="id">' + esc(tok.v) + '</span>'; continue; }
+      if (tok.t === 'n')  { html += '<span class="n">' + esc(tok.v) + '</span>'; continue; }
+      if (tok.t === 'p' || tok.t === 'o') { html += '<span class="p">' + esc(tok.v) + '</span>'; continue; }
+      if (tok.t === 'kw') {
+        total++; distinct.add(tok.v);
+        const bound = pack.rows[tok.v];
+        if (bound) {
+          hit.add(tok.v);
+          const font = pack.script ? ' style="font-family:' + SCRIPT_FONT[pack.script] + '"' : '';
+          html += pack.dir === 'rtl'
+            ? '<bdi class="kw"' + font + '>' + esc(bound) + '</bdi>'
+            : '<span class="kw"' + font + '>' + esc(bound) + '</span>';
+        } else {
+          fell++;
+          html += '<span class="fb" title="no pack row — Latin fallback">' + esc(tok.v) + '</span>';
+        }
+      }
+    }
+    html += '\n';
+  }
+
+  document.getElementById('sample-code').innerHTML = html.replace(/\n$/, '');
+  document.getElementById('loc-label').textContent = code;
+  document.getElementById('loc-status').textContent = pack.status;
+  document.getElementById('loc-status').style.color =
+    code === 'la' ? 'var(--support)' : 'var(--defer)';
+
+  const rowsTxt = hit.size + ' of ' + distinct.size + ' keyword rows present';
+  const fellTxt = fell === 0
+    ? 'no fallback'
+    : fell + ' of ' + total + ' keyword tokens fell back to Latin';
+  document.getElementById('readout').innerHTML =
+    '<span><b>Pack coverage</b> — ' + rowsTxt + ' · ' +
+      '<span class="' + (fell ? 'warn' : '') + '">' + fellTxt + '</span></span>' +
+    '<span>Glyphs moved: <b>0</b> · Identifiers changed: <b>0</b> · Emitted Rust changed: <b>0</b></span>';
+
+  document.getElementById('canonnote').textContent =
+    code === 'la'
+      ? 'la is canonical — this view is `faber format --canonical`'
+      : 'canonical rendering is la · `faber format --canonical` returns it';
+
+  document.querySelectorAll('.locbtn').forEach(b =>
+    b.setAttribute('aria-pressed', String(b.dataset.loc === code)));
+}
+
+// ---- rendering bar ---------------------------------------------------------
+const bar = document.getElementById('locbtns');
+for (const [code, pack] of Object.entries(PACKS)) {
+  const b = document.createElement('button');
+  b.className = 'locbtn';
+  b.dataset.loc = code;
+  b.setAttribute('aria-pressed', 'false');
+  const cls = pack.script ? ' class="' + pack.script + '"' : '';
+  b.innerHTML = '<span' + cls + '>' + pack.native + '</span> <span style="opacity:.55">' + code + '</span>';
+  b.addEventListener('click', () => render(code));
+  bar.appendChild(b);
+}
+render('la');
+</script>
+
+</body>
+</html>

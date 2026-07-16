@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faber — Syntax</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Sans+Mono:wght@400;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+  :root {
+    --paper: #faf9f6; --paper-alt: #f0efea; --ink: #1a1a18; --ink-dim: #5f5e58;
+    --ink-faint: #8c8a82; --rule: #dcdad2; --glyph: #2f4faa; --glyph-soft: #e8ecf8;
+    --serif: 'Noto Serif', Georgia, serif; --sans: 'Noto Sans', -apple-system, 'Segoe UI', sans-serif;
+    --mono: 'Noto Sans Mono', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 16.5px; line-height: 28px; }
+  a { color: var(--ink); border-bottom: 1px solid var(--rule); text-decoration: none; }
+  a:hover { border-bottom-color: var(--glyph); }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 40px 24px 80px; }
+  h1 { font-family: var(--serif); font-size: 38px; line-height: 46px; font-weight: 400; border-bottom: 1px solid var(--rule); padding-bottom: 10px; margin-bottom: 24px; }
+  .back { font-family: var(--sans); font-size: 12px; color: var(--ink-faint); margin-bottom: 30px; }
+  .back a { border: none; color: var(--ink-dim); }
+  .back a:hover { border-bottom: 1px solid var(--glyph); }
+  p { margin-bottom: 15px; max-width: 74ch; }
+  .placeholder { color: var(--ink-faint); font-family: var(--sans); font-size: 13px; border: 1px dashed var(--rule); padding: 24px; margin: 20px 0; text-align: center; }
+  footer { border-top: 1px solid var(--rule); margin-top: 48px; padding: 20px 0 40px; font-family: var(--sans); font-size: 12px; color: var(--ink-faint); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="back"><a href="../index.html">← Faber</a></div>
+  <h1>Syntax and semantics</h1>
+  <p class="placeholder">This section is under construction.</p>
+  <p>Topics to cover: data types, variables and binding, functions, borrowing (de/in/ex), control flow, error handling (⇥/iace/fac/cape), generics, collections (lista, tabula, tensor, sparsa), string and template literals, conversion operators (↦, ∷).</p>
+  <footer>Faber · MIT license</footer>
+</div>
+</body>
+</html>
