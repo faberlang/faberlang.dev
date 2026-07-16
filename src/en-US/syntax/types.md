@@ -20,7 +20,7 @@ before the name: `textus nomen`, not `nomen: textus`. The type system covers
 scalar primitives, generic collections, sized numerics, tensors, and GPU-facing
 register types.
 
-## Primitive types
+## Primitive types {#primitive-types}
 
 | Type | Role | Example literal |
 |------|------|-----------------|
@@ -35,7 +35,7 @@ register types.
 | `json` | Compile-time JSON value | `{ "key": "value" }` |
 | `octeti` | Hex byte sequence | \|00ff\| |
 
-## Sized numeric types
+## Sized numeric types {#sized-numeric-types}
 
 `numerus` and `fractus` have default widths (i64 and f64) and explicit width
 forms:
@@ -49,24 +49,29 @@ fixum fractus<f32> single ← 1.5 ∷ fractus<f32>
 Width sugar is available in type position: `i8` … `u64`, `f16`, `f32`, `f64`
 are equivalent to `numerus<W>` / `fractus<W>`.
 
-## Nullable types
+## Nullable types {#nullable-types}
 
 Nullable values use the union syntax `T ∪ nihil`:
 
 ```faber
-functio find(textus key) → numerus ∪ nihil
-functio maybe() → textus ∪ nihil
+functio find(textus key) → numerus ∪ nihil {
+    redde nihil
+}
+
+functio maybe() → textus ∪ nihil {
+    redde nihil
+}
 ```
 
 There is no `T?` or `Option<T>` syntax in Faber. The union is explicit.
 
-## Type aliases
+## Type aliases {#type-aliases}
 
 ```faber
 typus UserId = numerus
 ```
 
-## Generics
+## Generics {#generics}
 
 Functions, type aliases, `genus`, and `implendum` accept type parameters with
 `<T>` syntax:
@@ -84,10 +89,12 @@ functio primum<T>(lista<T> res) → T ∪ nihil {
 Explicit call-site type arguments are supported:
 
 ```faber
-fixum _ value ← identitas<numerus>(7)
+functio identitas<T>(T valor) → T { redde valor }
+
+fixum numerus value ← identitas<numerus>(7)
 ```
 
-## Collections
+## Collections {#collections}
 
 | Type | Role | Sugar |
 |------|------|-------|
@@ -104,7 +111,7 @@ fixum lista<numerus> nums ← [1, 2, 3]
 fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 ```
 
-## Tensor types
+## Tensor types {#tensor-types}
 
 `tensor<T, Figura>` is the dense fixed-shape container:
 
@@ -122,7 +129,7 @@ fixum tensor<numerus, [4]> vector ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
 fixum numerus ∪ nihil first ← vector[0]
 ```
 
-## GPU core types
+## GPU core types {#gpu-core-types}
 
 These are recognised by the systems lane for GPU and register work.
 Package targets that lack hardware support reject them:
@@ -139,18 +146,25 @@ functio swap(atomic<i32> cell, i32 value) → i32 {
 }
 ```
 
-## Borrow markers on types
+## Borrow markers on types {#borrow-markers}
 
 Borrow markers (`de`, `in`, `ex`) can appear on types in parameter
 positions to indicate how a value is passed:
 
 ```faber
-functio imprime(de textus label) → vacuum  // shared borrow
-functio duplica(in numerus value) → vacuum // mutable borrow
-functio consume(ex textus buffer) → textus // move
+# shared borrow — caller retains ownership
+functio imprime(de textus label) → vacuum { }
+
+# mutable borrow — caller lends mutable access
+functio duplica(in numerus value) → vacuum { }
+
+# move — caller gives up ownership
+functio consume(ex textus buffer) → textus {
+    redde buffer
+}
 ```
 
-## Comparison policy
+## Comparison policy {#comparison-policy}
 
 | Operator | Family | Behaviour |
 |----------|--------|-----------|

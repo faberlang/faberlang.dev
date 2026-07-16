@@ -18,6 +18,13 @@ importa ex "./string_util" privata * ut su
 importa ex "./span" privata * ut span_mod
 
 
+# A heading split into its title text and optional anchor id.
+genus AnchoredHeading {
+    textus title
+    textus anchor
+}
+
+
 # ──────────────────────────────────────────────
 # Inline helpers
 # ──────────────────────────────────────────────
@@ -114,6 +121,40 @@ functio converte_bold(textus text) → textus {
 functio genera_inline(textus text) → textus {
     fixum textus with_code ← span_mod.genera_line(text)
     redde converte_bold(with_code)
+}
+
+# Extract a trailing {#anchor} from heading text.
+# Returns the clean title (without {#...}) and the anchor id (or "").
+# If no anchor is present, the title passes through unchanged.
+functio extract_anchor(textus heading) → AnchoredHeading {
+    fixum numerus brace ← su.initium_index(heading, " {#")
+
+    si brace < 0 {
+        redde AnchoredHeading { title = heading, anchor = "" }
+    }
+
+    fixum numerus close ← su.initium_index_post(heading, "}", brace + 3)
+
+    si close < 0 {
+        redde AnchoredHeading { title = heading, anchor = "" }
+    }
+
+    fixum textus anchor ← heading.sectio(brace + 3, close)
+    fixum textus title ← su.recide(heading.sectio(0, brace))
+
+    redde AnchoredHeading { title = title, anchor = anchor }
+}
+
+# Render a heading tag with optional anchor id.
+functio genera_heading(textus tag, textus heading) → textus {
+    fixum AnchoredHeading ah ← extract_anchor(heading)
+    fixum textus title ← genera_inline(ah.title)
+
+    si ah.anchor.longitudo() > 0 {
+        redde («<§ id="§">§</§>»(tag, ah.anchor, title, tag))
+    }
+
+    redde («<§>§</§>»(tag, title, tag))
 }
 
 
@@ -236,7 +277,7 @@ functio converte(textus source) → textus {
         # ── Heading h3 ──
         si su.initium_cum(line, "### ") {
             fixum textus title ← line.sectio(4, line.longitudo())
-            result ← (result + "<h3>§</h3>"(genera_inline(title))) + nl
+            result ← (result + genera_heading("h3", title)) + nl
             i ← i + 1
             perge
         }
@@ -244,7 +285,7 @@ functio converte(textus source) → textus {
         # ── Heading h2 ──
         si su.initium_cum(line, "## ") {
             fixum textus title ← line.sectio(3, line.longitudo())
-            result ← (result + "<h2>§</h2>"(genera_inline(title))) + nl
+            result ← (result + genera_heading("h2", title)) + nl
             i ← i + 1
             perge
         }
@@ -357,9 +398,24 @@ probandum "markdown converter" tag "core" {
         adfirma su.initium_index(html, "<h2>Title</h2>") ≥ 0
     }
 
+    proba "h2 heading with anchor" {
+        fixum textus html ← converte("## Title {#title-anchor}")
+        adfirma su.initium_index(html, "<h2 id=\"title-anchor\">Title</h2>") ≥ 0
+    }
+
     proba "h3 heading" {
         fixum textus html ← converte("### Subtitle")
         adfirma su.initium_index(html, "<h3>Subtitle</h3>") ≥ 0
+    }
+
+    proba "h3 heading with anchor" {
+        fixum textus html ← converte("### Sub {#sub-id}")
+        adfirma su.initium_index(html, "<h3 id=\"sub-id\">Sub</h3>") ≥ 0
+    }
+
+    proba "heading without anchor renders bare" {
+        fixum textus html ← converte("## Plain")
+        adfirma su.initium_index(html, "id=") < 0
     }
 
     proba "paragraph wrapping" {
