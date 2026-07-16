@@ -1,0 +1,115 @@
+# Code fence extractor.
+#
+# Extracts ```faber code blocks from Markdown source, parsing the
+# fence info string for locale, mode, and outcome contracts.
+
+importa ex "./string_util" privata * ut su
+
+# A single code fence extracted from Markdown.
+genus Fence {
+    textus locale
+    textus modus
+    textus outcome
+    textus source
+    numerus line
+}
+
+# Extract all code fences from Markdown source.
+functio extract(textus source) → lista<Fence> {
+    varia lista<Fence> fences ← vacua
+    fixum textus nl_char ← su.nl()
+    fixum lista<textus> lines ← su.divide(source, nl_char)
+    varia numerus idx ← 0
+
+    dum idx < lines.longitudo() {
+        fixum textus line ← lines.accipe(idx) vel ""
+        fixum textus trimmed ← su.recide(line)
+
+        # Check for fence opening
+        si su.initium_cum(trimmed, "```faber") ≠ verum ergo {
+            idx ← idx + 1
+            perge
+        }
+
+        # Parse info string (everything after ```faber)
+        fixum textus info ← su.recide(trimmed.sectio(8, trimmed.longitudo()))
+
+        # Find closing ``` line
+        varia numerus close_idx ← idx + 1
+        varia bivalens found_close ← falsum
+
+        dum close_idx < lines.longitudo() {
+            fixum textus close_line ← lines.accipe(close_idx) vel ""
+            si su.recide(close_line) ≡ "```" {
+                found_close ← (verum)
+                close_idx ← lines.longitudo()
+            }
+            si found_close ≠ verum ergo close_idx ← close_idx + 1
+        }
+
+        si found_close ≠ verum ergo {
+            idx ← idx + 1
+            perge
+        }
+
+        # Extract source between opening and closing fences
+        varia textus code ← ""
+        varia numerus j ← idx + 1
+        dum j < close_idx {
+            si code.longitudo() > 0 {
+                code ← code + nl_char
+            }
+            fixum textus line_j ← lines.accipe(j) vel ""
+            code ← code + line_j
+            j ← j + 1
+        }
+
+        # Parse info string attributes
+        fixum Fence parsed ← parse_info(info, code, idx + 1)
+        fences.appende(parsed)
+
+        idx ← close_idx + 1
+    }
+
+    redde fences
+}
+
+# Parse a fence info string into structured attributes.
+functio parse_info(textus info, textus source, numerus line) → Fence {
+    varia textus locale ← "la"
+    varia textus modus ← "fluid"
+    varia textus outcome ← "compiles"
+
+    si info.longitudo() > 0 {
+        fixum lista<textus> tokens ← su.divide(info, " ")
+
+        itera ex tokens fixum token {
+            si su.initium_cum(token, "locale=") {
+                locale ← token.sectio(7, token.longitudo())
+            }
+            si token ≡ "pinned" {
+                modus ← "pinned"
+            }
+            si token ≡ "fluid" {
+                modus ← "fluid"
+            }
+            si token ≡ "compiles" {
+                outcome ← "compiles"
+            }
+            si token ≡ "rejects" {
+                outcome ← "rejects"
+            }
+            si token ≡ "output-matches" {
+                outcome ← "output-matches"
+            }
+        }
+    }
+
+    redde Fence {
+        locale = locale,
+        modus = modus,
+        outcome = outcome,
+        source = source,
+        line = line,
+    }
+}

@@ -1,0 +1,77 @@
+# Core types for the Speculum site generator.
+
+importa ex "./frontmatter" privata * ut fm
+importa ex "./fence" privata * ut fence_mod
+importa ex "./anchor" privata * ut anchor_mod
+
+# A documentation page in any locale.
+genus Pagina {
+    textus iter
+    textus titulus
+    textus section
+    numerus positio
+    textus corpus
+    tabula<textus, textus> metadata
+    lista<fence_mod.Fence> fences
+    lista<anchor_mod.Heading> headings
+    lista<textus> sources
+    textus locale
+}
+
+# A rendered HTML page ready to write to disk.
+genus HtmlPagina {
+    textus iter
+    textus html
+}
+
+# The site manifest describes every page.
+genus SiteManifest {
+    lista<Pagina> paginae
+    lista<textus> locales
+    textus default_locale
+    textus version
+}
+
+# Build a Pagina from raw Markdown source.
+functio aedifica_paginam(textus iter, textus source, textus locale) → Pagina {
+    fixum fm.Split split ← fm.divide(source)
+    fixum textus titulus ← field_vale(split.fields, "title", iter)
+    fixum textus section ← field_vale(split.fields, "section", "misc")
+    fixum lista<fence_mod.Fence> fences ← fence_mod.extract(split.body)
+    fixum lista<anchor_mod.Heading> headings ← anchor_mod.extract(split.body)
+    fixum lista<textus> sources ← field_lista(split.fields, "sources")
+
+    redde Pagina {
+        iter = iter,
+        titulus = titulus,
+        section = section,
+        positio = 0,
+        corpus = split.body,
+        metadata = split.fields,
+        fences = fences,
+        headings = headings,
+        sources = sources,
+        locale = locale,
+    }
+}
+
+# Get a string value from frontmatter, with fallback.
+functio field_vale(tabula<textus, textus> fields, textus key, textus fallback) → textus {
+    fac {
+        redde fields[key] ↦ textus
+    }
+    cape err {
+        redde fallback
+    }
+}
+
+# Get a lista from a frontmatter array string.
+functio field_lista(tabula<textus, textus> fields, textus key) → lista<textus> {
+    fac {
+        fixum textus raw ← fields[key] ↦ textus
+        redde [raw]
+    }
+    cape err {
+        redde vacua
+    }
+}

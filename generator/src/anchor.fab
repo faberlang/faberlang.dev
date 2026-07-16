@@ -1,0 +1,66 @@
+# Heading anchor extractor.
+#
+# Extracts headings from Markdown, looking for trailing {#anchor-id}.
+
+importa ex "./string_util" privata * ut su
+
+# A heading with its stable anchor ID.
+genus Heading {
+    numerus level
+    textus text
+    textus anchor
+    numerus line
+}
+
+# Extract all headings from Markdown source.
+functio extract(textus source) → lista<Heading> {
+    varia lista<Heading> headings ← vacua
+    fixum textus nl_char ← su.nl()
+    fixum lista<textus> lines ← su.divide(source, nl_char)
+    varia numerus line_num ← 0
+
+    itera ex lines fixum line {
+        line_num ← line_num + 1
+        fixum textus trimmed ← su.recide(line)
+
+        si su.initium_cum(trimmed, "### ") {
+            headings.appende(parse_heading(3, trimmed.sectio(4, trimmed.longitudo()), line_num))
+        }
+        si su.initium_cum(trimmed, "## ") {
+            headings.appende(parse_heading(2, trimmed.sectio(3, trimmed.longitudo()), line_num))
+        }
+        si su.initium_cum(trimmed, "# ") {
+            headings.appende(parse_heading(1, trimmed.sectio(2, trimmed.longitudo()), line_num))
+        }
+    }
+
+    redde headings
+}
+
+# Parse a heading, extracting {#anchor} if present.
+functio parse_heading(numerus level, textus rest, numerus line_num) → Heading {
+    fixum textus trimmed ← su.recide(rest)
+    fixum numerus brace_start ← su.initium_index(trimmed, "{#")
+
+    si brace_start ≥ 0 {
+        fixum numerus brace_end ← su.initium_index_post(trimmed, "}", brace_start)
+        si brace_end > brace_start {
+            fixum textus anchor ← trimmed.sectio(brace_start + 2, brace_end)
+            fixum textus text ← su.recide(trimmed.sectio(0, brace_start))
+
+            redde Heading {
+                level = level,
+                text = text,
+                anchor = anchor,
+                line = line_num,
+            }
+        }
+    }
+
+    redde Heading {
+        level = level,
+        text = trimmed,
+        anchor = "",
+        line = line_num,
+    }
+}

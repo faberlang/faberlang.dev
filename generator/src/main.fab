@@ -1,0 +1,45 @@
+# Speculum site generator entry point.
+#
+# Pure text-to-text pipeline. The generator package has no file I/O
+# capability (kernel imports are package-mode restricted, PKG001).
+# The shell wrapper (render.sh) handles file reading and invokes the
+# generator via `faber build -t rust` for compiled execution.
+#
+# The genera() function is the primary API — the shell wrapper calls
+# into it by passing source content. See render.sh.
+
+importa ex "./types" privata * ut types_mod
+importa ex "./html" privata * ut html_mod
+importa ex "./string_util" privata * ut su
+
+# Build a single page from a Markdown source string.
+functio genera(textus source, textus iter, textus locale, textus stylesheet_link) → textus {
+    fixum types_mod.Pagina pag ← types_mod.aedifica_paginam(iter, source, locale)
+    redde html_mod.genera_paginam(pag, stylesheet_link)
+}
+
+# Derive the page path from a source file path.
+functio deriva_iter(textus path) → textus {
+    fixum numerus src_pos ← su.initium_index(path, "src/")
+    si src_pos ≥ 0 {
+        fixum textus after_src ← path.sectio(src_pos + 4, path.longitudo())
+        fixum numerus slash ← su.initium_index(after_src, "/")
+        si slash ≥ 0 {
+            fixum textus after_locale ← after_src.sectio(slash + 1, after_src.longitudo())
+            fixum numerus dot ← su.initium_index(after_locale, ".md")
+            si dot ≥ 0 {
+                redde after_locale.sectio(0, dot)
+            }
+            redde after_locale
+        }
+        redde after_src
+    }
+    redde path
+}
+
+# Entry point — prints usage banner.
+# The shell wrapper (render.sh) is the primary invocation surface.
+incipit {
+    nota "Speculum site generator v0.1.0"
+    nota "Usage: ./render.sh <source.md> [locale] [stylesheet] [output]"
+}

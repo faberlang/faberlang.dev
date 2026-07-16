@@ -1,0 +1,181 @@
+# Inline span renderer.
+#
+# Markdown inline code spans (backtick-quoted) get classified against
+# the 48-identifier closed set: 37 keywords + 11 types from the reader
+# locale pack. Spans that match get class="kw" or class="typ"; everything
+# else gets a plain <code> tag. Glyphs, CLI verbs, and compound expressions
+# pass through untouched — they are invariant by design.
+#
+# See CONTENT-PLAN.md § Machine contracts §4.
+
+importa ex "./string_util" privata * ut su
+
+# The 37 mappable keywords. These are the Latin spellings that have
+# localized forms in reader-locale packs (th-TH, ar, hi, vi, zh-Hans,
+# zh-Hant).
+functio est_keyword(textus token) → bivalens {
+    si token ≡ "functio" ergo redde (verum)
+    si token ≡ "fixum" ergo redde (verum)
+    si token ≡ "varia" ergo redde (verum)
+    si token ≡ "genus" ergo redde (verum)
+    si token ≡ "importa" ergo redde (verum)
+    si token ≡ "si" ergo redde (verum)
+    si token ≡ "sin" ergo redde (verum)
+    si token ≡ "secus" ergo redde (verum)
+    si token ≡ "dum" ergo redde (verum)
+    si token ≡ "fac" ergo redde (verum)
+    si token ≡ "itera" ergo redde (verum)
+    si token ≡ "perge" ergo redde (verum)
+    si token ≡ "rumpe" ergo redde (verum)
+    si token ≡ "redde" ergo redde (verum)
+    si token ≡ "casu" ergo redde (verum)
+    si token ≡ "ceterum" ergo redde (verum)
+    si token ≡ "elige" ergo redde (verum)
+    si token ≡ "discerne" ergo redde (verum)
+    si token ≡ "tempta" ergo redde (verum)
+    si token ≡ "cape" ergo redde (verum)
+    si token ≡ "demum" ergo redde (verum)
+    si token ≡ "falsum" ergo redde (verum)
+    si token ≡ "verum" ergo redde (verum)
+    si token ≡ "nihil" ergo redde (verum)
+    si token ≡ "et" ergo redde (verum)
+    si token ≡ "aut" ergo redde (verum)
+    si token ≡ "non" ergo redde (verum)
+    si token ≡ "est" ergo redde (verum)
+    si token ≡ "nota" ergo redde (verum)
+    si token ≡ "mone" ergo redde (verum)
+    si token ≡ "scribe" ergo redde (verum)
+    si token ≡ "vide" ergo redde (verum)
+    si token ≡ "incipit" ergo redde (verum)
+    si token ≡ "argumenta" ergo redde (verum)
+    si token ≡ "ex" ergo redde (verum)
+    si token ≡ "de" ergo redde (verum)
+    si token ≡ "in" ergo redde (verum)
+    si token ≡ "ut" ergo redde (verum)
+    redde falsum
+}
+
+# The 11 mappable type names.
+functio est_typus(textus token) → bivalens {
+    si token ≡ "textus" ergo redde (verum)
+    si token ≡ "numerus" ergo redde (verum)
+    si token ≡ "fractus" ergo redde (verum)
+    si token ≡ "bivalens" ergo redde (verum)
+    si token ≡ "vacuum" ergo redde (verum)
+    si token ≡ "lista" ergo redde (verum)
+    si token ≡ "tabula" ergo redde (verum)
+    si token ≡ "copia" ergo redde (verum)
+    si token ≡ "cursor" ergo redde (verum)
+    si token ≡ "instans" ergo redde (verum)
+    si token ≡ "octeti" ergo redde (verum)
+    si token ≡ "json" ergo redde (verum)
+    si token ≡ "regex" ergo redde (verum)
+    redde falsum
+}
+
+# Classify a single inline span text.
+# Returns "kw", "typ", or "code" depending on whether the span
+# is a keyword, type, or something else (glyph, CLI verb, compound).
+functio classifica(textus span) → textus {
+    fixum textus trimmed ← su.recide(span)
+
+    # Exact-match only — compounds like "T ∪ nihil" or
+    # "tensor<T, Figura>" don't map (by design).
+    si est_keyword(trimmed) ergo redde "kw"
+    si est_typus(trimmed) ergo redde "typ"
+
+    redde "code"
+}
+
+# Render an inline code span to HTML.
+# Wraps in <code class="kw">, <code class="typ">, or plain <code>.
+functio genera_span(textus span) → textus {
+    fixum textus cls ← classifica(span)
+    si cls ≡ "kw" ergo redde «<code class="kw">§</code>»(span)
+    si cls ≡ "typ" ergo redde «<code class="typ">§</code>»(span)
+    redde «<code>§</code>»(span)
+}
+
+# Render all inline code spans in a line of Markdown.
+# Finds backtick-delimited spans and replaces them with HTML.
+#
+# Uses textus[i] (zero-allocation numerus scalar) for character comparison
+# and bulk sectio for flushing plain-text runs — avoids O(n²) allocation.
+functio genera_line(textus line) → textus {
+    varia textus result ← ""
+    varia numerus i ← 0
+    fixum numerus len ← line.longitudo()
+    varia numerus plain_start ← 0
+
+    dum i < len {
+        # Zero-allocation scalar index: textus[i] → numerus
+        fixum numerus ch ← line[i]
+        si ch ≡ 96 {
+            # Backtick (ASCII 96) — flush plain text before it
+            si i > plain_start {
+                result ← result + line.sectio(plain_start, i)
+            }
+
+            # Find closing backtick
+            varia numerus j ← i + 1
+            varia bivalens found ← falsum
+            dum j < len {
+                fixum numerus ch2 ← line[j]
+                si ch2 ≡ 96 {
+                    found ← (verum)
+                    rumpe
+                }
+                j ← j + 1
+            }
+
+            si found {
+                fixum textus span_text ← line.sectio(i + 1, j)
+                result ← result + genera_span(span_text)
+                plain_start ← j + 1
+                i ← j + 1
+                perge
+            }
+
+            # No closing backtick — literal backtick, part of next plain run
+            plain_start ← i
+            i ← i + 1
+            perge
+        }
+
+        i ← i + 1
+    }
+
+    # Flush remaining plain text
+    si len > plain_start {
+        result ← result + line.sectio(plain_start, len)
+    }
+
+    redde result
+}
+
+# Render inline code spans throughout a Markdown body.
+# Processes line by line, skipping lines inside fenced code blocks.
+functio genera_corpora(textus source) → textus {
+    varia textus result ← ""
+    varia bivalens in_fence ← falsum
+
+    fixum textus nl_char ← su.nl()
+    fixum lista<textus> lines ← su.divide(source, nl_char)
+
+    itera ex lines fixum line {
+        si su.initium_cum(line, "```") {
+            in_fence ← non in_fence
+            result ← result + line + nl_char
+            perge
+        }
+
+        si in_fence {
+            result ← result + line + nl_char
+            perge
+        }
+
+        result ← result + genera_line(line) + nl_char
+    }
+
+    redde result
+}

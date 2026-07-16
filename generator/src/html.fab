@@ -1,0 +1,113 @@
+# HTML emitter.
+#
+# Turns a Pagina into a complete HTML document using the closed
+# component vocabulary. The emitter cannot write CSS.
+
+importa ex "./types" privata * ut types_mod
+importa ex "./string_util" privata * ut su
+importa ex "./span" privata * ut span_mod
+
+# Render a full HTML page from a Pagina.
+functio genera_paginam(types_mod.Pagina pag, textus stylesheet_link) → textus {
+    fixum textus nl_char ← su.nl()
+    fixum textus head ← genera_head(pag, stylesheet_link)
+    fixum textus renderbar ← genera_renderbar(pag.locale)
+    fixum textus sidebar ← genera_sidebar(pag.section)
+    fixum textus main_content ← genera_main(pag)
+    fixum textus footer ← genera_source_list(pag.sources)
+
+    redde «<!DOCTYPE html>
+<html lang="§">
+»(pag.locale) + head + nl_char + «<body>
+» + renderbar + nl_char + «<div class="page">
+» + sidebar + nl_char + main_content + nl_char + footer + nl_char + «</div>
+</body>
+</html>»
+}
+
+# Generate the <head> element.
+functio genera_head(types_mod.Pagina pag, textus stylesheet_link) → textus {
+    redde «<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>§ — Faber</title>
+<link rel="stylesheet" href="§">
+</head>»(pag.titulus, stylesheet_link)
+}
+
+# Generate the rendering bar.
+functio genera_renderbar(textus current_locale) → textus {
+    redde «<div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">§</span>
+  </div>
+</div>»(current_locale)
+}
+
+# Generate the sidebar navigation.
+functio genera_sidebar(textus active_section) → textus {
+    fixum textus nav_overview ← genera_nav_link("Overview", "/", active_section ≡ "")
+    fixum textus nav_features ← genera_nav_link("Features", "/features/", active_section ≡ "features")
+    fixum textus nav_syntax ← genera_nav_link("Syntax", "/syntax/", active_section ≡ "syntax")
+    fixum textus nav_tooling ← genera_nav_link("Tooling", "/tooling/", active_section ≡ "tooling")
+    fixum textus nav_ecosystem ← genera_nav_link("Ecosystem", "/ecosystem/", active_section ≡ "ecosystem")
+    fixum textus nav_references ← genera_nav_link("References", "/references/", active_section ≡ "references")
+
+    redde «<aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li>§</li>
+    <li>§</li>
+    <li>§</li>
+    <li>§</li>
+    <li>§</li>
+    <li>§</li>
+  </ul>
+</aside>»(nav_overview, nav_features, nav_syntax, nav_tooling, nav_ecosystem, nav_references)
+}
+
+# Generate a navigation link, marking active section.
+functio genera_nav_link(textus label, textus href, bivalens active) → textus {
+    si active {
+        redde «<a href="§" class="active">§</a>»(href, label)
+    }
+    redde «<a href="§">§</a>»(href, label)
+}
+
+# Generate the main content area.
+functio genera_main(types_mod.Pagina pag) → textus {
+    fixum textus h1 ← «<h1>§</h1>»(pag.titulus)
+    fixum textus body ← genera_body(span_mod.genera_corpora(pag.corpus))
+    redde «<main>
+§
+§
+</main>»(h1, body)
+}
+
+# Generate HTML from Markdown body.
+functio genera_body(textus markdown) → textus {
+    redde «<div class="content">
+§
+</div>»(markdown)
+}
+
+# Generate the source-list provenance footer.
+functio genera_source_list(lista<textus> sources) → textus {
+    si sources.longitudo() ≡ 0 ergo redde ""
+
+    varia textus html ← «<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+»
+    itera ex sources fixum src {
+        html ← html + «  <li>§</li>
+»(src)
+    }
+    html ← html + «</ul>
+</div>
+</footer>»
+
+    redde html
+}

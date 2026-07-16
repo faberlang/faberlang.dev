@@ -1,0 +1,68 @@
+# Frontmatter parser for Markdown +++ TOML blocks.
+
+importa ex "./string_util" privata * ut su
+
+# Result of splitting frontmatter from body.
+genus Split {
+    tabula<textus, textus> fields
+    textus body
+}
+
+# Split a Markdown source into frontmatter fields and body.
+functio divide(textus source) → Split {
+    fixum textus plus3 ← "+++"
+    fixum numerus primus ← su.initium_index(source, plus3)
+
+    si primus < 0 ergo redde Split { fields = {}, body = source }
+
+    fixum numerus secundus ← su.initium_index_post(source, plus3, primus + 3)
+    si secundus < 0 ergo redde Split { fields = {}, body = source }
+
+    fixum textus fm_text ← source.sectio(primus + 3, secundus)
+    fixum textus post_fm ← source.sectio(secundus + 3, source.longitudo())
+    fixum textus corpus ← su.recide(post_fm)
+    fixum textus nl_char ← su.nl()
+    fixum tabula<textus, textus> fields ← parse_toml_lines(fm_text, nl_char)
+
+    redde Split { fields = fields, body = corpus }
+}
+
+# Parse simple TOML key = "value" lines into a map.
+functio parse_toml_lines(textus toml_text, textus nl_char) → tabula<textus, textus> {
+    varia tabula<textus, textus> result ← {}
+    fixum lista<textus> lines ← su.divide(toml_text, nl_char)
+
+    itera ex lines fixum line {
+        fixum textus trimmed ← su.recide(line)
+
+        si trimmed.longitudo() ≡ 0 ergo perge
+        si su.initium_cum(trimmed, "#") ergo perge
+        si su.initium_cum(trimmed, "[") ergo perge
+
+        fixum numerus eq_pos ← su.initium_index(trimmed, "=")
+        si eq_pos < 0 ergo perge
+
+        fixum textus key ← su.recide(trimmed.sectio(0, eq_pos))
+        fixum textus value_raw ← su.recide(trimmed.sectio(eq_pos + 1, trimmed.longitudo()))
+        fixum textus value ← strip_quotes(value_raw)
+
+        result[key] ← value
+    }
+
+    redde result
+}
+
+# Remove surrounding quotes from a TOML string value.
+functio strip_quotes(textus value) → textus {
+    fixum numerus len ← value.longitudo()
+    si len < 2 ergo redde value
+
+    fixum textus primus_char ← value.sectio(0, 1)
+    fixum textus ultimus_char ← value.sectio(len - 1, len)
+
+    si primus_char ≡ "\"" et ultimus_char ≡ "\"" {
+        redde value.sectio(1, len - 1)
+    }
+
+    redde value
+}
