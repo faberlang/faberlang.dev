@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faber — Canonical vs sugar surfaces</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;700&family=Noto+Sans+Devanagari:wght@400;700&family=Noto+Sans+Mono:wght@400;700&family=Noto+Sans+SC:wght@400;700&family=Noto+Sans+Thai:wght@400;700&family=Noto+Sans:wght@400;700&family=Noto+Serif:ital,wght@0,400;0,700;1,400&display=swap">
+<style>
+  :root {
+    --paper: #faf9f6; --paper-alt: #f0efea; --ink: #1a1a18; --ink-dim: #5f5e58;
+    --ink-faint: #8c8a82; --rule: #dcdad2; --glyph: #2f4faa; --glyph-soft: #e8ecf8;
+    --support: #2f6b4c; --limited: #9a7420; --defer: #6b6a64;
+    --serif: 'Noto Serif', Georgia, serif; --sans: 'Noto Sans', -apple-system, 'Segoe UI', sans-serif;
+    --mono: 'Noto Sans Mono', 'Noto Sans Thai', 'Noto Sans Arabic', 'Noto Sans Devanagari', 'Noto Sans SC', ui-monospace, monospace;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--paper); color: var(--ink); font-family: var(--serif); font-size: 16.5px; line-height: 28px; }
+  a { color: var(--ink); border-bottom: 1px solid var(--rule); text-decoration: none; }
+  a:hover { border-bottom-color: var(--glyph); }
+  code { font-family: var(--mono); font-size: 0.88em; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 40px 24px 80px; }
+  h1 { font-family: var(--serif); font-size: 38px; line-height: 46px; font-weight: 400; border-bottom: 1px solid var(--rule); padding-bottom: 10px; }
+  .sub { font-family: var(--sans); font-size: 13px; color: var(--ink-faint); margin: 8px 0 28px; }
+  .bread { font-family: var(--sans); font-size: 12px; color: var(--ink-faint); margin-bottom: 20px; }
+  .bread a { border: none; color: var(--ink-dim); }
+  .bread a:hover { border-bottom: 1px solid var(--glyph); }
+  h2 { font-family: var(--serif); font-size: 24px; font-weight: 400; margin: 40px 0 12px; border-bottom: 1px solid var(--rule); padding-bottom: 7px; scroll-margin-top: 20px; }
+  h3 { font-family: var(--serif); font-size: 18px; font-weight: 700; margin: 28px 0 8px; }
+  h4 { font-family: var(--sans); font-size: 13px; font-weight: 700; margin: 20px 0 6px; color: var(--ink-dim); }
+  p { margin-bottom: 15px; max-width: 74ch; }
+  .lead { font-size: 17.5px; line-height: 30px; }
+  .dim { color: var(--ink-dim); }
+  ul.body { margin: 0 0 16px 22px; }
+  ul.body li { margin-bottom: 6px; max-width: 72ch; }
+  pre.faber-code { font-family: var(--mono); font-size: 13px; line-height: 24px; background: var(--paper-alt); border: 1px solid var(--rule); padding: 14px 16px; margin: 12px 0; overflow-x: auto; white-space: pre; }
+  table { width: 100%; border-collapse: collapse; margin: 14px 0 8px; font-family: var(--sans); font-size: 13px; }
+  th { text-align: left; font-weight: 400; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); border-bottom: 1px solid var(--ink); padding: 0 10px 7px 0; }
+  td { border-bottom: 1px solid var(--rule); padding: 9px 10px 9px 0; vertical-align: baseline; line-height: 21px; }
+  td.t { font-family: var(--mono); font-size: 12px; color: var(--ink); white-space: nowrap; }
+  td.m { color: var(--ink-dim); font-size: 12px; }
+  .r { text-align: right; }
+  caption { caption-side: bottom; text-align: left; font-family: var(--sans); font-size: 11.5px; color: var(--ink-faint); padding-top: 8px; line-height: 19px; }
+  .callout { border-left: 3px solid var(--glyph); background: var(--glyph-soft); padding: 14px 18px; margin: 18px 0; font-size: 15px; line-height: 26px; max-width: 74ch; }
+  .sugar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--rule); margin: 16px 0; }
+  .sugar-grid .sg-panel { background: var(--paper-alt); padding: 14px 16px; min-width: 0; }
+  .sugar-grid .sg-panel + .sg-panel { border-left: 1px solid var(--rule); }
+  .sugar-grid .sg-h { font-family: var(--sans); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); border-bottom: 1px solid var(--rule); padding-bottom: 6px; margin-bottom: 10px; }
+  .sugar-grid pre { font-family: var(--mono); font-size: 12.5px; line-height: 22px; margin: 0; white-space: pre; }
+  .sugar-grid pre .g { color: var(--glyph); font-weight: 700; }
+  footer { border-top: 1px solid var(--rule); margin-top: 48px; padding: 20px 0 40px; font-family: var(--sans); font-size: 12px; color: var(--ink-faint); }
+  footer a { border-bottom: 1px solid var(--rule); }
+  @media (max-width: 700px) { .sugar-grid { grid-template-columns: 1fr; } .sugar-grid .sg-panel + .sg-panel { border-left: none; border-top: 1px solid var(--rule); } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bread"><a href="index.html">← Features</a></div>
+  <h1>Canonical vs sugar surfaces</h1>
+  <div class="sub">Multiple parseable surfaces, one semantic shape</div>
+
+  <p class="lead">
+    A recurring pattern in Faber's design: the language defines <b>one canonical
+    spelling</b> for each construct, but accepts multiple <b>sugar spellings</b>
+    that are semantically identical. The compiler does not prefer one over the
+    other — both parse to the same AST node. The formatter decides which spelling
+    to emit based on context and mode.
+  </p>
+
+  <div class="callout">
+    <b>The rule:</b> Sugar spellings are semantically identical to long form.
+    Multiple surfaces parse to the same <code>HirAnnotation</code> or type node.
+    <code>faber format --canonical</code> prefers canonical spellings; author
+    mode preserves the sugar the author wrote.
+  </div>
+
+  <!-- ================================================================== -->
+  <h2 id="numeric">Numeric type sugar</h2>
+
+  <p>
+    Numeric types have long-form canonical spellings and compact sugar forms.
+    The choice is per-module, not per-repository — a CLI package may use long
+    form everywhere, while a tensor kernel module uses sugar:
+  </p>
+
+  <table>
+    <thead><tr><th>Sugar</th><th>Canonical form</th><th>Domain</th></tr></thead>
+    <tbody>
+      <tr><td class="t"><code>f32</code>, <code>f64</code>, <code>i32</code>, <code>u64</code></td><td class="t"><code>fractus&lt;f32&gt;</code>, <code>numerus&lt;i32&gt;</code></td><td class="m">Width markers — scalar numeric types</td></tr>
+      <tr><td class="t"><code>tf32</code>, <code>tf32[4]</code>, <code>ti64[2, 3]</code></td><td class="t"><code>tensor&lt;f32, _&gt;</code>, <code>tensor&lt;f32, [4]&gt;</code></td><td class="m">Dense tensor — <code>t</code> + width + optional shape</td></tr>
+      <tr><td class="t"><code>sf32</code>, <code>sf32[2, 3]</code>, <code>si64[N]</code></td><td class="t"><code>sparsa&lt;f32, _&gt;</code>, <code>sparsa&lt;f32, [2, 3]&gt;</code></td><td class="m">Sparse tensor — <code>s</code> + width + optional shape</td></tr>
+      <tr><td class="t"><code>mf32[4, 4]</code>, <code>mu32[3, 3]</code></td><td class="t"><code>matrix&lt;f32, [4, 4]&gt;</code></td><td class="m">Register-class matrix — <code>m</code> + width + shape</td></tr>
+      <tr><td class="t"><code>lf32</code>, <code>lu32</code>, <code>li64</code></td><td class="t"><code>lista&lt;f32&gt;</code>, <code>lista&lt;u32&gt;</code></td><td class="m">List — <code>l</code> + width</td></tr>
+      <tr><td class="t"><code>f16</code></td><td class="t"><code>fractus&lt;f16&gt;</code></td><td class="m">Half-float width marker (semantic/layout only)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sugar-grid">
+    <div class="sg-panel">
+      <div class="sg-h">General Faber (prefer long form)</div>
+      <pre><span class="g">←</span> <span class="g">←</span>
+fixum lista&lt;f32&gt; values <span class="g">←</span> vacua
+fixum tensor&lt;f32, [2, 3]&gt; grid <span class="g">←</span> vacua
+fixum numerus&lt;i32&gt; narrow <span class="g">←</span> 7</pre>
+    </div>
+    <div class="sg-panel">
+      <div class="sg-h">Numeric modules (prefer sugar)</div>
+      <pre><span class="g">←</span> <span class="g">←</span>
+fixum lf32 values <span class="g">←</span> vacua
+fixum tf32[2, 3] grid <span class="g">←</span> vacua
+fixum i32 narrow <span class="g">←</span> 7</pre>
+    </div>
+  </div>
+
+  <p>
+    Sugar is <b>type-position only</b>. Value identifiers named <code>f32</code>,
+    <code>tf32</code>, or <code>mf32</code> are unchanged — the compiler only
+    interprets these as sugar when they appear in type positions. A file that
+    consistently uses sugar should say so once at the top:
+  </p>
+
+  <pre class="faber-code" data-locale="la"># STYLE: numeric sugar (tf32, mf32, sf32, lf32, lu32)</pre>
+
+  <!-- ================================================================== -->
+  <h2 id="annotation">Annotation sugar</h2>
+
+  <p>
+    Faber annotations follow the same dual-surface model as numeric types.
+    Annotations are compiler-owned metadata attached to declarations — like
+    <code>@ optio</code> for CLI option definitions or <code>@ futura</code>
+    for async functions.
+  </p>
+
+  <p>
+    <b>Canonical form:</b> a braced record with explicit field names:
+  </p>
+
+  <pre class="faber-code" data-locale="la">@ optio {
+    binding = verbose,
+    brevis = "v",
+    longum = "verbose",
+    typus = bivalens,
+    ubique = verum,
+    descriptio = "Enable verbose output"
+}</pre>
+
+  <p>
+    <b>Sugar form:</b> positional arguments and named aliases:
+  </p>
+
+  <pre class="faber-code" data-locale="la">@ optio verbose brevis "v" longum "verbose" typus bivalens ubique descriptio "Enable verbose output"</pre>
+
+  <p>
+    Both forms produce the same <code>HirAnnotation</code> record. The canonical
+    form is explicit and self-documenting; the sugar form is concise for
+    frequently-used annotations where the field order is well-known.
+    <code>faber format --canonical</code> prefers braced records; author mode
+    preserves the author's chosen form.
+  </p>
+
+  <!-- ================================================================== -->
+  <h2 id="format">Author vs canonical formatting</h2>
+
+  <p>
+    The <code>faber format</code> command operates in two modes that mirror the
+    canonical-vs-sugar principle:
+  </p>
+
+  <table>
+    <thead><tr><th>Mode</th><th>Command</th><th>Input</th><th>Output</th></tr></thead>
+    <tbody>
+      <tr><td class="t">Author</td><td class="t"><code>faber format</code></td><td class="m">Parsed AST + leading trivia</td><td class="m">Faber source preserving <code>#</code> comments, blank lines, and sugar spellings</td></tr>
+      <tr><td class="t">Canonical</td><td class="t"><code>faber format --canonical</code></td><td class="m">Analysed HIR + <code>TypeTable</code></td><td class="m">Normalised Faber — no comments, canonical spellings, no sugar</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Both modes run through the compiler's full front half (lex, parse, analyse
+    for canonical). Invalid source produces compiler diagnostics — the formatter
+    does not silently format broken input.
+  </p>
+
+  <p>Key rules for both modes:</p>
+
+  <ul class="body">
+    <li>Four-space indentation</li>
+    <li>Stroustrup braces: opening <code>{</code> on the same line as the controlling header</li>
+    <li>Author mode preserves the <i>presence</i> of blank lines but collapses runs of more than one</li>
+    <li>Author mode does not insert blank lines the source did not contain</li>
+    <li>Canonical mode normalises type spellings to long form, tensor sugar to canonical, annotations to braced records</li>
+    <li>Canonical mode emits <code>T ∪ nihil</code> for nullable unions, <code>sponte</code> for optional parameters</li>
+  </ul>
+
+  <!-- ================================================================== -->
+  <h2 id="principle">Design principle</h2>
+
+  <p>
+    The canonical-vs-sugar pattern appears in multiple places because it is a
+    deliberate design principle, not a collection of one-off conveniences:
+  </p>
+
+  <table>
+    <thead><tr><th>Domain</th><th>Canonical</th><th>Sugar</th></tr></thead>
+    <tbody>
+      <tr><td class="t">Numeric types</td><td class="t"><code>numerus&lt;i32&gt;</code></td><td class="t"><code>i32</code></td></tr>
+      <tr><td class="t">Tensor types</td><td class="t"><code>tensor&lt;f32, [4]&gt;</code></td><td class="t"><code>tf32[4]</code></td></tr>
+      <tr><td class="t">Annotations</td><td class="t"><code>@ optio { binding = verbose }</code></td><td class="t"><code>@ optio verbose ...</code></td></tr>
+      <tr><td class="t">Formatting</td><td class="t"><code>faber format --canonical</code></td><td class="t"><code>faber format</code> (author mode)</td></tr>
+      <tr><td class="t">Reader locale</td><td class="t">Latin (<code>la</code>)</td><td class="t">Any locale pack</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    The pattern serves two goals. First, it lowers the barrier to entry — new
+    users can write <code>tf32[4]</code> without typing
+    <code>tensor&lt;fractus&lt;f32&gt;, [4]&gt;</code>. Second, it keeps the
+    canonical language unambiguous — when precision matters, the long form says
+    exactly what it means. The formatter bridges the two: authors write sugar,
+    reviewers can request canonical, and CI can enforce either.
+  </p>
+
+  <!-- ================================================================== -->
+  <h2 id="references">References</h2>
+  <ol style="font-size:13px;line-height:23px;color:var(--ink-dim);margin-top:8px">
+    <li style="margin-bottom:5px"><code>radix/docs/design/numeric-type-sugar.md</code> — full sugar families, spelling preferences</li>
+    <li style="margin-bottom:5px"><code>radix/docs/design/annotation-sugar.md</code> — dual-surface annotation model</li>
+    <li style="margin-bottom:5px"><code>radix/docs/design/faber-canonical-surface.md</code> — author vs canonical format policy</li>
+    <li style="margin-bottom:5px"><code>radix/EBNF.md</code> — grammar tables for sugar forms</li>
+  </ol>
+
+  <footer>
+    <span>Faber · <a href="index.html">Features</a></span>
+    <span><a href="https://github.com/faberlang">github.com/faberlang</a></span>
+  </footer>
+</div>
+</body>
+</html>
