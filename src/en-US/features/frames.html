@@ -29,11 +29,13 @@
   h2 { font-family: var(--serif); font-size: 24px; font-weight: 400; margin: 40px 0 12px; border-bottom: 1px solid var(--rule); padding-bottom: 7px; scroll-margin-top: 20px; }
   h3 { font-family: var(--serif); font-size: 18px; font-weight: 700; margin: 28px 0 8px; }
   h4 { font-family: var(--sans); font-size: 13px; font-weight: 700; margin: 20px 0 6px; color: var(--ink-dim); }
-  p { margin-bottom: 15px; max-width: 74ch; }
+  p { margin-bottom: 15px; }
   .lead { font-size: 17.5px; line-height: 30px; }
   .dim { color: var(--ink-dim); }
   ul.body { margin: 0 0 16px 22px; }
-  ul.body li { margin-bottom: 6px; max-width: 72ch; }
+  ul.body li { margin-bottom: 6px; }
+  .ref-list { font-size: 13px; line-height: 23px; color: var(--ink-dim); margin-top: 8px; }
+  .ref-list li { margin-bottom: 5px; }
   pre.faber-code { font-family: var(--mono); font-size: 13px; line-height: 24px; background: var(--paper-alt); border: 1px solid var(--rule); padding: 14px 16px; margin: 12px 0; overflow-x: auto; white-space: pre; }
   table { width: 100%; border-collapse: collapse; margin: 14px 0 8px; font-family: var(--sans); font-size: 13px; }
   th { text-align: left; font-weight: 400; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); border-bottom: 1px solid var(--ink); padding: 0 10px 7px 0; }
@@ -288,13 +290,13 @@ functio curre(textus command, lista&lt;textus&gt; args) → textus {
 
   <!-- ================================================================== -->
   <h2 id="references">References</h2>
-  <ol style="font-size:13px;line-height:23px;color:var(--ink-dim);margin-top:8px">
-    <li style="margin-bottom:5px"><code>radix/docs/design/frame-stream-types.md</code> — full spec for sermo, scrinium, status, meus, tuus</li>
-    <li style="margin-bottom:5px"><code>radix/docs/design/host-provider-gateway.md</code> — thin router architecture, provider contracts, compile manifest</li>
-    <li style="margin-bottom:5px"><code>faberlang/host-kernel-rs/</code> — kernel router implementation</li>
-    <li style="margin-bottom:5px"><code>faberlang/host-native-rs/</code> — native attach and registration</li>
-    <li style="margin-bottom:5px"><code>faberlang/host-providers-rs/</code> — provider crates (solum, processus, consolum, tempus, aleator, http)</li>
-    <li style="margin-bottom:5px"><code>examples/corpus/ad/</code> — sermo exempla files</li>
+  <ol class="ref-list">
+    <li><code>radix/docs/design/frame-stream-types.md</code> — full spec for sermo, scrinium, status, meus, tuus</li>
+    <li><code>radix/docs/design/host-provider-gateway.md</code> — thin router architecture, provider contracts, compile manifest</li>
+    <li><code>faberlang/host-kernel-rs/</code> — kernel router implementation</li>
+    <li><code>faberlang/host-native-rs/</code> — native attach and registration</li>
+    <li><code>faberlang/host-providers-rs/</code> — provider crates (solum, processus, consolum, tempus, aleator, http)</li>
+    <li><code>examples/corpus/ad/</code> — sermo exempla files</li>
   </ol>
 
   <footer>

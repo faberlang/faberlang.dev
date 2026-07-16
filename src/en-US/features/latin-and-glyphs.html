@@ -29,11 +29,13 @@
   h2 { font-family: var(--serif); font-size: 24px; font-weight: 400; margin: 40px 0 12px; border-bottom: 1px solid var(--rule); padding-bottom: 7px; scroll-margin-top: 20px; }
   h3 { font-family: var(--serif); font-size: 18px; font-weight: 700; margin: 28px 0 8px; }
   h4 { font-family: var(--sans); font-size: 13px; font-weight: 700; margin: 20px 0 6px; color: var(--ink-dim); }
-  p { margin-bottom: 15px; max-width: 74ch; }
+  p { margin-bottom: 15px; }
   .lead { font-size: 17.5px; line-height: 30px; }
   .dim { color: var(--ink-dim); }
   ul.body { margin: 0 0 16px 22px; }
-  ul.body li { margin-bottom: 6px; max-width: 72ch; }
+  ul.body li { margin-bottom: 6px; }
+  .ref-list { font-size: 13px; line-height: 23px; color: var(--ink-dim); margin-top: 8px; }
+  .ref-list li { margin-bottom: 5px; }
   pre.faber-code { font-family: var(--mono); font-size: 13px; line-height: 24px; background: var(--paper-alt); border: 1px solid var(--rule); padding: 14px 16px; margin: 12px 0; overflow-x: auto; white-space: pre; }
   table { width: 100%; border-collapse: collapse; margin: 14px 0 8px; font-family: var(--sans); font-size: 13px; }
   th { text-align: left; font-weight: 400; font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); border-bottom: 1px solid var(--ink); padding: 0 10px 7px 0; }
@@ -261,11 +263,11 @@ fixum _ p ← Point {
 
   <!-- ================================================================== -->
   <h2 id="references">References</h2>
-  <ol style="font-size:13px;line-height:23px;color:var(--ink-dim);margin-top:8px">
-    <li style="margin-bottom:5px">EBNF grammar — full glyph and keyword inventory</li>
-    <li style="margin-bottom:5px">examples/corpus/ — language corpus with 292 exemplar files across all keywords</li>
-    <li style="margin-bottom:5px">examples/corpus/operatores/ — operator and glyph exemplars</li>
-    <li style="margin-bottom:5px">Commandments — the nine design laws that preserve these signals</li>
+  <ol class="ref-list">
+    <li>EBNF grammar — full glyph and keyword inventory</li>
+    <li>examples/corpus/ — language corpus with 292 exemplar files across all keywords</li>
+    <li>examples/corpus/operatores/ — operator and glyph exemplars</li>
+    <li>Commandments — the nine design laws that preserve these signals</li>
   </ol>
 
   <footer>

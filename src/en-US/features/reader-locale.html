@@ -29,11 +29,21 @@
   h2 { font-family: var(--serif); font-size: 24px; font-weight: 400; margin: 40px 0 12px; border-bottom: 1px solid var(--rule); padding-bottom: 7px; scroll-margin-top: 20px; }
   h3 { font-family: var(--serif); font-size: 18px; font-weight: 700; margin: 28px 0 8px; }
   h4 { font-family: var(--sans); font-size: 13px; font-weight: 700; margin: 20px 0 6px; color: var(--ink-dim); }
-  p { margin-bottom: 15px; max-width: 74ch; }
+  p { margin-bottom: 15px; }
   .lead { font-size: 17.5px; line-height: 30px; }
   .dim { color: var(--ink-dim); }
   ul.body { margin: 0 0 16px 22px; }
-  ul.body li { margin-bottom: 6px; max-width: 72ch; }
+  ul.body li { margin-bottom: 6px; }
+  .ref-list { font-size: 13px; line-height: 23px; color: var(--ink-dim); margin-top: 8px; }
+  .ref-list li { margin-bottom: 5px; }
+  td.s { color: var(--support); }
+  td.l { color: var(--limited); }
+  td.d { color: var(--defer); }
+  .gl { color: var(--glyph); font-weight: 700; }
+  .locale-th { font-family: 'Noto Sans Thai', serif; }
+  .locale-zh { font-family: 'Noto Sans SC', serif; }
+  .locale-ar { font-family: 'Noto Sans Arabic', serif; }
+  .locale-hi { font-family: 'Noto Sans Devanagari', serif; }
   ol.body { margin: 0 0 16px 22px; }
   ol.body li { margin-bottom: 6px; max-width: 72ch; }
   pre.codeblock {
@@ -147,7 +157,7 @@ locale = "zh-Hans"</pre>
     <thead><tr><th>Layer</th><th>In the HIR?</th><th>Behaviour</th></tr></thead>
     <tbody>
       <tr><td class="t">Keywords, types, paired phrases</td><td>Yes</td><td class="m">Lossless across all renderings</td></tr>
-      <tr><td class="t">Glyphs <span style="color:var(--glyph);font-weight:700">← → ∴ ≡ ∪ ⇥</span></td><td>Yes (invariant)</td><td class="m">Identical in every rendering</td></tr>
+      <tr><td class="t">Glyphs <span class="gl">← → ∴ ≡ ∪ ⇥</span></td><td>Yes (invariant)</td><td class="m">Identical in every rendering</td></tr>
       <tr><td class="t">Type-first structure</td><td>Yes</td><td class="m">Identical in every rendering</td></tr>
       <tr><td class="t">Numerals</td><td>—</td><td class="m">ASCII only in all locales</td></tr>
       <tr><td class="t">Comments</td><td>No</td><td class="m">Out of compiler scope; LLM-mediated, opt-in</td></tr>
@@ -171,12 +181,12 @@ locale = "zh-Hans"</pre>
   <table>
     <thead><tr><th>Code</th><th>Language</th><th>Script</th><th>Status</th></tr></thead>
     <tbody>
-      <tr><td class="t">la</td><td class="m">Latina (Latin)</td><td class="m">Latin</td><td class="m" style="color:var(--support)"><b>Canonical</b></td></tr>
-      <tr><td class="t">th-TH</td><td class="m" style="font-family:'Noto Sans Thai',serif">ไทย</td><td class="m">Thai</td><td class="m" style="color:var(--support)"><b>Reference proof</b></td></tr>
-      <tr><td class="t">zh-Hans</td><td class="m" style="font-family:'Noto Sans SC',serif">简体中文</td><td class="m">Simplified Chinese</td><td class="m">Coverage proof</td></tr>
-      <tr><td class="t">zh-Hant</td><td class="m" style="font-family:'Noto Sans SC',serif">繁體中文</td><td class="m">Traditional Chinese</td><td class="m">Coverage proof</td></tr>
-      <tr><td class="t">ar</td><td class="m" style="font-family:'Noto Sans Arabic',serif">العربية</td><td class="m">Arabic</td><td class="m">Coverage proof</td></tr>
-      <tr><td class="t">hi</td><td class="m" style="font-family:'Noto Sans Devanagari',serif">हिन्दी</td><td class="m">Devanagari</td><td class="m">Coverage proof</td></tr>
+      <tr><td class="t">la</td><td class="m">Latina (Latin)</td><td class="m">Latin</td><td class="m td s"><b>Canonical</b></td></tr>
+      <tr><td class="t">th-TH</td><td class="m locale-th">ไทย</td><td class="m">Thai</td><td class="m td s"><b>Reference proof</b></td></tr>
+      <tr><td class="t">zh-Hans</td><td class="m locale-zh">简体中文</td><td class="m">Simplified Chinese</td><td class="m">Coverage proof</td></tr>
+      <tr><td class="t">zh-Hant</td><td class="m locale-zh">繁體中文</td><td class="m">Traditional Chinese</td><td class="m">Coverage proof</td></tr>
+      <tr><td class="t">ar</td><td class="m locale-ar">العربية</td><td class="m">Arabic</td><td class="m">Coverage proof</td></tr>
+      <tr><td class="t">hi</td><td class="m locale-hi">हिन्दी</td><td class="m">Devanagari</td><td class="m">Coverage proof</td></tr>
       <tr><td class="t">vi</td><td class="m">Tiếng Việt</td><td class="m">Vietnamese (Latin)</td><td class="m">Coverage proof</td></tr>
     </tbody>
   </table>
@@ -210,7 +220,7 @@ locale = "zh-Hans"</pre>
   </p>
 
   <div class="locale-block">
-    <div class="lb-h">Latin <span class="lb-tag">la</span> <span style="color:var(--support);font-weight:700">canonical</span></div>
+    <div class="lb-h">Latin <span class="lb-tag">la</span> <span class="v s">canonical</span></div>
     <pre class="lb-code faber-code" data-locale="la">functio salve(textus nomen) → textus {
     fixum textus msg ← "Salve, §!"(nomen)
     redde msg
@@ -228,7 +238,7 @@ incipit {
   </div>
 
   <div class="locale-block">
-    <div class="lb-h">ไทย <span class="lb-tag">th-TH</span> <span style="color:var(--support);font-weight:700">reference proof</span></div>
+    <div class="lb-h">ไทย <span class="lb-tag">th-TH</span> <span class="v s">reference proof</span></div>
     <pre class="lb-code faber-code" data-locale="th-TH">ฟังก์ชัน salve(ข้อความ nomen) → ข้อความ {
     ค่าคงที่ ข้อความ msg ← "Salve, §!"(nomen)
     คืนค่า msg
@@ -326,7 +336,7 @@ bắtđầu {
   </div>
 
   <div class="callout">
-    The glyphs (<code style="color:var(--glyph);font-weight:700">← → ∴ ≡ ∪ ⇥</code>),
+    The glyphs (<code class="gl">← → ∴ ≡ ∪ ⇥</code>),
     structural positions, and identifier names are <b>identical</b> across all six
     renderings above. Only the keywords and type names change. The HIR is exactly
     the same program — the compiler treats all six as equivalent. Rendering Faber
@@ -370,13 +380,13 @@ bắtđầu {
   <table>
     <thead><tr><th>Layer</th><th>Status</th></tr></thead>
     <tbody>
-      <tr><td class="t">Pack schema, aliases, inheritance, validation, diagnostics, LLM artifacts</td><td class="m" style="color:var(--support)"><b>Shipped</b></td></tr>
-      <tr><td class="t">Pack-aware lexing, type resolution, manifest/CLI selection, visible fallback</td><td class="m" style="color:var(--support)"><b>Shipped</b></td></tr>
-      <tr><td class="t">Pack-owned diagnostic rendering, <code>faber explain</code>, bidi-isolated display</td><td class="m" style="color:var(--support)"><b>Shipped</b></td></tr>
-      <tr><td class="t">Canonical Faber formatting</td><td class="m" style="color:var(--support)"><b>Shipped</b></td></tr>
-      <tr><td class="t">Localised Faber re-emission (<code>format --reader-locale</code>)</td><td class="m" style="color:var(--limited)">Partial</td></tr>
-      <tr><td class="t">Stdlib gloss overlays, measured LLM emission fidelity, complete locale coverage</td><td class="m" style="color:var(--defer)">Deferred</td></tr>
-      <tr><td class="t">Multilingual documentation generation</td><td class="m" style="color:var(--defer)">Proposed</td></tr>
+      <tr><td class="t">Pack schema, aliases, inheritance, validation, diagnostics, LLM artifacts</td><td class="m td s"><b>Shipped</b></td></tr>
+      <tr><td class="t">Pack-aware lexing, type resolution, manifest/CLI selection, visible fallback</td><td class="m td s"><b>Shipped</b></td></tr>
+      <tr><td class="t">Pack-owned diagnostic rendering, <code>faber explain</code>, bidi-isolated display</td><td class="m td s"><b>Shipped</b></td></tr>
+      <tr><td class="t">Canonical Faber formatting</td><td class="m td s"><b>Shipped</b></td></tr>
+      <tr><td class="t">Localised Faber re-emission (<code>format --reader-locale</code>)</td><td class="m td l">Partial</td></tr>
+      <tr><td class="t">Stdlib gloss overlays, measured LLM emission fidelity, complete locale coverage</td><td class="m td d">Deferred</td></tr>
+      <tr><td class="t">Multilingual documentation generation</td><td class="m td d">Proposed</td></tr>
     </tbody>
   </table>
 
@@ -390,13 +400,13 @@ bắtđầu {
 
   <!-- ================================================================== -->
   <h2 id="references">References</h2>
-  <ol style="font-size:13px;line-height:23px;color:var(--ink-dim);margin-top:8px">
-    <li style="margin-bottom:5px"><code>radix/docs/design/reader-locale.md</code> — full design document (69 KB)</li>
-    <li style="margin-bottom:5px"><code>examples/reader-locale/</code> — 6 locale packages with localised source</li>
-    <li style="margin-bottom:5px"><code>stdlib/reader/*/pack.toml</code> — 7 installed pack definitions</li>
-    <li style="margin-bottom:5px"><code>radix/crates/radix/src/reader_locale.rs</code> — runtime implementation</li>
-    <li style="margin-bottom:5px"><code>radix/docs/design/faber-canonical-surface.md</code> — canonical mode and <code>faber format</code></li>
-    <li style="margin-bottom:5px"><code>radix/docs/factory/lex-nfkc-normalization/</code> — NFKC prerequisite delivery</li>
+  <ol class="ref-list">
+    <li><code>radix/docs/design/reader-locale.md</code> — full design document (69 KB)</li>
+    <li><code>examples/reader-locale/</code> — 6 locale packages with localised source</li>
+    <li><code>stdlib/reader/*/pack.toml</code> — 7 installed pack definitions</li>
+    <li><code>radix/crates/radix/src/reader_locale.rs</code> — runtime implementation</li>
+    <li><code>radix/docs/design/faber-canonical-surface.md</code> — canonical mode and <code>faber format</code></li>
+    <li><code>radix/docs/factory/lex-nfkc-normalization/</code> — NFKC prerequisite delivery</li>
   </ol>
 
   <footer>

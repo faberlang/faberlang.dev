@@ -29,7 +29,7 @@
   h2 { font-family: var(--serif); font-size: 24px; font-weight: 400; margin: 40px 0 12px; border-bottom: 1px solid var(--rule); padding-bottom: 7px; scroll-margin-top: 20px; }
   h3 { font-family: var(--serif); font-size: 18px; font-weight: 700; margin: 28px 0 8px; }
   h4 { font-family: var(--sans); font-size: 13px; font-weight: 700; margin: 20px 0 6px; color: var(--ink-dim); }
-  p { margin-bottom: 15px; max-width: 74ch; }
+  p { margin-bottom: 15px; }
   .lead { font-size: 17.5px; line-height: 30px; }
   .dim { color: var(--ink-dim); }
   ul.body { margin: 0 0 16px 22px; }
@@ -139,10 +139,10 @@
   <table>
     <thead><tr><th>Target</th><th>Status</th><th>Role</th></tr></thead>
     <tbody>
-      <tr><td class="t">Rust</td><td class="m" style="color:var(--support)"><b>Primary</b></td><td class="m">Production path. Packages, build, run, test. Cargo + rustc for native binaries.</td></tr>
-      <tr><td class="t">Faber</td><td class="m" style="color:var(--support)"><b>Support</b></td><td class="m">Canonical source view via <code>forma</code> formatter. Round-trip stability.</td></tr>
-      <tr><td class="t">TypeScript</td><td class="m" style="color:var(--limited)">Probe</td><td class="m">File emission only. Proves semantics across target shapes.</td></tr>
-      <tr><td class="t">Go</td><td class="m" style="color:var(--limited)">Erase</td><td class="m">File emission only. Borrow modes erased; <code>ad</code> rejected.</td></tr>
+      <tr><td class="t">Rust</td><td class="m s"><b>Primary</b></td><td class="m">Production path. Packages, build, run, test. Cargo + rustc for native binaries.</td></tr>
+      <tr><td class="t">Faber</td><td class="m s"><b>Support</b></td><td class="m">Canonical source view via <code>forma</code> formatter. Round-trip stability.</td></tr>
+      <tr><td class="t">TypeScript</td><td class="m l">Probe</td><td class="m">File emission only. Proves semantics across target shapes.</td></tr>
+      <tr><td class="t">Go</td><td class="m l">Erase</td><td class="m">File emission only. Borrow modes erased; <code>ad</code> rejected.</td></tr>
     </tbody>
   </table>
 
