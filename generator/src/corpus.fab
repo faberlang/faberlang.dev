@@ -23,13 +23,6 @@ genus CorpusExample {
     textus expected
 }
 
-functio field_vale(tabula<textus, textus> fields, textus key, textus fallback) → textus {
-    si fields.habet(key) {
-        redde fields[key] ↦ textus
-    }
-    redde fallback
-}
-
 functio lista_vale(textus raw) → lista<textus> {
     fixum numerus len ← raw.longitudo()
     si len < 2 ergo redde vacua
@@ -57,17 +50,17 @@ functio parse_example(textus record) → CorpusExample {
     fixum textus expected ← expected_parts[1] vel ""
     fixum fm.Split split ← fm.divide(source)
     fixum tabula<textus, textus> fields ← split.fields
-    fixum textus canonical ← field_vale(fields, "canonical", "false")
+    fixum textus canonical ← types_mod.field_vale(fields, "canonical", "false")
 
     redde CorpusExample {
         path = path,
-        term = field_vale(fields, "term", ""),
-        kind = field_vale(fields, "kind", ""),
-        category = field_vale(fields, "category", ""),
-        summary = field_vale(fields, "summary", ""),
-        syntax = field_vale(fields, "syntax", ""),
-        related = field_vale(fields, "related", "[]"),
-        aliases = field_vale(fields, "aliases", "[]"),
+        term = types_mod.field_vale(fields, "term", ""),
+        kind = types_mod.field_vale(fields, "kind", ""),
+        category = types_mod.field_vale(fields, "category", ""),
+        summary = types_mod.field_vale(fields, "summary", ""),
+        syntax = types_mod.field_vale(fields, "syntax", ""),
+        related = types_mod.field_vale(fields, "related", "[]"),
+        aliases = types_mod.field_vale(fields, "aliases", "[]"),
         canonical = canonical ≡ "true",
         source = split.body,
         expected = expected,

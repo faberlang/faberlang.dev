@@ -40,12 +40,10 @@ functio aedifica_paginam(textus iter, textus source, textus locale) → Pagina {
 
 # Get a string value from frontmatter, with fallback.
 functio field_vale(tabula<textus, textus> fields, textus key, textus fallback) → textus {
-    fac {
+    si fields.habet(key) {
         redde fields[key] ↦ textus
     }
-    cape err {
-        redde fallback
-    }
+    redde fallback
 }
 
 # Get a lista from a frontmatter array string.
