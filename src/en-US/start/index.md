@@ -11,8 +11,8 @@ then open a real package.
 ## 1. Install the CLI {#install}
 
 Download the current release (**1.1.1**) for your platform from the
-[install page](/start/install.html), extract `faber`, and put it on
-your `PATH`. Confirm:
+[install page](/start/install.html), verify the archive checksum, and put the
+extracted `faber-v1.1.1-<target-triple>/faber` binary on your `PATH`. Confirm:
 
 ```bash
 faber --version

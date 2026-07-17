@@ -107,7 +107,8 @@ compiler is named Radix, from the Latin <em>root</em>. The language is
 developed by Ian Zepp and released under the MIT license.</p>
 <h2 id="download">Download Faber 1.1.1</h2>
 <p>Current release: <strong>Faber 1.1.1</strong> (tag <code>faber-v1.1.1</code>). Prebuilt CLI archives
-for macOS and Linux; extract the <code>faber</code> binary and put it on your <code>PATH</code>.</p>
+for macOS and Linux; extract the <code>faber-v1.1.1-<target-triple>/faber</code> binary
+and put it on your <code>PATH</code>.</p>
 <table>
 <thead><tr><th>Platform</th><th>Archive</th><th>Checksum</th></tr></thead>
 <tbody>
@@ -117,8 +118,13 @@ for macOS and Linux; extract the <code>faber</code> binary and put it on your <c
 <p>Quick install (macOS arm64 example):</p>
 <pre class="faber-code"><code class="lang-bash">curl -fsSL -o faber.tgz \
   https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz
+curl -fsSL -o faber.tgz.sha256 \
+  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256
+expected=$(awk '{print $1}' faber.tgz.sha256)
+actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
+test "$actual" = "$expected"
 tar -xzf faber.tgz
-sudo mv faber /usr/local/bin/
+sudo mv faber-v1.1.1-aarch64-apple-darwin/faber /usr/local/bin/
 faber --version</code></pre>
 <p>All release notes and assets: <a href="https://github.com/faberlang/releases/releases/tag/faber-v1.1.1">github.com/faberlang/releases · faber-v1.1.1</a>.
 Step-by-step: <a href="/start/install.html">Install guide</a>.</p>

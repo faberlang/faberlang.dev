@@ -30,7 +30,7 @@ Release: https://github.com/faberlang/releases/releases/tag/faber-v1.1.1
 | macOS arm64 | https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz |
 | Linux x64 | https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz |
 
-Extract `faber`, put on `PATH`, run `faber --version`.
+Verify the archive by comparing the first hash field from the `.sha256` file to the local archive hash. Extract `faber-v1.1.1-<target-triple>/faber`, put it on `PATH`, run `faber --version`.
 
 HTML install page: https://faberlang.dev/start/install.html
 

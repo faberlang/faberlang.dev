@@ -106,24 +106,29 @@ Radix install for ordinary package work.</p>
 <tr><td><strong>macOS arm64</strong> (Apple Silicon)</td><td><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">tar.gz</a></td><td><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256">checksum</a></td></tr>
 <tr><td><strong>Linux x64</strong> (glibc)</td><td><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">tar.gz</a></td><td><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256">checksum</a></td></tr>
 </tbody></table>
+<p>The archives extract to <code>faber-v1.1.1-<target-triple>/faber</code>. The checksum files may name the original build path, so verify by comparing the first hash field against the local archive instead of relying on <code>sha256sum -c</code> path matching.</p>
 <h3 id="macos">macOS arm64</h3>
 <pre class="faber-code"><code class="lang-bash">curl -fsSL -o faber.tgz \
   https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
   https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256
-shasum -a 256 -c faber.tgz.sha256
+expected=$(awk '{print $1}' faber.tgz.sha256)
+actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
+test "$actual" = "$expected"
 tar -xzf faber.tgz
 # place on PATH, e.g.:
-sudo mv faber /usr/local/bin/
+sudo mv faber-v1.1.1-aarch64-apple-darwin/faber /usr/local/bin/
 faber --version</code></pre>
 <h3 id="linux">Linux x64</h3>
 <pre class="faber-code"><code class="lang-bash">curl -fsSL -o faber.tgz \
   https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
   https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256
-sha256sum -c faber.tgz.sha256
+expected=$(awk '{print $1}' faber.tgz.sha256)
+actual=$(sha256sum faber.tgz | awk '{print $1}')
+test "$actual" = "$expected"
 tar -xzf faber.tgz
-sudo mv faber /usr/local/bin/
+sudo mv faber-v1.1.1-x86_64-unknown-linux-gnu/faber /usr/local/bin/
 faber --version</code></pre>
 <h2 id="verify">Verify</h2>
 <pre class="faber-code"><code class="lang-bash">faber --version

@@ -42,7 +42,7 @@ Release: https://github.com/faberlang/releases/releases/tag/faber-v1.1.1
 | Linux x64 tar.gz | https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz |
 | Linux x64 sha256 | https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256 |
 
-Extract the `faber` binary; place on PATH; run `faber --version`.
+Verify by comparing the first hash field in the `.sha256` file to the local archive hash; the checksum line may name the original build path. Extract `faber-v1.1.1-<target-triple>/faber`; place it on PATH; run `faber --version`.
 
 ## CLI workflow
 

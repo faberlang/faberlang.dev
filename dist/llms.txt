@@ -46,7 +46,10 @@ Archives:
 - Linux x64:
   https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz
 
-Matching `.sha256` files sit next to each archive.
+Matching `.sha256` files sit next to each archive. Verify by comparing the
+first hash field in the `.sha256` file to the local archive hash; the checksum
+line may name the original build path. Archives extract to
+`faber-v1.1.1-<target-triple>/faber`.
 
 Human install page: https://faberlang.dev/start/install.html
 Skill: https://faberlang.dev/.well-known/agent-skills/install/SKILL.md

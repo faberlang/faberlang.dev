@@ -19,7 +19,8 @@ developed by Ian Zepp and released under the MIT license.
 ## Download Faber 1.1.1 {#download}
 
 Current release: **Faber 1.1.1** (tag `faber-v1.1.1`). Prebuilt CLI archives
-for macOS and Linux; extract the `faber` binary and put it on your `PATH`.
+for macOS and Linux; extract the `faber-v1.1.1-<target-triple>/faber` binary
+and put it on your `PATH`.
 
 | Platform | Archive | Checksum |
 |---|---|---|
@@ -31,8 +32,13 @@ Quick install (macOS arm64 example):
 ```bash
 curl -fsSL -o faber.tgz \
   https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz
+curl -fsSL -o faber.tgz.sha256 \
+  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256
+expected=$(awk '{print $1}' faber.tgz.sha256)
+actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
+test "$actual" = "$expected"
 tar -xzf faber.tgz
-sudo mv faber /usr/local/bin/
+sudo mv faber-v1.1.1-aarch64-apple-darwin/faber /usr/local/bin/
 faber --version
 ```
 
