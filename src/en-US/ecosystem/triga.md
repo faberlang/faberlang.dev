@@ -9,8 +9,13 @@ sources = [
 +++
 
 Triga is an optional public source library for geometry, scene, and
-GPU-facing type contracts. It is resolved through `FABER_LIBRARY_HOME`
-and installable as a Cista source package.
+GPU-facing type contracts. In normal projects, declare Triga as a Cista
+package dependency in `faber.toml`; Cista records the resolved source in
+`faber.lock` and the compiler resolves it from the package store.
+
+`FABER_LIBRARY_HOME` is for local development against sibling source
+checkouts, or for explicit `--legacy-library-home` runs. It is not the
+primary product path for consuming Triga.
 
 Triga provides types and operations for:
 
