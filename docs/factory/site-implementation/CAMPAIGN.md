@@ -297,7 +297,7 @@ canonical page.
 
 ### Stage 6 — Portal and Getting Started
 
-**Status**: planned
+**Status**: implemented with residuals (2026-07-17) — portal + start track render
 **Source**: `CONTENT-PLAN.md` §§ Portal, Getting started, Missing sections (O10)
 **Why now**: The reference site is complete; add the on-ramp.
 **Lowers to**: `delivery` → `factory`
@@ -305,19 +305,34 @@ canonical page.
 **Depends on**: Stage 5
 
 Deliverables:
-- Speculum Porta: locale-less entry point at `/`, locale ring, honest pack
-  status, `salve-munde` living sample across locales
-- Getting-started tutorial track: `start/install`, `start/hello`,
-  `start/commands`, `start/projects` — sequenced with `next`/`prev`
-- Container-verified install CI: run quickstart end-to-end in a clean container
-- Onramp banner: homepage → `start/install`
+- [x] Speculum Porta: locale-less entry point at `/`, locale ring, honest pack
+  status, `salve-munde` living sample across locales. Implemented as generated
+  `src/en-US/index.md` content: `/` routes humans to the start track, agents to
+  machine surfaces, and marks non-English reader packs as shipped source
+  renderings with full localized site generation deferred to Stage 7.
+- [x] Getting-started tutorial track: `start/install`, `start/hello`,
+  `start/commands`, `start/projects` — sequenced with `next`/`prev` links and
+  rendered into `dist/start/*.html`.
+- [ ] Container-verified install CI: run quickstart end-to-end in a clean
+  container. Residual: Homebrew/package-manager verification is not authoritative
+  while formula publication may lag the repo release; install docs explicitly use
+  Faber 1.1.1 release archives.
+- [x] Onramp banner: homepage → `start/install`, with track links for hello,
+  commands, and projects.
 
-**Gate**: Portal renders with locale selection and `salve-munde` sample.
-Getting-started track is complete and container-verified.
+**Gate**: Implemented with one exact residual. Portal renders with locale pack
+status and a validating `salve-munde` sample. Getting-started track renders and
+links through the generated sidebar. Full container-verified install CI remains
+open until package-manager/formula publication catches up to the release archive
+path documented by the page.
 
-**Note**: Install page is blocked on Homebrew formula publication (currently
-0.38.0 vs repo 1.1.0). The page can be written against the repo build with a
-clear note, but the container check will fail until the formula is updated.
+**Validation — 2026-07-17**:
+- `bash generator/scripts/validate-fences.sh src/en-US` — 82 passed / 0 failed /
+  0 skipped.
+- `bash generator/scripts/build-site.sh` — 354 HTML pages, 9 static machine files.
+- Build smoke includes `dist/index.html` and `dist/start/install.html`; new pages
+  `dist/start/hello.html`, `dist/start/commands.html`, and
+  `dist/start/projects.html` render.
 
 ### Stage 7 — Multilingual Generation
 

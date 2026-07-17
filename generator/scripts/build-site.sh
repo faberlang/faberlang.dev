@@ -117,6 +117,9 @@ smoke_contains "${OUTPUT_DIR}/index.html" "faber-v1.1.1" "home release link"
 smoke_contains "${OUTPUT_DIR}/start/install.html" "<!DOCTYPE html>" "install doctype"
 smoke_contains "${OUTPUT_DIR}/start/install.html" "/start/install.html" "install path"
 smoke_contains "${OUTPUT_DIR}/start/install.html" "faber-v1.1.1" "install release link"
+smoke_contains "${OUTPUT_DIR}/start/hello.html" "Salve, munde" "hello start page"
+smoke_contains "${OUTPUT_DIR}/start/commands.html" "faber check" "commands start page"
+smoke_contains "${OUTPUT_DIR}/start/projects.html" "faberlang/examples" "projects start page"
 
 # Count results
 PAGE_COUNT=$(find "$OUTPUT_DIR" -name "*.html" -type f | wc -l | tr -d ' ')

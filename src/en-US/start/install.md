@@ -9,6 +9,11 @@ Install the **Faber** CLI from the current prebuilt release. The compiler
 front end ships inside the `faber` binary; you do not need a separate
 Radix install for ordinary package work.
 
+This page is written against the repository release artifacts for Faber 1.1.1.
+Package-manager formulae may lag behind the repo release; if Homebrew or another
+manager reports an older Radix/Faber version, prefer the archives below for this
+track.
+
 ## Current release {#current-release}
 
 | Field | Value |
@@ -84,6 +89,14 @@ faber check examples/ai-workbench/packages/faber-ai
 More packages: [Examples](/start/examples.html). CLI surface:
 [Faber build tool](/tooling/faber-build-tool.html).
 
+## Homebrew status {#homebrew}
+
+Homebrew publication is not the authority for this start track yet. If a formula
+serves an older compiler such as Radix 0.38.0 while this site documents Faber
+1.1.1, treat the formula as lagging and use the prebuilt release archive. The
+container verification gate for this page remains residual until formula
+publication catches up.
+
 ## Build from source {#from-source}
 
 Prebuilts are the recommended path for agents and most developers. Building
@@ -99,3 +112,9 @@ scraping this HTML:
 - [`/llms.txt`](/llms.txt)
 - [install skill](/.well-known/agent-skills/install/SKILL.md)
 - [Agent guide](/agents/index.md)
+
+## Next {#next}
+
+| Previous | Next |
+|---|---|
+| [Quick tour](/start/) | [Hello, Faber](/start/hello.html) |

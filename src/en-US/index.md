@@ -16,6 +16,10 @@ The name derives from the Latin word for *maker* or *craftsman*. The
 compiler is named Radix, from the Latin *root*. The language is
 developed by Ian Zepp and released under the MIT license.
 
+**New here?** Start with [Install and download](/start/install.html), then run
+the sequenced start track: [Hello](/start/hello.html),
+[Commands](/start/commands.html), and [Projects](/start/projects.html).
+
 ## Download Faber 1.1.1 {#download}
 
 Current release: **Faber 1.1.1** (tag `faber-v1.1.1`). Prebuilt CLI archives
@@ -64,11 +68,47 @@ Step-by-step: [Install guide](/start/install.html).
 | Path | Who | What |
 |---|---|---|
 | [Install](/start/install.html) | Human | Download, PATH, first `faber check` |
+| [Hello](/start/hello.html) | Human | Create and run `salve-munde` |
+| [Commands](/start/commands.html) | Human + agent | Daily CLI loop: check, build, run, test, explain |
+| [Projects](/start/projects.html) | Human + agent | Move from hello-world into real packages |
 | [Quick tour](/start/) | Human | Language shape in five minutes |
 | [Examples](/start/examples.html) | Human + agent | Real packages: CLI apps, mailspace, GPU, corpus |
 | [`/llms.txt`](/llms.txt) | Agent | Machine index — start here if you are a model |
 | [Agent guide](/agents/index.md) | Agent | How to learn Faber and ship a package |
 | [Agent skills](/.well-known/agent-skills/index.json) | Agent | Focused skill guides (install, language, examples, …) |
+
+## Portal status {#portal-status}
+
+This `/` page is the Speculum Porta for the English site: a locale-less entry
+point that routes people to install/start pages, routes agents to machine
+surfaces, and states locale pack status without browser-time negotiation.
+
+| Locale | Status | Notes |
+|---|---|---|
+| `la` | Canonical live pack | Current generated site language |
+| `th-TH` | Shipped reader pack | Compiler can render source; full localized site is Stage 7 |
+| `zh-Hans` | Shipped reader pack | Source rendering available; full site pending |
+| `zh-Hant` | Shipped reader pack | Source rendering available; full site pending |
+| `ar` | Shipped reader pack | Source rendering available; full site pending |
+| `hi` | Shipped reader pack | Source rendering available; full site pending |
+| `vi` | Shipped reader pack | Source rendering available; full site pending |
+
+Living sample in canonical Latin:
+
+```faber
+functio salve(textus nomen) → textus {
+    fixum textus msg ← "Salve, §!"(nomen)
+    redde msg
+}
+
+incipit {
+    fixum textus m ← salve("munde")
+    nota m
+}
+```
+
+See [Reader locale](/features/reader-locale.html) for the same semantic program
+rendered through Thai, Chinese, Arabic, Hindi, and Vietnamese packs.
 
 ## Overview {#overview}
 

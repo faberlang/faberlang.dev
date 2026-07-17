@@ -89,7 +89,7 @@ functio genera_sidebar(textus active_section) → doc_mod.Node {
     varia lista<doc_mod.Node> children ← vacua
     children.appende(genera_brand())
     children.appende(side_h("Get started"))
-    children.appende(nav_list([li(genera_nav_link("Install & download", "/start/install.html", active_section ≡ "install")), li(genera_nav_link("Examples", "/start/examples.html", active_section ≡ "examples")), li(genera_nav_link("Quick tour", "/start/", active_section ≡ "start"))], "nav"))
+    children.appende(nav_list([li(genera_nav_link("Install & download", "/start/install.html", active_section ≡ "install")), li(genera_nav_link("Hello", "/start/hello.html", active_section ≡ "hello")), li(genera_nav_link("Commands", "/start/commands.html", active_section ≡ "commands")), li(genera_nav_link("Projects", "/start/projects.html", active_section ≡ "projects")), li(genera_nav_link("Examples", "/start/examples.html", active_section ≡ "examples")), li(genera_nav_link("Quick tour", "/start/", active_section ≡ "start"))], "nav"))
     children.appende(side_h("Documentation"))
 
     varia lista<doc_mod.Node> docs ← vacua

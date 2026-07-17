@@ -6,7 +6,9 @@ sources = []
 +++
 
 Five minutes to the shape of Faber: install the CLI, read one function,
-then open a real package.
+then open a real package. For a sequenced path, follow: [Install](/start/install.html) →
+[Hello](/start/hello.html) → [Commands](/start/commands.html) →
+[Projects](/start/projects.html).
 
 ## 1. Install the CLI {#install}
 
@@ -82,11 +84,23 @@ Browse them on the [examples page](/start/examples.html).
 2. Open [`/agents/index.md`](/agents/index.md).
 3. Pick a skill from [`/.well-known/agent-skills/index.json`](/.well-known/agent-skills/index.json).
 
+## Start track {#start-track}
+
+| Step | Page | Outcome |
+|---|---|---|
+| 1 | [Install & download](/start/install.html) | Put Faber 1.1.1 on `PATH` and verify it |
+| 2 | [Hello, Faber](/start/hello.html) | Create and run `salve-munde` |
+| 3 | [Commands you will use](/start/commands.html) | Learn `check`, `build`, `run`, `test`, `explain` |
+| 4 | [Projects and examples](/start/projects.html) | Move into real packages and corpus pages |
+
 ## Next {#next}
 
 | Topic | Link |
 |---|---|
 | Install & download | [Install](/start/install.html) |
+| Hello, Faber | [Hello](/start/hello.html) |
+| Commands | [Commands](/start/commands.html) |
+| Projects | [Projects](/start/projects.html) |
 | Syntax reference | [Syntax](/syntax/) |
 | Features (locales, lanes) | [Features](/features/) |
 | Ecosystem libraries | [Ecosystem](/ecosystem/) |
