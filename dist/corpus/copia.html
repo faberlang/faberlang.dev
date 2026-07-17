@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>copia — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>copia</h1>
+<div class="content">
+<p>Generic set collection type.</p>
+<p><strong>Aliases:</strong> <code>set</code></p>
+<p><strong>Syntax:</strong> <code>copia<T></code></p>
+<h2>Category</h2>
+<p><code>collection</code></p>
+<h2>Related</h2>
+<ul>
+<li>[lista](/corpus/lista.html)</li>
+<li>[tabula](/corpus/tabula.html)</li>
+<li>[inter](/corpus/inter.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/intrinseca/copia-fundamenta.fab (canonical · existing-home)</h3>
+<p>Generic set collection type.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># copia&lt;T&gt; basic intrinsics
+#
+# Compiler-owned copia&lt;T&gt; methodi — adde, habet, dele, longitudo, vacua.
+#
+# GRAMMAR:
+#   copia.adde(x) | copia.habet(x) | copia.dele(x)
+#   copia.longitudo() | copia.vacua()
+#
+# copia&lt;T&gt; is a set-like collection; vacua with copia&lt;T&gt; creates an empty set.
+#
+# EXPECTED OUTPUT:
+#   Smoke asserts exit 0 only.
+#
+# BACKEND: Go e2e whitelist — copia method surface not yet lowered for Go.
+
+incipit {
+    varia copia&lt;numerus&gt; numeri ← vacua
+
+    numeri.adde(1)
+    numeri.adde(2)
+    numeri.adde(3)
+
+    fixum _ habetduo ← numeri.habet(2)
+    fixum _ remotus ← numeri.dele(3)
+    fixum _ longitudo ← numeri.longitudo()
+    fixum _ vacuaest ← numeri.vacua()
+
+    nota habetduo, remotus, longitudo, vacuaest
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/intrinseca/copia-fundamenta.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

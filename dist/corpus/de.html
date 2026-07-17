@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>de — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>de</h1>
+<div class="content">
+<p>Introduces borrowed iteration or borrowed parameters.</p>
+<p><strong>Syntax:</strong> <code>de <expression></code></p>
+<h2>Category</h2>
+<p><code>iteration</code></p>
+<h2>Related</h2>
+<ul>
+<li>[ex](/corpus/ex.html)</li>
+<li>[in](/corpus/in.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/de/de.fab (canonical · keyword)</h3>
+<p>Introduces borrowed iteration or borrowed parameters.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># de — borrowed iteration / parameters
+#
+# GRAMMAR:
+#   forDeStmt :← 'itera' 'de' expr 'fixum' ident block
+#
+# EXPECTED OUTPUT:
+#   Scalar stdout smoke (see body).
+#
+# BACKEND:
+#   Cross-ref: itera/de.fab.
+#
+
+incipit {
+    fixum tabula&lt;textus, numerus&gt; persona ← { "nomen": 1, "aetas": 30 }
+    itera de persona fixum clavis {
+        nota clavis
+    }
+    fixum _ numeri ← [10, 20, 30]
+    itera de numeri fixum index {
+        nota index
+    }
+}</code></pre>
+<h3>examples/corpus/itera/de.fab (canonical · keyword)</h3>
+<p>Introduces borrowed iteration or borrowed parameters.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># itera de — for-in key and index iteration
+#
+# itera de &lt;objectum&gt; fixum &lt;key&gt; { &lt;body&gt; }
+# itera de &lt;lista&gt; fixum &lt;index&gt; { &lt;body&gt; }
+#
+# GRAMMAR:
+#   forDeStmt :← 'itera' 'de' expr 'fixum' ident block
+#
+# EXPECTED OUTPUT:
+#   none — stdout not pinned for this exemplum.
+
+incipit {
+    # Iterate over tabula keys
+    fixum tabula&lt;textus, textus&gt; persona ← { "nomen": "Marcus", "urbs": "Roma" }
+
+    itera de persona fixum clavis {
+        nota clavis
+    }
+
+    # Access values using the key
+    itera de persona fixum clavis {
+        nota clavis, persona[clavis]
+    }
+
+    # Iterate over lista indices
+    fixum _ numeri ← [10, 20, 30]
+
+    itera de numeri fixum index {
+        nota "index: § valor: §"(index, numeri[index])
+    }
+
+    # With numerus-valued tabula
+    fixum tabula&lt;textus, numerus&gt; forma ← { "alpha": 1, "beta": 2 }
+    itera de forma fixum k {
+        nota k
+    }
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/de/de.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

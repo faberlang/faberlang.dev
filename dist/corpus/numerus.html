@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>numerus — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>numerus</h1>
+<div class="content">
+<p>Checked numerus arithmetic traps instead of wrapping on overflow.</p>
+<p><strong>Aliases:</strong> <code>integer</code>, <code>int</code></p>
+<p><strong>Syntax:</strong> <code><numerus> + <numerus></code></p>
+<h2>Category</h2>
+<p><code>type</code></p>
+<h2>Related</h2>
+<ul>
+<li>[fractus](/corpus/fractus.html)</li>
+<li>[↦](/corpus/↦.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/intrinseca/numerus-methodi.fab (canonical · existing-home)</h3>
+<p>Primitive integer number type.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># numerus comparison and ordering intrinsics
+#
+# Compiler-owned numerus methodi — absolutum, signum, minimus, maximus.
+#
+# GRAMMAR:
+#   valor.absolutum() | valor.signum()
+#   valor.minimus(other) | valor.maximus(other)
+#
+# Integer counterpart to fractus-comparatio.fab; Wasm tier Runnable.
+#
+# EXPECTED OUTPUT:
+#   Smoke asserts exit 0 only.
+
+incipit {
+    fixum numerus valor ← -7
+    fixum _ absolutus ← valor.absolutum()
+    fixum _ signum ← valor.signum()
+    fixum _ minor ← valor.minimus(3)
+    fixum _ maior ← valor.maximus(3)
+
+    nota absolutus, signum, minor, maior
+}</code></pre>
+<h3>examples/corpus/operatores/numerus-overflow.fab (canonical · operator-group)</h3>
+<p>Checked numerus arithmetic traps instead of wrapping on overflow.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># numerus-overflow — checked scalar arithmetic failure
+#
+# POLICY:
+#   Bare `numerus` is i64. Integer arithmetic traps on overflow; it does not
+#   inherit Rust release wrapping.
+
+incipit {
+    fixum numerus max ← 9223372036854775807
+    nota max + 1
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>9223372036854776000
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/intrinseca/numerus-methodi.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

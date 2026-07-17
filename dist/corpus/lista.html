@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>lista — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>lista</h1>
+<div class="content">
+<p>Generic ordered collection type.</p>
+<p><strong>Aliases:</strong> <code>array</code>, <code>list</code></p>
+<p><strong>Syntax:</strong> <code>lista<T></code></p>
+<h2>Category</h2>
+<p><code>collection</code></p>
+<h2>Related</h2>
+<ul>
+<li>[tabula](/corpus/tabula.html)</li>
+<li>[copia](/corpus/copia.html)</li>
+<li>[∷](/corpus/∷.html)</li>
+<li>[itera](/corpus/itera.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/lista/lista.fab (canonical · existing-home)</h3>
+<p>Generic ordered collection type.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># lista&lt;T&gt; literals, vacua, and sparge (long-form types — default Faber readability).
+# Numeric/tensor modules may use lf32/lu32 sugar; see docs/design/numeric-type-sugar.md.
+#
+# lista&lt;T&gt; nomen ← vacua        -- typed empty collection (forma innata)
+# fixum _ nomen ← [elem, …]     -- list literal
+# [sparge expr, …]              -- splice into literal
+#
+# GRAMMAR:
+#   listDecl :← ('varia' | 'fixum') 'lista&lt;' type '&gt;' ident '←' expr
+#   listLit  :← '[' (expr | sparge)* ']'
+#
+# EXPECTED OUTPUT:
+#   Scalar longitudo() and indexed accipe only (lista.expected).
+
+incipit {
+    fixum lista&lt;numerus&gt; vacuares ← vacua
+    fixum _ numeri ← [1, 2, 3, 4, 5]
+    fixum _ nomina ← ["Marcus", "Julia", "Gaius"]
+    fixum _ vexilla ← [verum, falsum, verum]
+    fixum _ matrix ← [[1, 2], [3, 4], [5, 6]]
+    fixum _ prima ← [1, 2, 3]
+    fixum _ secunda ← [4, 5, 6]
+    fixum _ coniuncta ← [sparge prima, sparge secunda]
+    fixum _ aucta ← [0, sparge prima, 99]
+
+    nota vacuares.longitudo()
+    nota numeri.longitudo()
+    nota numeri[0]
+    nota numeri[4]
+    nota nomina.longitudo()
+    nota nomina[1]
+    nota vexilla[0]
+    nota vexilla[2]
+    nota matrix.longitudo()
+    nota matrix[1][0]
+    nota coniuncta.longitudo()
+    nota aucta.longitudo()
+    nota aucta[0]
+    nota aucta[4]
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>0
+5
+1
+5
+3
+Julia
+verum
+verum
+3
+3
+6
+5
+0
+99</code></pre>
+<h3>examples/corpus/lista/methodi-copiae.fab (canonical · existing-home)</h3>
+<p>Generic ordered collection type.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># lista&lt;T&gt; copy, slice, and ordering intrinsics
+#
+# res.addita(x) | res.sectio(lo, hi) | res.prima(n) | res.ultima(n)   -- views
+# res.omissa(n) | res.inversa() | res.ordinata()                      -- reorder
+#
+# GRAMMAR:
+#   listMethod :← expr '.' ('addita' | 'sectio' | 'prima' | 'ultima'
+#                         | 'omissa' | 'inversa' | 'ordinata') '(' args? ')'
+#
+# EXPECTED OUTPUT:
+#   [1, 2, 3, 4, 5, 6]
+#   [2, 3, 4]
+#   [1, 2]
+#   [4, 5]
+#   [3, 4, 5]
+#   [5, 4, 3, 2, 1]
+#   [1, 2, 3]
+#
+# BACKEND: Go e2e whitelist — lista intrinsic methods not yet lowered for Go
+# (whitelist: lista/methodi-copiae.fab).
+
+incipit {
+    fixum _ res ← [1, 2, 3, 4, 5] ∷ lista&lt;numerus&gt;
+
+    fixum _ addita ← res.addita(6)
+    fixum _ sectio ← res.sectio(1, 4)
+    fixum _ primaduo ← res.prima(2)
+    fixum _ ultimaduo ← res.ultima(2)
+    fixum _ omissaduo ← res.omissa(2)
+    fixum _ inversa ← res.inversa()
+    fixum _ ordinata ← [3, 1, 2].ordinata()
+
+    nota addita
+    nota sectio
+    nota primaduo
+    nota ultimaduo
+    nota omissaduo
+    nota inversa
+    nota ordinata
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>[1, 2, 3, 4, 5, 6]
+[2, 3, 4]
+[1, 2]
+[4, 5]
+[3, 4, 5]
+[5, 4, 3, 2, 1]
+[1, 2, 3]
+</code></pre>
+<h3>examples/corpus/lista/methodi-mutatio.fab (canonical · existing-home)</h3>
+<p>Generic ordered collection type.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># lista&lt;T&gt; mutation intrinsics
+#
+# res.appende(x) | res.decapita() | res.detrahe() | res.inverte() | res.ordina()
+#
+# GRAMMAR:
+#   listMethod :← expr '.' ('appende' | 'decapita' | 'detrahe' | 'inverte' | 'ordina') '(' args? ')'
+#
+# EXPECTED OUTPUT:
+#   [1, 2]
+#   3
+#   4
+#
+# BACKEND: Go e2e whitelist — lista intrinsic methods not yet lowered for Go
+# (whitelist: lista/methodi-mutatio.fab).
+
+incipit {
+    varia _ res ← [3, 1, 2] ∷ lista&lt;numerus&gt;
+
+    res.appende(4)
+    fixum _ primusremotus ← res.decapita()
+    fixum _ ultimusremotus ← res.detrahe()
+    res.inverte()
+    res.ordina()
+
+    nota res
+    nota primusremotus
+    nota ultimusremotus
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>[1, 2]
+3
+4
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/lista/lista.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

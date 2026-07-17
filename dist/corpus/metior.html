@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>metior — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>metior</h1>
+<div class="content">
+<p>Marks a test for metered or measured execution.</p>
+<p><strong>Syntax:</strong> <code>metior</code></p>
+<h2>Category</h2>
+<p><code>testing</code></p>
+<h2>Related</h2>
+<ul>
+<li>[temporis](/corpus/temporis.html)</li>
+<li>[prima](/corpus/prima.html)</li>
+<li>[ultima](/corpus/ultima.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/lista/methodi-accessus.fab (canonical · existing-home)</h3>
+<p>Marks a test for metered or measured execution.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># lista&lt;T&gt; access and query intrinsics
+#
+# res.primus() | res.ultimus() | res.accipe(i) | res.longitudo()   -- query
+# res.vacua() | res.continet(elem)                                 -- membership
+#
+# GRAMMAR:
+#   listMethod :← expr '.' ('primus' | 'ultimus' | 'accipe' | 'longitudo'
+#                         | 'vacua' | 'continet') '(' args? ')'
+#
+# EXPECTED OUTPUT:
+#   No pinned stdout — smoke asserts exit 0 and typed lowering only.
+#
+# BACKEND: Go e2e whitelist — lista intrinsic methods not yet lowered for Go
+# (whitelist: lista/methodi-accessus.fab).
+
+incipit {
+    fixum _ res ← [1, 2, 3, 4, 5] ∷ lista&lt;numerus&gt;
+
+    fixum _ primus ← res.primus()
+    fixum _ ultimus ← res.ultimus()
+    fixum _ tertius ← res.accipe(2)
+    fixum _ longitudo ← res.longitudo()
+    fixum _ vacuaest ← res.vacua()
+    fixum _ habettres ← res.continet(3)
+
+    nota primus, ultimus, tertius
+    nota longitudo, vacuaest, habettres
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>1 5 3
+5 falsum verum
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/lista/methodi-accessus.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

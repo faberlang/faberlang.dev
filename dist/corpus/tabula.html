@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tabula — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>tabula</h1>
+<div class="content">
+<p>Generic key/value map type.</p>
+<p><strong>Aliases:</strong> <code>map</code>, <code>dictionary</code></p>
+<p><strong>Syntax:</strong> <code>tabula<K,V></code></p>
+<h2>Category</h2>
+<p><code>collection</code></p>
+<h2>Related</h2>
+<ul>
+<li>[lista](/corpus/lista.html)</li>
+<li>[copia](/corpus/copia.html)</li>
+<li>[∷](/corpus/∷.html)</li>
+<li>[itera](/corpus/itera.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/tabula/methodi-accessus.fab (canonical · existing-home)</h3>
+<p>Generic key/value map type.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># tabula&lt;K,V&gt; access and mutation intrinsics
+#
+# puncta.pone(k, v) | puncta.accipe(k) | puncta.habet(k)   -- get/put
+# puncta.dele(k) | puncta.longitudo() | puncta.vacua()      -- delete/size
+#
+# GRAMMAR:
+#   mapMethod :← expr '.' ('pone' | 'accipe' | 'habet' | 'dele'
+#                         | 'longitudo' | 'vacua') '(' args? ')'
+#
+# EXPECTED OUTPUT:
+#   No pinned stdout — smoke asserts exit 0; tabula/tabula.fab carries scalar contract.
+#
+# BACKEND: Wasm tier floor FrontendAnalyzed (method surface not yet Runnable;
+# whitelist: tabula/methodi-accessus.fab).
+
+incipit {
+    varia tabula&lt;textus, numerus&gt; puncta ← vacua
+    puncta.pone("aelia", 95)
+    puncta.pone("balbus", 87)
+
+    fixum _ aelia ← puncta.accipe("aelia")
+    fixum _ absens ← puncta.accipe("carus")
+    fixum _ carus ← puncta.accipe("carus") vel 0
+    fixum _ habetbalbum ← puncta.habet("balbus")
+    fixum _ remotus ← puncta.dele("balbus")
+    fixum _ longitudo ← puncta.longitudo()
+    fixum _ vacuaest ← puncta.vacua()
+
+    nota aelia, absens, carus, habetbalbum, remotus, longitudo, vacuaest
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>95 nihil 0 verum verum 1 falsum
+</code></pre>
+<h3>examples/corpus/tabula/tabula.fab (canonical · existing-home)</h3>
+<p>Generic key/value map type.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># tabula&lt;K,V&gt; declaration, vacua, and keyed lookup
+#
+# varia tabula&lt;K,V&gt; nomen ← vacua   -- typed empty map (forma innata)
+# nomen[key] ← value                -- index assignment
+# nomen[key]                        -- keyed accipe
+# nomen.longitudo()                 -- entry count
+#
+# GRAMMAR:
+#   mapDecl :← 'varia' 'tabula&lt;' type ',' type '&gt;' ident '←' expr
+#   mapAcc  :← expr '[' expr ']'
+#
+# EXPECTED OUTPUT:
+#   longitudo() plus keyed lookups for alpha/beta/gamma (tabula.expected).
+
+incipit {
+    varia tabula&lt;textus, numerus&gt; puncta ← vacua
+    puncta["alpha"] ← 1
+    puncta["beta"] ← 2
+    puncta["gamma"] ← 3
+
+    nota puncta.longitudo()
+    nota puncta["alpha"]
+    nota puncta["beta"]
+    nota puncta["gamma"]
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>3
+1
+2
+3</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/tabula/methodi-accessus.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

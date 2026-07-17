@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>usque — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>usque</h1>
+<div class="content">
+<p>Creates an inclusive range with a Latin keyword.</p>
+<p><strong>Syntax:</strong> <code><expression> usque <expression></code></p>
+<h2>Category</h2>
+<p><code>range</code></p>
+<h2>Related</h2>
+<ul>
+<li>[ante](/corpus/ante.html)</li>
+<li>[…](/corpus/….html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/usque/usque.fab (canonical · keyword)</h3>
+<p>Creates an inclusive range with a Latin keyword.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># usque — inclusive upper bound for range iteration
+#
+# itera ab &lt;initium&gt; usque &lt;finis&gt; &lt;var&gt; { … }   -- both endpoints included
+#
+# GRAMMAR:
+#   iterStmt :← 'itera' 'ab' expr 'usque' expr binding block
+#
+# EXPECTED OUTPUT:
+#   0, 1, 2, 3 (inclusive range through finis).
+
+incipit {
+    # i = 0, 1, 2, 3 (includes 3)
+    itera ab 0 usque 3 fixum i {
+        nota i
+    }
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>0
+1
+2
+3
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/usque/usque.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

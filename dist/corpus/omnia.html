@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>omnia — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>omnia</h1>
+<div class="content">
+<p>Marks a test hook as applying to every case.</p>
+<p><strong>Syntax:</strong> <code>omnia</code></p>
+<h2>Category</h2>
+<p><code>testing</code></p>
+<h2>Related</h2>
+<ul>
+<li>[praepara](/corpus/praepara.html)</li>
+<li>[postpara](/corpus/postpara.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/omnia/omnia.fab (canonical · keyword)</h3>
+<p>Marks a test hook as applying to every case.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># omnia — exhaustive discerne (must cover every variant)
+#
+# discerne omnia &lt;discretio&gt; { casu &lt;Variant&gt; { … } … }
+#
+# GRAMMAR:
+#   matchStmt :← 'discerne' 'omnia' expr '{' casuClause* '}'
+#
+# EXPECTED OUTPUT:
+#   none — stdout not pinned for this exemplum.
+
+discretio Condicio {
+    Activa,
+    Quietus
+}
+
+functio narra(Condicio condicio) → textus {
+    # every variant must have a casu
+    discerne omnia condicio {
+        casu Activa { redde "activa" }
+        casu Quietus { redde "quietus" }
+    }
+}
+
+incipit {
+    fixum _ condicio ← finge Activa
+    nota narra(condicio)
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>activa
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/omnia/omnia.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

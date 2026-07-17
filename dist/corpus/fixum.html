@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fixum — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>fixum</h1>
+<div class="content">
+<p>Declares an immutable binding.</p>
+<p><strong>Aliases:</strong> <code>const</code>, <code>immutable</code></p>
+<p><strong>Syntax:</strong> <code>fixum <type|_> <pattern> [← <expression>]</code></p>
+<h2>Category</h2>
+<p><code>binding</code></p>
+<h2>Related</h2>
+<ul>
+<li>[varia](/corpus/varia.html)</li>
+<li>[sit](/corpus/sit.html)</li>
+<li>[←](/corpus/←.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/fixum/fixum.fab (canonical · keyword)</h3>
+<p>Declares an immutable binding.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># fixum — immutable bindings
+#
+# Immediate init:
+#   fixum numerus count ← 0
+#   fixum _ nomen ← "Marcus"
+#
+# Deferred init (write-once): declare without ←, assign exactly once later, then
+# freeze. The definite-assignment pass rejects reads before that assignment and
+# any second assignment.
+#   fixum numerus pending
+#   pending ← 42
+#
+# `sit x` is sugar for `fixum _ x` in both immediate and deferred shapes; see
+# sit/sit.fab for the compact inferred spelling.
+#
+# GRAMMAR:
+#   varDecl := ('fixum' | 'varia') typeAnnotation IDENTIFIER ('←' expression)?
+#
+# EXPECTED OUTPUT:
+#   fixum.expected (Salve, Marcus! / 7 / 30 / 300)
+
+functio scale(bivalens compact, numerus base) → numerus {
+    fixum numerus factor
+    si compact {
+        factor ← 10
+    }
+    secus {
+        factor ← 100
+    }
+    redde base * factor
+}
+
+incipit {
+    fixum _ nomen ← "Marcus"
+    fixum _ salve ← "Salve, §!"(nomen)
+
+    nota salve
+
+    fixum numerus pending
+    pending ← 7
+    nota pending
+
+    nota scale(verum, 3)
+    nota scale(falsum, 3)
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>Salve, Marcus!
+7
+30
+300</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/fixum/fixum.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

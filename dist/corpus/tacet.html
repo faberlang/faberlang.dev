@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tacet — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>tacet</h1>
+<div class="content">
+<p>Marks an explicit no-op statement.</p>
+<p><strong>Aliases:</strong> <code>silent noop</code></p>
+<p><strong>Syntax:</strong> <code>tacet</code></p>
+<h2>Category</h2>
+<p><code>transfer</code></p>
+<h2>Related</h2>
+<ul>
+<li>[ergo](/corpus/ergo.html)</li>
+<li>[redde](/corpus/redde.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/tacet/tacet.fab (canonical · keyword)</h3>
+<p>Marks an explicit no-op statement.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># tacet — explicit no-op (musical rest)
+#
+# tacet                                    -- deliberate empty statement
+# si &lt;cond&gt; ergo tacet                     -- guarded no-op
+#
+# GRAMMAR:
+#   noopStmt :← 'tacet'
+#
+# EXPECTED OUTPUT:
+#   cond verum, finis (tacet.expected).
+
+functio maybeNota(bivalens cond) → vacuum {
+    si cond {
+        nota "cond verum"
+    }
+    secus {
+        # deliberate no-op in else branch
+        tacet
+    }
+}
+
+incipit {
+    # prints
+    maybeNota(verum)
+    # tacet — no output
+    maybeNota(falsum)
+
+    # condition false, so tacet never runs
+    si falsum ergo tacet
+
+    nota "finis"
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>cond verum
+finis
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/tacet/tacet.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cli — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>cli</h1>
+<div class="content">
+<p>CLI root with options, operands, subcommands, and module mounts.</p>
+<p><strong>Syntax:</strong> <code>@ cli <name></code></p>
+<h2>Category</h2>
+<p><code>cli</code></p>
+<h2>Related</h2>
+<ul>
+<li>[cli](/corpus/cli.html)</li>
+<li>[optio](/corpus/optio.html)</li>
+<li>[annotation-sugar](/corpus/annotation-sugar.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/annotation-sugar/cli-braced.fab (canonical · annotation)</h3>
+<p>Braced canonical @ cli program marker.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># Braced @ cli — canonical program name record
+#
+# TARGET: annotation-sugar stage 2
+# PAIR: sugar `@ cli "NAME"` (see optio/optio.fab)
+
+@ cli { nomen = "annotation-sugar-smoke" }
+@ optio {
+    binding = verbose,
+    brevis = "v",
+    longum = "verbose",
+    typus = bivalens,
+    descriptio = "Verbose mode",
+}
+incipit argumenta args { }</code></pre>
+<h3>examples/corpus/cli/cli.fab (canonical · annotation)</h3>
+<p>CLI root with options, operands, subcommands, and module mounts.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># cli — structured CLI annotation tour
+#
+# @ cli / @ versio / @ descriptio / @ optio / @ operandus / @ imperium / @ alias
+# @ imperia mounts imported command modules (see package-cli fixture).
+#
+# GRAMMAR:
+#   cliDecl :← '@' 'cli' stringLit
+#   incipit argumenta args { ... }
+#
+# EXPECTED OUTPUT:
+#   Requires CLI flags/args at run time; no fixed stdout contract.
+#
+# BACKEND:
+#   Rust runtime whitelist (missing operand 'nomen'); Go compile whitelist.
+#   Cross-ref optio/, operandus/, descriptio/, ubique/, argumenta/ keyword dirs.
+
+@ cli "exemplum"
+@ versio "0.1.0"
+@ descriptio "Faber CLI framework smoke exemplum"
+@ optio verbose brevis "v" longum "verbose" typus bivalens ubique descriptio "Enable verbose output"
+incipit argumenta args {
+}
+
+@ imperium "greet"
+@ alias "g"
+@ descriptio "Greet by name"
+@ operandus textus nomen descriptio "Name to greet"
+functio greet() argumenta args → vacuum {
+    si args.verbose {
+        nota "verbose"
+    }
+    nota "Salve, §!"(args.nomen)
+}
+
+@ imperium "version"
+@ alias "v"
+functio version() → vacuum {
+    nota "exemplum v0.1.0"
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/annotation-sugar/cli-braced.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

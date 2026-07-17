@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fractus — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>fractus</h1>
+<div class="content">
+<p>Primitive floating-point number type.</p>
+<p><strong>Aliases:</strong> <code>float</code></p>
+<p><strong>Syntax:</strong> <code class="typ">fractus</code></p>
+<h2>Category</h2>
+<p><code>type</code></p>
+<h2>Related</h2>
+<ul>
+<li>[numerus](/corpus/numerus.html)</li>
+<li>[↦](/corpus/↦.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/intrinseca/fractus-comparatio.fab (canonical · existing-home)</h3>
+<p>Primitive floating-point number type.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># fractus comparison and ordering intrinsics
+#
+# Compiler-owned fractus methodi — absolutum, signum, minimus, maximus.
+#
+# GRAMMAR:
+#   valor.absolutum() | valor.signum()
+#   valor.minimus(other) | valor.maximus(other)
+#
+# Mirrors numerus-methodi.fab for floating-point; Wasm tier Runnable.
+#
+# EXPECTED OUTPUT:
+#   Smoke asserts exit 0 only.
+
+incipit {
+    fixum fractus valor ← -3.75
+
+    fixum _ absolutus ← valor.absolutum()
+    fixum _ signum ← valor.signum()
+    fixum _ minor ← valor.minimus(2.5)
+    fixum _ maior ← valor.maximus(2.5)
+
+    nota absolutus, signum, minor, maior
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/intrinseca/fractus-comparatio.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

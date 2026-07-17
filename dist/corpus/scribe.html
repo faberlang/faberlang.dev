@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>scribe — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>scribe</h1>
+<div class="content">
+<p>Writes a value to standard output.</p>
+<p><strong>Syntax:</strong> <code>scribe <expression></code></p>
+<h2>Category</h2>
+<p><code>output</code></p>
+<h2>Related</h2>
+<ul>
+<li>[vide](/corpus/vide.html)</li>
+<li>[mone](/corpus/mone.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/nota/nota.fab (canonical · keyword)</h3>
+<p>Writes a value to standard output.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># nota — diagnostic output statements
+#
+# nota literal-textus
+# nota expr
+# nota template with § interpolation
+# nota labeled template with multiple § placeholders
+#
+# GRAMMAR:
+#   outputStmt :← 'nota' expr (',' expr)*
+#
+# EXPECTED OUTPUT:
+#   nota.expected — greeting, variable, formatted strings, sum, coordinates.
+
+incipit {
+    # Simple string output
+    nota "Salve, Munde!"
+
+    # Variable output
+    fixum _ nomen ← "Marcus"
+    nota nomen
+
+    # Multiple arguments
+    fixum _ aetas ← 30
+    nota "nomen: §"(nomen)
+    nota "aetas: §"(aetas)
+
+    # Expressions
+    fixum _ x ← 10
+    fixum _ y ← 20
+    nota "summa: §"(x + y)
+
+    # Multiple values in one statement
+    nota "coordinata: § §"(x, y)
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>Salve, Munde!
+Marcus
+nomen: Marcus
+aetas: 30
+summa: 30
+coordinata: 10 20</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/nota/nota.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

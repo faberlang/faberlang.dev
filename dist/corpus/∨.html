@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>∨ — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>∨</h1>
+<div class="content">
+<p>Bitwise or and est-negation operators.</p>
+<p><strong>Syntax:</strong> <code><expression> ∨ <expression> | <expression> non est <expression></code></p>
+<h2>Category</h2>
+<p><code>logic</code></p>
+<h2>Related</h2>
+<ul>
+<li>[∧](/corpus/∧.html)</li>
+<li>[⊻](/corpus/⊻.html)</li>
+<li>[¬](/corpus/¬.html)</li>
+<li>[et](/corpus/et.html)</li>
+<li>[aut](/corpus/aut.html)</li>
+<li>[vel](/corpus/vel.html)</li>
+<li>[non est](/corpus/non est.html)</li>
+<li>[est](/corpus/est.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/operatores/logica.fab (canonical · operator-group)</h3>
+<p>Bitwise or and est-negation operators.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># operatores/logica — ∨ and non est
+#
+# GRAMMAR:
+#   binaryExpr :← expr ('∨' | 'non' 'est') expr
+#
+# EXPECTED OUTPUT:
+#   14, verum, falsum
+#
+# BACKEND:
+#   Cross-ref boolean short-circuit: et/et.fab, aut/binarius.fab, vel/binarius.fab.
+#   Negated est parses as `expr non est target`.
+
+incipit {
+    fixum _ vexilla ← 0b1010
+    fixum _ persona ← 0b1100
+    fixum _ velata ← vexilla ∨ persona
+    # 14 (0b1110)
+    nota velata
+
+    fixum textus ∪ nihil praesens ← "salve"
+    fixum textus ∪ nihil absens ← nihil
+    fixum _ habetValorem ← praesens non est nihil
+    # verum
+    nota habetValorem
+
+    fixum _ caretValorem ← absens non est nihil
+    # falsum
+    nota caretValorem
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>14
+verum
+falsum
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/operatores/logica.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

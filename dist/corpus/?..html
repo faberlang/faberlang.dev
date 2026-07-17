@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>?. — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>?.</h1>
+<div class="content">
+<p>Null-safe member, index, and call access.</p>
+<p><strong>Syntax:</strong> <code><expression>?.<name> | <expression>?[<expression>] | <expression>?(<args>)</code></p>
+<h2>Category</h2>
+<p><code>optional-chain</code></p>
+<h2>Related</h2>
+<ul>
+<li>[?.](/corpus/?..html)</li>
+<li>[?[](/corpus/?[.html)</li>
+<li>[?(](/corpus/?(.html)</li>
+<li>[vel](/corpus/vel.html)</li>
+<li>[sponte](/corpus/sponte.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/operatores/optional-chain.fab (canonical · operator-group)</h3>
+<p>Null-safe member, index, and call access.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># operatores/optional-chain — ?. ?[ ?(
+#
+# GRAMMAR:
+#   optionalSuffix :← '?.' IDENTIFIER | '?[' expr ']' | '?(' argumentList ')'
+#
+# EXPECTED OUTPUT:
+#   Roma, Italia, nihil, nihil, a, nihil
+#
+# BACKEND:
+#   Cross-ref optionalis/optionalis.fab for genus-heavy tour.
+#   Optional call ?( — syntax in frontmatter; Rust e2e defers to driver optional-chain tests.
+
+genus Locus {
+    textus urbs
+    textus regio sponte
+}
+
+genus Civis {
+    textus nomen
+    Locus locus sponte
+}
+
+incipit {
+    fixum _ aelia ← Civis {
+        nomen = "Aelia",
+        locus = Locus { urbs = "Roma", regio = "Italia" }
+    }
+
+    nota aelia?.locus?.urbs
+    nota aelia?.locus?.regio
+
+    fixum _ brutus ← Civis { nomen = "Brutus" }
+    nota brutus?.locus?.urbs
+    nota brutus?.locus?.regio
+
+    fixum _ litterae ← ["a", "b", "c"]
+    nota litterae?[0]
+    nota litterae?[10]
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>Roma
+Italia
+nihil
+nihil
+a
+nihil
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/operatores/optional-chain.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

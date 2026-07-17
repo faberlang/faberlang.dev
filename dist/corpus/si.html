@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>si — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>si</h1>
+<div class="content">
+<p>Starts a conditional branch that runs when its condition is true.</p>
+<p><strong>Aliases:</strong> <code>if</code></p>
+<p><strong>Syntax:</strong> <code>si <condition> <block></code></p>
+<h2>Category</h2>
+<p><code>control-flow</code></p>
+<h2>Related</h2>
+<ul>
+<li>[sin](/corpus/sin.html)</li>
+<li>[secus](/corpus/secus.html)</li>
+<li>[ergo](/corpus/ergo.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/si/nidificatus.fab (canonical · keyword)</h3>
+<p>Starts a conditional branch that runs when its condition is true.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># Nested si (if) conditionals
+#
+# si &lt;cond&gt; { &lt;body&gt; }                    -- inner branch inside outer arm
+# secus { &lt;body&gt; }
+#
+# GRAMMAR:
+#   ifStmt :← 'si' expr block ('secus' block)?
+#
+# EXPECTED OUTPUT:
+#   Access granted when intravit and licet are both verum.
+
+incipit {
+    # logged in
+    fixum _ intravit ← verum
+    # has permission
+    fixum _ licet ← verum
+
+    si intravit {
+        # Inner branch: permission check after login succeeds
+        si licet {
+            nota "Access granted"
+        }
+        secus {
+            nota "Permission denied"
+        }
+    }
+    secus {
+        # outer else: not logged in
+        nota "Please log in"
+    }
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>Access granted
+</code></pre>
+<h3>examples/corpus/si/si.fab (canonical · keyword)</h3>
+<p>Starts a conditional branch that runs when its condition is true.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># Basic si (if) conditionals
+#
+# si &lt;condition&gt; { &lt;body&gt; }   -- truthy branch
+#
+# GRAMMAR:
+#   ifStmt :← 'si' expr block
+#
+# EXPECTED OUTPUT:
+#   x maior quam 5, Adult, Can vote (si.expected).
+
+incipit {
+    # Simple truthy branch — only the first condition matches
+    fixum _ x ← 10
+
+    si x &gt; 5 {
+        nota "x maior quam 5"
+    }
+
+    si x &gt; 20 {
+        # skipped: 10 ≯ 20
+        nota "x maior quam 20"
+    }
+
+    # Block body: multiple statements run together when condition holds
+    fixum _ aetas ← 25
+
+    si aetas ≥ 18 {
+        nota "Adult"
+        nota "Can vote"
+    }
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>x maior quam 5
+Adult
+Can vote
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/si/nidificatus.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

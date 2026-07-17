@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>async solum leget — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>async solum leget</h1>
+<div class="content">
+<p>@ futura solum.leget<T> uses the same solum:lege route as sync solum.lege<T>.</p>
+<p><strong>Syntax:</strong> <code>solum.leget<textus>(via)</code></p>
+<h2>Category</h2>
+<p><code>ad</code></p>
+<h2>Related</h2>
+<ul>
+<li>[ad](/corpus/ad.html)</li>
+<li>[solum](/corpus/solum.html)</li>
+<li>[futura](/corpus/futura.html)</li>
+<li>[sermo](/corpus/sermo.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/ad/async-solum-leget.fab (canonical · concept)</h3>
+<p>@ futura solum.leget<T> uses the same solum:lege route as sync solum.lege<T>.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># Async `ad` materialization through a standard-library proof pair.
+#
+# `solum.leget&lt;T&gt;` is the async-posture twin of `solum.lege&lt;T&gt;`. Both wrappers
+# use the same host route; `@ futura` only changes the Rust materializer to the
+# async receive path.
+
+importa ex "norma:solum" privata solum
+
+incipiet {
+    fixum textus textPath ← "/tmp/faber-async-solum-leget.txt"
+    solum.scribe(textPath, "async solum\n")
+
+    fixum textus body ← cede solum.leget&lt;textus&gt;(textPath)
+    adfirma body ≡ "async solum\n"
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/ad/async-solum-leget.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

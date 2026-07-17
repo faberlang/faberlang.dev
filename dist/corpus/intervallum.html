@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>intervallum — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>intervallum</h1>
+<div class="content">
+<p>Clamp, materialize, and contain via conversio and continet.</p>
+<p><strong>Syntax:</strong> <code></code></p>
+<h2>Category</h2>
+<p><code>range</code></p>
+<h2>Related</h2>
+<ul>
+<li>[inter](/corpus/inter.html)</li>
+<li>[union](/corpus/union.html)</li>
+<li>[longitudo](/corpus/longitudo.html)</li>
+<li>[nihil](/corpus/nihil.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/intervallum/algebra.fab (canonical · type)</h3>
+<p>Interval algebra: intersection, union, and span count.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># intervallum — range algebra (inter, union, longitudo)
+#
+# `inter` / `union` return `intervallum&lt;numerus&gt; ∪ nihil` (nihil when disjoint
+# or non-adjacent). `longitudo` returns discrete bound-count for numerus v1.
+#
+# EXPECTED OUTPUT:
+#   none — stdout not pinned for this exemplum.
+
+incipit {
+    fixum intervallum&lt;numerus&gt; morning ← 0‥6
+    fixum intervallum&lt;numerus&gt; afternoon ← 4‥10
+    fixum intervallum&lt;numerus&gt; overlap ← morning.inter(afternoon) vel 0‥0
+    fixum intervallum&lt;numerus&gt; early ← 0‥5
+    fixum intervallum&lt;numerus&gt; late ← 5‥10
+    fixum intervallum&lt;numerus&gt; workday ← early.union(late) vel 0‥0
+    fixum _ overlap_span ← overlap.longitudo()
+    fixum _ workday_span ← workday.longitudo()
+    adfirma overlap_span ≡ 2
+    adfirma workday_span ≡ 10
+
+    fixum intervallum&lt;numerus&gt; gap_left ← 0‥3
+    fixum intervallum&lt;numerus&gt; gap_right ← 6‥9
+    fixum _ no_union ← gap_left.union(gap_right)
+    adfirma no_union est nihil
+}</code></pre>
+<h3>examples/corpus/intervallum/conversio.fab (canonical · type)</h3>
+<p>Clamp, materialize, and contain via conversio and continet.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># intervallum — conversio clamp, materialize, and continet
+#
+# Value clamp result type is bound `numerus` (refinement-target special case).
+# Range materialize honors declared inclusivity on `‥` / `…`.
+#
+# EXPECTED OUTPUT:
+#   none — stdout not pinned for this exemplum.
+
+incipit {
+    # --- value clamp (half-open interior vs inclusive endpoint) ---
+    fixum _ half ← 15 ↦ 0‥10
+    fixum _ closed ← 15 ↦ 0…10
+    adfirma half ≡ 9
+    adfirma closed ≡ 10
+
+    # --- materialize to lista or 1-d tensor ---
+    fixum lista&lt;numerus&gt; half_list ← 0‥10 ↦ lista&lt;numerus&gt;
+    fixum lista&lt;numerus&gt; closed_list ← 0…3 ↦ lista&lt;numerus&gt;
+    fixum tensor&lt;numerus, [10]&gt; half_grid ← 0‥10 ↦ tensor&lt;numerus, [10]&gt;
+    fixum tensor&lt;numerus, [4]&gt; closed_grid ← 0…3 ↦ tensor&lt;numerus, [4]&gt;
+    fixum lista&lt;numerus&gt; half_flat ← half_grid.planata()
+    fixum lista&lt;numerus&gt; closed_flat ← closed_grid.planata()
+    adfirma half_list.longitudo() ≡ 10
+    adfirma closed_list.longitudo() ≡ 4
+    adfirma half_flat.longitudo() ≡ 10
+    adfirma closed_flat.longitudo() ≡ 4
+
+    # --- range-to-range clamp inherits target inclusivity ---
+    fixum intervallum&lt;numerus&gt; wide ← 0‥100
+    fixum intervallum&lt;numerus&gt; narrow ← wide ↦ 10…50
+    adfirma narrow.longitudo() ≡ 41
+
+    # --- stored containment via continet (intra desugars to the same surface) ---
+    fixum intervallum&lt;numerus&gt; fines ← 0‥10
+    fixum _ inside ← fines.continet(5)
+    adfirma inside
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/intervallum/algebra.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

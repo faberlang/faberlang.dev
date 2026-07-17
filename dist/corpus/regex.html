@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>regex — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>regex</h1>
+<div class="content">
+<p>Compile textus patterns to regex via ↦ regex.</p>
+<p><strong>Syntax:</strong> <code><textus> ↦ regex</code></p>
+<h2>Category</h2>
+<p><code>literal</code></p>
+<h2>Related</h2>
+<ul>
+<li>[lege](/corpus/lege.html)</li>
+<li>[conversio](/corpus/conversio.html)</li>
+<li>[scriptum](/corpus/scriptum.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/literalia/regex.fab (canonical · conversio)</h3>
+<p>Compile textus patterns to regex via ↦ regex.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># literalia/regex — textus ↦ regex conversio
+#
+# GRAMMAR:
+#   conversio :← stringLit '↦' 'regex'
+#   templateExpr :← stringLit '(' exprList ')'   -- then ↦ regex on the textus result
+#
+# EXPECTED OUTPUT:
+#   Regex pattern diagnostics for literals, inline flags, and a template-built path.
+#
+# BACKEND:
+#   Cross-ref lege/lege.fab for regex beside stdin reads.
+#   Cross-ref scriptum/scriptum.fab for § template application.
+
+incipit {
+    fixum _ digits ← "\d+" ↦ regex
+    nota digits
+
+    fixum _ word ← "(?i)\w+" ↦ regex
+    nota word
+
+    # Template application → textus, then conversio to regex (dynamic path segments)
+    fixum _ tenant ← "acme"
+    fixum _ homePath ← "/home/§/.*"(tenant) ↦ regex
+    nota homePath
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>\d+
+(?i)\w+
+/home/acme/.*
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/literalia/regex.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

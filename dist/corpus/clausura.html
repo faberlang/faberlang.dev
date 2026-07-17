@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>clausura — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>clausura</h1>
+<div class="content">
+<p>Declares or explains an inline closure expression; compact ∴ syntax is preferred for new code.</p>
+<p><strong>Aliases:</strong> <code>closure</code>, <code>lambda</code></p>
+<p><strong>Syntax:</strong> <code><type> <name> [→ <type>] [⇥ <error-type>] ∴ <expression|fac-block></code></p>
+<h2>Category</h2>
+<p><code>function</code></p>
+<h2>Related</h2>
+<ul>
+<li>[∴](/corpus/∴.html)</li>
+<li>[functio](/corpus/functio.html)</li>
+<li>[fac](/corpus/fac.html)</li>
+<li>[cape](/corpus/cape.html)</li>
+<li>[cede](/corpus/cede.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/clausura/clausura.fab (canonical · keyword)</h3>
+<p>Declares or explains an inline closure expression; compact ∴ syntax is preferred for new code.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># clausura — closure bodies with ∴ and ⇥
+#
+# GRAMMAR:
+#   closureExpr :← paramList '∴' expr
+#
+# EXPECTED OUTPUT:
+#   Scalar stdout smoke (see body).
+#
+# BACKEND:
+#   Cross-ref: clausa/clausa.fab.
+#
+
+incipit {
+    fixum _ dupla ← numerus x ∴ x * 2
+    nota dupla(5)
+    fixum _ summa ← (numerus a, numerus b) → numerus ∴ a + b
+    nota summa(2, 3)
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>10
+5
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/clausura/clausura.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>scriptum — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>scriptum</h1>
+<div class="content">
+<p>Creates a formatted string with <code>§</code> placeholders.</p>
+<p><strong>Syntax:</strong> <code>\"<template>\"(<args>...)</code></p>
+<h2>Category</h2>
+<p><code>format</code></p>
+<h2>Related</h2>
+<ul>
+<li>[lege](/corpus/lege.html)</li>
+<li>[lineam](/corpus/lineam.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/scriptum/scriptum.fab (canonical · keyword)</h3>
+<p>Creates a formatted string with <code>§</code> placeholders.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># scriptum — string-template interpolation ("§" slots)
+#
+# "literal § more §"(arg1, arg2)   -- each § replaced by the corresponding arg
+#
+# GRAMMAR:
+#   templateExpr :← stringLit '(' exprList ')'
+#
+# EXPECTED OUTPUT:
+#   Salve greeting, persona notice, and computed summa string.
+
+incipit {
+    fixum _ nomen ← "Marcus"
+    fixum _ aetas ← 30
+
+    # One slot
+    fixum _ salutatio ← "Salve, §!"(nomen)
+    nota salutatio
+
+    # Multiple slots
+    fixum _ notitia ← "§ habet annos §"(nomen, aetas)
+    nota notitia
+
+    # With an expression
+    fixum _ summa ← "10 + 20 ← §"(10 + 20)
+    nota summa
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>Salve, Marcus!
+Marcus habet annos 30
+10 + 20 ← 30
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/scriptum/scriptum.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

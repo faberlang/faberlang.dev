@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>∪ — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>∪</h1>
+<div class="content">
+<p>Inline value unions and discerne on discretio variants.</p>
+<p><strong>Syntax:</strong> <code>typus <name> = <type> ∪ <type></code></p>
+<h2>Category</h2>
+<p><code>type</code></p>
+<h2>Related</h2>
+<ul>
+<li>[typus](/corpus/typus.html)</li>
+<li>[discerne](/corpus/discerne.html)</li>
+<li>[discretio](/corpus/discretio.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/unio/unio.fab (canonical · operator-group)</h3>
+<p>Inline value unions and discerne on discretio variants.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># Inline value unions and discerne on discretio
+#
+# typus Valor = numerus ∪ textus models a non-nullable ad-hoc union.
+# discretio + discerne handles tagged variants with payloads.
+#
+# GRAMMAR:
+#   typeAlias :← 'typus' ident '=' typeExpr ('∪' typeExpr)*
+#   discerne  :← 'discerne' expr '{' 'casu' variant pattern block ... '}'
+#
+# EXPECTED OUTPUT:
+#   42, "salve", "n: 7", "t: faber"
+#
+# BACKEND: Inline-union `discerne` enum lowering gap on Rust (whitelist: unio/unio.fab).
+
+typus Valor = numerus ∪ textus
+
+discretio Forma {
+    Numerus { numerus v },
+    Textus { textus v }
+}
+
+functio describe(Forma f) → textus {
+    discerne f {
+        casu Numerus fixum v { redde "n: §"(v) }
+        casu Textus fixum v { redde "t: §"(v) }
+    }
+}
+
+incipit {
+    # --- Ad-hoc inline union values ---
+
+    fixum Valor a ← 42
+    fixum Valor b ← "salve"
+    nota a
+    nota b
+
+    # --- Tagged discretio variants via finge ---
+
+    nota describe(finge Numerus { v = 7 } ∷ Forma)
+    nota describe(finge Textus { v = "faber" } ∷ Forma)
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>42
+salve
+n: 7
+t: faber
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/unio/unio.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

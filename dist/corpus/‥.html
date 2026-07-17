@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>‥ — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>‥</h1>
+<div class="content">
+<p>Half-open and inclusive range endpoints in itera ab and intra.</p>
+<p><strong>Syntax:</strong> <code><expression> ‥ <expression> | <expression> … <expression></code></p>
+<h2>Category</h2>
+<p><code>range</code></p>
+<h2>Related</h2>
+<ul>
+<li>[‥](/corpus/‥.html)</li>
+<li>[…](/corpus/….html)</li>
+<li>[ante](/corpus/ante.html)</li>
+<li>[usque](/corpus/usque.html)</li>
+<li>[intra](/corpus/intra.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/operatores/range-glyphs.fab (canonical · operator-group)</h3>
+<p>Half-open and inclusive range endpoints in itera ab and intra.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># operatores/range-glyphs — ‥ (exclusive) and … (inclusive)
+#
+# GRAMMAR:
+#   rangeExpr :← expr ('‥' | '…') expr
+#
+# EXPECTED OUTPUT:
+#   0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 5
+#
+# BACKEND:
+#   Cross-ref itera/intervallum.fab and intra/intra.fab.
+
+incipit {
+    varia numerus exclusivus ← 0
+    itera ab 0‥5 fixum _ {
+        exclusivus ⊕
+    }
+    # 5 iterations
+    nota exclusivus
+
+    varia numerus inclusivus ← 0
+    itera ab 0…5 fixum _ {
+        inclusivus ⊕
+    }
+    # 6 iterations
+    nota inclusivus
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>5
+6
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/operatores/range-glyphs.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

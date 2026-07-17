@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>integratio — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>integratio</h1>
+<div class="content">
+<p>Minimal multi-feature happy path across functio, fixum, si, and nota.</p>
+<p><strong>Syntax:</strong> <code>integratio — multi-feature happy path</code></p>
+<h2>Category</h2>
+<p><code>integration</code></p>
+<h2>Related</h2>
+<ul>
+<li>[functio](/corpus/functio.html)</li>
+<li>[fixum](/corpus/fixum.html)</li>
+<li>[si](/corpus/si.html)</li>
+<li>[nota](/corpus/nota.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/integratio/minimum-smoke.fab (canonical · concept)</h3>
+<p>Minimal multi-feature happy path across functio, fixum, si, and nota.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># integratio — minimal multi-feature happy path
+#
+# functio name(params) → type { … }
+# fixum _ n ← expr
+# si &lt;cond&gt; { … }
+# nota template with § interpolation
+#
+# GRAMMAR:
+#   funcDecl   :← 'functio' ident '(' params ')' ('→' type)? block
+#   condStmt   :← 'si' expr block
+#   outputStmt :← 'nota' expr
+#
+# EXPECTED OUTPUT:
+#   minimum-smoke.expected — par 42 when n is even.
+
+functio par(numerus n) → bivalens {
+    redde n % 2 ≡ 0
+}
+
+incipit {
+    fixum _ n ← 42
+    si par(n) {
+        nota "par §"(n)
+    }
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>par 42</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/integratio/minimum-smoke.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

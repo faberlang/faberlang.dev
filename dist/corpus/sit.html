@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sit — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>sit</h1>
+<div class="content">
+<p>Declares an inferred immutable local.</p>
+<p><strong>Syntax:</strong> <code>sit <name> [← <expression>]</code></p>
+<h2>Category</h2>
+<p><code>binding</code></p>
+<h2>Related</h2>
+<ul>
+<li>[fixum](/corpus/fixum.html)</li>
+<li>[varia](/corpus/varia.html)</li>
+<li>[←](/corpus/←.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/sit/sit.fab (canonical · keyword)</h3>
+<p>Declares an inferred immutable local.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># sit — inferred immutable bindings
+#
+# Immediate init:
+#   sit nomen ← expr        -- compact sugar for fixum _ nomen ← expr
+#
+# Deferred init:
+#   sit nomen               -- compact sugar for fixum _ nomen (assign once later)
+#   nomen ← expr
+#
+# Prefer sit when a block chains several inferred locals; keep fixum _ when
+# teaching the explicit infer marker or mixing typed and inferred bindings.
+#
+# GRAMMAR:
+#   sitDecl := 'sit' IDENTIFIER ('←' expression)?
+#
+# EXPECTED OUTPUT:
+#   sit.expected
+
+incipit {
+    sit salve ← "Salve"
+    sit nomen ← "Marcus"
+    sit nuntius ← "§, §!"(salve, nomen)
+
+    nota nuntius
+
+    sit label
+    label ← "deferred"
+    nota label
+
+    fixum _ idem ← nuntius
+    nota idem
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>Salve, Marcus!
+deferred
+Salve, Marcus!</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/sit/sit.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

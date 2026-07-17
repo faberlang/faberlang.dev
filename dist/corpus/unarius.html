@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>unarius — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>unarius</h1>
+<div class="content">
+<p>Unary negation, logical not, sign comparisons, and optional presence tests.</p>
+<p><strong>Syntax:</strong> <code>-<expr> | non <expr> | <expr> > 0 | <expr> est nihil</code></p>
+<h2>Category</h2>
+<p><code>operators</code></p>
+<h2>Related</h2>
+<ul>
+<li>[non](/corpus/non.html)</li>
+<li>[est](/corpus/est.html)</li>
+<li>[non est](/corpus/non est.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/unarius/unarius.fab (canonical · operator-group)</h3>
+<p>Unary negation, logical not, sign comparisons, and optional presence tests.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># unarius — negation, logical not, sign comparisons, and optional presence
+#
+# -&lt;expr&gt;  non &lt;bivalens&gt;  &lt;expr&gt; &gt; 0  &lt;expr&gt; &lt; 0
+# &lt;expr&gt; est nihil   &lt;expr&gt; non est nihil
+#
+# GRAMMAR:
+#   unaryExpr :← ('-' | 'non') expr
+#
+# EXPECTED OUTPUT:
+#   unarius.expected — unary operator samples.
+
+incipit {
+    # Numeric negation
+    fixum _ x ← 5
+    fixum _ neg ← -x
+    # -5
+    nota neg
+
+    # Logical negation
+    fixum _ flag ← verum
+    fixum _ non_signum ← non flag
+    # falsum
+    nota non_signum
+
+    # Positive/negative checks
+    fixum _ a ← 10
+    fixum _ b ← -3
+    # verum
+    nota a &gt; 0
+    # falsum
+    nota a &lt; 0
+    # falsum
+    nota b &gt; 0
+    # verum
+    nota b &lt; 0
+
+    # Null checks
+    fixum textus ∪ nihil forsitan ← nihil
+    # verum
+    nota forsitan est nihil
+    # falsum
+    nota forsitan non est nihil
+
+    fixum textus ∪ nihil adest ← "salve"
+    # falsum
+    nota adest est nihil
+    # verum
+    nota adest non est nihil
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>-5
+falsum
+verum
+falsum
+falsum
+verum
+verum
+falsum
+falsum
+verum
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/unarius/unarius.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

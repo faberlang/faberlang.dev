@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>redde — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>redde</h1>
+<div class="content">
+<p>Returns a value from a function.</p>
+<p><strong>Aliases:</strong> <code>return</code></p>
+<p><strong>Syntax:</strong> <code>redde <expression></code></p>
+<h2>Category</h2>
+<p><code>transfer</code></p>
+<h2>Related</h2>
+<ul>
+<li>[→](/corpus/→.html)</li>
+<li>[⇥](/corpus/⇥.html)</li>
+<li>[ergo](/corpus/ergo.html)</li>
+<li>[iace](/corpus/iace.html)</li>
+<li>[tacet](/corpus/tacet.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/redde/redde.fab (canonical · keyword)</h3>
+<p>Returns a value from a function.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># redde statements (function return)
+#
+# redde &lt;expression&gt;   -- return a value
+# redde                -- return void (vacuum)
+#
+# GRAMMAR:
+#   returnStmt :← 'redde' expr?
+#
+# EXPECTED OUTPUT:
+#   30, Salve, Munde, 42, 0, 20
+
+functio adde(numerus a, numerus b) → numerus {
+    redde a + b
+}
+
+functio saluta(textus nomen) → textus {
+    redde "Salve, " + nomen
+}
+
+functio duoetquadraginta() → numerus {
+    redde 42
+}
+
+functio tace() → vacuum {
+    # bare redde for vacuum return type
+    redde
+}
+
+functio porta(numerus x) → numerus {
+    si x &lt; 0 {
+        # early return on negative input
+        redde 0
+    }
+    redde x * 2
+}
+
+incipit {
+    nota adde(10, 20)
+    nota saluta("Munde")
+    nota duoetquadraginta()
+    tace()
+    nota porta(-5)
+    nota porta(10)
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>30
+Salve, Munde
+42
+0
+20</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/redde/redde.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

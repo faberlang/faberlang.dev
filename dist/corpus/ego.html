@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ego — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>ego</h1>
+<div class="content">
+<p>Refers to the current instance inside a method.</p>
+<p><strong>Aliases:</strong> <code>self</code>, <code>this</code></p>
+<p><strong>Syntax:</strong> <code>ego.<member></code></p>
+<h2>Category</h2>
+<p><code>object</code></p>
+<h2>Related</h2>
+<ul>
+<li>[generis](/corpus/generis.html)</li>
+<li>[nexum](/corpus/nexum.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/ego/ego.fab (canonical · keyword)</h3>
+<p>Refers to the current instance inside a method.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># ego — current genus instance reference
+#
+# ego.&lt;field&gt;
+#
+# GRAMMAR:
+#   memberExpr inside genus method :← 'ego' '.' ident
+#
+# EXPECTED OUTPUT:
+#   capsa: prima
+
+genus Capsa {
+    textus titulus
+
+    functio narra() → textus {
+        # ego = the receiver instance
+        redde "capsa: " + ego.titulus
+    }
+}
+
+incipit {
+    fixum _ capsa ← Capsa { titulus = "prima" }
+    nota capsa.narra()
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>capsa: prima</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/ego/ego.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

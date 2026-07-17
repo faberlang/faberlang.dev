@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ordo — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>ordo</h1>
+<div class="content">
+<p>Declares an enumeration.</p>
+<p><strong>Aliases:</strong> <code>enum</code></p>
+<p><strong>Syntax:</strong> <code>ordo <name> <block></code></p>
+<h2>Category</h2>
+<p><code>type</code></p>
+<h2>Related</h2>
+<ul>
+<li>[discretio](/corpus/discretio.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/ordo/ordo.fab (canonical · keyword)</h3>
+<p>Declares an enumeration.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># ordo — enumerated constants (ordered variants)
+#
+# ordo &lt;Nomen&gt; { &lt;membrum&gt;, … }
+# ordo &lt;Nomen&gt; { &lt;membrum&gt; = &lt;valor&gt;, … }
+#
+# GRAMMAR:
+#   ordoDecl :← 'ordo' ident '{' ordoMember (',' ordoMember)* '}'
+#
+# EXPECTED OUTPUT:
+#   rubrum
+#   actum
+
+ordo Color { rubrum, viridis, caeruleum }
+
+ordo Condicio { pendens = 0, actum = 1, finitum = 2 }
+
+incipit {
+    # Using ordo values
+    fixum _ color ← Color.rubrum
+    fixum _ condicio ← Condicio.actum
+
+    # Select by ordo
+    elige color {
+        casu Color.rubrum {
+            nota "rubrum"
+        }
+        casu Color.viridis {
+            nota "viridis"
+        }
+        casu Color.caeruleum {
+            nota "caeruleum"
+        }
+    }
+
+    # Select by ordo with numeric values
+    elige condicio {
+        casu Condicio.pendens {
+            nota "pendens"
+        }
+        casu Condicio.actum {
+            nota "actum"
+        }
+        casu Condicio.finitum {
+            nota "finitum"
+        }
+    }
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>rubrum
+actum
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/ordo/ordo.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

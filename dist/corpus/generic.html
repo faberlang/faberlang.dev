@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>generic — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>generic</h1>
+<div class="content">
+<p>Generic functions with angle-bracket type and magnitudo parameters.</p>
+<p><strong>Syntax:</strong> <code>functio <name><T, magnitudo N>(<params>) → <type> <block></code></p>
+<h2>Category</h2>
+<p><code>type</code></p>
+<h2>Related</h2>
+<ul>
+<li>[functio](/corpus/functio.html)</li>
+<li>[genus](/corpus/genus.html)</li>
+<li>[magnitudo](/corpus/magnitudo.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/generic/generic.fab (canonical · concept)</h3>
+<p>Generic functions with angle-bracket type and magnitudo parameters.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># Generic functions with angle-bracket type parameters
+#
+# Type and size parameters appear in `&lt;...&gt;` before value parameters.
+#
+# GRAMMAR:
+#   funcDecl :← 'functio' ident genericParams? '(' valueParams ')' ...
+#   genericParams :← '&lt;' (ident | 'magnitudo' ident) (',' (ident | 'magnitudo' ident))* '&gt;'
+#
+# EXPECTED OUTPUT:
+#   generic function signatures paratae
+#
+# BACKEND: Generic call codegen gap on Rust (`T: Clone`; whitelist: generic/generic.fab).
+# Call sites are deferred in this smoke exemplar.
+
+functio identitas&lt;T&gt;(T valor) → T {
+    redde valor
+}
+
+functio primum&lt;T&gt;(lista&lt;T&gt; res) → T ∪ nihil {
+    redde res.primus()
+}
+
+incipit {
+    nota "generic function signatures paratae"
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>generic function signatures paratae
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/generic/generic.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

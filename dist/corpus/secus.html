@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>secus — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>secus</h1>
+<div class="content">
+<p>Runs the fallback branch when preceding conditional branches do not match.</p>
+<p><strong>Aliases:</strong> <code>else</code>, <code>otherwise</code></p>
+<p><strong>Syntax:</strong> <code>secus <block></code></p>
+<h2>Category</h2>
+<p><code>control-flow</code></p>
+<h2>Related</h2>
+<ul>
+<li>[si](/corpus/si.html)</li>
+<li>[sin](/corpus/sin.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/secus/secus.fab (canonical · keyword)</h3>
+<p>Runs the fallback branch when preceding conditional branches do not match.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># secus — final else branch
+#
+# GRAMMAR:
+#   elseClause :← 'secus' block
+#
+# EXPECTED OUTPUT:
+#   Scalar stdout smoke (see body).
+#
+# BACKEND:
+#   Cross-ref: si/secus.fab.
+#
+
+incipit {
+    fixum _ hour ← 23
+    si hour &lt; 12 {
+        nota "morning"
+    }
+    secus {
+        nota "afternoon-or-later"
+    }
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>afternoon-or-later
+</code></pre>
+<h3>examples/corpus/si/secus.fab (canonical · keyword)</h3>
+<p>Runs the fallback branch when preceding conditional branches do not match.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># si-secus (if-else) conditionals
+#
+# si &lt;condition&gt; { &lt;body&gt; }                                   -- two-way branch
+# secus { &lt;body&gt; }
+# si &lt;cond1&gt; { }                                              -- else-if chain
+# sin &lt;cond2&gt; { }
+# secus { }
+#
+# GRAMMAR:
+#   ifStmt :← 'si' expr block ('sin' expr block)* ('secus' block)?
+#
+# EXPECTED OUTPUT:
+#   Grade and weather messages for sample scores and temperatures.
+
+incipit {
+    # Two-way branch: exactly one arm runs
+    fixum _ puncta ← 85
+
+    si puncta ≥ 90 {
+        nota "gradus: A"
+    }
+    secus {
+        # 85 &lt; 90 → this arm
+        nota "gradus: B aut minor"
+    }
+
+    # Each branch may contain several statements
+    fixum _ calor ← 22
+
+    si calor &gt; 30 {
+        nota "calidum"
+        nota "aquam bibe"
+    }
+    secus {
+        # 22 ≤ 30
+        nota "commodum"
+        nota "caelum mite"
+    }
+
+    # sin chains additional tests; first match wins (75 → C)
+    fixum _ gradus ← 75
+
+    si gradus ≥ 90 {
+        nota "A - optimum"
+    }
+    sin gradus ≥ 80 {
+        nota "B - bonum"
+    }
+    sin gradus ≥ 70 {
+        nota "C - satis"
+    }
+    sin gradus ≥ 60 {
+        nota "D - transit"
+    }
+    secus {
+        nota "F - deficit"
+    }
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>gradus: B aut minor
+commodum
+caelum mite
+C - satis
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/secus/secus.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

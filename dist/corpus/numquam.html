@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>numquam — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>numquam</h1>
+<div class="content">
+<p>Primitive never type for code paths that do not return normally.</p>
+<p><strong>Aliases:</strong> <code>never</code></p>
+<p><strong>Syntax:</strong> <code>numquam</code></p>
+<h2>Category</h2>
+<p><code>type</code></p>
+<h2>Related</h2>
+<ul>
+<li>[mori](/corpus/mori.html)</li>
+<li>[exitus](/corpus/exitus.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/numquam/numquam.fab (canonical · keyword)</h3>
+<p>Primitive never type for code paths that do not return normally.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># numquam — diverging return type
+#
+# GRAMMAR:
+#   returnType :← 'numquam'
+#
+# EXPECTED OUTPUT:
+#   Scalar stdout smoke (see body).
+#
+# BACKEND:
+#   Cross-ref: mori/mori.fab.
+#
+
+functio fail(textus message) → numquam {
+    mori message
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code></code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/numquam/numquam.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

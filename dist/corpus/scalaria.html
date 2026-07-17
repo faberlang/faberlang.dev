@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>scalaria — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>scalaria</h1>
+<div class="content">
+<p>Scalar operations on numerus, fractus, and bivalens in function signatures.</p>
+<p><strong>Syntax:</strong> <code>functio <name>(<scalar-params>) → <scalar-type> <block></code></p>
+<h2>Category</h2>
+<p><code>type</code></p>
+<h2>Related</h2>
+<ul>
+<li>[numerus](/corpus/numerus.html)</li>
+<li>[fractus](/corpus/fractus.html)</li>
+<li>[bivalens](/corpus/bivalens.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/scalaria/scalaria.fab (canonical · concept)</h3>
+<p>Scalar operations on numerus, fractus, and bivalens in function signatures.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># scalaria — scalar operations on primitive types
+#
+# Demonstrates numerus, fractus, and bivalens parameters with arithmetic,
+# comparison, and boolean logic in function signatures.
+#
+# GRAMMAR:
+#   funcDecl :← 'functio' ident '(' paramList ')' ('→' type)? block
+#
+# EXPECTED OUTPUT:
+#   Compile-only declaration tour (no incipit).
+
+functio numerica(numerus a, numerus b) → numerus {
+    redde (a + b) * 2
+}
+
+functio fracta(fractus a, fractus b) → fractus {
+    redde (a + b) / 2.0
+}
+
+functio comparata(numerus a, numerus b) → bivalens {
+    redde a ≤ b
+}
+
+functio logica(bivalens a, bivalens b) → bivalens {
+    redde non a et b
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code></code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/scalaria/scalaria.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>manifest — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>manifest</h1>
+<div class="content">
+<p>faber.toml package metadata for build, run, and test.</p>
+<p><strong>Aliases:</strong> <code>faber.toml</code>, <code>package manifest</code></p>
+<p><strong>Syntax:</strong> <code>faber.toml</code></p>
+<h2>Category</h2>
+<p><code>package</code></p>
+<h2>Related</h2>
+<ul>
+<li>[targets](/corpus/targets.html)</li>
+<li>[cli](/corpus/cli.html)</li>
+<li>[incipit](/corpus/incipit.html)</li>
+<li>[proba](/corpus/proba.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/meta/manifest.fab (canonical · concept)</h3>
+<p>faber.toml package metadata for build, run, and test.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># meta/manifest — package manifest (META)
+#
+# Website/tooling documents faber.toml; this exemplum is not a manifest file.
+#
+# Example package layout:
+#
+#   faber.toml
+#   src/main.fab
+#
+# Example faber.toml:
+#
+#   [package]
+#   name = "salve"
+#   version = "0.1.0"
+#   edition = "2026"
+#
+#   [paths]
+#   source = "src"
+#   entry = "main.fab"
+#
+#   [build]
+#   target = "rust"
+#   kind = "bin"
+#
+# GRAMMAR:
+#   packageManifest :← toml document (faber tool, not Faber source)
+#
+# EXPECTED OUTPUT:
+#   manifest exemplum
+#
+# BACKEND:
+#   META-only — runnable body is compile smoke only.
+
+incipit {
+    nota "manifest exemplum — configure packages via faber.toml"
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>manifest exemplum — configure packages via faber.toml
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/meta/manifest.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

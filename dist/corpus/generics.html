@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>generics — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>generics</h1>
+<div class="content">
+<p>Angle-bracket generic parameters on functions and declarations.</p>
+<p><strong>Aliases:</strong> <code>type parameters</code>, <code>magnitudo</code></p>
+<p><strong>Syntax:</strong> <code>functio name<T>(...) | genus Name<T, magnitudo N></code></p>
+<h2>Category</h2>
+<p><code>type</code></p>
+<h2>Related</h2>
+<ul>
+<li>[typus](/corpus/typus.html)</li>
+<li>[functio](/corpus/functio.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/prae/prae.fab (canonical · concept)</h3>
+<p>Angle-bracket generic parameters on functions and declarations.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># generics — angle-bracket parameters (replaces removed prae typus)
+#
+# GRAMMAR:
+#   genericParams :← '&lt;' (ident | 'magnitudo' ident) (',' (ident | 'magnitudo' ident))* '&gt;'
+#
+# EXPECTED OUTPUT:
+#   No incipit — declaration or test-runner surface only.
+#
+# BACKEND:
+#   declaration-only generic surface (whitelist: prae/prae.fab). Cross-ref: generic/generic.fab.
+#
+
+functio identitas&lt;T&gt;(T valor) → T {
+    redde valor
+}
+
+functio primum&lt;T&gt;(lista&lt;T&gt; res) → T ∪ nihil {
+    redde res.primus()
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code></code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/prae/prae.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

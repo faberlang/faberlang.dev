@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>∧ — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>∧</h1>
+<div class="content">
+<p>Bitwise and, or, xor, not, and shifts on numerus operands.</p>
+<p><strong>Syntax:</strong> <code><expression> ∧ <expression> | <expression> ⊻ <expression> | ¬ <expression> | <expression> ⇐ <expression> | <expression> ⇒ <expression></code></p>
+<h2>Category</h2>
+<p><code>bitwise</code></p>
+<h2>Related</h2>
+<ul>
+<li>[∨](/corpus/∨.html)</li>
+<li>[⊻](/corpus/⊻.html)</li>
+<li>[¬](/corpus/¬.html)</li>
+<li>[⇐](/corpus/⇐.html)</li>
+<li>[⇒](/corpus/⇒.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/operatores/bitwise.fab (canonical · operator-group)</h3>
+<p>Bitwise and, or, xor, not, and shifts on numerus operands.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># operatores/bitwise — ∧ ⊻ ¬ ⇐ ⇒
+#
+# GRAMMAR:
+#   bitwiseExpr :← expr ('∧' | '⊻' | '⇐' | '⇒') expr | '¬' expr
+#
+# EXPECTED OUTPUT:
+#   8, 6, 16, 4
+#
+# BACKEND:
+#   Integer bit patterns; cross-ref binarius/binarius.fab for combined tour.
+#   Unary ¬ documented in syntax; Rust emits `~` (whitelist if reintroduced in body).
+
+incipit {
+    fixum _ vexilla ← 0b1010
+    fixum _ persona ← 0b1100
+
+    fixum _ coniuncta ← vexilla ∧ persona
+    # 8 (0b1000)
+    nota coniuncta
+
+    fixum _ diversa ← vexilla ⊻ persona
+    # 6 (0b0110)
+    nota diversa
+
+    fixum _ sinistra ← 1 ⇐ 4
+    # 16
+    nota sinistra
+
+    fixum _ dextra ← 16 ⇒ 2
+    # 4
+    nota dextra
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>8
+6
+16
+4
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/operatores/bitwise.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>textus — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>textus</h1>
+<div class="content">
+<p>Primitive string/text type.</p>
+<p><strong>Aliases:</strong> <code>string</code></p>
+<p><strong>Syntax:</strong> <code class="typ">textus</code></p>
+<h2>Category</h2>
+<p><code>type</code></p>
+<h2>Related</h2>
+<ul>
+<li>[string](/corpus/string.html)</li>
+<li>[scriptum](/corpus/scriptum.html)</li>
+<li>[↦](/corpus/↦.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/intrinseca/textus-transformationes.fab (canonical · existing-home)</h3>
+<p>Primitive string/text type.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># textus slice and transform intrinsics
+#
+# Compiler-owned textus methodi — sectio, maiuscula, minuscula, recide,
+# divide, muta.
+#
+# GRAMMAR:
+#   s.sectio(lo, hi) | s.maiuscula() | s.minuscula() | s.recide()
+#   s.divide(sep) | s.muta(old, new)
+#
+# divide returns lista&lt;textus&gt;; pairs with lista/ exempla for collection smoke.
+# Derived locals use sit to avoid repeating fixum _ across the transform chain.
+# Wasm tier Runnable.
+#
+# EXPECTED OUTPUT:
+#   Smoke asserts exit 0 only.
+
+incipit {
+    sit nuntius ← " Ave Roma "
+
+    sit secta ← nuntius.sectio(1, 4)
+    sit magna ← nuntius.maiuscula()
+    sit parva ← nuntius.minuscula()
+    sit rasa ← nuntius.recide()
+    sit partes ← rasa.divide(" ")
+    sit mutata ← rasa.muta("Roma", "Munde")
+
+    nota secta, magna, parva
+    nota rasa, partes, mutata
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/intrinseca/textus-transformationes.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>typus — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>typus</h1>
+<div class="content">
+<p>Declares a type alias.</p>
+<p><strong>Aliases:</strong> <code>type</code></p>
+<p><strong>Syntax:</strong> <code>typus <name> = <type></code></p>
+<h2>Category</h2>
+<p><code>type</code></p>
+<h2>Related</h2>
+<ul>
+<li>[genus](/corpus/genus.html)</li>
+<li>[implendum](/corpus/implendum.html)</li>
+<li>[objectum](/corpus/objectum.html)</li>
+<li>[∪](/corpus/∪.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/typus/typus.fab (canonical · keyword)</h3>
+<p>Declares a type alias.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># Type aliases
+#
+# typus Nomen = Typus
+#
+# GRAMMAR:
+#   typeAliasDecl :← 'typus' ident '=' typeExpr
+#
+# EXPECTED OUTPUT:
+#   42, "Marcus", verum, ["Gaius", "Lucius", "Titus"], [100, 95, 87]
+
+# --- Primitive type aliases ---
+
+typus Signum = numerus
+typus Cognomen = textus
+typus Viget = bivalens
+
+# --- Generic type aliases ---
+
+typus Nomina = lista&lt;textus&gt;
+typus Puncta = lista&lt;numerus&gt;
+typus Index = tabula&lt;textus, numerus&gt;
+
+# Nullable type alias (canonical T ∪ nihil form)
+typus NomenOptivum = textus ∪ nihil
+
+incipit {
+    # Using primitive aliases
+    fixum Signum signum ← 42
+    fixum Cognomen cognomen ← "Marcus"
+    fixum Viget viget ← verum
+
+    nota signum
+    nota cognomen
+    nota viget
+
+    # Using generic aliases
+    fixum Nomina sodales ← ["Gaius", "Lucius", "Titus"]
+    nota sodales
+
+    fixum Puncta puncta ← [100, 95, 87]
+    nota puncta
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/typus/typus.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

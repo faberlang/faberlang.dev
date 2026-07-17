@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>membrum — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>membrum</h1>
+<div class="content">
+<p>Dot, bracket, chained, and optional member access expressions.</p>
+<p><strong>Syntax:</strong> <code><expr>.<field> | <expr>[<index>] | <expr>?.<field></code></p>
+<h2>Category</h2>
+<p><code>expression</code></p>
+<h2>Related</h2>
+<ul>
+<li>[?.](/corpus/?..html)</li>
+<li>[lista](/corpus/lista.html)</li>
+<li>[tabula](/corpus/tabula.html)</li>
+<li>[genus](/corpus/genus.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/membrum/membrum.fab (canonical · concept)</h3>
+<p>Dot, bracket, chained, and optional member access expressions.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># membrum — dot, bracket, chained, and optional access
+#
+# expr.&lt;field&gt;        -- dot access on genus records
+# expr[index]         -- bracket access on listas and tabulae
+# expr?.&lt;field&gt;       -- optional chaining (see optionalis/optionalis.fab)
+#
+# GRAMMAR:
+#   memberExpr :← primary ('.' ident | '[' expr ']' | '?.' ident)*
+#
+# EXPECTED OUTPUT:
+#   membrum.expected — chained access samples.
+
+genus Punctum {
+    numerus x
+    numerus y
+}
+
+genus Forma {
+    textus nomen
+    numerus valor
+}
+
+genus Imum {
+    textus imum
+}
+
+genus Medium {
+    Imum medium
+}
+
+genus Extra {
+    Medium extra
+}
+
+genus Datum {
+    lista&lt;textus&gt; res
+}
+
+genus Adest {
+    numerus valor
+}
+
+genus Forsitan {
+    Adest adest
+}
+
+incipit {
+    # --- Dot accessus ---
+
+    fixum _ punctum ← Punctum { x = 10, y = 20 }
+    nota punctum.x
+    nota punctum.y
+
+    # --- Bracket accessus on lista ---
+
+    fixum _ numeri ← [1, 2, 3]
+    nota numeri[0]
+    nota numeri[2]
+
+    # --- Bracket accessus on tabula ---
+
+    fixum tabula&lt;textus, numerus&gt; tab ← { "nomen": 1, "valor": 42 }
+    nota tab["nomen"]
+    nota tab["valor"]
+
+    # --- Chained member access ---
+
+    fixum _ nidum ← Extra { extra = Medium { medium = Imum { imum = "inventum" } } }
+    nota nidum.extra.medium.imum
+
+    # --- Mixed dot and bracket ---
+
+    fixum _ datum ← Datum { res = ["primus", "secundus", "tertius"] }
+    nota datum.res[0]
+    nota datum.res[2]
+
+    # --- Accessus optionalis ---
+
+    fixum _ forsitan ← Forsitan { adest = Adest { valor = 100 } }
+    nota forsitan?.adest?.valor
+
+    # Accessus optionalis on nihil binding
+    fixum _ vacuum ← nihil
+    nota vacuum?.absens
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>10
+20
+1
+3
+1
+42
+inventum
+primus
+tertius
+100
+nihil
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/membrum/membrum.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

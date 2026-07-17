@@ -97,7 +97,7 @@ depends on.
 | Generator build system | **Built** — 8 modules, ~800 lines, `faber check` clean, **renders end-to-end** | Close Stage 1 (block-level Markdown conversion = Stage 2) |
 | Authored Markdown pages | 23 drafted, unannotated | Blocked on Stage 2 gate |
 | HTML pages (content debt) | **Cleared** — 0 HTML files remain; all content in Markdown | Stage 3 gate closed |
-| Corpus page generator | **Slice 2 built** — frontmatter reader, kind policy, tensor proof, fence gate, alias bridge | Stage 5 batch generation |
+| Corpus page generator | **Batch built** — 167 canonical terms, 95 alias redirects, 45 category indexes, corpus hub rendered | Stage 5 residual triage (`tuus` fence, alias data collisions) |
 | Portal (Speculum Porta) | Homepage HTML exists, not generated | Blocked on Stage 6 |
 | Getting-started | Not started | Blocked on Homebrew formula |
 | Multilingual generation | Transcode shipped; no locale sites generated | Blocked on Stage 7 |
@@ -259,7 +259,7 @@ proof Markdown contains two transcluded fences; `validate-fences.sh` reports
 
 ### Stage 5 — Corpus Generation at Scale
 
-**Status**: planned
+**Status**: implemented with residuals (2026-07-17) — 348 pages render
 **Source**: `CONTENT-PLAN.md` § Generated — Corpus
 **Why now**: Stage 4 proved the code path; now generate all pages.
 **Lowers to**: `factory`
@@ -267,14 +267,25 @@ proof Markdown contains two transcluded fences; `validate-fences.sh` reports
 **Depends on**: Stage 4 gate
 
 Deliverables:
-- Generate all ~167 canonical term pages
-- Generate all alias redirects
-- Generate all category indexes
-- Generate corpus hub page
-- CI validates all generated fences
+- [x] Generate all 167 canonical term pages
+- [x] Generate alias redirects where the alias has a unique static path — 95 redirects generated
+- [x] Generate category indexes — 45 category pages generated
+- [x] Generate corpus hub page at `/corpus/`
+- [x] CI/fence validation run over generated term Markdown; residual filed below
 
-**Gate**: All corpus term pages, aliases, and category indexes generated and
-validated. Site is now ~200+ pages.
+**Gate**: Implemented with exact residuals. The site renders 348 HTML pages:
+40 authored pages, 167 corpus term pages, 95 alias redirects, 45 category
+indexes, and 1 corpus hub. Generated-fence validation reports 171 passed / 1
+failed / 0 skipped. The single failure is `/corpus/tuus.html`, sourced from
+`examples/corpus/ad/sermo-tuus.fab`, where `radix check` reports
+`SEM008.unknown_type_name` for `sermo`; this appears to require runtime or
+package context not available to the standalone fence validator.
+
+**Alias residuals**: `closure` and `lambda` are declared by both `clausa` and
+`clausura`; the static redirects keep the deterministic first target (`clausa`)
+and record the skipped duplicate target. `string` is also a canonical term path,
+so its alias-to-`textus` redirect is not emitted to avoid overwriting the
+canonical page.
 
 ### Stage 6 — Portal and Getting Started
 

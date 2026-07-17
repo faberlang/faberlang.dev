@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>instans — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>instans</h1>
+<div class="content">
+<p>Absolute point-in-time primitive with precision contract.</p>
+<p><strong>Syntax:</strong> <code>instans | instans<ms> | instans<us> | instans<ns></code></p>
+<h2>Category</h2>
+<p><code>conversion</code></p>
+<h2>Related</h2>
+<ul>
+<li>[↦](/corpus/↦.html)</li>
+<li>[⇥](/corpus/⇥.html)</li>
+<li>[textus](/corpus/textus.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/conversio/instans.fab (canonical · conversio)</h3>
+<p>Conversio arms for instans precision family and textus datetime provenance.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># conversio — instans precision family and valor provenance
+#
+# WHY: `textus ↦ instans&lt;N&gt;` restores datetime provenance from wire carriers;
+# `instans ↔ instans` re-tags precision; `instans ↦ textus` emits RFC3339 UTC
+# at the declared precision contract (no fabricated sub-precision digits).
+#
+# textus ↦ instans&lt;N&gt;    — RFC3339 wire per target precision
+# instans ↦ instans&lt;ms&gt;  — coarse→fine widening (lossless at storage)
+# instans&lt;ns&gt; ↦ instans    — fine→coarse narrowing (truncates sub-second bits)
+# instans ↦ textus        — precision-honoring RFC3339 `Z` emit
+# textus ↦ instans ⇥ …     — explicit recovery when wire is not a datetime
+
+incipit {
+    fixum textus utc ← "1979-05-27T07:32:00.123456Z"
+    fixum textus offset ← "1979-05-27T16:32:00+0900"
+
+    fixum instans seconds ← utc ↦ instans
+    fixum instans&lt;ms&gt; millis ← seconds ↦ instans&lt;ms&gt;
+    fixum instans&lt;us&gt; micros ← utc ↦ instans&lt;us&gt;
+    fixum instans&lt;ns&gt; nanos ← utc ↦ instans&lt;ns&gt;
+    fixum instans normalized ← offset ↦ instans
+
+    adfirma millis ↦ textus ≡ "1979-05-27T07:32:00.000Z"
+    adfirma micros ↦ textus ≡ "1979-05-27T07:32:00.123456Z"
+    adfirma normalized ≡ seconds, "offset ingest lands on same UTC instant"
+
+    fixum instans&lt;ns&gt; fine ← nanos
+    fixum instans narrowed ← fine ↦ instans
+    adfirma narrowed ↦ textus ≡ "1979-05-27T07:32:00Z"
+
+    fixum textus bad ← "not-a-datetime"
+    fixum instans recovered ← bad ↦ instans ⇥ seconds
+    adfirma recovered ≡ seconds
+
+    nota seconds ↦ textus
+    nota millis ↦ textus
+    nota micros ↦ textus
+    nota nanos ↦ textus
+    nota narrowed ↦ textus
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>1979-05-27T07:32:00Z
+1979-05-27T07:32:00.000Z
+1979-05-27T07:32:00.123456Z
+1979-05-27T07:32:00.123456000Z
+1979-05-27T07:32:00Z
+</code></pre>
+<h3>examples/corpus/instans/instans.fab (canonical · existing-home)</h3>
+<p>Absolute point-in-time primitive with precision contract.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># instans — wall clock, precision contract, offset ingest, TOML provenance
+#
+# GRAMMAR:
+#   instans | instans&lt;ms&gt; | instans&lt;us&gt; | instans&lt;ns&gt;
+#   tempus.nunc() → instans&lt;ns&gt;; downconvert at use site
+#   valor ↦ instans&lt;N&gt; | instans ↦ textus
+#
+# EXPECTED OUTPUT:
+#   Smoke asserts exit 0 only.
+
+importa ex "norma:tempus" privata tempus
+importa ex "norma:toml" privata toml
+importa ex "norma:valor" privata valor
+
+functio epoch_wire(instans t) → textus {
+    redde t ↦ textus
+}
+
+incipit {
+    # --- precision declarations from canonical nanosecond wall clock ---
+    fixum instans&lt;ns&gt; nanos ← tempus.nunc()
+    fixum instans secunda ← nanos ↦ instans
+    fixum instans&lt;ms&gt; millis ← nanos ↦ instans&lt;ms&gt;
+    fixum instans&lt;us&gt; micros ← nanos ↦ instans&lt;us&gt;
+
+    # --- valor ↦ instans: UTC wire and numeric offset normalize to same instant ---
+    fixum valor utc ← "1979-05-27T07:32:00Z"
+    fixum valor offset ← "1979-05-27T03:32:00-04:00"
+    fixum instans parsed ← utc ↦ instans
+    fixum instans normalized ← offset ↦ instans
+
+    adfirma parsed ≡ normalized, "offset ingest normalizes to UTC instant"
+
+    # --- TOML datetime provenance (Valor::Instans carrier, not textus) ---
+    fixum valor doc ← toml.solve("creatus = 1979-05-27T07:32:00.123456Z")
+    fixum valor carrier ← valor.cape(doc, "creatus")
+    fixum instans&lt;us&gt; fromToml ← carrier ↦ instans&lt;us&gt;
+    adfirma fromToml ↦ textus ≡ "1979-05-27T07:32:00.123456Z", "emit honors micros contract"
+
+    # --- precision-tagged equality: distinct at ns, equal at ms ---
+    fixum valor leftWire ← "1979-05-27T07:32:00.123456Z"
+    fixum valor rightWire ← "1979-05-27T07:32:00.123999Z"
+    fixum instans&lt;ns&gt; left ← leftWire ↦ instans&lt;ns&gt;
+    fixum instans&lt;ns&gt; right ← rightWire ↦ instans&lt;ns&gt;
+    adfirma left ≠ right, "sub-millisecond bits differ at nanosecond precision"
+    fixum instans&lt;ms&gt; leftMs ← left ↦ instans&lt;ms&gt;
+    fixum instans&lt;ms&gt; rightMs ← right ↦ instans&lt;ms&gt;
+    adfirma leftMs ≡ rightMs, "same millisecond at declared ms precision"
+
+    # --- cross-precision conversio: widen and narrow with observable truncation ---
+    fixum instans&lt;ns&gt; fine ← parsed ↦ instans&lt;ns&gt;
+    fixum instans&lt;ms&gt; coarse ← fine ↦ instans&lt;ms&gt;
+    fixum instans seconds ← fine ↦ instans
+    adfirma seconds ↦ textus ≡ "1979-05-27T07:32:00Z", "narrow to seconds strips sub-second wire"
+
+    fixum instans&lt;ms&gt; wider ← secunda ↦ instans&lt;ms&gt;
+    adfirma wider ≤ millis, "cross-precision comparison at coarser operand"
+
+    # --- wire emit and parse-back via TOML (same instant) ---
+    fixum textus wire ← epoch_wire(parsed)
+    fixum valor replayDoc ← toml.solve("creatus = 1979-05-27T07:32:00Z")
+    fixum valor replayCarrier ← valor.cape(replayDoc, "creatus")
+    fixum instans roundtrip ← replayCarrier ↦ instans
+    adfirma roundtrip ≡ parsed, "TOML ingest roundtrip matches UTC valor extract"
+    adfirma wire ≡ "1979-05-27T07:32:00Z", "seconds-precision wire emit"
+
+    nota wire, secunda, millis, micros, nanos, fromToml, coarse
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/conversio/instans.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

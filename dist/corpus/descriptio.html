@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>descriptio — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>descriptio</h1>
+<div class="content">
+<p>Attaches a description string to CLI metadata.</p>
+<p><strong>Syntax:</strong> <code>@ descriptio <string></code></p>
+<h2>Category</h2>
+<p><code>cli</code></p>
+<h2>Related</h2>
+<ul>
+<li>[versio](/corpus/versio.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/descriptio/descriptio.fab (canonical · keyword)</h3>
+<p>Attaches a description string to CLI metadata.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># descriptio — CLI description annotation
+#
+# GRAMMAR:
+#   annotation :← '@' 'descriptio' stringLit
+#
+# EXPECTED OUTPUT:
+#   No incipit — declaration or test-runner surface only.
+#
+# BACKEND:
+#   declaration-only CLI metadata (whitelist: descriptio/descriptio.fab).
+#
+
+@ cli "descriptio-smoke"
+@ descriptio "Short CLI description"
+incipit argumenta args {
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/descriptio/descriptio.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

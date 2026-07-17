@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fac — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>fac</h1>
+<div class="content">
+<p>Starts a scoped do-while style loop.</p>
+<p><strong>Aliases:</strong> <code>do</code></p>
+<p><strong>Syntax:</strong> <code>fac <block> [cape <name> <block>] [dum <condition>]</code></p>
+<h2>Category</h2>
+<p><code>control-flow</code></p>
+<h2>Related</h2>
+<ul>
+<li>[dum](/corpus/dum.html)</li>
+<li>[cape](/corpus/cape.html)</li>
+<li>[clausura](/corpus/clausura.html)</li>
+<li>[perge](/corpus/perge.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/fac/fac-cape.fab (canonical · keyword)</h3>
+<p>Starts a scoped do-while style loop.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># fac — try block with cape error handler
+#
+# fac { &lt;body&gt; }
+# cape err { &lt;handler&gt; }
+#
+# GRAMMAR:
+#   facStmt :← 'fac' block 'cape' ident block
+#
+# EXPECTED OUTPUT:
+#   none — success path then simulated failure on attempt 2
+#
+# BACKEND:
+#   Rust/Go: fac/cape not yet emitted — compile-only smoke.
+
+incipit {
+    fac {
+        nota "Block executed successfully"
+    }
+    cape err {
+        nota "Caught error: §"(err.nuntius)
+    }
+
+    # iace on second attempt; cape recovers and prints err.nuntius
+    varia numerus attempts ← 0
+    fac {
+        attempts ← attempts + 1
+        nota "Attempt §"(attempts)
+        si attempts ≡ 2 {
+            iace "Simulated failure"
+        }
+    }
+    cape err {
+        nota "Failed on attempt §: §"(attempts, err.nuntius)
+    }
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/fac/fac-cape.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

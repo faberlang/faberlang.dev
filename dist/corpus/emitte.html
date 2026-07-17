@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>emitte — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>emitte</h1>
+<div class="content">
+<p>Retired statement-level frame emit; use expression ad with sermo directional views.</p>
+<p><strong>Syntax:</strong> <code>emitte <expression></code></p>
+<h2>Category</h2>
+<p><code>endpoint</code></p>
+<h2>Related</h2>
+<ul>
+<li>[ad](/corpus/ad.html)</li>
+<li>[meus](/corpus/meus.html)</li>
+<li>[tuus](/corpus/tuus.html)</li>
+<li>[sermo](/corpus/sermo.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/emitte/emitte.fab (canonical · keyword)</h3>
+<p>Retired statement-level frame emit; use expression ad with sermo directional views.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># emitte — retired statement-level frame emit
+#
+# `emitte` is still a reserved lexer keyword so the parser can reject old stream
+# blocks with a targeted diagnostic.
+#
+# GRAMMAR:
+#   retiredEmitteStmt :← 'emitte' expr
+#
+# EXPECTED ERROR:
+#   Statement-level `emitte` is retired. Use expression `ad` and a `sermo`
+#   directional view such as `s.meus&lt;T&gt;().da(value)` or `s.tuus&lt;T&gt;().accipe()`.
+#
+# Retired form, intentionally commented out:
+#   emitte scrinium { status = "item", data = "payload" }
+
+incipit {
+    nota "emitte is a retired statement form; use sermo directional views"
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>emitte is a retired statement form; use sermo directional views
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/emitte/emitte.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

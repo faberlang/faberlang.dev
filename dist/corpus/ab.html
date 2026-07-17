@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ab — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>ab</h1>
+<div class="content">
+<p>Selects numeric range iteration in an itera loop.</p>
+<p><strong>Syntax:</strong> <code>itera ab <range> <binding></code></p>
+<h2>Category</h2>
+<p><code>iteration</code></p>
+<h2>Related</h2>
+<ul>
+<li>[itera](/corpus/itera.html)</li>
+<li>[ex](/corpus/ex.html)</li>
+<li>[de](/corpus/de.html)</li>
+<li>[per](/corpus/per.html)</li>
+<li>[ab pipeline](/corpus/ab pipeline.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/ab/ab.fab (canonical · keyword)</h3>
+<p>Selects numeric range iteration in an itera loop.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># ab — bounded iteration step
+#
+# GRAMMAR:
+#   iteraStmt :← 'itera' 'ab' expr '‥' expr step? 'fixum' ident block
+#
+# EXPECTED OUTPUT:
+#   Scalar stdout smoke (see body).
+#
+
+incipit {
+    itera ab 0‥10 per 2 fixum i {
+        nota i
+    }
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>0
+2
+4
+6
+8
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/ab/ab.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

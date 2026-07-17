@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>genus — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>genus</h1>
+<div class="content">
+<p>Declares a concrete type with fields and methods.</p>
+<p><strong>Aliases:</strong> <code>class</code>, <code>struct</code></p>
+<p><strong>Syntax:</strong> <code>genus <name> [<type-params>] <block></code></p>
+<h2>Category</h2>
+<p><code>type</code></p>
+<h2>Related</h2>
+<ul>
+<li>[implendum](/corpus/implendum.html)</li>
+<li>[abstractus](/corpus/abstractus.html)</li>
+<li>[implet](/corpus/implet.html)</li>
+<li>[sub](/corpus/sub.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/genus/genus.fab (canonical · keyword)</h3>
+<p>Declares a concrete type with fields and methods.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># Basic genus (record type) with fields
+#
+# genus &lt;Name&gt; {
+#     &lt;type&gt; &lt;property&gt;
+#     &lt;type&gt; &lt;property&gt; = &lt;default&gt;
+# }
+#
+# GRAMMAR:
+#   genusDecl :← 'genus' ident '{' fieldDecl* '}'
+#   instance  :← ident '{' fieldInit (',' fieldInit)* '}'
+#
+# EXPECTED OUTPUT:
+#   Field values for Punctum and Persona instances (defaults and overrides).
+
+genus Punctum {
+    numerus x
+    numerus y
+}
+
+genus Persona {
+    textus nomen
+    # default when omitted at instantiation
+    numerus aetas = 0
+    bivalens activus = verum
+}
+
+incipit {
+    # Instantiate with all required fields
+    fixum _ p ← Punctum {
+        x = 10,
+        y = 20
+    }
+
+    nota p.x
+    nota p.y
+
+    # Instantiate with required + optional defaults
+    fixum _ marcus ← Persona {
+        nomen = "Marcus"
+    }
+
+    nota marcus.nomen
+    # 0 from default
+    nota marcus.aetas
+    # verum from default
+    nota marcus.activus
+
+    # Override defaults explicitly
+    fixum _ julia ← Persona {
+        nomen = "Julia",
+        aetas = 25,
+        activus = falsum
+    }
+
+    nota julia.nomen
+    nota julia.aetas
+    nota julia.activus
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>10
+20
+Marcus
+0
+verum
+Julia
+25
+falsum
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/genus/genus.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

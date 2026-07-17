@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>generic-call-type-args — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>generic-call-type-args</h1>
+<div class="content">
+<p>Explicit type arguments at function and namespaced call sites.</p>
+<p><strong>Syntax:</strong> <code>callee<type, ...>(args) — id<textus>(...), module.f<T>(...), tensor.creata<T>(...)</code></p>
+<h2>Category</h2>
+<p><code>function</code></p>
+<h2>Related</h2>
+<ul>
+<li>[functio](/corpus/functio.html)</li>
+<li>[tensor](/corpus/tensor.html)</li>
+<li>[typi-parametri](/corpus/typi-parametri.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/functio/generic-call-type-args.fab (canonical · concept)</h3>
+<p>Explicit type arguments at function and namespaced call sites.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># functio/generic-call-type-args — explicit call-site type arguments
+#
+# EXPECTED OUTPUT:
+#   creata
+#
+# Application lane (`faber check` / `faber build` / Rust emit). Default
+# `faber run` / script stepper do not yet lower explicit call-site type args.
+
+functio identitas&lt;T&gt;(T x) → T {
+    redde x
+}
+
+incipit {
+    nota identitas&lt;textus&gt;("creata")
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>creata
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/functio/generic-call-type-args.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

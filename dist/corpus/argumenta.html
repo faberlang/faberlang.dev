@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>argumenta — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>argumenta</h1>
+<div class="content">
+<p>Binds command-line arguments for an entry point.</p>
+<p><strong>Syntax:</strong> <code>incipit argumenta <name> <block> | functio <name>() argumenta <name> <block></code></p>
+<h2>Category</h2>
+<p><code>entry</code></p>
+<h2>Related</h2>
+<ul>
+<li>[incipit](/corpus/incipit.html)</li>
+<li>[cli](/corpus/cli.html)</li>
+<li>[imperium](/corpus/imperium.html)</li>
+<li>[optio](/corpus/optio.html)</li>
+<li>[operandus](/corpus/operandus.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/argumenta/argumenta.fab (canonical · keyword)</h3>
+<p>Binds command-line arguments for an entry point.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># argumenta — CLI entry operand binding
+#
+# GRAMMAR:
+#   entryDecl :← 'incipit' 'argumenta' ident block
+#
+# EXPECTED OUTPUT:
+#   No incipit — declaration or test-runner surface only.
+#
+# BACKEND:
+#   declaration-only CLI entry (whitelist: argumenta/argumenta.fab).
+#
+
+@ cli "argumenta-smoke"
+@ descriptio "argumenta exemplum"
+incipit argumenta args {
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/argumenta/argumenta.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

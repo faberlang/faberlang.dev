@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>octeti — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>octeti</h1>
+<div class="content">
+<p>Primitive byte-buffer type.</p>
+<p><strong>Aliases:</strong> <code>bytes</code></p>
+<p><strong>Syntax:</strong> <code class="typ">octeti</code></p>
+<h2>Category</h2>
+<p><code>type</code></p>
+<h2>Related</h2>
+<ul>
+<li>[textus](/corpus/textus.html)</li>
+<li>[lista](/corpus/lista.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/octeti/octeti.fab (canonical · existing-home)</h3>
+<p>Primitive byte-buffer type.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># octeti — byte-buffer type alias
+#
+# typus Fascis = octeti
+#
+# GRAMMAR:
+#   typeAliasDecl :← 'typus' ident '=' typeExpr
+#
+# EXPECTED OUTPUT:
+#   octeti.expected — type-known diagnostic.
+
+typus Fascis = octeti
+
+incipit {
+    fixum octeti sig ← |de ad be ef|
+    fixum octeti hello ← |48 65 6c 6c 6f|
+    fixum octeti empty ← ||
+    nota "octeti typus notus"
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>octeti typus notus</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/octeti/octeti.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

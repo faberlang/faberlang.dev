@@ -129,12 +129,9 @@ find "$SOURCE_DIR" -name "*.md" -type f | sort | while read -r md_file; do
     fi
 done
 
-# Stage 4 proof pages. Corpus traversal and frontmatter selection stay in the
-# corpus wrapper; this bounded slice renders one rejecting term page and one
-# alias-bearing term page until the full manifest-driven batch lands.
-PROOF_MARKDOWN="${REPO_DIR}/generator/proofs/tensor.md" \
-    "${SCRIPT_DIR}/render-corpus.sh" tensor "${OUTPUT_DIR}/corpus/tensor.html" "$LOCALE" "$STYLESHEET"
-"${SCRIPT_DIR}/render-corpus.sh" functio "${OUTPUT_DIR}/corpus/functio.html" "$LOCALE" "$STYLESHEET"
+# Corpus pages. Corpus traversal and frontmatter selection stay in the
+# corpus batch wrapper; term-page rendering stays in the Faber generator.
+"${SCRIPT_DIR}/render-corpus-batch.sh" "${OUTPUT_DIR}" "$LOCALE" "$STYLESHEET"
 
 # Count results
 PAGE_COUNT=$(find "$OUTPUT_DIR" -name "*.html" -type f | wc -l | tr -d ' ')

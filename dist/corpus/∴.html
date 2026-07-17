@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>∴ — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>∴</h1>
+<div class="content">
+<p>Introduces a compact statement consequent.</p>
+<p><strong>Aliases:</strong> <code>ergo</code>, <code>therefore</code></p>
+<p><strong>Syntax:</strong> <code><head> ergo <statement></code></p>
+<h2>Category</h2>
+<p><code>control-flow</code></p>
+<h2>Related</h2>
+<ul>
+<li>[si](/corpus/si.html)</li>
+<li>[redde](/corpus/redde.html)</li>
+<li>[clausura](/corpus/clausura.html)</li>
+<li>[ergo](/corpus/ergo.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/operatores/control.fab (canonical · operator-group)</h3>
+<p>Compact consequent after si/dum heads via ergo, with ∴ reserved for closure bodies.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># operatores/control — ergo therefore consequent
+#
+# GRAMMAR:
+#   consequentStmt :← ('si' | 'sin' | 'secus' | 'dum') expr 'ergo' stmt
+#
+# EXPECTED OUTPUT:
+#   0, 100, 42
+#
+# BACKEND:
+#   Cross-ref si/ergo-redde.fab for ergo-redde guard-return spelling.
+
+functio clamp(numerus x) → numerus {
+    si x &lt; 0 ergo redde 0
+    si x &gt; 100 ergo redde 100
+    redde x
+}
+
+functio inveni(lista&lt;numerus&gt; res, numerus quaesitum) → numerus ∪ nihil {
+    itera ex res fixum item {
+        si item ≡ quaesitum ergo redde item
+    }
+    redde nihil
+}
+
+incipit {
+    nota clamp(-5)
+    nota clamp(150)
+    nota inveni([10, 20, 42], 42)
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>0
+100
+42
+</code></pre>
+<h3>examples/corpus/si/ergo-redde.fab (canonical · operator-group)</h3>
+<p>Introduces a compact statement consequent.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># Si with ergo redde syntax
+#
+# si &lt;conditio&gt; ergo redde &lt;expressio&gt;     -- guard return
+# sin &lt;conditio&gt; ergo redde &lt;expressio&gt;    -- else-if guard
+# secus ergo redde &lt;expressio&gt;             -- else return
+#
+# GRAMMAR:
+#   guardReturn :← ('si' | 'sin' | 'secus') expr 'ergo' 'redde' expr
+#
+# EXPECTED OUTPUT:
+#   Sign classes, division results, grades, and search hits.
+
+functio classis(numerus x) → textus {
+    si x &lt; 0 ergo redde "negativus"
+    si x ≡ 0 ergo redde "nihil"
+    redde "positivus"
+}
+
+# Optional return: nihil when divisor is zero
+functio divide(numerus a, numerus b) → numerus ∪ nihil {
+    si b ≡ 0 ergo redde nihil
+    redde a / b
+}
+
+# sin chain with secus ergo redde fallback
+functio gradus(numerus puncta) → textus {
+    si puncta ≥ 90 ergo redde "A"
+    sin puncta ≥ 80 ergo redde "B"
+    sin puncta ≥ 70 ergo redde "C"
+    sin puncta ≥ 60 ergo redde "D"
+    secus ergo redde "F"
+}
+
+# Early return inside itera ex loop
+functio inveni(lista&lt;numerus&gt; res, numerus quaesitum) → numerus ∪ nihil {
+    itera ex res fixum item {
+        si item ≡ quaesitum ergo redde item
+    }
+    redde nihil
+}
+
+functio habet(tabula&lt;textus, numerus&gt; tabula, textus clavis) → bivalens {
+    itera de tabula fixum k {
+        si k ≡ clavis ergo redde verum
+    }
+    redde falsum
+}
+
+incipit {
+    # Sign classification
+    nota classis(-5)
+    nota classis(0)
+    nota classis(10)
+
+    # Optional return on invalid divisor
+    # 5
+    nota divide(10, 2)
+    # nihil
+    nota divide(10, 0)
+
+    # Letter grades via sin chain
+    nota gradus(95)
+    nota gradus(85)
+    nota gradus(55)
+
+    # Linear search with early redde
+    fixum _ numeri ← [1, 2, 3, 4, 5]
+    nota inveni(numeri, 3)
+    nota inveni(numeri, 9)
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>negativus
+nihil
+positivus
+5
+nihil
+A
+B
+F
+3
+nihil
+</code></pre>
+<h3>examples/corpus/si/ergo.fab (canonical · operator-group)</h3>
+<p>Introduces a compact statement consequent.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># One-liner conditionals with ergo
+#
+# si &lt;condition&gt; ergo &lt;statement&gt;                              -- single consequent
+# si &lt;condition&gt; ergo &lt;statement&gt; secus ergo &lt;statement&gt;     -- if-else one-liner
+#
+# GRAMMAR:
+#   ifStmt :← 'si' expr 'ergo' stmt ('secus' 'ergo' stmt)?
+#
+# EXPECTED OUTPUT:
+#   Validation and grading lines for sample x, aetas, and puncta values.
+
+incipit {
+    # ergo replaces a one-statement block body
+    fixum _ x ← 10
+
+    si x &gt; 5 ergo nota "x magnum est"
+
+    # secus ergo pairs else with a single consequent
+    fixum _ aetas ← 25
+    si aetas ≥ 18 ergo nota "adultus"
+    secus ergo nota "minor"
+
+    # Two-way one-liner (85 &lt; 90 → "non A")
+    fixum _ puncta ← 85
+    si puncta ≥ 90 ergo nota "A"
+    secus ergo nota "non A"
+
+    # bivalens condition used directly
+    fixum _ valet ← verum
+    si valet ergo nota "Recte"
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>x magnum est
+adultus
+non A
+Recte
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/operatores/control.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

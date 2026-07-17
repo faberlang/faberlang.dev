@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>morphologia — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>morphologia</h1>
+<div class="content">
+<p>Verb-form dispatch on collection methodi (imperative vs participle endings).</p>
+<p><strong>Syntax:</strong> <code><collection>.<verb-a|verb-ata|verb-e|verb-ita>(<args>)</code></p>
+<h2>Category</h2>
+<p><code>collection</code></p>
+<h2>Related</h2>
+<ul>
+<li>[lista](/corpus/lista.html)</li>
+<li>[appende](/corpus/appende.html)</li>
+<li>[filtrata](/corpus/filtrata.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/morphologia/morphologia.fab (canonical · concept)</h3>
+<p>Verb-form dispatch on collection methodi (imperative vs participle endings).</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># morphologia — verb-form dispatch on collection methods
+#
+# Imperative (-a, -e, -i): mutates in place  (appende, inverte, ordina)
+# Participle (-ata, -ita):   returns new value (filtrata, addita, inversa)
+#
+# GRAMMAR:
+#   methodCall :← expr '.' ident '(' … ')'   (verb ending selects semantics)
+#
+# EXPECTED OUTPUT:
+#   filtrata nova: [2, 4]
+#   addita nova: [1, 2, 3, 4, 5, 6]
+#   appende mutat: [1, 2, 3, 4]
+#   inversa nova: [5, 4, 3, 2, 1]
+#   inverte mutat: [3, 2, 1]
+#   ordinata nova: [1, 2, 3, 4, 5]
+#   ordina mutat: [1, 2, 3]
+#   mappata nova: [2, 4, 6, 8, 10]
+#   res prima: [1, 2, 3, 4, 5]
+
+incipit {
+    varia _ res ← [1, 2, 3, 4, 5] ∷ lista&lt;numerus&gt;
+
+    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+    # FILTRA: filtr-
+    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+
+    # filtrata returns a new filtered list
+    fixum _ pares ← res.filtrata(numerus x ∴ x % 2 ≡ 0)
+    nota "filtrata nova: §"(pares)
+
+    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+    # ADDE: adde-
+    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+
+    # addita returns a new list with an added element
+    fixum _ aucta ← res.addita(6)
+    nota "addita nova: §"(aucta)
+
+    # appende mutates in place
+    varia _ mutanda ← [1, 2, 3]
+    mutanda.appende(4)
+    nota "appende mutat: §"(mutanda)
+
+    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+    # INVERTE: invert-/invers-
+    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+
+    # inversa returns a new reversed list
+    fixum _ versa ← res.inversa()
+    nota "inversa nova: §"(versa)
+
+    # inverte mutates in place
+    varia _ invertenda ← [1, 2, 3]
+    invertenda.inverte()
+    nota "inverte mutat: §"(invertenda)
+
+    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+    # ORDINA: ordin-
+    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+
+    # ordinata returns a new sorted list
+    fixum _ ordinata ← res.ordinata()
+    nota "ordinata nova: §"(ordinata)
+
+    # ordina mutates in place
+    varia _ ordinanda ← [3, 1, 2]
+    ordinanda.ordina()
+    nota "ordina mutat: §"(ordinanda)
+
+    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+    # MAPPA: mapp-
+    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+
+    # mappata returns a new mapped list
+    fixum _ duplicata ← res.mappata(numerus x ∴ x * 2)
+    nota "mappata nova: §"(duplicata)
+
+    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+    # Participle operations leave the original list unchanged
+    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
+    nota "res prima: §"(res)
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>filtrata nova: [2, 4]
+addita nova: [1, 2, 3, 4, 5, 6]
+appende mutat: [1, 2, 3, 4]
+inversa nova: [5, 4, 3, 2, 1]
+inverte mutat: [3, 2, 1]
+ordinata nova: [1, 2, 3, 4, 5]
+ordina mutat: [1, 2, 3]
+mappata nova: [2, 4, 6, 8, 10]
+res prima: [1, 2, 3, 4, 5]
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/morphologia/morphologia.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>string — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>string</h1>
+<div class="content">
+<p>Short quoted textus string literals and template application.</p>
+<p><strong>Aliases:</strong> <code>\"...\"</code></p>
+<p><strong>Syntax:</strong> <code>\"<text>\"</code></p>
+<h2>Category</h2>
+<p><code>literal</code></p>
+<h2>Related</h2>
+<ul>
+<li>[block-string](/corpus/block-string.html)</li>
+<li>[§](/corpus/§.html)</li>
+<li>[textus](/corpus/textus.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/literalia/textus.fab (canonical · existing-home)</h3>
+<p>Short quoted textus string literals and template application.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># literalia/textus — "..." string literals
+#
+# GRAMMAR:
+#   stringLit :← '"' ... '"'
+#   templateApp :← stringLit '(' expr (',' expr)* ')'
+#
+# EXPECTED OUTPUT:
+#   Salve, Salve, Mundus!
+
+incipit {
+    fixum _ greeting ← "Salve"
+    nota greeting
+
+    fixum _ nomen ← "Mundus"
+    fixum _ message ← "Salve, §!"(nomen)
+    nota message
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>Salve
+Salve, Mundus!
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/literalia/textus.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

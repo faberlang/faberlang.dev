@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>errata — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>errata</h1>
+<div class="content">
+<p>Marks a function parameter or binding as carrying an error value.</p>
+<p><strong>Syntax:</strong> <code>functio <name>(...) errata <ident> → <type></code></p>
+<h2>Category</h2>
+<p><code>function</code></p>
+<h2>Related</h2>
+<ul>
+<li>[⇥](/corpus/⇥.html)</li>
+<li>[cape](/corpus/cape.html)</li>
+<li>[iace](/corpus/iace.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/errata/errata.fab (canonical · keyword)</h3>
+<p>Marks a function parameter or binding as carrying an error value.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># errata — typed error channel parameter
+#
+# GRAMMAR:
+#   funcModifier :← 'errata' type
+#
+# EXPECTED OUTPUT:
+#   No incipit — declaration or test-runner surface only.
+#
+# BACKEND:
+#   declaration-only error channel (whitelist: errata/errata.fab).
+#
+
+functio parse(textus raw) errata textus → numerus {
+    redde 0
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code></code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/errata/errata.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

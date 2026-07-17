@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>⊕ — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>⊕</h1>
+<div class="content">
+<p>Postfix increment statement for a mutable numerus place.</p>
+<p><strong>Aliases:</strong> <code>postfix increment</code>, <code>increment statement</code></p>
+<p><strong>Syntax:</strong> <code><place> ⊕</code></p>
+<h2>Category</h2>
+<p><code>mutation</code></p>
+<h2>Related</h2>
+<ul>
+<li>[⊖](/corpus/⊖.html)</li>
+<li>[varia](/corpus/varia.html)</li>
+<li>[←](/corpus/←.html)</li>
+<li>[numerus](/corpus/numerus.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/incrementa/incrementa.fab (canonical · operator)</h3>
+<p>Postfix increment statement for a mutable numerus place.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># incrementa — postfix increment and decrement statements
+#
+# &lt;place&gt; ⊕   -- add 1 (statement only, no value)
+# &lt;place&gt; ⊖   -- subtract 1
+#
+# Postfix forms are statements, not expressions. They cannot appear inside
+# larger expressions. Operand must be a mutable numerus place.
+
+incipit {
+    varia numerus count ← 0
+    count ⊕
+    # 1
+    nota count
+
+    count ⊖
+    # 0
+    nota count
+
+    varia numerus exclusivus ← 0
+    itera ab 0‥3 fixum _ {
+        exclusivus ⊕
+    }
+    # 3
+    nota exclusivus
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>1
+0
+3
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/incrementa/incrementa.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

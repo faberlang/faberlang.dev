@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>vel — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>vel</h1>
+<div class="content">
+<p>Provides a default when the left side is null.</p>
+<p><strong>Aliases:</strong> <code>nullish coalescing</code></p>
+<p><strong>Syntax:</strong> <code><expression> vel <expression></code></p>
+<h2>Category</h2>
+<p><code>logic</code></p>
+<h2>Related</h2>
+<ul>
+<li>[nihil](/corpus/nihil.html)</li>
+<li>[nonnihil](/corpus/nonnihil.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/vel/vel.fab (canonical · operator-group)</h3>
+<p>Provides a default when the left side is null.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># vel — nullish coalescing (not logical OR)
+#
+# &lt;expr&gt; vel &lt;expr&gt;   -- right side only when left is nihil
+#
+# GRAMMAR:
+#   coalesceExpr :← expr 'vel' expr
+#
+# EXPECTED OUTPUT:
+#   ignotus, Marcus, 0, false, defectum, inventum (vel.expected).
+
+incipit {
+    # Basic nihil coalescing
+    fixum textus ∪ nihil nomen ← nihil
+    sit ostensum ← nomen vel "ignotus"
+    # "ignotus"
+    nota ostensum
+
+    # With present value
+    fixum textus ∪ nihil adest ← "Marcus"
+    sit ostensum2 ← adest vel "ignotus"
+    # "Marcus"
+    nota ostensum2
+
+    # Difference from logical aut: vel only checks nihil
+    sit nihilum ← 0
+    sit vacuus ← ""
+    sit falsus2 ← falsum
+
+    # vel preserves non-nihil values
+    # 0
+    nota nihilum vel 999
+    # ""
+    nota vacuus vel "defectum"
+    # falsum
+    nota falsus2 vel verum
+
+    sit alter ← nomen vel "defectum"
+    nota alter
+
+    # Chaining
+    fixum textus ∪ nihil a ← nihil
+    fixum textus ∪ nihil b ← nihil
+    fixum textus ∪ nihil c ← "inventum"
+    sit primum ← a vel b vel c vel "nihil"
+    # "inventum"
+    nota primum
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>ignotus
+Marcus
+0
+
+falsum
+defectum
+inventum
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/vel/vel.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

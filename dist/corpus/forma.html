@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>forma — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>forma</h1>
+<div class="content">
+<p>Captured backtick templates for bound payloads.</p>
+<p><strong>Syntax:</strong> <code></code>template<code>(args)</code></p>
+<h2>Category</h2>
+<p><code>template</code></p>
+<h2>Related</h2>
+<ul>
+<li>[scriptum](/corpus/scriptum.html)</li>
+<li>[textus](/corpus/textus.html)</li>
+<li>[valor](/corpus/valor.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/literalia/forma.fab (canonical · literal)</h3>
+<p>Captured backtick templates for bound payloads.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># Captured `forma` templates
+#
+# Backtick template application captures template text and parameters into the
+# builtin `forma` genus. It does not render holes into the template string.
+#
+# EXPECTED OUTPUT:
+#   Raw template text lines showing preserved § holes.
+
+incipit {
+    fixum textus tenantId ← "tenant-42"
+    fixum textus plan ← "pro"
+
+    fixum _ q ← `
+        select id, email, plan
+        from accounts
+        where tenant_id = §
+          and plan = §
+    `(tenantId, plan)
+
+    nota q.template
+
+    fixum _ indexed ← `where tenant_id = §0 or parent_tenant_id = §0`(tenantId)
+    nota indexed.template
+
+    fixum _ bare ← `select 1`
+    nota bare.template
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>        select id, email, plan
+        from accounts
+        where tenant_id = §
+          and plan = §
+
+where tenant_id = §0 or parent_tenant_id = §0
+select 1
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/literalia/forma.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

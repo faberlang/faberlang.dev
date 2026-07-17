@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>summa — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>summa</h1>
+<div class="content">
+<p>Returns the sum of numeric list elements.</p>
+<p><strong>Syntax:</strong> <code><lista>.summa()</code></p>
+<h2>Category</h2>
+<p><code>collection</code></p>
+<h2>Related</h2>
+<ul>
+<li>[prima](/corpus/prima.html)</li>
+<li>[ultima](/corpus/ultima.html)</li>
+<li>[lista](/corpus/lista.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/lista/methodi-functionales.fab (canonical · existing-home)</h3>
+<p>Returns the sum of numeric list elements.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># lista&lt;T&gt; higher-order intrinsics
+#
+# res.filtrata(T x ∴ &lt;pred&gt;)                        -- filter
+# res.mappata(T x ∴ &lt;expr&gt;)                         -- map
+# res.reducta((acc, x) ∴ &lt;expr&gt;, init)              -- fold
+#
+# GRAMMAR:
+#   listMethod :← expr '.' ('filtrata' | 'mappata' | 'reducta') '(' closure ')'
+#
+# EXPECTED OUTPUT:
+#   [2, 4]
+#   [2, 4, 6, 8, 10]
+#   15
+#
+# BACKEND: Go e2e whitelist — lista intrinsic methods not yet lowered for Go
+# (whitelist: lista/methodi-functionales.fab).
+
+incipit {
+    fixum _ res ← [1, 2, 3, 4, 5] ∷ lista&lt;numerus&gt;
+
+    fixum _ pares ← res.filtrata(numerus x ∴ x % 2 ≡ 0)
+    fixum _ duplicata ← res.mappata(numerus x ∴ x * 2)
+    fixum _ summa ← res.reducta((numerus collectus, numerus x) ∴ collectus + x, 0)
+
+    nota pares
+    nota duplicata
+    nota summa
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>[2, 4]
+[2, 4, 6, 8, 10]
+15
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/lista/methodi-functionales.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

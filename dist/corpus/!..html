@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>!. — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>!.</h1>
+<div class="content">
+<p>Asserted member, index, and call access on known-present values.</p>
+<p><strong>Syntax:</strong> <code><expression>!.<name> | <expression>![<expression>] | <expression>!(<args>)</code></p>
+<h2>Category</h2>
+<p><code>non-null-chain</code></p>
+<h2>Related</h2>
+<ul>
+<li>[!.](/corpus/!..html)</li>
+<li>[![](/corpus/![.html)</li>
+<li>[!(](/corpus/!(.html)</li>
+<li>[nonnulla](/corpus/nonnulla.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/operatores/nonnull-chain.fab (canonical · operator-group)</h3>
+<p>Asserted member, index, and call access on known-present values.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># operatores/nonnull-chain — !. ![ !(
+#
+# GRAMMAR:
+#   nonNullSuffix :← '!.' IDENTIFIER | '![' expr ']' | '!(' argumentList ')'
+#
+# EXPECTED OUTPUT:
+#   Marcus, Roma, a
+#
+# BACKEND:
+#   Rust: non-null chain lowering gap (whitelist: operatores/nonnull-chain.fab).
+
+genus Persona {
+    textus nomen
+    textus urbs sponte
+}
+
+incipit {
+    fixum Persona ∪ nihil p ← Persona { nomen = "Marcus", urbs = "Roma" }
+    nota p!.nomen
+    nota p!.urbs
+
+    fixum _ litterae ← ["a", "b", "c"]
+    nota litterae![0]
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>Marcus
+Roma
+a
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/operatores/nonnull-chain.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sponte — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>sponte</h1>
+<div class="content">
+<p>Marks a named declaration slot (parameter or genus field) as voluntary — the caller or provider may omit the value.</p>
+<p><strong>Aliases:</strong> <code>optional</code>, <code>voluntary</code></p>
+<p><strong>Syntax:</strong> <code><type> <name> sponte [= default | vel default]</code></p>
+<h2>Category</h2>
+<p><code>declaration</code></p>
+<h2>Related</h2>
+<ul>
+<li>[vel](/corpus/vel.html)</li>
+<li>[nihil](/corpus/nihil.html)</li>
+<li>[∪](/corpus/∪.html)</li>
+<li>[functio](/corpus/functio.html)</li>
+<li>[genus](/corpus/genus.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/sponte/sponte.fab (canonical · keyword)</h3>
+<p>Marks a named declaration slot (parameter or genus field) as voluntary — the caller or provider may omit the value.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># sponte — optional parameter / field marker
+#
+# GRAMMAR:
+#   optionalMarker :← 'sponte'
+#
+# EXPECTED OUTPUT:
+#   No incipit — declaration or test-runner surface only.
+#
+# BACKEND:
+#   declaration-only optional slots (whitelist: sponte/sponte.fab). Cross-ref: optionalis/optionalis.fab.
+#
+
+functio greet(textus nomen, textus titulus sponte) → textus {
+    redde nomen
+}
+
+functio paginate(numerus pagina sponte vel 1) → textus {
+    redde "page"
+}
+
+genus User {
+    textus name
+    textus email sponte
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code></code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/sponte/sponte.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

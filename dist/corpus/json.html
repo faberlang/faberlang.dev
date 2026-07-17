@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>json — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>json</h1>
+<div class="content">
+<p><strong>Syntax:</strong> <code></code></p>
+<h2>Category</h2>
+<p><code>type</code></p>
+<h2>Related</h2>
+<p>None.</p>
+<h2>Examples</h2>
+<h3>examples/corpus/json/json.fab (canonical · type)</h3>
+<pre class="faber-code"><code class="lang-faber outcome=compiles">importa ex "norma:json" privata json
+
+@ json
+genus Payload {
+    @ json { nomen = "wire_name" }
+    textus name
+}
+
+incipit {
+    fixum json literal ← { "wire_name": "Ada", "items": [1, { "ok": true }] }
+    fixum valor broad ← literal ↦ valor
+    fixum json narrowed ← broad ↦ json
+
+    fixum Payload payload ← narrowed ↦ Payload
+    fixum json encoded ← payload ↦ json
+    fixum textus wire ← json.pange(encoded)
+    fixum json ∪ nihil tentativa ← json.tempta(wire)
+
+    nota payload.name
+    nota wire
+    nota tentativa
+
+    fac {
+        fixum json reparsed ← json.solve(wire)
+        fixum Payload roundtrip ← reparsed ↦ Payload
+        nota roundtrip.name
+    }
+    cape err {
+        nota err
+    }
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/json/json.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

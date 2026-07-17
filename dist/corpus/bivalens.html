@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>bivalens — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>bivalens</h1>
+<div class="content">
+<p>Primitive types bivalens, vacuum, and ignotum.</p>
+<p><strong>Syntax:</strong> <code>bivalens | vacuum | ignotum</code></p>
+<h2>Category</h2>
+<p><code>type</code></p>
+<h2>Related</h2>
+<ul>
+<li>[verum](/corpus/verum.html)</li>
+<li>[falsum](/corpus/falsum.html)</li>
+<li>[functio](/corpus/functio.html)</li>
+<li>[∷](/corpus/∷.html)</li>
+<li>[vacuum](/corpus/vacuum.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/intrinseca/primitiva.fab (canonical · existing-home)</h3>
+<p>Primitive types bivalens, vacuum, and ignotum.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># intrinseca/primitiva — bivalens, vacuum, ignotum
+#
+# GRAMMAR:
+#   typeExpr :← 'bivalens' | 'vacuum' | 'ignotum'
+#
+# EXPECTED OUTPUT:
+#   ping, nihil est, verum est, aliud est
+#
+# BACKEND:
+#   Cross-ref vacuum/vacuum.fab for void returns; numerus/fractus/textus intrinseca files.
+
+functio ping() → vacuum {
+    nota "primitiva smoke"
+}
+
+functio describe(ignotum value) → textus {
+    si value est nihil { redde "nihil est" }
+    redde "aliud est"
+}
+
+functio describe_boolean(bivalens value) → textus {
+    si value est verum { redde "verum est" }
+    redde "aliud est"
+}
+
+incipit {
+    ping()
+    nota describe(nihil)
+    nota describe_boolean(verum)
+    nota describe(42)
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>primitiva smoke
+nihil est
+verum est
+aliud est
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/intrinseca/primitiva.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

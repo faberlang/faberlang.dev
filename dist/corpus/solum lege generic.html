@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>solum lege generic — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>solum lege generic</h1>
+<div class="content">
+<p>solum.lege<T> admits only supported materialization target types.</p>
+<p><strong>Syntax:</strong> <code>solum.lege<textus>(via) | solum.lege<lista<textus>>(via) | solum.lege<octeti>(via)</code></p>
+<h2>Category</h2>
+<p><code>ad</code></p>
+<h2>Related</h2>
+<ul>
+<li>[ad](/corpus/ad.html)</li>
+<li>[solum](/corpus/solum.html)</li>
+<li>[generic](/corpus/generic.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/ad/solum-lege-generic.fab (canonical · concept)</h3>
+<p>solum.lege<T> admits only supported materialization target types.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># solum.lege&lt;T&gt; — generic materialization domain
+#
+# `solum.lege&lt;T&gt;` is constrained by compiler-owned `@ radix typus` metadata in
+# `stdlib/norma/solum.fab`. This fixture proves the accepted target types.
+#
+# Runtime check: files are prepared under /tmp so the generic materializer can
+# prove each accepted target shape independently of the harness working
+# directory.
+
+importa ex "norma:solum" privata solum
+
+incipit {
+    fixum textus textPath ← "/tmp/faber-solum-lege-generic.txt"
+    solum.scribe(textPath, "prima\nsecunda\n")
+
+    fixum textus body ← solum.lege&lt;textus&gt;(textPath)
+    fixum lista&lt;textus&gt; lineae ← solum.lege&lt;lista&lt;textus&gt;&gt;(textPath)
+    fixum octeti bytes ← solum.lege&lt;octeti&gt;(textPath)
+    nota body
+    nota lineae
+    nota bytes
+    nota "solum lege generic parata"
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/ad/solum-lege-generic.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

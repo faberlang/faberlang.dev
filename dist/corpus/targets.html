@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>targets — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>targets</h1>
+<div class="content">
+<p>Compilation backends listed by faber targets or radix targets.</p>
+<p><strong>Aliases:</strong> <code>target compatibility</code>, <code>backends</code></p>
+<p><strong>Syntax:</strong> <code>faber targets</code></p>
+<h2>Category</h2>
+<p><code>package</code></p>
+<h2>Related</h2>
+<ul>
+<li>[manifest](/corpus/manifest.html)</li>
+<li>[cli](/corpus/cli.html)</li>
+<li>[∷](/corpus/∷.html)</li>
+<li>[↦](/corpus/↦.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/meta/targets.fab (canonical · concept)</h3>
+<p>Compilation backends listed by faber targets or radix targets.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># meta/targets — backend compatibility (META)
+#
+# Run `faber targets` or `radix targets` for the live capability matrix.
+# Core Faber syntax lowers where implemented; gaps are backend-specific.
+#
+# EXPECTED OUTPUT:
+#   salve
+#
+# BACKEND:
+#   META prose + minimal cross-target function smoke.
+
+functio salve() → textus {
+    redde "salve"
+}
+
+incipit {
+    nota salve()
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>salve
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/meta/targets.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

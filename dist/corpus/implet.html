@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>implet — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>implet</h1>
+<div class="content">
+<p>Declares that a type implements one or more implendum contracts.</p>
+<p><strong>Aliases:</strong> <code>implements</code></p>
+<p><strong>Syntax:</strong> <code>genus <name> implet <interface-list> <block></code></p>
+<h2>Category</h2>
+<p><code>type</code></p>
+<h2>Related</h2>
+<ul>
+<li>[genus](/corpus/genus.html)</li>
+<li>[implendum](/corpus/implendum.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/implet/implet.fab (canonical · keyword)</h3>
+<p>Declares that a type implements one or more implendum contracts.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># implet — genus implements a implendum (interface contract)
+#
+# genus Nomen implet Implendum { … }
+#
+# GRAMMAR:
+#   genusDecl :← 'genus' ident 'implet' ident '{' methodDecl* '}'
+#
+# EXPECTED OUTPUT:
+#   implet.expected — Aurelia from implendum plenum().
+
+implendum Nominatum {
+    functio plenum() → textus
+}
+
+genus Civis implet Nominatum {
+    textus nomen
+
+    functio plenum() → textus {
+        # satisfies implendum requirement
+        redde "§"(ego.nomen)
+    }
+}
+
+incipit {
+    fixum _ civis ← Civis { nomen = "Aurelia" }
+    nota civis.plenum()
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>Aurelia</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/implet/implet.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

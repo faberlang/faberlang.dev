@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>meus — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>meus</h1>
+<div class="content">
+<p>live outbound and inbound sermo directional views</p>
+<p><strong>Syntax:</strong> <code></code></p>
+<h2>Category</h2>
+<p><code>endpoint</code></p>
+<h2>Related</h2>
+<ul>
+<li>[ad](/corpus/ad.html)</li>
+<li>[sermo](/corpus/sermo.html)</li>
+<li>[tuus](/corpus/tuus.html)</li>
+<li>[scrinium](/corpus/scrinium.html)</li>
+<li>[cursor](/corpus/cursor.html)</li>
+<li>[accipe](/corpus/accipe.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/ad/sermo-live-directional.fab (canonical · method)</h3>
+<p>live outbound and inbound sermo directional views</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># Live `meus&lt;T&gt;` / `tuus&lt;T&gt;` directional views
+#
+# runtime:echo returns one inbound textus frame per conversation.
+# accipe, cursor, and exhauri may share one tuus queue; mix them only when
+# ordered consumption is intentional.
+
+incipit {
+    fixum sermo s ← ad 'runtime:echo' ("salve")
+
+    fixum meus&lt;textus&gt; m ← s.meus&lt;textus&gt;()
+    m.da("ping")
+    fixum status outbound ← m.fini()
+
+    fixum tuus&lt;textus&gt; t ← s.tuus&lt;textus&gt;()
+    itera ex t.cursor() fixum frame {
+        adfirma frame.data ≡ "salve"
+    }
+    fixum status inbound ← t.fini()
+
+    fixum sermo s2 ← ad 'runtime:echo' ("salve")
+    fixum tuus&lt;textus&gt; t2 ← s2.tuus&lt;textus&gt;()
+    fixum scrinium&lt;textus&gt; ∪ nihil got ← t2.accipe()
+    fixum status accipe_done ← t2.fini()
+
+    nota outbound
+    nota inbound
+    nota got
+    nota accipe_done
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/ad/sermo-live-directional.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

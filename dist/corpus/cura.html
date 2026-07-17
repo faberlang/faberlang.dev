@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cura — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>cura</h1>
+<div class="content">
+<p>Starts an allocator scope.</p>
+<p><strong>Syntax:</strong> <code>cura \"<allocator-kind>\" fixum _ <alloc> <block></code></p>
+<h2>Category</h2>
+<p><code>resource</code></p>
+<h2>Related</h2>
+<ul>
+<li>[arena](/corpus/arena.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/cura/cura.fab (canonical · keyword)</h3>
+<p>Starts an allocator scope.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># cura "arena" — allocator-scoped binding
+#
+# cura "arena" introduces an arena allocator scope for a binding.
+#
+# GRAMMAR:
+#   cura "arena" fixum _ &lt;name&gt; { &lt;body&gt; }
+#
+# Rust lowers to a no-op with a warning; Faber/TS preserve arena syntax for future
+# real allocators. Body runs normally.
+#
+# EXPECTED OUTPUT:
+#   "in arena".
+
+incipit {
+    cura "arena" fixum _ alloc {
+        nota "in arena"
+    }
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>in arena
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/cura/cura.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

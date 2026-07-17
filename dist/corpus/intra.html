@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>intra — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>intra</h1>
+<div class="content">
+<p>Checks whether a value lies within a range.</p>
+<p><strong>Syntax:</strong> <code><expression> intra <range></code></p>
+<h2>Category</h2>
+<p><code>range</code></p>
+<h2>Related</h2>
+<ul>
+<li>[inter](/corpus/inter.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/intra/intra.fab (canonical · keyword)</h3>
+<p>Checks whether a value lies within a range.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># intra — range containment (membership in a numeric interval)
+#
+# &lt;expr&gt; intra &lt;initium&gt;‥&lt;finis&gt;    — half-open [initium, finis)
+# &lt;expr&gt; intra &lt;initium&gt;…&lt;finis&gt;     — inclusive [initium, finis]
+# &lt;expr&gt; intra &lt;initium&gt; ante &lt;finis&gt; — explicit exclusive end
+#
+# GRAMMAR:
+#   rangeMembership :← expr 'intra' rangeExpr
+#
+# EXPECTED OUTPUT:
+#   none — stdout not pinned for this exemplum.
+
+fixum _ aetas ← 25
+
+# Basic intra with ‥ operator (exclusive end)
+si aetas intra 0‥100 {
+    nota "aetas intra fines est"
+}
+
+# intra with … (inclusive end)
+si aetas intra 18…65 {
+    nota "aetas laboris"
+}
+
+# intra with ante (explicit exclusive)
+si aetas intra 0 ante 18 {
+    nota "minor"
+}
+
+incipit {
+    nota "exempla intra"
+}</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/intra/intra.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>sic — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>sic</h1>
+<div class="content">
+<p>Starts the true branch of a one-line conditional expression.</p>
+<p><strong>Aliases:</strong> <code>then</code></p>
+<p><strong>Syntax:</strong> <code>si <condition> sic <expression> secus <expression></code></p>
+<h2>Category</h2>
+<p><code>control-flow</code></p>
+<h2>Related</h2>
+<ul>
+<li>[si](/corpus/si.html)</li>
+<li>[secus](/corpus/secus.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/sic/sic.fab (canonical · keyword)</h3>
+<p>Starts the true branch of a one-line conditional expression.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># sic — ternary conditional
+#
+# GRAMMAR:
+#   ternaryExpr :← expr 'sic' expr 'secus' expr
+#
+# EXPECTED OUTPUT:
+#   Scalar stdout smoke (see body).
+#
+# BACKEND:
+#   Cross-ref: si/si.fab, ternarius/ternarius.fab.
+#
+
+incipit {
+    fixum _ a ← 3
+    fixum _ b ← 9
+    fixum _ max ← a &gt; b sic a secus b
+    nota max
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>9
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/sic/sic.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

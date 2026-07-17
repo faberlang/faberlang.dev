@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>cape — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>cape</h1>
+<div class="content">
+<p>Starts a catch block.</p>
+<p><strong>Aliases:</strong> <code>catch</code></p>
+<p><strong>Syntax:</strong> <code><structured-statement> cape <name> <block></code></p>
+<h2>Category</h2>
+<p><code>errors</code></p>
+<h2>Related</h2>
+<ul>
+<li>[fac](/corpus/fac.html)</li>
+<li>[iace](/corpus/iace.html)</li>
+<li>[⇥](/corpus/⇥.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/cape/cape.fab (canonical · keyword)</h3>
+<p>Starts a catch block.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># cape — catch handler on fac
+#
+# GRAMMAR:
+#   facStmt :← 'fac' block 'cape' ident block
+#
+# EXPECTED OUTPUT:
+#   Scalar stdout smoke (see body).
+#
+# BACKEND:
+#   Rust/Go: fac/cape emit gap (whitelist: cape/cape.fab).
+#
+
+incipit {
+    varia numerus attempt ← 0
+    fac {
+        attempt ← attempt + 1
+        si attempt &gt; 1 {
+            iace "simulated failure"
+        }
+        nota "attempt §"(attempt)
+    }
+    cape err {
+        nota "caught"
+    }
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>attempt 1
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/cape/cape.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>↦ — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>↦</h1>
+<div class="content">
+<p>Converts a value with explicit runtime parsing or coercion semantics.</p>
+<p><strong>Aliases:</strong> <code>convert</code>, <code>conversio</code></p>
+<p><strong>Syntax:</strong> <code><expression> ↦ <type> [⇥ <recovery>]</code></p>
+<h2>Category</h2>
+<p><code>conversion</code></p>
+<h2>Related</h2>
+<ul>
+<li>[∷](/corpus/∷.html)</li>
+<li>[⇥](/corpus/⇥.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/conversio/conversio.fab (canonical · operator-group)</h3>
+<p>Converts a value with explicit runtime parsing or coercion semantics.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># conversio — type conversion operator (↦)
+#
+# &lt;expr&gt; ↦ &lt;typus&gt;
+# &lt;expr&gt; ↦ &lt;typus&gt;&lt;params&gt;
+#
+# GRAMMAR:
+#   convertExpr :← expr '↦' type
+#
+# EXPECTED OUTPUT:
+#   conversio.expected
+#
+# BACKEND:
+#   Siblings radix.fab and bivalens.fab compile-only until Go semantics align.
+
+incipit {
+    # ↦ converts textus → numerus
+    sit n1 ← "42" ↦ numerus
+    # ⇥ supplies recovery on failure
+    sit n2 ← "invalid" ↦ numerus ⇥ 0
+    sit n3 ← "255" ↦ numerus&lt;i32&gt;
+
+    sit f1 ← "3.14159" ↦ fractus
+    sit f2 ← "invalid" ↦ fractus ⇥ 0.0
+
+    sit s1 ← 42 ↦ textus
+    sit s2 ← 3.14 ↦ textus
+    sit s3 ← verum ↦ textus
+
+    # chained ↦ left-to-right
+    sit roundtrip ← "42" ↦ numerus ↦ textus
+
+    nota n1
+    nota n2
+    nota n3
+    nota f1
+    nota f2
+    nota s1
+    nota s2
+    nota s3
+    nota roundtrip
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>42
+0
+255
+3.14159
+0.0
+42
+3.14
+true
+42
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/conversio/conversio.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

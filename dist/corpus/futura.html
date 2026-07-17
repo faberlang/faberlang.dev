@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>futura — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>futura</h1>
+<div class="content">
+<p>Marks a function as asynchronous.</p>
+<p><strong>Syntax:</strong> <code>@ futura</code></p>
+<h2>Category</h2>
+<p><code>async</code></p>
+<h2>Related</h2>
+<ul>
+<li>[futura](/corpus/futura.html)</li>
+<li>[annotation-sugar](/corpus/annotation-sugar.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/annotation-sugar/futura-braced.fab (canonical · annotation)</h3>
+<p>Braced canonical @ futura unit marker.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles">@ futura { }
+functio f() → vacuum {
+    redde
+}
+
+incipit {
+    nota "futura-braced"
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>futura-braced
+</code></pre>
+<h3>examples/corpus/futura/futura.fab (canonical · annotation)</h3>
+<p>Marks a function as asynchronous.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># @ futura — async function annotation
+#
+# @ futura
+# functio nomen(…) → typus { … }
+#
+# GRAMMAR:
+#   annotatedFunc :← '@' 'futura' funcDecl
+#
+# EXPECTED OUTPUT:
+#   none — Rust async runtime whitelist (compile-only in harness)
+#
+# BACKEND:
+#   Rust async runtime not linked in exempla harness (whitelist: futura/futura.fab).
+
+@ futura
+functio responde() → numerus {
+    redde 42
+}
+
+incipiet {
+    # cede awaits the promissum
+    fixum _ responsum ← cede responde()
+    nota responsum
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>42
+</code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/annotation-sugar/futura-braced.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>mone — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>mone</h1>
+<div class="content">
+<p>Writes a warning message.</p>
+<p><strong>Syntax:</strong> <code>mone <expression></code></p>
+<h2>Category</h2>
+<p><code>output</code></p>
+<h2>Related</h2>
+<ul>
+<li>[scribe](/corpus/scribe.html)</li>
+<li>[vide](/corpus/vide.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/mone/mone.fab (canonical · keyword)</h3>
+<p>Writes a warning message.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># mone diagnostic output
+#
+# mone &lt;expr&gt;  -- emit a warning-style diagnostic (distinct from nota/vide)
+#
+# GRAMMAR:
+#   outputStmt :← 'mone' expr
+#
+# EXPECTED OUTPUT:
+#   mone-style warning diagnostic (single mone call).
+
+incipit {
+    mone "cave"
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code></code></pre>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/mone/mone.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>
