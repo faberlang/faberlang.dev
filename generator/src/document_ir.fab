@@ -9,7 +9,6 @@ genus Attr {
 discretio Node {
     Element { textus tag_name, lista<Attr> attrs, lista<Node> children },
     Text { textus valor },
-    Raw { textus valor },
     Frag { lista<Node> children }
 }
 
@@ -23,10 +22,6 @@ functio attr(textus nomen, textus valor) → Attr {
 
 functio text(textus value) → Node {
     redde finge Text { valor = value } ∷ Node
-}
-
-functio raw(textus value) → Node {
-    redde finge Raw { valor = value } ∷ Node
 }
 
 functio frag(lista<Node> children) → Node {
@@ -55,7 +50,6 @@ functio document(Node root) → Document {
 functio is_empty(Node node) → bivalens {
     discerne node {
         casu Text fixum valor { redde valor ≡ "" }
-        casu Raw fixum valor { redde valor ≡ "" }
         casu Frag fixum children { redde children.longitudo() ≡ 0 }
         casu Element fixum tag_name, attrs, children { redde falsum }
     }
@@ -136,7 +130,6 @@ functio is_void_element(textus tag) → bivalens {
 functio node_html(Node node) → textus {
     discerne node {
         casu Text fixum valor { redde html_escape(valor) }
-        casu Raw fixum valor { redde valor }
         casu Frag fixum children {
             varia textus body ← ""
             itera ex children fixum child {

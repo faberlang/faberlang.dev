@@ -18,12 +18,6 @@ genus Pagina {
     textus locale
 }
 
-# A rendered HTML page ready to write to disk.
-genus HtmlPagina {
-    textus iter
-    textus html
-}
-
 # The site manifest describes every page.
 genus SiteManifest {
     lista<Pagina> paginae

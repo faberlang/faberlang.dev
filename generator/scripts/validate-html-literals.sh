@@ -19,13 +19,14 @@ while IFS= read -r file; do
 import re
 import sys
 path = sys.argv[1]
-pattern = re.compile(r'<(?:!DOCTYPE|/?(?:html|head|body|main|div|span|section|aside|footer|nav|ul|li|p|a|code|pre|table|thead|tbody|tr|th|td|h1|h2|h3|h4|h5|h6|meta|link|title|strong|em|br|hr)\b)')
+html_pattern = re.compile(r'<(?:!DOCTYPE|/?(?:html|head|body|main|div|span|section|aside|footer|nav|ul|li|p|a|code|pre|table|thead|tbody|tr|th|td|h1|h2|h3|h4|h5|h6|meta|link|title|strong|em|br|hr)\b)')
+raw_pattern = re.compile(r'(?:doc_mod\.raw\s*\(|\bfinge\s+Raw\b|\braw\s*\()')
 with open(path, encoding='utf-8') as f:
     for lineno, line in enumerate(f, 1):
         stripped = line.lstrip()
         if stripped.startswith('#'):
             continue
-        if pattern.search(line):
+        if html_pattern.search(line) or raw_pattern.search(line):
             print(f"{path}:{lineno}:{line.rstrip()}")
 PY
 )"
@@ -37,8 +38,8 @@ PY
 done < <(find "$SRC_DIR" -maxdepth 1 -name '*.fab' -type f | sort)
 
 if [ "$fail" -ne 0 ]; then
-    echo "HTML literal validation failed: only generator/src/document_ir.fab may write raw tags." >&2
+    echo "HTML literal validation failed: only generator/src/document_ir.fab may write raw tags or raw nodes." >&2
     exit 1
 fi
 
-echo "HTML literal validation passed: raw tag emission is confined to document_ir.fab"
+echo "HTML literal validation passed: raw tag emission and raw nodes are confined to document_ir.fab"

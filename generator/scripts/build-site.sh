@@ -149,6 +149,30 @@ if [ -d "$STATIC_DIR" ]; then
     cp -R "${STATIC_DIR}/." "${OUTPUT_DIR}/"
 fi
 
+smoke_contains() {
+    local file="$1"
+    local needle="$2"
+    local label="$3"
+
+    if [ ! -f "$file" ]; then
+        echo "ERROR: smoke missing ${label}: ${file}" >&2
+        exit 1
+    fi
+
+    if ! grep -Fq "$needle" "$file"; then
+        echo "ERROR: smoke failed ${label}: missing ${needle} in ${file}" >&2
+        exit 1
+    fi
+}
+
+echo "[smoke] Checking rendered core pages..."
+smoke_contains "${OUTPUT_DIR}/index.html" "<!DOCTYPE html>" "home doctype"
+smoke_contains "${OUTPUT_DIR}/index.html" "/llms.txt" "home agent link"
+smoke_contains "${OUTPUT_DIR}/index.html" "faber-v1.1.1" "home release link"
+smoke_contains "${OUTPUT_DIR}/start/install.html" "<!DOCTYPE html>" "install doctype"
+smoke_contains "${OUTPUT_DIR}/start/install.html" "/start/install.html" "install path"
+smoke_contains "${OUTPUT_DIR}/start/install.html" "faber-v1.1.1" "install release link"
+
 # Count results
 PAGE_COUNT=$(find "$OUTPUT_DIR" -name "*.html" -type f | wc -l | tr -d ' ')
 STATIC_COUNT=$(find "$OUTPUT_DIR" \( -name "*.txt" -o -name "*.md" -o -name "*.json" \) -type f | wc -l | tr -d ' ')

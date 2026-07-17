@@ -110,7 +110,6 @@ genus Attr {
 discretio Node {
     Element { textus tag, lista<Attr> attrs, lista<Node> children },
     Text    { textus valor },           # escaped on serialize
-    Raw     { textus valor },           # serializer boundary only; not chrome builders
     Frag    { lista<Node> children },
 }
 
@@ -150,7 +149,9 @@ IR). Do not leave the design doc claiming sum types are unavailable.
 
 ### 4.2 Page metadata (`@ annotatio`)
 
-Optional stage C — aligns frontmatter with language contracts:
+Stage C is not being pursued now: TOML frontmatter remains the single page metadata source until a separate contract need earns the extra authoring surface.
+
+Optional future shape if that need appears:
 
 ```text
 @ annotatio { target = functio }
@@ -190,8 +191,8 @@ functio html_node(Node n) → textus
 - Void elements (`meta`, `link`, `br`, …): closed set in serializer; no end tags.
 - Single module allowed to know tag spellings as **data** (`"div"`, `"a"`),
   not page layout.
-- `Raw` is only for temporary MD-body HTML wrapping; chrome builders must not
-  emit `Raw`.
+- No `Raw` node remains after Stage B; Markdown and chrome both enter the
+  serializer as structured `Node` values.
 
 **Stage D (optional):** `faber emit -t html` or JSON dump of IR + external
 tool — only if multi-tool consumers appear. Not required to delete string soup.
@@ -217,9 +218,9 @@ inject version placeholders.
 **Stage B:** `markdown.fab` emits `Node` (or `lista<Node>` body), not HTML
 strings. Headings, lists, tables, fences map to element constructors.
 
-**Stage A:** may leave MD→HTML string temporarily if chrome-only IR is the
-first land; body HTML then wraps as a single `Raw` node **only inside the
-serializer boundary** — prefer not to expose `Raw` to chrome builders.
+**Stage A:** allowed MD→HTML strings only as temporary migration debt. Stage B
+closed that path: Markdown now emits `Node` lists directly, so no `Raw` node is
+needed in the IR.
 
 ### 4.6 Corpus alias pages
 
@@ -254,18 +255,20 @@ one chrome path.
 | **A** | Document IR + `html()` + chrome as IR | Chrome guillemets gone; site builds; nav/download intact; **escape implemented or explicit debt**; IR types documented |
 | **A.1** | Honesty ratchet (Heads) | `discretio Node` (or debt budget with expiry); centralized escape; void-element set explicit; optional `dist/` smoke baseline |
 | **B** | Markdown → Node IR | `markdown.fab` emits Nodes; no HTML string emitters outside serializer |
-| **C** | Optional `@ PaginaMeta` (or keep TOML) | Frontmatter maps to typed meta; documented choice |
+| **C** | Deferred `@ PaginaMeta` | Not pursuing now; TOML frontmatter remains canonical until a separate need earns contracts |
 | **D** | Optional emit backend / JSON IR dump | Only if a second consumer exists |
 | **Gate** | Lint/test fails on HTML tags in disallowed modules | Local validate script first; CI when available |
 
 **Landed:** hand-4 `40d7f985` / commit `46f719a` — Stage A chrome IR (flat Element).  
-**A.1 closed:** hand-4 `798d087b` — `document_ir.fab` now models `discretio Node { Element, Text, Raw, Frag }`; serializer owns text/attribute escaping and the explicit HTML void-element set; `build-site.sh` regenerated `dist/` with smoke checks for `/`, `/start/install.html`, and 1.1.1 links.
+**A.1 closed:** hand-4 `798d087b` — `document_ir.fab` introduced `discretio Node`; serializer owns text/attribute escaping and the explicit HTML void-element set.
 
 **Stage B closed:** hand-4 `32c4faa7` — `markdown.fab` now emits `lista<Node>` for body blocks; `html.fab` wraps those nodes directly in content chrome; inline code classification returns IR nodes through `span.fab`; the shared `document_ir` serializer remains the only Markdown-path tag writer.
 
 **Gate closed:** hand-4 `da7c0cfa` — corpus alias redirects now build `Document`/`Node` IR instead of a guillemet DOCTYPE shell; `generator/scripts/validate-html-literals.sh` and `build-site.sh` fail if raw tag emission appears outside `document_ir.fab`.
 
-**Next:** Stage C page metadata decision, or defer it if TOML frontmatter remains sufficient.
+**Stage B residual closed:** `Raw` and the unused `HtmlPagina` type were removed after Markdown began emitting structured nodes; `build-site.sh` now enforces core-page smoke checks for `/`, `/start/install.html`, and 1.1.1 links.
+
+**Next:** No Stage C page metadata work is planned; keep TOML frontmatter until a separate contract need appears.
 
 **Rollback:** keep previous `dist/` commit; generator is rebuilt offline (no
 Faber in CI today).
@@ -311,7 +314,7 @@ Faber in CI today).
 | Sum types for `Node` | Language support maturity | Start with tagged genus or separate constructors |
 | Escaping bugs | XSS not a threat for static docs, correctness is | Centralize escape in serializer only |
 | Attribute ordering / class merge | Stable tests? | Deterministic sort optional |
-| Frontmatter vs `@ PaginaMeta` | Dual author surfaces | Keep TOML until Stage C earns contracts |
+| Frontmatter vs `@ PaginaMeta` | Dual author surfaces | Keep TOML; Stage C is deferred until a separate contract need appears |
 | Version strings in chrome | Still hardcoded in IR builders | Follow-up: single version source (CXO earlier note) |
 | PKG001 / package I/O | Generator still shell-bridged for FS | Unchanged |
 
@@ -352,7 +355,7 @@ Suggested lenses:
 
 - Live chrome: `generator/src/html.fab`
 - MD emitter: `generator/src/markdown.fab`
-- Types today: `generator/src/types.fab` (`Pagina`, `HtmlPagina`)
+- Types today: `generator/src/types.fab` (`Pagina`)
 - Content architecture: `CONTENT-PLAN.md`
 - Annotation contracts: `radix/EBNF.md` (Annotation contracts section)
 - Annotation sugar: `radix/docs/design/annotation-sugar.md`
