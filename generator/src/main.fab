@@ -11,11 +11,26 @@
 importa ex "./types" privata * ut types_mod
 importa ex "./html" privata * ut html_mod
 importa ex "./string_util" privata * ut su
+importa ex "./corpus" privata * ut corpus_mod
 
 # Build a single page from a Markdown source string.
 functio genera(textus source, textus iter, textus locale, textus stylesheet_link) → textus {
     fixum types_mod.Pagina pag ← types_mod.aedifica_paginam(iter, source, locale)
     redde html_mod.genera_paginam(pag, stylesheet_link)
+}
+
+# Build one corpus term page from a shell-provided record bundle.
+functio genera_corpus(textus term, textus bundle, textus locale, textus stylesheet_link) → textus {
+    redde corpus_mod.genera_corpus(term, bundle, locale, stylesheet_link)
+}
+
+functio genera_corpus_markdown(textus term, textus bundle) → textus {
+    redde corpus_mod.genera_corpus_markdown(term, bundle)
+}
+
+# Build the static alias bridge for a non-canonical term.
+functio genera_alias_redirect(textus alias, textus canonical, textus locale, textus stylesheet_link) → textus {
+    redde corpus_mod.genera_alias_redirect(alias, canonical, locale, stylesheet_link)
 }
 
 # Derive the page path from a source file path.

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="la">
+    <head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tensor — Faber</title>
+<link rel="stylesheet" href="/speculum.css">
+</head>
+<body>
+    <div class="renderbar">
+  <div class="in">
+    <span class="lbl">Rendering</span>
+    <span class="locbtns">la</span>
+  </div>
+</div>
+<div class="page">
+    <aside>
+  <div class="side-h">Documentation</div>
+  <ul class="nav">
+    <li><a href="/">Overview</a></li>
+    <li><a href="/features/">Features</a></li>
+    <li><a href="/syntax/">Syntax</a></li>
+    <li><a href="/tooling/">Tooling</a></li>
+    <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/references/">References</a></li>
+  </ul>
+</aside>
+<main>
+<h1>tensor</h1>
+<div class="content">
+<p>tensor<T, Figura> declaration shell with rank-0 vacua.</p>
+<p><strong>Syntax:</strong> <code>tensor<T, Figura> | tensor<T, []></code></p>
+<h2>Category</h2>
+<p><code>collection</code></p>
+<h2>Related</h2>
+<ul>
+<li>[tensor](/corpus/tensor.html)</li>
+<li>[lista](/corpus/lista.html)</li>
+</ul>
+<h2>Examples</h2>
+<h3>examples/corpus/tensor/decl.fab (canonical · type)</h3>
+<p>tensor<T, Figura> declaration shell with rank-0 vacua.</p>
+<pre class="faber-code"><code class="lang-faber outcome=compiles"># tensor — declaration shell for tensor&lt;T, Figura&gt;
+#
+# tensor&lt;T, []&gt; name ← vacua
+# functio f(tensor&lt;T, []&gt; value) → tensor&lt;T, []&gt;
+#
+# GRAMMAR:
+#   type :← 'tensor' '&lt;' type ',' shape '&gt;'
+#
+# EXPECTED OUTPUT:
+#   Rank-0 tensor longitudo after round-trip identity call.
+
+functio identity(tensor&lt;fractus&lt;f32&gt;, []&gt; value) → tensor&lt;fractus&lt;f32&gt;, []&gt; {
+    redde value
+}
+
+incipit {
+    fixum tensor&lt;fractus&lt;f32&gt;, []&gt; empty ← vacua
+    fixum tensor&lt;fractus&lt;f32&gt;, []&gt; roundtrip ← identity(empty)
+
+    nota roundtrip.longitudo()
+}</code></pre>
+<p><strong>Expected output:</strong></p>
+<pre class="faber-code"><code>0
+</code></pre>
+<h3>examples/corpus/tensor/arithmetic-reject.fab (supporting · reject)</h3>
+<p>Tensor arithmetic rejects non-numeric elements and mixed numeric widths.</p>
+<pre class="faber-code"><code class="lang-faber outcome=rejects"># tensor arithmetic reject cases — expected compile failure
+#
+# WHY: documents the typecheck contract for elementwise tensor arithmetic.
+# Both cases must reject:
+#   1. tensor&lt;textus, …&gt; — non-numeric element (numeric gate).
+#   2. numerus&lt;i32&gt; + numerus&lt;i64&gt; — mixed width is a ↦ conversio problem,
+#      never silent promotion at the kernel.
+#
+# This exemplum intentionally fails to compile; it is registered in the
+# per-backend EXPECTED_FAILURES lists.
+
+incipit {
+    fixum tensor&lt;textus, [2]&gt; words_a ← vacua
+    fixum tensor&lt;textus, [2]&gt; words_b ← vacua
+    fixum tensor&lt;textus, [2]&gt; words_sum ← words_a.addita(words_b)
+    nota words_sum.longitudo()
+
+    fixum tensor&lt;numerus&lt;i32&gt;, [2]&gt; i32_a ← vacua
+    fixum tensor&lt;numerus&lt;i64&gt;, [2]&gt; i64_b ← vacua
+    fixum tensor&lt;numerus&lt;i32&gt;, [2]&gt; mixed ← i32_a.addita(i64_b)
+    nota mixed.longitudo()
+}</code></pre>
+<p><strong>Expected:</strong> compilation rejects this example.</p>
+
+</div>
+</main>
+<footer>
+<div class="source-list">
+<span class="side-h">Sources</span>
+<ul>
+      <li>["examples/corpus/tensor/decl.fab"]</li>
+        </ul>
+</div>
+</footer>
+</div>
+</body>
+</html>

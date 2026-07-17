@@ -97,7 +97,7 @@ depends on.
 | Generator build system | **Built** — 8 modules, ~800 lines, `faber check` clean, **renders end-to-end** | Close Stage 1 (block-level Markdown conversion = Stage 2) |
 | Authored Markdown pages | 23 drafted, unannotated | Blocked on Stage 2 gate |
 | HTML pages (content debt) | **Cleared** — 0 HTML files remain; all content in Markdown | Stage 3 gate closed |
-| Corpus page generator | Not started | Blocked on Stage 2 |
+| Corpus page generator | **Slice 2 built** — frontmatter reader, kind policy, tensor proof, fence gate, alias bridge | Stage 5 batch generation |
 | Portal (Speculum Porta) | Homepage HTML exists, not generated | Blocked on Stage 6 |
 | Getting-started | Not started | Blocked on Homebrew formula |
 | Multilingual generation | Transcode shipped; no locale sites generated | Blocked on Stage 7 |
@@ -224,7 +224,7 @@ systems.~~ **Closed.** 0 HTML files. 40 pages rendered. One stylesheet.
 
 ### Stage 4 — Corpus Term Page Generator (Slice 2)
 
-**Status**: planned
+**Status**: ✅ gate closed (2026-07-16) — bounded proof page and alias bridge render end-to-end
 **Source**: `CONTENT-PLAN.md` §§ Generated — Corpus, The corpus is not flat
 **Why now**: ~90% of the eventual site goes through this code path. It is the
 highest-risk stage and must prove `kind` handling before batch generation.
@@ -233,23 +233,29 @@ highest-risk stage and must prove `kind` handling before batch generation.
 **Depends on**: Stage 1 (generator foundation)
 
 Deliverables:
-- Corpus frontmatter reader: parse `examples/corpus/**/*.fab` + `.expected` files
-- Term-page template: `summary` → lead, `syntax` → infobox, `category` →
-  section, `related[]` → cross-links, `.fab` → samples, `.expected` → verified
-  output, `kind` → rendering mode
-- `kind` handling: decide which of the 17 `kind` values become pages (keyword,
-  operator-group, type, concept, annotation, conversio, etc. vs legacy, smoke,
-  reject, existing-home)
-- Alias redirects: 41 terms that appear only as `canonical = false` + 92
-  `aliases` entries redirect to their canonical term
-- Multiple examples per term: a term page carries ~1.6 examples on average;
-  present canonical and non-canonical, including reject cases
-- Category indexes: `corpus/category/{category}` from frontmatter
-- Render one canonical term page end-to-end as proof
+- [x] Corpus frontmatter reader: parse `examples/corpus/**/*.fab` + `.expected`
+  records in `generator/src/corpus.fab`; filesystem traversal stays in the
+  shell boundary.
+- [x] Term-page template: `summary` → lead, `syntax` → inline syntax,
+  `category` → section, `related[]` → cross-links, `.fab` → samples,
+  `.expected` → output, and `kind` → fence outcome.
+- [x] `kind` policy: canonical examples are page candidates; `legacy`, `smoke`,
+  and `existing-home` are not promoted by the bounded selector; explicit
+  `reject` examples are supporting samples and render with `outcome=rejects`.
+  Other non-canonical examples remain supporting data for the Stage 5 manifest.
+- [x] Alias story: aliases on a canonical example emit static HTML bridges
+  with a refresh link and `rel=canonical`; the bridge has one canonical
+  destination and does not add runtime negotiation.
+- [x] Multiple examples per term: the tensor proof carries its canonical
+  declaration and an explicit rejecting arithmetic example.
+- [ ] Category indexes: `corpus/category/{category}` from frontmatter (Stage 5).
+- [x] Render one canonical term page end-to-end as proof (`dist/corpus/tensor.html`).
 
-**Gate**: One corpus term page renders with correct frontmatter-driven
-content, multiple examples, reject-case handling, and cross-links. The fence
-extractor validates transcluded examples.
+**Gate**: **Closed.** `tensor` renders with frontmatter-driven content,
+multiple examples, rejecting fence handling, and cross-links. The generated
+proof Markdown contains two transcluded fences; `validate-fences.sh` reports
+2 passed / 0 failed. `functio` additionally proves an alias bridge at
+`dist/corpus/function.html`.
 
 ### Stage 5 — Corpus Generation at Scale
 

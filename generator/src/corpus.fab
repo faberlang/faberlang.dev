@@ -1,0 +1,219 @@
+# Corpus term-page generator.
+#
+# The shell wrapper owns filesystem traversal. This module owns the corpus
+# frontmatter model and the generated Markdown/HTML contract.
+
+importa ex "./frontmatter" privata * ut fm
+importa ex "./html" privata * ut html_mod
+importa ex "./string_util" privata * ut su
+importa ex "./types" privata * ut types_mod
+
+genus CorpusExample {
+    textus path
+    textus term
+    textus kind
+    textus category
+    textus summary
+    textus syntax
+    textus related
+    textus aliases
+    bivalens canonical
+    textus source
+    textus expected
+}
+
+functio field_vale(tabula<textus, textus> fields, textus key, textus fallback) → textus {
+    si fields.habet(key) {
+        redde fields[key] ↦ textus
+    }
+    redde fallback
+}
+
+functio lista_vale(textus raw) → lista<textus> {
+    fixum numerus len ← raw.longitudo()
+    si len < 2 ergo redde vacua
+
+    fixum textus inner ← raw.sectio(1, len - 1)
+    fixum lista<textus> pieces ← su.divide(inner, ",")
+    varia lista<textus> values ← vacua
+
+    itera ex pieces fixum piece {
+        fixum textus value ← fm.strip_quotes(su.recide(piece))
+        si value.longitudo() > 0 {
+            values.appende(value)
+        }
+    }
+
+    redde values
+}
+
+functio parse_example(textus record) → CorpusExample {
+    fixum lista<textus> source_parts ← su.divide(record, "\n§§CORPUS_SOURCE§§\n")
+    fixum textus path ← su.recide(source_parts[0])
+    fixum textus source_record ← source_parts[1] vel ""
+    fixum lista<textus> expected_parts ← su.divide(source_record, "\n§§CORPUS_EXPECTED§§\n")
+    fixum textus source ← expected_parts[0]
+    fixum textus expected ← expected_parts[1] vel ""
+    fixum fm.Split split ← fm.divide(source)
+    fixum tabula<textus, textus> fields ← split.fields
+    fixum textus canonical ← field_vale(fields, "canonical", "false")
+
+    redde CorpusExample {
+        path = path,
+        term = field_vale(fields, "term", ""),
+        kind = field_vale(fields, "kind", ""),
+        category = field_vale(fields, "category", ""),
+        summary = field_vale(fields, "summary", ""),
+        syntax = field_vale(fields, "syntax", ""),
+        related = field_vale(fields, "related", "[]"),
+        aliases = field_vale(fields, "aliases", "[]"),
+        canonical = canonical ≡ "true",
+        source = split.body,
+        expected = expected,
+    }
+}
+
+functio example_label(CorpusExample example) → textus {
+    varia textus canonical ← "supporting"
+    si example.canonical {
+        canonical ← "canonical"
+    }
+    redde «### § (§ · §)
+
+§
+»(example.path, canonical, example.kind, example.summary)
+}
+
+functio example_block(CorpusExample example) → textus {
+    varia textus outcome ← "compiles"
+    si example.kind ≡ "reject" {
+        outcome ← "rejects"
+    }
+    fixum textus block ← («```faber outcome=§
+§
+```»(outcome, example.source))
+
+    si example.kind ≡ "reject" {
+        redde block + "\n**Expected:** compilation rejects this example.\n"
+    }
+    si example.expected.longitudo() > 0 {
+        redde block + "\n**Expected output:**\n\n```\n" + example.expected + "\n```\n"
+    }
+    redde block
+}
+
+functio related_links(textus raw) → textus {
+    fixum lista<textus> related ← lista_vale(raw)
+    si related.longitudo() ≡ 0 ergo redde "None."
+
+    varia textus result ← ""
+    itera ex related fixum item {
+        result ← result + "- [" + item + "](/corpus/" + item + ".html)\n"
+    }
+    redde result
+}
+
+functio aliases_line(textus raw) → textus {
+    fixum lista<textus> aliases ← lista_vale(raw)
+    si aliases.longitudo() ≡ 0 ergo redde ""
+
+    varia textus result ← "**Aliases:** "
+    varia bivalens first ← (verum)
+    itera ex aliases fixum alias {
+        si non first {
+            result ← result + ", "
+        }
+        result ← result + "`" + alias + "`"
+        first ← (falsum)
+    }
+    redde result + "\n\n"
+}
+
+functio corpus_markdown(textus term, CorpusExample primary, lista<CorpusExample> examples) → textus {
+    fixum textus aliases ← aliases_line(primary.aliases)
+    varia textus markdown ← "+++\ntitle = \"§\"\nsection = \"corpus\"\nsources = [\"§\"]\n+++\n\n§\n\n§**Syntax:** `§`\n\n## Category\n\n`§`\n\n## Related\n\n§\n\n## Examples\n\n"(term, primary.path, primary.summary, aliases, primary.syntax, primary.category, related_links(primary.related))
+
+    itera ex examples fixum example {
+        markdown ← markdown + example_label(example)
+        markdown ← markdown + example_block(example) + "\n"
+    }
+    redde markdown
+}
+
+functio genera_corpus_markdown(textus term, textus bundle) → textus {
+    fixum lista<textus> records ← su.divide(bundle, "\n§§CORPUS_RECORD§§\n")
+    varia lista<CorpusExample> examples ← vacua
+    varia textus summary ← ""
+    varia textus syntax ← ""
+
+    itera ex records fixum record {
+        si su.recide(record).longitudo() ≡ 0 ergo perge
+        fixum CorpusExample example ← parse_example(record)
+        si example.term ≡ term {
+            si example.canonical {
+                summary ← example.summary
+                syntax ← example.syntax
+            }
+            examples.appende(example)
+        }
+    }
+
+    fixum CorpusExample primary ← examples[0]
+    varia textus page_summary ← primary.summary
+    varia textus page_syntax ← primary.syntax
+    si summary.longitudo() > 0 {
+        page_summary ← summary
+    }
+    si syntax.longitudo() > 0 {
+        page_syntax ← syntax
+    }
+    fixum CorpusExample page_primary ← CorpusExample {
+        path = primary.path,
+        term = primary.term,
+        kind = primary.kind,
+        category = primary.category,
+        summary = page_summary,
+        syntax = page_syntax,
+        related = primary.related,
+        aliases = primary.aliases,
+        canonical = primary.canonical,
+        source = primary.source,
+        expected = primary.expected,
+    }
+    redde su.recide(corpus_markdown(term, page_primary, examples))
+}
+
+functio genera_corpus(textus term, textus bundle, textus locale, textus stylesheet) → textus {
+    fixum textus markdown ← genera_corpus_markdown(term, bundle)
+    fixum types_mod.Pagina page ← types_mod.aedifica_paginam(
+        "corpus/" + term,
+        markdown,
+        locale,
+    )
+    redde html_mod.genera_paginam(page, stylesheet)
+}
+
+functio genera_alias_redirect(textus alias, textus canonical, textus locale, textus stylesheet) → textus {
+    redde «<!DOCTYPE html>
+<html lang="§">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="refresh" content="0; url=/corpus/§.html">
+<link rel="canonical" href="/corpus/§.html">
+<link rel="stylesheet" href="§">
+<title>§ — Faber</title>
+</head>
+<body>
+<p>This term is an alias. Continue to <a href="/corpus/§.html">§</a>.</p>
+</body>
+</html>»(locale, canonical, canonical, stylesheet, alias, canonical, canonical)
+}
+
+probandum "corpus term page" tag "corpus" {
+    proba "alias redirects point at canonical terms" {
+        fixum textus html ← genera_alias_redirect("assert", "adfirma", "la", "/speculum.css")
+        adfirma su.initium_index(html, "url=/corpus/adfirma.html") ≥ 0
+        adfirma su.initium_index(html, "rel=\"canonical\"") ≥ 0
+    }
+}
