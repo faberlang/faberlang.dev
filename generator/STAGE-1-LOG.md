@@ -18,8 +18,13 @@ compiler front end. Seven modules, ~640 lines of Faber source.
 | `fence.fab` | Code fence extractor with CI contracts | `Fence{locale, modus, outcome, source, line}`, `extract()`, `parse_info()` |
 | `anchor.fab` | Heading extractor with stable anchor IDs | `Heading{level, text, anchor, line}`, `extract()`, `parse_heading()` |
 | `types.fab` | Core domain model | `Pagina`, `HtmlPagina`, `SiteManifest`, `aedifica_paginam()` |
+| `document_ir.fab` | Document IR for HTML chrome | `Attr`, `Element`, `Document`, `html()` |
 | `html.fab` | HTML emitter with component vocabulary | `genera_paginam()`, `genera_head()`, `genera_renderbar()`, `genera_sidebar()`, `genera_main()`, `genera_source_list()` |
 | `main.fab` | Entry point and path derivation | `genera()`, `deriva_iter()` |
+
+### Chrome HTML rule
+
+New Speculum chrome must be modeled as `document_ir.Element` trees and serialized with `document_ir.html()`. Do not add new guillemet HTML blobs to chrome builders; raw Markdown body HTML remains the Stage B boundary.
 
 ### Verification status
 

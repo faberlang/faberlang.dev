@@ -1,0 +1,78 @@
+# Document IR for Speculum HTML output.
+# New chrome must be modeled here and serialized with html().
+
+genus Attr {
+    textus nomen
+    textus valor
+}
+
+genus Element {
+    textus tag_name
+    lista<Attr> attrs
+    lista<Element> children
+    textus content
+    bivalens vacuum_tag
+}
+
+genus Document {
+    Element root
+}
+
+functio attr(textus nomen, textus valor) → Attr {
+    redde Attr { nomen = nomen, valor = valor }
+}
+
+functio text(textus value) → Element {
+    fixum lista<Attr> empty_attrs ← vacua
+    fixum lista<Element> empty_children ← vacua
+    redde Element { tag_name = "", attrs = empty_attrs, children = empty_children, content = value, vacuum_tag = falsum }
+}
+
+functio element(textus tag, lista<Attr> attrs, lista<Element> children) → Element {
+    redde Element { tag_name = tag, attrs = attrs, children = children, content = "", vacuum_tag = falsum }
+}
+
+functio leaf(textus tag, lista<Attr> attrs, textus value) → Element {
+    fixum lista<Element> empty_children ← vacua
+    redde Element { tag_name = tag, attrs = attrs, children = empty_children, content = value, vacuum_tag = falsum }
+}
+
+functio void_element(textus tag, lista<Attr> attrs) → Element {
+    fixum lista<Element> empty_children ← vacua
+    redde Element { tag_name = tag, attrs = attrs, children = empty_children, content = "", vacuum_tag = verum }
+}
+
+functio document(Element root) → Document {
+    redde Document { root = root }
+}
+
+functio attr_html(Attr item) → textus {
+    si item.valor ≡ "" ergo redde " " + item.nomen
+    redde " " + item.nomen + "=\"" + item.valor + "\""
+}
+
+functio attrs_html(lista<Attr> attrs) → textus {
+    varia textus rendered ← ""
+    itera ex attrs fixum item {
+        rendered ← rendered + attr_html(item)
+    }
+    redde rendered
+}
+
+functio element_html(Element node) → textus {
+    si node.tag_name ≡ "" ergo redde node.content
+
+    fixum textus open ← "<" + node.tag_name + attrs_html(node.attrs) + ">"
+    si node.vacuum_tag ergo redde open
+
+    varia textus body ← node.content
+    itera ex node.children fixum child {
+        body ← body + element_html(child)
+    }
+
+    redde open + body + "</" + node.tag_name + ">"
+}
+
+functio html(Document doc) → textus {
+    redde "<!DOCTYPE html>\n" + element_html(doc.root)
+}

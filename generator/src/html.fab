@@ -2,222 +2,243 @@
 #
 # Turns a Pagina into a complete HTML document using the closed
 # component vocabulary. The emitter cannot write CSS.
+# New chrome must use document_ir.Element builders and doc_mod.html().
 
 importa ex "./types" privata * ut types_mod
-importa ex "./string_util" privata * ut su
 importa ex "./markdown" privata * ut markdown_mod
+importa ex "./document_ir" privata * ut doc_mod
+
+functio attrs0() → lista<doc_mod.Attr> {
+    redde vacua
+}
+
+functio attrs1(textus n1, textus v1) → lista<doc_mod.Attr> {
+    varia lista<doc_mod.Attr> attrs ← vacua
+    attrs.appende(doc_mod.attr(n1, v1))
+    redde attrs
+}
+
+functio attrs2(textus n1, textus v1, textus n2, textus v2) → lista<doc_mod.Attr> {
+    varia lista<doc_mod.Attr> attrs ← attrs1(n1, v1)
+    attrs.appende(doc_mod.attr(n2, v2))
+    redde attrs
+}
+
+functio attrs3(textus n1, textus v1, textus n2, textus v2, textus n3, textus v3) → lista<doc_mod.Attr> {
+    varia lista<doc_mod.Attr> attrs ← attrs2(n1, v1, n2, v2)
+    attrs.appende(doc_mod.attr(n3, v3))
+    redde attrs
+}
+
+functio attrs4(textus n1, textus v1, textus n2, textus v2, textus n3, textus v3, textus n4, textus v4) → lista<doc_mod.Attr> {
+    varia lista<doc_mod.Attr> attrs ← attrs3(n1, v1, n2, v2, n3, v3)
+    attrs.appende(doc_mod.attr(n4, v4))
+    redde attrs
+}
+
+functio children1(doc_mod.Element a) → lista<doc_mod.Element> {
+    varia lista<doc_mod.Element> children ← vacua
+    children.appende(a)
+    redde children
+}
+
+functio children2(doc_mod.Element a, doc_mod.Element b) → lista<doc_mod.Element> {
+    varia lista<doc_mod.Element> children ← children1(a)
+    children.appende(b)
+    redde children
+}
+
+functio children3(doc_mod.Element a, doc_mod.Element b, doc_mod.Element c) → lista<doc_mod.Element> {
+    varia lista<doc_mod.Element> children ← children2(a, b)
+    children.appende(c)
+    redde children
+}
+
+functio children4(doc_mod.Element a, doc_mod.Element b, doc_mod.Element c, doc_mod.Element d) → lista<doc_mod.Element> {
+    varia lista<doc_mod.Element> children ← children3(a, b, c)
+    children.appende(d)
+    redde children
+}
+
+functio a(textus href, textus label) → doc_mod.Element {
+    redde doc_mod.leaf("a", attrs1("href", href), label)
+}
+
+functio code_link(textus href, textus label) → doc_mod.Element {
+    redde doc_mod.element("a", attrs1("href", href), children1(doc_mod.leaf("code", attrs0(), label)))
+}
+
+functio li(doc_mod.Element child) → doc_mod.Element {
+    redde doc_mod.element("li", attrs0(), children1(child))
+}
 
 # Render a full HTML page from a Pagina.
 functio genera_paginam(types_mod.Pagina pag, textus stylesheet_link) → textus {
-    fixum textus nl_char ← su.nl()
-    fixum textus head ← genera_head(pag, stylesheet_link)
-    fixum textus renderbar ← genera_renderbar(pag.locale)
-    fixum textus sidebar ← genera_sidebar(pag.section)
-    fixum textus main_content ← genera_main(pag)
-    fixum textus footer ← genera_source_list(pag.sources)
-
-    # Body class hook: lets the stylesheet give the homepage hero
-    # treatment without the generator writing any CSS.
     varia textus body_class ← "docs"
     si pag.section ≡ "" {
         body_class ← "home"
     }
 
-    redde ((((((((((((«<!DOCTYPE html>
-<html lang="§">
-    »(pag.locale) + head) + nl_char) + «<body class="§">
-    »(body_class)) + renderbar) + nl_char) + «<div class="page">
-    ») + sidebar) + nl_char) + main_content) + nl_char) + footer) + nl_char) + «</div>
-</body>
-</html>»
+    varia lista<doc_mod.Element> body_children ← vacua
+    body_children.appende(genera_renderbar(pag.locale))
+
+    varia lista<doc_mod.Element> page_children ← vacua
+    page_children.appende(genera_sidebar(pag.section))
+    page_children.appende(genera_main(pag))
+
+    fixum doc_mod.Element footer ← genera_source_list(pag.sources)
+    si non (footer.tag_name ≡ "") {
+        page_children.appende(footer)
+    }
+
+    body_children.appende(doc_mod.element("div", attrs1("class", "page"), page_children))
+
+    fixum doc_mod.Element root ← doc_mod.element("html", attrs1("lang", pag.locale), children2(genera_head(pag, stylesheet_link), doc_mod.element("body", attrs1("class", body_class), body_children)))
+    redde doc_mod.html(doc_mod.document(root))
 }
 
 # Generate the <head> element.
-functio genera_head(types_mod.Pagina pag, textus stylesheet_link) → textus {
-    # Avoid "Faber — Faber" when the page title is already Faber.
+functio genera_head(types_mod.Pagina pag, textus stylesheet_link) → doc_mod.Element {
     varia textus title ← pag.titulus
     si non (pag.titulus ≡ "Faber") {
         title ← «§ — Faber»(pag.titulus)
     }
 
-    redde «<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types. Agent-readable docs, install, and examples.">
-<meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)">
-<meta property="og:site_name" content="Faber">
-<meta property="og:type" content="website">
-<meta property="og:title" content="§0">
-<meta property="og:description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E">
-<link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index">
-<link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide">
-<title>§0</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@400;600&family=Noto+Sans+Mono:wght@400;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="§1">
-</head>»(title, stylesheet_link)
+    varia lista<doc_mod.Element> children ← vacua
+    children.appende(doc_mod.void_element("meta", attrs1("charset", "utf-8")))
+    children.appende(doc_mod.void_element("meta", attrs2("name", "viewport", "content", "width=device-width, initial-scale=1")))
+    children.appende(doc_mod.void_element("meta", attrs2("name", "description", "content", "Faber programming language — package-oriented, Latin vocabulary, type-first static types. Agent-readable docs, install, and examples.")))
+    children.appende(doc_mod.void_element("meta", attrs3("name", "theme-color", "content", "#faf9f6", "media", "(prefers-color-scheme: light)")))
+    children.appende(doc_mod.void_element("meta", attrs3("name", "theme-color", "content", "#1c1b19", "media", "(prefers-color-scheme: dark)")))
+    children.appende(doc_mod.void_element("meta", attrs2("property", "og:site_name", "content", "Faber")))
+    children.appende(doc_mod.void_element("meta", attrs2("property", "og:type", "content", "website")))
+    children.appende(doc_mod.void_element("meta", attrs2("property", "og:title", "content", title)))
+    children.appende(doc_mod.void_element("meta", attrs2("property", "og:description", "content", "Faber programming language — package-oriented, Latin vocabulary, type-first static types.")))
+    children.appende(doc_mod.void_element("link", attrs2("rel", "icon", "href", "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E")))
+    children.appende(doc_mod.void_element("link", attrs4("rel", "alternate", "type", "text/plain", "href", "/llms.txt", "title", "Agent index")))
+    children.appende(doc_mod.void_element("link", attrs4("rel", "alternate", "type", "text/markdown", "href", "/agents/index.md", "title", "Agent guide")))
+    children.appende(doc_mod.leaf("title", attrs0(), title))
+    children.appende(doc_mod.void_element("link", attrs2("rel", "preconnect", "href", "https://fonts.googleapis.com")))
+    children.appende(doc_mod.void_element("link", attrs3("rel", "preconnect", "href", "https://fonts.gstatic.com", "crossorigin", "")))
+    children.appende(doc_mod.void_element("link", attrs2("href", "https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@400;600&family=Noto+Sans+Mono:wght@400;600&display=swap", "rel", "stylesheet")))
+    children.appende(doc_mod.void_element("link", attrs2("rel", "stylesheet", "href", stylesheet_link)))
+    redde doc_mod.element("head", attrs0(), children)
 }
 
-# Generate the rendering bar with machine-doc links.
-functio genera_renderbar(textus current_locale) → textus {
-    redde «<div class="renderbar">
-  <div class="in">
-    <span class="lbl">Rendering</span>
-    <span class="locbtns">§</span>
-    <nav class="machine-links" aria-label="Machine documentation">
-      <a href="/llms.txt">/llms.txt</a>
-      <a href="/agents/index.md">/agents</a>
-      <a href="/.well-known/agent-skills/index.json">/skills</a>
-      <a href="/start/install.html">install</a>
-    </nav>
-  </div>
-</div>»(current_locale)
+functio genera_renderbar(textus current_locale) → doc_mod.Element {
+    varia lista<doc_mod.Element> links ← vacua
+    links.appende(a("/llms.txt", "/llms.txt"))
+    links.appende(a("/agents/index.md", "/agents"))
+    links.appende(a("/.well-known/agent-skills/index.json", "/skills"))
+    links.appende(a("/start/install.html", "install"))
+
+    fixum doc_mod.Element nav ← doc_mod.element("nav", attrs2("class", "machine-links", "aria-label", "Machine documentation"), links)
+    fixum doc_mod.Element inner ← doc_mod.element("div", attrs1("class", "in"), children3(doc_mod.leaf("span", attrs1("class", "lbl"), "Rendering"), doc_mod.leaf("span", attrs1("class", "locbtns"), current_locale), nav))
+    redde doc_mod.element("div", attrs1("class", "renderbar"), children1(inner))
 }
 
-# Generate the sidebar navigation — denser multi-section chrome.
-functio genera_sidebar(textus active_section) → textus {
-    fixum textus start_install ← genera_nav_link("Install &amp; download", "/start/install.html", active_section ≡ "install")
-    fixum textus start_examples ← genera_nav_link("Examples", "/start/examples.html", active_section ≡ "examples")
-    fixum textus start_tour ← genera_nav_link("Quick tour", "/start/", active_section ≡ "start")
+functio genera_sidebar(textus active_section) → doc_mod.Element {
+    varia lista<doc_mod.Element> children ← vacua
+    children.appende(genera_brand())
+    children.appende(side_h("Get started"))
+    children.appende(nav_list(children3(li(genera_nav_link("Install & download", "/start/install.html", active_section ≡ "install")), li(genera_nav_link("Examples", "/start/examples.html", active_section ≡ "examples")), li(genera_nav_link("Quick tour", "/start/", active_section ≡ "start"))), "nav"))
+    children.appende(side_h("Documentation"))
 
-    fixum textus nav_overview ← genera_nav_link("Overview", "/", active_section ≡ "")
-    fixum textus nav_features ← genera_nav_link("Features", "/features/", active_section ≡ "features")
-    fixum textus nav_syntax ← genera_nav_link("Syntax", "/syntax/", active_section ≡ "syntax")
-    fixum textus nav_tooling ← genera_nav_link("Tooling", "/tooling/", active_section ≡ "tooling")
-    fixum textus nav_ecosystem ← genera_nav_link("Ecosystem", "/ecosystem/", active_section ≡ "ecosystem")
-    fixum textus nav_corpus ← genera_nav_link("Corpus", "/corpus/", active_section ≡ "corpus")
-    fixum textus nav_references ← genera_nav_link("References", "/references/", active_section ≡ "references")
-    fixum textus nav_history ← genera_nav_link("History", "/history/", active_section ≡ "history")
+    varia lista<doc_mod.Element> docs ← vacua
+    docs.appende(li(genera_nav_link("Overview", "/", active_section ≡ "")))
+    docs.appende(li(genera_nav_link("Features", "/features/", active_section ≡ "features")))
+    docs.appende(li(genera_nav_link("Syntax", "/syntax/", active_section ≡ "syntax")))
+    docs.appende(li(genera_nav_link("Tooling", "/tooling/", active_section ≡ "tooling")))
+    docs.appende(li(genera_nav_link("Ecosystem", "/ecosystem/", active_section ≡ "ecosystem")))
+    docs.appende(li(genera_nav_link("Corpus", "/corpus/", active_section ≡ "corpus")))
+    docs.appende(li(genera_nav_link("References", "/references/", active_section ≡ "references")))
+    docs.appende(li(genera_nav_link("History", "/history/", active_section ≡ "history")))
+    children.appende(nav_list(docs, "nav"))
 
-    fixum textus agent_llms ← genera_nav_link("Agent index", "/llms.txt", falsum)
-    fixum textus agent_guide ← genera_nav_link("Agent guide", "/agents/index.md", falsum)
-    fixum textus agent_skills ← genera_nav_link("Agent skills", "/.well-known/agent-skills/index.json", falsum)
-    fixum textus agent_full ← genera_nav_link("Full reference", "/llms-full.txt", falsum)
+    children.appende(side_h("For agents"))
+    children.appende(nav_list(children4(li(genera_nav_link("Agent index", "/llms.txt", falsum)), li(genera_nav_link("Agent guide", "/agents/index.md", falsum)), li(genera_nav_link("Agent skills", "/.well-known/agent-skills/index.json", falsum)), li(genera_nav_link("Full reference", "/llms-full.txt", falsum))), "nav nav-compact"))
 
-    fixum textus rel_darwin ← genera_nav_link("macOS arm64", "https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz", falsum)
-    fixum textus rel_linux ← genera_nav_link("Linux x64", "https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz", falsum)
-    fixum textus rel_all ← genera_nav_link("All releases", "https://github.com/faberlang/releases/releases/tag/faber-v1.1.1", falsum)
-    fixum textus rel_gh ← genera_nav_link("GitHub org", "https://github.com/faberlang", falsum)
+    children.appende(side_h("Release 1.1.1"))
+    children.appende(nav_list(children4(li(genera_nav_link("macOS arm64", "https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz", falsum)), li(genera_nav_link("Linux x64", "https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz", falsum)), li(genera_nav_link("All releases", "https://github.com/faberlang/releases/releases/tag/faber-v1.1.1", falsum)), li(genera_nav_link("GitHub org", "https://github.com/faberlang", falsum))), "nav nav-compact"))
+    children.appende(genera_side_meta())
 
-    redde «<aside>
-  <a class="brand" href="/">
-    <span class="brand-mark" aria-hidden="true">f</span>
-    <span class="brand-text">
-      <span class="brand-name">Faber</span>
-      <span class="brand-tag">language docs</span>
-    </span>
-  </a>
-
-  <div class="side-h">Get started</div>
-  <ul class="nav">
-    <li>§</li>
-    <li>§</li>
-    <li>§</li>
-  </ul>
-
-  <div class="side-h">Documentation</div>
-  <ul class="nav">
-    <li>§</li>
-    <li>§</li>
-    <li>§</li>
-    <li>§</li>
-    <li>§</li>
-    <li>§</li>
-    <li>§</li>
-    <li>§</li>
-  </ul>
-
-  <div class="side-h">For agents</div>
-  <ul class="nav nav-compact">
-    <li>§</li>
-    <li>§</li>
-    <li>§</li>
-    <li>§</li>
-  </ul>
-
-  <div class="side-h">Release 1.1.1</div>
-  <ul class="nav nav-compact">
-    <li>§</li>
-    <li>§</li>
-    <li>§</li>
-    <li>§</li>
-  </ul>
-
-  <div class="side-meta">
-    <div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div>
-    <div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div>
-    <div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div>
-    <div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div>
-  </div>
-</aside>»(start_install, start_examples, start_tour, nav_overview, nav_features, nav_syntax, nav_tooling, nav_ecosystem, nav_corpus, nav_references, nav_history, agent_llms, agent_guide, agent_skills, agent_full, rel_darwin, rel_linux, rel_all, rel_gh)
+    redde doc_mod.element("aside", attrs0(), children)
 }
 
-# Generate a navigation link, marking active section.
-functio genera_nav_link(textus label, textus href, bivalens active) → textus {
+functio genera_brand() → doc_mod.Element {
+    fixum doc_mod.Element mark ← doc_mod.leaf("span", attrs2("class", "brand-mark", "aria-hidden", "true"), "f")
+    fixum doc_mod.Element name ← doc_mod.leaf("span", attrs1("class", "brand-name"), "Faber")
+    fixum doc_mod.Element tag ← doc_mod.leaf("span", attrs1("class", "brand-tag"), "language docs")
+    fixum doc_mod.Element text ← doc_mod.element("span", attrs1("class", "brand-text"), children2(name, tag))
+    redde doc_mod.element("a", attrs2("class", "brand", "href", "/"), children2(mark, text))
+}
+
+functio side_h(textus label) → doc_mod.Element {
+    redde doc_mod.leaf("div", attrs1("class", "side-h"), label)
+}
+
+functio nav_list(lista<doc_mod.Element> items, textus class_name) → doc_mod.Element {
+    redde doc_mod.element("ul", attrs1("class", class_name), items)
+}
+
+functio genera_nav_link(textus label, textus href, bivalens active) → doc_mod.Element {
     si active {
-        redde «<a href="§" class="active">§</a>»(href, label)
+        redde doc_mod.leaf("a", attrs2("href", href, "class", "active"), label)
     }
-    redde «<a href="§">§</a>»(href, label)
+    redde doc_mod.leaf("a", attrs1("href", href), label)
 }
 
-# Generate the main content area.
-functio genera_main(types_mod.Pagina pag) → textus {
-    fixum textus h1 ← "<h1>§</h1>"(pag.titulus)
-    fixum textus body ← genera_body(markdown_mod.converte(pag.corpus))
-    # Homepage: agent notice band above body content.
+functio meta_row(textus key, textus value) → doc_mod.Element {
+    redde doc_mod.element("div", attrs1("class", "side-meta-row"), children2(doc_mod.leaf("span", attrs1("class", "k"), key), doc_mod.leaf("span", attrs1("class", "v"), value)))
+}
+
+functio genera_side_meta() → doc_mod.Element {
+    redde doc_mod.element("div", attrs1("class", "side-meta"), children4(meta_row("Paradigm", "packages"), meta_row("Typing", "static · type-first"), meta_row("Target", "Rust → native"), meta_row("License", "MIT")))
+}
+
+functio genera_main(types_mod.Pagina pag) → doc_mod.Element {
+    fixum doc_mod.Element h1 ← doc_mod.leaf("h1", attrs0(), pag.titulus)
+    fixum doc_mod.Element body ← genera_body(markdown_mod.converte(pag.corpus))
     si pag.section ≡ "" {
-        fixum textus notice ← genera_agent_notice()
-        redde «<main>
-§
-§
-§
-</main>»(h1, notice, body)
+        redde doc_mod.element("main", attrs0(), children3(h1, genera_agent_notice(), body))
     }
-    redde «<main>
-§
-§
-</main>»(h1, body)
+    redde doc_mod.element("main", attrs0(), children2(h1, body))
 }
 
-# Agent-first notice on the homepage (pattern: discoverability for machines).
-functio genera_agent_notice() → textus {
-    redde «<section class="agent-notice" aria-label="Agent-facing notice">
-  <span class="agent-notice-label">Agent-ready</span>
-  <div class="agent-notice-body">
-    <p>If you are an AI agent: start at <a href="/llms.txt"><code>/llms.txt</code></a>,
-    then read <a href="/agents/index.md"><code>/agents/index.md</code></a> and pick a skill from
-    <a href="/.well-known/agent-skills/index.json"><code>/.well-known/agent-skills/</code></a>.
-    Humans: use <a href="/start/install.html">Install</a> and <a href="/start/examples.html">Examples</a>.</p>
-  </div>
-</section>»
+functio genera_agent_notice() → doc_mod.Element {
+    varia lista<doc_mod.Element> p_children ← vacua
+    p_children.appende(doc_mod.text("If you are an AI agent: start at "))
+    p_children.appende(code_link("/llms.txt", "/llms.txt"))
+    p_children.appende(doc_mod.text(", then read "))
+    p_children.appende(code_link("/agents/index.md", "/agents/index.md"))
+    p_children.appende(doc_mod.text(" and pick a skill from "))
+    p_children.appende(code_link("/.well-known/agent-skills/index.json", "/.well-known/agent-skills/"))
+    p_children.appende(doc_mod.text(". Humans: use "))
+    p_children.appende(a("/start/install.html", "Install"))
+    p_children.appende(doc_mod.text(" and "))
+    p_children.appende(a("/start/examples.html", "Examples"))
+    p_children.appende(doc_mod.text("."))
+
+    fixum doc_mod.Element label ← doc_mod.leaf("span", attrs1("class", "agent-notice-label"), "Agent-ready")
+    fixum doc_mod.Element paragraph ← doc_mod.element("p", attrs0(), p_children)
+    fixum doc_mod.Element body ← doc_mod.element("div", attrs1("class", "agent-notice-body"), children1(paragraph))
+    redde doc_mod.element("section", attrs2("class", "agent-notice", "aria-label", "Agent-facing notice"), children2(label, body))
 }
 
-# Generate HTML from Markdown body.
-functio genera_body(textus markdown) → textus {
-    redde «<div class="content">
-§
-</div>»(markdown)
+functio genera_body(textus markdown) → doc_mod.Element {
+    redde doc_mod.leaf("div", attrs1("class", "content"), markdown)
 }
 
-# Generate the source-list provenance footer.
-functio genera_source_list(lista<textus> sources) → textus {
-    si sources.longitudo() ≡ 0 ergo redde ""
+functio genera_source_list(lista<textus> sources) → doc_mod.Element {
+    si sources.longitudo() ≡ 0 ergo redde doc_mod.text("")
 
-    varia textus html ← «<footer>
-<div class="source-list">
-<span class="side-h">Sources</span>
-<ul>
-    »
+    varia lista<doc_mod.Element> items ← vacua
     itera ex sources fixum src {
-        html ← html + «  <li>§</li>
-        »(src)
+        items.appende(li(doc_mod.text(src)))
     }
-    html ← html + «</ul>
-</div>
-</footer>»
 
-    redde html
+    fixum doc_mod.Element label ← doc_mod.leaf("span", attrs1("class", "side-h"), "Sources")
+    fixum doc_mod.Element list ← doc_mod.element("ul", attrs0(), items)
+    fixum doc_mod.Element source_list ← doc_mod.element("div", attrs1("class", "source-list"), children2(label, list))
+    redde doc_mod.element("footer", attrs0(), children1(source_list))
 }
