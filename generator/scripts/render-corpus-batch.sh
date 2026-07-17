@@ -45,7 +45,19 @@ if [ ! -f "$MAIN_RS" ]; then
     exit 1
 fi
 
-MAIN_RS_PATH="$MAIN_RS" python3 << 'PYEOF'
+# Prefer 3.11+ for tomllib (batch orchestration); fall back to python3.
+PYTHON="${PYTHON:-}"
+if [ -z "$PYTHON" ]; then
+    if command -v python3.11 >/dev/null 2>&1; then
+        PYTHON=python3.11
+    elif command -v python3.13 >/dev/null 2>&1; then
+        PYTHON=python3.13
+    else
+        PYTHON=python3
+    fi
+fi
+
+MAIN_RS_PATH="$MAIN_RS" "$PYTHON" << 'PYEOF'
 import os
 import sys
 
@@ -110,12 +122,15 @@ PYEOF
 echo "Compiling corpus batch generator..." >&2
 (cd "$BUILD_DIR" && cargo build --quiet 2>/dev/null)
 
-CORPUS_DIR="$CORPUS_DIR" BUILD_DIR="$BUILD_DIR" OUTPUT_DIR="$OUTPUT_DIR" LOCALE="$LOCALE" STYLESHEET="$STYLESHEET" PROOF_DIR="$PROOF_DIR" python3 << 'PYEOF'
+CORPUS_DIR="$CORPUS_DIR" BUILD_DIR="$BUILD_DIR" OUTPUT_DIR="$OUTPUT_DIR" LOCALE="$LOCALE" STYLESHEET="$STYLESHEET" PROOF_DIR="$PROOF_DIR" "$PYTHON" << 'PYEOF'
 import json
 import os
 import re
 import subprocess
-import tomllib
+try:
+    import tomllib
+except ModuleNotFoundError:  # Python < 3.11
+    import tomli as tomllib  # type: ignore
 from collections import defaultdict
 from pathlib import Path
 

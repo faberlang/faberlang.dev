@@ -7,6 +7,7 @@
 #   - Unordered lists (- prefix, flat single-level)
 #   - Fenced code blocks (``` with optional info string)
 #   - Inline bold (**text** → <strong>)
+#   - Inline links ([label](href) → <a href>)
 #
 # Inline code spans are delegated to span_mod.genera_line() (the 48-
 # identifier keyword/type lookup). Frontmatter (+++ blocks) is stripped
@@ -117,10 +118,79 @@ functio converte_bold(textus text) → textus {
     redde result
 }
 
-# Apply all inline transforms: code spans then bold.
+# Convert Markdown links [label](href) to <a href="…">label</a>.
+# Does not handle nested brackets or reference-style links.
+functio converte_links(textus text) → textus {
+    fixum numerus len ← text.longitudo()
+    varia textus result ← ""
+    varia numerus i ← 0
+    varia numerus plain_start ← 0
+
+    dum i < len {
+        # 91 = '[', 93 = ']', 40 = '(', 41 = ')'
+        si text[i] ≡ 91 {
+            varia numerus j ← i + 1
+            varia bivalens found_label ← falsum
+
+            dum j < len {
+                si text[j] ≡ 93 {
+                    found_label ← verum
+                    rumpe
+                }
+                # Abort if newline inside label (not a valid MD link)
+                si text[j] ≡ 10 {
+                    rumpe
+                }
+                j ← j + 1
+            }
+
+            si found_label et (j + 1 < len) et text[j + 1] ≡ 40 {
+                varia numerus k ← j + 2
+                varia bivalens found_href ← falsum
+
+                dum k < len {
+                    si text[k] ≡ 41 {
+                        found_href ← verum
+                        rumpe
+                    }
+                    si text[k] ≡ 10 {
+                        rumpe
+                    }
+                    k ← k + 1
+                }
+
+                si found_href {
+                    si i > plain_start {
+                        result ← result + text.sectio(plain_start, i)
+                    }
+
+                    fixum textus label ← text.sectio(i + 1, j)
+                    fixum textus href ← text.sectio(j + 2, k)
+                    result ← result + «<a href="§">§</a>»(href, label)
+
+                    i ← k + 1
+                    plain_start ← i
+                    perge
+                }
+            }
+        }
+
+        i ← i + 1
+    }
+
+    si len > plain_start {
+        result ← result + text.sectio(plain_start, len)
+    }
+
+    redde result
+}
+
+# Apply all inline transforms: code spans, then links, then bold.
+# Order: code first (so `[]()` inside code stays literal), then links, then bold.
 functio genera_inline(textus text) → textus {
     fixum textus with_code ← span_mod.genera_line(text)
-    redde converte_bold(with_code)
+    fixum textus with_links ← converte_links(with_code)
+    redde converte_bold(with_links)
 }
 
 # Extract a trailing {#anchor} from heading text.
@@ -465,6 +535,17 @@ probandum "markdown converter" tag "core" {
         fixum textus html ← converte(input)
         adfirma su.initium_index(html, "&lt;") ≥ 0
         adfirma su.initium_index(html, "&gt;") ≥ 0
+    }
+
+    proba "markdown link" {
+        fixum textus result ← converte_links("[Read more →](/syntax/types.html)")
+        adfirma(result ≡ «<a href="/syntax/types.html">Read more →</a>»)
+    }
+
+    proba "markdown link in sentence" {
+        fixum textus result ← converte_links("See the [reader locale](/features/reader-locale.html) docs")
+        adfirma(su.initium_index(result, «href="/features/reader-locale.html"») ≥ 0)
+        adfirma(su.initium_index(result, "reader locale") ≥ 0)
     }
 
     proba "bold inline" {

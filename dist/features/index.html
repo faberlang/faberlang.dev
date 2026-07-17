@@ -4,6 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Features — Faber</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@400;600&family=Noto+Sans+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/speculum.css">
 </head>
 <body>
@@ -15,6 +18,10 @@
 </div>
 <div class="page">
     <aside>
+  <a class="brand" href="/">
+    <span class="brand-name">Faber</span>
+    <span class="brand-tag">language docs</span>
+  </a>
   <div class="side-h">Documentation</div>
   <ul class="nav">
     <li><a href="/">Overview</a></li>
@@ -22,7 +29,9 @@
     <li><a href="/syntax/">Syntax</a></li>
     <li><a href="/tooling/">Tooling</a></li>
     <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/corpus/">Corpus</a></li>
     <li><a href="/references/">References</a></li>
+    <li><a href="/history/">History</a></li>
   </ul>
 </aside>
 <main>
@@ -35,31 +44,31 @@ readable, checkable, and portable across execution lanes.</p>
 <h2 id="reader-locale">Reader locale</h2>
 <p>The compiler is the translator. Reader locale packs allow the same
 source to render in multiple natural languages without changing
-semantics. [Read more →](/features/reader-locale.html)</p>
+semantics. <a href="/features/reader-locale.html">Read more →</a></p>
 <h2 id="compilation-lanes">Compilation lanes</h2>
 <p>Faber lowers through three intermediate representations (HIR, MIR, AIR)
 to multiple target backends including Rust runtime, WASM, TypeScript,
-Go, and GPU/WGSL. [Read more →](/features/compilation-lanes.html)</p>
+Go, and GPU/WGSL. <a href="/features/compilation-lanes.html">Read more →</a></p>
 <h2 id="latin-and-glyphs">Latin vocabulary and glyphs</h2>
 <p>Types come before names. Latin words carry behaviour. Structural glyphs
 carry value flow and type shape. The result reads like intent, not
-mechanism. [Read more →](/features/latin-and-glyphs.html)</p>
+mechanism. <a href="/features/latin-and-glyphs.html">Read more →</a></p>
 <h2 id="commandments">Commandments</h2>
 <p>Nine design laws govern every language decision, from keyword choice to
 error handling. These are the review criteria for new features.
-[Read more →](/features/commandments.html)</p>
+<a href="/features/commandments.html">Read more →</a></p>
 <h2 id="canonical-vs-sugar">Canonical vs sugar</h2>
 <p>Every sugar surface has a canonical expansion. The formatter can move
 between them. Sugar is convenience; canonical is the contract.
-[Read more →](/features/canonical-vs-sugar.html)</p>
+<a href="/features/canonical-vs-sugar.html">Read more →</a></p>
 <h2 id="frames">Capability calls and frames</h2>
 <p>The <code>ad</code> primitive provides capability-based dispatch. Frame types
 define the I/O boundary between Faber code and host providers.
-[Read more →](/features/frames.html)</p>
+<a href="/features/frames.html">Read more →</a></p>
 <h2 id="testing">Inline testing</h2>
 <p>Test suites live alongside source code using three keywords:
 <code>probandum</code>, <code>proba</code>, and <code>adfirma</code>. No separate test binary needed.
-[Read more →](/features/testing.html)</p>
+<a href="/features/testing.html">Read more →</a></p>
 
 </div>
 </main>

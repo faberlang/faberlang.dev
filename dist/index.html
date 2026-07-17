@@ -3,7 +3,10 @@
     <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Faber — Faber</title>
+<title>Faber</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@400;600&family=Noto+Sans+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/speculum.css">
 </head>
 <body>
@@ -15,6 +18,10 @@
 </div>
 <div class="page">
     <aside>
+  <a class="brand" href="/">
+    <span class="brand-name">Faber</span>
+    <span class="brand-tag">language docs</span>
+  </a>
   <div class="side-h">Documentation</div>
   <ul class="nav">
     <li><a href="/" class="active">Overview</a></li>
@@ -22,7 +29,9 @@
     <li><a href="/syntax/">Syntax</a></li>
     <li><a href="/tooling/">Tooling</a></li>
     <li><a href="/ecosystem/">Ecosystem</a></li>
+    <li><a href="/corpus/">Corpus</a></li>
     <li><a href="/references/">References</a></li>
+    <li><a href="/history/">History</a></li>
   </ul>
 </aside>
 <main>
@@ -78,12 +87,12 @@ transformed, and lowered without losing the reader's sense of intent.</p>
 <table>
 <thead><tr><th>Section</th><th>Description</th></tr></thead>
 <tbody>
-<tr><td>[History](/history/index.html)</td><td>Development timeline, influences, and release history</td></tr>
-<tr><td>[Features](/features/index.html)</td><td>Reader locale, compilation lanes, Latin vocabulary, glyph system, design principles</td></tr>
-<tr><td>[Syntax](/syntax/index.html)</td><td>Complete reference: types, functions, control flow, errors, generics, collections</td></tr>
-<tr><td>[Tooling](/tooling/index.html)</td><td>Radix compiler pipeline, Faber CLI, codegen targets, scripting</td></tr>
-<tr><td>[Ecosystem](/ecosystem/index.html)</td><td>Norma, Cista, Triga, coreutils, AI Workbench, corpus</td></tr>
-<tr><td>[References](/references/index.html)</td><td>EBNF grammar, design documents, repositories</td></tr>
+<tr><td><a href="/history/index.html">History</a></td><td>Development timeline, influences, and release history</td></tr>
+<tr><td><a href="/features/index.html">Features</a></td><td>Reader locale, compilation lanes, Latin vocabulary, glyph system, design principles</td></tr>
+<tr><td><a href="/syntax/index.html">Syntax</a></td><td>Complete reference: types, functions, control flow, errors, generics, collections</td></tr>
+<tr><td><a href="/tooling/index.html">Tooling</a></td><td>Radix compiler pipeline, Faber CLI, codegen targets, scripting</td></tr>
+<tr><td><a href="/ecosystem/index.html">Ecosystem</a></td><td>Norma, Cista, Triga, coreutils, AI Workbench, corpus</td></tr>
+<tr><td><a href="/references/index.html">References</a></td><td>EBNF grammar, design documents, repositories</td></tr>
 </tbody></table>
 <h2 id="quick-example">Quick example</h2>
 <p>A simple function demonstrating key Faber patterns — type-first
@@ -99,7 +108,7 @@ Chinese, Arabic, Hindi, Vietnamese — each remapping keywords and types
 to that language while glyphs and identifiers remain unchanged. This is
 not a translation layer applied to the page; it is the same mechanism
 the compiler uses to produce localized source.</p>
-<p>See the [reader locale](/features/reader-locale.html) documentation for
+<p>See the <a href="/features/reader-locale.html">reader locale</a> documentation for
 the full discussion.</p>
 
 </div>

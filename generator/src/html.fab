@@ -27,12 +27,21 @@ functio genera_paginam(types_mod.Pagina pag, textus stylesheet_link) → textus 
 
 # Generate the <head> element.
 functio genera_head(types_mod.Pagina pag, textus stylesheet_link) → textus {
+    # Avoid "Faber — Faber" when the page title is already Faber.
+    varia textus title ← pag.titulus
+    si non (pag.titulus ≡ "Faber") {
+        title ← «§ — Faber»(pag.titulus)
+    }
+
     redde «<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>§ — Faber</title>
+<title>§</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@400;600&family=Noto+Sans+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="§">
-</head>»(pag.titulus, stylesheet_link)
+</head>»(title, stylesheet_link)
 }
 
 # Generate the rendering bar.
@@ -52,9 +61,15 @@ functio genera_sidebar(textus active_section) → textus {
     fixum textus nav_syntax ← genera_nav_link("Syntax", "/syntax/", active_section ≡ "syntax")
     fixum textus nav_tooling ← genera_nav_link("Tooling", "/tooling/", active_section ≡ "tooling")
     fixum textus nav_ecosystem ← genera_nav_link("Ecosystem", "/ecosystem/", active_section ≡ "ecosystem")
+    fixum textus nav_corpus ← genera_nav_link("Corpus", "/corpus/", active_section ≡ "corpus")
     fixum textus nav_references ← genera_nav_link("References", "/references/", active_section ≡ "references")
+    fixum textus nav_history ← genera_nav_link("History", "/history/", active_section ≡ "history")
 
     redde «<aside>
+  <a class="brand" href="/">
+    <span class="brand-name">Faber</span>
+    <span class="brand-tag">language docs</span>
+  </a>
   <div class="side-h">Documentation</div>
   <ul class="nav">
     <li>§</li>
@@ -63,8 +78,10 @@ functio genera_sidebar(textus active_section) → textus {
     <li>§</li>
     <li>§</li>
     <li>§</li>
+    <li>§</li>
+    <li>§</li>
   </ul>
-</aside>»(nav_overview, nav_features, nav_syntax, nav_tooling, nav_ecosystem, nav_references)
+</aside>»(nav_overview, nav_features, nav_syntax, nav_tooling, nav_ecosystem, nav_corpus, nav_references, nav_history)
 }
 
 # Generate a navigation link, marking active section.
