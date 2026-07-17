@@ -77,12 +77,12 @@ is on `PATH`.
 ## First package check {#first-package}
 
 With the CLI on `PATH`, clone the public examples (or any Faber package)
-and type-check:
+and type-check. Product packages resolve dependencies from the Cista store
+through `faber.lock`; sibling checkouts are only for local library
+development.
 
 ```bash
 git clone https://github.com/faberlang/examples.git
-# Norma stdlib is typically a sibling checkout for library packages:
-# git clone https://github.com/faberlang/norma.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 

@@ -13,9 +13,8 @@ GPU-facing type contracts. In normal projects, declare Triga as a Cista
 package dependency in `faber.toml`; Cista records the resolved source in
 `faber.lock` and the compiler resolves it from the package store.
 
-`FABER_LIBRARY_HOME` is for local development against sibling source
-checkouts, or for explicit `--legacy-library-home` runs. It is not the
-primary product path for consuming Triga.
+`FABER_LIBRARY_HOME` is a resolver override for local development when
+set. It is not the primary product path for consuming Triga.
 
 Triga provides types and operations for:
 
