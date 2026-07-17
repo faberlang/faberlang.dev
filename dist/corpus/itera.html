@@ -1,19 +1,5 @@
 <!DOCTYPE html>
-<html lang="la"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types. Agent-readable docs, install, and examples."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="itera — Faber"><meta property="og:description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types."><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><title>itera — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"></head><body class="docs"><div class="renderbar"><div class="in"><span class="lbl">Rendering</span><span class="locbtns">la</span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Get started</div><ul class="nav"><li><a href="/start/install.html">Install &amp; download</a></li><li><a href="/start/examples.html">Examples</a></li><li><a href="/start/">Quick tour</a></li></ul><div class="side-h">Documentation</div><ul class="nav"><li><a href="/">Overview</a></li><li><a href="/features/">Features</a></li><li><a href="/syntax/">Syntax</a></li><li><a href="/tooling/">Tooling</a></li><li><a href="/ecosystem/">Ecosystem</a></li><li><a href="/corpus/" class="active">Corpus</a></li><li><a href="/references/">References</a></li><li><a href="/history/">History</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="https://github.com/faberlang/releases/releases/tag/faber-v1.1.1">All releases</a></li><li><a href="https://github.com/faberlang">GitHub org</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main><h1>itera</h1><div class="content"><p>Starts a for-each iteration statement.</p>
-<p><strong>Aliases:</strong> <code>iterate</code></p>
-<p><strong>Syntax:</strong> <code>itera <mode> <expression> <binding> <block></code></p>
-<h2>Category</h2>
-<p><code>control-flow</code></p>
-<h2>Related</h2>
-<ul>
-<li><a href="/corpus/ex.html">ex</a></li>
-<li><a href="/corpus/de.html">de</a></li>
-<li><a href="/corpus/ab.html">ab</a></li>
-</ul>
-<h2>Examples</h2>
-<h3>examples/corpus/itera/cursor-iteratio.fab (canonical · keyword)</h3>
-<p>Starts a for-each iteration statement.</p>
-<pre class="faber-code"><code class="lang-faber outcome=compiles"># itera ex — cursor function return iteration
+<html lang="la"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types. Agent-readable docs, install, and examples."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="itera — Faber"><meta property="og:description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types."><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><title>itera — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"></head><body class="docs"><div class="renderbar"><div class="in"><span class="lbl">Rendering</span><span class="locbtns">la</span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Get started</div><ul class="nav"><li><a href="/start/install.html">Install &amp; download</a></li><li><a href="/start/examples.html">Examples</a></li><li><a href="/start/">Quick tour</a></li></ul><div class="side-h">Documentation</div><ul class="nav"><li><a href="/">Overview</a></li><li><a href="/features/">Features</a></li><li><a href="/syntax/">Syntax</a></li><li><a href="/tooling/">Tooling</a></li><li><a href="/ecosystem/">Ecosystem</a></li><li><a href="/corpus/" class="active">Corpus</a></li><li><a href="/references/">References</a></li><li><a href="/history/">History</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="https://github.com/faberlang/releases/releases/tag/faber-v1.1.1">All releases</a></li><li><a href="https://github.com/faberlang">GitHub org</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main><h1>itera</h1><div class="content"><p>Starts a for-each iteration statement.</p><p><strong>Aliases:</strong> <code>iterate</code></p><p><strong>Syntax:</strong> <code>itera &lt;mode&gt; &lt;expression&gt; &lt;binding&gt; &lt;block&gt;</code></p><h2>Category</h2><p><code>control-flow</code></p><h2>Related</h2><ul><li><a href="/corpus/ex.html">ex</a></li><li><a href="/corpus/de.html">de</a></li><li><a href="/corpus/ab.html">ab</a></li></ul><h2>Examples</h2><h3>examples/corpus/itera/cursor-iteratio.fab (canonical · keyword)</h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># itera ex — cursor function return iteration
 #
 # itera ex &lt;cursor-call&gt; fixum &lt;item&gt; { &lt;body&gt; }
 #
@@ -46,9 +32,9 @@ functio grena_futurum(numerus n) → numerus {
 
 incipit {
     # Direct consumption of cursor yield stream
-    nota "Sync cursor iteration:"
+    nota &quot;Sync cursor iteration:&quot;
     itera ex grena(3) fixum num {
-        nota "  numerus: §"(num)
+        nota &quot;  numerus: §&quot;(num)
     }
 
     # Collect all results from cursor function
@@ -56,25 +42,20 @@ incipit {
     itera ex grena(5) fixum num {
         effecta.appende(num * 2)
     }
-    nota "Sync collected:"
+    nota &quot;Sync collected:&quot;
     nota effecta
 
     # Note: Futura iteration would require futura context
     # itera ex grena_futurum(3) fixum num {
     #     nota num
     # }
-}</code></pre>
-<p><strong>Expected output:</strong></p>
-<pre class="faber-code"><code>Sync cursor iteration:
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Sync cursor iteration:
   numerus: 0
   numerus: 1
   numerus: 2
 Sync collected:
 [0, 2, 4, 6, 8]
-</code></pre>
-<h3>examples/corpus/itera/in-functione.fab (canonical · keyword)</h3>
-<p>Starts a for-each iteration statement.</p>
-<pre class="faber-code"><code class="lang-faber outcome=compiles"># itera ex — accumulator pattern inside functio
+</code></pre><h3>examples/corpus/itera/in-functione.fab (canonical · keyword)</h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># itera ex — accumulator pattern inside functio
 #
 # itera ex &lt;lista&gt; fixum &lt;item&gt; { &lt;body&gt; }
 #
@@ -128,17 +109,12 @@ incipit {
 
     nota summa([10, 20, 30])
     nota maximum([5, 12, 8, 20, 3])
-}</code></pre>
-<p><strong>Expected output:</strong></p>
-<pre class="faber-code"><code>15
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>15
 5
 2
 60
 20
-</code></pre>
-<h3>examples/corpus/itera/intervallum-gradus.fab (canonical · keyword)</h3>
-<p>Starts a for-each iteration statement.</p>
-<pre class="faber-code"><code class="lang-faber outcome=compiles"># itera ab — ranges with step using per
+</code></pre><h3>examples/corpus/itera/intervallum-gradus.fab (canonical · keyword)</h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># itera ab — ranges with step using per
 #
 # itera ab &lt;start&gt;‥&lt;end&gt; per &lt;step&gt; fixum &lt;item&gt; { &lt;body&gt; }
 # itera ab &lt;start&gt;…&lt;end&gt; per &lt;step&gt; fixum &lt;item&gt; { &lt;body&gt; }
@@ -174,10 +150,7 @@ incipit {
     itera ab 10‥0 per -2 fixum i {
         nota i
     }
-}</code></pre>
-<h3>examples/corpus/itera/intervallum.fab (canonical · keyword)</h3>
-<p>Starts a for-each iteration statement.</p>
-<pre class="faber-code"><code class="lang-faber outcome=compiles"># itera ab — range expressions with exclusive and inclusive bounds
+}</code></pre><h3>examples/corpus/itera/intervallum.fab (canonical · keyword)</h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># itera ab — range expressions with exclusive and inclusive bounds
 #
 # itera ab &lt;start&gt;‥&lt;end&gt; fixum &lt;item&gt; { &lt;body&gt; }       — exclusive end
 # itera ab &lt;start&gt; ante &lt;end&gt; fixum &lt;item&gt; { &lt;body&gt; }  — explicit exclusive
@@ -214,10 +187,7 @@ incipit {
     itera ab 5‥0 fixum i {
         nota i
     }
-}</code></pre>
-<h3>examples/corpus/itera/nidificatus.fab (canonical · keyword)</h3>
-<p>Starts a for-each iteration statement.</p>
-<pre class="faber-code"><code class="lang-faber outcome=compiles"># itera ex — nested loops (Cartesian product)
+}</code></pre><h3>examples/corpus/itera/nidificatus.fab (canonical · keyword)</h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># itera ex — nested loops (Cartesian product)
 #
 # itera ex &lt;collection&gt; fixum &lt;item&gt; { &lt;body&gt; }
 # itera ab &lt;start&gt;‥&lt;end&gt; fixum &lt;item&gt; { &lt;body&gt; }
@@ -235,7 +205,7 @@ incipit {
 incipit {
     # Nested lista iteration — 3 × 3 combinations
     fixum _ rows ← [1, 2, 3]
-    fixum _ cols ← ["A", "B", "C"]
+    fixum _ cols ← [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]
 
     itera ex rows fixum row {
         itera ex cols fixum col {
@@ -246,7 +216,7 @@ incipit {
     # Multiplication table over exclusive ranges 1‥4 (i, j ∈ {1,2,3})
     itera ab 1‥4 fixum i {
         itera ab 1‥4 fixum j {
-            nota i, "*", j, "←", i * j
+            nota i, &quot;*&quot;, j, &quot;←&quot;, i * j
         }
     }
 
@@ -256,9 +226,7 @@ incipit {
             nota x, y
         }
     }
-}</code></pre>
-<p><strong>Expected output:</strong></p>
-<pre class="faber-code"><code>1 A
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1 A
 1 B
 1 C
 2 A
@@ -285,5 +253,4 @@ incipit {
 2 0
 2 1
 2 2
-</code></pre>
-</div></main><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;examples/corpus/itera/cursor-iteratio.fab&quot;]</li></ul></div></footer></div></body></html>
+</code></pre></div></main><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;examples/corpus/itera/cursor-iteratio.fab&quot;]</li></ul></div></footer></div></body></html>

@@ -198,7 +198,7 @@ functio genera_side_meta() → doc_mod.Node {
 
 functio genera_main(types_mod.Pagina pag) → doc_mod.Node {
     fixum doc_mod.Node h1 ← doc_mod.leaf("h1", attrs0(), pag.titulus)
-    fixum doc_mod.Node body ← genera_body(markdown_mod.converte(pag.corpus))
+    fixum doc_mod.Node body ← genera_body(markdown_mod.converte_nodes(pag.corpus))
     si pag.section ≡ "" {
         redde doc_mod.element("main", attrs0(), children3(h1, genera_agent_notice(), body))
     }
@@ -225,8 +225,8 @@ functio genera_agent_notice() → doc_mod.Node {
     redde doc_mod.element("section", attrs2("class", "agent-notice", "aria-label", "Agent-facing notice"), children2(label, body))
 }
 
-functio genera_body(textus markdown) → doc_mod.Node {
-    redde doc_mod.element("div", attrs1("class", "content"), children1(doc_mod.raw(markdown)))
+functio genera_body(lista<doc_mod.Node> markdown_nodes) → doc_mod.Node {
+    redde doc_mod.element("div", attrs1("class", "content"), markdown_nodes)
 }
 
 functio genera_source_list(lista<textus> sources) → doc_mod.Node {

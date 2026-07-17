@@ -9,6 +9,7 @@
 # See CONTENT-PLAN.md § Machine contracts §4.
 
 importa ex "./string_util" privata * ut su
+importa ex "./document_ir" privata * ut doc_mod
 
 # The 37 mappable keywords. These are the Latin spellings that have
 # localized forms in reader-locale packs (th-TH, ar, hi, vi, zh-Hans,
@@ -89,23 +90,43 @@ functio classifica(textus span) → textus {
 }
 
 
-# Render an inline code span to HTML.
-# Wraps in <code class="kw">, <code class="typ">, or plain <code>.
-functio genera_span(textus span) → textus {
+functio attrs0() → lista<doc_mod.Attr> {
+    redde vacua
+}
+
+functio attrs1(textus n1, textus v1) → lista<doc_mod.Attr> {
+    varia lista<doc_mod.Attr> attrs ← vacua
+    attrs.appende(doc_mod.attr(n1, v1))
+    redde attrs
+}
+
+# Render an inline code span to Document IR.
+# Wraps in code class=kw, code class=typ, or plain code.
+functio genera_span_node(textus span) → doc_mod.Node {
     fixum textus cls ← classifica(span)
-    si cls ≡ "kw" ergo redde «<code class="kw">§</code>»(span)
-    si cls ≡ "typ" ergo redde «<code class="typ">§</code>»(span)
-    redde "<code>§</code>"(span)
+    si cls ≡ "kw" ergo redde doc_mod.leaf("code", attrs1("class", "kw"), span)
+    si cls ≡ "typ" ergo redde doc_mod.leaf("code", attrs1("class", "typ"), span)
+    redde doc_mod.leaf("code", attrs0(), span)
+}
+
+# Compatibility helper for older proba callers. The serializer remains the
+# only module that writes angle-bracket HTML.
+functio genera_span(textus span) → textus {
+    redde doc_mod.node_html(genera_span_node(span))
 }
 
 
-# Render all inline code spans in a line of Markdown.
-# Finds backtick-delimited spans and replaces them with HTML.
-#
-# Uses textus[i] (zero-allocation numerus scalar) for character comparison
-# and bulk sectio for flushing plain-text runs — avoids O(n2) allocation.
-functio genera_line(textus line) → textus {
-    varia textus result ← ""
+functio flush_text(lista<doc_mod.Node> nodes, textus line, numerus start, numerus end) → lista<doc_mod.Node> {
+    varia lista<doc_mod.Node> result ← nodes
+    si end > start {
+        result.appende(doc_mod.text(line.sectio(start, end)))
+    }
+    redde result
+}
+
+# Render all inline code spans in a line of Markdown to Document IR nodes.
+functio genera_line_nodes(textus line) → lista<doc_mod.Node> {
+    varia lista<doc_mod.Node> nodes ← vacua
     varia numerus i ← 0
     fixum numerus len ← line.longitudo()
     varia numerus plain_start ← 0
@@ -115,9 +136,7 @@ functio genera_line(textus line) → textus {
         fixum numerus ch ← line[i]
         si ch ≡ 96 {
             # Backtick (ASCII 96) — flush plain text before it
-            si i > plain_start {
-                result ← result + line.sectio(plain_start, i)
-            }
+            nodes ← flush_text(nodes, line, plain_start, i)
 
             # Find closing backtick
             varia numerus j ← i + 1
@@ -133,7 +152,7 @@ functio genera_line(textus line) → textus {
 
             si found {
                 fixum textus span_text ← line.sectio(i + 1, j)
-                result ← result + genera_span(span_text)
+                nodes.appende(genera_span_node(span_text))
                 plain_start ← j + 1
                 i ← j + 1
                 perge
@@ -148,12 +167,13 @@ functio genera_line(textus line) → textus {
         i ← i + 1
     }
 
-    # Flush remaining plain text
-    si len > plain_start {
-        result ← result + line.sectio(plain_start, len)
-    }
+    nodes ← flush_text(nodes, line, plain_start, len)
+    redde nodes
+}
 
-    redde result
+# Compatibility helper for older proba callers.
+functio genera_line(textus line) → textus {
+    redde doc_mod.node_html(doc_mod.frag(genera_line_nodes(line)))
 }
 
 

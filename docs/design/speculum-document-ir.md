@@ -261,7 +261,9 @@ one chrome path.
 **Landed:** hand-4 `40d7f985` / commit `46f719a` — Stage A chrome IR (flat Element).  
 **A.1 closed:** hand-4 `798d087b` — `document_ir.fab` now models `discretio Node { Element, Text, Raw, Frag }`; serializer owns text/attribute escaping and the explicit HTML void-element set; `build-site.sh` regenerated `dist/` with smoke checks for `/`, `/start/install.html`, and 1.1.1 links.
 
-**Next:** Stage B markdown-to-Node IR.
+**Stage B closed:** hand-4 `32c4faa7` — `markdown.fab` now emits `lista<Node>` for body blocks; `html.fab` wraps those nodes directly in content chrome; inline code classification returns IR nodes through `span.fab`; the shared `document_ir` serializer remains the only Markdown-path tag writer.
+
+**Next:** Stage C page metadata decision, or defer it if TOML frontmatter remains sufficient.
 
 **Rollback:** keep previous `dist/` commit; generator is rebuilt offline (no
 Faber in CI today).
