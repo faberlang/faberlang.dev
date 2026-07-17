@@ -1,6 +1,12 @@
 # Content Plan — faberlang.dev
 
-Status: **content drafted, framework not yet built.**
+Status: **framework built; English site generated; multilingual generation is partial.**
+
+Current implementation state (2026-07-17): authored Markdown, corpus pages,
+portal/start pages, and generated `/llms.txt` render through Speculum. Stage 7
+is not complete: `th-TH`, `zh-Hans`, and `vi` have portal/start fallback-proof
+slices plus generated corpus build artifacts, while full localized authored
+docs and prose translation remain open for all non-English locales.
 
 The site is Wikipedia-shaped: random-access reference pages, each with one job and a
 self-contained lead, linking out rather than teaching in sequence. This document records
@@ -901,7 +907,9 @@ reference-only or reference-plus-on-ramp is still open.
 
 ## Next steps
 
-**Strategy: build the framework in English now; multilingual generation is unblocked.**
+**Strategy: keep the generated English site as the authority; finish Stage 7 by
+turning the current multi-locale fallback proof into at least one full
+non-English locale before claiming multilingual completion.**
 
 ### English-first does not mean Latin-only
 

@@ -134,9 +134,11 @@ script-only rather than an application file-I/O path.
 | 1 — Generator foundation | ✅ Closed | 9 modules, `faber check` clean, renders end-to-end |
 | 2 — Annotate authored pages | ✅ Closed | 72/72 fences pass, 146 heading anchors, all 23 pages render |
 | 3 — Port HTML to Markdown | ✅ Closed | 0 HTML files remain, 40 pages live, deploy pipeline wired |
-| 4 — Corpus generation | Implemented with residuals | 167 canonical pages, 95 alias redirects, 45 category indexes, corpus hub |
-| 5 — Portal + getting-started | Pending | Speculum Porta entry point, install/tutorial track |
-| 6 — Multilingual | Pending | Canonical transcode per locale |
+| 4 — Corpus slice | ✅ Closed | Proof term page + alias bridge rendered end-to-end |
+| 5 — Corpus scale | Implemented with residuals | 167 canonical pages, 95 alias redirects, 45 category indexes, corpus hub |
+| 6 — Portal + getting-started | Implemented with residuals | Speculum Porta entry point, install/tutorial track; container install CI still open |
+| 7 — Multilingual | Partial proof | `th-TH`, `zh-Hans`, and `vi` portal/start fallback slices plus generated corpus artifacts; full localized authored docs/prose still open |
+| 8 — Generated LLM surface | ✅ Closed | `/llms.txt` generated from corpus frontmatter |
 
 See `docs/factory/site-implementation/CAMPAIGN.md` for full detail.
 
