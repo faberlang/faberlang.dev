@@ -263,6 +263,8 @@ one chrome path.
 
 **Stage B closed:** hand-4 `32c4faa7` — `markdown.fab` now emits `lista<Node>` for body blocks; `html.fab` wraps those nodes directly in content chrome; inline code classification returns IR nodes through `span.fab`; the shared `document_ir` serializer remains the only Markdown-path tag writer.
 
+**Gate closed:** hand-4 `da7c0cfa` — corpus alias redirects now build `Document`/`Node` IR instead of a guillemet DOCTYPE shell; `generator/scripts/validate-html-literals.sh` and `build-site.sh` fail if raw tag emission appears outside `document_ir.fab`.
+
 **Next:** Stage C page metadata decision, or defer it if TOML frontmatter remains sufficient.
 
 **Rollback:** keep previous `dist/` commit; generator is rebuilt offline (no

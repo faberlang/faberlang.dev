@@ -32,8 +32,11 @@ echo "Output:  $OUTPUT_DIR"
 echo ""
 
 # ------------------------------------------------------------------
-# Step 1: Build the generator binary (once)
+# Step 1: Validate source gates and build the generator binary (once)
 # ------------------------------------------------------------------
+echo "[1/4] Validating generator source..."
+"${SCRIPT_DIR}/validate-html-literals.sh" "${GENERATOR_DIR}/src"
+
 echo "[1/4] Building generator..."
 "$FABER" build "$GENERATOR_DIR" -t rust 2>/dev/null
 
