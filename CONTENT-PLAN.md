@@ -4,7 +4,7 @@ Status: **framework built; English site generated; multilingual generation is pa
 
 Current implementation state (2026-07-17): authored Markdown, corpus pages,
 portal/start pages, and generated `/llms.txt` render through Speculum. Stage 7
-is not complete: `th-TH`, `zh-Hans`, `vi`, and `ar` have portal/start
+is not complete: `th-TH`, `zh-Hans`, `vi`, `ar`, and `hi` have portal/start
 fallback-proof slices plus generated corpus build artifacts, while full
 localized authored docs and prose translation remain open for all non-English
 locales.
