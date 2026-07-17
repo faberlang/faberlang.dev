@@ -1,13 +1,12 @@
 # Speculum site generator entry point.
 #
-# Pure text-to-text pipeline. The generator package has no file I/O
-# capability (kernel imports are package-mode restricted, PKG001).
-# The shell wrapper (render.sh) handles file reading and invokes the
-# generator via `faber build -t rust` for compiled execution.
+# Markdown-to-HTML pipeline.
 #
-# The genera() function is the primary API — the shell wrapper calls
-# into it by passing source content. See render.sh.
+# The genera() function is the primary text-to-text API. The CLI entry uses
+# norma:solum for source file reads, so shell wrappers only build and invoke
+# the compiled generator.
 
+importa ex "norma:solum" privata solum
 importa ex "./types" privata * ut types_mod
 importa ex "./html" privata * ut html_mod
 importa ex "./string_util" privata * ut su
@@ -52,9 +51,44 @@ functio deriva_iter(textus path) → textus {
     redde path
 }
 
-# Entry point — prints usage banner.
-# The shell wrapper (render.sh) is the primary invocation surface.
-incipit {
-    nota "Speculum site generator v0.1.0"
-    nota "Usage: ./render.sh <source.md> [locale] [stylesheet] [output]"
+functio operandum(lista<textus> operands, numerus index, textus defectus) → textus {
+    redde operands.accipe(index) vel defectus
+}
+
+functio usus() → textus {
+    redde "Usage: speculum-gen <source.md> [locale] [stylesheet] | --page <iter> <source.md> [locale] [stylesheet] | --corpus <term> <bundle> [locale] [stylesheet] | --corpus-markdown <term> <bundle> | --alias <alias> <canonical> [locale] [stylesheet]"
+}
+
+functio lege_paginam(textus source_path, textus iter, textus locale, textus stylesheet) → textus {
+    fixum textus source ← solum.lege<textus>(source_path)
+    redde genera(source, iter, locale, stylesheet)
+}
+
+functio ex_operands(lista<textus> operands) → textus {
+    si operands.longitudo() < 1 ergo redde usus()
+    fixum textus mode ← operands[0]
+    si mode ≡ "--page" {
+        si operands.longitudo() < 3 ergo redde "missing page iter or source"
+        redde lege_paginam(operands[2], operands[1], operandum(operands, 3, "la"), operandum(operands, 4, "/speculum.css"))
+    }
+    si mode ≡ "--corpus-markdown" {
+        si operands.longitudo() < 3 ergo redde "missing corpus term or bundle"
+        redde genera_corpus_markdown(operands[1], solum.lege<textus>(operands[2]))
+    }
+    si mode ≡ "--corpus" {
+        si operands.longitudo() < 3 ergo redde "missing corpus term or bundle"
+        redde genera_corpus(operands[1], solum.lege<textus>(operands[2]), operandum(operands, 3, "la"), operandum(operands, 4, "/speculum.css"))
+    }
+    si mode ≡ "--alias" {
+        si operands.longitudo() < 3 ergo redde "missing alias or canonical term"
+        redde genera_alias_redirect(operands[1], operands[2], operandum(operands, 3, "la"), operandum(operands, 4, "/speculum.css"))
+    }
+    redde lege_paginam(mode, deriva_iter(mode), operandum(operands, 1, "la"), operandum(operands, 2, "/speculum.css"))
+}
+
+@ cli "speculum-gen"
+@ descriptio "Speculum Markdown site generator"
+@ operandus ceteri textus operands
+incipit argumenta args {
+    nota ex_operands(args.operands)
 }

@@ -35,15 +35,10 @@ if [ -n "$PROOF_DIR" ]; then
     mkdir -p "$PROOF_DIR"
 fi
 
-# Build the pure Faber generator, then inject the file/batch entry point into
-# generated Rust. This mirrors render.sh but keeps corpus scale in one compile.
+# Build the Faber generator once. Corpus mode and file reads live in the
+# generated CLI via norma:solum, so this wrapper only orchestrates traversal.
 echo "Building generator for corpus batch..." >&2
 "$FABER" build "$GENERATOR_DIR" -t rust 2>/dev/null
-MAIN_RS="${BUILD_DIR}/src/main.rs"
-if [ ! -f "$MAIN_RS" ]; then
-    echo "ERROR: generated main.rs not found at $MAIN_RS" >&2
-    exit 1
-fi
 
 # Prefer 3.11+ for tomllib (batch orchestration); fall back to python3.
 PYTHON="${PYTHON:-}"
@@ -56,68 +51,6 @@ if [ -z "$PYTHON" ]; then
         PYTHON=python3
     fi
 fi
-
-MAIN_RS_PATH="$MAIN_RS" "$PYTHON" << 'PYEOF'
-import os
-import sys
-
-path = os.environ["MAIN_RS_PATH"]
-src = open(path).read()
-new_main = r'''fn main() {
-    let args: Vec<String> = std::env::args().collect();
-    if args.len() < 2 {
-        eprintln!("Usage: speculum-gen --page <iter> <source.md> [locale] [stylesheet] | --corpus <term> <bundle> [locale] [stylesheet] | --corpus-markdown <term> <bundle> | --alias <alias> <canonical> [locale] [stylesheet]");
-        std::process::exit(1);
-    }
-    let mode = &args[1];
-    let html = if mode == "--page" {
-        if args.len() < 4 { eprintln!("missing page iter or source"); std::process::exit(1); }
-        let locale = if args.len() > 4 { args[4].clone() } else { "la".to_string() };
-        let stylesheet = if args.len() > 5 { args[5].clone() } else { "/speculum.css".to_string() };
-        let iter = args[2].clone();
-        let source = std::fs::read_to_string(&args[3]).expect("failed to read page source");
-        genera(source, iter, locale, stylesheet)
-    } else if mode == "--corpus-markdown" {
-        if args.len() < 4 { eprintln!("missing corpus term or bundle"); std::process::exit(1); }
-        let term = args[2].clone();
-        let bundle = std::fs::read_to_string(&args[3]).expect("failed to read corpus bundle");
-        genera_corpus_markdown(term, bundle)
-    } else if mode == "--corpus" {
-        if args.len() < 4 { eprintln!("missing corpus term or bundle"); std::process::exit(1); }
-        let locale = if args.len() > 4 { args[4].clone() } else { "la".to_string() };
-        let stylesheet = if args.len() > 5 { args[5].clone() } else { "/speculum.css".to_string() };
-        let term = args[2].clone();
-        let bundle = std::fs::read_to_string(&args[3]).expect("failed to read corpus bundle");
-        genera_corpus(term, bundle, locale, stylesheet)
-    } else if mode == "--alias" {
-        if args.len() < 4 { eprintln!("missing alias or canonical term"); std::process::exit(1); }
-        let locale = if args.len() > 4 { args[4].clone() } else { "la".to_string() };
-        let stylesheet = if args.len() > 5 { args[5].clone() } else { "/speculum.css".to_string() };
-        genera_alias_redirect(args[2].clone(), args[3].clone(), locale, stylesheet)
-    } else {
-        eprintln!("unknown mode: {}", mode);
-        std::process::exit(1);
-    };
-    print!("{}", html);
-}'''
-idx = src.find("fn main()")
-if idx < 0:
-    print("ERROR: fn main() not found", file=sys.stderr)
-    sys.exit(1)
-brace_start = src.find("{", idx)
-depth = 0
-end = brace_start
-for i in range(brace_start, len(src)):
-    if src[i] == "{":
-        depth += 1
-    elif src[i] == "}":
-        depth -= 1
-        if depth == 0:
-            end = i + 1
-            break
-open(path, "w").write(src[:idx] + new_main + src[end:])
-PYEOF
-
 
 echo "Compiling corpus batch generator..." >&2
 (cd "$BUILD_DIR" && cargo build --quiet 2>/dev/null)
@@ -195,12 +128,12 @@ for term in terms:
     bundle = bundle_dir / f"{term}.bundle"
     bundle.write_text(marker.join(path + source_marker + source + expected_marker + expected for _, path, source, expected in selected))
     html_path = corpus_out / f"{term}.html"
-    html = subprocess.check_output([str(binary), "--corpus", term, str(bundle), locale, stylesheet], text=True)
+    html = subprocess.check_output([str(binary), "--", "--corpus", term, str(bundle), locale, stylesheet], text=True)
     html_path.write_text(clean_generated(html))
     if proof_dir:
         proof_path = Path(proof_dir) / f"{term}.md"
         proof_path.parent.mkdir(parents=True, exist_ok=True)
-        markdown = subprocess.check_output([str(binary), "--corpus-markdown", term, str(bundle)], text=True)
+        markdown = subprocess.check_output([str(binary), "--", "--corpus-markdown", term, str(bundle)], text=True)
         proof_path.write_text(markdown)
 written_aliases = set()
 skipped_aliases = []
@@ -213,7 +146,7 @@ for alias in sorted(alias_targets):
     if len(targets) > 1:
         skipped_aliases.append((alias, targets[1:], f"duplicate-alias-kept:{target}"))
     alias_path = corpus_out / f"{alias}.html"
-    alias_html = subprocess.check_output([str(binary), "--alias", alias, target, locale, stylesheet], text=True)
+    alias_html = subprocess.check_output([str(binary), "--", "--alias", alias, target, locale, stylesheet], text=True)
     alias_path.write_text(clean_generated(alias_html))
     written_aliases.add(alias)
 
@@ -245,7 +178,7 @@ for category in sorted(category_terms):
     source.write_text("\n".join(md) + "\n")
     out = corpus_out / "category" / f"{category_slug}.html"
     out.parent.mkdir(parents=True, exist_ok=True)
-    html = subprocess.check_output([str(binary), "--page", f"corpus/category/{category_slug}", str(source), locale, stylesheet], text=True)
+    html = subprocess.check_output([str(binary), "--", "--page", f"corpus/category/{category_slug}", str(source), locale, stylesheet], text=True)
     out.write_text(clean_generated(html))
     category_index.append((category, category_slug, len(terms_in_category)))
 
@@ -268,7 +201,7 @@ hub.extend(["", "## Terms", ""])
 hub.extend(f"- [`{term}`](/corpus/{term}.html)" for term in terms)
 hub_source = generated_dir / "corpus-index.md"
 hub_source.write_text("\n".join(hub) + "\n")
-hub_html = subprocess.check_output([str(binary), "--page", "corpus/index", str(hub_source), locale, stylesheet], text=True)
+hub_html = subprocess.check_output([str(binary), "--", "--page", "corpus/index", str(hub_source), locale, stylesheet], text=True)
 (corpus_out / "index.html").write_text(clean_generated(hub_html))
 
 manifest = {

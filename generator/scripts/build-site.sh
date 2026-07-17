@@ -40,61 +40,6 @@ echo "[1/4] Validating generator source..."
 echo "[1/4] Building generator..."
 "$FABER" build "$GENERATOR_DIR" -t rust 2>/dev/null
 
-MAIN_RS="${BUILD_DIR}/src/main.rs"
-if [ ! -f "$MAIN_RS" ]; then
-    echo "ERROR: generated main.rs not found at $MAIN_RS"
-    exit 1
-fi
-
-# Patch main() to read a file and call genera()
-MAIN_RS_PATH="$MAIN_RS" python3 << 'PYEOF'
-import os, sys
-
-path = os.environ["MAIN_RS_PATH"]
-with open(path, "r") as f:
-    src = f.read()
-
-# Check if already patched
-if "speculum-gen" in src:
-    sys.exit(0)
-
-new_main = '''fn main() {
-    let args: Vec<String> = std::env::args().collect();
-    if args.len() < 2 {
-        eprintln!("Usage: speculum-gen <source.md> [locale] [stylesheet]");
-        std::process::exit(1);
-    }
-    let source_path = &args[1];
-    let locale = if args.len() > 2 { args[2].clone() } else { "la".to_string() };
-    let stylesheet = if args.len() > 3 { args[3].clone() } else { "/speculum.css".to_string() };
-    let source = std::fs::read_to_string(source_path).expect("failed to read source file");
-    let iter = deriva_iter(source_path.clone());
-    let html = genera(source, iter, locale, stylesheet);
-    println!("{}", html);
-}'''
-
-idx = src.find("fn main()")
-if idx < 0:
-    print("ERROR: fn main() not found", file=sys.stderr)
-    sys.exit(1)
-
-brace_start = src.find("{", idx)
-depth = 0
-end = brace_start
-for i in range(brace_start, len(src)):
-    if src[i] == "{":
-        depth += 1
-    elif src[i] == "}":
-        depth -= 1
-        if depth == 0:
-            end = i + 1
-            break
-
-result = src[:idx] + new_main + src[end:]
-with open(path, "w") as f:
-    f.write(result)
-PYEOF
-
 echo "[2/4] Compiling generator..."
 (cd "$BUILD_DIR" && cargo build --quiet 2>/dev/null)
 

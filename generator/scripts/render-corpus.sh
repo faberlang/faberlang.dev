@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Render a bounded corpus term page through the Faber generator.
 #
-# The wrapper owns traversal and file I/O. Frontmatter parsing, kind policy,
-# Markdown templating, and HTML rendering remain in generator/src/corpus.fab.
+# The wrapper owns traversal and bundle creation. Frontmatter parsing, kind
+# policy, Markdown templating, HTML rendering, and bundle reads remain in Faber.
 #
 # Usage: render-corpus.sh <term> <output.html> [locale] [stylesheet]
 
@@ -30,15 +30,10 @@ if [ ! -d "$CORPUS_DIR" ]; then
     exit 1
 fi
 
-# Build the same pure generator used by render.sh, then inject only the
-# corpus/file-I/O entry point into generated Rust.
+# Build the same generator used by render.sh. Corpus mode and bundle reads live
+# in the generated CLI via norma:solum.
 echo "Building generator for corpus term $TERM..." >&2
 "$FABER" build "$GENERATOR_DIR" -t rust 2>/dev/null
-MAIN_RS="${BUILD_DIR}/src/main.rs"
-if [ ! -f "$MAIN_RS" ]; then
-    echo "ERROR: generated main.rs not found at $MAIN_RS" >&2
-    exit 1
-fi
 
 BUNDLE="${BUILD_DIR}/corpus-${TERM}.bundle"
 BUNDLE_PATH="$BUNDLE" CORPUS_DIR="$CORPUS_DIR" TERM="$TERM" python3 << 'PYEOF'
@@ -83,68 +78,16 @@ for _, path, source, expected in selected:
 Path(os.environ["BUNDLE_PATH"]).write_text(marker.join(records))
 PYEOF
 
-MAIN_RS_PATH="$MAIN_RS" python3 << 'PYEOF'
-import os
-import sys
-
-path = os.environ["MAIN_RS_PATH"]
-src = open(path).read()
-new_main = r'''fn main() {
-    let args: Vec<String> = std::env::args().collect();
-    if args.len() < 2 {
-        eprintln!("Usage: speculum-gen --corpus <term> <bundle> [locale] [stylesheet]");
-        std::process::exit(1);
-    }
-    let mode = &args[1];
-    let locale = if args.len() > 4 { args[4].clone() } else { "la".to_string() };
-    let stylesheet = if args.len() > 5 { args[5].clone() } else { "/speculum.css".to_string() };
-    let html = if mode == "--corpus-markdown" {
-        if args.len() < 4 { eprintln!("missing corpus term or bundle"); std::process::exit(1); }
-        let term = args[2].clone();
-        let bundle = std::fs::read_to_string(&args[3]).expect("failed to read corpus bundle");
-        genera_corpus_markdown(term, bundle)
-    } else if mode == "--corpus" {
-        if args.len() < 4 { eprintln!("missing corpus term or bundle"); std::process::exit(1); }
-        let term = args[2].clone();
-        let bundle = std::fs::read_to_string(&args[3]).expect("failed to read corpus bundle");
-        genera_corpus(term, bundle, locale, stylesheet)
-    } else if mode == "--alias" {
-        if args.len() < 4 { eprintln!("missing alias or canonical term"); std::process::exit(1); }
-        genera_alias_redirect(args[2].clone(), args[3].clone(), locale, stylesheet)
-    } else {
-        eprintln!("unknown mode: {}", mode);
-        std::process::exit(1);
-    };
-    print!("{}", html);
-}'''
-idx = src.find("fn main()")
-if idx < 0:
-    print("ERROR: fn main() not found", file=sys.stderr)
-    sys.exit(1)
-brace_start = src.find("{", idx)
-depth = 0
-end = brace_start
-for i in range(brace_start, len(src)):
-    if src[i] == "{":
-        depth += 1
-    elif src[i] == "}":
-        depth -= 1
-        if depth == 0:
-            end = i + 1
-            break
-open(path, "w").write(src[:idx] + new_main + src[end:])
-PYEOF
-
 echo "Compiling corpus generator..." >&2
 (cd "$BUILD_DIR" && cargo build --quiet 2>/dev/null)
 
 mkdir -p "$(dirname "$OUTPUT")"
-"${BUILD_DIR}/target/debug/speculum-gen" --corpus "$TERM" "$BUNDLE" "$LOCALE" "$STYLESHEET" > "$OUTPUT"
+"${BUILD_DIR}/target/debug/speculum-gen" -- --corpus "$TERM" "$BUNDLE" "$LOCALE" "$STYLESHEET" > "$OUTPUT"
 echo "Wrote: $OUTPUT" >&2
 
 if [ -n "$PROOF_MARKDOWN" ]; then
     mkdir -p "$(dirname "$PROOF_MARKDOWN")"
-    "${BUILD_DIR}/target/debug/speculum-gen" --corpus-markdown "$TERM" "$BUNDLE" > "$PROOF_MARKDOWN"
+    "${BUILD_DIR}/target/debug/speculum-gen" -- --corpus-markdown "$TERM" "$BUNDLE" > "$PROOF_MARKDOWN"
     echo "Wrote proof Markdown: $PROOF_MARKDOWN" >&2
 fi
 
@@ -180,7 +123,7 @@ for alias in aliases:
     alias_path = output.parent / f"{alias}.html"
     alias_path.parent.mkdir(parents=True, exist_ok=True)
     rendered = __import__("subprocess").check_output(
-        [binary, "--alias", alias, canonical, locale, stylesheet], text=True
+        [binary, "--", "--alias", alias, canonical, locale, stylesheet], text=True
     )
     alias_path.write_text(rendered)
     print(f"Wrote: {alias_path}", file=os.sys.stderr)
