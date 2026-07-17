@@ -36,6 +36,9 @@ functio genera_head(types_mod.Pagina pag, textus stylesheet_link) → textus {
     redde «<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types. Agent-readable docs, install, and examples.">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index">
+<link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide">
 <title>§</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,18 +47,28 @@ functio genera_head(types_mod.Pagina pag, textus stylesheet_link) → textus {
 </head>»(title, stylesheet_link)
 }
 
-# Generate the rendering bar.
+# Generate the rendering bar with machine-doc links.
 functio genera_renderbar(textus current_locale) → textus {
     redde «<div class="renderbar">
   <div class="in">
     <span class="lbl">Rendering</span>
     <span class="locbtns">§</span>
+    <nav class="machine-links" aria-label="Machine documentation">
+      <a href="/llms.txt">/llms.txt</a>
+      <a href="/agents/index.md">/agents</a>
+      <a href="/.well-known/agent-skills/index.json">/skills</a>
+      <a href="/start/install.html">install</a>
+    </nav>
   </div>
 </div>»(current_locale)
 }
 
-# Generate the sidebar navigation.
+# Generate the sidebar navigation — denser multi-section chrome.
 functio genera_sidebar(textus active_section) → textus {
+    fixum textus start_install ← genera_nav_link("Install &amp; download", "/start/install.html", active_section ≡ "install")
+    fixum textus start_examples ← genera_nav_link("Examples", "/start/examples.html", active_section ≡ "examples")
+    fixum textus start_tour ← genera_nav_link("Quick tour", "/start/", active_section ≡ "start")
+
     fixum textus nav_overview ← genera_nav_link("Overview", "/", active_section ≡ "")
     fixum textus nav_features ← genera_nav_link("Features", "/features/", active_section ≡ "features")
     fixum textus nav_syntax ← genera_nav_link("Syntax", "/syntax/", active_section ≡ "syntax")
@@ -65,11 +78,29 @@ functio genera_sidebar(textus active_section) → textus {
     fixum textus nav_references ← genera_nav_link("References", "/references/", active_section ≡ "references")
     fixum textus nav_history ← genera_nav_link("History", "/history/", active_section ≡ "history")
 
+    fixum textus agent_llms ← genera_nav_link("Agent index", "/llms.txt", falsum)
+    fixum textus agent_guide ← genera_nav_link("Agent guide", "/agents/index.md", falsum)
+    fixum textus agent_skills ← genera_nav_link("Agent skills", "/.well-known/agent-skills/index.json", falsum)
+    fixum textus agent_full ← genera_nav_link("Full reference", "/llms-full.txt", falsum)
+
+    fixum textus rel_darwin ← genera_nav_link("macOS arm64", "https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz", falsum)
+    fixum textus rel_linux ← genera_nav_link("Linux x64", "https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz", falsum)
+    fixum textus rel_all ← genera_nav_link("All releases", "https://github.com/faberlang/releases/releases/tag/faber-v1.1.1", falsum)
+    fixum textus rel_gh ← genera_nav_link("GitHub org", "https://github.com/faberlang", falsum)
+
     redde «<aside>
   <a class="brand" href="/">
     <span class="brand-name">Faber</span>
     <span class="brand-tag">language docs</span>
   </a>
+
+  <div class="side-h">Get started</div>
+  <ul class="nav">
+    <li>§</li>
+    <li>§</li>
+    <li>§</li>
+  </ul>
+
   <div class="side-h">Documentation</div>
   <ul class="nav">
     <li>§</li>
@@ -81,7 +112,30 @@ functio genera_sidebar(textus active_section) → textus {
     <li>§</li>
     <li>§</li>
   </ul>
-</aside>»(nav_overview, nav_features, nav_syntax, nav_tooling, nav_ecosystem, nav_corpus, nav_references, nav_history)
+
+  <div class="side-h">For agents</div>
+  <ul class="nav nav-compact">
+    <li>§</li>
+    <li>§</li>
+    <li>§</li>
+    <li>§</li>
+  </ul>
+
+  <div class="side-h">Release 1.1.1</div>
+  <ul class="nav nav-compact">
+    <li>§</li>
+    <li>§</li>
+    <li>§</li>
+    <li>§</li>
+  </ul>
+
+  <div class="side-meta">
+    <div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div>
+    <div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div>
+    <div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div>
+    <div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div>
+  </div>
+</aside>»(start_install, start_examples, start_tour, nav_overview, nav_features, nav_syntax, nav_tooling, nav_ecosystem, nav_corpus, nav_references, nav_history, agent_llms, agent_guide, agent_skills, agent_full, rel_darwin, rel_linux, rel_all, rel_gh)
 }
 
 # Generate a navigation link, marking active section.
@@ -96,10 +150,32 @@ functio genera_nav_link(textus label, textus href, bivalens active) → textus {
 functio genera_main(types_mod.Pagina pag) → textus {
     fixum textus h1 ← "<h1>§</h1>"(pag.titulus)
     fixum textus body ← genera_body(markdown_mod.converte(pag.corpus))
+    # Homepage: agent notice band above body content.
+    si pag.section ≡ "" {
+        fixum textus notice ← genera_agent_notice()
+        redde «<main>
+§
+§
+§
+</main>»(h1, notice, body)
+    }
     redde «<main>
 §
 §
 </main>»(h1, body)
+}
+
+# Agent-first notice on the homepage (pattern: discoverability for machines).
+functio genera_agent_notice() → textus {
+    redde «<section class="agent-notice" aria-label="Agent-facing notice">
+  <span class="agent-notice-label">Agent-ready</span>
+  <div class="agent-notice-body">
+    <p>If you are an AI agent: start at <a href="/llms.txt"><code>/llms.txt</code></a>,
+    then read <a href="/agents/index.md"><code>/agents/index.md</code></a> and pick a skill from
+    <a href="/.well-known/agent-skills/index.json"><code>/.well-known/agent-skills/</code></a>.
+    Humans: use <a href="/start/install.html">Install</a> and <a href="/start/examples.html">Examples</a>.</p>
+  </div>
+</section>»
 }
 
 # Generate HTML from Markdown body.

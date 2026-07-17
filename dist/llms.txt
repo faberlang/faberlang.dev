@@ -1,0 +1,166 @@
+# Faber
+
+Faber is a package-oriented programming language with a Latin behavioural
+vocabulary, a small regular grammar, and a type-first static type system.
+Source compiles through the Radix compiler to reviewable Rust and native
+binaries. Meaning lives in a semantic core (HIR); every human-language
+keyword surface and every codegen target is a rendering of that core.
+
+This document is the machine-readable public entrypoint for agents.
+Read it before editing Faber source or scaffolding packages.
+
+## Purpose
+
+- Teach agents enough language shape to read and write correct Faber.
+- Point agents at installable CLI binaries and real application packages.
+- Prefer focused skills under /.well-known/agent-skills/ over scraping HTML.
+
+## Start here
+
+1. Treat https://faberlang.dev as the documentation host.
+2. Read https://faberlang.dev/llms.txt (this file) first.
+3. Read https://faberlang.dev/agents/index.md for the agent learning path.
+4. Read https://faberlang.dev/llms-full.txt when you need the expanded map.
+5. Choose a skill from https://faberlang.dev/.well-known/agent-skills/index.json.
+6. Install the CLI from the current release (see Install below).
+7. Open real packages in https://github.com/faberlang/examples — not only snippets.
+
+## Can I use this today?
+
+- Public docs on faberlang.dev are open.
+- Prebuilt `faber` CLI archives for macOS arm64 and Linux x64 are published
+  under the faberlang/releases GitHub repo (current: Faber 1.1.1).
+- Public source: faber CLI, faber-runtime, norma, cista, triga, examples.
+- The Radix compiler implementation is private; consumers use the published
+  `faber` binary or org builds.
+
+## Install (current release: 1.1.1)
+
+Release page:
+https://github.com/faberlang/releases/releases/tag/faber-v1.1.1
+
+Archives:
+
+- macOS arm64:
+  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz
+- Linux x64:
+  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz
+
+Matching `.sha256` files sit next to each archive.
+
+Human install page: https://faberlang.dev/start/install.html
+Skill: https://faberlang.dev/.well-known/agent-skills/install/SKILL.md
+
+Minimal verify after install:
+
+```bash
+faber --version
+faber explain SEM001
+```
+
+## Language shape (minimum viable)
+
+- Type-first bindings: `textus nomen` not `nomen: textus`.
+- Latin behavioural words: `functio`, `genus`, `fixum`, `redde`, `si`, `itera`.
+- Glyphs: `←` bind, `→` return type, `∴` compact branch, `≡` equality, `∪` union.
+- Nullable: `T ∪ nihil` (not a separate `?T` sugar as authority).
+- Comments: `#` only, on its own line. No `//`, no trailing `#`.
+- Packages: directory with `faber.toml` + `src/*.fab`.
+
+Example:
+
+```text
+functio divide(numerus a, numerus b) → numerus ∪ nihil {
+    si b ≡ 0 ∴ redde nihil
+    redde a / b
+}
+```
+
+## CLI surface
+
+Primary tool: `faber` (public repo faberlang/faber).
+
+| Command | Purpose |
+|---|---|
+| `faber build <path>` | Compile package (default target: rust) |
+| `faber check <path>` | Type-check without emit |
+| `faber run <path>` | Build and execute |
+| `faber test <path>` | Run proba suites |
+| `faber format <path>` | Canonical formatter |
+| `faber explain <code>` | Explain a diagnostic |
+| `faber emit <path>` | Emit source in a target surface |
+
+Docs: https://faberlang.dev/tooling/faber-build-tool.html
+
+## Documentation map (HTML)
+
+| Path | Content |
+|---|---|
+| https://faberlang.dev/ | Overview + download |
+| https://faberlang.dev/start/ | Quick tour |
+| https://faberlang.dev/start/install.html | Install & download |
+| https://faberlang.dev/start/examples.html | Real-world packages |
+| https://faberlang.dev/features/ | Locales, lanes, glyphs, principles |
+| https://faberlang.dev/syntax/ | Language reference |
+| https://faberlang.dev/tooling/ | Compiler, CLI, targets |
+| https://faberlang.dev/ecosystem/ | Norma, Cista, Triga, workbench |
+| https://faberlang.dev/corpus/ | Generated keyword / construct pages |
+| https://faberlang.dev/references/ | EBNF, design docs, repos |
+| https://faberlang.dev/history/ | Timeline |
+
+## Machine-only surfaces
+
+| Path | Content |
+|---|---|
+| https://faberlang.dev/llms.txt | This index |
+| https://faberlang.dev/llms-full.txt | Expanded agent reference |
+| https://faberlang.dev/agents/index.md | Agent learning path (Markdown) |
+| https://faberlang.dev/.well-known/agent-skills/index.json | Skill catalog |
+| https://faberlang.dev/.well-known/agent-skills/*/SKILL.md | Focused skills |
+
+## Real-world examples (prefer these)
+
+Source: https://github.com/faberlang/examples
+
+| Package | Why open it |
+|---|---|
+| ai-workbench | Multi-command CLI app; model inspect / embed; harnesses |
+| vivilite | Local mailspace / agent coordination CLI |
+| coreutils | Larger application campaign |
+| gpu-workload | Systems / GPU rungs |
+| corpus | Keyword construct programs (docs generator input) |
+| reader-locale | Locale pack demos |
+| automation | Automation sketches |
+
+Site guide: https://faberlang.dev/start/examples.html
+Skill: https://faberlang.dev/.well-known/agent-skills/examples/SKILL.md
+
+## Repositories
+
+| Repo | Role |
+|---|---|
+| https://github.com/faberlang/faber | Public user CLI |
+| https://github.com/faberlang/releases | Tagged CLI release assets |
+| https://github.com/faberlang/faber-runtime | Runtime types for generated Rust |
+| https://github.com/faberlang/norma | Standard library |
+| https://github.com/faberlang/cista | Package store |
+| https://github.com/faberlang/triga | Graphics / geometry |
+| https://github.com/faberlang/examples | Corpus + application packages |
+| https://github.com/faberlang/faberlang.dev | This site |
+
+## Skills (summary)
+
+- install — download and verify the CLI
+- language — grammar signals, nullability, comments, packages
+- packages — faber.toml, check/build/run/test loop
+- examples — which application packages to open first
+- corpus — how to use keyword corpus pages and source
+
+Catalog: https://faberlang.dev/.well-known/agent-skills/index.json
+
+## Related human docs
+
+- Install: https://faberlang.dev/start/install.html
+- Quick tour: https://faberlang.dev/start/
+- Examples: https://faberlang.dev/start/examples.html
+- Syntax hub: https://faberlang.dev/syntax/

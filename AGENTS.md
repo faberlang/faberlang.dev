@@ -10,18 +10,22 @@ the live website at https://faberlang.dev.
 
 ```text
 faberlang.dev/
-  src/en-US/               Markdown content pages (23 authored)
-    syntax/                11 syntax reference pages
-    tooling/               3 tooling pages
-    ecosystem/             6 ecosystem pages
-    references/            3 reference pages
-    *.html                 Legacy HTML pages (content reference only)
+  src/en-US/               Markdown content pages (authored HTML docs)
+    start/                 Install, quick tour, examples
+    syntax/ features/ tooling/ ecosystem/ references/ history/
+  static/                  Machine surfaces copied into dist/ as-is
+    llms.txt               Agent index (start here for models)
+    llms-full.txt          Expanded agent map
+    agents/index.md        Agent learning path
+    .well-known/agent-skills/  Skill catalog + SKILL.md guides
   generator/               Speculum site generator (Faber → Rust binary)
-    src/                   9 Faber modules (~1200 lines)
+    src/                   Faber modules
     www/speculum.css       Shared stylesheet (single source of truth)
-    scripts/render.sh      Build + render wrapper (bridges file I/O gap)
+    scripts/build-site.sh  Full site render + static copy
+    scripts/render.sh      Single-page render wrapper
     scripts/validate-fences.sh  CI fence validator
     faber.toml             Package config
+  dist/                    Committed static site (GitHub Pages artifact root)
   docs/factory/
     site-implementation/CAMPAIGN.md  Campaign stages and gate status
   CONTENT-PLAN.md          Architecture: generated vs authored content

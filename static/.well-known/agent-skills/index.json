@@ -1,0 +1,40 @@
+{
+  "name": "faberlang-agent-skills",
+  "description": "Focused agent guides for the Faber programming language: install, language shape, packages, real-world examples, and corpus lookup.",
+  "version": "1.1.1",
+  "homepage": "https://faberlang.dev",
+  "agent_index": "https://faberlang.dev/llms.txt",
+  "agent_guide": "https://faberlang.dev/agents/index.md",
+  "skills": [
+    {
+      "name": "install",
+      "type": "skill-md",
+      "description": "Download and verify the current Faber CLI release for macOS arm64 or Linux x64.",
+      "url": "/.well-known/agent-skills/install/SKILL.md"
+    },
+    {
+      "name": "language",
+      "type": "skill-md",
+      "description": "Write and review Faber source: type-first declarations, Latin keywords, glyphs, nullability, comments, and HIR-as-truth.",
+      "url": "/.well-known/agent-skills/language/SKILL.md"
+    },
+    {
+      "name": "packages",
+      "type": "skill-md",
+      "description": "Scaffold and drive Faber packages with faber check/build/run/test/format and faber.toml layout.",
+      "url": "/.well-known/agent-skills/packages/SKILL.md"
+    },
+    {
+      "name": "examples",
+      "type": "skill-md",
+      "description": "Open real application packages in faberlang/examples (AI Workbench, ViviLite, coreutils, GPU, corpus).",
+      "url": "/.well-known/agent-skills/examples/SKILL.md"
+    },
+    {
+      "name": "corpus",
+      "type": "skill-md",
+      "description": "Look up language constructs via generated corpus pages and the examples/corpus source tree.",
+      "url": "/.well-known/agent-skills/corpus/SKILL.md"
+    }
+  ]
+}

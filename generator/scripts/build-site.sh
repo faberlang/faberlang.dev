@@ -105,6 +105,14 @@ mkdir -p "$OUTPUT_DIR"
 # Copy stylesheet
 cp "${GENERATOR_DIR}/www/speculum.css" "${OUTPUT_DIR}/speculum.css"
 
+# Copy static agent surfaces (llms.txt, skills, agents/*.md, etc.)
+STATIC_DIR="${REPO_DIR}/static"
+if [ -d "$STATIC_DIR" ]; then
+    echo "  copying static/ → dist/"
+    # Preserve structure; do not overwrite generated HTML with same path.
+    cp -R "${STATIC_DIR}/." "${OUTPUT_DIR}/"
+fi
+
 # ------------------------------------------------------------------
 # Step 3: Render all Markdown pages
 # ------------------------------------------------------------------
@@ -133,8 +141,14 @@ done
 # corpus batch wrapper; term-page rendering stays in the Faber generator.
 "${SCRIPT_DIR}/render-corpus-batch.sh" "${OUTPUT_DIR}" "$LOCALE" "$STYLESHEET"
 
+# Re-copy static after render so agent markdown is never replaced by HTML.
+if [ -d "$STATIC_DIR" ]; then
+    cp -R "${STATIC_DIR}/." "${OUTPUT_DIR}/"
+fi
+
 # Count results
 PAGE_COUNT=$(find "$OUTPUT_DIR" -name "*.html" -type f | wc -l | tr -d ' ')
+STATIC_COUNT=$(find "$OUTPUT_DIR" \( -name "*.txt" -o -name "*.md" -o -name "*.json" \) -type f | wc -l | tr -d ' ')
 
 echo ""
-echo "=== Build complete: ${PAGE_COUNT} pages rendered to ${OUTPUT_DIR} ==="
+echo "=== Build complete: ${PAGE_COUNT} HTML pages, ${STATIC_COUNT} static machine files → ${OUTPUT_DIR} ==="

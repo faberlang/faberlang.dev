@@ -1,0 +1,184 @@
+# Faber — full agent reference
+
+Expanded machine map for agents working on Faber language packages.
+Start with https://faberlang.dev/llms.txt if you have not already.
+
+Host: https://faberlang.dev
+Current CLI release: Faber 1.1.1 (tag faber-v1.1.1)
+
+## Identity
+
+- Language name: Faber (Latin "maker" / craftsman)
+- Compiler name: Radix (Latin "root") — implementation private; ships inside `faber` CLI
+- License: MIT
+- Designer: Ian Zepp
+- First appeared: 2024
+
+## Architectural invariant
+
+Meaning lives in HIR (high-level intermediate representation). Reader locales
+(Latin, Thai, Arabic, Chinese, Hindi, Vietnamese, …) and codegen targets
+(Rust, and others) are renderings of the same semantic core. Do not treat
+any single surface syntax as the only authority.
+
+## Type and glyph system (agent checklist)
+
+1. Declarations are type-first: `textus nomen`, `numerus x`, `bivalens ok`.
+2. Functions: `functio name(type param, …) → return_type { … }`.
+3. Bind: `←`. Equality: `≡`. Compact branch: `si cond ∴ body`.
+4. Nullable: `T ∪ nihil`. Prefer explicit union over inventing `?` sugar.
+5. Return: `redde expr`.
+6. Comments: only `#` on its own line. LEX006/LEX007 if you use `//` or trailing `#`.
+7. Packages need `faber.toml` and sources under `src/`.
+
+## Install assets (1.1.1)
+
+Release: https://github.com/faberlang/releases/releases/tag/faber-v1.1.1
+
+| Platform | URL |
+|---|---|
+| macOS arm64 tar.gz | https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz |
+| macOS arm64 sha256 | https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256 |
+| Linux x64 tar.gz | https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz |
+| Linux x64 sha256 | https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256 |
+
+Extract the `faber` binary; place on PATH; run `faber --version`.
+
+## CLI workflow
+
+```bash
+faber check <package>
+faber build <package> -t rust
+faber run <package>
+faber test <package>
+faber format <package>
+faber explain <DIAG_CODE>
+```
+
+Default codegen target is Rust → native via Cargo. Generated Rust uses
+faber-runtime types where required.
+
+## HTML documentation tree
+
+### Get started
+- https://faberlang.dev/start/
+- https://faberlang.dev/start/install.html
+- https://faberlang.dev/start/examples.html
+
+### Features
+- https://faberlang.dev/features/
+- https://faberlang.dev/features/reader-locale.html
+- https://faberlang.dev/features/compilation-lanes.html
+- https://faberlang.dev/features/latin-and-glyphs.html
+- https://faberlang.dev/features/canonical-vs-sugar.html
+- https://faberlang.dev/features/commandments.html
+- https://faberlang.dev/features/frames.html
+- https://faberlang.dev/features/testing.html
+
+### Syntax
+- https://faberlang.dev/syntax/
+- https://faberlang.dev/syntax/types.html
+- https://faberlang.dev/syntax/variables.html
+- https://faberlang.dev/syntax/functions.html
+- https://faberlang.dev/syntax/control-flow.html
+- https://faberlang.dev/syntax/nullability.html
+- https://faberlang.dev/syntax/errors.html
+- https://faberlang.dev/syntax/generics.html
+- https://faberlang.dev/syntax/collections.html
+- https://faberlang.dev/syntax/strings.html
+- https://faberlang.dev/syntax/conversion.html
+- https://faberlang.dev/syntax/glyphs.html
+
+### Tooling
+- https://faberlang.dev/tooling/
+- https://faberlang.dev/tooling/faber-build-tool.html
+- https://faberlang.dev/tooling/radix-compiler.html
+- https://faberlang.dev/tooling/cista-package-manager.html
+- https://faberlang.dev/tooling/codegen-targets.html
+- https://faberlang.dev/tooling/scripting.html
+- https://faberlang.dev/tooling/performance.html
+
+### Ecosystem
+- https://faberlang.dev/ecosystem/
+- https://faberlang.dev/ecosystem/norma.html
+- https://faberlang.dev/ecosystem/triga.html
+- https://faberlang.dev/ecosystem/coreutils.html
+- https://faberlang.dev/ecosystem/ai-workbench.html
+- https://faberlang.dev/ecosystem/corpus.html
+- https://faberlang.dev/ecosystem/reader-locale-packages.html
+
+### Corpus (generated keyword pages)
+- Hub: https://faberlang.dev/corpus/
+- Example term: https://faberlang.dev/corpus/functio.html
+- Categories under https://faberlang.dev/corpus/category/
+
+### References & history
+- https://faberlang.dev/references/
+- https://faberlang.dev/references/ebnf.html
+- https://faberlang.dev/references/design-docs.html
+- https://faberlang.dev/references/repositories.html
+- https://faberlang.dev/history/
+
+## Machine surfaces
+
+- https://faberlang.dev/llms.txt
+- https://faberlang.dev/llms-full.txt
+- https://faberlang.dev/agents/index.md
+- https://faberlang.dev/.well-known/agent-skills/index.json
+- https://faberlang.dev/.well-known/agent-skills/install/SKILL.md
+- https://faberlang.dev/.well-known/agent-skills/language/SKILL.md
+- https://faberlang.dev/.well-known/agent-skills/packages/SKILL.md
+- https://faberlang.dev/.well-known/agent-skills/examples/SKILL.md
+- https://faberlang.dev/.well-known/agent-skills/corpus/SKILL.md
+
+## Examples repository layout
+
+https://github.com/faberlang/examples
+
+```text
+examples/
+  corpus/          keyword / construct programs
+  ai-workbench/    multi-command AI CLI application
+  vivilite/        local mailspace / agent coordination CLI
+  coreutils/       application campaign
+  gpu-workload/    GPU systems rungs
+  automation/      automation sketches
+  reader-locale/   locale demos
+  scripta/         scripting demos
+  script-kernel/   kernel-facing demos
+  cista-lab/       package-store lab
+```
+
+Norma exempla (stdlib tours) live under the norma repo when present:
+https://github.com/faberlang/norma
+
+## Recommended agent procedure for a new package
+
+1. Install `faber` 1.1.1 from releases; verify with `faber --version`.
+2. Read language skill + one syntax page for constructs you will use.
+3. Scaffold `faber.toml` + `src/main.fab` (or copy structure from vivilite / ai-workbench).
+4. Loop: edit → `faber check` → fix diagnostics (`faber explain CODE`) → `faber test`.
+5. Prefer patterns from examples over inventing new package layouts.
+6. Do not invent `//` comments or C-like type-after-name declarations.
+
+## Ecosystem libraries
+
+| Import family | Repo | Role |
+|---|---|---|
+| `norma:*` | faberlang/norma | Standard library |
+| `triga:*` | faberlang/triga | Graphics / geometry |
+| cista | faberlang/cista | Package store CLI/lib |
+| faber-runtime | faberlang/faber-runtime | Generated Rust support types |
+
+## What not to assume
+
+- Do not assume a public Radix source checkout is available.
+- Do not assume Windows prebuilts (check the release page for new targets).
+- Do not treat HTML alone as the agent contract — prefer llms.txt + skills.
+- Do not weaken package structure to "make something compile"; fix the source.
+
+## Contact / provenance
+
+Site generator: Speculum (Faber package in faberlang.dev/generator).
+Deploy: GitHub Pages from faberlang/faberlang.dev dist/.
+Org: https://github.com/faberlang
