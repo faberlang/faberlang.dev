@@ -337,7 +337,7 @@ path documented by the page.
 
 ### Stage 7 — Multilingual Generation
 
-**Status**: second-locale proof implemented (`th-TH` and `zh-Hans` fallback slices)
+**Status**: three-locale proof implemented (`th-TH`, `zh-Hans`, and `vi` fallback slices)
 **Source**: `CONTENT-PLAN.md` §§ Multilingual pipeline, Output reader formatting (shipped)
 **Why now**: English site is complete; transcode is shipped.
 **Lowers to**: `delivery` → `factory`
@@ -357,9 +357,9 @@ Deliverables:
 transcoded code blocks and translated prose.
 
 **Multi-locale proof (2026-07-17)**:
-- `src/th-TH/` and `src/zh-Hans/` now materialize the portal/start slice
-  (`index.md` and `start/*`) with fallback prose banners and English source
-  SHA-256 provenance in frontmatter.
+- `src/th-TH/`, `src/zh-Hans/`, and `src/vi/` now materialize the portal/start
+  slice (`index.md` and `start/*`) with fallback prose banners and English
+  source SHA-256 provenance in frontmatter.
 - `generator/scripts/build-site.sh` discovers non-English `src/{locale}/`
   directories during the normal build and renders them under
   `dist/{locale}/`.
@@ -367,14 +367,15 @@ transcoded code blocks and translated prose.
   `generator/scripts/localize-markdown.py`, which invokes
   `faber emit -t faber --reader-locale=<locale>` before Speculum renders
   HTML. Pinned/reject fences remain authored.
-- Validation evidence: `bash generator/scripts/validate-fences.sh src/th-TH`
-  and `bash generator/scripts/validate-fences.sh src/zh-Hans` pass;
+- Validation evidence: `bash generator/scripts/validate-fences.sh src/th-TH`,
+  `bash generator/scripts/validate-fences.sh src/zh-Hans`, and
+  `bash generator/scripts/validate-fences.sh src/vi` pass;
   `bash generator/scripts/build-site.sh` renders the locale slices under
-  `dist/th-TH/` and `dist/zh-Hans/`.
+  `dist/th-TH/`, `dist/zh-Hans/`, and `dist/vi/`.
 
 **Residuals**:
-- Thai and Simplified Chinese prose are fallback English for this slice; full
-  prose translation remains open.
+- Thai, Simplified Chinese, and Vietnamese prose are fallback English for this
+  slice; full prose translation remains open.
 - The installed `faber emit --reader-locale=<locale>` path currently preserves
   Latin fallback spelling for English-authored fluid fences while emitting
   `READER001` warnings. The site build calls the canonical seam, but visible

@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types. Agent-readable docs, install, and examples."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="ex — Faber"><meta property="og:description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types."><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><title>ex — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"></head><body class="docs"><div class="renderbar"><div class="in"><span class="lbl">Rendering</span><span class="locbtns">vi</span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Get started</div><ul class="nav"><li><a href="/start/install.html">Install &amp; download</a></li><li><a href="/start/hello.html">Hello</a></li><li><a href="/start/commands.html">Commands</a></li><li><a href="/start/projects.html">Projects</a></li><li><a href="/start/examples.html">Examples</a></li><li><a href="/start/">Quick tour</a></li></ul><div class="side-h">Documentation</div><ul class="nav"><li><a href="/">Overview</a></li><li><a href="/features/">Features</a></li><li><a href="/syntax/">Syntax</a></li><li><a href="/tooling/">Tooling</a></li><li><a href="/ecosystem/">Ecosystem</a></li><li><a href="/corpus/" class="active">Corpus</a></li><li><a href="/references/">References</a></li><li><a href="/history/">History</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="https://github.com/faberlang/releases/releases/tag/faber-v1.1.1">All releases</a></li><li><a href="https://github.com/faberlang">GitHub org</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main><h1>ex</h1><div class="content"><p>Extracts fields from a value into local bindings.</p><p><strong>Syntax:</strong> <code>ex &lt;expression&gt; &lt;fixum|varia&gt; &lt;field&gt; [, ...] [ceteri &lt;ident&gt;]</code></p><h2>Category</h2><p><code>destructuring</code></p><h2>Related</h2><ul><li><a href="/corpus/de.html">de</a></li><li><a href="/corpus/ut.html">ut</a></li><li><a href="/corpus/ceteri.html">ceteri</a></li></ul><h2>Examples</h2><h3>examples/corpus/destructura/lista.fab (canonical · keyword)</h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># destructura — lista destructuring patterns
+#
+# fixum [a, b, c] ← lista
+# varia [x, y, z] ← lista
+# fixum [caput, ceteri cauda] ← lista
+# fixum [_, medius, _] ← lista
+#
+# GRAMMAR:
+#   destructStmt :← ('fixum' | 'varia') '[' patternList ']' '←' expr
+#
+# EXPECTED OUTPUT:
+#   Element values from inline and bound listas, rest slices, nested rows.
+
+incipit {
+    # --- Basic lista destructuring ---
+
+    fixum _ numeri ← [1, 2, 3]
+    fixum [a, b, c] ← numeri
+
+    nota a
+    nota b
+    nota c
+
+    # Destructure inline lista literal
+    fixum [primus, secundus, tertius] ← [10, 20, 30]
+
+    nota primus
+    nota secundus
+    nota tertius
+
+    # --- Mutable destructuring with varia ---
+
+    fixum _ coordinata ← [100, 200]
+    varia [x, y] ← coordinata
+
+    nota x
+    nota y
+
+    x ← x + 50
+    y ← y + 50
+
+    nota x
+    nota y
+
+    # --- Partial destructuring (fewer variables than elements) ---
+
+    fixum _ valores ← [1, 2, 3, 4, 5]
+    fixum [unus, duo] ← valores
+
+    nota unus
+    nota duo
+
+    # --- Rest pattern with ceteri ---
+
+    fixum _ res ← [1, 2, 3, 4, 5]
+    fixum [caput, ceteri cauda] ← res
+
+    nota caput
+    nota cauda
+
+    # --- Skip elements with underscore ---
+
+    fixum _ triplex ← [10, 20, 30]
+    fixum [_, medius, _] ← triplex
+
+    nota medius
+
+    # --- Nested listas ---
+
+    fixum _ matrix ← [[1, 2], [3, 4]]
+    fixum [ordo1, ordo2] ← matrix
+
+    nota ordo1
+    nota ordo2
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1
+2
+3
+10
+20
+30
+100
+200
+150
+250
+1
+2
+1
+[1, 2, 3, 4, 5]
+20
+[1, 2]
+[3, 4]
+</code></pre><h3>examples/corpus/destructura/objectum.fab (canonical · keyword)</h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># destructura — field destructuring with `ex`
+#
+# ex &lt;expr&gt; fixum &lt;field&gt;, ...
+# ex &lt;expr&gt; varia &lt;field&gt;, ...
+# ex &lt;expr&gt; fixum &lt;field&gt; ut &lt;alias&gt;
+# ex &lt;expr&gt; fixum &lt;field&gt;, ceteri &lt;rest&gt;
+#
+# Field destructuring works on genus records (fixed fields) and tabula/valor
+# (open shapes). This tour uses genus types so that field names are statically
+# known and codegen-complete.
+#
+# GRAMMAR:
+#   destructStmt :← 'ex' expr ('fixum' | 'varia') patternList
+#
+# EXPECTED OUTPUT:
+#   Extracted field values, aliased names, mutated varia bindings, rest maps.
+
+genus Persona {
+    textus nomen
+    numerus aetas
+    textus urbs
+}
+
+genus Civis {
+    textus nomen
+    textus epistula
+}
+
+genus Datum {
+    numerus numerus
+    bivalens activus
+}
+
+genus Forma {
+    textus hospes
+    numerus portus
+    bivalens tutus
+}
+
+genus Plenus {
+    numerus signum
+    textus nomen
+    textus epistula
+    textus munus
+}
+
+genus CivisNested {
+    textus nomen
+    bivalens probatus
+}
+
+genus DatumNested {
+    CivisNested civis
+}
+
+genus Responsum {
+    DatumNested datum
+}
+
+genus Vestis {
+    textus modus
+    textus lingua
+}
+
+incipit {
+    # --- Basic field extraction ---
+
+    fixum _ persona ← Persona { nomen = &quot;Marcus&quot;, aetas = 30, urbs = &quot;Roma&quot; }
+    ex persona fixum nomen, aetas
+
+    nota nomen
+    nota aetas
+
+    # --- Extract with alias using 'ut' ---
+
+    fixum _ civis ← Civis { nomen = &quot;Julia&quot;, epistula = &quot;julia@roma.com&quot; }
+    ex civis fixum nomen ut cognomen, epistula ut epistula2
+
+    nota cognomen
+    nota epistula2
+
+    # --- Mutable destructuring with varia ---
+
+    fixum _ datum ← Datum { numerus = 100, activus = verum }
+    ex datum varia numerus, activus
+
+    nota numerus
+    nota activus
+
+    numerus ← 200
+    activus ← falsum
+
+    nota numerus
+    nota activus
+
+    # --- Mixed alias and regular fields ---
+
+    fixum _ forma ← Forma { hospes = &quot;localis&quot;, portus = 8080, tutus = verum }
+    ex forma fixum hospes, portus ut porta, tutus
+
+    nota hospes
+    nota porta
+    nota tutus
+
+    # --- Rest pattern with ceteri ---
+
+    fixum _ plenus ← Plenus { signum = 1, nomen = &quot;Gaius&quot;, epistula = &quot;g@roma.com&quot;, munus = &quot;admin&quot; }
+    ex plenus fixum signum, ceteri reliqua
+
+    nota signum
+    nota reliqua
+
+    # --- Destructura ex nested path ---
+
+    fixum _ responsum ← Responsum { datum = DatumNested { civis = CivisNested { nomen = &quot;Claudia&quot;, probatus = verum } } }
+    ex responsum.datum.civis fixum nomen ut internum, probatus
+
+    nota internum
+    nota probatus
+
+    # --- Single field extraction ---
+
+    fixum _ vestis ← Vestis { modus = &quot;nigrum&quot;, lingua = &quot;la&quot; }
+    ex vestis fixum modus
+
+    nota modus
+}</code></pre><h3>examples/corpus/ex/ex.fab (canonical · keyword)</h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># ex — field extract statement
+#
+# GRAMMAR:
+#   extractStmt :← 'ex' expr bindingList
+#
+# EXPECTED OUTPUT:
+#   Scalar stdout smoke (see body).
+#
+# BACKEND:
+#   Cross-ref: destructura/objectum.fab, itera/ex.fab (itera ex mode).
+#
+
+genus Persona {
+    textus nomen
+    numerus aetas
+}
+
+incipit {
+    fixum _ p ← Persona { nomen = &quot;Marcus&quot;, aetas = 30 }
+    ex p fixum nomen, aetas
+    nota nomen
+    nota aetas
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Marcus
+30
+</code></pre><h3>examples/corpus/itera/ex.fab (canonical · keyword)</h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># itera ex — for-in value iteration over listas
+#
+# itera ex &lt;collection&gt; fixum &lt;item&gt; { &lt;body&gt; }
+#
+# GRAMMAR:
+#   forInStmt :← 'itera' 'ex' expr 'fixum' ident block
+#
+# EXPECTED OUTPUT:
+#   ex.expected — numbers, names, and doubled values.
+
+incipit {
+    # Iterate over number lista
+    fixum _ numeri ← [1, 2, 3, 4, 5]
+
+    itera ex numeri fixum n {
+        nota n
+    }
+
+    # Iterate over textus lista
+    fixum _ nomina ← [&quot;Marcus&quot;, &quot;Julia&quot;, &quot;Claudia&quot;]
+
+    itera ex nomina fixum nomen {
+        nota nomen
+    }
+
+    # Transform values
+    fixum _ valores ← [10, 20, 30]
+
+    itera ex valores fixum v {
+        fixum _ duplex ← v * 2
+        nota duplex
+    }
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1
+2
+3
+4
+5
+Marcus
+Julia
+Claudia
+20
+40
+60</code></pre></div></main><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;examples/corpus/destructura/lista.fab&quot;]</li></ul></div></footer></div></body></html>

@@ -91,7 +91,7 @@ surfaces, and states locale pack status without browser-time negotiation.
 | `zh-Hant` | Shipped reader pack | Source rendering available; full site pending |
 | `ar` | Shipped reader pack | Source rendering available; full site pending |
 | `hi` | Shipped reader pack | Source rendering available; full site pending |
-| `vi` | Shipped reader pack | Source rendering available; full site pending |
+| `vi` | Stage 7 proof | Portal/start slice generated with fallback prose |
 
 Living sample in canonical Latin:
 

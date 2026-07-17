@@ -5,7 +5,7 @@ order = 0
 sources = []
 translation_kind = "fallback"
 source_locale = "en-US"
-source_hash = "sha256:ebabf9f16e88b286d0321274bd686c65897bac41c31094578aa7a576e21dbcf8"
+source_hash = "sha256:6117f12d33b04ec76c0b843bd154cff7d2703c642919e41ea39ffffc4794307b"
 +++
 **Translation status:** Thai reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
 
@@ -96,7 +96,7 @@ surfaces, and states locale pack status without browser-time negotiation.
 | `zh-Hant` | Shipped reader pack | Source rendering available; full site pending |
 | `ar` | Shipped reader pack | Source rendering available; full site pending |
 | `hi` | Shipped reader pack | Source rendering available; full site pending |
-| `vi` | Shipped reader pack | Source rendering available; full site pending |
+| `vi` | Stage 7 proof | Portal/start slice generated with fallback prose |
 
 Living sample in canonical Latin:
 
