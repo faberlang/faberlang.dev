@@ -6,9 +6,9 @@
 # Copies the shared stylesheet and any static assets.
 #
 # Usage:
-#   build-site.sh [source_dir] [output_dir]
+#   build-site.sh [source_dir] [output_dir] [locale]
 #
-# Defaults: src/en-US → dist
+# Defaults: src/en-US → dist → la
 # ==========================================================================
 
 set -euo pipefail
@@ -20,7 +20,7 @@ REPO_DIR="$(cd "$GENERATOR_DIR/.." && pwd)"
 SOURCE_DIR="${1:-${REPO_DIR}/src/en-US}"
 OUTPUT_DIR="${2:-${REPO_DIR}/dist}"
 STYLESHEET="/speculum.css"
-LOCALE="la"
+LOCALE="${3:-la}"
 
 FABER="${FABER:-faber}"
 BUILD_DIR="${GENERATOR_DIR}/target/faber"
@@ -29,6 +29,7 @@ BINARY="${BUILD_DIR}/target/debug/speculum-gen"
 echo "=== Speculum site builder ==="
 echo "Source:  $SOURCE_DIR"
 echo "Output:  $OUTPUT_DIR"
+echo "Locale:  $LOCALE"
 echo ""
 
 # ------------------------------------------------------------------
@@ -55,7 +56,7 @@ cp "${GENERATOR_DIR}/www/speculum.css" "${OUTPUT_DIR}/speculum.css"
 
 # Copy static agent surfaces (llms.txt, skills, agents/*.md, etc.)
 STATIC_DIR="${REPO_DIR}/static"
-if [ -d "$STATIC_DIR" ]; then
+if [ -d "$STATIC_DIR" ] && [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
     echo "  copying static/ → dist/"
     # Preserve structure; do not overwrite generated HTML with same path.
     cp -R "${STATIC_DIR}/." "${OUTPUT_DIR}/"
@@ -67,10 +68,19 @@ fi
 echo "[4/4] Rendering pages..."
 PAGE_COUNT=0
 FAIL_COUNT=0
+RENDER_SOURCE="$SOURCE_DIR"
+LOCALIZED_SOURCE=""
 
-find "$SOURCE_DIR" -name "*.md" -type f | sort | while read -r md_file; do
+if [ "$LOCALE" != "la" ]; then
+    LOCALIZED_SOURCE="$(mktemp -d)"
+    trap 'rm -rf "$LOCALIZED_SOURCE"' EXIT
+    "${SCRIPT_DIR}/localize-markdown.py" "$SOURCE_DIR" "$LOCALIZED_SOURCE" --locale "$LOCALE" --faber "$FABER"
+    RENDER_SOURCE="$LOCALIZED_SOURCE"
+fi
+
+find "$RENDER_SOURCE" -name "*.md" -type f | sort | while read -r md_file; do
     # Derive output path: strip source dir prefix, change .md to .html
-    rel_path="${md_file#${SOURCE_DIR}/}"
+    rel_path="${md_file#${RENDER_SOURCE}/}"
     out_path="${OUTPUT_DIR}/${rel_path%.md}.html"
 
     # Create subdirectories
@@ -90,7 +100,7 @@ done
 "${SCRIPT_DIR}/render-corpus-batch.sh" "${OUTPUT_DIR}" "$LOCALE" "$STYLESHEET"
 
 # Re-copy static after render so agent markdown is never replaced by HTML.
-if [ -d "$STATIC_DIR" ]; then
+if [ -d "$STATIC_DIR" ] && [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
     cp -R "${STATIC_DIR}/." "${OUTPUT_DIR}/"
 fi
 
@@ -120,6 +130,17 @@ smoke_contains "${OUTPUT_DIR}/start/install.html" "faber-v1.1.1" "install releas
 smoke_contains "${OUTPUT_DIR}/start/hello.html" "Salve, munde" "hello start page"
 smoke_contains "${OUTPUT_DIR}/start/commands.html" "faber check" "commands start page"
 smoke_contains "${OUTPUT_DIR}/start/projects.html" "faberlang/examples" "projects start page"
+
+if [ "${SPECULUM_SKIP_LOCALES:-0}" != "1" ] && [ "$SOURCE_DIR" = "${REPO_DIR}/src/en-US" ] && [ "$OUTPUT_DIR" = "${REPO_DIR}/dist" ]; then
+    find "${REPO_DIR}/src" -mindepth 1 -maxdepth 1 -type d | sort | while read -r locale_dir; do
+        locale_name="$(basename "$locale_dir")"
+        if [ "$locale_name" = "en-US" ]; then
+            continue
+        fi
+        echo "[locale] Rendering ${locale_name} → ${OUTPUT_DIR}/${locale_name}"
+        SPECULUM_SKIP_LOCALES=1 SPECULUM_SKIP_STATIC=1 "$0" "$locale_dir" "${OUTPUT_DIR}/${locale_name}" "$locale_name"
+    done
+fi
 
 # Count results
 PAGE_COUNT=$(find "$OUTPUT_DIR" -name "*.html" -type f | wc -l | tr -d ' ')
