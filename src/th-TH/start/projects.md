@@ -7,7 +7,8 @@ translation_kind = "fallback"
 source_locale = "en-US"
 source_hash = "sha256:9a4a1ab35e26d7c1e3197ee9ff830a69f7550a3c6288cd6987b9384f83e3188f"
 +++
-**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this first Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+
 
 After hello-world, move into real packages. Faber is package-oriented; the
 fastest way to learn is to check and read existing packages that exercise the

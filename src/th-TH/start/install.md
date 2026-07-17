@@ -7,7 +7,8 @@ translation_kind = "fallback"
 source_locale = "en-US"
 source_hash = "sha256:8946fe82bb13180171d142543f2894cfe64739e21261337021341800bd976dc1"
 +++
-**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this first Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+
 
 Install the **Faber** CLI from the current prebuilt release. The compiler
 front end ships inside the `faber` binary; you do not need a separate

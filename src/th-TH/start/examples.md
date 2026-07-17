@@ -11,7 +11,8 @@ translation_kind = "fallback"
 source_locale = "en-US"
 source_hash = "sha256:9b81f45d19cc28b36421b6289b2d092b2165fd7c7b94004795a3c1d8945661d0"
 +++
-**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this first Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+
 
 Real Faber packages — not toy snippets. Source lives in the public
 [faberlang/examples](https://github.com/faberlang/examples) repository.

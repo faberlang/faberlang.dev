@@ -7,7 +7,8 @@ translation_kind = "fallback"
 source_locale = "en-US"
 source_hash = "sha256:5f49369d204a835c9b325d75c545184df7618fc49406fbe01ad750f17e982b0b"
 +++
-**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this first Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+
 
 This page is the practical CLI map for the first week of Faber work. Use it as
 a command index, then open the detailed [Faber build tool](/tooling/faber-build-tool.html)

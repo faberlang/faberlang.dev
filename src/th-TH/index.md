@@ -5,9 +5,10 @@ order = 0
 sources = []
 translation_kind = "fallback"
 source_locale = "en-US"
-source_hash = "sha256:09dc3db01599e78f66142a61c6f56c70be1fd91562994797b1616eca9ab3643a"
+source_hash = "sha256:ebabf9f16e88b286d0321274bd686c65897bac41c31094578aa7a576e21dbcf8"
 +++
-**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this first Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+
 
 **Faber** is a package-oriented programming language with a Latin
 behavioural vocabulary, a small regular grammar, and a type-first static
@@ -90,8 +91,8 @@ surfaces, and states locale pack status without browser-time negotiation.
 | Locale | Status | Notes |
 |---|---|---|
 | `la` | Canonical live pack | Current generated site language |
-| `th-TH` | Shipped reader pack | Compiler can render source; full localized site is Stage 7 |
-| `zh-Hans` | Shipped reader pack | Source rendering available; full site pending |
+| `th-TH` | Stage 7 proof | Portal/start slice generated with fallback prose |
+| `zh-Hans` | Stage 7 proof | Portal/start slice generated with fallback prose |
 | `zh-Hant` | Shipped reader pack | Source rendering available; full site pending |
 | `ar` | Shipped reader pack | Source rendering available; full site pending |
 | `hi` | Shipped reader pack | Source rendering available; full site pending |

@@ -337,7 +337,7 @@ path documented by the page.
 
 ### Stage 7 — Multilingual Generation
 
-**Status**: first-locale proof implemented (Thai `th-TH` fallback slice)
+**Status**: second-locale proof implemented (`th-TH` and `zh-Hans` fallback slices)
 **Source**: `CONTENT-PLAN.md` §§ Multilingual pipeline, Output reader formatting (shipped)
 **Why now**: English site is complete; transcode is shipped.
 **Lowers to**: `delivery` → `factory`
@@ -356,10 +356,10 @@ Deliverables:
 **Gate**: One non-English locale (e.g., `th-TH`) fully generated with
 transcoded code blocks and translated prose.
 
-**First-locale proof (2026-07-17)**:
-- `src/th-TH/` now materializes the portal/start slice (`index.md` and
-  `start/*`) with fallback prose banners and English source SHA-256
-  provenance in frontmatter.
+**Multi-locale proof (2026-07-17)**:
+- `src/th-TH/` and `src/zh-Hans/` now materialize the portal/start slice
+  (`index.md` and `start/*`) with fallback prose banners and English source
+  SHA-256 provenance in frontmatter.
 - `generator/scripts/build-site.sh` discovers non-English `src/{locale}/`
   directories during the normal build and renders them under
   `dist/{locale}/`.
@@ -368,16 +368,18 @@ transcoded code blocks and translated prose.
   `faber emit -t faber --reader-locale=<locale>` before Speculum renders
   HTML. Pinned/reject fences remain authored.
 - Validation evidence: `bash generator/scripts/validate-fences.sh src/th-TH`
-  → 1 passed / 0 failed / 0 skipped; `bash generator/scripts/build-site.sh`
-  → 669 HTML pages, including `dist/th-TH/`.
+  and `bash generator/scripts/validate-fences.sh src/zh-Hans` pass;
+  `bash generator/scripts/build-site.sh` renders the locale slices under
+  `dist/th-TH/` and `dist/zh-Hans/`.
 
 **Residuals**:
-- Thai prose is fallback English for this slice; full prose translation
-  remains open.
-- The installed `faber emit --reader-locale=th-TH` path currently preserves
+- Thai and Simplified Chinese prose are fallback English for this slice; full
+  prose translation remains open.
+- The installed `faber emit --reader-locale=<locale>` path currently preserves
   Latin fallback spelling for English-authored fluid fences while emitting
   `READER001` warnings. The site build calls the canonical seam, but visible
-  Thai keyword rendering still depends on compiler-side fallback re-emission.
+  localized keyword rendering still depends on compiler-side fallback
+  re-emission.
 
 ### Stage 8 — Generated LLM Surface
 

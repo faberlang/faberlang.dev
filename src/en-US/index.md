@@ -86,8 +86,8 @@ surfaces, and states locale pack status without browser-time negotiation.
 | Locale | Status | Notes |
 |---|---|---|
 | `la` | Canonical live pack | Current generated site language |
-| `th-TH` | Shipped reader pack | Compiler can render source; full localized site is Stage 7 |
-| `zh-Hans` | Shipped reader pack | Source rendering available; full site pending |
+| `th-TH` | Stage 7 proof | Portal/start slice generated with fallback prose |
+| `zh-Hans` | Stage 7 proof | Portal/start slice generated with fallback prose |
 | `zh-Hant` | Shipped reader pack | Source rendering available; full site pending |
 | `ar` | Shipped reader pack | Source rendering available; full site pending |
 | `hi` | Shipped reader pack | Source rendering available; full site pending |

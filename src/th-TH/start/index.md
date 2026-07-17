@@ -7,7 +7,8 @@ translation_kind = "fallback"
 source_locale = "en-US"
 source_hash = "sha256:bbcadb3e298fe348d1eb830734369f89cfbbdfb1bb5e51d5728c5111da8294da"
 +++
-**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this first Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+
 
 Five minutes to the shape of Faber: install the CLI, read one function,
 then open a real package. For a sequenced path, follow: [Install](/start/install.html) →

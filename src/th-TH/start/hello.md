@@ -7,7 +7,8 @@ translation_kind = "fallback"
 source_locale = "en-US"
 source_hash = "sha256:e21072271fa884c1401230130dfda6fee4fa8ece2a7a6b9b4f6556bf74502860"
 +++
-**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this first Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+
 
 Write the smallest useful Faber program: a package entry point that formats a
 string and prints it.
