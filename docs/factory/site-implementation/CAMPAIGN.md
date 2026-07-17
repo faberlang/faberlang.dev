@@ -287,6 +287,14 @@ and record the skipped duplicate target. `string` is also a canonical term path,
 so its alias-to-`textus` redirect is not emitted to avoid overwriting the
 canonical page.
 
+
+### Publication (corpus campaign milestone)
+
+**Status**: published 2026-07-17 — `origin/main` at `c1dcb68` (Stage 4+5 corpus).
+**How**: `git push origin main` → `.github/workflows/deploy-pages.yml` → GitHub Pages (`https://faberlang.dev`).
+**Scope published**: authored pages + 167 corpus terms + aliases + category indexes + hub (348 pages total in build).
+**Residuals open**: Stage 5 fence residual (`tuus` / SEM008); Stages 6–8 (portal, multilingual, LLM surface) still planned — not required for this publish.
+
 ### Stage 6 — Portal and Getting Started
 
 **Status**: planned
