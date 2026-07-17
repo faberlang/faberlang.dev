@@ -5,7 +5,7 @@ order = 0
 sources = []
 translation_kind = "fallback"
 source_locale = "en-US"
-source_hash = "sha256:d6b4dbef85e07c27facd8824af158123f4232212432c78819047cf4b32ebfc3d"
+source_hash = "sha256:85921d8ede375df669e8c25d33f019be707afdd7eeafd8a39966436e39aada00"
 +++
 **Translation status:** Thai reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
 
@@ -88,8 +88,8 @@ This `/` page is the Speculum Porta for the English site: a locale-less entry
 point that routes people to install/start pages, routes agents to machine
 surfaces, and states locale pack status without browser-time negotiation.
 Stage 7 is a partial multi-locale proof, not a completed localized site:
-only `th-TH`, `zh-Hans`, `vi`, `ar`, and `hi` have generated portal/start
-authored slices plus generated corpus pages, and the authored prose still falls back
+only `th-TH`, `zh-Hans`, `zh-Hant`, `vi`, `ar`, and `hi` have generated
+portal/start authored slices plus generated corpus pages, and the authored prose still falls back
 to English.
 
 | Locale | Status | Notes |
@@ -98,9 +98,9 @@ to English.
 | `th-TH` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
 | `zh-Hans` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
 | `vi` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
+| `zh-Hant` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
 | `ar` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
 | `hi` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `zh-Hant` | Planned locale site | Reader pack ships; no generated site slice yet |
 
 Living sample in canonical Latin:
 
@@ -117,7 +117,7 @@ incipit {
 ```
 
 See [Reader locale](/features/reader-locale.html) for the same semantic program
-rendered through Thai, Chinese, Arabic, Hindi, and Vietnamese packs.
+rendered through Thai, Simplified Chinese, Traditional Chinese, Arabic, Hindi, and Vietnamese packs.
 
 ## Overview {#overview}
 
@@ -168,7 +168,7 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 
 The divide function above is rendered in the Latin pack by default. The
 compiler can render the same program in seven reader locales — Thai,
-Chinese, Arabic, Hindi, Vietnamese — each remapping keywords and types
+Simplified Chinese, Traditional Chinese, Arabic, Hindi, Vietnamese — each remapping keywords and types
 to that language while glyphs and identifiers remain unchanged. This is
 not a translation layer applied to the page; it is the same mechanism
 the compiler uses to produce localized source.

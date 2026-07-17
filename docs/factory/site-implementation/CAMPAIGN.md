@@ -100,7 +100,7 @@ depends on.
 | Corpus page generator | **Batch built** — 167 canonical terms, 95 alias redirects, 45 category indexes, corpus hub rendered | Stage 5 residual triage (`tuus` fence, alias data collisions) |
 | Portal (Speculum Porta) | Homepage HTML exists, not generated | Blocked on Stage 6 |
 | Getting-started | Not started | Blocked on Homebrew formula |
-| Multilingual generation | Transcode shipped; no locale sites generated | Blocked on Stage 7 |
+| Multilingual generation | **Partial proof** — six portal/start fallback locale slices plus generated corpus artifacts | Full localized authored docs/prose still open |
 | CI / fence extractor | **Built** (`scripts/validate-fences.sh`) — tested on types.md | Part of Stage 1 |
 
 ## Campaign Path
@@ -337,9 +337,9 @@ path documented by the page.
 
 ### Stage 7 — Multilingual Generation
 
-**Status**: partial multi-locale proof implemented (`th-TH`, `zh-Hans`, `vi`,
-`ar`, and `hi` portal/start fallback slices plus generated corpus artifacts);
-full Stage 7 remains open.
+**Status**: partial multi-locale proof implemented (`th-TH`, `zh-Hans`,
+`zh-Hant`, `vi`, `ar`, and `hi` portal/start fallback slices plus generated
+corpus artifacts); full Stage 7 remains open.
 **Source**: `CONTENT-PLAN.md` §§ Multilingual pipeline, Output reader formatting (shipped)
 **Why now**: English site is complete; transcode is shipped.
 **Lowers to**: `delivery` → `factory`
@@ -349,9 +349,9 @@ full Stage 7 remains open.
 Deliverables:
 - [ ] Locale site generation: `src/{locale}/` structure for each of 7 locales
   with full authored-doc coverage.
-- [x] Partial proof locales: `th-TH`, `zh-Hans`, `vi`, `ar`, and `hi`
-  materialize the portal/start authored slice (`index.md` and `start/*`) plus
-  generated corpus/category/alias pages during the build.
+- [x] Partial proof locales: `th-TH`, `zh-Hans`, `zh-Hant`, `vi`, `ar`, and
+  `hi` materialize the portal/start authored slice (`index.md` and `start/*`)
+  plus generated corpus/category/alias pages during the build.
 - [x] Canonical transcode seam: render fluid example code blocks through
   `faber emit --reader-locale=<X>` at generation time.
 - [x] Translation provenance: English source SHA-256 recorded in proof-slice
@@ -363,12 +363,13 @@ Deliverables:
 
 **Gate**: One non-English locale (e.g., `th-TH`) fully generated with
 transcoded code blocks and translated prose. **Not closed**: current work is a
-five-locale fallback slice, not a full locale site.
+six-locale fallback slice, not a full locale site.
 
 **Multi-locale partial proof (2026-07-17)**:
-- `src/th-TH/`, `src/zh-Hans/`, `src/vi/`, `src/ar/`, and `src/hi/` now
-  materialize the portal/start authored slice (`index.md` and `start/*`) with
-  fallback prose banners and English source SHA-256 provenance in frontmatter.
+- `src/th-TH/`, `src/zh-Hans/`, `src/zh-Hant/`, `src/vi/`, `src/ar/`, and
+  `src/hi/` now materialize the portal/start authored slice (`index.md` and
+  `start/*`) with fallback prose banners and English source SHA-256 provenance
+  in frontmatter.
 - `generator/scripts/build-site.sh` discovers non-English `src/{locale}/`
   directories during the normal build and renders them under
   `dist/{locale}/`.
@@ -379,18 +380,20 @@ five-locale fallback slice, not a full locale site.
 - Validation evidence: `bash generator/scripts/validate-fences.sh src/th-TH`,
   `bash generator/scripts/validate-fences.sh src/zh-Hans`,
   `bash generator/scripts/validate-fences.sh src/vi`,
-  `bash generator/scripts/validate-fences.sh src/ar`, and
-  `bash generator/scripts/validate-fences.sh src/hi` pass;
+  `bash generator/scripts/validate-fences.sh src/ar`,
+  `bash generator/scripts/validate-fences.sh src/hi`, and
+  `bash generator/scripts/validate-fences.sh src/zh-Hant` pass;
   `bash generator/scripts/build-site.sh` renders the locale slices under
-  `dist/th-TH/`, `dist/zh-Hans/`, `dist/vi/`, `dist/ar/`, and `dist/hi/`.
+  `dist/th-TH/`, `dist/zh-Hans/`, `dist/zh-Hant/`, `dist/vi/`, `dist/ar/`, and
+  `dist/hi/`.
 
 **Residuals**:
-- Thai, Simplified Chinese, Vietnamese, Arabic, and Hindi prose are fallback
-  English for this slice; full prose translation remains open.
+- Thai, Simplified Chinese, Traditional Chinese, Vietnamese, Arabic, and Hindi
+  prose are fallback English for this slice; full prose translation remains
+  open.
 - The proof locales do not yet include the full authored docs, translated prose,
   or complete localized navigation; generated corpus, alias redirects, and
   category indexes are present in `dist/{locale}/` as build artifacts.
-- `zh-Hant` reader pack ships, but no site slice is generated for it yet.
 - The installed `faber emit --reader-locale=<locale>` path currently preserves
   Latin fallback spelling for English-authored fluid fences while emitting
   `READER001` warnings. The site build calls the canonical seam, but visible
@@ -419,8 +422,8 @@ Deliverables:
 complete corpus-frontmatter language reference.
 
 **Validation evidence**:
-- `bash generator/scripts/validate-fences.sh src` → 83 passed / 0 failed / 0 skipped.
-- `bash generator/scripts/build-site.sh` → 669 HTML pages, 9 static machine files,
+- `bash generator/scripts/validate-fences.sh src` → 88 passed / 0 failed / 0 skipped.
+- `bash generator/scripts/build-site.sh` → 2244 HTML pages, 9 static machine files,
   with smoke checks for the generated `/llms.txt` corpus reference and 183-term count.
 
 **Residuals**:
