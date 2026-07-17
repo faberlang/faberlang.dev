@@ -259,7 +259,9 @@ one chrome path.
 | **Gate** | Lint/test fails on HTML tags in disallowed modules | Local validate script first; CI when available |
 
 **Landed:** hand-4 `40d7f985` / commit `46f719a` — Stage A chrome IR (flat Element).  
-**Next:** Stage A.1 honesty follow-up before accepting Stage A as architecture-complete.
+**A.1 closed:** hand-4 `798d087b` — `document_ir.fab` now models `discretio Node { Element, Text, Raw, Frag }`; serializer owns text/attribute escaping and the explicit HTML void-element set; `build-site.sh` regenerated `dist/` with smoke checks for `/`, `/start/install.html`, and 1.1.1 links.
+
+**Next:** Stage B markdown-to-Node IR.
 
 **Rollback:** keep previous `dist/` commit; generator is rebuilt offline (no
 Faber in CI today).

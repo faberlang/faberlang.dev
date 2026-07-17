@@ -6,49 +6,105 @@ genus Attr {
     textus valor
 }
 
-genus Element {
-    textus tag_name
-    lista<Attr> attrs
-    lista<Element> children
-    textus content
-    bivalens vacuum_tag
+discretio Node {
+    Element { textus tag_name, lista<Attr> attrs, lista<Node> children },
+    Text { textus valor },
+    Raw { textus valor },
+    Frag { lista<Node> children }
 }
 
 genus Document {
-    Element root
+    Node root
 }
 
 functio attr(textus nomen, textus valor) → Attr {
     redde Attr { nomen = nomen, valor = valor }
 }
 
-functio text(textus value) → Element {
-    fixum lista<Attr> empty_attrs ← vacua
-    fixum lista<Element> empty_children ← vacua
-    redde Element { tag_name = "", attrs = empty_attrs, children = empty_children, content = value, vacuum_tag = falsum }
+functio text(textus value) → Node {
+    redde finge Text { valor = value } ∷ Node
 }
 
-functio element(textus tag, lista<Attr> attrs, lista<Element> children) → Element {
-    redde Element { tag_name = tag, attrs = attrs, children = children, content = "", vacuum_tag = falsum }
+functio raw(textus value) → Node {
+    redde finge Raw { valor = value } ∷ Node
 }
 
-functio leaf(textus tag, lista<Attr> attrs, textus value) → Element {
-    fixum lista<Element> empty_children ← vacua
-    redde Element { tag_name = tag, attrs = attrs, children = empty_children, content = value, vacuum_tag = falsum }
+functio frag(lista<Node> children) → Node {
+    redde finge Frag { children = children } ∷ Node
 }
 
-functio void_element(textus tag, lista<Attr> attrs) → Element {
-    fixum lista<Element> empty_children ← vacua
-    redde Element { tag_name = tag, attrs = attrs, children = empty_children, content = "", vacuum_tag = verum }
+functio element(textus tag, lista<Attr> attrs, lista<Node> children) → Node {
+    redde finge Element { tag_name = tag, attrs = attrs, children = children } ∷ Node
 }
 
-functio document(Element root) → Document {
+functio leaf(textus tag, lista<Attr> attrs, textus value) → Node {
+    varia lista<Node> children ← vacua
+    children.appende(text(value))
+    redde element(tag, attrs, children)
+}
+
+functio void_element(textus tag, lista<Attr> attrs) → Node {
+    fixum lista<Node> children ← vacua
+    redde element(tag, attrs, children)
+}
+
+functio document(Node root) → Document {
     redde Document { root = root }
+}
+
+functio is_empty(Node node) → bivalens {
+    discerne node {
+        casu Text fixum valor { redde valor ≡ "" }
+        casu Raw fixum valor { redde valor ≡ "" }
+        casu Frag fixum children { redde children.longitudo() ≡ 0 }
+        casu Element fixum tag_name, attrs, children { redde falsum }
+    }
+}
+
+functio html_escape(textus value) → textus {
+    fixum numerus len ← value.longitudo()
+    varia textus result ← ""
+    varia numerus plain_start ← 0
+    varia numerus i ← 0
+
+    dum i < len {
+        fixum numerus ch ← value[i]
+
+        # & = 38, " = 34, < = 60, > = 62
+        si ((ch ≡ 38 aut ch ≡ 34) aut ch ≡ 60) aut ch ≡ 62 {
+            si i > plain_start {
+                result ← result + value.sectio(plain_start, i)
+            }
+
+            si ch ≡ 38 {
+                result ← result + "&amp;"
+            }
+            si ch ≡ 34 {
+                result ← result + "&quot;"
+            }
+            si ch ≡ 60 {
+                result ← result + "&lt;"
+            }
+            si ch ≡ 62 {
+                result ← result + "&gt;"
+            }
+
+            plain_start ← i + 1
+        }
+
+        i ← i + 1
+    }
+
+    si len > plain_start {
+        result ← result + value.sectio(plain_start, len)
+    }
+
+    redde result
 }
 
 functio attr_html(Attr item) → textus {
     si item.valor ≡ "" ergo redde " " + item.nomen
-    redde " " + item.nomen + "=\"" + item.valor + "\""
+    redde " " + item.nomen + "=\"" + html_escape(item.valor) + "\""
 }
 
 functio attrs_html(lista<Attr> attrs) → textus {
@@ -59,20 +115,49 @@ functio attrs_html(lista<Attr> attrs) → textus {
     redde rendered
 }
 
-functio element_html(Element node) → textus {
-    si node.tag_name ≡ "" ergo redde node.content
+functio is_void_element(textus tag) → bivalens {
+    si tag ≡ "area" ergo redde verum
+    si tag ≡ "base" ergo redde verum
+    si tag ≡ "br" ergo redde verum
+    si tag ≡ "col" ergo redde verum
+    si tag ≡ "embed" ergo redde verum
+    si tag ≡ "hr" ergo redde verum
+    si tag ≡ "img" ergo redde verum
+    si tag ≡ "input" ergo redde verum
+    si tag ≡ "link" ergo redde verum
+    si tag ≡ "meta" ergo redde verum
+    si tag ≡ "param" ergo redde verum
+    si tag ≡ "source" ergo redde verum
+    si tag ≡ "track" ergo redde verum
+    si tag ≡ "wbr" ergo redde verum
+    redde falsum
+}
 
-    fixum textus open ← "<" + node.tag_name + attrs_html(node.attrs) + ">"
-    si node.vacuum_tag ergo redde open
+functio node_html(Node node) → textus {
+    discerne node {
+        casu Text fixum valor { redde html_escape(valor) }
+        casu Raw fixum valor { redde valor }
+        casu Frag fixum children {
+            varia textus body ← ""
+            itera ex children fixum child {
+                body ← body + node_html(child)
+            }
+            redde body
+        }
+        casu Element fixum tag_name, attrs, children {
+            fixum textus open ← "<" + tag_name + attrs_html(attrs) + ">"
+            si is_void_element(tag_name) ergo redde open
 
-    varia textus body ← node.content
-    itera ex node.children fixum child {
-        body ← body + element_html(child)
+            varia textus body ← ""
+            itera ex children fixum child {
+                body ← body + node_html(child)
+            }
+
+            redde open + body + "</" + tag_name + ">"
+        }
     }
-
-    redde open + body + "</" + node.tag_name + ">"
 }
 
 functio html(Document doc) → textus {
-    redde "<!DOCTYPE html>\n" + element_html(doc.root)
+    redde "<!DOCTYPE html>\n" + node_html(doc.root)
 }

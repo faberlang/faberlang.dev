@@ -2,7 +2,7 @@
 #
 # Turns a Pagina into a complete HTML document using the closed
 # component vocabulary. The emitter cannot write CSS.
-# New chrome must use document_ir.Element builders and doc_mod.html().
+# New chrome must use document_ir.Node builders and doc_mod.html().
 
 importa ex "./types" privata * ut types_mod
 importa ex "./markdown" privata * ut markdown_mod
@@ -36,39 +36,39 @@ functio attrs4(textus n1, textus v1, textus n2, textus v2, textus n3, textus v3,
     redde attrs
 }
 
-functio children1(doc_mod.Element a) → lista<doc_mod.Element> {
-    varia lista<doc_mod.Element> children ← vacua
+functio children1(doc_mod.Node a) → lista<doc_mod.Node> {
+    varia lista<doc_mod.Node> children ← vacua
     children.appende(a)
     redde children
 }
 
-functio children2(doc_mod.Element a, doc_mod.Element b) → lista<doc_mod.Element> {
-    varia lista<doc_mod.Element> children ← children1(a)
+functio children2(doc_mod.Node a, doc_mod.Node b) → lista<doc_mod.Node> {
+    varia lista<doc_mod.Node> children ← children1(a)
     children.appende(b)
     redde children
 }
 
-functio children3(doc_mod.Element a, doc_mod.Element b, doc_mod.Element c) → lista<doc_mod.Element> {
-    varia lista<doc_mod.Element> children ← children2(a, b)
+functio children3(doc_mod.Node a, doc_mod.Node b, doc_mod.Node c) → lista<doc_mod.Node> {
+    varia lista<doc_mod.Node> children ← children2(a, b)
     children.appende(c)
     redde children
 }
 
-functio children4(doc_mod.Element a, doc_mod.Element b, doc_mod.Element c, doc_mod.Element d) → lista<doc_mod.Element> {
-    varia lista<doc_mod.Element> children ← children3(a, b, c)
+functio children4(doc_mod.Node a, doc_mod.Node b, doc_mod.Node c, doc_mod.Node d) → lista<doc_mod.Node> {
+    varia lista<doc_mod.Node> children ← children3(a, b, c)
     children.appende(d)
     redde children
 }
 
-functio a(textus href, textus label) → doc_mod.Element {
+functio a(textus href, textus label) → doc_mod.Node {
     redde doc_mod.leaf("a", attrs1("href", href), label)
 }
 
-functio code_link(textus href, textus label) → doc_mod.Element {
+functio code_link(textus href, textus label) → doc_mod.Node {
     redde doc_mod.element("a", attrs1("href", href), children1(doc_mod.leaf("code", attrs0(), label)))
 }
 
-functio li(doc_mod.Element child) → doc_mod.Element {
+functio li(doc_mod.Node child) → doc_mod.Node {
     redde doc_mod.element("li", attrs0(), children1(child))
 }
 
@@ -79,32 +79,32 @@ functio genera_paginam(types_mod.Pagina pag, textus stylesheet_link) → textus 
         body_class ← "home"
     }
 
-    varia lista<doc_mod.Element> body_children ← vacua
+    varia lista<doc_mod.Node> body_children ← vacua
     body_children.appende(genera_renderbar(pag.locale))
 
-    varia lista<doc_mod.Element> page_children ← vacua
+    varia lista<doc_mod.Node> page_children ← vacua
     page_children.appende(genera_sidebar(pag.section))
     page_children.appende(genera_main(pag))
 
-    fixum doc_mod.Element footer ← genera_source_list(pag.sources)
-    si non (footer.tag_name ≡ "") {
+    fixum doc_mod.Node footer ← genera_source_list(pag.sources)
+    si non doc_mod.is_empty(footer) {
         page_children.appende(footer)
     }
 
     body_children.appende(doc_mod.element("div", attrs1("class", "page"), page_children))
 
-    fixum doc_mod.Element root ← doc_mod.element("html", attrs1("lang", pag.locale), children2(genera_head(pag, stylesheet_link), doc_mod.element("body", attrs1("class", body_class), body_children)))
+    fixum doc_mod.Node root ← doc_mod.element("html", attrs1("lang", pag.locale), children2(genera_head(pag, stylesheet_link), doc_mod.element("body", attrs1("class", body_class), body_children)))
     redde doc_mod.html(doc_mod.document(root))
 }
 
 # Generate the <head> element.
-functio genera_head(types_mod.Pagina pag, textus stylesheet_link) → doc_mod.Element {
+functio genera_head(types_mod.Pagina pag, textus stylesheet_link) → doc_mod.Node {
     varia textus title ← pag.titulus
     si non (pag.titulus ≡ "Faber") {
         title ← «§ — Faber»(pag.titulus)
     }
 
-    varia lista<doc_mod.Element> children ← vacua
+    varia lista<doc_mod.Node> children ← vacua
     children.appende(doc_mod.void_element("meta", attrs1("charset", "utf-8")))
     children.appende(doc_mod.void_element("meta", attrs2("name", "viewport", "content", "width=device-width, initial-scale=1")))
     children.appende(doc_mod.void_element("meta", attrs2("name", "description", "content", "Faber programming language — package-oriented, Latin vocabulary, type-first static types. Agent-readable docs, install, and examples.")))
@@ -125,26 +125,26 @@ functio genera_head(types_mod.Pagina pag, textus stylesheet_link) → doc_mod.El
     redde doc_mod.element("head", attrs0(), children)
 }
 
-functio genera_renderbar(textus current_locale) → doc_mod.Element {
-    varia lista<doc_mod.Element> links ← vacua
+functio genera_renderbar(textus current_locale) → doc_mod.Node {
+    varia lista<doc_mod.Node> links ← vacua
     links.appende(a("/llms.txt", "/llms.txt"))
     links.appende(a("/agents/index.md", "/agents"))
     links.appende(a("/.well-known/agent-skills/index.json", "/skills"))
     links.appende(a("/start/install.html", "install"))
 
-    fixum doc_mod.Element nav ← doc_mod.element("nav", attrs2("class", "machine-links", "aria-label", "Machine documentation"), links)
-    fixum doc_mod.Element inner ← doc_mod.element("div", attrs1("class", "in"), children3(doc_mod.leaf("span", attrs1("class", "lbl"), "Rendering"), doc_mod.leaf("span", attrs1("class", "locbtns"), current_locale), nav))
+    fixum doc_mod.Node nav ← doc_mod.element("nav", attrs2("class", "machine-links", "aria-label", "Machine documentation"), links)
+    fixum doc_mod.Node inner ← doc_mod.element("div", attrs1("class", "in"), children3(doc_mod.leaf("span", attrs1("class", "lbl"), "Rendering"), doc_mod.leaf("span", attrs1("class", "locbtns"), current_locale), nav))
     redde doc_mod.element("div", attrs1("class", "renderbar"), children1(inner))
 }
 
-functio genera_sidebar(textus active_section) → doc_mod.Element {
-    varia lista<doc_mod.Element> children ← vacua
+functio genera_sidebar(textus active_section) → doc_mod.Node {
+    varia lista<doc_mod.Node> children ← vacua
     children.appende(genera_brand())
     children.appende(side_h("Get started"))
     children.appende(nav_list(children3(li(genera_nav_link("Install & download", "/start/install.html", active_section ≡ "install")), li(genera_nav_link("Examples", "/start/examples.html", active_section ≡ "examples")), li(genera_nav_link("Quick tour", "/start/", active_section ≡ "start"))), "nav"))
     children.appende(side_h("Documentation"))
 
-    varia lista<doc_mod.Element> docs ← vacua
+    varia lista<doc_mod.Node> docs ← vacua
     docs.appende(li(genera_nav_link("Overview", "/", active_section ≡ "")))
     docs.appende(li(genera_nav_link("Features", "/features/", active_section ≡ "features")))
     docs.appende(li(genera_nav_link("Syntax", "/syntax/", active_section ≡ "syntax")))
@@ -165,48 +165,48 @@ functio genera_sidebar(textus active_section) → doc_mod.Element {
     redde doc_mod.element("aside", attrs0(), children)
 }
 
-functio genera_brand() → doc_mod.Element {
-    fixum doc_mod.Element mark ← doc_mod.leaf("span", attrs2("class", "brand-mark", "aria-hidden", "true"), "f")
-    fixum doc_mod.Element name ← doc_mod.leaf("span", attrs1("class", "brand-name"), "Faber")
-    fixum doc_mod.Element tag ← doc_mod.leaf("span", attrs1("class", "brand-tag"), "language docs")
-    fixum doc_mod.Element text ← doc_mod.element("span", attrs1("class", "brand-text"), children2(name, tag))
+functio genera_brand() → doc_mod.Node {
+    fixum doc_mod.Node mark ← doc_mod.leaf("span", attrs2("class", "brand-mark", "aria-hidden", "true"), "f")
+    fixum doc_mod.Node name ← doc_mod.leaf("span", attrs1("class", "brand-name"), "Faber")
+    fixum doc_mod.Node tag ← doc_mod.leaf("span", attrs1("class", "brand-tag"), "language docs")
+    fixum doc_mod.Node text ← doc_mod.element("span", attrs1("class", "brand-text"), children2(name, tag))
     redde doc_mod.element("a", attrs2("class", "brand", "href", "/"), children2(mark, text))
 }
 
-functio side_h(textus label) → doc_mod.Element {
+functio side_h(textus label) → doc_mod.Node {
     redde doc_mod.leaf("div", attrs1("class", "side-h"), label)
 }
 
-functio nav_list(lista<doc_mod.Element> items, textus class_name) → doc_mod.Element {
+functio nav_list(lista<doc_mod.Node> items, textus class_name) → doc_mod.Node {
     redde doc_mod.element("ul", attrs1("class", class_name), items)
 }
 
-functio genera_nav_link(textus label, textus href, bivalens active) → doc_mod.Element {
+functio genera_nav_link(textus label, textus href, bivalens active) → doc_mod.Node {
     si active {
         redde doc_mod.leaf("a", attrs2("href", href, "class", "active"), label)
     }
     redde doc_mod.leaf("a", attrs1("href", href), label)
 }
 
-functio meta_row(textus key, textus value) → doc_mod.Element {
+functio meta_row(textus key, textus value) → doc_mod.Node {
     redde doc_mod.element("div", attrs1("class", "side-meta-row"), children2(doc_mod.leaf("span", attrs1("class", "k"), key), doc_mod.leaf("span", attrs1("class", "v"), value)))
 }
 
-functio genera_side_meta() → doc_mod.Element {
+functio genera_side_meta() → doc_mod.Node {
     redde doc_mod.element("div", attrs1("class", "side-meta"), children4(meta_row("Paradigm", "packages"), meta_row("Typing", "static · type-first"), meta_row("Target", "Rust → native"), meta_row("License", "MIT")))
 }
 
-functio genera_main(types_mod.Pagina pag) → doc_mod.Element {
-    fixum doc_mod.Element h1 ← doc_mod.leaf("h1", attrs0(), pag.titulus)
-    fixum doc_mod.Element body ← genera_body(markdown_mod.converte(pag.corpus))
+functio genera_main(types_mod.Pagina pag) → doc_mod.Node {
+    fixum doc_mod.Node h1 ← doc_mod.leaf("h1", attrs0(), pag.titulus)
+    fixum doc_mod.Node body ← genera_body(markdown_mod.converte(pag.corpus))
     si pag.section ≡ "" {
         redde doc_mod.element("main", attrs0(), children3(h1, genera_agent_notice(), body))
     }
     redde doc_mod.element("main", attrs0(), children2(h1, body))
 }
 
-functio genera_agent_notice() → doc_mod.Element {
-    varia lista<doc_mod.Element> p_children ← vacua
+functio genera_agent_notice() → doc_mod.Node {
+    varia lista<doc_mod.Node> p_children ← vacua
     p_children.appende(doc_mod.text("If you are an AI agent: start at "))
     p_children.appende(code_link("/llms.txt", "/llms.txt"))
     p_children.appende(doc_mod.text(", then read "))
@@ -219,26 +219,26 @@ functio genera_agent_notice() → doc_mod.Element {
     p_children.appende(a("/start/examples.html", "Examples"))
     p_children.appende(doc_mod.text("."))
 
-    fixum doc_mod.Element label ← doc_mod.leaf("span", attrs1("class", "agent-notice-label"), "Agent-ready")
-    fixum doc_mod.Element paragraph ← doc_mod.element("p", attrs0(), p_children)
-    fixum doc_mod.Element body ← doc_mod.element("div", attrs1("class", "agent-notice-body"), children1(paragraph))
+    fixum doc_mod.Node label ← doc_mod.leaf("span", attrs1("class", "agent-notice-label"), "Agent-ready")
+    fixum doc_mod.Node paragraph ← doc_mod.element("p", attrs0(), p_children)
+    fixum doc_mod.Node body ← doc_mod.element("div", attrs1("class", "agent-notice-body"), children1(paragraph))
     redde doc_mod.element("section", attrs2("class", "agent-notice", "aria-label", "Agent-facing notice"), children2(label, body))
 }
 
-functio genera_body(textus markdown) → doc_mod.Element {
-    redde doc_mod.leaf("div", attrs1("class", "content"), markdown)
+functio genera_body(textus markdown) → doc_mod.Node {
+    redde doc_mod.element("div", attrs1("class", "content"), children1(doc_mod.raw(markdown)))
 }
 
-functio genera_source_list(lista<textus> sources) → doc_mod.Element {
+functio genera_source_list(lista<textus> sources) → doc_mod.Node {
     si sources.longitudo() ≡ 0 ergo redde doc_mod.text("")
 
-    varia lista<doc_mod.Element> items ← vacua
+    varia lista<doc_mod.Node> items ← vacua
     itera ex sources fixum src {
         items.appende(li(doc_mod.text(src)))
     }
 
-    fixum doc_mod.Element label ← doc_mod.leaf("span", attrs1("class", "side-h"), "Sources")
-    fixum doc_mod.Element list ← doc_mod.element("ul", attrs0(), items)
-    fixum doc_mod.Element source_list ← doc_mod.element("div", attrs1("class", "source-list"), children2(label, list))
+    fixum doc_mod.Node label ← doc_mod.leaf("span", attrs1("class", "side-h"), "Sources")
+    fixum doc_mod.Node list ← doc_mod.element("ul", attrs0(), items)
+    fixum doc_mod.Node source_list ← doc_mod.element("div", attrs1("class", "source-list"), children2(label, list))
     redde doc_mod.element("footer", attrs0(), children1(source_list))
 }
