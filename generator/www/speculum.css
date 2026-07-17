@@ -28,10 +28,36 @@
     --mono: 'Noto Sans Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
     --radius: 4px;
     --shadow-soft: 0 1px 2px rgba(26, 26, 24, 0.04);
+    --shadow-lift: 0 4px 14px rgba(26, 26, 24, 0.06);
+}
+
+/* Dark scheme: same paper-and-ink identity, lamplight instead of daylight. */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --paper: #1c1b19;
+        --paper-alt: #242320;
+        --paper-deep: #2c2b27;
+        --ink: #e8e6df;
+        --ink-dim: #aeaba1;
+        --ink-faint: #817e75;
+        --rule: #3a3833;
+        --rule-strong: #4c4a43;
+        --glyph: #93a9e8;
+        --glyph-soft: #262c40;
+        --glyph-hover: #b0c1f2;
+        --fallback: #6f6c63;
+        --support: #7fbe9b;
+        --limited: #d3a94f;
+        --reject: #d47f70;
+        --defer: #8e8d83;
+        --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.35);
+        --shadow-lift: 0 4px 14px rgba(0, 0, 0, 0.45);
+    }
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; color-scheme: light dark; }
+::selection { background: var(--glyph); color: var(--paper); }
 body {
     background: var(--paper);
     color: var(--ink);
@@ -67,12 +93,33 @@ a.section-link { border: none; font-weight: 700; color: var(--ink); }
 a.section-link:hover { border-bottom: 1px solid var(--glyph); color: var(--glyph); }
 code { font-family: var(--mono); font-size: 0.88em; }
 
+/* Inline code chips in prose (fenced blocks reset below) */
+.content code {
+    background: var(--paper-alt);
+    border: 1px solid var(--rule);
+    border-radius: 3px;
+    padding: 0.08em 0.35em;
+}
+.content a code {
+    background: var(--glyph-soft);
+    border-color: color-mix(in srgb, var(--glyph) 25%, var(--rule));
+    color: inherit;
+}
+.content pre code {
+    background: none;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    font-size: 100%;
+}
+
 /* ---------- inline span classes ---------- */
 code.kw { color: var(--glyph); font-weight: 700; }
 code.typ { color: var(--support); }
 
 /* ---------- rendering bar ---------- */
 .renderbar {
+    border-top: 3px solid var(--glyph);
     border-bottom: 1px solid var(--rule);
     background: linear-gradient(180deg, var(--paper-alt) 0%, var(--paper) 100%);
 }
@@ -144,13 +191,33 @@ main {
 
 /* ---------- brand / sidebar ---------- */
 aside .brand {
-    display: block;
+    display: flex;
+    align-items: center;
+    gap: 12px;
     border: none;
     margin: 0 0 18px;
     padding: 4px 0 14px;
     border-bottom: 1px solid var(--rule);
 }
 aside .brand:hover { border-bottom-color: var(--glyph); background: none; }
+aside .brand-mark {
+    flex: 0 0 auto;
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    background: var(--glyph);
+    color: #faf9f6;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1;
+    padding-bottom: 3px;
+    border-radius: 8px;
+    box-shadow: var(--shadow-soft);
+}
+aside .brand:hover .brand-mark { background: var(--glyph-hover); }
+aside .brand-text { display: block; min-width: 0; }
 aside .brand-name {
     display: block;
     font-family: var(--serif);
@@ -194,7 +261,6 @@ aside ul.nav li a.active {
     font-weight: 700;
     color: var(--ink);
     background: var(--glyph-soft);
-    box-shadow: inset 3px 0 0 var(--glyph);
 }
 aside ul.nav-compact li { font-size: 12.5px; }
 aside ul.nav-compact li a {
@@ -233,7 +299,6 @@ aside .sidelist .v { font-family: var(--sans); font-size: 10.5px; }
     margin: 16px 0 22px;
     padding: 14px 16px;
     border: 1px solid var(--rule);
-    border-left: 3px solid var(--glyph);
     background: linear-gradient(180deg, var(--glyph-soft) 0%, var(--paper-alt) 100%);
     border-radius: var(--radius);
     box-shadow: var(--shadow-soft);
@@ -265,6 +330,12 @@ aside .sidelist .v { font-family: var(--sans); font-size: 10.5px; }
 h1 {
     font-family: var(--serif); font-size: 2.15rem; line-height: 1.2; font-weight: 400;
     border-bottom: 1px solid var(--rule); padding-bottom: 12px; letter-spacing: -0.015em;
+}
+/* Homepage hero: larger masthead, lead opening paragraph. */
+body.home h1 { font-size: 2.9rem; padding-bottom: 16px; }
+body.home .content > p:first-of-type {
+    font-size: 1.16rem;
+    line-height: 1.72;
 }
 .sub { font-family: var(--sans); font-size: 13px; color: var(--ink-faint); margin: 8px 0 24px; }
 h2 {
@@ -307,8 +378,11 @@ p { margin-bottom: 0.95rem; max-width: 70ch; }
     text-transform: uppercase;
     color: var(--ink-dim);
     padding: 0.7rem 0.9rem;
-    border-bottom: 1px solid var(--rule-strong);
+    border-bottom: 2px solid color-mix(in srgb, var(--glyph) 30%, var(--rule-strong));
     vertical-align: bottom;
+}
+.content tbody tr:nth-child(even) {
+    background: color-mix(in srgb, var(--paper-alt) 55%, transparent);
 }
 .content td {
     padding: 0.65rem 0.9rem;
@@ -354,7 +428,7 @@ p { margin-bottom: 0.95rem; max-width: 70ch; }
 }
 .topic-card:hover {
     border-color: var(--rule-strong);
-    box-shadow: 0 4px 14px rgba(26, 26, 24, 0.06);
+    box-shadow: var(--shadow-lift);
     transform: translateY(-1px);
 }
 .topic-card h3 { margin: 0 0 6px; }
@@ -421,6 +495,7 @@ footer a:hover { color: var(--glyph); border-bottom-color: var(--glyph); }
     .infobox { float: none; width: 100%; margin: 16px 0; }
     main { max-width: none; padding-top: 18px; }
     h1 { font-size: 1.75rem; }
+    body.home h1 { font-size: 2.2rem; }
     .content th:first-child,
     .content td:first-child { width: auto; min-width: 0; }
 }

@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types. Agent-readable docs, install, and examples.">
+<meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)">
+<meta property="og:site_name" content="Faber">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Reader locale — Faber">
+<meta property="og:description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index">
 <link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide">
 <title>Reader locale — Faber</title>
@@ -12,7 +19,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@400;600&family=Noto+Sans+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/speculum.css">
 </head>
-<body>
+<body class="docs">
     <div class="renderbar">
   <div class="in">
     <span class="lbl">Rendering</span>
@@ -28,8 +35,11 @@
 <div class="page">
     <aside>
   <a class="brand" href="/">
-    <span class="brand-name">Faber</span>
-    <span class="brand-tag">language docs</span>
+    <span class="brand-mark" aria-hidden="true">f</span>
+    <span class="brand-text">
+      <span class="brand-name">Faber</span>
+      <span class="brand-tag">language docs</span>
+    </span>
   </a>
 
   <div class="side-h">Get started</div>
@@ -90,7 +100,7 @@ a Thai computer scientist can ask an LLM for help in Thai — but not the durabl
 <strong>artifact</strong>. The generated code, APIs, compiler errors, and documentation
 remain English-shaped. English proficiency becomes a gate to computer science,
 not merely to conversation.</p>
-<p>Reader locale is the design response: the language a human uses to *understand*
+<p>Reader locale is the design response: the language a human uses to <em>understand</em>
 Faber — source, diagnostics, and optionally stdlib spellings — without English as
 a prerequisite. It is not application internationalisation (complete string-matrix
 coverage). It is reader dialect support: opt-in, partial packs over a semantic core
@@ -157,13 +167,13 @@ must survive:</p>
 <tr><td><code>hi</code></td><td>Very high</td><td>Matra/virama clusters; Indic numerals</td></tr>
 <tr><td><code>vi</code></td><td>High</td><td>Heavy diacritics on Latin script; NFKC edge cases</td></tr>
 </tbody></table>
-<p>*The reference set is chosen for architectural coverage, not population. Population alone would prove nothing the substrate did not already handle.*</p>
+<p><em>The reference set is chosen for architectural coverage, not population. Population alone would prove nothing the substrate did not already handle.</em></p>
 <h2 id="examples">Localised source examples</h2>
 <p>Each of the six non-Latin locales has a complete Faber package under
 <code>examples/reader-locale/</code> with localised source, diagnostic test
 cases, and a <code>faber.toml</code> manifest. The same <code>greet</code>
 program rendered across all shipped locales:</p>
-<p><strong>Latin</strong> <code>la</code> — *canonical*</p>
+<p><strong>Latin</strong> <code>la</code> — <em>canonical</em></p>
 <pre class="faber-code"><code class="lang-faber">functio salve(textus nomen) → textus {
     fixum textus msg ← "Salve, §!"(nomen)
     redde msg
@@ -176,7 +186,7 @@ incipit {
 <p>The canonical rendering. <code>faber format --canonical</code> is exactly
 <code>faber format --reader-locale=la</code>. Latin keywords map to themselves;
 type names are the canonical spellings.</p>
-<p><strong>ไทย</strong> <code>th-TH</code> — *reference proof*</p>
+<p><strong>ไทย</strong> <code>th-TH</code> — <em>reference proof</em></p>
 <pre class="faber-code"><code class="lang-text">ฟังก์ชัน salve(ข้อความ nomen) → ข้อความ {
     ค่าคงที่ ข้อความ msg ← "Salve, §!"(nomen)
     คืนค่า msg

@@ -4,6 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types. Agent-readable docs, install, and examples.">
+<meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)">
+<meta property="og:site_name" content="Faber">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Commandments — Faber">
+<meta property="og:description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index">
 <link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide">
 <title>Commandments — Faber</title>
@@ -12,7 +19,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@400;600&family=Noto+Sans+Mono:wght@400;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/speculum.css">
 </head>
-<body>
+<body class="docs">
     <div class="renderbar">
   <div class="in">
     <span class="lbl">Rendering</span>
@@ -28,8 +35,11 @@
 <div class="page">
     <aside>
   <a class="brand" href="/">
-    <span class="brand-name">Faber</span>
-    <span class="brand-tag">language docs</span>
+    <span class="brand-mark" aria-hidden="true">f</span>
+    <span class="brand-text">
+      <span class="brand-name">Faber</span>
+      <span class="brand-tag">language docs</span>
+    </span>
   </a>
 
   <div class="side-h">Get started</div>
@@ -77,7 +87,7 @@
 <main>
 <h1>Commandments</h1>
 <div class="content">
-<p>*Nine rules that make Faber feel like Faber.*</p>
+<p><em>Nine rules that make Faber feel like Faber.</em></p>
 <p>These are the design laws that define Faber's character. Syntax can evolve and
 features can be added, but changes should preserve these principles. A program
 that violates them may be valid Faber, but it does not feel like Faber.</p>
@@ -87,8 +97,8 @@ Faber source at a glance, regardless of which human language the keywords are
 rendered in or which target backend the code compiles to.</p>
 <h2 id="i-types-before-names">I. Types before names</h2>
 <p>Declarations read from shape to binding. The type comes first because the
-reader needs to know *what kind of thing* this is before the name
-tells them *which* thing. This aligns with languages whose
+reader needs to know <em>what kind of thing</em> this is before the name
+tells them <em>which</em> thing. This aligns with languages whose
 grammatical order reads from category to instance — Chinese, Hindi, Arabic
 — and produces declarations that scan uniformly.</p>
 <pre class="faber-code"><code class="lang-text"># Type before name in every declaration
@@ -119,7 +129,7 @@ even if the keywords around them differ.</p>
 <code class="kw">varia</code>, <code class="kw">redde</code>, <code class="kw">cape</code>.
 These are bindable through reader-locale packs — they are the vocabulary,
 not the grammar. The Latin choice is not about Latin superiority; it is
-about picking *one* consistent classical source so that all keywords
+about picking <em>one</em> consistent classical source so that all keywords
 belong to the same register and no keyword is privileged by being the
 language the implementation was written in.</p>
 <h2 id="v-conjugation-carries-time-and-flow">V. Conjugation carries time and flow</h2>
@@ -156,7 +166,7 @@ runtime event. There is no syntactic ambiguity about whether a particular
 <h2 id="viii-absence-is-typed">VIII. Absence is typed</h2>
 <p>Nullable value types are written as unions: <code>T ∪ nihil</code>. Optional
 declaration slots use post-name markers: <code>sponte</code>. These are
-distinct concepts — *a value that may be absent* vs *a slot the
+distinct concepts — <em>a value that may be absent</em> vs *a slot the
 caller may omit* — and Faber keeps them syntactically separate rather
 than collapsing both into <code>T?</code> or <code>Option<T></code>.</p>
 <pre class="faber-code"><code class="lang-text"># Absence in a value: T ∪ nihil

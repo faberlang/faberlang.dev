@@ -7,6 +7,7 @@
 #   - Unordered lists (- prefix, flat single-level)
 #   - Fenced code blocks (``` with optional info string)
 #   - Inline bold (**text** → <strong>)
+#   - Inline italic (*text* → <em>)
 #   - Inline links ([label](href) → <a href>)
 #
 # Inline code spans are delegated to span_mod.genera_line() (the 48-
@@ -118,6 +119,60 @@ functio converte_bold(textus text) → textus {
     redde result
 }
 
+# Convert single *italic* markers to <em> tags.
+# Runs after converte_bold, so any remaining ** pairs are unmatched
+# bold leftovers and are skipped as plain text.
+functio converte_italic(textus text) → textus {
+    fixum numerus len ← text.longitudo()
+    varia textus result ← ""
+    varia numerus i ← 0
+    varia numerus plain_start ← 0
+
+    dum i < len {
+        # 42 = '*'
+        si text[i] ≡ 42 {
+            # Skip ** runs — those belong to (unmatched) bold markers.
+            si i + 1 < len et text[i + 1] ≡ 42 {
+                i ← i + 2
+                perge
+            }
+
+            # Search for closing single *
+            varia numerus j ← i + 1
+            varia bivalens found ← falsum
+
+            dum j < len {
+                si text[j] ≡ 42 {
+                    found ← verum
+                    rumpe
+                }
+                j ← j + 1
+            }
+
+            si found et j > i + 1 {
+                si i > plain_start {
+                    result ← result + text.sectio(plain_start, i)
+                }
+
+                fixum textus inner ← text.sectio(i + 1, j)
+                result ← result + "<em>§</em>"(inner)
+
+                i ← j + 1
+                plain_start ← i
+                perge
+            }
+        }
+
+        i ← i + 1
+    }
+
+    si len > plain_start {
+        result ← result + text.sectio(plain_start, len)
+    }
+
+    redde result
+}
+
 # Convert Markdown links [label](href) to <a href="…">label</a>.
 # Does not handle nested brackets or reference-style links.
 functio converte_links(textus text) → textus {
@@ -185,12 +240,14 @@ functio converte_links(textus text) → textus {
     redde result
 }
 
-# Apply all inline transforms: code spans, then links, then bold.
-# Order: code first (so `[]()` inside code stays literal), then links, then bold.
+# Apply all inline transforms: code spans, then links, then bold, then italic.
+# Order: code first (so `[]()` inside code stays literal), then links,
+# then bold before italic (so ** is consumed before single * is considered).
 functio genera_inline(textus text) → textus {
     fixum textus with_code ← span_mod.genera_line(text)
     fixum textus with_links ← converte_links(with_code)
-    redde converte_bold(with_links)
+    fixum textus with_bold ← converte_bold(with_links)
+    redde converte_italic(with_bold)
 }
 
 # Extract a trailing {#anchor} from heading text.
@@ -563,6 +620,27 @@ probandum "markdown converter" tag "core" {
     proba "bold without closing markers passes through" {
         fixum textus result ← converte_bold("**no closing")
         adfirma su.initium_index(result, "**no closing") ≥ 0
+    }
+
+    proba "italic inline" {
+        fixum textus result ← converte_italic("the Latin word for *maker* here")
+        adfirma su.initium_index(result, "<em>maker</em>") ≥ 0
+    }
+
+    proba "italic without closing marker passes through" {
+        fixum textus result ← converte_italic("a * b")
+        adfirma su.initium_index(result, "<em>") < 0
+    }
+
+    proba "italic skips unmatched bold leftovers" {
+        fixum textus result ← converte_italic("**still bold markers**")
+        adfirma su.initium_index(result, "<em>") < 0
+    }
+
+    proba "bold then italic in one line" {
+        fixum textus result ← converte_italic(converte_bold("**b** and *i*"))
+        adfirma su.initium_index(result, "<strong>b</strong>") ≥ 0
+        adfirma su.initium_index(result, "<em>i</em>") ≥ 0
     }
 
     proba "html escape" {
