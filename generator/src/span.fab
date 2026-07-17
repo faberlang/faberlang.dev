@@ -90,23 +90,13 @@ functio classifica(textus span) → textus {
 }
 
 
-functio attrs0() → lista<doc_mod.Attr> {
-    redde vacua
-}
-
-functio attrs1(textus n1, textus v1) → lista<doc_mod.Attr> {
-    varia lista<doc_mod.Attr> attrs ← vacua
-    attrs.appende(doc_mod.attr(n1, v1))
-    redde attrs
-}
-
 # Render an inline code span to Document IR.
 # Wraps in code class=kw, code class=typ, or plain code.
 functio genera_span_node(textus span) → doc_mod.Node {
     fixum textus cls ← classifica(span)
-    si cls ≡ "kw" ergo redde doc_mod.leaf("code", attrs1("class", "kw"), span)
-    si cls ≡ "typ" ergo redde doc_mod.leaf("code", attrs1("class", "typ"), span)
-    redde doc_mod.leaf("code", attrs0(), span)
+    si cls ≡ "kw" ergo redde doc_mod.leaf("code", [doc_mod.attr("class", "kw")], span)
+    si cls ≡ "typ" ergo redde doc_mod.leaf("code", [doc_mod.attr("class", "typ")], span)
+    redde doc_mod.leaf("code", vacua, span)
 }
 
 # Compatibility helper for older proba callers. The serializer remains the

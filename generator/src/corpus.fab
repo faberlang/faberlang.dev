@@ -194,55 +194,27 @@ functio genera_corpus(textus term, textus bundle, textus locale, textus styleshe
     redde html_mod.genera_paginam(page, stylesheet)
 }
 
-functio attrs0() → lista<doc_mod.Attr> {
-    redde vacua
-}
-
-functio attrs1(textus n1, textus v1) → lista<doc_mod.Attr> {
-    varia lista<doc_mod.Attr> attrs ← vacua
-    attrs.appende(doc_mod.attr(n1, v1))
-    redde attrs
-}
-
-functio attrs2(textus n1, textus v1, textus n2, textus v2) → lista<doc_mod.Attr> {
-    varia lista<doc_mod.Attr> attrs ← attrs1(n1, v1)
-    attrs.appende(doc_mod.attr(n2, v2))
-    redde attrs
-}
-
-functio children1(doc_mod.Node a) → lista<doc_mod.Node> {
-    varia lista<doc_mod.Node> children ← vacua
-    children.appende(a)
-    redde children
-}
-
-functio children2(doc_mod.Node a, doc_mod.Node b) → lista<doc_mod.Node> {
-    varia lista<doc_mod.Node> children ← children1(a)
-    children.appende(b)
-    redde children
-}
-
 functio alias_head(textus alias, textus canonical, textus stylesheet) → doc_mod.Node {
     varia lista<doc_mod.Node> children ← vacua
-    children.appende(doc_mod.void_element("meta", attrs1("charset", "utf-8")))
-    children.appende(doc_mod.void_element("meta", attrs2("name", "viewport", "content", "width=device-width, initial-scale=1")))
-    children.appende(doc_mod.void_element("meta", attrs2("http-equiv", "refresh", "content", "0; url=/corpus/" + canonical + ".html")))
-    children.appende(doc_mod.void_element("link", attrs2("rel", "canonical", "href", "/corpus/" + canonical + ".html")))
-    children.appende(doc_mod.void_element("link", attrs2("rel", "stylesheet", "href", stylesheet)))
-    children.appende(doc_mod.leaf("title", attrs0(), alias + " — Faber"))
-    redde doc_mod.element("head", attrs0(), children)
+    children.appende(doc_mod.void_element("meta", [doc_mod.attr("charset", "utf-8")]))
+    children.appende(doc_mod.void_element("meta", [doc_mod.attr("name", "viewport"), doc_mod.attr("content", "width=device-width, initial-scale=1")]))
+    children.appende(doc_mod.void_element("meta", [doc_mod.attr("http-equiv", "refresh"), doc_mod.attr("content", "0; url=/corpus/" + canonical + ".html")]))
+    children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "canonical"), doc_mod.attr("href", "/corpus/" + canonical + ".html")]))
+    children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "stylesheet"), doc_mod.attr("href", stylesheet)]))
+    children.appende(doc_mod.leaf("title", vacua, alias + " — Faber"))
+    redde doc_mod.element("head", vacua, children)
 }
 
 functio alias_body(textus canonical) → doc_mod.Node {
     varia lista<doc_mod.Node> paragraph ← vacua
     paragraph.appende(doc_mod.text("This term is an alias. Continue to "))
-    paragraph.appende(doc_mod.leaf("a", attrs1("href", "/corpus/" + canonical + ".html"), canonical))
+    paragraph.appende(doc_mod.leaf("a", [doc_mod.attr("href", "/corpus/" + canonical + ".html")], canonical))
     paragraph.appende(doc_mod.text("."))
-    redde doc_mod.element("body", attrs0(), children1(doc_mod.element("p", attrs0(), paragraph)))
+    redde doc_mod.element("body", vacua, [doc_mod.element("p", vacua, paragraph)])
 }
 
 functio genera_alias_redirect(textus alias, textus canonical, textus locale, textus stylesheet) → textus {
-    fixum doc_mod.Node root ← doc_mod.element("html", attrs1("lang", locale), children2(alias_head(alias, canonical, stylesheet), alias_body(canonical)))
+    fixum doc_mod.Node root ← doc_mod.element("html", [doc_mod.attr("lang", locale)], [alias_head(alias, canonical, stylesheet), alias_body(canonical)])
     redde doc_mod.html(doc_mod.document(root))
 }
 

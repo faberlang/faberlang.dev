@@ -23,32 +23,6 @@ genus AnchoredHeading {
 }
 
 
-# ──────────────────────────────────────────────
-# Node helpers
-# ──────────────────────────────────────────────
-
-functio attrs0() → lista<doc_mod.Attr> {
-    redde vacua
-}
-
-functio attrs1(textus n1, textus v1) → lista<doc_mod.Attr> {
-    varia lista<doc_mod.Attr> attrs ← vacua
-    attrs.appende(doc_mod.attr(n1, v1))
-    redde attrs
-}
-
-functio attrs2(textus n1, textus v1, textus n2, textus v2) → lista<doc_mod.Attr> {
-    varia lista<doc_mod.Attr> attrs ← attrs1(n1, v1)
-    attrs.appende(doc_mod.attr(n2, v2))
-    redde attrs
-}
-
-functio children1(doc_mod.Node a) → lista<doc_mod.Node> {
-    varia lista<doc_mod.Node> children ← vacua
-    children.appende(a)
-    redde children
-}
-
 functio append_nodes(lista<doc_mod.Node> base, lista<doc_mod.Node> extra) → lista<doc_mod.Node> {
     varia lista<doc_mod.Node> result ← base
     itera ex extra fixum item {
@@ -66,7 +40,7 @@ functio append_text_range(lista<doc_mod.Node> base, textus source, numerus start
 }
 
 functio inline_leaf(textus tag, textus value) → doc_mod.Node {
-    redde doc_mod.element(tag, attrs0(), children1(doc_mod.text(value)))
+    redde doc_mod.element(tag, vacua, [doc_mod.text(value)])
 }
 
 
@@ -140,7 +114,7 @@ functio genera_inline(textus text) → lista<doc_mod.Node> {
                     nodes ← append_text_range(nodes, text, plain_start, i)
                     fixum textus label ← text.sectio(i + 1, j)
                     fixum textus href ← text.sectio(j + 2, k)
-                    nodes.appende(doc_mod.element("a", attrs1("href", href), genera_inline(label)))
+                    nodes.appende(doc_mod.element("a", [doc_mod.attr("href", href)], genera_inline(label)))
                     i ← k + 1
                     plain_start ← i
                     perge
@@ -235,10 +209,10 @@ functio genera_heading_node(textus tag, textus heading) → doc_mod.Node {
     fixum lista<doc_mod.Node> children ← genera_inline(ah.title)
 
     si ah.anchor.longitudo() > 0 {
-        redde doc_mod.element(tag, attrs1("id", ah.anchor), children)
+        redde doc_mod.element(tag, [doc_mod.attr("id", ah.anchor)], children)
     }
 
-    redde doc_mod.element(tag, attrs0(), children)
+    redde doc_mod.element(tag, vacua, children)
 }
 
 
@@ -298,19 +272,19 @@ functio split_table_row(textus row) → lista<textus> {
 functio row_cells(textus tag, lista<textus> cells) → lista<doc_mod.Node> {
     varia lista<doc_mod.Node> nodes ← vacua
     itera ex cells fixum cell {
-        nodes.appende(doc_mod.element(tag, attrs0(), genera_inline(cell)))
+        nodes.appende(doc_mod.element(tag, vacua, genera_inline(cell)))
     }
     redde nodes
 }
 
 functio table_node(lista<textus> headers, lista<doc_mod.Node> rows) → doc_mod.Node {
-    fixum doc_mod.Node head_row ← doc_mod.element("tr", attrs0(), row_cells("th", headers))
-    fixum doc_mod.Node thead ← doc_mod.element("thead", attrs0(), children1(head_row))
-    fixum doc_mod.Node tbody ← doc_mod.element("tbody", attrs0(), rows)
+    fixum doc_mod.Node head_row ← doc_mod.element("tr", vacua, row_cells("th", headers))
+    fixum doc_mod.Node thead ← doc_mod.element("thead", vacua, [head_row])
+    fixum doc_mod.Node tbody ← doc_mod.element("tbody", vacua, rows)
     varia lista<doc_mod.Node> children ← vacua
     children.appende(thead)
     children.appende(tbody)
-    redde doc_mod.element("table", attrs0(), children)
+    redde doc_mod.element("table", vacua, children)
 }
 
 
@@ -357,13 +331,13 @@ functio converte_nodes(textus source) → lista<doc_mod.Node> {
                 i ← i + 1
             }
 
-            varia lista<doc_mod.Attr> code_attrs ← attrs0()
+            varia lista<doc_mod.Attr> code_attrs ← vacua
             si info.longitudo() > 0 {
-                code_attrs ← attrs1("class", "lang-" + info)
+                code_attrs ← [doc_mod.attr("class", "lang-" + info)]
             }
 
-            fixum doc_mod.Node code_node ← doc_mod.element("code", code_attrs, children1(doc_mod.text(code)))
-            result.appende(doc_mod.element("pre", attrs1("class", "faber-code"), children1(code_node)))
+            fixum doc_mod.Node code_node ← doc_mod.element("code", code_attrs, [doc_mod.text(code)])
+            result.appende(doc_mod.element("pre", [doc_mod.attr("class", "faber-code")], [code_node]))
             perge
         }
 
@@ -399,7 +373,7 @@ functio converte_nodes(textus source) → lista<doc_mod.Node> {
                         rumpe
                     }
 
-                    rows.appende(doc_mod.element("tr", attrs0(), row_cells("td", split_table_row(l))))
+                    rows.appende(doc_mod.element("tr", vacua, row_cells("td", split_table_row(l))))
                     i ← i + 1
                 }
 
@@ -423,11 +397,11 @@ functio converte_nodes(textus source) → lista<doc_mod.Node> {
                 }
 
                 fixum textus item ← l.sectio(2, l.longitudo())
-                items.appende(doc_mod.element("li", attrs0(), genera_inline(item)))
+                items.appende(doc_mod.element("li", vacua, genera_inline(item)))
                 i ← i + 1
             }
 
-            result.appende(doc_mod.element("ul", attrs0(), items))
+            result.appende(doc_mod.element("ul", vacua, items))
             perge
         }
 
@@ -456,7 +430,7 @@ functio converte_nodes(textus source) → lista<doc_mod.Node> {
             i ← i + 1
         }
 
-        result.appende(doc_mod.element("p", attrs0(), para))
+        result.appende(doc_mod.element("p", vacua, para))
     }
 
     redde result
@@ -477,7 +451,7 @@ probandum "markdown converter" tag "core" {
 
     proba "h2 heading" {
         fixum textus html ← converte("## Title")
-        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("h2", attrs0(), "Title"))) ≥ 0
+        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("h2", vacua, "Title"))) ≥ 0
     }
 
     proba "h2 heading with anchor" {
@@ -487,7 +461,7 @@ probandum "markdown converter" tag "core" {
 
     proba "h3 heading" {
         fixum textus html ← converte("### Subtitle")
-        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("h3", attrs0(), "Subtitle"))) ≥ 0
+        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("h3", vacua, "Subtitle"))) ≥ 0
     }
 
     proba "h3 heading with anchor" {
@@ -502,7 +476,7 @@ probandum "markdown converter" tag "core" {
 
     proba "paragraph wrapping" {
         fixum textus html ← converte("Hello world")
-        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("p", attrs0(), "Hello world"))) ≥ 0
+        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("p", vacua, "Hello world"))) ≥ 0
     }
 
     proba "multi-line paragraph" {
