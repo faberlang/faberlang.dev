@@ -337,9 +337,13 @@ path documented by the page.
 
 ### Stage 7 — Multilingual Generation
 
-**Status**: partial multi-locale proof implemented (`th-TH`, `zh-Hans`,
-`zh-Hant`, `vi`, `ar`, and `hi` portal/start fallback slices plus generated
-corpus artifacts); full Stage 7 remains open.
+**Status**: partial multi-locale proof implemented — **proof locale set
+complete**. All six non-canonical compiler-shipped reader locales (`th-TH`,
+`zh-Hans`, `zh-Hant`, `vi`, `ar`, `hi`) have portal/start fallback slices
+plus generated corpus artifacts. No seventh proof locale remains: the compiler
+ships 7 reader locales total (1 canonical `la` + 6 proof), and all 6 have
+slices. Full Stage 7 remains open pending authored-doc prose translation for
+any single locale.
 **Source**: `CONTENT-PLAN.md` §§ Multilingual pipeline, Output reader formatting (shipped)
 **Why now**: English site is complete; transcode is shipped.
 **Lowers to**: `delivery` → `factory`
@@ -347,11 +351,14 @@ corpus artifacts); full Stage 7 remains open.
 **Depends on**: Stage 5, Stage 6
 
 Deliverables:
-- [ ] Locale site generation: `src/{locale}/` structure for each of 7 locales
-  with full authored-doc coverage.
-- [x] Partial proof locales: `th-TH`, `zh-Hans`, `zh-Hant`, `vi`, `ar`, and
-  `hi` materialize the portal/start authored slice (`index.md` and `start/*`)
-  plus generated corpus/category/alias pages during the build.
+- [ ] Locale site generation: full authored-doc coverage for at least one
+  non-English locale (the compiler ships 7 reader locales total: `la`
+  canonical + 6 proof; all 6 have proof slices — see below).
+- [x] Proof locale set complete: all 6 non-canonical compiler-shipped reader
+  locales (`th-TH`, `zh-Hans`, `zh-Hant`, `vi`, `ar`, `hi`) materialize the
+  portal/start authored slice (`index.md` and `start/*`) plus generated
+  corpus/category/alias pages during the build. No remaining compiler locale
+  lacks a proof slice.
 - [x] Canonical transcode seam: render fluid example code blocks through
   `faber emit --reader-locale=<X>` at generation time.
 - [x] Translation provenance: English source SHA-256 recorded in proof-slice
@@ -388,6 +395,9 @@ six-locale fallback slice, not a full locale site.
   `dist/hi/`.
 
 **Residuals**:
+- **Proof set exhaustion:** all compiler-shipped non-canonical reader locales
+  have portal/start proof slices. The forward path for Stage 7 is full prose
+  translation for an existing locale, not adding a seventh proof locale.
 - Thai, Simplified Chinese, Traditional Chinese, Vietnamese, Arabic, and Hindi
   prose are fallback English for this slice; full prose translation remains
   open.
