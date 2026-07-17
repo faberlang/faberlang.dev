@@ -337,9 +337,9 @@ path documented by the page.
 
 ### Stage 7 — Multilingual Generation
 
-**Status**: partial multi-locale proof implemented (`th-TH`, `zh-Hans`, and
-`vi` portal/start fallback slices plus generated corpus artifacts); full Stage 7
-remains open.
+**Status**: partial multi-locale proof implemented (`th-TH`, `zh-Hans`, `vi`,
+and `ar` portal/start fallback slices plus generated corpus artifacts); full
+Stage 7 remains open.
 **Source**: `CONTENT-PLAN.md` §§ Multilingual pipeline, Output reader formatting (shipped)
 **Why now**: English site is complete; transcode is shipped.
 **Lowers to**: `delivery` → `factory`
@@ -349,8 +349,8 @@ remains open.
 Deliverables:
 - [ ] Locale site generation: `src/{locale}/` structure for each of 7 locales
   with full authored-doc coverage.
-- [x] Partial proof locales: `th-TH`, `zh-Hans`, and `vi` materialize the
-  portal/start authored slice (`index.md` and `start/*`) plus generated
+- [x] Partial proof locales: `th-TH`, `zh-Hans`, `vi`, and `ar` materialize
+  the portal/start authored slice (`index.md` and `start/*`) plus generated
   corpus/category/alias pages during the build.
 - [x] Canonical transcode seam: render fluid example code blocks through
   `faber emit --reader-locale=<X>` at generation time.
@@ -363,12 +363,12 @@ Deliverables:
 
 **Gate**: One non-English locale (e.g., `th-TH`) fully generated with
 transcoded code blocks and translated prose. **Not closed**: current work is a
-three-locale fallback slice, not a full locale site.
+four-locale fallback slice, not a full locale site.
 
 **Multi-locale partial proof (2026-07-17)**:
-- `src/th-TH/`, `src/zh-Hans/`, and `src/vi/` now materialize the portal/start
-  authored slice (`index.md` and `start/*`) with fallback prose banners and
-  English source SHA-256 provenance in frontmatter.
+- `src/th-TH/`, `src/zh-Hans/`, `src/vi/`, and `src/ar/` now materialize the
+  portal/start authored slice (`index.md` and `start/*`) with fallback prose
+  banners and English source SHA-256 provenance in frontmatter.
 - `generator/scripts/build-site.sh` discovers non-English `src/{locale}/`
   directories during the normal build and renders them under
   `dist/{locale}/`.
@@ -377,19 +377,20 @@ three-locale fallback slice, not a full locale site.
   `faber emit -t faber --reader-locale=<locale>` before Speculum renders
   HTML. Pinned/reject fences remain authored.
 - Validation evidence: `bash generator/scripts/validate-fences.sh src/th-TH`,
-  `bash generator/scripts/validate-fences.sh src/zh-Hans`, and
-  `bash generator/scripts/validate-fences.sh src/vi` pass;
+  `bash generator/scripts/validate-fences.sh src/zh-Hans`,
+  `bash generator/scripts/validate-fences.sh src/vi`, and
+  `bash generator/scripts/validate-fences.sh src/ar` pass;
   `bash generator/scripts/build-site.sh` renders the locale slices under
-  `dist/th-TH/`, `dist/zh-Hans/`, and `dist/vi/`.
+  `dist/th-TH/`, `dist/zh-Hans/`, `dist/vi/`, and `dist/ar/`.
 
 **Residuals**:
-- Thai, Simplified Chinese, and Vietnamese prose are fallback English for this
-  slice; full prose translation remains open.
+- Thai, Simplified Chinese, Vietnamese, and Arabic prose are fallback English
+  for this slice; full prose translation remains open.
 - The proof locales do not yet include the full authored docs, translated prose,
   or complete localized navigation; generated corpus, alias redirects, and
   category indexes are present in `dist/{locale}/` as build artifacts.
-- `zh-Hant`, `ar`, and `hi` reader packs ship, but no site slice is generated
-  for them yet.
+- `zh-Hant` and `hi` reader packs ship, but no site slice is generated for them
+  yet.
 - The installed `faber emit --reader-locale=<locale>` path currently preserves
   Latin fallback spelling for English-authored fluid fences while emitting
   `READER001` warnings. The site build calls the canonical seam, but visible
