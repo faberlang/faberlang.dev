@@ -273,19 +273,20 @@ Deliverables:
 - [x] Generate corpus hub page at `/corpus/`
 - [x] CI/fence validation run over generated term Markdown; residual filed below
 
-**Gate**: Implemented with exact residuals. The site renders 348 HTML pages:
-40 authored pages, 167 corpus term pages, 95 alias redirects, 45 category
-indexes, and 1 corpus hub. Generated-fence validation reports 171 passed / 1
-failed / 0 skipped. The single failure is `/corpus/tuus.html`, sourced from
-`examples/corpus/ad/sermo-tuus.fab`, where `radix check` reports
-`SEM008.unknown_type_name` for `sermo`; this appears to require runtime or
-package context not available to the standalone fence validator.
+**Gate**: Closed after residual triage (2026-07-17). The site renders 354
+HTML pages after Stage 6: 46 authored pages, 167 corpus term pages, 95 alias
+redirects, 45 category indexes, and 1 corpus hub. Generated-fence validation for
+the focused `tuus` proof now reports 1 passed / 0 failed / 0 skipped; authored
+fence validation reports 82 passed / 0 failed / 0 skipped.
 
-**Alias residuals**: `closure` and `lambda` are declared by both `clausa` and
-`clausura`; the static redirects keep the deterministic first target (`clausa`)
-and record the skipped duplicate target. `string` is also a canonical term path,
-so its alias-to-`textus` redirect is not emitted to avoid overwriting the
-canonical page.
+**Residual disposition — 2026-07-17**: `/corpus/tuus.html` now compiles in the
+standalone fence validator: `examples/corpus/ad/sermo-tuus.fab` uses the
+placeholder type `_` for the `ad` conversation binding instead of naming the
+compiler-owned `sermo` type directly. `closure` and `lambda` now have one
+canonical owner, `clausa`; `clausura` no longer declares those aliases. The only
+remaining alias residual is `string`, because it is a canonical term path and
+therefore cannot also be emitted as an alias redirect to `textus` without
+overwriting the canonical page.
 
 
 ### Publication (corpus campaign milestone)
