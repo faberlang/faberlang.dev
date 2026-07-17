@@ -7,52 +7,25 @@ binaries. Meaning lives in a semantic core (HIR); every human-language
 keyword surface and every codegen target is a rendering of that core.
 
 This document is the machine-readable public entrypoint for agents.
-Read it before editing Faber source or scaffolding packages.
-
-## Purpose
-
-- Teach agents enough language shape to read and write correct Faber.
-- Point agents at installable CLI binaries and real application packages.
-- Prefer focused skills under /.well-known/agent-skills/ over scraping HTML.
+It is generated during the site build from examples/corpus frontmatter.
 
 ## Start here
 
 1. Treat https://faberlang.dev as the documentation host.
-2. Read https://faberlang.dev/llms.txt (this file) first.
-3. Read https://faberlang.dev/agents/index.md for the agent learning path.
-4. Read https://faberlang.dev/llms-full.txt when you need the expanded map.
-5. Choose a skill from https://faberlang.dev/.well-known/agent-skills/index.json.
-6. Install the CLI from the current release (see Install below).
-7. Open real packages in https://github.com/faberlang/examples — not only snippets.
+2. Read this file before editing Faber source or scaffolding packages.
+3. Use corpus term links for exact keyword, syntax, alias, and relation data.
+4. Read https://faberlang.dev/agents/index.md for the agent learning path.
+5. Read https://faberlang.dev/llms-full.txt when you need the expanded map.
+6. Choose focused skills from https://faberlang.dev/.well-known/agent-skills/index.json.
 
-## Can I use this today?
+## Install
 
-- Public docs on faberlang.dev are open.
-- Prebuilt `faber` CLI archives for macOS arm64 and Linux x64 are published
-  under the faberlang/releases GitHub repo (current: Faber 1.1.1).
-- Public source: faber CLI, faber-runtime, norma, cista, triga, examples.
-- The Radix compiler implementation is private; consumers use the published
-  `faber` binary or org builds.
+Current release: Faber 1.1.1
 
-## Install (current release: 1.1.1)
-
-Release page:
-https://github.com/faberlang/releases/releases/tag/faber-v1.1.1
-
-Archives:
-
-- macOS arm64:
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz
-- Linux x64:
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz
-
-Matching `.sha256` files sit next to each archive. Verify by comparing the
-first hash field in the `.sha256` file to the local archive hash; the checksum
-line may name the original build path. Archives extract to
-`faber-v1.1.1-<target-triple>/faber`.
-
-Human install page: https://faberlang.dev/start/install.html
-Skill: https://faberlang.dev/.well-known/agent-skills/install/SKILL.md
+- Release: https://github.com/faberlang/releases/releases/tag/faber-v1.1.1
+- macOS arm64: https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz
+- Linux x64: https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz
+- Human install page: https://faberlang.dev/start/install.html
 
 Minimal verify after install:
 
@@ -61,109 +34,2214 @@ faber --version
 faber explain SEM001
 ```
 
-## Language shape (minimum viable)
+## Language shape
 
 - Type-first bindings: `textus nomen` not `nomen: textus`.
 - Latin behavioural words: `functio`, `genus`, `fixum`, `redde`, `si`, `itera`.
 - Glyphs: `←` bind, `→` return type, `∴` compact branch, `≡` equality, `∪` union.
-- Nullable: `T ∪ nihil` (not a separate `?T` sugar as authority).
+- Nullable: `T ∪ nihil`.
 - Comments: `#` only, on its own line. No `//`, no trailing `#`.
 - Packages: directory with `faber.toml` + `src/*.fab`.
 
-Example:
+## Generated corpus frontmatter reference
 
-```text
-functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ∴ redde nihil
-    redde a / b
-}
-```
+- Distinct frontmatter terms: 183
+- Canonical term pages: 167
+- Alias spellings: 98
+- Categories: 45
+- Source: examples/corpus/**/*.fab TOML frontmatter
 
-## CLI surface
+Each canonical record has: term, kind, category, summary, syntax signature, aliases, relations, and page URL.
 
-Primary tool: `faber` (public repo faberlang/faber).
+### Categories
 
-| Command | Purpose |
-|---|---|
-| `faber build <path>` | Compile package (default target: rust) |
-| `faber check <path>` | Type-check without emit |
-| `faber run <path>` | Build and execute |
-| `faber test <path>` | Run proba suites |
-| `faber format <path>` | Canonical formatter |
-| `faber explain <code>` | Explain a diagnostic |
-| `faber emit <path>` | Emit source in a target surface |
+- ad (3) — https://faberlang.dev/corpus/category/ad.html
+- aliasing (1) — https://faberlang.dev/corpus/category/aliasing.html
+- application (1) — https://faberlang.dev/corpus/category/application.html
+- assignment (1) — https://faberlang.dev/corpus/category/assignment.html
+- async (4) — https://faberlang.dev/corpus/category/async.html
+- availability (1) — https://faberlang.dev/corpus/category/availability.html
+- binding (3) — https://faberlang.dev/corpus/category/binding.html
+- bitwise (1) — https://faberlang.dev/corpus/category/bitwise.html
+- boolean (1) — https://faberlang.dev/corpus/category/boolean.html
+- cli (6) — https://faberlang.dev/corpus/category/cli.html
+- codegen (1) — https://faberlang.dev/corpus/category/codegen.html
+- collection (9) — https://faberlang.dev/corpus/category/collection.html
+- comparison (2) — https://faberlang.dev/corpus/category/comparison.html
+- comptime (1) — https://faberlang.dev/corpus/category/comptime.html
+- control-flow (13) — https://faberlang.dev/corpus/category/control-flow.html
+- conversion (4) — https://faberlang.dev/corpus/category/conversion.html
+- declaration (1) — https://faberlang.dev/corpus/category/declaration.html
+- destructuring (1) — https://faberlang.dev/corpus/category/destructuring.html
+- endpoint (4) — https://faberlang.dev/corpus/category/endpoint.html
+- entry (4) — https://faberlang.dev/corpus/category/entry.html
+- errors (3) — https://faberlang.dev/corpus/category/errors.html
+- expression (2) — https://faberlang.dev/corpus/category/expression.html
+- format (2) — https://faberlang.dev/corpus/category/format.html
+- function (12) — https://faberlang.dev/corpus/category/function.html
+- integration (1) — https://faberlang.dev/corpus/category/integration.html
+- io (2) — https://faberlang.dev/corpus/category/io.html
+- iteration (2) — https://faberlang.dev/corpus/category/iteration.html
+- lane (1) — https://faberlang.dev/corpus/category/lane.html
+- literal (6) — https://faberlang.dev/corpus/category/literal.html
+- logic (6) — https://faberlang.dev/corpus/category/logic.html
+- metadata (1) — https://faberlang.dev/corpus/category/metadata.html
+- modifier (3) — https://faberlang.dev/corpus/category/modifier.html
+- mutation (1) — https://faberlang.dev/corpus/category/mutation.html
+- non-null-chain (1) — https://faberlang.dev/corpus/category/non-null-chain.html
+- object (2) — https://faberlang.dev/corpus/category/object.html
+- operators (1) — https://faberlang.dev/corpus/category/operators.html
+- optional-chain (1) — https://faberlang.dev/corpus/category/optional-chain.html
+- output (3) — https://faberlang.dev/corpus/category/output.html
+- package (3) — https://faberlang.dev/corpus/category/package.html
+- range (6) — https://faberlang.dev/corpus/category/range.html
+- resource (1) — https://faberlang.dev/corpus/category/resource.html
+- template (1) — https://faberlang.dev/corpus/category/template.html
+- testing (18) — https://faberlang.dev/corpus/category/testing.html
+- transfer (4) — https://faberlang.dev/corpus/category/transfer.html
+- type (22) — https://faberlang.dev/corpus/category/type.html
 
-Docs: https://faberlang.dev/tooling/faber-build-tool.html
+### Kinds
 
-## Documentation map (HTML)
+- annotation: 8
+- concept: 13
+- conversio: 4
+- existing-home: 16
+- keyword: 99
+- literal: 1
+- method: 2
+- modifier: 1
+- operator: 2
+- operator-group: 16
+- pointer: 1
+- type: 4
 
-| Path | Content |
-|---|---|
-| https://faberlang.dev/ | Overview + download |
-| https://faberlang.dev/start/ | Quick tour |
-| https://faberlang.dev/start/install.html | Install & download |
-| https://faberlang.dev/start/examples.html | Real-world packages |
-| https://faberlang.dev/features/ | Locales, lanes, glyphs, principles |
-| https://faberlang.dev/syntax/ | Language reference |
-| https://faberlang.dev/tooling/ | Compiler, CLI, targets |
-| https://faberlang.dev/ecosystem/ | Norma, Cista, Triga, workbench |
-| https://faberlang.dev/corpus/ | Generated keyword / construct pages |
-| https://faberlang.dev/references/ | EBNF, design docs, repos |
-| https://faberlang.dev/history/ | Timeline |
+### Canonical terms
 
-## Machine-only surfaces
+#### `!.`
 
-| Path | Content |
-|---|---|
-| https://faberlang.dev/llms.txt | This index |
-| https://faberlang.dev/llms-full.txt | Expanded agent reference |
-| https://faberlang.dev/agents/index.md | Agent learning path (Markdown) |
-| https://faberlang.dev/.well-known/agent-skills/index.json | Skill catalog |
-| https://faberlang.dev/.well-known/agent-skills/*/SKILL.md | Focused skills |
+- Canonical: `!.`
+- Kind: operator-group
+- Category: non-null-chain
+- Summary: Asserted member, index, and call access on known-present values.
+- Syntax: `<expression>!.<name> | <expression>![<expression>] | <expression>!(<args>)`
+- Aliases: none
+- Related: `!.`, `![`, `!(`, `nonnulla`
+- Page: https://faberlang.dev/corpus/%21..html
+- Source: examples/corpus/operatores/nonnull-chain.fab
 
-## Real-world examples (prefer these)
+#### `?.`
 
-Source: https://github.com/faberlang/examples
+- Canonical: `?.`
+- Kind: operator-group
+- Category: optional-chain
+- Summary: Null-safe member, index, and call access.
+- Syntax: `<expression>?.<name> | <expression>?[<expression>] | <expression>?(<args>)`
+- Aliases: none
+- Related: `?.`, `?[`, `?(`, `vel`, `sponte`
+- Page: https://faberlang.dev/corpus/%3F..html
+- Source: examples/corpus/operatores/optional-chain.fab
 
-| Package | Why open it |
-|---|---|
-| ai-workbench | Multi-command CLI app; model inspect / embed; harnesses |
-| vivilite | Local mailspace / agent coordination CLI |
-| coreutils | Larger application campaign |
-| gpu-workload | Systems / GPU rungs |
-| corpus | Keyword construct programs (docs generator input) |
-| reader-locale | Locale pack demos |
-| automation | Automation sketches |
+#### `@`
 
-Site guide: https://faberlang.dev/start/examples.html
-Skill: https://faberlang.dev/.well-known/agent-skills/examples/SKILL.md
+- Canonical: `@`
+- Kind: annotation
+- Category: metadata
+- Summary: Introduces an annotation for the following declaration or statement.
+- Syntax: `@ <name>`
+- Aliases: `annotation`
+- Related: `nondum`, `cli`, `futura`
+- Page: https://faberlang.dev/corpus/%40.html
+- Source: examples/corpus/directiva/directiva.fab
+
+#### `ab`
+
+- Canonical: `ab`
+- Kind: keyword
+- Category: iteration
+- Summary: Selects numeric range iteration in an itera loop.
+- Syntax: `itera ab <range> <binding>`
+- Aliases: none
+- Related: `itera`, `ex`, `de`, `per`, `ab pipeline`
+- Page: https://faberlang.dev/corpus/ab.html
+- Source: examples/corpus/ab/ab.fab
+
+#### `abstractus`
+
+- Canonical: `abstractus`
+- Kind: keyword
+- Category: type
+- Summary: Marks a type or member as abstract.
+- Syntax: `abstractus genus <name> <block>`
+- Aliases: none
+- Related: `genus`, `implendum`
+- Page: https://faberlang.dev/corpus/abstractus.html
+- Source: examples/corpus/abstractus/abstractus.fab
+
+#### `ad`
+
+- Canonical: `ad`
+- Kind: keyword
+- Category: endpoint
+- Summary: ad opens a sermo endpoint and materializes the stream with an explicit conversio target.
+- Syntax: `ad 'runtime:echo' (payload) ↦ textus`
+- Aliases: none
+- Related: `conversio`
+- Page: https://faberlang.dev/corpus/ad.html
+- Source: examples/corpus/ad/sermo-conversio.fab
+
+#### `adfirma`
+
+- Canonical: `adfirma`
+- Kind: keyword
+- Category: testing
+- Summary: Asserts that a condition is true at runtime.
+- Syntax: `adfirma <expression> [, <message>]`
+- Aliases: `assert`
+- Related: `proba`, `fac`, `cape`
+- Page: https://faberlang.dev/corpus/adfirma.html
+- Source: examples/corpus/adfirma/adfirma.fab
+
+#### `ante`
+
+- Canonical: `ante`
+- Kind: keyword
+- Category: range
+- Summary: Creates an exclusive range with a Latin keyword.
+- Syntax: `<expression> ante <expression>`
+- Aliases: none
+- Related: `usque`, `‥`
+- Page: https://faberlang.dev/corpus/ante.html
+- Source: examples/corpus/ante/ante.fab
+
+#### `applications`
+
+- Canonical: `applications`
+- Kind: pointer
+- Category: application
+- Summary: Points to the coreutils application exempla workspace.
+- Syntax: `n/a`
+- Aliases: none
+- Related: `cli`, `argumenta`, `operandus`, `exitus`
+- Page: https://faberlang.dev/corpus/applications.html
+- Source: examples/corpus/applications/coreutils.fab
+
+#### `argumenta`
+
+- Canonical: `argumenta`
+- Kind: keyword
+- Category: entry
+- Summary: Binds command-line arguments for an entry point.
+- Syntax: `incipit argumenta <name> <block> | functio <name>() argumenta <name> <block>`
+- Aliases: none
+- Related: `incipit`, `cli`, `imperium`, `optio`, `operandus`
+- Page: https://faberlang.dev/corpus/argumenta.html
+- Source: examples/corpus/argumenta/argumenta.fab
+
+#### `ascii`
+
+- Canonical: `ascii`
+- Kind: existing-home
+- Category: literal
+- Summary: Single-quoted ASCII machine-text literals.
+- Syntax: `'<text>'`
+- Aliases: `'...'`
+- Related: `textus`, `string`
+- Page: https://faberlang.dev/corpus/ascii.html
+- Source: examples/corpus/literalia/ascii.fab
+
+#### `async solum leget`
+
+- Canonical: `async solum leget`
+- Kind: concept
+- Category: ad
+- Summary: @ futura solum.leget<T> uses the same solum:lege route as sync solum.lege<T>.
+- Syntax: `solum.leget<textus>(via)`
+- Aliases: none
+- Related: `ad`, `solum`, `futura`, `sermo`
+- Page: https://faberlang.dev/corpus/async%20solum%20leget.html
+- Source: examples/corpus/ad/async-solum-leget.fab
+
+#### `async tempus dormiet`
+
+- Canonical: `async tempus dormiet`
+- Kind: concept
+- Category: ad
+- Summary: @ futura tempus.dormiet and sync tempus.expectet share the tempus:dormiet route.
+- Syntax: `tempus.expectet(ms) | cede tempus.dormiet(ms)`
+- Aliases: none
+- Related: `ad`, `tempus`, `futura`, `sermo`
+- Page: https://faberlang.dev/corpus/async%20tempus%20dormiet.html
+- Source: examples/corpus/ad/async-tempus-dormiet.fab
+
+#### `aut`
+
+- Canonical: `aut`
+- Kind: operator-group
+- Category: logic
+- Summary: Combines boolean expressions with logical or.
+- Syntax: `<expression> aut <expression>`
+- Aliases: `or`
+- Related: `et`, `vel`, `⊻`
+- Page: https://faberlang.dev/corpus/aut.html
+- Source: examples/corpus/binarius/binarius.fab
+
+#### `bivalens`
+
+- Canonical: `bivalens`
+- Kind: existing-home
+- Category: type
+- Summary: Primitive types bivalens, vacuum, and ignotum.
+- Syntax: `bivalens | vacuum | ignotum`
+- Aliases: none
+- Related: `verum`, `falsum`, `functio`, `∷`, `vacuum`
+- Page: https://faberlang.dev/corpus/bivalens.html
+- Source: examples/corpus/intrinseca/primitiva.fab
+
+#### `block-string`
+
+- Canonical: `block-string`
+- Kind: existing-home
+- Category: literal
+- Summary: Block textus literals with embedded quotes and newlines.
+- Syntax: `«<text>»`
+- Aliases: `«...»`
+- Related: `string`, `textus`
+- Page: https://faberlang.dev/corpus/block-string.html
+- Source: examples/corpus/literalia/block-string.fab
+
+#### `cape`
+
+- Canonical: `cape`
+- Kind: keyword
+- Category: errors
+- Summary: Starts a catch block.
+- Syntax: `<structured-statement> cape <name> <block>`
+- Aliases: `catch`
+- Related: `fac`, `iace`, `⇥`
+- Page: https://faberlang.dev/corpus/cape.html
+- Source: examples/corpus/cape/cape.fab
+
+#### `casu`
+
+- Canonical: `casu`
+- Kind: keyword
+- Category: control-flow
+- Summary: Introduces a branch inside an elige or discerne statement.
+- Syntax: `casu <expression> <block>`
+- Aliases: `case`
+- Related: `elige`, `discerne`
+- Page: https://faberlang.dev/corpus/casu.html
+- Source: examples/corpus/casu/casu.fab
+
+#### `cede`
+
+- Canonical: `cede`
+- Kind: keyword
+- Category: async
+- Summary: Awaits a promise or yields a value depending on context.
+- Syntax: `cede <expression>`
+- Aliases: `await`, `yield`
+- Related: `futura`, `cursor`
+- Page: https://faberlang.dev/corpus/cede.html
+- Source: examples/corpus/cede/cede.fab
+
+#### `ceteri`
+
+- Canonical: `ceteri`
+- Kind: keyword
+- Category: function
+- Summary: Collects remaining parameters, operands, or extracted fields.
+- Syntax: `ceteri <type> <name>`
+- Aliases: `rest`
+- Related: `functio`, `operandus`, `ex`
+- Page: https://faberlang.dev/corpus/ceteri.html
+- Source: examples/corpus/ceteri/ceteri.fab
+
+#### `ceterum`
+
+- Canonical: `ceterum`
+- Kind: keyword
+- Category: control-flow
+- Summary: Starts the default branch of an elige or discerne statement.
+- Syntax: `ceterum <block>`
+- Aliases: `default`
+- Related: `elige`, `discerne`
+- Page: https://faberlang.dev/corpus/ceterum.html
+- Source: examples/corpus/ceterum/ceterum.fab
+
+#### `clausa`
+
+- Canonical: `clausa`
+- Kind: keyword
+- Category: function
+- Summary: Closure and lambda expressions with inferred or annotated types.
+- Syntax: `<params> ∴ <expression> | (<params>) → <type> ∴ <expression>`
+- Aliases: `lambda`, `closure`
+- Related: `∴`, `functio`, `numerus`
+- Page: https://faberlang.dev/corpus/clausa.html
+- Source: examples/corpus/clausa/clausa.fab
+
+#### `clausura`
+
+- Canonical: `clausura`
+- Kind: keyword
+- Category: function
+- Summary: Declares or explains an inline closure expression; compact ∴ syntax is preferred for new code.
+- Syntax: `<type> <name> [→ <type>] [⇥ <error-type>] ∴ <expression|fac-block>`
+- Aliases: none
+- Related: `∴`, `functio`, `fac`, `cape`, `cede`
+- Page: https://faberlang.dev/corpus/clausura.html
+- Source: examples/corpus/clausura/clausura.fab
+
+#### `cli`
+
+- Canonical: `cli`
+- Kind: annotation
+- Category: cli
+- Summary: Braced canonical @ cli program marker.
+- Syntax: `@ cli { nomen = "NAME" }`
+- Aliases: none
+- Related: `cli`, `optio`, `annotation-sugar`
+- Page: https://faberlang.dev/corpus/cli.html
+- Source: examples/corpus/annotation-sugar/cli-braced.fab
+
+#### `conversio-fallibilis`
+
+- Canonical: `conversio-fallibilis`
+- Kind: conversio
+- Category: conversion
+- Summary: Three recovery postures for fallible conversio: inline ⇥, ⇥ propagation, and fac/cape.
+- Syntax: `<expression> ↦ <type> | functio … → T ⇥ E | fac { … } cape err { … }`
+- Aliases: none
+- Related: `↦`, `⇥`, `fac`, `cape`, `iace`
+- Page: https://faberlang.dev/corpus/conversio-fallibilis.html
+- Source: examples/corpus/conversio/fallibilis.fab
+
+#### `copia`
+
+- Canonical: `copia`
+- Kind: existing-home
+- Category: collection
+- Summary: Generic set collection type.
+- Syntax: `copia<T>`
+- Aliases: `set`
+- Related: `lista`, `tabula`, `inter`
+- Page: https://faberlang.dev/corpus/copia.html
+- Source: examples/corpus/intrinseca/copia-fundamenta.fab
+
+#### `cura`
+
+- Canonical: `cura`
+- Kind: keyword
+- Category: resource
+- Summary: Starts an allocator scope.
+- Syntax: `cura "<allocator-kind>" fixum _ <alloc> <block>`
+- Aliases: none
+- Related: `arena`
+- Page: https://faberlang.dev/corpus/cura.html
+- Source: examples/corpus/cura/cura.fab
+
+#### `curata`
+
+- Canonical: `curata`
+- Kind: keyword
+- Category: function
+- Summary: Marks a function as requiring an allocator binding.
+- Syntax: `functio <name>(...) curata <required> [ut <local>] → <type>`
+- Aliases: none
+- Related: `cura`, `arena`
+- Page: https://faberlang.dev/corpus/curata.html
+- Source: examples/corpus/curata/curata.fab
+
+#### `cursor`
+
+- Canonical: `cursor`
+- Kind: keyword
+- Category: async
+- Summary: Marks a function as a generator.
+- Syntax: `@ cursor`
+- Aliases: none
+- Related: `futura`, `cede`
+- Page: https://faberlang.dev/corpus/cursor.html
+- Source: examples/corpus/cursor/cursor.fab
+
+#### `custodi`
+
+- Canonical: `custodi`
+- Kind: keyword
+- Category: control-flow
+- Summary: Groups early-exit guard checks before the main body of a function.
+- Syntax: `custodi <block>`
+- Aliases: `guard`
+- Related: `si`, `ergo`, `redde`
+- Page: https://faberlang.dev/corpus/custodi.html
+- Source: examples/corpus/custodi/custodi.fab
+
+#### `de`
+
+- Canonical: `de`
+- Kind: keyword
+- Category: iteration
+- Summary: Introduces borrowed iteration or borrowed parameters.
+- Syntax: `de <expression>`
+- Aliases: none
+- Related: `ex`, `in`
+- Page: https://faberlang.dev/corpus/de.html
+- Source: examples/corpus/de/de.fab
+
+#### `descriptio`
+
+- Canonical: `descriptio`
+- Kind: keyword
+- Category: cli
+- Summary: Attaches a description string to CLI metadata.
+- Syntax: `@ descriptio <string>`
+- Aliases: none
+- Related: `versio`
+- Page: https://faberlang.dev/corpus/descriptio.html
+- Source: examples/corpus/descriptio/descriptio.fab
+
+#### `discerne`
+
+- Canonical: `discerne`
+- Kind: keyword
+- Category: control-flow
+- Summary: Starts an exhaustive pattern match over a value or values.
+- Syntax: `discerne <subject> <block>`
+- Aliases: `match`
+- Related: `discretio`, `casu`
+- Page: https://faberlang.dev/corpus/discerne.html
+- Source: examples/corpus/discerne/discerne.fab
+
+#### `discretio`
+
+- Canonical: `discretio`
+- Kind: keyword
+- Category: type
+- Summary: Declares a tagged union with variant payloads.
+- Syntax: `discretio <name> [<type-params>] <block>`
+- Aliases: `union`, `sum type`
+- Related: `ordo`, `discerne`, `finge`
+- Page: https://faberlang.dev/corpus/discretio.html
+- Source: examples/corpus/discretio/discretio.fab
+
+#### `dum`
+
+- Canonical: `dum`
+- Kind: keyword
+- Category: control-flow
+- Summary: Repeats a block while a condition remains true.
+- Syntax: `dum <condition> <block|ergo statement>`
+- Aliases: `while`
+- Related: `si`, `ergo`, `fac`
+- Page: https://faberlang.dev/corpus/dum.html
+- Source: examples/corpus/dum/dum.fab
+
+#### `ego`
+
+- Canonical: `ego`
+- Kind: keyword
+- Category: object
+- Summary: Refers to the current instance inside a method.
+- Syntax: `ego.<member>`
+- Aliases: `self`, `this`
+- Related: `generis`, `nexum`
+- Page: https://faberlang.dev/corpus/ego.html
+- Source: examples/corpus/ego/ego.fab
+
+#### `elige`
+
+- Canonical: `elige`
+- Kind: keyword
+- Category: control-flow
+- Summary: Starts a value-based branch statement.
+- Syntax: `elige <expression> <block>`
+- Aliases: `switch`, `choose`
+- Related: `casu`, `ceterum`
+- Page: https://faberlang.dev/corpus/elige.html
+- Source: examples/corpus/elige/elige.fab
+
+#### `emitte`
+
+- Canonical: `emitte`
+- Kind: keyword
+- Category: endpoint
+- Summary: Retired statement-level frame emit; use expression ad with sermo directional views.
+- Syntax: `emitte <expression>`
+- Aliases: none
+- Related: `ad`, `meus`, `tuus`, `sermo`
+- Page: https://faberlang.dev/corpus/emitte.html
+- Source: examples/corpus/emitte/emitte.fab
+
+#### `errata`
+
+- Canonical: `errata`
+- Kind: keyword
+- Category: function
+- Summary: Marks a function parameter or binding as carrying an error value.
+- Syntax: `functio <name>(...) errata <ident> → <type>`
+- Aliases: none
+- Related: `⇥`, `cape`, `iace`
+- Page: https://faberlang.dev/corpus/errata.html
+- Source: examples/corpus/errata/errata.fab
+
+#### `est`
+
+- Canonical: `est`
+- Kind: keyword
+- Category: logic
+- Summary: Tests whether a value is or matches a type-like target.
+- Syntax: `<expression> est <expression>`
+- Aliases: none
+- Related: `non est`
+- Page: https://faberlang.dev/corpus/est.html
+- Source: examples/corpus/est/est.fab
+
+#### `et`
+
+- Canonical: `et`
+- Kind: operator-group
+- Category: logic
+- Summary: Combines boolean expressions with logical and.
+- Syntax: `<expression> et <expression>`
+- Aliases: `and`
+- Related: `aut`, `non`
+- Page: https://faberlang.dev/corpus/et.html
+- Source: examples/corpus/et/et.fab
+
+#### `ex`
+
+- Canonical: `ex`
+- Kind: keyword
+- Category: destructuring
+- Summary: Extracts fields from a value into local bindings.
+- Syntax: `ex <expression> <fixum|varia> <field> [, ...] [ceteri <ident>]`
+- Aliases: none
+- Related: `de`, `ut`, `ceteri`
+- Page: https://faberlang.dev/corpus/ex.html
+- Source: examples/corpus/destructura/lista.fab
+
+#### `exitus`
+
+- Canonical: `exitus`
+- Kind: keyword
+- Category: entry
+- Summary: Sets the exit code or exit expression for an entry point.
+- Syntax: `incipit argumenta <name> exitus <expr> <block>`
+- Aliases: none
+- Related: `incipit`, `incipiet`, `argumenta`
+- Page: https://faberlang.dev/corpus/exitus.html
+- Source: examples/corpus/exitus/exitus.fab
+
+#### `fac`
+
+- Canonical: `fac`
+- Kind: keyword
+- Category: control-flow
+- Summary: Starts a scoped do-while style loop.
+- Syntax: `fac <block> [cape <name> <block>] [dum <condition>]`
+- Aliases: `do`
+- Related: `dum`, `cape`, `clausura`, `perge`
+- Page: https://faberlang.dev/corpus/fac.html
+- Source: examples/corpus/fac/fac-cape.fab
+
+#### `falsum`
+
+- Canonical: `falsum`
+- Kind: keyword
+- Category: boolean
+- Summary: Represents the false boolean value and can prefix a falsity check.
+- Syntax: `falsum [<expression>]`
+- Aliases: none
+- Related: `verum`, `nihil`
+- Page: https://faberlang.dev/corpus/falsum.html
+- Source: examples/corpus/falsum/falsum.fab
+
+#### `finge`
+
+- Canonical: `finge`
+- Kind: keyword
+- Category: object
+- Summary: Constructs a tagged union variant.
+- Syntax: `finge <variant> [{ <field> = <expr>, ... }] [∷ <type>]`
+- Aliases: none
+- Related: `discretio`
+- Page: https://faberlang.dev/corpus/finge.html
+- Source: examples/corpus/finge/finge.fab
+
+#### `fixum`
+
+- Canonical: `fixum`
+- Kind: keyword
+- Category: binding
+- Summary: Declares an immutable binding.
+- Syntax: `fixum <type|_> <pattern> [← <expression>]`
+- Aliases: `const`, `immutable`
+- Related: `varia`, `sit`, `←`
+- Page: https://faberlang.dev/corpus/fixum.html
+- Source: examples/corpus/fixum/fixum.fab
+
+#### `forma`
+
+- Canonical: `forma`
+- Kind: literal
+- Category: template
+- Summary: Captured backtick templates for bound payloads.
+- Syntax: ``template`(args)`
+- Aliases: none
+- Related: `scriptum`, `textus`, `valor`
+- Page: https://faberlang.dev/corpus/forma.html
+- Source: examples/corpus/literalia/forma.fab
+
+#### `fractus`
+
+- Canonical: `fractus`
+- Kind: existing-home
+- Category: type
+- Summary: Primitive floating-point number type.
+- Syntax: `fractus`
+- Aliases: `float`
+- Related: `numerus`, `↦`
+- Page: https://faberlang.dev/corpus/fractus.html
+- Source: examples/corpus/intrinseca/fractus-comparatio.fab
+
+#### `fragilis`
+
+- Canonical: `fragilis`
+- Kind: keyword
+- Category: testing
+- Summary: Marks a test as fragile.
+- Syntax: `fragilis <number>`
+- Aliases: none
+- Related: `requirit`
+- Page: https://faberlang.dev/corpus/fragilis.html
+- Source: examples/corpus/fragilis/fragilis.fab
+
+#### `functio`
+
+- Canonical: `functio`
+- Kind: keyword
+- Category: function
+- Summary: Declares a named function or method.
+- Syntax: `functio <name>(<params>) [modifiers] [→ <type>] [⇥ <error-type>] <block>`
+- Aliases: `function`
+- Related: `→`, `⇥`, `redde`, `sponte`, `ceteri`, `prae`, `curata`, `futura`, `cursor`
+- Page: https://faberlang.dev/corpus/functio.html
+- Source: examples/corpus/functio/functio.fab
+
+#### `futura`
+
+- Canonical: `futura`
+- Kind: annotation
+- Category: async
+- Summary: Braced canonical @ futura unit marker.
+- Syntax: `@ futura { }`
+- Aliases: none
+- Related: `futura`, `annotation-sugar`
+- Page: https://faberlang.dev/corpus/futura.html
+- Source: examples/corpus/annotation-sugar/futura-braced.fab
+
+#### `futurum`
+
+- Canonical: `futurum`
+- Kind: keyword
+- Category: testing
+- Summary: Marks a test case as pending future work with a reason.
+- Syntax: `proba <name> futurum <reason> <block>`
+- Aliases: `todo`, `pending`
+- Related: `proba`, `omitte`
+- Page: https://faberlang.dev/corpus/futurum.html
+- Source: examples/corpus/futurum/futurum.fab
+
+#### `generic`
+
+- Canonical: `generic`
+- Kind: concept
+- Category: type
+- Summary: Generic functions with angle-bracket type and magnitudo parameters.
+- Syntax: `functio <name><T, magnitudo N>(<params>) → <type> <block>`
+- Aliases: none
+- Related: `functio`, `genus`, `magnitudo`
+- Page: https://faberlang.dev/corpus/generic.html
+- Source: examples/corpus/generic/generic.fab
+
+#### `generic-call-type-args`
+
+- Canonical: `generic-call-type-args`
+- Kind: concept
+- Category: function
+- Summary: Explicit type arguments at function and namespaced call sites.
+- Syntax: `callee<type, ...>(args) — id<textus>(...), module.f<T>(...), tensor.creata<T>(...)`
+- Aliases: none
+- Related: `functio`, `tensor`, `typi-parametri`
+- Page: https://faberlang.dev/corpus/generic-call-type-args.html
+- Source: examples/corpus/functio/generic-call-type-args.fab
+
+#### `generics`
+
+- Canonical: `generics`
+- Kind: concept
+- Category: type
+- Summary: Angle-bracket generic parameters on functions and declarations.
+- Syntax: `functio name<T>(...) | genus Name<T, magnitudo N>`
+- Aliases: `type parameters`, `magnitudo`
+- Related: `typus`, `functio`
+- Page: https://faberlang.dev/corpus/generics.html
+- Source: examples/corpus/prae/prae.fab
+
+#### `generis`
+
+- Canonical: `generis`
+- Kind: keyword
+- Category: type
+- Summary: Marks a class member as belonging to the type itself.
+- Syntax: `generis <type> <name> [= <expression>]`
+- Aliases: none
+- Related: `genus`, `nexum`
+- Page: https://faberlang.dev/corpus/generis.html
+- Source: examples/corpus/generis/generis.fab
+
+#### `genus`
+
+- Canonical: `genus`
+- Kind: keyword
+- Category: type
+- Summary: Declares a concrete type with fields and methods.
+- Syntax: `genus <name> [<type-params>] <block>`
+- Aliases: `class`, `struct`
+- Related: `implendum`, `abstractus`, `implet`, `sub`
+- Page: https://faberlang.dev/corpus/genus.html
+- Source: examples/corpus/genus/genus.fab
+
+#### `iace`
+
+- Canonical: `iace`
+- Kind: keyword
+- Category: errors
+- Summary: Throws a recoverable error.
+- Syntax: `iace <expression>`
+- Aliases: `throw`
+- Related: `⇥`, `cape`, `mori`, `redde`
+- Page: https://faberlang.dev/corpus/iace.html
+- Source: examples/corpus/iace/iace.fab
+
+#### `iacit`
+
+- Canonical: `iacit`
+- Kind: modifier
+- Category: function
+- Summary: Marks a function as able to throw along a recoverable channel.
+- Syntax: `functio <name>(...) iacit → <type> [⇥ <error-type>]`
+- Aliases: none
+- Related: `iace`, `cape`, `⇥`, `errata`, `immutata`
+- Page: https://faberlang.dev/corpus/iacit.html
+- Source: examples/corpus/meta/iacit.fab
+
+#### `immutata`
+
+- Canonical: `immutata`
+- Kind: keyword
+- Category: function
+- Summary: Marks a function as non-mutating.
+- Syntax: `functio <name>(...) immutata → <type>`
+- Aliases: none
+- Related: `curata`, `iacit`
+- Page: https://faberlang.dev/corpus/immutata.html
+- Source: examples/corpus/immutata/immutata.fab
+
+#### `implendum`
+
+- Canonical: `implendum`
+- Kind: keyword
+- Category: type
+- Summary: Declares a behavioral contract with method signatures.
+- Syntax: `implendum <name> [<type-params>] <block>`
+- Aliases: `interface`
+- Related: `genus`, `implet`
+- Page: https://faberlang.dev/corpus/implendum.html
+- Source: examples/corpus/implendum/implendum.fab
+
+#### `implet`
+
+- Canonical: `implet`
+- Kind: keyword
+- Category: type
+- Summary: Declares that a type implements one or more implendum contracts.
+- Syntax: `genus <name> implet <interface-list> <block>`
+- Aliases: `implements`
+- Related: `genus`, `implendum`
+- Page: https://faberlang.dev/corpus/implet.html
+- Source: examples/corpus/implet/implet.fab
+
+#### `importa`
+
+- Canonical: `importa`
+- Kind: keyword
+- Category: package
+- Summary: Canonical braced import record with private binding inferred from the path.
+- Syntax: `importa { ex = "norma:chorda" }`
+- Aliases: `import`
+- Related: `ex`, `privata`, `annotation-sugar`
+- Page: https://faberlang.dev/corpus/importa.html
+- Source: examples/corpus/importa/default-braced.fab
+
+#### `in`
+
+- Canonical: `in`
+- Kind: keyword
+- Category: function
+- Summary: Marks a mutable borrowed parameter.
+- Syntax: `in <type> <name>`
+- Aliases: none
+- Related: `de`, `ex`
+- Page: https://faberlang.dev/corpus/in.html
+- Source: examples/corpus/in/in.fab
+
+#### `incipiet`
+
+- Canonical: `incipiet`
+- Kind: keyword
+- Category: entry
+- Summary: Declares the asynchronous program entry point.
+- Syntax: `incipiet <block>`
+- Aliases: none
+- Related: `incipit`, `cede`
+- Page: https://faberlang.dev/corpus/incipiet.html
+- Source: examples/corpus/incipiet/incipiet.fab
+
+#### `incipit`
+
+- Canonical: `incipit`
+- Kind: keyword
+- Category: function
+- Summary: Declares the synchronous program entry point.
+- Syntax: `incipit <block>`
+- Aliases: `main`, `entry`
+- Related: `functio`, `importa`
+- Page: https://faberlang.dev/corpus/incipit.html
+- Source: examples/corpus/incipit/incipit.fab
+
+#### `instans`
+
+- Canonical: `instans`
+- Kind: conversio
+- Category: conversion
+- Summary: Conversio arms for instans precision family and textus datetime provenance.
+- Syntax: `<expression> ↦ instans | instans<ms> | instans<us> | instans<ns>`
+- Aliases: none
+- Related: `↦`, `⇥`, `textus`
+- Page: https://faberlang.dev/corpus/instans.html
+- Source: examples/corpus/conversio/instans.fab
+
+#### `integratio`
+
+- Canonical: `integratio`
+- Kind: concept
+- Category: integration
+- Summary: Minimal multi-feature happy path across functio, fixum, si, and nota.
+- Syntax: `integratio — multi-feature happy path`
+- Aliases: none
+- Related: `functio`, `fixum`, `si`, `nota`
+- Page: https://faberlang.dev/corpus/integratio.html
+- Source: examples/corpus/integratio/minimum-smoke.fab
+
+#### `inter`
+
+- Canonical: `inter`
+- Kind: keyword
+- Category: collection
+- Summary: Checks whether a value appears in a collection.
+- Syntax: `<expression> inter <collection>`
+- Aliases: none
+- Related: `intra`
+- Page: https://faberlang.dev/corpus/inter.html
+- Source: examples/corpus/inter/inter.fab
+
+#### `intervallum`
+
+- Canonical: `intervallum`
+- Kind: type
+- Category: range
+- Summary: Interval algebra: intersection, union, and span count.
+- Syntax: `n/a`
+- Aliases: none
+- Related: `inter`, `union`, `longitudo`, `nihil`
+- Page: https://faberlang.dev/corpus/intervallum.html
+- Source: examples/corpus/intervallum/algebra.fab
+
+#### `intra`
+
+- Canonical: `intra`
+- Kind: keyword
+- Category: range
+- Summary: Checks whether a value lies within a range.
+- Syntax: `<expression> intra <range>`
+- Aliases: none
+- Related: `inter`
+- Page: https://faberlang.dev/corpus/intra.html
+- Source: examples/corpus/intra/intra.fab
+
+#### `itera`
+
+- Canonical: `itera`
+- Kind: keyword
+- Category: control-flow
+- Summary: Starts a for-each iteration statement.
+- Syntax: `itera <mode> <expression> <binding> <block>`
+- Aliases: `iterate`
+- Related: `ex`, `de`, `ab`
+- Page: https://faberlang.dev/corpus/itera.html
+- Source: examples/corpus/itera/cursor-iteratio.fab
+
+#### `json`
+
+- Canonical: `json`
+- Kind: type
+- Category: type
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/corpus/json.html
+- Source: examples/corpus/json/json.fab
+
+#### `lege`
+
+- Canonical: `lege`
+- Kind: keyword
+- Category: io
+- Summary: Reads input from the active input stream.
+- Syntax: `lege [lineam]`
+- Aliases: none
+- Related: `lineam`, `scribe`
+- Page: https://faberlang.dev/corpus/lege.html
+- Source: examples/corpus/lege/lege.fab
+
+#### `lineam`
+
+- Canonical: `lineam`
+- Kind: keyword
+- Category: io
+- Summary: Reads one line of input.
+- Syntax: `lege lineam`
+- Aliases: none
+- Related: `lege`
+- Page: https://faberlang.dev/corpus/lineam.html
+- Source: examples/corpus/lineam/lineam.fab
+
+#### `lista`
+
+- Canonical: `lista`
+- Kind: existing-home
+- Category: collection
+- Summary: Generic ordered collection type.
+- Syntax: `lista<T>`
+- Aliases: `array`, `list`
+- Related: `tabula`, `copia`, `∷`, `itera`
+- Page: https://faberlang.dev/corpus/lista.html
+- Source: examples/corpus/lista/lista.fab
+
+#### `manifest`
+
+- Canonical: `manifest`
+- Kind: concept
+- Category: package
+- Summary: faber.toml package metadata for build, run, and test.
+- Syntax: `faber.toml`
+- Aliases: `faber.toml`, `package manifest`
+- Related: `targets`, `cli`, `incipit`, `proba`
+- Page: https://faberlang.dev/corpus/manifest.html
+- Source: examples/corpus/meta/manifest.fab
+
+#### `membrum`
+
+- Canonical: `membrum`
+- Kind: concept
+- Category: expression
+- Summary: Dot, bracket, chained, and optional member access expressions.
+- Syntax: `<expr>.<field> | <expr>[<index>] | <expr>?.<field>`
+- Aliases: none
+- Related: `?.`, `lista`, `tabula`, `genus`
+- Page: https://faberlang.dev/corpus/membrum.html
+- Source: examples/corpus/membrum/membrum.fab
+
+#### `metior`
+
+- Canonical: `metior`
+- Kind: existing-home
+- Category: testing
+- Summary: Marks a test for metered or measured execution.
+- Syntax: `metior`
+- Aliases: none
+- Related: `temporis`, `prima`, `ultima`
+- Page: https://faberlang.dev/corpus/metior.html
+- Source: examples/corpus/lista/methodi-accessus.fab
+
+#### `meus`
+
+- Canonical: `meus`
+- Kind: method
+- Category: endpoint
+- Summary: live outbound and inbound sermo directional views
+- Syntax: `n/a`
+- Aliases: none
+- Related: `ad`, `sermo`, `tuus`, `scrinium`, `cursor`, `accipe`
+- Page: https://faberlang.dev/corpus/meus.html
+- Source: examples/corpus/ad/sermo-live-directional.fab
+
+#### `mone`
+
+- Canonical: `mone`
+- Kind: keyword
+- Category: output
+- Summary: Writes a warning message.
+- Syntax: `mone <expression>`
+- Aliases: none
+- Related: `scribe`, `vide`
+- Page: https://faberlang.dev/corpus/mone.html
+- Source: examples/corpus/mone/mone.fab
+
+#### `mori`
+
+- Canonical: `mori`
+- Kind: keyword
+- Category: errors
+- Summary: Raises a fatal error or panic.
+- Syntax: `mori <expression>`
+- Aliases: `panic`
+- Related: `iace`, `ergo`
+- Page: https://faberlang.dev/corpus/mori.html
+- Source: examples/corpus/mori/mori.fab
+
+#### `morphologia`
+
+- Canonical: `morphologia`
+- Kind: concept
+- Category: collection
+- Summary: Verb-form dispatch on collection methodi (imperative vs participle endings).
+- Syntax: `<collection>.<verb-a|verb-ata|verb-e|verb-ita>(<args>)`
+- Aliases: none
+- Related: `lista`, `appende`, `filtrata`
+- Page: https://faberlang.dev/corpus/morphologia.html
+- Source: examples/corpus/morphologia/morphologia.fab
+
+#### `nexum`
+
+- Canonical: `nexum`
+- Kind: keyword
+- Category: type
+- Summary: Marks a class member as bound to the current instance.
+- Syntax: `nexum <type> <name> [= <expression>]`
+- Aliases: none
+- Related: `genus`, `ego`
+- Page: https://faberlang.dev/corpus/nexum.html
+- Source: examples/corpus/nexum/nexum.fab
+
+#### `nihil`
+
+- Canonical: `nihil`
+- Kind: existing-home
+- Category: literal
+- Summary: Null literal and nullable union bindings.
+- Syntax: `nihil`
+- Aliases: none
+- Related: `∪`, `nonnihil`, `sponte`, `nihil`
+- Page: https://faberlang.dev/corpus/nihil.html
+- Source: examples/corpus/literalia/nihil.fab
+
+#### `non`
+
+- Canonical: `non`
+- Kind: keyword
+- Category: logic
+- Summary: Negates a boolean expression.
+- Syntax: `non <expression>`
+- Aliases: `!`
+- Related: `verum`, `falsum`
+- Page: https://faberlang.dev/corpus/non.html
+- Source: examples/corpus/non/non.fab
+
+#### `nondum`
+
+- Canonical: `nondum`
+- Kind: annotation
+- Category: availability
+- Summary: Braced canonical @ nondum availability record.
+- Syntax: `@ nondum { target = rs, ratio = "…" }`
+- Aliases: none
+- Related: `nondum`, `annotation-sugar`
+- Page: https://faberlang.dev/corpus/nondum.html
+- Source: examples/corpus/annotation-sugar/nondum-braced.fab
+
+#### `numerus`
+
+- Canonical: `numerus`
+- Kind: existing-home
+- Category: type
+- Summary: Primitive integer number type.
+- Syntax: `numerus`
+- Aliases: `integer`, `int`
+- Related: `fractus`, `↦`
+- Page: https://faberlang.dev/corpus/numerus.html
+- Source: examples/corpus/intrinseca/numerus-methodi.fab
+
+#### `numquam`
+
+- Canonical: `numquam`
+- Kind: keyword
+- Category: type
+- Summary: Primitive never type for code paths that do not return normally.
+- Syntax: `numquam`
+- Aliases: `never`
+- Related: `mori`, `exitus`
+- Page: https://faberlang.dev/corpus/numquam.html
+- Source: examples/corpus/numquam/numquam.fab
+
+#### `octeti`
+
+- Canonical: `octeti`
+- Kind: existing-home
+- Category: type
+- Summary: Primitive byte-buffer type.
+- Syntax: `octeti`
+- Aliases: `bytes`
+- Related: `textus`, `lista`
+- Page: https://faberlang.dev/corpus/octeti.html
+- Source: examples/corpus/octeti/octeti.fab
+
+#### `omitte`
+
+- Canonical: `omitte`
+- Kind: keyword
+- Category: testing
+- Summary: Marks a test case as skipped with a reason.
+- Syntax: `proba <name> omitte <reason> <block>`
+- Aliases: `skip`
+- Related: `proba`, `futurum`
+- Page: https://faberlang.dev/corpus/omitte.html
+- Source: examples/corpus/omitte/omitte.fab
+
+#### `omnia`
+
+- Canonical: `omnia`
+- Kind: keyword
+- Category: testing
+- Summary: Marks a test hook as applying to every case.
+- Syntax: `omnia`
+- Aliases: none
+- Related: `praepara`, `postpara`
+- Page: https://faberlang.dev/corpus/omnia.html
+- Source: examples/corpus/omnia/omnia.fab
+
+#### `operandus`
+
+- Canonical: `operandus`
+- Kind: keyword
+- Category: cli
+- Summary: Declares a CLI operand annotation.
+- Syntax: `@ operandus [ceteri] <type> <binding> [descriptio "..."] [ubique] [vel <default>]`
+- Aliases: none
+- Related: `optio`, `cli`, `imperium`, `ceteri`, `ubique`
+- Page: https://faberlang.dev/corpus/operandus.html
+- Source: examples/corpus/operandus/operandus.fab
+
+#### `optio`
+
+- Canonical: `optio`
+- Kind: annotation
+- Category: cli
+- Summary: Braced canonical @ optio CLI option record.
+- Syntax: `@ optio { binding = NAME, brevis = "x", longum = "name", typus = TYPE, descriptio = "...", ubique = verum }`
+- Aliases: none
+- Related: `optio`, `cli`, `annotation-sugar`
+- Page: https://faberlang.dev/corpus/optio.html
+- Source: examples/corpus/annotation-sugar/optio-braced.fab
+
+#### `optiones`
+
+- Canonical: `optiones`
+- Kind: keyword
+- Category: entry
+- Summary: Binds CLI options metadata to a function declaration.
+- Syntax: `functio <name>(...) optiones <ident> → <type>`
+- Aliases: none
+- Related: `argumenta`, `ad`
+- Page: https://faberlang.dev/corpus/optiones.html
+- Source: examples/corpus/optiones/optiones.fab
+
+#### `ordo`
+
+- Canonical: `ordo`
+- Kind: keyword
+- Category: type
+- Summary: Declares an enumeration.
+- Syntax: `ordo <name> <block>`
+- Aliases: `enum`
+- Related: `discretio`
+- Page: https://faberlang.dev/corpus/ordo.html
+- Source: examples/corpus/ordo/ordo.fab
+
+#### `per`
+
+- Canonical: `per`
+- Kind: keyword
+- Category: range
+- Summary: Sets the step for a range.
+- Syntax: `<range> per <expression>`
+- Aliases: none
+- Related: `ante`, `usque`
+- Page: https://faberlang.dev/corpus/per.html
+- Source: examples/corpus/per/per.fab
+
+#### `perge`
+
+- Canonical: `perge`
+- Kind: keyword
+- Category: transfer
+- Summary: Continues with the next loop iteration.
+- Syntax: `perge`
+- Aliases: `continue`
+- Related: `rumpe`, `dum`
+- Page: https://faberlang.dev/corpus/perge.html
+- Source: examples/corpus/perge/perge.fab
+
+#### `postpara`
+
+- Canonical: `postpara`
+- Kind: keyword
+- Category: testing
+- Summary: Registers an after-each test hook.
+- Syntax: `postpara <block>`
+- Aliases: none
+- Related: `praepara`, `omnia`
+- Page: https://faberlang.dev/corpus/postpara.html
+- Source: examples/corpus/postpara/postpara.fab
+
+#### `postparabit`
+
+- Canonical: `postparabit`
+- Kind: keyword
+- Category: testing
+- Summary: Registers an async after-each test hook.
+- Syntax: `postparabit <block>`
+- Aliases: none
+- Related: `postpara`, `praeparabit`
+- Page: https://faberlang.dev/corpus/postparabit.html
+- Source: examples/corpus/postparabit/postparabit.fab
+
+#### `praefixum`
+
+- Canonical: `praefixum`
+- Kind: keyword
+- Category: comptime
+- Summary: Forces compile-time evaluation of an expression.
+- Syntax: `praefixum(<expression>)`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/corpus/praefixum.html
+- Source: examples/corpus/praefixum/praefixum.fab
+
+#### `praepara`
+
+- Canonical: `praepara`
+- Kind: keyword
+- Category: testing
+- Summary: Registers a before-each test hook.
+- Syntax: `praepara <block>`
+- Aliases: none
+- Related: `postpara`, `omnia`
+- Page: https://faberlang.dev/corpus/praepara.html
+- Source: examples/corpus/praepara/praepara.fab
+
+#### `praeparabit`
+
+- Canonical: `praeparabit`
+- Kind: keyword
+- Category: testing
+- Summary: Registers an async before-each test hook.
+- Syntax: `praeparabit <block>`
+- Aliases: none
+- Related: `praepara`, `postparabit`
+- Page: https://faberlang.dev/corpus/praeparabit.html
+- Source: examples/corpus/praeparabit/praeparabit.fab
+
+#### `privata`
+
+- Canonical: `privata`
+- Kind: keyword
+- Category: modifier
+- Summary: Marks an import as local to the current module.
+- Syntax: `importa ex <source> privata <name>`
+- Aliases: `private`
+- Related: `publica`, `importa`
+- Page: https://faberlang.dev/corpus/privata.html
+- Source: examples/corpus/privata/privata.fab
+
+#### `proba`
+
+- Canonical: `proba`
+- Kind: keyword
+- Category: testing
+- Summary: Defines a single test case.
+- Syntax: `proba <name> [modifiers] <block>`
+- Aliases: `test`, `it`
+- Related: `probandum`, `adfirma`, `omitte`, `futurum`
+- Page: https://faberlang.dev/corpus/proba.html
+- Source: examples/corpus/proba/proba.fab
+
+#### `probandum`
+
+- Canonical: `probandum`
+- Kind: keyword
+- Category: testing
+- Summary: Groups related test cases into a named suite.
+- Syntax: `probandum <name> [modifiers] <block>`
+- Aliases: `describe`, `suite`
+- Related: `proba`, `adfirma`
+- Page: https://faberlang.dev/corpus/probandum.html
+- Source: examples/corpus/probandum/probandum.fab
+
+#### `promissum`
+
+- Canonical: `promissum`
+- Kind: existing-home
+- Category: async
+- Summary: Promise-like result type associated with futura functions.
+- Syntax: `promissum<T>`
+- Aliases: `promise`
+- Related: `futura`, `cede`
+- Page: https://faberlang.dev/corpus/promissum.html
+- Source: examples/corpus/promissum/promissum.fab
+
+#### `protecta`
+
+- Canonical: `protecta`
+- Kind: keyword
+- Category: modifier
+- Summary: Reserved visibility annotation rejected by semantic analysis.
+- Syntax: `@ protecta`
+- Aliases: `protected`
+- Related: `publica`, `privata`
+- Page: https://faberlang.dev/corpus/protecta.html
+- Source: examples/corpus/protecta/protecta.fab
+
+#### `publica`
+
+- Canonical: `publica`
+- Kind: keyword
+- Category: modifier
+- Summary: Marks an import as re-exported from the current module.
+- Syntax: `importa ex <source> publica <name>`
+- Aliases: `public`
+- Related: `privata`, `importa`
+- Page: https://faberlang.dev/corpus/publica.html
+- Source: examples/corpus/publica/publica.fab
+
+#### `radix-lane`
+
+- Canonical: `radix-lane`
+- Kind: annotation
+- Category: lane
+- Summary: Braced canonical @ radix lane routing record for the Rust HIR-direct lane.
+- Syntax: `@ radix { lane = "hir-direct" }`
+- Aliases: none
+- Related: `radix`, `annotation-sugar`
+- Page: https://faberlang.dev/corpus/radix-lane.html
+- Source: examples/corpus/annotation-sugar/radix-lane-braced.fab
+
+#### `redde`
+
+- Canonical: `redde`
+- Kind: keyword
+- Category: transfer
+- Summary: Returns a value from a function.
+- Syntax: `redde <expression>`
+- Aliases: `return`
+- Related: `→`, `⇥`, `ergo`, `iace`, `tacet`
+- Page: https://faberlang.dev/corpus/redde.html
+- Source: examples/corpus/redde/redde.fab
+
+#### `regex`
+
+- Canonical: `regex`
+- Kind: conversio
+- Category: literal
+- Summary: Compile textus patterns to regex via ↦ regex.
+- Syntax: `<textus> ↦ regex`
+- Aliases: none
+- Related: `lege`, `conversio`, `scriptum`
+- Page: https://faberlang.dev/corpus/regex.html
+- Source: examples/corpus/literalia/regex.fab
+
+#### `repete`
+
+- Canonical: `repete`
+- Kind: keyword
+- Category: testing
+- Summary: Repeats a test a fixed number of times.
+- Syntax: `repete <number>`
+- Aliases: none
+- Related: `fragilis`
+- Page: https://faberlang.dev/corpus/repete.html
+- Source: examples/corpus/repete/repete.fab
+
+#### `requirit`
+
+- Canonical: `requirit`
+- Kind: keyword
+- Category: testing
+- Summary: Requires a named test fixture or capability.
+- Syntax: `requirit <string>`
+- Aliases: none
+- Related: `solum_in`, `fragilis`, `probandum`
+- Page: https://faberlang.dev/corpus/requirit.html
+- Source: examples/corpus/meta/requirit.fab
+
+#### `rumpe`
+
+- Canonical: `rumpe`
+- Kind: keyword
+- Category: transfer
+- Summary: Breaks out of the innermost loop.
+- Syntax: `rumpe`
+- Aliases: `break`
+- Related: `perge`, `dum`
+- Page: https://faberlang.dev/corpus/rumpe.html
+- Source: examples/corpus/rumpe/rumpe.fab
+
+#### `scalaria`
+
+- Canonical: `scalaria`
+- Kind: concept
+- Category: type
+- Summary: Scalar operations on numerus, fractus, and bivalens in function signatures.
+- Syntax: `functio <name>(<scalar-params>) → <scalar-type> <block>`
+- Aliases: none
+- Related: `numerus`, `fractus`, `bivalens`
+- Page: https://faberlang.dev/corpus/scalaria.html
+- Source: examples/corpus/scalaria/scalaria.fab
+
+#### `scribe`
+
+- Canonical: `scribe`
+- Kind: keyword
+- Category: output
+- Summary: Writes a value to standard output.
+- Syntax: `scribe <expression>`
+- Aliases: none
+- Related: `vide`, `mone`
+- Page: https://faberlang.dev/corpus/scribe.html
+- Source: examples/corpus/nota/nota.fab
+
+#### `scriptum`
+
+- Canonical: `scriptum`
+- Kind: keyword
+- Category: format
+- Summary: Creates a formatted string with `§` placeholders.
+- Syntax: `"<template>"(<args>...)`
+- Aliases: none
+- Related: `lege`, `lineam`
+- Page: https://faberlang.dev/corpus/scriptum.html
+- Source: examples/corpus/scriptum/scriptum.fab
+
+#### `secus`
+
+- Canonical: `secus`
+- Kind: keyword
+- Category: control-flow
+- Summary: Runs the fallback branch when preceding conditional branches do not match.
+- Syntax: `secus <block>`
+- Aliases: `else`, `otherwise`
+- Related: `si`, `sin`
+- Page: https://faberlang.dev/corpus/secus.html
+- Source: examples/corpus/secus/secus.fab
+
+#### `si`
+
+- Canonical: `si`
+- Kind: keyword
+- Category: control-flow
+- Summary: Starts a conditional branch that runs when its condition is true.
+- Syntax: `si <condition> <block>`
+- Aliases: `if`
+- Related: `sin`, `secus`, `ergo`
+- Page: https://faberlang.dev/corpus/si.html
+- Source: examples/corpus/si/nidificatus.fab
+
+#### `sic`
+
+- Canonical: `sic`
+- Kind: keyword
+- Category: control-flow
+- Summary: Starts the true branch of a one-line conditional expression.
+- Syntax: `si <condition> sic <expression> secus <expression>`
+- Aliases: `then`
+- Related: `si`, `secus`
+- Page: https://faberlang.dev/corpus/sic.html
+- Source: examples/corpus/sic/sic.fab
+
+#### `sin`
+
+- Canonical: `sin`
+- Kind: keyword
+- Category: control-flow
+- Summary: Adds an else-if branch after a previous si branch.
+- Syntax: `sin <condition> <block>`
+- Aliases: `else if`
+- Related: `si`, `secus`
+- Page: https://faberlang.dev/corpus/sin.html
+- Source: examples/corpus/si/sin.fab
+
+#### `sit`
+
+- Canonical: `sit`
+- Kind: keyword
+- Category: binding
+- Summary: Declares an inferred immutable local.
+- Syntax: `sit <name> [← <expression>]`
+- Aliases: none
+- Related: `fixum`, `varia`, `←`
+- Page: https://faberlang.dev/corpus/sit.html
+- Source: examples/corpus/sit/sit.fab
+
+#### `solum`
+
+- Canonical: `solum`
+- Kind: keyword
+- Category: testing
+- Summary: Marks a test as the only test to run.
+- Syntax: `solum`
+- Aliases: none
+- Related: `omitte`, `futurum`
+- Page: https://faberlang.dev/corpus/solum.html
+- Source: examples/corpus/solum/solum.fab
+
+#### `solum lege generic`
+
+- Canonical: `solum lege generic`
+- Kind: concept
+- Category: ad
+- Summary: solum.lege<T> admits only supported materialization target types.
+- Syntax: `solum.lege<textus>(via) | solum.lege<lista<textus>>(via) | solum.lege<octeti>(via)`
+- Aliases: none
+- Related: `ad`, `solum`, `generic`
+- Page: https://faberlang.dev/corpus/solum%20lege%20generic.html
+- Source: examples/corpus/ad/solum-lege-generic.fab
+
+#### `solum_in`
+
+- Canonical: `solum_in`
+- Kind: keyword
+- Category: testing
+- Summary: Restricts a test to a named environment or target.
+- Syntax: `solum_in <string> <string>`
+- Aliases: none
+- Related: `requirit`
+- Page: https://faberlang.dev/corpus/solum_in.html
+- Source: examples/corpus/solum-in/solum-in.fab
+
+#### `sparge`
+
+- Canonical: `sparge`
+- Kind: keyword
+- Category: collection
+- Summary: Spreads an array or collection literal into its surrounding expression.
+- Syntax: `sparge <expression>`
+- Aliases: `...`
+- Related: `lista`
+- Page: https://faberlang.dev/corpus/sparge.html
+- Source: examples/corpus/sparge/sparge.fab
+
+#### `sparsa`
+
+- Canonical: `sparsa`
+- Kind: type
+- Category: collection
+- Summary: sparsa<T, Figura> declaration shell with all-zero vacua.
+- Syntax: `sparsa<T, Figura> | sparsa<T, []>`
+- Aliases: none
+- Related: `sparsa`, `tensor`, `vacua`
+- Page: https://faberlang.dev/corpus/sparsa.html
+- Source: examples/corpus/sparsa/decl.fab
+
+#### `sponte`
+
+- Canonical: `sponte`
+- Kind: keyword
+- Category: declaration
+- Summary: Marks a named declaration slot (parameter or genus field) as voluntary — the caller or provider may omit the value.
+- Syntax: `<type> <name> sponte [= default | vel default]`
+- Aliases: `optional`, `voluntary`
+- Related: `vel`, `nihil`, `∪`, `functio`, `genus`
+- Page: https://faberlang.dev/corpus/sponte.html
+- Source: examples/corpus/sponte/sponte.fab
+
+#### `string`
+
+- Canonical: `string`
+- Kind: existing-home
+- Category: literal
+- Summary: Short quoted textus string literals and template application.
+- Syntax: `"<text>"`
+- Aliases: `"..."`
+- Related: `block-string`, `§`, `textus`
+- Page: https://faberlang.dev/corpus/string.html
+- Source: examples/corpus/literalia/textus.fab
+
+#### `sub`
+
+- Canonical: `sub`
+- Kind: keyword
+- Category: type
+- Summary: Declares a direct superclass or base type.
+- Syntax: `genus <name> sub <parent> <block>`
+- Aliases: `extends`
+- Related: `genus`, `implet`
+- Page: https://faberlang.dev/corpus/sub.html
+- Source: examples/corpus/sub/sub.fab
+
+#### `summa`
+
+- Canonical: `summa`
+- Kind: existing-home
+- Category: collection
+- Summary: Returns the sum of numeric list elements.
+- Syntax: `<lista>.summa()`
+- Aliases: none
+- Related: `prima`, `ultima`, `lista`
+- Page: https://faberlang.dev/corpus/summa.html
+- Source: examples/corpus/lista/methodi-functionales.fab
+
+#### `tabula`
+
+- Canonical: `tabula`
+- Kind: existing-home
+- Category: collection
+- Summary: Generic key/value map type.
+- Syntax: `tabula<K,V>`
+- Aliases: `map`, `dictionary`
+- Related: `lista`, `copia`, `∷`, `itera`
+- Page: https://faberlang.dev/corpus/tabula.html
+- Source: examples/corpus/tabula/methodi-accessus.fab
+
+#### `tacet`
+
+- Canonical: `tacet`
+- Kind: keyword
+- Category: transfer
+- Summary: Marks an explicit no-op statement.
+- Syntax: `tacet`
+- Aliases: `silent noop`
+- Related: `ergo`, `redde`
+- Page: https://faberlang.dev/corpus/tacet.html
+- Source: examples/corpus/tacet/tacet.fab
+
+#### `tag`
+
+- Canonical: `tag`
+- Kind: keyword
+- Category: testing
+- Summary: Attaches a test tag string.
+- Syntax: `tag <string>`
+- Aliases: none
+- Related: `solum`, `temporis`
+- Page: https://faberlang.dev/corpus/tag.html
+- Source: examples/corpus/tag/tag.fab
+
+#### `targets`
+
+- Canonical: `targets`
+- Kind: concept
+- Category: package
+- Summary: Compilation backends listed by faber targets or radix targets.
+- Syntax: `faber targets`
+- Aliases: `target compatibility`, `backends`
+- Related: `manifest`, `cli`, `∷`, `↦`
+- Page: https://faberlang.dev/corpus/targets.html
+- Source: examples/corpus/meta/targets.fab
+
+#### `temporis`
+
+- Canonical: `temporis`
+- Kind: keyword
+- Category: testing
+- Summary: Sets a timeout-like duration for a test modifier.
+- Syntax: `temporis <number>`
+- Aliases: none
+- Related: `metior`, `repete`
+- Page: https://faberlang.dev/corpus/temporis.html
+- Source: examples/corpus/temporis/temporis.fab
+
+#### `tensor`
+
+- Canonical: `tensor`
+- Kind: type
+- Category: collection
+- Summary: tensor<T, Figura> declaration shell with rank-0 vacua.
+- Syntax: `tensor<T, Figura> | tensor<T, []>`
+- Aliases: none
+- Related: `tensor`, `lista`
+- Page: https://faberlang.dev/corpus/tensor.html
+- Source: examples/corpus/tensor/decl.fab
+
+#### `textus`
+
+- Canonical: `textus`
+- Kind: existing-home
+- Category: type
+- Summary: Primitive string/text type.
+- Syntax: `textus`
+- Aliases: `string`
+- Related: `string`, `scriptum`, `↦`
+- Page: https://faberlang.dev/corpus/textus.html
+- Source: examples/corpus/intrinseca/textus-transformationes.fab
+
+#### `tuus`
+
+- Canonical: `tuus`
+- Kind: method
+- Category: endpoint
+- Summary: typed inbound sermo stream view
+- Syntax: `n/a`
+- Aliases: none
+- Related: `ad`, `sermo`, `scrinium`, `cursor`
+- Page: https://faberlang.dev/corpus/tuus.html
+- Source: examples/corpus/ad/sermo-tuus.fab
+
+#### `typus`
+
+- Canonical: `typus`
+- Kind: keyword
+- Category: type
+- Summary: Declares a type alias.
+- Syntax: `typus <name> = <type>`
+- Aliases: `type`
+- Related: `genus`, `implendum`, `objectum`, `∪`
+- Page: https://faberlang.dev/corpus/typus.html
+- Source: examples/corpus/typus/typus.fab
+
+#### `ubique`
+
+- Canonical: `ubique`
+- Kind: keyword
+- Category: cli
+- Summary: Marks an option or operand as global.
+- Syntax: `ubique`
+- Aliases: none
+- Related: `optio`, `operandus`
+- Page: https://faberlang.dev/corpus/ubique.html
+- Source: examples/corpus/ubique/ubique.fab
+
+#### `unarius`
+
+- Canonical: `unarius`
+- Kind: operator-group
+- Category: operators
+- Summary: Unary negation, logical not, sign comparisons, and optional presence tests.
+- Syntax: `-<expr> | non <expr> | <expr> > 0 | <expr> est nihil`
+- Aliases: none
+- Related: `non`, `est`, `non est`
+- Page: https://faberlang.dev/corpus/unarius.html
+- Source: examples/corpus/unarius/unarius.fab
+
+#### `usque`
+
+- Canonical: `usque`
+- Kind: keyword
+- Category: range
+- Summary: Creates an inclusive range with a Latin keyword.
+- Syntax: `<expression> usque <expression>`
+- Aliases: none
+- Related: `ante`, `…`
+- Page: https://faberlang.dev/corpus/usque.html
+- Source: examples/corpus/usque/usque.fab
+
+#### `ut`
+
+- Canonical: `ut`
+- Kind: keyword
+- Category: aliasing
+- Summary: Introduces an alias name.
+- Syntax: `<name> ut <alias>`
+- Aliases: `as`
+- Related: `ex`, `argumenta`
+- Page: https://faberlang.dev/corpus/ut.html
+- Source: examples/corpus/ut/ut.fab
+
+#### `vacuum`
+
+- Canonical: `vacuum`
+- Kind: keyword
+- Category: type
+- Summary: Primitive no-value return type.
+- Syntax: `vacuum`
+- Aliases: `void`, `unit`
+- Related: `functio`, `redde`
+- Page: https://faberlang.dev/corpus/vacuum.html
+- Source: examples/corpus/vacuum/vacuum.fab
+
+#### `valor`
+
+- Canonical: `valor`
+- Kind: conversio
+- Category: conversion
+- Summary: T ↦ valor boxing for scalar, byte, collection, genus, and tensor carriers.
+- Syntax: `<typed-expression> ↦ valor`
+- Aliases: none
+- Related: `↦`, `valor`, `octeti`, `lista`, `tabula`, `genus`, `tensor`
+- Page: https://faberlang.dev/corpus/valor.html
+- Source: examples/corpus/conversio/valor-boxing.fab
+
+#### `varia`
+
+- Canonical: `varia`
+- Kind: keyword
+- Category: binding
+- Summary: Declares a mutable binding.
+- Syntax: `varia <type|_> <pattern> [← <expression>]`
+- Aliases: `let`, `mutable`
+- Related: `fixum`, `←`, `⊕`
+- Page: https://faberlang.dev/corpus/varia.html
+- Source: examples/corpus/varia/varia.fab
+
+#### `vel`
+
+- Canonical: `vel`
+- Kind: operator-group
+- Category: logic
+- Summary: Provides a default when the left side is null.
+- Syntax: `<expression> vel <expression>`
+- Aliases: `nullish coalescing`
+- Related: `nihil`, `nonnihil`
+- Page: https://faberlang.dev/corpus/vel.html
+- Source: examples/corpus/vel/vel.fab
+
+#### `versio`
+
+- Canonical: `versio`
+- Kind: annotation
+- Category: cli
+- Summary: Attaches a version string to a CLI root.
+- Syntax: `@ versio <string>`
+- Aliases: none
+- Related: `cli`, `descriptio`
+- Page: https://faberlang.dev/corpus/versio.html
+- Source: examples/corpus/meta/versio.fab
+
+#### `verte`
+
+- Canonical: `verte`
+- Kind: annotation
+- Category: codegen
+- Summary: Braced canonical @ verte rename mapping.
+- Syntax: `@ verte { target = rs, methodus = "…" }`
+- Aliases: none
+- Related: `verte`, `annotation-sugar`
+- Page: https://faberlang.dev/corpus/verte.html
+- Source: examples/corpus/annotation-sugar/verte-braced.fab
+
+#### `verum`
+
+- Canonical: `verum`
+- Kind: existing-home
+- Category: literal
+- Summary: Boolean literals verum and falsum with bivalens bindings.
+- Syntax: `verum | falsum`
+- Aliases: none
+- Related: `falsum`, `bivalens`, `verum`
+- Page: https://faberlang.dev/corpus/verum.html
+- Source: examples/corpus/literalia/boolean.fab
+
+#### `vide`
+
+- Canonical: `vide`
+- Kind: keyword
+- Category: output
+- Summary: Writes a debug value to standard output.
+- Syntax: `vide <expression>`
+- Aliases: none
+- Related: `scribe`, `mone`
+- Page: https://faberlang.dev/corpus/vide.html
+- Source: examples/corpus/vide/vide.fab
+
+#### `vocatio`
+
+- Canonical: `vocatio`
+- Kind: concept
+- Category: expression
+- Summary: Function, method, chained, and sparge spread call expressions.
+- Syntax: `<name>(<args>) | <expr>.<method>(<args>) | <name>(sparge <lista>)`
+- Aliases: none
+- Related: `functio`, `sparge`, `genus`
+- Page: https://faberlang.dev/corpus/vocatio.html
+- Source: examples/corpus/vocatio/vocatio.fab
+
+#### `§`
+
+- Canonical: `§`
+- Kind: operator-group
+- Category: format
+- Summary: String-template substitution holes inside quoted literals.
+- Syntax: `"<template>"(<args>...)`
+- Aliases: none
+- Related: `textus`, `scribe`
+- Page: https://faberlang.dev/corpus/%C2%A7.html
+- Source: examples/corpus/operatores/metadata.fab
+
+#### `‥`
+
+- Canonical: `‥`
+- Kind: operator-group
+- Category: range
+- Summary: Half-open and inclusive range endpoints in itera ab and intra.
+- Syntax: `<expression> ‥ <expression> | <expression> … <expression>`
+- Aliases: none
+- Related: `‥`, `…`, `ante`, `usque`, `intra`
+- Page: https://faberlang.dev/corpus/%E2%80%A5.html
+- Source: examples/corpus/operatores/range-glyphs.fab
+
+#### `←`
+
+- Canonical: `←`
+- Kind: operator-group
+- Category: assignment
+- Summary: Assigns a value to a binding, field, or assignable expression.
+- Syntax: `<place> ← <expression>`
+- Aliases: `assignment`, `assign`
+- Related: `=`, `fixum`, `varia`, `⊕`, `⊖`
+- Page: https://faberlang.dev/corpus/%E2%86%90.html
+- Source: examples/corpus/assignatio/assignatio.fab
+
+#### `→`
+
+- Canonical: `→`
+- Kind: operator-group
+- Category: function
+- Summary: Success return type and recoverable alternate-exit type in function signatures.
+- Syntax: `functio <name>(<params>) → <type> | functio <name>(<params>) → <success> ⇥ <error>`
+- Aliases: none
+- Related: `⇥`, `functio`, `redde`, `iace`, `cape`
+- Page: https://faberlang.dev/corpus/%E2%86%92.html
+- Source: examples/corpus/operatores/function-types.fab
+
+#### `↦`
+
+- Canonical: `↦`
+- Kind: operator-group
+- Category: conversion
+- Summary: Converts a value with explicit runtime parsing or coercion semantics.
+- Syntax: `<expression> ↦ <type> [⇥ <recovery>]`
+- Aliases: `convert`, `conversio`
+- Related: `∷`, `⇥`
+- Page: https://faberlang.dev/corpus/%E2%86%A6.html
+- Source: examples/corpus/conversio/conversio.fab
+
+#### `∧`
+
+- Canonical: `∧`
+- Kind: operator-group
+- Category: bitwise
+- Summary: Bitwise and, or, xor, not, and shifts on numerus operands.
+- Syntax: `<expression> ∧ <expression> | <expression> ⊻ <expression> | ¬ <expression> | <expression> ⇐ <expression> | <expression> ⇒ <expression>`
+- Aliases: none
+- Related: `∨`, `⊻`, `¬`, `⇐`, `⇒`
+- Page: https://faberlang.dev/corpus/%E2%88%A7.html
+- Source: examples/corpus/operatores/bitwise.fab
+
+#### `∨`
+
+- Canonical: `∨`
+- Kind: operator-group
+- Category: logic
+- Summary: Bitwise or and est-negation operators.
+- Syntax: `<expression> ∨ <expression> | <expression> non est <expression>`
+- Aliases: none
+- Related: `∧`, `⊻`, `¬`, `et`, `aut`, `vel`, `non est`, `est`
+- Page: https://faberlang.dev/corpus/%E2%88%A8.html
+- Source: examples/corpus/operatores/logica.fab
+
+#### `∪`
+
+- Canonical: `∪`
+- Kind: operator-group
+- Category: type
+- Summary: Inline value unions and discerne on discretio variants.
+- Syntax: `typus <name> = <type> ∪ <type>`
+- Aliases: none
+- Related: `typus`, `discerne`, `discretio`
+- Page: https://faberlang.dev/corpus/%E2%88%AA.html
+- Source: examples/corpus/unio/unio.fab
+
+#### `∴`
+
+- Canonical: `∴`
+- Kind: operator-group
+- Category: control-flow
+- Summary: Compact consequent after si/dum heads via ergo, with ∴ reserved for closure bodies.
+- Syntax: `<head> ergo <statement>`
+- Aliases: `ergo`, `therefore`
+- Related: `si`, `redde`, `clausura`, `ergo`
+- Page: https://faberlang.dev/corpus/%E2%88%B4.html
+- Source: examples/corpus/operatores/control.fab
+
+#### `≈`
+
+- Canonical: `≈`
+- Kind: operator
+- Category: comparison
+- Summary: Numeric value equality after promotion join — not fuzzy float.
+- Syntax: `<expression> ≈ <expression> | <expression> ≉ <expression>`
+- Aliases: none
+- Related: `≡`, `≠`, `↦`, `adfirma`
+- Page: https://faberlang.dev/corpus/%E2%89%88.html
+- Source: examples/corpus/operatores/numeric-value-eq.fab
+
+#### `≡`
+
+- Canonical: `≡`
+- Kind: operator-group
+- Category: comparison
+- Summary: Equality and ordering comparisons returning bivalens.
+- Syntax: `<expression> ≡ <expression> | <expression> ≠ <expression> | <expression> ≤ <expression> | <expression> ≥ <expression>`
+- Aliases: none
+- Related: `≠`, `≤`, `≥`, `est`, `adfirma`
+- Page: https://faberlang.dev/corpus/%E2%89%A1.html
+- Source: examples/corpus/operatores/comparatio.fab
+
+#### `⊕`
+
+- Canonical: `⊕`
+- Kind: operator
+- Category: mutation
+- Summary: Postfix increment statement for a mutable numerus place.
+- Syntax: `<place> ⊕`
+- Aliases: `postfix increment`, `increment statement`
+- Related: `⊖`, `varia`, `←`, `numerus`
+- Page: https://faberlang.dev/corpus/%E2%8A%95.html
+- Source: examples/corpus/incrementa/incrementa.fab
+
+### Alias map
+
+- `!` → `non`
+- `"..."` → `string`
+- `'...'` → `ascii`
+- `...` → `sparge`
+- `and` → `et`
+- `annotation` → `@`
+- `array` → `lista`
+- `as` → `ut`
+- `assert` → `adfirma`
+- `assign` → `←`
+- `assignment` → `←`
+- `await` → `cede`
+- `backends` → `targets`
+- `break` → `rumpe`
+- `bytes` → `octeti`
+- `case` → `casu`
+- `catch` → `cape`
+- `choose` → `elige`
+- `class` → `genus`
+- `closure` → `clausa`
+- `const` → `fixum`
+- `continue` → `perge`
+- `conversio` → `↦`
+- `convert` → `↦`
+- `default` → `ceterum`
+- `describe` → `probandum`
+- `dictionary` → `tabula`
+- `do` → `fac`
+- `else` → `secus`
+- `else if` → `sin`
+- `entry` → `incipit`
+- `enum` → `ordo`
+- `ergo` → `∴`
+- `extends` → `sub`
+- `faber.toml` → `manifest`
+- `float` → `fractus`
+- `function` → `functio`
+- `guard` → `custodi`
+- `if` → `si`
+- `immutable` → `fixum`
+- `implements` → `implet`
+- `import` → `importa`
+- `increment statement` → `⊕`
+- `int` → `numerus`
+- `integer` → `numerus`
+- `interface` → `implendum`
+- `it` → `proba`
+- `iterate` → `itera`
+- `json` → `valor`
+- `lambda` → `clausa`
+- `let` → `varia`
+- `list` → `lista`
+- `magnitudo` → `generics`
+- `main` → `incipit`
+- `map` → `tabula`
+- `match` → `discerne`
+- `mutable` → `varia`
+- `never` → `numquam`
+- `nullish coalescing` → `vel`
+- `object` → `valor`
+- `optional` → `sponte`
+- `or` → `aut`
+- `otherwise` → `secus`
+- `package manifest` → `manifest`
+- `panic` → `mori`
+- `pending` → `futurum`
+- `postfix increment` → `⊕`
+- `private` → `privata`
+- `promise` → `promissum`
+- `protected` → `protecta`
+- `public` → `publica`
+- `rest` → `ceteri`
+- `return` → `redde`
+- `self` → `ego`
+- `set` → `copia`
+- `silent noop` → `tacet`
+- `skip` → `omitte`
+- `string` → `textus`
+- `struct` → `genus`
+- `suite` → `probandum`
+- `sum type` → `discretio`
+- `switch` → `elige`
+- `target compatibility` → `targets`
+- `test` → `proba`
+- `then` → `sic`
+- `therefore` → `∴`
+- `this` → `ego`
+- `throw` → `iace`
+- `todo` → `futurum`
+- `type` → `typus`
+- `type parameters` → `generics`
+- `union` → `discretio`
+- `unit` → `vacuum`
+- `void` → `vacuum`
+- `voluntary` → `sponte`
+- `while` → `dum`
+- `yield` → `cede`
+- `«...»` → `block-string`
+
+## Documentation map
+
+- https://faberlang.dev/ — overview + download
+- https://faberlang.dev/start/ — quick tour
+- https://faberlang.dev/features/ — locales, lanes, glyphs, principles
+- https://faberlang.dev/syntax/ — language reference
+- https://faberlang.dev/tooling/ — compiler, CLI, targets
+- https://faberlang.dev/ecosystem/ — Norma, Cista, Triga, workbench
+- https://faberlang.dev/corpus/ — generated keyword / construct pages
+- https://faberlang.dev/references/ — EBNF, design docs, repos
+- https://faberlang.dev/history/ — timeline
 
 ## Repositories
 
-| Repo | Role |
-|---|---|
-| https://github.com/faberlang/faber | Public user CLI |
-| https://github.com/faberlang/releases | Tagged CLI release assets |
-| https://github.com/faberlang/faber-runtime | Runtime types for generated Rust |
-| https://github.com/faberlang/norma | Standard library |
-| https://github.com/faberlang/cista | Package store |
-| https://github.com/faberlang/triga | Graphics / geometry |
-| https://github.com/faberlang/examples | Corpus + application packages |
-| https://github.com/faberlang/faberlang.dev | This site |
-
-## Skills (summary)
-
-- install — download and verify the CLI
-- language — grammar signals, nullability, comments, packages
-- packages — faber.toml, check/build/run/test loop
-- examples — which application packages to open first
-- corpus — how to use keyword corpus pages and source
-
-Catalog: https://faberlang.dev/.well-known/agent-skills/index.json
-
-## Related human docs
-
-- Install: https://faberlang.dev/start/install.html
-- Quick tour: https://faberlang.dev/start/
-- Examples: https://faberlang.dev/start/examples.html
-- Syntax hub: https://faberlang.dev/syntax/
+- https://github.com/faberlang/faber — public user CLI
+- https://github.com/faberlang/releases — tagged CLI release assets
+- https://github.com/faberlang/faber-runtime — runtime types for generated Rust
+- https://github.com/faberlang/norma — standard library
+- https://github.com/faberlang/cista — package store
+- https://github.com/faberlang/triga — graphics / geometry
+- https://github.com/faberlang/examples — corpus + application packages
+- https://github.com/faberlang/faberlang.dev — this site

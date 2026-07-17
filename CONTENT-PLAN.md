@@ -874,11 +874,11 @@ not flat*), and how a term page presents multiple examples including reject case
 | Design documents | `references/design-docs.md` | `radix/docs/design/` (28 docs) | ✅ (generation candidate) |
 | GitHub repositories | `references/repositories.md` | `github.com/faberlang` | ✅ |
 
-### Generated — LLM surface (deferred, see O8)
+### Generated — LLM surface (implemented, see O8)
 
 | Artifact | Path | Sources | Status |
 |------|------|---------|--------|
-| `llms.txt` | `/llms.txt` | corpus frontmatter | 🔁 |
+| `llms.txt` | `/llms.txt` | corpus frontmatter | ✅ |
 
 Faber is an LLM-focused language; the site should be friendly to LLM readers. The corpus
 frontmatter — 183 terms with a canonical form, one-line summary, syntax signature, alias

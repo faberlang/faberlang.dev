@@ -54,7 +54,8 @@ mkdir -p "$OUTPUT_DIR"
 # Copy stylesheet
 cp "${GENERATOR_DIR}/www/speculum.css" "${OUTPUT_DIR}/speculum.css"
 
-# Copy static agent surfaces (llms.txt, skills, agents/*.md, etc.)
+# Copy static agent surfaces (skills, agents/*.md, etc.). /llms.txt is generated
+# from corpus frontmatter after corpus traversal.
 STATIC_DIR="${REPO_DIR}/static"
 if [ -d "$STATIC_DIR" ] && [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
     echo "  copying static/ → dist/"
@@ -104,6 +105,10 @@ if [ -d "$STATIC_DIR" ] && [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
     cp -R "${STATIC_DIR}/." "${OUTPUT_DIR}/"
 fi
 
+if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
+    python3 "${SCRIPT_DIR}/render-llms.py" --corpus "${REPO_DIR}/../examples/corpus" --output "${OUTPUT_DIR}/llms.txt"
+fi
+
 smoke_contains() {
     local file="$1"
     local needle="$2"
@@ -124,6 +129,10 @@ echo "[smoke] Checking rendered core pages..."
 smoke_contains "${OUTPUT_DIR}/index.html" "<!DOCTYPE html>" "home doctype"
 smoke_contains "${OUTPUT_DIR}/index.html" "/llms.txt" "home agent link"
 smoke_contains "${OUTPUT_DIR}/index.html" "faber-v1.1.1" "home release link"
+if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
+    smoke_contains "${OUTPUT_DIR}/llms.txt" "Generated corpus frontmatter reference" "generated llms surface"
+    smoke_contains "${OUTPUT_DIR}/llms.txt" "Distinct frontmatter terms: 183" "generated llms term count"
+fi
 smoke_contains "${OUTPUT_DIR}/start/install.html" "<!DOCTYPE html>" "install doctype"
 smoke_contains "${OUTPUT_DIR}/start/install.html" "/start/install.html" "install path"
 smoke_contains "${OUTPUT_DIR}/start/install.html" "faber-v1.1.1" "install release link"
