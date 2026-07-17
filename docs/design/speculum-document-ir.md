@@ -1,10 +1,11 @@
 # Speculum document IR — HTML out of Faber
 
-**Status:** draft for Head review (2026-07-17)  
+**Status:** draft revised after Head second reads (2026-07-17)  
 **Repo:** `faberlang/faberlang.dev`  
-**Scope:** Speculum site generator (`generator/`) — architecture only; implementation staged  
-**Related:** `CONTENT-PLAN.md`, `generator/src/html.fab`, `generator/src/markdown.fab`, `radix/EBNF.md` (annotations), operator discussion Mind session 2026-07-17  
-**Memo:** `eead6a2d` (fleet)
+**Scope:** Speculum site generator (`generator/`) — architecture + staged implementation  
+**Related:** `CONTENT-PLAN.md`, `generator/src/html.fab`, `generator/src/document_ir.fab`, `generator/src/markdown.fab`, `radix/EBNF.md` (annotations + discretio), operator discussion Mind session 2026-07-17  
+**Memo:** `eead6a2d` (fleet)  
+**Head reviews absorbed:** head-cto `6bde87ac` / `c40511c5`; head-cxo `de48f431`; hand-4 Stage A land `46f719a`
 
 ---
 
@@ -94,9 +95,11 @@ Markdown / frontmatter / corpus bundle
                      dist/*.html
 ```
 
-### 4.1 Document IR (genera)
+### 4.1 Document IR (genera / discretio)
 
-Sketch — names can change; shape is load-bearing:
+**Target (honest language shape — head-cto C1):** Faber already has ergonomic
+tagged unions (`discretio` + `finge` / `discerne`; EBNF + corpus +
+`examples/arena-handle`). The load-bearing IR type is **not** an open question:
 
 ```text
 genus Attr {
@@ -104,31 +107,44 @@ genus Attr {
     textus valor
 }
 
-# Sum type preferred when Faber sum ergonomics allow; until then a tagged
-# genus or small family of constructors is fine.
-genus Node {
-    # variants conceptually:
-    #   Element { textus tag, lista<Attr> attrs, lista<Node> children }
-    #   Text { textus valor }          # escaped on serialize
-    #   Raw { textus valor }           # forbidden in stage A/B except serializer
-    #   Frag { lista<Node> children }
+discretio Node {
+    Element { textus tag, lista<Attr> attrs, lista<Node> children },
+    Text    { textus valor },           # escaped on serialize
+    Raw     { textus valor },           # serializer boundary only; not chrome builders
+    Frag    { lista<Node> children },
 }
 
 genus Document {
-    textus locale
-    textus titulus
-    textus section
-    textus stylesheet_link
-    lista<textus> sources
-    Node shell              # or separate chrome + main
+    Node root
+    # page meta (locale, titulus, section, stylesheet, sources) may live on
+    # Document fields or stay as parameters to shell builders — prefer
+    # fields when they stop being thread-through noise.
 }
 ```
 
+**As-shipped Stage A land (hand-4 `46f719a` — transitional, not target):**
+
+```text
+genus Element {
+    textus tag_name
+    lista<Attr> attrs
+    lista<Element> children
+    textus content          # text when tag_name = ""  (magic convention)
+    bivalens vacuum_tag     # void elements
+}
+genus Document { Element root }
+```
+
+This flat genus is simpler short-term (head-cxo C1 preference) but **encodes
+sum cases as magic strings and inconsistent flags**. It is **debt**, not the
+architecture target. **Stage A.1** must either migrate to `discretio Node` or
+record an explicit counted debt ratchet that expires before Stage B (markdown
+IR). Do not leave the design doc claiming sum types are unavailable.
+
 **Attributes:**
 
-- Open map via `lista<Attr>` for stage A (matches real HTML).
-- Optional later: closed genera per tag (`A { textus href, … }`) if we want
-  stronger typing for a fixed vocabulary — sugar over the same IR.
+- Open map via `lista<Attr>` (matches real HTML).
+- Optional later: closed genera per tag as sugar over the same IR.
 
 **Not IR:** CSS rules, full browser DOM APIs, reactive components.
 
@@ -167,10 +183,15 @@ functio html(Document doc) → textus
 functio html_node(Node n) → textus
 ```
 
-- Escape text nodes and attribute values.
-- Void elements (`meta`, `link`, `br`, …) without bogus end tags.
+- **Escape text nodes and attribute values** (`&`, `<`, `>`, `"` at minimum).
+  Centralize in the serializer only. Stage A done-when **must** include this
+  (head-cto G1): either implement escape or an explicit, dated debt note —
+  zero-escape ship is not “Stage A complete.”
+- Void elements (`meta`, `link`, `br`, …): closed set in serializer; no end tags.
 - Single module allowed to know tag spellings as **data** (`"div"`, `"a"`),
   not page layout.
+- `Raw` is only for temporary MD-body HTML wrapping; chrome builders must not
+  emit `Raw`.
 
 **Stage D (optional):** `faber emit -t html` or JSON dump of IR + external
 tool — only if multi-tool consumers appear. Not required to delete string soup.
@@ -230,13 +251,15 @@ one chrome path.
 
 | Stage | Deliverable | Done when |
 | --- | --- | --- |
-| **A** | Document IR types + `html()` + chrome builders as IR | Homepage + one inner page match current structure; nav/download links intact; chrome guillemets gone or trivial |
-| **B** | Markdown → Node IR | `markdown.fab` has no HTML string emitters except via shared serializers |
+| **A** | Document IR + `html()` + chrome as IR | Chrome guillemets gone; site builds; nav/download intact; **escape implemented or explicit debt**; IR types documented |
+| **A.1** | Honesty ratchet (Heads) | `discretio Node` (or debt budget with expiry); centralized escape; void-element set explicit; optional `dist/` smoke baseline |
+| **B** | Markdown → Node IR | `markdown.fab` emits Nodes; no HTML string emitters outside serializer |
 | **C** | Optional `@ PaginaMeta` (or keep TOML) | Frontmatter maps to typed meta; documented choice |
 | **D** | Optional emit backend / JSON IR dump | Only if a second consumer exists |
-| **Gate** | Lint/test fails on HTML tags in disallowed modules | CI or local `validate` script |
+| **Gate** | Lint/test fails on HTML tags in disallowed modules | Local validate script first; CI when available |
 
-**Packet in flight:** hand-4 task `40d7f985` — Stage A implementation.
+**Landed:** hand-4 `40d7f985` / commit `46f719a` — Stage A chrome IR (flat Element).  
+**Next:** Stage A.1 honesty follow-up before accepting Stage A as architecture-complete.
 
 **Rollback:** keep previous `dist/` commit; generator is rebuilt offline (no
 Faber in CI today).
@@ -331,8 +354,17 @@ Suggested lenses:
 
 ---
 
-## 12. Revision history
+## 12. Head second-read summary (2026-07-17)
+
+| Head | Verdict | Must absorb |
+| --- | --- | --- |
+| **head-cto** | Architecture OK; **not** Stage-A-done | **C1** use `discretio Node` (language has sums); **G1** escape in done-when; void set; dist baseline; nack genus-as-target without debt ratchet |
+| **head-cxo** | Approve with corrections | Prefer documenting as-shipped flat Element for Stage A simplicity; escape honesty; lint gate; document `Document { root }` shape |
+| **Mind resolution** | Target = `discretio Node`; flat Element = transitional debt; Stage **A.1** required before Stage B |
+
+## 13. Revision history
 
 | Date | Change |
 | --- | --- |
 | 2026-07-17 | Initial draft for Head review (Mind) |
+| 2026-07-17 | Revise after CTO/CXO second reads; Stage A.1 honesty ratchet |
