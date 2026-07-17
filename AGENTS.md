@@ -118,9 +118,9 @@ generator/scripts/render.sh src/en-US/syntax/types.md la /speculum.css output.ht
 generator/scripts/validate-fences.sh
 ```
 
-`render.sh` bridges two temporary compiler gaps (argumenta codegen and
-PKG001 package resolution) by building to Rust, patching `main.rs` to
-inject file I/O, then compiling and running.
+`render.sh` builds the Speculum package to Rust, compiles it, and runs it.
+Speculum reads and writes site files through `norma:solum`; `faber:*` remains
+script-only rather than an application file-I/O path.
 
 ### Binary versions
 

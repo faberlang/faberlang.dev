@@ -316,7 +316,7 @@ Faber in CI today).
 | Attribute ordering / class merge | Stable tests? | Deterministic sort optional |
 | Frontmatter vs `@ PaginaMeta` | Dual author surfaces | Keep TOML; Stage C is deferred until a separate contract need appears |
 | Version strings in chrome | Still hardcoded in IR builders | Follow-up: single version source (CXO earlier note) |
-| PKG001 / package I/O | Generator still shell-bridged for FS | Unchanged |
+| PKG001 / package I/O | Application file I/O now uses `norma:solum`; `faber:*` stays script-only, and Speculum is no longer shell-bridged for filesystem access | Closed by `ae4a02e` |
 
 ---
 

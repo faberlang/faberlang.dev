@@ -456,9 +456,9 @@ Campaign is **complete** when:
   **resolved for compiled path**: DEFER-115 fixed; stepper still blocked but not gating
 - ~~Pause if naive O(n²) string performance prevents practical execution (Stage 1)~~ —
   **resolved**: `db34b9891` adds zero-allocation `textus[i]` scalar indexing
-- Pause if `argumenta` codegen gap or PKG001 kernel import restriction blocks
-  file I/O in package mode (Stage 1) — **non-blocking**: shell wrapper bridges;
-  proper fix is codegen support or norma library dependency
+- Pause if the `argumenta` codegen gap blocks package CLI arguments (Stage 1) —
+  **non-blocking for site file I/O**: package file access uses `norma:solum`;
+  PKG001 only blocks `faber:*`, which remains script-only
 - Pause if Homebrew formula publication is needed for getting-started (Stage 6)
 - Pause if production deployment decisions arise (DNS, Cloudflare, analytics) —
   these are operator-gated, not campaign-gated
