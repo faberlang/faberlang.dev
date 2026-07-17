@@ -5,11 +5,11 @@ Use these when you need to see how applications are structured, how CLIs
 are wired, or how the language corpus is organized.</p><h2 id="how-to-run">How to run an example</h2><pre class="faber-code"><code class="lang-bash"># CLI on PATH (see Install)
 faber --version
 
-# Clone examples (and often norma as a sibling for library home)
+# Clone examples
 git clone https://github.com/faberlang/examples.git
-git clone https://github.com/faberlang/norma.git
 
-# Type-check a package
+# Type-check a package; dependencies resolve through faber.lock
+# and the Cista package store.
 faber check examples/ai-workbench/packages/faber-ai
 
 # Build / run / test when the package supports it

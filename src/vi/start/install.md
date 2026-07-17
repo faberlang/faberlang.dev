@@ -5,7 +5,7 @@ order = 1
 sources = []
 translation_kind = "fallback"
 source_locale = "en-US"
-source_hash = "sha256:8946fe82bb13180171d142543f2894cfe64739e21261337021341800bd976dc1"
+source_hash = "sha256:21d630528037285a86e992322b623a71066ab6d47547658680417ab616e7c872"
 +++
 **Translation status:** Vietnamese reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `vi` render step during the site build.
 
@@ -82,12 +82,12 @@ is on `PATH`.
 ## First package check {#first-package}
 
 With the CLI on `PATH`, clone the public examples (or any Faber package)
-and type-check:
+and type-check. Product packages resolve dependencies from the Cista store
+through `faber.lock`; local source checkouts are only for explicit
+library-development overrides.
 
 ```bash
 git clone https://github.com/faberlang/examples.git
-# Norma stdlib is typically a sibling checkout for library packages:
-# git clone https://github.com/faberlang/norma.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 

@@ -5,7 +5,7 @@ order = 4
 sources = []
 translation_kind = "fallback"
 source_locale = "en-US"
-source_hash = "sha256:9a4a1ab35e26d7c1e3197ee9ff830a69f7550a3c6288cd6987b9384f83e3188f"
+source_hash = "sha256:0b7a36b44a44e748ef7fd159a0f42e49d90dcb063f7809cb9ff291a7127abcee"
 +++
 **Translation status:** Thai reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
 
@@ -30,12 +30,12 @@ same compiler surface you plan to use.
 mkdir faber-learning
 cd faber-learning
 git clone https://github.com/faberlang/examples.git
-git clone https://github.com/faberlang/norma.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-Some packages import `norma:*`; keeping `norma` as a sibling checkout mirrors
-the development layout used by the project.
+Packages with `norma:*` imports resolve dependencies from the Cista package
+store recorded in `faber.lock`. Use `FABER_LIBRARY_HOME` only when you
+intentionally want a local resolver override for library development.
 
 ## Read examples in this order {#read-order}
 

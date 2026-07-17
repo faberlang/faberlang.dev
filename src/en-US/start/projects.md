@@ -25,12 +25,12 @@ same compiler surface you plan to use.
 mkdir faber-learning
 cd faber-learning
 git clone https://github.com/faberlang/examples.git
-git clone https://github.com/faberlang/norma.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-Some packages import `norma:*`; keeping `norma` as a sibling checkout mirrors
-the development layout used by the project.
+Packages with `norma:*` imports resolve dependencies from the Cista package
+store recorded in `faber.lock`. Use `FABER_LIBRARY_HOME` only when you
+intentionally want a local resolver override for library development.
 
 ## Read examples in this order {#read-order}
 

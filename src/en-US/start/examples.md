@@ -20,11 +20,11 @@ are wired, or how the language corpus is organized.
 # CLI on PATH (see Install)
 faber --version
 
-# Clone examples (and often norma as a sibling for library home)
+# Clone examples
 git clone https://github.com/faberlang/examples.git
-git clone https://github.com/faberlang/norma.git
 
-# Type-check a package
+# Type-check a package; dependencies resolve through faber.lock
+# and the Cista package store.
 faber check examples/ai-workbench/packages/faber-ai
 
 # Build / run / test when the package supports it

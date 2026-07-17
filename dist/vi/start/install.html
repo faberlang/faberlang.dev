@@ -27,9 +27,9 @@ faber --version</code></pre><h2 id="verify">Verify</h2><pre class="faber-code"><
 faber explain SEM001</code></pre><p>You should see a version line for the CLI and a diagnostic explanation.
 If <code>faber</code> is not found, check that the directory containing the binary
 is on <code>PATH</code>.</p><h2 id="first-package">First package check</h2><p>With the CLI on <code>PATH</code>, clone the public examples (or any Faber package)
-and type-check:</p><pre class="faber-code"><code class="lang-bash">git clone https://github.com/faberlang/examples.git
-# Norma stdlib is typically a sibling checkout for library packages:
-# git clone https://github.com/faberlang/norma.git
+and type-check. Product packages resolve dependencies from the Cista store
+through <code>faber.lock</code>; local source checkouts are only for explicit
+library-development overrides.</p><pre class="faber-code"><code class="lang-bash">git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai</code></pre><p>More packages: <a href="/start/examples.html">Examples</a>. CLI surface:
 <a href="/tooling/faber-build-tool.html">Faber build tool</a>.</p><h2 id="homebrew">Homebrew status</h2><p>Homebrew publication is not the authority for this start track yet. If a formula
 serves an older compiler such as Radix 0.38.0 while this site documents Faber

@@ -9,7 +9,7 @@ sources = [
 ]
 translation_kind = "fallback"
 source_locale = "en-US"
-source_hash = "sha256:9b81f45d19cc28b36421b6289b2d092b2165fd7c7b94004795a3c1d8945661d0"
+source_hash = "sha256:902bb133adf106a6e1ce96c44c872f7b3a912a0c0ddcb54fa36cfd0bfff20543"
 +++
 **Translation status:** Thai reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
 
@@ -25,11 +25,11 @@ are wired, or how the language corpus is organized.
 # CLI on PATH (see Install)
 faber --version
 
-# Clone examples (and often norma as a sibling for library home)
+# Clone examples
 git clone https://github.com/faberlang/examples.git
-git clone https://github.com/faberlang/norma.git
 
-# Type-check a package
+# Type-check a package; dependencies resolve through faber.lock
+# and the Cista package store.
 faber check examples/ai-workbench/packages/faber-ai
 
 # Build / run / test when the package supports it

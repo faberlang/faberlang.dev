@@ -4,9 +4,9 @@ fastest way to learn is to check and read existing packages that exercise the
 same compiler surface you plan to use.</p><h2 id="repositories">Public repositories</h2><table><thead><tr><th>Repository</th><th>Start here</th><th>Why</th></tr></thead><tbody><tr><td><a href="https://github.com/faberlang/examples"><code>faberlang/examples</code></a></td><td><code>corpus/</code>, application packages, tracks</td><td>Public corpus and application examples</td></tr><tr><td><a href="https://github.com/faberlang/norma"><code>faberlang/norma</code></a></td><td><code>norma:*</code> packages</td><td>Standard library source</td></tr><tr><td><a href="https://github.com/faberlang/faber"><code>faberlang/faber</code></a></td><td>CLI wrapper</td><td>User-facing build tool</td></tr><tr><td><a href="https://github.com/faberlang/cista"><code>faberlang/cista</code></a></td><td>package-store CLI/lib</td><td>Package management surface</td></tr><tr><td><a href="https://github.com/faberlang/triga"><code>faberlang/triga</code></a></td><td><code>triga:*</code> source</td><td>Graphics and geometry library</td></tr></tbody></table><h2 id="clone-workspace">Clone a learning workspace</h2><pre class="faber-code"><code class="lang-bash">mkdir faber-learning
 cd faber-learning
 git clone https://github.com/faberlang/examples.git
-git clone https://github.com/faberlang/norma.git
-faber check examples/ai-workbench/packages/faber-ai</code></pre><p>Some packages import <code>norma:*</code>; keeping <code>norma</code> as a sibling checkout mirrors
-the development layout used by the project.</p><h2 id="read-order">Read examples in this order</h2><p>1. <a href="/start/">Quick tour</a> for the surface grammar.
+faber check examples/ai-workbench/packages/faber-ai</code></pre><p>Packages with <code>norma:*</code> imports resolve dependencies from the Cista package
+store recorded in <code>faber.lock</code>. Use <code>FABER_LIBRARY_HOME</code> only when you
+intentionally want a local resolver override for library development.</p><h2 id="read-order">Read examples in this order</h2><p>1. <a href="/start/">Quick tour</a> for the surface grammar.
 2. <a href="/start/hello.html">Hello, Faber</a> for a single package.
 3. <a href="/corpus/">Corpus</a> for one page per keyword or construct.
 4. <a href="/start/examples.html">Examples</a> for larger applications.

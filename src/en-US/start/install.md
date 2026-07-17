@@ -78,8 +78,8 @@ is on `PATH`.
 
 With the CLI on `PATH`, clone the public examples (or any Faber package)
 and type-check. Product packages resolve dependencies from the Cista store
-through `faber.lock`; sibling checkouts are only for local library
-development.
+through `faber.lock`; local source checkouts are only for explicit
+library-development overrides.
 
 ```bash
 git clone https://github.com/faberlang/examples.git
