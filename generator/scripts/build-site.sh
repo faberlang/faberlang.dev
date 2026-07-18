@@ -176,6 +176,9 @@ if [ "${SPECULUM_SKIP_LOCALES:-0}" != "1" ] && [ "$SOURCE_DIR" = "${REPO_DIR}/sr
     echo "[sitemap] Generating sitemap.xml..."
     python3 "${SCRIPT_DIR}/generate-sitemap.py" "$OUTPUT_DIR" "https://faberlang.dev"
     smoke_contains "${OUTPUT_DIR}/sitemap.xml" "<urlset" "sitemap"
+
+    echo "[canonical] Injecting canonical URL tags..."
+    python3 "${SCRIPT_DIR}/inject-canonical.py" "$OUTPUT_DIR" "https://faberlang.dev"
 fi
 
 # Count results
