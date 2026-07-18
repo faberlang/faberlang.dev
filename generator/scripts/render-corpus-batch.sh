@@ -224,12 +224,41 @@ for p in corpus_out.rglob("*.html"):
     html = re.sub(r'<a [^>]*href="/corpus/([^"]+)"[^>]*>(.*?)</a>', _suppress_dead_link, html)
     p.write_text(html)
 
+# --- Inject Translation status notice on locale corpus pages ---
+# Portal/start pages get their notice from authored Markdown. Corpus pages
+# are generated; inject a notice for non-la locales so readers know the
+# prose is canonical Latin while code fences use the locale pipeline.
+notice_count = 0
+if locale != "la":
+    LOCALE_NAMES = {
+        "th-TH": "Thai",
+        "zh-Hans": "Simplified Chinese",
+        "zh-Hant": "Traditional Chinese",
+        "ar": "Arabic",
+        "hi": "Hindi",
+        "vi": "Vietnamese",
+    }
+    lang_name = LOCALE_NAMES.get(locale, locale)
+    notice = (
+        f'<p><strong>Translation status:</strong> {lang_name} reader-locale proof. '
+        f'Code fences render through the <code>{locale}</code> pipeline; '
+        f'prose is canonical Latin.</p>'
+    )
+    for p in corpus_out.rglob("*.html"):
+        html = p.read_text()
+        if "translation status" in html.lower():
+            continue
+        html = re.sub(r'(<main><h1[^>]*>.*?</h1>)(<div class="content")', r'\1' + notice + r'\2', html, count=1)
+        p.write_text(html)
+        notice_count += 1
+
 manifest = {
     "terms": len(terms),
     "aliases": len(written_aliases),
     "alias_residuals": len(skipped_aliases),
     "categories": len(category_terms),
     "dead_links_suppressed": suppress_count[0],
+    "locale_notices_injected": notice_count,
 }
 print(json.dumps(manifest, sort_keys=True))
 PYEOF
