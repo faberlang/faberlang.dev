@@ -83,17 +83,18 @@ The deploy pipeline is:
 **To update the live site after content changes:**
 
 ```bash
-# 1. Render all pages
+# 1. Render all pages (includes post-build gates, sitemap, canonical tags)
 bash generator/scripts/build-site.sh
 
 # 2. Commit both source and rendered output
-git add src/ dist/
+git add src/ dist/ static/
 git commit -m "content: update pages"
 git push origin main
 ```
 
 The push triggers the deploy automatically. GitHub Pages typically updates
-within 1-2 minutes.
+within 1-2 minutes. The build halts on any gate failure (broken links,
+leakage, missing discovery surfaces).
 
 ## Speculum generator
 
@@ -111,16 +112,35 @@ binary. It converts Markdown → HTML with:
 ### Render pipeline
 
 ```bash
+# Full site build (renders all pages + corpus + locales + gates)
+bash generator/scripts/build-site.sh
+
 # Render a single page
 generator/scripts/render.sh src/en-US/syntax/types.md la /speculum.css output.html
 
 # Validate all code fences
-generator/scripts/validate-fences.sh
+generator/scripts/validate-fences.sh src/en-US
 ```
 
 `render.sh` builds the Speculum package to Rust, compiles it, and runs it.
 Speculum reads and writes site files through `norma:solum`; `faber:*` remains
 script-only rather than an application file-I/O path.
+
+### Post-build validation scripts
+
+`build-site.sh` runs these automatically as fail-closed gates on the top-level
+build. They can also be run standalone:
+
+| Script | Purpose | Exit |
+|---|---|---|
+| `check-internal-links.py` | Verifies every internal `href` target exists in `dist/` | 1 on broken links |
+| `check-leakage-gate.py` | No English→locale nav leakage; all locale pages carry honesty notice | 1 on gap |
+| `generate-sitemap.py` | Generates `dist/sitemap.xml` from HTML files (excludes locale dirs) | — |
+| `inject-canonical.py` | Injects `<link rel="canonical">` into pages missing one | — |
+
+The corpus renderer (`render-corpus-batch.sh`) also post-processes its output:
+- Suppresses dead cross-reference links (converts to plain text)
+- Injects "Translation status" notice on locale corpus pages (`locale != la`)
 
 ### Binary versions
 
