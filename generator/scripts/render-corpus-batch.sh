@@ -204,11 +204,32 @@ hub_source.write_text("\n".join(hub) + "\n")
 hub_html = subprocess.check_output([str(binary), "--", "--page", "corpus/index", str(hub_source), locale, stylesheet], text=True)
 (corpus_out / "index.html").write_text(clean_generated(hub_html))
 
+# --- Suppress dead corpus cross-references (fail-soft) ---
+# After all pages exist, convert <a href="/corpus/X.html">text</a> to plain
+# text when X.html was not generated. No lying 404 links.
+existing_corpus = set()
+for p in corpus_out.rglob("*.html"):
+    existing_corpus.add(str(p.relative_to(corpus_out)))
+
+suppress_count = [0]
+def _suppress_dead_link(m):
+    target = m.group(1)
+    if target not in existing_corpus:
+        suppress_count[0] += 1
+        return m.group(2)
+    return m.group(0)
+
+for p in corpus_out.rglob("*.html"):
+    html = p.read_text()
+    html = re.sub(r'<a [^>]*href="/corpus/([^"]+)"[^>]*>(.*?)</a>', _suppress_dead_link, html)
+    p.write_text(html)
+
 manifest = {
     "terms": len(terms),
     "aliases": len(written_aliases),
     "alias_residuals": len(skipped_aliases),
     "categories": len(category_terms),
+    "dead_links_suppressed": suppress_count[0],
 }
 print(json.dumps(manifest, sort_keys=True))
 PYEOF
