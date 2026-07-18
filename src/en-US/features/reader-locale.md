@@ -89,9 +89,10 @@ Seven packs ship with Radix today:
 | `hi` | हिन्दी | Devanagari | Coverage proof |
 | `vi` | Tiếng Việt | Vietnamese (Latin) | Coverage proof |
 
-The five non-Latin reference locales are chosen for **collective architectural
+The five reference locales are chosen for **collective architectural
 stress** — together they force every Unicode and emission problem the substrate
-must survive:
+must survive. Four use non-Latin scripts; Vietnamese is the Latin-script
+control case:
 
 | Locale | Access | Architectural stress |
 |---|---|---|
@@ -105,7 +106,7 @@ must survive:
 
 ## Localised source examples {#examples}
 
-Each of the six non-Latin locales has a complete Faber package under
+Each of the six non-canonical locales has a complete Faber package under
 `examples/reader-locale/` with localised source, diagnostic test
 cases, and a `faber.toml` manifest. The same `greet`
 program rendered across all shipped locales:
