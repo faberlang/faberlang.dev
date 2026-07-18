@@ -155,6 +155,10 @@ if [ "${SPECULUM_SKIP_LOCALES:-0}" != "1" ] && [ "$SOURCE_DIR" = "${REPO_DIR}/sr
     done
 fi
 
+# Strip empty source-list footers (all builds)
+echo "[post-process] Stripping empty source footers..."
+python3 "${SCRIPT_DIR}/strip-empty-sources.py" "$OUTPUT_DIR"
+
 # Post-build gates: link integrity + leakage (top-level build only)
 if [ "${SPECULUM_SKIP_LOCALES:-0}" != "1" ] && [ "$SOURCE_DIR" = "${REPO_DIR}/src/en-US" ] && [ "$OUTPUT_DIR" = "${REPO_DIR}/dist" ]; then
     echo ""
