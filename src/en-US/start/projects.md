@@ -66,6 +66,6 @@ validator before claiming the examples still compile.
 
 ## Next {#next}
 
-| Previous | Continue |
+| Previous | Next |
 |---|---|
 | [Commands you will use](/start/commands.html) | [Examples](/start/examples.html) |

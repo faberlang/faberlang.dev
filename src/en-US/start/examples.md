@@ -80,3 +80,9 @@ Norma standard-library exempla live in the **norma** repo, not under
 - Skill: [examples](/.well-known/agent-skills/examples/SKILL.md)
 - Skill: [corpus](/.well-known/agent-skills/corpus/SKILL.md)
 - Index: [`/llms.txt`](/llms.txt)
+
+## Previous {#previous}
+
+| Previous | Next |
+|---|---|
+| [Projects and examples](/start/projects.html) | [Features](/features/) |
