@@ -139,6 +139,10 @@ smoke_contains "${OUTPUT_DIR}/start/install.html" "faber-v1.1.1" "install releas
 smoke_contains "${OUTPUT_DIR}/start/hello.html" "Salve, munde" "hello start page"
 smoke_contains "${OUTPUT_DIR}/start/commands.html" "faber check" "commands start page"
 smoke_contains "${OUTPUT_DIR}/start/projects.html" "faberlang/examples" "projects start page"
+smoke_contains "${OUTPUT_DIR}/404.html" "404" "404 page"
+if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
+    smoke_contains "${OUTPUT_DIR}/robots.txt" "Sitemap:" "robots.txt"
+fi
 
 if [ "${SPECULUM_SKIP_LOCALES:-0}" != "1" ] && [ "$SOURCE_DIR" = "${REPO_DIR}/src/en-US" ] && [ "$OUTPUT_DIR" = "${REPO_DIR}/dist" ]; then
     find "${REPO_DIR}/src" -mindepth 1 -maxdepth 1 -type d | sort | while read -r locale_dir; do
@@ -171,6 +175,7 @@ fi
 if [ "${SPECULUM_SKIP_LOCALES:-0}" != "1" ] && [ "$SOURCE_DIR" = "${REPO_DIR}/src/en-US" ] && [ "$OUTPUT_DIR" = "${REPO_DIR}/dist" ]; then
     echo "[sitemap] Generating sitemap.xml..."
     python3 "${SCRIPT_DIR}/generate-sitemap.py" "$OUTPUT_DIR" "https://faberlang.dev"
+    smoke_contains "${OUTPUT_DIR}/sitemap.xml" "<urlset" "sitemap"
 fi
 
 # Count results
