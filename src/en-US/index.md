@@ -47,7 +47,8 @@ faber --version
 ```
 
 All release notes and assets: [github.com/faberlang/releases · faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1).
-Step-by-step: [Install guide](/start/install.html).
+Step-by-step: [Install guide](/start/install.html). Full historical inventory:
+[Releases](/history/releases.html).
 
 | | |
 |---|---|
@@ -140,6 +141,7 @@ transformed, and lowered without losing the reader's sense of intent.
 | Section | Description |
 |---|---|
 | [History](/history/) | Development timeline, influences, and release history |
+| [Releases](/history/releases.html) | Latest Faber download plus every published tag and binary |
 | [Features](/features/) | Reader locale, compilation lanes, Latin vocabulary, glyph system, design principles |
 | [Syntax](/syntax/) | Complete reference: types, functions, control flow, errors, generics, collections |
 | [Tooling](/tooling/) | Radix compiler pipeline, Faber CLI, codegen targets, scripting |

@@ -21,6 +21,7 @@ track.
 | **Version** | 1.1.1 |
 | **Tag** | `faber-v1.1.1` |
 | **Release page** | [faber-v1.1.1 on GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1) |
+| **All releases** | [Site releases inventory](/history/releases.html) |
 | **License** | MIT |
 
 ## Prebuilt archives {#archives}

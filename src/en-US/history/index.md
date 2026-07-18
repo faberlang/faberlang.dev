@@ -36,3 +36,11 @@ The project began in TypeScript, was later rewritten in Rust, and the
 grammar was frozen for the 1.x line with edition 2026. The original five
 ADRs (file extension `.fab`, error hints, case endings, recursive descent
 parser, custom AST) are still visible in the git history.
+
+## Releases {#releases}
+
+Prebuilt CLI archives — current Faber release at the top, then every published
+tag and binary from [faberlang/releases](https://github.com/faberlang/releases):
+
+- **[Releases](/history/releases.html)** — download links and historical inventory
+- **[Install and download](/start/install.html)** — PATH setup and first `faber check`

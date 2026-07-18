@@ -58,6 +58,22 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; color-scheme: light dark; }
 ::selection { background: var(--glyph); color: var(--paper); }
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--paper-alt);
+    color: var(--glyph);
+    padding: 8px 16px;
+    border-bottom: 1px solid var(--rule);
+    z-index: 100;
+    transition: top 0.15s ease;
+    font-family: var(--sans);
+    font-size: 0.875rem;
+}
+.skip-link:focus {
+    top: 0;
+}
 body {
     background: var(--paper);
     color: var(--ink);

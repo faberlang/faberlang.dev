@@ -22,6 +22,18 @@ OUTPUT_DIR="${2:-${REPO_DIR}/dist}"
 STYLESHEET="/speculum.css"
 LOCALE="${3:-la}"
 
+# Prefer a Python with stdlib tomllib (3.11+). System python3 on macOS may be 3.9.
+if [ -z "${PYTHON:-}" ]; then
+    PYTHON="python3"
+    for candidate in python3.13 python3.12 python3.11 python3; do
+        if command -v "$candidate" >/dev/null 2>&1 \
+            && "$candidate" -c 'import tomllib' >/dev/null 2>&1; then
+            PYTHON="$candidate"
+            break
+        fi
+    done
+fi
+
 FABER="${FABER:-faber}"
 BUILD_DIR="${GENERATOR_DIR}/target/faber"
 BINARY="${BUILD_DIR}/target/debug/speculum-gen"
@@ -106,7 +118,7 @@ if [ -d "$STATIC_DIR" ] && [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
 fi
 
 if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
-    python3 "${SCRIPT_DIR}/render-llms.py" --corpus "${REPO_DIR}/../examples/corpus" --output "${OUTPUT_DIR}/llms.txt"
+    "$PYTHON" "${SCRIPT_DIR}/render-llms.py" --corpus "${REPO_DIR}/../examples/corpus" --output "${OUTPUT_DIR}/llms.txt"
 fi
 
 smoke_contains() {
@@ -127,21 +139,24 @@ smoke_contains() {
 
 echo "[smoke] Checking rendered core pages..."
 smoke_contains "${OUTPUT_DIR}/index.html" "<!DOCTYPE html>" "home doctype"
-smoke_contains "${OUTPUT_DIR}/index.html" "/llms.txt" "home agent link"
-smoke_contains "${OUTPUT_DIR}/index.html" "faber-v1.1.1" "home release link"
 if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
+    # Full English site only (locale fan-out sets SPECULUM_SKIP_STATIC=1).
+    smoke_contains "${OUTPUT_DIR}/index.html" "/llms.txt" "home agent link"
+    smoke_contains "${OUTPUT_DIR}/index.html" "faber-v1.1.1" "home release link"
     smoke_contains "${OUTPUT_DIR}/llms.txt" "Generated corpus frontmatter reference" "generated llms surface"
     smoke_contains "${OUTPUT_DIR}/llms.txt" "Distinct frontmatter terms: 183" "generated llms term count"
-fi
-smoke_contains "${OUTPUT_DIR}/start/install.html" "<!DOCTYPE html>" "install doctype"
-smoke_contains "${OUTPUT_DIR}/start/install.html" "/start/install.html" "install path"
-smoke_contains "${OUTPUT_DIR}/start/install.html" "faber-v1.1.1" "install release link"
-smoke_contains "${OUTPUT_DIR}/start/hello.html" "Salve, munde" "hello start page"
-smoke_contains "${OUTPUT_DIR}/start/commands.html" "faber check" "commands start page"
-smoke_contains "${OUTPUT_DIR}/start/projects.html" "faberlang/examples" "projects start page"
-smoke_contains "${OUTPUT_DIR}/404.html" "404" "404 page"
-if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
+    smoke_contains "${OUTPUT_DIR}/start/install.html" "<!DOCTYPE html>" "install doctype"
+    smoke_contains "${OUTPUT_DIR}/start/install.html" "/start/install.html" "install path"
+    smoke_contains "${OUTPUT_DIR}/start/install.html" "faber-v1.1.1" "install release link"
+    smoke_contains "${OUTPUT_DIR}/start/hello.html" "Salve, munde" "hello start page"
+    smoke_contains "${OUTPUT_DIR}/start/commands.html" "faber check" "commands start page"
+    smoke_contains "${OUTPUT_DIR}/start/projects.html" "faberlang/examples" "projects start page"
+    smoke_contains "${OUTPUT_DIR}/404.html" "404" "404 page"
+    smoke_contains "${OUTPUT_DIR}/history/releases.html" "faber-v1.1.1" "releases inventory"
+    smoke_contains "${OUTPUT_DIR}/history/releases.html" "Historical releases" "releases archive heading"
     smoke_contains "${OUTPUT_DIR}/robots.txt" "Sitemap:" "robots.txt"
+elif [ -f "${OUTPUT_DIR}/start/install.html" ]; then
+    smoke_contains "${OUTPUT_DIR}/start/install.html" "<!DOCTYPE html>" "locale install doctype"
 fi
 
 if [ "${SPECULUM_SKIP_LOCALES:-0}" != "1" ] && [ "$SOURCE_DIR" = "${REPO_DIR}/src/en-US" ] && [ "$OUTPUT_DIR" = "${REPO_DIR}/dist" ]; then
@@ -157,22 +172,22 @@ fi
 
 # Strip empty source-list footers (all builds)
 echo "[post-process] Stripping empty source footers..."
-python3 "${SCRIPT_DIR}/strip-empty-sources.py" "$OUTPUT_DIR"
+"$PYTHON" "${SCRIPT_DIR}/strip-empty-sources.py" "$OUTPUT_DIR"
 
 echo "[post-process] Injecting skip-to-content links..."
-python3 "${SCRIPT_DIR}/inject-skip-link.py" "$OUTPUT_DIR"
+"$PYTHON" "${SCRIPT_DIR}/inject-skip-link.py" "$OUTPUT_DIR"
 
 # Post-build gates: link integrity + leakage (top-level build only)
 if [ "${SPECULUM_SKIP_LOCALES:-0}" != "1" ] && [ "$SOURCE_DIR" = "${REPO_DIR}/src/en-US" ] && [ "$OUTPUT_DIR" = "${REPO_DIR}/dist" ]; then
     echo ""
     echo "[gate] Internal link check..."
-    python3 "${SCRIPT_DIR}/check-internal-links.py" "$OUTPUT_DIR" || {
+    "$PYTHON" "${SCRIPT_DIR}/check-internal-links.py" "$OUTPUT_DIR" || {
         echo "ERROR: internal link gate failed" >&2
         exit 1
     }
 
     echo "[gate] Leakage gate..."
-    python3 "${SCRIPT_DIR}/check-leakage-gate.py" "$OUTPUT_DIR" || {
+    "$PYTHON" "${SCRIPT_DIR}/check-leakage-gate.py" "$OUTPUT_DIR" || {
         echo "ERROR: leakage gate failed" >&2
         exit 1
     }
@@ -181,11 +196,11 @@ fi
 # Generate sitemap (top-level build only, after all pages exist)
 if [ "${SPECULUM_SKIP_LOCALES:-0}" != "1" ] && [ "$SOURCE_DIR" = "${REPO_DIR}/src/en-US" ] && [ "$OUTPUT_DIR" = "${REPO_DIR}/dist" ]; then
     echo "[sitemap] Generating sitemap.xml..."
-    python3 "${SCRIPT_DIR}/generate-sitemap.py" "$OUTPUT_DIR" "https://faberlang.dev"
+    "$PYTHON" "${SCRIPT_DIR}/generate-sitemap.py" "$OUTPUT_DIR" "https://faberlang.dev"
     smoke_contains "${OUTPUT_DIR}/sitemap.xml" "<urlset" "sitemap"
 
     echo "[canonical] Injecting canonical URL tags..."
-    python3 "${SCRIPT_DIR}/inject-canonical.py" "$OUTPUT_DIR" "https://faberlang.dev"
+    "$PYTHON" "${SCRIPT_DIR}/inject-canonical.py" "$OUTPUT_DIR" "https://faberlang.dev"
 fi
 
 # Count results

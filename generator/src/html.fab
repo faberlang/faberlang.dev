@@ -89,7 +89,7 @@ functio genera_sidebar(textus active_section) → doc_mod.Node {
     varia lista<doc_mod.Node> children ← vacua
     children.appende(genera_brand())
     children.appende(side_h("Get started"))
-    children.appende(nav_list([li(genera_nav_link("Install & download", "/start/install.html", active_section ≡ "install")), li(genera_nav_link("Hello", "/start/hello.html", active_section ≡ "hello")), li(genera_nav_link("Commands", "/start/commands.html", active_section ≡ "commands")), li(genera_nav_link("Projects", "/start/projects.html", active_section ≡ "projects")), li(genera_nav_link("Examples", "/start/examples.html", active_section ≡ "examples")), li(genera_nav_link("Quick tour", "/start/", active_section ≡ "start"))], "nav"))
+    children.appende(nav_list([li(genera_nav_link("Install & download", "/start/install.html", active_section ≡ "install")), li(genera_nav_link("Releases", "/history/releases.html", active_section ≡ "releases")), li(genera_nav_link("Hello", "/start/hello.html", active_section ≡ "hello")), li(genera_nav_link("Commands", "/start/commands.html", active_section ≡ "commands")), li(genera_nav_link("Projects", "/start/projects.html", active_section ≡ "projects")), li(genera_nav_link("Examples", "/start/examples.html", active_section ≡ "examples")), li(genera_nav_link("Quick tour", "/start/", active_section ≡ "start"))], "nav"))
     children.appende(side_h("Documentation"))
 
     varia lista<doc_mod.Node> docs ← vacua
@@ -107,7 +107,7 @@ functio genera_sidebar(textus active_section) → doc_mod.Node {
     children.appende(nav_list([li(genera_nav_link("Agent index", "/llms.txt", falsum)), li(genera_nav_link("Agent guide", "/agents/index.md", falsum)), li(genera_nav_link("Agent skills", "/.well-known/agent-skills/index.json", falsum)), li(genera_nav_link("Full reference", "/llms-full.txt", falsum))], "nav nav-compact"))
 
     children.appende(side_h("Release 1.1.1"))
-    children.appende(nav_list([li(genera_nav_link("macOS arm64", "https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz", falsum)), li(genera_nav_link("Linux x64", "https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz", falsum)), li(genera_nav_link("All releases", "https://github.com/faberlang/releases/releases/tag/faber-v1.1.1", falsum)), li(genera_nav_link("GitHub org", "https://github.com/faberlang", falsum))], "nav nav-compact"))
+    children.appende(nav_list([li(genera_nav_link("macOS arm64", "https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz", falsum)), li(genera_nav_link("Linux x64", "https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz", falsum)), li(genera_nav_link("All releases", "/history/releases.html", active_section ≡ "releases")), li(genera_nav_link("GitHub org", "https://github.com/faberlang", falsum))], "nav nav-compact"))
     children.appende(genera_side_meta())
 
     redde doc_mod.element("aside", vacua, children)
