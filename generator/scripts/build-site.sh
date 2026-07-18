@@ -167,6 +167,12 @@ if [ "${SPECULUM_SKIP_LOCALES:-0}" != "1" ] && [ "$SOURCE_DIR" = "${REPO_DIR}/sr
     }
 fi
 
+# Generate sitemap (top-level build only, after all pages exist)
+if [ "${SPECULUM_SKIP_LOCALES:-0}" != "1" ] && [ "$SOURCE_DIR" = "${REPO_DIR}/src/en-US" ] && [ "$OUTPUT_DIR" = "${REPO_DIR}/dist" ]; then
+    echo "[sitemap] Generating sitemap.xml..."
+    python3 "${SCRIPT_DIR}/generate-sitemap.py" "$OUTPUT_DIR" "https://faberlang.dev"
+fi
+
 # Count results
 PAGE_COUNT=$(find "$OUTPUT_DIR" -name "*.html" -type f | wc -l | tr -d ' ')
 STATIC_COUNT=$(find "$OUTPUT_DIR" \( -name "*.txt" -o -name "*.md" -o -name "*.json" \) -type f | wc -l | tr -d ' ')

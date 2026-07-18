@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+
+# Locale proof slices (ar, th-TH, vi, hi, zh-Hans, zh-Hant) are partial
+# translations with canonical Latin prose. Exclude from crawl to avoid
+# indexing incomplete translations.
+Disallow: /ar/
+Disallow: /th-TH/
+Disallow: /vi/
+Disallow: /hi/
+Disallow: /zh-Hans/
+Disallow: /zh-Hant/
+
+Sitemap: https://faberlang.dev/sitemap.xml
