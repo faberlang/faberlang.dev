@@ -1,115 +1,78 @@
 # English Completeness Audit — faberlang.dev
 
-**Date:** 2026-07-18
-**Scope:** Internal-link integrity of English HTML pages in `dist/`
-**Tool:** `generator/scripts/check-internal-links.py` (re-runnable)
+**Date:** 2026-07-18 (updated post-fix)
+**Scope:** Internal-link integrity + leakage gate for English HTML pages in `dist/`
+**Tools:** `check-internal-links.py`, `check-leakage-gate.py` (both re-runnable, wired into `build-site.sh`)
 
 ## Method
 
 `check-internal-links.py` scans every `.html` file under `dist/` (excluding
-locale dirs: `ar/`, `th-TH/`, `vi/`, `hi/`, `zh-Hans/`, `zh-Hant/`) for
-internal `href="/..."` links and verifies the target exists on disk.
+locale dirs) for internal `href="/..."` links and verifies the target exists.
 
-## Results
+`check-leakage-gate.py` verifies no English page links to locale dirs, no
+factory/internal files in dist/, and all non-redirect locale pages carry a
+"Translation status" notice.
+
+## Current results — all green
 
 | Surface | Pages | Links checked | Broken |
 |---|---|---|---|
 | **Authored English** (start, features, syntax, tooling, ecosystem, references, history) | 40 | ~70 | **0** |
 | **Nav / sidebar** (hardcoded in `html.fab`) | — | ~25 | **0** |
 | **Corpus index** (`/corpus/index.html`) | 1 | 212 | **0** |
-| **Corpus term pages** (`/corpus/*.html`) | 313 | ~5 700 | **73** |
-| **Total (non-locale)** | 354 | 6 004 | **73** |
+| **Corpus term pages** (`/corpus/*.html`) | 313 | ~5 700 | **0** |
+| **Total (non-locale)** | 355 | 5 948 | **0** |
 
-### Nav completeness: clean
+Both gates exit 0 (PASS).
 
-All sidebar links, renderbar links, and the corpus index resolve. No
-missing section index, no broken nav target.
+## Resolution log
 
-### Authored English pages: clean
+### Corpus dead-link suppression (442b83d)
 
-Every manually-authored Markdown page renders and all internal links
-resolve.
+**Found:** 73 broken cross-reference links in corpus term pages → 36 unique
+missing targets (14 glyph/symbol pages + 22 term pages without generated
+content).
 
-### Corpus cross-references: 73 broken links, 36 unique missing targets
+**Fixed:** `render-corpus-batch.sh` post-processes every corpus HTML file
+after generation. Any `<a href="/corpus/X.html">` whose target page was not
+generated is converted to plain text — term visibility preserved, lying 404
+link removed. Manifest reports `dead_links_suppressed` count.
 
-Corpus term pages auto-generate cross-reference links to related terms.
-When a referenced term does not have its own generated page, the link is
-dead. This is a **generated-content gap**, not an authored-content error.
+**Remaining:** The 36 ungenerated term/glyph pages are corpus-authoring work
+for a future unit.
 
-**Categorised missing targets (36 unique):**
+### Leakage gate + locale honesty notices (0feb6cf)
 
-#### Glyph / symbol pages (14)
+**Found:** 1848 locale corpus pages lacked the "Translation status" notice
+that all 42 portal/start pages carry.
 
-| Target | Refs |
-|---|---|
-| `/corpus/⇥.html` | 10 |
-| `/corpus/∷.html` | 5 |
-| `/corpus/⊻.html` | 3 |
-| `/corpus/¬.html` | 2 |
-| `/corpus/….html` | 2 |
-| `/corpus/≠.html` | 2 |
-| `/corpus/⊖.html` | 2 |
-| `/corpus/!(.html` | 1 |
-| `/corpus/![.html` | 1 |
-| `/corpus/=.html` | 1 |
-| `/corpus/⇐.html` | 1 |
-| `/corpus/⇒.html` | 1 |
-| `/corpus/≤.html` | 1 |
-| `/corpus/≥.html` | 1 |
+**Fixed:** `render-corpus-batch.sh` injects the notice into locale corpus
+pages (term pages + category indexes + corpus hub) when `locale != la`.
+Alias redirect pages exempt (instant forward).
 
-#### Term pages (22)
+**Leakage:** No English page links to locale dirs. No factory/internal files
+in dist/. llms.txt doesn't expose locale paths. — all verified clean.
 
-| Target | Refs |
-|---|---|
-| `/corpus/annotation-sugar.html` | 7 |
-| `/corpus/sermo.html` | 5 |
-| `/corpus/arena.html` | 2 |
-| `/corpus/imperium.html` | 2 |
-| `/corpus/non est.html` | 3 |
-| `/corpus/nonnihil.html` | 2 |
-| `/corpus/prima.html` | 2 |
-| `/corpus/scrinium.html` | 2 |
-| `/corpus/ultima.html` | 2 |
-| `/corpus/accipe.html` | 1 |
-| `/corpus/appende.html` | 1 |
-| `/corpus/ab pipeline.html` | 1 |
-| `/corpus/filtrata.html` | 1 |
-| `/corpus/longitudo.html` | 1 |
-| `/corpus/nonnulla.html` | 1 |
-| `/corpus/nota.html` | 1 |
-| `/corpus/objectum.html` | 1 |
-| `/corpus/prae.html` | 1 |
-| `/corpus/radix.html` | 1 |
-| `/corpus/tempus.html` | 1 |
-| `/corpus/typi-parametri.html` | 1 |
-| `/corpus/vacua.html` | 1 |
+### Build-pipeline gates (c1c1f00)
 
-## Leakage check: clean
+Both gate scripts wired into `build-site.sh` as fail-closed post-build checks.
+Build halts on broken links or leakage/honesty gaps.
 
-No English-authored page links to locale-specific draft content
-(`/ar/`, `/th-TH/`, etc.). Locale directories are intentionally public
-with a visible "Translation status" notice on each page.
+### Discovery surfaces
 
-## Recommendation
-
-The 36 missing corpus targets fall into two fix paths:
-
-1. **Generate missing term pages** — add corpus definitions for the 22
-   terms and 14 glyphs to the corpus source, then re-render. This is
-   corpus-authoring work, not site infrastructure.
-
-2. **Suppress dead cross-references** — modify the corpus renderer to
-   emit plain text instead of a link when the target term has no page.
-   This is a `render-corpus-batch.sh` / generator change.
-
-Either path is a separate unit; this audit establishes the baseline.
+- **404 page** (aec82ba): custom `dist/404.html` with sidebar + recovery links
+- **robots.txt** (c35acc0): allows English pages, disallows locale proof slices
+- **sitemap.xml** (c35acc0): 354 English page URLs, generated by `generate-sitemap.py`
 
 ## Re-run
 
 ```bash
+# Link integrity (exit 0 = clean)
 python3 generator/scripts/check-internal-links.py
-# Exit 0 = clean; 1 = broken links found
 
-# Include locale dirs:
-python3 generator/scripts/check-internal-links.py --include-locales
+# Leakage gate (exit 0 = pass)
+python3 generator/scripts/check-leakage-gate.py
+
+# Full build with all gates
+bash generator/scripts/build-site.sh
 ```
