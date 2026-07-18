@@ -151,6 +151,22 @@ if [ "${SPECULUM_SKIP_LOCALES:-0}" != "1" ] && [ "$SOURCE_DIR" = "${REPO_DIR}/sr
     done
 fi
 
+# Post-build gates: link integrity + leakage (top-level build only)
+if [ "${SPECULUM_SKIP_LOCALES:-0}" != "1" ] && [ "$SOURCE_DIR" = "${REPO_DIR}/src/en-US" ] && [ "$OUTPUT_DIR" = "${REPO_DIR}/dist" ]; then
+    echo ""
+    echo "[gate] Internal link check..."
+    python3 "${SCRIPT_DIR}/check-internal-links.py" "$OUTPUT_DIR" || {
+        echo "ERROR: internal link gate failed" >&2
+        exit 1
+    }
+
+    echo "[gate] Leakage gate..."
+    python3 "${SCRIPT_DIR}/check-leakage-gate.py" "$OUTPUT_DIR" || {
+        echo "ERROR: leakage gate failed" >&2
+        exit 1
+    }
+fi
+
 # Count results
 PAGE_COUNT=$(find "$OUTPUT_DIR" -name "*.html" -type f | wc -l | tr -d ' ')
 STATIC_COUNT=$(find "$OUTPUT_DIR" \( -name "*.txt" -o -name "*.md" -o -name "*.json" \) -type f | wc -l | tr -d ' ')

@@ -441,6 +441,13 @@ complete corpus-frontmatter language reference.
   Stage 8 surfaces the alias map it can derive from current frontmatter and does not
   resolve the underlying corpus alias collision.
 
+**Post-build gates (2026-07-18)**: `build-site.sh` now runs two fail-closed gates
+after the full build (including locales):
+1. `check-internal-links.py` — verifies every internal `href` target exists
+2. `check-leakage-gate.py` — verifies no nav leakage to locale draft content and
+   all non-redirect locale pages carry a 'Translation status' notice
+Both gates exit non-zero on failure, halting the build.
+
 ## Dependency Rules
 
 | Rule | Detail |
