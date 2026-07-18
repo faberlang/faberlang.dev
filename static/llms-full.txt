@@ -63,6 +63,9 @@ faber-runtime types where required.
 ### Get started
 - https://faberlang.dev/start/
 - https://faberlang.dev/start/install.html
+- https://faberlang.dev/start/hello.html
+- https://faberlang.dev/start/commands.html
+- https://faberlang.dev/start/projects.html
 - https://faberlang.dev/start/examples.html
 
 ### Features
