@@ -1,0 +1,9 @@
+hàm salve(vănbản nomen) → vănbản {
+    hằng vănbản msg ← "Xin chào, §!"(nomen)
+    trả msg
+}
+
+bắtđầu {
+    hằng vănbản m ← salve("thế giới")
+    in m
+}

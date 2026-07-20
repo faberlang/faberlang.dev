@@ -35,7 +35,7 @@ any single surface syntax as the only authority.
 
 1. Declarations are type-first: `textus nomen`, `numerus x`, `bivalens ok`.
 2. Functions: `functio name(type param, …) → return_type { … }`.
-3. Bind: `←`. Equality: `≡`. Compact branch: `si cond ∴ body`.
+3. Bind: `←`. Equality: `≡`. Compact branch: `si cond ergo body`.
 4. Nullable: `T ∪ nihil`. Prefer explicit union over inventing `?` sugar.
 5. Return: `redde expr`.
 6. Comments: only `#` on its own line. LEX006/LEX007 if you use `//` or trailing `#`.

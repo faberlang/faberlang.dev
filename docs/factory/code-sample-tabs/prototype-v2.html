@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faber — demo-tabs prototype v2</title>
+<style>
+/* ============================================================
+   Tokens copied verbatim from generator/www/speculum.css
+   so this prototype reads exactly like the real site.
+   ============================================================ */
+:root {
+    --paper: #faf9f6; --paper-alt: #f3f1eb; --paper-deep: #eae7df;
+    --ink: #1a1a18; --ink-dim: #5a5954; --ink-faint: #8a8880;
+    --rule: #d8d5cb; --rule-strong: #c4c0b4;
+    --glyph: #2a4a9e; --glyph-soft: #e6ebf8; --glyph-hover: #1e3a82;
+    --fallback: #a8a49a; --support: #2f6b4c; --limited: #9a7420;
+    --reject: #a33f30; --defer: #6b6a64;
+    --serif: 'Noto Serif', Georgia, 'Times New Roman', serif;
+    --sans: 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'Noto Sans Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+    --radius: 4px;
+    --shadow-soft: 0 1px 2px rgba(26, 26, 24, 0.04);
+    --shadow-lift: 0 4px 14px rgba(26, 26, 24, 0.06);
+}
+@media (prefers-color-scheme: dark) {
+    :root {
+        --paper: #1c1b19; --paper-alt: #242320; --paper-deep: #2c2b27;
+        --ink: #e8e6df; --ink-dim: #aeaba1; --ink-faint: #817e75;
+        --rule: #3a3833; --rule-strong: #4c4a43;
+        --glyph: #93a9e8; --glyph-soft: #262c40; --glyph-hover: #b0c1f2;
+        --fallback: #6f6c63; --support: #7fbe9b; --limited: #d3a94f;
+        --reject: #d47f70; --defer: #8e8d83;
+        --shadow-soft: 0 1px 2px rgba(0,0,0,0.35);
+        --shadow-lift: 0 4px 14px rgba(0,0,0,0.45);
+    }
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { color-scheme: light dark; }
+body {
+    background: var(--paper); color: var(--ink);
+    font-family: var(--serif); font-size: 16.5px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    padding: 40px 22px 120px;
+}
+.page { max-width: 52rem; margin: 0 auto; }
+h1 { font-size: 1.9rem; margin-bottom: 6px; letter-spacing: -0.01em; }
+h2 { font-family: var(--sans); font-size: 1.15rem; margin: 40px 0 4px;
+     padding-bottom: 6px; border-bottom: 1px solid var(--rule); }
+.lede { color: var(--ink-dim); margin-bottom: 8px; }
+.note { font-family: var(--sans); font-size: 0.82rem; color: var(--ink-faint); margin: 10px 0 20px; }
+code { font-family: var(--mono); font-size: 0.88em; }
+
+/* Baseline: today's plain fence, for side-by-side comparison */
+pre.faber-code {
+    font-family: var(--mono); font-size: 13px; line-height: 1.55;
+    background: var(--paper-alt); border: 1px solid var(--rule);
+    padding: 14px 16px; margin: 12px 0 1.1rem; overflow-x: auto; white-space: pre;
+    border-radius: var(--radius); box-shadow: var(--shadow-soft);
+}
+
+/* ============================================================
+   PROPOSED v2: .faber-demo-tabs
+   One component, two data axes (locales or examples).
+   No-JS fallback = a labeled vertical stack (readable, copyable).
+   With JS = connected tabs. Panels are real <pre> text in the DOM.
+
+   v2 changes from prototype.html:
+   - no traffic-light dots; chrome bar = brand mark + filename + copy
+   - connected-tab metaphor (active tab joins the panel surface)
+   - 7 locales, real pack vocabulary (validated: faber check passes
+     for every panel under its own --reader-locale)
+   - elevation grammar: default rests at shadow-soft and lifts on
+     hover/focus-within; .fdt-hero holds shadow-lift permanently
+   - full ARIA wiring (aria-controls/labelledby, roving tabindex)
+   ============================================================ */
+.faber-demo-tabs {
+    margin: 16px 0 1.4rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: var(--paper-alt);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    transition: box-shadow 0.15s ease;
+}
+.faber-demo-tabs:hover,
+.faber-demo-tabs:focus-within {
+    box-shadow: var(--shadow-lift);
+}
+/* Hero variant (portal): the object on the page — stays lifted */
+.faber-demo-tabs.fdt-hero,
+.faber-demo-tabs.fdt-hero:hover,
+.faber-demo-tabs.fdt-hero:focus-within {
+    box-shadow: var(--shadow-lift);
+}
+
+/* Window chrome bar */
+.fdt-bar {
+    display: flex; align-items: center; gap: 10px;
+    padding: 8px 12px;
+    background: var(--paper-deep);
+    border-bottom: 1px solid var(--rule);
+}
+.fdt-mark {
+    flex: 0 0 auto;
+    width: 20px; height: 20px;
+    display: grid; place-items: center;
+    background: var(--glyph); color: #faf9f6;
+    font-family: var(--serif); font-style: italic; font-size: 14px;
+    line-height: 1; padding-bottom: 2px;
+    border-radius: 5px;
+}
+.fdt-file { font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); }
+.fdt-copy {
+    margin-left: auto; font-family: var(--sans); font-size: 11px;
+    color: var(--ink-dim); background: transparent;
+    border: 1px solid var(--rule); border-radius: 3px;
+    padding: 3px 9px; cursor: pointer;
+}
+.fdt-copy:hover { color: var(--glyph); border-color: var(--glyph); }
+.fdt-copy:focus-visible { outline: 2px solid var(--glyph); outline-offset: 1px; }
+
+/* Tab strip */
+.fdt-tabs {
+    display: flex; gap: 2px; flex-wrap: wrap;
+    padding: 6px 10px 0;
+    background: var(--paper-deep);
+    border-bottom: 1px solid var(--rule);
+}
+.fdt-tab {
+    font-family: var(--sans); font-size: 12.5px;
+    color: var(--ink-dim);
+    background: transparent;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: var(--radius) var(--radius) 0 0;
+    padding: 5px 12px 7px; cursor: pointer;
+    display: inline-flex; align-items: baseline; justify-content: center; gap: 7px;
+    white-space: nowrap;
+    flex: 1 1 0;                           /* fill the strip evenly */
+    min-width: max-content;                /* wrap whole tabs, never truncate */
+    margin-bottom: -1px;                   /* overlap the strip's bottom rule */
+}
+.fdt-tab:hover { color: var(--ink); }
+.fdt-tab:focus-visible { outline: 2px solid var(--glyph); outline-offset: -2px; }
+.fdt-tab[aria-selected="true"] {
+    color: var(--ink); font-weight: 600;
+    background: var(--paper-alt);        /* join the panel surface */
+    border-color: var(--rule);
+    border-top: 2px solid var(--glyph);  /* echoes the renderbar accent */
+    padding-top: 4px;
+}
+.fdt-tab .code { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); }
+.fdt-tab[aria-selected="true"] .code { color: var(--ink-dim); }
+.fdt-tab .th { font-family: 'Noto Sans Thai', var(--sans); }
+.fdt-tab .ar { font-family: 'Noto Sans Arabic', var(--sans); }
+.fdt-tab .hi { font-family: 'Noto Sans Devanagari', var(--sans); }
+.fdt-tab .zh { font-family: 'Noto Sans SC', var(--sans); }
+
+/* Panels */
+.fdt-panel { display: block; }             /* no-JS: all shown, stacked */
+.fdt-panel-label {                          /* no-JS: label each block   */
+    font-family: var(--sans); font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-faint);
+    padding: 10px 16px 0;
+}
+.fdt-panel pre {
+    font-family: var(--mono); font-size: 13px; line-height: 1.7;
+    margin: 0; padding: 14px 16px; overflow-x: auto; white-space: pre;
+    background: transparent; color: var(--ink);
+}
+
+/* JS-enhanced state: hide labels, one panel visible */
+.faber-demo-tabs.js .fdt-panel { display: none; }
+.faber-demo-tabs.js .fdt-panel.active { display: block; }
+.faber-demo-tabs.js .fdt-panel-label { display: none; }
+
+/* Typing caret (only used on the animated hero variant) */
+.fdt-caret {
+    display: inline-block; width: 7px; height: 1.05em;
+    background: var(--glyph); margin-left: 1px;
+    transform: translateY(2px);
+    animation: fdt-blink 1s steps(1) infinite;
+}
+@keyframes fdt-blink { 50% { opacity: 0; } }
+
+/* Panel fade on tab switch */
+.faber-demo-tabs.js .fdt-panel.active { animation: fdt-fade 0.22s ease; }
+@keyframes fdt-fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+    .fdt-caret { animation: none; }
+    .faber-demo-tabs.js .fdt-panel.active { animation: none; }
+    .faber-demo-tabs { transition: none; }
+}
+
+.divider { border: none; border-top: 1px dashed var(--rule); margin: 46px 0; }
+kbd { font-family: var(--mono); font-size: 0.8em; background: var(--paper-deep);
+      border: 1px solid var(--rule); border-radius: 3px; padding: 1px 5px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>Demo-tabs prototype v2</h1>
+<p class="lede">One component, two axes. Panels use real reader-pack vocabulary — every panel passes <code>faber check --reader-locale</code>, and all seven lower to the same program.</p>
+<p class="note">Toggle your OS light/dark mode to see both themes. Try <kbd>←</kbd>/<kbd>→</kbd> when a tab is focused. Disable JS (or set reduce-motion) to see the fallback.</p>
+
+<h2>1 · Tabbed variant (landing pages — example or locale axis)</h2>
+<p class="note">Rests at soft elevation, lifts on hover/focus. Click a language.</p>
+
+<div class="faber-demo-tabs" data-fdt>
+  <div class="fdt-bar">
+    <span class="fdt-mark" aria-hidden="true">f</span>
+    <span class="fdt-file">salve-munde.fab</span>
+    <button class="fdt-copy" type="button">Copy</button>
+  </div>
+  <div class="fdt-tabs" role="tablist" aria-label="Reader locale">
+    <button class="fdt-tab" role="tab" id="t1-la"    data-panel="p1-la"    aria-controls="p1-la"    aria-selected="true"  tabindex="0">English <span class="code">la</span></button>
+    <button class="fdt-tab" role="tab" id="t1-th"    data-panel="p1-th"    aria-controls="p1-th"    aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span> <span class="code">th-TH</span></button>
+    <button class="fdt-tab" role="tab" id="t1-hans"  data-panel="p1-hans"  aria-controls="p1-hans"  aria-selected="false" tabindex="-1"><span class="zh">简体中文</span> <span class="code">zh-Hans</span></button>
+    <button class="fdt-tab" role="tab" id="t1-hant"  data-panel="p1-hant"  aria-controls="p1-hant"  aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span> <span class="code">zh-Hant</span></button>
+    <button class="fdt-tab" role="tab" id="t1-ar"    data-panel="p1-ar"    aria-controls="p1-ar"    aria-selected="false" tabindex="-1"><span class="ar">العربية</span> <span class="code">ar</span></button>
+    <button class="fdt-tab" role="tab" id="t1-hi"    data-panel="p1-hi"    aria-controls="p1-hi"    aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span> <span class="code">hi</span></button>
+    <button class="fdt-tab" role="tab" id="t1-vi"    data-panel="p1-vi"    aria-controls="p1-vi"    aria-selected="false" tabindex="-1">Tiếng Việt <span class="code">vi</span></button>
+  </div>
+
+  <div class="fdt-panel active" id="p1-la" role="tabpanel" aria-labelledby="t1-la"><div class="fdt-panel-label">English · la</div><pre>functio salve(textus nomen) → textus {
+    fixum textus msg ← "Salve, §!"(nomen)
+    redde msg
+}
+
+incipit {
+    fixum textus m ← salve("munde")
+    nota m
+}</pre></div>
+
+  <div class="fdt-panel" id="p1-th" role="tabpanel" aria-labelledby="t1-th"><div class="fdt-panel-label">ภาษาไทย · th-TH</div><pre>ฟังก์ชัน salve(ข้อความ nomen) → ข้อความ {
+    คงที่ ข้อความ msg ← "สวัสดี, §!"(nomen)
+    คืน msg
+}
+
+เริ่ม {
+    คงที่ ข้อความ m ← salve("โลก")
+    แสดง m
+}</pre></div>
+
+  <div class="fdt-panel" id="p1-hans" role="tabpanel" aria-labelledby="t1-hans"><div class="fdt-panel-label">简体中文 · zh-Hans</div><pre>函数 salve(文本 nomen) → 文本 {
+    常量 文本 msg ← "你好，§!"(nomen)
+    返回 msg
+}
+
+入口 {
+    常量 文本 m ← salve("世界")
+    显示 m
+}</pre></div>
+
+  <div class="fdt-panel" id="p1-hant" role="tabpanel" aria-labelledby="t1-hant"><div class="fdt-panel-label">繁體中文 · zh-Hant</div><pre>函式 salve(文字 nomen) → 文字 {
+    常數 文字 msg ← "你好，§!"(nomen)
+    傳回 msg
+}
+
+入口 {
+    常數 文字 m ← salve("世界")
+    顯示 m
+}</pre></div>
+
+  <div class="fdt-panel" id="p1-ar" role="tabpanel" aria-labelledby="t1-ar"><div class="fdt-panel-label">العربية · ar</div><pre dir="rtl">دالة salve(نص nomen) → نص {
+    ثابت نص msg ← "مرحبا، §!"(nomen)
+    أعد msg
+}
+
+بداية {
+    ثابت نص m ← salve("عالم")
+    اعرض m
+}</pre></div>
+
+  <div class="fdt-panel" id="p1-hi" role="tabpanel" aria-labelledby="t1-hi"><div class="fdt-panel-label">हिन्दी · hi</div><pre>फलन salve(पाठ nomen) → पाठ {
+    स्थिर पाठ msg ← "नमस्ते, §!"(nomen)
+    लौटाओ msg
+}
+
+आरंभ {
+    स्थिर पाठ m ← salve("दुनिया")
+    दिखाओ m
+}</pre></div>
+
+  <div class="fdt-panel" id="p1-vi" role="tabpanel" aria-labelledby="t1-vi"><div class="fdt-panel-label">Tiếng Việt · vi</div><pre>hàm salve(vănbản nomen) → vănbản {
+    hằng vănbản msg ← "Xin chào, §!"(nomen)
+    trả msg
+}
+
+bắtđầu {
+    hằng vănbản m ← salve("thế giới")
+    in m
+}</pre></div>
+</div>
+
+<h2>2 · Hero variant — portal, with typing animation</h2>
+<p class="note">Permanent lift elevation; types the canonical program once on scroll-into-view, then the tabs stay live. Scroll it into view to trigger.</p>
+
+<div style="height: 30vh"></div>
+
+<div class="faber-demo-tabs fdt-hero" data-fdt data-typing>
+  <div class="fdt-bar">
+    <span class="fdt-mark" aria-hidden="true">f</span>
+    <span class="fdt-file">salve-munde.fab</span>
+    <button class="fdt-copy" type="button">Copy</button>
+  </div>
+  <div class="fdt-tabs" role="tablist" aria-label="Reader locale">
+    <button class="fdt-tab" role="tab" id="t2-la"    data-panel="p2-la"    aria-controls="p2-la"    aria-selected="true"  tabindex="0">English <span class="code">la</span></button>
+    <button class="fdt-tab" role="tab" id="t2-th"    data-panel="p2-th"    aria-controls="p2-th"    aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span> <span class="code">th-TH</span></button>
+    <button class="fdt-tab" role="tab" id="t2-hans"  data-panel="p2-hans"  aria-controls="p2-hans"  aria-selected="false" tabindex="-1"><span class="zh">简体中文</span> <span class="code">zh-Hans</span></button>
+    <button class="fdt-tab" role="tab" id="t2-hant"  data-panel="p2-hant"  aria-controls="p2-hant"  aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span> <span class="code">zh-Hant</span></button>
+    <button class="fdt-tab" role="tab" id="t2-ar"    data-panel="p2-ar"    aria-controls="p2-ar"    aria-selected="false" tabindex="-1"><span class="ar">العربية</span> <span class="code">ar</span></button>
+    <button class="fdt-tab" role="tab" id="t2-hi"    data-panel="p2-hi"    aria-controls="p2-hi"    aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span> <span class="code">hi</span></button>
+    <button class="fdt-tab" role="tab" id="t2-vi"    data-panel="p2-vi"    aria-controls="p2-vi"    aria-selected="false" tabindex="-1">Tiếng Việt <span class="code">vi</span></button>
+  </div>
+
+  <div class="fdt-panel active" id="p2-la" role="tabpanel" aria-labelledby="t2-la"><div class="fdt-panel-label">English · la</div><pre>functio salve(textus nomen) → textus {
+    fixum textus msg ← "Salve, §!"(nomen)
+    redde msg
+}
+
+incipit {
+    fixum textus m ← salve("munde")
+    nota m
+}</pre></div>
+
+  <div class="fdt-panel" id="p2-th" role="tabpanel" aria-labelledby="t2-th"><div class="fdt-panel-label">ภาษาไทย · th-TH</div><pre>ฟังก์ชัน salve(ข้อความ nomen) → ข้อความ {
+    คงที่ ข้อความ msg ← "สวัสดี, §!"(nomen)
+    คืน msg
+}
+
+เริ่ม {
+    คงที่ ข้อความ m ← salve("โลก")
+    แสดง m
+}</pre></div>
+
+  <div class="fdt-panel" id="p2-hans" role="tabpanel" aria-labelledby="t2-hans"><div class="fdt-panel-label">简体中文 · zh-Hans</div><pre>函数 salve(文本 nomen) → 文本 {
+    常量 文本 msg ← "你好，§!"(nomen)
+    返回 msg
+}
+
+入口 {
+    常量 文本 m ← salve("世界")
+    显示 m
+}</pre></div>
+
+  <div class="fdt-panel" id="p2-hant" role="tabpanel" aria-labelledby="t2-hant"><div class="fdt-panel-label">繁體中文 · zh-Hant</div><pre>函式 salve(文字 nomen) → 文字 {
+    常數 文字 msg ← "你好，§!"(nomen)
+    傳回 msg
+}
+
+入口 {
+    常數 文字 m ← salve("世界")
+    顯示 m
+}</pre></div>
+
+  <div class="fdt-panel" id="p2-ar" role="tabpanel" aria-labelledby="t2-ar"><div class="fdt-panel-label">العربية · ar</div><pre dir="rtl">دالة salve(نص nomen) → نص {
+    ثابت نص msg ← "مرحبا، §!"(nomen)
+    أعد msg
+}
+
+بداية {
+    ثابت نص m ← salve("عالم")
+    اعرض m
+}</pre></div>
+
+  <div class="fdt-panel" id="p2-hi" role="tabpanel" aria-labelledby="t2-hi"><div class="fdt-panel-label">हिन्दी · hi</div><pre>फलन salve(पाठ nomen) → पाठ {
+    स्थिर पाठ msg ← "नमस्ते, §!"(nomen)
+    लौटाओ msg
+}
+
+आरंभ {
+    स्थिर पाठ m ← salve("दुनिया")
+    दिखाओ m
+}</pre></div>
+
+  <div class="fdt-panel" id="p2-vi" role="tabpanel" aria-labelledby="t2-vi"><div class="fdt-panel-label">Tiếng Việt · vi</div><pre>hàm salve(vănbản nomen) → vănbản {
+    hằng vănbản msg ← "Xin chào, §!"(nomen)
+    trả msg
+}
+
+bắtđầu {
+    hằng vănbản m ← salve("thế giới")
+    in m
+}</pre></div>
+</div>
+
+<hr class="divider">
+<h2>3 · Today's baseline (for comparison)</h2>
+<p class="note">What a reader currently sees — one locale, plain fence, no relationship shown between the variants.</p>
+<pre class="faber-code">functio salve(textus nomen) → textus {
+    fixum textus msg ← "Salve, §!"(nomen)
+    redde msg
+}
+
+incipit {
+    fixum textus m ← salve("munde")
+    nota m
+}</pre>
+
+</div>
+
+<script>
+/* ============================================================
+   The entire enhancer. This is what would live in static/*.js
+   (~1.7KB). No dependencies. Progressive: if this never runs,
+   the markup above is a readable labeled stack.
+   ============================================================ */
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function activate(root, id, focus) {
+    root.querySelectorAll('.fdt-tab').forEach(function (t) {
+      var on = t.dataset.panel === id;
+      t.setAttribute('aria-selected', on ? 'true' : 'false');
+      t.tabIndex = on ? 0 : -1;                    /* roving tabindex */
+      if (on && focus) t.focus();
+    });
+    root.querySelectorAll('.fdt-panel').forEach(function (p) {
+      p.classList.toggle('active', p.id === id);
+    });
+  }
+
+  function type(panel, done) {
+    var pre = panel.querySelector('pre');
+    var full = pre.textContent;
+    pre.textContent = '';
+    var caret = document.createElement('span');
+    caret.className = 'fdt-caret';
+    pre.appendChild(caret);
+    var i = 0;
+    (function step() {
+      if (i >= full.length) { caret.remove(); if (done) done(); return; }
+      var ch = full[i++];
+      caret.insertAdjacentText('beforebegin', ch);
+      // vary the cadence a touch so it feels hand-typed
+      var d = ch === '\n' ? 90 : (Math.random() < 0.12 ? 55 : 18);
+      setTimeout(step, d);
+    })();
+  }
+
+  document.querySelectorAll('[data-fdt]').forEach(function (root) {
+    root.classList.add('js');
+    var tabs = Array.prototype.slice.call(root.querySelectorAll('.fdt-tab'));
+
+    tabs.forEach(function (tab, idx) {
+      tab.addEventListener('click', function () { activate(root, tab.dataset.panel); });
+      tab.addEventListener('keydown', function (e) {
+        var next = -1;
+        if (e.key === 'ArrowRight') next = (idx + 1) % tabs.length;
+        else if (e.key === 'ArrowLeft') next = (idx - 1 + tabs.length) % tabs.length;
+        else if (e.key === 'Home') next = 0;
+        else if (e.key === 'End') next = tabs.length - 1;
+        if (next < 0) return;
+        e.preventDefault();
+        activate(root, tabs[next].dataset.panel, true);
+      });
+    });
+
+    if (root.hasAttribute('data-typing') && !reduce) {
+      var first = root.querySelector('.fdt-panel.active');
+      var fired = false;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting && !fired) { fired = true; io.disconnect(); type(first); }
+        });
+      }, { threshold: 0.5 });
+      io.observe(root);
+    }
+  });
+
+  document.querySelectorAll('.fdt-copy').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var root = btn.closest('[data-fdt]');
+      var pre = root.querySelector('.fdt-panel.active pre') || root.querySelector('pre');
+      navigator.clipboard && navigator.clipboard.writeText(pre.textContent);
+      var old = btn.textContent; btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = old; }, 1200);
+    });
+  });
+})();
+</script>
+</body>
+</html>

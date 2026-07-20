@@ -192,6 +192,7 @@ functio genera_head(types_mod.Pagina pag, textus stylesheet_link) → doc_mod.No
     children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "preconnect"), doc_mod.attr("href", "https://fonts.gstatic.com"), doc_mod.attr("crossorigin", "")]))
     children.appende(doc_mod.void_element("link", [doc_mod.attr("href", "https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@400;600&family=Noto+Sans+Mono:wght@400;600&display=swap"), doc_mod.attr("rel", "stylesheet")]))
     children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "stylesheet"), doc_mod.attr("href", stylesheet_link)]))
+    children.appende(doc_mod.element("script", [doc_mod.attr("src", "/faber-search.js"), doc_mod.attr("defer", "")], vacua))
     redde doc_mod.element("head", vacua, children)
 }
 
@@ -203,7 +204,12 @@ functio genera_renderbar(textus site_locale) → doc_mod.Node {
     links.appende(a(lp.content_href("/start/install.html", site_locale), "install"))
 
     fixum doc_mod.Node nav ← doc_mod.element("nav", [doc_mod.attr("class", "machine-links"), doc_mod.attr("aria-label", "Machine documentation")], links)
-    fixum doc_mod.Node inner ← doc_mod.element("div", [doc_mod.attr("class", "in")], [doc_mod.leaf("span", [doc_mod.attr("class", "lbl")], "Rendering"), doc_mod.leaf("span", [doc_mod.attr("class", "locbtns")], site_locale), nav])
+    fixum doc_mod.Node mark ← doc_mod.leaf("span", [doc_mod.attr("class", "portal-mark"), doc_mod.attr("aria-hidden", "true")], "f")
+    fixum doc_mod.Node home ← doc_mod.element("a", [doc_mod.attr("class", "portal-home"), doc_mod.attr("href", "/"), doc_mod.attr("title", "porta · all languages"), doc_mod.attr("aria-label", "porta · all languages")], [mark])
+    fixum doc_mod.Node loclink ← doc_mod.leaf("a", [doc_mod.attr("class", "loclink"), doc_mod.attr("href", "/"), doc_mod.attr("title", "porta · change language"), doc_mod.attr("aria-label", "porta · change language")], site_locale)
+    fixum doc_mod.Node input ← doc_mod.void_element("input", [doc_mod.attr("type", "search"), doc_mod.attr("placeholder", "keyword…"), doc_mod.attr("aria-label", "Search keywords"), doc_mod.attr("autocomplete", "off"), doc_mod.attr("spellcheck", "false")])
+    fixum doc_mod.Node search ← doc_mod.element("span", [doc_mod.attr("class", "searchbox"), doc_mod.attr("data-search", ""), doc_mod.attr("hidden", "")], [input])
+    fixum doc_mod.Node inner ← doc_mod.element("div", [doc_mod.attr("class", "in")], [home, doc_mod.leaf("span", [doc_mod.attr("class", "lbl")], "Rendering"), loclink, search, nav])
     redde doc_mod.element("div", [doc_mod.attr("class", "renderbar")], [inner])
 }
 

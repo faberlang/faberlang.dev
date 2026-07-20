@@ -3,15 +3,19 @@
 generate-portal.py — Generate the locale-less Faber language portal at /.
 
 CLI:
-    generate-portal.py <output.html> [--locales path] [--reader-root path] [--css /speculum.css]
+    generate-portal.py <output.html> [--locales path] [--reader-root path]
+                       [--exemplars path] [--css /speculum.css]
 
 Layout (Speculum porta):
-    gate + glyph ring of locale nodes + question + status note
-    + "same program" sample grid + full index by status + footer
+    gate + glyph ring of locale nodes + question + agent links
+    + tabbed demo hero (.faber-demo-tabs, one program × every pack)
+    + full index by status + footer
 
 Defaults:
     --locales       generator/locales.toml
     --reader-root   workspace/radix/stdlib/reader
+    --exemplars     generator/portal/exemplars (hero panels; falls back to
+                    pack exemplars under --reader-root)
     --css           /speculum.css
 """
 
@@ -64,19 +68,20 @@ def load_locales(path: Path) -> dict:
     return data.get("locales", {})
 
 
-def load_sample(reader_root: Path, reader_locale: str) -> str:
-    """Load exemplar sample: salve-munde first, else first .fab under exemplars/."""
-    exemplars_dir = reader_root / reader_locale / "exemplars"
-    if not exemplars_dir.is_dir():
-        return ""
+def load_sample(exemplars_dir: Path, reader_root: Path, reader_locale: str) -> str:
+    """Load hero panel: site exemplars first, then the pack's exemplars."""
+    local = exemplars_dir / f"salve-munde.{reader_locale}.fab"
+    if local.is_file():
+        return local.read_text(encoding="utf-8").strip()
 
-    salve = exemplars_dir / f"salve-munde.{reader_locale}.fab"
-    if salve.is_file():
-        return salve.read_text(encoding="utf-8").strip()
-
-    for child in sorted(exemplars_dir.iterdir()):
-        if child.suffix == ".fab":
-            return child.read_text(encoding="utf-8").strip()
+    pack_dir = reader_root / reader_locale / "exemplars"
+    if pack_dir.is_dir():
+        salve = pack_dir / f"salve-munde.{reader_locale}.fab"
+        if salve.is_file():
+            return salve.read_text(encoding="utf-8").strip()
+        for child in sorted(pack_dir.iterdir()):
+            if child.suffix == ".fab":
+                return child.read_text(encoding="utf-8").strip()
 
     return ""
 
@@ -113,6 +118,7 @@ def main() -> None:
     parser.add_argument("output", type=Path, help="Path to write the portal HTML")
     parser.add_argument("--locales", type=Path, default=None)
     parser.add_argument("--reader-root", type=Path, default=None)
+    parser.add_argument("--exemplars", type=Path, default=None)
     parser.add_argument("--css", type=str, default="/speculum.css")
     args = parser.parse_args()
 
@@ -121,6 +127,8 @@ def main() -> None:
 
     if args.locales is None:
         args.locales = generator_dir / "locales.toml"
+    if args.exemplars is None:
+        args.exemplars = generator_dir / "portal" / "exemplars"
     if args.reader_root is None:
         repo_dir = generator_dir.parent
         workspace_dir = repo_dir.parent
@@ -142,7 +150,7 @@ def main() -> None:
         is_rtl = reader_loc in RTL_READER_LOCALES
         st_mod, st_line = status_line_for(site, status)
 
-        sample = load_sample(args.reader_root, reader_loc)
+        sample = load_sample(args.exemplars, args.reader_root, reader_loc)
         if not sample:
             sample = f"# exemplar missing for {reader_loc}"
 
@@ -151,11 +159,13 @@ def main() -> None:
 
         locales.append({
             "site": html_mod.escape(site),
+            "reader": html_mod.escape(reader_loc),
             "native_name": html_mod.escape(native),
             "status": html_mod.escape(status),
             "st_mod": st_mod,
             "st_line": html_mod.escape(st_line),
             "native_cls": native_cls,
+            "script_cls": script_cls,
             "tag": html_mod.escape(f"{site} · {native_script or site}"),
             "stress": html_mod.escape(STRESS.get(site, "")),
             "href": f"/{html_mod.escape(site)}/",
@@ -163,35 +173,63 @@ def main() -> None:
             "top": f"{top:.1f}",
             "code_dir": ' dir="rtl"' if is_rtl else "",
             "sample": html_mod.escape(sample),
-            "card_rtl": " porta-sample-rtl" if is_rtl else "",
         })
 
     # -- ring nodes --------------------------------------------------------
     node_html = ""
     for c in locales:
+        # Status lines only earn their place when a locale is not complete.
+        st_html = ""
+        if c["status"] != "complete":
+            st_html = (
+                f'\n            <span class="porta-st porta-st-{c["st_mod"]}">'
+                f'{c["st_line"]}</span>'
+            )
         node_html += f"""\
         <div class="porta-node" style="left:{c['left']}px;top:{c['top']}px">
           <a href="{c['href']}">
             <span class="{c['native_cls']}">{c['native_name']}</span>
-            <span class="porta-tag">{c['tag']}</span>
-            <span class="porta-st porta-st-{c['st_mod']}">{c['st_line']}</span>
+            <span class="porta-tag">{c['tag']}</span>{st_html}
           </a>
         </div>
 """
 
-    # -- sample cards (PHASE-2: code samples required) ---------------------
-    sample_html = ""
-    for c in locales:
-        sample_html += f"""\
-        <article class="porta-sample{c['card_rtl']}">
-          <header>
-            <span class="{c['native_cls']}">{c['native_name']}</span>
-            <span class="porta-id">{c['site']}</span>
-            <span class="porta-badge porta-badge-{c['status']}">{c['status']}</span>
-          </header>
-          <pre class="faber-code"><code{c['code_dir']}>{c['sample']}</code></pre>
-          <a class="porta-link" href="{c['href']}">{c['native_name']} →</a>
-        </article>
+    # -- demo hero (tabbed card: one program × every pack) ------------------
+    # No-JS: labeled stack of real <pre> text with per-locale entry links.
+    # static/faber-demo-tabs.js enhances to connected tabs + one-shot typing.
+    tabs_html = ""
+    panels_html = ""
+    for i, c in enumerate(locales):
+        selected = "true" if i == 0 else "false"
+        tabindex = "0" if i == 0 else "-1"
+        active = " active" if i == 0 else ""
+        native_span = (
+            f'<span class="{c["script_cls"]}">{c["native_name"]}</span>'
+            if c["script_cls"] else c["native_name"]
+        )
+        tabs_html += (
+            f'    <button class="fdt-tab" role="tab" id="pt-{c["site"]}" '
+            f'data-panel="pp-{c["site"]}" data-href="{c["href"]}" '
+            f'data-name="{c["native_name"]}" aria-controls="pp-{c["site"]}" '
+            f'aria-selected="{selected}" tabindex="{tabindex}">'
+            f'{native_span} <span class="code">{c["reader"]}</span></button>\n'
+        )
+        panels_html += f"""\
+    <div class="fdt-panel{active}" id="pp-{c['site']}" role="tabpanel" aria-labelledby="pt-{c['site']}"><div class="fdt-panel-label">{c['native_name']} · {c['reader']} · <a href="{c['href']}">enter docs →</a></div><pre{c['code_dir']}>{c['sample']}</pre></div>
+"""
+
+    first = locales[0]
+    hero_html = f"""\
+  <div class="faber-demo-tabs fdt-hero" data-fdt data-typing>
+    <div class="fdt-bar">
+      <span class="fdt-mark" aria-hidden="true">f</span>
+      <span class="fdt-file">salve-munde.fab</span>
+      <a class="fdt-goto" href="{first['href']}" data-fdt-continue-link>Continue to {first['native_name']} →</a>
+      <button class="fdt-copy" type="button">Copy</button>
+    </div>
+    <div class="fdt-tabs" role="tablist" aria-label="Reader locale">
+{tabs_html}    </div>
+{panels_html}  </div>
 """
 
     # -- index groups ------------------------------------------------------
@@ -306,12 +344,6 @@ def main() -> None:
     </p>
 
     <div class="porta-note">
-      <p>
-        <b>Status.</b> All seven site locales are complete: full prose docs, localized
-        chrome, corpus, and tooling. Code remains Latin-canonical via each pack's
-        reader locale. Samples below are the same <code>salve-munde</code> program
-        from each pack — not mock copy.
-      </p>
       <p class="porta-agent-links">
         <a href="/llms.txt">Agent index</a>
         ·
@@ -325,12 +357,11 @@ def main() -> None:
   <section id="porta-samples" class="porta-samples-section">
     <h2>Same program, every pack</h2>
     <p class="porta-lede">
-      Each card shows the pack's <code>salve-munde</code> exemplar. The HIR is one;
-      the rendering is the pack.
+      One program, seven renderings. The HIR is one; the rendering is the
+      pack. Pick a tab to preview Faber in that reader locale — the panels
+      are real pack source, not mock copy.
     </p>
-    <div class="porta-samples">
-{sample_html}    </div>
-  </section>
+{hero_html}  </section>
 
   <section class="porta-index" id="porta-index">
     <h2>All site locales</h2>
@@ -353,6 +384,7 @@ def main() -> None:
 
 </main>
 
+<script src="/faber-demo-tabs.js" defer></script>
 </body>
 </html>
 """

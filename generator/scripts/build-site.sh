@@ -39,6 +39,10 @@ if [ -z "$PYTHON" ]; then
 fi
 
 FABER="${FABER:-faber}"
+# Toolchain for the fence-localize (transcode) step. Defaults to $FABER;
+# pin separately when reader packs are newer than the installed faber's
+# pack validator (e.g. FABER_LOCALIZE=path/to/workspace-faber).
+FABER_LOCALIZE="${FABER_LOCALIZE:-$FABER}"
 BUILD_DIR="${GENERATOR_DIR}/target/faber"
 
 # Binary path candidates (old radix-out subdir vs new top-level target)
@@ -146,7 +150,7 @@ render_locale() {
     if [ "$reader" != "la" ] && [ "$site" != "en-US" ]; then
         localized_source="$(mktemp -d)"
         TEMPDIRS+=("$localized_source")
-        "${SCRIPT_DIR}/localize-markdown.py" "$src" "$localized_source" --locale "$reader" --faber "$FABER"
+        "${SCRIPT_DIR}/localize-markdown.py" "$src" "$localized_source" --locale "$reader" --faber "$FABER_LOCALIZE"
         render_source="$localized_source"
     fi
 
@@ -237,6 +241,9 @@ if [ "$FULL_SITE" = true ]; then
         "$PYTHON" "${SCRIPT_DIR}/render-llms.py" \
             --corpus "${WORKSPACE_DIR}/examples/corpus" \
             --output "${OUTPUT_DIR}/llms.txt"
+        "$PYTHON" "${SCRIPT_DIR}/generate-search-index.py" \
+            --corpus "${WORKSPACE_DIR}/examples/corpus" \
+            --output-dir "${OUTPUT_DIR}"
     fi
 
     # Step 6: Generate redirect stubs (en-US → bare path)
@@ -265,6 +272,10 @@ if [ "$FULL_SITE" = true ]; then
         smoke_contains "${OUTPUT_DIR}/en-US/history/releases.html" "Historical releases" "releases archive heading"
         smoke_contains "${OUTPUT_DIR}/robots.txt" "Sitemap:" "robots.txt"
         smoke_contains "${OUTPUT_DIR}/robots.txt" "Allow: /" "robots allow all"
+        smoke_contains "${OUTPUT_DIR}/search-index.json" '"t":"redde"' "search index dataset"
+        smoke_contains "${OUTPUT_DIR}/search-index.zh-Hans.json" '"d":"函数"' "search index zh-Hans spellings"
+        smoke_contains "${OUTPUT_DIR}/en-US/index.html" 'data-search' "renderbar searchbox"
+        smoke_contains "${OUTPUT_DIR}/en-US/index.html" 'faber-search.js' "search script include"
         if grep -Eq '^Disallow: /(ar|th-TH|vi|hi|zh-Hans|zh-Hant)/' "${OUTPUT_DIR}/robots.txt"; then
             echo "ERROR: robots.txt must not disallow locale trees" >&2
             exit 1

@@ -157,7 +157,7 @@ each distinct semantic job — no overloading.
 | Runtime assignment | `x = value` | `←` |
 | Equality test | `==` | `≡` |
 | Nullability | `T?`, `Option<T>` | `T ∪ nihil` |
-| Branch + one statement | `if (cond) return x` | `si cond ∴ redde x` |
+| Branch + one statement | `if (cond) return x` | `si cond ergo redde x` |
 | Type cast | `(T)value`, `value as T` | `value ∷ T` |
 | Conversion (may fail) | `try_into()` | `value ↦ T` |
 

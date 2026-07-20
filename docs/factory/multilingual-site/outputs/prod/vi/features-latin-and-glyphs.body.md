@@ -120,7 +120,7 @@ Bảng dưới đây cho thấy các mẫu lập trình phổ biến ánh xạ t
 | Gán thời gian chạy | `x = value` | `←` |
 | Kiểm tra bằng nhau | `==` | `≡` |
 | Tính có thể rỗng | `T?`, `Option<T>` | `T ∪ nihil` |
-| Nhánh + một câu lệnh | `if (cond) return x` | `si cond ∴ redde x` |
+| Nhánh + một câu lệnh | `if (cond) return x` | `si cond ergo redde x` |
 | Ép kiểu | `(T)value`, `value as T` | `value ∷ T` |
 | Chuyển đổi (có thể thất bại) | `try_into()` | `value ↦ T` |
 
