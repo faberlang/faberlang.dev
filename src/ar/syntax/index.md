@@ -1,10 +1,59 @@
 +++
+translation_kind = "translated"
+
 title = "Syntax and semantics"
 section = "syntax"
 order = 0
 sources = []
 
-translation_kind = "pending"
-+++
 
-<!-- pending translation -->
+prose_hash = "sha256:756b1478369ce29cb747d6574830f684a1af6a995f5139ac5d8f0d00f1fecd08"
+code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+source_commit = "fdc930a3f4faf54690fd6e4f1342c94dee72c954"
+source_locale = "en-US"
++++
+بُني صيغ Faber على ثلاثة مبادئ: الأنواع قبل الأسماء، وكلمات لاتينية للسلوك، ورموز هيكلية لتدفّق القيم. كل تعريف يُقرأ على أنه قصد أولاً، وآلية ثانياً.
+
+## أنواع البيانات {#types}
+
+تعريفات النوع أولاً، وعروض رقمية، ومُوتَّرات، وقوائم، وأنواع نواة مُعجّل الرسوميات. [اقرأ المزيد ←](/syntax/types.html)
+
+## المتغيّرات {#variables}
+
+تستخدم الارتباطات `←` لتدفّق القيم. قابلية التغيير صريحة عبر `varia`. [اقرأ المزيد ←](/syntax/variables.html)
+
+## الدوال {#functions}
+
+تعلن الدوال أنواع الوسائط قبل الأسماء. أنواع الإرجاع تتبع السهم. [اقرأ المزيد ←](/syntax/functions.html)
+
+## تدفّق التحكّم {#control-flow}
+
+`si`/`ceterum` للتفرع، `dum` للتكرار، `perge`/`rumpe` للتحكّم بالحلقات. [اقرأ المزيد ←](/syntax/control-flow.html)
+
+## الأخطاء {#errors}
+
+الأخطاء قيم مُنوَّعة، لا استثناءات. النوع `aut` يحمل نجاحاً أو فشلاً. [اقرأ المزيد ←](/syntax/errors.html)
+
+## الأنواع المُعمَّمة {#generics}
+
+وسائط نوع على الدوال والهياكل. قيود عبر حدود السِمات. [اقرأ المزيد ←](/syntax/generics.html)
+
+## المُجمَّعات {#collections}
+
+القوائم (`lista`)، والخرائط، والمُوتَّرات للبيانات المُنظَّمة. [اقرأ المزيد ←](/syntax/collections.html)
+
+## السلاسل النصّية {#strings}
+
+النوع `textus`، والقوالب الحرفيّة، وعمليّات السلاسل النصّية. [اقرأ المزيد ←](/syntax/strings.html)
+
+## التحويل {#conversion}
+
+نظام `conversio` للتحويلات الصريحة بين الأنواع. [اقرأ المزيد ←](/syntax/conversion.html)
+
+## الرموز {#glyphs}
+
+مرجع الرموز الهيكليّة: `←`، `→`، `‥`، `≡`، `≢`، والمزيد. [اقرأ المزيد ←](/syntax/glyphs.html)
+
+## قابلية العدم {#nullability}
+
+الغياب مُنوَّع. النوع `forsitan` وتعليقات قابلية العدم. [اقرأ المزيد ←](/syntax/nullability.html)

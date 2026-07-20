@@ -1,0 +1,722 @@
+[
+  {
+    "id": "th-TH__syntax-collections",
+    "locale": "th-TH",
+    "rel": "syntax/collections.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hans__syntax-collections",
+    "locale": "zh-Hans",
+    "rel": "syntax/collections.md",
+    "model": "glm-5-2-zai",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hant__syntax-collections",
+    "locale": "zh-Hant",
+    "rel": "syntax/collections.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "ar__syntax-collections",
+    "locale": "ar",
+    "rel": "syntax/collections.md",
+    "model": "deepseek-v4-pro",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "hi__syntax-collections",
+    "locale": "hi",
+    "rel": "syntax/collections.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "vi__syntax-collections",
+    "locale": "vi",
+    "rel": "syntax/collections.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "th-TH__syntax-control-flow",
+    "locale": "th-TH",
+    "rel": "syntax/control-flow.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hans__syntax-control-flow",
+    "locale": "zh-Hans",
+    "rel": "syntax/control-flow.md",
+    "model": "glm-5-2-zai",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hant__syntax-control-flow",
+    "locale": "zh-Hant",
+    "rel": "syntax/control-flow.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "ar__syntax-control-flow",
+    "locale": "ar",
+    "rel": "syntax/control-flow.md",
+    "model": "deepseek-v4-pro",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "hi__syntax-control-flow",
+    "locale": "hi",
+    "rel": "syntax/control-flow.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "vi__syntax-control-flow",
+    "locale": "vi",
+    "rel": "syntax/control-flow.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "th-TH__syntax-conversion",
+    "locale": "th-TH",
+    "rel": "syntax/conversion.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hans__syntax-conversion",
+    "locale": "zh-Hans",
+    "rel": "syntax/conversion.md",
+    "model": "glm-5-2-zai",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hant__syntax-conversion",
+    "locale": "zh-Hant",
+    "rel": "syntax/conversion.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "ar__syntax-conversion",
+    "locale": "ar",
+    "rel": "syntax/conversion.md",
+    "model": "deepseek-v4-pro",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "hi__syntax-conversion",
+    "locale": "hi",
+    "rel": "syntax/conversion.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "vi__syntax-conversion",
+    "locale": "vi",
+    "rel": "syntax/conversion.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "th-TH__syntax-errors",
+    "locale": "th-TH",
+    "rel": "syntax/errors.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hans__syntax-errors",
+    "locale": "zh-Hans",
+    "rel": "syntax/errors.md",
+    "model": "glm-5-2-zai",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hant__syntax-errors",
+    "locale": "zh-Hant",
+    "rel": "syntax/errors.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "ar__syntax-errors",
+    "locale": "ar",
+    "rel": "syntax/errors.md",
+    "model": "deepseek-v4-pro",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "hi__syntax-errors",
+    "locale": "hi",
+    "rel": "syntax/errors.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "vi__syntax-errors",
+    "locale": "vi",
+    "rel": "syntax/errors.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "th-TH__syntax-functions",
+    "locale": "th-TH",
+    "rel": "syntax/functions.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hans__syntax-functions",
+    "locale": "zh-Hans",
+    "rel": "syntax/functions.md",
+    "model": "glm-5-2-zai",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hant__syntax-functions",
+    "locale": "zh-Hant",
+    "rel": "syntax/functions.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "ar__syntax-functions",
+    "locale": "ar",
+    "rel": "syntax/functions.md",
+    "model": "deepseek-v4-pro",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "hi__syntax-functions",
+    "locale": "hi",
+    "rel": "syntax/functions.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "vi__syntax-functions",
+    "locale": "vi",
+    "rel": "syntax/functions.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "th-TH__syntax-generics",
+    "locale": "th-TH",
+    "rel": "syntax/generics.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hans__syntax-generics",
+    "locale": "zh-Hans",
+    "rel": "syntax/generics.md",
+    "model": "glm-5-2-zai",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hant__syntax-generics",
+    "locale": "zh-Hant",
+    "rel": "syntax/generics.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "ar__syntax-generics",
+    "locale": "ar",
+    "rel": "syntax/generics.md",
+    "model": "deepseek-v4-pro",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "hi__syntax-generics",
+    "locale": "hi",
+    "rel": "syntax/generics.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "vi__syntax-generics",
+    "locale": "vi",
+    "rel": "syntax/generics.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "th-TH__syntax-glyphs",
+    "locale": "th-TH",
+    "rel": "syntax/glyphs.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hans__syntax-glyphs",
+    "locale": "zh-Hans",
+    "rel": "syntax/glyphs.md",
+    "model": "glm-5-2-zai",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hant__syntax-glyphs",
+    "locale": "zh-Hant",
+    "rel": "syntax/glyphs.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "ar__syntax-glyphs",
+    "locale": "ar",
+    "rel": "syntax/glyphs.md",
+    "model": "deepseek-v4-pro",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "hi__syntax-glyphs",
+    "locale": "hi",
+    "rel": "syntax/glyphs.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "vi__syntax-glyphs",
+    "locale": "vi",
+    "rel": "syntax/glyphs.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "th-TH__syntax-index",
+    "locale": "th-TH",
+    "rel": "syntax/index.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hans__syntax-index",
+    "locale": "zh-Hans",
+    "rel": "syntax/index.md",
+    "model": "glm-5-2-zai",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hant__syntax-index",
+    "locale": "zh-Hant",
+    "rel": "syntax/index.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "ar__syntax-index",
+    "locale": "ar",
+    "rel": "syntax/index.md",
+    "model": "deepseek-v4-pro",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "hi__syntax-index",
+    "locale": "hi",
+    "rel": "syntax/index.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "vi__syntax-index",
+    "locale": "vi",
+    "rel": "syntax/index.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "th-TH__syntax-nullability",
+    "locale": "th-TH",
+    "rel": "syntax/nullability.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hans__syntax-nullability",
+    "locale": "zh-Hans",
+    "rel": "syntax/nullability.md",
+    "model": "glm-5-2-zai",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hant__syntax-nullability",
+    "locale": "zh-Hant",
+    "rel": "syntax/nullability.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "ar__syntax-nullability",
+    "locale": "ar",
+    "rel": "syntax/nullability.md",
+    "model": "deepseek-v4-pro",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "hi__syntax-nullability",
+    "locale": "hi",
+    "rel": "syntax/nullability.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "vi__syntax-nullability",
+    "locale": "vi",
+    "rel": "syntax/nullability.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "th-TH__syntax-strings",
+    "locale": "th-TH",
+    "rel": "syntax/strings.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hans__syntax-strings",
+    "locale": "zh-Hans",
+    "rel": "syntax/strings.md",
+    "model": "glm-5-2-zai",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hant__syntax-strings",
+    "locale": "zh-Hant",
+    "rel": "syntax/strings.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "ar__syntax-strings",
+    "locale": "ar",
+    "rel": "syntax/strings.md",
+    "model": "deepseek-v4-pro",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "hi__syntax-strings",
+    "locale": "hi",
+    "rel": "syntax/strings.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "vi__syntax-strings",
+    "locale": "vi",
+    "rel": "syntax/strings.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "th-TH__syntax-types",
+    "locale": "th-TH",
+    "rel": "syntax/types.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hans__syntax-types",
+    "locale": "zh-Hans",
+    "rel": "syntax/types.md",
+    "model": "glm-5-2-zai",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hant__syntax-types",
+    "locale": "zh-Hant",
+    "rel": "syntax/types.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "ar__syntax-types",
+    "locale": "ar",
+    "rel": "syntax/types.md",
+    "model": "deepseek-v4-pro",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "hi__syntax-types",
+    "locale": "hi",
+    "rel": "syntax/types.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "vi__syntax-types",
+    "locale": "vi",
+    "rel": "syntax/types.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "th-TH__syntax-variables",
+    "locale": "th-TH",
+    "rel": "syntax/variables.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hans__syntax-variables",
+    "locale": "zh-Hans",
+    "rel": "syntax/variables.md",
+    "model": "glm-5-2-zai",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "zh-Hant__syntax-variables",
+    "locale": "zh-Hant",
+    "rel": "syntax/variables.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "ar__syntax-variables",
+    "locale": "ar",
+    "rel": "syntax/variables.md",
+    "model": "deepseek-v4-pro",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "hi__syntax-variables",
+    "locale": "hi",
+    "rel": "syntax/variables.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  },
+  {
+    "id": "vi__syntax-variables",
+    "locale": "vi",
+    "rel": "syntax/variables.md",
+    "model": "gpt-5.6-luna-codex",
+    "effort": "medium",
+    "wave": "W3",
+    "locale_exists": true,
+    "status": "pending"
+  }
+]
