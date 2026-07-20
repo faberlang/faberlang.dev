@@ -148,21 +148,65 @@ code.typ { color: var(--support); }
     color: var(--ink-faint); letter-spacing: 0.12em;
     text-transform: uppercase; font-size: 10.5px; font-weight: 600;
 }
-.locbtns { display: flex; gap: 4px; flex-wrap: wrap; }
-.locbtn {
-    font-family: var(--sans); font-size: 12.5px; border: 1px solid transparent;
-    background: none; color: var(--ink-dim); padding: 5px 12px;
-    cursor: pointer; border-radius: var(--radius);
-    transition: border-color 0.12s ease, color 0.12s ease, background 0.12s ease;
+/* Portal wayfinding: script-neutral route back to the language portal.
+   The mark is identity; the locale pill reads "this rendering — change it". */
+.renderbar .portal-home { border: none; display: grid; place-items: center; }
+.renderbar .portal-home:hover { border: none; background: none; }
+.renderbar .portal-mark {
+    width: 18px; height: 18px; display: grid; place-items: center;
+    background: var(--glyph); color: #faf9f6;
+    font-family: var(--serif); font-style: italic; font-size: 12px;
+    line-height: 1; padding-bottom: 1px; border-radius: 4px;
 }
-.locbtn:hover { border-color: var(--rule-strong); color: var(--ink); background: var(--paper); }
-.locbtn[aria-pressed="true"] {
-    background: var(--ink); color: var(--paper); border-color: var(--ink);
+.renderbar .portal-home:hover .portal-mark { background: var(--glyph-hover); }
+.renderbar .loclink {
+    font-family: var(--sans); font-size: 12px;
+    color: var(--ink-dim);
+    border: 1px solid var(--rule); border-radius: var(--radius);
+    padding: 3px 9px;
 }
-.locbtn .th { font-family: 'Noto Sans Thai', var(--sans); }
-.locbtn .ar { font-family: 'Noto Sans Arabic', var(--sans); }
-.locbtn .hi { font-family: 'Noto Sans Devanagari', var(--sans); }
-.locbtn .zh { font-family: 'Noto Sans SC', var(--sans); }
+.renderbar .loclink:hover { color: var(--glyph); border-color: var(--glyph); background: none; }
+
+/* Keyword search (hidden until faber-search.js enhances it) */
+.renderbar .searchbox { position: relative; }
+.renderbar .searchbox input {
+    font-family: var(--sans); font-size: 12px;
+    color: var(--ink); background: var(--paper);
+    border: 1px solid var(--rule); border-radius: var(--radius);
+    padding: 3px 9px; width: 15ch;
+    transition: width 0.15s ease, border-color 0.12s ease;
+}
+.renderbar .searchbox input:focus {
+    outline: none; border-color: var(--glyph); width: 22ch;
+}
+.renderbar .searchbox input::placeholder { color: var(--ink-faint); }
+.searchdrop {
+    position: absolute; top: calc(100% + 6px); left: 0; z-index: 120;
+    min-width: 340px; max-width: 90vw;
+    list-style: none; margin: 0; padding: 4px;
+    background: var(--paper); border: 1px solid var(--rule);
+    border-radius: var(--radius); box-shadow: var(--shadow-lift);
+}
+.searchdrop li a {
+    display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap;
+    padding: 6px 10px; border: none; border-radius: 3px;
+    color: var(--ink);
+}
+.searchdrop li a:hover { background: none; border: none; }
+.searchdrop li.active a,
+.searchdrop li a:hover { background: var(--glyph-soft); }
+.searchdrop code { font-size: 12.5px; color: var(--glyph); background: none; border: none; padding: 0; }
+.searchdrop .lat { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); }
+.searchdrop .via { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); }
+.searchdrop .kind {
+    font-family: var(--sans); font-size: 9.5px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-faint);
+}
+.searchdrop .sum {
+    font-family: var(--sans); font-size: 11.5px; color: var(--ink-dim);
+    flex-basis: 100%;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
 .renderbar .canon { margin-left: auto; color: var(--ink-faint); font-size: 11.5px; }
 .renderbar .machine-links {
     margin-left: auto;
@@ -517,10 +561,161 @@ footer a:hover { color: var(--glyph); border-bottom-color: var(--glyph); }
 }
 
 /* ==========================================================================
+   Demo tabs (.faber-demo-tabs) — tabbed code card
+   ==========================================================================
+   One component, two data axes (reader locales or examples). No-JS fallback
+   is a labeled vertical stack of real <pre> text; static/faber-demo-tabs.js
+   enhances to connected tabs. See docs/factory/code-sample-tabs/GOAL.md.
+   ========================================================================== */
+
+.faber-demo-tabs {
+    margin: 16px 0 1.4rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: var(--paper-alt);
+    box-shadow: var(--shadow-soft);
+    overflow: hidden;
+    transition: box-shadow 0.15s ease;
+}
+.faber-demo-tabs:hover,
+.faber-demo-tabs:focus-within {
+    box-shadow: var(--shadow-lift);
+}
+/* Hero variant (portal): the object on the page — stays lifted */
+.faber-demo-tabs.fdt-hero,
+.faber-demo-tabs.fdt-hero:hover,
+.faber-demo-tabs.fdt-hero:focus-within {
+    box-shadow: var(--shadow-lift);
+}
+
+/* Window chrome bar */
+.fdt-bar {
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    padding: 8px 12px;
+    background: var(--paper-deep);
+    border-bottom: 1px solid var(--rule);
+}
+.fdt-mark {
+    flex: 0 0 auto;
+    width: 20px; height: 20px;
+    display: grid; place-items: center;
+    background: var(--glyph); color: #faf9f6;
+    font-family: var(--serif); font-style: italic; font-size: 14px;
+    line-height: 1; padding-bottom: 2px;
+    border-radius: 5px;
+}
+.fdt-file { font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); }
+.fdt-copy {
+    margin-left: auto; font-family: var(--sans); font-size: 11px;
+    color: var(--ink-dim); background: transparent;
+    border: 1px solid var(--rule); border-radius: 3px;
+    padding: 3px 9px; cursor: pointer;
+}
+.fdt-copy:hover { color: var(--glyph); border-color: var(--glyph); }
+.fdt-copy:focus-visible { outline: 2px solid var(--glyph); outline-offset: 1px; }
+
+/* Tab strip */
+.fdt-tabs {
+    display: flex; gap: 2px; flex-wrap: wrap;
+    padding: 6px 10px 0;
+    background: var(--paper-deep);
+    border-bottom: 1px solid var(--rule);
+}
+.fdt-tab {
+    font-family: var(--sans); font-size: 12.5px;
+    color: var(--ink-dim);
+    background: transparent;
+    border: 1px solid transparent;
+    border-bottom: none;
+    border-radius: var(--radius) var(--radius) 0 0;
+    padding: 5px 12px 7px; cursor: pointer;
+    display: inline-flex; align-items: baseline; justify-content: center; gap: 7px;
+    white-space: nowrap;
+    flex: 1 1 0;
+    min-width: max-content;
+    margin-bottom: -1px;
+}
+.fdt-tab:hover { color: var(--ink); }
+.fdt-tab:focus-visible { outline: 2px solid var(--glyph); outline-offset: -2px; }
+.fdt-tab[aria-selected="true"] {
+    color: var(--ink); font-weight: 600;
+    background: var(--paper-alt);
+    border-color: var(--rule);
+    border-top: 2px solid var(--glyph);
+    padding-top: 4px;
+}
+.fdt-tab .code { font-family: var(--mono); font-size: 10.5px; color: var(--ink-faint); }
+.fdt-tab[aria-selected="true"] .code { color: var(--ink-dim); }
+.fdt-tab .th { font-family: 'Noto Sans Thai', var(--sans); }
+.fdt-tab .ar { font-family: 'Noto Sans Arabic', var(--sans); }
+.fdt-tab .hi { font-family: 'Noto Sans Devanagari', var(--sans); }
+.fdt-tab .zh { font-family: 'Noto Sans SC', var(--sans); }
+
+/* Panels */
+.fdt-panel { display: block; }
+.fdt-panel-label {
+    font-family: var(--sans); font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-faint);
+    padding: 10px 16px 0;
+}
+.fdt-panel-label a {
+    color: var(--glyph);
+    border-bottom: 1px solid color-mix(in srgb, var(--glyph) 35%, transparent);
+}
+.fdt-panel-label a:hover { border-bottom-color: var(--glyph); }
+.fdt-panel pre {
+    font-family: var(--mono); font-size: 13px; line-height: 1.7;
+    margin: 0; padding: 14px 16px; overflow-x: auto; white-space: pre;
+    background: transparent; color: var(--ink);
+}
+
+/* Continue button — the card's primary action, lives in the chrome bar
+   and follows the active tab when enhanced */
+.fdt-goto {
+    margin-left: auto;
+    font-family: var(--sans); font-size: 12px; font-weight: 600;
+    color: var(--paper); background: var(--glyph);
+    border: 1px solid var(--glyph); border-radius: var(--radius);
+    padding: 4px 12px;
+    white-space: nowrap;
+}
+.fdt-goto:hover {
+    color: var(--paper);
+    background: var(--glyph-hover); border-color: var(--glyph-hover);
+}
+.fdt-goto:focus-visible { outline: 2px solid var(--glyph); outline-offset: 2px; }
+.fdt-goto + .fdt-copy { margin-left: 0; }
+
+/* JS-enhanced state: hide labels, one panel visible */
+.faber-demo-tabs.js .fdt-panel { display: none; }
+.faber-demo-tabs.js .fdt-panel.active { display: block; }
+.faber-demo-tabs.js .fdt-panel-label { display: none; }
+
+/* Typing caret (only used on the animated hero variant) */
+.fdt-caret {
+    display: inline-block; width: 7px; height: 1.05em;
+    background: var(--glyph); margin-left: 1px;
+    transform: translateY(2px);
+    animation: fdt-blink 1s steps(1) infinite;
+}
+@keyframes fdt-blink { 50% { opacity: 0; } }
+
+/* Panel fade on tab switch */
+.faber-demo-tabs.js .fdt-panel.active { animation: fdt-fade 0.22s ease; }
+@keyframes fdt-fade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+
+@media (prefers-reduced-motion: reduce) {
+    .fdt-caret { animation: none; }
+    .faber-demo-tabs.js .fdt-panel.active { animation: none; }
+    .faber-demo-tabs { transition: none; }
+}
+
+/* ==========================================================================
    Locale-less language portal (body.porta) — Speculum porta layout
    ==========================================================================
-   Gate + glyph ring of locale nodes + honest status note + sample grid +
-   full index. No sidebar. Uses :root tokens above (Decision 14).
+   Gate + glyph ring of locale nodes + question + agent links + tabbed
+   demo hero (.faber-demo-tabs) + full index. No sidebar. Uses :root
+   tokens above (Decision 14).
    ========================================================================== */
 
 body.porta {
@@ -552,6 +747,7 @@ body.porta {
 .porta-ring {
     position: relative;
     width: 560px;
+    max-width: 100%;
     height: 520px;
     margin: 0 auto;
 }
@@ -600,15 +796,23 @@ body.porta {
     text-align: center;
     z-index: 2;
 }
-.porta-node a {
+/* Kill the global anchor border here: on the ring it paints a full-width
+   band that clips neighbouring nodes. Hover binds to the name text only. */
+.porta-node a,
+.porta-node a:hover {
     display: block;
     padding: 8px 4px;
-    border-bottom: 1px solid transparent;
+    border-bottom: none;
     color: var(--ink);
     text-decoration: none;
+    background: none;
 }
-.porta-node a:hover {
-    border-bottom-color: var(--glyph);
+.porta-node a:hover .porta-native {
+    color: var(--glyph);
+    text-decoration: underline;
+    text-decoration-color: var(--glyph);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 5px;
 }
 .porta-native {
     font-size: 21px;
@@ -652,35 +856,19 @@ body.porta {
     color: var(--ink);
 }
 
-/* ---- honest note ---- */
+/* ---- agent links (slimmed note: quiet line, no box) ---- */
 .porta-note {
-    border: 1px solid var(--rule);
-    background: var(--paper-alt);
-    padding: 18px 22px;
-    margin: 40px auto 0;
+    margin: 32px auto 0;
     max-width: 720px;
-    font-size: 14.5px;
-    line-height: 25px;
-    color: var(--ink-dim);
-    text-align: left;
+    text-align: center;
 }
 .porta-note p {
-    margin: 0 0 0.65rem;
-}
-.porta-note p:last-child {
-    margin-bottom: 0;
-}
-.porta-note b {
-    color: var(--ink);
-    font-weight: 700;
-}
-.porta-note code {
-    font-family: var(--mono);
-    font-size: 0.88em;
+    margin: 0;
 }
 .porta-agent-links {
     font-family: var(--sans);
     font-size: 0.88rem;
+    color: var(--ink-faint);
 }
 .porta-agent-links a {
     border-bottom: 1px solid var(--rule);
@@ -692,10 +880,9 @@ body.porta {
     color: var(--glyph);
 }
 
-/* ---- sample grid (PHASE-2: pack exemplars) ---- */
+/* ---- demo hero ---- */
 .porta-samples-section {
     padding: 48px 0 24px;
-    border-top: 1px solid var(--rule);
     margin-top: 40px;
     text-align: left;
 }
@@ -715,84 +902,11 @@ body.porta {
     margin: 12px 0 28px;
     max-width: 82ch;
 }
-.porta-samples {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 16px;
-}
-.porta-sample {
-    border: 1px solid var(--rule);
-    background: var(--paper-alt);
-    border-radius: var(--radius);
-    padding: 16px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    transition: border-color 0.12s ease, box-shadow 0.12s ease;
-}
-.porta-sample:hover {
-    border-color: var(--rule-strong);
-    box-shadow: var(--shadow-lift);
-}
-.porta-sample header {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    flex-wrap: wrap;
-}
-.porta-sample .porta-native {
-    font-size: 1.05rem;
-    line-height: 1.3;
-}
-.porta-sample-rtl header { direction: rtl; }
-.porta-sample-rtl .porta-badge { margin-left: 0; margin-right: auto; }
-.porta-id {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    color: var(--ink-faint);
-    letter-spacing: 0.02em;
-}
-.porta-badge {
-    font-family: var(--sans);
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 2px 8px;
-    border-radius: 3px;
-    margin-left: auto;
-}
-.porta-badge-complete {
-    background: var(--support);
-    color: var(--paper);
-}
-.porta-badge-partial {
-    background: var(--limited);
-    color: var(--paper);
-}
-.porta-sample pre.faber-code {
-    margin: 0;
-    font-size: 0.78rem;
-    padding: 10px 12px;
-}
-.porta-link {
-    font-family: var(--sans);
-    font-size: 0.82rem;
-    border: none;
-    color: var(--glyph);
-    align-self: flex-start;
-    text-decoration: none;
-}
-.porta-link:hover {
-    color: var(--glyph-hover);
-    border-bottom: 1px solid var(--glyph);
-}
 
 /* ---- full index ---- */
 .porta-index {
     padding: 48px 0 24px;
-    border-top: 1px solid var(--rule);
-    margin-top: 40px;
+    margin-top: 16px;
     text-align: left;
 }
 .porta-group {
@@ -891,6 +1005,5 @@ body.porta {
     }
     .porta-mark { margin-bottom: 28px; }
     .porta-node { width: 100%; max-width: 280px; }
-    .porta-samples { grid-template-columns: 1fr; }
     .porta-question { font-size: 17px; line-height: 28px; }
 }

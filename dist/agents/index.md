@@ -45,7 +45,7 @@ HTML install page: https://faberlang.dev/en-US/start/install.html
 
 ```text
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ∴ redde nihil
+    si b ≡ 0 ergo redde nihil
     redde a / b
 }
 ```
