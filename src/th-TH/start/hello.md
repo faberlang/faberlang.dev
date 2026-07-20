@@ -3,21 +3,18 @@ title = "Hello, Faber"
 section = "hello"
 order = 2
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:3a78129bf3787f7c726e39104c95fe9bde78855c4a9f63650410c5cef9610067"
+code_hash = "sha256:1ee50be729b09d1bfba27a1f994ef4d1a47c73a645764f9d5986c9bab1aecfb8"
+source_commit = "a20c2dc897c01cc62e38a48cb326d42745b1ca1a"
 source_locale = "en-US"
-source_hash = "sha256:e21072271fa884c1401230130dfda6fee4fa8ece2a7a6b9b4f6556bf74502860"
+translation_kind = "translated"
 +++
-**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
-
-
-Write the smallest useful Faber program: a package entry point that formats a
-string and prints it.
+เขียนโปรแกรม Faber ที่เล็กและมีประโยชน์ที่สุด: จุดเข้าของแพ็กเกจที่จัดรูปแบบสตริงแล้วพิมพ์ออก
 
 ## Prerequisites {#prerequisites}
 
-Complete [Install and download](/start/install.html) first. You should have a
-`faber` binary on your `PATH` and a shell in a working directory where you can
-create files.
+ทำตาม [Install and download](/start/install.html) ให้เสร็จก่อน คุณควรมีไบนารี `faber` บน `PATH` และเชลล์ในไดเรกทอรีที่สร้างไฟล์ได้
 
 ## Create a package {#create-package}
 
@@ -49,10 +46,7 @@ EOF
 faber check .
 ```
 
-`faber check` runs the front end: lexing, parsing, type checking, and lowering
-far enough to catch ordinary package mistakes without building a native binary.
-If the command fails, read the diagnostic code first; Faber diagnostics are
-intended to be stable search handles.
+`faber check` รันส่วนหน้า: lexing, parsing, type checking และการ lower ให้พอจับข้อผิดพลาดทั่วไปของแพ็กเกจโดยไม่สร้างไบนารีเนทีฟ หากคำสั่งล้มเหลว ให้อ่านรหัส diagnostic ก่อน — diagnostic ของ Faber ตั้งใจให้เป็นตัวค้นหาที่เสถียร
 
 ## Run it {#run}
 
@@ -60,7 +54,7 @@ intended to be stable search handles.
 faber run .
 ```
 
-Expected output:
+ผลลัพธ์ที่คาดหวัง:
 
 ```text
 Salve, munde!
@@ -70,19 +64,16 @@ Salve, munde!
 
 | Source | Meaning |
 |---|---|
-| `functio salve(textus nomen) → textus` | Function named `salve`, type-first parameter, text return |
-| `fixum textus msg ← ...` | Immutable binding |
-| `"Salve, §!"(nomen)` | Format string with display interpolation |
-| `redde msg` | Return |
-| `incipit` | Package entry point |
-| `nota m` | Print a note/output value |
+| `functio salve(textus nomen) → textus` | ฟังก์ชันชื่อ `salve` พารามิเตอร์แบบ type-first คืนค่า textus |
+| `fixum textus msg ← ...` | การผูกค่าแบบ immutable |
+| `"Salve, §!"(nomen)` | สตริงรูปแบบพร้อมการแทรกค่าเพื่อแสดงผล |
+| `redde msg` | คืนค่า |
+| `incipit` | จุดเข้าแพ็กเกจ |
+| `nota m` | พิมพ์ค่าหมายเหตุ/ผลลัพธ์ |
 
 ## Locale proof {#locale-proof}
 
-The program above is the canonical Latin reader rendering. Reader locales can
-render the same semantic program with different keyword packs while preserving
-glyphs and identifiers. Start with the full proof at
-[Reader locale](/features/reader-locale.html) before writing non-Latin packages.
+โปรแกรมด้านบนคือการเรนเดอร์ reader แบบละตินมาตรฐาน Reader locale สามารถเรนเดอร์โปรแกรมความหมายเดียวกันด้วยชุดคำสำคัญต่างกัน โดยคง glyph และ identifier ไว้ ดูหลักฐานเต็มที่ [Reader locale](/features/reader-locale.html) ก่อนเขียนแพ็กเกจที่ไม่ใช่ละติน
 
 ## Next {#next}
 

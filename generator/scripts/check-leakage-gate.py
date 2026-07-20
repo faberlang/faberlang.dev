@@ -116,14 +116,29 @@ def check_factory_leak(dist: Path):
 # ── Check 4: locale notice (non-en-US only) ──────────────────────────────────
 
 
+def _looks_translated(html: str) -> bool:
+    """Heuristic: main content has substantial non-Latin script.
+
+    Translated pages drop the honesty banner (GOAL Phase 6). Absent notice is
+    allowed when body content is no longer English-only fallback.
+    """
+    m = re.search(r'(?is)<div class="content"[^>]*>(.*)</div>\s*</main>', html)
+    body = m.group(1) if m else html
+    # Count letters outside Basic Latin / Latin-1 Supplement common range
+    non_latin = sum(1 for ch in body if ord(ch) > 0x024F and ch.isalpha())
+    return non_latin >= 40
+
+
 def check_locale_notices(dist: Path):
-    """Check 4: non-en-US locale pages carry 'Translation status' notice.
+    """Check 4: fallback locale pages carry 'Translation status' notice.
 
     en-US pages must NOT be required to have notices.
-    Redirect pages are still exempt.
+    Redirect pages are exempt.
+    Pages that look translated (non-Latin body prose) may omit the notice.
     """
     missing_by_type = {}
     total_by_type = {}
+    translated_ok = 0
     for loc in NON_EN_LOCALES:
         loc_dir = dist / loc
         if not loc_dir.exists():
@@ -145,9 +160,15 @@ def check_locale_notices(dist: Path):
                 'http-equiv="refresh"' in html
                 or "http-equiv='refresh'" in html
             )
-            if not is_redirect and "translation status" not in html.lower():
-                missing_by_type[ptype] = missing_by_type.get(ptype, 0) + 1
-    return total_by_type, missing_by_type
+            if is_redirect:
+                continue
+            if "translation status" in html.lower():
+                continue
+            if _looks_translated(html):
+                translated_ok += 1
+                continue
+            missing_by_type[ptype] = missing_by_type.get(ptype, 0) + 1
+    return total_by_type, missing_by_type, translated_ok
 
 
 # ── main ─────────────────────────────────────────────────────────────────────
@@ -196,14 +217,16 @@ def main():
     else:
         print("  CLEAN")
 
-    # Check 4 — non-en-US locale notices
-    total, missing = check_locale_notices(dist)
+    # Check 4 — non-en-US locale notices (translated pages may omit banner)
+    total, missing, translated_ok = check_locale_notices(dist)
     print("\n--- 4. Non-en-US locale pages 'Translation status' notice ---")
     for ptype in sorted(total):
         t = total.get(ptype, 0)
         m = missing.get(ptype, 0)
         status = "GAP" if m > 0 else "OK"
         print(f"  {ptype:10s}: {t - m:4d} with notice, {m:4d} without  [{status}]")
+    if translated_ok:
+        print(f"  translated (no notice, non-Latin body): {translated_ok}")
     if any(missing.values()):
         exit_code = 1
 
