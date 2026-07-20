@@ -92,3 +92,7 @@
 1. `966be92` — feat(site): Phase 1 URL migration — content under /{locale}/
 2. `656dc3b` — docs(factory): record Phase 1 commit in multilingual-site ledger
 3. `5c81de8` — feat(site): Phase 2 language portal at /
+4. `408a036` — docs(factory): record Phase 2 commit in multilingual-site ledger
+5. `a20c2dc` — feat(site): Phase 3 prose/code provenance + sync-report oracle
+6. `3f951e6` — feat(site): Phase 4 chrome catalog + th-TH nav localization
+7. `e59f14b` — feat(site): Phase 5 sync-translate + Thai hello pilot page
