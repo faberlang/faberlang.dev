@@ -1,0 +1,35 @@
+# Content href prefixing for dual-locale support.
+#
+# Content paths (/, /start/, /syntax/, /features/, /tooling/, /ecosystem/,
+# /history/, /references/, /corpus/) are prefixed with the site locale so
+# the site can serve multiple language variants under /<locale>/... without
+# clobbering.
+#
+# Non-content paths (/llms.txt, /agents/, /.well-known/, /llms-full.txt,
+# https://...) pass through unchanged.
+
+importa ex "./string_util" privata * ut su
+
+
+functio est_content_path(textus href) → bivalens {
+    si href ≡ "/" ergo redde verum
+    si href ≡ "/404.html" ergo redde verum
+    si su.initium_cum(href, "/start/") ergo redde verum
+    si su.initium_cum(href, "/start") et href.longitudo() ≡ 6 ergo redde verum
+    si su.initium_cum(href, "/syntax/") ergo redde verum
+    si su.initium_cum(href, "/features/") ergo redde verum
+    si su.initium_cum(href, "/tooling/") ergo redde verum
+    si su.initium_cum(href, "/ecosystem/") ergo redde verum
+    si su.initium_cum(href, "/history/") ergo redde verum
+    si su.initium_cum(href, "/references/") ergo redde verum
+    si su.initium_cum(href, "/corpus/") ergo redde verum
+    redde falsum
+}
+
+
+functio content_href(textus href, textus site_locale) → textus {
+    si site_locale.longitudo() ≡ 0 ergo redde href
+    si non su.initium_cum(href, "/") ergo redde href
+    si non est_content_path(href) ergo redde href
+    redde "/" + site_locale + href
+}

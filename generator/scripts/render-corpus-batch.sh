@@ -5,7 +5,7 @@
 # Faber generator owns term-page Markdown/HTML rendering and alias bridge HTML.
 #
 # Usage:
-#   render-corpus-batch.sh <output-dir> [locale] [stylesheet]
+#   render-corpus-batch.sh <output-dir> <site_locale> <reader_locale> [stylesheet]
 #
 # Environment:
 #   PROOF_DIR=<dir>  also write generated term Markdown for fence validation
@@ -20,8 +20,9 @@ BUILD_DIR="${GENERATOR_DIR}/target/faber"
 FABER="${FABER:-faber}"
 
 OUTPUT_DIR="${1:-${REPO_DIR}/dist}"
-LOCALE="${2:-la}"
-STYLESHEET="${3:-/speculum.css}"
+SITE_LOCALE="${2:-en-US}"
+READER_LOCALE="${3:-la}"
+STYLESHEET="${4:-/speculum.css}"
 PROOF_DIR="${PROOF_DIR:-}"
 
 if [ ! -d "$CORPUS_DIR" ]; then
@@ -55,11 +56,15 @@ fi
 echo "Compiling corpus batch generator..." >&2
 (cd "$BUILD_DIR" && cargo build --quiet 2>/dev/null)
 
-CORPUS_DIR="$CORPUS_DIR" BUILD_DIR="$BUILD_DIR" OUTPUT_DIR="$OUTPUT_DIR" LOCALE="$LOCALE" STYLESHEET="$STYLESHEET" PROOF_DIR="$PROOF_DIR" "$PYTHON" << 'PYEOF'
+CORPUS_DIR="$CORPUS_DIR" BUILD_DIR="$BUILD_DIR" OUTPUT_DIR="$OUTPUT_DIR" \
+SITE_LOCALE="$SITE_LOCALE" READER_LOCALE="$READER_LOCALE" \
+STYLESHEET="$STYLESHEET" PROOF_DIR="$PROOF_DIR" \
+GENERATOR_DIR="$GENERATOR_DIR" "$PYTHON" << 'PYEOF'
 import json
 import os
 import re
 import subprocess
+import sys
 try:
     import tomllib
 except ModuleNotFoundError:  # Python < 3.11
@@ -70,9 +75,11 @@ from pathlib import Path
 corpus = Path(os.environ["CORPUS_DIR"])
 build = Path(os.environ["BUILD_DIR"])
 output = Path(os.environ["OUTPUT_DIR"])
-locale = os.environ["LOCALE"]
+site_locale = os.environ["SITE_LOCALE"]
+reader_locale = os.environ["READER_LOCALE"]
 stylesheet = os.environ["STYLESHEET"]
 proof_dir = os.environ.get("PROOF_DIR")
+generator_dir = Path(os.environ["GENERATOR_DIR"])
 binary = build / "target/debug/speculum-gen"
 
 marker = "\n§§CORPUS_RECORD§§\n"
@@ -128,13 +135,14 @@ for term in terms:
     bundle = bundle_dir / f"{term}.bundle"
     bundle.write_text(marker.join(path + source_marker + source + expected_marker + expected for _, path, source, expected in selected))
     html_path = corpus_out / f"{term}.html"
-    html = subprocess.check_output([str(binary), "--", "--corpus", term, str(bundle), locale, stylesheet], text=True)
+    html = subprocess.check_output([str(binary), "--", "--corpus", term, str(bundle), site_locale, reader_locale, stylesheet], text=True)
     html_path.write_text(clean_generated(html))
     if proof_dir:
         proof_path = Path(proof_dir) / f"{term}.md"
         proof_path.parent.mkdir(parents=True, exist_ok=True)
         markdown = subprocess.check_output([str(binary), "--", "--corpus-markdown", term, str(bundle)], text=True)
         proof_path.write_text(markdown)
+
 written_aliases = set()
 skipped_aliases = []
 for alias in sorted(alias_targets):
@@ -146,7 +154,7 @@ for alias in sorted(alias_targets):
     if len(targets) > 1:
         skipped_aliases.append((alias, targets[1:], f"duplicate-alias-kept:{target}"))
     alias_path = corpus_out / f"{alias}.html"
-    alias_html = subprocess.check_output([str(binary), "--", "--alias", alias, target, locale, stylesheet], text=True)
+    alias_html = subprocess.check_output([str(binary), "--", "--alias", alias, target, site_locale, stylesheet], text=True)
     alias_path.write_text(clean_generated(alias_html))
     written_aliases.add(alias)
 
@@ -156,6 +164,18 @@ if skipped_aliases:
 # Render category indexes and the corpus hub through the same page generator.
 generated_dir = build / "generated-corpus-pages"
 generated_dir.mkdir(parents=True, exist_ok=True)
+
+# Helper: fetch native_name from locales.toml
+locales_toml_path = generator_dir / "locales.toml"
+if locales_toml_path.exists():
+    with open(locales_toml_path, "rb") as f:
+        locales_data = tomllib.load(f).get("locales", {})
+else:
+    locales_data = {}
+
+def native_name_for(locale_code: str) -> str:
+    entry = locales_data.get(locale_code, {})
+    return entry.get("native_name", locale_code)
 
 category_index = []
 for category in sorted(category_terms):
@@ -178,7 +198,7 @@ for category in sorted(category_terms):
     source.write_text("\n".join(md) + "\n")
     out = corpus_out / "category" / f"{category_slug}.html"
     out.parent.mkdir(parents=True, exist_ok=True)
-    html = subprocess.check_output([str(binary), "--", "--page", f"corpus/category/{category_slug}", str(source), locale, stylesheet], text=True)
+    html = subprocess.check_output([str(binary), "--", "--page", f"corpus/category/{category_slug}", str(source), site_locale, reader_locale, stylesheet], text=True)
     out.write_text(clean_generated(html))
     category_index.append((category, category_slug, len(terms_in_category)))
 
@@ -201,7 +221,7 @@ hub.extend(["", "## Terms", ""])
 hub.extend(f"- [`{term}`](/corpus/{term}.html)" for term in terms)
 hub_source = generated_dir / "corpus-index.md"
 hub_source.write_text("\n".join(hub) + "\n")
-hub_html = subprocess.check_output([str(binary), "--", "--page", "corpus/index", str(hub_source), locale, stylesheet], text=True)
+hub_html = subprocess.check_output([str(binary), "--", "--page", "corpus/index", str(hub_source), site_locale, reader_locale, stylesheet], text=True)
 (corpus_out / "index.html").write_text(clean_generated(hub_html))
 
 # --- Suppress dead corpus cross-references (fail-soft) ---
@@ -211,37 +231,36 @@ existing_corpus = set()
 for p in corpus_out.rglob("*.html"):
     existing_corpus.add(str(p.relative_to(corpus_out)))
 
+import html as html_lib
+
 suppress_count = [0]
 def _suppress_dead_link(m):
-    target = m.group(1)
+    # href may contain HTML entities for special filenames (e.g. modulus&lt;u16&gt;)
+    target = html_lib.unescape(m.group(1))
     if target not in existing_corpus:
         suppress_count[0] += 1
         return m.group(2)
     return m.group(0)
 
+# Generator prefixes content paths: /{site_locale}/corpus/…
+corpus_href_re = re.compile(
+    rf'<a [^>]*href="/{re.escape(site_locale)}/corpus/([^"]+)"[^>]*>(.*?)</a>'
+)
 for p in corpus_out.rglob("*.html"):
-    html = p.read_text()
-    html = re.sub(r'<a [^>]*href="/corpus/([^"]+)"[^>]*>(.*?)</a>', _suppress_dead_link, html)
-    p.write_text(html)
+    page_html = p.read_text()
+    page_html = corpus_href_re.sub(_suppress_dead_link, page_html)
+    p.write_text(page_html)
 
 # --- Inject Translation status notice on locale corpus pages ---
 # Portal/start pages get their notice from authored Markdown. Corpus pages
 # are generated; inject a notice for non-la locales so readers know the
 # prose is canonical Latin while code fences use the locale pipeline.
 notice_count = 0
-if locale != "la":
-    LOCALE_NAMES = {
-        "th-TH": "Thai",
-        "zh-Hans": "Simplified Chinese",
-        "zh-Hant": "Traditional Chinese",
-        "ar": "Arabic",
-        "hi": "Hindi",
-        "vi": "Vietnamese",
-    }
-    lang_name = LOCALE_NAMES.get(locale, locale)
+if reader_locale != "la":
+    lang_name = native_name_for(site_locale)
     notice = (
         f'<p><strong>Translation status:</strong> {lang_name} reader-locale proof. '
-        f'Code fences render through the <code>{locale}</code> pipeline; '
+        f'Code fences render through the <code>{reader_locale}</code> pipeline; '
         f'prose is canonical Latin.</p>'
     )
     for p in corpus_out.rglob("*.html"):

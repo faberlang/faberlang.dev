@@ -2,13 +2,17 @@
 # ==========================================================================
 # build-site.sh — Batch render all Markdown pages to a static site
 # ==========================================================================
-# Renders every .md file under src/en-US/ into dist/ as .html.
-# Copies the shared stylesheet and any static assets.
+# Renders every locale directory under src/ into dist/ as .html, with
+# en-US URL-path prefix structure (Phase 1 URL migration).
 #
 # Usage:
-#   build-site.sh [source_dir] [output_dir] [locale]
+#   build-site.sh                                       # full site
+#   build-site.sh <source_dir> <output_dir> <site_locale> <reader_locale>
 #
-# Defaults: src/en-US → dist → la
+# Full site: discovers src/* directories, renders each locale, then runs
+# redirect generation, smoke tests, post-process, gates, and sitemap.
+#
+# Single-locale mode: renders one locale into the given output directory.
 # ==========================================================================
 
 set -euo pipefail
@@ -16,15 +20,15 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 GENERATOR_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 REPO_DIR="$(cd "$GENERATOR_DIR/.." && pwd)"
+WORKSPACE_DIR="$(cd "$REPO_DIR/.." && pwd)"
 
-SOURCE_DIR="${1:-${REPO_DIR}/src/en-US}"
-OUTPUT_DIR="${2:-${REPO_DIR}/dist}"
 STYLESHEET="/speculum.css"
-LOCALE="${3:-la}"
 
-# Prefer a Python with stdlib tomllib (3.11+). System python3 on macOS may be 3.9.
-if [ -z "${PYTHON:-}" ]; then
-    PYTHON="python3"
+# ------------------------------------------------------------------
+# Python discovery (stdlib tomllib preferred)
+# ------------------------------------------------------------------
+PYTHON="${PYTHON:-}"
+if [ -z "$PYTHON" ]; then
     for candidate in python3.13 python3.12 python3.11 python3; do
         if command -v "$candidate" >/dev/null 2>&1 \
             && "$candidate" -c 'import tomllib' >/dev/null 2>&1; then
@@ -36,91 +40,47 @@ fi
 
 FABER="${FABER:-faber}"
 BUILD_DIR="${GENERATOR_DIR}/target/faber"
-BINARY="${BUILD_DIR}/target/debug/speculum-gen"
 
-echo "=== Speculum site builder ==="
-echo "Source:  $SOURCE_DIR"
-echo "Output:  $OUTPUT_DIR"
-echo "Locale:  $LOCALE"
-echo ""
+# Binary path candidates (old radix-out subdir vs new top-level target)
+BINARY_OLD="${BUILD_DIR}/target/debug/speculum-gen"
+BINARY_NEW="${GENERATOR_DIR}/target/debug/speculum-gen"
 
-# ------------------------------------------------------------------
-# Step 1: Validate source gates and build the generator binary (once)
-# ------------------------------------------------------------------
-echo "[1/4] Validating generator source..."
-"${SCRIPT_DIR}/validate-html-literals.sh" "${GENERATOR_DIR}/src"
+# List of temp dirs to clean on exit
+TEMPDIRS=()
 
-echo "[1/4] Building generator..."
-"$FABER" build "$GENERATOR_DIR" -t rust 2>/dev/null
-
-echo "[2/4] Compiling generator..."
-(cd "$BUILD_DIR" && cargo build --quiet 2>/dev/null)
+cleanup() {
+    for d in "${TEMPDIRS[@]}"; do
+        rm -rf "$d"
+    done
+}
+trap cleanup EXIT
 
 # ------------------------------------------------------------------
-# Step 2: Clean and prepare output directory
+# Find the speculum-gen binary, preferring newer mtime.
 # ------------------------------------------------------------------
-echo "[3/4] Preparing output directory..."
-rm -rf "$OUTPUT_DIR"
-mkdir -p "$OUTPUT_DIR"
+find_binary() {
+    local old_exists=0 new_exists=0
+    [ -x "$BINARY_OLD" ] && old_exists=1
+    [ -x "$BINARY_NEW" ] && new_exists=1
 
-# Copy stylesheet
-cp "${GENERATOR_DIR}/www/speculum.css" "${OUTPUT_DIR}/speculum.css"
-
-# Copy static agent surfaces (skills, agents/*.md, etc.). /llms.txt is generated
-# from corpus frontmatter after corpus traversal.
-STATIC_DIR="${REPO_DIR}/static"
-if [ -d "$STATIC_DIR" ] && [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
-    echo "  copying static/ → dist/"
-    # Preserve structure; do not overwrite generated HTML with same path.
-    cp -R "${STATIC_DIR}/." "${OUTPUT_DIR}/"
-fi
-
-# ------------------------------------------------------------------
-# Step 3: Render all Markdown pages
-# ------------------------------------------------------------------
-echo "[4/4] Rendering pages..."
-PAGE_COUNT=0
-FAIL_COUNT=0
-RENDER_SOURCE="$SOURCE_DIR"
-LOCALIZED_SOURCE=""
-
-if [ "$LOCALE" != "la" ]; then
-    LOCALIZED_SOURCE="$(mktemp -d)"
-    trap 'rm -rf "$LOCALIZED_SOURCE"' EXIT
-    "${SCRIPT_DIR}/localize-markdown.py" "$SOURCE_DIR" "$LOCALIZED_SOURCE" --locale "$LOCALE" --faber "$FABER"
-    RENDER_SOURCE="$LOCALIZED_SOURCE"
-fi
-
-find "$RENDER_SOURCE" -name "*.md" -type f | sort | while read -r md_file; do
-    # Derive output path: strip source dir prefix, change .md to .html
-    rel_path="${md_file#${RENDER_SOURCE}/}"
-    out_path="${OUTPUT_DIR}/${rel_path%.md}.html"
-
-    # Create subdirectories
-    mkdir -p "$(dirname "$out_path")"
-
-    # Render
-    if "$BINARY" "$md_file" "$LOCALE" "$STYLESHEET" > "$out_path" 2>/dev/null; then
-        echo "  ✓ ${rel_path%.md}.html"
+    if [ "$old_exists" = 1 ] && [ "$new_exists" = 1 ]; then
+        if [ "$BINARY_NEW" -nt "$BINARY_OLD" ]; then
+            echo "$BINARY_NEW"
+        else
+            echo "$BINARY_OLD"
+        fi
+    elif [ "$old_exists" = 1 ]; then
+        echo "$BINARY_OLD"
+    elif [ "$new_exists" = 1 ]; then
+        echo "$BINARY_NEW"
     else
-        echo "  ✗ FAILED: ${rel_path}"
-        rm -f "$out_path"
+        echo ""
     fi
-done
+}
 
-# Corpus pages. Corpus traversal and frontmatter selection stay in the
-# corpus batch wrapper; term-page rendering stays in the Faber generator.
-"${SCRIPT_DIR}/render-corpus-batch.sh" "${OUTPUT_DIR}" "$LOCALE" "$STYLESHEET"
-
-# Re-copy static after render so agent markdown is never replaced by HTML.
-if [ -d "$STATIC_DIR" ] && [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
-    cp -R "${STATIC_DIR}/." "${OUTPUT_DIR}/"
-fi
-
-if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
-    "$PYTHON" "${SCRIPT_DIR}/render-llms.py" --corpus "${REPO_DIR}/../examples/corpus" --output "${OUTPUT_DIR}/llms.txt"
-fi
-
+# ------------------------------------------------------------------
+# Smoke check helper
+# ------------------------------------------------------------------
 smoke_contains() {
     local file="$1"
     local needle="$2"
@@ -137,73 +97,237 @@ smoke_contains() {
     fi
 }
 
-echo "[smoke] Checking rendered core pages..."
-smoke_contains "${OUTPUT_DIR}/index.html" "<!DOCTYPE html>" "home doctype"
-if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
-    # Full English site only (locale fan-out sets SPECULUM_SKIP_STATIC=1).
-    smoke_contains "${OUTPUT_DIR}/index.html" "/llms.txt" "home agent link"
-    smoke_contains "${OUTPUT_DIR}/index.html" "faber-v1.1.1" "home release link"
-    smoke_contains "${OUTPUT_DIR}/llms.txt" "Generated corpus frontmatter reference" "generated llms surface"
-    smoke_contains "${OUTPUT_DIR}/llms.txt" "Distinct frontmatter terms: 187" "generated llms term count"
-    smoke_contains "${OUTPUT_DIR}/start/install.html" "<!DOCTYPE html>" "install doctype"
-    smoke_contains "${OUTPUT_DIR}/start/install.html" "/start/install.html" "install path"
-    smoke_contains "${OUTPUT_DIR}/start/install.html" "faber-v1.1.1" "install release link"
-    smoke_contains "${OUTPUT_DIR}/start/hello.html" "Salve, munde" "hello start page"
-    smoke_contains "${OUTPUT_DIR}/start/commands.html" "faber check" "commands start page"
-    smoke_contains "${OUTPUT_DIR}/start/projects.html" "faberlang/examples" "projects start page"
-    smoke_contains "${OUTPUT_DIR}/404.html" "404" "404 page"
-    smoke_contains "${OUTPUT_DIR}/history/releases.html" "faber-v1.1.1" "releases inventory"
-    smoke_contains "${OUTPUT_DIR}/history/releases.html" "Historical releases" "releases archive heading"
-    smoke_contains "${OUTPUT_DIR}/robots.txt" "Sitemap:" "robots.txt"
-elif [ -f "${OUTPUT_DIR}/start/install.html" ]; then
-    smoke_contains "${OUTPUT_DIR}/start/install.html" "<!DOCTYPE html>" "locale install doctype"
+# ------------------------------------------------------------------
+# Parse invocation mode
+# ------------------------------------------------------------------
+FULL_SITE=false
+
+if [ $# -eq 0 ]; then
+    FULL_SITE=true
+    # Defaults for full-site preamble steps
+    SOURCE_DIR="${REPO_DIR}/src/en-US"
+    OUTPUT_DIR="${REPO_DIR}/dist"
+    SITE_LOCALE="en-US"
+    READER_LOCALE="la"
+elif [ $# -eq 4 ]; then
+    SOURCE_DIR="$1"
+    OUTPUT_DIR="$2"
+    SITE_LOCALE="$3"
+    READER_LOCALE="$4"
+else
+    echo "Usage:"
+    echo "  build-site.sh                                       # full site"
+    echo "  build-site.sh <source_dir> <output_dir> <site_locale> <reader_locale>"
+    exit 1
 fi
 
-if [ "${SPECULUM_SKIP_LOCALES:-0}" != "1" ] && [ "$SOURCE_DIR" = "${REPO_DIR}/src/en-US" ] && [ "$OUTPUT_DIR" = "${REPO_DIR}/dist" ]; then
-    find "${REPO_DIR}/src" -mindepth 1 -maxdepth 1 -type d | sort | while read -r locale_dir; do
-        locale_name="$(basename "$locale_dir")"
-        if [ "$locale_name" = "en-US" ]; then
-            continue
+echo "=== Speculum site builder ==="
+echo "Mode:     $([ "$FULL_SITE" = true ] && echo 'full site' || echo 'single locale')"
+echo "Source:   $SOURCE_DIR"
+echo "Output:   $OUTPUT_DIR"
+echo "Site:     $SITE_LOCALE"
+echo "Reader:   $READER_LOCALE"
+echo ""
+
+# ------------------------------------------------------------------
+# render_locale — render one locale's markdown into its output dir
+# ------------------------------------------------------------------
+render_locale() {
+    local src="$1"
+    local out="$2"
+    local site="$3"
+    local reader="$4"
+    local style="$5"
+    local binary="$6"
+
+    local render_source="$src"
+    local localized_source=""
+
+    if [ "$reader" != "la" ] && [ "$site" != "en-US" ]; then
+        localized_source="$(mktemp -d)"
+        TEMPDIRS+=("$localized_source")
+        "${SCRIPT_DIR}/localize-markdown.py" "$src" "$localized_source" --locale "$reader" --faber "$FABER"
+        render_source="$localized_source"
+    fi
+
+    find "$render_source" -name "*.md" -type f | sort | while read -r md_file; do
+        rel_path="${md_file#${render_source}/}"
+        out_path="${out}/${rel_path%.md}.html"
+        mkdir -p "$(dirname "$out_path")"
+
+        if "$binary" "$md_file" "$site" "$reader" "$style" > "$out_path" 2>/dev/null; then
+            echo "  ✓ ${rel_path%.md}.html"
+        else
+            echo "  ✗ FAILED: ${rel_path}"
+            rm -f "$out_path"
         fi
-        echo "[locale] Rendering ${locale_name} → ${OUTPUT_DIR}/${locale_name}"
-        SPECULUM_SKIP_LOCALES=1 SPECULUM_SKIP_STATIC=1 "$0" "$locale_dir" "${OUTPUT_DIR}/${locale_name}" "$locale_name"
     done
-fi
 
-# Strip empty source-list footers (all builds)
-echo "[post-process] Stripping empty source footers..."
-"$PYTHON" "${SCRIPT_DIR}/strip-empty-sources.py" "$OUTPUT_DIR"
+    # Corpus pages for this locale
+    echo "  [corpus] Rendering corpus pages for ${site}..."
+    "${SCRIPT_DIR}/render-corpus-batch.sh" "$out" "$site" "$reader" "$style"
+}
 
-echo "[post-process] Injecting skip-to-content links..."
-"$PYTHON" "${SCRIPT_DIR}/inject-skip-link.py" "$OUTPUT_DIR"
+# ==================================================================
+# FULL SITE BUILD
+# ==================================================================
+if [ "$FULL_SITE" = true ]; then
 
-# Post-build gates: link integrity + leakage (top-level build only)
-if [ "${SPECULUM_SKIP_LOCALES:-0}" != "1" ] && [ "$SOURCE_DIR" = "${REPO_DIR}/src/en-US" ] && [ "$OUTPUT_DIR" = "${REPO_DIR}/dist" ]; then
-    echo ""
-    echo "[gate] Internal link check..."
+    # Step 1: Validate and build generator (once)
+    echo "[1/9] Validating generator source..."
+    "${SCRIPT_DIR}/validate-html-literals.sh" "${GENERATOR_DIR}/src"
+
+    echo "[1/9] Building generator..."
+    "$FABER" build "$GENERATOR_DIR" -t rust 2>/dev/null
+
+    echo "[2/9] Compiling generator..."
+    (cd "$BUILD_DIR" && cargo build --quiet 2>/dev/null)
+
+    # Locate binary after build
+    BINARY="$(find_binary)"
+    if [ -z "$BINARY" ]; then
+        echo "ERROR: speculum-gen binary not found after build. Checked:" >&2
+        echo "  $BINARY_OLD" >&2
+        echo "  $BINARY_NEW" >&2
+        exit 1
+    fi
+    echo "  Binary: $BINARY"
+
+    # Step 2: Clean and prepare output directory
+    echo "[3/9] Preparing output directory..."
+    rm -rf "$OUTPUT_DIR"
+    mkdir -p "$OUTPUT_DIR"
+
+    # Copy stylesheet
+    cp "${GENERATOR_DIR}/www/speculum.css" "${OUTPUT_DIR}/speculum.css"
+
+    # Copy static agent surfaces
+    STATIC_DIR="${REPO_DIR}/static"
+    if [ -d "$STATIC_DIR" ] && [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
+        echo "  copying static/ → dist/"
+        cp -R "${STATIC_DIR}/." "${OUTPUT_DIR}/"
+    fi
+
+    # Step 3: Discover locale directories under src/
+    LOCALE_DIRS=()
+    while IFS= read -r dir; do
+        LOCALE_DIRS+=("$(basename "$dir")")
+    done < <(find "${REPO_DIR}/src" -mindepth 1 -maxdepth 1 -type d | sort)
+
+    echo "[4/9] Rendering ${#LOCALE_DIRS[@]} locales..."
+
+    for site in "${LOCALE_DIRS[@]}"; do
+        reader=$("$PYTHON" "${SCRIPT_DIR}/locales_registry.py" reader "$site")
+        echo "  [locale] ${site} (reader: ${reader})"
+        render_locale "${REPO_DIR}/src/${site}" "${OUTPUT_DIR}/${site}" "$site" "$reader" "$STYLESHEET" "$BINARY"
+    done
+
+    # Step 4: Re-copy static after render
+    echo "[5/9] Re-copying static assets after render..."
+    if [ -d "$STATIC_DIR" ] && [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
+        cp -R "${STATIC_DIR}/." "${OUTPUT_DIR}/"
+    fi
+
+    # Step 5: Generate llms.txt
+    echo "[6/9] Generating llms.txt..."
+    if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
+        "$PYTHON" "${SCRIPT_DIR}/render-llms.py" \
+            --corpus "${WORKSPACE_DIR}/examples/corpus" \
+            --output "${OUTPUT_DIR}/llms.txt"
+    fi
+
+    # Step 6: Generate redirect stubs (en-US → bare path)
+    echo "[7/9] Generating en-US redirect stubs..."
+    "$PYTHON" "${SCRIPT_DIR}/generate-redirects.py" "$OUTPUT_DIR" "en-US"
+
+    # Step 7: Smoke checks against en-US paths
+    echo "[8/9] Smoke checks..."
+    smoke_contains "${OUTPUT_DIR}/en-US/index.html" "<!DOCTYPE html>" "home doctype"
+    if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
+        smoke_contains "${OUTPUT_DIR}/en-US/index.html" "/llms.txt" "home agent link"
+        smoke_contains "${OUTPUT_DIR}/en-US/index.html" "faber-v1.1.1" "home release link"
+        smoke_contains "${OUTPUT_DIR}/llms.txt" "Generated corpus frontmatter reference" "llms surface"
+        smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "<!DOCTYPE html>" "install doctype"
+        smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "/en-US/start/install.html" "install path"
+        smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "faber-v1.1.1" "install release link"
+        smoke_contains "${OUTPUT_DIR}/en-US/start/hello.html" "Salve, munde" "hello start page"
+        smoke_contains "${OUTPUT_DIR}/en-US/start/commands.html" "faber check" "commands start page"
+        smoke_contains "${OUTPUT_DIR}/en-US/start/projects.html" "faberlang/examples" "projects start page"
+        smoke_contains "${OUTPUT_DIR}/en-US/404.html" "404" "404 page"
+        smoke_contains "${OUTPUT_DIR}/en-US/history/releases.html" "faber-v1.1.1" "releases inventory"
+        smoke_contains "${OUTPUT_DIR}/en-US/history/releases.html" "Historical releases" "releases archive heading"
+        smoke_contains "${OUTPUT_DIR}/robots.txt" "Sitemap:" "robots.txt"
+
+        # Redirect stub checks
+        smoke_contains "${OUTPUT_DIR}/index.html" "<!DOCTYPE html>" "redirect home doctype"
+        smoke_contains "${OUTPUT_DIR}/index.html" "/en-US/" "redirect home target"
+        smoke_contains "${OUTPUT_DIR}/start/install.html" "<!DOCTYPE html>" "redirect install doctype"
+        smoke_contains "${OUTPUT_DIR}/start/install.html" "/en-US/start/install.html" "redirect install target"
+    fi
+
+    # Step 8: Post-process
+    echo "[8/9] Post-processing..."
+    "$PYTHON" "${SCRIPT_DIR}/strip-empty-sources.py" "$OUTPUT_DIR"
+    "$PYTHON" "${SCRIPT_DIR}/inject-skip-link.py" "$OUTPUT_DIR"
+
+    # Step 9: Gates (link check, leakage) — only for full site
+    echo "[9/9] Gates..."
+    echo "  [gate] Internal link check..."
     "$PYTHON" "${SCRIPT_DIR}/check-internal-links.py" "$OUTPUT_DIR" || {
         echo "ERROR: internal link gate failed" >&2
         exit 1
     }
 
-    echo "[gate] Leakage gate..."
+    echo "  [gate] Leakage gate..."
     "$PYTHON" "${SCRIPT_DIR}/check-leakage-gate.py" "$OUTPUT_DIR" || {
         echo "ERROR: leakage gate failed" >&2
         exit 1
     }
-fi
 
-# Generate sitemap (top-level build only, after all pages exist)
-if [ "${SPECULUM_SKIP_LOCALES:-0}" != "1" ] && [ "$SOURCE_DIR" = "${REPO_DIR}/src/en-US" ] && [ "$OUTPUT_DIR" = "${REPO_DIR}/dist" ]; then
-    echo "[sitemap] Generating sitemap.xml..."
+    # Sitemap and canonical
+    echo "  [sitemap] Generating sitemap.xml..."
     "$PYTHON" "${SCRIPT_DIR}/generate-sitemap.py" "$OUTPUT_DIR" "https://faberlang.dev"
     smoke_contains "${OUTPUT_DIR}/sitemap.xml" "<urlset" "sitemap"
 
-    echo "[canonical] Injecting canonical URL tags..."
+    echo "  [canonical] Injecting canonical URL tags..."
     "$PYTHON" "${SCRIPT_DIR}/inject-canonical.py" "$OUTPUT_DIR" "https://faberlang.dev"
+
+else
+    # ==============================================================
+    # SINGLE-LOCALE MODE (4 positional args)
+    # ==============================================================
+
+    # Build for single-locale mode only if binary not found
+    BINARY="$(find_binary)"
+    if [ -z "$BINARY" ]; then
+        echo "[1/2] Building generator..."
+        "$FABER" build "$GENERATOR_DIR" -t rust 2>/dev/null
+        echo "[2/2] Compiling generator..."
+        (cd "$BUILD_DIR" && cargo build --quiet 2>/dev/null)
+        BINARY="$(find_binary)"
+        if [ -z "$BINARY" ]; then
+            echo "ERROR: speculum-gen binary not found after build." >&2
+            exit 1
+        fi
+        echo "  Binary: $BINARY"
+    else
+        echo "  Binary: $BINARY (reusing existing build)"
+    fi
+
+    echo "Rendering ${SITE_LOCALE} → ${OUTPUT_DIR}..."
+    mkdir -p "$OUTPUT_DIR"
+    cp "${GENERATOR_DIR}/www/speculum.css" "${OUTPUT_DIR}/speculum.css"
+    render_locale "$SOURCE_DIR" "$OUTPUT_DIR" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET" "$BINARY"
+    echo "Re-copying static..."
+    STATIC_DIR="${REPO_DIR}/static"
+    if [ -d "$STATIC_DIR" ] && [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
+        cp -R "${STATIC_DIR}/." "$(dirname "$OUTPUT_DIR")/"
+    fi
 fi
 
-# Count results
+# ------------------------------------------------------------------
+# Summary
+# ------------------------------------------------------------------
 PAGE_COUNT=$(find "$OUTPUT_DIR" -name "*.html" -type f | wc -l | tr -d ' ')
 STATIC_COUNT=$(find "$OUTPUT_DIR" \( -name "*.txt" -o -name "*.md" -o -name "*.json" \) -type f | wc -l | tr -d ' ')
 

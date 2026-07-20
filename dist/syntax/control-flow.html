@@ -1,74 +1,10 @@
 <!DOCTYPE html>
-<html lang="la"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types. Agent-readable docs, install, and examples."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Control flow — Faber"><meta property="og:description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types."><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><title>Control flow — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><link rel="canonical" href="https://faberlang.dev/syntax/control-flow.html"></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><span class="lbl">Rendering</span><span class="locbtns">la</span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Get started</div><ul class="nav"><li><a href="/start/install.html">Install &amp; download</a></li><li><a href="/history/releases.html">Releases</a></li><li><a href="/start/hello.html">Hello</a></li><li><a href="/start/commands.html">Commands</a></li><li><a href="/start/projects.html">Projects</a></li><li><a href="/start/examples.html">Examples</a></li><li><a href="/start/">Quick tour</a></li></ul><div class="side-h">Documentation</div><ul class="nav"><li><a href="/">Overview</a></li><li><a href="/features/">Features</a></li><li><a href="/syntax/" class="active">Syntax</a></li><li><a href="/tooling/">Tooling</a></li><li><a href="/ecosystem/">Ecosystem</a></li><li><a href="/corpus/">Corpus</a></li><li><a href="/references/">References</a></li><li><a href="/history/">History</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/history/releases.html">All releases</a></li><li><a href="https://github.com/faberlang">GitHub org</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Control flow</h1><div class="content"><h2 id="conditional-branching">Conditional branching</h2><h3 id="si-sin-secus">si / sin / secus</h3><pre class="faber-code"><code class="lang-faber">incipit {
-    fixum _ condition ← verum
-    si condition {
-        # truthy branch
-        nota &quot;matched&quot;
-    }
-}</code></pre><p>With else-if and else:</p><pre class="faber-code"><code class="lang-faber">incipit {
-    fixum _ score ← 85
-    si score ≥ 90 {
-        nota &quot;A&quot;
-    } sin score ≥ 80 {
-        nota &quot;B&quot;
-    } secus {
-        nota &quot;C&quot;
-    }
-}</code></pre><h3 id="compact-branch-with">Compact branch with ∴</h3><p>A single-statement branch body uses <code>∴</code> (or its alias <code>ergo</code>):</p><pre class="faber-code"><code class="lang-faber">functio classify(numerus b, bivalens ready, numerus value) → numerus ∪ nihil {
-    si b ≡ 0 ∴ redde nihil
-    si ready ∴ redde value
-    redde nihil
-}</code></pre><h2 id="iteration">Iteration</h2><h3 id="values-itera-ex">Values — itera ex</h3><pre class="faber-code"><code class="lang-faber">functio inveni(lista&lt;numerus&gt; items, numerus target) → numerus ∪ nihil {
-    itera ex items fixum item {
-        si item ≡ target ∴ redde item
-    }
-    redde nihil
-}</code></pre><h3 id="keys-itera-de">Keys — itera de</h3><pre class="faber-code"><code class="lang-faber">incipit {
-    fixum _ tabula ← { &quot;unus&quot;: 1, &quot;duo&quot;: 2 }
-    itera de tabula fixum key {
-        nota key
-    }
-}</code></pre><h3 id="range-itera-ab">Range — itera ab</h3><pre class="faber-code"><code class="lang-faber">itera ab 0‥10 fixum i {
-    nota i
-}</code></pre><h2 id="while-loops">While loops</h2><pre class="faber-code"><code class="lang-faber">incipit {
-    fixum _ condition ← verum
-    dum condition {
-        # body
-        tacet
-    }
-}</code></pre><h2 id="guard-sections-custodi">Guard sections — custodi</h2><p><code>custodi</code> groups early-exit checks before a function's main body.
-Each <code class="kw">si</code> clause is a sequential guard:</p><pre class="faber-code"><code class="lang-faber">functio divide(numerus a, numerus b) → numerus {
-    custodi {
-        si b ≡ 0 {
-            redde 0
-        }
-    }
-    redde a / b
-}</code></pre><p><code>custodi</code> is not breakable in v1 — it is a guard rail, not a loop.</p><h2 id="pattern-matching-elige">Pattern matching — elige</h2><p><code class="kw">elige</code> selects the first matching arm:</p><pre class="faber-code"><code class="lang-faber">functio describe(numerus value) → textus {
-    elige value {
-        casu 1 { redde &quot;one&quot; }
-        casu 2 { redde &quot;two&quot; }
-        ceterum { redde &quot;many&quot; }
-    }
-}</code></pre><h2 id="tagged-union-matching-discerne">Tagged union matching — discerne</h2><p><code class="kw">discerne</code> exhaustively matches <code>discretio</code> variants:</p><pre class="faber-code"><code class="lang-faber">discretio Exitus {
-    Bonum { textus nuntius },
-    Malum { textus causa }
-}
-
-functio refer(Exitus eventus) → textus {
-    discerne eventus {
-        casu Bonum fixum nuntius { redde nuntius }
-        casu Malum fixum causa { redde &quot;Error: §&quot;(causa) }
-    }
-}</code></pre><h2 id="try-blocks-fac-cape">Try blocks — fac / cape</h2><p><code class="kw">fac</code> opens a block that may throw, and <code class="kw">cape</code> recovers:</p><pre class="faber-code"><code class="lang-faber">functio divide(numerus a, numerus b) → numerus {
-    redde a / b
-}
-
-functio tutus(numerus a, numerus b) → numerus {
-    fac {
-        redde divide(a, b)
-    } cape err {
-        mone err
-        redde 0
-    }
-}</code></pre></div></main><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div></footer></div></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url=/en-US/syntax/control-flow.html">
+<link rel="canonical" href="/en-US/syntax/control-flow.html">
+<title>Redirect</title>
+</head>
+<body><p>Moved to <a href="/en-US/syntax/control-flow.html">/en-US/syntax/control-flow.html</a>.</p></body>
+</html>

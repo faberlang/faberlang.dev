@@ -25,7 +25,7 @@ Current release: Faber 1.1.1
 - Release: https://github.com/faberlang/releases/releases/tag/faber-v1.1.1
 - macOS arm64: https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz
 - Linux x64: https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz
-- Human install page: https://faberlang.dev/start/install.html
+- Human install page: https://faberlang.dev/en-US/start/install.html
 
 Minimal verify after install:
 
@@ -55,52 +55,52 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 
 ### Categories
 
-- ad (3) — https://faberlang.dev/corpus/category/ad.html
-- aliasing (1) — https://faberlang.dev/corpus/category/aliasing.html
-- application (1) — https://faberlang.dev/corpus/category/application.html
-- arithmetic (4) — https://faberlang.dev/corpus/category/arithmetic.html
-- assignment (1) — https://faberlang.dev/corpus/category/assignment.html
-- async (4) — https://faberlang.dev/corpus/category/async.html
-- availability (1) — https://faberlang.dev/corpus/category/availability.html
-- binding (3) — https://faberlang.dev/corpus/category/binding.html
-- bitwise (1) — https://faberlang.dev/corpus/category/bitwise.html
-- boolean (1) — https://faberlang.dev/corpus/category/boolean.html
-- cli (6) — https://faberlang.dev/corpus/category/cli.html
-- codegen (1) — https://faberlang.dev/corpus/category/codegen.html
-- collection (9) — https://faberlang.dev/corpus/category/collection.html
-- comparison (2) — https://faberlang.dev/corpus/category/comparison.html
-- comptime (1) — https://faberlang.dev/corpus/category/comptime.html
-- control-flow (13) — https://faberlang.dev/corpus/category/control-flow.html
-- conversion (4) — https://faberlang.dev/corpus/category/conversion.html
-- declaration (1) — https://faberlang.dev/corpus/category/declaration.html
-- destructuring (1) — https://faberlang.dev/corpus/category/destructuring.html
-- endpoint (4) — https://faberlang.dev/corpus/category/endpoint.html
-- entry (4) — https://faberlang.dev/corpus/category/entry.html
-- errors (3) — https://faberlang.dev/corpus/category/errors.html
-- expression (2) — https://faberlang.dev/corpus/category/expression.html
-- format (2) — https://faberlang.dev/corpus/category/format.html
-- function (12) — https://faberlang.dev/corpus/category/function.html
-- integration (1) — https://faberlang.dev/corpus/category/integration.html
-- io (2) — https://faberlang.dev/corpus/category/io.html
-- iteration (2) — https://faberlang.dev/corpus/category/iteration.html
-- lane (1) — https://faberlang.dev/corpus/category/lane.html
-- literal (6) — https://faberlang.dev/corpus/category/literal.html
-- logic (6) — https://faberlang.dev/corpus/category/logic.html
-- metadata (1) — https://faberlang.dev/corpus/category/metadata.html
-- modifier (3) — https://faberlang.dev/corpus/category/modifier.html
-- mutation (1) — https://faberlang.dev/corpus/category/mutation.html
-- non-null-chain (1) — https://faberlang.dev/corpus/category/non-null-chain.html
-- object (2) — https://faberlang.dev/corpus/category/object.html
-- operators (1) — https://faberlang.dev/corpus/category/operators.html
-- optional-chain (1) — https://faberlang.dev/corpus/category/optional-chain.html
-- output (3) — https://faberlang.dev/corpus/category/output.html
-- package (3) — https://faberlang.dev/corpus/category/package.html
-- range (6) — https://faberlang.dev/corpus/category/range.html
-- resource (1) — https://faberlang.dev/corpus/category/resource.html
-- template (1) — https://faberlang.dev/corpus/category/template.html
-- testing (18) — https://faberlang.dev/corpus/category/testing.html
-- transfer (4) — https://faberlang.dev/corpus/category/transfer.html
-- type (22) — https://faberlang.dev/corpus/category/type.html
+- ad (3) — https://faberlang.dev/en-US/corpus/category/ad.html
+- aliasing (1) — https://faberlang.dev/en-US/corpus/category/aliasing.html
+- application (1) — https://faberlang.dev/en-US/corpus/category/application.html
+- arithmetic (4) — https://faberlang.dev/en-US/corpus/category/arithmetic.html
+- assignment (1) — https://faberlang.dev/en-US/corpus/category/assignment.html
+- async (4) — https://faberlang.dev/en-US/corpus/category/async.html
+- availability (1) — https://faberlang.dev/en-US/corpus/category/availability.html
+- binding (3) — https://faberlang.dev/en-US/corpus/category/binding.html
+- bitwise (1) — https://faberlang.dev/en-US/corpus/category/bitwise.html
+- boolean (1) — https://faberlang.dev/en-US/corpus/category/boolean.html
+- cli (6) — https://faberlang.dev/en-US/corpus/category/cli.html
+- codegen (1) — https://faberlang.dev/en-US/corpus/category/codegen.html
+- collection (9) — https://faberlang.dev/en-US/corpus/category/collection.html
+- comparison (2) — https://faberlang.dev/en-US/corpus/category/comparison.html
+- comptime (1) — https://faberlang.dev/en-US/corpus/category/comptime.html
+- control-flow (13) — https://faberlang.dev/en-US/corpus/category/control-flow.html
+- conversion (4) — https://faberlang.dev/en-US/corpus/category/conversion.html
+- declaration (1) — https://faberlang.dev/en-US/corpus/category/declaration.html
+- destructuring (1) — https://faberlang.dev/en-US/corpus/category/destructuring.html
+- endpoint (4) — https://faberlang.dev/en-US/corpus/category/endpoint.html
+- entry (4) — https://faberlang.dev/en-US/corpus/category/entry.html
+- errors (3) — https://faberlang.dev/en-US/corpus/category/errors.html
+- expression (2) — https://faberlang.dev/en-US/corpus/category/expression.html
+- format (2) — https://faberlang.dev/en-US/corpus/category/format.html
+- function (12) — https://faberlang.dev/en-US/corpus/category/function.html
+- integration (1) — https://faberlang.dev/en-US/corpus/category/integration.html
+- io (2) — https://faberlang.dev/en-US/corpus/category/io.html
+- iteration (2) — https://faberlang.dev/en-US/corpus/category/iteration.html
+- lane (1) — https://faberlang.dev/en-US/corpus/category/lane.html
+- literal (6) — https://faberlang.dev/en-US/corpus/category/literal.html
+- logic (6) — https://faberlang.dev/en-US/corpus/category/logic.html
+- metadata (1) — https://faberlang.dev/en-US/corpus/category/metadata.html
+- modifier (3) — https://faberlang.dev/en-US/corpus/category/modifier.html
+- mutation (1) — https://faberlang.dev/en-US/corpus/category/mutation.html
+- non-null-chain (1) — https://faberlang.dev/en-US/corpus/category/non-null-chain.html
+- object (2) — https://faberlang.dev/en-US/corpus/category/object.html
+- operators (1) — https://faberlang.dev/en-US/corpus/category/operators.html
+- optional-chain (1) — https://faberlang.dev/en-US/corpus/category/optional-chain.html
+- output (3) — https://faberlang.dev/en-US/corpus/category/output.html
+- package (3) — https://faberlang.dev/en-US/corpus/category/package.html
+- range (6) — https://faberlang.dev/en-US/corpus/category/range.html
+- resource (1) — https://faberlang.dev/en-US/corpus/category/resource.html
+- template (1) — https://faberlang.dev/en-US/corpus/category/template.html
+- testing (18) — https://faberlang.dev/en-US/corpus/category/testing.html
+- transfer (4) — https://faberlang.dev/en-US/corpus/category/transfer.html
+- type (22) — https://faberlang.dev/en-US/corpus/category/type.html
 
 ### Kinds
 
@@ -128,7 +128,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression>!.<name> | <expression>![<expression>] | <expression>!(<args>)`
 - Aliases: none
 - Related: `!.`, `![`, `!(`, `nonnulla`
-- Page: https://faberlang.dev/corpus/%21..html
+- Page: https://faberlang.dev/en-US/corpus/%21..html
 - Source: examples/corpus/operatores/nonnull-chain.fab
 
 #### `?.`
@@ -140,7 +140,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression>?.<name> | <expression>?[<expression>] | <expression>?(<args>)`
 - Aliases: none
 - Related: `?.`, `?[`, `?(`, `vel`, `sponte`
-- Page: https://faberlang.dev/corpus/%3F..html
+- Page: https://faberlang.dev/en-US/corpus/%3F..html
 - Source: examples/corpus/operatores/optional-chain.fab
 
 #### `@`
@@ -152,7 +152,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `@ <name>`
 - Aliases: `annotation`
 - Related: `nondum`, `cli`, `futura`
-- Page: https://faberlang.dev/corpus/%40.html
+- Page: https://faberlang.dev/en-US/corpus/%40.html
 - Source: examples/corpus/directiva/directiva.fab
 
 #### `ab`
@@ -164,7 +164,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `itera ab <range> <binding>`
 - Aliases: none
 - Related: `itera`, `ex`, `de`, `per`, `ab pipeline`
-- Page: https://faberlang.dev/corpus/ab.html
+- Page: https://faberlang.dev/en-US/corpus/ab.html
 - Source: examples/corpus/ab/ab.fab
 
 #### `abstractus`
@@ -176,7 +176,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `abstractus genus <name> <block>`
 - Aliases: none
 - Related: `genus`, `implendum`
-- Page: https://faberlang.dev/corpus/abstractus.html
+- Page: https://faberlang.dev/en-US/corpus/abstractus.html
 - Source: examples/corpus/abstractus/abstractus.fab
 
 #### `ad`
@@ -188,7 +188,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `ad 'runtime:echo' (payload) ↦ textus`
 - Aliases: none
 - Related: `conversio`
-- Page: https://faberlang.dev/corpus/ad.html
+- Page: https://faberlang.dev/en-US/corpus/ad.html
 - Source: examples/corpus/ad/sermo-conversio.fab
 
 #### `adfirma`
@@ -200,7 +200,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `adfirma <expression> [, <message>]`
 - Aliases: `assert`
 - Related: `proba`, `fac`, `cape`
-- Page: https://faberlang.dev/corpus/adfirma.html
+- Page: https://faberlang.dev/en-US/corpus/adfirma.html
 - Source: examples/corpus/adfirma/adfirma.fab
 
 #### `ante`
@@ -212,7 +212,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression> ante <expression>`
 - Aliases: none
 - Related: `usque`, `‥`
-- Page: https://faberlang.dev/corpus/ante.html
+- Page: https://faberlang.dev/en-US/corpus/ante.html
 - Source: examples/corpus/ante/ante.fab
 
 #### `applications`
@@ -224,7 +224,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `n/a`
 - Aliases: none
 - Related: `cli`, `argumenta`, `operandus`, `exitus`
-- Page: https://faberlang.dev/corpus/applications.html
+- Page: https://faberlang.dev/en-US/corpus/applications.html
 - Source: examples/corpus/applications/coreutils.fab
 
 #### `argumenta`
@@ -236,7 +236,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `incipit argumenta <name> <block> | functio <name>() argumenta <name> <block>`
 - Aliases: none
 - Related: `incipit`, `cli`, `imperium`, `optio`, `operandus`
-- Page: https://faberlang.dev/corpus/argumenta.html
+- Page: https://faberlang.dev/en-US/corpus/argumenta.html
 - Source: examples/corpus/argumenta/argumenta.fab
 
 #### `ascii`
@@ -248,7 +248,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `'<text>'`
 - Aliases: `'...'`
 - Related: `textus`, `string`
-- Page: https://faberlang.dev/corpus/ascii.html
+- Page: https://faberlang.dev/en-US/corpus/ascii.html
 - Source: examples/corpus/literalia/ascii.fab
 
 #### `async solum leget`
@@ -260,7 +260,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `solum.leget<textus>(via)`
 - Aliases: none
 - Related: `ad`, `solum`, `futura`, `sermo`
-- Page: https://faberlang.dev/corpus/async%20solum%20leget.html
+- Page: https://faberlang.dev/en-US/corpus/async%20solum%20leget.html
 - Source: examples/corpus/ad/async-solum-leget.fab
 
 #### `async tempus dormiet`
@@ -272,7 +272,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `tempus.expectet(ms) | cede tempus.dormiet(ms)`
 - Aliases: none
 - Related: `ad`, `tempus`, `futura`, `sermo`
-- Page: https://faberlang.dev/corpus/async%20tempus%20dormiet.html
+- Page: https://faberlang.dev/en-US/corpus/async%20tempus%20dormiet.html
 - Source: examples/corpus/ad/async-tempus-dormiet.fab
 
 #### `aut`
@@ -284,7 +284,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression> aut <expression>`
 - Aliases: `or`
 - Related: `et`, `vel`, `⊻`
-- Page: https://faberlang.dev/corpus/aut.html
+- Page: https://faberlang.dev/en-US/corpus/aut.html
 - Source: examples/corpus/binarius/binarius.fab
 
 #### `bivalens`
@@ -296,7 +296,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `bivalens | vacuum | ignotum`
 - Aliases: none
 - Related: `verum`, `falsum`, `functio`, `∷`, `vacuum`
-- Page: https://faberlang.dev/corpus/bivalens.html
+- Page: https://faberlang.dev/en-US/corpus/bivalens.html
 - Source: examples/corpus/intrinseca/primitiva.fab
 
 #### `block-string`
@@ -308,7 +308,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `«<text>»`
 - Aliases: `«...»`
 - Related: `string`, `textus`
-- Page: https://faberlang.dev/corpus/block-string.html
+- Page: https://faberlang.dev/en-US/corpus/block-string.html
 - Source: examples/corpus/literalia/block-string.fab
 
 #### `cape`
@@ -320,7 +320,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<structured-statement> cape <name> <block>`
 - Aliases: `catch`
 - Related: `fac`, `iace`, `⇥`
-- Page: https://faberlang.dev/corpus/cape.html
+- Page: https://faberlang.dev/en-US/corpus/cape.html
 - Source: examples/corpus/cape/cape.fab
 
 #### `casu`
@@ -332,7 +332,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `casu <expression> <block>`
 - Aliases: `case`
 - Related: `elige`, `discerne`
-- Page: https://faberlang.dev/corpus/casu.html
+- Page: https://faberlang.dev/en-US/corpus/casu.html
 - Source: examples/corpus/casu/casu.fab
 
 #### `cede`
@@ -344,7 +344,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `cede <expression>`
 - Aliases: `await`, `yield`
 - Related: `futura`, `cursor`
-- Page: https://faberlang.dev/corpus/cede.html
+- Page: https://faberlang.dev/en-US/corpus/cede.html
 - Source: examples/corpus/cede/cede.fab
 
 #### `ceteri`
@@ -356,7 +356,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `ceteri <type> <name>`
 - Aliases: `rest`
 - Related: `functio`, `operandus`, `ex`
-- Page: https://faberlang.dev/corpus/ceteri.html
+- Page: https://faberlang.dev/en-US/corpus/ceteri.html
 - Source: examples/corpus/ceteri/ceteri.fab
 
 #### `ceterum`
@@ -368,7 +368,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `ceterum <block>`
 - Aliases: `default`
 - Related: `elige`, `discerne`
-- Page: https://faberlang.dev/corpus/ceterum.html
+- Page: https://faberlang.dev/en-US/corpus/ceterum.html
 - Source: examples/corpus/ceterum/ceterum.fab
 
 #### `clausa`
@@ -380,7 +380,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<params> ∴ <expression> | (<params>) → <type> ∴ <expression>`
 - Aliases: `lambda`, `closure`
 - Related: `∴`, `functio`, `numerus`
-- Page: https://faberlang.dev/corpus/clausa.html
+- Page: https://faberlang.dev/en-US/corpus/clausa.html
 - Source: examples/corpus/clausa/clausa.fab
 
 #### `clausura`
@@ -392,7 +392,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<type> <name> [→ <type>] [⇥ <error-type>] ∴ <expression|fac-block>`
 - Aliases: none
 - Related: `∴`, `functio`, `fac`, `cape`, `cede`
-- Page: https://faberlang.dev/corpus/clausura.html
+- Page: https://faberlang.dev/en-US/corpus/clausura.html
 - Source: examples/corpus/clausura/clausura.fab
 
 #### `cli`
@@ -404,7 +404,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `@ cli { nomen = "NAME" }`
 - Aliases: none
 - Related: `cli`, `optio`, `annotation-sugar`
-- Page: https://faberlang.dev/corpus/cli.html
+- Page: https://faberlang.dev/en-US/corpus/cli.html
 - Source: examples/corpus/annotation-sugar/cli-braced.fab
 
 #### `conversio-fallibilis`
@@ -416,7 +416,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression> ↦ <type> | functio … → T ⇥ E | fac { … } cape err { … }`
 - Aliases: none
 - Related: `↦`, `⇥`, `fac`, `cape`, `iace`
-- Page: https://faberlang.dev/corpus/conversio-fallibilis.html
+- Page: https://faberlang.dev/en-US/corpus/conversio-fallibilis.html
 - Source: examples/corpus/conversio/fallibilis.fab
 
 #### `copia`
@@ -428,7 +428,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `copia<T>`
 - Aliases: `set`
 - Related: `lista`, `tabula`, `inter`
-- Page: https://faberlang.dev/corpus/copia.html
+- Page: https://faberlang.dev/en-US/corpus/copia.html
 - Source: examples/corpus/intrinseca/copia-fundamenta.fab
 
 #### `cura`
@@ -440,7 +440,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `cura "<allocator-kind>" fixum _ <alloc> <block>`
 - Aliases: none
 - Related: `arena`
-- Page: https://faberlang.dev/corpus/cura.html
+- Page: https://faberlang.dev/en-US/corpus/cura.html
 - Source: examples/corpus/cura/cura.fab
 
 #### `curata`
@@ -452,7 +452,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `functio <name>(...) curata <required> [ut <local>] → <type>`
 - Aliases: none
 - Related: `cura`, `arena`
-- Page: https://faberlang.dev/corpus/curata.html
+- Page: https://faberlang.dev/en-US/corpus/curata.html
 - Source: examples/corpus/curata/curata.fab
 
 #### `cursor`
@@ -464,7 +464,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `@ cursor`
 - Aliases: none
 - Related: `futura`, `cede`
-- Page: https://faberlang.dev/corpus/cursor.html
+- Page: https://faberlang.dev/en-US/corpus/cursor.html
 - Source: examples/corpus/cursor/cursor.fab
 
 #### `custodi`
@@ -476,7 +476,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `custodi <block>`
 - Aliases: `guard`
 - Related: `si`, `ergo`, `redde`
-- Page: https://faberlang.dev/corpus/custodi.html
+- Page: https://faberlang.dev/en-US/corpus/custodi.html
 - Source: examples/corpus/custodi/custodi.fab
 
 #### `de`
@@ -488,7 +488,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `de <expression>`
 - Aliases: none
 - Related: `ex`, `in`
-- Page: https://faberlang.dev/corpus/de.html
+- Page: https://faberlang.dev/en-US/corpus/de.html
 - Source: examples/corpus/de/de.fab
 
 #### `descriptio`
@@ -500,7 +500,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `@ descriptio <string>`
 - Aliases: none
 - Related: `versio`
-- Page: https://faberlang.dev/corpus/descriptio.html
+- Page: https://faberlang.dev/en-US/corpus/descriptio.html
 - Source: examples/corpus/descriptio/descriptio.fab
 
 #### `discerne`
@@ -512,7 +512,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `discerne <subject> <block>`
 - Aliases: `match`
 - Related: `discretio`, `casu`
-- Page: https://faberlang.dev/corpus/discerne.html
+- Page: https://faberlang.dev/en-US/corpus/discerne.html
 - Source: examples/corpus/discerne/discerne.fab
 
 #### `discretio`
@@ -524,7 +524,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `discretio <name> [<type-params>] <block>`
 - Aliases: `union`, `sum type`
 - Related: `ordo`, `discerne`, `finge`
-- Page: https://faberlang.dev/corpus/discretio.html
+- Page: https://faberlang.dev/en-US/corpus/discretio.html
 - Source: examples/corpus/discretio/discretio.fab
 
 #### `dum`
@@ -536,7 +536,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `dum <condition> <block|ergo statement>`
 - Aliases: `while`
 - Related: `si`, `ergo`, `fac`
-- Page: https://faberlang.dev/corpus/dum.html
+- Page: https://faberlang.dev/en-US/corpus/dum.html
 - Source: examples/corpus/dum/dum.fab
 
 #### `ego`
@@ -548,7 +548,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `ego.<member>`
 - Aliases: `self`, `this`
 - Related: `generis`, `nexum`
-- Page: https://faberlang.dev/corpus/ego.html
+- Page: https://faberlang.dev/en-US/corpus/ego.html
 - Source: examples/corpus/ego/ego.fab
 
 #### `elige`
@@ -560,7 +560,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `elige <expression> <block>`
 - Aliases: `switch`, `choose`
 - Related: `casu`, `ceterum`
-- Page: https://faberlang.dev/corpus/elige.html
+- Page: https://faberlang.dev/en-US/corpus/elige.html
 - Source: examples/corpus/elige/elige.fab
 
 #### `emitte`
@@ -572,7 +572,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `emitte <expression>`
 - Aliases: none
 - Related: `ad`, `meus`, `tuus`, `sermo`
-- Page: https://faberlang.dev/corpus/emitte.html
+- Page: https://faberlang.dev/en-US/corpus/emitte.html
 - Source: examples/corpus/emitte/emitte.fab
 
 #### `errata`
@@ -584,7 +584,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `functio <name>(...) errata <ident> → <type>`
 - Aliases: none
 - Related: `⇥`, `cape`, `iace`
-- Page: https://faberlang.dev/corpus/errata.html
+- Page: https://faberlang.dev/en-US/corpus/errata.html
 - Source: examples/corpus/errata/errata.fab
 
 #### `est`
@@ -596,7 +596,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression> est <expression>`
 - Aliases: none
 - Related: `non est`
-- Page: https://faberlang.dev/corpus/est.html
+- Page: https://faberlang.dev/en-US/corpus/est.html
 - Source: examples/corpus/est/est.fab
 
 #### `et`
@@ -608,7 +608,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression> et <expression>`
 - Aliases: `and`
 - Related: `aut`, `non`
-- Page: https://faberlang.dev/corpus/et.html
+- Page: https://faberlang.dev/en-US/corpus/et.html
 - Source: examples/corpus/et/et.fab
 
 #### `ex`
@@ -620,7 +620,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `ex <expression> <fixum|varia> <field> [, ...] [ceteri <ident>]`
 - Aliases: none
 - Related: `de`, `ut`, `ceteri`
-- Page: https://faberlang.dev/corpus/ex.html
+- Page: https://faberlang.dev/en-US/corpus/ex.html
 - Source: examples/corpus/destructura/lista.fab
 
 #### `exitus`
@@ -632,7 +632,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `incipit argumenta <name> exitus <expr> <block>`
 - Aliases: none
 - Related: `incipit`, `incipiet`, `argumenta`
-- Page: https://faberlang.dev/corpus/exitus.html
+- Page: https://faberlang.dev/en-US/corpus/exitus.html
 - Source: examples/corpus/exitus/exitus.fab
 
 #### `fac`
@@ -644,7 +644,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `fac <block> [cape <name> <block>] [dum <condition>]`
 - Aliases: `do`
 - Related: `dum`, `cape`, `clausura`, `perge`
-- Page: https://faberlang.dev/corpus/fac.html
+- Page: https://faberlang.dev/en-US/corpus/fac.html
 - Source: examples/corpus/fac/fac-cape.fab
 
 #### `falsum`
@@ -656,7 +656,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `falsum [<expression>]`
 - Aliases: none
 - Related: `verum`, `nihil`
-- Page: https://faberlang.dev/corpus/falsum.html
+- Page: https://faberlang.dev/en-US/corpus/falsum.html
 - Source: examples/corpus/falsum/falsum.fab
 
 #### `finge`
@@ -668,7 +668,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `finge <variant> [{ <field> = <expr>, ... }] [∷ <type>]`
 - Aliases: none
 - Related: `discretio`
-- Page: https://faberlang.dev/corpus/finge.html
+- Page: https://faberlang.dev/en-US/corpus/finge.html
 - Source: examples/corpus/finge/finge.fab
 
 #### `fixum`
@@ -680,7 +680,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `fixum <type|_> <pattern> [← <expression>]`
 - Aliases: `const`, `immutable`
 - Related: `varia`, `sit`, `←`
-- Page: https://faberlang.dev/corpus/fixum.html
+- Page: https://faberlang.dev/en-US/corpus/fixum.html
 - Source: examples/corpus/fixum/fixum.fab
 
 #### `forma`
@@ -692,7 +692,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: ``template`(args)`
 - Aliases: none
 - Related: `scriptum`, `textus`, `valor`
-- Page: https://faberlang.dev/corpus/forma.html
+- Page: https://faberlang.dev/en-US/corpus/forma.html
 - Source: examples/corpus/literalia/forma.fab
 
 #### `fractus`
@@ -704,7 +704,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `fractus`
 - Aliases: `float`
 - Related: `numerus`, `↦`
-- Page: https://faberlang.dev/corpus/fractus.html
+- Page: https://faberlang.dev/en-US/corpus/fractus.html
 - Source: examples/corpus/intrinseca/fractus-comparatio.fab
 
 #### `fragilis`
@@ -716,7 +716,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `fragilis <number>`
 - Aliases: none
 - Related: `requirit`
-- Page: https://faberlang.dev/corpus/fragilis.html
+- Page: https://faberlang.dev/en-US/corpus/fragilis.html
 - Source: examples/corpus/fragilis/fragilis.fab
 
 #### `functio`
@@ -728,7 +728,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `functio <name>(<params>) [modifiers] [→ <type>] [⇥ <error-type>] <block>`
 - Aliases: `function`
 - Related: `→`, `⇥`, `redde`, `sponte`, `ceteri`, `prae`, `curata`, `futura`, `cursor`
-- Page: https://faberlang.dev/corpus/functio.html
+- Page: https://faberlang.dev/en-US/corpus/functio.html
 - Source: examples/corpus/functio/functio.fab
 
 #### `futura`
@@ -740,7 +740,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `@ futura { }`
 - Aliases: none
 - Related: `futura`, `annotation-sugar`
-- Page: https://faberlang.dev/corpus/futura.html
+- Page: https://faberlang.dev/en-US/corpus/futura.html
 - Source: examples/corpus/annotation-sugar/futura-braced.fab
 
 #### `futurum`
@@ -752,7 +752,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `proba <name> futurum <reason> <block>`
 - Aliases: `todo`, `pending`
 - Related: `proba`, `omitte`
-- Page: https://faberlang.dev/corpus/futurum.html
+- Page: https://faberlang.dev/en-US/corpus/futurum.html
 - Source: examples/corpus/futurum/futurum.fab
 
 #### `generic`
@@ -764,7 +764,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `functio <name><T, magnitudo N>(<params>) → <type> <block>`
 - Aliases: none
 - Related: `functio`, `genus`, `magnitudo`
-- Page: https://faberlang.dev/corpus/generic.html
+- Page: https://faberlang.dev/en-US/corpus/generic.html
 - Source: examples/corpus/generic/generic.fab
 
 #### `generic-call-type-args`
@@ -776,7 +776,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `callee<type, ...>(args) — id<textus>(...), module.f<T>(...), tensor.creata<T>(...)`
 - Aliases: none
 - Related: `functio`, `tensor`, `typi-parametri`
-- Page: https://faberlang.dev/corpus/generic-call-type-args.html
+- Page: https://faberlang.dev/en-US/corpus/generic-call-type-args.html
 - Source: examples/corpus/functio/generic-call-type-args.fab
 
 #### `generics`
@@ -788,7 +788,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `functio name<T>(...) | genus Name<T, magnitudo N>`
 - Aliases: `type parameters`, `magnitudo`
 - Related: `typus`, `functio`
-- Page: https://faberlang.dev/corpus/generics.html
+- Page: https://faberlang.dev/en-US/corpus/generics.html
 - Source: examples/corpus/prae/prae.fab
 
 #### `generis`
@@ -800,7 +800,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `generis <type> <name> [= <expression>]`
 - Aliases: none
 - Related: `genus`, `nexum`
-- Page: https://faberlang.dev/corpus/generis.html
+- Page: https://faberlang.dev/en-US/corpus/generis.html
 - Source: examples/corpus/generis/generis.fab
 
 #### `genus`
@@ -812,7 +812,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `genus <name> [<type-params>] <block>`
 - Aliases: `class`, `struct`
 - Related: `implendum`, `abstractus`, `implet`, `sub`
-- Page: https://faberlang.dev/corpus/genus.html
+- Page: https://faberlang.dev/en-US/corpus/genus.html
 - Source: examples/corpus/genus/genus.fab
 
 #### `iace`
@@ -824,7 +824,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `iace <expression> si <condition>`
 - Aliases: none
 - Related: `cape`, `mori`, `si`, `⇥`
-- Page: https://faberlang.dev/corpus/iace.html
+- Page: https://faberlang.dev/en-US/corpus/iace.html
 - Source: examples/corpus/iace/iace-si-guard.fab
 
 #### `iacit`
@@ -836,7 +836,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `functio <name>(...) iacit → <type> [⇥ <error-type>]`
 - Aliases: none
 - Related: `iace`, `cape`, `⇥`, `errata`, `immutata`
-- Page: https://faberlang.dev/corpus/iacit.html
+- Page: https://faberlang.dev/en-US/corpus/iacit.html
 - Source: examples/corpus/meta/iacit.fab
 
 #### `immutata`
@@ -848,7 +848,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `functio <name>(...) immutata → <type>`
 - Aliases: none
 - Related: `curata`, `iacit`
-- Page: https://faberlang.dev/corpus/immutata.html
+- Page: https://faberlang.dev/en-US/corpus/immutata.html
 - Source: examples/corpus/immutata/immutata.fab
 
 #### `implendum`
@@ -860,7 +860,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `implendum <name> [<type-params>] <block>`
 - Aliases: `interface`
 - Related: `genus`, `implet`
-- Page: https://faberlang.dev/corpus/implendum.html
+- Page: https://faberlang.dev/en-US/corpus/implendum.html
 - Source: examples/corpus/implendum/implendum.fab
 
 #### `implet`
@@ -872,7 +872,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `genus <name> implet <interface-list> <block>`
 - Aliases: `implements`
 - Related: `genus`, `implendum`
-- Page: https://faberlang.dev/corpus/implet.html
+- Page: https://faberlang.dev/en-US/corpus/implet.html
 - Source: examples/corpus/implet/implet.fab
 
 #### `importa`
@@ -884,7 +884,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `importa { ex = "norma:chorda" }`
 - Aliases: `import`
 - Related: `ex`, `privata`, `annotation-sugar`
-- Page: https://faberlang.dev/corpus/importa.html
+- Page: https://faberlang.dev/en-US/corpus/importa.html
 - Source: examples/corpus/importa/default-braced.fab
 
 #### `in`
@@ -896,7 +896,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `in <type> <name>`
 - Aliases: none
 - Related: `de`, `ex`
-- Page: https://faberlang.dev/corpus/in.html
+- Page: https://faberlang.dev/en-US/corpus/in.html
 - Source: examples/corpus/in/in.fab
 
 #### `incipiet`
@@ -908,7 +908,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `incipiet <block>`
 - Aliases: none
 - Related: `incipit`, `cede`
-- Page: https://faberlang.dev/corpus/incipiet.html
+- Page: https://faberlang.dev/en-US/corpus/incipiet.html
 - Source: examples/corpus/incipiet/incipiet.fab
 
 #### `incipit`
@@ -920,7 +920,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `incipit <block>`
 - Aliases: `main`, `entry`
 - Related: `functio`, `importa`
-- Page: https://faberlang.dev/corpus/incipit.html
+- Page: https://faberlang.dev/en-US/corpus/incipit.html
 - Source: examples/corpus/incipit/incipit.fab
 
 #### `instans`
@@ -932,7 +932,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression> ↦ instans | instans<ms> | instans<us> | instans<ns>`
 - Aliases: none
 - Related: `↦`, `⇥`, `textus`
-- Page: https://faberlang.dev/corpus/instans.html
+- Page: https://faberlang.dev/en-US/corpus/instans.html
 - Source: examples/corpus/conversio/instans.fab
 
 #### `integratio`
@@ -944,7 +944,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `integratio — multi-feature happy path`
 - Aliases: none
 - Related: `functio`, `fixum`, `si`, `nota`
-- Page: https://faberlang.dev/corpus/integratio.html
+- Page: https://faberlang.dev/en-US/corpus/integratio.html
 - Source: examples/corpus/integratio/minimum-smoke.fab
 
 #### `inter`
@@ -956,7 +956,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression> inter <collection>`
 - Aliases: none
 - Related: `intra`
-- Page: https://faberlang.dev/corpus/inter.html
+- Page: https://faberlang.dev/en-US/corpus/inter.html
 - Source: examples/corpus/inter/inter.fab
 
 #### `intervallum`
@@ -968,7 +968,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `n/a`
 - Aliases: none
 - Related: `inter`, `union`, `longitudo`, `nihil`
-- Page: https://faberlang.dev/corpus/intervallum.html
+- Page: https://faberlang.dev/en-US/corpus/intervallum.html
 - Source: examples/corpus/intervallum/algebra.fab
 
 #### `intra`
@@ -980,7 +980,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression> intra <range>`
 - Aliases: none
 - Related: `inter`
-- Page: https://faberlang.dev/corpus/intra.html
+- Page: https://faberlang.dev/en-US/corpus/intra.html
 - Source: examples/corpus/intra/intra.fab
 
 #### `itera`
@@ -992,7 +992,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `itera <mode> <expression> <binding> <block>`
 - Aliases: `iterate`
 - Related: `ex`, `de`, `ab`
-- Page: https://faberlang.dev/corpus/itera.html
+- Page: https://faberlang.dev/en-US/corpus/itera.html
 - Source: examples/corpus/itera/cursor-iteratio.fab
 
 #### `json`
@@ -1004,7 +1004,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `n/a`
 - Aliases: none
 - Related: none
-- Page: https://faberlang.dev/corpus/json.html
+- Page: https://faberlang.dev/en-US/corpus/json.html
 - Source: examples/corpus/json/json.fab
 
 #### `lege`
@@ -1016,7 +1016,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `lege [lineam]`
 - Aliases: none
 - Related: `lineam`, `scribe`
-- Page: https://faberlang.dev/corpus/lege.html
+- Page: https://faberlang.dev/en-US/corpus/lege.html
 - Source: examples/corpus/lege/lege.fab
 
 #### `lineam`
@@ -1028,7 +1028,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `lege lineam`
 - Aliases: none
 - Related: `lege`
-- Page: https://faberlang.dev/corpus/lineam.html
+- Page: https://faberlang.dev/en-US/corpus/lineam.html
 - Source: examples/corpus/lineam/lineam.fab
 
 #### `lista`
@@ -1040,7 +1040,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `lista<T>`
 - Aliases: `array`, `list`
 - Related: `tabula`, `copia`, `∷`, `itera`
-- Page: https://faberlang.dev/corpus/lista.html
+- Page: https://faberlang.dev/en-US/corpus/lista.html
 - Source: examples/corpus/lista/lista.fab
 
 #### `manifest`
@@ -1052,7 +1052,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `faber.toml`
 - Aliases: `faber.toml`, `package manifest`
 - Related: `targets`, `cli`, `incipit`, `proba`
-- Page: https://faberlang.dev/corpus/manifest.html
+- Page: https://faberlang.dev/en-US/corpus/manifest.html
 - Source: examples/corpus/meta/manifest.fab
 
 #### `membrum`
@@ -1064,7 +1064,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expr>.<field> | <expr>[<index>] | <expr>?.<field>`
 - Aliases: none
 - Related: `?.`, `lista`, `tabula`, `genus`
-- Page: https://faberlang.dev/corpus/membrum.html
+- Page: https://faberlang.dev/en-US/corpus/membrum.html
 - Source: examples/corpus/membrum/membrum.fab
 
 #### `metior`
@@ -1076,7 +1076,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `metior`
 - Aliases: none
 - Related: `temporis`, `prima`, `ultima`
-- Page: https://faberlang.dev/corpus/metior.html
+- Page: https://faberlang.dev/en-US/corpus/metior.html
 - Source: examples/corpus/lista/methodi-accessus.fab
 
 #### `meus`
@@ -1088,7 +1088,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `n/a`
 - Aliases: none
 - Related: `ad`, `sermo`, `tuus`, `scrinium`, `cursor`, `accipe`
-- Page: https://faberlang.dev/corpus/meus.html
+- Page: https://faberlang.dev/en-US/corpus/meus.html
 - Source: examples/corpus/ad/sermo-live-directional.fab
 
 #### `modulus<u16>`
@@ -1100,7 +1100,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `modulus<u16>`
 - Aliases: none
 - Related: `numerus`, `¬`, `⇐`, `⇒`
-- Page: https://faberlang.dev/corpus/modulus%3Cu16%3E.html
+- Page: https://faberlang.dev/en-US/corpus/modulus%3Cu16%3E.html
 - Source: examples/corpus/operatores/modular-word-u16.fab
 
 #### `modulus<u32>`
@@ -1112,7 +1112,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `modulus<u32>`
 - Aliases: none
 - Related: `numerus`, `¬`, `⇐`, `⇒`
-- Page: https://faberlang.dev/corpus/modulus%3Cu32%3E.html
+- Page: https://faberlang.dev/en-US/corpus/modulus%3Cu32%3E.html
 - Source: examples/corpus/operatores/modular-word.fab
 
 #### `modulus<u64>`
@@ -1124,7 +1124,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `modulus<u64>`
 - Aliases: none
 - Related: `numerus`, `¬`, `⇐`, `⇒`
-- Page: https://faberlang.dev/corpus/modulus%3Cu64%3E.html
+- Page: https://faberlang.dev/en-US/corpus/modulus%3Cu64%3E.html
 - Source: examples/corpus/operatores/modular-word-u64.fab
 
 #### `modulus<u8>`
@@ -1136,7 +1136,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `modulus<u8>`
 - Aliases: none
 - Related: `numerus`, `¬`, `⇐`, `⇒`
-- Page: https://faberlang.dev/corpus/modulus%3Cu8%3E.html
+- Page: https://faberlang.dev/en-US/corpus/modulus%3Cu8%3E.html
 - Source: examples/corpus/operatores/modular-word-u8.fab
 
 #### `mone`
@@ -1148,7 +1148,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `mone <expression>`
 - Aliases: none
 - Related: `scribe`, `vide`
-- Page: https://faberlang.dev/corpus/mone.html
+- Page: https://faberlang.dev/en-US/corpus/mone.html
 - Source: examples/corpus/mone/mone.fab
 
 #### `mori`
@@ -1160,7 +1160,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `mori <expression> si <condition>`
 - Aliases: none
 - Related: `iace`, `ergo`, `si`
-- Page: https://faberlang.dev/corpus/mori.html
+- Page: https://faberlang.dev/en-US/corpus/mori.html
 - Source: examples/corpus/mori/mori-si-guard.fab
 
 #### `morphologia`
@@ -1172,7 +1172,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<collection>.<verb-a|verb-ata|verb-e|verb-ita>(<args>)`
 - Aliases: none
 - Related: `lista`, `appende`, `filtrata`
-- Page: https://faberlang.dev/corpus/morphologia.html
+- Page: https://faberlang.dev/en-US/corpus/morphologia.html
 - Source: examples/corpus/morphologia/morphologia.fab
 
 #### `nexum`
@@ -1184,7 +1184,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `nexum <type> <name> [= <expression>]`
 - Aliases: none
 - Related: `genus`, `ego`
-- Page: https://faberlang.dev/corpus/nexum.html
+- Page: https://faberlang.dev/en-US/corpus/nexum.html
 - Source: examples/corpus/nexum/nexum.fab
 
 #### `nihil`
@@ -1196,7 +1196,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `nihil`
 - Aliases: none
 - Related: `∪`, `nonnihil`, `sponte`, `nihil`
-- Page: https://faberlang.dev/corpus/nihil.html
+- Page: https://faberlang.dev/en-US/corpus/nihil.html
 - Source: examples/corpus/literalia/nihil.fab
 
 #### `non`
@@ -1208,7 +1208,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `non <expression>`
 - Aliases: `!`
 - Related: `verum`, `falsum`
-- Page: https://faberlang.dev/corpus/non.html
+- Page: https://faberlang.dev/en-US/corpus/non.html
 - Source: examples/corpus/non/non.fab
 
 #### `nondum`
@@ -1220,7 +1220,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `@ nondum { target = rs, ratio = "…" }`
 - Aliases: none
 - Related: `nondum`, `annotation-sugar`
-- Page: https://faberlang.dev/corpus/nondum.html
+- Page: https://faberlang.dev/en-US/corpus/nondum.html
 - Source: examples/corpus/annotation-sugar/nondum-braced.fab
 
 #### `numerus`
@@ -1232,7 +1232,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `numerus`
 - Aliases: `integer`, `int`
 - Related: `fractus`, `↦`
-- Page: https://faberlang.dev/corpus/numerus.html
+- Page: https://faberlang.dev/en-US/corpus/numerus.html
 - Source: examples/corpus/intrinseca/numerus-methodi.fab
 
 #### `numquam`
@@ -1244,7 +1244,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `numquam`
 - Aliases: `never`
 - Related: `mori`, `exitus`
-- Page: https://faberlang.dev/corpus/numquam.html
+- Page: https://faberlang.dev/en-US/corpus/numquam.html
 - Source: examples/corpus/numquam/numquam.fab
 
 #### `octeti`
@@ -1256,7 +1256,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `octeti`
 - Aliases: `bytes`
 - Related: `textus`, `lista`
-- Page: https://faberlang.dev/corpus/octeti.html
+- Page: https://faberlang.dev/en-US/corpus/octeti.html
 - Source: examples/corpus/octeti/octeti.fab
 
 #### `omitte`
@@ -1268,7 +1268,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `proba <name> omitte <reason> <block>`
 - Aliases: `skip`
 - Related: `proba`, `futurum`
-- Page: https://faberlang.dev/corpus/omitte.html
+- Page: https://faberlang.dev/en-US/corpus/omitte.html
 - Source: examples/corpus/omitte/omitte.fab
 
 #### `omnia`
@@ -1280,7 +1280,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `omnia`
 - Aliases: none
 - Related: `praepara`, `postpara`
-- Page: https://faberlang.dev/corpus/omnia.html
+- Page: https://faberlang.dev/en-US/corpus/omnia.html
 - Source: examples/corpus/omnia/omnia.fab
 
 #### `operandus`
@@ -1292,7 +1292,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `@ operandus [ceteri] <type> <binding> [descriptio "..."] [ubique] [vel <default>]`
 - Aliases: none
 - Related: `optio`, `cli`, `imperium`, `ceteri`, `ubique`
-- Page: https://faberlang.dev/corpus/operandus.html
+- Page: https://faberlang.dev/en-US/corpus/operandus.html
 - Source: examples/corpus/operandus/operandus.fab
 
 #### `optio`
@@ -1304,7 +1304,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `@ optio { binding = NAME, brevis = "x", longum = "name", typus = TYPE, descriptio = "...", ubique = verum }`
 - Aliases: none
 - Related: `optio`, `cli`, `annotation-sugar`
-- Page: https://faberlang.dev/corpus/optio.html
+- Page: https://faberlang.dev/en-US/corpus/optio.html
 - Source: examples/corpus/annotation-sugar/optio-braced.fab
 
 #### `optiones`
@@ -1316,7 +1316,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `functio <name>(...) optiones <ident> → <type>`
 - Aliases: none
 - Related: `argumenta`, `ad`
-- Page: https://faberlang.dev/corpus/optiones.html
+- Page: https://faberlang.dev/en-US/corpus/optiones.html
 - Source: examples/corpus/optiones/optiones.fab
 
 #### `ordo`
@@ -1328,7 +1328,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `ordo <name> <block>`
 - Aliases: `enum`
 - Related: `discretio`
-- Page: https://faberlang.dev/corpus/ordo.html
+- Page: https://faberlang.dev/en-US/corpus/ordo.html
 - Source: examples/corpus/ordo/ordo.fab
 
 #### `per`
@@ -1340,7 +1340,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<range> per <expression>`
 - Aliases: none
 - Related: `ante`, `usque`
-- Page: https://faberlang.dev/corpus/per.html
+- Page: https://faberlang.dev/en-US/corpus/per.html
 - Source: examples/corpus/per/per.fab
 
 #### `perge`
@@ -1352,7 +1352,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `perge`
 - Aliases: `continue`
 - Related: `rumpe`, `dum`
-- Page: https://faberlang.dev/corpus/perge.html
+- Page: https://faberlang.dev/en-US/corpus/perge.html
 - Source: examples/corpus/perge/perge.fab
 
 #### `postpara`
@@ -1364,7 +1364,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `postpara <block>`
 - Aliases: none
 - Related: `praepara`, `omnia`
-- Page: https://faberlang.dev/corpus/postpara.html
+- Page: https://faberlang.dev/en-US/corpus/postpara.html
 - Source: examples/corpus/postpara/postpara.fab
 
 #### `postparabit`
@@ -1376,7 +1376,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `postparabit <block>`
 - Aliases: none
 - Related: `postpara`, `praeparabit`
-- Page: https://faberlang.dev/corpus/postparabit.html
+- Page: https://faberlang.dev/en-US/corpus/postparabit.html
 - Source: examples/corpus/postparabit/postparabit.fab
 
 #### `praefixum`
@@ -1388,7 +1388,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `praefixum(<expression>)`
 - Aliases: none
 - Related: none
-- Page: https://faberlang.dev/corpus/praefixum.html
+- Page: https://faberlang.dev/en-US/corpus/praefixum.html
 - Source: examples/corpus/praefixum/praefixum.fab
 
 #### `praepara`
@@ -1400,7 +1400,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `praepara <block>`
 - Aliases: none
 - Related: `postpara`, `omnia`
-- Page: https://faberlang.dev/corpus/praepara.html
+- Page: https://faberlang.dev/en-US/corpus/praepara.html
 - Source: examples/corpus/praepara/praepara.fab
 
 #### `praeparabit`
@@ -1412,7 +1412,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `praeparabit <block>`
 - Aliases: none
 - Related: `praepara`, `postparabit`
-- Page: https://faberlang.dev/corpus/praeparabit.html
+- Page: https://faberlang.dev/en-US/corpus/praeparabit.html
 - Source: examples/corpus/praeparabit/praeparabit.fab
 
 #### `privata`
@@ -1424,7 +1424,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `importa ex <source> privata <name>`
 - Aliases: `private`
 - Related: `publica`, `importa`
-- Page: https://faberlang.dev/corpus/privata.html
+- Page: https://faberlang.dev/en-US/corpus/privata.html
 - Source: examples/corpus/privata/privata.fab
 
 #### `proba`
@@ -1436,7 +1436,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `proba <name> [modifiers] <block>`
 - Aliases: `test`, `it`
 - Related: `probandum`, `adfirma`, `omitte`, `futurum`
-- Page: https://faberlang.dev/corpus/proba.html
+- Page: https://faberlang.dev/en-US/corpus/proba.html
 - Source: examples/corpus/proba/proba.fab
 
 #### `probandum`
@@ -1448,7 +1448,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `probandum <name> [modifiers] <block>`
 - Aliases: `describe`, `suite`
 - Related: `proba`, `adfirma`
-- Page: https://faberlang.dev/corpus/probandum.html
+- Page: https://faberlang.dev/en-US/corpus/probandum.html
 - Source: examples/corpus/probandum/probandum.fab
 
 #### `promissum`
@@ -1460,7 +1460,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `promissum<T>`
 - Aliases: `promise`
 - Related: `futura`, `cede`
-- Page: https://faberlang.dev/corpus/promissum.html
+- Page: https://faberlang.dev/en-US/corpus/promissum.html
 - Source: examples/corpus/promissum/promissum.fab
 
 #### `protecta`
@@ -1472,7 +1472,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `@ protecta`
 - Aliases: `protected`
 - Related: `publica`, `privata`
-- Page: https://faberlang.dev/corpus/protecta.html
+- Page: https://faberlang.dev/en-US/corpus/protecta.html
 - Source: examples/corpus/protecta/protecta.fab
 
 #### `publica`
@@ -1484,7 +1484,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `importa ex <source> publica <name>`
 - Aliases: `public`
 - Related: `privata`, `importa`
-- Page: https://faberlang.dev/corpus/publica.html
+- Page: https://faberlang.dev/en-US/corpus/publica.html
 - Source: examples/corpus/publica/publica.fab
 
 #### `radix-lane`
@@ -1496,7 +1496,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `@ radix { lane = "hir-direct" }`
 - Aliases: none
 - Related: `radix`, `annotation-sugar`
-- Page: https://faberlang.dev/corpus/radix-lane.html
+- Page: https://faberlang.dev/en-US/corpus/radix-lane.html
 - Source: examples/corpus/annotation-sugar/radix-lane-braced.fab
 
 #### `redde`
@@ -1508,7 +1508,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `redde <expression>`
 - Aliases: `return`
 - Related: `→`, `⇥`, `ergo`, `iace`, `tacet`
-- Page: https://faberlang.dev/corpus/redde.html
+- Page: https://faberlang.dev/en-US/corpus/redde.html
 - Source: examples/corpus/redde/redde.fab
 
 #### `regex`
@@ -1520,7 +1520,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<textus> ↦ regex`
 - Aliases: none
 - Related: `lege`, `conversio`, `scriptum`
-- Page: https://faberlang.dev/corpus/regex.html
+- Page: https://faberlang.dev/en-US/corpus/regex.html
 - Source: examples/corpus/literalia/regex.fab
 
 #### `repete`
@@ -1532,7 +1532,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `repete <number>`
 - Aliases: none
 - Related: `fragilis`
-- Page: https://faberlang.dev/corpus/repete.html
+- Page: https://faberlang.dev/en-US/corpus/repete.html
 - Source: examples/corpus/repete/repete.fab
 
 #### `requirit`
@@ -1544,7 +1544,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `requirit <string>`
 - Aliases: none
 - Related: `solum_in`, `fragilis`, `probandum`
-- Page: https://faberlang.dev/corpus/requirit.html
+- Page: https://faberlang.dev/en-US/corpus/requirit.html
 - Source: examples/corpus/meta/requirit.fab
 
 #### `rumpe`
@@ -1556,7 +1556,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `rumpe`
 - Aliases: `break`
 - Related: `perge`, `dum`
-- Page: https://faberlang.dev/corpus/rumpe.html
+- Page: https://faberlang.dev/en-US/corpus/rumpe.html
 - Source: examples/corpus/rumpe/rumpe.fab
 
 #### `scalaria`
@@ -1568,7 +1568,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `functio <name>(<scalar-params>) → <scalar-type> <block>`
 - Aliases: none
 - Related: `numerus`, `fractus`, `bivalens`
-- Page: https://faberlang.dev/corpus/scalaria.html
+- Page: https://faberlang.dev/en-US/corpus/scalaria.html
 - Source: examples/corpus/scalaria/scalaria.fab
 
 #### `scribe`
@@ -1580,7 +1580,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `scribe <expression>`
 - Aliases: none
 - Related: `vide`, `mone`
-- Page: https://faberlang.dev/corpus/scribe.html
+- Page: https://faberlang.dev/en-US/corpus/scribe.html
 - Source: examples/corpus/nota/nota.fab
 
 #### `scriptum`
@@ -1592,7 +1592,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `"<template>"(<args>...)`
 - Aliases: none
 - Related: `lege`, `lineam`
-- Page: https://faberlang.dev/corpus/scriptum.html
+- Page: https://faberlang.dev/en-US/corpus/scriptum.html
 - Source: examples/corpus/scriptum/scriptum.fab
 
 #### `secus`
@@ -1604,7 +1604,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `secus <block>`
 - Aliases: `else`, `otherwise`
 - Related: `si`, `sin`
-- Page: https://faberlang.dev/corpus/secus.html
+- Page: https://faberlang.dev/en-US/corpus/secus.html
 - Source: examples/corpus/secus/secus.fab
 
 #### `si`
@@ -1616,7 +1616,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `si <condition> <block>`
 - Aliases: `if`
 - Related: `sin`, `secus`, `ergo`
-- Page: https://faberlang.dev/corpus/si.html
+- Page: https://faberlang.dev/en-US/corpus/si.html
 - Source: examples/corpus/si/nidificatus.fab
 
 #### `sic`
@@ -1628,7 +1628,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `si <condition> sic <expression> secus <expression>`
 - Aliases: `then`
 - Related: `si`, `secus`
-- Page: https://faberlang.dev/corpus/sic.html
+- Page: https://faberlang.dev/en-US/corpus/sic.html
 - Source: examples/corpus/sic/sic.fab
 
 #### `sin`
@@ -1640,7 +1640,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `sin <condition> <block>`
 - Aliases: `else if`
 - Related: `si`, `secus`
-- Page: https://faberlang.dev/corpus/sin.html
+- Page: https://faberlang.dev/en-US/corpus/sin.html
 - Source: examples/corpus/si/sin.fab
 
 #### `sit`
@@ -1652,7 +1652,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `sit <name> [← <expression>]`
 - Aliases: none
 - Related: `fixum`, `varia`, `←`
-- Page: https://faberlang.dev/corpus/sit.html
+- Page: https://faberlang.dev/en-US/corpus/sit.html
 - Source: examples/corpus/sit/sit.fab
 
 #### `solum`
@@ -1664,7 +1664,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `solum`
 - Aliases: none
 - Related: `omitte`, `futurum`
-- Page: https://faberlang.dev/corpus/solum.html
+- Page: https://faberlang.dev/en-US/corpus/solum.html
 - Source: examples/corpus/solum/solum.fab
 
 #### `solum lege generic`
@@ -1676,7 +1676,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `solum.lege<textus>(via) | solum.lege<lista<textus>>(via) | solum.lege<octeti>(via)`
 - Aliases: none
 - Related: `ad`, `solum`, `generic`
-- Page: https://faberlang.dev/corpus/solum%20lege%20generic.html
+- Page: https://faberlang.dev/en-US/corpus/solum%20lege%20generic.html
 - Source: examples/corpus/ad/solum-lege-generic.fab
 
 #### `solum_in`
@@ -1688,7 +1688,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `solum_in <string> <string>`
 - Aliases: none
 - Related: `requirit`
-- Page: https://faberlang.dev/corpus/solum_in.html
+- Page: https://faberlang.dev/en-US/corpus/solum_in.html
 - Source: examples/corpus/solum-in/solum-in.fab
 
 #### `sparge`
@@ -1700,7 +1700,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `sparge <expression>`
 - Aliases: `...`
 - Related: `lista`
-- Page: https://faberlang.dev/corpus/sparge.html
+- Page: https://faberlang.dev/en-US/corpus/sparge.html
 - Source: examples/corpus/sparge/sparge.fab
 
 #### `sparsa`
@@ -1712,7 +1712,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `sparsa<T, Figura> | sparsa<T, []>`
 - Aliases: none
 - Related: `sparsa`, `tensor`, `vacua`
-- Page: https://faberlang.dev/corpus/sparsa.html
+- Page: https://faberlang.dev/en-US/corpus/sparsa.html
 - Source: examples/corpus/sparsa/decl.fab
 
 #### `sponte`
@@ -1724,7 +1724,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<type> <name> sponte [= default | vel default]`
 - Aliases: `optional`, `voluntary`
 - Related: `vel`, `nihil`, `∪`, `functio`, `genus`
-- Page: https://faberlang.dev/corpus/sponte.html
+- Page: https://faberlang.dev/en-US/corpus/sponte.html
 - Source: examples/corpus/sponte/sponte.fab
 
 #### `string`
@@ -1736,7 +1736,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `"<text>"`
 - Aliases: `"..."`
 - Related: `block-string`, `§`, `textus`
-- Page: https://faberlang.dev/corpus/string.html
+- Page: https://faberlang.dev/en-US/corpus/string.html
 - Source: examples/corpus/literalia/textus.fab
 
 #### `sub`
@@ -1748,7 +1748,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `genus <name> sub <parent> <block>`
 - Aliases: `extends`
 - Related: `genus`, `implet`
-- Page: https://faberlang.dev/corpus/sub.html
+- Page: https://faberlang.dev/en-US/corpus/sub.html
 - Source: examples/corpus/sub/sub.fab
 
 #### `summa`
@@ -1760,7 +1760,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<lista>.summa()`
 - Aliases: none
 - Related: `prima`, `ultima`, `lista`
-- Page: https://faberlang.dev/corpus/summa.html
+- Page: https://faberlang.dev/en-US/corpus/summa.html
 - Source: examples/corpus/lista/methodi-functionales.fab
 
 #### `tabula`
@@ -1772,7 +1772,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `tabula<K,V>`
 - Aliases: `map`, `dictionary`
 - Related: `lista`, `copia`, `∷`, `itera`
-- Page: https://faberlang.dev/corpus/tabula.html
+- Page: https://faberlang.dev/en-US/corpus/tabula.html
 - Source: examples/corpus/tabula/methodi-accessus.fab
 
 #### `tacet`
@@ -1784,7 +1784,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `tacet`
 - Aliases: `silent noop`
 - Related: `ergo`, `redde`
-- Page: https://faberlang.dev/corpus/tacet.html
+- Page: https://faberlang.dev/en-US/corpus/tacet.html
 - Source: examples/corpus/tacet/tacet.fab
 
 #### `tag`
@@ -1796,7 +1796,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `tag <string>`
 - Aliases: none
 - Related: `solum`, `temporis`
-- Page: https://faberlang.dev/corpus/tag.html
+- Page: https://faberlang.dev/en-US/corpus/tag.html
 - Source: examples/corpus/tag/tag.fab
 
 #### `targets`
@@ -1808,7 +1808,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `faber targets`
 - Aliases: `target compatibility`, `backends`
 - Related: `manifest`, `cli`, `∷`, `↦`
-- Page: https://faberlang.dev/corpus/targets.html
+- Page: https://faberlang.dev/en-US/corpus/targets.html
 - Source: examples/corpus/meta/targets.fab
 
 #### `temporis`
@@ -1820,7 +1820,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `temporis <number>`
 - Aliases: none
 - Related: `metior`, `repete`
-- Page: https://faberlang.dev/corpus/temporis.html
+- Page: https://faberlang.dev/en-US/corpus/temporis.html
 - Source: examples/corpus/temporis/temporis.fab
 
 #### `tensor`
@@ -1832,7 +1832,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `tensor<T, Figura> | tensor<T, []>`
 - Aliases: none
 - Related: `tensor`, `lista`
-- Page: https://faberlang.dev/corpus/tensor.html
+- Page: https://faberlang.dev/en-US/corpus/tensor.html
 - Source: examples/corpus/tensor/decl.fab
 
 #### `textus`
@@ -1844,7 +1844,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `textus`
 - Aliases: `string`
 - Related: `string`, `scriptum`, `↦`
-- Page: https://faberlang.dev/corpus/textus.html
+- Page: https://faberlang.dev/en-US/corpus/textus.html
 - Source: examples/corpus/intrinseca/textus-transformationes.fab
 
 #### `tuus`
@@ -1856,7 +1856,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `n/a`
 - Aliases: none
 - Related: `ad`, `sermo`, `scrinium`, `cursor`
-- Page: https://faberlang.dev/corpus/tuus.html
+- Page: https://faberlang.dev/en-US/corpus/tuus.html
 - Source: examples/corpus/ad/sermo-tuus.fab
 
 #### `typus`
@@ -1868,7 +1868,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `typus <name> = <type>`
 - Aliases: `type`
 - Related: `genus`, `implendum`, `objectum`, `∪`
-- Page: https://faberlang.dev/corpus/typus.html
+- Page: https://faberlang.dev/en-US/corpus/typus.html
 - Source: examples/corpus/typus/typus.fab
 
 #### `ubique`
@@ -1880,7 +1880,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `ubique`
 - Aliases: none
 - Related: `optio`, `operandus`
-- Page: https://faberlang.dev/corpus/ubique.html
+- Page: https://faberlang.dev/en-US/corpus/ubique.html
 - Source: examples/corpus/ubique/ubique.fab
 
 #### `unarius`
@@ -1892,7 +1892,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `-<expr> | non <expr> | <expr> > 0 | <expr> est nihil`
 - Aliases: none
 - Related: `non`, `est`, `non est`
-- Page: https://faberlang.dev/corpus/unarius.html
+- Page: https://faberlang.dev/en-US/corpus/unarius.html
 - Source: examples/corpus/unarius/unarius.fab
 
 #### `usque`
@@ -1904,7 +1904,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression> usque <expression>`
 - Aliases: none
 - Related: `ante`, `…`
-- Page: https://faberlang.dev/corpus/usque.html
+- Page: https://faberlang.dev/en-US/corpus/usque.html
 - Source: examples/corpus/usque/usque.fab
 
 #### `ut`
@@ -1916,7 +1916,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<name> ut <alias>`
 - Aliases: `as`
 - Related: `ex`, `argumenta`
-- Page: https://faberlang.dev/corpus/ut.html
+- Page: https://faberlang.dev/en-US/corpus/ut.html
 - Source: examples/corpus/ut/ut.fab
 
 #### `vacuum`
@@ -1928,7 +1928,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `vacuum`
 - Aliases: `void`, `unit`
 - Related: `functio`, `redde`
-- Page: https://faberlang.dev/corpus/vacuum.html
+- Page: https://faberlang.dev/en-US/corpus/vacuum.html
 - Source: examples/corpus/vacuum/vacuum.fab
 
 #### `valor`
@@ -1940,7 +1940,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<typed-expression> ↦ valor`
 - Aliases: none
 - Related: `↦`, `valor`, `octeti`, `lista`, `tabula`, `genus`, `tensor`
-- Page: https://faberlang.dev/corpus/valor.html
+- Page: https://faberlang.dev/en-US/corpus/valor.html
 - Source: examples/corpus/conversio/valor-boxing.fab
 
 #### `varia`
@@ -1952,7 +1952,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `varia <type|_> <pattern> [← <expression>]`
 - Aliases: `let`, `mutable`
 - Related: `fixum`, `←`, `⊕`
-- Page: https://faberlang.dev/corpus/varia.html
+- Page: https://faberlang.dev/en-US/corpus/varia.html
 - Source: examples/corpus/varia/varia.fab
 
 #### `vel`
@@ -1964,7 +1964,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression> vel <expression>`
 - Aliases: `nullish coalescing`
 - Related: `nihil`, `nonnihil`
-- Page: https://faberlang.dev/corpus/vel.html
+- Page: https://faberlang.dev/en-US/corpus/vel.html
 - Source: examples/corpus/vel/vel.fab
 
 #### `versio`
@@ -1976,7 +1976,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `@ versio <string>`
 - Aliases: none
 - Related: `cli`, `descriptio`
-- Page: https://faberlang.dev/corpus/versio.html
+- Page: https://faberlang.dev/en-US/corpus/versio.html
 - Source: examples/corpus/meta/versio.fab
 
 #### `verte`
@@ -1988,7 +1988,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `@ verte { target = rs, methodus = "…" }`
 - Aliases: none
 - Related: `verte`, `annotation-sugar`
-- Page: https://faberlang.dev/corpus/verte.html
+- Page: https://faberlang.dev/en-US/corpus/verte.html
 - Source: examples/corpus/annotation-sugar/verte-braced.fab
 
 #### `verum`
@@ -2000,7 +2000,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `verum | falsum`
 - Aliases: none
 - Related: `falsum`, `bivalens`, `verum`
-- Page: https://faberlang.dev/corpus/verum.html
+- Page: https://faberlang.dev/en-US/corpus/verum.html
 - Source: examples/corpus/literalia/boolean.fab
 
 #### `vide`
@@ -2012,7 +2012,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `vide <expression>`
 - Aliases: none
 - Related: `scribe`, `mone`
-- Page: https://faberlang.dev/corpus/vide.html
+- Page: https://faberlang.dev/en-US/corpus/vide.html
 - Source: examples/corpus/vide/vide.fab
 
 #### `vocatio`
@@ -2024,7 +2024,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<name>(<args>) | <expr>.<method>(<args>) | <name>(sparge <lista>)`
 - Aliases: none
 - Related: `functio`, `sparge`, `genus`
-- Page: https://faberlang.dev/corpus/vocatio.html
+- Page: https://faberlang.dev/en-US/corpus/vocatio.html
 - Source: examples/corpus/vocatio/vocatio.fab
 
 #### `§`
@@ -2036,7 +2036,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `"<template>"(<args>...)`
 - Aliases: none
 - Related: `textus`, `scribe`
-- Page: https://faberlang.dev/corpus/%C2%A7.html
+- Page: https://faberlang.dev/en-US/corpus/%C2%A7.html
 - Source: examples/corpus/operatores/metadata.fab
 
 #### `‥`
@@ -2048,7 +2048,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression> ‥ <expression> | <expression> … <expression>`
 - Aliases: none
 - Related: `‥`, `…`, `ante`, `usque`, `intra`
-- Page: https://faberlang.dev/corpus/%E2%80%A5.html
+- Page: https://faberlang.dev/en-US/corpus/%E2%80%A5.html
 - Source: examples/corpus/operatores/range-glyphs.fab
 
 #### `←`
@@ -2060,7 +2060,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<place> ← <expression>`
 - Aliases: `assignment`, `assign`
 - Related: `=`, `fixum`, `varia`, `⊕`, `⊖`
-- Page: https://faberlang.dev/corpus/%E2%86%90.html
+- Page: https://faberlang.dev/en-US/corpus/%E2%86%90.html
 - Source: examples/corpus/assignatio/assignatio.fab
 
 #### `→`
@@ -2072,7 +2072,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `functio <name>(<params>) → <type> | functio <name>(<params>) → <success> ⇥ <error>`
 - Aliases: none
 - Related: `⇥`, `functio`, `redde`, `iace`, `cape`
-- Page: https://faberlang.dev/corpus/%E2%86%92.html
+- Page: https://faberlang.dev/en-US/corpus/%E2%86%92.html
 - Source: examples/corpus/operatores/function-types.fab
 
 #### `↦`
@@ -2084,7 +2084,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression> ↦ <type> [⇥ <recovery>]`
 - Aliases: `convert`, `conversio`
 - Related: `∷`, `⇥`
-- Page: https://faberlang.dev/corpus/%E2%86%A6.html
+- Page: https://faberlang.dev/en-US/corpus/%E2%86%A6.html
 - Source: examples/corpus/conversio/conversio.fab
 
 #### `∧`
@@ -2096,7 +2096,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression> ∧ <expression> | <expression> ⊻ <expression> | ¬ <expression> | <expression> ⇐ <expression> | <expression> ⇒ <expression>`
 - Aliases: none
 - Related: `∨`, `⊻`, `¬`, `⇐`, `⇒`
-- Page: https://faberlang.dev/corpus/%E2%88%A7.html
+- Page: https://faberlang.dev/en-US/corpus/%E2%88%A7.html
 - Source: examples/corpus/operatores/bitwise.fab
 
 #### `∨`
@@ -2108,7 +2108,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression> ∨ <expression> | <expression> non est <expression>`
 - Aliases: none
 - Related: `∧`, `⊻`, `¬`, `et`, `aut`, `vel`, `non est`, `est`
-- Page: https://faberlang.dev/corpus/%E2%88%A8.html
+- Page: https://faberlang.dev/en-US/corpus/%E2%88%A8.html
 - Source: examples/corpus/operatores/logica.fab
 
 #### `∪`
@@ -2120,7 +2120,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `typus <name> = <type> ∪ <type>`
 - Aliases: none
 - Related: `typus`, `discerne`, `discretio`
-- Page: https://faberlang.dev/corpus/%E2%88%AA.html
+- Page: https://faberlang.dev/en-US/corpus/%E2%88%AA.html
 - Source: examples/corpus/unio/unio.fab
 
 #### `∴`
@@ -2132,7 +2132,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<head> ergo <statement>`
 - Aliases: `ergo`, `therefore`
 - Related: `si`, `redde`, `clausura`, `ergo`
-- Page: https://faberlang.dev/corpus/%E2%88%B4.html
+- Page: https://faberlang.dev/en-US/corpus/%E2%88%B4.html
 - Source: examples/corpus/operatores/control.fab
 
 #### `≈`
@@ -2144,7 +2144,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression> ≈ <expression> | <expression> ≉ <expression>`
 - Aliases: none
 - Related: `≡`, `≠`, `↦`, `adfirma`
-- Page: https://faberlang.dev/corpus/%E2%89%88.html
+- Page: https://faberlang.dev/en-US/corpus/%E2%89%88.html
 - Source: examples/corpus/operatores/numeric-value-eq.fab
 
 #### `≡`
@@ -2156,7 +2156,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<expression> ≡ <expression> | <expression> ≠ <expression> | <expression> ≤ <expression> | <expression> ≥ <expression>`
 - Aliases: none
 - Related: `≠`, `≤`, `≥`, `est`, `adfirma`
-- Page: https://faberlang.dev/corpus/%E2%89%A1.html
+- Page: https://faberlang.dev/en-US/corpus/%E2%89%A1.html
 - Source: examples/corpus/operatores/comparatio.fab
 
 #### `⊕`
@@ -2168,7 +2168,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `<place> ⊕`
 - Aliases: `postfix increment`, `increment statement`
 - Related: `⊖`, `varia`, `←`, `numerus`
-- Page: https://faberlang.dev/corpus/%E2%8A%95.html
+- Page: https://faberlang.dev/en-US/corpus/%E2%8A%95.html
 - Source: examples/corpus/incrementa/incrementa.fab
 
 ### Alias map
@@ -2274,15 +2274,15 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 
 ## Documentation map
 
-- https://faberlang.dev/ — overview + download
-- https://faberlang.dev/start/ — quick tour
-- https://faberlang.dev/features/ — locales, lanes, glyphs, principles
-- https://faberlang.dev/syntax/ — language reference
-- https://faberlang.dev/tooling/ — compiler, CLI, targets
-- https://faberlang.dev/ecosystem/ — Norma, Cista, Triga, workbench
-- https://faberlang.dev/corpus/ — generated keyword / construct pages
-- https://faberlang.dev/references/ — EBNF, design docs, repos
-- https://faberlang.dev/history/ — timeline
+- https://faberlang.dev/en-US/ — overview + download
+- https://faberlang.dev/en-US/start/ — quick tour
+- https://faberlang.dev/en-US/features/ — locales, lanes, glyphs, principles
+- https://faberlang.dev/en-US/syntax/ — language reference
+- https://faberlang.dev/en-US/tooling/ — compiler, CLI, targets
+- https://faberlang.dev/en-US/ecosystem/ — Norma, Cista, Triga, workbench
+- https://faberlang.dev/en-US/corpus/ — generated keyword / construct pages
+- https://faberlang.dev/en-US/references/ — EBNF, design docs, repos
+- https://faberlang.dev/en-US/history/ — timeline
 
 ## Repositories
 

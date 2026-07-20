@@ -8,6 +8,7 @@ importa ex "./html" privata * ut html_mod
 importa ex "./string_util" privata * ut su
 importa ex "./types" privata * ut types_mod
 importa ex "./document_ir" privata * ut doc_mod
+importa ex "./link_prefix" privata * ut lp
 
 genus CorpusExample {
     textus path
@@ -177,44 +178,46 @@ functio genera_corpus_markdown(textus term, textus bundle) → textus {
     redde su.recide(corpus_markdown(term, page_primary, examples))
 }
 
-functio genera_corpus(textus term, textus bundle, textus locale, textus stylesheet) → textus {
+functio genera_corpus(textus term, textus bundle, textus site_locale, textus reader_locale, textus stylesheet) → textus {
     fixum textus markdown ← genera_corpus_markdown(term, bundle)
     fixum types_mod.Pagina page ← types_mod.aedifica_paginam(
         "corpus/" + term,
         markdown,
-        locale,
+        site_locale,
+        reader_locale,
     )
     redde html_mod.genera_paginam(page, stylesheet)
 }
 
-functio alias_head(textus alias, textus canonical, textus stylesheet) → doc_mod.Node {
+functio alias_head(textus alias, textus canonical, textus stylesheet, textus site_locale) → doc_mod.Node {
+    fixum textus corpus_href ← lp.content_href("/corpus/" + canonical + ".html", site_locale)
     varia lista<doc_mod.Node> children ← vacua
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("charset", "utf-8")]))
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("name", "viewport"), doc_mod.attr("content", "width=device-width, initial-scale=1")]))
-    children.appende(doc_mod.void_element("meta", [doc_mod.attr("http-equiv", "refresh"), doc_mod.attr("content", "0; url=/corpus/" + canonical + ".html")]))
-    children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "canonical"), doc_mod.attr("href", "/corpus/" + canonical + ".html")]))
+    children.appende(doc_mod.void_element("meta", [doc_mod.attr("http-equiv", "refresh"), doc_mod.attr("content", "0; url=" + corpus_href)]))
+    children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "canonical"), doc_mod.attr("href", corpus_href)]))
     children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "stylesheet"), doc_mod.attr("href", stylesheet)]))
     children.appende(doc_mod.leaf("title", vacua, alias + " — Faber"))
     redde doc_mod.element("head", vacua, children)
 }
 
-functio alias_body(textus canonical) → doc_mod.Node {
+functio alias_body(textus canonical, textus site_locale) → doc_mod.Node {
     varia lista<doc_mod.Node> paragraph ← vacua
     paragraph.appende(doc_mod.text("This term is an alias. Continue to "))
-    paragraph.appende(doc_mod.leaf("a", [doc_mod.attr("href", "/corpus/" + canonical + ".html")], canonical))
+    paragraph.appende(doc_mod.leaf("a", [doc_mod.attr("href", lp.content_href("/corpus/" + canonical + ".html", site_locale))], canonical))
     paragraph.appende(doc_mod.text("."))
     redde doc_mod.element("body", vacua, [doc_mod.element("p", vacua, paragraph)])
 }
 
-functio genera_alias_redirect(textus alias, textus canonical, textus locale, textus stylesheet) → textus {
-    fixum doc_mod.Node root ← doc_mod.element("html", [doc_mod.attr("lang", locale)], [alias_head(alias, canonical, stylesheet), alias_body(canonical)])
+functio genera_alias_redirect(textus alias, textus canonical, textus site_locale, textus stylesheet) → textus {
+    fixum doc_mod.Node root ← doc_mod.element("html", [doc_mod.attr("lang", site_locale)], [alias_head(alias, canonical, stylesheet, site_locale), alias_body(canonical, site_locale)])
     redde doc_mod.html(doc_mod.document(root))
 }
 
 probandum "corpus term page" tag "corpus" {
     proba "alias redirects point at canonical terms" {
-        fixum textus html ← genera_alias_redirect("assert", "adfirma", "la", "/speculum.css")
-        adfirma su.initium_index(html, "url=/corpus/adfirma.html") ≥ 0
+        fixum textus html ← genera_alias_redirect("assert", "adfirma", "en-US", "/speculum.css")
+        adfirma su.initium_index(html, "url=/en-US/corpus/adfirma.html") ≥ 0
         adfirma su.initium_index(html, "rel=\"canonical\"") ≥ 0
     }
 }

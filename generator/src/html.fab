@@ -7,6 +7,7 @@
 importa ex "./types" privata * ut types_mod
 importa ex "./markdown" privata * ut markdown_mod
 importa ex "./document_ir" privata * ut doc_mod
+importa ex "./link_prefix" privata * ut lp
 
 functio a(textus href, textus label) → doc_mod.Node {
     redde doc_mod.leaf("a", [doc_mod.attr("href", href)], label)
@@ -28,10 +29,10 @@ functio genera_paginam(types_mod.Pagina pag, textus stylesheet_link) → textus 
     }
 
     varia lista<doc_mod.Node> body_children ← vacua
-    body_children.appende(genera_renderbar(pag.locale))
+    body_children.appende(genera_renderbar(pag.site_locale))
 
     varia lista<doc_mod.Node> page_children ← vacua
-    page_children.appende(genera_sidebar(pag.section))
+    page_children.appende(genera_sidebar(pag.section, pag.site_locale))
     page_children.appende(genera_main(pag))
 
     fixum doc_mod.Node footer ← genera_source_list(pag.sources)
@@ -41,7 +42,7 @@ functio genera_paginam(types_mod.Pagina pag, textus stylesheet_link) → textus 
 
     body_children.appende(doc_mod.element("div", [doc_mod.attr("class", "page")], page_children))
 
-    fixum doc_mod.Node root ← doc_mod.element("html", [doc_mod.attr("lang", pag.locale)], [genera_head(pag, stylesheet_link), doc_mod.element("body", [doc_mod.attr("class", body_class)], body_children)])
+    fixum doc_mod.Node root ← doc_mod.element("html", [doc_mod.attr("lang", pag.site_locale)], [genera_head(pag, stylesheet_link), doc_mod.element("body", [doc_mod.attr("class", body_class)], body_children)])
     redde doc_mod.html(doc_mod.document(root))
 }
 
@@ -73,52 +74,52 @@ functio genera_head(types_mod.Pagina pag, textus stylesheet_link) → doc_mod.No
     redde doc_mod.element("head", vacua, children)
 }
 
-functio genera_renderbar(textus current_locale) → doc_mod.Node {
+functio genera_renderbar(textus site_locale) → doc_mod.Node {
     varia lista<doc_mod.Node> links ← vacua
     links.appende(a("/llms.txt", "/llms.txt"))
     links.appende(a("/agents/index.md", "/agents"))
     links.appende(a("/.well-known/agent-skills/index.json", "/skills"))
-    links.appende(a("/start/install.html", "install"))
+    links.appende(a(lp.content_href("/start/install.html", site_locale), "install"))
 
     fixum doc_mod.Node nav ← doc_mod.element("nav", [doc_mod.attr("class", "machine-links"), doc_mod.attr("aria-label", "Machine documentation")], links)
-    fixum doc_mod.Node inner ← doc_mod.element("div", [doc_mod.attr("class", "in")], [doc_mod.leaf("span", [doc_mod.attr("class", "lbl")], "Rendering"), doc_mod.leaf("span", [doc_mod.attr("class", "locbtns")], current_locale), nav])
+    fixum doc_mod.Node inner ← doc_mod.element("div", [doc_mod.attr("class", "in")], [doc_mod.leaf("span", [doc_mod.attr("class", "lbl")], "Rendering"), doc_mod.leaf("span", [doc_mod.attr("class", "locbtns")], site_locale), nav])
     redde doc_mod.element("div", [doc_mod.attr("class", "renderbar")], [inner])
 }
 
-functio genera_sidebar(textus active_section) → doc_mod.Node {
+functio genera_sidebar(textus active_section, textus site_locale) → doc_mod.Node {
     varia lista<doc_mod.Node> children ← vacua
-    children.appende(genera_brand())
+    children.appende(genera_brand(site_locale))
     children.appende(side_h("Get started"))
-    children.appende(nav_list([li(genera_nav_link("Install & download", "/start/install.html", active_section ≡ "install")), li(genera_nav_link("Releases", "/history/releases.html", active_section ≡ "releases")), li(genera_nav_link("Hello", "/start/hello.html", active_section ≡ "hello")), li(genera_nav_link("Commands", "/start/commands.html", active_section ≡ "commands")), li(genera_nav_link("Projects", "/start/projects.html", active_section ≡ "projects")), li(genera_nav_link("Examples", "/start/examples.html", active_section ≡ "examples")), li(genera_nav_link("Quick tour", "/start/", active_section ≡ "start"))], "nav"))
+    children.appende(nav_list([li(genera_nav_link("Install & download", lp.content_href("/start/install.html", site_locale), active_section ≡ "install")), li(genera_nav_link("Releases", lp.content_href("/history/releases.html", site_locale), active_section ≡ "releases")), li(genera_nav_link("Hello", lp.content_href("/start/hello.html", site_locale), active_section ≡ "hello")), li(genera_nav_link("Commands", lp.content_href("/start/commands.html", site_locale), active_section ≡ "commands")), li(genera_nav_link("Projects", lp.content_href("/start/projects.html", site_locale), active_section ≡ "projects")), li(genera_nav_link("Examples", lp.content_href("/start/examples.html", site_locale), active_section ≡ "examples")), li(genera_nav_link("Quick tour", lp.content_href("/start/", site_locale), active_section ≡ "start"))], "nav"))
     children.appende(side_h("Documentation"))
 
     varia lista<doc_mod.Node> docs ← vacua
-    docs.appende(li(genera_nav_link("Overview", "/", active_section ≡ "")))
-    docs.appende(li(genera_nav_link("Features", "/features/", active_section ≡ "features")))
-    docs.appende(li(genera_nav_link("Syntax", "/syntax/", active_section ≡ "syntax")))
-    docs.appende(li(genera_nav_link("Tooling", "/tooling/", active_section ≡ "tooling")))
-    docs.appende(li(genera_nav_link("Ecosystem", "/ecosystem/", active_section ≡ "ecosystem")))
-    docs.appende(li(genera_nav_link("Corpus", "/corpus/", active_section ≡ "corpus")))
-    docs.appende(li(genera_nav_link("References", "/references/", active_section ≡ "references")))
-    docs.appende(li(genera_nav_link("History", "/history/", active_section ≡ "history")))
+    docs.appende(li(genera_nav_link("Overview", lp.content_href("/", site_locale), active_section ≡ "")))
+    docs.appende(li(genera_nav_link("Features", lp.content_href("/features/", site_locale), active_section ≡ "features")))
+    docs.appende(li(genera_nav_link("Syntax", lp.content_href("/syntax/", site_locale), active_section ≡ "syntax")))
+    docs.appende(li(genera_nav_link("Tooling", lp.content_href("/tooling/", site_locale), active_section ≡ "tooling")))
+    docs.appende(li(genera_nav_link("Ecosystem", lp.content_href("/ecosystem/", site_locale), active_section ≡ "ecosystem")))
+    docs.appende(li(genera_nav_link("Corpus", lp.content_href("/corpus/", site_locale), active_section ≡ "corpus")))
+    docs.appende(li(genera_nav_link("References", lp.content_href("/references/", site_locale), active_section ≡ "references")))
+    docs.appende(li(genera_nav_link("History", lp.content_href("/history/", site_locale), active_section ≡ "history")))
     children.appende(nav_list(docs, "nav"))
 
     children.appende(side_h("For agents"))
     children.appende(nav_list([li(genera_nav_link("Agent index", "/llms.txt", falsum)), li(genera_nav_link("Agent guide", "/agents/index.md", falsum)), li(genera_nav_link("Agent skills", "/.well-known/agent-skills/index.json", falsum)), li(genera_nav_link("Full reference", "/llms-full.txt", falsum))], "nav nav-compact"))
 
     children.appende(side_h("Release 1.1.1"))
-    children.appende(nav_list([li(genera_nav_link("macOS arm64", "https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz", falsum)), li(genera_nav_link("Linux x64", "https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz", falsum)), li(genera_nav_link("All releases", "/history/releases.html", active_section ≡ "releases")), li(genera_nav_link("GitHub org", "https://github.com/faberlang", falsum))], "nav nav-compact"))
+    children.appende(nav_list([li(genera_nav_link("macOS arm64", "https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz", falsum)), li(genera_nav_link("Linux x64", "https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz", falsum)), li(genera_nav_link("All releases", lp.content_href("/history/releases.html", site_locale), active_section ≡ "releases")), li(genera_nav_link("GitHub org", "https://github.com/faberlang", falsum))], "nav nav-compact"))
     children.appende(genera_side_meta())
 
     redde doc_mod.element("aside", vacua, children)
 }
 
-functio genera_brand() → doc_mod.Node {
+functio genera_brand(textus site_locale) → doc_mod.Node {
     fixum doc_mod.Node mark ← doc_mod.leaf("span", [doc_mod.attr("class", "brand-mark"), doc_mod.attr("aria-hidden", "true")], "f")
     fixum doc_mod.Node name ← doc_mod.leaf("span", [doc_mod.attr("class", "brand-name")], "Faber")
     fixum doc_mod.Node tag ← doc_mod.leaf("span", [doc_mod.attr("class", "brand-tag")], "language docs")
     fixum doc_mod.Node text ← doc_mod.element("span", [doc_mod.attr("class", "brand-text")], [name, tag])
-    redde doc_mod.element("a", [doc_mod.attr("class", "brand"), doc_mod.attr("href", "/")], [mark, text])
+    redde doc_mod.element("a", [doc_mod.attr("class", "brand"), doc_mod.attr("href", lp.content_href("/", site_locale))], [mark, text])
 }
 
 functio side_h(textus label) → doc_mod.Node {
@@ -146,14 +147,14 @@ functio genera_side_meta() → doc_mod.Node {
 
 functio genera_main(types_mod.Pagina pag) → doc_mod.Node {
     fixum doc_mod.Node h1 ← doc_mod.leaf("h1", vacua, pag.titulus)
-    fixum doc_mod.Node body ← genera_body(markdown_mod.converte_nodes(pag.corpus))
+    fixum doc_mod.Node body ← genera_body(markdown_mod.converte_nodes(pag.corpus, pag.site_locale))
     si pag.section ≡ "" {
-        redde doc_mod.element("main", vacua, [h1, genera_agent_notice(), body])
+        redde doc_mod.element("main", vacua, [h1, genera_agent_notice(pag.site_locale), body])
     }
     redde doc_mod.element("main", vacua, [h1, body])
 }
 
-functio genera_agent_notice() → doc_mod.Node {
+functio genera_agent_notice(textus site_locale) → doc_mod.Node {
     varia lista<doc_mod.Node> p_children ← vacua
     p_children.appende(doc_mod.text("If you are an AI agent: start at "))
     p_children.appende(code_link("/llms.txt", "/llms.txt"))
@@ -162,9 +163,9 @@ functio genera_agent_notice() → doc_mod.Node {
     p_children.appende(doc_mod.text(" and pick a skill from "))
     p_children.appende(code_link("/.well-known/agent-skills/index.json", "/.well-known/agent-skills/"))
     p_children.appende(doc_mod.text(". Humans: use "))
-    p_children.appende(a("/start/install.html", "Install"))
+    p_children.appende(a(lp.content_href("/start/install.html", site_locale), "Install"))
     p_children.appende(doc_mod.text(" and "))
-    p_children.appende(a("/start/examples.html", "Examples"))
+    p_children.appende(a(lp.content_href("/start/examples.html", site_locale), "Examples"))
     p_children.appende(doc_mod.text("."))
 
     fixum doc_mod.Node label ← doc_mod.leaf("span", [doc_mod.attr("class", "agent-notice-label")], "Agent-ready")

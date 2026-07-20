@@ -2,31 +2,44 @@
 """
 check-internal-links.py — Verify internal href targets exist in dist/.
 
-Scans all HTML pages under dist/ (excluding locale dirs by default) for
-internal href links and reports any whose target file is missing.
+Default scan (Phase 1):
+  - Root-level HTML (redirect stubs + any root pages)
+  - dist/en-US/** (primary English content)
+
+Non-English locale trees are excluded by default because partial Stage-7
+slices only ship start/* + corpus; full chrome still points at untranslated
+section paths under that locale. Pass --include-all-locales to scan them.
 
 Usage:
-    check-internal-links.py [dist_dir] [--include-locales]
+    check-internal-links.py [dist_dir] [--include-all-locales]
 
 Exit code 0 = no broken links; 1 = broken links found.
 """
 
 import argparse
+import html
 import os
 import re
 import sys
+from pathlib import Path
 
-LOCALE_DIRS = {"ar", "th-TH", "vi", "hi", "zh-Hans", "zh-Hant"}
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from locales_registry import load_registry, locale_dir_names
+
+REG = load_registry()
+ALL_LOCALES = locale_dir_names(REG)
+NON_EN_LOCALES = ALL_LOCALES - {"en-US"}
 
 
-def collect_html(dist_dir, include_locales):
-    """Collect HTML files, optionally excluding locale dirs."""
+def collect_html(dist_dir, include_all_locales):
+    """Collect HTML files for the link scan."""
     files = []
     for root, _, names in os.walk(dist_dir):
         parts = os.path.relpath(root, dist_dir).split(os.sep)
-        if not include_locales and len(parts) >= 1 and parts[0] in LOCALE_DIRS:
+        first = parts[0]
+        if first in NON_EN_LOCALES and not include_all_locales:
             continue
-        if ".well-known" in root or os.sep + "agents" in root:
+        if ".well-known" in parts or "agents" in parts:
             continue
         for name in names:
             if name.endswith(".html"):
@@ -36,20 +49,19 @@ def collect_html(dist_dir, include_locales):
 
 def check_target(dist_dir, href):
     """Return True if the href target exists in dist_dir."""
-    path = href.split("?")[0].lstrip("/")
+    path = html.unescape(href.split("?")[0].lstrip("/"))
     target = os.path.join(dist_dir, path)
 
     if os.path.exists(target):
         return True
-    # Try directory + index.html
     if os.path.isfile(os.path.join(target, "index.html")):
         return True
     return False
 
 
-def scan(dist_dir, include_locales):
-    """Scan all HTML files for broken internal links."""
-    html_files = collect_html(dist_dir, include_locales)
+def scan(dist_dir, include_all_locales):
+    """Scan HTML files for broken internal links."""
+    html_files = collect_html(dist_dir, include_all_locales)
     broken = []
     total_links = 0
 
@@ -70,21 +82,24 @@ def scan(dist_dir, include_locales):
 def main():
     parser = argparse.ArgumentParser(description="Check internal links in dist/")
     parser.add_argument("dist_dir", nargs="?", default="dist")
-    parser.add_argument("--include-locales", action="store_true")
+    parser.add_argument(
+        "--include-all-locales",
+        action="store_true",
+        help="Also scan non-English locale trees (partial slices may fail)",
+    )
     args = parser.parse_args()
 
     if not os.path.isdir(args.dist_dir):
         print(f"ERROR: {args.dist_dir} is not a directory", file=sys.stderr)
         return 2
 
-    html_files, total_links, broken = scan(args.dist_dir, args.include_locales)
+    html_files, total_links, broken = scan(args.dist_dir, args.include_all_locales)
 
     print(f"HTML pages scanned: {len(html_files)}")
     print(f"Unique internal links checked: {total_links}")
     print(f"Broken links: {len(broken)}")
 
     if broken:
-        # Report unique missing targets
         missing = {}
         for hf, href in broken:
             missing.setdefault(href, []).append(hf)

@@ -122,7 +122,7 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
         "- Release: https://github.com/faberlang/releases/releases/tag/faber-v1.1.1",
         "- macOS arm64: https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz",
         "- Linux x64: https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz",
-        "- Human install page: https://faberlang.dev/start/install.html",
+        "- Human install page: https://faberlang.dev/en-US/start/install.html",
         "",
         "Minimal verify after install:",
         "",
@@ -155,7 +155,7 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
 
     lines.extend(["", "### Categories", ""])
     for category, count in sorted(categories.items(), key=lambda item: item[0]):
-        lines.append(f"- {category} ({count}) — https://faberlang.dev/corpus/category/{corpus_slug(category)}.html")
+        lines.append(f"- {category} ({count}) — https://faberlang.dev/en-US/corpus/category/{corpus_slug(category)}.html")
 
     lines.extend(["", "### Kinds", ""])
     for kind, count in sorted(kinds.items(), key=lambda item: item[0]):
@@ -177,7 +177,7 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
             f"- Syntax: `{syntax_text}`",
             f"- Aliases: {aliases_text}",
             f"- Related: {related_text}",
-            f"- Page: https://faberlang.dev/corpus/{corpus_page(term.name)}",
+            f"- Page: https://faberlang.dev/en-US/corpus/{corpus_page(term.name)}",
             f"- Source: examples/corpus/{term.source}",
             "",
         ])
@@ -189,15 +189,15 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
 
     write_section(lines, "Documentation map")
     lines.extend([
-        "- https://faberlang.dev/ — overview + download",
-        "- https://faberlang.dev/start/ — quick tour",
-        "- https://faberlang.dev/features/ — locales, lanes, glyphs, principles",
-        "- https://faberlang.dev/syntax/ — language reference",
-        "- https://faberlang.dev/tooling/ — compiler, CLI, targets",
-        "- https://faberlang.dev/ecosystem/ — Norma, Cista, Triga, workbench",
-        "- https://faberlang.dev/corpus/ — generated keyword / construct pages",
-        "- https://faberlang.dev/references/ — EBNF, design docs, repos",
-        "- https://faberlang.dev/history/ — timeline",
+        "- https://faberlang.dev/en-US/ — overview + download",
+        "- https://faberlang.dev/en-US/start/ — quick tour",
+        "- https://faberlang.dev/en-US/features/ — locales, lanes, glyphs, principles",
+        "- https://faberlang.dev/en-US/syntax/ — language reference",
+        "- https://faberlang.dev/en-US/tooling/ — compiler, CLI, targets",
+        "- https://faberlang.dev/en-US/ecosystem/ — Norma, Cista, Triga, workbench",
+        "- https://faberlang.dev/en-US/corpus/ — generated keyword / construct pages",
+        "- https://faberlang.dev/en-US/references/ — EBNF, design docs, repos",
+        "- https://faberlang.dev/en-US/history/ — timeline",
     ])
 
     write_section(lines, "Repositories")

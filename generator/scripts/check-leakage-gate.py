@@ -3,11 +3,18 @@
 check-leakage-gate.py — Verify no public nav leaks to draft/non-public
 locale content, and that locale pages carry honesty notices.
 
+Phase 1 updates:
+  - English content lives under dist/en-US/ only.
+  - Root-level redirect stubs are not checked for English→locale leakage.
+  - Only non-en-US locales need Translation status notices.
+  - en-US pages must NOT be required to have notices.
+
 Checks:
-  1. No English-authored page links to locale dirs (/ar/, /th-TH/, …).
-  2. llms.txt and llms-full.txt don't expose locale-specific paths.
+  1. No en-US page links to other locale dirs (/ar/, /th-TH/, …).
+  2. llms.txt and llms-full.txt don't expose locale-specific paths
+     (en-US paths are expected/OK).
   3. No factory/internal/private files in dist/.
-  4. Locale pages have a visible "Translation status" notice (reports gaps).
+  4. Non-en-US locale pages have a visible "Translation status" notice.
 
 Usage:
     check-leakage-gate.py [dist_dir]
@@ -21,17 +28,43 @@ import re
 import sys
 from pathlib import Path
 
-LOCALE_DIRS = ["ar", "th-TH", "vi", "hi", "zh-Hans", "zh-Hant"]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from locales_registry import load_registry, locale_dir_names
+
+REG = load_registry()
+ALL_LOCALES = locale_dir_names(REG)
+NON_EN_LOCALES = ALL_LOCALES - {"en-US"}
+
+
+# ── helpers ──────────────────────────────────────────────────────────────────
+
+
+def _skip_special(segments: list[str]) -> bool:
+    """Return True if path segments contain a special tree to skip."""
+    for seg in segments:
+        if seg == ".well-known":
+            return True
+        if seg == "agents":
+            return True
+    return False
+
+
+# ── Check 1: en-US → other locale links ──────────────────────────────────────
 
 
 def check_english_to_locale(dist: Path):
-    """Check 1: no English page links to locale dirs."""
+    """Check 1: no en-US page links to other locale dirs.
+
+    Walks dist/en-US/**/*.html only. Root redirect stubs are excluded.
+    """
     hits = []
-    for root, _, files in os.walk(dist):
+    en_root = dist / "en-US"
+    if not en_root.is_dir():
+        return hits
+
+    for root, _, files in os.walk(en_root):
         parts = os.path.relpath(root, dist).split(os.sep)
-        if parts[0] in LOCALE_DIRS:
-            continue
-        if ".well-known" in root or os.sep + "agents" in root:
+        if _skip_special(parts):
             continue
         for name in files:
             if not name.endswith(".html"):
@@ -40,34 +73,39 @@ def check_english_to_locale(dist: Path):
             for m in re.finditer(r'href="(/[^"]*)"', html):
                 href = m.group(1)
                 first_seg = href.lstrip("/").split("/")[0]
-                if first_seg in LOCALE_DIRS:
+                if first_seg in NON_EN_LOCALES:
                     hits.append((str(Path(root) / name), href))
     return hits
 
 
+# ── Check 2: llms files ──────────────────────────────────────────────────────
+
+
 def check_llms_locale_refs(dist: Path):
-    """Check 2: llms.txt / llms-full.txt don't reference locale paths."""
+    """Check 2: llms.txt / llms-full.txt don't reference non-en-US locale paths.
+
+    en-US paths in llms files are OK.
+    """
     hits = []
     for txt in ["llms.txt", "llms-full.txt"]:
         path = dist / txt
         if not path.exists():
             continue
         content = path.read_text(encoding="utf-8")
-        for loc in LOCALE_DIRS:
+        for loc in NON_EN_LOCALES:
             if re.search(rf'/{re.escape(loc)}/', content):
                 hits.append((txt, loc))
     return hits
 
 
+# ── Check 3: factory leak (unchanged logic) ──────────────────────────────────
+
+
 def check_factory_leak(dist: Path):
     """Check 3: no factory/internal files in dist/."""
-    # Known legitimate corpus terms that match suspicious patterns
-    legit_corpus = {"private", "todo", "protected", "public", "class"}
     hits = []
     for p in sorted(dist.rglob("*.html")):
         rel = str(p.relative_to(dist))
-        name = p.stem
-        # Only flag if the filename itself looks like internal docs
         lower_rel = rel.lower()
         for pat in ["factory", "campaign", "internal", "secret"]:
             if pat in lower_rel:
@@ -75,11 +113,18 @@ def check_factory_leak(dist: Path):
     return hits
 
 
+# ── Check 4: locale notice (non-en-US only) ──────────────────────────────────
+
+
 def check_locale_notices(dist: Path):
-    """Check 4: locale pages carry 'Translation status' notice."""
+    """Check 4: non-en-US locale pages carry 'Translation status' notice.
+
+    en-US pages must NOT be required to have notices.
+    Redirect pages are still exempt.
+    """
     missing_by_type = {}
     total_by_type = {}
-    for loc in LOCALE_DIRS:
+    for loc in NON_EN_LOCALES:
         loc_dir = dist / loc
         if not loc_dir.exists():
             continue
@@ -96,12 +141,16 @@ def check_locale_notices(dist: Path):
 
             total_by_type[ptype] = total_by_type.get(ptype, 0) + 1
             html = p.read_text(encoding="utf-8")
-            # Alias redirect pages use <meta http-equiv="refresh"> and have
-            # no content to translate — exempt from notice requirement.
-            is_redirect = 'http-equiv="refresh"' in html or 'http-equiv=\'refresh\'' in html
+            is_redirect = (
+                'http-equiv="refresh"' in html
+                or "http-equiv='refresh'" in html
+            )
             if not is_redirect and "translation status" not in html.lower():
                 missing_by_type[ptype] = missing_by_type.get(ptype, 0) + 1
     return total_by_type, missing_by_type
+
+
+# ── main ─────────────────────────────────────────────────────────────────────
 
 
 def main():
@@ -116,9 +165,9 @@ def main():
 
     exit_code = 0
 
-    # Check 1
+    # Check 1 — en-US → other locale links
     hits = check_english_to_locale(dist)
-    print("--- 1. English pages → locale dir links ---")
+    print("--- 1. en-US pages → other-locale links ---")
     if hits:
         print(f"  LEAKAGE: {len(hits)} links found")
         for f, h in hits[:5]:
@@ -127,16 +176,16 @@ def main():
     else:
         print("  CLEAN")
 
-    # Check 2
+    # Check 2 — llms files
     hits = check_llms_locale_refs(dist)
-    print("\n--- 2. llms.txt locale path references ---")
+    print("\n--- 2. llms.txt non-en-US locale path references ---")
     if hits:
         print(f"  LEAKAGE: {hits}")
         exit_code = 1
     else:
         print("  CLEAN")
 
-    # Check 3
+    # Check 3 — factory/internal files (unchanged)
     hits = check_factory_leak(dist)
     print("\n--- 3. Factory/internal files in dist/ ---")
     if hits:
@@ -147,9 +196,9 @@ def main():
     else:
         print("  CLEAN")
 
-    # Check 4
+    # Check 4 — non-en-US locale notices
     total, missing = check_locale_notices(dist)
-    print("\n--- 4. Locale pages 'Translation status' notice ---")
+    print("\n--- 4. Non-en-US locale pages 'Translation status' notice ---")
     for ptype in sorted(total):
         t = total.get(ptype, 0)
         m = missing.get(ptype, 0)

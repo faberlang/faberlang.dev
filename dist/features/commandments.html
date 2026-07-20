@@ -1,78 +1,10 @@
 <!DOCTYPE html>
-<html lang="la"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types. Agent-readable docs, install, and examples."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Commandments — Faber"><meta property="og:description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types."><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><title>Commandments — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><link rel="canonical" href="https://faberlang.dev/features/commandments.html"></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><span class="lbl">Rendering</span><span class="locbtns">la</span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Get started</div><ul class="nav"><li><a href="/start/install.html">Install &amp; download</a></li><li><a href="/history/releases.html">Releases</a></li><li><a href="/start/hello.html">Hello</a></li><li><a href="/start/commands.html">Commands</a></li><li><a href="/start/projects.html">Projects</a></li><li><a href="/start/examples.html">Examples</a></li><li><a href="/start/">Quick tour</a></li></ul><div class="side-h">Documentation</div><ul class="nav"><li><a href="/">Overview</a></li><li><a href="/features/" class="active">Features</a></li><li><a href="/syntax/">Syntax</a></li><li><a href="/tooling/">Tooling</a></li><li><a href="/ecosystem/">Ecosystem</a></li><li><a href="/corpus/">Corpus</a></li><li><a href="/references/">References</a></li><li><a href="/history/">History</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/history/releases.html">All releases</a></li><li><a href="https://github.com/faberlang">GitHub org</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Commandments</h1><div class="content"><p><em>Nine rules that make Faber feel like Faber.</em></p><p>These are the design laws that define Faber's character. Syntax can evolve and
-features can be added, but changes should preserve these principles. A program
-that violates them may be valid Faber, but it does not feel like Faber.</p><p>The commandments apply at every level — from the grammar itself down to how
-standard library APIs are named. They are the reason a reader can identify
-Faber source at a glance, regardless of which human language the keywords are
-rendered in or which target backend the code compiles to.</p><h2 id="i-types-before-names">I. Types before names</h2><p>Declarations read from shape to binding. The type comes first because the
-reader needs to know <em>what kind of thing</em> this is before the name
-tells them <em>which</em> thing. This aligns with languages whose
-grammatical order reads from category to instance — Chinese, Hindi, Arabic
-— and produces declarations that scan uniformly.</p><pre class="faber-code"><code class="lang-text"># Type before name in every declaration
-textus nomen
-numerus aetas
-functio salve(textus name) → textus</code></pre><h2 id="ii-mechanical-over-magical">II. Mechanical over magical</h2><p>The same construct should mean the same thing everywhere. If a reader needs
-distant context to know what a symbol does, the syntax is suspect. Faber
-prefers explicit, local reasoning — the declaration site carries enough
-information to understand what will happen at the use site.</p><pre class="faber-code"><code class="lang-faber"># The meaning of a call is determined by the function's signature,
-# not by invisible trait resolution or implicit conversions.
-functio duplica(numerus n) → numerus {
-    redde n * 2
-}</code></pre><h2 id="iii-glyphs-carry-structure">III. Glyphs carry structure</h2><p>Structural and operator meaning uses glyphs, not words: <code>←</code>
-for binding, <code>→</code> for return type, <code>⇥</code>
-for error exit, <code>∴</code> for compact branch body,
-<code>≡</code> for equality, <code>∪</code> for union
-types. Glyphs are universal — they never localise and never change meaning
-across renderings. A Thai reader and a French reader see the same glyphs,
-even if the keywords around them differ.</p><h2 id="iv-latin-carries-behaviour">IV. Latin carries behaviour</h2><p>Words are for declarations, statements, lifecycle, and behavioural intent:
-<code class="kw">functio</code>, <code class="kw">genus</code>, <code class="kw">fixum</code>,
-<code class="kw">varia</code>, <code class="kw">redde</code>, <code class="kw">cape</code>.
-These are bindable through reader-locale packs — they are the vocabulary,
-not the grammar. The Latin choice is not about Latin superiority; it is
-about picking <em>one</em> consistent classical source so that all keywords
-belong to the same register and no keyword is privileged by being the
-language the implementation was written in.</p><h2 id="v-conjugation-carries-time-and-flow">V. Conjugation carries time and flow</h2><p>When the same root logic can run synchronously, asynchronously, or as a
-generator, the conjugated form of the verb should carry that execution mode.
-Ownership pairs — mutate vs copy-out — use related forms of the same stem.
-This is the morphologia principle. The standard library (Norma) follows this
-convention for all method names: <code>lege</code> (sync read) vs
-<code>leget</code> (async read), <code>adde</code> (mutate in place) vs
-<code>addita</code> (return new copy). The compiler does not enforce or
-derive conjugations — it is a naming policy, not a language feature.</p><h2 id="vi-one-sign-one-job">VI. One sign, one job</h2><p>A glyph or keyword may have exact aliases, but it should not carry unrelated
-meanings. Aliases must point back to one canonical concept. This is the
-principle that drives Faber's split between <code>←</code>
-(runtime binding) and <code>=</code> (structural field shape) — most
-languages collapse both into <code>=</code>, but that overloading hides
-whether a line is a data-flow operation or a type-level definition.</p><pre class="faber-code"><code class="lang-text"># ← is always runtime flow
-fixum numerus count ← 0
-count ← count + 1
-
-# = is always structural shape inside Type { }
-fixum _ p ← Point {
-    x = 10,
-    y = 20
-}</code></pre><h2 id="vii-runtime-flow-is-explicit">VII. Runtime flow is explicit</h2><p>Runtime binding, reassignment, and mutation use <code>←</code>;
-structural definition uses <code>=</code>. A reader scanning source can see
-every data-flow operation immediately: every <code>←</code> is a
-runtime event. There is no syntactic ambiguity about whether a particular
-<code>=</code> means &quot;store into this variable&quot; or &quot;define this field.&quot;</p><h2 id="viii-absence-is-typed">VIII. Absence is typed</h2><p>Nullable value types are written as unions: <code>T ∪ nihil</code>. Optional
-declaration slots use post-name markers: <code>sponte</code>. These are
-distinct concepts — <em>a value that may be absent</em> vs *a slot the
-caller may omit* — and Faber keeps them syntactically separate rather
-than collapsing both into <code>T?</code> or <code>Option&lt;T&gt;</code>.</p><pre class="faber-code"><code class="lang-text"># Absence in a value: T ∪ nihil
-functio find(textus key) → numerus ∪ nihil
-
-# Omission at declaration: sponte
-functio connect(textus host, numerus port sponte) → vacuum</code></pre><h2 id="ix-compiler-does-not-guess">IX. The compiler does not guess to hide missing information</h2><p>Missing type information is an analysis problem to fix upstream, not a codegen
-detail to paper over. The compiler never silently infers a type that the
-programmer did not provide when the information is genuinely absent — it
-reports the gap and stops. This is the rule that keeps Faber honest: if a
-reader cannot determine what a symbol means from local source, the compiler
-should not pretend it can.</p><h2 id="purpose">Purpose</h2><p>The commandments exist to answer a question that comes up in every language
-design discussion: &quot;Is this change still Faber?&quot; They are the invariant
-check — not against a feature list, but against a character. A change that
-violates a commandment may still be a good idea, but it should be recognised
-as a departure from Faber's design character rather than a routine addition.</p><p>In practice, the commandments most often serve as review criteria for new
-syntax proposals. A proposal that weakens &quot;types before names&quot; by adding a
-name-first alternative, or blurs &quot;one sign one job&quot; by overloading a glyph,
-must justify why Faber should bend its character for that feature.</p></div></main></div></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url=/en-US/features/commandments.html">
+<link rel="canonical" href="/en-US/features/commandments.html">
+<title>Redirect</title>
+</head>
+<body><p>Moved to <a href="/en-US/features/commandments.html">/en-US/features/commandments.html</a>.</p></body>
+</html>

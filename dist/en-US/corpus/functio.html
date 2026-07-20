@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types. Agent-readable docs, install, and examples."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="functio — Faber"><meta property="og:description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types."><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><title>functio — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><link rel="canonical" href="https://faberlang.dev/en-US/corpus/functio.html"></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><span class="lbl">Rendering</span><span class="locbtns">en-US</span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Get started</div><ul class="nav"><li><a href="/en-US/start/install.html">Install &amp; download</a></li><li><a href="/en-US/history/releases.html">Releases</a></li><li><a href="/en-US/start/hello.html">Hello</a></li><li><a href="/en-US/start/commands.html">Commands</a></li><li><a href="/en-US/start/projects.html">Projects</a></li><li><a href="/en-US/start/examples.html">Examples</a></li><li><a href="/en-US/start/">Quick tour</a></li></ul><div class="side-h">Documentation</div><ul class="nav"><li><a href="/en-US/">Overview</a></li><li><a href="/en-US/features/">Features</a></li><li><a href="/en-US/syntax/">Syntax</a></li><li><a href="/en-US/tooling/">Tooling</a></li><li><a href="/en-US/ecosystem/">Ecosystem</a></li><li><a href="/en-US/corpus/" class="active">Corpus</a></li><li><a href="/en-US/references/">References</a></li><li><a href="/en-US/history/">History</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/en-US/history/releases.html">All releases</a></li><li><a href="https://github.com/faberlang">GitHub org</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>functio</h1><div class="content"><p>Declares a named function or method.</p><p><strong>Aliases:</strong> <code>function</code></p><p><strong>Syntax:</strong> <code>functio &lt;name&gt;(&lt;params&gt;) [modifiers] [→ &lt;type&gt;] [⇥ &lt;error-type&gt;] &lt;block&gt;</code></p><h2>Category</h2><p><code>function</code></p><h2>Related</h2><ul><li><a href="/en-US/corpus/→.html">→</a></li><li>⇥</li><li><a href="/en-US/corpus/redde.html">redde</a></li><li><a href="/en-US/corpus/sponte.html">sponte</a></li><li><a href="/en-US/corpus/ceteri.html">ceteri</a></li><li>prae</li><li><a href="/en-US/corpus/curata.html">curata</a></li><li><a href="/en-US/corpus/futura.html">futura</a></li><li><a href="/en-US/corpus/cursor.html">cursor</a></li></ul><h2>Examples</h2><h3>examples/corpus/functio/functio.fab (canonical · keyword)</h3><p>Declares a named function or method.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># Basic function declarations
+#
+# functio &lt;nomen&gt;() { &lt;body&gt; }
+# functio &lt;nomen&gt;() → &lt;type&gt; { &lt;body&gt; }
+#
+# GRAMMAR:
+#   funcDecl :← 'functio' ident '(' paramList ')' ('→' type)? block
+#
+# EXPECTED OUTPUT:
+#   functio.expected — four diagnostics (greetings, name, integer).
+
+# Function with no parameters, no return
+functio saluta() {
+    nota &quot;Salve, Mundus!&quot;
+}
+
+# Function with parameter, no explicit return type
+functio dic(textus verbum) {
+    nota verbum
+}
+
+# Function with return type
+functio nomen() → textus {
+    redde &quot;Marcus Aurelius&quot;
+}
+
+# Function with parameter and return type
+functio duplica(numerus n) → numerus {
+    redde n * 2
+}
+
+incipit {
+    saluta()
+
+    dic(&quot;Bonum diem!&quot;)
+
+    fixum _ rex ← nomen()
+    nota rex
+
+    nota duplica(21)
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Mundus!
+Bonum diem!
+Marcus Aurelius
+42</code></pre><h3>examples/corpus/functio/in-ex.fab (canonical · keyword)</h3><p>Declares a named function or method.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># Parameter borrow markers: de (shared), in (mutable), ex (consume)
+#
+# de &lt;type&gt; &lt;nomen&gt;  -- shared borrow (read-only from caller's view)
+# in &lt;type&gt; &lt;nomen&gt;  -- mutable borrow (callee may modify the binding)
+# ex &lt;type&gt; &lt;nomen&gt;  -- consume/move ownership into callee
+#
+# GRAMMAR:
+#   parameter :← ('de' | 'in' | 'ex')? type ident ...
+#
+# EXPECTED OUTPUT:
+#   mutabile
+#   6
+#   salve
+#
+# BACKEND: Rust lowering treats `in` as immutable args (borrow lowering gap;
+# whitelist: functio/in-ex.fab). Go target is runnable.
+
+# --- Shared borrow: read label without taking ownership ---
+
+functio imprime(de textus label) → vacuum {
+    nota label
+}
+
+# --- Mutable borrow: double the caller's numerus in place ---
+
+functio duplica(in numerus value) → vacuum {
+    value ← value * 2
+    nota value
+}
+
+# --- Consume: take ownership of textus and return it ---
+
+functio consume(ex textus buffer) → textus {
+    redde buffer
+}
+
+incipit {
+    imprime(&quot;mutabile&quot;)
+
+    varia numerus valor ← 3
+    # in borrows valor mutably inside duplica
+    duplica(valor)
+
+    # ex moves the literal into consume
+    nota consume(&quot;salve&quot;)
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>mutabile
+6
+salve
+</code></pre><h3>examples/corpus/functio/recursio.fab (canonical · keyword)</h3><p>Declares a named function or method.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># Recursive functions
+#
+# A function may call itself; every recursion path needs a base case.
+#
+# GRAMMAR:
+#   funcDecl with callExpr naming the enclosing function
+#
+# EXPECTED OUTPUT:
+#   factorial: 1, 1, 120, 3628800
+#   fibonacci: 0, 1, 55
+#   summatio: 15, 55
+
+# Factorial: n! ← n * (n-1)!
+functio factorial(numerus n) → numerus {
+    si n ≤ 1 {
+        # base case
+        redde 1
+    }
+    redde n * factorial(n - 1)
+}
+
+# Fibonacci: fib(n) ← fib(n-1) + fib(n-2)
+functio fibonacci(numerus n) → numerus {
+    si n ≤ 0 {
+        redde 0
+    }
+    si n ≡ 1 {
+        redde 1
+    }
+    redde fibonacci(n - 1) + fibonacci(n - 2)
+}
+
+# Sum from 1 to n
+functio summatio(numerus n) → numerus {
+    si n ≤ 0 {
+        redde 0
+    }
+    redde n + summatio(n - 1)
+}
+
+incipit {
+    # --- Factorial examples ---
+
+    nota factorial(0)
+    nota factorial(1)
+    nota factorial(5)
+    nota factorial(10)
+
+    # --- Fibonacci examples ---
+
+    nota fibonacci(0)
+    nota fibonacci(1)
+    nota fibonacci(10)
+
+    # --- Summation examples ---
+
+    nota summatio(5)
+    nota summatio(10)
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1
+1
+120
+3628800
+0
+1
+55
+15
+55
+</code></pre><h3>examples/corpus/functio/sponte-vel.fab (canonical · keyword)</h3><p>Declares a named function or method.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># Parameters with sponte and vel
+#
+# sponte marks a voluntary (optional) parameter slot
+# vel provides a default when the argument is omitted
+#
+# GRAMMAR:
+#   parameter :← (preposition)? type nomen sponte? ('ut' alias)? ('vel' defectum)?
+#
+# EXPECTED OUTPUT:
+#   Salve, Marcus!, Salve, Dominus Marcus!, pagina lines with defaults/overrides,
+#   codex length and metire results, civis summary strings
+
+functio saluta(textus nomen, textus titulus sponte) → textus {
+    si titulus est nihil {
+        redde &quot;Salve, §!&quot;(nomen)
+    }
+    redde &quot;Salve, § §!&quot;(titulus, nomen)
+}
+
+functio pagina(numerus pagina sponte vel 1, numerus quantitas sponte vel 10) → textus {
+    redde &quot;pagina § cum § rebus&quot;(pagina, quantitas)
+}
+
+functio metire(textus fons, de numerus altitudo sponte) → numerus {
+    si altitudo est nihil {
+        # de = shared borrow of fons
+        redde fons.longitudo()
+    }
+    redde altitudo
+}
+
+functio civis(textus nomen, numerus aetas sponte vel 0, bivalens activus sponte vel verum) → textus {
+    redde &quot;civis: §, aetas: §, activus: §&quot;(nomen, aetas, activus)
+}
+
+incipit {
+    nota saluta(&quot;Marcus&quot;)
+
+    nota saluta(&quot;Marcus&quot;, &quot;Dominus&quot;)
+
+    # both sponte params use vel defaults
+    nota pagina()
+
+    nota pagina(2, 25)
+
+    # quantitas defaults to 10
+    nota pagina(5)
+
+    nota metire(&quot;codex&quot;)
+    nota metire(&quot;codex&quot;, 5)
+
+    nota civis(&quot;Julia&quot;)
+    nota civis(&quot;Julia&quot;, 25)
+    nota civis(&quot;Julia&quot;, 25, falsum)
+}</code></pre><h3>examples/corpus/functio/typi-parametri.fab (canonical · keyword)</h3><p>Declares a named function or method.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># Functions with typed parameters (type-first syntax)
+#
+# functio &lt;nomen&gt;(&lt;type&gt; &lt;param&gt;, ...) → &lt;type&gt; { &lt;body&gt; }
+#
+# GRAMMAR:
+#   funcDecl :← 'functio' ident '(' paramList ')' ('→' type)? block
+#
+# EXPECTED OUTPUT:
+#   49, 300, &quot;Julius habet 30 annos&quot;, falsum, verum, 5.0
+
+# Single typed parameter
+functio quadratum(numerus n) → numerus {
+    redde n * n
+}
+
+# Multiple typed parameters
+functio adde(numerus a, numerus b) → numerus {
+    redde a + b
+}
+
+# Mixed types for string formatting
+functio narra(textus nomen, numerus aetas) → textus {
+    redde &quot;§ habet § annos&quot;(nomen, aetas)
+}
+
+# Boolean parameter and return
+functio nega(bivalens valor) → bivalens {
+    redde non valor
+}
+
+# fractus (floating-point) parameters
+functio media(fractus a, fractus b) → fractus {
+    redde (a + b) / 2.0
+}
+
+incipit {
+    nota quadratum(7)
+
+    nota adde(100, 200)
+
+    nota narra(&quot;Julius&quot;, 30)
+
+    nota nega(verum)
+    nota nega(falsum)
+
+    nota media(3.0, 7.0)
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>49
+300
+Julius habet 30 annos
+falsum
+verum
+5.0
+</code></pre></div></main><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;examples/corpus/functio/functio.fab&quot;]</li></ul></div></footer></div></body></html>

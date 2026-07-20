@@ -4,7 +4,7 @@
 # The wrapper owns traversal and bundle creation. Frontmatter parsing, kind
 # policy, Markdown templating, HTML rendering, and bundle reads remain in Faber.
 #
-# Usage: render-corpus.sh <term> <output.html> [locale] [stylesheet]
+# Usage: render-corpus.sh <term> <output.html> [site_locale] [reader_locale] [stylesheet]
 
 set -euo pipefail
 
@@ -16,12 +16,13 @@ FABER="${FABER:-faber}"
 
 TERM="${1:-}"
 OUTPUT="${2:-}"
-LOCALE="${3:-la}"
-STYLESHEET="${4:-/speculum.css}"
+SITE_LOCALE="${3:-en-US}"
+READER_LOCALE="${4:-la}"
+STYLESHEET="${5:-/speculum.css}"
 PROOF_MARKDOWN="${PROOF_MARKDOWN:-}"
 
 if [ -z "$TERM" ] || [ -z "$OUTPUT" ]; then
-    echo "Usage: render-corpus.sh <term> <output.html> [locale] [stylesheet]" >&2
+    echo "Usage: render-corpus.sh <term> <output.html> [site_locale] [reader_locale] [stylesheet]" >&2
     exit 1
 fi
 
@@ -82,7 +83,7 @@ echo "Compiling corpus generator..." >&2
 (cd "$BUILD_DIR" && cargo build --quiet 2>/dev/null)
 
 mkdir -p "$(dirname "$OUTPUT")"
-"${BUILD_DIR}/target/debug/speculum-gen" -- --corpus "$TERM" "$BUNDLE" "$LOCALE" "$STYLESHEET" > "$OUTPUT"
+"${BUILD_DIR}/target/debug/speculum-gen" -- --corpus "$TERM" "$BUNDLE" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET" > "$OUTPUT"
 echo "Wrote: $OUTPUT" >&2
 
 if [ -n "$PROOF_MARKDOWN" ]; then
@@ -94,7 +95,9 @@ fi
 # Generate static alias bridges from the selected canonical example. These are
 # intentionally files, not runtime rewrites, so deployment remains static-host
 # friendly and every alias has one canonical destination.
-BUNDLE_PATH="$BUNDLE" CORPUS_DIR="$CORPUS_DIR" TERM="$TERM" OUTPUT="$OUTPUT" LOCALE="$LOCALE" STYLESHEET="$STYLESHEET" BIN="${BUILD_DIR}/target/debug/speculum-gen" python3 << 'PYEOF'
+BUNDLE_PATH="$BUNDLE" CORPUS_DIR="$CORPUS_DIR" TERM="$TERM" OUTPUT="$OUTPUT" \
+SITE_LOCALE="$SITE_LOCALE" READER_LOCALE="$READER_LOCALE" \
+STYLESHEET="$STYLESHEET" BIN="${BUILD_DIR}/target/debug/speculum-gen" python3 << 'PYEOF'
 import os
 import tomllib
 from pathlib import Path
@@ -102,7 +105,8 @@ from pathlib import Path
 corpus = Path(os.environ["CORPUS_DIR"])
 term = os.environ["TERM"]
 output = Path(os.environ["OUTPUT"])
-locale = os.environ["LOCALE"]
+site_locale = os.environ["SITE_LOCALE"]
+reader_locale = os.environ["READER_LOCALE"]
 stylesheet = os.environ["STYLESHEET"]
 binary = os.environ["BIN"]
 canonical = None
@@ -123,7 +127,7 @@ for alias in aliases:
     alias_path = output.parent / f"{alias}.html"
     alias_path.parent.mkdir(parents=True, exist_ok=True)
     rendered = __import__("subprocess").check_output(
-        [binary, "--", "--alias", alias, canonical, locale, stylesheet], text=True
+        [binary, "--", "--alias", alias, canonical, site_locale, stylesheet], text=True
     )
     alias_path.write_text(rendered)
     print(f"Wrote: {alias_path}", file=os.sys.stderr)

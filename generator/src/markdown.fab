@@ -14,6 +14,7 @@
 importa ex "./string_util" privata * ut su
 importa ex "./span" privata * ut span_mod
 importa ex "./document_ir" privata * ut doc_mod
+importa ex "./link_prefix" privata * ut lp
 
 
 # A heading split into its title text and optional anchor id.
@@ -50,7 +51,7 @@ functio inline_leaf(textus tag, textus value) → doc_mod.Node {
 
 # Convert inline Markdown to Node children. Escaping is intentionally deferred
 # to document_ir.node_html via Text nodes.
-functio genera_inline(textus text) → lista<doc_mod.Node> {
+functio genera_inline(textus text, textus site_locale) → lista<doc_mod.Node> {
     varia lista<doc_mod.Node> nodes ← vacua
     fixum numerus len ← text.longitudo()
     varia numerus i ← 0
@@ -113,8 +114,8 @@ functio genera_inline(textus text) → lista<doc_mod.Node> {
                 si found_href {
                     nodes ← append_text_range(nodes, text, plain_start, i)
                     fixum textus label ← text.sectio(i + 1, j)
-                    fixum textus href ← text.sectio(j + 2, k)
-                    nodes.appende(doc_mod.element("a", [doc_mod.attr("href", href)], genera_inline(label)))
+                    fixum textus href ← lp.content_href(text.sectio(j + 2, k), site_locale)
+                    nodes.appende(doc_mod.element("a", [doc_mod.attr("href", href)], genera_inline(label, site_locale)))
                     i ← k + 1
                     plain_start ← i
                     perge
@@ -180,7 +181,7 @@ functio genera_inline(textus text) → lista<doc_mod.Node> {
 
 # Compatibility helpers for existing proba coverage.
 functio genera_inline_html(textus text) → textus {
-    redde doc_mod.node_html(doc_mod.frag(genera_inline(text)))
+    redde doc_mod.node_html(doc_mod.frag(genera_inline(text, "")))
 }
 
 # Extract a trailing {#anchor} from heading text.
@@ -204,9 +205,9 @@ functio extract_anchor(textus heading) → AnchoredHeading {
     redde AnchoredHeading { title = title, anchor = anchor }
 }
 
-functio genera_heading_node(textus tag, textus heading) → doc_mod.Node {
+functio genera_heading_node(textus tag, textus heading, textus site_locale) → doc_mod.Node {
     fixum AnchoredHeading ah ← extract_anchor(heading)
-    fixum lista<doc_mod.Node> children ← genera_inline(ah.title)
+    fixum lista<doc_mod.Node> children ← genera_inline(ah.title, site_locale)
 
     si ah.anchor.longitudo() > 0 {
         redde doc_mod.element(tag, [doc_mod.attr("id", ah.anchor)], children)
@@ -269,16 +270,16 @@ functio split_table_row(textus row) → lista<textus> {
     redde cells
 }
 
-functio row_cells(textus tag, lista<textus> cells) → lista<doc_mod.Node> {
+functio row_cells(textus tag, lista<textus> cells, textus site_locale) → lista<doc_mod.Node> {
     varia lista<doc_mod.Node> nodes ← vacua
     itera ex cells fixum cell {
-        nodes.appende(doc_mod.element(tag, vacua, genera_inline(cell)))
+        nodes.appende(doc_mod.element(tag, vacua, genera_inline(cell, site_locale)))
     }
     redde nodes
 }
 
-functio table_node(lista<textus> headers, lista<doc_mod.Node> rows) → doc_mod.Node {
-    fixum doc_mod.Node head_row ← doc_mod.element("tr", vacua, row_cells("th", headers))
+functio table_node(lista<textus> headers, lista<doc_mod.Node> rows, textus site_locale) → doc_mod.Node {
+    fixum doc_mod.Node head_row ← doc_mod.element("tr", vacua, row_cells("th", headers, site_locale))
     fixum doc_mod.Node thead ← doc_mod.element("thead", vacua, [head_row])
     fixum doc_mod.Node tbody ← doc_mod.element("tbody", vacua, rows)
     varia lista<doc_mod.Node> children ← vacua
@@ -293,7 +294,7 @@ functio table_node(lista<textus> headers, lista<doc_mod.Node> rows) → doc_mod.
 # ──────────────────────────────────────────────
 
 # Convert full Markdown body to Document IR blocks.
-functio converte_nodes(textus source) → lista<doc_mod.Node> {
+functio converte_nodes(textus source, textus site_locale) → lista<doc_mod.Node> {
     fixum textus nl ← su.nl()
     fixum lista<textus> lines ← su.divide(source, nl)
     fixum numerus n ← lines.longitudo()
@@ -343,14 +344,14 @@ functio converte_nodes(textus source) → lista<doc_mod.Node> {
 
         # ── Heading h3 ──
         si su.initium_cum(line, "### ") {
-            result.appende(genera_heading_node("h3", line.sectio(4, line.longitudo())))
+            result.appende(genera_heading_node("h3", line.sectio(4, line.longitudo()), site_locale))
             i ← i + 1
             perge
         }
 
         # ── Heading h2 ──
         si su.initium_cum(line, "## ") {
-            result.appende(genera_heading_node("h2", line.sectio(3, line.longitudo())))
+            result.appende(genera_heading_node("h2", line.sectio(3, line.longitudo()), site_locale))
             i ← i + 1
             perge
         }
@@ -373,11 +374,11 @@ functio converte_nodes(textus source) → lista<doc_mod.Node> {
                         rumpe
                     }
 
-                    rows.appende(doc_mod.element("tr", vacua, row_cells("td", split_table_row(l))))
+                    rows.appende(doc_mod.element("tr", vacua, row_cells("td", split_table_row(l), site_locale)))
                     i ← i + 1
                 }
 
-                result.appende(table_node(headers, rows))
+                result.appende(table_node(headers, rows, site_locale))
                 perge
             }
         }
@@ -397,7 +398,7 @@ functio converte_nodes(textus source) → lista<doc_mod.Node> {
                 }
 
                 fixum textus item ← l.sectio(2, l.longitudo())
-                items.appende(doc_mod.element("li", vacua, genera_inline(item)))
+                items.appende(doc_mod.element("li", vacua, genera_inline(item, site_locale)))
                 i ← i + 1
             }
 
@@ -406,7 +407,7 @@ functio converte_nodes(textus source) → lista<doc_mod.Node> {
         }
 
         # ── Paragraph ──
-        varia lista<doc_mod.Node> para ← genera_inline(line)
+        varia lista<doc_mod.Node> para ← genera_inline(line, site_locale)
         i ← i + 1
 
         dum i < n {
@@ -426,7 +427,7 @@ functio converte_nodes(textus source) → lista<doc_mod.Node> {
             }
 
             para.appende(doc_mod.text(nl))
-            para ← append_nodes(para, genera_inline(l))
+            para ← append_nodes(para, genera_inline(l, site_locale))
             i ← i + 1
         }
 
@@ -439,7 +440,7 @@ functio converte_nodes(textus source) → lista<doc_mod.Node> {
 # Compatibility helper for tests and any older caller. Main page rendering uses
 # converte_nodes and passes IR directly to the shared serializer.
 functio converte(textus source) → textus {
-    redde doc_mod.node_html(doc_mod.frag(converte_nodes(source)))
+    redde doc_mod.node_html(doc_mod.frag(converte_nodes(source, "")))
 }
 
 

@@ -15,7 +15,8 @@ genus Pagina {
     lista<fence_mod.Fence> fences
     lista<anchor_mod.Heading> headings
     lista<textus> sources
-    textus locale
+    textus site_locale
+    textus reader_locale
 }
 
 # The site manifest describes every page.
@@ -27,7 +28,7 @@ genus SiteManifest {
 }
 
 # Build a Pagina from raw Markdown source.
-functio aedifica_paginam(textus iter, textus source, textus locale) → Pagina {
+functio aedifica_paginam(textus iter, textus source, textus site_locale, textus reader_locale) → Pagina {
     fixum fm.Split split ← fm.divide(source)
     fixum textus titulus ← field_vale(split.fields, "title", iter)
     fixum textus section ← field_vale(split.fields, "section", "misc")
@@ -35,7 +36,7 @@ functio aedifica_paginam(textus iter, textus source, textus locale) → Pagina {
     fixum lista<anchor_mod.Heading> headings ← anchor_mod.extract(split.body)
     fixum lista<textus> sources ← field_lista(split.fields, "sources")
 
-    redde Pagina { iter = iter, titulus = titulus, section = section, positio = 0, corpus = split.body, metadata = split.fields, fences = fences, headings = headings, sources = sources, locale = locale }
+    redde Pagina { iter = iter, titulus = titulus, section = section, positio = 0, corpus = split.body, metadata = split.fields, fences = fences, headings = headings, sources = sources, site_locale = site_locale, reader_locale = reader_locale }
 }
 
 # Get a string value from frontmatter, with fallback.

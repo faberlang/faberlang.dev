@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types. Agent-readable docs, install, and examples."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Reader locale — Faber"><meta property="og:description" content="Faber programming language — package-oriented, Latin vocabulary, type-first static types."><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><title>Reader locale — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><link rel="canonical" href="https://faberlang.dev/en-US/features/reader-locale.html"></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><span class="lbl">Rendering</span><span class="locbtns">en-US</span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Get started</div><ul class="nav"><li><a href="/en-US/start/install.html">Install &amp; download</a></li><li><a href="/en-US/history/releases.html">Releases</a></li><li><a href="/en-US/start/hello.html">Hello</a></li><li><a href="/en-US/start/commands.html">Commands</a></li><li><a href="/en-US/start/projects.html">Projects</a></li><li><a href="/en-US/start/examples.html">Examples</a></li><li><a href="/en-US/start/">Quick tour</a></li></ul><div class="side-h">Documentation</div><ul class="nav"><li><a href="/en-US/">Overview</a></li><li><a href="/en-US/features/" class="active">Features</a></li><li><a href="/en-US/syntax/">Syntax</a></li><li><a href="/en-US/tooling/">Tooling</a></li><li><a href="/en-US/ecosystem/">Ecosystem</a></li><li><a href="/en-US/corpus/">Corpus</a></li><li><a href="/en-US/references/">References</a></li><li><a href="/en-US/history/">History</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/en-US/history/releases.html">All releases</a></li><li><a href="https://github.com/faberlang">GitHub org</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Reader locale</h1><div class="content"><p>Reader locale is Faber's system for rendering source code, compiler diagnostics,
+and language keywords in the reader's human language — without forking the
+semantics. A Thai programmer can read and write Faber source with Thai keywords,
+receive compiler errors in Thai, and collaborate through the same HIR as a Latin
+or Chinese user. The mechanism that localises code from Latin to Thai is the
+same mechanism that emits code to Rust: <code>HIR → surface</code> — neither is
+privileged.</p><h2 id="problem">Problem</h2><p>Large language models have localised the <strong>conversation</strong> around programming —
+a Thai computer scientist can ask an LLM for help in Thai — but not the durable
+<strong>artifact</strong>. The generated code, APIs, compiler errors, and documentation
+remain English-shaped. English proficiency becomes a gate to computer science,
+not merely to conversation.</p><p>Reader locale is the design response: the language a human uses to <em>understand</em>
+Faber — source, diagnostics, and optionally stdlib spellings — without English as
+a prerequisite. It is not application internationalisation (complete string-matrix
+coverage). It is reader dialect support: opt-in, partial packs over a semantic core
+that does not fork.</p><p>&gt; <strong>Product thesis:</strong> English should not be the required review language for
+&gt; software intent. LLMs have localised the conversation around programming;
+&gt; reader locale localises the durable artifact.</p><h2 id="how">How it works</h2><p>A reader-locale pack maps Faber keywords, primitive type spellings, and
+diagnostic templates into a target language. Packs are TOML files with three
+tables:</p><ul><li><code>[keywords]</code> — maps keyword names to their localised spellings</li><li><code>[types]</code> — maps primitive type names to localised spellings</li><li><code>[diagnostics.*]</code> — maps diagnostic codes to localised message templates</li><li><code>[llm]</code> — system prompt snippets and exemplars for LLM code generation</li></ul><p>The compiler validates packs against a generated Latin scaffold — every keyword
+and type must have a defined spelling or explicitly inherit from Latin.
+Missing rows produce visible fallback rather than silent gaps.</p><p>Select a locale at the command line or in <code>faber.toml</code>:</p><pre class="faber-code"><code class="lang-text">faber check --reader-locale th-TH program.fab</code></pre><pre class="faber-code"><code class="lang-toml"># faber.toml
+[reader]
+locale = &quot;zh-Hans&quot;</code></pre><h3 id="what-localises">What localises and what does not</h3><table><thead><tr><th>Layer</th><th>In the HIR?</th><th>Behaviour</th></tr></thead><tbody><tr><td>Keywords, types, paired phrases</td><td>Yes</td><td>Lossless across all renderings</td></tr><tr><td>Glyphs <code>← → ∴ ≡ ∪ ⇥</code></td><td>Yes (invariant)</td><td>Identical in every rendering</td></tr><tr><td>Type-first structure</td><td>Yes</td><td>Identical in every rendering</td></tr><tr><td>Numerals</td><td>—</td><td>ASCII only in all locales</td></tr><tr><td>Comments</td><td>No</td><td>Out of compiler scope; LLM-mediated, opt-in</td></tr><tr><td>Identifier names</td><td>No</td><td>Preserved byte-for-byte</td></tr><tr><td>Stdlib spellings</td><td>No</td><td>Per-locale overlay</td></tr></tbody></table><p>The critical architectural guarantee: any locale surface can become any other,
+including Latin, at any time. A localised Faber file is never a trap because
+it is never the only form the code can take. <code>faber format --canonical</code>
+is exactly <code>faber format --reader-locale=la</code>.</p><h2 id="locales">Shipped packs</h2><p>Seven packs ship with Radix today:</p><table><thead><tr><th>Code</th><th>Language</th><th>Script</th><th>Status</th></tr></thead><tbody><tr><td><code>la</code></td><td>Latina (Latin)</td><td>Latin</td><td><strong>Canonical</strong></td></tr><tr><td><code>th-TH</code></td><td>ไทย</td><td>Thai</td><td><strong>Reference proof</strong></td></tr><tr><td><code>zh-Hans</code></td><td>简体中文</td><td>Simplified Chinese</td><td>Coverage proof</td></tr><tr><td><code>zh-Hant</code></td><td>繁體中文</td><td>Traditional Chinese</td><td>Coverage proof</td></tr><tr><td><code>ar</code></td><td>العربية</td><td>Arabic</td><td>Coverage proof</td></tr><tr><td><code>hi</code></td><td>हिन्दी</td><td>Devanagari</td><td>Coverage proof</td></tr><tr><td><code>vi</code></td><td>Tiếng Việt</td><td>Vietnamese (Latin)</td><td>Coverage proof</td></tr></tbody></table><p>The five reference locales are chosen for **collective architectural
+stress** — together they force every Unicode and emission problem the substrate
+must survive. Four use non-Latin scripts; Vietnamese is the Latin-script
+control case:</p><table><thead><tr><th>Locale</th><th>Access</th><th>Architectural stress</th></tr></thead><tbody><tr><td><code>th-TH</code></td><td>High</td><td>Spaceless script — the tokeniser stress test</td></tr><tr><td><code>zh-Hans</code> / <code>zh-Hant</code></td><td>Very high</td><td>Paired keywords; sibling pack inheritance; NFKC width collapse</td></tr><tr><td><code>ar</code></td><td>High</td><td>Right-to-left; bidi isolation in diagnostics</td></tr><tr><td><code>hi</code></td><td>Very high</td><td>Matra/virama clusters; Indic numerals</td></tr><tr><td><code>vi</code></td><td>High</td><td>Heavy diacritics on Latin script; NFKC edge cases</td></tr></tbody></table><p><em>The reference set is chosen for architectural coverage, not population. Population alone would prove nothing the substrate did not already handle.</em></p><h2 id="examples">Localised source examples</h2><p>Each of the six non-canonical locales has a complete Faber package under
+<code>examples/reader-locale/</code> with localised source, diagnostic test
+cases, and a <code>faber.toml</code> manifest. The same <code>greet</code>
+program rendered across all shipped locales:</p><p><strong>Latin</strong> <code>la</code> — <em>canonical</em></p><pre class="faber-code"><code class="lang-faber">functio salve(textus nomen) → textus {
+    fixum textus msg ← &quot;Salve, §!&quot;(nomen)
+    redde msg
+}
+
+incipit {
+    fixum textus m ← salve(&quot;munde&quot;)
+    nota m
+}</code></pre><p>The canonical rendering. <code>faber format --canonical</code> is exactly
+<code>faber format --reader-locale=la</code>. Latin keywords map to themselves;
+type names are the canonical spellings.</p><p><strong>ไทย</strong> <code>th-TH</code> — <em>reference proof</em></p><pre class="faber-code"><code class="lang-text">ฟังก์ชัน salve(ข้อความ nomen) → ข้อความ {
+    ค่าคงที่ ข้อความ msg ← &quot;Salve, §!&quot;(nomen)
+    คืนค่า msg
+}
+
+เริ่มต้น {
+    ค่าคงที่ ข้อความ m ← salve(&quot;มุนเด&quot;)
+    แจ้ง m
+}</code></pre><p>The access-wedge proof. Thai is a spaceless script — no inter-word boundaries —
+making it the tokeniser stress test and the original architectural driver for
+the reader-locale system. Every token boundary must be resolved by the lexer
+through keyword matching alone.</p><p><strong>简体中文</strong> <code>zh-Hans</code></p><pre class="faber-code"><code class="lang-text">函数 问候(文本 名字) → 文本 {
+    常量 文本 问候语 ← &quot;你好，§!&quot;(名字)
+    返回 问候语
+}
+
+入口 {
+    常量 文本 消息 ← 问候(&quot;世界&quot;)
+    显示 消息
+}</code></pre><p>Paired keywords (如果/否则 for si/secus) requiring pack keyword groups;
+full/half-width punctuation; NFKC width collapse at lex entry. The hardest
+LLM emission case due to CJK tokeniser boundaries. A sibling pack for
+Traditional Chinese (zh-Hant) inherits and overrides zh-Hans roots.</p><p><strong>العربية</strong> <code>ar</code></p><pre class="faber-code"><code class="lang-text">دالة salve(نص nomen) → نص {
+    ثابت نص msg ← &quot;مرحبا، §!&quot;(nomen)
+    أعد msg
+}
+
+بداية {
+    ثابت نص m ← salve(&quot;عالم&quot;)
+    اعرض m
+}</code></pre><p>Right-to-left script embedded inside a logical-order LTR code block. Keywords
+are wrapped in <code>&lt;bdi&gt;</code> (bidirectional isolation) in the
+compiler's HTML diagnostic output to prevent RFO (right-follows-left)
+distortion. The raw source uses Arabic script in logical order; the display
+layer handles bidi presentation.</p><p><strong>हिन्दी</strong> <code>hi</code></p><pre class="faber-code"><code class="lang-text">फलन salve(पाठ nomen) → पाठ {
+    स्थिर पाठ msg ← &quot;Salve, §!&quot;(nomen)
+    लौटा msg
+}
+
+आरंभ {
+    स्थिर पाठ m ← salve(&quot;जगत&quot;)
+    दिखा m
+}</code></pre><p>Devanagari script with matra/virama consonant clusters. Proves the path for
+the wider Indic family — Bengali, Tamil, Telugu inherit the same shaping
+infrastructure — though pack authoring for each remains separate work.
+Indic numeral glyphs (०-९) are not accepted in numeric literals; ASCII
+digits are preserved across all locales.</p><p><strong>Tiếng Việt</strong> <code>vi</code></p><pre class="faber-code"><code class="lang-text">hàm chào(vănbản tên) → vănbản {
+    hằng vănbản lời_chào ← &quot;Xin chào, §!&quot;(tên)
+    trả lời_chào
+}
+
+bắtđầu {
+    hằng vănbản thông_điệp ← chào(&quot;thế giới&quot;)
+    in thông_điệp
+}</code></pre><p>The control case: Latin-script but not English. Heavy diacritic load (ế, ệ, ả)
+stresses NFKC edge cases in the lexer. Prevents an architecture that works on
+exotic scripts but is unproven on Latin-with-diacritics. Identifiers use
+Vietnamese words (chào, tên, lời_chào, thông_điệp), preserved byte-for-byte
+by the compiler.</p><p>&gt; The glyphs (<code>← → ∴ ≡ ∪ ⇥</code>),
+&gt; structural positions, and identifier names are <strong>identical</strong> across all six
+&gt; renderings above. Only the keywords and type names change. The HIR is exactly
+&gt; the same program — the compiler treats all six as equivalent. Rendering Faber
+&gt; to Thai is the same compiler operation as rendering it to Rust:
+&gt; <code>HIR → surface</code>, with neither privileged.</p><h2 id="diagnostics">Localised diagnostics</h2><p>Diagnostics are <strong>structured facts before prose</strong>. Each diagnostic carries a
+stable code (<code>LEX###</code>, <code>PARSE###</code>, <code>SEM###</code>,
+<code>WARN###</code>) and named arguments; the pack owns the rendered template
+text. This means the diagnostic renderer can emit messages in any locale without
+changing the diagnostic infrastructure.</p><p>The reader-locale example packages include diagnostic test cases — type mismatches,
+undefined variables, non-ASCII numbers — proving the full pipeline is locale-aware:</p><ul><li><code>examples/reader-locale/vi/src/type-mismatch.fab</code></li><li><code>examples/reader-locale/vi/src/undefined-variable.fab</code></li><li><code>examples/reader-locale/vi/src/non-ascii-number.fab</code></li><li><code>examples/reader-locale/vi/src/keyword-suggestion.fab</code></li><li><code>examples/reader-locale/vi/src/keyword-edit-distance.fab</code></li></ul><p>Bidi isolation is built in: Arabic keywords inside logical-order LTR code blocks
+are wrapped in <code>&lt;bdi&gt;</code> elements in HTML output, preventing the
+RFO (right-follows-left) distortion that would otherwise make RTL runs unreadable.</p><h2 id="status">Status</h2><table><thead><tr><th>Layer</th><th>Status</th></tr></thead><tbody><tr><td>Pack schema, aliases, inheritance, validation, diagnostics, LLM artifacts</td><td><strong>Shipped</strong></td></tr><tr><td>Pack-aware lexing, type resolution, manifest/CLI selection, visible fallback</td><td><strong>Shipped</strong></td></tr><tr><td>Pack-owned diagnostic rendering, <code>faber explain</code>, bidi-isolated display</td><td><strong>Shipped</strong></td></tr><tr><td>Canonical Faber formatting</td><td><strong>Shipped</strong></td></tr><tr><td>Localised Faber re-emission (<code>format --reader-locale</code>)</td><td>Partial</td></tr><tr><td>Stdlib gloss overlays, measured LLM emission fidelity, complete locale coverage</td><td>Deferred</td></tr><tr><td>Multilingual documentation generation</td><td>Proposed</td></tr></tbody></table><p>The substrate prerequisite — NFKC normalisation at lex entry — has landed.
+Keyword tables, diagnostic named-args, the renderer, and pack delivery are
+shipped. The north-star layers (localised re-emission, stdlib glosses, LLM
+emission benchmarks, generated multilingual docs) remain explicitly partial
+or deferred.</p><h2 id="references">References</h2><p>1. <code>radix/docs/design/reader-locale.md</code> — full design document (69 KB)
+2. <code>examples/reader-locale/</code> — 6 locale packages with localised source
+3. <code>stdlib/reader/*/pack.toml</code> — 7 installed pack definitions
+4. <code>radix/crates/radix/src/reader_locale.rs</code> — runtime implementation
+5. <code>radix/docs/design/faber-canonical-surface.md</code> — canonical mode and <code>faber format</code>
+6. <code>radix/docs/factory/lex-nfkc-normalization/</code> — NFKC prerequisite delivery</p></div></main></div></body></html>

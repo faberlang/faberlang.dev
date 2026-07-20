@@ -10,23 +10,27 @@ the live website at https://faberlang.dev.
 
 ```text
 faberlang.dev/
-  src/en-US/               Markdown content pages (authored HTML docs)
-    start/                 Install, quick tour, examples
-    syntax/ features/ tooling/ ecosystem/ references/ history/
+  src/en-US/               English Markdown (sole prose authority)
+  src/{locale}/            Per-locale Markdown (full-file copies; partial OK)
   static/                  Machine surfaces copied into dist/ as-is
     llms.txt               Agent index (start here for models)
     llms-full.txt          Expanded agent map
     agents/index.md        Agent learning path
     .well-known/agent-skills/  Skill catalog + SKILL.md guides
   generator/               Speculum site generator (Faber → Rust binary)
+    locales.toml           Locale registry (reader_locale, native names)
     src/                   Faber modules
     www/speculum.css       Shared stylesheet (single source of truth)
-    scripts/build-site.sh  Full site render + static copy
+    scripts/build-site.sh  Full site render + redirects + gates
     scripts/render.sh      Single-page render wrapper
     scripts/validate-fences.sh  CI fence validator
     faber.toml             Package config
   dist/                    Committed static site (GitHub Pages artifact root)
+    en-US/…                English content (and all locales under {locale}/)
+    index.html             Interim redirect → /en-US/ (portal is Phase 2)
+    start/… etc.           Meta-refresh stubs → /en-US/… for old root URLs
   docs/factory/
+    multilingual-site/     Stages 6–7 factory goal + delivery
     site-implementation/CAMPAIGN.md  Campaign stages and gate status
   CONTENT-PLAN.md          Architecture: generated vs authored content
   AGENTS.md                This file
@@ -73,12 +77,18 @@ assets/
 The site is generated from Markdown sources through the Speculum generator.
 The deploy pipeline is:
 
-1. **Local render:** `generator/scripts/build-site.sh` renders all `.md`
-   files in `src/en-US/` to `dist/` as static HTML + CSS
+1. **Local render:** `generator/scripts/build-site.sh` renders every
+   `src/{locale}/` tree to `dist/{locale}/`, writes root meta-refresh
+   stubs for retired English-at-root paths, and runs gates
 2. **Commit:** `dist/` is committed to the repo (the generator requires
    the Faber compiler, which is not available in CI)
 3. **Deploy:** Push to `main` triggers `.github/workflows/deploy-pages.yml`,
    which uploads `dist/` as a GitHub Pages artifact and deploys it
+
+**URL scheme (Phase 1 / Decision 18a):** content lives at `/{locale}/…`
+including English (`/en-US/…`). Root `/` currently redirects to `/en-US/`
+until the language portal ships (Phase 2). Agent surfaces (`/llms.txt`,
+`/agents/`, `/.well-known/`) stay locale-less at the site root.
 
 **To update the live site after content changes:**
 
@@ -115,8 +125,8 @@ binary. It converts Markdown → HTML with:
 # Full site build (renders all pages + corpus + locales + gates)
 bash generator/scripts/build-site.sh
 
-# Render a single page
-generator/scripts/render.sh src/en-US/syntax/types.md la /speculum.css output.html
+# Render a single page (site_locale, reader_locale)
+generator/scripts/render.sh src/en-US/syntax/types.md en-US la /speculum.css output.html
 
 # Validate all code fences
 generator/scripts/validate-fences.sh src/en-US
