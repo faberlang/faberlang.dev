@@ -7,7 +7,7 @@ sweep overturns the result.
 |---|---|---|---|---|
 | **th-TH** | **`gpt-5.6-luna-codex`** | `deepseek-v4-pro`, `glm-5-2-zai` | P0+P1 `start/hello` blind | **locked for now** |
 | **zh-Hans** | **`glm-5-2-zai`** | `gpt-5.6-luna-codex`, `deepseek-v4-pro` | P2 `start/hello` blind | **locked for now** |
-| zh-Hant | *pending* | — | — | open |
+| **zh-Hant** | **`gpt-5.6-luna-codex`** | `deepseek-v4-pro`, `glm-5-2-zai` | P6 5-page staggered (15 agents) | **locked for now** |
 | **ar** | **`deepseek-v4-pro`** | `gpt-5.6-luna-codex`, `glm-5-2-zai` | P3 5-page start packet (20 agents) | **locked for now** |
 | **hi** | **`gpt-5.6-luna-codex`** | `deepseek-v4-pro`, `glm-5-2-zai` | P4 5-page staggered (20 agents) | **locked for now** |
 | **vi** | **`gpt-5.6-luna-codex`** | `glm-5-2-zai`, `deepseek-v4-pro` | P5 5-page staggered (15 agents; Grok cut) | **locked for now** |
