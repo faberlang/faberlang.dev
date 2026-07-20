@@ -1,0 +1,38 @@
+{
+  "locale": "ar",
+  "packet": [
+    "start/hello.md",
+    "start/commands.md",
+    "start/examples.md",
+    "start/projects.md",
+    "start/index.md"
+  ],
+  "models": [
+    "gpt-5.6-luna-codex",
+    "deepseek-v4-pro",
+    "glm-5-2-zai",
+    "grok-4.5"
+  ],
+  "jobs": [
+    {"id": "019f8057-e504-7491-8758-f6f8b1f5a02a", "model": "gpt-5.6-luna-codex", "page": "start-hello"},
+    {"id": "019f8057-e504-7491-8758-f705ac0e3bdc", "model": "gpt-5.6-luna-codex", "page": "start-commands"},
+    {"id": "019f8057-e504-7491-8758-f71c9d7c6282", "model": "gpt-5.6-luna-codex", "page": "start-examples"},
+    {"id": "019f8057-e504-7491-8758-f727464f205b", "model": "gpt-5.6-luna-codex", "page": "start-projects"},
+    {"id": "019f8057-e504-7491-8758-f73932adead9", "model": "gpt-5.6-luna-codex", "page": "start-index"},
+    {"id": "019f8057-e504-7491-8758-f74b54583bfb", "model": "deepseek-v4-pro", "page": "start-hello"},
+    {"id": "019f8057-e505-7ed2-8d75-7a635b643b86", "model": "deepseek-v4-pro", "page": "start-commands"},
+    {"id": "019f8057-e505-7ed2-8d75-7a76cb886241", "model": "deepseek-v4-pro", "page": "start-examples"},
+    {"id": "019f8057-e505-7ed2-8d75-7a8216b0e065", "model": "deepseek-v4-pro", "page": "start-projects"},
+    {"id": "019f8057-e505-7ed2-8d75-7a9d829a61f9", "model": "deepseek-v4-pro", "page": "start-index"},
+    {"id": "019f8057-e505-7ed2-8d75-7aa3b177a737", "model": "glm-5-2-zai", "page": "start-hello"},
+    {"id": "019f8057-e505-7ed2-8d75-7abacb37471b", "model": "glm-5-2-zai", "page": "start-commands"},
+    {"id": "019f8057-e505-7ed2-8d75-7ac4d33ce2cf", "model": "glm-5-2-zai", "page": "start-examples"},
+    {"id": "019f8057-e505-7ed2-8d75-7adea3b716b3", "model": "glm-5-2-zai", "page": "start-projects"},
+    {"id": "019f8057-e505-7ed2-8d75-7ae9298fc594", "model": "glm-5-2-zai", "page": "start-index"},
+    {"id": "019f8057-e505-7ed2-8d75-7afb3538b678", "model": "grok-4.5", "page": "start-hello"},
+    {"id": "019f8057-e505-7ed2-8d75-7b09eda3454a", "model": "grok-4.5", "page": "start-commands"},
+    {"id": "019f8057-e505-7ed2-8d75-7b124a008a2d", "model": "grok-4.5", "page": "start-examples"},
+    {"id": "019f8057-e505-7ed2-8d75-7b253d50a3aa", "model": "grok-4.5", "page": "start-projects"},
+    {"id": "019f8057-e505-7ed2-8d75-7b31db4c816c", "model": "grok-4.5", "page": "start-index"}
+  ]
+}

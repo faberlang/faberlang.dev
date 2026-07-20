@@ -1,0 +1,142 @@
+[
+  {
+    "model": "gpt-5.6-luna-codex",
+    "page": "start-hello.md",
+    "prompt": "prompts/ar/start-hello.md.blind.md",
+    "out": "outputs/ar/gpt-5.6-luna-codex__ar__start-hello.md",
+    "id": "gpt-5.6-luna-codex__start-hello.md"
+  },
+  {
+    "model": "gpt-5.6-luna-codex",
+    "page": "start-commands.md",
+    "prompt": "prompts/ar/start-commands.md.blind.md",
+    "out": "outputs/ar/gpt-5.6-luna-codex__ar__start-commands.md",
+    "id": "gpt-5.6-luna-codex__start-commands.md"
+  },
+  {
+    "model": "gpt-5.6-luna-codex",
+    "page": "start-examples.md",
+    "prompt": "prompts/ar/start-examples.md.blind.md",
+    "out": "outputs/ar/gpt-5.6-luna-codex__ar__start-examples.md",
+    "id": "gpt-5.6-luna-codex__start-examples.md"
+  },
+  {
+    "model": "gpt-5.6-luna-codex",
+    "page": "start-projects.md",
+    "prompt": "prompts/ar/start-projects.md.blind.md",
+    "out": "outputs/ar/gpt-5.6-luna-codex__ar__start-projects.md",
+    "id": "gpt-5.6-luna-codex__start-projects.md"
+  },
+  {
+    "model": "gpt-5.6-luna-codex",
+    "page": "start-index.md",
+    "prompt": "prompts/ar/start-index.md.blind.md",
+    "out": "outputs/ar/gpt-5.6-luna-codex__ar__start-index.md",
+    "id": "gpt-5.6-luna-codex__start-index.md"
+  },
+  {
+    "model": "deepseek-v4-pro",
+    "page": "start-hello.md",
+    "prompt": "prompts/ar/start-hello.md.blind.md",
+    "out": "outputs/ar/deepseek-v4-pro__ar__start-hello.md",
+    "id": "deepseek-v4-pro__start-hello.md"
+  },
+  {
+    "model": "deepseek-v4-pro",
+    "page": "start-commands.md",
+    "prompt": "prompts/ar/start-commands.md.blind.md",
+    "out": "outputs/ar/deepseek-v4-pro__ar__start-commands.md",
+    "id": "deepseek-v4-pro__start-commands.md"
+  },
+  {
+    "model": "deepseek-v4-pro",
+    "page": "start-examples.md",
+    "prompt": "prompts/ar/start-examples.md.blind.md",
+    "out": "outputs/ar/deepseek-v4-pro__ar__start-examples.md",
+    "id": "deepseek-v4-pro__start-examples.md"
+  },
+  {
+    "model": "deepseek-v4-pro",
+    "page": "start-projects.md",
+    "prompt": "prompts/ar/start-projects.md.blind.md",
+    "out": "outputs/ar/deepseek-v4-pro__ar__start-projects.md",
+    "id": "deepseek-v4-pro__start-projects.md"
+  },
+  {
+    "model": "deepseek-v4-pro",
+    "page": "start-index.md",
+    "prompt": "prompts/ar/start-index.md.blind.md",
+    "out": "outputs/ar/deepseek-v4-pro__ar__start-index.md",
+    "id": "deepseek-v4-pro__start-index.md"
+  },
+  {
+    "model": "glm-5-2-zai",
+    "page": "start-hello.md",
+    "prompt": "prompts/ar/start-hello.md.blind.md",
+    "out": "outputs/ar/glm-5-2-zai__ar__start-hello.md",
+    "id": "glm-5-2-zai__start-hello.md"
+  },
+  {
+    "model": "glm-5-2-zai",
+    "page": "start-commands.md",
+    "prompt": "prompts/ar/start-commands.md.blind.md",
+    "out": "outputs/ar/glm-5-2-zai__ar__start-commands.md",
+    "id": "glm-5-2-zai__start-commands.md"
+  },
+  {
+    "model": "glm-5-2-zai",
+    "page": "start-examples.md",
+    "prompt": "prompts/ar/start-examples.md.blind.md",
+    "out": "outputs/ar/glm-5-2-zai__ar__start-examples.md",
+    "id": "glm-5-2-zai__start-examples.md"
+  },
+  {
+    "model": "glm-5-2-zai",
+    "page": "start-projects.md",
+    "prompt": "prompts/ar/start-projects.md.blind.md",
+    "out": "outputs/ar/glm-5-2-zai__ar__start-projects.md",
+    "id": "glm-5-2-zai__start-projects.md"
+  },
+  {
+    "model": "glm-5-2-zai",
+    "page": "start-index.md",
+    "prompt": "prompts/ar/start-index.md.blind.md",
+    "out": "outputs/ar/glm-5-2-zai__ar__start-index.md",
+    "id": "glm-5-2-zai__start-index.md"
+  },
+  {
+    "model": "grok-4.5",
+    "page": "start-hello.md",
+    "prompt": "prompts/ar/start-hello.md.blind.md",
+    "out": "outputs/ar/grok-4.5__ar__start-hello.md",
+    "id": "grok-4.5__start-hello.md"
+  },
+  {
+    "model": "grok-4.5",
+    "page": "start-commands.md",
+    "prompt": "prompts/ar/start-commands.md.blind.md",
+    "out": "outputs/ar/grok-4.5__ar__start-commands.md",
+    "id": "grok-4.5__start-commands.md"
+  },
+  {
+    "model": "grok-4.5",
+    "page": "start-examples.md",
+    "prompt": "prompts/ar/start-examples.md.blind.md",
+    "out": "outputs/ar/grok-4.5__ar__start-examples.md",
+    "id": "grok-4.5__start-examples.md"
+  },
+  {
+    "model": "grok-4.5",
+    "page": "start-projects.md",
+    "prompt": "prompts/ar/start-projects.md.blind.md",
+    "out": "outputs/ar/grok-4.5__ar__start-projects.md",
+    "id": "grok-4.5__start-projects.md"
+  },
+  {
+    "model": "grok-4.5",
+    "page": "start-index.md",
+    "prompt": "prompts/ar/start-index.md.blind.md",
+    "out": "outputs/ar/grok-4.5__ar__start-index.md",
+    "id": "grok-4.5__start-index.md"
+  }
+]

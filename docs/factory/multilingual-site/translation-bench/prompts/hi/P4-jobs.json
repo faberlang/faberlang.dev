@@ -1,0 +1,105 @@
+{
+  "locale": "hi",
+  "jobs": [
+    {
+      "model": "gpt-5.6-luna-codex",
+      "page": "start-hello",
+      "status": "pending"
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "page": "start-hello",
+      "status": "pending"
+    },
+    {
+      "model": "glm-5-2-zai",
+      "page": "start-hello",
+      "status": "pending"
+    },
+    {
+      "model": "grok-4.5",
+      "page": "start-hello",
+      "status": "pending"
+    },
+    {
+      "model": "gpt-5.6-luna-codex",
+      "page": "start-commands",
+      "status": "pending"
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "page": "start-commands",
+      "status": "pending"
+    },
+    {
+      "model": "glm-5-2-zai",
+      "page": "start-commands",
+      "status": "pending"
+    },
+    {
+      "model": "grok-4.5",
+      "page": "start-commands",
+      "status": "pending"
+    },
+    {
+      "model": "gpt-5.6-luna-codex",
+      "page": "start-examples",
+      "status": "pending"
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "page": "start-examples",
+      "status": "pending"
+    },
+    {
+      "model": "glm-5-2-zai",
+      "page": "start-examples",
+      "status": "pending"
+    },
+    {
+      "model": "grok-4.5",
+      "page": "start-examples",
+      "status": "pending"
+    },
+    {
+      "model": "gpt-5.6-luna-codex",
+      "page": "start-projects",
+      "status": "pending"
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "page": "start-projects",
+      "status": "pending"
+    },
+    {
+      "model": "glm-5-2-zai",
+      "page": "start-projects",
+      "status": "pending"
+    },
+    {
+      "model": "grok-4.5",
+      "page": "start-projects",
+      "status": "pending"
+    },
+    {
+      "model": "gpt-5.6-luna-codex",
+      "page": "start-index",
+      "status": "pending"
+    },
+    {
+      "model": "deepseek-v4-pro",
+      "page": "start-index",
+      "status": "pending"
+    },
+    {
+      "model": "glm-5-2-zai",
+      "page": "start-index",
+      "status": "pending"
+    },
+    {
+      "model": "grok-4.5",
+      "page": "start-index",
+      "status": "pending"
+    }
+  ]
+}
