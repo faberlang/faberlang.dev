@@ -3,6 +3,7 @@
   "description": "Focused agent guides for the Faber programming language: install, language shape, packages, real-world examples, and corpus lookup.",
   "version": "1.1.1",
   "homepage": "https://faberlang.dev",
+  "docs_home": "https://faberlang.dev/en-US/",
   "agent_index": "https://faberlang.dev/llms.txt",
   "agent_guide": "https://faberlang.dev/agents/index.md",
   "skills": [

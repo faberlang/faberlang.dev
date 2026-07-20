@@ -107,12 +107,14 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
 
     write_section(lines, "Start here")
     lines.extend([
-        "1. Treat https://faberlang.dev as the documentation host.",
-        "2. Read this file before editing Faber source or scaffolding packages.",
-        "3. Use corpus term links for exact keyword, syntax, alias, and relation data.",
-        "4. Read https://faberlang.dev/agents/index.md for the agent learning path.",
-        "5. Read https://faberlang.dev/llms-full.txt when you need the expanded map.",
-        "6. Choose focused skills from https://faberlang.dev/.well-known/agent-skills/index.json.",
+        "1. Host: https://faberlang.dev — `/` is the language portal (locale chooser).",
+        "2. Full authored HTML docs: https://faberlang.dev/en-US/ (prefer this unless the user asked for another locale).",
+        "3. Read this file before editing Faber source or scaffolding packages.",
+        "4. Use corpus term links below for exact keyword, syntax, alias, and relation data.",
+        "5. Read https://faberlang.dev/agents/index.md for the agent learning path.",
+        "6. Read https://faberlang.dev/llms-full.txt when you need the expanded map.",
+        "7. Choose focused skills from https://faberlang.dev/.well-known/agent-skills/index.json.",
+        "8. Other site locales (`/th-TH/`, `/zh-Hans/`, …) ship packs + corpus; prose may be partial. Thai pilot: index + start/*.",
     ])
 
     write_section(lines, "Install")
@@ -189,7 +191,8 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
 
     write_section(lines, "Documentation map")
     lines.extend([
-        "- https://faberlang.dev/en-US/ — overview + download",
+        "- https://faberlang.dev/ — language portal (pick a site locale)",
+        "- https://faberlang.dev/en-US/ — English overview + download (canonical full tree)",
         "- https://faberlang.dev/en-US/start/ — quick tour",
         "- https://faberlang.dev/en-US/features/ — locales, lanes, glyphs, principles",
         "- https://faberlang.dev/en-US/syntax/ — language reference",
@@ -198,6 +201,7 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
         "- https://faberlang.dev/en-US/corpus/ — generated keyword / construct pages",
         "- https://faberlang.dev/en-US/references/ — EBNF, design docs, repos",
         "- https://faberlang.dev/en-US/history/ — timeline",
+        "- Prefer /en-US/… over bare /start/… or /syntax/… (those are redirect stubs).",
     ])
 
     write_section(lines, "Repositories")

@@ -10,11 +10,14 @@ Phase 1 updates:
   - en-US pages must NOT be required to have notices.
 
 Checks:
-  1. No en-US page links to other locale dirs (/ar/, /th-TH/, …).
-  2. llms.txt and llms-full.txt don't expose locale-specific paths
-     (en-US paths are expected/OK).
+  1. No en-US page links to other locale dirs (/ar/, /th-TH/, …)
+     in HTML hrefs (sidebar/content accidental leakage).
+  2. llms.txt / llms-full.txt may document public locales (portal + packs).
+     This check only flags accidental en-US→other-locale *href* patterns
+     if those files contain HTML (they are plain text today — always clean).
   3. No factory/internal/private files in dist/.
-  4. Non-en-US locale pages have a visible "Translation status" notice.
+  4. Non-en-US locale pages have a visible "Translation status" notice
+     unless the body is non-Latin translated prose (pilot).
 
 Usage:
     check-leakage-gate.py [dist_dir]
@@ -82,9 +85,14 @@ def check_english_to_locale(dist: Path):
 
 
 def check_llms_locale_refs(dist: Path):
-    """Check 2: llms.txt / llms-full.txt don't reference non-en-US locale paths.
+    """Check 2: agent machine files are allowed to document public locales.
 
-    en-US paths in llms files are OK.
+    After Decision 18 + open crawl, `/llms.txt` and `/llms-full.txt` should
+    describe the portal and other site locales honestly. Do not treat a
+    prose mention of `/th-TH/` as leakage.
+
+    Still flag accidental HTML hrefs from these files to non-en locales if
+    the files ever gain markup (defensive; plain text always returns clean).
     """
     hits = []
     for txt in ["llms.txt", "llms-full.txt"]:
@@ -92,9 +100,12 @@ def check_llms_locale_refs(dist: Path):
         if not path.exists():
             continue
         content = path.read_text(encoding="utf-8")
-        for loc in NON_EN_LOCALES:
-            if re.search(rf'/{re.escape(loc)}/', content):
-                hits.append((txt, loc))
+        # Only HTML-style hrefs count; free-text locale paths are intentional.
+        for m in re.finditer(r'href="(/[^"]*)"', content):
+            href = m.group(1)
+            first_seg = href.lstrip("/").split("/")[0]
+            if first_seg in NON_EN_LOCALES:
+                hits.append((txt, href))
     return hits
 
 

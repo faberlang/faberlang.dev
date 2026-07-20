@@ -45,15 +45,16 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 - Inventing `?T` as the only nullability story without `∪ nihil`
 - C-style `return` keyword instead of `redde`
 
-## Canonical docs
+## Canonical docs (English tree)
 
-- Syntax hub: https://faberlang.dev/syntax/
-- Types: https://faberlang.dev/syntax/types.html
-- Functions: https://faberlang.dev/syntax/functions.html
-- Nullability: https://faberlang.dev/syntax/nullability.html
-- Glyphs: https://faberlang.dev/syntax/glyphs.html
-- Features (Latin + glyphs): https://faberlang.dev/features/latin-and-glyphs.html
-- Corpus lookup: https://faberlang.dev/corpus/
+- Syntax hub: https://faberlang.dev/en-US/syntax/
+- Types: https://faberlang.dev/en-US/syntax/types.html
+- Functions: https://faberlang.dev/en-US/syntax/functions.html
+- Nullability: https://faberlang.dev/en-US/syntax/nullability.html
+- Glyphs: https://faberlang.dev/en-US/syntax/glyphs.html
+- Features (Latin + glyphs): https://faberlang.dev/en-US/features/latin-and-glyphs.html
+- Corpus lookup: https://faberlang.dev/en-US/corpus/
+- Language portal: https://faberlang.dev/
 
 ## Related skills
 

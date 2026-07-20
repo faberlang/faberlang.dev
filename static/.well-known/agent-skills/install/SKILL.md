@@ -16,7 +16,7 @@ description: "Download and verify the current Faber CLI release for macOS arm64 
 - **Version:** 1.1.1
 - **Tag:** `faber-v1.1.1`
 - **Release page:** https://github.com/faberlang/releases/releases/tag/faber-v1.1.1
-- **Human page:** https://faberlang.dev/start/install.html
+- **Human page:** https://faberlang.dev/en-US/start/install.html
 
 ## Archives
 
@@ -56,7 +56,7 @@ faber --version
 
 ## Related
 
-- `/llms.txt`
-- `/agents/index.md`
+- https://faberlang.dev/llms.txt
+- https://faberlang.dev/agents/index.md
 - skill: `language`
 - skill: `packages`

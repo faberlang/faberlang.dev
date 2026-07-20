@@ -2,8 +2,15 @@
 
 You are reading the Markdown agent entry for **Faber**, a package-oriented
 programming language. This page is meant for AI agents and automated tools.
-Human-oriented HTML starts at https://faberlang.dev/ and
-https://faberlang.dev/start/.
+
+- **Language portal (locale chooser):** https://faberlang.dev/
+- **English documentation home:** https://faberlang.dev/en-US/
+- **Machine index:** https://faberlang.dev/llms.txt
+
+Human HTML docs live under `/{site_locale}/…`. The complete authored tree is
+`en-US`. Other locales ship reader packs and corpus; Thai (`th-TH`) has a
+pilot translated prose slice (`index` + `start/*`). Prefer `/en-US/` links
+unless the user asked for another locale.
 
 ## Mission
 
@@ -32,7 +39,7 @@ Release: https://github.com/faberlang/releases/releases/tag/faber-v1.1.1
 
 Verify the archive by comparing the first hash field from the `.sha256` file to the local archive hash. Extract `faber-v1.1.1-<target-triple>/faber`, put it on `PATH`, run `faber --version`.
 
-HTML install page: https://faberlang.dev/start/install.html
+HTML install page: https://faberlang.dev/en-US/start/install.html
 
 ## Minimum language facts
 
@@ -61,7 +68,7 @@ Repo: https://github.com/faberlang/examples
 | 4 | `coreutils` | Larger application campaign |
 | 5 | `gpu-workload` | Systems / GPU track |
 
-Site: https://faberlang.dev/start/examples.html
+Site: https://faberlang.dev/en-US/start/examples.html
 
 ## Commands you will use constantly
 
@@ -77,12 +84,14 @@ faber format <pkg>
 
 | Need | URL |
 |---|---|
-| Syntax | https://faberlang.dev/syntax/ |
-| Tooling | https://faberlang.dev/tooling/ |
-| Features | https://faberlang.dev/features/ |
-| Corpus pages | https://faberlang.dev/corpus/ |
-| Ecosystem | https://faberlang.dev/ecosystem/ |
-| EBNF | https://faberlang.dev/references/ebnf.html |
+| Portal (pick locale) | https://faberlang.dev/ |
+| English overview | https://faberlang.dev/en-US/ |
+| Syntax | https://faberlang.dev/en-US/syntax/ |
+| Tooling | https://faberlang.dev/en-US/tooling/ |
+| Features | https://faberlang.dev/en-US/features/ |
+| Corpus pages | https://faberlang.dev/en-US/corpus/ |
+| Ecosystem | https://faberlang.dev/en-US/ecosystem/ |
+| EBNF | https://faberlang.dev/en-US/references/ebnf.html |
 
 ## Skills
 
@@ -101,6 +110,8 @@ faber format <pkg>
 - Do not invent package layouts when examples already show one.
 - Do not claim Radix source is public.
 - Do not scrape only the homepage HTML when `/llms.txt` exists.
+- Do not use bare `/start/…` or `/syntax/…` paths as the canonical docs URL;
+  those are redirect stubs. Prefer `/en-US/…` (or the locale the user chose).
 
 ## Done when
 

@@ -6,6 +6,16 @@ Start with https://faberlang.dev/llms.txt if you have not already.
 Host: https://faberlang.dev
 Current CLI release: Faber 1.1.1 (tag faber-v1.1.1)
 
+## Site URL rules (read this)
+
+- `/` is the **locale-less language portal** (chooser), not the English docs home.
+- Authored HTML documentation lives under **`/en-US/…`**.
+- Other site locales (`/th-TH/`, `/zh-Hans/`, `/zh-Hant/`, `/vi/`, `/ar/`, `/hi/`)
+  ship reader packs + corpus; prose may be partial. Thai has a pilot translated
+  slice (`index` + `start/*`). Prefer `/en-US/` unless the user asked otherwise.
+- Bare paths such as `/start/install.html` are **redirect stubs** to `/en-US/…`.
+  Cite the `/en-US/…` form in agent-facing docs and skills.
+
 ## Identity
 
 - Language name: Faber (Latin "maker" / craftsman)
@@ -44,6 +54,8 @@ Release: https://github.com/faberlang/releases/releases/tag/faber-v1.1.1
 
 Verify by comparing the first hash field in the `.sha256` file to the local archive hash; the checksum line may name the original build path. Extract `faber-v1.1.1-<target-triple>/faber`; place it on PATH; run `faber --version`.
 
+Human install page: https://faberlang.dev/en-US/start/install.html
+
 ## CLI workflow
 
 ```bash
@@ -58,69 +70,76 @@ faber explain <DIAG_CODE>
 Default codegen target is Rust → native via Cargo. Generated Rust uses
 faber-runtime types where required.
 
-## HTML documentation tree
+## HTML documentation tree (English — full)
+
+### Portal and home
+- https://faberlang.dev/ — language portal (all locales)
+- https://faberlang.dev/en-US/ — English overview + download
 
 ### Get started
-- https://faberlang.dev/start/
-- https://faberlang.dev/start/install.html
-- https://faberlang.dev/start/hello.html
-- https://faberlang.dev/start/commands.html
-- https://faberlang.dev/start/projects.html
-- https://faberlang.dev/start/examples.html
+- https://faberlang.dev/en-US/start/
+- https://faberlang.dev/en-US/start/install.html
+- https://faberlang.dev/en-US/start/hello.html
+- https://faberlang.dev/en-US/start/commands.html
+- https://faberlang.dev/en-US/start/projects.html
+- https://faberlang.dev/en-US/start/examples.html
 
 ### Features
-- https://faberlang.dev/features/
-- https://faberlang.dev/features/reader-locale.html
-- https://faberlang.dev/features/compilation-lanes.html
-- https://faberlang.dev/features/latin-and-glyphs.html
-- https://faberlang.dev/features/canonical-vs-sugar.html
-- https://faberlang.dev/features/commandments.html
-- https://faberlang.dev/features/frames.html
-- https://faberlang.dev/features/testing.html
+- https://faberlang.dev/en-US/features/
+- https://faberlang.dev/en-US/features/reader-locale.html
+- https://faberlang.dev/en-US/features/compilation-lanes.html
+- https://faberlang.dev/en-US/features/latin-and-glyphs.html
+- https://faberlang.dev/en-US/features/canonical-vs-sugar.html
+- https://faberlang.dev/en-US/features/commandments.html
+- https://faberlang.dev/en-US/features/frames.html
+- https://faberlang.dev/en-US/features/testing.html
 
 ### Syntax
-- https://faberlang.dev/syntax/
-- https://faberlang.dev/syntax/types.html
-- https://faberlang.dev/syntax/variables.html
-- https://faberlang.dev/syntax/functions.html
-- https://faberlang.dev/syntax/control-flow.html
-- https://faberlang.dev/syntax/nullability.html
-- https://faberlang.dev/syntax/errors.html
-- https://faberlang.dev/syntax/generics.html
-- https://faberlang.dev/syntax/collections.html
-- https://faberlang.dev/syntax/strings.html
-- https://faberlang.dev/syntax/conversion.html
-- https://faberlang.dev/syntax/glyphs.html
+- https://faberlang.dev/en-US/syntax/
+- https://faberlang.dev/en-US/syntax/types.html
+- https://faberlang.dev/en-US/syntax/variables.html
+- https://faberlang.dev/en-US/syntax/functions.html
+- https://faberlang.dev/en-US/syntax/control-flow.html
+- https://faberlang.dev/en-US/syntax/nullability.html
+- https://faberlang.dev/en-US/syntax/errors.html
+- https://faberlang.dev/en-US/syntax/generics.html
+- https://faberlang.dev/en-US/syntax/collections.html
+- https://faberlang.dev/en-US/syntax/strings.html
+- https://faberlang.dev/en-US/syntax/conversion.html
+- https://faberlang.dev/en-US/syntax/glyphs.html
 
 ### Tooling
-- https://faberlang.dev/tooling/
-- https://faberlang.dev/tooling/faber-build-tool.html
-- https://faberlang.dev/tooling/radix-compiler.html
-- https://faberlang.dev/tooling/cista-package-manager.html
-- https://faberlang.dev/tooling/codegen-targets.html
-- https://faberlang.dev/tooling/scripting.html
-- https://faberlang.dev/tooling/performance.html
+- https://faberlang.dev/en-US/tooling/
+- https://faberlang.dev/en-US/tooling/faber-build-tool.html
+- https://faberlang.dev/en-US/tooling/radix-compiler.html
+- https://faberlang.dev/en-US/tooling/cista-package-manager.html
+- https://faberlang.dev/en-US/tooling/codegen-targets.html
+- https://faberlang.dev/en-US/tooling/scripting.html
+- https://faberlang.dev/en-US/tooling/performance.html
 
 ### Ecosystem
-- https://faberlang.dev/ecosystem/
-- https://faberlang.dev/ecosystem/norma.html
-- https://faberlang.dev/ecosystem/triga.html
-- https://faberlang.dev/ecosystem/coreutils.html
-- https://faberlang.dev/ecosystem/ai-workbench.html
-- https://faberlang.dev/ecosystem/corpus.html
-- https://faberlang.dev/ecosystem/reader-locale-packages.html
+- https://faberlang.dev/en-US/ecosystem/
+- https://faberlang.dev/en-US/ecosystem/norma.html
+- https://faberlang.dev/en-US/ecosystem/triga.html
+- https://faberlang.dev/en-US/ecosystem/coreutils.html
+- https://faberlang.dev/en-US/ecosystem/ai-workbench.html
+- https://faberlang.dev/en-US/ecosystem/corpus.html
+- https://faberlang.dev/en-US/ecosystem/reader-locale-packages.html
 
 ### Corpus (generated keyword pages)
-- Hub: https://faberlang.dev/corpus/
-- Example term: https://faberlang.dev/corpus/functio.html
-- Categories under https://faberlang.dev/corpus/category/
+- Hub: https://faberlang.dev/en-US/corpus/
+- Example term: https://faberlang.dev/en-US/corpus/functio.html
+- Category indexes (per slug, no category hub page):  
+  e.g. https://faberlang.dev/en-US/corpus/category/function.html
+- Other locales also ship corpus under `/{locale}/corpus/` (same terms, locale code)
 
 ### References & history
-- https://faberlang.dev/references/
-- https://faberlang.dev/references/ebnf.html
-- https://faberlang.dev/references/design-docs.html
-- https://faberlang.dev/references/repositories.html
-- https://faberlang.dev/history/
+- https://faberlang.dev/en-US/references/
+- https://faberlang.dev/en-US/references/ebnf.html
+- https://faberlang.dev/en-US/references/design-docs.html
+- https://faberlang.dev/en-US/references/repositories.html
+- https://faberlang.dev/en-US/history/
+- https://faberlang.dev/en-US/history/releases.html
 
 ## Machine surfaces
 
@@ -133,6 +152,8 @@ faber-runtime types where required.
 - https://faberlang.dev/.well-known/agent-skills/packages/SKILL.md
 - https://faberlang.dev/.well-known/agent-skills/examples/SKILL.md
 - https://faberlang.dev/.well-known/agent-skills/corpus/SKILL.md
+- https://faberlang.dev/robots.txt — Allow all public locales; Sitemap points at full tree
+- https://faberlang.dev/sitemap.xml
 
 ## Examples repository layout
 
@@ -179,6 +200,7 @@ https://github.com/faberlang/norma
 - Do not assume Windows prebuilts (check the release page for new targets).
 - Do not treat HTML alone as the agent contract — prefer llms.txt + skills.
 - Do not weaken package structure to "make something compile"; fix the source.
+- Do not treat bare `/start/…` paths as canonical; use `/en-US/…`.
 
 ## Contact / provenance
 
