@@ -51,9 +51,9 @@ incipit {
 }
 ```
 
-### التفرّع المُدمَج باستخدام ∴ {#compact-branch-with}
+### التفرّع المُدمَج باستخدام ergo {#compact-branch-with-ergo}
 
-يستخدم جسم التفرّع ذو العبارة الواحدة `∴` (أو الاسم المستعار `ergo`):
+يستخدم جسم التفرّع ذو العبارة الواحدة `ergo`:
 
 ```faber
 functio classify(numerus b, bivalens ready, numerus value) → numerus ∪ nihil {

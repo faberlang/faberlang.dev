@@ -45,7 +45,7 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 | `numerus a` | Kiểu trước, tên sau |
 | `→` | Kiểu trả về |
 | `∪ nihil` | Có thể là null (`T ∪ nihil`) |
-| `si … ∴` | Nhánh rút gọn |
+| `si … ergo` | Nhánh rút gọn |
 | `redde` | Trả về |
 
 ## 3. Bố cục gói {#package}

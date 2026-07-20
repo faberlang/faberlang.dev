@@ -49,9 +49,9 @@ incipit {
 }
 ```
 
-### 使用 ∴ 的精簡分支 {#compact-branch-with}
+### 使用 ergo 的精簡分支 {#compact-branch-with-ergo}
 
-單一敘述的分支主體使用 `∴`（或其別名 `ergo`）：
+單一敘述的分支主體使用 `ergo`：
 
 ```faber
 functio classify(numerus b, bivalens ready, numerus value) → numerus ∪ nihil {

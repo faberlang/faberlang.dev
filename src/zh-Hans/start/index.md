@@ -41,7 +41,7 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 | `numerus a` | 类型在前，名称在后 |
 | `→` | 返回类型 |
 | `∪ nihil` | 可空（`T ∪ nihil`） |
-| `si … ∴` | 紧凑分支 |
+| `si … ergo` | 紧凑分支 |
 | `redde` | 返回 |
 
 ## 3. 包布局 {#package}

@@ -26,7 +26,7 @@ Faber sử dụng các glyph, trong đó ký hiệu mang vai trò cấu trúc. D
 | `←` | Liên kết, gán lại và biến đổi tại thời điểm chạy |
 | `→` | Kiểu trả về của hàm |
 | `⇥` | Lối thoát thay thế — kiểu kênh lỗi hoặc phục hồi chuyển đổi nội dòng |
-| `∴` | Thân hàm rút gọn với `therefore` (`si cond ergo redde x`) |
+| `∴` | Khớp nối đóng — nối thân hàm đóng với chữ ký (`(a, b) → T ∴ a + b`) |
 
 ## Hình dạng kiểu {#type-shape}
 

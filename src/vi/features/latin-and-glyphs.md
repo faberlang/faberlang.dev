@@ -98,7 +98,7 @@ Trong khi từ vựng hành vi sử dụng các từ Latin, ý nghĩa cấu trú
 | `←` | Liên kết thời gian chạy, gán lại và biến đổi — toán tử gán duy nhất |
 | `→` | Khai báo kiểu giá trị trả về của hàm |
 | `⇥` | Lối thoát thay thế: kiểu kênh lỗi hoặc phục hồi chuyển đổi nội tuyến |
-| `∴` | Thân lệnh compact bắt đầu bằng therefore — giới thiệu thân nhánh chỉ có một câu lệnh |
+| `∴` | Khớp nối đóng — nối thân hàm đóng với chữ ký |
 
 ### Hình dạng kiểu {#type-shape}
 

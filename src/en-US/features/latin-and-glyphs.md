@@ -102,7 +102,7 @@ which human language the keywords are rendered in.
 | `←` | Runtime binding, reassignment, and mutation — the only assignment operator |
 | `→` | Function return type declaration |
 | `⇥` | Alternate exit: error-channel type or inline conversion recovery |
-| `∴` | Compact therefore body — introduces a single-statement branch body |
+| `∴` | Clausura joint — connects a closure body to its signature |
 
 ### Type shape {#type-shape}
 

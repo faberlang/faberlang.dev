@@ -44,7 +44,7 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 | `numerus a` | पहले टाइप, फिर नाम |
 | `→` | रिटर्न टाइप |
 | `∪ nihil` | Nullable (`T ∪ nihil`) |
-| `si … ∴` | संक्षिप्त शाखा |
+| `si … ergo` | संक्षिप्त शाखा |
 | `redde` | रिटर्न |
 
 ## 3. पैकेज का विन्यास {#package}

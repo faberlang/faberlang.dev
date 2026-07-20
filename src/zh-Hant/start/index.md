@@ -38,7 +38,7 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 | `numerus a` | 先寫型別，再寫名稱 |
 | `→` | 回傳型別 |
 | `∪ nihil` | 可為空（`T ∪ nihil`） |
-| `si … ∴` | 精簡分支 |
+| `si … ergo` | 精簡分支 |
 | `redde` | 回傳 |
 
 ## 3. 套件配置 {#package}

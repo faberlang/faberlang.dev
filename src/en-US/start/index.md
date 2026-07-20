@@ -38,7 +38,7 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 | `numerus a` | Type first, then name |
 | `→` | Return type |
 | `∪ nihil` | Nullable (`T ∪ nihil`) |
-| `si … ∴` | Compact branch |
+| `si … ergo` | Compact branch |
 | `redde` | Return |
 
 ## 3. Package layout {#package}

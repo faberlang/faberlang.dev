@@ -49,9 +49,9 @@ incipit {
 }
 ```
 
-### ∴ के साथ संक्षिप्त शाखा {#compact-branch-with}
+### ergo के साथ संक्षिप्त शाखा {#compact-branch-with-ergo}
 
-एकल-कथन वाली शाखा का बॉडी `∴` (या इसके उपनाम `ergo`) का उपयोग करता है:
+एकल-कथन वाली शाखा का बॉडी `ergo` का उपयोग करता है:
 
 ```faber
 functio classify(numerus b, bivalens ready, numerus value) → numerus ∪ nihil {

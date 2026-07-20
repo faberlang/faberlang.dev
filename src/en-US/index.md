@@ -131,7 +131,7 @@ The language makes three deliberate signal choices that work together:
 - **Latin behavioural words** — declarations, statements, and lifecycle:
   `functio`, `genus`, `fixum`, `redde`, `si`.
 - **Structural glyphs** — value flow and type joints: `←` (bind), `→`
-  (return type), `∴` (compact branch), `≡` (equality), `∪` (union).
+  (return type), `∴` (clausura joint), `≡` (equality), `∪` (union).
 
 The result is source with stable grammatical shape that can be reviewed,
 transformed, and lowered without losing the reader's sense of intent.

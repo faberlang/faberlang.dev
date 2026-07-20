@@ -57,7 +57,7 @@ functio duplica(numerus n) → numerus {
 ## III. Ký hiệu mang cấu trúc {#iii-glyphs-carry-structure}
 
 Ý nghĩa cấu trúc và toán tử được biểu thị bằng ký hiệu, không phải bằng từ:
-`←` cho liên kết, `→` cho kiểu trả về, `⇥` cho lối thoát khi có lỗi, `∴` cho
+`←` cho liên kết, `→` cho kiểu trả về, `⇥` cho lối thoát khi có lỗi, `ergo` cho
 thân nhánh rút gọn, `≡` cho phép bằng nhau, `∪` cho kiểu hợp. Ký hiệu mang
 tính phổ quát — chúng không bao giờ được bản địa hóa và không bao giờ đổi
 nghĩa giữa các cách hiển thị. Người đọc tiếng Thái và người đọc tiếng Pháp

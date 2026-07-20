@@ -43,7 +43,7 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 | `numerus a` | النوع أولاً، ثم الاسم |
 | `→` | نوع الإرجاع |
 | `∪ nihil` | قابل للعدم (`T ∪ nihil`) |
-| `si … ∴` | تفرع مضغوط |
+| `si … ergo` | تفرع مضغوط |
 | `redde` | إرجاع |
 
 ## ٣. تخطيط الحزمة {#package}

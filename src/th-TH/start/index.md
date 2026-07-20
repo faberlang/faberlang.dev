@@ -40,7 +40,7 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 | `numerus a` | ระบุชนิดก่อน แล้วจึงระบุชื่อ |
 | `→` | ชนิดผลลัพธ์ |
 | `∪ nihil` | ค่าว่างได้ (`T ∪ nihil`) |
-| `si … ∴` | แขนงแบบย่อ |
+| `si … ergo` | แขนงแบบย่อ |
 | `redde` | คืนค่า |
 
 ## 3. โครงสร้างแพ็กเกจ {#package}

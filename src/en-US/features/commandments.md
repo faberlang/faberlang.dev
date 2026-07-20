@@ -50,7 +50,7 @@ functio duplica(numerus n) → numerus {
 
 Structural and operator meaning uses glyphs, not words: `←`
 for binding, `→` for return type, `⇥`
-for error exit, `∴` for compact branch body,
+for error exit, `ergo` for compact statement body,
 `≡` for equality, `∪` for union
 types. Glyphs are universal — they never localise and never change meaning
 across renderings. A Thai reader and a French reader see the same glyphs,

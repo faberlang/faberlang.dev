@@ -51,9 +51,9 @@ incipit {
 }
 ```
 
-### การแตกแขนงแบบกระชับด้วย ∴ {#compact-branch-with}
+### การแตกแขนงแบบกระชับด้วย ergo {#compact-branch-with-ergo}
 
-บล็อกของแขนงที่มีคำสั่งเดียวใช้ `∴` (หรือชื่อพ้อง `ergo`):
+บล็อกของแขนงที่มีคำสั่งเดียวใช้ `ergo`:
 
 ```faber
 functio classify(numerus b, bivalens ready, numerus value) → numerus ∪ nihil {

@@ -42,9 +42,9 @@ incipit {
 }
 ```
 
-### Compact branch with ∴ {#compact-branch-with}
+### Compact branch with ergo {#compact-branch-with-ergo}
 
-A single-statement branch body uses `∴` (or its alias `ergo`):
+A single-statement branch body uses `ergo`:
 
 ```faber
 functio classify(numerus b, bivalens ready, numerus value) → numerus ∪ nihil {

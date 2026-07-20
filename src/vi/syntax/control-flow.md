@@ -49,9 +49,9 @@ incipit {
 }
 ```
 
-### Nhánh rút gọn với ∴ {#compact-branch-with}
+### Nhánh rút gọn với ergo {#compact-branch-with-ergo}
 
-Thân nhánh chỉ gồm một câu lệnh sử dụng `∴` (hoặc bí danh `ergo`):
+Thân nhánh chỉ gồm một câu lệnh sử dụng `ergo`:
 
 ```faber
 functio classify(numerus b, bivalens ready, numerus value) → numerus ∪ nihil {
