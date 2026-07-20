@@ -48,8 +48,8 @@ A single-statement branch body uses `∴` (or its alias `ergo`):
 
 ```faber
 functio classify(numerus b, bivalens ready, numerus value) → numerus ∪ nihil {
-    si b ≡ 0 ∴ redde nihil
-    si ready ∴ redde value
+    si b ≡ 0 ergo redde nihil
+    si ready ergo redde value
     redde nihil
 }
 ```
@@ -61,7 +61,7 @@ functio classify(numerus b, bivalens ready, numerus value) → numerus ∪ nihil
 ```faber
 functio inveni(lista<numerus> items, numerus target) → numerus ∪ nihil {
     itera ex items fixum item {
-        si item ≡ target ∴ redde item
+        si item ≡ target ergo redde item
     }
     redde nihil
 }

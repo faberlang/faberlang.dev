@@ -23,7 +23,7 @@ functio find(textus key) → numerus ∪ nihil {
 }
 
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ∴ redde nihil
+    si b ≡ 0 ergo redde nihil
     redde a / b
 }
 ```

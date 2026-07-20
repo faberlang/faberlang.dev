@@ -7,7 +7,7 @@ sources = []
 
 ## Origins {#origins}
 
-The first commit to the Radix compiler was made on **December 20, 2024**
+The first commit to the Radix compiler was made on **December 20, 2025**
 as a Bun + TypeScript project with a single `docs/decisions.md` file. The
 second commit codified five Architecture Decision Records that still shape
 the language today.

@@ -51,7 +51,7 @@ faber --version
 | **التحقق من الأنواع** | ثابت، النوع أولاً؛ يقبل القيمة الفارغة عبر `T ∪ لا شيء` |
 | **الرموز** | `← → ∴ ≡ ∪ ⇥` |
 | **صممها** | Ian Zepp |
-| **أول ظهور** | 2024 |
+| **أول ظهور** | 2025 |
 | **المصرف** | Radix (Rust) |
 | **المسارات** | تطبيقي (HIR) · أنظمة (MIR) |
 | **الهدف الأساسي** | Rust → ثنائي أصلي |
@@ -134,7 +134,7 @@ incipit {
 
 ```text
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ∴ redde nihil
+    si b ≡ 0 ergo redde nihil
     redde a / b
 }
 ```

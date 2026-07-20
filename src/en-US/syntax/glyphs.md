@@ -20,7 +20,7 @@ of source glyphs recognised by the lexer.
 | `←` | Runtime binding, reassignment, and mutation |
 | `→` | Function return type |
 | `⇥` | Alternate exit — error-channel type or inline conversion recovery |
-| `∴` | Compact therefore body (`si cond ∴ redde x`) |
+| `∴` | Compact therefore body (`si cond ergo redde x`) |
 
 ## Type shape {#type-shape}
 

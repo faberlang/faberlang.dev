@@ -14,7 +14,7 @@ source_locale = "en-US"
 +++
 ## Nguồn gốc {#origins}
 
-Cam kết đầu tiên cho trình biên dịch Radix được thực hiện vào **ngày 20 tháng 12 năm 2024**
+Cam kết đầu tiên cho trình biên dịch Radix được thực hiện vào **ngày 20 tháng 12 năm 2025**
 dưới dạng một dự án Bun + TypeScript với duy nhất tệp `docs/decisions.md`. Cam kết
 thứ hai đã hệ thống hóa năm Hồ sơ Quyết định Kiến trúc vẫn định hình ngôn ngữ cho đến
 ngày nay.

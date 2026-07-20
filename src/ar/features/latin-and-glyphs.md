@@ -40,7 +40,7 @@ source_locale = "en-US"
 
 ```faber
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ∴ redde nihil
+    si b ≡ 0 ergo redde nihil
     redde a / b
 }
 ```
@@ -149,7 +149,7 @@ fixum _ p ← Point {
 | إسناد وقت التنفيذ | `x = value` | `←` |
 | اختبار التطابق | `==` | `≡` |
 | القابلية للعدم | `T?`، `Option<T>` | `T ∪ لا شيء` |
-| تفرع + عبارة واحدة | `if (cond) return x` | `إذا cond ∴ أرجع x` |
+| تفرع + عبارة واحدة | `if (cond) return x` | `إذا cond ergo أرجع x` |
 | تحويل النوع | `(T)value`، `value as T` | `value ∷ T` |
 | تحويل (قد يفشل) | `try_into()` | `value ↦ T` |
 

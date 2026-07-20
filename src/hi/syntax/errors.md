@@ -31,7 +31,7 @@ Faber तीन संबंधित विचारों को अलग र
 
 ```faber
 functio porta(numerus x) → numerus {
-    si x < 0 ∴ redde 0
+    si x < 0 ergo redde 0
     redde x * 2
 }
 ```
@@ -43,7 +43,7 @@ functio porta(numerus x) → numerus {
 
 ```faber
 functio divide(numerus a, numerus b) → numerus ⇥ textus {
-    si b ≡ 0 ∴ iace "division by zero"
+    si b ≡ 0 ergo iace "division by zero"
     redde a / b
 }
 ```
@@ -54,7 +54,7 @@ functio divide(numerus a, numerus b) → numerus ⇥ textus {
 
 ```faber
 functio exigePositivum(numerus value) ⇥ textus {
-    si value < 0 ∴ iace "negative value"
+    si value < 0 ergo iace "negative value"
 }
 ```
 
@@ -100,7 +100,7 @@ fixum _ n ← raw ↦ numerus ⇥ 0
 
 ```faber
 functio exigePositivum(numerus value) ⇥ textus {
-    si value < 0 ∴ iace "negative value"
+    si value < 0 ergo iace "negative value"
 }
 ```
 

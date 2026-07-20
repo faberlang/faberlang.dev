@@ -56,7 +56,7 @@ Step-by-step: [Install guide](/start/install.html). Full historical inventory:
 | **Typing** | Static, type-first; nullable via `T ∪ nihil` |
 | **Glyphs** | `← → ∴ ≡ ∪ ⇥` |
 | **Designed by** | Ian Zepp |
-| **First appeared** | 2024 |
+| **First appeared** | 2025 |
 | **Compiler** | Radix (Rust) |
 | **Lanes** | Application (HIR) · Systems (MIR) |
 | **Primary target** | Rust → native binary |
@@ -156,7 +156,7 @@ parameters, glyph return type, nullable union, Latin control words:
 
 ```text
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ∴ redde nihil
+    si b ≡ 0 ergo redde nihil
     redde a / b
 }
 ```

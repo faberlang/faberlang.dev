@@ -42,7 +42,7 @@ Khai báo đặt kiểu trước có nghĩa là hình dạng của dữ liệu l
 
 ```faber
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ∴ redde nihil
+    si b ≡ 0 ergo redde nihil
     redde a / b
 }
 ```
@@ -152,7 +152,7 @@ Bảng dưới đây cho thấy các mẫu lập trình phổ biến ánh xạ t
 | Gán thời gian chạy | `x = value` | `←` |
 | Kiểm tra bằng nhau | `==` | `≡` |
 | Tính có thể rỗng | `T?`, `Option<T>` | `T ∪ nihil` |
-| Nhánh + một câu lệnh | `if (cond) return x` | `si cond ∴ redde x` |
+| Nhánh + một câu lệnh | `if (cond) return x` | `si cond ergo redde x` |
 | Ép kiểu | `(T)value`, `value as T` | `value ∷ T` |
 | Chuyển đổi (có thể thất bại) | `try_into()` | `value ↦ T` |
 

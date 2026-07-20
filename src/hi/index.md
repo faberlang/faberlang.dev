@@ -62,7 +62,7 @@ faber --version
 | **टाइपिंग** | स्थैतिक, प्रकार-प्रथम; `T ∪ nihil` के माध्यम से nullable |
 | **ग्लिफ़** | `← → ∴ ≡ ∪ ⇥` |
 | **डिज़ाइनर** | Ian Zepp |
-| **पहली प्रस्तुति** | 2024 |
+| **पहली प्रस्तुति** | 2025 |
 | **कंपाइलर** | Radix (Rust) |
 | **लेन** | एप्लिकेशन (HIR) · सिस्टम्स (MIR) |
 | **प्राथमिक लक्ष्य** | Rust → नेटिव बाइनरी |
@@ -163,7 +163,7 @@ Faber एक मूल अंतर्दृष्टि के आधार प
 
 ```text
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ∴ redde nihil
+    si b ≡ 0 ergo redde nihil
     redde a / b
 }
 ```

@@ -61,7 +61,7 @@ Use `redde` for normal returns:
 
 ```faber
 functio porta(numerus x) → numerus {
-    si x < 0 ∴ redde 0
+    si x < 0 ergo redde 0
     redde x * 2
 }
 ```
