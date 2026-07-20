@@ -23,7 +23,7 @@
 |---|---|---|---|
 | U1 | URL migration + dual locale + `locales.toml` | **done** | `PHASE-1-URL-MIGRATION.md` |
 | U2 | Locale-less portal generator at `/` | **done** | `PHASE-2-PORTAL.md` |
-| U3 | Provenance + `sync-report` oracle | pending | — |
+| U3 | Provenance + `sync-report` oracle | done | `PHASE-3-PROVENANCE.md` |
 | U4 | Chrome catalog (`locales/{locale}/chrome.toml`) | pending | — |
 | U5 | `sync-translate` LLM differential | pending | — |
 | U6 | Pilot locale `th-TH` (`index` + `start/*`) | pending | — |
@@ -53,6 +53,13 @@
 - `generate-redirects.py` no longer overwrites `/`
 - Sitemap includes `https://faberlang.dev/`
 - Gates green after full rebuild
+
+### U3 — Provenance hashing + sync-report oracle (2026-07-20)
+
+- `generator/scripts/sync_lib.py` — pure helpers: frontmatter split, fence extraction, two-hash computation (prose_hash, code_hash), minimal TOML frontmatter parse, rel_pair mapping
+- `generator/scripts/sync-report.py` — CLI oracle with `--locale`, `--json`, `--fail-on-stale`, `--self-check`; classifies locale files as missing_en / missing_provenance / stale_prose / stale_code_only / current; annotates legacy source_hash
+- Self-check passes (fence-mutate preserves prose_hash, prose-mutate preserves code_hash)
+- `--locale th-TH` reports all 7 th-TH files as missing_provenance (they have legacy source_hash but not prose_hash/code_hash)
 
 ## Deferred findings
 
