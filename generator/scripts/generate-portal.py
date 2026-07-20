@@ -6,7 +6,7 @@ CLI:
     generate-portal.py <output.html> [--locales path] [--reader-root path] [--css /speculum.css]
 
 Layout (Speculum porta):
-    gate + glyph ring of locale nodes + question + honest status note
+    gate + glyph ring of locale nodes + question + status note
     + "same program" sample grid + full index by status + footer
 
 Defaults:
@@ -42,14 +42,10 @@ STATUS_LINE: dict[str, str] = {
     "partial": "partial · English prose fallback",
 }
 
-# Pilot override: th-TH has authored Thai for index + start/*
-PILOT_SITES: set[str] = {"th-TH"}
-PILOT_STATUS_LINE = "pilot · index + start"
-
 # One-line architectural stress for the index (design pack, updated for site)
 STRESS: dict[str, str] = {
     "en-US": "full documentation; code via Latin pack (la)",
-    "th-TH": "spaceless script; pilot translated slice",
+    "th-TH": "spaceless script; full docs + chrome",
     "zh-Hans": "paired keywords; NFKC width collapse",
     "zh-Hant": "sibling of zh-Hans; traditional forms",
     "vi": "Latin-but-not-English; NFKC diacritics",
@@ -93,17 +89,15 @@ def ring_position(index: int, count: int) -> tuple[float, float]:
     return cx + radius * math.cos(angle), cy + radius * math.sin(angle)
 
 
-def status_line_for(site: str, status: str) -> tuple[str, str]:
-    """Return (css_modifier, human status line)."""
-    if site in PILOT_SITES:
-        return "pilot", PILOT_STATUS_LINE
+def status_line_for(_site: str, status: str) -> tuple[str, str]:
+    """Return (css_modifier, human status line) from registry status."""
     if status == "complete":
         return "complete", STATUS_LINE["complete"]
     return "partial", STATUS_LINE.get(status, status)
 
 
 def sort_locale_keys(keys: list[str]) -> list[str]:
-    """en-US first, then th-TH pilot, then alpha — stable reading order on the ring."""
+    """en-US first, then th-TH, then alpha — stable reading order on the ring."""
     rest = sorted(k for k in keys if k not in ("en-US", "th-TH"))
     ordered: list[str] = []
     if "en-US" in keys:
@@ -202,8 +196,7 @@ def main() -> None:
 
     # -- index groups ------------------------------------------------------
     complete = [c for c in locales if c["status"] == "complete"]
-    pilot = [c for c in locales if c["st_mod"] == "pilot"]
-    partial = [c for c in locales if c["status"] == "partial" and c["st_mod"] != "pilot"]
+    partial = [c for c in locales if c["status"] != "complete"]
 
     def index_group(title: str, verb: str, verb_cls: str, rows: list[dict[str, str]]) -> str:
         if not rows:
@@ -229,9 +222,6 @@ def main() -> None:
 
     index_body = ""
     index_body += index_group("Complete — full documentation", "shipped", "support", complete)
-    index_body += index_group(
-        "Pilot — translated prose slice", "pilot · partial", "limited", pilot
-    )
     index_body += index_group(
         "Partial — packs + corpus; English prose fallback", "partial", "defer", partial
     )
@@ -317,12 +307,10 @@ def main() -> None:
 
     <div class="porta-note">
       <p>
-        <b>Status.</b> <b>English</b> (<code>en-US</code>) is complete — docs, corpus,
-        and tooling. <b>Thai</b> (<code>th-TH</code>) is the pilot locale: <code>index</code>
-        and <code>start/*</code> have authored Thai prose; remaining sections still fall
-        back to English. Every other locale ships reader packs and corpus pages with
-        English prose fallback. Code samples below are the same <code>salve-munde</code>
-        program from each pack — not proposed mock copy.
+        <b>Status.</b> All seven site locales are complete: full prose docs, localized
+        chrome, corpus, and tooling. Code remains Latin-canonical via each pack's
+        reader locale. Samples below are the same <code>salve-munde</code> program
+        from each pack — not mock copy.
       </p>
       <p class="porta-agent-links">
         <a href="/llms.txt">Agent index</a>
@@ -347,8 +335,8 @@ def main() -> None:
   <section class="porta-index" id="porta-index">
     <h2>All site locales</h2>
     <p class="porta-lede">
-      Grouped by what is true of the documentation tree today — not by population,
-      and not by a future keyword-pack roadmap.
+      Every listed locale ships a full documentation tree. Stress notes call out
+      script and packing concerns, not translation gaps.
     </p>
 {index_body}  </section>
 

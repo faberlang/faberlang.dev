@@ -12,34 +12,34 @@ status = "complete"
 reader_locale = "th-TH"
 native_name = "ภาษาไทย"
 native_script = "ไทย"
-status = "partial"
+status = "complete"
 
 [locales.zh-Hans]
 reader_locale = "zh-Hans"
 native_name = "简体中文"
 native_script = "简体中文"
-status = "partial"
+status = "complete"
 
 [locales.zh-Hant]
 reader_locale = "zh-Hant"
 native_name = "繁體中文"
 native_script = "繁體中文"
-status = "partial"
+status = "complete"
 
 [locales.vi]
 reader_locale = "vi"
 native_name = "Tiếng Việt"
 native_script = "Latin"
-status = "partial"
+status = "complete"
 
 [locales.ar]
 reader_locale = "ar"
 native_name = "العربية"
 native_script = "العربية"
-status = "partial"
+status = "complete"
 
 [locales.hi]
 reader_locale = "hi"
 native_name = "हिन्दी"
 native_script = "देवनागरी"
-status = "partial"
+status = "complete"

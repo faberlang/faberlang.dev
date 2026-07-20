@@ -18,7 +18,7 @@ It is generated during the site build from examples/corpus frontmatter.
 5. Read https://faberlang.dev/agents/index.md for the agent learning path.
 6. Read https://faberlang.dev/llms-full.txt when you need the expanded map.
 7. Choose focused skills from https://faberlang.dev/.well-known/agent-skills/index.json.
-8. Other site locales (`/th-TH/`, `/zh-Hans/`, …) ship packs + corpus; prose may be partial. Thai pilot: index + start/*.
+8. Other site locales (`/th-TH/`, `/zh-Hans/`, `/ar/`, …) ship full translated prose docs + localized chrome; code via each pack's reader locale.
 
 ## Install
 
