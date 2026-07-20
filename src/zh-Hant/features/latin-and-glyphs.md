@@ -1,10 +1,161 @@
 +++
+translation_kind = "translated"
+
 title = "Latin vocabulary and structural glyphs"
 section = "features"
 order = 4
 sources = []
 
-translation_kind = "pending"
-+++
 
-<!-- pending translation -->
+prose_hash = "sha256:e460f8b157e7a98e6ecfc93d025078296877a974b90af1780945825df87741e5"
+code_hash = "sha256:af40f7de992982b8319f9aed102017b00ded01ddee4d3d48ecb75d1b7b746b92"
+source_commit = "5caceea2571f6b2e9fc8ab9831fe8a5622d6397b"
+source_locale = "en-US"
++++
+*三個訊號選擇，讓 Faber 原始碼一眼即可辨識。*
+
+Faber 有意採用三個彼此協作的訊號選擇，打造出語法形狀穩定的原始碼。讀者無須先知道程式碼將編譯至哪個目標後端，就能看出每個建構的語意角色。
+
+## 三個訊號 {#three}
+
+| 訊號 | 範例 | 角色 |
+|--------|----------|------|
+| 型別優先宣告 | `textus nomen`、`numerus aetas` | 形狀朝向綁定——先型別，再名稱。 |
+| 拉丁文行為詞 | `functio`、`genus`、`si`、`redde`、`fixum` | 宣告、陳述式、生命週期與行為意圖。 |
+| 結構字形 | `← → ∴ ≡ ∪ ⇥` | 值流、型別流與結構接點——通用，永不在地化。 |
+
+這三者經過設計，能彼此強化。熟悉某個語系的 Faber 讀者，可以閱讀任何語系的內容，因為字形與結構永遠不變。熟悉 Rust 後端的讀者，也仍能辨識 Faber 原始碼，因為拉丁文關鍵字與型別優先的順序，會產生獨特的視覺風格。
+
+## 型別優先宣告 {#type-first}
+
+Faber 在每個宣告中都將型別放在名稱之前。這與主流 C 家族語法相反，而且是刻意如此：
+
+| 建構 | C 家族慣例 | Faber |
+|-----------|----------------|-------|
+| 變數 | `int count = 0` | `numerus count ← 0` |
+| 函式 | `fn greet(name: String) → String` | `functio salve(textus nomen) → textus` |
+| 參數 | `(String name)` | `(textus nomen)` |
+
+型別優先宣告讓資料的形狀成為讀者首先看到的內容。這自然符合按語意廣度由左至右閱讀的語言——中文、印地語與阿拉伯語的宣告也遵循相同順序。
+
+```faber
+functio divide(numerus a, numerus b) → numerus ∪ nihil {
+    si b ≡ 0 ∴ redde nihil
+    redde a / b
+}
+```
+
+## 拉丁文行為詞彙 {#latin}
+
+Faber 使用拉丁文詞彙表示每個具有行為或文法形狀的建構。這套詞彙規模小且規則一致，取自單一的古典來源，而非多數程式語言所採用的混合詞源。
+
+### 宣告 {#declarations}
+
+| 關鍵字 | 角色 | 約略對應 |
+|---------|------|------------------------|
+| `functio` | 宣告具名函式或方法 | `fn`、`def`、`function` |
+| `genus` | 宣告帶有欄位的具體型別 | `class`、`struct` |
+| `implendum` | 宣告行為契約 | `interface`、`trait` |
+| `typus` | 宣告型別別名 | `typedef`、`type` |
+| `discretio` | 宣告標籤聯合 | `enum`、`sum type` |
+
+### 綁定與轉移 {#bindings-and-transfer}
+
+| 關鍵字 | 角色 | 約略對應 |
+|---------|------|------------------------|
+| `fixum` | 不可變綁定（寫入一次） | `let`、`const` |
+| `varia` | 可變綁定 | `let mut`、`var` |
+| `sit` | 簡潔的推導型別不可變綁定 | `let`（推導型別） |
+| `redde` | 從函式傳回值 | `return` |
+| `iace` | 在錯誤通道上拋出錯誤 | `throw`、`raise` |
+| `mori` | 延後處理——尚未能表達的行為 | `unimplemented!`、`todo` |
+
+### 控制流程 {#control-flow}
+
+| 關鍵字 | 角色 | 約略對應 |
+|---------|------|------------------------|
+| `si` | 條件分支 | `if` |
+| `sin` | 其他條件分支 | `else if` |
+| `secus` | 其他分支 | `else` |
+| `dum` | While 迴圈 | `while` |
+| `itera` | 迭代（值、鍵或範圍） | `for` |
+| `elige` | 模式比對（第一個分支優先） | `match`、`switch` |
+| `fac` | 具錯誤復原的嘗試區塊 | `try`、`do` |
+| `cape` | `fac` 的錯誤處理器 | `catch` |
+
+> 拉丁文詞彙是**可綁定的**——它隨附於標準詞彙包，但可透過讀者語系重新映射。泰語程式設計師會看到 `ถ้า` 而不是 `si`；中文程式設計師會看到 `函數` 而不是 `functio`。詞彙並不享有特權；只有文法不變。
+
+## 結構字形 {#glyphs}
+
+行為詞彙使用拉丁文，而結構意義使用通用字形。這些字形永不在地化，也不會在不同轉譯中改變意義。無論關鍵字以哪種人類語言呈現，它們都是讓 Faber 原始碼保持可辨識的視覺錨點。
+
+### 值流 {#value-flow}
+
+| 字形 | 意義 |
+|-------|---------|
+| `←` | 執行期綁定、重新指派與變異——唯一的指派運算子 |
+| `→` | 函式回傳型別宣告 |
+| `⇥` | 替代出口：錯誤通道型別或行內轉換復原 |
+| `∴` | 精簡的因此主體——引入單一陳述式的分支主體 |
+
+### 型別形狀 {#type-shape}
+
+| 字形 | 意義 |
+|-------|---------|
+| `∷` | 靜態型別標註——對值型別的編譯期斷言 |
+| `↦` | 執行期轉換——可能失敗的解析或強制轉型 |
+| `∪` | 行內聯合型別——連接兩個型別（例如 `T ∪ nihil`） |
+
+### 比較與邏輯 {#comparison-and-logic}
+
+| 字形 | 意義 |
+|-------|---------|
+| `≡` `≠` | 精確相等與不相等——必須符合嚴格型別 |
+| `<` `>` `≤` `≥` | 順序比較 |
+| `∧` `∨` `⊻` `¬` | 邏輯與位元運算：且、或、異或、非 |
+
+### 綁定慣例很重要 {#the-binding-convention-matters}
+
+有一個字形選擇值得特別注意，因為它是新讀者最常混淆的地方：
+
+| 字形 | 角色 | 用於 |
+|-------|------|---------|
+| `←` | **執行期流動** | 執行時的初始綁定、重新指派與變異 |
+| `=` | **結構形狀** | 常值中的欄位名稱與宣告中繼資料——不是執行期儲存 |
+
+多數語言會重載 `=`，同時表示「在型別中定義此欄位」與「將執行期值放入此變數」。Faber 將這兩項工作分開。每個 `←` 都是即時資料流；每個 `Type { … }` 中的 `=` 都表示 `genus` 的欄位配置。
+
+```text
+# Runtime binding: ← attaches a value to a name
+fixum numerus count ← 0
+varia textus label ← "ready"
+count ← count + 1
+
+# Structural shape: = defines field values inside a literal
+fixum _ p ← Point {
+    x = 10,
+    y = 20
+}
+```
+
+## 與主流語言比較 {#compare}
+
+下表展示常見程式語言模式如何對應至 Faber 的三訊號系統。Faber 欄位會針對每個不同的語意工作使用不同的字形或關鍵字——不進行重載。
+
+| 語意工作 | 其他語言常見寫法 | Faber |
+|--------------|---------------------------|-------|
+| 參數型別宣告 | `name: String` | `textus nomen` |
+| 回傳型別 | `→ String`、`: String` | `→` `textus` |
+| 執行期指派 | `x = value` | `←` |
+| 相等測試 | `==` | `≡` |
+| 可空性 | `T?`、`Option<T>` | `T ∪ nihil` |
+| 分支加上單一陳述式 | `if (cond) return x` | `si cond ∴ redde x` |
+| 型別轉換 | `(T)value`、`value as T` | `value ∷ T` |
+| 轉換（可能失敗） | `try_into()` | `value ↦ T` |
+
+## 參考資料 {#references}
+
+1. EBNF 文法——完整的字形與關鍵字清單
+2. examples/corpus/——包含所有關鍵字的語言語料庫，共有 292 個範例檔案
+3. examples/corpus/operatores/——運算子與字形範例
+4. Commandments——維持這些訊號的九項設計法則
