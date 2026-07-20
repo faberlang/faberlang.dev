@@ -56,4 +56,4 @@
 
 ## Commits this factory run
 
-_(filled at closeout)_
+1. `966be92` — feat(site): Phase 1 URL migration — content under /{locale}/
