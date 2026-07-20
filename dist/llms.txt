@@ -577,6 +577,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/emitte.html
 - Source: examples/corpus/emitte/emitte.fab
 
+#### `ergo`
+
+- Canonical: `ergo`
+- Kind: operator-group
+- Category: control-flow
+- Summary: Compact consequent after si/dum heads via ergo, with ∴ reserved for closure bodies.
+- Syntax: `<head> ergo <statement>`
+- Aliases: `ergo`, `therefore`
+- Related: `si`, `redde`, `clausura`, `ergo`
+- Page: https://faberlang.dev/en-US/corpus/ergo.html
+- Source: examples/corpus/operatores/control.fab
+
 #### `errata`
 
 - Canonical: `errata`
@@ -2125,18 +2137,6 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/%E2%88%AA.html
 - Source: examples/corpus/unio/unio.fab
 
-#### `∴`
-
-- Canonical: `∴`
-- Kind: operator-group
-- Category: control-flow
-- Summary: Compact consequent after si/dum heads via ergo, with ∴ reserved for closure bodies.
-- Syntax: `<head> ergo <statement>`
-- Aliases: `ergo`, `therefore`
-- Related: `si`, `redde`, `clausura`, `ergo`
-- Page: https://faberlang.dev/en-US/corpus/%E2%88%B4.html
-- Source: examples/corpus/operatores/control.fab
-
 #### `≈`
 
 - Canonical: `≈`
@@ -2207,7 +2207,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `else if` → `sin`
 - `entry` → `incipit`
 - `enum` → `ordo`
-- `ergo` → `∴`
+- `ergo` → `ergo`
 - `extends` → `sub`
 - `faber.toml` → `manifest`
 - `float` → `fractus`
@@ -2260,7 +2260,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `target compatibility` → `targets`
 - `test` → `proba`
 - `then` → `sic`
-- `therefore` → `∴`
+- `therefore` → `ergo`
 - `this` → `ego`
 - `throw` → `iace`
 - `todo` → `futurum`

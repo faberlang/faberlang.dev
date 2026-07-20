@@ -9,7 +9,7 @@ sau đó đặt tệp nhị phân <code>faber-v1.1.1-&lt;target-triple&gt;/faber
 kiểu có thể là null:</p><pre class="faber-code"><code class="lang-text">functio divide(numerus a, numerus b) → numerus ∪ nihil {
     si b ≡ 0 ergo redde nihil
     redde a / b
-}</code></pre><table><thead><tr><th>Tín hiệu</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td><code class="kw">functio</code></td><td>Khai báo hàm</td></tr><tr><td><code>numerus a</code></td><td>Kiểu trước, tên sau</td></tr><tr><td><code>→</code></td><td>Kiểu trả về</td></tr><tr><td><code>∪ nihil</code></td><td>Có thể là null (<code>T ∪ nihil</code>)</td></tr><tr><td><code>si … ∴</code></td><td>Nhánh rút gọn</td></tr><tr><td><code class="kw">redde</code></td><td>Trả về</td></tr></tbody></table><h2 id="package">3. Bố cục gói</h2><p>Một gói là một thư mục có <code>faber.toml</code> và <code>src/</code>:</p><pre class="faber-code"><code class="lang-text">my-app/
+}</code></pre><table><thead><tr><th>Tín hiệu</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td><code class="kw">functio</code></td><td>Khai báo hàm</td></tr><tr><td><code>numerus a</code></td><td>Kiểu trước, tên sau</td></tr><tr><td><code>→</code></td><td>Kiểu trả về</td></tr><tr><td><code>∪ nihil</code></td><td>Có thể là null (<code>T ∪ nihil</code>)</td></tr><tr><td><code>si … ergo</code></td><td>Nhánh rút gọn</td></tr><tr><td><code class="kw">redde</code></td><td>Trả về</td></tr></tbody></table><h2 id="package">3. Bố cục gói</h2><p>Một gói là một thư mục có <code>faber.toml</code> và <code>src/</code>:</p><pre class="faber-code"><code class="lang-text">my-app/
   faber.toml
   src/
     main.fab</code></pre><p>Các lệnh thường dùng:</p><pre class="faber-code"><code class="lang-bash">faber check my-app/
