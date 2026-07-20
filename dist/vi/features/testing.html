@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber có một framework kiểm thử hạng nhất được tích hợp sẵn trong ngôn ngữ, với ba từ khóa: probandum khai báo một nhóm kiểm thử, proba khai báo một ca kiểm ..."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Inline testing — Faber"><meta property="og:description" content="Faber có một framework kiểm thử hạng nhất được tích hợp sẵn trong ngôn ngữ, với ba từ khóa: probandum khai báo một nhóm kiểm thử, proba khai báo một ca kiểm ..."><meta property="og:url" content="https://faberlang.dev/vi/features/testing.html"><meta property="og:locale" content="vi_VN"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/vi/features/testing.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Inline testing — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><span class="lbl">Rendering</span><span class="locbtns">vi</span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/vi/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/vi/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Get started</div><ul class="nav"><li><a href="/vi/start/install.html">Install &amp; download</a></li><li><a href="/vi/history/releases.html">Releases</a></li><li><a href="/vi/start/hello.html">Hello</a></li><li><a href="/vi/start/commands.html">Commands</a></li><li><a href="/vi/start/projects.html">Projects</a></li><li><a href="/vi/start/examples.html">Examples</a></li><li><a href="/vi/start/">Quick tour</a></li></ul><div class="side-h">Documentation</div><ul class="nav"><li><a href="/vi/">Overview</a></li><li><a href="/vi/features/" class="active">Features</a></li><li><a href="/vi/syntax/">Syntax</a></li><li><a href="/vi/tooling/">Tooling</a></li><li><a href="/vi/ecosystem/">Ecosystem</a></li><li><a href="/vi/corpus/">Corpus</a></li><li><a href="/vi/references/">References</a></li><li><a href="/vi/history/">History</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/vi/history/releases.html">All releases</a></li><li><a href="https://github.com/faberlang">GitHub org</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Inline testing</h1><div class="content"><p>Faber có một framework kiểm thử hạng nhất được tích hợp sẵn trong ngôn ngữ, với ba từ khóa: <code>probandum</code> khai báo một nhóm kiểm thử, <code>proba</code> khai báo một ca kiểm thử đơn lẻ, và <code>adfirma</code> khẳng định một điều kiện. Các bài kiểm thử nằm trong cùng tệp với mã mà chúng kiểm thử, được chạy bằng <code>faber test</code>, và sử dụng cùng pipeline biên dịch như mã sản phẩm — nhận biết locale, kiểm tra kiểu, và hỗ trợ nhiều đích.</p><h2 id="keywords">Ba từ khóa</h2><table><thead><tr><th>Từ khóa</th><th>Vai trò</th><th>Tương đương gần đúng</th></tr></thead><tbody><tr><td><code>probandum</code></td><td>Khai báo một nhóm kiểm thử có tên</td><td><code>describe</code>, <code>#[cfg(test)] mod</code></td></tr><tr><td><code>proba</code></td><td>Khai báo một ca kiểm thử đơn lẻ</td><td><code>it</code>, <code>#[test]</code></td></tr><tr><td><code>adfirma</code></td><td>Khẳng định một điều kiện tại thời điểm chạy</td><td><code>assert!</code>, <code>assert_eq!</code></td></tr></tbody></table><h3 id="probandum-test-suite">probandum — nhóm kiểm thử</h3><p>Một khối <code>probandum</code> nhóm các ca kiểm thử có liên quan. Các nhóm có thể lồng nhau để tổ chức kiểm thử theo cấp bậc:</p><pre class="faber-code"><code class="lang-faber">probandum &quot;arithmetica&quot; {
+    proba &quot;unum plus unum&quot; {
+        adfirma 1 + 1 ≡ 2
+    }
+
+    proba &quot;multiplicatio&quot; {
+        adfirma 3 * 4 ≡ 12
+    }
+
+    probandum &quot;implicata&quot; {
+        proba &quot;comparatio&quot; {
+            fixum _ x ← 10
+            adfirma x ≥ 10
+        }
+    }
+}</code></pre><h3 id="proba-test-case">proba — ca kiểm thử</h3><p>Một khối <code>proba</code> chứa logic kiểm thử. Khối này có thể sử dụng mọi mã Faber —
+liên kết biến, lời gọi hàm, luồng điều khiển — và kết thúc bằng một hoặc nhiều
+khẳng định <code>adfirma</code>. Có thể gắn thẻ cho các bài kiểm thử bằng một marker <code>tag</code>
+tùy chọn để chạy có chọn lọc:</p><pre class="faber-code"><code class="lang-text">proba &quot;echo formats operands with one space&quot; tag &quot;coreutils&quot; {
+    adfirma echo_textus([&quot;hello&quot;, &quot;world&quot;]) ≡ &quot;hello world&quot;
+}</code></pre><h3 id="adfirma-assertion">adfirma — khẳng định</h3><p><code>adfirma</code> đánh giá một biểu thức boolean và báo lỗi nếu biểu thức đó sai.
+Một chuỗi thông báo tùy chọn cung cấp ngữ cảnh khi xảy ra lỗi:</p><pre class="faber-code"><code class="lang-faber">incipit {
+    fixum _ x ← 10
+
+    # Simple assertion
+    adfirma x &gt; 0
+
+    # With custom message
+    adfirma x ≡ 10, &quot;x decem esse debet&quot;
+
+    # Multiple assertions in sequence
+    fixum _ nomen ← &quot;Marcus&quot;
+    adfirma nomen ≡ &quot;Marcus&quot;
+    adfirma nomen ≠ &quot;&quot;, &quot;nomen vacuum non sit&quot;
+}</code></pre><h2 id="workflow">Quy trình</h2><p>Các bài kiểm thử được chạy thông qua lệnh <code>faber test</code>:</p><pre class="faber-code"><code class="lang-text">faber test                        # run all tests in the current package
+faber test examples/coreutils/packages/echo  # run tests for a specific package</code></pre><p>Vì các bài kiểm thử nằm cạnh mã nguồn trong cùng tệp <code>.fab</code>, nên không có cấu trúc
+thư mục kiểm thử riêng, không cần khai báo module kiểm thử, và cũng không có sự
+khác biệt trong script build giữa bản build kiểm thử và bản build sản phẩm. Trình
+biên dịch nhận biết khối nào là mã kiểm thử và khối nào là mã sản phẩm dựa trên
+các từ khóa được sử dụng — <code>probandum</code> và <code>proba</code> được phân tích cú pháp nhưng
+được loại khỏi các bản build sản phẩm.</p><h2 id="real-world">Ví dụ thực tế</h2><p>Gói coreutils <code>echo</code> minh họa framework kiểm thử trong thực tế.
+Các bài kiểm thử nằm trong cùng tệp với phần triển khai, bao phủ việc phân tích
+tùy chọn, mở rộng escape và các trường hợp biên:</p><pre class="faber-code"><code class="lang-text">probandum &quot;echo formatting&quot; tag &quot;coreutils&quot; {
+    proba &quot;empty operands format as empty text&quot; {
+        fixum lista&lt;textus&gt; words ← vacua
+        adfirma echo_textus(words) ≡ &quot;&quot;
+    }
+
+    proba &quot;single operand is unchanged&quot; {
+        adfirma echo_textus([&quot;hello&quot;]) ≡ &quot;hello&quot;
+    }
+
+    proba &quot;-E is a leading no-op option&quot; {
+        adfirma echo_textus([&quot;-E&quot;, &quot;hello&quot;, &quot;world&quot;]) ≡ &quot;hello world&quot;
+    }
+
+    proba &quot;-n suppresses the trailing newline flag&quot; {
+        adfirma echo_novam_lineam([&quot;-n&quot;, &quot;hello&quot;]) ≡ falsum
+    }
+
+    proba &quot;-e expands the declared escape subset&quot; {
+        adfirma echo_textus([&quot;-e&quot;, &quot;a\\nb&quot;]) ≡ &quot;a\nb&quot;
+        adfirma echo_textus([&quot;-e&quot;, &quot;a\\tb&quot;]) ≡ &quot;a\tb&quot;
+    }
+}</code></pre><h2 id="design">Ghi chú thiết kế</h2><p>Một số lựa chọn thiết kế làm framework kiểm thử của Faber khác với các phương pháp
+thông thường:</p><ul><li><strong>Không có binary kiểm thử riêng.</strong> Bài kiểm thử là các khai báo trong cùng tệp nguồn, không phải một đích biên dịch riêng. Trình biên dịch lọc các khối kiểm thử khỏi đầu ra sản phẩm.</li><li><strong>Dùng thẻ, không dùng thư mục.</strong> Bài kiểm thử được tổ chức bằng các marker <code>tag</code> thay vì cấu trúc thư mục. Một bài kiểm thử có thể thuộc nhiều trục tổ chức mà không cần di chuyển.</li><li><strong>Đầy đủ pipeline biên dịch.</strong> Bài kiểm thử được kiểm tra kiểu, phân tích và nhận biết locale — cùng cờ <code>--reader-locale</code> cũng áp dụng cho đầu ra kiểm thử.</li><li><strong>Nhiều đích.</strong> Bài kiểm thử chạy qua backend mà gói nhắm tới — bộ bước MIR cho <code>faber test --interpret</code>, Rust đã biên dịch cho <code>faber test</code>.</li><li><strong>Nhóm lồng nhau.</strong> Các khối <code>probandum</code> có thể lồng nhau, phản ánh cấu trúc của mã mà chúng kiểm thử.</li></ul><h2 id="references">Tham khảo</h2><p>1. <code>examples/corpus/probandum/</code> — các tệp ví dụ <code>probandum</code>
+2. <code>examples/corpus/proba/</code> — các tệp ví dụ <code>proba</code>
+3. <code>examples/corpus/adfirma/</code> — các tệp ví dụ <code>adfirma</code>
+4. <code>examples/coreutils/packages/echo/src/main.fab</code> — cách sử dụng thực tế với các thẻ</p></div></main></div></body></html>

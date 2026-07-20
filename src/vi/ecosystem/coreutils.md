@@ -39,7 +39,7 @@ Gói `echo` minh họa các mẫu Faber được sử dụng xuyên suốt coreu
 chú thích CLI, phân tích tùy chọn, kiểm thử nội tuyến với
 `probandum`/`proba`/`adfirma`, và các mô-đun dùng chung:
 
-```faber
+```faber locale=la
 importa ex "norma:consolum" privata consolum
 importa ex "../../../common/gnu/format" privata gnu_format
 

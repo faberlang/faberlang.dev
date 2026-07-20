@@ -151,7 +151,7 @@ functio swap(atomic<i32> cell, i32 value) → i32 {
 
 Borrow मार्कर (`de`, `in`, `ex`) पैरामीटर स्थितियों में प्रकारों पर दिखाई दे सकते हैं। वे बताते हैं कि कोई मान किस प्रकार पास किया जाता है:
 
-```faber
+```faber locale=la
 # shared borrow — caller retains ownership
 functio imprime(de textus label) → vacuum { }
 

@@ -35,7 +35,7 @@ The `echo` package demonstrates Faber patterns used throughout coreutils:
 CLI annotations, option parsing, inline tests with `probandum`/`proba`/`adfirma`,
 and shared common modules:
 
-```faber
+```faber locale=la
 importa ex "norma:consolum" privata consolum
 importa ex "../../../common/gnu/format" privata gnu_format
 

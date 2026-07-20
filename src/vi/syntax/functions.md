@@ -91,7 +91,7 @@ Faber đánh dấu cách truyền một giá trị bằng các giới từ ngắ
 | `in` | Mượn có thể thay đổi | `&mut T` |
 | `ex` | Tiêu thụ (move vào hàm gọi) | `T` move |
 
-```faber
+```faber locale=la
 # Shared borrow
 functio imprime(de textus label) → vacuum {
     nota label
@@ -139,7 +139,7 @@ incipit {
 
 Đối với các chương trình CLI, `incipit argumenta` nhận các đối số lệnh đã được phân tích:
 
-```faber
+```faber locale=la
 @ cli "echo"
 @ descriptio "Prints text"
 @ operandus ceteri textus words

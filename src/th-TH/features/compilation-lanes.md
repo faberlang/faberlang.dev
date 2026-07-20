@@ -77,7 +77,7 @@ MIR คือ IR ที่มีรูปแบบใกล้เคียงก
 
 AIR (Autograd / AI Representation) คือเส้นทางแวะผ่านสำหรับการแปลงแบบฟังก์ชันบริสุทธิ์ ซึ่งแยกออกจากเส้นทาง HIR → MIR การเข้าสู่เส้นทางนี้เกิดจากคำอธิบายประกอบที่ระบุอย่างชัดเจนบนฟังก์ชันแต่ละรายการ:
 
-```faber
+```faber locale=la
 @ radix lane "air"
 functio loss(numerus predicted, numerus expected) → numerus {
     fixum numerus delta ← predicted - expected

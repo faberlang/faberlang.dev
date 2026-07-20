@@ -91,7 +91,7 @@ functio tace() → vacuum {
 | `in` | استعارة قابلة للتعديل | `&mut T` |
 | `ex` | استهلاك (نقل إلى الدالة المستدعاة) | `T` بالنقل |
 
-```faber
+```faber locale=la
 # Shared borrow
 functio imprime(de textus label) → vacuum {
     nota label
@@ -139,7 +139,7 @@ incipit {
 
 بالنسبة لبرامج CLI، تستقبل `incipit argumenta` معاملات سطر الأوامر المُحلَّلة:
 
-```faber
+```faber locale=la
 @ cli "echo"
 @ descriptio "Prints text"
 @ operandus ceteri textus words

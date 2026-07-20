@@ -91,7 +91,7 @@ Faber 使用參數上的簡短介系詞標記值的傳遞方式：
 | `in` | 可變借用 | `&mut T` |
 | `ex` | 消耗（移入被呼叫者） | 以移動傳遞的 `T` |
 
-```faber
+```faber locale=la
 # Shared borrow
 functio imprime(de textus label) → vacuum {
     nota label
@@ -139,7 +139,7 @@ incipit {
 
 對於 CLI 程式，`incipit argumenta` 會接收已解析的命令列引數：
 
-```faber
+```faber locale=la
 @ cli "echo"
 @ descriptio "Prints text"
 @ operandus ceteri textus words

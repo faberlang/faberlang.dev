@@ -57,7 +57,7 @@ Norma सभी मेथड नामों के लिए morphologia नी
 
 ## उपयोग {#usage}
 
-```faber
+```faber locale=la
 importa ex "norma:solum" privata solum
 
 functio legeConfig() → textus {

@@ -34,7 +34,7 @@ functio add(matrix&lt;f32, [2, 2]&gt; a, matrix&lt;f32, [2, 2]&gt; b) → matrix
 functio swap(atomic&lt;i32&gt; cell, i32 value) → i32 {
     redde cell.exchange(value)
 }</code></pre><h2 id="borrow-markers">Borrow markers on types</h2><p>Borrow markers (<code class="kw">de</code>, <code class="kw">in</code>, <code class="kw">ex</code>) can appear on types in parameter
-positions to indicate how a value is passed:</p><pre class="faber-code"><code class="lang-faber"># shared borrow — caller retains ownership
+positions to indicate how a value is passed:</p><pre class="faber-code"><code class="lang-faber locale=la"># shared borrow — caller retains ownership
 functio imprime(de textus label) → vacuum { }
 
 # mutable borrow — caller lends mutable access

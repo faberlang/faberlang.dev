@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="incipit { fixum _ condition ← verum si condition { nota &quot;matched&quot; } }"><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Control flow — Faber"><meta property="og:description" content="incipit { fixum _ condition ← verum si condition { nota &quot;matched&quot; } }"><meta property="og:url" content="https://faberlang.dev/zh-Hant/syntax/control-flow.html"><meta property="og:locale" content="zh_TW"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/zh-Hant/syntax/control-flow.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Control flow — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><span class="lbl">Rendering</span><span class="locbtns">zh-Hant</span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/zh-Hant/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/zh-Hant/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Get started</div><ul class="nav"><li><a href="/zh-Hant/start/install.html">Install &amp; download</a></li><li><a href="/zh-Hant/history/releases.html">Releases</a></li><li><a href="/zh-Hant/start/hello.html">Hello</a></li><li><a href="/zh-Hant/start/commands.html">Commands</a></li><li><a href="/zh-Hant/start/projects.html">Projects</a></li><li><a href="/zh-Hant/start/examples.html">Examples</a></li><li><a href="/zh-Hant/start/">Quick tour</a></li></ul><div class="side-h">Documentation</div><ul class="nav"><li><a href="/zh-Hant/">Overview</a></li><li><a href="/zh-Hant/features/">Features</a></li><li><a href="/zh-Hant/syntax/" class="active">Syntax</a></li><li><a href="/zh-Hant/tooling/">Tooling</a></li><li><a href="/zh-Hant/ecosystem/">Ecosystem</a></li><li><a href="/zh-Hant/corpus/">Corpus</a></li><li><a href="/zh-Hant/references/">References</a></li><li><a href="/zh-Hant/history/">History</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/zh-Hant/history/releases.html">All releases</a></li><li><a href="https://github.com/faberlang">GitHub org</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Control flow</h1><div class="content"><h2 id="conditional-branching">條件分支</h2><h3 id="si-sin-secus">si / sin / secus</h3><pre class="faber-code"><code class="lang-faber">incipit {
+    fixum _ condition ← verum
+    si condition {
+        # truthy branch
+        nota &quot;matched&quot;
+    }
+}</code></pre><p>包含 else-if 與 else：</p><pre class="faber-code"><code class="lang-faber">incipit {
+    fixum _ score ← 85
+    si score ≥ 90 {
+        nota &quot;A&quot;
+    } sin score ≥ 80 {
+        nota &quot;B&quot;
+    } secus {
+        nota &quot;C&quot;
+    }
+}</code></pre><h3 id="compact-branch-with">使用 ∴ 的精簡分支</h3><p>單一敘述的分支主體使用 <code>∴</code>（或其別名 <code>ergo</code>）：</p><pre class="faber-code"><code class="lang-faber">functio classify(numerus b, bivalens ready, numerus value) → numerus ∪ nihil {
+    si b ≡ 0 ∴ redde nihil
+    si ready ∴ redde value
+    redde nihil
+}</code></pre><h2 id="iteration">迭代</h2><h3 id="values-itera-ex">值 — itera ex</h3><pre class="faber-code"><code class="lang-faber">functio inveni(lista&lt;numerus&gt; items, numerus target) → numerus ∪ nihil {
+    itera ex items fixum item {
+        si item ≡ target ∴ redde item
+    }
+    redde nihil
+}</code></pre><h3 id="keys-itera-de">鍵 — itera de</h3><pre class="faber-code"><code class="lang-faber">incipit {
+    fixum _ tabula ← { &quot;unus&quot;: 1, &quot;duo&quot;: 2 }
+    itera de tabula fixum key {
+        nota key
+    }
+}</code></pre><h3 id="range-itera-ab">範圍 — itera ab</h3><pre class="faber-code"><code class="lang-faber">itera ab 0‥10 fixum i {
+    nota i
+}</code></pre><h2 id="while-loops">While 迴圈</h2><pre class="faber-code"><code class="lang-faber">incipit {
+    fixum _ condition ← verum
+    dum condition {
+        # body
+        tacet
+    }
+}</code></pre><h2 id="guard-sections-custodi">保護區段 — custodi</h2><p><code>custodi</code> 會在函式的主要主體之前，集中處理提早退出的檢查。
+每個 <code class="kw">si</code> 子句都是依序執行的保護條件：</p><pre class="faber-code"><code class="lang-faber">functio divide(numerus a, numerus b) → numerus {
+    custodi {
+        si b ≡ 0 {
+            redde 0
+        }
+    }
+    redde a / b
+}</code></pre><p>在 v1 中，<code>custodi</code> 不可中斷——它是防護欄，而不是迴圈。</p><h2 id="pattern-matching-elige">模式比對 — elige</h2><p><code class="kw">elige</code> 會選取第一個符合的分支：</p><pre class="faber-code"><code class="lang-faber">functio describe(numerus value) → textus {
+    elige value {
+        casu 1 { redde &quot;one&quot; }
+        casu 2 { redde &quot;two&quot; }
+        ceterum { redde &quot;many&quot; }
+    }
+}</code></pre><h2 id="tagged-union-matching-discerne">標記聯集比對 — discerne</h2><p><code class="kw">discerne</code> 會完整比對 <code>discretio</code> 的各個變體：</p><pre class="faber-code"><code class="lang-faber">discretio Exitus {
+    Bonum { textus nuntius },
+    Malum { textus causa }
+}
+
+functio refer(Exitus eventus) → textus {
+    discerne eventus {
+        casu Bonum fixum nuntius { redde nuntius }
+        casu Malum fixum causa { redde &quot;Error: §&quot;(causa) }
+    }
+}</code></pre><h2 id="try-blocks-fac-cape">Try 區塊 — fac / cape</h2><p><code class="kw">fac</code> 開啟一個可能拋出例外的區塊，而 <code class="kw">cape</code> 負責復原：</p><pre class="faber-code"><code class="lang-faber">functio divide(numerus a, numerus b) → numerus {
+    redde a / b
+}
+
+functio tutus(numerus a, numerus b) → numerus {
+    fac {
+        redde divide(a, b)
+    } cape err {
+        mone err
+        redde 0
+    }
+}</code></pre></div></main><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div></footer></div></body></html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ar"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="تسع قواعد تجعل فيبر يبدو كفيبر."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Commandments — Faber"><meta property="og:description" content="تسع قواعد تجعل فيبر يبدو كفيبر."><meta property="og:url" content="https://faberlang.dev/ar/features/commandments.html"><meta property="og:locale" content="ar_AR"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/ar/features/commandments.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Commandments — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><span class="lbl">Rendering</span><span class="locbtns">ar</span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/ar/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/ar/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Get started</div><ul class="nav"><li><a href="/ar/start/install.html">Install &amp; download</a></li><li><a href="/ar/history/releases.html">Releases</a></li><li><a href="/ar/start/hello.html">Hello</a></li><li><a href="/ar/start/commands.html">Commands</a></li><li><a href="/ar/start/projects.html">Projects</a></li><li><a href="/ar/start/examples.html">Examples</a></li><li><a href="/ar/start/">Quick tour</a></li></ul><div class="side-h">Documentation</div><ul class="nav"><li><a href="/ar/">Overview</a></li><li><a href="/ar/features/" class="active">Features</a></li><li><a href="/ar/syntax/">Syntax</a></li><li><a href="/ar/tooling/">Tooling</a></li><li><a href="/ar/ecosystem/">Ecosystem</a></li><li><a href="/ar/corpus/">Corpus</a></li><li><a href="/ar/references/">References</a></li><li><a href="/ar/history/">History</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/ar/history/releases.html">All releases</a></li><li><a href="https://github.com/faberlang">GitHub org</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Commandments</h1><div class="content"><p><em>تسع قواعد تجعل فيبر يبدو كفيبر.</em></p><p>هذه هي قوانين التصميم التي تحدد شخصية فيبر. يمكن أن يتطور التركيب النحوي
+وتُضاف الميزات، ولكن التغييرات يجب أن تحافظ على هذه المبادئ. البرنامج
+الذي يخالفها قد يكون فيبر صحيحًا، لكنه لا يبدو كفيبر.</p><p>تنطبق الوصايا على كل مستوى — من القواعد النحوية نفسها وصولًا إلى كيفية
+تسمية واجهات المكتبة المعيارية. إنها السبب في أن القارئ يستطيع تمييز
+مصدر فيبر بنظرة واحدة، بغض النظر عن اللغة البشرية التي تُعرض بها الكلمات
+المفتاحية أو المنصة المستهدفة التي يُصرَّف إليها الكود.</p><h2 id="i-types-before-names">١. الأنواع قبل الأسماء</h2><p>تُقرأ التصريحات من الشكل إلى الربط. يأتي النوع أولًا لأن القارئ يحتاج
+أن يعرف <em>ما نوع الشيء</em> قبل أن يخبره الاسم <em>أي شيء</em> هو. يتوافق هذا
+مع اللغات التي يقرأ ترتيبها النحوي من الفئة إلى الحالة — الصينية،
+الهندية، العربية — ويُنتج تصريحات تُمسح بشكل موحد.</p><pre class="faber-code"><code class="lang-text"># Type before name in every declaration
+textus nomen
+numerus aetas
+functio salve(textus name) → textus</code></pre><h2 id="ii-mechanical-over-magical">٢. الآلي فوق السحري</h2><p>يجب أن تعني البنية نفسها الشيء نفسه في كل مكان. إذا احتاج القارئ
+سياقًا بعيدًا ليعرف ما يفعله رمز، فالتركيب مشبوه. تفضل فيبر
+الاستدلال الصريح والمحلي — موقع التصريح يحمل معلومات كافية لفهم
+ما سيحدث في موقع الاستخدام.</p><pre class="faber-code"><code class="lang-faber"># The meaning of a call is determined by the function's signature,
+# not by invisible trait resolution or implicit conversions.
+functio duplica(numerus n) → numerus {
+    redde n * 2
+}</code></pre><h2 id="iii-glyphs-carry-structure">٣. الرموز تحمل البنية</h2><p>يستخدم المعنى البنيوي والمعاملاتي رموزًا، لا كلمات: <code>←</code>
+للربط، <code>→</code> لنوع الإرجاع، <code>⇥</code>
+للخروج بخطأ، <code>∴</code> لجسم الفرع المختصر،
+<code>≡</code> للمساواة، <code>∪</code> لأنواع
+الاتحاد. الرموز عالمية — لا تُترجم أبدًا ولا يتغير معناها
+أبدًا عبر العروض. يرى القارئ التايلندي والقارئ الفرنسي الرموز
+نفسها، حتى لو اختلفت الكلمات المفتاحية حولها.</p><h2 id="iv-latin-carries-behaviour">٤. اللاتينية تحمل السلوك</h2><p>الكلمات للتصريحات، والجمل، ودورة الحياة، والقصد السلوكي:
+<code class="kw">functio</code>، <code class="kw">genus</code>، <code class="kw">fixum</code>،
+<code class="kw">varia</code>، <code class="kw">redde</code>، <code class="kw">cape</code>.
+هذه قابلة للربط عبر حزم لغة القارئ — إنها المفردات،
+لا القواعد. الخيار اللاتيني ليس عن تفوق اللاتينية؛ إنه عن
+اختيار <em>مصدر</em> كلاسيكي واحد متسق بحيث تنتمي كل الكلمات
+المفتاحية إلى السجل نفسه ولا تتمتع أي كلمة مفتاحية بامتياز
+كونها لغة التنفيذ التي كُتب بها.</p><h2 id="v-conjugation-carries-time-and-flow">٥. التصريف يحمل الزمن والتدفق</h2><p>عندما يمكن للمنطق الجذري نفسه أن يعمل تزامنيًا، أو لا تزامنيًا،
+أو كمولّد، يجب أن يحمل الشكل المصرَّف للفعل نمط التنفيذ ذاك.
+أزواج الملكية — التعديل في المكان مقابل النسخ للخارج — تستخدم
+أشكالًا مرتبطة من الجذر نفسه. هذا هو مبدأ التصريف
+(morphologia). تتبع المكتبة المعيارية (نورما) هذه
+الاتفاقية لكل أسماء الدوال: <code>lege</code> (قراءة تزامنية) مقابل
+<code>leget</code> (قراءة لا تزامنية)، <code>adde</code> (تعديل في المكان) مقابل
+<code>addita</code> (إرجاع نسخة جديدة). لا يفرض المصرّف التصريفات
+ولا يشتقها — إنها سياسة تسمية، لا ميزة لغة.</p><h2 id="vi-one-sign-one-job">٦. إشارة واحدة، مهمة واحدة</h2><p>قد يكون للرمز أو الكلمة المفتاحية بدائل دقيقة، لكن لا ينبغي أن
+يحمل معاني غير مرتبطة. يجب أن تشير البدائل إلى مفهوم قانوني واحد.
+هذا هو المبدأ الذي يدفع تقسيم فيبر بين <code>←</code>
+(ربط وقت التشغيل) و <code>=</code> (شكل الحقل البنيوي) — معظم
+اللغات تدمج كليهما في <code>=</code>، لكن هذا التحميل الزائد يُخفي
+ما إذا كان السطر عملية تدفق بيانات أم تعريفًا على مستوى النوع.</p><pre class="faber-code"><code class="lang-text"># ← is always runtime flow
+fixum numerus count ← 0
+count ← count + 1
+
+# = is always structural shape inside Type { }
+fixum _ p ← Point {
+    x = 10,
+    y = 20
+}</code></pre><h2 id="vii-runtime-flow-is-explicit">٧. تدفق وقت التشغيل صريح</h2><p>يستخدم الربط وقت التشغيل وإعادة الإسناد والتعديل <code>←</code>؛
+ويستخدم التعريف البنيوي <code>=</code>. يستطيع القارئ الذي يمسح
+المصدر رؤية كل عملية تدفق بيانات فورًا: كل <code>←</code> هو
+حدث وقت تشغيل. لا يوجد غموض نحوي حول ما إذا كانت <code>=</code>
+معينة تعني &quot;خزّن في هذا المتغير&quot; أم &quot;عرّف هذا الحقل.&quot;</p><h2 id="viii-absence-is-typed">٨. الغياب مُنوَّع</h2><p>تُكتب أنواع القيم القابلة للإلغاء كاتحادات: <code>T ∪ nihil</code>.
+تستخدم فتحات التصريح الاختيارية علامات بعد الاسم: <code>sponte</code>.
+هذان مفهومان مختلفان — <em>قيمة قد تكون غائبة</em> مقابل *فتحة
+قد يحذفها المستدعي* — وتبقيهما فيبر منفصلين نحوياً بدلًا
+من دمج كليهما في <code>T?</code> أو <code>Option&lt;T&gt;</code>.</p><pre class="faber-code"><code class="lang-text"># Absence in a value: T ∪ nihil
+functio find(textus key) → numerus ∪ nihil
+
+# Omission at declaration: sponte
+functio connect(textus host, numerus port sponte) → vacuum</code></pre><h2 id="ix-compiler-does-not-guess">٩. المصرّف لا يخمن لإخفاء المعلومات الناقصة</h2><p>المعلومات النوعية الناقصة هي مشكلة تحليل يجب إصلاحها في المنبع،
+لا تفصيلة توليد كود يجب تسترها. لا يستنتج المصرّف أبدًا بصمت
+نوعًا لم يقدمه المبرمج عندما تكون المعلومة غائبة حقًا — يبلغ
+عن الفجوة ويتوقف. هذه هي القاعدة التي تبقي فيبر صادقًا: إذا
+لم يستطع القارئ تحديد ما يعنيه رمز من المصدر المحلي، فلا ينبغي
+للمصرّف أن يتظاهر بأنه يستطيع.</p><h2 id="purpose">الغرض</h2><p>توجد الوصايا للإجابة عن سؤال يظهر في كل نقاش تصميم لغة:
+&quot;هل هذا التغيير لا يزال فيبر؟&quot; إنها الفحص الثابت — ليس ضد
+قائمة ميزات، بل ضد شخصية. التغيير الذي يخالف وصية قد يظل
+فكرة جيدة، لكن ينبغي الاعتراف به كانحراف عن شخصية تصميم فيبر
+بدلًا من إضافة روتينية.</p><p>عمليًا، تخدم الوصايا غالبًا كمعايير مراجعة لمقترحات التركيب
+النحوي الجديدة. المقترح الذي يضعف &quot;الأنواع قبل الأسماء&quot;
+بإضافة بديل الاسم أولًا، أو يطمس &quot;إشارة واحدة، مهمة واحدة&quot;
+بتحميل رمز زائدًا، يجب أن يبرر لماذا ينبغي لفيبر أن يحني
+شخصيته لتلك الميزة.</p></div></main></div></body></html>

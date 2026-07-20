@@ -98,7 +98,7 @@ AIR (Autograd / AI Representation) HIR → MIR मार्ग से अलग 
 ट्रांसफॉर्म डिटूर है। इसमें अलग-अलग फ़ंक्शन पर स्पष्ट एनोटेशन द्वारा प्रवेश किया
 जाता है:
 
-```faber
+```faber locale=la
 @ radix lane "air"
 functio loss(numerus predicted, numerus expected) → numerus {
     fixum numerus delta ← predicted - expected

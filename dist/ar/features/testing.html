@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="تمتلك Faber إطار عمل اختبارات من الدرجة الأولى مدمجًا في اللغة بثلاث كلمات مفتاحية: probandum تُعلن عن مجموعة اختبارات، وproba تُعلن عن حالة اختبار مفردة، وa..."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Inline testing — Faber"><meta property="og:description" content="تمتلك Faber إطار عمل اختبارات من الدرجة الأولى مدمجًا في اللغة بثلاث كلمات مفتاحية: probandum تُعلن عن مجموعة اختبارات، وproba تُعلن عن حالة اختبار مفردة، وa..."><meta property="og:url" content="https://faberlang.dev/ar/features/testing.html"><meta property="og:locale" content="ar_AR"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/ar/features/testing.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Inline testing — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><span class="lbl">Rendering</span><span class="locbtns">ar</span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/ar/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/ar/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Get started</div><ul class="nav"><li><a href="/ar/start/install.html">Install &amp; download</a></li><li><a href="/ar/history/releases.html">Releases</a></li><li><a href="/ar/start/hello.html">Hello</a></li><li><a href="/ar/start/commands.html">Commands</a></li><li><a href="/ar/start/projects.html">Projects</a></li><li><a href="/ar/start/examples.html">Examples</a></li><li><a href="/ar/start/">Quick tour</a></li></ul><div class="side-h">Documentation</div><ul class="nav"><li><a href="/ar/">Overview</a></li><li><a href="/ar/features/" class="active">Features</a></li><li><a href="/ar/syntax/">Syntax</a></li><li><a href="/ar/tooling/">Tooling</a></li><li><a href="/ar/ecosystem/">Ecosystem</a></li><li><a href="/ar/corpus/">Corpus</a></li><li><a href="/ar/references/">References</a></li><li><a href="/ar/history/">History</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/ar/history/releases.html">All releases</a></li><li><a href="https://github.com/faberlang">GitHub org</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Inline testing</h1><div class="content"><p>تمتلك Faber إطار عمل اختبارات من الدرجة الأولى مدمجًا في اللغة بثلاث كلمات
+مفتاحية: <code>probandum</code> تُعلن عن مجموعة اختبارات، و<code>proba</code> تُعلن عن حالة اختبار
+مفردة، و<code>adfirma</code> تؤكد صحة شرط. تعيش الاختبارات في نفس الملف مع الشيفرة التي
+تختبرها، وتُشغَّل عبر <code>faber test</code>، وتدعم نفس خط أنابيب التصريف الخاص بشيفرة
+الإنتاج — واعية بالإعدادات المحلية، مدققة الأنواع، ومتعددة الأهداف.</p><h2 id="keywords">الكلمات المفتاحية الثلاث</h2><table><thead><tr><th>الكلمة المفتاحية</th><th>الدور</th><th>المكافئ التقريبي</th></tr></thead><tbody><tr><td><code>probandum</code></td><td>تُعلن عن مجموعة اختبارات مسماة</td><td><code>describe</code>، <code>#[cfg(test)] mod</code></td></tr><tr><td><code>proba</code></td><td>تُعلن عن حالة اختبار مفردة</td><td><code>it</code>، <code>#[test]</code></td></tr><tr><td><code>adfirma</code></td><td>تؤكد صحة شرط أثناء التنفيذ</td><td><code>assert!</code>، <code>assert_eq!</code></td></tr></tbody></table><h3 id="probandum-test-suite">probandum — مجموعة الاختبارات</h3><p>تجمّع كتلة <code>probandum</code> حالات الاختبار المرتبطة ببعضها. يمكن تداخل المجموعات
+لتنظيم الاختبارات بشكل هرمي:</p><pre class="faber-code"><code class="lang-faber">probandum &quot;arithmetica&quot; {
+    proba &quot;unum plus unum&quot; {
+        adfirma 1 + 1 ≡ 2
+    }
+
+    proba &quot;multiplicatio&quot; {
+        adfirma 3 * 4 ≡ 12
+    }
+
+    probandum &quot;implicata&quot; {
+        proba &quot;comparatio&quot; {
+            fixum _ x ← 10
+            adfirma x ≥ 10
+        }
+    }
+}</code></pre><h3 id="proba-test-case">proba — حالة الاختبار</h3><p>تحتوي كتلة <code>proba</code> على منطق الاختبار. يمكنها استخدام أي شيفرة Faber —
+ارتباطات المتغيرات، استدعاءات الدوال، تدفق التحكم — وتنتهي بتأكيد <code>adfirma</code>
+واحد أو أكثر. يمكن وسم الاختبارات بعلامة <code>tag</code> اختيارية للتنفيذ الانتقائي:</p><pre class="faber-code"><code class="lang-text">proba &quot;echo formats operands with one space&quot; tag &quot;coreutils&quot; {
+    adfirma echo_textus([&quot;hello&quot;, &quot;world&quot;]) ≡ &quot;hello world&quot;
+}</code></pre><h3 id="adfirma-assertion">adfirma — التأكيد</h3><p>تقيّم <code>adfirma</code> تعبيرًا منطقيًا وتُبلغ عن الفشل إذا كان خاطئًا. توفر رسالة
+نصية اختيارية سياقًا عند الفشل:</p><pre class="faber-code"><code class="lang-faber">incipit {
+    fixum _ x ← 10
+
+    # Simple assertion
+    adfirma x &gt; 0
+
+    # With custom message
+    adfirma x ≡ 10, &quot;x decem esse debet&quot;
+
+    # Multiple assertions in sequence
+    fixum _ nomen ← &quot;Marcus&quot;
+    adfirma nomen ≡ &quot;Marcus&quot;
+    adfirma nomen ≠ &quot;&quot;, &quot;nomen vacuum non sit&quot;
+}</code></pre><h2 id="workflow">سير العمل</h2><p>تُشغَّل الاختبارات عبر الأمر <code>faber test</code>:</p><pre class="faber-code"><code class="lang-text">faber test                        # run all tests in the current package
+faber test examples/coreutils/packages/echo  # run tests for a specific package</code></pre><p>لأن الاختبارات تعيش جنبًا إلى جنب مع المصدر في نفس ملف <code>.fab</code>، فلا يوجد هيكل
+مجلدات منفصل للاختبارات، ولا إعلان لوحدة اختبارات، ولا تمييز في سكربت البناء
+بين بنائي الاختبار والإنتاج. يعرف المصرف أي الكتل هي شيفرة اختبار وأيها شيفرة
+إنتاج من خلال الكلمات المفتاحية المستخدمة — تُحلَّل <code>probandum</code> و<code>proba</code> لكنها
+تُستبعد من بنائي الإنتاج.</p><h2 id="real-world">مثال من العالم الحقيقي</h2><p>توضح حزمة <code>echo</code> في coreutils إطار عمل الاختبارات عمليًا. تعيش الاختبارات في
+نفس ملف التنفيذ، وتغطي تحليل الخيارات، توسيع الرموز الخاصة، والحالات الحدية:</p><pre class="faber-code"><code class="lang-text">probandum &quot;echo formatting&quot; tag &quot;coreutils&quot; {
+    proba &quot;empty operands format as empty text&quot; {
+        fixum lista&lt;textus&gt; words ← vacua
+        adfirma echo_textus(words) ≡ &quot;&quot;
+    }
+
+    proba &quot;single operand is unchanged&quot; {
+        adfirma echo_textus([&quot;hello&quot;]) ≡ &quot;hello&quot;
+    }
+
+    proba &quot;-E is a leading no-op option&quot; {
+        adfirma echo_textus([&quot;-E&quot;, &quot;hello&quot;, &quot;world&quot;]) ≡ &quot;hello world&quot;
+    }
+
+    proba &quot;-n suppresses the trailing newline flag&quot; {
+        adfirma echo_novam_lineam([&quot;-n&quot;, &quot;hello&quot;]) ≡ falsum
+    }
+
+    proba &quot;-e expands the declared escape subset&quot; {
+        adfirma echo_textus([&quot;-e&quot;, &quot;a\\nb&quot;]) ≡ &quot;a\nb&quot;
+        adfirma echo_textus([&quot;-e&quot;, &quot;a\\tb&quot;]) ≡ &quot;a\tb&quot;
+    }
+}</code></pre><h2 id="design">ملاحظات التصميم</h2><p>تميز عدة خيارات تصميمية إطار اختبارات Faber عن النهج التقليدية:</p><ul><li><strong>لا يوجد ثنائي اختبار منفصل.</strong> الاختبارات هي تصريحات في نفس ملف المصدر، وليست هدف تصريف منفصل. يصفي المصرف كتل الاختبار من مخرجات الإنتاج.</li><li><strong>الوسوم، وليس المجلدات.</strong> تُنظم الاختبارات بعلامات <code>tag</code> بدلًا من هيكل المجلدات. يمكن للاختبار الانتماء إلى عدة محاور تنظيمية دون نقله.</li><li><strong>خط أنابيب تصريف كامل.</strong> الاختبارات مدققة الأنواع، محللة، وواعية بالإعدادات المحلية — نفس علم <code>--reader-locale</code> ينطبق على مخرجات الاختبار.</li><li><strong>متعدد الأهداف.</strong> تشغّل الاختبارات عبر أي خلفية يستهدفها الرزمة — مُنفّذ MIR لـ <code>faber test --interpret</code>، وRust مصرف لـ <code>faber test</code>.</li><li><strong>مجموعات متداخلة.</strong> يمكن تداخل كتل <code>probandum</code>، معكسةً هيكل الشيفرة التي تختبرها.</li></ul><h2 id="references">المراجع</h2><p>1. <code>examples/corpus/probandum/</code> — ملفات probandum النموذجية
+2. <code>examples/corpus/proba/</code> — ملفات proba النموذجية
+3. <code>examples/corpus/adfirma/</code> — ملفات adfirma النموذجية
+4. <code>examples/coreutils/packages/echo/src/main.fab</code> — استخدام واقعي مع الوسوم</p></div></main></div></body></html>

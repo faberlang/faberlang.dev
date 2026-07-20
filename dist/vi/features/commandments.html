@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Chín quy tắc làm cho Faber mang đúng tinh thần Faber."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Commandments — Faber"><meta property="og:description" content="Chín quy tắc làm cho Faber mang đúng tinh thần Faber."><meta property="og:url" content="https://faberlang.dev/vi/features/commandments.html"><meta property="og:locale" content="vi_VN"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/vi/features/commandments.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Commandments — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><span class="lbl">Rendering</span><span class="locbtns">vi</span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/vi/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/vi/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Get started</div><ul class="nav"><li><a href="/vi/start/install.html">Install &amp; download</a></li><li><a href="/vi/history/releases.html">Releases</a></li><li><a href="/vi/start/hello.html">Hello</a></li><li><a href="/vi/start/commands.html">Commands</a></li><li><a href="/vi/start/projects.html">Projects</a></li><li><a href="/vi/start/examples.html">Examples</a></li><li><a href="/vi/start/">Quick tour</a></li></ul><div class="side-h">Documentation</div><ul class="nav"><li><a href="/vi/">Overview</a></li><li><a href="/vi/features/" class="active">Features</a></li><li><a href="/vi/syntax/">Syntax</a></li><li><a href="/vi/tooling/">Tooling</a></li><li><a href="/vi/ecosystem/">Ecosystem</a></li><li><a href="/vi/corpus/">Corpus</a></li><li><a href="/vi/references/">References</a></li><li><a href="/vi/history/">History</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/vi/history/releases.html">All releases</a></li><li><a href="https://github.com/faberlang">GitHub org</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Commandments</h1><div class="content"><p><em>Chín quy tắc làm cho Faber mang đúng tinh thần Faber.</em></p><p>Đây là những quy luật thiết kế định hình bản sắc của Faber. Cú pháp có thể
+phát triển và tính năng có thể được bổ sung, nhưng các thay đổi phải giữ
+được những nguyên tắc này. Một chương trình vi phạm chúng vẫn có thể là Faber
+hợp lệ, nhưng không còn mang đúng tinh thần Faber.</p><p>Các điều răn này áp dụng ở mọi cấp độ — từ chính ngữ pháp cho đến cách đặt tên
+API của thư viện chuẩn. Chúng là lý do người đọc có thể nhận ra mã nguồn Faber
+chỉ qua một cái nhìn, bất kể từ khóa được hiển thị bằng ngôn ngữ tự nhiên nào
+hay mã được biên dịch cho backend đích nào.</p><h2 id="i-types-before-names">I. Kiểu dữ liệu trước tên</h2><p>Khai báo được đọc từ hình dạng đến liên kết. Kiểu dữ liệu đứng trước vì người
+đọc cần biết <em>đây là loại thực thể nào</em> trước khi tên cho biết *đó là thực thể
+nào*. Cách này phù hợp với những ngôn ngữ có trật tự ngữ pháp đi từ phạm trù
+đến thể hiện — tiếng Trung, tiếng Hindi, tiếng Ả Rập — và tạo ra các khai báo
+có hình thức nhất quán khi quét qua mã.</p><pre class="faber-code"><code class="lang-text"># Type before name in every declaration
+textus nomen
+numerus aetas
+functio salve(textus name) → textus</code></pre><h2 id="ii-mechanical-over-magical">II. Cơ học thay vì huyền bí</h2><p>Cùng một cấu trúc phải có cùng ý nghĩa ở mọi nơi. Nếu người đọc cần dựa vào
+ngữ cảnh ở nơi xa để biết một ký hiệu thực hiện điều gì, thì cú pháp đó đáng
+ngờ. Faber ưu tiên suy luận tường minh và cục bộ — vị trí khai báo phải mang
+đủ thông tin để hiểu điều gì sẽ xảy ra tại vị trí sử dụng.</p><pre class="faber-code"><code class="lang-faber"># The meaning of a call is determined by the function's signature,
+# not by invisible trait resolution or implicit conversions.
+functio duplica(numerus n) → numerus {
+    redde n * 2
+}</code></pre><h2 id="iii-glyphs-carry-structure">III. Ký hiệu mang cấu trúc</h2><p>Ý nghĩa cấu trúc và toán tử được biểu thị bằng ký hiệu, không phải bằng từ:
+<code>←</code> cho liên kết, <code>→</code> cho kiểu trả về, <code>⇥</code> cho lối thoát khi có lỗi, <code>∴</code> cho
+thân nhánh rút gọn, <code>≡</code> cho phép bằng nhau, <code>∪</code> cho kiểu hợp. Ký hiệu mang
+tính phổ quát — chúng không bao giờ được bản địa hóa và không bao giờ đổi
+nghĩa giữa các cách hiển thị. Người đọc tiếng Thái và người đọc tiếng Pháp
+nhìn thấy cùng một ký hiệu, ngay cả khi các từ khóa xung quanh khác nhau.</p><h2 id="iv-latin-carries-behaviour">IV. Latin mang hành vi</h2><p>Từ ngữ dành cho khai báo, câu lệnh, vòng đời và ý định hành vi:
+<code class="kw">functio</code>, <code class="kw">genus</code>, <code class="kw">fixum</code>, <code class="kw">varia</code>, <code class="kw">redde</code>, <code class="kw">cape</code>. Các từ này có thể được
+liên kết thông qua các gói ngôn ngữ của người đọc — chúng là từ vựng, không
+phải ngữ pháp. Việc chọn tiếng Latin không nhằm đề cao tiếng Latin; mục đích
+là chọn <em>một</em> nguồn cổ điển nhất quán để mọi từ khóa cùng thuộc một văn phong
+và không từ khóa nào được ưu tiên chỉ vì đó là ngôn ngữ dùng để viết phần cài
+đặt.</p><h2 id="v-conjugation-carries-time-and-flow">V. Biến cách mang thời gian và luồng thực thi</h2><p>Khi cùng một logic gốc có thể chạy đồng bộ, bất đồng bộ hoặc dưới dạng
+generator, dạng biến cách của động từ phải biểu thị chế độ thực thi đó. Các
+cặp liên quan đến quyền sở hữu — biến đổi so với sao chép và trả ra — dùng
+những dạng liên quan của cùng một gốc từ. Đây là nguyên tắc morphologia. Thư
+viện chuẩn (Norma) tuân theo quy ước này cho mọi tên phương thức:
+<code>lege</code> (đọc đồng bộ) so với <code>leget</code> (đọc bất đồng bộ), <code>adde</code> (biến đổi tại
+chỗ) so với <code>addita</code> (trả về một bản sao mới). Trình biên dịch không áp đặt
+hay tự suy ra các dạng biến cách — đây là chính sách đặt tên, không phải tính
+năng ngôn ngữ.</p><h2 id="vi-one-sign-one-job">VI. Một ký hiệu, một nhiệm vụ</h2><p>Một ký hiệu hoặc từ khóa có thể có các bí danh hoàn toàn tương đương, nhưng
+không nên mang những ý nghĩa không liên quan. Các bí danh phải quy về một
+khái niệm chuẩn duy nhất. Đây là nguyên tắc dẫn đến sự phân tách giữa <code>←</code>
+(liên kết thời gian chạy) và <code>=</code> (hình dạng trường mang tính cấu trúc) trong
+Faber — hầu hết ngôn ngữ gộp cả hai vào <code>=</code>, nhưng cách nạp chồng đó che khuất
+việc một dòng là thao tác luồng dữ liệu hay định nghĩa ở cấp kiểu.</p><pre class="faber-code"><code class="lang-text"># ← is always runtime flow
+fixum numerus count ← 0
+count ← count + 1
+
+# = is always structural shape inside Type { }
+fixum _ p ← Point {
+    x = 10,
+    y = 20
+}</code></pre><h2 id="vii-runtime-flow-is-explicit">VII. Luồng thời gian chạy phải tường minh</h2><p>Liên kết thời gian chạy, gán lại và biến đổi dùng <code>←</code>; định nghĩa cấu trúc
+dùng <code>=</code>. Khi quét mã nguồn, người đọc có thể thấy ngay mọi thao tác luồng dữ
+liệu: mỗi <code>←</code> là một sự kiện trong thời gian chạy. Không có sự mơ hồ cú pháp
+về việc một <code>=</code> cụ thể có nghĩa là “lưu vào biến này” hay “định nghĩa trường
+này”.</p><h2 id="viii-absence-is-typed">VIII. Sự vắng mặt có kiểu</h2><p>Các kiểu giá trị có thể rỗng được viết dưới dạng hợp: <code>T ∪ nihil</code>. Các vị trí
+khai báo tùy chọn dùng dấu đánh dấu sau tên: <code>sponte</code>. Đây là hai khái niệm
+khác nhau — <em>một giá trị có thể vắng mặt</em> so với *một vị trí mà bên gọi có thể
+bỏ qua* — và Faber giữ chúng tách biệt về mặt cú pháp thay vì gộp cả hai vào
+<code>T?</code> hoặc <code>Option&lt;T&gt;</code>.</p><pre class="faber-code"><code class="lang-text"># Absence in a value: T ∪ nihil
+functio find(textus key) → numerus ∪ nihil
+
+# Omission at declaration: sponte
+functio connect(textus host, numerus port sponte) → vacuum</code></pre><h2 id="ix-compiler-does-not-guess">IX. Trình biên dịch không đoán để che giấu thông tin còn thiếu</h2><p>Thông tin kiểu còn thiếu là vấn đề phân tích cần được sửa từ thượng nguồn,
+không phải chi tiết sinh mã cần được che đậy. Khi thông tin thực sự không có,
+trình biên dịch không bao giờ âm thầm suy ra một kiểu mà lập trình viên chưa
+cung cấp — nó báo phần thiếu và dừng lại. Đây là quy tắc giữ cho Faber trung
+thực: nếu người đọc không thể xác định ý nghĩa của một ký hiệu từ mã nguồn
+cục bộ, trình biên dịch cũng không được giả vờ rằng nó có thể.</p><h2 id="purpose">Mục đích</h2><p>Các điều răn tồn tại để trả lời một câu hỏi xuất hiện trong mọi cuộc thảo
+luận về thiết kế ngôn ngữ: “Thay đổi này có còn là Faber không?” Chúng là
+phép kiểm tra các bất biến — không dựa trên danh sách tính năng, mà dựa trên
+bản sắc. Một thay đổi vi phạm điều răn vẫn có thể là một ý tưởng tốt, nhưng
+phải được nhìn nhận là sự rời khỏi bản sắc thiết kế của Faber, thay vì một
+bổ sung thông thường.</p><p>Trong thực tế, các điều răn thường được dùng làm tiêu chí xem xét cho những đề
+xuất cú pháp mới. Một đề xuất làm suy yếu “kiểu dữ liệu trước tên” bằng cách
+thêm lựa chọn đặt tên trước, hoặc làm mờ “một ký hiệu, một nhiệm vụ” bằng cách
+nạp chồng một ký hiệu, phải giải thích vì sao Faber nên uốn cong bản sắc của
+mình cho tính năng đó.</p></div></main></div></body></html>

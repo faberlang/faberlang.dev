@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber में एक साझा फ्रंटएंड — लेक्स, पार्स और टाइपचेक — है, जिसके बाद लक्ष्य की आवश्यकताओं के अनुसार यह कई लोअरिंग मार्गों में विभाजित हो जाता है। मध्यवर्ती न..."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Compilation lanes — Faber"><meta property="og:description" content="Faber में एक साझा फ्रंटएंड — लेक्स, पार्स और टाइपचेक — है, जिसके बाद लक्ष्य की आवश्यकताओं के अनुसार यह कई लोअरिंग मार्गों में विभाजित हो जाता है। मध्यवर्ती न..."><meta property="og:url" content="https://faberlang.dev/hi/features/compilation-lanes.html"><meta property="og:locale" content="hi_IN"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/hi/features/compilation-lanes.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Compilation lanes — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><span class="lbl">Rendering</span><span class="locbtns">hi</span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/hi/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/hi/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Get started</div><ul class="nav"><li><a href="/hi/start/install.html">Install &amp; download</a></li><li><a href="/hi/history/releases.html">Releases</a></li><li><a href="/hi/start/hello.html">Hello</a></li><li><a href="/hi/start/commands.html">Commands</a></li><li><a href="/hi/start/projects.html">Projects</a></li><li><a href="/hi/start/examples.html">Examples</a></li><li><a href="/hi/start/">Quick tour</a></li></ul><div class="side-h">Documentation</div><ul class="nav"><li><a href="/hi/">Overview</a></li><li><a href="/hi/features/" class="active">Features</a></li><li><a href="/hi/syntax/">Syntax</a></li><li><a href="/hi/tooling/">Tooling</a></li><li><a href="/hi/ecosystem/">Ecosystem</a></li><li><a href="/hi/corpus/">Corpus</a></li><li><a href="/hi/references/">References</a></li><li><a href="/hi/history/">History</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/hi/history/releases.html">All releases</a></li><li><a href="https://github.com/faberlang">GitHub org</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Compilation lanes</h1><div class="content"><p>Faber में एक साझा फ्रंटएंड — लेक्स, पार्स और टाइपचेक — है, जिसके बाद लक्ष्य की आवश्यकताओं के अनुसार यह कई लोअरिंग मार्गों में विभाजित हो जाता है। मध्यवर्ती निरूपण एक पाइपलाइन बनाते हैं: स्रोत का विश्लेषण करके HIR बनाया जाता है, फिर वैकल्पिक रूप से MIR में लोअर किया जाता है, और अंतिम उत्सर्जन से पहले वैकल्पिक रूप से AIR के माध्यम से मोड़ा जा सकता है। प्रत्येक IR का एक अलग उद्देश्य है, और प्रत्येक लक्ष्य अपनी आवश्यकताओं के अनुरूप IR से इनपुट लेता है।</p><h2 id="overview">पाइपलाइन का अवलोकन</h2><pre class="faber-code"><code class="lang-text">Source (.fab)  →  Lex  →  Parse  →  Collect  →  Resolve  →  Lower  →  Typecheck  →  Analysis
+                                                              │
+                                                    HIR (semantic core)
+                                                    ┌─────┴─────┐
+                                                    │           │
+                                              Reader locale    MIR lowering
+                                              (input/output)    │
+                                                                │
+                                                      ┌─────────┴─────────┐
+                                                      │                   │
+                                                CPU lanes           GPU lanes
+                                                      │                   │
+                                            ┌────┬────┼────┬────┐     ┌───┴───┐
+                                            │    │    │    │    │     │       │
+                                          FMIR LLVM WASM  TS  Go   WGSL   Metal
+                                                                          (hold)</code></pre><p>सभी लक्ष्यों के लिए यही फ्रंटएंड उपयोग होता है। सिमैंटिक विश्लेषण से HIR बनने के बाद, कंपाइलर लक्ष्य के आधार पर मार्ग चुनता है:</p><ul><li><strong>HIR-direct</strong> — भाषा-सदृश बैकएंड (Rust, Faber, TypeScript, Go) के लिए सीधे टाइप किए गए HIR से उत्सर्जन</li><li><strong>HIR → MIR</strong> — निष्पादन-सदृश MIR में लोअर करना, फिर सिस्टम और लो-लेवल लक्ष्यों के लिए उत्सर्जन</li><li><strong>HIR → MIR → AIR → MIR</strong> — ऑटोडिफ और फ्यूज़न ट्रांसफॉर्म के लिए प्योर-फंक्शनल AIR के माध्यम से मोड़ना, फिर MIR में दोबारा जुड़ना</li></ul><h2 id="hir">HIR — उच्च-स्तरीय मध्यवर्ती निरूपण</h2><p>HIR सत्य का स्रोत है। यह एक टाइप किया हुआ, भाषा-सदृश IR है, जो
+डिक्लेरेशन, टाइप जानकारी और संरचनात्मक संबंधों को सुरक्षित रखता है। प्रत्येक Faber
+प्रोग्राम, चाहे उसका मूल लोकेल या लक्ष्य कुछ भी हो, इस निरूपण से होकर गुजरता है।</p><h3 id="reader-locale-integration">रीडर लोकेल एकीकरण</h3><p>रीडर लोकेल HIR के माध्यम से काम करता है। थाई
+कीवर्ड में लिखी गई Faber स्रोत फ़ाइल को उसी HIR में पार्स और लोअर किया जाता है
+जिसमें उसका समतुल्य लैटिन स्रोत जाता है। लोकेल HIR का सतही रेंडरिंग है, न कि
+सिमैंटिक कोर में कोई अलग शाखा।</p><ul><li><strong>इनपुट:</strong> स्थानीयकृत स्रोत (थाई, चीनी, अरबी आदि) → सामान्यीकृत HIR — <strong>शिप किया गया</strong></li><li><strong>आउटपुट:</strong> HIR → स्थानीयकृत स्रोत का पुनः उत्सर्जन — <strong>प्रगति में</strong> (कार्यान्वयन जारी है)</li></ul><p>जब आउटपुट दिशा शिप हो जाएगी, तब <code>faber format --reader-locale=th-TH</code>
+किसी भी Faber स्रोत को HIR के माध्यम से राउंड-ट्रिप करके थाई कीवर्ड के साथ
+उत्सर्जित कर सकेगा। इससे समरूपता पूरी होगी: वही HIR किसी भी लोकेल सतह को
+उत्पन्न कर सकेगा, जैसे वह किसी भी लक्ष्य बैकएंड को उत्पन्न कर सकता है।</p><h3 id="hir-direct-backends">HIR-direct बैकएंड</h3><p>ये लक्ष्य MIR में लोअर किए बिना सीधे टाइप किए गए HIR से उत्सर्जित होते हैं। ये
+स्रोत-स्तरीय संरचना को अधिक समय तक सुरक्षित रखते हैं और भाषा-सदृश आउटपुट के लिए
+उपयुक्त हैं:</p><table><thead><tr><th>लक्ष्य</th><th>स्थिति</th><th>भूमिका</th></tr></thead><tbody><tr><td><code>Rust</code></td><td><strong>प्राथमिक</strong></td><td>प्रोडक्शन मार्ग। पैकेज, बिल्ड, रन और टेस्ट। नेटिव बाइनरी के लिए Cargo + rustc।</td></tr><tr><td><code>Faber</code></td><td><strong>समर्थन</strong></td><td><code>forma</code> फ़ॉर्मैटर के माध्यम से कैनोनिकल स्रोत दृश्य। राउंड-ट्रिप स्थिरता।</td></tr><tr><td><code>TypeScript</code></td><td>Probe</td><td>केवल फ़ाइल उत्सर्जन। विभिन्न लक्ष्य आकारों में सिमैंटिक्स को प्रमाणित करता है।</td></tr><tr><td><code>Go</code></td><td>Erase</td><td>केवल फ़ाइल उत्सर्जन। Borrow मोड मिटाए जाते हैं; <code>ad</code> अस्वीकृत होता है।</td></tr></tbody></table><h2 id="mir">MIR — मध्य-स्तरीय मध्यवर्ती निरूपण</h2><p>MIR निष्पादन-सदृश IR है। यह कंट्रोल फ्लो, लोकल, रनटाइम कॉल, प्लेस, शाखाओं और
+त्रुटि किनारों को निरूपित करता है — यानी वे तथ्य जिनकी लो-लेवल लक्ष्यों को आवश्यकता
+होती है। जहाँ HIR स्रोत संरचना को सुरक्षित रखता है, वहीं MIR उसे एक
+कंट्रोल-फ्लो ग्राफ में समतल कर देता है।</p><p>HIR → MIR लोअरिंग भाषा-सदृश संरचनाओं को निष्पादन चरणों में बदलती है।
+लोअरिंग के बाद MIR को वैलिडेट किया जाता है, ताकि कोई भी बैकएंड उत्सर्जन का प्रयास
+करने से पहले संरचनात्मक समस्याएँ पकड़ी जा सकें।</p><p>&gt; <strong>सिमैंटिक स्वामित्व।</strong> Faber HIR/MIR में लागू किए जाने वाले नियमों (टाइप
+&gt; चेकिंग, निश्चित असाइनमेंट, Borrow मोड लिंट) और लक्ष्य टूलचेन पर छोड़े जाने वाले
+&gt; नियमों (Rust लाइफ़टाइम विश्लेषण, Go टाइप सुरक्षा) के बीच स्पष्ट सीमा रखता है।
+&gt; इससे कंपाइलर उस काम को दोहराने से बचता है जिसे लक्ष्य कंपाइलर पहले ही सही ढंग
+&gt; से करते हैं।</p><h2 id="air">AIR डिटूर</h2><p>AIR (Autograd / AI Representation) HIR → MIR मार्ग से अलग एक प्योर-फंक्शनल
+ट्रांसफॉर्म डिटूर है। इसमें अलग-अलग फ़ंक्शन पर स्पष्ट एनोटेशन द्वारा प्रवेश किया
+जाता है:</p><pre class="faber-code"><code class="lang-faber locale=la">@ radix lane &quot;air&quot;
+functio loss(numerus predicted, numerus expected) → numerus {
+    fixum numerus delta ← predicted - expected
+    redde delta * delta
+}</code></pre><p>AIR-लेन फ़ंक्शन को प्योरिटी नीति का पालन करना होगा — न म्यूटेशन, न इफ़ेक्ट और
+न लूप। जो फ़ंक्शन इसका उल्लंघन करते हैं, उन्हें AIR लोअरिंग शुरू होने से पहले
+डायग्नोस्टिक के साथ अस्वीकृत कर दिया जाता है। प्रोग्राम का शेष भाग म्यूटेशन,
+इफ़ेक्ट और लूप के साथ सामान्य Faber का उपयोग करता रहता है।</p><p>AIR ट्रांसफॉर्म अपना काम पूरा करने के बाद (भविष्य में: ऑटोडिफ, फ्यूज़न), परिणाम
+को फिर से MIR में लोअर किया जाता है और वह सामान्य MIR बैकएंड पाइपलाइन में
+शामिल हो जाता है। AIR का अपना कोई बैकएंड या स्वतंत्र टाइपचेक नहीं है — यह
+समानांतर IR नहीं, बल्कि एक ट्रांसफॉर्म चेकपॉइंट है।</p><pre class="faber-code"><code class="lang-text">HIR  →  AIR purity check  →  HIR to AIR lowering  →  AIR validation  →  AIR to MIR re-lowering  →  MIR backend</code></pre><p>यह आर्किटेक्चर JAX के दृष्टिकोण जैसा है: ट्रांसफॉर्म के लिए एक
+प्योर-फंक्शनल निरूपण रखें और अंत में ही इम्पेरेटिव IR में लोअर करें। AIR इसलिए
+मौजूद है क्योंकि इम्पेरेटिव MIR पर ऑटोडिफ चलाने के लिए उस कोड से प्योरिटी को
+दोबारा बनाना पड़ता, जिसे म्यूटेशन में लोअर किया जा चुका है।</p><h2 id="cpu">CPU लक्ष्य लेन</h2><p>CPU लक्ष्य MIR का उपभोग करते हैं और या तो एक्ज़ीक्यूटेबल आर्टिफैक्ट बनाते हैं या
+बाहरी टूलचेन के लिए टेक्स्ट तैयार करते हैं। जहाँ संभव हो, Faber टेक्स्ट उत्सर्जित
+करता है और अंतिम कंपाइलेशन चरण के लिए लो-लेवल टूलचेन पर निर्भर करता है — ठीक
+वैसे ही जैसे C कंपाइलर असेंबलर और लिंकर के लिए असेंबली उत्सर्जित करता है।</p><h3 id="fmir">FMIR — Faber का अपना MIR रनटाइम</h3><p>FMIR, MIR-नेटिव पैकेज एक्ज़ीक्यूटर है। कंपाइलर MIR को एक बाइनरी पेलोड में निकालता
+है और उसे एक छोटे Rust कर्नेल लोडर से रैप करता है। इससे एक स्व-निहित
+एक्ज़ीक्यूटेबल बनता है, जो Faber के इन-प्रोसेस स्टेपर के माध्यम से MIR चलाता है —
+अलग रनटाइम इंस्टॉलेशन की आवश्यकता नहीं होती।</p><table><thead><tr><th>फ़ॉर्मैट</th><th>विवरण</th></tr></thead><tbody><tr><td><code>fmir-text</code></td><td><code>target/faber-mir/image.fmir.txt</code> पर निरीक्षण योग्य FMIR टेक्स्ट इमेज</td></tr><tr><td><code>fmir</code></td><td><code>target/faber-mir/image.fmir</code> पर कॉम्पैक्ट बाइनरी FMIR इमेज</td></tr><tr><td><code>fmir-bin</code></td><td><code>target/faber-mir/exe/run</code> पर स्व-निहित रनर — FMIR बाइट्स एम्बेड करता है</td></tr></tbody></table><h3 id="llvm">LLVM टेक्स्ट</h3><p>Faber LLVM IR को टेक्स्ट (<code>.ll</code>) के रूप में उत्सर्जित करता है, इंटीग्रेटेड LLVM
+कोडजेन के रूप में नहीं। उत्सर्जित IR बाहरी टूलचेन चरणों के लिए है — वेरिफ़िकेशन,
+ऑप्टिमाइज़ेशन और नेटिव कोड जनरेशन डाउनस्ट्रीम LLVM टूल द्वारा संभाले जाते हैं।
+यह एक स्टेजिंग और वैलिडेशन लक्ष्य है, कंपाइलर में एम्बेडेड नेटिव कोडजेन मार्ग नहीं।</p><h3 id="wasm">WASM</h3><p>Faber WebAssembly के टेक्स्ट (<code>.wat</code>) और बाइनरी (<code>.wasm</code>) फ़ॉर्मैट उत्सर्जित
+करता है। उत्सर्जित Wasm बाहरी होस्ट इम्पोर्ट (<code>faber_*</code> रनटाइम सिंबल) का उपयोग
+करता है और <code>wasm-tools validate</code> के माध्यम से वैलिडेट किया जाता है।
+Wasm सीमाओं के साथ समर्थित लक्ष्य है — यह एक खुले मानक फ़ॉर्मैट के लिए MIR
+लोअरिंग पाइपलाइन को प्रमाणित करता है, लेकिन पैकेज डिलीवरी रनटाइम नहीं है।</p><table><thead><tr><th>फ़ॉर्मैट</th><th>CLI लक्ष्य</th><th>आउटपुट</th></tr></thead><tbody><tr><td><code>wasm-text</code></td><td><code>-t wasm-text</code> (उपनाम <code>wat</code>)</td><td>WAT टेक्स्ट फ़ॉर्मैट</td></tr><tr><td><code>wasm</code></td><td><code>-t wasm</code></td><td>बाइनरी Wasm मॉड्यूल</td></tr></tbody></table><h3 id="typescript-go">TypeScript और Go (HIR-direct)</h3><p>हालाँकि इनका उपयोग सामान्यतः एप्लिकेशन-स्तरीय फ़ाइल उत्सर्जन के लिए होता है,
+TypeScript और Go प्रमाण लक्ष्य के रूप में भी काम करते हैं: वे यह वैलिडेट करते हैं
+कि Faber की सिमैंटिक्स व्यापक रूप से उपयोग की जाने वाली टाइप प्रणालियों में
+अनुवादित हो सकती हैं, भले ही आज पैकेज कंपाइलेशन और रनटाइम एक्ज़ीक्यूशन केवल
+Rust तक सीमित हों।</p><h2 id="gpu">GPU लक्ष्य लेन</h2><h3 id="wgsl">WGSL (WGPU के माध्यम से)</h3><p>Faber MIR पाइपलाइन के माध्यम से WGSL कंप्यूट शेडर स्रोत उत्सर्जित करता है।
+उत्सर्जित WGSL को <code>naga</code> (30.x) के माध्यम से वैलिडेट किया जाता है और इसमें
+बाइंड-ग्रुप मेटाडेटा के लिए एक रिफ़्लेक्शन साइडकार शामिल होता है। यह
+डिवाइस-सुरक्षित कर्नेल सबसेट को कवर करता है: rank-1 <code>f32</code> डिवाइस व्यू समर्थित हैं;
+rank-2 व्यू अस्वीकृत होते हैं। WGSL GPU लॉन्च रनटाइम नहीं है — Faber शेडर स्रोत
+उत्सर्जित करता है, लेकिन एक्ज़ीक्यूशन के लिए बाहरी WebGPU रनटाइम आवश्यक है।</p><h3 id="metal">Metal (रुका हुआ)</h3><p>Metal कंप्यूट शेडर टेक्स्ट उत्सर्जन डिज़ाइन किया गया है और आंशिक रूप से
+कार्यान्वित भी है, लेकिन वर्तमान में रुका हुआ है। आर्किटेक्चर WGSL के समान
+पैटर्न का पालन करता है: Faber डिवाइस-सुरक्षित कर्नेल सबसेट के लिए Metal Shading
+Language स्रोत उत्सर्जित करता है, जबकि बाहरी टूलचेन कंपाइलेशन और एक्ज़ीक्यूशन
+संभालता है। काम फिर से शुरू करने की योजना है।</p><h2 id="comparison">आर्किटेक्चर नोट</h2><p>Faber का कंपाइलेशन आर्किटेक्चर इस दृष्टि से Rust कंपाइलर जैसा है कि दोनों
+HIR → MIR → LLVM IR के माध्यम से लोअर करते हैं। Rust अंतिम नेटिव कोडजेन के लिए
+LLVM टूलचेन को सीधे एम्बेड करता है। Faber अधिक लचीला दृष्टिकोण अपनाता है: वह
+उन्हें एम्बेड करने के बजाय बाहरी टूलचेन के लिए टेक्स्ट (LLVM टेक्स्ट, WGSL,
+Metal, WAT) उत्सर्जित करता है, जबकि अपने रनटाइम (FMIR) और अपने प्राथमिक पैकेज
+लक्ष्य (Rust, जहाँ Cargo और rustc डाउनस्ट्रीम पाइपलाइन संभालते हैं) के लिए सीधे
+कोड उत्सर्जन सुरक्षित रखता है।</p><p>टेक्स्ट-उत्सर्जन दृष्टिकोण का अर्थ है कि Faber को LLVM, Wasm रनटाइम या GPU
+ड्राइवर को बंडल करने की आवश्यकता नहीं पड़ती — ये उपयोगकर्ता द्वारा चुनी गई
+बाहरी निर्भरताएँ रहती हैं। इसका समझौता यह है कि Faber हर लक्ष्य के लिए
+एक-कमांड बिल्ड नहीं दे सकता; उपयोगकर्ता को अपने चुने हुए बैकएंड के लिए उपयुक्त
+टूलचेन इंस्टॉल करना होगा।</p><h2 id="matrix">लक्ष्य सारांश</h2><table><thead><tr><th>लक्ष्य</th><th>IR</th><th>परिवार</th><th>बिल्ड</th><th>रन</th><th>पैकेज</th></tr></thead><tbody><tr><td><code>Rust</code></td><td>HIR</td><td>CPU</td><td>हाँ</td><td>हाँ</td><td>हाँ</td></tr><tr><td><code>fmir</code> / <code>fmir-bin</code></td><td>MIR</td><td>CPU</td><td>हाँ</td><td>हाँ</td><td>हाँ</td></tr><tr><td><code>Faber</code> (फ़ॉर्मैट)</td><td>HIR</td><td>—</td><td>नहीं</td><td>नहीं</td><td>नहीं</td></tr><tr><td><code>TypeScript</code></td><td>HIR</td><td>CPU</td><td>नहीं</td><td>नहीं</td><td>नहीं</td></tr><tr><td><code>Go</code></td><td>HIR</td><td>CPU</td><td>नहीं</td><td>नहीं</td><td>नहीं</td></tr><tr><td><code>LLVM text</code></td><td>MIR</td><td>CPU</td><td>नहीं</td><td>नहीं</td><td>नहीं</td></tr><tr><td><code>WASM</code> / <code>WAT</code></td><td>MIR</td><td>CPU</td><td>नहीं</td><td>नहीं</td><td>नहीं</td></tr><tr><td><code>WGSL</code></td><td>MIR</td><td>GPU</td><td>नहीं</td><td>नहीं</td><td>नहीं</td></tr><tr><td><code>Metal</code> (रुका हुआ)</td><td>MIR</td><td>GPU</td><td>नहीं</td><td>नहीं</td><td>नहीं</td></tr></tbody></table><p>*<code>build</code>, <code>run</code> और <code>package</code> Faber वर्कफ़्लो का वर्णन करते हैं। टेक्स्ट-उत्सर्जन
+लक्ष्यों के लिए अंतिम कंपाइलेशन को बाहरी टूलचेन (rustc, wasm-tools, naga)
+संभालते हैं।*</p></div></main></div></body></html>

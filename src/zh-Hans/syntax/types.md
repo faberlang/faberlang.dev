@@ -150,7 +150,7 @@ functio swap(atomic<i32> cell, i32 value) → i32 {
 
 借用标记（`de`、`in`、`ex`）可以出现在参数位置的类型上，用于表示值的传递方式：
 
-```faber
+```faber locale=la
 # shared borrow — caller retains ownership
 functio imprime(de textus label) → vacuum { }
 

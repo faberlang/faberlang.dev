@@ -10,7 +10,7 @@ harness.</p><h2 id="implemented-utilities">Implemented utilities</h2><p><strong>
 <code>rm</code>, <code>cp</code>, <code>mv</code>, <code>mkdir</code>, <code>touch</code>, <code>pwd</code>, <code>readlink</code>, <code>realpath</code>,
 <code>join</code>, <code>comm</code>, <code>od</code>, <code>cksum</code>, <code>split</code>, <code>yes</code>, <code>printenv</code></p><h2 id="example--echo">Example — echo</h2><p>The <code>echo</code> package demonstrates Faber patterns used throughout coreutils:
 CLI annotations, option parsing, inline tests with <code>probandum</code>/<code>proba</code>/<code>adfirma</code>,
-and shared common modules:</p><pre class="faber-code"><code class="lang-faber">importa ex &quot;norma:consolum&quot; privata consolum
+and shared common modules:</p><pre class="faber-code"><code class="lang-faber locale=la">importa ex &quot;norma:consolum&quot; privata consolum
 importa ex &quot;../../../common/gnu/format&quot; privata gnu_format
 
 functio echo_textus(lista&lt;textus&gt; words) → textus {

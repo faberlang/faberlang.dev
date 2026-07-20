@@ -37,7 +37,7 @@ Faber 以應用程式軌證明的方式重新實作 GNU coreutils。這些是真
 
 `echo` 套件示範 coreutils 各處使用的 Faber 模式：CLI 註解、選項剖析、使用 `probandum`/`proba`/`adfirma` 的內嵌測試，以及共用的通用模組：
 
-```faber
+```faber locale=la
 importa ex "norma:consolum" privata consolum
 importa ex "../../../common/gnu/format" privata gnu_format
 

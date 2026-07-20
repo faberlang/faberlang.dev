@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="th-TH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="กฎเก้าข้อที่ทำให้ Faber ให้ความรู้สึกเป็น Faber"><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Commandments — Faber"><meta property="og:description" content="กฎเก้าข้อที่ทำให้ Faber ให้ความรู้สึกเป็น Faber"><meta property="og:url" content="https://faberlang.dev/th-TH/features/commandments.html"><meta property="og:locale" content="th_TH"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/th-TH/features/commandments.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Commandments — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><span class="lbl">การเรนเดอร์</span><span class="locbtns">th-TH</span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/th-TH/start/install.html">ติดตั้ง</a></nav></div></div><div class="page"><aside><a class="brand" href="/th-TH/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">เอกสารภาษา</span></span></a><div class="side-h">เริ่มต้นใช้งาน</div><ul class="nav"><li><a href="/th-TH/start/install.html">ติดตั้งและดาวน์โหลด</a></li><li><a href="/th-TH/history/releases.html">รุ่นเผยแพร่</a></li><li><a href="/th-TH/start/hello.html">สวัสดี</a></li><li><a href="/th-TH/start/commands.html">คำสั่ง</a></li><li><a href="/th-TH/start/projects.html">โครงงาน</a></li><li><a href="/th-TH/start/examples.html">ตัวอย่าง</a></li><li><a href="/th-TH/start/">แนะนำด่วน</a></li></ul><div class="side-h">เอกสารประกอบ</div><ul class="nav"><li><a href="/th-TH/">ภาพรวม</a></li><li><a href="/th-TH/features/" class="active">คุณสมบัติ</a></li><li><a href="/th-TH/syntax/">ไวยากรณ์</a></li><li><a href="/th-TH/tooling/">เครื่องมือ</a></li><li><a href="/th-TH/ecosystem/">ระบบนิเวศ</a></li><li><a href="/th-TH/corpus/">คลังภาษา</a></li><li><a href="/th-TH/references/">เอกสารอ้างอิง</a></li><li><a href="/th-TH/history/">ประวัติ</a></li></ul><div class="side-h">สำหรับเอเจนต์</div><ul class="nav nav-compact"><li><a href="/llms.txt">ดัชนีเอเจนต์</a></li><li><a href="/agents/index.md">คู่มือเอเจนต์</a></li><li><a href="/.well-known/agent-skills/index.json">ทักษะเอเจนต์</a></li><li><a href="/llms-full.txt">เอกสารอ้างอิงเต็ม</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/th-TH/history/releases.html">ทุกรุ่นที่เผยแพร่</a></li><li><a href="https://github.com/faberlang">องค์กร GitHub</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">กระบวนทัศน์</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">ระบบชนิด</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">เป้าหมาย</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">สัญญาอนุญาต</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Commandments</h1><div class="content"><p><em>กฎเก้าข้อที่ทำให้ Faber ให้ความรู้สึกเป็น Faber</em></p><p>กฎเหล่านี้คือหลักการออกแบบที่กำหนดลักษณะเฉพาะของ Faber ไวยากรณ์อาจพัฒนาได้
+และสามารถเพิ่มฟีเจอร์ใหม่ได้ แต่การเปลี่ยนแปลงควรรักษาหลักการเหล่านี้ไว้
+โปรแกรมที่ละเมิดหลักการเหล่านี้อาจยังเป็น Faber ที่ถูกต้อง แต่จะไม่ให้ความรู้สึก
+เป็น Faber</p><p>บัญญัติเหล่านี้ใช้ได้กับทุกระดับ — ตั้งแต่ตัวไวยากรณ์เองไปจนถึงวิธีตั้งชื่อ API
+ในไลบรารีมาตรฐาน นี่คือเหตุผลที่ผู้อ่านสามารถระบุซอร์สโค้ด Faber ได้ทันที
+ไม่ว่าจะเรนเดอร์คีย์เวิร์ดด้วยภาษามนุษย์ใด หรือโค้ดจะคอมไพล์ไปยังแบ็กเอนด์เป้าหมายใด</p><h2 id="i-types-before-names">I. ประเภทมาก่อนชื่อ</h2><p>การประกาศอ่านจากรูปร่างไปสู่การผูกชื่อ ประเภทมาก่อนเพราะผู้อ่านจำเป็นต้องรู้
+<em>สิ่งนี้เป็นสิ่งประเภทใด</em> ก่อนที่ชื่อจะบอกว่า <em>เป็นสิ่งใด</em> ลำดับนี้สอดคล้องกับ
+ภาษาที่มีโครงสร้างทางไวยากรณ์จากหมวดหมู่ไปยังสิ่งเฉพาะ — เช่น ภาษาจีน ภาษาฮินดี
+และภาษาอาหรับ — และทำให้การประกาศกวาดสายตาได้อย่างสม่ำเสมอ</p><pre class="faber-code"><code class="lang-text"># Type before name in every declaration
+textus nomen
+numerus aetas
+functio salve(textus name) → textus</code></pre><h2 id="ii-mechanical-over-magical">II. ใช้กลไกที่ชัดเจน ไม่พึ่งเวทมนตร์</h2><p>โครงสร้างเดียวกันควรมีความหมายเหมือนกันในทุกที่ หากผู้อ่านต้องอาศัยบริบทที่อยู่
+ห่างไกลเพื่อรู้ว่าสัญลักษณ์หนึ่งทำอะไร ไวยากรณ์นั้นก็น่าสงสัย Faber ให้ความสำคัญ
+กับการให้เหตุผลอย่างชัดเจนและอยู่ในบริเวณใกล้เคียง — จุดประกาศควรมีข้อมูลเพียงพอ
+ให้เข้าใจได้ว่าจะเกิดอะไรขึ้นที่จุดใช้งาน</p><pre class="faber-code"><code class="lang-faber"># The meaning of a call is determined by the function's signature,
+# not by invisible trait resolution or implicit conversions.
+functio duplica(numerus n) → numerus {
+    redde n * 2
+}</code></pre><h2 id="iii-glyphs-carry-structure">III. อักขระภาพทำหน้าที่บอกโครงสร้าง</h2><p>ความหมายเชิงโครงสร้างและตัวดำเนินการใช้สัญลักษณ์ภาพ ไม่ใช้คำ: <code>←</code>
+สำหรับการผูกค่า, <code>→</code> สำหรับประเภทผลลัพธ์, <code>⇥</code>
+สำหรับการออกเมื่อเกิดข้อผิดพลาด, <code>∴</code> สำหรับบอดีของแขนงแบบกระชับ,
+<code>≡</code> สำหรับความเท่ากัน และ <code>∪</code> สำหรับประเภท
+ยูเนียน สัญลักษณ์ภาพเป็นสากล — ไม่แปลตามภาษาและไม่เปลี่ยนความหมาย
+ระหว่างการเรนเดอร์ ภาษาไทยและภาษาฝรั่งเศสจึงเห็นสัญลักษณ์ภาพเดียวกัน
+แม้คีย์เวิร์ดที่อยู่รอบข้างจะแตกต่างกัน</p><h2 id="iv-latin-carries-behaviour">IV. อักษรละตินทำหน้าที่บอกพฤติกรรม</h2><p>คำต่าง ๆ ใช้สำหรับการประกาศ คำสั่ง วงจรชีวิต และเจตนาเชิงพฤติกรรม:
+<code class="kw">functio</code>, <code class="kw">genus</code>, <code class="kw">fixum</code>,
+<code class="kw">varia</code>, <code class="kw">redde</code>, <code class="kw">cape</code>
+คำเหล่านี้สามารถผูกเข้ากับแพ็กภาษาของผู้อ่านได้ — คำเหล่านี้คือคลังคำศัพท์
+ไม่ใช่ไวยากรณ์ การเลือกใช้ภาษาละตินไม่ได้หมายถึงความเหนือกว่าของภาษาละติน
+แต่หมายถึงการเลือกแหล่งภาษาคลาสสิก <em>เพียงแหล่งเดียว</em> ที่สอดคล้องกัน
+เพื่อให้คีย์เวิร์ดทั้งหมดอยู่ในระดับภาษาเดียวกัน และไม่มีคีย์เวิร์ดใดได้รับสิทธิพิเศษ
+เพียงเพราะเป็นภาษาที่ใช้เขียนตัวระบบ</p><h2 id="v-conjugation-carries-time-and-flow">V. การผันคำกริยาทำหน้าที่บอกเวลาและการไหลของการทำงาน</h2><p>เมื่อสามารถเรียกใช้ตรรกะรากเดียวกันแบบซิงโครนัส แบบอะซิงโครนัส
+หรือในฐานะเจเนอเรเตอร์ได้ รูปผันของคำกริยาควรเป็นตัวบอกโหมดการทำงานนั้น
+คู่คำที่เกี่ยวกับ ownership — กลายค่าเทียบกับคัดลอกผลลัพธ์ออก —
+ควรใช้รูปที่สัมพันธ์กันของรากคำเดียวกัน นี่คือหลักการ morphologia
+ไลบรารีมาตรฐาน (Norma) ใช้แบบแผนนี้กับชื่อเมธอดทั้งหมด:
+<code>lege</code> (อ่านแบบซิงโครนัส) เทียบกับ
+<code>leget</code> (อ่านแบบอะซิงโครนัส), <code>adde</code> (กลายค่าในที่เดิม) เทียบกับ
+<code>addita</code> (คืนสำเนาใหม่) คอมไพเลอร์ไม่ได้บังคับหรือสร้างรูปผันเหล่านี้
+เพราะนี่เป็นนโยบายการตั้งชื่อ ไม่ใช่ฟีเจอร์ของภาษา</p><h2 id="vi-one-sign-one-job">VI. หนึ่งสัญลักษณ์ หนึ่งหน้าที่</h2><p>สัญลักษณ์ภาพหรือคีย์เวิร์ดอาจมีนามแฝงที่มีความหมายตรงกันได้
+แต่ไม่ควรมีความหมายที่ไม่เกี่ยวข้องกัน นามแฝงต้องชี้กลับไปยังแนวคิดหลักเพียงหนึ่งเดียว
+นี่คือหลักการที่ขับเคลื่อนการแยกระหว่าง <code>←</code>
+(การผูกค่าในขณะทำงาน) และ <code>=</code> (รูปร่างฟิลด์เชิงโครงสร้าง) —
+ภาษาส่วนใหญ่รวมทั้งสองอย่างไว้เป็น <code>=</code>
+แต่การใช้ซ้ำเช่นนั้นบดบังว่าบรรทัดหนึ่งเป็นการดำเนินการไหลของข้อมูล
+หรือเป็นการกำหนดในระดับประเภท</p><pre class="faber-code"><code class="lang-text"># ← is always runtime flow
+fixum numerus count ← 0
+count ← count + 1
+
+# = is always structural shape inside Type { }
+fixum _ p ← Point {
+    x = 10,
+    y = 20
+}</code></pre><h2 id="vii-runtime-flow-is-explicit">VII. การไหลของการทำงานขณะรันไทม์ต้องชัดเจน</h2><p>การผูกค่าในขณะทำงาน การกำหนดค่าใหม่ และการกลายค่าใช้ <code>←</code>;
+การกำหนดเชิงโครงสร้างใช้ <code>=</code> ผู้อ่านที่กวาดสายตาผ่านซอร์สโค้ดจะเห็น
+การดำเนินการไหลของข้อมูลทุกจุดได้ทันที: ทุก <code>←</code> คือเหตุการณ์ขณะรันไทม์
+จึงไม่มีความกำกวมทางไวยากรณ์ว่า <code>=</code> ในบรรทัดหนึ่งหมายถึง
+“เก็บค่าลงในตัวแปรนี้” หรือ “กำหนดฟิลด์นี้”</p><h2 id="viii-absence-is-typed">VIII. การไม่มีค่าต้องมีประเภท</h2><p>ประเภทค่าที่อาจเป็นค่าว่างเขียนเป็นยูเนียน: <code>T ∪ nihil</code>
+ช่องการประกาศที่เลือกละเว้นได้ใช้เครื่องหมายหลังชื่อ: <code>sponte</code>
+สองอย่างนี้เป็นแนวคิดที่แตกต่างกัน — <em>ค่าที่อาจไม่มีอยู่</em> เทียบกับ
+<em>ช่องที่ผู้เรียกอาจไม่ระบุ</em> — และ Faber แยกสองแนวคิดนี้ทางไวยากรณ์
+แทนที่จะรวมทั้งคู่ไว้เป็น <code>T?</code> หรือ <code>Option&lt;T&gt;</code></p><pre class="faber-code"><code class="lang-text"># Absence in a value: T ∪ nihil
+functio find(textus key) → numerus ∪ nihil
+
+# Omission at declaration: sponte
+functio connect(textus host, numerus port sponte) → vacuum</code></pre><h2 id="ix-compiler-does-not-guess">IX. คอมไพเลอร์จะไม่เดาเพื่อปกปิดข้อมูลที่ขาดหาย</h2><p>ข้อมูลประเภทที่ขาดหายเป็นปัญหาด้านการวิเคราะห์ที่ต้องแก้จากต้นทาง
+ไม่ใช่รายละเอียดของการสร้างโค้ดที่ควรปกปิด คอมไพเลอร์จะไม่อนุมานประเภท
+ที่โปรแกรมเมอร์ไม่ได้ระบุอย่างเงียบ ๆ เมื่อข้อมูลนั้นขาดหายไปจริง —
+คอมไพเลอร์จะแจ้งช่องว่างดังกล่าวแล้วหยุดทำงาน กฎนี้ทำให้ Faber ซื่อตรง:
+หากผู้อ่านไม่สามารถระบุความหมายของสัญลักษณ์จากซอร์สโค้ดบริเวณใกล้เคียงได้
+คอมไพเลอร์ก็ไม่ควรแสร้งทำเป็นว่าระบุได้</p><h2 id="purpose">จุดประสงค์</h2><p>บัญญัติเหล่านี้มีขึ้นเพื่อตอบคำถามที่เกิดขึ้นในการอภิปรายการออกแบบภาษา
+ทุกครั้งว่า “การเปลี่ยนแปลงนี้ยังเป็น Faber อยู่หรือไม่” บัญญัติเหล่านี้คือ
+เกณฑ์ตรวจสอบความคงเส้นคงวา — ไม่ใช่การตรวจเทียบกับรายการฟีเจอร์
+แต่เป็นการตรวจเทียบกับลักษณะเฉพาะ การเปลี่ยนแปลงที่ละเมิดบัญญัติอาจยังเป็น
+แนวคิดที่ดี แต่ควรยอมรับอย่างชัดเจนว่าเป็นการออกนอกลักษณะการออกแบบของ Faber
+ไม่ใช่การเพิ่มฟีเจอร์ตามปกติ</p><p>ในทางปฏิบัติ บัญญัติเหล่านี้มักใช้เป็นเกณฑ์ทบทวนข้อเสนอไวยากรณ์ใหม่
+ข้อเสนอที่ทำให้หลัก “ประเภทมาก่อนชื่อ” อ่อนลงด้วยการเพิ่มทางเลือกแบบชื่อมาก่อน
+หรือทำให้หลัก “หนึ่งสัญลักษณ์ หนึ่งหน้าที่” พร่ามัวด้วยการใช้สัญลักษณ์ภาพ
+หลายความหมาย ต้องอธิบายให้ได้ว่าเหตุใด Faber จึงควรยืดหยุ่นลักษณะเฉพาะของตน
+เพื่อรองรับฟีเจอร์นั้น</p></div></main></div></body></html>

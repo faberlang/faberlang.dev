@@ -40,7 +40,7 @@ attempts emission.</p><p>&gt; <strong>Semantic ownership.</strong> Faber maintai
 &gt; safety). This prevents the compiler from duplicating work that target
 &gt; compilers already do correctly.</p><h2 id="air">AIR detour</h2><p>AIR (Autograd / AI Representation) is a pure-functional transform detour off
 the HIR → MIR path. It is entered by explicit annotation on individual
-functions:</p><pre class="faber-code"><code class="lang-faber">@ radix lane &quot;air&quot;
+functions:</p><pre class="faber-code"><code class="lang-faber locale=la">@ radix lane &quot;air&quot;
 functio loss(numerus predicted, numerus expected) → numerus {
     fixum numerus delta ← predicted - expected
     redde delta * delta

@@ -53,7 +53,7 @@ Ownership pairs (mutate vs copy-out):
 
 ## Usage {#usage}
 
-```faber
+```faber locale=la
 importa ex "norma:solum" privata solum
 
 functio legeConfig() → textus {

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="hi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber में भाषा के भीतर ही निर्मित एक प्रथम-श्रेणी परीक्षण फ्रेमवर्क है, जिसमें तीन कीवर्ड हैं: probandum एक परीक्षण सूट घोषित करता है, proba एकल परीक्षण केस ..."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Inline testing — Faber"><meta property="og:description" content="Faber में भाषा के भीतर ही निर्मित एक प्रथम-श्रेणी परीक्षण फ्रेमवर्क है, जिसमें तीन कीवर्ड हैं: probandum एक परीक्षण सूट घोषित करता है, proba एकल परीक्षण केस ..."><meta property="og:url" content="https://faberlang.dev/hi/features/testing.html"><meta property="og:locale" content="hi_IN"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/hi/features/testing.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Inline testing — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><span class="lbl">Rendering</span><span class="locbtns">hi</span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/hi/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/hi/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Get started</div><ul class="nav"><li><a href="/hi/start/install.html">Install &amp; download</a></li><li><a href="/hi/history/releases.html">Releases</a></li><li><a href="/hi/start/hello.html">Hello</a></li><li><a href="/hi/start/commands.html">Commands</a></li><li><a href="/hi/start/projects.html">Projects</a></li><li><a href="/hi/start/examples.html">Examples</a></li><li><a href="/hi/start/">Quick tour</a></li></ul><div class="side-h">Documentation</div><ul class="nav"><li><a href="/hi/">Overview</a></li><li><a href="/hi/features/" class="active">Features</a></li><li><a href="/hi/syntax/">Syntax</a></li><li><a href="/hi/tooling/">Tooling</a></li><li><a href="/hi/ecosystem/">Ecosystem</a></li><li><a href="/hi/corpus/">Corpus</a></li><li><a href="/hi/references/">References</a></li><li><a href="/hi/history/">History</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/hi/history/releases.html">All releases</a></li><li><a href="https://github.com/faberlang">GitHub org</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Inline testing</h1><div class="content"><p>Faber में भाषा के भीतर ही निर्मित एक प्रथम-श्रेणी परीक्षण फ्रेमवर्क है, जिसमें तीन कीवर्ड हैं: <code>probandum</code> एक परीक्षण सूट घोषित करता है, <code>proba</code> एकल परीक्षण केस घोषित करता है, और <code>adfirma</code> किसी शर्त की पुष्टि करता है। परीक्षण उसी फ़ाइल में रहते हैं जिसमें उनका परीक्षण किया जाने वाला कोड होता है, <code>faber test</code> के माध्यम से चलते हैं, और प्रोडक्शन कोड के समान कंपाइलर पाइपलाइन का समर्थन करते हैं — लोकेल-अवेयर, प्रकार-जाँचे हुए और बहु-लक्ष्यीय।</p><h2 id="keywords">तीन कीवर्ड</h2><table><thead><tr><th>कीवर्ड</th><th>भूमिका</th><th>लगभग समतुल्य</th></tr></thead><tbody><tr><td><code>probandum</code></td><td>नामित परीक्षण सूट घोषित करता है</td><td><code>describe</code>, <code>#[cfg(test)] mod</code></td></tr><tr><td><code>proba</code></td><td>एकल परीक्षण केस घोषित करता है</td><td><code>it</code>, <code>#[test]</code></td></tr><tr><td><code>adfirma</code></td><td>रनटाइम पर किसी शर्त की पुष्टि करता है</td><td><code>assert!</code>, <code>assert_eq!</code></td></tr></tbody></table><h3 id="probandum-test-suite">probandum — परीक्षण सूट</h3><p><code>probandum</code> ब्लॉक संबंधित परीक्षण मामलों को एक साथ समूहित करता है। परीक्षणों को पदानुक्रम के अनुसार व्यवस्थित करने के लिए सूट को नेस्ट किया जा सकता है:</p><pre class="faber-code"><code class="lang-faber">probandum &quot;arithmetica&quot; {
+    proba &quot;unum plus unum&quot; {
+        adfirma 1 + 1 ≡ 2
+    }
+
+    proba &quot;multiplicatio&quot; {
+        adfirma 3 * 4 ≡ 12
+    }
+
+    probandum &quot;implicata&quot; {
+        proba &quot;comparatio&quot; {
+            fixum _ x ← 10
+            adfirma x ≥ 10
+        }
+    }
+}</code></pre><h3 id="proba-test-case">proba — परीक्षण केस</h3><p><code>proba</code> ब्लॉक में परीक्षण का तर्क होता है। इसमें कोई भी Faber कोड — वैरिएबल बाइंडिंग, फ़ंक्शन कॉल, नियंत्रण प्रवाह — इस्तेमाल किया जा सकता है और इसका अंत एक या अधिक <code>adfirma</code> पुष्टियों के साथ होता है। चयनात्मक निष्पादन के लिए परीक्षणों पर वैकल्पिक <code>tag</code> मार्कर लगाया जा सकता है:</p><pre class="faber-code"><code class="lang-text">proba &quot;echo formats operands with one space&quot; tag &quot;coreutils&quot; {
+    adfirma echo_textus([&quot;hello&quot;, &quot;world&quot;]) ≡ &quot;hello world&quot;
+}</code></pre><h3 id="adfirma-assertion">adfirma — पुष्टि</h3><p><code>adfirma</code> किसी बूलियन अभिव्यक्ति का मूल्यांकन करता है और उसके असत्य होने पर विफलता की सूचना देता है। विफलता के समय संदर्भ देने के लिए वैकल्पिक संदेश स्ट्रिंग दी जा सकती है:</p><pre class="faber-code"><code class="lang-faber">incipit {
+    fixum _ x ← 10
+
+    # Simple assertion
+    adfirma x &gt; 0
+
+    # With custom message
+    adfirma x ≡ 10, &quot;x decem esse debet&quot;
+
+    # Multiple assertions in sequence
+    fixum _ nomen ← &quot;Marcus&quot;
+    adfirma nomen ≡ &quot;Marcus&quot;
+    adfirma nomen ≠ &quot;&quot;, &quot;nomen vacuum non sit&quot;
+}</code></pre><h2 id="workflow">कार्यप्रवाह</h2><p>परीक्षण <code>faber test</code> कमांड के माध्यम से चलते हैं:</p><pre class="faber-code"><code class="lang-text">faber test                        # run all tests in the current package
+faber test examples/coreutils/packages/echo  # run tests for a specific package</code></pre><p>क्योंकि परीक्षण उसी <code>.fab</code> फ़ाइल में स्रोत कोड के साथ रहते हैं, इसलिए अलग परीक्षण डायरेक्टरी संरचना, परीक्षण मॉड्यूल घोषणा या परीक्षण और प्रोडक्शन बिल्ड के बीच अलग बिल्ड स्क्रिप्ट की आवश्यकता नहीं होती। कंपाइलर इस्तेमाल किए गए कीवर्ड के आधार पर यह जानता है कि कौन-से ब्लॉक परीक्षण कोड हैं और कौन-से प्रोडक्शन कोड — <code>probandum</code> और <code>proba</code> को पार्स किया जाता है, लेकिन प्रोडक्शन बिल्ड से बाहर रखा जाता है।</p><h2 id="real-world">वास्तविक उदाहरण</h2><p>coreutils का <code>echo</code> पैकेज परीक्षण फ्रेमवर्क को व्यवहार में प्रदर्शित करता है। परीक्षण उसी फ़ाइल में इम्प्लीमेंटेशन के साथ रहते हैं और विकल्प पार्सिंग, एस्केप विस्तार तथा किनारी स्थितियों को कवर करते हैं:</p><pre class="faber-code"><code class="lang-text">probandum &quot;echo formatting&quot; tag &quot;coreutils&quot; {
+    proba &quot;empty operands format as empty text&quot; {
+        fixum lista&lt;textus&gt; words ← vacua
+        adfirma echo_textus(words) ≡ &quot;&quot;
+    }
+
+    proba &quot;single operand is unchanged&quot; {
+        adfirma echo_textus([&quot;hello&quot;]) ≡ &quot;hello&quot;
+    }
+
+    proba &quot;-E is a leading no-op option&quot; {
+        adfirma echo_textus([&quot;-E&quot;, &quot;hello&quot;, &quot;world&quot;]) ≡ &quot;hello world&quot;
+    }
+
+    proba &quot;-n suppresses the trailing newline flag&quot; {
+        adfirma echo_novam_lineam([&quot;-n&quot;, &quot;hello&quot;]) ≡ falsum
+    }
+
+    proba &quot;-e expands the declared escape subset&quot; {
+        adfirma echo_textus([&quot;-e&quot;, &quot;a\\nb&quot;]) ≡ &quot;a\nb&quot;
+        adfirma echo_textus([&quot;-e&quot;, &quot;a\\tb&quot;]) ≡ &quot;a\tb&quot;
+    }
+}</code></pre><h2 id="design">डिज़ाइन नोट्स</h2><p>कई डिज़ाइन विकल्प Faber के परीक्षण फ्रेमवर्क को पारंपरिक तरीकों से अलग बनाते हैं:</p><ul><li><strong>अलग परीक्षण बाइनरी नहीं।</strong> परीक्षण अलग कंपाइलेशन लक्ष्य नहीं, बल्कि उसी स्रोत फ़ाइल में घोषणाएँ हैं। कंपाइलर परीक्षण ब्लॉकों को प्रोडक्शन आउटपुट से फ़िल्टर कर देता है।</li><li><strong>डायरेक्टरी नहीं, टैग।</strong> परीक्षण डायरेक्टरी संरचना के बजाय <code>tag</code> मार्करों के आधार पर व्यवस्थित किए जाते हैं। किसी परीक्षण को स्थान बदले बिना कई संगठनात्मक अक्षों में शामिल किया जा सकता है।</li><li><strong>पूर्ण कंपाइलर पाइपलाइन।</strong> परीक्षणों की प्रकार-जाँच और विश्लेषण किया जाता है तथा वे लोकेल-अवेयर होते हैं — परीक्षण आउटपुट पर भी वही <code>--reader-locale</code> फ़्लैग लागू होता है।</li><li><strong>बहु-लक्ष्य।</strong> परीक्षण पैकेज द्वारा लक्षित बैकएंड के माध्यम से चलते हैं — <code>faber test --interpret</code> के लिए MIR स्टेपर और <code>faber test</code> के लिए कंपाइल्ड Rust।</li><li><strong>नेस्टेड सूट।</strong> <code>probandum</code> ब्लॉक नेस्ट किए जा सकते हैं और उस कोड की संरचना को प्रतिबिंबित करते हैं जिसका वे परीक्षण करते हैं।</li></ul><h2 id="references">संदर्भ</h2><p>1. <code>examples/corpus/probandum/</code> — probandum उदाहरण फ़ाइलें
+2. <code>examples/corpus/proba/</code> — proba उदाहरण फ़ाइलें
+3. <code>examples/corpus/adfirma/</code> — adfirma उदाहरण फ़ाइलें
+4. <code>examples/coreutils/packages/echo/src/main.fab</code> — टैग के साथ वास्तविक उपयोग</p></div></main></div></body></html>

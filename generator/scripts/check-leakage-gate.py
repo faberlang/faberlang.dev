@@ -128,16 +128,18 @@ def check_factory_leak(dist: Path):
 
 
 def _looks_translated(html: str) -> bool:
-    """Heuristic: main content has substantial non-Latin script.
+    """Heuristic: main content has substantial non-ASCII letters.
 
     Translated pages drop the honesty banner (GOAL Phase 6). Absent notice is
     allowed when body content is no longer English-only fallback.
+
+    Counts any alphabetic character outside ASCII so Latin-script locales with
+    diacritics (e.g. Vietnamese) qualify the same as non-Latin scripts.
     """
     m = re.search(r'(?is)<div class="content"[^>]*>(.*)</div>\s*</main>', html)
     body = m.group(1) if m else html
-    # Count letters outside Basic Latin / Latin-1 Supplement common range
-    non_latin = sum(1 for ch in body if ord(ch) > 0x024F and ch.isalpha())
-    return non_latin >= 40
+    non_ascii_alpha = sum(1 for ch in body if ord(ch) > 127 and ch.isalpha())
+    return non_ascii_alpha >= 40
 
 
 def check_locale_notices(dist: Path):

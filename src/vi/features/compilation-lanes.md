@@ -77,7 +77,7 @@ Việc hạ thấp HIR → MIR chuyển các cấu trúc có hình dạng ngôn 
 
 AIR (Autograd / AI Representation) là một tuyến biến đổi hàm thuần đi vòng khỏi đường HIR → MIR. Tuyến này được kích hoạt bằng chú thích tường minh trên từng hàm:
 
-```faber
+```faber locale=la
 @ radix lane "air"
 functio loss(numerus predicted, numerus expected) → numerus {
     fixum numerus delta ← predicted - expected

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber 在语言层面内置了一流测试框架，包含三个关键字：probandum 声明测试套件，proba 声明单个测试用例，adfirma 断言某个条件。测试与被测代码位于同一文件中，通过 faber test 运行，并支持与生产代码相同的编译流水线 —— 具备区域感知能力、类型检查和多目标支持。"><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Inline testing — Faber"><meta property="og:description" content="Faber 在语言层面内置了一流测试框架，包含三个关键字：probandum 声明测试套件，proba 声明单个测试用例，adfirma 断言某个条件。测试与被测代码位于同一文件中，通过 faber test 运行，并支持与生产代码相同的编译流水线 —— 具备区域感知能力、类型检查和多目标支持。"><meta property="og:url" content="https://faberlang.dev/zh-Hans/features/testing.html"><meta property="og:locale" content="zh_CN"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/zh-Hans/features/testing.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Inline testing — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><span class="lbl">Rendering</span><span class="locbtns">zh-Hans</span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/zh-Hans/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/zh-Hans/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Get started</div><ul class="nav"><li><a href="/zh-Hans/start/install.html">Install &amp; download</a></li><li><a href="/zh-Hans/history/releases.html">Releases</a></li><li><a href="/zh-Hans/start/hello.html">Hello</a></li><li><a href="/zh-Hans/start/commands.html">Commands</a></li><li><a href="/zh-Hans/start/projects.html">Projects</a></li><li><a href="/zh-Hans/start/examples.html">Examples</a></li><li><a href="/zh-Hans/start/">Quick tour</a></li></ul><div class="side-h">Documentation</div><ul class="nav"><li><a href="/zh-Hans/">Overview</a></li><li><a href="/zh-Hans/features/" class="active">Features</a></li><li><a href="/zh-Hans/syntax/">Syntax</a></li><li><a href="/zh-Hans/tooling/">Tooling</a></li><li><a href="/zh-Hans/ecosystem/">Ecosystem</a></li><li><a href="/zh-Hans/corpus/">Corpus</a></li><li><a href="/zh-Hans/references/">References</a></li><li><a href="/zh-Hans/history/">History</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/zh-Hans/history/releases.html">All releases</a></li><li><a href="https://github.com/faberlang">GitHub org</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Inline testing</h1><div class="content"><p>Faber 在语言层面内置了一流测试框架，包含三个关键字：<code>probandum</code> 声明测试套件，<code>proba</code> 声明单个测试用例，<code>adfirma</code> 断言某个条件。测试与被测代码位于同一文件中，通过 <code>faber test</code> 运行，并支持与生产代码相同的编译流水线 —— 具备区域感知能力、类型检查和多目标支持。</p><h2 id="keywords">三个关键字</h2><table><thead><tr><th>关键字</th><th>角色</th><th>近似等价物</th></tr></thead><tbody><tr><td><code>probandum</code></td><td>声明具名测试套件</td><td><code>describe</code>, <code>#[cfg(test)] mod</code></td></tr><tr><td><code>proba</code></td><td>声明单个测试用例</td><td><code>it</code>, <code>#[test]</code></td></tr><tr><td><code>adfirma</code></td><td>在运行时断言某个条件</td><td><code>assert!</code>, <code>assert_eq!</code></td></tr></tbody></table><h3 id="probandum-test-suite">probandum —— 测试套件</h3><p><code>probandum</code> 块对相关测试用例进行分组。套件可以嵌套，以层级方式组织测试：</p><pre class="faber-code"><code class="lang-faber">probandum &quot;arithmetica&quot; {
+    proba &quot;unum plus unum&quot; {
+        adfirma 1 + 1 ≡ 2
+    }
+
+    proba &quot;multiplicatio&quot; {
+        adfirma 3 * 4 ≡ 12
+    }
+
+    probandum &quot;implicata&quot; {
+        proba &quot;comparatio&quot; {
+            fixum _ x ← 10
+            adfirma x ≥ 10
+        }
+    }
+}</code></pre><h3 id="proba-test-case">proba —— 测试用例</h3><p><code>proba</code> 块包含测试逻辑。它可以使用任意 Faber 代码 —— 变量绑定、函数调用、控制流 —— 并以一个或多个 <code>adfirma</code> 断言结束。测试可以通过可选的 <code>tag</code> 标记打标签，以便选择性执行：</p><pre class="faber-code"><code class="lang-text">proba &quot;echo formats operands with one space&quot; tag &quot;coreutils&quot; {
+    adfirma echo_textus([&quot;hello&quot;, &quot;world&quot;]) ≡ &quot;hello world&quot;
+}</code></pre><h3 id="adfirma-assertion">adfirma —— 断言</h3><p><code>adfirma</code> 对一个布尔表达式求值，若为假则报告失败。可选的消息字符串在失败时提供上下文：</p><pre class="faber-code"><code class="lang-faber">incipit {
+    fixum _ x ← 10
+
+    # Simple assertion
+    adfirma x &gt; 0
+
+    # With custom message
+    adfirma x ≡ 10, &quot;x decem esse debet&quot;
+
+    # Multiple assertions in sequence
+    fixum _ nomen ← &quot;Marcus&quot;
+    adfirma nomen ≡ &quot;Marcus&quot;
+    adfirma nomen ≠ &quot;&quot;, &quot;nomen vacuum non sit&quot;
+}</code></pre><h2 id="workflow">工作流</h2><p>测试通过 <code>faber test</code> 命令运行：</p><pre class="faber-code"><code class="lang-text">faber test                        # run all tests in the current package
+faber test examples/coreutils/packages/echo  # run tests for a specific package</code></pre><p>由于测试与源代码位于同一个 <code>.fab</code> 文件中，因此没有独立的测试目录结构，没有测试模块声明，构建脚本在测试构建与生产构建之间也没有区别。编译器通过所用关键字来区分哪些块是测试代码、哪些是生产代码 —— <code>probandum</code> 和 <code>proba</code> 会被解析，但从生产构建中排除。</p><h2 id="real-world">实战示例</h2><p>coreutils 的 <code>echo</code> 包在实践中展示了该测试框架的用法。测试与实现位于同一文件中，涵盖选项解析、转义扩展和边界情况：</p><pre class="faber-code"><code class="lang-text">probandum &quot;echo formatting&quot; tag &quot;coreutils&quot; {
+    proba &quot;empty operands format as empty text&quot; {
+        fixum lista&lt;textus&gt; words ← vacua
+        adfirma echo_textus(words) ≡ &quot;&quot;
+    }
+
+    proba &quot;single operand is unchanged&quot; {
+        adfirma echo_textus([&quot;hello&quot;]) ≡ &quot;hello&quot;
+    }
+
+    proba &quot;-E is a leading no-op option&quot; {
+        adfirma echo_textus([&quot;-E&quot;, &quot;hello&quot;, &quot;world&quot;]) ≡ &quot;hello world&quot;
+    }
+
+    proba &quot;-n suppresses the trailing newline flag&quot; {
+        adfirma echo_novam_lineam([&quot;-n&quot;, &quot;hello&quot;]) ≡ falsum
+    }
+
+    proba &quot;-e expands the declared escape subset&quot; {
+        adfirma echo_textus([&quot;-e&quot;, &quot;a\\nb&quot;]) ≡ &quot;a\nb&quot;
+        adfirma echo_textus([&quot;-e&quot;, &quot;a\\tb&quot;]) ≡ &quot;a\tb&quot;
+    }
+}</code></pre><h2 id="design">设计说明</h2><p>若干设计选择使 Faber 的测试框架区别于传统方法：</p><ul><li><strong>无独立测试二进制文件。</strong> 测试是同一源文件中的声明，而非独立的编译目标。编译器将测试块从生产输出中过滤掉。</li><li><strong>以标签代替目录。</strong> 测试通过 <code>tag</code> 标记而非目录结构来组织。一个测试可以属于多个组织维度，而无需被移动。</li><li><strong>完整编译流水线。</strong> 测试经过类型检查、分析，并具备区域感知能力 —— 同一个 <code>--reader-locale</code> 标志也适用于测试输出。</li><li><strong>多目标。</strong> 测试通过包所面向的任意后端运行 —— <code>faber test --interpret</code> 使用 MIR 步进器，<code>faber test</code> 使用编译后的 Rust。</li><li><strong>嵌套套件。</strong> <code>probandum</code> 块可以嵌套，镜像被测代码的结构。</li></ul><h2 id="references">参考</h2><p>1. <code>examples/corpus/probandum/</code> —— probandum 示例文件
+2. <code>examples/corpus/proba/</code> —— proba 示例文件
+3. <code>examples/corpus/adfirma/</code> —— adfirma 示例文件
+4. <code>examples/coreutils/packages/echo/src/main.fab</code> —— 带标签的实战用法</p></div></main></div></body></html>

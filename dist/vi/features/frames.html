@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Ranh giới giữa Faber và mọi cách mà một hệ điều hành có thể triển khai I/O."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Capability calls and frames — Faber"><meta property="og:description" content="Ranh giới giữa Faber và mọi cách mà một hệ điều hành có thể triển khai I/O."><meta property="og:url" content="https://faberlang.dev/vi/features/frames.html"><meta property="og:locale" content="vi_VN"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/vi/features/frames.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Capability calls and frames — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><span class="lbl">Rendering</span><span class="locbtns">vi</span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/vi/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/vi/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Get started</div><ul class="nav"><li><a href="/vi/start/install.html">Install &amp; download</a></li><li><a href="/vi/history/releases.html">Releases</a></li><li><a href="/vi/start/hello.html">Hello</a></li><li><a href="/vi/start/commands.html">Commands</a></li><li><a href="/vi/start/projects.html">Projects</a></li><li><a href="/vi/start/examples.html">Examples</a></li><li><a href="/vi/start/">Quick tour</a></li></ul><div class="side-h">Documentation</div><ul class="nav"><li><a href="/vi/">Overview</a></li><li><a href="/vi/features/" class="active">Features</a></li><li><a href="/vi/syntax/">Syntax</a></li><li><a href="/vi/tooling/">Tooling</a></li><li><a href="/vi/ecosystem/">Ecosystem</a></li><li><a href="/vi/corpus/">Corpus</a></li><li><a href="/vi/references/">References</a></li><li><a href="/vi/history/">History</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/vi/history/releases.html">All releases</a></li><li><a href="https://github.com/faberlang">GitHub org</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Capability calls and frames</h1><div class="content"><p><em>Ranh giới giữa Faber và mọi cách mà một hệ điều hành có thể triển khai I/O.</em></p><p><code>ad</code> là nguyên thủy gọi capability cấp thấp của Faber — ranh giới
+giữa mã Faber và thế giới bên ngoài. Nó mở một cuộc hội thoại có kiểu
+(<code>sermo</code>) với tài nguyên máy chủ được xác định bằng chuỗi route, sau đó
+trao đổi các frame có cấu trúc (<code>scrinium</code>) qua các luồng một chiều.
+Kernel máy chủ phân phối mỗi route đến một crate provider có thể cắm,
+crate này triển khai I/O thực tế — hệ thống tệp, mạng, console, thời gian,
+tính ngẫu nhiên hoặc bất kỳ khả năng nào khác mà hệ điều hành cung cấp.</p><h2 id="ad">Nguyên thủy <code>ad</code></h2><p><code>ad</code> là một từ khóa, không phải một hàm. Nó mở một cuộc hội thoại
+không trong suốt với route được đặt tên bằng một literal <code>ascii</code> và dữ liệu
+mở tùy chọn:</p><pre class="faber-code"><code class="lang-text"># Simple materialized call: open, send opener, drain response
+fixum textus content ← ad 'solum:lege' (&quot;config.toml&quot;) ↦ textus
+
+# Typed conversation handle for streaming interaction
+fixum sermo s ← ad 'processus:curre' (&quot;ls&quot;, [&quot;-la&quot;])</code></pre><p>Chuỗi route tuân theo mẫu <code>prefix:verb</code>. Kernel máy chủ
+chỉ đối sánh <strong>prefix</strong> — provider sở hữu mọi verb dưới prefix đó:</p><pre class="faber-code"><code class="lang-text">solum:lege   ─┐
+solum:modum  ─┼─►  prefix &quot;solum&quot;  ──►  solum provider crate
+solum:vincula─┘</code></pre><p><code>ad</code> không phải là một giao diện gọi hàm ngoại. Nó không gọi các hàm C,
+không tải thư viện động và không nhúng hợp ngữ nội tuyến. Đây là một ranh
+giới truyền thông điệp có cấu trúc: Faber gửi các frame có kiểu và nhận
+các frame có kiểu, mà không cần biết provider được triển khai bằng Rust,
+chạy trong cùng tiến trình, ủy quyền cho một system call hay chuyển tiếp
+đến một máy chủ từ xa.</p><h2 id="types">Các kiểu frame</h2><p>Năm kiểu do trình biên dịch sở hữu tạo thành hệ thống frame:</p><table><thead><tr><th>Kiểu</th><th>Vai trò</th><th>Bề mặt chính</th></tr></thead><tbody><tr><td><code>sermo</code></td><td>Tay cầm cuộc hội thoại — một trao đổi hai chiều đang diễn ra</td><td>Được tạo bởi <code>ad</code>; được rút cạn qua <code>↦ T</code> hoặc tách thành các view</td></tr><tr><td><code>scrinium&lt;T&gt;</code></td><td>Bao frame — một thông điệp có cấu trúc trong cuộc hội thoại</td><td>Các trường: <code>id</code>, <code>call</code>, <code>status</code>, <code>data</code>, <code>created_ms</code>, <code>from</code>, <code>trace</code></td></tr><tr><td><code>status</code></td><td>Enum đánh dấu vòng đời</td><td><code>request</code>, <code>item</code>, <code>byte</code>, <code>bulk</code>, <code>done</code>, <code>error</code>, <code>cancel</code></td></tr><tr><td><code>meus&lt;T&gt;</code></td><td>Luồng một chiều gửi đi — gửi frame đến provider</td><td><code>da(T)</code>, <code>fini() → status</code></td></tr><tr><td><code>tuus&lt;T&gt;</code></td><td>Luồng một chiều nhận vào — nhận frame từ provider</td><td><code>accipe()</code>, <code>cursor()</code>, <code>exhauri()</code>, <code>fini()</code></td></tr></tbody></table><h3 id="using-directional-views">Sử dụng các view định hướng</h3><pre class="faber-code"><code class="lang-text"># Open a conversation, get directional views
+fixum sermo s ← ad 'solum:scribe' (&quot;output.txt&quot;)
+fixum meus&lt;textus&gt; out ← s.meus&lt;textus&gt;()
+fixum tuus&lt;textus&gt; input ← s.tuus&lt;textus&gt;()
+
+# Send content frames
+out.da(&quot;line one&quot;)
+out.da(&quot;line two&quot;)
+out.fini()
+
+# Read response frames
+itera ex input.cursor() fixum frame {
+    nota frame.data
+}
+fixum status inbound ← input.fini()</code></pre><h3 id="simple-materialization">Vật chất hóa đơn giản</h3><p>Với trường hợp phổ biến — mở, gửi dữ liệu mở và rút cạn tất cả frame
+phản hồi thành một giá trị — <code>sermo ↦ T</code> thu gọn cuộc hội thoại:</p><pre class="faber-code"><code class="lang-text"># Read a file: open + drain into textus
+fixum textus body ← ad 'solum:lege' (&quot;config.toml&quot;) ↦ textus
+
+# Parse JSON from an HTTP response
+fixum json data ← ad 'http:peti' (&quot;https://api.example.com/data&quot;) ↦ json</code></pre><p>Việc vật chất hóa sử dụng một bộ thu định hướng theo kiểu: <code>↦ textus</code>
+nối tất cả frame nhận vào, <code>↦ json</code> phân tích payload đã nối,
+còn <code>↦ lista&lt;T&gt;</code> thu thập các frame vào một danh sách.</p><h2 id="providers">Provider máy chủ</h2><p>Các nhóm hiệu ứng được triển khai dưới dạng các crate provider riêng
+trong <code>faberlang/host-providers-rs</code>. Mỗi provider sở hữu mọi verb dưới
+prefix của mình:</p><table><thead><tr><th>Provider</th><th>Prefix</th><th>Miền I/O</th></tr></thead><tbody><tr><td><code>solum</code></td><td><code>solum:*</code></td><td>Hệ thống tệp: đọc, ghi, siêu dữ liệu, thao tác thư mục</td></tr><tr><td><code>processus</code></td><td><code>processus:*</code></td><td>Thực thi tiến trình: tạo, pipe, mã thoát</td></tr><tr><td><code>consolum</code></td><td><code>consolum:*</code></td><td>I/O console: stdin, stdout, stderr</td></tr><tr><td><code>tempus</code></td><td><code>tempus:*</code></td><td>Thời gian: hiện tại, ngủ, bộ định thời</td></tr><tr><td><code>aleator</code></td><td><code>aleator:*</code></td><td>Tính ngẫu nhiên: entropy, phân phối</td></tr><tr><td><code>http</code></td><td><code>http:*</code></td><td>Client HTTP (Tier D, khi được hợp nhất)</td></tr></tbody></table><p>Các provider là những crate riêng với các dependency riêng — <code>solum</code>
+không kéo theo HTTP, còn <code>http</code> không kéo theo mã hệ thống tệp.
+Mỗi provider xuất một hàm <code>register()</code> mà manifest máy chủ được sinh ra
+sẽ gọi khi khởi động.</p><h2 id="layers">Ngăn xếp lớp</h2><pre class="faber-code"><code class="lang-text">Faber source:     ad 'solum:lege' (path) ↦ textus
+Compiler:         sermo open + generic attach (no provider crate names)
+Runtime:          HostDispatch + conversation protocol (faber-runtime)
+Kernel:           route(frame) → provider for prefix
+Provider:         solum provider reads file, returns content</code></pre><p>Trình biên dịch sinh ra cơ chế phân phối tổng quát — nó không bao giờ
+nhúng tên crate provider vào mã được sinh. Runtime cung cấp
+<code>HostDispatch</code> và giao thức cuộc hội thoại. Kernel (từ
+<code>host-kernel-rs</code>) định tuyến frame đến provider thích hợp dựa trên prefix.
+Provider (từ <code>host-providers-rs</code>) thực hiện I/O thực tế.</p><p>Điều này có nghĩa là mã Faber được sinh ra <strong>trung lập với provider</strong>.
+Cùng một binary đã biên dịch có thể liên kết với các triển khai provider
+khác nhau — provider hệ thống tệp thực cho môi trường production, provider
+mô phỏng cho việc kiểm thử — bằng cách thay đổi manifest biên dịch.</p><h2 id="manifest">Manifest biên dịch</h2><p>Các provider cần liên kết được kiểm soát bởi manifest biên dịch được sinh
+ra và bảng <code>[dispatch]</code> trong <code>faber.toml</code>:</p><pre class="faber-code"><code class="lang-text">[target.rust]
+host = &quot;native&quot;
+
+[dispatch]
+providers = [&quot;solum&quot;, &quot;processus&quot;, &quot;consolum&quot;, &quot;tempus&quot;, &quot;aleator&quot;]
+
+[dispatch.providers.http]
+enabled = true</code></pre><p>Trong quá trình biên soạn, provider bị thiếu sẽ tạo lỗi runtime
+<code>E_NO_ROUTE</code>. Trong chế độ nghiêm ngặt (tương lai), mọi prefix <code>ad</code> trong
+chương trình phải xuất hiện trong manifest biên dịch, và trình biên dịch
+sẽ xác thực rằng manifest capability của provider bao phủ các route được
+sử dụng.</p><h2 id="architecture">Kiến trúc</h2><p>Nền tảng máy chủ được chia thành ba repository trong tổ chức
+<code>faberlang</code>:</p><table><thead><tr><th>Repository</th><th>Vai trò</th></tr></thead><tbody><tr><td><code>host-kernel-rs</code></td><td>Bộ định tuyến mỏng — sở hữu <code>Frame</code>, <code>Conversation</code>, vòng đời kết thúc, phân phối theo prefix, lỗi có cấu trúc (<code>E_NO_ROUTE</code>), tổng hợp manifest capability</td></tr><tr><td><code>host-native-rs</code></td><td>Gắn kết native — worker, hook khởi động <code>register_providers</code>, tích hợp <code>host_register.rs</code> được sinh ra</td></tr><tr><td><code>host-providers-rs</code></td><td>Các triển khai provider — Cargo workspace với các crate theo từng họ (<code>solum</code>, <code>processus</code>, v.v.)</td></tr></tbody></table><p>Mỗi crate provider sở hữu các dependency native của riêng mình. Provider
+<code>http</code> chỉ kéo <code>hyper</code> và <code>tokio</code> khi HTTP được bật. Provider <code>solum</code>
+sử dụng các API tệp tiêu chuẩn và không có thêm dependency mạng.</p><p>&gt; <strong>Cùng route, mọi máy chủ.</strong> Vì <code>ad</code> phân phối dựa trên chuỗi route và provider có thể cắm, cùng một mã nguồn Faber có thể nhắm đến một binary native (<code>host-native-rs</code>), một runtime WASM (kernel máy chủ làm bộ chuyển đổi Frame/Wasm) hoặc một tiến trình TypeScript Node.js (<code>host-providers-ts</code>) mà không cần thay đổi một dòng mã Faber nào.</p><h2 id="stdlib">Bao bọc Norma</h2><p>Phần lớn mã Faber không gọi trực tiếp <code>ad</code>. Thư viện chuẩn Norma
+bọc các route <code>ad</code> phổ biến trong các hàm có kiểu:</p><pre class="faber-code"><code class="lang-text"># Norma wraps ad in typed, reviewed functions
+functio lege(textus via) → textus {
+    redde ad 'solum:lege' (via) ↦ textus
+}
+
+functio scribe(textus via, textus content) → vacuum {
+    fixum vacuum _ ← ad 'solum:scribe' (via, content) ↦ vacuum
+}
+
+functio curre(textus command, lista&lt;textus&gt; args) → textus {
+    redde ad 'processus:curre' (command, args) ↦ textus
+}</code></pre><p>Các hàm wrapper này cung cấp an toàn kiểu, tài liệu và xử lý lỗi mà không
+che giấu sự thật rằng I/O đi qua ranh giới <code>ad</code>. Các wrapper Norma là mã
+nguồn mở và nằm dưới <code>norma/src/</code>.</p><h2 id="references">Tài liệu tham khảo</h2><p>1. <code>radix/docs/design/frame-stream-types.md</code> — đặc tả đầy đủ cho sermo, scrinium, status, meus, tuus
+2. <code>radix/docs/design/host-provider-gateway.md</code> — kiến trúc bộ định tuyến mỏng, hợp đồng provider, manifest biên dịch
+3. <code>faberlang/host-kernel-rs/</code> — triển khai bộ định tuyến kernel
+4. <code>faberlang/host-native-rs/</code> — gắn kết và đăng ký native
+5. <code>faberlang/host-providers-rs/</code> — các crate provider (solum, processus, consolum, tempus, aleator, http)
+6. <code>examples/corpus/ad/</code> — các tệp ví dụ sermo</p></div></main></div></body></html>

@@ -91,7 +91,7 @@ Faber 通过参数上的短介词来标记值的传递方式：
 | `in` | 可变借用 | `&mut T` |
 | `ex` | 消耗（移动到被调用方） | 按移动传递 `T` |
 
-```faber
+```faber locale=la
 # Shared borrow
 functio imprime(de textus label) → vacuum {
     nota label
@@ -139,7 +139,7 @@ incipit {
 
 对于 CLI 程序，`incipit argumenta` 接收解析后的命令参数：
 
-```faber
+```faber locale=la
 @ cli "echo"
 @ descriptio "Prints text"
 @ operandus ceteri textus words

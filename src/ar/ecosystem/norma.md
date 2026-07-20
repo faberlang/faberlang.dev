@@ -60,7 +60,7 @@ source_locale = "en-US"
 
 ## الاستعمال {#usage}
 
-```faber
+```faber locale=la
 importa ex "norma:solum" privata solum
 
 functio legeConfig() → textus {

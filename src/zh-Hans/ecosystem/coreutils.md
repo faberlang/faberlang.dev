@@ -35,7 +35,7 @@ Faber 以应用通道作为凭证，重新实现了 GNU coreutils。这些是真
 
 `echo` 包展示了贯穿 coreutils 的 Faber 范式：CLI 注解、选项解析、使用 `probandum`/`proba`/`adfirma` 的内联测试，以及共享的通用模块：
 
-```faber
+```faber locale=la
 importa ex "norma:consolum" privata consolum
 importa ex "../../../common/gnu/format" privata gnu_format
 

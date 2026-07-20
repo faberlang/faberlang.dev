@@ -37,7 +37,7 @@ source_locale = "en-US"
 
 تعرض حزمة `echo` أنماط Faber المستخدمة في جميع أدوات coreutils: تعليقات CLI التوضيحية، وتحليل الخيارات، والاختبارات المضمنة باستخدام `probandum`/`proba`/`adfirma`، والوحدات المشتركة:
 
-```faber
+```faber locale=la
 importa ex "norma:consolum" privata consolum
 importa ex "../../../common/gnu/format" privata gnu_format
 

@@ -37,7 +37,7 @@ Faber GNU coreutils को एप्लिकेशन-लेन प्रूफ
 
 `echo` पैकेज coreutils में पूरे प्रोजेक्ट में उपयोग किए जाने वाले Faber पैटर्न प्रदर्शित करता है: CLI annotations, option parsing, `probandum`/`proba`/`adfirma` के साथ inline tests और साझा common modules:
 
-```faber
+```faber locale=la
 importa ex "norma:consolum" privata consolum
 importa ex "../../../common/gnu/format" privata gnu_format
 
