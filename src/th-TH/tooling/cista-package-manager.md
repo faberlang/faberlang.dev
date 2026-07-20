@@ -1,4 +1,6 @@
 +++
+translation_kind = "translated"
+
 title = "Cista package manager"
 section = "tooling"
 order = 3
@@ -6,7 +8,42 @@ sources = [
   "cista/README.md",
 ]
 
-translation_kind = "pending"
-+++
 
-<!-- pending translation -->
+prose_hash = "sha256:05d23a68f89274ac712edd9df74eceb081ecb757827aedd26e944afc3a23ab42"
+code_hash = "sha256:8911c196f515c978b54a345902a35f102715550c60930e2efee379e50e6c7c1e"
+source_commit = "e9c6438e27c431907e3fd2e19282ba34d09e5a90"
+source_locale = "en-US"
++++
+Cista คือผู้จัดการแพ็กเกจของ Faber ทำหน้าที่จัดการการแก้ไขแพ็กเกจ การจัดการดีเพนเดนซี และคลังแพ็กเกจสาธารณะ
+
+## ภาพรวม {#overview}
+
+Cista จัดการแพ็กเกจ Faber ที่กำหนดไว้ในแมนนิเฟสต์ `faber.toml` แต่ละแพ็กเกจจะระบุชื่อ โมดูลเริ่มต้น แบ็กเอนด์เป้าหมาย และดีเพนเดนซีของตน
+
+## แมนนิเฟสต์แพ็กเกจ {#manifest}
+
+```text
+faber.toml
+
+[nomen]
+speculum-gen
+
+[ingressus]
+main.fab
+
+[scopulus]
+rust
+
+[genus]
+bin
+```
+
+ฟิลด์ `[nomen]` คือชื่อแพ็กเกจ `[ingressus]` คือโมดูลเริ่มต้น `[scopulus]` ใช้เลือกเป้าหมายการสร้างโค้ด และ `[genus]` ใช้ระบุชนิดของแพ็กเกจ (`bin` สำหรับโปรแกรมที่สั่งทำงานได้ และ `lib` สำหรับไลบรารี)
+
+## ดีเพนเดนซี {#dependencies}
+
+แพ็กเกจจะประกาศดีเพนเดนซีที่ Cista ต้องแก้ไขจากคลังแพ็กเกจ การแก้ไขดีเพนเดนซีจะสร้างไฟล์ล็อกเพื่อให้การบิลด์สามารถทำซ้ำได้อย่างสม่ำเสมอ
+
+## สถานะ {#status}
+
+Cista อยู่ระหว่างการพัฒนาอย่างต่อเนื่อง รีจิสทรีแพ็กเกจสาธารณะ (`cista.dev`) เป็นแคมเปญแยกจากการพัฒนาเว็บไซต์ การแก้ไขแพ็กเกจภายในเครื่องรองรับแพ็กเกจที่อยู่ในเวิร์กสเปซเดียวกันแล้ว

@@ -1,4 +1,6 @@
 +++
+translation_kind = "translated"
+
 title = "Compiler performance"
 section = "tooling"
 order = 2
@@ -6,7 +8,46 @@ sources = [
   "radix/README.md (Compiler Performance section)",
 ]
 
-translation_kind = "pending"
-+++
 
-<!-- pending translation -->
+prose_hash = "sha256:6202471aeac8f93c0bfc712bbd7449a4303b3bd8da122bb7a91de4af66c343d2"
+code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+source_commit = "e9c6438e27c431907e3fd2e19282ba34d09e5a90"
+source_locale = "en-US"
++++
+Radix 的前端處理效能大致會隨來源大小呈線性成長，並且在程序內以單執行緒執行。
+
+## 前端編譯時間 {#frontend-compile-times}
+
+| 程式大小 | 原始碼 | 編譯中位數 |
+|-------------|--------|---------------|
+| 100 個函式 / 約 650 行 | 約 10 KB | 約 0.6 毫秒 |
+| 500 個函式 / 約 3.3K 行 | 約 52 KB | 約 3 毫秒 |
+| 1,000 個函式 / 約 6.5K 行 | 約 105 KB | 約 6 毫秒 |
+| 5,000 個函式 / 約 32K 行 | 約 530 KB | 約 37 毫秒 |
+
+目前最大的實際範例約為 140 行，遠低於雜訊底線。
+
+## 後端成本（Rust 目標） {#backend-costs-rust-target}
+
+對於 `faber build` 而言，使用者感受到的時間主要由 Cargo/rustc
+所決定，而不是 Faber 的前端：
+
+| 階段 | 成本 |
+|-------|------|
+| 冷啟動 `faber` 相依項編譯（每個目標目錄一次） | 約 2.8 秒 |
+| 冷啟動 `tokio` 相依項編譯（僅在需要時） | 約 2.3 秒 |
+| 每個程式的暖啟動建置（相依項已快取） | 約 30–110 毫秒 |
+| 每次程式的 Cargo 呼叫額外開銷 | 約 400 毫秒 |
+
+## 增量編譯 {#incremental-compilation}
+
+`faber-runtime` crate 會在每個目標目錄中編譯一次，並以 `.rlib` 成品的形式快取：
+
+| 你變更的內容 | faber-runtime crate | 你的程式 |
+|-----------|-------------------|-------------|
+| 你的程式原始碼 | 已快取 | 重新編譯 |
+| `norma/src/*.fab`（Faber 原始碼） | 已快取 | 重新編譯 |
+| `faber-runtime/src/*.rs` | 重新編譯一次 | 重新編譯 |
+
+應避免的陷阱，是將每個程式建置到全新的 `target/`。
+重複使用共用的 `--target-dir`，讓快取的 `.rlib` 保持暖狀態。

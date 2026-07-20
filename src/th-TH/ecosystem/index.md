@@ -1,10 +1,45 @@
 +++
+translation_kind = "translated"
+
 title = "Ecosystem"
 section = "ecosystem"
 order = 0
 sources = []
 
-translation_kind = "pending"
-+++
 
-<!-- pending translation -->
+prose_hash = "sha256:1e2776875862a0522b90380281e4d8ce2b3fcac4dd42344955542753ea86007a"
+code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+source_commit = "e9c6438e27c431907e3fd2e19282ba34d09e5a90"
+source_locale = "en-US"
++++
+ระบบนิเวศ Faber ประกอบด้วยไลบรารีมาตรฐาน (Norma) ไลบรารีกราฟิกและเรขาคณิต (Triga) ไลบรารียูทิลิตี (coreutils) แพ็กเกจภาษาสำหรับผู้อ่าน และคลังตัวอย่างที่ขยายตัวอย่างต่อเนื่อง
+
+## ไลบรารีมาตรฐาน Norma {#norma}
+
+โมดูลหลักสำหรับ I/O คอลเลกชัน สตริง คณิตศาสตร์ และการโต้ตอบกับระบบ  
+[อ่านเพิ่มเติม →](/ecosystem/norma.html)
+
+## กราฟิกและเรขาคณิตด้วย Triga {#triga}
+
+คณิตศาสตร์เวกเตอร์ เมทริกซ์ การแปลง และชนิดข้อมูลเรขาคณิตที่เหมาะกับ GPU  
+[อ่านเพิ่มเติม →](/ecosystem/triga.html)
+
+## Coreutils {#coreutils}
+
+ฟังก์ชันยูทิลิตีทั่วไปที่สร้างบน Norma พร้อมตัวอย่างการเขียน Faber ตามรูปแบบที่เป็นธรรมชาติ  
+[อ่านเพิ่มเติม →](/ecosystem/coreutils.html)
+
+## แพ็กเกจภาษาสำหรับผู้อ่าน {#reader-locale-packages}
+
+แพ็กเกจ TOML ที่แมปคีย์เวิร์ด ชนิดข้อมูล และข้อความวินิจฉัยของ Faber ให้เป็นรูปแบบภาษาธรรมชาติ  
+[อ่านเพิ่มเติม →](/ecosystem/reader-locale-packages.html)
+
+## AI workbench {#ai-workbench}
+
+เครื่องมือสำหรับการพัฒนา Faber โดยมี LLM ช่วยงาน รวมถึงทักษะสำหรับเอเจนต์และสัญญาข้อมูลวินิจฉัย  
+[อ่านเพิ่มเติม →](/ecosystem/ai-workbench.html)
+
+## คลังภาษาตัวอย่าง {#corpus}
+
+คลังตัวอย่างที่มีไดเรกทอรี 154 แห่งและไฟล์ `.fab` จำนวน 292 ไฟล์ ครอบคลุมทุกคีย์เวิร์ด ตัวดำเนินการ และชนิดข้อมูล โดยเป็นแหล่งข้อมูลหลักสำหรับหน้าที่สร้างขึ้นอัตโนมัติ  
+[อ่านเพิ่มเติม →](/ecosystem/corpus.html)

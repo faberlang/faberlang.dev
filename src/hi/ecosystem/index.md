@@ -1,10 +1,46 @@
 +++
+translation_kind = "translated"
+
 title = "Ecosystem"
 section = "ecosystem"
 order = 0
 sources = []
 
-translation_kind = "pending"
-+++
 
-<!-- pending translation -->
+prose_hash = "sha256:1e2776875862a0522b90380281e4d8ce2b3fcac4dd42344955542753ea86007a"
+code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+source_commit = "e9c6438e27c431907e3fd2e19282ba34d09e5a90"
+source_locale = "en-US"
++++
+Faber पारिस्थितिकी तंत्र में एक मानक लाइब्रेरी (Norma), ग्राफ़िक्स और ज्यामिति लाइब्रेरी (Triga), यूटिलिटी लाइब्रेरी (coreutils), रीडर लोकेल पैकेज और उदाहरणों का बढ़ता हुआ कॉर्पस शामिल है।
+
+## Norma मानक लाइब्रेरी {#norma}
+
+I/O, कलेक्शनों, स्ट्रिंग्स, गणित और सिस्टम इंटरैक्शन के लिए मुख्य मॉड्यूल।
+[और पढ़ें →](/ecosystem/norma.html)
+
+## Triga ग्राफ़िक्स और ज्यामिति {#triga}
+
+वेक्टर गणित, मैट्रिसेस, ट्रांसफ़ॉर्म और GPU-अनुकूल ज्यामितीय प्रकार।
+[और पढ़ें →](/ecosystem/triga.html)
+
+## Coreutils {#coreutils}
+
+Norma पर आधारित रोज़मर्रा के यूटिलिटी फ़ंक्शन। यह मुहावरेदार Faber का उदाहरण प्रस्तुत करता है।
+[और पढ़ें →](/ecosystem/coreutils.html)
+
+## रीडर लोकेल पैकेज {#reader-locale-packages}
+
+TOML पैक, जो Faber कीवर्ड, प्रकार और डायग्नोस्टिक्स को प्राकृतिक
+भाषा के सतही रूपों से मैप करते हैं। [और पढ़ें →](/ecosystem/reader-locale-packages.html)
+
+## AI वर्कबेंच {#ai-workbench}
+
+LLM-सहायित Faber विकास के लिए टूलिंग, जिसमें एजेंट स्किल्स और
+डायग्नोस्टिक्स कॉन्ट्रैक्ट शामिल हैं। [और पढ़ें →](/ecosystem/ai-workbench.html)
+
+## भाषा कॉर्पस {#corpus}
+
+उदाहरण कॉर्पस — 154 डायरेक्टरी और 292 `.fab` फ़ाइलें, जिनमें हर
+कीवर्ड, ऑपरेटर और प्रकार शामिल हैं। यह जनरेट किए गए पृष्ठों के लिए सत्य का स्रोत है।
+[और पढ़ें →](/ecosystem/corpus.html)
