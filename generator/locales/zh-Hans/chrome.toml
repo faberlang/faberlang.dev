@@ -1,0 +1,52 @@
+[sidebar_start]
+heading = "开始使用"
+install = "安装与下载"
+releases = "发行版"
+hello = "你好"
+commands = "命令"
+projects = "项目"
+examples = "示例"
+quick_tour = "快速导览"
+
+[sidebar_docs]
+heading = "文档"
+overview = "概览"
+features = "特性"
+syntax = "语法"
+tooling = "工具链"
+ecosystem = "生态系统"
+corpus = "语料库"
+references = "参考"
+history = "历史"
+
+[sidebar_agents]
+heading = "面向智能体"
+index = "智能体索引"
+guide = "智能体指南"
+skills = "智能体技能"
+full_reference = "完整参考"
+
+[sidebar_release]
+all_releases = "全部发行版"
+github_org = "GitHub 组织"
+
+[renderbar]
+label = "渲染"
+install = "安装"
+
+[brand]
+tagline = "语言文档"
+
+[agent_notice]
+label = "智能体就绪"
+link_install = "安装"
+link_examples = "示例"
+
+[side_meta]
+paradigm_key = "范式"
+typing_key = "类型"
+target_key = "目标"
+license_key = "许可证"
+
+[footer]
+sources_heading = "来源"

@@ -1,0 +1,52 @@
+[sidebar_start]
+heading = "開始使用"
+install = "安裝與下載"
+releases = "發行版"
+hello = "你好"
+commands = "命令"
+projects = "專案"
+examples = "範例"
+quick_tour = "快速導覽"
+
+[sidebar_docs]
+heading = "文件"
+overview = "概覽"
+features = "特性"
+syntax = "語法"
+tooling = "工具鏈"
+ecosystem = "生態系"
+corpus = "語料庫"
+references = "參考"
+history = "歷史"
+
+[sidebar_agents]
+heading = "面向智慧體"
+index = "智慧體索引"
+guide = "智慧體指南"
+skills = "智慧體技能"
+full_reference = "完整參考"
+
+[sidebar_release]
+all_releases = "全部發行版"
+github_org = "GitHub 組織"
+
+[renderbar]
+label = "渲染"
+install = "安裝"
+
+[brand]
+tagline = "語言文件"
+
+[agent_notice]
+label = "智慧體就緒"
+link_install = "安裝"
+link_examples = "範例"
+
+[side_meta]
+paradigm_key = "範式"
+typing_key = "型別"
+target_key = "目標"
+license_key = "授權"
+
+[footer]
+sources_heading = "來源"

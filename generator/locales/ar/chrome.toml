@@ -1,0 +1,52 @@
+[sidebar_start]
+heading = "ابدأ"
+install = "التثبيت والتنزيل"
+releases = "الإصدارات"
+hello = "مرحباً"
+commands = "الأوامر"
+projects = "المشاريع"
+examples = "أمثلة"
+quick_tour = "جولة سريعة"
+
+[sidebar_docs]
+heading = "التوثيق"
+overview = "نظرة عامة"
+features = "الميزات"
+syntax = "الصياغة"
+tooling = "الأدوات"
+ecosystem = "النظام البيئي"
+corpus = "المدونة"
+references = "المراجع"
+history = "التاريخ"
+
+[sidebar_agents]
+heading = "للوكلاء"
+index = "فهرس الوكلاء"
+guide = "دليل الوكلاء"
+skills = "مهارات الوكلاء"
+full_reference = "المرجع الكامل"
+
+[sidebar_release]
+all_releases = "جميع الإصدارات"
+github_org = "منظمة GitHub"
+
+[renderbar]
+label = "العرض"
+install = "تثبيت"
+
+[brand]
+tagline = "وثائق اللغة"
+
+[agent_notice]
+label = "جاهز للوكلاء"
+link_install = "تثبيت"
+link_examples = "أمثلة"
+
+[side_meta]
+paradigm_key = "النموذج"
+typing_key = "نظام الأنواع"
+target_key = "الهدف"
+license_key = "الرخصة"
+
+[footer]
+sources_heading = "المصادر"

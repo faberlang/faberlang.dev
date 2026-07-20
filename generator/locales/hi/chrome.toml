@@ -1,0 +1,52 @@
+[sidebar_start]
+heading = "शुरू करें"
+install = "स्थापना और डाउनलोड"
+releases = "रिलीज़"
+hello = "नमस्ते"
+commands = "कमांड"
+projects = "प्रोजेक्ट"
+examples = "उदाहरण"
+quick_tour = "त्वरित दौरा"
+
+[sidebar_docs]
+heading = "दस्तावेज़ीकरण"
+overview = "अवलोकन"
+features = "विशेषताएँ"
+syntax = "वाक्यविन्यास"
+tooling = "उपकरण"
+ecosystem = "पारिस्थितिकी तंत्र"
+corpus = "कॉर्पस"
+references = "संदर्भ"
+history = "इतिहास"
+
+[sidebar_agents]
+heading = "एजेंटों के लिए"
+index = "एजेंट सूची"
+guide = "एजेंट गाइड"
+skills = "एजेंट कौशल"
+full_reference = "पूर्ण संदर्भ"
+
+[sidebar_release]
+all_releases = "सभी रिलीज़"
+github_org = "GitHub संगठन"
+
+[renderbar]
+label = "रेंडरिंग"
+install = "स्थापना"
+
+[brand]
+tagline = "भाषा दस्तावेज़"
+
+[agent_notice]
+label = "एजेंट-तैयार"
+link_install = "स्थापना"
+link_examples = "उदाहरण"
+
+[side_meta]
+paradigm_key = "प्रतिमान"
+typing_key = "टाइपिंग"
+target_key = "लक्ष्य"
+license_key = "लाइसेंस"
+
+[footer]
+sources_heading = "स्रोत"

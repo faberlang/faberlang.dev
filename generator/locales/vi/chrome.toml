@@ -1,0 +1,52 @@
+[sidebar_start]
+heading = "Bắt đầu"
+install = "Cài đặt và tải xuống"
+releases = "Bản phát hành"
+hello = "Xin chào"
+commands = "Lệnh"
+projects = "Dự án"
+examples = "Ví dụ"
+quick_tour = "Tour nhanh"
+
+[sidebar_docs]
+heading = "Tài liệu"
+overview = "Tổng quan"
+features = "Tính năng"
+syntax = "Cú pháp"
+tooling = "Công cụ"
+ecosystem = "Hệ sinh thái"
+corpus = "Kho ngữ liệu"
+references = "Tham khảo"
+history = "Lịch sử"
+
+[sidebar_agents]
+heading = "Cho tác nhân"
+index = "Mục lục tác nhân"
+guide = "Hướng dẫn tác nhân"
+skills = "Kỹ năng tác nhân"
+full_reference = "Tham khảo đầy đủ"
+
+[sidebar_release]
+all_releases = "Tất cả bản phát hành"
+github_org = "Tổ chức GitHub"
+
+[renderbar]
+label = "Kết xuất"
+install = "cài đặt"
+
+[brand]
+tagline = "tài liệu ngôn ngữ"
+
+[agent_notice]
+label = "Sẵn sàng cho tác nhân"
+link_install = "Cài đặt"
+link_examples = "Ví dụ"
+
+[side_meta]
+paradigm_key = "Mô hình"
+typing_key = "Kiểu"
+target_key = "Đích"
+license_key = "Giấy phép"
+
+[footer]
+sources_heading = "Nguồn"
