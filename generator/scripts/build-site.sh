@@ -281,9 +281,16 @@ if [ "$FULL_SITE" = true ]; then
     fi
 
     # Step 9: Post-process
-    echo "[10/10] Post-processing..."
+    echo "[9/10] Post-processing..."
     "$PYTHON" "${SCRIPT_DIR}/strip-empty-sources.py" "$OUTPUT_DIR"
     "$PYTHON" "${SCRIPT_DIR}/inject-skip-link.py" "$OUTPUT_DIR"
+
+    echo "[9/10] Chrome injection..."
+    for site in "${LOCALE_DIRS[@]}"; do
+        if [ -f "${SCRIPT_DIR}/../locales/${site}/chrome.toml" ]; then
+            "$PYTHON" "${SCRIPT_DIR}/inject-chrome.py" "$OUTPUT_DIR" "$site"
+        fi
+    done
 
     # Step 10: Gates (link check, leakage) — only for full site
     echo "[10/10] Gates..."

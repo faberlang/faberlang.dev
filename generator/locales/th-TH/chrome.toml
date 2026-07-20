@@ -1,0 +1,52 @@
+[sidebar_start]
+heading = "เริ่มต้นใช้งาน"
+install = "ติดตั้งและดาวน์โหลด"
+releases = "รุ่นเผยแพร่"
+hello = "สวัสดี"
+commands = "คำสั่ง"
+projects = "โครงงาน"
+examples = "ตัวอย่าง"
+quick_tour = "แนะนำด่วน"
+
+[sidebar_docs]
+heading = "เอกสารประกอบ"
+overview = "ภาพรวม"
+features = "คุณสมบัติ"
+syntax = "ไวยากรณ์"
+tooling = "เครื่องมือ"
+ecosystem = "ระบบนิเวศ"
+corpus = "คลังภาษา"
+references = "เอกสารอ้างอิง"
+history = "ประวัติ"
+
+[sidebar_agents]
+heading = "สำหรับเอเจนต์"
+index = "ดัชนีเอเจนต์"
+guide = "คู่มือเอเจนต์"
+skills = "ทักษะเอเจนต์"
+full_reference = "เอกสารอ้างอิงเต็ม"
+
+[sidebar_release]
+all_releases = "ทุกรุ่นที่เผยแพร่"
+github_org = "องค์กร GitHub"
+
+[renderbar]
+label = "การเรนเดอร์"
+install = "ติดตั้ง"
+
+[brand]
+tagline = "เอกสารภาษา"
+
+[agent_notice]
+label = "พร้อมสำหรับเอเจนต์"
+link_install = "ติดตั้ง"
+link_examples = "ตัวอย่าง"
+
+[side_meta]
+paradigm_key = "กระบวนทัศน์"
+typing_key = "ระบบชนิด"
+target_key = "เป้าหมาย"
+license_key = "สัญญาอนุญาต"
+
+[footer]
+sources_heading = "แหล่งที่มา"

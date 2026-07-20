@@ -23,10 +23,10 @@
 |---|---|---|---|
 | U1 | URL migration + dual locale + `locales.toml` | **done** | `PHASE-1-URL-MIGRATION.md` |
 | U2 | Locale-less portal generator at `/` | **done** | `PHASE-2-PORTAL.md` |
-| U3 | Provenance + `sync-report` oracle | done | `PHASE-3-PROVENANCE.md` |
-| U4 | Chrome catalog (`locales/{locale}/chrome.toml`) | pending | — |
-| U5 | `sync-translate` LLM differential | pending | — |
-| U6 | Pilot locale `th-TH` (`index` + `start/*`) | pending | — |
+| U3 | Provenance + `sync-report` oracle | **done** | `PHASE-3-PROVENANCE.md` |
+| U4 | Chrome catalog (`locales/{locale}/chrome.toml`) | **done** | `PHASE-4-CHROME.md` |
+| U5 | `sync-translate` LLM differential | **done** | `PHASE-5-SYNC-TRANSLATE.md` |
+| U6 | Pilot locale `th-TH` (`index` + `start/*`) | pending | remainder of slice |
 
 ## Repo boundaries
 
@@ -60,6 +60,23 @@
 - `generator/scripts/sync-report.py` — CLI oracle with `--locale`, `--json`, `--fail-on-stale`, `--self-check`; classifies locale files as missing_en / missing_provenance / stale_prose / stale_code_only / current; annotates legacy source_hash
 - Self-check passes (fence-mutate preserves prose_hash, prose-mutate preserves code_hash)
 - `--locale th-TH` reports all 7 th-TH files as missing_provenance (they have legacy source_hash but not prose_hash/code_hash)
+
+### U4 — Chrome catalog (2026-07-20)
+
+- `generator/locales/en-US/chrome.toml` + `th-TH/chrome.toml`
+- `inject-chrome.py` replaces labels only in chrome regions (aside/renderbar/…),
+  text nodes only (no path mangling)
+- Build wires injection before gates
+- Gate: th-TH sidebar shows `เริ่มต้นใช้งาน`, hrefs stay `/th-TH/start/install.html`
+
+### U5 — sync-translate + pilot file (2026-07-20)
+
+- `sync-translate.py`: `--write-prompt`, `--apply-body`, `--stamp-only`, pack `[llm]` reuse
+- Provenance stamp helpers in `sync_lib.py`
+- Pilot: `src/th-TH/start/hello.md` Thai prose, fences preserved, `prose_hash`/`code_hash`/
+  `source_commit` stamped, `translation_kind = "translated"`
+- `sync-report --locale th-TH` → **1 current**, 6 missing_provenance
+- Leakage gate: translated pages (non-Latin body) may omit honesty banner
 
 ## Deferred findings
 

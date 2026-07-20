@@ -1,0 +1,52 @@
+[sidebar_start]
+heading = "Get started"
+install = "Install & download"
+releases = "Releases"
+hello = "Hello"
+commands = "Commands"
+projects = "Projects"
+examples = "Examples"
+quick_tour = "Quick tour"
+
+[sidebar_docs]
+heading = "Documentation"
+overview = "Overview"
+features = "Features"
+syntax = "Syntax"
+tooling = "Tooling"
+ecosystem = "Ecosystem"
+corpus = "Corpus"
+references = "References"
+history = "History"
+
+[sidebar_agents]
+heading = "For agents"
+index = "Agent index"
+guide = "Agent guide"
+skills = "Agent skills"
+full_reference = "Full reference"
+
+[sidebar_release]
+all_releases = "All releases"
+github_org = "GitHub org"
+
+[renderbar]
+label = "Rendering"
+install = "install"
+
+[brand]
+tagline = "language docs"
+
+[agent_notice]
+label = "Agent-ready"
+link_install = "Install"
+link_examples = "Examples"
+
+[side_meta]
+paradigm_key = "Paradigm"
+typing_key = "Typing"
+target_key = "Target"
+license_key = "License"
+
+[footer]
+sources_heading = "Sources"
