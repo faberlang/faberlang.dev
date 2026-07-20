@@ -1,0 +1,567 @@
+{
+  "ar": [
+    {
+      "path": "ar/start/examples.html",
+      "en_marker_count": 12,
+      "en_unique": [
+        "examples"
+      ],
+      "text_len": 1856,
+      "snippets": [
+        "Examples حزم Faber حقيقية — ليست مقاطع تجريبية. المصدر موجود في مستو",
+        "ريبية. المصدر موجود في مستودع faberlang/examples العام. استخدمها حين تحتاج رؤية كيفية تنظيم التطبيقات، أو كي",
+        "ر عمل الاستدلال؛ مع تحقق من هيكل Python examples/ai-workbench · الموقع: AI Workbench ViviLite واجهة أوامر مح"
+      ]
+    },
+    {
+      "path": "ar/index.html",
+      "en_marker_count": 8,
+      "en_unique": [
+        "and",
+        "are",
+        "examples",
+        "from",
+        "runtime",
+        "you"
+      ],
+      "text_len": 5837,
+      "snippets": [
+        "Faber جاهز للوكلاء If you are an AI agent: start at [CODE] , then read [CODE] and pic",
+        "Faber جاهز للوكلاء If you are an AI agent: start at [CODE] , then read [CODE] and pick a",
+        "ent: start at [CODE] , then read [CODE] and pick a skill from [CODE] . Humans: use Install and Examples"
+      ]
+    },
+    {
+      "path": "ar/404.html",
+      "en_marker_count": 7,
+      "en_unique": [
+        "and",
+        "are",
+        "examples",
+        "from",
+        "not",
+        "you"
+      ],
+      "text_len": 674,
+      "snippets": [
+        "Page not found جاهز للوكلاء If you are an AI agent: start at [CODE]",
+        "Page not found جاهز للوكلاء If you are an AI agent: start at [CODE] , then read [CODE] and pic",
+        "Page not found جاهز للوكلاء If you are an AI agent: start at [CODE] , then read [CODE] and pick a"
+      ]
+    },
+    {
+      "path": "ar/corpus/index.html",
+      "en_marker_count": 6,
+      "en_unique": [
+        "for",
+        "function",
+        "is",
+        "package",
+        "the",
+        "type"
+      ],
+      "text_len": 2290,
+      "snippets": [
+        "ocale proof. Code fences render through the [CODE] pipeline; prose is canonical Latin. # Corpus Generat",
+        "nder through the [CODE] pipeline; prose is canonical Latin. # Corpus Generated reference pages for 171",
+        "tin. # Corpus Generated reference pages for 171 canonical Faber corpus terms. Categories ad — 3 terms a"
+      ]
+    }
+  ],
+  "hi": [
+    {
+      "path": "hi/features/frames.html",
+      "en_marker_count": 18,
+      "en_unique": [
+        "and",
+        "compiler",
+        "error",
+        "export",
+        "function",
+        "keyword",
+        "runtime",
+        "type",
+        "value"
+      ],
+      "text_len": 5835,
+      "snippets": [
+        "Capability calls and frames Faber और ऑपरेटिंग सिस्टम द्वारा I/O लागू करने के हर",
+        "्य कार्य को। [CODE] primitive [CODE] एक keyword है, function नहीं। यह एक [CODE] literal द्वारा नामित route",
+        "[CODE] primitive [CODE] एक keyword है, function नहीं। यह एक [CODE] literal द्वारा नामित route के साथ opaque"
+      ]
+    },
+    {
+      "path": "hi/start/examples.html",
+      "en_marker_count": 14,
+      "en_unique": [
+        "examples",
+        "language",
+        "syntax"
+      ],
+      "text_len": 2034,
+      "snippets": [
+        "Examples वास्तविक Faber पैकेज — केवल अभ्यास के लिए बनाए गए छोटे स्नि",
+        "स्निपेट नहीं। स्रोत सार्वजनिक faberlang/examples रिपॉज़िटरी में है। जब आपको यह देखना हो कि एप्लिकेशन कैसे सं",
+        "ए बहु-कमांड CLI; Python हार्नेस सत्यापन examples/ai-workbench · साइट: AI Workbench ViviLite एजेंट समन्वय कमा"
+      ]
+    },
+    {
+      "path": "hi/features/canonical-vs-sugar.html",
+      "en_marker_count": 13,
+      "en_unique": [
+        "class",
+        "compiler",
+        "language",
+        "package",
+        "type",
+        "value"
+      ],
+      "text_len": 4609,
+      "snippets": [
+        "है जो अर्थ की दृष्टि से समान होती हैं। Compiler इनमें से किसी एक को प्राथमिकता नहीं देता — दोनों एक ही AST",
+        "ान होती हैं। > कई सतहें एक ही [CODE] या type node में parse होती हैं। > [CODE] canonical spellings को प्",
+        "नहीं, module-स्तर पर होता है — कोई CLI package हर जगह long form का उपयोग कर सकता है, जबकि कोई tensor kerne"
+      ]
+    },
+    {
+      "path": "hi/syntax/functions.html",
+      "en_marker_count": 9,
+      "en_unique": [
+        "import",
+        "return",
+        "type",
+        "value"
+      ],
+      "text_len": 1286,
+      "snippets": [
+        "रके घोषित किए जाते हैं। पैरामीटर के लिए type-first सिंटैक्स और return type के लिए glyph का उपयोग किया जा",
+        "पैरामीटर के लिए type-first सिंटैक्स और return type के लिए glyph का उपयोग किया जाता है। मूल सिंटैक्स [PRE]",
+        "टर के लिए type-first सिंटैक्स और return type के लिए glyph का उपयोग किया जाता है। मूल सिंटैक्स [PRE] त्रु"
+      ]
+    },
+    {
+      "path": "hi/index.html",
+      "en_marker_count": 8,
+      "en_unique": [
+        "and",
+        "are",
+        "examples",
+        "from",
+        "runtime",
+        "you"
+      ],
+      "text_len": 6409,
+      "snippets": [
+        "Faber एजेंट-तैयार If you are an AI agent: start at [CODE] , then read [CODE] and pic",
+        "Faber एजेंट-तैयार If you are an AI agent: start at [CODE] , then read [CODE] and pick a",
+        "ent: start at [CODE] , then read [CODE] and pick a skill from [CODE] . Humans: use Install and Examples"
+      ]
+    },
+    {
+      "path": "hi/syntax/variables.html",
+      "en_marker_count": 8,
+      "en_unique": [
+        "and",
+        "keywords",
+        "runtime",
+        "type",
+        "value"
+      ],
+      "text_len": 1436,
+      "snippets": [
+        "Variables and binding Faber में तीन variable keywords और assignment के लि",
+        "bles and binding Faber में तीन variable keywords और assignment के लिए एक विशेष glyph है। मुख्य अंतर [CODE] (",
+        "sign करने योग्य) के बीच है, तथा [CODE] (runtime flow) और [CODE] (संरचनात्मक field shape) के बीच है। fixum —"
+      ]
+    },
+    {
+      "path": "hi/404.html",
+      "en_marker_count": 7,
+      "en_unique": [
+        "and",
+        "are",
+        "examples",
+        "from",
+        "not",
+        "you"
+      ],
+      "text_len": 670,
+      "snippets": [
+        "Page not found एजेंट-तैयार If you are an AI agent: start at [CODE] ,",
+        "Page not found एजेंट-तैयार If you are an AI agent: start at [CODE] , then read [CODE] and pic",
+        "Page not found एजेंट-तैयार If you are an AI agent: start at [CODE] , then read [CODE] and pick a"
+      ]
+    },
+    {
+      "path": "hi/corpus/index.html",
+      "en_marker_count": 6,
+      "en_unique": [
+        "for",
+        "function",
+        "is",
+        "package",
+        "the",
+        "type"
+      ],
+      "text_len": 2289,
+      "snippets": [
+        "ocale proof. Code fences render through the [CODE] pipeline; prose is canonical Latin. # Corpus Generat",
+        "nder through the [CODE] pipeline; prose is canonical Latin. # Corpus Generated reference pages for 171",
+        "tin. # Corpus Generated reference pages for 171 canonical Faber corpus terms. Categories ad — 3 terms a"
+      ]
+    }
+  ],
+  "th-TH": [
+    {
+      "path": "th-TH/history/releases.html",
+      "en_marker_count": 44,
+      "en_unique": [
+        "compiler"
+      ],
+      "text_len": 8688,
+      "snippets": [
+        "rlang/releases หน้านี้ใช้สำหรับ ติดตั้ง compiler CLI ไม่ใช่สำหรับสร้าง compiler จากซอร์สโค้ด. เริ่มต้นใช้งาน",
+        "ติดตั้ง compiler CLI ไม่ใช่สำหรับสร้าง compiler จากซอร์สโค้ด. เริ่มต้นใช้งาน เส้นทาง เนื้อหา ติดตั้งและดาวน",
+        "เว้นแต่คุณจะทำงานกับต้นไม้ซอร์สโค้ดของ compiler แบบส่วนตัว. รีลีสล่าสุด — Faber 1.1.1 ฟิลด์ ค่า ผลิตภัณฑ์ F"
+      ]
+    },
+    {
+      "path": "th-TH/start/examples.html",
+      "en_marker_count": 11,
+      "en_unique": [
+        "examples"
+      ],
+      "text_len": 2083,
+      "snippets": [
+        "าย แหล่งโค้ดอยู่ในรีโพสาธารณะ faberlang/examples ใช้แหล่งข้อมูลเหล่านี้เมื่อคุณต้องการดูว่าแอปพลิเคชันมีโครง",
+        "มาน พร้อมการตรวจสอบ harness ด้วย Python examples/ai-workbench · เว็บไซต์: AI Workbench ViviLite CLI mailspac",
+        "ับการจัดเก็บด้วยไฟล์และเลน SQLite เสริม examples/vivilite coreutils แคมเปญแอปพลิเคชันขนาดใหญ่ที่นำยูทิลิตีทั"
+      ]
+    },
+    {
+      "path": "th-TH/index.html",
+      "en_marker_count": 8,
+      "en_unique": [
+        "and",
+        "are",
+        "examples",
+        "from",
+        "runtime",
+        "you"
+      ],
+      "text_len": 6719,
+      "snippets": [
+        "ปรแกรมเชิงแพ็กเกจ พร้อมสำหรับเอเจนต์ If you are an AI agent: start at [CODE] , then read [CODE] and pic",
+        "รมเชิงแพ็กเกจ พร้อมสำหรับเอเจนต์ If you are an AI agent: start at [CODE] , then read [CODE] and pick a",
+        "ent: start at [CODE] , then read [CODE] and pick a skill from [CODE] . Humans: use Install and Examples"
+      ]
+    },
+    {
+      "path": "th-TH/404.html",
+      "en_marker_count": 7,
+      "en_unique": [
+        "and",
+        "are",
+        "examples",
+        "from",
+        "not",
+        "you"
+      ],
+      "text_len": 666,
+      "snippets": [
+        "Page not found พร้อมสำหรับเอเจนต์ If you are an AI agent: start at [",
+        "Page not found พร้อมสำหรับเอเจนต์ If you are an AI agent: start at [CODE] , then read [CODE] and pic",
+        "age not found พร้อมสำหรับเอเจนต์ If you are an AI agent: start at [CODE] , then read [CODE] and pick a"
+      ]
+    },
+    {
+      "path": "th-TH/corpus/index.html",
+      "en_marker_count": 6,
+      "en_unique": [
+        "for",
+        "function",
+        "is",
+        "package",
+        "the",
+        "type"
+      ],
+      "text_len": 2290,
+      "snippets": [
+        "ocale proof. Code fences render through the [CODE] pipeline; prose is canonical Latin. # Corpus Generat",
+        "nder through the [CODE] pipeline; prose is canonical Latin. # Corpus Generated reference pages for 171",
+        "tin. # Corpus Generated reference pages for 171 canonical Faber corpus terms. Categories ad — 3 terms a"
+      ]
+    }
+  ],
+  "vi": [
+    {
+      "path": "vi/features/compilation-lanes.html",
+      "en_marker_count": 17,
+      "en_unique": [
+        "import",
+        "language",
+        "package",
+        "runtime"
+      ],
+      "text_len": 8650,
+      "snippets": [
+        "luồng điều khiển, biến cục bộ, lời gọi runtime, các vị trí, nhánh và các cạnh lỗi — những thông tin mà các",
+        "rình hợp dịch và trình liên kết. FMIR — runtime MIR riêng của Faber FMIR là bộ thực thi package bản địa MIR",
+        "MIR riêng của Faber FMIR là bộ thực thi package bản địa MIR. Trình biên dịch trích xuất MIR thành một paylo"
+      ]
+    },
+    {
+      "path": "vi/start/examples.html",
+      "en_marker_count": 12,
+      "en_unique": [
+        "examples"
+      ],
+      "text_len": 2174,
+      "snippets": [
+        "Examples Các gói Faber thực tế — không phải những đoạn mã mẫu đơn gi",
+        "m trong kho lưu trữ công khai faberlang/examples . Hãy dùng các ví dụ này khi cần xem cách tổ chức ứng dụng,",
+        "trình suy luận; xác thực harness Python examples/ai-workbench · trang web: AI Workbench ViviLite CLI mailspa"
+      ]
+    },
+    {
+      "path": "vi/start/commands.html",
+      "en_marker_count": 10,
+      "en_unique": [
+        "package",
+        "will",
+        "you"
+      ],
+      "text_len": 1900,
+      "snippets": [
+        "Commands you will use Đây là bản đồ CLI thực hành cho tuần đầu làm việc",
+        "Commands you will use Đây là bản đồ CLI thực hành cho tuần đầu làm việc với F",
+        "ịch native [CODE] Build và thực thi một package ứng dụng [CODE] Chạy các bài kiểm thử của package khi packa"
+      ]
+    },
+    {
+      "path": "vi/index.html",
+      "en_marker_count": 9,
+      "en_unique": [
+        "and",
+        "are",
+        "examples",
+        "from",
+        "runtime",
+        "you"
+      ],
+      "text_len": 7343,
+      "snippets": [
+        "Faber Sẵn sàng cho tác nhân If you are an AI agent: start at [CODE] , then read [CODE] and pic",
+        "Faber Sẵn sàng cho tác nhân If you are an AI agent: start at [CODE] , then read [CODE] and pick a",
+        "ent: start at [CODE] , then read [CODE] and pick a skill from [CODE] . Humans: use Install and Examples"
+      ]
+    },
+    {
+      "path": "vi/404.html",
+      "en_marker_count": 7,
+      "en_unique": [
+        "and",
+        "are",
+        "examples",
+        "from",
+        "not",
+        "you"
+      ],
+      "text_len": 794,
+      "snippets": [
+        "Page not found Sẵn sàng cho tác nhân If you are an AI agent: start a",
+        "Page not found Sẵn sàng cho tác nhân If you are an AI agent: start at [CODE] , then read [CODE] and pic",
+        "not found Sẵn sàng cho tác nhân If you are an AI agent: start at [CODE] , then read [CODE] and pick a"
+      ]
+    },
+    {
+      "path": "vi/corpus/index.html",
+      "en_marker_count": 6,
+      "en_unique": [
+        "for",
+        "function",
+        "is",
+        "package",
+        "the",
+        "type"
+      ],
+      "text_len": 2293,
+      "snippets": [
+        "ocale proof. Code fences render through the [CODE] pipeline; prose is canonical Latin. # Corpus Generat",
+        "nder through the [CODE] pipeline; prose is canonical Latin. # Corpus Generated reference pages for 171",
+        "tin. # Corpus Generated reference pages for 171 canonical Faber corpus terms. Categories ad — 3 terms a"
+      ]
+    },
+    {
+      "path": "vi/features/latin-and-glyphs.html",
+      "en_marker_count": 6,
+      "en_unique": [
+        "and",
+        "examples",
+        "not",
+        "while"
+      ],
+      "text_len": 5758,
+      "snippets": [
+        "Latin vocabulary and structural glyphs Ba lựa chọn tín hiệu giúp nhận ra mã nguồ",
+        "E] Nhánh còn lại [CODE] [CODE] Vòng lặp while [CODE] [CODE] Lặp qua giá trị, khoá hoặc khoảng [CODE] [COD",
+        "[CODE] [CODE] [CODE] Logic và bitwise: and, or, xor, not Quy ước liên kết rất quan trọng Một lựa chọn"
+      ]
+    }
+  ],
+  "zh-Hans": [
+    {
+      "path": "zh-Hans/start/examples.html",
+      "en_marker_count": 12,
+      "en_unique": [
+        "examples"
+      ],
+      "text_len": 1041,
+      "snippets": [
+        "Examples 真实的 Faber 包，而非玩具片段。源码托管于公开的 faberlang/examples 仓库。当你需要了解应用的",
+        "s 真实的 Faber 包，而非玩具片段。源码托管于公开的 faberlang/examples 仓库。当你需要了解应用的结构、CLI 的接法，或语言语料库的组织方式时，请参考这些示例。 如何运行示例 [PRE] 各",
+        "CLI，用于本地模型盘点、嵌入与推理工作流；包含 Python 测试夹具验证 examples/ai-workbench · 站点： AI Workbench ViviLite Faber 原生的本地邮件空间 CL"
+      ]
+    },
+    {
+      "path": "zh-Hans/index.html",
+      "en_marker_count": 8,
+      "en_unique": [
+        "and",
+        "are",
+        "examples",
+        "from",
+        "runtime",
+        "you"
+      ],
+      "text_len": 3060,
+      "snippets": [
+        "Faber 智能体就绪 If you are an AI agent: start at [CODE] , then read [CODE] and pic",
+        "Faber 智能体就绪 If you are an AI agent: start at [CODE] , then read [CODE] and pick a",
+        "ent: start at [CODE] , then read [CODE] and pick a skill from [CODE] . Humans: use Install and Examples"
+      ]
+    },
+    {
+      "path": "zh-Hans/404.html",
+      "en_marker_count": 7,
+      "en_unique": [
+        "and",
+        "are",
+        "examples",
+        "from",
+        "not",
+        "you"
+      ],
+      "text_len": 345,
+      "snippets": [
+        "Page not found 智能体就绪 If you are an AI agent: start at [CODE] , then",
+        "Page not found 智能体就绪 If you are an AI agent: start at [CODE] , then read [CODE] and pic",
+        "Page not found 智能体就绪 If you are an AI agent: start at [CODE] , then read [CODE] and pick a"
+      ]
+    },
+    {
+      "path": "zh-Hans/corpus/index.html",
+      "en_marker_count": 6,
+      "en_unique": [
+        "for",
+        "function",
+        "is",
+        "package",
+        "the",
+        "type"
+      ],
+      "text_len": 2287,
+      "snippets": [
+        "ocale proof. Code fences render through the [CODE] pipeline; prose is canonical Latin. # Corpus Generat",
+        "nder through the [CODE] pipeline; prose is canonical Latin. # Corpus Generated reference pages for 171",
+        "tin. # Corpus Generated reference pages for 171 canonical Faber corpus terms. Categories ad — 3 terms a"
+      ]
+    },
+    {
+      "path": "zh-Hans/features/latin-and-glyphs.html",
+      "en_marker_count": 5,
+      "en_unique": [
+        "and",
+        "examples",
+        "type",
+        "while"
+      ],
+      "text_len": 2533,
+      "snippets": [
+        "Latin vocabulary and structural glyphs 三处信号选择，使 Faber 源码一眼可辨。 Faber 作出了三处刻意的信号选择",
+        "ODE] 、 [CODE] [CODE] 声明标签联合 [CODE] 、sum type 绑定与转移 关键字 角色 近似等价物 [CODE] 不可变绑定（一次写入） [CODE] 、 [CODE] [CODE",
+        "分支 [CODE] [CODE] else 分支 [CODE] [CODE] while 循环 [CODE] [CODE] 迭代（值、键或范围） [CODE] [CODE] 模式匹配（首条臂胜出） [CODE"
+      ]
+    }
+  ],
+  "zh-Hant": [
+    {
+      "path": "zh-Hant/start/examples.html",
+      "en_marker_count": 13,
+      "en_unique": [
+        "examples",
+        "syntax"
+      ],
+      "text_len": 1131,
+      "snippets": [
+        "Examples 真正的 Faber 套件——不是玩具範例。原始碼位於公開的 faberlang/examples 儲存庫。 當您需要了",
+        "真正的 Faber 套件——不是玩具範例。原始碼位於公開的 faberlang/examples 儲存庫。 當您需要了解應用程式的結構、CLI 的連接方式，或語言語料庫的組織方式時，請使用這些範例。 如何執行範例 [",
+        "於本機模型清單、嵌入與推論工作流程的多指令 CLI；含 Python 驗證工具 examples/ai-workbench · 網站： AI Workbench ViviLite 以 Faber 原生實作的本機 ma"
+      ]
+    },
+    {
+      "path": "zh-Hant/index.html",
+      "en_marker_count": 8,
+      "en_unique": [
+        "and",
+        "are",
+        "examples",
+        "from",
+        "runtime",
+        "you"
+      ],
+      "text_len": 3128,
+      "snippets": [
+        "Faber 智慧體就緒 If you are an AI agent: start at [CODE] , then read [CODE] and pic",
+        "Faber 智慧體就緒 If you are an AI agent: start at [CODE] , then read [CODE] and pick a",
+        "ent: start at [CODE] , then read [CODE] and pick a skill from [CODE] . Humans: use Install and Examples"
+      ]
+    },
+    {
+      "path": "zh-Hant/404.html",
+      "en_marker_count": 7,
+      "en_unique": [
+        "and",
+        "are",
+        "examples",
+        "from",
+        "not",
+        "you"
+      ],
+      "text_len": 368,
+      "snippets": [
+        "Page not found 智慧體就緒 If you are an AI agent: start at [CODE] , then",
+        "Page not found 智慧體就緒 If you are an AI agent: start at [CODE] , then read [CODE] and pic",
+        "Page not found 智慧體就緒 If you are an AI agent: start at [CODE] , then read [CODE] and pick a"
+      ]
+    },
+    {
+      "path": "zh-Hant/corpus/index.html",
+      "en_marker_count": 6,
+      "en_unique": [
+        "for",
+        "function",
+        "is",
+        "package",
+        "the",
+        "type"
+      ],
+      "text_len": 2287,
+      "snippets": [
+        "ocale proof. Code fences render through the [CODE] pipeline; prose is canonical Latin. # Corpus Generat",
+        "nder through the [CODE] pipeline; prose is canonical Latin. # Corpus Generated reference pages for 171",
+        "tin. # Corpus Generated reference pages for 171 canonical Faber corpus terms. Categories ad — 3 terms a"
+      ]
+    }
+  ]
+}
