@@ -26,6 +26,25 @@ Three models only:
   (often 3–5× slower than peers). Historical outputs kept under `outputs/`
   for audit; do not launch new Grok jobs for this bench.
 
+## Production effort (Luna)
+
+Evidence: `ratings/P7-luna-medium-vs-xhigh.md` (same model, 5 locales,
+`start/hello`, medium vs xhigh).
+
+| Mode | Effort | Use |
+|---|---|---|
+| **Bulk / model bench / first draft** | **`medium`** | Default. Fair cost; medium already ranked highly. |
+| **Optional polish pass** | **`xhigh`** | Publish-critical pages only. Yields local register/glossary polish, not a full rewrite. One clear win in P7: xhigh fixed residual English table chrome that medium left on zh-Hans. |
+| **Manual residual pass** | human / checklist | Always allowed: second pass to strip leftover English snippets (table headers, nav labels, section titles) after any automated translate. Do not rely on effort alone for chrome hygiene. |
+
+**Do not** raise bench default effort above medium for model-vs-model sweeps
+(keeps cost and comparison fair). Prefer medium first draft → optional xhigh on
+locked Luna locales → manual English-snippet sweep before ship.
+
+Luna-locked locales today: **th-TH**, **hi**, **vi**, **zh-Hant**.
+Other locales keep their preferred model at **medium** unless a later effort
+sweep says otherwise.
+
 ## Notes
 
 - Preference is **per language**, not global.

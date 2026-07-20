@@ -64,6 +64,10 @@ No locale produced a wholesale rewrite. Effort change is **local lexical/registe
 
 ## Recommendation
 
+**Saved as law in** `PREFERRED-MODELS.md` → **Production effort (Luna)** and
+`METHOD.md` → **Production defaults**.
+
 - Keep **medium** as the bench default for model-vs-model fairness and cost.
 - For locked Luna locales (th-TH, hi, vi, zh-Hant), optional **xhigh final pass** on publish-critical pages.
+- **Manual second pass** for leftover English snippets (table headers, nav, titles) after automated translate — always allowed; do not rely on effort alone.
 - Do **not** expect xhigh to reverse a model ranking from medium (this test is same-model only).

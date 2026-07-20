@@ -47,11 +47,23 @@ translated code, broken table shape, missing sections.
 | Default set (3) | `gpt-5.6-luna-codex`, `deepseek-v4-pro`, `glm-5-2-zai` |
 | Excluded | `kimi-k2p7-code-fireworks` (Fireworks); `grok-4.5` (rank + latency) |
 
+## Production defaults (after preferred model is locked)
+
+See **PREFERRED-MODELS.md → Production effort (Luna)** for the durable rule:
+
+1. First draft at **medium** with the locale’s preferred model.
+2. Optional **xhigh** polish only when needed (Luna publish-critical pages).
+3. **Manual second pass** for residual English snippets (headers, nav, table
+   chrome) before ship — effort does not replace chrome hygiene.
+
+Bench model sweeps stay at **medium** so rankings stay comparable.
+
 ## Layout
 
 ```text
 translation-bench/
   METHOD.md
+  PREFERRED-MODELS.md
   packet/           English sources (+ optional gold)
   prompts/          Generated prompts
   outputs/          {model}__{locale}__{page}.md
