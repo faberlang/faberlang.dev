@@ -67,3 +67,4 @@
 
 1. `966be92` — feat(site): Phase 1 URL migration — content under /{locale}/
 2. `656dc3b` — docs(factory): record Phase 1 commit in multilingual-site ledger
+3. `5c81de8` — feat(site): Phase 2 language portal at /
