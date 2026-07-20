@@ -1,0 +1,5 @@
+exit=1
+stderr:
+Max turns reached
+Error: max turns reached
+
