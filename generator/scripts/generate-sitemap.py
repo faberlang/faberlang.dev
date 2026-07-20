@@ -57,10 +57,15 @@ def main():
                 page_path = f"/{EN_DIR}/{rel.replace(os.sep, '/').replace('.html', '.html')}"
             urls.append(base_url + page_path)
 
+    # Phase 2: include portal root (/) as the first URL
     urls.sort()
     # Deduplicate
     seen = set()
     unique = []
+    portal_root = base_url + "/"
+    if portal_root not in seen and portal_root not in urls:
+        seen.add(portal_root)
+        unique.append(portal_root)
     for u in urls:
         if u not in seen:
             seen.add(u)

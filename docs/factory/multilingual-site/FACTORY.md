@@ -22,7 +22,7 @@
 | ID | Unit | Status | Delivery spec |
 |---|---|---|---|
 | U1 | URL migration + dual locale + `locales.toml` | **done** | `PHASE-1-URL-MIGRATION.md` |
-| U2 | Locale-less portal generator at `/` | **next** | — |
+| U2 | Locale-less portal generator at `/` | **done** | `PHASE-2-PORTAL.md` |
 | U3 | Provenance + `sync-report` oracle | pending | — |
 | U4 | Chrome catalog (`locales/{locale}/chrome.toml`) | pending | — |
 | U5 | `sync-translate` LLM differential | pending | — |
@@ -41,19 +41,29 @@
 - `generator/locales.toml` + `locales_registry.py`
 - Dual locale: `Pagina.site_locale` / `reader_locale`; `link_prefix.fab`
 - Content under `dist/{locale}/`; English at `/en-US/`
-- 359 meta-refresh stubs for retired root English paths; `/` → `/en-US/` interim
+- Meta-refresh stubs for retired root English paths
 - Gates green: link check (en-US + stubs), leakage, sitemap, canonical
 - `build-site.sh` full build: 2626 HTML pages
+
+### U2 — Language portal at `/` (2026-07-20)
+
+- `generator/scripts/generate-portal.py` from `locales.toml` + pack exemplars
+- `body.porta` card grid in `speculum.css` (Decision 14 single stylesheet)
+- 7 locales in native scripts with salve-munde samples; English first
+- `generate-redirects.py` no longer overwrites `/`
+- Sitemap includes `https://faberlang.dev/`
+- Gates green after full rebuild
 
 ## Deferred findings
 
 - Partial non-en locales still have chrome links to missing section paths
   (`/th-TH/features/` etc.). Link gate excludes non-en by default until
-  fallback materialization or full coverage. Phase 2 portal may surface
-  coverage; full-section fallback is follow-on.
+  fallback materialization or full coverage.
+- Portal does not show per-locale page coverage fractions (GOAL open Q deferred).
 - `render-corpus-batch.sh` still rebuilds generator per locale (slow). Optimize later.
 - Author-mode emit comment stripping still open (GOAL open question).
 
 ## Commits this factory run
 
 1. `966be92` — feat(site): Phase 1 URL migration — content under /{locale}/
+2. `656dc3b` — docs(factory): record Phase 1 commit in multilingual-site ledger

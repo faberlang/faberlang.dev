@@ -515,3 +515,209 @@ footer a:hover { color: var(--glyph); border-bottom-color: var(--glyph); }
     .content th:first-child,
     .content td:first-child { width: auto; min-width: 0; }
 }
+
+/* ==========================================================================
+   Phase 2 — Locale-less language portal (body.porta)
+   ==========================================================================
+   Full-width centered gate layout, no sidebar. Cards grid for each locale.
+   Uses existing CSS variables from :root above.
+   ========================================================================== */
+
+/* ---- bar ---- */
+.porta-bar {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 56px 28px 8px;
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+.porta-brand {
+    font-family: var(--serif);
+    font-size: 2.4rem;
+    font-weight: 400;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+}
+.porta-sep {
+    color: var(--ink-faint);
+    font-size: 1.6rem;
+}
+.porta-sub {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.6rem;
+    color: var(--ink-dim);
+}
+.porta-question {
+    font-family: var(--sans);
+    font-size: 0.95rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+    margin-left: auto;
+}
+
+/* ---- gate (intro paragraph) ---- */
+.porta-gate {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 18px 28px 10px;
+}
+.porta-intro {
+    font-family: var(--sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    color: var(--ink-dim);
+    max-width: 64ch;
+}
+.porta-intro strong {
+    color: var(--ink);
+}
+
+/* ---- locales grid ---- */
+.porta-locales {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 8px 28px 32px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+/* ---- card ---- */
+.porta-card {
+    border: 1px solid var(--rule);
+    background: var(--paper-alt);
+    border-radius: var(--radius);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+.porta-card:hover {
+    border-color: var(--rule-strong);
+    box-shadow: var(--shadow-lift);
+}
+.porta-card header {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.porta-lang {
+    font-family: var(--sans);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--ink);
+}
+.porta-lang.th { font-family: 'Noto Sans Thai', var(--sans); }
+.porta-lang.ar { font-family: 'Noto Sans Arabic', var(--sans); }
+.porta-lang.hi { font-family: 'Noto Sans Devanagari', var(--sans); }
+.porta-lang.zh { font-family: 'Noto Sans SC', var(--sans); }
+.porta-card-rtl header { direction: rtl; }
+.porta-card-rtl .porta-badge { margin-left: 0; margin-right: auto; }
+.porta-id {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--ink-faint);
+    letter-spacing: 0.02em;
+}
+.porta-badge {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-left: auto;
+}
+.porta-badge-complete {
+    background: var(--support);
+    color: var(--paper);
+}
+.porta-badge-partial {
+    background: var(--limited);
+    color: var(--paper);
+}
+.porta-card pre.faber-code {
+    margin: 0;
+    font-size: 0.78rem;
+    padding: 10px 12px;
+}
+.porta-link {
+    font-family: var(--sans);
+    font-size: 0.82rem;
+    border: none;
+    color: var(--glyph);
+    align-self: flex-start;
+}
+.porta-link:hover {
+    color: var(--glyph-hover);
+    border-bottom: 1px solid var(--glyph);
+}
+
+/* ---- status note ---- */
+.porta-note {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 16px 28px 24px;
+    border-top: 1px solid var(--rule);
+}
+.porta-note p {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--ink-dim);
+    max-width: 64ch;
+    margin-bottom: 0.5rem;
+}
+.porta-note strong {
+    color: var(--ink);
+}
+.porta-agent-links {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.porta-agent-links a {
+    border: none;
+    color: var(--glyph);
+    font-size: 0.82rem;
+}
+.porta-agent-links a:hover {
+    color: var(--glyph-hover);
+    border-bottom: 1px solid var(--glyph);
+}
+
+/* ---- footer ---- */
+.porta-footer {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 18px 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    flex-wrap: wrap;
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    color: var(--ink-faint);
+    border-top: 1px solid var(--rule);
+}
+.porta-footer a {
+    border: none;
+    color: var(--ink-dim);
+}
+.porta-footer a:hover {
+    color: var(--glyph);
+    border-bottom: 1px solid var(--glyph);
+}
+
+/* ---- responsive ---- */
+@media (max-width: 700px) {
+    .porta-bar { padding-top: 32px; flex-direction: column; gap: 4px; }
+    .porta-question { margin-left: 0; }
+    .porta-locales { grid-template-columns: 1fr; }
+}

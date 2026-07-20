@@ -237,11 +237,15 @@ if [ "$FULL_SITE" = true ]; then
     fi
 
     # Step 6: Generate redirect stubs (en-US → bare path)
-    echo "[7/9] Generating en-US redirect stubs..."
+    echo "[7/10] Generating en-US redirect stubs..."
     "$PYTHON" "${SCRIPT_DIR}/generate-redirects.py" "$OUTPUT_DIR" "en-US"
 
-    # Step 7: Smoke checks against en-US paths
-    echo "[8/9] Smoke checks..."
+    # Step 7: Generate language portal (overwrites dist/index.html)
+    echo "[8/10] Generating language portal..."
+    "$PYTHON" "${SCRIPT_DIR}/generate-portal.py" "${OUTPUT_DIR}/index.html"
+
+    # Step 8: Smoke checks against en-US paths
+    echo "[9/10] Smoke checks..."
     smoke_contains "${OUTPUT_DIR}/en-US/index.html" "<!DOCTYPE html>" "home doctype"
     if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
         smoke_contains "${OUTPUT_DIR}/en-US/index.html" "/llms.txt" "home agent link"
@@ -258,20 +262,31 @@ if [ "$FULL_SITE" = true ]; then
         smoke_contains "${OUTPUT_DIR}/en-US/history/releases.html" "Historical releases" "releases archive heading"
         smoke_contains "${OUTPUT_DIR}/robots.txt" "Sitemap:" "robots.txt"
 
+        # Portal checks
+        smoke_contains "${OUTPUT_DIR}/index.html" 'class="porta"' "portal body class"
+        smoke_contains "${OUTPUT_DIR}/index.html" "ภาษาไทย" "portal Thai native"
+        smoke_contains "${OUTPUT_DIR}/index.html" "العربية" "portal Arabic native"
+        smoke_contains "${OUTPUT_DIR}/index.html" "简体中文" "portal zh-Hans native"
+        smoke_contains "${OUTPUT_DIR}/index.html" "incipit" "portal Latin sample"
+        smoke_contains "${OUTPUT_DIR}/index.html" 'href="/en-US/"' "portal en-US link"
+        # Must NOT be a meta-refresh redirect
+        if grep -Fq 'http-equiv="refresh"' "${OUTPUT_DIR}/index.html"; then
+            echo "ERROR: portal index must not meta-refresh" >&2
+            exit 1
+        fi
+
         # Redirect stub checks
-        smoke_contains "${OUTPUT_DIR}/index.html" "<!DOCTYPE html>" "redirect home doctype"
-        smoke_contains "${OUTPUT_DIR}/index.html" "/en-US/" "redirect home target"
         smoke_contains "${OUTPUT_DIR}/start/install.html" "<!DOCTYPE html>" "redirect install doctype"
         smoke_contains "${OUTPUT_DIR}/start/install.html" "/en-US/start/install.html" "redirect install target"
     fi
 
-    # Step 8: Post-process
-    echo "[8/9] Post-processing..."
+    # Step 9: Post-process
+    echo "[10/10] Post-processing..."
     "$PYTHON" "${SCRIPT_DIR}/strip-empty-sources.py" "$OUTPUT_DIR"
     "$PYTHON" "${SCRIPT_DIR}/inject-skip-link.py" "$OUTPUT_DIR"
 
-    # Step 9: Gates (link check, leakage) — only for full site
-    echo "[9/9] Gates..."
+    # Step 10: Gates (link check, leakage) — only for full site
+    echo "[10/10] Gates..."
     echo "  [gate] Internal link check..."
     "$PYTHON" "${SCRIPT_DIR}/check-internal-links.py" "$OUTPUT_DIR" || {
         echo "ERROR: internal link gate failed" >&2

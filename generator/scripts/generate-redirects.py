@@ -69,6 +69,12 @@ def main() -> None:
         # Compute relative path under the source locale dir
         rel = html_path.relative_to(source_dir)
         rel_str = str(rel)
+
+        # Phase 2: portal owns / — do not overwrite dist/index.html
+        if rel_str == "index.html":
+            skipped += 1
+            continue
+
         target = target_url(site_locale, rel_str)
         stub_path = dist_dir / rel
 
@@ -77,18 +83,6 @@ def main() -> None:
         encoded_target = html_mod.escape(target, quote=True)
         stub_path.write_text(STUB.format(target_url=encoded_target))
         written += 1
-
-    # Also ensure the top-level index.html exists (it would already be
-    # written by the loop if en-US/index.html is present, but guard
-    # explicitly for clarity / non-en-US caller edge case).
-    if site_locale == "en-US":
-        top_index = dist_dir / "index.html"
-        if not top_index.exists():
-            top_index.parent.mkdir(parents=True, exist_ok=True)
-            target = "/en-US/"
-            encoded_target = html_mod.escape(target, quote=True)
-            top_index.write_text(STUB.format(target_url=encoded_target))
-            written += 1
 
     print(f"Generated {written} redirect stubs for {site_locale} → bare paths")
 
