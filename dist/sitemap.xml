@@ -40,6 +40,7 @@
   <url><loc>https://faberlang.dev/corpus/category/ad.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/category/aliasing.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/category/application.html</loc></url>
+  <url><loc>https://faberlang.dev/corpus/category/arithmetic.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/category/assignment.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/category/async.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/category/availability.html</loc></url>
@@ -183,6 +184,10 @@
   <url><loc>https://faberlang.dev/corpus/membrum.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/metior.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/meus.html</loc></url>
+  <url><loc>https://faberlang.dev/corpus/modulus&lt;u16&gt;.html</loc></url>
+  <url><loc>https://faberlang.dev/corpus/modulus&lt;u32&gt;.html</loc></url>
+  <url><loc>https://faberlang.dev/corpus/modulus&lt;u64&gt;.html</loc></url>
+  <url><loc>https://faberlang.dev/corpus/modulus&lt;u8&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/mone.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/mori.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/morphologia.html</loc></url>
@@ -206,7 +211,6 @@
   <url><loc>https://faberlang.dev/corpus/ordo.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/otherwise.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/package manifest.html</loc></url>
-  <url><loc>https://faberlang.dev/corpus/panic.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/pending.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/per.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/perge.html</loc></url>
@@ -271,7 +275,6 @@
   <url><loc>https://faberlang.dev/corpus/then.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/therefore.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/this.html</loc></url>
-  <url><loc>https://faberlang.dev/corpus/throw.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/todo.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/tuus.html</loc></url>
   <url><loc>https://faberlang.dev/corpus/type parameters.html</loc></url>

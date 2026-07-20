@@ -144,7 +144,7 @@ if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
     smoke_contains "${OUTPUT_DIR}/index.html" "/llms.txt" "home agent link"
     smoke_contains "${OUTPUT_DIR}/index.html" "faber-v1.1.1" "home release link"
     smoke_contains "${OUTPUT_DIR}/llms.txt" "Generated corpus frontmatter reference" "generated llms surface"
-    smoke_contains "${OUTPUT_DIR}/llms.txt" "Distinct frontmatter terms: 183" "generated llms term count"
+    smoke_contains "${OUTPUT_DIR}/llms.txt" "Distinct frontmatter terms: 187" "generated llms term count"
     smoke_contains "${OUTPUT_DIR}/start/install.html" "<!DOCTYPE html>" "install doctype"
     smoke_contains "${OUTPUT_DIR}/start/install.html" "/start/install.html" "install path"
     smoke_contains "${OUTPUT_DIR}/start/install.html" "faber-v1.1.1" "install release link"

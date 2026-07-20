@@ -34,7 +34,7 @@ incipit {
     fixum tensor&lt;numerus, [2]&gt; grid ← [5, 6] ↦ tensor&lt;numerus, [2]&gt;
     fixum valor boxedTensor ← grid ↦ valor
     nota boxedTensor
-}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Numerus(42)
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>42
 Lista([Numerus(222), Numerus(173)])
 Lista([Numerus(1), Numerus(2)])
 Tabula({&quot;alpha&quot;: Numerus(10)})
@@ -157,7 +157,7 @@ incipit {
     fixum valor obj ← { &quot;alpha&quot;: 10, &quot;beta&quot;: 20 } ↦ valor
     fixum tabula&lt;textus, numerus&gt; scores ← obj ↦ tabula&lt;textus, numerus&gt;
     nota scores.accipe(&quot;alpha&quot;) vel 0
-}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[1, 2, 3, 4]
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Lista([Numerus(1), Numerus(2), Numerus(3), Numerus(4)])
 10
 </code></pre><h3>examples/corpus/destructura/literal.fab (canonical · existing-home)</h3><p>JSON-shaped dynamic value literal for open object-shaped data.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># destructura — valor literal expressions (inline JSON)
 #

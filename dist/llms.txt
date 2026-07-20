@@ -45,10 +45,10 @@ faber explain SEM001
 
 ## Generated corpus frontmatter reference
 
-- Distinct frontmatter terms: 183
-- Canonical term pages: 167
+- Distinct frontmatter terms: 187
+- Canonical term pages: 171
 - Alias spellings: 98
-- Categories: 45
+- Categories: 46
 - Source: examples/corpus/**/*.fab TOML frontmatter
 
 Each canonical record has: term, kind, category, summary, syntax signature, aliases, relations, and page URL.
@@ -58,6 +58,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - ad (3) — https://faberlang.dev/corpus/category/ad.html
 - aliasing (1) — https://faberlang.dev/corpus/category/aliasing.html
 - application (1) — https://faberlang.dev/corpus/category/application.html
+- arithmetic (4) — https://faberlang.dev/corpus/category/arithmetic.html
 - assignment (1) — https://faberlang.dev/corpus/category/assignment.html
 - async (4) — https://faberlang.dev/corpus/category/async.html
 - availability (1) — https://faberlang.dev/corpus/category/availability.html
@@ -112,7 +113,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - method: 2
 - modifier: 1
 - operator: 2
-- operator-group: 16
+- operator-group: 20
 - pointer: 1
 - type: 4
 
@@ -819,12 +820,12 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `iace`
 - Kind: keyword
 - Category: errors
-- Summary: Throws a recoverable error.
-- Syntax: `iace <expression>`
-- Aliases: `throw`
-- Related: `⇥`, `cape`, `mori`, `redde`
+- Summary: Conditional throw with si guard.
+- Syntax: `iace <expression> si <condition>`
+- Aliases: none
+- Related: `cape`, `mori`, `si`, `⇥`
 - Page: https://faberlang.dev/corpus/iace.html
-- Source: examples/corpus/iace/iace.fab
+- Source: examples/corpus/iace/iace-si-guard.fab
 
 #### `iacit`
 
@@ -1090,6 +1091,54 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/corpus/meus.html
 - Source: examples/corpus/ad/sermo-live-directional.fab
 
+#### `modulus<u16>`
+
+- Canonical: `modulus<u16>`
+- Kind: operator-group
+- Category: arithmetic
+- Summary: Unsigned 16-bit modular-word arithmetic and bit-pattern edges.
+- Syntax: `modulus<u16>`
+- Aliases: none
+- Related: `numerus`, `¬`, `⇐`, `⇒`
+- Page: https://faberlang.dev/corpus/modulus%3Cu16%3E.html
+- Source: examples/corpus/operatores/modular-word-u16.fab
+
+#### `modulus<u32>`
+
+- Canonical: `modulus<u32>`
+- Kind: operator-group
+- Category: arithmetic
+- Summary: Unsigned 32-bit modular-word arithmetic and bit-pattern edges.
+- Syntax: `modulus<u32>`
+- Aliases: none
+- Related: `numerus`, `¬`, `⇐`, `⇒`
+- Page: https://faberlang.dev/corpus/modulus%3Cu32%3E.html
+- Source: examples/corpus/operatores/modular-word.fab
+
+#### `modulus<u64>`
+
+- Canonical: `modulus<u64>`
+- Kind: operator-group
+- Category: arithmetic
+- Summary: Unsigned 64-bit modular-word arithmetic and bit-pattern edges.
+- Syntax: `modulus<u64>`
+- Aliases: none
+- Related: `numerus`, `¬`, `⇐`, `⇒`
+- Page: https://faberlang.dev/corpus/modulus%3Cu64%3E.html
+- Source: examples/corpus/operatores/modular-word-u64.fab
+
+#### `modulus<u8>`
+
+- Canonical: `modulus<u8>`
+- Kind: operator-group
+- Category: arithmetic
+- Summary: Unsigned 8-bit modular-word arithmetic and bit-pattern edges.
+- Syntax: `modulus<u8>`
+- Aliases: none
+- Related: `numerus`, `¬`, `⇐`, `⇒`
+- Page: https://faberlang.dev/corpus/modulus%3Cu8%3E.html
+- Source: examples/corpus/operatores/modular-word-u8.fab
+
 #### `mone`
 
 - Canonical: `mone`
@@ -1107,12 +1156,12 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `mori`
 - Kind: keyword
 - Category: errors
-- Summary: Raises a fatal error or panic.
-- Syntax: `mori <expression>`
-- Aliases: `panic`
-- Related: `iace`, `ergo`
+- Summary: Conditional fatal abort with si guard.
+- Syntax: `mori <expression> si <condition>`
+- Aliases: none
+- Related: `iace`, `ergo`, `si`
 - Page: https://faberlang.dev/corpus/mori.html
-- Source: examples/corpus/mori/mori.fab
+- Source: examples/corpus/mori/mori-si-guard.fab
 
 #### `morphologia`
 
