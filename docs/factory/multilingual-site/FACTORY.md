@@ -92,6 +92,18 @@
 - `render-corpus-batch.sh` still rebuilds generator per locale (slow). Optimize later.
 - Author-mode emit comment stripping still open (GOAL open question).
 
+## Post-phase polish
+
+### Speculum porta layout (2026-07-20)
+
+Integrated design pack `faber-porta.html` into the live portal (no longer a card-only interim):
+
+- Gate + central glyph mark + n-gon ring of locale nodes (native script + honest status)
+- Status copy updated for shipped reality: en-US complete, th-TH pilot slice, others partial
+- Sample grid retained (PHASE-2: salve-munde exemplars)
+- Index grouped complete / pilot / partial
+- Files: `generator/scripts/generate-portal.py`, `generator/www/speculum.css`, regenerated `dist/`
+
 ## Commits this factory run
 
 1. `966be92` — feat(site): Phase 1 URL migration — content under /{locale}/

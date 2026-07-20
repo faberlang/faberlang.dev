@@ -19,123 +19,237 @@
 <title>Faber · porta</title>
 </head>
 <body class="porta">
-<a href="#porta-locales" class="skip-link">Skip to locales</a>
+<a href="#porta-samples" class="skip-link">Skip to locales</a>
 
-<div class="porta-bar">
-  <span class="porta-brand">Faber</span>
-  <span class="porta-sep">·</span>
-  <span class="porta-sub">porta</span>
-  <span class="porta-sep">·</span>
-  <span class="porta-question">what do you read?</span>
-</div>
+<main class="porta-wrap">
 
-<div class="porta-gate">
-  <p class="porta-intro">
-    Faber lives in a semantic core — the HIR — not in any single rendering.
-    Every locale below reads the same language in its own script and vocabulary.
-    Choose your portal to enter the documentation, corpus, and tooling.
-  </p>
-</div>
+  <div class="porta-gate">
+    <div class="porta-kicker">Faber · porta · what do you read?</div>
 
-<div id="porta-locales" class="porta-locales">
-          <article class="porta-card">
-            <header>
-              <span class="porta-lang">English</span>
-              <span class="porta-id">en-US</span>
-              <span class="porta-badge porta-badge-complete">complete</span>
-            </header>
-            <pre class="faber-code"><code>incipit {
+    <div class="porta-ring" aria-label="Language portals">
+      <div class="porta-mark">
+        <div class="porta-glyphgrid" aria-hidden="true">
+          <span>←</span><span>→</span><span>∴</span>
+          <span>≡</span><span>∪</span><span>⇥</span>
+        </div>
+        <div class="porta-name">FABER</div>
+        <div class="porta-gloss">these six never localize</div>
+      </div>
+        <div class="porta-node" style="left:280.0px;top:50.0px">
+          <a href="/en-US/">
+            <span class="porta-native">English</span>
+            <span class="porta-tag">en-US · English</span>
+            <span class="porta-st porta-st-complete">complete · full docs</span>
+          </a>
+        </div>
+        <div class="porta-node" style="left:436.4px;top:125.3px">
+          <a href="/th-TH/">
+            <span class="porta-native th">ภาษาไทย</span>
+            <span class="porta-tag">th-TH · ไทย</span>
+            <span class="porta-st porta-st-pilot">pilot · index + start</span>
+          </a>
+        </div>
+        <div class="porta-node" style="left:475.0px;top:294.5px">
+          <a href="/ar/">
+            <span class="porta-native ar">العربية</span>
+            <span class="porta-tag">ar · العربية</span>
+            <span class="porta-st porta-st-partial">partial · English prose fallback</span>
+          </a>
+        </div>
+        <div class="porta-node" style="left:366.8px;top:430.2px">
+          <a href="/hi/">
+            <span class="porta-native hi">हिन्दी</span>
+            <span class="porta-tag">hi · देवनागरी</span>
+            <span class="porta-st porta-st-partial">partial · English prose fallback</span>
+          </a>
+        </div>
+        <div class="porta-node" style="left:193.2px;top:430.2px">
+          <a href="/vi/">
+            <span class="porta-native">Tiếng Việt</span>
+            <span class="porta-tag">vi · Latin</span>
+            <span class="porta-st porta-st-partial">partial · English prose fallback</span>
+          </a>
+        </div>
+        <div class="porta-node" style="left:85.0px;top:294.5px">
+          <a href="/zh-Hans/">
+            <span class="porta-native zh">简体中文</span>
+            <span class="porta-tag">zh-Hans · 简体中文</span>
+            <span class="porta-st porta-st-partial">partial · English prose fallback</span>
+          </a>
+        </div>
+        <div class="porta-node" style="left:123.6px;top:125.3px">
+          <a href="/zh-Hant/">
+            <span class="porta-native zh">繁體中文</span>
+            <span class="porta-tag">zh-Hant · 繁體中文</span>
+            <span class="porta-st porta-st-partial">partial · English prose fallback</span>
+          </a>
+        </div>
+    </div>
+
+    <p class="porta-question">
+      Faber is one semantic core with many renderings. Latin is the canonical
+      interchange for code, not a privileged human language.
+      <span class="porta-alt">Pick the documentation language you read;
+      the glyphs are the same in all of them.</span>
+    </p>
+
+    <div class="porta-note">
+      <p>
+        <b>Status.</b> <b>English</b> (<code>en-US</code>) is complete — docs, corpus,
+        and tooling. <b>Thai</b> (<code>th-TH</code>) is the pilot locale: <code>index</code>
+        and <code>start/*</code> have authored Thai prose; remaining sections still fall
+        back to English. Every other locale ships reader packs and corpus pages with
+        English prose fallback. Code samples below are the same <code>salve-munde</code>
+        program from each pack — not proposed mock copy.
+      </p>
+      <p class="porta-agent-links">
+        <a href="/llms.txt">Agent index</a>
+        ·
+        <a href="/agents/index.md">Agent guide</a>
+        ·
+        <a href="/en-US/start/install.html">Install</a>
+      </p>
+    </div>
+  </div>
+
+  <section id="porta-samples" class="porta-samples-section">
+    <h2>Same program, every pack</h2>
+    <p class="porta-lede">
+      Each card shows the pack's <code>salve-munde</code> exemplar. The HIR is one;
+      the rendering is the pack.
+    </p>
+    <div class="porta-samples">
+        <article class="porta-sample">
+          <header>
+            <span class="porta-native">English</span>
+            <span class="porta-id">en-US</span>
+            <span class="porta-badge porta-badge-complete">complete</span>
+          </header>
+          <pre class="faber-code"><code>incipit {
   nota &quot;Salve, Munde!&quot;
 }</code></pre>
-            <a class="porta-link" href="/en-US/">English →</a>
-          </article>
-          <article class="porta-card porta-card-rtl">
-            <header>
-              <span class="porta-lang ar">العربية</span>
-              <span class="porta-id">ar</span>
-              <span class="porta-badge porta-badge-partial">partial</span>
-            </header>
-            <pre class="faber-code"><code dir="rtl">بداية {
-  اعرض &quot;مرحبا، عالم&quot;
-}</code></pre>
-            <a class="porta-link" href="/ar/">العربية →</a>
-          </article>
-          <article class="porta-card">
-            <header>
-              <span class="porta-lang hi">हिन्दी</span>
-              <span class="porta-id">hi</span>
-              <span class="porta-badge porta-badge-partial">partial</span>
-            </header>
-            <pre class="faber-code"><code>आरंभ {
-  दिखाओ &quot;नमस्ते, दुनिया&quot;
-}</code></pre>
-            <a class="porta-link" href="/hi/">हिन्दी →</a>
-          </article>
-          <article class="porta-card">
-            <header>
-              <span class="porta-lang th">ภาษาไทย</span>
-              <span class="porta-id">th-TH</span>
-              <span class="porta-badge porta-badge-partial">partial</span>
-            </header>
-            <pre class="faber-code"><code>เริ่ม {
+          <a class="porta-link" href="/en-US/">English →</a>
+        </article>
+        <article class="porta-sample">
+          <header>
+            <span class="porta-native th">ภาษาไทย</span>
+            <span class="porta-id">th-TH</span>
+            <span class="porta-badge porta-badge-partial">partial</span>
+          </header>
+          <pre class="faber-code"><code>เริ่ม {
   แสดง &quot;สวัสดี, โลก&quot;
 }</code></pre>
-            <a class="porta-link" href="/th-TH/">ภาษาไทย →</a>
-          </article>
-          <article class="porta-card">
-            <header>
-              <span class="porta-lang">Tiếng Việt</span>
-              <span class="porta-id">vi</span>
-              <span class="porta-badge porta-badge-partial">partial</span>
-            </header>
-            <pre class="faber-code"><code>bắtđầu {
+          <a class="porta-link" href="/th-TH/">ภาษาไทย →</a>
+        </article>
+        <article class="porta-sample porta-sample-rtl">
+          <header>
+            <span class="porta-native ar">العربية</span>
+            <span class="porta-id">ar</span>
+            <span class="porta-badge porta-badge-partial">partial</span>
+          </header>
+          <pre class="faber-code"><code dir="rtl">بداية {
+  اعرض &quot;مرحبا، عالم&quot;
+}</code></pre>
+          <a class="porta-link" href="/ar/">العربية →</a>
+        </article>
+        <article class="porta-sample">
+          <header>
+            <span class="porta-native hi">हिन्दी</span>
+            <span class="porta-id">hi</span>
+            <span class="porta-badge porta-badge-partial">partial</span>
+          </header>
+          <pre class="faber-code"><code>आरंभ {
+  दिखाओ &quot;नमस्ते, दुनिया&quot;
+}</code></pre>
+          <a class="porta-link" href="/hi/">हिन्दी →</a>
+        </article>
+        <article class="porta-sample">
+          <header>
+            <span class="porta-native">Tiếng Việt</span>
+            <span class="porta-id">vi</span>
+            <span class="porta-badge porta-badge-partial">partial</span>
+          </header>
+          <pre class="faber-code"><code>bắtđầu {
   in &quot;Xin chào, thế giới&quot;
 }</code></pre>
-            <a class="porta-link" href="/vi/">Tiếng Việt →</a>
-          </article>
-          <article class="porta-card">
-            <header>
-              <span class="porta-lang zh">简体中文</span>
-              <span class="porta-id">zh-Hans</span>
-              <span class="porta-badge porta-badge-partial">partial</span>
-            </header>
-            <pre class="faber-code"><code>入口 {
+          <a class="porta-link" href="/vi/">Tiếng Việt →</a>
+        </article>
+        <article class="porta-sample">
+          <header>
+            <span class="porta-native zh">简体中文</span>
+            <span class="porta-id">zh-Hans</span>
+            <span class="porta-badge porta-badge-partial">partial</span>
+          </header>
+          <pre class="faber-code"><code>入口 {
   显示 &quot;你好，世界&quot;
 }</code></pre>
-            <a class="porta-link" href="/zh-Hans/">简体中文 →</a>
-          </article>
-          <article class="porta-card">
-            <header>
-              <span class="porta-lang zh">繁體中文</span>
-              <span class="porta-id">zh-Hant</span>
-              <span class="porta-badge porta-badge-partial">partial</span>
-            </header>
-            <pre class="faber-code"><code>入口 {
+          <a class="porta-link" href="/zh-Hans/">简体中文 →</a>
+        </article>
+        <article class="porta-sample">
+          <header>
+            <span class="porta-native zh">繁體中文</span>
+            <span class="porta-id">zh-Hant</span>
+            <span class="porta-badge porta-badge-partial">partial</span>
+          </header>
+          <pre class="faber-code"><code>入口 {
   顯示 &quot;你好，世界&quot;
 }</code></pre>
-            <a class="porta-link" href="/zh-Hant/">繁體中文 →</a>
-          </article>
-</div>
+          <a class="porta-link" href="/zh-Hant/">繁體中文 →</a>
+        </article>
+    </div>
+  </section>
 
-<div class="porta-note">
-  <p>
-    <strong>Status:</strong> English is complete — all docs, corpus, and tooling pages
-    are authored and rendered. The remaining locales are <strong>partial</strong>:
-    packs and corpus pages are shipped for every locale shown here, but authored
-    prose sections fall back to English. Full translation is an open community goal.
-  </p>
-  <p class="porta-agent-links">
-    <a href="/llms.txt">Agent index</a>
-    ·
-    <a href="/agents/index.md">Agent guide</a>
-    ·
-    <a href="/en-US/start/install.html">Install</a>
-  </p>
-</div>
+  <section class="porta-index" id="porta-index">
+    <h2>All site locales</h2>
+    <p class="porta-lede">
+      Grouped by what is true of the documentation tree today — not by population,
+      and not by a future keyword-pack roadmap.
+    </p>
+      <div class="porta-group">
+        <div class="porta-group-head">
+          <span>Complete — full documentation</span>
+          <span class="porta-verb porta-verb-support">shipped</span>
+        </div>
+        <div class="porta-locs">
+          <div class="porta-loc"><a href="/en-US/">English</a> <span class="porta-code">en-US</span> <span class="porta-stress">— full documentation; code via Latin pack (la)</span></div>
+        </div>
+      </div>
+      <div class="porta-group">
+        <div class="porta-group-head">
+          <span>Pilot — translated prose slice</span>
+          <span class="porta-verb porta-verb-limited">pilot · partial</span>
+        </div>
+        <div class="porta-locs">
+          <div class="porta-loc"><a href="/th-TH/">ภาษาไทย</a> <span class="porta-code">th-TH</span> <span class="porta-stress">— spaceless script; pilot translated slice</span></div>
+        </div>
+      </div>
+      <div class="porta-group">
+        <div class="porta-group-head">
+          <span>Partial — packs + corpus; English prose fallback</span>
+          <span class="porta-verb porta-verb-defer">partial</span>
+        </div>
+        <div class="porta-locs">
+          <div class="porta-loc"><a href="/ar/">العربية</a> <span class="porta-code">ar</span> <span class="porta-stress">— right-to-left; bidi isolation</span></div>
+          <div class="porta-loc"><a href="/hi/">हिन्दी</a> <span class="porta-code">hi</span> <span class="porta-stress">— Devanagari clusters; Indic numerals</span></div>
+          <div class="porta-loc"><a href="/vi/">Tiếng Việt</a> <span class="porta-code">vi</span> <span class="porta-stress">— Latin-but-not-English; NFKC diacritics</span></div>
+          <div class="porta-loc"><a href="/zh-Hans/">简体中文</a> <span class="porta-code">zh-Hans</span> <span class="porta-stress">— paired keywords; NFKC width collapse</span></div>
+          <div class="porta-loc"><a href="/zh-Hant/">繁體中文</a> <span class="porta-code">zh-Hant</span> <span class="porta-stress">— sibling of zh-Hans; traditional forms</span></div>
+        </div>
+      </div>
+  </section>
 
-<footer class="porta-footer">
-  <span>Faber language · MIT license</span>
-  <a href="https://github.com/faberlang">GitHub org</a>
-</footer>
+  <footer class="porta-footer">
+    <span>Faber language · MIT license</span>
+    <span>
+      <a href="/en-US/">docs</a>
+      ·
+      <a href="/en-US/start/install.html">install</a>
+      ·
+      <a href="https://github.com/faberlang">github.com/faberlang</a>
+    </span>
+  </footer>
+
+</main>
+
 </body>
 </html>
