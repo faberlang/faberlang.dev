@@ -152,11 +152,14 @@ render_locale() {
 
     find "$render_source" -name "*.md" -type f | sort | while read -r md_file; do
         rel_path="${md_file#${render_source}/}"
-        out_path="${out}/${rel_path%.md}.html"
+        iter="${rel_path%.md}"
+        out_path="${out}/${iter}.html"
         mkdir -p "$(dirname "$out_path")"
 
-        if "$binary" "$md_file" "$site" "$reader" "$style" > "$out_path" 2>/dev/null; then
-            echo "  ✓ ${rel_path%.md}.html"
+        # Pass --page so canonical/og:url use the locale-relative slug even
+        # when the source lives in a temp localize directory (no src/ prefix).
+        if "$binary" -- --page "$iter" "$md_file" "$site" "$reader" "$style" > "$out_path" 2>/dev/null; then
+            echo "  ✓ ${iter}.html"
         else
             echo "  ✗ FAILED: ${rel_path}"
             rm -f "$out_path"
@@ -261,6 +264,11 @@ if [ "$FULL_SITE" = true ]; then
         smoke_contains "${OUTPUT_DIR}/en-US/history/releases.html" "faber-v1.1.1" "releases inventory"
         smoke_contains "${OUTPUT_DIR}/en-US/history/releases.html" "Historical releases" "releases archive heading"
         smoke_contains "${OUTPUT_DIR}/robots.txt" "Sitemap:" "robots.txt"
+        smoke_contains "${OUTPUT_DIR}/robots.txt" "Allow: /" "robots allow all"
+        if grep -Eq '^Disallow: /(ar|th-TH|vi|hi|zh-Hans|zh-Hant)/' "${OUTPUT_DIR}/robots.txt"; then
+            echo "ERROR: robots.txt must not disallow locale trees" >&2
+            exit 1
+        fi
 
         # Portal checks
         smoke_contains "${OUTPUT_DIR}/index.html" 'class="porta"' "portal body class"

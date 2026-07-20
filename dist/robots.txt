@@ -1,14 +1,6 @@
+# faberlang.dev — crawl freely. Every public locale is intentional.
 User-agent: *
 Allow: /
 
-# Locale proof slices (ar, th-TH, vi, hi, zh-Hans, zh-Hant) are partial
-# translations with canonical Latin prose. Exclude from crawl to avoid
-# indexing incomplete translations.
-Disallow: /ar/
-Disallow: /th-TH/
-Disallow: /vi/
-Disallow: /hi/
-Disallow: /zh-Hans/
-Disallow: /zh-Hant/
-
+# Prefer the sitemap for discovery of locale trees, corpus, and the portal.
 Sitemap: https://faberlang.dev/sitemap.xml

@@ -20,13 +20,17 @@ import argparse
 import html as html_mod
 from pathlib import Path
 
+BASE_URL = "https://faberlang.dev"
+
 # Template for each redirect stub. Uses directory URL style for index files.
+# noindex: thin stubs should not compete with real locale pages.
 STUB = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
+<meta name="robots" content="noindex">
 <meta http-equiv="refresh" content="0; url={target_url}">
-<link rel="canonical" href="{target_url}">
+<link rel="canonical" href="{canonical_url}">
 <title>Redirect</title>
 </head>
 <body><p>Moved to <a href="{target_url}">{target_url}</a>.</p></body>
@@ -35,7 +39,7 @@ STUB = """<!DOCTYPE html>
 
 
 def target_url(site_locale: str, rel: str) -> str:
-    """Build the canonical target URL from relative path.
+    """Build the site-absolute target path from relative path.
 
     Directory URL style: ``index.html`` → ``/en-US/``.
     All other paths: ``start/install.html`` → ``/en-US/start/install.html``.
@@ -43,6 +47,12 @@ def target_url(site_locale: str, rel: str) -> str:
     if rel == "index.html":
         return f"/{site_locale}/"
     return f"/{site_locale}/{rel}"
+
+
+def absolute_url(path: str) -> str:
+    if path.startswith("http"):
+        return path
+    return BASE_URL + path
 
 
 def main() -> None:
@@ -81,7 +91,10 @@ def main() -> None:
         # Write the redirect stub
         stub_path.parent.mkdir(parents=True, exist_ok=True)
         encoded_target = html_mod.escape(target, quote=True)
-        stub_path.write_text(STUB.format(target_url=encoded_target))
+        encoded_canonical = html_mod.escape(absolute_url(target), quote=True)
+        stub_path.write_text(
+            STUB.format(target_url=encoded_target, canonical_url=encoded_canonical)
+        )
         written += 1
 
     print(f"Generated {written} redirect stubs for {site_locale} → bare paths")

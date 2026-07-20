@@ -238,21 +238,51 @@ def main() -> None:
 
     css_href = html_mod.escape(args.css)
 
+    # hreflang alternates for each site locale home + x-default → portal
+    hreflang_links = (
+        '  <link rel="alternate" hreflang="x-default" href="https://faberlang.dev/">\n'
+    )
+    hreflang_map = {
+        "en-US": "en-US",
+        "th-TH": "th-TH",
+        "zh-Hans": "zh-Hans",
+        "zh-Hant": "zh-Hant",
+        "vi": "vi",
+        "ar": "ar",
+        "hi": "hi",
+    }
+    for site in sorted_keys:
+        hl = hreflang_map.get(site, site)
+        hreflang_links += (
+            f'  <link rel="alternate" hreflang="{html_mod.escape(hl)}" '
+            f'href="https://faberlang.dev/{html_mod.escape(site)}/">\n'
+        )
+
+    portal_desc = (
+        "Faber programming language portal — one semantic core, many renderings. "
+        "Choose your documentation locale."
+    )
+
     html = f"""\
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Faber programming language portal — one semantic core, many renderings. Enter your locale.">
+<meta name="description" content="{html_mod.escape(portal_desc)}">
 <meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)">
 <meta property="og:site_name" content="Faber">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Faber · porta">
-<meta property="og:description" content="Faber programming language portal — one semantic core, many renderings.">
+<meta property="og:description" content="{html_mod.escape(portal_desc)}">
+<meta property="og:url" content="https://faberlang.dev/">
+<meta property="og:locale" content="en_US">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E">
 <link rel="canonical" href="https://faberlang.dev/">
+{hreflang_links}<link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index">
+<link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide">
+<link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;family=Noto+Sans+Arabic:wght@400;600;700&amp;family=Noto+Sans+Devanagari:wght@400;600&amp;family=Noto+Sans+SC:wght@400;600&amp;family=Noto+Sans+Thai:wght@400;600&amp;display=swap" rel="stylesheet">

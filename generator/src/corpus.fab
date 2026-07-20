@@ -191,11 +191,13 @@ functio genera_corpus(textus term, textus bundle, textus site_locale, textus rea
 
 functio alias_head(textus alias, textus canonical, textus stylesheet, textus site_locale) → doc_mod.Node {
     fixum textus corpus_href ← lp.content_href("/corpus/" + canonical + ".html", site_locale)
+    fixum textus abs_canonical ← "https://faberlang.dev" + corpus_href
     varia lista<doc_mod.Node> children ← vacua
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("charset", "utf-8")]))
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("name", "viewport"), doc_mod.attr("content", "width=device-width, initial-scale=1")]))
+    children.appende(doc_mod.void_element("meta", [doc_mod.attr("name", "robots"), doc_mod.attr("content", "noindex")]))
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("http-equiv", "refresh"), doc_mod.attr("content", "0; url=" + corpus_href)]))
-    children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "canonical"), doc_mod.attr("href", corpus_href)]))
+    children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "canonical"), doc_mod.attr("href", abs_canonical)]))
     children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "stylesheet"), doc_mod.attr("href", stylesheet)]))
     children.appende(doc_mod.leaf("title", vacua, alias + " — Faber"))
     redde doc_mod.element("head", vacua, children)

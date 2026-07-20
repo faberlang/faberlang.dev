@@ -8,6 +8,7 @@ importa ex "./types" privata * ut types_mod
 importa ex "./markdown" privata * ut markdown_mod
 importa ex "./document_ir" privata * ut doc_mod
 importa ex "./link_prefix" privata * ut lp
+importa ex "./string_util" privata * ut su
 
 functio a(textus href, textus label) → doc_mod.Node {
     redde doc_mod.leaf("a", [doc_mod.attr("href", href)], label)
@@ -46,6 +47,118 @@ functio genera_paginam(types_mod.Pagina pag, textus stylesheet_link) → textus 
     redde doc_mod.html(doc_mod.document(root))
 }
 
+# Public site origin for absolute canonical / Open Graph URLs.
+functio situs_basis() → textus {
+    redde "https://faberlang.dev"
+}
+
+# Site-locale path for this page (leading slash, locale-prefixed).
+# iter is the locale-relative slug from deriva_iter / --page (no .md).
+functio pagina_rel_url(textus site_locale, textus iter) → textus {
+    fixum textus prefix ← "/" + site_locale
+    si iter.longitudo() ≡ 0 ergo redde prefix + "/"
+    si iter ≡ "index" ergo redde prefix + "/"
+    fixum numerus ilen ← iter.longitudo()
+    si ilen ≥ 6 {
+        si iter.sectio(ilen - 6, ilen) ≡ "/index" {
+            redde prefix + "/" + iter.sectio(0, ilen - 6) + "/"
+        }
+    }
+    si iter ≡ "404" ergo redde prefix + "/404.html"
+    redde prefix + "/" + iter + ".html"
+}
+
+functio pagina_canonical(textus site_locale, textus iter) → textus {
+    redde situs_basis() + pagina_rel_url(site_locale, iter)
+}
+
+# Open Graph locale tag (underscore form). Unknown locales fall back to site_locale with - → _.
+functio og_locale(textus site_locale) → textus {
+    si site_locale ≡ "en-US" ergo redde "en_US"
+    si site_locale ≡ "th-TH" ergo redde "th_TH"
+    si site_locale ≡ "zh-Hans" ergo redde "zh_CN"
+    si site_locale ≡ "zh-Hant" ergo redde "zh_TW"
+    si site_locale ≡ "ar" ergo redde "ar_AR"
+    si site_locale ≡ "hi" ergo redde "hi_IN"
+    si site_locale ≡ "vi" ergo redde "vi_VN"
+    redde site_locale
+}
+
+# Truncate meta description to a short card length.
+functio brevia_description(textus text, numerus max_len) → textus {
+    fixum textus t ← su.recide(text)
+    si t.longitudo() ≤ max_len ergo redde t
+    si max_len ≤ 3 ergo redde t.sectio(0, max_len)
+    redde t.sectio(0, max_len - 3) + "..."
+}
+
+# Strip light Markdown decoration for meta text (not a full Markdown stripper).
+functio meta_plain(textus text) → textus {
+    varia textus out ← ""
+    varia numerus i ← 0
+    fixum numerus n ← text.longitudo()
+    dum i < n {
+        fixum numerus ch ← text[i]
+        # Skip * (42) and ` (96) used as markup; keep other characters.
+        si ch ≡ 42 aut ch ≡ 96 {
+            i ← i + 1
+        } secus {
+            out ← out + text.sectio(i, i + 1)
+            i ← i + 1
+        }
+    }
+    redde su.recide(out)
+}
+
+# True when a line should not start or continue a meta description paragraph.
+functio line_meta_skip(textus line) → bivalens {
+    si su.initium_cum(line, "#") ergo redde verum
+    si su.initium_cum(line, "```") ergo redde verum
+    si su.initium_cum(line, "|") ergo redde verum
+    si su.initium_cum(line, "+++") ergo redde verum
+    redde falsum
+}
+
+# First usable prose paragraph from the page body, or empty.
+functio primus_paragraphus(textus body) → textus {
+    fixum lista<textus> lines ← su.divide(body, su.nl())
+    varia textus acc ← ""
+    varia numerus i ← 0
+    dum i < lines.longitudo() {
+        fixum textus line ← su.recide(lines[i])
+        si line.longitudo() ≡ 0 {
+            si acc.longitudo() > 0 ergo redde meta_plain(acc)
+        } sin line_meta_skip(line) {
+            si su.initium_cum(line, "```") {
+                si acc.longitudo() > 0 ergo redde meta_plain(acc)
+            }
+        } secus {
+            si acc.longitudo() ≡ 0 {
+                acc ← line
+            } secus {
+                acc ← acc + " " + line
+            }
+        }
+        i ← i + 1
+    }
+    si acc.longitudo() > 0 ergo redde meta_plain(acc)
+    redde ""
+}
+
+# Per-page description: frontmatter → first paragraph → title template → site default.
+functio pagina_description(types_mod.Pagina pag) → textus {
+    fixum textus from_fm ← types_mod.field_vale(pag.metadata, "description", "")
+    si from_fm.longitudo() > 0 ergo redde brevia_description(from_fm, 160)
+
+    fixum textus from_body ← primus_paragraphus(pag.corpus)
+    si from_body.longitudo() > 0 ergo redde brevia_description(from_body, 160)
+
+    si pag.titulus ≡ "Faber" {
+        redde "Faber programming language — package-oriented, Latin vocabulary, type-first static types. Agent-readable docs, install, and examples."
+    }
+    redde brevia_description(«§ — Faber programming language documentation.»(pag.titulus), 160)
+}
+
 # Generate the <head> element.
 functio genera_head(types_mod.Pagina pag, textus stylesheet_link) → doc_mod.Node {
     varia textus title ← pag.titulus
@@ -53,19 +166,27 @@ functio genera_head(types_mod.Pagina pag, textus stylesheet_link) → doc_mod.No
         title ← «§ — Faber»(pag.titulus)
     }
 
+    fixum textus description ← pagina_description(pag)
+    fixum textus canonical ← pagina_canonical(pag.site_locale, pag.iter)
+    fixum textus og_loc ← og_locale(pag.site_locale)
+
     varia lista<doc_mod.Node> children ← vacua
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("charset", "utf-8")]))
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("name", "viewport"), doc_mod.attr("content", "width=device-width, initial-scale=1")]))
-    children.appende(doc_mod.void_element("meta", [doc_mod.attr("name", "description"), doc_mod.attr("content", "Faber programming language — package-oriented, Latin vocabulary, type-first static types. Agent-readable docs, install, and examples.")]))
+    children.appende(doc_mod.void_element("meta", [doc_mod.attr("name", "description"), doc_mod.attr("content", description)]))
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("name", "theme-color"), doc_mod.attr("content", "#faf9f6"), doc_mod.attr("media", "(prefers-color-scheme: light)")]))
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("name", "theme-color"), doc_mod.attr("content", "#1c1b19"), doc_mod.attr("media", "(prefers-color-scheme: dark)")]))
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("property", "og:site_name"), doc_mod.attr("content", "Faber")]))
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("property", "og:type"), doc_mod.attr("content", "website")]))
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("property", "og:title"), doc_mod.attr("content", title)]))
-    children.appende(doc_mod.void_element("meta", [doc_mod.attr("property", "og:description"), doc_mod.attr("content", "Faber programming language — package-oriented, Latin vocabulary, type-first static types.")]))
+    children.appende(doc_mod.void_element("meta", [doc_mod.attr("property", "og:description"), doc_mod.attr("content", description)]))
+    children.appende(doc_mod.void_element("meta", [doc_mod.attr("property", "og:url"), doc_mod.attr("content", canonical)]))
+    children.appende(doc_mod.void_element("meta", [doc_mod.attr("property", "og:locale"), doc_mod.attr("content", og_loc)]))
     children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "icon"), doc_mod.attr("href", "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E")]))
+    children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "canonical"), doc_mod.attr("href", canonical)]))
     children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "alternate"), doc_mod.attr("type", "text/plain"), doc_mod.attr("href", "/llms.txt"), doc_mod.attr("title", "Agent index")]))
     children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "alternate"), doc_mod.attr("type", "text/markdown"), doc_mod.attr("href", "/agents/index.md"), doc_mod.attr("title", "Agent guide")]))
+    children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "alternate"), doc_mod.attr("type", "application/json"), doc_mod.attr("href", "/.well-known/agent-skills/index.json"), doc_mod.attr("title", "Agent skills")]))
     children.appende(doc_mod.leaf("title", vacua, title))
     children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "preconnect"), doc_mod.attr("href", "https://fonts.googleapis.com")]))
     children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "preconnect"), doc_mod.attr("href", "https://fonts.gstatic.com"), doc_mod.attr("crossorigin", "")]))
