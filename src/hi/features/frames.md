@@ -38,7 +38,7 @@ solum:vincula─┘
 
 `ad` foreign function interface नहीं है। यह C functions को call नहीं करता, dynamic libraries load नहीं करता और inline assembly embed नहीं करता। यह structured message passing boundary है: Faber typed frames भेजता और typed frames प्राप्त करता है, बिना यह जाने कि provider Rust में implement किया गया है, in-process चलता है, system call को delegate करता है या remote host को forward करता है।
 
-## Frame types {#types}
+## फ़्रेम प्रकार {#types}
 
 Compiler द्वारा स्वामित्व वाले पाँच types frame system बनाते हैं:
 
@@ -84,7 +84,7 @@ fixum json data ← ad 'http:peti' ("https://api.example.com/data") ↦ json
 
 Materialization एक type-directed collector का उपयोग करता है: `↦ textus` सभी inbound frames को concatenate करता है, `↦ json` concatenated payload को parse करता है और `↦ lista<T>` frames को एक list में collect करता है।
 
-## Host providers {#providers}
+## होस्ट प्रदाता {#providers}
 
 Effect families को `faberlang/host-providers-rs` के अंतर्गत अलग-अलग provider crates के रूप में implement किया जाता है। प्रत्येक provider अपने prefix के अंतर्गत आने वाले सभी verbs का स्वामी होता है:
 
@@ -99,7 +99,7 @@ Effect families को `faberlang/host-providers-rs` के अंतर्ग�
 
 Providers अलग-अलग crates हैं और उनकी dependencies भी अलग हैं — `solum` HTTP को pull in नहीं करता और `http` filesystem code को pull in नहीं करता। प्रत्येक provider एक `register()` function export करता है, जिसे generated host manifest startup पर call करता है।
 
-## Layer stack {#layers}
+## परत स्टैक {#layers}
 
 ```text
 Faber source:     ad 'solum:lege' (path) ↦ textus
@@ -113,7 +113,7 @@ Compiler generic dispatch emit करता है — generated code में 
 
 इसका अर्थ है कि generated Faber code **provider-neutral** है। Compile manifest बदलकर उसी compiled binary को अलग-अलग provider implementations के साथ link किया जा सकता है — production के लिए real filesystem provider और testing के लिए mock provider।
 
-## Compile manifest {#manifest}
+## कंपाइल मैनिफ़ेस्ट {#manifest}
 
 कौन-से providers link किए जाएँगे, यह generated compile manifest और `faber.toml` की `[dispatch]` table नियंत्रित करते हैं:
 
@@ -130,7 +130,7 @@ enabled = true
 
 Authoring के दौरान missing providers runtime `E_NO_ROUTE` error उत्पन्न करते हैं। Strict mode में (भविष्य में), program में मौजूद हर `ad` prefix को compile manifest में दिखाई देना होगा और compiler यह validate करेगा कि provider का capability manifest उपयोग किए गए routes को cover करता है।
 
-## Architecture {#architecture}
+## आर्किटेक्चर {#architecture}
 
 Host platform को `faberlang` organisation के तीन repositories में बाँटा गया है:
 
@@ -165,7 +165,7 @@ functio curre(textus command, lista<textus> args) → textus {
 
 ये wrapper functions `ad` boundary के पार होने वाले I/O के तथ्य को छिपाए बिना type safety, documentation और error handling प्रदान करते हैं। Norma wrappers open source हैं और `norma/src/` के अंतर्गत रहते हैं।
 
-## References {#references}
+## संदर्भ {#references}
 
 1. `radix/docs/design/frame-stream-types.md` — `sermo`, `scrinium`, `status`, `meus`, `tuus` की पूरी specification
 2. `radix/docs/design/host-provider-gateway.md` — thin router architecture, provider contracts और compile manifest

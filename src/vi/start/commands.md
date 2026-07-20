@@ -25,7 +25,7 @@ source_locale = "en-US"
 
 Hãy bắt đầu với `check`. Đây là lệnh có chi phí thấp nhất và là lệnh mà các agent nên chạy trước khi đề xuất mã được sinh ra là Faber hợp lệ.
 
-## Check {#check}
+## Kiểm tra {#check}
 
 ```bash
 faber check .
@@ -34,7 +34,7 @@ faber check examples/ai-workbench/packages/faber-ai
 
 Một lần kiểm tra thành công có nghĩa là package được chấp nhận về cú pháp và ngữ nghĩa bởi phần đầu của trình biên dịch. Điều đó không có nghĩa là toolchain native cuối cùng đã được gọi.
 
-## Build {#build}
+## Biên dịch {#build}
 
 ```bash
 faber build . -t rust
@@ -42,7 +42,7 @@ faber build . -t rust
 
 Đích Rust được thiết kế để dễ xem xét. Rust được sinh ra là một artifact của trình biên dịch, không phải nguồn sự thật; hãy chỉnh sửa package Faber rồi build lại thay vì tự sửa Rust đã xuất bằng tay.
 
-## Run {#run}
+## Chạy {#run}
 
 ```bash
 faber run .

@@ -54,7 +54,7 @@ Reader locale hoạt động thông qua HIR. Một tệp nguồn Faber được 
 
 Khi hướng đầu ra được phát hành, `faber format --reader-locale=th-TH` sẽ chuyển đổi vòng mọi mã nguồn Faber qua HIR và phát sinh mã với các từ khóa tiếng Thái, hoàn tất tính đối xứng: cùng một HIR có thể tạo ra bề mặt của bất kỳ locale nào, cũng như có thể tạo ra bất kỳ backend target nào.
 
-### Backend HIR-direct {#hir-direct-backends}
+### Backend HIR-trực tiếp {#hir-direct-backends}
 
 Các target này phát sinh mã trực tiếp từ HIR đã kiểm tra kiểu mà không hạ thấp xuống MIR. Chúng giữ cấu trúc cấp nguồn lâu hơn và phù hợp với đầu ra có hình dạng ngôn ngữ:
 

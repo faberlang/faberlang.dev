@@ -25,7 +25,7 @@ source_locale = "en-US"
 
 请从 `check` 开始。它是最轻量的命令，也是代理在将生成的代码作为有效 Faber 提交之前应当运行的命令。
 
-## Check {#check}
+## 检查 {#check}
 
 ```bash
 faber check .
@@ -34,7 +34,7 @@ faber check examples/ai-workbench/packages/faber-ai
 
 通过 check 意味着该包在语法和语义上被编译器前端所接受。这并不代表最终的原生工具链已被调用。
 
-## Build {#build}
+## 构建 {#build}
 
 ```bash
 faber build . -t rust
@@ -42,7 +42,7 @@ faber build . -t rust
 
 Rust 目标的设计初衷是便于审阅。生成的 Rust 是编译器产物，而非事实来源；请编辑 Faber 包并重新构建，而不要手动修补已生成的 Rust。
 
-## Run {#run}
+## 运行 {#run}
 
 ```bash
 faber run .

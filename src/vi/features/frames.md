@@ -181,7 +181,7 @@ sử dụng các API tệp tiêu chuẩn và không có thêm dependency mạng.
 
 > **Cùng route, mọi máy chủ.** Vì `ad` phân phối dựa trên chuỗi route và provider có thể cắm, cùng một mã nguồn Faber có thể nhắm đến một binary native (`host-native-rs`), một runtime WASM (kernel máy chủ làm bộ chuyển đổi Frame/Wasm) hoặc một tiến trình TypeScript Node.js (`host-providers-ts`) mà không cần thay đổi một dòng mã Faber nào.
 
-## Wrapper Norma {#stdlib}
+## Bao bọc Norma {#stdlib}
 
 Phần lớn mã Faber không gọi trực tiếp `ad`. Thư viện chuẩn Norma
 bọc các route `ad` phổ biến trong các hàm có kiểu:

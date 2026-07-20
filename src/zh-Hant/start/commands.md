@@ -25,7 +25,7 @@ source_locale = "en-US"
 
 請從 `check` 開始。這是成本最低的指令，也是代理程式在提出產生的程式碼可視為有效 Faber 之前應執行的指令。
 
-## Check {#check}
+## 檢查 {#check}
 
 ```bash
 faber check .
@@ -34,7 +34,7 @@ faber check examples/ai-workbench/packages/faber-ai
 
 通過檢查表示該套件在編譯器前端中符合語法與語意要求。這不表示已叫用最終的原生工具鏈。
 
-## Build {#build}
+## 建置 {#build}
 
 ```bash
 faber build . -t rust
@@ -42,7 +42,7 @@ faber build . -t rust
 
 Rust 目標刻意保持可審查。產生的 Rust 是編譯器產物，不是唯一真實來源；請編輯 Faber 套件並重新建置，而不要手動修補輸出的 Rust。
 
-## Run {#run}
+## 執行 {#run}
 
 ```bash
 faber run .
@@ -50,7 +50,7 @@ faber run .
 
 對於具有 `incipit` 進入點的應用程式套件，請使用 `run`。僅含函式庫的套件則應改為檢查與測試。
 
-## Explain diagnostics {#explain}
+## 解釋診斷 {#explain}
 
 ```bash
 faber explain SEM001
@@ -59,7 +59,7 @@ faber explain LEX006
 
 診斷家族是穩定的識別代號：`LEX` 代表詞法錯誤，`PAR` 代表剖析器錯誤，`SEM` 代表語意／型別錯誤。在文件與代理程式報告中，請引用診斷代碼，而不要寬泛地改述編譯器失敗。
 
-## Reader-locale commands {#reader-locale}
+## 讀者語系指令 {#reader-locale}
 
 ```bash
 faber format --reader-locale=la path/to/file.fab

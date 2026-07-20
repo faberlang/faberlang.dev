@@ -125,7 +125,7 @@ functio salve(textus nomen) → textus {
 | `ex source fixum x, ceteri rest` | fields को destructure करना |
 | `importa ex "path"` | module से import करना |
 
-## Entry point {#entry-point}
+## प्रवेश बिंदु {#entry-point}
 
 प्रोग्राम का entry point `incipit` होता है:
 
@@ -135,7 +135,7 @@ incipit {
 }
 ```
 
-## CLI entry point {#cli-entry-point}
+## CLI प्रवेश बिंदु {#cli-entry-point}
 
 CLI प्रोग्रामों के लिए `incipit argumenta` parsed command arguments प्राप्त करता है:
 
@@ -150,7 +150,7 @@ incipit argumenta args {
 }
 ```
 
-## Passing mode — `sponte` {#passing-mode-sponte}
+## पासिंग मोड — `sponte` {#passing-mode-sponte}
 
 `sponte` ऐसे पैरामीटर को चिह्नित करता है जिसे caller छोड़ सकता है:
 

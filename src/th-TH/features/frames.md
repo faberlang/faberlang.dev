@@ -140,7 +140,7 @@ Provider:         solum provider reads file, returns content
 เช่น ผู้ให้บริการระบบไฟล์จริงสำหรับการใช้งานจริง หรือผู้ให้บริการจำลอง
 สำหรับการทดสอบ โดยเปลี่ยน compile manifest
 
-## Compile manifest {#manifest}
+## แมนิเฟสต์คอมไพล์ {#manifest}
 
 ผู้ให้บริการที่จะลิงก์จะถูกควบคุมโดย compile manifest ที่สร้างขึ้น
 และตาราง `[dispatch]` ใน `faber.toml`:
