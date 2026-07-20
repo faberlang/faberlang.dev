@@ -1,4 +1,6 @@
 +++
+translation_kind = "translated"
+
 title = "ตัวอย่าง"
 section = "examples"
 order = 2
@@ -7,20 +9,17 @@ sources = [
   "examples/ai-workbench/",
   "examples/vivilite/",
 ]
-translation_kind = "translated"
+
 
 
 prose_hash = "sha256:fe9855413a019d0aebf6228e219c1fab4b694d7fa3fd7d7f7cacab4def2f3700"
 code_hash = "sha256:7fce5618203f2537ec7b775252d4ce66501a659a385973e9ec6cc1414c49e9e6"
-source_commit = "ee93015caac71f7b89ddef8d9010ffbe22d6cd7e"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
 +++
-แพ็กเกจ Faber จริง — ไม่ใช่ตัวอย่างโค้ดแบบสั้นๆ ซอร์สอยู่ที่พื้นที่เก็บข้อมูลสาธารณะ
-[faberlang/examples](https://github.com/faberlang/examples)
-ใช้แพ็กเกจเหล่านี้เมื่อคุณต้องการดูว่าแอปพลิเคชันมีโครงสร้างอย่างไร CLI ต่อสายอย่างไร
-หรือคลังภาษาจัดระเบียบอย่างไร
+แพ็กเกจ Faber จริง ไม่ใช่เพียงตัวอย่างแบบง่าย แหล่งโค้ดอยู่ในรีโพสาธารณะ [faberlang/examples](https://github.com/faberlang/examples) ใช้แหล่งข้อมูลเหล่านี้เมื่อคุณต้องการดูว่าแอปพลิเคชันมีโครงสร้างอย่างไร เชื่อมต่อ CLI อย่างไร หรือจัดระเบียบคลังภาษอยาางไร
 
-## วิธีรันตัวอย่าง {#how-to-run}
+## วิธีเรียกใช้ตัวอย่าง {#how-to-run}
 
 ```bash
 # CLI on PATH (see Install)
@@ -38,57 +37,54 @@ faber build examples/ai-workbench/packages/faber-ai -t rust
 faber test examples/ai-workbench/packages/faber-ai
 ```
 
-คำสั่งเริ่มต้นที่แน่นอนแตกต่างกันไปตามแต่ละแพ็กเกจ — โปรดอ่าน `README.md` ของแต่ละแพ็กเกจ
+คำสั่งเริ่มต้นที่แน่นอนจะแตกต่างกันไปในแต่ละแพ็กเกจ โปรดอ่าน `README.md` ของแพ็กเกจนั้น
 
 ## แพ็กเกจแอปพลิเคชัน {#applications}
 
-| แพ็กเกจ | บทบาท | เริ่มที่ |
+| แพ็กเกจ | บทบาท | เริ่มต้นที่นี่ |
 |---|---|---|
-| **AI Workbench** | CLI หลายคำสั่งสำหรับงานสินค้าคงคลังโมเดลท้องถิ่น เอมเบ็ดดิง และเวิร์กโฟลว์การอนุมาน; การตรวจสอบความถูกต้องของ Python harness | [examples/ai-workbench](https://github.com/faberlang/examples/tree/main/ai-workbench) · site: [AI Workbench](/ecosystem/ai-workbench.html) |
-| **ViviLite** | CLI เมลสเปซท้องถิ่นแบบ Faber ดั้งเดิม (file-backed + SQLite lane เพิ่มเติม) สำหรับคำสั่งประสานงานเอเยนต์ | [examples/vivilite](https://github.com/faberlang/examples/tree/main/vivilite) |
-| **coreutils** | แคมเปญแอปพลิเคชันขนาดใหญ่ที่นำยูทิลิตี้ทั่วไปกลับมาใช้ใหม่พร้อม harness สำหรับเทียบเคียง | [examples/coreutils](https://github.com/faberlang/examples/tree/main/coreutils) |
-| **gpu-workload** | ขั้นและสัญญาสำหรับงาน GPU / ระบบ | [examples/gpu-workload](https://github.com/faberlang/examples/tree/main/gpu-workload) |
-| **scripta / script-kernel** | การสาธิตการเขียนสคริปต์และส่วนติดต่อเคอร์เนล | [examples/scripta](https://github.com/faberlang/examples/tree/main/scripta) |
-| **automation** | แพ็กเกจร่างงานอัตโนมัติ | [examples/automation](https://github.com/faberlang/examples/tree/main/automation) |
-| **reader-locale** | การสาธิตชุด locale สำหรับการแมปคำสำคัญใหม่ | [examples/reader-locale](https://github.com/faberlang/examples/tree/main/reader-locale) |
-| **cista-lab** | สื่อทดลองเกี่ยวกับ package-store | [examples/cista-lab](https://github.com/faberlang/examples/tree/main/cista-lab) |
+| **AI Workbench** | CLI หลายคำสั่งสำหรับตรวจสอบรายการโมเดลในเครื่อง การทำ embeddings และเวิร์กโฟลว์การอนุมาน พร้อมการตรวจสอบ harness ด้วย Python | [examples/ai-workbench](https://github.com/faberlang/examples/tree/main/ai-workbench) · เว็บไซต์: [AI Workbench](/ecosystem/ai-workbench.html) |
+| **ViviLite** | CLI mailspace ภายในเครื่องที่เขียนด้วย Faber สำหรับคำสั่งประสานงานของเอเจนต์ รองรับการจัดเก็บด้วยไฟล์และเลน SQLite เสริม | [examples/vivilite](https://github.com/faberlang/examples/tree/main/vivilite) |
+| **coreutils** | แคมเปญแอปพลิเคชันขนาดใหญ่ที่นำยูทิลิตีทั่วไปมาเขียนใหม่ พร้อม parity harness | [examples/coreutils](https://github.com/faberlang/examples/tree/main/coreutils) |
+| **gpu-workload** | ขั้นงานและสัญญาสำหรับเวิร์กโหลด GPU และระบบ | [examples/gpu-workload](https://github.com/faberlang/examples/tree/main/gpu-workload) |
+| **scripta / script-kernel** | เดโมด้านสคริปต์และการเชื่อมต่อกับเคอร์เนล | [examples/scripta](https://github.com/faberlang/examples/tree/main/scripta) |
+| **automation** | แพ็กเกจตัวอย่างด้านระบบอัตโนมัติ | [examples/automation](https://github.com/faberlang/examples/tree/main/automation) |
+| **reader-locale** | เดโมแพ็กภาษา locale สำหรับแมปคีย์เวิร์ดใหม่ | [examples/reader-locale](https://github.com/faberlang/examples/tree/main/reader-locale) |
+| **cista-lab** | เนื้อหาทดลองเกี่ยวกับที่เก็บแพ็กเกจ | [examples/cista-lab](https://github.com/faberlang/examples/tree/main/cista-lab) |
 
-## คลังภาษา {#corpus}
+## คลังภาษาตัวอย่าง {#corpus}
 
-โครงสร้าง **corpus** คือข้อมูลอ้างอิงคำสำคัญและคอนสตรัคต์: หนึ่งไดเรกทอรี
-ต่อหนึ่งคอนสตรัคต์ มีโปรแกรม `.fab` ขนาดเล็กจำนวนมาก เป็นแหล่งความจริงของ
-หน้า [คลังภาษา](/corpus/) ที่สร้างขึ้นบนไซต์นี้
+ทรี **corpus** คือแหล่งอ้างอิงสำหรับคีย์เวิร์ดและโครงสร้างภาษา โดยมีหนึ่งไดเรกทอรีต่อหนึ่งโครงสร้าง และมีโปรแกรม `.fab` ขนาดเล็กจำนวนมาก ทรีนี้เป็นแหล่งข้อมูลหลักสำหรับหน้า [Corpus](/corpus/) ที่สร้างขึ้นบนเว็บไซต์
 
 | พื้นผิว | URL |
 |---|---|
-| ต้นไม้ซอร์ส | [examples/corpus](https://github.com/faberlang/examples/tree/main/corpus) |
-| เอกสารที่สร้าง | [/corpus/](/corpus/) |
-| บันทึกระบบนิเวศ | [คลังภาษา](/ecosystem/corpus.html) |
+| ทรีซอร์ส | [examples/corpus](https://github.com/faberlang/examples/tree/main/corpus) |
+| เอกสารที่สร้างขึ้น | [/corpus/](/corpus/) |
+| หมายเหตุระบบนิเวศ | [คลังภาษาตัวอย่าง](/ecosystem/corpus.html) |
 
-## ทัวร์ Stdlib {#stdlib}
+## ทัวร์ stdlib {#stdlib}
 
-Norma มาตรฐานคลังภาษา (standard-library exempla) อยู่ในพื้นที่เก็บข้อมูล **norma** ไม่ได้อยู่ใน
-`examples/`:
+ตัวอย่างไลบรารีมาตรฐานของ Norma อยู่ในรีโพ `norma` ไม่ได้อยู่ใต้ `examples/`:
 
-- [faberlang/norma](https://github.com/faberlang/norma) — `norma/exempla/` (ถ้ามี)
-- Site: [Norma](/ecosystem/norma.html)
+- [faberlang/norma](https://github.com/faberlang/norma) — `norma/exempla/` เมื่อมีไดเรกทอรีนี้
+- เว็บไซต์: [Norma](/ecosystem/norma.html)
 
 ## ลำดับการเรียนรู้ที่แนะนำ {#order}
 
 1. [ติดตั้ง](/start/install.html) CLI
-2. อ่านคร่าวๆ [ทัวร์ด่วน](/start/) เพื่อดูรูปร่างภาษา
-3. เปิดหน้า **corpus** สำหรับคำสำคัญใดๆ ที่คุณไม่รู้จัก ([Corpus hub](/corpus/))
-4. อ่าน **AI Workbench** หรือ **ViviLite** แบบครบวงจรเพื่อดูรูปร่างแอปพลิเคชัน
-5. ใช้ [ไวยากรณ์](/syntax/) และ [Tooling](/tooling/) เป็นข้อมูลอ้างอิงขณะแก้ไข
+2. อ่านคร่าว ๆ [ทัวร์สั้น](/start/) เพื่อทำความเข้าใจรูปแบบของภาษา
+3. เปิดหน้าของ **corpus** สำหรับคีย์เวิร์ดที่คุณยังไม่รู้จัก ([ศูนย์รวม Corpus](/corpus/))
+4. อ่าน **AI Workbench** หรือ **ViviLite** ตั้งแต่ต้นจนจบเพื่อทำความเข้าใจรูปแบบแอปพลิเคชัน
+5. ใช้ [ไวยากรณ์](/syntax/) และ [เครื่องมือ](/tooling/) เป็นข้อมูลอ้างอิงขณะแก้ไข
 
-## เส้นทางเอเยนต์ {#agent-path}
+## เส้นทางสำหรับเอเจนต์ {#agent-path}
 
-- Skill: [examples](/.well-known/agent-skills/examples/SKILL.md)
-- Skill: [corpus](/.well-known/agent-skills/corpus/SKILL.md)
-- Index: [`/llms.txt`](/llms.txt)
+- สกิล: [examples](/.well-known/agent-skills/examples/SKILL.md)
+- สกิล: [corpus](/.well-known/agent-skills/corpus/SKILL.md)
+- ดัชนี: [`/llms.txt`](/llms.txt)
 
 ## ก่อนหน้า {#previous}
 
 | ก่อนหน้า | ถัดไป |
 |---|---|
-| [โปรเจกต์และตัวอย่าง](/start/projects.html) | [คุณสมบัติ](/features/) |
+| [โครงการและตัวอย่าง](/start/projects.html) | [ฟีเจอร์](/features/) |

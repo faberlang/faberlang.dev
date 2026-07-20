@@ -1,41 +1,44 @@
 +++
+translation_kind = "translated"
+
 title = "Install and download"
 section = "install"
 order = 1
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:662becbb3dd5349058bcdfec9219fd07f6fe4217c2e5115c0aade45e0f17f0d4"
+code_hash = "sha256:cc9de43077b1262ee3d9edfbd3bd56c4ae51bcca18d0316fa0bb95312f3033b7"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:21d630528037285a86e992322b623a71066ab6d47547658680417ab616e7c872"
 +++
-**Translation status:** Arabic reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `ar` render step during the site build.
+ثبّت واجهة أوامر **Faber** من الإصدار المُجمّع مسبقًا الحالي. تأتي
+واجهة المُصرّف الأمامية داخل ثنائيّة `faber`؛ لا تحتاج تثبيت Radix منفصلًا
+لأعمال الحزم العادية.
 
+كُتبت هذه الصفحة مقابل قطع الإصدار المُجمّعة لمستودع Faber 1.1.1. قد تتأخّر
+صيغ مديري الحزم عن إصدار المستودع؛ لو أبلغ Homebrew أو مدير آخر عن إصدار
+Radix/Faber أقدم، ففضِّل الأرشيفات أدناه لهذا المسار.
 
-Install the **Faber** CLI from the current prebuilt release. The compiler
-front end ships inside the `faber` binary; you do not need a separate
-Radix install for ordinary package work.
+## الإصدار الحالي {#current-release}
 
-This page is written against the repository release artifacts for Faber 1.1.1.
-Package-manager formulae may lag behind the repo release; if Homebrew or another
-manager reports an older Radix/Faber version, prefer the archives below for this
-track.
-
-## Current release {#current-release}
-
-| Field | Value |
+| الحقل | القيمة |
 |---|---|
-| **Version** | 1.1.1 |
-| **Tag** | `faber-v1.1.1` |
-| **Release page** | [faber-v1.1.1 on GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1) |
-| **License** | MIT |
+| **الإصدار** | 1.1.1 |
+| **الوسم** | `faber-v1.1.1` |
+| **صفحة الإصدار** | [faber-v1.1.1 على GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1) |
+| **كل الإصدارات** | [جرد إصدارات الموقع](/history/releases.html) |
+| **الترخيص** | MIT |
 
-## Prebuilt archives {#archives}
+## الأرشيفات المُجمّعة مسبقًا {#archives}
 
-| Platform | Download | SHA-256 |
+| المنصّة | التحميل | SHA-256 |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | [المجموع الاختباري](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | [المجموع الاختباري](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-The archives extract to `faber-v1.1.1-<target-triple>/faber`. The checksum files may name the original build path, so verify by comparing the first hash field against the local archive instead of relying on `sha256sum -c` path matching.
+تُستخرج الأرشيفات إلى `faber-v1.1.1-<target-triple>/faber`. قد تُسمّي ملفات
+المجاميع الاختباريّة مسار البناء الأصلي، لذا تحقّق بمقارنة حقل التلبيدة الأول
+مقابل الأرشيف المحلّي بدل الاعتماد على مطابقة مسار `sha256sum -c`.
 
 ### macOS arm64 {#macos}
 
@@ -68,58 +71,54 @@ sudo mv faber-v1.1.1-x86_64-unknown-linux-gnu/faber /usr/local/bin/
 faber --version
 ```
 
-## Verify {#verify}
+## التحقّق {#verify}
 
 ```bash
 faber --version
 faber explain SEM001
 ```
 
-You should see a version line for the CLI and a diagnostic explanation.
-If `faber` is not found, check that the directory containing the binary
-is on `PATH`.
+ينبغي أن ترى سطر إصدار لواجهة الأوامر وشرحًا تشخيصيًا. لو لم يُعثَر على
+`faber`، فتأكّد من أن الدليل الذي يحوي الثنائيّة موجود ضمن `PATH`.
 
-## First package check {#first-package}
+## أوّل فحص حزمة {#first-package}
 
-With the CLI on `PATH`, clone the public examples (or any Faber package)
-and type-check. Product packages resolve dependencies from the Cista store
-through `faber.lock`; local source checkouts are only for explicit
-library-development overrides.
+بواجهة الأوامر على `PATH`، استنسخ الأمثلة العامة (أو أي حزمة Faber)
+وافحص الأنواع. تحلّ حزم المنتج التبعيات من مخزن Cista عبر `faber.lock`؛
+نُسخ المصدر المحلّية المفحوصة مخصّصة فقط لتجاوزات تطوير المكتبات
+الصريحة.
 
 ```bash
 git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-More packages: [Examples](/start/examples.html). CLI surface:
-[Faber build tool](/tooling/faber-build-tool.html).
+مزيد من الحزم: [أمثلة](/start/examples.html). سطح واجهة الأوامر:
+[أداة بناء Faber](/tooling/faber-build-tool.html).
 
-## Homebrew status {#homebrew}
+## حالة Homebrew {#homebrew}
 
-Homebrew publication is not the authority for this start track yet. If a formula
-serves an older compiler such as Radix 0.38.0 while this site documents Faber
-1.1.1, treat the formula as lagging and use the prebuilt release archive. The
-container verification gate for this page remains residual until formula
-publication catches up.
+نشر Homebrew ليس المرجعية لهذا المسار الابتدائي بعد. لو قدّمت صيغة
+مُصرّفًا أقدم مثل Radix 0.38.0 بينما يوثّق هذا الموقع Faber 1.1.1،
+فعامل الصيغة كمُتأخّرة واستعمل أرشيف الإصدار المُجمّع مسبقًا. تبقى
+بوابة التحقّق بالحاوية لهذه الصفحة متبقّية حتى تلحق الصيغة بالنشر.
 
-## Build from source {#from-source}
+## البناء من المصدر {#from-source}
 
-Prebuilts are the recommended path for agents and most developers. Building
-from source requires the private Radix compiler tree and is out of scope
-for this page. Prefer the archives above unless you are working on the
-compiler itself.
+البنى المُجمّعة مسبقًا هي المسار المُوصى به للوكلاء ولمعظم المطوّرين.
+البناء من المصدر يتطلّب شجرة مُصرّف Radix الخاصة وهو خارج نطاق هذه
+الصفحة. فضّل الأرشيفات أعلاه إلا إن كنت تعمل على المُصرّف نفسه.
 
-## Agent path {#agent-path}
+## مسار الوكيل {#agent-path}
 
-Agents should load the **install** skill and the agent index rather than
-scraping this HTML:
+ينبغي للوكلاء تحميل مهارة **install** وفهرس الوكيل بدل كشط HTML هذا:
 
 - [`/llms.txt`](/llms.txt)
-- [install skill](/.well-known/agent-skills/install/SKILL.md)
-- [Agent guide](/agents/index.md)
+- [مهارة install](/.well-known/agent-skills/install/SKILL.md)
+- [دليل الوكيل](/agents/index.md)
 
-## Next {#next}
+## التالي {#next}
 
-| Previous | Next |
+| السابق | التالي |
 |---|---|
-| [Quick tour](/start/) | [Hello, Faber](/start/hello.html) |
+| [الجولة السريعة](/start/) | [مرحبًا، Faber](/start/hello.html) |

@@ -1,34 +1,32 @@
 +++
+translation_kind = "translated"
+
 title = "Quick tour"
 section = "start"
 order = 0
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:fb6f791ae0e9b73d0c92c2127726f558a2b845351779f80217616b8f55629ff0"
+code_hash = "sha256:f9eb22ab8a2408fe0076d846dd4266cff4ded675ad8d63a5b2d9ee59c3e0156f"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:bbcadb3e298fe348d1eb830734369f89cfbbdfb1bb5e51d5728c5111da8294da"
 +++
-**Translation status:** Simplified Chinese reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `zh-Hans` render step during the site build.
+五分钟了解 Faber 的形态：安装 CLI，阅读一个函数，然后打开一个真实的包。如需按顺序学习，请遵循：[安装](/start/install.html) →
+[你好](/start/hello.html) →
+[命令](/start/commands.html) →
+[项目](/start/projects.html)。
 
+## 1. 安装 CLI {#install}
 
-Five minutes to the shape of Faber: install the CLI, read one function,
-then open a real package. For a sequenced path, follow: [Install](/start/install.html) →
-[Hello](/start/hello.html) → [Commands](/start/commands.html) →
-[Projects](/start/projects.html).
-
-## 1. Install the CLI {#install}
-
-Download the current release (**1.1.1**) for your platform from the
-[install page](/start/install.html), verify the archive checksum, and put the
-extracted `faber-v1.1.1-<target-triple>/faber` binary on your `PATH`. Confirm:
+从[安装页面](/start/install.html)下载适用于您平台的最新版本（**1.1.1**），校验归档校验和，并将解压后的 `faber-v1.1.1-<target-triple>/faber` 二进制文件放入您的 `PATH` 中。确认：
 
 ```bash
 faber --version
 ```
 
-## 2. Shape of a function {#shape}
+## 2. 函数形态 {#shape}
 
-Type-first parameters, glyph return type, Latin control words, nullable
-union:
+类型优先的参数，字形返回类型，拉丁控制词，可空联合类型：
 
 ```text
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
@@ -37,18 +35,18 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 }
 ```
 
-| Signal | Meaning |
+| 信号 | 含义 |
 |---|---|
-| `functio` | Function declaration |
-| `numerus a` | Type first, then name |
-| `→` | Return type |
-| `∪ nihil` | Nullable (`T ∪ nihil`) |
-| `si … ∴` | Compact branch |
-| `redde` | Return |
+| `functio` | 函数声明 |
+| `numerus a` | 类型在前，名称在后 |
+| `→` | 返回类型 |
+| `∪ nihil` | 可空（`T ∪ nihil`） |
+| `si … ∴` | 紧凑分支 |
+| `redde` | 返回 |
 
-## 3. Package layout {#package}
+## 3. 包布局 {#package}
 
-A package is a directory with `faber.toml` and `src/`:
+一个包是一个包含 `faber.toml` 和 `src/` 的目录：
 
 ```text
 my-app/
@@ -57,7 +55,7 @@ my-app/
     main.fab
 ```
 
-Typical commands:
+常用命令：
 
 ```bash
 faber check my-app/
@@ -66,47 +64,46 @@ faber run my-app/
 faber test my-app/
 ```
 
-Details: [Faber build tool](/tooling/faber-build-tool.html).
+详情请见：[Faber 构建工具](/tooling/faber-build-tool.html)。
 
-## 4. Real applications {#applications}
+## 4. 真实应用 {#applications}
 
-Do not stop at hello-world. The public **examples** repo has multi-command
-CLIs, a local mailspace, GPU workload tracks, and a full language corpus.
+不要止步于 hello-world。公开的 **示例** 仓库包含多命令 CLI、本地邮件空间、GPU 工作负载轨道和完整的语言语料库。
 
-| Package | What it shows |
+| 包 | 展示内容 |
 |---|---|
-| AI Workbench | Multi-command CLI, model inspect, embeddings |
-| ViviLite | File-backed mailspace / agent coordination CLI |
-| coreutils | Larger application campaign (parity harnesses) |
-| gpu-workload | Systems / GPU rungs |
-| corpus | One directory per language construct |
+| AI 工作台 | 多命令 CLI，模型检查，嵌入 |
+| ViviLite | 基于文件的邮件空间 / 代理协调 CLI |
+| coreutils | 更大的应用活动（对齐测试套件） |
+| gpu-workload | 系统 / GPU 等级 |
+| corpus | 每个语言构造一个目录 |
 
-Browse them on the [examples page](/start/examples.html).
+请在[示例页面](/start/examples.html)上浏览它们。
 
-## 5. If you are an agent {#agents}
+## 5. 如果您是代理 {#agents}
 
-1. Read [`/llms.txt`](/llms.txt).
-2. Open [`/agents/index.md`](/agents/index.md).
-3. Pick a skill from [`/.well-known/agent-skills/index.json`](/.well-known/agent-skills/index.json).
+1. 阅读 [`/llms.txt`](/llms.txt)。
+2. 打开 [`/agents/index.md`](/agents/index.md)。
+3. 从 [`/.well-known/agent-skills/index.json`](/.well-known/agent-skills/index.json) 中选择一个技能。
 
-## Start track {#start-track}
+## 学习路径 {#start-track}
 
-| Step | Page | Outcome |
+| 步骤 | 页面 | 成果 |
 |---|---|---|
-| 1 | [Install & download](/start/install.html) | Put Faber 1.1.1 on `PATH` and verify it |
-| 2 | [Hello, Faber](/start/hello.html) | Create and run `salve-munde` |
-| 3 | [Commands you will use](/start/commands.html) | Learn `check`, `build`, `run`, `test`, `explain` |
-| 4 | [Projects and examples](/start/projects.html) | Move into real packages and corpus pages |
+| 1 | [安装与下载](/start/install.html) | 将 Faber 1.1.1 放入 `PATH` 并验证它 |
+| 2 | [你好，Faber](/start/hello.html) | 创建并运行 `salve-munde` |
+| 3 | [您将使用的命令](/start/commands.html) | 学习 `check`、`build`、`run`、`test`、`explain` |
+| 4 | [项目与示例](/start/projects.html) | 进入真实的包和语料库页面 |
 
-## Next {#next}
+## 下一步 {#next}
 
-| Topic | Link |
+| 主题 | 链接 |
 |---|---|
-| Install & download | [Install](/start/install.html) |
-| Hello, Faber | [Hello](/start/hello.html) |
-| Commands | [Commands](/start/commands.html) |
-| Projects | [Projects](/start/projects.html) |
-| Syntax reference | [Syntax](/syntax/) |
-| Features (locales, lanes) | [Features](/features/) |
-| Ecosystem libraries | [Ecosystem](/ecosystem/) |
-| Keyword corpus | [Corpus](/corpus/) |
+| 安装与下载 | [安装](/start/install.html) |
+| 你好，Faber | [你好](/start/hello.html) |
+| 命令 | [命令](/start/commands.html) |
+| 项目 | [项目](/start/projects.html) |
+| 语法参考 | [语法](/syntax/) |
+| 功能（区域设置，通道） | [功能](/features/) |
+| 生态系统库 | [生态系统](/ecosystem/) |
+| 关键词语料库 | [语料库](/corpus/) |

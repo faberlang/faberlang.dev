@@ -1,30 +1,29 @@
 +++
+translation_kind = "translated"
+
 title = "Projects and examples"
 section = "projects"
 order = 4
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:8a914c63394e5bd0bf08ccef737eb95ec4cfb7df1813f3475c78d6ef579fb14d"
+code_hash = "sha256:08056868d41c8d2a2925beb910fea8adcf4ac708fa67559e5a160dd900429a06"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:0b7a36b44a44e748ef7fd159a0f42e49d90dcb063f7809cb9ff291a7127abcee"
 +++
-**Translation status:** Vietnamese reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `vi` render step during the site build.
+Sau phần hello-world, hãy chuyển sang các gói thực tế. Faber được tổ chức theo gói; cách nhanh nhất để học là kiểm tra và đọc các gói hiện có sử dụng cùng bề mặt trình biên dịch mà bạn dự định dùng.
 
+## Các kho mã công khai {#repositories}
 
-After hello-world, move into real packages. Faber is package-oriented; the
-fastest way to learn is to check and read existing packages that exercise the
-same compiler surface you plan to use.
-
-## Public repositories {#repositories}
-
-| Repository | Start here | Why |
+| Kho mã | Bắt đầu từ đây | Lý do |
 |---|---|---|
-| [`faberlang/examples`](https://github.com/faberlang/examples) | `corpus/`, application packages, tracks | Public corpus and application examples |
-| [`faberlang/norma`](https://github.com/faberlang/norma) | `norma:*` packages | Standard library source |
-| [`faberlang/faber`](https://github.com/faberlang/faber) | CLI wrapper | User-facing build tool |
-| [`faberlang/cista`](https://github.com/faberlang/cista) | package-store CLI/lib | Package management surface |
-| [`faberlang/triga`](https://github.com/faberlang/triga) | `triga:*` source | Graphics and geometry library |
+| [`faberlang/examples`](https://github.com/faberlang/examples) | `corpus/`, các gói ứng dụng, các track | Corpus công khai và các ví dụ ứng dụng |
+| [`faberlang/norma`](https://github.com/faberlang/norma) | Các gói `norma:*` | Mã nguồn thư viện chuẩn |
+| [`faberlang/faber`](https://github.com/faberlang/faber) | Lớp bao CLI | Công cụ build dành cho người dùng |
+| [`faberlang/cista`](https://github.com/faberlang/cista) | CLI/lib của kho gói | Bề mặt quản lý gói |
+| [`faberlang/triga`](https://github.com/faberlang/triga) | Mã nguồn `triga:*` | Thư viện đồ họa và hình học |
 
-## Clone a learning workspace {#clone-workspace}
+## Sao chép workspace học tập {#clone-workspace}
 
 ```bash
 mkdir faber-learning
@@ -33,44 +32,39 @@ git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-Packages with `norma:*` imports resolve dependencies from the Cista package
-store recorded in `faber.lock`. Use `FABER_LIBRARY_HOME` only when you
-intentionally want a local resolver override for library development.
+Các gói có import `norma:*` sẽ phân giải dependency từ kho gói Cista được ghi trong `faber.lock`. Chỉ sử dụng `FABER_LIBRARY_HOME` khi bạn cố ý muốn ghi đè bộ phân giải cục bộ để phát triển thư viện.
 
-## Read examples in this order {#read-order}
+## Đọc ví dụ theo thứ tự này {#read-order}
 
-1. [Quick tour](/start/) for the surface grammar.
-2. [Hello, Faber](/start/hello.html) for a single package.
-3. [Corpus](/corpus/) for one page per keyword or construct.
-4. [Examples](/start/examples.html) for larger applications.
-5. [Faber build tool](/tooling/faber-build-tool.html) for CLI details.
+1. [Tham quan nhanh](/start/) để làm quen với ngữ pháp bề mặt.
+2. [Xin chào, Faber](/start/hello.html) cho một gói đơn.
+3. [Corpus](/corpus/) với mỗi trang trình bày một từ khóa hoặc cấu trúc.
+4. [Ví dụ](/start/examples.html) cho các ứng dụng lớn hơn.
+5. [Công cụ build Faber](/tooling/faber-build-tool.html) để tìm hiểu chi tiết CLI.
 
-## Agent workflow {#agent-workflow}
+## Quy trình làm việc cho tác nhân {#agent-workflow}
 
-Agents should not infer syntax from prose alone. Use the machine surfaces and
-then validate generated code:
+Tác nhân không nên suy ra cú pháp chỉ từ phần diễn giải. Hãy sử dụng các bề mặt máy và sau đó xác thực mã được tạo:
 
 ```bash
 curl -fsSL https://faberlang.dev/llms.txt
 faber check path/to/package
 ```
 
-For package work, cite the repo, package path, command, and diagnostic code in
-reports. If you touch docs with fenced Faber code in this site, run the fence
-validator before claiming the examples still compile.
+Đối với công việc trên gói, hãy ghi rõ kho mã, đường dẫn gói, lệnh và mã chẩn đoán trong báo cáo. Nếu bạn chỉnh sửa tài liệu có mã Faber được đặt trong fence trên trang này, hãy chạy bộ xác thực fence trước khi khẳng định rằng các ví dụ vẫn biên dịch được.
 
-## What comes after the start track {#after-start}
+## Sau track khởi đầu {#after-start}
 
-| Goal | Read |
+| Mục tiêu | Đọc |
 |---|---|
-| Learn syntax | [Syntax](/syntax/) |
-| Understand locales | [Reader locale](/features/reader-locale.html) |
-| Use the compiler | [Faber build tool](/tooling/faber-build-tool.html) and [Radix compiler](/tooling/radix-compiler.html) |
-| Browse constructs | [Corpus](/corpus/) |
-| Build with libraries | [Ecosystem](/ecosystem/) |
+| Học cú pháp | [Cú pháp](/syntax/) |
+| Tìm hiểu locale | [Locale đọc](/features/reader-locale.html) |
+| Sử dụng trình biên dịch | [Công cụ build Faber](/tooling/faber-build-tool.html) và [Trình biên dịch Radix](/tooling/radix-compiler.html) |
+| Duyệt các cấu trúc | [Corpus](/corpus/) |
+| Xây dựng với thư viện | [Hệ sinh thái](/ecosystem/) |
 
-## Next {#next}
+## Tiếp theo {#next}
 
-| Previous | Continue |
+| Trước | Tiếp theo |
 |---|---|
-| [Commands you will use](/start/commands.html) | [Examples](/start/examples.html) |
+| [Các lệnh bạn sẽ sử dụng](/start/commands.html) | [Ví dụ](/start/examples.html) |

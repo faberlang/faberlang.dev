@@ -1,34 +1,34 @@
 +++
+translation_kind = "translated"
+
 title = "Quick tour"
 section = "start"
 order = 0
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:fb6f791ae0e9b73d0c92c2127726f558a2b845351779f80217616b8f55629ff0"
+code_hash = "sha256:f9eb22ab8a2408fe0076d846dd4266cff4ded675ad8d63a5b2d9ee59c3e0156f"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:bbcadb3e298fe348d1eb830734369f89cfbbdfb1bb5e51d5728c5111da8294da"
 +++
-**Translation status:** Arabic reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `ar` render step during the site build.
+خمس دقائق لشكل Faber: ثبّت CLI، اقرأ دالة واحدة، ثم افتح حزمة حقيقية. لمسار متسلسل، اتبع: [تثبيت](/start/install.html) →
+[مرحباً](/start/hello.html) → [الأوامر](/start/commands.html) →
+[المشاريع](/start/projects.html).
 
+## ١. ثبّت CLI {#install}
 
-Five minutes to the shape of Faber: install the CLI, read one function,
-then open a real package. For a sequenced path, follow: [Install](/start/install.html) →
-[Hello](/start/hello.html) → [Commands](/start/commands.html) →
-[Projects](/start/projects.html).
-
-## 1. Install the CLI {#install}
-
-Download the current release (**1.1.1**) for your platform from the
-[install page](/start/install.html), verify the archive checksum, and put the
-extracted `faber-v1.1.1-<target-triple>/faber` binary on your `PATH`. Confirm:
+نزّل الإصدار الحالي (**1.1.1**) لمنصتك من
+[صفحة التثبيت](/start/install.html)، تحقق من بصمة الأرشيف، وضع
+الملف الثنائي `faber-v1.1.1-<target-triple>/faber` المستخرج على `PATH` لديك. تأكد:
 
 ```bash
 faber --version
 ```
 
-## 2. Shape of a function {#shape}
+## ٢. شكل الدالة {#shape}
 
-Type-first parameters, glyph return type, Latin control words, nullable
-union:
+وسائط النوع أولاً، نوع الإرجاع بالرمز، كلمات تحكم لاتينية، اتحاد
+قابل للعدم:
 
 ```text
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
@@ -37,18 +37,18 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 }
 ```
 
-| Signal | Meaning |
+| إشارة | معنى |
 |---|---|
-| `functio` | Function declaration |
-| `numerus a` | Type first, then name |
-| `→` | Return type |
-| `∪ nihil` | Nullable (`T ∪ nihil`) |
-| `si … ∴` | Compact branch |
-| `redde` | Return |
+| `functio` | تعريف دالة |
+| `numerus a` | النوع أولاً، ثم الاسم |
+| `→` | نوع الإرجاع |
+| `∪ nihil` | قابل للعدم (`T ∪ nihil`) |
+| `si … ∴` | تفرع مضغوط |
+| `redde` | إرجاع |
 
-## 3. Package layout {#package}
+## ٣. تخطيط الحزمة {#package}
 
-A package is a directory with `faber.toml` and `src/`:
+الحزمة هي مجلد فيه `faber.toml` و `src/`:
 
 ```text
 my-app/
@@ -57,7 +57,7 @@ my-app/
     main.fab
 ```
 
-Typical commands:
+الأوامر النموذجية:
 
 ```bash
 faber check my-app/
@@ -66,47 +66,47 @@ faber run my-app/
 faber test my-app/
 ```
 
-Details: [Faber build tool](/tooling/faber-build-tool.html).
+تفاصيل: [أداة بناء Faber](/tooling/faber-build-tool.html).
 
-## 4. Real applications {#applications}
+## ٤. تطبيقات حقيقية {#applications}
 
-Do not stop at hello-world. The public **examples** repo has multi-command
-CLIs, a local mailspace, GPU workload tracks, and a full language corpus.
+لا تتوقف عند hello-world. مستودع **الأمثلة** العام يحتوي على CLI متعدد الأوامر،
+مساحة بريد محلية، سجلات أعباء GPU، ومجموعة لغة كاملة.
 
-| Package | What it shows |
+| حزمة | ما تعرضه |
 |---|---|
-| AI Workbench | Multi-command CLI, model inspect, embeddings |
-| ViviLite | File-backed mailspace / agent coordination CLI |
-| coreutils | Larger application campaign (parity harnesses) |
-| gpu-workload | Systems / GPU rungs |
-| corpus | One directory per language construct |
+| منصة عمل AI | CLI متعدد الأوامر، فحص النماذج، تضمينات |
+| ViviLite | مساحة بريد مدعومة بملفات / CLI تنسيق الوكلاء |
+| coreutils | حملة تطبيق أكبر (أدوات مضاهاة) |
+| gpu-workload | أنظمة / درجات GPU |
+| corpus | مجلد واحد لكل بناء لغوي |
 
-Browse them on the [examples page](/start/examples.html).
+استعرضها في [صفحة الأمثلة](/start/examples.html).
 
-## 5. If you are an agent {#agents}
+## ٥. إذا كنت وكيلاً {#agents}
 
-1. Read [`/llms.txt`](/llms.txt).
-2. Open [`/agents/index.md`](/agents/index.md).
-3. Pick a skill from [`/.well-known/agent-skills/index.json`](/.well-known/agent-skills/index.json).
+1. اقرأ [`/llms.txt`](/llms.txt).
+2. افتح [`/agents/index.md`](/agents/index.md).
+3. اختر مهارة من [`/.well-known/agent-skills/index.json`](/.well-known/agent-skills/index.json).
 
-## Start track {#start-track}
+## مسار البداية {#start-track}
 
-| Step | Page | Outcome |
+| خطوة | صفحة | النتيجة |
 |---|---|---|
-| 1 | [Install & download](/start/install.html) | Put Faber 1.1.1 on `PATH` and verify it |
-| 2 | [Hello, Faber](/start/hello.html) | Create and run `salve-munde` |
-| 3 | [Commands you will use](/start/commands.html) | Learn `check`, `build`, `run`, `test`, `explain` |
-| 4 | [Projects and examples](/start/projects.html) | Move into real packages and corpus pages |
+| ١ | [تثبيت وتنزيل](/start/install.html) | ضع Faber 1.1.1 على `PATH` وتحقق منه |
+| ٢ | [مرحباً، Faber](/start/hello.html) | أنشئ وشغّل `salve-munde` |
+| ٣ | [أوامر ستستخدمها](/start/commands.html) | تعلم `check`، `build`، `run`، `test`، `explain` |
+| ٤ | [مشاريع وأمثلة](/start/projects.html) | انتقل إلى حزم حقيقية وصفحات المجموعة |
 
-## Next {#next}
+## التالي {#next}
 
-| Topic | Link |
+| موضوع | رابط |
 |---|---|
-| Install & download | [Install](/start/install.html) |
-| Hello, Faber | [Hello](/start/hello.html) |
-| Commands | [Commands](/start/commands.html) |
-| Projects | [Projects](/start/projects.html) |
-| Syntax reference | [Syntax](/syntax/) |
-| Features (locales, lanes) | [Features](/features/) |
-| Ecosystem libraries | [Ecosystem](/ecosystem/) |
-| Keyword corpus | [Corpus](/corpus/) |
+| تثبيت وتنزيل | [تثبيت](/start/install.html) |
+| مرحباً، Faber | [مرحباً](/start/hello.html) |
+| الأوامر | [أوامر](/start/commands.html) |
+| المشاريع | [مشاريع](/start/projects.html) |
+| مرجع الصياغة | [الصياغة](/syntax/) |
+| ميزات (مواضع، مسارات) | [ميزات](/features/) |
+| مكتبات النظام البيئي | [نظام بيئي](/ecosystem/) |
+| مجموعة الكلمات المفتاحية | [مجموعة](/corpus/) |

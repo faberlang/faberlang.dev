@@ -1,41 +1,38 @@
 +++
+translation_kind = "translated"
+
 title = "Install and download"
 section = "install"
 order = 1
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:662becbb3dd5349058bcdfec9219fd07f6fe4217c2e5115c0aade45e0f17f0d4"
+code_hash = "sha256:cc9de43077b1262ee3d9edfbd3bd56c4ae51bcca18d0316fa0bb95312f3033b7"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:21d630528037285a86e992322b623a71066ab6d47547658680417ab616e7c872"
 +++
-**Translation status:** Vietnamese reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `vi` render step during the site build.
+Cài đặt CLI **Faber** từ bản phát hành dựng sẵn hiện tại. Phần đầu của trình biên dịch được tích hợp trong tệp nhị phân `faber`; bạn không cần cài đặt Radix riêng cho công việc với gói thông thường.
 
+Trang này được viết dựa trên các tạo phẩm phát hành của kho mã Faber 1.1.1. Công thức của trình quản lý gói có thể chậm hơn bản phát hành của kho mã; nếu Homebrew hoặc trình quản lý khác báo phiên bản Radix/Faber cũ hơn, hãy ưu tiên các tệp lưu trữ bên dưới cho lộ trình này.
 
-Install the **Faber** CLI from the current prebuilt release. The compiler
-front end ships inside the `faber` binary; you do not need a separate
-Radix install for ordinary package work.
+## Bản phát hành hiện tại {#current-release}
 
-This page is written against the repository release artifacts for Faber 1.1.1.
-Package-manager formulae may lag behind the repo release; if Homebrew or another
-manager reports an older Radix/Faber version, prefer the archives below for this
-track.
-
-## Current release {#current-release}
-
-| Field | Value |
+| Trường | Giá trị |
 |---|---|
-| **Version** | 1.1.1 |
-| **Tag** | `faber-v1.1.1` |
-| **Release page** | [faber-v1.1.1 on GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1) |
-| **License** | MIT |
+| **Phiên bản** | 1.1.1 |
+| **Thẻ** | `faber-v1.1.1` |
+| **Trang phát hành** | [faber-v1.1.1 trên GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1) |
+| **Tất cả bản phát hành** | [Danh mục các bản phát hành của trang](/history/releases.html) |
+| **Giấy phép** | MIT |
 
-## Prebuilt archives {#archives}
+## Tệp lưu trữ dựng sẵn {#archives}
 
-| Platform | Download | SHA-256 |
+| Nền tảng | Tải xuống | SHA-256 |
 |---|---|---|
 | **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
 | **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-The archives extract to `faber-v1.1.1-<target-triple>/faber`. The checksum files may name the original build path, so verify by comparing the first hash field against the local archive instead of relying on `sha256sum -c` path matching.
+Các tệp lưu trữ được giải nén thành `faber-v1.1.1-<target-triple>/faber`. Các tệp checksum có thể ghi đường dẫn dựng ban đầu, vì vậy hãy xác minh bằng cách so sánh trường băm đầu tiên với tệp lưu trữ cục bộ thay vì dựa vào việc khớp đường dẫn của `sha256sum -c`.
 
 ### macOS arm64 {#macos}
 
@@ -68,58 +65,44 @@ sudo mv faber-v1.1.1-x86_64-unknown-linux-gnu/faber /usr/local/bin/
 faber --version
 ```
 
-## Verify {#verify}
+## Xác minh {#verify}
 
 ```bash
 faber --version
 faber explain SEM001
 ```
 
-You should see a version line for the CLI and a diagnostic explanation.
-If `faber` is not found, check that the directory containing the binary
-is on `PATH`.
+Bạn sẽ thấy một dòng phiên bản của CLI và phần giải thích chẩn đoán. Nếu không tìm thấy `faber`, hãy kiểm tra xem thư mục chứa tệp nhị phân đã nằm trong `PATH` hay chưa.
 
-## First package check {#first-package}
+## Kiểm tra gói đầu tiên {#first-package}
 
-With the CLI on `PATH`, clone the public examples (or any Faber package)
-and type-check. Product packages resolve dependencies from the Cista store
-through `faber.lock`; local source checkouts are only for explicit
-library-development overrides.
+Khi CLI đã có trên `PATH`, hãy sao chép các ví dụ công khai (hoặc bất kỳ gói Faber nào) và kiểm tra kiểu. Các gói sản phẩm phân giải phần phụ thuộc từ kho Cista thông qua `faber.lock`; các bản sao mã nguồn cục bộ chỉ dùng cho các ghi đè phát triển thư viện được chỉ định rõ ràng.
 
 ```bash
 git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-More packages: [Examples](/start/examples.html). CLI surface:
-[Faber build tool](/tooling/faber-build-tool.html).
+Xem thêm các gói: [Ví dụ](/start/examples.html). Bề mặt CLI: [Công cụ dựng Faber](/tooling/faber-build-tool.html).
 
-## Homebrew status {#homebrew}
+## Trạng thái Homebrew {#homebrew}
 
-Homebrew publication is not the authority for this start track yet. If a formula
-serves an older compiler such as Radix 0.38.0 while this site documents Faber
-1.1.1, treat the formula as lagging and use the prebuilt release archive. The
-container verification gate for this page remains residual until formula
-publication catches up.
+Việc phát hành qua Homebrew hiện chưa phải là nguồn có thẩm quyền cho lộ trình bắt đầu này. Nếu một công thức cung cấp trình biên dịch cũ như Radix 0.38.0 trong khi trang này ghi lại Faber 1.1.1, hãy xem công thức đó là chậm cập nhật và sử dụng tệp lưu trữ bản phát hành dựng sẵn. Cổng xác minh bằng container cho trang này vẫn còn tồn đọng cho đến khi việc phát hành công thức được cập nhật.
 
-## Build from source {#from-source}
+## Dựng từ mã nguồn {#from-source}
 
-Prebuilts are the recommended path for agents and most developers. Building
-from source requires the private Radix compiler tree and is out of scope
-for this page. Prefer the archives above unless you are working on the
-compiler itself.
+Tệp dựng sẵn là lựa chọn được khuyến nghị cho tác nhân và hầu hết nhà phát triển. Việc dựng từ mã nguồn yêu cầu cây trình biên dịch Radix riêng tư và nằm ngoài phạm vi của trang này. Hãy ưu tiên các tệp lưu trữ ở trên, trừ khi bạn đang làm việc trực tiếp trên trình biên dịch.
 
-## Agent path {#agent-path}
+## Lộ trình cho tác nhân {#agent-path}
 
-Agents should load the **install** skill and the agent index rather than
-scraping this HTML:
+Tác nhân nên tải skill **install** và chỉ mục tác nhân thay vì quét HTML này:
 
 - [`/llms.txt`](/llms.txt)
-- [install skill](/.well-known/agent-skills/install/SKILL.md)
-- [Agent guide](/agents/index.md)
+- [skill install](/.well-known/agent-skills/install/SKILL.md)
+- [Hướng dẫn tác nhân](/agents/index.md)
 
-## Next {#next}
+## Tiếp theo {#next}
 
-| Previous | Next |
+| Trước | Tiếp theo |
 |---|---|
-| [Quick tour](/start/) | [Hello, Faber](/start/hello.html) |
+| [Tham quan nhanh](/start/) | [Xin chào, Faber](/start/hello.html) |

@@ -1,41 +1,40 @@
 +++
+translation_kind = "translated"
+
+
 title = "Install and download"
 section = "install"
 order = 1
 sources = []
-translation_kind = "fallback"
+
+
+prose_hash = "sha256:662becbb3dd5349058bcdfec9219fd07f6fe4217c2e5115c0aade45e0f17f0d4"
+code_hash = "sha256:cc9de43077b1262ee3d9edfbd3bd56c4ae51bcca18d0316fa0bb95312f3033b7"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:21d630528037285a86e992322b623a71066ab6d47547658680417ab616e7c872"
 +++
-**Translation status:** Traditional Chinese reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `zh-Hant` render step during the site build.
+從目前的預建版本中安裝 **Faber** CLI。編譯器前端已包含在 `faber` 二進位檔中；一般套件工作不需要另外安裝 Radix。
 
+本頁以 Faber 1.1.1 的儲存庫版本發行成品為準。套件管理器的公式可能落後於儲存庫版本；如果 Homebrew 或其他管理器回報較舊的 Radix/Faber 版本，請在此安裝流程中優先使用下方的壓縮檔。
 
-Install the **Faber** CLI from the current prebuilt release. The compiler
-front end ships inside the `faber` binary; you do not need a separate
-Radix install for ordinary package work.
+## 目前版本 {#current-release}
 
-This page is written against the repository release artifacts for Faber 1.1.1.
-Package-manager formulae may lag behind the repo release; if Homebrew or another
-manager reports an older Radix/Faber version, prefer the archives below for this
-track.
-
-## Current release {#current-release}
-
-| Field | Value |
+| 欄位 | 值 |
 |---|---|
-| **Version** | 1.1.1 |
-| **Tag** | `faber-v1.1.1` |
-| **Release page** | [faber-v1.1.1 on GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1) |
-| **License** | MIT |
+| **版本** | 1.1.1 |
+| **標籤** | `faber-v1.1.1` |
+| **發行頁面** | [GitHub 上的 faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1) |
+| **所有版本** | [網站版本發行清單](/history/releases.html) |
+| **授權條款** | MIT |
 
-## Prebuilt archives {#archives}
+## 預建壓縮檔 {#archives}
 
-| Platform | Download | SHA-256 |
+| 平台 | 下載 | SHA-256 |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64**（Apple Silicon） | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64**（glibc） | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-The archives extract to `faber-v1.1.1-<target-triple>/faber`. The checksum files may name the original build path, so verify by comparing the first hash field against the local archive instead of relying on `sha256sum -c` path matching.
+壓縮檔會解壓縮至 `faber-v1.1.1-<target-triple>/faber`。checksum 檔案可能會列出原始建置路徑，因此請將第一個雜湊欄位與本機壓縮檔比對來驗證，不要依賴 `sha256sum -c` 的路徑比對。
 
 ### macOS arm64 {#macos}
 
@@ -68,58 +67,45 @@ sudo mv faber-v1.1.1-x86_64-unknown-linux-gnu/faber /usr/local/bin/
 faber --version
 ```
 
-## Verify {#verify}
+## 驗證 {#verify}
 
 ```bash
 faber --version
 faber explain SEM001
 ```
 
-You should see a version line for the CLI and a diagnostic explanation.
-If `faber` is not found, check that the directory containing the binary
-is on `PATH`.
+你應該會看到 CLI 的版本列和診斷說明。如果找不到 `faber`，請確認包含該二進位檔的目錄已在 `PATH` 中。
 
-## First package check {#first-package}
+## 第一次套件檢查 {#first-package}
 
-With the CLI on `PATH`, clone the public examples (or any Faber package)
-and type-check. Product packages resolve dependencies from the Cista store
-through `faber.lock`; local source checkouts are only for explicit
-library-development overrides.
+將 CLI 加入 `PATH` 後，複製公開範例（或任何 Faber 套件）並執行型別檢查。產品套件會透過 `faber.lock` 從 Cista 儲存區解析相依性；本機原始碼 checkout 僅用於明確指定的函式庫開發覆寫。
 
 ```bash
 git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-More packages: [Examples](/start/examples.html). CLI surface:
-[Faber build tool](/tooling/faber-build-tool.html).
+更多套件：[範例](/start/examples.html)。CLI 介面：
+[Faber 建置工具](/tooling/faber-build-tool.html)。
 
-## Homebrew status {#homebrew}
+## Homebrew 狀態 {#homebrew}
 
-Homebrew publication is not the authority for this start track yet. If a formula
-serves an older compiler such as Radix 0.38.0 while this site documents Faber
-1.1.1, treat the formula as lagging and use the prebuilt release archive. The
-container verification gate for this page remains residual until formula
-publication catches up.
+Homebrew 的發佈目前尚未成為此安裝流程的依據。如果某個公式提供較舊的編譯器，例如 Radix 0.38.0，而本網站記錄的是 Faber 1.1.1，請將該公式視為落後版本，並使用預建版本壓縮檔。本頁的容器驗證閘門仍處於待完成狀態，直到公式發佈追上版本為止。
 
-## Build from source {#from-source}
+## 從原始碼建置 {#from-source}
 
-Prebuilts are the recommended path for agents and most developers. Building
-from source requires the private Radix compiler tree and is out of scope
-for this page. Prefer the archives above unless you are working on the
-compiler itself.
+預建版本是代理程式與大多數開發者的建議路徑。從原始碼建置需要私有的 Radix 編譯器樹，超出本頁範圍。除非你正在開發編譯器本身，否則請優先使用上述壓縮檔。
 
-## Agent path {#agent-path}
+## 代理程式路徑 {#agent-path}
 
-Agents should load the **install** skill and the agent index rather than
-scraping this HTML:
+代理程式應載入 **install** skill 與代理程式索引，而不是擷取此 HTML：
 
 - [`/llms.txt`](/llms.txt)
 - [install skill](/.well-known/agent-skills/install/SKILL.md)
-- [Agent guide](/agents/index.md)
+- [代理程式指南](/agents/index.md)
 
-## Next {#next}
+## 下一步 {#next}
 
-| Previous | Next |
+| 上一頁 | 下一頁 |
 |---|---|
-| [Quick tour](/start/) | [Hello, Faber](/start/hello.html) |
+| [快速導覽](/start/) | [Hello, Faber](/start/hello.html) |

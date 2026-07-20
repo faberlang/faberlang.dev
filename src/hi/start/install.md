@@ -1,41 +1,38 @@
 +++
+translation_kind = "translated"
+
 title = "Install and download"
 section = "install"
 order = 1
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:662becbb3dd5349058bcdfec9219fd07f6fe4217c2e5115c0aade45e0f17f0d4"
+code_hash = "sha256:cc9de43077b1262ee3d9edfbd3bd56c4ae51bcca18d0316fa0bb95312f3033b7"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:21d630528037285a86e992322b623a71066ab6d47547658680417ab616e7c872"
 +++
-**Translation status:** Hindi reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `hi` render step during the site build.
+वर्तमान प्रीबिल्ट रिलीज़ से **Faber** CLI इंस्टॉल करें। कंपाइलर का फ्रंट एंड `faber` बाइनरी के अंदर शामिल है; सामान्य पैकेज कार्य के लिए आपको अलग से Radix इंस्टॉल करने की आवश्यकता नहीं है।
 
+यह पृष्ठ Faber 1.1.1 के रिपॉज़िटरी रिलीज़ आर्टिफैक्ट पर आधारित है। पैकेज मैनेजर के फ़ॉर्मूले रिपॉज़िटरी रिलीज़ से पीछे रह सकते हैं; यदि Homebrew या कोई अन्य मैनेजर Radix/Faber का पुराना संस्करण दिखाता है, तो इस ट्रैक के लिए नीचे दिए गए आर्काइव को प्राथमिकता दें।
 
-Install the **Faber** CLI from the current prebuilt release. The compiler
-front end ships inside the `faber` binary; you do not need a separate
-Radix install for ordinary package work.
+## वर्तमान रिलीज़ {#current-release}
 
-This page is written against the repository release artifacts for Faber 1.1.1.
-Package-manager formulae may lag behind the repo release; if Homebrew or another
-manager reports an older Radix/Faber version, prefer the archives below for this
-track.
-
-## Current release {#current-release}
-
-| Field | Value |
+| फ़ील्ड | मान |
 |---|---|
-| **Version** | 1.1.1 |
-| **Tag** | `faber-v1.1.1` |
-| **Release page** | [faber-v1.1.1 on GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1) |
-| **License** | MIT |
+| **संस्करण** | 1.1.1 |
+| **टैग** | `faber-v1.1.1` |
+| **रिलीज़ पृष्ठ** | GitHub पर [faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1) |
+| **सभी रिलीज़** | [साइट रिलीज़ इन्वेंटरी](/history/releases.html) |
+| **लाइसेंस** | MIT |
 
-## Prebuilt archives {#archives}
+## प्रीबिल्ट आर्काइव {#archives}
 
-| Platform | Download | SHA-256 |
+| प्लेटफ़ॉर्म | डाउनलोड | SHA-256 |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | [चेकसम](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | [चेकसम](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-The archives extract to `faber-v1.1.1-<target-triple>/faber`. The checksum files may name the original build path, so verify by comparing the first hash field against the local archive instead of relying on `sha256sum -c` path matching.
+आर्काइव `faber-v1.1.1-<target-triple>/faber` में एक्सट्रैक्ट होते हैं। चेकसम फ़ाइलों में मूल बिल्ड पथ दिया हो सकता है, इसलिए `sha256sum -c` के पथ मिलान पर निर्भर रहने के बजाय पहले हैश फ़ील्ड की स्थानीय आर्काइव से तुलना करके सत्यापित करें।
 
 ### macOS arm64 {#macos}
 
@@ -68,58 +65,45 @@ sudo mv faber-v1.1.1-x86_64-unknown-linux-gnu/faber /usr/local/bin/
 faber --version
 ```
 
-## Verify {#verify}
+## सत्यापन {#verify}
 
 ```bash
 faber --version
 faber explain SEM001
 ```
 
-You should see a version line for the CLI and a diagnostic explanation.
-If `faber` is not found, check that the directory containing the binary
-is on `PATH`.
+आपको CLI के लिए एक संस्करण पंक्ति और डायग्नोस्टिक व्याख्या दिखाई देनी चाहिए। यदि `faber` नहीं मिलता है, तो जाँचें कि बाइनरी वाली निर्देशिका `PATH` में शामिल है।
 
-## First package check {#first-package}
+## पहला पैकेज चेक {#first-package}
 
-With the CLI on `PATH`, clone the public examples (or any Faber package)
-and type-check. Product packages resolve dependencies from the Cista store
-through `faber.lock`; local source checkouts are only for explicit
-library-development overrides.
+CLI को `PATH` में उपलब्ध कराने के बाद, सार्वजनिक उदाहरणों (या किसी भी Faber पैकेज) को क्लोन करें और उसका टाइप-चेक करें। प्रोडक्ट पैकेज `faber.lock` के माध्यम से Cista स्टोर से निर्भरताएँ हल करते हैं; स्थानीय सोर्स चेकआउट केवल स्पष्ट लाइब्रेरी-विकास ओवरराइड के लिए होते हैं।
 
 ```bash
 git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-More packages: [Examples](/start/examples.html). CLI surface:
-[Faber build tool](/tooling/faber-build-tool.html).
+अधिक पैकेज: [उदाहरण](/start/examples.html)। CLI सतह:
+[Faber बिल्ड टूल](/tooling/faber-build-tool.html)।
 
-## Homebrew status {#homebrew}
+## Homebrew स्थिति {#homebrew}
 
-Homebrew publication is not the authority for this start track yet. If a formula
-serves an older compiler such as Radix 0.38.0 while this site documents Faber
-1.1.1, treat the formula as lagging and use the prebuilt release archive. The
-container verification gate for this page remains residual until formula
-publication catches up.
+इस स्टार्ट ट्रैक के लिए Homebrew प्रकाशन अभी प्राधिकृत स्रोत नहीं है। यदि कोई फ़ॉर्मूला Radix 0.38.0 जैसे पुराने कंपाइलर की सेवा देता है, जबकि यह साइट Faber 1.1.1 का दस्तावेज़ देती है, तो फ़ॉर्मूले को पीछे चल रहा मानें और प्रीबिल्ट रिलीज़ आर्काइव का उपयोग करें। इस पृष्ठ के लिए कंटेनर सत्यापन गेट तब तक अवशिष्ट रहेगा, जब तक फ़ॉर्मूला प्रकाशन अद्यतन नहीं हो जाता।
 
-## Build from source {#from-source}
+## सोर्स से बिल्ड करें {#from-source}
 
-Prebuilts are the recommended path for agents and most developers. Building
-from source requires the private Radix compiler tree and is out of scope
-for this page. Prefer the archives above unless you are working on the
-compiler itself.
+एजेंटों और अधिकांश डेवलपरों के लिए प्रीबिल्ट अनुशंसित मार्ग हैं। सोर्स से बिल्ड करने के लिए निजी Radix कंपाइलर ट्री आवश्यक है और यह इस पृष्ठ के दायरे से बाहर है। जब तक आप स्वयं कंपाइलर पर काम न कर रहे हों, ऊपर दिए गए आर्काइव का उपयोग करें।
 
-## Agent path {#agent-path}
+## एजेंट मार्ग {#agent-path}
 
-Agents should load the **install** skill and the agent index rather than
-scraping this HTML:
+एजेंटों को इस HTML को स्क्रैप करने के बजाय **इंस्टॉल** स्किल और एजेंट इंडेक्स लोड करना चाहिए:
 
 - [`/llms.txt`](/llms.txt)
-- [install skill](/.well-known/agent-skills/install/SKILL.md)
-- [Agent guide](/agents/index.md)
+- [इंस्टॉल स्किल](/.well-known/agent-skills/install/SKILL.md)
+- [एजेंट गाइड](/agents/index.md)
 
-## Next {#next}
+## अगला चरण {#next}
 
-| Previous | Next |
+| पिछला | अगला |
 |---|---|
-| [Quick tour](/start/) | [Hello, Faber](/start/hello.html) |
+| [त्वरित परिचय](/start/) | [नमस्कार, Faber](/start/hello.html) |

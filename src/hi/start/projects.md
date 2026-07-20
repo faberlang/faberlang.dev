@@ -1,30 +1,29 @@
 +++
+translation_kind = "translated"
+
 title = "Projects and examples"
 section = "projects"
 order = 4
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:8a914c63394e5bd0bf08ccef737eb95ec4cfb7df1813f3475c78d6ef579fb14d"
+code_hash = "sha256:08056868d41c8d2a2925beb910fea8adcf4ac708fa67559e5a160dd900429a06"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:0b7a36b44a44e748ef7fd159a0f42e49d90dcb063f7809cb9ff291a7127abcee"
 +++
-**Translation status:** Hindi reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `hi` render step during the site build.
+हैलो-वर्ल्ड के बाद वास्तविक पैकेजों की ओर बढ़ें। Faber पैकेज-आधारित है; सीखने का सबसे तेज़ तरीका उन मौजूदा पैकेजों को देखना और पढ़ना है जो उसी कंपाइलर सतह का उपयोग करते हैं जिसे आप इस्तेमाल करने की योजना बना रहे हैं।
 
+## सार्वजनिक रिपॉज़िटरी {#repositories}
 
-After hello-world, move into real packages. Faber is package-oriented; the
-fastest way to learn is to check and read existing packages that exercise the
-same compiler surface you plan to use.
-
-## Public repositories {#repositories}
-
-| Repository | Start here | Why |
+| रिपॉज़िटरी | यहाँ से शुरू करें | क्यों |
 |---|---|---|
-| [`faberlang/examples`](https://github.com/faberlang/examples) | `corpus/`, application packages, tracks | Public corpus and application examples |
-| [`faberlang/norma`](https://github.com/faberlang/norma) | `norma:*` packages | Standard library source |
-| [`faberlang/faber`](https://github.com/faberlang/faber) | CLI wrapper | User-facing build tool |
-| [`faberlang/cista`](https://github.com/faberlang/cista) | package-store CLI/lib | Package management surface |
-| [`faberlang/triga`](https://github.com/faberlang/triga) | `triga:*` source | Graphics and geometry library |
+| [`faberlang/examples`](https://github.com/faberlang/examples) | `corpus/`, एप्लिकेशन पैकेज, ट्रैक | सार्वजनिक कॉर्पस और एप्लिकेशन उदाहरण |
+| [`faberlang/norma`](https://github.com/faberlang/norma) | `norma:*` पैकेज | मानक लाइब्रेरी का स्रोत |
+| [`faberlang/faber`](https://github.com/faberlang/faber) | CLI रैपर | उपयोगकर्ता-सामना करने वाला बिल्ड टूल |
+| [`faberlang/cista`](https://github.com/faberlang/cista) | पैकेज-स्टोर CLI/लाइब्रेरी | पैकेज प्रबंधन सतह |
+| [`faberlang/triga`](https://github.com/faberlang/triga) | `triga:*` स्रोत | ग्राफ़िक्स और ज्यामिति लाइब्रेरी |
 
-## Clone a learning workspace {#clone-workspace}
+## सीखने का वर्कस्पेस क्लोन करें {#clone-workspace}
 
 ```bash
 mkdir faber-learning
@@ -33,44 +32,39 @@ git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-Packages with `norma:*` imports resolve dependencies from the Cista package
-store recorded in `faber.lock`. Use `FABER_LIBRARY_HOME` only when you
-intentionally want a local resolver override for library development.
+`norma:*` इम्पोर्ट वाले पैकेज `faber.lock` में दर्ज Cista पैकेज स्टोर से निर्भरताएँ हल करते हैं। `FABER_LIBRARY_HOME` का उपयोग केवल तब करें जब आप जानबूझकर लाइब्रेरी डेवलपमेंट के लिए स्थानीय रिज़ॉल्वर ओवरराइड चाहते हों।
 
-## Read examples in this order {#read-order}
+## उदाहरण इस क्रम में पढ़ें {#read-order}
 
-1. [Quick tour](/start/) for the surface grammar.
-2. [Hello, Faber](/start/hello.html) for a single package.
-3. [Corpus](/corpus/) for one page per keyword or construct.
-4. [Examples](/start/examples.html) for larger applications.
-5. [Faber build tool](/tooling/faber-build-tool.html) for CLI details.
+1. [त्वरित परिचय](/start/) में सतही व्याकरण देखें।
+2. [Hello, Faber](/start/hello.html) में एकल पैकेज देखें।
+3. [कॉर्पस](/corpus/) में प्रत्येक कीवर्ड या कंस्ट्रक्ट के लिए एक पृष्ठ देखें।
+4. बड़े एप्लिकेशन के लिए [उदाहरण](/start/examples.html) देखें।
+5. CLI विवरण के लिए [Faber बिल्ड टूल](/tooling/faber-build-tool.html) देखें।
 
-## Agent workflow {#agent-workflow}
+## एजेंट वर्कफ़्लो {#agent-workflow}
 
-Agents should not infer syntax from prose alone. Use the machine surfaces and
-then validate generated code:
+एजेंटों को केवल गद्य से सिंटैक्स का अनुमान नहीं लगाना चाहिए। मशीन सतहों का उपयोग करें और फिर जनरेट किए गए कोड को मान्य करें:
 
 ```bash
 curl -fsSL https://faberlang.dev/llms.txt
 faber check path/to/package
 ```
 
-For package work, cite the repo, package path, command, and diagnostic code in
-reports. If you touch docs with fenced Faber code in this site, run the fence
-validator before claiming the examples still compile.
+पैकेज कार्य के लिए रिपोर्ट में रिपॉज़िटरी, पैकेज पथ, कमांड और डायग्नोस्टिक कोड का उल्लेख करें। यदि आप इस साइट में फ़ेंस किए गए Faber कोड वाले दस्तावेज़ों को छूते हैं, तो यह दावा करने से पहले फ़ेंस वैलिडेटर चलाएँ कि उदाहरण अब भी कंपाइल होते हैं।
 
-## What comes after the start track {#after-start}
+## स्टार्ट ट्रैक के बाद क्या आता है {#after-start}
 
-| Goal | Read |
+| लक्ष्य | पढ़ें |
 |---|---|
-| Learn syntax | [Syntax](/syntax/) |
-| Understand locales | [Reader locale](/features/reader-locale.html) |
-| Use the compiler | [Faber build tool](/tooling/faber-build-tool.html) and [Radix compiler](/tooling/radix-compiler.html) |
-| Browse constructs | [Corpus](/corpus/) |
-| Build with libraries | [Ecosystem](/ecosystem/) |
+| सिंटैक्स सीखें | [सिंटैक्स](/syntax/) |
+| लोकेल समझें | [रीडर लोकेल](/features/reader-locale.html) |
+| कंपाइलर का उपयोग करें | [Faber बिल्ड टूल](/tooling/faber-build-tool.html) और [Radix कंपाइलर](/tooling/radix-compiler.html) |
+| कंस्ट्रक्ट ब्राउज़ करें | [कॉर्पस](/corpus/) |
+| लाइब्रेरी के साथ बिल्ड करें | [इकोसिस्टम](/ecosystem/) |
 
-## Next {#next}
+## अगला {#next}
 
-| Previous | Continue |
+| पिछला | अगला |
 |---|---|
-| [Commands you will use](/start/commands.html) | [Examples](/start/examples.html) |
+| [आपके द्वारा उपयोग किए जाने वाले कमांड](/start/commands.html) | [उदाहरण](/start/examples.html) |

@@ -1,34 +1,35 @@
 +++
+translation_kind = "translated"
+
 title = "Quick tour"
 section = "start"
 order = 0
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:fb6f791ae0e9b73d0c92c2127726f558a2b845351779f80217616b8f55629ff0"
+code_hash = "sha256:f9eb22ab8a2408fe0076d846dd4266cff4ded675ad8d63a5b2d9ee59c3e0156f"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:bbcadb3e298fe348d1eb830734369f89cfbbdfb1bb5e51d5728c5111da8294da"
 +++
-**Translation status:** Hindi reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `hi` render step during the site build.
+Faber के आकार को पाँच मिनट में समझें: CLI इंस्टॉल करें, एक फ़ंक्शन पढ़ें,
+फिर एक वास्तविक पैकेज खोलें। क्रमबद्ध रास्ते के लिए यह क्रम अपनाएँ: [इंस्टॉल](/start/install.html) →
+[हैलो](/start/hello.html) → [कमांड](/start/commands.html) →
+[प्रोजेक्ट](/start/projects.html)।
 
+## 1. CLI इंस्टॉल करें {#install}
 
-Five minutes to the shape of Faber: install the CLI, read one function,
-then open a real package. For a sequenced path, follow: [Install](/start/install.html) →
-[Hello](/start/hello.html) → [Commands](/start/commands.html) →
-[Projects](/start/projects.html).
-
-## 1. Install the CLI {#install}
-
-Download the current release (**1.1.1**) for your platform from the
-[install page](/start/install.html), verify the archive checksum, and put the
-extracted `faber-v1.1.1-<target-triple>/faber` binary on your `PATH`. Confirm:
+अपने प्लेटफ़ॉर्म के लिए वर्तमान रिलीज़ (**1.1.1**) [इंस्टॉल पेज](/start/install.html) से डाउनलोड करें,
+आर्काइव का चेकसम सत्यापित करें, और निकाली गई `faber-v1.1.1-<target-triple>/faber` बाइनरी को अपने
+`PATH` में रखें। पुष्टि करें:
 
 ```bash
 faber --version
 ```
 
-## 2. Shape of a function {#shape}
+## 2. फ़ंक्शन का आकार {#shape}
 
-Type-first parameters, glyph return type, Latin control words, nullable
-union:
+टाइप-प्रथम पैरामीटर, ग्लिफ़ रिटर्न टाइप, लैटिन नियंत्रण शब्द, nullable
+यूनियन:
 
 ```text
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
@@ -37,18 +38,18 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 }
 ```
 
-| Signal | Meaning |
+| संकेत | अर्थ |
 |---|---|
-| `functio` | Function declaration |
-| `numerus a` | Type first, then name |
-| `→` | Return type |
+| `functio` | फ़ंक्शन घोषणा |
+| `numerus a` | पहले टाइप, फिर नाम |
+| `→` | रिटर्न टाइप |
 | `∪ nihil` | Nullable (`T ∪ nihil`) |
-| `si … ∴` | Compact branch |
-| `redde` | Return |
+| `si … ∴` | संक्षिप्त शाखा |
+| `redde` | रिटर्न |
 
-## 3. Package layout {#package}
+## 3. पैकेज का विन्यास {#package}
 
-A package is a directory with `faber.toml` and `src/`:
+एक पैकेज `faber.toml` और `src/` वाली निर्देशिका होती है:
 
 ```text
 my-app/
@@ -57,7 +58,7 @@ my-app/
     main.fab
 ```
 
-Typical commands:
+सामान्य कमांड:
 
 ```bash
 faber check my-app/
@@ -66,47 +67,47 @@ faber run my-app/
 faber test my-app/
 ```
 
-Details: [Faber build tool](/tooling/faber-build-tool.html).
+विवरण: [Faber बिल्ड टूल](/tooling/faber-build-tool.html)।
 
-## 4. Real applications {#applications}
+## 4. वास्तविक एप्लिकेशन {#applications}
 
-Do not stop at hello-world. The public **examples** repo has multi-command
-CLIs, a local mailspace, GPU workload tracks, and a full language corpus.
+Hello-world पर न रुकें। सार्वजनिक **examples** रिपॉज़िटरी में बहु-कमांड
+CLI, स्थानीय mailspace, GPU workload tracks और एक पूर्ण भाषा corpus शामिल हैं।
 
-| Package | What it shows |
+| पैकेज | यह क्या दिखाता है |
 |---|---|
-| AI Workbench | Multi-command CLI, model inspect, embeddings |
-| ViviLite | File-backed mailspace / agent coordination CLI |
-| coreutils | Larger application campaign (parity harnesses) |
-| gpu-workload | Systems / GPU rungs |
-| corpus | One directory per language construct |
+| AI Workbench | बहु-कमांड CLI, मॉडल निरीक्षण, embeddings |
+| ViviLite | फ़ाइल-आधारित mailspace / agent coordination CLI |
+| coreutils | बड़ा एप्लिकेशन अभियान (parity harnesses) |
+| gpu-workload | सिस्टम / GPU rungs |
+| corpus | प्रत्येक भाषा-निर्माण के लिए एक निर्देशिका |
 
-Browse them on the [examples page](/start/examples.html).
+उन्हें [examples पेज](/start/examples.html) पर देखें।
 
-## 5. If you are an agent {#agents}
+## 5. यदि आप एजेंट हैं {#agents}
 
-1. Read [`/llms.txt`](/llms.txt).
-2. Open [`/agents/index.md`](/agents/index.md).
-3. Pick a skill from [`/.well-known/agent-skills/index.json`](/.well-known/agent-skills/index.json).
+1. [`/llms.txt`](/llms.txt) पढ़ें।
+2. [`/agents/index.md`](/agents/index.md) खोलें।
+3. [`/.well-known/agent-skills/index.json`](/.well-known/agent-skills/index.json) से कोई skill चुनें।
 
-## Start track {#start-track}
+## शुरुआत का ट्रैक {#start-track}
 
-| Step | Page | Outcome |
+| चरण | पेज | परिणाम |
 |---|---|---|
-| 1 | [Install & download](/start/install.html) | Put Faber 1.1.1 on `PATH` and verify it |
-| 2 | [Hello, Faber](/start/hello.html) | Create and run `salve-munde` |
-| 3 | [Commands you will use](/start/commands.html) | Learn `check`, `build`, `run`, `test`, `explain` |
-| 4 | [Projects and examples](/start/projects.html) | Move into real packages and corpus pages |
+| 1 | [इंस्टॉल और डाउनलोड](/start/install.html) | Faber 1.1.1 को `PATH` में रखें और सत्यापित करें |
+| 2 | [हैलो, Faber](/start/hello.html) | `salve-munde` बनाएँ और चलाएँ |
+| 3 | [वे कमांड जिनका आप उपयोग करेंगे](/start/commands.html) | `check`, `build`, `run`, `test`, `explain` सीखें |
+| 4 | [प्रोजेक्ट और उदाहरण](/start/projects.html) | वास्तविक पैकेज और corpus पेजों पर जाएँ |
 
-## Next {#next}
+## आगे {#next}
 
-| Topic | Link |
+| विषय | लिंक |
 |---|---|
-| Install & download | [Install](/start/install.html) |
-| Hello, Faber | [Hello](/start/hello.html) |
-| Commands | [Commands](/start/commands.html) |
-| Projects | [Projects](/start/projects.html) |
-| Syntax reference | [Syntax](/syntax/) |
-| Features (locales, lanes) | [Features](/features/) |
-| Ecosystem libraries | [Ecosystem](/ecosystem/) |
-| Keyword corpus | [Corpus](/corpus/) |
+| इंस्टॉल और डाउनलोड | [इंस्टॉल](/start/install.html) |
+| हैलो, Faber | [हैलो](/start/hello.html) |
+| कमांड | [कमांड](/start/commands.html) |
+| प्रोजेक्ट | [प्रोजेक्ट](/start/projects.html) |
+| सिंटैक्स संदर्भ | [सिंटैक्स](/syntax/) |
+| सुविधाएँ (स्थानीय भाषाएँ, lanes) | [सुविधाएँ](/features/) |
+| इकोसिस्टम लाइब्रेरी | [इकोसिस्टम](/ecosystem/) |
+| कीवर्ड corpus | [Corpus](/corpus/) |

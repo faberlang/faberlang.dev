@@ -1,30 +1,29 @@
 +++
+translation_kind = "translated"
+
 title = "Projects and examples"
 section = "projects"
 order = 4
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:8a914c63394e5bd0bf08ccef737eb95ec4cfb7df1813f3475c78d6ef579fb14d"
+code_hash = "sha256:08056868d41c8d2a2925beb910fea8adcf4ac708fa67559e5a160dd900429a06"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:0b7a36b44a44e748ef7fd159a0f42e49d90dcb063f7809cb9ff291a7127abcee"
 +++
-**Translation status:** Arabic reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `ar` render step during the site build.
+بعد hello-world، انتقل إلى الحزم الحقيقية. Faber موجّه نحو الحزم؛ أسرع طريقة للتعلّم هي فحص وقراءة الحزم الموجودة التي تمارس نفس سطح المترجم الذي تخطط لاستخدامه.
 
+## المستودعات العامة {#repositories}
 
-After hello-world, move into real packages. Faber is package-oriented; the
-fastest way to learn is to check and read existing packages that exercise the
-same compiler surface you plan to use.
-
-## Public repositories {#repositories}
-
-| Repository | Start here | Why |
+| المستودع | ابدأ من هنا | السبب |
 |---|---|---|
-| [`faberlang/examples`](https://github.com/faberlang/examples) | `corpus/`, application packages, tracks | Public corpus and application examples |
-| [`faberlang/norma`](https://github.com/faberlang/norma) | `norma:*` packages | Standard library source |
-| [`faberlang/faber`](https://github.com/faberlang/faber) | CLI wrapper | User-facing build tool |
-| [`faberlang/cista`](https://github.com/faberlang/cista) | package-store CLI/lib | Package management surface |
-| [`faberlang/triga`](https://github.com/faberlang/triga) | `triga:*` source | Graphics and geometry library |
+| [`faberlang/examples`](https://github.com/faberlang/examples) | `corpus/`، حزم تطبيقية، مسارات | مجموعة الأمثلة العامة والتطبيقات |
+| [`faberlang/norma`](https://github.com/faberlang/norma) | حزم `norma:*` | مصدر المكتبة القياسية |
+| [`faberlang/faber`](https://github.com/faberlang/faber) | غلاف CLI | أداة البناء للمستخدم |
+| [`faberlang/cista`](https://github.com/faberlang/cista) | CLI/lib لمخزن الحزم | سطح إدارة الحزم |
+| [`faberlang/triga`](https://github.com/faberlang/triga) | مصدر `triga:*` | مكتبة الرسوميات والهندسة |
 
-## Clone a learning workspace {#clone-workspace}
+## استنساخ مساحة عمل للتعلّم {#clone-workspace}
 
 ```bash
 mkdir faber-learning
@@ -33,44 +32,39 @@ git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-Packages with `norma:*` imports resolve dependencies from the Cista package
-store recorded in `faber.lock`. Use `FABER_LIBRARY_HOME` only when you
-intentionally want a local resolver override for library development.
+الحزم التي تستورد `norma:*` تحل التبعيات من مخزن حزم Cista المسجّل في `faber.lock`. استخدم `FABER_LIBRARY_HOME` فقط عندما تريد عمدًا تجاوز محلّل محلي لتطوير المكتبات.
 
-## Read examples in this order {#read-order}
+## اقرأ الأمثلة بهذا الترتيب {#read-order}
 
-1. [Quick tour](/start/) for the surface grammar.
-2. [Hello, Faber](/start/hello.html) for a single package.
-3. [Corpus](/corpus/) for one page per keyword or construct.
-4. [Examples](/start/examples.html) for larger applications.
-5. [Faber build tool](/tooling/faber-build-tool.html) for CLI details.
+1. [جولة سريعة](/start/) لقواعد السطح النحوية.
+2. [مرحبًا، Faber](/start/hello.html) لحزمة واحدة.
+3. [المجموعة](/corpus/) لصفحة واحدة لكل كلمة مفتاحية أو بناء.
+4. [أمثلة](/start/examples.html) لتطبيقات أكبر.
+5. [أداة بناء Faber](/tooling/faber-build-tool.html) لتفاصيل CLI.
 
-## Agent workflow {#agent-workflow}
+## سير عمل الوكيل {#agent-workflow}
 
-Agents should not infer syntax from prose alone. Use the machine surfaces and
-then validate generated code:
+لا ينبغي للوكلاء استنتاج الصيغة من النثر وحده. استخدم الأسطح الآلية ثم تحقق من صحة الكود المُنشأ:
 
 ```bash
 curl -fsSL https://faberlang.dev/llms.txt
 faber check path/to/package
 ```
 
-For package work, cite the repo, package path, command, and diagnostic code in
-reports. If you touch docs with fenced Faber code in this site, run the fence
-validator before claiming the examples still compile.
+للعمل على الحزم، اذكر المستودع ومسار الحزمة والأمر ورمز التشخيص في التقارير. إذا لمست مستندات تحتوي كود Faber داخل أسوار في هذا الموقع، شغّل مدقق الأسوار قبل الادعاء بأن الأمثلة لا تزال تُترجم.
 
-## What comes after the start track {#after-start}
+## ماذا بعد مسار البداية {#after-start}
 
-| Goal | Read |
+| الهدف | اقرأ |
 |---|---|
-| Learn syntax | [Syntax](/syntax/) |
-| Understand locales | [Reader locale](/features/reader-locale.html) |
-| Use the compiler | [Faber build tool](/tooling/faber-build-tool.html) and [Radix compiler](/tooling/radix-compiler.html) |
-| Browse constructs | [Corpus](/corpus/) |
-| Build with libraries | [Ecosystem](/ecosystem/) |
+| تعلّم الصيغة | [الصيغة](/syntax/) |
+| فهم الإعدادات المحلية | [إعدادات القارئ المحلية](/features/reader-locale.html) |
+| استخدام المترجم | [أداة بناء Faber](/tooling/faber-build-tool.html) و[مترجم Radix](/tooling/radix-compiler.html) |
+| تصفّح البنى | [المجموعة](/corpus/) |
+| البناء بالمكتبات | [النظام البيئي](/ecosystem/) |
 
-## Next {#next}
+## التالي {#next}
 
-| Previous | Continue |
+| السابق | التالي |
 |---|---|
-| [Commands you will use](/start/commands.html) | [Examples](/start/examples.html) |
+| [الأوامر التي ستستخدمها](/start/commands.html) | [أمثلة](/start/examples.html) |

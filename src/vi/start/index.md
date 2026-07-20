@@ -1,34 +1,36 @@
 +++
+translation_kind = "translated"
+
 title = "Quick tour"
 section = "start"
 order = 0
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:fb6f791ae0e9b73d0c92c2127726f558a2b845351779f80217616b8f55629ff0"
+code_hash = "sha256:f9eb22ab8a2408fe0076d846dd4266cff4ded675ad8d63a5b2d9ee59c3e0156f"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:bbcadb3e298fe348d1eb830734369f89cfbbdfb1bb5e51d5728c5111da8294da"
 +++
-**Translation status:** Vietnamese reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `vi` render step during the site build.
+Năm phút để nắm hình dạng của Faber: cài đặt CLI, đọc một hàm,
+sau đó mở một gói thực tế. Để đi theo lộ trình tuần tự, hãy xem: [Cài đặt](/start/install.html) →
+[Hello](/start/hello.html) → [Các lệnh](/start/commands.html) →
+[Dự án](/start/projects.html).
 
+## 1. Cài đặt CLI {#install}
 
-Five minutes to the shape of Faber: install the CLI, read one function,
-then open a real package. For a sequenced path, follow: [Install](/start/install.html) →
-[Hello](/start/hello.html) → [Commands](/start/commands.html) →
-[Projects](/start/projects.html).
-
-## 1. Install the CLI {#install}
-
-Download the current release (**1.1.1**) for your platform from the
-[install page](/start/install.html), verify the archive checksum, and put the
-extracted `faber-v1.1.1-<target-triple>/faber` binary on your `PATH`. Confirm:
+Tải bản phát hành hiện tại (**1.1.1**) cho nền tảng của bạn từ
+[trang cài đặt](/start/install.html), xác minh checksum của tệp lưu trữ,
+sau đó đặt tệp nhị phân `faber-v1.1.1-<target-triple>/faber` đã giải nén vào
+`PATH` của bạn. Xác nhận:
 
 ```bash
 faber --version
 ```
 
-## 2. Shape of a function {#shape}
+## 2. Hình dạng của một hàm {#shape}
 
-Type-first parameters, glyph return type, Latin control words, nullable
-union:
+Tham số ưu tiên kiểu, kiểu trả về bằng glyph, từ điều khiển Latin, hợp
+kiểu có thể là null:
 
 ```text
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
@@ -37,18 +39,18 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 }
 ```
 
-| Signal | Meaning |
+| Tín hiệu | Ý nghĩa |
 |---|---|
-| `functio` | Function declaration |
-| `numerus a` | Type first, then name |
-| `→` | Return type |
-| `∪ nihil` | Nullable (`T ∪ nihil`) |
-| `si … ∴` | Compact branch |
-| `redde` | Return |
+| `functio` | Khai báo hàm |
+| `numerus a` | Kiểu trước, tên sau |
+| `→` | Kiểu trả về |
+| `∪ nihil` | Có thể là null (`T ∪ nihil`) |
+| `si … ∴` | Nhánh rút gọn |
+| `redde` | Trả về |
 
-## 3. Package layout {#package}
+## 3. Bố cục gói {#package}
 
-A package is a directory with `faber.toml` and `src/`:
+Một gói là một thư mục có `faber.toml` và `src/`:
 
 ```text
 my-app/
@@ -57,7 +59,7 @@ my-app/
     main.fab
 ```
 
-Typical commands:
+Các lệnh thường dùng:
 
 ```bash
 faber check my-app/
@@ -66,47 +68,48 @@ faber run my-app/
 faber test my-app/
 ```
 
-Details: [Faber build tool](/tooling/faber-build-tool.html).
+Chi tiết: [Công cụ build Faber](/tooling/faber-build-tool.html).
 
-## 4. Real applications {#applications}
+## 4. Ứng dụng thực tế {#applications}
 
-Do not stop at hello-world. The public **examples** repo has multi-command
-CLIs, a local mailspace, GPU workload tracks, and a full language corpus.
+Đừng dừng lại ở hello-world. Kho **examples** công khai có các CLI nhiều
+lệnh, một mailspace cục bộ, các nhánh workload GPU và một corpus ngôn ngữ
+đầy đủ.
 
-| Package | What it shows |
+| Gói | Nội dung minh họa |
 |---|---|
-| AI Workbench | Multi-command CLI, model inspect, embeddings |
-| ViviLite | File-backed mailspace / agent coordination CLI |
-| coreutils | Larger application campaign (parity harnesses) |
-| gpu-workload | Systems / GPU rungs |
-| corpus | One directory per language construct |
+| AI Workbench | CLI nhiều lệnh, kiểm tra model, embeddings |
+| ViviLite | CLI mailspace / điều phối agent dựa trên tệp |
+| coreutils | Chiến dịch ứng dụng lớn hơn (các parity harness) |
+| gpu-workload | Các nấc hệ thống / GPU |
+| corpus | Mỗi cấu trúc ngôn ngữ một thư mục |
 
-Browse them on the [examples page](/start/examples.html).
+Xem chúng trên [trang examples](/start/examples.html).
 
-## 5. If you are an agent {#agents}
+## 5. Nếu bạn là agent {#agents}
 
-1. Read [`/llms.txt`](/llms.txt).
-2. Open [`/agents/index.md`](/agents/index.md).
-3. Pick a skill from [`/.well-known/agent-skills/index.json`](/.well-known/agent-skills/index.json).
+1. Đọc [`/llms.txt`](/llms.txt).
+2. Mở [`/agents/index.md`](/agents/index.md).
+3. Chọn một skill từ [`/.well-known/agent-skills/index.json`](/.well-known/agent-skills/index.json).
 
-## Start track {#start-track}
+## Lộ trình bắt đầu {#start-track}
 
-| Step | Page | Outcome |
+| Bước | Trang | Kết quả |
 |---|---|---|
-| 1 | [Install & download](/start/install.html) | Put Faber 1.1.1 on `PATH` and verify it |
-| 2 | [Hello, Faber](/start/hello.html) | Create and run `salve-munde` |
-| 3 | [Commands you will use](/start/commands.html) | Learn `check`, `build`, `run`, `test`, `explain` |
-| 4 | [Projects and examples](/start/projects.html) | Move into real packages and corpus pages |
+| 1 | [Cài đặt & tải xuống](/start/install.html) | Đặt Faber 1.1.1 vào `PATH` và xác minh |
+| 2 | [Hello, Faber](/start/hello.html) | Tạo và chạy `salve-munde` |
+| 3 | [Các lệnh bạn sẽ dùng](/start/commands.html) | Tìm hiểu `check`, `build`, `run`, `test`, `explain` |
+| 4 | [Dự án và examples](/start/projects.html) | Chuyển sang các gói thực tế và các trang corpus |
 
-## Next {#next}
+## Tiếp theo {#next}
 
-| Topic | Link |
+| Chủ đề | Liên kết |
 |---|---|
-| Install & download | [Install](/start/install.html) |
+| Cài đặt & tải xuống | [Cài đặt](/start/install.html) |
 | Hello, Faber | [Hello](/start/hello.html) |
-| Commands | [Commands](/start/commands.html) |
-| Projects | [Projects](/start/projects.html) |
-| Syntax reference | [Syntax](/syntax/) |
-| Features (locales, lanes) | [Features](/features/) |
-| Ecosystem libraries | [Ecosystem](/ecosystem/) |
-| Keyword corpus | [Corpus](/corpus/) |
+| Các lệnh | [Các lệnh](/start/commands.html) |
+| Dự án | [Dự án](/start/projects.html) |
+| Tham chiếu cú pháp | [Cú pháp](/syntax/) |
+| Tính năng (locale, lane) | [Tính năng](/features/) |
+| Thư viện hệ sinh thái | [Hệ sinh thái](/ecosystem/) |
+| Corpus từ khóa | [Corpus](/corpus/) |

@@ -1,42 +1,33 @@
 +++
+translation_kind = "translated"
+
 title = "Faber"
 section = ""
 order = 0
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:e63352acf54515593d9aeccf392881d72018d55e6b21d6e1ddd5a3979bef91b8"
+code_hash = "sha256:a02ba6ea46d65efd212b09e097d3240402bfe1d46f89b993e389cd53ca1a9c9e"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:85921d8ede375df669e8c25d33f019be707afdd7eeafd8a39966436e39aada00"
 +++
-**Translation status:** Vietnamese reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `vi` render step during the site build.
+**Faber** là một ngôn ngữ lập trình hướng gói với từ vựng hành vi bằng tiếng Latinh, ngữ pháp chính quy nhỏ gọn và hệ thống kiểu tĩnh ưu tiên kiểu. Mã nguồn được biên dịch qua trình biên dịch Radix thành mã Rust có thể xem xét và các tệp nhị phân native. Đặc tính kiến trúc cốt lõi của ngôn ngữ là ý nghĩa nằm trong lõi ngữ nghĩa — HIR (biểu diễn trung gian cấp cao) — thay vì trong bất kỳ dạng hiển thị cụ thể nào.
 
+Tên gọi bắt nguồn từ từ Latinh *maker* hoặc *craftsman*. Trình biên dịch có tên Radix, bắt nguồn từ từ Latinh *root*. Ngôn ngữ được Ian Zepp phát triển và phát hành theo giấy phép MIT.
 
-**Faber** is a package-oriented programming language with a Latin
-behavioural vocabulary, a small regular grammar, and a type-first static
-type system. Source is compiled through the Radix compiler to reviewable
-Rust and native binaries. Its defining architectural property is that
-meaning lives in a semantic core — the HIR (high-level intermediate
-representation) — rather than in any particular rendering.
+**Bạn mới bắt đầu?** Hãy bắt đầu với [Cài đặt và tải xuống](/start/install.html), sau đó đi theo lộ trình khởi đầu: [Hello](/start/hello.html), [Các lệnh](/start/commands.html) và [Dự án](/start/projects.html).
 
-The name derives from the Latin word for *maker* or *craftsman*. The
-compiler is named Radix, from the Latin *root*. The language is
-developed by Ian Zepp and released under the MIT license.
+## Tải xuống Faber 1.1.1 {#download}
 
-**New here?** Start with [Install and download](/start/install.html), then run
-the sequenced start track: [Hello](/start/hello.html),
-[Commands](/start/commands.html), and [Projects](/start/projects.html).
+Bản phát hành hiện tại: **Faber 1.1.1** (thẻ `faber-v1.1.1`). Các gói CLI dựng sẵn cho macOS và Linux; giải nén tệp nhị phân
+`faber-v1.1.1-<target-triple>/faber` rồi đặt nó trên `PATH`.
 
-## Download Faber 1.1.1 {#download}
-
-Current release: **Faber 1.1.1** (tag `faber-v1.1.1`). Prebuilt CLI archives
-for macOS and Linux; extract the `faber-v1.1.1-<target-triple>/faber` binary
-and put it on your `PATH`.
-
-| Platform | Archive | Checksum |
+| Nền tảng | Gói lưu trữ | Mã kiểm tra |
 |---|---|---|
 | **macOS arm64** (Apple Silicon) | [faber-v1.1.1-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
 | **Linux x64** (glibc) | [faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-Quick install (macOS arm64 example):
+Cài đặt nhanh (ví dụ macOS arm64):
 
 ```bash
 curl -fsSL -o faber.tgz \
@@ -51,58 +42,55 @@ sudo mv faber-v1.1.1-aarch64-apple-darwin/faber /usr/local/bin/
 faber --version
 ```
 
-All release notes and assets: [github.com/faberlang/releases · faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1).
-Step-by-step: [Install guide](/start/install.html).
+Tất cả ghi chú và tài sản của bản phát hành: [github.com/faberlang/releases · faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1).
+Hướng dẫn từng bước: [Hướng dẫn cài đặt](/start/install.html). Danh mục lịch sử đầy đủ:
+[Các bản phát hành](/history/releases.html).
 
 | | |
 |---|---|
-| **Paradigm** | Package-oriented; semantic staging |
-| **Typing** | Static, type-first; nullable via `T ∪ nihil` |
-| **Glyphs** | `← → ∴ ≡ ∪ ⇥` |
-| **Designed by** | Ian Zepp |
-| **First appeared** | 2024 |
-| **Compiler** | Radix (Rust) |
-| **Lanes** | Application (HIR) · Systems (MIR) |
-| **Primary target** | Rust → native binary |
-| **Reader locales** | 7 shipped (la, ar, hi, vi, th-TH, zh-Hans, zh-Hant) |
-| **Standard library** | Norma (`norma:*`) |
-| **License** | MIT |
+| **Mô hình** | Hướng gói; phân tầng ngữ nghĩa |
+| **Kiểu** | Tĩnh, ưu tiên kiểu; nullable qua `T ∪ nihil` |
+| **Glyph** | `← → ∴ ≡ ∪ ⇥` |
+| **Thiết kế bởi** | Ian Zepp |
+| **Xuất hiện lần đầu** | 2024 |
+| **Trình biên dịch** | Radix (Rust) |
+| **Các tuyến** | Ứng dụng (HIR) · Hệ thống (MIR) |
+| **Đích chính** | Rust → tệp nhị phân native |
+| **Locale người đọc** | 7 locale đã phát hành (la, ar, hi, vi, th-TH, zh-Hans, zh-Hant) |
+| **Thư viện chuẩn** | Norma (`norma:*`) |
+| **Giấy phép** | MIT |
 
-## Start here {#start-here}
+## Bắt đầu tại đây {#start-here}
 
-| Path | Who | What |
+| Đường dẫn | Đối tượng | Nội dung |
 |---|---|---|
-| [Install](/start/install.html) | Human | Download, PATH, first `faber check` |
-| [Hello](/start/hello.html) | Human | Create and run `salve-munde` |
-| [Commands](/start/commands.html) | Human + agent | Daily CLI loop: check, build, run, test, explain |
-| [Projects](/start/projects.html) | Human + agent | Move from hello-world into real packages |
-| [Quick tour](/start/) | Human | Language shape in five minutes |
-| [Examples](/start/examples.html) | Human + agent | Real packages: CLI apps, mailspace, GPU, corpus |
-| [`/llms.txt`](/llms.txt) | Agent | Machine index — start here if you are a model |
-| [Agent guide](/agents/index.md) | Agent | How to learn Faber and ship a package |
-| [Agent skills](/.well-known/agent-skills/index.json) | Agent | Focused skill guides (install, language, examples, …) |
+| [Cài đặt](/start/install.html) | Người dùng | Tải xuống, PATH, lệnh `faber check` đầu tiên |
+| [Hello](/start/hello.html) | Người dùng | Tạo và chạy `salve-munde` |
+| [Các lệnh](/start/commands.html) | Người dùng + tác nhân | Vòng lặp CLI hằng ngày: check, build, run, test, explain |
+| [Dự án](/start/projects.html) | Người dùng + tác nhân | Chuyển từ hello-world sang các gói thực tế |
+| [Tham quan nhanh](/start/) | Người dùng | Hình dạng ngôn ngữ trong năm phút |
+| [Ví dụ](/start/examples.html) | Người dùng + tác nhân | Các gói thực tế: ứng dụng CLI, mailspace, GPU, corpus |
+| [`/llms.txt`](/llms.txt) | Tác nhân | Chỉ mục máy — bắt đầu tại đây nếu bạn là một mô hình |
+| [Hướng dẫn tác nhân](/agents/index.md) | Tác nhân | Cách học Faber và phát hành một gói |
+| [Kỹ năng tác nhân](/.well-known/agent-skills/index.json) | Tác nhân | Các hướng dẫn kỹ năng tập trung (cài đặt, ngôn ngữ, ví dụ, …) |
 
-## Portal status {#portal-status}
+## Trạng thái portal {#portal-status}
 
-This `/` page is the Speculum Porta for the English site: a locale-less entry
-point that routes people to install/start pages, routes agents to machine
-surfaces, and states locale pack status without browser-time negotiation.
-Stage 7 is a partial multi-locale proof, not a completed localized site:
-only `th-TH`, `zh-Hans`, `zh-Hant`, `vi`, `ar`, and `hi` have generated
-portal/start authored slices plus generated corpus pages, and the authored prose still falls back
-to English.
+Trang `/` này là Speculum Porta cho trang tiếng Anh: một điểm vào không gắn locale, định tuyến người dùng đến các trang cài đặt/khởi đầu, định tuyến tác nhân đến các bề mặt máy và nêu trạng thái gói locale mà không thương lượng tại thời điểm trình duyệt chạy.
+Giai đoạn 7 là một bản thử nghiệm đa locale từng phần, không phải một trang đã bản địa hóa hoàn chỉnh:
+chỉ `th-TH`, `zh-Hans`, `zh-Hant`, `vi`, `ar` và `hi` có các lát cắt nội dung portal/khởi đầu do tác giả viết cùng các trang corpus được sinh tự động, còn phần văn bản do tác giả viết vẫn quay về tiếng Anh.
 
-| Locale | Status | Notes |
+| Locale | Trạng thái | Ghi chú |
 |---|---|---|
-| `la` | Canonical live site | Full generated English/Latin site |
-| `th-TH` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `zh-Hans` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `vi` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `zh-Hant` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `ar` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `hi` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
+| `la` | Trang chính tắc đang hoạt động | Toàn bộ trang tiếng Anh/Latinh được sinh tự động |
+| `th-TH` | Bản thử nghiệm từng phần Giai đoạn 7 | Lát cắt portal/khởi đầu do tác giả viết cùng corpus được sinh tự động; văn bản dự phòng bằng tiếng Anh; toàn bộ tài liệu do tác giả viết đang chờ hoàn thiện |
+| `zh-Hans` | Bản thử nghiệm từng phần Giai đoạn 7 | Lát cắt portal/khởi đầu do tác giả viết cùng corpus được sinh tự động; văn bản dự phòng bằng tiếng Anh; toàn bộ tài liệu do tác giả viết đang chờ hoàn thiện |
+| `vi` | Bản thử nghiệm từng phần Giai đoạn 7 | Lát cắt portal/khởi đầu do tác giả viết cùng corpus được sinh tự động; văn bản dự phòng bằng tiếng Anh; toàn bộ tài liệu do tác giả viết đang chờ hoàn thiện |
+| `zh-Hant` | Bản thử nghiệm từng phần Giai đoạn 7 | Lát cắt portal/khởi đầu do tác giả viết cùng corpus được sinh tự động; văn bản dự phòng bằng tiếng Anh; toàn bộ tài liệu do tác giả viết đang chờ hoàn thiện |
+| `ar` | Bản thử nghiệm từng phần Giai đoạn 7 | Lát cắt portal/khởi đầu do tác giả viết cùng corpus được sinh tự động; văn bản dự phòng bằng tiếng Anh; toàn bộ tài liệu do tác giả viết đang chờ hoàn thiện |
+| `hi` | Bản thử nghiệm từng phần Giai đoạn 7 | Lát cắt portal/khởi đầu do tác giả viết cùng corpus được sinh tự động; văn bản dự phòng bằng tiếng Anh; toàn bộ tài liệu do tác giả viết đang chờ hoàn thiện |
 
-Living sample in canonical Latin:
+Ví dụ đang hoạt động trong tiếng Latinh chính tắc:
 
 ```faber
 functio salve(textus nomen) → textus {
@@ -116,46 +104,37 @@ incipit {
 }
 ```
 
-See [Reader locale](/features/reader-locale.html) for the same semantic program
-rendered through Thai, Simplified Chinese, Traditional Chinese, Arabic, Hindi, and Vietnamese packs.
+Xem [Locale người đọc](/features/reader-locale.html) để xem cùng một chương trình ngữ nghĩa được hiển thị qua các gói tiếng Thái, tiếng Trung giản thể, tiếng Trung phồn thể, tiếng Ả Rập, tiếng Hindi và tiếng Việt.
 
-## Overview {#overview}
+## Tổng quan {#overview}
 
-Faber is designed around a core insight: the intermediate representation
-is the truth, and no target or human-language surface is privileged. A
-Faber program written in Latin keywords can be rendered into Thai,
-Arabic, or Chinese keywords through the same mechanism that renders it
-into Rust, Go, or WebAssembly — because the HIR is the authority and
-every output is a *rendering* of it.
+Faber được thiết kế dựa trên một nhận thức cốt lõi: biểu diễn trung gian là sự thật, và không có đích đến hay bề mặt ngôn ngữ tự nhiên nào được ưu tiên. Một chương trình Faber được viết bằng từ khóa Latinh có thể được hiển thị bằng từ khóa tiếng Thái, tiếng Ả Rập hoặc tiếng Trung thông qua cùng cơ chế hiển thị chương trình đó thành Rust, Go hoặc WebAssembly — vì HIR là nguồn thẩm quyền và mọi đầu ra đều là một *dạng hiển thị* của nó.
 
-The language makes three deliberate signal choices that work together:
+Ngôn ngữ đưa ra ba lựa chọn tín hiệu có chủ đích và phối hợp với nhau:
 
-- **Type-first declarations** — shape reads toward binding: `textus nomen`,
-  not `nomen: textus`.
-- **Latin behavioural words** — declarations, statements, and lifecycle:
-  `functio`, `genus`, `fixum`, `redde`, `si`.
-- **Structural glyphs** — value flow and type joints: `←` (bind), `→`
-  (return type), `∴` (compact branch), `≡` (equality), `∪` (union).
+- **Khai báo ưu tiên kiểu** — hướng hình dạng về phía phép liên kết: `textus nomen`, không phải `nomen: textus`.
+- **Từ hành vi Latinh** — khai báo, câu lệnh và vòng đời: `functio`, `genus`, `fixum`, `redde`, `si`.
+- **Glyph cấu trúc** — luồng giá trị và các mối nối kiểu: `←` (liên kết), `→`
+  (kiểu trả về), `∴` (nhánh rút gọn), `≡` (bằng nhau), `∪` (hợp).
 
-The result is source with stable grammatical shape that can be reviewed,
-transformed, and lowered without losing the reader's sense of intent.
+Kết quả là mã nguồn có hình dạng ngữ pháp ổn định, có thể được xem xét, biến đổi và hạ cấp mà không làm mất cảm nhận về ý định của người đọc.
 
-## Documentation {#documentation}
+## Tài liệu {#documentation}
 
-| Section | Description |
+| Phần | Mô tả |
 |---|---|
-| [History](/history/) | Development timeline, influences, and release history |
-| [Features](/features/) | Reader locale, compilation lanes, Latin vocabulary, glyph system, design principles |
-| [Syntax](/syntax/) | Complete reference: types, functions, control flow, errors, generics, collections |
-| [Tooling](/tooling/) | Radix compiler pipeline, Faber CLI, codegen targets, scripting |
-| [Ecosystem](/ecosystem/) | Norma, Cista, Triga, coreutils, AI Workbench, corpus |
-| [Corpus](/corpus/) | Keyword and construct pages generated from the public corpus |
-| [References](/references/) | EBNF grammar, design documents, repositories |
+| [Lịch sử](/history/) | Dòng thời gian phát triển, ảnh hưởng và lịch sử phát hành |
+| [Các bản phát hành](/history/releases.html) | Bản tải xuống Faber mới nhất cùng mọi thẻ và tệp nhị phân đã phát hành |
+| [Tính năng](/features/) | Locale người đọc, các tuyến biên dịch, từ vựng Latinh, hệ thống glyph, nguyên tắc thiết kế |
+| [Cú pháp](/syntax/) | Tài liệu tham khảo đầy đủ: kiểu, hàm, luồng điều khiển, lỗi, generic, collection |
+| [Công cụ](/tooling/) | Pipeline trình biên dịch Radix, CLI Faber, các đích sinh mã, scripting |
+| [Hệ sinh thái](/ecosystem/) | Norma, Cista, Triga, coreutils, AI Workbench, corpus |
+| [Corpus](/corpus/) | Các trang từ khóa và cấu trúc được sinh từ corpus công khai |
+| [Tham chiếu](/references/) | Ngữ pháp EBNF, tài liệu thiết kế, kho mã |
 
-## Quick example {#quick-example}
+## Ví dụ nhanh {#quick-example}
 
-A simple function demonstrating key Faber patterns — type-first
-parameters, glyph return type, nullable union, Latin control words:
+Một hàm đơn giản minh họa các mẫu Faber chính — tham số ưu tiên kiểu, kiểu trả về bằng glyph, hợp nullable, các từ điều khiển Latinh:
 
 ```text
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
@@ -164,27 +143,21 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 }
 ```
 
-## Live rendering {#live-rendering}
+## Hiển thị trực tiếp {#live-rendering}
 
-The divide function above is rendered in the Latin pack by default. The
-compiler can render the same program in seven reader locales — Thai,
-Simplified Chinese, Traditional Chinese, Arabic, Hindi, Vietnamese — each remapping keywords and types
-to that language while glyphs and identifiers remain unchanged. This is
-not a translation layer applied to the page; it is the same mechanism
-the compiler uses to produce localized source.
+Theo mặc định, hàm chia ở trên được hiển thị trong gói Latinh. Trình biên dịch có thể hiển thị cùng một chương trình trong bảy locale người đọc — tiếng Thái, tiếng Trung giản thể, tiếng Trung phồn thể, tiếng Ả Rập, tiếng Hindi và tiếng Việt — mỗi locale ánh xạ lại từ khóa và kiểu sang ngôn ngữ đó trong khi glyph và định danh vẫn không đổi. Đây không phải là một lớp dịch được áp dụng cho trang; đây là cùng cơ chế mà trình biên dịch sử dụng để tạo mã nguồn bản địa hóa.
 
-See the [reader locale](/features/reader-locale.html) documentation for
-the full discussion.
+Xem tài liệu [locale người đọc](/features/reader-locale.html) để biết thảo luận đầy đủ.
 
-## Repositories {#repositories}
+## Kho mã {#repositories}
 
-| Repo | Role |
+| Kho | Vai trò |
 |---|---|
-| [faberlang/faber](https://github.com/faberlang/faber) | Public user CLI |
-| [faberlang/releases](https://github.com/faberlang/releases) | Tagged CLI release assets |
-| [faberlang/faber-runtime](https://github.com/faberlang/faber-runtime) | Runtime types for generated Rust |
-| [faberlang/norma](https://github.com/faberlang/norma) | Standard library source |
-| [faberlang/cista](https://github.com/faberlang/cista) | Package-store CLI/lib |
-| [faberlang/triga](https://github.com/faberlang/triga) | Graphics / geometry library |
-| [faberlang/examples](https://github.com/faberlang/examples) | Corpus, tracks, application packages |
-| [faberlang/faberlang.dev](https://github.com/faberlang/faberlang.dev) | This documentation site |
+| [faberlang/faber](https://github.com/faberlang/faber) | CLI công khai cho người dùng |
+| [faberlang/releases](https://github.com/faberlang/releases) | Tài sản CLI theo từng bản phát hành |
+| [faberlang/faber-runtime](https://github.com/faberlang/faber-runtime) | Các kiểu runtime cho Rust được sinh |
+| [faberlang/norma](https://github.com/faberlang/norma) | Mã nguồn thư viện chuẩn |
+| [faberlang/cista](https://github.com/faberlang/cista) | CLI/thư viện kho gói |
+| [faberlang/triga](https://github.com/faberlang/triga) | Thư viện đồ họa / hình học |
+| [faberlang/examples](https://github.com/faberlang/examples) | Corpus, lộ trình, các gói ứng dụng |
+| [faberlang/faberlang.dev](https://github.com/faberlang/faberlang.dev) | Trang tài liệu này |

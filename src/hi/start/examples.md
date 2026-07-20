@@ -1,4 +1,6 @@
 +++
+translation_kind = "translated"
+
 title = "Examples"
 section = "examples"
 order = 2
@@ -7,19 +9,18 @@ sources = [
   "examples/ai-workbench/",
   "examples/vivilite/",
 ]
-translation_kind = "fallback"
+
+prose_hash = "sha256:fe9855413a019d0aebf6228e219c1fab4b694d7fa3fd7d7f7cacab4def2f3700"
+code_hash = "sha256:7fce5618203f2537ec7b775252d4ce66501a659a385973e9ec6cc1414c49e9e6"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:902bb133adf106a6e1ce96c44c872f7b3a912a0c0ddcb54fa36cfd0bfff20543"
 +++
-**Translation status:** Hindi reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `hi` render step during the site build.
+वास्तविक Faber पैकेज — केवल अभ्यास के लिए बनाए गए छोटे स्निपेट नहीं। स्रोत सार्वजनिक
+[faberlang/examples](https://github.com/faberlang/examples) रिपॉज़िटरी में है।
+जब आपको यह देखना हो कि एप्लिकेशन कैसे संरचित किए जाते हैं, CLI कैसे जोड़ी जाती हैं,
+या भाषा कॉर्पस कैसे व्यवस्थित किया गया है, तब इनका उपयोग करें।
 
-
-Real Faber packages — not toy snippets. Source lives in the public
-[faberlang/examples](https://github.com/faberlang/examples) repository.
-Use these when you need to see how applications are structured, how CLIs
-are wired, or how the language corpus is organized.
-
-## How to run an example {#how-to-run}
+## उदाहरण कैसे चलाएँ {#how-to-run}
 
 ```bash
 # CLI on PATH (see Install)
@@ -37,51 +38,56 @@ faber build examples/ai-workbench/packages/faber-ai -t rust
 faber test examples/ai-workbench/packages/faber-ai
 ```
 
-Exact entry commands vary by package — read each package `README.md`.
+प्रवेश कमांड पैकेज के अनुसार अलग-अलग होते हैं — हर पैकेज की `README.md` पढ़ें।
 
-## Application packages {#applications}
+## एप्लिकेशन पैकेज {#applications}
 
-| Package | Role | Start here |
+| पैकेज | भूमिका | यहाँ से शुरू करें |
 |---|---|---|
-| **AI Workbench** | Multi-command CLI for local model inventory, embeddings, and inference workflows; Python harness validation | [examples/ai-workbench](https://github.com/faberlang/examples/tree/main/ai-workbench) · site: [AI Workbench](/ecosystem/ai-workbench.html) |
-| **ViviLite** | Faber-native local mailspace CLI (file-backed + optional SQLite lane) for agent coordination commands | [examples/vivilite](https://github.com/faberlang/examples/tree/main/vivilite) |
-| **coreutils** | Larger application campaign reimplementing common utilities with parity harnesses | [examples/coreutils](https://github.com/faberlang/examples/tree/main/coreutils) |
-| **gpu-workload** | GPU / systems workload rungs and contracts | [examples/gpu-workload](https://github.com/faberlang/examples/tree/main/gpu-workload) |
-| **scripta / script-kernel** | Scripting and kernel-facing demos | [examples/scripta](https://github.com/faberlang/examples/tree/main/scripta) |
-| **automation** | Automation sketch packages | [examples/automation](https://github.com/faberlang/examples/tree/main/automation) |
-| **reader-locale** | Locale pack demos for keyword remapping | [examples/reader-locale](https://github.com/faberlang/examples/tree/main/reader-locale) |
-| **cista-lab** | Package-store lab material | [examples/cista-lab](https://github.com/faberlang/examples/tree/main/cista-lab) |
+| **AI Workbench** | स्थानीय मॉडल इन्वेंटरी, एम्बेडिंग और इन्फरेंस वर्कफ़्लो के लिए बहु-कमांड CLI; Python हार्नेस सत्यापन | [examples/ai-workbench](https://github.com/faberlang/examples/tree/main/ai-workbench) · साइट: [AI Workbench](/ecosystem/ai-workbench.html) |
+| **ViviLite** | एजेंट समन्वय कमांड के लिए Faber-नेटिव स्थानीय मेलस्पेस CLI (फ़ाइल-आधारित और वैकल्पिक SQLite लेन) | [examples/vivilite](https://github.com/faberlang/examples/tree/main/vivilite) |
+| **coreutils** | समानता हार्नेस के साथ सामान्य यूटिलिटी को फिर से लागू करने वाला बड़ा एप्लिकेशन अभियान | [examples/coreutils](https://github.com/faberlang/examples/tree/main/coreutils) |
+| **gpu-workload** | GPU / सिस्टम वर्कलोड के स्तर और कॉन्ट्रैक्ट | [examples/gpu-workload](https://github.com/faberlang/examples/tree/main/gpu-workload) |
+| **scripta / script-kernel** | स्क्रिप्टिंग और कर्नेल-उन्मुख डेमो | [examples/scripta](https://github.com/faberlang/examples/tree/main/scripta) |
+| **automation** | ऑटोमेशन स्केच पैकेज | [examples/automation](https://github.com/faberlang/examples/tree/main/automation) |
+| **reader-locale** | कीवर्ड रीमैपिंग के लिए लोकेल पैक डेमो | [examples/reader-locale](https://github.com/faberlang/examples/tree/main/reader-locale) |
+| **cista-lab** | पैकेज-स्टोर लैब सामग्री | [examples/cista-lab](https://github.com/faberlang/examples/tree/main/cista-lab) |
 
-## Language corpus {#corpus}
+## भाषा कॉर्पस {#corpus}
 
-The **corpus** tree is the keyword and construct reference: one directory
-per construct, many small `.fab` programs. It is the source of truth for
-the generated [Corpus](/corpus/) pages on this site.
+**corpus** ट्री कीवर्ड और कंस्ट्रक्ट का संदर्भ है: हर कंस्ट्रक्ट के लिए एक डायरेक्टरी
+और उसमें कई छोटे `.fab` प्रोग्राम। यह इस साइट के जनरेट किए गए [Corpus](/corpus/)
+पृष्ठों का स्रोत-सत्य है।
 
-| Surface | URL |
+| सतह | URL |
 |---|---|
-| Source tree | [examples/corpus](https://github.com/faberlang/examples/tree/main/corpus) |
-| Generated docs | [/corpus/](/corpus/) |
-| Ecosystem note | [Language corpus](/ecosystem/corpus.html) |
+| स्रोत ट्री | [examples/corpus](https://github.com/faberlang/examples/tree/main/corpus) |
+| जनरेट किए गए दस्तावेज़ | [/corpus/](/corpus/) |
+| इकोसिस्टम नोट | [Language corpus](/ecosystem/corpus.html) |
 
-## Stdlib tours {#stdlib}
+## स्टैंडर्ड लाइब्रेरी भ्रमण {#stdlib}
 
-Norma standard-library exempla live in the **norma** repo, not under
-`examples/`:
+Norma की मानक-लाइब्रेरी exempla **norma** रिपॉज़िटरी में हैं, `examples/` के अंतर्गत नहीं:
 
-- [faberlang/norma](https://github.com/faberlang/norma) — `norma/exempla/` when present
-- Site: [Norma](/ecosystem/norma.html)
+- [faberlang/norma](https://github.com/faberlang/norma) — उपलब्ध होने पर `norma/exempla/`
+- साइट: [Norma](/ecosystem/norma.html)
 
-## Suggested learning order {#order}
+## सुझाया गया सीखने का क्रम {#order}
 
-1. [Install](/start/install.html) the CLI.
-2. Skim [Quick tour](/start/) for language shape.
-3. Open **corpus** pages for any keyword you do not recognize ([Corpus hub](/corpus/)).
-4. Read **AI Workbench** or **ViviLite** end-to-end for application shape.
-5. Use [Syntax](/syntax/) and [Tooling](/tooling/) as references while editing.
+1. CLI को [इंस्टॉल](/start/install.html) करें।
+2. भाषा की संरचना समझने के लिए [त्वरित भ्रमण](/start/) देखें।
+3. जिस भी कीवर्ड को आप नहीं पहचानते, उसके लिए **corpus** पृष्ठ खोलें ([Corpus hub](/corpus/))।
+4. एप्लिकेशन की संरचना समझने के लिए **AI Workbench** या **ViviLite** को शुरू से अंत तक पढ़ें।
+5. संपादन के दौरान संदर्भ के रूप में [Syntax](/syntax/) और [Tooling](/tooling/) का उपयोग करें।
 
-## Agent path {#agent-path}
+## एजेंट पथ {#agent-path}
 
-- Skill: [examples](/.well-known/agent-skills/examples/SKILL.md)
-- Skill: [corpus](/.well-known/agent-skills/corpus/SKILL.md)
-- Index: [`/llms.txt`](/llms.txt)
+- स्किल: [examples](/.well-known/agent-skills/examples/SKILL.md)
+- स्किल: [corpus](/.well-known/agent-skills/corpus/SKILL.md)
+- इंडेक्स: [`/llms.txt`](/llms.txt)
+
+## पिछला {#previous}
+
+| पिछला | अगला |
+|---|---|
+| [प्रोजेक्ट और उदाहरण](/start/projects.html) | [फ़ीचर](/features/) |

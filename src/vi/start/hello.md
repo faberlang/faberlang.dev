@@ -1,25 +1,23 @@
 +++
+translation_kind = "translated"
+
 title = "Hello, Faber"
 section = "hello"
 order = 2
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:3a78129bf3787f7c726e39104c95fe9bde78855c4a9f63650410c5cef9610067"
+code_hash = "sha256:1ee50be729b09d1bfba27a1f994ef4d1a47c73a645764f9d5986c9bab1aecfb8"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:e21072271fa884c1401230130dfda6fee4fa8ece2a7a6b9b4f6556bf74502860"
 +++
-**Translation status:** Vietnamese reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `vi` render step during the site build.
+Viết chương trình Faber hữu ích và ngắn gọn nhất: một điểm vào gói định dạng một chuỗi rồi in chuỗi đó.
 
+## Điều kiện tiên quyết {#prerequisites}
 
-Write the smallest useful Faber program: a package entry point that formats a
-string and prints it.
+Trước tiên, hãy hoàn tất [Cài đặt và tải xuống](/start/install.html). Bạn cần có tệp nhị phân `faber` trong `PATH` và một shell đang ở thư mục làm việc nơi bạn có thể tạo tệp.
 
-## Prerequisites {#prerequisites}
-
-Complete [Install and download](/start/install.html) first. You should have a
-`faber` binary on your `PATH` and a shell in a working directory where you can
-create files.
-
-## Create a package {#create-package}
+## Tạo một gói {#create-package}
 
 ```bash
 mkdir salve-munde
@@ -43,49 +41,43 @@ incipit {
 EOF
 ```
 
-## Check it {#check}
+## Kiểm tra gói {#check}
 
 ```bash
 faber check .
 ```
 
-`faber check` runs the front end: lexing, parsing, type checking, and lowering
-far enough to catch ordinary package mistakes without building a native binary.
-If the command fails, read the diagnostic code first; Faber diagnostics are
-intended to be stable search handles.
+`faber check` chạy phần đầu vào của trình biên dịch: phân tích từ vựng, phân tích cú pháp, kiểm tra kiểu và hạ cấp đủ xa để phát hiện các lỗi thông thường trong gói mà không cần xây dựng tệp nhị phân gốc. Nếu lệnh thất bại, trước tiên hãy đọc mã chẩn đoán; các chẩn đoán của Faber được thiết kế để làm mã tra cứu ổn định.
 
-## Run it {#run}
+## Chạy chương trình {#run}
 
 ```bash
 faber run .
 ```
 
-Expected output:
+Kết quả dự kiến:
 
 ```text
 Salve, munde!
 ```
 
-## What you just used {#what-you-used}
+## Những gì bạn vừa sử dụng {#what-you-used}
 
-| Source | Meaning |
+| Mã nguồn | Ý nghĩa |
 |---|---|
-| `functio salve(textus nomen) → textus` | Function named `salve`, type-first parameter, text return |
-| `fixum textus msg ← ...` | Immutable binding |
-| `"Salve, §!"(nomen)` | Format string with display interpolation |
-| `redde msg` | Return |
-| `incipit` | Package entry point |
-| `nota m` | Print a note/output value |
+| `functio salve(textus nomen) → textus` | Hàm tên `salve`, tham số theo kiểu trước, trả về văn bản |
+| `fixum textus msg ← ...` | Khai báo bất biến |
+| `"Salve, §!"(nomen)` | Chuỗi định dạng có nội suy giá trị hiển thị |
+| `redde msg` | Trả về |
+| `incipit` | Điểm vào của gói |
+| `nota m` | In một giá trị ghi chú/kết quả |
 
-## Locale proof {#locale-proof}
+## Chứng minh bản địa hóa {#locale-proof}
 
-The program above is the canonical Latin reader rendering. Reader locales can
-render the same semantic program with different keyword packs while preserving
-glyphs and identifiers. Start with the full proof at
-[Reader locale](/features/reader-locale.html) before writing non-Latin packages.
+Chương trình trên là cách hiển thị chuẩn theo locale đọc tiếng Latinh. Các locale đọc khác có thể hiển thị cùng một chương trình ngữ nghĩa bằng các bộ từ khóa khác nhau, đồng thời giữ nguyên glyph và mã định danh. Hãy bắt đầu với phần chứng minh đầy đủ tại [Locale đọc](/features/reader-locale.html) trước khi viết các gói không dùng chữ Latinh.
 
-## Next {#next}
+## Tiếp theo {#next}
 
-| Previous | Next |
+| Trước | Tiếp theo |
 |---|---|
-| [Install and download](/start/install.html) | [Commands you will use](/start/commands.html) |
+| [Cài đặt và tải xuống](/start/install.html) | [Các lệnh bạn sẽ sử dụng](/start/commands.html) |

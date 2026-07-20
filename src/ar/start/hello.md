@@ -1,25 +1,23 @@
 +++
+translation_kind = "translated"
+
 title = "Hello, Faber"
 section = "hello"
 order = 2
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:3a78129bf3787f7c726e39104c95fe9bde78855c4a9f63650410c5cef9610067"
+code_hash = "sha256:1ee50be729b09d1bfba27a1f994ef4d1a47c73a645764f9d5986c9bab1aecfb8"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:e21072271fa884c1401230130dfda6fee4fa8ece2a7a6b9b4f6556bf74502860"
 +++
-**Translation status:** Arabic reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `ar` render step during the site build.
+اكتب أصغر برنامج Faber مفيد: نقطة دخول حزمة تقوم بتنسيق نص وطباعته.
 
+## المتطلبات الأساسية {#prerequisites}
 
-Write the smallest useful Faber program: a package entry point that formats a
-string and prints it.
+أكمل [التثبيت والتحميل](/start/install.html) أولاً. ينبغي أن يكون لديك ثنائي `faber` في `PATH` وطرفية في دليل عمل يمكنك إنشاء ملفات فيه.
 
-## Prerequisites {#prerequisites}
-
-Complete [Install and download](/start/install.html) first. You should have a
-`faber` binary on your `PATH` and a shell in a working directory where you can
-create files.
-
-## Create a package {#create-package}
+## إنشاء حزمة {#create-package}
 
 ```bash
 mkdir salve-munde
@@ -43,49 +41,43 @@ incipit {
 EOF
 ```
 
-## Check it {#check}
+## التحقق منها {#check}
 
 ```bash
 faber check .
 ```
 
-`faber check` runs the front end: lexing, parsing, type checking, and lowering
-far enough to catch ordinary package mistakes without building a native binary.
-If the command fails, read the diagnostic code first; Faber diagnostics are
-intended to be stable search handles.
+يقوم `faber check` بتشغيل الواجهة الأمامية: التحليل المعجمي، والتحليل النحوي، وفحص الأنواع، والتبسيط بقدر كافٍ لاكتشاف أخطاء الحزمة الاعتيادية دون بناء ثنائي أصلي. إذا فشل الأمر، اقرأ رمز التشخيص أولاً؛ صُممت تشخيصات Faber لتكون مقابض بحث مستقرة.
 
-## Run it {#run}
+## تشغيله {#run}
 
 ```bash
 faber run .
 ```
 
-Expected output:
+الناتج المتوقع:
 
 ```text
 Salve, munde!
 ```
 
-## What you just used {#what-you-used}
+## ما استخدمته للتو {#what-you-used}
 
-| Source | Meaning |
+| المصدر | المعنى |
 |---|---|
-| `functio salve(textus nomen) → textus` | Function named `salve`, type-first parameter, text return |
-| `fixum textus msg ← ...` | Immutable binding |
-| `"Salve, §!"(nomen)` | Format string with display interpolation |
-| `redde msg` | Return |
-| `incipit` | Package entry point |
-| `nota m` | Print a note/output value |
+| `functio salve(textus nomen) → textus` | دالة باسم `salve`، معامل نوعه نصي أولاً، إرجاع نصي |
+| `fixum textus msg ← ...` | ربط غير قابل للتغيير |
+| `"Salve, §!"(nomen)` | سلسلة منسقة مع استيفاء عرضي |
+| `redde msg` | إرجاع القيمة |
+| `incipit` | نقطة دخول الحزمة |
+| `nota m` | طباعة قيمة (ملاحظة/ناتج) |
 
-## Locale proof {#locale-proof}
+## إثبات اللغة {#locale-proof}
 
-The program above is the canonical Latin reader rendering. Reader locales can
-render the same semantic program with different keyword packs while preserving
-glyphs and identifiers. Start with the full proof at
-[Reader locale](/features/reader-locale.html) before writing non-Latin packages.
+البرنامج أعلاه هو العرض المرجعي باللاتينية. يمكن لعروض القارئ تقديم نفس البرنامج الدلالي بحزم كلمات مفتاحية مختلفة مع الحفاظ على الرموز والمعرّفات. ابدأ بالإثبات الكامل في [لغة القارئ](/features/reader-locale.html) قبل كتابة حزم غير لاتينية.
 
-## Next {#next}
+## التالي {#next}
 
-| Previous | Next |
+| السابق | التالي |
 |---|---|
-| [Install and download](/start/install.html) | [Commands you will use](/start/commands.html) |
+| [التثبيت والتحميل](/start/install.html) | [الأوامر التي ستستخدمها](/start/commands.html) |

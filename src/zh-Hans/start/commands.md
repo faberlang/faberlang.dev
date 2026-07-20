@@ -1,31 +1,29 @@
 +++
+translation_kind = "translated"
+
 title = "Commands you will use"
 section = "commands"
 order = 3
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:0e56e02cfc5bc616178712a8ff6e3d914b95257913dbd22db2e8e8aac3c0e72e"
+code_hash = "sha256:adf615632f084c7edf7f1f0dfc205ee4912e8b497b19c9c96167bf9b97e443cc"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:5f49369d204a835c9b325d75c545184df7618fc49406fbe01ad750f17e982b0b"
 +++
-**Translation status:** Simplified Chinese reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `zh-Hans` render step during the site build.
+本页面是 Faber 入门第一周的实用 CLI 速查表。可将其用作命令索引；当需要了解具体标志和编译器流水线细节时，请打开详细的 [Faber 构建工具](/tooling/faber-build-tool.html)页面。
 
+## 每日循环 {#daily-loop}
 
-This page is the practical CLI map for the first week of Faber work. Use it as
-a command index, then open the detailed [Faber build tool](/tooling/faber-build-tool.html)
-page when you need flags and compiler pipeline details.
-
-## Daily loop {#daily-loop}
-
-| Command | Use it for |
+| 命令 | 用途 |
 |---|---|
-| `faber check <package>` | Fast front-end validation: lex, parse, type check, lower |
-| `faber build <package> -t rust` | Emit a Rust project for review or native compilation |
-| `faber run <package>` | Build and execute an application package |
-| `faber test <package>` | Run package tests when the package defines test surfaces |
-| `faber explain <code>` | Read a stable diagnostic explanation |
+| `faber check <package>` | 快速前端校验：词法分析、解析、类型检查、降阶 |
+| `faber build <package> -t rust` | 生成 Rust 项目以供审阅或原生编译 |
+| `faber run <package>` | 构建并执行应用程序包 |
+| `faber test <package>` | 当包定义了测试入口时运行包测试 |
+| `faber explain <code>` | 读取稳定的诊断说明 |
 
-Start with `check`. It is the cheapest command and the one agents should run
-before proposing generated code as valid Faber.
+请从 `check` 开始。它是最轻量的命令，也是代理在将生成的代码作为有效 Faber 提交之前应当运行的命令。
 
 ## Check {#check}
 
@@ -34,9 +32,7 @@ faber check .
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-A passing check means the package is syntactically and semantically acceptable
-to the compiler front end. It does not mean the final native toolchain has been
-invoked.
+通过 check 意味着该包在语法和语义上被编译器前端所接受。这并不代表最终的原生工具链已被调用。
 
 ## Build {#build}
 
@@ -44,9 +40,7 @@ invoked.
 faber build . -t rust
 ```
 
-The Rust target is intentionally reviewable. Generated Rust is a compiler
-artifact, not source of truth; edit the Faber package and rebuild rather than
-patching emitted Rust by hand.
+Rust 目标的设计初衷是便于审阅。生成的 Rust 是编译器产物，而非事实来源；请编辑 Faber 包并重新构建，而不要手动修补已生成的 Rust。
 
 ## Run {#run}
 
@@ -54,21 +48,18 @@ patching emitted Rust by hand.
 faber run .
 ```
 
-Use `run` for application packages with an `incipit` entry point. Library-only
-packages should be checked and tested instead.
+对带有 `incipit` 入口点的应用程序包请使用 `run`。仅作为库的包应当通过 check 和 test 进行验证。
 
-## Explain diagnostics {#explain}
+## 解读诊断 {#explain}
 
 ```bash
 faber explain SEM001
 faber explain LEX006
 ```
 
-Diagnostic families are stable handles: `LEX` for lexical errors, `PAR` for
-parser errors, `SEM` for semantic/type errors. In docs and agent reports, cite
-the diagnostic code instead of paraphrasing a compiler failure loosely.
+诊断族是稳定的句柄：`LEX` 表示词法错误，`PAR` 表示解析器错误，`SEM` 表示语义/类型错误。在文档和代理报告中，请引用诊断代码，而不要含糊地转述编译器失败信息。
 
-## Reader-locale commands {#reader-locale}
+## 读取器区域命令 {#reader-locale}
 
 ```bash
 faber format --reader-locale=la path/to/file.fab
@@ -76,12 +67,10 @@ faber format --reader-locale=th-TH path/to/file.fab
 faber emit -t faber --reader-locale=zh-Hans path/to/file.fab
 ```
 
-Reader locale output is a rendering of the compiler's semantic model, not a
-browser-time translation layer. Locale work belongs after a package checks in
-canonical form.
+读取器区域输出是对编译器语义模型的渲染，而非浏览器运行时的翻译层。区域化工作应当在包以规范形式通过 check 之后进行。
 
-## Next {#next}
+## 下一步 {#next}
 
-| Previous | Next |
+| 上一页 | 下一页 |
 |---|---|
-| [Hello, Faber](/start/hello.html) | [Projects and examples](/start/projects.html) |
+| [你好，Faber](/start/hello.html) | [项目与示例](/start/projects.html) |

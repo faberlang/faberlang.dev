@@ -1,4 +1,6 @@
 +++
+translation_kind = "translated"
+
 title = "Examples"
 section = "examples"
 order = 2
@@ -7,19 +9,18 @@ sources = [
   "examples/ai-workbench/",
   "examples/vivilite/",
 ]
-translation_kind = "fallback"
+
+prose_hash = "sha256:fe9855413a019d0aebf6228e219c1fab4b694d7fa3fd7d7f7cacab4def2f3700"
+code_hash = "sha256:7fce5618203f2537ec7b775252d4ce66501a659a385973e9ec6cc1414c49e9e6"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:902bb133adf106a6e1ce96c44c872f7b3a912a0c0ddcb54fa36cfd0bfff20543"
 +++
-**Translation status:** Vietnamese reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `vi` render step during the site build.
+Các gói Faber thực tế — không phải những đoạn mã mẫu đơn giản. Mã nguồn nằm
+trong kho lưu trữ công khai [faberlang/examples](https://github.com/faberlang/examples).
+Hãy dùng các ví dụ này khi cần xem cách tổ chức ứng dụng, cách kết nối CLI,
+hoặc cách tổ chức corpus của ngôn ngữ.
 
-
-Real Faber packages — not toy snippets. Source lives in the public
-[faberlang/examples](https://github.com/faberlang/examples) repository.
-Use these when you need to see how applications are structured, how CLIs
-are wired, or how the language corpus is organized.
-
-## How to run an example {#how-to-run}
+## Cách chạy một ví dụ {#how-to-run}
 
 ```bash
 # CLI on PATH (see Install)
@@ -37,51 +38,57 @@ faber build examples/ai-workbench/packages/faber-ai -t rust
 faber test examples/ai-workbench/packages/faber-ai
 ```
 
-Exact entry commands vary by package — read each package `README.md`.
+Lệnh chạy chính xác thay đổi theo từng gói — hãy đọc `README.md` của từng gói.
 
-## Application packages {#applications}
+## Các gói ứng dụng {#applications}
 
-| Package | Role | Start here |
+| Gói | Vai trò | Bắt đầu tại đây |
 |---|---|---|
-| **AI Workbench** | Multi-command CLI for local model inventory, embeddings, and inference workflows; Python harness validation | [examples/ai-workbench](https://github.com/faberlang/examples/tree/main/ai-workbench) · site: [AI Workbench](/ecosystem/ai-workbench.html) |
-| **ViviLite** | Faber-native local mailspace CLI (file-backed + optional SQLite lane) for agent coordination commands | [examples/vivilite](https://github.com/faberlang/examples/tree/main/vivilite) |
-| **coreutils** | Larger application campaign reimplementing common utilities with parity harnesses | [examples/coreutils](https://github.com/faberlang/examples/tree/main/coreutils) |
-| **gpu-workload** | GPU / systems workload rungs and contracts | [examples/gpu-workload](https://github.com/faberlang/examples/tree/main/gpu-workload) |
-| **scripta / script-kernel** | Scripting and kernel-facing demos | [examples/scripta](https://github.com/faberlang/examples/tree/main/scripta) |
-| **automation** | Automation sketch packages | [examples/automation](https://github.com/faberlang/examples/tree/main/automation) |
-| **reader-locale** | Locale pack demos for keyword remapping | [examples/reader-locale](https://github.com/faberlang/examples/tree/main/reader-locale) |
-| **cista-lab** | Package-store lab material | [examples/cista-lab](https://github.com/faberlang/examples/tree/main/cista-lab) |
+| **AI Workbench** | CLI đa lệnh để lập danh mục mô hình cục bộ, tạo embedding và thực hiện các quy trình suy luận; xác thực harness Python | [examples/ai-workbench](https://github.com/faberlang/examples/tree/main/ai-workbench) · trang web: [AI Workbench](/ecosystem/ai-workbench.html) |
+| **ViviLite** | CLI mailspace cục bộ thuần Faber (lưu bằng tệp + lane SQLite tùy chọn) cho các lệnh điều phối tác tử | [examples/vivilite](https://github.com/faberlang/examples/tree/main/vivilite) |
+| **coreutils** | Chiến dịch ứng dụng lớn hơn, tái triển khai các tiện ích phổ biến cùng các harness kiểm tra tương đương | [examples/coreutils](https://github.com/faberlang/examples/tree/main/coreutils) |
+| **gpu-workload** | Các tầng workload và hợp đồng cho GPU / hệ thống | [examples/gpu-workload](https://github.com/faberlang/examples/tree/main/gpu-workload) |
+| **scripta / script-kernel** | Các bản minh họa về scripting và tương tác với kernel | [examples/scripta](https://github.com/faberlang/examples/tree/main/scripta) |
+| **automation** | Các gói phác thảo về tự động hóa | [examples/automation](https://github.com/faberlang/examples/tree/main/automation) |
+| **reader-locale** | Các bản minh họa gói locale để ánh xạ lại từ khóa | [examples/reader-locale](https://github.com/faberlang/examples/tree/main/reader-locale) |
+| **cista-lab** | Tài liệu thực hành về kho lưu trữ gói | [examples/cista-lab](https://github.com/faberlang/examples/tree/main/cista-lab) |
 
-## Language corpus {#corpus}
+## Corpus ngôn ngữ {#corpus}
 
-The **corpus** tree is the keyword and construct reference: one directory
-per construct, many small `.fab` programs. It is the source of truth for
-the generated [Corpus](/corpus/) pages on this site.
+Cây **corpus** là tài liệu tham chiếu cho các từ khóa và cấu trúc: mỗi cấu trúc
+có một thư mục riêng, chứa nhiều chương trình `.fab` nhỏ. Đây là nguồn chân lý
+cho các trang [Corpus](/corpus/) được tạo trên trang web này.
 
-| Surface | URL |
+| Bề mặt | URL |
 |---|---|
-| Source tree | [examples/corpus](https://github.com/faberlang/examples/tree/main/corpus) |
-| Generated docs | [/corpus/](/corpus/) |
-| Ecosystem note | [Language corpus](/ecosystem/corpus.html) |
+| Cây mã nguồn | [examples/corpus](https://github.com/faberlang/examples/tree/main/corpus) |
+| Tài liệu được tạo | [/corpus/](/corpus/) |
+| Ghi chú hệ sinh thái | [Corpus ngôn ngữ](/ecosystem/corpus.html) |
 
-## Stdlib tours {#stdlib}
+## Khảo sát thư viện chuẩn {#stdlib}
 
-Norma standard-library exempla live in the **norma** repo, not under
+Các ví dụ thư viện chuẩn Norma nằm trong kho **norma**, không nằm dưới
 `examples/`:
 
-- [faberlang/norma](https://github.com/faberlang/norma) — `norma/exempla/` when present
-- Site: [Norma](/ecosystem/norma.html)
+- [faberlang/norma](https://github.com/faberlang/norma) — `norma/exempla/` nếu có
+- Trang web: [Norma](/ecosystem/norma.html)
 
-## Suggested learning order {#order}
+## Thứ tự học được đề xuất {#order}
 
-1. [Install](/start/install.html) the CLI.
-2. Skim [Quick tour](/start/) for language shape.
-3. Open **corpus** pages for any keyword you do not recognize ([Corpus hub](/corpus/)).
-4. Read **AI Workbench** or **ViviLite** end-to-end for application shape.
-5. Use [Syntax](/syntax/) and [Tooling](/tooling/) as references while editing.
+1. Cài đặt CLI từ trang [Cài đặt](/start/install.html).
+2. Đọc lướt [Chuyến tham quan nhanh](/start/) để nắm hình dạng ngôn ngữ.
+3. Mở các trang **corpus** cho mọi từ khóa bạn chưa nhận ra ([Trang chính Corpus](/corpus/)).
+4. Đọc toàn bộ **AI Workbench** hoặc **ViviLite** để hiểu cấu trúc ứng dụng.
+5. Dùng [Cú pháp](/syntax/) và [Công cụ](/tooling/) làm tài liệu tham chiếu trong khi chỉnh sửa.
 
-## Agent path {#agent-path}
+## Lộ trình cho tác tử {#agent-path}
 
-- Skill: [examples](/.well-known/agent-skills/examples/SKILL.md)
-- Skill: [corpus](/.well-known/agent-skills/corpus/SKILL.md)
-- Index: [`/llms.txt`](/llms.txt)
+- Kỹ năng: [examples](/.well-known/agent-skills/examples/SKILL.md)
+- Kỹ năng: [corpus](/.well-known/agent-skills/corpus/SKILL.md)
+- Chỉ mục: [`/llms.txt`](/llms.txt)
+
+## Trước đó {#previous}
+
+| Trước đó | Tiếp theo |
+|---|---|
+| [Các dự án và ví dụ](/start/projects.html) | [Tính năng](/features/) |

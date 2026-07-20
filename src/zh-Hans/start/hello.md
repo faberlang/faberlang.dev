@@ -1,25 +1,23 @@
 +++
+translation_kind = "translated"
+
 title = "Hello, Faber"
 section = "hello"
 order = 2
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:3a78129bf3787f7c726e39104c95fe9bde78855c4a9f63650410c5cef9610067"
+code_hash = "sha256:1ee50be729b09d1bfba27a1f994ef4d1a47c73a645764f9d5986c9bab1aecfb8"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:e21072271fa884c1401230130dfda6fee4fa8ece2a7a6b9b4f6556bf74502860"
 +++
-**Translation status:** Simplified Chinese reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `zh-Hans` render step during the site build.
+编写最小的可用 Faber 程序：一个格式化字符串并打印它的包入口点。
 
+## 先决条件 {#prerequisites}
 
-Write the smallest useful Faber program: a package entry point that formats a
-string and prints it.
+先完成[安装与下载](/start/install.html)。你的 `PATH` 中应当有一个 `faber` 二进制文件，并且在一个可以创建文件的工作目录中打开一个 shell。
 
-## Prerequisites {#prerequisites}
-
-Complete [Install and download](/start/install.html) first. You should have a
-`faber` binary on your `PATH` and a shell in a working directory where you can
-create files.
-
-## Create a package {#create-package}
+## 创建包 {#create-package}
 
 ```bash
 mkdir salve-munde
@@ -43,49 +41,43 @@ incipit {
 EOF
 ```
 
-## Check it {#check}
+## 检查它 {#check}
 
 ```bash
 faber check .
 ```
 
-`faber check` runs the front end: lexing, parsing, type checking, and lowering
-far enough to catch ordinary package mistakes without building a native binary.
-If the command fails, read the diagnostic code first; Faber diagnostics are
-intended to be stable search handles.
+`faber check` 运行前端：词法分析、语法分析、类型检查，以及足够深的中层降阶，以便在不构建原生二进制文件的情况下捕获普通的包错误。如果命令失败，请先阅读诊断代码；Faber 的诊断设计为稳定的搜索句柄。
 
-## Run it {#run}
+## 运行它 {#run}
 
 ```bash
 faber run .
 ```
 
-Expected output:
+预期输出：
 
 ```text
 Salve, munde!
 ```
 
-## What you just used {#what-you-used}
+## 你刚刚用到的 {#what-you-used}
 
-| Source | Meaning |
+| 源码 | 含义 |
 |---|---|
-| `functio salve(textus nomen) → textus` | Function named `salve`, type-first parameter, text return |
-| `fixum textus msg ← ...` | Immutable binding |
-| `"Salve, §!"(nomen)` | Format string with display interpolation |
-| `redde msg` | Return |
-| `incipit` | Package entry point |
-| `nota m` | Print a note/output value |
+| `functio salve(textus nomen) → textus` | 名为 `salve` 的函数，类型在前的参数，文本返回值 |
+| `fixum textus msg ← ...` | 不可变绑定 |
+| `"Salve, §!"(nomen)` | 带显示插值的格式字符串 |
+| `redde msg` | 返回 |
+| `incipit` | 包入口点 |
+| `nota m` | 打印提示/输出值 |
 
-## Locale proof {#locale-proof}
+## 本地化证明 {#locale-proof}
 
-The program above is the canonical Latin reader rendering. Reader locales can
-render the same semantic program with different keyword packs while preserving
-glyphs and identifiers. Start with the full proof at
-[Reader locale](/features/reader-locale.html) before writing non-Latin packages.
+上面的程序是规范的拉丁语读者渲染。读者本地化可以用不同的关键字包渲染同一个语义程序，同时保留字形和标识符。在编写非拉丁语包之前，请先阅读完整的证明：[读者本地化](/features/reader-locale.html)。
 
-## Next {#next}
+## 下一步 {#next}
 
-| Previous | Next |
+| 上一页 | 下一页 |
 |---|---|
-| [Install and download](/start/install.html) | [Commands you will use](/start/commands.html) |
+| [安装与下载](/start/install.html) | [你将使用的命令](/start/commands.html) |

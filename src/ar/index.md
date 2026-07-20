@@ -1,42 +1,32 @@
 +++
+translation_kind = "translated"
+
 title = "Faber"
 section = ""
 order = 0
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:e63352acf54515593d9aeccf392881d72018d55e6b21d6e1ddd5a3979bef91b8"
+code_hash = "sha256:a02ba6ea46d65efd212b09e097d3240402bfe1d46f89b993e389cd53ca1a9c9e"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:85921d8ede375df669e8c25d33f019be707afdd7eeafd8a39966436e39aada00"
 +++
-**Translation status:** Arabic reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `ar` render step during the site build.
+**Faber** هي لغة برمجة موجهة للحزم بمفردات سلوكية لاتينية، وقواعد نحوية منتظمة صغيرة، ونظام أنواع ثابت قائم على النوع أولاً. يُصرَّف المصدر عبر مصرف Radix إلى Rust قابل للمراجعة وثنائيات أصلية. الخاصية المعمارية المميزة لها هي أن المعنى يكمن في نواة دلالية — التمثيل الوسيط عالي المستوى (HIR) — بدلاً من أي تصيير معين.
 
+الاسم مشتق من الكلمة اللاتينية التي تعني *صانع* أو *حرفي*. سُمي المصرف Radix، من الكلمة اللاتينية *جذر*. طُوِّرت اللغة بواسطة Ian Zepp وصدرت تحت رخصة MIT.
 
-**Faber** is a package-oriented programming language with a Latin
-behavioural vocabulary, a small regular grammar, and a type-first static
-type system. Source is compiled through the Radix compiler to reviewable
-Rust and native binaries. Its defining architectural property is that
-meaning lives in a semantic core — the HIR (high-level intermediate
-representation) — rather than in any particular rendering.
+**جديد هنا؟** ابدأ بـ [التثبيت والتحميل](/start/install.html)، ثم شغّل مسار البداية المتسلسل: [مرحباً](/start/hello.html)، [الأوامر](/start/commands.html)، و[المشاريع](/start/projects.html).
 
-The name derives from the Latin word for *maker* or *craftsman*. The
-compiler is named Radix, from the Latin *root*. The language is
-developed by Ian Zepp and released under the MIT license.
+## تحميل Faber 1.1.1 {#download}
 
-**New here?** Start with [Install and download](/start/install.html), then run
-the sequenced start track: [Hello](/start/hello.html),
-[Commands](/start/commands.html), and [Projects](/start/projects.html).
+الإصدار الحالي: **Faber 1.1.1** (الوسم `faber-v1.1.1`). أرشيفات CLI مُجمَّعة مسبقاً لأنظمة macOS و Linux؛ استخرج الثنائي `faber-v1.1.1-<target-triple>/faber` وضعه في `PATH` لديك.
 
-## Download Faber 1.1.1 {#download}
-
-Current release: **Faber 1.1.1** (tag `faber-v1.1.1`). Prebuilt CLI archives
-for macOS and Linux; extract the `faber-v1.1.1-<target-triple>/faber` binary
-and put it on your `PATH`.
-
-| Platform | Archive | Checksum |
+| المنصة | الأرشيف | المجموع الاختباري |
 |---|---|---|
 | **macOS arm64** (Apple Silicon) | [faber-v1.1.1-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
 | **Linux x64** (glibc) | [faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-Quick install (macOS arm64 example):
+تثبيت سريع (مثال macOS arm64):
 
 ```bash
 curl -fsSL -o faber.tgz \
@@ -51,58 +41,53 @@ sudo mv faber-v1.1.1-aarch64-apple-darwin/faber /usr/local/bin/
 faber --version
 ```
 
-All release notes and assets: [github.com/faberlang/releases · faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1).
-Step-by-step: [Install guide](/start/install.html).
+جميع ملاحظات الإصدار والموجودات: [github.com/faberlang/releases · faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1).
+خطوة بخطوة: [دليل التثبيت](/start/install.html). الجرد التاريخي الكامل:
+[الإصدارات](/history/releases.html).
 
 | | |
 |---|---|
-| **Paradigm** | Package-oriented; semantic staging |
-| **Typing** | Static, type-first; nullable via `T ∪ nihil` |
-| **Glyphs** | `← → ∴ ≡ ∪ ⇥` |
-| **Designed by** | Ian Zepp |
-| **First appeared** | 2024 |
-| **Compiler** | Radix (Rust) |
-| **Lanes** | Application (HIR) · Systems (MIR) |
-| **Primary target** | Rust → native binary |
-| **Reader locales** | 7 shipped (la, ar, hi, vi, th-TH, zh-Hans, zh-Hant) |
-| **Standard library** | Norma (`norma:*`) |
-| **License** | MIT |
+| **النمط** | موجه للحزم؛ تجهيز دلالي |
+| **التحقق من الأنواع** | ثابت، النوع أولاً؛ يقبل القيمة الفارغة عبر `T ∪ لا شيء` |
+| **الرموز** | `← → ∴ ≡ ∪ ⇥` |
+| **صممها** | Ian Zepp |
+| **أول ظهور** | 2024 |
+| **المصرف** | Radix (Rust) |
+| **المسارات** | تطبيقي (HIR) · أنظمة (MIR) |
+| **الهدف الأساسي** | Rust → ثنائي أصلي |
+| **لغات القارئ** | 7 مُصدَّرة (la, ar, hi, vi, th-TH, zh-Hans, zh-Hant) |
+| **المكتبة القياسية** | Norma (`norma:*`) |
+| **الرخصة** | MIT |
 
-## Start here {#start-here}
+## ابدأ هنا {#start-here}
 
-| Path | Who | What |
+| المسار | لمن | ماذا |
 |---|---|---|
-| [Install](/start/install.html) | Human | Download, PATH, first `faber check` |
-| [Hello](/start/hello.html) | Human | Create and run `salve-munde` |
-| [Commands](/start/commands.html) | Human + agent | Daily CLI loop: check, build, run, test, explain |
-| [Projects](/start/projects.html) | Human + agent | Move from hello-world into real packages |
-| [Quick tour](/start/) | Human | Language shape in five minutes |
-| [Examples](/start/examples.html) | Human + agent | Real packages: CLI apps, mailspace, GPU, corpus |
-| [`/llms.txt`](/llms.txt) | Agent | Machine index — start here if you are a model |
-| [Agent guide](/agents/index.md) | Agent | How to learn Faber and ship a package |
-| [Agent skills](/.well-known/agent-skills/index.json) | Agent | Focused skill guides (install, language, examples, …) |
+| [التثبيت](/start/install.html) | بشري | تحميل، PATH، أول `faber check` |
+| [مرحباً](/start/hello.html) | بشري | إنشاء وتشغيل `salve-munde` |
+| [الأوامر](/start/commands.html) | بشري + وكيل | حلقة CLI اليومية: check, build, run, test, explain |
+| [المشاريع](/start/projects.html) | بشري + وكيل | الانتقال من hello-world إلى حزم حقيقية |
+| [جولة سريعة](/start/) | بشري | شكل اللغة في خمس دقائق |
+| [أمثلة](/start/examples.html) | بشري + وكيل | حزم حقيقية: تطبيقات CLI، مساحة بريد، GPU، corpus |
+| [`/llms.txt`](/llms.txt) | وكيل | فهرس آلي — ابدأ هنا إذا كنت نموذجاً |
+| [دليل الوكيل](/agents/index.md) | وكيل | كيفية تعلم Faber وشحن حزمة |
+| [مهارات الوكيل](/.well-known/agent-skills/index.json) | وكيل | أدلة مهارات مركزة (تثبيت، لغة، أمثلة، …) |
 
-## Portal status {#portal-status}
+## حالة البوابة {#portal-status}
 
-This `/` page is the Speculum Porta for the English site: a locale-less entry
-point that routes people to install/start pages, routes agents to machine
-surfaces, and states locale pack status without browser-time negotiation.
-Stage 7 is a partial multi-locale proof, not a completed localized site:
-only `th-TH`, `zh-Hans`, `zh-Hant`, `vi`, `ar`, and `hi` have generated
-portal/start authored slices plus generated corpus pages, and the authored prose still falls back
-to English.
+صفحة `/` هذه هي Speculum Porta للموقع الإنجليزي: نقطة دخول بلا لغة محلية توجه الأشخاص إلى صفحات التثبيت/البداية، وتوجه الوكلاء إلى الأسطح الآلية، وتوضح حالة حزمة اللغة المحلية دون تفاوض زمن المتصفح. المرحلة 7 هي إثبات جزئي متعدد اللغات، وليس موقعاً محلياً مكتملاً: فقط `th-TH`، `zh-Hans`، `zh-Hant`، `vi`، `ar`، و`hi` تمتلك شرائح بوابة/بداية مُنشأة بالإضافة إلى صفحات corpus مُنشأة، والنثر المؤلَّف لا يزال يرجع إلى الإنجليزية.
 
-| Locale | Status | Notes |
+| اللغة المحلية | الحالة | ملاحظات |
 |---|---|---|
-| `la` | Canonical live site | Full generated English/Latin site |
-| `th-TH` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `zh-Hans` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `vi` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `zh-Hant` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `ar` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `hi` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
+| `la` | الموقع القانوني الحي | موقع إنجليزي/لاتيني مُنشأ بالكامل |
+| `th-TH` | إثبات جزئي للمرحلة 7 | شريحة بوابة/بداية مُنشأة بالإضافة إلى corpus مُنشأ؛ نثر إنجليزي احتياطي؛ الوثائق الكاملة المؤلَّفة معلقة |
+| `zh-Hans` | إثبات جزئي للمرحلة 7 | شريحة بوابة/بداية مُنشأة بالإضافة إلى corpus مُنشأ؛ نثر إنجليزي احتياطي؛ الوثائق الكاملة المؤلَّفة معلقة |
+| `vi` | إثبات جزئي للمرحلة 7 | شريحة بوابة/بداية مُنشأة بالإضافة إلى corpus مُنشأ؛ نثر إنجليزي احتياطي؛ الوثائق الكاملة المؤلَّفة معلقة |
+| `zh-Hant` | إثبات جزئي للمرحلة 7 | شريحة بوابة/بداية مُنشأة بالإضافة إلى corpus مُنشأ؛ نثر إنجليزي احتياطي؛ الوثائق الكاملة المؤلَّفة معلقة |
+| `ar` | إثبات جزئي للمرحلة 7 | شريحة بوابة/بداية مُنشأة بالإضافة إلى corpus مُنشأ؛ نثر إنجليزي احتياطي؛ الوثائق الكاملة المؤلَّفة معلقة |
+| `hi` | إثبات جزئي للمرحلة 7 | شريحة بوابة/بداية مُنشأة بالإضافة إلى corpus مُنشأ؛ نثر إنجليزي احتياطي؛ الوثائق الكاملة المؤلَّفة معلقة |
 
-Living sample in canonical Latin:
+عينة حية باللاتينية القانونية:
 
 ```faber
 functio salve(textus nomen) → textus {
@@ -116,46 +101,36 @@ incipit {
 }
 ```
 
-See [Reader locale](/features/reader-locale.html) for the same semantic program
-rendered through Thai, Simplified Chinese, Traditional Chinese, Arabic, Hindi, and Vietnamese packs.
+انظر [لغة القارئ](/features/reader-locale.html) لنفس البرنامج الدلالي المُصيَّر عبر حزم التايلاندية، والصينية المبسطة، والصينية التقليدية، والعربية، والهندية، والفيتنامية.
 
-## Overview {#overview}
+## نظرة عامة {#overview}
 
-Faber is designed around a core insight: the intermediate representation
-is the truth, and no target or human-language surface is privileged. A
-Faber program written in Latin keywords can be rendered into Thai,
-Arabic, or Chinese keywords through the same mechanism that renders it
-into Rust, Go, or WebAssembly — because the HIR is the authority and
-every output is a *rendering* of it.
+صُممت Faber حول فكرة محورية: التمثيل الوسيط هو الحقيقة، ولا يتمتع أي هدف أو سطح لغة بشرية بامتياز. يمكن تصيير برنامج Faber مكتوب بكلمات لاتينية مفتاحية إلى كلمات تايلاندية، أو عربية، أو صينية مفتاحية عبر نفس الآلية التي تصيره إلى Rust، أو Go، أو WebAssembly — لأن HIR هو السلطة وكل مخرج هو *تصيير* له.
 
-The language makes three deliberate signal choices that work together:
+تتخذ اللغة ثلاثة خيارات إشارية متعمدة تعمل معاً:
 
-- **Type-first declarations** — shape reads toward binding: `textus nomen`,
-  not `nomen: textus`.
-- **Latin behavioural words** — declarations, statements, and lifecycle:
-  `functio`, `genus`, `fixum`, `redde`, `si`.
-- **Structural glyphs** — value flow and type joints: `←` (bind), `→`
-  (return type), `∴` (compact branch), `≡` (equality), `∪` (union).
+- **تصريحات النوع أولاً** — يتجه الشكل نحو الربط: `نص nomen`، وليس `nomen: نص`.
+- **كلمات سلوكية لاتينية** — التصريحات، والتعليمات، ودورة الحياة: `دالة`، `نوع`، `ثابت`، `أعد`، `إذا`.
+- **رموز بنيوية** — تدفق القيم ووصلات الأنواع: `←` (ربط)، `→` (نوع الإرجاع)، `∴` (تفرع مضغوط)، `≡` (تساوي)، `∪` (اتحاد).
 
-The result is source with stable grammatical shape that can be reviewed,
-transformed, and lowered without losing the reader's sense of intent.
+النتيجة هي مصدر ذو شكل نحوي مستقر يمكن مراجعته، وتحويله، وتخفيضه دون فقدان إحساس القارئ بالقصد.
 
-## Documentation {#documentation}
+## التوثيق {#documentation}
 
-| Section | Description |
+| القسم | الوصف |
 |---|---|
-| [History](/history/) | Development timeline, influences, and release history |
-| [Features](/features/) | Reader locale, compilation lanes, Latin vocabulary, glyph system, design principles |
-| [Syntax](/syntax/) | Complete reference: types, functions, control flow, errors, generics, collections |
-| [Tooling](/tooling/) | Radix compiler pipeline, Faber CLI, codegen targets, scripting |
-| [Ecosystem](/ecosystem/) | Norma, Cista, Triga, coreutils, AI Workbench, corpus |
-| [Corpus](/corpus/) | Keyword and construct pages generated from the public corpus |
-| [References](/references/) | EBNF grammar, design documents, repositories |
+| [التاريخ](/history/) | الجدول الزمني للتطوير، والتأثيرات، وتاريخ الإصدارات |
+| [الإصدارات](/history/releases.html) | أحدث تحميل لـ Faber بالإضافة إلى كل وسم وثنائي منشور |
+| [الميزات](/features/) | لغة القارئ، مسارات التصريف، المفردات اللاتينية، نظام الرموز، مبادئ التصميم |
+| [الصياغة](/syntax/) | مرجع كامل: الأنواع، الدوال، تدفق التحكم، الأخطاء، العموميات، المجموعات |
+| [الأدوات](/tooling/) | خط أنابيب مصرف Radix، واجهة Faber CLI، أهداف توليد الشيفرة، البرمجة النصية |
+| [النظام البيئي](/ecosystem/) | Norma، Cista، Triga، coreutils، AI Workbench، corpus |
+| [المدونة](/corpus/) | صفحات كلمات مفتاحية وبنى مُنشأة من المدونة العامة |
+| [المراجع](/references/) | قواعد EBNF، وثائق التصميم، المستودعات |
 
-## Quick example {#quick-example}
+## مثال سريع {#quick-example}
 
-A simple function demonstrating key Faber patterns — type-first
-parameters, glyph return type, nullable union, Latin control words:
+دالة بسيطة توضح أنماط Faber الأساسية — معاملات النوع أولاً، نوع إرجاع رمزي، اتحاد يقبل القيمة الفارغة، كلمات تحكم لاتينية:
 
 ```text
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
@@ -164,27 +139,21 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 }
 ```
 
-## Live rendering {#live-rendering}
+## التصيير الحي {#live-rendering}
 
-The divide function above is rendered in the Latin pack by default. The
-compiler can render the same program in seven reader locales — Thai,
-Simplified Chinese, Traditional Chinese, Arabic, Hindi, Vietnamese — each remapping keywords and types
-to that language while glyphs and identifiers remain unchanged. This is
-not a translation layer applied to the page; it is the same mechanism
-the compiler uses to produce localized source.
+دالة divide أعلاه مُصيَّرة في الحزمة اللاتينية افتراضياً. يستطيع المصرف تصيير نفس البرنامج بسبع لغات قارئ — التايلاندية، والصينية المبسطة، والصينية التقليدية، والعربية، والهندية، والفيتنامية — كل منها يعيد تعيين الكلمات المفتاحية والأنواع إلى تلك اللغة بينما تبقى الرموز والمعرفات دون تغيير. هذه ليست طبقة ترجمة تُطبَّق على الصفحة؛ إنها نفس الآلية التي يستخدمها المصرف لإنتاج مصدر محلي.
 
-See the [reader locale](/features/reader-locale.html) documentation for
-the full discussion.
+انظر توثيق [لغة القارئ](/features/reader-locale.html) للنقاش الكامل.
 
-## Repositories {#repositories}
+## المستودعات {#repositories}
 
-| Repo | Role |
+| المستودع | الدور |
 |---|---|
-| [faberlang/faber](https://github.com/faberlang/faber) | Public user CLI |
-| [faberlang/releases](https://github.com/faberlang/releases) | Tagged CLI release assets |
-| [faberlang/faber-runtime](https://github.com/faberlang/faber-runtime) | Runtime types for generated Rust |
-| [faberlang/norma](https://github.com/faberlang/norma) | Standard library source |
-| [faberlang/cista](https://github.com/faberlang/cista) | Package-store CLI/lib |
-| [faberlang/triga](https://github.com/faberlang/triga) | Graphics / geometry library |
-| [faberlang/examples](https://github.com/faberlang/examples) | Corpus, tracks, application packages |
-| [faberlang/faberlang.dev](https://github.com/faberlang/faberlang.dev) | This documentation site |
+| [faberlang/faber](https://github.com/faberlang/faber) | واجهة CLI العامة للمستخدم |
+| [faberlang/releases](https://github.com/faberlang/releases) | موجودات الإصدارات الموسومة لـ CLI |
+| [faberlang/faber-runtime](https://github.com/faberlang/faber-runtime) | أنواع وقت التشغيل لـ Rust المُنشأ |
+| [faberlang/norma](https://github.com/faberlang/norma) | مصدر المكتبة القياسية |
+| [faberlang/cista](https://github.com/faberlang/cista) | CLI/lib مخزن الحزم |
+| [faberlang/triga](https://github.com/faberlang/triga) | مكتبة الرسوميات/الهندسة |
+| [faberlang/examples](https://github.com/faberlang/examples) | المدونة، المسارات، حزم التطبيقات |
+| [faberlang/faberlang.dev](https://github.com/faberlang/faberlang.dev) | موقع التوثيق هذا |

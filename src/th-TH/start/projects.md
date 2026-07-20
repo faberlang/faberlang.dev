@@ -1,29 +1,31 @@
 +++
+translation_kind = "translated"
+
 title = "โปรเจกต์และตัวอย่าง"
 section = "projects"
 order = 4
 sources = []
-translation_kind = "translated"
+
 
 
 prose_hash = "sha256:8a914c63394e5bd0bf08ccef737eb95ec4cfb7df1813f3475c78d6ef579fb14d"
 code_hash = "sha256:08056868d41c8d2a2925beb910fea8adcf4ac708fa67559e5a160dd900429a06"
-source_commit = "ee93015caac71f7b89ddef8d9010ffbe22d6cd7e"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
 +++
-หลังจาก hello-world แล้ว ให้ก้าวไปสู่แพ็กเกจจริง Faber เป็นภาษาเชิงแพ็กเกจ วิธีเรียนรู้ที่เร็วที่สุดคือตรวจสอบและอ่านแพ็กเกจที่มีอยู่ซึ่งใช้พื้นผิวคอมไพเลอร์เดียวกับที่คุณจะใช้งาน
+หลังจาก hello-world แล้ว ให้เริ่มทำงานกับแพ็กเกจจริง Faber เป็นภาษาที่จัดโครงสร้างรอบแพ็กเกจ วิธีเรียนรู้ที่เร็วที่สุดคือค้นหาและอ่านแพ็กเกจที่มีอยู่ ซึ่งใช้ความสามารถของคอมไพเลอร์แบบเดียวกับที่คุณวางแผนจะใช้
 
-## ที่เก็บสาธารณะ {#repositories}
+## รีโพซิทอรีสาธารณะ {#repositories}
 
-| ที่เก็บ | Start here | Why |
+| รีโพซิทอรี | เริ่มที่นี่ | เหตุผล |
 |---|---|---|
-| [`faberlang/examples`](https://github.com/faberlang/examples) | `corpus/`, application packages, tracks | คลังตัวอย่างสาธารณะและตัวอย่างแอปพลิเคชัน |
-| [`faberlang/norma`](https://github.com/faberlang/norma) | `norma:*` packages | ซอร์สโค้ดไลบรารีมาตรฐาน |
-| [`faberlang/faber`](https://github.com/faberlang/faber) | ตัวห่อ CLI | เครื่องมือ build สำหรับผู้ใช้ |
-| [`faberlang/cista`](https://github.com/faberlang/cista) | CLI/lib ของ package-store | พื้นผิวการจัดการแพ็กเกจ |
-| [`faberlang/triga`](https://github.com/faberlang/triga) | `triga:*` source | ไลบรารีกราฟิกและเรขาคณิต |
+| [`faberlang/examples`](https://github.com/faberlang/examples) | `corpus/`, แพ็กเกจแอปพลิเคชัน และแทร็กต่าง ๆ | คอร์ปัสสาธารณะและตัวอย่างแอปพลิเคชัน |
+| [`faberlang/norma`](https://github.com/faberlang/norma) | แพ็กเกจ `norma:*` | ซอร์สโค้ดไลบรารีมาตรฐาน |
+| [`faberlang/faber`](https://github.com/faberlang/faber) | CLI wrapper | เครื่องมือบิลด์สำหรับผู้ใช้ |
+| [`faberlang/cista`](https://github.com/faberlang/cista) | CLI/ไลบรารีของ package store | พื้นผิวการจัดการแพ็กเกจ |
+| [`faberlang/triga`](https://github.com/faberlang/triga) | ซอร์ส `triga:*` | ไลบรารีกราฟิกและเรขาคณิต |
 
-## โคลนพื้นที่เรียนรู้ {#clone-workspace}
+## โคลนเวิร์กสเปซสำหรับเรียนรู้ {#clone-workspace}
 
 ```bash
 mkdir faber-learning
@@ -32,36 +34,36 @@ git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-แพ็กเกจที่นำเข้า `norma:*` จะแก้ไข dependencies จากที่เก็บแพ็กเกจ Cista ที่บันทึกไว้ใน `faber.lock` ให้ใช้ `FABER_LIBRARY_HOME` เฉพาะเมื่อคุณต้องการ override ตัวแก้ไข dependency ในเครื่องสำหรับการพัฒนาไลบรารีเท่านั้น
+แพ็กเกจที่มีอิมพอร์ต `norma:*` จะใช้การอ้างอิงดีเพนเดนซีจาก Cista package store ที่บันทึกไว้ใน `faber.lock` ใช้ `FABER_LIBRARY_HOME` เฉพาะเมื่อคุณต้องการแทนที่ตัวแก้ไขไลบรารีในเครื่องโดยตั้งใจเพื่อพัฒนาไลบรารี
 
 ## อ่านตัวอย่างตามลำดับนี้ {#read-order}
 
-1. [แนะนำอย่างรวดเร็ว](/start/) — สำหรับไวยากรณ์พื้นผิว
-2. [สวัสดี Faber](/start/hello.html) — สำหรับแพ็กเกจเดียว
-3. [คลังคำศัพท์](/corpus/) — สำหรับหนึ่งหน้าต่อคีย์เวิร์ดหรือโครงสร้าง
-4. [ตัวอย่าง](/start/examples.html) — สำหรับแอปพลิเคชันขนาดใหญ่
-5. [เครื่องมือ build Faber](/tooling/faber-build-tool.html) — สำหรับรายละเอียด CLI
+1. [ทัวร์สั้น ๆ](/start/) เพื่อเรียนรู้ไวยากรณ์พื้นฐาน
+2. [สวัสดี Faber](/start/hello.html) สำหรับแพ็กเกจเดียว
+3. [คอร์ปัส](/corpus/) ซึ่งมีหนึ่งหน้าต่อหนึ่งคีย์เวิร์ดหรือโครงสร้าง
+4. [ตัวอย่าง](/start/examples.html) สำหรับแอปพลิเคชันขนาดใหญ่ขึ้น
+5. [เครื่องมือบิลด์ Faber](/tooling/faber-build-tool.html) สำหรับรายละเอียด CLI
 
-## เวิร์กโฟลว์เอเจนต์ {#agent-workflow}
+## เวิร์กโฟลว์สำหรับเอเจนต์ {#agent-workflow}
 
-เอเจนต์ไม่ควรอนุมานไวยากรณ์จากคำอธิบายเพียงอย่างเดียว ให้ใช้พื้นผิวเครื่องแล้วตรวจสอบโค้ดที่สร้างขึ้น:
+เอเจนต์ไม่ควรอนุมานไวยากรณ์จากคำอธิบายเพียงอย่างเดียว ให้ใช้ machine surfaces แล้วตรวจสอบโค้ดที่สร้างขึ้น:
 
 ```bash
 curl -fsSL https://faberlang.dev/llms.txt
 faber check path/to/package
 ```
 
-สำหรับงานแพ็กเกจ ให้อ้างอิง repo, path ของแพ็กเกจ, คำสั่ง, และรหัส diagnostic ในรายงาน หากคุณแก้ไขเอกสารที่มีโค้ด Faber ในเฟนซ์ในไซต์นี้ ให้รัน fence validator ก่อนยืนยันว่าตัวอย่างยังคงคอมไพล์ได้
+สำหรับงานแพ็กเกจ ให้ระบุรีโพซิทอรี พาธแพ็กเกจ คำสั่ง และโค้ดวินิจฉัยในรายงาน หากคุณแก้ไขเอกสารที่มีโค้ด Faber แบบ fenced ในเว็บไซต์นี้ ให้เรียกใช้ตัวตรวจสอบ fence ก่อนระบุว่าตัวอย่างยังคอมไพล์ได้
 
-## หลังแทร็กเริ่มต้น {#after-start}
+## สิ่งที่จะเรียนรู้ต่อจากแทร็กเริ่มต้น {#after-start}
 
 | เป้าหมาย | อ่าน |
 |---|---|
 | เรียนรู้ไวยากรณ์ | [ไวยากรณ์](/syntax/) |
-| เข้าใจ locale | [Reader locale](/features/reader-locale.html) |
-| ใช้คอมไพเลอร์ | [Faber build tool](/tooling/faber-build-tool.html) และ [Radix compiler](/tooling/radix-compiler.html) |
-| เรียกดูโครงสร้าง | [คลังภาษา](/corpus/) |
-| สร้างด้วยไลบรารี | [ระบบนิเวศ](/ecosystem/) |
+| ทำความเข้าใจ locale | [Reader locale](/features/reader-locale.html) |
+| ใช้คอมไพเลอร์ | [เครื่องมือบิลด์ Faber](/tooling/faber-build-tool.html) และ [คอมไพเลอร์ Radix](/tooling/radix-compiler.html) |
+| เรียกดูโครงสร้าง | [คอร์ปัส](/corpus/) |
+| สร้างโปรแกรมด้วยไลบรารี | [ระบบนิเวศ](/ecosystem/) |
 
 ## ถัดไป {#next}
 

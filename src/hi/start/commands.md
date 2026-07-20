@@ -1,74 +1,65 @@
 +++
+translation_kind = "translated"
+
 title = "Commands you will use"
 section = "commands"
 order = 3
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:0e56e02cfc5bc616178712a8ff6e3d914b95257913dbd22db2e8e8aac3c0e72e"
+code_hash = "sha256:adf615632f084c7edf7f1f0dfc205ee4912e8b497b19c9c96167bf9b97e443cc"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:5f49369d204a835c9b325d75c545184df7618fc49406fbe01ad750f17e982b0b"
 +++
-**Translation status:** Hindi reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `hi` render step during the site build.
+यह पृष्ठ Faber पर काम के पहले सप्ताह के लिए व्यावहारिक CLI मानचित्र है। इसे कमांड इंडेक्स की तरह उपयोग करें, फिर जब आपको फ़्लैग और कंपाइलर पाइपलाइन का विस्तृत विवरण चाहिए, तो [Faber बिल्ड टूल](/tooling/faber-build-tool.html) पृष्ठ खोलें।
 
+## दैनिक चक्र {#daily-loop}
 
-This page is the practical CLI map for the first week of Faber work. Use it as
-a command index, then open the detailed [Faber build tool](/tooling/faber-build-tool.html)
-page when you need flags and compiler pipeline details.
-
-## Daily loop {#daily-loop}
-
-| Command | Use it for |
+| कमांड | इसका उपयोग |
 |---|---|
-| `faber check <package>` | Fast front-end validation: lex, parse, type check, lower |
-| `faber build <package> -t rust` | Emit a Rust project for review or native compilation |
-| `faber run <package>` | Build and execute an application package |
-| `faber test <package>` | Run package tests when the package defines test surfaces |
-| `faber explain <code>` | Read a stable diagnostic explanation |
+| `faber check <package>` | तेज़ फ़्रंट-एंड सत्यापन: लेक्स, पार्स, प्रकार-जाँच, लोअर |
+| `faber build <package> -t rust` | समीक्षा या नेटिव कंपाइलेशन के लिए Rust प्रोजेक्ट बनाना |
+| `faber run <package>` | एप्लिकेशन पैकेज बनाना और चलाना |
+| `faber test <package>` | पैकेज में परीक्षण सतहें परिभाषित होने पर पैकेज परीक्षण चलाना |
+| `faber explain <code>` | स्थिर डायग्नोस्टिक व्याख्या पढ़ना |
 
-Start with `check`. It is the cheapest command and the one agents should run
-before proposing generated code as valid Faber.
+`check` से शुरुआत करें। यह सबसे कम लागत वाली कमांड है और एजेंटों को जनरेट किए गए कोड को मान्य Faber के रूप में प्रस्तावित करने से पहले यही कमांड चलानी चाहिए।
 
-## Check {#check}
+## जाँच {#check}
 
 ```bash
 faber check .
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-A passing check means the package is syntactically and semantically acceptable
-to the compiler front end. It does not mean the final native toolchain has been
-invoked.
+सफल जाँच का अर्थ है कि पैकेज कंपाइलर के फ़्रंट एंड के लिए वाक्यात्मक और अर्थगत रूप से स्वीकार्य है। इसका अर्थ यह नहीं है कि अंतिम नेटिव टूलचेन चलाया जा चुका है।
 
-## Build {#build}
+## बिल्ड {#build}
 
 ```bash
 faber build . -t rust
 ```
 
-The Rust target is intentionally reviewable. Generated Rust is a compiler
-artifact, not source of truth; edit the Faber package and rebuild rather than
-patching emitted Rust by hand.
+Rust लक्ष्य को जानबूझकर समीक्षा योग्य रखा गया है। जनरेट किया गया Rust कंपाइलर आर्टिफ़ैक्ट है, स्रोत का सत्य नहीं; Faber पैकेज में बदलाव करें और हाथ से उत्सर्जित Rust को पैच करने के बजाय दोबारा बिल्ड करें।
 
-## Run {#run}
+## चलाना {#run}
 
 ```bash
 faber run .
 ```
 
-Use `run` for application packages with an `incipit` entry point. Library-only
-packages should be checked and tested instead.
+`run` का उपयोग उन एप्लिकेशन पैकेजों के लिए करें जिनमें `incipit` एंट्री पॉइंट हो। केवल लाइब्रेरी वाले पैकेजों की इसके बजाय जाँच और परीक्षण किया जाना चाहिए।
 
-## Explain diagnostics {#explain}
+## डायग्नोस्टिक्स समझाना {#explain}
 
 ```bash
 faber explain SEM001
 faber explain LEX006
 ```
 
-Diagnostic families are stable handles: `LEX` for lexical errors, `PAR` for
-parser errors, `SEM` for semantic/type errors. In docs and agent reports, cite
-the diagnostic code instead of paraphrasing a compiler failure loosely.
+डायग्नोस्टिक परिवार स्थिर हैंडल होते हैं: लेक्सिकल त्रुटियों के लिए `LEX`, पार्सर त्रुटियों के लिए `PAR`, और अर्थगत या प्रकार-संबंधी त्रुटियों के लिए `SEM`। दस्तावेज़ों और एजेंट रिपोर्टों में कंपाइलर विफलता को ढीले ढंग से दोहराने के बजाय डायग्नोस्टिक कोड का उल्लेख करें।
 
-## Reader-locale commands {#reader-locale}
+## रीडर-लोकेल कमांड {#reader-locale}
 
 ```bash
 faber format --reader-locale=la path/to/file.fab
@@ -76,12 +67,10 @@ faber format --reader-locale=th-TH path/to/file.fab
 faber emit -t faber --reader-locale=zh-Hans path/to/file.fab
 ```
 
-Reader locale output is a rendering of the compiler's semantic model, not a
-browser-time translation layer. Locale work belongs after a package checks in
-canonical form.
+रीडर-लोकेल आउटपुट कंपाइलर के अर्थगत मॉडल का रेंडरिंग है, ब्राउज़र के समय होने वाली अनुवाद परत नहीं। लोकेल का काम पैकेज के कैनोनिकल रूप में जाँच पास करने के बाद किया जाना चाहिए।
 
-## Next {#next}
+## अगला चरण {#next}
 
-| Previous | Next |
+| पिछला | अगला |
 |---|---|
-| [Hello, Faber](/start/hello.html) | [Projects and examples](/start/projects.html) |
+| [नमस्कार, Faber](/start/hello.html) | [प्रोजेक्ट और उदाहरण](/start/projects.html) |

@@ -1,31 +1,29 @@
 +++
+translation_kind = "translated"
+
 title = "Commands you will use"
 section = "commands"
 order = 3
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:0e56e02cfc5bc616178712a8ff6e3d914b95257913dbd22db2e8e8aac3c0e72e"
+code_hash = "sha256:adf615632f084c7edf7f1f0dfc205ee4912e8b497b19c9c96167bf9b97e443cc"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:5f49369d204a835c9b325d75c545184df7618fc49406fbe01ad750f17e982b0b"
 +++
-**Translation status:** Vietnamese reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `vi` render step during the site build.
+Đây là bản đồ CLI thực hành cho tuần đầu làm việc với Faber. Hãy dùng trang này làm mục lục lệnh, sau đó mở trang chi tiết [công cụ build Faber](/tooling/faber-build-tool.html) khi cần xem các cờ lệnh và thông tin chi tiết về pipeline biên dịch.
 
+## Vòng lặp hằng ngày {#daily-loop}
 
-This page is the practical CLI map for the first week of Faber work. Use it as
-a command index, then open the detailed [Faber build tool](/tooling/faber-build-tool.html)
-page when you need flags and compiler pipeline details.
-
-## Daily loop {#daily-loop}
-
-| Command | Use it for |
+| Lệnh | Dùng cho |
 |---|---|
-| `faber check <package>` | Fast front-end validation: lex, parse, type check, lower |
-| `faber build <package> -t rust` | Emit a Rust project for review or native compilation |
-| `faber run <package>` | Build and execute an application package |
-| `faber test <package>` | Run package tests when the package defines test surfaces |
-| `faber explain <code>` | Read a stable diagnostic explanation |
+| `faber check <package>` | Kiểm tra nhanh phần đầu vào: phân tích từ vựng, phân tích cú pháp, kiểm tra kiểu, hạ cấp |
+| `faber build <package> -t rust` | Xuất một dự án Rust để xem xét hoặc biên dịch native |
+| `faber run <package>` | Build và thực thi một package ứng dụng |
+| `faber test <package>` | Chạy các bài kiểm thử của package khi package định nghĩa các bề mặt kiểm thử |
+| `faber explain <code>` | Đọc phần giải thích chẩn đoán ổn định |
 
-Start with `check`. It is the cheapest command and the one agents should run
-before proposing generated code as valid Faber.
+Hãy bắt đầu với `check`. Đây là lệnh có chi phí thấp nhất và là lệnh mà các agent nên chạy trước khi đề xuất mã được sinh ra là Faber hợp lệ.
 
 ## Check {#check}
 
@@ -34,9 +32,7 @@ faber check .
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-A passing check means the package is syntactically and semantically acceptable
-to the compiler front end. It does not mean the final native toolchain has been
-invoked.
+Một lần kiểm tra thành công có nghĩa là package được chấp nhận về cú pháp và ngữ nghĩa bởi phần đầu của trình biên dịch. Điều đó không có nghĩa là toolchain native cuối cùng đã được gọi.
 
 ## Build {#build}
 
@@ -44,9 +40,7 @@ invoked.
 faber build . -t rust
 ```
 
-The Rust target is intentionally reviewable. Generated Rust is a compiler
-artifact, not source of truth; edit the Faber package and rebuild rather than
-patching emitted Rust by hand.
+Đích Rust được thiết kế để dễ xem xét. Rust được sinh ra là một artifact của trình biên dịch, không phải nguồn sự thật; hãy chỉnh sửa package Faber rồi build lại thay vì tự sửa Rust đã xuất bằng tay.
 
 ## Run {#run}
 
@@ -54,21 +48,18 @@ patching emitted Rust by hand.
 faber run .
 ```
 
-Use `run` for application packages with an `incipit` entry point. Library-only
-packages should be checked and tested instead.
+Dùng `run` cho các package ứng dụng có điểm vào `incipit`. Các package chỉ chứa thư viện nên được kiểm tra và chạy kiểm thử thay thế.
 
-## Explain diagnostics {#explain}
+## Giải thích chẩn đoán {#explain}
 
 ```bash
 faber explain SEM001
 faber explain LEX006
 ```
 
-Diagnostic families are stable handles: `LEX` for lexical errors, `PAR` for
-parser errors, `SEM` for semantic/type errors. In docs and agent reports, cite
-the diagnostic code instead of paraphrasing a compiler failure loosely.
+Các nhóm chẩn đoán là các mã tham chiếu ổn định: `LEX` cho lỗi từ vựng, `PAR` cho lỗi phân tích cú pháp, `SEM` cho lỗi ngữ nghĩa/kiểu. Trong tài liệu và báo cáo của agent, hãy trích dẫn mã chẩn đoán thay vì diễn giải mơ hồ về lỗi của trình biên dịch.
 
-## Reader-locale commands {#reader-locale}
+## Lệnh theo locale người đọc {#reader-locale}
 
 ```bash
 faber format --reader-locale=la path/to/file.fab
@@ -76,12 +67,10 @@ faber format --reader-locale=th-TH path/to/file.fab
 faber emit -t faber --reader-locale=zh-Hans path/to/file.fab
 ```
 
-Reader locale output is a rendering of the compiler's semantic model, not a
-browser-time translation layer. Locale work belongs after a package checks in
-canonical form.
+Đầu ra theo locale người đọc là cách biểu diễn mô hình ngữ nghĩa của trình biên dịch, không phải lớp dịch tại thời điểm trình duyệt chạy. Công việc locale nên được thực hiện sau khi package kiểm tra thành công ở dạng chuẩn.
 
-## Next {#next}
+## Tiếp theo {#next}
 
-| Previous | Next |
+| Trước | Tiếp theo |
 |---|---|
-| [Hello, Faber](/start/hello.html) | [Projects and examples](/start/projects.html) |
+| [Xin chào, Faber](/start/hello.html) | [Các dự án và ví dụ](/start/projects.html) |

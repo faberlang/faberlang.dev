@@ -1,30 +1,29 @@
 +++
+translation_kind = "translated"
+
 title = "Projects and examples"
 section = "projects"
 order = 4
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:8a914c63394e5bd0bf08ccef737eb95ec4cfb7df1813f3475c78d6ef579fb14d"
+code_hash = "sha256:08056868d41c8d2a2925beb910fea8adcf4ac708fa67559e5a160dd900429a06"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:0b7a36b44a44e748ef7fd159a0f42e49d90dcb063f7809cb9ff291a7127abcee"
 +++
-**Translation status:** Traditional Chinese reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `zh-Hant` render step during the site build.
+在 hello-world 之後，進入實際套件。Faber 以套件為核心；最快的學習方式，是檢查並閱讀會使用你計畫採用之相同編譯器介面的現有套件。
 
+## 公開儲存庫 {#repositories}
 
-After hello-world, move into real packages. Faber is package-oriented; the
-fastest way to learn is to check and read existing packages that exercise the
-same compiler surface you plan to use.
-
-## Public repositories {#repositories}
-
-| Repository | Start here | Why |
+| 儲存庫 | 從這裡開始 | 原因 |
 |---|---|---|
-| [`faberlang/examples`](https://github.com/faberlang/examples) | `corpus/`, application packages, tracks | Public corpus and application examples |
-| [`faberlang/norma`](https://github.com/faberlang/norma) | `norma:*` packages | Standard library source |
-| [`faberlang/faber`](https://github.com/faberlang/faber) | CLI wrapper | User-facing build tool |
-| [`faberlang/cista`](https://github.com/faberlang/cista) | package-store CLI/lib | Package management surface |
-| [`faberlang/triga`](https://github.com/faberlang/triga) | `triga:*` source | Graphics and geometry library |
+| [`faberlang/examples`](https://github.com/faberlang/examples) | `corpus/`、應用程式套件、tracks | 公開語料庫與應用程式範例 |
+| [`faberlang/norma`](https://github.com/faberlang/norma) | `norma:*` 套件 | 標準函式庫原始碼 |
+| [`faberlang/faber`](https://github.com/faberlang/faber) | CLI 包裝器 | 面向使用者的建置工具 |
+| [`faberlang/cista`](https://github.com/faberlang/cista) | package-store CLI/lib | 套件管理介面 |
+| [`faberlang/triga`](https://github.com/faberlang/triga) | `triga:*` 原始碼 | 圖形與幾何函式庫 |
 
-## Clone a learning workspace {#clone-workspace}
+## 複製學習工作區 {#clone-workspace}
 
 ```bash
 mkdir faber-learning
@@ -33,44 +32,39 @@ git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-Packages with `norma:*` imports resolve dependencies from the Cista package
-store recorded in `faber.lock`. Use `FABER_LIBRARY_HOME` only when you
-intentionally want a local resolver override for library development.
+含有 `norma:*` 匯入的套件，會從 `faber.lock` 中記錄的 Cista 套件儲存區解析相依性。只有在你有意為函式庫開發使用本機解析器覆寫時，才使用 `FABER_LIBRARY_HOME`。
 
-## Read examples in this order {#read-order}
+## 依照此順序閱讀範例 {#read-order}
 
-1. [Quick tour](/start/) for the surface grammar.
-2. [Hello, Faber](/start/hello.html) for a single package.
-3. [Corpus](/corpus/) for one page per keyword or construct.
-4. [Examples](/start/examples.html) for larger applications.
-5. [Faber build tool](/tooling/faber-build-tool.html) for CLI details.
+1. [快速導覽](/start/)：瞭解表面語法。
+2. [Hello, Faber](/start/hello.html)：瞭解單一套件。
+3. [語料庫](/corpus/)：每個關鍵字或結構各有一頁。
+4. [範例](/start/examples.html)：瞭解較大型的應用程式。
+5. [Faber 建置工具](/tooling/faber-build-tool.html)：瞭解 CLI 詳細資訊。
 
-## Agent workflow {#agent-workflow}
+## 代理工作流程 {#agent-workflow}
 
-Agents should not infer syntax from prose alone. Use the machine surfaces and
-then validate generated code:
+代理不應只從 prose 推測語法。請使用機器介面，然後驗證產生的程式碼：
 
 ```bash
 curl -fsSL https://faberlang.dev/llms.txt
 faber check path/to/package
 ```
 
-For package work, cite the repo, package path, command, and diagnostic code in
-reports. If you touch docs with fenced Faber code in this site, run the fence
-validator before claiming the examples still compile.
+對於套件工作，請在報告中標明儲存庫、套件路徑、命令和診斷碼。如果你修改了此網站中含有 Faber 程式碼區塊的文件，請在宣稱範例仍可編譯前執行程式碼區塊驗證器。
 
-## What comes after the start track {#after-start}
+## 開始軌道之後 {#after-start}
 
-| Goal | Read |
+| 目標 | 閱讀內容 |
 |---|---|
-| Learn syntax | [Syntax](/syntax/) |
-| Understand locales | [Reader locale](/features/reader-locale.html) |
-| Use the compiler | [Faber build tool](/tooling/faber-build-tool.html) and [Radix compiler](/tooling/radix-compiler.html) |
-| Browse constructs | [Corpus](/corpus/) |
-| Build with libraries | [Ecosystem](/ecosystem/) |
+| 學習語法 | [語法](/syntax/) |
+| 瞭解語系 | [讀者語系](/features/reader-locale.html) |
+| 使用編譯器 | [Faber 建置工具](/tooling/faber-build-tool.html) 與 [Radix 編譯器](/tooling/radix-compiler.html) |
+| 瀏覽結構 | [語料庫](/corpus/) |
+| 使用函式庫建置 | [生態系](/ecosystem/) |
 
-## Next {#next}
+## 下一步 {#next}
 
-| Previous | Continue |
+| 上一頁 | 下一頁 |
 |---|---|
-| [Commands you will use](/start/commands.html) | [Examples](/start/examples.html) |
+| [你將使用的命令](/start/commands.html) | [範例](/start/examples.html) |

@@ -1,25 +1,23 @@
 +++
+translation_kind = "translated"
+
 title = "Hello, Faber"
 section = "hello"
 order = 2
 sources = []
-translation_kind = "fallback"
+
+prose_hash = "sha256:3a78129bf3787f7c726e39104c95fe9bde78855c4a9f63650410c5cef9610067"
+code_hash = "sha256:1ee50be729b09d1bfba27a1f994ef4d1a47c73a645764f9d5986c9bab1aecfb8"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:e21072271fa884c1401230130dfda6fee4fa8ece2a7a6b9b4f6556bf74502860"
 +++
-**Translation status:** Hindi reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `hi` render step during the site build.
+सबसे छोटा उपयोगी Faber प्रोग्राम लिखें: एक पैकेज का प्रवेश बिंदु, जो किसी स्ट्रिंग को फ़ॉर्मैट करके उसे प्रिंट करता है।
 
+## पूर्वापेक्षाएँ {#prerequisites}
 
-Write the smallest useful Faber program: a package entry point that formats a
-string and prints it.
+पहले [इंस्टॉल और डाउनलोड](/start/install.html) पूरा करें। आपके `PATH` में `faber` बाइनरी होनी चाहिए और आप ऐसी कार्यशील डायरेक्टरी में शेल चला रहे हों जहाँ फ़ाइलें बना सकें।
 
-## Prerequisites {#prerequisites}
-
-Complete [Install and download](/start/install.html) first. You should have a
-`faber` binary on your `PATH` and a shell in a working directory where you can
-create files.
-
-## Create a package {#create-package}
+## पैकेज बनाएँ {#create-package}
 
 ```bash
 mkdir salve-munde
@@ -43,49 +41,43 @@ incipit {
 EOF
 ```
 
-## Check it {#check}
+## जाँचें {#check}
 
 ```bash
 faber check .
 ```
 
-`faber check` runs the front end: lexing, parsing, type checking, and lowering
-far enough to catch ordinary package mistakes without building a native binary.
-If the command fails, read the diagnostic code first; Faber diagnostics are
-intended to be stable search handles.
+`faber check` फ़्रंट एंड चलाता है: लेक्सिंग, पार्सिंग, प्रकार-जाँच और इतना लोअरिंग कि सामान्य पैकेज संबंधी गलतियाँ बिना नेटिव बाइनरी बनाए पकड़ी जा सकें। यदि कमांड विफल हो, तो पहले डायग्नॉस्टिक कोड पढ़ें; Faber डायग्नॉस्टिक्स को स्थिर खोज-संकेत के रूप में उपयोग करने के लिए बनाया गया है।
 
-## Run it {#run}
+## चलाएँ {#run}
 
 ```bash
 faber run .
 ```
 
-Expected output:
+अपेक्षित आउटपुट:
 
 ```text
 Salve, munde!
 ```
 
-## What you just used {#what-you-used}
+## आपने अभी क्या उपयोग किया {#what-you-used}
 
-| Source | Meaning |
+| स्रोत | अर्थ |
 |---|---|
-| `functio salve(textus nomen) → textus` | Function named `salve`, type-first parameter, text return |
-| `fixum textus msg ← ...` | Immutable binding |
-| `"Salve, §!"(nomen)` | Format string with display interpolation |
-| `redde msg` | Return |
-| `incipit` | Package entry point |
-| `nota m` | Print a note/output value |
+| `functio salve(textus nomen) → textus` | `salve` नाम का फ़ंक्शन, प्रकार-प्रथम पैरामीटर और टेक्स्ट रिटर्न |
+| `fixum textus msg ← ...` | अपरिवर्तनीय बाइंडिंग |
+| `"Salve, §!"(nomen)` | डिस्प्ले इंटरपोलेशन वाली फ़ॉर्मैट स्ट्रिंग |
+| `redde msg` | रिटर्न |
+| `incipit` | पैकेज का प्रवेश बिंदु |
+| `nota m` | नोट/आउटपुट मान प्रिंट करना |
 
-## Locale proof {#locale-proof}
+## लोकेल प्रमाण {#locale-proof}
 
-The program above is the canonical Latin reader rendering. Reader locales can
-render the same semantic program with different keyword packs while preserving
-glyphs and identifiers. Start with the full proof at
-[Reader locale](/features/reader-locale.html) before writing non-Latin packages.
+ऊपर दिया गया प्रोग्राम कैनोनिकल लैटिन रीडर रेंडरिंग है। रीडर लोकेल समान अर्थ वाले प्रोग्राम को अलग-अलग कीवर्ड पैक के साथ रेंडर कर सकते हैं, जबकि ग्लिफ़ और आइडेंटिफ़ायर सुरक्षित रहते हैं। गैर-लैटिन पैकेज लिखने से पहले [रीडर लोकेल](/features/reader-locale.html) में पूरा प्रमाण देखें।
 
-## Next {#next}
+## अगला कदम {#next}
 
-| Previous | Next |
+| पिछला | अगला |
 |---|---|
-| [Install and download](/start/install.html) | [Commands you will use](/start/commands.html) |
+| [इंस्टॉल और डाउनलोड](/start/install.html) | [वे कमांड जिनका आप उपयोग करेंगे](/start/commands.html) |

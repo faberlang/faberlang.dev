@@ -1,4 +1,6 @@
 +++
+translation_kind = "translated"
+
 title = "Examples"
 section = "examples"
 order = 2
@@ -7,19 +9,15 @@ sources = [
   "examples/ai-workbench/",
   "examples/vivilite/",
 ]
-translation_kind = "fallback"
+
+prose_hash = "sha256:fe9855413a019d0aebf6228e219c1fab4b694d7fa3fd7d7f7cacab4def2f3700"
+code_hash = "sha256:7fce5618203f2537ec7b775252d4ce66501a659a385973e9ec6cc1414c49e9e6"
+source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
-source_hash = "sha256:902bb133adf106a6e1ce96c44c872f7b3a912a0c0ddcb54fa36cfd0bfff20543"
 +++
-**Translation status:** Arabic reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `ar` render step during the site build.
+حزم Faber حقيقية — ليست مقاطع تجريبية. المصدر موجود في مستودع [faberlang/examples](https://github.com/faberlang/examples) العام. استخدمها حين تحتاج رؤية كيفية تنظيم التطبيقات، أو كيفية توصيل واجهات الأوامر، أو كيفية تنظيم مرجع اللغة.
 
-
-Real Faber packages — not toy snippets. Source lives in the public
-[faberlang/examples](https://github.com/faberlang/examples) repository.
-Use these when you need to see how applications are structured, how CLIs
-are wired, or how the language corpus is organized.
-
-## How to run an example {#how-to-run}
+## كيفية تشغيل مثال {#how-to-run}
 
 ```bash
 # CLI on PATH (see Install)
@@ -37,51 +35,54 @@ faber build examples/ai-workbench/packages/faber-ai -t rust
 faber test examples/ai-workbench/packages/faber-ai
 ```
 
-Exact entry commands vary by package — read each package `README.md`.
+تختلف أوامر الدخل الدقيقة حسب الحزمة — اقرأ `README.md` لكل حزمة.
 
-## Application packages {#applications}
+## حزم التطبيقات {#applications}
 
-| Package | Role | Start here |
+| الحزمة | الدور | ابدأ من هنا |
 |---|---|---|
-| **AI Workbench** | Multi-command CLI for local model inventory, embeddings, and inference workflows; Python harness validation | [examples/ai-workbench](https://github.com/faberlang/examples/tree/main/ai-workbench) · site: [AI Workbench](/ecosystem/ai-workbench.html) |
-| **ViviLite** | Faber-native local mailspace CLI (file-backed + optional SQLite lane) for agent coordination commands | [examples/vivilite](https://github.com/faberlang/examples/tree/main/vivilite) |
-| **coreutils** | Larger application campaign reimplementing common utilities with parity harnesses | [examples/coreutils](https://github.com/faberlang/examples/tree/main/coreutils) |
-| **gpu-workload** | GPU / systems workload rungs and contracts | [examples/gpu-workload](https://github.com/faberlang/examples/tree/main/gpu-workload) |
-| **scripta / script-kernel** | Scripting and kernel-facing demos | [examples/scripta](https://github.com/faberlang/examples/tree/main/scripta) |
-| **automation** | Automation sketch packages | [examples/automation](https://github.com/faberlang/examples/tree/main/automation) |
-| **reader-locale** | Locale pack demos for keyword remapping | [examples/reader-locale](https://github.com/faberlang/examples/tree/main/reader-locale) |
-| **cista-lab** | Package-store lab material | [examples/cista-lab](https://github.com/faberlang/examples/tree/main/cista-lab) |
+| **AI Workbench** | واجهة أوامر متعددة لجرد النماذج المحلية والتضمينات وسير عمل الاستدلال؛ مع تحقق من هيكل Python | [examples/ai-workbench](https://github.com/faberlang/examples/tree/main/ai-workbench) · الموقع: [AI Workbench](/ecosystem/ai-workbench.html) |
+| **ViviLite** | واجهة أوامر محلية لمساحة البريد مبنية بـ Faber (مدعومة بالملفات + مسار SQLite اختياري) لأوامر تنسيق الوكلاء | [examples/vivilite](https://github.com/faberlang/examples/tree/main/vivilite) |
+| **coreutils** | حملة تطبيقية أكبر لإعادة تنفيذ الأدوات الشائعة مع هياكل تحقق متكافئة | [examples/coreutils](https://github.com/faberlang/examples/tree/main/coreutils) |
+| **gpu-workload** | درجات وعقود أحمال عمل GPU والأنظمة | [examples/gpu-workload](https://github.com/faberlang/examples/tree/main/gpu-workload) |
+| **scripta / script-kernel** | عروض توضيحية للبرمجة النصية ومواجهة النواة | [examples/scripta](https://github.com/faberlang/examples/tree/main/scripta) |
+| **automation** | حزم أولية للأتمتة | [examples/automation](https://github.com/faberlang/examples/tree/main/automation) |
+| **reader-locale** | عروض توضيحية لحزم اللغات لإعادة تعيين الكلمات المفتاحية | [examples/reader-locale](https://github.com/faberlang/examples/tree/main/reader-locale) |
+| **cista-lab** | مواد مختبرية لمخزن الحزم | [examples/cista-lab](https://github.com/faberlang/examples/tree/main/cista-lab) |
 
-## Language corpus {#corpus}
+## مرجع اللغة {#corpus}
 
-The **corpus** tree is the keyword and construct reference: one directory
-per construct, many small `.fab` programs. It is the source of truth for
-the generated [Corpus](/corpus/) pages on this site.
+شجرة **المرجع** هي مرجع الكلمات المفتاحية والتراكيب: دليل واحد لكل تركيب، وبرامج `.fab` صغيرة متعددة. وهي مصدر الحقيقة لصفحات [المرجع](/corpus/) المولّدة على هذا الموقع.
 
-| Surface | URL |
+| السطح | الرابط |
 |---|---|
-| Source tree | [examples/corpus](https://github.com/faberlang/examples/tree/main/corpus) |
-| Generated docs | [/corpus/](/corpus/) |
-| Ecosystem note | [Language corpus](/ecosystem/corpus.html) |
+| شجرة المصدر | [examples/corpus](https://github.com/faberlang/examples/tree/main/corpus) |
+| الوثائق المولّدة | [/corpus/](/corpus/) |
+| ملاحظة النظام البيئي | [مرجع اللغة](/ecosystem/corpus.html) |
 
-## Stdlib tours {#stdlib}
+## جولات المكتبة المعيارية {#stdlib}
 
-Norma standard-library exempla live in the **norma** repo, not under
-`examples/`:
+أمثلة مكتبة Norma المعيارية موجودة في مستودع **norma**، وليس تحت `examples/`:
 
-- [faberlang/norma](https://github.com/faberlang/norma) — `norma/exempla/` when present
-- Site: [Norma](/ecosystem/norma.html)
+- [faberlang/norma](https://github.com/faberlang/norma) — `norma/exempla/` حين تكون موجودة
+- الموقع: [Norma](/ecosystem/norma.html)
 
-## Suggested learning order {#order}
+## ترتيب التعلم المقترح {#order}
 
-1. [Install](/start/install.html) the CLI.
-2. Skim [Quick tour](/start/) for language shape.
-3. Open **corpus** pages for any keyword you do not recognize ([Corpus hub](/corpus/)).
-4. Read **AI Workbench** or **ViviLite** end-to-end for application shape.
-5. Use [Syntax](/syntax/) and [Tooling](/tooling/) as references while editing.
+1. [ثبّت](/start/install.html) واجهة الأوامر.
+2. تصفّح [الجولة السريعة](/start/) لاستيعاب شكل اللغة.
+3. افتح صفحات **المرجع** لأي كلمة مفتاحية لا تعرفها ([مركز المرجع](/corpus/)).
+4. اقرأ **AI Workbench** أو **ViviLite** من البداية إلى النهاية لاستيعاب شكل التطبيق.
+5. استخدم [الصياغة](/syntax/) و[الأدوات](/tooling/) كمراجع أثناء التحرير.
 
-## Agent path {#agent-path}
+## مسار الوكيل {#agent-path}
 
-- Skill: [examples](/.well-known/agent-skills/examples/SKILL.md)
-- Skill: [corpus](/.well-known/agent-skills/corpus/SKILL.md)
-- Index: [`/llms.txt`](/llms.txt)
+- مهارة: [examples](/.well-known/agent-skills/examples/SKILL.md)
+- مهارة: [corpus](/.well-known/agent-skills/corpus/SKILL.md)
+- فهرس: [`/llms.txt`](/llms.txt)
+
+## السابق {#previous}
+
+| السابق | التالي |
+|---|---|
+| [المشاريع والأمثلة](/start/projects.html) | [الميزات](/features/) |
