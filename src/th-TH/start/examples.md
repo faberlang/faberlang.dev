@@ -1,5 +1,5 @@
 +++
-title = "Examples"
+title = "ตัวอย่าง"
 section = "examples"
 order = 2
 sources = [
@@ -7,19 +7,20 @@ sources = [
   "examples/ai-workbench/",
   "examples/vivilite/",
 ]
-translation_kind = "fallback"
+translation_kind = "translated"
+
+
+prose_hash = "sha256:fe9855413a019d0aebf6228e219c1fab4b694d7fa3fd7d7f7cacab4def2f3700"
+code_hash = "sha256:7fce5618203f2537ec7b775252d4ce66501a659a385973e9ec6cc1414c49e9e6"
+source_commit = "ee93015caac71f7b89ddef8d9010ffbe22d6cd7e"
 source_locale = "en-US"
-source_hash = "sha256:902bb133adf106a6e1ce96c44c872f7b3a912a0c0ddcb54fa36cfd0bfff20543"
 +++
-**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+แพ็กเกจ Faber จริง — ไม่ใช่ตัวอย่างโค้ดแบบสั้นๆ ซอร์สอยู่ที่พื้นที่เก็บข้อมูลสาธารณะ
+[faberlang/examples](https://github.com/faberlang/examples)
+ใช้แพ็กเกจเหล่านี้เมื่อคุณต้องการดูว่าแอปพลิเคชันมีโครงสร้างอย่างไร CLI ต่อสายอย่างไร
+หรือคลังภาษาจัดระเบียบอย่างไร
 
-
-Real Faber packages — not toy snippets. Source lives in the public
-[faberlang/examples](https://github.com/faberlang/examples) repository.
-Use these when you need to see how applications are structured, how CLIs
-are wired, or how the language corpus is organized.
-
-## How to run an example {#how-to-run}
+## วิธีรันตัวอย่าง {#how-to-run}
 
 ```bash
 # CLI on PATH (see Install)
@@ -37,51 +38,57 @@ faber build examples/ai-workbench/packages/faber-ai -t rust
 faber test examples/ai-workbench/packages/faber-ai
 ```
 
-Exact entry commands vary by package — read each package `README.md`.
+คำสั่งเริ่มต้นที่แน่นอนแตกต่างกันไปตามแต่ละแพ็กเกจ — โปรดอ่าน `README.md` ของแต่ละแพ็กเกจ
 
-## Application packages {#applications}
+## แพ็กเกจแอปพลิเคชัน {#applications}
 
-| Package | Role | Start here |
+| แพ็กเกจ | บทบาท | เริ่มที่ |
 |---|---|---|
-| **AI Workbench** | Multi-command CLI for local model inventory, embeddings, and inference workflows; Python harness validation | [examples/ai-workbench](https://github.com/faberlang/examples/tree/main/ai-workbench) · site: [AI Workbench](/ecosystem/ai-workbench.html) |
-| **ViviLite** | Faber-native local mailspace CLI (file-backed + optional SQLite lane) for agent coordination commands | [examples/vivilite](https://github.com/faberlang/examples/tree/main/vivilite) |
-| **coreutils** | Larger application campaign reimplementing common utilities with parity harnesses | [examples/coreutils](https://github.com/faberlang/examples/tree/main/coreutils) |
-| **gpu-workload** | GPU / systems workload rungs and contracts | [examples/gpu-workload](https://github.com/faberlang/examples/tree/main/gpu-workload) |
-| **scripta / script-kernel** | Scripting and kernel-facing demos | [examples/scripta](https://github.com/faberlang/examples/tree/main/scripta) |
-| **automation** | Automation sketch packages | [examples/automation](https://github.com/faberlang/examples/tree/main/automation) |
-| **reader-locale** | Locale pack demos for keyword remapping | [examples/reader-locale](https://github.com/faberlang/examples/tree/main/reader-locale) |
-| **cista-lab** | Package-store lab material | [examples/cista-lab](https://github.com/faberlang/examples/tree/main/cista-lab) |
+| **AI Workbench** | CLI หลายคำสั่งสำหรับงานสินค้าคงคลังโมเดลท้องถิ่น เอมเบ็ดดิง และเวิร์กโฟลว์การอนุมาน; การตรวจสอบความถูกต้องของ Python harness | [examples/ai-workbench](https://github.com/faberlang/examples/tree/main/ai-workbench) · site: [AI Workbench](/ecosystem/ai-workbench.html) |
+| **ViviLite** | CLI เมลสเปซท้องถิ่นแบบ Faber ดั้งเดิม (file-backed + SQLite lane เพิ่มเติม) สำหรับคำสั่งประสานงานเอเยนต์ | [examples/vivilite](https://github.com/faberlang/examples/tree/main/vivilite) |
+| **coreutils** | แคมเปญแอปพลิเคชันขนาดใหญ่ที่นำยูทิลิตี้ทั่วไปกลับมาใช้ใหม่พร้อม harness สำหรับเทียบเคียง | [examples/coreutils](https://github.com/faberlang/examples/tree/main/coreutils) |
+| **gpu-workload** | ขั้นและสัญญาสำหรับงาน GPU / ระบบ | [examples/gpu-workload](https://github.com/faberlang/examples/tree/main/gpu-workload) |
+| **scripta / script-kernel** | การสาธิตการเขียนสคริปต์และส่วนติดต่อเคอร์เนล | [examples/scripta](https://github.com/faberlang/examples/tree/main/scripta) |
+| **automation** | แพ็กเกจร่างงานอัตโนมัติ | [examples/automation](https://github.com/faberlang/examples/tree/main/automation) |
+| **reader-locale** | การสาธิตชุด locale สำหรับการแมปคำสำคัญใหม่ | [examples/reader-locale](https://github.com/faberlang/examples/tree/main/reader-locale) |
+| **cista-lab** | สื่อทดลองเกี่ยวกับ package-store | [examples/cista-lab](https://github.com/faberlang/examples/tree/main/cista-lab) |
 
-## Language corpus {#corpus}
+## คลังภาษา {#corpus}
 
-The **corpus** tree is the keyword and construct reference: one directory
-per construct, many small `.fab` programs. It is the source of truth for
-the generated [Corpus](/corpus/) pages on this site.
+โครงสร้าง **corpus** คือข้อมูลอ้างอิงคำสำคัญและคอนสตรัคต์: หนึ่งไดเรกทอรี
+ต่อหนึ่งคอนสตรัคต์ มีโปรแกรม `.fab` ขนาดเล็กจำนวนมาก เป็นแหล่งความจริงของ
+หน้า [คลังภาษา](/corpus/) ที่สร้างขึ้นบนไซต์นี้
 
-| Surface | URL |
+| พื้นผิว | URL |
 |---|---|
-| Source tree | [examples/corpus](https://github.com/faberlang/examples/tree/main/corpus) |
-| Generated docs | [/corpus/](/corpus/) |
-| Ecosystem note | [Language corpus](/ecosystem/corpus.html) |
+| ต้นไม้ซอร์ส | [examples/corpus](https://github.com/faberlang/examples/tree/main/corpus) |
+| เอกสารที่สร้าง | [/corpus/](/corpus/) |
+| บันทึกระบบนิเวศ | [คลังภาษา](/ecosystem/corpus.html) |
 
-## Stdlib tours {#stdlib}
+## ทัวร์ Stdlib {#stdlib}
 
-Norma standard-library exempla live in the **norma** repo, not under
+Norma มาตรฐานคลังภาษา (standard-library exempla) อยู่ในพื้นที่เก็บข้อมูล **norma** ไม่ได้อยู่ใน
 `examples/`:
 
-- [faberlang/norma](https://github.com/faberlang/norma) — `norma/exempla/` when present
+- [faberlang/norma](https://github.com/faberlang/norma) — `norma/exempla/` (ถ้ามี)
 - Site: [Norma](/ecosystem/norma.html)
 
-## Suggested learning order {#order}
+## ลำดับการเรียนรู้ที่แนะนำ {#order}
 
-1. [Install](/start/install.html) the CLI.
-2. Skim [Quick tour](/start/) for language shape.
-3. Open **corpus** pages for any keyword you do not recognize ([Corpus hub](/corpus/)).
-4. Read **AI Workbench** or **ViviLite** end-to-end for application shape.
-5. Use [Syntax](/syntax/) and [Tooling](/tooling/) as references while editing.
+1. [ติดตั้ง](/start/install.html) CLI
+2. อ่านคร่าวๆ [ทัวร์ด่วน](/start/) เพื่อดูรูปร่างภาษา
+3. เปิดหน้า **corpus** สำหรับคำสำคัญใดๆ ที่คุณไม่รู้จัก ([Corpus hub](/corpus/))
+4. อ่าน **AI Workbench** หรือ **ViviLite** แบบครบวงจรเพื่อดูรูปร่างแอปพลิเคชัน
+5. ใช้ [ไวยากรณ์](/syntax/) และ [Tooling](/tooling/) เป็นข้อมูลอ้างอิงขณะแก้ไข
 
-## Agent path {#agent-path}
+## เส้นทางเอเยนต์ {#agent-path}
 
 - Skill: [examples](/.well-known/agent-skills/examples/SKILL.md)
 - Skill: [corpus](/.well-known/agent-skills/corpus/SKILL.md)
 - Index: [`/llms.txt`](/llms.txt)
+
+## ก่อนหน้า {#previous}
+
+| ก่อนหน้า | ถัดไป |
+|---|---|
+| [โปรเจกต์และตัวอย่าง](/start/projects.html) | [คุณสมบัติ](/features/) |

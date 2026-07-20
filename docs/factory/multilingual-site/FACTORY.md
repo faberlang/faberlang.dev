@@ -26,7 +26,7 @@
 | U3 | Provenance + `sync-report` oracle | **done** | `PHASE-3-PROVENANCE.md` |
 | U4 | Chrome catalog (`locales/{locale}/chrome.toml`) | **done** | `PHASE-4-CHROME.md` |
 | U5 | `sync-translate` LLM differential | **done** | `PHASE-5-SYNC-TRANSLATE.md` |
-| U6 | Pilot locale `th-TH` (`index` + `start/*`) | pending | remainder of slice |
+| U6 | Pilot locale `th-TH` (`index` + `start/*`) | **done** | `PHASE-6-PILOT.md` |
 
 ## Repo boundaries
 
@@ -73,10 +73,15 @@
 
 - `sync-translate.py`: `--write-prompt`, `--apply-body`, `--stamp-only`, pack `[llm]` reuse
 - Provenance stamp helpers in `sync_lib.py`
-- Pilot: `src/th-TH/start/hello.md` Thai prose, fences preserved, `prose_hash`/`code_hash`/
-  `source_commit` stamped, `translation_kind = "translated"`
-- `sync-report --locale th-TH` → **1 current**, 6 missing_provenance
-- Leakage gate: translated pages (non-Latin body) may omit honesty banner
+- First file: `src/th-TH/start/hello.md` (later completed in U6)
+
+### U6 — Pilot locale th-TH full slice (2026-07-20)
+
+- All 7 files under `src/th-TH/` (`index` + `start/*`) Thai prose
+- Honesty banners removed; `translation_kind = "translated"`; hashes stamped
+- `sync-report --locale th-TH` → **7 current**
+- Full build green; leakage counts 7 translated pages without notice
+- Fence validation pass on `src/th-TH`
 
 ## Deferred findings
 

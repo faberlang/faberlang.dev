@@ -1,34 +1,35 @@
 +++
-title = "Quick tour"
+title = "ทัวร์ด่วน"
 section = "start"
 order = 0
 sources = []
-translation_kind = "fallback"
+translation_kind = "translated"
+
+
+prose_hash = "sha256:fb6f791ae0e9b73d0c92c2127726f558a2b845351779f80217616b8f55629ff0"
+code_hash = "sha256:f9eb22ab8a2408fe0076d846dd4266cff4ded675ad8d63a5b2d9ee59c3e0156f"
+source_commit = "ee93015caac71f7b89ddef8d9010ffbe22d6cd7e"
 source_locale = "en-US"
-source_hash = "sha256:bbcadb3e298fe348d1eb830734369f89cfbbdfb1bb5e51d5728c5111da8294da"
 +++
-**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+ห้านาทีสู่ภาพรวมของ Faber: ติดตั้ง CLI, อ่านฟังก์ชันหนึ่ง,
+จากนั้นเปิดแพ็กเกจจริง สำหรับเส้นทางแบบเป็นลำดับ ให้ทำตาม: [ติดตั้ง](/start/install.html) →
+[สวัสดี](/start/hello.html) → [คำสั่ง](/start/commands.html) →
+[โปรเจกต์](/start/projects.html)
 
+## 1. ติดตั้ง CLI {#install}
 
-Five minutes to the shape of Faber: install the CLI, read one function,
-then open a real package. For a sequenced path, follow: [Install](/start/install.html) →
-[Hello](/start/hello.html) → [Commands](/start/commands.html) →
-[Projects](/start/projects.html).
-
-## 1. Install the CLI {#install}
-
-Download the current release (**1.1.1**) for your platform from the
-[install page](/start/install.html), verify the archive checksum, and put the
-extracted `faber-v1.1.1-<target-triple>/faber` binary on your `PATH`. Confirm:
+ดาวน์โหลดรุ่นปัจจุบัน (**1.1.1**) สำหรับแพลตฟอร์มของคุณจาก
+[หน้า install](/start/install.html), ตรวจสอบ checksum ของไฟล์บีบอัด,
+และนำไบนารี `faber-v1.1.1-<target-triple>/faber` ที่แตกแล้ว
+ไปไว้บน `PATH` ของคุณ ยืนยัน:
 
 ```bash
 faber --version
 ```
 
-## 2. Shape of a function {#shape}
+## 2. รูปร่างของฟังก์ชัน {#shape}
 
-Type-first parameters, glyph return type, Latin control words, nullable
-union:
+พารามิเตอร์แบบชนิดขึ้นก่อน, ชนิดคืนค่าเป็นกลิฟ, คำควบคุมภาษาละติน, ยูเนียนแบบ null ได้:
 
 ```text
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
@@ -37,18 +38,18 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 }
 ```
 
-| Signal | Meaning |
+| สัญญาณ | ความหมาย |
 |---|---|
-| `functio` | Function declaration |
-| `numerus a` | Type first, then name |
-| `→` | Return type |
-| `∪ nihil` | Nullable (`T ∪ nihil`) |
-| `si … ∴` | Compact branch |
-| `redde` | Return |
+| `functio` | การประกาศฟังก์ชัน |
+| `numerus a` | ชนิดขึ้นก่อน, ตามด้วยชื่อ |
+| `→` | ชนิดคืนค่า |
+| `∪ nihil` | ค่า null ได้ (`T ∪ nihil`) |
+| `si … ∴` | กิ่งแบบกระชับ |
+| `redde` | คืนค่า |
 
-## 3. Package layout {#package}
+## 3. โครงสร้างแพ็กเกจ {#package}
 
-A package is a directory with `faber.toml` and `src/`:
+แพ็กเกจคือไดเรกทอรีที่มี `faber.toml` และ `src/`:
 
 ```text
 my-app/
@@ -57,7 +58,7 @@ my-app/
     main.fab
 ```
 
-Typical commands:
+คำสั่งทั่วไป:
 
 ```bash
 faber check my-app/
@@ -66,47 +67,48 @@ faber run my-app/
 faber test my-app/
 ```
 
-Details: [Faber build tool](/tooling/faber-build-tool.html).
+รายละเอียด: [เครื่องมือ build ของ Faber](/tooling/faber-build-tool.html)
 
-## 4. Real applications {#applications}
+## 4. แอปพลิเคชันจริง {#applications}
 
-Do not stop at hello-world. The public **examples** repo has multi-command
-CLIs, a local mailspace, GPU workload tracks, and a full language corpus.
+อย่าหยุดแค่ hello-world ที่เก็บ **examples** สาธารณะมี CLI
+แบบหลายคำสั่ง, mailspace ท้องถิ่น, งานติดตามปริมาณงาน GPU,
+และคลังภาษาที่สมบูรณ์
 
-| Package | What it shows |
+| แพ็กเกจ | สิ่งที่แสดง |
 |---|---|
-| AI Workbench | Multi-command CLI, model inspect, embeddings |
-| ViviLite | File-backed mailspace / agent coordination CLI |
-| coreutils | Larger application campaign (parity harnesses) |
-| gpu-workload | Systems / GPU rungs |
-| corpus | One directory per language construct |
+| AI Workbench | CLI หลายคำสั่ง, ตรวจสอบโมเดล, embeddings |
+| ViviLite | mailspace แบบเก็บในไฟล์ / CLI ประสานงานเอเจนต์ |
+| coreutils | แคมเปญแอปพลิเคชันขนาดใหญ่ (harness เทียบเคียง) |
+| gpu-workload | ระบบ / ระดับ GPU |
+| corpus | หนึ่งไดเรกทอรีต่อโครงสร้างภาษา |
 
-Browse them on the [examples page](/start/examples.html).
+เรียกดูได้ที่ [หน้า examples](/start/examples.html)
 
-## 5. If you are an agent {#agents}
+## 5. ถ้าคุณเป็นเอเจนต์ {#agents}
 
-1. Read [`/llms.txt`](/llms.txt).
-2. Open [`/agents/index.md`](/agents/index.md).
-3. Pick a skill from [`/.well-known/agent-skills/index.json`](/.well-known/agent-skills/index.json).
+1. อ่าน [`/llms.txt`](/llms.txt)
+2. เปิด [`/agents/index.md`](/agents/index.md)
+3. เลือกทักษะจาก [`/.well-known/agent-skills/index.json`](/.well-known/agent-skills/index.json)
 
-## Start track {#start-track}
+## เส้นทางเริ่มต้น {#start-track}
 
-| Step | Page | Outcome |
+| ขั้นตอน | หน้า | ผลลัพธ์ |
 |---|---|---|
-| 1 | [Install & download](/start/install.html) | Put Faber 1.1.1 on `PATH` and verify it |
-| 2 | [Hello, Faber](/start/hello.html) | Create and run `salve-munde` |
-| 3 | [Commands you will use](/start/commands.html) | Learn `check`, `build`, `run`, `test`, `explain` |
-| 4 | [Projects and examples](/start/projects.html) | Move into real packages and corpus pages |
+| 1 | [ติดตั้งและดาวน์โหลด](/start/install.html) | ใส่ Faber 1.1.1 บน `PATH` และยืนยัน |
+| 2 | [สวัสดี Faber](/start/hello.html) | สร้างและรัน `salve-munde` |
+| 3 | [คำสั่งที่คุณจะใช้](/start/commands.html) | เรียนรู้ `check`, `build`, `run`, `test`, `explain` |
+| 4 | [โปรเจกต์และตัวอย่าง](/start/projects.html) | ย้ายไปยังแพ็กเกจจริงและหน้าคลังภาษา |
 
-## Next {#next}
+## ถัดไป {#next}
 
-| Topic | Link |
+| หัวข้อ | ลิงก์ |
 |---|---|
-| Install & download | [Install](/start/install.html) |
-| Hello, Faber | [Hello](/start/hello.html) |
-| Commands | [Commands](/start/commands.html) |
-| Projects | [Projects](/start/projects.html) |
-| Syntax reference | [Syntax](/syntax/) |
-| Features (locales, lanes) | [Features](/features/) |
-| Ecosystem libraries | [Ecosystem](/ecosystem/) |
-| Keyword corpus | [Corpus](/corpus/) |
+| ติดตั้งและดาวน์โหลด | [ติดตั้ง](/start/install.html) |
+| Hello, Faber | [สวัสดี](/start/hello.html) |
+| คำสั่ง | [คำสั่ง](/start/commands.html) |
+| โปรเจกต์ | [โปรเจกต์](/start/projects.html) |
+| เอกสารอ้างอิงไวยากรณ์ | [ไวยากรณ์](/syntax/) |
+| ฟีเจอร์ (locale, lanes) | [คุณสมบัติ](/features/) |
+| ไลบรารีระบบนิเวศ | [ระบบนิเวศ](/ecosystem/) |
+| คลังคำสำคัญ | [คลังภาษา](/corpus/) |

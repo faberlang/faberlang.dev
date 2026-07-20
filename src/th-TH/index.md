@@ -1,42 +1,32 @@
 +++
-title = "Faber"
+title = "แฟบเบอร์ (Faber) — ภาษาโปรแกรมเชิงแพ็กเกจ"
 section = ""
 order = 0
 sources = []
-translation_kind = "fallback"
+translation_kind = "translated"
+
+
+prose_hash = "sha256:e63352acf54515593d9aeccf392881d72018d55e6b21d6e1ddd5a3979bef91b8"
+code_hash = "sha256:a02ba6ea46d65efd212b09e097d3240402bfe1d46f89b993e389cd53ca1a9c9e"
+source_commit = "ee93015caac71f7b89ddef8d9010ffbe22d6cd7e"
 source_locale = "en-US"
-source_hash = "sha256:85921d8ede375df669e8c25d33f019be707afdd7eeafd8a39966436e39aada00"
 +++
-**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+**แฟบเบอร์ (Faber)** เป็นภาษาโปรแกรมเชิงแพ็กเกจ (package-oriented programming language) ที่ใช้คำศัพท์เชิงพฤติกรรมภาษาละติน (Latin behavioural vocabulary) ประกอบด้วยไวยากรณ์ปกติขนาดเล็ก และระบบชนิดแบบไทป์-เฟิร์สต์ (type-first) แบบสแตติก ซอร์สโค้ดถูกคอมไพล์ผ่านคอมไพเลอร์ราดิกซ์ (Radix) ไปเป็นภาษา Rust ที่ตรวจสอบได้และไบนารีแบบเนทีฟ คุณสมบัติทางสถาปัตยกรรมที่กำหนดภาษานี้คือ ความหมาย (meaning) อยู่ในแกนเชิงความหมาย — HIR (high-level intermediate representation) — แทนที่จะอยู่ในการแสดงผลรูปแบบใดรูปแบบหนึ่ง
 
+ชื่อ Faber มาจากภาษาละตินที่แปลว่า *ผู้สร้าง* หรือ *ช่างฝีมือ* คอมไพเลอร์ชื่อราดิกซ์ (Radix) มาจากภาษาละตินที่แปลว่า *ราก* ภาษานี้พัฒนาโดย Ian Zepp และเผยแพร่ภายใต้สัญญาอนุญาต MIT
 
-**Faber** is a package-oriented programming language with a Latin
-behavioural vocabulary, a small regular grammar, and a type-first static
-type system. Source is compiled through the Radix compiler to reviewable
-Rust and native binaries. Its defining architectural property is that
-meaning lives in a semantic core — the HIR (high-level intermediate
-representation) — rather than in any particular rendering.
+**มาใหม่หรือ?** เริ่มที่ [ติดตั้งและดาวน์โหลด](/start/install.html) จากนั้นทำแทร็คเริ่มต้นแบบเรียงลำดับ: [สวัสดี](/start/hello.html), [คำสั่ง](/start/commands.html), และ [โปรเจกต์](/start/projects.html)
 
-The name derives from the Latin word for *maker* or *craftsman*. The
-compiler is named Radix, from the Latin *root*. The language is
-developed by Ian Zepp and released under the MIT license.
+## ดาวน์โหลด Faber 1.1.1 {#download}
 
-**New here?** Start with [Install and download](/start/install.html), then run
-the sequenced start track: [Hello](/start/hello.html),
-[Commands](/start/commands.html), and [Projects](/start/projects.html).
+รุ่นปัจจุบัน: **Faber 1.1.1** (แท็ก `faber-v1.1.1`) มีไฟล์ CLI เก็บถาวรที่ build ไว้ล่วงหน้าสำหรับ macOS และ Linux ให้นำไบนารี `faber-v1.1.1-<target-triple>/faber` ออกมาและวางไว้ใน `PATH` ของคุณ
 
-## Download Faber 1.1.1 {#download}
-
-Current release: **Faber 1.1.1** (tag `faber-v1.1.1`). Prebuilt CLI archives
-for macOS and Linux; extract the `faber-v1.1.1-<target-triple>/faber` binary
-and put it on your `PATH`.
-
-| Platform | Archive | Checksum |
+| แพลตฟอร์ม | ไฟล์เก็บถาวร | เช็คซัม |
 |---|---|---|
 | **macOS arm64** (Apple Silicon) | [faber-v1.1.1-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
 | **Linux x64** (glibc) | [faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-Quick install (macOS arm64 example):
+ตัวอย่างการติดตั้งด่วน (macOS arm64):
 
 ```bash
 curl -fsSL -o faber.tgz \
@@ -51,58 +41,52 @@ sudo mv faber-v1.1.1-aarch64-apple-darwin/faber /usr/local/bin/
 faber --version
 ```
 
-All release notes and assets: [github.com/faberlang/releases · faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1).
-Step-by-step: [Install guide](/start/install.html).
+บันทึกประจำรุ่นและทรัพยากรทั้งหมด: [github.com/faberlang/releases · faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1)
+คำแนะนำทีละขั้นตอน: [คู่มือการติดตั้ง](/start/install.html) รายการประวัติทั้งหมด: [รุ่นที่เผยแพร่](/history/releases.html)
 
 | | |
 |---|---|
-| **Paradigm** | Package-oriented; semantic staging |
-| **Typing** | Static, type-first; nullable via `T ∪ nihil` |
-| **Glyphs** | `← → ∴ ≡ ∪ ⇥` |
-| **Designed by** | Ian Zepp |
-| **First appeared** | 2024 |
-| **Compiler** | Radix (Rust) |
-| **Lanes** | Application (HIR) · Systems (MIR) |
-| **Primary target** | Rust → native binary |
-| **Reader locales** | 7 shipped (la, ar, hi, vi, th-TH, zh-Hans, zh-Hant) |
-| **Standard library** | Norma (`norma:*`) |
-| **License** | MIT |
+| **กระบวนทัศน์** | เชิงแพ็กเกจ; การจัดลำดับความหมาย |
+| **ระบบชนิด** | สแตติก, ไทป์-เฟิร์สต์; nullable ผ่าน `T ∪ nihil` |
+| **สัญลักษณ์** | `← → ∴ ≡ ∪ ⇥` |
+| **ออกแบบโดย** | Ian Zepp |
+| **เปิดตัวครั้งแรก** | 2024 |
+| **คอมไพเลอร์** | Radix (Rust) |
+| **เลน** | แอปพลิเคชัน (HIR) · ระบบ (MIR) |
+| **เป้าหมายหลัก** | Rust → ไบนารีแบบเนทีฟ |
+| **ภาษาโลแคลผู้อ่าน** | 7 ภาษาที่จัดส่ง (la, ar, hi, vi, th-TH, zh-Hans, zh-Hant) |
+| **ไลบรารีมาตรฐาน** | Norma (`norma:*`) |
+| **สัญญาอนุญาต** | MIT |
 
-## Start here {#start-here}
+## เริ่มต้นที่นี่ {#start-here}
 
-| Path | Who | What |
+| เส้นทาง | สำหรับใคร | อะไร |
 |---|---|---|
-| [Install](/start/install.html) | Human | Download, PATH, first `faber check` |
-| [Hello](/start/hello.html) | Human | Create and run `salve-munde` |
-| [Commands](/start/commands.html) | Human + agent | Daily CLI loop: check, build, run, test, explain |
-| [Projects](/start/projects.html) | Human + agent | Move from hello-world into real packages |
-| [Quick tour](/start/) | Human | Language shape in five minutes |
-| [Examples](/start/examples.html) | Human + agent | Real packages: CLI apps, mailspace, GPU, corpus |
-| [`/llms.txt`](/llms.txt) | Agent | Machine index — start here if you are a model |
-| [Agent guide](/agents/index.md) | Agent | How to learn Faber and ship a package |
-| [Agent skills](/.well-known/agent-skills/index.json) | Agent | Focused skill guides (install, language, examples, …) |
+| [ติดตั้ง](/start/install.html) | มนุษย์ | ดาวน์โหลด, PATH, `faber check` ครั้งแรก |
+| [สวัสดี](/start/hello.html) | มนุษย์ | สร้างและรัน `salve-munde` |
+| [คำสั่ง](/start/commands.html) | มนุษย์ + เอเจนต์ | ลูป CLI ประจำวัน: check, build, run, test, explain |
+| [โปรเจกต์](/start/projects.html) | มนุษย์ + เอเจนต์ | ย้ายจาก hello-world สู่แพ็กเกจจริง |
+| [ทัวร์ด่วน](/start/) | มนุษย์ | รูปร่างภาษาในห้านาที |
+| [ตัวอย่าง](/start/examples.html) | มนุษย์ + เอเจนต์ | แพ็กเกจจริง: แอป CLI, เมลสเปซ, GPU, คอร์ปัส |
+| [`/llms.txt`](/llms.txt) | เอเจนต์ | ดัชนีสำหรับเครื่อง — เริ่มที่นี่หากคุณเป็นโมเดล |
+| [คู่มือเอเจนต์](/agents/index.md) | เอเจนต์ | วิธีเรียนรู้ Faber และจัดส่งแพ็กเกจ |
+| [ทักษะเอเจนต์](/.well-known/agent-skills/index.json) | เอเจนต์ | คู่มือทักษะเฉพาะด้าน (ติดตั้ง, ภาษา, ตัวอย่าง, …) |
 
-## Portal status {#portal-status}
+## สถานะพอร์ทัล {#portal-status}
 
-This `/` page is the Speculum Porta for the English site: a locale-less entry
-point that routes people to install/start pages, routes agents to machine
-surfaces, and states locale pack status without browser-time negotiation.
-Stage 7 is a partial multi-locale proof, not a completed localized site:
-only `th-TH`, `zh-Hans`, `zh-Hant`, `vi`, `ar`, and `hi` have generated
-portal/start authored slices plus generated corpus pages, and the authored prose still falls back
-to English.
+หน้านี้ `/` คือ Speculum Porta สำหรับไซตภาษาอังกฤษ: จุดเข้าที่ไม่มีโลแคลซึ่งนำทางผู้ใช้ไปยังหน้า install/start, นำทางเอเจนต์ไปยังพื้นผิวสำหรับเครื่อง และระบุสถานะชุดโลแคลโดยไม่ต้องเจรจาผ่านเบราว์เซอร์ Stage 7 เป็นการพิสูจน์แบบหลายโลแคลบางส่วน ไม่ใช่ไซตที่แปลเสร็จสมบูรณ์: เฉพาะ `th-TH`, `zh-Hans`, `zh-Hant`, `vi`, `ar`, และ `hi` เท่านั้นที่มีพอร์ทัล/start ที่เขียนและสร้างขึ้น พร้อมหน้าแบบคอร์ปัสที่สร้างขึ้น แต่ร้อยแก้วที่เขียนยังคงถอยกลับเป็นภาษาอังกฤษ
 
-| Locale | Status | Notes |
+| โลแคล | สถานะ | หมายเหตุ |
 |---|---|---|
-| `la` | Canonical live site | Full generated English/Latin site |
-| `th-TH` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `zh-Hans` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `vi` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `zh-Hant` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `ar` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `hi` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
+| `la` | ไซตจริงที่ใช้งานจริง | ไซตภาษาอังกฤษ/ละตินที่สร้างเต็มรูปแบบ |
+| `th-TH` | Stage 7 พิสูจน์บางส่วน | พอร์ทัล/start slice ที่เขียนบวกคอร์ปัสที่สร้างขึ้น; ร้อยแก้วภาษาอังกฤษถอยกลับ; เอกสารที่เขียนเต็มรออยู่ |
+| `zh-Hans` | Stage 7 พิสูจน์บางส่วน | พอร์ทัล/start slice ที่เขียนบวกคอร์ปัสที่สร้างขึ้น; ร้อยแก้วภาษาอังกฤษถอยกลับ; เอกสารที่เขียนเต็มรออยู่ |
+| `vi` | Stage 7 พิสูจน์บางส่วน | พอร์ทัล/start slice ที่เขียนบวกคอร์ปัสที่สร้างขึ้น; ร้อยแก้วภาษาอังกฤษถอยกลับ; เอกสารที่เขียนเต็มรออยู่ |
+| `zh-Hant` | Stage 7 พิสูจน์บางส่วน | พอร์ทัล/start slice ที่เขียนบวกคอร์ปัสที่สร้างขึ้น; ร้อยแก้วภาษาอังกฤษถอยกลับ; เอกสารที่เขียนเต็มรออยู่ |
+| `ar` | Stage 7 พิสูจน์บางส่วน | พอร์ทัล/start slice ที่เขียนบวกคอร์ปัสที่สร้างขึ้น; ร้อยแก้วภาษาอังกฤษถอยกลับ; เอกสารที่เขียนเต็มรออยู่ |
+| `hi` | Stage 7 พิสูจน์บางส่วน | พอร์ทัล/start slice ที่เขียนบวกคอร์ปัสที่สร้างขึ้น; ร้อยแก้วภาษาอังกฤษถอยกลับ; เอกสารที่เขียนเต็มรออยู่ |
 
-Living sample in canonical Latin:
+ตัวอย่างจริงในภาษาละติน:
 
 ```faber
 functio salve(textus nomen) → textus {
@@ -116,46 +100,36 @@ incipit {
 }
 ```
 
-See [Reader locale](/features/reader-locale.html) for the same semantic program
-rendered through Thai, Simplified Chinese, Traditional Chinese, Arabic, Hindi, and Vietnamese packs.
+ดู [ภาษาโลแคลผู้อ่าน](/features/reader-locale.html) สำหรับโปรแกรมเชิงความหมายเดียวกันที่แสดงผ่านชุดภาษาไทย จีนตัวย่อ จีนตัวเต็ม อาหรับ ฮินดี และเวียดนาม
 
-## Overview {#overview}
+## ภาพรวม {#overview}
 
-Faber is designed around a core insight: the intermediate representation
-is the truth, and no target or human-language surface is privileged. A
-Faber program written in Latin keywords can be rendered into Thai,
-Arabic, or Chinese keywords through the same mechanism that renders it
-into Rust, Go, or WebAssembly — because the HIR is the authority and
-every output is a *rendering* of it.
+Faber ออกแบบรอบแนวคิดหลัก: intermediate representation คือความจริง และไม่มีเป้าหมายหรือพื้นผิวภาษามนุษย์ใดได้รับสิทธิพิเศษ โปรแกรม Faber ที่เขียนด้วยคีย์เวิร์ดภาษาละตินสามารถแสดงผลเป็นคีย์เวิร์ดภาษาไทย อาหรับ หรือจีนผ่านกลไกเดียวกับที่แสดงผลเป็น Rust, Go หรือ WebAssembly — เพราะ HIR คือผู้มีอำนาจ และทุกเอาต์พุตคือ *การแสดงผล* ของมัน
 
-The language makes three deliberate signal choices that work together:
+ภาษานี้เลือกสัญญาณสามอย่างที่ทำงานร่วมกันอย่างจงใจ:
 
-- **Type-first declarations** — shape reads toward binding: `textus nomen`,
-  not `nomen: textus`.
-- **Latin behavioural words** — declarations, statements, and lifecycle:
-  `functio`, `genus`, `fixum`, `redde`, `si`.
-- **Structural glyphs** — value flow and type joints: `←` (bind), `→`
-  (return type), `∴` (compact branch), `≡` (equality), `∪` (union).
+- **การประกาศแบบไทป์-เฟิร์สต์** — รูปร่างอ่านไปทางการผูก: `textus nomen` ไม่ใช่ `nomen: textus`
+- **คำศัพท์เชิงพฤติกรรมภาษาละติน** — การประกาศ คำสั่ง และวงจรชีวิต: `functio`, `genus`, `fixum`, `redde`, `si`
+- **สัญลักษณ์เชิงโครงสร้าง** — การไหลของค่าและจุดเชื่อมชนิด: `←` (ผูก), `→` (ชนิดส่งกลับ), `∴` (Branch แบบกระชับ), `≡` (ความเท่ากัน), `∪` (ยูเนียน)
 
-The result is source with stable grammatical shape that can be reviewed,
-transformed, and lowered without losing the reader's sense of intent.
+ผลลัพธ์คือซอร์สที่มีรูปร่างทางไวยากรณ์ที่เสถียร ซึ่งสามารถตรวจสอบ แปลง และลดระดับโดยไม่สูญเสียความรู้สึกถึงเจตนาของผู้เขียน
 
-## Documentation {#documentation}
+## เอกสาร {#documentation}
 
-| Section | Description |
+| หมวด | คำอธิบาย |
 |---|---|
-| [History](/history/) | Development timeline, influences, and release history |
-| [Features](/features/) | Reader locale, compilation lanes, Latin vocabulary, glyph system, design principles |
-| [Syntax](/syntax/) | Complete reference: types, functions, control flow, errors, generics, collections |
-| [Tooling](/tooling/) | Radix compiler pipeline, Faber CLI, codegen targets, scripting |
-| [Ecosystem](/ecosystem/) | Norma, Cista, Triga, coreutils, AI Workbench, corpus |
-| [Corpus](/corpus/) | Keyword and construct pages generated from the public corpus |
-| [References](/references/) | EBNF grammar, design documents, repositories |
+| [ประวัติ](/history/) | เส้นเวลาการพัฒนา อิทธิพล และประวัติรุ่นที่เผยแพร่ |
+| [รุ่นที่เผยแพร่](/history/releases.html) | ดาวน์โหลด Faber ล่าสุด พร้อมทุกแท็กและไบนารีที่เผยแพร่ |
+| [คุณสมบัติ](/features/) | ภาษาโลแคลผู้อ่าน, เลนการคอมไพล์, คำศัพท์ละติน, ระบบสัญลักษณ์, หลักการออกแบบ |
+| [ไวยากรณ์](/syntax/) | เอกสารอ้างอิงครบถ้วน: ชนิด, ฟังก์ชัน, การควบคุมไหล, ข้อผิดพลาด, เจเนอริก, คอลเล็กชัน |
+| [เครื่องมือ](/tooling/) | ท่อคอมไพเลอร์ Radix, Faber CLI, เป้าหมายโค้ดเจน, การเขียนสคริปต์ |
+| [นิเวศ](/ecosystem/) | Norma, Cista, Triga, coreutils, AI Workbench, คอร์ปัส |
+| [คอร์ปัส](/corpus/) | หน้าคีย์เวิร์ดและโครงสร้างที่สร้างจากคอร์ปัสสาธารณะ |
+| [เอกสารอ้างอิง](/references/) | ไวยากรณ์ EBNF, เอกสารออกแบบ, พื้นที่เก็บ |
 
-## Quick example {#quick-example}
+## ตัวอย่างด่วน {#quick-example}
 
-A simple function demonstrating key Faber patterns — type-first
-parameters, glyph return type, nullable union, Latin control words:
+ฟังก์ชันง่าย ๆ ที่แสดงรูปแบบหลักของ Faber — พารามิเตอร์แบบไทป์-เฟิร์สต์, ชนิดส่งกลับแบบสัญลักษณ์, ยูเนียน nullable, คำควบคุมภาษาละติน:
 
 ```text
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
@@ -164,27 +138,21 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 }
 ```
 
-## Live rendering {#live-rendering}
+## การแสดงผลสด {#live-rendering}
 
-The divide function above is rendered in the Latin pack by default. The
-compiler can render the same program in seven reader locales — Thai,
-Simplified Chinese, Traditional Chinese, Arabic, Hindi, Vietnamese — each remapping keywords and types
-to that language while glyphs and identifiers remain unchanged. This is
-not a translation layer applied to the page; it is the same mechanism
-the compiler uses to produce localized source.
+ฟังก์ชัน divide ข้างต้นแสดงผลด้วยชุดภาษาละตินโดยค่าเริ่มต้น คอมไพเลอร์สามารถแสดงผลโปรแกรมเดียวกันในเจ็ดภาษาโลแคลผู้อ่าน — ไทย, จีนตัวย่อ, จีนตัวเต็ม, อาหรับ, ฮินดี, เวียดนาม — โดยแต่ละภาษาจะแมปคีย์เวิร์ดและชนิดไปยังภาษานั้น ในขณะที่สัญลักษณ์และตัวระบุยังคงไม่เปลี่ยนแปลง นี่ไม่ใช่ชั้นการแปลที่ใช้กับหน้าเพจ แต่เป็นกลไกเดียวกับที่คอมไพเลอร์ใช้ในการผลิตซอร์สที่แปลเป็นภาษาท้องถิ่น
 
-See the [reader locale](/features/reader-locale.html) documentation for
-the full discussion.
+ดูเอกสาร [ภาษาโลแคลผู้อ่าน](/features/reader-locale.html) สำหรับการอภิปรายเต็มรูปแบบ
 
-## Repositories {#repositories}
+## พื้นที่เก็บ {#repositories}
 
-| Repo | Role |
+| พื้นที่เก็บ | บทบาท |
 |---|---|
-| [faberlang/faber](https://github.com/faberlang/faber) | Public user CLI |
-| [faberlang/releases](https://github.com/faberlang/releases) | Tagged CLI release assets |
-| [faberlang/faber-runtime](https://github.com/faberlang/faber-runtime) | Runtime types for generated Rust |
-| [faberlang/norma](https://github.com/faberlang/norma) | Standard library source |
-| [faberlang/cista](https://github.com/faberlang/cista) | Package-store CLI/lib |
-| [faberlang/triga](https://github.com/faberlang/triga) | Graphics / geometry library |
-| [faberlang/examples](https://github.com/faberlang/examples) | Corpus, tracks, application packages |
-| [faberlang/faberlang.dev](https://github.com/faberlang/faberlang.dev) | This documentation site |
+| [faberlang/faber](https://github.com/faberlang/faber) | CLI ผู้ใช้สาธารณะ |
+| [faberlang/releases](https://github.com/faberlang/releases) | ทรัพยากร CLI รุ่นที่แท็ก |
+| [faberlang/faber-runtime](https://github.com/faberlang/faber-runtime) | ชนิดรันไทม์สำหรับ Rust ที่สร้างขึ้น |
+| [faberlang/norma](https://github.com/faberlang/norma) | ซอร์สไลบรารีมาตรฐาน |
+| [faberlang/cista](https://github.com/faberlang/cista) | CLI/ไลบรารีร้านค้าแพ็กเกจ |
+| [faberlang/triga](https://github.com/faberlang/triga) | ไลบรารีกราฟิกส์ / เรขาคณิต |
+| [faberlang/examples](https://github.com/faberlang/examples) | คอร์ปัส, แทร็ค, แพ็กเกจแอปพลิเคชัน |
+| [faberlang/faberlang.dev](https://github.com/faberlang/faberlang.dev) | ไซตเอกสารนี้ |

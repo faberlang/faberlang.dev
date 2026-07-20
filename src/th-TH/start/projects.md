@@ -1,30 +1,29 @@
 +++
-title = "Projects and examples"
+title = "โปรเจกต์และตัวอย่าง"
 section = "projects"
 order = 4
 sources = []
-translation_kind = "fallback"
+translation_kind = "translated"
+
+
+prose_hash = "sha256:8a914c63394e5bd0bf08ccef737eb95ec4cfb7df1813f3475c78d6ef579fb14d"
+code_hash = "sha256:08056868d41c8d2a2925beb910fea8adcf4ac708fa67559e5a160dd900429a06"
+source_commit = "ee93015caac71f7b89ddef8d9010ffbe22d6cd7e"
 source_locale = "en-US"
-source_hash = "sha256:0b7a36b44a44e748ef7fd159a0f42e49d90dcb063f7809cb9ff291a7127abcee"
 +++
-**Translation status:** Thai reader-locale proof. Prose falls back to the English source for this Stage 7 slice; Faber code fences pass through the `th-TH` render step during the site build.
+หลังจาก hello-world แล้ว ให้ก้าวไปสู่แพ็กเกจจริง Faber เป็นภาษาเชิงแพ็กเกจ วิธีเรียนรู้ที่เร็วที่สุดคือตรวจสอบและอ่านแพ็กเกจที่มีอยู่ซึ่งใช้พื้นผิวคอมไพเลอร์เดียวกับที่คุณจะใช้งาน
 
+## ที่เก็บสาธารณะ {#repositories}
 
-After hello-world, move into real packages. Faber is package-oriented; the
-fastest way to learn is to check and read existing packages that exercise the
-same compiler surface you plan to use.
-
-## Public repositories {#repositories}
-
-| Repository | Start here | Why |
+| ที่เก็บ | Start here | Why |
 |---|---|---|
-| [`faberlang/examples`](https://github.com/faberlang/examples) | `corpus/`, application packages, tracks | Public corpus and application examples |
-| [`faberlang/norma`](https://github.com/faberlang/norma) | `norma:*` packages | Standard library source |
-| [`faberlang/faber`](https://github.com/faberlang/faber) | CLI wrapper | User-facing build tool |
-| [`faberlang/cista`](https://github.com/faberlang/cista) | package-store CLI/lib | Package management surface |
-| [`faberlang/triga`](https://github.com/faberlang/triga) | `triga:*` source | Graphics and geometry library |
+| [`faberlang/examples`](https://github.com/faberlang/examples) | `corpus/`, application packages, tracks | คลังตัวอย่างสาธารณะและตัวอย่างแอปพลิเคชัน |
+| [`faberlang/norma`](https://github.com/faberlang/norma) | `norma:*` packages | ซอร์สโค้ดไลบรารีมาตรฐาน |
+| [`faberlang/faber`](https://github.com/faberlang/faber) | ตัวห่อ CLI | เครื่องมือ build สำหรับผู้ใช้ |
+| [`faberlang/cista`](https://github.com/faberlang/cista) | CLI/lib ของ package-store | พื้นผิวการจัดการแพ็กเกจ |
+| [`faberlang/triga`](https://github.com/faberlang/triga) | `triga:*` source | ไลบรารีกราฟิกและเรขาคณิต |
 
-## Clone a learning workspace {#clone-workspace}
+## โคลนพื้นที่เรียนรู้ {#clone-workspace}
 
 ```bash
 mkdir faber-learning
@@ -33,44 +32,39 @@ git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-Packages with `norma:*` imports resolve dependencies from the Cista package
-store recorded in `faber.lock`. Use `FABER_LIBRARY_HOME` only when you
-intentionally want a local resolver override for library development.
+แพ็กเกจที่นำเข้า `norma:*` จะแก้ไข dependencies จากที่เก็บแพ็กเกจ Cista ที่บันทึกไว้ใน `faber.lock` ให้ใช้ `FABER_LIBRARY_HOME` เฉพาะเมื่อคุณต้องการ override ตัวแก้ไข dependency ในเครื่องสำหรับการพัฒนาไลบรารีเท่านั้น
 
-## Read examples in this order {#read-order}
+## อ่านตัวอย่างตามลำดับนี้ {#read-order}
 
-1. [Quick tour](/start/) for the surface grammar.
-2. [Hello, Faber](/start/hello.html) for a single package.
-3. [Corpus](/corpus/) for one page per keyword or construct.
-4. [Examples](/start/examples.html) for larger applications.
-5. [Faber build tool](/tooling/faber-build-tool.html) for CLI details.
+1. [แนะนำอย่างรวดเร็ว](/start/) — สำหรับไวยากรณ์พื้นผิว
+2. [สวัสดี Faber](/start/hello.html) — สำหรับแพ็กเกจเดียว
+3. [คลังคำศัพท์](/corpus/) — สำหรับหนึ่งหน้าต่อคีย์เวิร์ดหรือโครงสร้าง
+4. [ตัวอย่าง](/start/examples.html) — สำหรับแอปพลิเคชันขนาดใหญ่
+5. [เครื่องมือ build Faber](/tooling/faber-build-tool.html) — สำหรับรายละเอียด CLI
 
-## Agent workflow {#agent-workflow}
+## เวิร์กโฟลว์เอเจนต์ {#agent-workflow}
 
-Agents should not infer syntax from prose alone. Use the machine surfaces and
-then validate generated code:
+เอเจนต์ไม่ควรอนุมานไวยากรณ์จากคำอธิบายเพียงอย่างเดียว ให้ใช้พื้นผิวเครื่องแล้วตรวจสอบโค้ดที่สร้างขึ้น:
 
 ```bash
 curl -fsSL https://faberlang.dev/llms.txt
 faber check path/to/package
 ```
 
-For package work, cite the repo, package path, command, and diagnostic code in
-reports. If you touch docs with fenced Faber code in this site, run the fence
-validator before claiming the examples still compile.
+สำหรับงานแพ็กเกจ ให้อ้างอิง repo, path ของแพ็กเกจ, คำสั่ง, และรหัส diagnostic ในรายงาน หากคุณแก้ไขเอกสารที่มีโค้ด Faber ในเฟนซ์ในไซต์นี้ ให้รัน fence validator ก่อนยืนยันว่าตัวอย่างยังคงคอมไพล์ได้
 
-## What comes after the start track {#after-start}
+## หลังแทร็กเริ่มต้น {#after-start}
 
-| Goal | Read |
+| เป้าหมาย | อ่าน |
 |---|---|
-| Learn syntax | [Syntax](/syntax/) |
-| Understand locales | [Reader locale](/features/reader-locale.html) |
-| Use the compiler | [Faber build tool](/tooling/faber-build-tool.html) and [Radix compiler](/tooling/radix-compiler.html) |
-| Browse constructs | [Corpus](/corpus/) |
-| Build with libraries | [Ecosystem](/ecosystem/) |
+| เรียนรู้ไวยากรณ์ | [ไวยากรณ์](/syntax/) |
+| เข้าใจ locale | [Reader locale](/features/reader-locale.html) |
+| ใช้คอมไพเลอร์ | [Faber build tool](/tooling/faber-build-tool.html) และ [Radix compiler](/tooling/radix-compiler.html) |
+| เรียกดูโครงสร้าง | [คลังภาษา](/corpus/) |
+| สร้างด้วยไลบรารี | [ระบบนิเวศ](/ecosystem/) |
 
-## Next {#next}
+## ถัดไป {#next}
 
-| Previous | Continue |
+| ก่อนหน้า | ถัดไป |
 |---|---|
-| [Commands you will use](/start/commands.html) | [Examples](/start/examples.html) |
+| [คำสั่งที่คุณจะใช้](/start/commands.html) | [ตัวอย่าง](/start/examples.html) |
