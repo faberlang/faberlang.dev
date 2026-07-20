@@ -1,0 +1,16 @@
+{
+  "phase": "P7",
+  "model": "gpt-5.6-luna-codex",
+  "page": "start-hello",
+  "agents": 5,
+  "effort_new": "xhigh",
+  "effort_baseline": "medium (prior P0\u2013P6 runs)",
+  "locales": [
+    "th-TH",
+    "zh-Hans",
+    "hi",
+    "vi",
+    "zh-Hant"
+  ],
+  "note": "5 xhigh re-runs only; medium is prior disk baseline. hi medium missing on disk."
+}
