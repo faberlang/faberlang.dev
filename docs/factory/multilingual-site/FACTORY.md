@@ -101,3 +101,4 @@
 5. `a20c2dc` — feat(site): Phase 3 prose/code provenance + sync-report oracle
 6. `3f951e6` — feat(site): Phase 4 chrome catalog + th-TH nav localization
 7. `e59f14b` — feat(site): Phase 5 sync-translate + Thai hello pilot page
+8. `5e57a0c` — feat(site): Phase 6 th-TH pilot — full index + start/* Thai prose
