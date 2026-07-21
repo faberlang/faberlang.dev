@@ -96,7 +96,7 @@ payload, `↦ lista<T>` collects frames into a list.
 ## Host providers {#providers}
 
 Effect families are implemented as separate provider crates under
-`faberlang/host-providers-rs`. Each provider owns all verbs under
+`faberlang/hosts/crates`. Each provider owns all verbs under
 its prefix:
 
 | Provider | Prefix | I/O domain |
@@ -125,9 +125,9 @@ Provider:         solum provider reads file, returns content
 
 The compiler emits generic dispatch — it never embeds provider crate names
 into generated code. The runtime provides `HostDispatch` and the
-conversation protocol. The kernel (from `host-kernel-rs`) routes
+conversation protocol. The kernel (from `hosts/crates/host-kernel`) routes
 frames to the correct provider based on prefix. The provider (from
-`host-providers-rs`) performs the actual I/O.
+`hosts/crates/*` providers) performs the actual I/O.
 
 This means generated Faber code is **provider-neutral**. The same compiled
 binary can be linked against different provider implementations — a real
@@ -162,9 +162,9 @@ The host platform is split across three repositories in the
 
 | Repository | Role |
 |------------|------|
-| `host-kernel-rs` | Thin router — owns `Frame`, `Conversation`, terminal lifecycle, prefix dispatch, structured errors (`E_NO_ROUTE`), capability manifest aggregation |
-| `host-native-rs` | Native attach — workers, `register_providers` startup hook, generated `host_register.rs` integration |
-| `host-providers-rs` | Provider implementations — Cargo workspace with per-family crates (`solum`, `processus`, etc.) |
+| `hosts/crates/host-kernel` | Thin router — owns `Frame`, `Conversation`, terminal lifecycle, prefix dispatch, structured errors (`E_NO_ROUTE`), capability manifest aggregation |
+| `hosts/crates/host-native` | Native attach — workers, `register_providers` startup hook, generated `host_register.rs` integration |
+| `hosts/crates/*` providers | Provider implementations — Cargo workspace with per-family crates (`solum`, `processus`, etc.) |
 
 Each provider crate owns its own native dependencies. The `http`
 provider pulls in `hyper` and `tokio` only when HTTP
@@ -202,7 +202,7 @@ boundary. The Norma wrappers are open source and live under
 
 1. `radix/docs/design/frame-stream-types.md` — full spec for sermo, scrinium, status, meus, tuus
 2. `radix/docs/design/host-provider-gateway.md` — thin router architecture, provider contracts, compile manifest
-3. `faberlang/host-kernel-rs/` — kernel router implementation
-4. `faberlang/host-native-rs/` — native attach and registration
-5. `faberlang/host-providers-rs/` — provider crates (solum, processus, consolum, tempus, aleator, http)
+3. `faberlang/hosts/crates/host-kernel/` — kernel router implementation
+4. `faberlang/hosts/crates/host-native/` — native attach and registration
+5. `faberlang/hosts/crates/` — provider crates (solum, processus, consolum, tempus, aleator, http)
 6. `examples/corpus/ad/` — sermo exempla files

@@ -32,6 +32,4 @@ organisation.
 
 | Repository | Description |
 |-----------|-------------|
-| `host-kernel-rs` | Thin router: Frame, Conversation, prefix dispatch, structured errors |
-| `host-native-rs` | Native attach: workers, register_providers hook |
-| `host-providers-rs` | Provider implementations: solum, processus, consolum, tempus, aleator, http |
+| `hosts` | Host monorepo: `crates/host-kernel`, `crates/host-native`, providers, `macos-arm64`, `webgpu-browser` |
