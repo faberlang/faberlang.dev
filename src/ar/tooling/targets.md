@@ -1,65 +1,66 @@
 +++
-title = "Target compatibility"
+title = "توافق الأهداف"
 section = "targets"
 order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
+
+translation_kind = "translated"
+prose_hash = "sha256:390b7c31544b3bd5d97dca81f6cc71d6fc0d9a58a5f66a90e256a38a7b4ce8f3"
+code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+source_commit = "331061d5d641a6172960d263d2656f9ca154b91f"
+source_locale = "en-US"
 +++
 
+Faber لغة واحدة لها عقود ترجمة متعددة. هذه الصفحة هي **مصفوفة قابلية الخفض
+المقاسة**: لكل مصطلح في corpus، ما الأهداف التي تستطيع خفضه، وبأي مستوى من
+الدعم.
 
-**Translation status:** target matrix is shared measurement data (Latin term/target ids and ✓/◐/○/✕ glyphs). Intro prose may still be English; the tables are the product surface.
+توجد أفعال السياسة (الدعم / الإزالة / التحذير / الرفض / التأجيل) وتوجيه المسار
+في [Codegen targets](/tooling/codegen-targets.html). أما هذه الصفحة فهي قائمة
+صفوف كبيرة قابلة للمسح — أهداف مسار التطبيقات HIR وأهداف مسار الأنظمة MIR
+جنبًا إلى جنب في الجدولين أدناه.
 
+ملخص CLI المباشر: `faber targets`.
 
-Faber is one language with many compilation contracts. This page is the
-**measured lowerability matrix**: for each corpus term, which targets can
-lower it, and at what support level.
+**توليد**: 2026-07-19 بواسطة `scripta/generate-ebnf-matrix.py` — **لا تعدّل الملف**.
+**القياس**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (داخل العملية، من دون toolchains خارجية).
+**الربط**: مصطلحات `examples/corpus/index.toml` → exempla.
 
-Policy verbs (support / erase / warn / reject / defer) and pipeline routing
-live on [Codegen targets](/tooling/codegen-targets.html). This page is the
-large scannable row list — HIR application-lane targets and MIR systems-lane
-targets side by side in the tables below.
+هذه هي **مصفوفة دعم grammar×target الرسمية والمولّدة**. وهي تعرض
+**قابلية الخفض** — هل يستطيع الهدف X خفض إنتاج grammar Y — لكل مصطلح في corpus
+الأمثلة. أما دلالات وقت التشغيل (أفعال سياسة الإزالة/التحذير/التأجيل)، وعقود كل
+هدف، وتوجيه المسار، فتوجد في [Codegen targets](/tooling/codegen-targets.html)،
+الذي يربط بهذه الصفحة لعرض الصفوف.
 
-Live CLI summary: `faber targets`.
+## مفتاح الرموز
 
-
-**Generated**: 2026-07-19 by `scripta/generate-ebnf-matrix.py` — **do not edit**.
-**Measurement**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, no external toolchains).
-**Join**: `examples/corpus/index.toml` terms → exempla.
-
-This is the **official generated** grammar×target support matrix. It reports
-**lowerability** — can target X lower grammar production Y — across every term in
-the exempla corpus. Runtime semantics (erase/warn/defer policy verbs), per-target
-contracts, and pipeline routing live in
-[Codegen targets](/tooling/codegen-targets.html), which links here for the rows.
-
-## Legend
-
-| Glyph | Meaning |
+| الرمز | المعنى |
 |---|---|
-| ✓ | fully supported — all analyzable exempla for the term lower |
-| ◐ | partial — some exempla lower, some have a measured gap |
-| ○ | planned — not yet lowering; curated overlay (`scripta/ebnf-matrix-overrides.toml`) |
-| ✕ | not supported — no exempla lower; default-truth, measured gap is real |
-| — | not measured — no analyzable exempla for this term on this lane |
+| ✓ | مدعوم بالكامل — تُخفض كل exempla القابلة للتحليل للمصطلح |
+| ◐ | جزئي — تُخفض بعض exempla، بينما تحتوي أخرى على فجوة مقاسة |
+| ○ | مخطط — لم يُنفّذ الخفض بعد؛ تراكب منسّق (`scripta/ebnf-matrix-overrides.toml`) |
+| ✕ | غير مدعوم — لا تُخفض أي exempla؛ الحقيقة الافتراضية هي أن الفجوة المقاسة حقيقية |
+| — | غير مقاس — لا توجد exempla قابلة للتحليل لهذا المصطلح على هذا المسار |
 
-> A ✓ means the corpus exempla exercising this term lower to the target. It does
-> **not** guarantee identical runtime semantics. Some targets *erase* or *warn* on
-> certain constructs (e.g. Go erases borrow modes `de`/`in`/`ex`) — those still
-> render ✓ here because they lower. See the policy doc for that nuance.
+> يعني ✓ أن exempla في corpus التي تستخدم هذا المصطلح تُخفض إلى الهدف. لكنه لا
+> يضمن تطابق دلالات وقت التشغيل. فبعض الأهداف *تزيل* أو *تحذّر* بشأن تراكيب
+> معينة (مثل أن Go يزيل أوضاع الاستعارة `de`/`in`/`ex`) — ومع ذلك تظهر هنا بالرمز
+> ✓ لأنها تُخفض. راجع وثيقة السياسة لفهم هذا التفصيل.
 
-## Corpus-wide summary (all registered terms)
+## ملخص corpus الكامل (كل المصطلحات المسجّلة)
 
-**Application lane (HIR → emitted source languages)**
+**مسار التطبيقات (HIR → لغات المصدر الناتجة)**
 
-| target | capable | analyzable | % |
+| الهدف | قادر | قابل للتحليل | % |
 |---|---|---|---|
 | rust | 265 | 268 | 99% |
 | go | 247 | 268 | 92% |
 | ts | 262 | 268 | 98% |
 | faber | 268 | 268 | 100% |
 
-**Systems lane (MIR → device/IR artifacts)**
+**مسار الأنظمة (MIR → مصنوعات الجهاز/IR)**
 
-| target | capable | analyzable | % |
+| الهدف | قادر | قابل للتحليل | % |
 |---|---|---|---|
 | llvm-text | 247 | 255 | 97% |
 | wasm-text | 203 | 255 | 80% |
@@ -70,11 +71,11 @@ contracts, and pipeline routing live in
 | sexp | 195 | 254 | 77% |
 | scena | 216 | 254 | 85% |
 
-## Keywords — application lane
+## الكلمات المفتاحية — مسار التطبيقات
 
-### keyword
+### كلمة مفتاحية
 
-| term | rust | go | ts | faber |
+| المصطلح | rust | go | ts | faber |
 |---|---|---|---|---|
 | `abstractus` | ✓ | ✓ | ✓ | ✓ |
 | `ab` | ✓ | ✓ | ✓ | ✓ |
@@ -179,11 +180,11 @@ contracts, and pipeline routing live in
 | `verum` | ✓ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✓ |
 
-## Operators — application lane
+## العوامل — مسار التطبيقات
 
-### operator-group
+### مجموعة عوامل
 
-| term | rust | go | ts | faber |
+| المصطلح | rust | go | ts | faber |
 |---|---|---|---|---|
 | `⊜` | ✓ | ✓ | ✓ | ✓ |
 | `∧` | ✓ | ✓ | ✓ | ✓ |
@@ -227,11 +228,11 @@ contracts, and pipeline routing live in
 | `∷` | ✓ | ✓ | ✓ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✓ |
 
-## Keywords — systems lane
+## الكلمات المفتاحية — مسار الأنظمة
 
-### keyword
+### كلمة مفتاحية
 
-| term | llvm-text | wasm-text | wasm | metal-text | wgsl-text | sexp-struct | sexp | scena |
+| المصطلح | llvm-text | wasm-text | wasm | metal-text | wgsl-text | sexp-struct | sexp | scena |
 |---|---|---|---|---|---|---|---|---|
 | `abstractus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ab` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -336,11 +337,11 @@ contracts, and pipeline routing live in
 | `verum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 
-## Operators — systems lane
+## العوامل — مسار الأنظمة
 
-### operator-group
+### مجموعة عوامل
 
-| term | llvm-text | wasm-text | wasm | metal-text | wgsl-text | sexp-struct | sexp | scena |
+| المصطلح | llvm-text | wasm-text | wasm | metal-text | wgsl-text | sexp-struct | sexp | scena |
 |---|---|---|---|---|---|---|---|---|
 | `⊜` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `∧` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -384,11 +385,11 @@ contracts, and pipeline routing live in
 | `∷` | ✓ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 
-## Other terms (`existing-home` / unspecified)
+## مصطلحات أخرى (`existing-home` / غير محدد)
 
 ### existing-home
 
-| term | rust | go | ts | faber |
+| المصطلح | rust | go | ts | faber |
 |---|---|---|---|---|
 | `alias` | ✓ | ✓ | ✓ | ✓ |
 | `atomic` | ✕ | ✓ | ✓ | ✓ |

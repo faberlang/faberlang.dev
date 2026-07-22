@@ -1,0 +1,65 @@
+# Chuỗi giao diện đã bản địa hóa cho tooling/targets.md (được lắp ghép bởi generate-target-matrix.py).
+# Các bảng ma trận giữ nguyên ngôn ngữ (thuật ngữ Latin, mã định danh đích và glyph).
+
+title = "Tính tương thích của đích"
+
+intro = """
+Faber là một ngôn ngữ với nhiều hợp đồng biên dịch. Trang này là **ma trận khả
+năng hạ mã được đo lường**: với mỗi thuật ngữ trong corpus, đích nào có thể hạ
+mã thuật ngữ đó và ở mức hỗ trợ nào.
+
+Các động từ chính sách (hỗ trợ / loại bỏ / cảnh báo / từ chối / trì hoãn) và định
+tuyến pipeline nằm trên [Codegen targets](/tooling/codegen-targets.html). Trang
+này là danh sách hàng lớn, dễ quét — các đích trên application-lane của HIR và
+systems-lane của MIR nằm cạnh nhau trong các bảng bên dưới.
+
+Tóm tắt CLI trực tiếp: `faber targets`.
+"""
+
+meta_generated = "**Được tạo**: {date} bởi `scripta/generate-ebnf-matrix.py` — **không chỉnh sửa**."
+meta_measurement = "**Đo lường**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (trong tiến trình, không dùng toolchain bên ngoài)."
+meta_join = "**Kết nối**: các term trong `examples/corpus/index.toml` → exempla."
+
+official = """
+Đây là **ma trận hỗ trợ grammar×target chính thức được tạo tự động**. Ma trận
+báo cáo **khả năng hạ mã** — target X có thể hạ grammar production Y hay không —
+cho mọi term trong exempla corpus. Ngữ nghĩa thời gian chạy (các động từ chính
+sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pipeline nằm trên
+[Codegen targets](/tooling/codegen-targets.html), tài liệu này liên kết ngược về
+đây để hiển thị các hàng.
+"""
+
+legend_heading = "Chú giải"
+legend_col_glyph = "Ký hiệu"
+legend_col_meaning = "Ý nghĩa"
+legend_full = "Được hỗ trợ đầy đủ — mọi exempla có thể phân tích của term đều hạ mã được"
+legend_partial = "Một phần — một số exempla hạ mã được, một số có khoảng trống đã đo"
+legend_planned = "Đã lên kế hoạch — chưa hạ mã; curated overlay (`scripta/ebnf-matrix-overrides.toml`)"
+legend_unsupported = "Không hỗ trợ — không có exempla nào hạ mã được; khoảng trống đo được là có thật theo mặc định"
+legend_unmeasured = "Chưa đo — không có exempla có thể phân tích cho term này trên lane này"
+
+legend_note = """
+✓ nghĩa là các corpus exempla sử dụng term này hạ mã được thành target. Điều đó
+**không** đảm bảo ngữ nghĩa thời gian chạy giống hệt nhau. Một số target *loại
+bỏ* hoặc *cảnh báo* với một số construct (ví dụ Go loại bỏ các chế độ mượn
+`de`/`in`/`ex`) — chúng vẫn hiển thị ✓ ở đây vì chúng hạ mã được. Xem tài liệu
+chính sách để hiểu rõ điểm này.
+"""
+
+summary_heading = "Tóm tắt trên toàn corpus (tất cả term đã đăng ký)"
+app_lane = "Tuyến ứng dụng (HIR → ngôn ngữ nguồn được phát ra)"
+sys_lane = "Tuyến hệ thống (MIR → tạo phẩm thiết bị/IR)"
+col_target = "đích"
+col_capable = "có khả năng"
+col_analyzable = "có thể phân tích"
+col_pct = "%"
+col_term = "term"
+
+keywords_app = "Từ khóa — tuyến ứng dụng"
+operators_app = "Toán tử — tuyến ứng dụng"
+keywords_sys = "Từ khóa — tuyến hệ thống"
+operators_sys = "Toán tử — tuyến hệ thống"
+other_terms = "Các term khác (`existing-home` / không chỉ định)"
+h3_keyword = "từ khóa"
+h3_operator_group = "nhóm toán tử"
+h3_existing_home = "existing-home"

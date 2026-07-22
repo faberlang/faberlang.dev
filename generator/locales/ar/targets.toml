@@ -1,0 +1,63 @@
+# الحواشي المترجمة لصفحة tooling/targets.md (تُركّب بواسطة generate-target-matrix.py).
+# تبقى جداول المصفوفة محايدة لغويًا (مصطلحات Latin ومعرّفات الأهداف والرموز).
+
+title = "توافق الأهداف"
+
+intro = """
+Faber لغة واحدة لها عقود ترجمة متعددة. هذه الصفحة هي **مصفوفة قابلية الخفض
+المقاسة**: لكل مصطلح في corpus، ما الأهداف التي تستطيع خفضه، وبأي مستوى من
+الدعم.
+
+توجد أفعال السياسة (الدعم / الإزالة / التحذير / الرفض / التأجيل) وتوجيه المسار
+في [Codegen targets](/tooling/codegen-targets.html). أما هذه الصفحة فهي قائمة
+صفوف كبيرة قابلة للمسح — أهداف مسار التطبيقات HIR وأهداف مسار الأنظمة MIR
+جنبًا إلى جنب في الجدولين أدناه.
+
+ملخص CLI المباشر: `faber targets`.
+"""
+
+meta_generated = "**توليد**: {date} بواسطة `scripta/generate-ebnf-matrix.py` — **لا تعدّل الملف**."
+meta_measurement = "**القياس**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (داخل العملية، من دون toolchains خارجية)."
+meta_join = "**الربط**: مصطلحات `examples/corpus/index.toml` → exempla."
+
+official = """
+هذه هي **مصفوفة دعم grammar×target الرسمية والمولّدة**. وهي تعرض
+**قابلية الخفض** — هل يستطيع الهدف X خفض إنتاج grammar Y — لكل مصطلح في corpus
+الأمثلة. أما دلالات وقت التشغيل (أفعال سياسة الإزالة/التحذير/التأجيل)، وعقود كل
+هدف، وتوجيه المسار، فتوجد في [Codegen targets](/tooling/codegen-targets.html)،
+الذي يربط بهذه الصفحة لعرض الصفوف.
+"""
+
+legend_heading = "مفتاح الرموز"
+legend_col_glyph = "الرمز"
+legend_col_meaning = "المعنى"
+legend_full = "مدعوم بالكامل — تُخفض كل exempla القابلة للتحليل للمصطلح"
+legend_partial = "جزئي — تُخفض بعض exempla، بينما تحتوي أخرى على فجوة مقاسة"
+legend_planned = "مخطط — لم يُنفّذ الخفض بعد؛ تراكب منسّق (`scripta/ebnf-matrix-overrides.toml`)"
+legend_unsupported = "غير مدعوم — لا تُخفض أي exempla؛ الحقيقة الافتراضية هي أن الفجوة المقاسة حقيقية"
+legend_unmeasured = "غير مقاس — لا توجد exempla قابلة للتحليل لهذا المصطلح على هذا المسار"
+
+legend_note = """
+يعني ✓ أن exempla في corpus التي تستخدم هذا المصطلح تُخفض إلى الهدف. لكنه لا
+يضمن تطابق دلالات وقت التشغيل. فبعض الأهداف *تزيل* أو *تحذّر* بشأن تراكيب
+معينة (مثل أن Go يزيل أوضاع الاستعارة `de`/`in`/`ex`) — ومع ذلك تظهر هنا بالرمز
+✓ لأنها تُخفض. راجع وثيقة السياسة لفهم هذا التفصيل.
+"""
+
+summary_heading = "ملخص corpus الكامل (كل المصطلحات المسجّلة)"
+app_lane = "مسار التطبيقات (HIR → لغات المصدر الناتجة)"
+sys_lane = "مسار الأنظمة (MIR → مصنوعات الجهاز/IR)"
+col_target = "الهدف"
+col_capable = "قادر"
+col_analyzable = "قابل للتحليل"
+col_pct = "%"
+col_term = "المصطلح"
+
+keywords_app = "الكلمات المفتاحية — مسار التطبيقات"
+operators_app = "العوامل — مسار التطبيقات"
+keywords_sys = "الكلمات المفتاحية — مسار الأنظمة"
+operators_sys = "العوامل — مسار الأنظمة"
+other_terms = "مصطلحات أخرى (`existing-home` / غير محدد)"
+h3_keyword = "كلمة مفتاحية"
+h3_operator_group = "مجموعة عوامل"
+h3_existing_home = "existing-home"

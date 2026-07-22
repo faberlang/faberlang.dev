@@ -1,0 +1,63 @@
+# ข้อความ chrome แปลสำหรับ tooling/targets.md (ประกอบโดย generate-target-matrix.py)
+# ตารางเมทริกซ์คงความเป็นกลางทางภาษา (คำ Latin, ตัวระบุเป้าหมาย และ glyphs)
+
+title = "ความเข้ากันได้ของเป้าหมาย"
+
+intro = """
+Faber เป็นภาษาเดียวที่มีสัญญาการคอมไพล์หลายรูปแบบ หน้านี้คือ
+**เมทริกซ์ความสามารถในการลดรูปที่วัดได้**: สำหรับคำแต่ละคำใน corpus จะแสดงว่า
+เป้าหมายใดลดรูปได้ และรองรับในระดับใด
+
+คำกริยาตามนโยบาย (รองรับ / ลบออก / เตือน / ปฏิเสธ / เลื่อน) และการกำหนดเส้นทาง
+ของ pipeline อยู่ที่ [Codegen targets](/tooling/codegen-targets.html) หน้านี้คือ
+รายการแถวขนาดใหญ่ที่อ่านกวาดได้ — เป้าหมาย application-lane ของ HIR และ
+เป้าหมาย systems-lane ของ MIR แสดงเคียงกันในตารางด้านล่าง
+
+สรุปจาก CLI แบบสด: `faber targets`
+"""
+
+meta_generated = "**สร้างโดยอัตโนมัติ**: {date} โดย `scripta/generate-ebnf-matrix.py` — **ห้ามแก้ไข**"
+meta_measurement = "**การวัด**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (ภายในกระบวนการ ไม่มี toolchain ภายนอก)"
+meta_join = "**การเชื่อมโยง**: terms ใน `examples/corpus/index.toml` → exempla"
+
+official = """
+นี่คือ **เมทริกซ์ support ของ grammar×target ที่สร้างอย่างเป็นทางการ** โดยรายงาน
+**ความสามารถในการลดรูป** — target X ลดรูป grammar production Y ได้หรือไม่ —
+สำหรับทุก term ใน exempla corpus ความหมายขณะรัน (คำกริยานโยบาย erase/warn/defer),
+สัญญารายเป้าหมาย และการกำหนดเส้นทาง pipeline อยู่ใน
+[Codegen targets](/tooling/codegen-targets.html) ซึ่งลิงก์กลับมาที่หน้านี้เพื่อดูแถวต่าง ๆ
+"""
+
+legend_heading = "คำอธิบายสัญลักษณ์"
+legend_col_glyph = "สัญลักษณ์"
+legend_col_meaning = "ความหมาย"
+legend_full = "รองรับเต็มรูปแบบ — exempla ที่วิเคราะห์ได้ทั้งหมดของ term ลดรูปได้"
+legend_partial = "รองรับบางส่วน — exempla บางรายการลดรูปได้ แต่อีกบางรายการมีช่องว่างที่วัดได้"
+legend_planned = "วางแผนไว้ — ยังลดรูปไม่ได้; curated overlay (`scripta/ebnf-matrix-overrides.toml`)"
+legend_unsupported = "ไม่รองรับ — ไม่มี exempla รายการใดลดรูปได้; ช่องว่างที่วัดได้เป็นความจริงตามค่าเริ่มต้น"
+legend_unmeasured = "ยังไม่ได้วัด — ไม่มี exempla ที่วิเคราะห์ได้สำหรับ term นี้บน lane นี้"
+
+legend_note = """
+✓ หมายความว่า corpus exempla ที่ใช้ term นี้ลดรูปไปยัง target ได้ แต่ไม่ได้
+รับประกันว่าความหมายขณะรันจะเหมือนกันทุกประการ target บางรายการ *ลบออก* หรือ
+*เตือน* สำหรับ construct บางชนิด (เช่น Go ลบโหมดการยืม `de`/`in`/`ex`) —
+รายการเหล่านั้นยังแสดงเป็น ✓ ที่นี่ เพราะลดรูปได้ โปรดดูรายละเอียดในเอกสารนโยบาย
+"""
+
+summary_heading = "สรุปทั้ง corpus (ทุก term ที่ลงทะเบียน)"
+app_lane = "เลนแอปพลิเคชัน (HIR → ภาษาต้นฉบับที่ส่งออก)"
+sys_lane = "เลนระบบ (MIR → สิ่งประดิษฐ์ของอุปกรณ์/IR)"
+col_target = "เป้าหมาย"
+col_capable = "รองรับได้"
+col_analyzable = "วิเคราะห์ได้"
+col_pct = "%"
+col_term = "term"
+
+keywords_app = "คีย์เวิร์ด — เลนแอปพลิเคชัน"
+operators_app = "ตัวดำเนินการ — เลนแอปพลิเคชัน"
+keywords_sys = "คีย์เวิร์ด — เลนระบบ"
+operators_sys = "ตัวดำเนินการ — เลนระบบ"
+other_terms = "Term อื่น (`existing-home` / ไม่ระบุ)"
+h3_keyword = "คีย์เวิร์ด"
+h3_operator_group = "กลุ่มตัวดำเนินการ"
+h3_existing_home = "existing-home"

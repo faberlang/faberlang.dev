@@ -1,65 +1,63 @@
 +++
-title = "Target compatibility"
+title = "目标兼容性"
 section = "targets"
 order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
+
+translation_kind = "translated"
+prose_hash = "sha256:eaccb07c6be46972bf02f93aa6eee5636994c90156662e6b06da98a664d1416d"
+code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+source_commit = "331061d5d641a6172960d263d2656f9ca154b91f"
+source_locale = "en-US"
 +++
 
+Faber 是一门语言，但有多个编译契约。本页是**经过测量的可下沉能力矩阵**：
+对于 corpus 中的每个术语，列出哪些目标可以下沉它，以及支持程度。
 
-**Translation status:** target matrix is shared measurement data (Latin term/target ids and ✓/◐/○/✕ glyphs). Intro prose may still be English; the tables are the product surface.
+策略动词（支持 / 擦除 / 警告 / 拒绝 / 推迟）和管线路由位于
+[Codegen targets](/tooling/codegen-targets.html)。本页是下面表格中的大型可扫描
+行列表 — HIR 应用通道目标与 MIR 系统通道目标并列显示。
 
+实时 CLI 摘要：`faber targets`。
 
-Faber is one language with many compilation contracts. This page is the
-**measured lowerability matrix**: for each corpus term, which targets can
-lower it, and at what support level.
+**生成时间**：2026-07-19，由 `scripta/generate-ebnf-matrix.py` 生成 — **请勿编辑**。
+**测量**：`emit_hir_target_matrix` + `emit_mir_target_matrix`（进程内完成，不使用外部 toolchain）。
+**连接**：`examples/corpus/index.toml` 中的 terms → exempla。
 
-Policy verbs (support / erase / warn / reject / defer) and pipeline routing
-live on [Codegen targets](/tooling/codegen-targets.html). This page is the
-large scannable row list — HIR application-lane targets and MIR systems-lane
-targets side by side in the tables below.
+这是**官方生成的 grammar×target 支持矩阵**。它报告 exempla corpus 中每个
+term 的**可下沉能力** — target X 是否能够下沉 grammar production Y。运行时
+语义（擦除/警告/推迟策略动词）、各目标契约和管线路由位于
+[Codegen targets](/tooling/codegen-targets.html)；该文档链接回本页以查看这些行。
 
-Live CLI summary: `faber targets`.
+## 图例
 
-
-**Generated**: 2026-07-19 by `scripta/generate-ebnf-matrix.py` — **do not edit**.
-**Measurement**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, no external toolchains).
-**Join**: `examples/corpus/index.toml` terms → exempla.
-
-This is the **official generated** grammar×target support matrix. It reports
-**lowerability** — can target X lower grammar production Y — across every term in
-the exempla corpus. Runtime semantics (erase/warn/defer policy verbs), per-target
-contracts, and pipeline routing live in
-[Codegen targets](/tooling/codegen-targets.html), which links here for the rows.
-
-## Legend
-
-| Glyph | Meaning |
+| 符号 | 含义 |
 |---|---|
-| ✓ | fully supported — all analyzable exempla for the term lower |
-| ◐ | partial — some exempla lower, some have a measured gap |
-| ○ | planned — not yet lowering; curated overlay (`scripta/ebnf-matrix-overrides.toml`) |
-| ✕ | not supported — no exempla lower; default-truth, measured gap is real |
-| — | not measured — no analyzable exempla for this term on this lane |
+| ✓ | 完全支持 — 该术语的所有可分析 exempla 都能下沉 |
+| ◐ | 部分支持 — 部分 exempla 能下沉，部分存在已测量的缺口 |
+| ○ | 计划中 — 尚未下沉；使用整理后的覆盖文件 (`scripta/ebnf-matrix-overrides.toml`) |
+| ✕ | 不支持 — 没有 exempla 能下沉；按默认事实，已测量的缺口确实存在 |
+| — | 未测量 — 此 lane 上没有该术语的可分析 exempla |
 
-> A ✓ means the corpus exempla exercising this term lower to the target. It does
-> **not** guarantee identical runtime semantics. Some targets *erase* or *warn* on
-> certain constructs (e.g. Go erases borrow modes `de`/`in`/`ex`) — those still
-> render ✓ here because they lower. See the policy doc for that nuance.
+> ✓ 表示使用该术语的 corpus exempla 能够下沉到目标。它**不**保证运行时语义
+> 完全相同。某些目标会对特定构造进行*擦除*或*警告*（例如 Go 会擦除借用
+> 模式 `de`/`in`/`ex`）— 这些构造仍在此显示为 ✓，因为它们能够下沉。具体
+> 差异请参阅策略文档。
 
-## Corpus-wide summary (all registered terms)
+## Corpus 总览（所有已注册术语）
 
-**Application lane (HIR → emitted source languages)**
+**应用通道（HIR → 输出的源语言）**
 
-| target | capable | analyzable | % |
+| 目标 | 可支持 | 可分析 | % |
 |---|---|---|---|
 | rust | 265 | 268 | 99% |
 | go | 247 | 268 | 92% |
 | ts | 262 | 268 | 98% |
 | faber | 268 | 268 | 100% |
 
-**Systems lane (MIR → device/IR artifacts)**
+**系统通道（MIR → 设备/IR 产物）**
 
-| target | capable | analyzable | % |
+| 目标 | 可支持 | 可分析 | % |
 |---|---|---|---|
 | llvm-text | 247 | 255 | 97% |
 | wasm-text | 203 | 255 | 80% |
@@ -70,11 +68,11 @@ contracts, and pipeline routing live in
 | sexp | 195 | 254 | 77% |
 | scena | 216 | 254 | 85% |
 
-## Keywords — application lane
+## 关键字 — 应用通道
 
-### keyword
+### 关键字
 
-| term | rust | go | ts | faber |
+| 术语 | rust | go | ts | faber |
 |---|---|---|---|---|
 | `abstractus` | ✓ | ✓ | ✓ | ✓ |
 | `ab` | ✓ | ✓ | ✓ | ✓ |
@@ -179,11 +177,11 @@ contracts, and pipeline routing live in
 | `verum` | ✓ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✓ |
 
-## Operators — application lane
+## 运算符 — 应用通道
 
-### operator-group
+### 运算符组
 
-| term | rust | go | ts | faber |
+| 术语 | rust | go | ts | faber |
 |---|---|---|---|---|
 | `⊜` | ✓ | ✓ | ✓ | ✓ |
 | `∧` | ✓ | ✓ | ✓ | ✓ |
@@ -227,11 +225,11 @@ contracts, and pipeline routing live in
 | `∷` | ✓ | ✓ | ✓ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✓ |
 
-## Keywords — systems lane
+## 关键字 — 系统通道
 
-### keyword
+### 关键字
 
-| term | llvm-text | wasm-text | wasm | metal-text | wgsl-text | sexp-struct | sexp | scena |
+| 术语 | llvm-text | wasm-text | wasm | metal-text | wgsl-text | sexp-struct | sexp | scena |
 |---|---|---|---|---|---|---|---|---|
 | `abstractus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ab` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -336,11 +334,11 @@ contracts, and pipeline routing live in
 | `verum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 
-## Operators — systems lane
+## 运算符 — 系统通道
 
-### operator-group
+### 运算符组
 
-| term | llvm-text | wasm-text | wasm | metal-text | wgsl-text | sexp-struct | sexp | scena |
+| 术语 | llvm-text | wasm-text | wasm | metal-text | wgsl-text | sexp-struct | sexp | scena |
 |---|---|---|---|---|---|---|---|---|
 | `⊜` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `∧` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -384,11 +382,11 @@ contracts, and pipeline routing live in
 | `∷` | ✓ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 
-## Other terms (`existing-home` / unspecified)
+## 其他术语（`existing-home` / 未指定）
 
 ### existing-home
 
-| term | rust | go | ts | faber |
+| 术语 | rust | go | ts | faber |
 |---|---|---|---|---|
 | `alias` | ✓ | ✓ | ✓ | ✓ |
 | `atomic` | ✕ | ✓ | ✓ | ✓ |

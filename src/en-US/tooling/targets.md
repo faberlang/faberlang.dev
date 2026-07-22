@@ -5,7 +5,6 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 +++
 
-
 Faber is one language with many compilation contracts. This page is the
 **measured lowerability matrix**: for each corpus term, which targets can
 lower it, and at what support level.
@@ -16,7 +15,6 @@ large scannable row list — HIR application-lane targets and MIR systems-lane
 targets side by side in the tables below.
 
 Live CLI summary: `faber targets`.
-
 
 **Generated**: 2026-07-19 by `scripta/generate-ebnf-matrix.py` — **do not edit**.
 **Measurement**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, no external toolchains).

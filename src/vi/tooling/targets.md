@@ -1,65 +1,68 @@
 +++
-title = "Target compatibility"
+title = "Tính tương thích của đích"
 section = "targets"
 order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
+
+translation_kind = "translated"
+prose_hash = "sha256:d0cdd215aab566f8216011a69109a1d5adbf4432b5060544703493bff8bb6acc"
+code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+source_commit = "331061d5d641a6172960d263d2656f9ca154b91f"
+source_locale = "en-US"
 +++
 
+Faber là một ngôn ngữ với nhiều hợp đồng biên dịch. Trang này là **ma trận khả
+năng hạ mã được đo lường**: với mỗi thuật ngữ trong corpus, đích nào có thể hạ
+mã thuật ngữ đó và ở mức hỗ trợ nào.
 
-**Translation status:** target matrix is shared measurement data (Latin term/target ids and ✓/◐/○/✕ glyphs). Intro prose may still be English; the tables are the product surface.
+Các động từ chính sách (hỗ trợ / loại bỏ / cảnh báo / từ chối / trì hoãn) và định
+tuyến pipeline nằm trên [Codegen targets](/tooling/codegen-targets.html). Trang
+này là danh sách hàng lớn, dễ quét — các đích trên application-lane của HIR và
+systems-lane của MIR nằm cạnh nhau trong các bảng bên dưới.
 
+Tóm tắt CLI trực tiếp: `faber targets`.
 
-Faber is one language with many compilation contracts. This page is the
-**measured lowerability matrix**: for each corpus term, which targets can
-lower it, and at what support level.
+**Được tạo**: 2026-07-19 bởi `scripta/generate-ebnf-matrix.py` — **không chỉnh sửa**.
+**Đo lường**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (trong tiến trình, không dùng toolchain bên ngoài).
+**Kết nối**: các term trong `examples/corpus/index.toml` → exempla.
 
-Policy verbs (support / erase / warn / reject / defer) and pipeline routing
-live on [Codegen targets](/tooling/codegen-targets.html). This page is the
-large scannable row list — HIR application-lane targets and MIR systems-lane
-targets side by side in the tables below.
+Đây là **ma trận hỗ trợ grammar×target chính thức được tạo tự động**. Ma trận
+báo cáo **khả năng hạ mã** — target X có thể hạ grammar production Y hay không —
+cho mọi term trong exempla corpus. Ngữ nghĩa thời gian chạy (các động từ chính
+sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pipeline nằm trên
+[Codegen targets](/tooling/codegen-targets.html), tài liệu này liên kết ngược về
+đây để hiển thị các hàng.
 
-Live CLI summary: `faber targets`.
+## Chú giải
 
-
-**Generated**: 2026-07-19 by `scripta/generate-ebnf-matrix.py` — **do not edit**.
-**Measurement**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, no external toolchains).
-**Join**: `examples/corpus/index.toml` terms → exempla.
-
-This is the **official generated** grammar×target support matrix. It reports
-**lowerability** — can target X lower grammar production Y — across every term in
-the exempla corpus. Runtime semantics (erase/warn/defer policy verbs), per-target
-contracts, and pipeline routing live in
-[Codegen targets](/tooling/codegen-targets.html), which links here for the rows.
-
-## Legend
-
-| Glyph | Meaning |
+| Ký hiệu | Ý nghĩa |
 |---|---|
-| ✓ | fully supported — all analyzable exempla for the term lower |
-| ◐ | partial — some exempla lower, some have a measured gap |
-| ○ | planned — not yet lowering; curated overlay (`scripta/ebnf-matrix-overrides.toml`) |
-| ✕ | not supported — no exempla lower; default-truth, measured gap is real |
-| — | not measured — no analyzable exempla for this term on this lane |
+| ✓ | Được hỗ trợ đầy đủ — mọi exempla có thể phân tích của term đều hạ mã được |
+| ◐ | Một phần — một số exempla hạ mã được, một số có khoảng trống đã đo |
+| ○ | Đã lên kế hoạch — chưa hạ mã; curated overlay (`scripta/ebnf-matrix-overrides.toml`) |
+| ✕ | Không hỗ trợ — không có exempla nào hạ mã được; khoảng trống đo được là có thật theo mặc định |
+| — | Chưa đo — không có exempla có thể phân tích cho term này trên lane này |
 
-> A ✓ means the corpus exempla exercising this term lower to the target. It does
-> **not** guarantee identical runtime semantics. Some targets *erase* or *warn* on
-> certain constructs (e.g. Go erases borrow modes `de`/`in`/`ex`) — those still
-> render ✓ here because they lower. See the policy doc for that nuance.
+> ✓ nghĩa là các corpus exempla sử dụng term này hạ mã được thành target. Điều đó
+> **không** đảm bảo ngữ nghĩa thời gian chạy giống hệt nhau. Một số target *loại
+> bỏ* hoặc *cảnh báo* với một số construct (ví dụ Go loại bỏ các chế độ mượn
+> `de`/`in`/`ex`) — chúng vẫn hiển thị ✓ ở đây vì chúng hạ mã được. Xem tài liệu
+> chính sách để hiểu rõ điểm này.
 
-## Corpus-wide summary (all registered terms)
+## Tóm tắt trên toàn corpus (tất cả term đã đăng ký)
 
-**Application lane (HIR → emitted source languages)**
+**Tuyến ứng dụng (HIR → ngôn ngữ nguồn được phát ra)**
 
-| target | capable | analyzable | % |
+| đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
 | rust | 265 | 268 | 99% |
 | go | 247 | 268 | 92% |
 | ts | 262 | 268 | 98% |
 | faber | 268 | 268 | 100% |
 
-**Systems lane (MIR → device/IR artifacts)**
+**Tuyến hệ thống (MIR → tạo phẩm thiết bị/IR)**
 
-| target | capable | analyzable | % |
+| đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
 | llvm-text | 247 | 255 | 97% |
 | wasm-text | 203 | 255 | 80% |
@@ -70,9 +73,9 @@ contracts, and pipeline routing live in
 | sexp | 195 | 254 | 77% |
 | scena | 216 | 254 | 85% |
 
-## Keywords — application lane
+## Từ khóa — tuyến ứng dụng
 
-### keyword
+### từ khóa
 
 | term | rust | go | ts | faber |
 |---|---|---|---|---|
@@ -179,9 +182,9 @@ contracts, and pipeline routing live in
 | `verum` | ✓ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✓ |
 
-## Operators — application lane
+## Toán tử — tuyến ứng dụng
 
-### operator-group
+### nhóm toán tử
 
 | term | rust | go | ts | faber |
 |---|---|---|---|---|
@@ -227,9 +230,9 @@ contracts, and pipeline routing live in
 | `∷` | ✓ | ✓ | ✓ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✓ |
 
-## Keywords — systems lane
+## Từ khóa — tuyến hệ thống
 
-### keyword
+### từ khóa
 
 | term | llvm-text | wasm-text | wasm | metal-text | wgsl-text | sexp-struct | sexp | scena |
 |---|---|---|---|---|---|---|---|---|
@@ -336,9 +339,9 @@ contracts, and pipeline routing live in
 | `verum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 
-## Operators — systems lane
+## Toán tử — tuyến hệ thống
 
-### operator-group
+### nhóm toán tử
 
 | term | llvm-text | wasm-text | wasm | metal-text | wgsl-text | sexp-struct | sexp | scena |
 |---|---|---|---|---|---|---|---|---|
@@ -384,7 +387,7 @@ contracts, and pipeline routing live in
 | `∷` | ✓ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 
-## Other terms (`existing-home` / unspecified)
+## Các term khác (`existing-home` / không chỉ định)
 
 ### existing-home
 

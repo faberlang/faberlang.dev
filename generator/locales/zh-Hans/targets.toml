@@ -1,0 +1,60 @@
+# tooling/targets.md 的本地化界面字符串（由 generate-target-matrix.py 组装）。
+# 矩阵表保持语言中立（Latin 术语、目标标识符和 glyph）。
+
+title = "目标兼容性"
+
+intro = """
+Faber 是一门语言，但有多个编译契约。本页是**经过测量的可下沉能力矩阵**：
+对于 corpus 中的每个术语，列出哪些目标可以下沉它，以及支持程度。
+
+策略动词（支持 / 擦除 / 警告 / 拒绝 / 推迟）和管线路由位于
+[Codegen targets](/tooling/codegen-targets.html)。本页是下面表格中的大型可扫描
+行列表 — HIR 应用通道目标与 MIR 系统通道目标并列显示。
+
+实时 CLI 摘要：`faber targets`。
+"""
+
+meta_generated = "**生成时间**：{date}，由 `scripta/generate-ebnf-matrix.py` 生成 — **请勿编辑**。"
+meta_measurement = "**测量**：`emit_hir_target_matrix` + `emit_mir_target_matrix`（进程内完成，不使用外部 toolchain）。"
+meta_join = "**连接**：`examples/corpus/index.toml` 中的 terms → exempla。"
+
+official = """
+这是**官方生成的 grammar×target 支持矩阵**。它报告 exempla corpus 中每个
+term 的**可下沉能力** — target X 是否能够下沉 grammar production Y。运行时
+语义（擦除/警告/推迟策略动词）、各目标契约和管线路由位于
+[Codegen targets](/tooling/codegen-targets.html)；该文档链接回本页以查看这些行。
+"""
+
+legend_heading = "图例"
+legend_col_glyph = "符号"
+legend_col_meaning = "含义"
+legend_full = "完全支持 — 该术语的所有可分析 exempla 都能下沉"
+legend_partial = "部分支持 — 部分 exempla 能下沉，部分存在已测量的缺口"
+legend_planned = "计划中 — 尚未下沉；使用整理后的覆盖文件 (`scripta/ebnf-matrix-overrides.toml`)"
+legend_unsupported = "不支持 — 没有 exempla 能下沉；按默认事实，已测量的缺口确实存在"
+legend_unmeasured = "未测量 — 此 lane 上没有该术语的可分析 exempla"
+
+legend_note = """
+✓ 表示使用该术语的 corpus exempla 能够下沉到目标。它**不**保证运行时语义
+完全相同。某些目标会对特定构造进行*擦除*或*警告*（例如 Go 会擦除借用
+模式 `de`/`in`/`ex`）— 这些构造仍在此显示为 ✓，因为它们能够下沉。具体
+差异请参阅策略文档。
+"""
+
+summary_heading = "Corpus 总览（所有已注册术语）"
+app_lane = "应用通道（HIR → 输出的源语言）"
+sys_lane = "系统通道（MIR → 设备/IR 产物）"
+col_target = "目标"
+col_capable = "可支持"
+col_analyzable = "可分析"
+col_pct = "%"
+col_term = "术语"
+
+keywords_app = "关键字 — 应用通道"
+operators_app = "运算符 — 应用通道"
+keywords_sys = "关键字 — 系统通道"
+operators_sys = "运算符 — 系统通道"
+other_terms = "其他术语（`existing-home` / 未指定）"
+h3_keyword = "关键字"
+h3_operator_group = "运算符组"
+h3_existing_home = "existing-home"

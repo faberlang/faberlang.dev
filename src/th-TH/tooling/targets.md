@@ -1,65 +1,66 @@
 +++
-title = "Target compatibility"
+title = "ความเข้ากันได้ของเป้าหมาย"
 section = "targets"
 order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
+
+translation_kind = "translated"
+prose_hash = "sha256:23a5ab70c3af92d53b2361c322c70db31bd73f00310bfd5e48ceca901595351f"
+code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+source_commit = "331061d5d641a6172960d263d2656f9ca154b91f"
+source_locale = "en-US"
 +++
 
+Faber เป็นภาษาเดียวที่มีสัญญาการคอมไพล์หลายรูปแบบ หน้านี้คือ
+**เมทริกซ์ความสามารถในการลดรูปที่วัดได้**: สำหรับคำแต่ละคำใน corpus จะแสดงว่า
+เป้าหมายใดลดรูปได้ และรองรับในระดับใด
 
-**Translation status:** target matrix is shared measurement data (Latin term/target ids and ✓/◐/○/✕ glyphs). Intro prose may still be English; the tables are the product surface.
+คำกริยาตามนโยบาย (รองรับ / ลบออก / เตือน / ปฏิเสธ / เลื่อน) และการกำหนดเส้นทาง
+ของ pipeline อยู่ที่ [Codegen targets](/tooling/codegen-targets.html) หน้านี้คือ
+รายการแถวขนาดใหญ่ที่อ่านกวาดได้ — เป้าหมาย application-lane ของ HIR และ
+เป้าหมาย systems-lane ของ MIR แสดงเคียงกันในตารางด้านล่าง
 
+สรุปจาก CLI แบบสด: `faber targets`
 
-Faber is one language with many compilation contracts. This page is the
-**measured lowerability matrix**: for each corpus term, which targets can
-lower it, and at what support level.
+**สร้างโดยอัตโนมัติ**: 2026-07-19 โดย `scripta/generate-ebnf-matrix.py` — **ห้ามแก้ไข**
+**การวัด**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (ภายในกระบวนการ ไม่มี toolchain ภายนอก)
+**การเชื่อมโยง**: terms ใน `examples/corpus/index.toml` → exempla
 
-Policy verbs (support / erase / warn / reject / defer) and pipeline routing
-live on [Codegen targets](/tooling/codegen-targets.html). This page is the
-large scannable row list — HIR application-lane targets and MIR systems-lane
-targets side by side in the tables below.
+นี่คือ **เมทริกซ์ support ของ grammar×target ที่สร้างอย่างเป็นทางการ** โดยรายงาน
+**ความสามารถในการลดรูป** — target X ลดรูป grammar production Y ได้หรือไม่ —
+สำหรับทุก term ใน exempla corpus ความหมายขณะรัน (คำกริยานโยบาย erase/warn/defer),
+สัญญารายเป้าหมาย และการกำหนดเส้นทาง pipeline อยู่ใน
+[Codegen targets](/tooling/codegen-targets.html) ซึ่งลิงก์กลับมาที่หน้านี้เพื่อดูแถวต่าง ๆ
 
-Live CLI summary: `faber targets`.
+## คำอธิบายสัญลักษณ์
 
-
-**Generated**: 2026-07-19 by `scripta/generate-ebnf-matrix.py` — **do not edit**.
-**Measurement**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, no external toolchains).
-**Join**: `examples/corpus/index.toml` terms → exempla.
-
-This is the **official generated** grammar×target support matrix. It reports
-**lowerability** — can target X lower grammar production Y — across every term in
-the exempla corpus. Runtime semantics (erase/warn/defer policy verbs), per-target
-contracts, and pipeline routing live in
-[Codegen targets](/tooling/codegen-targets.html), which links here for the rows.
-
-## Legend
-
-| Glyph | Meaning |
+| สัญลักษณ์ | ความหมาย |
 |---|---|
-| ✓ | fully supported — all analyzable exempla for the term lower |
-| ◐ | partial — some exempla lower, some have a measured gap |
-| ○ | planned — not yet lowering; curated overlay (`scripta/ebnf-matrix-overrides.toml`) |
-| ✕ | not supported — no exempla lower; default-truth, measured gap is real |
-| — | not measured — no analyzable exempla for this term on this lane |
+| ✓ | รองรับเต็มรูปแบบ — exempla ที่วิเคราะห์ได้ทั้งหมดของ term ลดรูปได้ |
+| ◐ | รองรับบางส่วน — exempla บางรายการลดรูปได้ แต่อีกบางรายการมีช่องว่างที่วัดได้ |
+| ○ | วางแผนไว้ — ยังลดรูปไม่ได้; curated overlay (`scripta/ebnf-matrix-overrides.toml`) |
+| ✕ | ไม่รองรับ — ไม่มี exempla รายการใดลดรูปได้; ช่องว่างที่วัดได้เป็นความจริงตามค่าเริ่มต้น |
+| — | ยังไม่ได้วัด — ไม่มี exempla ที่วิเคราะห์ได้สำหรับ term นี้บน lane นี้ |
 
-> A ✓ means the corpus exempla exercising this term lower to the target. It does
-> **not** guarantee identical runtime semantics. Some targets *erase* or *warn* on
-> certain constructs (e.g. Go erases borrow modes `de`/`in`/`ex`) — those still
-> render ✓ here because they lower. See the policy doc for that nuance.
+> ✓ หมายความว่า corpus exempla ที่ใช้ term นี้ลดรูปไปยัง target ได้ แต่ไม่ได้
+> รับประกันว่าความหมายขณะรันจะเหมือนกันทุกประการ target บางรายการ *ลบออก* หรือ
+> *เตือน* สำหรับ construct บางชนิด (เช่น Go ลบโหมดการยืม `de`/`in`/`ex`) —
+> รายการเหล่านั้นยังแสดงเป็น ✓ ที่นี่ เพราะลดรูปได้ โปรดดูรายละเอียดในเอกสารนโยบาย
 
-## Corpus-wide summary (all registered terms)
+## สรุปทั้ง corpus (ทุก term ที่ลงทะเบียน)
 
-**Application lane (HIR → emitted source languages)**
+**เลนแอปพลิเคชัน (HIR → ภาษาต้นฉบับที่ส่งออก)**
 
-| target | capable | analyzable | % |
+| เป้าหมาย | รองรับได้ | วิเคราะห์ได้ | % |
 |---|---|---|---|
 | rust | 265 | 268 | 99% |
 | go | 247 | 268 | 92% |
 | ts | 262 | 268 | 98% |
 | faber | 268 | 268 | 100% |
 
-**Systems lane (MIR → device/IR artifacts)**
+**เลนระบบ (MIR → สิ่งประดิษฐ์ของอุปกรณ์/IR)**
 
-| target | capable | analyzable | % |
+| เป้าหมาย | รองรับได้ | วิเคราะห์ได้ | % |
 |---|---|---|---|
 | llvm-text | 247 | 255 | 97% |
 | wasm-text | 203 | 255 | 80% |
@@ -70,9 +71,9 @@ contracts, and pipeline routing live in
 | sexp | 195 | 254 | 77% |
 | scena | 216 | 254 | 85% |
 
-## Keywords — application lane
+## คีย์เวิร์ด — เลนแอปพลิเคชัน
 
-### keyword
+### คีย์เวิร์ด
 
 | term | rust | go | ts | faber |
 |---|---|---|---|---|
@@ -179,9 +180,9 @@ contracts, and pipeline routing live in
 | `verum` | ✓ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✓ |
 
-## Operators — application lane
+## ตัวดำเนินการ — เลนแอปพลิเคชัน
 
-### operator-group
+### กลุ่มตัวดำเนินการ
 
 | term | rust | go | ts | faber |
 |---|---|---|---|---|
@@ -227,9 +228,9 @@ contracts, and pipeline routing live in
 | `∷` | ✓ | ✓ | ✓ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✓ |
 
-## Keywords — systems lane
+## คีย์เวิร์ด — เลนระบบ
 
-### keyword
+### คีย์เวิร์ด
 
 | term | llvm-text | wasm-text | wasm | metal-text | wgsl-text | sexp-struct | sexp | scena |
 |---|---|---|---|---|---|---|---|---|
@@ -336,9 +337,9 @@ contracts, and pipeline routing live in
 | `verum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 
-## Operators — systems lane
+## ตัวดำเนินการ — เลนระบบ
 
-### operator-group
+### กลุ่มตัวดำเนินการ
 
 | term | llvm-text | wasm-text | wasm | metal-text | wgsl-text | sexp-struct | sexp | scena |
 |---|---|---|---|---|---|---|---|---|
@@ -384,7 +385,7 @@ contracts, and pipeline routing live in
 | `∷` | ✓ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 
-## Other terms (`existing-home` / unspecified)
+## Term อื่น (`existing-home` / ไม่ระบุ)
 
 ### existing-home
 

@@ -1,65 +1,68 @@
 +++
-title = "Target compatibility"
+title = "लक्ष्य संगतता"
 section = "targets"
 order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
+
+translation_kind = "translated"
+prose_hash = "sha256:6440365328b7960dd4cf3f57617b24a0636ce8369209db2a9bd02e77c8d8674a"
+code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+source_commit = "331061d5d641a6172960d263d2656f9ca154b91f"
+source_locale = "en-US"
 +++
 
+Faber एक भाषा है, जिसके संकलन अनुबंध अनेक हैं। यह पृष्ठ **मापी गई
+lowerability matrix** है: corpus के प्रत्येक term के लिए यह बताता है कि कौन-से
+लक्ष्य उसे किस support level पर lower कर सकते हैं।
 
-**Translation status:** target matrix is shared measurement data (Latin term/target ids and ✓/◐/○/✕ glyphs). Intro prose may still be English; the tables are the product surface.
+नीति के क्रिया-शब्द (support / erase / warn / reject / defer) और pipeline routing
+[Codegen targets](/tooling/codegen-targets.html) में हैं। यह पृष्ठ नीचे दी गई
+tables में HIR application-lane targets और MIR systems-lane targets की साथ-साथ
+दी गई, जल्दी पढ़ी जा सकने वाली row list है।
 
+CLI का लाइव सारांश: `faber targets`।
 
-Faber is one language with many compilation contracts. This page is the
-**measured lowerability matrix**: for each corpus term, which targets can
-lower it, and at what support level.
+**जनरेट किया गया**: 2026-07-19, `scripta/generate-ebnf-matrix.py` द्वारा — **संपादित न करें**।
+**मापन**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, बाहरी toolchains के बिना)।
+**Join**: `examples/corpus/index.toml` terms → exempla।
 
-Policy verbs (support / erase / warn / reject / defer) and pipeline routing
-live on [Codegen targets](/tooling/codegen-targets.html). This page is the
-large scannable row list — HIR application-lane targets and MIR systems-lane
-targets side by side in the tables below.
+यह **आधिकारिक generated** grammar×target support matrix है। यह exempla corpus
+के हर term के लिए **lowerability** रिपोर्ट करती है — क्या target X grammar
+production Y को lower कर सकता है। Runtime semantics (erase/warn/defer policy
+verbs), per-target contracts और pipeline routing
+[Codegen targets](/tooling/codegen-targets.html) में हैं; वही दस्तावेज़ rows के
+लिए इस पृष्ठ से link करता है।
 
-Live CLI summary: `faber targets`.
+## संकेत-सूची
 
-
-**Generated**: 2026-07-19 by `scripta/generate-ebnf-matrix.py` — **do not edit**.
-**Measurement**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, no external toolchains).
-**Join**: `examples/corpus/index.toml` terms → exempla.
-
-This is the **official generated** grammar×target support matrix. It reports
-**lowerability** — can target X lower grammar production Y — across every term in
-the exempla corpus. Runtime semantics (erase/warn/defer policy verbs), per-target
-contracts, and pipeline routing live in
-[Codegen targets](/tooling/codegen-targets.html), which links here for the rows.
-
-## Legend
-
-| Glyph | Meaning |
+| चिह्न | अर्थ |
 |---|---|
-| ✓ | fully supported — all analyzable exempla for the term lower |
-| ◐ | partial — some exempla lower, some have a measured gap |
-| ○ | planned — not yet lowering; curated overlay (`scripta/ebnf-matrix-overrides.toml`) |
-| ✕ | not supported — no exempla lower; default-truth, measured gap is real |
-| — | not measured — no analyzable exempla for this term on this lane |
+| ✓ | पूर्ण समर्थन — term के सभी analyzable exempla lower होते हैं |
+| ◐ | आंशिक — कुछ exempla lower होते हैं, कुछ में measured gap है |
+| ○ | योजनाबद्ध — अभी lower नहीं होता; curated overlay (`scripta/ebnf-matrix-overrides.toml`) |
+| ✕ | असमर्थित — कोई exempla lower नहीं होता; default truth के अनुसार measured gap वास्तविक है |
+| — | मापा नहीं गया — इस lane पर term के लिए कोई analyzable exempla नहीं है |
 
-> A ✓ means the corpus exempla exercising this term lower to the target. It does
-> **not** guarantee identical runtime semantics. Some targets *erase* or *warn* on
-> certain constructs (e.g. Go erases borrow modes `de`/`in`/`ex`) — those still
-> render ✓ here because they lower. See the policy doc for that nuance.
+> ✓ का अर्थ है कि इस term का उपयोग करने वाले corpus exempla target तक lower होते
+> हैं। इसका अर्थ समान runtime semantics की गारंटी नहीं है। कुछ targets कुछ
+> constructs को *erase* या *warn* करते हैं (उदाहरण के लिए Go borrow modes
+> `de`/`in`/`ex` को erase करता है) — फिर भी वे यहाँ ✓ के रूप में दिखते हैं क्योंकि
+> वे lower होते हैं। इस बारीकी के लिए policy doc देखें।
 
-## Corpus-wide summary (all registered terms)
+## Corpus-व्यापी सारांश (सभी पंजीकृत terms)
 
-**Application lane (HIR → emitted source languages)**
+**एप्लिकेशन लेन (HIR → उत्सर्जित स्रोत भाषाएँ)**
 
-| target | capable | analyzable | % |
+| लक्ष्य | सक्षम | विश्लेषण योग्य | % |
 |---|---|---|---|
 | rust | 265 | 268 | 99% |
 | go | 247 | 268 | 92% |
 | ts | 262 | 268 | 98% |
 | faber | 268 | 268 | 100% |
 
-**Systems lane (MIR → device/IR artifacts)**
+**सिस्टम लेन (MIR → डिवाइस/IR आर्टिफैक्ट)**
 
-| target | capable | analyzable | % |
+| लक्ष्य | सक्षम | विश्लेषण योग्य | % |
 |---|---|---|---|
 | llvm-text | 247 | 255 | 97% |
 | wasm-text | 203 | 255 | 80% |
@@ -70,9 +73,9 @@ contracts, and pipeline routing live in
 | sexp | 195 | 254 | 77% |
 | scena | 216 | 254 | 85% |
 
-## Keywords — application lane
+## कीवर्ड — एप्लिकेशन लेन
 
-### keyword
+### कीवर्ड
 
 | term | rust | go | ts | faber |
 |---|---|---|---|---|
@@ -179,9 +182,9 @@ contracts, and pipeline routing live in
 | `verum` | ✓ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✓ |
 
-## Operators — application lane
+## ऑपरेटर — एप्लिकेशन लेन
 
-### operator-group
+### ऑपरेटर समूह
 
 | term | rust | go | ts | faber |
 |---|---|---|---|---|
@@ -227,9 +230,9 @@ contracts, and pipeline routing live in
 | `∷` | ✓ | ✓ | ✓ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✓ |
 
-## Keywords — systems lane
+## कीवर्ड — सिस्टम लेन
 
-### keyword
+### कीवर्ड
 
 | term | llvm-text | wasm-text | wasm | metal-text | wgsl-text | sexp-struct | sexp | scena |
 |---|---|---|---|---|---|---|---|---|
@@ -336,9 +339,9 @@ contracts, and pipeline routing live in
 | `verum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 
-## Operators — systems lane
+## ऑपरेटर — सिस्टम लेन
 
-### operator-group
+### ऑपरेटर समूह
 
 | term | llvm-text | wasm-text | wasm | metal-text | wgsl-text | sexp-struct | sexp | scena |
 |---|---|---|---|---|---|---|---|---|
@@ -384,7 +387,7 @@ contracts, and pipeline routing live in
 | `∷` | ✓ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 
-## Other terms (`existing-home` / unspecified)
+## अन्य terms (`existing-home` / निर्दिष्ट नहीं)
 
 ### existing-home
 

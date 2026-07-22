@@ -1,0 +1,65 @@
+# tooling/targets.md के लिए स्थानीयकृत chrome (generate-target-matrix.py द्वारा संयोजित)।
+# मैट्रिक्स तालिकाएँ भाषा-निरपेक्ष रहती हैं (Latin शब्द/लक्ष्य पहचानकर्ता और glyphs)।
+
+title = "लक्ष्य संगतता"
+
+intro = """
+Faber एक भाषा है, जिसके संकलन अनुबंध अनेक हैं। यह पृष्ठ **मापी गई
+lowerability matrix** है: corpus के प्रत्येक term के लिए यह बताता है कि कौन-से
+लक्ष्य उसे किस support level पर lower कर सकते हैं।
+
+नीति के क्रिया-शब्द (support / erase / warn / reject / defer) और pipeline routing
+[Codegen targets](/tooling/codegen-targets.html) में हैं। यह पृष्ठ नीचे दी गई
+tables में HIR application-lane targets और MIR systems-lane targets की साथ-साथ
+दी गई, जल्दी पढ़ी जा सकने वाली row list है।
+
+CLI का लाइव सारांश: `faber targets`।
+"""
+
+meta_generated = "**जनरेट किया गया**: {date}, `scripta/generate-ebnf-matrix.py` द्वारा — **संपादित न करें**।"
+meta_measurement = "**मापन**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, बाहरी toolchains के बिना)।"
+meta_join = "**Join**: `examples/corpus/index.toml` terms → exempla।"
+
+official = """
+यह **आधिकारिक generated** grammar×target support matrix है। यह exempla corpus
+के हर term के लिए **lowerability** रिपोर्ट करती है — क्या target X grammar
+production Y को lower कर सकता है। Runtime semantics (erase/warn/defer policy
+verbs), per-target contracts और pipeline routing
+[Codegen targets](/tooling/codegen-targets.html) में हैं; वही दस्तावेज़ rows के
+लिए इस पृष्ठ से link करता है।
+"""
+
+legend_heading = "संकेत-सूची"
+legend_col_glyph = "चिह्न"
+legend_col_meaning = "अर्थ"
+legend_full = "पूर्ण समर्थन — term के सभी analyzable exempla lower होते हैं"
+legend_partial = "आंशिक — कुछ exempla lower होते हैं, कुछ में measured gap है"
+legend_planned = "योजनाबद्ध — अभी lower नहीं होता; curated overlay (`scripta/ebnf-matrix-overrides.toml`)"
+legend_unsupported = "असमर्थित — कोई exempla lower नहीं होता; default truth के अनुसार measured gap वास्तविक है"
+legend_unmeasured = "मापा नहीं गया — इस lane पर term के लिए कोई analyzable exempla नहीं है"
+
+legend_note = """
+✓ का अर्थ है कि इस term का उपयोग करने वाले corpus exempla target तक lower होते
+हैं। इसका अर्थ समान runtime semantics की गारंटी नहीं है। कुछ targets कुछ
+constructs को *erase* या *warn* करते हैं (उदाहरण के लिए Go borrow modes
+`de`/`in`/`ex` को erase करता है) — फिर भी वे यहाँ ✓ के रूप में दिखते हैं क्योंकि
+वे lower होते हैं। इस बारीकी के लिए policy doc देखें।
+"""
+
+summary_heading = "Corpus-व्यापी सारांश (सभी पंजीकृत terms)"
+app_lane = "एप्लिकेशन लेन (HIR → उत्सर्जित स्रोत भाषाएँ)"
+sys_lane = "सिस्टम लेन (MIR → डिवाइस/IR आर्टिफैक्ट)"
+col_target = "लक्ष्य"
+col_capable = "सक्षम"
+col_analyzable = "विश्लेषण योग्य"
+col_pct = "%"
+col_term = "term"
+
+keywords_app = "कीवर्ड — एप्लिकेशन लेन"
+operators_app = "ऑपरेटर — एप्लिकेशन लेन"
+keywords_sys = "कीवर्ड — सिस्टम लेन"
+operators_sys = "ऑपरेटर — सिस्टम लेन"
+other_terms = "अन्य terms (`existing-home` / निर्दिष्ट नहीं)"
+h3_keyword = "कीवर्ड"
+h3_operator_group = "ऑपरेटर समूह"
+h3_existing_home = "existing-home"
