@@ -15,15 +15,15 @@ source_locale = "en-US"
 +++
 ติดตั้ง CLI ของ **Faber** จากรุ่นที่สร้างไว้ล่วงหน้ารุ่นปัจจุบัน ส่วนหน้าของคอมไพเลอร์รวมอยู่ภายในไบนารี `faber` แล้ว คุณไม่จำเป็นต้องติดตั้ง Radix แยกต่างหากสำหรับการทำงานกับแพ็กเกจทั่วไป
 
-หน้านี้อ้างอิงอาร์ทิแฟกต์รุ่นรีลีสของ repository สำหรับ Faber 1.1.1 สูตรของตัวจัดการแพ็กเกจอาจเผยแพร่ตามหลังรีลีสของ repository หาก Homebrew หรือตัวจัดการแพ็กเกจอื่นรายงานเวอร์ชัน Radix/Faber ที่เก่ากว่า ให้ใช้ไฟล์เก็บถาวรด้านล่างสำหรับเส้นทางนี้
+หน้านี้อ้างอิงอาร์ทิแฟกต์รุ่นรีลีสของ repository สำหรับ Faber 1.2.0 สูตรของตัวจัดการแพ็กเกจอาจเผยแพร่ตามหลังรีลีสของ repository หาก Homebrew หรือตัวจัดการแพ็กเกจอื่นรายงานเวอร์ชัน Radix/Faber ที่เก่ากว่า ให้ใช้ไฟล์เก็บถาวรด้านล่างสำหรับเส้นทางนี้
 
 ## รีลีสปัจจุบัน {#current-release}
 
 | ฟิลด์ | ค่า |
 |---|---|
-| **เวอร์ชัน** | 1.1.1 |
-| **แท็ก** | `faber-v1.1.1` |
-| **หน้ารีลีส** | [faber-v1.1.1 บน GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1) |
+| **เวอร์ชัน** | 1.2.0 |
+| **แท็ก** | `faber-v1.2.0` |
+| **หน้ารีลีส** | [faber-v1.2.0 บน GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0) |
 | **รีลีสทั้งหมด** | [รายการรีลีสของเว็บไซต์](/history/releases.html) |
 | **ใบอนุญาต** | MIT |
 
@@ -31,24 +31,24 @@ source_locale = "en-US"
 
 | แพลตฟอร์ม | ดาวน์โหลด | SHA-256 |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-ไฟล์เก็บถาวรจะแตกไฟล์เป็น `faber-v1.1.1-<target-triple>/faber` ไฟล์ checksum อาจระบุพาธการสร้างเดิม ดังนั้นให้ตรวจสอบโดยเปรียบเทียบฟิลด์แฮชแรกกับไฟล์เก็บถาวรในเครื่อง แทนการพึ่งพาการจับคู่พาธของ `sha256sum -c`
+ไฟล์เก็บถาวรจะแตกไฟล์เป็น `faber-v1.2.0-<target-triple>/faber` ไฟล์ checksum อาจระบุพาธการสร้างเดิม ดังนั้นให้ตรวจสอบโดยเปรียบเทียบฟิลด์แฮชแรกกับไฟล์เก็บถาวรในเครื่อง แทนการพึ่งพาการจับคู่พาธของ `sha256sum -c`
 
 ### macOS arm64 {#macos}
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
 # place on PATH, e.g.:
-sudo mv faber-v1.1.1-aarch64-apple-darwin/faber /usr/local/bin/
+sudo mv faber-v1.2.0-aarch64-apple-darwin/faber /usr/local/bin/
 faber --version
 ```
 
@@ -56,14 +56,14 @@ faber --version
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(sha256sum faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
-sudo mv faber-v1.1.1-x86_64-unknown-linux-gnu/faber /usr/local/bin/
+sudo mv faber-v1.2.0-x86_64-unknown-linux-gnu/faber /usr/local/bin/
 faber --version
 ```
 
@@ -90,7 +90,7 @@ faber check examples/ai-workbench/packages/faber-ai
 
 ## สถานะของ Homebrew {#homebrew}
 
-การเผยแพร่ผ่าน Homebrew ยังไม่ใช่แหล่งอ้างอิงหลักสำหรับเส้นทางเริ่มต้นนี้ หากสูตรให้บริการคอมไพเลอร์รุ่นเก่า เช่น Radix 0.38.0 ขณะที่เว็บไซต์นี้จัดทำเอกสารสำหรับ Faber 1.1.1 ให้ถือว่าสูตรดังกล่าวเผยแพร่ล่าช้า และใช้ไฟล์เก็บถาวรของรีลีสที่สร้างไว้ล่วงหน้า ประตูตรวจสอบในคอนเทนเนอร์สำหรับหน้านี้ยังคงเป็นงานคงค้างจนกว่าการเผยแพร่สูตรจะตามทัน
+การเผยแพร่ผ่าน Homebrew ยังไม่ใช่แหล่งอ้างอิงหลักสำหรับเส้นทางเริ่มต้นนี้ หากสูตรให้บริการคอมไพเลอร์รุ่นเก่า เช่น Radix 0.38.0 ขณะที่เว็บไซต์นี้จัดทำเอกสารสำหรับ Faber 1.2.0 ให้ถือว่าสูตรดังกล่าวเผยแพร่ล่าช้า และใช้ไฟล์เก็บถาวรของรีลีสที่สร้างไว้ล่วงหน้า ประตูตรวจสอบในคอนเทนเนอร์สำหรับหน้านี้ยังคงเป็นงานคงค้างจนกว่าการเผยแพร่สูตรจะตามทัน
 
 ## สร้างจากซอร์ส {#from-source}
 

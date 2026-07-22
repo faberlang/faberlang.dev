@@ -40,7 +40,7 @@ fixum textus body ← ad 'solum:lege' (&quot;config.toml&quot;) ↦ textus
 fixum json data ← ad 'http:peti' (&quot;https://api.example.com/data&quot;) ↦ json</code></pre><p>Materialization uses a type-directed collector: <code>↦ textus</code>
 concatenates all inbound frames, <code>↦ json</code> parses the concatenated
 payload, <code>↦ lista&lt;T&gt;</code> collects frames into a list.</p><h2 id="providers">Host providers</h2><p>Effect families are implemented as separate provider crates under
-<code>faberlang/host-providers-rs</code>. Each provider owns all verbs under
+<code>faberlang/hosts/crates</code>. Each provider owns all verbs under
 its prefix:</p><table><thead><tr><th>Provider</th><th>Prefix</th><th>I/O domain</th></tr></thead><tbody><tr><td><code>solum</code></td><td><code>solum:*</code></td><td>Filesystem: read, write, metadata, directory operations</td></tr><tr><td><code>processus</code></td><td><code>processus:*</code></td><td>Process execution: spawn, pipe, exit codes</td></tr><tr><td><code>consolum</code></td><td><code>consolum:*</code></td><td>Console I/O: stdin, stdout, stderr</td></tr><tr><td><code>tempus</code></td><td><code>tempus:*</code></td><td>Time: now, sleep, timers</td></tr><tr><td><code>aleator</code></td><td><code>aleator:*</code></td><td>Randomness: entropy, distributions</td></tr><tr><td><code>http</code></td><td><code>http:*</code></td><td>HTTP client (Tier D, when landed)</td></tr></tbody></table><p>Providers are separate crates with their own dependencies — <code>solum</code>
 does not pull in HTTP, <code>http</code> does not pull in filesystem code.
 Each provider exports a <code>register()</code> function that the generated
@@ -50,9 +50,9 @@ Runtime:          HostDispatch + conversation protocol (faber-runtime)
 Kernel:           route(frame) → provider for prefix
 Provider:         solum provider reads file, returns content</code></pre><p>The compiler emits generic dispatch — it never embeds provider crate names
 into generated code. The runtime provides <code>HostDispatch</code> and the
-conversation protocol. The kernel (from <code>host-kernel-rs</code>) routes
+conversation protocol. The kernel (from <code>hosts/crates/host-kernel</code>) routes
 frames to the correct provider based on prefix. The provider (from
-<code>host-providers-rs</code>) performs the actual I/O.</p><p>This means generated Faber code is <strong>provider-neutral</strong>. The same compiled
+<code>hosts/crates/*</code> providers) performs the actual I/O.</p><p>This means generated Faber code is <strong>provider-neutral</strong>. The same compiled
 binary can be linked against different provider implementations — a real
 filesystem provider for production, a mock provider for testing — by changing
 the compile manifest.</p><h2 id="manifest">Compile manifest</h2><p>Which providers to link is controlled by the generated compile manifest and
@@ -67,7 +67,7 @@ enabled = true</code></pre><p>During authoring, missing providers produce a runt
 error. In strict mode (future), every <code>ad</code> prefix in the program
 must appear in the compile manifest, and the compiler validates that the
 provider's capability manifest covers the routes used.</p><h2 id="architecture">Architecture</h2><p>The host platform is split across three repositories in the
-<code>faberlang</code> organisation:</p><table><thead><tr><th>Repository</th><th>Role</th></tr></thead><tbody><tr><td><code>host-kernel-rs</code></td><td>Thin router — owns <code>Frame</code>, <code>Conversation</code>, terminal lifecycle, prefix dispatch, structured errors (<code>E_NO_ROUTE</code>), capability manifest aggregation</td></tr><tr><td><code>host-native-rs</code></td><td>Native attach — workers, <code>register_providers</code> startup hook, generated <code>host_register.rs</code> integration</td></tr><tr><td><code>host-providers-rs</code></td><td>Provider implementations — Cargo workspace with per-family crates (<code>solum</code>, <code>processus</code>, etc.)</td></tr></tbody></table><p>Each provider crate owns its own native dependencies. The <code>http</code>
+<code>faberlang</code> organisation:</p><table><thead><tr><th>Repository</th><th>Role</th></tr></thead><tbody><tr><td><code>hosts/crates/host-kernel</code></td><td>Thin router — owns <code>Frame</code>, <code>Conversation</code>, terminal lifecycle, prefix dispatch, structured errors (<code>E_NO_ROUTE</code>), capability manifest aggregation</td></tr><tr><td><code>hosts/crates/host-native</code></td><td>Native attach — workers, <code>register_providers</code> startup hook, generated <code>host_register.rs</code> integration</td></tr><tr><td><code>hosts/crates/*</code> providers</td><td>Provider implementations — Cargo workspace with per-family crates (<code>solum</code>, <code>processus</code>, etc.)</td></tr></tbody></table><p>Each provider crate owns its own native dependencies. The <code>http</code>
 provider pulls in <code>hyper</code> and <code>tokio</code> only when HTTP
 is enabled. The <code>solum</code> provider uses standard file APIs with no
 additional network dependencies.</p><p>&gt; <strong>Same route, any host.</strong> Because <code>ad</code> dispatches on route strings and providers are pluggable, the same Faber source can target a native binary (host-native-rs), a WASM runtime (host-kernel as a Frame/Wasm adapter), or a TypeScript Node.js process (host-providers-ts) without changing a single line of Faber code.</p><h2 id="stdlib">Norma wrappers</h2><p>Most Faber code does not call <code>ad</code> directly. The Norma standard
@@ -87,7 +87,7 @@ handling without hiding the fact that I/O crosses the <code>ad</code>
 boundary. The Norma wrappers are open source and live under
 <code>norma/src/</code>.</p><h2 id="references">References</h2><p>1. <code>radix/docs/design/frame-stream-types.md</code> — full spec for sermo, scrinium, status, meus, tuus
 2. <code>radix/docs/design/host-provider-gateway.md</code> — thin router architecture, provider contracts, compile manifest
-3. <code>faberlang/host-kernel-rs/</code> — kernel router implementation
-4. <code>faberlang/host-native-rs/</code> — native attach and registration
-5. <code>faberlang/host-providers-rs/</code> — provider crates (solum, processus, consolum, tempus, aleator, http)
+3. <code>faberlang/hosts/crates/host-kernel/</code> — kernel router implementation
+4. <code>faberlang/hosts/crates/host-native/</code> — native attach and registration
+5. <code>faberlang/hosts/crates/</code> — provider crates (solum, processus, consolum, tempus, aleator, http)
 6. <code>examples/corpus/ad/</code> — sermo exempla files</p></div></main></div></body></html>

@@ -20,35 +20,43 @@ developed by Ian Zepp and released under the MIT license.
 the sequenced start track: [Hello](/start/hello.html),
 [Commands](/start/commands.html), and [Projects](/start/projects.html).
 
-## Download Faber 1.1.1 {#download}
+## Download Faber 1.2.0 {#download}
 
-Current release: **Faber 1.1.1** (tag `faber-v1.1.1`). Prebuilt CLI archives
-for macOS and Linux; extract the `faber-v1.1.1-<target-triple>/faber` binary
+Current release: **Faber 1.2.0** (tag `faber-v1.2.0`). Prebuilt CLI archives
+for macOS and Linux; extract the `faber-v1.2.0-<target-triple>/faber` binary
 and put it on your `PATH`.
 
 | Platform | Archive | Checksum |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [faber-v1.1.1-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** (Apple Silicon) | [faber-v1.2.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** (glibc) | [faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
 Quick install (macOS arm64 example):
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
-sudo mv faber-v1.1.1-aarch64-apple-darwin/faber /usr/local/bin/
+sudo mv faber-v1.2.0-aarch64-apple-darwin/faber /usr/local/bin/
 faber --version
 ```
 
-All release notes and assets: [github.com/faberlang/releases · faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1).
+All release notes and assets: [github.com/faberlang/releases · faber-v1.2.0](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0).
 Step-by-step: [Install guide](/start/install.html). Full historical inventory:
 [Releases](/history/releases.html).
+
+### Radix compiler {#download-radix}
+
+The **Radix** compiler (v0.77.0) is bundled inside Faber. If you need Radix
+as a standalone library or tool, it is available separately:
+
+- Source: [github.com/faberlang/radix](https://github.com/faberlang/radix) · tag [`v0.77.0`](https://github.com/faberlang/radix/releases/tag/v0.77.0)
+- Release notes: [github.com/faberlang/releases · radix-v0.77.0](https://github.com/faberlang/releases/releases/tag/radix-v0.77.0)
 
 | | |
 |---|---|

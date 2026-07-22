@@ -13,15 +13,15 @@ source_locale = "en-US"
 +++
 从当前的预编译发行版安装 **Faber** CLI。编译器前端内置在 `faber` 二进制文件中;常规包工作不需要单独安装 Radix。
 
-本页内容基于 Faber 1.1.1 的仓库发行工件编写。包管理器公式可能落后于仓库发行版;如果 Homebrew 或其他管理器报告较旧的 Radix/Faber 版本,请在此轨道上优先使用下方归档。
+本页内容基于 Faber 1.2.0 的仓库发行工件编写。包管理器公式可能落后于仓库发行版;如果 Homebrew 或其他管理器报告较旧的 Radix/Faber 版本,请在此轨道上优先使用下方归档。
 
 ## 当前发行版 {#current-release}
 
 | 字段 | 值 |
 |---|---|
-| **版本** | 1.1.1 |
-| **标签** | `faber-v1.1.1` |
-| **发行页面** | [GitHub 上的 faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1) |
+| **版本** | 1.2.0 |
+| **标签** | `faber-v1.2.0` |
+| **发行页面** | [GitHub 上的 faber-v1.2.0](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0) |
 | **全部发行版** | [站点发行版清单](/history/releases.html) |
 | **许可证** | MIT |
 
@@ -29,24 +29,24 @@ source_locale = "en-US"
 
 | 平台 | 下载 | SHA-256 |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | [校验和](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | [校验和](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz) | [校验和](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz) | [校验和](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-归档解压后为 `faber-v1.1.1-<target-triple>/faber`。校验和文件可能引用原始构建路径,因此请将首个哈希字段与本地归档进行比对验证,而非依赖 `sha256sum -c` 的路径匹配。
+归档解压后为 `faber-v1.2.0-<target-triple>/faber`。校验和文件可能引用原始构建路径,因此请将首个哈希字段与本地归档进行比对验证,而非依赖 `sha256sum -c` 的路径匹配。
 
 ### macOS arm64 {#macos}
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
 # place on PATH, e.g.:
-sudo mv faber-v1.1.1-aarch64-apple-darwin/faber /usr/local/bin/
+sudo mv faber-v1.2.0-aarch64-apple-darwin/faber /usr/local/bin/
 faber --version
 ```
 
@@ -54,14 +54,14 @@ faber --version
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(sha256sum faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
-sudo mv faber-v1.1.1-x86_64-unknown-linux-gnu/faber /usr/local/bin/
+sudo mv faber-v1.2.0-x86_64-unknown-linux-gnu/faber /usr/local/bin/
 faber --version
 ```
 
@@ -87,7 +87,7 @@ faber check examples/ai-workbench/packages/faber-ai
 
 ## Homebrew 状态 {#homebrew}
 
-Homebrew 的发布尚不是此入门轨道的权威。如果某个公式服务于较旧的编译器(例如 Radix 0.38.0),而本站点记录的是 Faber 1.1.1,请将该公式视为滞后,并使用预编译发行归档。在公式发布跟上之前,本页的容器验证门禁仍为残留状态。
+Homebrew 的发布尚不是此入门轨道的权威。如果某个公式服务于较旧的编译器(例如 Radix 0.38.0),而本站点记录的是 Faber 1.2.0,请将该公式视为滞后,并使用预编译发行归档。在公式发布跟上之前,本页的容器验证门禁仍为残留状态。
 
 ## 从源码构建 {#from-source}
 

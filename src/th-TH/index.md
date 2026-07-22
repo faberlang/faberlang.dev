@@ -19,32 +19,32 @@ source_locale = "en-US"
 
 **เพิ่งเริ่มใช่ไหม?** เริ่มจาก [ติดตั้งและดาวน์โหลด](/start/install.html) จากนั้นทำตามลำดับในเส้นทางเริ่มต้น: [Hello](/start/hello.html), [คำสั่ง](/start/commands.html) และ [โปรเจกต์](/start/projects.html)
 
-## ดาวน์โหลด Faber 1.1.1 {#download}
+## ดาวน์โหลด Faber 1.2.0 {#download}
 
-รุ่นปัจจุบัน: **Faber 1.1.1** (แท็ก `faber-v1.1.1`) มีไฟล์เก็บถาวร CLI ที่คอมไพล์ไว้ล่วงหน้าสำหรับ macOS และ Linux ให้แตกไฟล์ไบนารี
-`faber-v1.1.1-<target-triple>/faber` แล้ววางไว้ใน `PATH`
+รุ่นปัจจุบัน: **Faber 1.2.0** (แท็ก `faber-v1.2.0`) มีไฟล์เก็บถาวร CLI ที่คอมไพล์ไว้ล่วงหน้าสำหรับ macOS และ Linux ให้แตกไฟล์ไบนารี
+`faber-v1.2.0-<target-triple>/faber` แล้ววางไว้ใน `PATH`
 
 | แพลตฟอร์ม | ไฟล์เก็บถาวร | checksum |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [faber-v1.1.1-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** (Apple Silicon) | [faber-v1.2.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** (glibc) | [faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
 การติดตั้งแบบรวดเร็ว (ตัวอย่าง macOS arm64):
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
-sudo mv faber-v1.1.1-aarch64-apple-darwin/faber /usr/local/bin/
+sudo mv faber-v1.2.0-aarch64-apple-darwin/faber /usr/local/bin/
 faber --version
 ```
 
-บันทึกประจำรุ่นและไฟล์ทั้งหมด: [github.com/faberlang/releases · faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1)  
+บันทึกประจำรุ่นและไฟล์ทั้งหมด: [github.com/faberlang/releases · faber-v1.2.0](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0)  
 ดูขั้นตอนทีละขั้น: [คู่มือการติดตั้ง](/start/install.html) รายการประวัติทั้งหมด:
 [รุ่นที่เผยแพร่](/history/releases.html)
 

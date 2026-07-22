@@ -17,31 +17,31 @@ source_locale = "en-US"
 
 **جديد هنا؟** ابدأ بـ [التثبيت والتحميل](/start/install.html)، ثم شغّل مسار البداية المتسلسل: [مرحباً](/start/hello.html)، [الأوامر](/start/commands.html)، و[المشاريع](/start/projects.html).
 
-## تحميل Faber 1.1.1 {#download}
+## تحميل Faber 1.2.0 {#download}
 
-الإصدار الحالي: **Faber 1.1.1** (الوسم `faber-v1.1.1`). أرشيفات CLI مُجمَّعة مسبقاً لأنظمة macOS و Linux؛ استخرج الثنائي `faber-v1.1.1-<target-triple>/faber` وضعه في `PATH` لديك.
+الإصدار الحالي: **Faber 1.2.0** (الوسم `faber-v1.2.0`). أرشيفات CLI مُجمَّعة مسبقاً لأنظمة macOS و Linux؛ استخرج الثنائي `faber-v1.2.0-<target-triple>/faber` وضعه في `PATH` لديك.
 
 | المنصة | الأرشيف | المجموع الاختباري |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [faber-v1.1.1-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** (Apple Silicon) | [faber-v1.2.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** (glibc) | [faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
 تثبيت سريع (مثال macOS arm64):
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
-sudo mv faber-v1.1.1-aarch64-apple-darwin/faber /usr/local/bin/
+sudo mv faber-v1.2.0-aarch64-apple-darwin/faber /usr/local/bin/
 faber --version
 ```
 
-جميع ملاحظات الإصدار والموجودات: [github.com/faberlang/releases · faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1).
+جميع ملاحظات الإصدار والموجودات: [github.com/faberlang/releases · faber-v1.2.0](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0).
 خطوة بخطوة: [دليل التثبيت](/start/install.html). الجرد التاريخي الكامل:
 [الإصدارات](/history/releases.html).
 

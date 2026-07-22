@@ -26,33 +26,33 @@ Radix है, जो लैटिन *root* से लिया गया है
 फिर क्रमबद्ध प्रारंभिक ट्रैक चलाएँ: [Hello](/start/hello.html),
 [Commands](/start/commands.html), और [Projects](/start/projects.html)।
 
-## Faber 1.1.1 डाउनलोड करें {#download}
+## Faber 1.2.0 डाउनलोड करें {#download}
 
-वर्तमान रिलीज़: **Faber 1.1.1** (टैग `faber-v1.1.1`)। macOS और Linux के लिए
-पहले से बने CLI आर्काइव उपलब्ध हैं; `faber-v1.1.1-<target-triple>/faber`
+वर्तमान रिलीज़: **Faber 1.2.0** (टैग `faber-v1.2.0`)। macOS और Linux के लिए
+पहले से बने CLI आर्काइव उपलब्ध हैं; `faber-v1.2.0-<target-triple>/faber`
 बाइनरी को निकालकर अपने `PATH` में रखें।
 
 | प्लेटफ़ॉर्म | आर्काइव | चेकसम |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [faber-v1.1.1-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** (Apple Silicon) | [faber-v1.2.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** (glibc) | [faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
 त्वरित इंस्टॉल (macOS arm64 उदाहरण):
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
-sudo mv faber-v1.1.1-aarch64-apple-darwin/faber /usr/local/bin/
+sudo mv faber-v1.2.0-aarch64-apple-darwin/faber /usr/local/bin/
 faber --version
 ```
 
-सभी रिलीज़ नोट्स और एसेट: [github.com/faberlang/releases · faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1)।
+सभी रिलीज़ नोट्स और एसेट: [github.com/faberlang/releases · faber-v1.2.0](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0)।
 चरण-दर-चरण: [इंस्टॉल गाइड](/start/install.html)। पूरा ऐतिहासिक
 इन्वेंटरी: [रिलीज़](/history/releases.html)।
 
