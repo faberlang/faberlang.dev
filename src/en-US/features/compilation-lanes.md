@@ -221,3 +221,6 @@ backend.
 | `Metal` (hold) | MIR | GPU | no | no | no |
 
 *`build`, `run`, and `package` describe Faber workflows. External toolchains (rustc, wasm-tools, naga) handle final compilation for text-emission targets.*
+
+Full measured grammar × target lowerability (every corpus term, HIR and MIR
+columns): [Target compatibility](/tooling/targets.html).

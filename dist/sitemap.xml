@@ -358,6 +358,7 @@
   <url><loc>https://faberlang.dev/ar/tooling/performance.html</loc></url>
   <url><loc>https://faberlang.dev/ar/tooling/radix-compiler.html</loc></url>
   <url><loc>https://faberlang.dev/ar/tooling/scripting.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/tooling/targets.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/!..html</loc></url>
@@ -715,6 +716,7 @@
   <url><loc>https://faberlang.dev/en-US/tooling/performance.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/tooling/radix-compiler.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/tooling/scripting.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/tooling/targets.html</loc></url>
   <url><loc>https://faberlang.dev/hi/</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/!..html</loc></url>
@@ -1072,6 +1074,7 @@
   <url><loc>https://faberlang.dev/hi/tooling/performance.html</loc></url>
   <url><loc>https://faberlang.dev/hi/tooling/radix-compiler.html</loc></url>
   <url><loc>https://faberlang.dev/hi/tooling/scripting.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/tooling/targets.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/!..html</loc></url>
@@ -1429,6 +1432,7 @@
   <url><loc>https://faberlang.dev/th-TH/tooling/performance.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/tooling/radix-compiler.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/tooling/scripting.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/tooling/targets.html</loc></url>
   <url><loc>https://faberlang.dev/vi/</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/!..html</loc></url>
@@ -1786,6 +1790,7 @@
   <url><loc>https://faberlang.dev/vi/tooling/performance.html</loc></url>
   <url><loc>https://faberlang.dev/vi/tooling/radix-compiler.html</loc></url>
   <url><loc>https://faberlang.dev/vi/tooling/scripting.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/tooling/targets.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/!..html</loc></url>
@@ -2143,6 +2148,7 @@
   <url><loc>https://faberlang.dev/zh-Hans/tooling/performance.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/tooling/radix-compiler.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/tooling/scripting.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/tooling/targets.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/!..html</loc></url>
@@ -2500,4 +2506,5 @@
   <url><loc>https://faberlang.dev/zh-Hant/tooling/performance.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/tooling/radix-compiler.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/tooling/scripting.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/tooling/targets.html</loc></url>
 </urlset>

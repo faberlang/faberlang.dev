@@ -114,6 +114,7 @@ faber-runtime types where required.
 - https://faberlang.dev/en-US/tooling/radix-compiler.html
 - https://faberlang.dev/en-US/tooling/cista-package-manager.html
 - https://faberlang.dev/en-US/tooling/codegen-targets.html
+- https://faberlang.dev/en-US/tooling/targets.html
 - https://faberlang.dev/en-US/tooling/scripting.html
 - https://faberlang.dev/en-US/tooling/performance.html
 

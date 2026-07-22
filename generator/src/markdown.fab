@@ -285,7 +285,9 @@ functio table_node(lista<textus> headers, lista<doc_mod.Node> rows, textus site_
     varia lista<doc_mod.Node> children ← vacua
     children.appende(thead)
     children.appende(tbody)
-    redde doc_mod.element("table", vacua, children)
+    fixum doc_mod.Node table ← doc_mod.element("table", vacua, children)
+    # Horizontal scroll + sticky first column for wide matrices (HIR/MIR targets).
+    redde doc_mod.element("div", [doc_mod.attr("class", "table-scroll")], [table])
 }
 
 

@@ -225,6 +225,7 @@ functio genera_sidebar(textus active_section, textus site_locale) → doc_mod.No
     docs.appende(li(genera_nav_link("Features", lp.content_href("/features/", site_locale), active_section ≡ "features")))
     docs.appende(li(genera_nav_link("Syntax", lp.content_href("/syntax/", site_locale), active_section ≡ "syntax")))
     docs.appende(li(genera_nav_link("Tooling", lp.content_href("/tooling/", site_locale), active_section ≡ "tooling")))
+    docs.appende(li(genera_nav_link("Targets", lp.content_href("/tooling/targets.html", site_locale), active_section ≡ "targets")))
     docs.appende(li(genera_nav_link("Ecosystem", lp.content_href("/ecosystem/", site_locale), active_section ≡ "ecosystem")))
     docs.appende(li(genera_nav_link("Corpus", lp.content_href("/corpus/", site_locale), active_section ≡ "corpus")))
     docs.appende(li(genera_nav_link("References", lp.content_href("/references/", site_locale), active_section ≡ "references")))

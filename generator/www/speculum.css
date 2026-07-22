@@ -415,10 +415,31 @@ p { margin-bottom: 0.95rem; max-width: 70ch; }
 .content li::marker { color: var(--ink-faint); }
 
 /* ---------- tables (full content width) ---------- */
+/* Wide matrices (target compatibility) scroll horizontally; first col sticks. */
+.content .table-scroll {
+    overflow-x: auto;
+    max-width: 100%;
+    margin: 1rem 0 1.35rem;
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-soft);
+    background: var(--paper);
+    -webkit-overflow-scrolling: touch;
+}
+.content .table-scroll table {
+    width: max-content;
+    min-width: 100%;
+    max-width: none;
+    margin: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
 .content table {
     width: 100%;
     max-width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
     margin: 1rem 0 1.35rem;
     font-family: var(--sans);
     font-size: 0.9rem;
@@ -440,6 +461,7 @@ p { margin-bottom: 0.95rem; max-width: 70ch; }
     padding: 0.7rem 0.9rem;
     border-bottom: 2px solid color-mix(in srgb, var(--glyph) 30%, var(--rule-strong));
     vertical-align: bottom;
+    white-space: nowrap;
 }
 .content tbody tr:nth-child(even) {
     background: color-mix(in srgb, var(--paper-alt) 55%, transparent);
@@ -456,7 +478,32 @@ p { margin-bottom: 0.95rem; max-width: 70ch; }
 }
 .content tbody tr:hover { background: var(--paper-alt); }
 .content th:first-child,
-.content td:first-child { width: 28%; min-width: 8rem; }
+.content td:first-child {
+    min-width: 7rem;
+    max-width: 16rem;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: var(--paper);
+    box-shadow: 1px 0 0 var(--rule);
+}
+.content thead th:first-child {
+    background: var(--paper-alt);
+    z-index: 2;
+}
+.content tbody tr:nth-child(even) td:first-child {
+    background: color-mix(in srgb, var(--paper-alt) 55%, var(--paper));
+}
+.content tbody tr:hover td:first-child {
+    background: var(--paper-alt);
+}
+/* Glyph columns in target matrices — center + monospaced for scan */
+.content .table-scroll td:not(:first-child),
+.content .table-scroll th:not(:first-child) {
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+    min-width: 3.25rem;
+}
 /* Key-value tables (empty header row) still stretch */
 .content thead:empty,
 .content thead tr:has(th:empty):not(:has(th:not(:empty))) {

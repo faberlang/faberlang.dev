@@ -75,3 +75,10 @@ Source → Lex → Parse → Collect → Resolve → Lower → Typecheck → Ana
 | sexp | 193 emitted · 190 Racket-compiled · 190 Racket-run. Validation target. |
 
 For live capability flags, run `faber targets`.
+
+## Full lowerability matrix {#full-matrix}
+
+The large term × target tables (HIR application lane and MIR systems lane)
+live on the [Target compatibility](/tooling/targets.html) page. That matrix
+is generated from `radix/EBNF_MATRIX.md` and reports lowerability only —
+not erase/warn policy (documented above).

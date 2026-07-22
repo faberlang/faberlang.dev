@@ -180,6 +180,14 @@ render_locale() {
 # ==================================================================
 if [ "$FULL_SITE" = true ]; then
 
+    # Step 0: Refresh generated matrix pages when radix sibling is present
+    if [ -f "${WORKSPACE_DIR}/radix/EBNF_MATRIX.md" ]; then
+        echo "[0/10] Generating target compatibility matrix pages..."
+        "$PYTHON" "${SCRIPT_DIR}/generate-target-matrix.py" --all-locales
+    else
+        echo "[0/10] Skipping target matrix generate (no ${WORKSPACE_DIR}/radix/EBNF_MATRIX.md)"
+    fi
+
     # Step 1: Validate and build generator (once)
     echo "[1/9] Validating generator source..."
     "${SCRIPT_DIR}/validate-html-literals.sh" "${GENERATOR_DIR}/src"
@@ -270,6 +278,11 @@ if [ "$FULL_SITE" = true ]; then
         smoke_contains "${OUTPUT_DIR}/en-US/404.html" "404" "404 page"
         smoke_contains "${OUTPUT_DIR}/en-US/history/releases.html" "faber-v1.1.1" "releases inventory"
         smoke_contains "${OUTPUT_DIR}/en-US/history/releases.html" "Historical releases" "releases archive heading"
+        smoke_contains "${OUTPUT_DIR}/en-US/tooling/targets.html" "Target compatibility" "targets matrix title"
+        smoke_contains "${OUTPUT_DIR}/en-US/tooling/targets.html" "table-scroll" "targets matrix scroll wrap"
+        smoke_contains "${OUTPUT_DIR}/en-US/tooling/targets.html" "Application lane" "targets HIR summary"
+        smoke_contains "${OUTPUT_DIR}/en-US/tooling/targets.html" "Systems lane" "targets MIR summary"
+        smoke_contains "${OUTPUT_DIR}/en-US/index.html" "/tooling/targets.html" "sidebar targets link"
         smoke_contains "${OUTPUT_DIR}/robots.txt" "Sitemap:" "robots.txt"
         smoke_contains "${OUTPUT_DIR}/robots.txt" "Allow: /" "robots allow all"
         smoke_contains "${OUTPUT_DIR}/search-index.json" '"t":"redde"' "search index dataset"

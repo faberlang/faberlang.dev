@@ -30,6 +30,12 @@ Faber compiles to Rust (default), WASM, TypeScript, Go, and GPU/WGSL.
 Each target lane has its own IR path and runtime binding.
 [Read more →](/tooling/codegen-targets.html)
 
+## Target compatibility matrix {#targets}
+
+Measured lowerability for every corpus term across HIR and MIR targets
+(`✓` / `◐` / `○` / `✕` / `—`). Large scannable tables.
+[Read more →](/tooling/targets.html)
+
 ## Performance {#performance}
 
 Measured compilation and execution performance across target lanes.
