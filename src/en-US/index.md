@@ -53,10 +53,12 @@ Step-by-step: [Install guide](/start/install.html). Full historical inventory:
 ### Radix compiler {#download-radix}
 
 The **Radix** compiler (v0.77.0) is bundled inside Faber. If you need Radix
-as a standalone library or tool, it is available separately:
+as a standalone CLI, prebuilt binaries are available:
 
-- Source: [github.com/faberlang/radix](https://github.com/faberlang/radix) · tag [`v0.77.0`](https://github.com/faberlang/radix/releases/tag/v0.77.0)
-- Release notes: [github.com/faberlang/releases · radix-v0.77.0](https://github.com/faberlang/releases/releases/tag/radix-v0.77.0)
+- Release: [github.com/faberlang/releases · radix-v0.77.0](https://github.com/faberlang/releases/releases/tag/radix-v0.77.0)
+
+Radix source is private. The public release artifacts include the compiler
+binary and checksums.
 
 | | |
 |---|---|
