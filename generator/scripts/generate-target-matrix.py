@@ -290,7 +290,7 @@ def build_page(matrix_text: str, pack: dict[str, str], *, locale: str) -> str:
         ("## Operators — application lane", pack["operators_app"], pack["h3_operator_group"]),
         ("## Keywords — systems lane", pack["keywords_sys"], pack["h3_keyword"]),
         ("## Operators — systems lane", pack["operators_sys"], pack["h3_operator_group"]),
-        ("## Other terms", pack["other_terms"], pack["h3_existing_home"]),
+        ("## Types, intrinsics & meta", pack["other_terms"], pack["h3_existing_home"]),
     ]
     for en_prefix, h2, h3 in mapping:
         key = next((k for k in sections if k.startswith(en_prefix)), None)
