@@ -47,11 +47,23 @@ def transcode_faber(source: str, locale: str, faber: str, label: str) -> str:
     if locale == "la":
         return source
 
+    # When FABER_LOCALIZE points to the radix binary, use --reader-pack instead
+    # of --reader-locale (radix takes pack paths, faber takes locale names).
+    faber_path = Path(faber).resolve()
+    if faber_path.name == "radix":
+        workspace_root = faber_path.parent.parent.parent.parent  # radix/target/debug/radix -> faberlang/
+        reader_pack = workspace_root / "radix" / "stdlib" / "reader" / locale / "pack.toml"
+        args = [faber, "emit", "-t", "faber", f"--reader-pack={reader_pack}"]
+        sys.stderr.write(f"[localize] radix path: {faber}, pack: {reader_pack}\n")
+    else:
+        args = [faber, "emit", "-t", "faber", f"--reader-locale={locale}"]
+        sys.stderr.write(f"[localize] faber path: {faber}, locale: {locale}\n")
+
     with tempfile.TemporaryDirectory(prefix="speculum-locale-") as tmp:
         path = Path(tmp) / "fence.fab"
         path.write_text(source)
         proc = subprocess.run(
-            [faber, "emit", "-t", "faber", f"--reader-locale={locale}", str(path)],
+            args + [str(path)],
             text=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,

@@ -1,5 +1,19 @@
 <!DOCTYPE html>
-<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="JSON-shaped dynamic value literal for open object-shaped data."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="valor — Faber"><meta property="og:description" content="JSON-shaped dynamic value literal for open object-shaped data."><meta property="og:url" content="https://faberlang.dev/zh-Hant/corpus/valor.html"><meta property="og:locale" content="zh_TW"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/zh-Hant/corpus/valor.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>valor — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">渲染</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">zh-Hant</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword..." aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/zh-Hant/start/install.html">安裝</a></nav></div></div><div class="page"><aside><a class="brand" href="/zh-Hant/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">語言文件</span></span></a><div class="side-h">開始使用</div><ul class="nav"><li><a href="/zh-Hant/start/install.html">安裝與下載</a></li><li><a href="/zh-Hant/history/releases.html">發行版</a></li><li><a href="/zh-Hant/start/hello.html">你好</a></li><li><a href="/zh-Hant/start/commands.html">命令</a></li><li><a href="/zh-Hant/start/projects.html">專案</a></li><li><a href="/zh-Hant/start/examples.html">範例</a></li><li><a href="/zh-Hant/start/">快速導覽</a></li></ul><div class="side-h">文件</div><ul class="nav"><li><a href="/zh-Hant/">概覽</a></li><li><a href="/zh-Hant/features/">特性</a></li><li><a href="/zh-Hant/syntax/">語法</a></li><li><a href="/zh-Hant/tooling/">工具鏈</a></li><li><a href="/zh-Hant/tooling/targets.html">目標</a></li><li><a href="/zh-Hant/ecosystem/">生態系</a></li><li><a href="/zh-Hant/corpus/" class="active">語料庫</a></li><li><a href="/zh-Hant/references/">參考</a></li><li><a href="/zh-Hant/history/">歷史</a></li></ul><div class="side-h">面向智慧體</div><ul class="nav nav-compact"><li><a href="/llms.txt">智慧體索引</a></li><li><a href="/agents/index.md">智慧體指南</a></li><li><a href="/.well-known/agent-skills/index.json">智慧體技能</a></li><li><a href="/llms-full.txt">完整參考</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/zh-Hant/history/releases.html">全部發行版</a></li><li><a href="https://github.com/faberlang">GitHub 組織</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">範式</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">型別</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">目標</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">授權</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>valor</h1><p><strong>Translation status:</strong> 繁體中文 reader-locale proof. Code fences render through the <code>zh-Hant</code> pipeline; prose is canonical Latin.</p><div class="content"><p>JSON-shaped dynamic value literal for open object-shaped data.</p><p><strong>Syntax:</strong> <code>valor</code></p><h2>Category</h2><p><code>conversion</code></p><h2>Related</h2><ul><li><a href="/zh-Hant/corpus/↦.html">↦</a></li><li><a href="/zh-Hant/corpus/valor.html">valor</a></li><li><a href="/zh-Hant/corpus/octeti.html">octeti</a></li><li><a href="/zh-Hant/corpus/lista.html">lista</a></li><li><a href="/zh-Hant/corpus/tabula.html">tabula</a></li><li><a href="/zh-Hant/corpus/genus.html">genus</a></li><li><a href="/zh-Hant/corpus/tensor.html">tensor</a></li></ul><h2>Examples</h2><h3>examples/corpus/conversio/valor-boxing.fab (canonical · conversio)</h3><p>T ↦ valor boxing for scalar, byte, collection, genus, and tensor carriers.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># conversio — typed values to valor boxing
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="JSON-shaped dynamic value literal for open object-shaped data."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="valor — Faber"><meta property="og:description" content="JSON-shaped dynamic value literal for open object-shaped data."><meta property="og:url" content="https://faberlang.dev/zh-Hant/corpus/valor.html"><meta property="og:locale" content="zh_TW"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/zh-Hant/corpus/valor.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>valor — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">渲染</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">zh-Hant</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword..." aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/zh-Hant/start/install.html">安裝</a></nav></div></div><div class="page"><aside><a class="brand" href="/zh-Hant/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">語言文件</span></span></a><div class="side-h">開始使用</div><ul class="nav"><li><a href="/zh-Hant/start/install.html">安裝與下載</a></li><li><a href="/zh-Hant/history/releases.html">發行版</a></li><li><a href="/zh-Hant/start/hello.html">你好</a></li><li><a href="/zh-Hant/start/commands.html">命令</a></li><li><a href="/zh-Hant/start/projects.html">專案</a></li><li><a href="/zh-Hant/start/examples.html">範例</a></li><li><a href="/zh-Hant/start/">快速導覽</a></li></ul><div class="side-h">文件</div><ul class="nav"><li><a href="/zh-Hant/">概覽</a></li><li><a href="/zh-Hant/features/">特性</a></li><li><a href="/zh-Hant/syntax/">語法</a></li><li><a href="/zh-Hant/tooling/">工具鏈</a></li><li><a href="/zh-Hant/tooling/targets.html">目標</a></li><li><a href="/zh-Hant/ecosystem/">生態系</a></li><li><a href="/zh-Hant/corpus/" class="active">語料庫</a></li><li><a href="/zh-Hant/references/">參考</a></li><li><a href="/zh-Hant/history/">歷史</a></li></ul><div class="side-h">面向智慧體</div><ul class="nav nav-compact"><li><a href="/llms.txt">智慧體索引</a></li><li><a href="/agents/index.md">智慧體指南</a></li><li><a href="/.well-known/agent-skills/index.json">智慧體技能</a></li><li><a href="/llms-full.txt">完整參考</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/zh-Hant/history/releases.html">全部發行版</a></li><li><a href="https://github.com/faberlang">GitHub 組織</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">範式</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">型別</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">目標</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">授權</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>valor</h1><p><strong>Translation status:</strong> 繁體中文 reader-locale proof. Code fences render through the <code>zh-Hant</code> pipeline; prose is canonical Latin.</p><div class="content"><p>JSON-shaped dynamic value literal for open object-shaped data.</p><p><strong>Syntax:</strong> <code>valor</code></p><h2>Category</h2><p><code>conversion</code></p><h2>Related</h2><ul><li><a href="/zh-Hant/corpus/↦.html">↦</a></li><li><a href="/zh-Hant/corpus/valor.html">valor</a></li><li><a href="/zh-Hant/corpus/octeti.html">octeti</a></li><li><a href="/zh-Hant/corpus/lista.html">lista</a></li><li><a href="/zh-Hant/corpus/tabula.html">tabula</a></li><li><a href="/zh-Hant/corpus/genus.html">genus</a></li><li><a href="/zh-Hant/corpus/tensor.html">tensor</a></li></ul><h2>Examples</h2><h3>examples/corpus/conversio/valor-boxing.fab (canonical · conversio)</h3><p>T ↦ valor boxing for scalar, byte, collection, genus, and tensor carriers.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
+# valor — T ↦ valor boxing for scalar, byte, collection, genus, and tensor carriers.
+# =============================================================================
+#
+# What this teaches:
+#   • Boxing into valor — `T ↦ valor` boxes any typed value (scalar, byte, collection, genus, tensor) into the canonical dynamic carrier.
+#   • Byte preservation — `octeti ↦ valor` composes as numeric byte values; it must not lossy-decode bytes as text.
+#
+# Common mistakes:
+#   • Expecting to extract a specific type from valor without a matching variant — valor requires the correct runtime variant or `⇥` recovery.
+#
+# See also: ↦, valor, octeti, lista, tabula, genus, tensor
+# =============================================================================
+
+# conversio — typed values to valor boxing
 #
 # WHY: `T ↦ valor` boxes typed values into the canonical dynamic carrier.
 # `octeti` composes as a list of numeric byte values; it must not lossy-decode
@@ -40,7 +54,21 @@ incipit {
 {&quot;alpha&quot;: 10}
 {&quot;x&quot;: 3, &quot;y&quot;: 4}
 [5, 6]
-</code></pre><h3>examples/corpus/conversio/valor-genus.fab (canonical · conversio)</h3><p>valor ↦ genus extraction with missing-field defaults and mandatory-field failure via ⇥ recovery.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># conversio — valor to genus extraction
+</code></pre><h3>examples/corpus/conversio/valor-genus.fab (canonical · conversio)</h3><p>valor ↦ genus extraction with missing-field defaults and mandatory-field failure via ⇥ recovery.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
+# valor — valor ↦ genus extraction with missing-field defaults and mandatory-field failure via ⇥ recovery.
+# =============================================================================
+#
+# What this teaches:
+#   • JSON-to-struct deserialization — `valor ↦ genus` deserializes JSON objects into typed genus records.
+#   • Field policies — missing `sponte` fields zero-initialize; missing mandatory fields fail at runtime (recoverable via `⇥`); extra JSON keys are ignored.
+#
+# Common mistakes:
+#   • Omitting a mandatory field from the JSON and expecting a default value — only `sponte` or default-valued fields are optional; missing mandatory fields fail at runtime.
+#
+# See also: ↦, ⇥
+# =============================================================================
+
+# conversio — valor to genus extraction
 #
 # WHY: `valor ↦ genus` deserializes JSON objects into typed records. Missing
 # defaultable fields zero-initialize; missing mandatory fields fail at runtime
@@ -79,7 +107,23 @@ incipit {
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Marcus
 Roma
 1979-05-27T07:32:00Z
-</code></pre><h3>examples/corpus/conversio/valor-scalaria.fab (canonical · conversio)</h3><p>Scalar valor ↦ T extraction via FromValor (variant match, fractus widen, textus|instans wire).</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># conversio — scalar valor extraction
+</code></pre><h3>examples/corpus/conversio/valor-scalaria.fab (canonical · conversio)</h3><p>Scalar valor ↦ T extraction via FromValor (variant match, fractus widen, textus|instans wire).</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
+# valor — Scalar valor ↦ T extraction via FromValor (variant match, fractus widen, textus|instans wire).
+# =============================================================================
+#
+# What this teaches:
+#   • Scalar extraction — `valor ↦ T` extracts typed values from dynamic JSON carriers using variant matching.
+#   • Widening — `valor ↦ fractus` widens `Numerus` variants losslessly.
+#   • Wire text — `valor ↦ textus` accepts both `Textus` and `Instans` wire strings.
+#   • Recovery — `⇥` provides a fallback on variant mismatch.
+#
+# Common mistakes:
+#   • Assuming `valor ↦ textus` works for non-text valor variants — only Textus and Instans wire strings are accepted; other variants fail without `⇥` recovery.
+#
+# See also: ↦, ⇥, instans, textus
+# =============================================================================
+
+# conversio — scalar valor extraction
 #
 # WHY: `valor ↦ T` is the default runtime extraction for dynamic JSON carriers.
 # Scalar arms match `Valor` variants; `valor ↦ fractus` widens `Numerus` losslessly;
@@ -136,7 +180,21 @@ salve
 1979-05-27T07:32:00Z
 yes
 0
-</code></pre><h3>examples/corpus/conversio/valor-tensor.fab (canonical · conversio)</h3><p>Compose valor ↔ tensor roundtrip via lista bridges (no dedicated valor↔tensor arms).</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># conversio — valor ↔ tensor compose roundtrip
+</code></pre><h3>examples/corpus/conversio/valor-tensor.fab (canonical · conversio)</h3><p>Compose valor ↔ tensor roundtrip via lista bridges (no dedicated valor↔tensor arms).</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
+# valor — Compose valor ↔ tensor roundtrip via lista bridges (no dedicated valor↔tensor arms).
+# =============================================================================
+#
+# What this teaches:
+#   • Indirect tensor conversion — `valor ↔ tensor` has no dedicated codegen arms; it materializes through `lista&lt;T&gt;` as an intermediate step.
+#   • Roundtrip path — valor → lista → tensor → lista → valor, showing composition of existing operators.
+#
+# Common mistakes:
+#   • Expecting `valor ↦ tensor` to work directly without the lista bridge — there are no dedicated valor↔tensor arms; compose through `lista&lt;T&gt;` instead.
+#
+# See also: ↦, valor, lista, tensor
+# =============================================================================
+
+# conversio — valor ↔ tensor compose roundtrip
 #
 # WHY: `valor ↔ tensor` has no dedicated codegen arms. Extraction materializes
 # `lista&lt;T&gt;` first; construction uses shipped `lista ↦ tensor` (`structa`) and
@@ -159,7 +217,22 @@ incipit {
     nota scores.accipe(&quot;alpha&quot;) vel 0
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[1, 2, 3, 4]
 10
-</code></pre><h3>examples/corpus/destructura/literal.fab (canonical · existing-home)</h3><p>JSON-shaped dynamic value literal for open object-shaped data.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># destructura — valor literal expressions (inline JSON)
+</code></pre><h3>examples/corpus/destructura/literal.fab (canonical · existing-home)</h3><p>JSON-shaped dynamic value literal for open object-shaped data.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
+# valor — JSON-shaped dynamic value literal for open object-shaped data.
+# =============================================================================
+#
+# What this teaches:
+#   • JSON valor literals — `{ &quot;key&quot;: value, ... }` creates dynamic valor objects using JSON5 syntax with trailing commas.
+#   • Nested objects — JSON valor literals can be nested for complex data shapes.
+#   • Constraint — JSON valor literals accept only constant values (strings, numbers, booleans, null, nested objects/arrays); use genus or tabula for variable-backed construction.
+#
+# Common mistakes:
+#   • Using retired bare object literals `{ key = expr }` instead of genus construction `Type { field = expr }` — bare `{ }` is now a JSON valor literal with quoted keys and `:` separator.
+#
+# See also: genus, ∷, ignotum, tabula
+# =============================================================================
+
+# destructura — valor literal expressions (inline JSON)
 #
 # { &quot;clavis&quot;: expr, ... }              -- JSON object literal (valor)
 # { &quot;clavis&quot;: expr, &quot;nidum&quot;: { ... } } -- nested JSON objects

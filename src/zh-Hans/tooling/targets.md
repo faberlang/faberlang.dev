@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:eaccb07c6be46972bf02f93aa6eee5636994c90156662e6b06da98a664d1416d"
+prose_hash = "sha256:aa4877e77f93893ee1f9d80452d56ec91da1378bf90eb0e799741dca9d375900"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "331061d5d641a6172960d263d2656f9ca154b91f"
+source_commit = "0dec8605b4bf9c9e9fe802d86cbafc3b211f4e91"
 source_locale = "en-US"
 +++
 
@@ -20,7 +20,7 @@ Faber 是一门语言，但有多个编译契约。本页是**经过测量的可
 
 实时 CLI 摘要：`faber targets`。
 
-**生成时间**：2026-07-19，由 `scripta/generate-ebnf-matrix.py` 生成 — **请勿编辑**。
+**生成时间**：2026-07-22，由 `scripta/generate-ebnf-matrix.py` 生成 — **请勿编辑**。
 **测量**：`emit_hir_target_matrix` + `emit_mir_target_matrix`（进程内完成，不使用外部 toolchain）。
 **连接**：`examples/corpus/index.toml` 中的 terms → exempla。
 
@@ -60,12 +60,12 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | 目标 | 可支持 | 可分析 | % |
 |---|---|---|---|
 | llvm-text | 247 | 255 | 97% |
-| wasm-text | 203 | 255 | 80% |
-| wasm | 202 | 255 | 79% |
+| wasm-text | 202 | 255 | 79% |
+| wasm | 201 | 255 | 79% |
 | metal-text | 6 | 254 | 2% |
 | wgsl-text | 6 | 254 | 2% |
-| sexp-struct | 196 | 254 | 77% |
-| sexp | 195 | 254 | 77% |
+| sexp-struct | 195 | 254 | 77% |
+| sexp | 194 | 254 | 76% |
 | scena | 216 | 254 | 85% |
 
 ## 关键字 — 应用通道
@@ -79,7 +79,9 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `ad` | ✓ | ✓ | ✓ | ✓ |
 | `adfirma` | ✓ | ✓ | ✓ | ✓ |
 | `ante` | ✓ | ✓ | ✓ | ✓ |
+| `atomic` | ✕ | ✓ | ✓ | ✓ |
 | `argumenta` | ✓ | ✓ | ✓ | ✓ |
+| `bivalens` | ✓ | ✓ | ✓ | ✓ |
 | `cape` | ✓ | ✓ | ✓ | ✓ |
 | `casu` | ✓ | ✓ | ✓ | ✓ |
 | `cede` | ✓ | ✓ | ✓ | ✓ |
@@ -87,6 +89,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `ceterum` | ✓ | ✓ | ✓ | ✓ |
 | `clausura` | ✓ | ✓ | ✓ | ✓ |
 | `cli` | ✓ | ✓ | ✓ | ✓ |
+| `copia` | ✓ | ✓ | ✓ | ✓ |
 | `cura` | ✓ | ✓ | ✓ | ✓ |
 | `curata` | ✓ | ✓ | ✓ | ✓ |
 | `cursor` | ✓ | ✓ | ✓ | ✓ |
@@ -107,12 +110,15 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `finge` | ✓ | ✓ | ✓ | ✓ |
 | `fixum` | ✓ | ✓ | ✓ | ✓ |
 | `fragilis` | ✓ | ✓ | ✓ | ✓ |
+| `fractus` | ✓ | ✓ | ✓ | ✓ |
 | `functio` | ✓ | ✓ | ✓ | ✓ |
 | `futura` | ✓ | ✓ | ✓ | ✓ |
 | `futurum` | ✓ | ✓ | ✓ | ✓ |
 | `generis` | ✓ | ✓ | ✓ | ✓ |
 | `genus` | ✓ | ✓ | ✓ | ✓ |
 | `iace` | ✓ | ✓ | ✓ | ✓ |
+| `iacit` | ✓ | ✓ | ✓ | ✓ |
+| `ignotum` | ✓ | ✓ | ✓ | ✓ |
 | `immutata` | ✓ | ✓ | ✓ | ✓ |
 | `implet` | ✓ | ✓ | ✓ | ✓ |
 | `importa` | ✓ | ✓ | ✓ | ✓ |
@@ -121,14 +127,18 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `incipit` | ✓ | ✓ | ✓ | ✓ |
 | `inter` | ✓ | ✓ | ✓ | ✓ |
 | `intra` | ✓ | ✓ | ✓ | ✓ |
+| `instans` | ✓ | ✓ | ✓ | ✓ |
 | `itera` | ✓ | ✓ | ✓ | ✓ |
 | `lege` | ✓ | ✓ | ✓ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✓ |
+| `lista` | ✓ | ✓ | ✓ | ✓ |
+| `matrix` | ✕ | ✕ | ✓ | ✓ |
 | `mone` | ✓ | ✓ | ✓ | ✓ |
 | `mori` | ✓ | ✓ | ✓ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✓ |
 | `nihil` | ✓ | ✓ | ✓ | ✓ |
 | `numquam` | ✓ | ✓ | ✓ | ✓ |
+| `numerus` | ✓ | ✓ | ✓ | ✓ |
 | `non` | ✓ | ✓ | ✓ | ✓ |
 | `omitte` | ✓ | ✓ | ✓ | ✓ |
 | `omnia` | ✓ | ✓ | ✓ | ✓ |
@@ -136,6 +146,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `optio` | ✓ | ✓ | ✓ | ✓ |
 | `optiones` | ✓ | ✓ | ✓ | ✓ |
 | `ordo` | ✓ | ✓ | ✓ | ✓ |
+| `octeti` | ✓ | ✓ | ✓ | ✓ |
 | `implendum` | ✓ | ✓ | ✓ | ✓ |
 | `per` | ✓ | ✓ | ✓ | ✓ |
 | `perge` | ✓ | ✓ | ✓ | ✓ |
@@ -145,6 +156,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `praefixum` | ✓ | ✓ | ✓ | ✓ |
 | `praepara` | ✓ | ✓ | ✓ | ✓ |
 | `praeparabit` | ✓ | ✓ | ✓ | ✓ |
+| `promissum` | ✓ | ✓ | ✓ | ✓ |
 | `privata` | ✓ | ✓ | ✓ | ✓ |
 | `proba` | ✓ | ✓ | ✓ | ✓ |
 | `probandum` | ✓ | ✓ | ✓ | ✓ |
@@ -166,13 +178,17 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `sponte` | ✓ | ✓ | ✓ | ✓ |
 | `sub` | ✓ | ✓ | ✓ | ✓ |
 | `tacet` | ✓ | ✓ | ✓ | ✓ |
+| `tabula` | ✓ | ✓ | ✓ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✓ |
 | `temporis` | ✓ | ✓ | ✓ | ✓ |
+| `tensor` | ✓ | ✕ | ✓ | ✓ |
+| `textus` | ✓ | ✓ | ✓ | ✓ |
 | `typus` | ✓ | ✓ | ✓ | ✓ |
 | `ubique` | ✓ | ✓ | ✓ | ✓ |
 | `usque` | ✓ | ✓ | ✓ | ✓ |
 | `ut` | ✓ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✓ |
+| `vector` | ✓ | ✓ | ✓ | ✓ |
 | `vacuum` | ✓ | ✓ | ✓ | ✓ |
 | `verum` | ✓ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✓ |
@@ -236,7 +252,9 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `ad` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `adfirma` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ante` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `atomic` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
 | `argumenta` | — | — | — | — | — | — | — | — |
+| `bivalens` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `cape` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `casu` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `cede` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
@@ -244,6 +262,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `ceterum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `clausura` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `cli` | — | — | — | — | — | — | — | — |
+| `copia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `cura` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `curata` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `cursor` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
@@ -264,12 +283,15 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `finge` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fixum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fragilis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
+| `fractus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `functio` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `futura` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `futurum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `generis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `genus` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
-| `iace` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `iace` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `iacit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `ignotum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `immutata` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `implet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `importa` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ◐ |
@@ -278,14 +300,18 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `incipit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `inter` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `intra` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `itera` | ✓ | ✓ | ◐ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `lege` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `lista` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `matrix` | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ | ✕ | ✕ |
 | `mone` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `mori` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `nihil` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `numquam` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
+| `numerus` | ✓ | ◐ | ◐ | ✕ | ✕ | ◐ | ◐ | ◐ |
 | `non` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `omitte` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `omnia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -293,6 +319,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `optio` | — | — | — | — | — | — | — | — |
 | `optiones` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `ordo` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `octeti` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `implendum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `per` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `perge` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -302,6 +329,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `praefixum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `praepara` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `praeparabit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
+| `promissum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `privata` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `proba` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `probandum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
@@ -323,13 +351,17 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `sponte` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `sub` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `tacet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `tabula` | ✓ | ◐ | ◐ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `temporis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
+| `tensor` | ✓ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ◐ |
+| `textus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `typus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ubique` | — | — | — | — | — | — | — | — |
 | `usque` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ut` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `vector` | ✓ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ✕ |
 | `vacuum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `verum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -389,37 +421,21 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | 术语 | rust | go | ts | faber |
 |---|---|---|---|---|
 | `alias` | ✓ | ✓ | ✓ | ✓ |
-| `atomic` | ✕ | ✓ | ✓ | ✓ |
 | `arena` | ✓ | ✓ | ✓ | ✓ |
 | `@` | ✓ | ✓ | ✓ | ✓ |
-| `bivalens` | ✓ | ✓ | ✓ | ✓ |
-| `copia` | ✓ | ✓ | ✓ | ✓ |
 | `f16` | ✕ | ✓ | ✓ | ✓ |
-| `fractus` | ✓ | ✓ | ✓ | ✓ |
-| `iacit` | ✓ | ✓ | ✓ | ✓ |
-| `ignotum` | ✓ | ✓ | ✓ | ✓ |
 | `imperia` | ✓ | ✓ | ✓ | ✓ |
 | `imperium` | ✓ | ✓ | ✓ | ✓ |
-| `instans` | ✓ | ✓ | ✓ | ✓ |
-| `lista` | ✓ | ✓ | ✓ | ✓ |
 | `manifest` | ✓ | ✓ | ✓ | ✓ |
-| `matrix` | ✕ | ✕ | ✓ | ✓ |
 | `metior` | ✓ | ✓ | ✓ | ✓ |
 | `nondum` | ✓ | ✓ | ✓ | ✓ |
-| `numerus` | ✓ | ✓ | ✓ | ✓ |
 | `objectum` | ✓ | ✓ | ✓ | ✓ |
-| `octeti` | ✓ | ✓ | ✓ | ✓ |
 | `prima` | ✓ | ✓ | ✓ | ✓ |
-| `promissum` | ✓ | ✓ | ✓ | ✓ |
 | `requirit` | ✓ | ✓ | ✓ | ✓ |
 | `string` | ✓ | ✓ | ✓ | ✓ |
 | `block-string` | ✓ | ✓ | ✓ | ✓ |
 | `sed` | ✓ | ✓ | ✓ | ✓ |
 | `summa` | ✓ | ✓ | ✓ | ✓ |
-| `tabula` | ✓ | ✓ | ✓ | ✓ |
-| `tensor` | ✓ | ✕ | ✓ | ✓ |
 | `targets` | ✓ | ✓ | ✓ | ✓ |
-| `textus` | ✓ | ✓ | ✓ | ✓ |
 | `ultima` | ✓ | ✓ | ✓ | ✓ |
 | `versio` | ✓ | ✓ | ✓ | ✓ |
-| `vector` | ✓ | ✓ | ✓ | ✓ |

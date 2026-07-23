@@ -109,8 +109,8 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - annotation: 8
 - concept: 13
 - conversio: 4
-- existing-home: 16
-- keyword: 99
+- existing-home: 5
+- keyword: 110
 - literal: 1
 - method: 2
 - modifier: 1
@@ -292,7 +292,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 #### `bivalens`
 
 - Canonical: `bivalens`
-- Kind: existing-home
+- Kind: keyword
 - Category: type
 - Summary: Primitive types bivalens, vacuum, and ignotum.
 - Syntax: `bivalens | vacuum | ignotum`
@@ -424,7 +424,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 #### `copia`
 
 - Canonical: `copia`
-- Kind: existing-home
+- Kind: keyword
 - Category: collection
 - Summary: Generic set collection type.
 - Syntax: `copia<T>`
@@ -712,7 +712,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 #### `fractus`
 
 - Canonical: `fractus`
-- Kind: existing-home
+- Kind: keyword
 - Category: type
 - Summary: Primitive floating-point number type.
 - Syntax: `fractus`
@@ -1048,7 +1048,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 #### `lista`
 
 - Canonical: `lista`
-- Kind: existing-home
+- Kind: keyword
 - Category: collection
 - Summary: Generic ordered collection type.
 - Syntax: `lista<T>`
@@ -1204,7 +1204,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 #### `nihil`
 
 - Canonical: `nihil`
-- Kind: existing-home
+- Kind: keyword
 - Category: literal
 - Summary: Null literal and nullable union bindings.
 - Syntax: `nihil`
@@ -1240,7 +1240,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 #### `numerus`
 
 - Canonical: `numerus`
-- Kind: existing-home
+- Kind: keyword
 - Category: type
 - Summary: Primitive integer number type.
 - Syntax: `numerus`
@@ -1264,7 +1264,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 #### `octeti`
 
 - Canonical: `octeti`
-- Kind: existing-home
+- Kind: keyword
 - Category: type
 - Summary: Primitive byte-buffer type.
 - Syntax: `octeti`
@@ -1468,7 +1468,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 #### `promissum`
 
 - Canonical: `promissum`
-- Kind: existing-home
+- Kind: keyword
 - Category: async
 - Summary: Promise-like result type associated with futura functions.
 - Syntax: `promissum<T>`
@@ -1780,7 +1780,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 #### `tabula`
 
 - Canonical: `tabula`
-- Kind: existing-home
+- Kind: keyword
 - Category: collection
 - Summary: Generic key/value map type.
 - Syntax: `tabula<K,V>`
@@ -1852,7 +1852,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 #### `textus`
 
 - Canonical: `textus`
-- Kind: existing-home
+- Kind: keyword
 - Category: type
 - Summary: Primitive string/text type.
 - Syntax: `textus`
@@ -2008,7 +2008,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 #### `verum`
 
 - Canonical: `verum`
-- Kind: existing-home
+- Kind: keyword
 - Category: literal
 - Summary: Boolean literals verum and falsum with bivalens bindings.
 - Syntax: `verum | falsum`

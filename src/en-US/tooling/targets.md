@@ -16,7 +16,7 @@ targets side by side in the tables below.
 
 Live CLI summary: `faber targets`.
 
-**Generated**: 2026-07-19 by `scripta/generate-ebnf-matrix.py` — **do not edit**.
+**Generated**: 2026-07-22 by `scripta/generate-ebnf-matrix.py` — **do not edit**.
 **Measurement**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, no external toolchains).
 **Join**: `examples/corpus/index.toml` terms → exempla.
 
@@ -57,12 +57,12 @@ contracts, and pipeline routing live in
 | target | capable | analyzable | % |
 |---|---|---|---|
 | llvm-text | 247 | 255 | 97% |
-| wasm-text | 203 | 255 | 80% |
-| wasm | 202 | 255 | 79% |
+| wasm-text | 202 | 255 | 79% |
+| wasm | 201 | 255 | 79% |
 | metal-text | 6 | 254 | 2% |
 | wgsl-text | 6 | 254 | 2% |
-| sexp-struct | 196 | 254 | 77% |
-| sexp | 195 | 254 | 77% |
+| sexp-struct | 195 | 254 | 77% |
+| sexp | 194 | 254 | 76% |
 | scena | 216 | 254 | 85% |
 
 ## Keywords — application lane
@@ -76,7 +76,9 @@ contracts, and pipeline routing live in
 | `ad` | ✓ | ✓ | ✓ | ✓ |
 | `adfirma` | ✓ | ✓ | ✓ | ✓ |
 | `ante` | ✓ | ✓ | ✓ | ✓ |
+| `atomic` | ✕ | ✓ | ✓ | ✓ |
 | `argumenta` | ✓ | ✓ | ✓ | ✓ |
+| `bivalens` | ✓ | ✓ | ✓ | ✓ |
 | `cape` | ✓ | ✓ | ✓ | ✓ |
 | `casu` | ✓ | ✓ | ✓ | ✓ |
 | `cede` | ✓ | ✓ | ✓ | ✓ |
@@ -84,6 +86,7 @@ contracts, and pipeline routing live in
 | `ceterum` | ✓ | ✓ | ✓ | ✓ |
 | `clausura` | ✓ | ✓ | ✓ | ✓ |
 | `cli` | ✓ | ✓ | ✓ | ✓ |
+| `copia` | ✓ | ✓ | ✓ | ✓ |
 | `cura` | ✓ | ✓ | ✓ | ✓ |
 | `curata` | ✓ | ✓ | ✓ | ✓ |
 | `cursor` | ✓ | ✓ | ✓ | ✓ |
@@ -104,12 +107,15 @@ contracts, and pipeline routing live in
 | `finge` | ✓ | ✓ | ✓ | ✓ |
 | `fixum` | ✓ | ✓ | ✓ | ✓ |
 | `fragilis` | ✓ | ✓ | ✓ | ✓ |
+| `fractus` | ✓ | ✓ | ✓ | ✓ |
 | `functio` | ✓ | ✓ | ✓ | ✓ |
 | `futura` | ✓ | ✓ | ✓ | ✓ |
 | `futurum` | ✓ | ✓ | ✓ | ✓ |
 | `generis` | ✓ | ✓ | ✓ | ✓ |
 | `genus` | ✓ | ✓ | ✓ | ✓ |
 | `iace` | ✓ | ✓ | ✓ | ✓ |
+| `iacit` | ✓ | ✓ | ✓ | ✓ |
+| `ignotum` | ✓ | ✓ | ✓ | ✓ |
 | `immutata` | ✓ | ✓ | ✓ | ✓ |
 | `implet` | ✓ | ✓ | ✓ | ✓ |
 | `importa` | ✓ | ✓ | ✓ | ✓ |
@@ -118,14 +124,18 @@ contracts, and pipeline routing live in
 | `incipit` | ✓ | ✓ | ✓ | ✓ |
 | `inter` | ✓ | ✓ | ✓ | ✓ |
 | `intra` | ✓ | ✓ | ✓ | ✓ |
+| `instans` | ✓ | ✓ | ✓ | ✓ |
 | `itera` | ✓ | ✓ | ✓ | ✓ |
 | `lege` | ✓ | ✓ | ✓ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✓ |
+| `lista` | ✓ | ✓ | ✓ | ✓ |
+| `matrix` | ✕ | ✕ | ✓ | ✓ |
 | `mone` | ✓ | ✓ | ✓ | ✓ |
 | `mori` | ✓ | ✓ | ✓ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✓ |
 | `nihil` | ✓ | ✓ | ✓ | ✓ |
 | `numquam` | ✓ | ✓ | ✓ | ✓ |
+| `numerus` | ✓ | ✓ | ✓ | ✓ |
 | `non` | ✓ | ✓ | ✓ | ✓ |
 | `omitte` | ✓ | ✓ | ✓ | ✓ |
 | `omnia` | ✓ | ✓ | ✓ | ✓ |
@@ -133,6 +143,7 @@ contracts, and pipeline routing live in
 | `optio` | ✓ | ✓ | ✓ | ✓ |
 | `optiones` | ✓ | ✓ | ✓ | ✓ |
 | `ordo` | ✓ | ✓ | ✓ | ✓ |
+| `octeti` | ✓ | ✓ | ✓ | ✓ |
 | `implendum` | ✓ | ✓ | ✓ | ✓ |
 | `per` | ✓ | ✓ | ✓ | ✓ |
 | `perge` | ✓ | ✓ | ✓ | ✓ |
@@ -142,6 +153,7 @@ contracts, and pipeline routing live in
 | `praefixum` | ✓ | ✓ | ✓ | ✓ |
 | `praepara` | ✓ | ✓ | ✓ | ✓ |
 | `praeparabit` | ✓ | ✓ | ✓ | ✓ |
+| `promissum` | ✓ | ✓ | ✓ | ✓ |
 | `privata` | ✓ | ✓ | ✓ | ✓ |
 | `proba` | ✓ | ✓ | ✓ | ✓ |
 | `probandum` | ✓ | ✓ | ✓ | ✓ |
@@ -163,13 +175,17 @@ contracts, and pipeline routing live in
 | `sponte` | ✓ | ✓ | ✓ | ✓ |
 | `sub` | ✓ | ✓ | ✓ | ✓ |
 | `tacet` | ✓ | ✓ | ✓ | ✓ |
+| `tabula` | ✓ | ✓ | ✓ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✓ |
 | `temporis` | ✓ | ✓ | ✓ | ✓ |
+| `tensor` | ✓ | ✕ | ✓ | ✓ |
+| `textus` | ✓ | ✓ | ✓ | ✓ |
 | `typus` | ✓ | ✓ | ✓ | ✓ |
 | `ubique` | ✓ | ✓ | ✓ | ✓ |
 | `usque` | ✓ | ✓ | ✓ | ✓ |
 | `ut` | ✓ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✓ |
+| `vector` | ✓ | ✓ | ✓ | ✓ |
 | `vacuum` | ✓ | ✓ | ✓ | ✓ |
 | `verum` | ✓ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✓ |
@@ -233,7 +249,9 @@ contracts, and pipeline routing live in
 | `ad` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `adfirma` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ante` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `atomic` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
 | `argumenta` | — | — | — | — | — | — | — | — |
+| `bivalens` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `cape` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `casu` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `cede` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
@@ -241,6 +259,7 @@ contracts, and pipeline routing live in
 | `ceterum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `clausura` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `cli` | — | — | — | — | — | — | — | — |
+| `copia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `cura` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `curata` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `cursor` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
@@ -261,12 +280,15 @@ contracts, and pipeline routing live in
 | `finge` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fixum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fragilis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
+| `fractus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `functio` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `futura` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `futurum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `generis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `genus` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
-| `iace` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `iace` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `iacit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `ignotum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `immutata` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `implet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `importa` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ◐ |
@@ -275,14 +297,18 @@ contracts, and pipeline routing live in
 | `incipit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `inter` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `intra` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `itera` | ✓ | ✓ | ◐ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `lege` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `lista` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `matrix` | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ | ✕ | ✕ |
 | `mone` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `mori` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `nihil` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `numquam` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
+| `numerus` | ✓ | ◐ | ◐ | ✕ | ✕ | ◐ | ◐ | ◐ |
 | `non` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `omitte` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `omnia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -290,6 +316,7 @@ contracts, and pipeline routing live in
 | `optio` | — | — | — | — | — | — | — | — |
 | `optiones` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `ordo` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `octeti` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `implendum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `per` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `perge` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -299,6 +326,7 @@ contracts, and pipeline routing live in
 | `praefixum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `praepara` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `praeparabit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
+| `promissum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `privata` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `proba` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `probandum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
@@ -320,13 +348,17 @@ contracts, and pipeline routing live in
 | `sponte` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `sub` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `tacet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `tabula` | ✓ | ◐ | ◐ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `temporis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
+| `tensor` | ✓ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ◐ |
+| `textus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `typus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ubique` | — | — | — | — | — | — | — | — |
 | `usque` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ut` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `vector` | ✓ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ✕ |
 | `vacuum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `verum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -386,37 +418,21 @@ contracts, and pipeline routing live in
 | term | rust | go | ts | faber |
 |---|---|---|---|---|
 | `alias` | ✓ | ✓ | ✓ | ✓ |
-| `atomic` | ✕ | ✓ | ✓ | ✓ |
 | `arena` | ✓ | ✓ | ✓ | ✓ |
 | `@` | ✓ | ✓ | ✓ | ✓ |
-| `bivalens` | ✓ | ✓ | ✓ | ✓ |
-| `copia` | ✓ | ✓ | ✓ | ✓ |
 | `f16` | ✕ | ✓ | ✓ | ✓ |
-| `fractus` | ✓ | ✓ | ✓ | ✓ |
-| `iacit` | ✓ | ✓ | ✓ | ✓ |
-| `ignotum` | ✓ | ✓ | ✓ | ✓ |
 | `imperia` | ✓ | ✓ | ✓ | ✓ |
 | `imperium` | ✓ | ✓ | ✓ | ✓ |
-| `instans` | ✓ | ✓ | ✓ | ✓ |
-| `lista` | ✓ | ✓ | ✓ | ✓ |
 | `manifest` | ✓ | ✓ | ✓ | ✓ |
-| `matrix` | ✕ | ✕ | ✓ | ✓ |
 | `metior` | ✓ | ✓ | ✓ | ✓ |
 | `nondum` | ✓ | ✓ | ✓ | ✓ |
-| `numerus` | ✓ | ✓ | ✓ | ✓ |
 | `objectum` | ✓ | ✓ | ✓ | ✓ |
-| `octeti` | ✓ | ✓ | ✓ | ✓ |
 | `prima` | ✓ | ✓ | ✓ | ✓ |
-| `promissum` | ✓ | ✓ | ✓ | ✓ |
 | `requirit` | ✓ | ✓ | ✓ | ✓ |
 | `string` | ✓ | ✓ | ✓ | ✓ |
 | `block-string` | ✓ | ✓ | ✓ | ✓ |
 | `sed` | ✓ | ✓ | ✓ | ✓ |
 | `summa` | ✓ | ✓ | ✓ | ✓ |
-| `tabula` | ✓ | ✓ | ✓ | ✓ |
-| `tensor` | ✓ | ✕ | ✓ | ✓ |
 | `targets` | ✓ | ✓ | ✓ | ✓ |
-| `textus` | ✓ | ✓ | ✓ | ✓ |
 | `ultima` | ✓ | ✓ | ✓ | ✓ |
 | `versio` | ✓ | ✓ | ✓ | ✓ |
-| `vector` | ✓ | ✓ | ✓ | ✓ |

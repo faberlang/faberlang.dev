@@ -43,6 +43,12 @@ FABER="${FABER:-faber}"
 # pin separately when reader packs are newer than the installed faber's
 # pack validator (e.g. FABER_LOCALIZE=path/to/workspace-faber).
 FABER_LOCALIZE="${FABER_LOCALIZE:-$FABER}"
+# FIXME: faber 1.2.0 reader-locale validation is stale; use radix directly
+# until the packs are regenerated or faber is rebuilt against current radix.
+RADIX_BINARY="${WORKSPACE_DIR}/radix/target/debug/radix"
+if [ -x "$RADIX_BINARY" ] && [ "${FABER_LOCALIZE}" = "$FABER" ]; then
+    FABER_LOCALIZE="$RADIX_BINARY"
+fi
 BUILD_DIR="${GENERATOR_DIR}/target/faber"
 
 # Binary path candidates (old radix-out subdir vs new top-level target)
