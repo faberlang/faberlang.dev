@@ -145,7 +145,7 @@ faber-runtime types where required.
 ## Machine surfaces
 
 - https://faberlang.dev/llms.txt
-- https://faberlang.dev/llms-full.txt
+- https://faberlang.dev/llms-full.txt — generated keyword/category/alias catalog (171 canonical terms)
 - https://faberlang.dev/agents/index.md
 - https://faberlang.dev/.well-known/agent-skills/index.json
 - https://faberlang.dev/.well-known/agent-skills/install/SKILL.md

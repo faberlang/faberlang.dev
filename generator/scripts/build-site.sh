@@ -249,12 +249,12 @@ if [ "$FULL_SITE" = true ]; then
         cp -R "${STATIC_DIR}/." "${OUTPUT_DIR}/"
     fi
 
-    # Step 5: Generate llms.txt
-    echo "[6/9] Generating llms.txt..."
+    # Step 5: Generate llms-full.txt (keyword catalog)
+    echo "[6/9] Generating llms-full.txt..."
     if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
         "$PYTHON" "${SCRIPT_DIR}/render-llms.py" \
             --corpus "${WORKSPACE_DIR}/examples/corpus" \
-            --output "${OUTPUT_DIR}/llms.txt"
+            --output "${OUTPUT_DIR}/llms-full.txt"
         "$PYTHON" "${SCRIPT_DIR}/generate-search-index.py" \
             --corpus "${WORKSPACE_DIR}/examples/corpus" \
             --output-dir "${OUTPUT_DIR}"
@@ -274,7 +274,7 @@ if [ "$FULL_SITE" = true ]; then
     if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
         smoke_contains "${OUTPUT_DIR}/en-US/index.html" "/llms.txt" "home agent link"
         smoke_contains "${OUTPUT_DIR}/en-US/index.html" "faber-v1.1.1" "home release link"
-        smoke_contains "${OUTPUT_DIR}/llms.txt" "Generated corpus frontmatter reference" "llms surface"
+        smoke_contains "${OUTPUT_DIR}/llms-full.txt" "Generated corpus frontmatter reference" "llms-full surface"
         smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "<!DOCTYPE html>" "install doctype"
         smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "/en-US/start/install.html" "install path"
         smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "faber-v1.1.1" "install release link"

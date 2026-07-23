@@ -112,7 +112,7 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
         "3. Read this file before editing Faber source or scaffolding packages.",
         "4. Use corpus term links below for exact keyword, syntax, alias, and relation data.",
         "5. Read https://faberlang.dev/agents/index.md for the agent learning path.",
-        "6. Read https://faberlang.dev/llms-full.txt when you need the expanded map.",
+        "6. Read https://faberlang.dev/llms-full.txt for the generated keyword/category/alias catalog.",
         "7. Choose focused skills from https://faberlang.dev/.well-known/agent-skills/index.json.",
         "8. Other site locales (`/th-TH/`, `/zh-Hans/`, `/ar/`, …) ship full translated prose docs + localized chrome; code via each pack's reader locale.",
     ])
