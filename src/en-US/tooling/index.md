@@ -18,6 +18,7 @@ explain — all through one command. [Read more →](/tooling/faber-build-tool.h
 
 The compiler backend. Lowers Faber source through HIR → MIR → AIR to
 multiple target lanes. [Read more →](/tooling/radix-compiler.html)
+For the implementation map, see the [Radix compiler architecture reference](/tooling/radix-architecture.html).
 
 ## Cista package manager {#cista}
 

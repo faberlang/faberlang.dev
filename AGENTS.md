@@ -56,26 +56,10 @@ The live site deploys from `origin/main` via GitHub Actions:
 
 1. **Trigger:** Push to `main` branch
 2. **Workflow file:** `.github/workflows/deploy-pages.yml`
-3. **Build:** Copies `assets/` → `dist/`, substitutes `__PUBLIC_ORIGIN__` and `__DOCS_VERSION__` placeholders
-4. **Artifact:** Uploads `dist/` as a GitHub Pages artifact
-5. **Deploy:** `actions/deploy-pages@v4` publishes the artifact
+3. **Artifact:** Uploads the committed `dist/` directory as a GitHub Pages artifact
+4. **Deploy:** `actions/deploy-pages@v4` publishes the artifact
 
-### What is live today
-
-The **origin/main** tip (`ee8a00e`) serves the RC1 preview site:
-
-```text
-assets/
-  index.html         Homepage with hero, nav, feature sections
-  index.css          Homepage stylesheet (inline design tokens)
-  llms.txt           Agent primer (Markdown)
-  docs/1.0.0-rc.1/   Versioned doc stubs (Markdown)
-  contracts/         JSON contracts (keywords, types, targets, etc.)
-  .well-known/       Agent skills, language catalog
-  reports/           RC1 checklists, provenance
-```
-
-### What is live now (Stage 3 complete)
+### What is live now
 
 The site is generated from Markdown sources through the Speculum generator.
 The deploy pipeline is:
