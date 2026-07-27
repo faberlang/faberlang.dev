@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:3259774df7202a08957daa90e1137e6e015370540bd150c882bd4109f90f3d68"
+prose_hash = "sha256:159baacf0ab63f5035205856d77ebd8b608734dad5b8b456a8895bf12c83833f"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "e060bb5878bb5c8679ce3d0cc6e942147ca2519f"
+source_commit = "9608b235f83323b3b4c1d7e1559f5e8e7f88d3a4"
 source_locale = "en-US"
 +++
 
@@ -22,7 +22,7 @@ systems-lane của MIR nằm cạnh nhau trong các bảng bên dưới.
 
 Tóm tắt CLI trực tiếp: `faber targets`.
 
-**Được tạo**: 2026-07-22 bởi `scripta/generate-ebnf-matrix.py` — **không chỉnh sửa**.
+**Được tạo**: unknown bởi `scripta/generate-ebnf-matrix.py` — **không chỉnh sửa**.
 **Đo lường**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (trong tiến trình, không dùng toolchain bên ngoài).
 **Kết nối**: các term trong `examples/corpus/index.toml` → exempla.
 

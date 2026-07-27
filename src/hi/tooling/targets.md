@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:7c570726924b7ede0f1ad6d1b71c2fd3db7e0a02d1125241987e7b2a371131c3"
+prose_hash = "sha256:7a719b981422571cc0a5bac88512824c7f93f15624b69b98527d6b948c109901"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "e060bb5878bb5c8679ce3d0cc6e942147ca2519f"
+source_commit = "9608b235f83323b3b4c1d7e1559f5e8e7f88d3a4"
 source_locale = "en-US"
 +++
 
@@ -22,7 +22,7 @@ tables में HIR application-lane targets और MIR systems-lane targets �
 
 CLI का लाइव सारांश: `faber targets`।
 
-**जनरेट किया गया**: 2026-07-22, `scripta/generate-ebnf-matrix.py` द्वारा — **संपादित न करें**।
+**जनरेट किया गया**: unknown, `scripta/generate-ebnf-matrix.py` द्वारा — **संपादित न करें**।
 **मापन**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, बाहरी toolchains के बिना)।
 **Join**: `examples/corpus/index.toml` terms → exempla।
 

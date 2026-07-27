@@ -23,6 +23,15 @@ functio extract(textus source) → lista<Heading> {
         line_num ← line_num + 1
         fixum textus trimmed ← su.recide(line)
 
+        si su.initium_cum(trimmed, "###### ") {
+            headings.appende(parse_heading(6, trimmed.sectio(7, trimmed.longitudo()), line_num))
+        }
+        si su.initium_cum(trimmed, "##### ") {
+            headings.appende(parse_heading(5, trimmed.sectio(6, trimmed.longitudo()), line_num))
+        }
+        si su.initium_cum(trimmed, "#### ") {
+            headings.appende(parse_heading(4, trimmed.sectio(5, trimmed.longitudo()), line_num))
+        }
         si su.initium_cum(trimmed, "### ") {
             headings.appende(parse_heading(3, trimmed.sectio(4, trimmed.longitudo()), line_num))
         }

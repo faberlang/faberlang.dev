@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:a7a46a8d0d7332e5aeb7771907931a8df31165d820adaeeb77bd02e59d2b7b0e"
+prose_hash = "sha256:7ff01ca436df46ef36ccfef1f694c436c90a040b475b77cccf4a2bc4c5e1e845"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "e060bb5878bb5c8679ce3d0cc6e942147ca2519f"
+source_commit = "9608b235f83323b3b4c1d7e1559f5e8e7f88d3a4"
 source_locale = "en-US"
 +++
 
@@ -22,7 +22,7 @@ Faber เป็นภาษาเดียวที่มีสัญญาก�
 
 สรุปจาก CLI แบบสด: `faber targets`
 
-**สร้างโดยอัตโนมัติ**: 2026-07-22 โดย `scripta/generate-ebnf-matrix.py` — **ห้ามแก้ไข**
+**สร้างโดยอัตโนมัติ**: unknown โดย `scripta/generate-ebnf-matrix.py` — **ห้ามแก้ไข**
 **การวัด**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (ภายในกระบวนการ ไม่มี toolchain ภายนอก)
 **การเชื่อมโยง**: terms ใน `examples/corpus/index.toml` → exempla
 

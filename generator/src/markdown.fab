@@ -1,7 +1,7 @@
 # Block-level Markdown → Document IR converter.
 #
 # Handles the subset of Markdown used in faberlang.dev content pages:
-#   - Headings: h2 (##) and h3 (###)
+#   - Headings: h2 (##) through h6 (######)
 #   - Paragraphs
 #   - Pipe tables (GFM-style with |---| separator)
 #   - Unordered lists (- prefix, flat single-level)
@@ -344,6 +344,27 @@ functio converte_nodes(textus source, textus site_locale) → lista<doc_mod.Node
             perge
         }
 
+        # ── Heading h6 ──
+        si su.initium_cum(line, "###### ") {
+            result.appende(genera_heading_node("h6", line.sectio(7, line.longitudo()), site_locale))
+            i ← i + 1
+            perge
+        }
+
+        # ── Heading h5 ──
+        si su.initium_cum(line, "##### ") {
+            result.appende(genera_heading_node("h5", line.sectio(6, line.longitudo()), site_locale))
+            i ← i + 1
+            perge
+        }
+
+        # ── Heading h4 ──
+        si su.initium_cum(line, "#### ") {
+            result.appende(genera_heading_node("h4", line.sectio(5, line.longitudo()), site_locale))
+            i ← i + 1
+            perge
+        }
+
         # ── Heading h3 ──
         si su.initium_cum(line, "### ") {
             result.appende(genera_heading_node("h3", line.sectio(4, line.longitudo()), site_locale))
@@ -470,6 +491,21 @@ probandum "markdown converter" tag "core" {
     proba "h3 heading with anchor" {
         fixum textus html ← converte("### Sub {#sub-id}")
         adfirma su.initium_index(html, "sub-id") ≥ 0
+    }
+
+    proba "h4 heading" {
+        fixum textus html ← converte("#### Detail")
+        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("h4", vacua, "Detail"))) ≥ 0
+    }
+
+    proba "h5 heading" {
+        fixum textus html ← converte("##### Fine detail")
+        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("h5", vacua, "Fine detail"))) ≥ 0
+    }
+
+    proba "h6 heading with anchor" {
+        fixum textus html ← converte("###### Smallest {#smallest}")
+        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("h6", [doc_mod.attr("id", "smallest")], "Smallest"))) ≥ 0
     }
 
     proba "heading without anchor renders bare" {

@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:894d2fc7671807cee5d12a64af0111cc89df1dca875aacfdbdccb579fff87418"
+prose_hash = "sha256:f20698fee90a6fdb8df5ba284c8022c5b2a9f1344fe18c68017ae4ec1afea94a"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "e060bb5878bb5c8679ce3d0cc6e942147ca2519f"
+source_commit = "9608b235f83323b3b4c1d7e1559f5e8e7f88d3a4"
 source_locale = "en-US"
 +++
 
@@ -22,7 +22,7 @@ Faber لغة واحدة لها عقود ترجمة متعددة. هذه الصف
 
 ملخص CLI المباشر: `faber targets`.
 
-**توليد**: 2026-07-22 بواسطة `scripta/generate-ebnf-matrix.py` — **لا تعدّل الملف**.
+**توليد**: unknown بواسطة `scripta/generate-ebnf-matrix.py` — **لا تعدّل الملف**.
 **القياس**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (داخل العملية، من دون toolchains خارجية).
 **الربط**: مصطلحات `examples/corpus/index.toml` → exempla.
 

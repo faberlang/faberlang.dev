@@ -404,6 +404,9 @@ h2 {
     letter-spacing: -0.01em;
 }
 h3 { font-family: var(--serif); font-size: 1.12rem; font-weight: 700; margin: 1.5rem 0 0.5rem; }
+h4 { font-family: var(--serif); font-size: 1rem; font-weight: 700; margin: 1.2rem 0 0.4rem; }
+h5 { font-family: var(--serif); font-size: 0.95rem; font-weight: 700; margin: 1rem 0 0.35rem; }
+h6 { font-family: var(--serif); font-size: 0.9rem; font-weight: 700; margin: 0.8rem 0 0.3rem; }
 p { margin-bottom: 0.95rem; max-width: 70ch; }
 .lead { font-size: 1.1rem; line-height: 1.7; color: var(--ink-dim); }
 .dim { color: var(--ink-dim); }

@@ -16,7 +16,7 @@ targets side by side in the tables below.
 
 Live CLI summary: `faber targets`.
 
-**Generated**: 2026-07-22 by `scripta/generate-ebnf-matrix.py` — **do not edit**.
+**Generated**: unknown by `scripta/generate-ebnf-matrix.py` — **do not edit**.
 **Measurement**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, no external toolchains).
 **Join**: `examples/corpus/index.toml` terms → exempla.
 

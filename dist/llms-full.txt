@@ -477,7 +477,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Summary: Groups early-exit guard checks before the main body of a function.
 - Syntax: `custodi <block>`
 - Aliases: `guard`
-- Related: `si`, `ergo`, `redde`
+- Related: `si`, `redde`
 - Page: https://faberlang.dev/en-US/corpus/custodi.html
 - Source: examples/corpus/custodi/custodi.fab
 

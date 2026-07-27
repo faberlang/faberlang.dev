@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:aa4877e77f93893ee1f9d80452d56ec91da1378bf90eb0e799741dca9d375900"
+prose_hash = "sha256:0e4d6a725aae4b9e93cab83303cd5abab1c0e01aedb03a901592009207182def"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "e060bb5878bb5c8679ce3d0cc6e942147ca2519f"
+source_commit = "9608b235f83323b3b4c1d7e1559f5e8e7f88d3a4"
 source_locale = "en-US"
 +++
 
@@ -20,7 +20,7 @@ Faber 是一门语言，但有多个编译契约。本页是**经过测量的可
 
 实时 CLI 摘要：`faber targets`。
 
-**生成时间**：2026-07-22，由 `scripta/generate-ebnf-matrix.py` 生成 — **请勿编辑**。
+**生成时间**：unknown，由 `scripta/generate-ebnf-matrix.py` 生成 — **请勿编辑**。
 **测量**：`emit_hir_target_matrix` + `emit_mir_target_matrix`（进程内完成，不使用外部 toolchain）。
 **连接**：`examples/corpus/index.toml` 中的 terms → exempla。
 
