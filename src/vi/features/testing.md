@@ -71,12 +71,12 @@ incipit {
     adfirma x > 0
 
     # With custom message
-    adfirma x ≡ 10, "x decem esse debet"
+    adfirma x ≡ 10 secus "x decem esse debet"
 
     # Multiple assertions in sequence
     fixum _ nomen ← "Marcus"
     adfirma nomen ≡ "Marcus"
-    adfirma nomen ≠ "", "nomen vacuum non sit"
+    adfirma nomen ≠ "" secus "nomen vacuum non sit"
 }
 ```
 

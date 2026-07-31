@@ -39,7 +39,6 @@ Faber GNU coreutils को एप्लिकेशन-लेन प्रूफ
 
 ```faber locale=la
 importa ex "norma:consolum" privata consolum
-importa ex "../../../common/gnu/format" privata gnu_format
 
 functio echo_textus(lista<textus> words) → textus {
     redde ""

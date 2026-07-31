@@ -5,8 +5,14 @@
 #   - Paragraphs
 #   - Pipe tables (GFM-style with |---| separator)
 #   - Unordered lists (- prefix, flat single-level)
+#   - Ordered lists (1. prefix, flat single-level)
+#   - Blockquotes (> prefix)
 #   - Fenced code blocks (``` with optional info string)
 #   - Inline code, bold, italic, and links
+#
+# Source prose is hard-wrapped, so a list item or a quote routinely spans
+# several lines. Continuation lines are folded back into the block they
+# belong to; only a genuine block opener (see est_initium_blocki) ends one.
 #
 # This module builds document_ir.Node values. The document_ir serializer is
 # the single place that writes HTML tags for the Markdown path.
@@ -292,6 +298,58 @@ functio table_node(lista<textus> headers, lista<doc_mod.Node> rows, textus site_
 
 
 # ──────────────────────────────────────────────
+# Block openers
+# ──────────────────────────────────────────────
+
+# True when the line opens an unordered list item ("- ").
+functio est_ordo_libera(textus line) → bivalens {
+    si line.longitudo() < 2 ergo redde falsum
+    si non (line[0] ≡ 45) ergo redde falsum
+    redde line[1] ≡ 32
+}
+
+# Width of an ordered list marker ("1. ", "12. "), or 0 when there is none.
+functio longitudo_ordinis(textus line) → numerus {
+    fixum numerus len ← line.longitudo()
+    varia numerus i ← 0
+
+    dum i < len {
+        fixum numerus ch ← line[i]
+        si ch < 48 aut ch > 57 {
+            rumpe
+        }
+        i ← i + 1
+    }
+
+    si i ≡ 0 ergo redde 0
+    si i + 1 ≥ len ergo redde 0
+    si non (line[i] ≡ 46) ergo redde 0
+    si non (line[i + 1] ≡ 32) ergo redde 0
+    redde i + 2
+}
+
+# True when the line opens a blockquote ("> ").
+functio est_citatio(textus line) → bivalens {
+    si line.longitudo() < 2 ergo redde falsum
+    si non (line[0] ≡ 62) ergo redde falsum
+    redde line[1] ≡ 32
+}
+
+# True when the line starts a new block, and so cannot be a continuation of
+# the paragraph, list item, or quote above it.
+functio est_initium_blocki(textus line) → bivalens {
+    si line.longitudo() ≡ 0 ergo redde verum
+    si su.initium_cum(line, "#") ergo redde verum
+    si su.initium_cum(line, "```") ergo redde verum
+    si est_ordo_libera(line) ergo redde verum
+    si longitudo_ordinis(line) > 0 ergo redde verum
+    si est_citatio(line) ergo redde verum
+    si line[0] ≡ 124 ergo redde verum
+    redde falsum
+}
+
+
+# ──────────────────────────────────────────────
 # Main converter
 # ──────────────────────────────────────────────
 
@@ -407,25 +465,94 @@ functio converte_nodes(textus source, textus site_locale) → lista<doc_mod.Node
         }
 
         # ── Unordered list ──
-        si (line.longitudo() ≥ 2 et line[0] ≡ 45) et line[1] ≡ 32 {
+        si est_ordo_libera(line) {
             varia lista<doc_mod.Node> items ← vacua
 
             dum i < n {
                 fixum textus l ← su.recide(lines[i])
 
-                si l.longitudo() < 2 {
-                    rumpe
-                }
-                si non (l[0] ≡ 45) aut non (l[1] ≡ 32) {
+                si non est_ordo_libera(l) {
                     rumpe
                 }
 
-                fixum textus item ← l.sectio(2, l.longitudo())
-                items.appende(doc_mod.element("li", vacua, genera_inline(item, site_locale)))
+                varia textus item ← l.sectio(2, l.longitudo())
                 i ← i + 1
+
+                dum i < n {
+                    fixum textus cont ← su.recide(lines[i])
+                    si est_initium_blocki(cont) {
+                        rumpe
+                    }
+                    item ← item + nl + cont
+                    i ← i + 1
+                }
+
+                items.appende(doc_mod.element("li", vacua, genera_inline(item, site_locale)))
             }
 
             result.appende(doc_mod.element("ul", vacua, items))
+            perge
+        }
+
+        # ── Ordered list ──
+        si longitudo_ordinis(line) > 0 {
+            varia lista<doc_mod.Node> items ← vacua
+
+            dum i < n {
+                fixum textus l ← su.recide(lines[i])
+                fixum numerus marker ← longitudo_ordinis(l)
+
+                si marker ≡ 0 {
+                    rumpe
+                }
+
+                varia textus item ← l.sectio(marker, l.longitudo())
+                i ← i + 1
+
+                dum i < n {
+                    fixum textus cont ← su.recide(lines[i])
+                    si est_initium_blocki(cont) {
+                        rumpe
+                    }
+                    item ← item + nl + cont
+                    i ← i + 1
+                }
+
+                items.appende(doc_mod.element("li", vacua, genera_inline(item, site_locale)))
+            }
+
+            result.appende(doc_mod.element("ol", vacua, items))
+            perge
+        }
+
+        # ── Blockquote ──
+        si est_citatio(line) {
+            varia textus quote ← ""
+
+            dum i < n {
+                fixum textus l ← su.recide(lines[i])
+
+                si est_citatio(l) {
+                    si quote.longitudo() > 0 {
+                        quote ← quote + nl
+                    }
+                    quote ← quote + l.sectio(2, l.longitudo())
+                    i ← i + 1
+                    perge
+                }
+
+                # A lazy continuation line still belongs to the quote.
+                si non est_initium_blocki(l) {
+                    quote ← quote + nl + l
+                    i ← i + 1
+                    perge
+                }
+
+                rumpe
+            }
+
+            fixum doc_mod.Node quote_para ← doc_mod.element("p", vacua, genera_inline(quote, site_locale))
+            result.appende(doc_mod.element("blockquote", vacua, [quote_para]))
             perge
         }
 
@@ -436,16 +563,7 @@ functio converte_nodes(textus source, textus site_locale) → lista<doc_mod.Node
         dum i < n {
             fixum textus l ← su.recide(lines[i])
 
-            si l.longitudo() ≡ 0 {
-                rumpe
-            }
-            si su.initium_cum(l, "##") {
-                rumpe
-            }
-            si su.initium_cum(l, "```") {
-                rumpe
-            }
-            si (l.longitudo() ≥ 2 et l[0] ≡ 45) et l[1] ≡ 32 {
+            si est_initium_blocki(l) {
                 rumpe
             }
 
@@ -530,6 +648,50 @@ probandum "markdown converter" tag "core" {
         fixum textus html ← converte(input)
         adfirma su.initium_index(html, "Item one") ≥ 0
         adfirma su.initium_index(html, "Item two") ≥ 0
+    }
+
+    proba "unordered list item folds its wrapped lines" {
+        fixum textus input ← "- Item one\n  wrapped tail\n- Item two"
+        fixum textus html ← converte(input)
+        # The wrapped line stays inside the item instead of becoming its own
+        # paragraph, which is what hard-wrapped source prose needs.
+        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("li", vacua, "Item one\nwrapped tail"))) ≥ 0
+        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("li", vacua, "Item two"))) ≥ 0
+        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("p", vacua, "wrapped tail"))) < 0
+    }
+
+    proba "ordered list" {
+        fixum textus input ← "1. First thing\n2. Second thing"
+        fixum textus html ← converte(input)
+        fixum doc_mod.Node expected ← doc_mod.element("ol", vacua, [doc_mod.leaf("li", vacua, "First thing"), doc_mod.leaf("li", vacua, "Second thing")])
+        adfirma su.initium_index(html, doc_mod.node_html(expected)) ≥ 0
+    }
+
+    proba "ordered list item folds its wrapped lines" {
+        fixum textus input ← "1. First thing\n   wrapped tail\n2. Second thing"
+        fixum textus html ← converte(input)
+        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("li", vacua, "First thing\nwrapped tail"))) ≥ 0
+        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("p", vacua, "wrapped tail"))) < 0
+    }
+
+    proba "decimal at line start is not a list" {
+        fixum textus input ← "0.38.0 is the current compiler version"
+        fixum textus html ← converte(input)
+        adfirma html ≡ doc_mod.node_html(doc_mod.leaf("p", vacua, input))
+    }
+
+    proba "blockquote" {
+        fixum textus input ← "> Quoted line\n> second quoted line"
+        fixum textus html ← converte(input)
+        fixum doc_mod.Node body ← doc_mod.leaf("p", vacua, "Quoted line\nsecond quoted line")
+        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.element("blockquote", vacua, [body]))) ≥ 0
+    }
+
+    proba "paragraph ends at a list" {
+        fixum textus input ← "Intro line\n- Item one"
+        fixum textus html ← converte(input)
+        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("p", vacua, "Intro line"))) ≥ 0
+        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.element("ul", vacua, [doc_mod.leaf("li", vacua, "Item one")]))) ≥ 0
     }
 
     proba "pipe table" {

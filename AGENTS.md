@@ -24,6 +24,7 @@ faberlang.dev/
     locales.toml           Locale registry (reader_locale, native names)
     src/                   Faber modules
     www/speculum.css       Shared stylesheet (single source of truth)
+    diagrams/              Committed SVG cache, one file per ```mermaid block
     scripts/build-site.sh  Full site render + redirects + gates
     scripts/render.sh      Single-page render wrapper
     scripts/validate-fences.sh  CI fence validator
@@ -139,6 +140,42 @@ build. They can also be run standalone:
 | `check-leakage-gate.py` | No English→locale nav leakage; all locale pages carry honesty notice | 1 on gap |
 | `generate-sitemap.py` | Generates `dist/sitemap.xml` from HTML files (excludes locale dirs) | — |
 | `inject-canonical.py` | Injects `<link rel="canonical">` into pages missing one | — |
+
+### Presentation post-process
+
+These run after chrome injection and before the gates. All are idempotent and
+operate on rendered HTML, so none of them requires a generator rebuild.
+
+| Script | Purpose |
+|---|---|
+| `diagrams.py render` | Renders ```` ```mermaid ```` fences in `src/` to `generator/diagrams/<hash>.svg` |
+| `diagrams.py inject` | Inlines those SVGs into `dist/` as `<figure class="diagram">` |
+| `highlight-code.py` | Wraps tokens in fenced `faber`/`bash`/`toml` blocks in `.tok-*` spans |
+| `inject-toc.py` | Gives headings ids + `#` self-links, adds the per-page contents rail |
+
+**Diagrams.** The SVG cache is committed, so a build without Node still
+produces a complete site; `render` is a source-side authoring step and
+`inject` only ever reads the cache. A diagram with no cache entry stays a
+readable code block rather than failing the build. Colours are not baked in:
+`render-mermaid.mjs` feeds Mermaid sentinel colours that `diagrams.py`
+rewrites to `var(--…)` tokens, so diagrams follow light/dark with the page.
+After adding or editing a `mermaid` fence, run:
+
+```bash
+python3 generator/scripts/diagrams.py render
+```
+
+which installs its own Node dependencies under `generator/target/` on first
+use. Commit the new `generator/diagrams/*.svg` alongside the Markdown.
+
+**Contents rail.** `inject-toc.py` reads its label from the page locale's
+`chrome.toml` `[toc].heading`. Only `en-US` has one today; other locales get
+an unlabelled rail rather than leaked English. Add the key per locale as
+translations land.
+
+**Heading ids.** The generator only emits an id when the Markdown spells one
+out as `{#anchor}`. `inject-toc.py` derives a slug for the rest so every
+heading is linkable; explicit anchors are never overwritten.
 
 The corpus renderer (`render-corpus-batch.sh`) also post-processes its output:
 - Suppresses dead cross-reference links (converts to plain text)

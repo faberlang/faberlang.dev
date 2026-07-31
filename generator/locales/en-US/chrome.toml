@@ -31,6 +31,9 @@ full_reference = "Full reference"
 all_releases = "All releases"
 github_org = "GitHub org"
 
+[toc]
+heading = "On this page"
+
 [renderbar]
 label = "Rendering"
 install = "install"

@@ -39,7 +39,6 @@ Faber 以應用程式軌證明的方式重新實作 GNU coreutils。這些是真
 
 ```faber locale=la
 importa ex "norma:consolum" privata consolum
-importa ex "../../../common/gnu/format" privata gnu_format
 
 functio echo_textus(lista<textus> words) → textus {
     redde ""

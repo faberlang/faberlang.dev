@@ -47,23 +47,23 @@ contracts, and pipeline routing live in
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| rust | 265 | 268 | 99% |
-| go | 247 | 268 | 92% |
-| ts | 262 | 268 | 98% |
-| faber | 268 | 268 | 100% |
+| rust | 271 | 273 | 99% |
+| go | 252 | 273 | 92% |
+| ts | 267 | 273 | 98% |
+| faber | 273 | 273 | 100% |
 
 **Systems lane (MIR → device/IR artifacts)**
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| llvm-text | 247 | 255 | 97% |
-| wasm-text | 202 | 255 | 79% |
-| wasm | 201 | 255 | 79% |
-| metal-text | 6 | 254 | 2% |
-| wgsl-text | 6 | 254 | 2% |
-| sexp-struct | 195 | 254 | 77% |
-| sexp | 194 | 254 | 76% |
-| scena | 216 | 254 | 85% |
+| llvm-text | 249 | 259 | 96% |
+| wasm-text | 204 | 259 | 79% |
+| wasm | 204 | 259 | 79% |
+| metal-text | 6 | 259 | 2% |
+| wgsl-text | 6 | 259 | 2% |
+| sexp-struct | 204 | 259 | 79% |
+| sexp | 204 | 259 | 79% |
+| scena | 218 | 259 | 84% |
 
 ## Keywords — application lane
 
@@ -129,7 +129,7 @@ contracts, and pipeline routing live in
 | `lege` | ✓ | ✓ | ✓ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✓ |
 | `lista` | ✓ | ✓ | ✓ | ✓ |
-| `matrix` | ✕ | ✕ | ✓ | ✓ |
+| `matrix` | ✓ | ✕ | ✓ | ✓ |
 | `mone` | ✓ | ✓ | ✓ | ✓ |
 | `mori` | ✓ | ✓ | ✓ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✓ |
@@ -150,7 +150,7 @@ contracts, and pipeline routing live in
 | `postpara` | ✓ | ✓ | ✓ | ✓ |
 | `postparabit` | ✓ | ✓ | ✓ | ✓ |
 | `prae` | ✓ | ✓ | ✓ | ✓ |
-| `praefixum` | ✓ | ✓ | ✓ | ✓ |
+| `praefixum` | — | — | — | — |
 | `praepara` | ✓ | ✓ | ✓ | ✓ |
 | `praeparabit` | ✓ | ✓ | ✓ | ✓ |
 | `promissum` | ✓ | ✓ | ✓ | ✓ |
@@ -237,6 +237,7 @@ contracts, and pipeline routing live in
 | `vel` | ✓ | ✓ | ✓ | ✓ |
 | `∷` | ✓ | ✓ | ✓ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✓ |
+| `ergo` | ✓ | ✓ | ✓ | ✓ |
 
 ## Keywords — systems lane
 
@@ -282,7 +283,7 @@ contracts, and pipeline routing live in
 | `fragilis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `fractus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `functio` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `futura` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `futura` | ◐ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `futurum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `generis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `genus` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
@@ -293,16 +294,16 @@ contracts, and pipeline routing live in
 | `implet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `importa` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ◐ |
 | `in` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `incipiet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `incipiet` | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `incipit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `inter` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `intra` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `itera` | ✓ | ✓ | ◐ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `itera` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `lege` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `lista` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
-| `matrix` | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ | ✕ | ✕ |
+| `matrix` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
 | `mone` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `mori` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -323,7 +324,7 @@ contracts, and pipeline routing live in
 | `postpara` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `postparabit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `prae` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
-| `praefixum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `praefixum` | — | — | — | — | — | — | — | — |
 | `praepara` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `praeparabit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `promissum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -332,7 +333,7 @@ contracts, and pipeline routing live in
 | `probandum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `protecta` | — | — | — | — | — | — | — | — |
 | `publica` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `redde` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `redde` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ◐ |
 | `repete` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `rumpe` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -391,8 +392,8 @@ contracts, and pipeline routing live in
 | `≤` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⊖` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `modulus<u16>` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `modulus<u32>` | ◐ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `modulus<u64>` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `modulus<u32>` | ◐ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `modulus<u64>` | ✕ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `modulus<u8>` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `non est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⊚` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -410,6 +411,7 @@ contracts, and pipeline routing live in
 | `vel` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `∷` | ✓ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `ergo` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 
 ## Other terms (`existing-home` / unspecified)
 

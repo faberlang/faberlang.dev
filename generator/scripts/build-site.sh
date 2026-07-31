@@ -59,9 +59,13 @@ BINARY_NEW="${GENERATOR_DIR}/target/debug/speculum-gen"
 TEMPDIRS=()
 
 cleanup() {
-    for d in "${TEMPDIRS[@]}"; do
-        rm -rf "$d"
-    done
+    # Guard the expansion: under `set -u`, bash 3.2 treats an empty array as
+    # unbound, so an early exit would report that instead of the real error.
+    if [ "${#TEMPDIRS[@]}" -gt 0 ]; then
+        for d in "${TEMPDIRS[@]}"; do
+            rm -rf "$d"
+        done
+    fi
 }
 trap cleanup EXIT
 
@@ -329,6 +333,21 @@ if [ "$FULL_SITE" = true ]; then
             "$PYTHON" "${SCRIPT_DIR}/inject-chrome.py" "$OUTPUT_DIR" "$site"
         fi
     done
+
+    # Presentation post-process. Diagram rendering needs Node and a headless
+    # browser, so it is best-effort: a machine without them keeps the cached
+    # SVGs it already has, and any diagram with no cache entry stays a
+    # readable code block rather than failing the build.
+    echo "[9/10] Diagrams..."
+    "$PYTHON" "${SCRIPT_DIR}/diagrams.py" render "${REPO_DIR}/src" || \
+        echo "  WARNING: diagram render skipped; using cached SVGs only" >&2
+    "$PYTHON" "${SCRIPT_DIR}/diagrams.py" inject "$OUTPUT_DIR"
+
+    echo "[9/10] Code highlighting..."
+    "$PYTHON" "${SCRIPT_DIR}/highlight-code.py" "$OUTPUT_DIR"
+
+    echo "[9/10] Contents rails..."
+    "$PYTHON" "${SCRIPT_DIR}/inject-toc.py" "$OUTPUT_DIR"
 
     # Step 10: Gates (link check, leakage) — only for full site
     echo "[10/10] Gates..."

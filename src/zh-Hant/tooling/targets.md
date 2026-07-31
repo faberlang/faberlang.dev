@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:8d3d4a00e8ea0770fc75b83105173b799c8f268526ed5883d1c30413b1c6aa5d"
+prose_hash = "sha256:f0f7ba6e591f27e411d9a75e862bccc9cdb89a8f1c3c6ba6e353a08353fb5de4"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "9608b235f83323b3b4c1d7e1559f5e8e7f88d3a4"
+source_commit = "12ad0f0eb3b0a0e183a8abb4e323f6d856b83fe3"
 source_locale = "en-US"
 +++
 
@@ -50,23 +50,23 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 
 | 目標 | 可支援 | 可分析 | % |
 |---|---|---|---|
-| rust | 265 | 268 | 99% |
-| go | 247 | 268 | 92% |
-| ts | 262 | 268 | 98% |
-| faber | 268 | 268 | 100% |
+| rust | 271 | 273 | 99% |
+| go | 252 | 273 | 92% |
+| ts | 267 | 273 | 98% |
+| faber | 273 | 273 | 100% |
 
 **系統途徑（MIR → 裝置/IR 產物）**
 
 | 目標 | 可支援 | 可分析 | % |
 |---|---|---|---|
-| llvm-text | 247 | 255 | 97% |
-| wasm-text | 202 | 255 | 79% |
-| wasm | 201 | 255 | 79% |
-| metal-text | 6 | 254 | 2% |
-| wgsl-text | 6 | 254 | 2% |
-| sexp-struct | 195 | 254 | 77% |
-| sexp | 194 | 254 | 76% |
-| scena | 216 | 254 | 85% |
+| llvm-text | 249 | 259 | 96% |
+| wasm-text | 204 | 259 | 79% |
+| wasm | 204 | 259 | 79% |
+| metal-text | 6 | 259 | 2% |
+| wgsl-text | 6 | 259 | 2% |
+| sexp-struct | 204 | 259 | 79% |
+| sexp | 204 | 259 | 79% |
+| scena | 218 | 259 | 84% |
 
 ## 關鍵字 — 應用途徑
 
@@ -132,7 +132,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `lege` | ✓ | ✓ | ✓ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✓ |
 | `lista` | ✓ | ✓ | ✓ | ✓ |
-| `matrix` | ✕ | ✕ | ✓ | ✓ |
+| `matrix` | ✓ | ✕ | ✓ | ✓ |
 | `mone` | ✓ | ✓ | ✓ | ✓ |
 | `mori` | ✓ | ✓ | ✓ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✓ |
@@ -153,7 +153,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `postpara` | ✓ | ✓ | ✓ | ✓ |
 | `postparabit` | ✓ | ✓ | ✓ | ✓ |
 | `prae` | ✓ | ✓ | ✓ | ✓ |
-| `praefixum` | ✓ | ✓ | ✓ | ✓ |
+| `praefixum` | — | — | — | — |
 | `praepara` | ✓ | ✓ | ✓ | ✓ |
 | `praeparabit` | ✓ | ✓ | ✓ | ✓ |
 | `promissum` | ✓ | ✓ | ✓ | ✓ |
@@ -240,6 +240,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `vel` | ✓ | ✓ | ✓ | ✓ |
 | `∷` | ✓ | ✓ | ✓ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✓ |
+| `ergo` | ✓ | ✓ | ✓ | ✓ |
 
 ## 關鍵字 — 系統途徑
 
@@ -285,7 +286,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `fragilis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `fractus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `functio` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `futura` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `futura` | ◐ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `futurum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `generis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `genus` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
@@ -296,16 +297,16 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `implet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `importa` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ◐ |
 | `in` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `incipiet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `incipiet` | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `incipit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `inter` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `intra` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `itera` | ✓ | ✓ | ◐ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `itera` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `lege` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `lista` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
-| `matrix` | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ | ✕ | ✕ |
+| `matrix` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
 | `mone` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `mori` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -326,7 +327,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `postpara` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `postparabit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `prae` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
-| `praefixum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `praefixum` | — | — | — | — | — | — | — | — |
 | `praepara` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `praeparabit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `promissum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -335,7 +336,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `probandum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `protecta` | — | — | — | — | — | — | — | — |
 | `publica` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `redde` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `redde` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ◐ |
 | `repete` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `rumpe` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -394,8 +395,8 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `≤` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⊖` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `modulus<u16>` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `modulus<u32>` | ◐ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `modulus<u64>` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `modulus<u32>` | ◐ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `modulus<u64>` | ✕ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `modulus<u8>` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `non est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⊚` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -413,6 +414,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `vel` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `∷` | ✓ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `ergo` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 
 ## 其他術語（`existing-home` / 未指定）
 

@@ -47,9 +47,9 @@ faber explain SEM001
 
 ## Generated corpus frontmatter reference
 
-- Distinct frontmatter terms: 189
-- Canonical term pages: 171
-- Alias spellings: 98
+- Distinct frontmatter terms: 196
+- Canonical term pages: 178
+- Alias spellings: 104
 - Categories: 46
 - Source: examples/corpus/**/*.fab TOML frontmatter
 
@@ -62,7 +62,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - application (1) — https://faberlang.dev/en-US/corpus/category/application.html
 - arithmetic (4) — https://faberlang.dev/en-US/corpus/category/arithmetic.html
 - assignment (1) — https://faberlang.dev/en-US/corpus/category/assignment.html
-- async (4) — https://faberlang.dev/en-US/corpus/category/async.html
+- async (11) — https://faberlang.dev/en-US/corpus/category/async.html
 - availability (1) — https://faberlang.dev/en-US/corpus/category/availability.html
 - binding (3) — https://faberlang.dev/en-US/corpus/category/binding.html
 - bitwise (1) — https://faberlang.dev/en-US/corpus/category/bitwise.html
@@ -110,7 +110,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - concept: 13
 - conversio: 4
 - existing-home: 5
-- keyword: 110
+- keyword: 117
 - literal: 1
 - method: 2
 - modifier: 1
@@ -258,7 +258,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `async solum leget`
 - Kind: concept
 - Category: ad
-- Summary: @ futura solum.leget<T> uses the same solum:lege route as sync solum.lege<T>.
+- Summary: Async solum.leget<T> uses the same solum:lege route as sync solum.lege<T>.
 - Syntax: `solum.leget<textus>(via)`
 - Aliases: none
 - Related: `ad`, `solum`, `futura`, `sermo`
@@ -270,8 +270,8 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `async tempus dormiet`
 - Kind: concept
 - Category: ad
-- Summary: @ futura tempus.dormiet and sync tempus.expectet share the tempus:dormiet route.
-- Syntax: `tempus.expectet(ms) | cede tempus.dormiet(ms)`
+- Summary: Async tempus.dormiet and sync tempus.expectet share the tempus:dormiet route.
+- Syntax: `tempus.expectet(ms) | tacebit tempus.dormiet(ms)`
 - Aliases: none
 - Related: `ad`, `tempus`, `futura`, `sermo`
 - Page: https://faberlang.dev/en-US/corpus/async%20tempus%20dormiet.html
@@ -342,10 +342,10 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `cede`
 - Kind: keyword
 - Category: async
-- Summary: Awaits a promise or yields a value depending on context.
+- Summary: Yields one value from a generator.
 - Syntax: `cede <expression>`
-- Aliases: `await`, `yield`
-- Related: `futura`, `cursor`
+- Aliases: `yield`
+- Related: `cursor`, `fiunt`, `fient`
 - Page: https://faberlang.dev/en-US/corpus/cede.html
 - Source: examples/corpus/cede/cede.fab
 
@@ -462,10 +462,10 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `cursor`
 - Kind: keyword
 - Category: async
-- Summary: Marks a function as a generator.
+- Summary: Compatibility annotation for stream/generator posture.
 - Syntax: `@ cursor`
 - Aliases: none
-- Related: `futura`, `cede`
+- Related: `fiunt`, `fient`, `cede`
 - Page: https://faberlang.dev/en-US/corpus/cursor.html
 - Source: examples/corpus/cursor/cursor.fab
 
@@ -673,6 +673,42 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/falsum.html
 - Source: examples/corpus/falsum/falsum.fab
 
+#### `fient`
+
+- Canonical: `fient`
+- Kind: keyword
+- Category: async
+- Summary: Callable posture for asynchronous stream functions.
+- Syntax: `functio name(…) fient → T`
+- Aliases: `async_generator`
+- Related: `fiunt`, `fiet`, `cede`
+- Page: https://faberlang.dev/en-US/corpus/fient.html
+- Source: examples/corpus/fient/fient.fab
+
+#### `fiet`
+
+- Canonical: `fiet`
+- Kind: keyword
+- Category: async
+- Summary: Callable posture for asynchronous finite functions.
+- Syntax: `functio name(…) fiet → T`
+- Aliases: `async`
+- Related: `futura`, `promissum`, `figendum`, `tacebit`
+- Page: https://faberlang.dev/en-US/corpus/fiet.html
+- Source: examples/corpus/fiet/fiet.fab
+
+#### `figendum`
+
+- Canonical: `figendum`
+- Kind: keyword
+- Category: async
+- Summary: Awaits a promissum and binds an immutable name.
+- Syntax: `figendum T name ← future`
+- Aliases: `await_const`
+- Related: `variandum`, `tacebit`, `reddet`, `fiet`, `promissum`
+- Page: https://faberlang.dev/en-US/corpus/figendum.html
+- Source: examples/corpus/figendum/figendum.fab
+
 #### `finge`
 
 - Canonical: `finge`
@@ -684,6 +720,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `discretio`
 - Page: https://faberlang.dev/en-US/corpus/finge.html
 - Source: examples/corpus/finge/finge.fab
+
+#### `fiunt`
+
+- Canonical: `fiunt`
+- Kind: keyword
+- Category: async
+- Summary: Callable posture for synchronous stream (generator) functions.
+- Syntax: `functio name(…) fiunt → T`
+- Aliases: `generator`
+- Related: `cursor`, `cede`, `fient`
+- Page: https://faberlang.dev/en-US/corpus/fiunt.html
+- Source: examples/corpus/fiunt/fiunt.fab
 
 #### `fixum`
 
@@ -921,7 +969,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Summary: Declares the asynchronous program entry point.
 - Syntax: `incipiet <block>`
 - Aliases: none
-- Related: `incipit`, `cede`
+- Related: `incipit`, `figendum`, `tacebit`
 - Page: https://faberlang.dev/en-US/corpus/incipiet.html
 - Source: examples/corpus/incipiet/incipiet.fab
 
@@ -1470,10 +1518,10 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `promissum`
 - Kind: keyword
 - Category: async
-- Summary: Promise-like result type associated with futura functions.
-- Syntax: `promissum<T>`
+- Summary: Promise-like result type associated with async finite functions.
+- Syntax: `promissum<T> | promissum<T ⇥ E>`
 - Aliases: `promise`
-- Related: `futura`, `cede`
+- Related: `fiet`, `futura`, `figendum`, `tacebit`
 - Page: https://faberlang.dev/en-US/corpus/promissum.html
 - Source: examples/corpus/promissum/promissum.fab
 
@@ -1524,6 +1572,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `→`, `⇥`, `ergo`, `iace`, `tacet`
 - Page: https://faberlang.dev/en-US/corpus/redde.html
 - Source: examples/corpus/redde/redde.fab
+
+#### `reddet`
+
+- Canonical: `reddet`
+- Kind: keyword
+- Category: async
+- Summary: Awaits a promissum and returns its success value from a fiet body.
+- Syntax: `reddet future`
+- Aliases: `return_await`
+- Related: `figendum`, `tacebit`, `fiet`, `redde`
+- Page: https://faberlang.dev/en-US/corpus/reddet.html
+- Source: examples/corpus/reddet/reddet.fab
 
 #### `regex`
 
@@ -1789,6 +1849,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/tabula.html
 - Source: examples/corpus/tabula/methodi-accessus.fab
 
+#### `tacebit`
+
+- Canonical: `tacebit`
+- Kind: keyword
+- Category: async
+- Summary: Awaits a promissum and discards the success value.
+- Syntax: `tacebit future`
+- Aliases: `await`
+- Related: `figendum`, `reddet`, `fiet`, `promissum`
+- Page: https://faberlang.dev/en-US/corpus/tacebit.html
+- Source: examples/corpus/tacebit/tacebit.fab
+
 #### `tacet`
 
 - Canonical: `tacet`
@@ -1968,6 +2040,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `fixum`, `←`, `⊕`
 - Page: https://faberlang.dev/en-US/corpus/varia.html
 - Source: examples/corpus/varia/varia.fab
+
+#### `variandum`
+
+- Canonical: `variandum`
+- Kind: keyword
+- Category: async
+- Summary: Awaits a promissum and binds a mutable name.
+- Syntax: `variandum T name ← future`
+- Aliases: `await_var`
+- Related: `figendum`, `tacebit`, `fiet`, `promissum`
+- Page: https://faberlang.dev/en-US/corpus/variandum.html
+- Source: examples/corpus/variandum/variandum.fab
 
 #### `vel`
 
@@ -2186,7 +2270,11 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `assert` → `adfirma`
 - `assign` → `←`
 - `assignment` → `←`
-- `await` → `cede`
+- `async` → `fiet`
+- `async_generator` → `fient`
+- `await` → `tacebit`
+- `await_const` → `figendum`
+- `await_var` → `variandum`
 - `backends` → `targets`
 - `break` → `rumpe`
 - `bytes` → `octeti`
@@ -2212,6 +2300,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `faber.toml` → `manifest`
 - `float` → `fractus`
 - `function` → `functio`
+- `generator` → `fiunt`
 - `guard` → `custodi`
 - `if` → `si`
 - `immutable` → `fixum`
@@ -2248,6 +2337,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `public` → `publica`
 - `rest` → `ceteri`
 - `return` → `redde`
+- `return_await` → `reddet`
 - `self` → `ego`
 - `set` → `copia`
 - `silent noop` → `tacet`

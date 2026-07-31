@@ -1,56 +1,56 @@
 <!DOCTYPE html>
-<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber 有三個變數關鍵字，以及專用的指派字元。關鍵差異在於 fixum（只能寫入一次）與 varia（可自由重新指派），以及 ←（執行期流程）與 =（結構欄位形狀）之間的區別。"><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Variables and binding — Faber"><meta property="og:description" content="Faber 有三個變數關鍵字，以及專用的指派字元。關鍵差異在於 fixum（只能寫入一次）與 varia（可自由重新指派），以及 ←（執行期流程）與 =（結構欄位形狀）之間的區別。"><meta property="og:url" content="https://faberlang.dev/zh-Hant/syntax/variables.html"><meta property="og:locale" content="zh_TW"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/zh-Hant/syntax/variables.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Variables and binding — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">渲染</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">zh-Hant</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword..." aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/zh-Hant/start/install.html">安裝</a></nav></div></div><div class="page"><aside><a class="brand" href="/zh-Hant/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">語言文件</span></span></a><div class="side-h">開始使用</div><ul class="nav"><li><a href="/zh-Hant/start/install.html">安裝與下載</a></li><li><a href="/zh-Hant/history/releases.html">發行版</a></li><li><a href="/zh-Hant/start/hello.html">你好</a></li><li><a href="/zh-Hant/start/commands.html">命令</a></li><li><a href="/zh-Hant/start/projects.html">專案</a></li><li><a href="/zh-Hant/start/examples.html">範例</a></li><li><a href="/zh-Hant/start/">快速導覽</a></li></ul><div class="side-h">文件</div><ul class="nav"><li><a href="/zh-Hant/">概覽</a></li><li><a href="/zh-Hant/features/">特性</a></li><li><a href="/zh-Hant/syntax/" class="active">語法</a></li><li><a href="/zh-Hant/tooling/">工具鏈</a></li><li><a href="/zh-Hant/tooling/radix-architecture.html">Architecture</a></li><li><a href="/zh-Hant/tooling/targets.html">目標</a></li><li><a href="/zh-Hant/ecosystem/">生態系</a></li><li><a href="/zh-Hant/corpus/">語料庫</a></li><li><a href="/zh-Hant/references/">參考</a></li><li><a href="/zh-Hant/history/">歷史</a></li></ul><div class="side-h">面向智慧體</div><ul class="nav nav-compact"><li><a href="/llms.txt">智慧體索引</a></li><li><a href="/agents/index.md">智慧體指南</a></li><li><a href="/.well-known/agent-skills/index.json">智慧體技能</a></li><li><a href="/llms-full.txt">完整參考</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/zh-Hant/history/releases.html">全部發行版</a></li><li><a href="https://github.com/faberlang">GitHub 組織</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">範式</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">型別</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">目標</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">授權</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Variables and binding</h1><div class="content"><p>Faber 有三個變數關鍵字，以及專用的指派字元。關鍵差異在於 <code class="kw">fixum</code>（只能寫入一次）與 <code class="kw">varia</code>（可自由重新指派），以及 <code>←</code>（執行期流程）與 <code>=</code>（結構欄位形狀）之間的區別。</p><h2 id="fixum-immutable-binding">fixum — 不可變繫結</h2><p><code class="kw">fixum</code> 繫結只能寫入一次。宣告時可以提供初始值，也可以不提供；若未提供初始值，則必須在讀取前恰好指派一次。第二次指派會被拒絕。</p><pre class="faber-code"><code class="lang-faber">fixum numerus count ← 0
-fixum textus name ← &quot;Marcus&quot;
-fixum _ inferred ← [1, 2, 3]</code></pre><p>延遲初始化：</p><pre class="faber-code"><code class="lang-faber">incipit {
-    fixum numerus factor
-    si verum {
-        factor ← 10
-    } secus {
-        factor ← 100
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber 有三個變數關鍵字，以及專用的指派字元。關鍵差異在於 fixum（只能寫入一次）與 varia（可自由重新指派），以及 ←（執行期流程）與 =（結構欄位形狀）之間的區別。"><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Variables and binding — Faber"><meta property="og:description" content="Faber 有三個變數關鍵字，以及專用的指派字元。關鍵差異在於 fixum（只能寫入一次）與 varia（可自由重新指派），以及 ←（執行期流程）與 =（結構欄位形狀）之間的區別。"><meta property="og:url" content="https://faberlang.dev/zh-Hant/syntax/variables.html"><meta property="og:locale" content="zh_TW"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/zh-Hant/syntax/variables.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Variables and binding — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">渲染</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">zh-Hant</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/zh-Hant/start/install.html">安裝</a></nav></div></div><div class="page"><aside><a class="brand" href="/zh-Hant/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">語言文件</span></span></a><div class="side-h">開始使用</div><ul class="nav"><li><a href="/zh-Hant/start/install.html">安裝與下載</a></li><li><a href="/zh-Hant/history/releases.html">發行版</a></li><li><a href="/zh-Hant/start/hello.html">你好</a></li><li><a href="/zh-Hant/start/commands.html">命令</a></li><li><a href="/zh-Hant/start/projects.html">專案</a></li><li><a href="/zh-Hant/start/examples.html">範例</a></li><li><a href="/zh-Hant/start/">快速導覽</a></li></ul><div class="side-h">文件</div><ul class="nav"><li><a href="/zh-Hant/">概覽</a></li><li><a href="/zh-Hant/features/">特性</a></li><li><a href="/zh-Hant/syntax/" class="active">語法</a></li><li><a href="/zh-Hant/tooling/">工具鏈</a></li><li><a href="/zh-Hant/tooling/radix-architecture.html">Architecture</a></li><li><a href="/zh-Hant/tooling/targets.html">目標</a></li><li><a href="/zh-Hant/ecosystem/">生態系</a></li><li><a href="/zh-Hant/corpus/">語料庫</a></li><li><a href="/zh-Hant/references/">參考</a></li><li><a href="/zh-Hant/history/">歷史</a></li></ul><div class="side-h">面向智慧體</div><ul class="nav nav-compact"><li><a href="/llms.txt">智慧體索引</a></li><li><a href="/agents/index.md">智慧體指南</a></li><li><a href="/.well-known/agent-skills/index.json">智慧體技能</a></li><li><a href="/llms-full.txt">完整參考</a></li></ul><div class="side-h">Release 1.1.1</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/zh-Hant/history/releases.html">全部發行版</a></li><li><a href="https://github.com/faberlang">GitHub 組織</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">範式</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">型別</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">目標</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">授權</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Variables and binding</h1><div class="content"><p>Faber 有三個變數關鍵字，以及專用的指派字元。關鍵差異在於 <code class="kw">fixum</code>（只能寫入一次）與 <code class="kw">varia</code>（可自由重新指派），以及 <code>←</code>（執行期流程）與 <code>=</code>（結構欄位形狀）之間的區別。</p><h2 id="fixum-immutable-binding">fixum — 不可變繫結<a class="anchor" href="#fixum-immutable-binding">#</a></h2><p><code class="kw">fixum</code> 繫結只能寫入一次。宣告時可以提供初始值，也可以不提供；若未提供初始值，則必須在讀取前恰好指派一次。第二次指派會被拒絕。</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fixum</span> <span class="tok-kw">numerus</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
+<span class="tok-kw">fixum</span> <span class="tok-kw">textus</span> name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+<span class="tok-kw">fixum</span> _ inferred <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]</code></pre><p>延遲初始化：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {
+    <span class="tok-kw">fixum</span> <span class="tok-kw">numerus</span> factor
+    <span class="tok-kw">si</span> <span class="tok-kw">verum</span> {
+        factor <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    } <span class="tok-kw">secus</span> {
+        factor <span class="tok-op">←</span> <span class="tok-nu">100</span>
     }
     nota factor
-}</code></pre><h2 id="varia-mutable-binding">varia — 可變繫結</h2><p><code class="kw">varia</code> 繫結可以自由重新指派：</p><pre class="faber-code"><code class="lang-faber">incipit {
-    varia numerus count ← 0
-    count ← count + 1
-    count ← count * 2
-}</code></pre><h2 id="sit-inferred-immutable-sugar">sit — 推導的不可變語法糖</h2><p><code>sit</code> 是 <code>fixum _</code> 的語法糖——具有推導型別的不可變繫結：</p><pre class="faber-code"><code class="lang-faber">incipit {
-    sit salve ← &quot;Salve&quot;
-    sit nomen ← &quot;Marcus&quot;
-    sit x ← 42
+}</code></pre><h2 id="varia-mutable-binding">varia — 可變繫結<a class="anchor" href="#varia-mutable-binding">#</a></h2><p><code class="kw">varia</code> 繫結可以自由重新指派：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {
+    <span class="tok-kw">varia</span> <span class="tok-kw">numerus</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    count <span class="tok-op">←</span> count <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    count <span class="tok-op">←</span> count <span class="tok-op">*</span> <span class="tok-nu">2</span>
+}</code></pre><h2 id="sit-inferred-immutable-sugar">sit — 推導的不可變語法糖<a class="anchor" href="#sit-inferred-immutable-sugar">#</a></h2><p><code>sit</code> 是 <code>fixum _</code> 的語法糖——具有推導型別的不可變繫結：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {
+    <span class="tok-kw">sit</span> salve <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
+    <span class="tok-kw">sit</span> nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    <span class="tok-kw">sit</span> x <span class="tok-op">←</span> <span class="tok-nu">42</span>
 
-    # Deferred form
-    sit label
-    label ← &quot;deferred&quot;
-}</code></pre><h2 id="runtime-binding-vs-structural-definition">執行期繫結與結構定義</h2><p>Faber 將多數語言合併在 <code>=</code> 中的概念分開：</p><div class="table-scroll"><table><thead><tr><th>字元</th><th>作用</th><th>用於</th></tr></thead><tbody><tr><td><code>←</code></td><td>執行期流程</td><td>初始繫結、重新指派、變更</td></tr><tr><td><code>=</code></td><td>結構形狀</td><td>常值與中繼資料中的欄位名稱</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber">genus Point {
-    numerus x
-    numerus y
+<span class="tok-co">    # Deferred form</span>
+    <span class="tok-kw">sit</span> label
+    label <span class="tok-op">←</span> <span class="tok-st">"deferred"</span>
+}</code></pre><h2 id="runtime-binding-vs-structural-definition">執行期繫結與結構定義<a class="anchor" href="#runtime-binding-vs-structural-definition">#</a></h2><p>Faber 將多數語言合併在 <code>=</code> 中的概念分開：</p><div class="table-scroll"><table><thead><tr><th>字元</th><th>作用</th><th>用於</th></tr></thead><tbody><tr><td><code>←</code></td><td>執行期流程</td><td>初始繫結、重新指派、變更</td></tr><tr><td><code>=</code></td><td>結構形狀</td><td>常值與中繼資料中的欄位名稱</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">genus</span> Point {
+    <span class="tok-kw">numerus</span> x
+    <span class="tok-kw">numerus</span> y
 }
 
-incipit {
-    # Runtime: ← attaches a value to a name at execution time
-    varia numerus count ← 0
-    varia textus label ← &quot;ready&quot;
-    count ← count + 1
+<span class="tok-kw">incipit</span> {
+<span class="tok-co">    # Runtime: ← attaches a value to a name at execution time</span>
+    <span class="tok-kw">varia</span> <span class="tok-kw">numerus</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">varia</span> <span class="tok-kw">textus</span> label <span class="tok-op">←</span> <span class="tok-st">"ready"</span>
+    count <span class="tok-op">←</span> count <span class="tok-op">+</span> <span class="tok-nu">1</span>
 
-    # Structural: = defines field values inside a type literal
-    fixum _ p ← Point {
-        x = 10,
-        y = 20
+<span class="tok-co">    # Structural: = defines field values inside a type literal</span>
+    <span class="tok-kw">fixum</span> _ p <span class="tok-op">←</span> Point {
+        x <span class="tok-op">=</span> <span class="tok-nu">10</span>,
+        y <span class="tok-op">=</span> <span class="tok-nu">20</span>
     }
-}</code></pre><h2 id="ex-field-extraction">ex 欄位擷取</h2><p><code class="kw">ex</code> 將值中的欄位擷取至區域繫結：</p><pre class="faber-code"><code class="lang-faber">genus Persona {
-    textus nomen
-    numerus aetas
+}</code></pre><h2 id="ex-field-extraction">ex 欄位擷取<a class="anchor" href="#ex-field-extraction">#</a></h2><p><code class="kw">ex</code> 將值中的欄位擷取至區域繫結：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">genus</span> Persona {
+    <span class="tok-kw">textus</span> nomen
+    <span class="tok-kw">numerus</span> aetas
 }
 
-incipit {
-    fixum _ p ← Persona { nomen = &quot;Marcus&quot;, aetas = 30 }
-    ex p fixum nomen, aetas
-    # prints &quot;Marcus&quot;
+<span class="tok-kw">incipit</span> {
+    <span class="tok-kw">fixum</span> _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    <span class="tok-kw">ex</span> p <span class="tok-kw">fixum</span> nomen, aetas
+<span class="tok-co">    # prints "Marcus"</span>
     nota nomen
-}</code></pre><h2 id="postfix-increment-and-decrement">後置遞增與遞減</h2><p><code>⊕</code> 與 <code>⊖</code> 是可變 <code class="typ">numerus</code> 儲存處的後置遞增／遞減陳述式。它們只能作為陳述式使用——沒有運算式值，也沒有前置形式：</p><pre class="faber-code"><code class="lang-faber">incipit {
-    varia numerus i ← 0
-    # i becomes 1
-    i ⊕
-    # i becomes 0
+}</code></pre><h2 id="postfix-increment-and-decrement">後置遞增與遞減<a class="anchor" href="#postfix-increment-and-decrement">#</a></h2><p><code>⊕</code> 與 <code>⊖</code> 是可變 <code class="typ">numerus</code> 儲存處的後置遞增／遞減陳述式。它們只能作為陳述式使用——沒有運算式值，也沒有前置形式：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {
+    <span class="tok-kw">varia</span> <span class="tok-kw">numerus</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+<span class="tok-co">    # i becomes 1</span>
+    i <span class="tok-op">⊕</span>
+<span class="tok-co">    # i becomes 0</span>
     i ⊖
-}</code></pre></div></main><footer><div class="source-list"><span class="side-h">來源</span><ul><li>[</li></ul></div></footer></div></body></html>
+}</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#fixum-immutable-binding">fixum — 不可變繫結</a></li><li class="toc-2"><a href="#varia-mutable-binding">varia — 可變繫結</a></li><li class="toc-2"><a href="#sit-inferred-immutable-sugar">sit — 推導的不可變語法糖</a></li><li class="toc-2"><a href="#runtime-binding-vs-structural-definition">執行期繫結與結構定義</a></li><li class="toc-2"><a href="#ex-field-extraction">ex 欄位擷取</a></li><li class="toc-2"><a href="#postfix-increment-and-decrement">後置遞增與遞減</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">來源</span><ul><li>[</li></ul></div></footer></div></body></html>

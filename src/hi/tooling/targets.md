@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:7a719b981422571cc0a5bac88512824c7f93f15624b69b98527d6b948c109901"
+prose_hash = "sha256:bc250448a4224715dfe7d2c16c2b3290a7b21b618f3c7fc7e4030a794b122b5a"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "9608b235f83323b3b4c1d7e1559f5e8e7f88d3a4"
+source_commit = "12ad0f0eb3b0a0e183a8abb4e323f6d856b83fe3"
 source_locale = "en-US"
 +++
 
@@ -55,23 +55,23 @@ verbs), per-target contracts और pipeline routing
 
 | लक्ष्य | सक्षम | विश्लेषण योग्य | % |
 |---|---|---|---|
-| rust | 265 | 268 | 99% |
-| go | 247 | 268 | 92% |
-| ts | 262 | 268 | 98% |
-| faber | 268 | 268 | 100% |
+| rust | 271 | 273 | 99% |
+| go | 252 | 273 | 92% |
+| ts | 267 | 273 | 98% |
+| faber | 273 | 273 | 100% |
 
 **सिस्टम लेन (MIR → डिवाइस/IR आर्टिफैक्ट)**
 
 | लक्ष्य | सक्षम | विश्लेषण योग्य | % |
 |---|---|---|---|
-| llvm-text | 247 | 255 | 97% |
-| wasm-text | 202 | 255 | 79% |
-| wasm | 201 | 255 | 79% |
-| metal-text | 6 | 254 | 2% |
-| wgsl-text | 6 | 254 | 2% |
-| sexp-struct | 195 | 254 | 77% |
-| sexp | 194 | 254 | 76% |
-| scena | 216 | 254 | 85% |
+| llvm-text | 249 | 259 | 96% |
+| wasm-text | 204 | 259 | 79% |
+| wasm | 204 | 259 | 79% |
+| metal-text | 6 | 259 | 2% |
+| wgsl-text | 6 | 259 | 2% |
+| sexp-struct | 204 | 259 | 79% |
+| sexp | 204 | 259 | 79% |
+| scena | 218 | 259 | 84% |
 
 ## कीवर्ड — एप्लिकेशन लेन
 
@@ -137,7 +137,7 @@ verbs), per-target contracts और pipeline routing
 | `lege` | ✓ | ✓ | ✓ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✓ |
 | `lista` | ✓ | ✓ | ✓ | ✓ |
-| `matrix` | ✕ | ✕ | ✓ | ✓ |
+| `matrix` | ✓ | ✕ | ✓ | ✓ |
 | `mone` | ✓ | ✓ | ✓ | ✓ |
 | `mori` | ✓ | ✓ | ✓ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✓ |
@@ -158,7 +158,7 @@ verbs), per-target contracts और pipeline routing
 | `postpara` | ✓ | ✓ | ✓ | ✓ |
 | `postparabit` | ✓ | ✓ | ✓ | ✓ |
 | `prae` | ✓ | ✓ | ✓ | ✓ |
-| `praefixum` | ✓ | ✓ | ✓ | ✓ |
+| `praefixum` | — | — | — | — |
 | `praepara` | ✓ | ✓ | ✓ | ✓ |
 | `praeparabit` | ✓ | ✓ | ✓ | ✓ |
 | `promissum` | ✓ | ✓ | ✓ | ✓ |
@@ -245,6 +245,7 @@ verbs), per-target contracts और pipeline routing
 | `vel` | ✓ | ✓ | ✓ | ✓ |
 | `∷` | ✓ | ✓ | ✓ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✓ |
+| `ergo` | ✓ | ✓ | ✓ | ✓ |
 
 ## कीवर्ड — सिस्टम लेन
 
@@ -290,7 +291,7 @@ verbs), per-target contracts और pipeline routing
 | `fragilis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `fractus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `functio` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `futura` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `futura` | ◐ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `futurum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `generis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `genus` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
@@ -301,16 +302,16 @@ verbs), per-target contracts और pipeline routing
 | `implet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `importa` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ◐ |
 | `in` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `incipiet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `incipiet` | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `incipit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `inter` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `intra` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `itera` | ✓ | ✓ | ◐ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `itera` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `lege` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `lista` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
-| `matrix` | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ | ✕ | ✕ |
+| `matrix` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
 | `mone` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `mori` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -331,7 +332,7 @@ verbs), per-target contracts और pipeline routing
 | `postpara` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `postparabit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `prae` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
-| `praefixum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `praefixum` | — | — | — | — | — | — | — | — |
 | `praepara` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `praeparabit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `promissum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -340,7 +341,7 @@ verbs), per-target contracts और pipeline routing
 | `probandum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `protecta` | — | — | — | — | — | — | — | — |
 | `publica` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `redde` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `redde` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ◐ |
 | `repete` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `rumpe` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -399,8 +400,8 @@ verbs), per-target contracts और pipeline routing
 | `≤` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⊖` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `modulus<u16>` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `modulus<u32>` | ◐ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `modulus<u64>` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `modulus<u32>` | ◐ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `modulus<u64>` | ✕ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `modulus<u8>` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `non est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⊚` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -418,6 +419,7 @@ verbs), per-target contracts और pipeline routing
 | `vel` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `∷` | ✓ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `ergo` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 
 ## अन्य terms (`existing-home` / निर्दिष्ट नहीं)
 

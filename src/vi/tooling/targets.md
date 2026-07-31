@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:159baacf0ab63f5035205856d77ebd8b608734dad5b8b456a8895bf12c83833f"
+prose_hash = "sha256:d06010182bc2572560e5c460f4ddbeffce239c25a12db663d627213907a09631"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "9608b235f83323b3b4c1d7e1559f5e8e7f88d3a4"
+source_commit = "12ad0f0eb3b0a0e183a8abb4e323f6d856b83fe3"
 source_locale = "en-US"
 +++
 
@@ -55,23 +55,23 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 
 | đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
-| rust | 265 | 268 | 99% |
-| go | 247 | 268 | 92% |
-| ts | 262 | 268 | 98% |
-| faber | 268 | 268 | 100% |
+| rust | 271 | 273 | 99% |
+| go | 252 | 273 | 92% |
+| ts | 267 | 273 | 98% |
+| faber | 273 | 273 | 100% |
 
 **Tuyến hệ thống (MIR → tạo phẩm thiết bị/IR)**
 
 | đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
-| llvm-text | 247 | 255 | 97% |
-| wasm-text | 202 | 255 | 79% |
-| wasm | 201 | 255 | 79% |
-| metal-text | 6 | 254 | 2% |
-| wgsl-text | 6 | 254 | 2% |
-| sexp-struct | 195 | 254 | 77% |
-| sexp | 194 | 254 | 76% |
-| scena | 216 | 254 | 85% |
+| llvm-text | 249 | 259 | 96% |
+| wasm-text | 204 | 259 | 79% |
+| wasm | 204 | 259 | 79% |
+| metal-text | 6 | 259 | 2% |
+| wgsl-text | 6 | 259 | 2% |
+| sexp-struct | 204 | 259 | 79% |
+| sexp | 204 | 259 | 79% |
+| scena | 218 | 259 | 84% |
 
 ## Từ khóa — tuyến ứng dụng
 
@@ -137,7 +137,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `lege` | ✓ | ✓ | ✓ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✓ |
 | `lista` | ✓ | ✓ | ✓ | ✓ |
-| `matrix` | ✕ | ✕ | ✓ | ✓ |
+| `matrix` | ✓ | ✕ | ✓ | ✓ |
 | `mone` | ✓ | ✓ | ✓ | ✓ |
 | `mori` | ✓ | ✓ | ✓ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✓ |
@@ -158,7 +158,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `postpara` | ✓ | ✓ | ✓ | ✓ |
 | `postparabit` | ✓ | ✓ | ✓ | ✓ |
 | `prae` | ✓ | ✓ | ✓ | ✓ |
-| `praefixum` | ✓ | ✓ | ✓ | ✓ |
+| `praefixum` | — | — | — | — |
 | `praepara` | ✓ | ✓ | ✓ | ✓ |
 | `praeparabit` | ✓ | ✓ | ✓ | ✓ |
 | `promissum` | ✓ | ✓ | ✓ | ✓ |
@@ -245,6 +245,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `vel` | ✓ | ✓ | ✓ | ✓ |
 | `∷` | ✓ | ✓ | ✓ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✓ |
+| `ergo` | ✓ | ✓ | ✓ | ✓ |
 
 ## Từ khóa — tuyến hệ thống
 
@@ -290,7 +291,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `fragilis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `fractus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `functio` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `futura` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `futura` | ◐ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `futurum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `generis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `genus` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
@@ -301,16 +302,16 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `implet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `importa` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ◐ |
 | `in` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `incipiet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `incipiet` | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `incipit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `inter` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `intra` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `itera` | ✓ | ✓ | ◐ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `itera` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `lege` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `lista` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
-| `matrix` | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ | ✕ | ✕ |
+| `matrix` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
 | `mone` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `mori` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -331,7 +332,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `postpara` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `postparabit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `prae` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
-| `praefixum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `praefixum` | — | — | — | — | — | — | — | — |
 | `praepara` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `praeparabit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `promissum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -340,7 +341,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `probandum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `protecta` | — | — | — | — | — | — | — | — |
 | `publica` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `redde` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `redde` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ◐ |
 | `repete` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `rumpe` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -399,8 +400,8 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `≤` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⊖` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `modulus<u16>` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `modulus<u32>` | ◐ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `modulus<u64>` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `modulus<u32>` | ◐ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `modulus<u64>` | ✕ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `modulus<u8>` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `non est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⊚` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -418,6 +419,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `vel` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `∷` | ✓ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `∴` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `ergo` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 
 ## Các term khác (`existing-home` / không chỉ định)
 

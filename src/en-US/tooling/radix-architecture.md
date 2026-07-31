@@ -275,7 +275,7 @@ sequenceDiagram
     D->>P: successful token stream
     P-->>D: Program, parse diagnostics, interner
     D->>S: Program + interner + package interfaces
-    Note over L,P: Lexer errors stop AST construction; parser errors are recovered and accumulated.
+    Note over L,P: Lexer errors stop AST construction — parser errors are recovered and accumulated.
 ```
 
 ## Semantic analysis and the analyzed snapshot
