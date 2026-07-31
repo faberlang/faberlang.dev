@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:57391e77a7fa8eafb7a43dd4d965987c9d1cc6c9d358e854099ba8b6d5937b3f"
+prose_hash = "sha256:aeb135b3f2e9f76fef60b40166795fbad9409919db4f9c4fbbc3ddfb5d795f29"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "12ad0f0eb3b0a0e183a8abb4e323f6d856b83fe3"
+source_commit = "416d5da19d6046958071c0b521aefdb970b44aa9"
 source_locale = "en-US"
 +++
 
@@ -22,7 +22,7 @@ Faber 是一门语言，但有多个编译契约。本页是**经过测量的可
 
 **生成时间**：unknown，由 `scripta/generate-ebnf-matrix.py` 生成 — **请勿编辑**。
 **测量**：`emit_hir_target_matrix` + `emit_mir_target_matrix`（进程内完成，不使用外部 toolchain）。
-**连接**：`examples/corpus/index.toml` 中的 terms → exempla。
+**连接**：`corpus/index.toml` 中的 terms → exempla。
 
 这是**官方生成的 grammar×target 支持矩阵**。它报告 exempla corpus 中每个
 term 的**可下沉能力** — target X 是否能够下沉 grammar production Y。运行时
@@ -50,23 +50,23 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 
 | 目标 | 可支持 | 可分析 | % |
 |---|---|---|---|
-| rust | 271 | 273 | 99% |
-| go | 252 | 273 | 92% |
-| ts | 267 | 273 | 98% |
-| faber | 273 | 273 | 100% |
+| rust | 277 | 279 | 99% |
+| go | 258 | 279 | 92% |
+| ts | 273 | 279 | 98% |
+| faber | 279 | 279 | 100% |
 
 **系统通道（MIR → 设备/IR 产物）**
 
 | 目标 | 可支持 | 可分析 | % |
 |---|---|---|---|
-| llvm-text | 249 | 259 | 96% |
-| wasm-text | 204 | 259 | 79% |
-| wasm | 204 | 259 | 79% |
-| metal-text | 6 | 259 | 2% |
-| wgsl-text | 6 | 259 | 2% |
-| sexp-struct | 204 | 259 | 79% |
-| sexp | 204 | 259 | 79% |
-| scena | 218 | 259 | 84% |
+| llvm-text | 255 | 265 | 96% |
+| wasm-text | 210 | 265 | 79% |
+| wasm | 210 | 265 | 79% |
+| metal-text | 6 | 265 | 2% |
+| wgsl-text | 6 | 265 | 2% |
+| sexp-struct | 211 | 265 | 80% |
+| sexp | 211 | 265 | 80% |
+| scena | 224 | 265 | 85% |
 
 ## 关键字 — 应用通道
 
@@ -107,7 +107,11 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `exitus` | ✓ | ✓ | ✓ | ✓ |
 | `fac` | ✓ | ✓ | ✓ | ✓ |
 | `falsum` | ✓ | ✓ | ✓ | ✓ |
+| `fient` | ✓ | ✓ | ✓ | ✓ |
+| `fiet` | ✓ | ✓ | ✓ | ✓ |
+| `figendum` | ✓ | ✓ | ✓ | ✓ |
 | `finge` | ✓ | ✓ | ✓ | ✓ |
+| `fiunt` | ✓ | ✓ | ✓ | ✓ |
 | `fixum` | ✓ | ✓ | ✓ | ✓ |
 | `fragilis` | ✓ | ✓ | ✓ | ✓ |
 | `fractus` | ✓ | ✓ | ✓ | ✓ |
@@ -163,6 +167,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `protecta` | — | — | — | — |
 | `publica` | ✓ | ✓ | ✓ | ✓ |
 | `redde` | ✓ | ✓ | ✓ | ✓ |
+| `reddet` | ✓ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✓ |
 | `rumpe` | ✓ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✓ |
@@ -178,6 +183,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `sponte` | ✓ | ✓ | ✓ | ✓ |
 | `sub` | ✓ | ✓ | ✓ | ✓ |
 | `tacet` | ✓ | ✓ | ✓ | ✓ |
+| `tacebit` | ✓ | ✓ | ✓ | ✓ |
 | `tabula` | ✓ | ✓ | ✓ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✓ |
 | `temporis` | ✓ | ✓ | ✓ | ✓ |
@@ -188,6 +194,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `usque` | ✓ | ✓ | ✓ | ✓ |
 | `ut` | ✓ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✓ |
+| `variandum` | ✓ | ✓ | ✓ | ✓ |
 | `vector` | ✓ | ✓ | ✓ | ✓ |
 | `vacuum` | ✓ | ✓ | ✓ | ✓ |
 | `verum` | ✓ | ✓ | ✓ | ✓ |
@@ -281,7 +288,11 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `exitus` | — | — | — | — | — | — | — | — |
 | `fac` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `falsum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `fient` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `fiet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `figendum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `finge` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `fiunt` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fixum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fragilis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `fractus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
@@ -337,6 +348,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `protecta` | — | — | — | — | — | — | — | — |
 | `publica` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `redde` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ◐ |
+| `reddet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `rumpe` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -352,6 +364,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `sponte` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `sub` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `tacet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `tacebit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `tabula` | ✓ | ◐ | ◐ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `temporis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
@@ -362,6 +375,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `usque` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ut` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `variandum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `vector` | ✓ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ✕ |
 | `vacuum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `verum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -436,7 +450,6 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `requirit` | ✓ | ✓ | ✓ | ✓ |
 | `string` | ✓ | ✓ | ✓ | ✓ |
 | `block-string` | ✓ | ✓ | ✓ | ✓ |
-| `sed` | ✓ | ✓ | ✓ | ✓ |
 | `summa` | ✓ | ✓ | ✓ | ✓ |
 | `targets` | ✓ | ✓ | ✓ | ✓ |
 | `ultima` | ✓ | ✓ | ✓ | ✓ |

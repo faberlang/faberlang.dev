@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:d06010182bc2572560e5c460f4ddbeffce239c25a12db663d627213907a09631"
+prose_hash = "sha256:f781952d9c1cd489dbd4487770eecaae3ef1c56bb4986a397f1d6d378e74c0a3"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "12ad0f0eb3b0a0e183a8abb4e323f6d856b83fe3"
+source_commit = "416d5da19d6046958071c0b521aefdb970b44aa9"
 source_locale = "en-US"
 +++
 
@@ -24,7 +24,7 @@ Tóm tắt CLI trực tiếp: `faber targets`.
 
 **Được tạo**: unknown bởi `scripta/generate-ebnf-matrix.py` — **không chỉnh sửa**.
 **Đo lường**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (trong tiến trình, không dùng toolchain bên ngoài).
-**Kết nối**: các term trong `examples/corpus/index.toml` → exempla.
+**Kết nối**: các term trong `corpus/index.toml` → exempla.
 
 Đây là **ma trận hỗ trợ grammar×target chính thức được tạo tự động**. Ma trận
 báo cáo **khả năng hạ mã** — target X có thể hạ grammar production Y hay không —
@@ -55,23 +55,23 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 
 | đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
-| rust | 271 | 273 | 99% |
-| go | 252 | 273 | 92% |
-| ts | 267 | 273 | 98% |
-| faber | 273 | 273 | 100% |
+| rust | 277 | 279 | 99% |
+| go | 258 | 279 | 92% |
+| ts | 273 | 279 | 98% |
+| faber | 279 | 279 | 100% |
 
 **Tuyến hệ thống (MIR → tạo phẩm thiết bị/IR)**
 
 | đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
-| llvm-text | 249 | 259 | 96% |
-| wasm-text | 204 | 259 | 79% |
-| wasm | 204 | 259 | 79% |
-| metal-text | 6 | 259 | 2% |
-| wgsl-text | 6 | 259 | 2% |
-| sexp-struct | 204 | 259 | 79% |
-| sexp | 204 | 259 | 79% |
-| scena | 218 | 259 | 84% |
+| llvm-text | 255 | 265 | 96% |
+| wasm-text | 210 | 265 | 79% |
+| wasm | 210 | 265 | 79% |
+| metal-text | 6 | 265 | 2% |
+| wgsl-text | 6 | 265 | 2% |
+| sexp-struct | 211 | 265 | 80% |
+| sexp | 211 | 265 | 80% |
+| scena | 224 | 265 | 85% |
 
 ## Từ khóa — tuyến ứng dụng
 
@@ -112,7 +112,11 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `exitus` | ✓ | ✓ | ✓ | ✓ |
 | `fac` | ✓ | ✓ | ✓ | ✓ |
 | `falsum` | ✓ | ✓ | ✓ | ✓ |
+| `fient` | ✓ | ✓ | ✓ | ✓ |
+| `fiet` | ✓ | ✓ | ✓ | ✓ |
+| `figendum` | ✓ | ✓ | ✓ | ✓ |
 | `finge` | ✓ | ✓ | ✓ | ✓ |
+| `fiunt` | ✓ | ✓ | ✓ | ✓ |
 | `fixum` | ✓ | ✓ | ✓ | ✓ |
 | `fragilis` | ✓ | ✓ | ✓ | ✓ |
 | `fractus` | ✓ | ✓ | ✓ | ✓ |
@@ -168,6 +172,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `protecta` | — | — | — | — |
 | `publica` | ✓ | ✓ | ✓ | ✓ |
 | `redde` | ✓ | ✓ | ✓ | ✓ |
+| `reddet` | ✓ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✓ |
 | `rumpe` | ✓ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✓ |
@@ -183,6 +188,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `sponte` | ✓ | ✓ | ✓ | ✓ |
 | `sub` | ✓ | ✓ | ✓ | ✓ |
 | `tacet` | ✓ | ✓ | ✓ | ✓ |
+| `tacebit` | ✓ | ✓ | ✓ | ✓ |
 | `tabula` | ✓ | ✓ | ✓ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✓ |
 | `temporis` | ✓ | ✓ | ✓ | ✓ |
@@ -193,6 +199,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `usque` | ✓ | ✓ | ✓ | ✓ |
 | `ut` | ✓ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✓ |
+| `variandum` | ✓ | ✓ | ✓ | ✓ |
 | `vector` | ✓ | ✓ | ✓ | ✓ |
 | `vacuum` | ✓ | ✓ | ✓ | ✓ |
 | `verum` | ✓ | ✓ | ✓ | ✓ |
@@ -286,7 +293,11 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `exitus` | — | — | — | — | — | — | — | — |
 | `fac` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `falsum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `fient` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `fiet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `figendum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `finge` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `fiunt` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fixum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fragilis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `fractus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
@@ -342,6 +353,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `protecta` | — | — | — | — | — | — | — | — |
 | `publica` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `redde` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ◐ |
+| `reddet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `rumpe` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -357,6 +369,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `sponte` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `sub` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `tacet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `tacebit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `tabula` | ✓ | ◐ | ◐ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `temporis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
@@ -367,6 +380,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `usque` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ut` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `variandum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `vector` | ✓ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ✕ |
 | `vacuum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `verum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -441,7 +455,6 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `requirit` | ✓ | ✓ | ✓ | ✓ |
 | `string` | ✓ | ✓ | ✓ | ✓ |
 | `block-string` | ✓ | ✓ | ✓ | ✓ |
-| `sed` | ✓ | ✓ | ✓ | ✓ |
 | `summa` | ✓ | ✓ | ✓ | ✓ |
 | `targets` | ✓ | ✓ | ✓ | ✓ |
 | `ultima` | ✓ | ✓ | ✓ | ✓ |

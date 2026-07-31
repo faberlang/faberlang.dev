@@ -18,7 +18,7 @@ CLI का लाइव सारांश: `faber targets`।
 
 meta_generated = "**जनरेट किया गया**: {date}, `scripta/generate-ebnf-matrix.py` द्वारा — **संपादित न करें**।"
 meta_measurement = "**मापन**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, बाहरी toolchains के बिना)।"
-meta_join = "**Join**: `examples/corpus/index.toml` terms → exempla।"
+meta_join = "**Join**: `corpus/index.toml` terms → exempla।"
 
 official = """
 यह **आधिकारिक generated** grammar×target support matrix है। यह exempla corpus

@@ -49,7 +49,9 @@ def collect_html(dist_dir, include_all_locales):
 
 def check_target(dist_dir, href):
     """Return True if the href target exists in dist_dir."""
-    path = html.unescape(href.split("?")[0].lstrip("/"))
+    # Unescape first so entity-encoded characters (e.g. &#x27; for ') are
+    # not split by the literal '#' inside the entity.
+    path = html.unescape(href).split("?")[0].split("#")[0].lstrip("/")
     target = os.path.join(dist_dir, path)
 
     if os.path.exists(target):

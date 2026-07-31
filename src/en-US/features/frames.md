@@ -205,4 +205,4 @@ boundary. The Norma wrappers are open source and live under
 3. `faberlang/hosts/crates/host-kernel/` — kernel router implementation
 4. `faberlang/hosts/crates/host-native/` — native attach and registration
 5. `faberlang/hosts/crates/` — provider crates (solum, processus, consolum, tempus, aleator, http)
-6. `examples/corpus/ad/` — sermo exempla files
+6. `radix/corpus/ad/` — sermo exempla files

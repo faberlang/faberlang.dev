@@ -18,7 +18,7 @@ Live CLI summary: `faber targets`.
 
 **Generated**: unknown by `scripta/generate-ebnf-matrix.py` — **do not edit**.
 **Measurement**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, no external toolchains).
-**Join**: `examples/corpus/index.toml` terms → exempla.
+**Join**: `corpus/index.toml` terms → exempla.
 
 This is the **official generated** grammar×target support matrix. It reports
 **lowerability** — can target X lower grammar production Y — across every term in
@@ -47,23 +47,23 @@ contracts, and pipeline routing live in
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| rust | 271 | 273 | 99% |
-| go | 252 | 273 | 92% |
-| ts | 267 | 273 | 98% |
-| faber | 273 | 273 | 100% |
+| rust | 277 | 279 | 99% |
+| go | 258 | 279 | 92% |
+| ts | 273 | 279 | 98% |
+| faber | 279 | 279 | 100% |
 
 **Systems lane (MIR → device/IR artifacts)**
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| llvm-text | 249 | 259 | 96% |
-| wasm-text | 204 | 259 | 79% |
-| wasm | 204 | 259 | 79% |
-| metal-text | 6 | 259 | 2% |
-| wgsl-text | 6 | 259 | 2% |
-| sexp-struct | 204 | 259 | 79% |
-| sexp | 204 | 259 | 79% |
-| scena | 218 | 259 | 84% |
+| llvm-text | 255 | 265 | 96% |
+| wasm-text | 210 | 265 | 79% |
+| wasm | 210 | 265 | 79% |
+| metal-text | 6 | 265 | 2% |
+| wgsl-text | 6 | 265 | 2% |
+| sexp-struct | 211 | 265 | 80% |
+| sexp | 211 | 265 | 80% |
+| scena | 224 | 265 | 85% |
 
 ## Keywords — application lane
 
@@ -104,7 +104,11 @@ contracts, and pipeline routing live in
 | `exitus` | ✓ | ✓ | ✓ | ✓ |
 | `fac` | ✓ | ✓ | ✓ | ✓ |
 | `falsum` | ✓ | ✓ | ✓ | ✓ |
+| `fient` | ✓ | ✓ | ✓ | ✓ |
+| `fiet` | ✓ | ✓ | ✓ | ✓ |
+| `figendum` | ✓ | ✓ | ✓ | ✓ |
 | `finge` | ✓ | ✓ | ✓ | ✓ |
+| `fiunt` | ✓ | ✓ | ✓ | ✓ |
 | `fixum` | ✓ | ✓ | ✓ | ✓ |
 | `fragilis` | ✓ | ✓ | ✓ | ✓ |
 | `fractus` | ✓ | ✓ | ✓ | ✓ |
@@ -160,6 +164,7 @@ contracts, and pipeline routing live in
 | `protecta` | — | — | — | — |
 | `publica` | ✓ | ✓ | ✓ | ✓ |
 | `redde` | ✓ | ✓ | ✓ | ✓ |
+| `reddet` | ✓ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✓ |
 | `rumpe` | ✓ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✓ |
@@ -175,6 +180,7 @@ contracts, and pipeline routing live in
 | `sponte` | ✓ | ✓ | ✓ | ✓ |
 | `sub` | ✓ | ✓ | ✓ | ✓ |
 | `tacet` | ✓ | ✓ | ✓ | ✓ |
+| `tacebit` | ✓ | ✓ | ✓ | ✓ |
 | `tabula` | ✓ | ✓ | ✓ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✓ |
 | `temporis` | ✓ | ✓ | ✓ | ✓ |
@@ -185,6 +191,7 @@ contracts, and pipeline routing live in
 | `usque` | ✓ | ✓ | ✓ | ✓ |
 | `ut` | ✓ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✓ |
+| `variandum` | ✓ | ✓ | ✓ | ✓ |
 | `vector` | ✓ | ✓ | ✓ | ✓ |
 | `vacuum` | ✓ | ✓ | ✓ | ✓ |
 | `verum` | ✓ | ✓ | ✓ | ✓ |
@@ -278,7 +285,11 @@ contracts, and pipeline routing live in
 | `exitus` | — | — | — | — | — | — | — | — |
 | `fac` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `falsum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `fient` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `fiet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `figendum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `finge` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `fiunt` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fixum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fragilis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `fractus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
@@ -334,6 +345,7 @@ contracts, and pipeline routing live in
 | `protecta` | — | — | — | — | — | — | — | — |
 | `publica` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `redde` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ◐ |
+| `reddet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `rumpe` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -349,6 +361,7 @@ contracts, and pipeline routing live in
 | `sponte` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `sub` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `tacet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `tacebit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `tabula` | ✓ | ◐ | ◐ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `temporis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
@@ -359,6 +372,7 @@ contracts, and pipeline routing live in
 | `usque` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ut` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `variandum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `vector` | ✓ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ✕ |
 | `vacuum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `verum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -433,7 +447,6 @@ contracts, and pipeline routing live in
 | `requirit` | ✓ | ✓ | ✓ | ✓ |
 | `string` | ✓ | ✓ | ✓ | ✓ |
 | `block-string` | ✓ | ✓ | ✓ | ✓ |
-| `sed` | ✓ | ✓ | ✓ | ✓ |
 | `summa` | ✓ | ✓ | ✓ | ✓ |
 | `targets` | ✓ | ✓ | ✓ | ✓ |
 | `ultima` | ✓ | ✓ | ✓ | ✓ |

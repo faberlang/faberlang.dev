@@ -4,8 +4,8 @@ section = "syntax"
 order = 2
 sources = [
   "radix/README.md (Runtime binding vs structural definition, Language Orientation)",
-  "examples/corpus/fixum/",
-  "examples/corpus/sit/",
+  "radix/corpus/fixum/",
+  "radix/corpus/sit/",
 ]
 +++
 

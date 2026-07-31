@@ -4,8 +4,8 @@ section = "syntax"
 order = 6
 sources = [
   "radix/README.md (Type and Size Generics)",
-  "examples/corpus/generic/",
-  "examples/corpus/functio/generic-call-type-args.fab",
+  "radix/corpus/generic/",
+  "radix/corpus/functio/generic-call-type-args.fab",
 ]
 +++
 

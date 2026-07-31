@@ -24,7 +24,9 @@ nota sparse.nonnihil()</code></pre><p>Conversion between dense and sparse:</p><p
 tuus views, or generator functions. Consumed via <code>itera ex</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fixum</span> _ items <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
 <span class="tok-kw">itera</span> <span class="tok-kw">ex</span> items <span class="tok-kw">fixum</span> item {
     nota item
-}</code></pre><h2 id="intervallum">Intervallum — ranges<a class="anchor" href="#intervallum">#</a></h2><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># exclusive range: 0, 1, 2, 3, 4</span>
+}</code></pre><p>Generator <em>functions</em> declare their stream posture in the signature slot:
+<code>fiunt</code> is a synchronous stream and <code>fient</code> an asynchronous stream; the body
+yields values with <code>cede</code> (see <a href="/en-US/syntax/functions.html#async-and-streams">Functions — async and streams</a>).</p><h2 id="intervallum">Intervallum — ranges<a class="anchor" href="#intervallum">#</a></h2><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># exclusive range: 0, 1, 2, 3, 4</span>
 <span class="tok-kw">itera</span> <span class="tok-kw">ab</span> <span class="tok-nu">0</span>‥<span class="tok-nu">5</span> <span class="tok-kw">fixum</span> i {
     nota i
 }

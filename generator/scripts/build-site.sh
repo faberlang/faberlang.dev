@@ -257,10 +257,10 @@ if [ "$FULL_SITE" = true ]; then
     echo "[6/9] Generating llms-full.txt..."
     if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
         "$PYTHON" "${SCRIPT_DIR}/render-llms.py" \
-            --corpus "${WORKSPACE_DIR}/examples/corpus" \
+            --corpus "${WORKSPACE_DIR}/radix/corpus" \
             --output "${OUTPUT_DIR}/llms-full.txt"
         "$PYTHON" "${SCRIPT_DIR}/generate-search-index.py" \
-            --corpus "${WORKSPACE_DIR}/examples/corpus" \
+            --corpus "${WORKSPACE_DIR}/radix/corpus" \
             --output-dir "${OUTPUT_DIR}"
     fi
 

@@ -4,9 +4,8 @@ section = "syntax"
 order = 11
 sources = [
   "radix/README.md (Nullability and Optionality)",
-  "examples/corpus/nihil/",
-  "examples/corpus/sponte/",
-  "examples/corpus/nonnihil/",
+  "radix/corpus/nihil/",
+  "radix/corpus/sponte/",
 ]
 +++
 

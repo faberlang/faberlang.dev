@@ -18,7 +18,7 @@ Tóm tắt CLI trực tiếp: `faber targets`.
 
 meta_generated = "**Được tạo**: {date} bởi `scripta/generate-ebnf-matrix.py` — **không chỉnh sửa**."
 meta_measurement = "**Đo lường**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (trong tiến trình, không dùng toolchain bên ngoài)."
-meta_join = "**Kết nối**: các term trong `examples/corpus/index.toml` → exempla."
+meta_join = "**Kết nối**: các term trong `corpus/index.toml` → exempla."
 
 official = """
 Đây là **ma trận hỗ trợ grammar×target chính thức được tạo tự động**. Ma trận

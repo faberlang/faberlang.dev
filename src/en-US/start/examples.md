@@ -51,11 +51,12 @@ Exact entry commands vary by package — read each package `README.md`.
 
 The **corpus** tree is the keyword and construct reference: one directory
 per construct, many small `.fab` programs. It is the source of truth for
-the generated [Corpus](/corpus/) pages on this site.
+the generated [Corpus](/corpus/) pages on this site. Since Radix v0.79.0
+the exempla live in `radix/corpus/` (the compiler tree); the public surface
+is the generated corpus below.
 
 | Surface | URL |
 |---|---|
-| Source tree | [examples/corpus](https://github.com/faberlang/examples/tree/main/corpus) |
 | Generated docs | [/corpus/](/corpus/) |
 | Ecosystem note | [Language corpus](/ecosystem/corpus.html) |
 

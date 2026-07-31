@@ -17,8 +17,8 @@ form everywhere, while a tensor kernel module uses sugar:</p><div class="table-s
 interprets these as sugar when they appear in type positions. A file that
 consistently uses sugar should say so once at the top:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># STYLE: numeric sugar (tf32, mf32, sf32, lf32, lu32)</span></code></pre><h2 id="annotation-sugar">Annotation sugar<a class="anchor" href="#annotation-sugar">#</a></h2><p>Faber annotations follow the same dual-surface model as numeric types.
 Annotations are compiler-owned metadata attached to declarations — like
-<code>@ optio</code> for CLI option definitions or <code>@ futura</code>
-for async functions.</p><p><strong>Canonical form:</strong> a braced record with explicit field names:</p><pre class="faber-code"><code class="lang-text">@ optio {
+<code>@ optio</code> for CLI option definitions or <code>@ futura</code> for async functions
+(legacy — prefer the <code>fiet</code> posture word in the signature slot).</p><p><strong>Canonical form:</strong> a braced record with explicit field names:</p><pre class="faber-code"><code class="lang-text">@ optio {
     binding = verbose,
     brevis = &quot;v&quot;,
     longum = &quot;verbose&quot;,

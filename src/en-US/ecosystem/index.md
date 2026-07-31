@@ -36,6 +36,6 @@ the diagnostics contract. [Read more →](/ecosystem/ai-workbench.html)
 
 ## Language corpus {#corpus}
 
-The example corpus — 154 directories, 292 `.fab` files covering every
+The language corpus — ~135 directories, 304 `.fab` files covering every
 keyword, operator, and type. The source of truth for generated pages.
 [Read more →](/ecosystem/corpus.html)

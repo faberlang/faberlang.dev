@@ -18,7 +18,7 @@ Faber เป็นภาษาเดียวที่มีสัญญาก�
 
 meta_generated = "**สร้างโดยอัตโนมัติ**: {date} โดย `scripta/generate-ebnf-matrix.py` — **ห้ามแก้ไข**"
 meta_measurement = "**การวัด**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (ภายในกระบวนการ ไม่มี toolchain ภายนอก)"
-meta_join = "**การเชื่อมโยง**: terms ใน `examples/corpus/index.toml` → exempla"
+meta_join = "**การเชื่อมโยง**: terms ใน `corpus/index.toml` → exempla"
 
 official = """
 นี่คือ **เมทริกซ์ support ของ grammar×target ที่สร้างอย่างเป็นทางการ** โดยรายงาน

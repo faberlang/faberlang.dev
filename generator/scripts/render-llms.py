@@ -102,7 +102,7 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
         "keyword surface and every codegen target is a rendering of that core.",
         "",
         "This document is the machine-readable public entrypoint for agents.",
-        "It is generated during the site build from examples/corpus frontmatter.",
+        "It is generated during the site build from radix/corpus frontmatter.",
     ]
 
     write_section(lines, "Start here")
@@ -150,7 +150,7 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
         f"- Canonical term pages: {len(terms)}",
         f"- Alias spellings: {len(alias_rows)}",
         f"- Categories: {len(categories)}",
-        "- Source: examples/corpus/**/*.fab TOML frontmatter",
+        "- Source: radix/corpus/**/*.fab TOML frontmatter",
         "",
         "Each canonical record has: term, kind, category, summary, syntax signature, aliases, relations, and page URL.",
     ])
@@ -180,7 +180,7 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
             f"- Aliases: {aliases_text}",
             f"- Related: {related_text}",
             f"- Page: https://faberlang.dev/en-US/corpus/{corpus_page(term.name)}",
-            f"- Source: examples/corpus/{term.source}",
+            f"- Source: radix/corpus/{term.source}",
             "",
         ])
 

@@ -7,9 +7,11 @@ sources = []
 
 Faber has a first-class testing framework built into the language with three
 keywords: `probandum` declares a test suite, `proba` declares a single test
-case, and `adfirma` asserts a condition. Tests live in the same file as the
-code they test, run through `faber test`, and support the same compiler
-pipeline as production code — locale-aware, type-checked, and multi-target.
+case, and `adfirma` asserts a condition. Tests live alongside the code they
+test — either in the same `.fab` file or in colocated `*.proba` test-source
+files — run through `faber test` on the MIR stepper, and support the same
+compiler pipeline as production code: locale-aware, type-checked, and
+target-neutral.
 
 ## The three keywords {#keywords}
 
@@ -80,18 +82,31 @@ incipit {
 
 ## Workflow {#workflow}
 
-Tests run through the `faber test` command:
+Tests run through the `faber test` command, which executes proba cases on
+the MIR stepper — no Cargo or rustc is invoked for the package:
 
 ```text
 faber test                        # run all tests in the current package
 faber test examples/coreutils/packages/echo  # run tests for a specific package
+faber test . --filter smoke       # substring filter on case path or title
+faber test . --include math       # load only *.proba sources matching a path pattern
+faber test . --exclude 'nested/*' # skip *.proba sources matching a path pattern
+faber test . --name my_case       # select by proba name
+faber test . --suite suite/path   # select by probandum suite path
+faber test . --tag slow           # select by tag modifier
 ```
 
-Because tests live alongside source in the same `.fab` file, there is no
-separate test directory structure, no test module declaration, and no build
-script distinction between test and production builds. The compiler knows
-which blocks are test code and which are production code by the keywords used
-— `probandum` and `proba` are parsed but excluded from production builds.
+Tests can live in the same `.fab` file as the code they test, or in
+colocated `*.proba` files (the preferred home for stdlib and public-contract
+suites). `.proba` files are test-only: discovered only by `faber test`,
+never importable from product modules, and excluded from Cista package
+snapshots. There is no separate test directory structure and no test module
+declaration. The compiler knows which blocks are test code and which are
+production code by the keywords used — `probandum` and `proba` are parsed but
+excluded from production builds.
+
+Warnings can be promoted to errors with `--deny-warnings` or
+`--deny <CODE>` (repeatable), on `faber test` and `faber build` alike.
 
 ## Real-world example {#real-world}
 
@@ -130,15 +145,16 @@ probandum "echo formatting" tag "coreutils" {
 Several design choices distinguish Faber's testing framework from
 conventional approaches:
 
-- **No separate test binary.** Tests are declarations in the same source file, not a separate compilation target. The compiler filters test blocks from production output.
+- **No separate test binary.** Tests are declarations in the same source file (or in `*.proba` test sources), not a separate compilation target. The compiler filters test blocks from production output.
 - **Tags, not directories.** Tests are organised by `tag` markers rather than directory structure. A test can belong to multiple organisational axes without being moved.
 - **Full compiler pipeline.** Tests are type-checked, analysed, and locale-aware — the same `--reader-locale` flag applies to test output.
-- **Multi-target.** Tests run through whichever backend the package targets — MIR stepper for `faber test --interpret`, compiled Rust for `faber test`.
+- **Stepper-executed.** `faber test` runs proba cases on the MIR stepper; no generated test crate, Cargo, or Rust toolchain is required.
+- **Target-neutral.** The stepper analysis is independent of any codegen target.
 - **Nested suites.** `probandum` blocks can nest, mirroring the structure of the code they test.
 
 ## References {#references}
 
-1. `examples/corpus/probandum/` — probandum exemplar files
-2. `examples/corpus/proba/` — proba exemplar files
-3. `examples/corpus/adfirma/` — adfirma exemplar files
+1. `radix/corpus/probandum/` — probandum exemplar files
+2. `radix/corpus/proba/` — proba exemplar files
+3. `radix/corpus/adfirma/` — adfirma exemplar files
 4. `examples/coreutils/packages/echo/src/main.fab` — real-world usage with tags

@@ -180,7 +180,9 @@ WGSL is validated through `naga` (30.x) and includes a reflection
 sidecar for bind-group metadata. This covers the device-safe kernel subset:
 rank-1 `f32` device views are supported; rank-2 views reject. WGSL
 is not a GPU launch runtime — Faber emits the shader source, but execution
-requires an external WebGPU runtime.
+requires an external WebGPU runtime. The [Triga](/ecosystem/triga.html)
+library supplies the typed geometry, scene, and resource contracts consumed
+by the sibling `hosts/webgpu-browser` host.
 
 ### Metal (on hold) {#metal}
 

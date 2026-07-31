@@ -62,8 +62,8 @@ consistently uses sugar should say so once at the top:
 
 Faber annotations follow the same dual-surface model as numeric types.
 Annotations are compiler-owned metadata attached to declarations — like
-`@ optio` for CLI option definitions or `@ futura`
-for async functions.
+`@ optio` for CLI option definitions or `@ futura` for async functions
+(legacy — prefer the `fiet` posture word in the signature slot).
 
 **Canonical form:** a braced record with explicit field names:
 

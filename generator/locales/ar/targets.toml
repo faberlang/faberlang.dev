@@ -18,7 +18,7 @@ Faber لغة واحدة لها عقود ترجمة متعددة. هذه الصف
 
 meta_generated = "**توليد**: {date} بواسطة `scripta/generate-ebnf-matrix.py` — **لا تعدّل الملف**."
 meta_measurement = "**القياس**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (داخل العملية، من دون toolchains خارجية)."
-meta_join = "**الربط**: مصطلحات `examples/corpus/index.toml` → exempla."
+meta_join = "**الربط**: مصطلحات `corpus/index.toml` → exempla."
 
 official = """
 هذه هي **مصفوفة دعم grammar×target الرسمية والمولّدة**. وهي تعرض

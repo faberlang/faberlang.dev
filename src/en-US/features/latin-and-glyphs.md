@@ -88,6 +88,15 @@ rather than the mixed etymologies of most programming languages.
 
 > The Latin vocabulary is **bindable** — it ships with the canonical pack but can be remapped through reader locale. A Thai programmer sees `ถ้า` instead of `si`; a Chinese programmer sees `函数` instead of `functio`. The vocabulary is not privileged; only the grammar is.
 
+Keywords are **contextual**: since Radix v0.79.0 there is no global reserved
+keyword table. The lexer emits identifiers for all words and the parser
+recognizes a keyword by spelling in its grammar position. A word is only a
+keyword in the slot where it is expected; everywhere else it is an ordinary
+identifier — you can name a variable `si`, a function `functio`, or a
+parameter `vel`. A small residual set (`cape`, `custodi`, `itera`, `sic`,
+`iace`, `mori`, `adfirma`, `cede`, `incipit`, `incipiet`, `importa`, `ex`)
+is still globally reserved.
+
 ## Structural glyphs {#glyphs}
 
 Where behavioural vocabulary uses Latin words, structural meaning uses universal
@@ -168,6 +177,6 @@ each distinct semantic job — no overloading.
 ## References {#references}
 
 1. EBNF grammar — full glyph and keyword inventory
-2. examples/corpus/ — language corpus with 292 exemplar files across all keywords
-3. examples/corpus/operatores/ — operator and glyph exemplars
+2. radix/corpus/ — language corpus with 304 exemplar files across all keywords
+3. radix/corpus/operatores/ — operator and glyph exemplars
 4. Commandments — the nine design laws that preserve these signals

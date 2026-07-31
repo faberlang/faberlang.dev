@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:bc250448a4224715dfe7d2c16c2b3290a7b21b618f3c7fc7e4030a794b122b5a"
+prose_hash = "sha256:2504449377a640c071b65963963696897e25f86cfef11b5aa4dd792cd95999d9"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "12ad0f0eb3b0a0e183a8abb4e323f6d856b83fe3"
+source_commit = "416d5da19d6046958071c0b521aefdb970b44aa9"
 source_locale = "en-US"
 +++
 
@@ -24,7 +24,7 @@ CLI का लाइव सारांश: `faber targets`।
 
 **जनरेट किया गया**: unknown, `scripta/generate-ebnf-matrix.py` द्वारा — **संपादित न करें**।
 **मापन**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, बाहरी toolchains के बिना)।
-**Join**: `examples/corpus/index.toml` terms → exempla।
+**Join**: `corpus/index.toml` terms → exempla।
 
 यह **आधिकारिक generated** grammar×target support matrix है। यह exempla corpus
 के हर term के लिए **lowerability** रिपोर्ट करती है — क्या target X grammar
@@ -55,23 +55,23 @@ verbs), per-target contracts और pipeline routing
 
 | लक्ष्य | सक्षम | विश्लेषण योग्य | % |
 |---|---|---|---|
-| rust | 271 | 273 | 99% |
-| go | 252 | 273 | 92% |
-| ts | 267 | 273 | 98% |
-| faber | 273 | 273 | 100% |
+| rust | 277 | 279 | 99% |
+| go | 258 | 279 | 92% |
+| ts | 273 | 279 | 98% |
+| faber | 279 | 279 | 100% |
 
 **सिस्टम लेन (MIR → डिवाइस/IR आर्टिफैक्ट)**
 
 | लक्ष्य | सक्षम | विश्लेषण योग्य | % |
 |---|---|---|---|
-| llvm-text | 249 | 259 | 96% |
-| wasm-text | 204 | 259 | 79% |
-| wasm | 204 | 259 | 79% |
-| metal-text | 6 | 259 | 2% |
-| wgsl-text | 6 | 259 | 2% |
-| sexp-struct | 204 | 259 | 79% |
-| sexp | 204 | 259 | 79% |
-| scena | 218 | 259 | 84% |
+| llvm-text | 255 | 265 | 96% |
+| wasm-text | 210 | 265 | 79% |
+| wasm | 210 | 265 | 79% |
+| metal-text | 6 | 265 | 2% |
+| wgsl-text | 6 | 265 | 2% |
+| sexp-struct | 211 | 265 | 80% |
+| sexp | 211 | 265 | 80% |
+| scena | 224 | 265 | 85% |
 
 ## कीवर्ड — एप्लिकेशन लेन
 
@@ -112,7 +112,11 @@ verbs), per-target contracts और pipeline routing
 | `exitus` | ✓ | ✓ | ✓ | ✓ |
 | `fac` | ✓ | ✓ | ✓ | ✓ |
 | `falsum` | ✓ | ✓ | ✓ | ✓ |
+| `fient` | ✓ | ✓ | ✓ | ✓ |
+| `fiet` | ✓ | ✓ | ✓ | ✓ |
+| `figendum` | ✓ | ✓ | ✓ | ✓ |
 | `finge` | ✓ | ✓ | ✓ | ✓ |
+| `fiunt` | ✓ | ✓ | ✓ | ✓ |
 | `fixum` | ✓ | ✓ | ✓ | ✓ |
 | `fragilis` | ✓ | ✓ | ✓ | ✓ |
 | `fractus` | ✓ | ✓ | ✓ | ✓ |
@@ -168,6 +172,7 @@ verbs), per-target contracts और pipeline routing
 | `protecta` | — | — | — | — |
 | `publica` | ✓ | ✓ | ✓ | ✓ |
 | `redde` | ✓ | ✓ | ✓ | ✓ |
+| `reddet` | ✓ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✓ |
 | `rumpe` | ✓ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✓ |
@@ -183,6 +188,7 @@ verbs), per-target contracts और pipeline routing
 | `sponte` | ✓ | ✓ | ✓ | ✓ |
 | `sub` | ✓ | ✓ | ✓ | ✓ |
 | `tacet` | ✓ | ✓ | ✓ | ✓ |
+| `tacebit` | ✓ | ✓ | ✓ | ✓ |
 | `tabula` | ✓ | ✓ | ✓ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✓ |
 | `temporis` | ✓ | ✓ | ✓ | ✓ |
@@ -193,6 +199,7 @@ verbs), per-target contracts और pipeline routing
 | `usque` | ✓ | ✓ | ✓ | ✓ |
 | `ut` | ✓ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✓ |
+| `variandum` | ✓ | ✓ | ✓ | ✓ |
 | `vector` | ✓ | ✓ | ✓ | ✓ |
 | `vacuum` | ✓ | ✓ | ✓ | ✓ |
 | `verum` | ✓ | ✓ | ✓ | ✓ |
@@ -286,7 +293,11 @@ verbs), per-target contracts और pipeline routing
 | `exitus` | — | — | — | — | — | — | — | — |
 | `fac` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `falsum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `fient` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `fiet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `figendum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `finge` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `fiunt` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fixum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fragilis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `fractus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
@@ -342,6 +353,7 @@ verbs), per-target contracts और pipeline routing
 | `protecta` | — | — | — | — | — | — | — | — |
 | `publica` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `redde` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ◐ |
+| `reddet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `rumpe` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -357,6 +369,7 @@ verbs), per-target contracts और pipeline routing
 | `sponte` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `sub` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `tacet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `tacebit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `tabula` | ✓ | ◐ | ◐ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `temporis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
@@ -367,6 +380,7 @@ verbs), per-target contracts और pipeline routing
 | `usque` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ut` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `variandum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `vector` | ✓ | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ | ✕ |
 | `vacuum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `verum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -441,7 +455,6 @@ verbs), per-target contracts और pipeline routing
 | `requirit` | ✓ | ✓ | ✓ | ✓ |
 | `string` | ✓ | ✓ | ✓ | ✓ |
 | `block-string` | ✓ | ✓ | ✓ | ✓ |
-| `sed` | ✓ | ✓ | ✓ | ✓ |
 | `summa` | ✓ | ✓ | ✓ | ✓ |
 | `targets` | ✓ | ✓ | ✓ | ✓ |
 | `ultima` | ✓ | ✓ | ✓ | ✓ |

@@ -7,10 +7,10 @@ sources = [
   "radix/docs/design/lista-intrinsics.md",
   "radix/docs/design/tabula-intrinsics.md",
   "radix/docs/design/tensor-intrinsics.md",
-  "examples/corpus/lista/",
-  "examples/corpus/tabula/",
-  "examples/corpus/tensor/",
-  "examples/corpus/sparsa/",
+  "radix/corpus/lista/",
+  "radix/corpus/tabula/",
+  "radix/corpus/tensor/",
+  "radix/corpus/sparsa/",
 ]
 +++
 
@@ -94,6 +94,10 @@ itera ex items fixum item {
     nota item
 }
 ```
+
+Generator *functions* declare their stream posture in the signature slot:
+`fiunt` is a synchronous stream and `fient` an asynchronous stream; the body
+yields values with `cede` (see [Functions — async and streams](/syntax/functions.html#async-and-streams)).
 
 ## Intervallum — ranges {#intervallum}
 

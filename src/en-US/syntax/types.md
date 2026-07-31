@@ -9,9 +9,9 @@ sources = [
   "radix/docs/design/lista-intrinsics.md",
   "radix/docs/design/comparison-operators.md",
   "radix/EBNF.md",
-  "examples/corpus/typi/",
-  "examples/corpus/tensor/",
-  "examples/corpus/lista/",
+  "radix/corpus/typi/",
+  "radix/corpus/tensor/",
+  "radix/corpus/lista/",
 ]
 +++
 
@@ -105,6 +105,7 @@ fixum numerus value ← identitas<numerus>(7)
 | `intervallum` | Range type | — |
 | `copia<T>` | Unordered set | — |
 | `cursor<T>` | Lazy stream | — |
+| `promissum<T>` | Async finite result (from `fiet` functions) | — |
 
 ```faber
 fixum lista<numerus> nums ← [1, 2, 3]

@@ -10,7 +10,7 @@ set -euo pipefail
 
 GENERATOR_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 WORKSPACE_DIR="$(cd "$GENERATOR_DIR/.." && pwd)"
-CORPUS_DIR="${WORKSPACE_DIR}/../examples/corpus"
+CORPUS_DIR="${WORKSPACE_DIR}/../radix/corpus"
 BUILD_DIR="${GENERATOR_DIR}/target/faber"
 FABER="${FABER:-faber}"
 

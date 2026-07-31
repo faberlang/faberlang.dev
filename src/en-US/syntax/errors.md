@@ -4,9 +4,9 @@ section = "syntax"
 order = 5
 sources = [
   "radix/README.md (Return and Error Channels)",
-  "examples/corpus/iace/",
-  "examples/corpus/fac/",
-  "examples/corpus/cape/",
+  "radix/corpus/iace/",
+  "radix/corpus/fac/",
+  "radix/corpus/cape/",
   "radix/docs/design/failable-conversio.md",
 ]
 +++

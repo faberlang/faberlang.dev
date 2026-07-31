@@ -4,12 +4,12 @@ section = "syntax"
 order = 4
 sources = [
   "radix/README.md (Control Flow Shape, Canonical Surface)",
-  "examples/corpus/si/",
-  "examples/corpus/itera/",
-  "examples/corpus/dum/",
-  "examples/corpus/custodi/",
-  "examples/corpus/discerne/",
-  "examples/corpus/elige/",
+  "radix/corpus/si/",
+  "radix/corpus/itera/",
+  "radix/corpus/dum/",
+  "radix/corpus/custodi/",
+  "radix/corpus/discerne/",
+  "radix/corpus/elige/",
 ]
 +++
 

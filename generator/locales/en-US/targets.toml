@@ -18,7 +18,7 @@ Live CLI summary: `faber targets`.
 
 meta_generated = "**Generated**: {date} by `scripta/generate-ebnf-matrix.py` — **do not edit**."
 meta_measurement = "**Measurement**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, no external toolchains)."
-meta_join = "**Join**: `examples/corpus/index.toml` terms → exempla."
+meta_join = "**Join**: `corpus/index.toml` terms → exempla."
 
 official = """
 This is the **official generated** grammar×target support matrix. It reports

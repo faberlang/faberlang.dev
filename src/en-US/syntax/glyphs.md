@@ -4,8 +4,8 @@ section = "syntax"
 order = 10
 sources = [
   "radix/README.md (Glyphs and Words)",
-  "examples/corpus/operatores/",
-  "examples/corpus/assignatio/",
+  "radix/corpus/operatores/",
+  "radix/corpus/assignatio/",
   "radix/EBNF.md",
 ]
 +++

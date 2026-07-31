@@ -4,8 +4,8 @@ section = "syntax"
 order = 8
 sources = [
   "radix/README.md (String and Template Literals, String-template application, Inline JSON)",
-  "examples/corpus/literalia/",
-  "examples/corpus/scriptum/",
+  "radix/corpus/literalia/",
+  "radix/corpus/scriptum/",
   "radix/docs/factory/textus-literal-family/",
 ]
 +++
@@ -60,6 +60,9 @@ fixum _ sql ← «
     from accounts
 »
 ```
+
+Guillemets are the only block-string spelling since Radix v0.79.0 — the
+retired `"""` and `❝…❞` spellings fail as ordinary lex errors.
 
 ## Captured templates (forma) {#captured-templates}
 

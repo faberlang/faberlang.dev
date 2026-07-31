@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate dist/search-index*.json — renderbar keyword-search datasets.
 
-Walks examples/corpus/**/*.fab TOML frontmatter (same source as
+Walks radix/corpus/**/*.fab TOML frontmatter (same source as
 render-llms.py) and emits, per site locale, a compact JSON array:
 
     [{"t": term, "d": display, "k": kind, "c": category, "s": summary,
@@ -21,7 +21,7 @@ Hrefs stay locale-prefixed Latin-term pages — built client-side as
 renderer (see render-llms.py corpus_page).
 
 Usage:
-    generate-search-index.py --corpus <examples/corpus> --output-dir <dist>
+    generate-search-index.py --corpus <radix/corpus> --output-dir <dist>
         [--locales generator/locales.toml]
         [--reader-root workspace/radix/stdlib/reader]
 """

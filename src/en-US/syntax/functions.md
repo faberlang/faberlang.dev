@@ -4,10 +4,15 @@ section = "syntax"
 order = 3
 sources = [
   "radix/README.md (Language Orientation, Borrowing and Mutability, How Faber Feels)",
-  "examples/corpus/functio/",
-  "examples/corpus/de/",
-  "examples/corpus/in/",
-  "examples/corpus/ex/",
+  "radix/corpus/functio/",
+  "radix/corpus/de/",
+  "radix/corpus/in/",
+  "radix/corpus/ex/",
+  "radix/corpus/fiet/",
+  "radix/corpus/fiunt/",
+  "radix/corpus/fient/",
+  "radix/corpus/cede/",
+  "radix/corpus/promissum/",
   "radix/docs/design/semantic-ownership.md",
 ]
 +++
@@ -74,6 +79,62 @@ functio tace() → vacuum {
 }
 ```
 
+## Async and streams {#async-and-streams}
+
+Callable posture is a signature slot after modifiers and before `→` / `⇥`
+or the body. A bare function is synchronous finite; the posture words
+declare the execution mode:
+
+| Posture | Meaning | Typical return |
+|---------|---------|----------------|
+| *(none)* | Synchronous finite | `T` |
+| `fiet` | Asynchronous finite | `promissum<T>` |
+| `fiunt` | Synchronous stream (yields via `cede`) | cursor values |
+| `fient` | Asynchronous stream (yields via `cede`) | async cursor values |
+
+```faber
+# Async finite — returns a promise
+functio responde() fiet → numerus {
+    redde 42
+}
+
+# Synchronous stream — yields values
+functio stream() fiunt → numerus {
+    cede 1
+    cede 2
+}
+```
+
+Await forms bind or consume the eventual value:
+
+| Form | Role |
+|------|------|
+| `figendum T x ← future` | Await-bind immutable |
+| `variandum T x ← future` | Await-bind mutable |
+| `reddet future` | Await-return (`fiet` functions only) |
+| `tacebit future` | Await and discard |
+| `cede value` | Yield a value (`fiunt` / `fient` only) |
+
+```faber
+functio responde() fiet → numerus {
+    redde 42
+}
+
+incipiet {
+    figendum numerus responsum ← responde()
+    tacebit responde()
+    nota "done"
+}
+```
+
+`promissum<T>` is infallible shorthand for `promissum<T ⇥ numquam>`;
+`promissum<T ⇥ E>` preserves an alternate error channel. Infallible widens
+to failable; failable does not narrow.
+
+The `@ futura` and `@ cursor` annotations remain accepted compatibility
+spellings, but the posture words above are the canonical surface — prefer
+`fiet` over `@ futura`, and `fiunt` / `fient` over `@ cursor`.
+
 ## Borrowing and mutability (de, in, ex) {#borrowing-and-mutability}
 
 Faber marks how a value is passed with short prepositions on parameters:
@@ -129,6 +190,9 @@ incipit {
     nota "ingressus"
 }
 ```
+
+`incipiet` is the async entry point — the body may await (`figendum`,
+`variandum`, `reddet`, `tacebit`) and call `fiet` / `fient` functions.
 
 ## CLI entry point {#cli-entry-point}
 

@@ -3,20 +3,34 @@ title = "Language corpus"
 section = "ecosystem"
 order = 6
 sources = [
-  "examples/corpus/ (292 .fab files, 174 registry terms, index.toml)",
-  "examples/corpus/README.md",
+  "radix/corpus/ (304 .fab files, 185 registry terms, index.toml)",
+  "radix/corpus/README.md",
+  "examples/corpus/README.md (relocation stub)",
 ]
 +++
 
-The Faber language corpus is the public language dictionary: one top-level
+The Faber language corpus is the language dictionary: one top-level
 directory per keyword, operator group, or language type surface. It is the
 development source for `faber explain` and the primary input for
 multi-target compile matrices.
 
+## Location {#location}
+
+The corpus was split in Radix v0.79.0:
+
+| Content | Lives in |
+|---------|----------|
+| Single-file language exempla (keywords, operators, types, concepts) | `radix/corpus/` |
+| Package-shaped corpus fixtures | `faber/corpus/` |
+| Application demos | `examples/` (sibling dirs) |
+
+The old `examples/corpus/` path is a redirect stub. The generated corpus
+pages on this site are built from `radix/corpus/`.
+
 ## Stats {#stats}
 
-- 292 `.fab` exemplar files
-- 174 registry terms in `index.toml`
+- 304 `.fab` exemplar files
+- 185 registry terms in `index.toml`
 - ~135 keyword and concept directories
 
 ## Layout {#layout}
