@@ -105,7 +105,7 @@ fixum numerus value ← identitas<numerus>(7)
 | `intervallum` | Range type | — |
 | `copia<T>` | Unordered set | — |
 | `cursor<T>` | Lazy stream | — |
-| `promissum<T>` | Async finite result (from `fiet` functions) | — |
+| `promissum<T>` | Async finite result from `fiet` functions; `promissum<T ⇥ E>` carries a delayed alternate channel | — |
 
 ```faber
 fixum lista<numerus> nums ← [1, 2, 3]

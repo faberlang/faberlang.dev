@@ -29,7 +29,7 @@ syntax and a glyph return type.</p><h2 id="basic-syntax">Basic syntax<a class="a
     <span class="tok-kw">redde</span>
 }</code></pre><h2 id="async-and-streams">Async and streams<a class="anchor" href="#async-and-streams">#</a></h2><p>Callable posture is a signature slot after modifiers and before <code>→</code> / <code>⇥</code>
 or the body. A bare function is synchronous finite; the posture words
-declare the execution mode:</p><div class="table-scroll"><table><thead><tr><th>Posture</th><th>Meaning</th><th>Typical return</th></tr></thead><tbody><tr><td><em>(none)</em></td><td>Synchronous finite</td><td><code>T</code></td></tr><tr><td><code>fiet</code></td><td>Asynchronous finite</td><td><code>promissum&lt;T&gt;</code></td></tr><tr><td><code>fiunt</code></td><td>Synchronous stream (yields via <code>cede</code>)</td><td>cursor values</td></tr><tr><td><code>fient</code></td><td>Asynchronous stream (yields via <code>cede</code>)</td><td>async cursor values</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># Async finite — returns a promise</span>
+declare the execution mode:</p><div class="table-scroll"><table><thead><tr><th>Posture</th><th>Meaning</th><th>Typical return</th></tr></thead><tbody><tr><td><em>(none)</em></td><td>Synchronous finite</td><td><code>T</code></td></tr><tr><td><code>fiet</code></td><td>Asynchronous finite</td><td><code>promissum&lt;T&gt;</code> or <code>promissum&lt;T ⇥ E&gt;</code></td></tr><tr><td><code>fiunt</code></td><td>Synchronous stream (yields via <code>cede</code>)</td><td>cursor values, optionally <code>⇥ E</code></td></tr><tr><td><code>fient</code></td><td>Asynchronous stream (yields via <code>cede</code>)</td><td>async cursor values, optionally <code>⇥ E</code></td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># Async finite — returns a promise</span>
 <span class="tok-kw">functio</span> responde() <span class="tok-kw">fiet</span> <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
     <span class="tok-kw">redde</span> <span class="tok-nu">42</span>
 }
@@ -50,7 +50,56 @@ declare the execution mode:</p><div class="table-scroll"><table><thead><tr><th>P
 <code>promissum&lt;T ⇥ E&gt;</code> preserves an alternate error channel. Infallible widens
 to failable; failable does not narrow.</p><p>The <code>@ futura</code> and <code>@ cursor</code> annotations remain accepted compatibility
 spellings, but the posture words above are the canonical surface — prefer
-<code>fiet</code> over <code>@ futura</code>, and <code>fiunt</code> / <code>fient</code> over <code>@ cursor</code>.</p><h2 id="borrowing-and-mutability">Borrowing and mutability (de, in, ex)<a class="anchor" href="#borrowing-and-mutability">#</a></h2><p>Faber marks how a value is passed with short prepositions on parameters:</p><div class="table-scroll"><table><thead><tr><th>Marker</th><th>Intent</th><th>Typical Rust lowering</th></tr></thead><tbody><tr><td><em>(none)</em></td><td>Owned value</td><td><code>T</code> by value</td></tr><tr><td><code class="kw">de</code></td><td>Shared borrow (read-only)</td><td><code>&amp;T</code></td></tr><tr><td><code class="kw">in</code></td><td>Mutable borrow</td><td><code>&amp;mut T</code></td></tr><tr><td><code class="kw">ex</code></td><td>Consume (move into callee)</td><td><code>T</code> by move</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber locale=la"># Shared borrow
+<code>fiet</code> over <code>@ futura</code>, and <code>fiunt</code> / <code>fient</code> over <code>@ cursor</code>.</p><h3 id="two-channel-promises">Two-channel promises<a class="anchor" href="#two-channel-promises">#</a></h3><p>A <code>fiet</code> function returns a <code>promissum</code> — but the promise carries <strong>both</strong>
+channels, not just the eventual value. <code>promissum&lt;T&gt;</code> is the infallible
+form: shorthand for <code>promissum&lt;T ⇥ numquam&gt;</code>. <code>promissum&lt;T ⇥ E&gt;</code> keeps the
+<strong>delayed alternate channel</strong> alongside the success value, so a failable
+async call fails exactly like a failable sync call — the error is delivered
+with the result, not through a separate callback, channel, or thrown
+exception. Awaiting a failable promise is itself a failable operation, so it
+happens inside a <code class="kw">fac</code> / <code class="kw">cape</code> boundary:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> computa(<span class="tok-kw">numerus</span> densitas) <span class="tok-kw">fiet</span> <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
+    <span class="tok-kw">si</span> densitas <span class="tok-op">&lt;</span> <span class="tok-nu">0</span> ergo <span class="tok-kw">iace</span> <span class="tok-st">"invalid input"</span>
+    <span class="tok-kw">redde</span> <span class="tok-nu">7</span>
+}
+
+<span class="tok-kw">incipiet</span> {
+    <span class="tok-kw">fac</span> {
+        <span class="tok-kw">figendum</span> <span class="tok-kw">numerus</span> valor <span class="tok-op">←</span> computa(<span class="tok-nu">3</span>)
+        nota valor
+    }
+    <span class="tok-kw">cape</span> err {
+        nota err
+    }
+}</code></pre><p>The await forms bind or consume both channels: <code>figendum</code> / <code>variandum</code>
+await-bind the success value, <code>reddet</code> re-emits the promise from an async
+function, and <code>tacebit</code> awaits and discards either outcome.</p><h3 id="promises-in-streams">Promises in streams<a class="anchor" href="#promises-in-streams">#</a></h3><p>The two-channel shape composes with generators. An asynchronous stream may
+declare <code>fient → T ⇥ E</code>: every pull is itself a promise that either yields
+<code>T</code>, ends, or fails with <code>E</code>, and the first failure ends the stream.
+Iteration with <code>itera ex</code> handles the channel:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> poll() <span class="tok-kw">fient</span> <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
+    <span class="tok-kw">cede</span> <span class="tok-nu">1</span>
+    <span class="tok-kw">iace</span> <span class="tok-st">"link lost"</span>
+}
+
+<span class="tok-kw">incipiet</span> {
+    <span class="tok-kw">itera</span> <span class="tok-kw">ex</span> poll() <span class="tok-kw">fixum</span> lectio {
+        nota lectio
+    }
+}</code></pre><p>A synchronous stream may also carry an alternate channel (<code>fiunt → T ⇥ E</code>);
+the stream call is then failable, so the consuming code handles it with
+<code class="kw">fac</code> / <code class="kw">cape</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> stream() <span class="tok-kw">fiunt</span> <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
+    <span class="tok-kw">cede</span> <span class="tok-nu">1</span>
+}
+
+<span class="tok-kw">incipit</span> {
+    <span class="tok-kw">fac</span> {
+        <span class="tok-kw">itera</span> <span class="tok-kw">ex</span> stream() <span class="tok-kw">fixum</span> item {
+            nota item
+        }
+    }
+    <span class="tok-kw">cape</span> err {
+        nota err
+    }
+}</code></pre><h2 id="borrowing-and-mutability">Borrowing and mutability (de, in, ex)<a class="anchor" href="#borrowing-and-mutability">#</a></h2><p>Faber marks how a value is passed with short prepositions on parameters:</p><div class="table-scroll"><table><thead><tr><th>Marker</th><th>Intent</th><th>Typical Rust lowering</th></tr></thead><tbody><tr><td><em>(none)</em></td><td>Owned value</td><td><code>T</code> by value</td></tr><tr><td><code class="kw">de</code></td><td>Shared borrow (read-only)</td><td><code>&amp;T</code></td></tr><tr><td><code class="kw">in</code></td><td>Mutable borrow</td><td><code>&amp;mut T</code></td></tr><tr><td><code class="kw">ex</code></td><td>Consume (move into callee)</td><td><code>T</code> by move</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber locale=la"># Shared borrow
 functio imprime(de textus label) → vacuum {
     nota label
 }
@@ -81,4 +130,4 @@ incipit argumenta args {
     }
 }</code></pre><h2 id="passing-mode-sponte">Passing mode — <code>sponte</code><a class="anchor" href="#passing-mode-sponte">#</a></h2><p><code>sponte</code> marks a parameter that may be omitted by the caller:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> connect(<span class="tok-kw">textus</span> host, <span class="tok-kw">numerus</span> port <span class="tok-kw">sponte</span>) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> {
     nota host
-}</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#basic-syntax">Basic syntax</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-2"><a href="#return-values">Return values</a></li><li class="toc-2"><a href="#async-and-streams">Async and streams</a></li><li class="toc-2"><a href="#borrowing-and-mutability">Borrowing and mutability (de, in, ex)</a></li><li class="toc-2"><a href="#entry-point">Entry point</a></li><li class="toc-2"><a href="#cli-entry-point">CLI entry point</a></li><li class="toc-2"><a href="#passing-mode-sponte">Passing mode — sponte</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div></footer></div></body></html>
+}</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#basic-syntax">Basic syntax</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-2"><a href="#return-values">Return values</a></li><li class="toc-2"><a href="#async-and-streams">Async and streams</a></li><li class="toc-3"><a href="#two-channel-promises">Two-channel promises</a></li><li class="toc-3"><a href="#promises-in-streams">Promises in streams</a></li><li class="toc-2"><a href="#borrowing-and-mutability">Borrowing and mutability (de, in, ex)</a></li><li class="toc-2"><a href="#entry-point">Entry point</a></li><li class="toc-2"><a href="#cli-entry-point">CLI entry point</a></li><li class="toc-2"><a href="#passing-mode-sponte">Passing mode — sponte</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div></footer></div></body></html>

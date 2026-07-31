@@ -76,6 +76,24 @@ functio tutum(numerus a, numerus b) → numerus {
 A direct failable call is not an ordinary expression. Place calls to
 `→ T ⇥ E` functions inside an active `fac` / `cape` boundary.
 
+## The alternate channel in async surfaces {#async-alternate}
+
+The same `⇥ E` channel rides *inside* Faber's async types rather than as a
+separate mechanism. A `fiet` function returns `promissum<T>` — the
+infallible shorthand for `promissum<T ⇥ numquam>` — and `promissum<T ⇥ E>`
+preserves the delayed alternate alongside the eventual value. Awaiting a
+failable promise is itself a failable operation: the success value binds
+inside a `fac` / `cape` boundary while the failure stays observable, exactly
+like a failable sync call.
+
+Async and sync streams carry the channel too: `fient → T ⇥ E` makes every
+pull a promise that can yield, end, or fail (the first failure ends the
+stream, handled by `itera ex`); `fiunt → T ⇥ E` makes the stream call itself
+failable, recovered with `fac` / `cape`.
+
+See [Functions — two-channel promises](/syntax/functions.html#two-channel-promises)
+for the full treatment.
+
 ## Inline conversion recovery {#inline-conversion-recovery}
 
 `⇥` can also specify an inline recovery value on `↦` conversions:
