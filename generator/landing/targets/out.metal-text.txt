@@ -2,14 +2,35 @@
 #include <metal_stdlib>
 using namespace metal;
 
-kernel void scala(
-    device const float* x_in [[buffer(0)]],
-    device float* output [[buffer(1)]],
-    uint id [[thread_position_in_grid]]
+kernel void multiplico(
+    device const float* a_in [[buffer(0)]],
+    device const float* b_in [[buffer(1)]],
+    device float* output [[buffer(2)]],
+    uint3 id [[thread_position_in_grid]],
+    uint3 local_id [[thread_position_in_threadgroup]]
 ) {
-  if (id >= 1) {
-    return;
-  }
-    float x = x_in[id];
-    output[id] = (x + 1.0f);
+    uint i = id.x;
+threadgroup float shared_a[64];
+threadgroup float shared_b[64];
+float acc = 0.0;
+uint row = id.y;
+uint col = id.x;
+uint ty = local_id.y;
+uint tx = local_id.x;
+for (uint k_tile = 0u; k_tile < 1u; k_tile++) {
+    uint k_start = k_tile * 8u;
+    uint a_idx = row * 8u + (k_start + tx);
+    if (a_idx < 16u * 8u) { shared_a[ty * 8u + tx] = a_in[a_idx]; }
+    if (a_idx >= 16u * 8u) { shared_a[ty * 8u + tx] = 0.0; }
+    uint b_idx = (k_start + ty) * 16u + col;
+    if (b_idx < 8u * 16u) { shared_b[ty * 8u + tx] = b_in[b_idx]; }
+    if (b_idx >= 8u * 16u) { shared_b[ty * 8u + tx] = 0.0; }
+    threadgroup_barrier(mem_flags::mem_threadgroup);
+    for (uint kk = 0u; kk < 8u; kk++) {
+        acc += shared_a[ty * 8u + kk] * shared_b[kk * 8u + tx];
+    }
+    threadgroup_barrier(mem_flags::mem_threadgroup);
+}
+uint out_idx = row * 16u + col;
+if (row < 16u && col < 16u) { output[out_idx] = acc; }
 }

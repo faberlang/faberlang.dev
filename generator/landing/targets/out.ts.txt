@@ -96,37 +96,17 @@ function __faberDisplayValor(value: any): string {
 function __faberDisplayTaggedValor(value: any): string {
     const payload = value.__faberValorPayload;
     switch (value.__faberValorTag) {
-        case "Nihil": return "Nihil";
-        case "Bivalens": return `Bivalens(${payload})`;
-        case "Numerus": return `Numerus(${payload})`;
-        case "Fractus": return `Fractus(${__faberDisplayFractus(payload)})`;
-        case "Textus": return `Textus(${JSON.stringify(String(payload))})`;
-        case "Instans": return `Instans(${JSON.stringify(String(payload))})`;
-        case "Octeti": return `Octeti(${JSON.stringify(payload)})`;
-        case "Lista": return `Lista(${__faberDisplayValorPayloadList(payload)})`;
-        case "Tabula": return `Tabula(${__faberDisplayValorPayloadMap(payload)})`;
+        case "Nihil": return "nihil";
+        case "Bivalens": return payload ? "verum" : "falsum";
+        case "Numerus": return String(payload);
+        case "Fractus": return __faberDisplayFractus(payload);
+        case "Textus": return String(payload);
+        case "Instans": return String(payload);
+        case "Octeti": return `<${Array.isArray(payload) ? payload.length : 0} bytes>`;
+        case "Lista": return __faberDisplayList(payload, "valor");
+        case "Tabula": return __faberDisplayMap(payload, "textus", "valor");
         default: return __faberDisplayValor(payload);
     }
-}
-
-function __faberDisplayValorPayload(value: any): string {
-    if (value === null || value === undefined) { return "Nihil"; }
-    if (typeof value === "boolean") { return `Bivalens(${value})`; }
-    if (typeof value === "number") { return `${Number.isInteger(value) ? "Numerus" : "Fractus"}(${Number.isInteger(value) ? value : __faberDisplayFractus(value)})`; }
-    if (typeof value === "string") { return `Textus(${JSON.stringify(value)})`; }
-    if (Array.isArray(value)) { return `Lista(${__faberDisplayValorPayloadList(value)})`; }
-    if (typeof value.planata === "function") { return `Lista(${__faberDisplayValorPayloadList(value.planata())})`; }
-    if (typeof value.text === "function") { return `Instans(${JSON.stringify(String(value.text()))})`; }
-    return `Tabula(${__faberDisplayValorPayloadMap(value)})`;
-}
-
-function __faberDisplayValorPayloadList(value: any): string {
-    return `[${Array.from(value as Array<any>).map((item) => __faberDisplayValorPayload(item)).join(", ")}]`;
-}
-
-function __faberDisplayValorPayloadMap(value: any): string {
-    const entries = value instanceof Map ? Array.from(value.entries()) : Object.entries(value);
-    return `{${entries.map(([key, item]) => `${JSON.stringify(String(key))}: ${__faberDisplayValorPayload(item)}`).join(", ")}}`;
 }
 
 type Pixel = { tag: "Opacus", nivea: number } | { tag: "Vitreus", nivea: number, alpha: number } | { tag: "Vacuus" };

@@ -328,11 +328,20 @@ opacus 255</pre>
       <h2>The same core reaches the GPU</h2>
       <p>
         A function marked <code>@ nucleum</code> is a compute kernel. It is
-        ordinary Faber — the annotation just says where it runs:
+        ordinary Faber — the annotation only says where it runs. This one is a
+        matrix multiply:
       </p>
       <pre class="fl-src">{esc(kernel_fab)}</pre>
       <p>
-        That lowers to the shading language each device actually wants:
+        Four lines become a <strong>tiled</strong> matmul: 34 lines of WGSL and
+        36 of Metal, each with threadgroup shared memory, an 8×8 workgroup, a
+        K-tile loop, out-of-bounds zero fill, two barriers and a bounds-guarded
+        write. None of that is in the source. And the two dialects share almost
+        nothing — WGSL wants <code>var&lt;workgroup&gt;</code> arrays,
+        <code>@group/@binding</code> storage and <code>workgroupBarrier()</code>;
+        Metal wants <code>threadgroup float[]</code>,
+        <code>[[buffer(n)]]</code> attributes and
+        <code>threadgroup_barrier()</code>.
       </p>
     </div>
 {gpu_tabs}  </section>

@@ -61,7 +61,7 @@ func nomina(p Pixel) string {
 
 func main() {
     duplica := func(x int) int { return func() int { left := x; right := 2; max := int(^uint(0) >> 1); min := -max - 1; if (left > 0 && ((right > 0 && left > max/right) || (right < 0 && right < min/left))) || (left < 0 && ((right > 0 && left < min/right) || (right < 0 && left < max/right))) { panic("numerus overflow") }; return left * right }() }
-    t1000010Err := func() error {
+    faberErr0 := func() error {
         v, err := satura(duplica(150), 255)
         if err != nil {
             return err
@@ -69,8 +69,8 @@ func main() {
         fmt.Println(nomina(Opacus{Nivea: v}))
         return nil
     }()
-    if t1000010Err != nil {
-        err := t1000010Err
-        fmt.Println(fmt.Sprintf("erratum: %v", err))
+    if faberErr0 != nil {
+        err := faberErr0
+        fmt.Printf("erratum: %v\n", err)
     }
 }
