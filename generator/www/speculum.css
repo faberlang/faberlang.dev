@@ -500,7 +500,6 @@ h1 {
     font-family: var(--serif); font-size: 2.15rem; line-height: 1.2; font-weight: 400;
     border-bottom: 1px solid var(--rule); padding-bottom: var(--s3);
     letter-spacing: -0.015em;
-    text-wrap: balance;
 }
 /* Homepage hero: larger masthead, lead opening paragraph. */
 body.home h1 { font-size: 2.9rem; padding-bottom: var(--s4); }
@@ -517,12 +516,10 @@ h2 {
     border-bottom: 1px solid var(--rule); padding-bottom: 7px;
     scroll-margin-top: var(--s5);
     letter-spacing: -0.01em;
-    text-wrap: balance;
 }
 h3 {
     font-family: var(--serif); font-size: 1.12rem; font-weight: 700;
     margin: var(--s5) 0 var(--s2); scroll-margin-top: var(--s5);
-    text-wrap: balance;
 }
 h4 { font-family: var(--serif); font-size: 1rem; font-weight: 700; margin: var(--s4) 0 var(--s1); scroll-margin-top: var(--s5); }
 h5 { font-family: var(--serif); font-size: 0.95rem; font-weight: 700; margin: var(--s4) 0 var(--s1); }
