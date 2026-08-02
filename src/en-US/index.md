@@ -88,42 +88,12 @@ binary and checksums.
 | [Agent guide](/agents/index.md) | Agent | How to learn Faber and ship a package |
 | [Agent skills](/.well-known/agent-skills/index.json) | Agent | Focused skill guides (install, language, examples, …) |
 
-## Portal status {#portal-status}
+## Locale coverage {#locale-coverage}
 
-This `/` page is the Speculum Porta for the English site: a locale-less entry
-point that routes people to install/start pages, routes agents to machine
-surfaces, and states locale pack status without browser-time negotiation.
-Stage 7 is a partial multi-locale proof, not a completed localized site:
-only `th-TH`, `zh-Hans`, `zh-Hant`, `vi`, `ar`, and `hi` have generated
-portal/start authored slices plus generated corpus pages, and the authored prose still falls back
-to English.
-
-| Locale | Status | Notes |
-|---|---|---|
-| `la` | Canonical live site | Full generated English/Latin site |
-| `th-TH` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `zh-Hans` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `vi` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `zh-Hant` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `ar` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-| `hi` | Stage 7 partial proof | Portal/start authored slice plus generated corpus; fallback English prose; full authored docs pending |
-
-Living sample in canonical Latin:
-
-```faber
-functio salve(textus nomen) → textus {
-    fixum textus msg ← "Salve, §!"(nomen)
-    redde msg
-}
-
-incipit {
-    fixum textus m ← salve("munde")
-    nota m
-}
-```
-
-See [Reader locale](/features/reader-locale.html) for the same semantic program
-rendered through Thai, Simplified Chinese, Traditional Chinese, Arabic, Hindi, and Vietnamese packs.
+English is complete. The other six locales ship reader-locale packs and
+generated corpus pages; their authored prose still falls back to English
+while translation lands. Every locale is listed on the
+[language portal](/porta/).
 
 ## Overview {#overview}
 

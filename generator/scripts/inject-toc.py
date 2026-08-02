@@ -162,6 +162,12 @@ def process(page: Path, dist: Path, labels: dict[str, str | None]) -> bool:
     if 'class="toc"' in html:
         return False
 
+    # Standalone chrome pages (landing, portal) are not documentation: they
+    # carry their own navigation and their headings are copy, not section
+    # anchors. Heading '#' self-links and a contents rail only add noise.
+    if re.search(r'<body class="(?:landing|porta)\b', html):
+        return False
+
     main_match = MAIN_RE.search(html)
     if not main_match:
         return False

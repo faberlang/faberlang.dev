@@ -268,9 +268,13 @@ if [ "$FULL_SITE" = true ]; then
     echo "[7/10] Generating en-US redirect stubs..."
     "$PYTHON" "${SCRIPT_DIR}/generate-redirects.py" "$OUTPUT_DIR" "en-US"
 
-    # Step 7: Generate language portal (overwrites dist/index.html)
-    echo "[8/10] Generating language portal..."
-    "$PYTHON" "${SCRIPT_DIR}/generate-portal.py" "${OUTPUT_DIR}/index.html"
+    # Step 7: Generate the landing page (/) and the language portal (/porta/).
+    # The landing page states the claim and proves it; the portal is the
+    # locale chooser it links to, no longer the site's front door.
+    echo "[8/10] Generating landing page and language portal..."
+    "$PYTHON" "${SCRIPT_DIR}/generate-landing.py" "${OUTPUT_DIR}/index.html"
+    mkdir -p "${OUTPUT_DIR}/porta"
+    "$PYTHON" "${SCRIPT_DIR}/generate-portal.py" "${OUTPUT_DIR}/porta/index.html"
 
     # Step 8: Smoke checks against en-US paths
     echo "[9/10] Smoke checks..."
@@ -304,18 +308,33 @@ if [ "$FULL_SITE" = true ]; then
             exit 1
         fi
 
-        # Portal checks
-        smoke_contains "${OUTPUT_DIR}/index.html" 'class="porta"' "portal body class"
-        smoke_contains "${OUTPUT_DIR}/index.html" "ภาษาไทย" "portal Thai native"
-        smoke_contains "${OUTPUT_DIR}/index.html" "العربية" "portal Arabic native"
-        smoke_contains "${OUTPUT_DIR}/index.html" "简体中文" "portal zh-Hans native"
-        smoke_contains "${OUTPUT_DIR}/index.html" "incipit" "portal Latin sample"
-        smoke_contains "${OUTPUT_DIR}/index.html" 'href="/en-US/"' "portal en-US link"
+        # Landing page checks (/) — claim, then all three proofs present
+        smoke_contains "${OUTPUT_DIR}/index.html" 'class="landing"' "landing body class"
+        smoke_contains "${OUTPUT_DIR}/index.html" "Meaning lives in the core" "landing claim"
+        smoke_contains "${OUTPUT_DIR}/index.html" "incipit" "landing Latin sample"
+        smoke_contains "${OUTPUT_DIR}/index.html" "ภาษาไทย" "landing proof 1 Thai panel"
+        smoke_contains "${OUTPUT_DIR}/index.html" "@compute @workgroup_size" "landing proof 2 WGSL panel"
+        smoke_contains "${OUTPUT_DIR}/index.html" "metal_stdlib" "landing proof 2 Metal panel"
+        smoke_contains "${OUTPUT_DIR}/index.html" "triga-budapest.png" "landing proof 3 GPU frame"
+        smoke_contains "${OUTPUT_DIR}/index.html" 'href="/porta/"' "landing portal link"
+        for frame in triga-budapest triga-terrain triga-geometries; do
+            if [ ! -s "${OUTPUT_DIR}/images/${frame}.png" ]; then
+                echo "ERROR: landing frame asset missing: images/${frame}.png" >&2
+                exit 1
+            fi
+        done
         # Must NOT be a meta-refresh redirect
         if grep -Fq 'http-equiv="refresh"' "${OUTPUT_DIR}/index.html"; then
-            echo "ERROR: portal index must not meta-refresh" >&2
+            echo "ERROR: landing index must not meta-refresh" >&2
             exit 1
         fi
+
+        # Portal checks (/porta/)
+        smoke_contains "${OUTPUT_DIR}/porta/index.html" 'class="porta"' "portal body class"
+        smoke_contains "${OUTPUT_DIR}/porta/index.html" "ภาษาไทย" "portal Thai native"
+        smoke_contains "${OUTPUT_DIR}/porta/index.html" "العربية" "portal Arabic native"
+        smoke_contains "${OUTPUT_DIR}/porta/index.html" "简体中文" "portal zh-Hans native"
+        smoke_contains "${OUTPUT_DIR}/porta/index.html" 'href="/en-US/"' "portal en-US link"
 
         # Redirect stub checks
         smoke_contains "${OUTPUT_DIR}/start/install.html" "<!DOCTYPE html>" "redirect install doctype"
