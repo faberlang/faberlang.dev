@@ -1,10 +1,30 @@
-functio saturate(numerus x) → numerus {
-    si x < 0 ergo redde 0
-    si x > 255 ergo redde 255
-    redde x
+discretio Pixel {
+    Opacus { numerus<u8> nivea },
+    Vitreus { numerus<u8> nivea, fractus<f32> alpha },
+    Vacuus
+}
+
+functio satura(numerus datum, numerus meta sponte vel 255) → numerus<u8> ⇥ textus {
+    si datum < 0 ergo iace "sub limine: §"(datum)
+    si datum > meta ergo redde meta ↦ numerus<u8>
+    redde datum ↦ numerus<u8>
+}
+
+functio nomina(Pixel p) → textus {
+    discerne p {
+        casu Opacus fixum nivea { redde "opacus §"(nivea) }
+        casu Vitreus fixum nivea, alpha { redde "vitreus § @ §"(nivea, alpha) }
+        casu Vacuus { redde "vacuus" }
+    }
 }
 
 incipit {
-    fixum numerus v ← saturate(300)
-    nota v
+    fixum _ duplica ← numerus x ∴ x * 2
+    fac {
+        fixum numerus<u8> v ← satura(duplica(150))
+        nota nomina(finge Opacus { nivea = v })
+    }
+    cape err {
+        nota "erratum: §"(err)
+    }
 }

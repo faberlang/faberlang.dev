@@ -1,10 +1,43 @@
-دالة saturate(عدد x) → عدد {
-    إذا x < 0 إذن أعد 0
-    إذا x > 255 إذن أعد 255
-    أعد x
+تمايز Pixel {
+    Opacus {
+        عدد<u8> nivea
+    },
+    Vitreus {
+        عدد<u8> nivea
+        f32 alpha
+    },
+    Vacuus,
+}
+
+دالة satura(عدد datum, عدد meta اختياري عوض 255) → عدد<u8> ⇥ نص {
+    إذا datum < 0 {
+        ارم حرر("sub limine: §", datum)
+    }
+    إذا datum > meta إذن أعد meta ↦ عدد<u8>
+    أعد datum ↦ عدد<u8>
+}
+
+دالة nomina(Pixel p) → نص {
+    طابق p {
+        حالة Opacus ثابت nivea {
+            أعد حرر("opacus §", nivea)
+        }
+        حالة Vitreus ثابت nivea, alpha {
+            أعد حرر("vitreus § @ §", nivea, alpha)
+        }
+        حالة Vacuus {
+            أعد "vacuus"
+        }
+    }
 }
 
 بداية {
-    ثابت عدد v ← saturate(300)
-    اعرض v
+    ثابت (عدد) → عدد duplica ← عدد x ∴ x * 2
+    افعل {
+        ثابت عدد<u8> v ← satura(duplica(150))
+        اعرض nomina(Opacus(v))
+    }
+    التقط err {
+        اعرض حرر("erratum: §", err)
+    }
 }

@@ -1,10 +1,43 @@
-函式 saturate(整數 x) → 整數 {
-    若 x < 0 則 傳回 0
-    若 x > 255 則 傳回 255
-    傳回 x
+分支聯集 Pixel {
+    Opacus {
+        整數<u8> nivea
+    },
+    Vitreus {
+        整數<u8> nivea
+        f32 alpha
+    },
+    Vacuus,
+}
+
+函式 satura(整數 datum, 整數 meta 可選 或取 255) → 整數<u8> ⇥ 文字 {
+    若 datum < 0 {
+        拋出 格式文字("sub limine: §", datum)
+    }
+    若 datum > meta 則 傳回 meta ↦ 整數<u8>
+    傳回 datum ↦ 整數<u8>
+}
+
+函式 nomina(Pixel p) → 文字 {
+    比對 p {
+        分支 Opacus 定值 nivea {
+            傳回 格式文字("opacus §", nivea)
+        }
+        分支 Vitreus 定值 nivea, alpha {
+            傳回 格式文字("vitreus § @ §", nivea, alpha)
+        }
+        分支 Vacuus {
+            傳回 "vacuus"
+        }
+    }
 }
 
 入口 {
-    定值 整數 v ← saturate(300)
-    註記 v
+    定值 (整數) → 整數 duplica ← 整數 x ∴ x * 2
+    執行 {
+        定值 整數<u8> v ← satura(duplica(150))
+        註記 nomina(Opacus(v))
+    }
+    捕捉 err {
+        註記 格式文字("erratum: §", err)
+    }
 }

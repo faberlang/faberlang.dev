@@ -1,10 +1,43 @@
-hàm saturate(số x) → số {
-    nếu x < 0 do_đó trả 0
-    nếu x > 255 do_đó trả 255
-    trả x
+hợp_nhất Pixel {
+    Opacus {
+        số<u8> nivea
+    },
+    Vitreus {
+        số<u8> nivea
+        f32 alpha
+    },
+    Vacuus,
+}
+
+hàm satura(số datum, số meta tự_nguyện hoặc_nếu_rỗng 255) → số<u8> ⇥ văn_bản {
+    nếu datum < 0 {
+        ném văn_bản_hóa("sub limine: §", datum)
+    }
+    nếu datum > meta do_đó trả meta ↦ số<u8>
+    trả datum ↦ số<u8>
+}
+
+hàm nomina(Pixel p) → văn_bản {
+    phân_tích p {
+        trường_hợp Opacus hằng nivea {
+            trả văn_bản_hóa("opacus §", nivea)
+        }
+        trường_hợp Vitreus hằng nivea, alpha {
+            trả văn_bản_hóa("vitreus § @ §", nivea, alpha)
+        }
+        trường_hợp Vacuus {
+            trả "vacuus"
+        }
+    }
 }
 
 bắt_đầu {
-    hằng số v ← saturate(300)
-    ghi_chú v
+    hằng (số) → số duplica ← số x ∴ x * 2
+    làm {
+        hằng số<u8> v ← satura(duplica(150))
+        ghi_chú nomina(Opacus(v))
+    }
+    bắt err {
+        ghi_chú văn_bản_hóa("erratum: §", err)
+    }
 }

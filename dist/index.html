@@ -43,22 +43,57 @@
     </p>
 
     <div class="fl-first">
-      <pre class="fl-src">fn saturate(int x) → int {
-    if x &lt; 0 then return 0
-    if x &gt; 255 then return 255
-    return x
+      <pre class="fl-src">union Pixel {
+    Opacus {
+        int&lt;u8&gt; nivea
+    },
+    Vitreus {
+        int&lt;u8&gt; nivea
+        f32 alpha
+    },
+    Vacuus,
+}
+
+fn satura(int datum, int meta optional coalesce 255) → int&lt;u8&gt; ⇥ string {
+    if datum &lt; 0 {
+        throw format(&quot;sub limine: §&quot;, datum)
+    }
+    if datum &gt; meta then return meta ↦ int&lt;u8&gt;
+    return datum ↦ int&lt;u8&gt;
+}
+
+fn nomina(Pixel p) → string {
+    match p {
+        case Opacus const nivea {
+            return format(&quot;opacus §&quot;, nivea)
+        }
+        case Vitreus const nivea, alpha {
+            return format(&quot;vitreus § @ §&quot;, nivea, alpha)
+        }
+        case Vacuus {
+            return &quot;vacuus&quot;
+        }
+    }
 }
 
 main {
-    const int v ← saturate(300)
-    print v
+    const (int) → int duplica ← int x ∴ x * 2
+    do {
+        const int&lt;u8&gt; v ← satura(duplica(150))
+        print nomina(Opacus(v))
+    }
+    catch err {
+        print format(&quot;erratum: §&quot;, err)
+    }
 }</pre>
       <pre class="fl-run">$ faber run --interpret app
-255</pre>
+opacus 255</pre>
     </div>
     <p class="fl-note">
-      Real output from <code>faber format --reader-locale llm</code>. Same
-      program, seven more readings below.
+      Real output from <code>faber format --reader-locale llm</code> — a tagged
+      union, sized numerics, a typed error channel, defaulted parameters,
+      pattern matching, and a glyph closure. Same program, seven more readings
+      below.
     </p>
 
     <div class="fl-cta">
@@ -101,85 +136,336 @@ main {
     <button class="fdt-tab" role="tab" id="fl-loc-t-ar" data-panel="fl-loc-p-ar" data-name="العربية" aria-controls="fl-loc-p-ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span> <span class="code">ar</span></button>
     <button class="fdt-tab" role="tab" id="fl-loc-t-hi" data-panel="fl-loc-p-hi" data-name="हिन्दी" aria-controls="fl-loc-p-hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span> <span class="code">hi</span></button>
     </div>
-    <div class="fdt-panel active" id="fl-loc-p-llm" role="tabpanel" aria-labelledby="fl-loc-t-llm"><div class="fdt-panel-label"><code>faber format --reader-locale llm</code> <span class="fdt-note">— the model-facing pack — what a model writes, and what an English reader reads today</span></div><pre>fn saturate(int x) → int {
-    if x &lt; 0 then return 0
-    if x &gt; 255 then return 255
-    return x
+    <div class="fdt-panel active" id="fl-loc-p-llm" role="tabpanel" aria-labelledby="fl-loc-t-llm"><div class="fdt-panel-label"><code>faber format --reader-locale llm</code> <span class="fdt-note">— the model-facing pack — what a model writes, and what an English reader reads today</span></div><pre>union Pixel {
+    Opacus {
+        int&lt;u8&gt; nivea
+    },
+    Vitreus {
+        int&lt;u8&gt; nivea
+        f32 alpha
+    },
+    Vacuus,
+}
+
+fn satura(int datum, int meta optional coalesce 255) → int&lt;u8&gt; ⇥ string {
+    if datum &lt; 0 {
+        throw format(&quot;sub limine: §&quot;, datum)
+    }
+    if datum &gt; meta then return meta ↦ int&lt;u8&gt;
+    return datum ↦ int&lt;u8&gt;
+}
+
+fn nomina(Pixel p) → string {
+    match p {
+        case Opacus const nivea {
+            return format(&quot;opacus §&quot;, nivea)
+        }
+        case Vitreus const nivea, alpha {
+            return format(&quot;vitreus § @ §&quot;, nivea, alpha)
+        }
+        case Vacuus {
+            return &quot;vacuus&quot;
+        }
+    }
 }
 
 main {
-    const int v ← saturate(300)
-    print v
+    const (int) → int duplica ← int x ∴ x * 2
+    do {
+        const int&lt;u8&gt; v ← satura(duplica(150))
+        print nomina(Opacus(v))
+    }
+    catch err {
+        print format(&quot;erratum: §&quot;, err)
+    }
 }</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-la" role="tabpanel" aria-labelledby="fl-loc-t-la"><div class="fdt-panel-label"><code>faber format --reader-locale la</code> <span class="fdt-note">— canonical Faber — the classical surface the language is named for</span></div><pre>functio saturate(numerus x) → numerus {
-    si x &lt; 0 ergo redde 0
-    si x &gt; 255 ergo redde 255
-    redde x
+    <div class="fdt-panel" id="fl-loc-p-la" role="tabpanel" aria-labelledby="fl-loc-t-la"><div class="fdt-panel-label"><code>faber format --reader-locale la</code> <span class="fdt-note">— canonical Faber — the classical surface the language is named for</span></div><pre>discretio Pixel {
+    Opacus { numerus&lt;u8&gt; nivea },
+    Vitreus { numerus&lt;u8&gt; nivea, fractus&lt;f32&gt; alpha },
+    Vacuus
+}
+
+functio satura(numerus datum, numerus meta sponte vel 255) → numerus&lt;u8&gt; ⇥ textus {
+    si datum &lt; 0 ergo iace &quot;sub limine: §&quot;(datum)
+    si datum &gt; meta ergo redde meta ↦ numerus&lt;u8&gt;
+    redde datum ↦ numerus&lt;u8&gt;
+}
+
+functio nomina(Pixel p) → textus {
+    discerne p {
+        casu Opacus fixum nivea { redde &quot;opacus §&quot;(nivea) }
+        casu Vitreus fixum nivea, alpha { redde &quot;vitreus § @ §&quot;(nivea, alpha) }
+        casu Vacuus { redde &quot;vacuus&quot; }
+    }
 }
 
 incipit {
-    fixum numerus v ← saturate(300)
-    nota v
+    fixum _ duplica ← numerus x ∴ x * 2
+    fac {
+        fixum numerus&lt;u8&gt; v ← satura(duplica(150))
+        nota nomina(finge Opacus { nivea = v })
+    }
+    cape err {
+        nota &quot;erratum: §&quot;(err)
+    }
 }</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-th-TH" role="tabpanel" aria-labelledby="fl-loc-t-th-TH"><div class="fdt-panel-label"><code>faber format --reader-locale th-TH</code> <span class="fdt-note">— Thai — spaceless script</span></div><pre class="th">ฟังก์ชัน saturate(จำนวน x) → จำนวน {
-    ถ้า x &lt; 0 ดังนั้น คืน 0
-    ถ้า x &gt; 255 ดังนั้น คืน 255
-    คืน x
+    <div class="fdt-panel" id="fl-loc-p-th-TH" role="tabpanel" aria-labelledby="fl-loc-t-th-TH"><div class="fdt-panel-label"><code>faber format --reader-locale th-TH</code> <span class="fdt-note">— Thai — spaceless script</span></div><pre class="th">สหภาพแยก Pixel {
+    Opacus {
+        จำนวน&lt;u8&gt; nivea
+    },
+    Vitreus {
+        จำนวน&lt;u8&gt; nivea
+        f32 alpha
+    },
+    Vacuus,
+}
+
+ฟังก์ชัน satura(จำนวน datum, จำนวน meta สมัครใจ หรือว่าง 255) → จำนวน&lt;u8&gt; ⇥ ข้อความ {
+    ถ้า datum &lt; 0 {
+        โยน จารึก(&quot;sub limine: §&quot;, datum)
+    }
+    ถ้า datum &gt; meta ดังนั้น คืน meta ↦ จำนวน&lt;u8&gt;
+    คืน datum ↦ จำนวน&lt;u8&gt;
+}
+
+ฟังก์ชัน nomina(Pixel p) → ข้อความ {
+    แยก p {
+        กรณี Opacus คงที่ nivea {
+            คืน จารึก(&quot;opacus §&quot;, nivea)
+        }
+        กรณี Vitreus คงที่ nivea, alpha {
+            คืน จารึก(&quot;vitreus § @ §&quot;, nivea, alpha)
+        }
+        กรณี Vacuus {
+            คืน &quot;vacuus&quot;
+        }
+    }
 }
 
 เริ่ม {
-    คงที่ จำนวน v ← saturate(300)
-    บันทึก v
+    คงที่ (จำนวน) → จำนวน duplica ← จำนวน x ∴ x * 2
+    ทำ {
+        คงที่ จำนวน&lt;u8&gt; v ← satura(duplica(150))
+        บันทึก nomina(Opacus(v))
+    }
+    จับ err {
+        บันทึก จารึก(&quot;erratum: §&quot;, err)
+    }
 }</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-zh-Hans" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hans"><div class="fdt-panel-label"><code>faber format --reader-locale zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh">函数 saturate(整数 x) → 整数 {
-    如果 x &lt; 0 则 返回 0
-    如果 x &gt; 255 则 返回 255
-    返回 x
+    <div class="fdt-panel" id="fl-loc-p-zh-Hans" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hans"><div class="fdt-panel-label"><code>faber format --reader-locale zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh">判别 Pixel {
+    Opacus {
+        整数&lt;u8&gt; nivea
+    },
+    Vitreus {
+        整数&lt;u8&gt; nivea
+        f32 alpha
+    },
+    Vacuus,
+}
+
+函数 satura(整数 datum, 整数 meta 可选 兜底 255) → 整数&lt;u8&gt; ⇥ 文本 {
+    如果 datum &lt; 0 {
+        抛错 格式化(&quot;sub limine: §&quot;, datum)
+    }
+    如果 datum &gt; meta 则 返回 meta ↦ 整数&lt;u8&gt;
+    返回 datum ↦ 整数&lt;u8&gt;
+}
+
+函数 nomina(Pixel p) → 文本 {
+    匹配 p {
+        情况 Opacus 常量 nivea {
+            返回 格式化(&quot;opacus §&quot;, nivea)
+        }
+        情况 Vitreus 常量 nivea, alpha {
+            返回 格式化(&quot;vitreus § @ §&quot;, nivea, alpha)
+        }
+        情况 Vacuus {
+            返回 &quot;vacuus&quot;
+        }
+    }
 }
 
 入口 {
-    常量 整数 v ← saturate(300)
-    显示 v
+    常量 (整数) → 整数 duplica ← 整数 x ∴ x * 2
+    执行 {
+        常量 整数&lt;u8&gt; v ← satura(duplica(150))
+        显示 nomina(Opacus(v))
+    }
+    捕获 err {
+        显示 格式化(&quot;erratum: §&quot;, err)
+    }
 }</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-zh-Hant" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hant"><div class="fdt-panel-label"><code>faber format --reader-locale zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh">函式 saturate(整數 x) → 整數 {
-    若 x &lt; 0 則 傳回 0
-    若 x &gt; 255 則 傳回 255
-    傳回 x
+    <div class="fdt-panel" id="fl-loc-p-zh-Hant" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hant"><div class="fdt-panel-label"><code>faber format --reader-locale zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh">分支聯集 Pixel {
+    Opacus {
+        整數&lt;u8&gt; nivea
+    },
+    Vitreus {
+        整數&lt;u8&gt; nivea
+        f32 alpha
+    },
+    Vacuus,
+}
+
+函式 satura(整數 datum, 整數 meta 可選 或取 255) → 整數&lt;u8&gt; ⇥ 文字 {
+    若 datum &lt; 0 {
+        拋出 格式文字(&quot;sub limine: §&quot;, datum)
+    }
+    若 datum &gt; meta 則 傳回 meta ↦ 整數&lt;u8&gt;
+    傳回 datum ↦ 整數&lt;u8&gt;
+}
+
+函式 nomina(Pixel p) → 文字 {
+    比對 p {
+        分支 Opacus 定值 nivea {
+            傳回 格式文字(&quot;opacus §&quot;, nivea)
+        }
+        分支 Vitreus 定值 nivea, alpha {
+            傳回 格式文字(&quot;vitreus § @ §&quot;, nivea, alpha)
+        }
+        分支 Vacuus {
+            傳回 &quot;vacuus&quot;
+        }
+    }
 }
 
 入口 {
-    定值 整數 v ← saturate(300)
-    註記 v
+    定值 (整數) → 整數 duplica ← 整數 x ∴ x * 2
+    執行 {
+        定值 整數&lt;u8&gt; v ← satura(duplica(150))
+        註記 nomina(Opacus(v))
+    }
+    捕捉 err {
+        註記 格式文字(&quot;erratum: §&quot;, err)
+    }
 }</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-vi" role="tabpanel" aria-labelledby="fl-loc-t-vi"><div class="fdt-panel-label"><code>faber format --reader-locale vi</code> <span class="fdt-note">— Vietnamese</span></div><pre>hàm saturate(số x) → số {
-    nếu x &lt; 0 do_đó trả 0
-    nếu x &gt; 255 do_đó trả 255
-    trả x
+    <div class="fdt-panel" id="fl-loc-p-vi" role="tabpanel" aria-labelledby="fl-loc-t-vi"><div class="fdt-panel-label"><code>faber format --reader-locale vi</code> <span class="fdt-note">— Vietnamese</span></div><pre>hợp_nhất Pixel {
+    Opacus {
+        số&lt;u8&gt; nivea
+    },
+    Vitreus {
+        số&lt;u8&gt; nivea
+        f32 alpha
+    },
+    Vacuus,
+}
+
+hàm satura(số datum, số meta tự_nguyện hoặc_nếu_rỗng 255) → số&lt;u8&gt; ⇥ văn_bản {
+    nếu datum &lt; 0 {
+        ném văn_bản_hóa(&quot;sub limine: §&quot;, datum)
+    }
+    nếu datum &gt; meta do_đó trả meta ↦ số&lt;u8&gt;
+    trả datum ↦ số&lt;u8&gt;
+}
+
+hàm nomina(Pixel p) → văn_bản {
+    phân_tích p {
+        trường_hợp Opacus hằng nivea {
+            trả văn_bản_hóa(&quot;opacus §&quot;, nivea)
+        }
+        trường_hợp Vitreus hằng nivea, alpha {
+            trả văn_bản_hóa(&quot;vitreus § @ §&quot;, nivea, alpha)
+        }
+        trường_hợp Vacuus {
+            trả &quot;vacuus&quot;
+        }
+    }
 }
 
 bắt_đầu {
-    hằng số v ← saturate(300)
-    ghi_chú v
+    hằng (số) → số duplica ← số x ∴ x * 2
+    làm {
+        hằng số&lt;u8&gt; v ← satura(duplica(150))
+        ghi_chú nomina(Opacus(v))
+    }
+    bắt err {
+        ghi_chú văn_bản_hóa(&quot;erratum: §&quot;, err)
+    }
 }</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-ar" role="tabpanel" aria-labelledby="fl-loc-t-ar"><div class="fdt-panel-label"><code>faber format --reader-locale ar</code> <span class="fdt-note">— Arabic — right-to-left, bidi isolated</span></div><pre class="ar" dir="rtl">دالة saturate(عدد x) → عدد {
-    إذا x &lt; 0 إذن أعد 0
-    إذا x &gt; 255 إذن أعد 255
-    أعد x
+    <div class="fdt-panel" id="fl-loc-p-ar" role="tabpanel" aria-labelledby="fl-loc-t-ar"><div class="fdt-panel-label"><code>faber format --reader-locale ar</code> <span class="fdt-note">— Arabic — right-to-left, bidi isolated</span></div><pre class="ar" dir="rtl">تمايز Pixel {
+    Opacus {
+        عدد&lt;u8&gt; nivea
+    },
+    Vitreus {
+        عدد&lt;u8&gt; nivea
+        f32 alpha
+    },
+    Vacuus,
+}
+
+دالة satura(عدد datum, عدد meta اختياري عوض 255) → عدد&lt;u8&gt; ⇥ نص {
+    إذا datum &lt; 0 {
+        ارم حرر(&quot;sub limine: §&quot;, datum)
+    }
+    إذا datum &gt; meta إذن أعد meta ↦ عدد&lt;u8&gt;
+    أعد datum ↦ عدد&lt;u8&gt;
+}
+
+دالة nomina(Pixel p) → نص {
+    طابق p {
+        حالة Opacus ثابت nivea {
+            أعد حرر(&quot;opacus §&quot;, nivea)
+        }
+        حالة Vitreus ثابت nivea, alpha {
+            أعد حرر(&quot;vitreus § @ §&quot;, nivea, alpha)
+        }
+        حالة Vacuus {
+            أعد &quot;vacuus&quot;
+        }
+    }
 }
 
 بداية {
-    ثابت عدد v ← saturate(300)
-    اعرض v
+    ثابت (عدد) → عدد duplica ← عدد x ∴ x * 2
+    افعل {
+        ثابت عدد&lt;u8&gt; v ← satura(duplica(150))
+        اعرض nomina(Opacus(v))
+    }
+    التقط err {
+        اعرض حرر(&quot;erratum: §&quot;, err)
+    }
 }</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-hi" role="tabpanel" aria-labelledby="fl-loc-t-hi"><div class="fdt-panel-label"><code>faber format --reader-locale hi</code> <span class="fdt-note">— Hindi — Devanagari</span></div><pre class="hi">फलन saturate(संख्या x) → संख्या {
-    यदि x &lt; 0 अतः लौटाओ 0
-    यदि x &gt; 255 अतः लौटाओ 255
-    लौटाओ x
+    <div class="fdt-panel" id="fl-loc-p-hi" role="tabpanel" aria-labelledby="fl-loc-t-hi"><div class="fdt-panel-label"><code>faber format --reader-locale hi</code> <span class="fdt-note">— Hindi — Devanagari</span></div><pre class="hi">विभेद Pixel {
+    Opacus {
+        संख्या&lt;u8&gt; nivea
+    },
+    Vitreus {
+        संख्या&lt;u8&gt; nivea
+        f32 alpha
+    },
+    Vacuus,
+}
+
+फलन satura(संख्या datum, संख्या meta स्वेच्छा डिफ़ॉल्ट 255) → संख्या&lt;u8&gt; ⇥ पाठ {
+    यदि datum &lt; 0 {
+        इधरफेंको लिखित(&quot;sub limine: §&quot;, datum)
+    }
+    यदि datum &gt; meta अतः लौटाओ meta ↦ संख्या&lt;u8&gt;
+    लौटाओ datum ↦ संख्या&lt;u8&gt;
+}
+
+फलन nomina(Pixel p) → पाठ {
+    मिलाओ p {
+        स्थिति Opacus स्थिर nivea {
+            लौटाओ लिखित(&quot;opacus §&quot;, nivea)
+        }
+        स्थिति Vitreus स्थिर nivea, alpha {
+            लौटाओ लिखित(&quot;vitreus § @ §&quot;, nivea, alpha)
+        }
+        स्थिति Vacuus {
+            लौटाओ &quot;vacuus&quot;
+        }
+    }
 }
 
 आरंभ {
-    स्थिर संख्या v ← saturate(300)
-    दिखाओ v
+    स्थिर (संख्या) → संख्या duplica ← संख्या x ∴ x * 2
+    करो {
+        स्थिर संख्या&lt;u8&gt; v ← satura(duplica(150))
+        दिखाओ nomina(Opacus(v))
+    }
+    पकड़ो err {
+        दिखाओ लिखित(&quot;erratum: §&quot;, err)
+    }
 }</pre></div>
   </div>
     <p class="fl-note">
@@ -204,6 +490,14 @@ bắt_đầu {
 functio scala(fractus&lt;f32&gt; x) → fractus&lt;f32&gt; {
     redde x + 1.0
 }</pre>
+      <p class="fl-note">
+        WebAssembly is absent from these tabs on purpose. This program uses
+        <code>numerus&lt;u8&gt;</code>, and the MIR-to-WASM backend does not yet
+        accept sized numerics, so it fails closed rather than emitting
+        something wrong. That is what the
+        <a href="/en-US/toolchain/target-matrix.html">target matrix</a>
+        measures.
+      </p>
     </div>
   <div class="faber-demo-tabs fdt-hero" data-fdt>
     <div class="fdt-bar">
@@ -216,7 +510,6 @@ functio scala(fractus&lt;f32&gt; x) → fractus&lt;f32&gt; {
     <button class="fdt-tab" role="tab" id="fl-tgt-t-go" data-panel="fl-tgt-p-go" data-name="Go" aria-controls="fl-tgt-p-go" aria-selected="false" tabindex="-1">Go <span class="code">go</span></button>
     <button class="fdt-tab" role="tab" id="fl-tgt-t-ts" data-panel="fl-tgt-p-ts" data-name="TypeScript" aria-controls="fl-tgt-p-ts" aria-selected="false" tabindex="-1">TypeScript <span class="code">ts</span></button>
     <button class="fdt-tab" role="tab" id="fl-tgt-t-llvm-text" data-panel="fl-tgt-p-llvm-text" data-name="LLVM IR" aria-controls="fl-tgt-p-llvm-text" aria-selected="false" tabindex="-1">LLVM IR <span class="code">llvm-text</span></button>
-    <button class="fdt-tab" role="tab" id="fl-tgt-t-wasm-text" data-panel="fl-tgt-p-wasm-text" data-name="WebAssembly" aria-controls="fl-tgt-p-wasm-text" aria-selected="false" tabindex="-1">WebAssembly <span class="code">wasm-text</span></button>
     <button class="fdt-tab" role="tab" id="fl-tgt-t-wgsl-text" data-panel="fl-tgt-p-wgsl-text" data-name="WGSL" aria-controls="fl-tgt-p-wgsl-text" aria-selected="false" tabindex="-1">WGSL <span class="code">wgsl-text</span></button>
     <button class="fdt-tab" role="tab" id="fl-tgt-t-metal-text" data-panel="fl-tgt-p-metal-text" data-name="Metal" aria-controls="fl-tgt-p-metal-text" aria-selected="false" tabindex="-1">Metal <span class="code">metal-text</span></button>
     </div>
@@ -224,55 +517,310 @@ functio scala(fractus&lt;f32&gt; x) → fractus&lt;f32&gt; {
 // Requires the faber language-runtime crate (add to Cargo.toml):
 //   faber = { path = &quot;../faber&quot; }  # adjust path for your layout
 
-fn saturate(x: i64) -&gt; i64 {
-    if x &lt; 0 {
-        return 0;
+#[derive(Clone, Debug)]
+pub enum Pixel {
+    Opacus {
+        nivea: u8,
+    },
+    Vitreus {
+        nivea: u8,
+        alpha: f32,
+    },
+    Vacuus,
+}
+
+fn satura(datum: i64, meta: i64) -&gt; Result&lt;u8, String&gt; {
+    if datum &lt; 0 {
+        return Err(format!(&quot;{}&quot;, format!(&quot;sub limine: {}&quot;, datum)));
     };
-    if x &gt; 255 {
-        return 255;
+    if datum &gt; meta {
+        return Ok(meta as u8);
     };
-    return x;
+    return Ok(datum as u8);
+}
+
+fn nomina(p: Pixel) -&gt; String {
+    match p {
+        Pixel::Opacus { nivea } =&gt; {
+            return format!(&quot;opacus {}&quot;, nivea);
+        },
+        Pixel::Vitreus { nivea, alpha } =&gt; {
+            return format!(&quot;vitreus {} @ {}&quot;, nivea, faber::display_fractus(alpha));
+        },
+        Pixel::Vacuus =&gt; {
+            return &quot;vacuus&quot;.to_string();
+        },
+    };
 }
 
 fn main() {
-    let v: i64 = saturate(300);
-    println!(&quot;{}&quot;, v);
+    let duplica: fn(i64) -&gt; i64 = |x| (i64::checked_mul(x, 2).expect(&quot;numerus overflow&quot;));
+    match { let ok: Result&lt;(), String&gt; = &#x27;fac_result: {
+    loop {
+        let v: u8 = match satura(duplica(150), 255) { Ok(fac_value) =&gt; fac_value, Err(fac_err) =&gt; break &#x27;fac_result Err(fac_err) };
+        println!(&quot;{}&quot;, nomina(Pixel::Opacus { nivea: v }));
+    break;
+    }Ok(())
+    }; ok } { Ok(ok) =&gt; ok, Err(err) =&gt; {
+        let err = err;
+        println!(&quot;{}&quot;, format!(&quot;erratum: {}&quot;, err));
+        ()} };
 }</pre></div>
     <div class="fdt-panel" id="fl-tgt-p-go" role="tabpanel" aria-labelledby="fl-tgt-t-go"><div class="fdt-panel-label"><code>radix emit --target go main.fab</code> <span class="fdt-note">— file emission</span></div><pre>// Generated by radix - do not edit
 
 package main
 
-import &quot;fmt&quot;
+import (
+    &quot;fmt&quot;
+    &quot;strconv&quot;
+    &quot;strings&quot;
+)
 
-func saturate(x int) int {
-    if (x &lt; 0) {
-        return 0
+type Pixel interface {
+    isPixel()
+}
+
+type Opacus struct {
+    Nivea uint8
+}
+func (Opacus) isPixel() {}
+
+type Vitreus struct {
+    Nivea uint8
+    Alpha float32
+}
+func (Vitreus) isPixel() {}
+
+type Vacuus struct {
+}
+func (Vacuus) isPixel() {}
+
+func satura(datum int, meta int) (uint8, error) {
+    if (datum &lt; 0) {
+        return 0, fmt.Errorf(&quot;%v&quot;, fmt.Sprintf(&quot;sub limine: %v&quot;, datum))
     }
-    if (x &gt; 255) {
-        return 255
+    if (datum &gt; meta) {
+        return uint8(meta), nil
     }
-    return x
+    return uint8(datum), nil
+}
+
+func nomina(p Pixel) string {
+    switch __radixCase := any(p).(type) {
+        case Opacus:
+            nivea := __radixCase.Nivea
+            {
+                return fmt.Sprintf(&quot;opacus %v&quot;, nivea)
+            }
+        case Vitreus:
+            nivea := __radixCase.Nivea
+            alpha := __radixCase.Alpha
+            {
+                return fmt.Sprintf(&quot;vitreus %v @ %v&quot;, nivea, func(v float64) string { s := strconv.FormatFloat(v, &#x27;f&#x27;, -1, 64); if !strings.ContainsAny(s, &quot;.eE&quot;) { return s + &quot;.0&quot; }; return s }(float64(alpha)))
+            }
+        case Vacuus:
+            {
+                return &quot;vacuus&quot;
+            }
+        default:
+            panic(&quot;non-exhaustive discerne&quot;)
+    }
 }
 
 func main() {
-    v := saturate(300)
-    fmt.Println(v)
+    duplica := func(x int) int { return func() int { left := x; right := 2; max := int(^uint(0) &gt;&gt; 1); min := -max - 1; if (left &gt; 0 &amp;&amp; ((right &gt; 0 &amp;&amp; left &gt; max/right) || (right &lt; 0 &amp;&amp; right &lt; min/left))) || (left &lt; 0 &amp;&amp; ((right &gt; 0 &amp;&amp; left &lt; min/right) || (right &lt; 0 &amp;&amp; left &lt; max/right))) { panic(&quot;numerus overflow&quot;) }; return left * right }() }
+    t1000010Err := func() error {
+        v, err := satura(duplica(150), 255)
+        if err != nil {
+            return err
+        }
+        fmt.Println(nomina(Opacus{Nivea: v}))
+        return nil
+    }()
+    if t1000010Err != nil {
+        err := t1000010Err
+        fmt.Println(fmt.Sprintf(&quot;erratum: %v&quot;, err))
+    }
 }</pre></div>
-    <div class="fdt-panel" id="fl-tgt-p-ts" role="tabpanel" aria-labelledby="fl-tgt-t-ts"><div class="fdt-panel-label"><code>radix emit --target ts main.fab</code> <span class="fdt-note">— file emission</span></div><pre>// … 129 lines of generated display/runtime shim elided …
+    <div class="fdt-panel" id="fl-tgt-p-ts" role="tabpanel" aria-labelledby="fl-tgt-t-ts"><div class="fdt-panel-label"><code>radix emit --target ts main.fab</code> <span class="fdt-note">— file emission</span></div><pre>// Generated by radix - do not edit
 
-function saturate(x: number): number {
-    if ((x &lt; 0)) {
-        return 0;
+type FaberResult&lt;T, E&gt; = { ok: true; value: T } | { ok: false; error: E };
+
+type FaberDisplayHint =
+      &quot;unknown&quot;
+    | &quot;textus&quot;
+    | &quot;ascii&quot;
+    | &quot;numerus&quot;
+    | &quot;fractus&quot;
+    | &quot;bivalens&quot;
+    | &quot;nihil&quot;
+    | &quot;vacuum&quot;
+    | &quot;valor&quot;
+    | &quot;instans&quot;
+    | &quot;regex&quot;
+    | { kind: &quot;nullable&quot;; inner: FaberDisplayHint }
+    | { kind: &quot;lista&quot;; element: FaberDisplayHint }
+    | { kind: &quot;tensor&quot;; element: FaberDisplayHint }
+    | { kind: &quot;sparsa&quot;; element: FaberDisplayHint }
+    | { kind: &quot;map&quot;; key: FaberDisplayHint; value: FaberDisplayHint }
+    | { kind: &quot;set&quot;; element: FaberDisplayHint }
+;
+
+function __faberDisplay(value: any, hint: FaberDisplayHint = &quot;unknown&quot;): string {
+    if (typeof hint === &quot;object&quot;) {
+        if (hint.kind === &quot;nullable&quot;) {
+            return value === null || value === undefined ? &quot;nihil&quot; : __faberDisplay(value, hint.inner);
+        }
+        if (hint.kind === &quot;lista&quot;) { return __faberDisplayList(value, hint.element); }
+        if (hint.kind === &quot;tensor&quot;) { return __faberDisplayTensor(value, hint.element); }
+        if (hint.kind === &quot;sparsa&quot;) { return __faberDisplaySparsa(value, hint.element); }
+        if (hint.kind === &quot;map&quot;) { return __faberDisplayMap(value, hint.key, hint.value); }
+        return __faberDisplayList(value, hint.element);
     }
-    if ((x &gt; 255)) {
-        return 255;
+    if (value === null || value === undefined) {
+        return hint === &quot;vacuum&quot; ? &quot;vacuum&quot; : &quot;nihil&quot;;
     }
-    return x;
+    switch (hint) {
+        case &quot;bivalens&quot;: return value ? &quot;verum&quot; : &quot;falsum&quot;;
+        case &quot;fractus&quot;: return __faberDisplayFractus(value);
+        case &quot;nihil&quot;: return &quot;nihil&quot;;
+        case &quot;vacuum&quot;: return &quot;vacuum&quot;;
+        case &quot;valor&quot;: return __faberDisplayValor(value);
+        case &quot;regex&quot;: return String(value);
+        case &quot;textus&quot;:
+        case &quot;ascii&quot;:
+        case &quot;instans&quot;:
+        case &quot;numerus&quot;: return String(value);
+        default: return __faberDisplayValor(value);
+    }
+}
+
+function __faberDisplayFractus(value: any): string {
+    const n = Number(value);
+    if (!Number.isFinite(n)) { return String(value); }
+    return Number.isInteger(n) ? `${n}.0` : String(n);
+}
+
+function __faberDisplayList(value: any, element: FaberDisplayHint): string {
+    if (value === null || value === undefined) { return &quot;nihil&quot;; }
+    return `[${Array.from(value as Array&lt;any&gt;).map((item) =&gt; __faberDisplay(item, element)).join(&quot;, &quot;)}]`;
+}
+
+function __faberDisplayTensor(value: any, element: FaberDisplayHint): string {
+    if (value === null || value === undefined) { return &quot;nihil&quot;; }
+    if (typeof value.planata === &quot;function&quot;) { return __faberDisplayList(value.planata(), element); }
+    if (Array.isArray(value.data)) { return __faberDisplayList(value.data, element); }
+    return __faberDisplayValor(value);
+}
+
+function __faberDisplaySparsa(value: any, element: FaberDisplayHint): string {
+    if (value === null || value === undefined) { return &quot;nihil&quot;; }
+    if (typeof value.densata === &quot;function&quot;) { return __faberDisplayTensor(value.densata(), element); }
+    return __faberDisplayValor(value);
+}
+
+function __faberDisplayMap(value: any, keyHint: FaberDisplayHint, valueHint: FaberDisplayHint): string {
+    if (value === null || value === undefined) { return &quot;nihil&quot;; }
+    const entries = value instanceof Map ? Array.from(value.entries()) : Object.entries(value);
+    return `{${entries.map(([key, item]) =&gt; `${JSON.stringify(__faberDisplay(key, keyHint))}: ${__faberDisplay(item, valueHint)}`).join(&quot;, &quot;)}}`;
+}
+
+function __faberDisplayValor(value: any): string {
+    if (value !== null &amp;&amp; typeof value === &quot;object&quot; &amp;&amp; typeof value.__faberValorTag === &quot;string&quot;) { return __faberDisplayTaggedValor(value); }
+    if (value === null || value === undefined) { return &quot;nihil&quot;; }
+    if (typeof value === &quot;boolean&quot;) { return value ? &quot;verum&quot; : &quot;falsum&quot;; }
+    if (typeof value === &quot;number&quot;) { return String(value); }
+    if (typeof value === &quot;string&quot;) { return value; }
+    if (Array.isArray(value)) { return __faberDisplayList(value, &quot;valor&quot;); }
+    if (typeof value.text === &quot;function&quot;) { return String(value.text()); }
+    if (typeof value.toString === &quot;function&quot; &amp;&amp; value.toString !== Object.prototype.toString) { return String(value); }
+    return __faberDisplayMap(value, &quot;textus&quot;, &quot;valor&quot;);
+}
+
+function __faberDisplayTaggedValor(value: any): string {
+    const payload = value.__faberValorPayload;
+    switch (value.__faberValorTag) {
+        case &quot;Nihil&quot;: return &quot;Nihil&quot;;
+        case &quot;Bivalens&quot;: return `Bivalens(${payload})`;
+        case &quot;Numerus&quot;: return `Numerus(${payload})`;
+        case &quot;Fractus&quot;: return `Fractus(${__faberDisplayFractus(payload)})`;
+        case &quot;Textus&quot;: return `Textus(${JSON.stringify(String(payload))})`;
+        case &quot;Instans&quot;: return `Instans(${JSON.stringify(String(payload))})`;
+        case &quot;Octeti&quot;: return `Octeti(${JSON.stringify(payload)})`;
+        case &quot;Lista&quot;: return `Lista(${__faberDisplayValorPayloadList(payload)})`;
+        case &quot;Tabula&quot;: return `Tabula(${__faberDisplayValorPayloadMap(payload)})`;
+        default: return __faberDisplayValor(payload);
+    }
+}
+
+function __faberDisplayValorPayload(value: any): string {
+    if (value === null || value === undefined) { return &quot;Nihil&quot;; }
+    if (typeof value === &quot;boolean&quot;) { return `Bivalens(${value})`; }
+    if (typeof value === &quot;number&quot;) { return `${Number.isInteger(value) ? &quot;Numerus&quot; : &quot;Fractus&quot;}(${Number.isInteger(value) ? value : __faberDisplayFractus(value)})`; }
+    if (typeof value === &quot;string&quot;) { return `Textus(${JSON.stringify(value)})`; }
+    if (Array.isArray(value)) { return `Lista(${__faberDisplayValorPayloadList(value)})`; }
+    if (typeof value.planata === &quot;function&quot;) { return `Lista(${__faberDisplayValorPayloadList(value.planata())})`; }
+    if (typeof value.text === &quot;function&quot;) { return `Instans(${JSON.stringify(String(value.text()))})`; }
+    return `Tabula(${__faberDisplayValorPayloadMap(value)})`;
+}
+
+function __faberDisplayValorPayloadList(value: any): string {
+    return `[${Array.from(value as Array&lt;any&gt;).map((item) =&gt; __faberDisplayValorPayload(item)).join(&quot;, &quot;)}]`;
+}
+
+function __faberDisplayValorPayloadMap(value: any): string {
+    const entries = value instanceof Map ? Array.from(value.entries()) : Object.entries(value);
+    return `{${entries.map(([key, item]) =&gt; `${JSON.stringify(String(key))}: ${__faberDisplayValorPayload(item)}`).join(&quot;, &quot;)}}`;
+}
+
+type Pixel = { tag: &quot;Opacus&quot;, nivea: number } | { tag: &quot;Vitreus&quot;, nivea: number, alpha: number } | { tag: &quot;Vacuus&quot; };
+function Opacus(nivea: number): Pixel { return { tag: &quot;Opacus&quot;, nivea }; }
+function Vitreus(nivea: number, alpha: number): Pixel { return { tag: &quot;Vitreus&quot;, nivea, alpha }; }
+const Vacuus: Pixel = { tag: &quot;Vacuus&quot; };
+
+function satura(datum: number, meta: number = 255): FaberResult&lt;number, string&gt; {
+    if ((datum &lt; 0)) {
+        return { ok: false as const, error: `sub limine: ${datum}` };
+    }
+    if ((datum &gt; meta)) {
+        return { ok: true as const, value: meta };
+    }
+    return { ok: true as const, value: datum };
+}
+function nomina(p: Pixel): string {
+    {
+        let t37: Pixel = ((value: Pixel): Pixel =&gt; value)(p);
+        if (t37.tag === &quot;Opacus&quot;) {
+            const nivea = t37.nivea;
+            return `opacus ${nivea}`;
+        }
+        else if (t37.tag === &quot;Vitreus&quot;) {
+            const nivea = t37.nivea;
+            const alpha = t37.alpha;
+            return `vitreus ${nivea} @ ${alpha}`;
+        }
+        else if (t37.tag === &quot;Vacuus&quot;) {
+            return &quot;vacuus&quot;;
+        }
+        else {
+            throw new Error(&quot;non-exhaustive discerne&quot;);
+        }}
 }
 (() =&gt; {
     {
-        const v: number = saturate(300);
-        console.log(__faberDisplay(v, &quot;numerus&quot;));
+        const duplica: (p1: number) =&gt; number = (x: number) =&gt; (x * 2);
+        const t64: FaberResult&lt;any, string&gt; = (() =&gt; { const t46 = satura(duplica(150));
+        if (!t46.ok) {
+            return { ok: false as const, error: t46.error };
+        }
+        const v: number = t46.value;
+         console.log(__faberDisplay(nomina(Opacus(v)), &quot;textus&quot;));
+         return { ok: true as const, value: undefined }; })();
+        if (!t64.ok) {
+            const err = t64.error;
+            {
+                console.log(__faberDisplay(`erratum: ${err}`, &quot;textus&quot;));
+            }}
     }})();</pre></div>
     <div class="fdt-panel" id="fl-tgt-p-llvm-text" role="tabpanel" aria-labelledby="fl-tgt-t-llvm-text"><div class="fdt-panel-label"><code>radix emit --target llvm-text main.fab</code> <span class="fdt-note">— native code with no source language in between</span></div><pre>; Generated by radix MIR LLVM IR probe - experimental artifact.
 %FaberRtSliceV1 = type { ptr, i64 }
@@ -282,18 +830,51 @@ function saturate(x: number): number {
 @__faber_rt_v1_context = internal global ptr null
 @__faber_rt_v1_status = internal global i32 0
 declare void @__faber_rt_v1_fatal(ptr, %FaberRtSliceV1) noreturn
+; @literal-data __faber_text_literal_text_11_65_72_72_61_74_75_6d_3a_20_c2_a7 family=text family_index=0 family_index_count=1 family_count=1 representation=static-byte-data representation_index=0 representation_index_count=1 representation_count=1 byte_data_schema_version=1 encoding=utf8 byte_data_schema_version_index=0 byte_data_schema_version_index_count=1 encoding_index=0 encoding_index_count=1 byte_data_schema_version_count=1 encoding_count=1 layout=&quot;[12 x i8]&quot; bytes=12 payload_bytes=11 layout_index=0 layout_index_count=1 payload_byte_index=0 payload_byte_index_count=1 payload_byte_count=1 layout_count=1 byte_length_count=1 terminator_bytes=1 terminator_byte_index=0 terminator_byte_index_count=1 terminator_byte_count=1 terminator_policy_index=0 terminator_policy_index_count=1 terminator_policy_count=1 null_terminated_index=0 null_terminated_index_count=1 null_terminated=true null_terminated_count=1 mutability_index=0 mutability_index_count=1 mutability=&quot;constant&quot; mutability_count=1 pointer_policy_index=0 pointer_policy_index_count=1 pointer_policy=&quot;gep-nonempty-direct-empty&quot; pointer_policy_count=1 linkage_index=0 linkage_index_count=1 linkage=&quot;linkonce_odr unnamed_addr constant&quot; linkage_count=1 alignment_index=0 alignment_index_count=1 alignment=&quot;align 1&quot; alignment_count=1
+@__faber_text_literal_text_11_65_72_72_61_74_75_6d_3a_20_c2_a7 = linkonce_odr unnamed_addr constant [12 x i8] c&quot;erratum: \C2\A7\00&quot;, align 1
+; @literal-object __faber_text_literal_text_11_65_72_72_61_74_75_6d_3a_20_c2_a7_object family=text family_index=0 family_index_count=1 family_count=1 representation=static-descriptor representation_count=1 descriptor_schema_version=1 descriptor_schema_version_count=1 layout=&quot;{ ptr, i64 }&quot; layout_count=1 byte_len=16 byte_len_count=1 abi_align=8 abi_align_count=1 field_types=ptr,i64 field_type_count=2 field_sizes=8,8 field_size_count=2 field_alignments=8,8 field_alignment_count=2 field_offsets=0,8 field_offset_count=2 field_end_offsets=8,16 field_end_offset_count=2 pointer_fields=data pointer_field_indexes=data:0 pointer_field_index_count=1 pointer_field_count=1 pointer_address_spaces=data:0 pointer_address_space_count=1 pointer_target_families=data:unknown pointer_target_family_indexes=data:0:unknown pointer_target_family_index_count=1 pointer_target_family_count=1 pointer_target_terminators=none pointer_target_terminator_indexes=none pointer_target_terminator_index_count=0 pointer_target_terminator_count=0 pointer_target_byte_lens=none pointer_target_byte_len_indexes=none pointer_target_byte_len_index_count=0 pointer_target_byte_len_count=0 length_fields=none length_field_indexes=none length_field_index_count=0 length_field_count=0 pointer_length_fields=none pointer_length_field_indexes=none pointer_length_field_index_count=0 pointer_length_field_count=0 fields=data,len field_indexes=data:0,len:1 field_index_count=2 field_count=2 nullable_fields=none nullable_field_indexes=none nullable_field_index_count=0 nullable_field_count=0 null_sentinels=none null_sentinel_indexes=none null_sentinel_index_count=0 null_sentinel_count=0 pointer_policy=&quot;direct-global-symbol&quot; pointer_policy_count=1 storage_policy=&quot;static-descriptor-global&quot; storage_policy_count=1 mutability=&quot;constant&quot; mutability_count=1 linkage=&quot;linkonce_odr unnamed_addr constant&quot; linkage_count=1 alignment=&quot;align 8&quot; alignment_count=1
+@__faber_text_literal_text_11_65_72_72_61_74_75_6d_3a_20_c2_a7_object = linkonce_odr unnamed_addr constant { ptr, i64 } { ptr getelementptr inbounds ([12 x i8], ptr @__faber_text_literal_text_11_65_72_72_61_74_75_6d_3a_20_c2_a7, i64 0, i64 0), i64 11 }, align 8
+; @literal-data __faber_text_literal_text_14_73_75_62_20_6c_69_6d_69_6e_65_3a_20_c2_a7 family=text family_index=0 family_index_count=1 family_count=1 representation=static-byte-data representation_index=0 representation_index_count=1 representation_count=1 byte_data_schema_version=1 encoding=utf8 byte_data_schema_version_index=0 byte_data_schema_version_index_count=1 encoding_index=0 encoding_index_count=1 byte_data_schema_version_count=1 encoding_count=1 layout=&quot;[15 x i8]&quot; bytes=15 payload_bytes=14 layout_index=0 layout_index_count=1 payload_byte_index=0 payload_byte_index_count=1 payload_byte_count=1 layout_count=1 byte_length_count=1 terminator_bytes=1 terminator_byte_index=0 terminator_byte_index_count=1 terminator_byte_count=1 terminator_policy_index=0 terminator_policy_index_count=1 terminator_policy_count=1 null_terminated_index=0 null_terminated_index_count=1 null_terminated=true null_terminated_count=1 mutability_index=0 mutability_index_count=1 mutability=&quot;constant&quot; mutability_count=1 pointer_policy_index=0 pointer_policy_index_count=1 pointer_policy=&quot;gep-nonempty-direct-empty&quot; pointer_policy_count=1 linkage_index=0 linkage_index_count=1 linkage=&quot;linkonce_odr unnamed_addr constant&quot; linkage_count=1 alignment_index=0 alignment_index_count=1 alignment=&quot;align 1&quot; alignment_count=1
+@__faber_text_literal_text_14_73_75_62_20_6c_69_6d_69_6e_65_3a_20_c2_a7 = linkonce_odr unnamed_addr constant [15 x i8] c&quot;sub limine: \C2\A7\00&quot;, align 1
+; @literal-object __faber_text_literal_text_14_73_75_62_20_6c_69_6d_69_6e_65_3a_20_c2_a7_object family=text family_index=0 family_index_count=1 family_count=1 representation=static-descriptor representation_count=1 descriptor_schema_version=1 descriptor_schema_version_count=1 layout=&quot;{ ptr, i64 }&quot; layout_count=1 byte_len=16 byte_len_count=1 abi_align=8 abi_align_count=1 field_types=ptr,i64 field_type_count=2 field_sizes=8,8 field_size_count=2 field_alignments=8,8 field_alignment_count=2 field_offsets=0,8 field_offset_count=2 field_end_offsets=8,16 field_end_offset_count=2 pointer_fields=data pointer_field_indexes=data:0 pointer_field_index_count=1 pointer_field_count=1 pointer_address_spaces=data:0 pointer_address_space_count=1 pointer_target_families=data:unknown pointer_target_family_indexes=data:0:unknown pointer_target_family_index_count=1 pointer_target_family_count=1 pointer_target_terminators=none pointer_target_terminator_indexes=none pointer_target_terminator_index_count=0 pointer_target_terminator_count=0 pointer_target_byte_lens=none pointer_target_byte_len_indexes=none pointer_target_byte_len_index_count=0 pointer_target_byte_len_count=0 length_fields=none length_field_indexes=none length_field_index_count=0 length_field_count=0 pointer_length_fields=none pointer_length_field_indexes=none pointer_length_field_index_count=0 pointer_length_field_count=0 fields=data,len field_indexes=data:0,len:1 field_index_count=2 field_count=2 nullable_fields=none nullable_field_indexes=none nullable_field_index_count=0 nullable_field_count=0 null_sentinels=none null_sentinel_indexes=none null_sentinel_index_count=0 null_sentinel_count=0 pointer_policy=&quot;direct-global-symbol&quot; pointer_policy_count=1 storage_policy=&quot;static-descriptor-global&quot; storage_policy_count=1 mutability=&quot;constant&quot; mutability_count=1 linkage=&quot;linkonce_odr unnamed_addr constant&quot; linkage_count=1 alignment=&quot;align 8&quot; alignment_count=1
+@__faber_text_literal_text_14_73_75_62_20_6c_69_6d_69_6e_65_3a_20_c2_a7_object = linkonce_odr unnamed_addr constant { ptr, i64 } { ptr getelementptr inbounds ([15 x i8], ptr @__faber_text_literal_text_14_73_75_62_20_6c_69_6d_69_6e_65_3a_20_c2_a7, i64 0, i64 0), i64 14 }, align 8
+; @literal-data __faber_text_literal_text_15_76_69_74_72_65_75_73_20_c2_a7_20_40_20_c2_a7 family=text family_index=0 family_index_count=1 family_count=1 representation=static-byte-data representation_index=0 representation_index_count=1 representation_count=1 byte_data_schema_version=1 encoding=utf8 byte_data_schema_version_index=0 byte_data_schema_version_index_count=1 encoding_index=0 encoding_index_count=1 byte_data_schema_version_count=1 encoding_count=1 layout=&quot;[16 x i8]&quot; bytes=16 payload_bytes=15 layout_index=0 layout_index_count=1 payload_byte_index=0 payload_byte_index_count=1 payload_byte_count=1 layout_count=1 byte_length_count=1 terminator_bytes=1 terminator_byte_index=0 terminator_byte_index_count=1 terminator_byte_count=1 terminator_policy_index=0 terminator_policy_index_count=1 terminator_policy_count=1 null_terminated_index=0 null_terminated_index_count=1 null_terminated=true null_terminated_count=1 mutability_index=0 mutability_index_count=1 mutability=&quot;constant&quot; mutability_count=1 pointer_policy_index=0 pointer_policy_index_count=1 pointer_policy=&quot;gep-nonempty-direct-empty&quot; pointer_policy_count=1 linkage_index=0 linkage_index_count=1 linkage=&quot;linkonce_odr unnamed_addr constant&quot; linkage_count=1 alignment_index=0 alignment_index_count=1 alignment=&quot;align 1&quot; alignment_count=1
+@__faber_text_literal_text_15_76_69_74_72_65_75_73_20_c2_a7_20_40_20_c2_a7 = linkonce_odr unnamed_addr constant [16 x i8] c&quot;vitreus \C2\A7 @ \C2\A7\00&quot;, align 1
+; @literal-object __faber_text_literal_text_15_76_69_74_72_65_75_73_20_c2_a7_20_40_20_c2_a7_object family=text family_index=0 family_index_count=1 family_count=1 representation=static-descriptor representation_count=1 descriptor_schema_version=1 descriptor_schema_version_count=1 layout=&quot;{ ptr, i64 }&quot; layout_count=1 byte_len=16 byte_len_count=1 abi_align=8 abi_align_count=1 field_types=ptr,i64 field_type_count=2 field_sizes=8,8 field_size_count=2 field_alignments=8,8 field_alignment_count=2 field_offsets=0,8 field_offset_count=2 field_end_offsets=8,16 field_end_offset_count=2 pointer_fields=data pointer_field_indexes=data:0 pointer_field_index_count=1 pointer_field_count=1 pointer_address_spaces=data:0 pointer_address_space_count=1 pointer_target_families=data:unknown pointer_target_family_indexes=data:0:unknown pointer_target_family_index_count=1 pointer_target_family_count=1 pointer_target_terminators=none pointer_target_terminator_indexes=none pointer_target_terminator_index_count=0 pointer_target_terminator_count=0 pointer_target_byte_lens=none pointer_target_byte_len_indexes=none pointer_target_byte_len_index_count=0 pointer_target_byte_len_count=0 length_fields=none length_field_indexes=none length_field_index_count=0 length_field_count=0 pointer_length_fields=none pointer_length_field_indexes=none pointer_length_field_index_count=0 pointer_length_field_count=0 fields=data,len field_indexes=data:0,len:1 field_index_count=2 field_count=2 nullable_fields=none nullable_field_indexes=none nullable_field_index_count=0 nullable_field_count=0 null_sentinels=none null_sentinel_indexes=none null_sentinel_index_count=0 null_sentinel_count=0 pointer_policy=&quot;direct-global-symbol&quot; pointer_policy_count=1 storage_policy=&quot;static-descriptor-global&quot; storage_policy_count=1 mutability=&quot;constant&quot; mutability_count=1 linkage=&quot;linkonce_odr unnamed_addr constant&quot; linkage_count=1 alignment=&quot;align 8&quot; alignment_count=1
+@__faber_text_literal_text_15_76_69_74_72_65_75_73_20_c2_a7_20_40_20_c2_a7_object = linkonce_odr unnamed_addr constant { ptr, i64 } { ptr getelementptr inbounds ([16 x i8], ptr @__faber_text_literal_text_15_76_69_74_72_65_75_73_20_c2_a7_20_40_20_c2_a7, i64 0, i64 0), i64 15 }, align 8
+; @literal-data __faber_text_literal_text_6_76_61_63_75_75_73 family=text family_index=0 family_index_count=1 family_count=1 representation=static-byte-data representation_index=0 representation_index_count=1 representation_count=1 byte_data_schema_version=1 encoding=utf8 byte_data_schema_version_index=0 byte_data_schema_version_index_count=1 encoding_index=0 encoding_index_count=1 byte_data_schema_version_count=1 encoding_count=1 layout=&quot;[7 x i8]&quot; bytes=7 payload_bytes=6 layout_index=0 layout_index_count=1 payload_byte_index=0 payload_byte_index_count=1 payload_byte_count=1 layout_count=1 byte_length_count=1 terminator_bytes=1 terminator_byte_index=0 terminator_byte_index_count=1 terminator_byte_count=1 terminator_policy_index=0 terminator_policy_index_count=1 terminator_policy_count=1 null_terminated_index=0 null_terminated_index_count=1 null_terminated=true null_terminated_count=1 mutability_index=0 mutability_index_count=1 mutability=&quot;constant&quot; mutability_count=1 pointer_policy_index=0 pointer_policy_index_count=1 pointer_policy=&quot;gep-nonempty-direct-empty&quot; pointer_policy_count=1 linkage_index=0 linkage_index_count=1 linkage=&quot;linkonce_odr unnamed_addr constant&quot; linkage_count=1 alignment_index=0 alignment_index_count=1 alignment=&quot;align 1&quot; alignment_count=1
+@__faber_text_literal_text_6_76_61_63_75_75_73 = linkonce_odr unnamed_addr constant [7 x i8] c&quot;vacuus\00&quot;, align 1
+; @literal-object __faber_text_literal_text_6_76_61_63_75_75_73_object family=text family_index=0 family_index_count=1 family_count=1 representation=static-descriptor representation_count=1 descriptor_schema_version=1 descriptor_schema_version_count=1 layout=&quot;{ ptr, i64 }&quot; layout_count=1 byte_len=16 byte_len_count=1 abi_align=8 abi_align_count=1 field_types=ptr,i64 field_type_count=2 field_sizes=8,8 field_size_count=2 field_alignments=8,8 field_alignment_count=2 field_offsets=0,8 field_offset_count=2 field_end_offsets=8,16 field_end_offset_count=2 pointer_fields=data pointer_field_indexes=data:0 pointer_field_index_count=1 pointer_field_count=1 pointer_address_spaces=data:0 pointer_address_space_count=1 pointer_target_families=data:unknown pointer_target_family_indexes=data:0:unknown pointer_target_family_index_count=1 pointer_target_family_count=1 pointer_target_terminators=none pointer_target_terminator_indexes=none pointer_target_terminator_index_count=0 pointer_target_terminator_count=0 pointer_target_byte_lens=none pointer_target_byte_len_indexes=none pointer_target_byte_len_index_count=0 pointer_target_byte_len_count=0 length_fields=none length_field_indexes=none length_field_index_count=0 length_field_count=0 pointer_length_fields=none pointer_length_field_indexes=none pointer_length_field_index_count=0 pointer_length_field_count=0 fields=data,len field_indexes=data:0,len:1 field_index_count=2 field_count=2 nullable_fields=none nullable_field_indexes=none nullable_field_index_count=0 nullable_field_count=0 null_sentinels=none null_sentinel_indexes=none null_sentinel_index_count=0 null_sentinel_count=0 pointer_policy=&quot;direct-global-symbol&quot; pointer_policy_count=1 storage_policy=&quot;static-descriptor-global&quot; storage_policy_count=1 mutability=&quot;constant&quot; mutability_count=1 linkage=&quot;linkonce_odr unnamed_addr constant&quot; linkage_count=1 alignment=&quot;align 8&quot; alignment_count=1
+@__faber_text_literal_text_6_76_61_63_75_75_73_object = linkonce_odr unnamed_addr constant { ptr, i64 } { ptr getelementptr inbounds ([7 x i8], ptr @__faber_text_literal_text_6_76_61_63_75_75_73, i64 0, i64 0), i64 6 }, align 8
+; @literal-data __faber_text_literal_text_9_6f_70_61_63_75_73_20_c2_a7 family=text family_index=0 family_index_count=1 family_count=1 representation=static-byte-data representation_index=0 representation_index_count=1 representation_count=1 byte_data_schema_version=1 encoding=utf8 byte_data_schema_version_index=0 byte_data_schema_version_index_count=1 encoding_index=0 encoding_index_count=1 byte_data_schema_version_count=1 encoding_count=1 layout=&quot;[10 x i8]&quot; bytes=10 payload_bytes=9 layout_index=0 layout_index_count=1 payload_byte_index=0 payload_byte_index_count=1 payload_byte_count=1 layout_count=1 byte_length_count=1 terminator_bytes=1 terminator_byte_index=0 terminator_byte_index_count=1 terminator_byte_count=1 terminator_policy_index=0 terminator_policy_index_count=1 terminator_policy_count=1 null_terminated_index=0 null_terminated_index_count=1 null_terminated=true null_terminated_count=1 mutability_index=0 mutability_index_count=1 mutability=&quot;constant&quot; mutability_count=1 pointer_policy_index=0 pointer_policy_index_count=1 pointer_policy=&quot;gep-nonempty-direct-empty&quot; pointer_policy_count=1 linkage_index=0 linkage_index_count=1 linkage=&quot;linkonce_odr unnamed_addr constant&quot; linkage_count=1 alignment_index=0 alignment_index_count=1 alignment=&quot;align 1&quot; alignment_count=1
+@__faber_text_literal_text_9_6f_70_61_63_75_73_20_c2_a7 = linkonce_odr unnamed_addr constant [10 x i8] c&quot;opacus \C2\A7\00&quot;, align 1
+; @literal-object __faber_text_literal_text_9_6f_70_61_63_75_73_20_c2_a7_object family=text family_index=0 family_index_count=1 family_count=1 representation=static-descriptor representation_count=1 descriptor_schema_version=1 descriptor_schema_version_count=1 layout=&quot;{ ptr, i64 }&quot; layout_count=1 byte_len=16 byte_len_count=1 abi_align=8 abi_align_count=1 field_types=ptr,i64 field_type_count=2 field_sizes=8,8 field_size_count=2 field_alignments=8,8 field_alignment_count=2 field_offsets=0,8 field_offset_count=2 field_end_offsets=8,16 field_end_offset_count=2 pointer_fields=data pointer_field_indexes=data:0 pointer_field_index_count=1 pointer_field_count=1 pointer_address_spaces=data:0 pointer_address_space_count=1 pointer_target_families=data:unknown pointer_target_family_indexes=data:0:unknown pointer_target_family_index_count=1 pointer_target_family_count=1 pointer_target_terminators=none pointer_target_terminator_indexes=none pointer_target_terminator_index_count=0 pointer_target_terminator_count=0 pointer_target_byte_lens=none pointer_target_byte_len_indexes=none pointer_target_byte_len_index_count=0 pointer_target_byte_len_count=0 length_fields=none length_field_indexes=none length_field_index_count=0 length_field_count=0 pointer_length_fields=none pointer_length_field_indexes=none pointer_length_field_index_count=0 pointer_length_field_count=0 fields=data,len field_indexes=data:0,len:1 field_index_count=2 field_count=2 nullable_fields=none nullable_field_indexes=none nullable_field_index_count=0 nullable_field_count=0 null_sentinels=none null_sentinel_indexes=none null_sentinel_index_count=0 null_sentinel_count=0 pointer_policy=&quot;direct-global-symbol&quot; pointer_policy_count=1 storage_policy=&quot;static-descriptor-global&quot; storage_policy_count=1 mutability=&quot;constant&quot; mutability_count=1 linkage=&quot;linkonce_odr unnamed_addr constant&quot; linkage_count=1 alignment=&quot;align 8&quot; alignment_count=1
+@__faber_text_literal_text_9_6f_70_61_63_75_73_20_c2_a7_object = linkonce_odr unnamed_addr constant { ptr, i64 } { ptr getelementptr inbounds ([10 x i8], ptr @__faber_text_literal_text_9_6f_70_61_63_75_73_20_c2_a7, i64 0, i64 0), i64 9 }, align 8
 
-; @runtime __faber_rt_v1_diagnostic_nota_i64 category=host-integration
-declare i32 @__faber_rt_v1_diagnostic_nota_i64(ptr, i64)
+; @runtime __faber_rt_v1_diagnostic_nota_text category=host-integration
+declare i32 @__faber_rt_v1_diagnostic_nota_text(ptr, ptr)
+; @runtime __faber_rt_v1_format_i64 category=core-semantics
+declare %FaberRtPtrResultV1 @__faber_rt_v1_format_i64(ptr, %FaberRtSliceV1, i64)
+; @runtime __faber_rt_v1_format_text category=core-semantics
+declare %FaberRtPtrResultV1 @__faber_rt_v1_format_text(ptr, %FaberRtSliceV1, ptr)
+; @runtime __faber_runtime_convert_runtime_1_i64_to_i8 category=core-semantics
+declare i8 @__faber_runtime_convert_runtime_1_i64_to_i8(i64)
+; @runtime __faber_runtime_format_1_i8_to_ptr category=core-semantics
+declare ptr @__faber_runtime_format_1_i8_to_ptr(i8)
+; @runtime __faber_runtime_format_2_i8_f32_to_ptr category=core-semantics
+declare ptr @__faber_runtime_format_2_i8_f32_to_ptr(i8, float)
 
-define i64 @saturate(i64 %l0) {
+define { i1, i8, ptr } @satura(i64 %l0, i64 %l1) {
     entry:
       %l0.addr = alloca i64
+      %l1.addr = alloca i64
       %t0.addr = alloca i1
-      %t1.addr = alloca i64
+      %t1.addr = alloca ptr
       %t2.addr = alloca i1
-      %t3.addr = alloca i64
+      %t3.addr = alloca i8
+      %t4.addr = alloca i8
       store i64 %l0, ptr %l0.addr
+      store i64 %l1, ptr %l1.addr
       br label %b0
     b0:
       %load0 = load i64, ptr %l0.addr
@@ -302,42 +883,224 @@ define i64 @saturate(i64 %l0) {
       %load1 = load i1, ptr %t0.addr
       br i1 %load1, label %b1, label %b2
     b1:
-      store i64 0, ptr %t1.addr
-      %load2 = load i64, ptr %t1.addr
-      ret i64 %load2
+      %load2 = load i64, ptr %l0.addr
+      %faber.context3 = load ptr, ptr @__faber_rt_v1_context
+      %faber.format.result3 = call %FaberRtPtrResultV1 @__faber_rt_v1_format_i64(ptr %faber.context3, %FaberRtSliceV1 { ptr getelementptr inbounds ([15 x i8], ptr @__faber_text_literal_text_14_73_75_62_20_6c_69_6d_69_6e_65_3a_20_c2_a7, i64 0, i64 0), i64 14 }, i64 %load2)
+      %faber.format.status3 = extractvalue %FaberRtPtrResultV1 %faber.format.result3, 0
+      %faber.format.value3 = extractvalue %FaberRtPtrResultV1 %faber.format.result3, 1
+      %faber.old.status3 = load i32, ptr @__faber_rt_v1_status
+      %faber.has.error3 = icmp ne i32 %faber.old.status3, 0
+      %faber.latched.status3 = select i1 %faber.has.error3, i32 %faber.old.status3, i32 %faber.format.status3
+      store i32 %faber.latched.status3, ptr @__faber_rt_v1_status
+      store ptr %faber.format.value3, ptr %t1.addr
+      %load4 = load ptr, ptr %t1.addr
+      %ret5 = insertvalue { i1, i8, ptr } undef, i1 false, 0
+      %ret6 = insertvalue { i1, i8, ptr } %ret5, i8 0, 1
+      %ret7 = insertvalue { i1, i8, ptr } %ret6, ptr %load4, 2
+      ret { i1, i8, ptr } %ret7
     b2:
-      %load3 = load i64, ptr %l0.addr
-      %v2 = icmp sgt i64 %load3, 255
-      store i1 %v2, ptr %t2.addr
-      %load4 = load i1, ptr %t2.addr
-      br i1 %load4, label %b3, label %b4
+      %load8 = load i64, ptr %l0.addr
+      %load9 = load i64, ptr %l1.addr
+      %v1 = icmp sgt i64 %load8, %load9
+      store i1 %v1, ptr %t2.addr
+      %load10 = load i1, ptr %t2.addr
+      br i1 %load10, label %b3, label %b4
     b3:
-      store i64 255, ptr %t3.addr
-      %load5 = load i64, ptr %t3.addr
-      ret i64 %load5
+      %load11 = load i64, ptr %l1.addr
+      %rtcall12 = call i8 @__faber_runtime_convert_runtime_1_i64_to_i8(i64 %load11)
+      store i8 %rtcall12, ptr %t3.addr
+      %ret13 = insertvalue { i1, i8, ptr } undef, i1 true, 0
+      %load14 = load i8, ptr %t3.addr
+      %ret15 = insertvalue { i1, i8, ptr } %ret13, i8 %load14, 1
+      %ret16 = insertvalue { i1, i8, ptr } %ret15, ptr null, 2
+      ret { i1, i8, ptr } %ret16
     b4:
-      %load6 = load i64, ptr %l0.addr
-      ret i64 %load6
+      %load17 = load i64, ptr %l0.addr
+      %rtcall18 = call i8 @__faber_runtime_convert_runtime_1_i64_to_i8(i64 %load17)
+      store i8 %rtcall18, ptr %t4.addr
+      %ret19 = insertvalue { i1, i8, ptr } undef, i1 true, 0
+      %load20 = load i8, ptr %t4.addr
+      %ret21 = insertvalue { i1, i8, ptr } %ret19, i8 %load20, 1
+      %ret22 = insertvalue { i1, i8, ptr } %ret21, ptr null, 2
+      ret { i1, i8, ptr } %ret22
+}
+
+define ptr @nomina({ i8, i8, i8, float } %l0) {
+    entry:
+      %l0.addr = alloca { i8, i8, i8, float }
+      %l1.addr = alloca i8
+      %l2.addr = alloca i8
+      %l3.addr = alloca float
+      %t0.addr = alloca { i8, i8, i8, float }
+      %t1.addr = alloca i1
+      %t2.addr = alloca ptr
+      %t3.addr = alloca { i8, i8, i8, float }
+      %t4.addr = alloca i1
+      %t5.addr = alloca ptr
+      %t6.addr = alloca { i8, i8, i8, float }
+      %t7.addr = alloca i1
+      %t8.addr = alloca ptr
+      store { i8, i8, i8, float } %l0, ptr %l0.addr
+      br label %b0
+    b0:
+      %enum0 = insertvalue { i8, i8, i8, float } undef, i8 0, 0
+      %load1 = load { i8, i8, i8, float }, ptr %l0.addr
+      %proj2 = extractvalue { i8, i8, i8, float } %load1, 1
+      %enum3 = insertvalue { i8, i8, i8, float } %enum0, i8 %proj2, 1
+      store { i8, i8, i8, float } %enum3, ptr %t0.addr
+      %load4 = load { i8, i8, i8, float }, ptr %l0.addr
+      %load5 = load { i8, i8, i8, float }, ptr %t0.addr
+      %tag6 = extractvalue { i8, i8, i8, float } %load4, 0
+      %tag7 = extractvalue { i8, i8, i8, float } %load5, 0
+      %v0 = icmp eq i8 %tag6, %tag7
+      store i1 %v0, ptr %t1.addr
+      %load8 = load i1, ptr %t1.addr
+      br i1 %load8, label %b3, label %b4
+    b1:
+      unreachable
+    b2:
+      unreachable
+    b3:
+      %load9 = load { i8, i8, i8, float }, ptr %l0.addr
+      %proj10 = extractvalue { i8, i8, i8, float } %load9, 1
+      store i8 %proj10, ptr %l1.addr
+      %load11 = load i8, ptr %l1.addr
+      %rtcall12 = call ptr @__faber_runtime_format_1_i8_to_ptr(i8 %load11)
+      store ptr %rtcall12, ptr %t2.addr
+      %load13 = load ptr, ptr %t2.addr
+      ret ptr %load13
+    b4:
+      %enum14 = insertvalue { i8, i8, i8, float } undef, i8 1, 0
+      %load15 = load { i8, i8, i8, float }, ptr %l0.addr
+      %proj16 = extractvalue { i8, i8, i8, float } %load15, 2
+      %enum17 = insertvalue { i8, i8, i8, float } %enum14, i8 %proj16, 2
+      %load18 = load { i8, i8, i8, float }, ptr %l0.addr
+      %proj19 = extractvalue { i8, i8, i8, float } %load18, 3
+      %enum20 = insertvalue { i8, i8, i8, float } %enum17, float %proj19, 3
+      store { i8, i8, i8, float } %enum20, ptr %t3.addr
+      %load21 = load { i8, i8, i8, float }, ptr %l0.addr
+      %load22 = load { i8, i8, i8, float }, ptr %t3.addr
+      %tag23 = extractvalue { i8, i8, i8, float } %load21, 0
+      %tag24 = extractvalue { i8, i8, i8, float } %load22, 0
+      %v2 = icmp eq i8 %tag23, %tag24
+      store i1 %v2, ptr %t4.addr
+      %load25 = load i1, ptr %t4.addr
+      br i1 %load25, label %b5, label %b6
+    b5:
+      %load26 = load { i8, i8, i8, float }, ptr %l0.addr
+      %proj27 = extractvalue { i8, i8, i8, float } %load26, 2
+      store i8 %proj27, ptr %l2.addr
+      %load28 = load { i8, i8, i8, float }, ptr %l0.addr
+      %proj29 = extractvalue { i8, i8, i8, float } %load28, 3
+      store float %proj29, ptr %l3.addr
+      %load30 = load i8, ptr %l2.addr
+      %load31 = load float, ptr %l3.addr
+      %rtcall32 = call ptr @__faber_runtime_format_2_i8_f32_to_ptr(i8 %load30, float %load31)
+      store ptr %rtcall32, ptr %t5.addr
+      %load33 = load ptr, ptr %t5.addr
+      ret ptr %load33
+    b6:
+      %enum34 = insertvalue { i8, i8, i8, float } undef, i8 2, 0
+      store { i8, i8, i8, float } %enum34, ptr %t6.addr
+      %load35 = load { i8, i8, i8, float }, ptr %l0.addr
+      %load36 = load { i8, i8, i8, float }, ptr %t6.addr
+      %tag37 = extractvalue { i8, i8, i8, float } %load35, 0
+      %tag38 = extractvalue { i8, i8, i8, float } %load36, 0
+      %v5 = icmp eq i8 %tag37, %tag38
+      store i1 %v5, ptr %t7.addr
+      %load39 = load i1, ptr %t7.addr
+      br i1 %load39, label %b7, label %b8
+    b7:
+      store ptr @__faber_text_literal_text_6_76_61_63_75_75_73_object, ptr %t8.addr
+      %load40 = load ptr, ptr %t8.addr
+      ret ptr %load40
+    b8:
+      unreachable
 }
 
 define void @incipit() {
     entry:
-      %l0.addr = alloca i64
+      %l0.addr = alloca ptr
+      %l1.addr = alloca ptr
+      %l2.addr = alloca i8
       %t0.addr = alloca i64
+      %t1.addr = alloca i8
+      %t2.addr = alloca { i8, i8, i8, float }
+      %t3.addr = alloca ptr
+      %t4.addr = alloca ptr
       br label %b0
     b0:
-      %call0 = call i64 @saturate(i64 300)
-      store i64 %call0, ptr %t0.addr
-      %load1 = load i64, ptr %t0.addr
-      store i64 %load1, ptr %l0.addr
-      %load2 = load i64, ptr %l0.addr
-      %faber.context3 = load ptr, ptr @__faber_rt_v1_context
-      %faber.diag.status3 = call i32 @__faber_rt_v1_diagnostic_nota_i64(ptr %faber.context3, i64 %load2)
-      %faber.old.status3 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error3 = icmp ne i32 %faber.old.status3, 0
-      %faber.latched.status3 = select i1 %faber.has.error3, i32 %faber.old.status3, i32 %faber.diag.status3
-      store i32 %faber.latched.status3, ptr @__faber_rt_v1_status
+      store ptr @f3, ptr %l0.addr
+      %load0 = load ptr, ptr %l0.addr
+      %call1 = call i64 %load0(i64 150)
+      store i64 %call1, ptr %t0.addr
+      %load2 = load i64, ptr %t0.addr
+      %try3 = call { i1, i8, ptr } @satura(i64 %load2, i64 255)
+      %try_tag4 = extractvalue { i1, i8, ptr } %try3, 0
+      br i1 %try_tag4, label %try_ok5, label %try_error6
+    try_ok5:
+      %try_success7 = extractvalue { i1, i8, ptr } %try3, 1
+      store i8 %try_success7, ptr %t1.addr
+      br label %b4
+    try_error6:
+      %try_error_value8 = extractvalue { i1, i8, ptr } %try3, 2
+      store ptr %try_error_value8, ptr %l1.addr
+      br label %b1
+    b1:
+      %load9 = load ptr, ptr %l1.addr
+      %faber.context10 = load ptr, ptr @__faber_rt_v1_context
+      %faber.format.result10 = call %FaberRtPtrResultV1 @__faber_rt_v1_format_text(ptr %faber.context10, %FaberRtSliceV1 { ptr getelementptr inbounds ([12 x i8], ptr @__faber_text_literal_text_11_65_72_72_61_74_75_6d_3a_20_c2_a7, i64 0, i64 0), i64 11 }, ptr %load9)
+      %faber.format.status10 = extractvalue %FaberRtPtrResultV1 %faber.format.result10, 0
+      %faber.format.value10 = extractvalue %FaberRtPtrResultV1 %faber.format.result10, 1
+      %faber.old.status10 = load i32, ptr @__faber_rt_v1_status
+      %faber.has.error10 = icmp ne i32 %faber.old.status10, 0
+      %faber.latched.status10 = select i1 %faber.has.error10, i32 %faber.old.status10, i32 %faber.format.status10
+      store i32 %faber.latched.status10, ptr @__faber_rt_v1_status
+      store ptr %faber.format.value10, ptr %t4.addr
+      %load11 = load ptr, ptr %t4.addr
+      %faber.context12 = load ptr, ptr @__faber_rt_v1_context
+      %faber.diag.status12 = call i32 @__faber_rt_v1_diagnostic_nota_text(ptr %faber.context12, ptr %load11)
+      %faber.old.status12 = load i32, ptr @__faber_rt_v1_status
+      %faber.has.error12 = icmp ne i32 %faber.old.status12, 0
+      %faber.latched.status12 = select i1 %faber.has.error12, i32 %faber.old.status12, i32 %faber.diag.status12
+      store i32 %faber.latched.status12, ptr @__faber_rt_v1_status
+      br label %b2
+    b2:
       ret void
+    b3:
+      br label %b2
+    b4:
+      %load13 = load i8, ptr %t1.addr
+      store i8 %load13, ptr %l2.addr
+      %enum14 = insertvalue { i8, i8, i8, float } undef, i8 0, 0
+      %load15 = load i8, ptr %l2.addr
+      %enum16 = insertvalue { i8, i8, i8, float } %enum14, i8 %load15, 1
+      store { i8, i8, i8, float } %enum16, ptr %t2.addr
+      %load17 = load { i8, i8, i8, float }, ptr %t2.addr
+      %call18 = call ptr @nomina({ i8, i8, i8, float } %load17)
+      store ptr %call18, ptr %t3.addr
+      %load19 = load ptr, ptr %t3.addr
+      %faber.context20 = load ptr, ptr @__faber_rt_v1_context
+      %faber.diag.status20 = call i32 @__faber_rt_v1_diagnostic_nota_text(ptr %faber.context20, ptr %load19)
+      %faber.old.status20 = load i32, ptr @__faber_rt_v1_status
+      %faber.has.error20 = icmp ne i32 %faber.old.status20, 0
+      %faber.latched.status20 = select i1 %faber.has.error20, i32 %faber.old.status20, i32 %faber.diag.status20
+      store i32 %faber.latched.status20, ptr @__faber_rt_v1_status
+      br label %b3
+}
+
+define i64 @f3(i64 %l0) {
+    entry:
+      %l0.addr = alloca i64
+      %t0.addr = alloca i64
+      store i64 %l0, ptr %l0.addr
+      br label %b0
+    b0:
+      %load0 = load i64, ptr %l0.addr
+      %v0 = mul i64 %load0, 2
+      store i64 %v0, ptr %t0.addr
+      %load1 = load i64, ptr %t0.addr
+      ret i64 %load1
 }
 
 define %FaberRtExitV1 @__faber_program_entry_v1(ptr %context) {
@@ -348,79 +1111,6 @@ define %FaberRtExitV1 @__faber_program_entry_v1(ptr %context) {
       %faber.entry.exit = insertvalue %FaberRtExitV1 { i32 0, i32 0 }, i32 %faber.entry.status, 1
       ret %FaberRtExitV1 %faber.entry.exit
 }</pre></div>
-    <div class="fdt-panel" id="fl-tgt-p-wasm-text" role="tabpanel" aria-labelledby="fl-tgt-t-wasm-text"><div class="fdt-panel-label"><code>radix emit --target wasm-text main.fab</code> <span class="fdt-note">— external host</span></div><pre>;; Generated by radix MIR WASM text probe - experimental artifact.
-(module
-    (import &quot;faber_rt_v1&quot; &quot;__faber_rt_v1_diagnostic_nota_i64&quot; (func $__faber_rt_v1_diagnostic_nota_i64 (param i64)))
-    (func $saturate (export &quot;saturate&quot;) (param $l0 i64) (result i64)
-          (local $t0 i32)
-          (local $t1 i64)
-          (local $t2 i32)
-          (local $t3 i64)
-          (local $p0 i32)
-          (local.set $p0 (i32.const 0))
-          (loop $dispatch
-              (if (i32.eq (local.get $p0) (i32.const 0))
-                  (then
-                      ;; v0 = (i64.lt_s (local.get $l0) (i64.const 0))
-                      (local.set $t0 (i64.lt_s (local.get $l0) (i64.const 0)))
-                      (if (local.get $t0)
-                          (then
-                              (local.set $p0 (i32.const 1))
-                              (br $dispatch)
-                          )
-                          (else
-                              (local.set $p0 (i32.const 2))
-                              (br $dispatch)
-                          )
-                      )
-                  )
-              )
-              (if (i32.eq (local.get $p0) (i32.const 1))
-                  (then
-                      (local.set $t1 (i64.const 0))
-                      (return (local.get $t1))
-                  )
-              )
-              (if (i32.eq (local.get $p0) (i32.const 2))
-                  (then
-                      ;; v2 = (i64.gt_s (local.get $l0) (i64.const 255))
-                      (local.set $t2 (i64.gt_s (local.get $l0) (i64.const 255)))
-                      (if (local.get $t2)
-                          (then
-                              (local.set $p0 (i32.const 3))
-                              (br $dispatch)
-                          )
-                          (else
-                              (local.set $p0 (i32.const 4))
-                              (br $dispatch)
-                          )
-                      )
-                  )
-              )
-              (if (i32.eq (local.get $p0) (i32.const 3))
-                  (then
-                      (local.set $t3 (i64.const 255))
-                      (return (local.get $t3))
-                  )
-              )
-              (if (i32.eq (local.get $p0) (i32.const 4))
-                  (then
-                      (return (local.get $l0))
-                  )
-              )
-              (unreachable)
-          )
-          (unreachable)
-    )
-    (func $incipit (export &quot;incipit&quot;)
-          (local $l0 i64)
-          (local $t0 i64)
-          (local.set $t0 (call $saturate (i64.const 300)))
-          (local.set $l0 (local.get $t0))
-          (call $__faber_rt_v1_diagnostic_nota_i64 (local.get $l0))
-          (return)
-    )
-)</pre></div>
     <div class="fdt-panel" id="fl-tgt-p-wgsl-text" role="tabpanel" aria-labelledby="fl-tgt-t-wgsl-text"><div class="fdt-panel-label"><code>radix emit --target wgsl-text kernel.fab</code> <span class="fdt-note">— GPU compute shader — from an @ nucleum kernel</span></div><pre>// Generated by radix wgsl-text (supported-with-limitations compute source).
 
 @group(0) @binding(0) var&lt;storage, read&gt; x_in: array&lt;f32&gt;;

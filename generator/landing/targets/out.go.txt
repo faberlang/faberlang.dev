@@ -2,19 +2,75 @@
 
 package main
 
-import "fmt"
+import (
+    "fmt"
+    "strconv"
+    "strings"
+)
 
-func saturate(x int) int {
-    if (x < 0) {
-        return 0
+type Pixel interface {
+    isPixel()
+}
+
+type Opacus struct {
+    Nivea uint8
+}
+func (Opacus) isPixel() {}
+
+type Vitreus struct {
+    Nivea uint8
+    Alpha float32
+}
+func (Vitreus) isPixel() {}
+
+type Vacuus struct {
+}
+func (Vacuus) isPixel() {}
+
+func satura(datum int, meta int) (uint8, error) {
+    if (datum < 0) {
+        return 0, fmt.Errorf("%v", fmt.Sprintf("sub limine: %v", datum))
     }
-    if (x > 255) {
-        return 255
+    if (datum > meta) {
+        return uint8(meta), nil
     }
-    return x
+    return uint8(datum), nil
+}
+
+func nomina(p Pixel) string {
+    switch __radixCase := any(p).(type) {
+        case Opacus:
+            nivea := __radixCase.Nivea
+            {
+                return fmt.Sprintf("opacus %v", nivea)
+            }
+        case Vitreus:
+            nivea := __radixCase.Nivea
+            alpha := __radixCase.Alpha
+            {
+                return fmt.Sprintf("vitreus %v @ %v", nivea, func(v float64) string { s := strconv.FormatFloat(v, 'f', -1, 64); if !strings.ContainsAny(s, ".eE") { return s + ".0" }; return s }(float64(alpha)))
+            }
+        case Vacuus:
+            {
+                return "vacuus"
+            }
+        default:
+            panic("non-exhaustive discerne")
+    }
 }
 
 func main() {
-    v := saturate(300)
-    fmt.Println(v)
+    duplica := func(x int) int { return func() int { left := x; right := 2; max := int(^uint(0) >> 1); min := -max - 1; if (left > 0 && ((right > 0 && left > max/right) || (right < 0 && right < min/left))) || (left < 0 && ((right > 0 && left < min/right) || (right < 0 && left < max/right))) { panic("numerus overflow") }; return left * right }() }
+    t1000010Err := func() error {
+        v, err := satura(duplica(150), 255)
+        if err != nil {
+            return err
+        }
+        fmt.Println(nomina(Opacus{Nivea: v}))
+        return nil
+    }()
+    if t1000010Err != nil {
+        err := t1000010Err
+        fmt.Println(fmt.Sprintf("erratum: %v", err))
+    }
 }

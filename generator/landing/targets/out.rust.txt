@@ -2,17 +2,52 @@
 // Requires the faber language-runtime crate (add to Cargo.toml):
 //   faber = { path = "../faber" }  # adjust path for your layout
 
-fn saturate(x: i64) -> i64 {
-    if x < 0 {
-        return 0;
+#[derive(Clone, Debug)]
+pub enum Pixel {
+    Opacus {
+        nivea: u8,
+    },
+    Vitreus {
+        nivea: u8,
+        alpha: f32,
+    },
+    Vacuus,
+}
+
+fn satura(datum: i64, meta: i64) -> Result<u8, String> {
+    if datum < 0 {
+        return Err(format!("{}", format!("sub limine: {}", datum)));
     };
-    if x > 255 {
-        return 255;
+    if datum > meta {
+        return Ok(meta as u8);
     };
-    return x;
+    return Ok(datum as u8);
+}
+
+fn nomina(p: Pixel) -> String {
+    match p {
+        Pixel::Opacus { nivea } => {
+            return format!("opacus {}", nivea);
+        },
+        Pixel::Vitreus { nivea, alpha } => {
+            return format!("vitreus {} @ {}", nivea, faber::display_fractus(alpha));
+        },
+        Pixel::Vacuus => {
+            return "vacuus".to_string();
+        },
+    };
 }
 
 fn main() {
-    let v: i64 = saturate(300);
-    println!("{}", v);
+    let duplica: fn(i64) -> i64 = |x| (i64::checked_mul(x, 2).expect("numerus overflow"));
+    match { let ok: Result<(), String> = 'fac_result: {
+    loop {
+        let v: u8 = match satura(duplica(150), 255) { Ok(fac_value) => fac_value, Err(fac_err) => break 'fac_result Err(fac_err) };
+        println!("{}", nomina(Pixel::Opacus { nivea: v }));
+    break;
+    }Ok(())
+    }; ok } { Ok(ok) => ok, Err(err) => {
+        let err = err;
+        println!("{}", format!("erratum: {}", err));
+        ()} };
 }

@@ -1,10 +1,43 @@
-ฟังก์ชัน saturate(จำนวน x) → จำนวน {
-    ถ้า x < 0 ดังนั้น คืน 0
-    ถ้า x > 255 ดังนั้น คืน 255
-    คืน x
+สหภาพแยก Pixel {
+    Opacus {
+        จำนวน<u8> nivea
+    },
+    Vitreus {
+        จำนวน<u8> nivea
+        f32 alpha
+    },
+    Vacuus,
+}
+
+ฟังก์ชัน satura(จำนวน datum, จำนวน meta สมัครใจ หรือว่าง 255) → จำนวน<u8> ⇥ ข้อความ {
+    ถ้า datum < 0 {
+        โยน จารึก("sub limine: §", datum)
+    }
+    ถ้า datum > meta ดังนั้น คืน meta ↦ จำนวน<u8>
+    คืน datum ↦ จำนวน<u8>
+}
+
+ฟังก์ชัน nomina(Pixel p) → ข้อความ {
+    แยก p {
+        กรณี Opacus คงที่ nivea {
+            คืน จารึก("opacus §", nivea)
+        }
+        กรณี Vitreus คงที่ nivea, alpha {
+            คืน จารึก("vitreus § @ §", nivea, alpha)
+        }
+        กรณี Vacuus {
+            คืน "vacuus"
+        }
+    }
 }
 
 เริ่ม {
-    คงที่ จำนวน v ← saturate(300)
-    บันทึก v
+    คงที่ (จำนวน) → จำนวน duplica ← จำนวน x ∴ x * 2
+    ทำ {
+        คงที่ จำนวน<u8> v ← satura(duplica(150))
+        บันทึก nomina(Opacus(v))
+    }
+    จับ err {
+        บันทึก จารึก("erratum: §", err)
+    }
 }

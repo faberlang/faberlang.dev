@@ -260,11 +260,13 @@ def main() -> None:
     <div class="fl-first">
       <pre class="fl-src">{esc(hero_code)}</pre>
       <pre class="fl-run">$ faber run --interpret app
-255</pre>
+opacus 255</pre>
     </div>
     <p class="fl-note">
-      Real output from <code>faber format --reader-locale llm</code>. Same
-      program, seven more readings below.
+      Real output from <code>faber format --reader-locale llm</code> — a tagged
+      union, sized numerics, a typed error channel, defaulted parameters,
+      pattern matching, and a glyph closure. Same program, seven more readings
+      below.
     </p>
 
     <div class="fl-cta">
@@ -310,6 +312,14 @@ def main() -> None:
         kernel, which is a different source file:
       </p>
       <pre class="fl-src">{esc(kernel_fab)}</pre>
+      <p class="fl-note">
+        WebAssembly is absent from these tabs on purpose. This program uses
+        <code>numerus&lt;u8&gt;</code>, and the MIR-to-WASM backend does not yet
+        accept sized numerics, so it fails closed rather than emitting
+        something wrong. That is what the
+        <a href="/en-US/toolchain/target-matrix.html">target matrix</a>
+        measures.
+      </p>
     </div>
 {target_tabs}  </section>
 

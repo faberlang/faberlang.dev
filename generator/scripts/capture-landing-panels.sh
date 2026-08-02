@@ -23,9 +23,18 @@ trap 'rm -rf "$WORK"' EXIT
 mkdir -p "${OUT}/locales" "${OUT}/targets"
 
 # -- the demo program ---------------------------------------------------------
-# Deliberately not hello-world: a clamp reads as something a person would
-# actually write, exercises control flow and a typed signature, renders in
-# every reader pack, and lowers to every non-GPU target.
+# Deliberately not hello-world. A clamp-and-classify over pixel values, chosen
+# because it exercises the constructs that make Faber look like itself rather
+# than like a tutorial: a tagged union with mixed payloads, sized numerics,
+# a typed error channel, defaulted parameters, pattern matching with payload
+# binding, a glyph closure, and runtime conversion.
+#
+# Two constraints shaped it, both verified rather than assumed:
+#   * `discerne` arms use blocks, not `ergo`. A template-string call in a
+#     `casu ... ergo` arm fails to round-trip through a reader pack
+#     (PARSE030) — see the note in the site commit.
+#   * `numerus<u8>` costs the wasm panel: the MIR-to-WASM backend rejects
+#     SizedNumeric(Numerus, U8). That omission is honest and the page says so.
 mkdir -p "${WORK}/demo/src"
 cat > "${WORK}/demo/faber.toml" <<'TOML'
 [package]
@@ -43,15 +52,35 @@ target = "rust"
 TOML
 
 cat > "${WORK}/demo/src/main.fab" <<'FAB'
-functio saturate(numerus x) → numerus {
-    si x < 0 ergo redde 0
-    si x > 255 ergo redde 255
-    redde x
+discretio Pixel {
+    Opacus { numerus<u8> nivea },
+    Vitreus { numerus<u8> nivea, fractus<f32> alpha },
+    Vacuus
+}
+
+functio satura(numerus datum, numerus meta sponte vel 255) → numerus<u8> ⇥ textus {
+    si datum < 0 ergo iace "sub limine: §"(datum)
+    si datum > meta ergo redde meta ↦ numerus<u8>
+    redde datum ↦ numerus<u8>
+}
+
+functio nomina(Pixel p) → textus {
+    discerne p {
+        casu Opacus fixum nivea { redde "opacus §"(nivea) }
+        casu Vitreus fixum nivea, alpha { redde "vitreus § @ §"(nivea, alpha) }
+        casu Vacuus { redde "vacuus" }
+    }
 }
 
 incipit {
-    fixum numerus v ← saturate(300)
-    nota v
+    fixum _ duplica ← numerus x ∴ x * 2
+    fac {
+        fixum numerus<u8> v ← satura(duplica(150))
+        nota nomina(finge Opacus { nivea = v })
+    }
+    cape err {
+        nota "erratum: §"(err)
+    }
 }
 FAB
 
