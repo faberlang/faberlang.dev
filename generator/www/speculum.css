@@ -74,6 +74,11 @@
     --s8: 4.5rem;
 
     /* Layout */
+    /* Readable prose measure. The landing page's content grid track is
+       set from this; docs get the same width from their grid. Prose
+       elements never set their own width — see §15. */
+    --measure: 47rem;
+
     --sidebar-w: 254px;
     --rail-w: 196px;
     --gutter: 44px;
@@ -1434,6 +1439,40 @@ body.porta {
    page follows light/dark with the rest of the site.
    --------------------------------------------------------------------------- */
 
+/* Column system — the one place a width is decided.
+
+   Every landing section is a grid with two tracks: a `content` track sized
+   from --measure, and the leftover space. Children land in `content` by
+   default, so prose is full width *of its container* rather than carrying
+   its own cap. Anything that should span wider (code cards, image grids)
+   opts in with .fl-full.
+
+   Do not add max-width to a landing child. If something is the wrong width,
+   change --measure or give it .fl-full. This is the rule §7 states for
+   prose; it was violated five different ways here before 2026-08-02. */
+.fl-hero,
+.fl-proof,
+.fl-doors,
+.fl-agents {
+    display: grid;
+    grid-template-columns:
+        [content-start] min(var(--measure), 100%) [content-end]
+        minmax(0, 1fr) [wide-end];
+}
+.fl-hero > *,
+.fl-proof > *,
+.fl-doors > *,
+.fl-agents > * {
+    grid-column: content-start / content-end;
+    min-width: 0;
+}
+.fl-hero > .fl-full,
+.fl-proof > .fl-full,
+.fl-doors > .fl-full,
+.fl-agents > .fl-full {
+    grid-column: content-start / wide-end;
+}
+
 body.landing {
     background: var(--paper);
     color: var(--ink);
@@ -1496,7 +1535,7 @@ body.landing {
 }
 
 /* -- hero -- */
-.fl-hero { padding: var(--s8) 0 var(--s7); max-width: 46rem; }
+.fl-hero { padding: var(--s8) 0 var(--s7); }
 .fl-kicker {
     font-size: 12px;
     letter-spacing: 0.12em;
@@ -1517,7 +1556,6 @@ body.landing {
     line-height: 1.65;
     color: var(--ink-dim);
     margin: 0 0 var(--s4);
-    max-width: 40rem;
 }
 .fl-lede em { color: var(--ink); font-style: italic; }
 
@@ -1579,7 +1617,7 @@ pre.fl-run {
 
 /* -- proof sections -- */
 .fl-proof { padding: var(--s7) 0; border-top: 1px solid var(--rule); }
-.fl-proof-head { max-width: 42rem; margin-bottom: var(--s6); }
+.fl-proof-head { margin-bottom: var(--s6); }
 .fl-proof-sub { margin-top: var(--s7); }
 .fl-proof-n {
     display: inline-block;
@@ -1650,7 +1688,6 @@ pre.fl-src {
 .fl-bench table {
     border-collapse: collapse;
     width: 100%;
-    max-width: 34rem;
     font-size: 14px;
     margin-bottom: var(--s3);
 }
@@ -1698,7 +1735,7 @@ pre.fl-src {
 .fl-door code { font-family: var(--mono); font-size: 12px; }
 
 /* -- agent note + footer -- */
-.fl-agents { padding: var(--s7) 0 0; border-top: 1px solid var(--rule); max-width: 42rem; }
+.fl-agents { padding: var(--s7) 0 0; border-top: 1px solid var(--rule); }
 .fl-agents h2 { font-family: var(--serif); font-size: 20px; margin: 0 0 var(--s3); color: var(--ink); }
 .fl-agents p { font-size: 14px; line-height: 1.7; color: var(--ink-dim); margin: 0; }
 .fl-agents a { color: var(--glyph); text-decoration: none; border-bottom: 1px solid var(--rule-strong); }

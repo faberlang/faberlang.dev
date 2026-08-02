@@ -388,6 +388,9 @@ if [ "$FULL_SITE" = true ]; then
 
     # Step 10: Gates (link check, leakage) — only for full site
     echo "[10/10] Gates..."
+    echo "  [gate] Width gate..."
+    "$PYTHON" "${SCRIPT_DIR}/check-width-gate.py"
+
     echo "  [gate] Internal link check..."
     "$PYTHON" "${SCRIPT_DIR}/check-internal-links.py" "$OUTPUT_DIR" || {
         echo "ERROR: internal link gate failed" >&2
