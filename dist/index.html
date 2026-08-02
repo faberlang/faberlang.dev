@@ -42,60 +42,6 @@
       you need to run: Rust, a native binary, or a GPU shader.
     </p>
 
-    <div class="fl-first">
-      <pre class="fl-src">union Pixel {
-    Opacus {
-        int&lt;u8&gt; nivea
-    },
-    Vitreus {
-        int&lt;u8&gt; nivea
-        f32 alpha
-    },
-    Vacuus,
-}
-
-fn satura(int datum, int meta optional coalesce 255) → int&lt;u8&gt; ⇥ string {
-    if datum &lt; 0 {
-        throw format(&quot;sub limine: §&quot;, datum)
-    }
-    if datum &gt; meta then return meta ↦ int&lt;u8&gt;
-    return datum ↦ int&lt;u8&gt;
-}
-
-fn nomina(Pixel p) → string {
-    match p {
-        case Opacus const nivea {
-            return format(&quot;opacus §&quot;, nivea)
-        }
-        case Vitreus const nivea, alpha {
-            return format(&quot;vitreus § @ §&quot;, nivea, alpha)
-        }
-        case Vacuus {
-            return &quot;vacuus&quot;
-        }
-    }
-}
-
-main {
-    const (int) → int duplica ← int x ∴ x * 2
-    do {
-        const int&lt;u8&gt; v ← satura(duplica(150))
-        print nomina(Opacus(v))
-    }
-    catch err {
-        print format(&quot;erratum: §&quot;, err)
-    }
-}</pre>
-      <pre class="fl-run">$ faber run --interpret app
-opacus 255</pre>
-    </div>
-    <p class="fl-note">
-      Real output from <code>faber format --reader-locale llm</code> — a tagged
-      union, sized numerics, a typed error channel, defaulted parameters,
-      pattern matching, and a glyph closure. Same program, seven more readings
-      below.
-    </p>
-
     <div class="fl-cta">
       <a class="fl-btn fl-btn-primary" href="/en-US/start/install.html">Install Faber</a>
       <a class="fl-btn" href="/en-US/start/">Five-minute tour</a>
@@ -111,13 +57,15 @@ opacus 255</pre>
 
   <section class="fl-proof">
     <div class="fl-proof-head">
-      <h2>Everyone reads it in their own language</h2>
+      <h2>Here it is, and everyone reads it in their own language</h2>
       <p>
-        These are not translated comments or a localized tutorial. It is one
-        program, and the compiler accepts every one of these spellings. Only
-        the keywords and type names change — identifiers and string literals
+        One program — a tagged union, sized numerics, a typed error channel,
+        defaulted parameters, pattern matching and a glyph closure. Pick a tab
+        and it is still that program. These are not translated comments or a
+        localized tutorial; the compiler accepts every one of these spellings.
+        Only keywords and type names change — identifiers and string literals
         stay exactly as written, so two people who share no language can still
-        talk about <code>saturate</code> on line one.
+        talk about <code>satura</code> on line one.
       </p>
     </div>
   <div class="faber-demo-tabs fdt-hero" data-fdt>
@@ -127,14 +75,14 @@ opacus 255</pre>
       <button class="fdt-copy" type="button">Copy</button>
     </div>
     <div class="fdt-tabs" role="tablist" aria-label="Reader locale">
-    <button class="fdt-tab" role="tab" id="fl-loc-t-llm" data-panel="fl-loc-p-llm" data-name="English" aria-controls="fl-loc-p-llm" aria-selected="true" tabindex="0">English <span class="code">llm</span></button>
-    <button class="fdt-tab" role="tab" id="fl-loc-t-la" data-panel="fl-loc-p-la" data-name="Latin" aria-controls="fl-loc-p-la" aria-selected="false" tabindex="-1">Latin <span class="code">la</span></button>
-    <button class="fdt-tab" role="tab" id="fl-loc-t-th-TH" data-panel="fl-loc-p-th-TH" data-name="ภาษาไทย" aria-controls="fl-loc-p-th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span> <span class="code">th-TH</span></button>
-    <button class="fdt-tab" role="tab" id="fl-loc-t-zh-Hans" data-panel="fl-loc-p-zh-Hans" data-name="简体中文" aria-controls="fl-loc-p-zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span> <span class="code">zh-Hans</span></button>
-    <button class="fdt-tab" role="tab" id="fl-loc-t-zh-Hant" data-panel="fl-loc-p-zh-Hant" data-name="繁體中文" aria-controls="fl-loc-p-zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span> <span class="code">zh-Hant</span></button>
-    <button class="fdt-tab" role="tab" id="fl-loc-t-vi" data-panel="fl-loc-p-vi" data-name="Tiếng Việt" aria-controls="fl-loc-p-vi" aria-selected="false" tabindex="-1">Tiếng Việt <span class="code">vi</span></button>
-    <button class="fdt-tab" role="tab" id="fl-loc-t-ar" data-panel="fl-loc-p-ar" data-name="العربية" aria-controls="fl-loc-p-ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span> <span class="code">ar</span></button>
-    <button class="fdt-tab" role="tab" id="fl-loc-t-hi" data-panel="fl-loc-p-hi" data-name="हिन्दी" aria-controls="fl-loc-p-hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span> <span class="code">hi</span></button>
+    <button class="fdt-tab" role="tab" id="fl-loc-t-llm" data-panel="fl-loc-p-llm" data-name="English" aria-controls="fl-loc-p-llm" title="llm" aria-selected="true" tabindex="0">English</button>
+    <button class="fdt-tab" role="tab" id="fl-loc-t-la" data-panel="fl-loc-p-la" data-name="Latin" aria-controls="fl-loc-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button>
+    <button class="fdt-tab" role="tab" id="fl-loc-t-th-TH" data-panel="fl-loc-p-th-TH" data-name="ภาษาไทย" aria-controls="fl-loc-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button>
+    <button class="fdt-tab" role="tab" id="fl-loc-t-zh-Hans" data-panel="fl-loc-p-zh-Hans" data-name="简体中文" aria-controls="fl-loc-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button>
+    <button class="fdt-tab" role="tab" id="fl-loc-t-zh-Hant" data-panel="fl-loc-p-zh-Hant" data-name="繁體中文" aria-controls="fl-loc-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button>
+    <button class="fdt-tab" role="tab" id="fl-loc-t-vi" data-panel="fl-loc-p-vi" data-name="Tiếng Việt" aria-controls="fl-loc-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button>
+    <button class="fdt-tab" role="tab" id="fl-loc-t-ar" data-panel="fl-loc-p-ar" data-name="العربية" aria-controls="fl-loc-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button>
+    <button class="fdt-tab" role="tab" id="fl-loc-t-hi" data-panel="fl-loc-p-hi" data-name="हिन्दी" aria-controls="fl-loc-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button>
     </div>
     <div class="fdt-panel active" id="fl-loc-p-llm" role="tabpanel" aria-labelledby="fl-loc-t-llm"><div class="fdt-panel-label"><code>faber format --reader-locale llm</code> <span class="fdt-note">— the model-facing pack — what a model writes, and what an English reader reads today</span></div><pre>union Pixel {
     Opacus {
@@ -468,6 +416,8 @@ bắt_đầu {
     }
 }</pre></div>
   </div>
+    <pre class="fl-run">$ faber run --interpret app
+opacus 255</pre>
     <p class="fl-note">
       A reviewer sets their locale once. Nobody presses a translate button, and
       no model sits in the middle guessing — this is the compiler's own
@@ -483,13 +433,8 @@ bắt_đầu {
         <code>radix emit</code> output — nothing here is hand-written or
         illustrative. LLVM IR comes straight off the MIR, so Faber reaches
         native code without passing through Rust, C, or any other source
-        language. The two GPU panels come from an <code>@ nucleum</code>
-        kernel, which is a different source file:
+        language.
       </p>
-      <pre class="fl-src">@ nucleum
-functio scala(fractus&lt;f32&gt; x) → fractus&lt;f32&gt; {
-    redde x + 1.0
-}</pre>
       <p class="fl-note">
         WebAssembly is absent from these tabs on purpose. This program uses
         <code>numerus&lt;u8&gt;</code>, and the MIR-to-WASM backend does not yet
@@ -506,12 +451,10 @@ functio scala(fractus&lt;f32&gt; x) → fractus&lt;f32&gt; {
       <button class="fdt-copy" type="button">Copy</button>
     </div>
     <div class="fdt-tabs" role="tablist" aria-label="Compilation target">
-    <button class="fdt-tab" role="tab" id="fl-tgt-t-rust" data-panel="fl-tgt-p-rust" data-name="Rust" aria-controls="fl-tgt-p-rust" aria-selected="true" tabindex="0">Rust <span class="code">rust</span></button>
-    <button class="fdt-tab" role="tab" id="fl-tgt-t-go" data-panel="fl-tgt-p-go" data-name="Go" aria-controls="fl-tgt-p-go" aria-selected="false" tabindex="-1">Go <span class="code">go</span></button>
-    <button class="fdt-tab" role="tab" id="fl-tgt-t-ts" data-panel="fl-tgt-p-ts" data-name="TypeScript" aria-controls="fl-tgt-p-ts" aria-selected="false" tabindex="-1">TypeScript <span class="code">ts</span></button>
-    <button class="fdt-tab" role="tab" id="fl-tgt-t-llvm-text" data-panel="fl-tgt-p-llvm-text" data-name="LLVM IR" aria-controls="fl-tgt-p-llvm-text" aria-selected="false" tabindex="-1">LLVM IR <span class="code">llvm-text</span></button>
-    <button class="fdt-tab" role="tab" id="fl-tgt-t-wgsl-text" data-panel="fl-tgt-p-wgsl-text" data-name="WGSL" aria-controls="fl-tgt-p-wgsl-text" aria-selected="false" tabindex="-1">WGSL <span class="code">wgsl-text</span></button>
-    <button class="fdt-tab" role="tab" id="fl-tgt-t-metal-text" data-panel="fl-tgt-p-metal-text" data-name="Metal" aria-controls="fl-tgt-p-metal-text" aria-selected="false" tabindex="-1">Metal <span class="code">metal-text</span></button>
+    <button class="fdt-tab" role="tab" id="fl-tgt-t-rust" data-panel="fl-tgt-p-rust" data-name="Rust" aria-controls="fl-tgt-p-rust" title="rust" aria-selected="true" tabindex="0">Rust</button>
+    <button class="fdt-tab" role="tab" id="fl-tgt-t-go" data-panel="fl-tgt-p-go" data-name="Go" aria-controls="fl-tgt-p-go" title="go" aria-selected="false" tabindex="-1">Go</button>
+    <button class="fdt-tab" role="tab" id="fl-tgt-t-ts" data-panel="fl-tgt-p-ts" data-name="TypeScript" aria-controls="fl-tgt-p-ts" title="ts" aria-selected="false" tabindex="-1">TypeScript</button>
+    <button class="fdt-tab" role="tab" id="fl-tgt-t-llvm-text" data-panel="fl-tgt-p-llvm-text" data-name="LLVM IR" aria-controls="fl-tgt-p-llvm-text" title="llvm-text" aria-selected="false" tabindex="-1">LLVM IR</button>
     </div>
     <div class="fdt-panel active" id="fl-tgt-p-rust" role="tabpanel" aria-labelledby="fl-tgt-t-rust"><div class="fdt-panel-label"><code>radix emit --target rust main.fab</code> <span class="fdt-note">— primary backend — reviewable source, then a native binary</span></div><pre>// Generated by radix - do not edit
 // Requires the faber language-runtime crate (add to Cargo.toml):
@@ -642,141 +585,7 @@ func main() {
         fmt.Println(fmt.Sprintf(&quot;erratum: %v&quot;, err))
     }
 }</pre></div>
-    <div class="fdt-panel" id="fl-tgt-p-ts" role="tabpanel" aria-labelledby="fl-tgt-t-ts"><div class="fdt-panel-label"><code>radix emit --target ts main.fab</code> <span class="fdt-note">— file emission</span></div><pre>// Generated by radix - do not edit
-
-type FaberResult&lt;T, E&gt; = { ok: true; value: T } | { ok: false; error: E };
-
-type FaberDisplayHint =
-      &quot;unknown&quot;
-    | &quot;textus&quot;
-    | &quot;ascii&quot;
-    | &quot;numerus&quot;
-    | &quot;fractus&quot;
-    | &quot;bivalens&quot;
-    | &quot;nihil&quot;
-    | &quot;vacuum&quot;
-    | &quot;valor&quot;
-    | &quot;instans&quot;
-    | &quot;regex&quot;
-    | { kind: &quot;nullable&quot;; inner: FaberDisplayHint }
-    | { kind: &quot;lista&quot;; element: FaberDisplayHint }
-    | { kind: &quot;tensor&quot;; element: FaberDisplayHint }
-    | { kind: &quot;sparsa&quot;; element: FaberDisplayHint }
-    | { kind: &quot;map&quot;; key: FaberDisplayHint; value: FaberDisplayHint }
-    | { kind: &quot;set&quot;; element: FaberDisplayHint }
-;
-
-function __faberDisplay(value: any, hint: FaberDisplayHint = &quot;unknown&quot;): string {
-    if (typeof hint === &quot;object&quot;) {
-        if (hint.kind === &quot;nullable&quot;) {
-            return value === null || value === undefined ? &quot;nihil&quot; : __faberDisplay(value, hint.inner);
-        }
-        if (hint.kind === &quot;lista&quot;) { return __faberDisplayList(value, hint.element); }
-        if (hint.kind === &quot;tensor&quot;) { return __faberDisplayTensor(value, hint.element); }
-        if (hint.kind === &quot;sparsa&quot;) { return __faberDisplaySparsa(value, hint.element); }
-        if (hint.kind === &quot;map&quot;) { return __faberDisplayMap(value, hint.key, hint.value); }
-        return __faberDisplayList(value, hint.element);
-    }
-    if (value === null || value === undefined) {
-        return hint === &quot;vacuum&quot; ? &quot;vacuum&quot; : &quot;nihil&quot;;
-    }
-    switch (hint) {
-        case &quot;bivalens&quot;: return value ? &quot;verum&quot; : &quot;falsum&quot;;
-        case &quot;fractus&quot;: return __faberDisplayFractus(value);
-        case &quot;nihil&quot;: return &quot;nihil&quot;;
-        case &quot;vacuum&quot;: return &quot;vacuum&quot;;
-        case &quot;valor&quot;: return __faberDisplayValor(value);
-        case &quot;regex&quot;: return String(value);
-        case &quot;textus&quot;:
-        case &quot;ascii&quot;:
-        case &quot;instans&quot;:
-        case &quot;numerus&quot;: return String(value);
-        default: return __faberDisplayValor(value);
-    }
-}
-
-function __faberDisplayFractus(value: any): string {
-    const n = Number(value);
-    if (!Number.isFinite(n)) { return String(value); }
-    return Number.isInteger(n) ? `${n}.0` : String(n);
-}
-
-function __faberDisplayList(value: any, element: FaberDisplayHint): string {
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    return `[${Array.from(value as Array&lt;any&gt;).map((item) =&gt; __faberDisplay(item, element)).join(&quot;, &quot;)}]`;
-}
-
-function __faberDisplayTensor(value: any, element: FaberDisplayHint): string {
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    if (typeof value.planata === &quot;function&quot;) { return __faberDisplayList(value.planata(), element); }
-    if (Array.isArray(value.data)) { return __faberDisplayList(value.data, element); }
-    return __faberDisplayValor(value);
-}
-
-function __faberDisplaySparsa(value: any, element: FaberDisplayHint): string {
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    if (typeof value.densata === &quot;function&quot;) { return __faberDisplayTensor(value.densata(), element); }
-    return __faberDisplayValor(value);
-}
-
-function __faberDisplayMap(value: any, keyHint: FaberDisplayHint, valueHint: FaberDisplayHint): string {
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    const entries = value instanceof Map ? Array.from(value.entries()) : Object.entries(value);
-    return `{${entries.map(([key, item]) =&gt; `${JSON.stringify(__faberDisplay(key, keyHint))}: ${__faberDisplay(item, valueHint)}`).join(&quot;, &quot;)}}`;
-}
-
-function __faberDisplayValor(value: any): string {
-    if (value !== null &amp;&amp; typeof value === &quot;object&quot; &amp;&amp; typeof value.__faberValorTag === &quot;string&quot;) { return __faberDisplayTaggedValor(value); }
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    if (typeof value === &quot;boolean&quot;) { return value ? &quot;verum&quot; : &quot;falsum&quot;; }
-    if (typeof value === &quot;number&quot;) { return String(value); }
-    if (typeof value === &quot;string&quot;) { return value; }
-    if (Array.isArray(value)) { return __faberDisplayList(value, &quot;valor&quot;); }
-    if (typeof value.text === &quot;function&quot;) { return String(value.text()); }
-    if (typeof value.toString === &quot;function&quot; &amp;&amp; value.toString !== Object.prototype.toString) { return String(value); }
-    return __faberDisplayMap(value, &quot;textus&quot;, &quot;valor&quot;);
-}
-
-function __faberDisplayTaggedValor(value: any): string {
-    const payload = value.__faberValorPayload;
-    switch (value.__faberValorTag) {
-        case &quot;Nihil&quot;: return &quot;Nihil&quot;;
-        case &quot;Bivalens&quot;: return `Bivalens(${payload})`;
-        case &quot;Numerus&quot;: return `Numerus(${payload})`;
-        case &quot;Fractus&quot;: return `Fractus(${__faberDisplayFractus(payload)})`;
-        case &quot;Textus&quot;: return `Textus(${JSON.stringify(String(payload))})`;
-        case &quot;Instans&quot;: return `Instans(${JSON.stringify(String(payload))})`;
-        case &quot;Octeti&quot;: return `Octeti(${JSON.stringify(payload)})`;
-        case &quot;Lista&quot;: return `Lista(${__faberDisplayValorPayloadList(payload)})`;
-        case &quot;Tabula&quot;: return `Tabula(${__faberDisplayValorPayloadMap(payload)})`;
-        default: return __faberDisplayValor(payload);
-    }
-}
-
-function __faberDisplayValorPayload(value: any): string {
-    if (value === null || value === undefined) { return &quot;Nihil&quot;; }
-    if (typeof value === &quot;boolean&quot;) { return `Bivalens(${value})`; }
-    if (typeof value === &quot;number&quot;) { return `${Number.isInteger(value) ? &quot;Numerus&quot; : &quot;Fractus&quot;}(${Number.isInteger(value) ? value : __faberDisplayFractus(value)})`; }
-    if (typeof value === &quot;string&quot;) { return `Textus(${JSON.stringify(value)})`; }
-    if (Array.isArray(value)) { return `Lista(${__faberDisplayValorPayloadList(value)})`; }
-    if (typeof value.planata === &quot;function&quot;) { return `Lista(${__faberDisplayValorPayloadList(value.planata())})`; }
-    if (typeof value.text === &quot;function&quot;) { return `Instans(${JSON.stringify(String(value.text()))})`; }
-    return `Tabula(${__faberDisplayValorPayloadMap(value)})`;
-}
-
-function __faberDisplayValorPayloadList(value: any): string {
-    return `[${Array.from(value as Array&lt;any&gt;).map((item) =&gt; __faberDisplayValorPayload(item)).join(&quot;, &quot;)}]`;
-}
-
-function __faberDisplayValorPayloadMap(value: any): string {
-    const entries = value instanceof Map ? Array.from(value.entries()) : Object.entries(value);
-    return `{${entries.map(([key, item]) =&gt; `${JSON.stringify(String(key))}: ${__faberDisplayValorPayload(item)}`).join(&quot;, &quot;)}}`;
-}
-
-type Pixel = { tag: &quot;Opacus&quot;, nivea: number } | { tag: &quot;Vitreus&quot;, nivea: number, alpha: number } | { tag: &quot;Vacuus&quot; };
-function Opacus(nivea: number): Pixel { return { tag: &quot;Opacus&quot;, nivea }; }
-function Vitreus(nivea: number, alpha: number): Pixel { return { tag: &quot;Vitreus&quot;, nivea, alpha }; }
-const Vacuus: Pixel = { tag: &quot;Vacuus&quot; };
+    <div class="fdt-panel" id="fl-tgt-p-ts" role="tabpanel" aria-labelledby="fl-tgt-t-ts"><div class="fdt-panel-label"><code>radix emit --target ts main.fab</code> <span class="fdt-note">— file emission</span></div><pre>// … 136 lines of generated display/runtime shim elided …
 
 function satura(datum: number, meta: number = 255): FaberResult&lt;number, string&gt; {
     if ((datum &lt; 0)) {
@@ -1111,7 +920,35 @@ define %FaberRtExitV1 @__faber_program_entry_v1(ptr %context) {
       %faber.entry.exit = insertvalue %FaberRtExitV1 { i32 0, i32 0 }, i32 %faber.entry.status, 1
       ret %FaberRtExitV1 %faber.entry.exit
 }</pre></div>
-    <div class="fdt-panel" id="fl-tgt-p-wgsl-text" role="tabpanel" aria-labelledby="fl-tgt-t-wgsl-text"><div class="fdt-panel-label"><code>radix emit --target wgsl-text kernel.fab</code> <span class="fdt-note">— GPU compute shader — from an @ nucleum kernel</span></div><pre>// Generated by radix wgsl-text (supported-with-limitations compute source).
+  </div>
+  </section>
+
+  <section class="fl-proof">
+    <div class="fl-proof-head">
+      <h2>The same core reaches the GPU</h2>
+      <p>
+        A function marked <code>@ nucleum</code> is a compute kernel. It is
+        ordinary Faber — the annotation just says where it runs:
+      </p>
+      <pre class="fl-src">@ nucleum
+functio scala(fractus&lt;f32&gt; x) → fractus&lt;f32&gt; {
+    redde x + 1.0
+}</pre>
+      <p>
+        That lowers to the shading language each device actually wants:
+      </p>
+    </div>
+  <div class="faber-demo-tabs fdt-hero" data-fdt>
+    <div class="fdt-bar">
+      <span class="fdt-mark" aria-hidden="true">f</span>
+      <span class="fdt-file">kernel.fab → GPU</span>
+      <button class="fdt-copy" type="button">Copy</button>
+    </div>
+    <div class="fdt-tabs" role="tablist" aria-label="GPU shading language">
+    <button class="fdt-tab" role="tab" id="fl-gpu-t-wgsl-text" data-panel="fl-gpu-p-wgsl-text" data-name="WGSL" aria-controls="fl-gpu-p-wgsl-text" title="wgsl-text" aria-selected="true" tabindex="0">WGSL</button>
+    <button class="fdt-tab" role="tab" id="fl-gpu-t-metal-text" data-panel="fl-gpu-p-metal-text" data-name="Metal" aria-controls="fl-gpu-p-metal-text" title="metal-text" aria-selected="false" tabindex="-1">Metal</button>
+    </div>
+    <div class="fdt-panel active" id="fl-gpu-p-wgsl-text" role="tabpanel" aria-labelledby="fl-gpu-t-wgsl-text"><div class="fdt-panel-label"><code>radix emit --target wgsl-text kernel.fab</code> <span class="fdt-note">— WebGPU compute shader</span></div><pre>// Generated by radix wgsl-text (supported-with-limitations compute source).
 
 @group(0) @binding(0) var&lt;storage, read&gt; x_in: array&lt;f32&gt;;
 @group(0) @binding(1) var&lt;storage, read_write&gt; output: array&lt;f32&gt;;
@@ -1125,7 +962,7 @@ fn scala(@builtin(global_invocation_id) id: vec3&lt;u32&gt;) {
   let x: f32 = x_in[i];
   output[i] = (x + 1.0);
 }</pre></div>
-    <div class="fdt-panel" id="fl-tgt-p-metal-text" role="tabpanel" aria-labelledby="fl-tgt-t-metal-text"><div class="fdt-panel-label"><code>radix emit --target metal-text kernel.fab</code> <span class="fdt-note">— GPU compute shader — from an @ nucleum kernel</span></div><pre>// Generated by radix metal-text (supported-with-limitations compute source).
+    <div class="fdt-panel" id="fl-gpu-p-metal-text" role="tabpanel" aria-labelledby="fl-gpu-t-metal-text"><div class="fdt-panel-label"><code>radix emit --target metal-text kernel.fab</code> <span class="fdt-note">— Apple GPU compute shader</span></div><pre>// Generated by radix metal-text (supported-with-limitations compute source).
 #include &lt;metal_stdlib&gt;
 using namespace metal;
 

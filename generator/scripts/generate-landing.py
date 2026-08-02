@@ -52,19 +52,25 @@ LOCALES: list[dict[str, str]] = [
      "note": "Hindi — Devanagari"},
 ]
 
+# The target axis splits in two. Ordinary lowering comes from the demo program;
+# the GPU shading languages need an `@ nucleum` kernel, which is a different
+# source file. Mixing them in one tab strip made the kernel look like a variant
+# of the same program when it is not.
 TARGETS: list[dict[str, str]] = [
     {"id": "rust", "name": "Rust",
      "note": "primary backend — reviewable source, then a native binary"},
     {"id": "go", "name": "Go", "note": "file emission"},
     {"id": "ts", "name": "TypeScript", "note": "file emission",
-     "elide_before": "function saturate"},
+     "elide_before": "function satura"},
     {"id": "llvm-text", "name": "LLVM IR",
      "note": "native code with no source language in between"},
-    {"id": "wasm-text", "name": "WebAssembly", "note": "external host"},
-    {"id": "wgsl-text", "name": "WGSL",
-     "note": "GPU compute shader — from an @ nucleum kernel", "kernel": "1"},
-    {"id": "metal-text", "name": "Metal",
-     "note": "GPU compute shader — from an @ nucleum kernel", "kernel": "1"},
+]
+
+GPU_TARGETS: list[dict[str, str]] = [
+    {"id": "wgsl-text", "name": "WGSL", "kernel": "1",
+     "note": "WebGPU compute shader"},
+    {"id": "metal-text", "name": "Metal", "kernel": "1",
+     "note": "Apple GPU compute shader"},
 ]
 
 FRAMES: list[dict[str, str]] = [
@@ -106,6 +112,7 @@ def demo_tabs(*, root_id: str, file_label: str, tablist_label: str,
         tabs += (
             f'    <button class="fdt-tab" role="tab" id="{root_id}-t-{p["id"]}" '
             f'data-panel="{pid}" data-name="{p["name"]}" aria-controls="{pid}" '
+            f'title="{p["hint"]}" '
             f'aria-selected="{"true" if i == 0 else "false"}" '
             f'tabindex="{"0" if i == 0 else "-1"}">{p["tab"]}</button>\n'
         )
@@ -138,7 +145,7 @@ def build_locale_panels(d: Path) -> list[dict[str, str]]:
                 if loc["script"] else esc(loc["name"]))
         panels.append({
             "id": esc(loc["id"]), "name": esc(loc["name"]),
-            "tab": f'{name} <span class="code">{esc(loc["code"])}</span>',
+            "tab": name, "hint": esc(loc["code"]),
             "label": f'<code>faber format --reader-locale {esc(loc["code"])}</code> '
                      f'<span class="fdt-note">— {esc(loc["note"])}</span>',
             "code": esc(f.read_text(encoding="utf-8").strip()),
@@ -148,9 +155,9 @@ def build_locale_panels(d: Path) -> list[dict[str, str]]:
     return panels
 
 
-def build_target_panels(d: Path) -> list[dict[str, str]]:
+def build_target_panels(d: Path, targets: list[dict[str, str]]) -> list[dict[str, str]]:
     panels = []
-    for t in TARGETS:
+    for t in targets:
         f = d / "targets" / f"out.{t['id']}.txt"
         if not f.is_file():
             continue
@@ -166,7 +173,7 @@ def build_target_panels(d: Path) -> list[dict[str, str]]:
         origin = "kernel.fab" if t.get("kernel") else "main.fab"
         panels.append({
             "id": esc(t["id"]), "name": esc(t["name"]),
-            "tab": f'{esc(t["name"])} <span class="code">{esc(t["id"])}</span>',
+            "tab": esc(t["name"]), "hint": esc(t["id"]),
             "label": f'<code>radix emit --target {esc(t["id"])} {origin}</code> '
                      f'<span class="fdt-note">— {esc(t["note"])}</span>',
             "code": esc(body),
@@ -188,9 +195,9 @@ def main() -> None:
 
     matrix = read_matrix(args.matrix)
     locale_panels = build_locale_panels(args.landing)
-    target_panels = build_target_panels(args.landing)
+    target_panels = build_target_panels(args.landing, TARGETS)
+    gpu_panels = build_target_panels(args.landing, GPU_TARGETS)
 
-    hero_code = (args.landing / "locales" / "llm.fab").read_text(encoding="utf-8").strip()
     kernel_fab = (args.landing / "targets" / "kernel.fab").read_text(encoding="utf-8").strip()
 
     read_tabs = demo_tabs(
@@ -199,6 +206,9 @@ def main() -> None:
     target_tabs = demo_tabs(
         root_id="fl-tgt", file_label="main.fab → target",
         tablist_label="Compilation target", panels=target_panels)
+    gpu_tabs = demo_tabs(
+        root_id="fl-gpu", file_label="kernel.fab → GPU",
+        tablist_label="GPU shading language", panels=gpu_panels)
 
     frames = "".join(
         f"""\
@@ -257,18 +267,6 @@ def main() -> None:
       you need to run: Rust, a native binary, or a GPU shader.
     </p>
 
-    <div class="fl-first">
-      <pre class="fl-src">{esc(hero_code)}</pre>
-      <pre class="fl-run">$ faber run --interpret app
-opacus 255</pre>
-    </div>
-    <p class="fl-note">
-      Real output from <code>faber format --reader-locale llm</code> — a tagged
-      union, sized numerics, a typed error channel, defaulted parameters,
-      pattern matching, and a glyph closure. Same program, seven more readings
-      below.
-    </p>
-
     <div class="fl-cta">
       <a class="fl-btn fl-btn-primary" href="/en-US/start/install.html">Install Faber</a>
       <a class="fl-btn" href="/en-US/start/">Five-minute tour</a>
@@ -284,16 +282,20 @@ opacus 255</pre>
 
   <section class="fl-proof">
     <div class="fl-proof-head">
-      <h2>Everyone reads it in their own language</h2>
+      <h2>Here it is, and everyone reads it in their own language</h2>
       <p>
-        These are not translated comments or a localized tutorial. It is one
-        program, and the compiler accepts every one of these spellings. Only
-        the keywords and type names change — identifiers and string literals
+        One program — a tagged union, sized numerics, a typed error channel,
+        defaulted parameters, pattern matching and a glyph closure. Pick a tab
+        and it is still that program. These are not translated comments or a
+        localized tutorial; the compiler accepts every one of these spellings.
+        Only keywords and type names change — identifiers and string literals
         stay exactly as written, so two people who share no language can still
-        talk about <code>saturate</code> on line one.
+        talk about <code>satura</code> on line one.
       </p>
     </div>
-{read_tabs}    <p class="fl-note">
+{read_tabs}    <pre class="fl-run">$ faber run --interpret app
+opacus 255</pre>
+    <p class="fl-note">
       A reviewer sets their locale once. Nobody presses a translate button, and
       no model sits in the middle guessing — this is the compiler's own
       rendering, so the program you approve is the program that ships.
@@ -308,10 +310,8 @@ opacus 255</pre>
         <code>radix emit</code> output — nothing here is hand-written or
         illustrative. LLVM IR comes straight off the MIR, so Faber reaches
         native code without passing through Rust, C, or any other source
-        language. The two GPU panels come from an <code>@ nucleum</code>
-        kernel, which is a different source file:
+        language.
       </p>
-      <pre class="fl-src">{esc(kernel_fab)}</pre>
       <p class="fl-note">
         WebAssembly is absent from these tabs on purpose. This program uses
         <code>numerus&lt;u8&gt;</code>, and the MIR-to-WASM backend does not yet
@@ -322,6 +322,20 @@ opacus 255</pre>
       </p>
     </div>
 {target_tabs}  </section>
+
+  <section class="fl-proof">
+    <div class="fl-proof-head">
+      <h2>The same core reaches the GPU</h2>
+      <p>
+        A function marked <code>@ nucleum</code> is a compute kernel. It is
+        ordinary Faber — the annotation just says where it runs:
+      </p>
+      <pre class="fl-src">{esc(kernel_fab)}</pre>
+      <p>
+        That lowers to the shading language each device actually wants:
+      </p>
+    </div>
+{gpu_tabs}  </section>
 
   <section class="fl-proof">
     <div class="fl-proof-head">
