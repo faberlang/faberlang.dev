@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:f781952d9c1cd489dbd4487770eecaae3ef1c56bb4986a397f1d6d378e74c0a3"
+prose_hash = "sha256:3cf2be8d35cfd419428b8c1e1935b15c84b30d25aa6a919f4b748ba8c2182f2e"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "54a1febec594f9bfc1e66c9bcf25604b52a66978"
+source_commit = "e8818bc45c774586afe0d39fd9f85f00c43f22be"
 source_locale = "en-US"
 +++
 
@@ -65,8 +65,8 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
 | llvm-text | 255 | 265 | 96% |
-| wasm-text | 210 | 265 | 79% |
-| wasm | 210 | 265 | 79% |
+| wasm-text | 198 | 265 | 75% |
+| wasm | 198 | 265 | 75% |
 | metal-text | 6 | 265 | 2% |
 | wgsl-text | 6 | 265 | 2% |
 | sexp-struct | 211 | 265 | 80% |
@@ -270,15 +270,15 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `bivalens` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `cape` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `casu` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `cede` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `cede` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `ceteri` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ceterum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `clausura` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `clausura` | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `cli` | — | — | — | — | — | — | — | — |
-| `copia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `copia` | ✓ | ◐ | ◐ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `cura` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `curata` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
-| `cursor` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `cursor` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `custodi` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `de` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `descriptio` | — | — | — | — | — | — | — | — |
@@ -291,7 +291,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `est` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
 | `ex` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `exitus` | — | — | — | — | — | — | — | — |
-| `fac` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `fac` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `falsum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fient` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fiet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -300,12 +300,12 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `fiunt` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fixum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fragilis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
-| `fractus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `fractus` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `functio` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `futura` | ◐ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `futurum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `generis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `genus` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `genus` | ✓ | ◐ | ◐ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `iace` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `iacit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ignotum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -324,7 +324,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `lista` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `matrix` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
 | `mone` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `mori` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `mori` | ✓ | ◐ | ◐ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `nihil` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `numquam` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
@@ -374,7 +374,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `tag` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `temporis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `tensor` | ✓ | ✕ | ✕ | ✕ | ✕ | ◐ | ◐ | ◐ |
-| `textus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `textus` | ✓ | ◐ | ◐ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `typus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ubique` | — | — | — | — | — | — | — | — |
 | `usque` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -403,7 +403,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `≠` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `!(` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⊻` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `↦` | ✓ | ◐ | ◐ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `↦` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `⇒` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `‥` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `…` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
