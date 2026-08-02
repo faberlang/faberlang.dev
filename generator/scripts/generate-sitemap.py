@@ -59,6 +59,12 @@ def main() -> int:
                 if not name.endswith(".html"):
                     continue
                 path = Path(root) / name
+                # Redirect stubs (retired paths) carry noindex; listing them
+                # in the sitemap tells crawlers to index a page that asks not
+                # to be indexed. Skip anything that meta-refreshes away.
+                head = path.read_text(encoding="utf-8", errors="ignore")[:1024]
+                if 'http-equiv="refresh"' in head or "http-equiv='refresh'" in head:
+                    continue
                 loc = file_to_loc(path, locale_root, locale, base_url)
                 if loc:
                     urls.append(loc)
