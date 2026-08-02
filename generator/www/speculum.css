@@ -1018,14 +1018,29 @@ footer .side-h {
 .fdt-tab .zh { font-family: 'Noto Sans SC', var(--sans); }
 
 /* Code panels need the same script coverage the tab labels get. --mono is
-   Noto Sans Mono, which has no Thai, Arabic or Devanagari glyphs, so a
-   non-Latin panel renders as tofu or nothing without these. There is no
-   widely installed monospace for these scripts; the proportional script face
-   is listed first and platform faces follow as fallbacks. */
-.fdt-panel pre.th { font-family: 'Noto Sans Thai', 'Noto Sans Thai UI', 'Thonburi', 'Leelawadee UI', var(--mono); }
-.fdt-panel pre.ar { font-family: 'Noto Sans Arabic', 'Geeza Pro', 'Segoe UI', var(--mono); }
-.fdt-panel pre.hi { font-family: 'Noto Sans Devanagari', 'Devanagari Sangam MN', 'Nirmala UI', var(--mono); }
-.fdt-panel pre.zh { font-family: 'Noto Sans SC', 'Noto Sans Mono CJK SC', 'PingFang SC', 'Microsoft YaHei', var(--mono); }
+   listed FIRST so the ASCII skeleton (braces, digits, Latin identifiers)
+   renders identically in every panel — one program, many scripts — while
+   native-script keywords fall through per-glyph to the script face. There
+   is no widely installed monospace for Thai, Arabic or Devanagari, so those
+   keywords are proportional; the platform faces follow the web font.
+   Font sizes compensate for optical size: Thai/Arabic/Devanagari are
+   designed small on the em, so 13px reads tiny next to 13px Latin; CJK is
+   full-width and already reads large, so it keeps the base size. */
+.fdt-panel pre.th {
+    font-family: var(--mono), 'Noto Sans Thai', 'Noto Sans Thai UI', 'Thonburi', 'Leelawadee UI', sans-serif;
+    font-size: 15px; line-height: 1.8;
+}
+.fdt-panel pre.ar {
+    font-family: var(--mono), 'Noto Sans Arabic', 'Geeza Pro', 'Segoe UI', sans-serif;
+    font-size: 14.5px; line-height: 1.75;
+}
+.fdt-panel pre.hi {
+    font-family: var(--mono), 'Noto Sans Devanagari', 'Devanagari Sangam MN', 'Nirmala UI', sans-serif;
+    font-size: 14px; line-height: 1.75;
+}
+.fdt-panel pre.zh {
+    font-family: var(--mono), 'Noto Sans Mono CJK SC', 'Noto Sans SC', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
 
 /* Panels */
 .fdt-panel { display: block; }

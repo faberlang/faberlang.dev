@@ -232,6 +232,9 @@ def main() -> None:
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="https://faberlang.dev/">
 <link rel="alternate" hreflang="x-default" href="https://faberlang.dev/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;family=Noto+Sans+Arabic:wght@400;600;700&amp;family=Noto+Sans+Devanagari:wght@400;600&amp;family=Noto+Sans+SC:wght@400;600&amp;family=Noto+Sans+Thai:wght@400;600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{esc(args.css)}">
 <meta property="og:title" content="Faber — a language written by models, reviewed by people">
 <meta property="og:description" content="{esc(desc)}">
