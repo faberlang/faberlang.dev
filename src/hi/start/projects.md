@@ -40,7 +40,7 @@ faber check examples/ai-workbench/packages/faber-ai
 2. [Hello, Faber](/start/hello.html) में एकल पैकेज देखें।
 3. [कॉर्पस](/corpus/) में प्रत्येक कीवर्ड या कंस्ट्रक्ट के लिए एक पृष्ठ देखें।
 4. बड़े एप्लिकेशन के लिए [उदाहरण](/start/examples.html) देखें।
-5. CLI विवरण के लिए [Faber बिल्ड टूल](/tooling/faber-build-tool.html) देखें।
+5. CLI विवरण के लिए [Faber बिल्ड टूल](/toolchain/cli.html) देखें।
 
 ## एजेंट वर्कफ़्लो {#agent-workflow}
 
@@ -57,11 +57,11 @@ faber check path/to/package
 
 | लक्ष्य | पढ़ें |
 |---|---|
-| सिंटैक्स सीखें | [सिंटैक्स](/syntax/) |
-| लोकेल समझें | [रीडर लोकेल](/features/reader-locale.html) |
-| कंपाइलर का उपयोग करें | [Faber बिल्ड टूल](/tooling/faber-build-tool.html) और [Radix कंपाइलर](/tooling/radix-compiler.html) |
+| सिंटैक्स सीखें | [सिंटैक्स](/language/) |
+| लोकेल समझें | [रीडर लोकेल](/language/reader-locales.html) |
+| कंपाइलर का उपयोग करें | [Faber बिल्ड टूल](/toolchain/cli.html) और [Radix कंपाइलर](/toolchain/radix.html) |
 | कंस्ट्रक्ट ब्राउज़ करें | [कॉर्पस](/corpus/) |
-| लाइब्रेरी के साथ बिल्ड करें | [इकोसिस्टम](/ecosystem/) |
+| लाइब्रेरी के साथ बिल्ड करें | [इकोसिस्टम](/libraries/) |
 
 ## अगला {#next}
 

@@ -6,7 +6,7 @@ sources = []
 +++
 
 This page is the practical CLI map for the first week of Faber work. Use it as
-a command index, then open the detailed [Faber build tool](/tooling/faber-build-tool.html)
+a command index, then open the detailed [Faber build tool](/toolchain/cli.html)
 page when you need flags and compiler pipeline details.
 
 ## Daily loop {#daily-loop}

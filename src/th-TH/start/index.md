@@ -63,7 +63,7 @@ faber run my-app/
 faber test my-app/
 ```
 
-รายละเอียดเพิ่มเติม: [เครื่องมือ build ของ Faber](/tooling/faber-build-tool.html)
+รายละเอียดเพิ่มเติม: [เครื่องมือ build ของ Faber](/toolchain/cli.html)
 
 ## 4. แอปพลิเคชันจริง {#applications}
 
@@ -102,7 +102,7 @@ faber test my-app/
 | Hello, Faber | [Hello](/start/hello.html) |
 | คำสั่ง | [คำสั่ง](/start/commands.html) |
 | โปรเจกต์ | [โปรเจกต์](/start/projects.html) |
-| เอกสารอ้างอิงไวยากรณ์ | [ไวยากรณ์](/syntax/) |
-| ฟีเจอร์ (locale, lane) | [ฟีเจอร์](/features/) |
-| ไลบรารีในระบบนิเวศ | [ระบบนิเวศ](/ecosystem/) |
+| เอกสารอ้างอิงไวยากรณ์ | [ไวยากรณ์](/language/) |
+| ฟีเจอร์ (locale, lane) | [ฟีเจอร์](/language/) |
+| ไลบรารีในระบบนิเวศ | [ระบบนิเวศ](/libraries/) |
 | คลังคำสำคัญ | [Corpus](/corpus/) |

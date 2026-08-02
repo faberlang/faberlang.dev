@@ -38,7 +38,7 @@ intentionally want a local resolver override for library development.
 2. [Hello, Faber](/start/hello.html) for a single package.
 3. [Corpus](/corpus/) for one page per keyword or construct.
 4. [Examples](/start/examples.html) for larger applications.
-5. [Faber build tool](/tooling/faber-build-tool.html) for CLI details.
+5. [Faber build tool](/toolchain/cli.html) for CLI details.
 
 ## Agent workflow {#agent-workflow}
 
@@ -58,11 +58,11 @@ validator before claiming the examples still compile.
 
 | Goal | Read |
 |---|---|
-| Learn syntax | [Syntax](/syntax/) |
-| Understand locales | [Reader locale](/features/reader-locale.html) |
-| Use the compiler | [Faber build tool](/tooling/faber-build-tool.html) and [Radix compiler](/tooling/radix-compiler.html) |
+| Learn syntax | [Syntax](/language/) |
+| Understand locales | [Reader locale](/language/reader-locales.html) |
+| Use the compiler | [Faber build tool](/toolchain/cli.html) and [Radix compiler](/toolchain/radix.html) |
 | Browse constructs | [Corpus](/corpus/) |
-| Build with libraries | [Ecosystem](/ecosystem/) |
+| Build with libraries | [Ecosystem](/libraries/) |
 
 ## Next {#next}
 

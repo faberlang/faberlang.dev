@@ -74,7 +74,7 @@ Salve, munde!
 
 ## Chứng minh bản địa hóa {#locale-proof}
 
-Chương trình trên là cách hiển thị chuẩn theo locale đọc tiếng Latinh. Các locale đọc khác có thể hiển thị cùng một chương trình ngữ nghĩa bằng các bộ từ khóa khác nhau, đồng thời giữ nguyên glyph và mã định danh. Hãy bắt đầu với phần chứng minh đầy đủ tại [Locale đọc](/features/reader-locale.html) trước khi viết các gói không dùng chữ Latinh.
+Chương trình trên là cách hiển thị chuẩn theo locale đọc tiếng Latinh. Các locale đọc khác có thể hiển thị cùng một chương trình ngữ nghĩa bằng các bộ từ khóa khác nhau, đồng thời giữ nguyên glyph và mã định danh. Hãy bắt đầu với phần chứng minh đầy đủ tại [Locale đọc](/language/reader-locales.html) trước khi viết các gói không dùng chữ Latinh.
 
 ## Tiếp theo {#next}
 

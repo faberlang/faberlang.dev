@@ -40,7 +40,7 @@ Các gói có import `norma:*` sẽ phân giải dependency từ kho gói Cista 
 2. [Xin chào, Faber](/start/hello.html) cho một gói đơn.
 3. [Corpus](/corpus/) với mỗi trang trình bày một từ khóa hoặc cấu trúc.
 4. [Ví dụ](/start/examples.html) cho các ứng dụng lớn hơn.
-5. [Công cụ build Faber](/tooling/faber-build-tool.html) để tìm hiểu chi tiết CLI.
+5. [Công cụ build Faber](/toolchain/cli.html) để tìm hiểu chi tiết CLI.
 
 ## Quy trình làm việc cho tác nhân {#agent-workflow}
 
@@ -57,11 +57,11 @@ faber check path/to/package
 
 | Mục tiêu | Đọc |
 |---|---|
-| Học cú pháp | [Cú pháp](/syntax/) |
-| Tìm hiểu locale | [Locale đọc](/features/reader-locale.html) |
-| Sử dụng trình biên dịch | [Công cụ build Faber](/tooling/faber-build-tool.html) và [Trình biên dịch Radix](/tooling/radix-compiler.html) |
+| Học cú pháp | [Cú pháp](/language/) |
+| Tìm hiểu locale | [Locale đọc](/language/reader-locales.html) |
+| Sử dụng trình biên dịch | [Công cụ build Faber](/toolchain/cli.html) và [Trình biên dịch Radix](/toolchain/radix.html) |
 | Duyệt các cấu trúc | [Corpus](/corpus/) |
-| Xây dựng với thư viện | [Hệ sinh thái](/ecosystem/) |
+| Xây dựng với thư viện | [Hệ sinh thái](/libraries/) |
 
 ## Tiếp theo {#next}
 

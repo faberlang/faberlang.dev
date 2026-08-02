@@ -40,7 +40,7 @@ faber check examples/ai-workbench/packages/faber-ai
 2. [مرحبًا، Faber](/start/hello.html) لحزمة واحدة.
 3. [المجموعة](/corpus/) لصفحة واحدة لكل كلمة مفتاحية أو بناء.
 4. [أمثلة](/start/examples.html) لتطبيقات أكبر.
-5. [أداة بناء Faber](/tooling/faber-build-tool.html) لتفاصيل CLI.
+5. [أداة بناء Faber](/toolchain/cli.html) لتفاصيل CLI.
 
 ## سير عمل الوكيل {#agent-workflow}
 
@@ -57,11 +57,11 @@ faber check path/to/package
 
 | الهدف | اقرأ |
 |---|---|
-| تعلّم الصيغة | [الصيغة](/syntax/) |
-| فهم الإعدادات المحلية | [إعدادات القارئ المحلية](/features/reader-locale.html) |
-| استخدام المترجم | [أداة بناء Faber](/tooling/faber-build-tool.html) و[مترجم Radix](/tooling/radix-compiler.html) |
+| تعلّم الصيغة | [الصيغة](/language/) |
+| فهم الإعدادات المحلية | [إعدادات القارئ المحلية](/language/reader-locales.html) |
+| استخدام المترجم | [أداة بناء Faber](/toolchain/cli.html) و[مترجم Radix](/toolchain/radix.html) |
 | تصفّح البنى | [المجموعة](/corpus/) |
-| البناء بالمكتبات | [النظام البيئي](/ecosystem/) |
+| البناء بالمكتبات | [النظام البيئي](/libraries/) |
 
 ## التالي {#next}
 

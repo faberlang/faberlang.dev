@@ -44,7 +44,7 @@ faber --version
 
 Tất cả ghi chú và tài sản của bản phát hành: [github.com/faberlang/releases · faber-v1.2.0](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0).
 Hướng dẫn từng bước: [Hướng dẫn cài đặt](/start/install.html). Danh mục lịch sử đầy đủ:
-[Các bản phát hành](/history/releases.html).
+[Các bản phát hành](/reference/releases.html).
 
 | | |
 |---|---|
@@ -104,7 +104,7 @@ incipit {
 }
 ```
 
-Xem [Locale người đọc](/features/reader-locale.html) để xem cùng một chương trình ngữ nghĩa được hiển thị qua các gói tiếng Thái, tiếng Trung giản thể, tiếng Trung phồn thể, tiếng Ả Rập, tiếng Hindi và tiếng Việt.
+Xem [Locale người đọc](/language/reader-locales.html) để xem cùng một chương trình ngữ nghĩa được hiển thị qua các gói tiếng Thái, tiếng Trung giản thể, tiếng Trung phồn thể, tiếng Ả Rập, tiếng Hindi và tiếng Việt.
 
 ## Tổng quan {#overview}
 
@@ -123,14 +123,14 @@ Kết quả là mã nguồn có hình dạng ngữ pháp ổn định, có thể
 
 | Phần | Mô tả |
 |---|---|
-| [Lịch sử](/history/) | Dòng thời gian phát triển, ảnh hưởng và lịch sử phát hành |
-| [Các bản phát hành](/history/releases.html) | Bản tải xuống Faber mới nhất cùng mọi thẻ và tệp nhị phân đã phát hành |
-| [Tính năng](/features/) | Locale người đọc, các tuyến biên dịch, từ vựng Latinh, hệ thống glyph, nguyên tắc thiết kế |
-| [Cú pháp](/syntax/) | Tài liệu tham khảo đầy đủ: kiểu, hàm, luồng điều khiển, lỗi, generic, collection |
-| [Công cụ](/tooling/) | Pipeline trình biên dịch Radix, CLI Faber, các đích sinh mã, scripting |
-| [Hệ sinh thái](/ecosystem/) | Norma, Cista, Triga, coreutils, AI Workbench, corpus |
+| [Lịch sử](/reference/design.html) | Dòng thời gian phát triển, ảnh hưởng và lịch sử phát hành |
+| [Các bản phát hành](/reference/releases.html) | Bản tải xuống Faber mới nhất cùng mọi thẻ và tệp nhị phân đã phát hành |
+| [Tính năng](/language/) | Locale người đọc, các tuyến biên dịch, từ vựng Latinh, hệ thống glyph, nguyên tắc thiết kế |
+| [Cú pháp](/language/) | Tài liệu tham khảo đầy đủ: kiểu, hàm, luồng điều khiển, lỗi, generic, collection |
+| [Công cụ](/toolchain/) | Pipeline trình biên dịch Radix, CLI Faber, các đích sinh mã, scripting |
+| [Hệ sinh thái](/libraries/) | Norma, Cista, Triga, coreutils, AI Workbench, corpus |
 | [Corpus](/corpus/) | Các trang từ khóa và cấu trúc được sinh từ corpus công khai |
-| [Tham chiếu](/references/) | Ngữ pháp EBNF, tài liệu thiết kế, kho mã |
+| [Tham chiếu](/reference/) | Ngữ pháp EBNF, tài liệu thiết kế, kho mã |
 
 ## Ví dụ nhanh {#quick-example}
 
@@ -147,7 +147,7 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 
 Theo mặc định, hàm chia ở trên được hiển thị trong gói Latinh. Trình biên dịch có thể hiển thị cùng một chương trình trong bảy locale người đọc — tiếng Thái, tiếng Trung giản thể, tiếng Trung phồn thể, tiếng Ả Rập, tiếng Hindi và tiếng Việt — mỗi locale ánh xạ lại từ khóa và kiểu sang ngôn ngữ đó trong khi glyph và định danh vẫn không đổi. Đây không phải là một lớp dịch được áp dụng cho trang; đây là cùng cơ chế mà trình biên dịch sử dụng để tạo mã nguồn bản địa hóa.
 
-Xem tài liệu [locale người đọc](/features/reader-locale.html) để biết thảo luận đầy đủ.
+Xem tài liệu [locale người đọc](/language/reader-locales.html) để biết thảo luận đầy đủ.
 
 ## Kho mã {#repositories}
 

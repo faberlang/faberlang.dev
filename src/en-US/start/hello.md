@@ -77,7 +77,7 @@ Salve, munde!
 The program above is the canonical Latin reader rendering. Reader locales can
 render the same semantic program with different keyword packs while preserving
 glyphs and identifiers. Start with the full proof at
-[Reader locale](/features/reader-locale.html) before writing non-Latin packages.
+[Reader locale](/language/reader-locales.html) before writing non-Latin packages.
 
 ## Next {#next}
 

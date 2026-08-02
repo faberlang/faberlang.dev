@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Các hàm trong Faber được khai báo bằng functio, sử dụng cú pháp tham số đặt kiểu trước và kiểu trả về bằng glyph."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Functions and control flow — Faber"><meta property="og:description" content="Các hàm trong Faber được khai báo bằng functio, sử dụng cú pháp tham số đặt kiểu trước và kiểu trả về bằng glyph."><meta property="og:url" content="https://faberlang.dev/vi/language/functions.html"><meta property="og:locale" content="vi_VN"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/vi/language/functions.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Functions and control flow — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Kết xuất</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">vi</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/vi/start/install.html">cài đặt</a></nav></div></div><div class="page"><aside><a class="brand" href="/vi/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">tài liệu ngôn ngữ</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/vi/start/install.html">Cài đặt</a></li><li><a href="/vi/start/hello.html">Xin chào, world</a></li><li><a href="/vi/start/commands.html">Everyday commands</a></li><li><a href="/vi/start/projects.html">Your first package</a></li><li><a href="/vi/start/examples.html">Ví dụ</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/language/" class="active">The language</a></li><li><a href="/language/types.html">Types and values</a></li><li><a href="/language/functions.html">Functions and flow</a></li><li><a href="/language/errors.html">Errors and testing</a></li><li><a href="/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/language/reader-locales.html">Reader locales</a></li><li><a href="/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/toolchain/">Toolchain</a></li><li><a href="/toolchain/cli.html">The faber CLI</a></li><li><a href="/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/toolchain/target-matrix.html">Đích matrix</a></li><li><a href="/toolchain/packages.html">Packages with Cista</a></li><li><a href="/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/libraries/">Libraries</a></li><li><a href="/libraries/norma.html">Norma — stdlib</a></li><li><a href="/libraries/triga.html">Triga — graphics</a></li><li><a href="/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/reference/">Reference</a></li><li><a href="/reference/grammar.html">Grammar</a></li><li><a href="/vi/corpus/">Kho ngữ liệu index</a></li><li><a href="/reference/releases.html">Bản phát hành</a></li><li><a href="/reference/design.html">Design notes</a></li><li><a href="/reference/repositories.html">Repositories</a></li></ul><div class="side-h">Cho tác nhân</div><ul class="nav nav-compact"><li><a href="/llms.txt">Mục lục tác nhân</a></li><li><a href="/agents/index.md">Hướng dẫn tác nhân</a></li><li><a href="/.well-known/agent-skills/index.json">Kỹ năng tác nhân</a></li><li><a href="/llms-full.txt">Tham khảo đầy đủ</a></li></ul><div class="side-h">Release 1.3.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/reference/releases.html">Tất cả bản phát hành</a></li><li><a href="https://github.com/faberlang">Tổ chức GitHub</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Mô hình</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Kiểu</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Đích</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">Giấy phép</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Functions and control flow</h1><div class="content"><h2 id="functions">Functions<a class="anchor" href="#functions">#</a></h2><p>Các hàm trong Faber được khai báo bằng <code class="kw">functio</code>, sử dụng cú pháp tham số đặt kiểu trước và kiểu trả về bằng glyph.</p><h3 id="basic-syntax">Cú pháp cơ bản<a class="anchor" href="#basic-syntax">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> twice(<span class="tok-kw">numerus</span> n) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
+    <span class="tok-kw">redde</span> n
+}</code></pre><p>Với kênh lỗi:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> parse(<span class="tok-kw">textus</span> input) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
+    <span class="tok-kw">redde</span> <span class="tok-nu">0</span>
+}</code></pre><h3 id="examples">Ví dụ<a class="anchor" href="#examples">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># No parameters, no return</span>
+<span class="tok-kw">functio</span> saluta() {
+    nota <span class="tok-st">"Salve, Mundus!"</span>
+}
+
+<span class="tok-co"># Parameter, no explicit return</span>
+<span class="tok-kw">functio</span> dic(<span class="tok-kw">textus</span> verbum) {
+    nota verbum
+}
+
+<span class="tok-co"># Parameter and return type</span>
+<span class="tok-kw">functio</span> duplica(<span class="tok-kw">numerus</span> n) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
+    <span class="tok-kw">redde</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
+}
+
+<span class="tok-co"># Multiple parameters</span>
+<span class="tok-kw">functio</span> adde(<span class="tok-kw">numerus</span> a, <span class="tok-kw">numerus</span> b) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
+    <span class="tok-kw">redde</span> a <span class="tok-op">+</span> b
+}</code></pre><h3 id="return-values">Giá trị trả về<a class="anchor" href="#return-values">#</a></h3><p>Sử dụng <code class="kw">redde</code> để trả về thông thường:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> porta(<span class="tok-kw">numerus</span> x) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
+    <span class="tok-kw">si</span> x <span class="tok-op">&lt;</span> <span class="tok-nu">0</span> ergo <span class="tok-kw">redde</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">redde</span> x <span class="tok-op">*</span> <span class="tok-nu">2</span>
+}</code></pre><p>Dùng <code class="kw">redde</code> không kèm giá trị cho kiểu trả về <code class="typ">vacuum</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> tace() <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> {
+    <span class="tok-kw">redde</span>
+}</code></pre><h3 id="borrowing-and-mutability">Mượn và tính khả biến (de, in, ex)<a class="anchor" href="#borrowing-and-mutability">#</a></h3><p>Faber đánh dấu cách truyền một giá trị bằng các giới từ ngắn đặt trên tham số:</p><div class="table-scroll"><table><thead><tr><th>Dấu</th><th>Ý nghĩa</th><th>Hạ cấp Rust điển hình</th></tr></thead><tbody><tr><td><em>(không có)</em></td><td>Giá trị sở hữu</td><td><code>T</code> truyền theo giá trị</td></tr><tr><td><code class="kw">de</code></td><td>Mượn dùng chung (chỉ đọc)</td><td><code>&amp;T</code></td></tr><tr><td><code class="kw">in</code></td><td>Mượn có thể thay đổi</td><td><code>&amp;mut T</code></td></tr><tr><td><code class="kw">ex</code></td><td>Tiêu thụ (move vào hàm gọi)</td><td><code>T</code> move</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber locale=la"># Shared borrow
+functio imprime(de textus label) → vacuum {
+    nota label
+}
+
+# Mutable borrow
+functio duplica(in numerus value) → vacuum {
+    value ← value * 2
+}
+
+# Consume
+functio consume(ex textus buffer) → textus {
+    redde buffer
+}
+
+# Owned
+functio salve(textus nomen) → textus {
+    redde &quot;Salve, §!&quot;(nomen)
+}</code></pre><p>Các từ tương tự (<code class="kw">de</code>, <code class="kw">ex</code>) cũng được dùng lại trong những cấu trúc khác — không được hiểu mọi <code class="kw">ex</code> là “tiêu thụ”:</p><div class="table-scroll"><table><thead><tr><th>Cú pháp</th><th>Vai trò</th></tr></thead><tbody><tr><td><code>de textus name</code> trên tham số</td><td>Mượn dùng chung</td></tr><tr><td><code>in numerus count</code> trên tham số</td><td>Mượn có thể thay đổi</td></tr><tr><td><code>ex textus buffer</code> trên tham số</td><td>Move vào hàm gọi</td></tr><tr><td><code>itera ex items fixum item</code></td><td>Lặp qua các giá trị</td></tr><tr><td><code>itera de tabula fixum key</code></td><td>Lặp qua các khóa</td></tr><tr><td><code>ex source fixum x, ceteri rest</code></td><td>Phân rã các trường</td></tr><tr><td><code>importa ex &quot;path&quot;</code></td><td>Nhập từ mô-đun</td></tr></tbody></table></div><h3 id="entry-point">Điểm vào<a class="anchor" href="#entry-point">#</a></h3><p>Điểm vào của chương trình là <code class="kw">incipit</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {
+    nota <span class="tok-st">"ingressus"</span>
+}</code></pre><h3 id="cli-entry-point">Điểm vào CLI<a class="anchor" href="#cli-entry-point">#</a></h3><p>Đối với các chương trình CLI, <code>incipit argumenta</code> nhận các đối số lệnh đã được phân tích:</p><pre class="faber-code"><code class="lang-faber locale=la">@ cli &quot;echo&quot;
+@ descriptio &quot;Prints text&quot;
+@ operandus ceteri textus words
+incipit argumenta args {
+    itera ex args.words fixum word {
+        nota word
+    }
+}</code></pre><h3 id="passing-mode-sponte">Chế độ truyền — <code>sponte</code><a class="anchor" href="#passing-mode-sponte">#</a></h3><p><code>sponte</code> đánh dấu một tham số có thể được lược bỏ bởi bên gọi:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> connect(<span class="tok-kw">textus</span> host, <span class="tok-kw">numerus</span> port <span class="tok-kw">sponte</span>) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> {
+    nota host
+}</code></pre><h2 id="control-flow">Control flow<a class="anchor" href="#control-flow">#</a></h2><h3 id="conditional-branching">Rẽ nhánh điều kiện<a class="anchor" href="#conditional-branching">#</a></h3><h4 id="si-sin-secus">si / sin / secus<a class="anchor" href="#si-sin-secus">#</a></h4><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {
+    <span class="tok-kw">fixum</span> _ condition <span class="tok-op">←</span> <span class="tok-kw">verum</span>
+    <span class="tok-kw">si</span> condition {
+<span class="tok-co">        # truthy branch</span>
+        nota <span class="tok-st">"matched"</span>
+    }
+}</code></pre><p>Với <code>else-if</code> và <code>else</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {
+    <span class="tok-kw">fixum</span> _ score <span class="tok-op">←</span> <span class="tok-nu">85</span>
+    <span class="tok-kw">si</span> score <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
+        nota <span class="tok-st">"A"</span>
+    } <span class="tok-kw">sin</span> score <span class="tok-op">≥</span> <span class="tok-nu">80</span> {
+        nota <span class="tok-st">"B"</span>
+    } <span class="tok-kw">secus</span> {
+        nota <span class="tok-st">"C"</span>
+    }
+}</code></pre><h4 id="compact-branch-with-ergo">Nhánh rút gọn với ergo<a class="anchor" href="#compact-branch-with-ergo">#</a></h4><p>Thân nhánh chỉ gồm một câu lệnh sử dụng <code>ergo</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> classify(<span class="tok-kw">numerus</span> b, <span class="tok-kw">bivalens</span> ready, <span class="tok-kw">numerus</span> value) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> <span class="tok-op">∪</span> <span class="tok-kw">nihil</span> {
+    <span class="tok-kw">si</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> ergo <span class="tok-kw">redde</span> <span class="tok-kw">nihil</span>
+    <span class="tok-kw">si</span> ready ergo <span class="tok-kw">redde</span> value
+    <span class="tok-kw">redde</span> <span class="tok-kw">nihil</span>
+}</code></pre><h3 id="iteration">Lặp<a class="anchor" href="#iteration">#</a></h3><h4 id="values-itera-ex">Giá trị — itera ex<a class="anchor" href="#values-itera-ex">#</a></h4><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> inveni(<span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">numerus</span><span class="tok-op">&gt;</span> items, <span class="tok-kw">numerus</span> target) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> <span class="tok-op">∪</span> <span class="tok-kw">nihil</span> {
+    <span class="tok-kw">itera</span> <span class="tok-kw">ex</span> items <span class="tok-kw">fixum</span> item {
+        <span class="tok-kw">si</span> item <span class="tok-op">≡</span> target ergo <span class="tok-kw">redde</span> item
+    }
+    <span class="tok-kw">redde</span> <span class="tok-kw">nihil</span>
+}</code></pre><h4 id="keys-itera-de">Khóa — itera de<a class="anchor" href="#keys-itera-de">#</a></h4><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {
+    <span class="tok-kw">fixum</span> _ <span class="tok-kw">tabula</span> <span class="tok-op">←</span> { <span class="tok-st">"unus"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"duo"</span><span class="tok-op">:</span> <span class="tok-nu">2</span> }
+    <span class="tok-kw">itera</span> <span class="tok-kw">de</span> <span class="tok-kw">tabula</span> <span class="tok-kw">fixum</span> key {
+        nota key
+    }
+}</code></pre><h4 id="range-itera-ab">Khoảng — itera ab<a class="anchor" href="#range-itera-ab">#</a></h4><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">itera</span> <span class="tok-kw">ab</span> <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> <span class="tok-kw">fixum</span> i {
+    nota i
+}</code></pre><h3 id="while-loops">Vòng lặp while<a class="anchor" href="#while-loops">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {
+    <span class="tok-kw">fixum</span> _ condition <span class="tok-op">←</span> <span class="tok-kw">verum</span>
+    <span class="tok-kw">dum</span> condition {
+<span class="tok-co">        # body</span>
+        <span class="tok-kw">tacet</span>
+    }
+}</code></pre><h3 id="guard-sections-custodi">Khối bảo vệ — custodi<a class="anchor" href="#guard-sections-custodi">#</a></h3><p><code>custodi</code> nhóm các kiểm tra thoát sớm trước thân chính của một hàm.
+Mỗi mệnh đề <code class="kw">si</code> là một điều kiện bảo vệ được kiểm tra tuần tự:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> divide(<span class="tok-kw">numerus</span> a, <span class="tok-kw">numerus</span> b) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
+    <span class="tok-kw">custodi</span> {
+        <span class="tok-kw">si</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+            <span class="tok-kw">redde</span> <span class="tok-nu">0</span>
+        }
+    }
+    <span class="tok-kw">redde</span> a <span class="tok-op">/</span> b
+}</code></pre><p>Trong v1, không thể dùng <code>break</code> trong <code>custodi</code> — đây là lan can bảo vệ, không phải vòng lặp.</p><h3 id="pattern-matching-elige">Đối sánh mẫu — elige<a class="anchor" href="#pattern-matching-elige">#</a></h3><p><code class="kw">elige</code> chọn nhánh khớp đầu tiên:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> describe(<span class="tok-kw">numerus</span> value) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
+    <span class="tok-kw">elige</span> value {
+        <span class="tok-kw">casu</span> <span class="tok-nu">1</span> { <span class="tok-kw">redde</span> <span class="tok-st">"one"</span> }
+        <span class="tok-kw">casu</span> <span class="tok-nu">2</span> { <span class="tok-kw">redde</span> <span class="tok-st">"two"</span> }
+        <span class="tok-kw">ceterum</span> { <span class="tok-kw">redde</span> <span class="tok-st">"many"</span> }
+    }
+}</code></pre><h3 id="tagged-union-matching-discerne">Đối sánh union có thẻ — discerne<a class="anchor" href="#tagged-union-matching-discerne">#</a></h3><p><code class="kw">discerne</code> đối sánh đầy đủ các biến thể của <code>discretio</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">discretio</span> Exitus {
+    Bonum { <span class="tok-kw">textus</span> nuntius },
+    Malum { <span class="tok-kw">textus</span> causa }
+}
+
+<span class="tok-kw">functio</span> refer(Exitus eventus) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
+    <span class="tok-kw">discerne</span> eventus {
+        <span class="tok-kw">casu</span> Bonum <span class="tok-kw">fixum</span> nuntius { <span class="tok-kw">redde</span> nuntius }
+        <span class="tok-kw">casu</span> Malum <span class="tok-kw">fixum</span> causa { <span class="tok-kw">redde</span> <span class="tok-st">"Error: §"</span>(causa) }
+    }
+}</code></pre><h3 id="try-blocks-fac-cape">Khối try — fac / cape<a class="anchor" href="#try-blocks-fac-cape">#</a></h3><p><code class="kw">fac</code> mở một khối có thể phát sinh lỗi, còn <code class="kw">cape</code> khôi phục khi lỗi xảy ra:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> divide(<span class="tok-kw">numerus</span> a, <span class="tok-kw">numerus</span> b) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
+    <span class="tok-kw">redde</span> a <span class="tok-op">/</span> b
+}
+
+<span class="tok-kw">functio</span> tutus(<span class="tok-kw">numerus</span> a, <span class="tok-kw">numerus</span> b) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
+    <span class="tok-kw">fac</span> {
+        <span class="tok-kw">redde</span> divide(a, b)
+    } <span class="tok-kw">cape</span> err {
+        <span class="tok-kw">mone</span> err
+        <span class="tok-kw">redde</span> <span class="tok-nu">0</span>
+    }
+}</code></pre><h2 id="generics">Generics<a class="anchor" href="#generics">#</a></h2><p>Các hàm, bí danh kiểu, <code class="kw">genus</code> và <code>implendum</code> chấp nhận tham số kiểu theo cú pháp <code>&lt;T&gt;</code>.</p><h3 id="generic-functions">Hàm tổng quát<a class="anchor" href="#generic-functions">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T valor) <span class="tok-op">→</span> T {
+    <span class="tok-kw">redde</span> valor
+}
+
+<span class="tok-kw">functio</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">lista</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> <span class="tok-kw">nihil</span> {
+    <span class="tok-kw">redde</span> res.primus()
+}</code></pre><h3 id="explicit-callsite-type-arguments">Đối số kiểu tường minh tại vị trí gọi<a class="anchor" href="#explicit-callsite-type-arguments">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T valor) <span class="tok-op">→</span> T { <span class="tok-kw">redde</span> valor }
+
+<span class="tok-kw">functio</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">lista</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> <span class="tok-kw">nihil</span> {
+    <span class="tok-kw">redde</span> <span class="tok-kw">nihil</span>
+}
+
+<span class="tok-kw">fixum</span> _ value <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">numerus</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
+<span class="tok-kw">fixum</span> _ maybe <span class="tok-op">←</span> primum<span class="tok-op">&lt;</span><span class="tok-kw">numerus</span><span class="tok-op">&gt;</span>([value])</code></pre><h3 id="generic-genus"><code class="kw">genus</code> tổng quát<a class="anchor" href="#generic-genus">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">genus</span> Par<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> {
+    T primus
+    T secundus
+}</code></pre><h3 id="size-parameters">Tham số kích thước<a class="anchor" href="#size-parameters">#</a></h3><p><code>magnitudo</code> khai báo một tham số kích thước/chỉ mục trong các danh sách tham số tổng quát:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> crea<span class="tok-op">&lt;</span>T, magnitudo N<span class="tok-op">&gt;</span>() <span class="tok-op">→</span> tensor<span class="tok-op">&lt;</span>T, [N]<span class="tok-op">&gt;</span> {
+    <span class="tok-kw">redde</span> vacua
+}</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#functions">Functions</a></li><li class="toc-3"><a href="#basic-syntax">Cú pháp cơ bản</a></li><li class="toc-3"><a href="#examples">Ví dụ</a></li><li class="toc-3"><a href="#return-values">Giá trị trả về</a></li><li class="toc-3"><a href="#borrowing-and-mutability">Mượn và tính khả biến (de, in, ex)</a></li><li class="toc-3"><a href="#entry-point">Điểm vào</a></li><li class="toc-3"><a href="#cli-entry-point">Điểm vào CLI</a></li><li class="toc-3"><a href="#passing-mode-sponte">Chế độ truyền — sponte</a></li><li class="toc-2"><a href="#control-flow">Control flow</a></li><li class="toc-3"><a href="#conditional-branching">Rẽ nhánh điều kiện</a></li><li class="toc-3"><a href="#iteration">Lặp</a></li><li class="toc-3"><a href="#while-loops">Vòng lặp while</a></li><li class="toc-3"><a href="#guard-sections-custodi">Khối bảo vệ — custodi</a></li><li class="toc-3"><a href="#pattern-matching-elige">Đối sánh mẫu — elige</a></li><li class="toc-3"><a href="#tagged-union-matching-discerne">Đối sánh union có thẻ — discerne</a></li><li class="toc-3"><a href="#try-blocks-fac-cape">Khối try — fac / cape</a></li><li class="toc-2"><a href="#generics">Generics</a></li><li class="toc-3"><a href="#generic-functions">Hàm tổng quát</a></li><li class="toc-3"><a href="#explicit-callsite-type-arguments">Đối số kiểu tường minh tại vị trí gọi</a></li><li class="toc-3"><a href="#generic-genus">genus tổng quát</a></li><li class="toc-3"><a href="#size-parameters">Tham số kích thước</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[</li></ul></div></footer></div></body></html>

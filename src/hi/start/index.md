@@ -67,7 +67,7 @@ faber run my-app/
 faber test my-app/
 ```
 
-विवरण: [Faber बिल्ड टूल](/tooling/faber-build-tool.html)।
+विवरण: [Faber बिल्ड टूल](/toolchain/cli.html)।
 
 ## 4. वास्तविक एप्लिकेशन {#applications}
 
@@ -107,7 +107,7 @@ CLI, स्थानीय mailspace, GPU workload tracks और एक पू�
 | हैलो, Faber | [हैलो](/start/hello.html) |
 | कमांड | [कमांड](/start/commands.html) |
 | प्रोजेक्ट | [प्रोजेक्ट](/start/projects.html) |
-| सिंटैक्स संदर्भ | [सिंटैक्स](/syntax/) |
-| सुविधाएँ (स्थानीय भाषाएँ, lanes) | [सुविधाएँ](/features/) |
-| इकोसिस्टम लाइब्रेरी | [इकोसिस्टम](/ecosystem/) |
+| सिंटैक्स संदर्भ | [सिंटैक्स](/language/) |
+| सुविधाएँ (स्थानीय भाषाएँ, lanes) | [सुविधाएँ](/language/) |
+| इकोसिस्टम लाइब्रेरी | [इकोसिस्टम](/libraries/) |
 | कीवर्ड corpus | [Corpus](/corpus/) |

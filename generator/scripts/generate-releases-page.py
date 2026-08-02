@@ -240,7 +240,7 @@ def main() -> int:
     parser.add_argument(
         "--output",
         type=Path,
-        default=repo / "src/en-US/history/releases.md",
+        default=repo / "src/en-US/reference/releases.md",
         help="Output Markdown path",
     )
     args = parser.parse_args()

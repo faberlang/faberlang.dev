@@ -22,7 +22,7 @@ Trang này được viết dựa trên các tạo phẩm phát hành của kho m
 | **Phiên bản** | 1.2.0 |
 | **Thẻ** | `faber-v1.2.0` |
 | **Trang phát hành** | [faber-v1.2.0 trên GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0) |
-| **Tất cả bản phát hành** | [Danh mục các bản phát hành của trang](/history/releases.html) |
+| **Tất cả bản phát hành** | [Danh mục các bản phát hành của trang](/reference/releases.html) |
 | **Giấy phép** | MIT |
 
 ## Tệp lưu trữ dựng sẵn {#archives}
@@ -83,7 +83,7 @@ git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-Xem thêm các gói: [Ví dụ](/start/examples.html). Bề mặt CLI: [Công cụ dựng Faber](/tooling/faber-build-tool.html).
+Xem thêm các gói: [Ví dụ](/start/examples.html). Bề mặt CLI: [Công cụ dựng Faber](/toolchain/cli.html).
 
 ## Trạng thái Homebrew {#homebrew}
 

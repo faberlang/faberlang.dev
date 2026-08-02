@@ -61,7 +61,7 @@ faber run my-app/
 faber test my-app/
 ```
 
-詳細資訊請參閱：[Faber 建置工具](/tooling/faber-build-tool.html)。
+詳細資訊請參閱：[Faber 建置工具](/toolchain/cli.html)。
 
 ## 4. 真實應用程式 {#applications}
 
@@ -100,7 +100,7 @@ faber test my-app/
 | Hello，Faber | [Hello](/start/hello.html) |
 | 命令 | [命令](/start/commands.html) |
 | 專案 | [專案](/start/projects.html) |
-| 語法參考 | [語法](/syntax/) |
-| 功能（地區設定、執行道） | [功能](/features/) |
-| 生態系函式庫 | [生態系](/ecosystem/) |
+| 語法參考 | [語法](/language/) |
+| 功能（地區設定、執行道） | [功能](/language/) |
+| 生態系函式庫 | [生態系](/libraries/) |
 | 關鍵字語料庫 | [語料庫](/corpus/) |

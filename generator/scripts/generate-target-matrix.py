@@ -24,7 +24,7 @@ REPO = Path(__file__).resolve().parents[2]
 WORKSPACE = REPO.parent
 DEFAULT_MATRIX = WORKSPACE / "radix" / "EBNF_MATRIX.md"
 LOCALES_DIR = REPO / "generator" / "locales"
-DEFAULT_OUT = REPO / "src" / "en-US" / "tooling" / "targets.md"
+DEFAULT_OUT = REPO / "src" / "en-US" / "toolchain" / "target-matrix.md"
 
 REQUIRED_KEYS = (
     "title",
@@ -354,7 +354,7 @@ def main() -> int:
         out = (
             args.output
             if locale == "en-US" and args.output != DEFAULT_OUT
-            else REPO / "src" / locale / "tooling" / "targets.md"
+            else REPO / "src" / locale / "toolchain" / "target-matrix.md"
         )
         if locale == "en-US" and not args.all_locales and not args.locale:
             out = args.output

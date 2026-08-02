@@ -43,7 +43,7 @@ faber --version
 
 所有发行说明和资源：[github.com/faberlang/releases · faber-v1.2.0](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0)。
 详细步骤：[安装指南](/start/install.html)。完整历史清单：
-[发行版本](/history/releases.html)。
+[发行版本](/reference/releases.html)。
 
 | | |
 |---|---|
@@ -101,7 +101,7 @@ incipit {
 }
 ```
 
-请参阅 [读者区域](/features/reader-locale.html)，查看通过泰语、简体中文、繁体中文、阿拉伯语、印地语和越南语包渲染的同一语义程序。
+请参阅 [读者区域](/language/reader-locales.html)，查看通过泰语、简体中文、繁体中文、阿拉伯语、印地语和越南语包渲染的同一语义程序。
 
 ## 概览 {#overview}
 
@@ -119,14 +119,14 @@ Faber 的设计围绕一个核心见解：中间表示即是真理，没有任�
 
 | 部分 | 描述 |
 |---|---|
-| [历史](/history/) | 开发时间线、影响和发布历史 |
-| [发行版本](/history/releases.html) | 最新的 Faber 下载以及每个已发布的标签和二进制文件 |
-| [特性](/features/) | 读者区域、编译轨道、拉丁词汇、符号系统、设计原则 |
-| [语法](/syntax/) | 完整参考：类型、函数、控制流、错误、泛型、集合 |
-| [工具](/tooling/) | Radix 编译器管道、Faber CLI、代码生成目标、脚本 |
-| [生态系统](/ecosystem/) | Norma、Cista、Triga、coreutils、AI Workbench、语料库 |
+| [历史](/reference/design.html) | 开发时间线、影响和发布历史 |
+| [发行版本](/reference/releases.html) | 最新的 Faber 下载以及每个已发布的标签和二进制文件 |
+| [特性](/language/) | 读者区域、编译轨道、拉丁词汇、符号系统、设计原则 |
+| [语法](/language/) | 完整参考：类型、函数、控制流、错误、泛型、集合 |
+| [工具](/toolchain/) | Radix 编译器管道、Faber CLI、代码生成目标、脚本 |
+| [生态系统](/libraries/) | Norma、Cista、Triga、coreutils、AI Workbench、语料库 |
 | [语料库](/corpus/) | 从公共语料库生成的关键词和构造页面 |
-| [参考](/references/) | EBNF 语法、设计文档、代码库 |
+| [参考](/reference/) | EBNF 语法、设计文档、代码库 |
 
 ## 快速示例 {#quick-example}
 
@@ -143,7 +143,7 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 
 上面的 divide 函数默认以拉丁语包渲染。编译器可以在七种读者区域中渲染同一程序——泰语、简体中文、繁体中文、阿拉伯语、印地语、越南语——每种都将关键字和类型重新映射为该语言，同时保持符号和标识符不变。这并不是应用于页面的翻译层；它是编译器用于生成本地化源代码的同一机制。
 
-有关完整讨论，请参阅 [读者区域](/features/reader-locale.html) 文档。
+有关完整讨论，请参阅 [读者区域](/language/reader-locales.html) 文档。
 
 ## 代码库 {#repositories}
 

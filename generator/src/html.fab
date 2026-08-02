@@ -216,28 +216,21 @@ functio genera_renderbar(textus site_locale) → doc_mod.Node {
 functio genera_sidebar(textus active_section, textus site_locale) → doc_mod.Node {
     varia lista<doc_mod.Node> children ← vacua
     children.appende(genera_brand(site_locale))
-    children.appende(side_h("Get started"))
-    children.appende(nav_list([li(genera_nav_link("Install & download", lp.content_href("/start/install.html", site_locale), active_section ≡ "install")), li(genera_nav_link("Releases", lp.content_href("/history/releases.html", site_locale), active_section ≡ "releases")), li(genera_nav_link("Hello", lp.content_href("/start/hello.html", site_locale), active_section ≡ "hello")), li(genera_nav_link("Commands", lp.content_href("/start/commands.html", site_locale), active_section ≡ "commands")), li(genera_nav_link("Projects", lp.content_href("/start/projects.html", site_locale), active_section ≡ "projects")), li(genera_nav_link("Examples", lp.content_href("/start/examples.html", site_locale), active_section ≡ "examples")), li(genera_nav_link("Quick tour", lp.content_href("/start/", site_locale), active_section ≡ "start"))], "nav"))
-    children.appende(side_h("Documentation"))
-
-    varia lista<doc_mod.Node> docs ← vacua
-    docs.appende(li(genera_nav_link("Overview", lp.content_href("/", site_locale), active_section ≡ "")))
-    docs.appende(li(genera_nav_link("Features", lp.content_href("/features/", site_locale), active_section ≡ "features")))
-    docs.appende(li(genera_nav_link("Syntax", lp.content_href("/syntax/", site_locale), active_section ≡ "syntax")))
-    docs.appende(li(genera_nav_link("Tooling", lp.content_href("/tooling/", site_locale), active_section ≡ "tooling")))
-    docs.appende(li(genera_nav_link("Architecture", lp.content_href("/tooling/radix-architecture.html", site_locale), active_section ≡ "architecture")))
-    docs.appende(li(genera_nav_link("Targets", lp.content_href("/tooling/targets.html", site_locale), active_section ≡ "targets")))
-    docs.appende(li(genera_nav_link("Ecosystem", lp.content_href("/ecosystem/", site_locale), active_section ≡ "ecosystem")))
-    docs.appende(li(genera_nav_link("Corpus", lp.content_href("/corpus/", site_locale), active_section ≡ "corpus")))
-    docs.appende(li(genera_nav_link("References", lp.content_href("/references/", site_locale), active_section ≡ "references")))
-    docs.appende(li(genera_nav_link("History", lp.content_href("/history/", site_locale), active_section ≡ "history")))
-    children.appende(nav_list(docs, "nav"))
-
+    children.appende(side_h("Start"))
+    children.appende(nav_list([li(genera_nav_link("Install", lp.content_href("/start/install.html", site_locale), active_section ≡ "install")), li(genera_nav_link("Hello, world", lp.content_href("/start/hello.html", site_locale), active_section ≡ "hello")), li(genera_nav_link("Everyday commands", lp.content_href("/start/commands.html", site_locale), active_section ≡ "commands")), li(genera_nav_link("Your first package", lp.content_href("/start/projects.html", site_locale), active_section ≡ "projects")), li(genera_nav_link("Examples", lp.content_href("/start/examples.html", site_locale), active_section ≡ "examples"))], "nav"))
+    children.appende(side_h("Language"))
+    children.appende(nav_list([li(genera_nav_link("The language", lp.content_href("/language/", site_locale), active_section ≡ "language")), li(genera_nav_link("Types and values", lp.content_href("/language/types.html", site_locale), active_section ≡ "types")), li(genera_nav_link("Functions and flow", lp.content_href("/language/functions.html", site_locale), active_section ≡ "functions")), li(genera_nav_link("Errors and testing", lp.content_href("/language/errors.html", site_locale), active_section ≡ "errors")), li(genera_nav_link("Glyphs and Latin", lp.content_href("/language/glyphs.html", site_locale), active_section ≡ "glyphs")), li(genera_nav_link("Reader locales", lp.content_href("/language/reader-locales.html", site_locale), active_section ≡ "reader-locales")), li(genera_nav_link("Capabilities", lp.content_href("/language/capabilities.html", site_locale), active_section ≡ "capabilities"))], "nav"))
+    children.appende(side_h("Toolchain"))
+    children.appende(nav_list([li(genera_nav_link("Toolchain", lp.content_href("/toolchain/", site_locale), active_section ≡ "toolchain")), li(genera_nav_link("The faber CLI", lp.content_href("/toolchain/cli.html", site_locale), active_section ≡ "cli")), li(genera_nav_link("Compiling and targets", lp.content_href("/toolchain/compiling.html", site_locale), active_section ≡ "compiling")), li(genera_nav_link("Target matrix", lp.content_href("/toolchain/target-matrix.html", site_locale), active_section ≡ "target-matrix")), li(genera_nav_link("Packages with Cista", lp.content_href("/toolchain/packages.html", site_locale), active_section ≡ "packages")), li(genera_nav_link("Inside Radix", lp.content_href("/toolchain/radix.html", site_locale), active_section ≡ "radix"))], "nav"))
+    children.appende(side_h("Libraries"))
+    children.appende(nav_list([li(genera_nav_link("Libraries", lp.content_href("/libraries/", site_locale), active_section ≡ "libraries")), li(genera_nav_link("Norma — stdlib", lp.content_href("/libraries/norma.html", site_locale), active_section ≡ "norma")), li(genera_nav_link("Triga — graphics", lp.content_href("/libraries/triga.html", site_locale), active_section ≡ "triga")), li(genera_nav_link("The corpus", lp.content_href("/libraries/corpus.html", site_locale), active_section ≡ "corpus-about"))], "nav"))
+    children.appende(side_h("Reference"))
+    children.appende(nav_list([li(genera_nav_link("Reference", lp.content_href("/reference/", site_locale), active_section ≡ "reference")), li(genera_nav_link("Grammar", lp.content_href("/reference/grammar.html", site_locale), active_section ≡ "grammar")), li(genera_nav_link("Corpus index", lp.content_href("/corpus/", site_locale), active_section ≡ "corpus")), li(genera_nav_link("Releases", lp.content_href("/reference/releases.html", site_locale), active_section ≡ "releases")), li(genera_nav_link("Design notes", lp.content_href("/reference/design.html", site_locale), active_section ≡ "design")), li(genera_nav_link("Repositories", lp.content_href("/reference/repositories.html", site_locale), active_section ≡ "repositories"))], "nav"))
     children.appende(side_h("For agents"))
     children.appende(nav_list([li(genera_nav_link("Agent index", "/llms.txt", falsum)), li(genera_nav_link("Agent guide", "/agents/index.md", falsum)), li(genera_nav_link("Agent skills", "/.well-known/agent-skills/index.json", falsum)), li(genera_nav_link("Full reference", "/llms-full.txt", falsum))], "nav nav-compact"))
 
-    children.appende(side_h("Release 1.1.1"))
-    children.appende(nav_list([li(genera_nav_link("macOS arm64", "https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz", falsum)), li(genera_nav_link("Linux x64", "https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz", falsum)), li(genera_nav_link("All releases", lp.content_href("/history/releases.html", site_locale), active_section ≡ "releases")), li(genera_nav_link("GitHub org", "https://github.com/faberlang", falsum))], "nav nav-compact"))
+    children.appende(side_h("Release 1.3.0"))
+    children.appende(nav_list([li(genera_nav_link("macOS arm64", "https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-aarch64-apple-darwin.tar.gz", falsum)), li(genera_nav_link("Linux x64", "https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-x86_64-unknown-linux-gnu.tar.gz", falsum)), li(genera_nav_link("All releases", lp.content_href("/reference/releases.html", site_locale), active_section ≡ "releases")), li(genera_nav_link("GitHub org", "https://github.com/faberlang", falsum))], "nav nav-compact"))
     children.appende(genera_side_meta())
 
     redde doc_mod.element("aside", vacua, children)

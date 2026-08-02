@@ -21,7 +21,7 @@ track.
 | **Version** | 1.3.0 |
 | **Tag** | `faber-v1.3.0` |
 | **Release page** | [faber-v1.3.0 on GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.3.0) |
-| **All releases** | [Site releases inventory](/history/releases.html) |
+| **All releases** | [Site releases inventory](/reference/releases.html) |
 | **License** | MIT |
 
 ## Prebuilt archives {#archives}
@@ -88,7 +88,7 @@ faber check examples/ai-workbench/packages/faber-ai
 ```
 
 More packages: [Examples](/start/examples.html). CLI surface:
-[Faber build tool](/tooling/faber-build-tool.html).
+[Faber build tool](/toolchain/cli.html).
 
 ## Homebrew status {#homebrew}
 

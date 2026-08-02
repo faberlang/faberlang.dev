@@ -22,7 +22,7 @@ source_locale = "en-US"
 | **版本** | 1.2.0 |
 | **标签** | `faber-v1.2.0` |
 | **发行页面** | [GitHub 上的 faber-v1.2.0](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0) |
-| **全部发行版** | [站点发行版清单](/history/releases.html) |
+| **全部发行版** | [站点发行版清单](/reference/releases.html) |
 | **许可证** | MIT |
 
 ## 预编译归档 {#archives}
@@ -83,7 +83,7 @@ git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-更多包:[示例](/start/examples.html)。CLI 概览:[Faber 构建工具](/tooling/faber-build-tool.html)。
+更多包:[示例](/start/examples.html)。CLI 概览:[Faber 构建工具](/toolchain/cli.html)。
 
 ## Homebrew 状态 {#homebrew}
 

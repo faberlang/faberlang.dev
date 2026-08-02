@@ -42,7 +42,7 @@ faber check examples/ai-workbench/packages/faber-ai
 2. [สวัสดี Faber](/start/hello.html) สำหรับแพ็กเกจเดียว
 3. [คอร์ปัส](/corpus/) ซึ่งมีหนึ่งหน้าต่อหนึ่งคีย์เวิร์ดหรือโครงสร้าง
 4. [ตัวอย่าง](/start/examples.html) สำหรับแอปพลิเคชันขนาดใหญ่ขึ้น
-5. [เครื่องมือบิลด์ Faber](/tooling/faber-build-tool.html) สำหรับรายละเอียด CLI
+5. [เครื่องมือบิลด์ Faber](/toolchain/cli.html) สำหรับรายละเอียด CLI
 
 ## เวิร์กโฟลว์สำหรับเอเจนต์ {#agent-workflow}
 
@@ -59,11 +59,11 @@ faber check path/to/package
 
 | เป้าหมาย | อ่าน |
 |---|---|
-| เรียนรู้ไวยากรณ์ | [ไวยากรณ์](/syntax/) |
-| ทำความเข้าใจ locale | [Reader locale](/features/reader-locale.html) |
-| ใช้คอมไพเลอร์ | [เครื่องมือบิลด์ Faber](/tooling/faber-build-tool.html) และ [คอมไพเลอร์ Radix](/tooling/radix-compiler.html) |
+| เรียนรู้ไวยากรณ์ | [ไวยากรณ์](/language/) |
+| ทำความเข้าใจ locale | [Reader locale](/language/reader-locales.html) |
+| ใช้คอมไพเลอร์ | [เครื่องมือบิลด์ Faber](/toolchain/cli.html) และ [คอมไพเลอร์ Radix](/toolchain/radix.html) |
 | เรียกดูโครงสร้าง | [คอร์ปัส](/corpus/) |
-| สร้างโปรแกรมด้วยไลบรารี | [ระบบนิเวศ](/ecosystem/) |
+| สร้างโปรแกรมด้วยไลบรารี | [ระบบนิเวศ](/libraries/) |
 
 ## ถัดไป {#next}
 

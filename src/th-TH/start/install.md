@@ -24,7 +24,7 @@ source_locale = "en-US"
 | **เวอร์ชัน** | 1.2.0 |
 | **แท็ก** | `faber-v1.2.0` |
 | **หน้ารีลีส** | [faber-v1.2.0 บน GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0) |
-| **รีลีสทั้งหมด** | [รายการรีลีสของเว็บไซต์](/history/releases.html) |
+| **รีลีสทั้งหมด** | [รายการรีลีสของเว็บไซต์](/reference/releases.html) |
 | **ใบอนุญาต** | MIT |
 
 ## ไฟล์เก็บถาวรที่สร้างไว้ล่วงหน้า {#archives}
@@ -86,7 +86,7 @@ faber check examples/ai-workbench/packages/faber-ai
 ```
 
 ดูแพ็กเกจเพิ่มเติมได้ที่ [ตัวอย่าง](/start/examples.html) พื้นผิวของ CLI:
-[เครื่องมือสร้าง Faber](/tooling/faber-build-tool.html)
+[เครื่องมือสร้าง Faber](/toolchain/cli.html)
 
 ## สถานะของ Homebrew {#homebrew}
 

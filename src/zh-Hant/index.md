@@ -42,7 +42,7 @@ faber --version
 ```
 
 所有版本說明與資產：[github.com/faberlang/releases · faber-v1.2.0](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0)。  
-逐步說明：[安裝指南](/start/install.html)。完整歷史清單：[版本](/history/releases.html)。
+逐步說明：[安裝指南](/start/install.html)。完整歷史清單：[版本](/reference/releases.html)。
 
 | | |
 |---|---|
@@ -100,7 +100,7 @@ incipit {
 }
 ```
 
-請參閱[讀者語言環境](/features/reader-locale.html)，瞭解同一個語意程式如何透過泰文、簡體中文、繁體中文、阿拉伯文、印地文與越南文套件呈現。
+請參閱[讀者語言環境](/language/reader-locales.html)，瞭解同一個語意程式如何透過泰文、簡體中文、繁體中文、阿拉伯文、印地文與越南文套件呈現。
 
 ## 概覽 {#overview}
 
@@ -118,14 +118,14 @@ Faber 建立於一項核心洞見之上：中間表示是真實依據，任何�
 
 | 區段 | 說明 |
 |---|---|
-| [歷史](/history/) | 開發時間軸、影響與版本歷史 |
-| [版本](/history/releases.html) | 最新 Faber 下載，以及每個已發布的標籤與二進位檔 |
-| [功能](/features/) | 讀者語言環境、編譯路徑、拉丁文詞彙、字元系統、設計原則 |
-| [語法](/syntax/) | 完整參考：型別、函式、控制流程、錯誤、泛型、集合 |
-| [工具](/tooling/) | Radix 編譯器流程、Faber CLI、程式碼生成目標、腳本 |
-| [生態系](/ecosystem/) | Norma、Cista、Triga、coreutils、AI Workbench、語料庫 |
+| [歷史](/reference/design.html) | 開發時間軸、影響與版本歷史 |
+| [版本](/reference/releases.html) | 最新 Faber 下載，以及每個已發布的標籤與二進位檔 |
+| [功能](/language/) | 讀者語言環境、編譯路徑、拉丁文詞彙、字元系統、設計原則 |
+| [語法](/language/) | 完整參考：型別、函式、控制流程、錯誤、泛型、集合 |
+| [工具](/toolchain/) | Radix 編譯器流程、Faber CLI、程式碼生成目標、腳本 |
+| [生態系](/libraries/) | Norma、Cista、Triga、coreutils、AI Workbench、語料庫 |
 | [語料庫](/corpus/) | 從公開語料庫生成的關鍵字與結構頁面 |
-| [參考資料](/references/) | EBNF 文法、設計文件、儲存庫 |
+| [參考資料](/reference/) | EBNF 文法、設計文件、儲存庫 |
 
 ## 快速範例 {#quick-example}
 
@@ -142,7 +142,7 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 
 上方的 divide 函式預設以拉丁文套件呈現。編譯器可以在七種讀者語言環境中呈現相同的程式——泰文、簡體中文、繁體中文、阿拉伯文、印地文、越南文——每一種都會將關鍵字與型別重新對應至該語言，而字元與識別碼保持不變。這不是套用在頁面上的翻譯層；這就是編譯器用來產生在地化原始碼的相同機制。
 
-請參閱[讀者語言環境](/features/reader-locale.html)文件，以取得完整說明。
+請參閱[讀者語言環境](/language/reader-locales.html)文件，以取得完整說明。
 
 ## 儲存庫 {#repositories}
 

@@ -79,7 +79,7 @@ Salve, munde!
 
 上方程式是規範的拉丁文讀者語系呈現。讀者語系可以使用不同的關鍵字包來
 呈現相同的語意程式，同時保留字形與識別碼。在撰寫非拉丁文套件之前，請先從
-[讀者語系](/features/reader-locale.html)的完整證明開始。
+[讀者語系](/language/reader-locales.html)的完整證明開始。
 
 ## 下一步 {#next}
 

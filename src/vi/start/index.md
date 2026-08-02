@@ -68,7 +68,7 @@ faber run my-app/
 faber test my-app/
 ```
 
-Chi tiết: [Công cụ build Faber](/tooling/faber-build-tool.html).
+Chi tiết: [Công cụ build Faber](/toolchain/cli.html).
 
 ## 4. Ứng dụng thực tế {#applications}
 
@@ -109,7 +109,7 @@ Xem chúng trên [trang examples](/start/examples.html).
 | Hello, Faber | [Hello](/start/hello.html) |
 | Các lệnh | [Các lệnh](/start/commands.html) |
 | Dự án | [Dự án](/start/projects.html) |
-| Tham chiếu cú pháp | [Cú pháp](/syntax/) |
-| Tính năng (locale, lane) | [Tính năng](/features/) |
-| Thư viện hệ sinh thái | [Hệ sinh thái](/ecosystem/) |
+| Tham chiếu cú pháp | [Cú pháp](/language/) |
+| Tính năng (locale, lane) | [Tính năng](/language/) |
+| Thư viện hệ sinh thái | [Hệ sinh thái](/libraries/) |
 | Corpus từ khóa | [Corpus](/corpus/) |

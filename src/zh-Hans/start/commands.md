@@ -11,7 +11,7 @@ code_hash = "sha256:adf615632f084c7edf7f1f0dfc205ee4912e8b497b19c9c96167bf9b97e4
 source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
 +++
-本页面是 Faber 入门第一周的实用 CLI 速查表。可将其用作命令索引；当需要了解具体标志和编译器流水线细节时，请打开详细的 [Faber 构建工具](/tooling/faber-build-tool.html)页面。
+本页面是 Faber 入门第一周的实用 CLI 速查表。可将其用作命令索引；当需要了解具体标志和编译器流水线细节时，请打开详细的 [Faber 构建工具](/toolchain/cli.html)页面。
 
 ## 每日循环 {#daily-loop}
 

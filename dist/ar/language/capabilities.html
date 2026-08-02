@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ar"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="الدرز بين Faber وكل طريقة يمكن لنظام التشغيل بها تنفيذ الإدخال/الإخراج."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Capabilities and frames — Faber"><meta property="og:description" content="الدرز بين Faber وكل طريقة يمكن لنظام التشغيل بها تنفيذ الإدخال/الإخراج."><meta property="og:url" content="https://faberlang.dev/ar/language/capabilities.html"><meta property="og:locale" content="ar_AR"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/ar/language/capabilities.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Capabilities and frames — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">العرض</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">ar</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/ar/start/install.html">تثبيت</a></nav></div></div><div class="page"><aside><a class="brand" href="/ar/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">وثائق اللغة</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/ar/start/install.html">تثبيت</a></li><li><a href="/ar/start/hello.html">مرحباً, world</a></li><li><a href="/ar/start/commands.html">Everyday commands</a></li><li><a href="/ar/start/projects.html">Your first package</a></li><li><a href="/ar/start/examples.html">أمثلة</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/language/" class="active">The language</a></li><li><a href="/language/types.html">Types and values</a></li><li><a href="/language/functions.html">Functions and flow</a></li><li><a href="/language/errors.html">Errors and testing</a></li><li><a href="/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/language/reader-locales.html">Reader locales</a></li><li><a href="/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/toolchain/">Toolchain</a></li><li><a href="/toolchain/cli.html">The faber CLI</a></li><li><a href="/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/toolchain/target-matrix.html">الهدف matrix</a></li><li><a href="/toolchain/packages.html">Packages with Cista</a></li><li><a href="/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/libraries/">Libraries</a></li><li><a href="/libraries/norma.html">Norma — stdlib</a></li><li><a href="/libraries/triga.html">Triga — graphics</a></li><li><a href="/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/reference/">Reference</a></li><li><a href="/reference/grammar.html">Grammar</a></li><li><a href="/ar/corpus/">المدونة index</a></li><li><a href="/reference/releases.html">الإصدارات</a></li><li><a href="/reference/design.html">Design notes</a></li><li><a href="/reference/repositories.html">Repositories</a></li></ul><div class="side-h">للوكلاء</div><ul class="nav nav-compact"><li><a href="/llms.txt">فهرس الوكلاء</a></li><li><a href="/agents/index.md">دليل الوكلاء</a></li><li><a href="/.well-known/agent-skills/index.json">مهارات الوكلاء</a></li><li><a href="/llms-full.txt">المرجع الكامل</a></li></ul><div class="side-h">Release 1.3.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/reference/releases.html">جميع الإصدارات</a></li><li><a href="https://github.com/faberlang">منظمة GitHub</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">النموذج</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">نظام الأنواع</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">الهدف</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">الرخصة</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Capabilities and frames</h1><div class="content"><p><em>الدرز بين Faber وكل طريقة يمكن لنظام التشغيل بها تنفيذ الإدخال/الإخراج.</em></p><p><code>ad</code> هو بدائي استدعاء القدرة منخفض المستوى في Faber — الحد الفاصل
+بين كود Faber والعالم الخارجي. يفتح محادثة مُنمَّطة
+(<code>sermo</code>) مع مورد مضيف يُعرَّف بسلسلة مسار، ثم
+يتبادل إطارات مهيكلة (<code>scrinium</code>) عبر أنصاف تيارات موجَّهة.
+يُرسل نواة المضيف كل مسار إلى صندوق مزود قابل للتوصيل، والذي
+ينفذ الإدخال/الإخراج الفعلي — نظام الملفات، الشبكات، الطرفية، الوقت، العشوائية،
+أو أي شيء آخر يمكن لنظام التشغيل فعله.</p><h2 id="ad">بدائي <code>ad</code><a class="anchor" href="#ad">#</a></h2><p><code>ad</code> كلمة مفتاحية، وليس دالة. يفتح محادثة معتمة
+مع مسار يُسمَّى بثابت <code>ascii</code> وبيانات افتتاحية اختيارية:</p><pre class="faber-code"><code class="lang-text"># Simple materialized call: open, send opener, drain response
+fixum textus content ← ad 'solum:lege' (&quot;config.toml&quot;) ↦ textus
+
+# Typed conversation handle for streaming interaction
+fixum sermo s ← ad 'processus:curre' (&quot;ls&quot;, [&quot;-la&quot;])</code></pre><p>تتبع سلسلة المسار نمط <code>prefix:verb</code>. تطابق نواة المضيف
+على <strong>البادئة فقط</strong> — يمتلك المزود كل الأفعال تحت تلك
+البادئة:</p><pre class="faber-code"><code class="lang-text">solum:lege   ─┐
+solum:modum  ─┼─►  prefix &quot;solum&quot;  ──►  solum provider crate
+solum:vincula─┘</code></pre><p><code>ad</code> ليس واجهة دوال أجنبية. لا يستدعي دوال C،
+ولا يحمّل مكتبات ديناميكية، ولا يضمّن تجميعًا مضمّنًا. إنه
+حد تمرير رسائل مهيكل: يرسل Faber إطارات مُنمَّطة ويستقبل
+إطارات مُنمَّطة، دون معرفة ما إذا كان المزود منفذًا بلغة Rust،
+أو يعمل داخل العملية، أو يفوض إلى استدعاء نظام، أو يعيد التوجيه إلى مضيف بعيد.</p><h2 id="types">أنواع الإطارات<a class="anchor" href="#types">#</a></h2><p>تشكل خمسة أنواع مملوكة للمصرّف نظام الإطارات:</p><div class="table-scroll"><table><thead><tr><th>النوع</th><th>الدور</th><th>السطح الرئيسي</th></tr></thead><tbody><tr><td><code>sermo</code></td><td>مقبض محادثة — تبادل ثنائي الاتجاه قيد التنفيذ</td><td>يُنشأ بواسطة <code>ad</code>؛ يُستنزف عبر <code>↦ T</code> أو يُقسَّم إلى مناظير</td></tr><tr><td><code>scrinium&lt;T&gt;</code></td><td>غلاف إطار — رسالة مهيكلة واحدة في محادثة</td><td>حقول: <code>id</code>، <code>call</code>، <code>status</code>، <code>data</code>، <code>created_ms</code>، <code>from</code>، <code>trace</code></td></tr><tr><td><code>status</code></td><td>تعداد علامة دورة الحياة</td><td><code>request</code>، <code>item</code>، <code>byte</code>، <code>bulk</code>، <code>done</code>، <code>error</code>، <code>cancel</code></td></tr><tr><td><code>meus&lt;T&gt;</code></td><td>نصف تيار صادر — إرسال إطارات إلى المزود</td><td><code>da(T)</code>، <code>fini() → status</code></td></tr><tr><td><code>tuus&lt;T&gt;</code></td><td>نصف تيار وارد — استقبال إطارات من المزود</td><td><code>accipe()</code>، <code>cursor()</code>، <code>exhauri()</code>، <code>fini()</code></td></tr></tbody></table></div><h3 id="using-directional-views">استخدام المناظير الموجهة<a class="anchor" href="#using-directional-views">#</a></h3><pre class="faber-code"><code class="lang-text"># Open a conversation, get directional views
+fixum sermo s ← ad 'solum:scribe' (&quot;output.txt&quot;)
+fixum meus&lt;textus&gt; out ← s.meus&lt;textus&gt;()
+fixum tuus&lt;textus&gt; input ← s.tuus&lt;textus&gt;()
+
+# Send content frames
+out.da(&quot;line one&quot;)
+out.da(&quot;line two&quot;)
+out.fini()
+
+# Read response frames
+itera ex input.cursor() fixum frame {
+    nota frame.data
+}
+fixum status inbound ← input.fini()</code></pre><h3 id="simple-materialization">التجسيد البسيط<a class="anchor" href="#simple-materialization">#</a></h3><p>للحالة الشائعة — فتح، إرسال بيانات افتتاحية، استنزاف كل إطارات الاستجابة إلى قيمة
+واحدة — يطوي <code>sermo ↦ T</code> المحادثة:</p><pre class="faber-code"><code class="lang-text"># Read a file: open + drain into textus
+fixum textus body ← ad 'solum:lege' (&quot;config.toml&quot;) ↦ textus
+
+# Parse JSON from an HTTP response
+fixum json data ← ad 'http:peti' (&quot;https://api.example.com/data&quot;) ↦ json</code></pre><p>يستخدم التجسيد جامعًا موجَّهًا بالنوع: <code>↦ textus</code>
+يربط كل الإطارات الواردة، <code>↦ json</code> يحلل الحمولة المربوطة،
+<code>↦ lista&lt;T&gt;</code> يجمع الإطارات في قائمة.</p><h2 id="providers">مزودو المضيف<a class="anchor" href="#providers">#</a></h2><p>تُنفذ عائلات التأثير كصناديق مزود منفصلة تحت
+<code>faberlang/host-providers-rs</code>. يمتلك كل مزود كل الأفعال تحت
+بادئته:</p><div class="table-scroll"><table><thead><tr><th>المزود</th><th>البادئة</th><th>نطاق الإدخال/الإخراج</th></tr></thead><tbody><tr><td><code>solum</code></td><td><code>solum:*</code></td><td>نظام الملفات: قراءة، كتابة، بيانات وصفية، عمليات الأدلة</td></tr><tr><td><code>processus</code></td><td><code>processus:*</code></td><td>تنفيذ العمليات: تشغيل، أنابيب، رموز خروج</td></tr><tr><td><code>consolum</code></td><td><code>consolum:*</code></td><td>إدخال/إخراج الطرفية: stdin، stdout، stderr</td></tr><tr><td><code>tempus</code></td><td><code>tempus:*</code></td><td>الوقت: الآن، إسبات، مؤقتات</td></tr><tr><td><code>aleator</code></td><td><code>aleator:*</code></td><td>العشوائية: إنتروبيا، توزيعات</td></tr><tr><td><code>http</code></td><td><code>http:*</code></td><td>عميل HTTP (المستوى د، عند الهبوط)</td></tr></tbody></table></div><p>المزودات صناديق منفصلة بتبعيَّاتها الخاصة — <code>solum</code>
+لا يسحب HTTP، و<code>http</code> لا يسحب كود نظام الملفات.
+يصدّر كل مزود دالة <code>register()</code> يستدعيها بيان
+المضيف المُولَّد عند بدء التشغيل.</p><h2 id="layers">مكدس الطبقات<a class="anchor" href="#layers">#</a></h2><pre class="faber-code"><code class="lang-text">Faber source:     ad 'solum:lege' (path) ↦ textus
+Compiler:         sermo open + generic attach (no provider crate names)
+Runtime:          HostDispatch + conversation protocol (faber-runtime)
+Kernel:           route(frame) → provider for prefix
+Provider:         solum provider reads file, returns content</code></pre><p>يُصدر المصرّف إرسالًا عامًا — لا يضمّن أبدًا أسماء صناديق المزود
+في الكود المُولَّد. يوفر وقت التشغيل <code>HostDispatch</code> وبروتوكول
+المحادثة. توجه النواة (من <code>host-kernel-rs</code>)
+الإطارات إلى المزود الصحيح بناءً على البادئة. ينفذ المزود (من
+<code>host-providers-rs</code>) الإدخال/الإخراج الفعلي.</p><p>هذا يعني أن كود Faber المُولَّد <strong>محايد تجاه المزود</strong>. يمكن ربط نفس
+الثنائي المجمَّع بتطبيقات مزود مختلفة — مزود
+نظام ملفات حقيقي للإنتاج، ومزود وهمي للاختبار — بتغيير
+بيان التجميع.</p><h2 id="manifest">بيان التجميع<a class="anchor" href="#manifest">#</a></h2><p>يُتحكم في أي المزودات تُربط بواسطة بيان التجميع المُولَّد
+وجدول <code>[dispatch]</code> في <code>faber.toml</code>:</p><pre class="faber-code"><code class="lang-text">[target.rust]
+host = &quot;native&quot;
+
+[dispatch]
+providers = [&quot;solum&quot;, &quot;processus&quot;, &quot;consolum&quot;, &quot;tempus&quot;, &quot;aleator&quot;]
+
+[dispatch.providers.http]
+enabled = true</code></pre><p>أثناء التأليف، تنتج المزودات المفقودة خطأ وقت تشغيل <code>E_NO_ROUTE</code>.
+في الوضع الصارم (مستقبلًا)، يجب أن يظهر كل بادئة <code>ad</code> في البرنامج
+في بيان التجميع، ويتحقق المصرّف من أن بيان قدرة
+المزود يغطي المسارات المستخدمة.</p><h2 id="architecture">المعمارية<a class="anchor" href="#architecture">#</a></h2><p>تنقسم منصة المضيف عبر ثلاثة مستودعات في
+منظمة <code>faberlang</code>:</p><div class="table-scroll"><table><thead><tr><th>المستودع</th><th>الدور</th></tr></thead><tbody><tr><td><code>host-kernel-rs</code></td><td>موجِّه رفيع — يمتلك <code>Frame</code>، <code>Conversation</code>، دورة حياة الطرفية، إرسال البادئات، الأخطاء المهيكلة (<code>E_NO_ROUTE</code>)، تجميع بيان القدرة</td></tr><tr><td><code>host-native-rs</code></td><td>إرفاق أصلي — عمال، خطاف بدء <code>register_providers</code>، تكامل <code>host_register.rs</code> المُولَّد</td></tr><tr><td><code>host-providers-rs</code></td><td>تطبيقات المزود — مساحة عمل Cargo بصناديق لكل عائلة (<code>solum</code>، <code>processus</code>، إلخ)</td></tr></tbody></table></div><p>يمتلك كل صندوق مزود تبعيَّاته الأصلية الخاصة. يسحب مزود <code>http</code>
+<code>hyper</code> و<code>tokio</code> فقط عند تمكين HTTP.
+يستخدم مزود <code>solum</code> واجهات برمجة ملفات قياسية دون
+تبعيات شبكة إضافية.</p><blockquote><p><strong>نفس المسار، أي مضيف.</strong> لأن <code>ad</code> يرسل على سلاسل المسار والمزودات قابلة للتوصيل، يمكن لنفس مصدر Faber استهداف ثنائي أصلي (host-native-rs)، أو وقت تشغيل WASM (host-kernel كمحوّل Frame/Wasm)، أو عملية TypeScript Node.js (host-providers-ts) دون تغيير سطر واحد من كود Faber.</p></blockquote><h2 id="stdlib">مغلّفات Norma<a class="anchor" href="#stdlib">#</a></h2><p>معظم كود Faber لا يستدعي <code>ad</code> مباشرة. تغلّف مكتبة Norma
+القياسية مسارات <code>ad</code> الشائعة في دوال مُنمَّطة:</p><pre class="faber-code"><code class="lang-text"># Norma wraps ad in typed, reviewed functions
+functio lege(textus via) → textus {
+    redde ad 'solum:lege' (via) ↦ textus
+}
+
+functio scribe(textus via, textus content) → vacuum {
+    fixum vacuum _ ← ad 'solum:scribe' (via, content) ↦ vacuum
+}
+
+functio curre(textus command, lista&lt;textus&gt; args) → textus {
+    redde ad 'processus:curre' (command, args) ↦ textus
+}</code></pre><p>توفر هذه الدوال المغلفة أمان الأنواع، والتوثيق، ومعالجة
+الأخطاء دون إخفاء حقيقة أن الإدخال/الإخراج يعبر حد
+<code>ad</code>. مغلفات Norma مفتوحة المصدر وتوجد تحت
+<code>norma/src/</code>.</p><h2 id="references">المراجع<a class="anchor" href="#references">#</a></h2><ol><li><code>radix/docs/design/frame-stream-types.md</code> — المواصفة الكاملة لـ sermo، scrinium، status، meus، tuus</li><li><code>radix/docs/design/host-provider-gateway.md</code> — معمارية الموجه الرفيع، عقود المزود، بيان التجميع</li><li><code>faberlang/host-kernel-rs/</code> — تطبيق موجه النواة</li><li><code>faberlang/host-native-rs/</code> — الإرفاق الأصلي والتسجيل</li><li><code>faberlang/host-providers-rs/</code> — صناديق المزود (solum، processus، consolum، tempus، aleator، http)</li><li><code>examples/corpus/ad/</code> — ملفات أمثلة sermo</li></ol></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#ad">بدائي ad</a></li><li class="toc-2"><a href="#types">أنواع الإطارات</a></li><li class="toc-3"><a href="#using-directional-views">استخدام المناظير الموجهة</a></li><li class="toc-3"><a href="#simple-materialization">التجسيد البسيط</a></li><li class="toc-2"><a href="#providers">مزودو المضيف</a></li><li class="toc-2"><a href="#layers">مكدس الطبقات</a></li><li class="toc-2"><a href="#manifest">بيان التجميع</a></li><li class="toc-2"><a href="#architecture">المعمارية</a></li><li class="toc-2"><a href="#stdlib">مغلّفات Norma</a></li><li class="toc-2"><a href="#references">المراجع</a></li></ul></div></nav></div></body></html>

@@ -66,7 +66,7 @@ faber run my-app/
 faber test my-app/
 ```
 
-تفاصيل: [أداة بناء Faber](/tooling/faber-build-tool.html).
+تفاصيل: [أداة بناء Faber](/toolchain/cli.html).
 
 ## ٤. تطبيقات حقيقية {#applications}
 
@@ -106,7 +106,7 @@ faber test my-app/
 | مرحباً، Faber | [مرحباً](/start/hello.html) |
 | الأوامر | [أوامر](/start/commands.html) |
 | المشاريع | [مشاريع](/start/projects.html) |
-| مرجع الصياغة | [الصياغة](/syntax/) |
-| ميزات (مواضع، مسارات) | [ميزات](/features/) |
-| مكتبات النظام البيئي | [نظام بيئي](/ecosystem/) |
+| مرجع الصياغة | [الصياغة](/language/) |
+| ميزات (مواضع، مسارات) | [ميزات](/language/) |
+| مكتبات النظام البيئي | [نظام بيئي](/libraries/) |
 | مجموعة الكلمات المفتاحية | [مجموعة](/corpus/) |

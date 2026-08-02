@@ -11,7 +11,7 @@ code_hash = "sha256:adf615632f084c7edf7f1f0dfc205ee4912e8b497b19c9c96167bf9b97e4
 source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
 +++
-這一頁是 Faber 第一週工作的實用 CLI 對照表。請先將它作為指令索引；需要旗標與編譯器管線詳細資訊時，再開啟[ Faber 建置工具](/tooling/faber-build-tool.html)頁面。
+這一頁是 Faber 第一週工作的實用 CLI 對照表。請先將它作為指令索引；需要旗標與編譯器管線詳細資訊時，再開啟[ Faber 建置工具](/toolchain/cli.html)頁面。
 
 ## 每日循環 {#daily-loop}
 

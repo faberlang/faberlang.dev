@@ -26,7 +26,7 @@ Radix/Faber أقدم، ففضِّل الأرشيفات أدناه لهذا ال�
 | **الإصدار** | 1.2.0 |
 | **الوسم** | `faber-v1.2.0` |
 | **صفحة الإصدار** | [faber-v1.2.0 على GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0) |
-| **كل الإصدارات** | [جرد إصدارات الموقع](/history/releases.html) |
+| **كل الإصدارات** | [جرد إصدارات الموقع](/reference/releases.html) |
 | **الترخيص** | MIT |
 
 ## الأرشيفات المُجمّعة مسبقًا {#archives}
@@ -94,7 +94,7 @@ faber check examples/ai-workbench/packages/faber-ai
 ```
 
 مزيد من الحزم: [أمثلة](/start/examples.html). سطح واجهة الأوامر:
-[أداة بناء Faber](/tooling/faber-build-tool.html).
+[أداة بناء Faber](/toolchain/cli.html).
 
 ## حالة Homebrew {#homebrew}
 

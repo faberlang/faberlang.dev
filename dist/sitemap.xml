@@ -341,6 +341,19 @@
   <url><loc>https://faberlang.dev/ar/features/testing.html</loc></url>
   <url><loc>https://faberlang.dev/ar/history/</loc></url>
   <url><loc>https://faberlang.dev/ar/history/releases.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/language/capabilities.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/language/errors.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/language/functions.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/language/glyphs.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/language/reader-locales.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/language/types.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/libraries/corpus.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/libraries/norma.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/libraries/triga.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/reference/design.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/reference/grammar.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/reference/releases.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/reference/repositories.html</loc></url>
   <url><loc>https://faberlang.dev/ar/references/</loc></url>
   <url><loc>https://faberlang.dev/ar/references/design-docs.html</loc></url>
   <url><loc>https://faberlang.dev/ar/references/ebnf.html</loc></url>
@@ -363,6 +376,11 @@
   <url><loc>https://faberlang.dev/ar/syntax/strings.html</loc></url>
   <url><loc>https://faberlang.dev/ar/syntax/types.html</loc></url>
   <url><loc>https://faberlang.dev/ar/syntax/variables.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/toolchain/cli.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/toolchain/compiling.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/toolchain/packages.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/toolchain/radix.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/toolchain/target-matrix.html</loc></url>
   <url><loc>https://faberlang.dev/ar/tooling/</loc></url>
   <url><loc>https://faberlang.dev/ar/tooling/cista-package-manager.html</loc></url>
   <url><loc>https://faberlang.dev/ar/tooling/codegen-targets.html</loc></url>
@@ -712,6 +730,22 @@
   <url><loc>https://faberlang.dev/en-US/features/testing.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/history/</loc></url>
   <url><loc>https://faberlang.dev/en-US/history/releases.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/language/</loc></url>
+  <url><loc>https://faberlang.dev/en-US/language/capabilities.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/language/errors.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/language/functions.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/language/glyphs.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/language/reader-locales.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/language/types.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/libraries/</loc></url>
+  <url><loc>https://faberlang.dev/en-US/libraries/corpus.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/libraries/norma.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/libraries/triga.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/reference/</loc></url>
+  <url><loc>https://faberlang.dev/en-US/reference/design.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/reference/grammar.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/reference/releases.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/reference/repositories.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/references/</loc></url>
   <url><loc>https://faberlang.dev/en-US/references/design-docs.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/references/ebnf.html</loc></url>
@@ -734,6 +768,12 @@
   <url><loc>https://faberlang.dev/en-US/syntax/strings.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/syntax/types.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/syntax/variables.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/toolchain/</loc></url>
+  <url><loc>https://faberlang.dev/en-US/toolchain/cli.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/toolchain/compiling.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/toolchain/packages.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/toolchain/radix.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/toolchain/target-matrix.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/tooling/</loc></url>
   <url><loc>https://faberlang.dev/en-US/tooling/cista-package-manager.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/tooling/codegen-targets.html</loc></url>
@@ -1083,6 +1123,19 @@
   <url><loc>https://faberlang.dev/hi/features/testing.html</loc></url>
   <url><loc>https://faberlang.dev/hi/history/</loc></url>
   <url><loc>https://faberlang.dev/hi/history/releases.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/language/capabilities.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/language/errors.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/language/functions.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/language/glyphs.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/language/reader-locales.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/language/types.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/libraries/corpus.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/libraries/norma.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/libraries/triga.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/reference/design.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/reference/grammar.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/reference/releases.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/reference/repositories.html</loc></url>
   <url><loc>https://faberlang.dev/hi/references/</loc></url>
   <url><loc>https://faberlang.dev/hi/references/design-docs.html</loc></url>
   <url><loc>https://faberlang.dev/hi/references/ebnf.html</loc></url>
@@ -1105,6 +1158,11 @@
   <url><loc>https://faberlang.dev/hi/syntax/strings.html</loc></url>
   <url><loc>https://faberlang.dev/hi/syntax/types.html</loc></url>
   <url><loc>https://faberlang.dev/hi/syntax/variables.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/toolchain/cli.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/toolchain/compiling.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/toolchain/packages.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/toolchain/radix.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/toolchain/target-matrix.html</loc></url>
   <url><loc>https://faberlang.dev/hi/tooling/</loc></url>
   <url><loc>https://faberlang.dev/hi/tooling/cista-package-manager.html</loc></url>
   <url><loc>https://faberlang.dev/hi/tooling/codegen-targets.html</loc></url>
@@ -1454,6 +1512,19 @@
   <url><loc>https://faberlang.dev/th-TH/features/testing.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/history/</loc></url>
   <url><loc>https://faberlang.dev/th-TH/history/releases.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/language/capabilities.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/language/errors.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/language/functions.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/language/glyphs.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/language/reader-locales.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/language/types.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/libraries/corpus.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/libraries/norma.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/libraries/triga.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/reference/design.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/reference/grammar.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/reference/releases.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/reference/repositories.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/references/</loc></url>
   <url><loc>https://faberlang.dev/th-TH/references/design-docs.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/references/ebnf.html</loc></url>
@@ -1476,6 +1547,11 @@
   <url><loc>https://faberlang.dev/th-TH/syntax/strings.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/syntax/types.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/syntax/variables.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/toolchain/cli.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/toolchain/compiling.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/toolchain/packages.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/toolchain/radix.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/toolchain/target-matrix.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/tooling/</loc></url>
   <url><loc>https://faberlang.dev/th-TH/tooling/cista-package-manager.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/tooling/codegen-targets.html</loc></url>
@@ -1825,6 +1901,19 @@
   <url><loc>https://faberlang.dev/vi/features/testing.html</loc></url>
   <url><loc>https://faberlang.dev/vi/history/</loc></url>
   <url><loc>https://faberlang.dev/vi/history/releases.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/language/capabilities.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/language/errors.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/language/functions.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/language/glyphs.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/language/reader-locales.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/language/types.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/libraries/corpus.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/libraries/norma.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/libraries/triga.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/reference/design.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/reference/grammar.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/reference/releases.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/reference/repositories.html</loc></url>
   <url><loc>https://faberlang.dev/vi/references/</loc></url>
   <url><loc>https://faberlang.dev/vi/references/design-docs.html</loc></url>
   <url><loc>https://faberlang.dev/vi/references/ebnf.html</loc></url>
@@ -1847,6 +1936,11 @@
   <url><loc>https://faberlang.dev/vi/syntax/strings.html</loc></url>
   <url><loc>https://faberlang.dev/vi/syntax/types.html</loc></url>
   <url><loc>https://faberlang.dev/vi/syntax/variables.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/toolchain/cli.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/toolchain/compiling.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/toolchain/packages.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/toolchain/radix.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/toolchain/target-matrix.html</loc></url>
   <url><loc>https://faberlang.dev/vi/tooling/</loc></url>
   <url><loc>https://faberlang.dev/vi/tooling/cista-package-manager.html</loc></url>
   <url><loc>https://faberlang.dev/vi/tooling/codegen-targets.html</loc></url>
@@ -2196,6 +2290,19 @@
   <url><loc>https://faberlang.dev/zh-Hans/features/testing.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/history/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/history/releases.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/language/capabilities.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/language/errors.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/language/functions.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/language/glyphs.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/language/reader-locales.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/language/types.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/libraries/corpus.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/libraries/norma.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/libraries/triga.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/reference/design.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/reference/grammar.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/reference/releases.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/reference/repositories.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/references/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/references/design-docs.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/references/ebnf.html</loc></url>
@@ -2218,6 +2325,11 @@
   <url><loc>https://faberlang.dev/zh-Hans/syntax/strings.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/syntax/types.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/syntax/variables.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/toolchain/cli.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/toolchain/compiling.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/toolchain/packages.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/toolchain/radix.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/toolchain/target-matrix.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/tooling/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/tooling/cista-package-manager.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/tooling/codegen-targets.html</loc></url>
@@ -2567,6 +2679,19 @@
   <url><loc>https://faberlang.dev/zh-Hant/features/testing.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/history/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/history/releases.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/language/capabilities.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/language/errors.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/language/functions.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/language/glyphs.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/language/reader-locales.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/language/types.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/libraries/corpus.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/libraries/norma.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/libraries/triga.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/reference/design.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/reference/grammar.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/reference/releases.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/reference/repositories.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/references/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/references/design-docs.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/references/ebnf.html</loc></url>
@@ -2589,6 +2714,11 @@
   <url><loc>https://faberlang.dev/zh-Hant/syntax/strings.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/syntax/types.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/syntax/variables.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/toolchain/cli.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/toolchain/compiling.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/toolchain/packages.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/toolchain/radix.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/toolchain/target-matrix.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/tooling/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/tooling/cista-package-manager.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/tooling/codegen-targets.html</loc></url>

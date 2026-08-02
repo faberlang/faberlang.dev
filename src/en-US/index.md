@@ -48,7 +48,7 @@ faber --version
 
 All release notes and assets: [github.com/faberlang/releases · faber-v1.3.0](https://github.com/faberlang/releases/releases/tag/faber-v1.3.0).
 Step-by-step: [Install guide](/start/install.html). Full historical inventory:
-[Releases](/history/releases.html).
+[Releases](/reference/releases.html).
 
 ### Radix compiler {#download-radix}
 
@@ -118,16 +118,18 @@ transformed, and lowered without losing the reader's sense of intent.
 
 ## Documentation {#documentation}
 
-| Section | Description |
+Five sections, in the order most people need them.
+
+| Section | What is in it |
 |---|---|
-| [History](/history/) | Development timeline, influences, and release history |
-| [Releases](/history/releases.html) | Latest Faber download plus every published tag and binary |
-| [Features](/features/) | Reader locale, compilation lanes, Latin vocabulary, glyph system, design principles |
-| [Syntax](/syntax/) | Complete reference: types, functions, control flow, errors, generics, collections |
-| [Tooling](/tooling/) | Radix compiler pipeline, Faber CLI, codegen targets, scripting |
-| [Ecosystem](/ecosystem/) | Norma, Cista, Triga, coreutils, AI Workbench, corpus |
-| [Corpus](/corpus/) | Keyword and construct pages generated from the public corpus |
-| [References](/references/) | EBNF grammar, design documents, repositories |
+| [Start](/start/) | Install, hello world, the daily commands, your first package, real examples |
+| [Language](/language/) | The whole language: types, functions, errors, glyphs, reader locales, capabilities |
+| [Toolchain](/toolchain/) | The `faber` CLI, compilation lanes and targets, Cista packages, Radix internals |
+| [Libraries](/libraries/) | Norma (bundled), Triga (graphics), and the language corpus |
+| [Reference](/reference/) | Grammar, generated target matrix, releases, design notes, repositories |
+
+If you only read one page, read [The Faber language](/language/) — it contains a
+complete program and the meaning of every token in it.
 
 ## Quick example {#quick-example}
 
@@ -150,7 +152,7 @@ to that language while glyphs and identifiers remain unchanged. This is
 not a translation layer applied to the page; it is the same mechanism
 the compiler uses to produce localized source.
 
-See the [reader locale](/features/reader-locale.html) documentation for
+See the [reader locale](/language/reader-locales.html) documentation for
 the full discussion.
 
 ## Repositories {#repositories}

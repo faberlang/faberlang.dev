@@ -11,7 +11,7 @@ code_hash = "sha256:adf615632f084c7edf7f1f0dfc205ee4912e8b497b19c9c96167bf9b97e4
 source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
 +++
-Đây là bản đồ CLI thực hành cho tuần đầu làm việc với Faber. Hãy dùng trang này làm mục lục lệnh, sau đó mở trang chi tiết [công cụ build Faber](/tooling/faber-build-tool.html) khi cần xem các cờ lệnh và thông tin chi tiết về pipeline biên dịch.
+Đây là bản đồ CLI thực hành cho tuần đầu làm việc với Faber. Hãy dùng trang này làm mục lục lệnh, sau đó mở trang chi tiết [công cụ build Faber](/toolchain/cli.html) khi cần xem các cờ lệnh và thông tin chi tiết về pipeline biên dịch.
 
 ## Vòng lặp hằng ngày {#daily-loop}
 

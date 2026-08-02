@@ -264,6 +264,9 @@ if [ "$FULL_SITE" = true ]; then
             --output-dir "${OUTPUT_DIR}"
     fi
 
+    # Step 5b: Retired-path stubs from the 2026-08 IA restructure
+    "$PYTHON" "${SCRIPT_DIR}/ia-redirects.py" stubs
+
     # Step 6: Generate redirect stubs (en-US → bare path)
     echo "[7/10] Generating en-US redirect stubs..."
     "$PYTHON" "${SCRIPT_DIR}/generate-redirects.py" "$OUTPUT_DIR" "en-US"
@@ -281,26 +284,34 @@ if [ "$FULL_SITE" = true ]; then
     smoke_contains "${OUTPUT_DIR}/en-US/index.html" "<!DOCTYPE html>" "home doctype"
     if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
         smoke_contains "${OUTPUT_DIR}/en-US/index.html" "/llms.txt" "home agent link"
-        smoke_contains "${OUTPUT_DIR}/en-US/index.html" "faber-v1.1.1" "home release link"
+        smoke_contains "${OUTPUT_DIR}/en-US/index.html" "faber-v1.3.0" "home release link"
         smoke_contains "${OUTPUT_DIR}/llms-full.txt" "Generated corpus frontmatter reference" "llms-full surface"
         smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "<!DOCTYPE html>" "install doctype"
         smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "/en-US/start/install.html" "install path"
-        smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "faber-v1.1.1" "install release link"
+        smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "faber-v1.3.0" "install release link"
         smoke_contains "${OUTPUT_DIR}/en-US/start/hello.html" "Salve, munde" "hello start page"
         smoke_contains "${OUTPUT_DIR}/en-US/start/commands.html" "faber check" "commands start page"
         smoke_contains "${OUTPUT_DIR}/en-US/start/projects.html" "faberlang/examples" "projects start page"
         smoke_contains "${OUTPUT_DIR}/en-US/404.html" "404" "404 page"
-        smoke_contains "${OUTPUT_DIR}/en-US/history/releases.html" "faber-v1.1.1" "releases inventory"
-        smoke_contains "${OUTPUT_DIR}/en-US/history/releases.html" "Historical releases" "releases archive heading"
-        smoke_contains "${OUTPUT_DIR}/en-US/tooling/targets.html" "Target compatibility" "targets matrix title"
-        smoke_contains "${OUTPUT_DIR}/en-US/tooling/targets.html" "table-scroll" "targets matrix scroll wrap"
-        smoke_contains "${OUTPUT_DIR}/en-US/tooling/targets.html" "Application lane" "targets HIR summary"
-        smoke_contains "${OUTPUT_DIR}/en-US/tooling/targets.html" "Systems lane" "targets MIR summary"
-        smoke_contains "${OUTPUT_DIR}/en-US/index.html" "/tooling/targets.html" "sidebar targets link"
+        smoke_contains "${OUTPUT_DIR}/en-US/reference/releases.html" "faber-v1.3.0" "releases inventory"
+        smoke_contains "${OUTPUT_DIR}/en-US/reference/releases.html" "Historical releases" "releases archive heading"
+        smoke_contains "${OUTPUT_DIR}/en-US/toolchain/target-matrix.html" "Target compatibility" "targets matrix title"
+        smoke_contains "${OUTPUT_DIR}/en-US/toolchain/target-matrix.html" "table-scroll" "targets matrix scroll wrap"
+        smoke_contains "${OUTPUT_DIR}/en-US/toolchain/target-matrix.html" "Application lane" "targets HIR summary"
+        smoke_contains "${OUTPUT_DIR}/en-US/toolchain/target-matrix.html" "Systems lane" "targets MIR summary"
+        smoke_contains "${OUTPUT_DIR}/en-US/index.html" "/toolchain/target-matrix.html" "sidebar target matrix link"
         smoke_contains "${OUTPUT_DIR}/robots.txt" "Sitemap:" "robots.txt"
         smoke_contains "${OUTPUT_DIR}/robots.txt" "Allow: /" "robots allow all"
         smoke_contains "${OUTPUT_DIR}/search-index.json" '"t":"redde"' "search index dataset"
         smoke_contains "${OUTPUT_DIR}/search-index.zh-Hans.json" '"d":"函数"' "search index zh-Hans spellings"
+        # IA restructure: the five journey sections must all render
+        for sec in language toolchain libraries reference; do
+            smoke_contains "${OUTPUT_DIR}/en-US/${sec}/index.html" "<!DOCTYPE html>" "${sec} index"
+        done
+        smoke_contains "${OUTPUT_DIR}/en-US/language/index.html" "functio saturate" "language index shows code"
+        smoke_contains "${OUTPUT_DIR}/en-US/toolchain/index.html" "faber check" "toolchain index shows commands"
+        # Retired paths must redirect, not 404
+        smoke_contains "${OUTPUT_DIR}/en-US/syntax/types.html" "http-equiv=\"refresh\"" "retired syntax path redirects"
         smoke_contains "${OUTPUT_DIR}/en-US/index.html" 'data-search' "renderbar searchbox"
         smoke_contains "${OUTPUT_DIR}/en-US/index.html" 'faber-search.js' "search script include"
         if grep -Eq '^Disallow: /(ar|th-TH|vi|hi|zh-Hans|zh-Hant)/' "${OUTPUT_DIR}/robots.txt"; then

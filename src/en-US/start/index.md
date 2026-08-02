@@ -61,7 +61,7 @@ faber run my-app/
 faber test my-app/
 ```
 
-Details: [Faber build tool](/tooling/faber-build-tool.html).
+Details: [Faber build tool](/toolchain/cli.html).
 
 ## 4. Real applications {#applications}
 
@@ -101,7 +101,7 @@ Browse them on the [examples page](/start/examples.html).
 | Hello, Faber | [Hello](/start/hello.html) |
 | Commands | [Commands](/start/commands.html) |
 | Projects | [Projects](/start/projects.html) |
-| Syntax reference | [Syntax](/syntax/) |
-| Features (locales, lanes) | [Features](/features/) |
-| Ecosystem libraries | [Ecosystem](/ecosystem/) |
+| Syntax reference | [Syntax](/language/) |
+| Features (locales, lanes) | [Features](/language/) |
+| Ecosystem libraries | [Ecosystem](/libraries/) |
 | Keyword corpus | [Corpus](/corpus/) |

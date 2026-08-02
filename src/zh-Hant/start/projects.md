@@ -40,7 +40,7 @@ faber check examples/ai-workbench/packages/faber-ai
 2. [Hello, Faber](/start/hello.html)：瞭解單一套件。
 3. [語料庫](/corpus/)：每個關鍵字或結構各有一頁。
 4. [範例](/start/examples.html)：瞭解較大型的應用程式。
-5. [Faber 建置工具](/tooling/faber-build-tool.html)：瞭解 CLI 詳細資訊。
+5. [Faber 建置工具](/toolchain/cli.html)：瞭解 CLI 詳細資訊。
 
 ## 代理工作流程 {#agent-workflow}
 
@@ -57,11 +57,11 @@ faber check path/to/package
 
 | 目標 | 閱讀內容 |
 |---|---|
-| 學習語法 | [語法](/syntax/) |
-| 瞭解語系 | [讀者語系](/features/reader-locale.html) |
-| 使用編譯器 | [Faber 建置工具](/tooling/faber-build-tool.html) 與 [Radix 編譯器](/tooling/radix-compiler.html) |
+| 學習語法 | [語法](/language/) |
+| 瞭解語系 | [讀者語系](/language/reader-locales.html) |
+| 使用編譯器 | [Faber 建置工具](/toolchain/cli.html) 與 [Radix 編譯器](/toolchain/radix.html) |
 | 瀏覽結構 | [語料庫](/corpus/) |
-| 使用函式庫建置 | [生態系](/ecosystem/) |
+| 使用函式庫建置 | [生態系](/libraries/) |
 
 ## 下一步 {#next}
 

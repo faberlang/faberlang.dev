@@ -64,7 +64,7 @@ faber run my-app/
 faber test my-app/
 ```
 
-详情请见：[Faber 构建工具](/tooling/faber-build-tool.html)。
+详情请见：[Faber 构建工具](/toolchain/cli.html)。
 
 ## 4. 真实应用 {#applications}
 
@@ -103,7 +103,7 @@ faber test my-app/
 | 你好，Faber | [你好](/start/hello.html) |
 | 命令 | [命令](/start/commands.html) |
 | 项目 | [项目](/start/projects.html) |
-| 语法参考 | [语法](/syntax/) |
-| 功能（区域设置，通道） | [功能](/features/) |
-| 生态系统库 | [生态系统](/ecosystem/) |
+| 语法参考 | [语法](/language/) |
+| 功能（区域设置，通道） | [功能](/language/) |
+| 生态系统库 | [生态系统](/libraries/) |
 | 关键词语料库 | [语料库](/corpus/) |
