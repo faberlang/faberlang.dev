@@ -116,7 +116,7 @@ def demo_tabs(*, root_id: str, file_label: str, tablist_label: str,
             f'<pre{p.get("dir", "")}>{p["code"]}</pre></div>\n'
         )
     return f"""\
-  <div class="faber-demo-tabs fdt-hero fl-full" data-fdt>
+  <div class="faber-demo-tabs fdt-hero" data-fdt>
     <div class="fdt-bar">
       <span class="fdt-mark" aria-hidden="true">f</span>
       <span class="fdt-file">{file_label}</span>
@@ -257,7 +257,7 @@ def main() -> None:
       you need to run: Rust, a native binary, or a GPU shader.
     </p>
 
-    <div class="fl-first fl-full">
+    <div class="fl-first">
       <pre class="fl-src">{esc(hero_code)}</pre>
       <pre class="fl-run">$ faber run --interpret app
 255</pre>
@@ -271,7 +271,7 @@ def main() -> None:
       <a class="fl-btn fl-btn-primary" href="/en-US/start/install.html">Install Faber</a>
       <a class="fl-btn" href="/en-US/start/">Five-minute tour</a>
     </div>
-    <div class="fl-facts fl-full">
+    <div class="fl-facts">
       <span><strong>8</strong> reader surfaces</span>
       <span><strong>7</strong> compilation targets</span>
       <span><strong>{matrix.get('rust', '99')}%</strong> corpus → Rust</span>
@@ -323,7 +323,7 @@ def main() -> None:
         three.js, no engine underneath doing the real work.
       </p>
     </div>
-    <div class="fl-frames fl-full">
+    <div class="fl-frames">
 {frames}    </div>
     <div class="fl-proof-head fl-proof-sub">
       <h3>Fast enough to use like a script</h3>
@@ -352,7 +352,7 @@ def main() -> None:
 
   <section class="fl-doors">
     <h2>Where to go</h2>
-    <div class="fl-door-grid fl-full">
+    <div class="fl-door-grid">
       <a class="fl-door" href="/en-US/start/install.html">
         <strong>Install</strong>
         <span>Download, verify, first <code>faber check</code>.</span>

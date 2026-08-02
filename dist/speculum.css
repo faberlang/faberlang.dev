@@ -74,10 +74,11 @@
     --s8: 4.5rem;
 
     /* Layout */
-    /* Readable prose measure. The landing page's content grid track is
-       set from this; docs get the same width from their grid. Prose
-       elements never set their own width — see §15. */
-    --measure: 47rem;
+    /* Landing content width. The container IS the measure: every child
+       fills it edge to edge. ~768px keeps the text edge aligned with the
+       docs grid (758px), so moving between / and /en-US/ does not shift
+       the column. Change this one value to change the page width. */
+    --measure: 48rem;
 
     --sidebar-w: 254px;
     --rail-w: 196px;
@@ -1441,37 +1442,15 @@ body.porta {
 
 /* Column system — the one place a width is decided.
 
-   Every landing section is a grid with two tracks: a `content` track sized
-   from --measure, and the leftover space. Children land in `content` by
-   default, so prose is full width *of its container* rather than carrying
-   its own cap. Anything that should span wider (code cards, image grids)
-   opts in with .fl-full.
+   There is exactly one content width on this page: the .fl-wrap container.
+   Every child fills it edge to edge, so a paragraph, a code card and an image
+   grid all stop at the same right edge. This is the rule §7 states for docs
+   prose, applied here.
 
-   Do not add max-width to a landing child. If something is the wrong width,
-   change --measure or give it .fl-full. This is the rule §7 states for
-   prose; it was violated five different ways here before 2026-08-02. */
-.fl-hero,
-.fl-proof,
-.fl-doors,
-.fl-agents {
-    display: grid;
-    grid-template-columns:
-        [content-start] min(var(--measure), 100%) [content-end]
-        minmax(0, 1fr) [wide-end];
-}
-.fl-hero > *,
-.fl-proof > *,
-.fl-doors > *,
-.fl-agents > * {
-    grid-column: content-start / content-end;
-    min-width: 0;
-}
-.fl-hero > .fl-full,
-.fl-proof > .fl-full,
-.fl-doors > .fl-full,
-.fl-agents > .fl-full {
-    grid-column: content-start / wide-end;
-}
+   Do not add max-width to a landing child, and do not reintroduce a narrower
+   "readable measure" track — a prose column narrower than the cards is the
+   ragged-right-edge bug this section exists to prevent. check-width-gate.py
+   fails the build if a child sets its own width. */
 
 body.landing {
     background: var(--paper);
@@ -1486,7 +1465,7 @@ body.landing {
     justify-content: space-between;
     gap: var(--s5);
     flex-wrap: wrap;
-    max-width: var(--page-max);
+    max-width: calc(var(--measure) + var(--gutter) * 2);
     margin: 0 auto;
     padding: var(--s5) var(--gutter);
 }
@@ -1529,7 +1508,7 @@ body.landing {
 .fl-locale { color: var(--ink-faint) !important; }
 
 .fl-wrap {
-    max-width: var(--page-max);
+    max-width: calc(var(--measure) + var(--gutter) * 2);
     margin: 0 auto;
     padding: 0 var(--gutter) var(--s8);
 }
@@ -1743,7 +1722,7 @@ pre.fl-src {
 .fl-agents code { font-family: var(--mono); font-size: 13px; }
 
 .fl-foot {
-    max-width: var(--page-max);
+    max-width: calc(var(--measure) + var(--gutter) * 2);
     margin: 0 auto;
     padding: var(--s6) var(--gutter) var(--s7);
     border-top: 1px solid var(--rule);
