@@ -310,12 +310,19 @@ if [ "$FULL_SITE" = true ]; then
 
         # Landing page checks (/) — claim, then all three proofs present
         smoke_contains "${OUTPUT_DIR}/index.html" 'class="landing"' "landing body class"
-        smoke_contains "${OUTPUT_DIR}/index.html" "Meaning lives in the core" "landing claim"
-        smoke_contains "${OUTPUT_DIR}/index.html" "incipit" "landing Latin sample"
-        smoke_contains "${OUTPUT_DIR}/index.html" "ภาษาไทย" "landing proof 1 Thai panel"
-        smoke_contains "${OUTPUT_DIR}/index.html" "@compute @workgroup_size" "landing proof 2 WGSL panel"
-        smoke_contains "${OUTPUT_DIR}/index.html" "metal_stdlib" "landing proof 2 Metal panel"
-        smoke_contains "${OUTPUT_DIR}/index.html" "triga-budapest.png" "landing proof 3 GPU frame"
+        smoke_contains "${OUTPUT_DIR}/index.html" "your model writes" "landing headline"
+        smoke_contains "${OUTPUT_DIR}/index.html" "fn saturate(int x)" "landing llm reader panel"
+        smoke_contains "${OUTPUT_DIR}/index.html" "functio saturate(numerus x)" "landing Latin reader panel"
+        smoke_contains "${OUTPUT_DIR}/index.html" "ภาษาไทย" "landing Thai reader panel"
+        smoke_contains "${OUTPUT_DIR}/index.html" "@compute @workgroup_size" "landing WGSL target panel"
+        smoke_contains "${OUTPUT_DIR}/index.html" "metal_stdlib" "landing Metal target panel"
+        smoke_contains "${OUTPUT_DIR}/index.html" "triga-budapest.png" "landing GPU frame"
+        # The reader axis must never present Latin under an English label again.
+        if grep -q 'fl-loc-t-llm[^>]*>English' "${OUTPUT_DIR}/index.html" \
+           && grep -q 'fl-loc-p-llm[^>]*>.*functio ' "${OUTPUT_DIR}/index.html"; then
+            echo "ERROR: landing English reader panel is rendering Latin" >&2
+            exit 1
+        fi
         smoke_contains "${OUTPUT_DIR}/index.html" 'href="/porta/"' "landing portal link"
         for frame in triga-budapest triga-terrain triga-geometries; do
             if [ ! -s "${OUTPUT_DIR}/images/${frame}.png" ]; then

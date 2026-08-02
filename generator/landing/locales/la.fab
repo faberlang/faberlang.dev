@@ -1,0 +1,10 @@
+functio saturate(numerus x) → numerus {
+    si x < 0 ergo redde 0
+    si x > 255 ergo redde 255
+    redde x
+}
+
+incipit {
+    fixum numerus v ← saturate(300)
+    nota v
+}

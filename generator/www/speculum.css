@@ -1014,6 +1014,16 @@ footer .side-h {
 .fdt-tab .hi { font-family: 'Noto Sans Devanagari', var(--sans); }
 .fdt-tab .zh { font-family: 'Noto Sans SC', var(--sans); }
 
+/* Code panels need the same script coverage the tab labels get. --mono is
+   Noto Sans Mono, which has no Thai, Arabic or Devanagari glyphs, so a
+   non-Latin panel renders as tofu or nothing without these. There is no
+   widely installed monospace for these scripts; the proportional script face
+   is listed first and platform faces follow as fallbacks. */
+.fdt-panel pre.th { font-family: 'Noto Sans Thai', 'Noto Sans Thai UI', 'Thonburi', 'Leelawadee UI', var(--mono); }
+.fdt-panel pre.ar { font-family: 'Noto Sans Arabic', 'Geeza Pro', 'Segoe UI', var(--mono); }
+.fdt-panel pre.hi { font-family: 'Noto Sans Devanagari', 'Devanagari Sangam MN', 'Nirmala UI', var(--mono); }
+.fdt-panel pre.zh { font-family: 'Noto Sans SC', 'Noto Sans Mono CJK SC', 'PingFang SC', 'Microsoft YaHei', var(--mono); }
+
 /* Panels */
 .fdt-panel { display: block; }
 .fdt-panel-label {
@@ -1542,6 +1552,30 @@ body.landing {
     color: var(--ink-faint);
 }
 .fl-facts strong { color: var(--ink); font-weight: 600; }
+
+/* -- first look: code + its output, side by side -- */
+.fl-first {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: var(--s4);
+    margin: var(--s6) 0 var(--s3);
+    align-items: start;
+}
+pre.fl-run {
+    font-family: var(--mono);
+    font-size: 13px;
+    line-height: 1.6;
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: var(--s4);
+    margin: 0;
+    color: var(--ink-dim);
+    overflow-x: auto;
+}
+@media (max-width: 720px) {
+    .fl-first { grid-template-columns: 1fr; }
+}
 
 /* -- proof sections -- */
 .fl-proof { padding: var(--s7) 0; border-top: 1px solid var(--rule); }

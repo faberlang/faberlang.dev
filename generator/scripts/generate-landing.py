@@ -2,26 +2,21 @@
 """
 generate-landing.py — Generate the Faber landing page at /.
 
-The landing page states one claim and then proves it three times:
+Narrative order, deliberately plain:
 
-    claim   meaning lives in the semantic core, not in any surface
-    proof 1 one program, seven human renderings   (reader-locale packs)
-    proof 2 one program, seven machine renderings (codegen targets)
-    proof 3 it runs — GPU frames from Triga, and interpreted-run latency
+    1. what it is, in one sentence, with code visible immediately
+    2. read it in your language      (reader-pack axis)
+    3. compile it to what you need   (target axis)
+    4. and it runs                   (GPU frames + interpreted latency)
+    5. where to go
 
-Both proof panels reuse the existing `.faber-demo-tabs` component, so the
-no-JS fallback stays a readable stack of real <pre> text.
+Both demo axes show the SAME program, and every panel is compiler output
+captured by capture-landing-panels.sh — never hand-authored. Run that script
+after a compiler or reader-pack change, then rebuild.
 
 CLI:
-    generate-landing.py <output.html> [--locales path] [--exemplars path]
-                        [--targets path] [--matrix path] [--css /speculum.css]
-
-Defaults:
-    --locales     generator/locales.toml
-    --exemplars   generator/portal/exemplars   (proof 1 panels)
-    --targets     generator/landing/targets    (proof 2 panels, real emissions)
-    --matrix      src/en-US/tooling/targets.md (generated coverage numbers)
-    --css         /speculum.css
+    generate-landing.py <output.html> [--landing path] [--matrix path]
+                        [--css /speculum.css]
 """
 
 from __future__ import annotations
@@ -29,41 +24,49 @@ from __future__ import annotations
 import argparse
 import html as html_mod
 import re
-import tomllib
 from pathlib import Path
 
-SCRIPT_CLASSES: dict[str, str] = {
-    "English": "",
-    "ไทย": "th",
-    "简体中文": "zh",
-    "繁體中文": "zh",
-    "Latin": "",
-    "العربية": "ar",
-    "देवनागरी": "hi",
-}
+# Reader-pack axis. Order is the argument: the surface a model writes and an
+# English reader reads, then canonical Faber, then the human packs.
+#
+# `llm` is labelled honestly as the model-facing pack rather than as "English".
+# There is no `en` pack today; conflating the two is the exact overstatement
+# the positioning review flagged.
+LOCALES: list[dict[str, str]] = [
+    {"id": "llm", "name": "English", "code": "llm", "script": "",
+     "note": "the model-facing pack — what a model writes, and what an "
+             "English reader reads today"},
+    {"id": "la", "name": "Latin", "code": "la", "script": "",
+     "note": "canonical Faber — the classical surface the language is named for"},
+    {"id": "th-TH", "name": "ภาษาไทย", "code": "th-TH", "script": "th",
+     "note": "Thai — spaceless script"},
+    {"id": "zh-Hans", "name": "简体中文", "code": "zh-Hans", "script": "zh",
+     "note": "Simplified Chinese"},
+    {"id": "zh-Hant", "name": "繁體中文", "code": "zh-Hant", "script": "zh",
+     "note": "Traditional Chinese"},
+    {"id": "vi", "name": "Tiếng Việt", "code": "vi", "script": "",
+     "note": "Vietnamese"},
+    {"id": "ar", "name": "العربية", "code": "ar", "script": "ar",
+     "note": "Arabic — right-to-left, bidi isolated", "rtl": "1"},
+    {"id": "hi", "name": "हिन्दी", "code": "hi", "script": "hi",
+     "note": "Hindi — Devanagari"},
+]
 
-RTL_READER_LOCALES: set[str] = {"ar"}
-
-# Proof 2 axis. Order is the argument: source languages you already read,
-# then the IRs, then the two GPU shading languages.
 TARGETS: list[dict[str, str]] = [
-    {"id": "rust", "file": "out.rust.txt", "name": "Rust",
+    {"id": "rust", "name": "Rust",
      "note": "primary backend — reviewable source, then a native binary"},
-    {"id": "go", "file": "out.go.txt", "name": "Go",
-     "note": "file emission"},
-    {"id": "ts", "file": "out.ts.txt", "name": "TypeScript",
-     "note": "file emission", "elide_before": "function saturate"},
-    {"id": "llvm-text", "file": "out.llvm-text.txt", "name": "LLVM IR",
-     "note": "MIR-backed — native code with no source language in between"},
-    {"id": "wasm-text", "file": "out.wasm-text.txt", "name": "WebAssembly",
-     "note": "MIR-backed WAT, external host"},
-    {"id": "wgsl-text", "file": "out.wgsl-text.txt", "name": "WGSL",
+    {"id": "go", "name": "Go", "note": "file emission"},
+    {"id": "ts", "name": "TypeScript", "note": "file emission",
+     "elide_before": "function saturate"},
+    {"id": "llvm-text", "name": "LLVM IR",
+     "note": "native code with no source language in between"},
+    {"id": "wasm-text", "name": "WebAssembly", "note": "external host"},
+    {"id": "wgsl-text", "name": "WGSL",
      "note": "GPU compute shader — from an @ nucleum kernel", "kernel": "1"},
-    {"id": "metal-text", "file": "out.metal-text.txt", "name": "Metal",
+    {"id": "metal-text", "name": "Metal",
      "note": "GPU compute shader — from an @ nucleum kernel", "kernel": "1"},
 ]
 
-# Proof 3 frames. Rendered by Triga, written in Faber, run on the GPU.
 FRAMES: list[dict[str, str]] = [
     {"src": "/images/triga-budapest.png",
      "alt": "A low-poly 3D scene of a bridge with towers and lamp posts over water, rendered by Triga",
@@ -81,47 +84,23 @@ def esc(s: str) -> str:
     return html_mod.escape(s)
 
 
-def load_locales(path: Path) -> dict:
-    with path.open("rb") as f:
-        return tomllib.load(f).get("locales", {})
-
-
-def sort_locale_keys(keys: list[str]) -> list[str]:
-    rest = sorted(k for k in keys if k not in ("en-US", "th-TH"))
-    ordered = [k for k in ("en-US", "th-TH") if k in keys]
-    ordered.extend(rest)
-    return ordered
-
-
 def read_matrix(path: Path) -> dict[str, str]:
-    """Pull the generated per-target coverage percentages off the targets page.
-
-    The numbers are measured by `generate-target-matrix.py`; reading them here
-    keeps the landing page from drifting away from its own evidence.
-    """
+    """Pull generated per-target coverage off the targets page, so the hero
+    statistics cannot drift away from their own source."""
     out: dict[str, str] = {}
     if not path.is_file():
         return out
     for row in re.finditer(
         r"^\|\s*([a-z-]+)\s*\|\s*(\d+)\s*\|\s*(\d+)\s*\|\s*(\d+)%\s*\|",
-        path.read_text(encoding="utf-8"),
-        re.M,
+        path.read_text(encoding="utf-8"), re.M,
     ):
         out[row.group(1)] = row.group(4)
     return out
 
 
-def demo_tabs(
-    *,
-    root_id: str,
-    file_label: str,
-    tablist_label: str,
-    panels: list[dict[str, str]],
-    hero: bool = False,
-) -> str:
-    """Render a .faber-demo-tabs card. Panels: id, tab, label, code, dir."""
-    tabs = ""
-    bodies = ""
+def demo_tabs(*, root_id: str, file_label: str, tablist_label: str,
+              panels: list[dict[str, str]]) -> str:
+    tabs = bodies = ""
     for i, p in enumerate(panels):
         pid = f"{root_id}-p-{p['id']}"
         tabs += (
@@ -136,9 +115,8 @@ def demo_tabs(
             f'<div class="fdt-panel-label">{p["label"]}</div>'
             f'<pre{p.get("dir", "")}>{p["code"]}</pre></div>\n'
         )
-    cls = "faber-demo-tabs fdt-hero" if hero else "faber-demo-tabs"
     return f"""\
-  <div class="{cls}" data-fdt>
+  <div class="faber-demo-tabs fdt-hero" data-fdt>
     <div class="fdt-bar">
       <span class="fdt-mark" aria-hidden="true">f</span>
       <span class="fdt-file">{file_label}</span>
@@ -150,53 +128,44 @@ def demo_tabs(
 """
 
 
-def build_locale_panels(registry: dict, exemplars: Path) -> list[dict[str, str]]:
+def build_locale_panels(d: Path) -> list[dict[str, str]]:
     panels = []
-    for site in sort_locale_keys(list(registry.keys())):
-        entry = registry[site]
-        reader = entry.get("reader_locale", site)
-        native = entry.get("native_name", site)
-        script_cls = SCRIPT_CLASSES.get(entry.get("native_script", ""), "")
-        sample_path = exemplars / f"salve-munde.{reader}.fab"
-        if not sample_path.is_file():
+    for loc in LOCALES:
+        f = d / "locales" / f"{loc['id']}.fab"
+        if not f.is_file():
             continue
-        native_span = (
-            f'<span class="{script_cls}">{esc(native)}</span>' if script_cls else esc(native)
-        )
+        name = (f'<span class="{loc["script"]}">{esc(loc["name"])}</span>'
+                if loc["script"] else esc(loc["name"]))
         panels.append({
-            "id": esc(site),
-            "name": esc(native),
-            "tab": f'{native_span} <span class="code">{esc(reader)}</span>',
-            "label": f'{esc(native)} · {esc(reader)} · '
-                     f'<a href="/{esc(site)}/">read the docs in {esc(native)} →</a>',
-            "code": esc(sample_path.read_text(encoding="utf-8").strip()),
-            "dir": ' dir="rtl"' if reader in RTL_READER_LOCALES else "",
+            "id": esc(loc["id"]), "name": esc(loc["name"]),
+            "tab": f'{name} <span class="code">{esc(loc["code"])}</span>',
+            "label": f'<code>faber format --reader-locale {esc(loc["code"])}</code> '
+                     f'<span class="fdt-note">— {esc(loc["note"])}</span>',
+            "code": esc(f.read_text(encoding="utf-8").strip()),
+            "dir": (f' class="{loc["script"]}"' if loc["script"] else "")
+                   + (' dir="rtl"' if loc.get("rtl") else ""),
         })
     return panels
 
 
-def build_target_panels(targets_dir: Path) -> list[dict[str, str]]:
+def build_target_panels(d: Path) -> list[dict[str, str]]:
     panels = []
     for t in TARGETS:
-        out = targets_dir / t["file"]
-        if not out.is_file():
+        f = d / "targets" / f"out.{t['id']}.txt"
+        if not f.is_file():
             continue
-        body = out.read_text(encoding="utf-8").strip()
+        body = f.read_text(encoding="utf-8").strip()
         # Some backends prepend a fixed runtime shim. Showing 120 lines of it
-        # buries the lowering the panel exists to demonstrate, so cut it — but
-        # say so in the output rather than quietly trimming.
+        # buries the lowering the panel exists to demonstrate — so cut it, and
+        # say so in the output rather than trimming quietly.
         marker = t.get("elide_before")
         if marker and marker in body:
             head, _, tail = body.partition(marker)
-            skipped = head.count("\n")
-            body = (
-                f"// … {skipped} lines of generated display/runtime shim elided …\n\n"
-                f"{marker}{tail}"
-            )
+            body = (f"// … {head.count(chr(10))} lines of generated "
+                    f"display/runtime shim elided …\n\n{marker}{tail}")
         origin = "kernel.fab" if t.get("kernel") else "main.fab"
         panels.append({
-            "id": esc(t["id"]),
-            "name": esc(t["name"]),
+            "id": esc(t["id"]), "name": esc(t["name"]),
             "tab": f'{esc(t["name"])} <span class="code">{esc(t["id"])}</span>',
             "label": f'<code>radix emit --target {esc(t["id"])} {origin}</code> '
                      f'<span class="fdt-note">— {esc(t["note"])}</span>',
@@ -208,62 +177,40 @@ def build_target_panels(targets_dir: Path) -> list[dict[str, str]]:
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("output", type=Path)
-    ap.add_argument("--locales", type=Path, default=None)
-    ap.add_argument("--exemplars", type=Path, default=None)
-    ap.add_argument("--targets", type=Path, default=None)
+    ap.add_argument("--landing", type=Path, default=None)
     ap.add_argument("--matrix", type=Path, default=None)
     ap.add_argument("--css", type=str, default="/speculum.css")
     args = ap.parse_args()
 
-    generator_dir = Path(__file__).resolve().parent.parent
-    repo_dir = generator_dir.parent
-    args.locales = args.locales or generator_dir / "locales.toml"
-    args.exemplars = args.exemplars or generator_dir / "portal" / "exemplars"
-    args.targets = args.targets or generator_dir / "landing" / "targets"
-    args.matrix = args.matrix or repo_dir / "src" / "en-US" / "tooling" / "targets.md"
+    gen = Path(__file__).resolve().parent.parent
+    args.landing = args.landing or gen / "landing"
+    args.matrix = args.matrix or gen.parent / "src" / "en-US" / "tooling" / "targets.md"
 
-    registry = load_locales(args.locales)
     matrix = read_matrix(args.matrix)
+    locale_panels = build_locale_panels(args.landing)
+    target_panels = build_target_panels(args.landing)
 
-    locale_panels = build_locale_panels(registry, args.exemplars)
-    target_panels = build_target_panels(args.targets)
+    hero_code = (args.landing / "locales" / "llm.fab").read_text(encoding="utf-8").strip()
+    kernel_fab = (args.landing / "targets" / "kernel.fab").read_text(encoding="utf-8").strip()
 
-    source_fab = (args.targets / "source.fab").read_text(encoding="utf-8").strip()
-    kernel_fab = (args.targets / "kernel.fab").read_text(encoding="utf-8").strip()
+    read_tabs = demo_tabs(
+        root_id="fl-loc", file_label="main.fab · reader locale",
+        tablist_label="Reader locale", panels=locale_panels)
+    target_tabs = demo_tabs(
+        root_id="fl-tgt", file_label="main.fab → target",
+        tablist_label="Compilation target", panels=target_panels)
 
-    proof1 = demo_tabs(
-        root_id="fl-loc",
-        file_label="salve-munde.fab",
-        tablist_label="Reader locale",
-        panels=locale_panels,
-        hero=True,
-    )
-    proof2 = demo_tabs(
-        root_id="fl-tgt",
-        file_label="main.fab → target",
-        tablist_label="Compilation target",
-        panels=target_panels,
-        hero=True,
-    )
-
-    frames = ""
-    for f in FRAMES:
-        frames += f"""\
+    frames = "".join(
+        f"""\
         <figure class="fl-frame">
           <img src="{f['src']}" alt="{esc(f['alt'])}" loading="lazy" width="1400" height="788">
           <figcaption>{f['cap']}</figcaption>
         </figure>
-"""
+""" for f in FRAMES)
 
-    def pct(key: str, fallback: str) -> str:
-        return matrix.get(key, fallback)
-
-    css_href = esc(args.css)
-    desc = (
-        "Faber is a programming language whose meaning lives in a semantic core, "
-        "not in its syntax. One program compiles to Rust, Go, LLVM IR, WebAssembly "
-        "and GPU compute shaders — and renders in seven human languages."
-    )
+    desc = ("Faber is a statically typed language built to be written by models and "
+            "reviewed by people. Everyone reads the same program in their own "
+            "language, and it compiles to Rust, native code, or GPU shaders.")
 
     html = f"""\
 <!DOCTYPE html>
@@ -271,12 +218,12 @@ def main() -> None:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Faber — one semantic core, many renderings</title>
+<title>Faber — a language written by models, reviewed by people</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="https://faberlang.dev/">
 <link rel="alternate" hreflang="x-default" href="https://faberlang.dev/">
-<link rel="stylesheet" href="{css_href}">
-<meta property="og:title" content="Faber — one semantic core, many renderings">
+<link rel="stylesheet" href="{esc(args.css)}">
+<meta property="og:title" content="Faber — a language written by models, reviewed by people">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://faberlang.dev/">
@@ -284,7 +231,7 @@ def main() -> None:
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body class="landing">
-<a class="skip-link" href="#claim">Skip to content</a>
+<a class="skip-link" href="#top">Skip to content</a>
 
 <header class="fl-top">
   <a class="fl-brand" href="/"><span class="fl-brand-mark" aria-hidden="true">f</span> Faber</a>
@@ -297,73 +244,77 @@ def main() -> None:
   </nav>
 </header>
 
-<main class="fl-wrap">
+<main class="fl-wrap" id="top">
 
-  <section class="fl-hero" id="claim">
+  <section class="fl-hero">
     <p class="fl-kicker">A programming language by Ian Zepp · MIT</p>
-    <h1>Meaning lives in the core,<br>not in the syntax.</h1>
+    <h1>A language your model writes<br>and you actually read.</h1>
     <p class="fl-lede">
-      Faber programs are stored as a semantic core, not as text in one
-      particular language. Everything else — the words a human reads, the
-      machine code that finally runs — is a <em>rendering</em> of that core.
-      Change the rendering and the program does not change.
+      Faber is a statically typed, compiled programming language. A model
+      writes it against the surface it predicts most reliably. You read the
+      same program back in your own language — English, Thai, Arabic — because
+      the compiler renders it, not a translator. Then it compiles to whatever
+      you need to run: Rust, a native binary, or a GPU shader.
     </p>
-    <p class="fl-lede">
-      That single property is why Faber can print itself in Thai, and why the
-      same function can come out as Rust, as LLVM IR, or as a GPU compute
-      shader. It is one architectural bet, pointed in two directions.
+
+    <div class="fl-first">
+      <pre class="fl-src">{esc(hero_code)}</pre>
+      <pre class="fl-run">$ faber run --interpret app
+255</pre>
+    </div>
+    <p class="fl-note">
+      Real output from <code>faber format --reader-locale llm</code>. Same
+      program, seven more readings below.
     </p>
+
     <div class="fl-cta">
-      <a class="fl-btn fl-btn-primary" href="/en-US/start/install.html">Install Faber 1.3.0</a>
+      <a class="fl-btn fl-btn-primary" href="/en-US/start/install.html">Install Faber</a>
       <a class="fl-btn" href="/en-US/start/">Five-minute tour</a>
     </div>
     <div class="fl-facts">
+      <span><strong>8</strong> reader surfaces</span>
       <span><strong>7</strong> compilation targets</span>
-      <span><strong>7</strong> reader locales</span>
-      <span><strong>{pct('rust', '99')}%</strong> corpus → Rust</span>
-      <span><strong>{pct('llvm-text', '96')}%</strong> corpus → LLVM</span>
+      <span><strong>{matrix.get('rust', '99')}%</strong> corpus → Rust</span>
+      <span><strong>{matrix.get('llvm-text', '96')}%</strong> corpus → LLVM</span>
       <span><strong>Norma</strong> standard library, bundled</span>
     </div>
   </section>
 
   <section class="fl-proof">
     <div class="fl-proof-head">
-      <span class="fl-proof-n">Proof 1</span>
-      <h2>One program, seven human renderings</h2>
+      <h2>Everyone reads it in their own language</h2>
       <p>
-        These are not translations of a comment or a tutorial. They are the
-        same program, and the compiler accepts every one of them. The keywords
-        are supplied by a <a href="/en-US/features/reader-locale.html">reader-locale
-        pack</a>; identifiers stay in canonical Latin so code stays portable
-        between people who do not share a language.
+        These are not translated comments or a localized tutorial. It is one
+        program, and the compiler accepts every one of these spellings. Only
+        the keywords and type names change — identifiers and string literals
+        stay exactly as written, so two people who share no language can still
+        talk about <code>saturate</code> on line one.
       </p>
     </div>
-{proof1}  </section>
+{read_tabs}    <p class="fl-note">
+      A reviewer sets their locale once. Nobody presses a translate button, and
+      no model sits in the middle guessing — this is the compiler's own
+      rendering, so the program you approve is the program that ships.
+    </p>
+  </section>
 
   <section class="fl-proof">
     <div class="fl-proof-head">
-      <span class="fl-proof-n">Proof 2</span>
-      <h2>One program, seven machine renderings</h2>
+      <h2>It compiles to whatever has to run it</h2>
       <p>
-        Same idea, other direction. This function —
-      </p>
-      <pre class="fl-src">{esc(source_fab)}</pre>
-      <p>
-        — lowers to each of the following. Nothing here is hand-written or
-        illustrative; every panel is literal <code>radix emit</code> output.
-        The GPU panels come from an <code>@ nucleum</code> kernel:
+        Same program again, pointed the other way. Every panel below is literal
+        <code>radix emit</code> output — nothing here is hand-written or
+        illustrative. LLVM IR comes straight off the MIR, so Faber reaches
+        native code without passing through Rust, C, or any other source
+        language. The two GPU panels come from an <code>@ nucleum</code>
+        kernel, which is a different source file:
       </p>
       <pre class="fl-src">{esc(kernel_fab)}</pre>
-      <p class="fl-note">
-        LLVM IR is emitted from MIR directly — Faber reaches native code
-        without passing through Rust, C, or any other source language.
-      </p>
     </div>
-{proof2}  </section>
+{target_tabs}  </section>
 
   <section class="fl-proof">
     <div class="fl-proof-head">
-      <span class="fl-proof-n">Proof 3</span>
       <h2>And it runs</h2>
       <p>
         <a href="/en-US/ecosystem/triga.html">Triga</a> is a graphics and
@@ -377,7 +328,7 @@ def main() -> None:
     <div class="fl-proof-head fl-proof-sub">
       <h3>Fast enough to use like a script</h3>
       <p>
-        Faber also runs without a build step. <code>faber run --interpret</code>
+        Faber also runs with no build step. <code>faber run --interpret</code>
         takes source through parse, typecheck and MIR lowering, then steps the
         MIR in-process — no <code>rustc</code>, no linker, no build directory.
       </p>
@@ -414,6 +365,10 @@ def main() -> None:
         <strong>Syntax</strong>
         <span>Types, control flow, generics, glyphs, errors.</span>
       </a>
+      <a class="fl-door" href="/en-US/features/reader-locale.html">
+        <strong>Reader locales</strong>
+        <span>How the rendering actually works.</span>
+      </a>
       <a class="fl-door" href="/en-US/tooling/targets.html">
         <strong>Target matrix</strong>
         <span>Measured lowerability, every term × every backend.</span>
@@ -421,10 +376,6 @@ def main() -> None:
       <a class="fl-door" href="/en-US/ecosystem/">
         <strong>Ecosystem</strong>
         <span>Norma, Triga, Cista, the language corpus.</span>
-      </a>
-      <a class="fl-door" href="/en-US/features/">
-        <strong>Design</strong>
-        <span>Why the language is shaped the way it is.</span>
       </a>
     </div>
   </section>
@@ -462,10 +413,8 @@ def main() -> None:
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(html, encoding="utf-8")
-    print(
-        f"landing: {args.output} "
-        f"({len(locale_panels)} locale panels, {len(target_panels)} target panels)"
-    )
+    print(f"landing: {args.output} "
+          f"({len(locale_panels)} reader panels, {len(target_panels)} target panels)")
 
 
 if __name__ == "__main__":

@@ -3,20 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Faber — one semantic core, many renderings</title>
-<meta name="description" content="Faber is a programming language whose meaning lives in a semantic core, not in its syntax. One program compiles to Rust, Go, LLVM IR, WebAssembly and GPU compute shaders — and renders in seven human languages.">
+<title>Faber — a language written by models, reviewed by people</title>
+<meta name="description" content="Faber is a statically typed language built to be written by models and reviewed by people. Everyone reads the same program in their own language, and it compiles to Rust, native code, or GPU shaders.">
 <link rel="canonical" href="https://faberlang.dev/">
 <link rel="alternate" hreflang="x-default" href="https://faberlang.dev/">
 <link rel="stylesheet" href="/speculum.css">
-<meta property="og:title" content="Faber — one semantic core, many renderings">
-<meta property="og:description" content="Faber is a programming language whose meaning lives in a semantic core, not in its syntax. One program compiles to Rust, Go, LLVM IR, WebAssembly and GPU compute shaders — and renders in seven human languages.">
+<meta property="og:title" content="Faber — a language written by models, reviewed by people">
+<meta property="og:description" content="Faber is a statically typed language built to be written by models and reviewed by people. Everyone reads the same program in their own language, and it compiles to Rust, native code, or GPU shaders.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://faberlang.dev/">
 <meta property="og:image" content="https://faberlang.dev/images/triga-budapest.png">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 <body class="landing">
-<a class="skip-link" href="#claim">Skip to content</a>
+<a class="skip-link" href="#top">Skip to content</a>
 
 <header class="fl-top">
   <a class="fl-brand" href="/"><span class="fl-brand-mark" aria-hidden="true">f</span> Faber</a>
@@ -29,29 +29,45 @@
   </nav>
 </header>
 
-<main class="fl-wrap">
+<main class="fl-wrap" id="top">
 
-  <section class="fl-hero" id="claim">
+  <section class="fl-hero">
     <p class="fl-kicker">A programming language by Ian Zepp · MIT</p>
-    <h1>Meaning lives in the core,<br>not in the syntax.</h1>
+    <h1>A language your model writes<br>and you actually read.</h1>
     <p class="fl-lede">
-      Faber programs are stored as a semantic core, not as text in one
-      particular language. Everything else — the words a human reads, the
-      machine code that finally runs — is a <em>rendering</em> of that core.
-      Change the rendering and the program does not change.
+      Faber is a statically typed, compiled programming language. A model
+      writes it against the surface it predicts most reliably. You read the
+      same program back in your own language — English, Thai, Arabic — because
+      the compiler renders it, not a translator. Then it compiles to whatever
+      you need to run: Rust, a native binary, or a GPU shader.
     </p>
-    <p class="fl-lede">
-      That single property is why Faber can print itself in Thai, and why the
-      same function can come out as Rust, as LLVM IR, or as a GPU compute
-      shader. It is one architectural bet, pointed in two directions.
+
+    <div class="fl-first">
+      <pre class="fl-src">fn saturate(int x) → int {
+    if x &lt; 0 then return 0
+    if x &gt; 255 then return 255
+    return x
+}
+
+main {
+    const int v ← saturate(300)
+    print v
+}</pre>
+      <pre class="fl-run">$ faber run --interpret app
+255</pre>
+    </div>
+    <p class="fl-note">
+      Real output from <code>faber format --reader-locale llm</code>. Same
+      program, seven more readings below.
     </p>
+
     <div class="fl-cta">
-      <a class="fl-btn fl-btn-primary" href="/en-US/start/install.html">Install Faber 1.3.0</a>
+      <a class="fl-btn fl-btn-primary" href="/en-US/start/install.html">Install Faber</a>
       <a class="fl-btn" href="/en-US/start/">Five-minute tour</a>
     </div>
     <div class="fl-facts">
+      <span><strong>8</strong> reader surfaces</span>
       <span><strong>7</strong> compilation targets</span>
-      <span><strong>7</strong> reader locales</span>
       <span><strong>99%</strong> corpus → Rust</span>
       <span><strong>96%</strong> corpus → LLVM</span>
       <span><strong>Norma</strong> standard library, bundled</span>
@@ -60,105 +76,42 @@
 
   <section class="fl-proof">
     <div class="fl-proof-head">
-      <span class="fl-proof-n">Proof 1</span>
-      <h2>One program, seven human renderings</h2>
+      <h2>Everyone reads it in their own language</h2>
       <p>
-        These are not translations of a comment or a tutorial. They are the
-        same program, and the compiler accepts every one of them. The keywords
-        are supplied by a <a href="/en-US/features/reader-locale.html">reader-locale
-        pack</a>; identifiers stay in canonical Latin so code stays portable
-        between people who do not share a language.
+        These are not translated comments or a localized tutorial. It is one
+        program, and the compiler accepts every one of these spellings. Only
+        the keywords and type names change — identifiers and string literals
+        stay exactly as written, so two people who share no language can still
+        talk about <code>saturate</code> on line one.
       </p>
     </div>
   <div class="faber-demo-tabs fdt-hero" data-fdt>
     <div class="fdt-bar">
       <span class="fdt-mark" aria-hidden="true">f</span>
-      <span class="fdt-file">salve-munde.fab</span>
+      <span class="fdt-file">main.fab · reader locale</span>
       <button class="fdt-copy" type="button">Copy</button>
     </div>
     <div class="fdt-tabs" role="tablist" aria-label="Reader locale">
-    <button class="fdt-tab" role="tab" id="fl-loc-t-en-US" data-panel="fl-loc-p-en-US" data-name="English" aria-controls="fl-loc-p-en-US" aria-selected="true" tabindex="0">English <span class="code">la</span></button>
+    <button class="fdt-tab" role="tab" id="fl-loc-t-llm" data-panel="fl-loc-p-llm" data-name="English" aria-controls="fl-loc-p-llm" aria-selected="true" tabindex="0">English <span class="code">llm</span></button>
+    <button class="fdt-tab" role="tab" id="fl-loc-t-la" data-panel="fl-loc-p-la" data-name="Latin" aria-controls="fl-loc-p-la" aria-selected="false" tabindex="-1">Latin <span class="code">la</span></button>
     <button class="fdt-tab" role="tab" id="fl-loc-t-th-TH" data-panel="fl-loc-p-th-TH" data-name="ภาษาไทย" aria-controls="fl-loc-p-th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span> <span class="code">th-TH</span></button>
-    <button class="fdt-tab" role="tab" id="fl-loc-t-ar" data-panel="fl-loc-p-ar" data-name="العربية" aria-controls="fl-loc-p-ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span> <span class="code">ar</span></button>
-    <button class="fdt-tab" role="tab" id="fl-loc-t-hi" data-panel="fl-loc-p-hi" data-name="हिन्दी" aria-controls="fl-loc-p-hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span> <span class="code">hi</span></button>
-    <button class="fdt-tab" role="tab" id="fl-loc-t-vi" data-panel="fl-loc-p-vi" data-name="Tiếng Việt" aria-controls="fl-loc-p-vi" aria-selected="false" tabindex="-1">Tiếng Việt <span class="code">vi</span></button>
     <button class="fdt-tab" role="tab" id="fl-loc-t-zh-Hans" data-panel="fl-loc-p-zh-Hans" data-name="简体中文" aria-controls="fl-loc-p-zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span> <span class="code">zh-Hans</span></button>
     <button class="fdt-tab" role="tab" id="fl-loc-t-zh-Hant" data-panel="fl-loc-p-zh-Hant" data-name="繁體中文" aria-controls="fl-loc-p-zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span> <span class="code">zh-Hant</span></button>
+    <button class="fdt-tab" role="tab" id="fl-loc-t-vi" data-panel="fl-loc-p-vi" data-name="Tiếng Việt" aria-controls="fl-loc-p-vi" aria-selected="false" tabindex="-1">Tiếng Việt <span class="code">vi</span></button>
+    <button class="fdt-tab" role="tab" id="fl-loc-t-ar" data-panel="fl-loc-p-ar" data-name="العربية" aria-controls="fl-loc-p-ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span> <span class="code">ar</span></button>
+    <button class="fdt-tab" role="tab" id="fl-loc-t-hi" data-panel="fl-loc-p-hi" data-name="हिन्दी" aria-controls="fl-loc-p-hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span> <span class="code">hi</span></button>
     </div>
-    <div class="fdt-panel active" id="fl-loc-p-en-US" role="tabpanel" aria-labelledby="fl-loc-t-en-US"><div class="fdt-panel-label">English · la · <a href="/en-US/">read the docs in English →</a></div><pre>functio salve(textus nomen) → textus {
-    fixum textus msg ← &quot;Salve, §!&quot;(nomen)
-    redde msg
+    <div class="fdt-panel active" id="fl-loc-p-llm" role="tabpanel" aria-labelledby="fl-loc-t-llm"><div class="fdt-panel-label"><code>faber format --reader-locale llm</code> <span class="fdt-note">— the model-facing pack — what a model writes, and what an English reader reads today</span></div><pre>fn saturate(int x) → int {
+    if x &lt; 0 then return 0
+    if x &gt; 255 then return 255
+    return x
 }
 
-incipit {
-    fixum textus m ← salve(&quot;munde&quot;)
-    nota m
+main {
+    const int v ← saturate(300)
+    print v
 }</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-th-TH" role="tabpanel" aria-labelledby="fl-loc-t-th-TH"><div class="fdt-panel-label">ภาษาไทย · th-TH · <a href="/th-TH/">read the docs in ภาษาไทย →</a></div><pre>ฟังก์ชัน salve(ข้อความ nomen) → ข้อความ {
-    คงที่ ข้อความ msg ← &quot;สวัสดี, §!&quot;(nomen)
-    คืน msg
-}
-
-เริ่ม {
-    คงที่ ข้อความ m ← salve(&quot;โลก&quot;)
-    แสดง m
-}</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-ar" role="tabpanel" aria-labelledby="fl-loc-t-ar"><div class="fdt-panel-label">العربية · ar · <a href="/ar/">read the docs in العربية →</a></div><pre dir="rtl">دالة salve(نص nomen) → نص {
-    ثابت نص msg ← &quot;مرحبا، §!&quot;(nomen)
-    أعد msg
-}
-
-بداية {
-    ثابت نص m ← salve(&quot;عالم&quot;)
-    اعرض m
-}</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-hi" role="tabpanel" aria-labelledby="fl-loc-t-hi"><div class="fdt-panel-label">हिन्दी · hi · <a href="/hi/">read the docs in हिन्दी →</a></div><pre>फलन salve(पाठ nomen) → पाठ {
-    स्थिर पाठ msg ← &quot;नमस्ते, §!&quot;(nomen)
-    लौटाओ msg
-}
-
-आरंभ {
-    स्थिर पाठ m ← salve(&quot;दुनिया&quot;)
-    दिखाओ m
-}</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-vi" role="tabpanel" aria-labelledby="fl-loc-t-vi"><div class="fdt-panel-label">Tiếng Việt · vi · <a href="/vi/">read the docs in Tiếng Việt →</a></div><pre>hàm salve(vănbản nomen) → vănbản {
-    hằng vănbản msg ← &quot;Xin chào, §!&quot;(nomen)
-    trả msg
-}
-
-bắtđầu {
-    hằng vănbản m ← salve(&quot;thế giới&quot;)
-    in m
-}</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-zh-Hans" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hans"><div class="fdt-panel-label">简体中文 · zh-Hans · <a href="/zh-Hans/">read the docs in 简体中文 →</a></div><pre>函数 salve(文本 nomen) → 文本 {
-    常量 文本 msg ← &quot;你好，§!&quot;(nomen)
-    返回 msg
-}
-
-入口 {
-    常量 文本 m ← salve(&quot;世界&quot;)
-    显示 m
-}</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-zh-Hant" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hant"><div class="fdt-panel-label">繁體中文 · zh-Hant · <a href="/zh-Hant/">read the docs in 繁體中文 →</a></div><pre>函式 salve(文字 nomen) → 文字 {
-    常數 文字 msg ← &quot;你好，§!&quot;(nomen)
-    傳回 msg
-}
-
-入口 {
-    常數 文字 m ← salve(&quot;世界&quot;)
-    顯示 m
-}</pre></div>
-  </div>
-  </section>
-
-  <section class="fl-proof">
-    <div class="fl-proof-head">
-      <span class="fl-proof-n">Proof 2</span>
-      <h2>One program, seven machine renderings</h2>
-      <p>
-        Same idea, other direction. This function —
-      </p>
-      <pre class="fl-src">functio saturate(numerus x) → numerus {
+    <div class="fdt-panel" id="fl-loc-p-la" role="tabpanel" aria-labelledby="fl-loc-t-la"><div class="fdt-panel-label"><code>faber format --reader-locale la</code> <span class="fdt-note">— canonical Faber — the classical surface the language is named for</span></div><pre>functio saturate(numerus x) → numerus {
     si x &lt; 0 ergo redde 0
     si x &gt; 255 ergo redde 255
     redde x
@@ -167,20 +120,90 @@ bắtđầu {
 incipit {
     fixum numerus v ← saturate(300)
     nota v
-}</pre>
+}</pre></div>
+    <div class="fdt-panel" id="fl-loc-p-th-TH" role="tabpanel" aria-labelledby="fl-loc-t-th-TH"><div class="fdt-panel-label"><code>faber format --reader-locale th-TH</code> <span class="fdt-note">— Thai — spaceless script</span></div><pre class="th">ฟังก์ชัน saturate(จำนวน x) → จำนวน {
+    ถ้า x &lt; 0 ดังนั้น คืน 0
+    ถ้า x &gt; 255 ดังนั้น คืน 255
+    คืน x
+}
+
+เริ่ม {
+    คงที่ จำนวน v ← saturate(300)
+    บันทึก v
+}</pre></div>
+    <div class="fdt-panel" id="fl-loc-p-zh-Hans" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hans"><div class="fdt-panel-label"><code>faber format --reader-locale zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh">函数 saturate(整数 x) → 整数 {
+    如果 x &lt; 0 则 返回 0
+    如果 x &gt; 255 则 返回 255
+    返回 x
+}
+
+入口 {
+    常量 整数 v ← saturate(300)
+    显示 v
+}</pre></div>
+    <div class="fdt-panel" id="fl-loc-p-zh-Hant" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hant"><div class="fdt-panel-label"><code>faber format --reader-locale zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh">函式 saturate(整數 x) → 整數 {
+    若 x &lt; 0 則 傳回 0
+    若 x &gt; 255 則 傳回 255
+    傳回 x
+}
+
+入口 {
+    定值 整數 v ← saturate(300)
+    註記 v
+}</pre></div>
+    <div class="fdt-panel" id="fl-loc-p-vi" role="tabpanel" aria-labelledby="fl-loc-t-vi"><div class="fdt-panel-label"><code>faber format --reader-locale vi</code> <span class="fdt-note">— Vietnamese</span></div><pre>hàm saturate(số x) → số {
+    nếu x &lt; 0 do_đó trả 0
+    nếu x &gt; 255 do_đó trả 255
+    trả x
+}
+
+bắt_đầu {
+    hằng số v ← saturate(300)
+    ghi_chú v
+}</pre></div>
+    <div class="fdt-panel" id="fl-loc-p-ar" role="tabpanel" aria-labelledby="fl-loc-t-ar"><div class="fdt-panel-label"><code>faber format --reader-locale ar</code> <span class="fdt-note">— Arabic — right-to-left, bidi isolated</span></div><pre class="ar" dir="rtl">دالة saturate(عدد x) → عدد {
+    إذا x &lt; 0 إذن أعد 0
+    إذا x &gt; 255 إذن أعد 255
+    أعد x
+}
+
+بداية {
+    ثابت عدد v ← saturate(300)
+    اعرض v
+}</pre></div>
+    <div class="fdt-panel" id="fl-loc-p-hi" role="tabpanel" aria-labelledby="fl-loc-t-hi"><div class="fdt-panel-label"><code>faber format --reader-locale hi</code> <span class="fdt-note">— Hindi — Devanagari</span></div><pre class="hi">फलन saturate(संख्या x) → संख्या {
+    यदि x &lt; 0 अतः लौटाओ 0
+    यदि x &gt; 255 अतः लौटाओ 255
+    लौटाओ x
+}
+
+आरंभ {
+    स्थिर संख्या v ← saturate(300)
+    दिखाओ v
+}</pre></div>
+  </div>
+    <p class="fl-note">
+      A reviewer sets their locale once. Nobody presses a translate button, and
+      no model sits in the middle guessing — this is the compiler's own
+      rendering, so the program you approve is the program that ships.
+    </p>
+  </section>
+
+  <section class="fl-proof">
+    <div class="fl-proof-head">
+      <h2>It compiles to whatever has to run it</h2>
       <p>
-        — lowers to each of the following. Nothing here is hand-written or
-        illustrative; every panel is literal <code>radix emit</code> output.
-        The GPU panels come from an <code>@ nucleum</code> kernel:
+        Same program again, pointed the other way. Every panel below is literal
+        <code>radix emit</code> output — nothing here is hand-written or
+        illustrative. LLVM IR comes straight off the MIR, so Faber reaches
+        native code without passing through Rust, C, or any other source
+        language. The two GPU panels come from an <code>@ nucleum</code>
+        kernel, which is a different source file:
       </p>
       <pre class="fl-src">@ nucleum
 functio scala(fractus&lt;f32&gt; x) → fractus&lt;f32&gt; {
     redde x + 1.0
 }</pre>
-      <p class="fl-note">
-        LLVM IR is emitted from MIR directly — Faber reaches native code
-        without passing through Rust, C, or any other source language.
-      </p>
     </div>
   <div class="faber-demo-tabs fdt-hero" data-fdt>
     <div class="fdt-bar">
@@ -251,7 +274,7 @@ function saturate(x: number): number {
         const v: number = saturate(300);
         console.log(__faberDisplay(v, &quot;numerus&quot;));
     }})();</pre></div>
-    <div class="fdt-panel" id="fl-tgt-p-llvm-text" role="tabpanel" aria-labelledby="fl-tgt-t-llvm-text"><div class="fdt-panel-label"><code>radix emit --target llvm-text main.fab</code> <span class="fdt-note">— MIR-backed — native code with no source language in between</span></div><pre>; Generated by radix MIR LLVM IR probe - experimental artifact.
+    <div class="fdt-panel" id="fl-tgt-p-llvm-text" role="tabpanel" aria-labelledby="fl-tgt-t-llvm-text"><div class="fdt-panel-label"><code>radix emit --target llvm-text main.fab</code> <span class="fdt-note">— native code with no source language in between</span></div><pre>; Generated by radix MIR LLVM IR probe - experimental artifact.
 %FaberRtSliceV1 = type { ptr, i64 }
 %FaberRtExitV1 = type { i32, i32 }
 %FaberRtPtrResultV1 = type { i32, ptr }
@@ -325,7 +348,7 @@ define %FaberRtExitV1 @__faber_program_entry_v1(ptr %context) {
       %faber.entry.exit = insertvalue %FaberRtExitV1 { i32 0, i32 0 }, i32 %faber.entry.status, 1
       ret %FaberRtExitV1 %faber.entry.exit
 }</pre></div>
-    <div class="fdt-panel" id="fl-tgt-p-wasm-text" role="tabpanel" aria-labelledby="fl-tgt-t-wasm-text"><div class="fdt-panel-label"><code>radix emit --target wasm-text main.fab</code> <span class="fdt-note">— MIR-backed WAT, external host</span></div><pre>;; Generated by radix MIR WASM text probe - experimental artifact.
+    <div class="fdt-panel" id="fl-tgt-p-wasm-text" role="tabpanel" aria-labelledby="fl-tgt-t-wasm-text"><div class="fdt-panel-label"><code>radix emit --target wasm-text main.fab</code> <span class="fdt-note">— external host</span></div><pre>;; Generated by radix MIR WASM text probe - experimental artifact.
 (module
     (import &quot;faber_rt_v1&quot; &quot;__faber_rt_v1_diagnostic_nota_i64&quot; (func $__faber_rt_v1_diagnostic_nota_i64 (param i64)))
     (func $saturate (export &quot;saturate&quot;) (param $l0 i64) (result i64)
@@ -432,7 +455,6 @@ kernel void scala(
 
   <section class="fl-proof">
     <div class="fl-proof-head">
-      <span class="fl-proof-n">Proof 3</span>
       <h2>And it runs</h2>
       <p>
         <a href="/en-US/ecosystem/triga.html">Triga</a> is a graphics and
@@ -458,7 +480,7 @@ kernel void scala(
     <div class="fl-proof-head fl-proof-sub">
       <h3>Fast enough to use like a script</h3>
       <p>
-        Faber also runs without a build step. <code>faber run --interpret</code>
+        Faber also runs with no build step. <code>faber run --interpret</code>
         takes source through parse, typecheck and MIR lowering, then steps the
         MIR in-process — no <code>rustc</code>, no linker, no build directory.
       </p>
@@ -495,6 +517,10 @@ kernel void scala(
         <strong>Syntax</strong>
         <span>Types, control flow, generics, glyphs, errors.</span>
       </a>
+      <a class="fl-door" href="/en-US/features/reader-locale.html">
+        <strong>Reader locales</strong>
+        <span>How the rendering actually works.</span>
+      </a>
       <a class="fl-door" href="/en-US/tooling/targets.html">
         <strong>Target matrix</strong>
         <span>Measured lowerability, every term × every backend.</span>
@@ -502,10 +528,6 @@ kernel void scala(
       <a class="fl-door" href="/en-US/ecosystem/">
         <strong>Ecosystem</strong>
         <span>Norma, Triga, Cista, the language corpus.</span>
-      </a>
-      <a class="fl-door" href="/en-US/features/">
-        <strong>Design</strong>
-        <span>Why the language is shaped the way it is.</span>
       </a>
     </div>
   </section>

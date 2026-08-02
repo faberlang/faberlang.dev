@@ -1,0 +1,10 @@
+hàm saturate(số x) → số {
+    nếu x < 0 do_đó trả 0
+    nếu x > 255 do_đó trả 255
+    trả x
+}
+
+bắt_đầu {
+    hằng số v ← saturate(300)
+    ghi_chú v
+}

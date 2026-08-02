@@ -1,0 +1,10 @@
+fn saturate(int x) → int {
+    if x < 0 then return 0
+    if x > 255 then return 255
+    return x
+}
+
+main {
+    const int v ← saturate(300)
+    print v
+}

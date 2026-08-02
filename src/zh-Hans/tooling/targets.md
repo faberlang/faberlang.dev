@@ -7,7 +7,7 @@ sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 translation_kind = "translated"
 prose_hash = "sha256:a399c51a14f712ea36d7ee033adf60992be9a68b502d46d5a61f34911442b66c"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "e8818bc45c774586afe0d39fd9f85f00c43f22be"
+source_commit = "4c4d764893e0e27d88cb2379bbcd91ccbc2901ae"
 source_locale = "en-US"
 +++
 
