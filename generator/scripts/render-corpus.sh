@@ -80,15 +80,15 @@ Path(os.environ["BUNDLE_PATH"]).write_text(marker.join(records))
 PYEOF
 
 echo "Compiling corpus generator..." >&2
-(cd "$BUILD_DIR" && cargo build --quiet 2>/dev/null)
+(cd "$BUILD_DIR" && cargo build --release --quiet 2>/dev/null)
 
 mkdir -p "$(dirname "$OUTPUT")"
-"${BUILD_DIR}/target/debug/speculum-gen" -- --corpus "$TERM" "$BUNDLE" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET" > "$OUTPUT"
+"${BUILD_DIR}/target/release/speculum-gen" -- --corpus "$TERM" "$BUNDLE" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET" > "$OUTPUT"
 echo "Wrote: $OUTPUT" >&2
 
 if [ -n "$PROOF_MARKDOWN" ]; then
     mkdir -p "$(dirname "$PROOF_MARKDOWN")"
-    "${BUILD_DIR}/target/debug/speculum-gen" -- --corpus-markdown "$TERM" "$BUNDLE" > "$PROOF_MARKDOWN"
+    "${BUILD_DIR}/target/release/speculum-gen" -- --corpus-markdown "$TERM" "$BUNDLE" > "$PROOF_MARKDOWN"
     echo "Wrote proof Markdown: $PROOF_MARKDOWN" >&2
 fi
 
@@ -97,7 +97,7 @@ fi
 # friendly and every alias has one canonical destination.
 BUNDLE_PATH="$BUNDLE" CORPUS_DIR="$CORPUS_DIR" TERM="$TERM" OUTPUT="$OUTPUT" \
 SITE_LOCALE="$SITE_LOCALE" READER_LOCALE="$READER_LOCALE" \
-STYLESHEET="$STYLESHEET" BIN="${BUILD_DIR}/target/debug/speculum-gen" python3 << 'PYEOF'
+STYLESHEET="$STYLESHEET" BIN="${BUILD_DIR}/target/release/speculum-gen" python3 << 'PYEOF'
 import os
 import tomllib
 from pathlib import Path

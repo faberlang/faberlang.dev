@@ -54,7 +54,7 @@ if [ -z "$PYTHON" ]; then
 fi
 
 echo "Compiling corpus batch generator..." >&2
-(cd "$BUILD_DIR" && cargo build --quiet 2>/dev/null)
+(cd "$BUILD_DIR" && cargo build --release --quiet 2>/dev/null)
 
 CORPUS_DIR="$CORPUS_DIR" BUILD_DIR="$BUILD_DIR" OUTPUT_DIR="$OUTPUT_DIR" \
 SITE_LOCALE="$SITE_LOCALE" READER_LOCALE="$READER_LOCALE" \
@@ -80,7 +80,7 @@ reader_locale = os.environ["READER_LOCALE"]
 stylesheet = os.environ["STYLESHEET"]
 proof_dir = os.environ.get("PROOF_DIR")
 generator_dir = Path(os.environ["GENERATOR_DIR"])
-binary = build / "target/debug/speculum-gen"
+binary = build / "target/release/speculum-gen"
 
 marker = "\n§§CORPUS_RECORD§§\n"
 source_marker = "\n§§CORPUS_SOURCE§§\n"

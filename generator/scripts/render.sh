@@ -37,15 +37,15 @@ echo "Building generator..." >&2
 "$FABER" build "$GENERATOR_DIR" -t rust 2>/dev/null
 
 echo "Compiling..." >&2
-(cd "$BUILD_DIR" && cargo build --quiet 2>/dev/null)
+(cd "$BUILD_DIR" && cargo build --release --quiet 2>/dev/null)
 
 echo "Rendering $SOURCE..." >&2
 echo "  Site locale: $SITE_LOCALE" >&2
 echo "  Reader locale: $READER_LOCALE" >&2
 
 if [ -n "$OUTPUT" ]; then
-    "${BUILD_DIR}/target/debug/speculum-gen" "$SOURCE" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET" > "$OUTPUT"
+    "${BUILD_DIR}/target/release/speculum-gen" "$SOURCE" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET" > "$OUTPUT"
     echo "Wrote: $OUTPUT" >&2
 else
-    "${BUILD_DIR}/target/debug/speculum-gen" "$SOURCE" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET"
+    "${BUILD_DIR}/target/release/speculum-gen" "$SOURCE" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET"
 fi

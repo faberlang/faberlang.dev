@@ -52,8 +52,11 @@ fi
 BUILD_DIR="${GENERATOR_DIR}/target/faber"
 
 # Binary path candidates (old radix-out subdir vs new top-level target)
-BINARY_OLD="${BUILD_DIR}/target/debug/speculum-gen"
-BINARY_NEW="${GENERATOR_DIR}/target/debug/speculum-gen"
+# Release, not debug. The generator is Faber-compiled Rust whose hot path is
+# superlinear in page size under -O0: a 6.5k-word page took 4.5s debug and
+# 0.10s release (44x). Debug cost ~70s per full build across seven locales.
+BINARY_OLD="${BUILD_DIR}/target/release/speculum-gen"
+BINARY_NEW="${GENERATOR_DIR}/target/release/speculum-gen"
 
 # List of temp dirs to clean on exit
 TEMPDIRS=()
@@ -206,7 +209,7 @@ if [ "$FULL_SITE" = true ]; then
     "$FABER" build "$GENERATOR_DIR" -t rust 2>/dev/null
 
     echo "[2/9] Compiling generator..."
-    (cd "$BUILD_DIR" && cargo build --quiet 2>/dev/null)
+    (cd "$BUILD_DIR" && cargo build --release --quiet 2>/dev/null)
 
     # Locate binary after build
     BINARY="$(find_binary)"
@@ -425,7 +428,7 @@ else
         echo "[1/2] Building generator..."
         "$FABER" build "$GENERATOR_DIR" -t rust 2>/dev/null
         echo "[2/2] Compiling generator..."
-        (cd "$BUILD_DIR" && cargo build --quiet 2>/dev/null)
+        (cd "$BUILD_DIR" && cargo build --release --quiet 2>/dev/null)
         BINARY="$(find_binary)"
         if [ -z "$BINARY" ]; then
             echo "ERROR: speculum-gen binary not found after build." >&2
