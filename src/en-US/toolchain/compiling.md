@@ -192,10 +192,10 @@ no loops. Functions that violate this are rejected with a diagnostic before
 AIR lowering begins. The rest of the program continues to use ordinary Faber
 with mutation, effects, and loops.
 
-After the AIR transform completes its work (future: autodiff, fusion), the
-result is re-lowered to MIR and rejoins the ordinary MIR backend pipeline.
-AIR owns no backends and no independent typechecker — it is a transform
-checkpoint, not a parallel IR.
+After the AIR transforms complete their work (autodiff and fusion — both
+shipped), the result is re-lowered to MIR and rejoins the ordinary MIR
+backend pipeline. AIR owns no backends and no independent typechecker — it
+is a transform checkpoint, not a parallel IR.
 
 ```text
 HIR  →  AIR purity check  →  HIR to AIR lowering  →  AIR validation  →  AIR to MIR re-lowering  →  MIR backend
