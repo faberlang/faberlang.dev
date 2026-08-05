@@ -208,3 +208,5 @@ https://github.com/faberlang/norma
 Site generator: Speculum (Faber package in faberlang.dev/generator).
 Deploy: GitHub Pages from faberlang/faberlang.dev dist/.
 Org: https://github.com/faberlang
+Report issues: https://faberlang.dev/en-US/reference/repositories.html#reporting-issues
+(compiler bugs → faberlang/faber issues; docs/site → faberlang/faberlang.dev issues; radix is closed-source).

@@ -8,7 +8,7 @@ render-llms.py) and emits, per site locale, a compact JSON array:
       "a": [aliases]}]
 
 "d" is the locale's pack spelling for the term (from
-stdlib/reader/{reader_locale}/pack.toml [keywords]/[types]); it is omitted
+stdlib/locale/{reader_locale}/pack.toml [keywords]/[types]); it is omitted
 when the pack has no mapping or the mapping is Latin-identical, so the
 client falls back to the canonical Latin "t". As packs fill in, rebuilding
 regenerates richer indexes — no schema change.
@@ -23,7 +23,7 @@ renderer (see render-llms.py corpus_page).
 Usage:
     generate-search-index.py --corpus <radix/corpus> --output-dir <dist>
         [--locales generator/locales.toml]
-        [--reader-root workspace/radix/stdlib/reader]
+        [--reader-root workspace/radix/stdlib/locale]
 """
 
 from __future__ import annotations
@@ -83,7 +83,7 @@ def main() -> None:
     if args.locales is None:
         args.locales = generator_dir / "locales.toml"
     if args.reader_root is None:
-        args.reader_root = generator_dir.parent.parent / "radix" / "stdlib" / "reader"
+        args.reader_root = generator_dir.parent.parent / "radix" / "stdlib" / "locale"
 
     canonical: dict[str, dict[str, object]] = {}
     for path in sorted(args.corpus.rglob("*.fab")):

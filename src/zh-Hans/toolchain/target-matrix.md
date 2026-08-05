@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:a399c51a14f712ea36d7ee033adf60992be9a68b502d46d5a61f34911442b66c"
+prose_hash = "sha256:b01151c78767f3d76e178392f134657cb42297ce3e940de617a47617f8a07322"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "359b246e6569cc33ae09b3533728e83adfe5406e"
+source_commit = "8db45a43863c1d3bf4210c4ac4a33ee22418cab9"
 source_locale = "en-US"
 +++
 
@@ -51,7 +51,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | 目标 | 可支持 | 可分析 | % |
 |---|---|---|---|
 | rust | 277 | 279 | 99% |
-| go | 258 | 279 | 92% |
+| go | 261 | 279 | 94% |
 | ts | 273 | 279 | 98% |
 | faber | 279 | 279 | 100% |
 
@@ -60,8 +60,8 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | 目标 | 可支持 | 可分析 | % |
 |---|---|---|---|
 | llvm-text | 255 | 265 | 96% |
-| wasm-text | 198 | 265 | 75% |
-| wasm | 198 | 265 | 75% |
+| wasm-text | 202 | 265 | 76% |
+| wasm | 202 | 265 | 76% |
 | metal-text | 6 | 265 | 2% |
 | wgsl-text | 6 | 265 | 2% |
 | sexp-struct | 211 | 265 | 80% |
@@ -76,7 +76,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 |---|---|---|---|---|
 | `abstractus` | ✓ | ✓ | ✓ | ✓ |
 | `ab` | ✓ | ✓ | ✓ | ✓ |
-| `ad` | ✓ | ✓ | ✓ | ✓ |
+| `ad` | ✓ | ✕ | ✓ | ✓ |
 | `adfirma` | ✓ | ✓ | ✓ | ✓ |
 | `ante` | ✓ | ✓ | ✓ | ✓ |
 | `atomic` | ✕ | ✓ | ✓ | ✓ |
@@ -187,7 +187,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `tabula` | ✓ | ✓ | ✓ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✓ |
 | `temporis` | ✓ | ✓ | ✓ | ✓ |
-| `tensor` | ✓ | ✕ | ✓ | ✓ |
+| `tensor` | ✓ | ✓ | ✓ | ✓ |
 | `textus` | ✓ | ✓ | ✓ | ✓ |
 | `typus` | ✓ | ✓ | ✓ | ✓ |
 | `ubique` | ✓ | ✓ | ✓ | ✓ |
@@ -195,7 +195,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `ut` | ✓ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✓ |
 | `variandum` | ✓ | ✓ | ✓ | ✓ |
-| `vector` | ✓ | ✓ | ✓ | ✓ |
+| `vector` | ✓ | ◐ | ✓ | ✓ |
 | `vacuum` | ✓ | ✓ | ✓ | ✓ |
 | `verum` | ✓ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✓ |
@@ -217,7 +217,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `≠` | ✓ | ✓ | ✓ | ✓ |
 | `!(` | ✓ | ✓ | ✓ | ✓ |
 | `⊻` | ✓ | ✓ | ✓ | ✓ |
-| `↦` | ✓ | ◐ | ✓ | ✓ |
+| `↦` | ✓ | ✓ | ✓ | ✓ |
 | `⇒` | ✓ | ✓ | ✓ | ✓ |
 | `‥` | ✓ | ✓ | ✓ | ✓ |
 | `…` | ✓ | ✓ | ✓ | ✓ |
@@ -331,7 +331,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `optio` | — | — | — | — | — | — | — | — |
 | `optiones` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `ordo` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `octeti` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `octeti` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `implendum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `per` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `perge` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |

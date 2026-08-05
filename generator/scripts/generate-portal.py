@@ -13,7 +13,7 @@ Layout (Speculum porta):
 
 Defaults:
     --locales       generator/locales.toml
-    --reader-root   workspace/radix/stdlib/reader
+    --reader-root   workspace/radix/stdlib/locale
     --exemplars     generator/portal/exemplars (hero panels; falls back to
                     pack exemplars under --reader-root)
     --css           /speculum.css
@@ -132,7 +132,7 @@ def main() -> None:
     if args.reader_root is None:
         repo_dir = generator_dir.parent
         workspace_dir = repo_dir.parent
-        args.reader_root = workspace_dir / "radix" / "stdlib" / "reader"
+        args.reader_root = workspace_dir / "radix" / "stdlib" / "locale"
 
     registry = load_locales(args.locales)
     sorted_keys = sort_locale_keys(list(registry.keys()))

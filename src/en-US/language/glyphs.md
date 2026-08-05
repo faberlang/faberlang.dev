@@ -284,7 +284,7 @@ to emit based on context and mode.
 
 > **The rule:** Sugar spellings are semantically identical to long form.
 > Multiple surfaces parse to the same `HirAnnotation` or type node.
-> `faber format --canonical` prefers canonical spellings; author
+> `faber format --locale la` re-emits canonical spellings; author
 > mode preserves the sugar the author wrote.
 
 ### Numeric type sugar {#numeric-type-sugar}
@@ -356,7 +356,7 @@ Annotations are compiler-owned metadata attached to declarations — like
 Both forms produce the same `HirAnnotation` record. The canonical
 form is explicit and self-documenting; the sugar form is concise for
 frequently-used annotations where the field order is well-known.
-`faber format --canonical` prefers braced records; author mode
+`faber format --locale la` re-emits canonical braced records; author mode
 preserves the author's chosen form.
 
 ### Author vs canonical formatting {#author-vs-canonical-formatting}
@@ -367,7 +367,7 @@ canonical-vs-sugar principle:
 | Mode | Command | Input | Output |
 |------|---------|-------|--------|
 | Author | `faber format` | Parsed AST + leading trivia | Faber source preserving `#` comments, blank lines, and sugar spellings |
-| Canonical | `faber format --canonical` | Analysed HIR + `TypeTable` | Normalised Faber — no comments, canonical spellings, no sugar |
+| Canonical | `faber format --locale la` | Analysed HIR + `TypeTable` | Normalised Faber — no comments, canonical spellings, no sugar |
 
 Both modes run through the compiler's full front half (lex, parse, analyse
 for canonical). Invalid source produces compiler diagnostics — the formatter
@@ -392,7 +392,7 @@ deliberate design principle, not a collection of one-off conveniences:
 | Numeric types | `numerus<i32>` | `i32` |
 | Tensor types | `tensor<f32, [4]>` | `tf32[4]` |
 | Annotations | `@ optio { binding = verbose }` | `@ optio verbose ...` |
-| Formatting | `faber format --canonical` | `faber format` (author mode) |
+| Formatting | `faber format --locale la` | `faber format` (author mode) |
 | Reader locale | Latin (`la`) | Any locale pack |
 
 The pattern serves two goals. First, it lowers the barrier to entry — new

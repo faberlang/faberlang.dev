@@ -48,7 +48,7 @@ contracts, and pipeline routing live in
 | target | capable | analyzable | % |
 |---|---|---|---|
 | rust | 277 | 279 | 99% |
-| go | 258 | 279 | 92% |
+| go | 261 | 279 | 94% |
 | ts | 273 | 279 | 98% |
 | faber | 279 | 279 | 100% |
 
@@ -57,8 +57,8 @@ contracts, and pipeline routing live in
 | target | capable | analyzable | % |
 |---|---|---|---|
 | llvm-text | 255 | 265 | 96% |
-| wasm-text | 198 | 265 | 75% |
-| wasm | 198 | 265 | 75% |
+| wasm-text | 202 | 265 | 76% |
+| wasm | 202 | 265 | 76% |
 | metal-text | 6 | 265 | 2% |
 | wgsl-text | 6 | 265 | 2% |
 | sexp-struct | 211 | 265 | 80% |
@@ -73,7 +73,7 @@ contracts, and pipeline routing live in
 |---|---|---|---|---|
 | `abstractus` | ✓ | ✓ | ✓ | ✓ |
 | `ab` | ✓ | ✓ | ✓ | ✓ |
-| `ad` | ✓ | ✓ | ✓ | ✓ |
+| `ad` | ✓ | ✕ | ✓ | ✓ |
 | `adfirma` | ✓ | ✓ | ✓ | ✓ |
 | `ante` | ✓ | ✓ | ✓ | ✓ |
 | `atomic` | ✕ | ✓ | ✓ | ✓ |
@@ -184,7 +184,7 @@ contracts, and pipeline routing live in
 | `tabula` | ✓ | ✓ | ✓ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✓ |
 | `temporis` | ✓ | ✓ | ✓ | ✓ |
-| `tensor` | ✓ | ✕ | ✓ | ✓ |
+| `tensor` | ✓ | ✓ | ✓ | ✓ |
 | `textus` | ✓ | ✓ | ✓ | ✓ |
 | `typus` | ✓ | ✓ | ✓ | ✓ |
 | `ubique` | ✓ | ✓ | ✓ | ✓ |
@@ -192,7 +192,7 @@ contracts, and pipeline routing live in
 | `ut` | ✓ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✓ |
 | `variandum` | ✓ | ✓ | ✓ | ✓ |
-| `vector` | ✓ | ✓ | ✓ | ✓ |
+| `vector` | ✓ | ◐ | ✓ | ✓ |
 | `vacuum` | ✓ | ✓ | ✓ | ✓ |
 | `verum` | ✓ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✓ |
@@ -214,7 +214,7 @@ contracts, and pipeline routing live in
 | `≠` | ✓ | ✓ | ✓ | ✓ |
 | `!(` | ✓ | ✓ | ✓ | ✓ |
 | `⊻` | ✓ | ✓ | ✓ | ✓ |
-| `↦` | ✓ | ◐ | ✓ | ✓ |
+| `↦` | ✓ | ✓ | ✓ | ✓ |
 | `⇒` | ✓ | ✓ | ✓ | ✓ |
 | `‥` | ✓ | ✓ | ✓ | ✓ |
 | `…` | ✓ | ✓ | ✓ | ✓ |
@@ -328,7 +328,7 @@ contracts, and pipeline routing live in
 | `optio` | — | — | — | — | — | — | — | — |
 | `optiones` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `ordo` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `octeti` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `octeti` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `implendum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `per` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `perge` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |

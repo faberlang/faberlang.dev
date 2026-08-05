@@ -66,9 +66,9 @@ the diagnostic code instead of paraphrasing a compiler failure loosely.
 ## Reader-locale commands {#reader-locale}
 
 ```bash
-faber format --reader-locale=la path/to/file.fab
-faber format --reader-locale=th-TH path/to/file.fab
-faber emit -t faber --reader-locale=zh-Hans path/to/file.fab
+faber format --locale=la path/to/file.fab
+faber format --locale=th-TH path/to/file.fab
+faber emit -t faber --locale=zh-Hans path/to/file.fab
 ```
 
 Reader locale output is a rendering of the compiler's semantic model, not a

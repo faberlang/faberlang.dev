@@ -229,8 +229,8 @@ functio genera_sidebar(textus active_section, textus site_locale) → doc_mod.No
     children.appende(side_h("For agents"))
     children.appende(nav_list([li(genera_nav_link("Agent index", "/llms.txt", falsum)), li(genera_nav_link("Agent guide", "/agents/index.md", falsum)), li(genera_nav_link("Agent skills", "/.well-known/agent-skills/index.json", falsum)), li(genera_nav_link("Full reference", "/llms-full.txt", falsum))], "nav nav-compact"))
 
-    children.appende(side_h("Release 1.3.0"))
-    children.appende(nav_list([li(genera_nav_link("macOS arm64", "https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-aarch64-apple-darwin.tar.gz", falsum)), li(genera_nav_link("Linux x64", "https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-x86_64-unknown-linux-gnu.tar.gz", falsum)), li(genera_nav_link("All releases", lp.content_href("/reference/releases.html", site_locale), active_section ≡ "releases")), li(genera_nav_link("GitHub org", "https://github.com/faberlang", falsum))], "nav nav-compact"))
+    children.appende(side_h("Release 1.4.0"))
+    children.appende(nav_list([li(genera_nav_link("macOS arm64", "https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz", falsum)), li(genera_nav_link("Linux x64", "https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz", falsum)), li(genera_nav_link("All releases", lp.content_href("/reference/releases.html", site_locale), active_section ≡ "releases")), li(genera_nav_link("GitHub & issues", lp.content_href("/reference/repositories.html", site_locale), active_section ≡ "repositories"))], "nav nav-compact"))
     children.appende(genera_side_meta())
 
     redde doc_mod.element("aside", vacua, children)

@@ -146,7 +146,7 @@ def build_locale_panels(d: Path) -> list[dict[str, str]]:
         panels.append({
             "id": esc(loc["id"]), "name": esc(loc["name"]),
             "tab": name, "hint": esc(loc["code"]),
-            "label": f'<code>faber format --reader-locale {esc(loc["code"])}</code> '
+            "label": f'<code>faber format --locale {esc(loc["code"])}</code> '
                      f'<span class="fdt-note">— {esc(loc["note"])}</span>',
             "code": esc(f.read_text(encoding="utf-8").strip()),
             "dir": (f' class="{loc["script"]}"' if loc["script"] else "")

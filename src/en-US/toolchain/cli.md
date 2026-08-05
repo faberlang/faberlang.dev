@@ -6,7 +6,7 @@ sources = [
   "faber/README.md",
   "faber/AGENTS.md",
   "faber/src/cli/mod.rs",
-  "faber/docs/release/v1.3.0.md",
+  "faber/docs/release/v1.4.0.md",
   "radix/docs/design/faber-scripting.md",
 ]
 +++
@@ -46,11 +46,35 @@ faber build my-package/ -t rust
 ```
 
 The `-t` flag selects the codegen target: `rust` (default), `typescript`
-(`ts`), `go`, `swift`, `faber` (`fab`, canonical re-emission), `wasm` /
+(`ts`), `go`, `swift`, `faber` (`fab`, canonical re-emission), `fhir`
+(portable FHIR package envelope), `wasm` /
 `wasm-text` (`wat`), `llvm-text` (`llvm`), `metal-text` (`metal`),
 `wgsl-text` (`wgsl`), and `sexp` (`racket`). Diagnostics can be promoted to
 errors with `--deny-warnings` (all warnings) or `--deny <CODE>` (a specific
 catalog code, repeatable).
+
+### Device execution (Metal / CUDA) {#device-execution}
+
+`faber run` can execute a package's device program on a real GPU. A package
+carries a device program when its source declares an `@ nucleum` compute
+kernel and its manifest declares a `[device]` section (`backend`, and
+`inputs` for the kernel's input buffers):
+
+```bash
+faber run --backend metal <package>   # Apple Metal (e.g. Apple M5 Max)
+faber run --backend cuda  <package>   # NVIDIA CUDA (e.g. RTX 5070)
+faber run --backend auto  <package>   # resolve: exactly one admitted backend
+```
+
+Backend selection precedence: CLI `--backend` > manifest `[device] backend` >
+`auto`. The packaged FMIR image's `device` section carries the canonical device
+program plus Metal MSL and CUDA PTX artifacts (each with a provenance hash);
+`faber run` drives a real Metal/CUDA session (load → allocate → copy-in →
+launch → sync → readback → release) and reports the selected device, the
+artifact/module hash, and the observed outputs. An explicit GPU request never
+silently falls back: unavailable backends, bad descriptors, and
+entry/dtype/shape mismatches fail closed with a stable code
+(`E_BACKEND_UNAVAILABLE`, `E_DEVICE_*`, `E_NO_DEVICE_PROGRAM`).
 
 ### Checking without emitting {#checking}
 
@@ -87,9 +111,10 @@ faber format my-package/
 
 Applies the canonical Faber formatter in author mode by default. The
 formatter enforces consistent layout: one declaration per line, canonical
-spacing, and standardized keyword surfaces. `--canonical` selects the
-canonical re-emit path, `--check` verifies without writing, and
-`--reader-locale` formats for a reader pack.
+spacing, and standardized keyword surfaces. `--locale <locale>` re-emits in
+a reader-locale surface (`--locale la` reproduces the former `--canonical`
+path), `--check` verifies without writing, and `--stdout` writes to stdout
+instead of updating files.
 
 ### Explaining diagnostics {#explaining}
 

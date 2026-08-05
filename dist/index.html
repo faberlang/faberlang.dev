@@ -87,7 +87,7 @@
     <button class="fdt-tab" role="tab" id="fl-loc-t-ar" data-panel="fl-loc-p-ar" data-name="العربية" aria-controls="fl-loc-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button>
     <button class="fdt-tab" role="tab" id="fl-loc-t-hi" data-panel="fl-loc-p-hi" data-name="हिन्दी" aria-controls="fl-loc-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button>
     </div>
-    <div class="fdt-panel active" id="fl-loc-p-llm" role="tabpanel" aria-labelledby="fl-loc-t-llm"><div class="fdt-panel-label"><code>faber format --reader-locale llm</code> <span class="fdt-note">— the model-facing pack — what a model writes, and what an English reader reads today</span></div><pre>union Pixel {
+    <div class="fdt-panel active" id="fl-loc-p-llm" role="tabpanel" aria-labelledby="fl-loc-t-llm"><div class="fdt-panel-label"><code>faber format --locale llm</code> <span class="fdt-note">— the model-facing pack — what a model writes, and what an English reader reads today</span></div><pre>union Pixel {
     Opacus {
         int&lt;u8&gt; nivea
     },
@@ -130,7 +130,7 @@ main {
         print format(&quot;erratum: §&quot;, err)
     }
 }</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-la" role="tabpanel" aria-labelledby="fl-loc-t-la"><div class="fdt-panel-label"><code>faber format --reader-locale la</code> <span class="fdt-note">— canonical Faber — the classical surface the language is named for</span></div><pre>discretio Pixel {
+    <div class="fdt-panel" id="fl-loc-p-la" role="tabpanel" aria-labelledby="fl-loc-t-la"><div class="fdt-panel-label"><code>faber format --locale la</code> <span class="fdt-note">— canonical Faber — the classical surface the language is named for</span></div><pre>discretio Pixel {
     Opacus { numerus&lt;u8&gt; nivea },
     Vitreus { numerus&lt;u8&gt; nivea, fractus&lt;f32&gt; alpha },
     Vacuus
@@ -160,7 +160,7 @@ incipit {
         nota &quot;erratum: §&quot;(err)
     }
 }</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-th-TH" role="tabpanel" aria-labelledby="fl-loc-t-th-TH"><div class="fdt-panel-label"><code>faber format --reader-locale th-TH</code> <span class="fdt-note">— Thai — spaceless script</span></div><pre class="th">สหภาพแยก Pixel {
+    <div class="fdt-panel" id="fl-loc-p-th-TH" role="tabpanel" aria-labelledby="fl-loc-t-th-TH"><div class="fdt-panel-label"><code>faber format --locale th-TH</code> <span class="fdt-note">— Thai — spaceless script</span></div><pre class="th">สหภาพแยก Pixel {
     Opacus {
         จำนวน&lt;u8&gt; nivea
     },
@@ -203,7 +203,7 @@ incipit {
         บันทึก จารึก(&quot;erratum: §&quot;, err)
     }
 }</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-zh-Hans" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hans"><div class="fdt-panel-label"><code>faber format --reader-locale zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh">判别 Pixel {
+    <div class="fdt-panel" id="fl-loc-p-zh-Hans" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hans"><div class="fdt-panel-label"><code>faber format --locale zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh">判别 Pixel {
     Opacus {
         整数&lt;u8&gt; nivea
     },
@@ -246,7 +246,7 @@ incipit {
         显示 格式化(&quot;erratum: §&quot;, err)
     }
 }</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-zh-Hant" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hant"><div class="fdt-panel-label"><code>faber format --reader-locale zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh">分支聯集 Pixel {
+    <div class="fdt-panel" id="fl-loc-p-zh-Hant" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hant"><div class="fdt-panel-label"><code>faber format --locale zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh">分支聯集 Pixel {
     Opacus {
         整數&lt;u8&gt; nivea
     },
@@ -289,7 +289,7 @@ incipit {
         註記 格式文字(&quot;erratum: §&quot;, err)
     }
 }</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-vi" role="tabpanel" aria-labelledby="fl-loc-t-vi"><div class="fdt-panel-label"><code>faber format --reader-locale vi</code> <span class="fdt-note">— Vietnamese</span></div><pre>hợp_nhất Pixel {
+    <div class="fdt-panel" id="fl-loc-p-vi" role="tabpanel" aria-labelledby="fl-loc-t-vi"><div class="fdt-panel-label"><code>faber format --locale vi</code> <span class="fdt-note">— Vietnamese</span></div><pre>hợp_nhất Pixel {
     Opacus {
         số&lt;u8&gt; nivea
     },
@@ -332,7 +332,7 @@ bắt_đầu {
         ghi_chú văn_bản_hóa(&quot;erratum: §&quot;, err)
     }
 }</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-ar" role="tabpanel" aria-labelledby="fl-loc-t-ar"><div class="fdt-panel-label"><code>faber format --reader-locale ar</code> <span class="fdt-note">— Arabic — right-to-left, bidi isolated</span></div><pre class="ar" dir="rtl">تمايز Pixel {
+    <div class="fdt-panel" id="fl-loc-p-ar" role="tabpanel" aria-labelledby="fl-loc-t-ar"><div class="fdt-panel-label"><code>faber format --locale ar</code> <span class="fdt-note">— Arabic — right-to-left, bidi isolated</span></div><pre class="ar" dir="rtl">تمايز Pixel {
     Opacus {
         عدد&lt;u8&gt; nivea
     },
@@ -375,7 +375,7 @@ bắt_đầu {
         اعرض حرر(&quot;erratum: §&quot;, err)
     }
 }</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-hi" role="tabpanel" aria-labelledby="fl-loc-t-hi"><div class="fdt-panel-label"><code>faber format --reader-locale hi</code> <span class="fdt-note">— Hindi — Devanagari</span></div><pre class="hi">विभेद Pixel {
+    <div class="fdt-panel" id="fl-loc-p-hi" role="tabpanel" aria-labelledby="fl-loc-t-hi"><div class="fdt-panel-label"><code>faber format --locale hi</code> <span class="fdt-note">— Hindi — Devanagari</span></div><pre class="hi">विभेद Pixel {
     Opacus {
         संख्या&lt;u8&gt; nivea
     },

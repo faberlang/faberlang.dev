@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:3cf2be8d35cfd419428b8c1e1935b15c84b30d25aa6a919f4b748ba8c2182f2e"
+prose_hash = "sha256:c43bbc8b89b4a658bbac443877db9e1f12e41b72f209c55bca7312c84fb94e1b"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "359b246e6569cc33ae09b3533728e83adfe5406e"
+source_commit = "8db45a43863c1d3bf4210c4ac4a33ee22418cab9"
 source_locale = "en-US"
 +++
 
@@ -56,7 +56,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
 | rust | 277 | 279 | 99% |
-| go | 258 | 279 | 92% |
+| go | 261 | 279 | 94% |
 | ts | 273 | 279 | 98% |
 | faber | 279 | 279 | 100% |
 
@@ -65,8 +65,8 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
 | llvm-text | 255 | 265 | 96% |
-| wasm-text | 198 | 265 | 75% |
-| wasm | 198 | 265 | 75% |
+| wasm-text | 202 | 265 | 76% |
+| wasm | 202 | 265 | 76% |
 | metal-text | 6 | 265 | 2% |
 | wgsl-text | 6 | 265 | 2% |
 | sexp-struct | 211 | 265 | 80% |
@@ -81,7 +81,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 |---|---|---|---|---|
 | `abstractus` | ✓ | ✓ | ✓ | ✓ |
 | `ab` | ✓ | ✓ | ✓ | ✓ |
-| `ad` | ✓ | ✓ | ✓ | ✓ |
+| `ad` | ✓ | ✕ | ✓ | ✓ |
 | `adfirma` | ✓ | ✓ | ✓ | ✓ |
 | `ante` | ✓ | ✓ | ✓ | ✓ |
 | `atomic` | ✕ | ✓ | ✓ | ✓ |
@@ -192,7 +192,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `tabula` | ✓ | ✓ | ✓ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✓ |
 | `temporis` | ✓ | ✓ | ✓ | ✓ |
-| `tensor` | ✓ | ✕ | ✓ | ✓ |
+| `tensor` | ✓ | ✓ | ✓ | ✓ |
 | `textus` | ✓ | ✓ | ✓ | ✓ |
 | `typus` | ✓ | ✓ | ✓ | ✓ |
 | `ubique` | ✓ | ✓ | ✓ | ✓ |
@@ -200,7 +200,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `ut` | ✓ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✓ |
 | `variandum` | ✓ | ✓ | ✓ | ✓ |
-| `vector` | ✓ | ✓ | ✓ | ✓ |
+| `vector` | ✓ | ◐ | ✓ | ✓ |
 | `vacuum` | ✓ | ✓ | ✓ | ✓ |
 | `verum` | ✓ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✓ |
@@ -222,7 +222,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `≠` | ✓ | ✓ | ✓ | ✓ |
 | `!(` | ✓ | ✓ | ✓ | ✓ |
 | `⊻` | ✓ | ✓ | ✓ | ✓ |
-| `↦` | ✓ | ◐ | ✓ | ✓ |
+| `↦` | ✓ | ✓ | ✓ | ✓ |
 | `⇒` | ✓ | ✓ | ✓ | ✓ |
 | `‥` | ✓ | ✓ | ✓ | ✓ |
 | `…` | ✓ | ✓ | ✓ | ✓ |
@@ -336,7 +336,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `optio` | — | — | — | — | — | — | — | — |
 | `optiones` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `ordo` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `octeti` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `octeti` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `implendum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `per` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `perge` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |

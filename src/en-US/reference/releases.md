@@ -20,23 +20,23 @@ Download prebuilt Faber CLI archives and browse every published tag in the [fabe
 
 Build-from-source instructions are intentionally **not** linked here. Use the prebuilt archives unless you work on the private compiler tree.
 
-## Latest release — Faber 1.3.0 {#latest}
+## Latest release — Faber 1.4.0 {#latest}
 
 | Field | Value |
 |---|---|
 | **Product** | Faber CLI |
-| **Version** | 1.3.0 |
-| **Tag** | `faber-v1.3.0` |
+| **Version** | 1.4.0 |
+| **Tag** | `faber-v1.4.0` |
 | **Published** | 2026-07-31 |
-| **GitHub** | [faber-v1.3.0](https://github.com/faberlang/releases/releases/tag/faber-v1.3.0) |
+| **GitHub** | [faber-v1.4.0](https://github.com/faberlang/releases/releases/tag/faber-v1.4.0) |
 | **License** | MIT |
 
 ### Binaries {#latest-binaries}
 
 | Platform | Archive | Size | SHA-256 |
 |---|---|---|---|
-| **macOS arm64** | [faber-v1.3.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-aarch64-apple-darwin.tar.gz) | 6.4 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** | [faber-v1.3.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-x86_64-unknown-linux-gnu.tar.gz) | 7.1 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** | [faber-v1.4.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz) | 6.5 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** | [faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz) | 7.3 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
 Extract the archive and put the `faber` binary on your `PATH`. Step-by-step: [Install and download](/start/install.html).
 
@@ -44,7 +44,25 @@ Extract the archive and put the `faber` binary on your `PATH`. Step-by-step: [In
 
 Every tag currently published under [github.com/faberlang/releases](https://github.com/faberlang/releases/releases), newest first. **Faber** tags are the user CLI. **Radix** tags are historical compiler CLI archives (most are macOS arm64 only).
 
-_Inventory snapshot from the GitHub Releases API. 43 tags, regenerated for this page._
+_Inventory snapshot from the GitHub Releases API. 45 tags, regenerated for this page._
+
+### `radix-v0.79.0` {#radix-v0-79-0}
+
+**Radix compiler** · published 2026-07-31 · [GitHub release](https://github.com/faberlang/releases/releases/tag/radix-v0.79.0)
+
+| Platform | Archive | Size | SHA-256 |
+|---|---|---|---|
+| macOS arm64 | [radix-v0.79.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/radix-v0.79.0/radix-v0.79.0-aarch64-apple-darwin.tar.gz) | 4.3 MB | [checksum](https://github.com/faberlang/releases/releases/download/radix-v0.79.0/radix-v0.79.0-aarch64-apple-darwin.tar.gz.sha256) |
+| Linux x64 | [radix-v0.79.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/radix-v0.79.0/radix-v0.79.0-x86_64-unknown-linux-gnu.tar.gz) | 4.6 MB | [checksum](https://github.com/faberlang/releases/releases/download/radix-v0.79.0/radix-v0.79.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+
+### `faber-v1.4.0` {#faber-v1-4-0}
+
+**Faber CLI** · published 2026-07-31 · [GitHub release](https://github.com/faberlang/releases/releases/tag/faber-v1.4.0)
+
+| Platform | Archive | Size | SHA-256 |
+|---|---|---|---|
+| macOS arm64 | [faber-v1.4.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz) | 6.5 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz.sha256) |
+| Linux x64 | [faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz) | 7.3 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
 ### `faber-v1.3.0` {#faber-v1-3-0}
 
@@ -402,5 +420,5 @@ Assets live in the public [faberlang/releases](https://github.com/faberlang/rele
 | Link | Role |
 |---|---|
 | [Install and download](/start/install.html) | Recommended install path |
-| [History](/reference/design.html) | Project timeline and origins |
+| [History](/history/) | Project timeline and origins |
 | [faberlang/releases on GitHub](https://github.com/faberlang/releases/releases) | Raw tag list and assets |

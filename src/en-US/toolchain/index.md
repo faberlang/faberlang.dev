@@ -35,7 +35,7 @@ resolve, typecheck) with nothing written to disk.
 | `script` | run source through the interpreter — single file, package, or archive |
 | `repl` | interactive MIR stepper, re-lowering each line |
 | `test` | run `proba` cases on the stepper, no Cargo or rustc |
-| `format` | format source; `--reader-locale` renders another surface |
+| `format` | format source; `--locale` renders another reader surface |
 | `explain` | explain a glyph, keyword, or grammar term |
 | `targets` | list targets and their current capability notes |
 | `install` | install a library package into the Cista store |

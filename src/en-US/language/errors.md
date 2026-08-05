@@ -266,7 +266,7 @@ conventional approaches:
 
 - **No separate test binary.** Tests are declarations in the same source file (or in `*.proba` test sources), not a separate compilation target. The compiler filters test blocks from production output.
 - **Tags, not directories.** Tests are organised by `tag` markers rather than directory structure. A test can belong to multiple organisational axes without being moved.
-- **Full compiler pipeline.** Tests are type-checked, analysed, and locale-aware — the same `--reader-locale` flag applies to test output.
+- **Full compiler pipeline.** Tests are type-checked, analysed, and locale-aware — the same `--locale` flag applies to test output.
 - **Stepper-executed.** `faber test` runs proba cases on the MIR stepper; no generated test crate, Cargo, or Rust toolchain is required.
 - **Target-neutral.** The stepper analysis is independent of any codegen target.
 - **Nested suites.** `probandum` blocks can nest, mirroring the structure of the code they test.

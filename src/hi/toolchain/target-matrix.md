@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:8d5ef8ac2e2e08141f26f88b19f020ad70574f92d920b0727a3354a6fadfffee"
+prose_hash = "sha256:07ff10d533ffcdfec0e59007407bc86028b4dde97df43f12a30ac68cb4de3b9d"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "359b246e6569cc33ae09b3533728e83adfe5406e"
+source_commit = "8db45a43863c1d3bf4210c4ac4a33ee22418cab9"
 source_locale = "en-US"
 +++
 
@@ -56,7 +56,7 @@ verbs), per-target contracts और pipeline routing
 | लक्ष्य | सक्षम | विश्लेषण योग्य | % |
 |---|---|---|---|
 | rust | 277 | 279 | 99% |
-| go | 258 | 279 | 92% |
+| go | 261 | 279 | 94% |
 | ts | 273 | 279 | 98% |
 | faber | 279 | 279 | 100% |
 
@@ -65,8 +65,8 @@ verbs), per-target contracts और pipeline routing
 | लक्ष्य | सक्षम | विश्लेषण योग्य | % |
 |---|---|---|---|
 | llvm-text | 255 | 265 | 96% |
-| wasm-text | 198 | 265 | 75% |
-| wasm | 198 | 265 | 75% |
+| wasm-text | 202 | 265 | 76% |
+| wasm | 202 | 265 | 76% |
 | metal-text | 6 | 265 | 2% |
 | wgsl-text | 6 | 265 | 2% |
 | sexp-struct | 211 | 265 | 80% |
@@ -81,7 +81,7 @@ verbs), per-target contracts और pipeline routing
 |---|---|---|---|---|
 | `abstractus` | ✓ | ✓ | ✓ | ✓ |
 | `ab` | ✓ | ✓ | ✓ | ✓ |
-| `ad` | ✓ | ✓ | ✓ | ✓ |
+| `ad` | ✓ | ✕ | ✓ | ✓ |
 | `adfirma` | ✓ | ✓ | ✓ | ✓ |
 | `ante` | ✓ | ✓ | ✓ | ✓ |
 | `atomic` | ✕ | ✓ | ✓ | ✓ |
@@ -192,7 +192,7 @@ verbs), per-target contracts और pipeline routing
 | `tabula` | ✓ | ✓ | ✓ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✓ |
 | `temporis` | ✓ | ✓ | ✓ | ✓ |
-| `tensor` | ✓ | ✕ | ✓ | ✓ |
+| `tensor` | ✓ | ✓ | ✓ | ✓ |
 | `textus` | ✓ | ✓ | ✓ | ✓ |
 | `typus` | ✓ | ✓ | ✓ | ✓ |
 | `ubique` | ✓ | ✓ | ✓ | ✓ |
@@ -200,7 +200,7 @@ verbs), per-target contracts और pipeline routing
 | `ut` | ✓ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✓ |
 | `variandum` | ✓ | ✓ | ✓ | ✓ |
-| `vector` | ✓ | ✓ | ✓ | ✓ |
+| `vector` | ✓ | ◐ | ✓ | ✓ |
 | `vacuum` | ✓ | ✓ | ✓ | ✓ |
 | `verum` | ✓ | ✓ | ✓ | ✓ |
 | `vide` | ✓ | ✓ | ✓ | ✓ |
@@ -222,7 +222,7 @@ verbs), per-target contracts और pipeline routing
 | `≠` | ✓ | ✓ | ✓ | ✓ |
 | `!(` | ✓ | ✓ | ✓ | ✓ |
 | `⊻` | ✓ | ✓ | ✓ | ✓ |
-| `↦` | ✓ | ◐ | ✓ | ✓ |
+| `↦` | ✓ | ✓ | ✓ | ✓ |
 | `⇒` | ✓ | ✓ | ✓ | ✓ |
 | `‥` | ✓ | ✓ | ✓ | ✓ |
 | `…` | ✓ | ✓ | ✓ | ✓ |
@@ -336,7 +336,7 @@ verbs), per-target contracts और pipeline routing
 | `optio` | — | — | — | — | — | — | — | — |
 | `optiones` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `ordo` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `octeti` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `octeti` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `implendum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `per` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `perge` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |

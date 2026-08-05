@@ -116,7 +116,7 @@ echo "reader locales:"
 echo "  la (via radix emit -t faber)"
 
 for loc in llm th-TH zh-Hans zh-Hant vi ar hi; do
-    if "$FABER" format --reader-locale "$loc" --stdout "${WORK}/demo" \
+    if "$FABER" format --locale "$loc" --stdout "${WORK}/demo" \
         > "${OUT}/locales/${loc}.fab" 2>/dev/null \
         && [ -s "${OUT}/locales/${loc}.fab" ]; then
         echo "  ${loc}"

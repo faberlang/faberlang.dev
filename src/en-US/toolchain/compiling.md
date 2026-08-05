@@ -32,6 +32,7 @@ supports, erases, warns on, or rejects.
 | Target | Lane | Build | Run | Package | Policy |
 |--------|------|-------|-----|---------|--------|
 | `rust` | HIR | yes | yes | yes | **Support** |
+| `fhir` | HIR | yes | yes | yes | **Support** |
 | `fmir-text` | MIR | yes | yes | yes | **Support** |
 | `fmir` | MIR | yes | yes | yes | **Support** |
 | `fmir-bin` | MIR | yes | yes | yes | **Support** |
@@ -40,10 +41,14 @@ supports, erases, warns on, or rejects.
 | `go` | HIR | yes | no | no | **Erase** |
 | `wasm` | MIR | yes | no | no | **Limited** |
 | `wasm-text` | MIR | yes | no | no | **Limited** |
-| `llvm-text` | MIR | yes | no | no | **Limited** |
-| `metal-text` | MIR | yes | no | no | **Limited** |
+| `llvm-text` | MIR | yes | yes* | no | **Limited** |
+| `metal-text` | MIR | yes | yes* | no | **Limited** |
 | `wgsl-text` | MIR | yes | no | no | **Limited** |
 | `sexp` | MIR | yes | no | no | **Limited** |
+
+*`run` via device execution: `faber run --backend cuda` (llvm-text) /
+`--backend metal` (metal-text) launches `@ nucleum` kernels on a real GPU;
+`-t llvm-text` / `-t metal-text` themselves remain emit-only.
 
 ### Pipeline routing {#pipeline-routing}
 
@@ -72,8 +77,8 @@ Source → Lex → Parse → Collect → Resolve → Lower → Typecheck → Ana
 |--------|---------------|
 | fmir* | Package MIR images; runner proves source independence. |
 | wasm | 200/289 emitted · 195/289 validate · 171/289 stub-host runnable |
-| llvm-text | 249/289 emitted · 232/289 verifier-valid · 65/289 runnable |
-| metal-text | Device-safe kernel subset; 88 focused tests. Campaign paused. |
+| llvm-text | 249/289 emitted · 232/289 verifier-valid · 65/289 runnable; **CUDA device execution via `faber run --backend cuda`** (NVVM→PTX) |
+| metal-text | Device-safe kernel subset; **campaign reopened 2026-08-02** — real MSL device execution via `faber run --backend metal` (Apple M5 Max) |
 | wgsl-text | Validates with naga 30.x. 87 focused tests. Reflection sidecar. |
 | sexp | 193 emitted · 190 Racket-compiled · 190 Racket-run. Validation target. |
 
@@ -109,10 +114,9 @@ Source (.fab)  →  Lex  →  Parse  →  Collect  →  Resolve  →  Lower  →
                                                       │                   │
                                                 CPU lanes           GPU lanes
                                                       │                   │
-                                            ┌────┬────┼────┬────┐     ┌───┴───┐
-                                            │    │    │    │    │     │       │
+                                            ┌────┬────┼────┬────┐     ┌───┴───────┐
+                                            │    │    │    │    │     │           │
                                           FMIR LLVM WASM  TS  Go   WGSL   Metal
-                                                                          (hold)
 ```
 
 The same frontend serves every target. After semantic analysis produces the HIR,
@@ -137,12 +141,12 @@ source. The locale is a surface rendering of the HIR, not a fork in the
 semantic core.
 
 - **Input:** localised source (Thai, Chinese, Arabic, etc.) → normalised HIR — **shipped**
-- **Output:** HIR → localised source re-emission — **in progress** (being implemented)
+- **Output:** HIR → localised source re-emission — **shipped** (`faber format --locale <locale>`)
 
-When the output direction ships, `faber format --reader-locale=th-TH`
-will round-trip any Faber source through the HIR and emit it with Thai keywords,
-completing the symmetry: the same HIR can produce any locale surface, just as it
-can produce any target backend.
+`faber format --locale=th-TH` round-trips any Faber source through the HIR and
+emits it with Thai keywords, completing the symmetry: the same HIR can produce
+any locale surface, just as it can produce any target backend. `--locale la`
+reproduces the former `--canonical` re-emit surface.
 
 #### HIR-direct backends {#hir-direct-backends}
 
@@ -267,13 +271,32 @@ requires an external WebGPU runtime. The [Triga](/libraries/triga.html)
 library supplies the typed geometry, scene, and resource contracts consumed
 by the sibling `hosts/webgpu-browser` host.
 
-#### Metal (on hold) {#metal}
+#### Metal {#metal}
 
-Metal compute shader text emission is designed and partially implemented but
-is currently on hold. The architecture follows the same pattern as WGSL:
-Faber emits Metal Shading Language source for the device-safe kernel subset,
-with external toolchain handling compilation and execution. Work is planned
-to resume.
+Metal compute shader text emission follows the same pattern as WGSL: Faber
+emits Metal Shading Language source for the device-safe kernel subset. The
+Metal campaign was reopened on 2026-08-02 after the frozen probe regressed
+undetected during its pause (see
+`radix/docs/factory/phase-metal-campaign-pause-state.md`); the emitter now
+covers a training surface (Transpose+, elementwise `train_step` / companion
+VJP, Tanh, fused matmul+elementwise). Metal is a local-dev proof and
+API-parity host — real MSL execution runs on Apple Silicon through
+`faber run --backend metal` — while CUDA and WebGPU remain the product
+inference/training paths.
+
+#### Device execution (Metal / CUDA) {#device-execution}
+
+A package carries a device program when its source declares an `@ nucleum`
+compute kernel and its manifest declares a `[device]` section. The FMIR
+image's `device` section embeds the canonical device program plus Metal MSL
+and CUDA PTX artifacts, each with a provenance hash. `faber run --backend
+metal|cuda|auto` runs it through a real device session (load → allocate →
+copy-in → launch → sync → readback → release) and fails closed with stable
+codes (`E_BACKEND_UNAVAILABLE`, `E_DEVICE_*`, `E_NO_DEVICE_PROGRAM`) instead
+of silently falling back to CPU. The surface covers forward kernels and
+training loops — a library-backed `train_step` / companion VJP with per-step
+observation cadence, gradient-slot → buffer mapping, and end-of-run readback.
+Proof fixture: `examples/training/device-summa`.
 
 ### Architecture note {#comparison}
 
@@ -296,14 +319,17 @@ backend.
 | Target | IR | Family | Build | Run | Package |
 |---|---|---|---|---|---|
 | `Rust` | HIR | CPU | yes | yes | yes |
+| `fhir` | HIR | — | yes | yes | yes |
 | `fmir` / `fmir-bin` | MIR | CPU | yes | yes | yes |
 | `Faber` (format) | HIR | — | no | no | no |
 | `TypeScript` | HIR | CPU | no | no | no |
 | `Go` | HIR | CPU | no | no | no |
-| `LLVM text` | MIR | CPU | no | no | no |
+| `LLVM text` | MIR | CPU | no | yes* | no |
 | `WASM` / `WAT` | MIR | CPU | no | no | no |
 | `WGSL` | MIR | GPU | no | no | no |
-| `Metal` (hold) | MIR | GPU | no | no | no |
+| `Metal` | MIR | GPU | no | yes* | no |
+
+*`run` via device execution (`faber run --backend cuda` / `--backend metal`).
 
 *`build`, `run`, and `package` describe Faber workflows. External toolchains (rustc, wasm-tools, naga) handle final compilation for text-emission targets.*
 

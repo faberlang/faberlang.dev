@@ -9,7 +9,7 @@ Install the **Faber** CLI from the current prebuilt release. The compiler
 front end ships inside the `faber` binary; you do not need a separate
 Radix install for ordinary package work.
 
-This page is written against the repository release artifacts for Faber 1.3.0.
+This page is written against the repository release artifacts for Faber 1.4.0.
 Package-manager formulae may lag behind the repo release; if Homebrew or another
 manager reports an older Radix/Faber version, prefer the archives below for this
 track.
@@ -18,9 +18,9 @@ track.
 
 | Field | Value |
 |---|---|
-| **Version** | 1.3.0 |
-| **Tag** | `faber-v1.3.0` |
-| **Release page** | [faber-v1.3.0 on GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.3.0) |
+| **Version** | 1.4.0 |
+| **Tag** | `faber-v1.4.0` |
+| **Release page** | [faber-v1.4.0 on GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.4.0) |
 | **All releases** | [Site releases inventory](/reference/releases.html) |
 | **License** | MIT |
 
@@ -28,24 +28,24 @@ track.
 
 | Platform | Download | SHA-256 |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-aarch64-apple-darwin.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-x86_64-unknown-linux-gnu.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-The archives extract to `faber-v1.3.0-<target-triple>/faber`. The checksum files may name the original build path, so verify by comparing the first hash field against the local archive instead of relying on `sha256sum -c` path matching.
+The archives extract to `faber-v1.4.0-<target-triple>/faber`. The checksum files may name the original build path, so verify by comparing the first hash field against the local archive instead of relying on `sha256sum -c` path matching.
 
 ### macOS arm64 {#macos}
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-aarch64-apple-darwin.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-aarch64-apple-darwin.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
 # place on PATH, e.g.:
-sudo mv faber-v1.3.0-aarch64-apple-darwin/faber /usr/local/bin/
+sudo mv faber-v1.4.0-aarch64-apple-darwin/faber /usr/local/bin/
 faber --version
 ```
 
@@ -53,14 +53,14 @@ faber --version
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-x86_64-unknown-linux-gnu.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.3.0/faber-v1.3.0-x86_64-unknown-linux-gnu.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(sha256sum faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
-sudo mv faber-v1.3.0-x86_64-unknown-linux-gnu/faber /usr/local/bin/
+sudo mv faber-v1.4.0-x86_64-unknown-linux-gnu/faber /usr/local/bin/
 faber --version
 ```
 
@@ -94,7 +94,7 @@ More packages: [Examples](/start/examples.html). CLI surface:
 
 Homebrew publication is not the authority for this start track yet. If a formula
 serves an older compiler such as Radix 0.38.0 while this site documents Faber
-1.3.0, treat the formula as lagging and use the prebuilt release archive. The
+1.4.0, treat the formula as lagging and use the prebuilt release archive. The
 container verification gate for this page remains residual until formula
 publication catches up.
 

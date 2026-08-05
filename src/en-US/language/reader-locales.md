@@ -4,6 +4,7 @@ section = "language"
 order = 6
 sources = [
   "examples/reader-locale/ (6 locale packages with localized Faber source)",
+  "radix/stdlib/locale/ (8 installed reader packs)",
 ]
 +++
 
@@ -53,14 +54,19 @@ Missing rows produce visible fallback rather than silent gaps.
 Select a locale at the command line or in `faber.toml`:
 
 ```text
-faber check --reader-locale th-TH program.fab
+faber check --locale th-TH program.fab
 ```
 
 ```toml
 # faber.toml
-[reader]
+[locale]
 locale = "zh-Hans"
 ```
+
+The legacy `[reader]` table name and `--reader-locale` flag are still accepted
+as aliases during the rename sweep; `[locale]` / `--locale` are canonical. The
+message language for diagnostics is independent of the code locale and is
+selected with `--diagnostic-locale <locale>`.
 
 #### What localises and what does not {#what-localises}
 
@@ -76,16 +82,17 @@ locale = "zh-Hans"
 
 The critical architectural guarantee: any locale surface can become any other,
 including Latin, at any time. A localised Faber file is never a trap because
-it is never the only form the code can take. `faber format --canonical`
-is exactly `faber format --reader-locale=la`.
+it is never the only form the code can take. `faber format --locale la`
+reproduces the former `--canonical` re-emit surface.
 
 ### Shipped packs {#locales}
 
-Seven packs ship with Radix today:
+Eight packs ship with Radix today:
 
 | Code | Language | Script | Status |
 |---|---|---|---|
 | `la` | Latina (Latin) | Latin | **Canonical** |
+| `en` | English | Latin | **Base surface** |
 | `th-TH` | ไทย | Thai | **Reference proof** |
 | `zh-Hans` | 简体中文 | Simplified Chinese | Coverage proof |
 | `zh-Hant` | 繁體中文 | Traditional Chinese | Coverage proof |
@@ -93,10 +100,11 @@ Seven packs ship with Radix today:
 | `hi` | हिन्दी | Devanagari | Coverage proof |
 | `vi` | Tiếng Việt | Vietnamese (Latin) | Coverage proof |
 
-The five reference locales are chosen for **collective architectural
-stress** — together they force every Unicode and emission problem the substrate
-must survive. Four use non-Latin scripts; Vietnamese is the Latin-script
-control case:
+`en` is the English reader surface — English keywords map to themselves,
+like `la` maps Latin to itself — and was renamed from the old `llm` pack in
+the 2026-08 locale rename. The reference locales below remain the
+**collective architectural stress** set; `en` and `la` do not stress the
+substrate because they are the base surfaces:
 
 | Locale | Access | Architectural stress |
 |---|---|---|
@@ -113,7 +121,7 @@ control case:
 Each of the six non-canonical locales has a complete Faber package under
 `examples/reader-locale/` with localised source, diagnostic test
 cases, and a `faber.toml` manifest. The same `greet`
-program rendered across all shipped locales:
+program rendered in Latin and the six packaged locale surfaces below:
 
 **Latin** `la` — *canonical*
 
@@ -129,8 +137,8 @@ incipit {
 }
 ```
 
-The canonical rendering. `faber format --canonical` is exactly
-`faber format --reader-locale=la`. Latin keywords map to themselves;
+The canonical rendering. `faber format --locale la` reproduces the former
+`--canonical` re-emit surface. Latin keywords map to themselves;
 type names are the canonical spellings.
 
 **ไทย** `th-TH` — *reference proof*
@@ -241,7 +249,7 @@ by the compiler.
 ### Localised diagnostics {#diagnostics}
 
 Diagnostics are **structured facts before prose**. Each diagnostic carries a
-stable code (`LEX###`, `PARSE###`, `SEM###`,
+stable code (`LEX###`, `LOCALE###`, `PARSE###`, `SEM###`,
 `WARN###`) and named arguments; the pack owns the rendered template
 text. This means the diagnostic renderer can emit messages in any locale without
 changing the diagnostic infrastructure.
@@ -267,7 +275,7 @@ RFO (right-follows-left) distortion that would otherwise make RTL runs unreadabl
 | Pack-aware lexing, type resolution, manifest/CLI selection, visible fallback | **Shipped** |
 | Pack-owned diagnostic rendering, `faber explain`, bidi-isolated display | **Shipped** |
 | Canonical Faber formatting | **Shipped** |
-| Localised Faber re-emission (`format --reader-locale`) | Partial |
+| Localised Faber re-emission (`format --locale <locale>`) | **Shipped** |
 | Stdlib gloss overlays, measured LLM emission fidelity, complete locale coverage | Deferred |
 | Multilingual documentation generation | Proposed |
 
@@ -281,8 +289,8 @@ or deferred.
 
 1. `radix/docs/design/reader-locale.md` — full design document (69 KB)
 2. `examples/reader-locale/` — 6 locale packages with localised source
-3. `stdlib/reader/*/pack.toml` — 7 installed pack definitions
-4. `radix/crates/radix/src/reader_locale.rs` — runtime implementation
+3. `stdlib/locale/*/pack.toml` — 8 installed pack definitions
+4. `radix/crates/radix/src/locale.rs` — runtime implementation
 5. `radix/docs/design/faber-canonical-surface.md` — canonical mode and `faber format`
 6. `radix/docs/factory/lex-nfkc-normalization/` — NFKC prerequisite delivery
 
