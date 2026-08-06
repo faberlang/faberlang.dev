@@ -18,8 +18,13 @@ faberlang.dev/
     agents/index.md        Agent learning path
     .well-known/agent-skills/  Skill catalog + SKILL.md guides
     faber-demo-tabs.js     Progressive enhancer for .faber-demo-tabs code
-                           cards (the site's only JavaScript; no-JS pages
-                           remain fully readable)
+                           cards
+    faber-ambient.js       Progressive enhancer drawing the ambient canvas
+                           background ("compute field": dot lattice, drifting
+                           glyphs, wandering glow; colors from CSS tokens).
+                           These two files are the site's only JavaScript;
+                           no-JS pages remain fully readable (a static CSS
+                           gradient/lattice layer carries the texture).
   generator/               Speculum site generator (Faber → Rust binary)
     locales.toml           Locale registry (reader_locale, native names)
     src/                   Faber modules

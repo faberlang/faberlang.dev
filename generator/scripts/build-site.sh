@@ -317,6 +317,9 @@ if [ "$FULL_SITE" = true ]; then
         smoke_contains "${OUTPUT_DIR}/en-US/syntax/types.html" "http-equiv=\"refresh\"" "retired syntax path redirects"
         smoke_contains "${OUTPUT_DIR}/en-US/index.html" 'data-search' "renderbar searchbox"
         smoke_contains "${OUTPUT_DIR}/en-US/index.html" 'faber-search.js' "search script include"
+        smoke_contains "${OUTPUT_DIR}/en-US/index.html" 'faber-ambient.js' "ambient script include"
+        smoke_contains "${OUTPUT_DIR}/index.html" 'faber-ambient.js' "landing ambient script include"
+        smoke_contains "${OUTPUT_DIR}/porta/index.html" 'faber-ambient.js' "portal ambient script include"
         if grep -Eq '^Disallow: /(ar|th-TH|vi|hi|zh-Hans|zh-Hant)/' "${OUTPUT_DIR}/robots.txt"; then
             echo "ERROR: robots.txt must not disallow locale trees" >&2
             exit 1

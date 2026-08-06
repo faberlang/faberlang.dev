@@ -385,6 +385,7 @@ def main() -> None:
 </main>
 
 <script src="/faber-demo-tabs.js" defer></script>
+<script src="/faber-ambient.js" defer></script>
 </body>
 </html>
 """

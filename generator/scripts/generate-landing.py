@@ -518,6 +518,7 @@ $ faber run --backend cuda  &lt;package&gt;</pre>
 </footer>
 
 <script src="/faber-demo-tabs.js" defer></script>
+<script src="/faber-ambient.js" defer></script>
 </body>
 </html>
 """

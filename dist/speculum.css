@@ -139,13 +139,38 @@ html { scroll-behavior: smooth; color-scheme: light dark; }
 ::selection { background: var(--glyph); color: var(--paper); }
 
 body {
-    background: var(--paper);
+    /* Layered ambient ground: two off-center glyph-tint glows over the paper,
+       so even the no-JS baseline has depth instead of a flat fill. When
+       faber-ambient.js runs it animates a canvas field on top of this. */
+    background:
+        radial-gradient(1100px 750px at 82% -12%, color-mix(in srgb, var(--glyph) 9%, transparent), transparent 62%),
+        radial-gradient(900px 650px at -12% 108%, color-mix(in srgb, var(--glyph) 6%, transparent), transparent 58%),
+        var(--paper);
     color: var(--ink);
     font-family: var(--serif);
     font-size: 16.5px;
     line-height: 1.65;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
+}
+
+/* No-JS texture: a faint static lattice so JS-off pages are not bare. The
+   enhancer adds .has-ambient, swapping this for the live canvas field. */
+body:not(.has-ambient) {
+    background-image:
+        radial-gradient(circle, color-mix(in srgb, var(--rule-strong) 85%, transparent) 1.2px, transparent 1.8px),
+        radial-gradient(1100px 750px at 82% -12%, color-mix(in srgb, var(--glyph) 9%, transparent), transparent 62%),
+        radial-gradient(900px 650px at -12% 108%, color-mix(in srgb, var(--glyph) 6%, transparent), transparent 58%);
+    background-size: 88px 88px, auto, auto;
+}
+
+/* The live ambient canvas (faber-ambient.js). Fixed behind all content:
+   above the body background, below every positioned or in-flow child. */
+.ambient-canvas {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .skip-link {
@@ -1465,7 +1490,6 @@ body.porta {
    fails the build if a child sets its own width. */
 
 body.landing {
-    background: var(--paper);
     color: var(--ink);
     font-family: var(--sans);
 }
@@ -1777,7 +1801,7 @@ pre.fl-src {
 }
 
 @media print {
-    .renderbar, aside, .toc, .skip-link, .fdt-copy, .fdt-goto { display: none; }
+    .renderbar, aside, .toc, .skip-link, .fdt-copy, .fdt-goto, .ambient-canvas { display: none; }
     .page, body.has-toc .page { display: block; max-width: none; padding: 0; }
     body { font-size: 11pt; background: #fff; color: #000; }
     pre.faber-code, .content .table-scroll { break-inside: avoid; }
