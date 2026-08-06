@@ -40,18 +40,14 @@ trap 'rm -rf "$WORK"' EXIT
 mkdir -p "${OUT}/locales" "${OUT}/targets"
 
 # -- the demo program ---------------------------------------------------------
-# Deliberately not hello-world. A clamp-and-classify over pixel values, chosen
-# because it exercises the constructs that make Faber look like itself rather
-# than like a tutorial: a tagged union with mixed payloads, sized numerics,
-# a typed error channel, defaulted parameters, pattern matching with payload
-# binding, a glyph closure, and runtime conversion.
+# Deliberately not hello-world. This is a small dense-tensor computation:
+# construct two typed matrices, multiply them, and reduce the result to a
+# scalar. The locale and application-target tabs therefore demonstrate the
+# same compute-shaped program that the headline promises, while the separate
+# GPU axis below shows the kernel form used for device execution.
 #
-# Two constraints shaped it, both verified rather than assumed:
-#   * `discerne` arms use blocks, not `ergo`. A template-string call in a
-#     `casu ... ergo` arm fails to round-trip through a reader pack
-#     (PARSE030) — see the note in the site commit.
-#   * `numerus<u8>` costs the wasm panel: the MIR-to-WASM backend rejects
-#     SizedNumeric(Numerus, U8). That omission is honest and the page says so.
+# Keep the example small enough to read at a glance, but real enough to expose
+# shape-bearing tensor types, matrix multiplication, and a reduction.
 mkdir -p "${WORK}/demo/src"
 cat > "${WORK}/demo/faber.toml" <<'TOML'
 [package]
@@ -69,43 +65,23 @@ target = "rust"
 TOML
 
 cat > "${WORK}/demo/src/main.fab" <<'FAB'
-discretio Pixel {
-    Opacus { numerus<u8> nivea },
-    Vitreus { numerus<u8> nivea, fractus<f32> alpha },
-    Vacuus
-}
-
-functio satura(numerus datum, numerus meta sponte vel 255) → numerus<u8> ⇥ textus {
-    si datum < 0 ergo iace "sub limine: §"(datum)
-    si datum > meta ergo redde meta ↦ numerus<u8>
-    redde datum ↦ numerus<u8>
-}
-
-functio nomina(Pixel p) → textus {
-    discerne p {
-        casu Opacus fixum nivea { redde "opacus §"(nivea) }
-        casu Vitreus fixum nivea, alpha { redde "vitreus § @ §"(nivea, alpha) }
-        casu Vacuus { redde "vacuus" }
-    }
-}
-
 incipit {
-    fixum _ duplica ← numerus x ∴ x * 2
-    fac {
-        fixum numerus<u8> v ← satura(duplica(150))
-        nota nomina(finge Opacus { nivea = v })
-    }
-    cape err {
-        nota "erratum: §"(err)
-    }
+    fixum lista<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    fixum lista<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
+    fixum tf32[] seed ← vacua
+    fixum tf32[2, 3] a ← seed.strue(flat_a, [2, 3])
+    fixum tf32[3, 4] b ← seed.strue(flat_b, [3, 4])
+    fixum tf32[2, 4] product ← a.matmul(b)
+    fixum f32 mean ← product.media()
+    nota mean
 }
 FAB
 
 cp "${WORK}/demo/src/main.fab" "${OUT}/targets/source.fab"
 
 # -- axis 1: reader locales ---------------------------------------------------
-# `llm` is the model-facing surface; `la` is canonical Faber. The rest are the
-# shipped human reader packs.
+# `en` is the English reader surface; `la` is canonical Faber. The rest are
+# the shipped human reader packs.
 #
 # NOTE: `faber format --reader-locale la` fails pack validation on faber 1.4.0,
 # so canonical Latin comes from `"$RADIX" emit -t faber` (canonical re-emission),
@@ -115,7 +91,7 @@ echo "reader locales:"
 "$RADIX" emit -t faber "${WORK}/demo/src/main.fab" > "${OUT}/locales/la.fab"
 echo "  la (via radix emit -t faber)"
 
-for loc in llm th-TH zh-Hans zh-Hant vi ar hi; do
+for loc in en th-TH zh-Hans zh-Hant vi ar hi; do
     if "$FABER" format --locale "$loc" --stdout "${WORK}/demo" \
         > "${OUT}/locales/${loc}.fab" 2>/dev/null \
         && [ -s "${OUT}/locales/${loc}.fab" ]; then

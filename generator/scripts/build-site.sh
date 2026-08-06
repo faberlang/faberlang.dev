@@ -322,21 +322,26 @@ if [ "$FULL_SITE" = true ]; then
             exit 1
         fi
 
-        # Landing page checks (/) — claim, then all three proofs present
+        # Landing page checks (/) — user outcome, capability ladder, and proofs
         smoke_contains "${OUTPUT_DIR}/index.html" 'class="landing"' "landing body class"
-        smoke_contains "${OUTPUT_DIR}/index.html" "your model writes" "landing headline"
-        smoke_contains "${OUTPUT_DIR}/index.html" "fn satura(int datum" "landing llm reader panel"
-        smoke_contains "${OUTPUT_DIR}/index.html" "functio satura(numerus datum" "landing Latin reader panel"
+        smoke_contains "${OUTPUT_DIR}/index.html" "Write compute programs" "landing headline"
+        smoke_contains "${OUTPUT_DIR}/index.html" "One tool, four honest states" "landing capability ladder"
+        smoke_contains "${OUTPUT_DIR}/index.html" "Training through Metal or CUDA" "landing training section"
+        smoke_contains "${OUTPUT_DIR}/index.html" "faber run --backend cuda" "landing CUDA route"
+        smoke_contains "${OUTPUT_DIR}/index.html" "Inference is being built next" "landing inference status"
+        smoke_contains "${OUTPUT_DIR}/index.html" "Frontier · multi-device execution" "landing multi-device status"
+        smoke_contains "${OUTPUT_DIR}/index.html" "const list&lt;f32&gt; flat_a" "landing English reader panel"
+        smoke_contains "${OUTPUT_DIR}/index.html" "fixum lista&lt;f32&gt; flat_a" "landing Latin reader panel"
         smoke_contains "${OUTPUT_DIR}/index.html" "ภาษาไทย" "landing Thai reader panel"
-        smoke_contains "${OUTPUT_DIR}/index.html" "union Pixel" "landing demo shows a tagged union"
-        smoke_contains "${OUTPUT_DIR}/index.html" "int&lt;u8&gt;" "landing demo shows sized numerics"
-        smoke_contains "${OUTPUT_DIR}/index.html" "⇥ string" "landing demo shows the error channel"
+        smoke_contains "${OUTPUT_DIR}/index.html" "tf32" "landing demo shows tensor types"
+        smoke_contains "${OUTPUT_DIR}/index.html" "a.matmul(b)" "landing demo shows matrix multiplication"
+        smoke_contains "${OUTPUT_DIR}/index.html" "tensor_matmul" "landing WASM target shows tensor lowering"
         smoke_contains "${OUTPUT_DIR}/index.html" "@compute @workgroup_size" "landing WGSL target panel"
         smoke_contains "${OUTPUT_DIR}/index.html" "metal_stdlib" "landing Metal target panel"
         smoke_contains "${OUTPUT_DIR}/index.html" "triga-budapest.png" "landing GPU frame"
         # The reader axis must never present Latin under an English label again.
-        if grep -q 'fl-loc-t-llm[^>]*>English' "${OUTPUT_DIR}/index.html" \
-           && grep -q 'fl-loc-p-llm[^>]*>.*functio ' "${OUTPUT_DIR}/index.html"; then
+        if grep -q 'fl-loc-t-en[^>]*>English' "${OUTPUT_DIR}/index.html" \
+           && grep -q 'fl-loc-p-en[^>]*>.*functio ' "${OUTPUT_DIR}/index.html"; then
             echo "ERROR: landing English reader panel is rendering Latin" >&2
             exit 1
         fi

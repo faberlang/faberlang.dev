@@ -5,12 +5,26 @@ order = 0
 sources = []
 +++
 
-**Faber** is a package-oriented programming language with a Latin
-behavioural vocabulary, a small regular grammar, and a type-first static
-type system. Source is compiled through the Radix compiler to reviewable
-Rust and native binaries. Its defining architectural property is that
-meaning lives in a semantic core — the HIR (high-level intermediate
-representation) — rather than in any particular rendering.
+**Faber** is a developer tool for writing typed compute programs that remain
+readable across human-language surfaces and portable across measured
+compilation and device paths.
+
+> One semantic program. Readable in your language. Built for application code
+> and real GPU work.
+
+The same analyzed program can feed application targets or a device program.
+Reader locales change keywords, primitive types, and diagnostics without
+changing meaning. Rust is the primary executable path; TypeScript, Go, LLVM,
+and other targets have narrower, measured support.
+
+Faber's public capability ladder is intentionally explicit:
+
+- **Shipped:** reader-localized source, diagnostics, and formatting.
+- **Proven now:** a bounded dual-backend training path through Metal and CUDA.
+- **Building next:** Faber-owned GPU inference behind a pinned model contract
+  and correctness oracle.
+- **Frontier:** multi-device execution, virtual GPUs, sharding, and distributed
+  training or serving are future direction, not current runtime claims.
 
 The name derives from the Latin word for *maker* or *craftsman*. The
 compiler is named Radix, from the Latin *root*. The language is
@@ -18,7 +32,9 @@ developed by Ian Zepp and released under the MIT license.
 
 **New here?** Start with [Install and download](/start/install.html), then run
 the sequenced start track: [Hello](/start/hello.html),
-[Commands](/start/commands.html), and [Projects](/start/projects.html).
+[Commands](/start/commands.html), and [Projects](/start/projects.html). For the
+GPU path, read [device execution](/toolchain/cli.html#device-execution) and
+the [target matrix](/toolchain/target-matrix.html).
 
 ## Download Faber 1.4.0 {#download}
 
@@ -68,7 +84,7 @@ binary and checksums.
 | **Designed by** | Ian Zepp |
 | **First appeared** | 2025 |
 | **Compiler** | Radix (Rust) |
-| **Lanes** | Application (HIR) · Systems (MIR) |
+| **Lanes** | Application (HIR) · Systems (MIR) · GPU device path |
 | **Primary target** | Rust → native binary |
 | **Reader locales** | 8 shipped (la, ar, en, hi, vi, th-TH, zh-Hans, zh-Hant) |
 | **Standard library** | Norma (`norma:*`) |
@@ -88,21 +104,26 @@ binary and checksums.
 | [Agent guide](/agents/index.md) | Agent | How to learn Faber and ship a package |
 | [Agent skills](/.well-known/agent-skills/index.json) | Agent | Focused skill guides (install, language, examples, …) |
 
-## Locale coverage {#locale-coverage}
+## Readable in your language {#locale-coverage}
 
 English is complete. The other seven locales ship reader-locale packs and
 generated corpus pages; their authored prose still falls back to English
 while translation lands. Every locale is listed on the
 [language portal](/porta/).
 
-## Overview {#overview}
+## One semantic program across surfaces {#overview}
 
-Faber is designed around a core insight: the intermediate representation
-is the truth, and no target or human-language surface is privileged. A
-Faber program written in Latin keywords can be rendered into Thai,
-Arabic, or Chinese keywords through the same mechanism that renders it
-into Rust, Go, or WebAssembly — because the HIR is the authority and
-every output is a *rendering* of it.
+Faber is designed around a core insight: the intermediate representation is
+the truth, and no target or human-language surface is privileged. A Faber
+program written in one reader locale can be rendered into another locale, or
+lowered toward Rust, TypeScript, Go, LLVM, or a device program, because the HIR
+is the shared semantic authority.
+
+These paths are not equal promises. Rust is the primary executable application
+target. TypeScript and Go are file-emission surfaces. GPU support is split
+between shader lowering and the narrower real-device route documented below.
+The [target matrix](/toolchain/target-matrix.html) records the current support
+boundary.
 
 The language makes three deliberate signal choices that work together:
 
@@ -131,12 +152,26 @@ faber run --backend cuda  <package>   # NVIDIA CUDA (e.g. RTX 5070)
 faber run --backend auto  <package>   # resolve: exactly one admitted backend
 ```
 
-The device surface covers forward kernels and training loops — a library-backed
-`train_step` / companion VJP with per-step observation cadence, gradient-slot →
-buffer mapping, and end-of-run readback. Proof fixture:
+The accepted device proof covers forward kernels and a bounded training path —
+a library-backed `train_step` / companion VJP with per-step observation cadence,
+gradient-slot → buffer mapping, and end-of-run readback. It is a real-device
+proof, not a general training framework or a broad hardware-coverage claim.
+Proof fixture:
 [`examples/training/device-summa`](https://github.com/faberlang/examples/tree/main/training/device-summa).
-See [Compiling and targets](/toolchain/compiling.html) for the full target
+See [device execution](/toolchain/cli.html#device-execution) and
+[Compiling and targets](/toolchain/compiling.html) for the full target
 posture.
+
+### Inference and multi-device status {#inference-and-multi-device}
+
+Faber-owned GPU inference is in active development behind a pinned model
+contract and a correctness oracle. It is not yet a shipped inference server or
+a general GGUF support claim.
+
+Multi-device execution is a frontier direction. Virtual GPUs, tensor/model or
+pipeline sharding, collectives, and distributed serving require their own
+accepted topology and runtime contracts. They are not current Faber runtime
+capabilities.
 
 ## Documentation {#documentation}
 

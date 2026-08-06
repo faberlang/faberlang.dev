@@ -1,43 +1,10 @@
-hợp_nhất Pixel {
-    Opacus {
-        số<u8> nivea
-    },
-    Vitreus {
-        số<u8> nivea
-        f32 alpha
-    },
-    Vacuus,
-}
-
-hàm satura(số datum, số meta tự_nguyện hoặc_nếu_rỗng 255) → số<u8> ⇥ văn_bản {
-    nếu datum < 0 {
-        ném văn_bản_hóa("sub limine: §", datum)
-    }
-    nếu datum > meta do_đó trả meta ↦ số<u8>
-    trả datum ↦ số<u8>
-}
-
-hàm nomina(Pixel p) → văn_bản {
-    phân_tích p {
-        trường_hợp Opacus hằng nivea {
-            trả văn_bản_hóa("opacus §", nivea)
-        }
-        trường_hợp Vitreus hằng nivea, alpha {
-            trả văn_bản_hóa("vitreus § @ §", nivea, alpha)
-        }
-        trường_hợp Vacuus {
-            trả "vacuus"
-        }
-    }
-}
-
 bắt_đầu {
-    hằng (số) → số duplica ← số x ∴ x * 2
-    làm {
-        hằng số<u8> v ← satura(duplica(150))
-        ghi_chú nomina(Opacus(v))
-    }
-    bắt err {
-        ghi_chú văn_bản_hóa("erratum: §", err)
-    }
+    hằng danh_sách<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    hằng danh_sách<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
+    hằng tensor<f32, []> seed ← vacua
+    hằng tensor<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
+    hằng tensor<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
+    hằng tensor<f32, [2, 4]> product ← a.matmul(b)
+    hằng f32 mean ← product.media()
+    ghi_chú mean
 }

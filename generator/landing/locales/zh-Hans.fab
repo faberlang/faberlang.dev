@@ -1,43 +1,10 @@
-判别 Pixel {
-    Opacus {
-        整数<u8> nivea
-    },
-    Vitreus {
-        整数<u8> nivea
-        f32 alpha
-    },
-    Vacuus,
-}
-
-函数 satura(整数 datum, 整数 meta 可选 兜底 255) → 整数<u8> ⇥ 文本 {
-    如果 datum < 0 {
-        抛错 格式化("sub limine: §", datum)
-    }
-    如果 datum > meta 则 返回 meta ↦ 整数<u8>
-    返回 datum ↦ 整数<u8>
-}
-
-函数 nomina(Pixel p) → 文本 {
-    匹配 p {
-        情况 Opacus 常量 nivea {
-            返回 格式化("opacus §", nivea)
-        }
-        情况 Vitreus 常量 nivea, alpha {
-            返回 格式化("vitreus § @ §", nivea, alpha)
-        }
-        情况 Vacuus {
-            返回 "vacuus"
-        }
-    }
-}
-
 入口 {
-    常量 (整数) → 整数 duplica ← 整数 x ∴ x * 2
-    执行 {
-        常量 整数<u8> v ← satura(duplica(150))
-        显示 nomina(Opacus(v))
-    }
-    捕获 err {
-        显示 格式化("erratum: §", err)
-    }
+    常量 列表<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    常量 列表<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
+    常量 tensor<f32, []> seed ← vacua
+    常量 tensor<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
+    常量 tensor<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
+    常量 tensor<f32, [2, 4]> product ← a.matmul(b)
+    常量 f32 mean ← product.media()
+    显示 mean
 }

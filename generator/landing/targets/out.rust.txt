@@ -2,52 +2,13 @@
 // Requires the faber language-runtime crate (add to Cargo.toml):
 //   faber = { path = "../faber" }  # adjust path for your layout
 
-#[derive(Clone, Debug)]
-pub enum Pixel {
-    Opacus {
-        nivea: u8,
-    },
-    Vitreus {
-        nivea: u8,
-        alpha: f32,
-    },
-    Vacuus,
-}
-
-fn satura(datum: i64, meta: i64) -> Result<u8, String> {
-    if datum < 0 {
-        return Err(format!("{}", format!("sub limine: {}", datum)));
-    };
-    if datum > meta {
-        return Ok(meta as u8);
-    };
-    return Ok(datum as u8);
-}
-
-fn nomina(p: Pixel) -> String {
-    match p {
-        Pixel::Opacus { nivea } => {
-            return format!("opacus {}", nivea);
-        },
-        Pixel::Vitreus { nivea, alpha } => {
-            return format!("vitreus {} @ {}", nivea, faber::display_fractus(alpha));
-        },
-        Pixel::Vacuus => {
-            return "vacuus".to_string();
-        },
-    };
-}
-
 fn main() {
-    let duplica: fn(i64) -> i64 = |x| (i64::checked_mul(x, 2).expect("numerus overflow"));
-    match { let ok: Result<(), String> = 'fac_result: {
-    loop {
-        let v: u8 = match satura(duplica(150), 255) { Ok(fac_value) => fac_value, Err(fac_err) => break 'fac_result Err(fac_err) };
-        println!("{}", nomina(Pixel::Opacus { nivea: v }));
-    break;
-    }Ok(())
-    }; ok } { Ok(ok) => ok, Err(err) => {
-        let err = err;
-        println!("{}", format!("erratum: {}", err));
-        ()} };
+    let flat_a: Vec<f32> = vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0];
+    let flat_b: Vec<f32> = vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0];
+    let seed: faber::Tensor<f32> /* tensor<fractus<f32>, []> */ = faber::Tensor::vacua();
+    let a: faber::Tensor<f32> /* tensor<fractus<f32>, [2, 3]> */ = faber::Tensor::<f32>::structa(flat_a, &{ let t28 = &vec![2, 3]; t28.iter().copied().map(|value| value as i64).collect::<Vec<i64>>() }).expect("tensor structa element count does not match shape");
+    let b: faber::Tensor<f32> /* tensor<fractus<f32>, [3, 4]> */ = faber::Tensor::<f32>::structa(flat_b, &{ let t35 = &vec![3, 4]; t35.iter().copied().map(|value| value as i64).collect::<Vec<i64>>() }).expect("tensor structa element count does not match shape");
+    let product: faber::Tensor<f32> /* tensor<fractus<f32>, [2, 4]> */ = { let t40 = &a; t40.matmul(&(b)) }.expect("tensor matmul failed");
+    let mean: f32 = { let t44 = &product; let c44: f32 = t44.planata().iter().map(|x| *x as f32).sum(); c44 / t44.element_count() as f32 };
+    println!("{}", faber::display_fractus(mean));
 }

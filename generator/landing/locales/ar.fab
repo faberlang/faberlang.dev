@@ -1,43 +1,10 @@
-تمايز Pixel {
-    Opacus {
-        عدد<u8> nivea
-    },
-    Vitreus {
-        عدد<u8> nivea
-        f32 alpha
-    },
-    Vacuus,
-}
-
-دالة satura(عدد datum, عدد meta اختياري عوض 255) → عدد<u8> ⇥ نص {
-    إذا datum < 0 {
-        ارم حرر("sub limine: §", datum)
-    }
-    إذا datum > meta إذن أعد meta ↦ عدد<u8>
-    أعد datum ↦ عدد<u8>
-}
-
-دالة nomina(Pixel p) → نص {
-    طابق p {
-        حالة Opacus ثابت nivea {
-            أعد حرر("opacus §", nivea)
-        }
-        حالة Vitreus ثابت nivea, alpha {
-            أعد حرر("vitreus § @ §", nivea, alpha)
-        }
-        حالة Vacuus {
-            أعد "vacuus"
-        }
-    }
-}
-
 بداية {
-    ثابت (عدد) → عدد duplica ← عدد x ∴ x * 2
-    افعل {
-        ثابت عدد<u8> v ← satura(duplica(150))
-        اعرض nomina(Opacus(v))
-    }
-    التقط err {
-        اعرض حرر("erratum: §", err)
-    }
+    ثابت قائمة<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    ثابت قائمة<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
+    ثابت tensor<f32, []> seed ← vacua
+    ثابت tensor<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
+    ثابت tensor<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
+    ثابت tensor<f32, [2, 4]> product ← a.matmul(b)
+    ثابت f32 mean ← product.media()
+    اعرض mean
 }

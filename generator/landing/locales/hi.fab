@@ -1,43 +1,10 @@
-विभेद Pixel {
-    Opacus {
-        संख्या<u8> nivea
-    },
-    Vitreus {
-        संख्या<u8> nivea
-        f32 alpha
-    },
-    Vacuus,
-}
-
-फलन satura(संख्या datum, संख्या meta स्वेच्छा डिफ़ॉल्ट 255) → संख्या<u8> ⇥ पाठ {
-    यदि datum < 0 {
-        इधरफेंको लिखित("sub limine: §", datum)
-    }
-    यदि datum > meta अतः लौटाओ meta ↦ संख्या<u8>
-    लौटाओ datum ↦ संख्या<u8>
-}
-
-फलन nomina(Pixel p) → पाठ {
-    मिलाओ p {
-        स्थिति Opacus स्थिर nivea {
-            लौटाओ लिखित("opacus §", nivea)
-        }
-        स्थिति Vitreus स्थिर nivea, alpha {
-            लौटाओ लिखित("vitreus § @ §", nivea, alpha)
-        }
-        स्थिति Vacuus {
-            लौटाओ "vacuus"
-        }
-    }
-}
-
 आरंभ {
-    स्थिर (संख्या) → संख्या duplica ← संख्या x ∴ x * 2
-    करो {
-        स्थिर संख्या<u8> v ← satura(duplica(150))
-        दिखाओ nomina(Opacus(v))
-    }
-    पकड़ो err {
-        दिखाओ लिखित("erratum: §", err)
-    }
+    स्थिर सूची<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    स्थिर सूची<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
+    स्थिर tensor<f32, []> seed ← vacua
+    स्थिर tensor<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
+    स्थिर tensor<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
+    स्थिर tensor<f32, [2, 4]> product ← a.matmul(b)
+    स्थिर f32 mean ← product.media()
+    दिखाओ mean
 }

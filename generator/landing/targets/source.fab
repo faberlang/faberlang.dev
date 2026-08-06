@@ -1,30 +1,10 @@
-discretio Pixel {
-    Opacus { numerus<u8> nivea },
-    Vitreus { numerus<u8> nivea, fractus<f32> alpha },
-    Vacuus
-}
-
-functio satura(numerus datum, numerus meta sponte vel 255) → numerus<u8> ⇥ textus {
-    si datum < 0 ergo iace "sub limine: §"(datum)
-    si datum > meta ergo redde meta ↦ numerus<u8>
-    redde datum ↦ numerus<u8>
-}
-
-functio nomina(Pixel p) → textus {
-    discerne p {
-        casu Opacus fixum nivea { redde "opacus §"(nivea) }
-        casu Vitreus fixum nivea, alpha { redde "vitreus § @ §"(nivea, alpha) }
-        casu Vacuus { redde "vacuus" }
-    }
-}
-
 incipit {
-    fixum _ duplica ← numerus x ∴ x * 2
-    fac {
-        fixum numerus<u8> v ← satura(duplica(150))
-        nota nomina(finge Opacus { nivea = v })
-    }
-    cape err {
-        nota "erratum: §"(err)
-    }
+    fixum lista<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    fixum lista<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
+    fixum tf32[] seed ← vacua
+    fixum tf32[2, 3] a ← seed.strue(flat_a, [2, 3])
+    fixum tf32[3, 4] b ← seed.strue(flat_b, [3, 4])
+    fixum tf32[2, 4] product ← a.matmul(b)
+    fixum f32 mean ← product.media()
+    nota mean
 }
