@@ -1549,6 +1549,13 @@ body.landing {
     margin: 0 0 var(--s4);
 }
 .fl-lede em { color: var(--ink); font-style: italic; }
+.fl-thesis {
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--ink-dim);
+    margin: var(--s5) 0 0;
+}
+.fl-thesis strong { color: var(--ink); font-weight: 600; }
 
 .fl-cta { display: flex; gap: var(--s3); flex-wrap: wrap; margin: var(--s6) 0 var(--s6); }
 .fl-btn {
@@ -1571,16 +1578,33 @@ body.landing {
 }
 .fl-btn-primary:hover { background: var(--glyph-hover); border-color: var(--glyph-hover); }
 
-.fl-facts {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--s3) var(--s5);
-    padding-top: var(--s5);
-    border-top: 1px solid var(--rule);
-    font-size: 13px;
-    color: var(--ink-faint);
+/* -- compiler lanes -- */
+.fl-lanes { padding: var(--s7) 0; border-top: 1px solid var(--rule); }
+.fl-lanes h2 {
+    font-family: var(--serif);
+    font-size: 26px;
+    margin: 0 0 var(--s5);
+    color: var(--ink);
 }
-.fl-facts strong { color: var(--ink); font-weight: 600; }
+.fl-lanes table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+}
+.fl-lanes th, .fl-lanes td {
+    text-align: left;
+    padding: var(--s3) var(--s4) var(--s3) 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink-dim);
+}
+.fl-lanes th {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-faint);
+    font-weight: 500;
+}
+.fl-lanes td strong { color: var(--ink); }
 
 /* -- first look: code + its output, side by side -- */
 /* Program then its output, stacked. Side by side left a tall code block

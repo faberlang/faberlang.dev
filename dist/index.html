@@ -43,18 +43,40 @@
       the same typed source for package work, training proofs, and device
       kernels — with support stated target by target.
     </p>
+    <p class="fl-thesis">
+      Faber is mechanical, token-oriented, and <strong>LLM-first</strong> by
+      design. <strong>Glyphs</strong> provide the stable structural frame;
+      <strong>keywords</strong> provide the flexible, human-facing rendering.
+      English keywords are selected for high-probability LLM generation,
+      reducing transcription and coding errors when people and models write
+      Faber together. <strong>HIR</strong> is the semantic core: every target
+      language is a projection of the meaning held there. <strong>MIR</strong> is
+      the systems lane, where that meaning takes execution-shaped form for
+      low-level targets, validation surfaces, and package runtimes.
+      <strong>GPU</strong> is the device lane, linking the compiler to real Metal
+      and CUDA execution: bounded training is proven now, and inference is
+      being built next.
+    </p>
 
     <div class="fl-cta">
       <a class="fl-btn fl-btn-primary" href="/en-US/start/install.html">Install Faber</a>
       <a class="fl-btn" href="/en-US/start/examples.html#applications">Run the GPU proof</a>
     </div>
-    <div class="fl-facts">
-      <span><strong>8</strong> reader surfaces</span>
-      <span><strong>Metal + CUDA</strong> bounded device route</span>
-      <span><strong>Rust</strong> primary executable target</span>
-      <span><strong>Training</strong> accepted dual-backend proof</span>
-      <span><strong>Inference</strong> in development</span>
-    </div>
+  </section>
+
+  <section class="fl-lanes">
+    <h2>Compiler lanes</h2>
+    <table>
+      <thead><tr><th>Lane</th><th>Targets / outputs</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Locale</strong></td><td>en (default) · la · th-TH · zh-Hans · zh-Hant · ar · vi · hi</td></tr>
+        <tr><td><strong>HIR</strong></td><td>Rust · TypeScript · Go</td></tr>
+        <tr><td><strong>AIR (autograd)</strong></td><td>Typed HIR → reverse-mode AD / fusion → MIR</td></tr>
+        <tr><td><strong>MIR</strong></td><td>LLVM · WASM · WGSL · S-expression</td></tr>
+        <tr><td><strong>GPU</strong></td><td>Metal · CUDA</td></tr>
+        <tr><td><strong>Packaging</strong></td><td>FLIB · FHIR · FMIR</td></tr>
+      </tbody>
+    </table>
   </section>
 
   <section class="fl-doors">
