@@ -287,11 +287,20 @@ look for themselves.
 
 ### Maintainer contact (bottom of page)
 
-- Maintainer name and email
+- **Ian Zepp** — `ian.zepp@protonmail.com`
 - Faber's X / Twitter profile: **`@faberlang`**
 
 Nothing on the site references a social account today — this is net-new. The
 only contact surface that currently exists is "file a GitHub issue."
+
+Note that `reference/repositories.md` currently states outright: "There is no
+mailing list or support email — GitHub Issues is the way to get in touch."
+Publishing an address contradicts that line, so it must be rewritten rather
+than carried over during the fold-in, or the page will argue with itself.
+
+Consider obfuscating the address in the rendered HTML against scrapers. The
+site ships almost no JavaScript by design, so any approach must degrade to a
+readable address without it.
 
 ### Replaces the Repositories page
 
@@ -316,11 +325,6 @@ Migration requirements:
   `reference/repositories.html#reporting-issues`. Update it to the new anchor.
 - Inbound links to `repositories.html` exist across locale trees and in
   `src/en-US/index.md`'s repository table. Sweep them.
-
-### Open question
-
-Which email address is published as maintainer contact. This is a permanent,
-scrape-able, outward-facing detail, so it is recorded here rather than assumed.
 
 ## Thread 6 — Examples page rebuild
 
