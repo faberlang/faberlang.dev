@@ -72,10 +72,6 @@ threads 1 and 4 — the cheapest — had to land last.
 - **Locale trees lag.** New English pages are English-only; translated pages
   that moved kept their translations. The leakage gate passes.
 
-Threads 1 and 4 are the cheapest and change the first-contact experience most
-directly. Thread 6's two highlighting defects are near-free and independently
-worthwhile. Threads 2 and 7 are the substantial builds.
-
 ## Summary
 
 The site presents a large amount of correct information with no clear route
