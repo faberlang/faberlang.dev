@@ -84,9 +84,10 @@ Radix is a typed, source-preserving compiler with one shared frontend and two
 main emission families:
 
 - **HIR-direct / application lane:** preserve source-level structure and emit a
-  language-shaped artifact. Rust is the primary executable and package path.
-  Faber, TypeScript, Go, and Swift are HIR-facing emitters with narrower
-  product surfaces.
+  language-shaped artifact. Rust currently offers the widest package
+  product surface (build/run/test); Faber, TypeScript, Go, and Swift are
+  HIR-facing emitters with narrower or rising measured surfaces. No target is
+  the semantic center — HIR is.
 - **MIR-backed / systems lane:** lower the same analyzed unit to an
   execution-shaped control-flow graph, validate it, and feed a stepper,
   package image, WebAssembly, LLVM text, Metal text, WGSL text, or a
@@ -105,7 +106,7 @@ flowchart LR
     Semantic --> Snapshot["AnalyzedUnit\nHIR + TypeTable + DefIds + side tables"]
 
     Snapshot --> HIR["HIR-direct route"]
-    HIR --> Rust["Rust\nprimary package/executable"]
+    HIR --> Rust["Rust\nwidest package product surface"]
     HIR --> OtherHIR["Faber / TypeScript / Go / Swift"]
 
     Snapshot --> MIRLower["HIR → MIR lowering"]
@@ -514,11 +515,12 @@ The per-language emitters own naming, carrier, failable-call, and runtime
 mapping policy. The shared layer does not impose one universal source-language
 strategy.
 
-Rust is the primary application path. It is the route used by package builds,
-Cargo generation, `norma`, the full runtime contract, and the widest semantic
-surface. The Rust emitter produces source; Cargo and the generated package
-then perform native CPU compilation. There is no current `MIR → Rust` probe
-used as a production alternative.
+Rust is currently the fullest **package** application path: package builds,
+Cargo generation, `norma`, and the widest runtime contract among HIR-direct
+emitters. That is a product-surface ranking, not a claim that program meaning
+lives in Rust. The Rust emitter produces source; Cargo and the generated
+package then perform native CPU compilation. There is no current `MIR → Rust`
+probe used as a production alternative.
 
 CLI source is a special HIR-level product. The driver analyzes CLI metadata
 alongside the source unit and has runnable Rust generation plus a narrow Go
@@ -949,11 +951,11 @@ mean that the artifact has a complete external runtime.
 
 | Target | Route | `radix` surface | `faber` package/run surface | Current contract |
 | --- | --- | --- | --- | --- |
-| `rust` | HIR-direct | check/build | check/build/run/package | Primary/fullest application backend. |
+| `rust` | HIR-direct | check/build | check/build/run/package | Widest package product surface among HIR-direct emitters. |
 | `fhir` | HIR-direct | check/build | build/run/package | Portable FHIR package envelope; load + lower to FMIR for run. |
 | `faber` | HIR-direct | check/build | inspection-oriented | Canonical Faber re-emission; not an executable package artifact. |
-| `ts` | HIR-direct | check/build | no package/run | Experimental language-shaped source emission. |
-| `go` | HIR-direct | check/build | no package/run | Second systems/application HIR emitter with explicit rejection gaps. |
+| `ts` | HIR-direct | check/build | no package/run | Experimental language-shaped source emission; exempla e2e floors rising (2026-08). |
+| `go` | HIR-direct | check/build | no package/run | HIR emitter with explicit rejection gaps; exempla e2e floors rising (2026-08). |
 | `swift` | HIR-direct | check/build | no package/run | Apple-oriented source emission; no package runtime. |
 | `wasm-text` | MIR-backed | check/build | no package/run | Fail-closed WAT probe with external host imports. |
 | `wasm` | MIR-backed | check/build | no package/run | Fail-closed binary probe; external host/instantiation required. |

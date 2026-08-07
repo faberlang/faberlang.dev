@@ -53,12 +53,12 @@ LOCALES: list[dict[str, str]] = [
 # of the same program when it is not.
 TARGETS: list[dict[str, str]] = [
     {"id": "rust", "name": "Rust",
-     "note": "primary backend — reviewable source, then a native binary"},
-    {"id": "go", "name": "Go", "note": "file emission"},
-    {"id": "ts", "name": "TypeScript", "note": "file emission",
+     "note": "HIR projection — reviewable source; package product path via Cargo"},
+    {"id": "go", "name": "Go", "note": "HIR projection — file emission + e2e floors"},
+    {"id": "ts", "name": "TypeScript", "note": "HIR projection — file emission + e2e floors",
      "elide_before": "        const flat_a"},
     {"id": "llvm-text", "name": "LLVM IR",
-     "note": "native code with no source language in between"},
+     "note": "MIR staging text for external LLVM tools — not embedded native codegen"},
 ]
 
 GPU_TARGETS: list[dict[str, str]] = [
@@ -277,6 +277,12 @@ def main() -> None:
       and CUDA execution: bounded training is proven now, and inference is
       being built next.
     </p>
+    <p class="fl-open-source">
+      The language, public libraries, examples, and user tooling ship under the
+      <strong>MIT</strong> license. <strong>Radix</strong>, the compiler, is
+      closed source for now and is planned for open release once the language
+      has clearer market demand — not as a permanent fence around Faber.
+    </p>
 
     <div class="fl-cta">
       <a class="fl-btn fl-btn-primary" href="/en-US/start/install.html">Install Faber</a>
@@ -289,12 +295,12 @@ def main() -> None:
     <table>
       <thead><tr><th>Lane</th><th>Targets / outputs</th></tr></thead>
       <tbody>
-        <tr><td><strong>Locale</strong></td><td>en (default) · la · th-TH · zh-Hans · zh-Hant · ar · vi · hi</td></tr>
-        <tr><td><strong>HIR</strong></td><td>Rust · TypeScript · Go</td></tr>
+        <tr><td><strong>Locale</strong></td><td>en (base surface) · la (canonical classical) · th-TH · zh-Hans · zh-Hant · ar · vi · hi</td></tr>
+        <tr><td><strong>HIR</strong></td><td>Rust · Faber · TypeScript · Go · Swift</td></tr>
         <tr><td><strong>AIR (autograd)</strong></td><td>Typed HIR → reverse-mode AD / fusion → MIR</td></tr>
-        <tr><td><strong>MIR</strong></td><td>LLVM · WASM · WGSL · S-expression</td></tr>
+        <tr><td><strong>MIR</strong></td><td>LLVM · WASM · WGSL · S-expression · FMIR</td></tr>
         <tr><td><strong>GPU</strong></td><td>Metal · CUDA</td></tr>
-        <tr><td><strong>Packaging</strong></td><td>FLIB · FHIR · FMIR</td></tr>
+        <tr><td><strong>Packaging</strong></td><td>FHIR · FMIR</td></tr>
       </tbody>
     </table>
   </section>
@@ -308,11 +314,11 @@ def main() -> None:
       </a>
       <a class="fl-door" href="/en-US/toolchain/cli.html#device-execution">
         <strong>Proven now · Metal + CUDA training</strong>
-        <span>A bounded device-program path runs an accepted training proof on both backends.</span>
+        <span>Dual-backend device-resident training (MLP path) with gradient mapping and numeric oracle comparison on both backends.</span>
       </a>
       <a class="fl-door" href="/en-US/toolchain/compiling.html#device-execution">
         <strong>Building next · GPU inference</strong>
-        <span>Faber-owned inference is being built behind a pinned model contract and correctness oracle.</span>
+        <span>Pinned model contract + CPU oracle are real; end-to-end device inference is not shipped.</span>
       </a>
       <a class="fl-door" href="/en-US/toolchain/compiling.html#gpu">
         <strong>Frontier · multi-device execution</strong>
@@ -346,9 +352,9 @@ def main() -> None:
       <h2>One semantic program for applications and GPU work</h2>
       <p>
         The same analyzed program can feed application targets or a device
-        program. Rust is the primary executable path; TypeScript, Go, LLVM, and
-        other targets have narrower, measured support. The target matrix is the
-        source of truth, not a promise that every backend behaves the same way.
+        program. Every target is a projection of HIR/MIR meaning — support is
+        stated target by target. The target matrix is the source of truth, not a
+        promise that every backend behaves the same way.
       </p>
       <p class="fl-note">
         Every panel below is literal <code>radix emit</code> output. The matrix
@@ -365,8 +371,10 @@ def main() -> None:
       <p>
         The ordinary <code>faber run --backend metal|cuda</code> route executes
         a bounded device-program subset on accepted Metal and CUDA machines.
-        The current accepted proof covers a dual-backend MLP training path with
-        device-resident state, gradient mapping, and numeric comparison.
+        The accepted dual-backend MLP training path runs device-resident
+        forward, AIR-generated backward, and optimizer update steps with
+        gradient mapping and per-element numeric comparison against a pinned
+        CPU oracle.
       </p>
       <pre class="fl-run">$ faber run --backend metal &lt;package&gt;
 $ faber run --backend cuda  &lt;package&gt;</pre>
@@ -399,9 +407,10 @@ $ faber run --backend cuda  &lt;package&gt;</pre>
       <h2>Inference is being built next</h2>
       <p>
         Faber-owned GPU inference is in active development behind a pinned model
-        contract and a correctness oracle. It is not a shipped inference server
-        or a broad GGUF support claim yet. The homepage keeps this visible
-        without turning an engineering track into a false availability promise.
+        contract and a correctness oracle. The CPU oracle track (admission,
+        dequant, decoder ops, greedy decode agreement) is engineering-real;
+        end-to-end device inference is not shipped, and this is not a broad
+        GGUF product claim.
       </p>
       <p class="fl-note">
         Follow the <a href="/en-US/start/examples.html#applications">AI and GPU examples</a>
@@ -507,8 +516,8 @@ $ faber run --backend cuda  &lt;package&gt;</pre>
 
 <footer class="fl-foot">
   <div>
-    <strong>Faber</strong> · designed by Ian Zepp · MIT licensed ·
-    compiler <a href="/en-US/toolchain/radix.html">Radix</a>
+    <strong>Faber</strong> · designed by Ian Zepp · language &amp; libraries MIT ·
+    <a href="/en-US/toolchain/radix.html">Radix</a> closed for now
   </div>
   <div>
     <a href="/porta/">All languages</a> ·

@@ -31,14 +31,14 @@ supports, erases, warns on, or rejects.
 
 | Target | Lane | Build | Run | Package | Policy |
 |--------|------|-------|-----|---------|--------|
-| `rust` | HIR | yes | yes | yes | **Support** |
+| `rust` | HIR | yes | yes | yes | **Support** (widest package product surface today) |
 | `fhir` | HIR | yes | yes | yes | **Support** |
 | `fmir-text` | MIR | yes | yes | yes | **Support** |
 | `fmir` | MIR | yes | yes | yes | **Support** |
 | `fmir-bin` | MIR | yes | yes | yes | **Support** |
 | `faber` | HIR | yes | no | no | **Support** |
-| `ts` | HIR | yes | no | no | **Probe** |
-| `go` | HIR | yes | no | no | **Erase** |
+| `ts` | HIR | yes | no* | no | **Probe** (measured e2e floors rising) |
+| `go` | HIR | yes | no* | no | **Erase** (borrow modes; measured e2e floors rising) |
 | `wasm` | MIR | yes | no | no | **Limited** |
 | `wasm-text` | MIR | yes | no | no | **Limited** |
 | `llvm-text` | MIR | yes | yes* | no | **Limited** |
@@ -48,7 +48,9 @@ supports, erases, warns on, or rejects.
 
 *`run` via device execution: `faber run --backend cuda` (llvm-text) /
 `--backend metal` (metal-text) launches `@ nucleum` kernels on a real GPU;
-`-t llvm-text` / `-t metal-text` themselves remain emit-only.
+`-t llvm-text` / `-t metal-text` themselves remain emit-only. TypeScript and
+Go also have exempla e2e harnesses that execute emitted code under host
+toolchains; that is a measurement surface, not a `faber package` product path.
 
 ### Pipeline routing {#pipeline-routing}
 
@@ -64,23 +66,33 @@ Source → Lex → Parse → Collect → Resolve → Lower → Typecheck → Ana
 
 ### Application lane (HIR) {#application-lane-hir}
 
-| Target | Measured floor |
+| Target | Measured floor (exempla e2e floors, 2026-08-07 HEAD) |
 |--------|---------------|
-| Rust | Production path. Borrow modes, CLI generation, failable Result lowering. |
+| Rust | Widest package product surface today. Borrow modes, CLI generation, failable Result lowering. |
 | Faber | Canonical source view / round-trip. Not an execution backend. |
-| TypeScript | 288/318 analysed · 268/318 typecheck-valid · 262/318 runnable |
-| Go | 146/216 pass. Borrow modes erased; `ad` rejected. |
+| TypeScript | Floors: 288 analysed · 289 emitted · 285 typecheck-valid · 283 runnable. Modular-width words, Valor JSON-root, identifier sanitation, and host-backend hardening in recent work. |
+| Go | Floors: 251 pass · 304 accepted outcomes. Type carriers (vector/intervallum/tensor-bracket), valor/instans, reserved-word sanitation; borrow modes erased; `ad` rejected. |
 
 ### Systems lane (MIR) {#systems-lane-mir}
 
-| Target | Measured floor |
-|--------|---------------|
+| Target | Role |
+|--------|------|
 | fmir* | Package MIR images; runner proves source independence. |
-| wasm | 200/289 emitted · 195/289 validate · 171/289 stub-host runnable |
-| llvm-text | 249/289 emitted · 232/289 verifier-valid · 65/289 runnable; **CUDA device execution via `faber run --backend cuda`** (NVVM→PTX) |
-| metal-text | Device-safe kernel subset; **campaign reopened 2026-08-02** — real MSL device execution via `faber run --backend metal` (Apple M5 Max) |
-| wgsl-text | Validates with naga 30.x. 87 focused tests. Reflection sidecar. |
-| sexp | 193 emitted · 190 Racket-compiled · 190 Racket-run. Validation target. |
+| wasm / wasm-text | Full-language MIR → Wasm surfaces (limited host imports). |
+| llvm-text | Full-language MIR staging IR. **Also** the NVVM→PTX staging chain used by **CUDA device execution** (`faber run --backend cuda`). There is no separate `cuda` emit target. |
+| metal-text | **Device-kernel subset** shader text (MSL). Real device runs use `faber run --backend metal`, not “% of whole-language corpus.” |
+| wgsl-text | **Device-kernel subset** shader text (WGSL) for WebGPU hosts. |
+| sexp | Validation / Racket-oriented dump. |
+
+**Do not read Metal/WGSL “2% capable” rows on the
+[target matrix](/toolchain/target-matrix.html) as product completeness.** Those
+rows score *full-language corpus terms* against a *kernel-only* emitter. The
+accepted dual-backend training path is proven on **Metal and CUDA** through
+`faber run --backend metal|cuda` (see [device execution](#device-execution)).
+
+For a **device-kernel product summary** (backends, workload families, expanding
+CUDA hardware matrix) see
+[Target matrix · Device kernel support](/toolchain/target-matrix.html#device-kernel-support).
 
 For live capability flags, run `faber targets`.
 
@@ -88,8 +100,9 @@ For live capability flags, run `faber targets`.
 
 The large term × target tables (HIR application lane and MIR systems lane)
 live on the [Target compatibility](/toolchain/target-matrix.html) page. That matrix
-is generated from `radix/EBNF_MATRIX.md` and reports lowerability only —
-not erase/warn policy (documented above).
+is generated from `radix/EBNF_MATRIX.md` and reports **term lowerability only** —
+not erase/warn policy, and not GPU product health. GPU backends and the “why
+no CUDA column?” note are explained in that page’s summary.
 
 ## Compilation lanes
 
@@ -155,10 +168,10 @@ preserve source-level structure longer and are suited for language-shaped output
 
 | Target | Status | Role |
 |---|---|---|
-| `Rust` | **Primary** | Production path. Packages, build, run, test. Cargo + rustc for native binaries. |
+| `Rust` | **Support** | Widest package product surface today (build/run/test via Cargo). One projection of HIR — not the semantic center. |
 | `Faber` | **Support** | Canonical source view via `forma` formatter. Round-trip stability. |
-| `TypeScript` | Probe | File emission only. Proves semantics across target shapes. |
-| `Go` | Erase | File emission only. Borrow modes erased; `ad` rejected. |
+| `TypeScript` | Probe | HIR-direct emission + rising exempla e2e floors. Not a `faber package` product path yet. |
+| `Go` | Erase | HIR-direct emission + rising exempla e2e floors; borrow modes erased; `ad` rejected. |
 
 ### MIR — Mid-Level Intermediate Representation {#mir}
 
@@ -253,10 +266,12 @@ pipeline for an open standard format, but is not a package delivery runtime.
 
 #### TypeScript and Go (HIR-direct) {#typescript-go}
 
-Though typically used for application-level file emission, TypeScript and Go
-also serve as proof targets: they validate that Faber's semantics translate
-to widely-used type systems, even if package compilation and runtime execution
-remain Rust-only today.
+TypeScript and Go are HIR-direct proof targets: they validate that Faber's
+semantics translate into widely used type systems. Measured exempla e2e floors
+for both rose substantially in the 2026-08 HIR compatibility pass (Go pass
+floor 251; TypeScript runnable floor 283). Full package build/run/test product
+workflows still center on the Rust package path today — that is a packaging
+convenience, not a claim that HIR meaning lives in Rust.
 
 ### GPU target lanes {#gpu}
 
@@ -279,10 +294,11 @@ Metal campaign was reopened on 2026-08-02 after the frozen probe regressed
 undetected during its pause (see
 `radix/docs/factory/phase-metal-campaign-pause-state.md`); the emitter now
 covers a training surface (Transpose+, elementwise `train_step` / companion
-VJP, Tanh, fused matmul+elementwise). Metal is a local-dev proof and
-API-parity host — real MSL execution runs on Apple Silicon through
-`faber run --backend metal` — while CUDA and WebGPU remain the product
-inference/training paths.
+VJP, Tanh, fused matmul+elementwise). Metal and CUDA are the product **device execution** paths for the accepted
+bounded training proof (`faber run --backend metal|cuda`). Metal is the
+Apple Silicon local-dev and API-parity host; CUDA is the NVIDIA deployment
+host. WebGPU remains a browser graphics / headless proof lane (Triga +
+`hosts/webgpu-browser`), not the product training or inference path.
 
 #### Device execution (Metal / CUDA) {#device-execution}
 
@@ -305,7 +321,7 @@ works. Rust lowers through HIR → MIR → LLVM IR, embedding the LLVM toolchain
 directly for final native codegen. Faber takes a softer approach: it emits
 text for external toolchains (LLVM text, WGSL, Metal, WAT) rather than embedding
 them, while reserving direct code emission for its own runtime (FMIR) and its
-primary package target (Rust, where Cargo and rustc handle the downstream
+widest package product surface today (Rust, where Cargo and rustc handle the downstream
 pipeline).
 
 The text-emission approach means Faber never needs to bundle LLVM, a Wasm

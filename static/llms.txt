@@ -4,15 +4,16 @@ Expanded machine map for agents working on Faber language packages.
 Start with https://faberlang.dev/llms.txt if you have not already.
 
 Host: https://faberlang.dev
-Current CLI release: Faber 1.1.1 (tag faber-v1.1.1)
+Current CLI release: Faber 1.4.0 (tag faber-v1.4.0)
 
 ## Site URL rules (read this)
 
-- `/` is the **locale-less language portal** (chooser), not the English docs home.
-- Authored HTML documentation lives under **`/en-US/…`**.
+- `/` is the **product landing page** (compute-first homepage).
+- `/porta/` is the **locale chooser** (language portal).
+- Authored HTML documentation lives under **`/en-US/…`** (English is the full prose authority).
 - Other site locales (`/th-TH/`, `/zh-Hans/`, `/zh-Hant/`, `/vi/`, `/ar/`, `/hi/`)
-  ship reader packs + corpus; prose may be partial. Thai has a pilot translated
-  slice (`index` + `start/*`). Prefer `/en-US/` unless the user asked otherwise.
+  ship reader packs + corpus; authored prose may still fall back to English.
+  Prefer `/en-US/` unless the user asked otherwise.
 - Bare paths such as `/start/install.html` are **redirect stubs** to `/en-US/…`.
   Cite the `/en-US/…` form in agent-facing docs and skills.
 
@@ -22,7 +23,7 @@ Current CLI release: Faber 1.1.1 (tag faber-v1.1.1)
 - Compiler name: Radix (Latin "root") — implementation private; ships inside `faber` CLI
 - License: MIT
 - Designer: Ian Zepp
-- First appeared: 2024
+- First appeared: 2025
 
 ## Architectural invariant
 
@@ -41,18 +42,18 @@ any single surface syntax as the only authority.
 6. Comments: only `#` on its own line. LEX006/LEX007 if you use `//` or trailing `#`.
 7. Packages need `faber.toml` and sources under `src/`.
 
-## Install assets (1.1.1)
+## Install assets (1.4.0)
 
-Release: https://github.com/faberlang/releases/releases/tag/faber-v1.1.1
+Release: https://github.com/faberlang/releases/releases/tag/faber-v1.4.0
 
 | Platform | URL |
 |---|---|
-| macOS arm64 tar.gz | https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz |
-| macOS arm64 sha256 | https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256 |
-| Linux x64 tar.gz | https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz |
-| Linux x64 sha256 | https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256 |
+| macOS arm64 tar.gz | https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz |
+| macOS arm64 sha256 | https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz.sha256 |
+| Linux x64 tar.gz | https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz |
+| Linux x64 sha256 | https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz.sha256 |
 
-Verify by comparing the first hash field in the `.sha256` file to the local archive hash; the checksum line may name the original build path. Extract `faber-v1.1.1-<target-triple>/faber`; place it on PATH; run `faber --version`.
+Verify by comparing the first hash field in the `.sha256` file to the local archive hash; the checksum line may name the original build path. Extract `faber-v1.4.0-<target-triple>/faber`; place it on PATH; run `faber --version`.
 
 Human install page: https://faberlang.dev/en-US/start/install.html
 
@@ -67,13 +68,15 @@ faber format <package>
 faber explain <DIAG_CODE>
 ```
 
-Default codegen target is Rust → native via Cargo. Generated Rust uses
-faber-runtime types where required.
+Default package product path often uses Rust → native via Cargo (one measured
+HIR projection). Generated Rust uses faber-runtime types where required.
+Support is stated target by target — see /en-US/toolchain/target-matrix.html.
 
 ## HTML documentation tree (English — full)
 
 ### Portal and home
-- https://faberlang.dev/ — language portal (all locales)
+- https://faberlang.dev/ — product landing
+- https://faberlang.dev/porta/ — language portal (all locales)
 - https://faberlang.dev/en-US/ — English overview + download
 
 ### Get started
@@ -179,7 +182,7 @@ https://github.com/faberlang/norma
 
 ## Recommended agent procedure for a new package
 
-1. Install `faber` 1.1.1 from releases; verify with `faber --version`.
+1. Install `faber` 1.4.0 from releases; verify with `faber --version`.
 2. Read language skill + one syntax page for constructs you will use.
 3. Scaffold `faber.toml` + `src/main.fab` (or copy structure from vivilite / ai-workbench).
 4. Loop: edit → `faber check` → fix diagnostics (`faber explain CODE`) → `faber test`.

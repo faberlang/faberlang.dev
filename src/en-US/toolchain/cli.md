@@ -177,4 +177,5 @@ fast enough to feel like a shell script.
   path does — some `norma:*` wrappers remain compiled-only
 - The stepper is a MIR-native diagnostic/reference executor, not a
   production runtime for deployed applications
-- Package compilation through Cargo remains the primary product path
+- Package compilation through Cargo remains the widest package product path
+  today (Rust projection); other targets are measured separately

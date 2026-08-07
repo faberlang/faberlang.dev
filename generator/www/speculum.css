@@ -534,6 +534,15 @@ body.home .content > p:first-of-type {
     color: var(--ink-dim);
 }
 .sub { font-family: var(--sans); font-size: 13px; color: var(--ink-faint); margin: var(--s2) 0 var(--s5); }
+.content small.open-source-note,
+main small.open-source-note {
+    display: block;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--ink-faint);
+    margin: var(--s3) 0 var(--s5);
+    max-width: 42rem;
+}
 
 h2 {
     font-family: var(--serif); font-size: 1.45rem; font-weight: 400;
@@ -1580,6 +1589,14 @@ body.landing {
     margin: var(--s5) 0 0;
 }
 .fl-thesis strong { color: var(--ink); font-weight: 600; }
+.fl-open-source {
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ink-faint);
+    margin: var(--s4) 0 0;
+    max-width: 42rem;
+}
+.fl-open-source strong { color: var(--ink-dim); font-weight: 600; }
 
 .fl-cta { display: flex; gap: var(--s3); flex-wrap: wrap; margin: var(--s6) 0 var(--s6); }
 .fl-btn {

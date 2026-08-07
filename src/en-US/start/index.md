@@ -12,7 +12,7 @@ then open a real package. For a sequenced path, follow: [Install](/start/install
 
 ## 1. Install the CLI {#install}
 
-Download the current release (**1.3.0**) for your platform from the
+Download the current release (**1.4.0**) for your platform from the
 [install page](/start/install.html), verify the archive checksum, and put the
 extracted `faber-v1.4.0-<target-triple>/faber` binary on your `PATH`. Confirm:
 
