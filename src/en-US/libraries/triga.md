@@ -47,7 +47,7 @@ the leaf that owns the genus they use.
 | `triga:resource` | `ResourceHandle` + lifecycle free functions |
 | `triga:triga` | Facade / module map only (no genera) |
 
-```faber
+```faber mode=package
 importa ex "triga:math" privata math
 importa ex "triga:graph" privata graph
 importa ex "triga:material" privata material
@@ -67,7 +67,7 @@ primitive generators.
 Faber morphologia applies: **Imperativus** mutates a `varia` receiver in
 place, while **Perfectum** returns a new value and leaves the receiver alone.
 
-```faber
+```faber mode=package
 importa ex "triga:math" privata math
 
 # Perfectum — returns a new Box3, receiver unchanged

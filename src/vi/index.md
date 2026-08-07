@@ -69,7 +69,7 @@ Hướng dẫn từng bước: [Hướng dẫn cài đặt](/start/install.html)
 | [Các lệnh](/cheatsheet/commands.html) | Người dùng + tác nhân | Vòng lặp CLI hằng ngày: check, build, run, test, explain |
 | [Dự án](/start/projects.html) | Người dùng + tác nhân | Chuyển từ hello-world sang các gói thực tế |
 | [Tham quan nhanh](/start/) | Người dùng | Hình dạng ngôn ngữ trong năm phút |
-| [Ví dụ](/start/examples.html) | Người dùng + tác nhân | Các gói thực tế: ứng dụng CLI, mailspace, GPU, corpus |
+| [Ví dụ](/examples/) | Người dùng + tác nhân | Các gói thực tế: ứng dụng CLI, mailspace, GPU, corpus |
 | [`/llms.txt`](/llms.txt) | Tác nhân | Chỉ mục máy — bắt đầu tại đây nếu bạn là một mô hình |
 | [Hướng dẫn tác nhân](/agents/index.md) | Tác nhân | Cách học Faber và phát hành một gói |
 | [Kỹ năng tác nhân](/.well-known/agent-skills/index.json) | Tác nhân | Các hướng dẫn kỹ năng tập trung (cài đặt, ngôn ngữ, ví dụ, …) |

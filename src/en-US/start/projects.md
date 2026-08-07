@@ -37,7 +37,7 @@ intentionally want a local resolver override for library development.
 1. [Quick tour](/start/) for the surface grammar.
 2. [Hello, Faber](/start/hello.html) for a single package.
 3. [Corpus](/corpus/) for one page per keyword or construct.
-4. [Examples](/start/examples.html) for larger applications.
+4. [Examples](/examples/) for larger applications.
 5. [Faber build tool](/toolchain/cli.html) for CLI details.
 
 ## Agent workflow {#agent-workflow}
@@ -68,4 +68,4 @@ validator before claiming the examples still compile.
 
 | Previous | Next |
 |---|---|
-| [Commands you will use](/cheatsheet/commands.html) | [Examples](/start/examples.html) |
+| [Commands you will use](/cheatsheet/commands.html) | [Examples](/examples/) |

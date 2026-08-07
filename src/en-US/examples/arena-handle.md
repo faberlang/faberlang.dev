@@ -1,0 +1,251 @@
++++
+title = "arena-handle"
+section = "examples"
+order = 55
+sources = []
++++
+
+The densest single file here for language features: `genus` records, a `discretio` sum type with variant payloads, `discerne` matching over it, and a test suite in the same file. Stale handles are rejected by a generation check rather than by a runtime guard.
+
+Source: [`examples/arena-handle`](https://github.com/faberlang/examples/tree/main/arena-handle)
+
+## `src/main.fab` {#src-main-fab}
+
+230 lines — the whole file, unabridged.
+
+```faber
+# =============================================================================
+# arena-handle — generational arena-handle contract via pure value updates
+# =============================================================================
+#
+# What this example teaches:
+#   • Generational arena pattern — stable identity via (index, generation) handle
+#     pair; stale handles rejected on lookup via generation check
+#   • genus (struct) definitions — Manus, Loculus, Area, AreaCumManus, Nodus
+#   • Pure functional updates — no lista[i] mutation, all operations return new
+#     Area values to keep generated Rust sound
+#   • dum loop — explicit iteration over list indices (lines 42-46, 75-90)
+#   • si/sin/secus — conditional logic (lines 58, 60, 62, 78-89)
+#   • discerne/casu — pattern matching on enum variants (lines 117-133)
+#   • probandum/proba/adfirma — test framework with multi-case assertions
+#   • discretio — sum type (enum) with variant payloads (lines 93-96)
+#   • gingimus (finge) — enum variant construction with named fields (lines 113-116)
+#
+# Syntaxes used:
+#   • genus — struct definition (lines 8, 12, 18, 22)
+#   • discretio — enum/sum type (line 93)
+#   • functio — function definition (lines 28, 32, 36, 57, 70, 73)
+#   • fixum — immutable binding (lines 33, 43, etc.)
+#   • varia — mutable binding (lines 40, 41, etc.)
+#   • dum — while loop (lines 42, 75)
+#   • si/sin/secus — conditionals (lines 58, 60, 62, 78-89)
+#   • discerne/casu — match/pattern match (lines 117-133)
+#   • redde — return (lines 30, etc.)
+#   • finge — construct enum variant (lines 113-116)
+#   • adfirma — test assertion (lines 109-112, etc.)
+#   • proba — test case (lines 101, 134, 155)
+#   • probandum — test suite (line 100)
+#   • ≡ — equality comparison (lines 29, 61, etc.)
+#   • lista<T> — list type (lines 20, 93, 96)
+#   • textus, numerus, bivalens — primitive types
+#   • vacua — empty list literal
+#   • .longitudo() — list length method
+#   • .appende() — list append method
+#
+# Alternate approaches (not shown):
+#   • Mutable arena with unsafe interior for performance — a mutable lista<Loculus> with in-place updates avoids copying on every insert/take
+#   • Reusing free slots (via free list) instead of always appending — maintain a list of freed indices to recycle slots without growing the arena
+#
+# Anti-patterns (avoid these):
+#   • Using lista[i] assignment in generated Rust contexts — in-place list mutation breaks Rust's borrow-checker soundness; use pure value updates (return new Area) instead
+#   • Assuming stale handle reuse after removal without generation check — always verify generatio matches before using a handle; stale handles must be rejected on lookup
+#
+# Learning path:
+#   Before: Stage 3: genus, lista, nihil → Stage 3: discerne/casu (structs, collections, and pattern matching)
+#   After:  Stage 6: advanced applications (vivilite — real-world resource management)
+#
+# Stage: arena-handle, complete contract with tests, all language constructs demonstrated
+# Backend: Rust, stepper
+# =============================================================================
+
+# Reusable generational arena-handle contract (language surface).
+#
+# Semantics mirror faber-runtime::Arena / ArenaHandle (see arena.rs):
+# stable identity independent of list order; stale handles reject on lookup.
+# This package uses pure value updates (no lista[i] assignment) so generated
+# Rust stays sound; the runtime crate is the authoritative store implementation.
+
+genus Manus {
+    numerus index
+    numerus generatio
+}
+
+genus Loculus {
+    numerus generatio
+    bivalens vivus
+    textus valor
+}
+
+genus Area {
+    lista<Loculus> loculi
+}
+
+genus AreaCumManus {
+    Area area
+    Manus manus
+}
+
+functio manus_aequat(de Manus a, de Manus b) → bivalens {
+    redde a.index ≡ b.index et a.generatio ≡ b.generatio
+}
+
+functio area_nova() → Area {
+    fixum lista<Loculus> loculi ← vacua
+    redde Area { loculi = loculi }
+}
+
+functio area_inserit(Area area, textus valor) → AreaCumManus {
+    # Always append a new live slot. Free slots from tollit stay dead so the
+    # old handle generation remains invalid; reuse is optional for this proof.
+    varia lista<Loculus> out ← vacua
+    varia numerus i ← 0
+    dum i < area.loculi.longitudo() {
+        out.appende(area.loculi[i])
+        i ← i + 1
+    }
+    fixum numerus index ← out.longitudo()
+    out.appende(Loculus { generatio = 0, vivus = verum, valor = valor })
+    redde AreaCumManus {
+        area = Area { loculi = out },
+        manus = Manus { index = index, generatio = 0 }
+    }
+}
+
+# Lookup returns the payload, or "" when the handle is stale / out of range.
+# Proof resources never use empty text, so "" is the explicit reject signal.
+functio area_accipe(de Area area, de Manus manus) → textus {
+    si manus.index ≥ area.loculi.longitudo() {
+        redde ""
+    }
+    fixum Loculus slot ← area.loculi[manus.index]
+    si slot.vivus ≡ falsum {
+        redde ""
+    }
+    si slot.generatio ≠ manus.generatio {
+        redde ""
+    }
+    redde slot.valor
+}
+
+functio area_continet(de Area area, de Manus manus) → bivalens {
+    redde area_accipe(area, manus) ≠ ""
+}
+
+functio area_tollit(Area area, de Manus manus) → Area {
+    varia lista<Loculus> out ← vacua
+    varia numerus i ← 0
+    dum i < area.loculi.longitudo() {
+        fixum Loculus slot ← area.loculi[i]
+        si i ≡ manus.index et slot.vivus ≡ verum et slot.generatio ≡ manus.generatio {
+            out.appende(Loculus {
+                generatio = slot.generatio + 1,
+                vivus = falsum,
+                valor = ""
+            })
+        }
+        secus {
+            out.appende(slot)
+        }
+        i ← i + 1
+    }
+    redde Area { loculi = out }
+}
+
+# Heterogeneous node: stores Manus, never deep-copies the resource payload.
+discretio Nodus {
+    Groupus { lista<Manus> filii },
+    Tessera { Manus geometria },
+}
+
+probandum "arena-handle contract" tag "identity" {
+    proba "two nodes share one resource identity" {
+        fixum AreaCumManus step ← area_inserit(area_nova(), "shared-mesh")
+        fixum Area res ← step.area
+        fixum Manus geo ← step.manus
+        # Reconstruct handle values so each node owns a copy of the identity bits
+        # without cloning the resource payload (still one live slot in `res`).
+        fixum Manus left_geo ← Manus { index = geo.index, generatio = geo.generatio }
+        fixum Manus right_geo ← Manus { index = geo.index, generatio = geo.generatio }
+        adfirma manus_aequat(left_geo, right_geo)
+        adfirma area_accipe(res, left_geo) ≡ "shared-mesh"
+        adfirma area_accipe(res, right_geo) ≡ "shared-mesh"
+        fixum Nodus left ← finge Tessera {
+            geometria = Manus { index = geo.index, generatio = geo.generatio }
+        }
+        fixum Nodus right ← finge Tessera {
+            geometria = Manus { index = geo.index, generatio = geo.generatio }
+        }
+        discerne left {
+            casu Tessera fixum geometria {
+                adfirma manus_aequat(geometria, left_geo)
+            }
+            casu Groupus fixum filii {
+                adfirma filii.longitudo() ≡ 0
+            }
+        }
+        discerne right {
+            casu Tessera fixum geometria {
+                adfirma manus_aequat(geometria, right_geo)
+            }
+            casu Groupus fixum filii {
+                adfirma filii.longitudo() ≡ 0
+            }
+        }
+    }
+
+    proba "reparent reorder preserves handle identity" {
+        fixum AreaCumManus s0 ← area_inserit(area_nova(), "child-a")
+        fixum AreaCumManus s1 ← area_inserit(s0.area, "child-b")
+        fixum Area nodi ← s1.area
+        fixum Manus a ← s0.manus
+        fixum Manus b ← s1.manus
+        varia lista<Manus> filii ← vacua
+        filii.appende(Manus { index = a.index, generatio = a.generatio })
+        filii.appende(Manus { index = b.index, generatio = b.generatio })
+        # swap order without changing handle identities
+        fixum Manus first ← filii[0]
+        fixum Manus second ← filii[1]
+        varia lista<Manus> reord ← vacua
+        reord.appende(Manus { index = second.index, generatio = second.generatio })
+        reord.appende(Manus { index = first.index, generatio = first.generatio })
+        adfirma area_accipe(nodi, reord[0]) ≡ "child-b"
+        adfirma area_accipe(nodi, reord[1]) ≡ "child-a"
+        adfirma area_accipe(nodi, a) ≡ "child-a"
+        adfirma area_accipe(nodi, b) ≡ "child-b"
+    }
+
+    proba "stale handle rejects after remove" {
+        fixum AreaCumManus s0 ← area_inserit(area_nova(), "gone")
+        fixum Manus h ← s0.manus
+        fixum Manus h_bits ← Manus { index = h.index, generatio = h.generatio }
+        adfirma area_continet(s0.area, h_bits)
+        fixum Area after ← area_tollit(s0.area, h_bits)
+        adfirma area_continet(after, h_bits) ≡ falsum
+        adfirma area_accipe(after, h_bits) ≡ ""
+        fixum AreaCumManus s1 ← area_inserit(after, "fresh")
+        fixum Manus h2 ← s1.manus
+        # New live slot (append); old handle still rejected by generation/vivus.
+        adfirma manus_aequat(h_bits, h2) ≡ falsum
+        adfirma area_accipe(s1.area, h_bits) ≡ ""
+        adfirma area_accipe(s1.area, h2) ≡ "fresh"
+        adfirma area_continet(s1.area, h2)
+    }
+}
+
+incipit {
+}
+```
+
+---
+
+[All examples](/examples/) · [Install](/start/install.html) · [Cheat sheet](/cheatsheet/)

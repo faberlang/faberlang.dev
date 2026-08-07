@@ -82,7 +82,7 @@ CLI, स्थानीय mailspace, GPU workload tracks और एक पू�
 | gpu-workload | सिस्टम / GPU rungs |
 | corpus | प्रत्येक भाषा-निर्माण के लिए एक निर्देशिका |
 
-उन्हें [examples पेज](/start/examples.html) पर देखें।
+उन्हें [examples पेज](/examples/) पर देखें।
 
 ## 5. यदि आप एजेंट हैं {#agents}
 

@@ -1,0 +1,136 @@
++++
+title = "AI Workbench"
+section = "examples"
+order = 54
+sources = []
++++
+
+A real application with subcommands, JSON output, and a Python harness validating its behaviour. The entry point shows how a multi-command CLI is wired.
+
+Source: [`examples/ai-workbench/packages/faber-ai`](https://github.com/faberlang/examples/tree/main/ai-workbench/packages/faber-ai)
+
+## `src/main.fab` {#src-main-fab}
+
+```faber
+# Faber AI workbench command surface.
+
+importa ex "./commands/model" privata * ut modelModule
+importa ex "./commands/embed" privata * ut embedModule
+importa ex "./commands/index" privata * ut indexModule
+importa ex "./commands/query" privata * ut queryModule
+importa ex "./commands/generate" privata * ut generateModule
+importa ex "./commands/chat" privata * ut chatModule
+
+@ cli "faber-ai"
+@ versio "0.1.0"
+@ descriptio "Local Faber AI workbench"
+@ imperia "model" ex modelModule
+incipit argumenta args {}
+
+@ imperium "embed"
+@ descriptio "Embed input texts with a local model alias"
+@ optio model_alias longum "model" typus textus vel "basic/minilm" descriptio "Model alias"
+@ optio out longum "out" typus textus vel "/tmp/faber-ai-vectors.fvi" descriptio "Vector output path"
+@ optio format longum "format" typus textus vel "text" descriptio "Output format: text or json"
+@ optio map longum "alias-map" typus textus vel "docs/campaigns/ai-workbench/model-aliases.toml" descriptio "Alias map TOML path"
+@ optio oracle_runner longum "oracle-runner" typus textus vel "" descriptio "Explicit oracle runner script"
+@ optio oracle_label longum "oracle-label" typus textus vel "manual-minilm-torch" descriptio "Oracle runtime label"
+@ operandus textus texts descriptio "Input text file"
+functio embed() argumenta args → vacuum {
+    embedModule.curre(
+        "§"(args.texts),
+        "§"(args.model_alias),
+        "§"(args.out),
+        "§"(args.format),
+        "§"(args.map),
+        "§"(args.oracle_runner),
+        "§"(args.oracle_label),
+    )
+}
+
+@ imperium "index"
+@ descriptio "Build a deterministic vector index from a Stage 2 .fvi artifact"
+@ optio out longum "out" typus textus vel "/tmp/faber-ai-index.fvi" descriptio "Index output path"
+@ optio format longum "format" typus textus vel "text" descriptio "Output format: text or json"
+@ optio metric longum "metric" typus textus vel "cosine" descriptio "Similarity metric"
+@ operandus textus vectors descriptio "Stage 2 vector artifact path"
+functio index() argumenta args → vacuum {
+    indexModule.curre(
+        "§"(args.vectors),
+        "§"(args.out),
+        "§"(args.format),
+        "§"(args.metric),
+    )
+}
+
+@ imperium "query"
+@ descriptio "Query a deterministic Stage 3 vector index"
+@ optio top longum "top" typus numerus vel 10 descriptio "Maximum result count"
+@ optio format longum "format" typus textus vel "text" descriptio "Output format: text or json"
+@ optio query_vector longum "query-vector" typus textus vel "" descriptio "Explicit query vector fixture"
+@ operandus textus index descriptio "Stage 3 index artifact path"
+@ operandus textus query_text descriptio "Query text"
+functio query() argumenta args → vacuum {
+    queryModule.curre(
+        "§"(args.index),
+        "§"(args.query_text),
+        args.top,
+        "§"(args.format),
+        "§"(args.query_vector),
+    )
+}
+
+@ imperium "generate"
+@ descriptio "Generate text with an explicit local oracle-backed model runner"
+@ optio model_alias longum "model" typus textus vel "stretch/qwen3-4b-fp8" descriptio "Model alias"
+@ optio out longum "out" typus textus vel "/tmp/faber-ai-generate.jsonl" descriptio "Generation event output path"
+@ optio format longum "format" typus textus vel "text" descriptio "Output format: text or json"
+@ optio map longum "alias-map" typus textus vel "docs/campaigns/ai-workbench/model-aliases.toml" descriptio "Alias map TOML path"
+@ optio oracle_runner longum "oracle-runner" typus textus vel "" descriptio "Explicit oracle runner script"
+@ optio oracle_label longum "oracle-label" typus textus vel "transformers-local-fp8" descriptio "Oracle runtime label"
+@ optio max_new_tokens longum "max-new-tokens" typus numerus vel 16 descriptio "Maximum generated tokens"
+@ optio temperature longum "temperature" typus textus vel "0" descriptio "Sampling temperature"
+@ optio seed longum "seed" typus numerus vel 0 descriptio "Deterministic oracle seed"
+@ operandus textus prompt descriptio "Prompt text file"
+functio generate() argumenta args → vacuum {
+    generateModule.curre(
+        "§"(args.prompt),
+        "§"(args.model_alias),
+        "§"(args.out),
+        "§"(args.format),
+        "§"(args.map),
+        "§"(args.oracle_runner),
+        "§"(args.oracle_label),
+        args.max_new_tokens,
+        "§"(args.temperature),
+        args.seed,
+    )
+}
+
+@ imperium "chat"
+@ descriptio "Chat through an explicit local llama.cpp router adapter"
+@ optio model_alias longum "model" typus textus vel "daily/qwen36-35b-a3b-q4" descriptio "Model alias"
+@ optio out longum "out" typus textus vel "/tmp/faber-ai-chat.jsonl" descriptio "Chat transcript output path"
+@ optio format longum "format" typus textus vel "text" descriptio "Output format: text or json"
+@ optio map longum "alias-map" typus textus vel "docs/campaigns/ai-workbench/model-aliases.toml" descriptio "Alias map TOML path"
+@ optio router_runner longum "router-runner" typus textus vel "" descriptio "Explicit router runner script"
+@ optio router_label longum "router-label" typus textus vel "llama-router" descriptio "Router runtime label"
+@ optio router_url longum "router-url" typus textus vel "http://127.0.0.1:18173/v1" descriptio "Router base URL"
+@ operandus textus prompt descriptio "Prompt text file"
+functio chat() argumenta args → vacuum {
+    chatModule.curre(
+        "§"(args.prompt),
+        "§"(args.model_alias),
+        "§"(args.out),
+        "§"(args.format),
+        "§"(args.map),
+        "§"(args.router_runner),
+        "§"(args.router_label),
+        "§"(args.router_url),
+    )
+}
+```
+
+---
+
+[All examples](/examples/) · [Install](/start/install.html) · [Cheat sheet](/cheatsheet/)

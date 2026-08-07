@@ -201,6 +201,19 @@ if [ "$FULL_SITE" = true ]; then
         echo "[0/10] Skipping target matrix generate (no ${WORKSPACE_DIR}/radix/EBNF_MATRIX.md)"
     fi
 
+    # Step 0b: Regenerate the sections assembled from captured panels and
+    # sibling checkouts. All of these write src/ and so must run before the
+    # render. Each degrades to leaving its committed output alone when its
+    # inputs are absent, so a checkout without siblings still builds.
+    echo "[0/10] Generating target lanes, examples, and locale cheat sheet..."
+    "$PYTHON" "${SCRIPT_DIR}/generate-target-lanes.py"
+    "$PYTHON" "${SCRIPT_DIR}/generate-locale-cheatsheet.py"
+    "$PYTHON" "${SCRIPT_DIR}/generate-examples.py"
+
+    # Releases is NOT regenerated here: it needs `gh` and network access, and a
+    # build that silently depends on the network is a build that breaks on a
+    # plane. Run generate-releases.py by hand when a release lands.
+
     # Step 1: Validate and build generator (once)
     echo "[1/9] Validating generator source..."
     "${SCRIPT_DIR}/validate-html-literals.sh" "${GENERATOR_DIR}/src"
@@ -297,6 +310,9 @@ if [ "$FULL_SITE" = true ]; then
         smoke_contains "${OUTPUT_DIR}/en-US/cheatsheet/index.html" "Cheat sheet" "cheat sheet index"
         smoke_contains "${OUTPUT_DIR}/en-US/cheatsheet/errors.html" "error channel" "cheat sheet errors"
         smoke_contains "${OUTPUT_DIR}/en-US/start/projects.html" "faberlang/examples" "projects start page"
+        smoke_contains "${OUTPUT_DIR}/en-US/examples/index.html" "device-summa" "examples index"
+        smoke_contains "${OUTPUT_DIR}/en-US/examples/cat.html" "faber-code" "example source shown"
+        smoke_contains "${OUTPUT_DIR}/en-US/targets/index.html" "Target lanes" "target lanes index"
         smoke_contains "${OUTPUT_DIR}/en-US/404.html" "404" "404 page"
         smoke_contains "${OUTPUT_DIR}/en-US/releases/index.html" "Faber 1.4.0" "releases index"
         smoke_contains "${OUTPUT_DIR}/en-US/releases/faber-1.4.0.html" "faber-v1.4.0" "pinned release page"

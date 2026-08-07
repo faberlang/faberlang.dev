@@ -1,0 +1,140 @@
++++
+title = "triga-budapest"
+section = "examples"
+order = 56
+sources = []
++++
+
+Graphics work in the same language, with the same types, as everything else here. This is the box-geometry module of the scene behind the rendered frames on the home page.
+
+Source: [`examples/triga-budapest`](https://github.com/faberlang/examples/tree/main/triga-budapest)
+
+## `src/box_geom.fab` {#src-box_geom-fab}
+
+One file of a multi-file package: it refers to siblings that are not shown here.
+
+```faber mode=package
+importa ex "triga:math" privata math
+
+# ---------------------------------------------------------------------------
+# Lit box geometry — 24 vertices (4 per face × 6 faces), 36 indices.
+#
+# Each face has its own 4 vertices so normals are flat per-face.
+# Vertex stride: 9 f32 (36 bytes) = position(3) + normal(3) + color(3).
+#
+# Face order: +X, -X, +Y, -Y, +Z, -Z
+# ---------------------------------------------------------------------------
+
+@ privata
+functio _append_face(
+    lista<f32> payload,
+    f32 x1, f32 y1, f32 z1,
+    f32 x2, f32 y2, f32 z2,
+    f32 x3, f32 y3, f32 z3,
+    f32 x4, f32 y4, f32 z4,
+    f32 nx, f32 ny, f32 nz,
+    f32 r, f32 g, f32 b
+) → lista<f32> {
+    payload.appende(x1)
+    payload.appende(y1)
+    payload.appende(z1)
+    payload.appende(nx)
+    payload.appende(ny)
+    payload.appende(nz)
+    payload.appende(r)
+    payload.appende(g)
+    payload.appende(b)
+
+    payload.appende(x2)
+    payload.appende(y2)
+    payload.appende(z2)
+    payload.appende(nx)
+    payload.appende(ny)
+    payload.appende(nz)
+    payload.appende(r)
+    payload.appende(g)
+    payload.appende(b)
+
+    payload.appende(x3)
+    payload.appende(y3)
+    payload.appende(z3)
+    payload.appende(nx)
+    payload.appende(ny)
+    payload.appende(nz)
+    payload.appende(r)
+    payload.appende(g)
+    payload.appende(b)
+
+    payload.appende(x4)
+    payload.appende(y4)
+    payload.appende(z4)
+    payload.appende(nx)
+    payload.appende(ny)
+    payload.appende(nz)
+    payload.appende(r)
+    payload.appende(g)
+    payload.appende(b)
+
+    redde payload
+}
+
+# ---------------------------------------------------------------------------
+# box_indices — 36 indices for 24 lit box vertices.
+# ---------------------------------------------------------------------------
+functio box_indices() → lista<u32> {
+    varia lista<u32> idx ← vacua
+    varia numerus face ← 0
+    dum face < 6 {
+        fixum u32 base ← ((face * 4) ↦ u32)
+        idx.appende(base)
+        idx.appende(base + 1)
+        idx.appende(base + 2)
+        idx.appende(base)
+        idx.appende(base + 2)
+        idx.appende(base + 3)
+        face ← face + 1
+    }
+    redde idx
+}
+
+# ---------------------------------------------------------------------------
+# box_vertex_payload — interleaved [px,py,pz, nx,ny,nz, cr,cg,cb, …]
+# for 24 lit vertices.  This is the only payload the host needs.
+# ---------------------------------------------------------------------------
+functio box_vertex_payload(de math.Box3 bounds, f32 r, f32 g, f32 b) → lista<f32> ∪ nihil {
+    si bounds.validum() ≡ falsum ergo redde nihil
+
+    fixum f32 x1 ← bounds.min.x
+    fixum f32 y1 ← bounds.min.y
+    fixum f32 z1 ← bounds.min.z
+    fixum f32 x2 ← bounds.max.x
+    fixum f32 y2 ← bounds.max.y
+    fixum f32 z2 ← bounds.max.z
+
+    varia lista<f32> p ← vacua
+
+    # +X face (right) — normal (1,0,0)
+    p ← _append_face(p, x2, y1, z1, x2, y2, z1, x2, y2, z2, x2, y1, z2, 1.0, 0.0, 0.0, r, g, b)
+
+    # -X face (left) — normal (-1,0,0)
+    p ← _append_face(p, x1, y1, z2, x1, y2, z2, x1, y2, z1, x1, y1, z1, -1.0, 0.0, 0.0, r, g, b)
+
+    # +Y face (top) — normal (0,1,0)
+    p ← _append_face(p, x1, y2, z1, x2, y2, z1, x2, y2, z2, x1, y2, z2, 0.0, 1.0, 0.0, r, g, b)
+
+    # -Y face (bottom) — normal (0,-1,0)
+    p ← _append_face(p, x1, y1, z2, x2, y1, z2, x2, y1, z1, x1, y1, z1, 0.0, -1.0, 0.0, r, g, b)
+
+    # +Z face (front/pest) — normal (0,0,1)
+    p ← _append_face(p, x1, y1, z2, x2, y1, z2, x2, y2, z2, x1, y2, z2, 0.0, 0.0, 1.0, r, g, b)
+
+    # -Z face (back/buda) — normal (0,0,-1)
+    p ← _append_face(p, x2, y1, z1, x1, y1, z1, x1, y2, z1, x2, y2, z1, 0.0, 0.0, -1.0, r, g, b)
+
+    redde p
+}
+```
+
+---
+
+[All examples](/examples/) · [Install](/start/install.html) · [Cheat sheet](/cheatsheet/)

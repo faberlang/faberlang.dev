@@ -93,7 +93,7 @@ git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-مزيد من الحزم: [أمثلة](/start/examples.html). سطح واجهة الأوامر:
+مزيد من الحزم: [أمثلة](/examples/). سطح واجهة الأوامر:
 [أداة بناء Faber](/toolchain/cli.html).
 
 ## حالة Homebrew {#homebrew}

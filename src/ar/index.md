@@ -68,7 +68,7 @@ faber --version
 | [الأوامر](/cheatsheet/commands.html) | بشري + وكيل | حلقة CLI اليومية: check, build, run, test, explain |
 | [المشاريع](/start/projects.html) | بشري + وكيل | الانتقال من hello-world إلى حزم حقيقية |
 | [جولة سريعة](/start/) | بشري | شكل اللغة في خمس دقائق |
-| [أمثلة](/start/examples.html) | بشري + وكيل | حزم حقيقية: تطبيقات CLI، مساحة بريد، GPU، corpus |
+| [أمثلة](/examples/) | بشري + وكيل | حزم حقيقية: تطبيقات CLI، مساحة بريد، GPU، corpus |
 | [`/llms.txt`](/llms.txt) | وكيل | فهرس آلي — ابدأ هنا إذا كنت نموذجاً |
 | [دليل الوكيل](/agents/index.md) | وكيل | كيفية تعلم Faber وشحن حزمة |
 | [مهارات الوكيل](/.well-known/agent-skills/index.json) | وكيل | أدلة مهارات مركزة (تثبيت، لغة، أمثلة، …) |

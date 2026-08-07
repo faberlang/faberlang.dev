@@ -41,7 +41,7 @@ faber check examples/ai-workbench/packages/faber-ai
 1. [ทัวร์สั้น ๆ](/start/) เพื่อเรียนรู้ไวยากรณ์พื้นฐาน
 2. [สวัสดี Faber](/start/hello.html) สำหรับแพ็กเกจเดียว
 3. [คอร์ปัส](/corpus/) ซึ่งมีหนึ่งหน้าต่อหนึ่งคีย์เวิร์ดหรือโครงสร้าง
-4. [ตัวอย่าง](/start/examples.html) สำหรับแอปพลิเคชันขนาดใหญ่ขึ้น
+4. [ตัวอย่าง](/examples/) สำหรับแอปพลิเคชันขนาดใหญ่ขึ้น
 5. [เครื่องมือบิลด์ Faber](/toolchain/cli.html) สำหรับรายละเอียด CLI
 
 ## เวิร์กโฟลว์สำหรับเอเจนต์ {#agent-workflow}
@@ -69,4 +69,4 @@ faber check path/to/package
 
 | ก่อนหน้า | ถัดไป |
 |---|---|
-| [คำสั่งที่คุณจะใช้](/cheatsheet/commands.html) | [ตัวอย่าง](/start/examples.html) |
+| [คำสั่งที่คุณจะใช้](/cheatsheet/commands.html) | [ตัวอย่าง](/examples/) |

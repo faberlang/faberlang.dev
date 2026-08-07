@@ -43,10 +43,17 @@ That is a complete, compilable package entry point. Reading it left to right:
 This is the single rule that makes the rest of the grammar small:
 
 ```faber
-numerus count              # a declaration
-textus name                # another
-lista<numerus> scores      # a generic
-numerus ∪ nihil maybe      # a nullable
+incipit {
+    # a declaration
+    fixum numerus count ← 0
+    # another
+    fixum textus name ← "Marcus"
+    # a generic
+    fixum lista<numerus> scores ← [1, 2, 3]
+    # a nullable
+    fixum numerus ∪ nihil maybe ← nihil
+    nota count, name, scores, maybe
+}
 ```
 
 There is no `let`, no `:`, and no type inference syntax to learn. A

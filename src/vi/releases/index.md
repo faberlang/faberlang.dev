@@ -25,7 +25,7 @@ Tải xuống các gói lưu trữ Faber CLI dựng sẵn và duyệt mọi th�
 | [Xin chào, Faber](/start/hello.html) | Gói đầu tiên |
 | [Các lệnh](/cheatsheet/commands.html) | Vòng lặp CLI hằng ngày |
 | [Dự án](/start/projects.html) | Bố cục gói thực tế |
-| [Ví dụ](/start/examples.html) | Các gói mẫu công khai |
+| [Ví dụ](/examples/) | Các gói mẫu công khai |
 
 Hướng dẫn dựng từ mã nguồn **cố ý không được liên kết** ở đây. Hãy dùng các gói dựng sẵn, trừ khi bạn làm việc trên cây trình biên dịch riêng tư.
 

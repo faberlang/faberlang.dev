@@ -23,7 +23,7 @@ source_locale = "en-US"
 | [Hello, Faber](/start/hello.html) | 第一个包 |
 | [命令](/cheatsheet/commands.html) | 日常 CLI 工作流 |
 | [项目](/start/projects.html) | 真实的包布局 |
-| [示例](/start/examples.html) | 公开示例包 |
+| [示例](/examples/) | 公开示例包 |
 
 这里**没有**提供从源码构建的说明。除非你在开发私有编译器代码树，否则请使用预构建归档文件。
 

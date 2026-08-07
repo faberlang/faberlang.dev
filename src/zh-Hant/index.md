@@ -67,7 +67,7 @@ faber --version
 | [命令](/cheatsheet/commands.html) | 人類 + 代理程式 | 日常 CLI 迴圈：check、build、run、test、explain |
 | [專案](/start/projects.html) | 人類 + 代理程式 | 從 hello-world 邁向實際套件 |
 | [快速導覽](/start/) | 人類 | 五分鐘了解語言形貌 |
-| [範例](/start/examples.html) | 人類 + 代理程式 | 實際套件：CLI 應用程式、郵件空間、GPU、語料庫 |
+| [範例](/examples/) | 人類 + 代理程式 | 實際套件：CLI 應用程式、郵件空間、GPU、語料庫 |
 | [`/llms.txt`](/llms.txt) | 代理程式 | 機器索引——如果你是模型，請從這裡開始 |
 | [代理程式指南](/agents/index.md) | 代理程式 | 如何學習 Faber 並發布套件 |
 | [代理程式技能](/.well-known/agent-skills/index.json) | 代理程式 | 專注的技能指南（安裝、語言、範例……） |

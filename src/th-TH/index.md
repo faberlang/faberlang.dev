@@ -71,7 +71,7 @@ faber --version
 | [คำสั่ง](/cheatsheet/commands.html) | มนุษย์ + เอเจนต์ | วงจร CLI ประจำวัน: check, build, run, test, explain |
 | [โปรเจกต์](/start/projects.html) | มนุษย์ + เอเจนต์ | เปลี่ยนจาก hello-world ไปสู่แพ็กเกจจริง |
 | [ทัวร์ด่วน](/start/) | มนุษย์ | รูปแบบของภาษาในห้านาที |
-| [ตัวอย่าง](/start/examples.html) | มนุษย์ + เอเจนต์ | แพ็กเกจจริง: แอป CLI, mailspace, GPU, corpus |
+| [ตัวอย่าง](/examples/) | มนุษย์ + เอเจนต์ | แพ็กเกจจริง: แอป CLI, mailspace, GPU, corpus |
 | [`/llms.txt`](/llms.txt) | เอเจนต์ | ดัชนีสำหรับเครื่อง — หากคุณเป็นโมเดล ให้เริ่มที่นี่ |
 | [คู่มือเอเจนต์](/agents/index.md) | เอเจนต์ | วิธีเรียนรู้ Faber และส่งมอบแพ็กเกจ |
 | [ทักษะเอเจนต์](/.well-known/agent-skills/index.json) | เอเจนต์ | คู่มือทักษะเฉพาะด้าน (การติดตั้ง, ภาษา, ตัวอย่าง, …) |

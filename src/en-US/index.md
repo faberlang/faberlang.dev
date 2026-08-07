@@ -112,7 +112,7 @@ binary and checksums.
 | [Commands](/cheatsheet/commands.html) | Human + agent | Daily CLI loop: check, build, run, test, explain |
 | [Projects](/start/projects.html) | Human + agent | Move from hello-world into real packages |
 | [Quick tour](/start/) | Human | Language shape in five minutes |
-| [Examples](/start/examples.html) | Human + agent | Real packages: CLI apps, mailspace, GPU, corpus |
+| [Examples](/examples/) | Human + agent | Real packages: CLI apps, mailspace, GPU, corpus |
 | [`/llms.txt`](/llms.txt) | Agent | Machine index — start here if you are a model |
 | [Agent guide](/agents/index.md) | Agent | How to learn Faber and ship a package |
 | [Agent skills](/.well-known/agent-skills/index.json) | Agent | Focused skill guides (install, language, examples, …) |

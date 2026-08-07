@@ -76,7 +76,7 @@ CLIs, a local mailspace, GPU workload tracks, and a full language corpus.
 | gpu-workload | Systems / GPU rungs |
 | corpus | One directory per language construct |
 
-Browse them on the [examples page](/start/examples.html).
+Browse them on the [examples page](/examples/).
 
 ## 5. If you are an agent {#agents}
 

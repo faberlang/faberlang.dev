@@ -68,7 +68,7 @@ faber --version
 | [命令](/cheatsheet/commands.html) | 人类用户 + 代理 | 日常 CLI 循环：检查、构建、运行、测试、解释 |
 | [项目](/start/projects.html) | 人类用户 + 代理 | 从 Hello World 迈向真正的包 |
 | [快速导览](/start/) | 人类用户 | 五分钟了解语言形态 |
-| [示例](/start/examples.html) | 人类用户 + 代理 | 真实的包：CLI 应用、邮件空间、GPU、语料库 |
+| [示例](/examples/) | 人类用户 + 代理 | 真实的包：CLI 应用、邮件空间、GPU、语料库 |
 | [`/llms.txt`](/llms.txt) | 代理 | 机器索引——如果您是模型，请从这里开始 |
 | [代理指南](/agents/index.md) | 代理 | 如何学习 Faber 并交付一个包 |
 | [代理技能](/.well-known/agent-skills/index.json) | 代理 | 专题技能指南（安装、语言、示例等） |

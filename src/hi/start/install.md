@@ -83,7 +83,7 @@ git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-अधिक पैकेज: [उदाहरण](/start/examples.html)। CLI सतह:
+अधिक पैकेज: [उदाहरण](/examples/)। CLI सतह:
 [Faber बिल्ड टूल](/toolchain/cli.html)।
 
 ## Homebrew स्थिति {#homebrew}

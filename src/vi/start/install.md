@@ -83,7 +83,7 @@ git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-Xem thêm các gói: [Ví dụ](/start/examples.html). Bề mặt CLI: [Công cụ dựng Faber](/toolchain/cli.html).
+Xem thêm các gói: [Ví dụ](/examples/). Bề mặt CLI: [Công cụ dựng Faber](/toolchain/cli.html).
 
 ## Trạng thái Homebrew {#homebrew}
 

@@ -18,6 +18,7 @@ functio est_content_path(textus href) → bivalens {
     si su.initium_cum(href, "/start/") ergo redde verum
     si su.initium_cum(href, "/start") et href.longitudo() ≡ 6 ergo redde verum
     si su.initium_cum(href, "/cheatsheet/") ergo redde verum
+    si su.initium_cum(href, "/examples/") ergo redde verum
     si su.initium_cum(href, "/releases/") ergo redde verum
     si su.initium_cum(href, "/targets/") ergo redde verum
     si su.initium_cum(href, "/language/") ergo redde verum

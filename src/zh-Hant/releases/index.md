@@ -23,7 +23,7 @@ source_locale = "en-US"
 | [Hello, Faber](/start/hello.html) | 第一個套件 |
 | [命令](/cheatsheet/commands.html) | 日常 CLI 迴圈 |
 | [專案](/start/projects.html) | 實際套件配置 |
-| [範例](/start/examples.html) | 公開範例套件 |
+| [範例](/examples/) | 公開範例套件 |
 
 這裡刻意**不**提供從原始碼建置的說明連結。除非你正在處理私有編譯器樹，否則請使用預先建置的封存檔。
 

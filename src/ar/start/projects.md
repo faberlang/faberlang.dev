@@ -39,7 +39,7 @@ faber check examples/ai-workbench/packages/faber-ai
 1. [جولة سريعة](/start/) لقواعد السطح النحوية.
 2. [مرحبًا، Faber](/start/hello.html) لحزمة واحدة.
 3. [المجموعة](/corpus/) لصفحة واحدة لكل كلمة مفتاحية أو بناء.
-4. [أمثلة](/start/examples.html) لتطبيقات أكبر.
+4. [أمثلة](/examples/) لتطبيقات أكبر.
 5. [أداة بناء Faber](/toolchain/cli.html) لتفاصيل CLI.
 
 ## سير عمل الوكيل {#agent-workflow}
@@ -67,4 +67,4 @@ faber check path/to/package
 
 | السابق | التالي |
 |---|---|
-| [الأوامر التي ستستخدمها](/cheatsheet/commands.html) | [أمثلة](/start/examples.html) |
+| [الأوامر التي ستستخدمها](/cheatsheet/commands.html) | [أمثلة](/examples/) |

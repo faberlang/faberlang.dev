@@ -85,7 +85,7 @@ git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-ดูแพ็กเกจเพิ่มเติมได้ที่ [ตัวอย่าง](/start/examples.html) พื้นผิวของ CLI:
+ดูแพ็กเกจเพิ่มเติมได้ที่ [ตัวอย่าง](/examples/) พื้นผิวของ CLI:
 [เครื่องมือสร้าง Faber](/toolchain/cli.html)
 
 ## สถานะของ Homebrew {#homebrew}

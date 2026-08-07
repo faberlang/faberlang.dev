@@ -217,7 +217,7 @@ functio genera_renderbar(textus site_locale) → doc_mod.Node {
 functio genera_sidebar(textus active_section, textus site_locale) → doc_mod.Node {
     varia lista<doc_mod.Node> children ← vacua
     children.appende(genera_brand(site_locale))
-    children.appende(nav_list([li(genera_nav_link("Home", lp.content_href("/", site_locale), active_section ≡ "")), li(genera_nav_link("Install", lp.content_href("/start/install.html", site_locale), active_section ≡ "install")), li(genera_nav_link("Cheat sheet", lp.content_href("/cheatsheet/", site_locale), active_section ≡ "cheatsheet")), li(genera_nav_link("Releases", lp.content_href("/releases/", site_locale), active_section ≡ "releases")), li(genera_nav_link("Open source", lp.content_href("/open-source.html", site_locale), active_section ≡ "open-source")), li(genera_nav_link("Examples", lp.content_href("/start/examples.html", site_locale), active_section ≡ "examples")), li(genera_nav_link("Target lanes", lp.content_href("/targets/", site_locale), active_section ≡ "targets"))], "nav"))
+    children.appende(nav_list([li(genera_nav_link("Home", lp.content_href("/", site_locale), active_section ≡ "")), li(genera_nav_link("Install", lp.content_href("/start/install.html", site_locale), active_section ≡ "install")), li(genera_nav_link("Cheat sheet", lp.content_href("/cheatsheet/", site_locale), active_section ≡ "cheatsheet")), li(genera_nav_link("Releases", lp.content_href("/releases/", site_locale), active_section ≡ "releases")), li(genera_nav_link("Open source", lp.content_href("/open-source.html", site_locale), active_section ≡ "open-source")), li(genera_nav_link("Examples", lp.content_href("/examples/", site_locale), active_section ≡ "examples")), li(genera_nav_link("Target lanes", lp.content_href("/targets/", site_locale), active_section ≡ "targets"))], "nav"))
     children.appende(side_h("Start"))
     children.appende(nav_list([li(genera_nav_link("Hello, world", lp.content_href("/start/hello.html", site_locale), active_section ≡ "hello")), li(genera_nav_link("Quick tour", lp.content_href("/start/", site_locale), active_section ≡ "start")), li(genera_nav_link("Your first package", lp.content_href("/start/projects.html", site_locale), active_section ≡ "projects"))], "nav"))
     children.appende(side_h("Language"))
@@ -289,7 +289,7 @@ functio genera_agent_notice(textus site_locale) → doc_mod.Node {
     p_children.appende(doc_mod.text(". Humans: use "))
     p_children.appende(a(lp.content_href("/start/install.html", site_locale), "Install"))
     p_children.appende(doc_mod.text(" and "))
-    p_children.appende(a(lp.content_href("/start/examples.html", site_locale), "Examples"))
+    p_children.appende(a(lp.content_href("/examples/", site_locale), "Examples"))
     p_children.appende(doc_mod.text("."))
 
     fixum doc_mod.Node label ← doc_mod.leaf("span", [doc_mod.attr("class", "agent-notice-label")], "Agent-ready")

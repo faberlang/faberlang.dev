@@ -1,0 +1,114 @@
++++
+title = "coreutils — cat"
+section = "examples"
+order = 53
+sources = []
++++
+
+Part of a campaign reimplementing common utilities with parity harnesses. Worth reading for the ordinary shape of a CLI package: argument annotations, file I/O through Norma, and error handling on the `⇥` channel.
+
+Source: [`examples/coreutils/packages/cat`](https://github.com/faberlang/examples/tree/main/coreutils/packages/cat)
+
+## `src/main.fab` {#src-main-fab}
+
+One file of a multi-file package: it refers to siblings that are not shown here.
+
+```faber mode=package
+# =============================================================================
+# cat — concatenate files and print to stdout
+# =============================================================================
+#
+# What this example teaches:
+#   • Recursive functio — cat_stdin calls itself to process lines until EOF
+#   • textus ∪ nihil — nullable lege return for end-of-stream detection
+#   • itera ex solum.carpe — file line iteration via the solum stdlib
+#   • si branch — dispatching stdin vs file mode based on operand count
+#   • probandum/proba — testing mode selection without I/O
+#
+# Syntaxes used:
+#   • importa — lines 1-2
+#   • functio … → bivalens — line 4
+#   • functio … → vacuum — lines 10, 18, 23
+#   • redde — lines 4, 30, 32
+#   • si / secus — lines 14, 21, 28-29
+#   • itera ex — lines 20, 24
+#   • lege (built-in) — line 14
+#   • varia / fixum — throughout
+#   • ≡ / non est — lines 5, 13, 14
+#   • vel (default) — line 16
+#   • probandum / proba / adfirma — lines 30-33
+#   • ∪ nihil — line 13
+#   • @ cli / @ descriptio / @ operandus — lines 38-40
+#   • incipit — line 41
+#
+# Alternate approaches (not shown):
+#   • recursive stdin read vs fac/dum verum iterative loop — avoids stack growth for large input (alternates doc §Recursive stdin read)
+#
+# Anti-patterns (avoid these):
+#   • si condition must be bivalens — Faber requires explicit boolean conditions, no truthy/falsy coercion
+#   • lege returns textus ∪ nihil — always check est nihil before use, vel for default fallback
+#
+# Learning path:
+#   Before: pwd, yes
+#   After:  head, tail, wc
+#
+# Stage: Stage 2-4, stdin/file parity
+# Backend: stepper+Rust
+# =============================================================================
+
+importa ex "norma:solum" privata solum
+importa ex "§gnu/stdio" privata gnu_stdio
+
+functio modus_stdin(lista<textus> operands) → bivalens {
+    redde operands.longitudo() ≡ 0
+}
+
+# lege returns nihil at EOF, so recursion stops without printing a final
+# synthetic line.
+functio cat_stdin() → vacuum {
+    fixum textus ∪ nihil linea ← lege
+    si linea non est nihil {
+        gnu_stdio.scribe_linea(linea vel "")
+        cat_stdin()
+    }
+}
+
+functio cat_file(textus path) → vacuum {
+    itera ex solum.carpe(path) fixum linea {
+        gnu_stdio.scribe_linea(linea)
+    }
+}
+
+functio cat_files(lista<textus> operands) → vacuum {
+    itera ex operands fixum path {
+        cat_file(path)
+    }
+}
+
+probandum "cat operand mode" tag "coreutils" {
+    proba "no operands selects stdin mode" {
+        adfirma modus_stdin([]) ≡ verum
+    }
+    proba "file operands select file mode" {
+        adfirma modus_stdin(["input.txt"]) ≡ falsum
+    }
+}
+
+@ cli "cat"
+@ descriptio "GNU coreutils cat stdin parity exemplum"
+@ operandus ceteri textus operands
+incipit argumenta args {
+    fixum lista<textus> operands ← args.operands
+    fixum numerus count ← operands.longitudo()
+    si count ≡ 0 {
+        cat_stdin()
+    }
+    si count > 0 {
+        cat_files(operands)
+    }
+}
+```
+
+---
+
+[All examples](/examples/) · [Install](/start/install.html) · [Cheat sheet](/cheatsheet/)

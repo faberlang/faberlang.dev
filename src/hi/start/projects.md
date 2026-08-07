@@ -39,7 +39,7 @@ faber check examples/ai-workbench/packages/faber-ai
 1. [त्वरित परिचय](/start/) में सतही व्याकरण देखें।
 2. [Hello, Faber](/start/hello.html) में एकल पैकेज देखें।
 3. [कॉर्पस](/corpus/) में प्रत्येक कीवर्ड या कंस्ट्रक्ट के लिए एक पृष्ठ देखें।
-4. बड़े एप्लिकेशन के लिए [उदाहरण](/start/examples.html) देखें।
+4. बड़े एप्लिकेशन के लिए [उदाहरण](/examples/) देखें।
 5. CLI विवरण के लिए [Faber बिल्ड टूल](/toolchain/cli.html) देखें।
 
 ## एजेंट वर्कफ़्लो {#agent-workflow}
@@ -67,4 +67,4 @@ faber check path/to/package
 
 | पिछला | अगला |
 |---|---|
-| [आपके द्वारा उपयोग किए जाने वाले कमांड](/cheatsheet/commands.html) | [उदाहरण](/start/examples.html) |
+| [आपके द्वारा उपयोग किए जाने वाले कमांड](/cheatsheet/commands.html) | [उदाहरण](/examples/) |

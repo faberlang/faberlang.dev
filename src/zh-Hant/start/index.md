@@ -75,7 +75,7 @@ faber test my-app/
 | gpu-workload | 系統／GPU 階梯 |
 | corpus | 每個語言結構各有一個目錄 |
 
-請在[範例頁面](/start/examples.html)瀏覽這些內容。
+請在[範例頁面](/examples/)瀏覽這些內容。
 
 ## 5. 如果您是代理 {#agents}
 

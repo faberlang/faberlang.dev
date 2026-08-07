@@ -81,7 +81,7 @@ faber test my-app/
 | gpu-workload | أنظمة / درجات GPU |
 | corpus | مجلد واحد لكل بناء لغوي |
 
-استعرضها في [صفحة الأمثلة](/start/examples.html).
+استعرضها في [صفحة الأمثلة](/examples/).
 
 ## ٥. إذا كنت وكيلاً {#agents}
 

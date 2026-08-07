@@ -84,7 +84,7 @@ lệnh, một mailspace cục bộ, các nhánh workload GPU và một corpus ng
 | gpu-workload | Các nấc hệ thống / GPU |
 | corpus | Mỗi cấu trúc ngôn ngữ một thư mục |
 
-Xem chúng trên [trang examples](/start/examples.html).
+Xem chúng trên [trang examples](/examples/).
 
 ## 5. Nếu bạn là agent {#agents}
 

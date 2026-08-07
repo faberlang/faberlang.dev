@@ -5,9 +5,14 @@
 # Extracts every ```faber code block from Markdown files and validates
 # it against the declared fence contract:
 #
-#   ```faber [locale=<X>] [mode=fluid|pinned] [outcome=compiles|rejects|output-matches]
+#   ```faber [locale=<X>] [mode=fluid|pinned|package] [outcome=compiles|rejects|output-matches]
 #
 # Default contract: locale=la, mode=fluid, outcome=compiles.
+#
+# mode=package marks a fence that is one file of a real multi-file package.
+# Its sibling imports cannot resolve when the fence is checked on its own, so
+# it is checked with --permissive: the code still has to parse and type-check,
+# but unresolved cross-file references are expected rather than a failure.
 #
 # The script extracts each fence to a temporary .fab file and runs:
 #   - outcome=compiles  → radix check must succeed
@@ -139,9 +144,14 @@ validate_fence() {
     local pack_arg
     pack_arg="$(radix_locale_args "$locale")"
 
+    local mode_arg=""
+    if [ "$mode" = "package" ]; then
+        mode_arg="--permissive"
+    fi
+
     case "$outcome" in
         compiles)
-            if "$RADIX" check ${pack_arg:+"$pack_arg"} "$tmpfile" > /dev/null 2>&1; then
+            if "$RADIX" check ${mode_arg:+"$mode_arg"} ${pack_arg:+"$pack_arg"} "$tmpfile" > /dev/null 2>&1; then
                 log_pass "$label"
                 PASS=$((PASS + 1))
             else
@@ -150,7 +160,7 @@ validate_fence() {
             fi
             ;;
         rejects)
-            if "$RADIX" check ${pack_arg:+"$pack_arg"} "$tmpfile" > /dev/null 2>&1; then
+            if "$RADIX" check ${mode_arg:+"$mode_arg"} ${pack_arg:+"$pack_arg"} "$tmpfile" > /dev/null 2>&1; then
                 log_fail "$label — expected rejects, radix check succeeded"
                 FAIL=$((FAIL + 1))
             else

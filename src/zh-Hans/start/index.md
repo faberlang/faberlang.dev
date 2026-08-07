@@ -78,7 +78,7 @@ faber test my-app/
 | gpu-workload | 系统 / GPU 等级 |
 | corpus | 每个语言构造一个目录 |
 
-请在[示例页面](/start/examples.html)上浏览它们。
+请在[示例页面](/examples/)上浏览它们。
 
 ## 5. 如果您是代理 {#agents}
 

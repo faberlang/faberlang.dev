@@ -85,7 +85,7 @@ git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-更多套件：[範例](/start/examples.html)。CLI 介面：
+更多套件：[範例](/examples/)。CLI 介面：
 [Faber 建置工具](/toolchain/cli.html)。
 
 ## Homebrew 狀態 {#homebrew}

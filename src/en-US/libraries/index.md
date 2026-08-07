@@ -15,8 +15,12 @@ The standard library. Imported as `norma:*`, no installation step, no entry in
 `faber.toml`:
 
 ```faber
-importa norma:solum
-importa norma:textus
+importa ex "norma:solum" privata solum
+importa ex "norma:textus" privata textus
+
+incipit {
+    nota "ready"
+}
 ```
 
 It covers I/O, collections, strings, math, and system interaction. It is

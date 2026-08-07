@@ -85,7 +85,7 @@ git clone https://github.com/faberlang/examples.git
 faber check examples/ai-workbench/packages/faber-ai
 ```
 
-More packages: [Examples](/start/examples.html). CLI surface:
+More packages: [Examples](/examples/). CLI surface:
 [Faber build tool](/toolchain/cli.html).
 
 ## Next {#next}

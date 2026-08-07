@@ -29,6 +29,9 @@ MAP: list[tuple[str, str]] = [
     # start/commands → the cheat sheet's Commands page (it was always a cheat
     # sheet, sitting in the middle of a sequenced tutorial track)
     ("/start/commands.html", "/cheatsheet/commands.html"),
+    # start/examples → the Examples section, which carries real package
+    # source on the site instead of describing it and linking to GitHub
+    ("/start/examples.html", "/examples/"),
     # syntax/* → language/*
     ("/syntax/types.html", "/language/types.html"),
     ("/syntax/variables.html", "/language/types.html"),
@@ -66,8 +69,8 @@ MAP: list[tuple[str, str]] = [
     ("/ecosystem/triga.html", "/libraries/triga.html"),
     ("/ecosystem/corpus.html", "/libraries/corpus.html"),
     ("/ecosystem/reader-locale-packages.html", "/language/reader-locales.html"),
-    ("/ecosystem/ai-workbench.html", "/start/examples.html"),
-    ("/ecosystem/coreutils.html", "/start/examples.html"),
+    ("/ecosystem/ai-workbench.html", "/examples/"),
+    ("/ecosystem/coreutils.html", "/examples/"),
     ("/ecosystem/", "/libraries/"),
     # references/* → reference/*
     ("/references/ebnf.html", "/reference/grammar.html"),

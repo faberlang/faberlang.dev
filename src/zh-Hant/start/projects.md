@@ -39,7 +39,7 @@ faber check examples/ai-workbench/packages/faber-ai
 1. [快速導覽](/start/)：瞭解表面語法。
 2. [Hello, Faber](/start/hello.html)：瞭解單一套件。
 3. [語料庫](/corpus/)：每個關鍵字或結構各有一頁。
-4. [範例](/start/examples.html)：瞭解較大型的應用程式。
+4. [範例](/examples/)：瞭解較大型的應用程式。
 5. [Faber 建置工具](/toolchain/cli.html)：瞭解 CLI 詳細資訊。
 
 ## 代理工作流程 {#agent-workflow}
@@ -67,4 +67,4 @@ faber check path/to/package
 
 | 上一頁 | 下一頁 |
 |---|---|
-| [你將使用的命令](/cheatsheet/commands.html) | [範例](/start/examples.html) |
+| [你將使用的命令](/cheatsheet/commands.html) | [範例](/examples/) |
