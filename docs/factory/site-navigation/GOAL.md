@@ -298,9 +298,10 @@ mailing list or support email — GitHub Issues is the way to get in touch."
 Publishing an address contradicts that line, so it must be rewritten rather
 than carried over during the fold-in, or the page will argue with itself.
 
-Consider obfuscating the address in the rendered HTML against scrapers. The
-site ships almost no JavaScript by design, so any approach must degrade to a
-readable address without it.
+Publish as a plain `mailto:` — no obfuscation. The address already appears in
+public commit metadata across the org, so hiding it on one page protects
+nothing, and every JS-assembly trick fails the site's no-JavaScript-for-content
+property.
 
 ### Replaces the Repositories page
 
