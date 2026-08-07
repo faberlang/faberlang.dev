@@ -344,14 +344,18 @@ if [ "$FULL_SITE" = true ]; then
             exit 1
         fi
 
-        # Landing page checks (/) — user outcome, capability ladder, and proofs
+        # Landing page checks (/) — user outcome, honesty bounds, and proofs.
+        # The capability ladder is no longer a card grid: each rung is stated by
+        # the section that demonstrates it, so the checks below assert the
+        # not-shipped boundaries survive rather than looking for the old grid.
         smoke_contains "${OUTPUT_DIR}/index.html" 'class="landing"' "landing body class"
         smoke_contains "${OUTPUT_DIR}/index.html" "Write compute programs" "landing headline"
-        smoke_contains "${OUTPUT_DIR}/index.html" "One tool, four honest states" "landing capability ladder"
+        smoke_contains "${OUTPUT_DIR}/index.html" "device inference is not shipped" "landing inference bound"
+        smoke_contains "${OUTPUT_DIR}/index.html" "Readable in your language" "landing locale axis"
         smoke_contains "${OUTPUT_DIR}/index.html" "Training through Metal or CUDA" "landing training section"
         smoke_contains "${OUTPUT_DIR}/index.html" "faber run --backend cuda" "landing CUDA route"
         smoke_contains "${OUTPUT_DIR}/index.html" "Inference is being built next" "landing inference status"
-        smoke_contains "${OUTPUT_DIR}/index.html" "Frontier · multi-device execution" "landing multi-device status"
+        smoke_contains "${OUTPUT_DIR}/index.html" "Future · multi-device scale" "landing multi-device status"
         smoke_contains "${OUTPUT_DIR}/index.html" "const list&lt;f32&gt; flat_a" "landing English reader panel"
         smoke_contains "${OUTPUT_DIR}/index.html" "fixum lista&lt;f32&gt; flat_a" "landing Latin reader panel"
         smoke_contains "${OUTPUT_DIR}/index.html" "ภาษาไทย" "landing Thai reader panel"

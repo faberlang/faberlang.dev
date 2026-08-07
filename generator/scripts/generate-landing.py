@@ -2,13 +2,25 @@
 """
 generate-landing.py — Generate the Faber landing page at /.
 
-Narrative order, deliberately plain:
+Narrative order, deliberately plain — show the thing, then explain it:
 
-    1. the user outcome: one semantic program, readable in your language
-    2. the honest capability ladder: shipped, proven now, building next, frontier
-    3. the product loop: application targets or real GPU work
-    4. the supporting GPU and graphics proofs
-    5. where to go
+    1. readable in your language: the same program across eight reader locales
+    2. one semantic program: that program lowered to application targets
+    3. compiler lanes: the table, now that both axes have been demonstrated
+    4. real GPU work: Metal/CUDA training, the kernel, and what is not shipped
+    5. the supporting graphics and scripting proofs
+    6. where to go
+
+The lanes table used to sit directly under the buttons, asking a visitor to
+read an inventory of HIR/AIR/MIR/FMIR before seeing a line of Faber. It reads
+far better as a summary of two things already shown than as an introduction to
+two things not yet shown.
+
+There was also a "one tool, four honest states" card grid here. In this order
+every rung it named — shipped reader locales, proven Metal/CUDA training,
+inference being built, multi-device as frontier — has already been made
+concretely by the section that demonstrates it, so the grid had become a
+summary of what the reader just finished reading.
 
 Both demo axes show the SAME program, and every panel is compiler output
 captured by capture-landing-panels.sh — never hand-authored. Run that script
@@ -297,42 +309,7 @@ def main() -> None:
     </div>
   </section>
 
-  <section class="fl-lanes">
-    <h2>Compiler lanes</h2>
-    <table>
-      <thead><tr><th>Lane</th><th>Targets / outputs</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Locale</strong></td><td>en (base surface) · la (canonical classical) · th-TH · zh-Hans · zh-Hant · ar · vi · hi</td></tr>
-        <tr><td><strong>HIR</strong></td><td>Rust · Faber · TypeScript · Go · Swift</td></tr>
-        <tr><td><strong>AIR (autograd)</strong></td><td>Typed HIR → reverse-mode AD / fusion → MIR</td></tr>
-        <tr><td><strong>MIR</strong></td><td>LLVM · WASM · WGSL · S-expression · FMIR</td></tr>
-        <tr><td><strong>GPU</strong></td><td>Metal · CUDA</td></tr>
-        <tr><td><strong>Packaging</strong></td><td>FHIR · FMIR</td></tr>
-      </tbody>
-    </table>
-  </section>
 
-  <section class="fl-doors">
-    <h2>One tool, four honest states</h2>
-    <div class="fl-door-grid">
-      <a class="fl-door" href="/en-US/language/reader-locales.html">
-        <strong>Shipped · reader locales</strong>
-        <span>Localized source, diagnostics, and formatting preserve one program’s meaning.</span>
-      </a>
-      <a class="fl-door" href="/en-US/toolchain/cli.html#device-execution">
-        <strong>Proven now · Metal + CUDA training</strong>
-        <span>Dual-backend device-resident training (MLP path) with gradient mapping and numeric oracle comparison on both backends.</span>
-      </a>
-      <a class="fl-door" href="/en-US/toolchain/compiling.html#device-execution">
-        <strong>Building next · GPU inference</strong>
-        <span>Pinned model contract + CPU oracle are real; end-to-end device inference is not shipped.</span>
-      </a>
-      <a class="fl-door" href="/en-US/toolchain/compiling.html#gpu">
-        <strong>Frontier · multi-device execution</strong>
-        <span>Virtual GPUs, sharding, and distributed execution are future direction, not current runtime claims.</span>
-      </a>
-    </div>
-  </section>
 
   <section class="fl-proof">
     <div class="fl-proof-head">
@@ -371,6 +348,21 @@ def main() -> None:
       </p>
     </div>
 {target_tabs}  </section>
+
+  <section class="fl-lanes">
+    <h2>Compiler lanes</h2>
+    <table>
+      <thead><tr><th>Lane</th><th>Targets / outputs</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Locale</strong></td><td>en (base surface) · la (canonical classical) · th-TH · zh-Hans · zh-Hant · ar · vi · hi</td></tr>
+        <tr><td><strong>HIR</strong></td><td>Rust · Faber · TypeScript · Go · Swift</td></tr>
+        <tr><td><strong>AIR (autograd)</strong></td><td>Typed HIR → reverse-mode AD / fusion → MIR</td></tr>
+        <tr><td><strong>MIR</strong></td><td>LLVM · WASM · WGSL · S-expression · FMIR</td></tr>
+        <tr><td><strong>GPU</strong></td><td>Metal · CUDA</td></tr>
+        <tr><td><strong>Packaging</strong></td><td>FHIR · FMIR</td></tr>
+      </tbody>
+    </table>
+  </section>
 
   <section class="fl-proof">
     <div class="fl-proof-head">
