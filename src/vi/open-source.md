@@ -2,8 +2,8 @@
 translation_kind = "translated"
 
 title = "Repositories"
-section = "reference"
-order = 4
+section = "open-source"
+order = 6
 sources = [
   "github.com/faberlang",
 ]

@@ -420,5 +420,5 @@ Assets live in the public [faberlang/releases](https://github.com/faberlang/rele
 | Link | Role |
 |---|---|
 | [Install and download](/start/install.html) | Recommended install path |
-| [History](/history/) | Project timeline and origins |
+| [History](/reference/design.html) | Project timeline and origins |
 | [faberlang/releases on GitHub](https://github.com/faberlang/releases/releases) | Raw tag list and assets |

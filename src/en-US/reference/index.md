@@ -17,7 +17,7 @@ with a specific question.
 | How does this keyword behave? | [/corpus/](/corpus/), or `faber explain <term>` |
 | What changed in this version? | [Releases](/reference/releases.html) |
 | Why is the language like this? | [Design notes](/reference/design.html) |
-| Where does the source live? | [Repositories](/reference/repositories.html) |
+| Where does the source live? | [Repositories](/open-source.html) |
 
 The fastest of these is usually the CLI:
 
@@ -51,4 +51,4 @@ These are locale-less and live at the site root, not under `/reference/`:
 | [Grammar](/reference/grammar.html) | formal EBNF for every production |
 | [Releases](/reference/releases.html) | generated release inventory with assets and checksums |
 | [Design notes](/reference/design.html) | the design laws, deferred features, and how the language got here |
-| [Repositories](/reference/repositories.html) | the faberlang organization, repo by repo |
+| [Repositories](/open-source.html) | the faberlang organization, repo by repo |

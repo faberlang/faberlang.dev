@@ -247,4 +247,4 @@ the full discussion.
 | [faberlang/faberlang.dev](https://github.com/faberlang/faberlang.dev) | This documentation site |
 
 The full list — including the private compiler and where to file issues — is
-on the [Repositories](/reference/repositories.html) page.
+on the [Repositories](/open-source.html) page.

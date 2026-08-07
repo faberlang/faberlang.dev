@@ -20,6 +20,9 @@ REPO = Path(__file__).resolve().parent.parent.parent
 
 # Ordered: specific pages before their section prefixes.
 MAP: list[tuple[str, str]] = [
+    # reference/repositories → open-source (the readable front door; the
+    # repository tables, host platform list, and issue routing all folded in)
+    ("/reference/repositories.html", "/open-source.html"),
     # syntax/* → language/*
     ("/syntax/types.html", "/language/types.html"),
     ("/syntax/variables.html", "/language/types.html"),
@@ -63,7 +66,7 @@ MAP: list[tuple[str, str]] = [
     # references/* → reference/*
     ("/references/ebnf.html", "/reference/grammar.html"),
     ("/references/design-docs.html", "/reference/design.html"),
-    ("/references/repositories.html", "/reference/repositories.html"),
+    ("/references/repositories.html", "/open-source.html"),
     ("/references/", "/reference/"),
     # history/* → reference/*
     ("/history/releases.html", "/reference/releases.html"),
@@ -102,9 +105,20 @@ def stubs() -> None:
     dist = REPO / "dist"
     locales = [d.name for d in (REPO / "src").iterdir() if d.is_dir()]
     written = 0
+    fellback = 0
     for old, new in MAP:
         for loc in locales:
             target = f"/{loc}{new}"
+            # A locale that has not translated the destination yet would get a
+            # stub pointing into a 404. The link gate cannot see this — it does
+            # not follow meta-refresh targets — so check here and fall back to
+            # the English page, which always exists.
+            dest = dist / loc / new.lstrip("/")
+            if new.endswith("/"):
+                dest = dest / "index.html"
+            if not dest.exists():
+                target = f"/en-US{new}"
+                fellback += 1
             path = (dist / loc / old.lstrip("/") /
                     "index.html") if old.endswith("/") else (
                     dist / loc / old.lstrip("/"))
@@ -113,7 +127,8 @@ def stubs() -> None:
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text(STUB.format(target=target), encoding="utf-8")
             written += 1
-    print(f"stubs: {written} redirect pages written")
+    print(f"stubs: {written} redirect pages written "
+          f"({fellback} fell back to en-US for an untranslated target)")
 
 
 if __name__ == "__main__":

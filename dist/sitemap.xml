@@ -237,10 +237,10 @@
   <url><loc>https://faberlang.dev/ar/libraries/corpus.html</loc></url>
   <url><loc>https://faberlang.dev/ar/libraries/norma.html</loc></url>
   <url><loc>https://faberlang.dev/ar/libraries/triga.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/open-source.html</loc></url>
   <url><loc>https://faberlang.dev/ar/reference/design.html</loc></url>
   <url><loc>https://faberlang.dev/ar/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/ar/reference/releases.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/reference/repositories.html</loc></url>
   <url><loc>https://faberlang.dev/ar/start/</loc></url>
   <url><loc>https://faberlang.dev/ar/start/commands.html</loc></url>
   <url><loc>https://faberlang.dev/ar/start/examples.html</loc></url>
@@ -490,11 +490,11 @@
   <url><loc>https://faberlang.dev/en-US/libraries/corpus.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/libraries/norma.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/libraries/triga.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/open-source.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/reference/</loc></url>
   <url><loc>https://faberlang.dev/en-US/reference/design.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/reference/releases.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/reference/repositories.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/start/</loc></url>
   <url><loc>https://faberlang.dev/en-US/start/commands.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/start/examples.html</loc></url>
@@ -743,10 +743,10 @@
   <url><loc>https://faberlang.dev/hi/libraries/corpus.html</loc></url>
   <url><loc>https://faberlang.dev/hi/libraries/norma.html</loc></url>
   <url><loc>https://faberlang.dev/hi/libraries/triga.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/open-source.html</loc></url>
   <url><loc>https://faberlang.dev/hi/reference/design.html</loc></url>
   <url><loc>https://faberlang.dev/hi/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/hi/reference/releases.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/reference/repositories.html</loc></url>
   <url><loc>https://faberlang.dev/hi/start/</loc></url>
   <url><loc>https://faberlang.dev/hi/start/commands.html</loc></url>
   <url><loc>https://faberlang.dev/hi/start/examples.html</loc></url>
@@ -994,10 +994,10 @@
   <url><loc>https://faberlang.dev/th-TH/libraries/corpus.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/libraries/norma.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/libraries/triga.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/open-source.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/reference/design.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/reference/releases.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/reference/repositories.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/start/</loc></url>
   <url><loc>https://faberlang.dev/th-TH/start/commands.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/start/examples.html</loc></url>
@@ -1245,10 +1245,10 @@
   <url><loc>https://faberlang.dev/vi/libraries/corpus.html</loc></url>
   <url><loc>https://faberlang.dev/vi/libraries/norma.html</loc></url>
   <url><loc>https://faberlang.dev/vi/libraries/triga.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/open-source.html</loc></url>
   <url><loc>https://faberlang.dev/vi/reference/design.html</loc></url>
   <url><loc>https://faberlang.dev/vi/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/vi/reference/releases.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/reference/repositories.html</loc></url>
   <url><loc>https://faberlang.dev/vi/start/</loc></url>
   <url><loc>https://faberlang.dev/vi/start/commands.html</loc></url>
   <url><loc>https://faberlang.dev/vi/start/examples.html</loc></url>
@@ -1496,10 +1496,10 @@
   <url><loc>https://faberlang.dev/zh-Hans/libraries/corpus.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/libraries/norma.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/libraries/triga.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/open-source.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/reference/design.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/reference/releases.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/reference/repositories.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/start/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/start/commands.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/start/examples.html</loc></url>
@@ -1747,10 +1747,10 @@
   <url><loc>https://faberlang.dev/zh-Hant/libraries/corpus.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/libraries/norma.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/libraries/triga.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/open-source.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/reference/design.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/reference/releases.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/reference/repositories.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/start/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/start/commands.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/start/examples.html</loc></url>
