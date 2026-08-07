@@ -38,16 +38,20 @@ cheap; every entry has real work behind it.
 
 ### Thread index
 
-| Thread | Subject | Nature |
-|---|---|---|
-| 1 | Homepage call-to-action order | Small, isolated |
-| 2 | Cheat sheet section | Large, net-new |
-| 3 | Install / Releases split | Medium; content + generation |
-| 4 | Sidebar order | Small; chrome + labels |
-| 5 | Open source page (replaces Repositories) | Medium; migration + redirects |
-| 6 | Examples page rebuild + syntax highlighting | Large; two verified defects |
-| 7 | Target lanes section | Large; extends existing capture tooling |
-| 8 | GPU support must not read as unsupported | Medium; matrix removal + agent surfaces |
+| Thread | Subject | Nature | State |
+|---|---|---|---|
+| 1 | Homepage call-to-action order | Small, isolated | open — blocked on 2 |
+| 2 | Cheat sheet section | Large, net-new | open |
+| 3 | Install / Releases split | Medium; content + generation | open |
+| 4 | Sidebar order | Small; chrome + labels | open — blocked on 2, 5, 7 |
+| 5 | Open source page (replaces Repositories) | Medium; migration + redirects | open |
+| 6 | Examples page rebuild + syntax highlighting | Large; two verified defects | **highlighting done**; page rebuild open |
+| 7 | Target lanes section | Large; extends existing capture tooling | open |
+| 8 | GPU support must not read as unsupported | Medium; matrix removal + agent surfaces | **done** |
+
+Threads 1 and 4 are cheap but cannot land first: a sidebar entry or button
+pointing at a page that does not exist fails the build's internal-link gate.
+Destinations before navigation.
 
 Threads 1 and 4 are the cheapest and change the first-contact experience most
 directly. Thread 6's two highlighting defects are near-free and independently
@@ -624,6 +628,27 @@ Target lanes   (name unsettled: Targets / Codegen / Target lanes)
 
 `Home` must be a real link. Requiring a visitor to discover that the brand mark
 is clickable is a needless puzzle.
+
+## Trap discovered during implementation
+
+`build-site.sh:199` runs `generate-target-matrix.py --all-locales` on **every
+build**. `src/en-US/toolchain/target-matrix.md` is therefore a generated file.
+
+The zombie-docs pass (`7ce82b7b`) hand-edited 153 lines of GPU honesty prose
+into it — the percentage framing and the entire device-kernel product summary.
+The next build silently deleted all of it and reverted the page's cross-links to
+the retired `/tooling/…` IA. This was latent from the moment it was written; the
+first rebuild merely triggered it.
+
+Fixed in `ef260571` by moving that prose into
+`generator/locales/en-US/targets.toml`, which is where the generator's own
+design puts it ("Prose/chrome lives in generator/locales/<locale>/targets.toml
+so matrix regeneration does not wipe translations").
+
+**Rule for anyone working here:** before editing a page under `src/`, check
+whether a script writes it. Currently generated: `toolchain/target-matrix.md`,
+`reference/releases.md` (`generate-releases-page.py`), the whole `corpus/` tree,
+`dist/index.html`, and `dist/porta/index.html`.
 
 ## Adjacent defects found while walking
 
