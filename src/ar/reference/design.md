@@ -219,5 +219,5 @@ Ablative    (instrument)     →  dependencies, context, "using X"
 أرشيفات CLI مُجمّعة مسبقًا — إصدار Faber الحالي في الأعلى، ثم كل وسم منشور
 وثنائي من [faberlang/releases](https://github.com/faberlang/releases):
 
-- **[الإصدارات](/reference/releases.html)** — روابط التحميل وسجل المخزون التاريخي
+- **[الإصدارات](/releases/)** — روابط التحميل وسجل المخزون التاريخي
 - **[التثبيت والتحميل](/start/install.html)** — إعداد PATH وأول أمر `faber check`

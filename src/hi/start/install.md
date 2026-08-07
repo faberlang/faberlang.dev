@@ -22,7 +22,7 @@ source_locale = "en-US"
 | **संस्करण** | 1.2.0 |
 | **टैग** | `faber-v1.2.0` |
 | **रिलीज़ पृष्ठ** | GitHub पर [faber-v1.2.0](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0) |
-| **सभी रिलीज़** | [साइट रिलीज़ इन्वेंटरी](/reference/releases.html) |
+| **सभी रिलीज़** | [साइट रिलीज़ इन्वेंटरी](/releases/) |
 | **लाइसेंस** | MIT |
 
 ## प्रीबिल्ट आर्काइव {#archives}

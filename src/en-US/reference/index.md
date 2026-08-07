@@ -15,7 +15,7 @@ with a specific question.
 | Is this valid syntax? | [Grammar](/reference/grammar.html) — the full EBNF |
 | Does target X support construct Y? | [Target matrix](/toolchain/target-matrix.html) — measured, per term |
 | How does this keyword behave? | [/corpus/](/corpus/), or `faber explain <term>` |
-| What changed in this version? | [Releases](/reference/releases.html) |
+| What changed in this version? | [Releases](/releases/) |
 | Why is the language like this? | [Design notes](/reference/design.html) |
 | Where does the source live? | [Repositories](/open-source.html) |
 
@@ -49,6 +49,6 @@ These are locale-less and live at the site root, not under `/reference/`:
 | Page | What it is |
 |---|---|
 | [Grammar](/reference/grammar.html) | formal EBNF for every production |
-| [Releases](/reference/releases.html) | generated release inventory with assets and checksums |
+| [Releases](/releases/) | generated release inventory with assets and checksums |
 | [Design notes](/reference/design.html) | the design laws, deferred features, and how the language got here |
 | [Repositories](/open-source.html) | the faberlang organization, repo by repo |

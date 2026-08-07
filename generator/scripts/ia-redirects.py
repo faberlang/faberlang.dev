@@ -23,6 +23,9 @@ MAP: list[tuple[str, str]] = [
     # reference/repositories → open-source (the readable front door; the
     # repository tables, host platform list, and issue routing all folded in)
     ("/reference/repositories.html", "/open-source.html"),
+    # reference/releases → its own section: an index of every Faber and Radix
+    # version, each with pinned install instructions and full release notes
+    ("/reference/releases.html", "/releases/"),
     # syntax/* → language/*
     ("/syntax/types.html", "/language/types.html"),
     ("/syntax/variables.html", "/language/types.html"),
@@ -69,7 +72,7 @@ MAP: list[tuple[str, str]] = [
     ("/references/repositories.html", "/open-source.html"),
     ("/references/", "/reference/"),
     # history/* → reference/*
-    ("/history/releases.html", "/reference/releases.html"),
+    ("/history/releases.html", "/releases/"),
     ("/history/", "/reference/design.html"),
 ]
 

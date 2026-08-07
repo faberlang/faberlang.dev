@@ -44,7 +44,7 @@ faber --version
 
 Tất cả ghi chú và tài sản của bản phát hành: [github.com/faberlang/releases · faber-v1.2.0](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0).
 Hướng dẫn từng bước: [Hướng dẫn cài đặt](/start/install.html). Danh mục lịch sử đầy đủ:
-[Các bản phát hành](/reference/releases.html).
+[Các bản phát hành](/releases/).
 
 | | |
 |---|---|
@@ -124,7 +124,7 @@ Kết quả là mã nguồn có hình dạng ngữ pháp ổn định, có thể
 | Phần | Mô tả |
 |---|---|
 | [Lịch sử](/reference/design.html) | Dòng thời gian phát triển, ảnh hưởng và lịch sử phát hành |
-| [Các bản phát hành](/reference/releases.html) | Bản tải xuống Faber mới nhất cùng mọi thẻ và tệp nhị phân đã phát hành |
+| [Các bản phát hành](/releases/) | Bản tải xuống Faber mới nhất cùng mọi thẻ và tệp nhị phân đã phát hành |
 | [Tính năng](/language/) | Locale người đọc, các tuyến biên dịch, từ vựng Latinh, hệ thống glyph, nguyên tắc thiết kế |
 | [Cú pháp](/language/) | Tài liệu tham khảo đầy đủ: kiểu, hàm, luồng điều khiển, lỗi, generic, collection |
 | [Công cụ](/toolchain/) | Pipeline trình biên dịch Radix, CLI Faber, các đích sinh mã, scripting |

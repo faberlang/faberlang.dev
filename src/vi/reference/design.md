@@ -222,5 +222,5 @@ thể xem trong lịch sử git.
 Các gói CLI dựng sẵn — bản phát hành Faber hiện tại ở trên cùng, sau đó là mọi thẻ
 và tệp nhị phân đã được phát hành từ [faberlang/releases](https://github.com/faberlang/releases):
 
-- **[Các bản phát hành](/reference/releases.html)** — liên kết tải xuống và danh mục lịch sử
+- **[Các bản phát hành](/releases/)** — liên kết tải xuống và danh mục lịch sử
 - **[Cài đặt và tải xuống](/start/install.html)** — thiết lập PATH và chạy `faber check` lần đầu

@@ -24,7 +24,7 @@ source_locale = "en-US"
 | **เวอร์ชัน** | 1.2.0 |
 | **แท็ก** | `faber-v1.2.0` |
 | **หน้ารีลีส** | [faber-v1.2.0 บน GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0) |
-| **รีลีสทั้งหมด** | [รายการรีลีสของเว็บไซต์](/reference/releases.html) |
+| **รีลีสทั้งหมด** | [รายการรีลีสของเว็บไซต์](/releases/) |
 | **ใบอนุญาต** | MIT |
 
 ## ไฟล์เก็บถาวรที่สร้างไว้ล่วงหน้า {#archives}

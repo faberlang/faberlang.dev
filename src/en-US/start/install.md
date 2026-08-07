@@ -9,10 +9,8 @@ Install the **Faber** CLI from the current prebuilt release. The compiler
 front end ships inside the `faber` binary; you do not need a separate
 Radix install for ordinary package work.
 
-This page is written against the repository release artifacts for Faber 1.4.0.
-Package-manager formulae may lag behind the repo release; if Homebrew or another
-manager reports an older Radix/Faber version, prefer the archives below for this
-track.
+This page covers the current release only. For any other version — with its
+own pinned download and full release notes — see [Releases](/releases/).
 
 ## Current release {#current-release}
 
@@ -21,7 +19,7 @@ track.
 | **Version** | 1.4.0 |
 | **Tag** | `faber-v1.4.0` |
 | **Release page** | [faber-v1.4.0 on GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.4.0) |
-| **All releases** | [Site releases inventory](/reference/releases.html) |
+| **All releases** | [Site releases inventory](/releases/) |
 | **License** | MIT |
 
 ## Prebuilt archives {#archives}
@@ -89,30 +87,6 @@ faber check examples/ai-workbench/packages/faber-ai
 
 More packages: [Examples](/start/examples.html). CLI surface:
 [Faber build tool](/toolchain/cli.html).
-
-## Homebrew status {#homebrew}
-
-Homebrew publication is not the authority for this start track yet. If a formula
-serves an older compiler such as Radix 0.38.0 while this site documents Faber
-1.4.0, treat the formula as lagging and use the prebuilt release archive. The
-container verification gate for this page remains residual until formula
-publication catches up.
-
-## Build from source {#from-source}
-
-Prebuilts are the recommended path for agents and most developers. Building
-from source requires the private Radix compiler tree and is out of scope
-for this page. Prefer the archives above unless you are working on the
-compiler itself.
-
-## Agent path {#agent-path}
-
-Agents should load the **install** skill and the agent index rather than
-scraping this HTML:
-
-- [`/llms.txt`](/llms.txt)
-- [install skill](/.well-known/agent-skills/install/SKILL.md)
-- [Agent guide](/agents/index.md)
 
 ## Next {#next}
 

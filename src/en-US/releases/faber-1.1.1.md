@@ -1,0 +1,114 @@
++++
+title = "Faber 1.1.1"
+section = "releases"
+order = 14
+sources = []
++++
+
+| Field | Value |
+|---|---|
+| **Product** | Faber |
+| **Version** | 1.1.1 |
+| **Tag** | `faber-v1.1.1` |
+| **GitHub** | [faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1) |
+| **Published** | 2026-07-17 |
+| **License** | MIT |
+
+## Install this version {#install}
+
+Pinned download for **Faber 1.1.1**. For the current release, use [Install](/start/install.html) instead.
+
+| Platform | Archive | Size | Checksum |
+|---|---|---|---|
+| **macOS arm64** | [faber-v1.1.1-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | 5.1 MB | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** | [faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | 5.7 MB | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+
+```bash
+curl -fsSL -o faber.tgz \
+  https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz
+tar -xzf faber.tgz
+sudo mv faber-v1.1.1-aarch64-apple-darwin/faber /usr/local/bin/
+faber --version
+```
+
+## Release notes {#notes}
+
+Patch re-release spanning **1 commit** since `v1.1.0` (2026-07-17). Headline:
+**CI lock hygiene** — `Cargo.lock` refreshed against current sibling `main`
+tips so the tag-driven release workflow's `cargo build --locked` succeeds;
+version bumped to `1.1.1` while the `v1.1.0` tag remains as source-tag
+history.
+
+*Era note: this tag predates the current release-note convention (companion
+pins, recorded verification gates). These notes are reconstructed post-hoc;
+the sibling-pin record from `v1.1.1-sibling-pins.md` is folded in below and
+that file remains the historical record.*
+
+### Scale
+
+| Signal | Count |
+| --- | ---: |
+| Commits (no merges) | 1 |
+| `feat(...)` commits | 0 |
+| `fix(...)` commits | 0 |
+| `test(...)` commits | 0 |
+
+```bash
+git log v1.1.0..v1.1.1 --oneline --no-merges
+```
+
+### The 1.1.1 change
+
+`release: prepare Faber 1.1.1 — lock hygiene for CI path siblings`
+(`e6c4af2`):
+
+- Refresh `Cargo.lock` against the current `origin/main` tips of the radix and
+  core-support siblings so `cargo build --locked` succeeds in the release
+  workflow.
+- Record the sibling SHAs at lock refresh in
+  `docs/release/v1.1.1-sibling-pins.md` (the historical pin record).
+- Bump the package version `1.1.0` → `1.1.1`; the `v1.1.0` tag remains as
+  source-tag history.
+
+`v1.1.1` is a re-release of the same source state with a refreshed lockfile;
+no product changes are included.
+
+### Sibling pins (CI main tips at lock refresh)
+
+The release workflow checks out each sibling at `main` tip. These SHAs match
+the tree used to regenerate `Cargo.lock` for the 1.1.1 release (folded from
+`docs/release/v1.1.1-sibling-pins.md`):
+
+| Repo | Full SHA |
+| --- | --- |
+| radix | `69767af9f87eb88a936906f0fc2fde033dd086e4` |
+| faber-runtime | `b6d1ad3ab9ca96772ae9e1cc1390a88fea4c590e` |
+| host-kernel-rs | `20a18bee021f575d27203d463360251a0d2f4f25` |
+| host-native-rs | `d2d7d4d20c22cd01b472bb166081735ca6d341fd` |
+| host-providers-rs | `c0723410661a1126b17a5ab3657d1a9a848c9dac` |
+| cista | `0d8e8198e253034f83bf7c2cabbb2d83676a8c25` |
+
+These are documentary facts at lock refresh, not release pins — the faber
+release CI checks out siblings at default-branch tips, not at these commits.
+
+### Version alignment
+
+| Item | Value |
+| --- | --- |
+| Source tag | `v1.1.1` (annotated, 2026-07-17) |
+| `Cargo.toml` package version | `1.1.1` |
+| Public artifact tag | `faber-v1.1.1` on `faberlang/releases` (earliest observed Faber public binary) |
+| Build matrix | Linux x86_64 + macOS x86_64 + macOS arm64 (per the release workflow at this tag) |
+
+### Known limitations
+
+- The sibling pins are main-tip snapshots, not pinned checkouts; the release
+  workflow continued to check out siblings at default-branch tips. The pins
+  file itself notes: "If CI main moves and `--locked` breaks again, either pin
+  these SHAs in `release.yml` or refresh the lock against new tips and cut a
+  patch release."
+- No in-tree pre-release verification records exist for this era.
+
+---
+
+[All releases](/releases/) · [Install the current release](/start/install.html)

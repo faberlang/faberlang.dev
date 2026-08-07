@@ -42,7 +42,7 @@ faber --version
 ```
 
 所有版本說明與資產：[github.com/faberlang/releases · faber-v1.2.0](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0)。  
-逐步說明：[安裝指南](/start/install.html)。完整歷史清單：[版本](/reference/releases.html)。
+逐步說明：[安裝指南](/start/install.html)。完整歷史清單：[版本](/releases/)。
 
 | | |
 |---|---|
@@ -119,7 +119,7 @@ Faber 建立於一項核心洞見之上：中間表示是真實依據，任何�
 | 區段 | 說明 |
 |---|---|
 | [歷史](/reference/design.html) | 開發時間軸、影響與版本歷史 |
-| [版本](/reference/releases.html) | 最新 Faber 下載，以及每個已發布的標籤與二進位檔 |
+| [版本](/releases/) | 最新 Faber 下載，以及每個已發布的標籤與二進位檔 |
 | [功能](/language/) | 讀者語言環境、編譯路徑、拉丁文詞彙、字元系統、設計原則 |
 | [語法](/language/) | 完整參考：型別、函式、控制流程、錯誤、泛型、集合 |
 | [工具](/toolchain/) | Radix 編譯器流程、Faber CLI、程式碼生成目標、腳本 |

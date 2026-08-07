@@ -24,7 +24,7 @@ source_locale = "en-US"
 | **版本** | 1.2.0 |
 | **標籤** | `faber-v1.2.0` |
 | **發行頁面** | [GitHub 上的 faber-v1.2.0](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0) |
-| **所有版本** | [網站版本發行清單](/reference/releases.html) |
+| **所有版本** | [網站版本發行清單](/releases/) |
 | **授權條款** | MIT |
 
 ## 預建壓縮檔 {#archives}

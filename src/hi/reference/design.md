@@ -149,5 +149,5 @@ Ablative    (instrument)     →  dependencies, context, "using X"
 
 पहले वर्तमान Faber रिलीज़ के CLI archive, फिर [faberlang/releases](https://github.com/faberlang/releases) में प्रकाशित हर tag और binary:
 
-- **[रिलीज़](/reference/releases.html)** — डाउनलोड लिंक और ऐतिहासिक सूची
+- **[रिलीज़](/releases/)** — डाउनलोड लिंक और ऐतिहासिक सूची
 - **[इंस्टॉल और डाउनलोड](/start/install.html)** — PATH सेटअप और पहला `faber check`

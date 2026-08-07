@@ -527,7 +527,7 @@ $ faber run --backend cuda  &lt;package&gt;</pre>
   </div>
   <div>
     <a href="/porta/">All languages</a> ·
-    <a href="/en-US/reference/releases.html">Releases</a> ·
+    <a href="/en-US/releases/">Releases</a> ·
     <a href="https://github.com/faberlang">GitHub</a>
   </div>
 </footer>

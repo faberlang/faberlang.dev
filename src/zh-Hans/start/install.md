@@ -22,7 +22,7 @@ source_locale = "en-US"
 | **版本** | 1.2.0 |
 | **标签** | `faber-v1.2.0` |
 | **发行页面** | [GitHub 上的 faber-v1.2.0](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0) |
-| **全部发行版** | [站点发行版清单](/reference/releases.html) |
+| **全部发行版** | [站点发行版清单](/releases/) |
 | **许可证** | MIT |
 
 ## 预编译归档 {#archives}

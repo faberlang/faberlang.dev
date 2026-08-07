@@ -165,5 +165,5 @@ Ablative    (instrument)     →  dependencies, context, "using X"
 
 預先建置的 CLI 封存檔——最上方是目前的 Faber 發行版本，接著列出 [faberlang/releases](https://github.com/faberlang/releases) 中每個已發佈的標籤與二進位檔：
 
-- **[發行版本](/reference/releases.html)** — 下載連結與歷史清單
+- **[發行版本](/releases/)** — 下載連結與歷史清單
 - **[安裝與下載](/start/install.html)** — PATH 設定與第一次執行 `faber check`

@@ -43,7 +43,7 @@ faber --version
 
 所有发行说明和资源：[github.com/faberlang/releases · faber-v1.2.0](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0)。
 详细步骤：[安装指南](/start/install.html)。完整历史清单：
-[发行版本](/reference/releases.html)。
+[发行版本](/releases/)。
 
 | | |
 |---|---|
@@ -120,7 +120,7 @@ Faber 的设计围绕一个核心见解：中间表示即是真理，没有任�
 | 部分 | 描述 |
 |---|---|
 | [历史](/reference/design.html) | 开发时间线、影响和发布历史 |
-| [发行版本](/reference/releases.html) | 最新的 Faber 下载以及每个已发布的标签和二进制文件 |
+| [发行版本](/releases/) | 最新的 Faber 下载以及每个已发布的标签和二进制文件 |
 | [特性](/language/) | 读者区域、编译轨道、拉丁词汇、符号系统、设计原则 |
 | [语法](/language/) | 完整参考：类型、函数、控制流、错误、泛型、集合 |
 | [工具](/toolchain/) | Radix 编译器管道、Faber CLI、代码生成目标、脚本 |

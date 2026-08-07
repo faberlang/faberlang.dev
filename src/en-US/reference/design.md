@@ -220,5 +220,5 @@ parser, custom AST) are still visible in the git history.
 Prebuilt CLI archives — current Faber release at the top, then every published
 tag and binary from [faberlang/releases](https://github.com/faberlang/releases):
 
-- **[Releases](/reference/releases.html)** — download links and historical inventory
+- **[Releases](/releases/)** — download links and historical inventory
 - **[Install and download](/start/install.html)** — PATH setup and first `faber check`

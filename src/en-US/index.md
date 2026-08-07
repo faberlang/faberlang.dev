@@ -77,7 +77,7 @@ faber --version
 
 All release notes and assets: [github.com/faberlang/releases · faber-v1.4.0](https://github.com/faberlang/releases/releases/tag/faber-v1.4.0).
 Step-by-step: [Install guide](/start/install.html). Full historical inventory:
-[Releases](/reference/releases.html).
+[Releases](/releases/).
 
 ### Radix compiler {#download-radix}
 

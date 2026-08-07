@@ -225,5 +225,5 @@ Ablative    (instrument)     →  dependencies, context, "using X"
 ตามด้วยแท็กและไบนารีที่เผยแพร่แล้วทั้งหมดจาก
 [faberlang/releases](https://github.com/faberlang/releases):
 
-- **[รุ่นเผยแพร่](/reference/releases.html)** — ลิงก์ดาวน์โหลดและรายการประวัติ
+- **[รุ่นเผยแพร่](/releases/)** — ลิงก์ดาวน์โหลดและรายการประวัติ
 - **[ติดตั้งและดาวน์โหลด](/start/install.html)** — การตั้งค่า PATH และการรัน `faber check` ครั้งแรก

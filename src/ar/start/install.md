@@ -26,7 +26,7 @@ Radix/Faber أقدم، ففضِّل الأرشيفات أدناه لهذا ال�
 | **الإصدار** | 1.2.0 |
 | **الوسم** | `faber-v1.2.0` |
 | **صفحة الإصدار** | [faber-v1.2.0 على GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0) |
-| **كل الإصدارات** | [جرد إصدارات الموقع](/reference/releases.html) |
+| **كل الإصدارات** | [جرد إصدارات الموقع](/releases/) |
 | **الترخيص** | MIT |
 
 ## الأرشيفات المُجمّعة مسبقًا {#archives}
