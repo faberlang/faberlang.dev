@@ -72,6 +72,45 @@ Default package product path often uses Rust → native via Cargo (one measured
 HIR projection). Generated Rust uses faber-runtime types where required.
 Support is stated target by target — see /en-US/toolchain/target-matrix.html.
 
+## GPU device execution
+
+Faber runs device programs on real GPUs. A package carries a device program
+when its source declares an `@ nucleum` compute kernel and its manifest
+declares a `[device]` section; the packaged image embeds Metal MSL and CUDA
+PTX artifacts, each with a provenance hash.
+
+```bash
+faber run --backend metal <package>   # Apple Metal
+faber run --backend cuda  <package>   # NVIDIA CUDA (NVVM → PTX)
+faber run --backend auto  <package>   # resolve: exactly one admitted backend
+```
+
+Backend selection is explicit and fail-closed: a requested backend does not
+silently fall back to CPU, it exits with a stable code.
+
+Capability ladder — state these accurately, do not round up:
+
+- Shipped: reader-localized source, diagnostics, formatting.
+- Proven now: bounded dual-backend device training on Metal and CUDA —
+  device-resident steps, gradient-slot → buffer mapping, end-of-run readback,
+  numeric comparison against a pinned CPU oracle on an accepted MLP path.
+  This is a real-device proof, not a general training framework and not a
+  broad hardware-coverage claim.
+- Building next: Faber-owned GPU inference behind a pinned model contract and
+  correctness oracle. The CPU oracle track is real; end-to-end **device**
+  inference is NOT shipped.
+- Frontier: multi-device execution, virtual GPUs, sharding, and distributed
+  training or serving are direction, not current runtime capabilities.
+
+The corpus target matrix does not score `metal-text` / `wgsl-text`, and has no
+`cuda` column. Those emitters lower a device-safe kernel subset only, so a
+whole-language percentage does not apply to them. Do not infer weak GPU
+support from their absence — read
+/en-US/toolchain/target-matrix.html#device-kernel-support instead.
+
+Pages: /en-US/toolchain/cli.html#device-execution ·
+/en-US/toolchain/compiling.html · /en-US/toolchain/target-matrix.html
+
 ## HTML documentation tree (English — full)
 
 ### Portal and home
@@ -170,6 +209,7 @@ examples/
   vivilite/        local mailspace / agent coordination CLI
   coreutils/       application campaign
   gpu-workload/    GPU systems rungs
+  training/        device training fixtures (device-summa, mlp dual-backend oracle)
   automation/      automation sketches
   reader-locale/   locale demos
   scripta/         scripting demos
@@ -205,6 +245,10 @@ https://github.com/faberlang/norma
 - Do not treat HTML alone as the agent contract — prefer llms.txt + skills.
 - Do not weaken package structure to "make something compile"; fix the source.
 - Do not treat bare `/start/…` paths as canonical; use `/en-US/…`.
+- Do not claim GPU inference or multi-device execution as shipped; bounded
+  dual-backend training is the current proven device claim.
+- Do not read the absence of `metal-text` / `wgsl-text` / `cuda` from the
+  corpus matrix as weak GPU support; see the device kernel support summary.
 
 ## Contact / provenance
 
