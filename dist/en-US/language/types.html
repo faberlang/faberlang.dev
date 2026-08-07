@@ -34,15 +34,15 @@ Package targets that lack hardware support reject them:</p><pre class="faber-cod
 <span class="tok-kw">functio</span> swap(atomic<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> cell, i32 value) <span class="tok-op">→</span> i32 {
     <span class="tok-kw">redde</span> cell.exchange(value)
 }</code></pre><h3 id="borrow-markers">Borrow markers on types<a class="anchor" href="#borrow-markers">#</a></h3><p>Borrow markers (<code class="kw">de</code>, <code class="kw">in</code>, <code class="kw">ex</code>) can appear on types in parameter
-positions to indicate how a value is passed:</p><pre class="faber-code"><code class="lang-faber locale=la"># shared borrow — caller retains ownership
-functio imprime(de textus label) → vacuum { }
+positions to indicate how a value is passed:</p><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-co"># shared borrow — caller retains ownership</span>
+<span class="tok-kw">functio</span> imprime(<span class="tok-kw">de</span> <span class="tok-kw">textus</span> label) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> { }
 
-# mutable borrow — caller lends mutable access
-functio duplica(in numerus value) → vacuum { }
+<span class="tok-co"># mutable borrow — caller lends mutable access</span>
+<span class="tok-kw">functio</span> duplica(<span class="tok-kw">in</span> <span class="tok-kw">numerus</span> value) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> { }
 
-# move — caller gives up ownership
-functio consume(ex textus buffer) → textus {
-    redde buffer
+<span class="tok-co"># move — caller gives up ownership</span>
+<span class="tok-kw">functio</span> consume(<span class="tok-kw">ex</span> <span class="tok-kw">textus</span> buffer) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
+    <span class="tok-kw">redde</span> buffer
 }</code></pre><h3 id="comparison-policy">Comparison policy<a class="anchor" href="#comparison-policy">#</a></h3><div class="table-scroll"><table><thead><tr><th>Operator</th><th>Family</th><th>Behaviour</th></tr></thead><tbody><tr><td><code>≡</code>, <code>≠</code></td><td>Exact equality</td><td>Identical types required; <code class="kw">nihil</code> bypass</td></tr><tr><td><code>≈</code>, <code>≉</code></td><td>Numeric value equality</td><td>Numeric lattice only</td></tr><tr><td><code>&lt;</code>, <code>≤</code>, <code>&gt;</code>, <code>≥</code></td><td>Ordering</td><td>Numeric, instant, scalar text</td></tr><tr><td><code>intra</code></td><td>Range containment</td><td>Numeric in range</td></tr><tr><td><code>inter</code></td><td>Collection membership</td><td>Element in collection</td></tr></tbody></table></div><h2 id="variables-and-binding">Variables and binding<a class="anchor" href="#variables-and-binding">#</a></h2><p>Faber has three variable keywords and a dedicated assignment glyph. The key
 distinction is between <code class="kw">fixum</code> (write-once) and <code class="kw">varia</code> (freely reassignable),
 and between <code>←</code> (runtime flow) and <code>=</code> (structural field shape).</p><h3 id="fixum-immutable-binding">fixum — immutable binding<a class="anchor" href="#fixum-immutable-binding">#</a></h3><p><code class="kw">fixum</code> bindings are write-once. They may be declared with or without an

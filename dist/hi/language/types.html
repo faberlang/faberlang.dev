@@ -27,15 +27,15 @@
 
 <span class="tok-kw">functio</span> swap(atomic<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> cell, i32 value) <span class="tok-op">→</span> i32 {
     <span class="tok-kw">redde</span> cell.exchange(value)
-}</code></pre><h3 id="borrow-markers">प्रकारों पर borrow मार्कर<a class="anchor" href="#borrow-markers">#</a></h3><p>Borrow मार्कर (<code class="kw">de</code>, <code class="kw">in</code>, <code class="kw">ex</code>) पैरामीटर स्थितियों में प्रकारों पर दिखाई दे सकते हैं। वे बताते हैं कि कोई मान किस प्रकार पास किया जाता है:</p><pre class="faber-code"><code class="lang-faber locale=la"># shared borrow — caller retains ownership
-functio imprime(de textus label) → vacuum { }
+}</code></pre><h3 id="borrow-markers">प्रकारों पर borrow मार्कर<a class="anchor" href="#borrow-markers">#</a></h3><p>Borrow मार्कर (<code class="kw">de</code>, <code class="kw">in</code>, <code class="kw">ex</code>) पैरामीटर स्थितियों में प्रकारों पर दिखाई दे सकते हैं। वे बताते हैं कि कोई मान किस प्रकार पास किया जाता है:</p><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-co"># shared borrow — caller retains ownership</span>
+<span class="tok-kw">functio</span> imprime(<span class="tok-kw">de</span> <span class="tok-kw">textus</span> label) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> { }
 
-# mutable borrow — caller lends mutable access
-functio duplica(in numerus value) → vacuum { }
+<span class="tok-co"># mutable borrow — caller lends mutable access</span>
+<span class="tok-kw">functio</span> duplica(<span class="tok-kw">in</span> <span class="tok-kw">numerus</span> value) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> { }
 
-# move — caller gives up ownership
-functio consume(ex textus buffer) → textus {
-    redde buffer
+<span class="tok-co"># move — caller gives up ownership</span>
+<span class="tok-kw">functio</span> consume(<span class="tok-kw">ex</span> <span class="tok-kw">textus</span> buffer) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
+    <span class="tok-kw">redde</span> buffer
 }</code></pre><h3 id="comparison-policy">तुलना नीति<a class="anchor" href="#comparison-policy">#</a></h3><div class="table-scroll"><table><thead><tr><th>ऑपरेटर</th><th>परिवार</th><th>व्यवहार</th></tr></thead><tbody><tr><td><code>≡</code>, <code>≠</code></td><td>सटीक समानता</td><td>समान प्रकार आवश्यक; <code class="kw">nihil</code> को अपवाद</td></tr><tr><td><code>≈</code>, <code>≉</code></td><td>संख्यात्मक मान समानता</td><td>केवल संख्यात्मक लैटिस</td></tr><tr><td><code>&lt;</code>, <code>≤</code>, <code>&gt;</code>, <code>≥</code></td><td>क्रम निर्धारण</td><td>संख्यात्मक, instant, स्केलर टेक्स्ट</td></tr><tr><td><code>intra</code></td><td>रेंज समावेशन</td><td>रेंज में संख्यात्मक मान</td></tr><tr><td><code>inter</code></td><td>संग्रह सदस्यता</td><td>संग्रह में तत्व</td></tr></tbody></table></div><h2 id="variables-and-binding">Variables and binding<a class="anchor" href="#variables-and-binding">#</a></h2><p>Faber में तीन variable keywords और assignment के लिए एक विशेष glyph है। मुख्य अंतर <code class="kw">fixum</code> (केवल एक बार लिखने योग्य) और <code class="kw">varia</code> (स्वतंत्र रूप से फिर से assign करने योग्य) के बीच है, तथा <code>←</code> (runtime flow) और <code>=</code> (संरचनात्मक field shape) के बीच है।</p><h3 id="fixum-immutable-binding">fixum — अपरिवर्तनीय binding<a class="anchor" href="#fixum-immutable-binding">#</a></h3><p><code class="kw">fixum</code> bindings केवल एक बार लिखी जा सकती हैं। इन्हें initializer के साथ या उसके बिना declare किया जा सकता है। यदि initializer के बिना declare किया गया हो, तो पढ़ने से पहले इन्हें ठीक एक बार assign करना आवश्यक है। दूसरी assignment अस्वीकार कर दी जाती है।</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fixum</span> <span class="tok-kw">numerus</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
 <span class="tok-kw">fixum</span> <span class="tok-kw">textus</span> name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
 <span class="tok-kw">fixum</span> _ inferred <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]</code></pre><p>Deferred initialisation:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {

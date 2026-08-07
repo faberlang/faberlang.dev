@@ -215,7 +215,7 @@ def main() -> None:
             f'{native_span} <span class="code">{c["reader"]}</span></button>\n'
         )
         panels_html += f"""\
-    <div class="fdt-panel{active}" id="pp-{c['site']}" role="tabpanel" aria-labelledby="pt-{c['site']}"><div class="fdt-panel-label">{c['native_name']} · {c['reader']} · <a href="{c['href']}">enter docs →</a></div><pre{c['code_dir']}>{c['sample']}</pre></div>
+    <div class="fdt-panel{active}" id="pp-{c['site']}" role="tabpanel" aria-labelledby="pt-{c['site']}"><div class="fdt-panel-label">{c['native_name']} · {c['reader']} · <a href="{c['href']}">enter docs →</a></div><pre{c['code_dir']}><code class="lang-faber locale={c['reader']}">{c['sample']}</code></pre></div>
 """
 
     first = locales[0]

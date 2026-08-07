@@ -61,10 +61,10 @@ lints) and rules left to target toolchains (Rust lifetime analysis, Go type
 safety). This prevents the compiler from duplicating work that target
 compilers already do correctly.</p></blockquote><h3 id="air">AIR detour<a class="anchor" href="#air">#</a></h3><p>AIR (Autograd / AI Representation) is a pure-functional transform detour off
 the HIR → MIR path. It is entered by explicit annotation on individual
-functions:</p><pre class="faber-code"><code class="lang-faber locale=la">@ radix lane &quot;air&quot;
-functio loss(numerus predicted, numerus expected) → numerus {
-    fixum numerus delta ← predicted - expected
-    redde delta * delta
+functions:</p><pre class="faber-code"><code class="lang-faber locale=la">@ radix lane <span class="tok-st">"air"</span>
+<span class="tok-kw">functio</span> loss(<span class="tok-kw">numerus</span> predicted, <span class="tok-kw">numerus</span> expected) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
+    <span class="tok-kw">fixum</span> <span class="tok-kw">numerus</span> delta <span class="tok-op">←</span> predicted <span class="tok-op">-</span> expected
+    <span class="tok-kw">redde</span> delta <span class="tok-op">*</span> delta
 }</code></pre><p>AIR-lane functions must satisfy a purity policy — no mutation, no effects,
 no loops. Functions that violate this are rejected with a diagnostic before
 AIR lowering begins. The rest of the program continues to use ordinary Faber

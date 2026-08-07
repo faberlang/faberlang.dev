@@ -135,86 +135,86 @@
     <button class="fdt-tab" role="tab" id="fl-loc-t-ar" data-panel="fl-loc-p-ar" data-name="العربية" aria-controls="fl-loc-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button>
     <button class="fdt-tab" role="tab" id="fl-loc-t-hi" data-panel="fl-loc-p-hi" data-name="हिन्दी" aria-controls="fl-loc-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button>
     </div>
-    <div class="fdt-panel active" id="fl-loc-p-en" role="tabpanel" aria-labelledby="fl-loc-t-en"><div class="fdt-panel-label"><code>faber format --locale en</code> <span class="fdt-note">— English reader surface — the base spelling for everyday source</span></div><pre>main {
-    const list&lt;f32&gt; flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    const list&lt;f32&gt; flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    const tensor&lt;f32, []&gt; seed ← vacua
-    const tensor&lt;f32, [2, 3]&gt; a ← seed.strue(flat_a, [2, 3])
-    const tensor&lt;f32, [3, 4]&gt; b ← seed.strue(flat_b, [3, 4])
-    const tensor&lt;f32, [2, 4]&gt; product ← a.matmul(b)
-    const f32 mean ← product.media()
+    <div class="fdt-panel active" id="fl-loc-p-en" role="tabpanel" aria-labelledby="fl-loc-t-en"><div class="fdt-panel-label"><code>faber format --locale en</code> <span class="fdt-note">— English reader surface — the base spelling for everyday source</span></div><pre><code class="lang-faber locale=en">main {
+    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    const tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> vacua
+    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> seed.strue(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a.matmul(b)
+    const f32 mean <span class="tok-op">←</span> product.media()
     print mean
-}</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-la" role="tabpanel" aria-labelledby="fl-loc-t-la"><div class="fdt-panel-label"><code>faber format --locale la</code> <span class="fdt-note">— canonical Faber — the classical surface the language is named for</span></div><pre>incipit {
-    fixum lista&lt;f32&gt; flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    fixum lista&lt;f32&gt; flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    fixum tf32[] seed ← vacua
-    fixum tf32[2, 3] a ← seed.strue(flat_a, [2, 3])
-    fixum tf32[3, 4] b ← seed.strue(flat_b, [3, 4])
-    fixum tf32[2, 4] product ← a.matmul(b)
-    fixum f32 mean ← product.media()
+}</code></pre></div>
+    <div class="fdt-panel" id="fl-loc-p-la" role="tabpanel" aria-labelledby="fl-loc-t-la"><div class="fdt-panel-label"><code>faber format --locale la</code> <span class="fdt-note">— canonical Faber — the classical surface the language is named for</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">incipit</span> {
+    <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">fixum</span> tf32[] seed <span class="tok-op">←</span> vacua
+    <span class="tok-kw">fixum</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.strue(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">fixum</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">fixum</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.matmul(b)
+    <span class="tok-kw">fixum</span> f32 mean <span class="tok-op">←</span> product.media()
     nota mean
-}</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-th-TH" role="tabpanel" aria-labelledby="fl-loc-t-th-TH"><div class="fdt-panel-label"><code>faber format --locale th-TH</code> <span class="fdt-note">— Thai — spaceless script</span></div><pre class="th">เริ่ม {
-    คงที่ รายการ&lt;f32&gt; flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    คงที่ รายการ&lt;f32&gt; flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    คงที่ tensor&lt;f32, []&gt; seed ← vacua
-    คงที่ tensor&lt;f32, [2, 3]&gt; a ← seed.strue(flat_a, [2, 3])
-    คงที่ tensor&lt;f32, [3, 4]&gt; b ← seed.strue(flat_b, [3, 4])
-    คงที่ tensor&lt;f32, [2, 4]&gt; product ← a.matmul(b)
-    คงที่ f32 mean ← product.media()
+}</code></pre></div>
+    <div class="fdt-panel" id="fl-loc-p-th-TH" role="tabpanel" aria-labelledby="fl-loc-t-th-TH"><div class="fdt-panel-label"><code>faber format --locale th-TH</code> <span class="fdt-note">— Thai — spaceless script</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">เริ่ม</span> {
+    <span class="tok-kw">คงที่</span> <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">คงที่</span> <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">คงที่</span> tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> vacua
+    <span class="tok-kw">คงที่</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> seed.strue(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">คงที่</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">คงที่</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a.matmul(b)
+    <span class="tok-kw">คงที่</span> f32 mean <span class="tok-op">←</span> product.media()
     บันทึก mean
-}</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-zh-Hans" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hans"><div class="fdt-panel-label"><code>faber format --locale zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh">入口 {
-    常量 列表&lt;f32&gt; flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    常量 列表&lt;f32&gt; flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    常量 tensor&lt;f32, []&gt; seed ← vacua
-    常量 tensor&lt;f32, [2, 3]&gt; a ← seed.strue(flat_a, [2, 3])
-    常量 tensor&lt;f32, [3, 4]&gt; b ← seed.strue(flat_b, [3, 4])
-    常量 tensor&lt;f32, [2, 4]&gt; product ← a.matmul(b)
-    常量 f32 mean ← product.media()
+}</code></pre></div>
+    <div class="fdt-panel" id="fl-loc-p-zh-Hans" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hans"><div class="fdt-panel-label"><code>faber format --locale zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">常量</span> tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> vacua
+    <span class="tok-kw">常量</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> seed.strue(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">常量</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">常量</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a.matmul(b)
+    <span class="tok-kw">常量</span> f32 mean <span class="tok-op">←</span> product.media()
     显示 mean
-}</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-zh-Hant" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hant"><div class="fdt-panel-label"><code>faber format --locale zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh">入口 {
-    定值 列表&lt;f32&gt; flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    定值 列表&lt;f32&gt; flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    定值 tensor&lt;f32, []&gt; seed ← vacua
-    定值 tensor&lt;f32, [2, 3]&gt; a ← seed.strue(flat_a, [2, 3])
-    定值 tensor&lt;f32, [3, 4]&gt; b ← seed.strue(flat_b, [3, 4])
-    定值 tensor&lt;f32, [2, 4]&gt; product ← a.matmul(b)
-    定值 f32 mean ← product.media()
+}</code></pre></div>
+    <div class="fdt-panel" id="fl-loc-p-zh-Hant" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hant"><div class="fdt-panel-label"><code>faber format --locale zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">定值</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">定值</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">定值</span> tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> vacua
+    <span class="tok-kw">定值</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> seed.strue(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">定值</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">定值</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a.matmul(b)
+    <span class="tok-kw">定值</span> f32 mean <span class="tok-op">←</span> product.media()
     註記 mean
-}</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-vi" role="tabpanel" aria-labelledby="fl-loc-t-vi"><div class="fdt-panel-label"><code>faber format --locale vi</code> <span class="fdt-note">— Vietnamese</span></div><pre>bắt_đầu {
-    hằng danh_sách&lt;f32&gt; flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    hằng danh_sách&lt;f32&gt; flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    hằng tensor&lt;f32, []&gt; seed ← vacua
-    hằng tensor&lt;f32, [2, 3]&gt; a ← seed.strue(flat_a, [2, 3])
-    hằng tensor&lt;f32, [3, 4]&gt; b ← seed.strue(flat_b, [3, 4])
-    hằng tensor&lt;f32, [2, 4]&gt; product ← a.matmul(b)
-    hằng f32 mean ← product.media()
+}</code></pre></div>
+    <div class="fdt-panel" id="fl-loc-p-vi" role="tabpanel" aria-labelledby="fl-loc-t-vi"><div class="fdt-panel-label"><code>faber format --locale vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">bắt_đầu</span> {
+    <span class="tok-kw">hằng</span> <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">hằng</span> <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">hằng</span> tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> vacua
+    <span class="tok-kw">hằng</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> seed.strue(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">hằng</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">hằng</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a.matmul(b)
+    <span class="tok-kw">hằng</span> f32 mean <span class="tok-op">←</span> product.media()
     ghi_chú mean
-}</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-ar" role="tabpanel" aria-labelledby="fl-loc-t-ar"><div class="fdt-panel-label"><code>faber format --locale ar</code> <span class="fdt-note">— Arabic — right-to-left, bidi isolated</span></div><pre class="ar" dir="rtl">بداية {
-    ثابت قائمة&lt;f32&gt; flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    ثابت قائمة&lt;f32&gt; flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    ثابت tensor&lt;f32, []&gt; seed ← vacua
-    ثابت tensor&lt;f32, [2, 3]&gt; a ← seed.strue(flat_a, [2, 3])
-    ثابت tensor&lt;f32, [3, 4]&gt; b ← seed.strue(flat_b, [3, 4])
-    ثابت tensor&lt;f32, [2, 4]&gt; product ← a.matmul(b)
-    ثابت f32 mean ← product.media()
+}</code></pre></div>
+    <div class="fdt-panel" id="fl-loc-p-ar" role="tabpanel" aria-labelledby="fl-loc-t-ar"><div class="fdt-panel-label"><code>faber format --locale ar</code> <span class="fdt-note">— Arabic — right-to-left, bidi isolated</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">بداية</span> {
+    <span class="tok-kw">ثابت</span> <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">ثابت</span> <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">ثابت</span> tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> vacua
+    <span class="tok-kw">ثابت</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> seed.strue(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">ثابت</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">ثابت</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a.matmul(b)
+    <span class="tok-kw">ثابت</span> f32 mean <span class="tok-op">←</span> product.media()
     اعرض mean
-}</pre></div>
-    <div class="fdt-panel" id="fl-loc-p-hi" role="tabpanel" aria-labelledby="fl-loc-t-hi"><div class="fdt-panel-label"><code>faber format --locale hi</code> <span class="fdt-note">— Hindi — Devanagari</span></div><pre class="hi">आरंभ {
-    स्थिर सूची&lt;f32&gt; flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    स्थिर सूची&lt;f32&gt; flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    स्थिर tensor&lt;f32, []&gt; seed ← vacua
-    स्थिर tensor&lt;f32, [2, 3]&gt; a ← seed.strue(flat_a, [2, 3])
-    स्थिर tensor&lt;f32, [3, 4]&gt; b ← seed.strue(flat_b, [3, 4])
-    स्थिर tensor&lt;f32, [2, 4]&gt; product ← a.matmul(b)
-    स्थिर f32 mean ← product.media()
+}</code></pre></div>
+    <div class="fdt-panel" id="fl-loc-p-hi" role="tabpanel" aria-labelledby="fl-loc-t-hi"><div class="fdt-panel-label"><code>faber format --locale hi</code> <span class="fdt-note">— Hindi — Devanagari</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">आरंभ</span> {
+    <span class="tok-kw">स्थिर</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">स्थिर</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">स्थिर</span> tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> vacua
+    <span class="tok-kw">स्थिर</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> seed.strue(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">स्थिर</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">स्थिर</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a.matmul(b)
+    <span class="tok-kw">स्थिर</span> f32 mean <span class="tok-op">←</span> product.media()
     दिखाओ mean
-}</pre></div>
+}</code></pre></div>
   </div>
     <pre class="fl-run">$ faber run --interpret &lt;package&gt;
 76.25</pre>
@@ -252,649 +252,649 @@
     <button class="fdt-tab" role="tab" id="fl-tgt-t-ts" data-panel="fl-tgt-p-ts" data-name="TypeScript" aria-controls="fl-tgt-p-ts" title="ts" aria-selected="false" tabindex="-1">TypeScript</button>
     <button class="fdt-tab" role="tab" id="fl-tgt-t-llvm-text" data-panel="fl-tgt-p-llvm-text" data-name="LLVM IR" aria-controls="fl-tgt-p-llvm-text" title="llvm-text" aria-selected="false" tabindex="-1">LLVM IR</button>
     </div>
-    <div class="fdt-panel active" id="fl-tgt-p-rust" role="tabpanel" aria-labelledby="fl-tgt-t-rust"><div class="fdt-panel-label"><code>radix emit --target rust main.fab</code> <span class="fdt-note">— HIR projection — reviewable source; package product path via Cargo</span></div><pre>// Generated by radix - do not edit
-// Requires the faber language-runtime crate (add to Cargo.toml):
-//   faber = { path = &quot;../faber&quot; }  # adjust path for your layout
+    <div class="fdt-panel active" id="fl-tgt-p-rust" role="tabpanel" aria-labelledby="fl-tgt-t-rust"><div class="fdt-panel-label"><code>radix emit --target rust main.fab</code> <span class="fdt-note">— HIR projection — reviewable source; package product path via Cargo</span></div><pre><code class="lang-rust"><span class="tok-co">// Generated by radix - do not edit</span>
+<span class="tok-co">// Requires the faber language-runtime crate (add to Cargo.toml):</span>
+<span class="tok-co">//   faber = { path = "../faber" }  # adjust path for your layout</span>
 
-fn main() {
-    let flat_a: Vec&lt;f32&gt; = vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0];
-    let flat_b: Vec&lt;f32&gt; = vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0];
-    let seed: faber::Tensor&lt;f32&gt; /* tensor&lt;fractus&lt;f32&gt;, []&gt; */ = faber::Tensor::vacua();
-    let a: faber::Tensor&lt;f32&gt; /* tensor&lt;fractus&lt;f32&gt;, [2, 3]&gt; */ = faber::Tensor::&lt;f32&gt;::structa(flat_a, &amp;{ let t28 = &amp;vec![2, 3]; t28.iter().copied().map(|value| value as i64).collect::&lt;Vec&lt;i64&gt;&gt;() }).expect(&quot;tensor structa element count does not match shape&quot;);
-    let b: faber::Tensor&lt;f32&gt; /* tensor&lt;fractus&lt;f32&gt;, [3, 4]&gt; */ = faber::Tensor::&lt;f32&gt;::structa(flat_b, &amp;{ let t35 = &amp;vec![3, 4]; t35.iter().copied().map(|value| value as i64).collect::&lt;Vec&lt;i64&gt;&gt;() }).expect(&quot;tensor structa element count does not match shape&quot;);
-    let product: faber::Tensor&lt;f32&gt; /* tensor&lt;fractus&lt;f32&gt;, [2, 4]&gt; */ = { let t40 = &amp;a; t40.matmul(&amp;(b)) }.expect(&quot;tensor matmul failed&quot;);
-    let mean: f32 = { let t44 = &amp;product; let c44: f32 = t44.planata().iter().map(|x| *x as f32).sum(); c44 / t44.element_count() as f32 };
-    println!(&quot;{}&quot;, faber::display_fractus(mean));
-}</pre></div>
-    <div class="fdt-panel" id="fl-tgt-p-go" role="tabpanel" aria-labelledby="fl-tgt-t-go"><div class="fdt-panel-label"><code>radix emit --target go main.fab</code> <span class="fdt-note">— HIR projection — file emission + e2e floors</span></div><pre>// Generated by radix - do not edit
+<span class="tok-kw">fn</span> main() {
+    <span class="tok-kw">let</span> flat_a: <span class="tok-ty">Vec</span>&lt;<span class="tok-ty">f32</span>&gt; = vec![<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>];
+    <span class="tok-kw">let</span> flat_b: <span class="tok-ty">Vec</span>&lt;<span class="tok-ty">f32</span>&gt; = vec![<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>];
+    <span class="tok-kw">let</span> seed: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;fractus&lt;f32&gt;, []&gt; */</span> = faber::Tensor::vacua();
+    <span class="tok-kw">let</span> a: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;fractus&lt;f32&gt;, [2, 3]&gt; */</span> = faber::Tensor::&lt;<span class="tok-ty">f32</span>&gt;::structa(flat_a, &amp;{ <span class="tok-kw">let</span> t28 = &amp;vec![<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]; t28.iter().copied().map(|value| value <span class="tok-kw">as</span> <span class="tok-ty">i64</span>).collect::&lt;<span class="tok-ty">Vec</span>&lt;<span class="tok-ty">i64</span>&gt;&gt;() }).expect(<span class="tok-st">"tensor structa element count does not match shape"</span>);
+    <span class="tok-kw">let</span> b: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;fractus&lt;f32&gt;, [3, 4]&gt; */</span> = faber::Tensor::&lt;<span class="tok-ty">f32</span>&gt;::structa(flat_b, &amp;{ <span class="tok-kw">let</span> t35 = &amp;vec![<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]; t35.iter().copied().map(|value| value <span class="tok-kw">as</span> <span class="tok-ty">i64</span>).collect::&lt;<span class="tok-ty">Vec</span>&lt;<span class="tok-ty">i64</span>&gt;&gt;() }).expect(<span class="tok-st">"tensor structa element count does not match shape"</span>);
+    <span class="tok-kw">let</span> product: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;fractus&lt;f32&gt;, [2, 4]&gt; */</span> = { <span class="tok-kw">let</span> t40 = &amp;a; t40.matmul(&amp;(b)) }.expect(<span class="tok-st">"tensor matmul failed"</span>);
+    <span class="tok-kw">let</span> mean: <span class="tok-ty">f32</span> = { <span class="tok-kw">let</span> t44 = &amp;product; <span class="tok-kw">let</span> c44: <span class="tok-ty">f32</span> = t44.planata().iter().map(|x| *x <span class="tok-kw">as</span> <span class="tok-ty">f32</span>).sum(); c44 / t44.element_count() <span class="tok-kw">as</span> <span class="tok-ty">f32</span> };
+    println!(<span class="tok-st">"{}"</span>, faber::display_fractus(mean));
+}</code></pre></div>
+    <div class="fdt-panel" id="fl-tgt-p-go" role="tabpanel" aria-labelledby="fl-tgt-t-go"><div class="fdt-panel-label"><code>radix emit --target go main.fab</code> <span class="fdt-note">— HIR projection — file emission + e2e floors</span></div><pre><code class="lang-go"><span class="tok-co">// Generated by radix - do not edit</span>
 
-package main
+<span class="tok-kw">package</span> main
 
-import (
-    &quot;fmt&quot;
-    &quot;strconv&quot;
-    &quot;strings&quot;
+<span class="tok-kw">import</span> (
+    <span class="tok-st">"fmt"</span>
+    <span class="tok-st">"strconv"</span>
+    <span class="tok-st">"strings"</span>
 )
 
-type faberTensor[T any] struct {
+<span class="tok-kw">type</span> faberTensor[T <span class="tok-ty">any</span>] <span class="tok-kw">struct</span> {
     data []T
-    shape []int
+    shape []<span class="tok-ty">int</span>
 }
 
-func faberTensorElementCount(shape []int) int {
-    const maxInt = int(^uint(0) &gt;&gt; 1)
-    total := 1
-    for _, dim := range shape {
-        if dim &lt; 0 { panic(&quot;tensor shape dimension must be non-negative&quot;) }
-        if dim &gt; 0 &amp;&amp; total &gt; maxInt/dim { panic(&quot;tensor shape element count overflow&quot;) }
+<span class="tok-kw">func</span> faberTensorElementCount(shape []<span class="tok-ty">int</span>) <span class="tok-ty">int</span> {
+    <span class="tok-kw">const</span> maxInt = <span class="tok-ty">int</span>(^<span class="tok-ty">uint</span>(<span class="tok-nu">0</span>) &gt;&gt; <span class="tok-nu">1</span>)
+    total := <span class="tok-nu">1</span>
+    <span class="tok-kw">for</span> _, dim := <span class="tok-kw">range</span> shape {
+        <span class="tok-kw">if</span> dim &lt; <span class="tok-nu">0</span> { panic(<span class="tok-st">"tensor shape dimension must be non-negative"</span>) }
+        <span class="tok-kw">if</span> dim &gt; <span class="tok-nu">0</span> &amp;&amp; total &gt; maxInt/dim { panic(<span class="tok-st">"tensor shape element count overflow"</span>) }
         total *= dim
     }
-    return total
+    <span class="tok-kw">return</span> total
 }
 
-func faberIndexSlice(indices any) []int {
-    switch values := indices.(type) {
-        case []int:
-            return append([]int{}, values...)
-        case []uint32:
-            out := make([]int, len(values)); for i, value := range values { out[i] = int(value) }; return out
-        case []uint64:
-            out := make([]int, len(values)); for i, value := range values { out[i] = int(value) }; return out
-        case []int32:
-            out := make([]int, len(values)); for i, value := range values { out[i] = int(value) }; return out
-        case []int64:
-            out := make([]int, len(values)); for i, value := range values { out[i] = int(value) }; return out
-        default:
-            panic(&quot;tensor index must be a numeric list&quot;)
+<span class="tok-kw">func</span> faberIndexSlice(indices <span class="tok-ty">any</span>) []<span class="tok-ty">int</span> {
+    <span class="tok-kw">switch</span> values := indices.(<span class="tok-kw">type</span>) {
+        <span class="tok-kw">case</span> []<span class="tok-ty">int</span>:
+            <span class="tok-kw">return</span> append([]<span class="tok-ty">int</span>{}, values...)
+        <span class="tok-kw">case</span> []<span class="tok-ty">uint32</span>:
+            out := make([]<span class="tok-ty">int</span>, len(values)); <span class="tok-kw">for</span> i, value := <span class="tok-kw">range</span> values { out[i] = <span class="tok-ty">int</span>(value) }; <span class="tok-kw">return</span> out
+        <span class="tok-kw">case</span> []<span class="tok-ty">uint64</span>:
+            out := make([]<span class="tok-ty">int</span>, len(values)); <span class="tok-kw">for</span> i, value := <span class="tok-kw">range</span> values { out[i] = <span class="tok-ty">int</span>(value) }; <span class="tok-kw">return</span> out
+        <span class="tok-kw">case</span> []<span class="tok-ty">int32</span>:
+            out := make([]<span class="tok-ty">int</span>, len(values)); <span class="tok-kw">for</span> i, value := <span class="tok-kw">range</span> values { out[i] = <span class="tok-ty">int</span>(value) }; <span class="tok-kw">return</span> out
+        <span class="tok-kw">case</span> []<span class="tok-ty">int64</span>:
+            out := make([]<span class="tok-ty">int</span>, len(values)); <span class="tok-kw">for</span> i, value := <span class="tok-kw">range</span> values { out[i] = <span class="tok-ty">int</span>(value) }; <span class="tok-kw">return</span> out
+        <span class="tok-kw">default</span>:
+            panic(<span class="tok-st">"tensor index must be a numeric list"</span>)
     }
 }
 
-func faberTensorOffset(shape []int, rawIndices any) *int {
-    const maxInt = int(^uint(0) &gt;&gt; 1)
+<span class="tok-kw">func</span> faberTensorOffset(shape []<span class="tok-ty">int</span>, rawIndices <span class="tok-ty">any</span>) *<span class="tok-ty">int</span> {
+    <span class="tok-kw">const</span> maxInt = <span class="tok-ty">int</span>(^<span class="tok-ty">uint</span>(<span class="tok-nu">0</span>) &gt;&gt; <span class="tok-nu">1</span>)
     indices := faberIndexSlice(rawIndices)
-    if len(indices) != len(shape) { return nil }
-    offset := 0
-    stride := 1
-    for axis := len(shape) - 1; axis &gt;= 0; axis-- {
+    <span class="tok-kw">if</span> len(indices) != len(shape) { <span class="tok-kw">return</span> <span class="tok-kw">nil</span> }
+    offset := <span class="tok-nu">0</span>
+    stride := <span class="tok-nu">1</span>
+    <span class="tok-kw">for</span> axis := len(shape) - <span class="tok-nu">1</span>; axis &gt;= <span class="tok-nu">0</span>; axis-- {
         idx := indices[axis]
         dim := shape[axis]
-        if dim &lt; 0 || idx &lt; 0 || idx &gt;= dim { return nil }
-        if idx &gt; 0 &amp;&amp; stride &gt; (maxInt-offset)/idx { return nil }
+        <span class="tok-kw">if</span> dim &lt; <span class="tok-nu">0</span> || idx &lt; <span class="tok-nu">0</span> || idx &gt;= dim { <span class="tok-kw">return</span> <span class="tok-kw">nil</span> }
+        <span class="tok-kw">if</span> idx &gt; <span class="tok-nu">0</span> &amp;&amp; stride &gt; (maxInt-offset)/idx { <span class="tok-kw">return</span> <span class="tok-kw">nil</span> }
         offset += idx * stride
-        if dim &gt; 0 &amp;&amp; stride &gt; maxInt/dim { return nil }
+        <span class="tok-kw">if</span> dim &gt; <span class="tok-nu">0</span> &amp;&amp; stride &gt; maxInt/dim { <span class="tok-kw">return</span> <span class="tok-kw">nil</span> }
         stride *= dim
     }
-    return &amp;offset
+    <span class="tok-kw">return</span> &amp;offset
 }
 
-func (t faberTensor[T]) Crea(fill T, shape []int) faberTensor[T] {
+<span class="tok-kw">func</span> (t faberTensor[T]) Crea(fill T, shape []<span class="tok-ty">int</span>) faberTensor[T] {
     data := make([]T, faberTensorElementCount(shape))
-    for i := range data { data[i] = fill }
-    return faberTensor[T]{data: data, shape: append([]int{}, shape...)}
+    <span class="tok-kw">for</span> i := <span class="tok-kw">range</span> data { data[i] = fill }
+    <span class="tok-kw">return</span> faberTensor[T]{data: data, shape: append([]<span class="tok-ty">int</span>{}, shape...)}
 }
 
-func (t faberTensor[T]) Strue(data []T, shape []int) faberTensor[T] {
-    if faberTensorElementCount(shape) != len(data) { panic(&quot;tensor structa element count does not match shape&quot;) }
-    return faberTensor[T]{data: append([]T{}, data...), shape: append([]int{}, shape...)}
+<span class="tok-kw">func</span> (t faberTensor[T]) Strue(data []T, shape []<span class="tok-ty">int</span>) faberTensor[T] {
+    <span class="tok-kw">if</span> faberTensorElementCount(shape) != len(data) { panic(<span class="tok-st">"tensor structa element count does not match shape"</span>) }
+    <span class="tok-kw">return</span> faberTensor[T]{data: append([]T{}, data...), shape: append([]<span class="tok-ty">int</span>{}, shape...)}
 }
 
-func (t faberTensor[T]) Longitudo() int { return len(t.shape) }
-func (t faberTensor[T]) Magnitudines() []int { return append([]int{}, t.shape...) }
-func (t faberTensor[T]) Planata() []T { return append([]T{}, t.data...) }
-func (t faberTensor[T]) Materialize() faberTensor[T] { return faberTensor[T]{data: append([]T{}, t.data...), shape: append([]int{}, t.shape...)} }
+<span class="tok-kw">func</span> (t faberTensor[T]) Longitudo() <span class="tok-ty">int</span> { <span class="tok-kw">return</span> len(t.shape) }
+<span class="tok-kw">func</span> (t faberTensor[T]) Magnitudines() []<span class="tok-ty">int</span> { <span class="tok-kw">return</span> append([]<span class="tok-ty">int</span>{}, t.shape...) }
+<span class="tok-kw">func</span> (t faberTensor[T]) Planata() []T { <span class="tok-kw">return</span> append([]T{}, t.data...) }
+<span class="tok-kw">func</span> (t faberTensor[T]) Materialize() faberTensor[T] { <span class="tok-kw">return</span> faberTensor[T]{data: append([]T{}, t.data...), shape: append([]<span class="tok-ty">int</span>{}, t.shape...)} }
 
-func faberTensorAdd[T any](left T, right T) T {
-    switch value := any(left).(type) {
-        case int: return any(value + any(right).(int)).(T)
-        case int32: return any(value + any(right).(int32)).(T)
-        case int64: return any(value + any(right).(int64)).(T)
-        case uint: return any(value + any(right).(uint)).(T)
-        case uint32: return any(value + any(right).(uint32)).(T)
-        case uint64: return any(value + any(right).(uint64)).(T)
-        case float32: return any(value + any(right).(float32)).(T)
-        case float64: return any(value + any(right).(float64)).(T)
-        default: panic(&quot;tensor arithmetic requires numeric elements&quot;)
+<span class="tok-kw">func</span> faberTensorAdd[T <span class="tok-ty">any</span>](left T, right T) T {
+    <span class="tok-kw">switch</span> value := <span class="tok-ty">any</span>(left).(<span class="tok-kw">type</span>) {
+        <span class="tok-kw">case</span> <span class="tok-ty">int</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value + <span class="tok-ty">any</span>(right).(<span class="tok-ty">int</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">int32</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value + <span class="tok-ty">any</span>(right).(<span class="tok-ty">int32</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">int64</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value + <span class="tok-ty">any</span>(right).(<span class="tok-ty">int64</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value + <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint32</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value + <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint32</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint64</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value + <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint64</span>)).(T)
+        <span class="tok-kw">case</span> float32: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value + <span class="tok-ty">any</span>(right).(float32)).(T)
+        <span class="tok-kw">case</span> float64: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value + <span class="tok-ty">any</span>(right).(float64)).(T)
+        <span class="tok-kw">default</span>: panic(<span class="tok-st">"tensor arithmetic requires numeric elements"</span>)
     }
 }
 
-func faberTensorMul[T any](left T, right T) T {
-    switch value := any(left).(type) {
-        case int: return any(value * any(right).(int)).(T)
-        case int32: return any(value * any(right).(int32)).(T)
-        case int64: return any(value * any(right).(int64)).(T)
-        case uint: return any(value * any(right).(uint)).(T)
-        case uint32: return any(value * any(right).(uint32)).(T)
-        case uint64: return any(value * any(right).(uint64)).(T)
-        case float32: return any(value * any(right).(float32)).(T)
-        case float64: return any(value * any(right).(float64)).(T)
-        default: panic(&quot;tensor arithmetic requires numeric elements&quot;)
+<span class="tok-kw">func</span> faberTensorMul[T <span class="tok-ty">any</span>](left T, right T) T {
+    <span class="tok-kw">switch</span> value := <span class="tok-ty">any</span>(left).(<span class="tok-kw">type</span>) {
+        <span class="tok-kw">case</span> <span class="tok-ty">int</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value * <span class="tok-ty">any</span>(right).(<span class="tok-ty">int</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">int32</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value * <span class="tok-ty">any</span>(right).(<span class="tok-ty">int32</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">int64</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value * <span class="tok-ty">any</span>(right).(<span class="tok-ty">int64</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value * <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint32</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value * <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint32</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint64</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value * <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint64</span>)).(T)
+        <span class="tok-kw">case</span> float32: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value * <span class="tok-ty">any</span>(right).(float32)).(T)
+        <span class="tok-kw">case</span> float64: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value * <span class="tok-ty">any</span>(right).(float64)).(T)
+        <span class="tok-kw">default</span>: panic(<span class="tok-st">"tensor arithmetic requires numeric elements"</span>)
     }
 }
 
-func faberTensorSub[T any](left T, right T) T {
-    switch value := any(left).(type) {
-        case int: return any(value - any(right).(int)).(T)
-        case int32: return any(value - any(right).(int32)).(T)
-        case int64: return any(value - any(right).(int64)).(T)
-        case uint: return any(value - any(right).(uint)).(T)
-        case uint32: return any(value - any(right).(uint32)).(T)
-        case uint64: return any(value - any(right).(uint64)).(T)
-        case float32: return any(value - any(right).(float32)).(T)
-        case float64: return any(value - any(right).(float64)).(T)
-        default: panic(&quot;tensor arithmetic requires numeric elements&quot;)
+<span class="tok-kw">func</span> faberTensorSub[T <span class="tok-ty">any</span>](left T, right T) T {
+    <span class="tok-kw">switch</span> value := <span class="tok-ty">any</span>(left).(<span class="tok-kw">type</span>) {
+        <span class="tok-kw">case</span> <span class="tok-ty">int</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value - <span class="tok-ty">any</span>(right).(<span class="tok-ty">int</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">int32</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value - <span class="tok-ty">any</span>(right).(<span class="tok-ty">int32</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">int64</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value - <span class="tok-ty">any</span>(right).(<span class="tok-ty">int64</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value - <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint32</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value - <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint32</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint64</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value - <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint64</span>)).(T)
+        <span class="tok-kw">case</span> float32: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value - <span class="tok-ty">any</span>(right).(float32)).(T)
+        <span class="tok-kw">case</span> float64: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value - <span class="tok-ty">any</span>(right).(float64)).(T)
+        <span class="tok-kw">default</span>: panic(<span class="tok-st">"tensor arithmetic requires numeric elements"</span>)
     }
 }
 
-func faberTensorShapeEqual(left []int, right []int) bool {
-    if len(left) != len(right) { return false }
-    for i, dim := range left { if dim != right[i] { return false } }
-    return true
+<span class="tok-kw">func</span> faberTensorShapeEqual(left []<span class="tok-ty">int</span>, right []<span class="tok-ty">int</span>) <span class="tok-ty">bool</span> {
+    <span class="tok-kw">if</span> len(left) != len(right) { <span class="tok-kw">return</span> <span class="tok-kw">false</span> }
+    <span class="tok-kw">for</span> i, dim := <span class="tok-kw">range</span> left { <span class="tok-kw">if</span> dim != right[i] { <span class="tok-kw">return</span> <span class="tok-kw">false</span> } }
+    <span class="tok-kw">return</span> <span class="tok-kw">true</span>
 }
 
-func faberTensorMean[T any](data []T) T {
-    if len(data) == 0 { panic(&quot;tensor media requires non-empty data&quot;) }
-    switch any(data[0]).(type) {
-        case float32:
-            var total float32
-            for _, value := range data { total += any(value).(float32) }
-            return any(total / float32(len(data))).(T)
-        case float64:
-            var total float64
-            for _, value := range data { total += any(value).(float64) }
-            return any(total / float64(len(data))).(T)
-        default: panic(&quot;tensor media requires floating-point elements&quot;)
+<span class="tok-kw">func</span> faberTensorMean[T <span class="tok-ty">any</span>](data []T) T {
+    <span class="tok-kw">if</span> len(data) == <span class="tok-nu">0</span> { panic(<span class="tok-st">"tensor media requires non-empty data"</span>) }
+    <span class="tok-kw">switch</span> <span class="tok-ty">any</span>(data[<span class="tok-nu">0</span>]).(<span class="tok-kw">type</span>) {
+        <span class="tok-kw">case</span> float32:
+            <span class="tok-kw">var</span> total float32
+            <span class="tok-kw">for</span> _, value := <span class="tok-kw">range</span> data { total += <span class="tok-ty">any</span>(value).(float32) }
+            <span class="tok-kw">return</span> <span class="tok-ty">any</span>(total / float32(len(data))).(T)
+        <span class="tok-kw">case</span> float64:
+            <span class="tok-kw">var</span> total float64
+            <span class="tok-kw">for</span> _, value := <span class="tok-kw">range</span> data { total += <span class="tok-ty">any</span>(value).(float64) }
+            <span class="tok-kw">return</span> <span class="tok-ty">any</span>(total / float64(len(data))).(T)
+        <span class="tok-kw">default</span>: panic(<span class="tok-st">"tensor media requires floating-point elements"</span>)
     }
 }
 
-func (t faberTensor[T]) Summa() T {
-    var total T
-    for _, value := range t.data { total = faberTensorAdd(total, value) }
-    return total
+<span class="tok-kw">func</span> (t faberTensor[T]) Summa() T {
+    <span class="tok-kw">var</span> total T
+    <span class="tok-kw">for</span> _, value := <span class="tok-kw">range</span> t.data { total = faberTensorAdd(total, value) }
+    <span class="tok-kw">return</span> total
 }
 
-func (t faberTensor[T]) Media() T { return faberTensorMean(t.data) }
+<span class="tok-kw">func</span> (t faberTensor[T]) Media() T { <span class="tok-kw">return</span> faberTensorMean(t.data) }
 
-func (a faberTensor[T]) Addita(b faberTensor[T]) faberTensor[T] {
-    if !faberTensorShapeEqual(a.shape, b.shape) { panic(&quot;tensor elementwise arithmetic requires equal shapes&quot;) }
+<span class="tok-kw">func</span> (a faberTensor[T]) Addita(b faberTensor[T]) faberTensor[T] {
+    <span class="tok-kw">if</span> !faberTensorShapeEqual(a.shape, b.shape) { panic(<span class="tok-st">"tensor elementwise arithmetic requires equal shapes"</span>) }
     data := make([]T, len(a.data))
-    for i := range data { data[i] = faberTensorAdd(a.data[i], b.data[i]) }
-    return faberTensor[T]{data: data, shape: append([]int{}, a.shape...)}
+    <span class="tok-kw">for</span> i := <span class="tok-kw">range</span> data { data[i] = faberTensorAdd(a.data[i], b.data[i]) }
+    <span class="tok-kw">return</span> faberTensor[T]{data: data, shape: append([]<span class="tok-ty">int</span>{}, a.shape...)}
 }
 
-func (a faberTensor[T]) Subtrahe(b faberTensor[T]) faberTensor[T] {
-    if !faberTensorShapeEqual(a.shape, b.shape) { panic(&quot;tensor elementwise arithmetic requires equal shapes&quot;) }
+<span class="tok-kw">func</span> (a faberTensor[T]) Subtrahe(b faberTensor[T]) faberTensor[T] {
+    <span class="tok-kw">if</span> !faberTensorShapeEqual(a.shape, b.shape) { panic(<span class="tok-st">"tensor elementwise arithmetic requires equal shapes"</span>) }
     data := make([]T, len(a.data))
-    for i := range data { data[i] = faberTensorSub(a.data[i], b.data[i]) }
-    return faberTensor[T]{data: data, shape: append([]int{}, a.shape...)}
+    <span class="tok-kw">for</span> i := <span class="tok-kw">range</span> data { data[i] = faberTensorSub(a.data[i], b.data[i]) }
+    <span class="tok-kw">return</span> faberTensor[T]{data: data, shape: append([]<span class="tok-ty">int</span>{}, a.shape...)}
 }
 
-func (a faberTensor[T]) Multiplica(b faberTensor[T]) faberTensor[T] {
-    if !faberTensorShapeEqual(a.shape, b.shape) { panic(&quot;tensor elementwise arithmetic requires equal shapes&quot;) }
+<span class="tok-kw">func</span> (a faberTensor[T]) Multiplica(b faberTensor[T]) faberTensor[T] {
+    <span class="tok-kw">if</span> !faberTensorShapeEqual(a.shape, b.shape) { panic(<span class="tok-st">"tensor elementwise arithmetic requires equal shapes"</span>) }
     data := make([]T, len(a.data))
-    for i := range data { data[i] = faberTensorMul(a.data[i], b.data[i]) }
-    return faberTensor[T]{data: data, shape: append([]int{}, a.shape...)}
+    <span class="tok-kw">for</span> i := <span class="tok-kw">range</span> data { data[i] = faberTensorMul(a.data[i], b.data[i]) }
+    <span class="tok-kw">return</span> faberTensor[T]{data: data, shape: append([]<span class="tok-ty">int</span>{}, a.shape...)}
 }
 
-func (a faberTensor[T]) Matmul(b faberTensor[T]) faberTensor[T] {
-    if len(a.shape) != 2 || len(b.shape) != 2 || a.shape[1] != b.shape[0] { panic(&quot;tensor matmul requires compatible rank-2 shapes&quot;) }
-    rows, inner, cols := a.shape[0], a.shape[1], b.shape[1]
+<span class="tok-kw">func</span> (a faberTensor[T]) Matmul(b faberTensor[T]) faberTensor[T] {
+    <span class="tok-kw">if</span> len(a.shape) != <span class="tok-nu">2</span> || len(b.shape) != <span class="tok-nu">2</span> || a.shape[<span class="tok-nu">1</span>] != b.shape[<span class="tok-nu">0</span>] { panic(<span class="tok-st">"tensor matmul requires compatible rank-2 shapes"</span>) }
+    rows, inner, cols := a.shape[<span class="tok-nu">0</span>], a.shape[<span class="tok-nu">1</span>], b.shape[<span class="tok-nu">1</span>]
     data := make([]T, rows*cols)
-    for row := 0; row &lt; rows; row++ {
-        for col := 0; col &lt; cols; col++ {
-            var sum T
-            for k := 0; k &lt; inner; k++ { sum = faberTensorAdd(sum, faberTensorMul(a.data[row*inner+k], b.data[k*cols+col])) }
+    <span class="tok-kw">for</span> row := <span class="tok-nu">0</span>; row &lt; rows; row++ {
+        <span class="tok-kw">for</span> col := <span class="tok-nu">0</span>; col &lt; cols; col++ {
+            <span class="tok-kw">var</span> sum T
+            <span class="tok-kw">for</span> k := <span class="tok-nu">0</span>; k &lt; inner; k++ { sum = faberTensorAdd(sum, faberTensorMul(a.data[row*inner+k], b.data[k*cols+col])) }
             data[row*cols+col] = sum
         }
     }
-    return faberTensor[T]{data: data, shape: []int{rows, cols}}
+    <span class="tok-kw">return</span> faberTensor[T]{data: data, shape: []<span class="tok-ty">int</span>{rows, cols}}
 }
 
-func (t faberTensor[T]) Forma(shape []int) faberTensor[T] {
-    if faberTensorElementCount(shape) != len(t.data) { panic(&quot;tensor forma (reshape) element count mismatch&quot;) }
-    return faberTensor[T]{data: append([]T{}, t.data...), shape: append([]int{}, shape...)}
+<span class="tok-kw">func</span> (t faberTensor[T]) Forma(shape []<span class="tok-ty">int</span>) faberTensor[T] {
+    <span class="tok-kw">if</span> faberTensorElementCount(shape) != len(t.data) { panic(<span class="tok-st">"tensor forma (reshape) element count mismatch"</span>) }
+    <span class="tok-kw">return</span> faberTensor[T]{data: append([]T{}, t.data...), shape: append([]<span class="tok-ty">int</span>{}, shape...)}
 }
 
-func (t faberTensor[T]) Accipe(indices any) *T {
+<span class="tok-kw">func</span> (t faberTensor[T]) Accipe(indices <span class="tok-ty">any</span>) *T {
     offset := faberTensorOffset(t.shape, indices)
-    if offset == nil || *offset &lt; 0 || *offset &gt;= len(t.data) { return nil }
-    return &amp;t.data[*offset]
+    <span class="tok-kw">if</span> offset == <span class="tok-kw">nil</span> || *offset &lt; <span class="tok-nu">0</span> || *offset &gt;= len(t.data) { <span class="tok-kw">return</span> <span class="tok-kw">nil</span> }
+    <span class="tok-kw">return</span> &amp;t.data[*offset]
 }
 
-func (t *faberTensor[T]) Ponde(indices any, value T) {
+<span class="tok-kw">func</span> (t *faberTensor[T]) Ponde(indices <span class="tok-ty">any</span>, value T) {
     offset := faberTensorOffset(t.shape, indices)
-    if offset == nil || *offset &lt; 0 || *offset &gt;= len(t.data) { panic(&quot;tensor ponde invalid index&quot;) }
+    <span class="tok-kw">if</span> offset == <span class="tok-kw">nil</span> || *offset &lt; <span class="tok-nu">0</span> || *offset &gt;= len(t.data) { panic(<span class="tok-st">"tensor ponde invalid index"</span>) }
     t.data[*offset] = value
 }
 
-func (t *faberTensor[T]) Reple(value T) {
-    for i := range t.data { t.data[i] = value }
+<span class="tok-kw">func</span> (t *faberTensor[T]) Reple(value T) {
+    <span class="tok-kw">for</span> i := <span class="tok-kw">range</span> t.data { t.data[i] = value }
 }
 
-func (t faberTensor[T]) Sectio(start int, end int) faberTensor[T] {
-    if len(t.shape) == 0 || start &lt; 0 || end &lt; start || end &gt; t.shape[0] { panic(&quot;tensor sectio invalid slice bounds&quot;) }
-    inner := faberTensorElementCount(t.shape[1:])
-    shape := append([]int{end - start}, t.shape[1:]...)
-    return faberTensor[T]{data: append([]T{}, t.data[start*inner:end*inner]...), shape: shape}
+<span class="tok-kw">func</span> (t faberTensor[T]) Sectio(start <span class="tok-ty">int</span>, end <span class="tok-ty">int</span>) faberTensor[T] {
+    <span class="tok-kw">if</span> len(t.shape) == <span class="tok-nu">0</span> || start &lt; <span class="tok-nu">0</span> || end &lt; start || end &gt; t.shape[<span class="tok-nu">0</span>] { panic(<span class="tok-st">"tensor sectio invalid slice bounds"</span>) }
+    inner := faberTensorElementCount(t.shape[<span class="tok-nu">1</span>:])
+    shape := append([]<span class="tok-ty">int</span>{end - start}, t.shape[<span class="tok-nu">1</span>:]...)
+    <span class="tok-kw">return</span> faberTensor[T]{data: append([]T{}, t.data[start*inner:end*inner]...), shape: shape}
 }
 
-func main() {
-    flat_a := []float32{float32(1), float32(2), float32(3), float32(4), float32(5), float32(6)}
-    flat_b := []float32{float32(1), float32(2), float32(3), float32(4), float32(5), float32(6), float32(7), float32(8), float32(9), float32(10), float32(11), float32(12)}
-    seed := faberTensor[float32]{shape: []int{}}
-    a := seed.Strue(flat_a, []int{2, 3})
-    b := seed.Strue(flat_b, []int{3, 4})
+<span class="tok-kw">func</span> main() {
+    flat_a := []float32{float32(<span class="tok-nu">1</span>), float32(<span class="tok-nu">2</span>), float32(<span class="tok-nu">3</span>), float32(<span class="tok-nu">4</span>), float32(<span class="tok-nu">5</span>), float32(<span class="tok-nu">6</span>)}
+    flat_b := []float32{float32(<span class="tok-nu">1</span>), float32(<span class="tok-nu">2</span>), float32(<span class="tok-nu">3</span>), float32(<span class="tok-nu">4</span>), float32(<span class="tok-nu">5</span>), float32(<span class="tok-nu">6</span>), float32(<span class="tok-nu">7</span>), float32(<span class="tok-nu">8</span>), float32(<span class="tok-nu">9</span>), float32(<span class="tok-nu">10</span>), float32(<span class="tok-nu">11</span>), float32(<span class="tok-nu">12</span>)}
+    seed := faberTensor[float32]{shape: []<span class="tok-ty">int</span>{}}
+    a := seed.Strue(flat_a, []<span class="tok-ty">int</span>{<span class="tok-nu">2</span>, <span class="tok-nu">3</span>})
+    b := seed.Strue(flat_b, []<span class="tok-ty">int</span>{<span class="tok-nu">3</span>, <span class="tok-nu">4</span>})
     product := a.Matmul(b)
     mean := float32(product.Media())
-    fmt.Println(func(v float64) string { s := strconv.FormatFloat(v, &#x27;f&#x27;, -1, 64); if !strings.ContainsAny(s, &quot;.eE&quot;) { return s + &quot;.0&quot; }; return s }(float64(mean)))
-}</pre></div>
-    <div class="fdt-panel" id="fl-tgt-p-ts" role="tabpanel" aria-labelledby="fl-tgt-t-ts"><div class="fdt-panel-label"><code>radix emit --target ts main.fab</code> <span class="fdt-note">— HIR projection — file emission + e2e floors</span></div><pre>// … 285 lines of generated display/runtime shim elided …
+    fmt.Println(<span class="tok-kw">func</span>(v float64) <span class="tok-ty">string</span> { s := strconv.FormatFloat(v, <span class="tok-st">'f'</span>, -<span class="tok-nu">1</span>, <span class="tok-nu">64</span>); <span class="tok-kw">if</span> !strings.ContainsAny(s, <span class="tok-st">".eE"</span>) { <span class="tok-kw">return</span> s + <span class="tok-st">".0"</span> }; <span class="tok-kw">return</span> s }(float64(mean)))
+}</code></pre></div>
+    <div class="fdt-panel" id="fl-tgt-p-ts" role="tabpanel" aria-labelledby="fl-tgt-t-ts"><div class="fdt-panel-label"><code>radix emit --target ts main.fab</code> <span class="fdt-note">— HIR projection — file emission + e2e floors</span></div><pre><code class="lang-ts"><span class="tok-co">// … 285 lines of generated display/runtime shim elided …</span>
 
-        const flat_a: Array&lt;number&gt; = [1, 2, 3, 4, 5, 6];
-        const flat_b: Array&lt;number&gt; = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-        const seed: FaberTensor&lt;number&gt; = FaberTensor.empty&lt;number&gt;([]);
-        const a: FaberTensor&lt;number&gt; = seed.strue(flat_a, [2, 3]);
-        const b: FaberTensor&lt;number&gt; = seed.strue(flat_b, [3, 4]);
-        const product: FaberTensor&lt;number&gt; = a.matmul(b);
-        const mean: number = product.media();
-        console.log(__faberDisplay(mean, &quot;fractus&quot;));
-    }})();</pre></div>
-    <div class="fdt-panel" id="fl-tgt-p-llvm-text" role="tabpanel" aria-labelledby="fl-tgt-t-llvm-text"><div class="fdt-panel-label"><code>radix emit --target llvm-text main.fab</code> <span class="fdt-note">— MIR staging text for external LLVM tools — not embedded native codegen</span></div><pre>; Generated by radix MIR LLVM IR probe - experimental artifact.
-%FaberRtSliceV1 = type { ptr, i64 }
-%FaberRtExitV1 = type i64
-%FaberRtPtrResultV1 = type { i32, ptr }
-%FaberRtStatusV1 = type { i32 }
-@__faber_rt_v1_context = linkonce_odr global ptr null
-@__faber_rt_v1_status = linkonce_odr global i32 0
-declare void @__faber_rt_v1_fatal(ptr, %FaberRtSliceV1) noreturn
-declare void @__faber_rt_v1_numerus_overflow(ptr) noreturn
+        <span class="tok-kw">const</span> flat_a: Array&lt;<span class="tok-ty">number</span>&gt; = [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>];
+        <span class="tok-kw">const</span> flat_b: Array&lt;<span class="tok-ty">number</span>&gt; = [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>, <span class="tok-nu">7</span>, <span class="tok-nu">8</span>, <span class="tok-nu">9</span>, <span class="tok-nu">10</span>, <span class="tok-nu">11</span>, <span class="tok-nu">12</span>];
+        <span class="tok-kw">const</span> seed: FaberTensor&lt;<span class="tok-ty">number</span>&gt; = FaberTensor.empty&lt;<span class="tok-ty">number</span>&gt;([]);
+        <span class="tok-kw">const</span> a: FaberTensor&lt;<span class="tok-ty">number</span>&gt; = seed.strue(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]);
+        <span class="tok-kw">const</span> b: FaberTensor&lt;<span class="tok-ty">number</span>&gt; = seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]);
+        <span class="tok-kw">const</span> product: FaberTensor&lt;<span class="tok-ty">number</span>&gt; = a.matmul(b);
+        <span class="tok-kw">const</span> mean: <span class="tok-ty">number</span> = product.media();
+        console.log(__faberDisplay(mean, <span class="tok-st">"fractus"</span>));
+    }})();</code></pre></div>
+    <div class="fdt-panel" id="fl-tgt-p-llvm-text" role="tabpanel" aria-labelledby="fl-tgt-t-llvm-text"><div class="fdt-panel-label"><code>radix emit --target llvm-text main.fab</code> <span class="fdt-note">— MIR staging text for external LLVM tools — not embedded native codegen</span></div><pre><code class="lang-llvm-text"><span class="tok-co">; Generated by radix MIR LLVM IR probe - experimental artifact.</span>
+<span class="tok-an">%FaberRtSliceV1</span> = <span class="tok-kw">type</span> { <span class="tok-ty">ptr</span>, <span class="tok-ty">i64</span> }
+<span class="tok-an">%FaberRtExitV1</span> = <span class="tok-kw">type</span> <span class="tok-ty">i64</span>
+<span class="tok-an">%FaberRtPtrResultV1</span> = <span class="tok-kw">type</span> { <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> }
+<span class="tok-an">%FaberRtStatusV1</span> = <span class="tok-kw">type</span> { <span class="tok-ty">i32</span> }
+<span class="tok-an">@__faber_rt_v1_context</span> = linkonce_odr <span class="tok-kw">global</span> <span class="tok-ty">ptr</span> null
+<span class="tok-an">@__faber_rt_v1_status</span> = linkonce_odr <span class="tok-kw">global</span> <span class="tok-ty">i32</span> <span class="tok-nu">0</span>
+<span class="tok-kw">declare</span> void <span class="tok-an">@__faber_rt_v1_fatal</span>(<span class="tok-ty">ptr</span>, <span class="tok-an">%FaberRtSliceV1</span>) noreturn
+<span class="tok-kw">declare</span> void <span class="tok-an">@__faber_rt_v1_numerus_overflow</span>(<span class="tok-ty">ptr</span>) noreturn
 
 
-; @runtime __faber_rt_v1_array_new category=core-semantics
-declare %FaberRtPtrResultV1 @__faber_rt_v1_array_new(ptr, i32)
-; @runtime __faber_rt_v1_array_push category=core-semantics
-declare i32 @__faber_rt_v1_array_push(ptr, ptr, i32, ptr)
-; @runtime __faber_rt_v1_diagnostic_nota_f32 category=host-integration
-declare i32 @__faber_rt_v1_diagnostic_nota_f32(ptr, float)
-; @runtime __faber_rt_v1_tensor_from_flat category=core-semantics
-declare %FaberRtPtrResultV1 @__faber_rt_v1_tensor_from_flat(ptr, i32, ptr, ptr)
-; @runtime __faber_rt_v1_tensor_matmul category=core-semantics
-declare %FaberRtPtrResultV1 @__faber_rt_v1_tensor_matmul(ptr, ptr, ptr)
-; @runtime __faber_rt_v1_tensor_mean category=core-semantics
-declare i32 @__faber_rt_v1_tensor_mean(ptr, ptr, i32, ptr)
-; @runtime __faber_rt_v1_tensor_new category=core-semantics
-declare %FaberRtPtrResultV1 @__faber_rt_v1_tensor_new(ptr, i32)
+<span class="tok-co">; @runtime __faber_rt_v1_array_new category=core-semantics</span>
+<span class="tok-kw">declare</span> <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">@__faber_rt_v1_array_new</span>(<span class="tok-ty">ptr</span>, <span class="tok-ty">i32</span>)
+<span class="tok-co">; @runtime __faber_rt_v1_array_push category=core-semantics</span>
+<span class="tok-kw">declare</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span>, <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span>)
+<span class="tok-co">; @runtime __faber_rt_v1_diagnostic_nota_f32 category=host-integration</span>
+<span class="tok-kw">declare</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_diagnostic_nota_f32</span>(<span class="tok-ty">ptr</span>, <span class="tok-ty">float</span>)
+<span class="tok-co">; @runtime __faber_rt_v1_tensor_from_flat category=core-semantics</span>
+<span class="tok-kw">declare</span> <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">@__faber_rt_v1_tensor_from_flat</span>(<span class="tok-ty">ptr</span>, <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span>)
+<span class="tok-co">; @runtime __faber_rt_v1_tensor_matmul category=core-semantics</span>
+<span class="tok-kw">declare</span> <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">@__faber_rt_v1_tensor_matmul</span>(<span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span>)
+<span class="tok-co">; @runtime __faber_rt_v1_tensor_mean category=core-semantics</span>
+<span class="tok-kw">declare</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_tensor_mean</span>(<span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span>, <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span>)
+<span class="tok-co">; @runtime __faber_rt_v1_tensor_new category=core-semantics</span>
+<span class="tok-kw">declare</span> <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">@__faber_rt_v1_tensor_new</span>(<span class="tok-ty">ptr</span>, <span class="tok-ty">i32</span>)
 
-define void @incipit() {
+<span class="tok-kw">define</span> void <span class="tok-an">@incipit</span>() {
     entry:
-      %l0.addr = alloca ptr
-      %l1.addr = alloca ptr
-      %l2.addr = alloca ptr
-      %l3.addr = alloca ptr
-      %l4.addr = alloca ptr
-      %l5.addr = alloca ptr
-      %l6.addr = alloca float
-      %t0.addr = alloca float
-      %t1.addr = alloca float
-      %t2.addr = alloca float
-      %t3.addr = alloca float
-      %t4.addr = alloca float
-      %t5.addr = alloca float
-      %t6.addr = alloca ptr
-      %t7.addr = alloca float
-      %t8.addr = alloca float
-      %t9.addr = alloca float
-      %t10.addr = alloca float
-      %t11.addr = alloca float
-      %t12.addr = alloca float
-      %t13.addr = alloca float
-      %t14.addr = alloca float
-      %t15.addr = alloca float
-      %t16.addr = alloca float
-      %t17.addr = alloca float
-      %t18.addr = alloca float
-      %t19.addr = alloca ptr
-      %t20.addr = alloca ptr
-      %t21.addr = alloca ptr
-      %t22.addr = alloca ptr
-      %t23.addr = alloca ptr
-      %t24.addr = alloca ptr
-      %t25.addr = alloca ptr
-      %t26.addr = alloca float
-      br label %b0
+      <span class="tok-an">%l0.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">ptr</span>
+      <span class="tok-an">%l1.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">ptr</span>
+      <span class="tok-an">%l2.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">ptr</span>
+      <span class="tok-an">%l3.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">ptr</span>
+      <span class="tok-an">%l4.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">ptr</span>
+      <span class="tok-an">%l5.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">ptr</span>
+      <span class="tok-an">%l6.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t0.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t1.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t2.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t3.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t4.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t5.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t6.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">ptr</span>
+      <span class="tok-an">%t7.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t8.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t9.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t10.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t11.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t12.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t13.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t14.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t15.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t16.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t17.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t18.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-an">%t19.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">ptr</span>
+      <span class="tok-an">%t20.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">ptr</span>
+      <span class="tok-an">%t21.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">ptr</span>
+      <span class="tok-an">%t22.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">ptr</span>
+      <span class="tok-an">%t23.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">ptr</span>
+      <span class="tok-an">%t24.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">ptr</span>
+      <span class="tok-an">%t25.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">ptr</span>
+      <span class="tok-an">%t26.addr</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">br</span> <span class="tok-ty">label</span> <span class="tok-an">%b0</span>
     b0:
-      %cast0 = fptrunc double 1.0 to float
-      store float %cast0, ptr %t0.addr
-      %cast1 = fptrunc double 2.0 to float
-      store float %cast1, ptr %t1.addr
-      %cast2 = fptrunc double 3.0 to float
-      store float %cast2, ptr %t2.addr
-      %cast3 = fptrunc double 4.0 to float
-      store float %cast3, ptr %t3.addr
-      %cast4 = fptrunc double 5.0 to float
-      store float %cast4, ptr %t4.addr
-      %cast5 = fptrunc double 6.0 to float
-      store float %cast5, ptr %t5.addr
-      %faber.context6 = load ptr, ptr @__faber_rt_v1_context
-      %faber.array.result6 = call %FaberRtPtrResultV1 @__faber_rt_v1_array_new(ptr %faber.context6, i32 5)
-      %faber.array.status6 = extractvalue %FaberRtPtrResultV1 %faber.array.result6, 0
-      %faber.array.handle6 = extractvalue %FaberRtPtrResultV1 %faber.array.result6, 1
-      %faber.old.status6 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error6 = icmp ne i32 %faber.old.status6, 0
-      %faber.latched.status6 = select i1 %faber.has.error6, i32 %faber.old.status6, i32 %faber.array.status6
-      store i32 %faber.latched.status6, ptr @__faber_rt_v1_status
-      %load8 = load float, ptr %t0.addr
-      %faber.array.value7 = alloca float
-      store float %load8, ptr %faber.array.value7
-      %faber.array.status7 = call i32 @__faber_rt_v1_array_push(ptr %faber.context6, ptr %faber.array.handle6, i32 5, ptr %faber.array.value7)
-      %faber.old.status7 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error7 = icmp ne i32 %faber.old.status7, 0
-      %faber.latched.status7 = select i1 %faber.has.error7, i32 %faber.old.status7, i32 %faber.array.status7
-      store i32 %faber.latched.status7, ptr @__faber_rt_v1_status
-      %load10 = load float, ptr %t1.addr
-      %faber.array.value9 = alloca float
-      store float %load10, ptr %faber.array.value9
-      %faber.array.status9 = call i32 @__faber_rt_v1_array_push(ptr %faber.context6, ptr %faber.array.handle6, i32 5, ptr %faber.array.value9)
-      %faber.old.status9 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error9 = icmp ne i32 %faber.old.status9, 0
-      %faber.latched.status9 = select i1 %faber.has.error9, i32 %faber.old.status9, i32 %faber.array.status9
-      store i32 %faber.latched.status9, ptr @__faber_rt_v1_status
-      %load12 = load float, ptr %t2.addr
-      %faber.array.value11 = alloca float
-      store float %load12, ptr %faber.array.value11
-      %faber.array.status11 = call i32 @__faber_rt_v1_array_push(ptr %faber.context6, ptr %faber.array.handle6, i32 5, ptr %faber.array.value11)
-      %faber.old.status11 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error11 = icmp ne i32 %faber.old.status11, 0
-      %faber.latched.status11 = select i1 %faber.has.error11, i32 %faber.old.status11, i32 %faber.array.status11
-      store i32 %faber.latched.status11, ptr @__faber_rt_v1_status
-      %load14 = load float, ptr %t3.addr
-      %faber.array.value13 = alloca float
-      store float %load14, ptr %faber.array.value13
-      %faber.array.status13 = call i32 @__faber_rt_v1_array_push(ptr %faber.context6, ptr %faber.array.handle6, i32 5, ptr %faber.array.value13)
-      %faber.old.status13 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error13 = icmp ne i32 %faber.old.status13, 0
-      %faber.latched.status13 = select i1 %faber.has.error13, i32 %faber.old.status13, i32 %faber.array.status13
-      store i32 %faber.latched.status13, ptr @__faber_rt_v1_status
-      %load16 = load float, ptr %t4.addr
-      %faber.array.value15 = alloca float
-      store float %load16, ptr %faber.array.value15
-      %faber.array.status15 = call i32 @__faber_rt_v1_array_push(ptr %faber.context6, ptr %faber.array.handle6, i32 5, ptr %faber.array.value15)
-      %faber.old.status15 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error15 = icmp ne i32 %faber.old.status15, 0
-      %faber.latched.status15 = select i1 %faber.has.error15, i32 %faber.old.status15, i32 %faber.array.status15
-      store i32 %faber.latched.status15, ptr @__faber_rt_v1_status
-      %load18 = load float, ptr %t5.addr
-      %faber.array.value17 = alloca float
-      store float %load18, ptr %faber.array.value17
-      %faber.array.status17 = call i32 @__faber_rt_v1_array_push(ptr %faber.context6, ptr %faber.array.handle6, i32 5, ptr %faber.array.value17)
-      %faber.old.status17 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error17 = icmp ne i32 %faber.old.status17, 0
-      %faber.latched.status17 = select i1 %faber.has.error17, i32 %faber.old.status17, i32 %faber.array.status17
-      store i32 %faber.latched.status17, ptr @__faber_rt_v1_status
-      store ptr %faber.array.handle6, ptr %t6.addr
-      %load19 = load ptr, ptr %t6.addr
-      store ptr %load19, ptr %l0.addr
-      %cast20 = fptrunc double 1.0 to float
-      store float %cast20, ptr %t7.addr
-      %cast21 = fptrunc double 2.0 to float
-      store float %cast21, ptr %t8.addr
-      %cast22 = fptrunc double 3.0 to float
-      store float %cast22, ptr %t9.addr
-      %cast23 = fptrunc double 4.0 to float
-      store float %cast23, ptr %t10.addr
-      %cast24 = fptrunc double 5.0 to float
-      store float %cast24, ptr %t11.addr
-      %cast25 = fptrunc double 6.0 to float
-      store float %cast25, ptr %t12.addr
-      %cast26 = fptrunc double 7.0 to float
-      store float %cast26, ptr %t13.addr
-      %cast27 = fptrunc double 8.0 to float
-      store float %cast27, ptr %t14.addr
-      %cast28 = fptrunc double 9.0 to float
-      store float %cast28, ptr %t15.addr
-      %cast29 = fptrunc double 10.0 to float
-      store float %cast29, ptr %t16.addr
-      %cast30 = fptrunc double 11.0 to float
-      store float %cast30, ptr %t17.addr
-      %cast31 = fptrunc double 12.0 to float
-      store float %cast31, ptr %t18.addr
-      %faber.context32 = load ptr, ptr @__faber_rt_v1_context
-      %faber.array.result32 = call %FaberRtPtrResultV1 @__faber_rt_v1_array_new(ptr %faber.context32, i32 5)
-      %faber.array.status32 = extractvalue %FaberRtPtrResultV1 %faber.array.result32, 0
-      %faber.array.handle32 = extractvalue %FaberRtPtrResultV1 %faber.array.result32, 1
-      %faber.old.status32 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error32 = icmp ne i32 %faber.old.status32, 0
-      %faber.latched.status32 = select i1 %faber.has.error32, i32 %faber.old.status32, i32 %faber.array.status32
-      store i32 %faber.latched.status32, ptr @__faber_rt_v1_status
-      %load34 = load float, ptr %t7.addr
-      %faber.array.value33 = alloca float
-      store float %load34, ptr %faber.array.value33
-      %faber.array.status33 = call i32 @__faber_rt_v1_array_push(ptr %faber.context32, ptr %faber.array.handle32, i32 5, ptr %faber.array.value33)
-      %faber.old.status33 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error33 = icmp ne i32 %faber.old.status33, 0
-      %faber.latched.status33 = select i1 %faber.has.error33, i32 %faber.old.status33, i32 %faber.array.status33
-      store i32 %faber.latched.status33, ptr @__faber_rt_v1_status
-      %load36 = load float, ptr %t8.addr
-      %faber.array.value35 = alloca float
-      store float %load36, ptr %faber.array.value35
-      %faber.array.status35 = call i32 @__faber_rt_v1_array_push(ptr %faber.context32, ptr %faber.array.handle32, i32 5, ptr %faber.array.value35)
-      %faber.old.status35 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error35 = icmp ne i32 %faber.old.status35, 0
-      %faber.latched.status35 = select i1 %faber.has.error35, i32 %faber.old.status35, i32 %faber.array.status35
-      store i32 %faber.latched.status35, ptr @__faber_rt_v1_status
-      %load38 = load float, ptr %t9.addr
-      %faber.array.value37 = alloca float
-      store float %load38, ptr %faber.array.value37
-      %faber.array.status37 = call i32 @__faber_rt_v1_array_push(ptr %faber.context32, ptr %faber.array.handle32, i32 5, ptr %faber.array.value37)
-      %faber.old.status37 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error37 = icmp ne i32 %faber.old.status37, 0
-      %faber.latched.status37 = select i1 %faber.has.error37, i32 %faber.old.status37, i32 %faber.array.status37
-      store i32 %faber.latched.status37, ptr @__faber_rt_v1_status
-      %load40 = load float, ptr %t10.addr
-      %faber.array.value39 = alloca float
-      store float %load40, ptr %faber.array.value39
-      %faber.array.status39 = call i32 @__faber_rt_v1_array_push(ptr %faber.context32, ptr %faber.array.handle32, i32 5, ptr %faber.array.value39)
-      %faber.old.status39 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error39 = icmp ne i32 %faber.old.status39, 0
-      %faber.latched.status39 = select i1 %faber.has.error39, i32 %faber.old.status39, i32 %faber.array.status39
-      store i32 %faber.latched.status39, ptr @__faber_rt_v1_status
-      %load42 = load float, ptr %t11.addr
-      %faber.array.value41 = alloca float
-      store float %load42, ptr %faber.array.value41
-      %faber.array.status41 = call i32 @__faber_rt_v1_array_push(ptr %faber.context32, ptr %faber.array.handle32, i32 5, ptr %faber.array.value41)
-      %faber.old.status41 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error41 = icmp ne i32 %faber.old.status41, 0
-      %faber.latched.status41 = select i1 %faber.has.error41, i32 %faber.old.status41, i32 %faber.array.status41
-      store i32 %faber.latched.status41, ptr @__faber_rt_v1_status
-      %load44 = load float, ptr %t12.addr
-      %faber.array.value43 = alloca float
-      store float %load44, ptr %faber.array.value43
-      %faber.array.status43 = call i32 @__faber_rt_v1_array_push(ptr %faber.context32, ptr %faber.array.handle32, i32 5, ptr %faber.array.value43)
-      %faber.old.status43 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error43 = icmp ne i32 %faber.old.status43, 0
-      %faber.latched.status43 = select i1 %faber.has.error43, i32 %faber.old.status43, i32 %faber.array.status43
-      store i32 %faber.latched.status43, ptr @__faber_rt_v1_status
-      %load46 = load float, ptr %t13.addr
-      %faber.array.value45 = alloca float
-      store float %load46, ptr %faber.array.value45
-      %faber.array.status45 = call i32 @__faber_rt_v1_array_push(ptr %faber.context32, ptr %faber.array.handle32, i32 5, ptr %faber.array.value45)
-      %faber.old.status45 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error45 = icmp ne i32 %faber.old.status45, 0
-      %faber.latched.status45 = select i1 %faber.has.error45, i32 %faber.old.status45, i32 %faber.array.status45
-      store i32 %faber.latched.status45, ptr @__faber_rt_v1_status
-      %load48 = load float, ptr %t14.addr
-      %faber.array.value47 = alloca float
-      store float %load48, ptr %faber.array.value47
-      %faber.array.status47 = call i32 @__faber_rt_v1_array_push(ptr %faber.context32, ptr %faber.array.handle32, i32 5, ptr %faber.array.value47)
-      %faber.old.status47 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error47 = icmp ne i32 %faber.old.status47, 0
-      %faber.latched.status47 = select i1 %faber.has.error47, i32 %faber.old.status47, i32 %faber.array.status47
-      store i32 %faber.latched.status47, ptr @__faber_rt_v1_status
-      %load50 = load float, ptr %t15.addr
-      %faber.array.value49 = alloca float
-      store float %load50, ptr %faber.array.value49
-      %faber.array.status49 = call i32 @__faber_rt_v1_array_push(ptr %faber.context32, ptr %faber.array.handle32, i32 5, ptr %faber.array.value49)
-      %faber.old.status49 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error49 = icmp ne i32 %faber.old.status49, 0
-      %faber.latched.status49 = select i1 %faber.has.error49, i32 %faber.old.status49, i32 %faber.array.status49
-      store i32 %faber.latched.status49, ptr @__faber_rt_v1_status
-      %load52 = load float, ptr %t16.addr
-      %faber.array.value51 = alloca float
-      store float %load52, ptr %faber.array.value51
-      %faber.array.status51 = call i32 @__faber_rt_v1_array_push(ptr %faber.context32, ptr %faber.array.handle32, i32 5, ptr %faber.array.value51)
-      %faber.old.status51 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error51 = icmp ne i32 %faber.old.status51, 0
-      %faber.latched.status51 = select i1 %faber.has.error51, i32 %faber.old.status51, i32 %faber.array.status51
-      store i32 %faber.latched.status51, ptr @__faber_rt_v1_status
-      %load54 = load float, ptr %t17.addr
-      %faber.array.value53 = alloca float
-      store float %load54, ptr %faber.array.value53
-      %faber.array.status53 = call i32 @__faber_rt_v1_array_push(ptr %faber.context32, ptr %faber.array.handle32, i32 5, ptr %faber.array.value53)
-      %faber.old.status53 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error53 = icmp ne i32 %faber.old.status53, 0
-      %faber.latched.status53 = select i1 %faber.has.error53, i32 %faber.old.status53, i32 %faber.array.status53
-      store i32 %faber.latched.status53, ptr @__faber_rt_v1_status
-      %load56 = load float, ptr %t18.addr
-      %faber.array.value55 = alloca float
-      store float %load56, ptr %faber.array.value55
-      %faber.array.status55 = call i32 @__faber_rt_v1_array_push(ptr %faber.context32, ptr %faber.array.handle32, i32 5, ptr %faber.array.value55)
-      %faber.old.status55 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error55 = icmp ne i32 %faber.old.status55, 0
-      %faber.latched.status55 = select i1 %faber.has.error55, i32 %faber.old.status55, i32 %faber.array.status55
-      store i32 %faber.latched.status55, ptr @__faber_rt_v1_status
-      store ptr %faber.array.handle32, ptr %t19.addr
-      %load57 = load ptr, ptr %t19.addr
-      store ptr %load57, ptr %l1.addr
-      %faber.context58 = load ptr, ptr @__faber_rt_v1_context
-      %faber.tensor.result58 = call %FaberRtPtrResultV1 @__faber_rt_v1_tensor_new(ptr %faber.context58, i32 5)
-      %faber.tensor.status58 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result58, 0
-      %faber.tensor.value58 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result58, 1
-      %faber.old.status58 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error58 = icmp ne i32 %faber.old.status58, 0
-      %faber.latched.status58 = select i1 %faber.has.error58, i32 %faber.old.status58, i32 %faber.tensor.status58
-      store i32 %faber.latched.status58, ptr @__faber_rt_v1_status
-      store ptr %faber.tensor.value58, ptr %t20.addr
-      %load59 = load ptr, ptr %t20.addr
-      store ptr %load59, ptr %l2.addr
-      %faber.context60 = load ptr, ptr @__faber_rt_v1_context
-      %faber.array.result60 = call %FaberRtPtrResultV1 @__faber_rt_v1_array_new(ptr %faber.context60, i32 4)
-      %faber.array.status60 = extractvalue %FaberRtPtrResultV1 %faber.array.result60, 0
-      %faber.array.handle60 = extractvalue %FaberRtPtrResultV1 %faber.array.result60, 1
-      %faber.old.status60 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error60 = icmp ne i32 %faber.old.status60, 0
-      %faber.latched.status60 = select i1 %faber.has.error60, i32 %faber.old.status60, i32 %faber.array.status60
-      store i32 %faber.latched.status60, ptr @__faber_rt_v1_status
-      %faber.array.value61 = alloca i64
-      store i64 2, ptr %faber.array.value61
-      %faber.array.status61 = call i32 @__faber_rt_v1_array_push(ptr %faber.context60, ptr %faber.array.handle60, i32 4, ptr %faber.array.value61)
-      %faber.old.status61 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error61 = icmp ne i32 %faber.old.status61, 0
-      %faber.latched.status61 = select i1 %faber.has.error61, i32 %faber.old.status61, i32 %faber.array.status61
-      store i32 %faber.latched.status61, ptr @__faber_rt_v1_status
-      %faber.array.value62 = alloca i64
-      store i64 3, ptr %faber.array.value62
-      %faber.array.status62 = call i32 @__faber_rt_v1_array_push(ptr %faber.context60, ptr %faber.array.handle60, i32 4, ptr %faber.array.value62)
-      %faber.old.status62 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error62 = icmp ne i32 %faber.old.status62, 0
-      %faber.latched.status62 = select i1 %faber.has.error62, i32 %faber.old.status62, i32 %faber.array.status62
-      store i32 %faber.latched.status62, ptr @__faber_rt_v1_status
-      store ptr %faber.array.handle60, ptr %t21.addr
-      %load64 = load ptr, ptr %l2.addr
-      %faber.context63 = load ptr, ptr @__faber_rt_v1_context
-      %load65 = load ptr, ptr %l0.addr
-      %load66 = load ptr, ptr %t21.addr
-      %faber.tensor.result63 = call %FaberRtPtrResultV1 @__faber_rt_v1_tensor_from_flat(ptr %faber.context63, i32 5, ptr %load65, ptr %load66)
-      %faber.tensor.status63 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result63, 0
-      %faber.tensor.value63 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result63, 1
-      %faber.old.status63 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error63 = icmp ne i32 %faber.old.status63, 0
-      %faber.latched.status63 = select i1 %faber.has.error63, i32 %faber.old.status63, i32 %faber.tensor.status63
-      store i32 %faber.latched.status63, ptr @__faber_rt_v1_status
-      store ptr %faber.tensor.value63, ptr %t22.addr
-      %load67 = load ptr, ptr %t22.addr
-      store ptr %load67, ptr %l3.addr
-      %faber.context68 = load ptr, ptr @__faber_rt_v1_context
-      %faber.array.result68 = call %FaberRtPtrResultV1 @__faber_rt_v1_array_new(ptr %faber.context68, i32 4)
-      %faber.array.status68 = extractvalue %FaberRtPtrResultV1 %faber.array.result68, 0
-      %faber.array.handle68 = extractvalue %FaberRtPtrResultV1 %faber.array.result68, 1
-      %faber.old.status68 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error68 = icmp ne i32 %faber.old.status68, 0
-      %faber.latched.status68 = select i1 %faber.has.error68, i32 %faber.old.status68, i32 %faber.array.status68
-      store i32 %faber.latched.status68, ptr @__faber_rt_v1_status
-      %faber.array.value69 = alloca i64
-      store i64 3, ptr %faber.array.value69
-      %faber.array.status69 = call i32 @__faber_rt_v1_array_push(ptr %faber.context68, ptr %faber.array.handle68, i32 4, ptr %faber.array.value69)
-      %faber.old.status69 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error69 = icmp ne i32 %faber.old.status69, 0
-      %faber.latched.status69 = select i1 %faber.has.error69, i32 %faber.old.status69, i32 %faber.array.status69
-      store i32 %faber.latched.status69, ptr @__faber_rt_v1_status
-      %faber.array.value70 = alloca i64
-      store i64 4, ptr %faber.array.value70
-      %faber.array.status70 = call i32 @__faber_rt_v1_array_push(ptr %faber.context68, ptr %faber.array.handle68, i32 4, ptr %faber.array.value70)
-      %faber.old.status70 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error70 = icmp ne i32 %faber.old.status70, 0
-      %faber.latched.status70 = select i1 %faber.has.error70, i32 %faber.old.status70, i32 %faber.array.status70
-      store i32 %faber.latched.status70, ptr @__faber_rt_v1_status
-      store ptr %faber.array.handle68, ptr %t23.addr
-      %load72 = load ptr, ptr %l2.addr
-      %faber.context71 = load ptr, ptr @__faber_rt_v1_context
-      %load73 = load ptr, ptr %l1.addr
-      %load74 = load ptr, ptr %t23.addr
-      %faber.tensor.result71 = call %FaberRtPtrResultV1 @__faber_rt_v1_tensor_from_flat(ptr %faber.context71, i32 5, ptr %load73, ptr %load74)
-      %faber.tensor.status71 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result71, 0
-      %faber.tensor.value71 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result71, 1
-      %faber.old.status71 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error71 = icmp ne i32 %faber.old.status71, 0
-      %faber.latched.status71 = select i1 %faber.has.error71, i32 %faber.old.status71, i32 %faber.tensor.status71
-      store i32 %faber.latched.status71, ptr @__faber_rt_v1_status
-      store ptr %faber.tensor.value71, ptr %t24.addr
-      %load75 = load ptr, ptr %t24.addr
-      store ptr %load75, ptr %l4.addr
-      %load77 = load ptr, ptr %l3.addr
-      %faber.context76 = load ptr, ptr @__faber_rt_v1_context
-      %load78 = load ptr, ptr %l4.addr
-      %faber.tensor.result76 = call %FaberRtPtrResultV1 @__faber_rt_v1_tensor_matmul(ptr %faber.context76, ptr %load77, ptr %load78)
-      %faber.tensor.status76 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result76, 0
-      %faber.tensor.value76 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result76, 1
-      %faber.old.status76 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error76 = icmp ne i32 %faber.old.status76, 0
-      %faber.latched.status76 = select i1 %faber.has.error76, i32 %faber.old.status76, i32 %faber.tensor.status76
-      store i32 %faber.latched.status76, ptr @__faber_rt_v1_status
-      store ptr %faber.tensor.value76, ptr %t25.addr
-      %load79 = load ptr, ptr %t25.addr
-      store ptr %load79, ptr %l5.addr
-      %load81 = load ptr, ptr %l5.addr
-      %faber.context80 = load ptr, ptr @__faber_rt_v1_context
-      %faber.tensor.reduce.out80 = alloca float
-      store float 0.0, ptr %faber.tensor.reduce.out80
-      %faber.tensor.status80 = call i32 @__faber_rt_v1_tensor_mean(ptr %faber.context80, ptr %load81, i32 5, ptr %faber.tensor.reduce.out80)
-      %faber.tensor.reduce80 = load float, ptr %faber.tensor.reduce.out80
-      %faber.old.status80 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error80 = icmp ne i32 %faber.old.status80, 0
-      %faber.latched.status80 = select i1 %faber.has.error80, i32 %faber.old.status80, i32 %faber.tensor.status80
-      store i32 %faber.latched.status80, ptr @__faber_rt_v1_status
-      store float %faber.tensor.reduce80, ptr %t26.addr
-      %load82 = load float, ptr %t26.addr
-      store float %load82, ptr %l6.addr
-      %load83 = load float, ptr %l6.addr
-      %faber.context84 = load ptr, ptr @__faber_rt_v1_context
-      %faber.diag.status84 = call i32 @__faber_rt_v1_diagnostic_nota_f32(ptr %faber.context84, float %load83)
-      %faber.old.status84 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error84 = icmp ne i32 %faber.old.status84, 0
-      %faber.latched.status84 = select i1 %faber.has.error84, i32 %faber.old.status84, i32 %faber.diag.status84
-      store i32 %faber.latched.status84, ptr @__faber_rt_v1_status
-      ret void
+      <span class="tok-an">%cast0</span> = fptrunc double <span class="tok-nu">1.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast0</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t0.addr</span>
+      <span class="tok-an">%cast1</span> = fptrunc double <span class="tok-nu">2.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast1</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t1.addr</span>
+      <span class="tok-an">%cast2</span> = fptrunc double <span class="tok-nu">3.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast2</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t2.addr</span>
+      <span class="tok-an">%cast3</span> = fptrunc double <span class="tok-nu">4.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast3</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t3.addr</span>
+      <span class="tok-an">%cast4</span> = fptrunc double <span class="tok-nu">5.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast4</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t4.addr</span>
+      <span class="tok-an">%cast5</span> = fptrunc double <span class="tok-nu">6.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t5.addr</span>
+      <span class="tok-an">%faber.context6</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_context</span>
+      <span class="tok-an">%faber.array.result6</span> = <span class="tok-kw">call</span> <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">@__faber_rt_v1_array_new</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context6</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>)
+      <span class="tok-an">%faber.array.status6</span> = extractvalue <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">%faber.array.result6</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.array.handle6</span> = extractvalue <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">%faber.array.result6</span>, <span class="tok-nu">1</span>
+      <span class="tok-an">%faber.old.status6</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error6</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status6</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status6</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error6</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status6</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status6</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status6</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load8</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t0.addr</span>
+      <span class="tok-an">%faber.array.value7</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load8</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value7</span>
+      <span class="tok-an">%faber.array.status7</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context6</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle6</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value7</span>)
+      <span class="tok-an">%faber.old.status7</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error7</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status7</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status7</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error7</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status7</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status7</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status7</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load10</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t1.addr</span>
+      <span class="tok-an">%faber.array.value9</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load10</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value9</span>
+      <span class="tok-an">%faber.array.status9</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context6</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle6</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value9</span>)
+      <span class="tok-an">%faber.old.status9</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error9</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status9</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status9</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error9</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status9</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status9</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status9</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load12</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t2.addr</span>
+      <span class="tok-an">%faber.array.value11</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load12</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value11</span>
+      <span class="tok-an">%faber.array.status11</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context6</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle6</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value11</span>)
+      <span class="tok-an">%faber.old.status11</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error11</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status11</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status11</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error11</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status11</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status11</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status11</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load14</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t3.addr</span>
+      <span class="tok-an">%faber.array.value13</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load14</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value13</span>
+      <span class="tok-an">%faber.array.status13</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context6</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle6</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value13</span>)
+      <span class="tok-an">%faber.old.status13</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error13</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status13</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status13</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error13</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status13</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status13</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status13</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load16</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t4.addr</span>
+      <span class="tok-an">%faber.array.value15</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load16</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value15</span>
+      <span class="tok-an">%faber.array.status15</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context6</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle6</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value15</span>)
+      <span class="tok-an">%faber.old.status15</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error15</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status15</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status15</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error15</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status15</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status15</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status15</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load18</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t5.addr</span>
+      <span class="tok-an">%faber.array.value17</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load18</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value17</span>
+      <span class="tok-an">%faber.array.status17</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context6</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle6</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value17</span>)
+      <span class="tok-an">%faber.old.status17</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error17</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status17</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status17</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error17</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status17</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status17</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status17</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle6</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t6.addr</span>
+      <span class="tok-an">%load19</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t6.addr</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">ptr</span> <span class="tok-an">%load19</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%l0.addr</span>
+      <span class="tok-an">%cast20</span> = fptrunc double <span class="tok-nu">1.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast20</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t7.addr</span>
+      <span class="tok-an">%cast21</span> = fptrunc double <span class="tok-nu">2.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast21</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t8.addr</span>
+      <span class="tok-an">%cast22</span> = fptrunc double <span class="tok-nu">3.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast22</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t9.addr</span>
+      <span class="tok-an">%cast23</span> = fptrunc double <span class="tok-nu">4.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast23</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t10.addr</span>
+      <span class="tok-an">%cast24</span> = fptrunc double <span class="tok-nu">5.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast24</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t11.addr</span>
+      <span class="tok-an">%cast25</span> = fptrunc double <span class="tok-nu">6.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast25</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t12.addr</span>
+      <span class="tok-an">%cast26</span> = fptrunc double <span class="tok-nu">7.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast26</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t13.addr</span>
+      <span class="tok-an">%cast27</span> = fptrunc double <span class="tok-nu">8.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast27</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t14.addr</span>
+      <span class="tok-an">%cast28</span> = fptrunc double <span class="tok-nu">9.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast28</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t15.addr</span>
+      <span class="tok-an">%cast29</span> = fptrunc double <span class="tok-nu">10.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast29</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t16.addr</span>
+      <span class="tok-an">%cast30</span> = fptrunc double <span class="tok-nu">11.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast30</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t17.addr</span>
+      <span class="tok-an">%cast31</span> = fptrunc double <span class="tok-nu">12.0</span> to <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%cast31</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t18.addr</span>
+      <span class="tok-an">%faber.context32</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_context</span>
+      <span class="tok-an">%faber.array.result32</span> = <span class="tok-kw">call</span> <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">@__faber_rt_v1_array_new</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context32</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>)
+      <span class="tok-an">%faber.array.status32</span> = extractvalue <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">%faber.array.result32</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.array.handle32</span> = extractvalue <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">%faber.array.result32</span>, <span class="tok-nu">1</span>
+      <span class="tok-an">%faber.old.status32</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error32</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status32</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status32</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error32</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status32</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status32</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load34</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t7.addr</span>
+      <span class="tok-an">%faber.array.value33</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load34</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value33</span>
+      <span class="tok-an">%faber.array.status33</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle32</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value33</span>)
+      <span class="tok-an">%faber.old.status33</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error33</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status33</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status33</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error33</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status33</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status33</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status33</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load36</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t8.addr</span>
+      <span class="tok-an">%faber.array.value35</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load36</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value35</span>
+      <span class="tok-an">%faber.array.status35</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle32</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value35</span>)
+      <span class="tok-an">%faber.old.status35</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error35</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status35</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status35</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error35</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status35</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status35</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status35</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load38</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t9.addr</span>
+      <span class="tok-an">%faber.array.value37</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load38</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value37</span>
+      <span class="tok-an">%faber.array.status37</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle32</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value37</span>)
+      <span class="tok-an">%faber.old.status37</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error37</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status37</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status37</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error37</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status37</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status37</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status37</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load40</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t10.addr</span>
+      <span class="tok-an">%faber.array.value39</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load40</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value39</span>
+      <span class="tok-an">%faber.array.status39</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle32</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value39</span>)
+      <span class="tok-an">%faber.old.status39</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error39</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status39</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status39</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error39</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status39</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status39</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status39</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load42</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t11.addr</span>
+      <span class="tok-an">%faber.array.value41</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load42</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value41</span>
+      <span class="tok-an">%faber.array.status41</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle32</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value41</span>)
+      <span class="tok-an">%faber.old.status41</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error41</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status41</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status41</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error41</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status41</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status41</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status41</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load44</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t12.addr</span>
+      <span class="tok-an">%faber.array.value43</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load44</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value43</span>
+      <span class="tok-an">%faber.array.status43</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle32</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value43</span>)
+      <span class="tok-an">%faber.old.status43</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error43</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status43</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status43</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error43</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status43</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status43</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status43</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load46</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t13.addr</span>
+      <span class="tok-an">%faber.array.value45</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load46</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value45</span>
+      <span class="tok-an">%faber.array.status45</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle32</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value45</span>)
+      <span class="tok-an">%faber.old.status45</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error45</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status45</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status45</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error45</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status45</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status45</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status45</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load48</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t14.addr</span>
+      <span class="tok-an">%faber.array.value47</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load48</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value47</span>
+      <span class="tok-an">%faber.array.status47</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle32</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value47</span>)
+      <span class="tok-an">%faber.old.status47</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error47</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status47</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status47</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error47</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status47</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status47</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status47</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load50</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t15.addr</span>
+      <span class="tok-an">%faber.array.value49</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load50</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value49</span>
+      <span class="tok-an">%faber.array.status49</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle32</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value49</span>)
+      <span class="tok-an">%faber.old.status49</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error49</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status49</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status49</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error49</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status49</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status49</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status49</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load52</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t16.addr</span>
+      <span class="tok-an">%faber.array.value51</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load52</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value51</span>
+      <span class="tok-an">%faber.array.status51</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle32</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value51</span>)
+      <span class="tok-an">%faber.old.status51</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error51</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status51</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status51</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error51</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status51</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status51</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status51</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load54</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t17.addr</span>
+      <span class="tok-an">%faber.array.value53</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load54</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value53</span>
+      <span class="tok-an">%faber.array.status53</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle32</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value53</span>)
+      <span class="tok-an">%faber.old.status53</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error53</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status53</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status53</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error53</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status53</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status53</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status53</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%load56</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t18.addr</span>
+      <span class="tok-an">%faber.array.value55</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load56</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value55</span>
+      <span class="tok-an">%faber.array.status55</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle32</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value55</span>)
+      <span class="tok-an">%faber.old.status55</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error55</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status55</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status55</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error55</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status55</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status55</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status55</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t19.addr</span>
+      <span class="tok-an">%load57</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t19.addr</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">ptr</span> <span class="tok-an">%load57</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%l1.addr</span>
+      <span class="tok-an">%faber.context58</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_context</span>
+      <span class="tok-an">%faber.tensor.result58</span> = <span class="tok-kw">call</span> <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">@__faber_rt_v1_tensor_new</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context58</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>)
+      <span class="tok-an">%faber.tensor.status58</span> = extractvalue <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">%faber.tensor.result58</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.tensor.value58</span> = extractvalue <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">%faber.tensor.result58</span>, <span class="tok-nu">1</span>
+      <span class="tok-an">%faber.old.status58</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error58</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status58</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status58</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error58</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status58</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.tensor.status58</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status58</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">ptr</span> <span class="tok-an">%faber.tensor.value58</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t20.addr</span>
+      <span class="tok-an">%load59</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t20.addr</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">ptr</span> <span class="tok-an">%load59</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%l2.addr</span>
+      <span class="tok-an">%faber.context60</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_context</span>
+      <span class="tok-an">%faber.array.result60</span> = <span class="tok-kw">call</span> <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">@__faber_rt_v1_array_new</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context60</span>, <span class="tok-ty">i32</span> <span class="tok-nu">4</span>)
+      <span class="tok-an">%faber.array.status60</span> = extractvalue <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">%faber.array.result60</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.array.handle60</span> = extractvalue <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">%faber.array.result60</span>, <span class="tok-nu">1</span>
+      <span class="tok-an">%faber.old.status60</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error60</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status60</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status60</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error60</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status60</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status60</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status60</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.array.value61</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">i64</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i64</span> <span class="tok-nu">2</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value61</span>
+      <span class="tok-an">%faber.array.status61</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context60</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle60</span>, <span class="tok-ty">i32</span> <span class="tok-nu">4</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value61</span>)
+      <span class="tok-an">%faber.old.status61</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error61</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status61</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status61</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error61</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status61</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status61</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status61</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.array.value62</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">i64</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i64</span> <span class="tok-nu">3</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value62</span>
+      <span class="tok-an">%faber.array.status62</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context60</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle60</span>, <span class="tok-ty">i32</span> <span class="tok-nu">4</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value62</span>)
+      <span class="tok-an">%faber.old.status62</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error62</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status62</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status62</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error62</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status62</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status62</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status62</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle60</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t21.addr</span>
+      <span class="tok-an">%load64</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%l2.addr</span>
+      <span class="tok-an">%faber.context63</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_context</span>
+      <span class="tok-an">%load65</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%l0.addr</span>
+      <span class="tok-an">%load66</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t21.addr</span>
+      <span class="tok-an">%faber.tensor.result63</span> = <span class="tok-kw">call</span> <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">@__faber_rt_v1_tensor_from_flat</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context63</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%load65</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%load66</span>)
+      <span class="tok-an">%faber.tensor.status63</span> = extractvalue <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">%faber.tensor.result63</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.tensor.value63</span> = extractvalue <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">%faber.tensor.result63</span>, <span class="tok-nu">1</span>
+      <span class="tok-an">%faber.old.status63</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error63</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status63</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status63</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error63</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status63</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.tensor.status63</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status63</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">ptr</span> <span class="tok-an">%faber.tensor.value63</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t22.addr</span>
+      <span class="tok-an">%load67</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t22.addr</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">ptr</span> <span class="tok-an">%load67</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%l3.addr</span>
+      <span class="tok-an">%faber.context68</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_context</span>
+      <span class="tok-an">%faber.array.result68</span> = <span class="tok-kw">call</span> <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">@__faber_rt_v1_array_new</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context68</span>, <span class="tok-ty">i32</span> <span class="tok-nu">4</span>)
+      <span class="tok-an">%faber.array.status68</span> = extractvalue <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">%faber.array.result68</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.array.handle68</span> = extractvalue <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">%faber.array.result68</span>, <span class="tok-nu">1</span>
+      <span class="tok-an">%faber.old.status68</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error68</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status68</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status68</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error68</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status68</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status68</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status68</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.array.value69</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">i64</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i64</span> <span class="tok-nu">3</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value69</span>
+      <span class="tok-an">%faber.array.status69</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context68</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle68</span>, <span class="tok-ty">i32</span> <span class="tok-nu">4</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value69</span>)
+      <span class="tok-an">%faber.old.status69</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error69</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status69</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status69</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error69</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status69</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status69</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status69</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.array.value70</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">i64</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i64</span> <span class="tok-nu">4</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value70</span>
+      <span class="tok-an">%faber.array.status70</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_array_push</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context68</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle68</span>, <span class="tok-ty">i32</span> <span class="tok-nu">4</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.value70</span>)
+      <span class="tok-an">%faber.old.status70</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error70</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status70</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status70</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error70</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status70</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.array.status70</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status70</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">ptr</span> <span class="tok-an">%faber.array.handle68</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t23.addr</span>
+      <span class="tok-an">%load72</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%l2.addr</span>
+      <span class="tok-an">%faber.context71</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_context</span>
+      <span class="tok-an">%load73</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%l1.addr</span>
+      <span class="tok-an">%load74</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t23.addr</span>
+      <span class="tok-an">%faber.tensor.result71</span> = <span class="tok-kw">call</span> <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">@__faber_rt_v1_tensor_from_flat</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context71</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%load73</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%load74</span>)
+      <span class="tok-an">%faber.tensor.status71</span> = extractvalue <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">%faber.tensor.result71</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.tensor.value71</span> = extractvalue <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">%faber.tensor.result71</span>, <span class="tok-nu">1</span>
+      <span class="tok-an">%faber.old.status71</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error71</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status71</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status71</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error71</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status71</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.tensor.status71</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status71</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">ptr</span> <span class="tok-an">%faber.tensor.value71</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t24.addr</span>
+      <span class="tok-an">%load75</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t24.addr</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">ptr</span> <span class="tok-an">%load75</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%l4.addr</span>
+      <span class="tok-an">%load77</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%l3.addr</span>
+      <span class="tok-an">%faber.context76</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_context</span>
+      <span class="tok-an">%load78</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%l4.addr</span>
+      <span class="tok-an">%faber.tensor.result76</span> = <span class="tok-kw">call</span> <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">@__faber_rt_v1_tensor_matmul</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context76</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%load77</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%load78</span>)
+      <span class="tok-an">%faber.tensor.status76</span> = extractvalue <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">%faber.tensor.result76</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.tensor.value76</span> = extractvalue <span class="tok-an">%FaberRtPtrResultV1</span> <span class="tok-an">%faber.tensor.result76</span>, <span class="tok-nu">1</span>
+      <span class="tok-an">%faber.old.status76</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error76</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status76</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status76</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error76</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status76</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.tensor.status76</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status76</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">ptr</span> <span class="tok-an">%faber.tensor.value76</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t25.addr</span>
+      <span class="tok-an">%load79</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t25.addr</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">ptr</span> <span class="tok-an">%load79</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%l5.addr</span>
+      <span class="tok-an">%load81</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%l5.addr</span>
+      <span class="tok-an">%faber.context80</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_context</span>
+      <span class="tok-an">%faber.tensor.reduce.out80</span> = <span class="tok-kw">alloca</span> <span class="tok-ty">float</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-nu">0.0</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.tensor.reduce.out80</span>
+      <span class="tok-an">%faber.tensor.status80</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_tensor_mean</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context80</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%load81</span>, <span class="tok-ty">i32</span> <span class="tok-nu">5</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.tensor.reduce.out80</span>)
+      <span class="tok-an">%faber.tensor.reduce80</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%faber.tensor.reduce.out80</span>
+      <span class="tok-an">%faber.old.status80</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error80</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status80</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status80</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error80</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status80</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.tensor.status80</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status80</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%faber.tensor.reduce80</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t26.addr</span>
+      <span class="tok-an">%load82</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%t26.addr</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">float</span> <span class="tok-an">%load82</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%l6.addr</span>
+      <span class="tok-an">%load83</span> = <span class="tok-kw">load</span> <span class="tok-ty">float</span>, <span class="tok-ty">ptr</span> <span class="tok-an">%l6.addr</span>
+      <span class="tok-an">%faber.context84</span> = <span class="tok-kw">load</span> <span class="tok-ty">ptr</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_context</span>
+      <span class="tok-an">%faber.diag.status84</span> = <span class="tok-kw">call</span> <span class="tok-ty">i32</span> <span class="tok-an">@__faber_rt_v1_diagnostic_nota_f32</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%faber.context84</span>, <span class="tok-ty">float</span> <span class="tok-an">%load83</span>)
+      <span class="tok-an">%faber.old.status84</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.has.error84</span> = <span class="tok-kw">icmp</span> ne <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status84</span>, <span class="tok-nu">0</span>
+      <span class="tok-an">%faber.latched.status84</span> = <span class="tok-kw">select</span> <span class="tok-ty">i1</span> <span class="tok-an">%faber.has.error84</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.old.status84</span>, <span class="tok-ty">i32</span> <span class="tok-an">%faber.diag.status84</span>
+      <span class="tok-kw">store</span> <span class="tok-ty">i32</span> <span class="tok-an">%faber.latched.status84</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-kw">ret</span> void
 }
 
-define %FaberRtExitV1 @__faber_program_entry_v1(ptr %context) {
+<span class="tok-kw">define</span> <span class="tok-an">%FaberRtExitV1</span> <span class="tok-an">@__faber_program_entry_v1</span>(<span class="tok-ty">ptr</span> <span class="tok-an">%context</span>) {
     entry:
-      store ptr %context, ptr @__faber_rt_v1_context
-      call void @incipit()
-      %faber.entry.status = load i32, ptr @__faber_rt_v1_status
-      %faber.entry.status.ext = zext i32 %faber.entry.status to i64
-      %faber.entry.shifted = shl i64 %faber.entry.status.ext, 32
-      %faber.entry.packed = or i64 0, %faber.entry.shifted
-      ret %FaberRtExitV1 %faber.entry.packed
-}</pre></div>
+      <span class="tok-kw">store</span> <span class="tok-ty">ptr</span> <span class="tok-an">%context</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_context</span>
+      <span class="tok-kw">call</span> void <span class="tok-an">@incipit</span>()
+      <span class="tok-an">%faber.entry.status</span> = <span class="tok-kw">load</span> <span class="tok-ty">i32</span>, <span class="tok-ty">ptr</span> <span class="tok-an">@__faber_rt_v1_status</span>
+      <span class="tok-an">%faber.entry.status.ext</span> = zext <span class="tok-ty">i32</span> <span class="tok-an">%faber.entry.status</span> to <span class="tok-ty">i64</span>
+      <span class="tok-an">%faber.entry.shifted</span> = shl <span class="tok-ty">i64</span> <span class="tok-an">%faber.entry.status.ext</span>, <span class="tok-nu">32</span>
+      <span class="tok-an">%faber.entry.packed</span> = or <span class="tok-ty">i64</span> <span class="tok-nu">0</span>, <span class="tok-an">%faber.entry.shifted</span>
+      <span class="tok-kw">ret</span> <span class="tok-an">%FaberRtExitV1</span> <span class="tok-an">%faber.entry.packed</span>
+}</code></pre></div>
   </div>
   </section>
 
@@ -931,10 +931,10 @@ $ faber run --backend cuda  &lt;package&gt;</pre>
         show the lowering surface; the real-device route above is the narrower
         product proof.
       </p>
-      <pre class="fl-src">@ nucleum
-functio multiplico(tf32[16, 8] a, tf32[8, 16] b, tf32[16, 16] out, u32 id) → vacuum {
-    fixum tf32[16, 16] c ← a.matmul(b)
-}</pre>
+      <pre class="fl-src"><code class="lang-faber">@ nucleum
+<span class="tok-kw">functio</span> multiplico(tf32[<span class="tok-nu">16</span>, <span class="tok-nu">8</span>] a, tf32[<span class="tok-nu">8</span>, <span class="tok-nu">16</span>] b, tf32[<span class="tok-nu">16</span>, <span class="tok-nu">16</span>] out, u32 id) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> {
+    <span class="tok-kw">fixum</span> tf32[<span class="tok-nu">16</span>, <span class="tok-nu">16</span>] c <span class="tok-op">←</span> a.matmul(b)
+}</code></pre>
     </div>
   <div class="faber-demo-tabs fdt-hero" data-fdt>
     <div class="fdt-bar">
@@ -946,76 +946,76 @@ functio multiplico(tf32[16, 8] a, tf32[8, 16] b, tf32[16, 16] out, u32 id) → v
     <button class="fdt-tab" role="tab" id="fl-gpu-t-wgsl-text" data-panel="fl-gpu-p-wgsl-text" data-name="WGSL" aria-controls="fl-gpu-p-wgsl-text" title="wgsl-text" aria-selected="true" tabindex="0">WGSL</button>
     <button class="fdt-tab" role="tab" id="fl-gpu-t-metal-text" data-panel="fl-gpu-p-metal-text" data-name="Metal" aria-controls="fl-gpu-p-metal-text" title="metal-text" aria-selected="false" tabindex="-1">Metal</button>
     </div>
-    <div class="fdt-panel active" id="fl-gpu-p-wgsl-text" role="tabpanel" aria-labelledby="fl-gpu-t-wgsl-text"><div class="fdt-panel-label"><code>radix emit --target wgsl-text kernel.fab</code> <span class="fdt-note">— WebGPU compute shader</span></div><pre>// Generated by radix wgsl-text (supported-with-limitations compute source).
+    <div class="fdt-panel active" id="fl-gpu-p-wgsl-text" role="tabpanel" aria-labelledby="fl-gpu-t-wgsl-text"><div class="fdt-panel-label"><code>radix emit --target wgsl-text kernel.fab</code> <span class="fdt-note">— WebGPU compute shader</span></div><pre><code class="lang-wgsl-text"><span class="tok-co">// Generated by radix wgsl-text (supported-with-limitations compute source).</span>
 
-var&lt;workgroup&gt; shared_a: array&lt;f32, 64u&gt;;
-var&lt;workgroup&gt; shared_b: array&lt;f32, 64u&gt;;
+<span class="tok-kw">var</span>&lt;<span class="tok-kw">workgroup</span>&gt; shared_a: <span class="tok-kw">array</span>&lt;<span class="tok-ty">f32</span>, <span class="tok-nu">64</span>u&gt;;
+<span class="tok-kw">var</span>&lt;<span class="tok-kw">workgroup</span>&gt; shared_b: <span class="tok-kw">array</span>&lt;<span class="tok-ty">f32</span>, <span class="tok-nu">64</span>u&gt;;
 
-@group(0) @binding(0) var&lt;storage, read&gt; a_in: array&lt;f32&gt;;
-@group(0) @binding(1) var&lt;storage, read&gt; b_in: array&lt;f32&gt;;
-@group(0) @binding(2) var&lt;storage, read_write&gt; output: array&lt;f32&gt;;
+<span class="tok-an">@group</span>(<span class="tok-nu">0</span>) <span class="tok-an">@binding</span>(<span class="tok-nu">0</span>) <span class="tok-kw">var</span>&lt;storage, read&gt; a_in: <span class="tok-kw">array</span>&lt;<span class="tok-ty">f32</span>&gt;;
+<span class="tok-an">@group</span>(<span class="tok-nu">0</span>) <span class="tok-an">@binding</span>(<span class="tok-nu">1</span>) <span class="tok-kw">var</span>&lt;storage, read&gt; b_in: <span class="tok-kw">array</span>&lt;<span class="tok-ty">f32</span>&gt;;
+<span class="tok-an">@group</span>(<span class="tok-nu">0</span>) <span class="tok-an">@binding</span>(<span class="tok-nu">2</span>) <span class="tok-kw">var</span>&lt;storage, read_write&gt; output: <span class="tok-kw">array</span>&lt;<span class="tok-ty">f32</span>&gt;;
 
-@compute @workgroup_size(8, 8, 1)
-fn multiplico(@builtin(global_invocation_id) id: vec3&lt;u32&gt;, @builtin(local_invocation_id) local_id: vec3&lt;u32&gt;) {
-  let i: u32 = id.x;
-var acc: f32 = 0.0;
-let row = id.y;
-let col = id.x;
-let ty = local_id.y;
-let tx = local_id.x;
-for (var k_tile: u32 = 0u; k_tile &lt; 1u; k_tile++) {
-    let k_start = k_tile * 8u;
-    let a_idx = row * 8u + (k_start + tx);
-    if (a_idx &lt; 16u * 8u) { shared_a[ty * 8u + tx] = a_in[a_idx]; }
-    if (a_idx &gt;= 16u * 8u) { shared_a[ty * 8u + tx] = 0.0; }
-    let b_idx = (k_start + ty) * 16u + col;
-    if (b_idx &lt; 8u * 16u) { shared_b[ty * 8u + tx] = b_in[b_idx]; }
-    if (b_idx &gt;= 8u * 16u) { shared_b[ty * 8u + tx] = 0.0; }
+<span class="tok-an">@compute</span> <span class="tok-an">@workgroup_size</span>(<span class="tok-nu">8</span>, <span class="tok-nu">8</span>, <span class="tok-nu">1</span>)
+<span class="tok-kw">fn</span> multiplico(<span class="tok-an">@builtin</span>(global_invocation_id) id: <span class="tok-kw">vec3</span>&lt;<span class="tok-ty">u32</span>&gt;, <span class="tok-an">@builtin</span>(local_invocation_id) local_id: <span class="tok-kw">vec3</span>&lt;<span class="tok-ty">u32</span>&gt;) {
+  <span class="tok-kw">let</span> i: <span class="tok-ty">u32</span> = id.x;
+<span class="tok-kw">var</span> acc: <span class="tok-ty">f32</span> = <span class="tok-nu">0.0</span>;
+<span class="tok-kw">let</span> row = id.y;
+<span class="tok-kw">let</span> col = id.x;
+<span class="tok-kw">let</span> ty = local_id.y;
+<span class="tok-kw">let</span> tx = local_id.x;
+<span class="tok-kw">for</span> (<span class="tok-kw">var</span> k_tile: <span class="tok-ty">u32</span> = <span class="tok-nu">0</span>u; k_tile &lt; <span class="tok-nu">1</span>u; k_tile++) {
+    <span class="tok-kw">let</span> k_start = k_tile * <span class="tok-nu">8</span>u;
+    <span class="tok-kw">let</span> a_idx = row * <span class="tok-nu">8</span>u + (k_start + tx);
+    <span class="tok-kw">if</span> (a_idx &lt; <span class="tok-nu">16</span>u * <span class="tok-nu">8</span>u) { shared_a[ty * <span class="tok-nu">8</span>u + tx] = a_in[a_idx]; }
+    <span class="tok-kw">if</span> (a_idx &gt;= <span class="tok-nu">16</span>u * <span class="tok-nu">8</span>u) { shared_a[ty * <span class="tok-nu">8</span>u + tx] = <span class="tok-nu">0.0</span>; }
+    <span class="tok-kw">let</span> b_idx = (k_start + ty) * <span class="tok-nu">16</span>u + col;
+    <span class="tok-kw">if</span> (b_idx &lt; <span class="tok-nu">8</span>u * <span class="tok-nu">16</span>u) { shared_b[ty * <span class="tok-nu">8</span>u + tx] = b_in[b_idx]; }
+    <span class="tok-kw">if</span> (b_idx &gt;= <span class="tok-nu">8</span>u * <span class="tok-nu">16</span>u) { shared_b[ty * <span class="tok-nu">8</span>u + tx] = <span class="tok-nu">0.0</span>; }
     workgroupBarrier();
-    for (var kk: u32 = 0u; kk &lt; 8u; kk++) {
-        acc += shared_a[ty * 8u + kk] * shared_b[kk * 8u + tx];
+    <span class="tok-kw">for</span> (<span class="tok-kw">var</span> kk: <span class="tok-ty">u32</span> = <span class="tok-nu">0</span>u; kk &lt; <span class="tok-nu">8</span>u; kk++) {
+        acc += shared_a[ty * <span class="tok-nu">8</span>u + kk] * shared_b[kk * <span class="tok-nu">8</span>u + tx];
     }
     workgroupBarrier();
 }
-let out_idx = row * 16u + col;
-if (row &lt; 16u &amp;&amp; col &lt; 16u) { output[out_idx] = acc; }
-}</pre></div>
-    <div class="fdt-panel" id="fl-gpu-p-metal-text" role="tabpanel" aria-labelledby="fl-gpu-t-metal-text"><div class="fdt-panel-label"><code>radix emit --target metal-text kernel.fab</code> <span class="fdt-note">— Apple GPU compute shader</span></div><pre>// Generated by radix metal-text (supported-with-limitations compute source).
+<span class="tok-kw">let</span> out_idx = row * <span class="tok-nu">16</span>u + col;
+<span class="tok-kw">if</span> (row &lt; <span class="tok-nu">16</span>u &amp;&amp; col &lt; <span class="tok-nu">16</span>u) { output[out_idx] = acc; }
+}</code></pre></div>
+    <div class="fdt-panel" id="fl-gpu-p-metal-text" role="tabpanel" aria-labelledby="fl-gpu-t-metal-text"><div class="fdt-panel-label"><code>radix emit --target metal-text kernel.fab</code> <span class="fdt-note">— Apple GPU compute shader</span></div><pre><code class="lang-metal-text"><span class="tok-co">// Generated by radix metal-text (supported-with-limitations compute source).</span>
 #include &lt;metal_stdlib&gt;
 using namespace metal;
 
-kernel void multiplico(
-    device const float* a_in [[buffer(0)]],
-    device const float* b_in [[buffer(1)]],
-    device float* output [[buffer(2)]],
+<span class="tok-kw">kernel</span> <span class="tok-kw">void</span> multiplico(
+    <span class="tok-kw">device</span> <span class="tok-kw">const</span> <span class="tok-ty">float</span>* a_in [[<span class="tok-kw">buffer</span>(<span class="tok-nu">0</span>)]],
+    <span class="tok-kw">device</span> <span class="tok-kw">const</span> <span class="tok-ty">float</span>* b_in [[<span class="tok-kw">buffer</span>(<span class="tok-nu">1</span>)]],
+    <span class="tok-kw">device</span> <span class="tok-ty">float</span>* output [[<span class="tok-kw">buffer</span>(<span class="tok-nu">2</span>)]],
     uint3 id [[thread_position_in_grid]],
     uint3 local_id [[thread_position_in_threadgroup]]
 ) {
-    uint i = id.x;
-threadgroup float shared_a[64];
-threadgroup float shared_b[64];
-float acc = 0.0;
-uint row = id.y;
-uint col = id.x;
-uint ty = local_id.y;
-uint tx = local_id.x;
-for (uint k_tile = 0u; k_tile &lt; 1u; k_tile++) {
-    uint k_start = k_tile * 8u;
-    uint a_idx = row * 8u + (k_start + tx);
-    if (a_idx &lt; 16u * 8u) { shared_a[ty * 8u + tx] = a_in[a_idx]; }
-    if (a_idx &gt;= 16u * 8u) { shared_a[ty * 8u + tx] = 0.0; }
-    uint b_idx = (k_start + ty) * 16u + col;
-    if (b_idx &lt; 8u * 16u) { shared_b[ty * 8u + tx] = b_in[b_idx]; }
-    if (b_idx &gt;= 8u * 16u) { shared_b[ty * 8u + tx] = 0.0; }
+    <span class="tok-ty">uint</span> i = id.x;
+<span class="tok-kw">threadgroup</span> <span class="tok-ty">float</span> shared_a[<span class="tok-nu">64</span>];
+<span class="tok-kw">threadgroup</span> <span class="tok-ty">float</span> shared_b[<span class="tok-nu">64</span>];
+<span class="tok-ty">float</span> acc = <span class="tok-nu">0.0</span>;
+<span class="tok-ty">uint</span> row = id.y;
+<span class="tok-ty">uint</span> col = id.x;
+<span class="tok-ty">uint</span> ty = local_id.y;
+<span class="tok-ty">uint</span> tx = local_id.x;
+<span class="tok-kw">for</span> (<span class="tok-ty">uint</span> k_tile = <span class="tok-nu">0</span>u; k_tile &lt; <span class="tok-nu">1</span>u; k_tile++) {
+    <span class="tok-ty">uint</span> k_start = k_tile * <span class="tok-nu">8</span>u;
+    <span class="tok-ty">uint</span> a_idx = row * <span class="tok-nu">8</span>u + (k_start + tx);
+    <span class="tok-kw">if</span> (a_idx &lt; <span class="tok-nu">16</span>u * <span class="tok-nu">8</span>u) { shared_a[ty * <span class="tok-nu">8</span>u + tx] = a_in[a_idx]; }
+    <span class="tok-kw">if</span> (a_idx &gt;= <span class="tok-nu">16</span>u * <span class="tok-nu">8</span>u) { shared_a[ty * <span class="tok-nu">8</span>u + tx] = <span class="tok-nu">0.0</span>; }
+    <span class="tok-ty">uint</span> b_idx = (k_start + ty) * <span class="tok-nu">16</span>u + col;
+    <span class="tok-kw">if</span> (b_idx &lt; <span class="tok-nu">8</span>u * <span class="tok-nu">16</span>u) { shared_b[ty * <span class="tok-nu">8</span>u + tx] = b_in[b_idx]; }
+    <span class="tok-kw">if</span> (b_idx &gt;= <span class="tok-nu">8</span>u * <span class="tok-nu">16</span>u) { shared_b[ty * <span class="tok-nu">8</span>u + tx] = <span class="tok-nu">0.0</span>; }
     threadgroup_barrier(mem_flags::mem_threadgroup);
-    for (uint kk = 0u; kk &lt; 8u; kk++) {
-        acc += shared_a[ty * 8u + kk] * shared_b[kk * 8u + tx];
+    <span class="tok-kw">for</span> (<span class="tok-ty">uint</span> kk = <span class="tok-nu">0</span>u; kk &lt; <span class="tok-nu">8</span>u; kk++) {
+        acc += shared_a[ty * <span class="tok-nu">8</span>u + kk] * shared_b[kk * <span class="tok-nu">8</span>u + tx];
     }
     threadgroup_barrier(mem_flags::mem_threadgroup);
 }
-uint out_idx = row * 16u + col;
-if (row &lt; 16u &amp;&amp; col &lt; 16u) { output[out_idx] = acc; }
-}</pre></div>
+<span class="tok-ty">uint</span> out_idx = row * <span class="tok-nu">16</span>u + col;
+<span class="tok-kw">if</span> (row &lt; <span class="tok-nu">16</span>u &amp;&amp; col &lt; <span class="tok-nu">16</span>u) { output[out_idx] = acc; }
+}</code></pre></div>
   </div>
   </section>
 

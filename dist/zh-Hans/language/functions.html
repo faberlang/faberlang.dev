@@ -26,31 +26,31 @@
     <span class="tok-kw">redde</span> x <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }</code></pre><p>当返回类型为 <code class="typ">vacuum</code> 时，使用裸 <code class="kw">redde</code>：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> tace() <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> {
     <span class="tok-kw">redde</span>
-}</code></pre><h3 id="borrowing-and-mutability">借用与可变性（de、in、ex）<a class="anchor" href="#borrowing-and-mutability">#</a></h3><p>Faber 通过参数上的短介词来标记值的传递方式：</p><div class="table-scroll"><table><thead><tr><th>标记</th><th>用途</th><th>典型的 Rust 降阶</th></tr></thead><tbody><tr><td><em>(无)</em></td><td>拥有的值</td><td>按值传递 <code>T</code></td></tr><tr><td><code class="kw">de</code></td><td>共享借用（只读）</td><td><code>&amp;T</code></td></tr><tr><td><code class="kw">in</code></td><td>可变借用</td><td><code>&amp;mut T</code></td></tr><tr><td><code class="kw">ex</code></td><td>消耗（移动到被调用方）</td><td>按移动传递 <code>T</code></td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber locale=la"># Shared borrow
-functio imprime(de textus label) → vacuum {
+}</code></pre><h3 id="borrowing-and-mutability">借用与可变性（de、in、ex）<a class="anchor" href="#borrowing-and-mutability">#</a></h3><p>Faber 通过参数上的短介词来标记值的传递方式：</p><div class="table-scroll"><table><thead><tr><th>标记</th><th>用途</th><th>典型的 Rust 降阶</th></tr></thead><tbody><tr><td><em>(无)</em></td><td>拥有的值</td><td>按值传递 <code>T</code></td></tr><tr><td><code class="kw">de</code></td><td>共享借用（只读）</td><td><code>&amp;T</code></td></tr><tr><td><code class="kw">in</code></td><td>可变借用</td><td><code>&amp;mut T</code></td></tr><tr><td><code class="kw">ex</code></td><td>消耗（移动到被调用方）</td><td>按移动传递 <code>T</code></td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-co"># Shared borrow</span>
+<span class="tok-kw">functio</span> imprime(<span class="tok-kw">de</span> <span class="tok-kw">textus</span> label) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> {
     nota label
 }
 
-# Mutable borrow
-functio duplica(in numerus value) → vacuum {
-    value ← value * 2
+<span class="tok-co"># Mutable borrow</span>
+<span class="tok-kw">functio</span> duplica(<span class="tok-kw">in</span> <span class="tok-kw">numerus</span> value) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> {
+    value <span class="tok-op">←</span> value <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }
 
-# Consume
-functio consume(ex textus buffer) → textus {
-    redde buffer
+<span class="tok-co"># Consume</span>
+<span class="tok-kw">functio</span> consume(<span class="tok-kw">ex</span> <span class="tok-kw">textus</span> buffer) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
+    <span class="tok-kw">redde</span> buffer
 }
 
-# Owned
-functio salve(textus nomen) → textus {
-    redde &quot;Salve, §!&quot;(nomen)
+<span class="tok-co"># Owned</span>
+<span class="tok-kw">functio</span> salve(<span class="tok-kw">textus</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
+    <span class="tok-kw">redde</span> <span class="tok-st">"Salve, §!"</span>(nomen)
 }</code></pre><p>相同的词（<code class="kw">de</code>、<code class="kw">ex</code>）在其他构造中也会复用——不要把每个 <code class="kw">ex</code> 都解读为&quot;消耗&quot;：</p><div class="table-scroll"><table><thead><tr><th>用法</th><th>角色</th></tr></thead><tbody><tr><td>参数上的 <code>de textus name</code></td><td>共享借用</td></tr><tr><td>参数上的 <code>in numerus count</code></td><td>可变借用</td></tr><tr><td>参数上的 <code>ex textus buffer</code></td><td>移动到被调用方</td></tr><tr><td><code>itera ex items fixum item</code></td><td>遍历值</td></tr><tr><td><code>itera de tabula fixum key</code></td><td>遍历键</td></tr><tr><td><code>ex source fixum x, ceteri rest</code></td><td>解构字段</td></tr><tr><td><code>importa ex &quot;path&quot;</code></td><td>从模块导入</td></tr></tbody></table></div><h3 id="entry-point">入口点<a class="anchor" href="#entry-point">#</a></h3><p>程序入口点是 <code class="kw">incipit</code>：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {
     nota <span class="tok-st">"ingressus"</span>
-}</code></pre><h3 id="cli-entry-point">CLI 入口点<a class="anchor" href="#cli-entry-point">#</a></h3><p>对于 CLI 程序，<code>incipit argumenta</code> 接收解析后的命令参数：</p><pre class="faber-code"><code class="lang-faber locale=la">@ cli &quot;echo&quot;
-@ descriptio &quot;Prints text&quot;
-@ operandus ceteri textus words
-incipit argumenta args {
-    itera ex args.words fixum word {
+}</code></pre><h3 id="cli-entry-point">CLI 入口点<a class="anchor" href="#cli-entry-point">#</a></h3><p>对于 CLI 程序，<code>incipit argumenta</code> 接收解析后的命令参数：</p><pre class="faber-code"><code class="lang-faber locale=la">@ cli <span class="tok-st">"echo"</span>
+@ <span class="tok-kw">descriptio</span> <span class="tok-st">"Prints text"</span>
+@ <span class="tok-kw">operandus</span> <span class="tok-kw">ceteri</span> <span class="tok-kw">textus</span> words
+<span class="tok-kw">incipit</span> <span class="tok-kw">argumenta</span> args {
+    <span class="tok-kw">itera</span> <span class="tok-kw">ex</span> args.words <span class="tok-kw">fixum</span> word {
         nota word
     }
 }</code></pre><h3 id="passing-mode-sponte">传递模式——<code>sponte</code><a class="anchor" href="#passing-mode-sponte">#</a></h3><p><code>sponte</code> 标记调用方可省略的参数：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> connect(<span class="tok-kw">textus</span> host, <span class="tok-kw">numerus</span> port <span class="tok-kw">sponte</span>) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> {

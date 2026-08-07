@@ -27,15 +27,15 @@
 
 <span class="tok-kw">functio</span> swap(atomic<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> cell, i32 value) <span class="tok-op">→</span> i32 {
     <span class="tok-kw">redde</span> cell.exchange(value)
-}</code></pre><h3 id="borrow-markers">علامات الاستعارة على الأنواع<a class="anchor" href="#borrow-markers">#</a></h3><p>يمكن أن تظهر علامات الاستعارة (<code class="kw">de</code>، <code class="kw">in</code>، <code class="kw">ex</code>) على الأنواع في مواضع المعاملات للإشارة إلى كيفية تمرير القيمة:</p><pre class="faber-code"><code class="lang-faber locale=la"># shared borrow — caller retains ownership
-functio imprime(de textus label) → vacuum { }
+}</code></pre><h3 id="borrow-markers">علامات الاستعارة على الأنواع<a class="anchor" href="#borrow-markers">#</a></h3><p>يمكن أن تظهر علامات الاستعارة (<code class="kw">de</code>، <code class="kw">in</code>، <code class="kw">ex</code>) على الأنواع في مواضع المعاملات للإشارة إلى كيفية تمرير القيمة:</p><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-co"># shared borrow — caller retains ownership</span>
+<span class="tok-kw">functio</span> imprime(<span class="tok-kw">de</span> <span class="tok-kw">textus</span> label) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> { }
 
-# mutable borrow — caller lends mutable access
-functio duplica(in numerus value) → vacuum { }
+<span class="tok-co"># mutable borrow — caller lends mutable access</span>
+<span class="tok-kw">functio</span> duplica(<span class="tok-kw">in</span> <span class="tok-kw">numerus</span> value) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> { }
 
-# move — caller gives up ownership
-functio consume(ex textus buffer) → textus {
-    redde buffer
+<span class="tok-co"># move — caller gives up ownership</span>
+<span class="tok-kw">functio</span> consume(<span class="tok-kw">ex</span> <span class="tok-kw">textus</span> buffer) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
+    <span class="tok-kw">redde</span> buffer
 }</code></pre><h3 id="comparison-policy">سياسة المقارنة<a class="anchor" href="#comparison-policy">#</a></h3><div class="table-scroll"><table><thead><tr><th>المعامل</th><th>العائلة</th><th>السلوك</th></tr></thead><tbody><tr><td><code>≡</code>، <code>≠</code></td><td>مساواة تامة</td><td>تتطلب أنواعاً متطابقة؛ استثناء <code class="kw">nihil</code></td></tr><tr><td><code>≈</code>، <code>≉</code></td><td>مساواة قيمة عددية</td><td>الشبكة العددية فقط</td></tr><tr><td><code>&lt;</code>، <code>≤</code>، <code>&gt;</code>، <code>≥</code></td><td>ترتيب</td><td>عددي، لحظي، نص قياسي</td></tr><tr><td><code>intra</code></td><td>احتواء مجال</td><td>عدد ضمن مجال</td></tr><tr><td><code>inter</code></td><td>عضوية مجموعة</td><td>عنصر في مجموعة</td></tr></tbody></table></div><h2 id="variables-and-binding">Variables and binding<a class="anchor" href="#variables-and-binding">#</a></h2><p>Faber تمتلك ثلاث كلمات مفتاحية للمتغيرات ورمز تخصيص مخصص. الفرق الأساسي
 هو بين <code class="kw">fixum</code> (كتابة مرة واحدة) و <code class="kw">varia</code> (قابل لإعادة التخصيص بحرية)،
 وبين <code>←</code> (تدفق وقت التشغيل) و <code>=</code> (شكل الحقل الهيكلي).</p><h3 id="fixum-immutable-binding">fixum — ربط غير قابل للتغيير<a class="anchor" href="#fixum-immutable-binding">#</a></h3><p>روابط <code class="kw">fixum</code> تُكتب مرة واحدة. يمكن التصريح بها مع مهيئ أو بدونه؛ إذا تم

@@ -1,92 +1,92 @@
 <!DOCTYPE html>
-<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Generic key/value map type."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="tabula — Faber"><meta property="og:description" content="Generic key/value map type."><meta property="og:url" content="https://faberlang.dev/en-US/corpus/tabula.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/corpus/tabula.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>tabula — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/en-US/start/install.html">Install</a></li><li><a href="/en-US/start/hello.html">Hello, world</a></li><li><a href="/en-US/start/commands.html">Everyday commands</a></li><li><a href="/en-US/start/projects.html">Your first package</a></li><li><a href="/en-US/start/examples.html">Examples</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/language/">The language</a></li><li><a href="/language/types.html">Types and values</a></li><li><a href="/language/functions.html">Functions and flow</a></li><li><a href="/language/errors.html">Errors and testing</a></li><li><a href="/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/language/reader-locales.html">Reader locales</a></li><li><a href="/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/toolchain/">Toolchain</a></li><li><a href="/toolchain/cli.html">The faber CLI</a></li><li><a href="/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/toolchain/packages.html">Packages with Cista</a></li><li><a href="/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/libraries/">Libraries</a></li><li><a href="/libraries/norma.html">Norma — stdlib</a></li><li><a href="/libraries/triga.html">Triga — graphics</a></li><li><a href="/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/reference/">Reference</a></li><li><a href="/reference/grammar.html">Grammar</a></li><li><a href="/en-US/corpus/" class="active">Corpus index</a></li><li><a href="/reference/releases.html">Releases</a></li><li><a href="/reference/design.html">Design notes</a></li><li><a href="/reference/repositories.html">Repositories</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.4.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/reference/releases.html">All releases</a></li><li><a href="/reference/repositories.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>tabula</h1><div class="content"><p>Generic key/value map type.</p><p><strong>Aliases:</strong> <code>map</code>, <code>dictionary</code></p><p><strong>Syntax:</strong> <code>tabula&lt;K,V&gt;</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>collection</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/en-US/corpus/lista.html">lista</a></li><li><a href="/en-US/corpus/copia.html">copia</a></li><li>∷</li><li><a href="/en-US/corpus/itera.html">itera</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpustabulamethodi-accessusfab-canonical-keyword">radix/corpus/tabula/methodi-accessus.fab (canonical · keyword)<a class="anchor" href="#radixcorpustabulamethodi-accessusfab-canonical-keyword">#</a></h3><p>Generic key/value map type.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
-# tabula — Generic key/value map type.
-# =============================================================================
-#
-# What this teaches:
-#   • Map access methods — `accipe`, `ponde`, `habet`, `dele`, `longitudo`, `vacua`
-#   • Null-safe access — using `vel` to supply defaults when a key is absent
-#
-# Common mistakes:
-#   • attempting to access a missing key without a default and getting a ∪ nihil value — use vel for fallback
-#
-# See also: lista, copia, ∷, itera
-# =============================================================================
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Generic key/value map type."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="tabula — Faber"><meta property="og:description" content="Generic key/value map type."><meta property="og:url" content="https://faberlang.dev/en-US/corpus/tabula.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/corpus/tabula.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>tabula — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/en-US/start/install.html">Install</a></li><li><a href="/en-US/start/hello.html">Hello, world</a></li><li><a href="/en-US/start/commands.html">Everyday commands</a></li><li><a href="/en-US/start/projects.html">Your first package</a></li><li><a href="/en-US/start/examples.html">Examples</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/language/">The language</a></li><li><a href="/language/types.html">Types and values</a></li><li><a href="/language/functions.html">Functions and flow</a></li><li><a href="/language/errors.html">Errors and testing</a></li><li><a href="/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/language/reader-locales.html">Reader locales</a></li><li><a href="/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/toolchain/">Toolchain</a></li><li><a href="/toolchain/cli.html">The faber CLI</a></li><li><a href="/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/toolchain/packages.html">Packages with Cista</a></li><li><a href="/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/libraries/">Libraries</a></li><li><a href="/libraries/norma.html">Norma — stdlib</a></li><li><a href="/libraries/triga.html">Triga — graphics</a></li><li><a href="/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/reference/">Reference</a></li><li><a href="/reference/grammar.html">Grammar</a></li><li><a href="/en-US/corpus/" class="active">Corpus index</a></li><li><a href="/reference/releases.html">Releases</a></li><li><a href="/reference/design.html">Design notes</a></li><li><a href="/reference/repositories.html">Repositories</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.4.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/reference/releases.html">All releases</a></li><li><a href="/reference/repositories.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>tabula</h1><div class="content"><p>Generic key/value map type.</p><p><strong>Aliases:</strong> <code>map</code>, <code>dictionary</code></p><p><strong>Syntax:</strong> <code>tabula&lt;K,V&gt;</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>collection</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/en-US/corpus/lista.html">lista</a></li><li><a href="/en-US/corpus/copia.html">copia</a></li><li>∷</li><li><a href="/en-US/corpus/itera.html">itera</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpustabulamethodi-accessusfab-canonical-keyword">radix/corpus/tabula/methodi-accessus.fab (canonical · keyword)<a class="anchor" href="#radixcorpustabulamethodi-accessusfab-canonical-keyword">#</a></h3><p>Generic key/value map type.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># tabula — Generic key/value map type.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Map access methods — `accipe`, `ponde`, `habet`, `dele`, `longitudo`, `vacua`</span>
+<span class="tok-co">#   • Null-safe access — using `vel` to supply defaults when a key is absent</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • attempting to access a missing key without a default and getting a ∪ nihil value — use vel for fallback</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: lista, copia, ∷, itera</span>
+<span class="tok-co"># =============================================================================</span>
 
 
 
 
-# tabula&lt;K,V&gt; access and mutation intrinsics
-#
-# puncta.pone(k, v) | puncta.accipe(k) | puncta.habet(k)   -- get/put
-# puncta.dele(k) | puncta.longitudo() | puncta.vacua()      -- delete/size
-#
-# GRAMMAR:
-#   mapMethod :← expr '.' ('pone' | 'accipe' | 'habet' | 'dele'
-#                         | 'longitudo' | 'vacua') '(' args? ')'
-#
-# EXPECTED OUTPUT:
-#   No pinned stdout — smoke asserts exit 0; tabula/tabula.fab carries scalar contract.
-#
-# BACKEND: Wasm tier floor FrontendAnalyzed (method surface not yet Runnable;
-# whitelist: tabula/methodi-accessus.fab).
+<span class="tok-co"># tabula&lt;K,V&gt; access and mutation intrinsics</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># puncta.pone(k, v) | puncta.accipe(k) | puncta.habet(k)   -- get/put</span>
+<span class="tok-co"># puncta.dele(k) | puncta.longitudo() | puncta.vacua()      -- delete/size</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   mapMethod :← expr '.' ('pone' | 'accipe' | 'habet' | 'dele'</span>
+<span class="tok-co">#                         | 'longitudo' | 'vacua') '(' args? ')'</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   No pinned stdout — smoke asserts exit 0; tabula/tabula.fab carries scalar contract.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># BACKEND: Wasm tier floor FrontendAnalyzed (method surface not yet Runnable;</span>
+<span class="tok-co"># whitelist: tabula/methodi-accessus.fab).</span>
 
 main {
-    var map&lt;string, int&gt; puncta ← vacua
-    puncta.pone(&quot;aelia&quot;, 95)
-    puncta.pone(&quot;balbus&quot;, 87)
+    var map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> vacua
+    puncta.pone(<span class="tok-st">"aelia"</span>, <span class="tok-nu">95</span>)
+    puncta.pone(<span class="tok-st">"balbus"</span>, <span class="tok-nu">87</span>)
 
-    const _ aelia ← puncta.accipe(&quot;aelia&quot;)
-    const _ absens ← puncta.accipe(&quot;carus&quot;)
-    const _ carus ← puncta.accipe(&quot;carus&quot;) coalesce 0
-    const _ habetbalbum ← puncta.habet(&quot;balbus&quot;)
-    const _ remotus ← puncta.dele(&quot;balbus&quot;)
-    const _ longitudo ← puncta.longitudo()
-    const _ vacuaest ← puncta.vacua()
+    const _ aelia <span class="tok-op">←</span> puncta.accipe(<span class="tok-st">"aelia"</span>)
+    const _ absens <span class="tok-op">←</span> puncta.accipe(<span class="tok-st">"carus"</span>)
+    const _ carus <span class="tok-op">←</span> puncta.accipe(<span class="tok-st">"carus"</span>) coalesce <span class="tok-nu">0</span>
+    const _ habetbalbum <span class="tok-op">←</span> puncta.habet(<span class="tok-st">"balbus"</span>)
+    const _ remotus <span class="tok-op">←</span> puncta.dele(<span class="tok-st">"balbus"</span>)
+    const _ longitudo <span class="tok-op">←</span> puncta.longitudo()
+    const _ vacuaest <span class="tok-op">←</span> puncta.vacua()
 
     print aelia, absens, carus, habetbalbum, remotus, longitudo, vacuaest
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>95 nihil 0 verum verum 1 falsum
-</code></pre><h3 id="radixcorpustabulatabulafab-canonical-keyword">radix/corpus/tabula/tabula.fab (canonical · keyword)<a class="anchor" href="#radixcorpustabulatabulafab-canonical-keyword">#</a></h3><p>Generic key/value map type.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
-# tabula — Generic key/value map type.
-# =============================================================================
-#
-# What this teaches:
-#   • Map declaration — `tabula&lt;K,V&gt;` with bracket syntax for keyed access
-#   • Map literals — empty map via `vacua`, then populating with index assignment
-#
-# Common mistakes:
-#   • using bracket syntax with a key type that doesn't match the tabula declaration, or inserting duplicate keys
-#
-# See also: lista, copia, ∷, itera
-# =============================================================================
+</code></pre><h3 id="radixcorpustabulatabulafab-canonical-keyword">radix/corpus/tabula/tabula.fab (canonical · keyword)<a class="anchor" href="#radixcorpustabulatabulafab-canonical-keyword">#</a></h3><p>Generic key/value map type.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># tabula — Generic key/value map type.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Map declaration — `tabula&lt;K,V&gt;` with bracket syntax for keyed access</span>
+<span class="tok-co">#   • Map literals — empty map via `vacua`, then populating with index assignment</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • using bracket syntax with a key type that doesn't match the tabula declaration, or inserting duplicate keys</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: lista, copia, ∷, itera</span>
+<span class="tok-co"># =============================================================================</span>
 
 
 
 
-# tabula&lt;K,V&gt; declaration, vacua, and keyed lookup
-#
-# varia tabula&lt;K,V&gt; nomen ← vacua   -- typed empty map (forma innata)
-# nomen[key] ← value                -- index assignment
-# nomen[key]                        -- keyed accipe
-# nomen.longitudo()                 -- entry count
-#
-# GRAMMAR:
-#   mapDecl :← 'varia' 'tabula&lt;' type ',' type '&gt;' ident '←' expr
-#   mapAcc  :← expr '[' expr ']'
-#
-# EXPECTED OUTPUT:
-#   longitudo() plus keyed lookups for alpha/beta/gamma (tabula.expected).
+<span class="tok-co"># tabula&lt;K,V&gt; declaration, vacua, and keyed lookup</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># varia tabula&lt;K,V&gt; nomen ← vacua   -- typed empty map (forma innata)</span>
+<span class="tok-co"># nomen[key] ← value                -- index assignment</span>
+<span class="tok-co"># nomen[key]                        -- keyed accipe</span>
+<span class="tok-co"># nomen.longitudo()                 -- entry count</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   mapDecl :← 'varia' 'tabula&lt;' type ',' type '&gt;' ident '←' expr</span>
+<span class="tok-co">#   mapAcc  :← expr '[' expr ']'</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   longitudo() plus keyed lookups for alpha/beta/gamma (tabula.expected).</span>
 
 main {
-    var map&lt;string, int&gt; puncta ← vacua
-    puncta[&quot;alpha&quot;] ← 1
-    puncta[&quot;beta&quot;] ← 2
-    puncta[&quot;gamma&quot;] ← 3
+    var map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> vacua
+    puncta[<span class="tok-st">"alpha"</span>] <span class="tok-op">←</span> <span class="tok-nu">1</span>
+    puncta[<span class="tok-st">"beta"</span>] <span class="tok-op">←</span> <span class="tok-nu">2</span>
+    puncta[<span class="tok-st">"gamma"</span>] <span class="tok-op">←</span> <span class="tok-nu">3</span>
 
     print puncta.longitudo()
-    print puncta[&quot;alpha&quot;]
-    print puncta[&quot;beta&quot;]
-    print puncta[&quot;gamma&quot;]
+    print puncta[<span class="tok-st">"alpha"</span>]
+    print puncta[<span class="tok-st">"beta"</span>]
+    print puncta[<span class="tok-st">"gamma"</span>]
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>3
 1
 2

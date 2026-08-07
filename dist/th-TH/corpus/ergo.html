@@ -1,134 +1,134 @@
 <!DOCTYPE html>
-<html lang="th-TH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Introduces a compact statement consequent."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="ergo — Faber"><meta property="og:description" content="Introduces a compact statement consequent."><meta property="og:url" content="https://faberlang.dev/th-TH/corpus/ergo.html"><meta property="og:locale" content="th_TH"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/th-TH/corpus/ergo.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>ergo — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">การเรนเดอร์</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">th-TH</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/th-TH/start/install.html">ติดตั้ง</a></nav></div></div><div class="page"><aside><a class="brand" href="/th-TH/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">เอกสารภาษา</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/th-TH/start/install.html">ติดตั้ง</a></li><li><a href="/th-TH/start/hello.html">สวัสดี, world</a></li><li><a href="/th-TH/start/commands.html">Everyday commands</a></li><li><a href="/th-TH/start/projects.html">Your first package</a></li><li><a href="/th-TH/start/examples.html">ตัวอย่าง</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/language/">The language</a></li><li><a href="/language/types.html">Types and values</a></li><li><a href="/language/functions.html">Functions and flow</a></li><li><a href="/language/errors.html">Errors and testing</a></li><li><a href="/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/language/reader-locales.html">Reader locales</a></li><li><a href="/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/toolchain/">Toolchain</a></li><li><a href="/toolchain/cli.html">The faber CLI</a></li><li><a href="/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/toolchain/target-matrix.html">เป้าหมาย matrix</a></li><li><a href="/toolchain/packages.html">Packages with Cista</a></li><li><a href="/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/libraries/">Libraries</a></li><li><a href="/libraries/norma.html">Norma — stdlib</a></li><li><a href="/libraries/triga.html">Triga — graphics</a></li><li><a href="/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/reference/">Reference</a></li><li><a href="/reference/grammar.html">Grammar</a></li><li><a href="/th-TH/corpus/" class="active">คลังภาษา index</a></li><li><a href="/reference/releases.html">รุ่นเผยแพร่</a></li><li><a href="/reference/design.html">Design notes</a></li><li><a href="/reference/repositories.html">Repositories</a></li></ul><div class="side-h">สำหรับเอเจนต์</div><ul class="nav nav-compact"><li><a href="/llms.txt">ดัชนีเอเจนต์</a></li><li><a href="/agents/index.md">คู่มือเอเจนต์</a></li><li><a href="/.well-known/agent-skills/index.json">ทักษะเอเจนต์</a></li><li><a href="/llms-full.txt">เอกสารอ้างอิงเต็ม</a></li></ul><div class="side-h">Release 1.4.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/reference/releases.html">ทุกรุ่นที่เผยแพร่</a></li><li><a href="/reference/repositories.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">กระบวนทัศน์</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">ระบบชนิด</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">เป้าหมาย</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">สัญญาอนุญาต</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>ergo</h1><p><strong>Translation status:</strong> ภาษาไทย reader-locale proof. Code fences render through the <code>th-TH</code> pipeline; prose is canonical Latin.</p><div class="content"><p>Introduces a compact statement consequent.</p><p><strong>Aliases:</strong> <code>ergo</code>, <code>therefore</code></p><p><strong>Syntax:</strong> <code>&lt;head&gt; ergo &lt;statement&gt;</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>control-flow</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/th-TH/corpus/si.html">si</a></li><li><a href="/th-TH/corpus/redde.html">redde</a></li><li><a href="/th-TH/corpus/clausura.html">clausura</a></li><li><a href="/th-TH/corpus/ergo.html">ergo</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusoperatorescontrolfab-canonical-operator-group">radix/corpus/operatores/control.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusoperatorescontrolfab-canonical-operator-group">#</a></h3><p>Compact consequent after si/dum heads via ergo, with ∴ reserved for closure bodies.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
-# ergo — Compact consequent after si/dum heads via ergo, with ∴ reserved for closure bodies.
-# =============================================================================
-#
-# What this teaches:
-#   • Compact consequents — `ergo` follows `si`, `sin`, `secus`, or `dum` heads with a single consequent statement.
-#   • Guard-return pattern — `si &lt;cond&gt; ergo redde &lt;value&gt;` is a concise guard clause.
-#
-# Common mistakes:
-#   • Using -&gt; instead of → for function return types — Faber uses the Unicode arrow.
-#
-# See also: si, redde, clausura, ergo
-# =============================================================================
+<html lang="th-TH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Introduces a compact statement consequent."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="ergo — Faber"><meta property="og:description" content="Introduces a compact statement consequent."><meta property="og:url" content="https://faberlang.dev/th-TH/corpus/ergo.html"><meta property="og:locale" content="th_TH"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/th-TH/corpus/ergo.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>ergo — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">การเรนเดอร์</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">th-TH</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/th-TH/start/install.html">ติดตั้ง</a></nav></div></div><div class="page"><aside><a class="brand" href="/th-TH/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">เอกสารภาษา</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/th-TH/start/install.html">ติดตั้ง</a></li><li><a href="/th-TH/start/hello.html">สวัสดี, world</a></li><li><a href="/th-TH/start/commands.html">Everyday commands</a></li><li><a href="/th-TH/start/projects.html">Your first package</a></li><li><a href="/th-TH/start/examples.html">ตัวอย่าง</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/language/">The language</a></li><li><a href="/language/types.html">Types and values</a></li><li><a href="/language/functions.html">Functions and flow</a></li><li><a href="/language/errors.html">Errors and testing</a></li><li><a href="/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/language/reader-locales.html">Reader locales</a></li><li><a href="/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/toolchain/">Toolchain</a></li><li><a href="/toolchain/cli.html">The faber CLI</a></li><li><a href="/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/toolchain/target-matrix.html">เป้าหมาย matrix</a></li><li><a href="/toolchain/packages.html">Packages with Cista</a></li><li><a href="/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/libraries/">Libraries</a></li><li><a href="/libraries/norma.html">Norma — stdlib</a></li><li><a href="/libraries/triga.html">Triga — graphics</a></li><li><a href="/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/reference/">Reference</a></li><li><a href="/reference/grammar.html">Grammar</a></li><li><a href="/th-TH/corpus/" class="active">คลังภาษา index</a></li><li><a href="/reference/releases.html">รุ่นเผยแพร่</a></li><li><a href="/reference/design.html">Design notes</a></li><li><a href="/reference/repositories.html">Repositories</a></li></ul><div class="side-h">สำหรับเอเจนต์</div><ul class="nav nav-compact"><li><a href="/llms.txt">ดัชนีเอเจนต์</a></li><li><a href="/agents/index.md">คู่มือเอเจนต์</a></li><li><a href="/.well-known/agent-skills/index.json">ทักษะเอเจนต์</a></li><li><a href="/llms-full.txt">เอกสารอ้างอิงเต็ม</a></li></ul><div class="side-h">Release 1.4.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/reference/releases.html">ทุกรุ่นที่เผยแพร่</a></li><li><a href="/reference/repositories.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">กระบวนทัศน์</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">ระบบชนิด</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">เป้าหมาย</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">สัญญาอนุญาต</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>ergo</h1><p><strong>Translation status:</strong> ภาษาไทย reader-locale proof. Code fences render through the <code>th-TH</code> pipeline; prose is canonical Latin.</p><div class="content"><p>Introduces a compact statement consequent.</p><p><strong>Aliases:</strong> <code>ergo</code>, <code>therefore</code></p><p><strong>Syntax:</strong> <code>&lt;head&gt; ergo &lt;statement&gt;</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>control-flow</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/th-TH/corpus/si.html">si</a></li><li><a href="/th-TH/corpus/redde.html">redde</a></li><li><a href="/th-TH/corpus/clausura.html">clausura</a></li><li><a href="/th-TH/corpus/ergo.html">ergo</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusoperatorescontrolfab-canonical-operator-group">radix/corpus/operatores/control.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusoperatorescontrolfab-canonical-operator-group">#</a></h3><p>Compact consequent after si/dum heads via ergo, with ∴ reserved for closure bodies.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># ergo — Compact consequent after si/dum heads via ergo, with ∴ reserved for closure bodies.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Compact consequents — `ergo` follows `si`, `sin`, `secus`, or `dum` heads with a single consequent statement.</span>
+<span class="tok-co">#   • Guard-return pattern — `si &lt;cond&gt; ergo redde &lt;value&gt;` is a concise guard clause.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Using -&gt; instead of → for function return types — Faber uses the Unicode arrow.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: si, redde, clausura, ergo</span>
+<span class="tok-co"># =============================================================================</span>
 
-# operatores/control — ergo therefore consequent
-#
-# GRAMMAR:
-#   consequentStmt :← ('si' | 'sin' | 'secus' | 'dum') expr 'ergo' stmt
-#
-# EXPECTED OUTPUT:
-#   0, 100, 42
-#
-# BACKEND:
-#   Cross-ref si/ergo-redde.fab for ergo-redde guard-return spelling.
+<span class="tok-co"># operatores/control — ergo therefore consequent</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   consequentStmt :← ('si' | 'sin' | 'secus' | 'dum') expr 'ergo' stmt</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   0, 100, 42</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># BACKEND:</span>
+<span class="tok-co">#   Cross-ref si/ergo-redde.fab for ergo-redde guard-return spelling.</span>
 
-fn clamp(int x) → int {
-    if x &lt; 0 then return 0
-    if x &gt; 100 then return 100
+fn clamp(int x) <span class="tok-op">→</span> int {
+    if x <span class="tok-op">&lt;</span> <span class="tok-nu">0</span> then return <span class="tok-nu">0</span>
+    if x <span class="tok-op">&gt;</span> <span class="tok-nu">100</span> then return <span class="tok-nu">100</span>
     return x
 }
 
-fn inveni(list&lt;int&gt; res, int quaesitum) → int ∪ null {
+fn inveni(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res, int quaesitum) <span class="tok-op">→</span> int <span class="tok-op">∪</span> null {
     for from res const item {
-        if item ≡ quaesitum then return item
+        if item <span class="tok-op">≡</span> quaesitum then return item
     }
     return null
 }
 
 main {
-    print clamp(-5)
-    print clamp(150)
-    print inveni([10, 20, 42], 42)
+    print clamp(<span class="tok-op">-</span><span class="tok-nu">5</span>)
+    print clamp(<span class="tok-nu">150</span>)
+    print inveni([<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">42</span>], <span class="tok-nu">42</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
 100
 42
-</code></pre><h3 id="radixcorpussiergo-reddefab-canonical-operator-group">radix/corpus/si/ergo-redde.fab (canonical · operator-group)<a class="anchor" href="#radixcorpussiergo-reddefab-canonical-operator-group">#</a></h3><p>Introduces a compact statement consequent.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
-# ergo — Introduces a compact statement consequent.
-# =============================================================================
-#
-# What this teaches:
-#   • Guard clauses — `si &lt;cond&gt; ergo redde &lt;expr&gt;` provides a compact
-#     one-liner for early returns
-#   • `sin` and `secus` also accept `ergo` for chained guard expressions
-#   • Demonstrates guard-return patterns, optional returns, and linear search
-#
-# Common mistakes:
-#   • TODO: using `ergo` with a block instead of a single statement
-#
-# See also: si, dum, clausura, redde, tacet
-# =============================================================================
+</code></pre><h3 id="radixcorpussiergo-reddefab-canonical-operator-group">radix/corpus/si/ergo-redde.fab (canonical · operator-group)<a class="anchor" href="#radixcorpussiergo-reddefab-canonical-operator-group">#</a></h3><p>Introduces a compact statement consequent.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># ergo — Introduces a compact statement consequent.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Guard clauses — `si &lt;cond&gt; ergo redde &lt;expr&gt;` provides a compact</span>
+<span class="tok-co">#     one-liner for early returns</span>
+<span class="tok-co">#   • `sin` and `secus` also accept `ergo` for chained guard expressions</span>
+<span class="tok-co">#   • Demonstrates guard-return patterns, optional returns, and linear search</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • TODO: using `ergo` with a block instead of a single statement</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: si, dum, clausura, redde, tacet</span>
+<span class="tok-co"># =============================================================================</span>
 
-# Si with ergo redde syntax
-#
-# si &lt;conditio&gt; ergo redde &lt;expressio&gt;     -- guard return
-# sin &lt;conditio&gt; ergo redde &lt;expressio&gt;    -- else-if guard
-# secus ergo redde &lt;expressio&gt;             -- else return
-#
-# GRAMMAR:
-#   guardReturn :← ('si' | 'sin' | 'secus') expr 'ergo' 'redde' expr
-#
-# EXPECTED OUTPUT:
-#   Sign classes, division results, grades, and search hits.
+<span class="tok-co"># Si with ergo redde syntax</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># si &lt;conditio&gt; ergo redde &lt;expressio&gt;     -- guard return</span>
+<span class="tok-co"># sin &lt;conditio&gt; ergo redde &lt;expressio&gt;    -- else-if guard</span>
+<span class="tok-co"># secus ergo redde &lt;expressio&gt;             -- else return</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   guardReturn :← ('si' | 'sin' | 'secus') expr 'ergo' 'redde' expr</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   Sign classes, division results, grades, and search hits.</span>
 
-fn classis(int x) → string {
-    if x &lt; 0 then return &quot;negativus&quot;
-    if x ≡ 0 then return &quot;nihil&quot;
-    return &quot;positivus&quot;
+fn classis(int x) <span class="tok-op">→</span> string {
+    if x <span class="tok-op">&lt;</span> <span class="tok-nu">0</span> then return <span class="tok-st">"negativus"</span>
+    if x <span class="tok-op">≡</span> <span class="tok-nu">0</span> then return <span class="tok-st">"nihil"</span>
+    return <span class="tok-st">"positivus"</span>
 }
 
-# Optional return: nihil when divisor is zero
-fn divide(int a, int b) → int ∪ null {
-    if b ≡ 0 then return null
-    return a / b
+<span class="tok-co"># Optional return: nihil when divisor is zero</span>
+fn divide(int a, int b) <span class="tok-op">→</span> int <span class="tok-op">∪</span> null {
+    if b <span class="tok-op">≡</span> <span class="tok-nu">0</span> then return null
+    return a <span class="tok-op">/</span> b
 }
 
-# sin chain with secus ergo redde fallback
-fn gradus(int puncta) → string {
-    if puncta ≥ 90 then return &quot;A&quot;
-    elif puncta ≥ 80 then return &quot;B&quot;
-    elif puncta ≥ 70 then return &quot;C&quot;
-    elif puncta ≥ 60 then return &quot;D&quot;
-    else then return &quot;F&quot;
+<span class="tok-co"># sin chain with secus ergo redde fallback</span>
+fn gradus(int puncta) <span class="tok-op">→</span> string {
+    if puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> then return <span class="tok-st">"A"</span>
+    elif puncta <span class="tok-op">≥</span> <span class="tok-nu">80</span> then return <span class="tok-st">"B"</span>
+    elif puncta <span class="tok-op">≥</span> <span class="tok-nu">70</span> then return <span class="tok-st">"C"</span>
+    elif puncta <span class="tok-op">≥</span> <span class="tok-nu">60</span> then return <span class="tok-st">"D"</span>
+    else then return <span class="tok-st">"F"</span>
 }
 
-# Early return inside itera ex loop
-fn inveni(list&lt;int&gt; res, int quaesitum) → int ∪ null {
+<span class="tok-co"># Early return inside itera ex loop</span>
+fn inveni(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res, int quaesitum) <span class="tok-op">→</span> int <span class="tok-op">∪</span> null {
     for from res const item {
-        if item ≡ quaesitum then return item
+        if item <span class="tok-op">≡</span> quaesitum then return item
     }
     return null
 }
 
-fn habet(map&lt;string, int&gt; map, string clavis) → bool {
+fn habet(map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> map, string clavis) <span class="tok-op">→</span> bool {
     for ref map const k {
-        if k ≡ clavis then return true
+        if k <span class="tok-op">≡</span> clavis then return true
     }
     return false
 }
 
 main {
-    # Sign classification
-    print classis(-5)
-    print classis(0)
-    print classis(10)
+<span class="tok-co">    # Sign classification</span>
+    print classis(<span class="tok-op">-</span><span class="tok-nu">5</span>)
+    print classis(<span class="tok-nu">0</span>)
+    print classis(<span class="tok-nu">10</span>)
 
-    # Optional return on invalid divisor
-    # 5
-    print divide(10, 2)
-    # nihil
-    print divide(10, 0)
+<span class="tok-co">    # Optional return on invalid divisor</span>
+<span class="tok-co">    # 5</span>
+    print divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
+<span class="tok-co">    # nihil</span>
+    print divide(<span class="tok-nu">10</span>, <span class="tok-nu">0</span>)
 
-    # Letter grades via sin chain
-    print gradus(95)
-    print gradus(85)
-    print gradus(55)
+<span class="tok-co">    # Letter grades via sin chain</span>
+    print gradus(<span class="tok-nu">95</span>)
+    print gradus(<span class="tok-nu">85</span>)
+    print gradus(<span class="tok-nu">55</span>)
 
-    # Linear search with early redde
-    const _ numeri ← [1, 2, 3, 4, 5]
-    print inveni(numeri, 3)
-    print inveni(numeri, 9)
+<span class="tok-co">    # Linear search with early redde</span>
+    const _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    print inveni(numeri, <span class="tok-nu">3</span>)
+    print inveni(numeri, <span class="tok-nu">9</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>negativus
 nihil
 positivus
@@ -139,53 +139,53 @@ B
 F
 3
 nihil
-</code></pre><h3 id="radixcorpussiergofab-canonical-operator-group">radix/corpus/si/ergo.fab (canonical · operator-group)<a class="anchor" href="#radixcorpussiergofab-canonical-operator-group">#</a></h3><p>Introduces a compact statement consequent.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
-# ergo — Introduces a compact statement consequent.
-# =============================================================================
-#
-# What this teaches:
-#   • Inline conditionals — `ergo` replaces a single-statement block body on
-#     `si` and `secus` branches
-#   • `si &lt;cond&gt; ergo &lt;stmt&gt; secus ergo &lt;stmt&gt;` forms a two-way one-liner
-#     without braces
-#
-# Common mistakes:
-#   • TODO: chaining multiple statements after `ergo` (it accepts only one
-#     statement)
-#
-# See also: si, dum, clausura, redde, tacet
-# =============================================================================
+</code></pre><h3 id="radixcorpussiergofab-canonical-operator-group">radix/corpus/si/ergo.fab (canonical · operator-group)<a class="anchor" href="#radixcorpussiergofab-canonical-operator-group">#</a></h3><p>Introduces a compact statement consequent.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># ergo — Introduces a compact statement consequent.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Inline conditionals — `ergo` replaces a single-statement block body on</span>
+<span class="tok-co">#     `si` and `secus` branches</span>
+<span class="tok-co">#   • `si &lt;cond&gt; ergo &lt;stmt&gt; secus ergo &lt;stmt&gt;` forms a two-way one-liner</span>
+<span class="tok-co">#     without braces</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • TODO: chaining multiple statements after `ergo` (it accepts only one</span>
+<span class="tok-co">#     statement)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: si, dum, clausura, redde, tacet</span>
+<span class="tok-co"># =============================================================================</span>
 
-# One-liner conditionals with ergo
-#
-# si &lt;condition&gt; ergo &lt;statement&gt;                              -- single consequent
-# si &lt;condition&gt; ergo &lt;statement&gt; secus ergo &lt;statement&gt;     -- if-else one-liner
-#
-# GRAMMAR:
-#   ifStmt :← 'si' expr 'ergo' stmt ('secus' 'ergo' stmt)?
-#
-# EXPECTED OUTPUT:
-#   Validation and grading lines for sample x, aetas, and puncta values.
+<span class="tok-co"># One-liner conditionals with ergo</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># si &lt;condition&gt; ergo &lt;statement&gt;                              -- single consequent</span>
+<span class="tok-co"># si &lt;condition&gt; ergo &lt;statement&gt; secus ergo &lt;statement&gt;     -- if-else one-liner</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   ifStmt :← 'si' expr 'ergo' stmt ('secus' 'ergo' stmt)?</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   Validation and grading lines for sample x, aetas, and puncta values.</span>
 
 main {
-    # ergo replaces a one-statement block body
-    const _ x ← 10
+<span class="tok-co">    # ergo replaces a one-statement block body</span>
+    const _ x <span class="tok-op">←</span> <span class="tok-nu">10</span>
 
-    if x &gt; 5 then print &quot;x magnum est&quot;
+    if x <span class="tok-op">&gt;</span> <span class="tok-nu">5</span> then print <span class="tok-st">"x magnum est"</span>
 
-    # secus ergo pairs else with a single consequent
-    const _ aetas ← 25
-    if aetas ≥ 18 then print &quot;adultus&quot;
-    else then print &quot;minor&quot;
+<span class="tok-co">    # secus ergo pairs else with a single consequent</span>
+    const _ aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
+    if aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> then print <span class="tok-st">"adultus"</span>
+    else then print <span class="tok-st">"minor"</span>
 
-    # Two-way one-liner (85 &lt; 90 → &quot;non A&quot;)
-    const _ puncta ← 85
-    if puncta ≥ 90 then print &quot;A&quot;
-    else then print &quot;non A&quot;
+<span class="tok-co">    # Two-way one-liner (85 &lt; 90 → "non A")</span>
+    const _ puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
+    if puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> then print <span class="tok-st">"A"</span>
+    else then print <span class="tok-st">"non A"</span>
 
-    # bivalens condition used directly
-    const _ valet ← true
-    if valet then print &quot;Recte&quot;
+<span class="tok-co">    # bivalens condition used directly</span>
+    const _ valet <span class="tok-op">←</span> true
+    if valet then print <span class="tok-st">"Recte"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>x magnum est
 adultus
 non A

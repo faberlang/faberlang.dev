@@ -17,30 +17,30 @@
 <code>true</code>、<code>false</code></p><p><strong>第 2 阶段 —— 共享通用辅助模块 + 内联测试</strong>
 <code>echo</code>、<code>basename</code>、<code>dirname</code>、<code>printf</code>、<code>seq</code></p><p><strong>第 3 阶段 —— 可空 stdin 切片</strong>
 <code>cat</code>、<code>head</code>、<code>tail</code>、<code>wc</code>、<code>tac</code>、<code>uniq</code>、<code>fold</code>、<code>nl</code>、<code>expand</code>、<code>unexpand</code>、<code>sort</code>、<code>cut</code>、<code>grep</code>、<code>tr</code>、<code>tee</code>、<code>paste</code></p><p><strong>脚手架已就位 —— 第 5 阶段及以后</strong>
-<code>rm</code>、<code>cp</code>、<code>mv</code>、<code>mkdir</code>、<code>touch</code>、<code>pwd</code>、<code>readlink</code>、<code>realpath</code>、<code>join</code>、<code>comm</code>、<code>od</code>、<code>cksum</code>、<code>split</code>、<code>yes</code>、<code>printenv</code></p><h3 id="example--echo">示例 —— echo<a class="anchor" href="#example--echo">#</a></h3><p><code>echo</code> 包展示了贯穿 coreutils 的 Faber 范式：CLI 注解、选项解析、使用 <code>probandum</code>/<code>proba</code>/<code>adfirma</code> 的内联测试，以及共享的通用模块：</p><pre class="faber-code"><code class="lang-faber locale=la">importa ex &quot;norma:consolum&quot; privata consolum
+<code>rm</code>、<code>cp</code>、<code>mv</code>、<code>mkdir</code>、<code>touch</code>、<code>pwd</code>、<code>readlink</code>、<code>realpath</code>、<code>join</code>、<code>comm</code>、<code>od</code>、<code>cksum</code>、<code>split</code>、<code>yes</code>、<code>printenv</code></p><h3 id="example--echo">示例 —— echo<a class="anchor" href="#example--echo">#</a></h3><p><code>echo</code> 包展示了贯穿 coreutils 的 Faber 范式：CLI 注解、选项解析、使用 <code>probandum</code>/<code>proba</code>/<code>adfirma</code> 的内联测试，以及共享的通用模块：</p><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-kw">importa</span> <span class="tok-kw">ex</span> <span class="tok-st">"norma:consolum"</span> <span class="tok-kw">privata</span> consolum
 
-functio echo_textus(lista&lt;textus&gt; words) → textus {
-    redde &quot;&quot;
+<span class="tok-kw">functio</span> echo_textus(<span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">textus</span><span class="tok-op">&gt;</span> words) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
+    <span class="tok-kw">redde</span> <span class="tok-st">""</span>
 }
 
-functio echo_novam_lineam(lista&lt;textus&gt; words) → bivalens {
-    redde falsum
+<span class="tok-kw">functio</span> echo_novam_lineam(<span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">textus</span><span class="tok-op">&gt;</span> words) <span class="tok-op">→</span> <span class="tok-kw">bivalens</span> {
+    <span class="tok-kw">redde</span> <span class="tok-kw">falsum</span>
 }
 
-probandum &quot;echo formatting&quot; tag &quot;coreutils&quot; {
-    proba &quot;empty operands&quot; {
-        adfirma echo_textus([]) ≡ &quot;&quot;
+<span class="tok-kw">probandum</span> <span class="tok-st">"echo formatting"</span> <span class="tok-kw">tag</span> <span class="tok-st">"coreutils"</span> {
+    <span class="tok-kw">proba</span> <span class="tok-st">"empty operands"</span> {
+        <span class="tok-kw">adfirma</span> echo_textus([]) <span class="tok-op">≡</span> <span class="tok-st">""</span>
     }
-    proba &quot;-n suppresses newline&quot; {
-        adfirma echo_novam_lineam([&quot;-n&quot;, &quot;hello&quot;]) ≡ falsum
+    <span class="tok-kw">proba</span> <span class="tok-st">"-n suppresses newline"</span> {
+        <span class="tok-kw">adfirma</span> echo_novam_lineam([<span class="tok-st">"-n"</span>, <span class="tok-st">"hello"</span>]) <span class="tok-op">≡</span> <span class="tok-kw">falsum</span>
     }
 }
 
-@ cli &quot;echo&quot;
-@ descriptio &quot;GNU coreutils echo parity exemplum&quot;
-@ operandus ceteri textus words
-incipit argumenta args {
-    # ... CLI logic here
+@ cli <span class="tok-st">"echo"</span>
+@ <span class="tok-kw">descriptio</span> <span class="tok-st">"GNU coreutils echo parity exemplum"</span>
+@ <span class="tok-kw">operandus</span> <span class="tok-kw">ceteri</span> <span class="tok-kw">textus</span> words
+<span class="tok-kw">incipit</span> <span class="tok-kw">argumenta</span> args {
+<span class="tok-co">    # ... CLI logic here</span>
 }</code></pre><h3 id="running">运行<a class="anchor" href="#running">#</a></h3><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> check coreutils/packages/echo
 <span class="tok-fn">faber</span> test coreutils/packages/echo
 <span class="tok-fn">faber</span> run coreutils/packages/echo -- hello world</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#how-to-run">如何运行示例</a></li><li class="toc-3"><a href="#applications">应用包</a></li><li class="toc-3"><a href="#corpus">语言语料库</a></li><li class="toc-3"><a href="#stdlib">标准库导览</a></li><li class="toc-3"><a href="#order">建议的学习顺序</a></li><li class="toc-3"><a href="#agent-path">代理路径</a></li><li class="toc-3"><a href="#previous">上一页</a></li><li class="toc-2"><a href="#ai-workbench">AI Workbench</a></li><li class="toc-3"><a href="#package">包</a></li><li class="toc-3"><a href="#commands">命令</a></li><li class="toc-3"><a href="#validation">验证</a></li><li class="toc-2"><a href="#coreutils">Coreutils</a></li><li class="toc-3"><a href="#implemented-utilities">已实现的工具</a></li><li class="toc-3"><a href="#example--echo">示例 —— echo</a></li><li class="toc-3"><a href="#running">运行</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">来源</span><ul><li>[</li></ul></div></footer></div></body></html>

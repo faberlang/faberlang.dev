@@ -27,13 +27,28 @@ import re
 import sys
 from pathlib import Path
 
+# Match on the inner `code.lang-…`, not the wrapper's class. What a block is
+# written in is independent of how its container is presented: docs fences wear
+# `pre.faber-code`, the landing page's tab panels and kernel block wear their
+# own presentational classes, and all of them deserve colour.
+#
+# The class also carries the fence's whole info string, not just its language:
+# ```faber locale=la  renders as  class="lang-faber locale=la". Capture the
+# attribute wholesale and take the language off the front, or every annotated
+# fence — including the only real Faber sample on the examples page — silently
+# goes unpainted.
 BLOCK_RE = re.compile(
-    r'(<pre class="faber-code"><code class="lang-([a-zA-Z0-9_-]+)">)(.*?)(</code></pre>)',
+    r'(<pre[^>]*><code class="lang-([^"]+)">)(.*?)(</code></pre>)',
     re.S,
 )
 
 # Languages worth colouring. `text` fences are program output, not source.
-SUPPORTED = {"faber", "bash", "toml"}
+SUPPORTED = {
+    "faber", "bash", "toml",
+    # Generated target output, shown beside the Faber it came from.
+    "rust", "go", "ts", "typescript",
+    "metal-text", "wgsl-text", "llvm-text", "wasm-text",
+}
 
 # Faber's operator glyphs, longest first so ≠ never loses to =.
 FABER_OPERATORS = [
@@ -108,6 +123,61 @@ TOML_SCANNER = re.compile(
 )
 
 
+# Generated target output. These panels exist to be *compared* with the Faber
+# source beside them, so they need enough colour to read as code — not a second
+# language implementation. Comments, strings, numbers, types and a shared
+# keyword spine carry that; anything subtler stays plain.
+CLIKE_KEYWORDS = (
+    "fn|let|const|var|mut|pub|use|mod|impl|trait|struct|enum|match|move|dyn|as|"
+    "func|package|import|type|interface|chan|defer|go|range|map|"
+    "class|export|function|new|await|async|of|in|"
+    "if|else|for|while|loop|do|switch|case|default|break|continue|return|"
+    "true|false|null|nil|undefined|this|self|"
+    "void|uniform|buffer|shared|kernel|constant|device|threadgroup|"
+    "compute|group|binding|builtin|workgroup|array|vec2|vec3|vec4|thread"
+)
+CLIKE_TYPES = (
+    "i8|i16|i32|i64|u8|u16|u32|u64|f16|f32|f64|usize|isize|bool|str|String|Vec|"
+    "int|int8|int16|int32|int64|uint|uint32|uint64|float|float2|float3|float4|"
+    "half|number|string|boolean|any|unknown|byte|rune|error"
+)
+
+CLIKE_SCANNER = re.compile(
+    r"(?P<co>//[^\n]*|/\*.*?\*/)"
+    r"|(?P<st>\"(?:[^\"\\\n]|\\.)*\"|'(?:[^'\\\n]|\\.)*'|`[^`]*`)"
+    r"|(?P<an>@[A-Za-z_][\w.]*|\#\[[^\]\n]*\])"
+    rf"|(?P<ty>(?<![\w.])(?:{CLIKE_TYPES})(?![\w]))"
+    rf"|(?P<kw>(?<![\w.])(?:{CLIKE_KEYWORDS})(?![\w]))"
+    r"|(?P<nu>(?<![\w.])\d[\d_]*(?:\.\d+)?(?:[eE][-+]?\d+)?)",
+    re.S,
+)
+
+# Textual IR. Comment syntax differs (`;` for LLVM, `;;` for WAT) and the
+# interesting tokens are the sigil-prefixed names, not keywords.
+IR_SCANNER = re.compile(
+    r"(?P<co>;[^\n]*)"
+    r"|(?P<st>\"(?:[^\"\\\n]|\\.)*\")"
+    r"|(?P<an>[%@$][\w.]+)"
+    rf"|(?P<ty>(?<![\w.])(?:{CLIKE_TYPES}|i1|ptr|label|metadata)(?![\w]))"
+    r"|(?P<kw>(?<![\w.])(?:define|declare|module|func|global|local|param|result|"
+    r"call|call_indirect|ret|br|br_if|block|end|loop|memory|table|elem|data|"
+    r"export|import|type|alloca|load|store|getelementptr|bitcast|icmp|fcmp|phi|"
+    r"select|switch|unreachable|attributes|source_filename|target)(?![\w]))"
+    r"|(?P<nu>(?<![\w.])\d[\d_]*(?:\.\d+)?)"
+)
+
+TARGET_SCANNERS: dict[str, re.Pattern] = {
+    "rust": CLIKE_SCANNER,
+    "go": CLIKE_SCANNER,
+    "ts": CLIKE_SCANNER,
+    "typescript": CLIKE_SCANNER,
+    "metal-text": CLIKE_SCANNER,
+    "wgsl-text": CLIKE_SCANNER,
+    "llvm-text": IR_SCANNER,
+    "wasm-text": IR_SCANNER,
+}
+
+
 def paint(source: str, scanner: re.Pattern) -> str:
     """Escape ``source`` and wrap recognised tokens in span elements."""
     out: list[str] = []
@@ -158,23 +228,35 @@ def main() -> int:
 
     for page in sorted(dist.rglob("*.html")):
         text = page.read_text(encoding="utf-8")
-        if 'class="faber-code"' not in text or "tok-" in text:
+        if '<code class="lang-' not in text or "tok-" in text:
             continue
 
         locale = locale_of(page, dist)
         stats = {"n": 0}
 
         def replace(match: re.Match) -> str:
-            open_tag, language, body, close_tag = match.groups()
+            open_tag, info, body, close_tag = match.groups()
+            fields = info.split()
+            language = fields[0] if fields else ""
             if language not in SUPPORTED:
                 return match.group(0)
             source = html_mod.unescape(body)
             if language == "faber":
-                scanner = faber_for(locale)
+                # A fence may name its own reader locale (```faber locale=th-TH),
+                # which outranks the page's. The landing page needs this: it is
+                # locale-less at the site root, yet its hero strip shows the same
+                # program in eight reader locales side by side.
+                fence_locale = next(
+                    (f.split("=", 1)[1] for f in fields[1:] if f.startswith("locale=")),
+                    None,
+                )
+                scanner = faber_for(fence_locale or locale)
             elif language == "bash":
                 scanner = BASH_SCANNER
-            else:
+            elif language == "toml":
                 scanner = TOML_SCANNER
+            else:
+                scanner = TARGET_SCANNERS[language]
             stats["n"] += 1
             return f"{open_tag}{paint(source, scanner)}{close_tag}"
 

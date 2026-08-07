@@ -34,13 +34,17 @@
   function type(panel, done) {
     var pre = panel.querySelector('pre');
     var full = pre.textContent;
+    /* Typing walks plain characters, so it would flatten the token spans that
+       highlight-code.py painted in. Keep the painted markup and put it back
+       once the effect finishes. */
+    var painted = pre.innerHTML;
     pre.textContent = '';
     var caret = document.createElement('span');
     caret.className = 'fdt-caret';
     pre.appendChild(caret);
     var i = 0;
     (function step() {
-      if (i >= full.length) { caret.remove(); if (done) done(); return; }
+      if (i >= full.length) { caret.remove(); pre.innerHTML = painted; if (done) done(); return; }
       var ch = full[i++];
       caret.insertAdjacentText('beforebegin', ch);
       /* vary the cadence a touch so it feels hand-typed */

@@ -1,126 +1,126 @@
 <!DOCTYPE html>
-<html lang="ar"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Starts a conditional branch that runs when its condition is true."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="si — Faber"><meta property="og:description" content="Starts a conditional branch that runs when its condition is true."><meta property="og:url" content="https://faberlang.dev/ar/corpus/si.html"><meta property="og:locale" content="ar_AR"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/ar/corpus/si.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>si — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">العرض</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">ar</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/ar/start/install.html">تثبيت</a></nav></div></div><div class="page"><aside><a class="brand" href="/ar/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">وثائق اللغة</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/ar/start/install.html">تثبيت</a></li><li><a href="/ar/start/hello.html">مرحباً, world</a></li><li><a href="/ar/start/commands.html">Everyday commands</a></li><li><a href="/ar/start/projects.html">Your first package</a></li><li><a href="/ar/start/examples.html">أمثلة</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/language/">The language</a></li><li><a href="/language/types.html">Types and values</a></li><li><a href="/language/functions.html">Functions and flow</a></li><li><a href="/language/errors.html">Errors and testing</a></li><li><a href="/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/language/reader-locales.html">Reader locales</a></li><li><a href="/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/toolchain/">Toolchain</a></li><li><a href="/toolchain/cli.html">The faber CLI</a></li><li><a href="/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/toolchain/target-matrix.html">الهدف matrix</a></li><li><a href="/toolchain/packages.html">Packages with Cista</a></li><li><a href="/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/libraries/">Libraries</a></li><li><a href="/libraries/norma.html">Norma — stdlib</a></li><li><a href="/libraries/triga.html">Triga — graphics</a></li><li><a href="/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/reference/">Reference</a></li><li><a href="/reference/grammar.html">Grammar</a></li><li><a href="/ar/corpus/" class="active">المدونة index</a></li><li><a href="/reference/releases.html">الإصدارات</a></li><li><a href="/reference/design.html">Design notes</a></li><li><a href="/reference/repositories.html">Repositories</a></li></ul><div class="side-h">للوكلاء</div><ul class="nav nav-compact"><li><a href="/llms.txt">فهرس الوكلاء</a></li><li><a href="/agents/index.md">دليل الوكلاء</a></li><li><a href="/.well-known/agent-skills/index.json">مهارات الوكلاء</a></li><li><a href="/llms-full.txt">المرجع الكامل</a></li></ul><div class="side-h">Release 1.4.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/reference/releases.html">جميع الإصدارات</a></li><li><a href="/reference/repositories.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">النموذج</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">نظام الأنواع</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">الهدف</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">الرخصة</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>si</h1><p><strong>Translation status:</strong> العربية reader-locale proof. Code fences render through the <code>ar</code> pipeline; prose is canonical Latin.</p><div class="content"><p>Starts a conditional branch that runs when its condition is true.</p><p><strong>Aliases:</strong> <code>if</code></p><p><strong>Syntax:</strong> <code>si &lt;condition&gt; &lt;block&gt;</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>control-flow</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/ar/corpus/sin.html">sin</a></li><li><a href="/ar/corpus/secus.html">secus</a></li><li><a href="/ar/corpus/ergo.html">ergo</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpussinidificatusfab-canonical-keyword">radix/corpus/si/nidificatus.fab (canonical · keyword)<a class="anchor" href="#radixcorpussinidificatusfab-canonical-keyword">#</a></h3><p>Starts a conditional branch that runs when its condition is true.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
-# si — Starts a conditional branch that runs when its condition is true.
-# =============================================================================
-#
-# What this teaches:
-#   • Nested conditionals — `si` blocks can contain further `si`/`secus`
-#     branches for multi-level decision trees
-#   • Demonstrates a login + permission gate: outer `si` checks authentication,
-#     inner `si` checks authorization
-#
-# Common mistakes:
-#   • TODO: deeply nesting conditionals instead of using `sin` chains or
-#     guard returns
-#
-# See also: sin, secus, ergo
-# =============================================================================
+<html lang="ar"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Starts a conditional branch that runs when its condition is true."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="si — Faber"><meta property="og:description" content="Starts a conditional branch that runs when its condition is true."><meta property="og:url" content="https://faberlang.dev/ar/corpus/si.html"><meta property="og:locale" content="ar_AR"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/ar/corpus/si.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>si — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">العرض</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">ar</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/ar/start/install.html">تثبيت</a></nav></div></div><div class="page"><aside><a class="brand" href="/ar/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">وثائق اللغة</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/ar/start/install.html">تثبيت</a></li><li><a href="/ar/start/hello.html">مرحباً, world</a></li><li><a href="/ar/start/commands.html">Everyday commands</a></li><li><a href="/ar/start/projects.html">Your first package</a></li><li><a href="/ar/start/examples.html">أمثلة</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/language/">The language</a></li><li><a href="/language/types.html">Types and values</a></li><li><a href="/language/functions.html">Functions and flow</a></li><li><a href="/language/errors.html">Errors and testing</a></li><li><a href="/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/language/reader-locales.html">Reader locales</a></li><li><a href="/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/toolchain/">Toolchain</a></li><li><a href="/toolchain/cli.html">The faber CLI</a></li><li><a href="/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/toolchain/target-matrix.html">الهدف matrix</a></li><li><a href="/toolchain/packages.html">Packages with Cista</a></li><li><a href="/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/libraries/">Libraries</a></li><li><a href="/libraries/norma.html">Norma — stdlib</a></li><li><a href="/libraries/triga.html">Triga — graphics</a></li><li><a href="/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/reference/">Reference</a></li><li><a href="/reference/grammar.html">Grammar</a></li><li><a href="/ar/corpus/" class="active">المدونة index</a></li><li><a href="/reference/releases.html">الإصدارات</a></li><li><a href="/reference/design.html">Design notes</a></li><li><a href="/reference/repositories.html">Repositories</a></li></ul><div class="side-h">للوكلاء</div><ul class="nav nav-compact"><li><a href="/llms.txt">فهرس الوكلاء</a></li><li><a href="/agents/index.md">دليل الوكلاء</a></li><li><a href="/.well-known/agent-skills/index.json">مهارات الوكلاء</a></li><li><a href="/llms-full.txt">المرجع الكامل</a></li></ul><div class="side-h">Release 1.4.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/reference/releases.html">جميع الإصدارات</a></li><li><a href="/reference/repositories.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">النموذج</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">نظام الأنواع</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">الهدف</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">الرخصة</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>si</h1><p><strong>Translation status:</strong> العربية reader-locale proof. Code fences render through the <code>ar</code> pipeline; prose is canonical Latin.</p><div class="content"><p>Starts a conditional branch that runs when its condition is true.</p><p><strong>Aliases:</strong> <code>if</code></p><p><strong>Syntax:</strong> <code>si &lt;condition&gt; &lt;block&gt;</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>control-flow</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/ar/corpus/sin.html">sin</a></li><li><a href="/ar/corpus/secus.html">secus</a></li><li><a href="/ar/corpus/ergo.html">ergo</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpussinidificatusfab-canonical-keyword">radix/corpus/si/nidificatus.fab (canonical · keyword)<a class="anchor" href="#radixcorpussinidificatusfab-canonical-keyword">#</a></h3><p>Starts a conditional branch that runs when its condition is true.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># si — Starts a conditional branch that runs when its condition is true.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Nested conditionals — `si` blocks can contain further `si`/`secus`</span>
+<span class="tok-co">#     branches for multi-level decision trees</span>
+<span class="tok-co">#   • Demonstrates a login + permission gate: outer `si` checks authentication,</span>
+<span class="tok-co">#     inner `si` checks authorization</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • TODO: deeply nesting conditionals instead of using `sin` chains or</span>
+<span class="tok-co">#     guard returns</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: sin, secus, ergo</span>
+<span class="tok-co"># =============================================================================</span>
 
-# Nested si (if) conditionals
-#
-# si &lt;cond&gt; { &lt;body&gt; }                    -- inner branch inside outer arm
-# secus { &lt;body&gt; }
-#
-# GRAMMAR:
-#   ifStmt :← 'si' expr block ('secus' block)?
-#
-# EXPECTED OUTPUT:
-#   Access granted when intravit and licet are both verum.
+<span class="tok-co"># Nested si (if) conditionals</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># si &lt;cond&gt; { &lt;body&gt; }                    -- inner branch inside outer arm</span>
+<span class="tok-co"># secus { &lt;body&gt; }</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   ifStmt :← 'si' expr block ('secus' block)?</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   Access granted when intravit and licet are both verum.</span>
 
 main {
-    # logged in
-    const _ intravit ← true
-    # has permission
-    const _ licet ← true
+<span class="tok-co">    # logged in</span>
+    const _ intravit <span class="tok-op">←</span> true
+<span class="tok-co">    # has permission</span>
+    const _ licet <span class="tok-op">←</span> true
 
     if intravit {
-        # Inner branch: permission check after login succeeds
+<span class="tok-co">        # Inner branch: permission check after login succeeds</span>
         if licet {
-            print &quot;Access granted&quot;
+            print <span class="tok-st">"Access granted"</span>
         }
         else {
-            print &quot;Permission denied&quot;
+            print <span class="tok-st">"Permission denied"</span>
         }
     }
     else {
-        # outer else: not logged in
-        print &quot;Please log in&quot;
+<span class="tok-co">        # outer else: not logged in</span>
+        print <span class="tok-st">"Please log in"</span>
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Access granted
-</code></pre><h3 id="radixcorpussisifab-canonical-keyword">radix/corpus/si/si.fab (canonical · keyword)<a class="anchor" href="#radixcorpussisifab-canonical-keyword">#</a></h3><p>Starts a conditional branch that runs when its condition is true.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
-# si — Starts a conditional branch that runs when its condition is true.
-# =============================================================================
-#
-# What this teaches:
-#   • Basic conditional execution — `si &lt;condition&gt; { body }` runs the body
-#     only when the condition evaluates to `verum`
-#   • Multiple independent `si` blocks can be chained; each evaluates its own
-#     condition independently
-#
-# Common mistakes:
-#   • Using a non-`bivalens` expression as the `si` condition (SEM011), or using `∴` instead of `ergo` for a single-statement body.
-#
-# See also: sin, secus, ergo
-# =============================================================================
+</code></pre><h3 id="radixcorpussisifab-canonical-keyword">radix/corpus/si/si.fab (canonical · keyword)<a class="anchor" href="#radixcorpussisifab-canonical-keyword">#</a></h3><p>Starts a conditional branch that runs when its condition is true.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># si — Starts a conditional branch that runs when its condition is true.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Basic conditional execution — `si &lt;condition&gt; { body }` runs the body</span>
+<span class="tok-co">#     only when the condition evaluates to `verum`</span>
+<span class="tok-co">#   • Multiple independent `si` blocks can be chained; each evaluates its own</span>
+<span class="tok-co">#     condition independently</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Using a non-`bivalens` expression as the `si` condition (SEM011), or using `∴` instead of `ergo` for a single-statement body.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: sin, secus, ergo</span>
+<span class="tok-co"># =============================================================================</span>
 
-# Basic si (if) conditionals
-#
-# si &lt;condition&gt; { &lt;body&gt; }   -- truthy branch
-#
-# GRAMMAR:
-#   ifStmt :← 'si' expr block
-#
-# EXPECTED OUTPUT:
-#   x maior quam 5, Adult, Can vote (si.expected).
+<span class="tok-co"># Basic si (if) conditionals</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># si &lt;condition&gt; { &lt;body&gt; }   -- truthy branch</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   ifStmt :← 'si' expr block</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   x maior quam 5, Adult, Can vote (si.expected).</span>
 
 main {
-    # Simple truthy branch — only the first condition matches
-    const _ x ← 10
+<span class="tok-co">    # Simple truthy branch — only the first condition matches</span>
+    const _ x <span class="tok-op">←</span> <span class="tok-nu">10</span>
 
-    if x &gt; 5 {
-        print &quot;x maior quam 5&quot;
+    if x <span class="tok-op">&gt;</span> <span class="tok-nu">5</span> {
+        print <span class="tok-st">"x maior quam 5"</span>
     }
 
-    if x &gt; 20 {
-        # skipped: 10 ≯ 20
-        print &quot;x maior quam 20&quot;
+    if x <span class="tok-op">&gt;</span> <span class="tok-nu">20</span> {
+<span class="tok-co">        # skipped: 10 ≯ 20</span>
+        print <span class="tok-st">"x maior quam 20"</span>
     }
 
-    # Block body: multiple statements run together when condition holds
-    const _ aetas ← 25
+<span class="tok-co">    # Block body: multiple statements run together when condition holds</span>
+    const _ aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
 
-    if aetas ≥ 18 {
-        print &quot;Adult&quot;
-        print &quot;Can vote&quot;
+    if aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> {
+        print <span class="tok-st">"Adult"</span>
+        print <span class="tok-st">"Can vote"</span>
     }
 }
 
-test &quot;si runs its body on a verum condition&quot; {
-    const _ x ← 10
-    var bool maior ← false
-    if x &gt; 5 {
-        maior ← true
+test <span class="tok-st">"si runs its body on a verum condition"</span> {
+    const _ x <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    var bool maior <span class="tok-op">←</span> false
+    if x <span class="tok-op">&gt;</span> <span class="tok-nu">5</span> {
+        maior <span class="tok-op">←</span> true
     }
     assert maior
 }
 
-test &quot;si skips its body on a falsum condition&quot; {
-    const _ x ← 10
-    var bool maior ← false
-    if x &gt; 20 {
-        maior ← true
+test <span class="tok-st">"si skips its body on a falsum condition"</span> {
+    const _ x <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    var bool maior <span class="tok-op">←</span> false
+    if x <span class="tok-op">&gt;</span> <span class="tok-nu">20</span> {
+        maior <span class="tok-op">←</span> true
     }
     assert not maior
 }
 
-test &quot;si block body runs every statement&quot; {
-    const _ aetas ← 25
-    var int gradus ← 0
-    if aetas ≥ 18 {
-        gradus ← gradus + 1
-        gradus ← gradus + 1
+test <span class="tok-st">"si block body runs every statement"</span> {
+    const _ aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
+    var int gradus <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    if aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> {
+        gradus <span class="tok-op">←</span> gradus <span class="tok-op">+</span> <span class="tok-nu">1</span>
+        gradus <span class="tok-op">←</span> gradus <span class="tok-op">+</span> <span class="tok-nu">1</span>
     }
-    assert gradus ≡ 2
+    assert gradus <span class="tok-op">≡</span> <span class="tok-nu">2</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>x maior quam 5
 Adult
 Can vote

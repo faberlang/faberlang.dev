@@ -31,15 +31,15 @@ Các đích gói không hỗ trợ phần cứng sẽ từ chối chúng:</p><pr
 <span class="tok-kw">functio</span> swap(atomic<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> cell, i32 value) <span class="tok-op">→</span> i32 {
     <span class="tok-kw">redde</span> cell.exchange(value)
 }</code></pre><h3 id="borrow-markers">Marker mượn trên kiểu<a class="anchor" href="#borrow-markers">#</a></h3><p>Các marker mượn (<code class="kw">de</code>, <code class="kw">in</code>, <code class="kw">ex</code>) có thể xuất hiện trên kiểu ở vị trí tham số
-để cho biết cách truyền một giá trị:</p><pre class="faber-code"><code class="lang-faber locale=la"># shared borrow — caller retains ownership
-functio imprime(de textus label) → vacuum { }
+để cho biết cách truyền một giá trị:</p><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-co"># shared borrow — caller retains ownership</span>
+<span class="tok-kw">functio</span> imprime(<span class="tok-kw">de</span> <span class="tok-kw">textus</span> label) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> { }
 
-# mutable borrow — caller lends mutable access
-functio duplica(in numerus value) → vacuum { }
+<span class="tok-co"># mutable borrow — caller lends mutable access</span>
+<span class="tok-kw">functio</span> duplica(<span class="tok-kw">in</span> <span class="tok-kw">numerus</span> value) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> { }
 
-# move — caller gives up ownership
-functio consume(ex textus buffer) → textus {
-    redde buffer
+<span class="tok-co"># move — caller gives up ownership</span>
+<span class="tok-kw">functio</span> consume(<span class="tok-kw">ex</span> <span class="tok-kw">textus</span> buffer) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
+    <span class="tok-kw">redde</span> buffer
 }</code></pre><h3 id="comparison-policy">Chính sách so sánh<a class="anchor" href="#comparison-policy">#</a></h3><div class="table-scroll"><table><thead><tr><th>Toán tử</th><th>Nhóm</th><th>Hành vi</th></tr></thead><tbody><tr><td><code>≡</code>, <code>≠</code></td><td>Bằng chính xác</td><td>Bắt buộc các kiểu giống hệt nhau; <code class="kw">nihil</code> được bỏ qua</td></tr><tr><td><code>≈</code>, <code>≉</code></td><td>Bằng theo giá trị số</td><td>Chỉ áp dụng cho lattice số</td></tr><tr><td><code>&lt;</code>, <code>≤</code>, <code>&gt;</code>, <code>≥</code></td><td>Thứ tự</td><td>Số, thời điểm, văn bản vô hướng</td></tr><tr><td><code>intra</code></td><td>Chứa trong khoảng</td><td>Số nằm trong khoảng</td></tr><tr><td><code>inter</code></td><td>Thành viên tập hợp</td><td>Phần tử nằm trong tập hợp</td></tr></tbody></table></div><h2 id="variables-and-binding">Variables and binding<a class="anchor" href="#variables-and-binding">#</a></h2><p>Faber có ba từ khóa biến và một ký hiệu gán riêng. Điểm khác biệt chính nằm giữa <code class="kw">fixum</code> (chỉ ghi một lần) và <code class="kw">varia</code> (có thể gán lại tự do), cũng như giữa <code>←</code> (luồng thực thi) và <code>=</code> (hình dạng trường mang tính cấu trúc).</p><h3 id="fixum-immutable-binding">fixum — liên kết bất biến<a class="anchor" href="#fixum-immutable-binding">#</a></h3><p>Các liên kết <code class="kw">fixum</code> chỉ được ghi một lần. Có thể khai báo chúng có hoặc không có trình khởi tạo; nếu khai báo mà không có trình khởi tạo, chúng phải được gán đúng một lần trước khi đọc. Lần gán thứ hai sẽ bị từ chối.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fixum</span> <span class="tok-kw">numerus</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
 <span class="tok-kw">fixum</span> <span class="tok-kw">textus</span> name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
 <span class="tok-kw">fixum</span> _ inferred <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]</code></pre><p>Khởi tạo trì hoãn:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {

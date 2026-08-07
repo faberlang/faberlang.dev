@@ -41,10 +41,10 @@
 इससे कंपाइलर उस काम को दोहराने से बचता है जिसे लक्ष्य कंपाइलर पहले ही सही ढंग
 से करते हैं।</p></blockquote><h3 id="air">AIR डिटूर<a class="anchor" href="#air">#</a></h3><p>AIR (Autograd / AI Representation) HIR → MIR मार्ग से अलग एक प्योर-फंक्शनल
 ट्रांसफॉर्म डिटूर है। इसमें अलग-अलग फ़ंक्शन पर स्पष्ट एनोटेशन द्वारा प्रवेश किया
-जाता है:</p><pre class="faber-code"><code class="lang-faber locale=la">@ radix lane &quot;air&quot;
-functio loss(numerus predicted, numerus expected) → numerus {
-    fixum numerus delta ← predicted - expected
-    redde delta * delta
+जाता है:</p><pre class="faber-code"><code class="lang-faber locale=la">@ radix lane <span class="tok-st">"air"</span>
+<span class="tok-kw">functio</span> loss(<span class="tok-kw">numerus</span> predicted, <span class="tok-kw">numerus</span> expected) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
+    <span class="tok-kw">fixum</span> <span class="tok-kw">numerus</span> delta <span class="tok-op">←</span> predicted <span class="tok-op">-</span> expected
+    <span class="tok-kw">redde</span> delta <span class="tok-op">*</span> delta
 }</code></pre><p>AIR-लेन फ़ंक्शन को प्योरिटी नीति का पालन करना होगा — न म्यूटेशन, न इफ़ेक्ट और
 न लूप। जो फ़ंक्शन इसका उल्लंघन करते हैं, उन्हें AIR लोअरिंग शुरू होने से पहले
 डायग्नोस्टिक के साथ अस्वीकृत कर दिया जाता है। प्रोग्राम का शेष भाग म्यूटेशन,

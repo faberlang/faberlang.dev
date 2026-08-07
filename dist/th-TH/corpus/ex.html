@@ -1,92 +1,92 @@
 <!DOCTYPE html>
-<html lang="th-TH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Extracts fields from a value into local bindings."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="ex — Faber"><meta property="og:description" content="Extracts fields from a value into local bindings."><meta property="og:url" content="https://faberlang.dev/th-TH/corpus/ex.html"><meta property="og:locale" content="th_TH"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/th-TH/corpus/ex.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>ex — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">การเรนเดอร์</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">th-TH</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/th-TH/start/install.html">ติดตั้ง</a></nav></div></div><div class="page"><aside><a class="brand" href="/th-TH/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">เอกสารภาษา</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/th-TH/start/install.html">ติดตั้ง</a></li><li><a href="/th-TH/start/hello.html">สวัสดี, world</a></li><li><a href="/th-TH/start/commands.html">Everyday commands</a></li><li><a href="/th-TH/start/projects.html">Your first package</a></li><li><a href="/th-TH/start/examples.html">ตัวอย่าง</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/language/">The language</a></li><li><a href="/language/types.html">Types and values</a></li><li><a href="/language/functions.html">Functions and flow</a></li><li><a href="/language/errors.html">Errors and testing</a></li><li><a href="/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/language/reader-locales.html">Reader locales</a></li><li><a href="/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/toolchain/">Toolchain</a></li><li><a href="/toolchain/cli.html">The faber CLI</a></li><li><a href="/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/toolchain/target-matrix.html">เป้าหมาย matrix</a></li><li><a href="/toolchain/packages.html">Packages with Cista</a></li><li><a href="/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/libraries/">Libraries</a></li><li><a href="/libraries/norma.html">Norma — stdlib</a></li><li><a href="/libraries/triga.html">Triga — graphics</a></li><li><a href="/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/reference/">Reference</a></li><li><a href="/reference/grammar.html">Grammar</a></li><li><a href="/th-TH/corpus/" class="active">คลังภาษา index</a></li><li><a href="/reference/releases.html">รุ่นเผยแพร่</a></li><li><a href="/reference/design.html">Design notes</a></li><li><a href="/reference/repositories.html">Repositories</a></li></ul><div class="side-h">สำหรับเอเจนต์</div><ul class="nav nav-compact"><li><a href="/llms.txt">ดัชนีเอเจนต์</a></li><li><a href="/agents/index.md">คู่มือเอเจนต์</a></li><li><a href="/.well-known/agent-skills/index.json">ทักษะเอเจนต์</a></li><li><a href="/llms-full.txt">เอกสารอ้างอิงเต็ม</a></li></ul><div class="side-h">Release 1.4.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/reference/releases.html">ทุกรุ่นที่เผยแพร่</a></li><li><a href="/reference/repositories.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">กระบวนทัศน์</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">ระบบชนิด</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">เป้าหมาย</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">สัญญาอนุญาต</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>ex</h1><p><strong>Translation status:</strong> ภาษาไทย reader-locale proof. Code fences render through the <code>th-TH</code> pipeline; prose is canonical Latin.</p><div class="content"><p>Extracts fields from a value into local bindings.</p><p><strong>Syntax:</strong> <code>ex &lt;expression&gt; &lt;fixum|varia&gt; &lt;field&gt; [, ...] [ceteri &lt;ident&gt;]</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>destructuring</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/th-TH/corpus/de.html">de</a></li><li><a href="/th-TH/corpus/ut.html">ut</a></li><li><a href="/th-TH/corpus/ceteri.html">ceteri</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusdestructuralistafab-canonical-keyword">radix/corpus/destructura/lista.fab (canonical · keyword)<a class="anchor" href="#radixcorpusdestructuralistafab-canonical-keyword">#</a></h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
-# ex — Extracts fields from a value into local bindings.
-# =============================================================================
-#
-# What this teaches:
-#   • Lista destructuring — `fixum [a, b, c] ← lista` extracts elements from a lista into individual bindings.
-#   • Rest patterns — `fixum [caput, ceteri cauda] ← lista` captures remaining elements.
-#   • Mutable destructuring — `varia [x, y] ← lista` for mutable bindings.
-#   • Skip and nested patterns — underscore `_` skips elements; nested listas destructure recursively.
-#
-# Common mistakes:
-#   • Destructuring fewer or more elements than the lista contains without handling bounds — pattern must match or the destructuring will fail.
-#
-# See also: de, ut, ceteri
-# =============================================================================
+<html lang="th-TH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Extracts fields from a value into local bindings."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="ex — Faber"><meta property="og:description" content="Extracts fields from a value into local bindings."><meta property="og:url" content="https://faberlang.dev/th-TH/corpus/ex.html"><meta property="og:locale" content="th_TH"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/th-TH/corpus/ex.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>ex — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">การเรนเดอร์</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">th-TH</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/th-TH/start/install.html">ติดตั้ง</a></nav></div></div><div class="page"><aside><a class="brand" href="/th-TH/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">เอกสารภาษา</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/th-TH/start/install.html">ติดตั้ง</a></li><li><a href="/th-TH/start/hello.html">สวัสดี, world</a></li><li><a href="/th-TH/start/commands.html">Everyday commands</a></li><li><a href="/th-TH/start/projects.html">Your first package</a></li><li><a href="/th-TH/start/examples.html">ตัวอย่าง</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/language/">The language</a></li><li><a href="/language/types.html">Types and values</a></li><li><a href="/language/functions.html">Functions and flow</a></li><li><a href="/language/errors.html">Errors and testing</a></li><li><a href="/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/language/reader-locales.html">Reader locales</a></li><li><a href="/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/toolchain/">Toolchain</a></li><li><a href="/toolchain/cli.html">The faber CLI</a></li><li><a href="/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/toolchain/target-matrix.html">เป้าหมาย matrix</a></li><li><a href="/toolchain/packages.html">Packages with Cista</a></li><li><a href="/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/libraries/">Libraries</a></li><li><a href="/libraries/norma.html">Norma — stdlib</a></li><li><a href="/libraries/triga.html">Triga — graphics</a></li><li><a href="/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/reference/">Reference</a></li><li><a href="/reference/grammar.html">Grammar</a></li><li><a href="/th-TH/corpus/" class="active">คลังภาษา index</a></li><li><a href="/reference/releases.html">รุ่นเผยแพร่</a></li><li><a href="/reference/design.html">Design notes</a></li><li><a href="/reference/repositories.html">Repositories</a></li></ul><div class="side-h">สำหรับเอเจนต์</div><ul class="nav nav-compact"><li><a href="/llms.txt">ดัชนีเอเจนต์</a></li><li><a href="/agents/index.md">คู่มือเอเจนต์</a></li><li><a href="/.well-known/agent-skills/index.json">ทักษะเอเจนต์</a></li><li><a href="/llms-full.txt">เอกสารอ้างอิงเต็ม</a></li></ul><div class="side-h">Release 1.4.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/reference/releases.html">ทุกรุ่นที่เผยแพร่</a></li><li><a href="/reference/repositories.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">กระบวนทัศน์</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">ระบบชนิด</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">เป้าหมาย</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">สัญญาอนุญาต</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>ex</h1><p><strong>Translation status:</strong> ภาษาไทย reader-locale proof. Code fences render through the <code>th-TH</code> pipeline; prose is canonical Latin.</p><div class="content"><p>Extracts fields from a value into local bindings.</p><p><strong>Syntax:</strong> <code>ex &lt;expression&gt; &lt;fixum|varia&gt; &lt;field&gt; [, ...] [ceteri &lt;ident&gt;]</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>destructuring</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/th-TH/corpus/de.html">de</a></li><li><a href="/th-TH/corpus/ut.html">ut</a></li><li><a href="/th-TH/corpus/ceteri.html">ceteri</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusdestructuralistafab-canonical-keyword">radix/corpus/destructura/lista.fab (canonical · keyword)<a class="anchor" href="#radixcorpusdestructuralistafab-canonical-keyword">#</a></h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># ex — Extracts fields from a value into local bindings.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Lista destructuring — `fixum [a, b, c] ← lista` extracts elements from a lista into individual bindings.</span>
+<span class="tok-co">#   • Rest patterns — `fixum [caput, ceteri cauda] ← lista` captures remaining elements.</span>
+<span class="tok-co">#   • Mutable destructuring — `varia [x, y] ← lista` for mutable bindings.</span>
+<span class="tok-co">#   • Skip and nested patterns — underscore `_` skips elements; nested listas destructure recursively.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Destructuring fewer or more elements than the lista contains without handling bounds — pattern must match or the destructuring will fail.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: de, ut, ceteri</span>
+<span class="tok-co"># =============================================================================</span>
 
 
-# destructura — lista destructuring patterns
-#
-# fixum [a, b, c] ← lista
-# varia [x, y, z] ← lista
-# fixum [caput, ceteri cauda] ← lista
-# fixum [_, medius, _] ← lista
-#
-# GRAMMAR:
-#   destructStmt :← ('fixum' | 'varia') '[' patternList ']' '←' expr
-#
-# EXPECTED OUTPUT:
-#   Element values from inline and bound listas, rest slices, nested rows.
+<span class="tok-co"># destructura — lista destructuring patterns</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># fixum [a, b, c] ← lista</span>
+<span class="tok-co"># varia [x, y, z] ← lista</span>
+<span class="tok-co"># fixum [caput, ceteri cauda] ← lista</span>
+<span class="tok-co"># fixum [_, medius, _] ← lista</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   destructStmt :← ('fixum' | 'varia') '[' patternList ']' '←' expr</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   Element values from inline and bound listas, rest slices, nested rows.</span>
 
 main {
-    # --- Basic lista destructuring ---
+<span class="tok-co">    # --- Basic lista destructuring ---</span>
 
-    const _ numeri ← [1, 2, 3]
-    const [a, b, c] ← numeri
+    const _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    const [a, b, c] <span class="tok-op">←</span> numeri
 
     print a
     print b
     print c
 
-    # Destructure inline lista literal
-    const [primus, secundus, tertius] ← [10, 20, 30]
+<span class="tok-co">    # Destructure inline lista literal</span>
+    const [primus, secundus, tertius] <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
 
     print primus
     print secundus
     print tertius
 
-    # --- Mutable destructuring with varia ---
+<span class="tok-co">    # --- Mutable destructuring with varia ---</span>
 
-    const _ coordinata ← [100, 200]
-    var [x, y] ← coordinata
-
-    print x
-    print y
-
-    x ← x + 50
-    y ← y + 50
+    const _ coordinata <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">200</span>]
+    var [x, y] <span class="tok-op">←</span> coordinata
 
     print x
     print y
 
-    # --- Partial destructuring (fewer variables than elements) ---
+    x <span class="tok-op">←</span> x <span class="tok-op">+</span> <span class="tok-nu">50</span>
+    y <span class="tok-op">←</span> y <span class="tok-op">+</span> <span class="tok-nu">50</span>
 
-    const _ valores ← [1, 2, 3, 4, 5]
-    const [unus, duo] ← valores
+    print x
+    print y
+
+<span class="tok-co">    # --- Partial destructuring (fewer variables than elements) ---</span>
+
+    const _ valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    const [unus, duo] <span class="tok-op">←</span> valores
 
     print unus
     print duo
 
-    # --- Rest pattern with ceteri ---
+<span class="tok-co">    # --- Rest pattern with ceteri ---</span>
 
-    const _ res ← [1, 2, 3, 4, 5]
-    const [caput, rest cauda] ← res
+    const _ res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    const [caput, rest cauda] <span class="tok-op">←</span> res
 
     print caput
     print cauda
 
-    # --- Skip elements with underscore ---
+<span class="tok-co">    # --- Skip elements with underscore ---</span>
 
-    const _ triplex ← [10, 20, 30]
-    const [_, medius, _] ← triplex
+    const _ triplex <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
+    const [_, medius, _] <span class="tok-op">←</span> triplex
 
     print medius
 
-    # --- Nested listas ---
+<span class="tok-co">    # --- Nested listas ---</span>
 
-    const _ matrix ← [[1, 2], [3, 4]]
-    const [ordo1, ordo2] ← matrix
+    const _ matrix <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]]
+    const [ordo1, ordo2] <span class="tok-op">←</span> matrix
 
     print ordo1
     print ordo2
@@ -107,40 +107,40 @@ main {
 20
 [1, 2]
 [3, 4]
-</code></pre><h3 id="radixcorpusdestructuraobjectumfab-canonical-keyword">radix/corpus/destructura/objectum.fab (canonical · keyword)<a class="anchor" href="#radixcorpusdestructuraobjectumfab-canonical-keyword">#</a></h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
-# ex — Extracts fields from a value into local bindings.
-# =============================================================================
-#
-# What this teaches:
-#   • Field destructuring — `ex &lt;expr&gt; fixum &lt;field&gt;, ...` extracts named fields from genus records into local bindings.
-#   • Aliasing — `ex &lt;expr&gt; fixum &lt;field&gt; ut &lt;alias&gt;` renames extracted fields.
-#   • Mutable extraction — `ex &lt;expr&gt; varia &lt;field&gt;, ...` for mutable field bindings.
-#   • Rest pattern — `ex &lt;expr&gt; fixum &lt;field&gt;, ceteri &lt;rest&gt;` captures remaining fields as a tabula.
-#   • Nested paths — `ex &lt;expr&gt;.&lt;field&gt; fixum ...` destructures through nested paths.
-#
-# Common mistakes:
-#   • Destructuring a field that does not exist on the target type — the field must be present in the genus definition or the type must support open shapes.
-#
-# See also: de, ut, ceteri
-# =============================================================================
+</code></pre><h3 id="radixcorpusdestructuraobjectumfab-canonical-keyword">radix/corpus/destructura/objectum.fab (canonical · keyword)<a class="anchor" href="#radixcorpusdestructuraobjectumfab-canonical-keyword">#</a></h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># ex — Extracts fields from a value into local bindings.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Field destructuring — `ex &lt;expr&gt; fixum &lt;field&gt;, ...` extracts named fields from genus records into local bindings.</span>
+<span class="tok-co">#   • Aliasing — `ex &lt;expr&gt; fixum &lt;field&gt; ut &lt;alias&gt;` renames extracted fields.</span>
+<span class="tok-co">#   • Mutable extraction — `ex &lt;expr&gt; varia &lt;field&gt;, ...` for mutable field bindings.</span>
+<span class="tok-co">#   • Rest pattern — `ex &lt;expr&gt; fixum &lt;field&gt;, ceteri &lt;rest&gt;` captures remaining fields as a tabula.</span>
+<span class="tok-co">#   • Nested paths — `ex &lt;expr&gt;.&lt;field&gt; fixum ...` destructures through nested paths.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Destructuring a field that does not exist on the target type — the field must be present in the genus definition or the type must support open shapes.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: de, ut, ceteri</span>
+<span class="tok-co"># =============================================================================</span>
 
 
-# destructura — field destructuring with `ex`
-#
-# ex &lt;expr&gt; fixum &lt;field&gt;, ...
-# ex &lt;expr&gt; varia &lt;field&gt;, ...
-# ex &lt;expr&gt; fixum &lt;field&gt; ut &lt;alias&gt;
-# ex &lt;expr&gt; fixum &lt;field&gt;, ceteri &lt;rest&gt;
-#
-# Field destructuring works on genus records (fixed fields) and tabula/valor
-# (open shapes). This tour uses genus types so that field names are statically
-# known and codegen-complete.
-#
-# GRAMMAR:
-#   destructStmt :← 'ex' expr ('fixum' | 'varia') patternList
-#
-# EXPECTED OUTPUT:
-#   Extracted field values, aliased names, mutated varia bindings, rest maps.
+<span class="tok-co"># destructura — field destructuring with `ex`</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># ex &lt;expr&gt; fixum &lt;field&gt;, ...</span>
+<span class="tok-co"># ex &lt;expr&gt; varia &lt;field&gt;, ...</span>
+<span class="tok-co"># ex &lt;expr&gt; fixum &lt;field&gt; ut &lt;alias&gt;</span>
+<span class="tok-co"># ex &lt;expr&gt; fixum &lt;field&gt;, ceteri &lt;rest&gt;</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Field destructuring works on genus records (fixed fields) and tabula/valor</span>
+<span class="tok-co"># (open shapes). This tour uses genus types so that field names are statically</span>
+<span class="tok-co"># known and codegen-complete.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   destructStmt :← 'ex' expr ('fixum' | 'varia') patternList</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   Extracted field values, aliased names, mutated varia bindings, rest maps.</span>
 
 class Persona {
     string nomen
@@ -154,7 +154,7 @@ class Civis {
 }
 
 class Datum {
-    int numerus
+    int <span class="tok-kw">numerus</span>
     bool activus
 }
 
@@ -190,92 +190,92 @@ class Vestis {
 }
 
 main {
-    # --- Basic field extraction ---
+<span class="tok-co">    # --- Basic field extraction ---</span>
 
-    const _ persona ← Persona { nomen = &quot;Marcus&quot;, aetas = 30, urbs = &quot;Roma&quot; }
+    const _ persona <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span>, urbs <span class="tok-op">=</span> <span class="tok-st">"Roma"</span> }
     from persona const nomen, aetas
 
     print nomen
     print aetas
 
-    # --- Extract with alias using 'ut' ---
+<span class="tok-co">    # --- Extract with alias using 'ut' ---</span>
 
-    const _ civis ← Civis { nomen = &quot;Julia&quot;, epistula = &quot;julia@roma.com&quot; }
+    const _ civis <span class="tok-op">←</span> Civis { nomen <span class="tok-op">=</span> <span class="tok-st">"Julia"</span>, epistula <span class="tok-op">=</span> <span class="tok-st">"julia@roma.com"</span> }
     from civis const nomen as cognomen, epistula as epistula2
 
     print cognomen
     print epistula2
 
-    # --- Mutable destructuring with varia ---
+<span class="tok-co">    # --- Mutable destructuring with varia ---</span>
 
-    const _ datum ← Datum { numerus = 100, activus = true }
-    from datum var numerus, activus
+    const _ datum <span class="tok-op">←</span> Datum { <span class="tok-kw">numerus</span> <span class="tok-op">=</span> <span class="tok-nu">100</span>, activus <span class="tok-op">=</span> true }
+    from datum var <span class="tok-kw">numerus</span>, activus
 
-    print numerus
+    print <span class="tok-kw">numerus</span>
     print activus
 
-    numerus ← 200
-    activus ← false
+    <span class="tok-kw">numerus</span> <span class="tok-op">←</span> <span class="tok-nu">200</span>
+    activus <span class="tok-op">←</span> false
 
-    print numerus
+    print <span class="tok-kw">numerus</span>
     print activus
 
-    # --- Mixed alias and regular fields ---
+<span class="tok-co">    # --- Mixed alias and regular fields ---</span>
 
-    const _ forma ← Forma { hospes = &quot;localis&quot;, portus = 8080, tutus = true }
+    const _ forma <span class="tok-op">←</span> Forma { hospes <span class="tok-op">=</span> <span class="tok-st">"localis"</span>, portus <span class="tok-op">=</span> <span class="tok-nu">8080</span>, tutus <span class="tok-op">=</span> true }
     from forma const hospes, portus as porta, tutus
 
     print hospes
     print porta
     print tutus
 
-    # --- Rest pattern with ceteri ---
+<span class="tok-co">    # --- Rest pattern with ceteri ---</span>
 
-    const _ plenus ← Plenus { signum = 1, nomen = &quot;Gaius&quot;, epistula = &quot;g@roma.com&quot;, munus = &quot;admin&quot; }
+    const _ plenus <span class="tok-op">←</span> Plenus { signum <span class="tok-op">=</span> <span class="tok-nu">1</span>, nomen <span class="tok-op">=</span> <span class="tok-st">"Gaius"</span>, epistula <span class="tok-op">=</span> <span class="tok-st">"g@roma.com"</span>, munus <span class="tok-op">=</span> <span class="tok-st">"admin"</span> }
     from plenus const signum, rest reliqua
 
     print signum
     print reliqua
 
-    # --- Destructura ex nested path ---
+<span class="tok-co">    # --- Destructura ex nested path ---</span>
 
-    const _ responsum ← Responsum { datum = Relatus { civis = Sodalis { nomen = &quot;Claudia&quot;, probatus = true } } }
+    const _ responsum <span class="tok-op">←</span> Responsum { datum <span class="tok-op">=</span> Relatus { civis <span class="tok-op">=</span> Sodalis { nomen <span class="tok-op">=</span> <span class="tok-st">"Claudia"</span>, probatus <span class="tok-op">=</span> true } } }
     from responsum.datum.civis const nomen as internum, probatus
 
     print internum
     print probatus
 
-    # --- Single field extraction ---
+<span class="tok-co">    # --- Single field extraction ---</span>
 
-    const _ vestis ← Vestis { modus = &quot;nigrum&quot;, lingua = &quot;la&quot; }
+    const _ vestis <span class="tok-op">←</span> Vestis { modus <span class="tok-op">=</span> <span class="tok-st">"nigrum"</span>, lingua <span class="tok-op">=</span> <span class="tok-st">"la"</span> }
     from vestis const modus
 
     print modus
-}</code></pre><h3 id="radixcorpusexexfab-canonical-keyword">radix/corpus/ex/ex.fab (canonical · keyword)<a class="anchor" href="#radixcorpusexexfab-canonical-keyword">#</a></h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
-# ex — Extracts fields from a value into local bindings.
-# =============================================================================
-#
-# What this teaches:
-#   • Field extraction — `ex &lt;expr&gt; fixum &lt;field&gt;, ...` extracts named fields from genus records into local scope.
-#   • Multiple field extraction — extract several fields from a single expression in one statement.
-#
-# Common mistakes:
-#   • Mode mismatch — passing a `de` (read-only) parameter to an `ex` (consume) position, or extracting a field that doesn't exist on the target type.
-#
-# See also: de, ut, ceteri
-# =============================================================================
+}</code></pre><h3 id="radixcorpusexexfab-canonical-keyword">radix/corpus/ex/ex.fab (canonical · keyword)<a class="anchor" href="#radixcorpusexexfab-canonical-keyword">#</a></h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># ex — Extracts fields from a value into local bindings.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Field extraction — `ex &lt;expr&gt; fixum &lt;field&gt;, ...` extracts named fields from genus records into local scope.</span>
+<span class="tok-co">#   • Multiple field extraction — extract several fields from a single expression in one statement.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Mode mismatch — passing a `de` (read-only) parameter to an `ex` (consume) position, or extracting a field that doesn't exist on the target type.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: de, ut, ceteri</span>
+<span class="tok-co"># =============================================================================</span>
 
-# ex — field extract statement
-#
-# GRAMMAR:
-#   extractStmt :← 'ex' expr bindingList
-#
-# EXPECTED OUTPUT:
-#   Scalar stdout smoke (see body).
-#
-# BACKEND:
-#   Cross-ref: destructura/objectum.fab, itera/ex.fab (itera ex mode).
-#
+<span class="tok-co"># ex — field extract statement</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   extractStmt :← 'ex' expr bindingList</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   Scalar stdout smoke (see body).</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># BACKEND:</span>
+<span class="tok-co">#   Cross-ref: destructura/objectum.fab, itera/ex.fab (itera ex mode).</span>
+<span class="tok-co">#</span>
 
 class Persona {
     string nomen
@@ -283,56 +283,56 @@ class Persona {
 }
 
 main {
-    const _ p ← Persona { nomen = &quot;Marcus&quot;, aetas = 30 }
+    const _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
     from p const nomen, aetas
     print nomen
     print aetas
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Marcus
 30
-</code></pre><h3 id="radixcorpusiteraexfab-canonical-keyword">radix/corpus/itera/ex.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteraexfab-canonical-keyword">#</a></h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
-# ex — Extracts fields from a value into local bindings.
-# =============================================================================
-#
-# What this teaches:
-#   • value iteration (`itera ex`) over lista elements — the primary workhorse for iterating over collections
-#   • transforming values inside the loop body (e.g., doubling each element)
-#
-# Common mistakes:
-#   • Using ex (value iteration) when de (key/index iteration) is needed — ex iterates values, de iterates keys or indices.
-#
-# See also: de, ut, ceteri
-# =============================================================================
+</code></pre><h3 id="radixcorpusiteraexfab-canonical-keyword">radix/corpus/itera/ex.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteraexfab-canonical-keyword">#</a></h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># ex — Extracts fields from a value into local bindings.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • value iteration (`itera ex`) over lista elements — the primary workhorse for iterating over collections</span>
+<span class="tok-co">#   • transforming values inside the loop body (e.g., doubling each element)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Using ex (value iteration) when de (key/index iteration) is needed — ex iterates values, de iterates keys or indices.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: de, ut, ceteri</span>
+<span class="tok-co"># =============================================================================</span>
 
-# itera ex — for-in value iteration over listas
-#
-# itera ex &lt;collection&gt; fixum &lt;item&gt; { &lt;body&gt; }
-#
-# GRAMMAR:
-#   forInStmt :← 'itera' 'ex' expr 'fixum' ident block
-#
-# EXPECTED OUTPUT:
-#   ex.expected — numbers, names, and doubled values.
+<span class="tok-co"># itera ex — for-in value iteration over listas</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># itera ex &lt;collection&gt; fixum &lt;item&gt; { &lt;body&gt; }</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   forInStmt :← 'itera' 'ex' expr 'fixum' ident block</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   ex.expected — numbers, names, and doubled values.</span>
 
 main {
-    # Iterate over number lista
-    const _ numeri ← [1, 2, 3, 4, 5]
+<span class="tok-co">    # Iterate over number lista</span>
+    const _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
 
     for from numeri const n {
         print n
     }
 
-    # Iterate over textus lista
-    const _ nomina ← [&quot;Marcus&quot;, &quot;Julia&quot;, &quot;Claudia&quot;]
+<span class="tok-co">    # Iterate over textus lista</span>
+    const _ nomina <span class="tok-op">←</span> [<span class="tok-st">"Marcus"</span>, <span class="tok-st">"Julia"</span>, <span class="tok-st">"Claudia"</span>]
 
     for from nomina const nomen {
         print nomen
     }
 
-    # Transform values
-    const _ valores ← [10, 20, 30]
+<span class="tok-co">    # Transform values</span>
+    const _ valores <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
 
     for from valores const v {
-        const _ duplex ← v * 2
+        const _ duplex <span class="tok-op">←</span> v <span class="tok-op">*</span> <span class="tok-nu">2</span>
         print duplex
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1

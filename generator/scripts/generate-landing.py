@@ -115,7 +115,8 @@ def demo_tabs(*, root_id: str, file_label: str, tablist_label: str,
             f'    <div class="fdt-panel{" active" if i == 0 else ""}" id="{pid}" '
             f'role="tabpanel" aria-labelledby="{root_id}-t-{p["id"]}">'
             f'<div class="fdt-panel-label">{p["label"]}</div>'
-            f'<pre{p.get("dir", "")}>{p["code"]}</pre></div>\n'
+            f'<pre{p.get("script_class", "")}{p.get("dir", "")}>'
+            f'<code class="lang-{p["lang"]}">{p["code"]}</code></pre></div>\n'
         )
     return f"""\
   <div class="faber-demo-tabs fdt-hero" data-fdt>
@@ -144,8 +145,12 @@ def build_locale_panels(d: Path) -> list[dict[str, str]]:
             "label": f'<code>faber format --locale {esc(loc["code"])}</code> '
                      f'<span class="fdt-note">— {esc(loc["note"])}</span>',
             "code": esc(f.read_text(encoding="utf-8").strip()),
-            "dir": (f' class="{loc["script"]}"' if loc["script"] else "")
-                   + (' dir="rtl"' if loc.get("rtl") else ""),
+            # The panel names its own reader locale so highlight-code.py paints
+            # each pack in its own spellings; the landing page is locale-less at
+            # the site root and has no page locale to inherit.
+            "lang": f'faber locale={esc(loc["code"])}',
+            "script_class": f' class="{loc["script"]}"' if loc["script"] else "",
+            "dir": ' dir="rtl"' if loc.get("rtl") else "",
         })
     return panels
 
@@ -172,6 +177,7 @@ def build_target_panels(d: Path, targets: list[dict[str, str]]) -> list[dict[str
             "label": f'<code>radix emit --target {esc(t["id"])} {origin}</code> '
                      f'<span class="fdt-note">— {esc(t["note"])}</span>',
             "code": esc(body),
+            "lang": esc(t["id"]),
         })
     return panels
 
@@ -398,7 +404,7 @@ $ faber run --backend cuda  &lt;package&gt;</pre>
         show the lowering surface; the real-device route above is the narrower
         product proof.
       </p>
-      <pre class="fl-src">{esc(kernel_fab)}</pre>
+      <pre class="fl-src"><code class="lang-faber">{esc(kernel_fab)}</code></pre>
     </div>
 {gpu_tabs}  </section>
 

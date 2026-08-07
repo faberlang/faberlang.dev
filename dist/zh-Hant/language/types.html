@@ -27,15 +27,15 @@
 
 <span class="tok-kw">functio</span> swap(atomic<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> cell, i32 value) <span class="tok-op">→</span> i32 {
     <span class="tok-kw">redde</span> cell.exchange(value)
-}</code></pre><h3 id="borrow-markers">型別上的借用標記<a class="anchor" href="#borrow-markers">#</a></h3><p>借用標記（<code class="kw">de</code>、<code class="kw">in</code>、<code class="kw">ex</code>）可出現在參數位置的型別上，用來指出值的傳遞方式：</p><pre class="faber-code"><code class="lang-faber locale=la"># shared borrow — caller retains ownership
-functio imprime(de textus label) → vacuum { }
+}</code></pre><h3 id="borrow-markers">型別上的借用標記<a class="anchor" href="#borrow-markers">#</a></h3><p>借用標記（<code class="kw">de</code>、<code class="kw">in</code>、<code class="kw">ex</code>）可出現在參數位置的型別上，用來指出值的傳遞方式：</p><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-co"># shared borrow — caller retains ownership</span>
+<span class="tok-kw">functio</span> imprime(<span class="tok-kw">de</span> <span class="tok-kw">textus</span> label) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> { }
 
-# mutable borrow — caller lends mutable access
-functio duplica(in numerus value) → vacuum { }
+<span class="tok-co"># mutable borrow — caller lends mutable access</span>
+<span class="tok-kw">functio</span> duplica(<span class="tok-kw">in</span> <span class="tok-kw">numerus</span> value) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> { }
 
-# move — caller gives up ownership
-functio consume(ex textus buffer) → textus {
-    redde buffer
+<span class="tok-co"># move — caller gives up ownership</span>
+<span class="tok-kw">functio</span> consume(<span class="tok-kw">ex</span> <span class="tok-kw">textus</span> buffer) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
+    <span class="tok-kw">redde</span> buffer
 }</code></pre><h3 id="comparison-policy">比較規則<a class="anchor" href="#comparison-policy">#</a></h3><div class="table-scroll"><table><thead><tr><th>運算子</th><th>類別</th><th>行為</th></tr></thead><tbody><tr><td><code>≡</code>、<code>≠</code></td><td>精確相等</td><td>必須使用相同型別；<code class="kw">nihil</code> 可略過此要求</td></tr><tr><td><code>≈</code>、<code>≉</code></td><td>數值相等</td><td>僅限數值格</td></tr><tr><td><code>&lt;</code>、<code>≤</code>、<code>&gt;</code>、<code>≥</code></td><td>排序</td><td>數值、瞬間、純量文字</td></tr><tr><td><code>intra</code></td><td>範圍包含</td><td>數值位於範圍內</td></tr><tr><td><code>inter</code></td><td>集合成員資格</td><td>元素位於集合內</td></tr></tbody></table></div><h2 id="variables-and-binding">Variables and binding<a class="anchor" href="#variables-and-binding">#</a></h2><p>Faber 有三個變數關鍵字，以及專用的指派字元。關鍵差異在於 <code class="kw">fixum</code>（只能寫入一次）與 <code class="kw">varia</code>（可自由重新指派），以及 <code>←</code>（執行期流程）與 <code>=</code>（結構欄位形狀）之間的區別。</p><h3 id="fixum-immutable-binding">fixum — 不可變繫結<a class="anchor" href="#fixum-immutable-binding">#</a></h3><p><code class="kw">fixum</code> 繫結只能寫入一次。宣告時可以提供初始值，也可以不提供；若未提供初始值，則必須在讀取前恰好指派一次。第二次指派會被拒絕。</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fixum</span> <span class="tok-kw">numerus</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
 <span class="tok-kw">fixum</span> <span class="tok-kw">textus</span> name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
 <span class="tok-kw">fixum</span> _ inferred <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]</code></pre><p>延遲初始化：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {

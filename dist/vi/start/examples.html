@@ -27,30 +27,30 @@ cho các trang <a href="/vi/corpus/">Corpus</a> được tạo trên trang web n
 <code>rm</code>, <code>cp</code>, <code>mv</code>, <code>mkdir</code>, <code>touch</code>, <code>pwd</code>, <code>readlink</code>, <code>realpath</code>,
 <code>join</code>, <code>comm</code>, <code>od</code>, <code>cksum</code>, <code>split</code>, <code>yes</code>, <code>printenv</code></p><h3 id="example--echo">Ví dụ — echo<a class="anchor" href="#example--echo">#</a></h3><p>Gói <code>echo</code> minh họa các mẫu Faber được sử dụng xuyên suốt coreutils:
 chú thích CLI, phân tích tùy chọn, kiểm thử nội tuyến với
-<code>probandum</code>/<code>proba</code>/<code>adfirma</code>, và các mô-đun dùng chung:</p><pre class="faber-code"><code class="lang-faber locale=la">importa ex &quot;norma:consolum&quot; privata consolum
+<code>probandum</code>/<code>proba</code>/<code>adfirma</code>, và các mô-đun dùng chung:</p><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-kw">importa</span> <span class="tok-kw">ex</span> <span class="tok-st">"norma:consolum"</span> <span class="tok-kw">privata</span> consolum
 
-functio echo_textus(lista&lt;textus&gt; words) → textus {
-    redde &quot;&quot;
+<span class="tok-kw">functio</span> echo_textus(<span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">textus</span><span class="tok-op">&gt;</span> words) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
+    <span class="tok-kw">redde</span> <span class="tok-st">""</span>
 }
 
-functio echo_novam_lineam(lista&lt;textus&gt; words) → bivalens {
-    redde falsum
+<span class="tok-kw">functio</span> echo_novam_lineam(<span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">textus</span><span class="tok-op">&gt;</span> words) <span class="tok-op">→</span> <span class="tok-kw">bivalens</span> {
+    <span class="tok-kw">redde</span> <span class="tok-kw">falsum</span>
 }
 
-probandum &quot;echo formatting&quot; tag &quot;coreutils&quot; {
-    proba &quot;empty operands&quot; {
-        adfirma echo_textus([]) ≡ &quot;&quot;
+<span class="tok-kw">probandum</span> <span class="tok-st">"echo formatting"</span> <span class="tok-kw">tag</span> <span class="tok-st">"coreutils"</span> {
+    <span class="tok-kw">proba</span> <span class="tok-st">"empty operands"</span> {
+        <span class="tok-kw">adfirma</span> echo_textus([]) <span class="tok-op">≡</span> <span class="tok-st">""</span>
     }
-    proba &quot;-n suppresses newline&quot; {
-        adfirma echo_novam_lineam([&quot;-n&quot;, &quot;hello&quot;]) ≡ falsum
+    <span class="tok-kw">proba</span> <span class="tok-st">"-n suppresses newline"</span> {
+        <span class="tok-kw">adfirma</span> echo_novam_lineam([<span class="tok-st">"-n"</span>, <span class="tok-st">"hello"</span>]) <span class="tok-op">≡</span> <span class="tok-kw">falsum</span>
     }
 }
 
-@ cli &quot;echo&quot;
-@ descriptio &quot;GNU coreutils echo parity exemplum&quot;
-@ operandus ceteri textus words
-incipit argumenta args {
-    # ... CLI logic here
+@ cli <span class="tok-st">"echo"</span>
+@ <span class="tok-kw">descriptio</span> <span class="tok-st">"GNU coreutils echo parity exemplum"</span>
+@ <span class="tok-kw">operandus</span> <span class="tok-kw">ceteri</span> <span class="tok-kw">textus</span> words
+<span class="tok-kw">incipit</span> <span class="tok-kw">argumenta</span> args {
+<span class="tok-co">    # ... CLI logic here</span>
 }</code></pre><h3 id="running">Chạy chương trình<a class="anchor" href="#running">#</a></h3><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> check coreutils/packages/echo
 <span class="tok-fn">faber</span> test coreutils/packages/echo
 <span class="tok-fn">faber</span> run coreutils/packages/echo -- hello world</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#how-to-run">Cách chạy một ví dụ</a></li><li class="toc-3"><a href="#applications">Các gói ứng dụng</a></li><li class="toc-3"><a href="#corpus">Corpus ngôn ngữ</a></li><li class="toc-3"><a href="#stdlib">Khảo sát thư viện chuẩn</a></li><li class="toc-3"><a href="#order">Thứ tự học được đề xuất</a></li><li class="toc-3"><a href="#agent-path">Lộ trình cho tác tử</a></li><li class="toc-3"><a href="#previous">Trước đó</a></li><li class="toc-2"><a href="#ai-workbench">AI Workbench</a></li><li class="toc-3"><a href="#package">Gói</a></li><li class="toc-3"><a href="#commands">Các lệnh</a></li><li class="toc-3"><a href="#validation">Xác thực</a></li><li class="toc-2"><a href="#coreutils">Coreutils</a></li><li class="toc-3"><a href="#implemented-utilities">Các tiện ích đã triển khai</a></li><li class="toc-3"><a href="#example--echo">Ví dụ — echo</a></li><li class="toc-3"><a href="#running">Chạy chương trình</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[</li></ul></div></footer></div></body></html>

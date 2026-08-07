@@ -26,15 +26,15 @@
 
 <span class="tok-kw">functio</span> swap(atomic<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> cell, i32 value) <span class="tok-op">→</span> i32 {
     <span class="tok-kw">redde</span> cell.exchange(value)
-}</code></pre><h3 id="borrow-markers">เครื่องหมายการยืมบนชนิดข้อมูล<a class="anchor" href="#borrow-markers">#</a></h3><p>เครื่องหมายการยืม (<code class="kw">de</code>, <code class="kw">in</code>, <code class="kw">ex</code>) สามารถปรากฏบนชนิดข้อมูลในตำแหน่งพารามิเตอร์ เพื่อระบุวิธีส่งค่า:</p><pre class="faber-code"><code class="lang-faber locale=la"># shared borrow — caller retains ownership
-functio imprime(de textus label) → vacuum { }
+}</code></pre><h3 id="borrow-markers">เครื่องหมายการยืมบนชนิดข้อมูล<a class="anchor" href="#borrow-markers">#</a></h3><p>เครื่องหมายการยืม (<code class="kw">de</code>, <code class="kw">in</code>, <code class="kw">ex</code>) สามารถปรากฏบนชนิดข้อมูลในตำแหน่งพารามิเตอร์ เพื่อระบุวิธีส่งค่า:</p><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-co"># shared borrow — caller retains ownership</span>
+<span class="tok-kw">functio</span> imprime(<span class="tok-kw">de</span> <span class="tok-kw">textus</span> label) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> { }
 
-# mutable borrow — caller lends mutable access
-functio duplica(in numerus value) → vacuum { }
+<span class="tok-co"># mutable borrow — caller lends mutable access</span>
+<span class="tok-kw">functio</span> duplica(<span class="tok-kw">in</span> <span class="tok-kw">numerus</span> value) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> { }
 
-# move — caller gives up ownership
-functio consume(ex textus buffer) → textus {
-    redde buffer
+<span class="tok-co"># move — caller gives up ownership</span>
+<span class="tok-kw">functio</span> consume(<span class="tok-kw">ex</span> <span class="tok-kw">textus</span> buffer) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
+    <span class="tok-kw">redde</span> buffer
 }</code></pre><h3 id="comparison-policy">นโยบายการเปรียบเทียบ<a class="anchor" href="#comparison-policy">#</a></h3><div class="table-scroll"><table><thead><tr><th>ตัวดำเนินการ</th><th>กลุ่ม</th><th>พฤติกรรม</th></tr></thead><tbody><tr><td><code>≡</code>, <code>≠</code></td><td>ความเท่ากันแบบตรงกันทุกประการ</td><td>ต้องใช้ชนิดข้อมูลเดียวกัน; <code class="kw">nihil</code> เป็นข้อยกเว้น</td></tr><tr><td><code>≈</code>, <code>≉</code></td><td>ความเท่ากันของค่าเชิงตัวเลข</td><td>ใช้ได้เฉพาะลำดับชั้นชนิดตัวเลข</td></tr><tr><td><code>&lt;</code>, <code>≤</code>, <code>&gt;</code>, <code>≥</code></td><td>การเรียงลำดับ</td><td>ใช้กับตัวเลข จุดเวลา และข้อความสเกลาร์</td></tr><tr><td><code>intra</code></td><td>การมีค่าอยู่ในช่วง</td><td>ตัวเลขอยู่ในช่วง</td></tr><tr><td><code>inter</code></td><td>การเป็นสมาชิกของคอลเลกชัน</td><td>องค์ประกอบอยู่ในคอลเลกชัน</td></tr></tbody></table></div><h2 id="variables-and-binding">Variables and binding<a class="anchor" href="#variables-and-binding">#</a></h2><p>Faber มีคีย์เวิร์ดสำหรับตัวแปรสามแบบและมีสัญลักษณ์การกำหนดค่าโดยเฉพาะ ความแตกต่างสำคัญอยู่ระหว่าง <code class="kw">fixum</code> (เขียนได้ครั้งเดียว) กับ <code class="kw">varia</code> (กำหนดค่าใหม่ได้อย่างอิสระ) และระหว่าง <code>←</code> (ลำดับการทำงานขณะรันไทม์) กับ <code>=</code> (รูปแบบฟิลด์เชิงโครงสร้าง)</p><h3 id="fixum-immutable-binding">fixum — การผูกค่าที่ไม่เปลี่ยนแปลง<a class="anchor" href="#fixum-immutable-binding">#</a></h3><p>การผูกค่าด้วย <code class="kw">fixum</code> เขียนได้ครั้งเดียว สามารถประกาศพร้อมตัวกำหนดค่าเริ่มต้นหรือไม่มีก็ได้ หากประกาศโดยไม่มีตัวกำหนดค่าเริ่มต้น ต้องกำหนดค่าให้พอดีหนึ่งครั้งก่อนอ่านค่า การกำหนดค่าครั้งที่สองจะถูกปฏิเสธ</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fixum</span> <span class="tok-kw">numerus</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
 <span class="tok-kw">fixum</span> <span class="tok-kw">textus</span> name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
 <span class="tok-kw">fixum</span> _ inferred <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]</code></pre><p>การกำหนดค่าเริ่มต้นภายหลัง:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {
