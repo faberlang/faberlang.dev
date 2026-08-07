@@ -60,6 +60,26 @@ REQUIRED_KEYS = (
     "h3_existing_home",
 )
 
+# Prose a locale may not have translated yet. Missing means the section is
+# simply omitted for that locale — an untranslated pack must never leak English
+# into a localized page.
+OPTIONAL_KEYS = (
+    "pct_note",
+    "device_support",
+)
+
+# Device-kernel subset emitters. They lower a device-safe kernel surface —
+# `@ nucleum` compute kernels and GPU views — and nothing else: no packages, no
+# async, no CLI, no host libraries. Scoring them against all ~280 general
+# corpus terms answers a question that does not apply to them, and the ~2% it
+# produced was read as "Metal is 2% done" no matter how much prose sat beside
+# it. A number travels; its caveat does not. Their real support lives in the
+# device-kernel product summary and in `faber run --backend metal|cuda`.
+#
+# CUDA has never had a column here — it is produced on the NVVM → PTX path, not
+# as a text emit target — and that stays true.
+EXCLUDED_TARGETS = frozenset({"metal-text", "wgsl-text"})
+
 
 def load_pack(locale: str) -> dict[str, str]:
     path = LOCALES_DIR / locale / "targets.toml"
@@ -70,7 +90,9 @@ def load_pack(locale: str) -> dict[str, str]:
     missing = [k for k in REQUIRED_KEYS if k not in data]
     if missing:
         raise ValueError(f"{path}: missing keys: {', '.join(missing)}")
-    return {k: str(data[k]).strip() for k in REQUIRED_KEYS}
+    pack = {k: str(data[k]).strip() for k in REQUIRED_KEYS}
+    pack.update({k: str(data[k]).strip() for k in OPTIONAL_KEYS if k in data})
+    return pack
 
 
 def strip_leading_h1(body: str) -> str:
@@ -119,6 +141,40 @@ def extract_table_blocks(section_body: str) -> list[str]:
             continue
         i += 1
     return tables
+
+
+def cells_of(row: str) -> list[str]:
+    return [c.strip() for c in row.strip().strip("|").split("|")]
+
+
+def drop_excluded_rows(table: str) -> str:
+    """Drop summary rows whose target is an excluded subset emitter."""
+    lines = table.splitlines()
+    kept = lines[:2] + [
+        line for line in lines[2:]
+        if cells_of(line)[0].strip("`") not in EXCLUDED_TARGETS
+    ]
+    return "\n".join(kept)
+
+
+def drop_excluded_columns(table: str) -> str:
+    """Drop per-term columns headed by an excluded subset emitter."""
+    lines = table.splitlines()
+    if not lines:
+        return table
+    header = cells_of(lines[0])
+    keep = [i for i, name in enumerate(header) if name.strip("`") not in EXCLUDED_TARGETS]
+    if len(keep) == len(header):
+        return table
+    out = []
+    for line in lines:
+        cells = cells_of(line)
+        # A malformed row is left alone rather than silently reshaped.
+        if len(cells) != len(header):
+            out.append(line)
+            continue
+        out.append("| " + " | ".join(cells[i] for i in keep) + " |")
+    return "\n".join(out)
 
 
 def rewrite_summary_header(table: str, pack: dict[str, str]) -> str:
@@ -239,12 +295,14 @@ def build_summary(sections: dict[str, str], pack: dict[str, str]) -> str:
     tables = extract_table_blocks(content)
     if len(tables) < 2:
         raise ValueError(f"expected 2 summary tables, got {len(tables)}")
-    app = rewrite_summary_header(tables[0], pack)
-    sys_ = rewrite_summary_header(tables[1], pack)
+    app = rewrite_summary_header(drop_excluded_rows(tables[0]), pack)
+    sys_ = rewrite_summary_header(drop_excluded_rows(tables[1]), pack)
+    note = pack.get("pct_note", "")
     return "\n".join(
         [
             f"## {pack['summary_heading']}",
             "",
+            *([note, ""] if note else []),
             f"**{pack['app_lane']}**",
             "",
             app,
@@ -261,7 +319,7 @@ def section_table(content: str, pack: dict[str, str], h2: str, h3: str) -> str:
     tables = extract_table_blocks(content)
     if not tables:
         raise ValueError(f"no table under section for {h2}")
-    table = rewrite_term_header(tables[0], pack)
+    table = rewrite_term_header(drop_excluded_columns(tables[0]), pack)
     return "\n".join([f"## {h2}", "", f"### {h3}", "", table, ""])
 
 
@@ -283,6 +341,12 @@ def build_page(matrix_text: str, pack: dict[str, str], *, locale: str) -> str:
         build_summary(sections, pack).rstrip(),
         "",
     ]
+
+    # The GPU product view. It answers the question the corpus percentages
+    # cannot, so it sits directly under them rather than at the end of a page
+    # most readers never reach.
+    if pack.get("device_support"):
+        body_parts += [pack["device_support"].rstrip(), ""]
 
     # Map English matrix headings → localized h2 + h3 keys
     mapping = [
