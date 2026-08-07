@@ -2,9 +2,12 @@
 
 ## Status
 
-**Open — feedback round complete.** Captured during a site walkthrough on
-2026-08-07, starting from the public homepage and moving inward. Nothing here is
-implemented.
+**Implemented — awaiting review.** Captured during a site walkthrough on
+2026-08-07, starting from the public homepage and moving inward, then built the
+same day. All eight threads have landed on `main`; nothing is pushed.
+
+Build is green: 3407 pages, 0 broken links, leakage gate passing, and all 184
+Faber fences in `src/en-US` compiling against radix 0.79.0.
 
 ### Scope discipline
 
@@ -40,18 +43,34 @@ cheap; every entry has real work behind it.
 
 | Thread | Subject | Nature | State |
 |---|---|---|---|
-| 1 | Homepage call-to-action order | Small, isolated | open — blocked on 2 |
-| 2 | Cheat sheet section | Large, net-new | open |
-| 3 | Install / Releases split | Medium; content + generation | open |
-| 4 | Sidebar order | Small; chrome + labels | open — blocked on 2, 5, 7 |
-| 5 | Open source page (replaces Repositories) | Medium; migration + redirects | open |
-| 6 | Examples page rebuild + syntax highlighting | Large; two verified defects | **highlighting done**; page rebuild open |
-| 7 | Target lanes section | Large; extends existing capture tooling | open |
-| 8 | GPU support must not read as unsupported | Medium; matrix removal + agent surfaces | **done** |
+| 1 | Homepage call-to-action order | `generate-landing.py` | done |
+| 2 | Cheat sheet section | 13 pages, 66 verified fences | done |
+| 3 | Install / Releases split | `generate-releases.py`, 88 versions | done |
+| 4 | Sidebar order | `html.fab`, `link_prefix.fab` | done |
+| 5 | Open source page (replaces Repositories) | migration + redirects | done |
+| 6 | Examples rebuild + syntax highlighting | `generate-examples.py` | done |
+| 7 | Target lanes section | `capture-lane-panels.sh` + generator | done |
+| 8 | GPU support must not read as unsupported | matrix + agent surfaces | done |
 
-Threads 1 and 4 are cheap but cannot land first: a sidebar entry or button
-pointing at a page that does not exist fails the build's internal-link gate.
-Destinations before navigation.
+Order was forced: destinations before navigation. A sidebar entry or button
+pointing at a page that does not exist fails the build's internal-link gate, so
+threads 1 and 4 — the cheapest — had to land last.
+
+## Left undone, deliberately
+
+- **`vivilite/src/main.fab` does not compile** with radix 0.79.0: comments sit
+  between a closing brace and a following `sin`, which PARSE060 rejects. It was
+  the obvious "large real application" example and is omitted rather than
+  showcased broken. Fix belongs in the examples repo.
+- **Faber release notes are sparse** — 8 versions against more tags. The
+  Releases generator lists the union of tags and notes and marks the gaps, so
+  backfilled notes appear automatically once written.
+- **Site is pinned at 1.4.0.** `faber 1.5.0` notes are already listed, with no
+  downloads; it picks those up when the release publishes.
+- **The duplicate IA generations in `dist/`** are untouched, per the scope
+  discipline above.
+- **Locale trees lag.** New English pages are English-only; translated pages
+  that moved kept their translations. The leakage gate passes.
 
 Threads 1 and 4 are the cheapest and change the first-contact experience most
 directly. Thread 6's two highlighting defects are near-free and independently
