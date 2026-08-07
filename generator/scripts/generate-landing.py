@@ -291,8 +291,9 @@ def main() -> None:
     </p>
 
     <div class="fl-cta">
-      <a class="fl-btn fl-btn-primary" href="/en-US/start/install.html">Install Faber</a>
-      <a class="fl-btn" href="/en-US/start/examples.html#applications">Run the GPU proof</a>
+      <a class="fl-btn fl-btn-primary" href="/en-US/">Explore Faber</a>
+      <a class="fl-btn" href="/en-US/start/install.html">Install</a>
+      <a class="fl-btn" href="/en-US/cheatsheet/">Cheat sheet</a>
     </div>
   </section>
 

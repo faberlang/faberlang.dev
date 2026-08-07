@@ -1,3 +1,22 @@
+# Full nav labels as html.fab actually spells them. A label must be declared
+# here even when no locale translates it, or a shorter translated label will be
+# substituted inside it — that is how "Target matrix" became "الهدف matrix".
+[sidebar_labels]
+hello_world = "Hello, world"
+target_matrix = "Target matrix"
+corpus_index = "Corpus index"
+quick_tour = "Quick tour"
+first_package = "Your first package"
+
+[sidebar_primary]
+home = "Home"
+install = "Install"
+cheatsheet = "Cheat sheet"
+releases = "Releases"
+open_source = "Open source"
+examples = "Examples"
+target_lanes = "Target lanes"
+
 [sidebar_start]
 heading = "Get started"
 install = "Install & download"

@@ -35,14 +35,25 @@ def load_chrome(chrome_path: Path) -> dict[str, str]:
     return result
 
 
-def replace_in_text_nodes(html: str, search: str, replace: str) -> tuple[str, int]:
-    """Replace ``search`` with ``replace`` only outside HTML tags/attributes.
+def replace_in_text_nodes(html: str, table: dict[str, str]) -> tuple[str, int]:
+    """Apply the whole replacement table in ONE pass, outside tags/attributes.
 
-    Prevents path segments like ``/start/install.html`` from being mangled when
-    chrome labels share words with URL slugs (e.g. ``install``).
+    One pass, not one pass per key. Replacing sequentially lets a short label
+    eat a longer one it happens to prefix: with "Target" translated and
+    "Target lanes" not, sequential replacement produced a half-Arabic
+    "الهدف lanes". A single alternation ordered longest-first consumes the
+    longer label before the shorter pattern can see it — which is also why the
+    table carries identity entries for labels a locale has not translated.
+    They translate to themselves, and in doing so shield themselves.
+
+    Staying outside tags keeps path segments like ``/start/install.html`` from
+    being mangled when a label shares a word with a URL slug.
     """
-    if not search or search not in html:
+    if not table:
         return html, 0
+    pattern = re.compile(
+        "|".join(re.escape(k) for k in sorted(table, key=len, reverse=True))
+    )
     parts = re.split(r"(<[^>]+>)", html)
     count = 0
     out: list[str] = []
@@ -50,11 +61,13 @@ def replace_in_text_nodes(html: str, search: str, replace: str) -> tuple[str, in
         if part.startswith("<"):
             out.append(part)
             continue
-        n = part.count(search)
-        if n:
-            part = part.replace(search, replace)
-            count += n
-        out.append(part)
+
+        def _one(m: re.Match[str]) -> str:
+            nonlocal count
+            count += 1
+            return table[m.group(0)]
+
+        out.append(pattern.sub(_one, part))
     return "".join(out), count
 
 
@@ -70,16 +83,14 @@ _CHROME_REGIONS = re.compile(
 )
 
 
-def apply_replacements_to_chrome(html: str, replacements: list[tuple[str, str]]) -> tuple[str, int]:
-    """Apply string replacements only inside chrome regions of the document."""
+def apply_replacements_to_chrome(html: str, table: dict[str, str]) -> tuple[str, int]:
+    """Apply the replacement table only inside chrome regions of the document."""
     total = 0
 
     def _sub(match: re.Match[str]) -> str:
         nonlocal total
-        chunk = match.group(0)
-        for search, replace in replacements:
-            chunk, n = replace_in_text_nodes(chunk, search, replace)
-            total += n
+        chunk, n = replace_in_text_nodes(match.group(0), table)
+        total += n
         return chunk
 
     return _CHROME_REGIONS.sub(_sub, html), total
@@ -109,21 +120,21 @@ def main() -> int:
 
     # Build replacements: for each key where en value != locale value
     # HTML-escape both search and replacement values to match rendered output
-    replacements: list[tuple[str, str]] = []
+    # Every declared English label enters the table, translated or not. An
+    # untranslated one maps to itself, which costs nothing and stops a shorter
+    # translated label from being substituted inside it.
+    table: dict[str, str] = {}
+    translated = 0
     for key, en_value in en_chrome.items():
+        escaped_en = html_mod.escape(en_value, quote=False)
         locale_value = locale_chrome.get(key)
         if locale_value is None or locale_value == en_value:
+            table.setdefault(escaped_en, escaped_en)
             continue
-        # HTML-escape for matching against rendered HTML
-        escaped_en = html_mod.escape(en_value, quote=False)
-        escaped_locale = html_mod.escape(locale_value, quote=False)
-        replacements.append((escaped_en, escaped_locale))
+        table[escaped_en] = html_mod.escape(locale_value, quote=False)
+        translated += 1
 
-    # Sort by search string length descending to replace longer strings first
-    # This prevents partial clobber (e.g. "Install" replacing inside "Install &amp; download")
-    replacements.sort(key=lambda r: len(r[0]), reverse=True)
-
-    if not replacements:
+    if not translated:
         print(f"  [chrome] No differences between en-US and {locale}, nothing to inject")
         return 0
 
@@ -143,7 +154,7 @@ def main() -> int:
             path = Path(root) / name
             html = path.read_text(encoding="utf-8")
 
-            html, count = apply_replacements_to_chrome(html, replacements)
+            html, count = apply_replacements_to_chrome(html, table)
             if count > 0:
                 total_replacements += count
                 path.write_text(html, encoding="utf-8")

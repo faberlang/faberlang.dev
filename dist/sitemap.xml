@@ -601,6 +601,18 @@
   <url><loc>https://faberlang.dev/en-US/start/hello.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/start/install.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/start/projects.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/targets/</loc></url>
+  <url><loc>https://faberlang.dev/en-US/targets/faber.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/targets/go.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/targets/gpu.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/targets/hir.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/targets/llvm-text.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/targets/metal-text.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/targets/mir.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/targets/rust.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/targets/ts.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/targets/wasm-text.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/targets/wgsl-text.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/toolchain/</loc></url>
   <url><loc>https://faberlang.dev/en-US/toolchain/cli.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/toolchain/compiling.html</loc></url>

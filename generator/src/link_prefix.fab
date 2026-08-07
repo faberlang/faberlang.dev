@@ -14,15 +14,23 @@ importa ex "./string_util" privata * ut su
 functio est_content_path(textus href) → bivalens {
     si href ≡ "/" ergo redde verum
     si href ≡ "/404.html" ergo redde verum
+    si href ≡ "/open-source.html" ergo redde verum
     si su.initium_cum(href, "/start/") ergo redde verum
     si su.initium_cum(href, "/start") et href.longitudo() ≡ 6 ergo redde verum
+    si su.initium_cum(href, "/cheatsheet/") ergo redde verum
+    si su.initium_cum(href, "/releases/") ergo redde verum
+    si su.initium_cum(href, "/targets/") ergo redde verum
+    si su.initium_cum(href, "/language/") ergo redde verum
+    si su.initium_cum(href, "/toolchain/") ergo redde verum
+    si su.initium_cum(href, "/libraries/") ergo redde verum
+    si su.initium_cum(href, "/reference/") ergo redde verum
+    si su.initium_cum(href, "/corpus/") ergo redde verum
     si su.initium_cum(href, "/syntax/") ergo redde verum
     si su.initium_cum(href, "/features/") ergo redde verum
     si su.initium_cum(href, "/tooling/") ergo redde verum
     si su.initium_cum(href, "/ecosystem/") ergo redde verum
     si su.initium_cum(href, "/history/") ergo redde verum
     si su.initium_cum(href, "/references/") ergo redde verum
-    si su.initium_cum(href, "/corpus/") ergo redde verum
     redde falsum
 }
 

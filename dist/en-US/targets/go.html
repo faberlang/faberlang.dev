@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="HIR projection with file emission and end-to-end floors."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Go — Faber"><meta property="og:description" content="HIR projection with file emission and end-to-end floors."><meta property="og:url" content="https://faberlang.dev/en-US/targets/go.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/targets/go.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Go — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><ul class="nav"><li><a href="/en-US/">Home</a></li><li><a href="/en-US/start/install.html">Install</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li><li><a href="/en-US/releases/">Releases</a></li><li><a href="/en-US/open-source.html">Open source</a></li><li><a href="/en-US/start/examples.html">Examples</a></li><li><a href="/en-US/targets/" class="active">Target lanes</a></li></ul><div class="side-h">Start</div><ul class="nav"><li><a href="/en-US/start/hello.html">Hello, world</a></li><li><a href="/en-US/start/">Quick tour</a></li><li><a href="/en-US/start/projects.html">Your first package</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/en-US/language/">The language</a></li><li><a href="/en-US/language/types.html">Types and values</a></li><li><a href="/en-US/language/functions.html">Functions and flow</a></li><li><a href="/en-US/language/errors.html">Errors and testing</a></li><li><a href="/en-US/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/en-US/toolchain/">Toolchain</a></li><li><a href="/en-US/toolchain/cli.html">The faber CLI</a></li><li><a href="/en-US/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/en-US/targets/" class="active">Target lanes</a></li><li><a href="/en-US/toolchain/packages.html">Packages with Cista</a></li><li><a href="/en-US/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/">Libraries</a></li><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/en-US/reference/">Reference</a></li><li><a href="/en-US/reference/grammar.html">Grammar</a></li><li><a href="/en-US/corpus/">Corpus index</a></li><li><a href="/en-US/reference/design.html">Design notes</a></li><li><a href="/en-US/open-source.html">Open source</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.4.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/en-US/releases/">All releases</a></li><li><a href="/en-US/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Go</h1><div class="content"><p>HIR projection with file emission and end-to-end floors.</p><p>Part of the <a href="/en-US/targets/hir.html">HIR lane</a>. Every panel below is compiler output.</p><h2 id="reading">How to read it<a class="anchor" href="#reading">#</a></h2><p>Go has no generics-free way to express some Faber types, so the emitter materialises helpers the source never wrote. Borrow modes (<code class="kw">de</code> / <code class="kw">in</code> / <code class="kw">ex</code>) erase here — they lower, but they do not survive as distinctions.</p><h2 id="tensores">Typed tensors<a class="anchor" href="#tensores">#</a></h2><p>Builds two shaped matrices, multiplies them, and reduces the product to a scalar. Exercises shape-bearing types and a reduction.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {
+    <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">fixum</span> tf32[] seed <span class="tok-op">←</span> vacua
+    <span class="tok-kw">fixum</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.strue(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">fixum</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">fixum</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.matmul(b)
+    <span class="tok-kw">fixum</span> f32 mean <span class="tok-op">←</span> product.media()
+    nota mean
+}</code></pre><p><strong>Go</strong> — 10 lines in, 221 out (22.1×)</p><pre class="faber-code"><code class="lang-go"><span class="tok-co">// Generated by radix - do not edit</span>
+
+<span class="tok-kw">package</span> main
+
+<span class="tok-kw">import</span> (
+    <span class="tok-st">"fmt"</span>
+    <span class="tok-st">"strconv"</span>
+    <span class="tok-st">"strings"</span>
+)
+
+<span class="tok-kw">type</span> faberTensor[T <span class="tok-ty">any</span>] <span class="tok-kw">struct</span> {
+    data []T
+    shape []<span class="tok-ty">int</span>
+}
+
+<span class="tok-kw">func</span> faberTensorElementCount(shape []<span class="tok-ty">int</span>) <span class="tok-ty">int</span> {
+    <span class="tok-kw">const</span> maxInt = <span class="tok-ty">int</span>(^<span class="tok-ty">uint</span>(<span class="tok-nu">0</span>) &gt;&gt; <span class="tok-nu">1</span>)
+    total := <span class="tok-nu">1</span>
+    <span class="tok-kw">for</span> _, dim := <span class="tok-kw">range</span> shape {
+        <span class="tok-kw">if</span> dim &lt; <span class="tok-nu">0</span> { panic(<span class="tok-st">"tensor shape dimension must be non-negative"</span>) }
+        <span class="tok-kw">if</span> dim &gt; <span class="tok-nu">0</span> &amp;&amp; total &gt; maxInt/dim { panic(<span class="tok-st">"tensor shape element count overflow"</span>) }
+        total *= dim
+    }
+    <span class="tok-kw">return</span> total
+}
+
+<span class="tok-kw">func</span> faberIndexSlice(indices <span class="tok-ty">any</span>) []<span class="tok-ty">int</span> {
+    <span class="tok-kw">switch</span> values := indices.(<span class="tok-kw">type</span>) {
+        <span class="tok-kw">case</span> []<span class="tok-ty">int</span>:
+            <span class="tok-kw">return</span> append([]<span class="tok-ty">int</span>{}, values...)
+        <span class="tok-kw">case</span> []<span class="tok-ty">uint32</span>:
+            out := make([]<span class="tok-ty">int</span>, len(values)); <span class="tok-kw">for</span> i, value := <span class="tok-kw">range</span> values { out[i] = <span class="tok-ty">int</span>(value) }; <span class="tok-kw">return</span> out
+        <span class="tok-kw">case</span> []<span class="tok-ty">uint64</span>:
+            out := make([]<span class="tok-ty">int</span>, len(values)); <span class="tok-kw">for</span> i, value := <span class="tok-kw">range</span> values { out[i] = <span class="tok-ty">int</span>(value) }; <span class="tok-kw">return</span> out
+        <span class="tok-kw">case</span> []<span class="tok-ty">int32</span>:
+            out := make([]<span class="tok-ty">int</span>, len(values)); <span class="tok-kw">for</span> i, value := <span class="tok-kw">range</span> values { out[i] = <span class="tok-ty">int</span>(value) }; <span class="tok-kw">return</span> out
+        <span class="tok-kw">case</span> []<span class="tok-ty">int64</span>:
+            out := make([]<span class="tok-ty">int</span>, len(values)); <span class="tok-kw">for</span> i, value := <span class="tok-kw">range</span> values { out[i] = <span class="tok-ty">int</span>(value) }; <span class="tok-kw">return</span> out
+        <span class="tok-kw">default</span>:
+            panic(<span class="tok-st">"tensor index must be a numeric list"</span>)
+    }
+}
+
+<span class="tok-kw">func</span> faberTensorOffset(shape []<span class="tok-ty">int</span>, rawIndices <span class="tok-ty">any</span>) *<span class="tok-ty">int</span> {
+    <span class="tok-kw">const</span> maxInt = <span class="tok-ty">int</span>(^<span class="tok-ty">uint</span>(<span class="tok-nu">0</span>) &gt;&gt; <span class="tok-nu">1</span>)
+    indices := faberIndexSlice(rawIndices)
+    <span class="tok-kw">if</span> len(indices) != len(shape) { <span class="tok-kw">return</span> <span class="tok-kw">nil</span> }
+    offset := <span class="tok-nu">0</span>
+    stride := <span class="tok-nu">1</span>
+    <span class="tok-kw">for</span> axis := len(shape) - <span class="tok-nu">1</span>; axis &gt;= <span class="tok-nu">0</span>; axis-- {
+        idx := indices[axis]
+        dim := shape[axis]
+        <span class="tok-kw">if</span> dim &lt; <span class="tok-nu">0</span> || idx &lt; <span class="tok-nu">0</span> || idx &gt;= dim { <span class="tok-kw">return</span> <span class="tok-kw">nil</span> }
+        <span class="tok-kw">if</span> idx &gt; <span class="tok-nu">0</span> &amp;&amp; stride &gt; (maxInt-offset)/idx { <span class="tok-kw">return</span> <span class="tok-kw">nil</span> }
+        offset += idx * stride
+        <span class="tok-kw">if</span> dim &gt; <span class="tok-nu">0</span> &amp;&amp; stride &gt; maxInt/dim { <span class="tok-kw">return</span> <span class="tok-kw">nil</span> }
+        stride *= dim
+    }
+    <span class="tok-kw">return</span> &amp;offset
+}
+
+<span class="tok-kw">func</span> (t faberTensor[T]) Crea(fill T, shape []<span class="tok-ty">int</span>) faberTensor[T] {
+    data := make([]T, faberTensorElementCount(shape))
+    <span class="tok-kw">for</span> i := <span class="tok-kw">range</span> data { data[i] = fill }
+    <span class="tok-kw">return</span> faberTensor[T]{data: data, shape: append([]<span class="tok-ty">int</span>{}, shape...)}
+}
+
+<span class="tok-kw">func</span> (t faberTensor[T]) Strue(data []T, shape []<span class="tok-ty">int</span>) faberTensor[T] {
+    <span class="tok-kw">if</span> faberTensorElementCount(shape) != len(data) { panic(<span class="tok-st">"tensor structa element count does not match shape"</span>) }
+    <span class="tok-kw">return</span> faberTensor[T]{data: append([]T{}, data...), shape: append([]<span class="tok-ty">int</span>{}, shape...)}
+}
+
+<span class="tok-kw">func</span> (t faberTensor[T]) Longitudo() <span class="tok-ty">int</span> { <span class="tok-kw">return</span> len(t.shape) }
+<span class="tok-kw">func</span> (t faberTensor[T]) Magnitudines() []<span class="tok-ty">int</span> { <span class="tok-kw">return</span> append([]<span class="tok-ty">int</span>{}, t.shape...) }
+<span class="tok-kw">func</span> (t faberTensor[T]) Planata() []T { <span class="tok-kw">return</span> append([]T{}, t.data...) }
+<span class="tok-kw">func</span> (t faberTensor[T]) Materialize() faberTensor[T] { <span class="tok-kw">return</span> faberTensor[T]{data: append([]T{}, t.data...), shape: append([]<span class="tok-ty">int</span>{}, t.shape...)} }
+
+<span class="tok-kw">func</span> faberTensorAdd[T <span class="tok-ty">any</span>](left T, right T) T {
+    <span class="tok-kw">switch</span> value := <span class="tok-ty">any</span>(left).(<span class="tok-kw">type</span>) {
+        <span class="tok-kw">case</span> <span class="tok-ty">int</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value + <span class="tok-ty">any</span>(right).(<span class="tok-ty">int</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">int32</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value + <span class="tok-ty">any</span>(right).(<span class="tok-ty">int32</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">int64</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value + <span class="tok-ty">any</span>(right).(<span class="tok-ty">int64</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value + <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint32</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value + <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint32</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint64</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value + <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint64</span>)).(T)
+        <span class="tok-kw">case</span> float32: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value + <span class="tok-ty">any</span>(right).(float32)).(T)
+        <span class="tok-kw">case</span> float64: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value + <span class="tok-ty">any</span>(right).(float64)).(T)
+        <span class="tok-kw">default</span>: panic(<span class="tok-st">"tensor arithmetic requires numeric elements"</span>)
+    }
+}
+
+<span class="tok-kw">func</span> faberTensorMul[T <span class="tok-ty">any</span>](left T, right T) T {
+    <span class="tok-kw">switch</span> value := <span class="tok-ty">any</span>(left).(<span class="tok-kw">type</span>) {
+        <span class="tok-kw">case</span> <span class="tok-ty">int</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value * <span class="tok-ty">any</span>(right).(<span class="tok-ty">int</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">int32</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value * <span class="tok-ty">any</span>(right).(<span class="tok-ty">int32</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">int64</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value * <span class="tok-ty">any</span>(right).(<span class="tok-ty">int64</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value * <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint32</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value * <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint32</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint64</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value * <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint64</span>)).(T)
+        <span class="tok-kw">case</span> float32: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value * <span class="tok-ty">any</span>(right).(float32)).(T)
+        <span class="tok-kw">case</span> float64: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value * <span class="tok-ty">any</span>(right).(float64)).(T)
+        <span class="tok-kw">default</span>: panic(<span class="tok-st">"tensor arithmetic requires numeric elements"</span>)
+    }
+}
+
+<span class="tok-kw">func</span> faberTensorSub[T <span class="tok-ty">any</span>](left T, right T) T {
+    <span class="tok-kw">switch</span> value := <span class="tok-ty">any</span>(left).(<span class="tok-kw">type</span>) {
+        <span class="tok-kw">case</span> <span class="tok-ty">int</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value - <span class="tok-ty">any</span>(right).(<span class="tok-ty">int</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">int32</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value - <span class="tok-ty">any</span>(right).(<span class="tok-ty">int32</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">int64</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value - <span class="tok-ty">any</span>(right).(<span class="tok-ty">int64</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value - <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint32</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value - <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint32</span>)).(T)
+        <span class="tok-kw">case</span> <span class="tok-ty">uint64</span>: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value - <span class="tok-ty">any</span>(right).(<span class="tok-ty">uint64</span>)).(T)
+        <span class="tok-kw">case</span> float32: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value - <span class="tok-ty">any</span>(right).(float32)).(T)
+        <span class="tok-kw">case</span> float64: <span class="tok-kw">return</span> <span class="tok-ty">any</span>(value - <span class="tok-ty">any</span>(right).(float64)).(T)
+        <span class="tok-kw">default</span>: panic(<span class="tok-st">"tensor arithmetic requires numeric elements"</span>)
+    }
+}
+
+<span class="tok-kw">func</span> faberTensorShapeEqual(left []<span class="tok-ty">int</span>, right []<span class="tok-ty">int</span>) <span class="tok-ty">bool</span> {
+    <span class="tok-kw">if</span> len(left) != len(right) { <span class="tok-kw">return</span> <span class="tok-kw">false</span> }
+    <span class="tok-kw">for</span> i, dim := <span class="tok-kw">range</span> left { <span class="tok-kw">if</span> dim != right[i] { <span class="tok-kw">return</span> <span class="tok-kw">false</span> } }
+    <span class="tok-kw">return</span> <span class="tok-kw">true</span>
+}
+
+<span class="tok-kw">func</span> faberTensorMean[T <span class="tok-ty">any</span>](data []T) T {
+    <span class="tok-kw">if</span> len(data) == <span class="tok-nu">0</span> { panic(<span class="tok-st">"tensor media requires non-empty data"</span>) }
+    <span class="tok-kw">switch</span> <span class="tok-ty">any</span>(data[<span class="tok-nu">0</span>]).(<span class="tok-kw">type</span>) {
+        <span class="tok-kw">case</span> float32:
+            <span class="tok-kw">var</span> total float32
+            <span class="tok-kw">for</span> _, value := <span class="tok-kw">range</span> data { total += <span class="tok-ty">any</span>(value).(float32) }
+            <span class="tok-kw">return</span> <span class="tok-ty">any</span>(total / float32(len(data))).(T)
+        <span class="tok-kw">case</span> float64:
+            <span class="tok-kw">var</span> total float64
+            <span class="tok-kw">for</span> _, value := <span class="tok-kw">range</span> data { total += <span class="tok-ty">any</span>(value).(float64) }
+            <span class="tok-kw">return</span> <span class="tok-ty">any</span>(total / float64(len(data))).(T)
+        <span class="tok-kw">default</span>: panic(<span class="tok-st">"tensor media requires floating-point elements"</span>)
+    }
+}
+
+<span class="tok-kw">func</span> (t faberTensor[T]) Summa() T {
+    <span class="tok-kw">var</span> total T
+    <span class="tok-kw">for</span> _, value := <span class="tok-kw">range</span> t.data { total = faberTensorAdd(total, value) }
+    <span class="tok-kw">return</span> total
+}
+
+<span class="tok-kw">func</span> (t faberTensor[T]) Media() T { <span class="tok-kw">return</span> faberTensorMean(t.data) }
+
+<span class="tok-kw">func</span> (a faberTensor[T]) Addita(b faberTensor[T]) faberTensor[T] {
+    <span class="tok-kw">if</span> !faberTensorShapeEqual(a.shape, b.shape) { panic(<span class="tok-st">"tensor elementwise arithmetic requires equal shapes"</span>) }
+    data := make([]T, len(a.data))
+    <span class="tok-kw">for</span> i := <span class="tok-kw">range</span> data { data[i] = faberTensorAdd(a.data[i], b.data[i]) }
+    <span class="tok-kw">return</span> faberTensor[T]{data: data, shape: append([]<span class="tok-ty">int</span>{}, a.shape...)}
+}
+
+<span class="tok-kw">func</span> (a faberTensor[T]) Subtrahe(b faberTensor[T]) faberTensor[T] {
+    <span class="tok-kw">if</span> !faberTensorShapeEqual(a.shape, b.shape) { panic(<span class="tok-st">"tensor elementwise arithmetic requires equal shapes"</span>) }
+    data := make([]T, len(a.data))
+    <span class="tok-kw">for</span> i := <span class="tok-kw">range</span> data { data[i] = faberTensorSub(a.data[i], b.data[i]) }
+    <span class="tok-kw">return</span> faberTensor[T]{data: data, shape: append([]<span class="tok-ty">int</span>{}, a.shape...)}
+}
+
+<span class="tok-kw">func</span> (a faberTensor[T]) Multiplica(b faberTensor[T]) faberTensor[T] {
+    <span class="tok-kw">if</span> !faberTensorShapeEqual(a.shape, b.shape) { panic(<span class="tok-st">"tensor elementwise arithmetic requires equal shapes"</span>) }
+    data := make([]T, len(a.data))
+    <span class="tok-kw">for</span> i := <span class="tok-kw">range</span> data { data[i] = faberTensorMul(a.data[i], b.data[i]) }
+    <span class="tok-kw">return</span> faberTensor[T]{data: data, shape: append([]<span class="tok-ty">int</span>{}, a.shape...)}
+}
+
+<span class="tok-kw">func</span> (a faberTensor[T]) Matmul(b faberTensor[T]) faberTensor[T] {
+    <span class="tok-kw">if</span> len(a.shape) != <span class="tok-nu">2</span> || len(b.shape) != <span class="tok-nu">2</span> || a.shape[<span class="tok-nu">1</span>] != b.shape[<span class="tok-nu">0</span>] { panic(<span class="tok-st">"tensor matmul requires compatible rank-2 shapes"</span>) }
+    rows, inner, cols := a.shape[<span class="tok-nu">0</span>], a.shape[<span class="tok-nu">1</span>], b.shape[<span class="tok-nu">1</span>]
+    data := make([]T, rows*cols)
+    <span class="tok-kw">for</span> row := <span class="tok-nu">0</span>; row &lt; rows; row++ {
+        <span class="tok-kw">for</span> col := <span class="tok-nu">0</span>; col &lt; cols; col++ {
+            <span class="tok-kw">var</span> sum T
+            <span class="tok-kw">for</span> k := <span class="tok-nu">0</span>; k &lt; inner; k++ { sum = faberTensorAdd(sum, faberTensorMul(a.data[row*inner+k], b.data[k*cols+col])) }
+            data[row*cols+col] = sum
+        }
+    }
+    <span class="tok-kw">return</span> faberTensor[T]{data: data, shape: []<span class="tok-ty">int</span>{rows, cols}}
+}
+
+<span class="tok-kw">func</span> (t faberTensor[T]) Forma(shape []<span class="tok-ty">int</span>) faberTensor[T] {
+    <span class="tok-kw">if</span> faberTensorElementCount(shape) != len(t.data) { panic(<span class="tok-st">"tensor forma (reshape) element count mismatch"</span>) }
+    <span class="tok-kw">return</span> faberTensor[T]{data: append([]T{}, t.data...), shape: append([]<span class="tok-ty">int</span>{}, shape...)}
+}
+
+<span class="tok-kw">func</span> (t faberTensor[T]) Accipe(indices <span class="tok-ty">any</span>) *T {
+    offset := faberTensorOffset(t.shape, indices)
+    <span class="tok-kw">if</span> offset == <span class="tok-kw">nil</span> || *offset &lt; <span class="tok-nu">0</span> || *offset &gt;= len(t.data) { <span class="tok-kw">return</span> <span class="tok-kw">nil</span> }
+    <span class="tok-kw">return</span> &amp;t.data[*offset]
+}
+
+<span class="tok-kw">func</span> (t *faberTensor[T]) Ponde(indices <span class="tok-ty">any</span>, value T) {
+    offset := faberTensorOffset(t.shape, indices)
+    <span class="tok-kw">if</span> offset == <span class="tok-kw">nil</span> || *offset &lt; <span class="tok-nu">0</span> || *offset &gt;= len(t.data) { panic(<span class="tok-st">"tensor ponde invalid index"</span>) }
+    t.data[*offset] = value
+}
+
+<span class="tok-kw">func</span> (t *faberTensor[T]) Reple(value T) {
+    <span class="tok-kw">for</span> i := <span class="tok-kw">range</span> t.data { t.data[i] = value }
+}
+
+<span class="tok-kw">func</span> (t faberTensor[T]) Sectio(start <span class="tok-ty">int</span>, end <span class="tok-ty">int</span>) faberTensor[T] {
+    <span class="tok-kw">if</span> len(t.shape) == <span class="tok-nu">0</span> || start &lt; <span class="tok-nu">0</span> || end &lt; start || end &gt; t.shape[<span class="tok-nu">0</span>] { panic(<span class="tok-st">"tensor sectio invalid slice bounds"</span>) }
+    inner := faberTensorElementCount(t.shape[<span class="tok-nu">1</span>:])
+    shape := append([]<span class="tok-ty">int</span>{end - start}, t.shape[<span class="tok-nu">1</span>:]...)
+    <span class="tok-kw">return</span> faberTensor[T]{data: append([]T{}, t.data[start*inner:end*inner]...), shape: shape}
+}
+
+<span class="tok-kw">func</span> main() {
+    flat_a := []float32{float32(<span class="tok-nu">1</span>), float32(<span class="tok-nu">2</span>), float32(<span class="tok-nu">3</span>), float32(<span class="tok-nu">4</span>), float32(<span class="tok-nu">5</span>), float32(<span class="tok-nu">6</span>)}
+    flat_b := []float32{float32(<span class="tok-nu">1</span>), float32(<span class="tok-nu">2</span>), float32(<span class="tok-nu">3</span>), float32(<span class="tok-nu">4</span>), float32(<span class="tok-nu">5</span>), float32(<span class="tok-nu">6</span>), float32(<span class="tok-nu">7</span>), float32(<span class="tok-nu">8</span>), float32(<span class="tok-nu">9</span>), float32(<span class="tok-nu">10</span>), float32(<span class="tok-nu">11</span>), float32(<span class="tok-nu">12</span>)}
+    seed := faberTensor[float32]{shape: []<span class="tok-ty">int</span>{}}
+    a := seed.Strue(flat_a, []<span class="tok-ty">int</span>{<span class="tok-nu">2</span>, <span class="tok-nu">3</span>})
+    b := seed.Strue(flat_b, []<span class="tok-ty">int</span>{<span class="tok-nu">3</span>, <span class="tok-nu">4</span>})
+    product := a.Matmul(b)
+    mean := float32(product.Media())
+    fmt.Println(<span class="tok-kw">func</span>(v float64) <span class="tok-ty">string</span> { s := strconv.FormatFloat(v, <span class="tok-st">'f'</span>, -<span class="tok-nu">1</span>, <span class="tok-nu">64</span>); <span class="tok-kw">if</span> !strings.ContainsAny(s, <span class="tok-st">".eE"</span>) { <span class="tok-kw">return</span> s + <span class="tok-st">".0"</span> }; <span class="tok-kw">return</span> s }(float64(mean)))
+}</code></pre><h2 id="fallibilis">The error channel<a class="anchor" href="#fallibilis">#</a></h2><p>A function that may fail, and a caller that catches. Shows how the <code>⇥</code> channel becomes each target's own error idiom.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> divide(<span class="tok-kw">numerus</span> a, <span class="tok-kw">numerus</span> b) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
+    <span class="tok-kw">si</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> ergo <span class="tok-kw">iace</span> <span class="tok-st">"division by zero"</span>
+    <span class="tok-kw">redde</span> a <span class="tok-op">/</span> b
+}
+
+<span class="tok-kw">incipit</span> {
+    <span class="tok-kw">fac</span> {
+        nota divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
+    }
+    <span class="tok-kw">cape</span> err {
+        <span class="tok-kw">mone</span> err
+    }
+}</code></pre><p><strong>Go</strong> — 13 lines in, 27 out (2.1×)</p><pre class="faber-code"><code class="lang-go"><span class="tok-co">// Generated by radix - do not edit</span>
+
+<span class="tok-kw">package</span> main
+
+<span class="tok-kw">import</span> (
+    <span class="tok-st">"errors"</span>
+    <span class="tok-st">"fmt"</span>
+    <span class="tok-st">"os"</span>
+)
+
+<span class="tok-kw">func</span> divide(a <span class="tok-ty">int</span>, b <span class="tok-ty">int</span>) (<span class="tok-ty">int</span>, <span class="tok-ty">error</span>) {
+    <span class="tok-kw">if</span> (b == <span class="tok-nu">0</span>) {
+        <span class="tok-kw">return</span> <span class="tok-nu">0</span>, errors.New(<span class="tok-st">"division by zero"</span>)
+    }
+    <span class="tok-kw">return</span> <span class="tok-kw">func</span>() <span class="tok-ty">int</span> { left := a; right := b; max := <span class="tok-ty">int</span>(^<span class="tok-ty">uint</span>(<span class="tok-nu">0</span>) &gt;&gt; <span class="tok-nu">1</span>); min := -max - <span class="tok-nu">1</span>; <span class="tok-kw">if</span> right == <span class="tok-nu">0</span> || (left == min &amp;&amp; right == -<span class="tok-nu">1</span>) { panic(<span class="tok-st">"numerus division failed"</span>) }; <span class="tok-kw">return</span> left / right }(), <span class="tok-kw">nil</span>
+}
+
+<span class="tok-kw">func</span> main() {
+    faberErr0 := <span class="tok-kw">func</span>() <span class="tok-ty">error</span> {
+        fmt.Println(divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>))
+        <span class="tok-kw">return</span> <span class="tok-kw">nil</span>
+    }()
+    <span class="tok-kw">if</span> faberErr0 != <span class="tok-kw">nil</span> {
+        err := faberErr0
+        fmt.Fprintln(os.Stderr, err)
+    }
+}</code></pre><h2 id="collectiones">Collections and iteration<a class="anchor" href="#collectiones">#</a></h2><p>A list folded to a total with <code>itera ex</code>. The plainest possible read on how loops lower.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> summa(<span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">numerus</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
+    <span class="tok-kw">varia</span> <span class="tok-kw">numerus</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">itera</span> <span class="tok-kw">ex</span> numeri <span class="tok-kw">fixum</span> n {
+        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
+    }
+    <span class="tok-kw">redde</span> total
+}
+
+<span class="tok-kw">incipit</span> {
+    <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">numerus</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    nota summa(valores)
+}</code></pre><p><strong>Go</strong> — 12 lines in, 18 out (1.5×)</p><pre class="faber-code"><code class="lang-go"><span class="tok-co">// Generated by radix - do not edit</span>
+
+<span class="tok-kw">package</span> main
+
+<span class="tok-kw">import</span> <span class="tok-st">"fmt"</span>
+
+<span class="tok-kw">func</span> summa(numeri []<span class="tok-ty">int</span>) <span class="tok-ty">int</span> {
+    total := <span class="tok-nu">0</span>
+    <span class="tok-kw">for</span> _, n := <span class="tok-kw">range</span> numeri {
+        total = <span class="tok-kw">func</span>() <span class="tok-ty">int</span> { left := total; right := n; max := <span class="tok-ty">int</span>(^<span class="tok-ty">uint</span>(<span class="tok-nu">0</span>) &gt;&gt; <span class="tok-nu">1</span>); min := -max - <span class="tok-nu">1</span>; <span class="tok-kw">if</span> (right &gt; <span class="tok-nu">0</span> &amp;&amp; left &gt; max-right) || (right &lt; <span class="tok-nu">0</span> &amp;&amp; left &lt; min-right) { panic(<span class="tok-st">"numerus overflow"</span>) }; <span class="tok-kw">return</span> left + right }()
+    }
+    <span class="tok-kw">return</span> total
+}
+
+<span class="tok-kw">func</span> main() {
+    valores := []<span class="tok-ty">int</span>{<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>}
+    fmt.Println(summa(valores))
+}</code></pre><p>---</p><p><a href="/en-US/targets/">All lanes</a> · <a href="/en-US/toolchain/target-matrix.html">Measured support per term</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#reading">How to read it</a></li><li class="toc-2"><a href="#tensores">Typed tensors</a></li><li class="toc-2"><a href="#fallibilis">The error channel</a></li><li class="toc-2"><a href="#collectiones">Collections and iteration</a></li></ul></div></nav></div></body></html>
