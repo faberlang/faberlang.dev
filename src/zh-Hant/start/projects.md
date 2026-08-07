@@ -67,4 +67,4 @@ faber check path/to/package
 
 | 上一頁 | 下一頁 |
 |---|---|
-| [你將使用的命令](/start/commands.html) | [範例](/start/examples.html) |
+| [你將使用的命令](/cheatsheet/commands.html) | [範例](/start/examples.html) |

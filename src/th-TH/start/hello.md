@@ -93,4 +93,4 @@ Salve, munde!
 
 | ก่อนหน้า | ถัดไป |
 |---|---|
-| [ติดตั้งและดาวน์โหลด](/start/install.html) | [คำสั่งที่คุณจะใช้](/start/commands.html) |
+| [ติดตั้งและดาวน์โหลด](/start/install.html) | [คำสั่งที่คุณจะใช้](/cheatsheet/commands.html) |

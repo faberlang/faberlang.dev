@@ -1,13 +1,12 @@
 +++
-title = "Commands you will use"
-section = "commands"
-order = 3
+title = "Commands"
+section = "cheatsheet"
+order = 42
 sources = []
 +++
 
-This page is the practical CLI map for the first week of Faber work. Use it as
-a command index, then open the detailed [Faber build tool](/toolchain/cli.html)
-page when you need flags and compiler pipeline details.
+The `faber` CLI, as a command index. For flags and compiler pipeline detail,
+open [The faber CLI](/toolchain/cli.html).
 
 ## Daily loop {#daily-loop}
 
@@ -75,8 +74,18 @@ Reader locale output is a rendering of the compiler's semantic model, not a
 browser-time translation layer. Locale work belongs after a package checks in
 canonical form.
 
-## Next {#next}
+## Device execution {#device}
 
-| Previous | Next |
-|---|---|
-| [Hello, Faber](/start/hello.html) | [Projects and examples](/start/projects.html) |
+Packages carrying an `@ nucleum` compute kernel run on a GPU. Backend selection
+is explicit and fail-closed — a named backend never silently falls back to CPU.
+
+```bash
+faber run --backend metal <package>
+faber run --backend cuda <package>
+faber run --backend auto <package>
+```
+
+See [device execution](/toolchain/cli.html#device-execution) for the contract.
+
+Related: [Cheat sheet](/cheatsheet/) · [Testing](/cheatsheet/testing.html) ·
+[Hello, Faber](/start/hello.html)

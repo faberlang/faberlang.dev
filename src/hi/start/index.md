@@ -13,7 +13,7 @@ source_locale = "en-US"
 +++
 Faber के आकार को पाँच मिनट में समझें: CLI इंस्टॉल करें, एक फ़ंक्शन पढ़ें,
 फिर एक वास्तविक पैकेज खोलें। क्रमबद्ध रास्ते के लिए यह क्रम अपनाएँ: [इंस्टॉल](/start/install.html) →
-[हैलो](/start/hello.html) → [कमांड](/start/commands.html) →
+[हैलो](/start/hello.html) → [कमांड](/cheatsheet/commands.html) →
 [प्रोजेक्ट](/start/projects.html)।
 
 ## 1. CLI इंस्टॉल करें {#install}
@@ -96,7 +96,7 @@ CLI, स्थानीय mailspace, GPU workload tracks और एक पू�
 |---|---|---|
 | 1 | [इंस्टॉल और डाउनलोड](/start/install.html) | Faber 1.1.1 को `PATH` में रखें और सत्यापित करें |
 | 2 | [हैलो, Faber](/start/hello.html) | `salve-munde` बनाएँ और चलाएँ |
-| 3 | [वे कमांड जिनका आप उपयोग करेंगे](/start/commands.html) | `check`, `build`, `run`, `test`, `explain` सीखें |
+| 3 | [वे कमांड जिनका आप उपयोग करेंगे](/cheatsheet/commands.html) | `check`, `build`, `run`, `test`, `explain` सीखें |
 | 4 | [प्रोजेक्ट और उदाहरण](/start/projects.html) | वास्तविक पैकेज और corpus पेजों पर जाएँ |
 
 ## आगे {#next}
@@ -105,7 +105,7 @@ CLI, स्थानीय mailspace, GPU workload tracks और एक पू�
 |---|---|
 | इंस्टॉल और डाउनलोड | [इंस्टॉल](/start/install.html) |
 | हैलो, Faber | [हैलो](/start/hello.html) |
-| कमांड | [कमांड](/start/commands.html) |
+| कमांड | [कमांड](/cheatsheet/commands.html) |
 | प्रोजेक्ट | [प्रोजेक्ट](/start/projects.html) |
 | सिंटैक्स संदर्भ | [सिंटैक्स](/language/) |
 | सुविधाएँ (स्थानीय भाषाएँ, lanes) | [सुविधाएँ](/language/) |

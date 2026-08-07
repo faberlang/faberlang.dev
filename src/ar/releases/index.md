@@ -21,7 +21,7 @@ source_locale = "en-US"
 | [التثبيت والتنزيل](/start/install.html) | الإصدار الحالي، إعداد PATH، التحقّق، أوّل `faber check` |
 | [جولة سريعة](/start/) | شكل اللغة في دقائق |
 | [مرحبًا، Faber](/start/hello.html) | أوّل حزمة |
-| [الأوامر](/start/commands.html) | حلقة CLI اليومية |
+| [الأوامر](/cheatsheet/commands.html) | حلقة CLI اليومية |
 | [المشاريع](/start/projects.html) | تخطيط حزمة حقيقي |
 | [الأمثلة](/start/examples.html) | حزم نموذجية عامّة |
 

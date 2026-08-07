@@ -15,7 +15,7 @@ source_locale = "en-US"
 
 Tên gọi bắt nguồn từ từ Latinh *maker* hoặc *craftsman*. Trình biên dịch có tên Radix, bắt nguồn từ từ Latinh *root*. Ngôn ngữ được Ian Zepp phát triển và phát hành theo giấy phép MIT.
 
-**Bạn mới bắt đầu?** Hãy bắt đầu với [Cài đặt và tải xuống](/start/install.html), sau đó đi theo lộ trình khởi đầu: [Hello](/start/hello.html), [Các lệnh](/start/commands.html) và [Dự án](/start/projects.html).
+**Bạn mới bắt đầu?** Hãy bắt đầu với [Cài đặt và tải xuống](/start/install.html), sau đó đi theo lộ trình khởi đầu: [Hello](/start/hello.html), [Các lệnh](/cheatsheet/commands.html) và [Dự án](/start/projects.html).
 
 ## Tải xuống Faber 1.2.0 {#download}
 
@@ -66,7 +66,7 @@ Hướng dẫn từng bước: [Hướng dẫn cài đặt](/start/install.html)
 |---|---|---|
 | [Cài đặt](/start/install.html) | Người dùng | Tải xuống, PATH, lệnh `faber check` đầu tiên |
 | [Hello](/start/hello.html) | Người dùng | Tạo và chạy `salve-munde` |
-| [Các lệnh](/start/commands.html) | Người dùng + tác nhân | Vòng lặp CLI hằng ngày: check, build, run, test, explain |
+| [Các lệnh](/cheatsheet/commands.html) | Người dùng + tác nhân | Vòng lặp CLI hằng ngày: check, build, run, test, explain |
 | [Dự án](/start/projects.html) | Người dùng + tác nhân | Chuyển từ hello-world sang các gói thực tế |
 | [Tham quan nhanh](/start/) | Người dùng | Hình dạng ngôn ngữ trong năm phút |
 | [Ví dụ](/start/examples.html) | Người dùng + tác nhân | Các gói thực tế: ứng dụng CLI, mailspace, GPU, corpus |

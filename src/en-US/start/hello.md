@@ -83,4 +83,4 @@ glyphs and identifiers. Start with the full proof at
 
 | Previous | Next |
 |---|---|
-| [Install and download](/start/install.html) | [Commands you will use](/start/commands.html) |
+| [Install and download](/start/install.html) | [Commands you will use](/cheatsheet/commands.html) |

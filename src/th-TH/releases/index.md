@@ -23,7 +23,7 @@ source_locale = "en-US"
 | [ติดตั้งและดาวน์โหลด](/start/install.html) | รีลีสปัจจุบัน การตั้งค่า PATH การตรวจสอบ และ `faber check` ครั้งแรก |
 | [ทัวร์สั้น ๆ](/start/) | รูปแบบของภาษาในเวลาไม่กี่นาที |
 | [สวัสดี Faber](/start/hello.html) | แพ็กเกจแรก |
-| [คำสั่ง](/start/commands.html) | วงจรการใช้งาน CLI ประจำวัน |
+| [คำสั่ง](/cheatsheet/commands.html) | วงจรการใช้งาน CLI ประจำวัน |
 | [โปรเจกต์](/start/projects.html) | โครงสร้างแพ็กเกจจริง |
 | [ตัวอย่าง](/start/examples.html) | แพ็กเกจตัวอย่างสาธารณะ |
 

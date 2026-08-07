@@ -17,7 +17,7 @@ source_locale = "en-US"
 
 ชื่อ Faber มาจากคำละตินที่หมายถึง *ผู้สร้าง* หรือ *ช่างฝีมือ* คอมไพเลอร์มีชื่อว่า Radix ซึ่งมาจากคำละติน *ราก* ภาษานี้พัฒนาโดย Ian Zepp และเผยแพร่ภายใต้สัญญาอนุญาต MIT
 
-**เพิ่งเริ่มใช่ไหม?** เริ่มจาก [ติดตั้งและดาวน์โหลด](/start/install.html) จากนั้นทำตามลำดับในเส้นทางเริ่มต้น: [Hello](/start/hello.html), [คำสั่ง](/start/commands.html) และ [โปรเจกต์](/start/projects.html)
+**เพิ่งเริ่มใช่ไหม?** เริ่มจาก [ติดตั้งและดาวน์โหลด](/start/install.html) จากนั้นทำตามลำดับในเส้นทางเริ่มต้น: [Hello](/start/hello.html), [คำสั่ง](/cheatsheet/commands.html) และ [โปรเจกต์](/start/projects.html)
 
 ## ดาวน์โหลด Faber 1.2.0 {#download}
 
@@ -68,7 +68,7 @@ faber --version
 |---|---|---|
 | [ติดตั้ง](/start/install.html) | มนุษย์ | ดาวน์โหลด, `PATH`, และ `faber check` ครั้งแรก |
 | [Hello](/start/hello.html) | มนุษย์ | สร้างและเรียกใช้ `salve-munde` |
-| [คำสั่ง](/start/commands.html) | มนุษย์ + เอเจนต์ | วงจร CLI ประจำวัน: check, build, run, test, explain |
+| [คำสั่ง](/cheatsheet/commands.html) | มนุษย์ + เอเจนต์ | วงจร CLI ประจำวัน: check, build, run, test, explain |
 | [โปรเจกต์](/start/projects.html) | มนุษย์ + เอเจนต์ | เปลี่ยนจาก hello-world ไปสู่แพ็กเกจจริง |
 | [ทัวร์ด่วน](/start/) | มนุษย์ | รูปแบบของภาษาในห้านาที |
 | [ตัวอย่าง](/start/examples.html) | มนุษย์ + เอเจนต์ | แพ็กเกจจริง: แอป CLI, mailspace, GPU, corpus |

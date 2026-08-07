@@ -25,7 +25,37 @@
 set -euo pipefail
 
 # --- Configuration ---
+# Prefer the workspace build over whatever is on PATH. A fence declaring a
+# reader locale needs `--locale-pack`, which older radix builds spell
+# differently or lack entirely — and a stale PATH copy silently fails every
+# non-Latin fence with a flag error rather than a real diagnostic.
+SCRIPT_DIR_VF="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+WORKSPACE_VF="$(cd "${SCRIPT_DIR_VF}/../../.." && pwd)"
+if [ -z "${RADIX:-}" ]; then
+    for candidate in "${WORKSPACE_VF}/radix/target/debug/radix" \
+                     "${WORKSPACE_VF}/radix/target/release/radix" \
+                     radix; do
+        if [ -x "$candidate" ] || command -v "$candidate" >/dev/null 2>&1; then
+            RADIX="$candidate"
+            break
+        fi
+    done
+fi
 RADIX="${RADIX:-radix}"
+LOCALE_PACK_DIR="${WORKSPACE_VF}/radix/stdlib/locale"
+
+# Build the reader-pack argument for a fence's declared locale. Latin is the
+# canonical surface and needs no pack.
+radix_locale_args() {
+    local locale="$1"
+    if [ "$locale" = "la" ]; then
+        return 0
+    fi
+    local pack="${LOCALE_PACK_DIR}/${locale}/pack.toml"
+    if [ -f "$pack" ]; then
+        printf -- '--locale-pack=%s' "$pack"
+    fi
+}
 TMPDIR_BASE="$(mktemp -d)"
 trap 'rm -rf "$TMPDIR_BASE"' EXIT
 
@@ -106,9 +136,12 @@ validate_fence() {
 
     local label="${md_file}:fence#${fence_id} (L${line_num}, ${locale}/${mode}/${outcome})"
 
+    local pack_arg
+    pack_arg="$(radix_locale_args "$locale")"
+
     case "$outcome" in
         compiles)
-            if "$RADIX" check "$tmpfile" > /dev/null 2>&1; then
+            if "$RADIX" check ${pack_arg:+"$pack_arg"} "$tmpfile" > /dev/null 2>&1; then
                 log_pass "$label"
                 PASS=$((PASS + 1))
             else
@@ -117,7 +150,7 @@ validate_fence() {
             fi
             ;;
         rejects)
-            if "$RADIX" check "$tmpfile" > /dev/null 2>&1; then
+            if "$RADIX" check ${pack_arg:+"$pack_arg"} "$tmpfile" > /dev/null 2>&1; then
                 log_fail "$label — expected rejects, radix check succeeded"
                 FAIL=$((FAIL + 1))
             else
@@ -147,13 +180,13 @@ main() {
     fi
 
     # Check radix is available
-    if ! command -v "$RADIX" > /dev/null 2>&1; then
+    if [ ! -x "$RADIX" ] && ! command -v "$RADIX" > /dev/null 2>&1; then
         echo "ERROR: '$RADIX' not found in PATH. Set RADIX env var or install radix."
         exit 1
     fi
 
     echo "Validating fences in: $target"
-    echo "Using: $(command -v "$RADIX")"
+    echo "Using: ${RADIX} ($("$RADIX" --version 2>/dev/null || echo unknown))"
     echo ""
 
     # Collect Markdown files

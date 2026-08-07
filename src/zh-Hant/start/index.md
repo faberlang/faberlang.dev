@@ -11,7 +11,7 @@ code_hash = "sha256:f9eb22ab8a2408fe0076d846dd4266cff4ded675ad8d63a5b2d9ee59c3e0
 source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
 +++
-五分鐘掌握 Faber 的基本形貌：安裝 CLI、閱讀一個函式，然後開啟一個真正的套件。若要依序學習，請依循：[安裝](/start/install.html) → [Hello](/start/hello.html) → [命令](/start/commands.html) → [專案](/start/projects.html)。
+五分鐘掌握 Faber 的基本形貌：安裝 CLI、閱讀一個函式，然後開啟一個真正的套件。若要依序學習，請依循：[安裝](/start/install.html) → [Hello](/start/hello.html) → [命令](/cheatsheet/commands.html) → [專案](/start/projects.html)。
 
 ## 1. 安裝 CLI {#install}
 
@@ -89,7 +89,7 @@ faber test my-app/
 |---|---|---|
 | 1 | [安裝與下載](/start/install.html) | 將 Faber 1.1.1 放入 `PATH` 並完成驗證 |
 | 2 | [Hello，Faber](/start/hello.html) | 建立並執行 `salve-munde` |
-| 3 | [您將使用的命令](/start/commands.html) | 學習 `check`、`build`、`run`、`test`、`explain` |
+| 3 | [您將使用的命令](/cheatsheet/commands.html) | 學習 `check`、`build`、`run`、`test`、`explain` |
 | 4 | [專案與範例](/start/projects.html) | 開始使用真正的套件與語料庫頁面 |
 
 ## 接下來 {#next}
@@ -98,7 +98,7 @@ faber test my-app/
 |---|---|
 | 安裝與下載 | [安裝](/start/install.html) |
 | Hello，Faber | [Hello](/start/hello.html) |
-| 命令 | [命令](/start/commands.html) |
+| 命令 | [命令](/cheatsheet/commands.html) |
 | 專案 | [專案](/start/projects.html) |
 | 語法參考 | [語法](/language/) |
 | 功能（地區設定、執行道） | [功能](/language/) |

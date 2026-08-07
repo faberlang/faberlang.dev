@@ -45,7 +45,7 @@ above).
 
 **New here?** Start with [Install and download](/start/install.html), then run
 the sequenced start track: [Hello](/start/hello.html),
-[Commands](/start/commands.html), and [Projects](/start/projects.html). For the
+[Commands](/cheatsheet/commands.html), and [Projects](/start/projects.html). For the
 GPU path, read [device execution](/toolchain/cli.html#device-execution) and
 the [target matrix](/toolchain/target-matrix.html).
 
@@ -109,7 +109,7 @@ binary and checksums.
 |---|---|---|
 | [Install](/start/install.html) | Human | Download, PATH, first `faber check` |
 | [Hello](/start/hello.html) | Human | Create and run `salve-munde` |
-| [Commands](/start/commands.html) | Human + agent | Daily CLI loop: check, build, run, test, explain |
+| [Commands](/cheatsheet/commands.html) | Human + agent | Daily CLI loop: check, build, run, test, explain |
 | [Projects](/start/projects.html) | Human + agent | Move from hello-world into real packages |
 | [Quick tour](/start/) | Human | Language shape in five minutes |
 | [Examples](/start/examples.html) | Human + agent | Real packages: CLI apps, mailspace, GPU, corpus |

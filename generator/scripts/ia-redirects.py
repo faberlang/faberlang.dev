@@ -26,6 +26,9 @@ MAP: list[tuple[str, str]] = [
     # reference/releases → its own section: an index of every Faber and Radix
     # version, each with pinned install instructions and full release notes
     ("/reference/releases.html", "/releases/"),
+    # start/commands → the cheat sheet's Commands page (it was always a cheat
+    # sheet, sitting in the middle of a sequenced tutorial track)
+    ("/start/commands.html", "/cheatsheet/commands.html"),
     # syntax/* → language/*
     ("/syntax/types.html", "/language/types.html"),
     ("/syntax/variables.html", "/language/types.html"),

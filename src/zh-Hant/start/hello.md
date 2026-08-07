@@ -85,4 +85,4 @@ Salve, munde!
 
 | 上一頁 | 下一頁 |
 |---|---|
-| [安裝與下載](/start/install.html) | [你將使用的指令](/start/commands.html) |
+| [安裝與下載](/start/install.html) | [你將使用的指令](/cheatsheet/commands.html) |

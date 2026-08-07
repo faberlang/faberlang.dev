@@ -13,7 +13,7 @@ source_locale = "en-US"
 +++
 Năm phút để nắm hình dạng của Faber: cài đặt CLI, đọc một hàm,
 sau đó mở một gói thực tế. Để đi theo lộ trình tuần tự, hãy xem: [Cài đặt](/start/install.html) →
-[Hello](/start/hello.html) → [Các lệnh](/start/commands.html) →
+[Hello](/start/hello.html) → [Các lệnh](/cheatsheet/commands.html) →
 [Dự án](/start/projects.html).
 
 ## 1. Cài đặt CLI {#install}
@@ -98,7 +98,7 @@ Xem chúng trên [trang examples](/start/examples.html).
 |---|---|---|
 | 1 | [Cài đặt & tải xuống](/start/install.html) | Đặt Faber 1.1.1 vào `PATH` và xác minh |
 | 2 | [Hello, Faber](/start/hello.html) | Tạo và chạy `salve-munde` |
-| 3 | [Các lệnh bạn sẽ dùng](/start/commands.html) | Tìm hiểu `check`, `build`, `run`, `test`, `explain` |
+| 3 | [Các lệnh bạn sẽ dùng](/cheatsheet/commands.html) | Tìm hiểu `check`, `build`, `run`, `test`, `explain` |
 | 4 | [Dự án và examples](/start/projects.html) | Chuyển sang các gói thực tế và các trang corpus |
 
 ## Tiếp theo {#next}
@@ -107,7 +107,7 @@ Xem chúng trên [trang examples](/start/examples.html).
 |---|---|
 | Cài đặt & tải xuống | [Cài đặt](/start/install.html) |
 | Hello, Faber | [Hello](/start/hello.html) |
-| Các lệnh | [Các lệnh](/start/commands.html) |
+| Các lệnh | [Các lệnh](/cheatsheet/commands.html) |
 | Dự án | [Dự án](/start/projects.html) |
 | Tham chiếu cú pháp | [Cú pháp](/language/) |
 | Tính năng (locale, lane) | [Tính năng](/language/) |

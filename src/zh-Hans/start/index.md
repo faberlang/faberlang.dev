@@ -13,7 +13,7 @@ source_locale = "en-US"
 +++
 五分钟了解 Faber 的形态：安装 CLI，阅读一个函数，然后打开一个真实的包。如需按顺序学习，请遵循：[安装](/start/install.html) →
 [你好](/start/hello.html) →
-[命令](/start/commands.html) →
+[命令](/cheatsheet/commands.html) →
 [项目](/start/projects.html)。
 
 ## 1. 安装 CLI {#install}
@@ -92,7 +92,7 @@ faber test my-app/
 |---|---|---|
 | 1 | [安装与下载](/start/install.html) | 将 Faber 1.1.1 放入 `PATH` 并验证它 |
 | 2 | [你好，Faber](/start/hello.html) | 创建并运行 `salve-munde` |
-| 3 | [您将使用的命令](/start/commands.html) | 学习 `check`、`build`、`run`、`test`、`explain` |
+| 3 | [您将使用的命令](/cheatsheet/commands.html) | 学习 `check`、`build`、`run`、`test`、`explain` |
 | 4 | [项目与示例](/start/projects.html) | 进入真实的包和语料库页面 |
 
 ## 下一步 {#next}
@@ -101,7 +101,7 @@ faber test my-app/
 |---|---|
 | 安装与下载 | [安装](/start/install.html) |
 | 你好，Faber | [你好](/start/hello.html) |
-| 命令 | [命令](/start/commands.html) |
+| 命令 | [命令](/cheatsheet/commands.html) |
 | 项目 | [项目](/start/projects.html) |
 | 语法参考 | [语法](/language/) |
 | 功能（区域设置，通道） | [功能](/language/) |

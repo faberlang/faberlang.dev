@@ -80,4 +80,4 @@ Chương trình trên là cách hiển thị chuẩn theo locale đọc tiếng 
 
 | Trước | Tiếp theo |
 |---|---|
-| [Cài đặt và tải xuống](/start/install.html) | [Các lệnh bạn sẽ sử dụng](/start/commands.html) |
+| [Cài đặt và tải xuống](/start/install.html) | [Các lệnh bạn sẽ sử dụng](/cheatsheet/commands.html) |

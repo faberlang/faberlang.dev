@@ -189,6 +189,13 @@ def prepare_notes(raw: str) -> str:
     for line in raw.splitlines():
         if line.lstrip().startswith("```"):
             in_fence = not in_fence
+            # A release note quotes the language as it stood at that version.
+            # Old syntax legitimately no longer compiles, so these fences must
+            # not be held to the current-language fence contract — the note is
+            # a historical record, not a claim about today's grammar.
+            if in_fence and line.strip().startswith("```faber"):
+                out.append("```text")
+                continue
             out.append(line)
             continue
         if not in_fence and line.startswith("#"):

@@ -7,7 +7,7 @@ sources = []
 
 Five minutes to the shape of Faber: install the CLI, read one function,
 then open a real package. For a sequenced path, follow: [Install](/start/install.html) →
-[Hello](/start/hello.html) → [Commands](/start/commands.html) →
+[Hello](/start/hello.html) → [Commands](/cheatsheet/commands.html) →
 [Projects](/start/projects.html).
 
 ## 1. Install the CLI {#install}
@@ -90,7 +90,7 @@ Browse them on the [examples page](/start/examples.html).
 |---|---|---|
 | 1 | [Install & download](/start/install.html) | Put Faber 1.4.0 on `PATH` and verify it |
 | 2 | [Hello, Faber](/start/hello.html) | Create and run `salve-munde` |
-| 3 | [Commands you will use](/start/commands.html) | Learn `check`, `build`, `run`, `test`, `explain` |
+| 3 | [Commands you will use](/cheatsheet/commands.html) | Learn `check`, `build`, `run`, `test`, `explain` |
 | 4 | [Projects and examples](/start/projects.html) | Move into real packages and corpus pages |
 
 ## Next {#next}
@@ -99,7 +99,7 @@ Browse them on the [examples page](/start/examples.html).
 |---|---|
 | Install & download | [Install](/start/install.html) |
 | Hello, Faber | [Hello](/start/hello.html) |
-| Commands | [Commands](/start/commands.html) |
+| Commands | [Commands](/cheatsheet/commands.html) |
 | Projects | [Projects](/start/projects.html) |
 | Syntax reference | [Syntax](/language/) |
 | Features (locales, lanes) | [Features](/language/) |

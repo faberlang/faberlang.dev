@@ -12,7 +12,7 @@ source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
 +++
 خمس دقائق لشكل Faber: ثبّت CLI، اقرأ دالة واحدة، ثم افتح حزمة حقيقية. لمسار متسلسل، اتبع: [تثبيت](/start/install.html) →
-[مرحباً](/start/hello.html) → [الأوامر](/start/commands.html) →
+[مرحباً](/start/hello.html) → [الأوامر](/cheatsheet/commands.html) →
 [المشاريع](/start/projects.html).
 
 ## ١. ثبّت CLI {#install}
@@ -95,7 +95,7 @@ faber test my-app/
 |---|---|---|
 | ١ | [تثبيت وتنزيل](/start/install.html) | ضع Faber 1.1.1 على `PATH` وتحقق منه |
 | ٢ | [مرحباً، Faber](/start/hello.html) | أنشئ وشغّل `salve-munde` |
-| ٣ | [أوامر ستستخدمها](/start/commands.html) | تعلم `check`، `build`، `run`، `test`، `explain` |
+| ٣ | [أوامر ستستخدمها](/cheatsheet/commands.html) | تعلم `check`، `build`، `run`، `test`، `explain` |
 | ٤ | [مشاريع وأمثلة](/start/projects.html) | انتقل إلى حزم حقيقية وصفحات المجموعة |
 
 ## التالي {#next}
@@ -104,7 +104,7 @@ faber test my-app/
 |---|---|
 | تثبيت وتنزيل | [تثبيت](/start/install.html) |
 | مرحباً، Faber | [مرحباً](/start/hello.html) |
-| الأوامر | [أوامر](/start/commands.html) |
+| الأوامر | [أوامر](/cheatsheet/commands.html) |
 | المشاريع | [مشاريع](/start/projects.html) |
 | مرجع الصياغة | [الصياغة](/language/) |
 | ميزات (مواضع، مسارات) | [ميزات](/language/) |

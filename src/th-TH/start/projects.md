@@ -69,4 +69,4 @@ faber check path/to/package
 
 | ก่อนหน้า | ถัดไป |
 |---|---|
-| [คำสั่งที่คุณจะใช้](/start/commands.html) | [ตัวอย่าง](/start/examples.html) |
+| [คำสั่งที่คุณจะใช้](/cheatsheet/commands.html) | [ตัวอย่าง](/start/examples.html) |

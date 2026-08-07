@@ -24,7 +24,7 @@ Radix है, जो लैटिन *root* से लिया गया है
 
 **यहाँ नए हैं?** [इंस्टॉल और डाउनलोड](/start/install.html) से शुरू करें,
 फिर क्रमबद्ध प्रारंभिक ट्रैक चलाएँ: [Hello](/start/hello.html),
-[Commands](/start/commands.html), और [Projects](/start/projects.html)।
+[Commands](/cheatsheet/commands.html), और [Projects](/start/projects.html)।
 
 ## Faber 1.2.0 डाउनलोड करें {#download}
 
@@ -76,7 +76,7 @@ faber --version
 |---|---|---|
 | [इंस्टॉल](/start/install.html) | मानव | डाउनलोड, PATH, पहला `faber check` |
 | [Hello](/start/hello.html) | मानव | `salve-munde` बनाएँ और चलाएँ |
-| [Commands](/start/commands.html) | मानव + एजेंट | दैनिक CLI चक्र: check, build, run, test, explain |
+| [Commands](/cheatsheet/commands.html) | मानव + एजेंट | दैनिक CLI चक्र: check, build, run, test, explain |
 | [Projects](/start/projects.html) | मानव + एजेंट | hello-world से वास्तविक पैकेजों तक जाएँ |
 | [त्वरित परिचय](/start/) | मानव | पाँच मिनट में भाषा का रूप |
 | [उदाहरण](/start/examples.html) | मानव + एजेंट | वास्तविक पैकेज: CLI ऐप्स, mailspace, GPU, corpus |

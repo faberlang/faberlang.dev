@@ -122,7 +122,8 @@ Pages: /en-US/toolchain/cli.html#device-execution ·
 - https://faberlang.dev/en-US/start/
 - https://faberlang.dev/en-US/start/install.html
 - https://faberlang.dev/en-US/start/hello.html
-- https://faberlang.dev/en-US/start/commands.html
+- https://faberlang.dev/en-US/cheatsheet/ — cheat sheet index
+- https://faberlang.dev/en-US/cheatsheet/commands.html
 - https://faberlang.dev/en-US/start/projects.html
 - https://faberlang.dev/en-US/start/examples.html
 

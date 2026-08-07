@@ -2,6 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://faberlang.dev/</loc></url>
   <url><loc>https://faberlang.dev/ar/</loc></url>
+  <url><loc>https://faberlang.dev/ar/cheatsheet/commands.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/!..html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/?..html</loc></url>
@@ -242,7 +243,6 @@
   <url><loc>https://faberlang.dev/ar/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/ar/releases/</loc></url>
   <url><loc>https://faberlang.dev/ar/start/</loc></url>
-  <url><loc>https://faberlang.dev/ar/start/commands.html</loc></url>
   <url><loc>https://faberlang.dev/ar/start/examples.html</loc></url>
   <url><loc>https://faberlang.dev/ar/start/hello.html</loc></url>
   <url><loc>https://faberlang.dev/ar/start/install.html</loc></url>
@@ -253,6 +253,19 @@
   <url><loc>https://faberlang.dev/ar/toolchain/radix.html</loc></url>
   <url><loc>https://faberlang.dev/ar/toolchain/target-matrix.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/</loc></url>
+  <url><loc>https://faberlang.dev/en-US/cheatsheet/</loc></url>
+  <url><loc>https://faberlang.dev/en-US/cheatsheet/bindings.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/cheatsheet/commands.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/cheatsheet/control-flow.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/cheatsheet/conversions.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/cheatsheet/entry-points.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/cheatsheet/errors.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/cheatsheet/generics.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/cheatsheet/imports.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/cheatsheet/locales.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/cheatsheet/loops.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/cheatsheet/testing.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/cheatsheet/types.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/!..html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/?..html</loc></url>
@@ -584,7 +597,6 @@
   <url><loc>https://faberlang.dev/en-US/releases/radix-0.9.0.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/releases/radix-1.0.0-rc.1.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/start/</loc></url>
-  <url><loc>https://faberlang.dev/en-US/start/commands.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/start/examples.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/start/hello.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/start/install.html</loc></url>
@@ -596,6 +608,7 @@
   <url><loc>https://faberlang.dev/en-US/toolchain/radix.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/toolchain/target-matrix.html</loc></url>
   <url><loc>https://faberlang.dev/hi/</loc></url>
+  <url><loc>https://faberlang.dev/hi/cheatsheet/commands.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/!..html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/?..html</loc></url>
@@ -836,7 +849,6 @@
   <url><loc>https://faberlang.dev/hi/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/hi/releases/</loc></url>
   <url><loc>https://faberlang.dev/hi/start/</loc></url>
-  <url><loc>https://faberlang.dev/hi/start/commands.html</loc></url>
   <url><loc>https://faberlang.dev/hi/start/examples.html</loc></url>
   <url><loc>https://faberlang.dev/hi/start/hello.html</loc></url>
   <url><loc>https://faberlang.dev/hi/start/install.html</loc></url>
@@ -847,6 +859,7 @@
   <url><loc>https://faberlang.dev/hi/toolchain/radix.html</loc></url>
   <url><loc>https://faberlang.dev/hi/toolchain/target-matrix.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/cheatsheet/commands.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/!..html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/?..html</loc></url>
@@ -1087,7 +1100,6 @@
   <url><loc>https://faberlang.dev/th-TH/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/releases/</loc></url>
   <url><loc>https://faberlang.dev/th-TH/start/</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/start/commands.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/start/examples.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/start/hello.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/start/install.html</loc></url>
@@ -1098,6 +1110,7 @@
   <url><loc>https://faberlang.dev/th-TH/toolchain/radix.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/toolchain/target-matrix.html</loc></url>
   <url><loc>https://faberlang.dev/vi/</loc></url>
+  <url><loc>https://faberlang.dev/vi/cheatsheet/commands.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/!..html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/?..html</loc></url>
@@ -1338,7 +1351,6 @@
   <url><loc>https://faberlang.dev/vi/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/vi/releases/</loc></url>
   <url><loc>https://faberlang.dev/vi/start/</loc></url>
-  <url><loc>https://faberlang.dev/vi/start/commands.html</loc></url>
   <url><loc>https://faberlang.dev/vi/start/examples.html</loc></url>
   <url><loc>https://faberlang.dev/vi/start/hello.html</loc></url>
   <url><loc>https://faberlang.dev/vi/start/install.html</loc></url>
@@ -1349,6 +1361,7 @@
   <url><loc>https://faberlang.dev/vi/toolchain/radix.html</loc></url>
   <url><loc>https://faberlang.dev/vi/toolchain/target-matrix.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/cheatsheet/commands.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/!..html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/?..html</loc></url>
@@ -1589,7 +1602,6 @@
   <url><loc>https://faberlang.dev/zh-Hans/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/releases/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/start/</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/start/commands.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/start/examples.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/start/hello.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/start/install.html</loc></url>
@@ -1600,6 +1612,7 @@
   <url><loc>https://faberlang.dev/zh-Hans/toolchain/radix.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/toolchain/target-matrix.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/cheatsheet/commands.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/!..html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/?..html</loc></url>
@@ -1840,7 +1853,6 @@
   <url><loc>https://faberlang.dev/zh-Hant/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/releases/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/start/</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/start/commands.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/start/examples.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/start/hello.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/start/install.html</loc></url>

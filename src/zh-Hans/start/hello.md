@@ -80,4 +80,4 @@ Salve, munde!
 
 | 上一页 | 下一页 |
 |---|---|
-| [安装与下载](/start/install.html) | [你将使用的命令](/start/commands.html) |
+| [安装与下载](/start/install.html) | [你将使用的命令](/cheatsheet/commands.html) |

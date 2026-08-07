@@ -21,7 +21,7 @@ source_locale = "en-US"
 | [安裝與下載](/start/install.html) | 目前版本、PATH 設定、驗證、第一個 `faber check` |
 | [快速導覽](/start/) | 幾分鐘內了解語言形貌 |
 | [Hello, Faber](/start/hello.html) | 第一個套件 |
-| [命令](/start/commands.html) | 日常 CLI 迴圈 |
+| [命令](/cheatsheet/commands.html) | 日常 CLI 迴圈 |
 | [專案](/start/projects.html) | 實際套件配置 |
 | [範例](/start/examples.html) | 公開範例套件 |
 

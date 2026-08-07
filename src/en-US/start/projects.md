@@ -68,4 +68,4 @@ validator before claiming the examples still compile.
 
 | Previous | Next |
 |---|---|
-| [Commands you will use](/start/commands.html) | [Examples](/start/examples.html) |
+| [Commands you will use](/cheatsheet/commands.html) | [Examples](/start/examples.html) |

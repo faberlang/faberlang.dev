@@ -80,4 +80,4 @@ Salve, munde!
 
 | السابق | التالي |
 |---|---|
-| [التثبيت والتحميل](/start/install.html) | [الأوامر التي ستستخدمها](/start/commands.html) |
+| [التثبيت والتحميل](/start/install.html) | [الأوامر التي ستستخدمها](/cheatsheet/commands.html) |

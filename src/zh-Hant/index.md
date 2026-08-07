@@ -15,7 +15,7 @@ source_locale = "en-US"
 
 此名稱源自拉丁文 *maker* 或 *craftsman* 一詞。編譯器名為 Radix，源自拉丁文 *root*。此語言由 Ian Zepp 開發，並以 MIT 授權條款發布。
 
-**第一次來到這裡？** 請先閱讀[安裝與下載](/start/install.html)，然後依序執行入門路線：[Hello](/start/hello.html)、[命令](/start/commands.html) 以及[專案](/start/projects.html)。
+**第一次來到這裡？** 請先閱讀[安裝與下載](/start/install.html)，然後依序執行入門路線：[Hello](/start/hello.html)、[命令](/cheatsheet/commands.html) 以及[專案](/start/projects.html)。
 
 ## 下載 Faber 1.2.0 {#download}
 
@@ -64,7 +64,7 @@ faber --version
 |---|---|---|
 | [安裝](/start/install.html) | 人類 | 下載、PATH，以及第一次執行 `faber check` |
 | [Hello](/start/hello.html) | 人類 | 建立並執行 `salve-munde` |
-| [命令](/start/commands.html) | 人類 + 代理程式 | 日常 CLI 迴圈：check、build、run、test、explain |
+| [命令](/cheatsheet/commands.html) | 人類 + 代理程式 | 日常 CLI 迴圈：check、build、run、test、explain |
 | [專案](/start/projects.html) | 人類 + 代理程式 | 從 hello-world 邁向實際套件 |
 | [快速導覽](/start/) | 人類 | 五分鐘了解語言形貌 |
 | [範例](/start/examples.html) | 人類 + 代理程式 | 實際套件：CLI 應用程式、郵件空間、GPU、語料庫 |

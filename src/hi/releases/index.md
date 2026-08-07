@@ -23,7 +23,7 @@ source_locale = "en-US"
 | [इंस्टॉल और डाउनलोड करें](/start/install.html) | वर्तमान रिलीज़, PATH सेटअप, सत्यापन, पहला `faber check` |
 | [त्वरित परिचय](/start/) | कुछ ही मिनटों में भाषा का स्वरूप |
 | [नमस्कार, Faber](/start/hello.html) | पहला पैकेज |
-| [कमांड](/start/commands.html) | रोज़ाना का CLI कार्यचक्र |
+| [कमांड](/cheatsheet/commands.html) | रोज़ाना का CLI कार्यचक्र |
 | [प्रोजेक्ट](/start/projects.html) | वास्तविक पैकेज संरचना |
 | [उदाहरण](/start/examples.html) | सार्वजनिक नमूना पैकेज |
 

@@ -60,7 +60,7 @@ native Faber definitions across expressia, sententia, and lexema surfaces.
 **BREAKING:** Function modifiers (`futura`, `cursor`) move from prefix to
 postfix position — declarations now start with `functio` uniformly.
 
-```faber
+```text
 # Before
 futura functio fetch(url) -> Response
 

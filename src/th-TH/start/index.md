@@ -13,7 +13,7 @@ code_hash = "sha256:f9eb22ab8a2408fe0076d846dd4266cff4ded675ad8d63a5b2d9ee59c3e0
 source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
 +++
-ห้านาทีเพื่อทำความรู้จักโครงสร้างของ Faber: ติดตั้ง CLI อ่านฟังก์ชันหนึ่งรายการ แล้วเปิดดูแพ็กเกจจริง สำหรับเส้นทางแบบเป็นลำดับ ให้ทำตามนี้: [ติดตั้ง](/start/install.html) → [Hello](/start/hello.html) → [คำสั่ง](/start/commands.html) → [โปรเจกต์](/start/projects.html)
+ห้านาทีเพื่อทำความรู้จักโครงสร้างของ Faber: ติดตั้ง CLI อ่านฟังก์ชันหนึ่งรายการ แล้วเปิดดูแพ็กเกจจริง สำหรับเส้นทางแบบเป็นลำดับ ให้ทำตามนี้: [ติดตั้ง](/start/install.html) → [Hello](/start/hello.html) → [คำสั่ง](/cheatsheet/commands.html) → [โปรเจกต์](/start/projects.html)
 
 ## 1. ติดตั้ง CLI {#install}
 
@@ -91,7 +91,7 @@ faber test my-app/
 |---|---|---|
 | 1 | [ติดตั้งและดาวน์โหลด](/start/install.html) | วาง Faber 1.1.1 ไว้ใน `PATH` และตรวจสอบการติดตั้ง |
 | 2 | [Hello, Faber](/start/hello.html) | สร้างและเรียกใช้ `salve-munde` |
-| 3 | [คำสั่งที่คุณจะใช้](/start/commands.html) | เรียนรู้ `check`, `build`, `run`, `test`, `explain` |
+| 3 | [คำสั่งที่คุณจะใช้](/cheatsheet/commands.html) | เรียนรู้ `check`, `build`, `run`, `test`, `explain` |
 | 4 | [โปรเจกต์และตัวอย่าง](/start/projects.html) | เริ่มทำงานกับแพ็กเกจจริงและหน้า corpus |
 
 ## ถัดไป {#next}
@@ -100,7 +100,7 @@ faber test my-app/
 |---|---|
 | ติดตั้งและดาวน์โหลด | [ติดตั้ง](/start/install.html) |
 | Hello, Faber | [Hello](/start/hello.html) |
-| คำสั่ง | [คำสั่ง](/start/commands.html) |
+| คำสั่ง | [คำสั่ง](/cheatsheet/commands.html) |
 | โปรเจกต์ | [โปรเจกต์](/start/projects.html) |
 | เอกสารอ้างอิงไวยากรณ์ | [ไวยากรณ์](/language/) |
 | ฟีเจอร์ (locale, lane) | [ฟีเจอร์](/language/) |

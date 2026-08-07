@@ -2,7 +2,7 @@
 translation_kind = "translated"
 
 title = "Commands you will use"
-section = "commands"
+section = "cheatsheet"
 order = 3
 sources = []
 

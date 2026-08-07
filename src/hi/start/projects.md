@@ -67,4 +67,4 @@ faber check path/to/package
 
 | पिछला | अगला |
 |---|---|
-| [आपके द्वारा उपयोग किए जाने वाले कमांड](/start/commands.html) | [उदाहरण](/start/examples.html) |
+| [आपके द्वारा उपयोग किए जाने वाले कमांड](/cheatsheet/commands.html) | [उदाहरण](/start/examples.html) |

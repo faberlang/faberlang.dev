@@ -15,7 +15,7 @@ source_locale = "en-US"
 
 الاسم مشتق من الكلمة اللاتينية التي تعني *صانع* أو *حرفي*. سُمي المصرف Radix، من الكلمة اللاتينية *جذر*. طُوِّرت اللغة بواسطة Ian Zepp وصدرت تحت رخصة MIT.
 
-**جديد هنا؟** ابدأ بـ [التثبيت والتحميل](/start/install.html)، ثم شغّل مسار البداية المتسلسل: [مرحباً](/start/hello.html)، [الأوامر](/start/commands.html)، و[المشاريع](/start/projects.html).
+**جديد هنا؟** ابدأ بـ [التثبيت والتحميل](/start/install.html)، ثم شغّل مسار البداية المتسلسل: [مرحباً](/start/hello.html)، [الأوامر](/cheatsheet/commands.html)، و[المشاريع](/start/projects.html).
 
 ## تحميل Faber 1.2.0 {#download}
 
@@ -65,7 +65,7 @@ faber --version
 |---|---|---|
 | [التثبيت](/start/install.html) | بشري | تحميل، PATH، أول `faber check` |
 | [مرحباً](/start/hello.html) | بشري | إنشاء وتشغيل `salve-munde` |
-| [الأوامر](/start/commands.html) | بشري + وكيل | حلقة CLI اليومية: check, build, run, test, explain |
+| [الأوامر](/cheatsheet/commands.html) | بشري + وكيل | حلقة CLI اليومية: check, build, run, test, explain |
 | [المشاريع](/start/projects.html) | بشري + وكيل | الانتقال من hello-world إلى حزم حقيقية |
 | [جولة سريعة](/start/) | بشري | شكل اللغة في خمس دقائق |
 | [أمثلة](/start/examples.html) | بشري + وكيل | حزم حقيقية: تطبيقات CLI، مساحة بريد، GPU، corpus |
