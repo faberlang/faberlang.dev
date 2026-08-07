@@ -21,13 +21,13 @@
 # EXPECTED OUTPUT:
 #   he said &quot;salve&quot;, line one
 
-incipit {
-    fixum _ quote ← «he said &quot;salve&quot;»
-    nota quote
+main {
+    const _ quote ← «he said &quot;salve&quot;»
+    print quote
 
-    fixum _ multiline ← «line one
+    const _ multiline ← «line one
 still line one»
-    nota multiline.sectio(0, 8)
+    print multiline.sectio(0, 8)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>he said &quot;salve&quot;
 line one
 </code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusliteraliablock-stringfab-canonical-existing-home">radix/corpus/literalia/block-string.fab (canonical · existing-home)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/literalia/block-string.fab&quot;]</li></ul></div></footer></div></body></html>

@@ -28,31 +28,31 @@
 # EXPECTED OUTPUT:
 #   Scalar longitudo() and indexed accipe only (lista.expected).
 
-incipit {
-    fixum lista&lt;numerus&gt; vacuares ← vacua
-    fixum _ numeri ← [1, 2, 3, 4, 5]
-    fixum _ nomina ← [&quot;Marcus&quot;, &quot;Julia&quot;, &quot;Gaius&quot;]
-    fixum _ vexilla ← [verum, falsum, verum]
-    fixum _ matrix ← [[1, 2], [3, 4], [5, 6]]
-    fixum _ prima ← [1, 2, 3]
-    fixum _ secunda ← [4, 5, 6]
-    fixum _ coniuncta ← [sparge prima, sparge secunda]
-    fixum _ aucta ← [0, sparge prima, 99]
+main {
+    const list&lt;int&gt; vacuares ← vacua
+    const _ numeri ← [1, 2, 3, 4, 5]
+    const _ nomina ← [&quot;Marcus&quot;, &quot;Julia&quot;, &quot;Gaius&quot;]
+    const _ vexilla ← [true, false, true]
+    const _ matrix ← [[1, 2], [3, 4], [5, 6]]
+    const _ prima ← [1, 2, 3]
+    const _ secunda ← [4, 5, 6]
+    const _ coniuncta ← [spread prima, spread secunda]
+    const _ aucta ← [0, spread prima, 99]
 
-    nota vacuares.longitudo()
-    nota numeri.longitudo()
-    nota numeri[0]
-    nota numeri[4]
-    nota nomina.longitudo()
-    nota nomina[1]
-    nota vexilla[0]
-    nota vexilla[2]
-    nota matrix.longitudo()
-    nota matrix[1][0]
-    nota coniuncta.longitudo()
-    nota aucta.longitudo()
-    nota aucta[0]
-    nota aucta[4]
+    print vacuares.longitudo()
+    print numeri.longitudo()
+    print numeri[0]
+    print numeri[4]
+    print nomina.longitudo()
+    print nomina[1]
+    print vexilla[0]
+    print vexilla[2]
+    print matrix.longitudo()
+    print matrix[1][0]
+    print coniuncta.longitudo()
+    print aucta.longitudo()
+    print aucta[0]
+    print aucta[4]
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
 5
 1
@@ -102,24 +102,24 @@ verum
 # BACKEND: Go e2e whitelist — lista intrinsic methods not yet lowered for Go
 # (whitelist: lista/methodi-copiae.fab).
 
-incipit {
-    fixum _ res ← [1, 2, 3, 4, 5] ∷ lista&lt;numerus&gt;
+main {
+    const _ res ← [1, 2, 3, 4, 5] ∷ list&lt;int&gt;
 
-    fixum _ addita ← res.addita(6)
-    fixum _ sectio ← res.sectio(1, 4)
-    fixum _ primaduo ← res.prima(2)
-    fixum _ ultimaduo ← res.ultima(2)
-    fixum _ omissaduo ← res.omissa(2)
-    fixum _ inversa ← res.inversa()
-    fixum _ ordinata ← [3, 1, 2].ordinata()
+    const _ addita ← res.addita(6)
+    const _ sectio ← res.sectio(1, 4)
+    const _ primaduo ← res.prima(2)
+    const _ ultimaduo ← res.ultima(2)
+    const _ omissaduo ← res.omissa(2)
+    const _ inversa ← res.inversa()
+    const _ ordinata ← [3, 1, 2].ordinata()
 
-    nota addita
-    nota sectio
-    nota primaduo
-    nota ultimaduo
-    nota omissaduo
-    nota inversa
-    nota ordinata
+    print addita
+    print sectio
+    print primaduo
+    print ultimaduo
+    print omissaduo
+    print inversa
+    print ordinata
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[1, 2, 3, 4, 5, 6]
 [2, 3, 4]
 [1, 2]
@@ -156,18 +156,18 @@ incipit {
 # BACKEND: Go e2e whitelist — lista intrinsic methods not yet lowered for Go
 # (whitelist: lista/methodi-mutatio.fab).
 
-incipit {
-    varia _ res ← [3, 1, 2] ∷ lista&lt;numerus&gt;
+main {
+    var _ res ← [3, 1, 2] ∷ list&lt;int&gt;
 
     res.appende(4)
-    fixum _ primusremotus ← res.decapita()
-    fixum _ ultimusremotus ← res.detrahe()
+    const _ primusremotus ← res.decapita()
+    const _ ultimusremotus ← res.detrahe()
     res.inverte()
     res.ordina()
 
-    nota res
-    nota primusremotus
-    nota ultimusremotus
+    print res
+    print primusremotus
+    print ultimusremotus
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[1, 2]
 3
 4

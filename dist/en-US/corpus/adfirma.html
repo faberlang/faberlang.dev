@@ -28,36 +28,36 @@
 # EXPECTED OUTPUT:
 #   empty — adfirma only (adfirma.expected)
 
-incipit {
-    fixum _ x ← 10
+main {
+    const _ x ← 10
 
     # Simple assertion without message
-    adfirma x &gt; 0
+    assert x &gt; 0
 
     # Assertion with custom message
-    adfirma x ≡ 10 secus &quot;x decem esse debet&quot;
+    assert x ≡ 10 else &quot;x decem esse debet&quot;
 
     # Multiple assertions
-    fixum _ nomen ← &quot;Marcus&quot;
-    adfirma nomen ≡ &quot;Marcus&quot;
-    adfirma nomen ≠ &quot;&quot; secus &quot;nomen vacuum non sit&quot;
+    const _ nomen ← &quot;Marcus&quot;
+    assert nomen ≡ &quot;Marcus&quot;
+    assert nomen ≠ &quot;&quot; else &quot;nomen vacuum non sit&quot;
 
     # Boolean assertions
-    fixum _ viget ← verum
-    adfirma viget
-    adfirma viget ≡ verum secus &quot;vigere debet&quot;
+    const _ viget ← true
+    assert viget
+    assert viget ≡ true else &quot;vigere debet&quot;
 }
 
-proba &quot;assertions validate invariants&quot; {
-    fixum _ x ← 10
-    adfirma x &gt; 0
-    adfirma x ≡ 10 secus &quot;x decem esse debet&quot;
+test &quot;assertions validate invariants&quot; {
+    const _ x ← 10
+    assert x &gt; 0
+    assert x ≡ 10 else &quot;x decem esse debet&quot;
 
-    fixum _ nomen ← &quot;Marcus&quot;
-    adfirma nomen ≡ &quot;Marcus&quot;
-    adfirma nomen ≠ &quot;&quot; secus &quot;nomen vacuum non sit&quot;
+    const _ nomen ← &quot;Marcus&quot;
+    assert nomen ≡ &quot;Marcus&quot;
+    assert nomen ≠ &quot;&quot; else &quot;nomen vacuum non sit&quot;
 
-    fixum _ viget ← verum
-    adfirma viget
-    adfirma viget ≡ verum secus &quot;vigere debet&quot;
+    const _ viget ← true
+    assert viget
+    assert viget ≡ true else &quot;vigere debet&quot;
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusadfirmaadfirmafab-canonical-keyword">radix/corpus/adfirma/adfirma.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/adfirma/adfirma.fab&quot;]</li></ul></div></footer></div></body></html>

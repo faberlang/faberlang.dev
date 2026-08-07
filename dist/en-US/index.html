@@ -4,12 +4,23 @@ readable across human-language surfaces and portable across measured
 compilation and device paths.</p><blockquote><p>One semantic program. Readable in your language. Built for application code
 and real GPU work.</p></blockquote><p>The same analyzed program can feed application targets or a device program.
 Reader locales change keywords, primitive types, and diagnostics without
-changing meaning. Rust is the primary executable path; TypeScript, Go, LLVM,
-and other targets have narrower, measured support.</p><p>Faber's public capability ladder is intentionally explicit:</p><ul><li><strong>Shipped:</strong> reader-localized source, diagnostics, and formatting.</li><li><strong>Proven now:</strong> a bounded dual-backend training path through Metal and CUDA.</li><li><strong>Building next:</strong> Faber-owned GPU inference behind a pinned model contract
-and correctness oracle.</li><li><strong>Frontier:</strong> multi-device execution, virtual GPUs, sharding, and distributed
+changing meaning. Every codegen target is a <strong>projection</strong> of HIR meaning —
+support is stated <strong>target by target</strong> (see the
+<a href="/toolchain/target-matrix.html">target matrix</a>). There is no privileged
+executable path; package workflows that use Rust today are one measured
+product surface among several, not the language’s semantic center.</p><p>&lt;small class=&quot;open-source-note&quot;&gt;The language, public libraries, examples, and
+user tooling ship under the <strong>MIT</strong> license. <strong>Radix</strong>, the compiler, is closed
+source for now and is planned for open release once the language has clearer
+market demand — not as a permanent fence around Faber.&lt;/small&gt;</p><p>Faber's public capability ladder is intentionally explicit:</p><ul><li><strong>Shipped:</strong> reader-localized source, diagnostics, and formatting.</li><li><strong>Proven now:</strong> bounded dual-backend device training on Metal and CUDA
+(device-resident steps with gradient mapping and numeric comparison on an
+accepted MLP path).</li><li><strong>Building next:</strong> Faber-owned GPU inference behind a pinned model contract
+and correctness oracle (CPU oracle stack exists; end-to-end device inference
+is not shipped).</li><li><strong>Frontier:</strong> multi-device execution, virtual GPUs, sharding, and distributed
 training or serving are future direction, not current runtime claims.</li></ul><p>The name derives from the Latin word for <em>maker</em> or <em>craftsman</em>. The
-compiler is named Radix, from the Latin <em>root</em>. The language is
-developed by Ian Zepp and released under the MIT license.</p><p><strong>New here?</strong> Start with <a href="/en-US/start/install.html">Install and download</a>, then run
+compiler is named Radix, from the Latin <em>root</em>. Developed by Ian Zepp.
+Language and supporting libraries are MIT open source; Radix remains closed
+source until there is clearer demand for an open compiler (see the note
+above).</p><p><strong>New here?</strong> Start with <a href="/en-US/start/install.html">Install and download</a>, then run
 the sequenced start track: <a href="/en-US/start/hello.html">Hello</a>,
 <a href="/en-US/start/commands.html">Commands</a>, and <a href="/en-US/start/projects.html">Projects</a>. For the
 GPU path, read <a href="/toolchain/cli.html#device-execution">device execution</a> and
@@ -28,18 +39,19 @@ actual=$(shasum <span class="tok-op">-a</span> 256 faber.tgz | awk <span class="
 Step-by-step: <a href="/en-US/start/install.html">Install guide</a>. Full historical inventory:
 <a href="/reference/releases.html">Releases</a>.</p><h3 id="download-radix">Radix compiler<a class="anchor" href="#download-radix">#</a></h3><p>The <strong>Radix</strong> compiler (v0.79.0) is bundled inside Faber. If you need Radix
 as a standalone CLI, prebuilt binaries are available:</p><ul><li>Release: <a href="https://github.com/faberlang/releases/releases/tag/radix-v0.79.0">github.com/faberlang/releases · radix-v0.79.0</a></li></ul><p>Radix source is private. The public release artifacts include the compiler
-binary and checksums.</p><div class="table-scroll"><table><thead><tr></tr></thead><tbody><tr><td><strong>Paradigm</strong></td><td>Package-oriented; semantic staging</td></tr><tr><td><strong>Typing</strong></td><td>Static, type-first; nullable via <code>T ∪ nihil</code></td></tr><tr><td><strong>Glyphs</strong></td><td><code>← → ∴ ≡ ∪ ⇥</code></td></tr><tr><td><strong>Designed by</strong></td><td>Ian Zepp</td></tr><tr><td><strong>First appeared</strong></td><td>2025</td></tr><tr><td><strong>Compiler</strong></td><td>Radix (Rust)</td></tr><tr><td><strong>Lanes</strong></td><td>Application (HIR) · Systems (MIR) · GPU device path</td></tr><tr><td><strong>Primary target</strong></td><td>Rust → native binary</td></tr><tr><td><strong>Reader locales</strong></td><td>8 shipped (la, ar, en, hi, vi, th-TH, zh-Hans, zh-Hant)</td></tr><tr><td><strong>Standard library</strong></td><td>Norma (<code>norma:*</code>)</td></tr><tr><td><strong>License</strong></td><td>MIT</td></tr></tbody></table></div><h2 id="start-here">Start here<a class="anchor" href="#start-here">#</a></h2><div class="table-scroll"><table><thead><tr><th>Path</th><th>Who</th><th>What</th></tr></thead><tbody><tr><td><a href="/en-US/start/install.html">Install</a></td><td>Human</td><td>Download, PATH, first <code>faber check</code></td></tr><tr><td><a href="/en-US/start/hello.html">Hello</a></td><td>Human</td><td>Create and run <code>salve-munde</code></td></tr><tr><td><a href="/en-US/start/commands.html">Commands</a></td><td>Human + agent</td><td>Daily CLI loop: check, build, run, test, explain</td></tr><tr><td><a href="/en-US/start/projects.html">Projects</a></td><td>Human + agent</td><td>Move from hello-world into real packages</td></tr><tr><td><a href="/en-US/start/">Quick tour</a></td><td>Human</td><td>Language shape in five minutes</td></tr><tr><td><a href="/en-US/start/examples.html">Examples</a></td><td>Human + agent</td><td>Real packages: CLI apps, mailspace, GPU, corpus</td></tr><tr><td><a href="/llms.txt"><code>/llms.txt</code></a></td><td>Agent</td><td>Machine index — start here if you are a model</td></tr><tr><td><a href="/agents/index.md">Agent guide</a></td><td>Agent</td><td>How to learn Faber and ship a package</td></tr><tr><td><a href="/.well-known/agent-skills/index.json">Agent skills</a></td><td>Agent</td><td>Focused skill guides (install, language, examples, …)</td></tr></tbody></table></div><h2 id="locale-coverage">Readable in your language<a class="anchor" href="#locale-coverage">#</a></h2><p>English is complete. The other seven locales ship reader-locale packs and
+binary and checksums.</p><div class="table-scroll"><table><thead><tr></tr></thead><tbody><tr><td><strong>Paradigm</strong></td><td>Package-oriented; semantic staging</td></tr><tr><td><strong>Typing</strong></td><td>Static, type-first; nullable via <code>T ∪ nihil</code></td></tr><tr><td><strong>Glyphs</strong></td><td><code>← → ∴ ≡ ∪ ⇥</code></td></tr><tr><td><strong>Designed by</strong></td><td>Ian Zepp</td></tr><tr><td><strong>First appeared</strong></td><td>2025</td></tr><tr><td><strong>Compiler</strong></td><td>Radix (Rust)</td></tr><tr><td><strong>Lanes</strong></td><td>Application (HIR) · Systems (MIR) · GPU device path</td></tr><tr><td><strong>Targets</strong></td><td>Projections of HIR/MIR — measured per target (Rust, Faber, TS, Go, …)</td></tr><tr><td><strong>Reader locales</strong></td><td>8 shipped (en, la, ar, hi, vi, th-TH, zh-Hans, zh-Hant)</td></tr><tr><td><strong>Standard library</strong></td><td>Norma (<code>norma:*</code>)</td></tr><tr><td><strong>License</strong></td><td>MIT</td></tr></tbody></table></div><h2 id="start-here">Start here<a class="anchor" href="#start-here">#</a></h2><div class="table-scroll"><table><thead><tr><th>Path</th><th>Who</th><th>What</th></tr></thead><tbody><tr><td><a href="/en-US/start/install.html">Install</a></td><td>Human</td><td>Download, PATH, first <code>faber check</code></td></tr><tr><td><a href="/en-US/start/hello.html">Hello</a></td><td>Human</td><td>Create and run <code>salve-munde</code></td></tr><tr><td><a href="/en-US/start/commands.html">Commands</a></td><td>Human + agent</td><td>Daily CLI loop: check, build, run, test, explain</td></tr><tr><td><a href="/en-US/start/projects.html">Projects</a></td><td>Human + agent</td><td>Move from hello-world into real packages</td></tr><tr><td><a href="/en-US/start/">Quick tour</a></td><td>Human</td><td>Language shape in five minutes</td></tr><tr><td><a href="/en-US/start/examples.html">Examples</a></td><td>Human + agent</td><td>Real packages: CLI apps, mailspace, GPU, corpus</td></tr><tr><td><a href="/llms.txt"><code>/llms.txt</code></a></td><td>Agent</td><td>Machine index — start here if you are a model</td></tr><tr><td><a href="/agents/index.md">Agent guide</a></td><td>Agent</td><td>How to learn Faber and ship a package</td></tr><tr><td><a href="/.well-known/agent-skills/index.json">Agent skills</a></td><td>Agent</td><td>Focused skill guides (install, language, examples, …)</td></tr></tbody></table></div><h2 id="locale-coverage">Readable in your language<a class="anchor" href="#locale-coverage">#</a></h2><p>English is complete. The other seven locales ship reader-locale packs and
 generated corpus pages; their authored prose still falls back to English
 while translation lands. Every locale is listed on the
 <a href="/porta/">language portal</a>.</p><h2 id="overview">One semantic program across surfaces<a class="anchor" href="#overview">#</a></h2><p>Faber is designed around a core insight: the intermediate representation is
 the truth, and no target or human-language surface is privileged. A Faber
 program written in one reader locale can be rendered into another locale, or
 lowered toward Rust, TypeScript, Go, LLVM, or a device program, because the HIR
-is the shared semantic authority.</p><p>These paths are not equal promises. Rust is the primary executable application
-target. TypeScript and Go are file-emission surfaces. GPU support is split
-between shader lowering and the narrower real-device route documented below.
-The <a href="/toolchain/target-matrix.html">target matrix</a> records the current support
-boundary.</p><p>The language makes three deliberate signal choices that work together:</p><ul><li><strong>Type-first declarations</strong> — shape reads toward binding: <code>textus nomen</code>,
+is the shared semantic authority.</p><p>These paths are not equal promises. HIR is the semantic authority; each target
+emits, validates, runs, or remains limited on its own terms. TypeScript and Go
+are HIR-direct file-emission (and e2e) surfaces with rising measured floors.
+GPU support is split between shader lowering and the narrower real-device route
+documented below. The <a href="/toolchain/target-matrix.html">target matrix</a> records
+the current support boundary.</p><p>The language makes three deliberate signal choices that work together:</p><ul><li><strong>Type-first declarations</strong> — shape reads toward binding: <code>textus nomen</code>,
 not <code>nomen: textus</code>.</li><li><strong>Latin behavioural words</strong> — declarations, statements, and lifecycle:
 <code class="kw">functio</code>, <code class="kw">genus</code>, <code class="kw">fixum</code>, <code class="kw">redde</code>, <code class="kw">si</code>.</li><li><strong>Structural glyphs</strong> — value flow and type joints: <code>←</code> (bind), <code>→</code>
 (return type), <code>∴</code> (clausura joint), <code>≡</code> (equality), <code>∪</code> (union).</li></ul><p>The result is source with stable grammatical shape that can be reviewed,
@@ -51,16 +63,22 @@ backend explicitly and fails closed with a stable code rather than silently
 falling back to CPU:</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run <span class="tok-op">--backend</span> metal &lt;package&gt;   # Apple Metal (e.g. Apple M5 Max)
 <span class="tok-fn">faber</span> run <span class="tok-op">--backend</span> cuda  &lt;package&gt;   # NVIDIA CUDA (e.g. RTX 5070)
 <span class="tok-fn">faber</span> run <span class="tok-op">--backend</span> auto  &lt;package&gt;   # resolve: exactly one admitted backend</code></pre><p>The accepted device proof covers forward kernels and a bounded training path —
-a library-backed <code>train_step</code> / companion VJP with per-step observation cadence,
-gradient-slot → buffer mapping, and end-of-run readback. It is a real-device
-proof, not a general training framework or a broad hardware-coverage claim.
-Proof fixture:
-<a href="https://github.com/faberlang/examples/tree/main/training/device-summa"><code>examples/training/device-summa</code></a>.
-See <a href="/toolchain/cli.html#device-execution">device execution</a> and
-<a href="/toolchain/compiling.html">Compiling and targets</a> for the full target
-posture.</p><h3 id="inference-and-multi-device">Inference and multi-device status<a class="anchor" href="#inference-and-multi-device">#</a></h3><p>Faber-owned GPU inference is in active development behind a pinned model
-contract and a correctness oracle. It is not yet a shipped inference server or
-a general GGUF support claim.</p><p>Multi-device execution is a frontier direction. Virtual GPUs, tensor/model or
+including a Gradus-backed dual-backend MLP path with device-resident state,
+per-step observation cadence, gradient-slot → buffer mapping, end-of-run
+readback, and numeric comparison against a pinned CPU oracle on both Metal and
+CUDA. It is a real-device proof, not a general training framework or a broad
+hardware-coverage claim. Starter fixture:
+<a href="https://github.com/faberlang/examples/tree/main/training/device-summa"><code>examples/training/device-summa</code></a>;
+MLP dual-backend oracle authority also lives under
+<a href="https://github.com/faberlang/examples/tree/main/training/mlp"><code>examples/training/mlp</code></a>.
+See <a href="/toolchain/cli.html#device-execution">device execution</a>,
+<a href="/toolchain/compiling.html">Compiling and targets</a>, and the
+<a href="/toolchain/target-matrix.html#device-kernel-support">device kernel support summary</a>
+(product GPU view — separate from the full-language corpus % tables).</p><h3 id="inference-and-multi-device">Inference and multi-device status<a class="anchor" href="#inference-and-multi-device">#</a></h3><p>Faber-owned GPU inference is in active development behind a pinned model
+contract (currently SmolLM2-class GGUF admission for the oracle track) and a
+correctness oracle. The <strong>CPU</strong> oracle path — admission, dequant, decoder ops,
+and greedy decode agreement on a pinned run — is engineering-real; **end-to-end
+device inference is not shipped**, and this is not a general GGUF product claim.</p><p>Multi-device execution is a frontier direction. Virtual GPUs, tensor/model or
 pipeline sharding, collectives, and distributed serving require their own
 accepted topology and runtime contracts. They are not current Faber runtime
 capabilities.</p><h2 id="documentation">Documentation<a class="anchor" href="#documentation">#</a></h2><p>Five sections, in the order most people need them.</p><div class="table-scroll"><table><thead><tr><th>Section</th><th>What is in it</th></tr></thead><tbody><tr><td><a href="/en-US/start/">Start</a></td><td>Install, hello world, the daily commands, your first package, real examples</td></tr><tr><td><a href="/language/">Language</a></td><td>The whole language: types, functions, errors, glyphs, reader locales, capabilities</td></tr><tr><td><a href="/toolchain/">Toolchain</a></td><td>The <code>faber</code> CLI, compilation lanes and targets, Cista packages, Radix internals</td></tr><tr><td><a href="/libraries/">Libraries</a></td><td>Norma (bundled), Triga (graphics), and the language corpus</td></tr><tr><td><a href="/reference/">Reference</a></td><td>Grammar, generated target matrix, releases, design notes, repositories</td></tr></tbody></table></div><p>If you only read one page, read <a href="/language/">The Faber language</a> — it contains a
@@ -70,10 +88,10 @@ parameters, glyph return type, nullable union, Latin control words:</p><pre clas
     redde a / b
 }</code></pre><h2 id="live-rendering">Live rendering<a class="anchor" href="#live-rendering">#</a></h2><p>The divide function above is rendered in the Latin pack by default. The
 compiler can render the same program in eight reader locales — English,
-Thai, Simplified Chinese, Traditional Chinese, Arabic, Hindi, Vietnamese —
-each remapping keywords and types
-to that language while glyphs and identifiers remain unchanged. This is
-not a translation layer applied to the page; it is the same mechanism
-the compiler uses to produce localized source.</p><p>See the <a href="/language/reader-locales.html">reader locale</a> documentation for
+Latin, Thai, Simplified Chinese, Traditional Chinese, Arabic, Hindi, and
+Vietnamese — each remapping keywords and types (Latin is the classical
+surface; others remap to that language) while glyphs and identifiers remain
+unchanged. This is not a translation layer applied to the page; it is the
+same mechanism the compiler uses to produce localized source.</p><p>See the <a href="/language/reader-locales.html">reader locale</a> documentation for
 the full discussion.</p><h2 id="repositories">Repositories<a class="anchor" href="#repositories">#</a></h2><div class="table-scroll"><table><thead><tr><th>Repo</th><th>Role</th></tr></thead><tbody><tr><td><a href="https://github.com/faberlang/faber">faberlang/faber</a></td><td>Public user CLI</td></tr><tr><td><a href="https://github.com/faberlang/releases">faberlang/releases</a></td><td>Tagged CLI release assets</td></tr><tr><td><a href="https://github.com/faberlang/faber-runtime">faberlang/faber-runtime</a></td><td>Runtime types for generated Rust</td></tr><tr><td><a href="https://github.com/faberlang/norma">faberlang/norma</a></td><td>Standard library source</td></tr><tr><td><a href="https://github.com/faberlang/cista">faberlang/cista</a></td><td>Package-store CLI/lib</td></tr><tr><td><a href="https://github.com/faberlang/triga">faberlang/triga</a></td><td>Graphics / geometry library</td></tr><tr><td><a href="https://github.com/faberlang/examples">faberlang/examples</a></td><td>Corpus, tracks, application packages</td></tr><tr><td><a href="https://github.com/faberlang/faberlang.dev">faberlang/faberlang.dev</a></td><td>This documentation site</td></tr></tbody></table></div><p>The full list — including the private compiler and where to file issues — is
 on the <a href="/reference/repositories.html">Repositories</a> page.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#download">Download Faber 1.4.0</a></li><li class="toc-3"><a href="#download-radix">Radix compiler</a></li><li class="toc-2"><a href="#start-here">Start here</a></li><li class="toc-2"><a href="#locale-coverage">Readable in your language</a></li><li class="toc-2"><a href="#overview">One semantic program across surfaces</a></li><li class="toc-2"><a href="#gpu-device-execution">GPU device execution</a></li><li class="toc-3"><a href="#inference-and-multi-device">Inference and multi-device status</a></li><li class="toc-2"><a href="#documentation">Documentation</a></li><li class="toc-2"><a href="#quick-example">Quick example</a></li><li class="toc-2"><a href="#live-rendering">Live rendering</a></li><li class="toc-2"><a href="#repositories">Repositories</a></li></ul></div></nav></div></body></html>

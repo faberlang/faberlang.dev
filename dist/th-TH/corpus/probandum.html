@@ -29,19 +29,19 @@
 # BACKEND: No incipit block — test-runner surface; exempla e2e whitelists as
 # declaration-only (whitelist: probandum/probandum.fab).
 
-probandum &quot;arithmetica&quot; {
-    proba &quot;unum plus unum&quot; {
-        adfirma 1 + 1 ≡ 2
+describe &quot;arithmetica&quot; {
+    test &quot;unum plus unum&quot; {
+        assert 1 + 1 ≡ 2
     }
 
-    proba &quot;multiplicatio&quot; {
-        adfirma 3 * 4 ≡ 12
+    test &quot;multiplicatio&quot; {
+        assert 3 * 4 ≡ 12
     }
 
-    probandum &quot;implicata&quot; {
-        proba &quot;comparatio&quot; {
-            fixum _ x ← 10
-            adfirma x ≥ 10
+    describe &quot;implicata&quot; {
+        test &quot;comparatio&quot; {
+            const _ x ← 10
+            assert x ≥ 10
         }
     }
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusprobandumprobandumfab-canonical-keyword">radix/corpus/probandum/probandum.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/probandum/probandum.fab&quot;]</li></ul></div></footer></div></body></html>

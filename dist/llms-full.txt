@@ -11,22 +11,22 @@ It is generated during the site build from radix/corpus frontmatter.
 
 ## Start here
 
-1. Host: https://faberlang.dev — `/` is the product landing; `/porta/` is the language portal (locale chooser).
+1. Host: https://faberlang.dev — `/` is the language portal (locale chooser).
 2. Full authored HTML docs: https://faberlang.dev/en-US/ (prefer this unless the user asked for another locale).
 3. Read this file before editing Faber source or scaffolding packages.
 4. Use corpus term links below for exact keyword, syntax, alias, and relation data.
 5. Read https://faberlang.dev/agents/index.md for the agent learning path.
 6. Read https://faberlang.dev/llms-full.txt for the generated keyword/category/alias catalog.
 7. Choose focused skills from https://faberlang.dev/.well-known/agent-skills/index.json.
-8. Other site locales (`/th-TH/`, `/zh-Hans/`, `/ar/`, …) ship reader packs + corpus; authored prose may still fall back to English; code via each pack's reader locale.
+8. Other site locales (`/th-TH/`, `/zh-Hans/`, `/ar/`, …) ship full translated prose docs + localized chrome; code via each pack's reader locale.
 
 ## Install
 
-Current release: Faber 1.4.0
+Current release: Faber 1.1.1
 
-- Release: https://github.com/faberlang/releases/releases/tag/faber-v1.4.0
-- macOS arm64: https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz
-- Linux x64: https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz
+- Release: https://github.com/faberlang/releases/releases/tag/faber-v1.1.1
+- macOS arm64: https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz
+- Linux x64: https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz
 - Human install page: https://faberlang.dev/en-US/start/install.html
 
 Minimal verify after install:
@@ -47,10 +47,10 @@ faber explain SEM001
 
 ## Generated corpus frontmatter reference
 
-- Distinct frontmatter terms: 189
-- Canonical term pages: 177
+- Distinct frontmatter terms: 190
+- Canonical term pages: 178
 - Alias spellings: 104
-- Categories: 46
+- Categories: 47
 - Source: radix/corpus/**/*.fab TOML frontmatter
 
 Each canonical record has: term, kind, category, summary, syntax signature, aliases, relations, and page URL.
@@ -103,6 +103,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - testing (18) — https://faberlang.dev/en-US/corpus/category/testing.html
 - transfer (4) — https://faberlang.dev/en-US/corpus/category/transfer.html
 - type (22) — https://faberlang.dev/en-US/corpus/category/type.html
+- types (1) — https://faberlang.dev/en-US/corpus/category/types.html
 
 ### Kinds
 
@@ -117,7 +118,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - operator: 2
 - operator-group: 20
 - pointer: 1
-- type: 4
+- type: 5
 
 ### Canonical terms
 
@@ -1932,6 +1933,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `ad`, `sermo`, `scrinium`, `cursor`
 - Page: https://faberlang.dev/en-US/corpus/tuus.html
 - Source: radix/corpus/ad/sermo-tuus.fab
+
+#### `type-hole-union`
+
+- Canonical: `type-hole-union`
+- Kind: type
+- Category: types
+- Summary: The `_` hole infers one inhabitant type; the `∪` hole infers a finite union; `T ∪ nihil` stays a single optional inhabitant.
+- Syntax: `fixum _ x ← value; fixum ∪ x ← a; x ← b; fixum lista<∪> xs ← [a, b]`
+- Aliases: none
+- Related: `unio`, `nihil`
+- Page: https://faberlang.dev/en-US/corpus/type-hole-union.html
+- Source: radix/corpus/type-hole-union/type-hole-union.fab
 
 #### `typus`
 

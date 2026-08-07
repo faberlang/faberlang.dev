@@ -24,13 +24,13 @@
 # EXPECTED OUTPUT:
 #   1, 2, 3, 4 (expanded list elements).
 
-incipit {
-    fixum _ media ← [2, 3]
+main {
+    const _ media ← [2, 3]
     # → [1, 2, 3, 4]
-    fixum _ numeri ← [1, sparge media, 4]
+    const _ numeri ← [1, spread media, 4]
 
-    itera ex numeri fixum n {
-        nota n
+    for from numeri const n {
+        print n
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1
 2

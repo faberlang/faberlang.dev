@@ -24,18 +24,18 @@
 # EXPECTED OUTPUT:
 #   nexum.expected — bound field value 7 via accipe().
 
-genus Computator {
+class Computator {
     # bound field — same value for every instance
-    nexum numerus valor = 0
+    nexum int valor = 0
 
-    functio accipe() → numerus {
-        redde ego.valor
+    fn accipe() → int {
+        return self.valor
     }
 }
 
-incipit {
+main {
     # instance overrides bound default
-    fixum _ c ← Computator { valor = 7 }
-    nota c.accipe()
+    const _ c ← Computator { valor = 7 }
+    print c.accipe()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>7
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusnexumnexumfab-canonical-keyword">radix/corpus/nexum/nexum.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[&quot;radix/corpus/nexum/nexum.fab&quot;]</li></ul></div></footer></div></body></html>

@@ -27,17 +27,17 @@
 #   Cross-ref lege/lege.fab for regex beside stdin reads.
 #   Cross-ref scriptum/scriptum.fab for § template application.
 
-incipit {
-    fixum _ digits ← &quot;\d+&quot; ↦ regex
-    nota digits
+main {
+    const _ digits ← &quot;\d+&quot; ↦ regex
+    print digits
 
-    fixum _ word ← &quot;(?i)\w+&quot; ↦ regex
-    nota word
+    const _ word ← &quot;(?i)\w+&quot; ↦ regex
+    print word
 
     # Template application → textus, then conversio to regex (dynamic path segments)
-    fixum _ tenant ← &quot;acme&quot;
-    fixum _ homePath ← &quot;/home/§/.*&quot;(tenant) ↦ regex
-    nota homePath
+    const _ tenant ← &quot;acme&quot;
+    const _ homePath ← &quot;/home/§/.*&quot;(tenant) ↦ regex
+    print homePath
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>\d+
 (?i)\w+
 /home/acme/.*

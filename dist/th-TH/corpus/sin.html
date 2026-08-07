@@ -28,24 +28,24 @@
 # EXPECTED OUTPUT:
 #   Afternoon (hour=14 matches first sin branch).
 
-incipit {
-    fixum _ hour ← 14
+main {
+    const _ hour ← 14
 
-    si hour &lt; 6 {
-        nota &quot;Late night&quot;
+    if hour &lt; 6 {
+        print &quot;Late night&quot;
     }
-    sin hour &lt; 12 {
-        nota &quot;Morning&quot;
+    elif hour &lt; 12 {
+        print &quot;Morning&quot;
     }
-    sin hour &lt; 18 {
+    elif hour &lt; 18 {
         # 14 ≥ 12 and 14 &lt; 18
-        nota &quot;Afternoon&quot;
+        print &quot;Afternoon&quot;
     }
-    sin hour &lt; 22 {
-        nota &quot;Evening&quot;
+    elif hour &lt; 22 {
+        print &quot;Evening&quot;
     }
-    secus {
-        nota &quot;Night&quot;
+    else {
+        print &quot;Night&quot;
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Afternoon
 </code></pre><h3 id="radixcorpussinsinfab-canonical-keyword">radix/corpus/sin/sin.fab (canonical · keyword)<a class="anchor" href="#radixcorpussinsinfab-canonical-keyword">#</a></h3><p>Adds an else-if branch after a previous si branch.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
@@ -75,16 +75,16 @@ incipit {
 #   Cross-ref: si/sin.fab.
 #
 
-incipit {
-    fixum _ score ← 85
-    si score ≥ 90 {
-        nota &quot;excellent&quot;
+main {
+    const _ score ← 85
+    if score ≥ 90 {
+        print &quot;excellent&quot;
     }
-    sin score ≥ 80 {
-        nota &quot;good&quot;
+    elif score ≥ 80 {
+        print &quot;good&quot;
     }
-    secus {
-        nota &quot;needs work&quot;
+    else {
+        print &quot;needs work&quot;
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>good
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpussisinfab-canonical-keyword">radix/corpus/si/sin.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpussinsinfab-canonical-keyword">radix/corpus/sin/sin.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/si/sin.fab&quot;]</li></ul></div></footer></div></body></html>

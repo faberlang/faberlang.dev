@@ -27,49 +27,49 @@
 # EXPECTED OUTPUT:
 #   Field values for Punctum and Persona instances (defaults and overrides).
 
-genus Punctum {
-    numerus x
-    numerus y
+class Punctum {
+    int x
+    int y
 }
 
-genus Persona {
-    textus nomen
+class Persona {
+    string nomen
     # default when omitted at instantiation
-    numerus aetas = 0
-    bivalens activus = verum
+    int aetas = 0
+    bool activus = true
 }
 
-incipit {
+main {
     # Instantiate with all required fields
-    fixum _ p ← Punctum {
+    const _ p ← Punctum {
         x = 10,
         y = 20
     }
 
-    nota p.x
-    nota p.y
+    print p.x
+    print p.y
 
     # Instantiate with required + optional defaults
-    fixum _ marcus ← Persona {
+    const _ marcus ← Persona {
         nomen = &quot;Marcus&quot;
     }
 
-    nota marcus.nomen
+    print marcus.nomen
     # 0 from default
-    nota marcus.aetas
+    print marcus.aetas
     # verum from default
-    nota marcus.activus
+    print marcus.activus
 
     # Override defaults explicitly
-    fixum _ julia ← Persona {
+    const _ julia ← Persona {
         nomen = &quot;Julia&quot;,
         aetas = 25,
-        activus = falsum
+        activus = false
     }
 
-    nota julia.nomen
-    nota julia.aetas
-    nota julia.activus
+    print julia.nomen
+    print julia.aetas
+    print julia.activus
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>10
 20
 Marcus

@@ -21,14 +21,14 @@
 # PAIR: sugar `@ cli &quot;NAME&quot;` (see optio/optio.fab)
 
 @ cli { nomen = &quot;annotation-sugar-smoke&quot; }
-@ optio {
+@ option {
     binding = verbose,
     brevis = &quot;v&quot;,
     longum = &quot;verbose&quot;,
-    typus = bivalens,
+    typus = bool,
     descriptio = &quot;Verbose mode&quot;,
 }
-incipit argumenta args { }</code></pre><h3 id="radixcorpuscliclifab-canonical-annotation">radix/corpus/cli/cli.fab (canonical · annotation)<a class="anchor" href="#radixcorpuscliclifab-canonical-annotation">#</a></h3><p>CLI root with options, operands, subcommands, and module mounts.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
+main args args { }</code></pre><h3 id="radixcorpuscliclifab-canonical-annotation">radix/corpus/cli/cli.fab (canonical · annotation)<a class="anchor" href="#radixcorpuscliclifab-canonical-annotation">#</a></h3><p>CLI root with options, operands, subcommands, and module mounts.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
 # cli — CLI root with options, operands, subcommands, and module mounts.
 # =============================================================================
 #
@@ -65,24 +65,24 @@ incipit argumenta args { }</code></pre><h3 id="radixcorpuscliclifab-canonical-an
 
 @ cli &quot;exemplum&quot;
 @ versio &quot;0.1.0&quot;
-@ descriptio &quot;Faber CLI framework smoke exemplum&quot;
-@ optio verbose brevis &quot;v&quot; longum &quot;verbose&quot; typus bivalens ubique descriptio &quot;Enable verbose output&quot;
-incipit argumenta args {
+@ description &quot;Faber CLI framework smoke exemplum&quot;
+@ option verbose short &quot;v&quot; long &quot;verbose&quot; type bool global description &quot;Enable verbose output&quot;
+main args args {
 }
 
-@ imperium &quot;greet&quot;
+@ command &quot;greet&quot;
 @ alias &quot;g&quot;
-@ descriptio &quot;Greet by name&quot;
-@ operandus textus nomen descriptio &quot;Name to greet&quot;
-functio greet() argumenta args → vacuum {
-    si args.verbose {
-        nota &quot;verbose&quot;
+@ description &quot;Greet by name&quot;
+@ operand string nomen description &quot;Name to greet&quot;
+fn greet() args args → void {
+    if args.verbose {
+        print &quot;verbose&quot;
     }
-    nota &quot;Salve, §!&quot;(args.nomen)
+    print &quot;Salve, §!&quot;(args.nomen)
 }
 
-@ imperium &quot;version&quot;
+@ command &quot;version&quot;
 @ alias &quot;v&quot;
-functio version() → vacuum {
-    nota &quot;exemplum v0.1.0&quot;
+fn version() → void {
+    print &quot;exemplum v0.1.0&quot;
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusannotation-sugarcli-bracedfab-canonical-annotation">radix/corpus/annotation-sugar/cli-braced.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpuscliclifab-canonical-annotation">radix/corpus/cli/cli.fab (canonical · annotation)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/annotation-sugar/cli-braced.fab&quot;]</li></ul></div></footer></div></body></html>

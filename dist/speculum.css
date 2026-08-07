@@ -541,7 +541,6 @@ main small.open-source-note {
     line-height: 1.55;
     color: var(--ink-faint);
     margin: var(--s3) 0 var(--s5);
-    max-width: 42rem;
 }
 
 h2 {
@@ -1594,7 +1593,6 @@ body.landing {
     line-height: 1.55;
     color: var(--ink-faint);
     margin: var(--s4) 0 0;
-    max-width: 42rem;
 }
 .fl-open-source strong { color: var(--ink-dim); font-weight: 600; }
 

@@ -15,13 +15,13 @@
 # See also: nondum, annotation-sugar
 # =============================================================================
 
-implendum tempus {
-  @ nondum { target = rs, ratio = &quot;timer handles are not implemented&quot; }
-  functio siste(numerus handle) → vacuum
+interface tempus {
+  @ unstable { target = rs, ratio = &quot;timer handles are not implemented&quot; }
+  fn siste(int handle) → void
 }
 
-incipit {
-    nota &quot;nondum-braced&quot;
+main {
+    print &quot;nondum-braced&quot;
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>nondum-braced
 </code></pre><h3 id="radixcorpusmetanondumfab-canonical-annotation">radix/corpus/meta/nondum.fab (canonical · annotation)<a class="anchor" href="#radixcorpusmetanondumfab-canonical-annotation">#</a></h3><p>Marks an interface method as planned but unavailable for a target.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
 # nondum — Marks an interface method as planned but unavailable for a target.
@@ -48,12 +48,12 @@ incipit {
 # BACKEND:
 #   Calls to @ nondum methods fail semantic check (SEM017); do not invoke here.
 
-implendum tempus {
-    @ nondum rs &quot;timer handles are not implemented yet&quot;
-    functio siste(numerus handle) → vacuum
+interface tempus {
+    @ unstable rs &quot;timer handles are not implemented yet&quot;
+    fn siste(int handle) → void
 }
 
-incipit {
-    nota &quot;nondum implendum declared&quot;
+main {
+    print &quot;nondum implendum declared&quot;
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>nondum implendum declared
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusannotation-sugarnondum-bracedfab-canonical-annotation">radix/corpus/annotation-sugar/nondum-braced.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpusmetanondumfab-canonical-annotation">radix/corpus/meta/nondum.fab (canonical · annotation)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">来源</span><ul><li>[&quot;radix/corpus/annotation-sugar/nondum-braced.fab&quot;]</li></ul></div></footer></div></body></html>

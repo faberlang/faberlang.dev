@@ -23,34 +23,34 @@
 # EXPECTED OUTPUT:
 #   Odd integers 1–9, then nested pairs skipping interior == 3.
 
-incipit {
+main {
     # Skip even numbers
-    varia _ i ← 0
+    var _ i ← 0
 
-    dum i &lt; 10 {
+    while i &lt; 10 {
         i ← i + 1
 
-        si i % 2 ≡ 0 {
-            perge
+        if i % 2 ≡ 0 {
+            continue
         }
 
-        nota i
+        print i
     }
 
     # Continue in nested loop
-    varia _ exterior ← 0
+    var _ exterior ← 0
 
-    dum exterior &lt; 3 {
-        varia _ interior ← 0
+    while exterior &lt; 3 {
+        var _ interior ← 0
 
-        dum interior &lt; 5 {
+        while interior &lt; 5 {
             interior ← interior + 1
 
-            si interior ≡ 3 {
-                perge
+            if interior ≡ 3 {
+                continue
             }
 
-            nota &quot;exterior←§, interior←§&quot;(exterior, interior)
+            print &quot;exterior←§, interior←§&quot;(exterior, interior)
         }
 
         exterior ← exterior + 1

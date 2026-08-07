@@ -26,33 +26,33 @@
 # instans ↦ textus        — precision-honoring RFC3339 `Z` emit
 # textus ↦ instans ⇥ …     — explicit recovery when wire is not a datetime
 
-incipit {
-    fixum textus utc ← &quot;1979-05-27T07:32:00.123456Z&quot;
-    fixum textus offset ← &quot;1979-05-27T16:32:00+0900&quot;
+main {
+    const string utc ← &quot;1979-05-27T07:32:00.123456Z&quot;
+    const string offset ← &quot;1979-05-27T16:32:00+0900&quot;
 
-    fixum instans seconds ← utc ↦ instans
-    fixum instans&lt;ms&gt; millis ← seconds ↦ instans&lt;ms&gt;
-    fixum instans&lt;us&gt; micros ← utc ↦ instans&lt;us&gt;
-    fixum instans&lt;ns&gt; nanos ← utc ↦ instans&lt;ns&gt;
-    fixum instans normalized ← offset ↦ instans
+    const instant seconds ← utc ↦ instant
+    const instant&lt;ms&gt; millis ← seconds ↦ instant&lt;ms&gt;
+    const instant&lt;us&gt; micros ← utc ↦ instant&lt;us&gt;
+    const instant&lt;ns&gt; nanos ← utc ↦ instant&lt;ns&gt;
+    const instant normalized ← offset ↦ instant
 
-    adfirma millis ↦ textus ≡ &quot;1979-05-27T07:32:00.000Z&quot;
-    adfirma micros ↦ textus ≡ &quot;1979-05-27T07:32:00.123456Z&quot;
-    adfirma normalized ≡ seconds secus &quot;offset ingest lands on same UTC instant&quot;
+    assert millis ↦ string ≡ &quot;1979-05-27T07:32:00.000Z&quot;
+    assert micros ↦ string ≡ &quot;1979-05-27T07:32:00.123456Z&quot;
+    assert normalized ≡ seconds else &quot;offset ingest lands on same UTC instant&quot;
 
-    fixum instans&lt;ns&gt; fine ← nanos
-    fixum instans narrowed ← fine ↦ instans
-    adfirma narrowed ↦ textus ≡ &quot;1979-05-27T07:32:00Z&quot;
+    const instant&lt;ns&gt; fine ← nanos
+    const instant narrowed ← fine ↦ instant
+    assert narrowed ↦ string ≡ &quot;1979-05-27T07:32:00Z&quot;
 
-    fixum textus bad ← &quot;not-a-datetime&quot;
-    fixum instans recovered ← bad ↦ instans ⇥ seconds
-    adfirma recovered ≡ seconds
+    const string bad ← &quot;not-a-datetime&quot;
+    const instant recovered ← bad ↦ instant ⇥ seconds
+    assert recovered ≡ seconds
 
-    nota seconds ↦ textus
-    nota millis ↦ textus
-    nota micros ↦ textus
-    nota nanos ↦ textus
-    nota narrowed ↦ textus
+    print seconds ↦ string
+    print millis ↦ string
+    print micros ↦ string
+    print nanos ↦ string
+    print narrowed ↦ string
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1979-05-27T07:32:00Z
 1979-05-27T07:32:00.000Z
 1979-05-27T07:32:00.123456Z
@@ -82,61 +82,61 @@ incipit {
 # EXPECTED OUTPUT:
 #   Smoke asserts exit 0 only.
 
-importa ex &quot;norma:tempus&quot; privata tempus
-importa ex &quot;norma:toml&quot; privata toml
-importa ex &quot;norma:valor&quot; privata valor
+import from &quot;norma:tempus&quot; private tempus
+import from &quot;norma:toml&quot; private toml
+import from &quot;norma:valor&quot; private valor
 
-functio epoch_wire(instans t) → textus {
-    redde t ↦ textus
+fn epoch_wire(instant t) → string {
+    return t ↦ string
 }
 
-incipit {
+main {
     # --- precision declarations from canonical nanosecond wall clock ---
-    fixum instans&lt;ns&gt; nanos ← tempus.nunc()
-    fixum instans secunda ← nanos ↦ instans
-    fixum instans&lt;ms&gt; millis ← nanos ↦ instans&lt;ms&gt;
-    fixum instans&lt;us&gt; micros ← nanos ↦ instans&lt;us&gt;
+    const instant&lt;ns&gt; nanos ← tempus.nunc()
+    const instant secunda ← nanos ↦ instant
+    const instant&lt;ms&gt; millis ← nanos ↦ instant&lt;ms&gt;
+    const instant&lt;us&gt; micros ← nanos ↦ instant&lt;us&gt;
 
     # --- valor ↦ instans: UTC wire and numeric offset normalize to same instant ---
-    fixum valor utc ← &quot;1979-05-27T07:32:00Z&quot;
-    fixum valor offset ← &quot;1979-05-27T03:32:00-04:00&quot;
-    fixum instans parsed ← utc ↦ instans
-    fixum instans normalized ← offset ↦ instans
+    const valor utc ← &quot;1979-05-27T07:32:00Z&quot;
+    const valor offset ← &quot;1979-05-27T03:32:00-04:00&quot;
+    const instant parsed ← utc ↦ instant
+    const instant normalized ← offset ↦ instant
 
-    adfirma parsed ≡ normalized secus &quot;offset ingest normalizes to UTC instant&quot;
+    assert parsed ≡ normalized else &quot;offset ingest normalizes to UTC instant&quot;
 
     # --- TOML datetime provenance (Valor::Instans carrier, not textus) ---
-    fixum valor doc ← toml.solve(&quot;creatus = 1979-05-27T07:32:00.123456Z&quot;)
-    fixum valor carrier ← valor.cape(doc, &quot;creatus&quot;)
-    fixum instans&lt;us&gt; fromToml ← carrier ↦ instans&lt;us&gt;
-    adfirma fromToml ↦ textus ≡ &quot;1979-05-27T07:32:00.123456Z&quot; secus &quot;emit honors micros contract&quot;
+    const valor doc ← toml.solve(&quot;creatus = 1979-05-27T07:32:00.123456Z&quot;)
+    const valor carrier ← valor.cape(doc, &quot;creatus&quot;)
+    const instant&lt;us&gt; fromToml ← carrier ↦ instant&lt;us&gt;
+    assert fromToml ↦ string ≡ &quot;1979-05-27T07:32:00.123456Z&quot; else &quot;emit honors micros contract&quot;
 
     # --- precision-tagged equality: distinct at ns, equal at ms ---
-    fixum valor leftWire ← &quot;1979-05-27T07:32:00.123456Z&quot;
-    fixum valor rightWire ← &quot;1979-05-27T07:32:00.123999Z&quot;
-    fixum instans&lt;ns&gt; left ← leftWire ↦ instans&lt;ns&gt;
-    fixum instans&lt;ns&gt; right ← rightWire ↦ instans&lt;ns&gt;
-    adfirma left ≠ right secus &quot;sub-millisecond bits differ at nanosecond precision&quot;
-    fixum instans&lt;ms&gt; leftMs ← left ↦ instans&lt;ms&gt;
-    fixum instans&lt;ms&gt; rightMs ← right ↦ instans&lt;ms&gt;
-    adfirma leftMs ≡ rightMs secus &quot;same millisecond at declared ms precision&quot;
+    const valor leftWire ← &quot;1979-05-27T07:32:00.123456Z&quot;
+    const valor rightWire ← &quot;1979-05-27T07:32:00.123999Z&quot;
+    const instant&lt;ns&gt; left ← leftWire ↦ instant&lt;ns&gt;
+    const instant&lt;ns&gt; right ← rightWire ↦ instant&lt;ns&gt;
+    assert left ≠ right else &quot;sub-millisecond bits differ at nanosecond precision&quot;
+    const instant&lt;ms&gt; leftMs ← left ↦ instant&lt;ms&gt;
+    const instant&lt;ms&gt; rightMs ← right ↦ instant&lt;ms&gt;
+    assert leftMs ≡ rightMs else &quot;same millisecond at declared ms precision&quot;
 
     # --- cross-precision conversio: widen and narrow with observable truncation ---
-    fixum instans&lt;ns&gt; fine ← parsed ↦ instans&lt;ns&gt;
-    fixum instans&lt;ms&gt; coarse ← fine ↦ instans&lt;ms&gt;
-    fixum instans seconds ← fine ↦ instans
-    adfirma seconds ↦ textus ≡ &quot;1979-05-27T07:32:00Z&quot; secus &quot;narrow to seconds strips sub-second wire&quot;
+    const instant&lt;ns&gt; fine ← parsed ↦ instant&lt;ns&gt;
+    const instant&lt;ms&gt; coarse ← fine ↦ instant&lt;ms&gt;
+    const instant seconds ← fine ↦ instant
+    assert seconds ↦ string ≡ &quot;1979-05-27T07:32:00Z&quot; else &quot;narrow to seconds strips sub-second wire&quot;
 
-    fixum instans&lt;ms&gt; wider ← secunda ↦ instans&lt;ms&gt;
-    adfirma wider ≤ millis secus &quot;cross-precision comparison at coarser operand&quot;
+    const instant&lt;ms&gt; wider ← secunda ↦ instant&lt;ms&gt;
+    assert wider ≤ millis else &quot;cross-precision comparison at coarser operand&quot;
 
     # --- wire emit and parse-back via TOML (same instant) ---
-    fixum textus wire ← epoch_wire(parsed)
-    fixum valor replayDoc ← toml.solve(&quot;creatus = 1979-05-27T07:32:00Z&quot;)
-    fixum valor replayCarrier ← valor.cape(replayDoc, &quot;creatus&quot;)
-    fixum instans roundtrip ← replayCarrier ↦ instans
-    adfirma roundtrip ≡ parsed secus &quot;TOML ingest roundtrip matches UTC valor extract&quot;
-    adfirma wire ≡ &quot;1979-05-27T07:32:00Z&quot; secus &quot;seconds-precision wire emit&quot;
+    const string wire ← epoch_wire(parsed)
+    const valor replayDoc ← toml.solve(&quot;creatus = 1979-05-27T07:32:00Z&quot;)
+    const valor replayCarrier ← valor.cape(replayDoc, &quot;creatus&quot;)
+    const instant roundtrip ← replayCarrier ↦ instant
+    assert roundtrip ≡ parsed else &quot;TOML ingest roundtrip matches UTC valor extract&quot;
+    assert wire ≡ &quot;1979-05-27T07:32:00Z&quot; else &quot;seconds-precision wire emit&quot;
 
-    nota wire, secunda, millis, micros, nanos, fromToml, coarse
+    print wire, secunda, millis, micros, nanos, fromToml, coarse
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusconversioinstansfab-canonical-conversio">radix/corpus/conversio/instans.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusinstansinstansfab-canonical-keyword">radix/corpus/instans/instans.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/conversio/instans.fab&quot;]</li></ul></div></footer></div></body></html>

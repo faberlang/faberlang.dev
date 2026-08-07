@@ -27,11 +27,11 @@
 #   Cross-ref: elige/ceterum.fab.
 #
 
-incipit {
-    fixum _ tag ← &quot;z&quot;
-    elige tag {
-        casu &quot;a&quot; { nota &quot;a&quot; }
-        ceterum { nota &quot;default&quot; }
+main {
+    const _ tag ← &quot;z&quot;
+    switch tag {
+        case &quot;a&quot; { print &quot;a&quot; }
+        default { print &quot;default&quot; }
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>default
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusceterumceterumfab-canonical-keyword">radix/corpus/ceterum/ceterum.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[&quot;radix/corpus/ceterum/ceterum.fab&quot;]</li></ul></div></footer></div></body></html>

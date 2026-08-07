@@ -25,29 +25,29 @@
 # EXPECTED OUTPUT:
 #   0–4 (stops before 5), then nested pairs until interior hits 2.
 
-incipit {
+main {
     # Break when reaching 5
-    varia _ i ← 0
+    var _ i ← 0
 
-    dum i &lt; 10 {
-        si i ≡ 5 {
-            rumpe
+    while i &lt; 10 {
+        if i ≡ 5 {
+            break
         }
-        nota i
+        print i
         i ← i + 1
     }
 
     # Break in nested loop
-    varia _ exterior ← 0
+    var _ exterior ← 0
 
-    dum exterior &lt; 3 {
-        varia _ interior ← 0
+    while exterior &lt; 3 {
+        var _ interior ← 0
 
-        dum interior &lt; 10 {
-            si interior ≡ 2 {
-                rumpe
+        while interior &lt; 10 {
+            if interior ≡ 2 {
+                break
             }
-            nota &quot;exterior←§, interior←§&quot;(exterior, interior)
+            print &quot;exterior←§, interior←§&quot;(exterior, interior)
             interior ← interior + 1
         }
 

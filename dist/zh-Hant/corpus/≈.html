@@ -18,20 +18,20 @@
 # WHY: ≡ requires identical types; ≈ promotes numerics then exact-compares.
 # 42.145 ≈ 42 must stay false (no hidden tolerance).
 
-incipit {
-    fixum numerus&lt;u8&gt; port ← 42 ∷ numerus&lt;u8&gt;
-    fixum numerus count ← 42
-    fixum _ same_width ← port ≈ count
-    nota same_width
+main {
+    const int&lt;u8&gt; port ← 42 ∷ int&lt;u8&gt;
+    const int count ← 42
+    const _ same_width ← port ≈ count
+    print same_width
 
-    fixum _ int_float ← 1 ≈ 1.0
-    nota int_float
+    const _ int_float ← 1 ≈ 1.0
+    print int_float
 
-    fixum _ not_fuzzy ← 42.145 ∷ fractus&lt;f64&gt; ≈ 42.0 ∷ fractus&lt;f64&gt;
-    nota not_fuzzy
+    const _ not_fuzzy ← 42.145 ∷ float&lt;f64&gt; ≈ 42.0 ∷ float&lt;f64&gt;
+    print not_fuzzy
 
-    fixum _ differs ← 1 ≉ 2
-    nota differs
+    const _ differs ← 1 ≉ 2
+    print differs
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>verum
 verum
 falsum

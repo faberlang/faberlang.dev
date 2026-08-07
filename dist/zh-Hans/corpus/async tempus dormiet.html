@@ -21,10 +21,10 @@
 # Norma currently declares the async wrapper with compatibility `@ futura`; this
 # example consumes it through `tacebit`.
 
-importa ex &quot;norma:tempus&quot; privata tempus
+import from &quot;norma:tempus&quot; private tempus
 
-incipiet {
+async_main {
     tempus.expectet(0)
-    tacebit tempus.dormiet(0)
-    adfirma verum
+    await tempus.dormiet(0)
+    assert true
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusadasync-tempus-dormietfab-canonical-concept">radix/corpus/ad/async-tempus-dormiet.fab (canonical · concept)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">来源</span><ul><li>[&quot;radix/corpus/ad/async-tempus-dormiet.fab&quot;]</li></ul></div></footer></div></body></html>

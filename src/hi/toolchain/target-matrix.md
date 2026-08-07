@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:10998fed28829a1f3046900907ff19e0a0b667c952dfd0471b94088a34507526"
+prose_hash = "sha256:98b1216b1a063caf6ab3ecfcf113b3808d0885806bded3030dce84db9f472e3e"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "af760125175cb468031862356add1be93c2ad8fb"
+source_commit = "aa9f21b3198e2707dcd3dd8dd583a7944c3c2c1b"
 source_locale = "en-US"
 +++
 
@@ -55,23 +55,23 @@ verbs), per-target contracts और pipeline routing
 
 | लक्ष्य | सक्षम | विश्लेषण योग्य | % |
 |---|---|---|---|
-| rust | 277 | 279 | 99% |
-| go | 261 | 279 | 94% |
-| ts | 273 | 279 | 98% |
-| faber | 279 | 279 | 100% |
+| rust | 278 | 280 | 99% |
+| go | 262 | 280 | 94% |
+| ts | 274 | 280 | 98% |
+| faber | 280 | 280 | 100% |
 
 **सिस्टम लेन (MIR → डिवाइस/IR आर्टिफैक्ट)**
 
 | लक्ष्य | सक्षम | विश्लेषण योग्य | % |
 |---|---|---|---|
-| llvm-text | 262 | 265 | 99% |
-| wasm-text | 243 | 265 | 92% |
-| wasm | 243 | 265 | 92% |
-| metal-text | 6 | 265 | 2% |
-| wgsl-text | 6 | 265 | 2% |
-| sexp-struct | 209 | 265 | 79% |
-| sexp | 209 | 265 | 79% |
-| scena | 224 | 265 | 85% |
+| llvm-text | 277 | 280 | 99% |
+| wasm-text | 257 | 280 | 92% |
+| wasm | 257 | 280 | 92% |
+| metal-text | 6 | 280 | 2% |
+| wgsl-text | 6 | 280 | 2% |
+| sexp-struct | 222 | 280 | 79% |
+| sexp | 222 | 280 | 79% |
+| scena | 238 | 280 | 85% |
 
 ## कीवर्ड — एप्लिकेशन लेन
 
@@ -266,7 +266,7 @@ verbs), per-target contracts और pipeline routing
 | `adfirma` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ante` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `atomic` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
-| `argumenta` | — | — | — | — | — | — | — | — |
+| `argumenta` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `bivalens` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `cape` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `casu` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -274,14 +274,14 @@ verbs), per-target contracts और pipeline routing
 | `ceteri` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ceterum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `clausura` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `cli` | — | — | — | — | — | — | — | — |
+| `cli` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `copia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `cura` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `curata` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `cursor` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `custodi` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `de` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `descriptio` | — | — | — | — | — | — | — | — |
+| `descriptio` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `discerne` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `discretio` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `dum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -290,7 +290,7 @@ verbs), per-target contracts और pipeline routing
 | `errata` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ |
 | `ex` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `exitus` | — | — | — | — | — | — | — | — |
+| `exitus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fac` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `falsum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fient` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -317,8 +317,8 @@ verbs), per-target contracts और pipeline routing
 | `incipit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `inter` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `intra` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `itera` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ◐ |
+| `itera` | ✓ | ◐ | ◐ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `lege` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `lista` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
@@ -332,8 +332,8 @@ verbs), per-target contracts और pipeline routing
 | `non` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `omitte` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `omnia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `operandus` | — | — | — | — | — | — | — | — |
-| `optio` | — | — | — | — | — | — | — | — |
+| `operandus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `optio` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `optiones` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `ordo` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `octeti` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -370,13 +370,13 @@ verbs), per-target contracts और pipeline routing
 | `sub` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `tacet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `tacebit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `tabula` | ✓ | ◐ | ◐ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `tabula` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `temporis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `tensor` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ◐ |
 | `textus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `typus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `ubique` | — | — | — | — | — | — | — | — |
+| `ubique` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `usque` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ut` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |

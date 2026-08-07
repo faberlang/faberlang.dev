@@ -25,12 +25,12 @@
 #   Cross-ref: functio/in-ex.fab.
 #
 
-functio summa(in lista&lt;numerus&gt; values) → numerus {
-    redde values.summa()
+fn summa(mut list&lt;int&gt; values) → int {
+    return values.summa()
 }
 
-incipit {
-    fixum _ xs ← [1, 2, 3]
-    nota summa(xs)
+main {
+    const _ xs ← [1, 2, 3]
+    print summa(xs)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>6
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusininfab-canonical-keyword">radix/corpus/in/in.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">स्रोत</span><ul><li>[&quot;radix/corpus/in/in.fab&quot;]</li></ul></div></footer></div></body></html>

@@ -24,20 +24,20 @@
 # BACKEND:
 #   Cross-ref itera/intervallum.fab and intra/intra.fab.
 
-incipit {
-    varia numerus exclusivus ← 0
-    itera ab 0‥5 fixum _ {
+main {
+    var int exclusivus ← 0
+    for range 0‥5 const _ {
         exclusivus ⊕
     }
     # 5 iterations
-    nota exclusivus
+    print exclusivus
 
-    varia numerus inclusivus ← 0
-    itera ab 0…5 fixum _ {
+    var int inclusivus ← 0
+    for range 0…5 const _ {
         inclusivus ⊕
     }
     # 6 iterations
-    nota inclusivus
+    print inclusivus
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>5
 6
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusoperatoresrange-glyphsfab-canonical-operator-group">radix/corpus/operatores/range-glyphs.fab (canonical · operator-group)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/operatores/range-glyphs.fab&quot;]</li></ul></div></footer></div></body></html>

@@ -27,24 +27,24 @@
 # EXPECTED OUTPUT:
 #   Access granted when intravit and licet are both verum.
 
-incipit {
+main {
     # logged in
-    fixum _ intravit ← verum
+    const _ intravit ← true
     # has permission
-    fixum _ licet ← verum
+    const _ licet ← true
 
-    si intravit {
+    if intravit {
         # Inner branch: permission check after login succeeds
-        si licet {
-            nota &quot;Access granted&quot;
+        if licet {
+            print &quot;Access granted&quot;
         }
-        secus {
-            nota &quot;Permission denied&quot;
+        else {
+            print &quot;Permission denied&quot;
         }
     }
-    secus {
+    else {
         # outer else: not logged in
-        nota &quot;Please log in&quot;
+        print &quot;Please log in&quot;
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Access granted
 </code></pre><h3 id="radixcorpussisifab-canonical-keyword">radix/corpus/si/si.fab (canonical · keyword)<a class="anchor" href="#radixcorpussisifab-canonical-keyword">#</a></h3><p>Starts a conditional branch that runs when its condition is true.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
@@ -73,54 +73,54 @@ incipit {
 # EXPECTED OUTPUT:
 #   x maior quam 5, Adult, Can vote (si.expected).
 
-incipit {
+main {
     # Simple truthy branch — only the first condition matches
-    fixum _ x ← 10
+    const _ x ← 10
 
-    si x &gt; 5 {
-        nota &quot;x maior quam 5&quot;
+    if x &gt; 5 {
+        print &quot;x maior quam 5&quot;
     }
 
-    si x &gt; 20 {
+    if x &gt; 20 {
         # skipped: 10 ≯ 20
-        nota &quot;x maior quam 20&quot;
+        print &quot;x maior quam 20&quot;
     }
 
     # Block body: multiple statements run together when condition holds
-    fixum _ aetas ← 25
+    const _ aetas ← 25
 
-    si aetas ≥ 18 {
-        nota &quot;Adult&quot;
-        nota &quot;Can vote&quot;
+    if aetas ≥ 18 {
+        print &quot;Adult&quot;
+        print &quot;Can vote&quot;
     }
 }
 
-proba &quot;si runs its body on a verum condition&quot; {
-    fixum _ x ← 10
-    varia bivalens maior ← falsum
-    si x &gt; 5 {
-        maior ← verum
+test &quot;si runs its body on a verum condition&quot; {
+    const _ x ← 10
+    var bool maior ← false
+    if x &gt; 5 {
+        maior ← true
     }
-    adfirma maior
+    assert maior
 }
 
-proba &quot;si skips its body on a falsum condition&quot; {
-    fixum _ x ← 10
-    varia bivalens maior ← falsum
-    si x &gt; 20 {
-        maior ← verum
+test &quot;si skips its body on a falsum condition&quot; {
+    const _ x ← 10
+    var bool maior ← false
+    if x &gt; 20 {
+        maior ← true
     }
-    adfirma non maior
+    assert not maior
 }
 
-proba &quot;si block body runs every statement&quot; {
-    fixum _ aetas ← 25
-    varia numerus gradus ← 0
-    si aetas ≥ 18 {
+test &quot;si block body runs every statement&quot; {
+    const _ aetas ← 25
+    var int gradus ← 0
+    if aetas ≥ 18 {
         gradus ← gradus + 1
         gradus ← gradus + 1
     }
-    adfirma gradus ≡ 2
+    assert gradus ≡ 2
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>x maior quam 5
 Adult
 Can vote

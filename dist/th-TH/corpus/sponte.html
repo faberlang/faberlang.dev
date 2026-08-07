@@ -27,15 +27,15 @@
 #   declaration-only optional slots (whitelist: sponte/sponte.fab). Cross-ref: optionalis/optionalis.fab.
 #
 
-functio greet(textus nomen, textus titulus sponte) → textus {
-    redde nomen
+fn greet(string nomen, string titulus optional) → string {
+    return nomen
 }
 
-functio paginate(numerus pagina sponte vel 1) → textus {
-    redde &quot;page&quot;
+fn paginate(int pagina optional coalesce 1) → string {
+    return &quot;page&quot;
 }
 
-genus User {
-    textus name
-    textus email sponte
+class User {
+    string name
+    string email optional
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusspontespontefab-canonical-keyword">radix/corpus/sponte/sponte.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/sponte/sponte.fab&quot;]</li></ul></div></footer></div></body></html>

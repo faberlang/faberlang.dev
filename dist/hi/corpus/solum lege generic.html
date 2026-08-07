@@ -25,17 +25,17 @@
 # prove each accepted target shape independently of the harness working
 # directory.
 
-importa ex &quot;norma:solum&quot; privata solum
+import from &quot;norma:solum&quot; private solum
 
-incipit {
-    fixum textus textPath ← &quot;/tmp/faber-solum-lege-generic.txt&quot;
+main {
+    const string textPath ← &quot;/tmp/faber-solum-lege-generic.txt&quot;
     solum.scribe(textPath, &quot;prima\nsecunda\n&quot;)
 
-    fixum textus body ← solum.lege&lt;textus&gt;(textPath)
-    fixum lista&lt;textus&gt; lineae ← solum.lege&lt;lista&lt;textus&gt;&gt;(textPath)
-    fixum octeti bytes ← solum.lege&lt;octeti&gt;(textPath)
-    nota body
-    nota lineae
-    nota bytes
-    nota &quot;solum lege generic parata&quot;
+    const string body ← solum.lege&lt;string&gt;(textPath)
+    const list&lt;string&gt; lineae ← solum.lege&lt;list&lt;string&gt;&gt;(textPath)
+    const bytes bytes ← solum.lege&lt;bytes&gt;(textPath)
+    print body
+    print lineae
+    print bytes
+    print &quot;solum lege generic parata&quot;
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusadsolum-lege-genericfab-canonical-concept">radix/corpus/ad/solum-lege-generic.fab (canonical · concept)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">स्रोत</span><ul><li>[&quot;radix/corpus/ad/solum-lege-generic.fab&quot;]</li></ul></div></footer></div></body></html>

@@ -23,19 +23,19 @@
 # EXPECTED OUTPUT:
 #   none — stdout not pinned for this exemplum.
 
-incipit {
-    fixum _ condicio ← &quot;agens&quot;
-    fixum _ aetas ← 21
+main {
+    const _ condicio ← &quot;agens&quot;
+    const _ aetas ← 21
 
     # Basic inter with textus lista
-    si condicio inter [&quot;pendens&quot;, &quot;agens&quot;, &quot;pausa&quot;] {
-        nota &quot;condicio valida&quot;
+    if condicio between [&quot;pendens&quot;, &quot;agens&quot;, &quot;pausa&quot;] {
+        print &quot;condicio valida&quot;
     }
 
     # inter with numeric lista
-    si aetas inter [18, 21, 65] {
-        nota &quot;aetas insignis&quot;
+    if aetas between [18, 21, 65] {
+        print &quot;aetas insignis&quot;
     }
 
-    nota &quot;exempla inter&quot;
+    print &quot;exempla inter&quot;
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusinterinterfab-canonical-keyword">radix/corpus/inter/inter.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">स्रोत</span><ul><li>[&quot;radix/corpus/inter/inter.fab&quot;]</li></ul></div></footer></div></body></html>

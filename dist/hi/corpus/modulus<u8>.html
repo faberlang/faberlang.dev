@@ -20,38 +20,38 @@
 #   multiplication, negation, bitwise operations, and shifts use u8 wrapping.
 #   Division and remainder by zero fail.
 
-incipit {
-    varia modulus&lt;u8&gt; max ← 255
-    fixum modulus&lt;u8&gt; one ← 1
-    varia modulus&lt;u8&gt; zero ← 0
-    fixum numerus&lt;u8&gt; converted ← one ↦ numerus&lt;u8&gt;
+main {
+    var uint&lt;u8&gt; max ← 255
+    const uint&lt;u8&gt; one ← 1
+    var uint&lt;u8&gt; zero ← 0
+    const int&lt;u8&gt; converted ← one ↦ int&lt;u8&gt;
 
-    nota max + one
-    nota zero - one
-    nota max * 2
-    nota -one
-    nota ¬zero
-    nota one ⇐ 8
-    nota max ⇒ 8
-    nota max &gt; zero
+    print max + one
+    print zero - one
+    print max * 2
+    print -one
+    print ¬zero
+    print one ⇐ 8
+    print max ⇒ 8
+    print max &gt; zero
 
     max ⊕
     zero ⊖
-    nota max
-    nota zero
+    print max
+    print zero
 
-    fixum modulus&lt;u8&gt; methodSum ← max.addita(one)
-    fixum modulus&lt;u8&gt; methodShift ← max.sinistrata(8)
-    varia modulus&lt;u8&gt; methodAcc ← 0
+    const uint&lt;u8&gt; methodSum ← max.addita(one)
+    const uint&lt;u8&gt; methodShift ← max.sinistrata(8)
+    var uint&lt;u8&gt; methodAcc ← 0
     methodAcc.adde(one)
     methodAcc.sinistra(8)
-    nota converted
-    nota methodSum
-    nota methodShift
-    nota methodAcc
+    print converted
+    print methodSum
+    print methodShift
+    print methodAcc
 
-    fixum lista&lt;modulus&lt;u8&gt;&gt; words ← [one, max]
-    nota words.accipe(1) vel (0 ∷ modulus&lt;u8&gt;)
+    const list&lt;uint&lt;u8&gt;&gt; words ← [one, max]
+    print words.accipe(1) coalesce (0 ∷ uint&lt;u8&gt;)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
 255
 254

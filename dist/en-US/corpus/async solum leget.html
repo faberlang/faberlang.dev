@@ -22,12 +22,12 @@
 # declares the wrapper with compatibility `@ futura`; callers consume it through
 # the explicit morphology forms such as `figendum`.
 
-importa ex &quot;norma:solum&quot; privata solum
+import from &quot;norma:solum&quot; private solum
 
-incipiet {
-    fixum textus textPath ← &quot;/tmp/faber-async-solum-leget.txt&quot;
+async_main {
+    const string textPath ← &quot;/tmp/faber-async-solum-leget.txt&quot;
     solum.scribe(textPath, &quot;async solum\n&quot;)
 
-    figendum textus body ← solum.leget&lt;textus&gt;(textPath)
-    adfirma body ≡ &quot;async solum\n&quot;
+    await_const string body ← solum.leget&lt;string&gt;(textPath)
+    assert body ≡ &quot;async solum\n&quot;
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusadasync-solum-legetfab-canonical-concept">radix/corpus/ad/async-solum-leget.fab (canonical · concept)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/ad/async-solum-leget.fab&quot;]</li></ul></div></footer></div></body></html>

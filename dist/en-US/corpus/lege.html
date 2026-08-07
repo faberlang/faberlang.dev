@@ -8,7 +8,7 @@
 #   • the `↦ regex` conversion — compiling a textus pattern into a regex value
 #
 # Common mistakes:
-#   • Not checking est nihil before using the value — lege may return nihil at end of input.
+#   • Not checking is null before using the value — read may return null at end of input.
 #
 # See also: lineam, scribe
 # =============================================================================
@@ -16,7 +16,7 @@
 # lege and regex conversio — I/O read and compiled pattern expressions
 #
 # fixum _ pattern ← &quot;\d+&quot; ↦ regex   -- compiled regex from textus
-# fixum _ line ← lege                  -- stdin line read
+# fixum _ input ← lege                  -- stdin line read
 #
 # GRAMMAR:
 #   conversio :← stringLit '↦' 'regex'
@@ -28,10 +28,10 @@
 # BACKEND: Rust/Go/roundtrip e2e whitelist — lege not yet lowered for Rust/Go
 # (whitelist: lege/lege.fab).
 
-incipit {
-    fixum _ pattern ← &quot;(?g)\d+&quot; ↦ regex
-    nota pattern
+main {
+    const _ pattern ← &quot;(?g)\d+&quot; ↦ regex
+    print pattern
 
-    fixum _ line ← lege
-    nota line
+    const _ input ← read
+    print input
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuslegelegefab-canonical-keyword">radix/corpus/lege/lege.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/lege/lege.fab&quot;]</li></ul></div></footer></div></body></html>

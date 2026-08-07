@@ -26,20 +26,20 @@
 # EXPECTED OUTPUT:
 #   Lupa latrat
 
-genus Animal {
-    textus nomen
+class Animal {
+    string nomen
 }
 
 # Canis inherits Animal's structure
-genus Canis sub Animal {
-    textus nomen
+class Canis extends Animal {
+    string nomen
 
-    functio clama() → textus {
-        redde ego.nomen + &quot; latrat&quot;
+    fn clama() → string {
+        return self.nomen + &quot; latrat&quot;
     }
 }
 
-incipit {
-    fixum _ canis ← Canis { nomen = &quot;Lupa&quot; }
-    nota canis.clama()
+main {
+    const _ canis ← Canis { nomen = &quot;Lupa&quot; }
+    print canis.clama()
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpussubsubfab-canonical-keyword">radix/corpus/sub/sub.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/sub/sub.fab&quot;]</li></ul></div></footer></div></body></html>

@@ -26,26 +26,26 @@
 # EXPECTED OUTPUT:
 #   nota.expected — greeting, variable, formatted strings, sum, coordinates.
 
-incipit {
+main {
     # Simple string output
-    nota &quot;Salve, Munde!&quot;
+    print &quot;Salve, Munde!&quot;
 
     # Variable output
-    fixum _ nomen ← &quot;Marcus&quot;
-    nota nomen
+    const _ nomen ← &quot;Marcus&quot;
+    print nomen
 
     # Multiple arguments
-    fixum _ aetas ← 30
-    nota &quot;nomen: §&quot;(nomen)
-    nota &quot;aetas: §&quot;(aetas)
+    const _ aetas ← 30
+    print &quot;nomen: §&quot;(nomen)
+    print &quot;aetas: §&quot;(aetas)
 
     # Expressions
-    fixum _ x ← 10
-    fixum _ y ← 20
-    nota &quot;summa: §&quot;(x + y)
+    const _ x ← 10
+    const _ y ← 20
+    print &quot;summa: §&quot;(x + y)
 
     # Multiple values in one statement
-    nota &quot;coordinata: § §&quot;(x, y)
+    print &quot;coordinata: § §&quot;(x, y)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Munde!
 Marcus
 nomen: Marcus

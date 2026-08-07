@@ -27,15 +27,15 @@
 # EXPECTED OUTPUT:
 #   Rank-0 tensor longitudo after round-trip identity call.
 
-functio identity(tensor&lt;fractus&lt;f32&gt;, []&gt; value) → tensor&lt;fractus&lt;f32&gt;, []&gt; {
-    redde value
+fn identity(tensor&lt;float&lt;f32&gt;, []&gt; value) → tensor&lt;float&lt;f32&gt;, []&gt; {
+    return value
 }
 
-incipit {
-    fixum tensor&lt;fractus&lt;f32&gt;, []&gt; empty ← vacua
-    fixum tensor&lt;fractus&lt;f32&gt;, []&gt; roundtrip ← identity(empty)
+main {
+    const tensor&lt;float&lt;f32&gt;, []&gt; empty ← vacua
+    const tensor&lt;float&lt;f32&gt;, []&gt; roundtrip ← identity(empty)
 
-    nota roundtrip.longitudo()
+    print roundtrip.longitudo()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
 </code></pre><h3 id="radixcorpustensorarithmetic-rejectfab-supporting-reject">radix/corpus/tensor/arithmetic-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpustensorarithmetic-rejectfab-supporting-reject">#</a></h3><p>Tensor arithmetic rejects non-numeric elements and mixed numeric widths.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"># =============================================================================
 # tensor — Tensor arithmetic rejects non-numeric elements and mixed numeric widths.
@@ -64,14 +64,14 @@ incipit {
 # This exemplum intentionally fails to compile; it is registered in the
 # per-backend EXPECTED_FAILURES lists.
 
-incipit {
-    fixum tensor&lt;textus, [2]&gt; words_a ← vacua
-    fixum tensor&lt;textus, [2]&gt; words_b ← vacua
-    fixum tensor&lt;textus, [2]&gt; words_sum ← words_a.addita(words_b)
-    nota words_sum.longitudo()
+main {
+    const tensor&lt;string, [2]&gt; words_a ← vacua
+    const tensor&lt;string, [2]&gt; words_b ← vacua
+    const tensor&lt;string, [2]&gt; words_sum ← words_a.addita(words_b)
+    print words_sum.longitudo()
 
-    fixum tensor&lt;numerus&lt;i32&gt;, [2]&gt; i32_a ← vacua
-    fixum tensor&lt;numerus&lt;i64&gt;, [2]&gt; i64_b ← vacua
-    fixum tensor&lt;numerus&lt;i32&gt;, [2]&gt; mixed ← i32_a.addita(i64_b)
-    nota mixed.longitudo()
+    const tensor&lt;int&lt;i32&gt;, [2]&gt; i32_a ← vacua
+    const tensor&lt;int&lt;i64&gt;, [2]&gt; i64_b ← vacua
+    const tensor&lt;int&lt;i32&gt;, [2]&gt; mixed ← i32_a.addita(i64_b)
+    print mixed.longitudo()
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpustensordeclfab-canonical-type">radix/corpus/tensor/decl.fab (canonical · type)</a></li><li class="toc-3"><a href="#radixcorpustensorarithmetic-rejectfab-supporting-reject">radix/corpus/tensor/arithmetic-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">來源</span><ul><li>[&quot;radix/corpus/tensor/decl.fab&quot;]</li></ul></div></footer></div></body></html>

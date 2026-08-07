@@ -27,48 +27,48 @@
 # EXPECTED OUTPUT:
 #   elige.expected
 
-incipit {
+main {
     # Text matching
-    fixum _ condicio ← &quot;agens&quot;
+    const _ condicio ← &quot;agens&quot;
 
-    elige condicio {
-        casu &quot;pendens&quot; {
-            nota &quot;exspectat...&quot;
+    switch condicio {
+        case &quot;pendens&quot; {
+            print &quot;exspectat...&quot;
         }
-        casu &quot;agens&quot; {
-            nota &quot;currit&quot;
+        case &quot;agens&quot; {
+            print &quot;currit&quot;
         }
-        casu &quot;perfectum&quot; {
-            nota &quot;perfectum&quot;
+        case &quot;perfectum&quot; {
+            print &quot;perfectum&quot;
         }
     }
 
     # Numerus matching
-    fixum _ codex ← 200
+    const _ codex ← 200
 
-    elige codex {
-        casu 200 {
-            nota &quot;Recte&quot;
+    switch codex {
+        case 200 {
+            print &quot;Recte&quot;
         }
-        casu 404 {
-            nota &quot;non inventum&quot;
+        case 404 {
+            print &quot;non inventum&quot;
         }
-        casu 500 {
-            nota &quot;error ministri&quot;
+        case 500 {
+            print &quot;error ministri&quot;
         }
     }
 
     # Multiple statements per case
-    fixum _ modus ← &quot;opera&quot;
+    const _ modus ← &quot;opera&quot;
 
-    elige modus {
-        casu &quot;labor&quot; {
-            nota &quot;modus laboris&quot;
-            nota &quot;verba multa&quot;
+    switch modus {
+        case &quot;labor&quot; {
+            print &quot;modus laboris&quot;
+            print &quot;verba multa&quot;
         }
-        casu &quot;opera&quot; {
-            nota &quot;modus operis&quot;
-            nota &quot;opera parata&quot;
+        case &quot;opera&quot; {
+            print &quot;modus operis&quot;
+            print &quot;opera parata&quot;
         }
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>currit

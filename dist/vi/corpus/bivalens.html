@@ -24,25 +24,25 @@
 # BACKEND:
 #   Cross-ref vacuum/vacuum.fab for void returns; numerus/fractus/textus intrinseca files.
 
-functio ping() → vacuum {
-    nota &quot;primitiva smoke&quot;
+fn ping() → void {
+    print &quot;primitiva smoke&quot;
 }
 
-functio describe(ignotum value) → textus {
-    si value est nihil { redde &quot;nihil est&quot; }
-    redde &quot;aliud est&quot;
+fn describe(unknown value) → string {
+    if value is null { return &quot;nihil est&quot; }
+    return &quot;aliud est&quot;
 }
 
-functio describe_boolean(bivalens value) → textus {
-    si value est verum { redde &quot;verum est&quot; }
-    redde &quot;aliud est&quot;
+fn describe_boolean(bool value) → string {
+    if value is true { return &quot;verum est&quot; }
+    return &quot;aliud est&quot;
 }
 
-incipit {
+main {
     ping()
-    nota describe(nihil)
-    nota describe_boolean(verum)
-    nota describe(42)
+    print describe(null)
+    print describe_boolean(true)
+    print describe(42)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>primitiva smoke
 nihil est
 verum est

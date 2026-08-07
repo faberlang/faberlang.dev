@@ -19,35 +19,35 @@
 # `octeti` composes as a list of numeric byte values; it must not lossy-decode
 # bytes as text.
 
-genus Punctum {
-    numerus x
-    numerus y
+class Punctum {
+    int x
+    int y
 }
 
-incipit {
-    fixum numerus n ← 42
-    fixum valor scalar ← n ↦ valor
-    nota scalar
+main {
+    const int n ← 42
+    const value scalar ← n ↦ value
+    print scalar
 
-    fixum octeti bytes ← |de ad|
-    fixum valor boxedBytes ← bytes ↦ valor
-    nota boxedBytes
+    const bytes bytes ← |de ad|
+    const value boxedBytes ← bytes ↦ value
+    print boxedBytes
 
-    fixum lista&lt;numerus&gt; xs ← [1, 2]
-    fixum valor boxedList ← xs ↦ valor
-    nota boxedList
+    const list&lt;int&gt; xs ← [1, 2]
+    const value boxedList ← xs ↦ value
+    print boxedList
 
-    fixum tabula&lt;textus, numerus&gt; scores ← { &quot;alpha&quot;: 10 }
-    fixum valor boxedMap ← scores ↦ valor
-    nota boxedMap
+    const map&lt;string, int&gt; scores ← { &quot;alpha&quot;: 10 }
+    const value boxedMap ← scores ↦ value
+    print boxedMap
 
-    fixum Punctum pt ← Punctum { x = 3, y = 4 }
-    fixum valor boxedGenus ← pt ↦ valor
-    nota boxedGenus
+    const Punctum pt ← Punctum { x = 3, y = 4 }
+    const value boxedGenus ← pt ↦ value
+    print boxedGenus
 
-    fixum tensor&lt;numerus, [2]&gt; grid ← [5, 6] ↦ tensor&lt;numerus, [2]&gt;
-    fixum valor boxedTensor ← grid ↦ valor
-    nota boxedTensor
+    const tensor&lt;int, [2]&gt; grid ← [5, 6] ↦ tensor&lt;int, [2]&gt;
+    const value boxedTensor ← grid ↦ value
+    print boxedTensor
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>42
 [222, 173]
 [1, 2]
@@ -74,36 +74,36 @@ incipit {
 # defaultable fields zero-initialize; missing mandatory fields fail at runtime
 # (recoverable via `⇥`). Extra JSON keys are ignored.
 
-genus Persona {
-    textus nomen
-    numerus aetas sponte
-    textus regio = &quot;Roma&quot;
-    instans born
+class Persona {
+    string nomen
+    int aetas optional
+    string regio = &quot;Roma&quot;
+    instant born
 }
 
-incipit {
-    fixum valor payload ← {
+main {
+    const value payload ← {
         &quot;nomen&quot;: &quot;Marcus&quot;,
         &quot;born&quot;: &quot;1979-05-27T07:32:00Z&quot;,
         &quot;extra&quot;: &quot;ignored&quot;
-    } ↦ valor
-    fixum Persona good ← payload ↦ Persona
-    adfirma good.nomen ≡ &quot;Marcus&quot;
-    adfirma good.aetas ≡ nihil
-    adfirma good.regio ≡ &quot;Roma&quot;
+    } ↦ value
+    const Persona good ← payload ↦ Persona
+    assert good.nomen ≡ &quot;Marcus&quot;
+    assert good.aetas ≡ null
+    assert good.regio ≡ &quot;Roma&quot;
 
-    fixum valor stale ← { &quot;nomen&quot;: &quot;Livia&quot; } ↦ valor
-    fixum Persona recovered ← stale ↦ Persona ⇥ good
-    adfirma recovered.nomen ≡ &quot;Marcus&quot;
+    const value stale ← { &quot;nomen&quot;: &quot;Livia&quot; } ↦ value
+    const Persona recovered ← stale ↦ Persona ⇥ good
+    assert recovered.nomen ≡ &quot;Marcus&quot;
 
-    fixum valor boxed ← recovered ↦ valor
-    fixum Persona roundtrip ← boxed ↦ Persona
-    adfirma roundtrip.nomen ≡ &quot;Marcus&quot;
-    adfirma roundtrip.regio ≡ &quot;Roma&quot;
+    const value boxed ← recovered ↦ value
+    const Persona roundtrip ← boxed ↦ Persona
+    assert roundtrip.nomen ≡ &quot;Marcus&quot;
+    assert roundtrip.regio ≡ &quot;Roma&quot;
 
-    nota roundtrip.nomen
-    nota roundtrip.regio
-    nota roundtrip.born ↦ textus
+    print roundtrip.nomen
+    print roundtrip.regio
+    print roundtrip.born ↦ string
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Marcus
 Roma
 1979-05-27T07:32:00Z
@@ -131,47 +131,47 @@ Roma
 # provenance stays on `valor ↦ instans` (see conversio/instans.fab). `⇥`
 # recovers on variant mismatch.
 
-incipit {
-    fixum valor asInt ← 42
-    fixum numerus count ← asInt ↦ numerus
-    adfirma count ≡ 42
+main {
+    const value asInt ← 42
+    const int count ← asInt ↦ int
+    assert count ≡ 42
 
-    fixum valor asFloat ← 3.5
-    fixum fractus ratio ← asFloat ↦ fractus
-    adfirma ratio ≡ 3.5
+    const value asFloat ← 3.5
+    const float ratio ← asFloat ↦ float
+    assert ratio ≡ 3.5
 
-    fixum valor intForFloat ← 7
-    fixum fractus widened ← intForFloat ↦ fractus
-    adfirma widened ≡ 7.0
+    const value intForFloat ← 7
+    const float widened ← intForFloat ↦ float
+    assert widened ≡ 7.0
 
-    fixum valor asBool ← verum
-    fixum bivalens flag ← asBool ↦ bivalens
-    adfirma flag ≡ verum
+    const value asBool ← true
+    const bool flag ← asBool ↦ bool
+    assert flag ≡ true
 
-    fixum valor asText ← &quot;salve&quot;
-    fixum textus greeting ← asText ↦ textus
-    adfirma greeting ≡ &quot;salve&quot;
+    const value asText ← &quot;salve&quot;
+    const string greeting ← asText ↦ string
+    assert greeting ≡ &quot;salve&quot;
 
-    fixum valor asWire ← &quot;1979-05-27T07:32:00Z&quot;
-    fixum textus wire ← asWire ↦ textus
-    adfirma wire ≡ &quot;1979-05-27T07:32:00Z&quot;
+    const value asWire ← &quot;1979-05-27T07:32:00Z&quot;
+    const string wire ← asWire ↦ string
+    assert wire ≡ &quot;1979-05-27T07:32:00Z&quot;
 
-    fixum valor asAscii ← 'yes'
-    fixum ascii token ← asAscii ↦ ascii
-    adfirma token ≡ 'yes'
+    const value asAscii ← 'yes'
+    const ascii token ← asAscii ↦ ascii
+    assert token ≡ 'yes'
 
-    fixum valor bad ← &quot;not-a-number&quot;
-    fixum numerus recovered ← bad ↦ numerus ⇥ 0
-    adfirma recovered ≡ 0
+    const value bad ← &quot;not-a-number&quot;
+    const int recovered ← bad ↦ int ⇥ 0
+    assert recovered ≡ 0
 
-    nota count
-    nota ratio
-    nota widened
-    nota flag
-    nota greeting
-    nota wire
-    nota token
-    nota recovered
+    print count
+    print ratio
+    print widened
+    print flag
+    print greeting
+    print wire
+    print token
+    print recovered
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>42
 3.5
 7.0
@@ -200,21 +200,21 @@ yes
 # `lista&lt;T&gt;` first; construction uses shipped `lista ↦ tensor` (`structa`) and
 # flatten via `tensor ↦ lista` (`.planata()`), then `lista ↦ valor` boxing.
 
-incipit {
-    fixum valor arr ← [1, 2, 3, 4]
-    fixum lista&lt;numerus&gt; xs ← arr ↦ lista&lt;numerus&gt;
-    adfirma xs.longitudo() ≡ 4
+main {
+    const value arr ← [1, 2, 3, 4]
+    const list&lt;int&gt; xs ← arr ↦ list&lt;int&gt;
+    assert xs.longitudo() ≡ 4
 
-    fixum tensor&lt;numerus, [4]&gt; grid ← xs ↦ tensor&lt;numerus, [4]&gt;
-    fixum lista&lt;numerus&gt; flat ← grid ↦ lista&lt;numerus&gt;
-    adfirma flat.longitudo() ≡ 4
+    const tensor&lt;int, [4]&gt; grid ← xs ↦ tensor&lt;int, [4]&gt;
+    const list&lt;int&gt; flat ← grid ↦ list&lt;int&gt;
+    assert flat.longitudo() ≡ 4
 
-    fixum valor roundtrip ← flat ↦ valor
-    nota roundtrip
+    const value roundtrip ← flat ↦ value
+    print roundtrip
 
-    fixum valor obj ← { &quot;alpha&quot;: 10, &quot;beta&quot;: 20 } ↦ valor
-    fixum tabula&lt;textus, numerus&gt; scores ← obj ↦ tabula&lt;textus, numerus&gt;
-    nota scores.accipe(&quot;alpha&quot;) vel 0
+    const value obj ← { &quot;alpha&quot;: 10, &quot;beta&quot;: 20 } ↦ value
+    const map&lt;string, int&gt; scores ← obj ↦ map&lt;string, int&gt;
+    print scores.accipe(&quot;alpha&quot;) coalesce 0
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[1, 2, 3, 4]
 10
 </code></pre><h3 id="radixcorpusdestructuraliteralfab-canonical-existing-home">radix/corpus/destructura/literal.fab (canonical · existing-home)<a class="anchor" href="#radixcorpusdestructuraliteralfab-canonical-existing-home">#</a></h3><p>JSON-shaped dynamic value literal for open object-shaped data.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
@@ -252,18 +252,18 @@ incipit {
 # BACKEND: Go emitter does not lower object `sparge` into maps (whitelist:
 # destructura/literal.fab).
 
-incipit {
+main {
     # --- Empty and simple records ---
 
-    fixum _ vacuum ← {}
-    nota vacuum
+    const _ void ← {}
+    print void
 
-    fixum _ punctum ← { &quot;x&quot;: 10, &quot;y&quot;: 20 }
-    nota punctum
+    const _ punctum ← { &quot;x&quot;: 10, &quot;y&quot;: 20 }
+    print punctum
 
     # Text keys and constant values
-    fixum _ forma ← { &quot;clavis&quot;: 42 }
-    nota forma
+    const _ forma ← { &quot;clavis&quot;: 42 }
+    print forma
 
     # NOTE: JSON valor literals accept only constant values (strings, numbers,
     # booleans, null, nested objects/arrays). For variable-backed field
@@ -271,6 +271,6 @@ incipit {
 
     # --- Nested valor ---
 
-    fixum _ nidum ← { &quot;extra&quot;: { &quot;medium&quot;: 1 } }
-    nota nidum
+    const _ nidum ← { &quot;extra&quot;: { &quot;medium&quot;: 1 } }
+    print nidum
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusconversiovalor-boxingfab-canonical-conversio">radix/corpus/conversio/valor-boxing.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusconversiovalor-genusfab-canonical-conversio">radix/corpus/conversio/valor-genus.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusconversiovalor-scalariafab-canonical-conversio">radix/corpus/conversio/valor-scalaria.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusconversiovalor-tensorfab-canonical-conversio">radix/corpus/conversio/valor-tensor.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusdestructuraliteralfab-canonical-existing-home">radix/corpus/destructura/literal.fab (canonical · existing-home)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">المصادر</span><ul><li>[&quot;radix/corpus/conversio/valor-boxing.fab&quot;]</li></ul></div></footer></div></body></html>

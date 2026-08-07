@@ -30,39 +30,39 @@
 #   &quot;caught: empty input&quot;
 #   &quot;caught: negative&quot;
 
-functio validata(textus input) → textus ⇥ textus {
+fn validata(string input) → string ⇥ string {
     # Guard: throw if input is empty
-    iace &quot;empty input&quot; si input.longitudo() ≡ 0
+    throw &quot;empty input&quot; if input.longitudo() ≡ 0
 
-    redde &quot;valid: §&quot;(input)
+    return &quot;valid: §&quot;(input)
 }
 
-incipit {
+main {
     # Happy path — guard not triggered
-    fac {
-        fixum textus a ← validata(&quot;hello&quot;)
-        nota &quot;ok: §&quot;(a)
+    do {
+        const string a ← validata(&quot;hello&quot;)
+        print &quot;ok: §&quot;(a)
     }
-    cape err {
-        nota &quot;unexpected: §&quot;(err)
+    catch err {
+        print &quot;unexpected: §&quot;(err)
     }
 
     # Empty input — iace si guard triggers
-    fac {
-        fixum textus b ← validata(&quot;&quot;)
-        nota &quot;should not reach&quot;
+    do {
+        const string b ← validata(&quot;&quot;)
+        print &quot;should not reach&quot;
     }
-    cape err {
-        nota &quot;caught: §&quot;(err)
+    catch err {
+        print &quot;caught: §&quot;(err)
     }
 
     # iace with si on same line
-    fac {
-        iace &quot;force throw&quot; si verum
-        nota &quot;should not reach&quot;
+    do {
+        throw &quot;force throw&quot; if true
+        print &quot;should not reach&quot;
     }
-    cape err {
-        nota &quot;caught: §&quot;(err)
+    catch err {
+        print &quot;caught: §&quot;(err)
     }
 }</code></pre><h3 id="radixcorpusiaceiacefab-canonical-keyword">radix/corpus/iace/iace.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiaceiacefab-canonical-keyword">#</a></h3><p>Throws a recoverable error.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
 # iace — Throws a recoverable error
@@ -94,34 +94,34 @@ incipit {
 # BACKEND:
 #   Rust/Go lowering does not emit iace/cape yet — compile-only smoke.
 
-incipit {
+main {
     # Bare iace with textus payload
-    fac {
-        iace &quot;Something went wrong&quot;
+    do {
+        throw &quot;Something went wrong&quot;
     }
-    cape err {
-        nota &quot;Caught:&quot;, err
+    catch err {
+        print &quot;Caught:&quot;, err
     }
 
     # iace with interpolated message
-    fixum _ code ← 404
-    fac {
-        iace &quot;Error code: §&quot;(code)
+    const _ code ← 404
+    do {
+        throw &quot;Error code: §&quot;(code)
     }
-    cape err {
-        nota &quot;Caught:&quot;, err
+    catch err {
+        print &quot;Caught:&quot;, err
     }
 
     # Conditional iace inside fac — validation guard
-    fixum _ value ← -5
-    fac {
-        si value &lt; 0 {
-            iace &quot;Value must be non-negative&quot;
+    const _ value ← -5
+    do {
+        if value &lt; 0 {
+            throw &quot;Value must be non-negative&quot;
         }
-        nota &quot;Value is valid&quot;
+        print &quot;Value is valid&quot;
     }
-    cape err {
-        nota &quot;Validation failed:&quot;, err
+    catch err {
+        print &quot;Validation failed:&quot;, err
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Caught: Something went wrong
 Caught: Error code: 404

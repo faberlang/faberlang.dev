@@ -21,11 +21,11 @@
 # Application lane (`faber check` / `faber build` / Rust emit). Default
 # `faber run` / script stepper do not yet lower explicit call-site type args.
 
-functio identitas&lt;T&gt;(T x) → T {
-    redde x
+fn identitas&lt;T&gt;(T x) → T {
+    return x
 }
 
-incipit {
-    nota identitas&lt;textus&gt;(&quot;creata&quot;)
+main {
+    print identitas&lt;string&gt;(&quot;creata&quot;)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>creata
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusfunctiogeneric-call-type-argsfab-canonical-concept">radix/corpus/functio/generic-call-type-args.fab (canonical · concept)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">來源</span><ul><li>[&quot;radix/corpus/functio/generic-call-type-args.fab&quot;]</li></ul></div></footer></div></body></html>

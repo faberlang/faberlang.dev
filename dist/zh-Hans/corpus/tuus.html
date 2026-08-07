@@ -17,10 +17,10 @@
 
 # sermo.tuus&lt;T&gt;() — typed inbound frame stream
 
-incipit {
-    fixum _ s ← ad 'runtime:echo' (&quot;salve&quot;)
+main {
+    const _ s ← call 'runtime:echo' (&quot;salve&quot;)
 
-    itera ex s.tuus&lt;textus&gt;().cursor() fixum frame {
-        adfirma frame.data ≡ &quot;salve&quot;
+    for from s.tuus&lt;string&gt;().cursor() const frame {
+        assert frame.data ≡ &quot;salve&quot;
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code></code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusadsermo-tuusfab-canonical-method">radix/corpus/ad/sermo-tuus.fab (canonical · method)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">来源</span><ul><li>[&quot;radix/corpus/ad/sermo-tuus.fab&quot;]</li></ul></div></footer></div></body></html>

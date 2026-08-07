@@ -21,28 +21,28 @@
 #   Scalar stdout smoke (see body).
 #
 
-incipit {
-    fixum _ flag ← falsum
-    fixum _ negated ← non flag
-    nota negated
+main {
+    const _ flag ← false
+    const _ negated ← not flag
+    print negated
 }
 
-proba &quot;non negates falsum&quot; {
-    fixum _ flag ← falsum
-    fixum _ negated ← non flag
-    adfirma negated
+test &quot;non negates falsum&quot; {
+    const _ flag ← false
+    const _ negated ← not flag
+    assert negated
 }
 
-proba &quot;non negates verum&quot; {
-    fixum _ flag ← verum
-    fixum _ negated ← non flag
-    adfirma negated ≡ falsum
+test &quot;non negates verum&quot; {
+    const _ flag ← true
+    const _ negated ← not flag
+    assert negated ≡ false
 }
 
-proba &quot;non applied twice returns the original&quot; {
-    fixum _ flag ← falsum
-    fixum _ negated ← non flag
-    fixum _ bis ← non negated
-    adfirma bis ≡ falsum
+test &quot;non applied twice returns the original&quot; {
+    const _ flag ← false
+    const _ negated ← not flag
+    const _ bis ← not negated
+    assert bis ≡ false
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>verum
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusnonnonfab-canonical-keyword">radix/corpus/non/non.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">स्रोत</span><ul><li>[&quot;radix/corpus/non/non.fab&quot;]</li></ul></div></footer></div></body></html>

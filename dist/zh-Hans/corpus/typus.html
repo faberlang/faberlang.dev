@@ -28,33 +28,33 @@
 
 # --- Primitive type aliases ---
 
-typus Signum = numerus
-typus Cognomen = textus
-typus Viget = bivalens
+type Signum = int
+type Cognomen = string
+type Viget = bool
 
 # --- Generic type aliases ---
 
-typus Nomina = lista&lt;textus&gt;
-typus Puncta = lista&lt;numerus&gt;
-typus Index = tabula&lt;textus, numerus&gt;
+type Nomina = list&lt;string&gt;
+type Puncta = list&lt;int&gt;
+type Index = map&lt;string, int&gt;
 
 # Nullable type alias (canonical T ∪ nihil form)
-typus NomenOptivum = textus ∪ nihil
+type NomenOptivum = string ∪ null
 
-incipit {
+main {
     # Using primitive aliases
-    fixum Signum signum ← 42
-    fixum Cognomen cognomen ← &quot;Marcus&quot;
-    fixum Viget viget ← verum
+    const Signum signum ← 42
+    const Cognomen cognomen ← &quot;Marcus&quot;
+    const Viget viget ← true
 
-    nota signum
-    nota cognomen
-    nota viget
+    print signum
+    print cognomen
+    print viget
 
     # Using generic aliases
-    fixum Nomina sodales ← [&quot;Gaius&quot;, &quot;Lucius&quot;, &quot;Titus&quot;]
-    nota sodales
+    const Nomina sodales ← [&quot;Gaius&quot;, &quot;Lucius&quot;, &quot;Titus&quot;]
+    print sodales
 
-    fixum Puncta puncta ← [100, 95, 87]
-    nota puncta
+    const Puncta puncta ← [100, 95, 87]
+    print puncta
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpustypustypusfab-canonical-keyword">radix/corpus/typus/typus.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">来源</span><ul><li>[&quot;radix/corpus/typus/typus.fab&quot;]</li></ul></div></footer></div></body></html>

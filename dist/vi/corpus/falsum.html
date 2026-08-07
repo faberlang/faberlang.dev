@@ -22,19 +22,19 @@
 #   Scalar stdout smoke (see body).
 #
 
-incipit {
-    fixum _ inactive ← falsum
-    nota inactive
+main {
+    const _ inactive ← false
+    print inactive
 }
 
-proba &quot;falsum is the false literal&quot; {
-    fixum _ inactive ← falsum
-    adfirma inactive ≡ falsum
-    adfirma non inactive
+test &quot;falsum is the false literal&quot; {
+    const _ inactive ← false
+    assert inactive ≡ false
+    assert not inactive
 }
 
-proba &quot;falsum contrasts with verum&quot; {
-    adfirma falsum ≠ verum
-    adfirma falsum ≡ falsum
+test &quot;falsum contrasts with verum&quot; {
+    assert false ≠ true
+    assert false ≡ false
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>falsum
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusfalsumfalsumfab-canonical-keyword">radix/corpus/falsum/falsum.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[&quot;radix/corpus/falsum/falsum.fab&quot;]</li></ul></div></footer></div></body></html>

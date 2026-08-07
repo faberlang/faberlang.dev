@@ -22,13 +22,13 @@
 # EXPECTED OUTPUT:
 #   Salve, Salve, Mundus!
 
-incipit {
-    fixum _ greeting ← &quot;Salve&quot;
-    nota greeting
+main {
+    const _ greeting ← &quot;Salve&quot;
+    print greeting
 
-    fixum _ nomen ← &quot;Mundus&quot;
-    fixum _ message ← &quot;Salve, §!&quot;(nomen)
-    nota message
+    const _ nomen ← &quot;Mundus&quot;
+    const _ message ← &quot;Salve, §!&quot;(nomen)
+    print message
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve
 Salve, Mundus!
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusliteraliatextusfab-canonical-existing-home">radix/corpus/literalia/textus.fab (canonical · existing-home)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">來源</span><ul><li>[&quot;radix/corpus/literalia/textus.fab&quot;]</li></ul></div></footer></div></body></html>

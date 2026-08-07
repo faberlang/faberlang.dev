@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:337c4744282d7e63cabf3af08ce573f182fd56c23654e5b5c74bc114f6d5a3db"
+prose_hash = "sha256:95643573fea51a9e9f05368f409071a2148f9f29afe2e37f325936f256a1dc3f"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "af760125175cb468031862356add1be93c2ad8fb"
+source_commit = "aa9f21b3198e2707dcd3dd8dd583a7944c3c2c1b"
 source_locale = "en-US"
 +++
 
@@ -50,23 +50,23 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 
 | 目标 | 可支持 | 可分析 | % |
 |---|---|---|---|
-| rust | 277 | 279 | 99% |
-| go | 261 | 279 | 94% |
-| ts | 273 | 279 | 98% |
-| faber | 279 | 279 | 100% |
+| rust | 278 | 280 | 99% |
+| go | 262 | 280 | 94% |
+| ts | 274 | 280 | 98% |
+| faber | 280 | 280 | 100% |
 
 **系统通道（MIR → 设备/IR 产物）**
 
 | 目标 | 可支持 | 可分析 | % |
 |---|---|---|---|
-| llvm-text | 262 | 265 | 99% |
-| wasm-text | 243 | 265 | 92% |
-| wasm | 243 | 265 | 92% |
-| metal-text | 6 | 265 | 2% |
-| wgsl-text | 6 | 265 | 2% |
-| sexp-struct | 209 | 265 | 79% |
-| sexp | 209 | 265 | 79% |
-| scena | 224 | 265 | 85% |
+| llvm-text | 277 | 280 | 99% |
+| wasm-text | 257 | 280 | 92% |
+| wasm | 257 | 280 | 92% |
+| metal-text | 6 | 280 | 2% |
+| wgsl-text | 6 | 280 | 2% |
+| sexp-struct | 222 | 280 | 79% |
+| sexp | 222 | 280 | 79% |
+| scena | 238 | 280 | 85% |
 
 ## 关键字 — 应用通道
 
@@ -261,7 +261,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `adfirma` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ante` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `atomic` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
-| `argumenta` | — | — | — | — | — | — | — | — |
+| `argumenta` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `bivalens` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `cape` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `casu` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -269,14 +269,14 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `ceteri` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ceterum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `clausura` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `cli` | — | — | — | — | — | — | — | — |
+| `cli` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `copia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `cura` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `curata` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `cursor` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `custodi` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `de` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `descriptio` | — | — | — | — | — | — | — | — |
+| `descriptio` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `discerne` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `discretio` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `dum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -285,7 +285,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `errata` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ |
 | `ex` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `exitus` | — | — | — | — | — | — | — | — |
+| `exitus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fac` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `falsum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fient` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -312,8 +312,8 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `incipit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `inter` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `intra` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `itera` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ◐ |
+| `itera` | ✓ | ◐ | ◐ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `lege` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `lista` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
@@ -327,8 +327,8 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `non` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `omitte` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `omnia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `operandus` | — | — | — | — | — | — | — | — |
-| `optio` | — | — | — | — | — | — | — | — |
+| `operandus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `optio` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `optiones` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `ordo` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `octeti` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -365,13 +365,13 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `sub` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `tacet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `tacebit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `tabula` | ✓ | ◐ | ◐ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `tabula` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `temporis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `tensor` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ◐ |
 | `textus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `typus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `ubique` | — | — | — | — | — | — | — | — |
+| `ubique` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `usque` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ut` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |

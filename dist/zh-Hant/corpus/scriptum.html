@@ -26,21 +26,21 @@
 # EXPECTED OUTPUT:
 #   Salve greeting, persona notice, and computed summa string.
 
-incipit {
-    fixum _ nomen ← &quot;Marcus&quot;
-    fixum _ aetas ← 30
+main {
+    const _ nomen ← &quot;Marcus&quot;
+    const _ aetas ← 30
 
     # One slot
-    fixum _ salutatio ← &quot;Salve, §!&quot;(nomen)
-    nota salutatio
+    const _ salutatio ← &quot;Salve, §!&quot;(nomen)
+    print salutatio
 
     # Multiple slots
-    fixum _ notitia ← &quot;§ habet annos §&quot;(nomen, aetas)
-    nota notitia
+    const _ notitia ← &quot;§ habet annos §&quot;(nomen, aetas)
+    print notitia
 
     # With an expression
-    fixum _ summa ← &quot;10 + 20 ← §&quot;(10 + 20)
-    nota summa
+    const _ summa ← &quot;10 + 20 ← §&quot;(10 + 20)
+    print summa
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Marcus!
 Marcus habet annos 30
 10 + 20 ← 30

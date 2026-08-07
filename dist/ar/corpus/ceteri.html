@@ -25,18 +25,18 @@
 # EXPECTED OUTPUT:
 #   none
 
-functio summa(ceteri lista&lt;numerus&gt; numeri) → numerus {
-    varia _ total ← 0
+fn summa(rest list&lt;int&gt; numeri) → int {
+    var _ total ← 0
 
-    itera ex numeri fixum n {
+    for from numeri const n {
         total ← total + n
     }
 
-    redde total
+    return total
 }
 
-incipit {
+main {
     # ceteri receives the whole lista
-    nota summa([1, 2, 3, 4])
+    print summa([1, 2, 3, 4])
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>10
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuscetericeterifab-canonical-keyword">radix/corpus/ceteri/ceteri.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">المصادر</span><ul><li>[&quot;radix/corpus/ceteri/ceteri.fab&quot;]</li></ul></div></footer></div></body></html>

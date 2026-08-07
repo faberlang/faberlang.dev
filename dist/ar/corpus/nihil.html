@@ -26,18 +26,18 @@
 # BACKEND:
 #   Cross-ref nihil/nihil.fab.
 
-functio maybe() → numerus ∪ nihil {
-    redde 42
+fn maybe() → int ∪ null {
+    return 42
 }
 
-incipit {
-    fixum numerus ∪ nihil absent ← nihil
-    nota absent
+main {
+    const int ∪ null absent ← null
+    print absent
 
-    fixum _ nihilne ← absent est nihil
-    nota nihilne
+    const _ nihilne ← absent is null
+    print nihilne
 
-    nota maybe() non est nihil
+    print maybe() not is null
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>nihil
 verum
 verum
@@ -63,8 +63,8 @@ verum
 #   Scalar stdout smoke (see body).
 #
 
-incipit {
-    fixum _ nothing ← nihil
-    nota nothing
+main {
+    const _ nothing ← null
+    print nothing
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>nihil
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusliteralianihilfab-canonical-keyword">radix/corpus/literalia/nihil.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusnihilnihilfab-canonical-keyword">radix/corpus/nihil/nihil.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">المصادر</span><ul><li>[&quot;radix/corpus/literalia/nihil.fab&quot;]</li></ul></div></footer></div></body></html>

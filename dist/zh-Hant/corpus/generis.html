@@ -26,13 +26,13 @@
 # Instance field `nomen` is per-object; `generis ruber` would be accessed on the
 # genus type in full programs (here only instance fields are read).
 
-genus Color {
-    generis textus ruber = &quot;#ff0000&quot;
-    textus nomen = &quot;ruber&quot;
+class Color {
+    static string ruber = &quot;#ff0000&quot;
+    string nomen = &quot;ruber&quot;
 }
 
-incipit {
-    fixum _ color ← Color {}
-    nota color.nomen
+main {
+    const _ color ← Color {}
+    print color.nomen
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>ruber
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusgenerisgenerisfab-canonical-keyword">radix/corpus/generis/generis.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">來源</span><ul><li>[&quot;radix/corpus/generis/generis.fab&quot;]</li></ul></div></footer></div></body></html>

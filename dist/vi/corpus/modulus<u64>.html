@@ -20,48 +20,48 @@
 #   multiplication, negation, bitwise operations, and shifts use u64 wrapping.
 #   Division and remainder by zero fail.
 
-incipit {
-    varia modulus&lt;u64&gt; max ← 18446744073709551615
-    fixum modulus&lt;u64&gt; one ← 1
-    varia modulus&lt;u64&gt; zero ← 0
-    fixum numerus&lt;u64&gt; converted ← one ↦ numerus&lt;u64&gt;
+main {
+    var uint&lt;u64&gt; max ← 18446744073709551615
+    const uint&lt;u64&gt; one ← 1
+    var uint&lt;u64&gt; zero ← 0
+    const int&lt;u64&gt; converted ← one ↦ int&lt;u64&gt;
 
-    nota max + one
-    nota zero - one
-    nota max * 2
-    nota -one
-    nota ¬zero
-    nota one ⇐ 64
-    nota max ⇒ 64
-    nota max &gt; zero
+    print max + one
+    print zero - one
+    print max * 2
+    print -one
+    print ¬zero
+    print one ⇐ 64
+    print max ⇒ 64
+    print max &gt; zero
 
     # Carrier-mix equality: conversions and arithmetic results compare by
     # value against literals (review regression).
-    fixum modulus&lt;u64&gt; uno ← 1 ↦ modulus&lt;u64&gt;
-    nota one ≡ uno
-    nota one ≡ one + 0
+    const uint&lt;u64&gt; uno ← 1 ↦ uint&lt;u64&gt;
+    print one ≡ uno
+    print one ≡ one + 0
 
     max ⊕
     zero ⊖
-    nota max
-    nota zero
+    print max
+    print zero
 
-    fixum modulus&lt;u64&gt; methodSum ← max.addita(one)
-    fixum modulus&lt;u64&gt; methodShift ← max.sinistrata(64)
-    varia modulus&lt;u64&gt; methodAcc ← 0
+    const uint&lt;u64&gt; methodSum ← max.addita(one)
+    const uint&lt;u64&gt; methodShift ← max.sinistrata(64)
+    var uint&lt;u64&gt; methodAcc ← 0
     methodAcc.adde(one)
     methodAcc.sinistra(64)
-    nota converted
-    nota methodSum
-    nota methodShift
-    nota methodAcc
+    print converted
+    print methodSum
+    print methodShift
+    print methodAcc
 
-    fixum lista&lt;modulus&lt;u64&gt;&gt; words ← [one, max]
-    nota words.accipe(1) vel (0 ∷ modulus&lt;u64&gt;)
+    const list&lt;uint&lt;u64&gt;&gt; words ← [one, max]
+    print words.accipe(1) coalesce (0 ∷ uint&lt;u64&gt;)
 
-    varia lista&lt;modulus&lt;u64&gt;&gt; sorted ← [18446744073709551615, 3, 10, 2]
+    var list&lt;uint&lt;u64&gt;&gt; sorted ← [18446744073709551615, 3, 10, 2]
     sorted.ordina()
-    nota sorted
+    print sorted
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
 18446744073709551615
 18446744073709551614

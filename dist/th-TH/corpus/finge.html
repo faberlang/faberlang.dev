@@ -25,40 +25,40 @@
 
 # --- Discretio types to construct ---
 
-discretio Condicio {
+union Condicio {
     Agens,
     Iners,
     Pendens
 }
 
-discretio Nuntius {
-    Pulsus { numerus x, numerus y },
-    Clavis { textus clavis },
+union Nuntius {
+    Pulsus { int x, int y },
+    Clavis { string clavis },
     Finis
 }
 
-discretio Responsum {
-    Bonum { textus nuntius },
-    Malum { textus causa }
+union Responsum {
+    Bonum { string nuntius },
+    Malum { string causa }
 }
 
-incipit {
+main {
     # --- Unit variants with explicit type ---
 
-    fixum Condicio s1 ← finge Agens ∷ Condicio
-    fixum Condicio s2 ← finge Pendens ∷ Condicio
+    const Condicio s1 ← variant Agens ∷ Condicio
+    const Condicio s2 ← variant Pendens ∷ Condicio
 
     # --- Payload variants with explicit type ---
 
-    fixum Nuntius e1 ← finge Pulsus { x = 100, y = 200 } ∷ Nuntius
-    fixum Nuntius e2 ← finge Clavis { clavis = &quot;intro&quot; } ∷ Nuntius
-    fixum Nuntius e3 ← finge Finis ∷ Nuntius
+    const Nuntius e1 ← variant Pulsus { x = 100, y = 200 } ∷ Nuntius
+    const Nuntius e2 ← variant Clavis { clavis = &quot;intro&quot; } ∷ Nuntius
+    const Nuntius e3 ← variant Finis ∷ Nuntius
 
     # --- Responsum variants ---
 
-    fixum Responsum r1 ← finge Bonum { nuntius = &quot;opus perfectum&quot; } ∷ Responsum
-    fixum Responsum r2 ← finge Malum { causa = &quot;opus fractum&quot; } ∷ Responsum
+    const Responsum r1 ← variant Bonum { nuntius = &quot;opus perfectum&quot; } ∷ Responsum
+    const Responsum r2 ← variant Malum { causa = &quot;opus fractum&quot; } ∷ Responsum
 
-    nota &quot;finge expressiones paratae&quot;
+    print &quot;finge expressiones paratae&quot;
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>finge expressiones paratae
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusfingefingefab-canonical-keyword">radix/corpus/finge/finge.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/finge/finge.fab&quot;]</li></ul></div></footer></div></body></html>

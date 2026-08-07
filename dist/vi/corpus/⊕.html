@@ -21,22 +21,22 @@
 # Postfix forms are statements, not expressions. They cannot appear inside
 # larger expressions. Operand must be a mutable numerus place.
 
-incipit {
-    varia numerus count ← 0
+main {
+    var int count ← 0
     count ⊕
     # 1
-    nota count
+    print count
 
     count ⊖
     # 0
-    nota count
+    print count
 
-    varia numerus exclusivus ← 0
-    itera ab 0‥3 fixum _ {
+    var int exclusivus ← 0
+    for range 0‥3 const _ {
         exclusivus ⊕
     }
     # 3
-    nota exclusivus
+    print exclusivus
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1
 0
 3

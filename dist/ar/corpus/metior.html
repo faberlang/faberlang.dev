@@ -28,18 +28,18 @@
 # BACKEND: Go e2e whitelist — lista intrinsic methods not yet lowered for Go
 # (whitelist: lista/methodi-accessus.fab).
 
-incipit {
-    fixum _ res ← [1, 2, 3, 4, 5] ∷ lista&lt;numerus&gt;
+main {
+    const _ res ← [1, 2, 3, 4, 5] ∷ list&lt;int&gt;
 
-    fixum _ primus ← res.primus()
-    fixum _ ultimus ← res.ultimus()
-    fixum _ tertius ← res.accipe(2)
-    fixum _ longitudo ← res.longitudo()
-    fixum _ vacuaest ← res.vacua()
-    fixum _ habettres ← res.continet(3)
+    const _ primus ← res.primus()
+    const _ ultimus ← res.ultimus()
+    const _ tertius ← res.accipe(2)
+    const _ longitudo ← res.longitudo()
+    const _ vacuaest ← res.vacua()
+    const _ habettres ← res.continet(3)
 
-    nota primus, ultimus, tertius
-    nota longitudo, vacuaest, habettres
+    print primus, ultimus, tertius
+    print longitudo, vacuaest, habettres
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1 5 3
 5 falsum verum
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuslistamethodi-accessusfab-canonical-existing-home">radix/corpus/lista/methodi-accessus.fab (canonical · existing-home)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">المصادر</span><ul><li>[&quot;radix/corpus/lista/methodi-accessus.fab&quot;]</li></ul></div></footer></div></body></html>

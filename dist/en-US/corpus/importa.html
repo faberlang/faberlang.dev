@@ -18,9 +18,9 @@
 # The canonical record spells the source field and lets visibility/name defaults
 # materialize the same ImportDecl as `importa ex &quot;norma:chorda&quot;`.
 
-importa { ex = &quot;norma:chorda&quot; }
+import { ex = &quot;norma:chorda&quot; }
 
-nota &quot;importa-braced&quot;</code></pre><h3 id="radixcorpusimportaimportafab-canonical-keyword">radix/corpus/importa/importa.fab (canonical · keyword)<a class="anchor" href="#radixcorpusimportaimportafab-canonical-keyword">#</a></h3><p>Imports names from another module or package source.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
+print &quot;importa-braced&quot;</code></pre><h3 id="radixcorpusimportaimportafab-canonical-keyword">radix/corpus/importa/importa.fab (canonical · keyword)<a class="anchor" href="#radixcorpusimportaimportafab-canonical-keyword">#</a></h3><p>Imports names from another module or package source.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
 # importa — Imports names from another module or package source
 # =============================================================================
 #
@@ -50,9 +50,9 @@ nota &quot;importa-braced&quot;</code></pre><h3 id="radixcorpusimportaimportafab
 #
 # BACKEND: Rust/Go e2e whitelist — single-file compile cannot resolve sibling.
 
-importa ex &quot;./auxilium&quot; privata auxilium
+import from &quot;./auxilium&quot; private auxilium
 
-incipit {
-    nota auxilium.saluta(&quot;Marcus&quot;)
+main {
+    print auxilium.saluta(&quot;Marcus&quot;)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Marcus!
 </code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusimportadefault-bracedfab-canonical-keyword">radix/corpus/importa/default-braced.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusimportaimportafab-canonical-keyword">radix/corpus/importa/importa.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/importa/default-braced.fab&quot;]</li></ul></div></footer></div></body></html>

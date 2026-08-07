@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:eebadcc542a999375187fc309cecd025bb50c4867a1605d4f5ee36fced306db8"
+prose_hash = "sha256:b4acb716972a1db49f76f8cb13b6fddd4508136cff822ff11523d654ee82c479"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "af760125175cb468031862356add1be93c2ad8fb"
+source_commit = "aa9f21b3198e2707dcd3dd8dd583a7944c3c2c1b"
 source_locale = "en-US"
 +++
 
@@ -55,23 +55,23 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 
 | đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
-| rust | 277 | 279 | 99% |
-| go | 261 | 279 | 94% |
-| ts | 273 | 279 | 98% |
-| faber | 279 | 279 | 100% |
+| rust | 278 | 280 | 99% |
+| go | 262 | 280 | 94% |
+| ts | 274 | 280 | 98% |
+| faber | 280 | 280 | 100% |
 
 **Tuyến hệ thống (MIR → tạo phẩm thiết bị/IR)**
 
 | đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
-| llvm-text | 262 | 265 | 99% |
-| wasm-text | 243 | 265 | 92% |
-| wasm | 243 | 265 | 92% |
-| metal-text | 6 | 265 | 2% |
-| wgsl-text | 6 | 265 | 2% |
-| sexp-struct | 209 | 265 | 79% |
-| sexp | 209 | 265 | 79% |
-| scena | 224 | 265 | 85% |
+| llvm-text | 277 | 280 | 99% |
+| wasm-text | 257 | 280 | 92% |
+| wasm | 257 | 280 | 92% |
+| metal-text | 6 | 280 | 2% |
+| wgsl-text | 6 | 280 | 2% |
+| sexp-struct | 222 | 280 | 79% |
+| sexp | 222 | 280 | 79% |
+| scena | 238 | 280 | 85% |
 
 ## Từ khóa — tuyến ứng dụng
 
@@ -266,7 +266,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `adfirma` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ante` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `atomic` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
-| `argumenta` | — | — | — | — | — | — | — | — |
+| `argumenta` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `bivalens` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `cape` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `casu` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -274,14 +274,14 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `ceteri` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ceterum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `clausura` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `cli` | — | — | — | — | — | — | — | — |
+| `cli` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `copia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `cura` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `curata` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `cursor` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `custodi` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `de` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `descriptio` | — | — | — | — | — | — | — | — |
+| `descriptio` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `discerne` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `discretio` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `dum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -290,7 +290,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `errata` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ |
 | `ex` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `exitus` | — | — | — | — | — | — | — | — |
+| `exitus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fac` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `falsum` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `fient` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -317,8 +317,8 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `incipit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `inter` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `intra` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ✓ |
-| `itera` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
+| `instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ | ◐ |
+| `itera` | ✓ | ◐ | ◐ | ✕ | ✕ | ◐ | ◐ | ✓ |
 | `lege` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `lista` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ✓ |
@@ -332,8 +332,8 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `non` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `omitte` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `omnia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `operandus` | — | — | — | — | — | — | — | — |
-| `optio` | — | — | — | — | — | — | — | — |
+| `operandus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| `optio` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `optiones` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `ordo` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `octeti` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
@@ -370,13 +370,13 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `sub` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `tacet` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `tacebit` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `tabula` | ✓ | ◐ | ◐ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `tabula` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `tag` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `temporis` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `tensor` | ✓ | ✓ | ✓ | ✕ | ✕ | ◐ | ◐ | ◐ |
 | `textus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `typus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| `ubique` | — | — | — | — | — | — | — | — |
+| `ubique` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `usque` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `ut` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `varia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |

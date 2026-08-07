@@ -27,24 +27,24 @@
 # BACKEND:
 #   Rust/Go: fac/cape not yet emitted — compile-only smoke.
 
-incipit {
-    fac {
-        nota &quot;Block executed successfully&quot;
+main {
+    do {
+        print &quot;Block executed successfully&quot;
     }
-    cape err {
-        nota &quot;Caught error: §&quot;(err.nuntius)
+    catch err {
+        print &quot;Caught error: §&quot;(err.nuntius)
     }
 
     # iace on second attempt; cape recovers and prints err.nuntius
-    varia numerus attempts ← 0
-    fac {
+    var int attempts ← 0
+    do {
         attempts ← attempts + 1
-        nota &quot;Attempt §&quot;(attempts)
-        si attempts ≡ 2 {
-            iace &quot;Simulated failure&quot;
+        print &quot;Attempt §&quot;(attempts)
+        if attempts ≡ 2 {
+            throw &quot;Simulated failure&quot;
         }
     }
-    cape err {
-        nota &quot;Failed on attempt §: §&quot;(attempts, err.nuntius)
+    catch err {
+        print &quot;Failed on attempt §: §&quot;(attempts, err.nuntius)
     }
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusfacfac-capefab-canonical-keyword">radix/corpus/fac/fac-cape.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">来源</span><ul><li>[&quot;radix/corpus/fac/fac-cape.fab&quot;]</li></ul></div></footer></div></body></html>

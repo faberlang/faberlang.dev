@@ -27,13 +27,13 @@
 #   Cross-ref: si/secus.fab.
 #
 
-incipit {
-    fixum _ hour ← 23
-    si hour &lt; 12 {
-        nota &quot;morning&quot;
+main {
+    const _ hour ← 23
+    if hour &lt; 12 {
+        print &quot;morning&quot;
     }
-    secus {
-        nota &quot;afternoon-or-later&quot;
+    else {
+        print &quot;afternoon-or-later&quot;
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>afternoon-or-later
 </code></pre><h3 id="radixcorpussisecusfab-canonical-keyword">radix/corpus/si/secus.fab (canonical · keyword)<a class="anchor" href="#radixcorpussisecusfab-canonical-keyword">#</a></h3><p>Runs the fallback branch when preceding conditional branches do not match.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
@@ -68,48 +68,48 @@ incipit {
 # EXPECTED OUTPUT:
 #   Grade and weather messages for sample scores and temperatures.
 
-incipit {
+main {
     # Two-way branch: exactly one arm runs
-    fixum _ puncta ← 85
+    const _ puncta ← 85
 
-    si puncta ≥ 90 {
-        nota &quot;gradus: A&quot;
+    if puncta ≥ 90 {
+        print &quot;gradus: A&quot;
     }
-    secus {
+    else {
         # 85 &lt; 90 → this arm
-        nota &quot;gradus: B aut minor&quot;
+        print &quot;gradus: B aut minor&quot;
     }
 
     # Each branch may contain several statements
-    fixum _ calor ← 22
+    const _ calor ← 22
 
-    si calor &gt; 30 {
-        nota &quot;calidum&quot;
-        nota &quot;aquam bibe&quot;
+    if calor &gt; 30 {
+        print &quot;calidum&quot;
+        print &quot;aquam bibe&quot;
     }
-    secus {
+    else {
         # 22 ≤ 30
-        nota &quot;commodum&quot;
-        nota &quot;caelum mite&quot;
+        print &quot;commodum&quot;
+        print &quot;caelum mite&quot;
     }
 
     # sin chains additional tests; first match wins (75 → C)
-    fixum _ gradus ← 75
+    const _ gradus ← 75
 
-    si gradus ≥ 90 {
-        nota &quot;A - optimum&quot;
+    if gradus ≥ 90 {
+        print &quot;A - optimum&quot;
     }
-    sin gradus ≥ 80 {
-        nota &quot;B - bonum&quot;
+    elif gradus ≥ 80 {
+        print &quot;B - bonum&quot;
     }
-    sin gradus ≥ 70 {
-        nota &quot;C - satis&quot;
+    elif gradus ≥ 70 {
+        print &quot;C - satis&quot;
     }
-    sin gradus ≥ 60 {
-        nota &quot;D - transit&quot;
+    elif gradus ≥ 60 {
+        print &quot;D - transit&quot;
     }
-    secus {
-        nota &quot;F - deficit&quot;
+    else {
+        print &quot;F - deficit&quot;
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>gradus: B aut minor
 commodum

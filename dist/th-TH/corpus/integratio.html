@@ -28,14 +28,14 @@
 # EXPECTED OUTPUT:
 #   minimum-smoke.expected — par 42 when n is even.
 
-functio par(numerus n) → bivalens {
-    redde n % 2 ≡ 0
+fn par(int n) → bool {
+    return n % 2 ≡ 0
 }
 
-incipit {
-    fixum _ n ← 42
-    si par(n) {
-        nota &quot;par §&quot;(n)
+main {
+    const _ n ← 42
+    if par(n) {
+        print &quot;par §&quot;(n)
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>par 42
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusintegratiominimum-smokefab-canonical-concept">radix/corpus/integratio/minimum-smoke.fab (canonical · concept)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/integratio/minimum-smoke.fab&quot;]</li></ul></div></footer></div></body></html>

@@ -27,34 +27,34 @@
 # EXPECTED OUTPUT:
 #   0, 1, 11, &quot;Salve, Mundus!&quot;, 30, &quot;Vale&quot;
 
-incipit {
+main {
     # --- Mutable bindings with varia ---
 
-    varia _ computus ← 0
-    nota computus
+    var _ computus ← 0
+    print computus
 
     computus ← 1
-    nota computus
+    print computus
 
     computus ← computus + 10
-    nota computus
+    print computus
 
     # --- Immutable bindings: fixum _ and sit ---
 
-    fixum _ salutatio ← &quot;Salve, Mundus!&quot;
-    nota salutatio
+    const _ salutatio ← &quot;Salve, Mundus!&quot;
+    print salutatio
 
     # sit compresses repeated fixum _ when chaining inferred locals
-    sit x ← 10
-    sit y ← 20
-    sit summa ← x + y
-    nota summa
+    let x ← 10
+    let y ← 20
+    let summa ← x + y
+    print summa
 
     # --- Reassign only varia bindings ---
 
-    varia _ nuntius ← &quot;Salve&quot;
+    var _ nuntius ← &quot;Salve&quot;
     nuntius ← &quot;Vale&quot;
-    nota nuntius
+    print nuntius
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
 1
 11

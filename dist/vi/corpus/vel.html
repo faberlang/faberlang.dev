@@ -26,65 +26,65 @@
 # EXPECTED OUTPUT:
 #   ignotus, Marcus, 0, false, defectum, inventum (vel.expected).
 
-incipit {
+main {
     # Basic nihil coalescing
-    fixum textus ∪ nihil nomen ← nihil
-    sit ostensum ← nomen vel &quot;ignotus&quot;
+    const string ∪ null nomen ← null
+    let ostensum ← nomen coalesce &quot;ignotus&quot;
     # &quot;ignotus&quot;
-    nota ostensum
+    print ostensum
 
     # With present value
-    fixum textus ∪ nihil adest ← &quot;Marcus&quot;
-    sit ostensum2 ← adest vel &quot;ignotus&quot;
+    const string ∪ null adest ← &quot;Marcus&quot;
+    let ostensum2 ← adest coalesce &quot;ignotus&quot;
     # &quot;Marcus&quot;
-    nota ostensum2
+    print ostensum2
 
     # Difference from logical aut: vel only checks nihil
-    sit nihilum ← 0
-    sit vacuus ← &quot;&quot;
-    sit falsus2 ← falsum
+    let nihilum ← 0
+    let vacuus ← &quot;&quot;
+    let falsus2 ← false
 
     # vel preserves non-nihil values
     # 0
-    nota nihilum vel 999
+    print nihilum coalesce 999
     # &quot;&quot;
-    nota vacuus vel &quot;defectum&quot;
+    print vacuus coalesce &quot;defectum&quot;
     # falsum
-    nota falsus2 vel verum
+    print falsus2 coalesce true
 
-    sit alter ← nomen vel &quot;defectum&quot;
-    nota alter
+    let alter ← nomen coalesce &quot;defectum&quot;
+    print alter
 
     # Chaining
-    fixum textus ∪ nihil a ← nihil
-    fixum textus ∪ nihil b ← nihil
-    fixum textus ∪ nihil c ← &quot;inventum&quot;
-    sit primum ← a vel b vel c vel &quot;nihil&quot;
+    const string ∪ null a ← null
+    const string ∪ null b ← null
+    const string ∪ null c ← &quot;inventum&quot;
+    let primum ← a coalesce b coalesce c coalesce &quot;nihil&quot;
     # &quot;inventum&quot;
-    nota primum
+    print primum
 }
 
-proba &quot;vel supplies a fallback for nihil&quot; {
-    fixum textus ∪ nihil nomen ← nihil
-    sit ostensum ← nomen vel &quot;ignotus&quot;
-    adfirma ostensum ≡ &quot;ignotus&quot;
+test &quot;vel supplies a fallback for nihil&quot; {
+    const string ∪ null nomen ← null
+    let ostensum ← nomen coalesce &quot;ignotus&quot;
+    assert ostensum ≡ &quot;ignotus&quot;
 }
 
-proba &quot;vel preserves non-nihil values&quot; {
-    sit nihilum ← 0
-    sit vacuus ← &quot;&quot;
-    sit falsus2 ← falsum
-    adfirma (nihilum vel 999) ≡ 0
-    adfirma (vacuus vel &quot;defectum&quot;) ≡ &quot;&quot;
-    adfirma (falsus2 vel verum) ≡ falsum
+test &quot;vel preserves non-nihil values&quot; {
+    let nihilum ← 0
+    let vacuus ← &quot;&quot;
+    let falsus2 ← false
+    assert (nihilum coalesce 999) ≡ 0
+    assert (vacuus coalesce &quot;defectum&quot;) ≡ &quot;&quot;
+    assert (falsus2 coalesce true) ≡ false
 }
 
-proba &quot;vel chains to the first non-nihil value&quot; {
-    fixum textus ∪ nihil a ← nihil
-    fixum textus ∪ nihil b ← nihil
-    fixum textus ∪ nihil c ← &quot;inventum&quot;
-    sit primum ← a vel b vel c vel &quot;nihil&quot;
-    adfirma primum ≡ &quot;inventum&quot;
+test &quot;vel chains to the first non-nihil value&quot; {
+    const string ∪ null a ← null
+    const string ∪ null b ← null
+    const string ∪ null c ← &quot;inventum&quot;
+    let primum ← a coalesce b coalesce c coalesce &quot;nihil&quot;
+    assert primum ≡ &quot;inventum&quot;
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>ignotus
 Marcus
 0

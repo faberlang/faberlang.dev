@@ -31,20 +31,20 @@
 # BACKEND: Wasm tier floor FrontendAnalyzed (method surface not yet Runnable;
 # whitelist: tabula/methodi-accessus.fab).
 
-incipit {
-    varia tabula&lt;textus, numerus&gt; puncta ← vacua
+main {
+    var map&lt;string, int&gt; puncta ← vacua
     puncta.pone(&quot;aelia&quot;, 95)
     puncta.pone(&quot;balbus&quot;, 87)
 
-    fixum _ aelia ← puncta.accipe(&quot;aelia&quot;)
-    fixum _ absens ← puncta.accipe(&quot;carus&quot;)
-    fixum _ carus ← puncta.accipe(&quot;carus&quot;) vel 0
-    fixum _ habetbalbum ← puncta.habet(&quot;balbus&quot;)
-    fixum _ remotus ← puncta.dele(&quot;balbus&quot;)
-    fixum _ longitudo ← puncta.longitudo()
-    fixum _ vacuaest ← puncta.vacua()
+    const _ aelia ← puncta.accipe(&quot;aelia&quot;)
+    const _ absens ← puncta.accipe(&quot;carus&quot;)
+    const _ carus ← puncta.accipe(&quot;carus&quot;) coalesce 0
+    const _ habetbalbum ← puncta.habet(&quot;balbus&quot;)
+    const _ remotus ← puncta.dele(&quot;balbus&quot;)
+    const _ longitudo ← puncta.longitudo()
+    const _ vacuaest ← puncta.vacua()
 
-    nota aelia, absens, carus, habetbalbum, remotus, longitudo, vacuaest
+    print aelia, absens, carus, habetbalbum, remotus, longitudo, vacuaest
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>95 nihil 0 verum verum 1 falsum
 </code></pre><h3 id="radixcorpustabulatabulafab-canonical-keyword">radix/corpus/tabula/tabula.fab (canonical · keyword)<a class="anchor" href="#radixcorpustabulatabulafab-canonical-keyword">#</a></h3><p>Generic key/value map type.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
 # tabula — Generic key/value map type.
@@ -77,16 +77,16 @@ incipit {
 # EXPECTED OUTPUT:
 #   longitudo() plus keyed lookups for alpha/beta/gamma (tabula.expected).
 
-incipit {
-    varia tabula&lt;textus, numerus&gt; puncta ← vacua
+main {
+    var map&lt;string, int&gt; puncta ← vacua
     puncta[&quot;alpha&quot;] ← 1
     puncta[&quot;beta&quot;] ← 2
     puncta[&quot;gamma&quot;] ← 3
 
-    nota puncta.longitudo()
-    nota puncta[&quot;alpha&quot;]
-    nota puncta[&quot;beta&quot;]
-    nota puncta[&quot;gamma&quot;]
+    print puncta.longitudo()
+    print puncta[&quot;alpha&quot;]
+    print puncta[&quot;beta&quot;]
+    print puncta[&quot;gamma&quot;]
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>3
 1
 2

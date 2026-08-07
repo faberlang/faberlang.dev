@@ -26,14 +26,14 @@
 #   Cross-ref: itera/de.fab.
 #
 
-incipit {
-    fixum tabula&lt;textus, numerus&gt; persona ← { &quot;nomen&quot;: 1, &quot;aetas&quot;: 30 }
-    itera de persona fixum clavis {
-        nota clavis
+main {
+    const map&lt;string, int&gt; persona ← { &quot;nomen&quot;: 1, &quot;aetas&quot;: 30 }
+    for ref persona const clavis {
+        print clavis
     }
-    fixum _ numeri ← [10, 20, 30]
-    itera de numeri fixum index {
-        nota index
+    const _ numeri ← [10, 20, 30]
+    for ref numeri const index {
+        print index
     }
 }</code></pre><h3 id="radixcorpusiteradefab-canonical-keyword">radix/corpus/itera/de.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteradefab-canonical-keyword">#</a></h3><p>Introduces borrowed iteration or borrowed parameters.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
 # de — Introduces borrowed iteration or borrowed parameters.
@@ -60,29 +60,29 @@ incipit {
 # EXPECTED OUTPUT:
 #   none — stdout not pinned for this exemplum.
 
-incipit {
+main {
     # Iterate over tabula keys
-    fixum tabula&lt;textus, textus&gt; persona ← { &quot;nomen&quot;: &quot;Marcus&quot;, &quot;urbs&quot;: &quot;Roma&quot; }
+    const map&lt;string, string&gt; persona ← { &quot;nomen&quot;: &quot;Marcus&quot;, &quot;urbs&quot;: &quot;Roma&quot; }
 
-    itera de persona fixum clavis {
-        nota clavis
+    for ref persona const clavis {
+        print clavis
     }
 
     # Access values using the key
-    itera de persona fixum clavis {
-        nota clavis, persona[clavis]
+    for ref persona const clavis {
+        print clavis, persona[clavis]
     }
 
     # Iterate over lista indices
-    fixum _ numeri ← [10, 20, 30]
+    const _ numeri ← [10, 20, 30]
 
-    itera de numeri fixum index {
-        nota &quot;index: § valor: §&quot;(index, numeri[index])
+    for ref numeri const index {
+        print &quot;index: § valor: §&quot;(index, numeri[index])
     }
 
     # With numerus-valued tabula
-    fixum tabula&lt;textus, numerus&gt; forma ← { &quot;alpha&quot;: 1, &quot;beta&quot;: 2 }
-    itera de forma fixum k {
-        nota k
+    const map&lt;string, int&gt; forma ← { &quot;alpha&quot;: 1, &quot;beta&quot;: 2 }
+    for ref forma const k {
+        print k
     }
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusdedefab-canonical-keyword">radix/corpus/de/de.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteradefab-canonical-keyword">radix/corpus/itera/de.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/de/de.fab&quot;]</li></ul></div></footer></div></body></html>

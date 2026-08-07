@@ -35,19 +35,19 @@
 # EXPECTED OUTPUT:
 #   sit.expected
 
-incipit {
-    sit salve ← &quot;Salve&quot;
-    sit nomen ← &quot;Marcus&quot;
-    sit nuntius ← &quot;§, §!&quot;(salve, nomen)
+main {
+    let salve ← &quot;Salve&quot;
+    let nomen ← &quot;Marcus&quot;
+    let nuntius ← &quot;§, §!&quot;(salve, nomen)
 
-    nota nuntius
+    print nuntius
 
-    sit label
+    let label
     label ← &quot;deferred&quot;
-    nota label
+    print label
 
-    fixum _ idem ← nuntius
-    nota idem
+    const _ idem ← nuntius
+    print idem
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Marcus!
 deferred
 Salve, Marcus!

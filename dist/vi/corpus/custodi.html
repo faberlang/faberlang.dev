@@ -24,56 +24,56 @@
 # EXPECTED OUTPUT:
 #   Division, clamping, and range-validation scalar results.
 
-functio divide(numerus a, numerus b) → numerus {
-    custodi {
-        si b ≡ 0 {
-            redde 0
+fn divide(int a, int b) → int {
+    guard {
+        if b ≡ 0 {
+            return 0
         }
     }
 
-    redde a / b
+    return a / b
 }
 
-functio tracta(numerus x) → numerus {
-    custodi {
-        si x &lt; 0 {
-            redde -1
+fn tracta(int x) → int {
+    guard {
+        if x &lt; 0 {
+            return -1
         }
-        si x &gt; 100 {
-            redde -1
+        if x &gt; 100 {
+            return -1
         }
     }
 
     # Main logic, clearly separated from custodi
-    redde x * 2
+    return x * 2
 }
 
-functio stringe(numerus valor, numerus minimum, numerus maximum) → numerus {
-    custodi {
-        si minimum &gt; valor {
-            redde minimum
+fn stringe(int value, int minimum, int maximum) → int {
+    guard {
+        if minimum &gt; value {
+            return minimum
         }
-        si maximum &lt; valor {
-            redde maximum
+        if maximum &lt; value {
+            return maximum
         }
     }
 
-    redde valor
+    return value
 }
 
-incipit {
+main {
     # Guard returns 0 instead of dividing by zero
-    nota divide(10, 2)
-    nota divide(10, 0)
+    print divide(10, 2)
+    print divide(10, 0)
 
     # Out-of-range inputs short-circuit to -1
-    nota tracta(50)
-    nota tracta(-10)
-    nota tracta(150)
+    print tracta(50)
+    print tracta(-10)
+    print tracta(150)
 
-    nota stringe(5, 0, 10)
-    nota stringe(-5, 0, 10)
-    nota stringe(15, 0, 10)
+    print stringe(5, 0, 10)
+    print stringe(-5, 0, 10)
+    print stringe(15, 0, 10)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>5
 0
 100

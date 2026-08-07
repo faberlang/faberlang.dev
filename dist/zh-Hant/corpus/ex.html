@@ -29,67 +29,67 @@
 # EXPECTED OUTPUT:
 #   Element values from inline and bound listas, rest slices, nested rows.
 
-incipit {
+main {
     # --- Basic lista destructuring ---
 
-    fixum _ numeri ← [1, 2, 3]
-    fixum [a, b, c] ← numeri
+    const _ numeri ← [1, 2, 3]
+    const [a, b, c] ← numeri
 
-    nota a
-    nota b
-    nota c
+    print a
+    print b
+    print c
 
     # Destructure inline lista literal
-    fixum [primus, secundus, tertius] ← [10, 20, 30]
+    const [primus, secundus, tertius] ← [10, 20, 30]
 
-    nota primus
-    nota secundus
-    nota tertius
+    print primus
+    print secundus
+    print tertius
 
     # --- Mutable destructuring with varia ---
 
-    fixum _ coordinata ← [100, 200]
-    varia [x, y] ← coordinata
+    const _ coordinata ← [100, 200]
+    var [x, y] ← coordinata
 
-    nota x
-    nota y
+    print x
+    print y
 
     x ← x + 50
     y ← y + 50
 
-    nota x
-    nota y
+    print x
+    print y
 
     # --- Partial destructuring (fewer variables than elements) ---
 
-    fixum _ valores ← [1, 2, 3, 4, 5]
-    fixum [unus, duo] ← valores
+    const _ valores ← [1, 2, 3, 4, 5]
+    const [unus, duo] ← valores
 
-    nota unus
-    nota duo
+    print unus
+    print duo
 
     # --- Rest pattern with ceteri ---
 
-    fixum _ res ← [1, 2, 3, 4, 5]
-    fixum [caput, ceteri cauda] ← res
+    const _ res ← [1, 2, 3, 4, 5]
+    const [caput, rest cauda] ← res
 
-    nota caput
-    nota cauda
+    print caput
+    print cauda
 
     # --- Skip elements with underscore ---
 
-    fixum _ triplex ← [10, 20, 30]
-    fixum [_, medius, _] ← triplex
+    const _ triplex ← [10, 20, 30]
+    const [_, medius, _] ← triplex
 
-    nota medius
+    print medius
 
     # --- Nested listas ---
 
-    fixum _ matrix ← [[1, 2], [3, 4]]
-    fixum [ordo1, ordo2] ← matrix
+    const _ matrix ← [[1, 2], [3, 4]]
+    const [ordo1, ordo2] ← matrix
 
-    nota ordo1
-    nota ordo2
+    print ordo1
+    print ordo2
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1
 2
 3
@@ -142,115 +142,115 @@ incipit {
 # EXPECTED OUTPUT:
 #   Extracted field values, aliased names, mutated varia bindings, rest maps.
 
-genus Persona {
-    textus nomen
-    numerus aetas
-    textus urbs
+class Persona {
+    string nomen
+    int aetas
+    string urbs
 }
 
-genus Civis {
-    textus nomen
-    textus epistula
+class Civis {
+    string nomen
+    string epistula
 }
 
-genus Datum {
-    numerus numerus
-    bivalens activus
+class Datum {
+    int numerus
+    bool activus
 }
 
-genus Forma {
-    textus hospes
-    numerus portus
-    bivalens tutus
+class Forma {
+    string hospes
+    int portus
+    bool tutus
 }
 
-genus Plenus {
-    numerus signum
-    textus nomen
-    textus epistula
-    textus munus
+class Plenus {
+    int signum
+    string nomen
+    string epistula
+    string munus
 }
 
-genus Sodalis {
-    textus nomen
-    bivalens probatus
+class Sodalis {
+    string nomen
+    bool probatus
 }
 
-genus Relatus {
+class Relatus {
     Sodalis civis
 }
 
-genus Responsum {
+class Responsum {
     Relatus datum
 }
 
-genus Vestis {
-    textus modus
-    textus lingua
+class Vestis {
+    string modus
+    string lingua
 }
 
-incipit {
+main {
     # --- Basic field extraction ---
 
-    fixum _ persona ← Persona { nomen = &quot;Marcus&quot;, aetas = 30, urbs = &quot;Roma&quot; }
-    ex persona fixum nomen, aetas
+    const _ persona ← Persona { nomen = &quot;Marcus&quot;, aetas = 30, urbs = &quot;Roma&quot; }
+    from persona const nomen, aetas
 
-    nota nomen
-    nota aetas
+    print nomen
+    print aetas
 
     # --- Extract with alias using 'ut' ---
 
-    fixum _ civis ← Civis { nomen = &quot;Julia&quot;, epistula = &quot;julia@roma.com&quot; }
-    ex civis fixum nomen ut cognomen, epistula ut epistula2
+    const _ civis ← Civis { nomen = &quot;Julia&quot;, epistula = &quot;julia@roma.com&quot; }
+    from civis const nomen as cognomen, epistula as epistula2
 
-    nota cognomen
-    nota epistula2
+    print cognomen
+    print epistula2
 
     # --- Mutable destructuring with varia ---
 
-    fixum _ datum ← Datum { numerus = 100, activus = verum }
-    ex datum varia numerus, activus
+    const _ datum ← Datum { numerus = 100, activus = true }
+    from datum var numerus, activus
 
-    nota numerus
-    nota activus
+    print numerus
+    print activus
 
     numerus ← 200
-    activus ← falsum
+    activus ← false
 
-    nota numerus
-    nota activus
+    print numerus
+    print activus
 
     # --- Mixed alias and regular fields ---
 
-    fixum _ forma ← Forma { hospes = &quot;localis&quot;, portus = 8080, tutus = verum }
-    ex forma fixum hospes, portus ut porta, tutus
+    const _ forma ← Forma { hospes = &quot;localis&quot;, portus = 8080, tutus = true }
+    from forma const hospes, portus as porta, tutus
 
-    nota hospes
-    nota porta
-    nota tutus
+    print hospes
+    print porta
+    print tutus
 
     # --- Rest pattern with ceteri ---
 
-    fixum _ plenus ← Plenus { signum = 1, nomen = &quot;Gaius&quot;, epistula = &quot;g@roma.com&quot;, munus = &quot;admin&quot; }
-    ex plenus fixum signum, ceteri reliqua
+    const _ plenus ← Plenus { signum = 1, nomen = &quot;Gaius&quot;, epistula = &quot;g@roma.com&quot;, munus = &quot;admin&quot; }
+    from plenus const signum, rest reliqua
 
-    nota signum
-    nota reliqua
+    print signum
+    print reliqua
 
     # --- Destructura ex nested path ---
 
-    fixum _ responsum ← Responsum { datum = Relatus { civis = Sodalis { nomen = &quot;Claudia&quot;, probatus = verum } } }
-    ex responsum.datum.civis fixum nomen ut internum, probatus
+    const _ responsum ← Responsum { datum = Relatus { civis = Sodalis { nomen = &quot;Claudia&quot;, probatus = true } } }
+    from responsum.datum.civis const nomen as internum, probatus
 
-    nota internum
-    nota probatus
+    print internum
+    print probatus
 
     # --- Single field extraction ---
 
-    fixum _ vestis ← Vestis { modus = &quot;nigrum&quot;, lingua = &quot;la&quot; }
-    ex vestis fixum modus
+    const _ vestis ← Vestis { modus = &quot;nigrum&quot;, lingua = &quot;la&quot; }
+    from vestis const modus
 
-    nota modus
+    print modus
 }</code></pre><h3 id="radixcorpusexexfab-canonical-keyword">radix/corpus/ex/ex.fab (canonical · keyword)<a class="anchor" href="#radixcorpusexexfab-canonical-keyword">#</a></h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
 # ex — Extracts fields from a value into local bindings.
 # =============================================================================
@@ -277,16 +277,16 @@ incipit {
 #   Cross-ref: destructura/objectum.fab, itera/ex.fab (itera ex mode).
 #
 
-genus Persona {
-    textus nomen
-    numerus aetas
+class Persona {
+    string nomen
+    int aetas
 }
 
-incipit {
-    fixum _ p ← Persona { nomen = &quot;Marcus&quot;, aetas = 30 }
-    ex p fixum nomen, aetas
-    nota nomen
-    nota aetas
+main {
+    const _ p ← Persona { nomen = &quot;Marcus&quot;, aetas = 30 }
+    from p const nomen, aetas
+    print nomen
+    print aetas
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Marcus
 30
 </code></pre><h3 id="radixcorpusiteraexfab-canonical-keyword">radix/corpus/itera/ex.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteraexfab-canonical-keyword">#</a></h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
@@ -313,27 +313,27 @@ incipit {
 # EXPECTED OUTPUT:
 #   ex.expected — numbers, names, and doubled values.
 
-incipit {
+main {
     # Iterate over number lista
-    fixum _ numeri ← [1, 2, 3, 4, 5]
+    const _ numeri ← [1, 2, 3, 4, 5]
 
-    itera ex numeri fixum n {
-        nota n
+    for from numeri const n {
+        print n
     }
 
     # Iterate over textus lista
-    fixum _ nomina ← [&quot;Marcus&quot;, &quot;Julia&quot;, &quot;Claudia&quot;]
+    const _ nomina ← [&quot;Marcus&quot;, &quot;Julia&quot;, &quot;Claudia&quot;]
 
-    itera ex nomina fixum nomen {
-        nota nomen
+    for from nomina const nomen {
+        print nomen
     }
 
     # Transform values
-    fixum _ valores ← [10, 20, 30]
+    const _ valores ← [10, 20, 30]
 
-    itera ex valores fixum v {
-        fixum _ duplex ← v * 2
-        nota duplex
+    for from valores const v {
+        const _ duplex ← v * 2
+        print duplex
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1
 2

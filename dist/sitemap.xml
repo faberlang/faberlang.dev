@@ -67,6 +67,7 @@
   <url><loc>https://faberlang.dev/ar/corpus/category/testing.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/category/transfer.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/category/type.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/category/types.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/cede.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/ceteri.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/ceterum.html</loc></url>
@@ -200,6 +201,7 @@
   <url><loc>https://faberlang.dev/ar/corpus/tensor.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/textus.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/tuus.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/type-hole-union.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/typus.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/ubique.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/unarius.html</loc></url>
@@ -316,6 +318,7 @@
   <url><loc>https://faberlang.dev/en-US/corpus/category/testing.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/category/transfer.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/category/type.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/category/types.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/cede.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/ceteri.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/ceterum.html</loc></url>
@@ -449,6 +452,7 @@
   <url><loc>https://faberlang.dev/en-US/corpus/tensor.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/textus.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/tuus.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/type-hole-union.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/typus.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/ubique.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/unarius.html</loc></url>
@@ -569,6 +573,7 @@
   <url><loc>https://faberlang.dev/hi/corpus/category/testing.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/category/transfer.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/category/type.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/category/types.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/cede.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/ceteri.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/ceterum.html</loc></url>
@@ -702,6 +707,7 @@
   <url><loc>https://faberlang.dev/hi/corpus/tensor.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/textus.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/tuus.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/type-hole-union.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/typus.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/ubique.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/unarius.html</loc></url>
@@ -818,6 +824,7 @@
   <url><loc>https://faberlang.dev/th-TH/corpus/category/testing.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/category/transfer.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/category/type.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/category/types.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/cede.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/ceteri.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/ceterum.html</loc></url>
@@ -951,6 +958,7 @@
   <url><loc>https://faberlang.dev/th-TH/corpus/tensor.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/textus.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/tuus.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/type-hole-union.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/typus.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/ubique.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/unarius.html</loc></url>
@@ -1067,6 +1075,7 @@
   <url><loc>https://faberlang.dev/vi/corpus/category/testing.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/category/transfer.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/category/type.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/category/types.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/cede.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/ceteri.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/ceterum.html</loc></url>
@@ -1200,6 +1209,7 @@
   <url><loc>https://faberlang.dev/vi/corpus/tensor.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/textus.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/tuus.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/type-hole-union.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/typus.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/ubique.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/unarius.html</loc></url>
@@ -1316,6 +1326,7 @@
   <url><loc>https://faberlang.dev/zh-Hans/corpus/category/testing.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/category/transfer.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/category/type.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/category/types.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/cede.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/ceteri.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/ceterum.html</loc></url>
@@ -1449,6 +1460,7 @@
   <url><loc>https://faberlang.dev/zh-Hans/corpus/tensor.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/textus.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/tuus.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/type-hole-union.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/typus.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/ubique.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/unarius.html</loc></url>
@@ -1565,6 +1577,7 @@
   <url><loc>https://faberlang.dev/zh-Hant/corpus/category/testing.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/category/transfer.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/category/type.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/category/types.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/cede.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/ceteri.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/ceterum.html</loc></url>
@@ -1698,6 +1711,7 @@
   <url><loc>https://faberlang.dev/zh-Hant/corpus/tensor.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/textus.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/tuus.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/type-hole-union.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/typus.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/ubique.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/unarius.html</loc></url>

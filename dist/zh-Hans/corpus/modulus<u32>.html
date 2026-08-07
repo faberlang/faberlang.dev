@@ -20,38 +20,38 @@
 #   multiplication, negation, bitwise operations, and shifts use u32 wrapping.
 #   Division and remainder by zero fail.
 
-incipit {
-    varia modulus&lt;u32&gt; max ← 4294967295
-    fixum modulus&lt;u32&gt; one ← 1
-    varia modulus&lt;u32&gt; zero ← 0
-    fixum numerus&lt;u32&gt; converted ← one ↦ numerus&lt;u32&gt;
+main {
+    var uint&lt;u32&gt; max ← 4294967295
+    const uint&lt;u32&gt; one ← 1
+    var uint&lt;u32&gt; zero ← 0
+    const int&lt;u32&gt; converted ← one ↦ int&lt;u32&gt;
 
-    nota max + one
-    nota zero - one
-    nota max * 2
-    nota -one
-    nota ¬zero
-    nota one ⇐ 32
-    nota max ⇒ 32
-    nota max &gt; zero
+    print max + one
+    print zero - one
+    print max * 2
+    print -one
+    print ¬zero
+    print one ⇐ 32
+    print max ⇒ 32
+    print max &gt; zero
 
     max ⊕
     zero ⊖
-    nota max
-    nota zero
+    print max
+    print zero
 
-    fixum modulus&lt;u32&gt; methodSum ← max.addita(one)
-    fixum modulus&lt;u32&gt; methodShift ← max.sinistrata(32)
-    varia modulus&lt;u32&gt; methodAcc ← 0
+    const uint&lt;u32&gt; methodSum ← max.addita(one)
+    const uint&lt;u32&gt; methodShift ← max.sinistrata(32)
+    var uint&lt;u32&gt; methodAcc ← 0
     methodAcc.adde(one)
     methodAcc.sinistra(32)
-    nota converted
-    nota methodSum
-    nota methodShift
-    nota methodAcc
+    print converted
+    print methodSum
+    print methodShift
+    print methodAcc
 
-    fixum lista&lt;modulus&lt;u32&gt;&gt; words ← [one, max]
-    nota words.accipe(1) vel (0 ∷ modulus&lt;u32&gt;)
+    const list&lt;uint&lt;u32&gt;&gt; words ← [one, max]
+    print words.accipe(1) coalesce (0 ∷ uint&lt;u32&gt;)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
 4294967295
 4294967294

@@ -27,17 +27,17 @@
 #   Rust/Go: fac/cape emit gap (whitelist: cape/cape.fab).
 #
 
-incipit {
-    varia numerus attempt ← 0
-    fac {
+main {
+    var int attempt ← 0
+    do {
         attempt ← attempt + 1
-        si attempt &gt; 1 {
-            iace &quot;simulated failure&quot;
+        if attempt &gt; 1 {
+            throw &quot;simulated failure&quot;
         }
-        nota &quot;attempt §&quot;(attempt)
+        print &quot;attempt §&quot;(attempt)
     }
-    cape err {
-        nota &quot;caught&quot;
+    catch err {
+        print &quot;caught&quot;
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>attempt 1
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuscapecapefab-canonical-keyword">radix/corpus/cape/cape.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/cape/cape.fab&quot;]</li></ul></div></footer></div></body></html>

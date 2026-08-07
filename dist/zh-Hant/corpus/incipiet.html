@@ -29,27 +29,27 @@
 #   (synchronous entry).
 
 # Helper async finite function
-functio accipe() fiet → textus {
+fn accipe() async → string {
     # Simulates async finite operation
-    redde &quot;datum paratum&quot;
+    return &quot;datum paratum&quot;
 }
 
-functio metire(textus datum) fiet → numerus {
-    redde datum.longitudo()
+fn metire(string datum) async → int {
+    return datum.longitudo()
 }
 
 # Futura entry point
-incipiet {
-    nota &quot;incipiet initium&quot;
+async_main {
+    print &quot;incipiet initium&quot;
 
     # Await fiet functions with figendum
-    figendum _ datum ← accipe()
-    nota &quot;acceptum: §&quot;(datum)
+    await_const _ datum ← accipe()
+    print &quot;acceptum: §&quot;(datum)
 
-    figendum _ longitudo ← metire(datum)
-    nota &quot;longitudo: §&quot;(longitudo)
+    await_const _ longitudo ← metire(datum)
+    print &quot;longitudo: §&quot;(longitudo)
 
-    nota &quot;opus perfectum&quot;
+    print &quot;opus perfectum&quot;
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>incipiet initium
 acceptum: datum paratum
 longitudo: 13

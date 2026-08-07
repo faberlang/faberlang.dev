@@ -34,47 +34,47 @@
 # EXPECTED OUTPUT:
 #   fixum.expected (Salve, Marcus! / 7 / 30 / 300)
 
-functio scale(bivalens compact, numerus base) → numerus {
-    fixum numerus factor
-    si compact {
+fn scale(bool compact, int base) → int {
+    const int factor
+    if compact {
         factor ← 10
     }
-    secus {
+    else {
         factor ← 100
     }
-    redde base * factor
+    return base * factor
 }
 
-incipit {
-    fixum _ nomen ← &quot;Marcus&quot;
-    fixum _ salve ← &quot;Salve, §!&quot;(nomen)
+main {
+    const _ nomen ← &quot;Marcus&quot;
+    const _ salve ← &quot;Salve, §!&quot;(nomen)
 
-    nota salve
+    print salve
 
-    fixum numerus pending
+    const int pending
     pending ← 7
-    nota pending
+    print pending
 
-    nota scale(verum, 3)
-    nota scale(falsum, 3)
+    print scale(true, 3)
+    print scale(false, 3)
 }
 
-proba &quot;fixum immediate init&quot; {
-    fixum _ nomen ← &quot;Marcus&quot;
-    fixum _ salve ← &quot;Salve, §!&quot;(nomen)
-    adfirma nomen ≡ &quot;Marcus&quot;
-    adfirma salve ≡ &quot;Salve, Marcus!&quot;
+test &quot;fixum immediate init&quot; {
+    const _ nomen ← &quot;Marcus&quot;
+    const _ salve ← &quot;Salve, §!&quot;(nomen)
+    assert nomen ≡ &quot;Marcus&quot;
+    assert salve ≡ &quot;Salve, Marcus!&quot;
 }
 
-proba &quot;fixum deferred init writes once&quot; {
-    fixum numerus pending
+test &quot;fixum deferred init writes once&quot; {
+    const int pending
     pending ← 7
-    adfirma pending ≡ 7
+    assert pending ≡ 7
 }
 
-proba &quot;fixum factor selected per branch&quot; {
-    adfirma scale(verum, 3) ≡ 30
-    adfirma scale(falsum, 3) ≡ 300
+test &quot;fixum factor selected per branch&quot; {
+    assert scale(true, 3) ≡ 30
+    assert scale(false, 3) ≡ 300
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Marcus!
 7
 30

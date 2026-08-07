@@ -24,18 +24,18 @@
 # BACKEND:
 #   Rust: non-null chain lowering gap (whitelist: operatores/nonnull-chain.fab).
 
-genus Persona {
-    textus nomen
-    textus urbs sponte
+class Persona {
+    string nomen
+    string urbs optional
 }
 
-incipit {
-    fixum Persona ∪ nihil p ← Persona { nomen = &quot;Marcus&quot;, urbs = &quot;Roma&quot; }
-    nota p!.nomen
-    nota p!.urbs
+main {
+    const Persona ∪ null p ← Persona { nomen = &quot;Marcus&quot;, urbs = &quot;Roma&quot; }
+    print p!.nomen
+    print p!.urbs
 
-    fixum _ litterae ← [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
-    nota litterae![0]
+    const _ litterae ← [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]
+    print litterae![0]
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Marcus
 Roma
 a

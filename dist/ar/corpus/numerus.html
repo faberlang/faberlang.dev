@@ -26,14 +26,14 @@
 # EXPECTED OUTPUT:
 #   Smoke asserts exit 0 only.
 
-incipit {
-    fixum numerus valor ← -7
-    fixum _ absolutus ← valor.absolutum()
-    fixum _ signum ← valor.signum()
-    fixum _ minor ← valor.minimus(3)
-    fixum _ maior ← valor.maximus(3)
+main {
+    const int value ← -7
+    const _ absolutus ← value.absolutum()
+    const _ signum ← value.signum()
+    const _ minor ← value.minimus(3)
+    const _ maior ← value.maximus(3)
 
-    nota absolutus, signum, minor, maior
+    print absolutus, signum, minor, maior
 }</code></pre><h3 id="radixcorpusoperatoresnumerus-overflowfab-canonical-operator-group">radix/corpus/operatores/numerus-overflow.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusoperatoresnumerus-overflowfab-canonical-operator-group">#</a></h3><p>Checked numerus arithmetic traps instead of wrapping on overflow.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
 # numerus — Checked numerus arithmetic traps instead of wrapping on overflow.
 # =============================================================================
@@ -54,7 +54,7 @@ incipit {
 #   Bare `numerus` is i64. Integer arithmetic traps on overflow; it does not
 #   inherit Rust release wrapping.
 
-incipit {
-    fixum numerus max ← 9223372036854775807
-    nota max + 1
+main {
+    const int max ← 9223372036854775807
+    print max + 1
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusintrinsecanumerus-methodifab-canonical-keyword">radix/corpus/intrinseca/numerus-methodi.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusoperatoresnumerus-overflowfab-canonical-operator-group">radix/corpus/operatores/numerus-overflow.fab (canonical · operator-group)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">المصادر</span><ul><li>[&quot;radix/corpus/intrinseca/numerus-methodi.fab&quot;]</li></ul></div></footer></div></body></html>

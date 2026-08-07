@@ -23,50 +23,50 @@
 #   Rust lowers all three postures (inline `⇥`, propagation, `fac`/`cape`).
 #   Go/TS remain diagnostic-only until their failable stacks mature.
 
-functio epochZero() → instans {
-    redde &quot;1970-01-01T00:00:00Z&quot; ↦ instans
+fn epochZero() → instant {
+    return &quot;1970-01-01T00:00:00Z&quot; ↦ instant
 }
 
-functio parseInstans(valor v) → instans ⇥ textus {
-    redde v ↦ instans
+fn parseInstans(value v) → instant ⇥ string {
+    return v ↦ instant
 }
 
-functio inlineRecovery(valor v) → instans {
-    redde v ↦ instans ⇥ epochZero()
+fn inlineRecovery(value v) → instant {
+    return v ↦ instant ⇥ epochZero()
 }
 
-functio tutum(valor v) → instans {
-    fac {
-        redde parseInstans(v)
+fn tutum(value v) → instant {
+    do {
+        return parseInstans(v)
     }
-    cape err {
-        mone err
-        redde epochZero()
-    }
-}
-
-functio tutumDirect(valor v) → instans {
-    fac {
-        redde v ↦ instans
-    }
-    cape err {
-        mone err
-        redde epochZero()
+    catch err {
+        warn err
+        return epochZero()
     }
 }
 
-incipit {
-    fixum valor good ← &quot;1979-05-27T07:32:00Z&quot;
-    fixum valor bad ← &quot;not-a-datetime&quot;
+fn tutumDirect(value v) → instant {
+    do {
+        return v ↦ instant
+    }
+    catch err {
+        warn err
+        return epochZero()
+    }
+}
 
-    adfirma inlineRecovery(good) ≡ (good ↦ instans)
-    adfirma inlineRecovery(bad) ≡ epochZero()
+main {
+    const value good ← &quot;1979-05-27T07:32:00Z&quot;
+    const value bad ← &quot;not-a-datetime&quot;
 
-    adfirma tutum(good) ≡ (good ↦ instans)
-    adfirma tutum(bad) ≡ epochZero()
+    assert inlineRecovery(good) ≡ (good ↦ instant)
+    assert inlineRecovery(bad) ≡ epochZero()
 
-    adfirma tutumDirect(good) ≡ (good ↦ instans)
-    adfirma tutumDirect(bad) ≡ epochZero()
+    assert tutum(good) ≡ (good ↦ instant)
+    assert tutum(bad) ≡ epochZero()
 
-    nota inlineRecovery(good), tutum(good), tutumDirect(good)
+    assert tutumDirect(good) ≡ (good ↦ instant)
+    assert tutumDirect(bad) ≡ epochZero()
+
+    print inlineRecovery(good), tutum(good), tutumDirect(good)
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusconversiofallibilisfab-canonical-conversio">radix/corpus/conversio/fallibilis.fab (canonical · conversio)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">來源</span><ul><li>[&quot;radix/corpus/conversio/fallibilis.fab&quot;]</li></ul></div></footer></div></body></html>

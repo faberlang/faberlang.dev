@@ -25,27 +25,27 @@
 # EXPECTED OUTPUT:
 #   rota, 16
 
-abstractus genus Figura {
-    textus nomen
+abstract class Figura {
+    string nomen
 
-    functio titulus() → textus {
-        redde &quot;§&quot;(ego.nomen)
+    fn titulus() → string {
+        return &quot;§&quot;(self.nomen)
     }
 }
 
-genus Circulus {
-    textus nomen
-    numerus radius = 1
+class Circulus {
+    string nomen
+    int radius = 1
 
-    functio area() → numerus {
-        redde ego.radius * ego.radius
+    fn area() → int {
+        return self.radius * self.radius
     }
 }
 
-incipit {
-    fixum _ c ← Circulus { nomen = &quot;rota&quot;, radius = 4 }
-    nota c.nomen
-    nota c.area()
+main {
+    const _ c ← Circulus { nomen = &quot;rota&quot;, radius = 4 }
+    print c.nomen
+    print c.area()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>rota
 16
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusabstractusabstractusfab-canonical-keyword">radix/corpus/abstractus/abstractus.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[&quot;radix/corpus/abstractus/abstractus.fab&quot;]</li></ul></div></footer></div></body></html>

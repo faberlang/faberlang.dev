@@ -28,32 +28,32 @@
 # BACKEND:
 #   Siblings radix.fab and bivalens.fab compile-only until Go semantics align.
 
-incipit {
+main {
     # ↦ converts textus → numerus
-    sit n1 ← &quot;42&quot; ↦ numerus
+    let n1 ← &quot;42&quot; ↦ int
     # ⇥ supplies recovery on failure
-    sit n2 ← &quot;invalid&quot; ↦ numerus ⇥ 0
-    sit n3 ← &quot;255&quot; ↦ numerus&lt;i32&gt;
+    let n2 ← &quot;invalid&quot; ↦ int ⇥ 0
+    let n3 ← &quot;255&quot; ↦ int&lt;i32&gt;
 
-    sit f1 ← &quot;3.14159&quot; ↦ fractus
-    sit f2 ← &quot;invalid&quot; ↦ fractus ⇥ 0.0
+    let f1 ← &quot;3.14159&quot; ↦ float
+    let f2 ← &quot;invalid&quot; ↦ float ⇥ 0.0
 
-    sit s1 ← 42 ↦ textus
-    sit s2 ← 3.14 ↦ textus
-    sit s3 ← verum ↦ textus
+    let s1 ← 42 ↦ string
+    let s2 ← 3.14 ↦ string
+    let s3 ← true ↦ string
 
     # chained ↦ left-to-right
-    sit roundtrip ← &quot;42&quot; ↦ numerus ↦ textus
+    let roundtrip ← &quot;42&quot; ↦ int ↦ string
 
-    nota n1
-    nota n2
-    nota n3
-    nota f1
-    nota f2
-    nota s1
-    nota s2
-    nota s3
-    nota roundtrip
+    print n1
+    print n2
+    print n3
+    print f1
+    print f2
+    print s1
+    print s2
+    print s3
+    print roundtrip
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>42
 0
 255

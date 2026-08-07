@@ -25,26 +25,26 @@
 # EXPECTED OUTPUT:
 #   cond verum, finis (tacet.expected).
 
-functio maybeNota(bivalens cond) → vacuum {
-    si cond {
-        nota &quot;cond verum&quot;
+fn maybeNota(bool cond) → void {
+    if cond {
+        print &quot;cond verum&quot;
     }
-    secus {
+    else {
         # deliberate no-op in else branch
-        tacet
+        pass
     }
 }
 
-incipit {
+main {
     # prints
-    maybeNota(verum)
+    maybeNota(true)
     # tacet — no output
-    maybeNota(falsum)
+    maybeNota(false)
 
     # condition false, so tacet never runs
-    si falsum ergo tacet
+    if false then pass
 
-    nota &quot;finis&quot;
+    print &quot;finis&quot;
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>cond verum
 finis
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpustacettacetfab-canonical-keyword">radix/corpus/tacet/tacet.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[&quot;radix/corpus/tacet/tacet.fab&quot;]</li></ul></div></footer></div></body></html>

@@ -14,34 +14,34 @@
 # See also:
 # =============================================================================
 
-importa ex &quot;norma:json&quot; privata json
+import from &quot;norma:json&quot; private json
 
 @ json
-genus Payload {
+class Payload {
     @ json { nomen = &quot;wire_name&quot; }
-    textus name
+    string name
 }
 
-incipit {
-    fixum json literal ← { &quot;wire_name&quot;: &quot;Ada&quot;, &quot;items&quot;: [1, { &quot;ok&quot;: true }] }
-    fixum valor broad ← literal ↦ valor
-    fixum json narrowed ← broad ↦ json
+main {
+    const json literal ← { &quot;wire_name&quot;: &quot;Ada&quot;, &quot;items&quot;: [1, { &quot;ok&quot;: true }] }
+    const value broad ← literal ↦ value
+    const json narrowed ← broad ↦ json
 
-    fixum Payload payload ← narrowed ↦ Payload
-    fixum json encoded ← payload ↦ json
-    fixum textus wire ← json.pange(encoded)
-    fixum json ∪ nihil tentativa ← json.tempta(wire)
+    const Payload payload ← narrowed ↦ Payload
+    const json encoded ← payload ↦ json
+    const string wire ← json.pange(encoded)
+    const json ∪ null tentativa ← json.tempta(wire)
 
-    nota payload.name
-    nota wire
-    nota tentativa
+    print payload.name
+    print wire
+    print tentativa
 
-    fac {
-        fixum json reparsed ← json.solve(wire)
-        fixum Payload roundtrip ← reparsed ↦ Payload
-        nota roundtrip.name
+    do {
+        const json reparsed ← json.solve(wire)
+        const Payload roundtrip ← reparsed ↦ Payload
+        print roundtrip.name
     }
-    cape err {
-        nota err
+    catch err {
+        print err
     }
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusjsonjsonfab-canonical-type">radix/corpus/json/json.fab (canonical · type)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">المصادر</span><ul><li>[&quot;radix/corpus/json/json.fab&quot;]</li></ul></div></footer></div></body></html>

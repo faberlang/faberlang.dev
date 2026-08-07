@@ -26,38 +26,38 @@
 #   rubrum
 #   actum
 
-ordo Color { rubrum, viridis, caeruleum }
+enum Color { rubrum, viridis, caeruleum }
 
-ordo Condicio { pendens = 0, actum = 1, finitum = 2 }
+enum Condicio { pendens = 0, actum = 1, finitum = 2 }
 
-incipit {
+main {
     # Using ordo values
-    fixum _ color ← Color.rubrum
-    fixum _ condicio ← Condicio.actum
+    const _ color ← Color.rubrum
+    const _ condicio ← Condicio.actum
 
     # Select by ordo
-    elige color {
-        casu Color.rubrum {
-            nota &quot;rubrum&quot;
+    switch color {
+        case Color.rubrum {
+            print &quot;rubrum&quot;
         }
-        casu Color.viridis {
-            nota &quot;viridis&quot;
+        case Color.viridis {
+            print &quot;viridis&quot;
         }
-        casu Color.caeruleum {
-            nota &quot;caeruleum&quot;
+        case Color.caeruleum {
+            print &quot;caeruleum&quot;
         }
     }
 
     # Select by ordo with numeric values
-    elige condicio {
-        casu Condicio.pendens {
-            nota &quot;pendens&quot;
+    switch condicio {
+        case Condicio.pendens {
+            print &quot;pendens&quot;
         }
-        casu Condicio.actum {
-            nota &quot;actum&quot;
+        case Condicio.actum {
+            print &quot;actum&quot;
         }
-        casu Condicio.finitum {
-            nota &quot;finitum&quot;
+        case Condicio.finitum {
+            print &quot;finitum&quot;
         }
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>rubrum

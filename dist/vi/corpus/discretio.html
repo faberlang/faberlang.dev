@@ -29,27 +29,27 @@
 #   discretiones paratae
 
 # Discretio with payload variants
-discretio Exitus {
-    Bonum { textus nuntius }
-    Malum { textus causa }
+union Exitus {
+    Bonum { string nuntius }
+    Malum { string causa }
 }
 
 # Discretio with mixed unit and payload variants
 # (Finis is a unit variant — no payload fields)
-discretio Actum {
-    Pulsus { numerus x, numerus y }
-    Clavis { textus clavis }
+union Actum {
+    Pulsus { int x, int y }
+    Clavis { string clavis }
     Finis
 }
 
 # Discretio with many fields per variant
-discretio Figura {
-    Rectum { numerus x, numerus y, numerus latitudo, numerus altitudo }
-    Circulus { numerus cx, numerus cy, numerus radius }
-    Punctum { numerus x, numerus y }
+union Figura {
+    Rectum { int x, int y, int latitudo, int altitudo }
+    Circulus { int cx, int cy, int radius }
+    Punctum { int x, int y }
 }
 
-incipit {
-    nota &quot;discretiones paratae&quot;
+main {
+    print &quot;discretiones paratae&quot;
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>discretiones paratae
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusdiscretiodiscretiofab-canonical-keyword">radix/corpus/discretio/discretio.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[&quot;radix/corpus/discretio/discretio.fab&quot;]</li></ul></div></footer></div></body></html>

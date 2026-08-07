@@ -23,21 +23,21 @@
 # EXPECTED OUTPUT:
 #   implet.expected — Aurelia from implendum plenum().
 
-implendum Nominatum {
-    functio plenum() → textus
+interface Nominatum {
+    fn plenum() → string
 }
 
-genus Civis implet Nominatum {
-    textus nomen
+class Civis implements Nominatum {
+    string nomen
 
-    functio plenum() → textus {
+    fn plenum() → string {
         # satisfies implendum requirement
-        redde &quot;§&quot;(ego.nomen)
+        return &quot;§&quot;(self.nomen)
     }
 }
 
-incipit {
-    fixum _ civis ← Civis { nomen = &quot;Aurelia&quot; }
-    nota civis.plenum()
+main {
+    const _ civis ← Civis { nomen = &quot;Aurelia&quot; }
+    print civis.plenum()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Aurelia
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusimpletimpletfab-canonical-keyword">radix/corpus/implet/implet.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[&quot;radix/corpus/implet/implet.fab&quot;]</li></ul></div></footer></div></body></html>

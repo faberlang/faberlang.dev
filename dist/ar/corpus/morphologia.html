@@ -32,68 +32,68 @@
 #   mappata nova: [2, 4, 6, 8, 10]
 #   res prima: [1, 2, 3, 4, 5]
 
-incipit {
-    varia _ res ← [1, 2, 3, 4, 5] ∷ lista&lt;numerus&gt;
+main {
+    var _ res ← [1, 2, 3, 4, 5] ∷ list&lt;int&gt;
 
     # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
     # FILTRA: filtr-
     # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
     # filtrata returns a new filtered list
-    fixum _ pares ← res.filtrata(numerus x ∴ x % 2 ≡ 0)
-    nota &quot;filtrata nova: §&quot;(pares)
+    const _ pares ← res.filtrata(int x ∴ x % 2 ≡ 0)
+    print &quot;filtrata nova: §&quot;(pares)
 
     # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
     # ADDE: adde-
     # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
     # addita returns a new list with an added element
-    fixum _ aucta ← res.addita(6)
-    nota &quot;addita nova: §&quot;(aucta)
+    const _ aucta ← res.addita(6)
+    print &quot;addita nova: §&quot;(aucta)
 
     # appende mutates in place
-    varia _ mutanda ← [1, 2, 3]
+    var _ mutanda ← [1, 2, 3]
     mutanda.appende(4)
-    nota &quot;appende mutat: §&quot;(mutanda)
+    print &quot;appende mutat: §&quot;(mutanda)
 
     # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
     # INVERTE: invert-/invers-
     # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
     # inversa returns a new reversed list
-    fixum _ versa ← res.inversa()
-    nota &quot;inversa nova: §&quot;(versa)
+    const _ versa ← res.inversa()
+    print &quot;inversa nova: §&quot;(versa)
 
     # inverte mutates in place
-    varia _ invertenda ← [1, 2, 3]
+    var _ invertenda ← [1, 2, 3]
     invertenda.inverte()
-    nota &quot;inverte mutat: §&quot;(invertenda)
+    print &quot;inverte mutat: §&quot;(invertenda)
 
     # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
     # ORDINA: ordin-
     # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
     # ordinata returns a new sorted list
-    fixum _ ordinata ← res.ordinata()
-    nota &quot;ordinata nova: §&quot;(ordinata)
+    const _ ordinata ← res.ordinata()
+    print &quot;ordinata nova: §&quot;(ordinata)
 
     # ordina mutates in place
-    varia _ ordinanda ← [3, 1, 2]
+    var _ ordinanda ← [3, 1, 2]
     ordinanda.ordina()
-    nota &quot;ordina mutat: §&quot;(ordinanda)
+    print &quot;ordina mutat: §&quot;(ordinanda)
 
     # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
     # MAPPA: mapp-
     # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
 
     # mappata returns a new mapped list
-    fixum _ duplicata ← res.mappata(numerus x ∴ x * 2)
-    nota &quot;mappata nova: §&quot;(duplicata)
+    const _ duplicata ← res.mappata(int x ∴ x * 2)
+    print &quot;mappata nova: §&quot;(duplicata)
 
     # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
     # Participle operations leave the original list unchanged
     # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡
-    nota &quot;res prima: §&quot;(res)
+    print &quot;res prima: §&quot;(res)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>filtrata nova: [2, 4]
 addita nova: [1, 2, 3, 4, 5, 6]
 appende mutat: [1, 2, 3, 4]

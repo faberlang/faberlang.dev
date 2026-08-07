@@ -25,31 +25,31 @@
 # EXPECTED OUTPUT:
 #   pi/tau strings, computed day/hour/second counts, block-evaluated sum.
 
-incipit {
+main {
     # Constant expression
-    fixum _ pi ← praefixum(3.14159)
-    fixum _ tau ← praefixum((2 ↦ fractus) * 3.14159)
-    nota &quot;pi: §&quot;(pi)
-    nota &quot;tau: §&quot;(tau)
+    const _ pi ← comptime(3.14159)
+    const _ tau ← comptime((2 ↦ float) * 3.14159)
+    print &quot;pi: §&quot;(pi)
+    print &quot;tau: §&quot;(tau)
 
     # Computation
-    fixum _ diesanno ← praefixum(365)
-    fixum _ horaeanno ← praefixum(365 * 24)
-    fixum _ secundaanno ← praefixum(365 * 24 * 60 * 60)
+    const _ diesanno ← comptime(365)
+    const _ horaeanno ← comptime(365 * 24)
+    const _ secundaanno ← comptime(365 * 24 * 60 * 60)
 
-    nota &quot;dies: §&quot;(diesanno)
-    nota &quot;horae: §&quot;(horaeanno)
-    nota &quot;secunda: §&quot;(secundaanno)
+    print &quot;dies: §&quot;(diesanno)
+    print &quot;horae: §&quot;(horaeanno)
+    print &quot;secunda: §&quot;(secundaanno)
 
     # Block
-    fixum tabula&lt;textus, numerus&gt; codices ← praefixum({
+    const map&lt;string, int&gt; codices ← comptime({
         &quot;ok&quot;: 200,
         &quot;creatum&quot;: 201,
         &quot;noninventum&quot;: 404,
         &quot;error&quot;: 500
     })
 
-    nota &quot;codex rectus: §&quot;(codices[&quot;ok&quot;])
+    print &quot;codex rectus: §&quot;(codices[&quot;ok&quot;])
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>pi: 3.14159
 tau: 6.28318
 dies: 365

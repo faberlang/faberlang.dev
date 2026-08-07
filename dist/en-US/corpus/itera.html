@@ -31,37 +31,37 @@
 #   `fiunt` half and reports `fient` as an explicit target gap.
 
 # Multi-value sync stream function that yields values via cede
-functio grena(numerus n) fiunt → numerus {
-    itera ab 0‥n fixum i {
-        cede i
+fn grena(int n) generator → int {
+    for range 0‥n const i {
+        yield i
     }
 }
 
 # Multi-value async stream function that yields values via cede
-functio grena_futurum(numerus n) fient → numerus {
-    itera ab 0‥n fixum i {
-        cede i
+fn grena_futurum(int n) async_generator → int {
+    for range 0‥n const i {
+        yield i
     }
 }
 
-incipiet {
+async_main {
     # Direct consumption of cursor yield stream
-    nota &quot;Sync cursor iteration:&quot;
-    itera ex grena(3) fixum num {
-        nota &quot;  numerus: §&quot;(num)
+    print &quot;Sync cursor iteration:&quot;
+    for from grena(3) const num {
+        print &quot;  numerus: §&quot;(num)
     }
 
     # Collect all results from cursor function
-    varia _ effecta ← []
-    itera ex grena(5) fixum num {
+    var _ effecta ← []
+    for from grena(5) const num {
         effecta.appende(num * 2)
     }
-    nota &quot;Sync collected:&quot;
-    nota effecta
+    print &quot;Sync collected:&quot;
+    print effecta
 
-    nota &quot;Async cursor iteration:&quot;
-    itera ex grena_futurum(3) fixum num {
-        nota &quot;  async numerus: §&quot;(num)
+    print &quot;Async cursor iteration:&quot;
+    for from grena_futurum(3) const num {
+        print &quot;  async numerus: §&quot;(num)
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Sync cursor iteration:
   numerus: 0
@@ -97,50 +97,50 @@ Async cursor iteration:
 # EXPECTED OUTPUT:
 #   Sums, maxima, and counts above a threshold for sample listas.
 
-functio summa(lista&lt;numerus&gt; numeri) → numerus {
-    varia numerus total ← 0
+fn summa(list&lt;int&gt; numeri) → int {
+    var int total ← 0
 
-    itera ex numeri fixum n {
+    for from numeri const n {
         total ← total + n
     }
 
-    redde total
+    return total
 }
 
 # Assumes non-empty lista (seed from first element)
-functio maximum(lista&lt;numerus&gt; numeri) → numerus {
-    varia numerus max ← numeri[0]
+fn maximum(list&lt;int&gt; numeri) → int {
+    var int max ← numeri[0]
 
-    itera ex numeri fixum n {
-        si n &gt; max {
+    for from numeri const n {
+        if n &gt; max {
             max ← n
         }
     }
 
-    redde max
+    return max
 }
 
-functio supra(lista&lt;numerus&gt; numeri, numerus limen) → numerus {
-    varia numerus numerus ← 0
+fn supra(list&lt;int&gt; numeri, int limen) → int {
+    var int int ← 0
 
-    itera ex numeri fixum n {
-        si n &gt; limen {
-            numerus ← numerus + 1
+    for from numeri const n {
+        if n &gt; limen {
+            int ← int + 1
         }
     }
 
-    redde numerus
+    return int
 }
 
-incipit {
-    fixum _ numeri ← [1, 2, 3, 4, 5]
+main {
+    const _ numeri ← [1, 2, 3, 4, 5]
 
-    nota summa(numeri)
-    nota maximum(numeri)
-    nota supra(numeri, 3)
+    print summa(numeri)
+    print maximum(numeri)
+    print supra(numeri, 3)
 
-    nota summa([10, 20, 30])
-    nota maximum([5, 12, 8, 20, 3])
+    print summa([10, 20, 30])
+    print maximum([5, 12, 8, 20, 3])
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>15
 5
 2
@@ -172,30 +172,30 @@ incipit {
 # EXPECTED OUTPUT:
 #   none — stdout not pinned for this exemplum.
 
-incipit {
+main {
     # Step by 2 (exclusive: 0, 2, 4, 6, 8)
-    itera ab 0‥10 per 2 fixum i {
-        nota i
+    for range 0‥10 step 2 const i {
+        print i
     }
 
     # Step by 2 (inclusive: 0, 2, 4, 6, 8, 10)
-    itera ab 0…10 per 2 fixum i {
-        nota i
+    for range 0…10 step 2 const i {
+        print i
     }
 
     # Step by 3
-    itera ab 0‥15 per 3 fixum i {
-        nota i
+    for range 0‥15 step 3 const i {
+        print i
     }
 
     # Descending with negative step
-    itera ab 10‥0 per -1 fixum i {
-        nota i
+    for range 10‥0 step -1 const i {
+        print i
     }
 
     # Descending by 2
-    itera ab 10‥0 per -2 fixum i {
-        nota i
+    for range 10‥0 step -2 const i {
+        print i
     }
 }</code></pre><h3 id="radixcorpusiteraintervallumfab-canonical-keyword">radix/corpus/itera/intervallum.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteraintervallumfab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
 # itera — Starts a for-each iteration statement.
@@ -224,30 +224,30 @@ incipit {
 # EXPECTED OUTPUT:
 #   none — stdout not pinned for this exemplum.
 
-incipit {
+main {
     # Basic range (exclusive: 0, 1, 2, 3, 4)
-    itera ab 0‥5 fixum i {
-        nota i
+    for range 0‥5 const i {
+        print i
     }
 
     # Explicit exclusive with ante (same as ‥)
-    itera ab 0 ante 5 fixum i {
-        nota i
+    for range 0 before 5 const i {
+        print i
     }
 
     # Inclusive range with … (0, 1, 2, 3, 4, 5)
-    itera ab 0…5 fixum i {
-        nota i
+    for range 0…5 const i {
+        print i
     }
 
     # Range starting from non-zero
-    itera ab 5‥10 fixum i {
-        nota i
+    for range 5‥10 const i {
+        print i
     }
 
     # Descending direction
-    itera ab 5‥0 fixum i {
-        nota i
+    for range 5‥0 const i {
+        print i
     }
 }</code></pre><h3 id="radixcorpusiteranidificatusfab-canonical-keyword">radix/corpus/itera/nidificatus.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteranidificatusfab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
 # itera — Starts a for-each iteration statement.
@@ -278,28 +278,28 @@ incipit {
 # BACKEND:
 #   Go backend does not emit nested itera yet — compile-only smoke.
 
-incipit {
+main {
     # Nested lista iteration — 3 × 3 combinations
-    fixum _ rows ← [1, 2, 3]
-    fixum _ cols ← [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]
+    const _ rows ← [1, 2, 3]
+    const _ cols ← [&quot;A&quot;, &quot;B&quot;, &quot;C&quot;]
 
-    itera ex rows fixum row {
-        itera ex cols fixum col {
-            nota row, col
+    for from rows const row {
+        for from cols const col {
+            print row, col
         }
     }
 
     # Multiplication table over exclusive ranges 1‥4 (i, j ∈ {1,2,3})
-    itera ab 1‥4 fixum i {
-        itera ab 1‥4 fixum j {
-            nota i, &quot;*&quot;, j, &quot;←&quot;, i * j
+    for range 1‥4 const i {
+        for range 1‥4 const j {
+            print i, &quot;*&quot;, j, &quot;←&quot;, i * j
         }
     }
 
     # Nested ranges: 4 × 4 grid of (x, y) with x, y ∈ {0,1,2,3}
-    itera ab 0‥3 fixum x {
-        itera ab 0‥3 fixum y {
-            nota x, y
+    for range 0‥3 const x {
+        for range 0‥3 const y {
+            print x, y
         }
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1 A

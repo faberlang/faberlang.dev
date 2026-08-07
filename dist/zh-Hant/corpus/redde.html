@@ -25,38 +25,38 @@
 # EXPECTED OUTPUT:
 #   30, Salve, Munde, 42, 0, 20
 
-functio adde(numerus a, numerus b) → numerus {
-    redde a + b
+fn adde(int a, int b) → int {
+    return a + b
 }
 
-functio saluta(textus nomen) → textus {
-    redde &quot;Salve, &quot; + nomen
+fn saluta(string nomen) → string {
+    return &quot;Salve, &quot; + nomen
 }
 
-functio duoetquadraginta() → numerus {
-    redde 42
+fn duoetquadraginta() → int {
+    return 42
 }
 
-functio tace() → vacuum {
+fn tace() → void {
     # bare redde for vacuum return type
-    redde
+    return
 }
 
-functio porta(numerus x) → numerus {
-    si x &lt; 0 {
+fn porta(int x) → int {
+    if x &lt; 0 {
         # early return on negative input
-        redde 0
+        return 0
     }
-    redde x * 2
+    return x * 2
 }
 
-incipit {
-    nota adde(10, 20)
-    nota saluta(&quot;Munde&quot;)
-    nota duoetquadraginta()
+main {
+    print adde(10, 20)
+    print saluta(&quot;Munde&quot;)
+    print duoetquadraginta()
     tace()
-    nota porta(-5)
-    nota porta(10)
+    print porta(-5)
+    print porta(10)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>30
 Salve, Munde
 42
@@ -86,12 +86,12 @@ Salve, Munde
 # Verifies that the Swift backend emits functions returning
 # boolean literals (SC-001: primitives, functions, return).
 
-functio da_verum() → bivalens {
-    redde verum
+fn da_verum() → bool {
+    return true
 }
 
-functio da_falsum() → bivalens {
-    redde falsum
+fn da_falsum() → bool {
+    return false
 }</code></pre><h3 id="radixcorpusscalarreturn-integerfab-canonical-keyword">radix/corpus/scalar/return-integer.fab (canonical · keyword)<a class="anchor" href="#radixcorpusscalarreturn-integerfab-canonical-keyword">#</a></h3><p>Function returning an integer literal via redde 42.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
 # redde — Function returning an integer literal via redde 42.
 # =============================================================================
@@ -115,8 +115,8 @@ functio da_falsum() → bivalens {
 # Verifies that the Swift backend emits a function returning an
 # integer literal (SC-001: primitives, functions, return).
 
-functio da_numerum() → numerus {
-    redde 42
+fn da_numerum() → int {
+    return 42
 }</code></pre><h3 id="radixcorpusscalarreturn-stringfab-canonical-keyword">radix/corpus/scalar/return-string.fab (canonical · keyword)<a class="anchor" href="#radixcorpusscalarreturn-stringfab-canonical-keyword">#</a></h3><p>Function returning a string literal via redde \&quot;textus\&quot;.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
 # redde — Function returning a string literal via redde &quot;textus&quot;.
 # =============================================================================
@@ -140,6 +140,6 @@ functio da_numerum() → numerus {
 # Verifies that the Swift backend emits a function returning a
 # string literal (SC-001: primitives, functions, return).
 
-functio da_textum() → textus {
-    redde &quot;textus&quot;
+fn da_textum() → string {
+    return &quot;textus&quot;
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusreddereddefab-canonical-keyword">radix/corpus/redde/redde.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusscalarreturn-boolfab-canonical-keyword">radix/corpus/scalar/return-bool.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusscalarreturn-integerfab-canonical-keyword">radix/corpus/scalar/return-integer.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusscalarreturn-stringfab-canonical-keyword">radix/corpus/scalar/return-string.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">來源</span><ul><li>[&quot;radix/corpus/redde/redde.fab&quot;]</li></ul></div></footer></div></body></html>

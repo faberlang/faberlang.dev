@@ -26,29 +26,29 @@
 #   circulus radius: 25
 #   quadratum latus: 15
 
-implendum Figurabile {
-    functio depinge() → vacuum
+interface Figurabile {
+    fn depinge() → void
 }
 
-genus Circulus implet Figurabile {
-    numerus radius = 10
+class Circulus implements Figurabile {
+    int radius = 10
 
-    functio depinge() {
-        nota &quot;circulus radius: §&quot;(ego.radius)
+    fn depinge() {
+        print &quot;circulus radius: §&quot;(self.radius)
     }
 }
 
-genus Quadratum implet Figurabile {
-    numerus latus = 5
+class Quadratum implements Figurabile {
+    int latus = 5
 
-    functio depinge() {
-        nota &quot;quadratum latus: §&quot;(ego.latus)
+    fn depinge() {
+        print &quot;quadratum latus: §&quot;(self.latus)
     }
 }
 
-incipit {
-    fixum _ circulus ← Circulus { radius = 25 }
-    fixum _ quadratum ← Quadratum { latus = 15 }
+main {
+    const _ circulus ← Circulus { radius = 25 }
+    const _ quadratum ← Quadratum { latus = 15 }
 
     circulus.depinge()
     quadratum.depinge()

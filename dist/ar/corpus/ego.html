@@ -23,17 +23,17 @@
 # EXPECTED OUTPUT:
 #   capsa: prima
 
-genus Capsa {
-    textus titulus
+class Capsa {
+    string titulus
 
-    functio narra() → textus {
+    fn narra() → string {
         # ego = the receiver instance
-        redde &quot;capsa: &quot; + ego.titulus
+        return &quot;capsa: &quot; + self.titulus
     }
 }
 
-incipit {
-    fixum _ capsa ← Capsa { titulus = &quot;prima&quot; }
-    nota capsa.narra()
+main {
+    const _ capsa ← Capsa { titulus = &quot;prima&quot; }
+    print capsa.narra()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>capsa: prima
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusegoegofab-canonical-keyword">radix/corpus/ego/ego.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">المصادر</span><ul><li>[&quot;radix/corpus/ego/ego.fab&quot;]</li></ul></div></footer></div></body></html>

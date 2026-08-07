@@ -27,78 +27,78 @@
 # EXPECTED OUTPUT:
 #   membrum.expected — chained access samples.
 
-genus Punctum {
-    numerus x
-    numerus y
+class Punctum {
+    int x
+    int y
 }
 
-genus Forma {
-    textus nomen
-    numerus valor
+class Forma {
+    string nomen
+    int valor
 }
 
-genus Imum {
-    textus imum
+class Imum {
+    string imum
 }
 
-genus Medium {
+class Medium {
     Imum medium
 }
 
-genus Extra {
+class Extra {
     Medium extra
 }
 
-genus Datum {
-    lista&lt;textus&gt; res
+class Datum {
+    list&lt;string&gt; res
 }
 
-genus Adest {
-    numerus valor
+class Adest {
+    int valor
 }
 
-genus Forsitan {
+class Forsitan {
     Adest adest
 }
 
-incipit {
+main {
     # --- Dot accessus ---
 
-    fixum _ punctum ← Punctum { x = 10, y = 20 }
-    nota punctum.x
-    nota punctum.y
+    const _ punctum ← Punctum { x = 10, y = 20 }
+    print punctum.x
+    print punctum.y
 
     # --- Bracket accessus on lista ---
 
-    fixum _ numeri ← [1, 2, 3]
-    nota numeri[0]
-    nota numeri[2]
+    const _ numeri ← [1, 2, 3]
+    print numeri[0]
+    print numeri[2]
 
     # --- Bracket accessus on tabula ---
 
-    fixum tabula&lt;textus, numerus&gt; tab ← { &quot;nomen&quot;: 1, &quot;valor&quot;: 42 }
-    nota tab[&quot;nomen&quot;]
-    nota tab[&quot;valor&quot;]
+    const map&lt;string, int&gt; tab ← { &quot;nomen&quot;: 1, &quot;valor&quot;: 42 }
+    print tab[&quot;nomen&quot;]
+    print tab[&quot;valor&quot;]
 
     # --- Chained member access ---
 
-    fixum _ nidum ← Extra { extra = Medium { medium = Imum { imum = &quot;inventum&quot; } } }
-    nota nidum.extra.medium.imum
+    const _ nidum ← Extra { extra = Medium { medium = Imum { imum = &quot;inventum&quot; } } }
+    print nidum.extra.medium.imum
 
     # --- Mixed dot and bracket ---
 
-    fixum _ datum ← Datum { res = [&quot;primus&quot;, &quot;secundus&quot;, &quot;tertius&quot;] }
-    nota datum.res[0]
-    nota datum.res[2]
+    const _ datum ← Datum { res = [&quot;primus&quot;, &quot;secundus&quot;, &quot;tertius&quot;] }
+    print datum.res[0]
+    print datum.res[2]
 
     # --- Accessus optionalis ---
 
-    fixum _ forsitan ← Forsitan { adest = Adest { valor = 100 } }
-    nota forsitan?.adest?.valor
+    const _ forsitan ← Forsitan { adest = Adest { valor = 100 } }
+    print forsitan?.adest?.valor
 
     # Accessus optionalis on nihil binding
-    fixum _ vacuum ← nihil
-    nota vacuum?.absens
+    const _ void ← null
+    print void?.absens
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>10
 20
 1

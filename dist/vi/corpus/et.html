@@ -24,28 +24,28 @@
 # EXPECTED OUTPUT:
 #   none
 
-incipit {
+main {
     # left operand: verum
-    fixum _ paratus ← verum
+    const _ paratus ← true
     # right operand: verum
-    fixum _ licet ← verum
+    const _ licet ← true
     # verum et verum → verum
-    fixum _ currit ← paratus et licet
+    const _ currit ← paratus and licet
 
-    nota currit
+    print currit
 }
 
-proba &quot;and requires both operands&quot; {
-    adfirma (verum et verum) ≡ verum
-    adfirma (falsum et verum) ≡ falsum
-    adfirma (verum et falsum) ≡ falsum
-    adfirma (falsum et falsum) ≡ falsum
+test &quot;and requires both operands&quot; {
+    assert (true and true) ≡ true
+    assert (false and true) ≡ false
+    assert (true and false) ≡ false
+    assert (false and false) ≡ false
 }
 
-proba &quot;and mirrors the incipit smoke&quot; {
-    fixum _ paratus ← verum
-    fixum _ licet ← verum
-    fixum _ currit ← paratus et licet
-    adfirma currit ≡ verum
+test &quot;and mirrors the incipit smoke&quot; {
+    const _ paratus ← true
+    const _ licet ← true
+    const _ currit ← paratus and licet
+    assert currit ≡ true
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>verum
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusetetfab-canonical-operator-group">radix/corpus/et/et.fab (canonical · operator-group)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[&quot;radix/corpus/et/et.fab&quot;]</li></ul></div></footer></div></body></html>

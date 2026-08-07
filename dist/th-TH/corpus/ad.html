@@ -22,7 +22,7 @@
 # The runtime:echo backend echoes the opener back as a single textus frame;
 # `↦ textus` materializes it. The exemplar asserts equality.
 
-incipit {
-    fixum textus t ← ad 'runtime:echo' (&quot;salve, munde&quot;) ↦ textus
-    adfirma t ≡ &quot;salve, munde&quot;
+main {
+    const string t ← call 'runtime:echo' (&quot;salve, munde&quot;) ↦ string
+    assert t ≡ &quot;salve, munde&quot;
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code></code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusadsermo-conversiofab-canonical-keyword">radix/corpus/ad/sermo-conversio.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/ad/sermo-conversio.fab&quot;]</li></ul></div></footer></div></body></html>

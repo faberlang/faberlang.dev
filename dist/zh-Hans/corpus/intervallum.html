@@ -21,22 +21,22 @@
 # EXPECTED OUTPUT:
 #   none — stdout not pinned for this exemplum.
 
-incipit {
-    fixum intervallum&lt;numerus&gt; morning ← 0‥6
-    fixum intervallum&lt;numerus&gt; afternoon ← 4‥10
-    fixum intervallum&lt;numerus&gt; overlap ← morning.inter(afternoon) vel 0‥0
-    fixum intervallum&lt;numerus&gt; early ← 0‥5
-    fixum intervallum&lt;numerus&gt; late ← 5‥10
-    fixum intervallum&lt;numerus&gt; workday ← early.union(late) vel 0‥0
-    fixum _ overlap_span ← overlap.longitudo()
-    fixum _ workday_span ← workday.longitudo()
-    adfirma overlap_span ≡ 2
-    adfirma workday_span ≡ 10
+main {
+    const intervallum&lt;int&gt; morning ← 0‥6
+    const intervallum&lt;int&gt; afternoon ← 4‥10
+    const intervallum&lt;int&gt; overlap ← morning.inter(afternoon) coalesce 0‥0
+    const intervallum&lt;int&gt; early ← 0‥5
+    const intervallum&lt;int&gt; late ← 5‥10
+    const intervallum&lt;int&gt; workday ← early.union(late) coalesce 0‥0
+    const _ overlap_span ← overlap.longitudo()
+    const _ workday_span ← workday.longitudo()
+    assert overlap_span ≡ 2
+    assert workday_span ≡ 10
 
-    fixum intervallum&lt;numerus&gt; gap_left ← 0‥3
-    fixum intervallum&lt;numerus&gt; gap_right ← 6‥9
-    fixum _ no_union ← gap_left.union(gap_right)
-    adfirma no_union est nihil
+    const intervallum&lt;int&gt; gap_left ← 0‥3
+    const intervallum&lt;int&gt; gap_right ← 6‥9
+    const _ no_union ← gap_left.union(gap_right)
+    assert no_union is null
 }</code></pre><h3 id="radixcorpusintervallumconversiofab-canonical-type">radix/corpus/intervallum/conversio.fab (canonical · type)<a class="anchor" href="#radixcorpusintervallumconversiofab-canonical-type">#</a></h3><p>Clamp, materialize, and contain via conversio and continet.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
 # intervallum — Clamp, materialize, and contain via conversio and continet
 # =============================================================================
@@ -59,32 +59,32 @@ incipit {
 # EXPECTED OUTPUT:
 #   none — stdout not pinned for this exemplum.
 
-incipit {
+main {
     # --- value clamp (half-open interior vs inclusive endpoint) ---
-    fixum _ half ← 15 ↦ 0‥10
-    fixum _ closed ← 15 ↦ 0…10
-    adfirma half ≡ 9
-    adfirma closed ≡ 10
+    const _ half ← 15 ↦ 0‥10
+    const _ closed ← 15 ↦ 0…10
+    assert half ≡ 9
+    assert closed ≡ 10
 
     # --- materialize to lista or 1-d tensor ---
-    fixum lista&lt;numerus&gt; half_list ← 0‥10 ↦ lista&lt;numerus&gt;
-    fixum lista&lt;numerus&gt; closed_list ← 0…3 ↦ lista&lt;numerus&gt;
-    fixum tensor&lt;numerus, [10]&gt; half_grid ← 0‥10 ↦ tensor&lt;numerus, [10]&gt;
-    fixum tensor&lt;numerus, [4]&gt; closed_grid ← 0…3 ↦ tensor&lt;numerus, [4]&gt;
-    fixum lista&lt;numerus&gt; half_flat ← half_grid.planata()
-    fixum lista&lt;numerus&gt; closed_flat ← closed_grid.planata()
-    adfirma half_list.longitudo() ≡ 10
-    adfirma closed_list.longitudo() ≡ 4
-    adfirma half_flat.longitudo() ≡ 10
-    adfirma closed_flat.longitudo() ≡ 4
+    const list&lt;int&gt; half_list ← 0‥10 ↦ list&lt;int&gt;
+    const list&lt;int&gt; closed_list ← 0…3 ↦ list&lt;int&gt;
+    const tensor&lt;int, [10]&gt; half_grid ← 0‥10 ↦ tensor&lt;int, [10]&gt;
+    const tensor&lt;int, [4]&gt; closed_grid ← 0…3 ↦ tensor&lt;int, [4]&gt;
+    const list&lt;int&gt; half_flat ← half_grid.planata()
+    const list&lt;int&gt; closed_flat ← closed_grid.planata()
+    assert half_list.longitudo() ≡ 10
+    assert closed_list.longitudo() ≡ 4
+    assert half_flat.longitudo() ≡ 10
+    assert closed_flat.longitudo() ≡ 4
 
     # --- range-to-range clamp inherits target inclusivity ---
-    fixum intervallum&lt;numerus&gt; wide ← 0‥100
-    fixum intervallum&lt;numerus&gt; narrow ← wide ↦ 10…50
-    adfirma narrow.longitudo() ≡ 41
+    const intervallum&lt;int&gt; wide ← 0‥100
+    const intervallum&lt;int&gt; narrow ← wide ↦ 10…50
+    assert narrow.longitudo() ≡ 41
 
     # --- stored containment via continet (intra desugars to the same surface) ---
-    fixum intervallum&lt;numerus&gt; fines ← 0‥10
-    fixum _ inside ← fines.continet(5)
-    adfirma inside
+    const intervallum&lt;int&gt; fines ← 0‥10
+    const _ inside ← fines.continet(5)
+    assert inside
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusintervallumalgebrafab-canonical-type">radix/corpus/intervallum/algebra.fab (canonical · type)</a></li><li class="toc-3"><a href="#radixcorpusintervallumconversiofab-canonical-type">radix/corpus/intervallum/conversio.fab (canonical · type)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">来源</span><ul><li>[&quot;radix/corpus/intervallum/algebra.fab&quot;]</li></ul></div></footer></div></body></html>

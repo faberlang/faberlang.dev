@@ -33,107 +33,107 @@
 # EXPECTED OUTPUT:
 #   binarius.expected
 
-incipit {
+main {
     # Arithmetica: + - * / %
-    fixum _ summa ← 10 + 5
-    nota summa
+    const _ summa ← 10 + 5
+    print summa
 
-    fixum _ differentia ← 10 - 5
-    nota differentia
+    const _ differentia ← 10 - 5
+    print differentia
 
-    sit productum ← 10 * 5
-    nota productum
+    let productum ← 10 * 5
+    print productum
 
-    sit quotiens ← 10 / 5
-    nota quotiens
+    let quotiens ← 10 / 5
+    print quotiens
 
-    sit reliquum ← 10 % 3
-    nota reliquum
+    let reliquum ← 10 % 3
+    print reliquum
 
     # Assignatio explicita (compound glyphs removed)
-    varia _ index ← 0
+    var _ index ← 0
     index ← index + 10
     index ⊕
     index ⊖
     index ← index * 2
-    nota index
+    print index
 
     # Comparationes
-    sit aequalis ← 10 ≡ 10
-    nota aequalis
+    let aequalis ← 10 ≡ 10
+    print aequalis
 
-    sit diversus ← 10 ≠ 5
-    nota diversus
+    let diversus ← 10 ≠ 5
+    print diversus
 
-    sit minor ← 5 &lt; 10
-    nota minor
+    let minor ← 5 &lt; 10
+    print minor
 
-    sit maior ← 10 &gt; 5
-    nota maior
+    let maior ← 10 &gt; 5
+    print maior
 
-    sit medius ← 0 &lt; 5 et 5 &lt; 10
-    nota medius
+    let medius ← 0 &lt; 5 and 5 &lt; 10
+    print medius
 
     # Logica
-    sit ambo ← verum et verum
-    nota ambo
+    let ambo ← true and true
+    print ambo
 
-    sit alterutrum ← falsum aut verum
-    nota alterutrum
+    let alterutrum ← false or true
+    print alterutrum
 
-    sit neutrum ← falsum et falsum
-    nota neutrum
+    let neutrum ← false and false
+    print neutrum
 
-    sit brevis ← falsum et carum()
-    nota brevis
+    let short ← false and carum()
+    print short
 
     # vel
-    fixum textus ∪ nihil nomen ← nihil
-    sit solutum ← nomen vel &quot;defectum&quot;
-    nota solutum
+    const string ∪ null nomen ← null
+    let solutum ← nomen coalesce &quot;defectum&quot;
+    print solutum
 
-    fixum textus ∪ nihil primum ← nihil
-    fixum textus ∪ nihil secundum ← nihil
-    fixum textus tertium ← &quot;inventum&quot;
-    sit inventum ← primum vel secundum vel tertium
-    nota inventum
+    const string ∪ null primum ← null
+    const string ∪ null secundum ← null
+    const string tertium ← &quot;inventum&quot;
+    let inventum ← primum coalesce secundum coalesce tertium
+    print inventum
 
     # sic/secus — ternary conditional (sic = &quot;thus&quot;, secus = &quot;otherwise&quot;)
-    sit aetas ← 25
-    sit condicio ← aetas ≥ 18 sic &quot;adultus&quot; secus &quot;minor&quot;
-    nota condicio
+    let aetas ← 25
+    let condicio ← aetas ≥ 18 yields &quot;adultus&quot; else &quot;minor&quot;
+    print condicio
 
-    sit puncta ← 85
-    sit gradus ← puncta ≥ 90 sic &quot;A&quot; secus puncta ≥ 80 sic &quot;B&quot; secus puncta ≥ 70 sic &quot;C&quot; secus &quot;F&quot;
-    nota gradus
+    let puncta ← 85
+    let gradus ← puncta ≥ 90 yields &quot;A&quot; else puncta ≥ 80 yields &quot;B&quot; else puncta ≥ 70 yields &quot;C&quot; else &quot;F&quot;
+    print gradus
 
     # Bit per bit
-    sit vexilla ← 0b1010
-    sit persona ← 0b1100
+    let vexilla ← 0b1010
+    let persona ← 0b1100
 
-    sit coniuncta ← vexilla ∧ persona
-    nota coniuncta
+    let coniuncta ← vexilla ∧ persona
+    print coniuncta
 
-    sit velata ← vexilla ∨ persona
-    nota velata
+    let velata ← vexilla ∨ persona
+    print velata
 
-    sit diversa ← vexilla ⊻ persona
-    nota diversa
+    let diversa ← vexilla ⊻ persona
+    print diversa
 
     # Motus bit
-    sit sinistra ← 1 ⇐ 4
-    nota sinistra
+    let sinistra ← 1 ⇐ 4
+    print sinistra
 
-    sit dextra ← 16 ⇒ 2
-    nota dextra
+    let dextra ← 16 ⇒ 2
+    print dextra
 
-    sit persona_vacua ← (vexilla ∧ persona) ≡ 0
-    nota persona_vacua
+    let persona_vacua ← (vexilla ∧ persona) ≡ 0
+    print persona_vacua
 }
 
-functio carum() → bivalens {
-    nota &quot;hoc non videatur&quot;
-    redde verum
+fn carum() → bool {
+    print &quot;hoc non videatur&quot;
+    return true
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>15
 5
 50

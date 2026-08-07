@@ -27,15 +27,15 @@
 # BACKEND: Generic call codegen gap on Rust (`T: Clone`; whitelist: generic/generic.fab).
 # Call sites are deferred in this smoke exemplar.
 
-functio identitas&lt;T&gt;(T valor) → T {
-    redde valor
+fn identitas&lt;T&gt;(T value) → T {
+    return value
 }
 
-functio primum&lt;T&gt;(lista&lt;T&gt; res) → T ∪ nihil {
-    redde res.primus()
+fn primum&lt;T&gt;(list&lt;T&gt; res) → T ∪ null {
+    return res.primus()
 }
 
-incipit {
-    nota &quot;generic function signatures paratae&quot;
+main {
+    print &quot;generic function signatures paratae&quot;
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>generic function signatures paratae
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusgenericgenericfab-canonical-concept">radix/corpus/generic/generic.fab (canonical · concept)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/generic/generic.fab&quot;]</li></ul></div></footer></div></body></html>

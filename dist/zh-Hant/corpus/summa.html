@@ -30,16 +30,16 @@
 # BACKEND: Go e2e whitelist — lista intrinsic methods not yet lowered for Go
 # (whitelist: lista/methodi-functionales.fab).
 
-incipit {
-    fixum _ res ← [1, 2, 3, 4, 5] ∷ lista&lt;numerus&gt;
+main {
+    const _ res ← [1, 2, 3, 4, 5] ∷ list&lt;int&gt;
 
-    fixum _ pares ← res.filtrata(numerus x ∴ x % 2 ≡ 0)
-    fixum _ duplicata ← res.mappata(numerus x ∴ x * 2)
-    fixum _ summa ← res.reducta((numerus collectus, numerus x) ∴ collectus + x, 0)
+    const _ pares ← res.filtrata(int x ∴ x % 2 ≡ 0)
+    const _ duplicata ← res.mappata(int x ∴ x * 2)
+    const _ summa ← res.reducta((int collectus, int x) ∴ collectus + x, 0)
 
-    nota pares
-    nota duplicata
-    nota summa
+    print pares
+    print duplicata
+    print summa
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[2, 4]
 [2, 4, 6, 8, 10]
 15

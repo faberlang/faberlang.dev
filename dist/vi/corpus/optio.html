@@ -21,15 +21,15 @@
 # PAIR: sugar `@ optio NAME brevis \&quot;x\&quot; ...` (see optio/optio.fab)
 
 @ cli { nomen = &quot;optio-braced-smoke&quot; }
-@ optio {
+@ option {
     binding = verbose,
     brevis = &quot;v&quot;,
     longum = &quot;verbose&quot;,
-    typus = bivalens,
+    typus = bool,
     descriptio = &quot;Verbose mode&quot;,
-    ubique = verum,
+    ubique = true,
 }
-incipit argumenta args { }</code></pre><h3 id="radixcorpusoptiooptiofab-canonical-keyword">radix/corpus/optio/optio.fab (canonical · keyword)<a class="anchor" href="#radixcorpusoptiooptiofab-canonical-keyword">#</a></h3><p>Declares a CLI option annotation.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
+main args args { }</code></pre><h3 id="radixcorpusoptiooptiofab-canonical-keyword">radix/corpus/optio/optio.fab (canonical · keyword)<a class="anchor" href="#radixcorpusoptiooptiofab-canonical-keyword">#</a></h3><p>Declares a CLI option annotation.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"># =============================================================================
 # optio — Declares a CLI option annotation.
 # =============================================================================
 #
@@ -56,7 +56,7 @@ incipit argumenta args { }</code></pre><h3 id="radixcorpusoptiooptiofab-canonica
 #
 
 @ cli &quot;optio-smoke&quot;
-@ optio verbose brevis &quot;v&quot; longum &quot;verbose&quot; typus bivalens descriptio &quot;Verbose mode&quot;
-@ optio count longum &quot;count&quot; typus numerus descriptio &quot;Repeat count&quot;
-incipit argumenta args {
+@ option verbose short &quot;v&quot; long &quot;verbose&quot; type bool description &quot;Verbose mode&quot;
+@ option count long &quot;count&quot; type int description &quot;Repeat count&quot;
+main args args {
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusannotation-sugaroptio-bracedfab-canonical-annotation">radix/corpus/annotation-sugar/optio-braced.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpusoptiooptiofab-canonical-keyword">radix/corpus/optio/optio.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[&quot;radix/corpus/annotation-sugar/optio-braced.fab&quot;]</li></ul></div></footer></div></body></html>

@@ -27,14 +27,14 @@
 #   Cross-ref: elige/elige.fab, discerne/discerne.fab.
 #
 
-incipit {
-    fixum _ code ← 200
-    elige code {
-        casu 200 {
-            nota &quot;ok&quot;
+main {
+    const _ code ← 200
+    switch code {
+        case 200 {
+            print &quot;ok&quot;
         }
-        ceterum {
-            nota &quot;other&quot;
+        default {
+            print &quot;other&quot;
         }
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>ok

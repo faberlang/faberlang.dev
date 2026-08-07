@@ -23,21 +23,21 @@
 # EXPECTED OUTPUT:
 #   none — stdout not pinned for this exemplum.
 
-discretio Condicio {
+union Condicio {
     Activa,
     Quietus
 }
 
-functio narra(Condicio condicio) → textus {
+fn narra(Condicio condicio) → string {
     # every variant must have a casu
-    discerne omnia condicio {
-        casu Activa { redde &quot;activa&quot; }
-        casu Quietus { redde &quot;quietus&quot; }
+    match all condicio {
+        case Activa { return &quot;activa&quot; }
+        case Quietus { return &quot;quietus&quot; }
     }
 }
 
-incipit {
-    fixum _ condicio ← finge Activa
-    nota narra(condicio)
+main {
+    const _ condicio ← variant Activa
+    print narra(condicio)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>activa
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusomniaomniafab-canonical-keyword">radix/corpus/omnia/omnia.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/omnia/omnia.fab&quot;]</li></ul></div></footer></div></body></html>
