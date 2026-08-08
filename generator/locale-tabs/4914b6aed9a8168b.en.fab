@@ -1,0 +1,6 @@
+main {
+    const int<i32> signed ← -7
+    const int<u8> byte ← 255
+    const f64 wide ← 1.5
+    print signed, byte, wide
+}

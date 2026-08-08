@@ -1,0 +1,5 @@
+incipit {
+    fixum numerus<i32> narrow ← "255" ↦ numerus<i32>
+    fixum f32 single ← "1.5" ↦ f32
+    nota narrow, single
+}

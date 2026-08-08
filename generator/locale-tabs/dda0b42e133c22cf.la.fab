@@ -1,0 +1,14 @@
+incipit {
+    varia numerus i ← 0
+    fac {
+        dum i ≺ 3 {
+            i ← i + 1
+            si i ≡ 2 {
+                iace "halfway"
+            }
+        }
+    }
+    cape err {
+        mone err
+    }
+}

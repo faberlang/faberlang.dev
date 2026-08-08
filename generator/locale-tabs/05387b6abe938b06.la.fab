@@ -1,0 +1,11 @@
+proba "stable" tag "fast" {
+    adfirma verum
+}
+
+proba "flaky guard" repete 3 {
+    adfirma verum
+}
+
+proba "not written yet" futurum "waiting on the parser" {
+    adfirma verum
+}

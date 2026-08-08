@@ -1,0 +1,5 @@
+incipit {
+    fixum lista<textus ∪ numerus> mixed ← [1, "two", 3]
+    fixum lista<numerus> inferred ← [1, 2, 3]
+    nota mixed, inferred
+}

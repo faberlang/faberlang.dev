@@ -1,0 +1,14 @@
+入口 {
+    常量 文本 ∪ 整数 signum ← 7
+    匹配 signum {
+        情况 7 {
+            显示 "the number seven"
+        }
+        情况 "x" {
+            显示 "the letter x"
+        }
+        情况 _ {
+            显示 "something else"
+        }
+    }
+}

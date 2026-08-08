@@ -1,0 +1,5 @@
+入口 {
+    定值 文字 nomen ← "Marcus"
+    定值 列表<整數> numeri ← [1, 2, 3]
+    註記 nomen, numeri
+}

@@ -1,0 +1,7 @@
+bắt_đầu {
+    hằng danh_sách<f32> valores ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    hằng ten_xo<f32, []> seed ← tập_rỗng
+    hằng ten_xo<f32, [2, 3]> matrix ← seed.strue(valores, [2, 3])
+    hằng f32 medium ← matrix.media()
+    ghi_chú medium
+}

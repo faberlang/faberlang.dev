@@ -1,0 +1,6 @@
+@ cli { name = "salve" }
+@ option { binding = nomen, short = "n", long = "nomen", type = string, description = "who to greet" }
+@ option { binding = quotiens, long = "quotiens", type = int, description = "how many times" }
+main args args {
+    print "started"
+}

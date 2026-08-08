@@ -1,0 +1,21 @@
+fn divide(int a, int b) → int ⇥ string {
+    if b ≡ 0 {
+        throw "division by zero"
+    }
+    return a / b
+}
+
+fn tutum(int a, int b) → int {
+    do {
+        return divide(a, b)
+    }
+    catch err {
+        warn err
+        return 0
+    }
+}
+
+main {
+    print tutum(10, 2)
+    print tutum(10, 0)
+}

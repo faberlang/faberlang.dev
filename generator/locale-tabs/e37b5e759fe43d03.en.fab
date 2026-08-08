@@ -1,0 +1,5 @@
+main {
+    const int<i32> narrow ← "255" ↦ int<i32>
+    const f32 single ← "1.5" ↦ f32
+    print narrow, single
+}

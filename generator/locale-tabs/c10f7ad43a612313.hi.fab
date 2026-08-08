@@ -1,0 +1,7 @@
+आरंभ {
+    स्थिर सूची<संख्या> numeri ← [1, 2, 3]
+    स्थिर तालिका<पाठ, संख्या> aetates ← { "Marcus": 30, "Julia": 28 }
+    दिखाओ numeri[0]
+    दिखाओ aetates["Marcus"]
+    दिखाओ numeri.longitudo()
+}

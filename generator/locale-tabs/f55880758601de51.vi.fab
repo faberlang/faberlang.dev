@@ -1,0 +1,5 @@
+bắt_đầu {
+    lặp khoảng 0‥3 hằng i {
+        ghi_chú i
+    }
+}

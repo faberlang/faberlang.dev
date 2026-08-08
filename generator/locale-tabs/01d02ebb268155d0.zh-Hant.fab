@@ -1,0 +1,6 @@
+函式 divide(整數 a, 整數 b) → 整數 ⇥ 文字 {
+    若 b ≡ 0 {
+        拋出 "division by zero"
+    }
+    傳回 a / b
+}

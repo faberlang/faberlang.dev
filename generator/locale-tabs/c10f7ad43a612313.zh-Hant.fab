@@ -1,0 +1,7 @@
+入口 {
+    定值 列表<整數> numeri ← [1, 2, 3]
+    定值 表格<文字, 整數> aetates ← { "Marcus": 30, "Julia": 28 }
+    註記 numeri[0]
+    註記 aetates["Marcus"]
+    註記 numeri.longitudo()
+}

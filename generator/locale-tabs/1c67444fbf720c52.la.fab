@@ -1,0 +1,6 @@
+incipit {
+    fixum numerus limit ← 10
+    varia numerus count ← 0
+    count ← count + 1
+    nota limit, count
+}

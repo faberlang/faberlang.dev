@@ -1,0 +1,12 @@
+دالة duplica(عدد n) → عدد {
+    أعد n * 2
+}
+
+دالة saluta(نص nomen) → فراغ {
+    اعرض nomen
+}
+
+بداية {
+    اعرض duplica(21)
+    saluta("Marcus")
+}

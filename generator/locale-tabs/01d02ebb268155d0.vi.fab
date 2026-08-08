@@ -1,0 +1,6 @@
+hàm divide(số a, số b) → số ⇥ văn_bản {
+    nếu b ≡ 0 {
+        ném "division by zero"
+    }
+    trả a / b
+}

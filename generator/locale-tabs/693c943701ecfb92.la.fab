@@ -1,0 +1,12 @@
+incipit {
+    fixum lista<textus> raw ← ["1", "two", "3"]
+    fac {
+        itera ex raw fixum item {
+            fixum numerus n ← item ↦ numerus
+            nota n
+        }
+    }
+    cape err {
+        mone err
+    }
+}

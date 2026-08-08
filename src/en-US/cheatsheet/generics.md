@@ -10,8 +10,8 @@ sources = []
 Type parameters go in angle brackets after the name.
 
 ```faber
-functio identitas<T>(T valor) → T {
-    redde valor
+functio identitas<T>(T datum) → T {
+    redde datum
 }
 
 incipit {

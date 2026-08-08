@@ -1,0 +1,14 @@
+main {
+    var int i ← 0
+    do {
+        while i ≺ 3 {
+            i ← i + 1
+            if i ≡ 2 {
+                throw "halfway"
+            }
+        }
+    }
+    catch err {
+        warn err
+    }
+}

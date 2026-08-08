@@ -1,0 +1,5 @@
+入口 {
+    定值 整數 good ← "42" ↦ 整數 ⇥ 0
+    定值 整數 bad ← "not a number" ↦ 整數 ⇥ 0
+    註記 good, bad
+}

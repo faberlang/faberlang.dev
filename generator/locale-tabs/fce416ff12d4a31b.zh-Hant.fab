@@ -1,0 +1,13 @@
+函式 nihil_agit() → 空值 {
+    註記 "done"
+}
+
+入口 {
+    定值 文字 nomen ← "Marcus"
+    定值 整數 aetas ← 30
+    定值 布林 ready ← 真
+    定值 列表<整數> empty ← 空集
+    定值 整數 ∪ 空 missing ← 空
+    註記 nomen, aetas, ready, empty, missing
+    nihil_agit()
+}

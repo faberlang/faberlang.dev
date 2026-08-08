@@ -1,0 +1,11 @@
+ทดสอบ "stable" แท็ก "fast" {
+    ยืนยัน จริง
+}
+
+ทดสอบ "flaky guard" ทำซ้ำ 3 {
+    ยืนยัน จริง
+}
+
+ทดสอบ "not written yet" ค้าง "waiting on the parser" {
+    ยืนยัน จริง
+}

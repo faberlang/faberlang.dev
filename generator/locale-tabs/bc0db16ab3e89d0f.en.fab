@@ -1,0 +1,5 @@
+main {
+    const int good ← "42" ↦ int ⇥ 0
+    const int bad ← "not a number" ↦ int ⇥ 0
+    print good, bad
+}

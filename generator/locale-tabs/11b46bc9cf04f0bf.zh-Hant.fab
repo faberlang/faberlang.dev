@@ -1,0 +1,6 @@
+入口 {
+    定值 列表<整數> numeri ← [10, 20, 30]
+    遍歷 從 numeri 定值 index {
+        註記 index, numeri[index]
+    }
+}

@@ -1,0 +1,8 @@
+دالة identitas<T>(T datum) → T {
+    أعد datum
+}
+
+بداية {
+    اعرض identitas("Marcus")
+    اعرض identitas(42)
+}

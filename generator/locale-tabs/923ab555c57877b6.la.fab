@@ -1,0 +1,13 @@
+genus Punctum {
+    numerus x
+    numerus y
+
+    functio summa() → numerus {
+        redde ego.x + ego.y
+    }
+}
+
+incipit {
+    fixum Punctum p ← Punctum {x = 1, y = 2}
+    nota p.summa()
+}

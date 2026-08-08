@@ -1,0 +1,6 @@
+@ cli { nomen = "salve" }
+@ optio { binding = nomen, brevis = "n", longum = "nomen", typus = textus, descriptio = "who to greet" }
+@ optio { binding = quotiens, longum = "quotiens", typus = numerus, descriptio = "how many times" }
+incipit argumenta args {
+    nota "started"
+}

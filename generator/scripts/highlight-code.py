@@ -214,13 +214,34 @@ def main() -> int:
 
     scanners: dict[str | None, re.Pattern] = {}
 
+    # A fence names a reader locale the way the compiler does (`en`, `la`),
+    # while the search indexes are named for site locales (`en-US`).
+    INDEX_ALIAS = {"en": "en-US"}
+
+    # Reader-pack vocabularies cached by locale-tabs.py. These are the
+    # authority for a locale's spellings; the search indexes carry Latin
+    # canonical terms and would leave an English panel's keywords grey.
+    vocab_dir = Path(__file__).resolve().parents[1] / "locale-tabs"
+
     def faber_for(locale: str | None) -> re.Pattern:
         if locale not in scanners:
-            name = "search-index.json" if locale is None else f"search-index.{locale}.json"
-            index = dist / name
-            if not index.is_file():
-                index = dist / "search-index.json"
-            scanners[locale] = faber_scanner(keyword_pattern(load_keywords(index)))
+            words: set[str] = set()
+            if locale:
+                vocab = vocab_dir / f"vocab.{locale}.json"
+                if vocab.is_file():
+                    try:
+                        words = set(json.loads(vocab.read_text(encoding="utf-8")))
+                    except (json.JSONDecodeError, OSError):
+                        words = set()
+            if not words:
+                resolved = INDEX_ALIAS.get(locale or "", locale)
+                name = ("search-index.json" if resolved is None
+                        else f"search-index.{resolved}.json")
+                index = dist / name
+                if not index.is_file():
+                    index = dist / "search-index.json"
+                words = load_keywords(index)
+            scanners[locale] = faber_scanner(keyword_pattern(words))
         return scanners[locale]
 
     blocks = 0

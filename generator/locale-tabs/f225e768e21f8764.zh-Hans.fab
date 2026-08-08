@@ -1,0 +1,9 @@
+类 Persona {
+    文本 nomen
+    整数 aetas
+}
+
+入口 {
+    常量 Persona p ← Persona {nomen = "Marcus", aetas = 30}
+    显示 p.nomen, p.aetas
+}

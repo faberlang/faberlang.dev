@@ -1,0 +1,7 @@
+main {
+    const list<f32> valores ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    const tensor<f32, []> seed ← vacua
+    const tensor<f32, [2, 3]> matrix ← seed.strue(valores, [2, 3])
+    const f32 medium ← matrix.media()
+    print medium
+}

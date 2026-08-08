@@ -1,0 +1,6 @@
+เริ่ม {
+    คงที่ รายการ<จำนวน> numeri ← [10, 20, 30]
+    วน จาก numeri คงที่ index {
+        บันทึก index, numeri[index]
+    }
+}

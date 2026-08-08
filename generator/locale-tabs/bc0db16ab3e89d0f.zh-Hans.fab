@@ -1,0 +1,5 @@
+入口 {
+    常量 整数 good ← "42" ↦ 整数 ⇥ 0
+    常量 整数 bad ← "not a number" ↦ 整数 ⇥ 0
+    显示 good, bad
+}

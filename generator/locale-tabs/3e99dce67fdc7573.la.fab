@@ -1,0 +1,5 @@
+incipit {
+    fixum lista<textus> nomina ← ["Marcus", "Julia"]
+    fixum tabula<textus, numerus> aetates ← { "Marcus": 30 }
+    nota nomina, aetates
+}

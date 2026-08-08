@@ -1,0 +1,5 @@
+incipit {
+    itera ab 0‥10 per 2 fixum i {
+        nota i
+    }
+}

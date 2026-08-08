@@ -1,0 +1,8 @@
+fn abs(int n) → int {
+    if n ≺ 0 then return 0 - n
+    return n
+}
+
+main {
+    print abs(-5)
+}

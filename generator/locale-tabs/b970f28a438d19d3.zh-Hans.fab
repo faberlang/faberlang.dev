@@ -1,0 +1,3 @@
+测试 "concatenatio" 标签 "fast" {
+    断言 "a" + "b" ≡ "ab"
+}

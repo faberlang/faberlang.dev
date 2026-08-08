@@ -1,0 +1,5 @@
+kiểm_thử "comparisons" {
+    khẳng_định 1 + 1 ≡ 2
+    khẳng_định 3 ≻ 2
+    khẳng_định "abc".longitudo() ≡ 3
+}

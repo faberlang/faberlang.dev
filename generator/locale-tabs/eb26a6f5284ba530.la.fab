@@ -1,0 +1,6 @@
+incipit {
+    fixum tabula<textus, textus> persona ← { "nomen": "Marcus", "urbs": "Roma" }
+    itera de persona fixum clavis {
+        nota clavis, persona[clavis]
+    }
+}

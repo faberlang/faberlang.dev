@@ -1,0 +1,6 @@
+بداية {
+    ثابت عدد<i32> signed ← -7
+    ثابت عدد<u8> byte ← 255
+    ثابت f64 wide ← 1.5
+    اعرض signed, byte, wide
+}

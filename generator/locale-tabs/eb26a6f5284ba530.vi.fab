@@ -1,0 +1,6 @@
+bắt_đầu {
+    hằng bảng<văn_bản, văn_bản> persona ← { "nomen": "Marcus", "urbs": "Roma" }
+    lặp ra persona hằng clavis {
+        ghi_chú clavis, persona[clavis]
+    }
+}

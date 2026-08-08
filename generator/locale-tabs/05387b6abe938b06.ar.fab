@@ -1,0 +1,11 @@
+اختبر "stable" وسم "fast" {
+    أكد صواب
+}
+
+اختبر "flaky guard" معاد 3 {
+    أكد صواب
+}
+
+اختبر "not written yet" مستقبلي "waiting on the parser" {
+    أكد صواب
+}

@@ -1,0 +1,4 @@
+@ cli { nomen = "salve" }
+incipit argumenta args {
+    nota "started"
+}

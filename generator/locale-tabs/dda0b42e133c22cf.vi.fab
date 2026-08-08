@@ -1,0 +1,14 @@
+bắt_đầu {
+    biến số i ← 0
+    làm {
+        trong_khi i ≺ 3 {
+            i ← i + 1
+            nếu i ≡ 2 {
+                ném "halfway"
+            }
+        }
+    }
+    bắt err {
+        cảnh_báo err
+    }
+}

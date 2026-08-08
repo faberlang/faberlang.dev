@@ -1,0 +1,14 @@
+incipit {
+    fixum numerus n ← 2
+    discerne n {
+        casu 1 {
+            nota "one"
+        }
+        casu 2 {
+            nota "two"
+        }
+        casu _ {
+            nota "many"
+        }
+    }
+}

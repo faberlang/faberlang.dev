@@ -1,0 +1,4 @@
+bắt_đầu {
+    hằng văn_bản roundtrip ← ("42" ↦ số) ↦ văn_bản
+    ghi_chú roundtrip
+}

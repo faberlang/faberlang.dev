@@ -1,0 +1,13 @@
+fn nihil_agit() → void {
+    print "done"
+}
+
+main {
+    const string nomen ← "Marcus"
+    const int aetas ← 30
+    const bool ready ← true
+    const list<int> empty ← vacua
+    const int ∪ null missing ← null
+    print nomen, aetas, ready, empty, missing
+    nihil_agit()
+}

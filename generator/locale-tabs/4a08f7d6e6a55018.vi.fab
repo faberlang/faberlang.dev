@@ -1,0 +1,7 @@
+bắt_đầu {
+    biến số i ← 0
+    trong_khi i ≺ 3 {
+        i ← i + 1
+        ghi_chú i
+    }
+}

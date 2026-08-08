@@ -1,0 +1,8 @@
+函数 identitas<T>(T datum) → T {
+    返回 datum
+}
+
+入口 {
+    显示 identitas("Marcus")
+    显示 identitas(42)
+}

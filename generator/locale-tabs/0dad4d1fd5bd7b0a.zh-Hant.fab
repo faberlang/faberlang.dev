@@ -1,0 +1,14 @@
+入口 {
+    定值 文字 ∪ 整數 signum ← 7
+    比對 signum {
+        分支 7 {
+            註記 "the number seven"
+        }
+        分支 "x" {
+            註記 "the letter x"
+        }
+        分支 _ {
+            註記 "something else"
+        }
+    }
+}

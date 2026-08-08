@@ -1,0 +1,19 @@
+fn parse(string raw) → int ⇥ string {
+    if raw ≡ "" {
+        throw "empty input"
+    }
+    return raw ↦ int ⇥ 0
+}
+
+fn duplum(string raw) → int ⇥ string {
+    return parse(raw) * 2
+}
+
+main {
+    do {
+        print duplum("21")
+    }
+    catch err {
+        warn err
+    }
+}

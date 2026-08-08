@@ -1,0 +1,5 @@
+入口 {
+    常量 列表<文本> nomina ← ["Marcus", "Julia"]
+    常量 映射<文本, 整数> aetates ← { "Marcus": 30 }
+    显示 nomina, aetates
+}

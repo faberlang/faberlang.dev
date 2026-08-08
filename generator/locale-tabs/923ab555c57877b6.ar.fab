@@ -1,0 +1,13 @@
+صنف Punctum {
+    عدد x
+    عدد y
+
+    دالة summa() → عدد {
+        أعد ذات.x + ذات.y
+    }
+}
+
+بداية {
+    ثابت Punctum p ← Punctum {x = 1, y = 2}
+    اعرض p.summa()
+}

@@ -61,9 +61,9 @@ incipit {
 
 ```faber
 incipit {
-    fixum numerus ∪ textus valor ← 7
+    fixum numerus ∪ textus signum ← 7
 
-    discerne valor {
+    discerne signum {
         casu 7 { nota "the number seven" }
         casu "x" { nota "the letter x" }
         ceterum { nota "something else" }

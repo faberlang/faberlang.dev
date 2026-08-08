@@ -1,0 +1,9 @@
+genus Persona {
+    textus nomen
+    numerus aetas
+}
+
+incipit {
+    fixum Persona p ← Persona {nomen = "Marcus", aetas = 30}
+    nota p.nomen, p.aetas
+}

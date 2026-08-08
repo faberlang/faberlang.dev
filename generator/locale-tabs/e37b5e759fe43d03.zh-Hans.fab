@@ -1,0 +1,5 @@
+入口 {
+    常量 整数<i32> narrow ← "255" ↦ 整数<i32>
+    常量 f32 single ← "1.5" ↦ f32
+    显示 narrow, single
+}

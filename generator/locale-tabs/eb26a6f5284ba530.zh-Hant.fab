@@ -1,0 +1,6 @@
+入口 {
+    定值 表格<文字, 文字> persona ← { "nomen": "Marcus", "urbs": "Roma" }
+    遍歷 從 persona 定值 clavis {
+        註記 clavis, persona[clavis]
+    }
+}

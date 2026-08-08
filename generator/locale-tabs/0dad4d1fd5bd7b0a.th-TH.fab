@@ -1,0 +1,14 @@
+เริ่ม {
+    คงที่ ข้อความ ∪ จำนวน signum ← 7
+    แยก signum {
+        กรณี 7 {
+            บันทึก "the number seven"
+        }
+        กรณี "x" {
+            บันทึก "the letter x"
+        }
+        กรณี _ {
+            บันทึก "something else"
+        }
+    }
+}

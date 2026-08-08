@@ -1,0 +1,10 @@
+hàm medium(ten_xo<f32, [2, 3]> m) → f32 {
+    trả m.media()
+}
+
+bắt_đầu {
+    hằng danh_sách<f32> flat ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    hằng ten_xo<f32, []> seed ← tập_rỗng
+    hằng ten_xo<f32, [2, 3]> m ← seed.strue(flat, [2, 3])
+    ghi_chú medium(m)
+}

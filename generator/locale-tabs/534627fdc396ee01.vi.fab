@@ -1,0 +1,3 @@
+hàm logga(văn_bản context) → trống {
+    cảnh_báo context
+}

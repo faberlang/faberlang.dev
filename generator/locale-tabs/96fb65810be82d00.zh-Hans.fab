@@ -1,0 +1,12 @@
+函数 duplica(整数 n) → 整数 {
+    返回 n * 2
+}
+
+函数 saluta(文本 nomen) → 无值 {
+    显示 nomen
+}
+
+入口 {
+    显示 duplica(21)
+    saluta("Marcus")
+}

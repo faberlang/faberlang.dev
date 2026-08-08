@@ -1,0 +1,5 @@
+incipit {
+    fixum numerus good ← "42" ↦ numerus ⇥ 0
+    fixum numerus bad ← "not a number" ↦ numerus ⇥ 0
+    nota good, bad
+}

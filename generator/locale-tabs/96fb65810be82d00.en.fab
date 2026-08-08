@@ -1,0 +1,12 @@
+fn duplica(int n) → int {
+    return n * 2
+}
+
+fn saluta(string nomen) → void {
+    print nomen
+}
+
+main {
+    print duplica(21)
+    saluta("Marcus")
+}

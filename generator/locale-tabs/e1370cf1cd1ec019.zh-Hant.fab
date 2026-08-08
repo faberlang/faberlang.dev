@@ -1,0 +1,11 @@
+類型 Punctum {
+    整數 x
+    整數 y
+}
+
+入口 {
+    定值 Punctum p ← Punctum {x = 1, y = 2}
+    定值 整數 x ← p.x
+    定值 整數 y ← p.y
+    註記 x, y
+}

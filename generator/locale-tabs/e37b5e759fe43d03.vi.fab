@@ -1,0 +1,5 @@
+bắt_đầu {
+    hằng số<i32> narrow ← "255" ↦ số<i32>
+    hằng f32 single ← "1.5" ↦ f32
+    ghi_chú narrow, single
+}

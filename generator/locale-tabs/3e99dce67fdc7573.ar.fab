@@ -1,0 +1,5 @@
+بداية {
+    ثابت قائمة<نص> nomina ← ["Marcus", "Julia"]
+    ثابت جدول<نص, عدد> aetates ← { "Marcus": 30 }
+    اعرض nomina, aetates
+}

@@ -1,0 +1,5 @@
+測試 "comparisons" {
+    斷言 1 + 1 ≡ 2
+    斷言 3 ≻ 2
+    斷言 "abc".longitudo() ≡ 3
+}

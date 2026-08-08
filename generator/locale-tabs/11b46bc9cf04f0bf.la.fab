@@ -1,0 +1,6 @@
+incipit {
+    fixum lista<numerus> numeri ← [10, 20, 30]
+    itera de numeri fixum index {
+        nota index, numeri[index]
+    }
+}

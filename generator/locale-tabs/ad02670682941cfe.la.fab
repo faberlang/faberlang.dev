@@ -1,0 +1,8 @@
+functio primum<T>(lista<T> res) → T ∪ nihil {
+    si res.longitudo() ≡ 0 ergo redde nihil
+    redde res[0]
+}
+
+incipit {
+    nota primum([1, 2, 3])
+}

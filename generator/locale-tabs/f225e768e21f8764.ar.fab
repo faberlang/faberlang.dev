@@ -1,0 +1,9 @@
+صنف Persona {
+    نص nomen
+    عدد aetas
+}
+
+بداية {
+    ثابت Persona p ← Persona {nomen = "Marcus", aetas = 30}
+    اعرض p.nomen, p.aetas
+}

@@ -1,0 +1,5 @@
+main {
+    for range 0‥3 const i {
+        print i
+    }
+}

@@ -1,0 +1,8 @@
+函式 primum(列表<整數> res) → 整數 ∪ 空 {
+    若 res.longitudo() ≡ 0 則 傳回 空
+    傳回 res[0]
+}
+
+入口 {
+    註記 primum([1, 2, 3])
+}

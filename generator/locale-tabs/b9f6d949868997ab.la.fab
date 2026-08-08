@@ -1,0 +1,8 @@
+functio identitas<T>(T datum) → T {
+    redde datum
+}
+
+incipit {
+    nota identitas("Marcus")
+    nota identitas(42)
+}

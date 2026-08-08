@@ -1,0 +1,7 @@
+incipit {
+    fixum lista<numerus> numeri ← [1, 2, 3]
+    fixum tabula<textus, numerus> aetates ← { "Marcus": 30, "Julia": 28 }
+    nota numeri[0]
+    nota aetates["Marcus"]
+    nota numeri.longitudo()
+}

@@ -1,0 +1,5 @@
+main {
+    const string nomen ← "Marcus"
+    const list<int> numeri ← [1, 2, 3]
+    print nomen, numeri
+}

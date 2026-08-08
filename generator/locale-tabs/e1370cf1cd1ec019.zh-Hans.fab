@@ -1,0 +1,11 @@
+类 Punctum {
+    整数 x
+    整数 y
+}
+
+入口 {
+    常量 Punctum p ← Punctum {x = 1, y = 2}
+    常量 整数 x ← p.x
+    常量 整数 y ← p.y
+    显示 x, y
+}

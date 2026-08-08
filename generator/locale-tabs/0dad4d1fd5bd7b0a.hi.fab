@@ -1,0 +1,14 @@
+आरंभ {
+    स्थिर पाठ ∪ संख्या signum ← 7
+    मिलाओ signum {
+        स्थिति 7 {
+            दिखाओ "the number seven"
+        }
+        स्थिति "x" {
+            दिखाओ "the letter x"
+        }
+        स्थिति _ {
+            दिखाओ "something else"
+        }
+    }
+}

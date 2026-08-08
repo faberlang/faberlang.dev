@@ -1,0 +1,6 @@
+आरंभ {
+    स्थिर संख्या limit ← 10
+    चर संख्या count ← 0
+    count ← count + 1
+    दिखाओ limit, count
+}

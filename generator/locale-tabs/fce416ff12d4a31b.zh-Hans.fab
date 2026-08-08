@@ -1,0 +1,13 @@
+函数 nihil_agit() → 无值 {
+    显示 "done"
+}
+
+入口 {
+    常量 文本 nomen ← "Marcus"
+    常量 整数 aetas ← 30
+    常量 布尔 ready ← 真
+    常量 列表<整数> empty ← 空集
+    常量 整数 ∪ 空 missing ← 空
+    显示 nomen, aetas, ready, empty, missing
+    nihil_agit()
+}

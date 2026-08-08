@@ -1,0 +1,6 @@
+入口 {
+    常量 列表<整数> numeri ← [10, 20, 30]
+    遍历 借自 numeri 常量 index {
+        显示 index, numeri[index]
+    }
+}

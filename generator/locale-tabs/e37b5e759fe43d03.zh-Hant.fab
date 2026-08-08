@@ -1,0 +1,5 @@
+入口 {
+    定值 整數<i32> narrow ← "255" ↦ 整數<i32>
+    定值 f32 single ← "1.5" ↦ f32
+    註記 narrow, single
+}

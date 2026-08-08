@@ -1,0 +1,8 @@
+hàm abs(số n) → số {
+    nếu n ≺ 0 do_đó trả 0 - n
+    trả n
+}
+
+bắt_đầu {
+    ghi_chú abs(-5)
+}

@@ -1,0 +1,7 @@
+incipit {
+    varia numerus i ← 0
+    dum i ≺ 3 {
+        i ← i + 1
+        nota i
+    }
+}

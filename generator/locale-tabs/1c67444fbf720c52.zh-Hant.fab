@@ -1,0 +1,6 @@
+入口 {
+    定值 整數 limit ← 10
+    變值 整數 count ← 0
+    count ← count + 1
+    註記 limit, count
+}

@@ -1,0 +1,9 @@
+type Nomen = string
+
+type Puncta = list<int>
+
+main {
+    const string n ← "Marcus"
+    const list<int> p ← [1, 2, 3]
+    print n, p
+}

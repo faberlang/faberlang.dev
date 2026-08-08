@@ -1,0 +1,7 @@
+main {
+    const list<int> numeri ← [1, 2, 3]
+    const map<string, int> aetates ← { "Marcus": 30, "Julia": 28 }
+    print numeri[0]
+    print aetates["Marcus"]
+    print numeri.longitudo()
+}

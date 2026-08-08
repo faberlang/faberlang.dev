@@ -1,0 +1,5 @@
+入口 {
+    常量 文本 nomen ← "Marcus"
+    常量 列表<整数> numeri ← [1, 2, 3]
+    显示 nomen, numeri
+}

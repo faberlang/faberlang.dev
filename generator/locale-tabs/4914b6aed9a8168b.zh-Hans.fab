@@ -1,0 +1,6 @@
+入口 {
+    常量 整数<i32> signed ← -7
+    常量 整数<u8> byte ← 255
+    常量 f64 wide ← 1.5
+    显示 signed, byte, wide
+}

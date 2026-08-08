@@ -1,0 +1,7 @@
+proba "additio" {
+    adfirma 1 + 1 ≡ 2
+}
+
+proba "multiplicatio" {
+    adfirma 2 * 3 ≡ 6
+}

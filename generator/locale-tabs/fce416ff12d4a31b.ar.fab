@@ -1,0 +1,13 @@
+دالة nihil_agit() → فراغ {
+    اعرض "done"
+}
+
+بداية {
+    ثابت نص nomen ← "Marcus"
+    ثابت عدد aetas ← 30
+    ثابت منطقي ready ← صواب
+    ثابت قائمة<عدد> empty ← فارغ
+    ثابت عدد ∪ لاشيء missing ← لاشيء
+    اعرض nomen, aetas, ready, empty, missing
+    nihil_agit()
+}

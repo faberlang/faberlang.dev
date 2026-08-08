@@ -1,0 +1,6 @@
+@ cli { ชื่อ = "salve" }
+@ ตัวเลือก { binding = nomen, สั้น = "n", ยาว = "nomen", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "who to greet" }
+@ ตัวเลือก { binding = quotiens, ยาว = "quotiens", ชนิดนามแฝง = จำนวน, คำอธิบาย = "how many times" }
+เริ่ม อาร์กิวเมนต์ args {
+    บันทึก "started"
+}

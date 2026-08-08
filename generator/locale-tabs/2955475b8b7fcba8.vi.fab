@@ -1,0 +1,5 @@
+bắt_đầu {
+    hằng danh_sách<văn_bản ∪ số> mixed ← [1, "two", 3]
+    hằng danh_sách<số> inferred ← [1, 2, 3]
+    ghi_chú mixed, inferred
+}

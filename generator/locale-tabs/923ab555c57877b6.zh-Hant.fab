@@ -1,0 +1,13 @@
+類型 Punctum {
+    整數 x
+    整數 y
+
+    函式 summa() → 整數 {
+        傳回 自身.x + 自身.y
+    }
+}
+
+入口 {
+    定值 Punctum p ← Punctum {x = 1, y = 2}
+    註記 p.summa()
+}

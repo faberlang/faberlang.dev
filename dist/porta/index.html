@@ -133,14 +133,14 @@
     <button class="fdt-tab" role="tab" id="pt-zh-Hans" data-panel="pp-zh-Hans" data-href="/zh-Hans/" data-name="简体中文" aria-controls="pp-zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span> <span class="code">zh-Hans</span></button>
     <button class="fdt-tab" role="tab" id="pt-zh-Hant" data-panel="pp-zh-Hant" data-href="/zh-Hant/" data-name="繁體中文" aria-controls="pp-zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span> <span class="code">zh-Hant</span></button>
     </div>
-    <div class="fdt-panel active" id="pp-en-US" role="tabpanel" aria-labelledby="pt-en-US"><div class="fdt-panel-label">English · la · <a href="/en-US/">enter docs →</a></div><pre><code class="lang-faber locale=la"><span class="tok-kw">functio</span> salve(<span class="tok-kw">textus</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
-    <span class="tok-kw">fixum</span> <span class="tok-kw">textus</span> msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
+    <div class="fdt-panel active" id="pp-en-US" role="tabpanel" aria-labelledby="pt-en-US"><div class="fdt-panel-label">English · la · <a href="/en-US/">enter docs →</a></div><pre><code class="lang-faber locale=la"><span class="tok-kw">functio</span> salve(<span class="tok-kw">textus</span> <span class="tok-kw">nomen</span>) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
+    <span class="tok-kw">fixum</span> <span class="tok-kw">textus</span> msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(<span class="tok-kw">nomen</span>)
     <span class="tok-kw">redde</span> msg
 }
 
 <span class="tok-kw">incipit</span> {
     <span class="tok-kw">fixum</span> <span class="tok-kw">textus</span> m <span class="tok-op">←</span> salve(<span class="tok-st">"munde"</span>)
-    nota m
+    <span class="tok-kw">nota</span> m
 }</code></pre></div>
     <div class="fdt-panel" id="pp-th-TH" role="tabpanel" aria-labelledby="pt-th-TH"><div class="fdt-panel-label">ภาษาไทย · th-TH · <a href="/th-TH/">enter docs →</a></div><pre><code class="lang-faber locale=th-TH"><span class="tok-kw">ฟังก์ชัน</span> salve(<span class="tok-kw">ข้อความ</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">ข้อความ</span> {
     <span class="tok-kw">คงที่</span> <span class="tok-kw">ข้อความ</span> msg <span class="tok-op">←</span> <span class="tok-st">"สวัสดี, §!"</span>(nomen)
@@ -158,7 +158,7 @@
 
 <span class="tok-kw">بداية</span> {
     <span class="tok-kw">ثابت</span> <span class="tok-kw">نص</span> m <span class="tok-op">←</span> salve(<span class="tok-st">"عالم"</span>)
-    اعرض m
+    <span class="tok-kw">اعرض</span> m
 }</code></pre></div>
     <div class="fdt-panel" id="pp-hi" role="tabpanel" aria-labelledby="pt-hi"><div class="fdt-panel-label">हिन्दी · hi · <a href="/hi/">enter docs →</a></div><pre><code class="lang-faber locale=hi"><span class="tok-kw">फलन</span> salve(<span class="tok-kw">पाठ</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">पाठ</span> {
     <span class="tok-kw">स्थिर</span> <span class="tok-kw">पाठ</span> msg <span class="tok-op">←</span> <span class="tok-st">"नमस्ते, §!"</span>(nomen)
@@ -167,7 +167,7 @@
 
 <span class="tok-kw">आरंभ</span> {
     <span class="tok-kw">स्थिर</span> <span class="tok-kw">पाठ</span> m <span class="tok-op">←</span> salve(<span class="tok-st">"दुनिया"</span>)
-    दिखाओ m
+    <span class="tok-kw">दिखाओ</span> m
 }</code></pre></div>
     <div class="fdt-panel" id="pp-vi" role="tabpanel" aria-labelledby="pt-vi"><div class="fdt-panel-label">Tiếng Việt · vi · <a href="/vi/">enter docs →</a></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">hàm</span> salve(vănbản nomen) <span class="tok-op">→</span> vănbản {
     <span class="tok-kw">hằng</span> vănbản msg <span class="tok-op">←</span> <span class="tok-st">"Xin chào, §!"</span>(nomen)
@@ -176,7 +176,7 @@
 
 <span class="tok-kw">bắt</span>đầu {
     <span class="tok-kw">hằng</span> vănbản m <span class="tok-op">←</span> salve(<span class="tok-st">"thế giới"</span>)
-    <span class="tok-kw">in</span> m
+    in m
 }</code></pre></div>
     <div class="fdt-panel" id="pp-zh-Hans" role="tabpanel" aria-labelledby="pt-zh-Hans"><div class="fdt-panel-label">简体中文 · zh-Hans · <a href="/zh-Hans/">enter docs →</a></div><pre><code class="lang-faber locale=zh-Hans"><span class="tok-kw">函数</span> salve(<span class="tok-kw">文本</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">文本</span> {
     <span class="tok-kw">常量</span> <span class="tok-kw">文本</span> msg <span class="tok-op">←</span> <span class="tok-st">"你好，§!"</span>(nomen)
@@ -185,7 +185,7 @@
 
 <span class="tok-kw">入口</span> {
     <span class="tok-kw">常量</span> <span class="tok-kw">文本</span> m <span class="tok-op">←</span> salve(<span class="tok-st">"世界"</span>)
-    显示 m
+    <span class="tok-kw">显示</span> m
 }</code></pre></div>
     <div class="fdt-panel" id="pp-zh-Hant" role="tabpanel" aria-labelledby="pt-zh-Hant"><div class="fdt-panel-label">繁體中文 · zh-Hant · <a href="/zh-Hant/">enter docs →</a></div><pre><code class="lang-faber locale=zh-Hant"><span class="tok-kw">函式</span> salve(<span class="tok-kw">文字</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">文字</span> {
     常數 <span class="tok-kw">文字</span> msg <span class="tok-op">←</span> <span class="tok-st">"你好，§!"</span>(nomen)

@@ -1,0 +1,4 @@
+入口 {
+    常量 文本 roundtrip ← ("42" ↦ 整数) ↦ 文本
+    显示 roundtrip
+}

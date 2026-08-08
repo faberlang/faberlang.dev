@@ -1,0 +1,13 @@
+صنف Persona {
+    نص nomen
+    عدد aetas
+}
+
+دالة descriptio(Persona p) → نص {
+    أعد p.nomen
+}
+
+بداية {
+    ثابت Persona p ← Persona {nomen = "Marcus", aetas = 30}
+    اعرض descriptio(p)
+}

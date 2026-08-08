@@ -1,0 +1,19 @@
+函数 parse(文本 raw) → 整数 ⇥ 文本 {
+    如果 raw ≡ "" {
+        抛错 "empty input"
+    }
+    返回 raw ↦ 整数 ⇥ 0
+}
+
+函数 duplum(文本 raw) → 整数 ⇥ 文本 {
+    返回 parse(raw) * 2
+}
+
+入口 {
+    执行 {
+        显示 duplum("21")
+    }
+    捕获 err {
+        警告 err
+    }
+}

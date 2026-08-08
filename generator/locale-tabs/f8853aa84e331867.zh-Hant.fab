@@ -1,0 +1,6 @@
+@ 命令行 { 名稱 = "salve" }
+@ 選項 { binding = nomen, 簡 = "n", 詳 = "nomen", 型別 = 文字, 描述 = "who to greet" }
+@ 選項 { binding = quotiens, 詳 = "quotiens", 型別 = 整數, 描述 = "how many times" }
+入口 引數 args {
+    註記 "started"
+}

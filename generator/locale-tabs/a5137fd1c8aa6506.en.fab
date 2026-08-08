@@ -1,0 +1,4 @@
+main {
+    const string roundtrip ← ("42" ↦ int) ↦ string
+    print roundtrip
+}

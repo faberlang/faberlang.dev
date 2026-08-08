@@ -1,0 +1,5 @@
+入口 {
+    常量 列表<文本 ∪ 整数> mixed ← [1, "two", 3]
+    常量 列表<整数> inferred ← [1, 2, 3]
+    显示 mixed, inferred
+}

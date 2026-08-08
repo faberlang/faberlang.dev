@@ -1,0 +1,13 @@
+ฟังก์ชัน nihil_agit() → เปล่า {
+    บันทึก "done"
+}
+
+เริ่ม {
+    คงที่ ข้อความ nomen ← "Marcus"
+    คงที่ จำนวน aetas ← 30
+    คงที่ ตรรกะ ready ← จริง
+    คงที่ รายการ<จำนวน> empty ← เซตว่าง
+    คงที่ จำนวน ∪ ว่าง missing ← ว่าง
+    บันทึก nomen, aetas, ready, empty, missing
+    nihil_agit()
+}

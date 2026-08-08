@@ -1,0 +1,5 @@
+bắt_đầu {
+    hằng văn_bản nomen ← "Marcus"
+    hằng danh_sách<số> numeri ← [1, 2, 3]
+    ghi_chú nomen, numeri
+}

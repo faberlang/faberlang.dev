@@ -1,0 +1,8 @@
+hàm primum(danh_sách<số> res) → số ∪ rỗng {
+    nếu res.longitudo() ≡ 0 do_đó trả rỗng
+    trả res[0]
+}
+
+bắt_đầu {
+    ghi_chú primum([1, 2, 3])
+}

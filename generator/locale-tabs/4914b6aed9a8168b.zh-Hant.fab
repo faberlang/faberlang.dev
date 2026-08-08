@@ -1,0 +1,6 @@
+入口 {
+    定值 整數<i32> signed ← -7
+    定值 整數<u8> byte ← 255
+    定值 f64 wide ← 1.5
+    註記 signed, byte, wide
+}

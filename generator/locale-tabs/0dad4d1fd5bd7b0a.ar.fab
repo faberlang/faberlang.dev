@@ -1,0 +1,14 @@
+بداية {
+    ثابت نص ∪ عدد signum ← 7
+    طابق signum {
+        حالة 7 {
+            اعرض "the number seven"
+        }
+        حالة "x" {
+            اعرض "the letter x"
+        }
+        حالة _ {
+            اعرض "something else"
+        }
+    }
+}

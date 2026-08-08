@@ -1,0 +1,12 @@
+bắt_đầu {
+    hằng danh_sách<văn_bản> raw ← ["1", "two", "3"]
+    làm {
+        lặp từ raw hằng item {
+            hằng số n ← item ↦ số
+            ghi_chú n
+        }
+    }
+    bắt err {
+        cảnh_báo err
+    }
+}

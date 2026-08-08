@@ -1,0 +1,7 @@
+入口 {
+    常量 列表<f32> valores ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    常量 张量<f32, []> seed ← 空集
+    常量 张量<f32, [2, 3]> matrix ← seed.strue(valores, [2, 3])
+    常量 f32 medium ← matrix.media()
+    显示 medium
+}

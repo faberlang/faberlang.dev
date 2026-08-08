@@ -1,0 +1,8 @@
+फलन identitas<T>(T datum) → T {
+    लौटाओ datum
+}
+
+आरंभ {
+    दिखाओ identitas("Marcus")
+    दिखाओ identitas(42)
+}

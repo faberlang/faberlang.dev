@@ -1,0 +1,4 @@
+hàm divide(số a, số b) → số ∪ rỗng {
+    nếu b ≡ 0 do_đó trả rỗng
+    trả a / b
+}

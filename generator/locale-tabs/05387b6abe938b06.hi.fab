@@ -1,0 +1,11 @@
+परीक्षण "stable" टैग "fast" {
+    पुष्टि सत्य
+}
+
+परीक्षण "flaky guard" पुनरावृत्ति 3 {
+    पुष्टि सत्य
+}
+
+परीक्षण "not written yet" लंबित "waiting on the parser" {
+    पुष्टि सत्य
+}

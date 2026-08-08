@@ -1,0 +1,4 @@
+@ cli { اسم = "salve" }
+بداية وسائط args {
+    اعرض "started"
+}

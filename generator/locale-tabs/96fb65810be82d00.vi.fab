@@ -1,0 +1,12 @@
+hàm duplica(số n) → số {
+    trả n * 2
+}
+
+hàm saluta(văn_bản nomen) → trống {
+    ghi_chú nomen
+}
+
+bắt_đầu {
+    ghi_chú duplica(21)
+    saluta("Marcus")
+}

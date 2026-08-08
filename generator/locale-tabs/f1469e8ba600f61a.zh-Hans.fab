@@ -1,0 +1,8 @@
+函数 primum(列表<整数> res) → 整数 ∪ 空 {
+    如果 res.longitudo() ≡ 0 则 返回 空
+    返回 res[0]
+}
+
+入口 {
+    显示 primum([1, 2, 3])
+}

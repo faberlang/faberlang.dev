@@ -1,0 +1,6 @@
+functio divide(numerus a, numerus b) → numerus ⇥ textus {
+    si b ≡ 0 {
+        iace "division by zero"
+    }
+    redde a / b
+}

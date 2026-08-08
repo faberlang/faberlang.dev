@@ -1,0 +1,12 @@
+main {
+    const list<int> numeri ← [1, 2, 3, 4, 5]
+    for from numeri const n {
+        if n ≡ 2 {
+            continue
+        }
+        if n ≻ 3 {
+            break
+        }
+        print n
+    }
+}

@@ -1,0 +1,7 @@
+入口 {
+    常量 列表<整数> numeri ← [1, 2, 3]
+    常量 映射<文本, 整数> aetates ← { "Marcus": 30, "Julia": 28 }
+    显示 numeri[0]
+    显示 aetates["Marcus"]
+    显示 numeri.longitudo()
+}

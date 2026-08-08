@@ -1,0 +1,6 @@
+@ cli { tên = "salve" }
+@ tùy_chọn { binding = nomen, ngắn = "n", dài = "nomen", kiểu_tên = văn_bản, mô_tả = "who to greet" }
+@ tùy_chọn { binding = quotiens, dài = "quotiens", kiểu_tên = số, mô_tả = "how many times" }
+bắt_đầu đối_số args {
+    ghi_chú "started"
+}

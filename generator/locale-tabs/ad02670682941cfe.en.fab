@@ -1,0 +1,8 @@
+fn primum<T>(list<T> res) → T ∪ null {
+    if res.longitudo() ≡ 0 then return null
+    return res[0]
+}
+
+main {
+    print primum([1, 2, 3])
+}

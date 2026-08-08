@@ -1,0 +1,12 @@
+incipit {
+    fixum lista<numerus> numeri ← [1, 2, 3, 4, 5]
+    itera ex numeri fixum n {
+        si n ≡ 2 {
+            perge
+        }
+        si n ≻ 3 {
+            rumpe
+        }
+        nota n
+    }
+}

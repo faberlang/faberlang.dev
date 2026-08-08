@@ -1,0 +1,14 @@
+bắt_đầu {
+    hằng văn_bản ∪ số signum ← 7
+    phân_tích signum {
+        trường_hợp 7 {
+            ghi_chú "the number seven"
+        }
+        trường_hợp "x" {
+            ghi_chú "the letter x"
+        }
+        trường_hợp _ {
+            ghi_chú "something else"
+        }
+    }
+}

@@ -1,0 +1,7 @@
+bắt_đầu {
+    hằng danh_sách<số> numeri ← [1, 2, 3]
+    hằng bảng<văn_bản, số> aetates ← { "Marcus": 30, "Julia": 28 }
+    ghi_chú numeri[0]
+    ghi_chú aetates["Marcus"]
+    ghi_chú numeri.longitudo()
+}

@@ -1,0 +1,6 @@
+आरंभ {
+    स्थिर सूची<संख्या> numeri ← [10, 20, 30]
+    दोहराओ से numeri स्थिर index {
+        दिखाओ index, numeri[index]
+    }
+}

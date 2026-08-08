@@ -1,0 +1,21 @@
+hàm divide(số a, số b) → số ⇥ văn_bản {
+    nếu b ≡ 0 {
+        ném "division by zero"
+    }
+    trả a / b
+}
+
+hàm tutum(số a, số b) → số {
+    làm {
+        trả divide(a, b)
+    }
+    bắt err {
+        cảnh_báo err
+        trả 0
+    }
+}
+
+bắt_đầu {
+    ghi_chú tutum(10, 2)
+    ghi_chú tutum(10, 0)
+}

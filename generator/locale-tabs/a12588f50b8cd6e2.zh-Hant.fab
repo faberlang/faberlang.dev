@@ -1,0 +1,19 @@
+函式 parse(文字 raw) → 整數 ⇥ 文字 {
+    若 raw ≡ "" {
+        拋出 "empty input"
+    }
+    傳回 raw ↦ 整數 ⇥ 0
+}
+
+函式 duplum(文字 raw) → 整數 ⇥ 文字 {
+    傳回 parse(raw) * 2
+}
+
+入口 {
+    執行 {
+        註記 duplum("21")
+    }
+    捕捉 err {
+        警告 err
+    }
+}

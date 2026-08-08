@@ -193,6 +193,7 @@ functio genera_head(types_mod.Pagina pag, textus stylesheet_link) → doc_mod.No
     children.appende(doc_mod.void_element("link", [doc_mod.attr("href", "https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@400;600&family=Noto+Sans+Mono:wght@400;600&display=swap"), doc_mod.attr("rel", "stylesheet")]))
     children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "stylesheet"), doc_mod.attr("href", stylesheet_link)]))
     children.appende(doc_mod.element("script", [doc_mod.attr("src", "/faber-search.js"), doc_mod.attr("defer", "")], vacua))
+    children.appende(doc_mod.element("script", [doc_mod.attr("src", "/faber-demo-tabs.js"), doc_mod.attr("defer", "")], vacua))
     children.appende(doc_mod.element("script", [doc_mod.attr("src", "/faber-ambient.js"), doc_mod.attr("defer", "")], vacua))
     redde doc_mod.element("head", vacua, children)
 }

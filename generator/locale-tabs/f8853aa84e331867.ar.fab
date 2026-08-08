@@ -1,0 +1,6 @@
+@ cli { اسم = "salve" }
+@ خيار { binding = nomen, مختصر = "n", مفصل = "nomen", نمط = نص, وصف = "who to greet" }
+@ خيار { binding = quotiens, مفصل = "quotiens", نمط = عدد, وصف = "how many times" }
+بداية وسائط args {
+    اعرض "started"
+}

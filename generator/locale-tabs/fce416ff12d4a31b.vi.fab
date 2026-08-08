@@ -1,0 +1,13 @@
+hàm nihil_agit() → trống {
+    ghi_chú "done"
+}
+
+bắt_đầu {
+    hằng văn_bản nomen ← "Marcus"
+    hằng số aetas ← 30
+    hằng logic ready ← đúng
+    hằng danh_sách<số> empty ← tập_rỗng
+    hằng số ∪ rỗng missing ← rỗng
+    ghi_chú nomen, aetas, ready, empty, missing
+    nihil_agit()
+}

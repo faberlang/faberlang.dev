@@ -1,0 +1,21 @@
+函数 divide(整数 a, 整数 b) → 整数 ⇥ 文本 {
+    如果 b ≡ 0 {
+        抛错 "division by zero"
+    }
+    返回 a / b
+}
+
+函数 tutum(整数 a, 整数 b) → 整数 {
+    执行 {
+        返回 divide(a, b)
+    }
+    捕获 err {
+        警告 err
+        返回 0
+    }
+}
+
+入口 {
+    显示 tutum(10, 2)
+    显示 tutum(10, 0)
+}

@@ -1,0 +1,4 @@
+fn divide(int a, int b) → int ∪ null {
+    if b ≡ 0 then return null
+    return a / b
+}

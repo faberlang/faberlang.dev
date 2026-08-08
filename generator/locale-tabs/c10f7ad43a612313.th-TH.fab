@@ -1,0 +1,7 @@
+เริ่ม {
+    คงที่ รายการ<จำนวน> numeri ← [1, 2, 3]
+    คงที่ ตาราง<ข้อความ, จำนวน> aetates ← { "Marcus": 30, "Julia": 28 }
+    บันทึก numeri[0]
+    บันทึก aetates["Marcus"]
+    บันทึก numeri.longitudo()
+}

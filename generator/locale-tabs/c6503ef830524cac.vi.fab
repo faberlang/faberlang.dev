@@ -1,0 +1,14 @@
+bắt_đầu {
+    hằng số n ← 2
+    phân_tích n {
+        trường_hợp 1 {
+            ghi_chú "one"
+        }
+        trường_hợp 2 {
+            ghi_chú "two"
+        }
+        trường_hợp _ {
+            ghi_chú "many"
+        }
+    }
+}

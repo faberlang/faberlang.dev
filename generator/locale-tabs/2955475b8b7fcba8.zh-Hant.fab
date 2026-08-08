@@ -1,0 +1,5 @@
+入口 {
+    定值 列表<文字 ∪ 整數> mixed ← [1, "two", 3]
+    定值 列表<整數> inferred ← [1, 2, 3]
+    註記 mixed, inferred
+}

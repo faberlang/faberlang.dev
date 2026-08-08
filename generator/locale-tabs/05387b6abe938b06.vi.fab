@@ -1,0 +1,11 @@
+kiểm_thử "stable" nhãn "fast" {
+    khẳng_định đúng
+}
+
+kiểm_thử "flaky guard" lặp_lại 3 {
+    khẳng_định đúng
+}
+
+kiểm_thử "not written yet" việc_cần_làm "waiting on the parser" {
+    khẳng_định đúng
+}

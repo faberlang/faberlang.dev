@@ -1,0 +1,11 @@
+class Punctum {
+    int x
+    int y
+}
+
+main {
+    const Punctum p ← Punctum {x = 1, y = 2}
+    const int x ← p.x
+    const int y ← p.y
+    print x, y
+}

@@ -1,0 +1,12 @@
+main {
+    const list<string> raw ← ["1", "two", "3"]
+    do {
+        for from raw const item {
+            const int n ← item ↦ int
+            print n
+        }
+    }
+    catch err {
+        warn err
+    }
+}

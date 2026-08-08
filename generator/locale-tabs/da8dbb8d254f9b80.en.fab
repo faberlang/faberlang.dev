@@ -1,0 +1,5 @@
+import from "norma:textus" public textus
+
+main {
+    print "ready"
+}

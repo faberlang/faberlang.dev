@@ -1,0 +1,4 @@
+@ cli { नाम = "salve" }
+आरंभ तर्क args {
+    दिखाओ "started"
+}

@@ -1,0 +1,5 @@
+اختبر "comparisons" {
+    أكد 1 + 1 ≡ 2
+    أكد 3 ≻ 2
+    أكد "abc".longitudo() ≡ 3
+}

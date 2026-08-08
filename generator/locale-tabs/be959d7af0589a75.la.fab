@@ -1,0 +1,12 @@
+incipit {
+    fixum numerus n ← 2
+    si n ≡ 1 {
+        nota "one"
+    }
+    sin n ≡ 2 {
+        nota "two"
+    }
+    secus {
+        nota "many"
+    }
+}

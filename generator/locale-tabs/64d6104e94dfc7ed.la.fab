@@ -1,0 +1,4 @@
+incipit {
+    fixum vector<f32, 4> v ← [1.0, 2.0, 3.0, 4.0] ↦ vector<f32, 4>
+    nota v
+}

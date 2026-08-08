@@ -1,0 +1,13 @@
+类 Punctum {
+    整数 x
+    整数 y
+
+    函数 summa() → 整数 {
+        返回 自身.x + 自身.y
+    }
+}
+
+入口 {
+    常量 Punctum p ← Punctum {x = 1, y = 2}
+    显示 p.summa()
+}

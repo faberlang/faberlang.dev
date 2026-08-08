@@ -157,6 +157,7 @@ operate on rendered HTML, so none of them requires a generator rebuild.
 | `diagrams.py inject` | Inlines those SVGs into `dist/` as `<figure class="diagram">` |
 | `highlight-code.py` | Wraps tokens in fenced `faber`/`bash`/`toml` blocks in `.tok-*` spans |
 | `inject-toc.py` | Gives headings ids + `#` self-links, adds the per-page contents rail |
+| `locale-tabs.py inject` | Swaps cheat sheet Faber blocks for reader-locale tab cards |
 
 **Diagrams.** The SVG cache is committed, so a build without Node still
 produces a complete site; `render` is a source-side authoring step and
@@ -172,6 +173,29 @@ python3 generator/scripts/diagrams.py render
 
 which installs its own Node dependencies under `generator/target/` on first
 use. Commit the new `generator/diagrams/*.svg` alongside the Markdown.
+
+**Reader-locale tabs.** Cheat sheet examples render as tabbed cards carrying
+all eight reader surfaces. Like the diagram cache, the panels are committed so
+a build without the toolchain still produces a complete site — `inject` only
+ever reads the cache, and a missing panel set leaves the plain Latin block in
+place. After editing any `src/en-US/cheatsheet/*.md` Faber fence, run:
+
+```bash
+python3 generator/scripts/locale-tabs.py render
+```
+
+and commit the resulting `generator/locale-tabs/*.fab` alongside the Markdown.
+
+`render` transcodes with `faber format --locale`, which resolves reader packs
+relative to its own binary. A workspace build has no `share/faber/locale/`, so
+the script links the packs from the radix tree into place on each run — inside
+`faber/target/`, which is build output. Without that every locale fails with a
+pack-not-found error while still exiting 0.
+
+It also caches each pack's keyword vocabulary as `vocab.<locale>.json`.
+`highlight-code.py` prefers those over the generated search indexes, which
+carry Latin canonical terms — the `en-US` index has two localized spellings, so
+an English panel's keywords would otherwise go unpainted.
 
 **Contents rail.** `inject-toc.py` reads its label from the page locale's
 `chrome.toml` `[toc].heading`. Only `en-US` has one today; other locales get

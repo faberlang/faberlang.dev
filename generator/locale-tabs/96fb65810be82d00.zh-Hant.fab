@@ -1,0 +1,12 @@
+函式 duplica(整數 n) → 整數 {
+    傳回 n * 2
+}
+
+函式 saluta(文字 nomen) → 空值 {
+    註記 nomen
+}
+
+入口 {
+    註記 duplica(21)
+    saluta("Marcus")
+}

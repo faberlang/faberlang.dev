@@ -1,0 +1,6 @@
+main {
+    const list<int> numeri ← [1, 2, 3]
+    for from numeri const n {
+        print n
+    }
+}

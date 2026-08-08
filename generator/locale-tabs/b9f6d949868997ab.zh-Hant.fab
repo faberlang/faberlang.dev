@@ -1,0 +1,8 @@
+函式 identitas<T>(T datum) → T {
+    傳回 datum
+}
+
+入口 {
+    註記 identitas("Marcus")
+    註記 identitas(42)
+}

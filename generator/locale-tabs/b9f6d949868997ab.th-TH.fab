@@ -1,0 +1,8 @@
+ฟังก์ชัน identitas<T>(T datum) → T {
+    คืน datum
+}
+
+เริ่ม {
+    บันทึก identitas("Marcus")
+    บันทึก identitas(42)
+}

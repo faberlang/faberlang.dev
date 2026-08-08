@@ -1,0 +1,12 @@
+फलन duplica(संख्या n) → संख्या {
+    लौटाओ n * 2
+}
+
+फलन saluta(पाठ nomen) → रिक्त {
+    दिखाओ nomen
+}
+
+आरंभ {
+    दिखाओ duplica(21)
+    saluta("Marcus")
+}

@@ -417,6 +417,12 @@ if [ "$FULL_SITE" = true ]; then
         echo "  WARNING: diagram render skipped; using cached SVGs only" >&2
     "$PYTHON" "${SCRIPT_DIR}/diagrams.py" inject "$OUTPUT_DIR"
 
+    # Before highlighting: the tab cards carry per-locale panels, and each
+    # panel names its own reader locale so the highlighter paints it in that
+    # locale's spellings. Injecting after highlighting would leave them plain.
+    echo "[9/10] Reader-locale example tabs..."
+    "$PYTHON" "${SCRIPT_DIR}/locale-tabs.py" inject "$OUTPUT_DIR"
+
     echo "[9/10] Code highlighting..."
     "$PYTHON" "${SCRIPT_DIR}/highlight-code.py" "$OUTPUT_DIR"
 

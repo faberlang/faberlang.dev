@@ -1,0 +1,6 @@
+@ cli { नाम = "salve" }
+@ विकल्प { binding = nomen, संक्षिप्त = "n", विस्तृत = "nomen", प्रकार = पाठ, विवरण = "who to greet" }
+@ विकल्प { binding = quotiens, विस्तृत = "quotiens", प्रकार = संख्या, विवरण = "how many times" }
+आरंभ तर्क args {
+    दिखाओ "started"
+}

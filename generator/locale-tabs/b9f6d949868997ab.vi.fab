@@ -1,0 +1,8 @@
+hàm identitas<T>(T datum) → T {
+    trả datum
+}
+
+bắt_đầu {
+    ghi_chú identitas("Marcus")
+    ghi_chú identitas(42)
+}

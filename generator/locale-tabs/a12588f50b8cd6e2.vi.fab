@@ -1,0 +1,19 @@
+hàm parse(văn_bản raw) → số ⇥ văn_bản {
+    nếu raw ≡ "" {
+        ném "empty input"
+    }
+    trả raw ↦ số ⇥ 0
+}
+
+hàm duplum(văn_bản raw) → số ⇥ văn_bản {
+    trả parse(raw) * 2
+}
+
+bắt_đầu {
+    làm {
+        ghi_chú duplum("21")
+    }
+    bắt err {
+        cảnh_báo err
+    }
+}

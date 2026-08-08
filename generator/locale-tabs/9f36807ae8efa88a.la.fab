@@ -1,0 +1,5 @@
+incipit {
+    fixum textus nomen ← "Marcus"
+    fixum lista<numerus> numeri ← [1, 2, 3]
+    nota nomen, numeri
+}

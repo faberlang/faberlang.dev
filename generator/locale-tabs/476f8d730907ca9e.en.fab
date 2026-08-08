@@ -1,0 +1,4 @@
+@ cli { name = "salve" }
+main args args {
+    print "started"
+}

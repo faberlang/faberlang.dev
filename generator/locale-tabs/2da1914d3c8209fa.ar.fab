@@ -1,0 +1,5 @@
+استورد من "./auxilium" خاص saluta كـ greet
+
+بداية {
+    اعرض "ready"
+}

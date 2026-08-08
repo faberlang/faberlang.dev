@@ -1,0 +1,3 @@
+fn logga(string context) → void {
+    warn context
+}

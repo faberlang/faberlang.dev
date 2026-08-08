@@ -1,0 +1,12 @@
+bắt_đầu {
+    hằng danh_sách<số> numeri ← [1, 2, 3, 4, 5]
+    lặp từ numeri hằng n {
+        nếu n ≡ 2 {
+            tiếp
+        }
+        nếu n ≻ 3 {
+            dừng
+        }
+        ghi_chú n
+    }
+}

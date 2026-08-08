@@ -1,0 +1,12 @@
+bắt_đầu {
+    hằng số n ← 2
+    nếu n ≡ 1 {
+        ghi_chú "one"
+    }
+    nếukhôngthì n ≡ 2 {
+        ghi_chú "two"
+    }
+    khác {
+        ghi_chú "many"
+    }
+}

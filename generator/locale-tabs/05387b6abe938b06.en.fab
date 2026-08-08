@@ -1,0 +1,11 @@
+test "stable" tag "fast" {
+    assert true
+}
+
+test "flaky guard" repeat 3 {
+    assert true
+}
+
+test "not written yet" todo "waiting on the parser" {
+    assert true
+}

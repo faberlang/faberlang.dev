@@ -1,0 +1,7 @@
+بداية {
+    ثابت قائمة<f32> valores ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    ثابت موتر<f32, []> seed ← فارغ
+    ثابت موتر<f32, [2, 3]> matrix ← seed.strue(valores, [2, 3])
+    ثابت f32 medium ← matrix.media()
+    اعرض medium
+}

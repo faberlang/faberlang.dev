@@ -1,0 +1,21 @@
+函式 divide(整數 a, 整數 b) → 整數 ⇥ 文字 {
+    若 b ≡ 0 {
+        拋出 "division by zero"
+    }
+    傳回 a / b
+}
+
+函式 tutum(整數 a, 整數 b) → 整數 {
+    執行 {
+        傳回 divide(a, b)
+    }
+    捕捉 err {
+        警告 err
+        傳回 0
+    }
+}
+
+入口 {
+    註記 tutum(10, 2)
+    註記 tutum(10, 0)
+}

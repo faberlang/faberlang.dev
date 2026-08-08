@@ -1,0 +1,8 @@
+fn identitas<T>(T datum) → T {
+    return datum
+}
+
+main {
+    print identitas("Marcus")
+    print identitas(42)
+}

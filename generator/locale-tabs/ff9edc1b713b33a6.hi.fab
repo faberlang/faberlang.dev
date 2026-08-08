@@ -1,0 +1,7 @@
+आरंभ {
+    स्थिर सूची<f32> valores ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    स्थिर टेंसर<f32, []> seed ← खाली
+    स्थिर टेंसर<f32, [2, 3]> matrix ← seed.strue(valores, [2, 3])
+    स्थिर f32 medium ← matrix.media()
+    दिखाओ medium
+}

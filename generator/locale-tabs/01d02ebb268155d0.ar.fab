@@ -1,0 +1,6 @@
+دالة divide(عدد a, عدد b) → عدد ⇥ نص {
+    إذا b ≡ 0 {
+        ارم "division by zero"
+    }
+    أعد a / b
+}

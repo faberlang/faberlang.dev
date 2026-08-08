@@ -1,0 +1,13 @@
+類型 Persona {
+    文字 nomen
+    整數 aetas
+}
+
+函式 descriptio(Persona p) → 文字 {
+    傳回 p.nomen
+}
+
+入口 {
+    定值 Persona p ← Persona {nomen = "Marcus", aetas = 30}
+    註記 descriptio(p)
+}

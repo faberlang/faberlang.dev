@@ -1,0 +1,7 @@
+بداية {
+    ثابت قائمة<عدد> numeri ← [1, 2, 3]
+    ثابت جدول<نص, عدد> aetates ← { "Marcus": 30, "Julia": 28 }
+    اعرض numeri[0]
+    اعرض aetates["Marcus"]
+    اعرض numeri.longitudo()
+}

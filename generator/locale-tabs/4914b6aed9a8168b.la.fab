@@ -1,0 +1,6 @@
+incipit {
+    fixum numerus<i32> signed ← -7
+    fixum numerus<u8> byte ← 255
+    fixum f64 wide ← 1.5
+    nota signed, byte, wide
+}

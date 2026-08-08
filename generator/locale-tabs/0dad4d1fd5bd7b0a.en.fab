@@ -1,0 +1,14 @@
+main {
+    const string ∪ int signum ← 7
+    match signum {
+        case 7 {
+            print "the number seven"
+        }
+        case "x" {
+            print "the letter x"
+        }
+        case _ {
+            print "something else"
+        }
+    }
+}

@@ -1,0 +1,9 @@
+類型 Persona {
+    文字 nomen
+    整數 aetas
+}
+
+入口 {
+    定值 Persona p ← Persona {nomen = "Marcus", aetas = 30}
+    註記 p.nomen, p.aetas
+}

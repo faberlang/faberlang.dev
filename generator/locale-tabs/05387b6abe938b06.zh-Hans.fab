@@ -1,0 +1,11 @@
+测试 "stable" 标签 "fast" {
+    断言 真
+}
+
+测试 "flaky guard" 重复 3 {
+    断言 真
+}
+
+测试 "not written yet" 预期 "waiting on the parser" {
+    断言 真
+}

@@ -1,0 +1,9 @@
+typus Nomen = textus
+
+typus Puncta = lista<numerus>
+
+incipit {
+    fixum textus n ← "Marcus"
+    fixum lista<numerus> p ← [1, 2, 3]
+    nota n, p
+}

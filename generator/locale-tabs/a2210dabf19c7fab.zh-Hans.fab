@@ -1,0 +1,5 @@
+导入 取自 "./auxilium" 私有 saluta
+
+入口 {
+    显示 "ready"
+}

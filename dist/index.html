@@ -101,25 +101,25 @@
     <button class="fdt-tab" role="tab" id="fl-loc-t-ar" data-panel="fl-loc-p-ar" data-name="العربية" aria-controls="fl-loc-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button>
     <button class="fdt-tab" role="tab" id="fl-loc-t-hi" data-panel="fl-loc-p-hi" data-name="हिन्दी" aria-controls="fl-loc-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button>
     </div>
-    <div class="fdt-panel active" id="fl-loc-p-en" role="tabpanel" aria-labelledby="fl-loc-t-en"><div class="fdt-panel-label"><code>faber format --locale en</code> <span class="fdt-note">— English reader surface — the base spelling for everyday source</span></div><pre><code class="lang-faber locale=en">main {
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
-    const tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> vacua
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> seed.strue(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
-    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a.matmul(b)
-    const f32 mean <span class="tok-op">←</span> product.media()
-    print mean
+    <div class="fdt-panel active" id="fl-loc-p-en" role="tabpanel" aria-labelledby="fl-loc-t-en"><div class="fdt-panel-label"><code>faber format --locale en</code> <span class="fdt-note">— English reader surface — the base spelling for everyday source</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">const</span> <span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> <span class="tok-kw">vacua</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> seed.strue(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">const</span> <span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">const</span> <span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a.matmul(b)
+    <span class="tok-kw">const</span> f32 mean <span class="tok-op">←</span> product.media()
+    <span class="tok-kw">print</span> mean
 }</code></pre></div>
     <div class="fdt-panel" id="fl-loc-p-la" role="tabpanel" aria-labelledby="fl-loc-t-la"><div class="fdt-panel-label"><code>faber format --locale la</code> <span class="fdt-note">— canonical Faber — the classical surface the language is named for</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">incipit</span> {
     <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
     <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
-    <span class="tok-kw">fixum</span> tf32[] seed <span class="tok-op">←</span> vacua
+    <span class="tok-kw">fixum</span> tf32[] seed <span class="tok-op">←</span> <span class="tok-kw">vacua</span>
     <span class="tok-kw">fixum</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.strue(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
     <span class="tok-kw">fixum</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
     <span class="tok-kw">fixum</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.matmul(b)
     <span class="tok-kw">fixum</span> f32 mean <span class="tok-op">←</span> product.media()
-    nota mean
+    <span class="tok-kw">nota</span> mean
 }</code></pre></div>
     <div class="fdt-panel" id="fl-loc-p-th-TH" role="tabpanel" aria-labelledby="fl-loc-t-th-TH"><div class="fdt-panel-label"><code>faber format --locale th-TH</code> <span class="fdt-note">— Thai — spaceless script</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">เริ่ม</span> {
     <span class="tok-kw">คงที่</span> <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
@@ -129,7 +129,7 @@
     <span class="tok-kw">คงที่</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
     <span class="tok-kw">คงที่</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a.matmul(b)
     <span class="tok-kw">คงที่</span> f32 mean <span class="tok-op">←</span> product.media()
-    บันทึก mean
+    <span class="tok-kw">บันทึก</span> mean
 }</code></pre></div>
     <div class="fdt-panel" id="fl-loc-p-zh-Hans" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hans"><div class="fdt-panel-label"><code>faber format --locale zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">入口</span> {
     <span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
@@ -139,7 +139,7 @@
     <span class="tok-kw">常量</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
     <span class="tok-kw">常量</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a.matmul(b)
     <span class="tok-kw">常量</span> f32 mean <span class="tok-op">←</span> product.media()
-    显示 mean
+    <span class="tok-kw">显示</span> mean
 }</code></pre></div>
     <div class="fdt-panel" id="fl-loc-p-zh-Hant" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hant"><div class="fdt-panel-label"><code>faber format --locale zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">入口</span> {
     <span class="tok-kw">定值</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
@@ -149,7 +149,7 @@
     <span class="tok-kw">定值</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
     <span class="tok-kw">定值</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a.matmul(b)
     <span class="tok-kw">定值</span> f32 mean <span class="tok-op">←</span> product.media()
-    註記 mean
+    <span class="tok-kw">註記</span> mean
 }</code></pre></div>
     <div class="fdt-panel" id="fl-loc-p-vi" role="tabpanel" aria-labelledby="fl-loc-t-vi"><div class="fdt-panel-label"><code>faber format --locale vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">bắt_đầu</span> {
     <span class="tok-kw">hằng</span> <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
@@ -159,7 +159,7 @@
     <span class="tok-kw">hằng</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
     <span class="tok-kw">hằng</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a.matmul(b)
     <span class="tok-kw">hằng</span> f32 mean <span class="tok-op">←</span> product.media()
-    ghi_chú mean
+    <span class="tok-kw">ghi_chú</span> mean
 }</code></pre></div>
     <div class="fdt-panel" id="fl-loc-p-ar" role="tabpanel" aria-labelledby="fl-loc-t-ar"><div class="fdt-panel-label"><code>faber format --locale ar</code> <span class="fdt-note">— Arabic — right-to-left, bidi isolated</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">بداية</span> {
     <span class="tok-kw">ثابت</span> <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
@@ -169,7 +169,7 @@
     <span class="tok-kw">ثابت</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
     <span class="tok-kw">ثابت</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a.matmul(b)
     <span class="tok-kw">ثابت</span> f32 mean <span class="tok-op">←</span> product.media()
-    اعرض mean
+    <span class="tok-kw">اعرض</span> mean
 }</code></pre></div>
     <div class="fdt-panel" id="fl-loc-p-hi" role="tabpanel" aria-labelledby="fl-loc-t-hi"><div class="fdt-panel-label"><code>faber format --locale hi</code> <span class="fdt-note">— Hindi — Devanagari</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">आरंभ</span> {
     <span class="tok-kw">स्थिर</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
@@ -179,7 +179,7 @@
     <span class="tok-kw">स्थिर</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
     <span class="tok-kw">स्थिर</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a.matmul(b)
     <span class="tok-kw">स्थिर</span> f32 mean <span class="tok-op">←</span> product.media()
-    दिखाओ mean
+    <span class="tok-kw">दिखाओ</span> mean
 }</code></pre></div>
   </div>
     <pre class="fl-run">$ faber run --interpret &lt;package&gt;

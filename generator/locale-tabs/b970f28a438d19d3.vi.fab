@@ -1,0 +1,3 @@
+kiểm_thử "concatenatio" nhãn "fast" {
+    khẳng_định "a" + "b" ≡ "ab"
+}

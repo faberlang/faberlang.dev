@@ -1,0 +1,11 @@
+kiểu Punctum {
+    số x
+    số y
+}
+
+bắt_đầu {
+    hằng Punctum p ← Punctum {x = 1, y = 2}
+    hằng số x ← p.x
+    hằng số y ← p.y
+    ghi_chú x, y
+}

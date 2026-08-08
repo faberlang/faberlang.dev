@@ -1,0 +1,5 @@
+main {
+    const string ∪ int mixed ← 7
+    const list<string ∪ int> both ← [1, "two", 3]
+    print mixed, both
+}

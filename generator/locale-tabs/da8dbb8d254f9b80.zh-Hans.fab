@@ -1,0 +1,5 @@
+导入 取自 "norma:textus" 公开 textus
+
+入口 {
+    显示 "ready"
+}

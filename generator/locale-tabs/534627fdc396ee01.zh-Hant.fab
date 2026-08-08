@@ -1,0 +1,3 @@
+函式 logga(文字 context) → 空值 {
+    警告 context
+}

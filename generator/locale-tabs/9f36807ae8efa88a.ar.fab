@@ -1,0 +1,5 @@
+بداية {
+    ثابت نص nomen ← "Marcus"
+    ثابت قائمة<عدد> numeri ← [1, 2, 3]
+    اعرض nomen, numeri
+}

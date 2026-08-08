@@ -1,0 +1,6 @@
+bắt_đầu {
+    hằng số n ← "42" ↦ số
+    hằng văn_bản s ← 42 ↦ văn_bản
+    hằng f64 f ← "3.14159" ↦ f64
+    ghi_chú n, s, f
+}

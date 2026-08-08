@@ -1,0 +1,5 @@
+入口 {
+    定值 列表<文字> nomina ← ["Marcus", "Julia"]
+    定值 表格<文字, 整數> aetates ← { "Marcus": 30 }
+    註記 nomina, aetates
+}

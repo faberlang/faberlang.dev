@@ -1,0 +1,9 @@
+kiểu_tên Nomen = văn_bản
+
+kiểu_tên Puncta = danh_sách<số>
+
+bắt_đầu {
+    hằng văn_bản n ← "Marcus"
+    hằng danh_sách<số> p ← [1, 2, 3]
+    ghi_chú n, p
+}

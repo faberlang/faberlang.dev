@@ -1,0 +1,12 @@
+functio duplica(numerus n) → numerus {
+    redde n * 2
+}
+
+functio saluta(textus nomen) → vacuum {
+    nota nomen
+}
+
+incipit {
+    nota duplica(21)
+    saluta("Marcus")
+}

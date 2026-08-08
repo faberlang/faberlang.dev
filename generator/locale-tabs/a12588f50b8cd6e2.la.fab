@@ -1,0 +1,19 @@
+functio parse(textus raw) → numerus ⇥ textus {
+    si raw ≡ "" {
+        iace "empty input"
+    }
+    redde raw ↦ numerus ⇥ 0
+}
+
+functio duplum(textus raw) → numerus ⇥ textus {
+    redde parse(raw) * 2
+}
+
+incipit {
+    fac {
+        nota duplum("21")
+    }
+    cape err {
+        mone err
+    }
+}

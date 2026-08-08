@@ -1,0 +1,5 @@
+bắt_đầu {
+    hằng danh_sách<văn_bản> nomina ← ["Marcus", "Julia"]
+    hằng bảng<văn_bản, số> aetates ← { "Marcus": 30 }
+    ghi_chú nomina, aetates
+}

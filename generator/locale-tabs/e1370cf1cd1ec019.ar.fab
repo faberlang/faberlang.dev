@@ -1,0 +1,11 @@
+صنف Punctum {
+    عدد x
+    عدد y
+}
+
+بداية {
+    ثابت Punctum p ← Punctum {x = 1, y = 2}
+    ثابت عدد x ← p.x
+    ثابت عدد y ← p.y
+    اعرض x, y
+}
