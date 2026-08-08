@@ -118,57 +118,71 @@ Pages: /en-US/toolchain/cli.html#device-execution ·
 - https://faberlang.dev/porta/ — language portal (all locales)
 - https://faberlang.dev/en-US/ — English overview + download
 
-### Get started
-- https://faberlang.dev/en-US/start/
-- https://faberlang.dev/en-US/start/install.html
-- https://faberlang.dev/en-US/start/hello.html
-- https://faberlang.dev/en-US/cheatsheet/ — cheat sheet index
+### Primary sections
+The site's top-level nav, in order.
+
+- https://faberlang.dev/en-US/start/install.html — install the current release
+- https://faberlang.dev/en-US/localization.html — the eight reader locales and why each was chosen
+- https://faberlang.dev/en-US/cheatsheet/ — short worked examples, by topic
+- https://faberlang.dev/en-US/releases/ — every Faber and Radix version, pinned installs, full notes
+- https://faberlang.dev/en-US/open-source.html — licensing, repositories, issue routing, maintainer
+- https://faberlang.dev/en-US/examples/ — real package source, read on-site
+- https://faberlang.dev/en-US/targets/ — Faber beside what each target lowers to
+
+### Cheat sheet
+- https://faberlang.dev/en-US/cheatsheet/entry-points.html
+- https://faberlang.dev/en-US/cheatsheet/bindings.html
+- https://faberlang.dev/en-US/cheatsheet/types.html
+- https://faberlang.dev/en-US/cheatsheet/generics.html
+- https://faberlang.dev/en-US/cheatsheet/loops.html
+- https://faberlang.dev/en-US/cheatsheet/control-flow.html
+- https://faberlang.dev/en-US/cheatsheet/errors.html
+- https://faberlang.dev/en-US/cheatsheet/conversions.html
+- https://faberlang.dev/en-US/cheatsheet/imports.html
+- https://faberlang.dev/en-US/cheatsheet/testing.html
 - https://faberlang.dev/en-US/cheatsheet/commands.html
+
+### Language
+- https://faberlang.dev/en-US/language/
+- https://faberlang.dev/en-US/language/types.html
+- https://faberlang.dev/en-US/language/functions.html
+- https://faberlang.dev/en-US/language/errors.html
+- https://faberlang.dev/en-US/language/glyphs.html
+- https://faberlang.dev/en-US/language/reader-locales.html
+- https://faberlang.dev/en-US/language/capabilities.html
+
+### Toolchain
+- https://faberlang.dev/en-US/toolchain/
+- https://faberlang.dev/en-US/toolchain/cli.html
+- https://faberlang.dev/en-US/toolchain/compiling.html
+- https://faberlang.dev/en-US/toolchain/target-matrix.html
+- https://faberlang.dev/en-US/toolchain/packages.html
+- https://faberlang.dev/en-US/toolchain/radix.html
+
+### Target lanes
+Demonstration, as against the target matrix's measurement.
+
+- https://faberlang.dev/en-US/targets/hir.html
+- https://faberlang.dev/en-US/targets/mir.html
+- https://faberlang.dev/en-US/targets/gpu.html
+
+### Libraries
+- https://faberlang.dev/en-US/libraries/
+- https://faberlang.dev/en-US/libraries/norma.html
+- https://faberlang.dev/en-US/libraries/triga.html
+- https://faberlang.dev/en-US/libraries/corpus.html
+
+### Reference
+- https://faberlang.dev/en-US/reference/
+- https://faberlang.dev/en-US/reference/grammar.html
+- https://faberlang.dev/en-US/reference/design.html
+
+### Start track
+Sequenced tutorial pages. No longer a sidebar group; still live and linked.
+
+- https://faberlang.dev/en-US/start/
+- https://faberlang.dev/en-US/start/hello.html
 - https://faberlang.dev/en-US/start/projects.html
-- https://faberlang.dev/en-US/start/examples.html
-
-### Features
-- https://faberlang.dev/en-US/features/
-- https://faberlang.dev/en-US/features/reader-locale.html
-- https://faberlang.dev/en-US/features/compilation-lanes.html
-- https://faberlang.dev/en-US/features/latin-and-glyphs.html
-- https://faberlang.dev/en-US/features/canonical-vs-sugar.html
-- https://faberlang.dev/en-US/features/commandments.html
-- https://faberlang.dev/en-US/features/frames.html
-- https://faberlang.dev/en-US/features/testing.html
-
-### Syntax
-- https://faberlang.dev/en-US/syntax/
-- https://faberlang.dev/en-US/syntax/types.html
-- https://faberlang.dev/en-US/syntax/variables.html
-- https://faberlang.dev/en-US/syntax/functions.html
-- https://faberlang.dev/en-US/syntax/control-flow.html
-- https://faberlang.dev/en-US/syntax/nullability.html
-- https://faberlang.dev/en-US/syntax/errors.html
-- https://faberlang.dev/en-US/syntax/generics.html
-- https://faberlang.dev/en-US/syntax/collections.html
-- https://faberlang.dev/en-US/syntax/strings.html
-- https://faberlang.dev/en-US/syntax/conversion.html
-- https://faberlang.dev/en-US/syntax/glyphs.html
-
-### Tooling
-- https://faberlang.dev/en-US/tooling/
-- https://faberlang.dev/en-US/tooling/faber-build-tool.html
-- https://faberlang.dev/en-US/tooling/radix-compiler.html
-- https://faberlang.dev/en-US/tooling/cista-package-manager.html
-- https://faberlang.dev/en-US/tooling/codegen-targets.html
-- https://faberlang.dev/en-US/tooling/targets.html
-- https://faberlang.dev/en-US/tooling/scripting.html
-- https://faberlang.dev/en-US/tooling/performance.html
-
-### Ecosystem
-- https://faberlang.dev/en-US/ecosystem/
-- https://faberlang.dev/en-US/ecosystem/norma.html
-- https://faberlang.dev/en-US/ecosystem/triga.html
-- https://faberlang.dev/en-US/ecosystem/coreutils.html
-- https://faberlang.dev/en-US/ecosystem/ai-workbench.html
-- https://faberlang.dev/en-US/ecosystem/corpus.html
-- https://faberlang.dev/en-US/ecosystem/reader-locale-packages.html
 
 ### Corpus (generated keyword pages)
 - Hub: https://faberlang.dev/en-US/corpus/
@@ -177,13 +191,10 @@ Pages: /en-US/toolchain/cli.html#device-execution ·
   e.g. https://faberlang.dev/en-US/corpus/category/function.html
 - Other locales also ship corpus under `/{locale}/corpus/` (same terms, locale code)
 
-### References & history
-- https://faberlang.dev/en-US/references/
-- https://faberlang.dev/en-US/references/ebnf.html
-- https://faberlang.dev/en-US/references/design-docs.html
-- https://faberlang.dev/en-US/references/repositories.html
-- https://faberlang.dev/en-US/history/
-- https://faberlang.dev/en-US/history/releases.html
+### Retired paths
+`/en-US/{features,syntax,tooling,ecosystem,history,references}/…` and
+`/en-US/start/{commands,examples}.html` are redirect stubs from earlier
+information architectures. They resolve, but cite the current paths above.
 
 ## Machine surfaces
 

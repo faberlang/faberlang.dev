@@ -69,7 +69,7 @@ Repo: https://github.com/faberlang/examples
 | 4 | `coreutils` | Larger application campaign |
 | 5 | `gpu-workload` | Systems / GPU track |
 
-Site: https://faberlang.dev/en-US/start/examples.html
+Site: https://faberlang.dev/en-US/examples/
 
 ## Commands you will use constantly
 
@@ -87,12 +87,19 @@ faber format <pkg>
 |---|---|
 | Portal (pick locale) | https://faberlang.dev/ |
 | English overview | https://faberlang.dev/en-US/ |
-| Syntax | https://faberlang.dev/en-US/syntax/ |
-| Tooling | https://faberlang.dev/en-US/tooling/ |
-| Features | https://faberlang.dev/en-US/features/ |
+| Short worked examples | https://faberlang.dev/en-US/cheatsheet/ |
+| The language | https://faberlang.dev/en-US/language/ |
+| Toolchain and CLI | https://faberlang.dev/en-US/toolchain/ |
+| Device execution (GPU) | https://faberlang.dev/en-US/toolchain/cli.html#device-execution |
+| Measured target support | https://faberlang.dev/en-US/toolchain/target-matrix.html |
+| Source beside its lowering | https://faberlang.dev/en-US/targets/ |
+| Real package source | https://faberlang.dev/en-US/examples/ |
+| Reader locales, and why these | https://faberlang.dev/en-US/localization.html |
+| Every version + release notes | https://faberlang.dev/en-US/releases/ |
+| Licensing, repos, issues | https://faberlang.dev/en-US/open-source.html |
 | Corpus pages | https://faberlang.dev/en-US/corpus/ |
-| Ecosystem | https://faberlang.dev/en-US/ecosystem/ |
-| EBNF | https://faberlang.dev/en-US/references/ebnf.html |
+| Libraries | https://faberlang.dev/en-US/libraries/ |
+| EBNF | https://faberlang.dev/en-US/reference/grammar.html |
 
 ## Skills
 
@@ -111,8 +118,12 @@ faber format <pkg>
 - Do not invent package layouts when examples already show one.
 - Do not claim Radix source is public.
 - Do not scrape only the homepage HTML when `/llms.txt` exists.
-- Do not use bare `/start/…` or `/syntax/…` paths as the canonical docs URL;
-  those are redirect stubs. Prefer `/en-US/…` (or the locale the user chose).
+- Do not use bare `/start/…` paths, or any of `/syntax/`, `/features/`,
+  `/tooling/`, `/ecosystem/`, `/history/`, `/references/`, as canonical docs
+  URLs; those are redirect stubs from earlier information architectures.
+  Prefer `/en-US/…` (or the locale the user chose).
+- Do not claim GPU inference or multi-device execution is shipped. Bounded
+  dual-backend training on Metal and CUDA is the current proven device claim.
 
 ## Done when
 

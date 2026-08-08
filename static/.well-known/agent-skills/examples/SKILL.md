@@ -14,7 +14,7 @@ description: "Open real application packages in faberlang/examples (AI Workbench
 ## Source
 
 - Repo: https://github.com/faberlang/examples
-- Site: https://faberlang.dev/en-US/start/examples.html
+- Site: https://faberlang.dev/en-US/examples/
 
 ## Open these first
 
@@ -39,9 +39,9 @@ Always read the package `README.md` for exact run arguments.
 
 ## Site cross-links
 
-- AI Workbench: https://faberlang.dev/en-US/ecosystem/ai-workbench.html
+- AI Workbench: https://faberlang.dev/en-US/examples/faber-ai.html
 - Corpus hub: https://faberlang.dev/en-US/corpus/
-- Norma: https://faberlang.dev/en-US/ecosystem/norma.html
+- Norma: https://faberlang.dev/en-US/libraries/norma.html
 
 ## Related
 

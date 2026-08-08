@@ -193,15 +193,20 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
     lines.extend([
         "- https://faberlang.dev/ — language portal (pick a site locale)",
         "- https://faberlang.dev/en-US/ — English overview + download (canonical full tree)",
-        "- https://faberlang.dev/en-US/start/ — quick tour",
-        "- https://faberlang.dev/en-US/features/ — locales, lanes, glyphs, principles",
-        "- https://faberlang.dev/en-US/syntax/ — language reference",
-        "- https://faberlang.dev/en-US/tooling/ — compiler, CLI, targets",
-        "- https://faberlang.dev/en-US/ecosystem/ — Norma, Cista, Triga, workbench",
+        "- https://faberlang.dev/en-US/start/install.html — install the current release",
+        "- https://faberlang.dev/en-US/localization.html — the eight reader locales, and why each",
+        "- https://faberlang.dev/en-US/cheatsheet/ — short worked examples by topic",
+        "- https://faberlang.dev/en-US/language/ — language reference",
+        "- https://faberlang.dev/en-US/toolchain/ — compiler, CLI, targets, device execution",
+        "- https://faberlang.dev/en-US/targets/ — source beside what each target lowers to",
+        "- https://faberlang.dev/en-US/examples/ — real package source",
+        "- https://faberlang.dev/en-US/libraries/ — Norma, Triga, the corpus",
         "- https://faberlang.dev/en-US/corpus/ — generated keyword / construct pages",
-        "- https://faberlang.dev/en-US/references/ — EBNF, design docs, repos",
-        "- https://faberlang.dev/en-US/history/ — timeline",
-        "- Prefer /en-US/… over bare /start/… or /syntax/… (those are redirect stubs).",
+        "- https://faberlang.dev/en-US/releases/ — every version, pinned installs, release notes",
+        "- https://faberlang.dev/en-US/open-source.html — licensing, repositories, issue routing",
+        "- https://faberlang.dev/en-US/reference/ — EBNF, design docs",
+        "- Prefer /en-US/… over bare paths. /syntax/, /features/, /tooling/,",
+        "  /ecosystem/, /history/ and /references/ are retired redirect stubs.",
     ])
 
     write_section(lines, "Repositories")

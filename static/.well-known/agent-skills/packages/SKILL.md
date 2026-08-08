@@ -46,9 +46,9 @@ Copy structure from a real package when unsure:
 
 ## Docs
 
-- https://faberlang.dev/en-US/tooling/faber-build-tool.html
-- https://faberlang.dev/en-US/tooling/radix-compiler.html
-- https://faberlang.dev/en-US/tooling/codegen-targets.html
+- https://faberlang.dev/en-US/toolchain/cli.html
+- https://faberlang.dev/en-US/toolchain/radix.html
+- https://faberlang.dev/en-US/toolchain/compiling.html
 - https://faberlang.dev/en-US/start/projects.html
 
 ## Related

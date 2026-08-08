@@ -18,7 +18,7 @@ description: "Look up language constructs via generated corpus pages and the exa
 | Generated docs hub (English) | https://faberlang.dev/en-US/corpus/ |
 | Example category index | https://faberlang.dev/en-US/corpus/category/function.html |
 | Source tree | https://github.com/faberlang/examples/tree/main/corpus |
-| Ecosystem note | https://faberlang.dev/en-US/ecosystem/corpus.html |
+| Ecosystem note | https://faberlang.dev/en-US/libraries/corpus.html |
 | Machine index (all terms) | https://faberlang.dev/llms.txt |
 
 ## How to look up a construct
@@ -43,4 +43,4 @@ Example term page: https://faberlang.dev/en-US/corpus/functio.html
 
 - skill: `language`
 - skill: `examples`
-- Syntax hub: https://faberlang.dev/en-US/syntax/
+- Syntax hub: https://faberlang.dev/en-US/language/

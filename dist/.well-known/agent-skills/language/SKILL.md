@@ -47,12 +47,12 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 
 ## Canonical docs (English tree)
 
-- Syntax hub: https://faberlang.dev/en-US/syntax/
-- Types: https://faberlang.dev/en-US/syntax/types.html
-- Functions: https://faberlang.dev/en-US/syntax/functions.html
-- Nullability: https://faberlang.dev/en-US/syntax/nullability.html
-- Glyphs: https://faberlang.dev/en-US/syntax/glyphs.html
-- Features (Latin + glyphs): https://faberlang.dev/en-US/features/latin-and-glyphs.html
+- Syntax hub: https://faberlang.dev/en-US/language/
+- Types: https://faberlang.dev/en-US/language/types.html
+- Functions: https://faberlang.dev/en-US/language/functions.html
+- Nullability: https://faberlang.dev/en-US/language/types.html
+- Glyphs: https://faberlang.dev/en-US/language/glyphs.html
+- Features (Latin + glyphs): https://faberlang.dev/en-US/language/glyphs.html
 - Corpus lookup: https://faberlang.dev/en-US/corpus/
 - Language portal: https://faberlang.dev/
 
