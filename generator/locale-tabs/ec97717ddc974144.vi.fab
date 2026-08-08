@@ -1,0 +1,84 @@
+# Faber AI workbench command surface.
+
+nhập từ "./commands/model" riêng_tư * như modelModule
+
+nhập từ "./commands/embed" riêng_tư * như embedModule
+
+nhập từ "./commands/index" riêng_tư * như indexModule
+
+nhập từ "./commands/query" riêng_tư * như queryModule
+
+nhập từ "./commands/generate" riêng_tư * như generateModule
+
+nhập từ "./commands/chat" riêng_tư * như chatModule
+
+@ lệnh { tên = "embed" }
+@ mô_tả "Embed input texts with a local model alias"
+@ tùy_chọn { binding = model_alias, dài = "model", kiểu_tên = văn_bản, mô_tả = "Model alias", hoặc_nếu_rỗng = "basic/minilm" }
+@ tùy_chọn { binding = out, dài = "out", kiểu_tên = văn_bản, mô_tả = "Vector output path", hoặc_nếu_rỗng = "/tmp/faber-ai-vectors.fvi" }
+@ tùy_chọn { binding = format, dài = "format", kiểu_tên = văn_bản, mô_tả = "Output format: text or json", hoặc_nếu_rỗng = "text" }
+@ tùy_chọn { binding = map, dài = "alias-map", kiểu_tên = văn_bản, mô_tả = "Alias map TOML path", hoặc_nếu_rỗng = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ tùy_chọn { binding = oracle_runner, dài = "oracle-runner", kiểu_tên = văn_bản, mô_tả = "Explicit oracle runner script", hoặc_nếu_rỗng = "" }
+@ tùy_chọn { binding = oracle_label, dài = "oracle-label", kiểu_tên = văn_bản, mô_tả = "Oracle runtime label", hoặc_nếu_rỗng = "manual-minilm-torch" }
+@ toán_hạng { kiểu_tên = văn_bản, binding = texts, mô_tả = "Input text file" }
+hàm embed() → trống {
+    embedModule.curre("§"(args.texts), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.oracle_runner), "§"(args.oracle_label))
+}
+
+@ lệnh { tên = "index" }
+@ mô_tả "Build a deterministic vector index from a Stage 2 .fvi artifact"
+@ tùy_chọn { binding = out, dài = "out", kiểu_tên = văn_bản, mô_tả = "Index output path", hoặc_nếu_rỗng = "/tmp/faber-ai-index.fvi" }
+@ tùy_chọn { binding = format, dài = "format", kiểu_tên = văn_bản, mô_tả = "Output format: text or json", hoặc_nếu_rỗng = "text" }
+@ tùy_chọn { binding = metric, dài = "metric", kiểu_tên = văn_bản, mô_tả = "Similarity metric", hoặc_nếu_rỗng = "cosine" }
+@ toán_hạng { kiểu_tên = văn_bản, binding = vectors, mô_tả = "Stage 2 vector artifact path" }
+hàm index() → trống {
+    indexModule.curre("§"(args.vectors), "§"(args.out), "§"(args.format), "§"(args.metric))
+}
+
+@ lệnh { tên = "query" }
+@ mô_tả "Query a deterministic Stage 3 vector index"
+@ tùy_chọn { binding = top, dài = "top", kiểu_tên = số, mô_tả = "Maximum result count", hoặc_nếu_rỗng = 10 }
+@ tùy_chọn { binding = format, dài = "format", kiểu_tên = văn_bản, mô_tả = "Output format: text or json", hoặc_nếu_rỗng = "text" }
+@ tùy_chọn { binding = query_vector, dài = "query-vector", kiểu_tên = văn_bản, mô_tả = "Explicit query vector fixture", hoặc_nếu_rỗng = "" }
+@ toán_hạng { kiểu_tên = văn_bản, binding = index, mô_tả = "Stage 3 index artifact path" }
+@ toán_hạng { kiểu_tên = văn_bản, binding = query_text, mô_tả = "Query text" }
+hàm query() → trống {
+    queryModule.curre("§"(args.index), "§"(args.query_text), args.top, "§"(args.format), "§"(args.query_vector))
+}
+
+@ lệnh { tên = "generate" }
+@ mô_tả "Generate text with an explicit local oracle-backed model runner"
+@ tùy_chọn { binding = model_alias, dài = "model", kiểu_tên = văn_bản, mô_tả = "Model alias", hoặc_nếu_rỗng = "stretch/qwen3-4b-fp8" }
+@ tùy_chọn { binding = out, dài = "out", kiểu_tên = văn_bản, mô_tả = "Generation event output path", hoặc_nếu_rỗng = "/tmp/faber-ai-generate.jsonl" }
+@ tùy_chọn { binding = format, dài = "format", kiểu_tên = văn_bản, mô_tả = "Output format: text or json", hoặc_nếu_rỗng = "text" }
+@ tùy_chọn { binding = map, dài = "alias-map", kiểu_tên = văn_bản, mô_tả = "Alias map TOML path", hoặc_nếu_rỗng = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ tùy_chọn { binding = oracle_runner, dài = "oracle-runner", kiểu_tên = văn_bản, mô_tả = "Explicit oracle runner script", hoặc_nếu_rỗng = "" }
+@ tùy_chọn { binding = oracle_label, dài = "oracle-label", kiểu_tên = văn_bản, mô_tả = "Oracle runtime label", hoặc_nếu_rỗng = "transformers-local-fp8" }
+@ tùy_chọn { binding = max_new_tokens, dài = "max-new-tokens", kiểu_tên = số, mô_tả = "Maximum generated tokens", hoặc_nếu_rỗng = 16 }
+@ tùy_chọn { binding = temperature, dài = "temperature", kiểu_tên = văn_bản, mô_tả = "Sampling temperature", hoặc_nếu_rỗng = "0" }
+@ tùy_chọn { binding = seed, dài = "seed", kiểu_tên = số, mô_tả = "Deterministic oracle seed", hoặc_nếu_rỗng = 0 }
+@ toán_hạng { kiểu_tên = văn_bản, binding = prompt, mô_tả = "Prompt text file" }
+hàm generate() → trống {
+    generateModule.curre("§"(args.prompt), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.oracle_runner), "§"(args.oracle_label), args.max_new_tokens, "§"(args.temperature), args.seed)
+}
+
+@ lệnh { tên = "chat" }
+@ mô_tả "Chat through an explicit local llama.cpp router adapter"
+@ tùy_chọn { binding = model_alias, dài = "model", kiểu_tên = văn_bản, mô_tả = "Model alias", hoặc_nếu_rỗng = "daily/qwen36-35b-a3b-q4" }
+@ tùy_chọn { binding = out, dài = "out", kiểu_tên = văn_bản, mô_tả = "Chat transcript output path", hoặc_nếu_rỗng = "/tmp/faber-ai-chat.jsonl" }
+@ tùy_chọn { binding = format, dài = "format", kiểu_tên = văn_bản, mô_tả = "Output format: text or json", hoặc_nếu_rỗng = "text" }
+@ tùy_chọn { binding = map, dài = "alias-map", kiểu_tên = văn_bản, mô_tả = "Alias map TOML path", hoặc_nếu_rỗng = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ tùy_chọn { binding = router_runner, dài = "router-runner", kiểu_tên = văn_bản, mô_tả = "Explicit router runner script", hoặc_nếu_rỗng = "" }
+@ tùy_chọn { binding = router_label, dài = "router-label", kiểu_tên = văn_bản, mô_tả = "Router runtime label", hoặc_nếu_rỗng = "llama-router" }
+@ tùy_chọn { binding = router_url, dài = "router-url", kiểu_tên = văn_bản, mô_tả = "Router base URL", hoặc_nếu_rỗng = "http://127.0.0.1:18173/v1" }
+@ toán_hạng { kiểu_tên = văn_bản, binding = prompt, mô_tả = "Prompt text file" }
+hàm chat() → trống {
+    chatModule.curre("§"(args.prompt), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.router_runner), "§"(args.router_label), "§"(args.router_url))
+}
+
+@ cli { tên = "faber-ai" }
+@ versio "0.1.0"
+@ mô_tả "Local Faber AI workbench"
+@ imperia "model" ex modelModule
+bắt_đầu đối_số args {
+}

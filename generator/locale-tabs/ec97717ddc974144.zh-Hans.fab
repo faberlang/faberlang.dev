@@ -1,0 +1,84 @@
+# Faber AI workbench command surface.
+
+导入 取自 "./commands/model" 私有 * 作为 modelModule
+
+导入 取自 "./commands/embed" 私有 * 作为 embedModule
+
+导入 取自 "./commands/index" 私有 * 作为 indexModule
+
+导入 取自 "./commands/query" 私有 * 作为 queryModule
+
+导入 取自 "./commands/generate" 私有 * 作为 generateModule
+
+导入 取自 "./commands/chat" 私有 * 作为 chatModule
+
+@ 命令 { 名称 = "embed" }
+@ 描述 "Embed input texts with a local model alias"
+@ 选项 { binding = model_alias, 详 = "model", 类型 = 文本, 描述 = "Model alias", 兜底 = "basic/minilm" }
+@ 选项 { binding = out, 详 = "out", 类型 = 文本, 描述 = "Vector output path", 兜底 = "/tmp/faber-ai-vectors.fvi" }
+@ 选项 { binding = format, 详 = "format", 类型 = 文本, 描述 = "Output format: text or json", 兜底 = "text" }
+@ 选项 { binding = map, 详 = "alias-map", 类型 = 文本, 描述 = "Alias map TOML path", 兜底 = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ 选项 { binding = oracle_runner, 详 = "oracle-runner", 类型 = 文本, 描述 = "Explicit oracle runner script", 兜底 = "" }
+@ 选项 { binding = oracle_label, 详 = "oracle-label", 类型 = 文本, 描述 = "Oracle runtime label", 兜底 = "manual-minilm-torch" }
+@ 操作数 { 类型 = 文本, binding = texts, 描述 = "Input text file" }
+函数 embed() → 无值 {
+    embedModule.curre("§"(args.texts), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.oracle_runner), "§"(args.oracle_label))
+}
+
+@ 命令 { 名称 = "index" }
+@ 描述 "Build a deterministic vector index from a Stage 2 .fvi artifact"
+@ 选项 { binding = out, 详 = "out", 类型 = 文本, 描述 = "Index output path", 兜底 = "/tmp/faber-ai-index.fvi" }
+@ 选项 { binding = format, 详 = "format", 类型 = 文本, 描述 = "Output format: text or json", 兜底 = "text" }
+@ 选项 { binding = metric, 详 = "metric", 类型 = 文本, 描述 = "Similarity metric", 兜底 = "cosine" }
+@ 操作数 { 类型 = 文本, binding = vectors, 描述 = "Stage 2 vector artifact path" }
+函数 index() → 无值 {
+    indexModule.curre("§"(args.vectors), "§"(args.out), "§"(args.format), "§"(args.metric))
+}
+
+@ 命令 { 名称 = "query" }
+@ 描述 "Query a deterministic Stage 3 vector index"
+@ 选项 { binding = top, 详 = "top", 类型 = 整数, 描述 = "Maximum result count", 兜底 = 10 }
+@ 选项 { binding = format, 详 = "format", 类型 = 文本, 描述 = "Output format: text or json", 兜底 = "text" }
+@ 选项 { binding = query_vector, 详 = "query-vector", 类型 = 文本, 描述 = "Explicit query vector fixture", 兜底 = "" }
+@ 操作数 { 类型 = 文本, binding = index, 描述 = "Stage 3 index artifact path" }
+@ 操作数 { 类型 = 文本, binding = query_text, 描述 = "Query text" }
+函数 query() → 无值 {
+    queryModule.curre("§"(args.index), "§"(args.query_text), args.top, "§"(args.format), "§"(args.query_vector))
+}
+
+@ 命令 { 名称 = "generate" }
+@ 描述 "Generate text with an explicit local oracle-backed model runner"
+@ 选项 { binding = model_alias, 详 = "model", 类型 = 文本, 描述 = "Model alias", 兜底 = "stretch/qwen3-4b-fp8" }
+@ 选项 { binding = out, 详 = "out", 类型 = 文本, 描述 = "Generation event output path", 兜底 = "/tmp/faber-ai-generate.jsonl" }
+@ 选项 { binding = format, 详 = "format", 类型 = 文本, 描述 = "Output format: text or json", 兜底 = "text" }
+@ 选项 { binding = map, 详 = "alias-map", 类型 = 文本, 描述 = "Alias map TOML path", 兜底 = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ 选项 { binding = oracle_runner, 详 = "oracle-runner", 类型 = 文本, 描述 = "Explicit oracle runner script", 兜底 = "" }
+@ 选项 { binding = oracle_label, 详 = "oracle-label", 类型 = 文本, 描述 = "Oracle runtime label", 兜底 = "transformers-local-fp8" }
+@ 选项 { binding = max_new_tokens, 详 = "max-new-tokens", 类型 = 整数, 描述 = "Maximum generated tokens", 兜底 = 16 }
+@ 选项 { binding = temperature, 详 = "temperature", 类型 = 文本, 描述 = "Sampling temperature", 兜底 = "0" }
+@ 选项 { binding = seed, 详 = "seed", 类型 = 整数, 描述 = "Deterministic oracle seed", 兜底 = 0 }
+@ 操作数 { 类型 = 文本, binding = prompt, 描述 = "Prompt text file" }
+函数 generate() → 无值 {
+    generateModule.curre("§"(args.prompt), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.oracle_runner), "§"(args.oracle_label), args.max_new_tokens, "§"(args.temperature), args.seed)
+}
+
+@ 命令 { 名称 = "chat" }
+@ 描述 "Chat through an explicit local llama.cpp router adapter"
+@ 选项 { binding = model_alias, 详 = "model", 类型 = 文本, 描述 = "Model alias", 兜底 = "daily/qwen36-35b-a3b-q4" }
+@ 选项 { binding = out, 详 = "out", 类型 = 文本, 描述 = "Chat transcript output path", 兜底 = "/tmp/faber-ai-chat.jsonl" }
+@ 选项 { binding = format, 详 = "format", 类型 = 文本, 描述 = "Output format: text or json", 兜底 = "text" }
+@ 选项 { binding = map, 详 = "alias-map", 类型 = 文本, 描述 = "Alias map TOML path", 兜底 = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ 选项 { binding = router_runner, 详 = "router-runner", 类型 = 文本, 描述 = "Explicit router runner script", 兜底 = "" }
+@ 选项 { binding = router_label, 详 = "router-label", 类型 = 文本, 描述 = "Router runtime label", 兜底 = "llama-router" }
+@ 选项 { binding = router_url, 详 = "router-url", 类型 = 文本, 描述 = "Router base URL", 兜底 = "http://127.0.0.1:18173/v1" }
+@ 操作数 { 类型 = 文本, binding = prompt, 描述 = "Prompt text file" }
+函数 chat() → 无值 {
+    chatModule.curre("§"(args.prompt), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.router_runner), "§"(args.router_label), "§"(args.router_url))
+}
+
+@ 命令行 { 名称 = "faber-ai" }
+@ versio "0.1.0"
+@ 描述 "Local Faber AI workbench"
+@ imperia "model" ex modelModule
+入口 参数 args {
+}

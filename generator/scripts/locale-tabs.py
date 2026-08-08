@@ -21,8 +21,12 @@ Two subcommands, mirroring diagrams.py:
 the cache, so a build without `faber` still produces a complete site — panels
 simply stay as the plain Latin block they started as.
 
+A fence marked `mode=package` is left alone: it is one file of a multi-file
+package, so `faber format` cannot resolve its siblings and there is nothing
+honest to render. Those blocks stay as the plain source they were.
+
 Usage:
-    locale-tabs.py render [--src src/en-US/cheatsheet]
+    locale-tabs.py render [src/en-US]
     locale-tabs.py inject <dist_dir>
 """
 
@@ -64,6 +68,10 @@ LOCALES: list[dict[str, str]] = [
 # out of eight with a different shape, which reads as a difference between the
 # languages instead of what it is.
 BASE = "la"
+
+# Sections whose Faber blocks become locale cards. Both teach by showing code:
+# the cheat sheet with short examples, Examples with real package source.
+SECTIONS = ("cheatsheet", "examples")
 
 # locales.md is already a side-by-side of every reader surface; wrapping its
 # panels in another locale switcher would nest the same idea inside itself.
@@ -169,7 +177,7 @@ def cache_vocabularies() -> int:
     return written
 
 
-def cmd_render(src_dir: Path) -> int:
+def cmd_render(src_root: Path) -> int:
     faber = find_faber()
     if faber is None:
         print("ERROR: no faber binary found; cannot transcode", file=sys.stderr)
@@ -182,7 +190,9 @@ def cmd_render(src_dir: Path) -> int:
     wanted: set[str] = set()
     rendered = failed = 0
 
-    for md in sorted(src_dir.glob("*.md")):
+    sources = [md for section in SECTIONS
+               for md in sorted((src_root / section).glob("*.md"))]
+    for md in sources:
         if md.name in SKIP_FILES:
             continue
         text = md.read_text(encoding="utf-8")
@@ -274,16 +284,17 @@ def card(key: str, index: int) -> str | None:
 
 
 def cmd_inject(dist: Path) -> int:
-    target = dist / "en-US" / "cheatsheet"
-    if not target.is_dir():
-        print(f"  locale-tabs: no {target}, nothing to inject")
-        return 0
     if not CACHE.is_dir():
         print("  locale-tabs: no cache, panels left as plain blocks")
         return 0
 
+    targets = [d for d in ((dist / "en-US" / s) for s in SECTIONS) if d.is_dir()]
+    if not targets:
+        print("  locale-tabs: no target sections, nothing to inject")
+        return 0
+
     pages = swapped = 0
-    for page in sorted(target.glob("*.html")):
+    for page in sorted(p for d in targets for p in d.glob("*.html")):
         if page.stem + ".md" in SKIP_FILES:
             continue
         text = page.read_text(encoding="utf-8")
@@ -310,8 +321,8 @@ def cmd_inject(dist: Path) -> int:
 def main() -> int:
     cmd = sys.argv[1] if len(sys.argv) > 1 else ""
     if cmd == "render":
-        src = Path(sys.argv[2]) if len(sys.argv) > 2 else REPO / "src" / "en-US" / "cheatsheet"
-        return cmd_render(src)
+        root = Path(sys.argv[2]) if len(sys.argv) > 2 else REPO / "src" / "en-US"
+        return cmd_render(root)
     if cmd == "inject":
         if len(sys.argv) < 3:
             print("Usage: locale-tabs.py inject <dist_dir>", file=sys.stderr)

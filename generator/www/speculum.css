@@ -326,15 +326,20 @@ aside,
 /* ==========================================================================
    4. Layout
    ==========================================================================
-   Two grid shapes. Pages without a contents rail centre a narrower page so
-   the measure is set by the column itself — prose fills its track edge to
-   edge instead of stopping short of the rules and tables beside it.
-   Pages with a rail (body.has-toc, added by inject-toc.py) widen the page
-   and spend the extra width on the rail rather than on longer lines.
+   One page frame, two grid shapes. The frame is the same width whether or
+   not a page has a contents rail (body.has-toc, added by inject-toc.py);
+   without one, the content track simply absorbs the rail's column.
+
+   The frame used to narrow when the rail was absent, which set a tighter
+   measure but made the whole layout visibly shrink when moving between, say,
+   a cheat sheet page and an examples page. A reader reads that as the site
+   losing width, not as a measure decision — and pages that lack a rail lack
+   it because they are short or code-heavy, exactly the pages that want the
+   room.
    ========================================================================== */
 
 .page {
-    max-width: var(--page-max);
+    max-width: var(--page-max-rail);
     margin: 0 auto;
     padding: 0 32px;
     display: grid;
@@ -342,7 +347,6 @@ aside,
     column-gap: var(--gutter);
 }
 body.has-toc .page {
-    max-width: var(--page-max-rail);
     grid-template-columns: var(--sidebar-w) minmax(0, 1fr) var(--rail-w);
 }
 
@@ -1419,7 +1423,7 @@ body.porta {
 /* Contents rail is the first thing to go: below this the content track
    would be squeezed below a readable measure. */
 @media (max-width: 1180px) {
-    body.has-toc .page {
+    .page, body.has-toc .page {
         max-width: var(--page-max);
         grid-template-columns: var(--sidebar-w) minmax(0, 1fr);
     }

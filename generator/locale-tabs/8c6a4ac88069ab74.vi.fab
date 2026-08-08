@@ -1,0 +1,215 @@
+# =============================================================================
+# arena-handle — generational arena-handle contract via pure value updates
+# =============================================================================
+#
+# What this example teaches:
+#   • Generational arena pattern — stable identity via (index, generation) handle
+#     pair; stale handles rejected on lookup via generation check
+#   • genus (struct) definitions — Manus, Loculus, Area, AreaCumManus, Nodus
+#   • Pure functional updates — no lista[i] mutation, all operations return new
+#     Area values to keep generated Rust sound
+#   • dum loop — explicit iteration over list indices (lines 42-46, 75-90)
+#   • si/sin/secus — conditional logic (lines 58, 60, 62, 78-89)
+#   • discerne/casu — pattern matching on enum variants (lines 117-133)
+#   • probandum/proba/adfirma — test framework with multi-case assertions
+#   • discretio — sum type (enum) with variant payloads (lines 93-96)
+#   • gingimus (finge) — enum variant construction with named fields (lines 113-116)
+#
+# Syntaxes used:
+#   • genus — struct definition (lines 8, 12, 18, 22)
+#   • discretio — enum/sum type (line 93)
+#   • functio — function definition (lines 28, 32, 36, 57, 70, 73)
+#   • fixum — immutable binding (lines 33, 43, etc.)
+#   • varia — mutable binding (lines 40, 41, etc.)
+#   • dum — while loop (lines 42, 75)
+#   • si/sin/secus — conditionals (lines 58, 60, 62, 78-89)
+#   • discerne/casu — match/pattern match (lines 117-133)
+#   • redde — return (lines 30, etc.)
+#   • finge — construct enum variant (lines 113-116)
+#   • adfirma — test assertion (lines 109-112, etc.)
+#   • proba — test case (lines 101, 134, 155)
+#   • probandum — test suite (line 100)
+#   • ≡ — equality comparison (lines 29, 61, etc.)
+#   • lista<T> — list type (lines 20, 93, 96)
+#   • textus, numerus, bivalens — primitive types
+#   • vacua — empty list literal
+#   • .longitudo() — list length method
+#   • .appende() — list append method
+#
+# Alternate approaches (not shown):
+#   • Mutable arena with unsafe interior for performance — a mutable lista<Loculus> with in-place updates avoids copying on every insert/take
+#   • Reusing free slots (via free list) instead of always appending — maintain a list of freed indices to recycle slots without growing the arena
+#
+# Anti-patterns (avoid these):
+#   • Using lista[i] assignment in generated Rust contexts — in-place list mutation breaks Rust's borrow-checker soundness; use pure value updates (return new Area) instead
+#   • Assuming stale handle reuse after removal without generation check — always verify generatio matches before using a handle; stale handles must be rejected on lookup
+#
+# Learning path:
+#   Before: Stage 3: genus, lista, nihil → Stage 3: discerne/casu (structs, collections, and pattern matching)
+#   After:  Stage 6: advanced applications (vivilite — real-world resource management)
+#
+# Stage: arena-handle, complete contract with tests, all language constructs demonstrated
+# Backend: Rust, stepper
+# =============================================================================
+
+# Reusable generational arena-handle contract (language surface).
+#
+# Semantics mirror faber-runtime::Arena / ArenaHandle (see arena.rs):
+# stable identity independent of list order; stale handles reject on lookup.
+# This package uses pure value updates (no lista[i] assignment) so generated
+# Rust stays sound; the runtime crate is the authoritative store implementation.
+
+kiểu Manus {
+    số index
+    số generatio
+}
+
+kiểu Loculus {
+    số generatio
+    logic vivus
+    văn_bản valor
+}
+
+kiểu Area {
+    danh_sách<Loculus> loculi
+}
+
+kiểu AreaCumManus {
+    Area area
+    Manus manus
+}
+
+hàm manus_aequat(ra Manus a, ra Manus b) → logic {
+    trả a.index ≡ b.index và a.generatio ≡ b.generatio
+}
+
+hàm area_nova() → Area {
+    hằng danh_sách<Loculus> loculi ← tập_rỗng
+    trả Area {loculi = loculi}
+}
+
+hàm area_inserit(Area area, văn_bản valor) → AreaCumManus {
+    # Always append a new live slot. Free slots from tollit stay dead so the
+    # old handle generation remains invalid; reuse is optional for this proof.
+    biến danh_sách<Loculus> out ← tập_rỗng
+    biến số i ← 0
+    trong_khi i ≺ area.loculi.longitudo() {
+        out.appende(area.loculi[i])
+        i ← i + 1
+    }
+    hằng số index ← out.longitudo()
+    out.appende(Loculus {generatio = 0, vivus = đúng, valor = valor})
+    trả AreaCumManus {area = Area {loculi = out}, manus = Manus {index = index, generatio = 0}}
+}
+
+# Lookup returns the payload, or "" when the handle is stale / out of range.
+# Proof resources never use empty text, so "" is the explicit reject signal.
+hàm area_accipe(ra Area area, ra Manus manus) → văn_bản {
+    nếu manus.index ≥ area.loculi.longitudo() do_đó trả ""
+    hằng Loculus slot ← area.loculi[manus.index]
+    nếu slot.vivus ≡ sai do_đó trả ""
+    nếu slot.generatio ≠ manus.generatio do_đó trả ""
+    trả slot.valor
+}
+
+hàm area_continet(ra Area area, ra Manus manus) → logic {
+    trả area_accipe(area, manus) ≠ ""
+}
+
+hàm area_tollit(Area area, ra Manus manus) → Area {
+    biến danh_sách<Loculus> out ← tập_rỗng
+    biến số i ← 0
+    trong_khi i ≺ area.loculi.longitudo() {
+        hằng Loculus slot ← area.loculi[i]
+        nếu (i ≡ manus.index và slot.vivus ≡ đúng) và slot.generatio ≡ manus.generatio {
+            out.appende(Loculus {generatio = slot.generatio + 1, vivus = sai, valor = ""})
+        }
+        khác {
+            out.appende(slot)
+        }
+        i ← i + 1
+    }
+    trả Area {loculi = out}
+}
+
+# Heterogeneous node: stores Manus, never deep-copies the resource payload.
+hợp_nhất Nodus {
+    Groupus {
+        danh_sách<Manus> filii
+    },
+    Tessera {
+        Manus geometria
+    },
+}
+
+kiểm_thử "two nodes share one resource identity" nhãn "identity" {
+    hằng AreaCumManus step ← area_inserit(area_nova(), "shared-mesh")
+    hằng Area res ← step.area
+    hằng Manus geo ← step.manus
+    # Reconstruct handle values so each node owns a copy of the identity bits
+    # without cloning the resource payload (still one live slot in `res`).
+    hằng Manus left_geo ← Manus {index = geo.index, generatio = geo.generatio}
+    hằng Manus right_geo ← Manus {index = geo.index, generatio = geo.generatio}
+    khẳng_định manus_aequat(left_geo, right_geo)
+    khẳng_định area_accipe(res, left_geo) ≡ "shared-mesh"
+    khẳng_định area_accipe(res, right_geo) ≡ "shared-mesh"
+    hằng Nodus left ← Tessera(Manus {index = geo.index, generatio = geo.generatio})
+    hằng Nodus right ← Tessera(Manus {index = geo.index, generatio = geo.generatio})
+    phân_tích left {
+        trường_hợp Tessera hằng geometria {
+            khẳng_định manus_aequat(geometria, left_geo)
+        }
+        trường_hợp Groupus hằng filii {
+            khẳng_định filii.longitudo() ≡ 0
+        }
+    }
+    phân_tích right {
+        trường_hợp Tessera hằng geometria {
+            khẳng_định manus_aequat(geometria, right_geo)
+        }
+        trường_hợp Groupus hằng filii {
+            khẳng_định filii.longitudo() ≡ 0
+        }
+    }
+}
+
+kiểm_thử "reparent reorder preserves handle identity" nhãn "identity" {
+    hằng AreaCumManus s0 ← area_inserit(area_nova(), "child-a")
+    hằng AreaCumManus s1 ← area_inserit(s0.area, "child-b")
+    hằng Area nodi ← s1.area
+    hằng Manus a ← s0.manus
+    hằng Manus b ← s1.manus
+    biến danh_sách<Manus> filii ← tập_rỗng
+    filii.appende(Manus {index = a.index, generatio = a.generatio})
+    filii.appende(Manus {index = b.index, generatio = b.generatio})
+    # swap order without changing handle identities
+    hằng Manus first ← filii[0]
+    hằng Manus second ← filii[1]
+    biến danh_sách<Manus> reord ← tập_rỗng
+    reord.appende(Manus {index = second.index, generatio = second.generatio})
+    reord.appende(Manus {index = first.index, generatio = first.generatio})
+    khẳng_định area_accipe(nodi, reord[0]) ≡ "child-b"
+    khẳng_định area_accipe(nodi, reord[1]) ≡ "child-a"
+    khẳng_định area_accipe(nodi, a) ≡ "child-a"
+    khẳng_định area_accipe(nodi, b) ≡ "child-b"
+}
+
+kiểm_thử "stale handle rejects after remove" nhãn "identity" {
+    hằng AreaCumManus s0 ← area_inserit(area_nova(), "gone")
+    hằng Manus h ← s0.manus
+    hằng Manus h_bits ← Manus {index = h.index, generatio = h.generatio}
+    khẳng_định area_continet(s0.area, h_bits)
+    hằng Area after ← area_tollit(s0.area, h_bits)
+    khẳng_định area_continet(after, h_bits) ≡ sai
+    khẳng_định area_accipe(after, h_bits) ≡ ""
+    hằng AreaCumManus s1 ← area_inserit(after, "fresh")
+    hằng Manus h2 ← s1.manus
+    # New live slot (append); old handle still rejected by generation/vivus.
+    khẳng_định manus_aequat(h_bits, h2) ≡ sai
+    khẳng_định area_accipe(s1.area, h_bits) ≡ ""
+    khẳng_định area_accipe(s1.area, h2) ≡ "fresh"
+    khẳng_định area_continet(s1.area, h2)
+}
+
+bắt_đầu {
+}

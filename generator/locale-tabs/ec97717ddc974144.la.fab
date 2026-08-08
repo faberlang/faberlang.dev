@@ -1,0 +1,84 @@
+# Faber AI workbench command surface.
+
+importa ex "./commands/model" privata * ut modelModule
+
+importa ex "./commands/embed" privata * ut embedModule
+
+importa ex "./commands/index" privata * ut indexModule
+
+importa ex "./commands/query" privata * ut queryModule
+
+importa ex "./commands/generate" privata * ut generateModule
+
+importa ex "./commands/chat" privata * ut chatModule
+
+@ imperium { nomen = "embed" }
+@ descriptio "Embed input texts with a local model alias"
+@ optio { binding = model_alias, longum = "model", typus = textus, descriptio = "Model alias", vel = "basic/minilm" }
+@ optio { binding = out, longum = "out", typus = textus, descriptio = "Vector output path", vel = "/tmp/faber-ai-vectors.fvi" }
+@ optio { binding = format, longum = "format", typus = textus, descriptio = "Output format: text or json", vel = "text" }
+@ optio { binding = map, longum = "alias-map", typus = textus, descriptio = "Alias map TOML path", vel = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ optio { binding = oracle_runner, longum = "oracle-runner", typus = textus, descriptio = "Explicit oracle runner script", vel = "" }
+@ optio { binding = oracle_label, longum = "oracle-label", typus = textus, descriptio = "Oracle runtime label", vel = "manual-minilm-torch" }
+@ operandus { typus = textus, binding = texts, descriptio = "Input text file" }
+functio embed() → vacuum {
+    embedModule.curre("§"(args.texts), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.oracle_runner), "§"(args.oracle_label))
+}
+
+@ imperium { nomen = "index" }
+@ descriptio "Build a deterministic vector index from a Stage 2 .fvi artifact"
+@ optio { binding = out, longum = "out", typus = textus, descriptio = "Index output path", vel = "/tmp/faber-ai-index.fvi" }
+@ optio { binding = format, longum = "format", typus = textus, descriptio = "Output format: text or json", vel = "text" }
+@ optio { binding = metric, longum = "metric", typus = textus, descriptio = "Similarity metric", vel = "cosine" }
+@ operandus { typus = textus, binding = vectors, descriptio = "Stage 2 vector artifact path" }
+functio index() → vacuum {
+    indexModule.curre("§"(args.vectors), "§"(args.out), "§"(args.format), "§"(args.metric))
+}
+
+@ imperium { nomen = "query" }
+@ descriptio "Query a deterministic Stage 3 vector index"
+@ optio { binding = top, longum = "top", typus = numerus, descriptio = "Maximum result count", vel = 10 }
+@ optio { binding = format, longum = "format", typus = textus, descriptio = "Output format: text or json", vel = "text" }
+@ optio { binding = query_vector, longum = "query-vector", typus = textus, descriptio = "Explicit query vector fixture", vel = "" }
+@ operandus { typus = textus, binding = index, descriptio = "Stage 3 index artifact path" }
+@ operandus { typus = textus, binding = query_text, descriptio = "Query text" }
+functio query() → vacuum {
+    queryModule.curre("§"(args.index), "§"(args.query_text), args.top, "§"(args.format), "§"(args.query_vector))
+}
+
+@ imperium { nomen = "generate" }
+@ descriptio "Generate text with an explicit local oracle-backed model runner"
+@ optio { binding = model_alias, longum = "model", typus = textus, descriptio = "Model alias", vel = "stretch/qwen3-4b-fp8" }
+@ optio { binding = out, longum = "out", typus = textus, descriptio = "Generation event output path", vel = "/tmp/faber-ai-generate.jsonl" }
+@ optio { binding = format, longum = "format", typus = textus, descriptio = "Output format: text or json", vel = "text" }
+@ optio { binding = map, longum = "alias-map", typus = textus, descriptio = "Alias map TOML path", vel = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ optio { binding = oracle_runner, longum = "oracle-runner", typus = textus, descriptio = "Explicit oracle runner script", vel = "" }
+@ optio { binding = oracle_label, longum = "oracle-label", typus = textus, descriptio = "Oracle runtime label", vel = "transformers-local-fp8" }
+@ optio { binding = max_new_tokens, longum = "max-new-tokens", typus = numerus, descriptio = "Maximum generated tokens", vel = 16 }
+@ optio { binding = temperature, longum = "temperature", typus = textus, descriptio = "Sampling temperature", vel = "0" }
+@ optio { binding = seed, longum = "seed", typus = numerus, descriptio = "Deterministic oracle seed", vel = 0 }
+@ operandus { typus = textus, binding = prompt, descriptio = "Prompt text file" }
+functio generate() → vacuum {
+    generateModule.curre("§"(args.prompt), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.oracle_runner), "§"(args.oracle_label), args.max_new_tokens, "§"(args.temperature), args.seed)
+}
+
+@ imperium { nomen = "chat" }
+@ descriptio "Chat through an explicit local llama.cpp router adapter"
+@ optio { binding = model_alias, longum = "model", typus = textus, descriptio = "Model alias", vel = "daily/qwen36-35b-a3b-q4" }
+@ optio { binding = out, longum = "out", typus = textus, descriptio = "Chat transcript output path", vel = "/tmp/faber-ai-chat.jsonl" }
+@ optio { binding = format, longum = "format", typus = textus, descriptio = "Output format: text or json", vel = "text" }
+@ optio { binding = map, longum = "alias-map", typus = textus, descriptio = "Alias map TOML path", vel = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ optio { binding = router_runner, longum = "router-runner", typus = textus, descriptio = "Explicit router runner script", vel = "" }
+@ optio { binding = router_label, longum = "router-label", typus = textus, descriptio = "Router runtime label", vel = "llama-router" }
+@ optio { binding = router_url, longum = "router-url", typus = textus, descriptio = "Router base URL", vel = "http://127.0.0.1:18173/v1" }
+@ operandus { typus = textus, binding = prompt, descriptio = "Prompt text file" }
+functio chat() → vacuum {
+    chatModule.curre("§"(args.prompt), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.router_runner), "§"(args.router_label), "§"(args.router_url))
+}
+
+@ cli { nomen = "faber-ai" }
+@ versio "0.1.0"
+@ descriptio "Local Faber AI workbench"
+@ imperia "model" ex modelModule
+incipit argumenta args {
+}

@@ -157,7 +157,7 @@ operate on rendered HTML, so none of them requires a generator rebuild.
 | `diagrams.py inject` | Inlines those SVGs into `dist/` as `<figure class="diagram">` |
 | `highlight-code.py` | Wraps tokens in fenced `faber`/`bash`/`toml` blocks in `.tok-*` spans |
 | `inject-toc.py` | Gives headings ids + `#` self-links, adds the per-page contents rail |
-| `locale-tabs.py inject` | Swaps cheat sheet Faber blocks for reader-locale tab cards |
+| `locale-tabs.py inject` | Swaps cheat sheet and examples Faber blocks for reader-locale tab cards |
 
 **Diagrams.** The SVG cache is committed, so a build without Node still
 produces a complete site; `render` is a source-side authoring step and
@@ -174,11 +174,17 @@ python3 generator/scripts/diagrams.py render
 which installs its own Node dependencies under `generator/target/` on first
 use. Commit the new `generator/diagrams/*.svg` alongside the Markdown.
 
-**Reader-locale tabs.** Cheat sheet examples render as tabbed cards carrying
-all eight reader surfaces. Like the diagram cache, the panels are committed so
-a build without the toolchain still produces a complete site — `inject` only
-ever reads the cache, and a missing panel set leaves the plain Latin block in
-place. After editing any `src/en-US/cheatsheet/*.md` Faber fence, run:
+**Reader-locale tabs.** Faber blocks in the **cheat sheet** and **examples**
+sections render as tabbed cards carrying all eight reader surfaces. Like the
+diagram cache, the panels are committed so a build without the toolchain still
+produces a complete site — `inject` only ever reads the cache, and a missing
+panel set leaves the plain Latin block in place.
+
+A fence marked `mode=package` is skipped: it is one file of a multi-file
+package, so `faber format` cannot resolve its siblings and there is nothing
+honest to render. Those blocks stay as plain source.
+
+After editing a Faber fence in either section, run:
 
 ```bash
 python3 generator/scripts/locale-tabs.py render

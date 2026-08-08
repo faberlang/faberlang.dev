@@ -1,0 +1,84 @@
+# Faber AI workbench command surface.
+
+นำเข้า ออก "./commands/model" ส่วนตัว * ในชื่อ modelModule
+
+นำเข้า ออก "./commands/embed" ส่วนตัว * ในชื่อ embedModule
+
+นำเข้า ออก "./commands/index" ส่วนตัว * ในชื่อ indexModule
+
+นำเข้า ออก "./commands/query" ส่วนตัว * ในชื่อ queryModule
+
+นำเข้า ออก "./commands/generate" ส่วนตัว * ในชื่อ generateModule
+
+นำเข้า ออก "./commands/chat" ส่วนตัว * ในชื่อ chatModule
+
+@ คำสั่ง { ชื่อ = "embed" }
+@ คำอธิบาย "Embed input texts with a local model alias"
+@ ตัวเลือก { binding = model_alias, ยาว = "model", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Model alias", หรือว่าง = "basic/minilm" }
+@ ตัวเลือก { binding = out, ยาว = "out", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Vector output path", หรือว่าง = "/tmp/faber-ai-vectors.fvi" }
+@ ตัวเลือก { binding = format, ยาว = "format", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Output format: text or json", หรือว่าง = "text" }
+@ ตัวเลือก { binding = map, ยาว = "alias-map", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Alias map TOML path", หรือว่าง = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ ตัวเลือก { binding = oracle_runner, ยาว = "oracle-runner", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Explicit oracle runner script", หรือว่าง = "" }
+@ ตัวเลือก { binding = oracle_label, ยาว = "oracle-label", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Oracle runtime label", หรือว่าง = "manual-minilm-torch" }
+@ ตัวถูกดำเนินการ { ชนิดนามแฝง = ข้อความ, binding = texts, คำอธิบาย = "Input text file" }
+ฟังก์ชัน embed() → เปล่า {
+    embedModule.curre("§"(args.texts), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.oracle_runner), "§"(args.oracle_label))
+}
+
+@ คำสั่ง { ชื่อ = "index" }
+@ คำอธิบาย "Build a deterministic vector index from a Stage 2 .fvi artifact"
+@ ตัวเลือก { binding = out, ยาว = "out", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Index output path", หรือว่าง = "/tmp/faber-ai-index.fvi" }
+@ ตัวเลือก { binding = format, ยาว = "format", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Output format: text or json", หรือว่าง = "text" }
+@ ตัวเลือก { binding = metric, ยาว = "metric", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Similarity metric", หรือว่าง = "cosine" }
+@ ตัวถูกดำเนินการ { ชนิดนามแฝง = ข้อความ, binding = vectors, คำอธิบาย = "Stage 2 vector artifact path" }
+ฟังก์ชัน index() → เปล่า {
+    indexModule.curre("§"(args.vectors), "§"(args.out), "§"(args.format), "§"(args.metric))
+}
+
+@ คำสั่ง { ชื่อ = "query" }
+@ คำอธิบาย "Query a deterministic Stage 3 vector index"
+@ ตัวเลือก { binding = top, ยาว = "top", ชนิดนามแฝง = จำนวน, คำอธิบาย = "Maximum result count", หรือว่าง = 10 }
+@ ตัวเลือก { binding = format, ยาว = "format", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Output format: text or json", หรือว่าง = "text" }
+@ ตัวเลือก { binding = query_vector, ยาว = "query-vector", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Explicit query vector fixture", หรือว่าง = "" }
+@ ตัวถูกดำเนินการ { ชนิดนามแฝง = ข้อความ, binding = index, คำอธิบาย = "Stage 3 index artifact path" }
+@ ตัวถูกดำเนินการ { ชนิดนามแฝง = ข้อความ, binding = query_text, คำอธิบาย = "Query text" }
+ฟังก์ชัน query() → เปล่า {
+    queryModule.curre("§"(args.index), "§"(args.query_text), args.top, "§"(args.format), "§"(args.query_vector))
+}
+
+@ คำสั่ง { ชื่อ = "generate" }
+@ คำอธิบาย "Generate text with an explicit local oracle-backed model runner"
+@ ตัวเลือก { binding = model_alias, ยาว = "model", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Model alias", หรือว่าง = "stretch/qwen3-4b-fp8" }
+@ ตัวเลือก { binding = out, ยาว = "out", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Generation event output path", หรือว่าง = "/tmp/faber-ai-generate.jsonl" }
+@ ตัวเลือก { binding = format, ยาว = "format", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Output format: text or json", หรือว่าง = "text" }
+@ ตัวเลือก { binding = map, ยาว = "alias-map", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Alias map TOML path", หรือว่าง = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ ตัวเลือก { binding = oracle_runner, ยาว = "oracle-runner", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Explicit oracle runner script", หรือว่าง = "" }
+@ ตัวเลือก { binding = oracle_label, ยาว = "oracle-label", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Oracle runtime label", หรือว่าง = "transformers-local-fp8" }
+@ ตัวเลือก { binding = max_new_tokens, ยาว = "max-new-tokens", ชนิดนามแฝง = จำนวน, คำอธิบาย = "Maximum generated tokens", หรือว่าง = 16 }
+@ ตัวเลือก { binding = temperature, ยาว = "temperature", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Sampling temperature", หรือว่าง = "0" }
+@ ตัวเลือก { binding = seed, ยาว = "seed", ชนิดนามแฝง = จำนวน, คำอธิบาย = "Deterministic oracle seed", หรือว่าง = 0 }
+@ ตัวถูกดำเนินการ { ชนิดนามแฝง = ข้อความ, binding = prompt, คำอธิบาย = "Prompt text file" }
+ฟังก์ชัน generate() → เปล่า {
+    generateModule.curre("§"(args.prompt), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.oracle_runner), "§"(args.oracle_label), args.max_new_tokens, "§"(args.temperature), args.seed)
+}
+
+@ คำสั่ง { ชื่อ = "chat" }
+@ คำอธิบาย "Chat through an explicit local llama.cpp router adapter"
+@ ตัวเลือก { binding = model_alias, ยาว = "model", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Model alias", หรือว่าง = "daily/qwen36-35b-a3b-q4" }
+@ ตัวเลือก { binding = out, ยาว = "out", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Chat transcript output path", หรือว่าง = "/tmp/faber-ai-chat.jsonl" }
+@ ตัวเลือก { binding = format, ยาว = "format", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Output format: text or json", หรือว่าง = "text" }
+@ ตัวเลือก { binding = map, ยาว = "alias-map", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Alias map TOML path", หรือว่าง = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ ตัวเลือก { binding = router_runner, ยาว = "router-runner", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Explicit router runner script", หรือว่าง = "" }
+@ ตัวเลือก { binding = router_label, ยาว = "router-label", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Router runtime label", หรือว่าง = "llama-router" }
+@ ตัวเลือก { binding = router_url, ยาว = "router-url", ชนิดนามแฝง = ข้อความ, คำอธิบาย = "Router base URL", หรือว่าง = "http://127.0.0.1:18173/v1" }
+@ ตัวถูกดำเนินการ { ชนิดนามแฝง = ข้อความ, binding = prompt, คำอธิบาย = "Prompt text file" }
+ฟังก์ชัน chat() → เปล่า {
+    chatModule.curre("§"(args.prompt), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.router_runner), "§"(args.router_label), "§"(args.router_url))
+}
+
+@ cli { ชื่อ = "faber-ai" }
+@ versio "0.1.0"
+@ คำอธิบาย "Local Faber AI workbench"
+@ imperia "model" ex modelModule
+เริ่ม อาร์กิวเมนต์ args {
+}

@@ -1,0 +1,84 @@
+# Faber AI workbench command surface.
+
+आयात सेवन "./commands/model" निजी * रूपमें modelModule
+
+आयात सेवन "./commands/embed" निजी * रूपमें embedModule
+
+आयात सेवन "./commands/index" निजी * रूपमें indexModule
+
+आयात सेवन "./commands/query" निजी * रूपमें queryModule
+
+आयात सेवन "./commands/generate" निजी * रूपमें generateModule
+
+आयात सेवन "./commands/chat" निजी * रूपमें chatModule
+
+@ आदेश { नाम = "embed" }
+@ विवरण "Embed input texts with a local model alias"
+@ विकल्प { binding = model_alias, विस्तृत = "model", प्रकार = पाठ, विवरण = "Model alias", डिफ़ॉल्ट = "basic/minilm" }
+@ विकल्प { binding = out, विस्तृत = "out", प्रकार = पाठ, विवरण = "Vector output path", डिफ़ॉल्ट = "/tmp/faber-ai-vectors.fvi" }
+@ विकल्प { binding = format, विस्तृत = "format", प्रकार = पाठ, विवरण = "Output format: text or json", डिफ़ॉल्ट = "text" }
+@ विकल्प { binding = map, विस्तृत = "alias-map", प्रकार = पाठ, विवरण = "Alias map TOML path", डिफ़ॉल्ट = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ विकल्प { binding = oracle_runner, विस्तृत = "oracle-runner", प्रकार = पाठ, विवरण = "Explicit oracle runner script", डिफ़ॉल्ट = "" }
+@ विकल्प { binding = oracle_label, विस्तृत = "oracle-label", प्रकार = पाठ, विवरण = "Oracle runtime label", डिफ़ॉल्ट = "manual-minilm-torch" }
+@ ऑपरेंड { प्रकार = पाठ, binding = texts, विवरण = "Input text file" }
+फलन embed() → रिक्त {
+    embedModule.curre("§"(args.texts), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.oracle_runner), "§"(args.oracle_label))
+}
+
+@ आदेश { नाम = "index" }
+@ विवरण "Build a deterministic vector index from a Stage 2 .fvi artifact"
+@ विकल्प { binding = out, विस्तृत = "out", प्रकार = पाठ, विवरण = "Index output path", डिफ़ॉल्ट = "/tmp/faber-ai-index.fvi" }
+@ विकल्प { binding = format, विस्तृत = "format", प्रकार = पाठ, विवरण = "Output format: text or json", डिफ़ॉल्ट = "text" }
+@ विकल्प { binding = metric, विस्तृत = "metric", प्रकार = पाठ, विवरण = "Similarity metric", डिफ़ॉल्ट = "cosine" }
+@ ऑपरेंड { प्रकार = पाठ, binding = vectors, विवरण = "Stage 2 vector artifact path" }
+फलन index() → रिक्त {
+    indexModule.curre("§"(args.vectors), "§"(args.out), "§"(args.format), "§"(args.metric))
+}
+
+@ आदेश { नाम = "query" }
+@ विवरण "Query a deterministic Stage 3 vector index"
+@ विकल्प { binding = top, विस्तृत = "top", प्रकार = संख्या, विवरण = "Maximum result count", डिफ़ॉल्ट = 10 }
+@ विकल्प { binding = format, विस्तृत = "format", प्रकार = पाठ, विवरण = "Output format: text or json", डिफ़ॉल्ट = "text" }
+@ विकल्प { binding = query_vector, विस्तृत = "query-vector", प्रकार = पाठ, विवरण = "Explicit query vector fixture", डिफ़ॉल्ट = "" }
+@ ऑपरेंड { प्रकार = पाठ, binding = index, विवरण = "Stage 3 index artifact path" }
+@ ऑपरेंड { प्रकार = पाठ, binding = query_text, विवरण = "Query text" }
+फलन query() → रिक्त {
+    queryModule.curre("§"(args.index), "§"(args.query_text), args.top, "§"(args.format), "§"(args.query_vector))
+}
+
+@ आदेश { नाम = "generate" }
+@ विवरण "Generate text with an explicit local oracle-backed model runner"
+@ विकल्प { binding = model_alias, विस्तृत = "model", प्रकार = पाठ, विवरण = "Model alias", डिफ़ॉल्ट = "stretch/qwen3-4b-fp8" }
+@ विकल्प { binding = out, विस्तृत = "out", प्रकार = पाठ, विवरण = "Generation event output path", डिफ़ॉल्ट = "/tmp/faber-ai-generate.jsonl" }
+@ विकल्प { binding = format, विस्तृत = "format", प्रकार = पाठ, विवरण = "Output format: text or json", डिफ़ॉल्ट = "text" }
+@ विकल्प { binding = map, विस्तृत = "alias-map", प्रकार = पाठ, विवरण = "Alias map TOML path", डिफ़ॉल्ट = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ विकल्प { binding = oracle_runner, विस्तृत = "oracle-runner", प्रकार = पाठ, विवरण = "Explicit oracle runner script", डिफ़ॉल्ट = "" }
+@ विकल्प { binding = oracle_label, विस्तृत = "oracle-label", प्रकार = पाठ, विवरण = "Oracle runtime label", डिफ़ॉल्ट = "transformers-local-fp8" }
+@ विकल्प { binding = max_new_tokens, विस्तृत = "max-new-tokens", प्रकार = संख्या, विवरण = "Maximum generated tokens", डिफ़ॉल्ट = 16 }
+@ विकल्प { binding = temperature, विस्तृत = "temperature", प्रकार = पाठ, विवरण = "Sampling temperature", डिफ़ॉल्ट = "0" }
+@ विकल्प { binding = seed, विस्तृत = "seed", प्रकार = संख्या, विवरण = "Deterministic oracle seed", डिफ़ॉल्ट = 0 }
+@ ऑपरेंड { प्रकार = पाठ, binding = prompt, विवरण = "Prompt text file" }
+फलन generate() → रिक्त {
+    generateModule.curre("§"(args.prompt), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.oracle_runner), "§"(args.oracle_label), args.max_new_tokens, "§"(args.temperature), args.seed)
+}
+
+@ आदेश { नाम = "chat" }
+@ विवरण "Chat through an explicit local llama.cpp router adapter"
+@ विकल्प { binding = model_alias, विस्तृत = "model", प्रकार = पाठ, विवरण = "Model alias", डिफ़ॉल्ट = "daily/qwen36-35b-a3b-q4" }
+@ विकल्प { binding = out, विस्तृत = "out", प्रकार = पाठ, विवरण = "Chat transcript output path", डिफ़ॉल्ट = "/tmp/faber-ai-chat.jsonl" }
+@ विकल्प { binding = format, विस्तृत = "format", प्रकार = पाठ, विवरण = "Output format: text or json", डिफ़ॉल्ट = "text" }
+@ विकल्प { binding = map, विस्तृत = "alias-map", प्रकार = पाठ, विवरण = "Alias map TOML path", डिफ़ॉल्ट = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ विकल्प { binding = router_runner, विस्तृत = "router-runner", प्रकार = पाठ, विवरण = "Explicit router runner script", डिफ़ॉल्ट = "" }
+@ विकल्प { binding = router_label, विस्तृत = "router-label", प्रकार = पाठ, विवरण = "Router runtime label", डिफ़ॉल्ट = "llama-router" }
+@ विकल्प { binding = router_url, विस्तृत = "router-url", प्रकार = पाठ, विवरण = "Router base URL", डिफ़ॉल्ट = "http://127.0.0.1:18173/v1" }
+@ ऑपरेंड { प्रकार = पाठ, binding = prompt, विवरण = "Prompt text file" }
+फलन chat() → रिक्त {
+    chatModule.curre("§"(args.prompt), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.router_runner), "§"(args.router_label), "§"(args.router_url))
+}
+
+@ cli { नाम = "faber-ai" }
+@ versio "0.1.0"
+@ विवरण "Local Faber AI workbench"
+@ imperia "model" ex modelModule
+आरंभ तर्क args {
+}

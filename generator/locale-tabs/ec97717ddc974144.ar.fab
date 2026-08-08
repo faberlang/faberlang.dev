@@ -1,0 +1,84 @@
+# Faber AI workbench command surface.
+
+استورد من "./commands/model" خاص * كـ modelModule
+
+استورد من "./commands/embed" خاص * كـ embedModule
+
+استورد من "./commands/index" خاص * كـ indexModule
+
+استورد من "./commands/query" خاص * كـ queryModule
+
+استورد من "./commands/generate" خاص * كـ generateModule
+
+استورد من "./commands/chat" خاص * كـ chatModule
+
+@ أمر { اسم = "embed" }
+@ وصف "Embed input texts with a local model alias"
+@ خيار { binding = model_alias, مفصل = "model", نمط = نص, وصف = "Model alias", عوض = "basic/minilm" }
+@ خيار { binding = out, مفصل = "out", نمط = نص, وصف = "Vector output path", عوض = "/tmp/faber-ai-vectors.fvi" }
+@ خيار { binding = format, مفصل = "format", نمط = نص, وصف = "Output format: text or json", عوض = "text" }
+@ خيار { binding = map, مفصل = "alias-map", نمط = نص, وصف = "Alias map TOML path", عوض = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ خيار { binding = oracle_runner, مفصل = "oracle-runner", نمط = نص, وصف = "Explicit oracle runner script", عوض = "" }
+@ خيار { binding = oracle_label, مفصل = "oracle-label", نمط = نص, وصف = "Oracle runtime label", عوض = "manual-minilm-torch" }
+@ معامل { نمط = نص, binding = texts, وصف = "Input text file" }
+دالة embed() → فراغ {
+    embedModule.curre("§"(args.texts), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.oracle_runner), "§"(args.oracle_label))
+}
+
+@ أمر { اسم = "index" }
+@ وصف "Build a deterministic vector index from a Stage 2 .fvi artifact"
+@ خيار { binding = out, مفصل = "out", نمط = نص, وصف = "Index output path", عوض = "/tmp/faber-ai-index.fvi" }
+@ خيار { binding = format, مفصل = "format", نمط = نص, وصف = "Output format: text or json", عوض = "text" }
+@ خيار { binding = metric, مفصل = "metric", نمط = نص, وصف = "Similarity metric", عوض = "cosine" }
+@ معامل { نمط = نص, binding = vectors, وصف = "Stage 2 vector artifact path" }
+دالة index() → فراغ {
+    indexModule.curre("§"(args.vectors), "§"(args.out), "§"(args.format), "§"(args.metric))
+}
+
+@ أمر { اسم = "query" }
+@ وصف "Query a deterministic Stage 3 vector index"
+@ خيار { binding = top, مفصل = "top", نمط = عدد, وصف = "Maximum result count", عوض = 10 }
+@ خيار { binding = format, مفصل = "format", نمط = نص, وصف = "Output format: text or json", عوض = "text" }
+@ خيار { binding = query_vector, مفصل = "query-vector", نمط = نص, وصف = "Explicit query vector fixture", عوض = "" }
+@ معامل { نمط = نص, binding = index, وصف = "Stage 3 index artifact path" }
+@ معامل { نمط = نص, binding = query_text, وصف = "Query text" }
+دالة query() → فراغ {
+    queryModule.curre("§"(args.index), "§"(args.query_text), args.top, "§"(args.format), "§"(args.query_vector))
+}
+
+@ أمر { اسم = "generate" }
+@ وصف "Generate text with an explicit local oracle-backed model runner"
+@ خيار { binding = model_alias, مفصل = "model", نمط = نص, وصف = "Model alias", عوض = "stretch/qwen3-4b-fp8" }
+@ خيار { binding = out, مفصل = "out", نمط = نص, وصف = "Generation event output path", عوض = "/tmp/faber-ai-generate.jsonl" }
+@ خيار { binding = format, مفصل = "format", نمط = نص, وصف = "Output format: text or json", عوض = "text" }
+@ خيار { binding = map, مفصل = "alias-map", نمط = نص, وصف = "Alias map TOML path", عوض = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ خيار { binding = oracle_runner, مفصل = "oracle-runner", نمط = نص, وصف = "Explicit oracle runner script", عوض = "" }
+@ خيار { binding = oracle_label, مفصل = "oracle-label", نمط = نص, وصف = "Oracle runtime label", عوض = "transformers-local-fp8" }
+@ خيار { binding = max_new_tokens, مفصل = "max-new-tokens", نمط = عدد, وصف = "Maximum generated tokens", عوض = 16 }
+@ خيار { binding = temperature, مفصل = "temperature", نمط = نص, وصف = "Sampling temperature", عوض = "0" }
+@ خيار { binding = seed, مفصل = "seed", نمط = عدد, وصف = "Deterministic oracle seed", عوض = 0 }
+@ معامل { نمط = نص, binding = prompt, وصف = "Prompt text file" }
+دالة generate() → فراغ {
+    generateModule.curre("§"(args.prompt), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.oracle_runner), "§"(args.oracle_label), args.max_new_tokens, "§"(args.temperature), args.seed)
+}
+
+@ أمر { اسم = "chat" }
+@ وصف "Chat through an explicit local llama.cpp router adapter"
+@ خيار { binding = model_alias, مفصل = "model", نمط = نص, وصف = "Model alias", عوض = "daily/qwen36-35b-a3b-q4" }
+@ خيار { binding = out, مفصل = "out", نمط = نص, وصف = "Chat transcript output path", عوض = "/tmp/faber-ai-chat.jsonl" }
+@ خيار { binding = format, مفصل = "format", نمط = نص, وصف = "Output format: text or json", عوض = "text" }
+@ خيار { binding = map, مفصل = "alias-map", نمط = نص, وصف = "Alias map TOML path", عوض = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ خيار { binding = router_runner, مفصل = "router-runner", نمط = نص, وصف = "Explicit router runner script", عوض = "" }
+@ خيار { binding = router_label, مفصل = "router-label", نمط = نص, وصف = "Router runtime label", عوض = "llama-router" }
+@ خيار { binding = router_url, مفصل = "router-url", نمط = نص, وصف = "Router base URL", عوض = "http://127.0.0.1:18173/v1" }
+@ معامل { نمط = نص, binding = prompt, وصف = "Prompt text file" }
+دالة chat() → فراغ {
+    chatModule.curre("§"(args.prompt), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.router_runner), "§"(args.router_label), "§"(args.router_url))
+}
+
+@ cli { اسم = "faber-ai" }
+@ versio "0.1.0"
+@ وصف "Local Faber AI workbench"
+@ imperia "model" ex modelModule
+بداية وسائط args {
+}

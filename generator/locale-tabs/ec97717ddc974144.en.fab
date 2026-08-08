@@ -1,0 +1,84 @@
+# Faber AI workbench command surface.
+
+import from "./commands/model" private * as modelModule
+
+import from "./commands/embed" private * as embedModule
+
+import from "./commands/index" private * as indexModule
+
+import from "./commands/query" private * as queryModule
+
+import from "./commands/generate" private * as generateModule
+
+import from "./commands/chat" private * as chatModule
+
+@ command { name = "embed" }
+@ description "Embed input texts with a local model alias"
+@ option { binding = model_alias, long = "model", type = string, description = "Model alias", coalesce = "basic/minilm" }
+@ option { binding = out, long = "out", type = string, description = "Vector output path", coalesce = "/tmp/faber-ai-vectors.fvi" }
+@ option { binding = format, long = "format", type = string, description = "Output format: text or json", coalesce = "text" }
+@ option { binding = map, long = "alias-map", type = string, description = "Alias map TOML path", coalesce = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ option { binding = oracle_runner, long = "oracle-runner", type = string, description = "Explicit oracle runner script", coalesce = "" }
+@ option { binding = oracle_label, long = "oracle-label", type = string, description = "Oracle runtime label", coalesce = "manual-minilm-torch" }
+@ operand { type = string, binding = texts, description = "Input text file" }
+fn embed() → void {
+    embedModule.curre("§"(args.texts), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.oracle_runner), "§"(args.oracle_label))
+}
+
+@ command { name = "index" }
+@ description "Build a deterministic vector index from a Stage 2 .fvi artifact"
+@ option { binding = out, long = "out", type = string, description = "Index output path", coalesce = "/tmp/faber-ai-index.fvi" }
+@ option { binding = format, long = "format", type = string, description = "Output format: text or json", coalesce = "text" }
+@ option { binding = metric, long = "metric", type = string, description = "Similarity metric", coalesce = "cosine" }
+@ operand { type = string, binding = vectors, description = "Stage 2 vector artifact path" }
+fn index() → void {
+    indexModule.curre("§"(args.vectors), "§"(args.out), "§"(args.format), "§"(args.metric))
+}
+
+@ command { name = "query" }
+@ description "Query a deterministic Stage 3 vector index"
+@ option { binding = top, long = "top", type = int, description = "Maximum result count", coalesce = 10 }
+@ option { binding = format, long = "format", type = string, description = "Output format: text or json", coalesce = "text" }
+@ option { binding = query_vector, long = "query-vector", type = string, description = "Explicit query vector fixture", coalesce = "" }
+@ operand { type = string, binding = index, description = "Stage 3 index artifact path" }
+@ operand { type = string, binding = query_text, description = "Query text" }
+fn query() → void {
+    queryModule.curre("§"(args.index), "§"(args.query_text), args.top, "§"(args.format), "§"(args.query_vector))
+}
+
+@ command { name = "generate" }
+@ description "Generate text with an explicit local oracle-backed model runner"
+@ option { binding = model_alias, long = "model", type = string, description = "Model alias", coalesce = "stretch/qwen3-4b-fp8" }
+@ option { binding = out, long = "out", type = string, description = "Generation event output path", coalesce = "/tmp/faber-ai-generate.jsonl" }
+@ option { binding = format, long = "format", type = string, description = "Output format: text or json", coalesce = "text" }
+@ option { binding = map, long = "alias-map", type = string, description = "Alias map TOML path", coalesce = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ option { binding = oracle_runner, long = "oracle-runner", type = string, description = "Explicit oracle runner script", coalesce = "" }
+@ option { binding = oracle_label, long = "oracle-label", type = string, description = "Oracle runtime label", coalesce = "transformers-local-fp8" }
+@ option { binding = max_new_tokens, long = "max-new-tokens", type = int, description = "Maximum generated tokens", coalesce = 16 }
+@ option { binding = temperature, long = "temperature", type = string, description = "Sampling temperature", coalesce = "0" }
+@ option { binding = seed, long = "seed", type = int, description = "Deterministic oracle seed", coalesce = 0 }
+@ operand { type = string, binding = prompt, description = "Prompt text file" }
+fn generate() → void {
+    generateModule.curre("§"(args.prompt), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.oracle_runner), "§"(args.oracle_label), args.max_new_tokens, "§"(args.temperature), args.seed)
+}
+
+@ command { name = "chat" }
+@ description "Chat through an explicit local llama.cpp router adapter"
+@ option { binding = model_alias, long = "model", type = string, description = "Model alias", coalesce = "daily/qwen36-35b-a3b-q4" }
+@ option { binding = out, long = "out", type = string, description = "Chat transcript output path", coalesce = "/tmp/faber-ai-chat.jsonl" }
+@ option { binding = format, long = "format", type = string, description = "Output format: text or json", coalesce = "text" }
+@ option { binding = map, long = "alias-map", type = string, description = "Alias map TOML path", coalesce = "docs/campaigns/ai-workbench/model-aliases.toml" }
+@ option { binding = router_runner, long = "router-runner", type = string, description = "Explicit router runner script", coalesce = "" }
+@ option { binding = router_label, long = "router-label", type = string, description = "Router runtime label", coalesce = "llama-router" }
+@ option { binding = router_url, long = "router-url", type = string, description = "Router base URL", coalesce = "http://127.0.0.1:18173/v1" }
+@ operand { type = string, binding = prompt, description = "Prompt text file" }
+fn chat() → void {
+    chatModule.curre("§"(args.prompt), "§"(args.model_alias), "§"(args.out), "§"(args.format), "§"(args.map), "§"(args.router_runner), "§"(args.router_label), "§"(args.router_url))
+}
+
+@ cli { name = "faber-ai" }
+@ versio "0.1.0"
+@ description "Local Faber AI workbench"
+@ imperia "model" ex modelModule
+main args args {
+}

@@ -1,5 +1,219 @@
 <!DOCTYPE html>
-<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="The densest single file here for language features: genus records, a discretio sum type with variant payloads, discerne matching over it, and a test suite in..."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="arena-handle — Faber"><meta property="og:description" content="The densest single file here for language features: genus records, a discretio sum type with variant payloads, discerne matching over it, and a test suite in..."><meta property="og:url" content="https://faberlang.dev/en-US/examples/arena-handle.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/examples/arena-handle.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>arena-handle — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><ul class="nav"><li><a href="/en-US/">Home</a></li><li><a href="/en-US/start/install.html">Install</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li><li><a href="/en-US/releases/">Releases</a></li><li><a href="/en-US/open-source.html">Open source</a></li><li><a href="/en-US/examples/" class="active">Examples</a></li><li><a href="/en-US/targets/">Target lanes</a></li></ul><div class="side-h">Start</div><ul class="nav"><li><a href="/en-US/start/hello.html">Hello, world</a></li><li><a href="/en-US/start/">Quick tour</a></li><li><a href="/en-US/start/projects.html">Your first package</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/en-US/language/">The language</a></li><li><a href="/en-US/language/types.html">Types and values</a></li><li><a href="/en-US/language/functions.html">Functions and flow</a></li><li><a href="/en-US/language/errors.html">Errors and testing</a></li><li><a href="/en-US/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/en-US/toolchain/">Toolchain</a></li><li><a href="/en-US/toolchain/cli.html">The faber CLI</a></li><li><a href="/en-US/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/en-US/targets/">Target lanes</a></li><li><a href="/en-US/toolchain/packages.html">Packages with Cista</a></li><li><a href="/en-US/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/">Libraries</a></li><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/en-US/reference/">Reference</a></li><li><a href="/en-US/reference/grammar.html">Grammar</a></li><li><a href="/en-US/corpus/">Corpus index</a></li><li><a href="/en-US/reference/design.html">Design notes</a></li><li><a href="/en-US/open-source.html">Open source</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.4.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/en-US/releases/">All releases</a></li><li><a href="/en-US/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>arena-handle</h1><div class="content"><p>The densest single file here for language features: <code class="kw">genus</code> records, a <code>discretio</code> sum type with variant payloads, <code class="kw">discerne</code> matching over it, and a test suite in the same file. Stale handles are rejected by a generation check rather than by a runtime guard.</p><p>Source: <a href="https://github.com/faberlang/examples/tree/main/arena-handle"><code>examples/arena-handle</code></a></p><h2 id="src-main-fab"><code>src/main.fab</code><a class="anchor" href="#src-main-fab">#</a></h2><p>230 lines — the whole file, unabridged.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># =============================================================================</span>
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="The densest single file here for language features: genus records, a discretio sum type with variant payloads, discerne matching over it, and a test suite in..."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="arena-handle — Faber"><meta property="og:description" content="The densest single file here for language features: genus records, a discretio sum type with variant payloads, discerne matching over it, and a test suite in..."><meta property="og:url" content="https://faberlang.dev/en-US/examples/arena-handle.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/examples/arena-handle.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>arena-handle — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><ul class="nav"><li><a href="/en-US/">Home</a></li><li><a href="/en-US/start/install.html">Install</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li><li><a href="/en-US/releases/">Releases</a></li><li><a href="/en-US/open-source.html">Open source</a></li><li><a href="/en-US/examples/" class="active">Examples</a></li><li><a href="/en-US/targets/">Target lanes</a></li></ul><div class="side-h">Start</div><ul class="nav"><li><a href="/en-US/start/hello.html">Hello, world</a></li><li><a href="/en-US/start/">Quick tour</a></li><li><a href="/en-US/start/projects.html">Your first package</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/en-US/language/">The language</a></li><li><a href="/en-US/language/types.html">Types and values</a></li><li><a href="/en-US/language/functions.html">Functions and flow</a></li><li><a href="/en-US/language/errors.html">Errors and testing</a></li><li><a href="/en-US/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/en-US/toolchain/">Toolchain</a></li><li><a href="/en-US/toolchain/cli.html">The faber CLI</a></li><li><a href="/en-US/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/en-US/targets/">Target lanes</a></li><li><a href="/en-US/toolchain/packages.html">Packages with Cista</a></li><li><a href="/en-US/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/">Libraries</a></li><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/en-US/reference/">Reference</a></li><li><a href="/en-US/reference/grammar.html">Grammar</a></li><li><a href="/en-US/corpus/">Corpus index</a></li><li><a href="/en-US/reference/design.html">Design notes</a></li><li><a href="/en-US/open-source.html">Open source</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.4.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/en-US/releases/">All releases</a></li><li><a href="/en-US/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>arena-handle</h1><div class="content"><p>The densest single file here for language features: <code class="kw">genus</code> records, a <code>discretio</code> sum type with variant payloads, <code class="kw">discerne</code> matching over it, and a test suite in the same file. Stale handles are rejected by a generation check rather than by a runtime guard.</p><p>Source: <a href="https://github.com/faberlang/examples/tree/main/arena-handle"><code>examples/arena-handle</code></a></p><h2 id="src-main-fab"><code>src/main.fab</code><a class="anchor" href="#src-main-fab">#</a></h2><p>230 lines — the whole file, unabridged.</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-8c6a4ac88069ab74-0-t-en" data-panel="lt-8c6a4ac88069ab74-0-p-en" data-name="English" aria-controls="lt-8c6a4ac88069ab74-0-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-8c6a4ac88069ab74-0-t-la" data-panel="lt-8c6a4ac88069ab74-0-p-la" data-name="Latin" aria-controls="lt-8c6a4ac88069ab74-0-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-8c6a4ac88069ab74-0-t-th-TH" data-panel="lt-8c6a4ac88069ab74-0-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-8c6a4ac88069ab74-0-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-8c6a4ac88069ab74-0-t-zh-Hans" data-panel="lt-8c6a4ac88069ab74-0-p-zh-Hans" data-name="简体中文" aria-controls="lt-8c6a4ac88069ab74-0-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-8c6a4ac88069ab74-0-t-zh-Hant" data-panel="lt-8c6a4ac88069ab74-0-p-zh-Hant" data-name="繁體中文" aria-controls="lt-8c6a4ac88069ab74-0-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-8c6a4ac88069ab74-0-t-vi" data-panel="lt-8c6a4ac88069ab74-0-p-vi" data-name="Tiếng Việt" aria-controls="lt-8c6a4ac88069ab74-0-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-8c6a4ac88069ab74-0-t-ar" data-panel="lt-8c6a4ac88069ab74-0-p-ar" data-name="العربية" aria-controls="lt-8c6a4ac88069ab74-0-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-8c6a4ac88069ab74-0-t-hi" data-panel="lt-8c6a4ac88069ab74-0-p-hi" data-name="हिन्दी" aria-controls="lt-8c6a4ac88069ab74-0-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-8c6a4ac88069ab74-0-p-en" role="tabpanel" aria-labelledby="lt-8c6a4ac88069ab74-0-t-en"><div class="fdt-panel-label"><code>faber format --locale en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># arena-handle — generational arena-handle contract via pure value updates</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this example teaches:</span>
+<span class="tok-co">#   • Generational arena pattern — stable identity via (index, generation) handle</span>
+<span class="tok-co">#     pair; stale handles rejected on lookup via generation check</span>
+<span class="tok-co">#   • genus (struct) definitions — Manus, Loculus, Area, AreaCumManus, Nodus</span>
+<span class="tok-co">#   • Pure functional updates — no lista[i] mutation, all operations return new</span>
+<span class="tok-co">#     Area values to keep generated Rust sound</span>
+<span class="tok-co">#   • dum loop — explicit iteration over list indices (lines 42-46, 75-90)</span>
+<span class="tok-co">#   • si/sin/secus — conditional logic (lines 58, 60, 62, 78-89)</span>
+<span class="tok-co">#   • discerne/casu — pattern matching on enum variants (lines 117-133)</span>
+<span class="tok-co">#   • probandum/proba/adfirma — test framework with multi-case assertions</span>
+<span class="tok-co">#   • discretio — sum type (enum) with variant payloads (lines 93-96)</span>
+<span class="tok-co">#   • gingimus (finge) — enum variant construction with named fields (lines 113-116)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Syntaxes used:</span>
+<span class="tok-co">#   • genus — struct definition (lines 8, 12, 18, 22)</span>
+<span class="tok-co">#   • discretio — enum/sum type (line 93)</span>
+<span class="tok-co">#   • functio — function definition (lines 28, 32, 36, 57, 70, 73)</span>
+<span class="tok-co">#   • fixum — immutable binding (lines 33, 43, etc.)</span>
+<span class="tok-co">#   • varia — mutable binding (lines 40, 41, etc.)</span>
+<span class="tok-co">#   • dum — while loop (lines 42, 75)</span>
+<span class="tok-co">#   • si/sin/secus — conditionals (lines 58, 60, 62, 78-89)</span>
+<span class="tok-co">#   • discerne/casu — match/pattern match (lines 117-133)</span>
+<span class="tok-co">#   • redde — return (lines 30, etc.)</span>
+<span class="tok-co">#   • finge — construct enum variant (lines 113-116)</span>
+<span class="tok-co">#   • adfirma — test assertion (lines 109-112, etc.)</span>
+<span class="tok-co">#   • proba — test case (lines 101, 134, 155)</span>
+<span class="tok-co">#   • probandum — test suite (line 100)</span>
+<span class="tok-co">#   • ≡ — equality comparison (lines 29, 61, etc.)</span>
+<span class="tok-co">#   • lista&lt;T&gt; — list type (lines 20, 93, 96)</span>
+<span class="tok-co">#   • textus, numerus, bivalens — primitive types</span>
+<span class="tok-co">#   • vacua — empty list literal</span>
+<span class="tok-co">#   • .longitudo() — list length method</span>
+<span class="tok-co">#   • .appende() — list append method</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Alternate approaches (not shown):</span>
+<span class="tok-co">#   • Mutable arena with unsafe interior for performance — a mutable lista&lt;Loculus&gt; with in-place updates avoids copying on every insert/take</span>
+<span class="tok-co">#   • Reusing free slots (via free list) instead of always appending — maintain a list of freed indices to recycle slots without growing the arena</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Anti-patterns (avoid these):</span>
+<span class="tok-co">#   • Using lista[i] assignment in generated Rust contexts — in-place list mutation breaks Rust's borrow-checker soundness; use pure value updates (return new Area) instead</span>
+<span class="tok-co">#   • Assuming stale handle reuse after removal without generation check — always verify generatio matches before using a handle; stale handles must be rejected on lookup</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Learning path:</span>
+<span class="tok-co">#   Before: Stage 3: genus, lista, nihil → Stage 3: discerne/casu (structs, collections, and pattern matching)</span>
+<span class="tok-co">#   After:  Stage 6: advanced applications (vivilite — real-world resource management)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Stage: arena-handle, complete contract with tests, all language constructs demonstrated</span>
+<span class="tok-co"># Backend: Rust, stepper</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># Reusable generational arena-handle contract (language surface).</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Semantics mirror faber-runtime::Arena / ArenaHandle (see arena.rs):</span>
+<span class="tok-co"># stable identity independent of list order; stale handles reject on lookup.</span>
+<span class="tok-co"># This package uses pure value updates (no lista[i] assignment) so generated</span>
+<span class="tok-co"># Rust stays sound; the runtime crate is the authoritative store implementation.</span>
+
+<span class="tok-kw">class</span> Manus {
+    <span class="tok-kw">int</span> index
+    <span class="tok-kw">int</span> generatio
+}
+
+<span class="tok-kw">class</span> Loculus {
+    <span class="tok-kw">int</span> generatio
+    <span class="tok-kw">bool</span> vivus
+    <span class="tok-kw">string</span> valor
+}
+
+<span class="tok-kw">class</span> Area {
+    <span class="tok-kw">list</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> loculi
+}
+
+<span class="tok-kw">class</span> AreaCumManus {
+    Area area
+    Manus manus
+}
+
+<span class="tok-kw">fn</span> manus_aequat(<span class="tok-kw">ref</span> Manus a, <span class="tok-kw">ref</span> Manus b) <span class="tok-op">→</span> <span class="tok-kw">bool</span> {
+    <span class="tok-kw">return</span> a.index <span class="tok-op">≡</span> b.index <span class="tok-kw">and</span> a.generatio <span class="tok-op">≡</span> b.generatio
+}
+
+<span class="tok-kw">fn</span> area_nova() <span class="tok-op">→</span> Area {
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> loculi <span class="tok-op">←</span> <span class="tok-kw">vacua</span>
+    <span class="tok-kw">return</span> Area {loculi <span class="tok-op">=</span> loculi}
+}
+
+<span class="tok-kw">fn</span> area_inserit(Area area, <span class="tok-kw">string</span> valor) <span class="tok-op">→</span> AreaCumManus {
+<span class="tok-co">    # Always append a new live slot. Free slots from tollit stay dead so the</span>
+<span class="tok-co">    # old handle generation remains invalid; reuse is optional for this proof.</span>
+    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> <span class="tok-kw">vacua</span>
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">while</span> i ≺ area.loculi.longitudo() {
+        out.appende(area.loculi[i])
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    }
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> index <span class="tok-op">←</span> out.longitudo()
+    out.appende(Loculus {generatio <span class="tok-op">=</span> <span class="tok-nu">0</span>, vivus <span class="tok-op">=</span> <span class="tok-kw">true</span>, valor <span class="tok-op">=</span> valor})
+    <span class="tok-kw">return</span> AreaCumManus {area <span class="tok-op">=</span> Area {loculi <span class="tok-op">=</span> out}, manus <span class="tok-op">=</span> Manus {index <span class="tok-op">=</span> index, generatio <span class="tok-op">=</span> <span class="tok-nu">0</span>}}
+}
+
+<span class="tok-co"># Lookup returns the payload, or "" when the handle is stale / out of range.</span>
+<span class="tok-co"># Proof resources never use empty text, so "" is the explicit reject signal.</span>
+<span class="tok-kw">fn</span> area_accipe(<span class="tok-kw">ref</span> Area area, <span class="tok-kw">ref</span> Manus manus) <span class="tok-op">→</span> <span class="tok-kw">string</span> {
+    <span class="tok-kw">if</span> manus.index <span class="tok-op">≥</span> area.loculi.longitudo() <span class="tok-kw">then</span> <span class="tok-kw">return</span> <span class="tok-st">""</span>
+    <span class="tok-kw">const</span> Loculus slot <span class="tok-op">←</span> area.loculi[manus.index]
+    <span class="tok-kw">if</span> slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">false</span> <span class="tok-kw">then</span> <span class="tok-kw">return</span> <span class="tok-st">""</span>
+    <span class="tok-kw">if</span> slot.generatio <span class="tok-op">≠</span> manus.generatio <span class="tok-kw">then</span> <span class="tok-kw">return</span> <span class="tok-st">""</span>
+    <span class="tok-kw">return</span> slot.valor
+}
+
+<span class="tok-kw">fn</span> area_continet(<span class="tok-kw">ref</span> Area area, <span class="tok-kw">ref</span> Manus manus) <span class="tok-op">→</span> <span class="tok-kw">bool</span> {
+    <span class="tok-kw">return</span> area_accipe(area, manus) <span class="tok-op">≠</span> <span class="tok-st">""</span>
+}
+
+<span class="tok-kw">fn</span> area_tollit(Area area, <span class="tok-kw">ref</span> Manus manus) <span class="tok-op">→</span> Area {
+    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> <span class="tok-kw">vacua</span>
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">while</span> i ≺ area.loculi.longitudo() {
+        <span class="tok-kw">const</span> Loculus slot <span class="tok-op">←</span> area.loculi[i]
+        <span class="tok-kw">if</span> (i <span class="tok-op">≡</span> manus.index <span class="tok-kw">and</span> slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">true</span>) <span class="tok-kw">and</span> slot.generatio <span class="tok-op">≡</span> manus.generatio {
+            out.appende(Loculus {generatio <span class="tok-op">=</span> slot.generatio <span class="tok-op">+</span> <span class="tok-nu">1</span>, vivus <span class="tok-op">=</span> <span class="tok-kw">false</span>, valor <span class="tok-op">=</span> <span class="tok-st">""</span>})
+        }
+        <span class="tok-kw">else</span> {
+            out.appende(slot)
+        }
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    }
+    <span class="tok-kw">return</span> Area {loculi <span class="tok-op">=</span> out}
+}
+
+<span class="tok-co"># Heterogeneous node: stores Manus, never deep-copies the resource payload.</span>
+<span class="tok-kw">union</span> Nodus {
+    Groupus {
+        <span class="tok-kw">list</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii
+    },
+    Tessera {
+        Manus geometria
+    },
+}
+
+<span class="tok-kw">test</span> <span class="tok-st">"two nodes share one resource identity"</span> <span class="tok-kw">tag</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">const</span> AreaCumManus <span class="tok-kw">step</span> <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"shared-mesh"</span>)
+    <span class="tok-kw">const</span> Area res <span class="tok-op">←</span> <span class="tok-kw">step</span>.area
+    <span class="tok-kw">const</span> Manus geo <span class="tok-op">←</span> <span class="tok-kw">step</span>.manus
+<span class="tok-co">    # Reconstruct handle values so each node owns a copy of the identity bits</span>
+<span class="tok-co">    # without cloning the resource payload (still one live slot in `res`).</span>
+    <span class="tok-kw">const</span> Manus left_geo <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio}
+    <span class="tok-kw">const</span> Manus right_geo <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio}
+    <span class="tok-kw">assert</span> manus_aequat(left_geo, right_geo)
+    <span class="tok-kw">assert</span> area_accipe(res, left_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
+    <span class="tok-kw">assert</span> area_accipe(res, right_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
+    <span class="tok-kw">const</span> Nodus left <span class="tok-op">←</span> Tessera(Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio})
+    <span class="tok-kw">const</span> Nodus right <span class="tok-op">←</span> Tessera(Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio})
+    <span class="tok-kw">match</span> left {
+        <span class="tok-kw">case</span> Tessera <span class="tok-kw">const</span> geometria {
+            <span class="tok-kw">assert</span> manus_aequat(geometria, left_geo)
+        }
+        <span class="tok-kw">case</span> Groupus <span class="tok-kw">const</span> filii {
+            <span class="tok-kw">assert</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+        }
+    }
+    <span class="tok-kw">match</span> right {
+        <span class="tok-kw">case</span> Tessera <span class="tok-kw">const</span> geometria {
+            <span class="tok-kw">assert</span> manus_aequat(geometria, right_geo)
+        }
+        <span class="tok-kw">case</span> Groupus <span class="tok-kw">const</span> filii {
+            <span class="tok-kw">assert</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+        }
+    }
+}
+
+<span class="tok-kw">test</span> <span class="tok-st">"reparent reorder preserves handle identity"</span> <span class="tok-kw">tag</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">const</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"child-a"</span>)
+    <span class="tok-kw">const</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(s0.area, <span class="tok-st">"child-b"</span>)
+    <span class="tok-kw">const</span> Area nodi <span class="tok-op">←</span> s1.area
+    <span class="tok-kw">const</span> Manus a <span class="tok-op">←</span> s0.manus
+    <span class="tok-kw">const</span> Manus b <span class="tok-op">←</span> s1.manus
+    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii <span class="tok-op">←</span> <span class="tok-kw">vacua</span>
+    filii.appende(Manus {index <span class="tok-op">=</span> a.index, generatio <span class="tok-op">=</span> a.generatio})
+    filii.appende(Manus {index <span class="tok-op">=</span> b.index, generatio <span class="tok-op">=</span> b.generatio})
+<span class="tok-co">    # swap order without changing handle identities</span>
+    <span class="tok-kw">const</span> Manus first <span class="tok-op">←</span> filii[<span class="tok-nu">0</span>]
+    <span class="tok-kw">const</span> Manus second <span class="tok-op">←</span> filii[<span class="tok-nu">1</span>]
+    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> reord <span class="tok-op">←</span> <span class="tok-kw">vacua</span>
+    reord.appende(Manus {index <span class="tok-op">=</span> second.index, generatio <span class="tok-op">=</span> second.generatio})
+    reord.appende(Manus {index <span class="tok-op">=</span> first.index, generatio <span class="tok-op">=</span> first.generatio})
+    <span class="tok-kw">assert</span> area_accipe(nodi, reord[<span class="tok-nu">0</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
+    <span class="tok-kw">assert</span> area_accipe(nodi, reord[<span class="tok-nu">1</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
+    <span class="tok-kw">assert</span> area_accipe(nodi, a) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
+    <span class="tok-kw">assert</span> area_accipe(nodi, b) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
+}
+
+<span class="tok-kw">test</span> <span class="tok-st">"stale handle rejects after remove"</span> <span class="tok-kw">tag</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">const</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"gone"</span>)
+    <span class="tok-kw">const</span> Manus h <span class="tok-op">←</span> s0.manus
+    <span class="tok-kw">const</span> Manus h_bits <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> h.index, generatio <span class="tok-op">=</span> h.generatio}
+    <span class="tok-kw">assert</span> area_continet(s0.area, h_bits)
+    <span class="tok-kw">const</span> Area after <span class="tok-op">←</span> area_tollit(s0.area, h_bits)
+    <span class="tok-kw">assert</span> area_continet(after, h_bits) <span class="tok-op">≡</span> <span class="tok-kw">false</span>
+    <span class="tok-kw">assert</span> area_accipe(after, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
+    <span class="tok-kw">const</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(after, <span class="tok-st">"fresh"</span>)
+    <span class="tok-kw">const</span> Manus h2 <span class="tok-op">←</span> s1.manus
+<span class="tok-co">    # New live slot (append); old handle still rejected by generation/vivus.</span>
+    <span class="tok-kw">assert</span> manus_aequat(h_bits, h2) <span class="tok-op">≡</span> <span class="tok-kw">false</span>
+    <span class="tok-kw">assert</span> area_accipe(s1.area, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
+    <span class="tok-kw">assert</span> area_accipe(s1.area, h2) <span class="tok-op">≡</span> <span class="tok-st">"fresh"</span>
+    <span class="tok-kw">assert</span> area_continet(s1.area, h2)
+}
+
+<span class="tok-kw">main</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-8c6a4ac88069ab74-0-p-la" role="tabpanel" aria-labelledby="lt-8c6a4ac88069ab74-0-t-la"><div class="fdt-panel-label"><code>faber format --locale la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># arena-handle — generational arena-handle contract via pure value updates</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -68,7 +282,7 @@
 <span class="tok-kw">genus</span> Loculus {
     <span class="tok-kw">numerus</span> generatio
     <span class="tok-kw">bivalens</span> vivus
-    <span class="tok-kw">textus</span> valor
+    <span class="tok-kw">textus</span> <span class="tok-kw">valor</span>
 }
 
 <span class="tok-kw">genus</span> Area {
@@ -81,45 +295,36 @@
 }
 
 <span class="tok-kw">functio</span> manus_aequat(<span class="tok-kw">de</span> Manus a, <span class="tok-kw">de</span> Manus b) <span class="tok-op">→</span> <span class="tok-kw">bivalens</span> {
-    <span class="tok-kw">redde</span> a.index <span class="tok-op">≡</span> b.index et a.generatio <span class="tok-op">≡</span> b.generatio
+    <span class="tok-kw">redde</span> a.index <span class="tok-op">≡</span> b.index <span class="tok-kw">et</span> a.generatio <span class="tok-op">≡</span> b.generatio
 }
 
 <span class="tok-kw">functio</span> area_nova() <span class="tok-op">→</span> Area {
-    <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> loculi <span class="tok-op">←</span> vacua
-    <span class="tok-kw">redde</span> Area { loculi <span class="tok-op">=</span> loculi }
+    <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> loculi <span class="tok-op">←</span> <span class="tok-kw">vacua</span>
+    <span class="tok-kw">redde</span> Area {loculi <span class="tok-op">=</span> loculi}
 }
 
-<span class="tok-kw">functio</span> area_inserit(Area area, <span class="tok-kw">textus</span> valor) <span class="tok-op">→</span> AreaCumManus {
+<span class="tok-kw">functio</span> area_inserit(Area area, <span class="tok-kw">textus</span> <span class="tok-kw">valor</span>) <span class="tok-op">→</span> AreaCumManus {
 <span class="tok-co">    # Always append a new live slot. Free slots from tollit stay dead so the</span>
 <span class="tok-co">    # old handle generation remains invalid; reuse is optional for this proof.</span>
-    <span class="tok-kw">varia</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> vacua
+    <span class="tok-kw">varia</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> <span class="tok-kw">vacua</span>
     <span class="tok-kw">varia</span> <span class="tok-kw">numerus</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">dum</span> i <span class="tok-op">&lt;</span> area.loculi.longitudo() {
+    <span class="tok-kw">dum</span> i ≺ area.loculi.longitudo() {
         out.appende(area.loculi[i])
         i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
     }
     <span class="tok-kw">fixum</span> <span class="tok-kw">numerus</span> index <span class="tok-op">←</span> out.longitudo()
-    out.appende(Loculus { generatio <span class="tok-op">=</span> <span class="tok-nu">0</span>, vivus <span class="tok-op">=</span> <span class="tok-kw">verum</span>, valor <span class="tok-op">=</span> valor })
-    <span class="tok-kw">redde</span> AreaCumManus {
-        area <span class="tok-op">=</span> Area { loculi <span class="tok-op">=</span> out },
-        manus <span class="tok-op">=</span> Manus { index <span class="tok-op">=</span> index, generatio <span class="tok-op">=</span> <span class="tok-nu">0</span> }
-    }
+    out.appende(Loculus {generatio <span class="tok-op">=</span> <span class="tok-nu">0</span>, vivus <span class="tok-op">=</span> <span class="tok-kw">verum</span>, <span class="tok-kw">valor</span> <span class="tok-op">=</span> <span class="tok-kw">valor</span>})
+    <span class="tok-kw">redde</span> AreaCumManus {area <span class="tok-op">=</span> Area {loculi <span class="tok-op">=</span> out}, manus <span class="tok-op">=</span> Manus {index <span class="tok-op">=</span> index, generatio <span class="tok-op">=</span> <span class="tok-nu">0</span>}}
 }
 
 <span class="tok-co"># Lookup returns the payload, or "" when the handle is stale / out of range.</span>
 <span class="tok-co"># Proof resources never use empty text, so "" is the explicit reject signal.</span>
 <span class="tok-kw">functio</span> area_accipe(<span class="tok-kw">de</span> Area area, <span class="tok-kw">de</span> Manus manus) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
-    <span class="tok-kw">si</span> manus.index <span class="tok-op">≥</span> area.loculi.longitudo() {
-        <span class="tok-kw">redde</span> <span class="tok-st">""</span>
-    }
+    <span class="tok-kw">si</span> manus.index <span class="tok-op">≥</span> area.loculi.longitudo() <span class="tok-kw">ergo</span> <span class="tok-kw">redde</span> <span class="tok-st">""</span>
     <span class="tok-kw">fixum</span> Loculus slot <span class="tok-op">←</span> area.loculi[manus.index]
-    <span class="tok-kw">si</span> slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">falsum</span> {
-        <span class="tok-kw">redde</span> <span class="tok-st">""</span>
-    }
-    <span class="tok-kw">si</span> slot.generatio <span class="tok-op">≠</span> manus.generatio {
-        <span class="tok-kw">redde</span> <span class="tok-st">""</span>
-    }
-    <span class="tok-kw">redde</span> slot.valor
+    <span class="tok-kw">si</span> slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">falsum</span> <span class="tok-kw">ergo</span> <span class="tok-kw">redde</span> <span class="tok-st">""</span>
+    <span class="tok-kw">si</span> slot.generatio <span class="tok-op">≠</span> manus.generatio <span class="tok-kw">ergo</span> <span class="tok-kw">redde</span> <span class="tok-st">""</span>
+    <span class="tok-kw">redde</span> slot.<span class="tok-kw">valor</span>
 }
 
 <span class="tok-kw">functio</span> area_continet(<span class="tok-kw">de</span> Area area, <span class="tok-kw">de</span> Manus manus) <span class="tok-op">→</span> <span class="tok-kw">bivalens</span> {
@@ -127,105 +332,1383 @@
 }
 
 <span class="tok-kw">functio</span> area_tollit(Area area, <span class="tok-kw">de</span> Manus manus) <span class="tok-op">→</span> Area {
-    <span class="tok-kw">varia</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> vacua
+    <span class="tok-kw">varia</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> <span class="tok-kw">vacua</span>
     <span class="tok-kw">varia</span> <span class="tok-kw">numerus</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">dum</span> i <span class="tok-op">&lt;</span> area.loculi.longitudo() {
+    <span class="tok-kw">dum</span> i ≺ area.loculi.longitudo() {
         <span class="tok-kw">fixum</span> Loculus slot <span class="tok-op">←</span> area.loculi[i]
-        <span class="tok-kw">si</span> i <span class="tok-op">≡</span> manus.index et slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">verum</span> et slot.generatio <span class="tok-op">≡</span> manus.generatio {
-            out.appende(Loculus {
-                generatio <span class="tok-op">=</span> slot.generatio <span class="tok-op">+</span> <span class="tok-nu">1</span>,
-                vivus <span class="tok-op">=</span> <span class="tok-kw">falsum</span>,
-                valor <span class="tok-op">=</span> <span class="tok-st">""</span>
-            })
+        <span class="tok-kw">si</span> (i <span class="tok-op">≡</span> manus.index <span class="tok-kw">et</span> slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">verum</span>) <span class="tok-kw">et</span> slot.generatio <span class="tok-op">≡</span> manus.generatio {
+            out.appende(Loculus {generatio <span class="tok-op">=</span> slot.generatio <span class="tok-op">+</span> <span class="tok-nu">1</span>, vivus <span class="tok-op">=</span> <span class="tok-kw">falsum</span>, <span class="tok-kw">valor</span> <span class="tok-op">=</span> <span class="tok-st">""</span>})
         }
         <span class="tok-kw">secus</span> {
             out.appende(slot)
         }
         i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
     }
-    <span class="tok-kw">redde</span> Area { loculi <span class="tok-op">=</span> out }
+    <span class="tok-kw">redde</span> Area {loculi <span class="tok-op">=</span> out}
 }
 
 <span class="tok-co"># Heterogeneous node: stores Manus, never deep-copies the resource payload.</span>
 <span class="tok-kw">discretio</span> Nodus {
-    Groupus { <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii },
-    Tessera { Manus geometria },
+    Groupus {
+        <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii
+    },
+    Tessera {
+        Manus geometria
+    },
 }
 
-<span class="tok-kw">probandum</span> <span class="tok-st">"arena-handle contract"</span> <span class="tok-kw">tag</span> <span class="tok-st">"identity"</span> {
-    <span class="tok-kw">proba</span> <span class="tok-st">"two nodes share one resource identity"</span> {
-        <span class="tok-kw">fixum</span> AreaCumManus step <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"shared-mesh"</span>)
-        <span class="tok-kw">fixum</span> Area res <span class="tok-op">←</span> step.area
-        <span class="tok-kw">fixum</span> Manus geo <span class="tok-op">←</span> step.manus
-<span class="tok-co">        # Reconstruct handle values so each node owns a copy of the identity bits</span>
-<span class="tok-co">        # without cloning the resource payload (still one live slot in `res`).</span>
-        <span class="tok-kw">fixum</span> Manus left_geo <span class="tok-op">←</span> Manus { index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio }
-        <span class="tok-kw">fixum</span> Manus right_geo <span class="tok-op">←</span> Manus { index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio }
-        <span class="tok-kw">adfirma</span> manus_aequat(left_geo, right_geo)
-        <span class="tok-kw">adfirma</span> area_accipe(res, left_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
-        <span class="tok-kw">adfirma</span> area_accipe(res, right_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
-        <span class="tok-kw">fixum</span> Nodus left <span class="tok-op">←</span> <span class="tok-kw">finge</span> Tessera {
-            geometria <span class="tok-op">=</span> Manus { index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio }
+<span class="tok-kw">proba</span> <span class="tok-st">"two nodes share one resource identity"</span> <span class="tok-kw">tag</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">fixum</span> AreaCumManus step <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"shared-mesh"</span>)
+    <span class="tok-kw">fixum</span> Area res <span class="tok-op">←</span> step.area
+    <span class="tok-kw">fixum</span> Manus geo <span class="tok-op">←</span> step.manus
+<span class="tok-co">    # Reconstruct handle values so each node owns a copy of the identity bits</span>
+<span class="tok-co">    # without cloning the resource payload (still one live slot in `res`).</span>
+    <span class="tok-kw">fixum</span> Manus left_geo <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio}
+    <span class="tok-kw">fixum</span> Manus right_geo <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio}
+    <span class="tok-kw">adfirma</span> manus_aequat(left_geo, right_geo)
+    <span class="tok-kw">adfirma</span> area_accipe(res, left_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
+    <span class="tok-kw">adfirma</span> area_accipe(res, right_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
+    <span class="tok-kw">fixum</span> Nodus left <span class="tok-op">←</span> Tessera(Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio})
+    <span class="tok-kw">fixum</span> Nodus right <span class="tok-op">←</span> Tessera(Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio})
+    <span class="tok-kw">discerne</span> left {
+        <span class="tok-kw">casu</span> Tessera <span class="tok-kw">fixum</span> geometria {
+            <span class="tok-kw">adfirma</span> manus_aequat(geometria, left_geo)
         }
-        <span class="tok-kw">fixum</span> Nodus right <span class="tok-op">←</span> <span class="tok-kw">finge</span> Tessera {
-            geometria <span class="tok-op">=</span> Manus { index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio }
-        }
-        <span class="tok-kw">discerne</span> left {
-            <span class="tok-kw">casu</span> Tessera <span class="tok-kw">fixum</span> geometria {
-                <span class="tok-kw">adfirma</span> manus_aequat(geometria, left_geo)
-            }
-            <span class="tok-kw">casu</span> Groupus <span class="tok-kw">fixum</span> filii {
-                <span class="tok-kw">adfirma</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
-            }
-        }
-        <span class="tok-kw">discerne</span> right {
-            <span class="tok-kw">casu</span> Tessera <span class="tok-kw">fixum</span> geometria {
-                <span class="tok-kw">adfirma</span> manus_aequat(geometria, right_geo)
-            }
-            <span class="tok-kw">casu</span> Groupus <span class="tok-kw">fixum</span> filii {
-                <span class="tok-kw">adfirma</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
-            }
+        <span class="tok-kw">casu</span> Groupus <span class="tok-kw">fixum</span> filii {
+            <span class="tok-kw">adfirma</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
         }
     }
+    <span class="tok-kw">discerne</span> right {
+        <span class="tok-kw">casu</span> Tessera <span class="tok-kw">fixum</span> geometria {
+            <span class="tok-kw">adfirma</span> manus_aequat(geometria, right_geo)
+        }
+        <span class="tok-kw">casu</span> Groupus <span class="tok-kw">fixum</span> filii {
+            <span class="tok-kw">adfirma</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+        }
+    }
+}
 
-    <span class="tok-kw">proba</span> <span class="tok-st">"reparent reorder preserves handle identity"</span> {
-        <span class="tok-kw">fixum</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"child-a"</span>)
-        <span class="tok-kw">fixum</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(s0.area, <span class="tok-st">"child-b"</span>)
-        <span class="tok-kw">fixum</span> Area nodi <span class="tok-op">←</span> s1.area
-        <span class="tok-kw">fixum</span> Manus a <span class="tok-op">←</span> s0.manus
-        <span class="tok-kw">fixum</span> Manus b <span class="tok-op">←</span> s1.manus
-        <span class="tok-kw">varia</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii <span class="tok-op">←</span> vacua
-        filii.appende(Manus { index <span class="tok-op">=</span> a.index, generatio <span class="tok-op">=</span> a.generatio })
-        filii.appende(Manus { index <span class="tok-op">=</span> b.index, generatio <span class="tok-op">=</span> b.generatio })
-<span class="tok-co">        # swap order without changing handle identities</span>
-        <span class="tok-kw">fixum</span> Manus first <span class="tok-op">←</span> filii[<span class="tok-nu">0</span>]
-        <span class="tok-kw">fixum</span> Manus second <span class="tok-op">←</span> filii[<span class="tok-nu">1</span>]
-        <span class="tok-kw">varia</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> reord <span class="tok-op">←</span> vacua
-        reord.appende(Manus { index <span class="tok-op">=</span> second.index, generatio <span class="tok-op">=</span> second.generatio })
-        reord.appende(Manus { index <span class="tok-op">=</span> first.index, generatio <span class="tok-op">=</span> first.generatio })
-        <span class="tok-kw">adfirma</span> area_accipe(nodi, reord[<span class="tok-nu">0</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
-        <span class="tok-kw">adfirma</span> area_accipe(nodi, reord[<span class="tok-nu">1</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
-        <span class="tok-kw">adfirma</span> area_accipe(nodi, a) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
-        <span class="tok-kw">adfirma</span> area_accipe(nodi, b) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
-    }
+<span class="tok-kw">proba</span> <span class="tok-st">"reparent reorder preserves handle identity"</span> <span class="tok-kw">tag</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">fixum</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"child-a"</span>)
+    <span class="tok-kw">fixum</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(s0.area, <span class="tok-st">"child-b"</span>)
+    <span class="tok-kw">fixum</span> Area nodi <span class="tok-op">←</span> s1.area
+    <span class="tok-kw">fixum</span> Manus a <span class="tok-op">←</span> s0.manus
+    <span class="tok-kw">fixum</span> Manus b <span class="tok-op">←</span> s1.manus
+    <span class="tok-kw">varia</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii <span class="tok-op">←</span> <span class="tok-kw">vacua</span>
+    filii.appende(Manus {index <span class="tok-op">=</span> a.index, generatio <span class="tok-op">=</span> a.generatio})
+    filii.appende(Manus {index <span class="tok-op">=</span> b.index, generatio <span class="tok-op">=</span> b.generatio})
+<span class="tok-co">    # swap order without changing handle identities</span>
+    <span class="tok-kw">fixum</span> Manus first <span class="tok-op">←</span> filii[<span class="tok-nu">0</span>]
+    <span class="tok-kw">fixum</span> Manus second <span class="tok-op">←</span> filii[<span class="tok-nu">1</span>]
+    <span class="tok-kw">varia</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> reord <span class="tok-op">←</span> <span class="tok-kw">vacua</span>
+    reord.appende(Manus {index <span class="tok-op">=</span> second.index, generatio <span class="tok-op">=</span> second.generatio})
+    reord.appende(Manus {index <span class="tok-op">=</span> first.index, generatio <span class="tok-op">=</span> first.generatio})
+    <span class="tok-kw">adfirma</span> area_accipe(nodi, reord[<span class="tok-nu">0</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
+    <span class="tok-kw">adfirma</span> area_accipe(nodi, reord[<span class="tok-nu">1</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
+    <span class="tok-kw">adfirma</span> area_accipe(nodi, a) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
+    <span class="tok-kw">adfirma</span> area_accipe(nodi, b) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
+}
 
-    <span class="tok-kw">proba</span> <span class="tok-st">"stale handle rejects after remove"</span> {
-        <span class="tok-kw">fixum</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"gone"</span>)
-        <span class="tok-kw">fixum</span> Manus h <span class="tok-op">←</span> s0.manus
-        <span class="tok-kw">fixum</span> Manus h_bits <span class="tok-op">←</span> Manus { index <span class="tok-op">=</span> h.index, generatio <span class="tok-op">=</span> h.generatio }
-        <span class="tok-kw">adfirma</span> area_continet(s0.area, h_bits)
-        <span class="tok-kw">fixum</span> Area after <span class="tok-op">←</span> area_tollit(s0.area, h_bits)
-        <span class="tok-kw">adfirma</span> area_continet(after, h_bits) <span class="tok-op">≡</span> <span class="tok-kw">falsum</span>
-        <span class="tok-kw">adfirma</span> area_accipe(after, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
-        <span class="tok-kw">fixum</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(after, <span class="tok-st">"fresh"</span>)
-        <span class="tok-kw">fixum</span> Manus h2 <span class="tok-op">←</span> s1.manus
-<span class="tok-co">        # New live slot (append); old handle still rejected by generation/vivus.</span>
-        <span class="tok-kw">adfirma</span> manus_aequat(h_bits, h2) <span class="tok-op">≡</span> <span class="tok-kw">falsum</span>
-        <span class="tok-kw">adfirma</span> area_accipe(s1.area, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
-        <span class="tok-kw">adfirma</span> area_accipe(s1.area, h2) <span class="tok-op">≡</span> <span class="tok-st">"fresh"</span>
-        <span class="tok-kw">adfirma</span> area_continet(s1.area, h2)
-    }
+<span class="tok-kw">proba</span> <span class="tok-st">"stale handle rejects after remove"</span> <span class="tok-kw">tag</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">fixum</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"gone"</span>)
+    <span class="tok-kw">fixum</span> Manus h <span class="tok-op">←</span> s0.manus
+    <span class="tok-kw">fixum</span> Manus h_bits <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> h.index, generatio <span class="tok-op">=</span> h.generatio}
+    <span class="tok-kw">adfirma</span> area_continet(s0.area, h_bits)
+    <span class="tok-kw">fixum</span> Area after <span class="tok-op">←</span> area_tollit(s0.area, h_bits)
+    <span class="tok-kw">adfirma</span> area_continet(after, h_bits) <span class="tok-op">≡</span> <span class="tok-kw">falsum</span>
+    <span class="tok-kw">adfirma</span> area_accipe(after, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
+    <span class="tok-kw">fixum</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(after, <span class="tok-st">"fresh"</span>)
+    <span class="tok-kw">fixum</span> Manus h2 <span class="tok-op">←</span> s1.manus
+<span class="tok-co">    # New live slot (append); old handle still rejected by generation/vivus.</span>
+    <span class="tok-kw">adfirma</span> manus_aequat(h_bits, h2) <span class="tok-op">≡</span> <span class="tok-kw">falsum</span>
+    <span class="tok-kw">adfirma</span> area_accipe(s1.area, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
+    <span class="tok-kw">adfirma</span> area_accipe(s1.area, h2) <span class="tok-op">≡</span> <span class="tok-st">"fresh"</span>
+    <span class="tok-kw">adfirma</span> area_continet(s1.area, h2)
 }
 
 <span class="tok-kw">incipit</span> {
-}</code></pre><p>---</p><p><a href="/en-US/examples/">All examples</a> · <a href="/en-US/start/install.html">Install</a> · <a href="/en-US/cheatsheet/">Cheat sheet</a></p></div></main></div></body></html>
+}</code></pre></div><div class="fdt-panel" id="lt-8c6a4ac88069ab74-0-p-th-TH" role="tabpanel" aria-labelledby="lt-8c6a4ac88069ab74-0-t-th-TH"><div class="fdt-panel-label"><code>faber format --locale th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># arena-handle — generational arena-handle contract via pure value updates</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this example teaches:</span>
+<span class="tok-co">#   • Generational arena pattern — stable identity via (index, generation) handle</span>
+<span class="tok-co">#     pair; stale handles rejected on lookup via generation check</span>
+<span class="tok-co">#   • genus (struct) definitions — Manus, Loculus, Area, AreaCumManus, Nodus</span>
+<span class="tok-co">#   • Pure functional updates — no lista[i] mutation, all operations return new</span>
+<span class="tok-co">#     Area values to keep generated Rust sound</span>
+<span class="tok-co">#   • dum loop — explicit iteration over list indices (lines 42-46, 75-90)</span>
+<span class="tok-co">#   • si/sin/secus — conditional logic (lines 58, 60, 62, 78-89)</span>
+<span class="tok-co">#   • discerne/casu — pattern matching on enum variants (lines 117-133)</span>
+<span class="tok-co">#   • probandum/proba/adfirma — test framework with multi-case assertions</span>
+<span class="tok-co">#   • discretio — sum type (enum) with variant payloads (lines 93-96)</span>
+<span class="tok-co">#   • gingimus (finge) — enum variant construction with named fields (lines 113-116)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Syntaxes used:</span>
+<span class="tok-co">#   • genus — struct definition (lines 8, 12, 18, 22)</span>
+<span class="tok-co">#   • discretio — enum/sum type (line 93)</span>
+<span class="tok-co">#   • functio — function definition (lines 28, 32, 36, 57, 70, 73)</span>
+<span class="tok-co">#   • fixum — immutable binding (lines 33, 43, etc.)</span>
+<span class="tok-co">#   • varia — mutable binding (lines 40, 41, etc.)</span>
+<span class="tok-co">#   • dum — while loop (lines 42, 75)</span>
+<span class="tok-co">#   • si/sin/secus — conditionals (lines 58, 60, 62, 78-89)</span>
+<span class="tok-co">#   • discerne/casu — match/pattern match (lines 117-133)</span>
+<span class="tok-co">#   • redde — return (lines 30, etc.)</span>
+<span class="tok-co">#   • finge — construct enum variant (lines 113-116)</span>
+<span class="tok-co">#   • adfirma — test assertion (lines 109-112, etc.)</span>
+<span class="tok-co">#   • proba — test case (lines 101, 134, 155)</span>
+<span class="tok-co">#   • probandum — test suite (line 100)</span>
+<span class="tok-co">#   • ≡ — equality comparison (lines 29, 61, etc.)</span>
+<span class="tok-co">#   • lista&lt;T&gt; — list type (lines 20, 93, 96)</span>
+<span class="tok-co">#   • textus, numerus, bivalens — primitive types</span>
+<span class="tok-co">#   • vacua — empty list literal</span>
+<span class="tok-co">#   • .longitudo() — list length method</span>
+<span class="tok-co">#   • .appende() — list append method</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Alternate approaches (not shown):</span>
+<span class="tok-co">#   • Mutable arena with unsafe interior for performance — a mutable lista&lt;Loculus&gt; with in-place updates avoids copying on every insert/take</span>
+<span class="tok-co">#   • Reusing free slots (via free list) instead of always appending — maintain a list of freed indices to recycle slots without growing the arena</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Anti-patterns (avoid these):</span>
+<span class="tok-co">#   • Using lista[i] assignment in generated Rust contexts — in-place list mutation breaks Rust's borrow-checker soundness; use pure value updates (return new Area) instead</span>
+<span class="tok-co">#   • Assuming stale handle reuse after removal without generation check — always verify generatio matches before using a handle; stale handles must be rejected on lookup</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Learning path:</span>
+<span class="tok-co">#   Before: Stage 3: genus, lista, nihil → Stage 3: discerne/casu (structs, collections, and pattern matching)</span>
+<span class="tok-co">#   After:  Stage 6: advanced applications (vivilite — real-world resource management)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Stage: arena-handle, complete contract with tests, all language constructs demonstrated</span>
+<span class="tok-co"># Backend: Rust, stepper</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># Reusable generational arena-handle contract (language surface).</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Semantics mirror faber-runtime::Arena / ArenaHandle (see arena.rs):</span>
+<span class="tok-co"># stable identity independent of list order; stale handles reject on lookup.</span>
+<span class="tok-co"># This package uses pure value updates (no lista[i] assignment) so generated</span>
+<span class="tok-co"># Rust stays sound; the runtime crate is the authoritative store implementation.</span>
+
+<span class="tok-kw">ชนิด</span> Manus {
+    <span class="tok-kw">จำนวน</span> index
+    <span class="tok-kw">จำนวน</span> generatio
+}
+
+<span class="tok-kw">ชนิด</span> Loculus {
+    <span class="tok-kw">จำนวน</span> generatio
+    <span class="tok-kw">ตรรกะ</span> vivus
+    <span class="tok-kw">ข้อความ</span> valor
+}
+
+<span class="tok-kw">ชนิด</span> Area {
+    <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> loculi
+}
+
+<span class="tok-kw">ชนิด</span> AreaCumManus {
+    Area area
+    Manus manus
+}
+
+<span class="tok-kw">ฟังก์ชัน</span> manus_aequat(<span class="tok-kw">จาก</span> Manus a, <span class="tok-kw">จาก</span> Manus b) <span class="tok-op">→</span> <span class="tok-kw">ตรรกะ</span> {
+    <span class="tok-kw">คืน</span> a.index <span class="tok-op">≡</span> b.index <span class="tok-kw">และ</span> a.generatio <span class="tok-op">≡</span> b.generatio
+}
+
+<span class="tok-kw">ฟังก์ชัน</span> area_nova() <span class="tok-op">→</span> Area {
+    <span class="tok-kw">คงที่</span> <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> loculi <span class="tok-op">←</span> <span class="tok-kw">เซตว่าง</span>
+    <span class="tok-kw">คืน</span> Area {loculi <span class="tok-op">=</span> loculi}
+}
+
+<span class="tok-kw">ฟังก์ชัน</span> area_inserit(Area area, <span class="tok-kw">ข้อความ</span> valor) <span class="tok-op">→</span> AreaCumManus {
+<span class="tok-co">    # Always append a new live slot. Free slots from tollit stay dead so the</span>
+<span class="tok-co">    # old handle generation remains invalid; reuse is optional for this proof.</span>
+    <span class="tok-kw">แปร</span> <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> <span class="tok-kw">เซตว่าง</span>
+    <span class="tok-kw">แปร</span> <span class="tok-kw">จำนวน</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">ขณะ</span> i ≺ area.loculi.longitudo() {
+        out.appende(area.loculi[i])
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    }
+    <span class="tok-kw">คงที่</span> <span class="tok-kw">จำนวน</span> index <span class="tok-op">←</span> out.longitudo()
+    out.appende(Loculus {generatio <span class="tok-op">=</span> <span class="tok-nu">0</span>, vivus <span class="tok-op">=</span> <span class="tok-kw">จริง</span>, valor <span class="tok-op">=</span> valor})
+    <span class="tok-kw">คืน</span> AreaCumManus {area <span class="tok-op">=</span> Area {loculi <span class="tok-op">=</span> out}, manus <span class="tok-op">=</span> Manus {index <span class="tok-op">=</span> index, generatio <span class="tok-op">=</span> <span class="tok-nu">0</span>}}
+}
+
+<span class="tok-co"># Lookup returns the payload, or "" when the handle is stale / out of range.</span>
+<span class="tok-co"># Proof resources never use empty text, so "" is the explicit reject signal.</span>
+<span class="tok-kw">ฟังก์ชัน</span> area_accipe(<span class="tok-kw">จาก</span> Area area, <span class="tok-kw">จาก</span> Manus manus) <span class="tok-op">→</span> <span class="tok-kw">ข้อความ</span> {
+    <span class="tok-kw">ถ้า</span> manus.index <span class="tok-op">≥</span> area.loculi.longitudo() <span class="tok-kw">ดังนั้น</span> <span class="tok-kw">คืน</span> <span class="tok-st">""</span>
+    <span class="tok-kw">คงที่</span> Loculus slot <span class="tok-op">←</span> area.loculi[manus.index]
+    <span class="tok-kw">ถ้า</span> slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">เท็จ</span> <span class="tok-kw">ดังนั้น</span> <span class="tok-kw">คืน</span> <span class="tok-st">""</span>
+    <span class="tok-kw">ถ้า</span> slot.generatio <span class="tok-op">≠</span> manus.generatio <span class="tok-kw">ดังนั้น</span> <span class="tok-kw">คืน</span> <span class="tok-st">""</span>
+    <span class="tok-kw">คืน</span> slot.valor
+}
+
+<span class="tok-kw">ฟังก์ชัน</span> area_continet(<span class="tok-kw">จาก</span> Area area, <span class="tok-kw">จาก</span> Manus manus) <span class="tok-op">→</span> <span class="tok-kw">ตรรกะ</span> {
+    <span class="tok-kw">คืน</span> area_accipe(area, manus) <span class="tok-op">≠</span> <span class="tok-st">""</span>
+}
+
+<span class="tok-kw">ฟังก์ชัน</span> area_tollit(Area area, <span class="tok-kw">จาก</span> Manus manus) <span class="tok-op">→</span> Area {
+    <span class="tok-kw">แปร</span> <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> <span class="tok-kw">เซตว่าง</span>
+    <span class="tok-kw">แปร</span> <span class="tok-kw">จำนวน</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">ขณะ</span> i ≺ area.loculi.longitudo() {
+        <span class="tok-kw">คงที่</span> Loculus slot <span class="tok-op">←</span> area.loculi[i]
+        <span class="tok-kw">ถ้า</span> (i <span class="tok-op">≡</span> manus.index <span class="tok-kw">และ</span> slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">จริง</span>) <span class="tok-kw">และ</span> slot.generatio <span class="tok-op">≡</span> manus.generatio {
+            out.appende(Loculus {generatio <span class="tok-op">=</span> slot.generatio <span class="tok-op">+</span> <span class="tok-nu">1</span>, vivus <span class="tok-op">=</span> <span class="tok-kw">เท็จ</span>, valor <span class="tok-op">=</span> <span class="tok-st">""</span>})
+        }
+        <span class="tok-kw">มิฉะนั้น</span> {
+            out.appende(slot)
+        }
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    }
+    <span class="tok-kw">คืน</span> Area {loculi <span class="tok-op">=</span> out}
+}
+
+<span class="tok-co"># Heterogeneous node: stores Manus, never deep-copies the resource payload.</span>
+<span class="tok-kw">สหภาพแยก</span> Nodus {
+    Groupus {
+        <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii
+    },
+    Tessera {
+        Manus geometria
+    },
+}
+
+<span class="tok-kw">ทดสอบ</span> <span class="tok-st">"two nodes share one resource identity"</span> <span class="tok-kw">แท็ก</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">คงที่</span> AreaCumManus step <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"shared-mesh"</span>)
+    <span class="tok-kw">คงที่</span> Area res <span class="tok-op">←</span> step.area
+    <span class="tok-kw">คงที่</span> Manus geo <span class="tok-op">←</span> step.manus
+<span class="tok-co">    # Reconstruct handle values so each node owns a copy of the identity bits</span>
+<span class="tok-co">    # without cloning the resource payload (still one live slot in `res`).</span>
+    <span class="tok-kw">คงที่</span> Manus left_geo <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio}
+    <span class="tok-kw">คงที่</span> Manus right_geo <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio}
+    <span class="tok-kw">ยืนยัน</span> manus_aequat(left_geo, right_geo)
+    <span class="tok-kw">ยืนยัน</span> area_accipe(res, left_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
+    <span class="tok-kw">ยืนยัน</span> area_accipe(res, right_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
+    <span class="tok-kw">คงที่</span> Nodus left <span class="tok-op">←</span> Tessera(Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio})
+    <span class="tok-kw">คงที่</span> Nodus right <span class="tok-op">←</span> Tessera(Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio})
+    <span class="tok-kw">แยก</span> left {
+        <span class="tok-kw">กรณี</span> Tessera <span class="tok-kw">คงที่</span> geometria {
+            <span class="tok-kw">ยืนยัน</span> manus_aequat(geometria, left_geo)
+        }
+        <span class="tok-kw">กรณี</span> Groupus <span class="tok-kw">คงที่</span> filii {
+            <span class="tok-kw">ยืนยัน</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+        }
+    }
+    <span class="tok-kw">แยก</span> right {
+        <span class="tok-kw">กรณี</span> Tessera <span class="tok-kw">คงที่</span> geometria {
+            <span class="tok-kw">ยืนยัน</span> manus_aequat(geometria, right_geo)
+        }
+        <span class="tok-kw">กรณี</span> Groupus <span class="tok-kw">คงที่</span> filii {
+            <span class="tok-kw">ยืนยัน</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+        }
+    }
+}
+
+<span class="tok-kw">ทดสอบ</span> <span class="tok-st">"reparent reorder preserves handle identity"</span> <span class="tok-kw">แท็ก</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">คงที่</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"child-a"</span>)
+    <span class="tok-kw">คงที่</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(s0.area, <span class="tok-st">"child-b"</span>)
+    <span class="tok-kw">คงที่</span> Area nodi <span class="tok-op">←</span> s1.area
+    <span class="tok-kw">คงที่</span> Manus a <span class="tok-op">←</span> s0.manus
+    <span class="tok-kw">คงที่</span> Manus b <span class="tok-op">←</span> s1.manus
+    <span class="tok-kw">แปร</span> <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii <span class="tok-op">←</span> <span class="tok-kw">เซตว่าง</span>
+    filii.appende(Manus {index <span class="tok-op">=</span> a.index, generatio <span class="tok-op">=</span> a.generatio})
+    filii.appende(Manus {index <span class="tok-op">=</span> b.index, generatio <span class="tok-op">=</span> b.generatio})
+<span class="tok-co">    # swap order without changing handle identities</span>
+    <span class="tok-kw">คงที่</span> Manus first <span class="tok-op">←</span> filii[<span class="tok-nu">0</span>]
+    <span class="tok-kw">คงที่</span> Manus second <span class="tok-op">←</span> filii[<span class="tok-nu">1</span>]
+    <span class="tok-kw">แปร</span> <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> reord <span class="tok-op">←</span> <span class="tok-kw">เซตว่าง</span>
+    reord.appende(Manus {index <span class="tok-op">=</span> second.index, generatio <span class="tok-op">=</span> second.generatio})
+    reord.appende(Manus {index <span class="tok-op">=</span> first.index, generatio <span class="tok-op">=</span> first.generatio})
+    <span class="tok-kw">ยืนยัน</span> area_accipe(nodi, reord[<span class="tok-nu">0</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
+    <span class="tok-kw">ยืนยัน</span> area_accipe(nodi, reord[<span class="tok-nu">1</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
+    <span class="tok-kw">ยืนยัน</span> area_accipe(nodi, a) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
+    <span class="tok-kw">ยืนยัน</span> area_accipe(nodi, b) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
+}
+
+<span class="tok-kw">ทดสอบ</span> <span class="tok-st">"stale handle rejects after remove"</span> <span class="tok-kw">แท็ก</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">คงที่</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"gone"</span>)
+    <span class="tok-kw">คงที่</span> Manus h <span class="tok-op">←</span> s0.manus
+    <span class="tok-kw">คงที่</span> Manus h_bits <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> h.index, generatio <span class="tok-op">=</span> h.generatio}
+    <span class="tok-kw">ยืนยัน</span> area_continet(s0.area, h_bits)
+    <span class="tok-kw">คงที่</span> Area after <span class="tok-op">←</span> area_tollit(s0.area, h_bits)
+    <span class="tok-kw">ยืนยัน</span> area_continet(after, h_bits) <span class="tok-op">≡</span> <span class="tok-kw">เท็จ</span>
+    <span class="tok-kw">ยืนยัน</span> area_accipe(after, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
+    <span class="tok-kw">คงที่</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(after, <span class="tok-st">"fresh"</span>)
+    <span class="tok-kw">คงที่</span> Manus h2 <span class="tok-op">←</span> s1.manus
+<span class="tok-co">    # New live slot (append); old handle still rejected by generation/vivus.</span>
+    <span class="tok-kw">ยืนยัน</span> manus_aequat(h_bits, h2) <span class="tok-op">≡</span> <span class="tok-kw">เท็จ</span>
+    <span class="tok-kw">ยืนยัน</span> area_accipe(s1.area, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
+    <span class="tok-kw">ยืนยัน</span> area_accipe(s1.area, h2) <span class="tok-op">≡</span> <span class="tok-st">"fresh"</span>
+    <span class="tok-kw">ยืนยัน</span> area_continet(s1.area, h2)
+}
+
+<span class="tok-kw">เริ่ม</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-8c6a4ac88069ab74-0-p-zh-Hans" role="tabpanel" aria-labelledby="lt-8c6a4ac88069ab74-0-t-zh-Hans"><div class="fdt-panel-label"><code>faber format --locale zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># arena-handle — generational arena-handle contract via pure value updates</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this example teaches:</span>
+<span class="tok-co">#   • Generational arena pattern — stable identity via (index, generation) handle</span>
+<span class="tok-co">#     pair; stale handles rejected on lookup via generation check</span>
+<span class="tok-co">#   • genus (struct) definitions — Manus, Loculus, Area, AreaCumManus, Nodus</span>
+<span class="tok-co">#   • Pure functional updates — no lista[i] mutation, all operations return new</span>
+<span class="tok-co">#     Area values to keep generated Rust sound</span>
+<span class="tok-co">#   • dum loop — explicit iteration over list indices (lines 42-46, 75-90)</span>
+<span class="tok-co">#   • si/sin/secus — conditional logic (lines 58, 60, 62, 78-89)</span>
+<span class="tok-co">#   • discerne/casu — pattern matching on enum variants (lines 117-133)</span>
+<span class="tok-co">#   • probandum/proba/adfirma — test framework with multi-case assertions</span>
+<span class="tok-co">#   • discretio — sum type (enum) with variant payloads (lines 93-96)</span>
+<span class="tok-co">#   • gingimus (finge) — enum variant construction with named fields (lines 113-116)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Syntaxes used:</span>
+<span class="tok-co">#   • genus — struct definition (lines 8, 12, 18, 22)</span>
+<span class="tok-co">#   • discretio — enum/sum type (line 93)</span>
+<span class="tok-co">#   • functio — function definition (lines 28, 32, 36, 57, 70, 73)</span>
+<span class="tok-co">#   • fixum — immutable binding (lines 33, 43, etc.)</span>
+<span class="tok-co">#   • varia — mutable binding (lines 40, 41, etc.)</span>
+<span class="tok-co">#   • dum — while loop (lines 42, 75)</span>
+<span class="tok-co">#   • si/sin/secus — conditionals (lines 58, 60, 62, 78-89)</span>
+<span class="tok-co">#   • discerne/casu — match/pattern match (lines 117-133)</span>
+<span class="tok-co">#   • redde — return (lines 30, etc.)</span>
+<span class="tok-co">#   • finge — construct enum variant (lines 113-116)</span>
+<span class="tok-co">#   • adfirma — test assertion (lines 109-112, etc.)</span>
+<span class="tok-co">#   • proba — test case (lines 101, 134, 155)</span>
+<span class="tok-co">#   • probandum — test suite (line 100)</span>
+<span class="tok-co">#   • ≡ — equality comparison (lines 29, 61, etc.)</span>
+<span class="tok-co">#   • lista&lt;T&gt; — list type (lines 20, 93, 96)</span>
+<span class="tok-co">#   • textus, numerus, bivalens — primitive types</span>
+<span class="tok-co">#   • vacua — empty list literal</span>
+<span class="tok-co">#   • .longitudo() — list length method</span>
+<span class="tok-co">#   • .appende() — list append method</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Alternate approaches (not shown):</span>
+<span class="tok-co">#   • Mutable arena with unsafe interior for performance — a mutable lista&lt;Loculus&gt; with in-place updates avoids copying on every insert/take</span>
+<span class="tok-co">#   • Reusing free slots (via free list) instead of always appending — maintain a list of freed indices to recycle slots without growing the arena</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Anti-patterns (avoid these):</span>
+<span class="tok-co">#   • Using lista[i] assignment in generated Rust contexts — in-place list mutation breaks Rust's borrow-checker soundness; use pure value updates (return new Area) instead</span>
+<span class="tok-co">#   • Assuming stale handle reuse after removal without generation check — always verify generatio matches before using a handle; stale handles must be rejected on lookup</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Learning path:</span>
+<span class="tok-co">#   Before: Stage 3: genus, lista, nihil → Stage 3: discerne/casu (structs, collections, and pattern matching)</span>
+<span class="tok-co">#   After:  Stage 6: advanced applications (vivilite — real-world resource management)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Stage: arena-handle, complete contract with tests, all language constructs demonstrated</span>
+<span class="tok-co"># Backend: Rust, stepper</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># Reusable generational arena-handle contract (language surface).</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Semantics mirror faber-runtime::Arena / ArenaHandle (see arena.rs):</span>
+<span class="tok-co"># stable identity independent of list order; stale handles reject on lookup.</span>
+<span class="tok-co"># This package uses pure value updates (no lista[i] assignment) so generated</span>
+<span class="tok-co"># Rust stays sound; the runtime crate is the authoritative store implementation.</span>
+
+<span class="tok-kw">类</span> Manus {
+    <span class="tok-kw">整数</span> index
+    <span class="tok-kw">整数</span> generatio
+}
+
+<span class="tok-kw">类</span> Loculus {
+    <span class="tok-kw">整数</span> generatio
+    <span class="tok-kw">布尔</span> vivus
+    <span class="tok-kw">文本</span> valor
+}
+
+<span class="tok-kw">类</span> Area {
+    <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> loculi
+}
+
+<span class="tok-kw">类</span> AreaCumManus {
+    Area area
+    Manus manus
+}
+
+<span class="tok-kw">函数</span> manus_aequat(<span class="tok-kw">借自</span> Manus a, <span class="tok-kw">借自</span> Manus b) <span class="tok-op">→</span> <span class="tok-kw">布尔</span> {
+    <span class="tok-kw">返回</span> a.index <span class="tok-op">≡</span> b.index <span class="tok-kw">且</span> a.generatio <span class="tok-op">≡</span> b.generatio
+}
+
+<span class="tok-kw">函数</span> area_nova() <span class="tok-op">→</span> Area {
+    <span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> loculi <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+    <span class="tok-kw">返回</span> Area {loculi <span class="tok-op">=</span> loculi}
+}
+
+<span class="tok-kw">函数</span> area_inserit(Area area, <span class="tok-kw">文本</span> valor) <span class="tok-op">→</span> AreaCumManus {
+<span class="tok-co">    # Always append a new live slot. Free slots from tollit stay dead so the</span>
+<span class="tok-co">    # old handle generation remains invalid; reuse is optional for this proof.</span>
+    <span class="tok-kw">变量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+    <span class="tok-kw">变量</span> <span class="tok-kw">整数</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">当</span> i ≺ area.loculi.longitudo() {
+        out.appende(area.loculi[i])
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    }
+    <span class="tok-kw">常量</span> <span class="tok-kw">整数</span> index <span class="tok-op">←</span> out.longitudo()
+    out.appende(Loculus {generatio <span class="tok-op">=</span> <span class="tok-nu">0</span>, vivus <span class="tok-op">=</span> <span class="tok-kw">真</span>, valor <span class="tok-op">=</span> valor})
+    <span class="tok-kw">返回</span> AreaCumManus {area <span class="tok-op">=</span> Area {loculi <span class="tok-op">=</span> out}, manus <span class="tok-op">=</span> Manus {index <span class="tok-op">=</span> index, generatio <span class="tok-op">=</span> <span class="tok-nu">0</span>}}
+}
+
+<span class="tok-co"># Lookup returns the payload, or "" when the handle is stale / out of range.</span>
+<span class="tok-co"># Proof resources never use empty text, so "" is the explicit reject signal.</span>
+<span class="tok-kw">函数</span> area_accipe(<span class="tok-kw">借自</span> Area area, <span class="tok-kw">借自</span> Manus manus) <span class="tok-op">→</span> <span class="tok-kw">文本</span> {
+    <span class="tok-kw">如果</span> manus.index <span class="tok-op">≥</span> area.loculi.longitudo() <span class="tok-kw">则</span> <span class="tok-kw">返回</span> <span class="tok-st">""</span>
+    <span class="tok-kw">常量</span> Loculus slot <span class="tok-op">←</span> area.loculi[manus.index]
+    <span class="tok-kw">如果</span> slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">假</span> <span class="tok-kw">则</span> <span class="tok-kw">返回</span> <span class="tok-st">""</span>
+    <span class="tok-kw">如果</span> slot.generatio <span class="tok-op">≠</span> manus.generatio <span class="tok-kw">则</span> <span class="tok-kw">返回</span> <span class="tok-st">""</span>
+    <span class="tok-kw">返回</span> slot.valor
+}
+
+<span class="tok-kw">函数</span> area_continet(<span class="tok-kw">借自</span> Area area, <span class="tok-kw">借自</span> Manus manus) <span class="tok-op">→</span> <span class="tok-kw">布尔</span> {
+    <span class="tok-kw">返回</span> area_accipe(area, manus) <span class="tok-op">≠</span> <span class="tok-st">""</span>
+}
+
+<span class="tok-kw">函数</span> area_tollit(Area area, <span class="tok-kw">借自</span> Manus manus) <span class="tok-op">→</span> Area {
+    <span class="tok-kw">变量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+    <span class="tok-kw">变量</span> <span class="tok-kw">整数</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">当</span> i ≺ area.loculi.longitudo() {
+        <span class="tok-kw">常量</span> Loculus slot <span class="tok-op">←</span> area.loculi[i]
+        <span class="tok-kw">如果</span> (i <span class="tok-op">≡</span> manus.index <span class="tok-kw">且</span> slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">真</span>) <span class="tok-kw">且</span> slot.generatio <span class="tok-op">≡</span> manus.generatio {
+            out.appende(Loculus {generatio <span class="tok-op">=</span> slot.generatio <span class="tok-op">+</span> <span class="tok-nu">1</span>, vivus <span class="tok-op">=</span> <span class="tok-kw">假</span>, valor <span class="tok-op">=</span> <span class="tok-st">""</span>})
+        }
+        <span class="tok-kw">否则</span> {
+            out.appende(slot)
+        }
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    }
+    <span class="tok-kw">返回</span> Area {loculi <span class="tok-op">=</span> out}
+}
+
+<span class="tok-co"># Heterogeneous node: stores Manus, never deep-copies the resource payload.</span>
+<span class="tok-kw">判别</span> Nodus {
+    Groupus {
+        <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii
+    },
+    Tessera {
+        Manus geometria
+    },
+}
+
+<span class="tok-kw">测试</span> <span class="tok-st">"two nodes share one resource identity"</span> <span class="tok-kw">标签</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">常量</span> AreaCumManus step <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"shared-mesh"</span>)
+    <span class="tok-kw">常量</span> Area res <span class="tok-op">←</span> step.area
+    <span class="tok-kw">常量</span> Manus geo <span class="tok-op">←</span> step.manus
+<span class="tok-co">    # Reconstruct handle values so each node owns a copy of the identity bits</span>
+<span class="tok-co">    # without cloning the resource payload (still one live slot in `res`).</span>
+    <span class="tok-kw">常量</span> Manus left_geo <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio}
+    <span class="tok-kw">常量</span> Manus right_geo <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio}
+    <span class="tok-kw">断言</span> manus_aequat(left_geo, right_geo)
+    <span class="tok-kw">断言</span> area_accipe(res, left_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
+    <span class="tok-kw">断言</span> area_accipe(res, right_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
+    <span class="tok-kw">常量</span> Nodus left <span class="tok-op">←</span> Tessera(Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio})
+    <span class="tok-kw">常量</span> Nodus right <span class="tok-op">←</span> Tessera(Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio})
+    <span class="tok-kw">匹配</span> left {
+        <span class="tok-kw">情况</span> Tessera <span class="tok-kw">常量</span> geometria {
+            <span class="tok-kw">断言</span> manus_aequat(geometria, left_geo)
+        }
+        <span class="tok-kw">情况</span> Groupus <span class="tok-kw">常量</span> filii {
+            <span class="tok-kw">断言</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+        }
+    }
+    <span class="tok-kw">匹配</span> right {
+        <span class="tok-kw">情况</span> Tessera <span class="tok-kw">常量</span> geometria {
+            <span class="tok-kw">断言</span> manus_aequat(geometria, right_geo)
+        }
+        <span class="tok-kw">情况</span> Groupus <span class="tok-kw">常量</span> filii {
+            <span class="tok-kw">断言</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+        }
+    }
+}
+
+<span class="tok-kw">测试</span> <span class="tok-st">"reparent reorder preserves handle identity"</span> <span class="tok-kw">标签</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">常量</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"child-a"</span>)
+    <span class="tok-kw">常量</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(s0.area, <span class="tok-st">"child-b"</span>)
+    <span class="tok-kw">常量</span> Area nodi <span class="tok-op">←</span> s1.area
+    <span class="tok-kw">常量</span> Manus a <span class="tok-op">←</span> s0.manus
+    <span class="tok-kw">常量</span> Manus b <span class="tok-op">←</span> s1.manus
+    <span class="tok-kw">变量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+    filii.appende(Manus {index <span class="tok-op">=</span> a.index, generatio <span class="tok-op">=</span> a.generatio})
+    filii.appende(Manus {index <span class="tok-op">=</span> b.index, generatio <span class="tok-op">=</span> b.generatio})
+<span class="tok-co">    # swap order without changing handle identities</span>
+    <span class="tok-kw">常量</span> Manus first <span class="tok-op">←</span> filii[<span class="tok-nu">0</span>]
+    <span class="tok-kw">常量</span> Manus second <span class="tok-op">←</span> filii[<span class="tok-nu">1</span>]
+    <span class="tok-kw">变量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> reord <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+    reord.appende(Manus {index <span class="tok-op">=</span> second.index, generatio <span class="tok-op">=</span> second.generatio})
+    reord.appende(Manus {index <span class="tok-op">=</span> first.index, generatio <span class="tok-op">=</span> first.generatio})
+    <span class="tok-kw">断言</span> area_accipe(nodi, reord[<span class="tok-nu">0</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
+    <span class="tok-kw">断言</span> area_accipe(nodi, reord[<span class="tok-nu">1</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
+    <span class="tok-kw">断言</span> area_accipe(nodi, a) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
+    <span class="tok-kw">断言</span> area_accipe(nodi, b) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
+}
+
+<span class="tok-kw">测试</span> <span class="tok-st">"stale handle rejects after remove"</span> <span class="tok-kw">标签</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">常量</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"gone"</span>)
+    <span class="tok-kw">常量</span> Manus h <span class="tok-op">←</span> s0.manus
+    <span class="tok-kw">常量</span> Manus h_bits <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> h.index, generatio <span class="tok-op">=</span> h.generatio}
+    <span class="tok-kw">断言</span> area_continet(s0.area, h_bits)
+    <span class="tok-kw">常量</span> Area after <span class="tok-op">←</span> area_tollit(s0.area, h_bits)
+    <span class="tok-kw">断言</span> area_continet(after, h_bits) <span class="tok-op">≡</span> <span class="tok-kw">假</span>
+    <span class="tok-kw">断言</span> area_accipe(after, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
+    <span class="tok-kw">常量</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(after, <span class="tok-st">"fresh"</span>)
+    <span class="tok-kw">常量</span> Manus h2 <span class="tok-op">←</span> s1.manus
+<span class="tok-co">    # New live slot (append); old handle still rejected by generation/vivus.</span>
+    <span class="tok-kw">断言</span> manus_aequat(h_bits, h2) <span class="tok-op">≡</span> <span class="tok-kw">假</span>
+    <span class="tok-kw">断言</span> area_accipe(s1.area, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
+    <span class="tok-kw">断言</span> area_accipe(s1.area, h2) <span class="tok-op">≡</span> <span class="tok-st">"fresh"</span>
+    <span class="tok-kw">断言</span> area_continet(s1.area, h2)
+}
+
+<span class="tok-kw">入口</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-8c6a4ac88069ab74-0-p-zh-Hant" role="tabpanel" aria-labelledby="lt-8c6a4ac88069ab74-0-t-zh-Hant"><div class="fdt-panel-label"><code>faber format --locale zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># arena-handle — generational arena-handle contract via pure value updates</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this example teaches:</span>
+<span class="tok-co">#   • Generational arena pattern — stable identity via (index, generation) handle</span>
+<span class="tok-co">#     pair; stale handles rejected on lookup via generation check</span>
+<span class="tok-co">#   • genus (struct) definitions — Manus, Loculus, Area, AreaCumManus, Nodus</span>
+<span class="tok-co">#   • Pure functional updates — no lista[i] mutation, all operations return new</span>
+<span class="tok-co">#     Area values to keep generated Rust sound</span>
+<span class="tok-co">#   • dum loop — explicit iteration over list indices (lines 42-46, 75-90)</span>
+<span class="tok-co">#   • si/sin/secus — conditional logic (lines 58, 60, 62, 78-89)</span>
+<span class="tok-co">#   • discerne/casu — pattern matching on enum variants (lines 117-133)</span>
+<span class="tok-co">#   • probandum/proba/adfirma — test framework with multi-case assertions</span>
+<span class="tok-co">#   • discretio — sum type (enum) with variant payloads (lines 93-96)</span>
+<span class="tok-co">#   • gingimus (finge) — enum variant construction with named fields (lines 113-116)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Syntaxes used:</span>
+<span class="tok-co">#   • genus — struct definition (lines 8, 12, 18, 22)</span>
+<span class="tok-co">#   • discretio — enum/sum type (line 93)</span>
+<span class="tok-co">#   • functio — function definition (lines 28, 32, 36, 57, 70, 73)</span>
+<span class="tok-co">#   • fixum — immutable binding (lines 33, 43, etc.)</span>
+<span class="tok-co">#   • varia — mutable binding (lines 40, 41, etc.)</span>
+<span class="tok-co">#   • dum — while loop (lines 42, 75)</span>
+<span class="tok-co">#   • si/sin/secus — conditionals (lines 58, 60, 62, 78-89)</span>
+<span class="tok-co">#   • discerne/casu — match/pattern match (lines 117-133)</span>
+<span class="tok-co">#   • redde — return (lines 30, etc.)</span>
+<span class="tok-co">#   • finge — construct enum variant (lines 113-116)</span>
+<span class="tok-co">#   • adfirma — test assertion (lines 109-112, etc.)</span>
+<span class="tok-co">#   • proba — test case (lines 101, 134, 155)</span>
+<span class="tok-co">#   • probandum — test suite (line 100)</span>
+<span class="tok-co">#   • ≡ — equality comparison (lines 29, 61, etc.)</span>
+<span class="tok-co">#   • lista&lt;T&gt; — list type (lines 20, 93, 96)</span>
+<span class="tok-co">#   • textus, numerus, bivalens — primitive types</span>
+<span class="tok-co">#   • vacua — empty list literal</span>
+<span class="tok-co">#   • .longitudo() — list length method</span>
+<span class="tok-co">#   • .appende() — list append method</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Alternate approaches (not shown):</span>
+<span class="tok-co">#   • Mutable arena with unsafe interior for performance — a mutable lista&lt;Loculus&gt; with in-place updates avoids copying on every insert/take</span>
+<span class="tok-co">#   • Reusing free slots (via free list) instead of always appending — maintain a list of freed indices to recycle slots without growing the arena</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Anti-patterns (avoid these):</span>
+<span class="tok-co">#   • Using lista[i] assignment in generated Rust contexts — in-place list mutation breaks Rust's borrow-checker soundness; use pure value updates (return new Area) instead</span>
+<span class="tok-co">#   • Assuming stale handle reuse after removal without generation check — always verify generatio matches before using a handle; stale handles must be rejected on lookup</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Learning path:</span>
+<span class="tok-co">#   Before: Stage 3: genus, lista, nihil → Stage 3: discerne/casu (structs, collections, and pattern matching)</span>
+<span class="tok-co">#   After:  Stage 6: advanced applications (vivilite — real-world resource management)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Stage: arena-handle, complete contract with tests, all language constructs demonstrated</span>
+<span class="tok-co"># Backend: Rust, stepper</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># Reusable generational arena-handle contract (language surface).</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Semantics mirror faber-runtime::Arena / ArenaHandle (see arena.rs):</span>
+<span class="tok-co"># stable identity independent of list order; stale handles reject on lookup.</span>
+<span class="tok-co"># This package uses pure value updates (no lista[i] assignment) so generated</span>
+<span class="tok-co"># Rust stays sound; the runtime crate is the authoritative store implementation.</span>
+
+<span class="tok-kw">類型</span> Manus {
+    <span class="tok-kw">整數</span> index
+    <span class="tok-kw">整數</span> generatio
+}
+
+<span class="tok-kw">類型</span> Loculus {
+    <span class="tok-kw">整數</span> generatio
+    <span class="tok-kw">布林</span> vivus
+    <span class="tok-kw">文字</span> valor
+}
+
+<span class="tok-kw">類型</span> Area {
+    <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> loculi
+}
+
+<span class="tok-kw">類型</span> AreaCumManus {
+    Area area
+    Manus manus
+}
+
+<span class="tok-kw">函式</span> manus_aequat(<span class="tok-kw">從</span> Manus a, <span class="tok-kw">從</span> Manus b) <span class="tok-op">→</span> <span class="tok-kw">布林</span> {
+    <span class="tok-kw">傳回</span> a.index <span class="tok-op">≡</span> b.index <span class="tok-kw">且</span> a.generatio <span class="tok-op">≡</span> b.generatio
+}
+
+<span class="tok-kw">函式</span> area_nova() <span class="tok-op">→</span> Area {
+    <span class="tok-kw">定值</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> loculi <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+    <span class="tok-kw">傳回</span> Area {loculi <span class="tok-op">=</span> loculi}
+}
+
+<span class="tok-kw">函式</span> area_inserit(Area area, <span class="tok-kw">文字</span> valor) <span class="tok-op">→</span> AreaCumManus {
+<span class="tok-co">    # Always append a new live slot. Free slots from tollit stay dead so the</span>
+<span class="tok-co">    # old handle generation remains invalid; reuse is optional for this proof.</span>
+    <span class="tok-kw">變值</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+    <span class="tok-kw">變值</span> <span class="tok-kw">整數</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">當</span> i ≺ area.loculi.longitudo() {
+        out.appende(area.loculi[i])
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    }
+    <span class="tok-kw">定值</span> <span class="tok-kw">整數</span> index <span class="tok-op">←</span> out.longitudo()
+    out.appende(Loculus {generatio <span class="tok-op">=</span> <span class="tok-nu">0</span>, vivus <span class="tok-op">=</span> <span class="tok-kw">真</span>, valor <span class="tok-op">=</span> valor})
+    <span class="tok-kw">傳回</span> AreaCumManus {area <span class="tok-op">=</span> Area {loculi <span class="tok-op">=</span> out}, manus <span class="tok-op">=</span> Manus {index <span class="tok-op">=</span> index, generatio <span class="tok-op">=</span> <span class="tok-nu">0</span>}}
+}
+
+<span class="tok-co"># Lookup returns the payload, or "" when the handle is stale / out of range.</span>
+<span class="tok-co"># Proof resources never use empty text, so "" is the explicit reject signal.</span>
+<span class="tok-kw">函式</span> area_accipe(<span class="tok-kw">從</span> Area area, <span class="tok-kw">從</span> Manus manus) <span class="tok-op">→</span> <span class="tok-kw">文字</span> {
+    <span class="tok-kw">若</span> manus.index <span class="tok-op">≥</span> area.loculi.longitudo() <span class="tok-kw">則</span> <span class="tok-kw">傳回</span> <span class="tok-st">""</span>
+    <span class="tok-kw">定值</span> Loculus slot <span class="tok-op">←</span> area.loculi[manus.index]
+    <span class="tok-kw">若</span> slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">假</span> <span class="tok-kw">則</span> <span class="tok-kw">傳回</span> <span class="tok-st">""</span>
+    <span class="tok-kw">若</span> slot.generatio <span class="tok-op">≠</span> manus.generatio <span class="tok-kw">則</span> <span class="tok-kw">傳回</span> <span class="tok-st">""</span>
+    <span class="tok-kw">傳回</span> slot.valor
+}
+
+<span class="tok-kw">函式</span> area_continet(<span class="tok-kw">從</span> Area area, <span class="tok-kw">從</span> Manus manus) <span class="tok-op">→</span> <span class="tok-kw">布林</span> {
+    <span class="tok-kw">傳回</span> area_accipe(area, manus) <span class="tok-op">≠</span> <span class="tok-st">""</span>
+}
+
+<span class="tok-kw">函式</span> area_tollit(Area area, <span class="tok-kw">從</span> Manus manus) <span class="tok-op">→</span> Area {
+    <span class="tok-kw">變值</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+    <span class="tok-kw">變值</span> <span class="tok-kw">整數</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">當</span> i ≺ area.loculi.longitudo() {
+        <span class="tok-kw">定值</span> Loculus slot <span class="tok-op">←</span> area.loculi[i]
+        <span class="tok-kw">若</span> (i <span class="tok-op">≡</span> manus.index <span class="tok-kw">且</span> slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">真</span>) <span class="tok-kw">且</span> slot.generatio <span class="tok-op">≡</span> manus.generatio {
+            out.appende(Loculus {generatio <span class="tok-op">=</span> slot.generatio <span class="tok-op">+</span> <span class="tok-nu">1</span>, vivus <span class="tok-op">=</span> <span class="tok-kw">假</span>, valor <span class="tok-op">=</span> <span class="tok-st">""</span>})
+        }
+        <span class="tok-kw">否則</span> {
+            out.appende(slot)
+        }
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    }
+    <span class="tok-kw">傳回</span> Area {loculi <span class="tok-op">=</span> out}
+}
+
+<span class="tok-co"># Heterogeneous node: stores Manus, never deep-copies the resource payload.</span>
+<span class="tok-kw">分支聯集</span> Nodus {
+    Groupus {
+        <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii
+    },
+    Tessera {
+        Manus geometria
+    },
+}
+
+<span class="tok-kw">測試</span> <span class="tok-st">"two nodes share one resource identity"</span> <span class="tok-kw">標籤</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">定值</span> AreaCumManus step <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"shared-mesh"</span>)
+    <span class="tok-kw">定值</span> Area res <span class="tok-op">←</span> step.area
+    <span class="tok-kw">定值</span> Manus geo <span class="tok-op">←</span> step.manus
+<span class="tok-co">    # Reconstruct handle values so each node owns a copy of the identity bits</span>
+<span class="tok-co">    # without cloning the resource payload (still one live slot in `res`).</span>
+    <span class="tok-kw">定值</span> Manus left_geo <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio}
+    <span class="tok-kw">定值</span> Manus right_geo <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio}
+    <span class="tok-kw">斷言</span> manus_aequat(left_geo, right_geo)
+    <span class="tok-kw">斷言</span> area_accipe(res, left_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
+    <span class="tok-kw">斷言</span> area_accipe(res, right_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
+    <span class="tok-kw">定值</span> Nodus left <span class="tok-op">←</span> Tessera(Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio})
+    <span class="tok-kw">定值</span> Nodus right <span class="tok-op">←</span> Tessera(Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio})
+    <span class="tok-kw">比對</span> left {
+        <span class="tok-kw">分支</span> Tessera <span class="tok-kw">定值</span> geometria {
+            <span class="tok-kw">斷言</span> manus_aequat(geometria, left_geo)
+        }
+        <span class="tok-kw">分支</span> Groupus <span class="tok-kw">定值</span> filii {
+            <span class="tok-kw">斷言</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+        }
+    }
+    <span class="tok-kw">比對</span> right {
+        <span class="tok-kw">分支</span> Tessera <span class="tok-kw">定值</span> geometria {
+            <span class="tok-kw">斷言</span> manus_aequat(geometria, right_geo)
+        }
+        <span class="tok-kw">分支</span> Groupus <span class="tok-kw">定值</span> filii {
+            <span class="tok-kw">斷言</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+        }
+    }
+}
+
+<span class="tok-kw">測試</span> <span class="tok-st">"reparent reorder preserves handle identity"</span> <span class="tok-kw">標籤</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">定值</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"child-a"</span>)
+    <span class="tok-kw">定值</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(s0.area, <span class="tok-st">"child-b"</span>)
+    <span class="tok-kw">定值</span> Area nodi <span class="tok-op">←</span> s1.area
+    <span class="tok-kw">定值</span> Manus a <span class="tok-op">←</span> s0.manus
+    <span class="tok-kw">定值</span> Manus b <span class="tok-op">←</span> s1.manus
+    <span class="tok-kw">變值</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+    filii.appende(Manus {index <span class="tok-op">=</span> a.index, generatio <span class="tok-op">=</span> a.generatio})
+    filii.appende(Manus {index <span class="tok-op">=</span> b.index, generatio <span class="tok-op">=</span> b.generatio})
+<span class="tok-co">    # swap order without changing handle identities</span>
+    <span class="tok-kw">定值</span> Manus first <span class="tok-op">←</span> filii[<span class="tok-nu">0</span>]
+    <span class="tok-kw">定值</span> Manus second <span class="tok-op">←</span> filii[<span class="tok-nu">1</span>]
+    <span class="tok-kw">變值</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> reord <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+    reord.appende(Manus {index <span class="tok-op">=</span> second.index, generatio <span class="tok-op">=</span> second.generatio})
+    reord.appende(Manus {index <span class="tok-op">=</span> first.index, generatio <span class="tok-op">=</span> first.generatio})
+    <span class="tok-kw">斷言</span> area_accipe(nodi, reord[<span class="tok-nu">0</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
+    <span class="tok-kw">斷言</span> area_accipe(nodi, reord[<span class="tok-nu">1</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
+    <span class="tok-kw">斷言</span> area_accipe(nodi, a) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
+    <span class="tok-kw">斷言</span> area_accipe(nodi, b) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
+}
+
+<span class="tok-kw">測試</span> <span class="tok-st">"stale handle rejects after remove"</span> <span class="tok-kw">標籤</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">定值</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"gone"</span>)
+    <span class="tok-kw">定值</span> Manus h <span class="tok-op">←</span> s0.manus
+    <span class="tok-kw">定值</span> Manus h_bits <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> h.index, generatio <span class="tok-op">=</span> h.generatio}
+    <span class="tok-kw">斷言</span> area_continet(s0.area, h_bits)
+    <span class="tok-kw">定值</span> Area after <span class="tok-op">←</span> area_tollit(s0.area, h_bits)
+    <span class="tok-kw">斷言</span> area_continet(after, h_bits) <span class="tok-op">≡</span> <span class="tok-kw">假</span>
+    <span class="tok-kw">斷言</span> area_accipe(after, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
+    <span class="tok-kw">定值</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(after, <span class="tok-st">"fresh"</span>)
+    <span class="tok-kw">定值</span> Manus h2 <span class="tok-op">←</span> s1.manus
+<span class="tok-co">    # New live slot (append); old handle still rejected by generation/vivus.</span>
+    <span class="tok-kw">斷言</span> manus_aequat(h_bits, h2) <span class="tok-op">≡</span> <span class="tok-kw">假</span>
+    <span class="tok-kw">斷言</span> area_accipe(s1.area, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
+    <span class="tok-kw">斷言</span> area_accipe(s1.area, h2) <span class="tok-op">≡</span> <span class="tok-st">"fresh"</span>
+    <span class="tok-kw">斷言</span> area_continet(s1.area, h2)
+}
+
+<span class="tok-kw">入口</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-8c6a4ac88069ab74-0-p-vi" role="tabpanel" aria-labelledby="lt-8c6a4ac88069ab74-0-t-vi"><div class="fdt-panel-label"><code>faber format --locale vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># arena-handle — generational arena-handle contract via pure value updates</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this example teaches:</span>
+<span class="tok-co">#   • Generational arena pattern — stable identity via (index, generation) handle</span>
+<span class="tok-co">#     pair; stale handles rejected on lookup via generation check</span>
+<span class="tok-co">#   • genus (struct) definitions — Manus, Loculus, Area, AreaCumManus, Nodus</span>
+<span class="tok-co">#   • Pure functional updates — no lista[i] mutation, all operations return new</span>
+<span class="tok-co">#     Area values to keep generated Rust sound</span>
+<span class="tok-co">#   • dum loop — explicit iteration over list indices (lines 42-46, 75-90)</span>
+<span class="tok-co">#   • si/sin/secus — conditional logic (lines 58, 60, 62, 78-89)</span>
+<span class="tok-co">#   • discerne/casu — pattern matching on enum variants (lines 117-133)</span>
+<span class="tok-co">#   • probandum/proba/adfirma — test framework with multi-case assertions</span>
+<span class="tok-co">#   • discretio — sum type (enum) with variant payloads (lines 93-96)</span>
+<span class="tok-co">#   • gingimus (finge) — enum variant construction with named fields (lines 113-116)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Syntaxes used:</span>
+<span class="tok-co">#   • genus — struct definition (lines 8, 12, 18, 22)</span>
+<span class="tok-co">#   • discretio — enum/sum type (line 93)</span>
+<span class="tok-co">#   • functio — function definition (lines 28, 32, 36, 57, 70, 73)</span>
+<span class="tok-co">#   • fixum — immutable binding (lines 33, 43, etc.)</span>
+<span class="tok-co">#   • varia — mutable binding (lines 40, 41, etc.)</span>
+<span class="tok-co">#   • dum — while loop (lines 42, 75)</span>
+<span class="tok-co">#   • si/sin/secus — conditionals (lines 58, 60, 62, 78-89)</span>
+<span class="tok-co">#   • discerne/casu — match/pattern match (lines 117-133)</span>
+<span class="tok-co">#   • redde — return (lines 30, etc.)</span>
+<span class="tok-co">#   • finge — construct enum variant (lines 113-116)</span>
+<span class="tok-co">#   • adfirma — test assertion (lines 109-112, etc.)</span>
+<span class="tok-co">#   • proba — test case (lines 101, 134, 155)</span>
+<span class="tok-co">#   • probandum — test suite (line 100)</span>
+<span class="tok-co">#   • ≡ — equality comparison (lines 29, 61, etc.)</span>
+<span class="tok-co">#   • lista&lt;T&gt; — list type (lines 20, 93, 96)</span>
+<span class="tok-co">#   • textus, numerus, bivalens — primitive types</span>
+<span class="tok-co">#   • vacua — empty list literal</span>
+<span class="tok-co">#   • .longitudo() — list length method</span>
+<span class="tok-co">#   • .appende() — list append method</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Alternate approaches (not shown):</span>
+<span class="tok-co">#   • Mutable arena with unsafe interior for performance — a mutable lista&lt;Loculus&gt; with in-place updates avoids copying on every insert/take</span>
+<span class="tok-co">#   • Reusing free slots (via free list) instead of always appending — maintain a list of freed indices to recycle slots without growing the arena</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Anti-patterns (avoid these):</span>
+<span class="tok-co">#   • Using lista[i] assignment in generated Rust contexts — in-place list mutation breaks Rust's borrow-checker soundness; use pure value updates (return new Area) instead</span>
+<span class="tok-co">#   • Assuming stale handle reuse after removal without generation check — always verify generatio matches before using a handle; stale handles must be rejected on lookup</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Learning path:</span>
+<span class="tok-co">#   Before: Stage 3: genus, lista, nihil → Stage 3: discerne/casu (structs, collections, and pattern matching)</span>
+<span class="tok-co">#   After:  Stage 6: advanced applications (vivilite — real-world resource management)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Stage: arena-handle, complete contract with tests, all language constructs demonstrated</span>
+<span class="tok-co"># Backend: Rust, stepper</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># Reusable generational arena-handle contract (language surface).</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Semantics mirror faber-runtime::Arena / ArenaHandle (see arena.rs):</span>
+<span class="tok-co"># stable identity independent of list order; stale handles reject on lookup.</span>
+<span class="tok-co"># This package uses pure value updates (no lista[i] assignment) so generated</span>
+<span class="tok-co"># Rust stays sound; the runtime crate is the authoritative store implementation.</span>
+
+<span class="tok-kw">kiểu</span> Manus {
+    <span class="tok-kw">số</span> index
+    <span class="tok-kw">số</span> generatio
+}
+
+<span class="tok-kw">kiểu</span> Loculus {
+    <span class="tok-kw">số</span> generatio
+    <span class="tok-kw">logic</span> vivus
+    <span class="tok-kw">văn_bản</span> valor
+}
+
+<span class="tok-kw">kiểu</span> Area {
+    <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> loculi
+}
+
+<span class="tok-kw">kiểu</span> AreaCumManus {
+    Area area
+    Manus manus
+}
+
+<span class="tok-kw">hàm</span> manus_aequat(<span class="tok-kw">ra</span> Manus a, <span class="tok-kw">ra</span> Manus b) <span class="tok-op">→</span> <span class="tok-kw">logic</span> {
+    <span class="tok-kw">trả</span> a.index <span class="tok-op">≡</span> b.index <span class="tok-kw">và</span> a.generatio <span class="tok-op">≡</span> b.generatio
+}
+
+<span class="tok-kw">hàm</span> area_nova() <span class="tok-op">→</span> Area {
+    <span class="tok-kw">hằng</span> <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> loculi <span class="tok-op">←</span> <span class="tok-kw">tập_rỗng</span>
+    <span class="tok-kw">trả</span> Area {loculi <span class="tok-op">=</span> loculi}
+}
+
+<span class="tok-kw">hàm</span> area_inserit(Area area, <span class="tok-kw">văn_bản</span> valor) <span class="tok-op">→</span> AreaCumManus {
+<span class="tok-co">    # Always append a new live slot. Free slots from tollit stay dead so the</span>
+<span class="tok-co">    # old handle generation remains invalid; reuse is optional for this proof.</span>
+    <span class="tok-kw">biến</span> <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> <span class="tok-kw">tập_rỗng</span>
+    <span class="tok-kw">biến</span> <span class="tok-kw">số</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">trong_khi</span> i ≺ area.loculi.longitudo() {
+        out.appende(area.loculi[i])
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    }
+    <span class="tok-kw">hằng</span> <span class="tok-kw">số</span> index <span class="tok-op">←</span> out.longitudo()
+    out.appende(Loculus {generatio <span class="tok-op">=</span> <span class="tok-nu">0</span>, vivus <span class="tok-op">=</span> <span class="tok-kw">đúng</span>, valor <span class="tok-op">=</span> valor})
+    <span class="tok-kw">trả</span> AreaCumManus {area <span class="tok-op">=</span> Area {loculi <span class="tok-op">=</span> out}, manus <span class="tok-op">=</span> Manus {index <span class="tok-op">=</span> index, generatio <span class="tok-op">=</span> <span class="tok-nu">0</span>}}
+}
+
+<span class="tok-co"># Lookup returns the payload, or "" when the handle is stale / out of range.</span>
+<span class="tok-co"># Proof resources never use empty text, so "" is the explicit reject signal.</span>
+<span class="tok-kw">hàm</span> area_accipe(<span class="tok-kw">ra</span> Area area, <span class="tok-kw">ra</span> Manus manus) <span class="tok-op">→</span> <span class="tok-kw">văn_bản</span> {
+    <span class="tok-kw">nếu</span> manus.index <span class="tok-op">≥</span> area.loculi.longitudo() <span class="tok-kw">do_đó</span> <span class="tok-kw">trả</span> <span class="tok-st">""</span>
+    <span class="tok-kw">hằng</span> Loculus slot <span class="tok-op">←</span> area.loculi[manus.index]
+    <span class="tok-kw">nếu</span> slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">sai</span> <span class="tok-kw">do_đó</span> <span class="tok-kw">trả</span> <span class="tok-st">""</span>
+    <span class="tok-kw">nếu</span> slot.generatio <span class="tok-op">≠</span> manus.generatio <span class="tok-kw">do_đó</span> <span class="tok-kw">trả</span> <span class="tok-st">""</span>
+    <span class="tok-kw">trả</span> slot.valor
+}
+
+<span class="tok-kw">hàm</span> area_continet(<span class="tok-kw">ra</span> Area area, <span class="tok-kw">ra</span> Manus manus) <span class="tok-op">→</span> <span class="tok-kw">logic</span> {
+    <span class="tok-kw">trả</span> area_accipe(area, manus) <span class="tok-op">≠</span> <span class="tok-st">""</span>
+}
+
+<span class="tok-kw">hàm</span> area_tollit(Area area, <span class="tok-kw">ra</span> Manus manus) <span class="tok-op">→</span> Area {
+    <span class="tok-kw">biến</span> <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> <span class="tok-kw">tập_rỗng</span>
+    <span class="tok-kw">biến</span> <span class="tok-kw">số</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">trong_khi</span> i ≺ area.loculi.longitudo() {
+        <span class="tok-kw">hằng</span> Loculus slot <span class="tok-op">←</span> area.loculi[i]
+        <span class="tok-kw">nếu</span> (i <span class="tok-op">≡</span> manus.index <span class="tok-kw">và</span> slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">đúng</span>) <span class="tok-kw">và</span> slot.generatio <span class="tok-op">≡</span> manus.generatio {
+            out.appende(Loculus {generatio <span class="tok-op">=</span> slot.generatio <span class="tok-op">+</span> <span class="tok-nu">1</span>, vivus <span class="tok-op">=</span> <span class="tok-kw">sai</span>, valor <span class="tok-op">=</span> <span class="tok-st">""</span>})
+        }
+        <span class="tok-kw">khác</span> {
+            out.appende(slot)
+        }
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    }
+    <span class="tok-kw">trả</span> Area {loculi <span class="tok-op">=</span> out}
+}
+
+<span class="tok-co"># Heterogeneous node: stores Manus, never deep-copies the resource payload.</span>
+<span class="tok-kw">hợp_nhất</span> Nodus {
+    Groupus {
+        <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii
+    },
+    Tessera {
+        Manus geometria
+    },
+}
+
+<span class="tok-kw">kiểm_thử</span> <span class="tok-st">"two nodes share one resource identity"</span> <span class="tok-kw">nhãn</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">hằng</span> AreaCumManus step <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"shared-mesh"</span>)
+    <span class="tok-kw">hằng</span> Area res <span class="tok-op">←</span> step.area
+    <span class="tok-kw">hằng</span> Manus geo <span class="tok-op">←</span> step.manus
+<span class="tok-co">    # Reconstruct handle values so each node owns a copy of the identity bits</span>
+<span class="tok-co">    # without cloning the resource payload (still one live slot in `res`).</span>
+    <span class="tok-kw">hằng</span> Manus left_geo <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio}
+    <span class="tok-kw">hằng</span> Manus right_geo <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio}
+    <span class="tok-kw">khẳng_định</span> manus_aequat(left_geo, right_geo)
+    <span class="tok-kw">khẳng_định</span> area_accipe(res, left_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
+    <span class="tok-kw">khẳng_định</span> area_accipe(res, right_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
+    <span class="tok-kw">hằng</span> Nodus left <span class="tok-op">←</span> Tessera(Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio})
+    <span class="tok-kw">hằng</span> Nodus right <span class="tok-op">←</span> Tessera(Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio})
+    <span class="tok-kw">phân_tích</span> left {
+        <span class="tok-kw">trường_hợp</span> Tessera <span class="tok-kw">hằng</span> geometria {
+            <span class="tok-kw">khẳng_định</span> manus_aequat(geometria, left_geo)
+        }
+        <span class="tok-kw">trường_hợp</span> Groupus <span class="tok-kw">hằng</span> filii {
+            <span class="tok-kw">khẳng_định</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+        }
+    }
+    <span class="tok-kw">phân_tích</span> right {
+        <span class="tok-kw">trường_hợp</span> Tessera <span class="tok-kw">hằng</span> geometria {
+            <span class="tok-kw">khẳng_định</span> manus_aequat(geometria, right_geo)
+        }
+        <span class="tok-kw">trường_hợp</span> Groupus <span class="tok-kw">hằng</span> filii {
+            <span class="tok-kw">khẳng_định</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+        }
+    }
+}
+
+<span class="tok-kw">kiểm_thử</span> <span class="tok-st">"reparent reorder preserves handle identity"</span> <span class="tok-kw">nhãn</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">hằng</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"child-a"</span>)
+    <span class="tok-kw">hằng</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(s0.area, <span class="tok-st">"child-b"</span>)
+    <span class="tok-kw">hằng</span> Area nodi <span class="tok-op">←</span> s1.area
+    <span class="tok-kw">hằng</span> Manus a <span class="tok-op">←</span> s0.manus
+    <span class="tok-kw">hằng</span> Manus b <span class="tok-op">←</span> s1.manus
+    <span class="tok-kw">biến</span> <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii <span class="tok-op">←</span> <span class="tok-kw">tập_rỗng</span>
+    filii.appende(Manus {index <span class="tok-op">=</span> a.index, generatio <span class="tok-op">=</span> a.generatio})
+    filii.appende(Manus {index <span class="tok-op">=</span> b.index, generatio <span class="tok-op">=</span> b.generatio})
+<span class="tok-co">    # swap order without changing handle identities</span>
+    <span class="tok-kw">hằng</span> Manus first <span class="tok-op">←</span> filii[<span class="tok-nu">0</span>]
+    <span class="tok-kw">hằng</span> Manus second <span class="tok-op">←</span> filii[<span class="tok-nu">1</span>]
+    <span class="tok-kw">biến</span> <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> reord <span class="tok-op">←</span> <span class="tok-kw">tập_rỗng</span>
+    reord.appende(Manus {index <span class="tok-op">=</span> second.index, generatio <span class="tok-op">=</span> second.generatio})
+    reord.appende(Manus {index <span class="tok-op">=</span> first.index, generatio <span class="tok-op">=</span> first.generatio})
+    <span class="tok-kw">khẳng_định</span> area_accipe(nodi, reord[<span class="tok-nu">0</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
+    <span class="tok-kw">khẳng_định</span> area_accipe(nodi, reord[<span class="tok-nu">1</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
+    <span class="tok-kw">khẳng_định</span> area_accipe(nodi, a) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
+    <span class="tok-kw">khẳng_định</span> area_accipe(nodi, b) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
+}
+
+<span class="tok-kw">kiểm_thử</span> <span class="tok-st">"stale handle rejects after remove"</span> <span class="tok-kw">nhãn</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">hằng</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"gone"</span>)
+    <span class="tok-kw">hằng</span> Manus h <span class="tok-op">←</span> s0.manus
+    <span class="tok-kw">hằng</span> Manus h_bits <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> h.index, generatio <span class="tok-op">=</span> h.generatio}
+    <span class="tok-kw">khẳng_định</span> area_continet(s0.area, h_bits)
+    <span class="tok-kw">hằng</span> Area after <span class="tok-op">←</span> area_tollit(s0.area, h_bits)
+    <span class="tok-kw">khẳng_định</span> area_continet(after, h_bits) <span class="tok-op">≡</span> <span class="tok-kw">sai</span>
+    <span class="tok-kw">khẳng_định</span> area_accipe(after, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
+    <span class="tok-kw">hằng</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(after, <span class="tok-st">"fresh"</span>)
+    <span class="tok-kw">hằng</span> Manus h2 <span class="tok-op">←</span> s1.manus
+<span class="tok-co">    # New live slot (append); old handle still rejected by generation/vivus.</span>
+    <span class="tok-kw">khẳng_định</span> manus_aequat(h_bits, h2) <span class="tok-op">≡</span> <span class="tok-kw">sai</span>
+    <span class="tok-kw">khẳng_định</span> area_accipe(s1.area, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
+    <span class="tok-kw">khẳng_định</span> area_accipe(s1.area, h2) <span class="tok-op">≡</span> <span class="tok-st">"fresh"</span>
+    <span class="tok-kw">khẳng_định</span> area_continet(s1.area, h2)
+}
+
+<span class="tok-kw">bắt_đầu</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-8c6a4ac88069ab74-0-p-ar" role="tabpanel" aria-labelledby="lt-8c6a4ac88069ab74-0-t-ar"><div class="fdt-panel-label"><code>faber format --locale ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># arena-handle — generational arena-handle contract via pure value updates</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this example teaches:</span>
+<span class="tok-co">#   • Generational arena pattern — stable identity via (index, generation) handle</span>
+<span class="tok-co">#     pair; stale handles rejected on lookup via generation check</span>
+<span class="tok-co">#   • genus (struct) definitions — Manus, Loculus, Area, AreaCumManus, Nodus</span>
+<span class="tok-co">#   • Pure functional updates — no lista[i] mutation, all operations return new</span>
+<span class="tok-co">#     Area values to keep generated Rust sound</span>
+<span class="tok-co">#   • dum loop — explicit iteration over list indices (lines 42-46, 75-90)</span>
+<span class="tok-co">#   • si/sin/secus — conditional logic (lines 58, 60, 62, 78-89)</span>
+<span class="tok-co">#   • discerne/casu — pattern matching on enum variants (lines 117-133)</span>
+<span class="tok-co">#   • probandum/proba/adfirma — test framework with multi-case assertions</span>
+<span class="tok-co">#   • discretio — sum type (enum) with variant payloads (lines 93-96)</span>
+<span class="tok-co">#   • gingimus (finge) — enum variant construction with named fields (lines 113-116)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Syntaxes used:</span>
+<span class="tok-co">#   • genus — struct definition (lines 8, 12, 18, 22)</span>
+<span class="tok-co">#   • discretio — enum/sum type (line 93)</span>
+<span class="tok-co">#   • functio — function definition (lines 28, 32, 36, 57, 70, 73)</span>
+<span class="tok-co">#   • fixum — immutable binding (lines 33, 43, etc.)</span>
+<span class="tok-co">#   • varia — mutable binding (lines 40, 41, etc.)</span>
+<span class="tok-co">#   • dum — while loop (lines 42, 75)</span>
+<span class="tok-co">#   • si/sin/secus — conditionals (lines 58, 60, 62, 78-89)</span>
+<span class="tok-co">#   • discerne/casu — match/pattern match (lines 117-133)</span>
+<span class="tok-co">#   • redde — return (lines 30, etc.)</span>
+<span class="tok-co">#   • finge — construct enum variant (lines 113-116)</span>
+<span class="tok-co">#   • adfirma — test assertion (lines 109-112, etc.)</span>
+<span class="tok-co">#   • proba — test case (lines 101, 134, 155)</span>
+<span class="tok-co">#   • probandum — test suite (line 100)</span>
+<span class="tok-co">#   • ≡ — equality comparison (lines 29, 61, etc.)</span>
+<span class="tok-co">#   • lista&lt;T&gt; — list type (lines 20, 93, 96)</span>
+<span class="tok-co">#   • textus, numerus, bivalens — primitive types</span>
+<span class="tok-co">#   • vacua — empty list literal</span>
+<span class="tok-co">#   • .longitudo() — list length method</span>
+<span class="tok-co">#   • .appende() — list append method</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Alternate approaches (not shown):</span>
+<span class="tok-co">#   • Mutable arena with unsafe interior for performance — a mutable lista&lt;Loculus&gt; with in-place updates avoids copying on every insert/take</span>
+<span class="tok-co">#   • Reusing free slots (via free list) instead of always appending — maintain a list of freed indices to recycle slots without growing the arena</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Anti-patterns (avoid these):</span>
+<span class="tok-co">#   • Using lista[i] assignment in generated Rust contexts — in-place list mutation breaks Rust's borrow-checker soundness; use pure value updates (return new Area) instead</span>
+<span class="tok-co">#   • Assuming stale handle reuse after removal without generation check — always verify generatio matches before using a handle; stale handles must be rejected on lookup</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Learning path:</span>
+<span class="tok-co">#   Before: Stage 3: genus, lista, nihil → Stage 3: discerne/casu (structs, collections, and pattern matching)</span>
+<span class="tok-co">#   After:  Stage 6: advanced applications (vivilite — real-world resource management)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Stage: arena-handle, complete contract with tests, all language constructs demonstrated</span>
+<span class="tok-co"># Backend: Rust, stepper</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># Reusable generational arena-handle contract (language surface).</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Semantics mirror faber-runtime::Arena / ArenaHandle (see arena.rs):</span>
+<span class="tok-co"># stable identity independent of list order; stale handles reject on lookup.</span>
+<span class="tok-co"># This package uses pure value updates (no lista[i] assignment) so generated</span>
+<span class="tok-co"># Rust stays sound; the runtime crate is the authoritative store implementation.</span>
+
+<span class="tok-kw">صنف</span> Manus {
+    <span class="tok-kw">عدد</span> index
+    <span class="tok-kw">عدد</span> generatio
+}
+
+<span class="tok-kw">صنف</span> Loculus {
+    <span class="tok-kw">عدد</span> generatio
+    <span class="tok-kw">منطقي</span> vivus
+    <span class="tok-kw">نص</span> valor
+}
+
+<span class="tok-kw">صنف</span> Area {
+    <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> loculi
+}
+
+<span class="tok-kw">صنف</span> AreaCumManus {
+    Area area
+    Manus manus
+}
+
+<span class="tok-kw">دالة</span> manus_aequat(<span class="tok-kw">عن</span> Manus a, <span class="tok-kw">عن</span> Manus b) <span class="tok-op">→</span> <span class="tok-kw">منطقي</span> {
+    <span class="tok-kw">أعد</span> a.index <span class="tok-op">≡</span> b.index <span class="tok-kw">و</span> a.generatio <span class="tok-op">≡</span> b.generatio
+}
+
+<span class="tok-kw">دالة</span> area_nova() <span class="tok-op">→</span> Area {
+    <span class="tok-kw">ثابت</span> <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> loculi <span class="tok-op">←</span> <span class="tok-kw">فارغ</span>
+    <span class="tok-kw">أعد</span> Area {loculi <span class="tok-op">=</span> loculi}
+}
+
+<span class="tok-kw">دالة</span> area_inserit(Area area, <span class="tok-kw">نص</span> valor) <span class="tok-op">→</span> AreaCumManus {
+<span class="tok-co">    # Always append a new live slot. Free slots from tollit stay dead so the</span>
+<span class="tok-co">    # old handle generation remains invalid; reuse is optional for this proof.</span>
+    <span class="tok-kw">متغير</span> <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> <span class="tok-kw">فارغ</span>
+    <span class="tok-kw">متغير</span> <span class="tok-kw">عدد</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">طالما</span> i ≺ area.loculi.longitudo() {
+        out.appende(area.loculi[i])
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    }
+    <span class="tok-kw">ثابت</span> <span class="tok-kw">عدد</span> index <span class="tok-op">←</span> out.longitudo()
+    out.appende(Loculus {generatio <span class="tok-op">=</span> <span class="tok-nu">0</span>, vivus <span class="tok-op">=</span> <span class="tok-kw">صواب</span>, valor <span class="tok-op">=</span> valor})
+    <span class="tok-kw">أعد</span> AreaCumManus {area <span class="tok-op">=</span> Area {loculi <span class="tok-op">=</span> out}, manus <span class="tok-op">=</span> Manus {index <span class="tok-op">=</span> index, generatio <span class="tok-op">=</span> <span class="tok-nu">0</span>}}
+}
+
+<span class="tok-co"># Lookup returns the payload, or "" when the handle is stale / out of range.</span>
+<span class="tok-co"># Proof resources never use empty text, so "" is the explicit reject signal.</span>
+<span class="tok-kw">دالة</span> area_accipe(<span class="tok-kw">عن</span> Area area, <span class="tok-kw">عن</span> Manus manus) <span class="tok-op">→</span> <span class="tok-kw">نص</span> {
+    <span class="tok-kw">إذا</span> manus.index <span class="tok-op">≥</span> area.loculi.longitudo() <span class="tok-kw">إذن</span> <span class="tok-kw">أعد</span> <span class="tok-st">""</span>
+    <span class="tok-kw">ثابت</span> Loculus slot <span class="tok-op">←</span> area.loculi[manus.index]
+    <span class="tok-kw">إذا</span> slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">خطأ</span> <span class="tok-kw">إذن</span> <span class="tok-kw">أعد</span> <span class="tok-st">""</span>
+    <span class="tok-kw">إذا</span> slot.generatio <span class="tok-op">≠</span> manus.generatio <span class="tok-kw">إذن</span> <span class="tok-kw">أعد</span> <span class="tok-st">""</span>
+    <span class="tok-kw">أعد</span> slot.valor
+}
+
+<span class="tok-kw">دالة</span> area_continet(<span class="tok-kw">عن</span> Area area, <span class="tok-kw">عن</span> Manus manus) <span class="tok-op">→</span> <span class="tok-kw">منطقي</span> {
+    <span class="tok-kw">أعد</span> area_accipe(area, manus) <span class="tok-op">≠</span> <span class="tok-st">""</span>
+}
+
+<span class="tok-kw">دالة</span> area_tollit(Area area, <span class="tok-kw">عن</span> Manus manus) <span class="tok-op">→</span> Area {
+    <span class="tok-kw">متغير</span> <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> <span class="tok-kw">فارغ</span>
+    <span class="tok-kw">متغير</span> <span class="tok-kw">عدد</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">طالما</span> i ≺ area.loculi.longitudo() {
+        <span class="tok-kw">ثابت</span> Loculus slot <span class="tok-op">←</span> area.loculi[i]
+        <span class="tok-kw">إذا</span> (i <span class="tok-op">≡</span> manus.index <span class="tok-kw">و</span> slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">صواب</span>) <span class="tok-kw">و</span> slot.generatio <span class="tok-op">≡</span> manus.generatio {
+            out.appende(Loculus {generatio <span class="tok-op">=</span> slot.generatio <span class="tok-op">+</span> <span class="tok-nu">1</span>, vivus <span class="tok-op">=</span> <span class="tok-kw">خطأ</span>, valor <span class="tok-op">=</span> <span class="tok-st">""</span>})
+        }
+        <span class="tok-kw">وإلا</span> {
+            out.appende(slot)
+        }
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    }
+    <span class="tok-kw">أعد</span> Area {loculi <span class="tok-op">=</span> out}
+}
+
+<span class="tok-co"># Heterogeneous node: stores Manus, never deep-copies the resource payload.</span>
+<span class="tok-kw">تمايز</span> Nodus {
+    Groupus {
+        <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii
+    },
+    Tessera {
+        Manus geometria
+    },
+}
+
+<span class="tok-kw">اختبر</span> <span class="tok-st">"two nodes share one resource identity"</span> <span class="tok-kw">وسم</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">ثابت</span> AreaCumManus step <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"shared-mesh"</span>)
+    <span class="tok-kw">ثابت</span> Area res <span class="tok-op">←</span> step.area
+    <span class="tok-kw">ثابت</span> Manus geo <span class="tok-op">←</span> step.manus
+<span class="tok-co">    # Reconstruct handle values so each node owns a copy of the identity bits</span>
+<span class="tok-co">    # without cloning the resource payload (still one live slot in `res`).</span>
+    <span class="tok-kw">ثابت</span> Manus left_geo <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio}
+    <span class="tok-kw">ثابت</span> Manus right_geo <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio}
+    <span class="tok-kw">أكد</span> manus_aequat(left_geo, right_geo)
+    <span class="tok-kw">أكد</span> area_accipe(res, left_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
+    <span class="tok-kw">أكد</span> area_accipe(res, right_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
+    <span class="tok-kw">ثابت</span> Nodus left <span class="tok-op">←</span> Tessera(Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio})
+    <span class="tok-kw">ثابت</span> Nodus right <span class="tok-op">←</span> Tessera(Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio})
+    <span class="tok-kw">طابق</span> left {
+        <span class="tok-kw">حالة</span> Tessera <span class="tok-kw">ثابت</span> geometria {
+            <span class="tok-kw">أكد</span> manus_aequat(geometria, left_geo)
+        }
+        <span class="tok-kw">حالة</span> Groupus <span class="tok-kw">ثابت</span> filii {
+            <span class="tok-kw">أكد</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+        }
+    }
+    <span class="tok-kw">طابق</span> right {
+        <span class="tok-kw">حالة</span> Tessera <span class="tok-kw">ثابت</span> geometria {
+            <span class="tok-kw">أكد</span> manus_aequat(geometria, right_geo)
+        }
+        <span class="tok-kw">حالة</span> Groupus <span class="tok-kw">ثابت</span> filii {
+            <span class="tok-kw">أكد</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+        }
+    }
+}
+
+<span class="tok-kw">اختبر</span> <span class="tok-st">"reparent reorder preserves handle identity"</span> <span class="tok-kw">وسم</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">ثابت</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"child-a"</span>)
+    <span class="tok-kw">ثابت</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(s0.area, <span class="tok-st">"child-b"</span>)
+    <span class="tok-kw">ثابت</span> Area nodi <span class="tok-op">←</span> s1.area
+    <span class="tok-kw">ثابت</span> Manus a <span class="tok-op">←</span> s0.manus
+    <span class="tok-kw">ثابت</span> Manus b <span class="tok-op">←</span> s1.manus
+    <span class="tok-kw">متغير</span> <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii <span class="tok-op">←</span> <span class="tok-kw">فارغ</span>
+    filii.appende(Manus {index <span class="tok-op">=</span> a.index, generatio <span class="tok-op">=</span> a.generatio})
+    filii.appende(Manus {index <span class="tok-op">=</span> b.index, generatio <span class="tok-op">=</span> b.generatio})
+<span class="tok-co">    # swap order without changing handle identities</span>
+    <span class="tok-kw">ثابت</span> Manus first <span class="tok-op">←</span> filii[<span class="tok-nu">0</span>]
+    <span class="tok-kw">ثابت</span> Manus second <span class="tok-op">←</span> filii[<span class="tok-nu">1</span>]
+    <span class="tok-kw">متغير</span> <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> reord <span class="tok-op">←</span> <span class="tok-kw">فارغ</span>
+    reord.appende(Manus {index <span class="tok-op">=</span> second.index, generatio <span class="tok-op">=</span> second.generatio})
+    reord.appende(Manus {index <span class="tok-op">=</span> first.index, generatio <span class="tok-op">=</span> first.generatio})
+    <span class="tok-kw">أكد</span> area_accipe(nodi, reord[<span class="tok-nu">0</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
+    <span class="tok-kw">أكد</span> area_accipe(nodi, reord[<span class="tok-nu">1</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
+    <span class="tok-kw">أكد</span> area_accipe(nodi, a) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
+    <span class="tok-kw">أكد</span> area_accipe(nodi, b) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
+}
+
+<span class="tok-kw">اختبر</span> <span class="tok-st">"stale handle rejects after remove"</span> <span class="tok-kw">وسم</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">ثابت</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"gone"</span>)
+    <span class="tok-kw">ثابت</span> Manus h <span class="tok-op">←</span> s0.manus
+    <span class="tok-kw">ثابت</span> Manus h_bits <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> h.index, generatio <span class="tok-op">=</span> h.generatio}
+    <span class="tok-kw">أكد</span> area_continet(s0.area, h_bits)
+    <span class="tok-kw">ثابت</span> Area after <span class="tok-op">←</span> area_tollit(s0.area, h_bits)
+    <span class="tok-kw">أكد</span> area_continet(after, h_bits) <span class="tok-op">≡</span> <span class="tok-kw">خطأ</span>
+    <span class="tok-kw">أكد</span> area_accipe(after, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
+    <span class="tok-kw">ثابت</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(after, <span class="tok-st">"fresh"</span>)
+    <span class="tok-kw">ثابت</span> Manus h2 <span class="tok-op">←</span> s1.manus
+<span class="tok-co">    # New live slot (append); old handle still rejected by generation/vivus.</span>
+    <span class="tok-kw">أكد</span> manus_aequat(h_bits, h2) <span class="tok-op">≡</span> <span class="tok-kw">خطأ</span>
+    <span class="tok-kw">أكد</span> area_accipe(s1.area, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
+    <span class="tok-kw">أكد</span> area_accipe(s1.area, h2) <span class="tok-op">≡</span> <span class="tok-st">"fresh"</span>
+    <span class="tok-kw">أكد</span> area_continet(s1.area, h2)
+}
+
+<span class="tok-kw">بداية</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-8c6a4ac88069ab74-0-p-hi" role="tabpanel" aria-labelledby="lt-8c6a4ac88069ab74-0-t-hi"><div class="fdt-panel-label"><code>faber format --locale hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># arena-handle — generational arena-handle contract via pure value updates</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this example teaches:</span>
+<span class="tok-co">#   • Generational arena pattern — stable identity via (index, generation) handle</span>
+<span class="tok-co">#     pair; stale handles rejected on lookup via generation check</span>
+<span class="tok-co">#   • genus (struct) definitions — Manus, Loculus, Area, AreaCumManus, Nodus</span>
+<span class="tok-co">#   • Pure functional updates — no lista[i] mutation, all operations return new</span>
+<span class="tok-co">#     Area values to keep generated Rust sound</span>
+<span class="tok-co">#   • dum loop — explicit iteration over list indices (lines 42-46, 75-90)</span>
+<span class="tok-co">#   • si/sin/secus — conditional logic (lines 58, 60, 62, 78-89)</span>
+<span class="tok-co">#   • discerne/casu — pattern matching on enum variants (lines 117-133)</span>
+<span class="tok-co">#   • probandum/proba/adfirma — test framework with multi-case assertions</span>
+<span class="tok-co">#   • discretio — sum type (enum) with variant payloads (lines 93-96)</span>
+<span class="tok-co">#   • gingimus (finge) — enum variant construction with named fields (lines 113-116)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Syntaxes used:</span>
+<span class="tok-co">#   • genus — struct definition (lines 8, 12, 18, 22)</span>
+<span class="tok-co">#   • discretio — enum/sum type (line 93)</span>
+<span class="tok-co">#   • functio — function definition (lines 28, 32, 36, 57, 70, 73)</span>
+<span class="tok-co">#   • fixum — immutable binding (lines 33, 43, etc.)</span>
+<span class="tok-co">#   • varia — mutable binding (lines 40, 41, etc.)</span>
+<span class="tok-co">#   • dum — while loop (lines 42, 75)</span>
+<span class="tok-co">#   • si/sin/secus — conditionals (lines 58, 60, 62, 78-89)</span>
+<span class="tok-co">#   • discerne/casu — match/pattern match (lines 117-133)</span>
+<span class="tok-co">#   • redde — return (lines 30, etc.)</span>
+<span class="tok-co">#   • finge — construct enum variant (lines 113-116)</span>
+<span class="tok-co">#   • adfirma — test assertion (lines 109-112, etc.)</span>
+<span class="tok-co">#   • proba — test case (lines 101, 134, 155)</span>
+<span class="tok-co">#   • probandum — test suite (line 100)</span>
+<span class="tok-co">#   • ≡ — equality comparison (lines 29, 61, etc.)</span>
+<span class="tok-co">#   • lista&lt;T&gt; — list type (lines 20, 93, 96)</span>
+<span class="tok-co">#   • textus, numerus, bivalens — primitive types</span>
+<span class="tok-co">#   • vacua — empty list literal</span>
+<span class="tok-co">#   • .longitudo() — list length method</span>
+<span class="tok-co">#   • .appende() — list append method</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Alternate approaches (not shown):</span>
+<span class="tok-co">#   • Mutable arena with unsafe interior for performance — a mutable lista&lt;Loculus&gt; with in-place updates avoids copying on every insert/take</span>
+<span class="tok-co">#   • Reusing free slots (via free list) instead of always appending — maintain a list of freed indices to recycle slots without growing the arena</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Anti-patterns (avoid these):</span>
+<span class="tok-co">#   • Using lista[i] assignment in generated Rust contexts — in-place list mutation breaks Rust's borrow-checker soundness; use pure value updates (return new Area) instead</span>
+<span class="tok-co">#   • Assuming stale handle reuse after removal without generation check — always verify generatio matches before using a handle; stale handles must be rejected on lookup</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Learning path:</span>
+<span class="tok-co">#   Before: Stage 3: genus, lista, nihil → Stage 3: discerne/casu (structs, collections, and pattern matching)</span>
+<span class="tok-co">#   After:  Stage 6: advanced applications (vivilite — real-world resource management)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Stage: arena-handle, complete contract with tests, all language constructs demonstrated</span>
+<span class="tok-co"># Backend: Rust, stepper</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># Reusable generational arena-handle contract (language surface).</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Semantics mirror faber-runtime::Arena / ArenaHandle (see arena.rs):</span>
+<span class="tok-co"># stable identity independent of list order; stale handles reject on lookup.</span>
+<span class="tok-co"># This package uses pure value updates (no lista[i] assignment) so generated</span>
+<span class="tok-co"># Rust stays sound; the runtime crate is the authoritative store implementation.</span>
+
+<span class="tok-kw">वर्ग</span> Manus {
+    <span class="tok-kw">संख्या</span> index
+    <span class="tok-kw">संख्या</span> generatio
+}
+
+<span class="tok-kw">वर्ग</span> Loculus {
+    <span class="tok-kw">संख्या</span> generatio
+    <span class="tok-kw">तार्किक</span> vivus
+    <span class="tok-kw">पाठ</span> valor
+}
+
+<span class="tok-kw">वर्ग</span> Area {
+    <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> loculi
+}
+
+<span class="tok-kw">वर्ग</span> AreaCumManus {
+    Area area
+    Manus manus
+}
+
+<span class="tok-kw">फलन</span> manus_aequat(<span class="tok-kw">से</span> Manus a, <span class="tok-kw">से</span> Manus b) <span class="tok-op">→</span> <span class="tok-kw">तार्किक</span> {
+    <span class="tok-kw">लौटाओ</span> a.index <span class="tok-op">≡</span> b.index <span class="tok-kw">और</span> a.generatio <span class="tok-op">≡</span> b.generatio
+}
+
+<span class="tok-kw">फलन</span> area_nova() <span class="tok-op">→</span> Area {
+    <span class="tok-kw">स्थिर</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> loculi <span class="tok-op">←</span> <span class="tok-kw">खाली</span>
+    <span class="tok-kw">लौटाओ</span> Area {loculi <span class="tok-op">=</span> loculi}
+}
+
+<span class="tok-kw">फलन</span> area_inserit(Area area, <span class="tok-kw">पाठ</span> valor) <span class="tok-op">→</span> AreaCumManus {
+<span class="tok-co">    # Always append a new live slot. Free slots from tollit stay dead so the</span>
+<span class="tok-co">    # old handle generation remains invalid; reuse is optional for this proof.</span>
+    <span class="tok-kw">चर</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> <span class="tok-kw">खाली</span>
+    <span class="tok-kw">चर</span> <span class="tok-kw">संख्या</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">जबतक</span> i ≺ area.loculi.longitudo() {
+        out.appende(area.loculi[i])
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    }
+    <span class="tok-kw">स्थिर</span> <span class="tok-kw">संख्या</span> index <span class="tok-op">←</span> out.longitudo()
+    out.appende(Loculus {generatio <span class="tok-op">=</span> <span class="tok-nu">0</span>, vivus <span class="tok-op">=</span> <span class="tok-kw">सत्य</span>, valor <span class="tok-op">=</span> valor})
+    <span class="tok-kw">लौटाओ</span> AreaCumManus {area <span class="tok-op">=</span> Area {loculi <span class="tok-op">=</span> out}, manus <span class="tok-op">=</span> Manus {index <span class="tok-op">=</span> index, generatio <span class="tok-op">=</span> <span class="tok-nu">0</span>}}
+}
+
+<span class="tok-co"># Lookup returns the payload, or "" when the handle is stale / out of range.</span>
+<span class="tok-co"># Proof resources never use empty text, so "" is the explicit reject signal.</span>
+<span class="tok-kw">फलन</span> area_accipe(<span class="tok-kw">से</span> Area area, <span class="tok-kw">से</span> Manus manus) <span class="tok-op">→</span> <span class="tok-kw">पाठ</span> {
+    <span class="tok-kw">यदि</span> manus.index <span class="tok-op">≥</span> area.loculi.longitudo() <span class="tok-kw">अतः</span> <span class="tok-kw">लौटाओ</span> <span class="tok-st">""</span>
+    <span class="tok-kw">स्थिर</span> Loculus slot <span class="tok-op">←</span> area.loculi[manus.index]
+    <span class="tok-kw">यदि</span> slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">असत्य</span> <span class="tok-kw">अतः</span> <span class="tok-kw">लौटाओ</span> <span class="tok-st">""</span>
+    <span class="tok-kw">यदि</span> slot.generatio <span class="tok-op">≠</span> manus.generatio <span class="tok-kw">अतः</span> <span class="tok-kw">लौटाओ</span> <span class="tok-st">""</span>
+    <span class="tok-kw">लौटाओ</span> slot.valor
+}
+
+<span class="tok-kw">फलन</span> area_continet(<span class="tok-kw">से</span> Area area, <span class="tok-kw">से</span> Manus manus) <span class="tok-op">→</span> <span class="tok-kw">तार्किक</span> {
+    <span class="tok-kw">लौटाओ</span> area_accipe(area, manus) <span class="tok-op">≠</span> <span class="tok-st">""</span>
+}
+
+<span class="tok-kw">फलन</span> area_tollit(Area area, <span class="tok-kw">से</span> Manus manus) <span class="tok-op">→</span> Area {
+    <span class="tok-kw">चर</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span>Loculus<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> <span class="tok-kw">खाली</span>
+    <span class="tok-kw">चर</span> <span class="tok-kw">संख्या</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">जबतक</span> i ≺ area.loculi.longitudo() {
+        <span class="tok-kw">स्थिर</span> Loculus slot <span class="tok-op">←</span> area.loculi[i]
+        <span class="tok-kw">यदि</span> (i <span class="tok-op">≡</span> manus.index <span class="tok-kw">और</span> slot.vivus <span class="tok-op">≡</span> <span class="tok-kw">सत्य</span>) <span class="tok-kw">और</span> slot.generatio <span class="tok-op">≡</span> manus.generatio {
+            out.appende(Loculus {generatio <span class="tok-op">=</span> slot.generatio <span class="tok-op">+</span> <span class="tok-nu">1</span>, vivus <span class="tok-op">=</span> <span class="tok-kw">असत्य</span>, valor <span class="tok-op">=</span> <span class="tok-st">""</span>})
+        }
+        <span class="tok-kw">अन्यथा</span> {
+            out.appende(slot)
+        }
+        i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    }
+    <span class="tok-kw">लौटाओ</span> Area {loculi <span class="tok-op">=</span> out}
+}
+
+<span class="tok-co"># Heterogeneous node: stores Manus, never deep-copies the resource payload.</span>
+<span class="tok-kw">विभेद</span> Nodus {
+    Groupus {
+        <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii
+    },
+    Tessera {
+        Manus geometria
+    },
+}
+
+<span class="tok-kw">परीक्षण</span> <span class="tok-st">"two nodes share one resource identity"</span> <span class="tok-kw">टैग</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">स्थिर</span> AreaCumManus step <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"shared-mesh"</span>)
+    <span class="tok-kw">स्थिर</span> Area res <span class="tok-op">←</span> step.area
+    <span class="tok-kw">स्थिर</span> Manus geo <span class="tok-op">←</span> step.manus
+<span class="tok-co">    # Reconstruct handle values so each node owns a copy of the identity bits</span>
+<span class="tok-co">    # without cloning the resource payload (still one live slot in `res`).</span>
+    <span class="tok-kw">स्थिर</span> Manus left_geo <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio}
+    <span class="tok-kw">स्थिर</span> Manus right_geo <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio}
+    <span class="tok-kw">पुष्टि</span> manus_aequat(left_geo, right_geo)
+    <span class="tok-kw">पुष्टि</span> area_accipe(res, left_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
+    <span class="tok-kw">पुष्टि</span> area_accipe(res, right_geo) <span class="tok-op">≡</span> <span class="tok-st">"shared-mesh"</span>
+    <span class="tok-kw">स्थिर</span> Nodus left <span class="tok-op">←</span> Tessera(Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio})
+    <span class="tok-kw">स्थिर</span> Nodus right <span class="tok-op">←</span> Tessera(Manus {index <span class="tok-op">=</span> geo.index, generatio <span class="tok-op">=</span> geo.generatio})
+    <span class="tok-kw">मिलाओ</span> left {
+        <span class="tok-kw">स्थिति</span> Tessera <span class="tok-kw">स्थिर</span> geometria {
+            <span class="tok-kw">पुष्टि</span> manus_aequat(geometria, left_geo)
+        }
+        <span class="tok-kw">स्थिति</span> Groupus <span class="tok-kw">स्थिर</span> filii {
+            <span class="tok-kw">पुष्टि</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+        }
+    }
+    <span class="tok-kw">मिलाओ</span> right {
+        <span class="tok-kw">स्थिति</span> Tessera <span class="tok-kw">स्थिर</span> geometria {
+            <span class="tok-kw">पुष्टि</span> manus_aequat(geometria, right_geo)
+        }
+        <span class="tok-kw">स्थिति</span> Groupus <span class="tok-kw">स्थिर</span> filii {
+            <span class="tok-kw">पुष्टि</span> filii.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+        }
+    }
+}
+
+<span class="tok-kw">परीक्षण</span> <span class="tok-st">"reparent reorder preserves handle identity"</span> <span class="tok-kw">टैग</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">स्थिर</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"child-a"</span>)
+    <span class="tok-kw">स्थिर</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(s0.area, <span class="tok-st">"child-b"</span>)
+    <span class="tok-kw">स्थिर</span> Area nodi <span class="tok-op">←</span> s1.area
+    <span class="tok-kw">स्थिर</span> Manus a <span class="tok-op">←</span> s0.manus
+    <span class="tok-kw">स्थिर</span> Manus b <span class="tok-op">←</span> s1.manus
+    <span class="tok-kw">चर</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> filii <span class="tok-op">←</span> <span class="tok-kw">खाली</span>
+    filii.appende(Manus {index <span class="tok-op">=</span> a.index, generatio <span class="tok-op">=</span> a.generatio})
+    filii.appende(Manus {index <span class="tok-op">=</span> b.index, generatio <span class="tok-op">=</span> b.generatio})
+<span class="tok-co">    # swap order without changing handle identities</span>
+    <span class="tok-kw">स्थिर</span> Manus first <span class="tok-op">←</span> filii[<span class="tok-nu">0</span>]
+    <span class="tok-kw">स्थिर</span> Manus second <span class="tok-op">←</span> filii[<span class="tok-nu">1</span>]
+    <span class="tok-kw">चर</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span>Manus<span class="tok-op">&gt;</span> reord <span class="tok-op">←</span> <span class="tok-kw">खाली</span>
+    reord.appende(Manus {index <span class="tok-op">=</span> second.index, generatio <span class="tok-op">=</span> second.generatio})
+    reord.appende(Manus {index <span class="tok-op">=</span> first.index, generatio <span class="tok-op">=</span> first.generatio})
+    <span class="tok-kw">पुष्टि</span> area_accipe(nodi, reord[<span class="tok-nu">0</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
+    <span class="tok-kw">पुष्टि</span> area_accipe(nodi, reord[<span class="tok-nu">1</span>]) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
+    <span class="tok-kw">पुष्टि</span> area_accipe(nodi, a) <span class="tok-op">≡</span> <span class="tok-st">"child-a"</span>
+    <span class="tok-kw">पुष्टि</span> area_accipe(nodi, b) <span class="tok-op">≡</span> <span class="tok-st">"child-b"</span>
+}
+
+<span class="tok-kw">परीक्षण</span> <span class="tok-st">"stale handle rejects after remove"</span> <span class="tok-kw">टैग</span> <span class="tok-st">"identity"</span> {
+    <span class="tok-kw">स्थिर</span> AreaCumManus s0 <span class="tok-op">←</span> area_inserit(area_nova(), <span class="tok-st">"gone"</span>)
+    <span class="tok-kw">स्थिर</span> Manus h <span class="tok-op">←</span> s0.manus
+    <span class="tok-kw">स्थिर</span> Manus h_bits <span class="tok-op">←</span> Manus {index <span class="tok-op">=</span> h.index, generatio <span class="tok-op">=</span> h.generatio}
+    <span class="tok-kw">पुष्टि</span> area_continet(s0.area, h_bits)
+    <span class="tok-kw">स्थिर</span> Area after <span class="tok-op">←</span> area_tollit(s0.area, h_bits)
+    <span class="tok-kw">पुष्टि</span> area_continet(after, h_bits) <span class="tok-op">≡</span> <span class="tok-kw">असत्य</span>
+    <span class="tok-kw">पुष्टि</span> area_accipe(after, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
+    <span class="tok-kw">स्थिर</span> AreaCumManus s1 <span class="tok-op">←</span> area_inserit(after, <span class="tok-st">"fresh"</span>)
+    <span class="tok-kw">स्थिर</span> Manus h2 <span class="tok-op">←</span> s1.manus
+<span class="tok-co">    # New live slot (append); old handle still rejected by generation/vivus.</span>
+    <span class="tok-kw">पुष्टि</span> manus_aequat(h_bits, h2) <span class="tok-op">≡</span> <span class="tok-kw">असत्य</span>
+    <span class="tok-kw">पुष्टि</span> area_accipe(s1.area, h_bits) <span class="tok-op">≡</span> <span class="tok-st">""</span>
+    <span class="tok-kw">पुष्टि</span> area_accipe(s1.area, h2) <span class="tok-op">≡</span> <span class="tok-st">"fresh"</span>
+    <span class="tok-kw">पुष्टि</span> area_continet(s1.area, h2)
+}
+
+<span class="tok-kw">आरंभ</span> {
+}</code></pre></div></div><p>---</p><p><a href="/en-US/examples/">All examples</a> · <a href="/en-US/start/install.html">Install</a> · <a href="/en-US/cheatsheet/">Cheat sheet</a></p></div></main></div></body></html>
