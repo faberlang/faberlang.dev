@@ -185,8 +185,7 @@ See [device execution](/toolchain/cli.html#device-execution),
 Faber-owned GPU inference is in active development behind a pinned model
 contract (currently SmolLM2-class GGUF admission for the oracle track) and a
 correctness oracle. The **CPU** oracle path — admission, dequant, decoder ops,
-and greedy decode agreement on a pinned run — is engineering-real; **end-to-end
-device inference is not shipped**, and this is not a general GGUF product claim.
+and greedy decode agreement on a pinned run — is engineering-real; **end-to-end device inference is not shipped**, and this is not a general GGUF product claim.
 
 Multi-device execution is a frontier direction. Virtual GPUs, tensor/model or
 pipeline sharding, collectives, and distributed serving require their own

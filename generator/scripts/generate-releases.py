@@ -177,6 +177,26 @@ def collect() -> dict[str, list[Version]]:
     return grouped
 
 
+def _join_wrapped_bold(text: str) -> str:
+    lines = text.split("\n")
+    out, i, fence = [], 0, False
+    while i < len(lines):
+        line = lines[i]
+        if line.lstrip().startswith("```"):
+            fence = not fence
+        if not fence and line.count("**") % 2 == 1 and i + 1 < len(lines):
+            merged, j = line, i + 1
+            while j < len(lines) and merged.count("**") % 2 == 1:
+                merged = merged.rstrip() + " " + lines[j].lstrip()
+                j += 1
+            out.append(merged)
+            i = j
+            continue
+        out.append(line)
+        i += 1
+    return "\n".join(out)
+
+
 def prepare_notes(raw: str) -> str:
     """Demote the notes' own H1 and shift every heading one level down.
 
@@ -184,6 +204,11 @@ def prepare_notes(raw: str) -> str:
     Shifting the whole tree keeps the notes' internal hierarchy intact under a
     single `## Release notes` heading.
     """
+    # Inline spans render per line, so bold that opens on one line and closes
+    # on the next emits literal asterisks. Imported notes are hard-wrapped
+    # prose written elsewhere and full of these; join them on the way in.
+    raw = _join_wrapped_bold(raw)
+
     out: list[str] = []
     in_fence = False
     for line in raw.splitlines():

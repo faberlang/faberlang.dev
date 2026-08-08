@@ -34,8 +34,7 @@ radix --version
 
 Synthetic tag spanning **178 commits** between v0.59.0 (indexed tensor types) and
 this consolidation point. Crate manifests remain at `0.38.0` throughout this
-range — this tag documents the historical release consolidation: the **forma
-formatter** extraction and closure, **mathesis** numeric operator library,
+range — this tag documents the historical release consolidation: the **forma formatter** extraction and closure, **mathesis** numeric operator library,
 **tensor** type sugar and arithmetic family, **LLVM staging** for GPU-ready IR
 lowering, **chorda** morphologia alignment, **numeric value equality** operators,
 **transitive library imports** with CSV v1, **tempus** stdlib, **DEFER-049**

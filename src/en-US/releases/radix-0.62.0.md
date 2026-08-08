@@ -54,8 +54,7 @@ git log v0.61.0..v0.62.0 --oneline --no-merges
 
 #### HIR/MIR semantic sync — lista/tensor conversio
 
-The dominant theme of this release. The compiler enforces **fail-closed lowering
-invariants** — any HIR construct that lacks a MIR lowering partner now produces a
+The dominant theme of this release. The compiler enforces **fail-closed lowering invariants** — any HIR construct that lacks a MIR lowering partner now produces a
 hard error rather than silently dropping predicates.
 
 - Shaped, rectangular lista literal → tensor conversio through MIR and Rust emit

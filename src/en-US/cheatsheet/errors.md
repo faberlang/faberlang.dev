@@ -60,8 +60,7 @@ failure, so it cannot itself fail. The channel stops here.
 ## `cape` attaches to more than `fac` {#attachment}
 
 This is the part that surprises people arriving from other languages. `cape` is
-not the tail of a try statement — it attaches to **structured statements
-generally**. A loop can carry its own handler:
+not the tail of a try statement — it attaches to **structured statements generally**. A loop can carry its own handler:
 
 ```faber
 incipit {

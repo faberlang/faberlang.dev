@@ -33,8 +33,7 @@ radix --version
 ## Release notes {#notes}
 
 Minor release spanning **30 non-merge commits** (v0.64.0..v0.65.0). Two
-parallel campaign tracks landed in the same tag: **file namespace visibility
-and imports** (the `file-namespace-imports` factory goal, Milestones A–C)
+parallel campaign tracks landed in the same tag: **file namespace visibility and imports** (the `file-namespace-imports` factory goal, Milestones A–C)
 and the **MIR LLVM campaign** (Stages 0–2 establishing the shared
 pre-emission capability vocabulary and runtime-boundary classification
 ledger).

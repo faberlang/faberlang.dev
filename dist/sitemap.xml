@@ -261,7 +261,6 @@
   <url><loc>https://faberlang.dev/en-US/cheatsheet/errors.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/cheatsheet/generics.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/cheatsheet/imports.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/cheatsheet/locales.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/cheatsheet/loops.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/cheatsheet/testing.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/cheatsheet/types.html</loc></url>
@@ -509,6 +508,7 @@
   <url><loc>https://faberlang.dev/en-US/libraries/corpus.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/libraries/norma.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/libraries/triga.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/localization.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/open-source.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/reference/</loc></url>
   <url><loc>https://faberlang.dev/en-US/reference/design.html</loc></url>

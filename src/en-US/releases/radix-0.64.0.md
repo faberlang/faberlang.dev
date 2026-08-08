@@ -33,8 +33,7 @@ radix --version
 ## Release notes {#notes}
 
 A dense single-day release shipping **live sermo directional views**
-(`meus<T>`/`tuus<T>`), the **tuus cursor Phase 2 escape analysis**, **radix
-type parameter domains**, the full **`sparsa` sparse tensor type** through
+(`meus<T>`/`tuus<T>`), the **tuus cursor Phase 2 escape analysis**, **radix type parameter domains**, the full **`sparsa` sparse tensor type** through
 Phase G (docs/exempla), and the **legacy ad syntax removal** clean break.
 
 ### Scale

@@ -1,31 +1,31 @@
 <!DOCTYPE html>
-<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber 中的函式使用 functio 宣告，採用型別優先的參數語法，並使用字形回傳型別。"><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Functions and control flow — Faber"><meta property="og:description" content="Faber 中的函式使用 functio 宣告，採用型別優先的參數語法，並使用字形回傳型別。"><meta property="og:url" content="https://faberlang.dev/zh-Hant/language/functions.html"><meta property="og:locale" content="zh_TW"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/zh-Hant/language/functions.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Functions and control flow — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">渲染</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">zh-Hant</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/zh-Hant/start/install.html">安裝</a></nav></div></div><div class="page"><aside><a class="brand" href="/zh-Hant/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">語言文件</span></span></a><ul class="nav"><li><a href="/zh-Hant/">Home</a></li><li><a href="/zh-Hant/start/install.html">安裝</a></li><li><a href="/zh-Hant/cheatsheet/">Cheat sheet</a></li><li><a href="/zh-Hant/releases/">發行版</a></li><li><a href="/zh-Hant/open-source.html">Open source</a></li><li><a href="/zh-Hant/examples/">範例</a></li><li><a href="/zh-Hant/targets/">Target lanes</a></li></ul><div class="side-h">Start</div><ul class="nav"><li><a href="/zh-Hant/start/hello.html">Hello, world</a></li><li><a href="/zh-Hant/start/">快速導覽</a></li><li><a href="/zh-Hant/start/projects.html">Your first package</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/zh-Hant/language/" class="active">The language</a></li><li><a href="/zh-Hant/language/types.html">Types and values</a></li><li><a href="/zh-Hant/language/functions.html">Functions and flow</a></li><li><a href="/zh-Hant/language/errors.html">Errors and testing</a></li><li><a href="/zh-Hant/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/zh-Hant/language/reader-locales.html">Reader locales</a></li><li><a href="/zh-Hant/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/zh-Hant/toolchain/">Toolchain</a></li><li><a href="/zh-Hant/toolchain/cli.html">The faber CLI</a></li><li><a href="/zh-Hant/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/zh-Hant/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/zh-Hant/targets/">Target lanes</a></li><li><a href="/zh-Hant/toolchain/packages.html">Packages with Cista</a></li><li><a href="/zh-Hant/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/zh-Hant/libraries/">Libraries</a></li><li><a href="/zh-Hant/libraries/norma.html">Norma — stdlib</a></li><li><a href="/zh-Hant/libraries/triga.html">Triga — graphics</a></li><li><a href="/zh-Hant/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/zh-Hant/reference/">Reference</a></li><li><a href="/zh-Hant/reference/grammar.html">Grammar</a></li><li><a href="/zh-Hant/corpus/">Corpus index</a></li><li><a href="/zh-Hant/reference/design.html">Design notes</a></li><li><a href="/zh-Hant/open-source.html">Open source</a></li></ul><div class="side-h">面向智慧體</div><ul class="nav nav-compact"><li><a href="/llms.txt">智慧體索引</a></li><li><a href="/agents/index.md">智慧體指南</a></li><li><a href="/.well-known/agent-skills/index.json">智慧體技能</a></li><li><a href="/llms-full.txt">完整參考</a></li></ul><div class="side-h">Release 1.4.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/zh-Hant/releases/">全部發行版</a></li><li><a href="/zh-Hant/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">範式</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">型別</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">目標</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">授權</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Functions and control flow</h1><div class="content"><h2 id="functions">Functions<a class="anchor" href="#functions">#</a></h2><p>Faber 中的函式使用 <code class="kw">functio</code> 宣告，採用型別優先的參數語法，並使用字形回傳型別。</p><h3 id="basic-syntax">基本語法<a class="anchor" href="#basic-syntax">#</a></h3><pre class="faber-code"><code class="lang-faber">functio twice(numerus n) <span class="tok-op">→</span> numerus {
-    redde n
-}</code></pre><p>帶有錯誤通道：</p><pre class="faber-code"><code class="lang-faber">functio parse(textus input) <span class="tok-op">→</span> numerus ⇥ textus {
-    redde <span class="tok-nu">0</span>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber 中的函式使用 functio 宣告，採用型別優先的參數語法，並使用字形回傳型別。"><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Functions and control flow — Faber"><meta property="og:description" content="Faber 中的函式使用 functio 宣告，採用型別優先的參數語法，並使用字形回傳型別。"><meta property="og:url" content="https://faberlang.dev/zh-Hant/language/functions.html"><meta property="og:locale" content="zh_TW"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/zh-Hant/language/functions.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Functions and control flow — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">渲染</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">zh-Hant</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/zh-Hant/start/install.html">安裝</a></nav></div></div><div class="page"><aside><a class="brand" href="/zh-Hant/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">語言文件</span></span></a><ul class="nav"><li><a href="/zh-Hant/">Home</a></li><li><a href="/zh-Hant/start/install.html">安裝</a></li><li><a href="/zh-Hant/localization.html">Localization</a></li><li><a href="/zh-Hant/cheatsheet/">Cheat sheet</a></li><li><a href="/zh-Hant/releases/">發行版</a></li><li><a href="/zh-Hant/open-source.html">Open source</a></li><li><a href="/zh-Hant/examples/">範例</a></li><li><a href="/zh-Hant/targets/">Target lanes</a></li></ul><div class="side-h">Start</div><ul class="nav"><li><a href="/zh-Hant/start/hello.html">Hello, world</a></li><li><a href="/zh-Hant/start/">快速導覽</a></li><li><a href="/zh-Hant/start/projects.html">Your first package</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/zh-Hant/language/" class="active">The language</a></li><li><a href="/zh-Hant/language/types.html">Types and values</a></li><li><a href="/zh-Hant/language/functions.html">Functions and flow</a></li><li><a href="/zh-Hant/language/errors.html">Errors and testing</a></li><li><a href="/zh-Hant/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/zh-Hant/language/reader-locales.html">Reader locales</a></li><li><a href="/zh-Hant/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/zh-Hant/toolchain/">Toolchain</a></li><li><a href="/zh-Hant/toolchain/cli.html">The faber CLI</a></li><li><a href="/zh-Hant/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/zh-Hant/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/zh-Hant/targets/">Target lanes</a></li><li><a href="/zh-Hant/toolchain/packages.html">Packages with Cista</a></li><li><a href="/zh-Hant/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/zh-Hant/libraries/">Libraries</a></li><li><a href="/zh-Hant/libraries/norma.html">Norma — stdlib</a></li><li><a href="/zh-Hant/libraries/triga.html">Triga — graphics</a></li><li><a href="/zh-Hant/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/zh-Hant/reference/">Reference</a></li><li><a href="/zh-Hant/reference/grammar.html">Grammar</a></li><li><a href="/zh-Hant/corpus/">Corpus index</a></li><li><a href="/zh-Hant/reference/design.html">Design notes</a></li><li><a href="/zh-Hant/open-source.html">Open source</a></li></ul><div class="side-h">面向智慧體</div><ul class="nav nav-compact"><li><a href="/llms.txt">智慧體索引</a></li><li><a href="/agents/index.md">智慧體指南</a></li><li><a href="/.well-known/agent-skills/index.json">智慧體技能</a></li><li><a href="/llms-full.txt">完整參考</a></li></ul><div class="side-h">Release 1.4.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/zh-Hant/releases/">全部發行版</a></li><li><a href="/zh-Hant/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">範式</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">型別</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">目標</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">授權</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Functions and control flow</h1><div class="content"><h2 id="functions">Functions<a class="anchor" href="#functions">#</a></h2><p>Faber 中的函式使用 <code class="kw">functio</code> 宣告，採用型別優先的參數語法，並使用字形回傳型別。</p><h3 id="basic-syntax">基本語法<a class="anchor" href="#basic-syntax">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函式</span> twice(<span class="tok-kw">整數</span> n) <span class="tok-op">→</span> <span class="tok-kw">整數</span> {
+    <span class="tok-kw">傳回</span> n
+}</code></pre><p>帶有錯誤通道：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函式</span> parse(<span class="tok-kw">文字</span> input) <span class="tok-op">→</span> <span class="tok-kw">整數</span> ⇥ <span class="tok-kw">文字</span> {
+    <span class="tok-kw">傳回</span> <span class="tok-nu">0</span>
 }</code></pre><h3 id="examples">範例<a class="anchor" href="#examples">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># No parameters, no return</span>
-functio saluta() {
-    nota <span class="tok-st">"Salve, Mundus!"</span>
+<span class="tok-kw">函式</span> saluta() <span class="tok-op">→</span> <span class="tok-kw">空值</span> {
+    <span class="tok-kw">註記</span> <span class="tok-st">"Salve, Mundus!"</span>
 }
 
 <span class="tok-co"># Parameter, no explicit return</span>
-functio dic(textus verbum) {
-    nota verbum
+<span class="tok-kw">函式</span> dic(<span class="tok-kw">文字</span> verbum) <span class="tok-op">→</span> <span class="tok-kw">空值</span> {
+    <span class="tok-kw">註記</span> verbum
 }
 
 <span class="tok-co"># Parameter and return type</span>
-functio duplica(numerus n) <span class="tok-op">→</span> numerus {
-    redde n <span class="tok-op">*</span> <span class="tok-nu">2</span>
+<span class="tok-kw">函式</span> duplica(<span class="tok-kw">整數</span> n) <span class="tok-op">→</span> <span class="tok-kw">整數</span> {
+    <span class="tok-kw">傳回</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }
 
 <span class="tok-co"># Multiple parameters</span>
-functio adde(numerus a, numerus b) <span class="tok-op">→</span> numerus {
-    redde a <span class="tok-op">+</span> b
-}</code></pre><h3 id="return-values">回傳值<a class="anchor" href="#return-values">#</a></h3><p>使用 <code class="kw">redde</code> 進行一般回傳：</p><pre class="faber-code"><code class="lang-faber">functio porta(numerus x) <span class="tok-op">→</span> numerus {
-    si x <span class="tok-op">&lt;</span> <span class="tok-nu">0</span> ergo redde <span class="tok-nu">0</span>
-    redde x <span class="tok-op">*</span> <span class="tok-nu">2</span>
-}</code></pre><p><code class="typ">vacuum</code> 回傳型別的裸 <code class="kw">redde</code>：</p><pre class="faber-code"><code class="lang-faber">functio tace() <span class="tok-op">→</span> vacuum {
-    redde
+<span class="tok-kw">函式</span> adde(<span class="tok-kw">整數</span> a, <span class="tok-kw">整數</span> b) <span class="tok-op">→</span> <span class="tok-kw">整數</span> {
+    <span class="tok-kw">傳回</span> a <span class="tok-op">+</span> b
+}</code></pre><h3 id="return-values">回傳值<a class="anchor" href="#return-values">#</a></h3><p>使用 <code class="kw">redde</code> 進行一般回傳：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函式</span> porta(<span class="tok-kw">整數</span> x) <span class="tok-op">→</span> <span class="tok-kw">整數</span> {
+    <span class="tok-kw">若</span> x ≺ <span class="tok-nu">0</span> <span class="tok-kw">則</span> <span class="tok-kw">傳回</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">傳回</span> x <span class="tok-op">*</span> <span class="tok-nu">2</span>
+}</code></pre><p><code class="typ">vacuum</code> 回傳型別的裸 <code class="kw">redde</code>：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函式</span> tace() <span class="tok-op">→</span> <span class="tok-kw">空值</span> {
+    <span class="tok-kw">傳回</span>
 }</code></pre><h3 id="borrowing-and-mutability">借用與可變性（de、in、ex）<a class="anchor" href="#borrowing-and-mutability">#</a></h3><p>Faber 使用參數上的簡短介系詞標記值的傳遞方式：</p><div class="table-scroll"><table><thead><tr><th>標記</th><th>意圖</th><th>常見的 Rust 降低方式</th></tr></thead><tbody><tr><td><em>(無)</em></td><td>擁有值</td><td>以值傳遞的 <code>T</code></td></tr><tr><td><code class="kw">de</code></td><td>共用借用（唯讀）</td><td><code>&amp;T</code></td></tr><tr><td><code class="kw">in</code></td><td>可變借用</td><td><code>&amp;mut T</code></td></tr><tr><td><code class="kw">ex</code></td><td>消耗（移入被呼叫者）</td><td>以移動傳遞的 <code>T</code></td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-co"># Shared borrow</span>
 <span class="tok-kw">functio</span> imprime(<span class="tok-kw">de</span> <span class="tok-kw">textus</span> label) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> {
     <span class="tok-kw">nota</span> label
@@ -44,8 +44,8 @@ functio adde(numerus a, numerus b) <span class="tok-op">→</span> numerus {
 <span class="tok-co"># Owned</span>
 <span class="tok-kw">functio</span> salve(<span class="tok-kw">textus</span> <span class="tok-kw">nomen</span>) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
     <span class="tok-kw">redde</span> <span class="tok-st">"Salve, §!"</span>(<span class="tok-kw">nomen</span>)
-}</code></pre><p>相同的詞（<code class="kw">de</code>、<code class="kw">ex</code>）也會在其他結構中重複使用——不要將每個 <code class="kw">ex</code> 都解讀為「消耗」：</p><div class="table-scroll"><table><thead><tr><th>表面語法</th><th>角色</th></tr></thead><tbody><tr><td>參數上的 <code>de textus name</code></td><td>共用借用</td></tr><tr><td>參數上的 <code>in numerus count</code></td><td>可變借用</td></tr><tr><td>參數上的 <code>ex textus buffer</code></td><td>移入被呼叫者</td></tr><tr><td><code>itera ex items fixum item</code></td><td>迭代值</td></tr><tr><td><code>itera de tabula fixum key</code></td><td>迭代鍵</td></tr><tr><td><code>ex source fixum x, ceteri rest</code></td><td>解構欄位</td></tr><tr><td><code>importa ex &quot;path&quot;</code></td><td>從模組匯入</td></tr></tbody></table></div><h3 id="entry-point">進入點<a class="anchor" href="#entry-point">#</a></h3><p>程式的進入點是 <code class="kw">incipit</code>：</p><pre class="faber-code"><code class="lang-faber">incipit {
-    nota <span class="tok-st">"ingressus"</span>
+}</code></pre><p>相同的詞（<code class="kw">de</code>、<code class="kw">ex</code>）也會在其他結構中重複使用——不要將每個 <code class="kw">ex</code> 都解讀為「消耗」：</p><div class="table-scroll"><table><thead><tr><th>表面語法</th><th>角色</th></tr></thead><tbody><tr><td>參數上的 <code>de textus name</code></td><td>共用借用</td></tr><tr><td>參數上的 <code>in numerus count</code></td><td>可變借用</td></tr><tr><td>參數上的 <code>ex textus buffer</code></td><td>移入被呼叫者</td></tr><tr><td><code>itera ex items fixum item</code></td><td>迭代值</td></tr><tr><td><code>itera de tabula fixum key</code></td><td>迭代鍵</td></tr><tr><td><code>ex source fixum x, ceteri rest</code></td><td>解構欄位</td></tr><tr><td><code>importa ex &quot;path&quot;</code></td><td>從模組匯入</td></tr></tbody></table></div><h3 id="entry-point">進入點<a class="anchor" href="#entry-point">#</a></h3><p>程式的進入點是 <code class="kw">incipit</code>：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">註記</span> <span class="tok-st">"ingressus"</span>
 }</code></pre><h3 id="cli-entry-point">CLI 進入點<a class="anchor" href="#cli-entry-point">#</a></h3><p>對於 CLI 程式，<code>incipit argumenta</code> 會接收已解析的命令列引數：</p><pre class="faber-code"><code class="lang-faber locale=la">@ <span class="tok-kw">cli</span> <span class="tok-st">"echo"</span>
 @ <span class="tok-kw">descriptio</span> <span class="tok-st">"Prints text"</span>
 @ <span class="tok-kw">operandus</span> <span class="tok-kw">ceteri</span> <span class="tok-kw">textus</span> words
@@ -53,96 +53,118 @@ functio adde(numerus a, numerus b) <span class="tok-op">→</span> numerus {
     <span class="tok-kw">itera</span> <span class="tok-kw">ex</span> args.words <span class="tok-kw">fixum</span> word {
         <span class="tok-kw">nota</span> word
     }
-}</code></pre><h3 id="passing-mode-sponte">傳遞模式——<code>sponte</code><a class="anchor" href="#passing-mode-sponte">#</a></h3><p><code>sponte</code> 標記可由呼叫者省略的參數：</p><pre class="faber-code"><code class="lang-faber">functio connect(textus host, numerus port sponte) <span class="tok-op">→</span> vacuum {
-    nota host
-}</code></pre><h2 id="control-flow">Control flow<a class="anchor" href="#control-flow">#</a></h2><h3 id="conditional-branching">條件分支<a class="anchor" href="#conditional-branching">#</a></h3><h4 id="si-sin-secus">si / sin / secus<a class="anchor" href="#si-sin-secus">#</a></h4><pre class="faber-code"><code class="lang-faber">incipit {
-    fixum _ condition <span class="tok-op">←</span> verum
-    si condition {
+}</code></pre><h3 id="passing-mode-sponte">傳遞模式——<code>sponte</code><a class="anchor" href="#passing-mode-sponte">#</a></h3><p><code>sponte</code> 標記可由呼叫者省略的參數：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函式</span> connect(<span class="tok-kw">文字</span> host, <span class="tok-kw">整數</span> port <span class="tok-kw">可選</span>) <span class="tok-op">→</span> <span class="tok-kw">空值</span> {
+    <span class="tok-kw">註記</span> host
+}</code></pre><h2 id="control-flow">Control flow<a class="anchor" href="#control-flow">#</a></h2><h3 id="conditional-branching">條件分支<a class="anchor" href="#conditional-branching">#</a></h3><h4 id="si-sin-secus">si / sin / secus<a class="anchor" href="#si-sin-secus">#</a></h4><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">定值</span> <span class="tok-kw">布林</span> condition <span class="tok-op">←</span> <span class="tok-kw">真</span>
+    <span class="tok-kw">若</span> condition {
 <span class="tok-co">        # truthy branch</span>
-        nota <span class="tok-st">"matched"</span>
+        <span class="tok-kw">註記</span> <span class="tok-st">"matched"</span>
     }
-}</code></pre><p>包含 else-if 與 else：</p><pre class="faber-code"><code class="lang-faber">incipit {
-    fixum _ score <span class="tok-op">←</span> <span class="tok-nu">85</span>
-    si score <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
-        nota <span class="tok-st">"A"</span>
-    } sin score <span class="tok-op">≥</span> <span class="tok-nu">80</span> {
-        nota <span class="tok-st">"B"</span>
-    } secus {
-        nota <span class="tok-st">"C"</span>
+}</code></pre><p>包含 else-if 與 else：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">定值</span> <span class="tok-kw">整數</span> score <span class="tok-op">←</span> <span class="tok-nu">85</span>
+    <span class="tok-kw">若</span> score <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
+        <span class="tok-kw">註記</span> <span class="tok-st">"A"</span>
     }
-}</code></pre><h4 id="compact-branch-with-ergo">使用 ergo 的精簡分支<a class="anchor" href="#compact-branch-with-ergo">#</a></h4><p>單一敘述的分支主體使用 <code>ergo</code>：</p><pre class="faber-code"><code class="lang-faber">functio classify(numerus b, bivalens ready, numerus value) <span class="tok-op">→</span> numerus <span class="tok-op">∪</span> nihil {
-    si b <span class="tok-op">≡</span> <span class="tok-nu">0</span> ergo redde nihil
-    si ready ergo redde value
-    redde nihil
-}</code></pre><h3 id="iteration">迭代<a class="anchor" href="#iteration">#</a></h3><h4 id="values-itera-ex">值 — itera ex<a class="anchor" href="#values-itera-ex">#</a></h4><pre class="faber-code"><code class="lang-faber">functio inveni(lista<span class="tok-op">&lt;</span>numerus<span class="tok-op">&gt;</span> items, numerus target) <span class="tok-op">→</span> numerus <span class="tok-op">∪</span> nihil {
-    itera ex items fixum item {
-        si item <span class="tok-op">≡</span> target ergo redde item
+    <span class="tok-kw">否則若</span> score <span class="tok-op">≥</span> <span class="tok-nu">80</span> {
+        <span class="tok-kw">註記</span> <span class="tok-st">"B"</span>
     }
-    redde nihil
-}</code></pre><h4 id="keys-itera-de">鍵 — itera de<a class="anchor" href="#keys-itera-de">#</a></h4><pre class="faber-code"><code class="lang-faber">incipit {
-    fixum _ tabula <span class="tok-op">←</span> { <span class="tok-st">"unus"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"duo"</span><span class="tok-op">:</span> <span class="tok-nu">2</span> }
-    itera de tabula fixum key {
-        nota key
+    <span class="tok-kw">否則</span> {
+        <span class="tok-kw">註記</span> <span class="tok-st">"C"</span>
     }
-}</code></pre><h4 id="range-itera-ab">範圍 — itera ab<a class="anchor" href="#range-itera-ab">#</a></h4><pre class="faber-code"><code class="lang-faber">itera ab <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> fixum i {
-    nota i
-}</code></pre><h3 id="while-loops">While 迴圈<a class="anchor" href="#while-loops">#</a></h3><pre class="faber-code"><code class="lang-faber">incipit {
-    fixum _ condition <span class="tok-op">←</span> verum
-    dum condition {
+}</code></pre><h4 id="compact-branch-with-ergo">使用 ergo 的精簡分支<a class="anchor" href="#compact-branch-with-ergo">#</a></h4><p>單一敘述的分支主體使用 <code>ergo</code>：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函式</span> classify(<span class="tok-kw">整數</span> b, <span class="tok-kw">布林</span> ready, <span class="tok-kw">整數</span> value) <span class="tok-op">→</span> <span class="tok-kw">整數</span> <span class="tok-op">∪</span> <span class="tok-kw">空</span> {
+    <span class="tok-kw">若</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> <span class="tok-kw">則</span> <span class="tok-kw">傳回</span> <span class="tok-kw">空</span>
+    <span class="tok-kw">若</span> ready <span class="tok-kw">則</span> <span class="tok-kw">傳回</span> value
+    <span class="tok-kw">傳回</span> <span class="tok-kw">空</span>
+}</code></pre><h3 id="iteration">迭代<a class="anchor" href="#iteration">#</a></h3><h4 id="values-itera-ex">值 — itera ex<a class="anchor" href="#values-itera-ex">#</a></h4><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函式</span> inveni(<span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整數</span><span class="tok-op">&gt;</span> items, <span class="tok-kw">整數</span> target) <span class="tok-op">→</span> <span class="tok-kw">整數</span> <span class="tok-op">∪</span> <span class="tok-kw">空</span> {
+    <span class="tok-kw">遍歷</span> <span class="tok-kw">取自</span> items <span class="tok-kw">定值</span> item {
+        <span class="tok-kw">若</span> item <span class="tok-op">≡</span> target <span class="tok-kw">則</span> <span class="tok-kw">傳回</span> item
+    }
+    <span class="tok-kw">傳回</span> <span class="tok-kw">空</span>
+}</code></pre><h4 id="keys-itera-de">鍵 — itera de<a class="anchor" href="#keys-itera-de">#</a></h4><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">定值</span> <span class="tok-kw">JSON</span> tabula <span class="tok-op">←</span> { <span class="tok-st">"unus"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"duo"</span><span class="tok-op">:</span> <span class="tok-nu">2</span> }
+    <span class="tok-kw">遍歷</span> <span class="tok-kw">從</span> tabula <span class="tok-kw">定值</span> key {
+        <span class="tok-kw">註記</span> key
+    }
+}</code></pre><h4 id="range-itera-ab">範圍 — itera ab<a class="anchor" href="#range-itera-ab">#</a></h4><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">遍歷</span> <span class="tok-kw">範圍</span> <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> <span class="tok-kw">定值</span> i {
+        <span class="tok-kw">註記</span> i
+    }
+}</code></pre><h3 id="while-loops">While 迴圈<a class="anchor" href="#while-loops">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">定值</span> <span class="tok-kw">布林</span> condition <span class="tok-op">←</span> <span class="tok-kw">真</span>
+    <span class="tok-kw">當</span> condition {
 <span class="tok-co">        # body</span>
-        tacet
+        <span class="tok-kw">靜默</span>
     }
 }</code></pre><h3 id="guard-sections-custodi">保護區段 — custodi<a class="anchor" href="#guard-sections-custodi">#</a></h3><p><code>custodi</code> 會在函式的主要主體之前，集中處理提早退出的檢查。
-每個 <code class="kw">si</code> 子句都是依序執行的保護條件：</p><pre class="faber-code"><code class="lang-faber">functio divide(numerus a, numerus b) <span class="tok-op">→</span> numerus {
-    custodi {
-        si b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
-            redde <span class="tok-nu">0</span>
+每個 <code class="kw">si</code> 子句都是依序執行的保護條件：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函式</span> divide(<span class="tok-kw">整數</span> a, <span class="tok-kw">整數</span> b) <span class="tok-op">→</span> <span class="tok-kw">整數</span> {
+    <span class="tok-kw">守衛</span> {
+        <span class="tok-kw">若</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+            <span class="tok-kw">傳回</span> <span class="tok-nu">0</span>
         }
     }
-    redde a <span class="tok-op">/</span> b
-}</code></pre><p>在 v1 中，<code>custodi</code> 不可中斷——它是防護欄，而不是迴圈。</p><h3 id="pattern-matching-elige">模式比對 — elige<a class="anchor" href="#pattern-matching-elige">#</a></h3><p><code class="kw">elige</code> 會選取第一個符合的分支：</p><pre class="faber-code"><code class="lang-faber">functio describe(numerus value) <span class="tok-op">→</span> textus {
-    elige value {
-        casu <span class="tok-nu">1</span> { redde <span class="tok-st">"one"</span> }
-        casu <span class="tok-nu">2</span> { redde <span class="tok-st">"two"</span> }
-        ceterum { redde <span class="tok-st">"many"</span> }
+    <span class="tok-kw">傳回</span> a <span class="tok-op">/</span> b
+}</code></pre><p>在 v1 中，<code>custodi</code> 不可中斷——它是防護欄，而不是迴圈。</p><h3 id="pattern-matching-elige">模式比對 — elige<a class="anchor" href="#pattern-matching-elige">#</a></h3><p><code class="kw">elige</code> 會選取第一個符合的分支：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函式</span> describe(<span class="tok-kw">整數</span> value) <span class="tok-op">→</span> <span class="tok-kw">文字</span> {
+    <span class="tok-kw">比對</span> value {
+        <span class="tok-kw">分支</span> <span class="tok-nu">1</span> {
+            <span class="tok-kw">傳回</span> <span class="tok-st">"one"</span>
+        }
+        <span class="tok-kw">分支</span> <span class="tok-nu">2</span> {
+            <span class="tok-kw">傳回</span> <span class="tok-st">"two"</span>
+        }
+        <span class="tok-kw">分支</span> _ {
+            <span class="tok-kw">傳回</span> <span class="tok-st">"many"</span>
+        }
     }
-}</code></pre><h3 id="tagged-union-matching-discerne">標記聯集比對 — discerne<a class="anchor" href="#tagged-union-matching-discerne">#</a></h3><p><code class="kw">discerne</code> 會完整比對 <code>discretio</code> 的各個變體：</p><pre class="faber-code"><code class="lang-faber">discretio Exitus {
-    Bonum { textus nuntius },
-    Malum { textus causa }
+}</code></pre><h3 id="tagged-union-matching-discerne">標記聯集比對 — discerne<a class="anchor" href="#tagged-union-matching-discerne">#</a></h3><p><code class="kw">discerne</code> 會完整比對 <code>discretio</code> 的各個變體：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">分支聯集</span> Exitus {
+    Bonum {
+        <span class="tok-kw">文字</span> nuntius
+    },
+    Malum {
+        <span class="tok-kw">文字</span> causa
+    },
 }
 
-functio refer(Exitus eventus) <span class="tok-op">→</span> textus {
-    discerne eventus {
-        casu Bonum fixum nuntius { redde nuntius }
-        casu Malum fixum causa { redde <span class="tok-st">"Error: §"</span>(causa) }
+<span class="tok-kw">函式</span> refer(Exitus eventus) <span class="tok-op">→</span> <span class="tok-kw">文字</span> {
+    <span class="tok-kw">比對</span> eventus {
+        <span class="tok-kw">分支</span> Bonum <span class="tok-kw">定值</span> nuntius {
+            <span class="tok-kw">傳回</span> nuntius
+        }
+        <span class="tok-kw">分支</span> Malum <span class="tok-kw">定值</span> causa {
+            <span class="tok-kw">傳回</span> <span class="tok-st">"Error: §"</span>(causa)
+        }
     }
-}</code></pre><h3 id="try-blocks-fac-cape">Try 區塊 — fac / cape<a class="anchor" href="#try-blocks-fac-cape">#</a></h3><p><code class="kw">fac</code> 開啟一個可能拋出例外的區塊，而 <code class="kw">cape</code> 負責復原：</p><pre class="faber-code"><code class="lang-faber">functio divide(numerus a, numerus b) <span class="tok-op">→</span> numerus {
-    redde a <span class="tok-op">/</span> b
+}</code></pre><h3 id="try-blocks-fac-cape">Try 區塊 — fac / cape<a class="anchor" href="#try-blocks-fac-cape">#</a></h3><p><code class="kw">fac</code> 開啟一個可能拋出例外的區塊，而 <code class="kw">cape</code> 負責復原：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函式</span> divide(<span class="tok-kw">整數</span> a, <span class="tok-kw">整數</span> b) <span class="tok-op">→</span> <span class="tok-kw">整數</span> {
+    <span class="tok-kw">傳回</span> a <span class="tok-op">/</span> b
 }
 
-functio tutus(numerus a, numerus b) <span class="tok-op">→</span> numerus {
-    fac {
-        redde divide(a, b)
-    } cape err {
-        mone err
-        redde <span class="tok-nu">0</span>
+<span class="tok-kw">函式</span> tutus(<span class="tok-kw">整數</span> a, <span class="tok-kw">整數</span> b) <span class="tok-op">→</span> <span class="tok-kw">整數</span> {
+    <span class="tok-kw">執行</span> {
+        <span class="tok-kw">傳回</span> divide(a, b)
     }
-}</code></pre><h2 id="generics">Generics<a class="anchor" href="#generics">#</a></h2><p>函式、型別別名、<code class="kw">genus</code> 與 <code>implendum</code> 接受使用 <code>&lt;T&gt;</code> 語法的型別參數。</p><h3 id="generic-functions">泛型函式<a class="anchor" href="#generic-functions">#</a></h3><pre class="faber-code"><code class="lang-faber">functio identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T valor) <span class="tok-op">→</span> T {
-    redde valor
+    <span class="tok-kw">捕捉</span> err {
+        <span class="tok-kw">警告</span> err
+        <span class="tok-kw">傳回</span> <span class="tok-nu">0</span>
+    }
+}</code></pre><h2 id="generics">Generics<a class="anchor" href="#generics">#</a></h2><p>函式、型別別名、<code class="kw">genus</code> 與 <code>implendum</code> 接受使用 <code>&lt;T&gt;</code> 語法的型別參數。</p><h3 id="generic-functions">泛型函式<a class="anchor" href="#generic-functions">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函式</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T valor) <span class="tok-op">→</span> T {
+    <span class="tok-kw">傳回</span> valor
 }
 
-functio primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(lista<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> nihil {
-    redde res.primus()
-}</code></pre><h3 id="explicit-callsite-type-arguments">明確的呼叫點型別引數<a class="anchor" href="#explicit-callsite-type-arguments">#</a></h3><pre class="faber-code"><code class="lang-faber">functio identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T valor) <span class="tok-op">→</span> T { redde valor }
-
-functio primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(lista<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> nihil {
-    redde nihil
+<span class="tok-kw">函式</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">列表</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> <span class="tok-kw">空</span> {
+    <span class="tok-kw">傳回</span> res.primus()
+}</code></pre><h3 id="explicit-callsite-type-arguments">明確的呼叫點型別引數<a class="anchor" href="#explicit-callsite-type-arguments">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函式</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T valor) <span class="tok-op">→</span> T {
+    <span class="tok-kw">傳回</span> valor
 }
 
-fixum _ value <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span>numerus<span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
-fixum _ maybe <span class="tok-op">←</span> primum<span class="tok-op">&lt;</span>numerus<span class="tok-op">&gt;</span>([value])</code></pre><h3 id="generic-genus">泛型 <code class="kw">genus</code><a class="anchor" href="#generic-genus">#</a></h3><pre class="faber-code"><code class="lang-faber">genus Par<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> {
+<span class="tok-kw">函式</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">列表</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> <span class="tok-kw">空</span> {
+    <span class="tok-kw">傳回</span> <span class="tok-kw">空</span>
+}
+
+<span class="tok-kw">定值</span> <span class="tok-kw">整數</span> value <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">整數</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
+
+<span class="tok-kw">定值</span> <span class="tok-kw">整數</span> <span class="tok-op">∪</span> <span class="tok-kw">空</span> maybe <span class="tok-op">←</span> primum<span class="tok-op">&lt;</span><span class="tok-kw">整數</span><span class="tok-op">&gt;</span>([value])</code></pre><h3 id="generic-genus">泛型 <code class="kw">genus</code><a class="anchor" href="#generic-genus">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">類型</span> Par<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> {
     T primus
     T secundus
-}</code></pre><h3 id="size-parameters">大小參數<a class="anchor" href="#size-parameters">#</a></h3><p><code>magnitudo</code> 會在泛型參數列表中宣告大小／索引參數：</p><pre class="faber-code"><code class="lang-faber">functio crea<span class="tok-op">&lt;</span>T, magnitudo N<span class="tok-op">&gt;</span>() <span class="tok-op">→</span> tensor<span class="tok-op">&lt;</span>T, [N]<span class="tok-op">&gt;</span> {
-    redde vacua
+}</code></pre><h3 id="size-parameters">大小參數<a class="anchor" href="#size-parameters">#</a></h3><p><code>magnitudo</code> 會在泛型參數列表中宣告大小／索引參數：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函式</span> crea<span class="tok-op">&lt;</span>T, <span class="tok-kw">尺寸</span> N<span class="tok-op">&gt;</span>() <span class="tok-op">→</span> <span class="tok-kw">張量</span><span class="tok-op">&lt;</span>T, [N]<span class="tok-op">&gt;</span> {
+    <span class="tok-kw">傳回</span> <span class="tok-kw">空集</span>
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#functions">Functions</a></li><li class="toc-3"><a href="#basic-syntax">基本語法</a></li><li class="toc-3"><a href="#examples">範例</a></li><li class="toc-3"><a href="#return-values">回傳值</a></li><li class="toc-3"><a href="#borrowing-and-mutability">借用與可變性（de、in、ex）</a></li><li class="toc-3"><a href="#entry-point">進入點</a></li><li class="toc-3"><a href="#cli-entry-point">CLI 進入點</a></li><li class="toc-3"><a href="#passing-mode-sponte">傳遞模式——sponte</a></li><li class="toc-2"><a href="#control-flow">Control flow</a></li><li class="toc-3"><a href="#conditional-branching">條件分支</a></li><li class="toc-3"><a href="#iteration">迭代</a></li><li class="toc-3"><a href="#while-loops">While 迴圈</a></li><li class="toc-3"><a href="#guard-sections-custodi">保護區段 — custodi</a></li><li class="toc-3"><a href="#pattern-matching-elige">模式比對 — elige</a></li><li class="toc-3"><a href="#tagged-union-matching-discerne">標記聯集比對 — discerne</a></li><li class="toc-3"><a href="#try-blocks-fac-cape">Try 區塊 — fac / cape</a></li><li class="toc-2"><a href="#generics">Generics</a></li><li class="toc-3"><a href="#generic-functions">泛型函式</a></li><li class="toc-3"><a href="#explicit-callsite-type-arguments">明確的呼叫點型別引數</a></li><li class="toc-3"><a href="#generic-genus">泛型 genus</a></li><li class="toc-3"><a href="#size-parameters">大小參數</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">來源</span><ul><li>[</li></ul></div></footer></div></body></html>

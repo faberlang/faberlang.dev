@@ -43,21 +43,42 @@ def is_fluid_faber(info: str) -> bool:
     return True
 
 
+def stage_reader_packs(faber: str) -> None:
+    """Make reader packs resolvable beside the faber binary.
+
+    `faber format --locale` looks for share/faber/locale/<X>/pack.toml relative
+    to its own executable, and a workspace build has no such directory. The
+    packs live in the radix tree; link them into place. Writes only inside
+    faber/target/, which is build output.
+    """
+    binary = Path(faber).resolve()
+    if not binary.is_file():
+        return
+    workspace = binary.parent.parent.parent.parent
+    src = workspace / "radix" / "stdlib" / "locale"
+    if not src.is_dir():
+        return
+    dest = binary.parent.parent / "share" / "faber" / "locale"
+    dest.mkdir(parents=True, exist_ok=True)
+    for pack in sorted(src.iterdir()):
+        if not (pack / "pack.toml").is_file():
+            continue
+        link = dest / pack.name
+        if not link.exists():
+            link.symlink_to(pack, target_is_directory=True)
+
+
 def transcode_faber(source: str, locale: str, faber: str, label: str) -> str:
     if locale == "la":
         return source
 
-    # When FABER_LOCALIZE points to the radix binary, use --locale-pack instead
-    # of --locale (radix takes pack paths, faber takes locale names).
-    faber_path = Path(faber).resolve()
-    if faber_path.name == "radix":
-        workspace_root = faber_path.parent.parent.parent.parent  # radix/target/debug/radix -> faberlang/
-        reader_pack = workspace_root / "radix" / "stdlib" / "locale" / locale / "pack.toml"
-        args = [faber, "emit", "-t", "faber", f"--locale-pack={reader_pack}"]
-        sys.stderr.write(f"[localize] radix path: {faber}, pack: {reader_pack}\n")
-    else:
-        args = [faber, "emit", "-t", "faber", f"--locale={locale}"]
-        sys.stderr.write(f"[localize] faber path: {faber}, locale: {locale}\n")
+    # `faber format --locale` is the only thing that renders source INTO a
+    # reader locale. `radix emit -t faber` is *canonical* re-emission — Latin by
+    # definition — and its --locale flag declares what the input is written in,
+    # not what to print. Routing through radix therefore returned Latin while
+    # reporting success, which is why localized doc pages carried untranslated
+    # fences for as long as they did.
+    args = [faber, "format", "--locale", locale, "--stdout"]
 
     with tempfile.TemporaryDirectory(prefix="speculum-locale-") as tmp:
         path = Path(tmp) / "fence.fab"
@@ -108,6 +129,7 @@ def localize_text(text: str, locale: str, faber: str, label: str) -> str:
 
 def main() -> int:
     args = parse_args()
+    stage_reader_packs(args.faber)
     source = args.source.resolve()
     output = args.output.resolve()
     for md in sorted(source.rglob("*.md")):

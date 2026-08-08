@@ -84,8 +84,7 @@ Source → Lex → Parse → Collect → Resolve → Lower → Typecheck → Ana
 | wgsl-text | **Device-kernel subset** shader text (WGSL) for WebGPU hosts. |
 | sexp | Validation / Racket-oriented dump. |
 
-**Do not read Metal/WGSL “2% capable” rows on the
-[target matrix](/toolchain/target-matrix.html) as product completeness.** Those
+**Do not read Metal/WGSL “2% capable” rows on the [target matrix](/toolchain/target-matrix.html) as product completeness.** Those
 rows score *full-language corpus terms* against a *kernel-only* emitter. The
 accepted dual-backend training path is proven on **Metal and CUDA** through
 `faber run --backend metal|cuda` (see [device execution](#device-execution)).

@@ -58,7 +58,7 @@ assignment reads right-to-left into the name. `nota` prints.
 | [Errors and catching](/cheatsheet/errors.html) | The `⇥` error channel, `iace`, and `cape` on many block forms |
 | [Conversions](/cheatsheet/conversions.html) | `↦` conversion, recovery with `⇥`, conversion vs casting |
 | [Imports](/cheatsheet/imports.html) | Standard library, local files, aliasing, `publica` vs `privata` |
-| [Reader locales](/cheatsheet/locales.html) | The same program in eight human languages, side by side |
+| [Reader locales](/localization.html) | The same program in eight human languages, side by side |
 | [Testing](/cheatsheet/testing.html) | `probandum`, `proba`, `adfirma`, tags, running tests |
 | [Commands](/cheatsheet/commands.html) | The daily `faber` CLI loop |
 

@@ -43,11 +43,12 @@ FABER="${FABER:-faber}"
 # pin separately when reader packs are newer than the installed faber's
 # pack validator (e.g. FABER_LOCALIZE=path/to/workspace-faber).
 FABER_LOCALIZE="${FABER_LOCALIZE:-$FABER}"
-# FIXME: faber 1.2.0 reader-locale validation is stale; use radix directly
-# until the packs are regenerated or faber is rebuilt against current radix.
-RADIX_BINARY="${WORKSPACE_DIR}/radix/target/debug/radix"
-if [ -x "$RADIX_BINARY" ] && [ "${FABER_LOCALIZE}" = "$FABER" ]; then
-    FABER_LOCALIZE="$RADIX_BINARY"
+# Rendering source INTO a reader locale is `faber format --locale`; radix
+# cannot do it (`emit -t faber` is canonical Latin by definition). Prefer the
+# workspace build, which is current with the packs.
+WORKSPACE_FABER="${WORKSPACE_DIR}/faber/target/release/faber"
+if [ -x "$WORKSPACE_FABER" ] && [ "${FABER_LOCALIZE}" = "$FABER" ]; then
+    FABER_LOCALIZE="$WORKSPACE_FABER"
 fi
 BUILD_DIR="${GENERATOR_DIR}/target/faber"
 
@@ -205,9 +206,9 @@ if [ "$FULL_SITE" = true ]; then
     # sibling checkouts. All of these write src/ and so must run before the
     # render. Each degrades to leaving its committed output alone when its
     # inputs are absent, so a checkout without siblings still builds.
-    echo "[0/10] Generating target lanes, examples, and locale cheat sheet..."
+    echo "[0/10] Generating target lanes, examples, and localization..."
     "$PYTHON" "${SCRIPT_DIR}/generate-target-lanes.py"
-    "$PYTHON" "${SCRIPT_DIR}/generate-locale-cheatsheet.py"
+    "$PYTHON" "${SCRIPT_DIR}/generate-localization.py"
     "$PYTHON" "${SCRIPT_DIR}/generate-examples.py"
 
     # Releases is NOT regenerated here: it needs `gh` and network access, and a

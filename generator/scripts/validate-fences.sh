@@ -49,16 +49,19 @@ fi
 RADIX="${RADIX:-radix}"
 LOCALE_PACK_DIR="${WORKSPACE_VF}/radix/stdlib/locale"
 
-# Build the reader-pack argument for a fence's declared locale. Latin is the
+# Build the code-locale argument for a fence's declared locale. Latin is the
 # canonical surface and needs no pack.
+#
+# `radix check` takes `--locale <name>` and resolves the pack itself. Do not
+# reach for `--diagnostics-locale`: that one only renders *messages* in a
+# locale and will happily fail to lex the source it is complaining about.
 radix_locale_args() {
     local locale="$1"
     if [ "$locale" = "la" ]; then
         return 0
     fi
-    local pack="${LOCALE_PACK_DIR}/${locale}/pack.toml"
-    if [ -f "$pack" ]; then
-        printf -- '--locale-pack=%s' "$pack"
+    if [ -f "${LOCALE_PACK_DIR}/${locale}/pack.toml" ]; then
+        printf -- '--locale=%s' "$locale"
     fi
 }
 TMPDIR_BASE="$(mktemp -d)"

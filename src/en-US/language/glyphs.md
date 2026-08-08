@@ -20,6 +20,7 @@ of source glyphs recognised by the lexer.
 | Glyph | Meaning |
 |-------|---------|
 | `←` | Runtime binding, reassignment, and mutation |
+| `=` | Compile-time assignment — values known while compiling |
 | `→` | Function return type |
 | `⇥` | Alternate exit — error-channel type or inline conversion recovery |
 | `∴` | Clausura joint — connects closure body to signature (`(a, b) → T ∴ a + b`) |
@@ -51,8 +52,37 @@ of source glyphs recognised by the lexer.
 
 | Glyph | Meaning |
 |-------|---------|
-| `←` | The only assignment operator in expressions |
+| `←` | Runtime assignment — the only assignment operator in expressions |
+| `=` | Compile-time assignment — a value fixed and known while compiling |
 | `⊕` `⊖` | Postfix increment/decrement statements (mutable numerus only) |
+
+Both are assignment. They differ in **when** the value is decided.
+
+`←` stores a value at execution time: bindings, reassignment, mutation. `=`
+attaches a value the compiler already knows — field shape inside a literal,
+declaration metadata, annotation fields. Most languages spell both with `=`
+and leave the reader to infer which is meant; Faber splits them, so the glyph
+itself tells you whether anything happens at runtime.
+
+```faber
+genus Punctum {
+    numerus x
+    numerus y
+}
+
+incipit {
+    fixum _ p ← Punctum { x = 10, y = 20 }
+    varia numerus count ← 0
+    count ← count + 1
+    nota p.x, count
+}
+```
+
+`p ← …` runs. `x = 10` does not — it is the shape of the value being built,
+settled before the program starts.
+
+Worked through in full under
+[The binding convention matters](#the-binding-convention-matters).
 
 ### Optional chaining and non-null assertion {#optional-chaining-and-non-null-assertion}
 
@@ -276,8 +306,7 @@ each distinct semantic job — no overloading.
 
 *Multiple parseable surfaces, one semantic shape.*
 
-A recurring pattern in Faber's design: the language defines **one canonical
-spelling** for each construct, but accepts multiple **sugar spellings**
+A recurring pattern in Faber's design: the language defines **one canonical spelling** for each construct, but accepts multiple **sugar spellings**
 that are semantically identical. The compiler does not prefer one over the
 other — both parse to the same AST node. The formatter decides which spelling
 to emit based on context and mode.

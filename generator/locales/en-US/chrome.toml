@@ -11,6 +11,7 @@ first_package = "Your first package"
 [sidebar_primary]
 home = "Home"
 install = "Install"
+localization = "Localization"
 cheatsheet = "Cheat sheet"
 releases = "Releases"
 open_source = "Open source"

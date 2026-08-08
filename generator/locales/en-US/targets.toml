@@ -112,8 +112,7 @@ corpus % tables below.
 **Status of measurement (2026-08-07):** dual-backend training proofs and local
 device fixtures are accepted on named machines. A multi-card CUDA verification
 matrix (ephemeral cloud pods) is **active and expanding** — more rows land as
-RunPod lanes and Faber package fixtures close. Numbers here are **evidence
-snapshots**, not a permanent completion score.
+RunPod lanes and Faber package fixtures close. Numbers here are **evidence snapshots**, not a permanent completion score.
 
 ### Product backends
 
@@ -158,8 +157,7 @@ not own. This is **verification infrastructure**, not a new product backend.
 
 **Honesty bounds on the cloud matrix:**
 
-1. The **first** multi-card receipt was largely a **per-pod compile+run
-   viability** probe (same small CUDA program, pod-local toolchain), not a claim
+1. The **first** multi-card receipt was largely a **per-pod compile+run viability** probe (same small CUDA program, pod-local toolchain), not a claim
    that every card already ran the full dual-backend MLP oracle.
 2. **Same-artifact** Faber package portability (`device-summa` / training
    fixtures on one PTX blob across cards) is the follow-on track — active now.

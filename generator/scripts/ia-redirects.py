@@ -32,6 +32,9 @@ MAP: list[tuple[str, str]] = [
     # start/examples → the Examples section, which carries real package
     # source on the site instead of describing it and linking to GitHub
     ("/start/examples.html", "/examples/"),
+    # the cheat sheet's reader-locale page became its own top-level section,
+    # with the selection rationale the buried version never carried
+    ("/cheatsheet/locales.html", "/localization.html"),
     # syntax/* → language/*
     ("/syntax/types.html", "/language/types.html"),
     ("/syntax/variables.html", "/language/types.html"),

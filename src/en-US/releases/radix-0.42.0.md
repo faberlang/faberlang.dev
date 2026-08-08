@@ -32,8 +32,7 @@ radix --version
 
 ## Release notes {#notes}
 
-Synthetic release spanning **19 commits** (`v0.41.0..v0.42.0`). The tag theme is **Rust
-keyword runnability factory and `sit`/binding ergonomics** — the first focused campaign
+Synthetic release spanning **19 commits** (`v0.41.0..v0.42.0`). The tag theme is **Rust keyword runnability factory and `sit`/binding ergonomics** — the first focused campaign
 to drive Faber exempla through Rust emit, rustc, and run, paired with the introduction
 of `sit` as shorthand sugar for inferred immutable bindings.
 
