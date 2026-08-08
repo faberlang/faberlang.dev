@@ -82,10 +82,10 @@ incipit {
 เริ่ม {
     คงที่ รายการ<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
     คงที่ รายการ<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    คงที่ tensor<f32, []> seed ← vacua
-    คงที่ tensor<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
-    คงที่ tensor<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
-    คงที่ tensor<f32, [2, 4]> product ← a.matmul(b)
+    คงที่ เทนเซอร์<f32, []> seed ← เซตว่าง
+    คงที่ เทนเซอร์<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
+    คงที่ เทนเซอร์<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
+    คงที่ เทนเซอร์<f32, [2, 4]> product ← a.matmul(b)
     คงที่ f32 mean ← product.media()
     บันทึก mean
 }
@@ -101,10 +101,10 @@ incipit {
 入口 {
     常量 列表<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
     常量 列表<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    常量 tensor<f32, []> seed ← vacua
-    常量 tensor<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
-    常量 tensor<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
-    常量 tensor<f32, [2, 4]> product ← a.matmul(b)
+    常量 张量<f32, []> seed ← 空集
+    常量 张量<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
+    常量 张量<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
+    常量 张量<f32, [2, 4]> product ← a.matmul(b)
     常量 f32 mean ← product.media()
     显示 mean
 }
@@ -120,10 +120,10 @@ incipit {
 入口 {
     定值 列表<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
     定值 列表<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    定值 tensor<f32, []> seed ← vacua
-    定值 tensor<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
-    定值 tensor<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
-    定值 tensor<f32, [2, 4]> product ← a.matmul(b)
+    定值 張量<f32, []> seed ← 空集
+    定值 張量<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
+    定值 張量<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
+    定值 張量<f32, [2, 4]> product ← a.matmul(b)
     定值 f32 mean ← product.media()
     註記 mean
 }
@@ -139,10 +139,10 @@ incipit {
 bắt_đầu {
     hằng danh_sách<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
     hằng danh_sách<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    hằng tensor<f32, []> seed ← vacua
-    hằng tensor<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
-    hằng tensor<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
-    hằng tensor<f32, [2, 4]> product ← a.matmul(b)
+    hằng ten_xo<f32, []> seed ← tập_rỗng
+    hằng ten_xo<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
+    hằng ten_xo<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
+    hằng ten_xo<f32, [2, 4]> product ← a.matmul(b)
     hằng f32 mean ← product.media()
     ghi_chú mean
 }
@@ -158,10 +158,10 @@ bắt_đầu {
 بداية {
     ثابت قائمة<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
     ثابت قائمة<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    ثابت tensor<f32, []> seed ← vacua
-    ثابت tensor<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
-    ثابت tensor<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
-    ثابت tensor<f32, [2, 4]> product ← a.matmul(b)
+    ثابت موتر<f32, []> seed ← فارغ
+    ثابت موتر<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
+    ثابت موتر<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
+    ثابت موتر<f32, [2, 4]> product ← a.matmul(b)
     ثابت f32 mean ← product.media()
     اعرض mean
 }
@@ -177,10 +177,10 @@ bắt_đầu {
 आरंभ {
     स्थिर सूची<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
     स्थिर सूची<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    स्थिर tensor<f32, []> seed ← vacua
-    स्थिर tensor<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
-    स्थिर tensor<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
-    स्थिर tensor<f32, [2, 4]> product ← a.matmul(b)
+    स्थिर टेंसर<f32, []> seed ← खाली
+    स्थिर टेंसर<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
+    स्थिर टेंसर<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
+    स्थिर टेंसर<f32, [2, 4]> product ← a.matmul(b)
     स्थिर f32 mean ← product.media()
     दिखाओ mean
 }

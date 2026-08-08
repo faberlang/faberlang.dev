@@ -1,10 +1,10 @@
 bắt_đầu {
     hằng danh_sách<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
     hằng danh_sách<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    hằng tensor<f32, []> seed ← vacua
-    hằng tensor<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
-    hằng tensor<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
-    hằng tensor<f32, [2, 4]> product ← a.matmul(b)
+    hằng ten_xo<f32, []> seed ← tập_rỗng
+    hằng ten_xo<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
+    hằng ten_xo<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
+    hằng ten_xo<f32, [2, 4]> product ← a.matmul(b)
     hằng f32 mean ← product.media()
     ghi_chú mean
 }

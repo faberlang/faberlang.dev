@@ -33,6 +33,23 @@ FABER="${WORKSPACE}/faber/target/release/faber"
 
 echo "toolchain: $("$RADIX" --version) at ${RADIX}"
 echo "toolchain: $("$FABER" --version) at ${FABER}"
+# `faber format --locale` resolves reader packs relative to its own binary, and
+# a workspace build has no share/faber/locale/. Without this every locale panel
+# fails and the committed captures quietly stay at whatever the toolchain
+# produced last time — which is how tensor/vacua sat untranslated in the
+# shipped panels long after the compiler learned to render them.
+PACK_SRC="${WORKSPACE}/radix/stdlib/locale"
+PACK_DEST="$(cd "$(dirname "$FABER")/.." && pwd)/share/faber/locale"
+if [ -d "$PACK_SRC" ]; then
+    mkdir -p "$PACK_DEST"
+    for pack in "$PACK_SRC"/*/; do
+        name="$(basename "$pack")"
+        [ -f "${pack}pack.toml" ] || continue
+        [ -e "${PACK_DEST}/${name}" ] || ln -s "$pack" "${PACK_DEST}/${name}"
+    done
+    echo "reader packs: $(ls "$PACK_DEST" | wc -l | tr -d ' ') at ${PACK_DEST}"
+fi
+
 OUT="${GENERATOR_DIR}/landing"
 WORK="$(mktemp -d)"
 trap 'rm -rf "$WORK"' EXIT

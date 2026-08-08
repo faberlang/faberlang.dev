@@ -1,10 +1,10 @@
 بداية {
     ثابت قائمة<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
     ثابت قائمة<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    ثابت tensor<f32, []> seed ← vacua
-    ثابت tensor<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
-    ثابت tensor<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
-    ثابت tensor<f32, [2, 4]> product ← a.matmul(b)
+    ثابت موتر<f32, []> seed ← فارغ
+    ثابت موتر<f32, [2, 3]> a ← seed.strue(flat_a, [2, 3])
+    ثابت موتر<f32, [3, 4]> b ← seed.strue(flat_b, [3, 4])
+    ثابت موتر<f32, [2, 4]> product ← a.matmul(b)
     ثابت f32 mean ← product.media()
     اعرض mean
 }
