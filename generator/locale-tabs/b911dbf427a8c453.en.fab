@@ -1,0 +1,15 @@
+fn divide(int a, int b) → int ⇥ string {
+    if b ≡ 0 {
+        throw "division by zero"
+    }
+    return a / b
+}
+
+main {
+    do {
+        print divide(10, 2)
+    }
+    catch err {
+        warn err
+    }
+}

@@ -1,0 +1,4 @@
+@ hạt_nhân { }
+hàm multiplico(ten_xo<f32, [16, 8]> a, ten_xo<f32, [8, 16]> b, ten_xo<f32, [16, 16]> out, số<u32> id) → trống {
+    hằng ten_xo<f32, [16, 16]> c ← a.matmul(b)
+}

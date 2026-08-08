@@ -1,0 +1,15 @@
+函数 divide(整数 a, 整数 b) → 整数 ⇥ 文本 {
+    如果 b ≡ 0 {
+        抛错 "division by zero"
+    }
+    返回 a / b
+}
+
+入口 {
+    执行 {
+        显示 divide(10, 2)
+    }
+    捕获 err {
+        警告 err
+    }
+}

@@ -1,0 +1,4 @@
+@ kernel { }
+fn multiplico(tensor<f32, [16, 8]> a, tensor<f32, [8, 16]> b, tensor<f32, [16, 16]> out, int<u32> id) → void {
+    const tensor<f32, [16, 16]> c ← a.matmul(b)
+}

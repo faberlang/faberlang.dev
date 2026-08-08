@@ -91,7 +91,12 @@ TARGETS = {
     "faber": {
         "label": "Faber",
         "lane": "hir",
-        "fence": "faber",
+        # Canonical re-emission is itself Faber, so without naming a locale the
+        # emitted panel would become a second reader-locale card sitting under
+        # the source's — two identical switchers per scenario, and the
+        # source-against-output comparison the page exists for stops reading.
+        # Naming the locale is also just true: this is the canonical surface.
+        "fence": "faber locale=la",
         "note": "Canonical re-emission — the compiler printing the program back.",
         "read": "The round trip. Reader-locale spellings and formatting "
                 "normalise to the canonical surface, which is how a program "

@@ -1,0 +1,15 @@
+functio divide(numerus a, numerus b) → numerus ⇥ textus {
+    si b ≡ 0 {
+        iace "division by zero"
+    }
+    redde a / b
+}
+
+incipit {
+    fac {
+        nota divide(10, 2)
+    }
+    cape err {
+        mone err
+    }
+}

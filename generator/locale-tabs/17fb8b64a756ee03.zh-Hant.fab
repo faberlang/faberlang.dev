@@ -1,0 +1,12 @@
+函式 summa(列表<整數> numeri) → 整數 {
+    變值 整數 total ← 0
+    遍歷 取自 numeri 定值 n {
+        total ← total + n
+    }
+    傳回 total
+}
+
+入口 {
+    定值 列表<整數> valores ← [1, 2, 3, 4, 5]
+    註記 summa(valores)
+}

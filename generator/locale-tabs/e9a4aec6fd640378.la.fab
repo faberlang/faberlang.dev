@@ -1,0 +1,4 @@
+@ nucleum { }
+functio multiplico(tensor<f32, [16, 8]> a, tensor<f32, [8, 16]> b, tensor<f32, [16, 16]> out, numerus<u32> id) → vacuum {
+    fixum tensor<f32, [16, 16]> c ← a.matmul(b)
+}

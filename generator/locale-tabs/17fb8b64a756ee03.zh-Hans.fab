@@ -1,0 +1,12 @@
+函数 summa(列表<整数> numeri) → 整数 {
+    变量 整数 total ← 0
+    遍历 取自 numeri 常量 n {
+        total ← total + n
+    }
+    返回 total
+}
+
+入口 {
+    常量 列表<整数> valores ← [1, 2, 3, 4, 5]
+    显示 summa(valores)
+}

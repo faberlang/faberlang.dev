@@ -34,7 +34,7 @@ incipit {
 
 **Faber** — 10 lines in, 10 out (1.0×)
 
-```faber
+```faber locale=la
 incipit {
     fixum lista<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
     fixum lista<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
@@ -71,7 +71,7 @@ incipit {
 
 **Faber** — 13 lines in, 13 out (1.0×)
 
-```faber
+```faber locale=la
 functio divide(numerus a, numerus b) → numerus ⇥ textus {
     si b ≡ 0 ergo iace "division by zero"
     redde a / b
@@ -110,7 +110,7 @@ incipit {
 
 **Faber** — 12 lines in, 12 out (1.0×)
 
-```faber
+```faber locale=la
 functio summa(lista<numerus> numeri) → numerus {
     varia numerus total ← 0
     itera ex numeri fixum n {

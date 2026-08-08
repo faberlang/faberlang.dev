@@ -1,0 +1,15 @@
+函式 divide(整數 a, 整數 b) → 整數 ⇥ 文字 {
+    若 b ≡ 0 {
+        拋出 "division by zero"
+    }
+    傳回 a / b
+}
+
+入口 {
+    執行 {
+        註記 divide(10, 2)
+    }
+    捕捉 err {
+        警告 err
+    }
+}

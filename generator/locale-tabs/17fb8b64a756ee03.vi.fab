@@ -1,0 +1,12 @@
+hàm summa(danh_sách<số> numeri) → số {
+    biến số total ← 0
+    lặp từ numeri hằng n {
+        total ← total + n
+    }
+    trả total
+}
+
+bắt_đầu {
+    hằng danh_sách<số> valores ← [1, 2, 3, 4, 5]
+    ghi_chú summa(valores)
+}

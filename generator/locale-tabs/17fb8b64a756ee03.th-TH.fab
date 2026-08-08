@@ -1,0 +1,12 @@
+ฟังก์ชัน summa(รายการ<จำนวน> numeri) → จำนวน {
+    แปร จำนวน total ← 0
+    วน ออก numeri คงที่ n {
+        total ← total + n
+    }
+    คืน total
+}
+
+เริ่ม {
+    คงที่ รายการ<จำนวน> valores ← [1, 2, 3, 4, 5]
+    บันทึก summa(valores)
+}
