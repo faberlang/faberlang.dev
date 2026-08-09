@@ -349,6 +349,27 @@ Key methods: `longitudo`, `accipe`, `appende`, `summa`, `primus`, `novissimus`.
 fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 ```
 
+The `:` there is not map syntax. A bare `{ … }` is always
+[inline JSON](#inline-json) — a compile-time `json` document whose keys are
+quoted strings separated by `:`. Declaring the binding as a `tabula` ascribes
+that document to a map type, which lowers it to a real constant map.
+
+Faber's own key-value shape uses `=`, and it is only available on a named
+type: `Point { x = 10 }`. There is no anonymous `{ key = expr }` object —
+writing one is a parse error, not a second spelling of the line above.
+
+For a map you build up rather than declare whole, start from `vacua` and
+assign by key:
+
+```faber
+incipit {
+    varia tabula<textus, numerus> puncta ← vacua
+    puncta["alpha"] ← 1
+    puncta["beta"] ← 2
+    nota puncta.longitudo()
+}
+```
+
 ### Tensor — dense fixed-shape buffer {#tensor}
 
 ```faber
@@ -489,7 +510,10 @@ fixum _ query ← `select * from users where id = §`(user_id)
 ### Inline JSON {#inline-json}
 
 A bare `{ … }` is inline JSON: a compile-time `json` document, not an
-anonymous Faber object. Keys are quoted strings separated by `:`:
+anonymous Faber object. Keys are quoted strings separated by `:`. Values are
+JSON constants only — no variable references, no Faber expressions. Ascribing
+one to a [`tabula`](#tabula) lowers it to a real constant map; `↦ valor`
+widens it to the dynamic carrier instead:
 
 ```faber
 fixum _ empty ← {}

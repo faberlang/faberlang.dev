@@ -71,7 +71,10 @@ incipit {
 }
 ```
 
-`lista<T>` holds many of one type. `tabula<K, V>` maps keys to values. Both take
+`lista<T>` holds many of one type. A `tabula` maps keys to values — the
+`{ "key": value }` form above is [inline JSON](/language/types.html#inline-json)
+ascribed to a map type, not a separate map literal, which is why it uses `:`
+where Faber's typed construction uses `=`. Both take
 [type holes](/cheatsheet/bindings.html#holes) and unions as their parameters:
 
 ```faber
