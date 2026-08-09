@@ -16,8 +16,8 @@ distant context to know what a symbol does, the syntax is suspect. Faber
 prefers explicit, local reasoning — the declaration site carries enough
 information to understand what will happen at the use site.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># The meaning of a call is determined by the function's signature,</span>
 <span class="tok-co"># not by invisible trait resolution or implicit conversions.</span>
-<span class="tok-kw">functio</span> duplica(<span class="tok-kw">numerus</span> n) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
-    <span class="tok-kw">redde</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
+<span class="tok-kw">fn</span> duplica(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+    <span class="tok-kw">return</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }</code></pre><h3 id="iii-glyphs-carry-structure">III. Glyphs carry structure<a class="anchor" href="#iii-glyphs-carry-structure">#</a></h3><p>Structural and operator meaning uses glyphs, not words: <code>←</code>
 for binding, <code>→</code> for return type, <code>⇥</code>
 for error exit, <code>ergo</code> for compact statement body,

@@ -125,7 +125,7 @@
       <button class="fdt-copy" type="button">Copy</button>
     </div>
     <div class="fdt-tabs" role="tablist" aria-label="Reader locale">
-    <button class="fdt-tab" role="tab" id="pt-en-US" data-panel="pp-en-US" data-href="/en-US/" data-name="English" aria-controls="pp-en-US" aria-selected="true" tabindex="0">English <span class="code">la</span></button>
+    <button class="fdt-tab" role="tab" id="pt-en-US" data-panel="pp-en-US" data-href="/en-US/" data-name="English" aria-controls="pp-en-US" aria-selected="true" tabindex="0">English <span class="code">en</span></button>
     <button class="fdt-tab" role="tab" id="pt-th-TH" data-panel="pp-th-TH" data-href="/th-TH/" data-name="ภาษาไทย" aria-controls="pp-th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span> <span class="code">th-TH</span></button>
     <button class="fdt-tab" role="tab" id="pt-ar" data-panel="pp-ar" data-href="/ar/" data-name="العربية" aria-controls="pp-ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span> <span class="code">ar</span></button>
     <button class="fdt-tab" role="tab" id="pt-hi" data-panel="pp-hi" data-href="/hi/" data-name="हिन्दी" aria-controls="pp-hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span> <span class="code">hi</span></button>
@@ -133,14 +133,17 @@
     <button class="fdt-tab" role="tab" id="pt-zh-Hans" data-panel="pp-zh-Hans" data-href="/zh-Hans/" data-name="简体中文" aria-controls="pp-zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span> <span class="code">zh-Hans</span></button>
     <button class="fdt-tab" role="tab" id="pt-zh-Hant" data-panel="pp-zh-Hant" data-href="/zh-Hant/" data-name="繁體中文" aria-controls="pp-zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span> <span class="code">zh-Hant</span></button>
     </div>
-    <div class="fdt-panel active" id="pp-en-US" role="tabpanel" aria-labelledby="pt-en-US"><div class="fdt-panel-label">English · la · <a href="/en-US/">enter docs →</a></div><pre><code class="lang-faber locale=la"><span class="tok-kw">functio</span> salve(<span class="tok-kw">textus</span> <span class="tok-kw">nomen</span>) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
-    <span class="tok-kw">fixum</span> <span class="tok-kw">textus</span> msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(<span class="tok-kw">nomen</span>)
-    <span class="tok-kw">redde</span> msg
+    <div class="fdt-panel active" id="pp-en-US" role="tabpanel" aria-labelledby="pt-en-US"><div class="fdt-panel-label">English · en · <a href="/en-US/">enter docs →</a></div><pre><code class="lang-faber locale=en"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+locale <span class="tok-op">=</span> <span class="tok-st">"llm"</span>
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+
+<span class="tok-kw">fn</span> greet(<span class="tok-kw">string</span> msg) <span class="tok-op">→</span> <span class="tok-kw">string</span> {
+  <span class="tok-kw">return</span> msg
 }
 
-<span class="tok-kw">incipit</span> {
-    <span class="tok-kw">fixum</span> <span class="tok-kw">textus</span> m <span class="tok-op">←</span> salve(<span class="tok-st">"munde"</span>)
-    <span class="tok-kw">nota</span> m
+<span class="tok-kw">main</span> {
+  <span class="tok-kw">const</span> _ greeting <span class="tok-op">←</span> greet(<span class="tok-st">"Hello, World!"</span>)
+  <span class="tok-kw">print</span> greeting
 }</code></pre></div>
     <div class="fdt-panel" id="pp-th-TH" role="tabpanel" aria-labelledby="pt-th-TH"><div class="fdt-panel-label">ภาษาไทย · th-TH · <a href="/th-TH/">enter docs →</a></div><pre><code class="lang-faber locale=th-TH"><span class="tok-kw">ฟังก์ชัน</span> salve(<span class="tok-kw">ข้อความ</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">ข้อความ</span> {
     <span class="tok-kw">คงที่</span> <span class="tok-kw">ข้อความ</span> msg <span class="tok-op">←</span> <span class="tok-st">"สวัสดี, §!"</span>(nomen)

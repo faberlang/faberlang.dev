@@ -161,7 +161,12 @@ render_locale() {
     local render_source="$src"
     local localized_source=""
 
-    if [ "$reader" != "la" ] && [ "$site" != "en-US" ]; then
+    # Every locale renders its code in its own reader locale, English
+    # included. Latin stays the canonical source surface in src/ and the
+    # interchange dialect the compiler uses internally, but a reader who chose
+    # the English site did not choose to decode Latin keywords: `la` is a
+    # reference surface here, not the one the page presents.
+    if [ "$reader" != "la" ]; then
         localized_source="$(mktemp -d)"
         TEMPDIRS+=("$localized_source")
         "${SCRIPT_DIR}/localize-markdown.py" "$src" "$localized_source" --locale "$reader" --faber "$FABER_LOCALIZE"
@@ -346,7 +351,13 @@ if [ "$FULL_SITE" = true ]; then
         for sec in language toolchain libraries reference; do
             smoke_contains "${OUTPUT_DIR}/en-US/${sec}/index.html" "<!DOCTYPE html>" "${sec} index"
         done
-        smoke_contains "${OUTPUT_DIR}/en-US/language/index.html" "functio saturate" "language index shows code"
+        smoke_contains "${OUTPUT_DIR}/en-US/language/index.html" "saturate" "language index shows code"
+        # The en-US pages render in the `en` reader locale, not `la`. This is
+        # the guard on that: `functio` is the Latin spelling of `fn`, so its
+        # presence in a rendered en-US body means the transcode step was
+        # skipped and English readers are back to decoding Latin keywords.
+        smoke_contains "${OUTPUT_DIR}/en-US/language/index.html" "fn saturate" "en-US renders English keywords"
+        smoke_contains "${OUTPUT_DIR}/en-US/language/types.html" "const int" "en-US types page in English"
         smoke_contains "${OUTPUT_DIR}/en-US/toolchain/index.html" "faber check" "toolchain index shows commands"
         # Retired paths must redirect, not 404
         smoke_contains "${OUTPUT_DIR}/en-US/syntax/types.html" "http-equiv=\"refresh\"" "retired syntax path redirects"

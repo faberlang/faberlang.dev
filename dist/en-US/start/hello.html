@@ -9,18 +9,15 @@ create files.</p><h2 id="create-package">Create a package<a class="anchor" href=
 [package]
 name = <span class="tok-st">"salve-munde"</span>
 version = <span class="tok-st">"0.1.0"</span>
-EOF
-<span class="tok-fn">cat</span> &gt; src/main.fab &lt;&lt;<span class="tok-st">'EOF'</span>
-<span class="tok-fn">functio</span> salve(textus nomen) → textus {
-<span class="tok-fn">    fixum</span> textus msg ← <span class="tok-st">"Salve, §!"</span>(nomen)
-<span class="tok-fn">    redde</span> msg
+EOF</code></pre><p>Then write <code>src/main.fab</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> salve(<span class="tok-kw">string</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">string</span> {
+    <span class="tok-kw">const</span> <span class="tok-kw">string</span> msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
+    <span class="tok-kw">return</span> msg
 }
 
-<span class="tok-fn">incipit</span> {
-<span class="tok-fn">    fixum</span> textus m ← salve(<span class="tok-st">"munde"</span>)
-<span class="tok-fn">    nota</span> m
-}
-EOF</code></pre><h2 id="check">Check it<a class="anchor" href="#check">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> check .</code></pre><p><code>faber check</code> runs the front end: lexing, parsing, type checking, and lowering
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> <span class="tok-kw">string</span> m <span class="tok-op">←</span> salve(<span class="tok-st">"munde"</span>)
+    print m
+}</code></pre><h2 id="check">Check it<a class="anchor" href="#check">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> check .</code></pre><p><code>faber check</code> runs the front end: lexing, parsing, type checking, and lowering
 far enough to catch ordinary package mistakes without building a native binary.
 If the command fails, read the diagnostic code first; Faber diagnostics are
 intended to be stable search handles.</p><h2 id="run">Run it<a class="anchor" href="#run">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run .</code></pre><p>Expected output:</p><pre class="faber-code"><code class="lang-text">Salve, munde!</code></pre><h2 id="what-you-used">What you just used<a class="anchor" href="#what-you-used">#</a></h2><div class="table-scroll"><table><thead><tr><th>Source</th><th>Meaning</th></tr></thead><tbody><tr><td><code>functio salve(textus nomen) → textus</code></td><td>Function named <code>salve</code>, type-first parameter, text return</td></tr><tr><td><code>fixum textus msg ← ...</code></td><td>Immutable binding</td></tr><tr><td><code>&quot;Salve, §!&quot;(nomen)</code></td><td>Format string with display interpolation</td></tr><tr><td><code>redde msg</code></td><td>Return</td></tr><tr><td><code class="kw">incipit</code></td><td>Package entry point</td></tr><tr><td><code>nota m</code></td><td>Print a note/output value</td></tr></tbody></table></div><h2 id="locale-proof">Locale proof<a class="anchor" href="#locale-proof">#</a></h2><p>The program above is the canonical Latin reader rendering. Reader locales can

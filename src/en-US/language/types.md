@@ -108,9 +108,9 @@ functio primum<T>(lista<T> res) → T ∪ nihil {
 Explicit call-site type arguments are supported:
 
 ```faber
-functio identitas<T>(T valor) → T { redde valor }
+functio identitas<T>(T datum) → T { redde datum }
 
-fixum numerus value ← identitas<numerus>(7)
+fixum numerus seven ← identitas<numerus>(7)
 ```
 
 ### Collections {#collections}
@@ -145,8 +145,8 @@ fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 
 ```faber
 fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> vector ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← vector[0]
+fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+fixum numerus ∪ nihil first ← row[0]
 ```
 
 ### GPU core types {#gpu-core-types}
@@ -352,8 +352,8 @@ fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 
 ```faber
 fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> vector ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← vector[0]
+fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+fixum numerus ∪ nihil first ← row[0]
 ```
 
 Tensor sugar (numeric-heavy code):
@@ -577,8 +577,8 @@ Two important conversion operators, one for runtime and one for compile-time:
 # runtime conversion
 fixum _ parsed ← "42" ↦ numerus
 # static ascription
-fixum numerus value ← 7
-fixum _ text ← value ∷ textus
+fixum numerus count ← 7
+fixum _ text ← count ∷ textus
 ```
 
 ### Runtime conversion — ↦ {#runtime-conversion}
@@ -606,9 +606,9 @@ Use `∷` for explicit static type ascription. It is postfix and
 target-type driven:
 
 ```faber
-fixum numerus value ← 7
+fixum numerus count ← 7
 fixum _ x ← 7 ∷ numerus<i32>
-fixum _ text ← value ∷ textus
+fixum _ text ← count ∷ textus
 ```
 
 ### Nullish coalescing — vel {#nullish-coalescing}

@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Functions in Faber are declared with functio, using type-first parameter syntax and a glyph return type."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Functions and control flow — Faber"><meta property="og:description" content="Functions in Faber are declared with functio, using type-first parameter syntax and a glyph return type."><meta property="og:url" content="https://faberlang.dev/en-US/language/functions.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/language/functions.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Functions and control flow — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><ul class="nav"><li><a href="/en-US/">Home</a></li><li><a href="/en-US/start/install.html">Install</a></li><li><a href="/en-US/localization.html">Localization</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li><li><a href="/en-US/releases/">Releases</a></li><li><a href="/en-US/open-source.html">Open source</a></li><li><a href="/en-US/examples/">Examples</a></li><li><a href="/en-US/targets/">Target lanes</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/en-US/language/" class="active">The language</a></li><li><a href="/en-US/language/types.html">Types and values</a></li><li><a href="/en-US/language/functions.html">Functions and flow</a></li><li><a href="/en-US/language/errors.html">Errors and testing</a></li><li><a href="/en-US/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/en-US/toolchain/">Toolchain</a></li><li><a href="/en-US/toolchain/cli.html">The faber CLI</a></li><li><a href="/en-US/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/en-US/targets/">Target lanes</a></li><li><a href="/en-US/toolchain/packages.html">Packages with Cista</a></li><li><a href="/en-US/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/">Libraries</a></li><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/en-US/reference/">Reference</a></li><li><a href="/en-US/reference/grammar.html">Grammar</a></li><li><a href="/en-US/corpus/">Corpus index</a></li><li><a href="/en-US/reference/design.html">Design notes</a></li><li><a href="/en-US/open-source.html">Open source</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.5.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/en-US/releases/">All releases</a></li><li><a href="/en-US/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Functions and control flow</h1><div class="content"><h2 id="functions">Functions<a class="anchor" href="#functions">#</a></h2><p>Functions in Faber are declared with <code class="kw">functio</code>, using type-first parameter
-syntax and a glyph return type.</p><h3 id="basic-syntax">Basic syntax<a class="anchor" href="#basic-syntax">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> twice(<span class="tok-kw">numerus</span> n) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
-    <span class="tok-kw">redde</span> n
-}</code></pre><p>With an error channel:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> parse(<span class="tok-kw">textus</span> input) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
-    <span class="tok-kw">redde</span> <span class="tok-nu">0</span>
+syntax and a glyph return type.</p><h3 id="basic-syntax">Basic syntax<a class="anchor" href="#basic-syntax">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> twice(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+    <span class="tok-kw">return</span> n
+}</code></pre><p>With an error channel:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> parse(<span class="tok-kw">string</span> input) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ <span class="tok-kw">string</span> {
+    <span class="tok-kw">return</span> <span class="tok-nu">0</span>
 }</code></pre><h3 id="examples">Examples<a class="anchor" href="#examples">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># No parameters, no return</span>
-<span class="tok-kw">functio</span> saluta() {
-    nota <span class="tok-st">"Salve, Mundus!"</span>
+<span class="tok-kw">fn</span> saluta() <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+    print <span class="tok-st">"Salve, Mundus!"</span>
 }
 
 <span class="tok-co"># Parameter, no explicit return</span>
-<span class="tok-kw">functio</span> dic(<span class="tok-kw">textus</span> verbum) {
-    nota verbum
+<span class="tok-kw">fn</span> dic(<span class="tok-kw">string</span> verbum) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+    print verbum
 }
 
 <span class="tok-co"># Parameter and return type</span>
-<span class="tok-kw">functio</span> duplica(<span class="tok-kw">numerus</span> n) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
-    <span class="tok-kw">redde</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
+<span class="tok-kw">fn</span> duplica(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+    <span class="tok-kw">return</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }
 
 <span class="tok-co"># Multiple parameters</span>
-<span class="tok-kw">functio</span> adde(<span class="tok-kw">numerus</span> a, <span class="tok-kw">numerus</span> b) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
-    <span class="tok-kw">redde</span> a <span class="tok-op">+</span> b
-}</code></pre><h3 id="return-values">Return values<a class="anchor" href="#return-values">#</a></h3><p>Use <code class="kw">redde</code> for normal returns:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> porta(<span class="tok-kw">numerus</span> x) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
-    <span class="tok-kw">si</span> x <span class="tok-op">&lt;</span> <span class="tok-nu">0</span> ergo <span class="tok-kw">redde</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">redde</span> x <span class="tok-op">*</span> <span class="tok-nu">2</span>
-}</code></pre><p>Bare <code class="kw">redde</code> for <code class="typ">vacuum</code> return type:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> tace() <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> {
-    <span class="tok-kw">redde</span>
+<span class="tok-kw">fn</span> adde(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+    <span class="tok-kw">return</span> a <span class="tok-op">+</span> b
+}</code></pre><h3 id="return-values">Return values<a class="anchor" href="#return-values">#</a></h3><p>Use <code class="kw">redde</code> for normal returns:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> porta(<span class="tok-kw">int</span> x) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+    <span class="tok-kw">if</span> x ≺ <span class="tok-nu">0</span> then <span class="tok-kw">return</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">return</span> x <span class="tok-op">*</span> <span class="tok-nu">2</span>
+}</code></pre><p>Bare <code class="kw">redde</code> for <code class="typ">vacuum</code> return type:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> tace() <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+    <span class="tok-kw">return</span>
 }</code></pre><h3 id="async-and-streams">Async and streams<a class="anchor" href="#async-and-streams">#</a></h3><p>Callable posture is a signature slot after modifiers and before <code>→</code> / <code>⇥</code>
 or the body. A bare function is synchronous finite; the posture words
 declare the execution mode:</p><div class="table-scroll"><table><thead><tr><th>Posture</th><th>Meaning</th><th>Typical return</th></tr></thead><tbody><tr><td><em>(none)</em></td><td>Synchronous finite</td><td><code>T</code></td></tr><tr><td><code>fiet</code></td><td>Asynchronous finite</td><td><code>promissum&lt;T&gt;</code> or <code>promissum&lt;T ⇥ E&gt;</code></td></tr><tr><td><code>fiunt</code></td><td>Synchronous stream (yields via <code>cede</code>)</td><td>cursor values, optionally <code>⇥ E</code></td></tr><tr><td><code>fient</code></td><td>Asynchronous stream (yields via <code>cede</code>)</td><td>async cursor values, optionally <code>⇥ E</code></td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># Async finite — returns a promise</span>
-<span class="tok-kw">functio</span> responde() <span class="tok-kw">fiet</span> <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
-    <span class="tok-kw">redde</span> <span class="tok-nu">42</span>
+<span class="tok-kw">fn</span> responde() <span class="tok-kw">async</span> <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+    <span class="tok-kw">return</span> <span class="tok-nu">42</span>
 }
 
 <span class="tok-co"># Synchronous stream — yields values</span>
-<span class="tok-kw">functio</span> stream() <span class="tok-kw">fiunt</span> <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
-    <span class="tok-kw">cede</span> <span class="tok-nu">1</span>
-    <span class="tok-kw">cede</span> <span class="tok-nu">2</span>
-}</code></pre><p>Await forms bind or consume the eventual value:</p><div class="table-scroll"><table><thead><tr><th>Form</th><th>Role</th></tr></thead><tbody><tr><td><code>figendum T x ← future</code></td><td>Await-bind immutable</td></tr><tr><td><code>variandum T x ← future</code></td><td>Await-bind mutable</td></tr><tr><td><code>reddet future</code></td><td>Await-return (<code>fiet</code> functions only)</td></tr><tr><td><code>tacebit future</code></td><td>Await and discard</td></tr><tr><td><code>cede value</code></td><td>Yield a value (<code>fiunt</code> / <code>fient</code> only)</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> responde() <span class="tok-kw">fiet</span> <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
-    <span class="tok-kw">redde</span> <span class="tok-nu">42</span>
+<span class="tok-kw">fn</span> stream() <span class="tok-kw">generator</span> <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+    <span class="tok-kw">yield</span> <span class="tok-nu">1</span>
+    <span class="tok-kw">yield</span> <span class="tok-nu">2</span>
+}</code></pre><p>Await forms bind or consume the eventual value:</p><div class="table-scroll"><table><thead><tr><th>Form</th><th>Role</th></tr></thead><tbody><tr><td><code>figendum T x ← future</code></td><td>Await-bind immutable</td></tr><tr><td><code>variandum T x ← future</code></td><td>Await-bind mutable</td></tr><tr><td><code>reddet future</code></td><td>Await-return (<code>fiet</code> functions only)</td></tr><tr><td><code>tacebit future</code></td><td>Await and discard</td></tr><tr><td><code>cede value</code></td><td>Yield a value (<code>fiunt</code> / <code>fient</code> only)</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> responde() <span class="tok-kw">async</span> <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+    <span class="tok-kw">return</span> <span class="tok-nu">42</span>
 }
 
-<span class="tok-kw">incipiet</span> {
-    <span class="tok-kw">figendum</span> <span class="tok-kw">numerus</span> responsum <span class="tok-op">←</span> responde()
-    <span class="tok-kw">tacebit</span> responde()
-    nota <span class="tok-st">"done"</span>
+<span class="tok-kw">async_main</span> {
+    <span class="tok-kw">await_const</span> <span class="tok-kw">int</span> responsum <span class="tok-op">←</span> responde()
+    <span class="tok-kw">await</span> responde()
+    print <span class="tok-st">"done"</span>
 }</code></pre><p><code>promissum&lt;T&gt;</code> is infallible shorthand for <code>promissum&lt;T ⇥ numquam&gt;</code>;
 <code>promissum&lt;T ⇥ E&gt;</code> preserves an alternate error channel. Infallible widens
 to failable; failable does not narrow.</p><p>The <code>@ futura</code> and <code>@ cursor</code> annotations remain accepted compatibility
@@ -57,47 +57,49 @@ form: shorthand for <code>promissum&lt;T ⇥ numquam&gt;</code>. <code>promissum
 async call fails exactly like a failable sync call — the error is delivered
 with the result, not through a separate callback, channel, or thrown
 exception. Awaiting a failable promise is itself a failable operation, so it
-happens inside a <code class="kw">fac</code> / <code class="kw">cape</code> boundary:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> computa(<span class="tok-kw">numerus</span> densitas) <span class="tok-kw">fiet</span> <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
-    <span class="tok-kw">si</span> densitas <span class="tok-op">&lt;</span> <span class="tok-nu">0</span> ergo <span class="tok-kw">iace</span> <span class="tok-st">"invalid input"</span>
-    <span class="tok-kw">redde</span> <span class="tok-nu">7</span>
+happens inside a <code class="kw">fac</code> / <code class="kw">cape</code> boundary:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> computa(<span class="tok-kw">int</span> densitas) <span class="tok-kw">async</span> <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ <span class="tok-kw">string</span> {
+    <span class="tok-kw">if</span> densitas ≺ <span class="tok-nu">0</span> {
+        <span class="tok-kw">throw</span> <span class="tok-st">"invalid input"</span>
+    }
+    <span class="tok-kw">return</span> <span class="tok-nu">7</span>
 }
 
-<span class="tok-kw">incipiet</span> {
-    <span class="tok-kw">fac</span> {
-        <span class="tok-kw">figendum</span> <span class="tok-kw">numerus</span> valor <span class="tok-op">←</span> computa(<span class="tok-nu">3</span>)
-        nota valor
+<span class="tok-kw">async_main</span> {
+    <span class="tok-kw">do</span> {
+        <span class="tok-kw">await_const</span> <span class="tok-kw">int</span> valor <span class="tok-op">←</span> computa(<span class="tok-nu">3</span>)
+        print valor
     }
-    <span class="tok-kw">cape</span> err {
-        nota err
+    <span class="tok-kw">catch</span> err {
+        print err
     }
 }</code></pre><p>The await forms bind or consume both channels: <code>figendum</code> / <code>variandum</code>
 await-bind the success value, <code>reddet</code> re-emits the promise from an async
 function, and <code>tacebit</code> awaits and discards either outcome.</p><h4 id="promises-in-streams">Promises in streams<a class="anchor" href="#promises-in-streams">#</a></h4><p>The two-channel shape composes with generators. An asynchronous stream may
 declare <code>fient → T ⇥ E</code>: every pull is itself a promise that either yields
 <code>T</code>, ends, or fails with <code>E</code>, and the first failure ends the stream.
-Iteration with <code>itera ex</code> handles the channel:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> poll() <span class="tok-kw">fient</span> <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
-    <span class="tok-kw">cede</span> <span class="tok-nu">1</span>
-    <span class="tok-kw">iace</span> <span class="tok-st">"link lost"</span>
+Iteration with <code>itera ex</code> handles the channel:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> poll() <span class="tok-kw">async_generator</span> <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ <span class="tok-kw">string</span> {
+    <span class="tok-kw">yield</span> <span class="tok-nu">1</span>
+    <span class="tok-kw">throw</span> <span class="tok-st">"link lost"</span>
 }
 
-<span class="tok-kw">incipiet</span> {
-    <span class="tok-kw">itera</span> <span class="tok-kw">ex</span> poll() <span class="tok-kw">fixum</span> lectio {
-        nota lectio
+<span class="tok-kw">async_main</span> {
+    <span class="tok-kw">for</span> <span class="tok-kw">from</span> poll() <span class="tok-kw">const</span> lectio {
+        print lectio
     }
 }</code></pre><p>A synchronous stream may also carry an alternate channel (<code>fiunt → T ⇥ E</code>);
 the stream call is then failable, so the consuming code handles it with
-<code class="kw">fac</code> / <code class="kw">cape</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> stream() <span class="tok-kw">fiunt</span> <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
-    <span class="tok-kw">cede</span> <span class="tok-nu">1</span>
+<code class="kw">fac</code> / <code class="kw">cape</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> stream() <span class="tok-kw">generator</span> <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ <span class="tok-kw">string</span> {
+    <span class="tok-kw">yield</span> <span class="tok-nu">1</span>
 }
 
-<span class="tok-kw">incipit</span> {
-    <span class="tok-kw">fac</span> {
-        <span class="tok-kw">itera</span> <span class="tok-kw">ex</span> stream() <span class="tok-kw">fixum</span> item {
-            nota item
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">do</span> {
+        <span class="tok-kw">for</span> <span class="tok-kw">from</span> stream() <span class="tok-kw">const</span> item {
+            print item
         }
     }
-    <span class="tok-kw">cape</span> err {
-        nota err
+    <span class="tok-kw">catch</span> err {
+        print err
     }
 }</code></pre><h3 id="borrowing-and-mutability">Borrowing and mutability (de, in, ex)<a class="anchor" href="#borrowing-and-mutability">#</a></h3><p>Faber marks how a value is passed with short prepositions on parameters:</p><div class="table-scroll"><table><thead><tr><th>Marker</th><th>Intent</th><th>Typical Rust lowering</th></tr></thead><tbody><tr><td><em>(none)</em></td><td>Owned value</td><td><code>T</code> by value</td></tr><tr><td><code class="kw">de</code></td><td>Shared borrow (read-only)</td><td><code>&amp;T</code></td></tr><tr><td><code class="kw">in</code></td><td>Mutable borrow</td><td><code>&amp;mut T</code></td></tr><tr><td><code class="kw">ex</code></td><td>Consume (move into callee)</td><td><code>T</code> by move</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-co"># Shared borrow</span>
 <span class="tok-kw">functio</span> imprime(<span class="tok-kw">de</span> <span class="tok-kw">textus</span> label) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> {
@@ -118,8 +120,8 @@ the stream call is then failable, so the consuming code handles it with
 <span class="tok-kw">functio</span> salve(<span class="tok-kw">textus</span> <span class="tok-kw">nomen</span>) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
     <span class="tok-kw">redde</span> <span class="tok-st">"Salve, §!"</span>(<span class="tok-kw">nomen</span>)
 }</code></pre><p>The same words (<code class="kw">de</code>, <code class="kw">ex</code>) are reused in other constructs — do not read
-every <code class="kw">ex</code> as &quot;consume&quot;:</p><div class="table-scroll"><table><thead><tr><th>Surface</th><th>Role</th></tr></thead><tbody><tr><td><code>de textus name</code> on parameter</td><td>Shared borrow</td></tr><tr><td><code>in numerus count</code> on parameter</td><td>Mutable borrow</td></tr><tr><td><code>ex textus buffer</code> on parameter</td><td>Move into callee</td></tr><tr><td><code>itera ex items fixum item</code></td><td>Iterate values</td></tr><tr><td><code>itera de tabula fixum key</code></td><td>Iterate keys</td></tr><tr><td><code>ex source fixum x, ceteri rest</code></td><td>Destructure fields</td></tr><tr><td><code>importa ex &quot;path&quot;</code></td><td>Import from module</td></tr></tbody></table></div><h3 id="entry-point">Entry point<a class="anchor" href="#entry-point">#</a></h3><p>The program entry point is <code class="kw">incipit</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {
-    nota <span class="tok-st">"ingressus"</span>
+every <code class="kw">ex</code> as &quot;consume&quot;:</p><div class="table-scroll"><table><thead><tr><th>Surface</th><th>Role</th></tr></thead><tbody><tr><td><code>de textus name</code> on parameter</td><td>Shared borrow</td></tr><tr><td><code>in numerus count</code> on parameter</td><td>Mutable borrow</td></tr><tr><td><code>ex textus buffer</code> on parameter</td><td>Move into callee</td></tr><tr><td><code>itera ex items fixum item</code></td><td>Iterate values</td></tr><tr><td><code>itera de tabula fixum key</code></td><td>Iterate keys</td></tr><tr><td><code>ex source fixum x, ceteri rest</code></td><td>Destructure fields</td></tr><tr><td><code>importa ex &quot;path&quot;</code></td><td>Import from module</td></tr></tbody></table></div><h3 id="entry-point">Entry point<a class="anchor" href="#entry-point">#</a></h3><p>The program entry point is <code class="kw">incipit</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
+    print <span class="tok-st">"ingressus"</span>
 }</code></pre><p><code>incipiet</code> is the async entry point — the body may await (<code>figendum</code>,
 <code>variandum</code>, <code>reddet</code>, <code>tacebit</code>) and call <code>fiet</code> / <code>fient</code> functions.</p><h3 id="cli-entry-point">CLI entry point<a class="anchor" href="#cli-entry-point">#</a></h3><p>For CLI programs, <code>incipit argumenta</code> receives parsed command arguments:</p><pre class="faber-code"><code class="lang-faber locale=la">@ <span class="tok-kw">cli</span> <span class="tok-st">"echo"</span>
 @ <span class="tok-kw">descriptio</span> <span class="tok-st">"Prints text"</span>
@@ -128,97 +130,119 @@ every <code class="kw">ex</code> as &quot;consume&quot;:</p><div class="table-sc
     <span class="tok-kw">itera</span> <span class="tok-kw">ex</span> args.words <span class="tok-kw">fixum</span> word {
         <span class="tok-kw">nota</span> word
     }
-}</code></pre><h3 id="passing-mode-sponte">Passing mode — <code>sponte</code><a class="anchor" href="#passing-mode-sponte">#</a></h3><p><code>sponte</code> marks a parameter that may be omitted by the caller:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> connect(<span class="tok-kw">textus</span> host, <span class="tok-kw">numerus</span> port <span class="tok-kw">sponte</span>) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> {
-    nota host
-}</code></pre><h2 id="control-flow">Control flow<a class="anchor" href="#control-flow">#</a></h2><h3 id="conditional-branching">Conditional branching<a class="anchor" href="#conditional-branching">#</a></h3><h4 id="si-sin-secus">si / sin / secus<a class="anchor" href="#si-sin-secus">#</a></h4><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {
-    <span class="tok-kw">fixum</span> _ condition <span class="tok-op">←</span> <span class="tok-kw">verum</span>
-    <span class="tok-kw">si</span> condition {
+}</code></pre><h3 id="passing-mode-sponte">Passing mode — <code>sponte</code><a class="anchor" href="#passing-mode-sponte">#</a></h3><p><code>sponte</code> marks a parameter that may be omitted by the caller:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> connect(<span class="tok-kw">string</span> host, <span class="tok-kw">int</span> port <span class="tok-kw">optional</span>) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+    print host
+}</code></pre><h2 id="control-flow">Control flow<a class="anchor" href="#control-flow">#</a></h2><h3 id="conditional-branching">Conditional branching<a class="anchor" href="#conditional-branching">#</a></h3><h4 id="si-sin-secus">si / sin / secus<a class="anchor" href="#si-sin-secus">#</a></h4><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> condition <span class="tok-op">←</span> <span class="tok-kw">true</span>
+    <span class="tok-kw">if</span> condition {
 <span class="tok-co">        # truthy branch</span>
-        nota <span class="tok-st">"matched"</span>
+        print <span class="tok-st">"matched"</span>
     }
-}</code></pre><p>With else-if and else:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {
-    <span class="tok-kw">fixum</span> _ score <span class="tok-op">←</span> <span class="tok-nu">85</span>
-    <span class="tok-kw">si</span> score <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
-        nota <span class="tok-st">"A"</span>
-    } <span class="tok-kw">sin</span> score <span class="tok-op">≥</span> <span class="tok-nu">80</span> {
-        nota <span class="tok-st">"B"</span>
-    } <span class="tok-kw">secus</span> {
-        nota <span class="tok-st">"C"</span>
+}</code></pre><p>With else-if and else:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> score <span class="tok-op">←</span> <span class="tok-nu">85</span>
+    <span class="tok-kw">if</span> score <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
+        print <span class="tok-st">"A"</span>
     }
-}</code></pre><h4 id="compact-branch-with-ergo">Compact branch with ergo<a class="anchor" href="#compact-branch-with-ergo">#</a></h4><p>A single-statement branch body uses <code>ergo</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> classify(<span class="tok-kw">numerus</span> b, <span class="tok-kw">bivalens</span> ready, <span class="tok-kw">numerus</span> value) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> <span class="tok-op">∪</span> <span class="tok-kw">nihil</span> {
-    <span class="tok-kw">si</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> ergo <span class="tok-kw">redde</span> <span class="tok-kw">nihil</span>
-    <span class="tok-kw">si</span> ready ergo <span class="tok-kw">redde</span> value
-    <span class="tok-kw">redde</span> <span class="tok-kw">nihil</span>
-}</code></pre><h3 id="iteration">Iteration<a class="anchor" href="#iteration">#</a></h3><h4 id="values-itera-ex">Values — itera ex<a class="anchor" href="#values-itera-ex">#</a></h4><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> inveni(<span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">numerus</span><span class="tok-op">&gt;</span> items, <span class="tok-kw">numerus</span> target) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> <span class="tok-op">∪</span> <span class="tok-kw">nihil</span> {
-    <span class="tok-kw">itera</span> <span class="tok-kw">ex</span> items <span class="tok-kw">fixum</span> item {
-        <span class="tok-kw">si</span> item <span class="tok-op">≡</span> target ergo <span class="tok-kw">redde</span> item
+    <span class="tok-kw">elif</span> score <span class="tok-op">≥</span> <span class="tok-nu">80</span> {
+        print <span class="tok-st">"B"</span>
     }
-    <span class="tok-kw">redde</span> <span class="tok-kw">nihil</span>
-}</code></pre><h4 id="keys-itera-de">Keys — itera de<a class="anchor" href="#keys-itera-de">#</a></h4><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {
-    <span class="tok-kw">fixum</span> _ <span class="tok-kw">tabula</span> <span class="tok-op">←</span> { <span class="tok-st">"unus"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"duo"</span><span class="tok-op">:</span> <span class="tok-nu">2</span> }
-    <span class="tok-kw">itera</span> <span class="tok-kw">de</span> <span class="tok-kw">tabula</span> <span class="tok-kw">fixum</span> key {
-        nota key
+    <span class="tok-kw">else</span> {
+        print <span class="tok-st">"C"</span>
     }
-}</code></pre><h4 id="range-itera-ab">Range — itera ab<a class="anchor" href="#range-itera-ab">#</a></h4><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">itera</span> <span class="tok-kw">ab</span> <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> <span class="tok-kw">fixum</span> i {
-    nota i
-}</code></pre><h3 id="while-loops">While loops<a class="anchor" href="#while-loops">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">incipit</span> {
-    <span class="tok-kw">fixum</span> _ condition <span class="tok-op">←</span> <span class="tok-kw">verum</span>
-    <span class="tok-kw">dum</span> condition {
+}</code></pre><h4 id="compact-branch-with-ergo">Compact branch with ergo<a class="anchor" href="#compact-branch-with-ergo">#</a></h4><p>A single-statement branch body uses <code>ergo</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> classify(<span class="tok-kw">int</span> b, <span class="tok-kw">bool</span> ready, <span class="tok-kw">int</span> value) <span class="tok-op">→</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> null {
+    <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> then <span class="tok-kw">return</span> null
+    <span class="tok-kw">if</span> ready then <span class="tok-kw">return</span> value
+    <span class="tok-kw">return</span> null
+}</code></pre><h3 id="iteration">Iteration<a class="anchor" href="#iteration">#</a></h3><h4 id="values-itera-ex">Values — itera ex<a class="anchor" href="#values-itera-ex">#</a></h4><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> inveni(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> items, <span class="tok-kw">int</span> target) <span class="tok-op">→</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> null {
+    <span class="tok-kw">for</span> <span class="tok-kw">from</span> items <span class="tok-kw">const</span> item {
+        <span class="tok-kw">if</span> item <span class="tok-op">≡</span> target then <span class="tok-kw">return</span> item
+    }
+    <span class="tok-kw">return</span> null
+}</code></pre><h4 id="keys-itera-de">Keys — itera de<a class="anchor" href="#keys-itera-de">#</a></h4><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> json <span class="tok-kw">tabula</span> <span class="tok-op">←</span> { <span class="tok-st">"unus"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"duo"</span><span class="tok-op">:</span> <span class="tok-nu">2</span> }
+    <span class="tok-kw">for</span> <span class="tok-kw">ref</span> <span class="tok-kw">tabula</span> <span class="tok-kw">const</span> key {
+        print key
+    }
+}</code></pre><h4 id="range-itera-ab">Range — itera ab<a class="anchor" href="#range-itera-ab">#</a></h4><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
+    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> <span class="tok-kw">const</span> i {
+        print i
+    }
+}</code></pre><h3 id="while-loops">While loops<a class="anchor" href="#while-loops">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> condition <span class="tok-op">←</span> <span class="tok-kw">true</span>
+    <span class="tok-kw">while</span> condition {
 <span class="tok-co">        # body</span>
-        <span class="tok-kw">tacet</span>
+        <span class="tok-kw">pass</span>
     }
 }</code></pre><h3 id="guard-sections-custodi">Guard sections — custodi<a class="anchor" href="#guard-sections-custodi">#</a></h3><p><code>custodi</code> groups early-exit checks before a function's main body.
-Each <code class="kw">si</code> clause is a sequential guard:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> divide(<span class="tok-kw">numerus</span> a, <span class="tok-kw">numerus</span> b) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
-    <span class="tok-kw">custodi</span> {
-        <span class="tok-kw">si</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
-            <span class="tok-kw">redde</span> <span class="tok-nu">0</span>
+Each <code class="kw">si</code> clause is a sequential guard:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+    <span class="tok-kw">guard</span> {
+        <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+            <span class="tok-kw">return</span> <span class="tok-nu">0</span>
         }
     }
-    <span class="tok-kw">redde</span> a <span class="tok-op">/</span> b
-}</code></pre><p><code>custodi</code> is not breakable in v1 — it is a guard rail, not a loop.</p><h3 id="pattern-matching-elige">Pattern matching — elige<a class="anchor" href="#pattern-matching-elige">#</a></h3><p><code class="kw">elige</code> selects the first matching arm:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> describe(<span class="tok-kw">numerus</span> value) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
-    <span class="tok-kw">elige</span> value {
-        <span class="tok-kw">casu</span> <span class="tok-nu">1</span> { <span class="tok-kw">redde</span> <span class="tok-st">"one"</span> }
-        <span class="tok-kw">casu</span> <span class="tok-nu">2</span> { <span class="tok-kw">redde</span> <span class="tok-st">"two"</span> }
-        <span class="tok-kw">ceterum</span> { <span class="tok-kw">redde</span> <span class="tok-st">"many"</span> }
+    <span class="tok-kw">return</span> a <span class="tok-op">/</span> b
+}</code></pre><p><code>custodi</code> is not breakable in v1 — it is a guard rail, not a loop.</p><h3 id="pattern-matching-elige">Pattern matching — elige<a class="anchor" href="#pattern-matching-elige">#</a></h3><p><code class="kw">elige</code> selects the first matching arm:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> <span class="tok-kw">describe</span>(<span class="tok-kw">int</span> value) <span class="tok-op">→</span> <span class="tok-kw">string</span> {
+    <span class="tok-kw">match</span> value {
+        <span class="tok-kw">case</span> <span class="tok-nu">1</span> {
+            <span class="tok-kw">return</span> <span class="tok-st">"one"</span>
+        }
+        <span class="tok-kw">case</span> <span class="tok-nu">2</span> {
+            <span class="tok-kw">return</span> <span class="tok-st">"two"</span>
+        }
+        <span class="tok-kw">case</span> _ {
+            <span class="tok-kw">return</span> <span class="tok-st">"many"</span>
+        }
     }
-}</code></pre><h3 id="tagged-union-matching-discerne">Tagged union matching — discerne<a class="anchor" href="#tagged-union-matching-discerne">#</a></h3><p><code class="kw">discerne</code> exhaustively matches <code>discretio</code> variants:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">discretio</span> Exitus {
-    Bonum { <span class="tok-kw">textus</span> nuntius },
-    Malum { <span class="tok-kw">textus</span> causa }
+}</code></pre><h3 id="tagged-union-matching-discerne">Tagged union matching — discerne<a class="anchor" href="#tagged-union-matching-discerne">#</a></h3><p><code class="kw">discerne</code> exhaustively matches <code>discretio</code> variants:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">union</span> Exitus {
+    Bonum {
+        <span class="tok-kw">string</span> nuntius
+    },
+    Malum {
+        <span class="tok-kw">string</span> causa
+    },
 }
 
-<span class="tok-kw">functio</span> refer(Exitus eventus) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
-    <span class="tok-kw">discerne</span> eventus {
-        <span class="tok-kw">casu</span> Bonum <span class="tok-kw">fixum</span> nuntius { <span class="tok-kw">redde</span> nuntius }
-        <span class="tok-kw">casu</span> Malum <span class="tok-kw">fixum</span> causa { <span class="tok-kw">redde</span> <span class="tok-st">"Error: §"</span>(causa) }
+<span class="tok-kw">fn</span> refer(Exitus eventus) <span class="tok-op">→</span> <span class="tok-kw">string</span> {
+    <span class="tok-kw">match</span> eventus {
+        <span class="tok-kw">case</span> Bonum <span class="tok-kw">const</span> nuntius {
+            <span class="tok-kw">return</span> nuntius
+        }
+        <span class="tok-kw">case</span> Malum <span class="tok-kw">const</span> causa {
+            <span class="tok-kw">return</span> <span class="tok-st">"Error: §"</span>(causa)
+        }
     }
-}</code></pre><h3 id="try-blocks-fac-cape">Try blocks — fac / cape<a class="anchor" href="#try-blocks-fac-cape">#</a></h3><p><code class="kw">fac</code> opens a block that may throw, and <code class="kw">cape</code> recovers:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> divide(<span class="tok-kw">numerus</span> a, <span class="tok-kw">numerus</span> b) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
-    <span class="tok-kw">redde</span> a <span class="tok-op">/</span> b
+}</code></pre><h3 id="try-blocks-fac-cape">Try blocks — fac / cape<a class="anchor" href="#try-blocks-fac-cape">#</a></h3><p><code class="kw">fac</code> opens a block that may throw, and <code class="kw">cape</code> recovers:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+    <span class="tok-kw">return</span> a <span class="tok-op">/</span> b
 }
 
-<span class="tok-kw">functio</span> tutus(<span class="tok-kw">numerus</span> a, <span class="tok-kw">numerus</span> b) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
-    <span class="tok-kw">fac</span> {
-        <span class="tok-kw">redde</span> divide(a, b)
-    } <span class="tok-kw">cape</span> err {
-        <span class="tok-kw">mone</span> err
-        <span class="tok-kw">redde</span> <span class="tok-nu">0</span>
+<span class="tok-kw">fn</span> tutus(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+    <span class="tok-kw">do</span> {
+        <span class="tok-kw">return</span> divide(a, b)
+    }
+    <span class="tok-kw">catch</span> err {
+        <span class="tok-kw">warn</span> err
+        <span class="tok-kw">return</span> <span class="tok-nu">0</span>
     }
 }</code></pre><h2 id="generics">Generics<a class="anchor" href="#generics">#</a></h2><p>Functions, type aliases, <code class="kw">genus</code>, and <code>implendum</code> accept type parameters
-with <code>&lt;T&gt;</code> syntax.</p><h3 id="generic-functions">Generic functions<a class="anchor" href="#generic-functions">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T valor) <span class="tok-op">→</span> T {
-    <span class="tok-kw">redde</span> valor
+with <code>&lt;T&gt;</code> syntax.</p><h3 id="generic-functions">Generic functions<a class="anchor" href="#generic-functions">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T valor) <span class="tok-op">→</span> T {
+    <span class="tok-kw">return</span> valor
 }
 
-<span class="tok-kw">functio</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">lista</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> <span class="tok-kw">nihil</span> {
-    <span class="tok-kw">redde</span> res.primus()
-}</code></pre><h3 id="explicit-callsite-type-arguments">Explicit call-site type arguments<a class="anchor" href="#explicit-callsite-type-arguments">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T valor) <span class="tok-op">→</span> T { <span class="tok-kw">redde</span> valor }
-
-<span class="tok-kw">functio</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">lista</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> <span class="tok-kw">nihil</span> {
-    <span class="tok-kw">redde</span> <span class="tok-kw">nihil</span>
+<span class="tok-kw">fn</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">list</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> null {
+    <span class="tok-kw">return</span> res.primus()
+}</code></pre><h3 id="explicit-callsite-type-arguments">Explicit call-site type arguments<a class="anchor" href="#explicit-callsite-type-arguments">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T valor) <span class="tok-op">→</span> T {
+    <span class="tok-kw">return</span> valor
 }
 
-<span class="tok-kw">fixum</span> _ value <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">numerus</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
-<span class="tok-kw">fixum</span> _ maybe <span class="tok-op">←</span> primum<span class="tok-op">&lt;</span><span class="tok-kw">numerus</span><span class="tok-op">&gt;</span>([value])</code></pre><h3 id="generic-genus">Generic genus<a class="anchor" href="#generic-genus">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">genus</span> Par<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> {
+<span class="tok-kw">fn</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">list</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> null {
+    <span class="tok-kw">return</span> null
+}
+
+<span class="tok-kw">const</span> <span class="tok-kw">int</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
+
+<span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> null maybe <span class="tok-op">←</span> primum<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>([seven])</code></pre><h3 id="generic-genus">Generic genus<a class="anchor" href="#generic-genus">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Par<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> {
     T primus
     T secundus
-}</code></pre><h3 id="size-parameters">Size parameters<a class="anchor" href="#size-parameters">#</a></h3><p><code>magnitudo</code> declares a size/index parameter in generic parameter lists:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> crea<span class="tok-op">&lt;</span>T, magnitudo N<span class="tok-op">&gt;</span>() <span class="tok-op">→</span> tensor<span class="tok-op">&lt;</span>T, [N]<span class="tok-op">&gt;</span> {
-    <span class="tok-kw">redde</span> vacua
+}</code></pre><h3 id="size-parameters">Size parameters<a class="anchor" href="#size-parameters">#</a></h3><p><code>magnitudo</code> declares a size/index parameter in generic parameter lists:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> crea<span class="tok-op">&lt;</span>T, size N<span class="tok-op">&gt;</span>() <span class="tok-op">→</span> tensor<span class="tok-op">&lt;</span>T, [N]<span class="tok-op">&gt;</span> {
+    <span class="tok-kw">return</span> vacua
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#functions">Functions</a></li><li class="toc-3"><a href="#basic-syntax">Basic syntax</a></li><li class="toc-3"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#return-values">Return values</a></li><li class="toc-3"><a href="#async-and-streams">Async and streams</a></li><li class="toc-3"><a href="#borrowing-and-mutability">Borrowing and mutability (de, in, ex)</a></li><li class="toc-3"><a href="#entry-point">Entry point</a></li><li class="toc-3"><a href="#cli-entry-point">CLI entry point</a></li><li class="toc-3"><a href="#passing-mode-sponte">Passing mode — sponte</a></li><li class="toc-2"><a href="#control-flow">Control flow</a></li><li class="toc-3"><a href="#conditional-branching">Conditional branching</a></li><li class="toc-3"><a href="#iteration">Iteration</a></li><li class="toc-3"><a href="#while-loops">While loops</a></li><li class="toc-3"><a href="#guard-sections-custodi">Guard sections — custodi</a></li><li class="toc-3"><a href="#pattern-matching-elige">Pattern matching — elige</a></li><li class="toc-3"><a href="#tagged-union-matching-discerne">Tagged union matching — discerne</a></li><li class="toc-3"><a href="#try-blocks-fac-cape">Try blocks — fac / cape</a></li><li class="toc-2"><a href="#generics">Generics</a></li><li class="toc-3"><a href="#generic-functions">Generic functions</a></li><li class="toc-3"><a href="#explicit-callsite-type-arguments">Explicit call-site type arguments</a></li><li class="toc-3"><a href="#generic-genus">Generic genus</a></li><li class="toc-3"><a href="#size-parameters">Size parameters</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div></footer></div></body></html>

@@ -82,8 +82,8 @@
 @ cli <span class="tok-st">"cat"</span>
 @ <span class="tok-kw">descriptio</span> <span class="tok-st">"GNU coreutils cat stdin parity exemplum"</span>
 @ <span class="tok-kw">operandus</span> <span class="tok-kw">ceteri</span> <span class="tok-kw">textus</span> operands
-<span class="tok-kw">incipit</span> <span class="tok-kw">argumenta</span> args {
-    <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">textus</span><span class="tok-op">&gt;</span> operands <span class="tok-op">←</span> args.operands
+<span class="tok-kw">incipit</span> <span class="tok-kw">argumenta</span> <span class="tok-kw">args</span> {
+    <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">textus</span><span class="tok-op">&gt;</span> operands <span class="tok-op">←</span> <span class="tok-kw">args</span>.operands
     <span class="tok-kw">fixum</span> <span class="tok-kw">numerus</span> count <span class="tok-op">←</span> operands.longitudo()
     <span class="tok-kw">si</span> count <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         cat_stdin()

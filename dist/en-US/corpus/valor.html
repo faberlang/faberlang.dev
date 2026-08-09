@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="JSON-shaped dynamic value literal for open object-shaped data."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="valor — Faber"><meta property="og:description" content="JSON-shaped dynamic value literal for open object-shaped data."><meta property="og:url" content="https://faberlang.dev/en-US/corpus/valor.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/corpus/valor.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>valor — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><ul class="nav"><li><a href="/en-US/">Home</a></li><li><a href="/en-US/start/install.html">Install</a></li><li><a href="/en-US/localization.html">Localization</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li><li><a href="/en-US/releases/">Releases</a></li><li><a href="/en-US/open-source.html">Open source</a></li><li><a href="/en-US/examples/">Examples</a></li><li><a href="/en-US/targets/">Target lanes</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/en-US/language/">The language</a></li><li><a href="/en-US/language/types.html">Types and values</a></li><li><a href="/en-US/language/functions.html">Functions and flow</a></li><li><a href="/en-US/language/errors.html">Errors and testing</a></li><li><a href="/en-US/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/en-US/toolchain/">Toolchain</a></li><li><a href="/en-US/toolchain/cli.html">The faber CLI</a></li><li><a href="/en-US/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/en-US/targets/">Target lanes</a></li><li><a href="/en-US/toolchain/packages.html">Packages with Cista</a></li><li><a href="/en-US/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/">Libraries</a></li><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/en-US/reference/">Reference</a></li><li><a href="/en-US/reference/grammar.html">Grammar</a></li><li><a href="/en-US/corpus/" class="active">Corpus index</a></li><li><a href="/en-US/reference/design.html">Design notes</a></li><li><a href="/en-US/open-source.html">Open source</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.5.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/en-US/releases/">All releases</a></li><li><a href="/en-US/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>valor</h1><div class="content"><p>JSON-shaped dynamic value literal for open object-shaped data.</p><p><strong>Syntax:</strong> <code>valor</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>conversion</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/en-US/corpus/↦.html">↦</a></li><li><a href="/en-US/corpus/valor.html">valor</a></li><li><a href="/en-US/corpus/octeti.html">octeti</a></li><li><a href="/en-US/corpus/lista.html">lista</a></li><li><a href="/en-US/corpus/tabula.html">tabula</a></li><li><a href="/en-US/corpus/genus.html">genus</a></li><li><a href="/en-US/corpus/tensor.html">tensor</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusconversiovalor-boxingfab-canonical-conversio">radix/corpus/conversio/valor-boxing.fab (canonical · conversio)<a class="anchor" href="#radixcorpusconversiovalor-boxingfab-canonical-conversio">#</a></h3><p>T ↦ valor boxing for scalar, byte, collection, genus, and tensor carriers.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="JSON-shaped dynamic value literal for open object-shaped data."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="valor — Faber"><meta property="og:description" content="JSON-shaped dynamic value literal for open object-shaped data."><meta property="og:url" content="https://faberlang.dev/en-US/corpus/valor.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/corpus/valor.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>valor — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><ul class="nav"><li><a href="/en-US/">Home</a></li><li><a href="/en-US/start/install.html">Install</a></li><li><a href="/en-US/localization.html">Localization</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li><li><a href="/en-US/releases/">Releases</a></li><li><a href="/en-US/open-source.html">Open source</a></li><li><a href="/en-US/examples/">Examples</a></li><li><a href="/en-US/targets/">Target lanes</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/en-US/language/">The language</a></li><li><a href="/en-US/language/types.html">Types and values</a></li><li><a href="/en-US/language/functions.html">Functions and flow</a></li><li><a href="/en-US/language/errors.html">Errors and testing</a></li><li><a href="/en-US/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/en-US/toolchain/">Toolchain</a></li><li><a href="/en-US/toolchain/cli.html">The faber CLI</a></li><li><a href="/en-US/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/en-US/targets/">Target lanes</a></li><li><a href="/en-US/toolchain/packages.html">Packages with Cista</a></li><li><a href="/en-US/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/">Libraries</a></li><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/en-US/reference/">Reference</a></li><li><a href="/en-US/reference/grammar.html">Grammar</a></li><li><a href="/en-US/corpus/" class="active">Corpus index</a></li><li><a href="/en-US/reference/design.html">Design notes</a></li><li><a href="/en-US/open-source.html">Open source</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.5.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/en-US/releases/">All releases</a></li><li><a href="/en-US/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>valor</h1><p><strong>Translation status:</strong> English reader-locale proof. Code fences render through the <code>en</code> pipeline; prose is canonical Latin.</p><div class="content"><p>JSON-shaped dynamic value literal for open object-shaped data.</p><p><strong>Syntax:</strong> <code>valor</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>conversion</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/en-US/corpus/↦.html">↦</a></li><li><a href="/en-US/corpus/valor.html">valor</a></li><li><a href="/en-US/corpus/octeti.html">octeti</a></li><li><a href="/en-US/corpus/lista.html">lista</a></li><li><a href="/en-US/corpus/tabula.html">tabula</a></li><li><a href="/en-US/corpus/genus.html">genus</a></li><li><a href="/en-US/corpus/tensor.html">tensor</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusconversiovalor-boxingfab-canonical-conversio">radix/corpus/conversio/valor-boxing.fab (canonical · conversio)<a class="anchor" href="#radixcorpusconversiovalor-boxingfab-canonical-conversio">#</a></h3><p>T ↦ valor boxing for scalar, byte, collection, genus, and tensor carriers.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># valor — T ↦ valor boxing for scalar, byte, collection, genus, and tensor carriers.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -19,34 +19,34 @@
 <span class="tok-co"># `octeti` composes as a list of numeric byte values; it must not lossy-decode</span>
 <span class="tok-co"># bytes as text.</span>
 
-class Punctum {
-    int x
-    int y
+<span class="tok-kw">class</span> Punctum {
+    <span class="tok-kw">int</span> x
+    <span class="tok-kw">int</span> y
 }
 
-main {
-    const int n <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    const value scalar <span class="tok-op">←</span> n ↦ value
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> n <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    <span class="tok-kw">const</span> value scalar <span class="tok-op">←</span> n ↦ value
     print scalar
 
-    const bytes bytes <span class="tok-op">←</span> <span class="tok-op">|</span><span class="tok-kw">de</span> <span class="tok-kw">ad</span><span class="tok-op">|</span>
-    const value boxedBytes <span class="tok-op">←</span> bytes ↦ value
+    <span class="tok-kw">const</span> <span class="tok-kw">bytes</span> <span class="tok-kw">bytes</span> <span class="tok-op">←</span> <span class="tok-op">|</span><span class="tok-kw">de</span> <span class="tok-kw">ad</span><span class="tok-op">|</span>
+    <span class="tok-kw">const</span> value boxedBytes <span class="tok-op">←</span> <span class="tok-kw">bytes</span> ↦ value
     print boxedBytes
 
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
-    const value boxedList <span class="tok-op">←</span> xs ↦ value
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
+    <span class="tok-kw">const</span> value boxedList <span class="tok-op">←</span> xs ↦ value
     print boxedList
 
-    const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">10</span> }
-    const value boxedMap <span class="tok-op">←</span> scores ↦ value
+    <span class="tok-kw">const</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span><span class="tok-kw">string</span>, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">10</span> }
+    <span class="tok-kw">const</span> value boxedMap <span class="tok-op">←</span> scores ↦ value
     print boxedMap
 
-    const Punctum pt <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">3</span>, y <span class="tok-op">=</span> <span class="tok-nu">4</span> }
-    const value boxedGenus <span class="tok-op">←</span> pt ↦ value
+    <span class="tok-kw">const</span> Punctum pt <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">3</span>, y <span class="tok-op">=</span> <span class="tok-nu">4</span> }
+    <span class="tok-kw">const</span> value boxedGenus <span class="tok-op">←</span> pt ↦ value
     print boxedGenus
 
-    const tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>] ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
-    const value boxedTensor <span class="tok-op">←</span> grid ↦ value
+    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>] ↦ tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
+    <span class="tok-kw">const</span> value boxedTensor <span class="tok-op">←</span> grid ↦ value
     print boxedTensor
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>42
 [222, 173]
@@ -74,36 +74,36 @@ main {
 <span class="tok-co"># defaultable fields zero-initialize; missing mandatory fields fail at runtime</span>
 <span class="tok-co"># (recoverable via `⇥`). Extra JSON keys are ignored.</span>
 
-class Persona {
-    string nomen
-    int aetas optional
-    string regio <span class="tok-op">=</span> <span class="tok-st">"Roma"</span>
+<span class="tok-kw">class</span> Persona {
+    <span class="tok-kw">string</span> nomen
+    <span class="tok-kw">int</span> aetas <span class="tok-kw">optional</span>
+    <span class="tok-kw">string</span> regio <span class="tok-op">=</span> <span class="tok-st">"Roma"</span>
     instant born
 }
 
-main {
-    const value payload <span class="tok-op">←</span> {
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> value payload <span class="tok-op">←</span> {
         <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Marcus"</span>,
         <span class="tok-st">"born"</span><span class="tok-op">:</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>,
         <span class="tok-st">"extra"</span><span class="tok-op">:</span> <span class="tok-st">"ignored"</span>
     } ↦ value
-    const Persona good <span class="tok-op">←</span> payload ↦ Persona
-    assert good.nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
-    assert good.aetas <span class="tok-op">≡</span> null
-    assert good.regio <span class="tok-op">≡</span> <span class="tok-st">"Roma"</span>
+    <span class="tok-kw">const</span> Persona good <span class="tok-op">←</span> payload ↦ Persona
+    <span class="tok-kw">assert</span> good.nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
+    <span class="tok-kw">assert</span> good.aetas <span class="tok-op">≡</span> null
+    <span class="tok-kw">assert</span> good.regio <span class="tok-op">≡</span> <span class="tok-st">"Roma"</span>
 
-    const value stale <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Livia"</span> } ↦ value
-    const Persona recovered <span class="tok-op">←</span> stale ↦ Persona ⇥ good
-    assert recovered.nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
+    <span class="tok-kw">const</span> value stale <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Livia"</span> } ↦ value
+    <span class="tok-kw">const</span> Persona recovered <span class="tok-op">←</span> stale ↦ Persona ⇥ good
+    <span class="tok-kw">assert</span> recovered.nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
 
-    const value boxed <span class="tok-op">←</span> recovered ↦ value
-    const Persona roundtrip <span class="tok-op">←</span> boxed ↦ Persona
-    assert roundtrip.nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
-    assert roundtrip.regio <span class="tok-op">≡</span> <span class="tok-st">"Roma"</span>
+    <span class="tok-kw">const</span> value boxed <span class="tok-op">←</span> recovered ↦ value
+    <span class="tok-kw">const</span> Persona roundtrip <span class="tok-op">←</span> boxed ↦ Persona
+    <span class="tok-kw">assert</span> roundtrip.nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
+    <span class="tok-kw">assert</span> roundtrip.regio <span class="tok-op">≡</span> <span class="tok-st">"Roma"</span>
 
     print roundtrip.nomen
     print roundtrip.regio
-    print roundtrip.born ↦ string
+    print roundtrip.born ↦ <span class="tok-kw">string</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Marcus
 Roma
 1979-05-27T07:32:00Z
@@ -131,38 +131,38 @@ Roma
 <span class="tok-co"># provenance stays on `valor ↦ instans` (see conversio/instans.fab). `⇥`</span>
 <span class="tok-co"># recovers on variant mismatch.</span>
 
-main {
-    const value asInt <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    const int count <span class="tok-op">←</span> asInt ↦ int
-    assert count <span class="tok-op">≡</span> <span class="tok-nu">42</span>
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> value asInt <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> asInt ↦ <span class="tok-kw">int</span>
+    <span class="tok-kw">assert</span> count <span class="tok-op">≡</span> <span class="tok-nu">42</span>
 
-    const value asFloat <span class="tok-op">←</span> <span class="tok-nu">3.5</span>
-    const float ratio <span class="tok-op">←</span> asFloat ↦ float
-    assert ratio <span class="tok-op">≡</span> <span class="tok-nu">3.5</span>
+    <span class="tok-kw">const</span> value asFloat <span class="tok-op">←</span> <span class="tok-nu">3.5</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">float</span> ratio <span class="tok-op">←</span> asFloat ↦ <span class="tok-kw">float</span>
+    <span class="tok-kw">assert</span> ratio <span class="tok-op">≡</span> <span class="tok-nu">3.5</span>
 
-    const value intForFloat <span class="tok-op">←</span> <span class="tok-nu">7</span>
-    const float widened <span class="tok-op">←</span> intForFloat ↦ float
-    assert widened <span class="tok-op">≡</span> <span class="tok-nu">7.0</span>
+    <span class="tok-kw">const</span> value intForFloat <span class="tok-op">←</span> <span class="tok-nu">7</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">float</span> widened <span class="tok-op">←</span> intForFloat ↦ <span class="tok-kw">float</span>
+    <span class="tok-kw">assert</span> widened <span class="tok-op">≡</span> <span class="tok-nu">7.0</span>
 
-    const value asBool <span class="tok-op">←</span> true
-    const bool flag <span class="tok-op">←</span> asBool ↦ bool
-    assert flag <span class="tok-op">≡</span> true
+    <span class="tok-kw">const</span> value asBool <span class="tok-op">←</span> <span class="tok-kw">true</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> flag <span class="tok-op">←</span> asBool ↦ <span class="tok-kw">bool</span>
+    <span class="tok-kw">assert</span> flag <span class="tok-op">≡</span> <span class="tok-kw">true</span>
 
-    const value asText <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
-    const string greeting <span class="tok-op">←</span> asText ↦ string
-    assert greeting <span class="tok-op">≡</span> <span class="tok-st">"salve"</span>
+    <span class="tok-kw">const</span> value asText <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">string</span> greeting <span class="tok-op">←</span> asText ↦ <span class="tok-kw">string</span>
+    <span class="tok-kw">assert</span> greeting <span class="tok-op">≡</span> <span class="tok-st">"salve"</span>
 
-    const value asWire <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
-    const string wire <span class="tok-op">←</span> asWire ↦ string
-    assert wire <span class="tok-op">≡</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
+    <span class="tok-kw">const</span> value asWire <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">string</span> wire <span class="tok-op">←</span> asWire ↦ <span class="tok-kw">string</span>
+    <span class="tok-kw">assert</span> wire <span class="tok-op">≡</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
 
-    const value asAscii <span class="tok-op">←</span> <span class="tok-st">'yes'</span>
-    const ascii token <span class="tok-op">←</span> asAscii ↦ ascii
-    assert token <span class="tok-op">≡</span> <span class="tok-st">'yes'</span>
+    <span class="tok-kw">const</span> value asAscii <span class="tok-op">←</span> <span class="tok-st">'yes'</span>
+    <span class="tok-kw">const</span> ascii token <span class="tok-op">←</span> asAscii ↦ ascii
+    <span class="tok-kw">assert</span> token <span class="tok-op">≡</span> <span class="tok-st">'yes'</span>
 
-    const value bad <span class="tok-op">←</span> <span class="tok-st">"not-a-number"</span>
-    const int recovered <span class="tok-op">←</span> bad ↦ int ⇥ <span class="tok-nu">0</span>
-    assert recovered <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">const</span> value bad <span class="tok-op">←</span> <span class="tok-st">"not-a-number"</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> recovered <span class="tok-op">←</span> bad ↦ <span class="tok-kw">int</span> ⇥ <span class="tok-nu">0</span>
+    <span class="tok-kw">assert</span> recovered <span class="tok-op">≡</span> <span class="tok-nu">0</span>
 
     print count
     print ratio
@@ -200,20 +200,20 @@ yes
 <span class="tok-co"># `lista&lt;T&gt;` first; construction uses shipped `lista ↦ tensor` (`structa`) and</span>
 <span class="tok-co"># flatten via `tensor ↦ lista` (`.planata()`), then `lista ↦ valor` boxing.</span>
 
-main {
-    const value arr <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>]
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> arr ↦ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
-    assert xs.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">4</span>
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> value arr <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>]
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> arr ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
+    <span class="tok-kw">assert</span> xs.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">4</span>
 
-    const tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> xs ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> flat <span class="tok-op">←</span> grid ↦ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
-    assert flat.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">4</span>
+    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> xs ↦ tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> flat <span class="tok-op">←</span> grid ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
+    <span class="tok-kw">assert</span> flat.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">4</span>
 
-    const value roundtrip <span class="tok-op">←</span> flat ↦ value
+    <span class="tok-kw">const</span> value roundtrip <span class="tok-op">←</span> flat ↦ value
     print roundtrip
 
-    const value obj <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"beta"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> } ↦ value
-    const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> obj ↦ map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span>
+    <span class="tok-kw">const</span> value obj <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"beta"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> } ↦ value
+    <span class="tok-kw">const</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span><span class="tok-kw">string</span>, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> obj ↦ <span class="tok-kw">map</span><span class="tok-op">&lt;</span><span class="tok-kw">string</span>, <span class="tok-kw">int</span><span class="tok-op">&gt;</span>
     print scores.accipe(<span class="tok-st">"alpha"</span>) coalesce <span class="tok-nu">0</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[1, 2, 3, 4]
 10
@@ -252,17 +252,17 @@ main {
 <span class="tok-co"># BACKEND: Go emitter does not lower object `sparge` into maps (whitelist:</span>
 <span class="tok-co"># destructura/literal.fab).</span>
 
-main {
+<span class="tok-kw">main</span> {
 <span class="tok-co">    # --- Empty and simple records ---</span>
 
-    const _ void <span class="tok-op">←</span> {}
-    print void
+    <span class="tok-kw">const</span> _ <span class="tok-kw">void</span> <span class="tok-op">←</span> {}
+    print <span class="tok-kw">void</span>
 
-    const _ punctum <span class="tok-op">←</span> { <span class="tok-st">"x"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"y"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> }
+    <span class="tok-kw">const</span> _ punctum <span class="tok-op">←</span> { <span class="tok-st">"x"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"y"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> }
     print punctum
 
 <span class="tok-co">    # Text keys and constant values</span>
-    const _ forma <span class="tok-op">←</span> { <span class="tok-st">"clavis"</span><span class="tok-op">:</span> <span class="tok-nu">42</span> }
+    <span class="tok-kw">const</span> _ forma <span class="tok-op">←</span> { <span class="tok-st">"clavis"</span><span class="tok-op">:</span> <span class="tok-nu">42</span> }
     print forma
 
 <span class="tok-co">    # NOTE: JSON valor literals accept only constant values (strings, numbers,</span>
@@ -271,6 +271,6 @@ main {
 
 <span class="tok-co">    # --- Nested valor ---</span>
 
-    const _ nidum <span class="tok-op">←</span> { <span class="tok-st">"extra"</span><span class="tok-op">:</span> { <span class="tok-st">"medium"</span><span class="tok-op">:</span> <span class="tok-nu">1</span> } }
+    <span class="tok-kw">const</span> _ nidum <span class="tok-op">←</span> { <span class="tok-st">"extra"</span><span class="tok-op">:</span> { <span class="tok-st">"medium"</span><span class="tok-op">:</span> <span class="tok-nu">1</span> } }
     print nidum
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusconversiovalor-boxingfab-canonical-conversio">radix/corpus/conversio/valor-boxing.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusconversiovalor-genusfab-canonical-conversio">radix/corpus/conversio/valor-genus.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusconversiovalor-scalariafab-canonical-conversio">radix/corpus/conversio/valor-scalaria.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusconversiovalor-tensorfab-canonical-conversio">radix/corpus/conversio/valor-tensor.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusdestructuraliteralfab-canonical-existing-home">radix/corpus/destructura/literal.fab (canonical · existing-home)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/conversio/valor-boxing.fab&quot;]</li></ul></div></footer></div></body></html>

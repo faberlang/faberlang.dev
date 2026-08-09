@@ -3,7 +3,7 @@
 # this file enriches reader_locale, display names, and status.
 
 [locales.en-US]
-reader_locale = "la"
+reader_locale = "en"
 native_name = "English"
 native_script = "English"
 status = "complete"

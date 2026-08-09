@@ -69,6 +69,11 @@ LOCALES: list[dict[str, str]] = [
 # languages instead of what it is.
 BASE = "la"
 
+# The reader locale the en-US pages are rendered in, and so the surface a tab
+# card has to be keyed against. It is also the first tab, which is the panel a
+# reader sees before touching anything.
+SHOWN = "en"
+
 # Sections whose Faber blocks become locale cards. All three teach by showing
 # code: the cheat sheet with short examples, Examples with real package source,
 # Target lanes with the source beside what it lowers to.
@@ -208,13 +213,24 @@ def cmd_render(src_root: Path) -> int:
             # a plain Latin teaching example.
             if "locale=" in info or "mode=package" in info:
                 continue
-            key = digest(body)
+            # Key on the panel the page will actually carry, not on the Latin
+            # source. The en-US build now transcodes its fences to `en` before
+            # rendering, so `inject` reads English out of the HTML and digests
+            # that; keying on Latin here would miss every lookup and silently
+            # drop the cards back to plain blocks.
+            shown = transcode(faber, body, SHOWN)
+            if shown is None:
+                print(f"  {md.name} {digest(body)} {SHOWN}: no rendering",
+                      file=sys.stderr)
+                failed += 1
+                continue
+            key = digest(shown)
             wanted.add(key)
             for loc in LOCALES:
                 out = CACHE / f"{key}.{loc['id']}.fab"
                 if out.is_file():
                     continue
-                result = transcode(faber, body, loc["id"])
+                result = shown if loc["id"] == SHOWN else transcode(faber, body, loc["id"])
                 if result is None:
                     print(f"  {md.name} {key} {loc['id']}: no rendering",
                           file=sys.stderr)

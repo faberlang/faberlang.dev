@@ -486,8 +486,8 @@ functio primum<T>(lista<T> res) → T ∪ nihil {
     redde nihil
 }
 
-fixum _ value ← identitas<numerus>(7)
-fixum _ maybe ← primum<numerus>([value])
+fixum _ seven ← identitas<numerus>(7)
+fixum _ maybe ← primum<numerus>([seven])
 ```
 
 ### Generic genus {#generic-genus}

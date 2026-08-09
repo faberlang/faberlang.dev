@@ -34,14 +34,14 @@ the 2026-08 locale rename. The reference locales below remain the
 substrate because they are the base surfaces:</p><div class="table-scroll"><table><thead><tr><th>Locale</th><th>Access</th><th>Architectural stress</th></tr></thead><tbody><tr><td><code>th-TH</code></td><td>High</td><td>Spaceless script — the tokeniser stress test</td></tr><tr><td><code>zh-Hans</code> / <code>zh-Hant</code></td><td>Very high</td><td>Paired keywords; sibling pack inheritance; NFKC width collapse</td></tr><tr><td><code>ar</code></td><td>High</td><td>Right-to-left; bidi isolation in diagnostics</td></tr><tr><td><code>hi</code></td><td>Very high</td><td>Matra/virama clusters; Indic numerals</td></tr><tr><td><code>vi</code></td><td>High</td><td>Heavy diacritics on Latin script; NFKC edge cases</td></tr></tbody></table></div><p><em>The reference set is chosen for architectural coverage, not population. Population alone would prove nothing the substrate did not already handle.</em></p><h3 id="examples">Localised source examples<a class="anchor" href="#examples">#</a></h3><p>Each of the six non-canonical locales has a complete Faber package under
 <code>examples/reader-locale/</code> with localised source, diagnostic test
 cases, and a <code>faber.toml</code> manifest. The same <code>greet</code>
-program rendered in Latin and the six packaged locale surfaces below:</p><p><strong>Latin</strong> <code>la</code> — <em>canonical</em></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">functio</span> salve(<span class="tok-kw">textus</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
-    <span class="tok-kw">fixum</span> <span class="tok-kw">textus</span> msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
-    <span class="tok-kw">redde</span> msg
+program rendered in Latin and the six packaged locale surfaces below:</p><p><strong>Latin</strong> <code>la</code> — <em>canonical</em></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> salve(<span class="tok-kw">string</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">string</span> {
+    <span class="tok-kw">const</span> <span class="tok-kw">string</span> msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
+    <span class="tok-kw">return</span> msg
 }
 
-<span class="tok-kw">incipit</span> {
-    <span class="tok-kw">fixum</span> <span class="tok-kw">textus</span> m <span class="tok-op">←</span> salve(<span class="tok-st">"munde"</span>)
-    nota m
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> <span class="tok-kw">string</span> m <span class="tok-op">←</span> salve(<span class="tok-st">"munde"</span>)
+    print m
 }</code></pre><p>The canonical rendering. <code>faber format --locale la</code> reproduces the former
 <code>--canonical</code> re-emit surface. Latin keywords map to themselves;
 type names are the canonical spellings.</p><p><strong>ไทย</strong> <code>th-TH</code> — <em>reference proof</em></p><pre class="faber-code"><code class="lang-text">ฟังก์ชัน salve(ข้อความ nomen) → ข้อความ {

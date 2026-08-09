@@ -40,6 +40,13 @@ def is_fluid_faber(info: str) -> bool:
             return False
         if token == "outcome=rejects":
             return False
+        if token == "mode=package":
+            # One file of a multi-file package. `faber format` cannot resolve
+            # its siblings, so it warns LOCALE001 per unresolved import and
+            # reformats what it does not understand — on the Examples pages
+            # that means the "real package source" stops being the real file.
+            # Same rule locale-tabs.py applies, for the same reason.
+            return False
     return True
 
 

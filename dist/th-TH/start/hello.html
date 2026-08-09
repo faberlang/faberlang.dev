@@ -7,18 +7,15 @@
 [package]
 name = <span class="tok-st">"salve-munde"</span>
 version = <span class="tok-st">"0.1.0"</span>
-EOF
-<span class="tok-fn">cat</span> &gt; src/main.fab &lt;&lt;<span class="tok-st">'EOF'</span>
-<span class="tok-fn">functio</span> salve(textus nomen) → textus {
-<span class="tok-fn">    fixum</span> textus msg ← <span class="tok-st">"Salve, §!"</span>(nomen)
-<span class="tok-fn">    redde</span> msg
+EOF</code></pre><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">ฟังก์ชัน</span> salve(<span class="tok-kw">ข้อความ</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">ข้อความ</span> {
+    <span class="tok-kw">คงที่</span> <span class="tok-kw">ข้อความ</span> msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
+    <span class="tok-kw">คืน</span> msg
 }
 
-<span class="tok-fn">incipit</span> {
-<span class="tok-fn">    fixum</span> textus m ← salve(<span class="tok-st">"munde"</span>)
-<span class="tok-fn">    nota</span> m
-}
-EOF</code></pre><h2 id="check">ตรวจสอบแพ็กเกจ<a class="anchor" href="#check">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> check .</code></pre><p><code>faber check</code> จะเรียกใช้ส่วนหน้าของคอมไพเลอร์ ได้แก่ การวิเคราะห์โทเค็น
+<span class="tok-kw">เริ่ม</span> {
+    <span class="tok-kw">คงที่</span> <span class="tok-kw">ข้อความ</span> m <span class="tok-op">←</span> salve(<span class="tok-st">"munde"</span>)
+    <span class="tok-kw">บันทึก</span> m
+}</code></pre><h2 id="check">ตรวจสอบแพ็กเกจ<a class="anchor" href="#check">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> check .</code></pre><p><code>faber check</code> จะเรียกใช้ส่วนหน้าของคอมไพเลอร์ ได้แก่ การวิเคราะห์โทเค็น
 การแยกวิเคราะห์ การตรวจสอบชนิด และการลดรูปในระดับที่เพียงพอสำหรับตรวจจับ
 ข้อผิดพลาดทั่วไปของแพ็กเกจ โดยไม่ต้องสร้างไบนารีเนทีฟ</p><p>หากคำสั่งล้มเหลว ให้อ่านรหัสการวินิจฉัยก่อน การวินิจฉัยของ Faber ออกแบบมาให้
 ใช้เป็นคำค้นหาอ้างอิงที่มีความเสถียร</p><h2 id="run">เรียกใช้แพ็กเกจ<a class="anchor" href="#run">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run .</code></pre><p>ผลลัพธ์ที่คาดหวัง:</p><pre class="faber-code"><code class="lang-text">Salve, munde!</code></pre><h2 id="what-you-used">สิ่งที่คุณเพิ่งใช้<a class="anchor" href="#what-you-used">#</a></h2><div class="table-scroll"><table><thead><tr><th>แหล่งที่มา</th><th>ความหมาย</th></tr></thead><tbody><tr><td><code>functio salve(textus nomen) → textus</code></td><td>ฟังก์ชันชื่อ <code>salve</code> พารามิเตอร์แบบชนิดนำหน้า และคืนค่าเป็นข้อความ</td></tr><tr><td><code>fixum textus msg ← ...</code></td><td>การผูกค่าที่เปลี่ยนแปลงไม่ได้</td></tr><tr><td><code>&quot;Salve, §!&quot;(nomen)</code></td><td>สตริงรูปแบบที่มีการแทรกค่าที่แสดงผลได้</td></tr><tr><td><code>redde msg</code></td><td>คืนค่า</td></tr><tr><td><code class="kw">incipit</code></td><td>จุดเริ่มต้นของแพ็กเกจ</td></tr><tr><td><code>nota m</code></td><td>พิมพ์ค่าโน้ตหรือเอาต์พุต</td></tr></tbody></table></div><h2 id="locale-proof">การพิสูจน์โลแคล<a class="anchor" href="#locale-proof">#</a></h2><p>โปรแกรมข้างต้นคือการแสดงผลสำหรับผู้อ่านภาษาละตินที่เป็นมาตรฐาน โลแคลของ

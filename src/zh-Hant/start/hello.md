@@ -29,7 +29,9 @@ cat > faber.toml <<'EOF'
 name = "salve-munde"
 version = "0.1.0"
 EOF
-cat > src/main.fab <<'EOF'
+```
+
+```faber
 functio salve(textus nomen) → textus {
     fixum textus msg ← "Salve, §!"(nomen)
     redde msg
@@ -39,7 +41,6 @@ incipit {
     fixum textus m ← salve("munde")
     nota m
 }
-EOF
 ```
 
 ## 檢查它 {#check}

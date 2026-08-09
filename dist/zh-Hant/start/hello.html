@@ -7,18 +7,15 @@
 [package]
 name = <span class="tok-st">"salve-munde"</span>
 version = <span class="tok-st">"0.1.0"</span>
-EOF
-<span class="tok-fn">cat</span> &gt; src/main.fab &lt;&lt;<span class="tok-st">'EOF'</span>
-<span class="tok-fn">functio</span> salve(textus nomen) → textus {
-<span class="tok-fn">    fixum</span> textus msg ← <span class="tok-st">"Salve, §!"</span>(nomen)
-<span class="tok-fn">    redde</span> msg
+EOF</code></pre><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函式</span> salve(<span class="tok-kw">文字</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">文字</span> {
+    <span class="tok-kw">定值</span> <span class="tok-kw">文字</span> msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
+    <span class="tok-kw">傳回</span> msg
 }
 
-<span class="tok-fn">incipit</span> {
-<span class="tok-fn">    fixum</span> textus m ← salve(<span class="tok-st">"munde"</span>)
-<span class="tok-fn">    nota</span> m
-}
-EOF</code></pre><h2 id="check">檢查它<a class="anchor" href="#check">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> check .</code></pre><p><code>faber check</code> 會執行前端流程：詞法分析、剖析、型別檢查，以及足以
+<span class="tok-kw">入口</span> {
+    <span class="tok-kw">定值</span> <span class="tok-kw">文字</span> m <span class="tok-op">←</span> salve(<span class="tok-st">"munde"</span>)
+    <span class="tok-kw">註記</span> m
+}</code></pre><h2 id="check">檢查它<a class="anchor" href="#check">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> check .</code></pre><p><code>faber check</code> 會執行前端流程：詞法分析、剖析、型別檢查，以及足以
 在不建立原生二進位檔的情況下捕捉一般套件錯誤的降低階段。
 如果指令失敗，請先讀取診斷碼；Faber 診斷碼設計為穩定的搜尋索引。</p><h2 id="run">執行它<a class="anchor" href="#run">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run .</code></pre><p>預期輸出：</p><pre class="faber-code"><code class="lang-text">Salve, munde!</code></pre><h2 id="what-you-used">你剛才使用的內容<a class="anchor" href="#what-you-used">#</a></h2><div class="table-scroll"><table><thead><tr><th>來源</th><th>意義</th></tr></thead><tbody><tr><td><code>functio salve(textus nomen) → textus</code></td><td>名為 <code>salve</code> 的函式、型別優先的參數、文字回傳值</td></tr><tr><td><code>fixum textus msg ← ...</code></td><td>不可變繫結</td></tr><tr><td><code>&quot;Salve, §!&quot;(nomen)</code></td><td>帶有顯示插值的格式字串</td></tr><tr><td><code>redde msg</code></td><td>回傳</td></tr><tr><td><code class="kw">incipit</code></td><td>套件入口點</td></tr><tr><td><code>nota m</code></td><td>列印備註／輸出值</td></tr></tbody></table></div><h2 id="locale-proof">語系證明<a class="anchor" href="#locale-proof">#</a></h2><p>上方程式是規範的拉丁文讀者語系呈現。讀者語系可以使用不同的關鍵字包來
 呈現相同的語意程式，同時保留字形與識別碼。在撰寫非拉丁文套件之前，請先從
