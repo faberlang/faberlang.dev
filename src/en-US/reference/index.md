@@ -48,7 +48,7 @@ These are locale-less and live at the site root, not under `/reference/`:
 
 | Page | What it is |
 |---|---|
-| [Grammar](/reference/grammar.html) | formal EBNF for every production |
+| [Grammar](/reference/grammar.html) | the full EBNF, rendered from the compiler's own specification |
 | [Releases](/releases/) | generated release inventory with assets and checksums |
 | [Design notes](/reference/design.html) | the design laws, deferred features, and how the language got here |
 | [Repositories](/open-source.html) | the faberlang organization, repo by repo |

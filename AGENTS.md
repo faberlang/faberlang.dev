@@ -134,6 +134,27 @@ generator/scripts/validate-fences.sh src/en-US
 Speculum reads and writes site files through `norma:solum`; `faber:*` remains
 script-only rather than an application file-I/O path.
 
+### Generated source pages
+
+Some pages under `src/` are **not authored** — they are assembled from sibling
+checkouts and captured panels before the render, in `build-site.sh` step 0.
+Editing them by hand works until the next build overwrites the edit; change the
+generator or the upstream source instead.
+
+| Script | Writes | Reads |
+|---|---|---|
+| `generate-target-matrix.py` | `src/{locale}/toolchain/target-matrix.md` | `radix/EBNF_MATRIX.md` + `generator/locales/{locale}/targets.toml` |
+| `generate-grammar.py` | `src/{locale}/reference/grammar.md` | `radix/EBNF.md`, `radix/EBNF.{locale}.md` |
+| `generate-target-lanes.py` | `src/{locale}/targets/*.md` | captured lane panels |
+| `generate-examples.py` | `src/{locale}/examples/*.md` | `examples/` sibling |
+| `generate-localization.py` | `src/{locale}/localization.md` | locale registry + captured panels |
+| `generate-releases.py` | `src/en-US/releases/*.md` | `gh` release tags + sibling `docs/release/v*.md` |
+
+Each degrades to leaving its committed output alone when its inputs are
+absent, so a checkout without siblings still builds. **`generate-releases.py`
+is the exception to step 0**: it needs `gh` and network access, so it is not
+run by the build. Run it by hand when a release lands.
+
 ### Post-build validation scripts
 
 `build-site.sh` runs these automatically as fail-closed gates on the top-level

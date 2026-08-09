@@ -24,6 +24,7 @@ fence around Faber.
 | **Cista** | The package manager and package store |
 | **Norma** | The standard library (`norma:*` modules) |
 | **Triga** | The graphics and geometry library |
+| **Gradus** | The autograd and ML library |
 | **faber-runtime** | Runtime types backing generated Rust |
 | **Examples** | Every sample package, application campaign, and workload track |
 | **Documentation** | This site, its Markdown sources, and the Speculum generator that renders it |
@@ -55,6 +56,7 @@ organisation.
 | [faber-runtime](https://github.com/faberlang/faber-runtime) | Core runtime types (Valor, tensors, frames); crate name `faber` |
 | [norma](https://github.com/faberlang/norma) | Standard library source (`norma:*` modules) |
 | [triga](https://github.com/faberlang/triga) | Graphics and geometry library |
+| [gradus](https://github.com/faberlang/gradus) | Autograd and ML library: gradients, loss, optimizers, NN primitives, training |
 | [cista](https://github.com/faberlang/cista) | Package manager and store (experimental) |
 | [examples](https://github.com/faberlang/examples) | Coreutils, AI Workbench, reader-locale packages, GPU workload and training tracks |
 | [tree-sitter-faber](https://github.com/faberlang/tree-sitter-faber) | Tree-sitter grammar and editor packaging for syntax highlighting |

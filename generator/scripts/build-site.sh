@@ -206,10 +206,15 @@ if [ "$FULL_SITE" = true ]; then
     # sibling checkouts. All of these write src/ and so must run before the
     # render. Each degrades to leaving its committed output alone when its
     # inputs are absent, so a checkout without siblings still builds.
-    echo "[0/10] Generating target lanes, examples, and localization..."
+    echo "[0/10] Generating target lanes, examples, grammar, and localization..."
     "$PYTHON" "${SCRIPT_DIR}/generate-target-lanes.py"
     "$PYTHON" "${SCRIPT_DIR}/generate-localization.py"
     "$PYTHON" "${SCRIPT_DIR}/generate-examples.py"
+    if [ -f "${WORKSPACE_DIR}/radix/EBNF.md" ]; then
+        "$PYTHON" "${SCRIPT_DIR}/generate-grammar.py" --all-locales
+    else
+        echo "  Skipping grammar generate (no ${WORKSPACE_DIR}/radix/EBNF.md)"
+    fi
 
     # Releases is NOT regenerated here: it needs `gh` and network access, and a
     # build that silently depends on the network is a build that breaks on a

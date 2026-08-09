@@ -5,9 +5,9 @@ order = 0
 sources = []
 +++
 
-Two libraries matter today. **Norma** ships with the compiler and you can use
-it immediately. **Triga** is an optional dependency you declare when you need
-graphics or geometry.
+**Norma** ships with the compiler and you can use it immediately. **Triga**
+and **Gradus** are optional dependencies you declare when you need graphics
+work or automatic differentiation.
 
 ## Norma — bundled {#norma}
 
@@ -38,6 +38,20 @@ Its shapes model the three.js abstractions so that models and people already
 familiar with that vocabulary can move quickly — but Triga is **not** a binding
 to three.js. These are native Faber types compiled to GPU shaders. The frames
 on the [home page](/) were produced by it. [Triga →](/libraries/triga.html)
+
+## Gradus — opt in {#gradus}
+
+Automatic differentiation, losses, optimizers, and neural-network primitives
+as `gradus:*` modules. Reverse-mode gradients are a Radix compiler transform —
+a function annotated `@ radix backward` gets a generated companion that
+computes its gradients — and Gradus is the library surface over that
+mechanism, so model code calls functions instead of hand-writing annotations.
+
+It is JAX-shaped: models are pure `(params, x) → y` functions with explicit
+parameters, and there is no module class hierarchy or runtime tape. It is also
+pre-1.0 and narrower than its module list suggests — shapes are concrete
+overloads rather than generics, and training is CPU-correct rather than fast.
+[Gradus →](/libraries/gradus.html)
 
 ## The corpus — not a library {#corpus}
 
