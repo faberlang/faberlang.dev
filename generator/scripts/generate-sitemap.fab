@@ -1,0 +1,132 @@
++++
+locale = "en"
++++
+
+# faberlang.dev/generator/scripts/generate-sitemap.fab — native-Faber gate
+# (NSM Wave-2 F1, conversion of the retired generate-sitemap.py).
+#
+# Walks dist/ and emits dist/sitemap.xml byte-stable vs the Python original:
+# the portal root, then every HTML page under each locale directory, in
+# lexicographic order. Locale discovery mirrors the original's registry keys
+# on the corpus: the registry comment in generator/locales.toml states "Dir
+# presence under src/ still discovers locales", and generate-grammar's
+# --all-locales uses the same src/ directory set — so solum.enumera on src/
+# yields exactly the same sorted locale list. Redirect stubs (retired paths
+# carrying a meta refresh + noindex) are skipped; so is any 404.html.
+#
+# Execution surface (pinned): the released faber binary via `faber script`,
+# staged outside every faber.toml tree by the launcher (generator/scripts/
+# generate-sitemap). FABER_BIN overrides the binary; the PATH `faber` (1.3.0)
+# is never a valid surface. Recursive per-locale .html walks shell out to
+# `find` (solum.enumera is non-recursive; G5 recursive walk still open).
+#
+# Usage: generate-sitemap [dist_dir] [base_url]
+# Exit contract (same as the Python original): 0 on success, 2 when
+# <dist_dir> is not a directory.
+
+import from "faber:solum" private fileio
+import from "faber:processus" private processus
+import from "faber:consolum" private consolum
+
+# XML-escape a URL value exactly like xml.sax.saxutils.escape (entity table:
+# & < > " '). Replacements run in that order so the entities introduced never
+# match a later replacement.
+fn xml_escape(string s) → string {
+    return s.muta("&", "&amp;").muta("<", "&lt;").muta(">", "&gt;").muta("\"", "&quot;").muta("'", "&#39;")
+}
+
+# Map a file under dist/{locale}/ to an absolute sitemap loc (the Python
+# file_to_loc). Returns "" (None) for any 404.html.
+fn loc_for(string file, string locale_root, string locale, string base) → string {
+    const string file_name ← fileio.nomen(file) ↦ string
+    if file_name ≡ "404.html" {
+        return ""
+    }
+    const int prefix_len ← locale_root.longitudo() + 1
+    const string rel ← file.sectio(prefix_len, file.longitudo())
+    if rel ≡ "index.html" {
+        return base + "/" + locale + "/"
+    }
+    if rel.finis("/index.html") {
+        const string dir_part ← rel.sectio(0, rel.longitudo() - 11)
+        return base + "/" + locale + "/" + dir_part + "/"
+    }
+    return base + "/" + locale + "/" + rel
+}
+
+main {
+    const list<string> argv ← processus.argumenta() ↦ list<string>
+    var string dist ← "dist"
+    var string base ← "https://faberlang.dev"
+    var int idx ← 0
+    for from argv const a {
+        if idx ≡ 0 {
+            dist ← a
+        }
+        if idx ≡ 1 {
+            base ← a
+        }
+        idx ← idx + 1
+    }
+    # base_url.rstrip("/")
+    while base.finis("/") {
+        base ← base.sectio(0, base.longitudo() - 1)
+    }
+    if fileio.directoriumne(dist) ↦ bivalens ≡ falsum {
+        consolum.mone("ERROR: " + dist + " is not a directory")
+        processus.exi(2)
+    }
+    const list<string> entries ← fileio.enumera("src") ↦ list<string>
+    const list<string> all_locales ← entries.ordinata() ↦ list<string>
+    var list<string> urls ← []
+    urls.appende(base + "/")
+    for from all_locales const locale {
+        const string locale_root ← dist + "/" + locale
+        if fileio.directoriumne(locale_root) ↦ bivalens ≡ falsum {
+            continue
+        }
+        const string found ← processus.exsequi("find '" + locale_root + "' -type f -name '*.html'") ↦ string
+        const list<string> paths ← found.divide("\n") ↦ list<string>
+        for from paths const p {
+            if p.longitudo() ≡ 0 {
+                continue
+            }
+            # Redirect stubs (retired paths) carry noindex; listing them in
+            # the sitemap tells crawlers to index a page that asks not to be
+            # indexed. Skip anything that meta-refreshes away.
+            const string file_text ← fileio.lege(p) ↦ string
+            const string head ← file_text.sectio(0, 1024)
+            if head.continet("http-equiv=\"refresh\"") or head.continet("http-equiv='refresh'") {
+                continue
+            }
+            const string loc ← loc_for(p, locale_root, locale, base)
+            if loc.longitudo() > 0 {
+                urls.appende(loc)
+            }
+        }
+    }
+    # Stable order: portal first, then lexicographic unique rest.
+    const string portal ← base + "/"
+    const list<string> sorted_urls ← urls.ordinata() ↦ list<string>
+    var list<string> rest_urls ← []
+    var string prev ← ""
+    for from sorted_urls const u {
+        if u ≡ portal {
+            continue
+        }
+        if u ≡ prev {
+            continue
+        }
+        rest_urls.appende(u)
+        prev ← u
+    }
+    var string xml ← "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n"
+    xml ← xml + "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n"
+    xml ← xml + "  <url><loc>" + xml_escape(portal) + "</loc></url>\n"
+    for from rest_urls const u {
+        xml ← xml + "  <url><loc>" + xml_escape(u) + "</loc></url>\n"
+    }
+    xml ← xml + "</urlset>\n"
+    fileio.scribe(dist + "/sitemap.xml", xml)
+    print "Generated " + dist + "/sitemap.xml: " + "§"(rest_urls.longitudo() + 1) + " URLs (" + "§"(all_locales.longitudo()) + " locales + portal)"
+}

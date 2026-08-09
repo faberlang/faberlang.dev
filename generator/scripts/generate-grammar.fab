@@ -1,0 +1,223 @@
++++
+locale = "en"
++++
+
+# faberlang.dev/generator/scripts/generate-grammar.fab — native-Faber gate
+# (NSM Wave-2 F1, conversion of the retired generate-grammar.py).
+#
+# Builds the Grammar reference page (src/<locale>/reference/grammar.md) from
+# the sibling radix checkout's EBNF sources — radix/EBNF.md for en-US,
+# radix/EBNF.<locale>.md for every other locale — byte-stable vs the Python
+# original. The original's whole-string regex post-processes are re-expressed
+# with char scans and string predicates: re.sub("\n{3,}", "\n\n") →
+# collapse_newlines, re.sub("\A---\n+", "") → strip_leading_rule, and the
+# RELATIVE_LINK regex ](\.{1,2}/ → continet("](./") or continet("](../").
+# solum.carpe reads the source as lines, matching the original splitlines().
+#
+# A locale whose EBNF file is missing is skipped with a warning rather than
+# falling back to English — a half-English grammar page is worse than the
+# stub it replaces. Exit contract (same as argparse in the original): 0 when
+# at least one page was written, 1 when none was, 2 on usage errors.
+#
+# Execution surface (pinned): the released faber binary via `faber script`,
+# staged outside every faber.toml tree by the launcher (generator/scripts/
+# generate-grammar).
+#
+# Usage: generate-grammar [--all-locales] [--locale <name>]...
+
+import from "faber:solum" private fileio
+import from "faber:processus" private processus
+import from "faber:consolum" private consolum
+
+# The en-US page lead, replacing the EBNF.md maintainer-facing lead (localized
+# pages keep their own in-locale lead). Mirrors LEAD_EN.rstrip() in the Python
+# original.
+const string lead_en ← "The formal grammar for every Faber production, generated from the compiler's\nown specification. This is the authority on whether something is valid syntax;\nthe [target matrix](/toolchain/target-matrix.html) is the authority on whether\na given target supports it.\n\nUppercase names in the productions are lexical terminals. Grammar examples are\nfragments shown to illustrate a production — they are not standalone programs\nand are not expected to compile on their own.\n\n**Why the keywords below are in Latin.** Everywhere else on this site, code\nrenders in your reader locale — `fixum` prints as `const`, and a Chinese\nreader sees `常量`. The grammar does not, because it is the canonical\ndefinition rather than a rendering of it. Latin is Faber's canonical form\nprecisely because no living language has a claim on it, so no locale's\nspelling has to be the one every other is defined against; each reader pack\nis a projection of the productions below. The\n[reader locale pages](/language/reader-locales.html) give the mapping, and\n`faber explain <term>` prints it from the compiler itself."
+
+# re.sub(r"\A---\n+", "", body): a leading horizontal rule with nothing above
+# it goes rather than just the rule.
+fn strip_leading_rule(string s) → string {
+    if s.initium("---\n") {
+        var int i ← 3
+        const int n ← s.longitudo()
+        while i < n and s.sectio(i, i + 1) ≡ "\n" {
+            i ← i + 1
+        }
+        return s.sectio(i, n)
+    }
+    return s
+}
+
+# re.sub(r"\n{3,}", "\n\n", body): dropping paragraphs and the preamble
+# leaves runs of blank lines; collapse runs of 3+ newlines to exactly 2.
+# Each muta pass shrinks every maximal newline run by one, so a run of N≥3
+# reaches exactly 2 after N-2 passes and runs of 1-2 are never touched —
+# identical to the original regex, without per-character string building.
+fn collapse_newlines(string s) → string {
+    var string out ← s
+    while out.continet("\n\n\n") {
+        out ← out.muta("\n\n\n", "\n\n")
+    }
+    return out
+}
+
+# Read a whole file as a string. The function boundary pins the returned
+# value to `textus` so `divide` below resolves its intrinsic receiver type
+# (released-binary typechecker quirk: direct kernel-cast and literal-bound
+# receivers do not resolve `divide`, function-return and exsequi-cast
+# receivers do).
+fn read_text(string path) → string {
+    return fileio.lege(path) ↦ string
+}
+
+# The Python transform(): strip the H1 and the internal-facing header block,
+# drop the en-US lead paragraph, toggle fences (a ```` ```fab ```` block becomes
+# ```` ```text ```` — grammar fragments are not programs), drop lines carrying
+# repo-relative links, then the whole-string post-processes.
+fn transform(list<string> lines, bool drop_lead) → string {
+    var string body ← ""
+    # state: 0 = preamble, 1 = lead paragraph, 3 = post-lead blanks, 2 = content
+    var int state ← 0
+    var bool in_fence ← falsum
+    for from lines const ln {
+        const string s ← ln.recide()
+        if state ≡ 0 {
+            const bool skip_line ← s.longitudo() ≡ 0 or s.initium("# ") or s.initium(">")
+            if skip_line ≡ falsum {
+                if drop_lead {
+                    state ← 1
+                } else {
+                    state ← 2
+                }
+            }
+        }
+        if state ≡ 1 {
+            if s.longitudo() ≡ 0 {
+                state ← 3
+            }
+        } elif state ≡ 3 {
+            if s.longitudo() > 0 {
+                state ← 2
+            }
+        }
+        if state ≡ 2 {
+            if ln.recide().initium("```") {
+                in_fence ← not in_fence
+                if in_fence and ln.recide() ≡ "```fab" {
+                    body ← body + "```text\n"
+                } else {
+                    body ← body + ln + "\n"
+                }
+            } elif in_fence {
+                body ← body + ln + "\n"
+            } elif ln.continet("](./") or ln.continet("](../") {
+                # repo-relative link paragraph — dropped
+            } else {
+                body ← body + ln + "\n"
+            }
+        }
+    }
+    body ← body.recide()
+    body ← collapse_newlines(body)
+    body ← strip_leading_rule(body)
+    return body + "\n"
+}
+
+fn render_page(string body, string locale) → string {
+    var string page ← "+++\n"
+    if locale ≠ "en-US" {
+        page ← page + "translation_kind = \"translated\"\n\n"
+    }
+    page ← page + "title = \"Grammar\"\n"
+    page ← page + "section = \"reference\"\n"
+    page ← page + "order = 1\n"
+    page ← page + "sources = [\n"
+    if locale ≡ "en-US" {
+        page ← page + "  \"radix/EBNF.md\",\n"
+    } else {
+        page ← page + "  \"radix/EBNF." + locale + ".md\",\n"
+    }
+    page ← page + "]\n"
+    page ← page + "+++\n\n"
+    if locale ≡ "en-US" {
+        page ← page + lead_en + "\n\n"
+    }
+    return page + body
+}
+
+# Sorted locale directory names under src/ (the same discovery the Python
+# --all-locales used).
+fn locale_names() → list<string> {
+    const list<string> entries ← fileio.enumera("src") ↦ list<string>
+    var list<string> dirs ← []
+    for from entries const e {
+        if fileio.directoriumne("src/" + e) ↦ bivalens {
+            dirs.appende(e)
+        }
+    }
+    return dirs.ordinata() ↦ list<string>
+}
+
+main {
+    const list<string> argv ← processus.argumenta() ↦ list<string>
+    var bool use_all ← falsum
+    var bool pending_locale ← falsum
+    var list<string> locales ← []
+    for from argv const a {
+        if pending_locale {
+            locales.appende(a)
+            pending_locale ← falsum
+        } elif a ≡ "--all-locales" {
+            use_all ← verum
+        } elif a ≡ "--locale" {
+            pending_locale ← verum
+        } elif a.initium("--locale=") {
+            locales.appende(a.sectio(9, a.longitudo()))
+        } elif a ≡ "-h" or a ≡ "--help" {
+            print "usage: generate-grammar [--all-locales] [--locale <name>]..."
+            processus.exi(0)
+        } else {
+            consolum.mone("error: unrecognized arguments: " + a)
+            processus.exi(2)
+        }
+    }
+    if pending_locale {
+        consolum.mone("error: argument --locale: expected one argument")
+        processus.exi(2)
+    }
+    if use_all {
+        locales ← locale_names()
+    }
+    if locales.longitudo() ≡ 0 {
+        locales.appende("en-US")
+    }
+    var int written ← 0
+    for from locales const locale {
+        var string src ← "../radix/EBNF.md"
+        if locale ≠ "en-US" {
+            src ← "../radix/EBNF." + locale + ".md"
+        }
+        if fileio.exstat(src) ↦ bivalens ≡ falsum {
+            consolum.mone("  warning: no grammar source for " + locale + " (" + src + ")")
+            continue
+        }
+        const string raw ← read_text(src)
+        const list<string> lines ← raw.divide("\n") ↦ list<string>
+        const string body ← transform(lines, locale ≡ "en-US")
+        const string page ← render_page(body, locale)
+        const string out ← "src/" + locale + "/reference/grammar.md"
+        const string parent ← fileio.parens(out) ↦ string
+        if fileio.directoriumne(parent) ↦ bivalens ≡ falsum {
+            fileio.crea(parent)
+        }
+        fileio.scribe(out, page)
+        const list<string> page_lines ← page.divide("\n") ↦ list<string>
+        const int line_count ← page_lines.longitudo() - 1
+        print "  grammar: " + out + " (" + "§"(line_count) + " lines)"
+        written ← written + 1
+    }
+    if written ≡ 0 {
+        consolum.mone("ERROR: no grammar page written")
+        processus.exi(1)
+    }
+}
