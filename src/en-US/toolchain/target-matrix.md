@@ -80,7 +80,7 @@ these corpus rows as a quality score.
 |---|---|---|---|
 | rust | 278 | 280 | 99% |
 | go | 262 | 280 | 94% |
-| ts | 274 | 280 | 98% |
+| ts | 280 | 280 | 100% |
 | faber | 280 | 280 | 100% |
 
 **Systems lane (MIR → device/IR artifacts)**
@@ -88,11 +88,11 @@ these corpus rows as a quality score.
 | target | capable | analyzable | % |
 |---|---|---|---|
 | llvm-text | 277 | 280 | 99% |
-| wasm-text | 257 | 280 | 92% |
-| wasm | 257 | 280 | 92% |
-| sexp-struct | 222 | 280 | 79% |
-| sexp | 222 | 280 | 79% |
-| scena | 238 | 280 | 85% |
+| wasm-text | 259 | 280 | 92% |
+| wasm | 259 | 280 | 92% |
+| sexp-struct | 223 | 280 | 80% |
+| sexp | 223 | 280 | 80% |
+| scena | 239 | 280 | 85% |
 
 ## Device kernel support (product summary) {#device-kernel-support}
 
@@ -329,10 +329,10 @@ registry and matrix receipts under the radix factory tree
 | `≥` | ✓ | ✓ | ✓ | ✓ |
 | `≤` | ✓ | ✓ | ✓ | ✓ |
 | `⊖` | ✓ | ✓ | ✓ | ✓ |
-| `modulus<u16>` | ✓ | ✕ | ✕ | ✓ |
-| `modulus<u32>` | ✓ | ✕ | ✕ | ✓ |
-| `modulus<u64>` | ✓ | ✕ | ✕ | ✓ |
-| `modulus<u8>` | ✓ | ✕ | ✕ | ✓ |
+| `modulus<u16>` | ✓ | ✕ | ✓ | ✓ |
+| `modulus<u32>` | ✓ | ✕ | ✓ | ✓ |
+| `modulus<u64>` | ✓ | ✕ | ✓ | ✓ |
+| `modulus<u8>` | ✓ | ✕ | ✓ | ✓ |
 | `non est` | ✓ | ✓ | ✓ | ✓ |
 | `⊚` | ✓ | ✓ | ✓ | ✓ |
 | `∨` | ✓ | ✓ | ✓ | ✓ |
@@ -367,7 +367,7 @@ registry and matrix receipts under the radix factory tree
 | `bivalens` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `cape` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `casu` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| `cede` | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `cede` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `ceteri` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `ceterum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `clausura` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -375,7 +375,7 @@ registry and matrix receipts under the radix factory tree
 | `copia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `cura` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `curata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| `cursor` | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `cursor` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `custodi` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `de` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `descriptio` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -385,7 +385,7 @@ registry and matrix receipts under the radix factory tree
 | `ego` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `elige` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `errata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| `est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ |
+| `est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `ex` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `exitus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `fac` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -419,7 +419,7 @@ registry and matrix receipts under the radix factory tree
 | `lege` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `lista` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
-| `matrix` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
+| `matrix` | ✕ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `mone` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `mori` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |

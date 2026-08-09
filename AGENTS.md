@@ -218,8 +218,8 @@ The corpus renderer (`render-corpus-batch.sh`) also post-processes its output:
 
 ### Binary versions
 
-- `faber` 1.4.0
-- `radix` 0.79.0 (includes `db34b98` textus character access)
+- `faber` 1.5.0
+- `radix` 0.80.0
 
 ## Campaign stages
 

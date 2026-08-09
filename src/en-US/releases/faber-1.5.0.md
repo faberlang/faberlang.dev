@@ -9,18 +9,33 @@ sources = []
 |---|---|
 | **Product** | Faber |
 | **Version** | 1.5.0 |
+| **Tag** | `faber-v1.5.0` |
+| **GitHub** | [faber-v1.5.0](https://github.com/faberlang/releases/releases/tag/faber-v1.5.0) |
+| **Published** | 2026-08-08 |
 | **License** | MIT |
 
 ## Install this version {#install}
 
-No prebuilt archives were published for this version. It is listed here because its release notes are part of the record.
+Pinned download for **Faber 1.5.0**. For the current release, use [Install](/start/install.html) instead.
+
+| Platform | Archive | Size | Checksum |
+|---|---|---|---|
+| **macOS arm64** | [faber-v1.5.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-aarch64-apple-darwin.tar.gz) | 9.5 MB | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** | [faber-v1.5.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-x86_64-unknown-linux-gnu.tar.gz) | 10.8 MB | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+
+```bash
+curl -fsSL -o faber.tgz \
+  https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-aarch64-apple-darwin.tar.gz
+tar -xzf faber.tgz
+sudo mv faber-v1.5.0-aarch64-apple-darwin/faber /usr/local/bin/
+faber --version
+```
 
 ## Release notes {#notes}
 
-> **Status**: draft — finalized at the v1.5.0 tag
+> **Status**: final
 
-Minor product release spanning **238 commits** since `v1.4.0` (2026-07-31);
-draft-time measurement — the release commit at the tag adds one.
+Minor product release spanning **253 commits** since `v1.4.0` (2026-07-31).
 Headline: **device execution on Apple Metal and NVIDIA CUDA** via
 `faber run --backend metal|cuda` — the first real device-execution surface —
 supported by hardened install-time pack resolution and the first
@@ -30,9 +45,10 @@ supported by hardened install-time pack resolution and the first
 
 | Signal | Count |
 | --- | ---: |
-| Commits (no merges) | 238 |
-| `feat(...)` commits | 55 |
-| `fix(...)` commits | 37 |
+| Commits (no merges) | 253 |
+| `feat(...)` commits | 58 |
+| `fix(...)` commits | 43 |
+| `docs(...)` commits | 25 |
 | `test(...)` commits | 48 |
 
 ```bash
@@ -100,18 +116,24 @@ hard-fails on unsupported JSON-Schema keywords.
 
 Package-aware Wasm builds — accept, emit per-unit, link manifests, and host
 run — with the carrier-typed `importa` fixture through the product
-package-to-LLVM builder.
+package-to-Wasm builder.
 
 #### Locale: tensor-family surface
 
 The tensor-family locale surface rounds out with a `th-TH` round-trip; the
 `la` reader locale is tagged on its packages.
 
-#### Conditional — nominal type identity (s1-U2)
+#### Canonical nominal identity and reduced-resource device projection
 
-**If it lands before the tag:** nominal type identity (s1-U2) is a secondary
-language-semantics note — nominal identity for package-crossing types. The
-final call is confirmed at the v1.5.0 tag; if it slips, it rides v1.6.
+- Package-crossing nominal types retain canonical identity across analysis
+  boundaries, including struct values and enum variants. Missing or
+  unresolvable identity-bearing variants fail closed (`b1b6ed4`, `5e96ceb`,
+  `2ca42df`).
+- Faber emits and admits the wire-8 reduced-resource projection for device
+  programs and rejects malformed, degenerate, or unsupported axis-reduction
+  projections (`6fe40af`, `5bd30f6`, `9fbcf03`, `93911fc`).
+- The diagnostic-language option is consistently named
+  `--diagnostics-locale` (`9fd0fa0`).
 
 ### Known limitations
 

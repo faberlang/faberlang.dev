@@ -6,7 +6,7 @@ sources = [
   "faber/README.md",
   "faber/AGENTS.md",
   "faber/src/cli/mod.rs",
-  "faber/docs/release/v1.4.0.md",
+  "faber/docs/release/v1.5.0.md",
   "radix/docs/design/faber-scripting.md",
 ]
 +++

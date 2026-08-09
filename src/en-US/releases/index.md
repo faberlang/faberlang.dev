@@ -15,14 +15,13 @@ The user-facing CLI: check, build, run, test, format, explain.
 
 | Version | Published | Downloads | Notes |
 |---|---|---|---|
-| [Faber 1.5.0](/releases/faber-1.5.0.html) | — | — | yes |
+| [Faber 1.5.0](/releases/faber-1.5.0.html) | 2026-08-08 | 2 | yes |
 | [Faber 1.4.0](/releases/faber-1.4.0.html) | 2026-07-31 | 2 | yes |
 | [Faber 1.3.0](/releases/faber-1.3.0.html) | 2026-07-31 | 2 | yes |
 | [Faber 1.2.0](/releases/faber-1.2.0.html) | 2026-07-22 | 2 | yes |
 | [Faber 1.1.1](/releases/faber-1.1.1.html) | 2026-07-17 | 2 | yes |
 | [Faber 1.1.0](/releases/faber-1.1.0.html) | — | — | yes |
 | [Faber 1.0.0](/releases/faber-1.0.0.html) | — | — | yes |
-| [Faber 1.0.0-rc.2](/releases/faber-1.0.0-rc.2.html) | — | — | yes |
 
 ## Radix {#radix}
 
@@ -30,8 +29,7 @@ The compiler. Bundled inside the `faber` CLI; also published standalone for anyo
 
 | Version | Published | Downloads | Notes |
 |---|---|---|---|
-| [Radix 1.0.0-rc.1](/releases/radix-1.0.0-rc.1.html) | — | — | yes |
-| [Radix 0.80.0](/releases/radix-0.80.0.html) | — | — | yes |
+| [Radix 0.80.0](/releases/radix-0.80.0.html) | 2026-08-08 | 2 | yes |
 | [Radix 0.79.0](/releases/radix-0.79.0.html) | 2026-07-31 | 2 | yes |
 | [Radix 0.78.0](/releases/radix-0.78.0.html) | — | — | yes |
 | [Radix 0.77.0](/releases/radix-0.77.0.html) | — | — | yes |

@@ -29,16 +29,16 @@ non-canonical syntax.
 6. **Examples skill** — https://faberlang.dev/.well-known/agent-skills/examples/SKILL.md  
 7. **Expanded map** — https://faberlang.dev/llms-full.txt  
 
-## Install the CLI (current: 1.4.0)
+## Install the CLI (current: 1.5.0)
 
-Release: https://github.com/faberlang/releases/releases/tag/faber-v1.4.0
+Release: https://github.com/faberlang/releases/releases/tag/faber-v1.5.0
 
 | Platform | Archive |
 |---|---|
-| macOS arm64 | https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-aarch64-apple-darwin.tar.gz |
-| Linux x64 | https://github.com/faberlang/releases/releases/download/faber-v1.4.0/faber-v1.4.0-x86_64-unknown-linux-gnu.tar.gz |
+| macOS arm64 | https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-aarch64-apple-darwin.tar.gz |
+| Linux x64 | https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-x86_64-unknown-linux-gnu.tar.gz |
 
-Verify the archive by comparing the first hash field from the `.sha256` file to the local archive hash. Extract `faber-v1.4.0-<target-triple>/faber`, put it on `PATH`, run `faber --version`.
+Verify the archive by comparing the first hash field from the `.sha256` file to the local archive hash. Extract `faber-v1.5.0-<target-triple>/faber`, put it on `PATH`, run `faber --version`.
 
 HTML install page: https://faberlang.dev/en-US/start/install.html
 

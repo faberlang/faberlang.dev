@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:bf1e96d3f9f32709648d7070efc64e5314aca1a832a99fb5eec5dfec243cb299"
+prose_hash = "sha256:ee419129d3831bc6b00ce420e2970050f6557facbb7d688790dae79a3ce95d2a"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "307530264566bb19ddf6c7a34f55fa3aa2ddebb1"
+source_commit = "07de385fe243e329729f1c1821bdbbd7737e12a7"
 source_locale = "en-US"
 +++
 
@@ -52,7 +52,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 |---|---|---|---|
 | rust | 278 | 280 | 99% |
 | go | 262 | 280 | 94% |
-| ts | 274 | 280 | 98% |
+| ts | 280 | 280 | 100% |
 | faber | 280 | 280 | 100% |
 
 **系統途徑（MIR → 裝置/IR 產物）**
@@ -60,11 +60,11 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | 目標 | 可支援 | 可分析 | % |
 |---|---|---|---|
 | llvm-text | 277 | 280 | 99% |
-| wasm-text | 257 | 280 | 92% |
-| wasm | 257 | 280 | 92% |
-| sexp-struct | 222 | 280 | 79% |
-| sexp | 222 | 280 | 79% |
-| scena | 238 | 280 | 85% |
+| wasm-text | 259 | 280 | 92% |
+| wasm | 259 | 280 | 92% |
+| sexp-struct | 223 | 280 | 80% |
+| sexp | 223 | 280 | 80% |
+| scena | 239 | 280 | 85% |
 
 ## 關鍵字 — 應用途徑
 
@@ -225,10 +225,10 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `≥` | ✓ | ✓ | ✓ | ✓ |
 | `≤` | ✓ | ✓ | ✓ | ✓ |
 | `⊖` | ✓ | ✓ | ✓ | ✓ |
-| `modulus<u16>` | ✓ | ✕ | ✕ | ✓ |
-| `modulus<u32>` | ✓ | ✕ | ✕ | ✓ |
-| `modulus<u64>` | ✓ | ✕ | ✕ | ✓ |
-| `modulus<u8>` | ✓ | ✕ | ✕ | ✓ |
+| `modulus<u16>` | ✓ | ✕ | ✓ | ✓ |
+| `modulus<u32>` | ✓ | ✕ | ✓ | ✓ |
+| `modulus<u64>` | ✓ | ✕ | ✓ | ✓ |
+| `modulus<u8>` | ✓ | ✕ | ✓ | ✓ |
 | `non est` | ✓ | ✓ | ✓ | ✓ |
 | `⊚` | ✓ | ✓ | ✓ | ✓ |
 | `∨` | ✓ | ✓ | ✓ | ✓ |
@@ -263,7 +263,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `bivalens` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `cape` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `casu` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| `cede` | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `cede` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `ceteri` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `ceterum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `clausura` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -271,7 +271,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `copia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `cura` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `curata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| `cursor` | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `cursor` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `custodi` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `de` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `descriptio` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -281,7 +281,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `ego` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `elige` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `errata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| `est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ |
+| `est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `ex` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `exitus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `fac` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -315,7 +315,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `lege` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `lista` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
-| `matrix` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
+| `matrix` | ✕ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `mone` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `mori` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |

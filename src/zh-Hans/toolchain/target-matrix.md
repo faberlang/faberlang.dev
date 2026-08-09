@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:3fcfe19102501a02213ae815789aa76e375c62fbe2cbafeec56a42ae40cc09eb"
+prose_hash = "sha256:7d29fff3481cec676abbe48acbf623b231c6b4e6ac6bd9436ffbd801c2f76d7d"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "307530264566bb19ddf6c7a34f55fa3aa2ddebb1"
+source_commit = "07de385fe243e329729f1c1821bdbbd7737e12a7"
 source_locale = "en-US"
 +++
 
@@ -52,7 +52,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 |---|---|---|---|
 | rust | 278 | 280 | 99% |
 | go | 262 | 280 | 94% |
-| ts | 274 | 280 | 98% |
+| ts | 280 | 280 | 100% |
 | faber | 280 | 280 | 100% |
 
 **系统通道（MIR → 设备/IR 产物）**
@@ -60,11 +60,11 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | 目标 | 可支持 | 可分析 | % |
 |---|---|---|---|
 | llvm-text | 277 | 280 | 99% |
-| wasm-text | 257 | 280 | 92% |
-| wasm | 257 | 280 | 92% |
-| sexp-struct | 222 | 280 | 79% |
-| sexp | 222 | 280 | 79% |
-| scena | 238 | 280 | 85% |
+| wasm-text | 259 | 280 | 92% |
+| wasm | 259 | 280 | 92% |
+| sexp-struct | 223 | 280 | 80% |
+| sexp | 223 | 280 | 80% |
+| scena | 239 | 280 | 85% |
 
 ## 关键字 — 应用通道
 
@@ -225,10 +225,10 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `≥` | ✓ | ✓ | ✓ | ✓ |
 | `≤` | ✓ | ✓ | ✓ | ✓ |
 | `⊖` | ✓ | ✓ | ✓ | ✓ |
-| `modulus<u16>` | ✓ | ✕ | ✕ | ✓ |
-| `modulus<u32>` | ✓ | ✕ | ✕ | ✓ |
-| `modulus<u64>` | ✓ | ✕ | ✕ | ✓ |
-| `modulus<u8>` | ✓ | ✕ | ✕ | ✓ |
+| `modulus<u16>` | ✓ | ✕ | ✓ | ✓ |
+| `modulus<u32>` | ✓ | ✕ | ✓ | ✓ |
+| `modulus<u64>` | ✓ | ✕ | ✓ | ✓ |
+| `modulus<u8>` | ✓ | ✕ | ✓ | ✓ |
 | `non est` | ✓ | ✓ | ✓ | ✓ |
 | `⊚` | ✓ | ✓ | ✓ | ✓ |
 | `∨` | ✓ | ✓ | ✓ | ✓ |
@@ -263,7 +263,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `bivalens` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `cape` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `casu` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| `cede` | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `cede` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `ceteri` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `ceterum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `clausura` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -271,7 +271,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `copia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `cura` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `curata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| `cursor` | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `cursor` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `custodi` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `de` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `descriptio` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -281,7 +281,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `ego` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `elige` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `errata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| `est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ |
+| `est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `ex` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `exitus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `fac` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -315,7 +315,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `lege` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `lista` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
-| `matrix` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
+| `matrix` | ✕ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `mone` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `mori` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |

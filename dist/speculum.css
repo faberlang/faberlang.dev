@@ -538,15 +538,6 @@ body.home .content > p:first-of-type {
     color: var(--ink-dim);
 }
 .sub { font-family: var(--sans); font-size: 13px; color: var(--ink-faint); margin: var(--s2) 0 var(--s5); }
-.content small.open-source-note,
-main small.open-source-note {
-    display: block;
-    font-size: 0.82rem;
-    line-height: 1.55;
-    color: var(--ink-faint);
-    margin: var(--s3) 0 var(--s5);
-}
-
 h2 {
     font-family: var(--serif); font-size: 1.45rem; font-weight: 400;
     margin: var(--s7) 0 var(--s3);

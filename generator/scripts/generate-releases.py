@@ -61,6 +61,10 @@ PRODUCTS = {
 NOTES_SKIP = re.compile(r"(-dev-notes|-sibling-pins)$")
 
 
+def is_prerelease(version: str) -> bool:
+    return "-" in version
+
+
 @dataclass
 class Version:
     product: str
@@ -165,6 +169,14 @@ def collect() -> dict[str, list[Version]]:
                 continue
             entry = found.get((product, version))
             if entry is None:
+                # An untagged prerelease is an internal candidate lock, not a
+                # version anyone can install. Its own notes usually say so in
+                # as many words ("no tag, no push, no public download"), and
+                # listing it puts a version at the top of the table that is
+                # newer than anything shipped. Tagged prereleases stay: those
+                # were published on purpose.
+                if is_prerelease(version):
+                    continue
                 entry = Version(product=product, version=version)
                 found[(product, version)] = entry
             entry.notes = path.read_text(encoding="utf-8")

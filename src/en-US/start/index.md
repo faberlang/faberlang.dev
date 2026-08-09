@@ -12,9 +12,9 @@ then open a real package. For a sequenced path, follow: [Install](/start/install
 
 ## 1. Install the CLI {#install}
 
-Download the current release (**1.4.0**) for your platform from the
+Download the current release (**1.5.0**) for your platform from the
 [install page](/start/install.html), verify the archive checksum, and put the
-extracted `faber-v1.4.0-<target-triple>/faber` binary on your `PATH`. Confirm:
+extracted `faber-v1.5.0-<target-triple>/faber` binary on your `PATH`. Confirm:
 
 ```bash
 faber --version
@@ -88,7 +88,7 @@ Browse them on the [examples page](/examples/).
 
 | Step | Page | Outcome |
 |---|---|---|
-| 1 | [Install & download](/start/install.html) | Put Faber 1.4.0 on `PATH` and verify it |
+| 1 | [Install & download](/start/install.html) | Put Faber 1.5.0 on `PATH` and verify it |
 | 2 | [Hello, Faber](/start/hello.html) | Create and run `salve-munde` |
 | 3 | [Commands you will use](/cheatsheet/commands.html) | Learn `check`, `build`, `run`, `test`, `explain` |
 | 4 | [Projects and examples](/start/projects.html) | Move into real packages and corpus pages |

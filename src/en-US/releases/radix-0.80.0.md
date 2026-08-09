@@ -1,7 +1,7 @@
 +++
 title = "Radix 0.80.0"
 section = "releases"
-order = 19
+order = 17
 sources = []
 +++
 
@@ -9,19 +9,36 @@ sources = []
 |---|---|
 | **Product** | Radix |
 | **Version** | 0.80.0 |
+| **Tag** | `radix-v0.80.0` |
+| **GitHub** | [radix-v0.80.0](https://github.com/faberlang/releases/releases/tag/radix-v0.80.0) |
+| **Published** | 2026-08-08 |
 | **Source** | Closed for now — see [Open source](/open-source.html) |
 
 ## Install this version {#install}
 
-No prebuilt archives were published for this version. It is listed here because its release notes are part of the record.
+Pinned download for **Radix 0.80.0**. For the current release, use [Install](/start/install.html) instead.
+
+| Platform | Archive | Size | Checksum |
+|---|---|---|---|
+| **macOS arm64** | [radix-v0.80.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/radix-v0.80.0/radix-v0.80.0-aarch64-apple-darwin.tar.gz) | 4.9 MB | [sha256](https://github.com/faberlang/releases/releases/download/radix-v0.80.0/radix-v0.80.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** | [radix-v0.80.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/radix-v0.80.0/radix-v0.80.0-x86_64-unknown-linux-gnu.tar.gz) | 5.4 MB | [sha256](https://github.com/faberlang/releases/releases/download/radix-v0.80.0/radix-v0.80.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+
+```bash
+curl -fsSL -o radix.tgz \
+  https://github.com/faberlang/releases/releases/download/radix-v0.80.0/radix-v0.80.0-aarch64-apple-darwin.tar.gz
+tar -xzf radix.tgz
+sudo mv radix-v0.80.0-aarch64-apple-darwin/radix /usr/local/bin/
+radix --version
+```
 
 ## Release notes {#notes}
 
-> **Status**: draft — finalized at the v0.80.0 tag
+> **Status**: final
 
-Minor release spanning **1051 commits** (`v0.79.0..v0.80.0`, 2026-07-31→2026-08-07).
-Headline: **the Wasm chain is complete** (cursor-stream v1 row, package-aware
-emit, host run via cross-module `faber_external` resolution), GPU inference
+Minor release spanning **1074 commits** (`v0.79.0..v0.80.0`, 2026-07-31→2026-08-07).
+Headline: **the carrier-typed Wasm package chain is complete** (cursor-stream
+v1 row, package-aware emit, host run via cross-module `faber_external`
+resolution), GPU inference
 amendments (per-position RoPE + `F16Round` — Q2 prefill top-1 PASS on Metal
 with an honest, non-claimed numeric parity record), Stage 7 Swift triage
 (215/215 classification rows, corpus gate unblocked), device-lowering
@@ -32,11 +49,11 @@ component release-tooling spine.
 
 | Signal | Count |
 | --- | ---: |
-| Commits (no merges) | 1051 |
-| `feat(...)` commits | 175 |
-| `fix(...)` commits | 129 |
-| `docs(...)` commits | 427 |
-| `test(...)` commits | 42 |
+| Commits (no merges) | 1074 |
+| `feat(...)` commits | 178 |
+| `fix(...)` commits | 138 |
+| `docs(...)` commits | 431 |
+| `test(...)` commits | 43 |
 
 Reconstruct the full log:
 
@@ -46,9 +63,9 @@ git log v0.79.0..HEAD --oneline --no-merges
 
 ### Major tracks
 
-#### Wasm chain complete (codex-gap Stage 6, U6)
+#### Carrier-typed Wasm package chain complete (codex-gap Stage 6, U6)
 
-The Stage 6 Wasm gap chain is closed end to end.
+The Stage 6 carrier-typed Wasm package proof is closed end to end.
 
 - **Cursor-stream v1 row (U6-A).** Cursor streams materialize on the closed
   v1 row `__faber_rt_v1_cursor_stream` instead of failing closed — the
@@ -60,14 +77,19 @@ The Stage 6 Wasm gap chain is closed end to end.
   can reach it (`2db533bb5`, `2d4a7c6a0`).
 - **Product package path.** The faber package lane accepts, emits per-unit,
   links, and runs Wasm packages; the link manifests and
-  `wasm_modules` / `go_modules` carrier slots are populated per unit
-  (faber-side `8a0403a`, `d9df04b`, `774436f`).
+  `wasm_modules` carrier slots are populated per unit
+  (faber-side `8a0403a`, `d9df04b`, `774436f`). `go_modules` remains owned by
+  the separate Go path.
 - **Host run (cross-module `faber_external` resolution).** The package-aware
   emitter's `faber_external` imports resolve against the canonical
   `__faber_external_product_…_module_…_func_…` exports the sibling modules
   define (radix `radix-mir-wasm` import surfaces + faber package-wasm lane).
 - **Tier floors reconciled.** Wasm tier floors are re-anchored to the
   cursor-stream + package-lane proofs, ledger-driven (`774436f`).
+
+Cross-module `textus` handles remain unsupported because separate Wasm modules
+have separate linear memories. The completed proof is the carrier-typed
+`importa-wasm` path, not general cross-module handle sharing.
 
 #### GPU inference amendments (GI3-1)
 
@@ -130,8 +152,8 @@ proof/code organization:
 
 #### Release tooling spine (component side)
 
-- **Scripts + runbook.** `bump-version`, `regen-lock` (and release-context)
-  scripts with tests, plus a thin radix-local component runbook
+- **Scripts + runbook.** `bump-version`, `regen-lock`, and
+  `release-linux-context` scripts with tests, plus a thin radix-local component runbook
   (`docs/release/runbook.md`, `a098deec3`).
 - **Cross-repo release-manifest support.** The coordinated release contract
   (authority, manifest schema, per-stage decision docs) lands on the faber
@@ -139,22 +161,29 @@ proof/code organization:
   independent component release unit that never advances the shared repo's
   global `Latest`.
 
-#### Conditional — in flight at draft time
+#### Wire-8 device contract and reduced-resource projection
 
-> The following was **in flight when this draft was written**. If it lands
-> before the v0.80.0 tag, fold it into the wire-contract track below; if not,
-> it ships in a later release.
+- **Clean wire break.** The serialized device-program contract advances to
+  wire version 8 and carries reduced-resource projections explicitly.
+- **Fail-closed admission.** FMIR rejects unsupported axis-reduction operators,
+  degenerate projections, mismatched carried-resource facts, and malformed
+  reduced-resource projections (`faf688032`, `8e3887d4a`, `a554c8b42`,
+  `dff1d95cf`).
+- **Measured parity baseline.** The Wasm baseline-gap ledger is regenerated
+  from the live wire-8 measurement (`5614335ae`).
 
-- **FMIR serialized-contract ratchet.** A wire-version ratchet for the
-  serialized device program contract (`WireRopePlan` / `MirProgram` wire
-  shape) that admits the new plan facts fail-closed. Note: the versioned
-  cadence/session wire section itself already landed (GI4-2,
-  `9c3d41241` — session section + own version ratchet + admission, optional
-  for single-device packages); the pending part is the nested
-  device-program wire-version bump for the new rope shape.
-- **Reduced-resource projection (council CB-2/CB-3).** Projection of the
-  inference recipes under reduced resource budgets (smaller workspace /
-  fewer kernels), pending council decisions CB-2/CB-3.
+#### Canonical imported nominal identity
+
+Imported nominal types now retain canonical identity across analysis snapshots,
+including enum variant snapshots. Identity-bearing resolution fails closed when
+the canonical definition is missing (`8bf58961c`, `8d1b3ea1d`).
+
+#### Tool and parser polish
+
+- `radix check` and `radix emit` expose separate `--locale` and
+  `--diagnostics-locale` controls (`7506d7f41`).
+- Comments between `si`-chain branch links retain their structural trivia
+  (`decfa3d99`).
 
 ### Breaking / author-visible
 
@@ -163,6 +192,8 @@ proof/code organization:
 | `MirUnOp::F16Round` added (new unary node) | Additive; no existing surface changes. New device emitters must cover it (sexp/stepper already do). |
 | `RopePlan.per_row` / `rows` added | Additive plan facts; new field must be carried through wire + Metal/LLVM emitters. |
 | FMIR versioned session section (GI4-2) | Optional — absent for single-device packages; when present, admitted fail-closed on its own wire-version ratchet. No `WIRE_DEVICE_PROGRAM_VERSION` bump required for the session section. |
+| FMIR device-program wire version 8 | Clean serialized-contract break; producers and consumers must use the wire-8 reduced-resource projection shape. |
+| Imported nominal identity snapshots | Additive compiler artifact facts; malformed or unresolved identity-bearing imports now fail closed. |
 | Wasm package path (faber-side) | Wasm emit is package-aware; `faber_external` cross-module imports resolve against canonical product exports. |
 
 No author-visible breaking removals in this range: the retired NVVM read-back
@@ -176,24 +207,23 @@ and the stale `WARN006`/`DeprecatedFeature` residue were internal-only.
 - No new language surface beyond the locale and codegen additions above.
 - No changes to the `faber` product CLI surface beyond the Wasm package path
   noted above (sibling repo release — this notes file covers radix only).
-- The conditional wire-contract ratchet and CB-2/CB-3 projection are not
-  counted as delivered unless they land before the tag.
+- No claim that reduced-resource projection makes every inference recipe fit a
+  given device budget; wire-8 carries and validates the projection facts.
 
 ### Version alignment
 
 | Item | Value |
 | --- | --- |
-| Source tag | `v0.80.0` (planned) |
-| `crates/radix` version | `0.80.0` (pending the release bump commit) |
-| Public artifact tag | `radix-v0.80.0` on `faberlang/releases` (planned) |
+| Source tag | `v0.80.0` |
+| `crates/radix` version | `0.80.0` |
+| Public artifact tag | `radix-v0.80.0` on `faberlang/releases` |
 | Workspace members bumped | all `0.79.0` → `0.80.0` (hygiene-ratchet stays `0.1.0`) |
 
-### Verification (pre-release)
+### Verification contract
 
-> Draft — verification is recorded on the release candidate tree at the tag,
-> per the v0.79.0 precedent (`cargo build --locked --release -p radix --bin
-> radix`, `radix --version`, `cargo nextest run`, then the `Publish` steps
-> below). The draft intentionally does not block the tag on these notes.
+The release commit is gated by `cargo build --locked --release -p radix --bin
+radix` and `cargo nextest run`. The tag workflow runs the full Radix ladder
+before publishing component artifacts.
 
 ### Publish
 
@@ -201,7 +231,7 @@ and the stale `WARN006`/`DeprecatedFeature` residue were internal-only.
    use `scripta/bump-version` + `scripta/regen-lock` per the thin runbook.
 2. `cargo update` so `Cargo.lock` matches manifests.
 3. Verify locked release build + nextest.
-4. **Single commit** with version bump + lockfile (+ this notes file if still dirty):
+4. **Single commit** with version bump + lockfile:
    `release(radix): v0.80.0`
 5. Annotated tag: `git tag -a v0.80.0 -m "Radix v0.80.0"`
 6. Push: `git push origin main && git push origin v0.80.0`

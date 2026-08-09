@@ -1,7 +1,7 @@
 +++
 title = "Radix 0.24.0"
 section = "releases"
-order = 75
+order = 73
 sources = []
 +++
 

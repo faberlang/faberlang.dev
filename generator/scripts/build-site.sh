@@ -298,14 +298,24 @@ if [ "$FULL_SITE" = true ]; then
 
     # Step 8: Smoke checks against en-US paths
     echo "[9/10] Smoke checks..."
+    # The current release is stated once, in the Install page's fact table.
+    # Reading it back from there keeps a version bump a content edit rather
+    # than a build-script edit, and still fails closed if the download links
+    # were left pointing at the previous version.
+    current_faber="$(sed -n 's/^| \*\*Version\*\* | \(.*\) |$/\1/p' \
+        "${REPO_DIR}/src/en-US/start/install.md" | head -1)"
+    if [ -z "$current_faber" ]; then
+        echo "ERROR: smoke could not read the current version from src/en-US/start/install.md" >&2
+        exit 1
+    fi
     smoke_contains "${OUTPUT_DIR}/en-US/index.html" "<!DOCTYPE html>" "home doctype"
     if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
         smoke_contains "${OUTPUT_DIR}/en-US/index.html" "/llms.txt" "home agent link"
-        smoke_contains "${OUTPUT_DIR}/en-US/index.html" "faber-v1.4.0" "home release link"
+        smoke_contains "${OUTPUT_DIR}/en-US/index.html" "faber-v${current_faber}" "home release link"
         smoke_contains "${OUTPUT_DIR}/llms-full.txt" "Generated corpus frontmatter reference" "llms-full surface"
         smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "<!DOCTYPE html>" "install doctype"
         smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "/en-US/start/install.html" "install path"
-        smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "faber-v1.4.0" "install release link"
+        smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "faber-v${current_faber}" "install release link"
         smoke_contains "${OUTPUT_DIR}/en-US/start/hello.html" "Salve, munde" "hello start page"
         smoke_contains "${OUTPUT_DIR}/en-US/cheatsheet/commands.html" "faber check" "cheat sheet commands"
         smoke_contains "${OUTPUT_DIR}/en-US/cheatsheet/index.html" "Cheat sheet" "cheat sheet index"
@@ -315,7 +325,7 @@ if [ "$FULL_SITE" = true ]; then
         smoke_contains "${OUTPUT_DIR}/en-US/examples/cat.html" "faber-code" "example source shown"
         smoke_contains "${OUTPUT_DIR}/en-US/targets/index.html" "Target lanes" "target lanes index"
         smoke_contains "${OUTPUT_DIR}/en-US/404.html" "404" "404 page"
-        smoke_contains "${OUTPUT_DIR}/en-US/releases/index.html" "Faber 1.4.0" "releases index"
+        smoke_contains "${OUTPUT_DIR}/en-US/releases/index.html" "Faber ${current_faber}" "releases index"
         smoke_contains "${OUTPUT_DIR}/en-US/releases/faber-1.4.0.html" "faber-v1.4.0" "pinned release page"
         smoke_contains "${OUTPUT_DIR}/en-US/releases/radix-0.79.0.html" "Release notes" "release notes imported"
         smoke_contains "${OUTPUT_DIR}/en-US/toolchain/target-matrix.html" "Target compatibility" "targets matrix title"

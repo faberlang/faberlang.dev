@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:f0969833879e710fef15bd9cf0c60b78677e3c86c43e18470f3fc3399ed96023"
+prose_hash = "sha256:a21020b1b9ae6c8fab4817e27888966d2ca9c5bbf596c1339c27d2bd420c67aa"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "307530264566bb19ddf6c7a34f55fa3aa2ddebb1"
+source_commit = "07de385fe243e329729f1c1821bdbbd7737e12a7"
 source_locale = "en-US"
 +++
 
@@ -57,7 +57,7 @@ verbs), per-target contracts और pipeline routing
 |---|---|---|---|
 | rust | 278 | 280 | 99% |
 | go | 262 | 280 | 94% |
-| ts | 274 | 280 | 98% |
+| ts | 280 | 280 | 100% |
 | faber | 280 | 280 | 100% |
 
 **सिस्टम लेन (MIR → डिवाइस/IR आर्टिफैक्ट)**
@@ -65,11 +65,11 @@ verbs), per-target contracts और pipeline routing
 | लक्ष्य | सक्षम | विश्लेषण योग्य | % |
 |---|---|---|---|
 | llvm-text | 277 | 280 | 99% |
-| wasm-text | 257 | 280 | 92% |
-| wasm | 257 | 280 | 92% |
-| sexp-struct | 222 | 280 | 79% |
-| sexp | 222 | 280 | 79% |
-| scena | 238 | 280 | 85% |
+| wasm-text | 259 | 280 | 92% |
+| wasm | 259 | 280 | 92% |
+| sexp-struct | 223 | 280 | 80% |
+| sexp | 223 | 280 | 80% |
+| scena | 239 | 280 | 85% |
 
 ## कीवर्ड — एप्लिकेशन लेन
 
@@ -230,10 +230,10 @@ verbs), per-target contracts और pipeline routing
 | `≥` | ✓ | ✓ | ✓ | ✓ |
 | `≤` | ✓ | ✓ | ✓ | ✓ |
 | `⊖` | ✓ | ✓ | ✓ | ✓ |
-| `modulus<u16>` | ✓ | ✕ | ✕ | ✓ |
-| `modulus<u32>` | ✓ | ✕ | ✕ | ✓ |
-| `modulus<u64>` | ✓ | ✕ | ✕ | ✓ |
-| `modulus<u8>` | ✓ | ✕ | ✕ | ✓ |
+| `modulus<u16>` | ✓ | ✕ | ✓ | ✓ |
+| `modulus<u32>` | ✓ | ✕ | ✓ | ✓ |
+| `modulus<u64>` | ✓ | ✕ | ✓ | ✓ |
+| `modulus<u8>` | ✓ | ✕ | ✓ | ✓ |
 | `non est` | ✓ | ✓ | ✓ | ✓ |
 | `⊚` | ✓ | ✓ | ✓ | ✓ |
 | `∨` | ✓ | ✓ | ✓ | ✓ |
@@ -268,7 +268,7 @@ verbs), per-target contracts और pipeline routing
 | `bivalens` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `cape` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `casu` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| `cede` | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `cede` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `ceteri` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `ceterum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `clausura` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -276,7 +276,7 @@ verbs), per-target contracts और pipeline routing
 | `copia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `cura` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `curata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| `cursor` | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `cursor` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `custodi` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `de` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `descriptio` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -286,7 +286,7 @@ verbs), per-target contracts और pipeline routing
 | `ego` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `elige` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `errata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| `est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ |
+| `est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `ex` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `exitus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `fac` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -320,7 +320,7 @@ verbs), per-target contracts और pipeline routing
 | `lege` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `lista` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
-| `matrix` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
+| `matrix` | ✕ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `mone` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `mori` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |

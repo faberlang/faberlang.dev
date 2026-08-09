@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:23dcfc204191c01cd7570ef1faeaf66b8862a33e13a56459d0434df624353fb7"
+prose_hash = "sha256:3f8e0832c6e8a324b389348b1d8926d1d606c54ed113cfa3502e0facc5f74bd8"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "307530264566bb19ddf6c7a34f55fa3aa2ddebb1"
+source_commit = "07de385fe243e329729f1c1821bdbbd7737e12a7"
 source_locale = "en-US"
 +++
 
@@ -57,7 +57,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 |---|---|---|---|
 | rust | 278 | 280 | 99% |
 | go | 262 | 280 | 94% |
-| ts | 274 | 280 | 98% |
+| ts | 280 | 280 | 100% |
 | faber | 280 | 280 | 100% |
 
 **Tuyến hệ thống (MIR → tạo phẩm thiết bị/IR)**
@@ -65,11 +65,11 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
 | llvm-text | 277 | 280 | 99% |
-| wasm-text | 257 | 280 | 92% |
-| wasm | 257 | 280 | 92% |
-| sexp-struct | 222 | 280 | 79% |
-| sexp | 222 | 280 | 79% |
-| scena | 238 | 280 | 85% |
+| wasm-text | 259 | 280 | 92% |
+| wasm | 259 | 280 | 92% |
+| sexp-struct | 223 | 280 | 80% |
+| sexp | 223 | 280 | 80% |
+| scena | 239 | 280 | 85% |
 
 ## Từ khóa — tuyến ứng dụng
 
@@ -230,10 +230,10 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `≥` | ✓ | ✓ | ✓ | ✓ |
 | `≤` | ✓ | ✓ | ✓ | ✓ |
 | `⊖` | ✓ | ✓ | ✓ | ✓ |
-| `modulus<u16>` | ✓ | ✕ | ✕ | ✓ |
-| `modulus<u32>` | ✓ | ✕ | ✕ | ✓ |
-| `modulus<u64>` | ✓ | ✕ | ✕ | ✓ |
-| `modulus<u8>` | ✓ | ✕ | ✕ | ✓ |
+| `modulus<u16>` | ✓ | ✕ | ✓ | ✓ |
+| `modulus<u32>` | ✓ | ✕ | ✓ | ✓ |
+| `modulus<u64>` | ✓ | ✕ | ✓ | ✓ |
+| `modulus<u8>` | ✓ | ✕ | ✓ | ✓ |
 | `non est` | ✓ | ✓ | ✓ | ✓ |
 | `⊚` | ✓ | ✓ | ✓ | ✓ |
 | `∨` | ✓ | ✓ | ✓ | ✓ |
@@ -268,7 +268,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `bivalens` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `cape` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `casu` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| `cede` | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `cede` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `ceteri` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `ceterum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `clausura` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -276,7 +276,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `copia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `cura` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `curata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| `cursor` | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| `cursor` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `custodi` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `de` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `descriptio` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -286,7 +286,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `ego` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `elige` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `errata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| `est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ |
+| `est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `ex` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `exitus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `fac` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -320,7 +320,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `lege` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `lista` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
-| `matrix` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
+| `matrix` | ✕ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | `mone` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `mori` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `nexum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
