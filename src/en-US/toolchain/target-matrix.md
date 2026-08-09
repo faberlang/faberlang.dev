@@ -16,6 +16,14 @@ targets side by side in the tables below.
 
 Live CLI summary: `faber targets`.
 
+**Why the terms below are in Latin.** Everywhere else on this site, code
+renders in your reader locale — the same program, spelled in your language.
+The term column here does not, because it is not code: it is the identity of
+each construct, the key the compiler's own corpus is indexed under. Latin is
+Faber's canonical form precisely because no living language has a claim on
+it, so no locale's spelling has to be the one the others are measured
+against. A row is the same row whichever language you read the site in.
+
 **Generated**: unknown by `scripta/generate-ebnf-matrix.py` — **do not edit**.
 **Measurement**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, no external toolchains).
 **Join**: `corpus/index.toml` terms → exempla.

@@ -58,7 +58,7 @@ GPU support is split between shader lowering and the narrower real-device route
 documented below. The <a href="/en-US/toolchain/target-matrix.html">target matrix</a> records
 the current support boundary.</p><p>The language makes three deliberate signal choices that work together:</p><ul><li><strong>Type-first declarations</strong> — shape reads toward binding: <code>textus nomen</code>,
 not <code>nomen: textus</code>.</li><li><strong>Latin behavioural words</strong> — declarations, statements, and lifecycle:
-<code class="kw">functio</code>, <code class="kw">genus</code>, <code class="kw">fixum</code>, <code class="kw">redde</code>, <code class="kw">si</code>.</li><li><strong>Structural glyphs</strong> — value flow and type joints: <code>←</code> (bind), <code>→</code>
+<code class="kw">fn</code>, <code class="kw">class</code>, <code class="kw">const</code>, <code class="kw">return</code>, <code class="kw">if</code>.</li><li><strong>Structural glyphs</strong> — value flow and type joints: <code>←</code> (bind), <code>→</code>
 (return type), <code>∴</code> (clausura joint), <code>≡</code> (equality), <code>∪</code> (union).</li></ul><p>The result is source with stable grammatical shape that can be reviewed,
 transformed, and lowered without losing the reader's sense of intent.</p><h2 id="gpu-device-execution">GPU device execution<a class="anchor" href="#gpu-device-execution">#</a></h2><p>Faber now runs device programs on real GPUs. A package carries a device
 program when its source declares an <code>@ nucleum</code> compute kernel and its

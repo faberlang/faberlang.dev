@@ -1,4 +1,7 @@
 +++
+# This page discusses Latin keywords as Latin. Rendering them in
+# the reader locale would turn its own examples into nonsense.
+translate_spans = false
 title = "Reader locales"
 section = "language"
 order = 6

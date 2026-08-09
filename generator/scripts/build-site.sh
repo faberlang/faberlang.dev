@@ -450,6 +450,12 @@ if [ "$FULL_SITE" = true ]; then
     echo "[9/10] Reader-locale example tabs..."
     "$PYTHON" "${SCRIPT_DIR}/locale-tabs.py" inject "$OUTPUT_DIR"
 
+    # Inline language terms follow the reader locale, same as the fences.
+    # Runs before highlighting so the highlighter paints the local spelling
+    # rather than a Latin one that is no longer on the page.
+    echo "[9/10] Reader-locale inline terms..."
+    "$PYTHON" "${SCRIPT_DIR}/localize-spans.py" "$OUTPUT_DIR"
+
     echo "[9/10] Code highlighting..."
     "$PYTHON" "${SCRIPT_DIR}/highlight-code.py" "$OUTPUT_DIR"
 

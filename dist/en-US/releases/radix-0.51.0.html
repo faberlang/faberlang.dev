@@ -10,19 +10,19 @@ factory goal, splitting the workspace into <code>faber</code> (runtime), <code>f
 tool), and retargeting codegen to <code>faber::Valor</code>.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>27</td></tr><tr><td><code>feat(...)</code> commits</td><td>3</td></tr><tr><td><code>fix(...)</code> commits</td><td>3</td></tr><tr><td><code>docs(...)</code> commits</td><td>5</td></tr><tr><td><code>chore</code> commits</td><td>3</td></tr><tr><td>Date span</td><td>2026-06-26 → 2026-06-27</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="return-path-exhaustiveness-defer-011">Return-path exhaustiveness (DEFER-011)<a class="anchor" href="#return-path-exhaustiveness-defer-011">#</a></h4><ul><li>Enforce that value-returning functions (<code>→ T</code> where T is neither vacuum nor
 nihil) cannot fall through without a return. The new <code>return_path</code> semantic
 pass runs after typecheck and exhaustiveness, reducing each construct to
-Terminates/FallsThrough — <code class="kw">redde</code> satisfies the normal channel; <code>iace</code>/<code>mori</code>
-and diverging loops diverge; <code class="kw">si</code> needs both branches; <code class="kw">discerne</code> terminates
+Terminates/FallsThrough — <code class="kw">return</code> satisfies the normal channel; <code>iace</code>/<code>mori</code>
+and diverging loops diverge; <code class="kw">if</code> needs both branches; <code class="kw">match</code> terminates
 when coverage is total and every reachable arm returns. Generators and
 <code>→ nihil</code> effect functions are excluded. Reuses diagnostic <code>SEM033</code>
 (MissingReturn). (<code>17a8bedd0</code>)</li></ul><h4 id="discerne-omnia-explicit-exhaustive-matching-defer-028"><code>discerne omnia</code> explicit exhaustive matching (DEFER-028)<a class="anchor" href="#discerne-omnia-explicit-exhaustive-matching-defer-028">#</a></h4><ul><li>Lower the previously parse-only <code>omnia</code> keyword through HIR into the
 exhaustiveness pass. When present, the match must be over a single enum
 scrutinee and every arm must name a variant explicitly — no <code>casu _</code>, no bare
-binding, no <code class="kw">ceterum</code>. Plain <code class="kw">discerne</code> is unchanged (coverage enforced,
+binding, no <code class="kw">default</code>. Plain <code class="kw">match</code> is unchanged (coverage enforced,
 catchalls allowed). New diagnostics: <code>SEM043</code> (OmniaRequiresEnum) and <code>SEM044</code>
 (OmniaForbidsCatchall). Composes with return-path exhaustiveness: a returning
 <code>discerne omnia</code> is proven covered iff every variant is named and each arm
 returns. (<code>413c1cb93</code>)</li></ul><h4 id="warning-when-catchall-absorbs-null-of-nullable-scrutinee-defer-013">Warning when catchall absorbs null of nullable scrutinee (DEFER-013)<a class="anchor" href="#warning-when-catchall-absorbs-null-of-nullable-scrutinee-defer-013">#</a></h4><ul><li>Emit <code>WARN011</code> (WildcardAbsorbsNull) when an unguarded catchall absorbs a
-scrutinee whose constituents include <code class="kw">nihil</code> — <code>Option(_)</code>, any Union
+scrutinee whose constituents include <code class="kw">null</code> — <code>Option(_)</code>, any Union
 containing nihil, resolved through aliases, references, and applied generic
 arguments. Suppressed when an explicit <code>casu nihil</code> arm is present. This is
 a warning, not an error. (<code>e737f3a99</code>)</li></ul><h4 id="faber-runtime-namespace-frn-000006">Faber runtime namespace (FRN-000–006)<a class="anchor" href="#faber-runtime-namespace-frn-000006">#</a></h4><p>Split the workspace into <code>faber</code> (language runtime) and <code>faber-cli</code> (build

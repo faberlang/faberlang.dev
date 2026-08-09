@@ -21,7 +21,7 @@ the leaf that owns the genus they use.</p><div class="table-scroll"><table><thea
 <span class="tok-kw">importa</span> <span class="tok-kw">ex</span> <span class="tok-st">"triga:resource"</span> <span class="tok-kw">privata</span> resource</code></pre><h2 id="api-shape">API shape<a class="anchor" href="#api-shape">#</a></h2><p>Public operations on Triga genera are <strong>receiver methods</strong> with an implicit
 <code>ego</code> receiver. Free functions survive only as constructors (<code>vector3</code>,
 <code>box3_ex_minimo_et_maximo</code>, <code>matrix4_conspectus</code>), pure scalar helpers, and
-primitive generators.</p><p>Faber morphologia applies: <strong>Imperativus</strong> mutates a <code class="kw">varia</code> receiver in
+primitive generators.</p><p>Faber morphologia applies: <strong>Imperativus</strong> mutates a <code class="kw">var</code> receiver in
 place, while <strong>Perfectum</strong> returns a new value and leaves the receiver alone.</p><pre class="faber-code"><code class="lang-faber mode=package"><span class="tok-kw">importa</span> <span class="tok-kw">ex</span> <span class="tok-st">"triga:math"</span> <span class="tok-kw">privata</span> math
 
 <span class="tok-co"># Perfectum — returns a new Box3, receiver unchanged</span>
@@ -34,7 +34,7 @@ mutable.infla(<span class="tok-nu">2.0</span>)</code></pre><p>Vocabulary is tech
 identity is the point (<code>Vector3</code>, <code>Matrix4</code>, <code>Quaternion</code>, <code>Box3</code>, <code>Ray</code>,
 <code>BufferGeometry</code>, <code>f32</code>, <code>WebGPU</code>), while operation stems are Latinised
 (<code>normata</code> normalize, <code>productum</code> dot product, <code>transversum</code> cross product,
-<code>insere</code> insert, <code>adiunge</code> attach, <code class="kw">cape</code> get, <code>inveni</code> find, <code>continet</code>
+<code>insere</code> insert, <code>adiunge</code> attach, <code class="kw">catch</code> get, <code>inveni</code> find, <code>continet</code>
 contains, <code>visibilia</code> visible). The material constructor is
 <code>materia_ex_nomine(name)</code>, and <code>BufferGeometry</code> attributes carry
 <code>float32_values()</code> payload projection for host upload.</p><h2 id="design">Design<a class="anchor" href="#design">#</a></h2><ul><li><strong>Structure-of-arrays layout</strong>: vertex attributes and matrix storage use
@@ -46,7 +46,7 @@ convention while the structural hierarchy mirrors three.js
 (<code>Object3D</code> → <code>Mesh</code> → <code>Scene</code>, <code>Material</code> → <code>MeshStandardMaterial</code>).</li><li><strong>Module seams</strong>: Norma-style flat leaves — <code>math</code> / <code>graph</code> / <code>material</code> /
 <code>face</code> / <code>geometry</code> / <code>primitives</code> / <code>scene</code> / <code>resource</code> — with nested
 package dirs only when a directory holds 2–3+ modules.</li></ul><h2 id="exempla">Exempla<a class="anchor" href="#exempla">#</a></h2><p>Instructional demos live under <code>triga/exempla/</code>: <code>triga-scene-store.fab</code>
-(stable heterogeneous scene store with <code>insere</code> / <code>adiunge</code> / <code class="kw">cape</code> /
+(stable heterogeneous scene store with <code>insere</code> / <code>adiunge</code> / <code class="kw">catch</code> /
 <code>visibilia</code>), <code>triga-transforms.fab</code> (Vector3 / Matrix4 transform chains),
 <code>triga-geometry-attributes.fab</code>, <code>triga-basics.fab</code>, plus three Hello Voxel
 fixtures that exercise the <code>@vertex</code> / <code>@fragment</code> shader-surface path end to

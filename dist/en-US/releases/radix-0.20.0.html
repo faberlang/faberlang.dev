@@ -17,7 +17,7 @@ keys — O(1) hash lookup vs O(n) control flow, 72 KB vs 122 KB for the FAB elig
 equivalent (<code>e02724744</code>)</li><li>Populate the registry with innatum (collection metadata) and radixForms (method
 metadata) data — 878 entries: 11 collections, 48 methods, 819 translations
 (<code>65bcd3dd1</code>)</li><li>Migrate faber codegen to consume <code>fons/norma/index.json</code> directly instead of
-the generated <code>norma-registry.gen.ts</code> (<code>edf07dcfe</code>)</li></ul><h4 id="rivus-semantic-analyzer-fixes-type-inference">Rivus semantic analyzer fixes (type inference)<a class="anchor" href="#rivus-semantic-analyzer-fixes-type-inference">#</a></h4><ul><li>Fix pattern binding type inference in <code class="kw">discerne</code> statements — alias bindings
+the generated <code>norma-registry.gen.ts</code> (<code>edf07dcfe</code>)</li></ul><h4 id="rivus-semantic-analyzer-fixes-type-inference">Rivus semantic analyzer fixes (type inference)<a class="anchor" href="#rivus-semantic-analyzer-fixes-type-inference">#</a></h4><ul><li>Fix pattern binding type inference in <code class="kw">match</code> statements — alias bindings
 (<code>ut g</code>) now resolve to variant types instead of IGNOTUM; partial field binding
 support (<code>30a8bf6a3</code>, fixes #78)</li><li>Add <code>InnatumExpressia</code> type resolution — variables declared with <code>[] innatum</code>
 expressions now resolve to their target type, reducing artifex build errors from

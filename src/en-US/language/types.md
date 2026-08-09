@@ -35,7 +35,8 @@ sources = [
 ## Data types
 
 Faber has a static, type-first type system. Every declaration places the type
-before the name: `textus nomen`, not `nomen: textus`. The type system covers
+before the name — the `textus` comes first, then the identifier it names, not
+the other way round. The type system covers
 scalar primitives, generic collections, sized numerics, tensors, and GPU-facing
 register types.
 

@@ -87,8 +87,8 @@ the façade because it needs the resolver, type table, reader pack, CLI mount,
 annotation contracts, and source-unit policies.</p><p>The lowerer:</p><ul><li>preserves source spans and resolved <code>DefId</code>s;</li><li>allocates synthetic IDs for locals, catches, patterns, and CLI bindings;</li><li>moves top-level executable statements into an explicit or implicit HIR
 entry block;</li><li>normalizes surface sugar without performing backend lowering;</li><li>preserves source intent such as optional chains, non-null assertions,
 failable calls, control expressions, tensor operations, and annotations; and</li><li>emits a typed lowering diagnostic plus a HIR <code>Error</code> node when it must
-continue structurally.</li></ul><p>Most control forms remain expression-shaped in HIR. <code class="kw">si</code>, <code class="kw">dum</code>, <code class="kw">itera</code>,
-<code class="kw">fac</code>, <code class="kw">elige</code>, and <code class="kw">discerne</code> are not yet MIR basic blocks. This is the key
+continue structurally.</li></ul><p>Most control forms remain expression-shaped in HIR. <code class="kw">if</code>, <code class="kw">while</code>, <code class="kw">for</code>,
+<code class="kw">do</code>, <code class="kw">switch</code>, and <code class="kw">match</code> are not yet MIR basic blocks. This is the key
 reason HIR can serve several language-shaped backends and why MIR lowering is a
 separate phase.</p><p>Sources:</p><ul><li><code>crates/radix/src/hir/lower/mod.rs</code>;</li><li><code>crates/radix/src/hir/lower/expr.rs</code>;</li><li><code>crates/radix/src/hir/lower/stmt.rs</code>; and</li><li><code>crates/radix-hir/src/lib.rs</code>.</li></ul><h4 id="analyzedunit"><code>AnalyzedUnit</code><a class="anchor" href="#analyzedunit">#</a></h4><p>The driver packages the semantic result into <code>AnalyzedUnit</code>. It is a coherence
 boundary, not just a convenience struct. Its fields come from one analysis

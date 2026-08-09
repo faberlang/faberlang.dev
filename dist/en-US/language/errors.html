@@ -12,7 +12,7 @@ shape:</p><div class="table-scroll"><table><thead><tr><th>Construct</th><th>Mean
     <span class="tok-kw">if</span> value ≺ <span class="tok-nu">0</span> {
         <span class="tok-kw">throw</span> <span class="tok-st">"negative value"</span>
     }
-}</code></pre><h3 id="recovery--fac--cape">Recovery — fac / cape<a class="anchor" href="#recovery--fac--cape">#</a></h3><p>Callers recover locally with a <code class="kw">fac</code> block and a <code class="kw">cape</code> handler:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+}</code></pre><h3 id="recovery--fac--cape">Recovery — fac / cape<a class="anchor" href="#recovery--fac--cape">#</a></h3><p>Callers recover locally with a <code class="kw">do</code> block and a <code class="kw">catch</code> handler:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
     <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> then <span class="tok-kw">return</span> <span class="tok-nu">0</span>
     <span class="tok-kw">return</span> a <span class="tok-op">/</span> b
 }
@@ -26,24 +26,24 @@ shape:</p><div class="table-scroll"><table><thead><tr><th>Construct</th><th>Mean
         <span class="tok-kw">return</span> <span class="tok-nu">0</span>
     }
 }</code></pre><p>A direct failable call is not an ordinary expression. Place calls to
-<code>→ T ⇥ E</code> functions inside an active <code class="kw">fac</code> / <code class="kw">cape</code> boundary.</p><h3 id="async-alternate">The alternate channel in async surfaces<a class="anchor" href="#async-alternate">#</a></h3><p>The same <code>⇥ E</code> channel rides <em>inside</em> Faber's async types rather than as a
+<code>→ T ⇥ E</code> functions inside an active <code class="kw">do</code> / <code class="kw">catch</code> boundary.</p><h3 id="async-alternate">The alternate channel in async surfaces<a class="anchor" href="#async-alternate">#</a></h3><p>The same <code>⇥ E</code> channel rides <em>inside</em> Faber's async types rather than as a
 separate mechanism. A <code>fiet</code> function returns <code>promissum&lt;T&gt;</code> — the
 infallible shorthand for <code>promissum&lt;T ⇥ numquam&gt;</code> — and <code>promissum&lt;T ⇥ E&gt;</code>
 preserves the delayed alternate alongside the eventual value. Awaiting a
 failable promise is itself a failable operation: the success value binds
-inside a <code class="kw">fac</code> / <code class="kw">cape</code> boundary while the failure stays observable, exactly
+inside a <code class="kw">do</code> / <code class="kw">catch</code> boundary while the failure stays observable, exactly
 like a failable sync call.</p><p>Async and sync streams carry the channel too: <code>fient → T ⇥ E</code> makes every
 pull a promise that can yield, end, or fail (the first failure ends the
 stream, handled by <code>itera ex</code>); <code>fiunt → T ⇥ E</code> makes the stream call itself
-failable, recovered with <code class="kw">fac</code> / <code class="kw">cape</code>.</p><p>See <a href="/en-US/language/functions.html#two-channel-promises">Functions — two-channel promises</a>
+failable, recovered with <code class="kw">do</code> / <code class="kw">catch</code>.</p><p>See <a href="/en-US/language/functions.html#two-channel-promises">Functions — two-channel promises</a>
 for the full treatment.</p><h3 id="inline-conversion-recovery">Inline conversion recovery<a class="anchor" href="#inline-conversion-recovery">#</a></h3><p><code>⇥</code> can also specify an inline recovery value on <code>↦</code> conversions:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> <span class="tok-kw">string</span> raw <span class="tok-op">←</span> <span class="tok-st">"42"</span>
 
 <span class="tok-kw">const</span> <span class="tok-kw">int</span> n <span class="tok-op">←</span> raw ↦ <span class="tok-kw">int</span> ⇥ <span class="tok-nu">0</span></code></pre><h3 id="effectonly-failable">Effect-only failable<a class="anchor" href="#effectonly-failable">#</a></h3><p>For functions that error but do not return a success value, omit <code>→ T</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> exigePositivum(<span class="tok-kw">int</span> value) <span class="tok-op">→</span> <span class="tok-kw">void</span> ⇥ <span class="tok-kw">string</span> {
     <span class="tok-kw">if</span> value ≺ <span class="tok-nu">0</span> {
         <span class="tok-kw">throw</span> <span class="tok-st">"negative value"</span>
     }
-}</code></pre><h3 id="current-status">Current status<a class="anchor" href="#current-status">#</a></h3><p><code>→</code>, <code class="kw">redde</code>, <code>⇥</code>, <code>iace</code>, and <code class="kw">fac</code> / <code class="kw">cape</code> are live grammar and checker
-surfaces. Rust and Go lowering for full <code>⇥</code> / <code>iace</code> / <code class="kw">cape</code> runtime
+}</code></pre><h3 id="current-status">Current status<a class="anchor" href="#current-status">#</a></h3><p><code>→</code>, <code class="kw">return</code>, <code>⇥</code>, <code>iace</code>, and <code class="kw">do</code> / <code class="kw">catch</code> are live grammar and checker
+surfaces. Rust and Go lowering for full <code>⇥</code> / <code>iace</code> / <code class="kw">catch</code> runtime
 behaviour is still a backend gap — these pass type-checking but do not
 yet emit failable runtime code to all targets.</p><h2 id="inline-testing">Inline testing<a class="anchor" href="#inline-testing">#</a></h2><p>Faber has a first-class testing framework built into the language with three
 keywords: <code>probandum</code> declares a test suite, <code>proba</code> declares a single test

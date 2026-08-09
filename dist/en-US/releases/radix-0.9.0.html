@@ -22,8 +22,8 @@ expression and statement modules. Proof-of-concept on <code>sententia/error.fab<
 (<code>a0f0704f5</code>)</li><li><strong>Converts all 12 parser files</strong> to the Resolvitor pattern — they compile
 cleanly. Key changes: functions take <code>Resolvitor r</code> instead of <code>Parser p</code>,
 cross-module calls use <code>r.expressia()</code>/<code>r.sententia()</code>/<code>r.adnotatio()</code>, and
-removed <code>fac...dum</code> (do-while) in favor of regular <code class="kw">dum</code> loops. Blockers
-remain: AST types are <code class="kw">genus</code> not <code>discretio</code> variants, so they can't be
+removed <code>fac...dum</code> (do-while) in favor of regular <code class="kw">while</code> loops. Blockers
+remain: AST types are <code class="kw">class</code> not <code>discretio</code> variants, so they can't be
 returned as <code>Expressia</code>/<code>Sententia</code>. (<code>0b5c2986b</code>)</li></ul><h4 id="two-pass-semantic-analysis">Two-pass semantic analysis<a class="anchor" href="#two-pass-semantic-analysis">#</a></h4><ul><li><strong>Implements three-phase analysis</strong> for within-file forward references:
 Phase 1a predeclares all top-level names with placeholder types, Phase 1b
 resolves signatures, Phase 1c iteratively resolves type aliases to fixed
@@ -48,14 +48,14 @@ files, replacing duplicate <code>Locus</code> genus definitions with proper impo
 variant construction, distinct from <code>novum</code> (struct instantiation). Supports
 explicit type via <code>qua</code>, inferred type, and unit variants. Codegen for all 6
 targets (TS, Python, Rust, Zig, C++, Faber). (<code>51a34dac2</code>)</li><li><strong>Adds `fac...dum` (do-while loop) syntax</strong>: <code>fac { body } dum condition</code>
-with optional <code class="kw">cape</code> handler. Codegen emits idiomatic do-while in C++/TS,
+with optional <code class="kw">catch</code> handler. Codegen emits idiomatic do-while in C++/TS,
 loop+break in Rust/Python/Zig. (<code>1b62ae062</code>)</li></ul><h4 id="planning-and-documentation">Planning and documentation<a class="anchor" href="#planning-and-documentation">#</a></h4><ul><li><strong>Updates `bootstrap-ts.md`</strong> removing the 'Current Blockers' section — all
 issues resolved (mutual recursion → pactum Resolvitor, discretio
 instantiation → <code>finge</code>, function hoisting → two-pass, do-while loops →
 <code>fac...dum</code>). Adds 'Discretio Variant Construction' section with <code>finge</code>
 example, renames 'Current Blockers' → 'Gotchas', updates Session 3 lessons.
 (<code>5ff64f33c</code>)</li><li><strong>Updates planning docs</strong> across <code>bootstrap-ts.md</code> and <code>two-pass.md</code>. (<code>1764f3f7f</code>)</li><li><strong>Updates GRAMMAR.md</strong> plus <code>grammatica/functiones.md</code>, <code>grammatica/regimen.md</code>,
-and <code>grammatica/structurae.md</code>. (<code>42bd26f3e</code>)</li><li><strong>Updates `lambda.fab`</strong> exemplum. (<code>8103feb11</code>)</li></ul><h4 id="cleanup">Cleanup<a class="anchor" href="#cleanup">#</a></h4><ul><li><strong>Removes duplicate `nihil` keyword entry</strong>: <code class="kw">nihil</code> serves as both a literal
+and <code>grammatica/structurae.md</code>. (<code>42bd26f3e</code>)</li><li><strong>Updates `lambda.fab`</strong> exemplum. (<code>8103feb11</code>)</li></ul><h4 id="cleanup">Cleanup<a class="anchor" href="#cleanup">#</a></h4><ul><li><strong>Removes duplicate `nihil` keyword entry</strong>: <code class="kw">null</code> serves as both a literal
 value and a unary operator, but the duplicate was dead code (Map stores one
 value per key). Keeps the value category entry with a comment explaining the
 dual usage. (<code>88fc03180</code>)</li></ul><p>---</p><p><a href="/en-US/releases/">All releases</a> · <a href="/en-US/start/install.html">Install the current release</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#install">Install this version</a></li><li class="toc-2"><a href="#notes">Release notes</a></li><li class="toc-3"><a href="#scale">Scale</a></li><li class="toc-3"><a href="#major-tracks">Major tracks</a></li></ul></div></nav></div></body></html>

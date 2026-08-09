@@ -15,17 +15,17 @@ typecheck pass (<code>intervallum.rs</code>), codegen stubs across Rust/Go/TS/Fa
 codegen refactor of iteration control to consume the new range IR, and
 <code>faber::Intervallum&lt;T&gt;</code> runtime carrier with <code>longitudo</code> and iterator traits.
 (<code>b8bdb4f81</code>)</li></ul><ul><li><strong>Commit B — conversio clamp, materialize, continet:</strong> Parser expands to
-<code>↦</code> conversio targets: <code>intervallum</code> → <code class="typ">numerus</code> (clamp), <code>intervallum</code> →
+<code>↦</code> conversio targets: <code>intervallum</code> → <code class="typ">int</code> (clamp), <code>intervallum</code> →
 <code>lista&lt;T&gt;</code> (materialize), <code>intervallum</code> → <code>intervallum</code> (range-to-range
-clamp). Intrinsic <code>continet</code> (point containment → <code class="typ">bivalens</code>). HIR nodes for
+clamp). Intrinsic <code>continet</code> (point containment → <code class="typ">bool</code>). HIR nodes for
 clamp/conversio/materia, MIR lowering, all four codegen backends. Exempla
 corpus <code>intervallum/conversio.fab</code>. (<code>67e159921</code>)</li></ul><ul><li><strong>Materialize to 1-d tensor:</strong> Extends the materialize path (<code>intervallum ↦
 tensor&lt;T&gt;</code>) producing a 1-dimensional tensor from range bounds. Rust codegen
 and typecheck conversions, exempla and test coverage. (<code>2f035d853</code>)</li></ul><ul><li><strong>Commit C — range algebra, instans bounds:</strong> Intersection (<code>inter</code>) and union
 (<code>union</code>) intrinsics with inclusivity-propagating semantics (half-open
 preserves half-open, inclusive union requires both operands inclusive).
-<code class="typ">instans</code> (datetime) bound support in addition to <code class="typ">numerus</code>. Infallible clamp
-adjacent to fallible <code>inter</code>/<code>union</code> (return <code class="kw">nihil</code> on disjoint/gap).
+<code class="typ">instant</code> (datetime) bound support in addition to <code class="typ">int</code>. Infallible clamp
+adjacent to fallible <code>inter</code>/<code>union</code> (return <code class="kw">null</code> on disjoint/gap).
 <code>faber::Instans</code> carrier hooks. Full intrinsic registry entries and design doc
 <code>docs/design/intervallum-intrinsics.md</code>. (<code>243d8424a</code>)</li></ul><ul><li><strong>Docs:</strong> Proposed range type renamed from placeholder to <code>intervallum&lt;T&gt;</code>
 across factory goals, comparison-operators design, and corda/conversio
@@ -39,7 +39,7 @@ guards. (<code>37594e2ae</code>)</li></ul><ul><li><strong>Commit C fallout close
 design, and <code>instans-intrinsics.md</code> updated for exact-type equality semantics.
 Ledger SHA anchors for Commit B/C. (<code>6ca197fbc</code>, <code>6360fef2a</code>)</li></ul><ul><li><strong>Polish:</strong> Extracted shared <code>infer.rs</code> equality helpers from <code>ops.rs</code>;
 factored <code>convert_test.rs</code> matrix into the dedicated test module.
-(<code>64d904bbd</code>, <code>b1afd9408</code>)</li></ul><h4 id="scalar-text-ordering-comparison-gaps-closeout">Scalar text ordering (comparison-gaps closeout)<a class="anchor" href="#scalar-text-ordering-comparison-gaps-closeout">#</a></h4><ul><li><strong>Faber runtime:</strong> <code class="typ">textus</code> scalar <code>cmp</code> helper and matching test coverage.
+(<code>64d904bbd</code>, <code>b1afd9408</code>)</li></ul><h4 id="scalar-text-ordering-comparison-gaps-closeout">Scalar text ordering (comparison-gaps closeout)<a class="anchor" href="#scalar-text-ordering-comparison-gaps-closeout">#</a></h4><ul><li><strong>Faber runtime:</strong> <code class="typ">string</code> scalar <code>cmp</code> helper and matching test coverage.
 (<code>66667fa22</code>)</li></ul><ul><li><strong>Typecheck and codegen:</strong> Scalar text ordering typecheck probes and inference
 rules; Rust codegen emits <code>Ord::cmp</code> / <code>PartialOrd::partial_cmp</code> for text
 types. (<code>13dad17e3</code>, <code>751b0533c</code>)</li></ul><ul><li><strong>Chorda library:</strong> Interval helpers refactored with a shared

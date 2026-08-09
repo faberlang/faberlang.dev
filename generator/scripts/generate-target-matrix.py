@@ -66,6 +66,7 @@ REQUIRED_KEYS = (
 OPTIONAL_KEYS = (
     "pct_note",
     "device_support",
+    "latin_note",
 )
 
 # Device-kernel subset emitters. They lower a device-safe kernel surface —
@@ -330,6 +331,15 @@ def build_page(matrix_text: str, pack: dict[str, str], *, locale: str) -> str:
     body_parts: list[str] = [
         pack["intro"].strip(),
         "",
+    ]
+
+    # Why this page's terms stay Latin while the rest of the site follows the
+    # reader locale. Optional, so a locale that has not translated it omits
+    # the note rather than carrying an English paragraph.
+    if pack.get("latin_note"):
+        body_parts += [pack["latin_note"].strip(), ""]
+
+    body_parts += [
         pack["meta_generated"].format(date=date),
         pack["meta_measurement"],
         pack["meta_join"],

@@ -11,7 +11,7 @@
     <span class="tok-kw">若</span> value ≺ <span class="tok-nu">0</span> {
         <span class="tok-kw">拋出</span> <span class="tok-st">"negative value"</span>
     }
-}</code></pre><h3 id="recovery--fac--cape">復原 — fac / cape<a class="anchor" href="#recovery--fac--cape">#</a></h3><p>呼叫端使用 <code class="kw">fac</code> 區塊與 <code class="kw">cape</code> 處理常式在本地復原：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函式</span> divide(<span class="tok-kw">整數</span> a, <span class="tok-kw">整數</span> b) <span class="tok-op">→</span> <span class="tok-kw">整數</span> {
+}</code></pre><h3 id="recovery--fac--cape">復原 — fac / cape<a class="anchor" href="#recovery--fac--cape">#</a></h3><p>呼叫端使用 <code class="kw">執行</code> 區塊與 <code class="kw">捕捉</code> 處理常式在本地復原：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函式</span> divide(<span class="tok-kw">整數</span> a, <span class="tok-kw">整數</span> b) <span class="tok-op">→</span> <span class="tok-kw">整數</span> {
     <span class="tok-kw">若</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> <span class="tok-kw">則</span> <span class="tok-kw">傳回</span> <span class="tok-nu">0</span>
     <span class="tok-kw">傳回</span> a <span class="tok-op">/</span> b
 }
@@ -25,14 +25,14 @@
         <span class="tok-kw">傳回</span> <span class="tok-nu">0</span>
     }
 }</code></pre><p>直接呼叫可失敗函式並不是一般運算式。請將對
-<code>→ T ⇥ E</code> 函式的呼叫放在作用中的 <code class="kw">fac</code> / <code class="kw">cape</code> 邊界內。</p><h3 id="inline-conversion-recovery">內嵌轉換復原<a class="anchor" href="#inline-conversion-recovery">#</a></h3><p><code>⇥</code> 也可以在 <code>↦</code> 轉換上指定內嵌復原值：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">定值</span> <span class="tok-kw">文字</span> raw <span class="tok-op">←</span> <span class="tok-st">"42"</span>
+<code>→ T ⇥ E</code> 函式的呼叫放在作用中的 <code class="kw">執行</code> / <code class="kw">捕捉</code> 邊界內。</p><h3 id="inline-conversion-recovery">內嵌轉換復原<a class="anchor" href="#inline-conversion-recovery">#</a></h3><p><code>⇥</code> 也可以在 <code>↦</code> 轉換上指定內嵌復原值：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">定值</span> <span class="tok-kw">文字</span> raw <span class="tok-op">←</span> <span class="tok-st">"42"</span>
 
 <span class="tok-kw">定值</span> <span class="tok-kw">整數</span> n <span class="tok-op">←</span> raw ↦ <span class="tok-kw">整數</span> ⇥ <span class="tok-nu">0</span></code></pre><h3 id="effectonly-failable">僅效果的可失敗函式<a class="anchor" href="#effectonly-failable">#</a></h3><p>對於會發生錯誤但不回傳成功值的函式，省略 <code>→ T</code>：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函式</span> exigePositivum(<span class="tok-kw">整數</span> value) <span class="tok-op">→</span> <span class="tok-kw">空值</span> ⇥ <span class="tok-kw">文字</span> {
     <span class="tok-kw">若</span> value ≺ <span class="tok-nu">0</span> {
         <span class="tok-kw">拋出</span> <span class="tok-st">"negative value"</span>
     }
-}</code></pre><h3 id="current-status">目前狀態<a class="anchor" href="#current-status">#</a></h3><p><code>→</code>、<code class="kw">redde</code>、<code>⇥</code>、<code>iace</code> 與 <code class="kw">fac</code> / <code class="kw">cape</code> 都是現行的文法與檢查器
-介面。Rust 與 Go 對完整 <code>⇥</code> / <code>iace</code> / <code class="kw">cape</code> 執行時行為的降階處理
+}</code></pre><h3 id="current-status">目前狀態<a class="anchor" href="#current-status">#</a></h3><p><code>→</code>、<code class="kw">傳回</code>、<code>⇥</code>、<code>iace</code> 與 <code class="kw">執行</code> / <code class="kw">捕捉</code> 都是現行的文法與檢查器
+介面。Rust 與 Go 對完整 <code>⇥</code> / <code>iace</code> / <code class="kw">捕捉</code> 執行時行為的降階處理
 仍是後端缺口——這些內容可以通過型別檢查，但目前尚未對所有目標產生
 可失敗的執行時程式碼。</p><h2 id="inline-testing">Inline testing<a class="anchor" href="#inline-testing">#</a></h2><p>Faber 將一流的測試框架內建於語言中，提供三個關鍵字：<code>probandum</code> 宣告測試套件，<code>proba</code> 宣告單一測試案例，而 <code>adfirma</code> 則斷言條件。測試與其所測試的程式碼位於同一檔案中，透過 <code>faber test</code> 執行，並支援與正式程式碼相同的編譯器流程——具備地區設定感知、型別檢查及多目標支援。</p><h3 id="keywords">三個關鍵字<a class="anchor" href="#keywords">#</a></h3><div class="table-scroll"><table><thead><tr><th>關鍵字</th><th>作用</th><th>約略對應</th></tr></thead><tbody><tr><td><code>probandum</code></td><td>宣告具名測試套件</td><td><code>describe</code>、<code>#[cfg(test)] mod</code></td></tr><tr><td><code>proba</code></td><td>宣告單一測試案例</td><td><code>it</code>、<code>#[test]</code></td></tr><tr><td><code>adfirma</code></td><td>在執行時斷言條件</td><td><code>assert!</code>、<code>assert_eq!</code></td></tr></tbody></table></div><h4 id="probandum-test-suite">probandum — 測試套件<a class="anchor" href="#probandum-test-suite">#</a></h4><p><code>probandum</code> 區塊會將相關的測試案例分組。套件可以巢狀，以階層方式組織測試：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">測試</span> <span class="tok-st">"unum plus unum"</span> {
     <span class="tok-kw">斷言</span> <span class="tok-nu">1</span> <span class="tok-op">+</span> <span class="tok-nu">1</span> <span class="tok-op">≡</span> <span class="tok-nu">2</span>

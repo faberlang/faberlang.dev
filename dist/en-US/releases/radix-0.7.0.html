@@ -8,7 +8,7 @@ reading stdin as a string. (<code>9b559ac50</code>)</li><li>TypeScript codegen e
 now infer return types from semantic analysis (generating proper Zig structs
 instead of <code>@compileError</code>). Array literals assigned to <code>lista&lt;T&gt;</code> variables
 emit <code>Lista(T).fromItems()</code> / <code>Lista(T).init()</code>. <code>qua</code> casts to <code>lista&lt;T&gt;</code>
-also emit Lista construction. (<code>09ddc6cf9</code>)</li><li><strong>Output stream fix</strong> — <code class="kw">scribe</code> → stdout, <code class="kw">mone</code> → stderr, <code class="kw">vide</code> → debug,
+also emit Lista construction. (<code>09ddc6cf9</code>)</li><li><strong>Output stream fix</strong> — <code class="kw">write</code> → stdout, <code class="kw">warn</code> → stderr, <code class="kw">debug</code> → debug,
 correcting the Zig preamble stream mapping. (<code>3277e031a</code>)</li><li><strong>Tabula</strong> — adds <code>confla</code> and <code>inLista</code> to the Zig tabula runtime, alongside
 updated probes. (<code>3ed8c59c6</code>)</li></ul><h4 id="test-runner-allocator-context-wrap">Test runner: allocator context (<code>wrap</code>)<a class="anchor" href="#test-runner-allocator-context-wrap">#</a></h4><ul><li>Adds a general-purpose <code>wrap</code> property to test cases that wraps input with a
 template (<code>$</code> = placeholder), used to provide allocator context for Zig tests

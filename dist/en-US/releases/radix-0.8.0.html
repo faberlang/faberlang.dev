@@ -12,8 +12,8 @@ error, imperium, ordo, proba, varia (<code>51c64cd5d</code>)</li><li>Fills remai
 error codes, and a <code>lexare()</code> entry point; fixes Zig <code>getCurator()</code> default
 from throwing to returning <code>'alloc'</code> (<code>78d91db90</code>)</li><li>Documents bootstrap patterns and adds inline code comments to the lexor
 (<code>b85a7703a</code>)</li><li>Adds Phase 5 bootstrap analysis with effort estimates, structural
-challenges, and blocking issues to <code>consilia/bootstrap.md</code> (<code>b99ed3735</code>)</li></ul><h4 id="language-postfix-function-modifiers-and-curata-keyword">Language: postfix function modifiers and <code>curata</code> keyword<a class="anchor" href="#language-postfix-function-modifiers-and-curata-keyword">#</a></h4><p><strong>BREAKING:</strong> Function modifiers (<code>futura</code>, <code class="typ">cursor</code>) move from prefix to
-postfix position — declarations now start with <code class="kw">functio</code> uniformly.</p><pre class="faber-code"><code class="lang-text"># Before
+challenges, and blocking issues to <code>consilia/bootstrap.md</code> (<code>b99ed3735</code>)</li></ul><h4 id="language-postfix-function-modifiers-and-curata-keyword">Language: postfix function modifiers and <code>curata</code> keyword<a class="anchor" href="#language-postfix-function-modifiers-and-curata-keyword">#</a></h4><p><strong>BREAKING:</strong> Function modifiers (<code>futura</code>, <code class="typ">iterator</code>) move from prefix to
+postfix position — declarations now start with <code class="kw">fn</code> uniformly.</p><pre class="faber-code"><code class="lang-text"># Before
 futura functio fetch(url) -&gt; Response
 
 # After
@@ -28,7 +28,7 @@ with dedicated <code>praepara</code> / <code>postpara</code> keyword pairs. Adds
 async variants (<code>praeparabit</code>, <code>postparabit</code>). <code>cura</code> is now resource-
 management only. Updates all codegen targets (TS, Python, Rust, C++, Zig,
 Faber). (<code>5dc13f073</code>)</p><p>Corresponding bootstrap AST rename: <code>CuraMassa</code> → <code>PraeparaMassa</code> with a
-<code>PraeparaTempus</code> enum (<code>c3987f751</code>).</p><h4 id="zig-codegen-selfalloc-pattern-for-collection-fields">Zig codegen: <code>self.alloc</code> pattern for collection fields<a class="anchor" href="#zig-codegen-selfalloc-pattern-for-collection-fields">#</a></h4><p>Structs with <code class="typ">lista</code>/<code class="typ">tabula</code>/<code class="typ">copia</code> fields automatically add an
+<code>PraeparaTempus</code> enum (<code>c3987f751</code>).</p><h4 id="zig-codegen-selfalloc-pattern-for-collection-fields">Zig codegen: <code>self.alloc</code> pattern for collection fields<a class="anchor" href="#zig-codegen-selfalloc-pattern-for-collection-fields">#</a></h4><p>Structs with <code class="typ">list</code>/<code class="typ">map</code>/<code class="typ">set</code> fields automatically add an
 <code>alloc: std.mem.Allocator</code> field, <code>init()</code> takes an allocator as the first
 parameter, and methods use <code>self.alloc</code> for collection operations.
 (<code>1a4793b02</code>)</p><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li>Simplifies bootstrap field names from compound workarounds to plain

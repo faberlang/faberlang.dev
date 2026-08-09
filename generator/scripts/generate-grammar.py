@@ -50,6 +50,16 @@ a given target supports it.
 Uppercase names in the productions are lexical terminals. Grammar examples are
 fragments shown to illustrate a production — they are not standalone programs
 and are not expected to compile on their own.
+
+**Why the keywords below are in Latin.** Everywhere else on this site, code
+renders in your reader locale — `fixum` prints as `const`, and a Chinese
+reader sees `常量`. The grammar does not, because it is the canonical
+definition rather than a rendering of it. Latin is Faber's canonical form
+precisely because no living language has a claim on it, so no locale's
+spelling has to be the one every other is defined against; each reader pack
+is a projection of the productions below. The
+[reader locale pages](/language/reader-locales.html) give the mapping, and
+`faber explain <term>` prints it from the compiler itself.
 """
 
 # Repo-relative links point into checkouts the reader does not have. The

@@ -4,7 +4,15 @@ own specification. This is the authority on whether something is valid syntax;
 the <a href="/en-US/toolchain/target-matrix.html">target matrix</a> is the authority on whether
 a given target supports it.</p><p>Uppercase names in the productions are lexical terminals. Grammar examples are
 fragments shown to illustrate a production — they are not standalone programs
-and are not expected to compile on their own.</p><h2 id="program-structure">Program Structure<a class="anchor" href="#program-structure">#</a></h2><p>Faber source files are raw text peeled by the driver before lexing. Optional TOML
+and are not expected to compile on their own.</p><p><strong>Why the keywords below are in Latin.</strong> Everywhere else on this site, code
+renders in your reader locale — <code class="kw">fixum</code> prints as <code>const</code>, and a Chinese
+reader sees <code>常量</code>. The grammar does not, because it is the canonical
+definition rather than a rendering of it. Latin is Faber's canonical form
+precisely because no living language has a claim on it, so no locale's
+spelling has to be the one every other is defined against; each reader pack
+is a projection of the productions below. The
+<a href="/en-US/language/reader-locales.html">reader locale pages</a> give the mapping, and
+<code>faber explain &lt;term&gt;</code> prints it from the compiler itself.</p><h2 id="program-structure">Program Structure<a class="anchor" href="#program-structure">#</a></h2><p>Faber source files are raw text peeled by the driver before lexing. Optional TOML
 frontmatter is not part of the token grammar. Within Faber syntax, spaces,
 tabs, and newlines are trivia unless a production explicitly names <code>NEWLINE</code>.
 Canonical forms are safe to compress onto one line. Any line-sensitive syntax is

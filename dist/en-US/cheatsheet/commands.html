@@ -6,7 +6,7 @@ before proposing generated code as valid Faber.</p><h2 id="check">Check<a class=
 to the compiler front end. It does not mean the final native toolchain has been
 invoked.</p><h2 id="build">Build<a class="anchor" href="#build">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> build . <span class="tok-op">-t</span> rust</code></pre><p>The Rust target is intentionally reviewable. Generated Rust is a compiler
 artifact, not source of truth; edit the Faber package and rebuild rather than
-patching emitted Rust by hand.</p><h2 id="run">Run<a class="anchor" href="#run">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run .</code></pre><p>Use <code>run</code> for application packages with an <code class="kw">incipit</code> entry point. Library-only
+patching emitted Rust by hand.</p><h2 id="run">Run<a class="anchor" href="#run">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run .</code></pre><p>Use <code>run</code> for application packages with an <code class="kw">main</code> entry point. Library-only
 packages should be checked and tested instead.</p><h2 id="explain">Explain diagnostics<a class="anchor" href="#explain">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> explain SEM001
 <span class="tok-fn">faber</span> explain LEX006</code></pre><p>Diagnostic families are stable handles: <code>LEX</code> for lexical errors, <code>PAR</code> for
 parser errors, <code>SEM</code> for semantic/type errors. In docs and agent reports, cite

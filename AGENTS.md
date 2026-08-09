@@ -179,6 +179,29 @@ operate on rendered HTML, so none of them requires a generator rebuild.
 | `highlight-code.py` | Wraps tokens in fenced `faber`/`bash`/`toml` blocks in `.tok-*` spans |
 | `inject-toc.py` | Gives headings ids + `#` self-links, adds the per-page contents rail |
 | `locale-tabs.py inject` | Swaps cheat sheet and examples Faber blocks for reader-locale tab cards |
+| `localize-spans.py` | Renders inline `.kw`/`.typ` terms in the page's reader locale |
+
+**Reader locale.** Every site locale renders its code in its own reader
+locale, English included (`locales.toml` maps `en-US` → `en`). Latin is the
+canonical source surface in `src/` and the compiler's interchange dialect, not
+the surface a page presents. Three layers carry it:
+
+| Layer | Handled by |
+|---|---|
+| Fluid `faber` fences | `localize-markdown.py`, before the render |
+| Cheat sheet / examples / targets fences | `locale-tabs.py`, as 8-locale cards defaulting to `en` |
+| Inline `` `term` `` spans in prose | `localize-spans.py`, after the render |
+
+`span.fab` resolves each inline span against a closed set — 37 keywords + 13
+types — and emits `class="kw"` or `class="typ"`; `localize-spans.py` swaps the
+spelling. Compounds (`` `T ∪ nihil` ``, `` `importa ex "norma:textus"` ``) are
+deliberately unclassified and stay Latin: naive token substitution would
+rewrite the module path `norma:textus` and the annotation `@ cursor`.
+
+A page whose subject *is* Latin sets `translate_spans = false` in its
+frontmatter — `glyphs.md`, `reader-locales.md`, `localization.md` do. The
+grammar, target matrix, and corpus pages are skipped by path, and the first
+two carry a note saying why their terms stay Latin.
 
 **Diagrams.** The SVG cache is committed, so a build without Node still
 produces a complete site; `render` is a source-side authoring step and

@@ -11,7 +11,7 @@
     <span class="tok-kw">إذا</span> value ≺ <span class="tok-nu">0</span> {
         <span class="tok-kw">ارم</span> <span class="tok-st">"negative value"</span>
     }
-}</code></pre><h3 id="recovery--fac--cape">استرداد — fac / cape<a class="anchor" href="#recovery--fac--cape">#</a></h3><p>يسترد المستدعون محليًا بكتلة <code class="kw">fac</code> ومعالج <code class="kw">cape</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">دالة</span> divide(<span class="tok-kw">عدد</span> a, <span class="tok-kw">عدد</span> b) <span class="tok-op">→</span> <span class="tok-kw">عدد</span> {
+}</code></pre><h3 id="recovery--fac--cape">استرداد — fac / cape<a class="anchor" href="#recovery--fac--cape">#</a></h3><p>يسترد المستدعون محليًا بكتلة <code class="kw">افعل</code> ومعالج <code class="kw">التقط</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">دالة</span> divide(<span class="tok-kw">عدد</span> a, <span class="tok-kw">عدد</span> b) <span class="tok-op">→</span> <span class="tok-kw">عدد</span> {
     <span class="tok-kw">إذا</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> <span class="tok-kw">إذن</span> <span class="tok-kw">أعد</span> <span class="tok-nu">0</span>
     <span class="tok-kw">أعد</span> a <span class="tok-op">/</span> b
 }
@@ -25,14 +25,14 @@
         <span class="tok-kw">أعد</span> <span class="tok-nu">0</span>
     }
 }</code></pre><p>لا يُعد الاستدعاء المباشر القابل للفشل تعبيرًا عاديًا. ضع استدعاءات
-الدوال من النمط <code>→ T ⇥ E</code> داخل حدود <code class="kw">fac</code> / <code class="kw">cape</code> نشطة.</p><h3 id="inline-conversion-recovery">استرداد تحويل مضمن<a class="anchor" href="#inline-conversion-recovery">#</a></h3><p>يمكن لـ <code>⇥</code> أيضًا تحديد قيمة استرداد مضمنة على تحويلات <code>↦</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">ثابت</span> <span class="tok-kw">نص</span> raw <span class="tok-op">←</span> <span class="tok-st">"42"</span>
+الدوال من النمط <code>→ T ⇥ E</code> داخل حدود <code class="kw">افعل</code> / <code class="kw">التقط</code> نشطة.</p><h3 id="inline-conversion-recovery">استرداد تحويل مضمن<a class="anchor" href="#inline-conversion-recovery">#</a></h3><p>يمكن لـ <code>⇥</code> أيضًا تحديد قيمة استرداد مضمنة على تحويلات <code>↦</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">ثابت</span> <span class="tok-kw">نص</span> raw <span class="tok-op">←</span> <span class="tok-st">"42"</span>
 
 <span class="tok-kw">ثابت</span> <span class="tok-kw">عدد</span> n <span class="tok-op">←</span> raw ↦ <span class="tok-kw">عدد</span> ⇥ <span class="tok-nu">0</span></code></pre><h3 id="effectonly-failable">تأثير قابل للفشل فقط<a class="anchor" href="#effectonly-failable">#</a></h3><p>للدوال التي تخطئ لكن لا تعيد قيمة نجاح، احذف <code>→ T</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">دالة</span> exigePositivum(<span class="tok-kw">عدد</span> value) <span class="tok-op">→</span> <span class="tok-kw">فراغ</span> ⇥ <span class="tok-kw">نص</span> {
     <span class="tok-kw">إذا</span> value ≺ <span class="tok-nu">0</span> {
         <span class="tok-kw">ارم</span> <span class="tok-st">"negative value"</span>
     }
-}</code></pre><h3 id="current-status">الحالة الراهنة<a class="anchor" href="#current-status">#</a></h3><p><code>→</code> و <code class="kw">redde</code> و <code>⇥</code> و <code>iace</code> و <code class="kw">fac</code> / <code class="kw">cape</code> هي أسطح نحوية ومدققة
-حية. خفض Rust و Go لسلوك <code>⇥</code> / <code>iace</code> / <code class="kw">cape</code> الكامل وقت التشغيل لا
+}</code></pre><h3 id="current-status">الحالة الراهنة<a class="anchor" href="#current-status">#</a></h3><p><code>→</code> و <code class="kw">أعد</code> و <code>⇥</code> و <code>iace</code> و <code class="kw">افعل</code> / <code class="kw">التقط</code> هي أسطح نحوية ومدققة
+حية. خفض Rust و Go لسلوك <code>⇥</code> / <code>iace</code> / <code class="kw">التقط</code> الكامل وقت التشغيل لا
 يزال فجوة خلفية — فهذه تجتاز فحص النمط لكنها لا تصدر بعد شيفرة وقت تشغيل
 قابلة للفشل إلى كل الأهداف.</p><h2 id="inline-testing">Inline testing<a class="anchor" href="#inline-testing">#</a></h2><p>تمتلك Faber إطار عمل اختبارات من الدرجة الأولى مدمجًا في اللغة بثلاث كلمات
 مفتاحية: <code>probandum</code> تُعلن عن مجموعة اختبارات، و<code>proba</code> تُعلن عن حالة اختبار

@@ -11,8 +11,8 @@ functio salve(textus name) → textus</code></pre><h3 id="ii-mechanical-over-mag
 表示错误退出，<code>ergo</code> 表示紧凑分支体，
 <code>≡</code> 表示相等，<code>∪</code> 表示联合
 类型。字形是普世的——它们从不本地化，也从不随渲染不同而改变含义。一位泰语读者和一位法语读者看到的是同样的字形，即便它们周围的关键字各不相同。</p><h3 id="iv-latin-carries-behaviour">四、拉丁语承载行为<a class="anchor" href="#iv-latin-carries-behaviour">#</a></h3><p>词语用于声明、语句、生命周期，以及行为意图：
-<code class="kw">functio</code>、<code class="kw">genus</code>、<code class="kw">fixum</code>、
-<code class="kw">varia</code>、<code class="kw">redde</code>、<code class="kw">cape</code>。
+<code class="kw">函数</code>、<code class="kw">类</code>、<code class="kw">常量</code>、
+<code class="kw">变量</code>、<code class="kw">返回</code>、<code class="kw">捕获</code>。
 这些可以通过读者语言包绑定——它们是词汇，不是语法。选择拉丁语并非因为拉丁语更为优越；而是为了选取<em>一个</em>一致的古典来源，使所有关键字属于同一语体，且没有任何关键字因为恰好是实现的编写语言而享有特权。</p><h3 id="v-conjugation-carries-time-and-flow">五、变位承载时间与流<a class="anchor" href="#v-conjugation-carries-time-and-flow">#</a></h3><p>当同一根逻辑可以同步、异步或作为生成器运行时，动词的变位形式应当承载这种执行模式。所有权配对——就地修改与返回副本——使用同一词干的相关形式。这是形态学原则（morphologia）。标准库（Norma）的所有方法命名都遵循此约定：<code>lege</code>（同步读取）对应 <code>leget</code>（异步读取），<code>adde</code>（就地修改）对应 <code>addita</code>（返回新副本）。编译器并不强制或推导变位——这是一项命名策略，而非语言特性。</p><h3 id="vi-one-sign-one-job">六、一符一职<a class="anchor" href="#vi-one-sign-one-job">#</a></h3><p>一个字形或关键字可以有精确的别名，但不应当承载无关的含义。别名必须指向同一个规范概念。正是这一原则驱动了 Faber 在 <code>←</code>（运行时绑定）与 <code>=</code>（结构字段形状）之间的区分——大多数语言把两者都折叠进 <code>=</code>，但那种重载掩盖了一行代码究竟是数据流操作，还是类型层定义。</p><pre class="faber-code"><code class="lang-text"># ← is always runtime flow
 fixum numerus count ← 0
 count ← count + 1

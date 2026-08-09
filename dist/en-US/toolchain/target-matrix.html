@@ -4,7 +4,13 @@
 lower it, and at what support level.</p><p>Policy verbs (support / erase / warn / reject / defer) and pipeline routing
 live on <a href="/en-US/toolchain/compiling.html">Compiling and targets</a>. This page is the
 large scannable row list — HIR application-lane targets and MIR systems-lane
-targets side by side in the tables below.</p><p>Live CLI summary: <code>faber targets</code>.</p><p><strong>Generated</strong>: unknown by <code>scripta/generate-ebnf-matrix.py</code> — <strong>do not edit</strong>.
+targets side by side in the tables below.</p><p>Live CLI summary: <code>faber targets</code>.</p><p><strong>Why the terms below are in Latin.</strong> Everywhere else on this site, code
+renders in your reader locale — the same program, spelled in your language.
+The term column here does not, because it is not code: it is the identity of
+each construct, the key the compiler's own corpus is indexed under. Latin is
+Faber's canonical form precisely because no living language has a claim on
+it, so no locale's spelling has to be the one the others are measured
+against. A row is the same row whichever language you read the site in.</p><p><strong>Generated</strong>: unknown by <code>scripta/generate-ebnf-matrix.py</code> — <strong>do not edit</strong>.
 <strong>Measurement</strong>: <code>emit_hir_target_matrix</code> + <code>emit_mir_target_matrix</code> (in-process, no external toolchains).
 <strong>Join</strong>: <code>corpus/index.toml</code> terms → exempla.</p><p>This is the <strong>official generated</strong> grammar×target support matrix. It reports
 <strong>lowerability</strong> — can target X lower grammar production Y — across every term in
