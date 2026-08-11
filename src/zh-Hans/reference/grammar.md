@@ -58,7 +58,7 @@ sectio = "smoke"
 ### 变量
 
 ```ebnf
-varDecl      := ('常量' | '变量') typeAnnotation IDENTIFIER ('←' expression)?
+varDecl      := ('常量' | '变量') typeAnnotation IDENTIFIER (('←' expression) | ('↤' assignment inlineRecovery?))?
 sitDecl      := '设' IDENTIFIER ('←' expression)?
 arrayDestruct := ('常量' | '变量') arrayPattern '←' expression
 objectDestruct := ('常量' | '变量') objectPattern '←' expression
@@ -451,7 +451,7 @@ assertStmt  := '断言' expression ('secus' expression)?
 
 ```ebnf
 expression := assignment
-assignment := ternary ('←' assignment)?
+assignment := ternary ('←' assignment | '↤' assignment inlineRecovery?)?
 incDecStmt := place ('⊕' | '⊖')
 ternary    := or (('?' expression ':' | '乃' expression '否则') ternary)?
 or         := and (('或') and)*
@@ -477,6 +477,8 @@ cast       := call ('∷' typeAnnotation | conversio)*
 conversio        := '↦' typeAnnotation typeParams? inlineRecovery?
 inlineRecovery   := '⇥' unary
 ```
+
+`↤` 是定向转换赋值：先求右侧值，通过 `↦` 路径转换为左侧位置的静态类型，再赋值。`⇥` 内联恢复仅在 `↤` 上合法，`←` 之后不允许。
 
 已退役的谓词关键字不是前缀一元语法。请使用 `expr 是 真`、`expr 是 假`、`expr 是 空`、`expr 非 是 空`、`expr < 0` 或 `expr > 0`。
 

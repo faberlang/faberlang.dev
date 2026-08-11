@@ -56,7 +56,7 @@ sectio = "smoke"
 ### 變數
 
 ```ebnf
-varDecl      := ('定值' | '變值') typeAnnotation IDENTIFIER ('←' expression)?
+varDecl      := ('定值' | '變值') typeAnnotation IDENTIFIER (('←' expression) | ('↤' assignment inlineRecovery?))?
 sitDecl      := '設為' IDENTIFIER ('←' expression)?
 arrayDestruct := ('定值' | '變值') arrayPattern '←' expression
 objectDestruct := ('定值' | '變值') objectPattern '←' expression
@@ -361,7 +361,7 @@ assertStmt  := '斷言' expression ('secus' expression)?
 
 ```ebnf
 expression := assignment
-assignment := ternary ('←' assignment)?
+assignment := ternary ('←' assignment | '↤' assignment inlineRecovery?)?
 incDecStmt := place ('⊕' | '⊖')
 ternary    := or (('?' expression ':' | '如此' expression '否則') ternary)?
 or         := and (('或') and)*
@@ -382,6 +382,8 @@ cast       := call ('∷' typeAnnotation | conversio)*
 conversio  := '↦' typeAnnotation typeParams? inlineRecovery?
 inlineRecovery := '⇥' unary
 ```
+
+`↤` 是定向轉換賦值：先求右側值，透過 `↦` 路徑轉換為左側位置的靜態型別，再賦值。`⇥` 內聯恢復僅在 `↤` 上合法，不允許接在 `←` 之後。
 
 `∴` 不在上述運算子文法中，永遠只表示 clausura joint。`∷` 是編譯期靜態型別標註；`↦` 是會執行實際解析或轉換的執行期運算子。`⇥` 可在轉換目標後提供同型別的復原值。`或取` 是 nullable elimination，不是邏輯 OR。
 

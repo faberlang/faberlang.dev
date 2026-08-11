@@ -98,7 +98,7 @@ frontmatter instead. Inside quoted strings, `§` remains the string-template hol
 ### Variables
 
 ```ebnf
-varDecl      := ('fixum' | 'varia') typeAnnotation IDENTIFIER ('←' expression)?
+varDecl      := ('fixum' | 'varia') typeAnnotation IDENTIFIER (('←' expression) | ('↤' assignment inlineRecovery?))?
 awaitVarDecl := ('figendum' | 'variandum') typeAnnotation IDENTIFIER '←' expression
 sitDecl      := 'sit' IDENTIFIER ('←' expression)?
 arrayDestruct := ('fixum' | 'varia') arrayPattern '←' expression
@@ -114,6 +114,10 @@ objectDestruct := ('fixum' | 'varia') objectPattern '←' expression
 - `sit name ← value` is sugar for `fixum _ name ← value` (inferred immutable local)
 - `sit name` (no initializer) is sugar for `fixum _ name` — the inferred deferred
   immutable. Assign exactly once before any read.
+- Typed `fixum`/`varia` initializers accept `↤` (`fixum numerus x ↤ "42"`):
+  the written type is the conversion destination, then the binding is
+  initialized. `figendum`/`variandum` keep `←`; `fixum _`, `sit`, and untyped
+  destructuring reject `↤` (no concrete destination type).
 - Deferred init: `fixum numerus x` or `sit x` declares an uninitialized immutable
   slot that must be assigned exactly once before any read; a second assignment is
   rejected. The definite-assignment pass (semantic Phase 3a) enforces this.
@@ -585,7 +589,7 @@ assertStmt        := 'adfirma' expression ('secus' expression)?
 
 ```ebnf
 expression := assignment
-assignment := ternary ('←' assignment)?
+assignment := ternary ('←' assignment | '↤' assignment inlineRecovery?)?
 incDecStmt := place ('⊕' | '⊖')
 place      := call  (* semantic analysis requires an assignable target *)
 ternary    := or (('?' expression ':' | 'sic' expression 'secus') ternary)?
@@ -615,6 +619,17 @@ cast       := call ('∷' typeAnnotation | conversio)*
 conversio        := '↦' typeAnnotation inlineRecovery?
 inlineRecovery   := '⇥' unary
 ```
+
+**Conversion-directed assignment (`↤` / conversio-assign):** `place ↤ value`
+evaluates the right side, converts it to the statically known type of the left
+place through the existing `↦` route, then assigns. It binds at the same
+precedence as `←` and is right-associative; `⇥ inlineRecovery` is **legal only
+on `↤`** — a `⇥` recovery after ordinary `←` is rejected, and in a
+right-associated `↤` chain the recovery attaches to the nearest `↤`. The
+operator is preserved verbatim through syntax and emission; it is never
+rewritten to `←` or `↦`. Typed `fixum`/`varia` initializers accept `↤`
+(convert to the written type, then initialize); `fixum _`, `sit`, and untyped
+destructuring have no concrete destination and are rejected.
 
 `est` and `non est` inspect an existing value; they never convert it. Core type
 spellings on the right perform runtime variant/type tests, while `nihil`,
@@ -860,11 +875,17 @@ construction `Type { field = expr }` uses the Faber `=` grammar unchanged.
 ### Special Expressions
 
 ```ebnf
-fingeExpr     := 'finge' IDENTIFIER ('{' fieldList '}')? ('∷' typeAnnotation)?
+fingeExpr     := 'finge' qualifiedIdent ('{' fieldList '}')? ('∷' typeAnnotation)?
+qualifiedIdent := IDENTIFIER ('.' IDENTIFIER)*
 praefixumExpr := 'praefixum' (blockStmt | '(' expression ')')
 scriptumExpr  := 'scriptum' '(' STRING (',' expression)* ')'
 legeExpr      := 'lege' 'lineam'?
 ```
+
+`finge` variant construction accepts a qualified variant path
+(`finge pkg.Bonum { … }`), so an imported union's variants construct through
+the import alias, and the `∷` cast is a full type annotation
+(`∷ pkg.Exitus`) exactly as the general postfix ascription (uvf-u3).
 
 `∷` remains the general postfix ascription in `cast`. Rendered text templates
 (`STRING '(' argumentList ')'`) and captured `forma` templates

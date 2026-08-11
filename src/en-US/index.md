@@ -49,50 +49,53 @@ the sequenced start track: [Hello](/start/hello.html),
 GPU path, read [device execution](/toolchain/cli.html#device-execution) and
 the [target matrix](/toolchain/target-matrix.html).
 
-## Download Faber 1.5.0 {#download}
+## Download Faber 1.6.0 {#download}
 
-Current release: **Faber 1.5.0** (tag `faber-v1.5.0`), published 2026-08-08.
+Current release: **Faber 1.6.0** (tag `faber-v1.6.0`), published 2026-08-10.
 Prebuilt CLI archives for macOS and Linux; extract the
-`faber-v1.5.0-<target-triple>/faber` binary and put it on your `PATH`.
+`faber-v1.6.0-<target-triple>/faber` binary and put it on your `PATH`.
 
-What it adds: device execution on Apple Metal and NVIDIA CUDA through
-`faber run --backend metal|cuda` — the first real device-execution surface —
-plus hardened install-time pack resolution and a versioned release manifest.
-Full detail: [Faber 1.5.0 release notes](/releases/faber-1.5.0.html).
+What it adds: the first stable release on the rewritten packaging and CI
+pipeline — a dev-kit assembly with a consumer smoke-test gate, a Linux x86_64
+archive alongside Apple silicon, and the steady-state `faber format` flag
+surface. The bundled Radix 0.81.0 completes conversion-directed assignment
+(`↤`) on every backend and adds the AMDGPU lowering surface.
+Full detail: [Faber 1.6.0 release notes](/releases/faber-1.6.0.html).
 
 | Platform | Archive | Checksum |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [faber-v1.5.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [faber-v1.5.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** (Apple Silicon) | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** (glibc) | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
 Quick install (macOS arm64 example):
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-aarch64-apple-darwin.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-aarch64-apple-darwin.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
-sudo mv faber-v1.5.0-aarch64-apple-darwin/faber /usr/local/bin/
+sudo mv faber-v1.6.0-aarch64-apple-darwin/faber /usr/local/bin/
 faber --version
 ```
 
-Assets on GitHub: [github.com/faberlang/releases · faber-v1.5.0](https://github.com/faberlang/releases/releases/tag/faber-v1.5.0).
+Assets on GitHub: [github.com/faberlang/releases · faber-v1.6.0](https://github.com/faberlang/releases/releases/tag/faber-v1.6.0).
 Step-by-step: [Install guide](/start/install.html). Full historical inventory:
 [Releases](/releases/).
 
 ### Radix compiler {#download-radix}
 
-The **Radix** compiler (v0.80.0, published 2026-08-08) is bundled inside
-Faber. Its headline this release is a complete carrier-typed Wasm package
-chain, alongside GPU inference amendments and device-lowering structure. If
+The **Radix** compiler (v0.81.0, published 2026-08-10) is bundled inside
+Faber. Its headline this release is conversion-directed assignment (`↤`)
+made codegen-correct on every backend — Swift, Rust, Go, and TypeScript —
+plus the AMDGPU lowering surface and a rebuilt validation ladder. If
 you need Radix as a standalone CLI, prebuilt binaries are available:
 
-- Release notes: [Radix 0.80.0](/releases/radix-0.80.0.html)
-- Assets on GitHub: [github.com/faberlang/releases · radix-v0.80.0](https://github.com/faberlang/releases/releases/tag/radix-v0.80.0)
+- Release notes: [Radix 0.81.0](/releases/radix-0.81.0.html)
+- Assets on GitHub: [github.com/faberlang/releases · radix-v0.81.0](https://github.com/faberlang/releases/releases/tag/radix-v0.81.0)
 
 Radix source is private. The public release artifacts include the compiler
 binary and checksums.

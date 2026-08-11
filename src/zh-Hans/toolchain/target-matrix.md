@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:7d29fff3481cec676abbe48acbf623b231c6b4e6ac6bd9436ffbd801c2f76d7d"
+prose_hash = "sha256:2de3b846793c9d13b8bb713967477971bae08e72f2e7879de663dc42eff929d9"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "e536f28a6b2ecfb68bc528f08c6a9266275e858e"
+source_commit = "6ea0945c90e5900ee715266401e939dfb6f8732f"
 source_locale = "en-US"
 +++
 
@@ -50,21 +50,21 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 
 | 目标 | 可支持 | 可分析 | % |
 |---|---|---|---|
-| rust | 278 | 280 | 99% |
-| go | 262 | 280 | 94% |
-| ts | 280 | 280 | 100% |
-| faber | 280 | 280 | 100% |
+| rust | 279 | 281 | 99% |
+| go | 263 | 281 | 94% |
+| ts | 281 | 281 | 100% |
+| faber | 281 | 281 | 100% |
 
 **系统通道（MIR → 设备/IR 产物）**
 
 | 目标 | 可支持 | 可分析 | % |
 |---|---|---|---|
-| llvm-text | 277 | 280 | 99% |
-| wasm-text | 259 | 280 | 92% |
-| wasm | 259 | 280 | 92% |
-| sexp-struct | 223 | 280 | 80% |
-| sexp | 223 | 280 | 80% |
-| scena | 239 | 280 | 85% |
+| llvm-text | 278 | 281 | 99% |
+| wasm-text | 260 | 281 | 93% |
+| wasm | 260 | 281 | 93% |
+| sexp-struct | 223 | 281 | 79% |
+| sexp | 223 | 281 | 79% |
+| scena | 240 | 281 | 85% |
 
 ## 关键字 — 应用通道
 
@@ -209,6 +209,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `→` | ✓ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ |
+| `↤` | ✓ | ✓ | ✓ | ✓ |
 | `aut` | ✓ | ✓ | ✓ | ✓ |
 | `![` | ✓ | ✓ | ✓ | ✓ |
 | `!.` | ✓ | ✓ | ✓ | ✓ |
@@ -390,6 +391,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `→` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| `↤` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `aut` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `![` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `!.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |

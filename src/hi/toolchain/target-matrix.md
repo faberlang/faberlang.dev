@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:a21020b1b9ae6c8fab4817e27888966d2ca9c5bbf596c1339c27d2bd420c67aa"
+prose_hash = "sha256:f28ba6c648fcff3e355f033c099009f660ffdddacf60f112efac021a1050be9e"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "e536f28a6b2ecfb68bc528f08c6a9266275e858e"
+source_commit = "6ea0945c90e5900ee715266401e939dfb6f8732f"
 source_locale = "en-US"
 +++
 
@@ -55,21 +55,21 @@ verbs), per-target contracts और pipeline routing
 
 | लक्ष्य | सक्षम | विश्लेषण योग्य | % |
 |---|---|---|---|
-| rust | 278 | 280 | 99% |
-| go | 262 | 280 | 94% |
-| ts | 280 | 280 | 100% |
-| faber | 280 | 280 | 100% |
+| rust | 279 | 281 | 99% |
+| go | 263 | 281 | 94% |
+| ts | 281 | 281 | 100% |
+| faber | 281 | 281 | 100% |
 
 **सिस्टम लेन (MIR → डिवाइस/IR आर्टिफैक्ट)**
 
 | लक्ष्य | सक्षम | विश्लेषण योग्य | % |
 |---|---|---|---|
-| llvm-text | 277 | 280 | 99% |
-| wasm-text | 259 | 280 | 92% |
-| wasm | 259 | 280 | 92% |
-| sexp-struct | 223 | 280 | 80% |
-| sexp | 223 | 280 | 80% |
-| scena | 239 | 280 | 85% |
+| llvm-text | 278 | 281 | 99% |
+| wasm-text | 260 | 281 | 93% |
+| wasm | 260 | 281 | 93% |
+| sexp-struct | 223 | 281 | 79% |
+| sexp | 223 | 281 | 79% |
+| scena | 240 | 281 | 85% |
 
 ## कीवर्ड — एप्लिकेशन लेन
 
@@ -214,6 +214,7 @@ verbs), per-target contracts और pipeline routing
 | `→` | ✓ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ |
+| `↤` | ✓ | ✓ | ✓ | ✓ |
 | `aut` | ✓ | ✓ | ✓ | ✓ |
 | `![` | ✓ | ✓ | ✓ | ✓ |
 | `!.` | ✓ | ✓ | ✓ | ✓ |
@@ -395,6 +396,7 @@ verbs), per-target contracts और pipeline routing
 | `→` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| `↤` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `aut` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `![` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `!.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |

@@ -56,7 +56,7 @@ sectio = "smoke"
 ### ตัวแปร
 
 ```ebnf
-varDecl      := ('คงที่' | 'แปร') typeAnnotation IDENTIFIER ('←' expression)?
+varDecl      := ('คงที่' | 'แปร') typeAnnotation IDENTIFIER (('←' expression) | ('↤' assignment inlineRecovery?))?
 sitDecl      := 'อนุมานคงที่' IDENTIFIER ('←' expression)?
 arrayDestruct := ('คงที่' | 'แปร') arrayPattern '←' expression
 objectDestruct := ('คงที่' | 'แปร') objectPattern '←' expression
@@ -363,7 +363,7 @@ assertStmt  := 'ยืนยัน' expression ('secus' expression)?
 
 ```ebnf
 expression := assignment
-assignment := ternary ('←' assignment)?
+assignment := ternary ('←' assignment | '↤' assignment inlineRecovery?)?
 incDecStmt := place ('⊕' | '⊖')
 ternary    := or (('?' expression ':' | 'เช่นนั้น' expression 'มิฉะนั้น') ternary)?
 or         := and (('หรือ') and)*
@@ -384,6 +384,8 @@ cast       := call ('∷' typeAnnotation | conversio)*
 conversio   := '↦' typeAnnotation inlineRecovery?
 inlineRecovery := '⇥' unary
 ```
+
+`↤` คือการกำหนดค่าแบบแปลงชนิดตามเป้าหมาย: ประเมินด้านขวา แปลงเป็นชนิดคงที่ของด้านซ้ายผ่านเส้นทาง `↦` แล้วกำหนดค่า `⇥` สำหรับกู้คืนใช้ได้เฉพาะหลัง `↤` เท่านั้น ไม่ใช่หลัง `←`
 
 ตัวดำเนินการ glyph ต้องคงเดิมเสมอ `∷` คือการระบุชนิดแบบคอมไพล์ไทม์; `↦` คือการแปลงค่ารันไทม์; `⇥` ใช้กู้คืนความล้มเหลวแบบอินไลน์ `หรือ` ใช้กำจัด nullable เฉพาะที่ ไม่ใช่คำพ้องของตรรกะ `หรือ`
 

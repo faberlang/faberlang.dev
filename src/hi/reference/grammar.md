@@ -58,7 +58,7 @@ sectio = "smoke"
 ### चर
 
 ```ebnf
-varDecl      := ('स्थिर' | 'चर') typeAnnotation IDENTIFIER ('←' expression)?
+varDecl      := ('स्थिर' | 'चर') typeAnnotation IDENTIFIER (('←' expression) | ('↤' assignment inlineRecovery?))?
 sitDecl      := 'बैठा' IDENTIFIER ('←' expression)?
 arrayDestruct := ('स्थिर' | 'चर') arrayPattern '←' expression
 objectDestruct := ('स्थिर' | 'चर') objectPattern '←' expression
@@ -406,7 +406,7 @@ assertStmt  := 'पुष्टि' expression ('secus' expression)?
 
 ```ebnf
 expression := assignment
-assignment := ternary ('←' assignment)?
+assignment := ternary ('←' assignment | '↤' assignment inlineRecovery?)?
 incDecStmt := place ('⊕' | '⊖')
 ternary    := or (('?' expression ':' | 'ऐसा' expression 'अन्यथा') ternary)?
 or         := and (('या') and)*
@@ -427,6 +427,8 @@ cast       := call ('∷' typeAnnotation | conversio)*
 conversio        := '↦' typeAnnotation typeParams? inlineRecovery?
 inlineRecovery   := '⇥' unary
 ```
+
+`↤` परिवर्तन-निर्देशित असाइनमेंट है: दाएँ पक्ष का मूल्यांकन करें, उसे `↦` मार्ग से बाएँ स्थान के स्थिर प्रकार में परिवर्तित करें, फिर असाइन करें। `⇥` रिकवरी केवल `↤` पर मान्य है, `←` के बाद नहीं।
 
 `डिफ़ॉल्ट` local nullable elimination है: `T ∪ शून्य डिफ़ॉल्ट T → T`। यह logical `या` नहीं है। इसका binding arithmetic से tighter है; `prefix + item डिफ़ॉल्ट ""` का अर्थ `prefix + (item डिफ़ॉल्ट "")` है। RHS interval constructor पूरा कर सकता है। Retired predicate keywords prefix unary syntax नहीं हैं। `expr है सत्य`, `expr है असत्य`, `expr है शून्य`, `expr नहीं है शून्य`, `expr < 0` या `expr > 0` लिखें।
 

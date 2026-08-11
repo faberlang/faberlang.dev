@@ -47,9 +47,9 @@ faber explain SEM001
 
 ## Generated corpus frontmatter reference
 
-- Distinct frontmatter terms: 190
-- Canonical term pages: 178
-- Alias spellings: 104
+- Distinct frontmatter terms: 191
+- Canonical term pages: 179
+- Alias spellings: 106
 - Categories: 47
 - Source: radix/corpus/**/*.fab TOML frontmatter
 
@@ -61,7 +61,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - aliasing (1) — https://faberlang.dev/en-US/corpus/category/aliasing.html
 - application (1) — https://faberlang.dev/en-US/corpus/category/application.html
 - arithmetic (4) — https://faberlang.dev/en-US/corpus/category/arithmetic.html
-- assignment (1) — https://faberlang.dev/en-US/corpus/category/assignment.html
+- assignment (2) — https://faberlang.dev/en-US/corpus/category/assignment.html
 - async (11) — https://faberlang.dev/en-US/corpus/category/async.html
 - availability (1) — https://faberlang.dev/en-US/corpus/category/availability.html
 - binding (3) — https://faberlang.dev/en-US/corpus/category/binding.html
@@ -116,7 +116,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - method: 2
 - modifier: 1
 - operator: 2
-- operator-group: 20
+- operator-group: 21
 - pointer: 1
 - type: 5
 
@@ -2174,6 +2174,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/%E2%86%92.html
 - Source: radix/corpus/operatores/function-types.fab
 
+#### `↤`
+
+- Canonical: `↤`
+- Kind: operator-group
+- Category: assignment
+- Summary: Conversion-directed assignment: evaluate the right side, convert it to the statically known type of the left place through the ↦ route, then assign.
+- Syntax: `<place> ↤ <expression> [⇥ <recovery>]`
+- Aliases: `conversion-directed-assignment`, `conversio assign`
+- Related: `←`, `↦`, `⇥`, `fixum`, `varia`
+- Page: https://faberlang.dev/en-US/corpus/%E2%86%A4.html
+- Source: radix/corpus/assignatio/conversio-assign.fab
+
 #### `↦`
 
 - Canonical: `↦`
@@ -2287,6 +2299,8 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `const` → `fixum`
 - `continue` → `perge`
 - `conversio` → `↦`
+- `conversio assign` → `↤`
+- `conversion-directed-assignment` → `↤`
 - `convert` → `↦`
 - `default` → `ceterum`
 - `describe` → `probandum`

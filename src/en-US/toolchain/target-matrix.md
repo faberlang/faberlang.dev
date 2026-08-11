@@ -86,21 +86,21 @@ these corpus rows as a quality score.
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| rust | 278 | 280 | 99% |
-| go | 262 | 280 | 94% |
-| ts | 280 | 280 | 100% |
-| faber | 280 | 280 | 100% |
+| rust | 279 | 281 | 99% |
+| go | 263 | 281 | 94% |
+| ts | 281 | 281 | 100% |
+| faber | 281 | 281 | 100% |
 
 **Systems lane (MIR → device/IR artifacts)**
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| llvm-text | 277 | 280 | 99% |
-| wasm-text | 259 | 280 | 92% |
-| wasm | 259 | 280 | 92% |
-| sexp-struct | 223 | 280 | 80% |
-| sexp | 223 | 280 | 80% |
-| scena | 239 | 280 | 85% |
+| llvm-text | 278 | 281 | 99% |
+| wasm-text | 260 | 281 | 93% |
+| wasm | 260 | 281 | 93% |
+| sexp-struct | 223 | 281 | 79% |
+| sexp | 223 | 281 | 79% |
+| scena | 240 | 281 | 85% |
 
 ## Device kernel support (product summary) {#device-kernel-support}
 
@@ -321,6 +321,7 @@ registry and matrix receipts under the radix factory tree
 | `→` | ✓ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ |
+| `↤` | ✓ | ✓ | ✓ | ✓ |
 | `aut` | ✓ | ✓ | ✓ | ✓ |
 | `![` | ✓ | ✓ | ✓ | ✓ |
 | `!.` | ✓ | ✓ | ✓ | ✓ |
@@ -502,6 +503,7 @@ registry and matrix receipts under the radix factory tree
 | `→` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| `↤` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `aut` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `![` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `!.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |

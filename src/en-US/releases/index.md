@@ -15,6 +15,8 @@ The user-facing CLI: check, build, run, test, format, explain.
 
 | Version | Published | Downloads | Notes |
 |---|---|---|---|
+| [Faber 1.6.0](/releases/faber-1.6.0.html) | 2026-08-10 | 2 | yes |
+| [Faber 1.5.1](/releases/faber-1.5.1.html) | 2026-08-10 | 1 | — |
 | [Faber 1.5.0](/releases/faber-1.5.0.html) | 2026-08-08 | 2 | yes |
 | [Faber 1.4.0](/releases/faber-1.4.0.html) | 2026-07-31 | 2 | yes |
 | [Faber 1.3.0](/releases/faber-1.3.0.html) | 2026-07-31 | 2 | yes |
@@ -29,6 +31,7 @@ The compiler. Bundled inside the `faber` CLI; also published standalone for anyo
 
 | Version | Published | Downloads | Notes |
 |---|---|---|---|
+| [Radix 0.81.0](/releases/radix-0.81.0.html) | 2026-08-10 | 2 | yes |
 | [Radix 0.80.0](/releases/radix-0.80.0.html) | 2026-08-08 | 2 | yes |
 | [Radix 0.79.0](/releases/radix-0.79.0.html) | 2026-07-31 | 2 | yes |
 | [Radix 0.78.0](/releases/radix-0.78.0.html) | — | — | yes |

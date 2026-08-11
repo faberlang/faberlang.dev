@@ -5,9 +5,9 @@ order = 2
 sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:3f8e0832c6e8a324b389348b1d8926d1d606c54ed113cfa3502e0facc5f74bd8"
+prose_hash = "sha256:74f3e5bb625da7544d1f1659b9cebd445189f70ecda790f5aac0dc8161432119"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "e536f28a6b2ecfb68bc528f08c6a9266275e858e"
+source_commit = "6ea0945c90e5900ee715266401e939dfb6f8732f"
 source_locale = "en-US"
 +++
 
@@ -55,21 +55,21 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 
 | đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
-| rust | 278 | 280 | 99% |
-| go | 262 | 280 | 94% |
-| ts | 280 | 280 | 100% |
-| faber | 280 | 280 | 100% |
+| rust | 279 | 281 | 99% |
+| go | 263 | 281 | 94% |
+| ts | 281 | 281 | 100% |
+| faber | 281 | 281 | 100% |
 
 **Tuyến hệ thống (MIR → tạo phẩm thiết bị/IR)**
 
 | đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
-| llvm-text | 277 | 280 | 99% |
-| wasm-text | 259 | 280 | 92% |
-| wasm | 259 | 280 | 92% |
-| sexp-struct | 223 | 280 | 80% |
-| sexp | 223 | 280 | 80% |
-| scena | 239 | 280 | 85% |
+| llvm-text | 278 | 281 | 99% |
+| wasm-text | 260 | 281 | 93% |
+| wasm | 260 | 281 | 93% |
+| sexp-struct | 223 | 281 | 79% |
+| sexp | 223 | 281 | 79% |
+| scena | 240 | 281 | 85% |
 
 ## Từ khóa — tuyến ứng dụng
 
@@ -214,6 +214,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `→` | ✓ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ |
+| `↤` | ✓ | ✓ | ✓ | ✓ |
 | `aut` | ✓ | ✓ | ✓ | ✓ |
 | `![` | ✓ | ✓ | ✓ | ✓ |
 | `!.` | ✓ | ✓ | ✓ | ✓ |
@@ -395,6 +396,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `→` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| `↤` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `aut` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `![` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `!.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |

@@ -144,7 +144,7 @@ generator or the upstream source instead.
 | Script | Writes | Reads |
 |---|---|---|
 | `generate-target-matrix.py` | `src/{locale}/toolchain/target-matrix.md` | `radix/EBNF_MATRIX.md` + `generator/locales/{locale}/targets.toml` |
-| `generate-grammar.py` | `src/{locale}/reference/grammar.md` | `radix/EBNF.md`, `radix/EBNF.{locale}.md` |
+| `generate-grammar` (native Faber gate) | `src/{locale}/reference/grammar.md` | `radix/EBNF.md`, `radix/EBNF.{locale}.md` |
 | `generate-target-lanes.py` | `src/{locale}/targets/*.md` | captured lane panels |
 | `generate-examples.py` | `src/{locale}/examples/*.md` | `examples/` sibling |
 | `generate-localization.py` | `src/{locale}/localization.md` | locale registry + captured panels |
@@ -262,8 +262,8 @@ The corpus renderer (`render-corpus-batch.sh`) also post-processes its output:
 
 ### Binary versions
 
-- `faber` 1.5.0
-- `radix` 0.80.0
+- `faber` 1.6.0
+- `radix` 0.81.0
 
 ## Campaign stages
 

@@ -60,7 +60,7 @@ Chỉ thị tệp `§` ở đầu dòng đã bị loại bỏ. Đặt siêu dữ
 ### Biến
 
 ```ebnf
-varDecl      := ('hằng' | 'biến') typeAnnotation IDENTIFIER ('←' expression)?
+varDecl      := ('hằng' | 'biến') typeAnnotation IDENTIFIER (('←' expression) | ('↤' assignment inlineRecovery?))?
 sitDecl      := 'đặt' IDENTIFIER ('←' expression)?
 arrayDestruct := ('hằng' | 'biến') arrayPattern '←' expression
 objectDestruct := ('hằng' | 'biến') objectPattern '←' expression
@@ -387,7 +387,7 @@ assertStmt := 'khẳng_định' expression ('secus' expression)?
 
 ```ebnf
 expression := assignment
-assignment := ternary ('←' assignment)?
+assignment := ternary ('←' assignment | '↤' assignment inlineRecovery?)?
 incDecStmt := place ('⊕' | '⊖')
 ternary := or (('?' expression ':' | 'thế' expression 'khác') ternary)?
 or := and (('hoặc') and)*
@@ -408,6 +408,8 @@ cast := call ('∷' typeAnnotation | chuyển_đổi)*
 chuyển_đổi := '↦' typeAnnotation inlineRecovery?
 inlineRecovery := '⇥' unary
 ```
+
+`↤` là phép gán chuyển đổi hướng đích: đánh giá vế phải, chuyển đổi sang kiểu tĩnh của vế trái qua tuyến `↦`, rồi gán. `⇥` phục hồi inline chỉ hợp lệ sau `↤`, không phải sau `←`.
 
 Các dấu glyph giữ nguyên. `hoặc` trong biểu thức logic khác với phép loại nullable cục bộ khi ngữ cảnh yêu cầu. `∷` là phép gán kiểu tĩnh, còn `↦` là chuyển đổi giá trị lúc chạy. Phục hồi inline dùng `⇥`, không dùng từ thay thế nullable.
 

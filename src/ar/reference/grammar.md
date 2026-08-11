@@ -58,7 +58,7 @@ sectio = "smoke"
 ### المتغيرات
 
 ```ebnf
-varDecl      := ('ثابت' | 'متغير') typeAnnotation IDENTIFIER ('←' expression)?
+varDecl      := ('ثابت' | 'متغير') typeAnnotation IDENTIFIER (('←' expression) | ('↤' assignment inlineRecovery?))?
 sitDecl      := 'ليكن' IDENTIFIER ('←' expression)?
 arrayDestruct := ('ثابت' | 'متغير') arrayPattern '←' expression
 objectDestruct := ('ثابت' | 'متغير') objectPattern '←' expression
@@ -445,7 +445,7 @@ assertStmt  := 'أكد' expression ('secus' expression)?
 
 ```ebnf
 expression := assignment
-assignment := ternary ('←' assignment)?
+assignment := ternary ('←' assignment | '↤' assignment inlineRecovery?)?
 incDecStmt := place ('⊕' | '⊖')
 ternary    := or (('?' expression ':' | 'فإذا' expression 'وإلا') ternary)?
 or         := and (('أو') and)*
@@ -471,6 +471,8 @@ cast       := call ('∷' typeAnnotation | conversio)*
 conversio        := '↦' typeAnnotation typeParams? inlineRecovery?
 inlineRecovery   := '⇥' unary
 ```
+
+`↤` هي إسناد موجّه للتحويل: تُقيَّم الجهة اليمنى، ثم تُحوَّل إلى النوع الثابت للجهة اليسرى عبر مسار `↦`، ثم يُسنَد إليها. `⇥` للاسترداد الداخلي مسموح فقط بعد `↤`، وليس بعد `←`.
 
 كلمات المسند المتقاعدة ليست صياغة أحادية بادئة. استخدم `expr هو صواب`، `expr هو خطأ`، `expr هو لاشيء`، `expr ليس هو لاشيء`، `expr < 0`، أو `expr > 0`.
 
