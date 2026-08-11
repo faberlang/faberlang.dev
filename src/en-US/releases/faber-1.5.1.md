@@ -26,7 +26,10 @@ Pinned download for **Faber 1.5.1**. For the current release, use [Install](/sta
 curl -fsSL -o faber.tgz \
   https://github.com/faberlang/releases/releases/download/faber-v1.5.1/faber-v1.5.1-aarch64-apple-darwin.tar.gz
 tar -xzf faber.tgz
-sudo mv faber-v1.5.1-aarch64-apple-darwin/faber /usr/local/bin/
+# The archive ships bin/ and share/; keep them together so the
+# reader packs resolve beside the binary.
+sudo mv bin/faber /usr/local/bin/faber
+sudo mv share/faber /usr/local/share/faber
 faber --version
 ```
 

@@ -38,7 +38,7 @@ Release: https://github.com/faberlang/releases/releases/tag/faber-v1.6.0
 | macOS arm64 | https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz |
 | Linux x64 | https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz |
 
-Verify the archive by comparing the first hash field from the `.sha256` file to the local archive hash. Extract `faber-v1.6.0-<target-triple>/faber`, put it on `PATH`, run `faber --version`.
+Verify the archive by comparing the first hash field from the `.sha256` file to the local archive hash. The archive ships `bin/faber` plus `share/faber` (reader packs) — install both so the packs resolve beside the binary (`sudo mv bin/faber /usr/local/bin/faber` and `sudo mv share/faber /usr/local/share/faber`), then run `faber --version`.
 
 HTML install page: https://faberlang.dev/en-US/start/install.html
 

@@ -39,7 +39,10 @@ expected=$(awk <span class="tok-st">'{print $1}'</span> faber.tgz.sha256)
 actual=$(shasum <span class="tok-op">-a</span> 256 faber.tgz | awk <span class="tok-st">'{print $1}'</span>)
 <span class="tok-fn">test</span> <span class="tok-st">"$actual"</span> = <span class="tok-st">"$expected"</span>
 <span class="tok-fn">tar</span> <span class="tok-op">-xzf</span> faber.tgz
-<span class="tok-fn">sudo</span> mv faber-v1.6.0-aarch64-apple-darwin/faber /usr/local/bin/
+<span class="tok-co"># The archive ships bin/ and share/; keep them together so the reader packs</span>
+<span class="tok-co"># resolve beside the binary.</span>
+<span class="tok-fn">sudo</span> mv bin/faber /usr/local/bin/faber
+<span class="tok-fn">sudo</span> mv share/faber /usr/local/share/faber
 <span class="tok-fn">faber</span> <span class="tok-op">--version</span></code></pre><p>Assets on GitHub: <a href="https://github.com/faberlang/releases/releases/tag/faber-v1.6.0">github.com/faberlang/releases · faber-v1.6.0</a>.
 Step-by-step: <a href="/en-US/start/install.html">Install guide</a>. Full historical inventory:
 <a href="/en-US/releases/">Releases</a>.</p><h3 id="download-radix">Radix compiler<a class="anchor" href="#download-radix">#</a></h3><p>The <strong>Radix</strong> compiler (v0.81.0, published 2026-08-10) is bundled inside

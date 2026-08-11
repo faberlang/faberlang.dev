@@ -128,6 +128,15 @@ def platform_label(name: str) -> str:
     return name
 
 
+def is_dev_kit(product: str, version: str) -> bool:
+    """Faber archives ship the dev-kit layout (bin/ + share/) since 1.5.1;
+    earlier faber archives and radix archives are bare binaries."""
+    if product != "faber":
+        return False
+    nums = tuple(int(p) if p.isdigit() else 0 for p in version.split(".")[:3])
+    return nums >= (1, 5, 1)
+
+
 def collect() -> dict[str, list[Version]]:
     found: dict[tuple[str, str], Version] = {}
 
@@ -276,17 +285,32 @@ def install_block(v: Version) -> list[str]:
 
     mac = next((a for a in archives if "aarch64-apple-darwin" in a["name"]), None)
     if mac:
-        stem = mac["name"][: -len(".tar.gz")]
-        lines += [
-            "",
-            "```bash",
-            f"curl -fsSL -o {v.product}.tgz \\",
-            f"  {mac['url']}",
-            f"tar -xzf {v.product}.tgz",
-            f"sudo mv {stem}/{v.product} /usr/local/bin/",
-            f"{v.product} --version",
-            "```",
-        ]
+        if is_dev_kit(v.product, v.version):
+            lines += [
+                "",
+                "```bash",
+                f"curl -fsSL -o {v.product}.tgz \\",
+                f"  {mac['url']}",
+                f"tar -xzf {v.product}.tgz",
+                "# The archive ships bin/ and share/; keep them together so the",
+                "# reader packs resolve beside the binary.",
+                f"sudo mv bin/{v.product} /usr/local/bin/{v.product}",
+                "sudo mv share/faber /usr/local/share/faber",
+                f"{v.product} --version",
+                "```",
+            ]
+        else:
+            stem = mac["name"][: -len(".tar.gz")]
+            lines += [
+                "",
+                "```bash",
+                f"curl -fsSL -o {v.product}.tgz \\",
+                f"  {mac['url']}",
+                f"tar -xzf {v.product}.tgz",
+                f"sudo mv {stem}/{v.product} /usr/local/bin/",
+                f"{v.product} --version",
+                "```",
+            ]
     lines.append("")
     return lines
 
