@@ -98,9 +98,9 @@ functio meta_plain(textus text) → textus {
     varia numerus i ← 0
     fixum numerus n ← text.longitudo()
     dum i < n {
-        fixum numerus ch ← text[i]
-        # Skip * (42) and ` (96) used as markup; keep other characters.
-        si ch ≡ 42 aut ch ≡ 96 {
+        fixum textus ch ← text.sectio(i, i + 1)
+        # Skip * and ` used as markup; keep other characters.
+        si ch ≡ "*" aut ch ≡ "`" {
             i ← i + 1
         } secus {
             out ← out + text.sectio(i, i + 1)
@@ -111,11 +111,11 @@ functio meta_plain(textus text) → textus {
 }
 
 # True when a line should not start or continue a meta description paragraph.
-functio line_meta_skip(textus line) → bivalens {
-    si su.initium_cum(line, "#") ergo redde verum
-    si su.initium_cum(line, "```") ergo redde verum
-    si su.initium_cum(line, "|") ergo redde verum
-    si su.initium_cum(line, "+++") ergo redde verum
+functio line_meta_skip(textus linea) → bivalens {
+    si su.initium_cum(linea, "#") ergo redde verum
+    si su.initium_cum(linea, "```") ergo redde verum
+    si su.initium_cum(linea, "|") ergo redde verum
+    si su.initium_cum(linea, "+++") ergo redde verum
     redde falsum
 }
 
@@ -125,18 +125,18 @@ functio primus_paragraphus(textus body) → textus {
     varia textus acc ← ""
     varia numerus i ← 0
     dum i < lines.longitudo() {
-        fixum textus line ← su.recide(lines[i])
-        si line.longitudo() ≡ 0 {
+        fixum textus linea ← su.recide(lines[i])
+        si linea.longitudo() ≡ 0 {
             si acc.longitudo() > 0 ergo redde meta_plain(acc)
-        } sin line_meta_skip(line) {
-            si su.initium_cum(line, "```") {
+        } sin line_meta_skip(linea) {
+            si su.initium_cum(linea, "```") {
                 si acc.longitudo() > 0 ergo redde meta_plain(acc)
             }
         } secus {
             si acc.longitudo() ≡ 0 {
-                acc ← line
+                acc ← linea
             } secus {
-                acc ← acc + " " + line
+                acc ← acc + " " + linea
             }
         }
         i ← i + 1
@@ -230,8 +230,8 @@ functio genera_sidebar(textus active_section, textus site_locale) → doc_mod.No
     children.appende(side_h("For agents"))
     children.appende(nav_list([li(genera_nav_link("Agent index", "/llms.txt", falsum)), li(genera_nav_link("Agent guide", "/agents/index.md", falsum)), li(genera_nav_link("Agent skills", "/.well-known/agent-skills/index.json", falsum)), li(genera_nav_link("Full reference", "/llms-full.txt", falsum))], "nav nav-compact"))
 
-    children.appende(side_h("Release 1.5.0"))
-    children.appende(nav_list([li(genera_nav_link("macOS arm64", "https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-aarch64-apple-darwin.tar.gz", falsum)), li(genera_nav_link("Linux x64", "https://github.com/faberlang/releases/releases/download/faber-v1.5.0/faber-v1.5.0-x86_64-unknown-linux-gnu.tar.gz", falsum)), li(genera_nav_link("All releases", lp.content_href("/releases/", site_locale), active_section ≡ "releases")), li(genera_nav_link("GitHub & issues", lp.content_href("/open-source.html", site_locale), active_section ≡ "open-source"))], "nav nav-compact"))
+    children.appende(side_h("Release 1.6.0"))
+    children.appende(nav_list([li(genera_nav_link("macOS arm64", "https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz", falsum)), li(genera_nav_link("Linux x64", "https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz", falsum)), li(genera_nav_link("All releases", lp.content_href("/releases/", site_locale), active_section ≡ "releases")), li(genera_nav_link("GitHub & issues", lp.content_href("/open-source.html", site_locale), active_section ≡ "open-source"))], "nav nav-compact"))
     children.appende(genera_side_meta())
 
     redde doc_mod.element("aside", vacua, children)

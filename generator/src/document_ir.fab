@@ -62,24 +62,24 @@ functio html_escape(textus value) → textus {
     varia numerus i ← 0
 
     dum i < len {
-        fixum numerus ch ← value[i]
+        fixum textus ch ← value.sectio(i, i + 1)
 
-        # & = 38, " = 34, < = 60, > = 62
-        si ((ch ≡ 38 aut ch ≡ 34) aut ch ≡ 60) aut ch ≡ 62 {
+        # & " < >
+        si ((ch ≡ "&" aut ch ≡ "\"") aut ch ≡ "<") aut ch ≡ ">" {
             si i > plain_start {
                 result ← result + value.sectio(plain_start, i)
             }
 
-            si ch ≡ 38 {
+            si ch ≡ "&" {
                 result ← result + "&amp;"
             }
-            si ch ≡ 34 {
+            si ch ≡ "\"" {
                 result ← result + "&quot;"
             }
-            si ch ≡ 60 {
+            si ch ≡ "<" {
                 result ← result + "&lt;"
             }
-            si ch ≡ 62 {
+            si ch ≡ ">" {
                 result ← result + "&gt;"
             }
 

@@ -216,7 +216,7 @@ if [ "$FULL_SITE" = true ]; then
     "$PYTHON" "${SCRIPT_DIR}/generate-localization.py"
     "$PYTHON" "${SCRIPT_DIR}/generate-examples.py"
     if [ -f "${WORKSPACE_DIR}/radix/EBNF.md" ]; then
-        "$PYTHON" "${SCRIPT_DIR}/generate-grammar.py" --all-locales
+        "${SCRIPT_DIR}/generate-grammar" --all-locales
     else
         echo "  Skipping grammar generate (no ${WORKSPACE_DIR}/radix/EBNF.md)"
     fi
@@ -296,7 +296,7 @@ if [ "$FULL_SITE" = true ]; then
 
     # Step 6: Generate redirect stubs (en-US → bare path)
     echo "[7/10] Generating en-US redirect stubs..."
-    "$PYTHON" "${SCRIPT_DIR}/generate-redirects.py" "$OUTPUT_DIR" "en-US"
+    "${SCRIPT_DIR}/generate-redirects" "$OUTPUT_DIR" "en-US"
 
     # Step 7: Generate the landing page (/) and the language portal (/porta/).
     # The landing page states the claim and proves it; the portal is the
@@ -481,7 +481,7 @@ if [ "$FULL_SITE" = true ]; then
 
     # Sitemap and canonical
     echo "  [sitemap] Generating sitemap.xml..."
-    "$PYTHON" "${SCRIPT_DIR}/generate-sitemap.py" "$OUTPUT_DIR" "https://faberlang.dev"
+    "${SCRIPT_DIR}/generate-sitemap" "$OUTPUT_DIR" "https://faberlang.dev"
     smoke_contains "${OUTPUT_DIR}/sitemap.xml" "<urlset" "sitemap"
 
     echo "  [canonical] Injecting canonical URL tags..."

@@ -11,7 +11,7 @@ genus Fence {
     textus modus
     textus outcome
     textus source
-    numerus line
+    numerus linea
 }
 
 # Extract all code fences from Markdown source.
@@ -22,8 +22,8 @@ functio extract(textus source) → lista<Fence> {
     varia numerus idx ← 0
 
     dum idx < lines.longitudo() {
-        fixum textus line ← lines.accipe(idx) vel ""
-        fixum textus trimmed ← su.recide(line)
+        fixum textus linea ← lines.accipe(idx) vel ""
+        fixum textus trimmed ← su.recide(linea)
 
         # Check for fence opening
         si su.initium_cum(trimmed, "```faber") ≠ verum ergo {
@@ -75,7 +75,7 @@ functio extract(textus source) → lista<Fence> {
 }
 
 # Parse a fence info string into structured attributes.
-functio parse_info(textus info, textus source, numerus line) → Fence {
+functio parse_info(textus info, textus source, numerus linea) → Fence {
     varia textus locale ← "la"
     varia textus modus ← "fluid"
     varia textus outcome ← "compiles"
@@ -105,5 +105,5 @@ functio parse_info(textus info, textus source, numerus line) → Fence {
         }
     }
 
-    redde Fence { locale = locale, modus = modus, outcome = outcome, source = source, line = line }
+    redde Fence { locale = locale, modus = modus, outcome = outcome, source = source, linea = linea }
 }

@@ -9,7 +9,7 @@ genus Heading {
     numerus level
     textus text
     textus anchor
-    numerus line
+    numerus linea
 }
 
 # Extract all headings from Markdown source.
@@ -19,9 +19,9 @@ functio extract(textus source) → lista<Heading> {
     fixum lista<textus> lines ← su.divide(source, nl_char)
     varia numerus line_num ← 0
 
-    itera ex lines fixum line {
+    itera ex lines fixum linea {
         line_num ← line_num + 1
-        fixum textus trimmed ← su.recide(line)
+        fixum textus trimmed ← su.recide(linea)
 
         si su.initium_cum(trimmed, "###### ") {
             headings.appende(parse_heading(6, trimmed.sectio(7, trimmed.longitudo()), line_num))
@@ -57,9 +57,9 @@ functio parse_heading(numerus level, textus rest, numerus line_num) → Heading 
             fixum textus anchor ← trimmed.sectio(brace_start + 2, brace_end)
             fixum textus text ← su.recide(trimmed.sectio(0, brace_start))
 
-            redde Heading { level = level, text = text, anchor = anchor, line = line_num }
+            redde Heading { level = level, text = text, anchor = anchor, linea = line_num }
         }
     }
 
-    redde Heading { level = level, text = trimmed, anchor = "", line = line_num }
+    redde Heading { level = level, text = trimmed, anchor = "", linea = line_num }
 }

@@ -32,8 +32,8 @@ functio parse_toml_lines(textus toml_text, textus nl_char) → tabula<textus, te
     varia tabula<textus, textus> result ← {}
     fixum lista<textus> lines ← su.divide(toml_text, nl_char)
 
-    itera ex lines fixum line {
-        fixum textus trimmed ← su.recide(line)
+    itera ex lines fixum linea {
+        fixum textus trimmed ← su.recide(linea)
 
         si trimmed.longitudo() ≡ 0 ergo perge
         si su.initium_cum(trimmed, "#") ergo perge

@@ -7,7 +7,7 @@ functio nl() → textus {
 }
 
 # Find the first index of needle in haystack. Returns -1 if not found.
-# Uses textus[i] (zero-allocation numerus) for first-char quick check,
+# Uses littera (single-character sectio) for the first-char quick check,
 # falling back to sectio only on first-character match.
 functio initium_index(textus haystack, textus needle) → numerus {
     si needle.longitudo() ≡ 0 ergo redde 0
@@ -15,12 +15,11 @@ functio initium_index(textus haystack, textus needle) → numerus {
 
     fixum numerus hlen ← haystack.longitudo()
     fixum numerus nlen ← needle.longitudo()
-    fixum numerus first_char ← needle[0]
     varia numerus i ← 0
 
     dum i ≤ hlen - nlen {
-        # Zero-allocation first-char check
-        si haystack[i] ≡ first_char {
+        # First-char quick check
+        si littera(haystack, i) ≡ littera(needle, 0) {
             si nlen ≡ 1 ergo redde i
             si haystack.sectio(i, i + nlen) ≡ needle ergo redde i
         }
@@ -78,4 +77,18 @@ functio divide(textus text, textus delim) → lista<textus> {
 # Trim leading and trailing whitespace.
 functio recide(textus text) → textus {
     redde text.recide()
+}
+
+# Single-character textus at position i (Unicode-scalar based). The raw
+# textus[i] expression is neither equality-comparable with literals nor
+# correctly emitted to Rust in the current compiler, so the parser uses this
+# sectio-based helper when it needs a comparable character.
+functio littera(textus s, numerus i) → textus {
+    redde s.sectio(i, i + 1)
+}
+
+# True when ch is an ASCII digit.
+functio est_digitus(textus ch) → bivalens {
+    redde ch ≡ "0" aut ch ≡ "1" aut ch ≡ "2" aut ch ≡ "3" aut ch ≡ "4"
+        aut ch ≡ "5" aut ch ≡ "6" aut ch ≡ "7" aut ch ≡ "8" aut ch ≡ "9"
 }
