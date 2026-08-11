@@ -13,8 +13,9 @@ then open a real package. For a sequenced path, follow: [Install](/start/install
 ## 1. Install the CLI {#install}
 
 Download the current release (**1.6.0**) for your platform from the
-[install page](/start/install.html), verify the archive checksum, and put the
-extracted `faber-v1.6.0-<target-triple>/faber` binary on your `PATH`. Confirm:
+[install page](/start/install.html), verify the archive checksum, and put
+`bin/faber` from the archive's `bin/` and `share/` trees on your `PATH`
+(keep the trees together so the reader packs resolve). Confirm:
 
 ```bash
 faber --version

@@ -60,8 +60,8 @@ Every diagnostic can be explained via `faber explain <code>`.
 ## Radix compiler architecture
 
 **Repository:** `faberlang/radix`
-**Reviewed:** 2026-08-05
-**Compiler package:** `radix` 0.79.0
+**Reviewed:** 2026-08-11
+**Compiler package:** `radix` 0.81.0
 
 This document describes the Radix compiler as it exists in the source tree. It
 is intended to be a source for diagrams, presentations, and implementation
@@ -961,6 +961,7 @@ mean that the artifact has a complete external runtime.
 | `wasm` | MIR-backed | check/build | no package/run | Fail-closed binary probe; external host/instantiation required. |
 | `llvm-text` | MIR-backed | check/build | device run via `faber run --backend cuda` | LLVM IR staging; NVVM/PTX CUDA device execution through `faber`. |
 | `metal-text` | MIR-backed | check/build | device run via `faber run --backend metal` | Device-safe Metal compute source; MSL device execution through `faber`. |
+| `amd` | MIR-backed | check/build | no package/run | Additive AMDGPU surface (0.81.0); `amd` selection is fail-closed until the ROCm clang path is provisioned. |
 | `wgsl-text` | MIR-backed | check/build | no package/run | Device-safe WGSL compute or source-owned graphics text plus reflection. |
 | `sexp` | MIR-backed | check/build | no package/run | Bounded Racket validation/emission target. |
 | `fmir-text` | package MIR | check only in `radix` | build/run/package | Source-independent text image through `faber`; shared FMIR loader/stepper. |

@@ -52,8 +52,9 @@ the [target matrix](/toolchain/target-matrix.html).
 ## Download Faber 1.6.0 {#download}
 
 Current release: **Faber 1.6.0** (tag `faber-v1.6.0`), published 2026-08-10.
-Prebuilt CLI archives for macOS and Linux; extract the
-`faber-v1.6.0-<target-triple>/faber` binary and put it on your `PATH`.
+Prebuilt CLI archives for macOS and Linux; each archive ships a `bin/` and a
+`share/` tree — put `bin/faber` on your `PATH`, keeping `share/faber` beside
+the binary so the reader packs resolve.
 
 What it adds: the first stable release on the rewritten packaging and CI
 pipeline — a dev-kit assembly with a consumer smoke-test gate, a Linux x86_64
