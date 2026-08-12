@@ -29,25 +29,25 @@ source_locale = "en-US"
 
 คำแนะนำสำหรับการสร้างจากซอร์สโค้ดจะไม่แสดงลิงก์ไว้ที่นี่โดยตั้งใจ ใช้ไฟล์เก็บถาวรที่สร้างไว้ล่วงหน้า เว้นแต่คุณจะทำงานกับต้นไม้ซอร์สโค้ดของ compiler แบบส่วนตัว.
 
-## รีลีสล่าสุด — Faber 1.1.1 {#latest}
+## รีลีสล่าสุด — Faber 1.6.0 {#latest}
 
 | ฟิลด์ | ค่า |
 |---|---|
 | **ผลิตภัณฑ์** | Faber CLI |
-| **เวอร์ชัน** | 1.1.1 |
-| **แท็ก** | `faber-v1.1.1` |
-| **เผยแพร่เมื่อ** | 2026-07-17 |
-| **GitHub** | [faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1) |
+| **เวอร์ชัน** | 1.6.0 |
+| **แท็ก** | `faber-v1.6.0` |
+| **เผยแพร่เมื่อ** | 2026-08-10 |
+| **GitHub** | [faber-v1.6.0](https://github.com/faberlang/releases/releases/tag/faber-v1.6.0) |
 | **สัญญาอนุญาต** | MIT |
 
 ### ไบนารี {#latest-binaries}
 
 | แพลตฟอร์ม | ไฟล์เก็บถาวร | ขนาด | SHA-256 |
 |---|---|---|---|
-| **macOS arm64** | [faber-v1.1.1-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | 5.1 MB | [เช็กซัม](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** | [faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | 5.7 MB | [เช็กซัม](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | 10.5 MB | [เช็กซัม](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | 11.9 MB | [เช็กซัม](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-แตกไฟล์เก็บถาวร แล้วนำไบนารี `faber` ไปไว้ใน `PATH` ของคุณ ดูขั้นตอนโดยละเอียดได้ที่ [ติดตั้งและดาวน์โหลด](/start/install.html).
+ไฟล์เก็บถาวรแต่ละไฟล์ประกอบด้วยโฟลเดอร์ `bin/` และ `share/` — ใส่ `bin/faber` ลงใน `PATH` และเก็บ `share/faber` ไว้ข้างไบนารี ดูขั้นตอนโดยละเอียดได้ที่ [ติดตั้งและดาวน์โหลด](/start/install.html).
 
 ## รีลีสในอดีต {#historical}
 

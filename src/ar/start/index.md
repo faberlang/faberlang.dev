@@ -17,9 +17,9 @@ source_locale = "en-US"
 
 ## ١. ثبّت CLI {#install}
 
-نزّل الإصدار الحالي (**1.1.1**) لمنصتك من
+نزّل الإصدار الحالي (**1.6.0**) لمنصتك من
 [صفحة التثبيت](/start/install.html)، تحقق من بصمة الأرشيف، وضع
-الملف الثنائي `faber-v1.1.1-<target-triple>/faber` المستخرج على `PATH` لديك. تأكد:
+`bin/faber` من شجرتي `bin/` و`share/` في الأرشيف على `PATH` لديك (أبقِ الشجرتين معاً لتُحل حزم القارئ). تأكد:
 
 ```bash
 faber --version
@@ -93,7 +93,7 @@ faber test my-app/
 
 | خطوة | صفحة | النتيجة |
 |---|---|---|
-| ١ | [تثبيت وتنزيل](/start/install.html) | ضع Faber 1.1.1 على `PATH` وتحقق منه |
+| ١ | [تثبيت وتنزيل](/start/install.html) | ضع Faber 1.6.0 على `PATH` وتحقق منه |
 | ٢ | [مرحباً، Faber](/start/hello.html) | أنشئ وشغّل `salve-munde` |
 | ٣ | [أوامر ستستخدمها](/cheatsheet/commands.html) | تعلم `check`، `build`، `run`، `test`، `explain` |
 | ٤ | [مشاريع وأمثلة](/start/projects.html) | انتقل إلى حزم حقيقية وصفحات المجموعة |

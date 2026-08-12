@@ -27,25 +27,25 @@ source_locale = "en-US"
 
 这里**没有**提供从源码构建的说明。除非你在开发私有编译器代码树，否则请使用预构建归档文件。
 
-## 最新版本 — Faber 1.1.1 {#latest}
+## 最新版本 — Faber 1.6.0 {#latest}
 
 | 字段 | 值 |
 |---|---|
 | **产品** | Faber CLI |
-| **版本** | 1.1.1 |
-| **标签** | `faber-v1.1.1` |
-| **发布日期** | 2026-07-17 |
-| **GitHub** | [faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1) |
+| **版本** | 1.6.0 |
+| **标签** | `faber-v1.6.0` |
+| **发布日期** | 2026-08-10 |
+| **GitHub** | [faber-v1.6.0](https://github.com/faberlang/releases/releases/tag/faber-v1.6.0) |
 | **许可证** | MIT |
 
 ### 二进制文件 {#latest-binaries}
 
 | 平台 | 归档文件 | 大小 | SHA-256 |
 |---|---|---|---|
-| **macOS arm64** | [faber-v1.1.1-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | 5.1 MB | [校验和](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** | [faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | 5.7 MB | [校验和](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | 10.5 MB | [校验和](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | 11.9 MB | [校验和](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-解压归档文件，并将 `faber` 二进制文件放入你的 `PATH`。详细步骤请见：[安装与下载](/start/install.html)。
+每个归档文件都包含 `bin/` 和 `share/` 目录树——将 `bin/faber` 放入你的 `PATH`，并让 `share/faber` 与二进制文件保持在一起。详细步骤请见：[安装与下载](/start/install.html)。
 
 ## 历史版本 {#historical}
 

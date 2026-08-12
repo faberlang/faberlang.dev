@@ -13,15 +13,17 @@ source_locale = "en-US"
 +++
 Cài đặt CLI **Faber** từ bản phát hành dựng sẵn hiện tại. Phần đầu của trình biên dịch được tích hợp trong tệp nhị phân `faber`; bạn không cần cài đặt Radix riêng cho công việc với gói thông thường.
 
-Trang này được viết dựa trên các tạo phẩm phát hành của kho mã Faber 1.2.0. Công thức của trình quản lý gói có thể chậm hơn bản phát hành của kho mã; nếu Homebrew hoặc trình quản lý khác báo phiên bản Radix/Faber cũ hơn, hãy ưu tiên các tệp lưu trữ bên dưới cho lộ trình này.
+Trang này được viết dựa trên các tạo phẩm phát hành của kho mã Faber 1.6.0. Công thức của trình quản lý gói có thể chậm hơn bản phát hành của kho mã; nếu Homebrew hoặc trình quản lý khác báo phiên bản Radix/Faber cũ hơn, hãy ưu tiên các tệp lưu trữ bên dưới cho lộ trình này.
 
 ## Bản phát hành hiện tại {#current-release}
 
 | Trường | Giá trị |
 |---|---|
-| **Phiên bản** | 1.2.0 |
-| **Thẻ** | `faber-v1.2.0` |
-| **Trang phát hành** | [faber-v1.2.0 trên GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0) |
+| **Phiên bản** | 1.6.0 |
+| **Thẻ** | `faber-v1.6.0` |
+| **Phát hành** | 2026-08-10 |
+| **Trình biên dịch đi kèm** | Radix 0.81.0 |
+| **Trang phát hành** | [faber-v1.6.0 trên GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.6.0) |
 | **Tất cả bản phát hành** | [Danh mục các bản phát hành của trang](/releases/) |
 | **Giấy phép** | MIT |
 
@@ -29,24 +31,25 @@ Trang này được viết dựa trên các tạo phẩm phát hành của kho m
 
 | Nền tảng | Tải xuống | SHA-256 |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-Các tệp lưu trữ được giải nén thành `faber-v1.2.0-<target-triple>/faber`. Các tệp checksum có thể ghi đường dẫn dựng ban đầu, vì vậy hãy xác minh bằng cách so sánh trường băm đầu tiên với tệp lưu trữ cục bộ thay vì dựa vào việc khớp đường dẫn của `sha256sum -c`.
+Các tệp lưu trữ gồm cây `bin/` và cây `share/`. Cài đặt cả hai để các gói ngôn ngữ phân giải bên cạnh tệp nhị phân (các tệp checksum có thể ghi đường dẫn dựng ban đầu, vì vậy hãy xác minh bằng cách so sánh trường băm đầu tiên với tệp lưu trữ cục bộ thay vì dựa vào việc khớp đường dẫn của `sha256sum -c`).
 
 ### macOS arm64 {#macos}
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
-# place on PATH, e.g.:
-sudo mv faber-v1.2.0-aarch64-apple-darwin/faber /usr/local/bin/
+# Gói chứa cây bin/ và share/; giữ chúng cùng nhau để các gói ngôn ngữ phân giải bên cạnh tệp nhị phân
+sudo mv bin/faber /usr/local/bin/faber
+sudo mv share/faber /usr/local/share/faber
 faber --version
 ```
 
@@ -54,14 +57,15 @@ faber --version
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(sha256sum faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
-sudo mv faber-v1.2.0-x86_64-unknown-linux-gnu/faber /usr/local/bin/
+sudo mv bin/faber /usr/local/bin/faber
+sudo mv share/faber /usr/local/share/faber
 faber --version
 ```
 
@@ -87,7 +91,7 @@ Xem thêm các gói: [Ví dụ](/examples/). Bề mặt CLI: [Công cụ dựng 
 
 ## Trạng thái Homebrew {#homebrew}
 
-Việc phát hành qua Homebrew hiện chưa phải là nguồn có thẩm quyền cho lộ trình bắt đầu này. Nếu một công thức cung cấp trình biên dịch cũ như Radix 0.38.0 trong khi trang này ghi lại Faber 1.2.0, hãy xem công thức đó là chậm cập nhật và sử dụng tệp lưu trữ bản phát hành dựng sẵn. Cổng xác minh bằng container cho trang này vẫn còn tồn đọng cho đến khi việc phát hành công thức được cập nhật.
+Việc phát hành qua Homebrew hiện chưa phải là nguồn có thẩm quyền cho lộ trình bắt đầu này. Nếu một công thức cung cấp trình biên dịch cũ như Radix 0.38.0 trong khi trang này ghi lại Faber 1.6.0, hãy xem công thức đó là chậm cập nhật và sử dụng tệp lưu trữ bản phát hành dựng sẵn. Cổng xác minh bằng container cho trang này vẫn còn tồn đọng cho đến khi việc phát hành công thức được cập nhật.
 
 ## Dựng từ mã nguồn {#from-source}
 

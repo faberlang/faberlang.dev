@@ -29,25 +29,25 @@ source_locale = "en-US"
 
 स्रोत से बिल्ड करने के निर्देश जानबूझकर यहाँ लिंक नहीं किए गए हैं। जब तक आप निजी कंपाइलर ट्री पर काम न कर रहे हों, प्रीबिल्ट आर्काइव का उपयोग करें।
 
-## नवीनतम रिलीज़ — Faber 1.1.1 {#latest}
+## नवीनतम रिलीज़ — Faber 1.6.0 {#latest}
 
 | फ़ील्ड | मान |
 |---|---|
 | **उत्पाद** | Faber CLI |
-| **संस्करण** | 1.1.1 |
-| **टैग** | `faber-v1.1.1` |
-| **प्रकाशित** | 2026-07-17 |
-| **GitHub** | [faber-v1.1.1](https://github.com/faberlang/releases/releases/tag/faber-v1.1.1) |
+| **संस्करण** | 1.6.0 |
+| **टैग** | `faber-v1.6.0` |
+| **प्रकाशित** | 2026-08-10 |
+| **GitHub** | [faber-v1.6.0](https://github.com/faberlang/releases/releases/tag/faber-v1.6.0) |
 | **लाइसेंस** | MIT |
 
 ### बाइनरी {#latest-binaries}
 
 | प्लेटफ़ॉर्म | आर्काइव | आकार | SHA-256 |
 |---|---|---|---|
-| **macOS arm64** | [faber-v1.1.1-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz) | 5.1 MB | [चेकसम](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** | [faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz) | 5.7 MB | [चेकसम](https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | 10.5 MB | [चेकसम](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | 11.9 MB | [चेकसम](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-आर्काइव निकालें और `faber` बाइनरी को अपने `PATH` में रखें। चरण-दर-चरण निर्देश: [इंस्टॉल और डाउनलोड करें](/start/install.html).
+हर आर्काइव में `bin/` और `share/` ट्री होते हैं — `bin/faber` को अपने `PATH` में रखें, और `share/faber` को बाइनरी के पास रखें। चरण-दर-चरण निर्देश: [इंस्टॉल और डाउनलोड करें](/start/install.html).
 
 ## ऐतिहासिक रिलीज़ {#historical}
 

@@ -17,32 +17,33 @@ Tên gọi bắt nguồn từ từ Latinh *maker* hoặc *craftsman*. Trình bi�
 
 **Bạn mới bắt đầu?** Hãy bắt đầu với [Cài đặt và tải xuống](/start/install.html), sau đó đi theo lộ trình khởi đầu: [Hello](/start/hello.html), [Các lệnh](/cheatsheet/commands.html) và [Dự án](/start/projects.html).
 
-## Tải xuống Faber 1.2.0 {#download}
+## Tải xuống Faber 1.6.0 {#download}
 
-Bản phát hành hiện tại: **Faber 1.2.0** (thẻ `faber-v1.2.0`). Các gói CLI dựng sẵn cho macOS và Linux; giải nén tệp nhị phân
-`faber-v1.2.0-<target-triple>/faber` rồi đặt nó trên `PATH`.
+Bản phát hành hiện tại: **Faber 1.6.0** (thẻ `faber-v1.6.0`), phát hành ngày 2026-08-10. Các gói CLI dựng sẵn cho macOS và Linux; mỗi gói gồm cây `bin/` và `share/` — đặt `bin/faber` vào `PATH`, giữ `share/faber` bên cạnh tệp nhị phân để các gói ngôn ngữ phân giải được.
 
 | Nền tảng | Gói lưu trữ | Mã kiểm tra |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [faber-v1.2.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** (Apple Silicon) | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** (glibc) | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
 Cài đặt nhanh (ví dụ macOS arm64):
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
-sudo mv faber-v1.2.0-aarch64-apple-darwin/faber /usr/local/bin/
+# Gói chứa cây bin/ và share/; giữ chúng cùng nhau để các gói ngôn ngữ phân giải bên cạnh tệp nhị phân
+sudo mv bin/faber /usr/local/bin/faber
+sudo mv share/faber /usr/local/share/faber
 faber --version
 ```
 
-Tất cả ghi chú và tài sản của bản phát hành: [github.com/faberlang/releases · faber-v1.2.0](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0).
+Tất cả ghi chú và tài sản của bản phát hành: [github.com/faberlang/releases · faber-v1.6.0](https://github.com/faberlang/releases/releases/tag/faber-v1.6.0).
 Hướng dẫn từng bước: [Hướng dẫn cài đặt](/start/install.html). Danh mục lịch sử đầy đủ:
 [Các bản phát hành](/releases/).
 

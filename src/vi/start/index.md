@@ -18,10 +18,10 @@ sau đó mở một gói thực tế. Để đi theo lộ trình tuần tự, h�
 
 ## 1. Cài đặt CLI {#install}
 
-Tải bản phát hành hiện tại (**1.1.1**) cho nền tảng của bạn từ
+Tải bản phát hành hiện tại (**1.6.0**) cho nền tảng của bạn từ
 [trang cài đặt](/start/install.html), xác minh checksum của tệp lưu trữ,
-sau đó đặt tệp nhị phân `faber-v1.1.1-<target-triple>/faber` đã giải nén vào
-`PATH` của bạn. Xác nhận:
+sau đó đặt `bin/faber` từ các cây `bin/` và `share/` của tệp lưu trữ vào
+`PATH` của bạn (giữ các cây cùng nhau để các gói ngôn ngữ phân giải được). Xác nhận:
 
 ```bash
 faber --version
@@ -96,7 +96,7 @@ Xem chúng trên [trang examples](/examples/).
 
 | Bước | Trang | Kết quả |
 |---|---|---|
-| 1 | [Cài đặt & tải xuống](/start/install.html) | Đặt Faber 1.1.1 vào `PATH` và xác minh |
+| 1 | [Cài đặt & tải xuống](/start/install.html) | Đặt Faber 1.6.0 vào `PATH` và xác minh |
 | 2 | [Hello, Faber](/start/hello.html) | Tạo và chạy `salve-munde` |
 | 3 | [Các lệnh bạn sẽ dùng](/cheatsheet/commands.html) | Tìm hiểu `check`, `build`, `run`, `test`, `explain` |
 | 4 | [Dự án và examples](/start/projects.html) | Chuyển sang các gói thực tế và các trang corpus |

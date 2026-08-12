@@ -15,7 +15,7 @@ source_locale = "en-US"
 
 ## 1. 安裝 CLI {#install}
 
-從[安裝頁面](/start/install.html)下載適用於您平台的目前版本（**1.1.1**），驗證壓縮檔校驗碼，並將解壓縮後的 `faber-v1.1.1-<target-triple>/faber` 二進位檔放入您的 `PATH`。確認：
+從[安裝頁面](/start/install.html)下載適用於您平台的目前版本（**1.6.0**），驗證壓縮檔校驗碼，並將壓縮檔 `bin/` 與 `share/` 樹中的 `bin/faber` 放入您的 `PATH`（保持兩棵樹在一起，以便 reader packs 解析）。確認：
 
 ```bash
 faber --version
@@ -87,7 +87,7 @@ faber test my-app/
 
 | 步驟 | 頁面 | 結果 |
 |---|---|---|
-| 1 | [安裝與下載](/start/install.html) | 將 Faber 1.1.1 放入 `PATH` 並完成驗證 |
+| 1 | [安裝與下載](/start/install.html) | 將 Faber 1.6.0 放入 `PATH` 並完成驗證 |
 | 2 | [Hello，Faber](/start/hello.html) | 建立並執行 `salve-munde` |
 | 3 | [您將使用的命令](/cheatsheet/commands.html) | 學習 `check`、`build`、`run`、`test`、`explain` |
 | 4 | [專案與範例](/start/projects.html) | 開始使用真正的套件與語料庫頁面 |

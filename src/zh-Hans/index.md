@@ -17,31 +17,33 @@ source_locale = "en-US"
 
 **初次接触？** 请从 [安装与下载](/start/install.html) 开始，然后依次运行入门学习轨道：[Hello](/start/hello.html)、[命令](/cheatsheet/commands.html) 和 [项目](/start/projects.html)。
 
-## 下载 Faber 1.2.0 {#download}
+## 下载 Faber 1.6.0 {#download}
 
-当前发布版本：**Faber 1.2.0**（标签 `faber-v1.2.0`）。提供 macOS 和 Linux 的预构建 CLI 归档文件；解压 `faber-v1.2.0-<target-triple>/faber` 二进制文件并将其放入您的 `PATH` 中。
+当前发布版本：**Faber 1.6.0**（标签 `faber-v1.6.0`），发布于 2026-08-10。提供 macOS 和 Linux 的预构建 CLI 归档文件；每个归档都包含 `bin/` 和 `share/` 目录树——将 `bin/faber` 放入您的 `PATH`，并让 `share/faber` 与二进制文件保持在一起，以便 reader packs 能够解析。
 
 | 平台 | 归档文件 | 校验和 |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [faber-v1.2.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** (Apple Silicon) | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** (glibc) | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
 快速安装（以 macOS arm64 为例）：
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
-sudo mv faber-v1.2.0-aarch64-apple-darwin/faber /usr/local/bin/
+# 归档包含 bin/ 和 share/；将它们放在一起，以便 reader packs 在二进制文件旁解析
+sudo mv bin/faber /usr/local/bin/faber
+sudo mv share/faber /usr/local/share/faber
 faber --version
 ```
 
-所有发行说明和资源：[github.com/faberlang/releases · faber-v1.2.0](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0)。
+所有发行说明和资源：[github.com/faberlang/releases · faber-v1.6.0](https://github.com/faberlang/releases/releases/tag/faber-v1.6.0)。
 详细步骤：[安装指南](/start/install.html)。完整历史清单：
 [发行版本](/releases/)。
 

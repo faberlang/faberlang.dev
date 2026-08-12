@@ -15,7 +15,7 @@ source_locale = "en-US"
 واجهة المُصرّف الأمامية داخل ثنائيّة `faber`؛ لا تحتاج تثبيت Radix منفصلًا
 لأعمال الحزم العادية.
 
-كُتبت هذه الصفحة مقابل قطع الإصدار المُجمّعة لمستودع Faber 1.2.0. قد تتأخّر
+كُتبت هذه الصفحة مقابل قطع الإصدار المُجمّعة لمستودع Faber 1.6.0. قد تتأخّر
 صيغ مديري الحزم عن إصدار المستودع؛ لو أبلغ Homebrew أو مدير آخر عن إصدار
 Radix/Faber أقدم، ففضِّل الأرشيفات أدناه لهذا المسار.
 
@@ -23,9 +23,11 @@ Radix/Faber أقدم، ففضِّل الأرشيفات أدناه لهذا ال�
 
 | الحقل | القيمة |
 |---|---|
-| **الإصدار** | 1.2.0 |
-| **الوسم** | `faber-v1.2.0` |
-| **صفحة الإصدار** | [faber-v1.2.0 على GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.2.0) |
+| **الإصدار** | 1.6.0 |
+| **الوسم** | `faber-v1.6.0` |
+| **تاريخ النشر** | 2026-08-10 |
+| **المُصرّف المضمّن** | Radix 0.81.0 |
+| **صفحة الإصدار** | [faber-v1.6.0 على GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.6.0) |
 | **كل الإصدارات** | [جرد إصدارات الموقع](/releases/) |
 | **الترخيص** | MIT |
 
@@ -33,26 +35,27 @@ Radix/Faber أقدم، ففضِّل الأرشيفات أدناه لهذا ال�
 
 | المنصّة | التحميل | SHA-256 |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz) | [المجموع الاختباري](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz) | [المجموع الاختباري](https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | [المجموع الاختباري](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | [المجموع الاختباري](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-تُستخرج الأرشيفات إلى `faber-v1.2.0-<target-triple>/faber`. قد تُسمّي ملفات
+تحوي الأرشيفات شجرتي `bin/` و`share/`. ثبّت كلتيهما لتُحل حزم القارئ بجوار الثنائي (قد تُسمّي ملفات
 المجاميع الاختباريّة مسار البناء الأصلي، لذا تحقّق بمقارنة حقل التلبيدة الأول
-مقابل الأرشيف المحلّي بدل الاعتماد على مطابقة مسار `sha256sum -c`.
+مقابل الأرشيف المحلّي بدل الاعتماد على مطابقة مسار `sha256sum -c`).
 
 ### macOS arm64 {#macos}
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-aarch64-apple-darwin.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
-# place on PATH, e.g.:
-sudo mv faber-v1.2.0-aarch64-apple-darwin/faber /usr/local/bin/
+# يحوي الأرشيف `bin/` و`share/`؛ أبقِهما معاً لتُحل حزم القارئ بجوار الثنائي
+sudo mv bin/faber /usr/local/bin/faber
+sudo mv share/faber /usr/local/share/faber
 faber --version
 ```
 
@@ -60,14 +63,15 @@ faber --version
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.2.0/faber-v1.2.0-x86_64-unknown-linux-gnu.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(sha256sum faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
-sudo mv faber-v1.2.0-x86_64-unknown-linux-gnu/faber /usr/local/bin/
+sudo mv bin/faber /usr/local/bin/faber
+sudo mv share/faber /usr/local/share/faber
 faber --version
 ```
 
@@ -99,7 +103,7 @@ faber check examples/ai-workbench/packages/faber-ai
 ## حالة Homebrew {#homebrew}
 
 نشر Homebrew ليس المرجعية لهذا المسار الابتدائي بعد. لو قدّمت صيغة
-مُصرّفًا أقدم مثل Radix 0.38.0 بينما يوثّق هذا الموقع Faber 1.2.0،
+مُصرّفًا أقدم مثل Radix 0.38.0 بينما يوثّق هذا الموقع Faber 1.6.0،
 فعامل الصيغة كمُتأخّرة واستعمل أرشيف الإصدار المُجمّع مسبقًا. تبقى
 بوابة التحقّق بالحاوية لهذه الصفحة متبقّية حتى تلحق الصيغة بالنشر.
 
