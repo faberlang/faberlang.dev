@@ -100,8 +100,8 @@ def digest(source: str) -> str:
 
 def find_faber() -> str | None:
     for candidate in (
-        WORKSPACE / "faber" / "target" / "release" / "faber",
-        WORKSPACE / "faber" / "target" / "debug" / "faber",
+        WORKSPACE / "radix" / "target" / "release" / "faber",
+        WORKSPACE / "radix" / "target" / "debug" / "faber",
     ):
         if candidate.is_file():
             return str(candidate)
@@ -115,7 +115,7 @@ def stage_packs(faber: str) -> bool:
     to its own executable. A workspace build has no such directory, so every
     locale fails with a pack-not-found error and the transcode silently
     produces nothing. The packs themselves live in the radix tree; link them
-    into place. This writes only inside faber/target/, which is build output.
+    into place. This writes only inside radix/target/, which is build output.
     """
     src = WORKSPACE / "radix" / "stdlib" / "locale"
     if not src.is_dir():
