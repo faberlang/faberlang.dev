@@ -2,13 +2,17 @@
 #
 # Turns a Pagina into a complete HTML document using the closed
 # component vocabulary. The emitter cannot write CSS.
-# New chrome must use document_ir.Node builders and doc_mod.html().
+# New chrome must use document_ir.Node builders and doc_mod.html(),
+# except genera_brand, which is a Tela island spliced into the
+# serialized page. Latin Tela member names come from tela/locale/la.
+# document_ir remains the live serializer.
 
 importa ex "./types" privata * ut types_mod
 importa ex "./markdown" privata * ut markdown_mod
 importa ex "./document_ir" privata * ut doc_mod
 importa ex "./link_prefix" privata * ut lp
 importa ex "./string_util" privata * ut su
+importa ex "tela:tela" privata * ut tela
 
 functio a(textus href, textus label) → doc_mod.Node {
     redde doc_mod.leaf("a", [doc_mod.attr("href", href)], label)
@@ -44,7 +48,8 @@ functio genera_paginam(types_mod.Pagina pag, textus stylesheet_link) → textus 
     body_children.appende(doc_mod.element("div", [doc_mod.attr("class", "page")], page_children))
 
     fixum doc_mod.Node root ← doc_mod.element("html", [doc_mod.attr("lang", pag.site_locale)], [genera_head(pag, stylesheet_link), doc_mod.element("body", [doc_mod.attr("class", body_class)], body_children)])
-    redde doc_mod.html(doc_mod.document(root))
+    fixum textus html ← doc_mod.html(doc_mod.document(root))
+    redde inserere_brand(html, genera_brand(pag.site_locale))
 }
 
 # Public site origin for absolute canonical / Open Graph URLs.
@@ -217,7 +222,6 @@ functio genera_renderbar(textus site_locale) → doc_mod.Node {
 
 functio genera_sidebar(textus active_section, textus site_locale) → doc_mod.Node {
     varia lista<doc_mod.Node> children ← vacua
-    children.appende(genera_brand(site_locale))
     children.appende(nav_list([li(genera_nav_link("Home", lp.content_href("/", site_locale), active_section ≡ "")), li(genera_nav_link("Install", lp.content_href("/start/install.html", site_locale), active_section ≡ "install")), li(genera_nav_link("Localization", lp.content_href("/localization.html", site_locale), active_section ≡ "localization")), li(genera_nav_link("Cheat sheet", lp.content_href("/cheatsheet/", site_locale), active_section ≡ "cheatsheet")), li(genera_nav_link("Releases", lp.content_href("/releases/", site_locale), active_section ≡ "releases")), li(genera_nav_link("Open source", lp.content_href("/open-source.html", site_locale), active_section ≡ "open-source")), li(genera_nav_link("Examples", lp.content_href("/examples/", site_locale), active_section ≡ "examples")), li(genera_nav_link("Target lanes", lp.content_href("/targets/", site_locale), active_section ≡ "targets"))], "nav"))
     children.appende(side_h("Language"))
     children.appende(nav_list([li(genera_nav_link("The language", lp.content_href("/language/", site_locale), active_section ≡ "language")), li(genera_nav_link("Types and values", lp.content_href("/language/types.html", site_locale), active_section ≡ "types")), li(genera_nav_link("Functions and flow", lp.content_href("/language/functions.html", site_locale), active_section ≡ "functions")), li(genera_nav_link("Errors and testing", lp.content_href("/language/errors.html", site_locale), active_section ≡ "errors")), li(genera_nav_link("Glyphs and Latin", lp.content_href("/language/glyphs.html", site_locale), active_section ≡ "glyphs")), li(genera_nav_link("Reader locales", lp.content_href("/language/reader-locales.html", site_locale), active_section ≡ "reader-locales")), li(genera_nav_link("Capabilities", lp.content_href("/language/capabilities.html", site_locale), active_section ≡ "capabilities"))], "nav"))
@@ -237,12 +241,67 @@ functio genera_sidebar(textus active_section, textus site_locale) → doc_mod.No
     redde doc_mod.element("aside", vacua, children)
 }
 
-functio genera_brand(textus site_locale) → doc_mod.Node {
+functio inserere_brand(textus html, textus brand) → textus {
+    fixum textus aside_open ← "<" + "aside>"
+    fixum numerus pos ← su.initium_index(html, aside_open)
+    si pos < 0 ergo redde html
+    fixum numerus at ← pos + aside_open.longitudo()
+    redde html.sectio(0, at) + brand + html.sectio(at, html.longitudo())
+}
+
+functio tela_attributum(textus nomen, textus valor) → tela.Attributum {
+    redde tela.Attributum { name = nomen, value = valor }
+}
+
+functio tela_span(textus class_name, textus valor) → tela.Visus {
+    varia lista<tela.Attributum> attrs ← vacua
+    attrs.appende(tela_attributum("class", class_name))
+    varia lista<tela.Visus> children ← vacua
+    children.appende(tela.textus_visus(valor))
+    fixum lista<tela.Proprietas> proprietates ← vacua
+    redde tela.elementum_omne(nihil, tela.html_spatium(), "span", attrs, proprietates, children)
+}
+
+functio genera_brand_tela(textus site_locale) → textus {
+    varia lista<tela.Attributum> mark_attrs ← vacua
+    mark_attrs.appende(tela_attributum("class", "brand-mark"))
+    mark_attrs.appende(tela_attributum("aria-hidden", "true"))
+    varia lista<tela.Visus> mark_children ← vacua
+    mark_children.appende(tela.textus_visus("f"))
+    fixum lista<tela.Proprietas> mark_proprietates ← vacua
+    fixum tela.Visus mark ← tela.elementum_omne(nihil, tela.html_spatium(), "span", mark_attrs, mark_proprietates, mark_children)
+
+    varia lista<tela.Visus> text_children ← vacua
+    text_children.appende(tela_span("brand-name", "Faber"))
+    text_children.appende(tela_span("brand-tag", "language docs"))
+    varia lista<tela.Attributum> text_attrs ← vacua
+    text_attrs.appende(tela_attributum("class", "brand-text"))
+    fixum lista<tela.Proprietas> text_proprietates ← vacua
+    fixum tela.Visus text ← tela.elementum_omne(nihil, tela.html_spatium(), "span", text_attrs, text_proprietates, text_children)
+
+    varia lista<tela.Attributum> link_attrs ← vacua
+    link_attrs.appende(tela_attributum("class", "brand"))
+    link_attrs.appende(tela_attributum("href", lp.content_href("/", site_locale)))
+    varia lista<tela.Visus> link_children ← vacua
+    link_children.appende(mark)
+    link_children.appende(text)
+    fixum lista<tela.Proprietas> link_proprietates ← vacua
+    fixum tela.Visus visus ← tela.elementum_omne(nihil, tela.html_spatium(), "a", link_attrs, link_proprietates, link_children)
+    redde tela.html_visus(visus) vel ""
+}
+
+functio genera_brand_nodus(textus site_locale) → doc_mod.Node {
     fixum doc_mod.Node mark ← doc_mod.leaf("span", [doc_mod.attr("class", "brand-mark"), doc_mod.attr("aria-hidden", "true")], "f")
     fixum doc_mod.Node name ← doc_mod.leaf("span", [doc_mod.attr("class", "brand-name")], "Faber")
     fixum doc_mod.Node tag ← doc_mod.leaf("span", [doc_mod.attr("class", "brand-tag")], "language docs")
     fixum doc_mod.Node text ← doc_mod.element("span", [doc_mod.attr("class", "brand-text")], [name, tag])
     redde doc_mod.element("a", [doc_mod.attr("class", "brand"), doc_mod.attr("href", lp.content_href("/", site_locale))], [mark, text])
+}
+
+functio genera_brand(textus site_locale) → textus {
+    fixum textus tela_html ← genera_brand_tela(site_locale)
+    si tela_html ≠ "" ergo redde tela_html
+    redde doc_mod.node_html(genera_brand_nodus(site_locale))
 }
 
 functio side_h(textus label) → doc_mod.Node {

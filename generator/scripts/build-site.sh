@@ -39,6 +39,19 @@ if [ -z "$PYTHON" ]; then
 fi
 
 FABER="${FABER:-faber}"
+# Packet checkouts have tela but not norma. Pair packet tela with the
+# container norma so `tela:tela` resolves the lane packs.
+if [ -z "${FABER_LIBRARY_HOME:-}" ]; then
+    if [ -f "${WORKSPACE_DIR}/tela/src/tela.fab" ] && [ -d "${WORKSPACE_DIR}/norma/src" ]; then
+        export FABER_LIBRARY_HOME="$WORKSPACE_DIR"
+    elif [ -f "${WORKSPACE_DIR}/tela/src/tela.fab" ] && [ -d "${WORKSPACE_DIR}/../norma/src" ]; then
+        LIBHOME="${GENERATOR_DIR}/target/libhome"
+        mkdir -p "$LIBHOME"
+        ln -sfn "${WORKSPACE_DIR}/tela" "$LIBHOME/tela"
+        ln -sfn "$(cd "${WORKSPACE_DIR}/.." && pwd)/norma" "$LIBHOME/norma"
+        export FABER_LIBRARY_HOME="$LIBHOME"
+    fi
+fi
 # Toolchain for the fence-localize (transcode) step. Defaults to $FABER;
 # pin separately when reader packs are newer than the installed faber's
 # pack validator (e.g. FABER_LOCALIZE=path/to/workspace-faber).

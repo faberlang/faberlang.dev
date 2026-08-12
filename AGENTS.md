@@ -29,6 +29,7 @@ faberlang.dev/
     locales.toml           Locale registry (reader_locale, native names)
     src/                   Faber modules
     src/tela_island.fab    Latin island: imports tela:tela; not used by main.fab
+    src/html.fab           Live page emitter; genera_brand is a Tela splice
     www/speculum.css       Shared stylesheet (single source of truth)
     diagrams/              Committed SVG cache, one file per ```mermaid block
     scripts/build-site.sh  Full site render + redirects + gates
