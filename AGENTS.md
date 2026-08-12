@@ -240,8 +240,8 @@ and commit the resulting `generator/locale-tabs/*.fab` alongside the Markdown.
 
 `render` transcodes with `faber format --locale`, which resolves reader packs
 relative to its own binary. A workspace build has no `share/faber/locale/`, so
-the script links the packs from the radix tree into place on each run — inside
-`faber/target/`, which is build output. Without that every locale fails with a
+the script links the packs from the Radix tree into place on each run — inside
+`radix/target/`, which is build output. Without that every locale fails with a
 pack-not-found error while still exiting 0.
 
 It also caches each pack's keyword vocabulary as `vocab.<locale>.json`.
