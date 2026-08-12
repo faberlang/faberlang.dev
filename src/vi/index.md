@@ -154,9 +154,8 @@ Xem tài liệu [locale người đọc](/language/reader-locales.html) để bi
 
 | Kho | Vai trò |
 |---|---|
-| [faberlang/faber](https://github.com/faberlang/faber) | CLI công khai cho người dùng |
+| [faberlang/faber](https://github.com/faberlang/faber) | API đích công khai và trang chủ dự án |
 | [faberlang/releases](https://github.com/faberlang/releases) | Tài sản CLI theo từng bản phát hành |
-| [faberlang/faber-runtime](https://github.com/faberlang/faber-runtime) | Các kiểu runtime cho Rust được sinh |
 | [faberlang/norma](https://github.com/faberlang/norma) | Mã nguồn thư viện chuẩn |
 | [faberlang/cista](https://github.com/faberlang/cista) | CLI/thư viện kho gói |
 | [faberlang/triga](https://github.com/faberlang/triga) | Thư viện đồ họa / hình học |

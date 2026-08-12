@@ -177,9 +177,8 @@ Useful entry points:
   ordering and target dispatch;
 - `crates/radix/src/tool/mod.rs` — developer
   CLI boundary;
-- `../faber/README.md` — package/product boundary;
-- `../faber-runtime/README.md` — generated Rust
-  runtime boundary;
+- `../faber/README.md` — public target API and project boundary;
+- `../faber/runtime/rust/README.md` — generated Rust runtime boundary;
 - `../hosts/README.md` — host products and libraries.
 
 ### Crate topology

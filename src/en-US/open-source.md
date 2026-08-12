@@ -20,7 +20,7 @@ fence around Faber.
 
 | Component | What it is |
 |---|---|
-| **The Faber build tool** | The `faber` CLI: check, build, run, test, format, explain |
+| **Public Faber target APIs** | Rust, TypeScript, Go, and Swift support packages for generated programs |
 | **Cista** | The package manager and package store |
 | **Norma** | The standard library (`norma:*` modules) |
 | **Triga** | The graphics and geometry library |
@@ -36,7 +36,7 @@ work built on them without asking.
 
 | Component | Status |
 |---|---|
-| **Radix** | The compiler — lexing, parsing, semantic analysis, HIR/MIR/AIR, diagnostics, codegen. Closed source; not public on GitHub. Ships as a binary inside the `faber` CLI. |
+| **Radix and the Faber product** | Compiler, package workflow, CLI, diagnostics, and code generation. Closed source; released as the `faber` binary. |
 
 Radix being closed does not make it opaque. Compiler bugs are reported
 publicly, release binaries are checksummed and tagged, and the grammar,
@@ -51,9 +51,8 @@ organisation.
 
 | Repository | Description |
 |---|---|
-| [faber](https://github.com/faberlang/faber) | User-facing CLI: check, build, run, test, format, explain |
+| [faber](https://github.com/faberlang/faber) | Public Rust, TypeScript, Go, and Swift target APIs; project and issue routing |
 | [releases](https://github.com/faberlang/releases) | Tagged CLI release assets and prebuilt archives |
-| [faber-runtime](https://github.com/faberlang/faber-runtime) | Core runtime types (Valor, tensors, frames); crate name `faber` |
 | [norma](https://github.com/faberlang/norma) | Standard library source (`norma:*` modules) |
 | [triga](https://github.com/faberlang/triga) | Graphics and geometry library |
 | [gradus](https://github.com/faberlang/gradus) | Autograd and ML library: gradients, loss, optimizers, NN primitives, training |

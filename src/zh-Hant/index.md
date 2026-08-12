@@ -150,9 +150,8 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 
 | 儲存庫 | 角色 |
 |---|---|
-| [faberlang/faber](https://github.com/faberlang/faber) | 公開使用者 CLI |
+| [faberlang/faber](https://github.com/faberlang/faber) | 公開目標 API 與專案入口 |
 | [faberlang/releases](https://github.com/faberlang/releases) | 已標記的 CLI 發布資產 |
-| [faberlang/faber-runtime](https://github.com/faberlang/faber-runtime) | 生成 Rust 的執行階段型別 |
 | [faberlang/norma](https://github.com/faberlang/norma) | 標準函式庫原始碼 |
 | [faberlang/cista](https://github.com/faberlang/cista) | 套件儲存 CLI／函式庫 |
 | [faberlang/triga](https://github.com/faberlang/triga) | 圖形／幾何函式庫 |

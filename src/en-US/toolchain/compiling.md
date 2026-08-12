@@ -388,7 +388,7 @@ as `.rlib` artifacts:
 |-----------|-------------------|-------------|
 | Your program source | cached | recompiles |
 | `norma/src/*.fab` (Faber source) | cached | recompiles |
-| `faber-runtime/src/*.rs` | recompiles once | recompiles |
+| `faber/runtime/rust/src/*.rs` | recompiles once | recompiles |
 
 The trap to avoid is building each program into a fresh `target/`.
 Reuse a shared `--target-dir` to keep cached `.rlib`s warm.
