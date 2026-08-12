@@ -28,11 +28,13 @@ faberlang.dev/
   generator/               Speculum site generator (Faber → Rust binary)
     locales.toml           Locale registry (reader_locale, native names)
     src/                   Faber modules
+    src/tela_island.fab    Latin island: imports tela:tela; not used by main.fab
     www/speculum.css       Shared stylesheet (single source of truth)
     diagrams/              Committed SVG cache, one file per ```mermaid block
     scripts/build-site.sh  Full site render + redirects + gates
     scripts/render.sh      Single-page render wrapper
     scripts/validate-fences.sh  CI fence validator
+    scripts/check-tela-island.sh  Island gate: radix check + Tela/document_ir bytes
     faber.toml             Package config
   dist/                    Committed static site (GitHub Pages artifact root)
     en-US/…                English content (and all locales under {locale}/)

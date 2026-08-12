@@ -1,0 +1,51 @@
++++
+locale = "la"
++++
+
+# Speculum island: one Latin generator module imports English Tela.
+# Not a Stage 7 migration — document_ir stays the site serializer.
+# This file is not imported by main.fab.
+
+importa ex "./document_ir" privata * ut speculum
+importa ex "tela:tela" privata * ut tela
+
+functio speculum_paragraphus() → textus {
+    fixum speculum.Node nodus ← speculum.leaf("p", vacua, "salve & vale")
+    redde speculum.node_html(nodus)
+}
+
+functio tela_paragraphus() → textus {
+    varia lista<tela.Visus> liberi ← vacua
+    liberi.appende(tela.textus_visus("salve & vale"))
+    fixum tela.Visus visus ← tela.elementum_visus(tela.html_spatium(), "p", liberi)
+    redde tela.html_visus(visus) vel ""
+}
+
+functio speculum_textus() → textus {
+    redde speculum.node_html(speculum.text("salve"))
+}
+
+functio tela_textus() → textus {
+    redde tela.html_visus(tela.textus_visus("salve")) vel ""
+}
+
+functio speculum_interruptio() → textus {
+    redde speculum.node_html(speculum.void_element("br", vacua))
+}
+
+functio tela_interruptio() → textus {
+    fixum lista<tela.Visus> vacui ← vacua
+    redde tela.html_visus(tela.elementum_visus(tela.html_spatium(), "br", vacui)) vel ""
+}
+
+functio fragmenta_paria() → bivalens {
+    si speculum_paragraphus() ≠ tela_paragraphus() ergo redde falsum
+    si speculum_textus() ≠ tela_textus() ergo redde falsum
+    si speculum_interruptio() ≠ tela_interruptio() ergo redde falsum
+    redde verum
+}
+
+incipit {
+    adfirma fragmenta_paria()
+    nota tela_paragraphus()
+}
