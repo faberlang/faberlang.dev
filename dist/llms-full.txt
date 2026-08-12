@@ -1820,7 +1820,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: existing-home
 - Category: collection
 - Summary: Returns the sum of numeric list elements.
-- Syntax: `<lista>.summa()`
+- Syntax: `<lista>.sum()`
 - Aliases: none
 - Related: `prima`, `ultima`, `lista`
 - Page: https://faberlang.dev/en-US/corpus/summa.html
@@ -2400,9 +2400,8 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 
 ## Repositories
 
-- https://github.com/faberlang/faber — public user CLI
+- https://github.com/faberlang/faber — public target APIs and project home
 - https://github.com/faberlang/releases — tagged CLI release assets
-- https://github.com/faberlang/faber-runtime — runtime types for generated Rust
 - https://github.com/faberlang/norma — standard library
 - https://github.com/faberlang/cista — package store
 - https://github.com/faberlang/triga — graphics / geometry

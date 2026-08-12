@@ -261,6 +261,6 @@ Crate `faber-runtime` được biên dịch một lần cho mỗi thư mục đ�
 |-----------|-------------------|-------------|
 | Mã nguồn chương trình của bạn | đã lưu trong bộ nhớ đệm | biên dịch lại |
 | `norma/src/*.fab` (mã nguồn Faber) | đã lưu trong bộ nhớ đệm | biên dịch lại |
-| `faber-runtime/src/*.rs` | biên dịch lại một lần | biên dịch lại |
+| `faber/runtime/rust/src/*.rs` | biên dịch lại một lần | biên dịch lại |
 
 Điều cần tránh là build từng chương trình vào một `target/` mới. Hãy dùng lại một `--target-dir` dùng chung để giữ các `.rlib` đã lưu trong bộ nhớ đệm luôn ở trạng thái sẵn sàng.

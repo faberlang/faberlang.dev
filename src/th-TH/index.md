@@ -156,9 +156,8 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 
 | คลังโค้ด | บทบาท |
 |---|---|
-| [faberlang/faber](https://github.com/faberlang/faber) | CLI สาธารณะสำหรับผู้ใช้ |
+| [faberlang/faber](https://github.com/faberlang/faber) | API เป้าหมายสาธารณะและหน้าหลักของโครงการ |
 | [faberlang/releases](https://github.com/faberlang/releases) | ไฟล์รุ่น CLI ที่มีแท็กกำกับ |
-| [faberlang/faber-runtime](https://github.com/faberlang/faber-runtime) | ชนิดข้อมูลรันไทม์สำหรับ Rust ที่สร้างขึ้น |
 | [faberlang/norma](https://github.com/faberlang/norma) | ซอร์สโค้ดไลบรารีมาตรฐาน |
 | [faberlang/cista](https://github.com/faberlang/cista) | CLI/ไลบรารีสำหรับจัดเก็บแพ็กเกจ |
 | [faberlang/triga](https://github.com/faberlang/triga) | ไลบรารีกราฟิก / เรขาคณิต |

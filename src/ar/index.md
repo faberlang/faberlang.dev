@@ -151,9 +151,8 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 
 | المستودع | الدور |
 |---|---|
-| [faberlang/faber](https://github.com/faberlang/faber) | واجهة CLI العامة للمستخدم |
+| [faberlang/faber](https://github.com/faberlang/faber) | واجهات الأهداف العامة وواجهة المشروع |
 | [faberlang/releases](https://github.com/faberlang/releases) | موجودات الإصدارات الموسومة لـ CLI |
-| [faberlang/faber-runtime](https://github.com/faberlang/faber-runtime) | أنواع وقت التشغيل لـ Rust المُنشأ |
 | [faberlang/norma](https://github.com/faberlang/norma) | مصدر المكتبة القياسية |
 | [faberlang/cista](https://github.com/faberlang/cista) | CLI/lib مخزن الحزم |
 | [faberlang/triga](https://github.com/faberlang/triga) | مكتبة الرسوميات/الهندسة |

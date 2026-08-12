@@ -185,9 +185,8 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 
 | रिपॉज़िटरी | भूमिका |
 |---|---|
-| [faberlang/faber](https://github.com/faberlang/faber) | सार्वजनिक उपयोगकर्ता CLI |
+| [faberlang/faber](https://github.com/faberlang/faber) | सार्वजनिक लक्ष्य API और परियोजना केंद्र |
 | [faberlang/releases](https://github.com/faberlang/releases) | टैग किए गए CLI रिलीज़ एसेट |
-| [faberlang/faber-runtime](https://github.com/faberlang/faber-runtime) | जनरेट किए गए Rust के लिए रनटाइम प्रकार |
 | [faberlang/norma](https://github.com/faberlang/norma) | मानक लाइब्रेरी स्रोत |
 | [faberlang/cista](https://github.com/faberlang/cista) | पैकेज-स्टोर CLI/लाइब्रेरी |
 | [faberlang/triga](https://github.com/faberlang/triga) | ग्राफ़िक्स / ज्यामिति लाइब्रेरी |

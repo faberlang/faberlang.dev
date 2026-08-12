@@ -251,9 +251,8 @@ the full discussion.
 
 | Repo | Role |
 |---|---|
-| [faberlang/faber](https://github.com/faberlang/faber) | Public user CLI |
+| [faberlang/faber](https://github.com/faberlang/faber) | Public target APIs and project home |
 | [faberlang/releases](https://github.com/faberlang/releases) | Tagged CLI release assets |
-| [faberlang/faber-runtime](https://github.com/faberlang/faber-runtime) | Runtime types for generated Rust |
 | [faberlang/norma](https://github.com/faberlang/norma) | Standard library source |
 | [faberlang/cista](https://github.com/faberlang/cista) | Package-store CLI/lib |
 | [faberlang/triga](https://github.com/faberlang/triga) | Graphics / geometry library |

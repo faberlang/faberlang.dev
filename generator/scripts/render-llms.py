@@ -211,9 +211,8 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
 
     write_section(lines, "Repositories")
     lines.extend([
-        "- https://github.com/faberlang/faber — public user CLI",
+        "- https://github.com/faberlang/faber — public target APIs and project home",
         "- https://github.com/faberlang/releases — tagged CLI release assets",
-        "- https://github.com/faberlang/faber-runtime — runtime types for generated Rust",
         "- https://github.com/faberlang/norma — standard library",
         "- https://github.com/faberlang/cista — package store",
         "- https://github.com/faberlang/triga — graphics / geometry",
