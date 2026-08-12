@@ -248,7 +248,7 @@ https://github.com/faberlang/norma
 | `norma:*` | faberlang/norma | Standard library |
 | `triga:*` | faberlang/triga | Graphics / geometry |
 | cista | faberlang/cista | Package store CLI/lib |
-| faber-runtime | faberlang/faber-runtime | Generated Rust support types |
+| faber target APIs | faberlang/faber | Rust, TypeScript, Go, and Swift target APIs |
 
 ## What not to assume
 
