@@ -5,9 +5,9 @@ order = 2
 sources = "faber/docs/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:6cc0b09276b372fd485bb422156a4a4e675bbe56b80ab30736aabf3c7f71f871"
+prose_hash = "sha256:20775c0bc9081e06ea5da023aca1a44c02d7f4c203c2989c9ed08301dfa039c6"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "fa80761f498355c7960cac63baef5c96ce8e5ab1"
+source_commit = "5cf19eeef2d661b443e52417e5dc54d8bd773b6d"
 source_locale = "en-US"
 +++
 
@@ -55,21 +55,21 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 
 | đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
-| rust | 282 | 284 | 99% |
-| go | 261 | 284 | 92% |
-| ts | 284 | 284 | 100% |
-| faber | 284 | 284 | 100% |
+| rust | 284 | 286 | 99% |
+| go | 263 | 286 | 92% |
+| ts | 286 | 286 | 100% |
+| faber | 286 | 286 | 100% |
 
 **Tuyến hệ thống (MIR → tạo phẩm thiết bị/IR)**
 
 | đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
-| llvm-text | 276 | 279 | 99% |
-| wasm-text | 258 | 279 | 92% |
-| wasm | 258 | 279 | 92% |
-| sexp-struct | 221 | 279 | 79% |
-| sexp | 221 | 279 | 79% |
-| scena | 239 | 279 | 86% |
+| llvm-text | 280 | 286 | 98% |
+| wasm-text | 260 | 286 | 91% |
+| wasm | 260 | 286 | 91% |
+| sexp-struct | 226 | 286 | 79% |
+| sexp | 226 | 286 | 79% |
+| scena | 245 | 286 | 86% |
 
 ## Từ khóa — tuyến ứng dụng
 
@@ -172,7 +172,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `redde` | ✓ | ✓ | ✓ | ✓ |
 | `reddet` | ✓ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✓ |
-| `requirit` | — | — | — | — |
+| `requirit` | ✓ | ✓ | ✓ | ✓ |
 | `rumpe` | ✓ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✓ |
 | `scriptum` | ✓ | ✓ | ✓ | ✓ |
@@ -212,10 +212,10 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 |---|---|---|---|---|
 | `⊜` | ✓ | ✓ | ✓ | ✓ |
 | `∧` | ✓ | ✓ | ✓ | ✓ |
-| `·` | ✓ | ○ | ✓ | ✓ |
+| `·` | ✓ | ◐ | ✓ | ✓ |
 | `×` | ✓ | ○ | ✓ | ✓ |
 | `⊗` | ✓ | ○ | ✓ | ✓ |
-| `⊙` | ✓ | ○ | ✓ | ✓ |
+| `⊙` | ✓ | ◐ | ✓ | ✓ |
 | `→` | ✓ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ |
@@ -321,7 +321,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `incipit` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `inter` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `intra` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| `instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ◐ |
+| `instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `itera` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
 | `lege` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -359,7 +359,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | `redde` | ✓ | ✓ | ✓ | ✓ | ✓ | ◐ |
 | `reddet` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| `requirit` | — | — | — | — | — | — |
+| `requirit` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `rumpe` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `scriptum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -399,10 +399,10 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | --- | --- | --- | --- | --- | --- | --- |
 | `⊜` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `∧` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| `·` | — | — | — | — | — | — |
-| `×` | — | — | — | — | — | — |
-| `⊗` | — | — | — | — | — | — |
-| `⊙` | — | — | — | — | — | — |
+| `·` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ |
+| `×` | ✓ | ○ | ○ | ✓ | ✓ | ✓ |
+| `⊗` | ○ | ○ | ○ | ✓ | ✓ | ✓ |
+| `⊙` | ◐ | ◐ | ◐ | ○ | ○ | ◐ |
 | `→` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
