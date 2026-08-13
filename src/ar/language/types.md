@@ -10,7 +10,7 @@ sources = [
   "radix/docs/design/tensor-intrinsics.md",
   "radix/docs/design/lista-intrinsics.md",
   "radix/docs/design/comparison-operators.md",
-  "radix/EBNF.md",
+  "faber/docs/EBNF.md",
   "examples/corpus/typi/",
   "examples/corpus/tensor/",
   "examples/corpus/lista/",

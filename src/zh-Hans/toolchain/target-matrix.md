@@ -2,7 +2,7 @@
 title = "目标兼容性"
 section = "targets"
 order = 2
-sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
+sources = "faber/docs/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
 prose_hash = "sha256:2de3b846793c9d13b8bb713967477971bae08e72f2e7879de663dc42eff929d9"
@@ -20,7 +20,7 @@ Faber 是一门语言，但有多个编译契约。本页是**经过测量的可
 
 实时 CLI 摘要：`faber targets`。
 
-**生成时间**：unknown，由 `scripta/generate-ebnf-matrix.py` 生成 — **请勿编辑**。
+**渲染时间**：unknown，由 `faber/scripta/render-matrices.py` 基于 radix 测量 JSON 渲染 — **请勿编辑**。
 **测量**：`emit_hir_target_matrix` + `emit_mir_target_matrix`（进程内完成，不使用外部 toolchain）。
 **连接**：`corpus/index.toml` 中的 terms → exempla。
 

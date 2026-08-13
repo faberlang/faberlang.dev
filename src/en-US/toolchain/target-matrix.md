@@ -2,7 +2,7 @@
 title = "Target compatibility"
 section = "targets"
 order = 2
-sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
+sources = "faber/docs/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 +++
 
 Faber is one language with many compilation contracts. This page is the
@@ -24,7 +24,7 @@ Faber's canonical form precisely because no living language has a claim on
 it, so no locale's spelling has to be the one the others are measured
 against. A row is the same row whichever language you read the site in.
 
-**Generated**: unknown by `scripta/generate-ebnf-matrix.py` — **do not edit**.
+**Rendered**: unknown by `faber/scripta/render-matrices.py` from radix measurement JSON — **do not hand-edit**.
 **Measurement**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, no external toolchains).
 **Join**: `corpus/index.toml` terms → exempla.
 

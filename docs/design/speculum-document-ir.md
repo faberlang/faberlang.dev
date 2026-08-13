@@ -3,7 +3,7 @@
 **Status:** draft revised after Head second reads (2026-07-17)  
 **Repo:** `faberlang/faberlang.dev`  
 **Scope:** Speculum site generator (`generator/`) — architecture + staged implementation  
-**Related:** `CONTENT-PLAN.md`, `generator/src/html.fab`, `generator/src/document_ir.fab`, `generator/src/markdown.fab`, `radix/EBNF.md` (annotations + discretio), operator discussion Mind session 2026-07-17  
+**Related:** `CONTENT-PLAN.md`, `generator/src/html.fab`, `generator/src/document_ir.fab`, `generator/src/markdown.fab`, `faber/docs/EBNF.md` (annotations + discretio), operator discussion Mind session 2026-07-17  
 **Memo:** `eead6a2d` (fleet)  
 **Head reviews absorbed:** head-cto `6bde87ac` / `c40511c5`; head-cxo `de48f431`; hand-4 Stage A land `46f719a`
 
@@ -52,7 +52,7 @@ Consequences:
 ### Non-goals (this design)
 
 - Compiler-owned `@ web` / route / controller annotation families (explicitly
-  out of `radix/EBNF.md` policy).
+  out of `faber/docs/EBNF.md` policy).
 - Replacing Markdown authoring for prose pages.
 - Multilingual Stage 6 / reader-locale UI chrome (orthogonal).
 - `faber emit -t html` as a required first ship (optional later).
@@ -357,7 +357,7 @@ Suggested lenses:
 - MD emitter: `generator/src/markdown.fab`
 - Types today: `generator/src/types.fab` (`Pagina`)
 - Content architecture: `CONTENT-PLAN.md`
-- Annotation contracts: `radix/EBNF.md` (Annotation contracts section)
+- Annotation contracts: `faber/docs/EBNF.md` (Annotation contracts section)
 - Annotation sugar: `radix/docs/design/annotation-sugar.md`
 - Fleet memos: `eead6a2d` (direction), `20a125fb` (agent-rich site), `23bff4d0` (install honesty)
 

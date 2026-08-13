@@ -8,7 +8,7 @@ sources = [
   "radix/docs/design/tensor-intrinsics.md",
   "radix/docs/design/lista-intrinsics.md",
   "radix/docs/design/comparison-operators.md",
-  "radix/EBNF.md",
+  "faber/docs/EBNF.md",
   "radix/corpus/typi/",
   "radix/corpus/tensor/",
   "radix/corpus/lista/",

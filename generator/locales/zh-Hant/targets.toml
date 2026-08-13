@@ -14,7 +14,7 @@ Faber 是一種語言，但有多個編譯契約。本頁是**經測量的可降
 即時 CLI 摘要：`faber targets`。
 """
 
-meta_generated = "**產生時間**：{date}，由 `scripta/generate-ebnf-matrix.py` 產生 — **請勿編輯**。"
+meta_generated = "**渲染時間**：{date}，由 `faber/scripta/render-matrices.py` 基於 radix 測量 JSON 渲染 — **請勿編輯**。"
 meta_measurement = "**測量**：`emit_hir_target_matrix` + `emit_mir_target_matrix`（程序內完成，不使用外部 toolchain）。"
 meta_join = "**連結**：`corpus/index.toml` 中的 terms → exempla。"
 

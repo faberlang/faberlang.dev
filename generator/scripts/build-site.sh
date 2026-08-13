@@ -199,12 +199,12 @@ render_locale() {
 # ==================================================================
 if [ "$FULL_SITE" = true ]; then
 
-    # Step 0: Refresh generated matrix pages when radix sibling is present
-    if [ -f "${WORKSPACE_DIR}/radix/EBNF_MATRIX.md" ]; then
+    # Step 0: Refresh generated matrix pages when the public faber sibling is present
+    if [ -f "${WORKSPACE_DIR}/faber/docs/EBNF_MATRIX.md" ]; then
         echo "[0/10] Generating target compatibility matrix pages..."
         "$PYTHON" "${SCRIPT_DIR}/generate-target-matrix.py" --all-locales
     else
-        echo "[0/10] Skipping target matrix generate (no ${WORKSPACE_DIR}/radix/EBNF_MATRIX.md)"
+        echo "[0/10] Skipping target matrix generate (no ${WORKSPACE_DIR}/faber/docs/EBNF_MATRIX.md)"
     fi
 
     # Step 0b: Regenerate the sections assembled from captured panels and
@@ -215,10 +215,10 @@ if [ "$FULL_SITE" = true ]; then
     "$PYTHON" "${SCRIPT_DIR}/generate-target-lanes.py"
     "$PYTHON" "${SCRIPT_DIR}/generate-localization.py"
     "$PYTHON" "${SCRIPT_DIR}/generate-examples.py"
-    if [ -f "${WORKSPACE_DIR}/radix/EBNF.md" ]; then
+    if [ -f "${WORKSPACE_DIR}/faber/docs/EBNF.md" ]; then
         "${SCRIPT_DIR}/generate-grammar" --all-locales
     else
-        echo "  Skipping grammar generate (no ${WORKSPACE_DIR}/radix/EBNF.md)"
+        echo "  Skipping grammar generate (no ${WORKSPACE_DIR}/faber/docs/EBNF.md)"
     fi
 
     # Releases is NOT regenerated here: it needs `gh` and network access, and a

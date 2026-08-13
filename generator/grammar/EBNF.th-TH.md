@@ -1,13 +1,10 @@
-+++
-translation_kind = "translated"
+# ข้อกำหนดภาษา Faber
 
-title = "Grammar"
-section = "reference"
-order = 1
-sources = [
-  "generator/grammar/EBNF.th-TH.md",
-]
-+++
+> **Reader-locale EBNF (Thai).** Latin/source-of-truth grammar remains [`EBNF.md`](EBNF.md).
+> This file is the Thai reader surface of that grammar (keywords, commentary, examples).
+> Pack keyword/type spellings are extracted from the glossary appendix at the end.
+> Glyphs (`← → ∴ ≡ ∪ ⇥` …) never localize; `ergo` localizes, `∴` is clausura-only.
+
 
 ไวยากรณ์อย่างเป็นทางการของภาษาโปรแกรม Faber ไฟล์นี้เป็นพื้นผิวอ้างอิงหลักของไวยากรณ์และคำอธิบายประกอบภาษา ตัวอย่างที่รันได้อยู่ในคลังตัวอย่างสาธารณะ
 
@@ -24,7 +21,7 @@ statement     := importDecl | varDecl | funcDecl | genusDecl | implendumDecl
                | ifStmt | whileStmt | iteraStmt
                | eligeStmt | discerneStmt | guardStmt | curaStmt | facBlockStmt
                | returnStmt | breakStmt | continueStmt | noopStmt | throwStmt
-               | assertStmt | outputStmt | adStmt | incipitStmt
+               | assertStmt | requiritStmt | outputStmt | adStmt | incipitStmt
                | incipietStmt | extractStmt
                | probandumDecl | probaStmt | blockStmt | incDecStmt | exprStmt
 blockStmt     := '{' statement* '}'
@@ -38,7 +35,7 @@ blockStmt     := '{' statement* '}'
 
 ตัวอย่าง:
 
-```text
+```fab
 +++
 group = "exempla.directiva"
 sectio = "smoke"
@@ -194,7 +191,7 @@ wildcardImport := '*' 'ในชื่อ' IDENTIFIER
 
 ตัวอย่าง:
 
-```text
+```fab
 นำเข้า ออก "hono" ส่วนตัว Hono
 นำเข้า ออก "norma:chorda"
 นำเข้า { ออก = "norma:json/แก้", ในชื่อ = solve_mod }
@@ -222,7 +219,7 @@ typeParams     := genericParams
 
 ตัวอย่างชนิดฟังก์ชัน:
 
-```text
+```fab
 ฟังก์ชัน กรอง((T) → ตรรกะ pred) → รายการ<T>
 ฟังก์ชัน ผสม((A) → B f, (B) → C g) → (A) → C
 ฟังก์ชัน ใช้((จำนวน) → จำนวน ⇥ ข้อความ op, จำนวน n) → จำนวน ⇥ ข้อความ
@@ -351,6 +348,7 @@ noopStmt     := 'เงียบ'
 throwStmt   := ('โยน' | 'ตาย') expression ['ถ้า' expression]
 catchClause := 'จับ' IDENTIFIER blockStmt
 assertStmt  := 'ยืนยัน' expression ('secus' expression)?
+requiritStmt := 'ต้องการ' expression 'secus' expression
 ```
 
 `จับ` ต่อกับคำสั่งแบบมีโครงสร้างและแขนของเงื่อนไข ไม่ต่อกับบล็อกเปล่าโดยตรง `ทำ { ... } จับ err { ... }` เป็นขอบเขต recoverable แบบครั้งเดียว `ลอง` และ `ท้าย` เป็นพื้นผิวเก่าที่ถูกปฏิเสธ `โยน` คือข้อผิดพลาดที่กู้คืนได้ และ `ตาย` คือ panic ร้ายแรง guard `ถ้า <expr>` เป็นน้ำตาลของ parser
@@ -364,7 +362,7 @@ assertStmt  := 'ยืนยัน' expression ('secus' expression)?
 ```ebnf
 expression := assignment
 assignment := ternary ('←' assignment | '↤' assignment inlineRecovery?)?
-incDecStmt := place ('⊕' | '⊖')
+incDecStmt := place ('↑' | '↓')
 ternary    := or (('?' expression ':' | 'เช่นนั้น' expression 'มิฉะนั้น') ternary)?
 or         := and (('หรือ') and)*
 and        := equality (('และ') equality)*
@@ -420,7 +418,7 @@ Faber ใช้ความหมายตามตัวคั่น: แต่
 
 ตัวอย่าง:
 
-```text
+```fab
 คงที่ _ tag ← «inline»
 คงที่ _ q ← `select * from accounts where id = §`(accountId)
 คงที่ _ sig ← |de ad be ef|
@@ -527,7 +525,7 @@ cliAnnotation := cliProgramAnnotation | imperiumAnnotation | optioAnnotation | o
 
 Faber รองรับการสร้างแอป CLI พร้อมการแยกอาร์กิวเมนต์และการสร้างความช่วยเหลืออัตโนมัติ
 
-```text
+```fab
 @ cli "faber"
 @ ตัวเลือก verbose ยาว "verbose" ชนิด ตรรกะ
 เริ่ม อาร์กิวเมนต์ args {

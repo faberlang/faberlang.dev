@@ -1,13 +1,10 @@
-+++
-translation_kind = "translated"
+# Đặc tả ngữ pháp Faber
 
-title = "Grammar"
-section = "reference"
-order = 1
-sources = [
-  "generator/grammar/EBNF.vi.md",
-]
-+++
+> **Reader-locale EBNF (Vietnamese).** Latin/source-of-truth grammar remains [`EBNF.md`](EBNF.md).
+> This file is the Vietnamese reader surface of that grammar (keywords, commentary, examples).
+> Pack keyword/type spellings are extracted from the glossary appendix at the end.
+> Glyphs (`← → ∴ ≡ ∪ ⇥` …) never localize; `ergo` localizes, `∴` is clausura-only.
+
 
 Đây là bản dịch tiếng Việt đầy đủ của đặc tả ngữ pháp Faber. Trình biên dịch hiện tại nằm trong workspace Rust gốc: `crates/faber` cung cấp công cụ gói/dự án và `crates/radix` cung cấp pipeline biên dịch.
 
@@ -28,7 +25,7 @@ statement     := importDecl | varDecl | funcDecl | genusDecl | implendumDecl
                | ifStmt | whileStmt | iteraStmt
                | eligeStmt | discerneStmt | guardStmt | curaStmt | facBlockStmt
                | returnStmt | breakStmt | continueStmt | noopStmt | throwStmt
-               | assertStmt | outputStmt | adStmt | incipitStmt
+               | assertStmt | requiritStmt | outputStmt | adStmt | incipitStmt
                | incipietStmt | extractStmt
                | probandumDecl | probaStmt | blockStmt | incDecStmt | exprStmt
 blockStmt     := '{' statement* '}'
@@ -42,7 +39,7 @@ Frontmatter được driver phân tích như tài liệu TOML tổng quát, khô
 
 Ví dụ:
 
-```text
+```fab
 +++
 group = "exempla.directiva"
 sectio = "smoke"
@@ -203,7 +200,7 @@ wildcardImport := '*' 'như' IDENTIFIER
 
 Ví dụ:
 
-```text
+```fab
 nhập từ "hono" riêng_tư Hono
 nhập từ "norma:chorda"
 nhập { từ = "norma:json/giải", như = mô_đun_giải }
@@ -235,7 +232,7 @@ Các đường dẫn kiểu đủ định danh như `kết_thúc.KếtThúc` tha
 
 Ví dụ kiểu hàm:
 
-```text
+```fab
 hàm lọc((T) → logic điều_kiện) → danh_sách<T>
 hàm ghép((A) → B f, (B) → C g) → (A) → C
 hàm áp_dụng((số) → số ⇥ văn_bản phép, số n) → số ⇥ văn_bản
@@ -375,6 +372,7 @@ noopStmt := 'im_lặng'
 throwStmt := ('ném' | 'chết') expression ['nếu' expression]
 catchClause := 'bắt' IDENTIFIER blockStmt
 assertStmt := 'khẳng_định' expression ('secus' expression)?
+requiritStmt := 'yêu_cầu' expression 'secus' expression
 ```
 
 `bắt` gắn vào câu lệnh có cấu trúc và nhánh điều kiện. `làm { ... } bắt lỗi { ... }` là biên phục hồi lỗi cục bộ chuẩn. `thử` và `cuối` là bề mặt cũ, bị từ chối với chẩn đoán di trú. `ném` là lỗi có thể phục hồi; `chết` là panic nghiêm trọng. Dấu `nếu <biểu_thức>` sau `ném` hoặc `chết` là đường tắt cú pháp.
@@ -388,7 +386,7 @@ assertStmt := 'khẳng_định' expression ('secus' expression)?
 ```ebnf
 expression := assignment
 assignment := ternary ('←' assignment | '↤' assignment inlineRecovery?)?
-incDecStmt := place ('⊕' | '⊖')
+incDecStmt := place ('↑' | '↓')
 ternary := or (('?' expression ':' | 'thế' expression 'khác') ternary)?
 or := and (('hoặc') and)*
 and := equality (('và') equality)*
@@ -444,7 +442,7 @@ Mỗi dạng dấu phân cách biểu thị một hình dạng nguồn khác nha
 
 Ví dụ:
 
-```text
+```fab
 hằng _ nhãn ← «nội tuyến»
 hằng _ truy_vấn ← `select * from accounts where id = §`(mã_tài_khoản)
 hằng _ chữ_ký ← |de ad be ef|
@@ -454,7 +452,7 @@ hằng _ chữ_ký ← |de ad be ef|
 
 Đối với `textus`, lập chỉ mục ngoặc dùng vô hướng Unicode:
 
-```text
+```fab
 "Salve, §!"[7]            # "§"
 "hello world"[0‥5]        # "hello"
 "hello world"[0 tới 10]   # "hello world"
@@ -465,7 +463,7 @@ Lát cắt văn bản nhận đầy đủ dạng miền, gồm cả `qua`. Đố
 
 Đối với `tensor<T, Hình>`, ngoặc là đường tắt cho `accipe`/`ponde`:
 
-```text
+```fab
 vector[id]        # vector.accipe([id])
 vector[id] ← v    # vector.ponde([id], v)
 grid[[r, c]]      # grid.accipe([r, c])
@@ -474,7 +472,7 @@ grid[[r, c]] ← v  # grid.ponde([r, c], v)
 
 Kết quả đọc là `T ∪ rỗng`; hãy xử lý giá trị tùy chọn trước khi dùng trong phép tính. Tensor hạng 1 nhận chỉ số vô hướng phù hợp với biên runtime `i64`; `u64` bị từ chối. Tensor hạng N dùng biểu thức chỉ số dạng danh sách như `[[r, c]]`. `grid[r, c]` không phải cú pháp vì `memberSuffix` chỉ chứa đúng một `expression` giữa hai ngoặc. `byte` là bộ đệm byte mờ, không phải mảng; không dùng lập chỉ mục ngoặc mà dùng phương thức.
 
-```text
+```fab
 buf.accipe(i)      # → số<u8> ∪ rỗng
 buf.appende(b)     # thêm một byte
 buf.longitudo      # độ dài bộ đệm
@@ -579,7 +577,7 @@ cliAnnotation := cliProgramAnnotation | imperiumAnnotation | optioAnnotation | o
 
 Ví dụ:
 
-```text
+```fab
 @ cli "faber"
 @ tùy_chọn chi_tiết dài "verbose" kiểu logic
 bắt_đầu đối_số args {
@@ -587,7 +585,7 @@ bắt_đầu đối_số args {
 }
 ```
 
-```text
+```fab
 @ chỉ_huy "triển_khai"
 @ tùy_chọn đích ngắn "t" dài "target" kiểu văn_bản mô_tả "Đích triển khai"
 @ đối_số_vị_trí văn_bản tệp mô_tả "Tệp cần triển khai"
@@ -640,7 +638,7 @@ Hỗ trợ đích không thuộc ngữ pháp. Đặc tả này chỉ định ngh
 |---|---|---|
 | Khai báo | `hợp_nhất`, `hằng`, `hàm`, `kiểu`, `giao_ước`, `nhập`, `liệt_kê`, `đặt`, `kiểu_tên`, `biến` | khai báo và kiểu |
 | Điều khiển | `nếu`, `nếukhôngthì`, `khác`, `bảo_vệ`, `phân_tích`, `trong_khi`, `chọn`, `trường_hợp`, `làm`, `lặp`, `tiếp`, `trả`, `dừng`, `im_lặng`, `do_đó` | luồng điều khiển |
-| Lỗi | `bắt`, `khẳng_định`, `ném`, `chết`, `thử`, `cuối` | xử lý lỗi |
+| Lỗi | `bắt`, `khẳng_định`, `yêu_cầu`, `ném`, `chết`, `thử`, `cuối` | xử lý lỗi |
 | Logic | `đúng`, `sai`, `hoặc`, `và`, `không`, `là`, `hoặc_nếu_rỗng` | giá trị và toán tử logic |
 | Chẩn đoán | `ghi_chú`, `cảnh_báo`, `viết`, `xem` | kênh chẩn đoán |
 | Điểm vào | `bắt_đầu`, `bắt_đầu_bất_đồng_bộ` | entry point |

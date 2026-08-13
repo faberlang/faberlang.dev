@@ -2,7 +2,7 @@
 title = "Tính tương thích của đích"
 section = "targets"
 order = 2
-sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
+sources = "faber/docs/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
 prose_hash = "sha256:74f3e5bb625da7544d1f1659b9cebd445189f70ecda790f5aac0dc8161432119"
@@ -22,7 +22,7 @@ systems-lane của MIR nằm cạnh nhau trong các bảng bên dưới.
 
 Tóm tắt CLI trực tiếp: `faber targets`.
 
-**Được tạo**: unknown bởi `scripta/generate-ebnf-matrix.py` — **không chỉnh sửa**.
+**Được dựng**: unknown bởi `faber/scripta/render-matrices.py` từ JSON đo lường radix — **không chỉnh sửa**.
 **Đo lường**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (trong tiến trình, không dùng toolchain bên ngoài).
 **Kết nối**: các term trong `corpus/index.toml` → exempla.
 

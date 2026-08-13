@@ -11,7 +11,7 @@ sources = [
   "radix/README.md (Glyphs and Words)",
   "examples/corpus/operatores/",
   "examples/corpus/assignatio/",
-  "radix/EBNF.md",
+  "faber/docs/EBNF.md",
 ]
 +++
 
@@ -386,4 +386,4 @@ người đánh giá có thể yêu cầu dạng chuẩn, và CI có thể thự
 1. `radix/docs/design/numeric-type-sugar.md` — các họ đường tắt đầy đủ, ưu tiên cách viết
 2. `radix/docs/design/annotation-sugar.md` — mô hình chú thích hai bề mặt
 3. `radix/docs/design/faber-canonical-surface.md` — chính sách định dạng theo tác giả và dạng chuẩn
-4. `radix/EBNF.md` — các bảng ngữ pháp cho dạng đường tắt
+4. `faber/docs/EBNF.md` — các bảng ngữ pháp cho dạng đường tắt

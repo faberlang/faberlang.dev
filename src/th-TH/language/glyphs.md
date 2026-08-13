@@ -11,7 +11,7 @@ sources = [
   "radix/README.md (Glyphs and Words)",
   "examples/corpus/operatores/",
   "examples/corpus/assignatio/",
-  "radix/EBNF.md",
+  "faber/docs/EBNF.md",
 ]
 +++
 
@@ -361,4 +361,4 @@ fixum i32 narrow ← 7
 1. `radix/docs/design/numeric-type-sugar.md` — ตระกูลรูปแบบย่อทั้งหมดและแนวทางเลือกรูปแบบการเขียน
 2. `radix/docs/design/annotation-sugar.md` — โมเดลแอนโนเทชันสองรูปแบบ
 3. `radix/docs/design/faber-canonical-surface.md` — นโยบายรูปแบบผู้เขียนเทียบกับรูปแบบมาตรฐาน
-4. `radix/EBNF.md` — ตารางไวยากรณ์สำหรับรูปแบบย่อ
+4. `faber/docs/EBNF.md` — ตารางไวยากรณ์สำหรับรูปแบบย่อ

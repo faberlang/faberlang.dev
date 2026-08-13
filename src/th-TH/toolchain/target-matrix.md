@@ -2,7 +2,7 @@
 title = "ความเข้ากันได้ของเป้าหมาย"
 section = "targets"
 order = 2
-sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
+sources = "faber/docs/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
 prose_hash = "sha256:f0d98868e8b777fefbcc7dc837d8ba28396c4b3aff0267a425785fb15e1bdb57"
@@ -22,7 +22,7 @@ Faber เป็นภาษาเดียวที่มีสัญญาก�
 
 สรุปจาก CLI แบบสด: `faber targets`
 
-**สร้างโดยอัตโนมัติ**: unknown โดย `scripta/generate-ebnf-matrix.py` — **ห้ามแก้ไข**
+**เรนเดอร์โดยอัตโนมัติ**: unknown โดย `faber/scripta/render-matrices.py` จาก JSON การวัดของ radix — **ห้ามแก้ไข**
 **การวัด**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (ภายในกระบวนการ ไม่มี toolchain ภายนอก)
 **การเชื่อมโยง**: terms ใน `corpus/index.toml` → exempla
 

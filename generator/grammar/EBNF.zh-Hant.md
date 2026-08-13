@@ -1,13 +1,10 @@
-+++
-translation_kind = "translated"
+# Faber 語言規格
 
-title = "Grammar"
-section = "reference"
-order = 1
-sources = [
-  "generator/grammar/EBNF.zh-Hant.md",
-]
-+++
+> **Reader-locale EBNF (Traditional Chinese).** Latin/source-of-truth grammar remains [`EBNF.md`](EBNF.md).
+> This file is the Traditional Chinese reader surface of that grammar (keywords, commentary, examples).
+> Pack keyword/type spellings are extracted from the glossary appendix at the end.
+> Glyphs (`← → ∴ ≡ ∪ ⇥` …) never localize; `ergo` localizes, `∴` is clausura-only.
+
 
 Faber 原始碼是由驅動程式在詞法分析前處理的純文字。選用的 TOML 前置資料不是 token grammar 的一部分。本文是 Faber 語言的正式文法與規格說明；可執行的參考程式位於公開的 `../examples/corpus/`，工具可從磁碟載入參考套件。
 
@@ -26,7 +23,7 @@ statement     := importDecl | varDecl | funcDecl | genusDecl | implendumDecl
                | ifStmt | whileStmt | iteraStmt
                | eligeStmt | discerneStmt | guardStmt | curaStmt | facBlockStmt
                | returnStmt | breakStmt | continueStmt | noopStmt | throwStmt
-               | assertStmt | outputStmt | adStmt | incipitStmt
+               | assertStmt | requiritStmt | outputStmt | adStmt | incipitStmt
                | incipietStmt | extractStmt
                | probandumDecl | probaStmt | blockStmt | incDecStmt | exprStmt
 blockStmt     := '{' statement* '}'
@@ -38,7 +35,7 @@ blockStmt     := '{' statement* '}'
 
 前置資料是通用 TOML 文件。作者可附加任意 metadata key；工具會透過 accessor 讀取 `group`、`sectio` 和 `[probanda]` 等已知 key。套件模式仍以 `faber.toml` 的 `[package]`、`[paths]` 和 `[build]` 為準；衝突值會被拒絕。
 
-```text
+```fab
 +++
 group = "exempla.directiva"
 sectio = "smoke"
@@ -148,7 +145,7 @@ jsonFieldAnnotation := '@' 'json' '{' '名稱' '=' STRING '}'
 - `@ optio NAME ...` 定義 CLI 選項；布林旗標使用 `型別 布林`。
 - `@ operandus [ceteri] TYPE NAME ...` 定義 CLI 位置引數。
 - `@ futura` 標記非同步函式；`@ cursor` 標記產生器。
-- `@ publica` 與 `@ privata` 會被解析，但不會被強制執行；編譯器會發出 `WARN012`（裝飾性可見性），避免作者誤以為存在存取控制。
+- `@ publica` 標記匯出、`@ interna` 標記套件內部、`@ privata` 為明確的模組私有標記；未標記的頂層宣告預設為模組私有，混用不同可見性層級會觸發 `SEM019`。
 - `@ protecta` 保留並會以語意診斷拒絕；它不代表套件、子類別或同檔案可見性。
 
 - `sub` = 延伸；`implet` = 實作。
@@ -197,19 +194,19 @@ importNameField := '名稱' '=' IDENTIFIER
 importAliasField := '作為' '=' IDENTIFIER
 importWildcardField := '全部' '=' IDENTIFIER
 importSugar    := '匯入' '取自' STRING visibility? (namedImport | wildcardImport)?
-visibility    := '私有' | '公開'
+visibility    := '公開'
 namedImport   := IDENTIFIER ('作為' IDENTIFIER)?
 wildcardImport := '*' '作為' IDENTIFIER
 ```
 
-```text
-匯入取自 "hono" 私有 Hono
+```fab
+匯入取自 "hono" Hono
 匯入取自 "norma:chorda"
 匯入 { 取自 = "norma:json/solve", 作為 = solve_mod }
 匯入取自 "./types" 公開 User
 ```
 
-未指定可見性時預設為 `私有`。未指定 binding 時，若最後一段路徑是合法且不衝突的識別符，就使用該名稱。
+匯入的 `私有` 標記已移除（VM-U3）：無標記的匯入預設不 re-export，`公開` 是 re-export 標記。未指定 binding 時，若最後一段路徑是合法且不衝突的識別符，就使用該名稱。
 
 ---
 
@@ -227,7 +224,7 @@ typeParams     := genericParams
 
 陣列寫成 `列表<T>`；不接受 postfix `T[]`。`從` 與 `傳入` 是型別前綴的所有權標記。`T ∪ 無` 是標準 nullable 型別形式。`可選` 是宣告標記，不是型別前綴。限定型別路徑必須透過匯入 namespace 解析。
 
-```text
+```fab
 函式 篩選((T) → 布林 預測) → 列表<T>
 函式 組合((A) → B f, (B) → C g) → (A) → C
 函式 套用((整數) → 整數 ⇥ 文字 op, 整數 n) → 整數 ⇥ 文字
@@ -349,6 +346,7 @@ noopStmt     := '靜默'
 throwStmt   := ('拋出' | '崩潰') expression ['若' expression]
 catchClause := '捕捉' IDENTIFIER blockStmt
 assertStmt  := '斷言' expression ('secus' expression)?
+requiritStmt := '需要' expression 'secus' expression
 ```
 
 `捕捉` 可附加於結構化語句與條件分支，不可附加於任意裸區塊。`執行 { ... } 捕捉 err { ... }` 是標準的區域復原錯誤邊界。`嘗試` 與 `最後` 是舊語法並會被遷移診斷拒絕。`拋出` 可復原；`崩潰` 是致命錯誤。`拋出 value 若 condition` 會在解析時展開為條件式。
@@ -362,7 +360,7 @@ assertStmt  := '斷言' expression ('secus' expression)?
 ```ebnf
 expression := assignment
 assignment := ternary ('←' assignment | '↤' assignment inlineRecovery?)?
-incDecStmt := place ('⊕' | '⊖')
+incDecStmt := place ('↑' | '↓')
 ternary    := or (('?' expression ':' | '如此' expression '否則') ternary)?
 or         := and (('或') and)*
 and        := equality (('且') equality)*
@@ -416,7 +414,7 @@ Faber 使用分隔符語意；每種引號形式都代表不同的來源形狀�
 
 Unicode 字串範本中的 `§` 是洞。`文字` 的格式範本呼叫會產生 `scriptum`；`forma` 會擷取文字與參數，不會立即渲染。
 
-```text
+```fab
 定值 _ 標籤 ← «inline»
 定值 _ 查詢 ← `select * from accounts where id = §`(accountId)
 定值 _ 簽章 ← |de ad be ef|
@@ -430,7 +428,7 @@ Unicode 字串範本中的 `§` 是洞。`文字` 的格式範本呼叫會產生
 
 對 `tensor<T, Figura>` 而言，方括號索引是 tensor intrinsic 表面的語法糖：
 
-```text
+```fab
 vector[id]        # vector.accipe([id])
 vector[id] ← v    # vector.ponde([id], v)
 grid[[r, c]]      # grid.accipe([r, c])
@@ -541,7 +539,7 @@ cliAnnotation := cliProgramAnnotation | imperiumAnnotation | optioAnnotation | o
 
 Faber 支援建立 CLI 應用程式，並自動解析引數與產生 help。
 
-```text
+```fab
 @ cli "faber"
 @ optio verbose 長 "verbose" 型別 bivalens
 入口 引數 args {
@@ -549,7 +547,7 @@ Faber 支援建立 CLI 應用程式，並自動解析引數與產生 help。
 }
 ```
 
-```text
+```fab
 @ imperium "deploy"
 @ optio target 短 "t" 長 "target" 型別 文字 說明 "部署目標"
 @ optio verbose 短 "v" 長 "verbose" 型別 布林 說明 "啟用詳細輸出"
@@ -612,7 +610,7 @@ facBlockStmt := '執行' blockStmt catchClause? ('當' expression)?
 |---|---|---|
 | 宣告 | `分支聯集`、`定值`、`函式`、`類型`、`介面`、`型別` | 宣告資料、函式、型別與契約 |
 | 控制流程 | `若` / `否則若` / `否則`、`當`、`遍歷`、`選擇` / `分支`、`比對` | 條件、迴圈、分派與模式比對 |
-| 錯誤處理 | `捕捉`、`斷言`、`拋出`、`崩潰`、`執行` | 區域錯誤邊界與控制轉移 |
+| 錯誤處理 | `捕捉`、`斷言`、`需要`、`拋出`、`崩潰`、`執行` | 區域錯誤邊界與控制轉移 |
 | 非同步 | `@ 未來`、`@ 游標`、`讓出` | 非同步函式、產生器與上下文等待／讓出 |
 | 端點 | `對`、`發出` | `對` 是能力呼叫運算式；`發出` 已退役 |
 | 布林 | `真`、`假`、`或`、`且`、`非`、`是`、`或取` | 布林、比較與區域 nullable 消除 |
@@ -655,6 +653,7 @@ facBlockStmt := '執行' blockStmt catchClause? ('當' expression)?
 | generis | 靜態 |
 | iacit | 可拋|
 | immutata | 不變 |
+| interna | 內部 |
 | magnitudo | 尺寸 |
 | nexum | 綁定 |
 | optiones | 選項 |

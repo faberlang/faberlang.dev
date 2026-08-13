@@ -2,7 +2,7 @@
 title = "توافق الأهداف"
 section = "targets"
 order = 2
-sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
+sources = "faber/docs/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
 prose_hash = "sha256:55c413bb8d53f10e13102b9884684db9aa6b6bfe1b5175ca5096c4e16111e427"
@@ -22,7 +22,7 @@ Faber لغة واحدة لها عقود ترجمة متعددة. هذه الصف
 
 ملخص CLI المباشر: `faber targets`.
 
-**توليد**: unknown بواسطة `scripta/generate-ebnf-matrix.py` — **لا تعدّل الملف**.
+**عرض**: unknown بواسطة `faber/scripta/render-matrices.py` من بيانات قياس radix — **لا تعدّل الملف**.
 **القياس**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (داخل العملية، من دون toolchains خارجية).
 **الربط**: مصطلحات `corpus/index.toml` → exempla.
 
