@@ -5,9 +5,9 @@ order = 2
 sources = "faber/docs/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:2de3b846793c9d13b8bb713967477971bae08e72f2e7879de663dc42eff929d9"
+prose_hash = "sha256:086fbb51b276f571534d02ed7b3f2454d084ba4696b6ef7aeca266e3b19f157f"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "73d6718e47c530dd839e5d377272e3adc48fcd6d"
+source_commit = "fa80761f498355c7960cac63baef5c96ce8e5ab1"
 source_locale = "en-US"
 +++
 
@@ -50,21 +50,21 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 
 | 目标 | 可支持 | 可分析 | % |
 |---|---|---|---|
-| rust | 279 | 281 | 99% |
-| go | 263 | 281 | 94% |
-| ts | 281 | 281 | 100% |
-| faber | 281 | 281 | 100% |
+| rust | 282 | 284 | 99% |
+| go | 261 | 284 | 92% |
+| ts | 284 | 284 | 100% |
+| faber | 284 | 284 | 100% |
 
 **系统通道（MIR → 设备/IR 产物）**
 
 | 目标 | 可支持 | 可分析 | % |
 |---|---|---|---|
-| llvm-text | 278 | 281 | 99% |
-| wasm-text | 260 | 281 | 93% |
-| wasm | 260 | 281 | 93% |
-| sexp-struct | 223 | 281 | 79% |
-| sexp | 223 | 281 | 79% |
-| scena | 240 | 281 | 85% |
+| llvm-text | 276 | 279 | 99% |
+| wasm-text | 258 | 279 | 92% |
+| wasm | 258 | 279 | 92% |
+| sexp-struct | 221 | 279 | 79% |
+| sexp | 221 | 279 | 79% |
+| scena | 239 | 279 | 86% |
 
 ## 关键字 — 应用通道
 
@@ -167,6 +167,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `redde` | ✓ | ✓ | ✓ | ✓ |
 | `reddet` | ✓ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✓ |
+| `requirit` | — | — | — | — |
 | `rumpe` | ✓ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✓ |
 | `scriptum` | ✓ | ✓ | ✓ | ✓ |
@@ -206,6 +207,10 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 |---|---|---|---|---|
 | `⊜` | ✓ | ✓ | ✓ | ✓ |
 | `∧` | ✓ | ✓ | ✓ | ✓ |
+| `·` | ✓ | ○ | ✓ | ✓ |
+| `×` | ✓ | ○ | ✓ | ✓ |
+| `⊗` | ✓ | ○ | ✓ | ✓ |
+| `⊙` | ✓ | ○ | ✓ | ✓ |
 | `→` | ✓ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ |
@@ -349,6 +354,7 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `redde` | ✓ | ✓ | ✓ | ✓ | ✓ | ◐ |
 | `reddet` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
+| `requirit` | — | — | — | — | — | — |
 | `rumpe` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `scriptum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -388,6 +394,10 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | --- | --- | --- | --- | --- | --- | --- |
 | `⊜` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `∧` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| `·` | — | — | — | — | — | — |
+| `×` | — | — | — | — | — | — |
+| `⊗` | — | — | — | — | — | — |
+| `⊙` | — | — | — | — | — | — |
 | `→` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -447,7 +457,6 @@ term 的**可下沉能力** — target X 是否能够下沉 grammar production Y
 | `nondum` | ✓ | ✓ | ✓ | ✓ |
 | `objectum` | ✓ | ✓ | ✓ | ✓ |
 | `prima` | ✓ | ✓ | ✓ | ✓ |
-| `requirit` | ✓ | ✓ | ✓ | ✓ |
 | `string` | ✓ | ✓ | ✓ | ✓ |
 | `block-string` | ✓ | ✓ | ✓ | ✓ |
 | `summa` | ✓ | ✓ | ✓ | ✓ |

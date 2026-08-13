@@ -86,21 +86,21 @@ these corpus rows as a quality score.
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| rust | 279 | 281 | 99% |
-| go | 263 | 281 | 94% |
-| ts | 281 | 281 | 100% |
-| faber | 281 | 281 | 100% |
+| rust | 282 | 284 | 99% |
+| go | 261 | 284 | 92% |
+| ts | 284 | 284 | 100% |
+| faber | 284 | 284 | 100% |
 
 **Systems lane (MIR → device/IR artifacts)**
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| llvm-text | 278 | 281 | 99% |
-| wasm-text | 260 | 281 | 93% |
-| wasm | 260 | 281 | 93% |
-| sexp-struct | 223 | 281 | 79% |
-| sexp | 223 | 281 | 79% |
-| scena | 240 | 281 | 85% |
+| llvm-text | 276 | 279 | 99% |
+| wasm-text | 258 | 279 | 92% |
+| wasm | 258 | 279 | 92% |
+| sexp-struct | 221 | 279 | 79% |
+| sexp | 221 | 279 | 79% |
+| scena | 239 | 279 | 86% |
 
 ## Device kernel support (product summary) {#device-kernel-support}
 
@@ -279,6 +279,7 @@ registry and matrix receipts under the radix factory tree
 | `redde` | ✓ | ✓ | ✓ | ✓ |
 | `reddet` | ✓ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✓ |
+| `requirit` | — | — | — | — |
 | `rumpe` | ✓ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✓ |
 | `scriptum` | ✓ | ✓ | ✓ | ✓ |
@@ -318,6 +319,10 @@ registry and matrix receipts under the radix factory tree
 |---|---|---|---|---|
 | `⊜` | ✓ | ✓ | ✓ | ✓ |
 | `∧` | ✓ | ✓ | ✓ | ✓ |
+| `·` | ✓ | ○ | ✓ | ✓ |
+| `×` | ✓ | ○ | ✓ | ✓ |
+| `⊗` | ✓ | ○ | ✓ | ✓ |
+| `⊙` | ✓ | ○ | ✓ | ✓ |
 | `→` | ✓ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ |
@@ -461,6 +466,7 @@ registry and matrix receipts under the radix factory tree
 | `redde` | ✓ | ✓ | ✓ | ✓ | ✓ | ◐ |
 | `reddet` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
+| `requirit` | — | — | — | — | — | — |
 | `rumpe` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `scriptum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -500,6 +506,10 @@ registry and matrix receipts under the radix factory tree
 | --- | --- | --- | --- | --- | --- | --- |
 | `⊜` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `∧` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| `·` | — | — | — | — | — | — |
+| `×` | — | — | — | — | — | — |
+| `⊗` | — | — | — | — | — | — |
+| `⊙` | — | — | — | — | — | — |
 | `→` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -559,7 +569,6 @@ registry and matrix receipts under the radix factory tree
 | `nondum` | ✓ | ✓ | ✓ | ✓ |
 | `objectum` | ✓ | ✓ | ✓ | ✓ |
 | `prima` | ✓ | ✓ | ✓ | ✓ |
-| `requirit` | ✓ | ✓ | ✓ | ✓ |
 | `string` | ✓ | ✓ | ✓ | ✓ |
 | `block-string` | ✓ | ✓ | ✓ | ✓ |
 | `summa` | ✓ | ✓ | ✓ | ✓ |

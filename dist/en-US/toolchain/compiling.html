@@ -18,7 +18,7 @@ accepted dual-backend training path is proven on <strong>Metal and CUDA</strong>
 CUDA hardware matrix) see
 <a href="/en-US/toolchain/target-matrix.html#device-kernel-support">Target matrix · Device kernel support</a>.</p><p>For live capability flags, run <code>faber targets</code>.</p><h3 id="full-matrix">Full lowerability matrix<a class="anchor" href="#full-matrix">#</a></h3><p>The large term × target tables (HIR application lane and MIR systems lane)
 live on the <a href="/en-US/toolchain/target-matrix.html">Target compatibility</a> page. That matrix
-is generated from <code>radix/EBNF_MATRIX.md</code> and reports <strong>term lowerability only</strong> —
+is generated from <code>faber/docs/EBNF_MATRIX.md</code> and reports <strong>term lowerability only</strong> —
 not erase/warn policy, and not GPU product health. GPU backends and the “why
 no CUDA column?” note are explained in that page’s summary.</p><h2 id="compilation-lanes">Compilation lanes<a class="anchor" href="#compilation-lanes">#</a></h2><p>Faber has a single shared frontend — lex, parse, typecheck — and then forks into
 multiple lowering routes depending on what the target needs. The intermediate

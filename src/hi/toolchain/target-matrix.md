@@ -5,9 +5,9 @@ order = 2
 sources = "faber/docs/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:f28ba6c648fcff3e355f033c099009f660ffdddacf60f112efac021a1050be9e"
+prose_hash = "sha256:36377fa0b15df31ea6659d182a3ed3852643bb3ff0f61673170c395e1e0a8966"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "73d6718e47c530dd839e5d377272e3adc48fcd6d"
+source_commit = "fa80761f498355c7960cac63baef5c96ce8e5ab1"
 source_locale = "en-US"
 +++
 
@@ -55,21 +55,21 @@ verbs), per-target contracts और pipeline routing
 
 | लक्ष्य | सक्षम | विश्लेषण योग्य | % |
 |---|---|---|---|
-| rust | 279 | 281 | 99% |
-| go | 263 | 281 | 94% |
-| ts | 281 | 281 | 100% |
-| faber | 281 | 281 | 100% |
+| rust | 282 | 284 | 99% |
+| go | 261 | 284 | 92% |
+| ts | 284 | 284 | 100% |
+| faber | 284 | 284 | 100% |
 
 **सिस्टम लेन (MIR → डिवाइस/IR आर्टिफैक्ट)**
 
 | लक्ष्य | सक्षम | विश्लेषण योग्य | % |
 |---|---|---|---|
-| llvm-text | 278 | 281 | 99% |
-| wasm-text | 260 | 281 | 93% |
-| wasm | 260 | 281 | 93% |
-| sexp-struct | 223 | 281 | 79% |
-| sexp | 223 | 281 | 79% |
-| scena | 240 | 281 | 85% |
+| llvm-text | 276 | 279 | 99% |
+| wasm-text | 258 | 279 | 92% |
+| wasm | 258 | 279 | 92% |
+| sexp-struct | 221 | 279 | 79% |
+| sexp | 221 | 279 | 79% |
+| scena | 239 | 279 | 86% |
 
 ## कीवर्ड — एप्लिकेशन लेन
 
@@ -172,6 +172,7 @@ verbs), per-target contracts और pipeline routing
 | `redde` | ✓ | ✓ | ✓ | ✓ |
 | `reddet` | ✓ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✓ |
+| `requirit` | — | — | — | — |
 | `rumpe` | ✓ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✓ |
 | `scriptum` | ✓ | ✓ | ✓ | ✓ |
@@ -211,6 +212,10 @@ verbs), per-target contracts और pipeline routing
 |---|---|---|---|---|
 | `⊜` | ✓ | ✓ | ✓ | ✓ |
 | `∧` | ✓ | ✓ | ✓ | ✓ |
+| `·` | ✓ | ○ | ✓ | ✓ |
+| `×` | ✓ | ○ | ✓ | ✓ |
+| `⊗` | ✓ | ○ | ✓ | ✓ |
+| `⊙` | ✓ | ○ | ✓ | ✓ |
 | `→` | ✓ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ |
@@ -354,6 +359,7 @@ verbs), per-target contracts और pipeline routing
 | `redde` | ✓ | ✓ | ✓ | ✓ | ✓ | ◐ |
 | `reddet` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
+| `requirit` | — | — | — | — | — | — |
 | `rumpe` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `scriptum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -393,6 +399,10 @@ verbs), per-target contracts और pipeline routing
 | --- | --- | --- | --- | --- | --- | --- |
 | `⊜` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `∧` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| `·` | — | — | — | — | — | — |
+| `×` | — | — | — | — | — | — |
+| `⊗` | — | — | — | — | — | — |
+| `⊙` | — | — | — | — | — | — |
 | `→` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -452,7 +462,6 @@ verbs), per-target contracts और pipeline routing
 | `nondum` | ✓ | ✓ | ✓ | ✓ |
 | `objectum` | ✓ | ✓ | ✓ | ✓ |
 | `prima` | ✓ | ✓ | ✓ | ✓ |
-| `requirit` | ✓ | ✓ | ✓ | ✓ |
 | `string` | ✓ | ✓ | ✓ | ✓ |
 | `block-string` | ✓ | ✓ | ✓ | ✓ |
 | `summa` | ✓ | ✓ | ✓ | ✓ |
