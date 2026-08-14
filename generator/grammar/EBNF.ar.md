@@ -1,15 +1,14 @@
-+++
-translation_kind = "translated"
+# مواصفات لغة Faber
 
-title = "Grammar"
-section = "reference"
-order = 1
-sources = [
-  "generator/grammar/EBNF.ar.md",
-]
-+++
+> **Reader-locale EBNF (Arabic).** Latin/source-of-truth grammar remains [`EBNF.md`](EBNF.md).
+> This file is the Arabic reader surface of that grammar (keywords, commentary, examples).
+> Pack keyword/type spellings are extracted from the glossary appendix at the end.
+> Glyphs (`← → ∴ ≡ ∪ ⇥` …) never localize; `ergo` localizes, `∴` is clausura-only.
+
 
 القواعد الشكلية للغة البرمجة Faber. التنفيذ النشط هو مساحة عمل Rust الجذرية: `crates/faber` لأدوات الحزم والمشاريع و `crates/radix` لخط أنابيب المصرّف.
+
+عقد التوثيق: هذا الملف هو السطح القانوني للقواعد والتعليق على المواصفات. برامج مرجع اللغة القابلة للتشغيل موجودة في المستودع العام [`../examples/corpus/`](../examples/corpus/) مع واجهة أمامية `+++` اختيارية (`term`, `syntax`, `related`, …)؛ السجل المولّد هو [`../examples/corpus/index.toml`](../examples/corpus/index.toml). `faber explain` يحمّل حزمة exempla المرجعية من القرص. فضّل مجموعة اللغة + EBNF لأعمال المرجع الجديدة.
 
 ---
 
@@ -26,7 +25,7 @@ statement     := importDecl | varDecl | funcDecl | genusDecl | implendumDecl
                | ifStmt | whileStmt | iteraStmt
                | eligeStmt | discerneStmt | guardStmt | curaStmt | facBlockStmt
                | returnStmt | breakStmt | continueStmt | noopStmt | throwStmt
-               | assertStmt | outputStmt | adStmt | incipitStmt
+               | assertStmt | requiritStmt | outputStmt | adStmt | incipitStmt
                | incipietStmt | extractStmt
                | probandumDecl | probaStmt | blockStmt | incDecStmt | exprStmt
 blockStmt     := '{' statement* '}'
@@ -40,7 +39,7 @@ blockStmt     := '{' statement* '}'
 
 مثال:
 
-```text
+```fab
 +++
 group = "exempla.directiva"
 sectio = "smoke"
@@ -158,7 +157,7 @@ Radix يحلل سجلات التعليقات المحصورة (`@ مستقبلي
 - `@ operandus [باقي] TYPE NAME ...` يعرّف وسيطاً موضعياً لـ CLI
 - `@ مستقبلي` يعلم دالة كغير متزامنة
 - `@ مؤشر` يعلم دالة كمولّد
-- `@ عام` و `@ خاص` تُحللان كتعليقات لكن لا تُفرضان؛ المصرّف يصدر `WARN012` (رؤية تزيينية) حتى لا يُضلل المؤلفون بتوقع تحكم بالوصول
+- `@ عام` يعلّم التصدير، و`@ interna` داخلي الحزمة، و`@ خاص` علامة خصوصية صريحة؛ التصريحات العليا غير الموسومة خصوصية افتراضياً، وخلط مستويات الرؤية يعطي `SEM019`
 - `@ محمي` محجوز ومرفوض بتشخيص دلالي؛ ليس له معنى رؤية حزمة أو صنف فرعي أو ملف شقيق
 
 - `امتد` = يمتد، `حقق` = يحقق
@@ -213,27 +212,27 @@ importAliasField := 'كـ' '=' IDENTIFIER
 importWildcardField := 'جميع' '=' IDENTIFIER
 
 importSugar    := 'استورد' 'من' STRING visibility? (namedImport | wildcardImport)?
-visibility    := 'خاص' | 'عام'
+visibility    := 'عام'
 namedImport   := IDENTIFIER ('كـ' IDENTIFIER)?
 wildcardImport := '*' 'كـ' IDENTIFIER
 ```
 
 مثال:
 
-```text
-استورد من "hono" خاص Hono
-استورد من "hono" خاص Context
-استورد من "norma:chorda"                         # defaults to خاص chorda
+```fab
+استورد من "hono" Hono
+استورد من "hono" Context
+استورد من "norma:chorda"                         # لا يعيد التصدير افتراضياً
 استورد { من = "norma:json/solve", كـ = solve_mod }
-استورد من "norma:consolum" خاص consolum
-استورد من "faber:*" خاص faber              # kernel manifest glob
-استورد من "lodash" خاص * كـ _
+استورد من "norma:consolum" consolum
+استورد من "faber:*" faber              # kernel manifest glob
+استورد من "lodash" * كـ _
 استورد من "./types" عام User               # re-export
 ```
 
-غياب الرؤية يفترض `خاص`. غياب الربط المسمى يفترض آخر مقطع من مسار الاستيراد عندما يكون معرفاً صالحاً غير متعارض. إذا كان الاسم المستنتج غير صالح أو يتصادم مع ربط موجود في المستوى الأعلى، اكتب ربط `nomen` أو `كـ` صريحاً.
+علامة الاستيراد `خاص` أزيلت (VM-U3): الاستيراد بدون علامة لا يعيد التصدير، و`عام` هي علامة إعادة التصدير. غياب الربط المسمى يفترض آخر مقطع من مسار الاستيراد عندما يكون معرفاً صالحاً غير متعارض. إذا كان الاسم المستنتج غير صالح أو يتصادم مع ربط موجود في المستوى الأعلى، اكتب ربط `nomen` أو `كـ` صريحاً.
 
-`استورد من "faber:*" خاص faber` هو اختزال خاص بالنواة: النجمة تعيش داخل سلسلة مسار الاستيراد وتوسع بيان النواة للإصدارة الثنائية إلى استدعاءات `faber.<module>.<verb>`. إنه ليس صيغة `خاص * كـ name` بحرف البدل ولا ينشئ قيمة تجميعية زمن التشغيل.
+`استورد من "faber:*" faber` هو اختزال خاص بالنواة: النجمة تعيش داخل سلسلة مسار الاستيراد وتوسع بيان النواة للإصدارة الثنائية إلى استدعاءات `faber.<module>.<verb>`. إنه ليس إعادة تصدير بحرف البدل ولا ينشئ قيمة تجميعية زمن التشغيل.
 
 ---
 
@@ -258,7 +257,7 @@ typeParams     := genericParams
 
 أنواع الدوال تمكّن توقيعات الدوال ذات الرتبة الأعلى:
 
-```text
+```fab
 دالة filtrata((T) → منطقي pred) → قائمة<T>
 دالة compose((A) → B f, (B) → C g) → (A) → C
 دالة apply((عدد) → عدد ⇥ نص op, عدد n) → عدد ⇥ نص
@@ -427,6 +426,7 @@ noopStmt     := 'صمت'
 throwStmt   := ('ارم' | 'انهر') expression ['إذا' expression]
 catchClause := 'التقط' IDENTIFIER blockStmt
 assertStmt  := 'أكد' expression ('secus' expression)?
+requiritStmt := 'يتطلب' expression 'secus' expression
 ```
 
 - `التقط` يرتبط بالعبارات المهيكلة وأذرع الشروط. لا يرتبط بالكتل المجردة الاعتباطية.
@@ -446,7 +446,7 @@ assertStmt  := 'أكد' expression ('secus' expression)?
 ```ebnf
 expression := assignment
 assignment := ternary ('←' assignment | '↤' assignment inlineRecovery?)?
-incDecStmt := place ('⊕' | '⊖')
+incDecStmt := place ('↑' | '↓')
 ternary    := or (('?' expression ':' | 'فإذا' expression 'وإلا') ternary)?
 or         := and (('أو') and)*
 and        := equality (('و') equality)*
@@ -486,7 +486,7 @@ inlineRecovery   := '⇥' unary
 
 فضّل الإنشاء المنمط لقيم `صنف` العادية و `فارغ` لقيم المجموعات الفارغة العادية:
 
-```text
+```fab
 ثابت _ point ← Point { x = 10 }
 ثابت قائمة<عدد> xs ← فارغ
 ```
@@ -547,13 +547,13 @@ argument      := 'انشر'? expression
 
 مثال كتلة مضمنة:
 
-```text
+```fab
 ثابت _ tag ← «inline»
 ```
 
 مثال كتلة متعددة الأسطر (سطر جديد بعد `«` الافتتاحية):
 
-```text
+```fab
 ثابت _ blob ← «
     select id, email
     from accounts
@@ -562,13 +562,13 @@ argument      := 'انشر'? expression
 
 مثال قالب ملتقط:
 
-```text
+```fab
 ثابت _ q ← `select * from accounts where id = §`(accountId)
 ```
 
 مثال حرفية بايتات ست عشرية:
 
-```text
+```fab
 ثابت _ sig ← |de ad be ef|
 ثابت _ hello ← |48 65 6c 6c 6f|
 ```
@@ -577,7 +577,7 @@ argument      := 'انشر'? expression
 
 صيغة استدعاء حرفية السلسلة هي الصيغة المصدرية القانونية لتطبيق قالب التنسيق:
 
-```text
+```fab
 "status: § (§)"(sample_status(), "ok")
 "status: §1 (§0)"("ok", sample_status())
 ```
@@ -586,7 +586,7 @@ argument      := 'انشر'? expression
 
 لـ `نص`، فهرسة الأقواس مبنية على Unicode scalar:
 
-```text
+```fab
 "Salve, §!"[7]            # "§"
 "hello world"[0‥5]        # "hello"
 "hello world"[0 حتى 10] # "hello world"
@@ -597,7 +597,7 @@ argument      := 'انشر'? expression
 
 لـ `قائمة<T>`، فهرسة الأقواس هي وصول لعنصر واحد. يجب أن يكون الفهرس عدداً صحيحاً واحداً؛ شرائح النطاق غير مقبولة (استخدم `sectio(start, end)` لنطاق منسوخ):
 
-```text
+```fab
 xs[i]        # element at position i
 xs[i] ← v    # write element at position i
 ```
@@ -606,7 +606,7 @@ xs[i] ← v    # write element at position i
 
 لـ `tensor<T, Figura>`، فهرسة الأقواس هي اختزال على سطح الموتر الجوهري:
 
-```text
+```fab
 vector[id]        # vector.accipe([id])
 vector[id] ← v    # vector.ponde([id], v)
 grid[[r, c]]      # grid.accipe([r, c])
@@ -617,7 +617,7 @@ grid[[r, c]] ← v  # grid.ponde([r, c], v)
 
 `بايتات` هو أولي مخزن بايتات مؤقت، وليس مصفوفة، لذا فهرسة الأقواس غير مقبولة عليه (قراءة أو كتابة). وصول البايت معتمد على الطرق:
 
-```text
+```fab
 buf.accipe(i)      # → عدد<u8> ∪ لاشيء (nullable; safe on out-of-bounds)
 buf.appende(b)     # append one byte in place
 buf.longitudo      # byte length
@@ -740,7 +740,7 @@ cliAnnotation := cliProgramAnnotation | imperiumAnnotation | optioAnnotation | o
 
 ### نقطة دخول CLI
 
-```text
+```fab
 @ cli "faber"
 @ optio verbose longum "verbose" نمط منطقي
 بداية وسائط args {
@@ -750,7 +750,7 @@ cliAnnotation := cliProgramAnnotation | imperiumAnnotation | optioAnnotation | o
 
 ### خيارات ووسائط CLI
 
-```text
+```fab
 @ imperium "deploy"
 @ optio target brevis "t" longum "target" نمط نص descriptio "Deployment target"
 @ optio verbose brevis "v" longum "verbose" نمط منطقي descriptio "Enable verbose output"
@@ -847,6 +847,7 @@ facBlockStmt := 'افعل' blockStmt catchClause? ('طالما' expression)?
 |                    | `∴`                           | compact clausura joint only |
 | **معالجة الأخطاء** | `التقط`                        | structured local handler |
 |                    | `أكد`                     | assert              |
+|                    | `يتطلب`                   | require (recoverable) |
 |                    | `ارم`                        | throw               |
 |                    | `يرمي`                       | throws modifier     |
 |                    | `انهر`                        | panic               |
@@ -935,6 +936,7 @@ facBlockStmt := 'افعل' blockStmt catchClause? ('طالما' expression)?
 | `iace` | ارم |
 | `iacit` | يرمي |
 | `immutata` | ثابتة |
+| `interna` | داخلي |
 | `implet` | حقق |
 | `implendum` | عقد |
 | `importa` | استورد |
@@ -1095,7 +1097,7 @@ facBlockStmt := 'افعل' blockStmt catchClause? ('طالما' expression)?
 | `proba` | *(غير موجود)* | اختبر | كلمة جديدة — test |
 | `probandum` | *(غير موجود)* | مختبر | كلمة جديدة — test suite |
 | `repete` | *(غير موجود)* | معاد | كلمة جديدة — معدل اختبار repeat |
-| `requirit` | *(غير موجود)* | يتطلب | كلمة جديدة — معدل اختبار requires |
+| `requirit` | *(غير موجود)* | يتطلب | كلمة جديدة — عبارة require قابلة للاسترداد |
 | `solum` | *(غير موجود)* | فقط | كلمة جديدة — معدل اختبار only |
 | `solum_in` | *(غير موجود)* | حصري | كلمة جديدة — معدل اختبار only-in |
 | `tag` | *(غير موجود)* | وسم | كلمة جديدة — معدل اختبار tag |

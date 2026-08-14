@@ -11,7 +11,7 @@ sources = [
   "radix/README.md (Glyphs and Words)",
   "examples/corpus/operatores/",
   "examples/corpus/assignatio/",
-  "radix/EBNF.md",
+  "faber/docs/EBNF.md",
 ]
 +++
 
@@ -384,4 +384,4 @@ fixum i32 narrow ← 7
 1. `radix/docs/design/numeric-type-sugar.md` — عائلات المختصرات الكاملة، تفضيلات التهجئة
 2. `radix/docs/design/annotation-sugar.md` — نموذج الوسوم ذو السطح المزدوج
 3. `radix/docs/design/faber-canonical-surface.md` — سياسة تنسيق المؤلّف مقابل القانوني
-4. `radix/EBNF.md` — جداول قواعد الصيغ المختصرة
+4. `faber/docs/EBNF.md` — جداول قواعد الصيغ المختصرة

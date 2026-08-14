@@ -2,12 +2,12 @@
 title = "目標相容性"
 section = "targets"
 order = 2
-sources = "radix/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
+sources = "faber/docs/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:86f8bb991ab4a2775b2c1c535b2f6104cc0f100dc6bb51c06ad99faa2aedde2c"
+prose_hash = "sha256:93d69135ab14c0fbdf09f9d376e9d41a828feb0341708b62717ed8774cba3b51"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "73d6718e47c530dd839e5d377272e3adc48fcd6d"
+source_commit = "5cf19eeef2d661b443e52417e5dc54d8bd773b6d"
 source_locale = "en-US"
 +++
 
@@ -20,7 +20,7 @@ Faber 是一種語言，但有多個編譯契約。本頁是**經測量的可降
 
 即時 CLI 摘要：`faber targets`。
 
-**產生時間**：unknown，由 `scripta/generate-ebnf-matrix.py` 產生 — **請勿編輯**。
+**渲染時間**：unknown，由 `faber/scripta/render-matrices.py` 基於 radix 測量 JSON 渲染 — **請勿編輯**。
 **測量**：`emit_hir_target_matrix` + `emit_mir_target_matrix`（程序內完成，不使用外部 toolchain）。
 **連結**：`corpus/index.toml` 中的 terms → exempla。
 
@@ -50,21 +50,21 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 
 | 目標 | 可支援 | 可分析 | % |
 |---|---|---|---|
-| rust | 279 | 281 | 99% |
-| go | 263 | 281 | 94% |
-| ts | 281 | 281 | 100% |
-| faber | 281 | 281 | 100% |
+| rust | 284 | 286 | 99% |
+| go | 263 | 286 | 92% |
+| ts | 286 | 286 | 100% |
+| faber | 286 | 286 | 100% |
 
 **系統途徑（MIR → 裝置/IR 產物）**
 
 | 目標 | 可支援 | 可分析 | % |
 |---|---|---|---|
-| llvm-text | 278 | 281 | 99% |
-| wasm-text | 260 | 281 | 93% |
-| wasm | 260 | 281 | 93% |
-| sexp-struct | 223 | 281 | 79% |
-| sexp | 223 | 281 | 79% |
-| scena | 240 | 281 | 85% |
+| llvm-text | 280 | 286 | 98% |
+| wasm-text | 260 | 286 | 91% |
+| wasm | 260 | 286 | 91% |
+| sexp-struct | 226 | 286 | 79% |
+| sexp | 226 | 286 | 79% |
+| scena | 245 | 286 | 86% |
 
 ## 關鍵字 — 應用途徑
 
@@ -167,6 +167,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `redde` | ✓ | ✓ | ✓ | ✓ |
 | `reddet` | ✓ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✓ |
+| `requirit` | ✓ | ✓ | ✓ | ✓ |
 | `rumpe` | ✓ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✓ |
 | `scriptum` | ✓ | ✓ | ✓ | ✓ |
@@ -206,6 +207,10 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 |---|---|---|---|---|
 | `⊜` | ✓ | ✓ | ✓ | ✓ |
 | `∧` | ✓ | ✓ | ✓ | ✓ |
+| `·` | ✓ | ◐ | ✓ | ✓ |
+| `×` | ✓ | ○ | ✓ | ✓ |
+| `⊗` | ✓ | ○ | ✓ | ✓ |
+| `⊙` | ✓ | ◐ | ✓ | ✓ |
 | `→` | ✓ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ |
@@ -311,7 +316,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `incipit` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `inter` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `intra` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| `instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ◐ |
+| `instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | `itera` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
 | `lege` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | `lineam` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -349,6 +354,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `redde` | ✓ | ✓ | ✓ | ✓ | ✓ | ◐ |
 | `reddet` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `repete` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
+| `requirit` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `rumpe` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `scribe` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `scriptum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -388,6 +394,10 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | --- | --- | --- | --- | --- | --- | --- |
 | `⊜` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | `∧` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| `·` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ |
+| `×` | ✓ | ○ | ○ | ✓ | ✓ | ✓ |
+| `⊗` | ○ | ○ | ○ | ✓ | ✓ | ✓ |
+| `⊙` | ◐ | ◐ | ◐ | ○ | ○ | ◐ |
 | `→` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `⇥` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | `←` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -447,7 +457,6 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | `nondum` | ✓ | ✓ | ✓ | ✓ |
 | `objectum` | ✓ | ✓ | ✓ | ✓ |
 | `prima` | ✓ | ✓ | ✓ | ✓ |
-| `requirit` | ✓ | ✓ | ✓ | ✓ |
 | `string` | ✓ | ✓ | ✓ | ✓ |
 | `block-string` | ✓ | ✓ | ✓ | ✓ |
 | `summa` | ✓ | ✓ | ✓ | ✓ |

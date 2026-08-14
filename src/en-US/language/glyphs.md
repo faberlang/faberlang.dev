@@ -9,7 +9,7 @@ sources = [
   "radix/README.md (Glyphs and Words)",
   "radix/corpus/operatores/",
   "radix/corpus/assignatio/",
-  "radix/EBNF.md",
+  "faber/docs/EBNF.md",
 ]
 +++
 
@@ -439,4 +439,4 @@ reviewers can request canonical, and CI can enforce either.
 1. `radix/docs/design/numeric-type-sugar.md` — full sugar families, spelling preferences
 2. `radix/docs/design/annotation-sugar.md` — dual-surface annotation model
 3. `radix/docs/design/faber-canonical-surface.md` — author vs canonical format policy
-4. `radix/EBNF.md` — grammar tables for sugar forms
+4. `faber/docs/EBNF.md` — grammar tables for sugar forms

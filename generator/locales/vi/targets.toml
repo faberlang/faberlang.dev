@@ -16,7 +16,7 @@ systems-lane của MIR nằm cạnh nhau trong các bảng bên dưới.
 Tóm tắt CLI trực tiếp: `faber targets`.
 """
 
-meta_generated = "**Được tạo**: {date} bởi `scripta/generate-ebnf-matrix.py` — **không chỉnh sửa**."
+meta_generated = "**Được dựng**: {date} bởi `faber/scripta/render-matrices.py` từ JSON đo lường radix — **không chỉnh sửa**."
 meta_measurement = "**Đo lường**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (trong tiến trình, không dùng toolchain bên ngoài)."
 meta_join = "**Kết nối**: các term trong `corpus/index.toml` → exempla."
 

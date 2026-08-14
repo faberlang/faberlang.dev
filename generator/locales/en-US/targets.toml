@@ -16,7 +16,7 @@ targets side by side in the tables below.
 Live CLI summary: `faber targets`.
 """
 
-meta_generated = "**Generated**: {date} by `scripta/generate-ebnf-matrix.py` — **do not edit**."
+meta_generated = "**Rendered**: {date} by `faber/scripta/render-matrices.py` from radix measurement JSON — **do not hand-edit**."
 meta_measurement = "**Measurement**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, no external toolchains)."
 meta_join = "**Join**: `corpus/index.toml` terms → exempla."
 

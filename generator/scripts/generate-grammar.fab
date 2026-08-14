@@ -6,13 +6,14 @@ locale = "en"
 # (NSM Wave-2 F1, conversion of the retired generate-grammar.py).
 #
 # Builds the Grammar reference page (src/<locale>/reference/grammar.md) from
-# the sibling radix checkout's EBNF sources — radix/EBNF.md for en-US,
-# radix/EBNF.<locale>.md for every other locale — byte-stable vs the Python
-# original. The original's whole-string regex post-processes are re-expressed
-# with char scans and string predicates: re.sub("\n{3,}", "\n\n") →
-# collapse_newlines, re.sub("\A---\n+", "") → strip_leading_rule, and the
-# RELATIVE_LINK regex ](\.{1,2}/ → continet("](./") or continet("](../").
-# solum.carpe reads the source as lines, matching the original splitlines().
+# the public grammar sources — faber/docs/EBNF.md for en-US (public faber
+# repository), generator/grammar/EBNF.<locale>.md for every other locale —
+# byte-stable vs the Python original. The original's whole-string regex
+# post-processes are re-expressed with char scans and string predicates:
+# re.sub("\n{3,}", "\n\n") → collapse_newlines, re.sub("\A---\n+", "") →
+# strip_leading_rule, and the RELATIVE_LINK regex ](\.{1,2}/ → continet("](./")
+# or continet("](../"). solum.carpe reads the source as lines, matching the
+# original splitlines().
 #
 # A locale whose EBNF file is missing is skipped with a warning rather than
 # falling back to English — a half-English grammar page is worse than the
@@ -133,9 +134,9 @@ fn render_page(string body, string locale) → string {
     page ← page + "order = 1\n"
     page ← page + "sources = [\n"
     if locale ≡ "en-US" {
-        page ← page + "  \"radix/EBNF.md\",\n"
+        page ← page + "  \"faber/docs/EBNF.md\",\n"
     } else {
-        page ← page + "  \"radix/EBNF." + locale + ".md\",\n"
+        page ← page + "  \"generator/grammar/EBNF." + locale + ".md\",\n"
     }
     page ← page + "]\n"
     page ← page + "+++\n\n"
@@ -193,9 +194,9 @@ main {
     }
     var int written ← 0
     for from locales const locale {
-        var string src ← "../radix/EBNF.md"
+        var string src ← "../faber/docs/EBNF.md"
         if locale ≠ "en-US" {
-            src ← "../radix/EBNF." + locale + ".md"
+            src ← "generator/grammar/EBNF." + locale + ".md"
         }
         if fileio.exstat(src) ↦ bivalens ≡ falsum {
             consolum.mone("  warning: no grammar source for " + locale + " (" + src + ")")

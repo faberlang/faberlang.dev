@@ -11,7 +11,7 @@ sources = [
   "radix/README.md (Glyphs and Words)",
   "examples/corpus/operatores/",
   "examples/corpus/assignatio/",
-  "radix/EBNF.md",
+  "faber/docs/EBNF.md",
 ]
 +++
 
@@ -390,4 +390,4 @@ Faber 注解遵循与数值类型相同的双形式模型。注解是附加在�
 1. `radix/docs/design/numeric-type-sugar.md`——完整的糖式家族、拼写偏好
 2. `radix/docs/design/annotation-sugar.md`——双形式注解模型
 3. `radix/docs/design/faber-canonical-surface.md`——作者模式与规范格式策略
-4. `radix/EBNF.md`——糖式形式的语法表
+4. `faber/docs/EBNF.md`——糖式形式的语法表

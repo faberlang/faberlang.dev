@@ -1,15 +1,15 @@
-+++
-translation_kind = "translated"
+# Faber 语言规范
 
-title = "Grammar"
-section = "reference"
-order = 1
-sources = [
-  "generator/grammar/EBNF.zh-Hans.md",
-]
-+++
+> **Reader-locale EBNF (Simplified Chinese).** Latin/source-of-truth grammar remains [`EBNF.md`](EBNF.md).
+> This file is the Simplified Chinese reader surface of that grammar (keywords, commentary, examples).
+> Pack keyword/type spellings are extracted from the glossary appendix at the end.
+> Glyphs (`← → ∴ ≡ ∪ ⇥` …) never localize; `ergo` localizes, `∴` is clausura-only.
+
+
 
 Faber 编程语言的形文法（grammar）。现行实现是根 Rust workspace：`crates/faber` 负责包/工程工具，`crates/radix` 负责编译流水线。
+
+文档契约：本文件是 Faber 的权威语法与说明评注面。可运行的语言参考程序位于公开的同级目录 [`../examples/corpus/`](../examples/corpus/)，可带 `+++` frontmatter（`term`、`syntax`、`related` 等）；生成的清单是 [`../examples/corpus/index.toml`](../examples/corpus/index.toml)。`faber explain` 从磁盘加载 exempla 参考包。新的参考工作请优先使用语言语料库 + EBNF。
 
 ---
 
@@ -26,7 +26,7 @@ statement     := importDecl | varDecl | funcDecl | genusDecl | implendumDecl
                | ifStmt | whileStmt | iteraStmt
                | eligeStmt | discerneStmt | guardStmt | curaStmt | facBlockStmt
                | returnStmt | breakStmt | continueStmt | noopStmt | throwStmt
-               | assertStmt | outputStmt | adStmt | incipitStmt
+               | assertStmt | requiritStmt | outputStmt | adStmt | incipitStmt
                | incipietStmt | extractStmt
                | probandumDecl | probaStmt | blockStmt | incDecStmt | exprStmt
 blockStmt     := '{' statement* '}'
@@ -40,7 +40,7 @@ Frontmatter 由编译器驱动按通用 TOML 文档解析，而非按 Faber 语�
 
 示例：
 
-```text
+```fab
 +++
 group = "exempla.directiva"
 sectio = "smoke"
@@ -158,7 +158,7 @@ Radix 解析花括号注解记录（`@ futura { }`、`@ optio { binding = verbos
 - `@ operandus [其余] TYPE NAME ...` 定义一个 CLI 位置参数
 - `@ futura` 标记函数为异步
 - `@ cursor` 标记函数为生成器
-- `@ 公开` 与 `@ 私有` 会作为注解解析，但不被强制；编译器会发出 `WARN012`（装饰性可见性），以免作者误以为存在访问控制
+- `@ 公开` 标记导出，`@ interna` 标记包内可见，`@ 私有` 为显式模块私有标记；未标记的顶层声明默认为模块私有，混用不同可见性级别会触发 `SEM019`。
 - `@ 保护` 被保留并以语义诊断拒绝；它没有包、子类或同级文件可见性含义
 
 - `继承` = 继承自，`实现` = 实现
@@ -213,27 +213,27 @@ importAliasField := '作为' '=' IDENTIFIER
 importWildcardField := '全部' '=' IDENTIFIER
 
 importSugar    := '导入' '取自' STRING visibility? (namedImport | wildcardImport)?
-visibility    := '私有' | '公开'
+visibility    := '公开'
 namedImport   := IDENTIFIER ('作为' IDENTIFIER)?
 wildcardImport := '*' '作为' IDENTIFIER
 ```
 
 示例：
 
-```text
-导入 取自 "hono" 私有 Hono
-导入 取自 "hono" 私有 Context
-导入 取自 "norma:chorda"                         # 默认为 私有 chorda
+```fab
+导入 取自 "hono" Hono
+导入 取自 "hono" Context
+导入 取自 "norma:chorda"                         # 默认不重导出
 导入 { 取自 = "norma:json/solve", 作为 = solve_mod }
-导入 取自 "norma:consolum" 私有 consolum
-导入 取自 "faber:*" 私有 faber              # 内核清单 glob
-导入 取自 "lodash" 私有 * 作为 _
+导入 取自 "norma:consolum" consolum
+导入 取自 "faber:*" faber              # 内核清单 glob
+导入 取自 "lodash" * 作为 _
 导入 取自 "./types" 公开 User               # 重导出
 ```
 
-缺省可见性默认为 `私有`。缺省命名绑定时，若导入路径末段是合法且不冲突的标识符，则默认取该段为绑定名。若推断名非法或与既有顶层绑定冲突，请显式写出 `nomen` 或 `作为` 绑定。
+导入的 `私有` 标记已移除（VM-U3）：无标记的导入默认不重导出，`公开` 是重导出标记。缺省命名绑定时，若导入路径末段是合法且不冲突的标识符，则默认取该段为绑定名。若推断名非法或与既有顶层绑定冲突，请显式写出 `nomen` 或 `作为` 绑定。
 
-`导入 取自 "faber:*" 私有 faber` 是内核专属语法糖：glob 位于导入路径字符串内部，把发布二进制文件中的内核清单展开为 `faber.<module>.<verb>` 调用。它不是 `私有 * 作为 name` 通配形式，也不会创建运行期聚合值。
+`导入 取自 "faber:*" faber` 是内核专属语法糖：glob 位于导入路径字符串内部，把发布二进制文件中的内核清单展开为 `faber.<module>.<verb>` 调用。它不是通配重导出，也不会创建运行期聚合值。
 
 ---
 
@@ -258,7 +258,7 @@ typeParams     := genericParams
 
 函数类型支持高阶函数签名：
 
-```text
+```fab
 函数 filtrata((T) → 布尔 pred) → 列表<T>
 函数 compose((A) → B f, (B) → C g) → (A) → C
 函数 apply((整数) → 整数 ⇥ 文本 op, 整数 n) → 整数 ⇥ 文本
@@ -433,6 +433,7 @@ noopStmt     := '静默'
 throwStmt   := ('抛错' | '崩溃') expression ['如果' expression]
 catchClause := '捕获' IDENTIFIER blockStmt
 assertStmt  := '断言' expression ('secus' expression)?
+requiritStmt := '需求' expression 'secus' expression
 ```
 
 - `捕获` 附着于结构化语句与条件分支。它不附着于任意的裸块。
@@ -452,7 +453,7 @@ assertStmt  := '断言' expression ('secus' expression)?
 ```ebnf
 expression := assignment
 assignment := ternary ('←' assignment | '↤' assignment inlineRecovery?)?
-incDecStmt := place ('⊕' | '⊖')
+incDecStmt := place ('↑' | '↓')
 ternary    := or (('?' expression ':' | '乃' expression '否则') ternary)?
 or         := and (('或') and)*
 and        := equality (('且') equality)*
@@ -492,7 +493,7 @@ inlineRecovery   := '⇥' unary
 
 对于普通 `类` 值，请优先使用类型化构造；对于普通空集合值，请优先使用 `无值`：
 
-```text
+```fab
 常量 _ point ← Point { x = 10 }
 常量 列表<整数> xs ← 无值
 ```
@@ -553,13 +554,13 @@ Faber 采用**分隔符语义**：每种引号形式代表不同的源形态。�
 
 内联块示例：
 
-```text
+```fab
 常量 _ tag ← «inline»
 ```
 
 多行块示例（开 `«` 后换行）：
 
-```text
+```fab
 常量 _ blob ← «
     select id, email
     from accounts
@@ -568,13 +569,13 @@ Faber 采用**分隔符语义**：每种引号形式代表不同的源形态。�
 
 捕获模板示例：
 
-```text
+```fab
 常量 _ q ← `select * from accounts where id = §`(accountId)
 ```
 
 字节十六进制字面量示例：
 
-```text
+```fab
 常量 _ sig ← |de ad be ef|
 常量 _ hello ← |48 65 6c 6c 6f|
 ```
@@ -583,7 +584,7 @@ Faber 采用**分隔符语义**：每种引号形式代表不同的源形态。�
 
 字符串字面量调用语法是格式化模板应用的规范源形式：
 
-```text
+```fab
 "status: § (§)"(sample_status(), "ok")
 "status: §1 (§0)"("ok", sample_status())
 ```
@@ -592,7 +593,7 @@ Faber 采用**分隔符语义**：每种引号形式代表不同的源形态。�
 
 对于 `文本`，方括号索引以 Unicode 标量为单位：
 
-```text
+```fab
 "Salve, §!"[7]            # "§"
 "hello world"[0‥5]        # "hello"
 "hello world"[0 到 10]    # "hello world"
@@ -603,7 +604,7 @@ Faber 采用**分隔符语义**：每种引号形式代表不同的源形态。�
 
 对于 `列表<T>`，方括号索引是单元素访问。索引必须是单个整数；不接受区间切片（拷贝区间请用 `sectio(start, end)`）：
 
-```text
+```fab
 xs[i]        # 位置 i 处的元素
 xs[i] ← v    # 写入位置 i 处的元素
 ```
@@ -612,7 +613,7 @@ xs[i] ← v    # 写入位置 i 处的元素
 
 对于 `tensor<T, Figura>`，方括号索引是张量内建表面的语法糖：
 
-```text
+```fab
 vector[id]        # vector.accipe([id])
 vector[id] ← v    # vector.ponde([id], v)
 grid[[r, c]]      # grid.accipe([r, c])
@@ -623,7 +624,7 @@ grid[[r, c]] ← v  # grid.ponde([r, c], v)
 
 `字节` 是字节缓冲原语，不是数组，因此不接受（读或写）方括号索引。字节访问基于方法：
 
-```text
+```fab
 buf.accipe(i)      # → 整数<u8> ∪ 空（可空；越界安全）
 buf.appende(b)     # 原地追加单字节
 buf.longitudo      # 字节长度
@@ -746,7 +747,7 @@ Faber 支持构建 CLI 应用，自动解析参数并生成帮助。
 
 ### CLI 入口点
 
-```text
+```fab
 @ cli "faber"
 @ optio verbose longum "verbose" 类型 布尔
 入口 参数 args {
@@ -756,7 +757,7 @@ Faber 支持构建 CLI 应用，自动解析参数并生成帮助。
 
 ### CLI 选项与参数
 
-```text
+```fab
 @ imperium "deploy"
 @ optio target brevis "t" longum "target" 类型 文本 descriptio "Deployment target"
 @ optio verbose brevis "v" longum "verbose" 类型 布尔 descriptio "Enable verbose output"
@@ -853,6 +854,7 @@ facBlockStmt := '执行' blockStmt catchClause? ('当' expression)?
 |                     | `∴`                           | 仅紧凑闭包连接符 |
 | **错误处理**        | `捕获`                        | 结构化局部处理 |
 |                     | `断言`                        | assert              |
+|                     | `需求`                        | require（可恢复） |
 |                     | `抛错`                        | throw               |
 |                     | `可抛`                        | throws 修饰符     |
 |                     | `崩溃`                        | panic               |
@@ -920,6 +922,7 @@ facBlockStmt := '执行' blockStmt catchClause? ('当' expression)?
 | generis | 静态 |
 | iacit | 可抛 |
 | immutata | 不变 |
+| interna | 内部 |
 | magnitudo | 维度 |
 | nexum | 属性 |
 | optiones | 选项 |
@@ -1094,7 +1097,7 @@ facBlockStmt := '执行' blockStmt catchClause? ('当' expression)?
 | proba | (缺) | 测试 | 新增：测试用例语句 |
 | probandum | (缺) | 验题 | 新增：测试用例声明 |
 | repete | (缺) | 重复 | 新增：重复次数修饰符 |
-| requirit | (缺) | 需求 | 新增：requires 标记 |
+| requirit | (缺) | 需求 | 新增：require 语句 |
 | solum | (缺) | 仅 | 新增：only 测试标记 |
 | solum_in | (缺) | 仅于 | 新增：only-in 测试标记 |
 | tag | (缺) | 标签 | 新增：tag 测试标记 |

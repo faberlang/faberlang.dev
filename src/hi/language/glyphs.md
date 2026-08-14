@@ -11,7 +11,7 @@ sources = [
   "radix/README.md (Glyphs and Words)",
   "examples/corpus/operatores/",
   "examples/corpus/assignatio/",
-  "radix/EBNF.md",
+  "faber/docs/EBNF.md",
 ]
 +++
 
@@ -383,4 +383,4 @@ Canonical-vs-sugar pattern कई स्थानों पर दिखाई �
 1. `radix/docs/design/numeric-type-sugar.md` — पूर्ण sugar families, spelling preferences
 2. `radix/docs/design/annotation-sugar.md` — dual-surface annotation model
 3. `radix/docs/design/faber-canonical-surface.md` — author बनाम canonical format policy
-4. `radix/EBNF.md` — sugar forms के grammar tables
+4. `faber/docs/EBNF.md` — sugar forms के grammar tables

@@ -99,7 +99,7 @@ For live capability flags, run `faber targets`.
 
 The large term × target tables (HIR application lane and MIR systems lane)
 live on the [Target compatibility](/toolchain/target-matrix.html) page. That matrix
-is generated from `radix/EBNF_MATRIX.md` and reports **term lowerability only** —
+is generated from `faber/docs/EBNF_MATRIX.md` and reports **term lowerability only** —
 not erase/warn policy, and not GPU product health. GPU backends and the “why
 no CUDA column?” note are explained in that page’s summary.
 

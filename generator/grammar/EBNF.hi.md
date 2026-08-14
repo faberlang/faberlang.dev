@@ -1,15 +1,13 @@
-+++
-translation_kind = "translated"
+# Faber भाषा विनिर्देश
 
-title = "Grammar"
-section = "reference"
-order = 1
-sources = [
-  "generator/grammar/EBNF.hi.md",
-]
-+++
+> **Reader-locale EBNF (Hindi).** Latin/source-of-truth grammar remains [`EBNF.md`](EBNF.md).
+> This file is the Hindi reader surface of that grammar (keywords, commentary, examples).
+> Pack keyword/type spellings are extracted from the glossary appendix at the end.
+> Glyphs (`← → ∴ ≡ ∪ ⇥` …) never localize; `ergo` localizes, `∴` is clausura-only.
 
 Faber प्रोग्रामिंग भाषा का औपचारिक व्याकरण। सक्रिय कार्यान्वयन मूल Rust workspace में है: `crates/faber` पैकेज और प्रोजेक्ट tooling के लिए तथा `crates/radix` compiler pipeline के लिए।
+
+Latin [`EBNF.md`](EBNF.md) canonical grammar है; यह फ़ाइल उसकी Hindi reader surface है। चलने वाले भाषा-संदर्भ programs public sibling [`../examples/corpus/`](../examples/corpus/) में रहते हैं; उनके साथ वैकल्पिक `+++` frontmatter (`term`, `syntax`, `related` आदि) हो सकता है। Generated manifest [`../examples/corpus/index.toml`](../examples/corpus/index.toml) है। `faber explain` reference pack को disk से load करता है। नए संदर्भ काम के लिए language corpus और यह EBNF साथ पढ़ें।
 
 ---
 
@@ -26,7 +24,7 @@ statement     := importDecl | varDecl | funcDecl | genusDecl | implendumDecl
                | ifStmt | whileStmt | iteraStmt
                | eligeStmt | discerneStmt | guardStmt | curaStmt | facBlockStmt
                | returnStmt | breakStmt | continueStmt | noopStmt | throwStmt
-               | assertStmt | outputStmt | adStmt | incipitStmt
+               | assertStmt | requiritStmt | outputStmt | adStmt | incipitStmt
                | incipietStmt | extractStmt
                | probandumDecl | probaStmt | blockStmt | incDecStmt | exprStmt
 blockStmt     := '{' statement* '}'
@@ -40,7 +38,7 @@ Frontmatter compiler driver में generic TOML document के रूप म
 
 उदाहरण:
 
-```text
+```fab
 +++
 group = "exempla.directiva"
 sectio = "smoke"
@@ -158,7 +156,7 @@ Braced annotation records और उनके sugar forms एक ही `HirAnno
 - `@ विकल्प NAME ...` CLI option बनाता है; boolean flag के लिए `प्रकार तार्किक` लिखें।
 - `@ ऑपरैंड [बाकी] TYPE NAME ...` CLI positional argument बनाता है।
 - `@ भविष्य` function को async और `@ कर्सर` generator बनाता है।
-- `@ सार्वजनिक` और `@ निजी` parse होते हैं, पर enforced visibility नहीं देते; compiler `WARN012` emit करता है।
+- `@ सार्वजनिक` export सतह चिह्नित करता है, `@ interna` package-internal, और `@ निजी` स्पष्ट module-private मार्कर; बिना चिह्नित शीर्ष-स्तरीय घोषणाएँ डिफ़ॉल्ट रूप से module-private हैं, और अलग-अलग visibility स्तरों का मिश्रण `SEM019` देता है।
 - `@ संरक्षित` आरक्षित है और semantic diagnostic देता है।
 
 `अधीन` extends है, `लागू` implements है, `स्थैतिक` static है और `संबद्ध` bound/property है।
@@ -212,25 +210,25 @@ importAliasField := 'रूपमें' '=' IDENTIFIER
 importWildcardField := 'सब' '=' IDENTIFIER
 
 importSugar    := 'आयात' 'सेवन' STRING visibility? (namedImport | wildcardImport)?
-visibility    := 'निजी' | 'सार्वजनिक'
+visibility    := 'सार्वजनिक'
 namedImport   := IDENTIFIER ('रूपमें' IDENTIFIER)?
 wildcardImport := '*' 'रूपमें' IDENTIFIER
 ```
 
 उदाहरण:
 
-```text
-आयात सेवन "hono" निजी Hono
-आयात सेवन "hono" निजी Context
+```fab
+आयात सेवन "hono" Hono
+आयात सेवन "hono" Context
 आयात सेवन "norma:chorda"
 आयात { सेवन = "norma:json/solve", रूपमें = solve_mod }
-आयात सेवन "norma:consolum" निजी consolum
-आयात सेवन "faber:*" निजी faber
-आयात सेवन "lodash" निजी * रूपमें _
+आयात सेवन "norma:consolum" consolum
+आयात सेवन "faber:*" faber
+आयात सेवन "lodash" * रूपमें _
 आयात सेवन "./types" सार्वजनिक User
 ```
 
-Visibility न देने पर `निजी` default है। Named binding न देने पर import path का अंतिम segment लिया जाता है, यदि वह valid और non-conflicting identifier हो। Invalid या colliding inferred name के लिए explicit `नाम` या `रूपमें` लिखें। `आयात सेवन "faber:*" निजी faber` kernel-विशिष्ट sugar है: glob path string के भीतर है और released binary के kernel manifest को `faber.<module>.<verb>` calls में फैलाता है। यह `निजी * रूपमें name` wildcard form नहीं है और runtime aggregate value नहीं बनाता।
+Import marker `निजी` हटा दिया गया (VM-U3): बिना marker वाला import re-export नहीं करता, और `सार्वजनिक` re-export marker है। Named binding न देने पर import path का अंतिम segment लिया जाता है, यदि वह valid और non-conflicting identifier हो। Invalid या colliding inferred name के लिए explicit `नाम` या `रूपमें` लिखें। `आयात सेवन "faber:*" faber` kernel-विशिष्ट sugar है: glob path string के भीतर है और released binary के kernel manifest को `faber.<module>.<verb>` calls में फैलाता है। यह wildcard re-export नहीं है और runtime aggregate value नहीं बनाता।
 
 ---
 
@@ -394,6 +392,7 @@ noopStmt     := 'मौन'
 throwStmt   := ('इधरफेंको' | 'मरोजाओ') expression ['यदि' expression]
 catchClause := 'पकड़ो' IDENTIFIER blockStmt
 assertStmt  := 'पुष्टि' expression ('secus' expression)?
+requiritStmt := 'आवश्यक' expression 'secus' expression
 ```
 
 `पकड़ो` structured statements और conditional arms से जुड़ता है। यह मनमाने bare block से नहीं जुड़ता। `करो { ... } पकड़ो त्रुटि { ... }` canonical one-shot local recoverable-error boundary है। `प्रयास` legacy try/catch surface है और `अंततः` legacy finally surface; दोनों migration diagnostic के साथ अस्वीकार हैं। `इधरफेंको` recoverable throw है और `मरोजाओ` fatal panic। Optional `यदि <expr>` guard parser sugar है: `इधरफेंको मान यदि शर्त` parse समय पर `यदि शर्त { इधरफेंको मान }` बनता है। `पुष्टि` रनटाइम इनवेरिएंट चेक है; यह संकल्पात्मक रूप से `मरोजाओ "msg" यदि !cond` में अवमूदन होता है, स्रोत में सकारात्मक स्थिति रखते हुए। `secus` गलत-पथ संदेश पेश करता है।
@@ -407,7 +406,7 @@ assertStmt  := 'पुष्टि' expression ('secus' expression)?
 ```ebnf
 expression := assignment
 assignment := ternary ('←' assignment | '↤' assignment inlineRecovery?)?
-incDecStmt := place ('⊕' | '⊖')
+incDecStmt := place ('↑' | '↓')
 ternary    := or (('?' expression ':' | 'ऐसा' expression 'अन्यथा') ternary)?
 or         := and (('या') and)*
 and        := equality (('और') equality)*
@@ -469,7 +468,7 @@ Implementation status: `"..."`, `«...»`, `'...'`, `` `...` ``, `|...|`, `{ ...
 
 उदाहरण:
 
-```text
+```fab
 स्थिर _ टैग ← «inline»
 स्थिर _ blob ← «
     select id, email
@@ -484,7 +483,7 @@ Implementation status: `"..."`, `«...»`, `'...'`, `` `...` ``, `|...|`, `{ ...
 
 String literal call syntax canonical source form है:
 
-```text
+```fab
 "स्थिति: § (§)"(sample_status(), "ठीक")
 "स्थिति: §1 (§0)"("ठीक", sample_status())
 ```
@@ -493,7 +492,7 @@ String literal call syntax canonical source form है:
 
 `पाठ` bracket indexing Unicode-scalar आधारित है:
 
-```text
+```fab
 "Salve, §!"[7]
 "hello world"[0‥5]
 "hello world"[0 तक 10]
@@ -504,7 +503,7 @@ Text slices में `प्रति` सहित full range form मान�
 
 `tensor<T, Figura>` bracket indexing intrinsic surface का sugar है:
 
-```text
+```fab
 vector[id]        # vector.accipe([id])
 vector[id] ← v    # vector.ponde([id], v)
 grid[[r, c]]      # grid.accipe([r, c])
@@ -515,7 +514,7 @@ Reads `T ∪ शून्य` लौटाते हैं। Rank-1 tensor scal
 
 `बाइट` byte-buffer primitive है, array नहीं। Bracket indexing स्वीकार नहीं है; byte access method-based है:
 
-```text
+```fab
 buf.accipe(i)      # → संख्या<u8> ∪ शून्य
 buf.appende(b)     # एक byte in place जोड़ें
 buf.longitudo      # byte length
@@ -627,7 +626,7 @@ Faber automatic argument parsing और help generation के साथ CLI app
 
 ### CLI प्रवेश बिंदु
 
-```text
+```fab
 @ cli "faber"
 @ विकल्प verbose दीर्घ "verbose" प्रकार तार्किक
 आरंभ तर्क args {
@@ -637,7 +636,7 @@ Faber automatic argument parsing और help generation के साथ CLI app
 
 ### CLI विकल्प और तर्क
 
-```text
+```fab
 @ आज्ञा "deploy"
 @ विकल्प target लघु "t" दीर्घ "target" प्रकार पाठ विवरण "Deployment target"
 @ विकल्प verbose लघु "v" दीर्घ "verbose" प्रकार तार्किक विवरण "Enable verbose output"
@@ -718,6 +717,7 @@ facBlockStmt := 'करो' blockStmt catchClause? ('जबतक' expression)?
 |  | `∴` | compact clausura joint only |
 | Error handling | `पकड़ो` | structured local handler |
 |  | `पुष्टि` | assert |
+|  | `आवश्यक` | require (recoverable) |
 |  | `इधरफेंको` | recoverable throw |
 |  | `फेंकता` | throws modifier |
 |  | `मरोजाओ` | panic |
@@ -780,6 +780,7 @@ facBlockStmt := 'करो' blockStmt catchClause? ('जबतक' expression)?
 | generis | स्थैतिक |
 | iacit | फेंकता |
 | immutata | अपरिवर्तित |
+| interna | आंतरिक |
 | magnitudo | आकार |
 | nexum | संबद्ध |
 | optiones | विकल्प |

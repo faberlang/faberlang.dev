@@ -905,7 +905,7 @@ not flat*), and how a term page presents multiple examples including reject case
 | Page | Path | Sources | Status |
 |------|------|---------|--------|
 | References hub | `references/index` | links | ⬜ |
-| EBNF grammar | `references/ebnf.md` | `radix/EBNF.md` | ✅ (generation candidate) |
+| EBNF grammar | `references/ebnf.md` | `faber/docs/EBNF.md` | ✅ (generation candidate) |
 | Design documents | `references/design-docs.md` | `radix/docs/design/` (28 docs) | ✅ (generation candidate) |
 | GitHub repositories | `references/repositories.md` | `github.com/faberlang` | ✅ |
 

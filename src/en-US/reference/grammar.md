@@ -3,7 +3,7 @@ title = "Grammar"
 section = "reference"
 order = 1
 sources = [
-  "radix/EBNF.md",
+  "faber/docs/EBNF.md",
 ]
 +++
 

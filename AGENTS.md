@@ -146,8 +146,8 @@ generator or the upstream source instead.
 
 | Script | Writes | Reads |
 |---|---|---|
-| `generate-target-matrix.py` | `src/{locale}/toolchain/target-matrix.md` | `radix/EBNF_MATRIX.md` + `generator/locales/{locale}/targets.toml` |
-| `generate-grammar` (native Faber gate) | `src/{locale}/reference/grammar.md` | `radix/EBNF.md`, `radix/EBNF.{locale}.md` |
+| `generate-target-matrix.py` | `src/{locale}/toolchain/target-matrix.md` | `faber/docs/EBNF_MATRIX.md` + `generator/locales/{locale}/targets.toml` |
+| `generate-grammar` (native Faber gate) | `src/{locale}/reference/grammar.md` | `faber/docs/EBNF.md`, `generator/grammar/EBNF.{locale}.md` |
 | `generate-target-lanes.py` | `src/{locale}/targets/*.md` | captured lane panels |
 | `generate-examples.py` | `src/{locale}/examples/*.md` | `examples/` sibling |
 | `generate-localization.py` | `src/{locale}/localization.md` | locale registry + captured panels |

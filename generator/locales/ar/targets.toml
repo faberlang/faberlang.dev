@@ -16,7 +16,7 @@ Faber لغة واحدة لها عقود ترجمة متعددة. هذه الصف
 ملخص CLI المباشر: `faber targets`.
 """
 
-meta_generated = "**توليد**: {date} بواسطة `scripta/generate-ebnf-matrix.py` — **لا تعدّل الملف**."
+meta_generated = "**عرض**: {date} بواسطة `faber/scripta/render-matrices.py` من بيانات قياس radix — **لا تعدّل الملف**."
 meta_measurement = "**القياس**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (داخل العملية، من دون toolchains خارجية)."
 meta_join = "**الربط**: مصطلحات `corpus/index.toml` → exempla."
 

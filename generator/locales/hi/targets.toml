@@ -16,7 +16,7 @@ tables में HIR application-lane targets और MIR systems-lane targets �
 CLI का लाइव सारांश: `faber targets`।
 """
 
-meta_generated = "**जनरेट किया गया**: {date}, `scripta/generate-ebnf-matrix.py` द्वारा — **संपादित न करें**।"
+meta_generated = "**रेंडर किया गया**: {date}, `faber/scripta/render-matrices.py` द्वारा radix मापन JSON से — **संपादित न करें**।"
 meta_measurement = "**मापन**: `emit_hir_target_matrix` + `emit_mir_target_matrix` (in-process, बाहरी toolchains के बिना)।"
 meta_join = "**Join**: `corpus/index.toml` terms → exempla।"
 

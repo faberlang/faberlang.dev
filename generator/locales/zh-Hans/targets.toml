@@ -14,7 +14,7 @@ Faber 是一门语言，但有多个编译契约。本页是**经过测量的可
 实时 CLI 摘要：`faber targets`。
 """
 
-meta_generated = "**生成时间**：{date}，由 `scripta/generate-ebnf-matrix.py` 生成 — **请勿编辑**。"
+meta_generated = "**渲染时间**：{date}，由 `faber/scripta/render-matrices.py` 基于 radix 测量 JSON 渲染 — **请勿编辑**。"
 meta_measurement = "**测量**：`emit_hir_target_matrix` + `emit_mir_target_matrix`（进程内完成，不使用外部 toolchain）。"
 meta_join = "**连接**：`corpus/index.toml` 中的 terms → exempla。"
 
