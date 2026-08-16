@@ -1,5 +1,10 @@
 # faberlang.dev — Agent Guide
 
+**Workspace work mode.** Ordinary development is **direct** in this
+checkout on `main`. Worktree packets under `../worktrees/<lane>/` are
+optional Tugboat isolation. Do not stand up lanes unless the operator
+asked. Container law: [`../AGENTS.md`](../AGENTS.md).
+
 ## What this repo is
 
 The faberlang.dev documentation site. Contains Markdown source pages, the
@@ -14,7 +19,6 @@ faberlang.dev/
   src/{locale}/            Per-locale Markdown (full-file copies; partial OK)
   static/                  Machine surfaces copied into dist/ as-is
     llms.txt               Agent index (start here for models)
-    llms-full.txt          Expanded agent map
     agents/index.md        Agent learning path
     .well-known/agent-skills/  Skill catalog + SKILL.md guides
     faber-demo-tabs.js     Progressive enhancer for .faber-demo-tabs code
@@ -57,7 +61,7 @@ faberlang.dev/
 | **Domain** | `faberlang.dev` |
 | **DNS** | GitHub Pages IPs (`185.199.108–111.153`) |
 | **Server** | GitHub Pages |
-| **Worker (dormant)** | Cloudflare Worker in `cloudflare-worker/` — not currently active; DNS points to GitHub Pages |
+| **Worker** | None in this checkout. DNS points to GitHub Pages. |
 
 ### Deploy workflow
 
