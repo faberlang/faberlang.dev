@@ -136,7 +136,7 @@ adds an "ergo" term.
 
 Core-support assembly moves to the hosts monorepo crate layout (`hosts/crates`,
 18e4514); legacy `host-*-rs` root names are dropped. CI checks out the hosts
-monorepo (`mintedgeek/hosts`) instead of the individual host repos (41cf7dc,
+monorepo (`faberlang/hosts`) instead of the individual host repos (41cf7dc,
 866224f), fixing the build.rs "required core-support path is missing" failure.
 The private e2e harness relocates from radix into this repo as `crates/exempla`
 (workspace member, 634c87b); D-P-02 proof rows are corrected to match

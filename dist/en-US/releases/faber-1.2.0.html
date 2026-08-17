@@ -52,7 +52,7 @@ canonical term count to 178 and the explain registry entries to 194 (07720d9,
 R4); a later fix raises the assertions to 179/195 after the examples corpus
 adds an &quot;ergo&quot; term.</p><h4 id="hosts-monorepo-core-support">Hosts-monorepo core-support<a class="anchor" href="#hosts-monorepo-core-support">#</a></h4><p>Core-support assembly moves to the hosts monorepo crate layout (<code>hosts/crates</code>,
 18e4514); legacy <code>host-*-rs</code> root names are dropped. CI checks out the hosts
-monorepo (<code>mintedgeek/hosts</code>) instead of the individual host repos (41cf7dc,
+monorepo (<code>faberlang/hosts</code>) instead of the individual host repos (41cf7dc,
 866224f), fixing the build.rs &quot;required core-support path is missing&quot; failure.
 The private e2e harness relocates from radix into this repo as <code>crates/exempla</code>
 (workspace member, 634c87b); D-P-02 proof rows are corrected to match
