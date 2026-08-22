@@ -2,89 +2,137 @@
 locale = "en"
 +++
 
-# faberlang.dev/generator/scripts/generate-grammar.fab — native-Faber gate
-# (NSM Wave-2 F1, conversion of the retired generate-grammar.py).
-#
-# Builds the Grammar reference page (src/<locale>/reference/grammar.md) from
-# the public grammar sources — faber/docs/EBNF.md for en-US (public faber
-# repository), generator/grammar/EBNF.<locale>.md for every other locale —
-# byte-stable vs the Python original. The original's whole-string regex
-# post-processes are re-expressed with char scans and string predicates:
-# re.sub("\n{3,}", "\n\n") → collapse_newlines, re.sub("\A---\n+", "") →
-# strip_leading_rule, and the RELATIVE_LINK regex ](\.{1,2}/ → continet("](./")
-# or continet("](../"). solum.carpe reads the source as lines, matching the
-# original splitlines().
-#
-# A locale whose EBNF file is missing is skipped with a warning rather than
-# falling back to English — a half-English grammar page is worse than the
-# stub it replaces. Exit contract (same as argparse in the original): 0 when
-# at least one page was written, 1 when none was, 2 on usage errors.
-#
-# Execution surface (pinned): the released faber binary via `faber script`,
-# staged outside every faber.toml tree by the launcher (generator/scripts/
-# generate-grammar).
-#
-# Usage: generate-grammar [--all-locales] [--locale <name>]...
+# GSD-8: grammar pages from grammar.jsonl + glossary packs.
+# Identity EBNF.md is the gated page template (prose + productions).
+# jsonl is the production-ID spine; unknown glossary keys hard-fail.
+# Missing locale packs warn and skip (degrade-gracefully).
 
-import from "faber:solum" private fileio
-import from "faber:processus" private processus
-import from "faber:consolum" private consolum
+import from "faber:solum" solum
+import from "faber:processus" processus
+import from "faber:consolum" consolum
+import from "faber:json" json
+import from "faber:toml" toml
 
-# The en-US page lead, replacing the EBNF.md maintainer-facing lead (localized
-# pages keep their own in-locale lead). Mirrors LEAD_EN.rstrip() in the Python
-# original.
-const string lead_en ← "The formal grammar for every Faber production, generated from the compiler's\nown specification. This is the authority on whether something is valid syntax;\nthe [target matrix](/toolchain/target-matrix.html) is the authority on whether\na given target supports it.\n\nUppercase names in the productions are lexical terminals. Grammar examples are\nfragments shown to illustrate a production — they are not standalone programs\nand are not expected to compile on their own.\n\n**Why the keywords below are in Latin.** Everywhere else on this site, code\nrenders in your reader locale — `fixum` prints as `const`, and a Chinese\nreader sees `常量`. The grammar does not, because it is the canonical\ndefinition rather than a rendering of it. Latin is Faber's canonical form\nprecisely because no living language has a claim on it, so no locale's\nspelling has to be the one every other is defined against; each reader pack\nis a projection of the productions below. The\n[reader locale pages](/language/reader-locales.html) give the mapping, and\n`faber explain <term>` prints it from the compiler itself."
+const string tick ← «`»
+const string fence ← «```»
+const string fence_fab ← «```fab»
+const string fence_text ← «```text
+»
+const string hole_open ← "§" + "{"
+const string q ← "'"
+const string brace_close ← "}"
+const string lead_en ← «The formal grammar for every Faber production, generated from the compiler's
+own specification. This is the authority on whether something is valid syntax;
+the [target matrix](/toolchain/target-matrix.html) is the authority on whether
+a given target supports it.
 
-# re.sub(r"\A---\n+", "", body): a leading horizontal rule with nothing above
-# it goes rather than just the rule.
-fn strip_leading_rule(string s) → string {
-    if s.initium("---\n") {
-        var int i ← 3
-        const int n ← s.longitudo()
-        while i < n and s.sectio(i, i + 1) ≡ "\n" {
-            i ← i + 1
-        }
-        return s.sectio(i, n)
-    }
-    return s
+Uppercase names in the productions are lexical terminals. Grammar examples are
+fragments shown to illustrate a production — they are not standalone programs
+and are not expected to compile on their own.
+
+**Why the keywords below are in Latin.** Everywhere else on this site, code
+renders in your reader locale — `fixum` prints as `const`, and a Chinese
+reader sees `常量`. The grammar does not, because it is the canonical
+definition rather than a rendering of it. Latin is Faber's canonical form
+precisely because no living language has a claim on it, so no locale's
+spelling has to be the one every other is defined against; each reader pack
+is a projection of the productions below. The
+[reader locale pages](/language/reader-locales.html) give the mapping, and
+`faber explain <term>` prints it from the compiler itself.»
+
+const string identity_banner ← «This file is generated from `docs/grammar/source.fg`; hand edits fail the
+stage-1 normative-triple gate.»
+
+fn ch(string s, int i) → string {
+    return s.slice(i, i + 1)
 }
 
-# re.sub(r"\n{3,}", "\n\n", body): dropping paragraphs and the preamble
-# leaves runs of blank lines; collapse runs of 3+ newlines to exactly 2.
-# Each muta pass shrinks every maximal newline run by one, so a run of N≥3
-# reaches exactly 2 after N-2 passes and runs of 1-2 are never touched —
-# identical to the original regex, without per-character string building.
+fn has_prefix(string s, int i, string needle) → bool {
+    const int m ← needle.length()
+    if i + m > s.length() {
+        return false
+    }
+    return s.slice(i, i + m) ≡ needle
+}
+
+fn is_ident_start(string c) → bool {
+    return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_".contains(c)
+}
+
+fn is_ident_continue(string c) → bool {
+    return is_ident_start(c) or "0123456789".contains(c)
+}
+
+fn is_hole_label(string label) → bool {
+    if label.length() ≡ 0 {
+        return false
+    }
+    if not is_ident_start(ch(label, 0)) {
+        return false
+    }
+    var int i ← 1
+    while i < label.length() {
+        if not is_ident_continue(ch(label, i)) {
+            return false
+        }
+        i ← i + 1
+    }
+    return true
+}
+
+fn has_flag(map<string, bool> flags, string key) → bool {
+    const bool ∪ null flag ← flags[key]
+    if flag is null {
+        return false
+    }
+    return flag ↦ bool
+}
+
+fn index_of(string hay, string needle, int begin) → int {
+    const int n ← hay.length()
+    const int m ← needle.length()
+    if m ≡ 0 or begin < 0 {
+        return -1
+    }
+    var int i ← begin
+    while i + m ≤ n {
+        if hay.slice(i, i + m) ≡ needle {
+            return i
+        }
+        i ← i + 1
+    }
+    return -1
+}
+
 fn collapse_newlines(string s) → string {
     var string out ← s
-    while out.continet("\n\n\n") {
-        out ← out.muta("\n\n\n", "\n\n")
+    while out.contains("\n\n\n") {
+        out ← out.replace("\n\n\n", "\n\n")
     }
     return out
 }
 
-# Read a whole file as a string. The function boundary pins the returned
-# value to `textus` so `divide` below resolves its intrinsic receiver type
-# (released-binary typechecker quirk: direct kernel-cast and literal-bound
-# receivers do not resolve `divide`, function-return and exsequi-cast
-# receivers do).
-fn read_text(string path) → string {
-    return fileio.lege(path) ↦ string
+fn strip_leading_rule(string s) → string {
+    if s.starts_with("---\n") {
+        var int i ← 3
+        const int n ← s.length()
+        while i < n and ch(s, i) ≡ "\n" {
+            i ← i + 1
+        }
+        return s.slice(i, n)
+    }
+    return s
 }
 
-# The Python transform(): strip the H1 and the internal-facing header block,
-# drop the en-US lead paragraph, toggle fences (a ```` ```fab ```` block becomes
-# ```` ```text ```` — grammar fragments are not programs), drop lines carrying
-# repo-relative links, then the whole-string post-processes.
 fn transform(list<string> lines, bool drop_lead) → string {
     var string body ← ""
-    # state: 0 = preamble, 1 = lead paragraph, 3 = post-lead blanks, 2 = content
     var int state ← 0
-    var bool in_fence ← falsum
+    var bool in_fence ← false
     for from lines const ln {
-        const string s ← ln.recide()
+        const string s ← ln.trim()
         if state ≡ 0 {
-            const bool skip_line ← s.longitudo() ≡ 0 or s.initium("# ") or s.initium(">")
-            if skip_line ≡ falsum {
+            const bool skip_line ← s.length() ≡ 0 or s.starts_with("# ") or s.starts_with(">")
+            if skip_line ≡ false {
                 if drop_lead {
                     state ← 1
                 } else {
@@ -93,32 +141,31 @@ fn transform(list<string> lines, bool drop_lead) → string {
             }
         }
         if state ≡ 1 {
-            if s.longitudo() ≡ 0 {
+            if s.length() ≡ 0 {
                 state ← 3
             }
         } elif state ≡ 3 {
-            if s.longitudo() > 0 {
+            if s.length() > 0 {
                 state ← 2
             }
         }
         if state ≡ 2 {
-            if ln.recide().initium("```") {
+            if ln.trim().starts_with(fence) {
                 in_fence ← not in_fence
-                if in_fence and ln.recide() ≡ "```fab" {
-                    body ← body + "```text\n"
+                if in_fence and ln.trim() ≡ fence_fab {
+                    body ← body + fence_text
                 } else {
                     body ← body + ln + "\n"
                 }
             } elif in_fence {
                 body ← body + ln + "\n"
-            } elif ln.continet("](./") or ln.continet("](../") {
-                # repo-relative link paragraph — dropped
+            } elif ln.contains("](./") or ln.contains("](../") {
             } else {
                 body ← body + ln + "\n"
             }
         }
     }
-    body ← body.recide()
+    body ← body.trim()
     body ← collapse_newlines(body)
     body ← strip_leading_rule(body)
     return body + "\n"
@@ -133,10 +180,9 @@ fn render_page(string body, string locale) → string {
     page ← page + "section = \"reference\"\n"
     page ← page + "order = 1\n"
     page ← page + "sources = [\n"
-    if locale ≡ "en-US" {
-        page ← page + "  \"faber/docs/EBNF.md\",\n"
-    } else {
-        page ← page + "  \"generator/grammar/EBNF." + locale + ".md\",\n"
+    page ← page + "  \"faber/docs/grammar/grammar.jsonl\",\n"
+    if locale ≠ "en-US" {
+        page ← page + "  \"faber/docs/grammar/glossary." + locale + ".toml\",\n"
     }
     page ← page + "]\n"
     page ← page + "+++\n\n"
@@ -146,79 +192,409 @@ fn render_page(string body, string locale) → string {
     return page + body
 }
 
-# Sorted locale directory names under src/ (the same discovery the Python
-# --all-locales used).
 fn locale_names() → list<string> {
-    const list<string> entries ← fileio.enumera("src") ↦ list<string>
+    const list<string> entries ← solum.list_dir("src") ↦ list<string>
     var list<string> dirs ← []
     for from entries const e {
-        if fileio.directoriumne("src/" + e) ↦ bivalens {
-            dirs.appende(e)
+        if solum.is_directory("src/" + e) ↦ bool {
+            dirs.append(e)
         }
     }
-    return dirs.ordinata() ↦ list<string>
+    return dirs.sorted() ↦ list<string>
+}
+
+fn present_of(map<string, string> glossary) → map<string, bool> {
+    var map<string, bool> present ← empty
+    const list<string> keys ← glossary.keys()
+    for from keys const k {
+        present.put(k, true)
+    }
+    return present
+}
+
+fn glossary_has(map<string, bool> present, string key) → bool {
+    const bool ∪ null flag ← present[key]
+    if flag is null {
+        return false
+    }
+    return flag ↦ bool
+}
+
+fn die(string msg) → void {
+    consolum.warn_line(msg)
+    processus.exit_process(1)
+}
+
+fn substitute_holes(string text, map<string, string> glossary, map<string, bool> present, string area, string path) → string {
+    const int n ← text.length()
+    var string out ← ""
+    var int idx ← 0
+    while idx < n {
+        const int pos ← index_of(text, hole_open, idx)
+        if pos < 0 {
+            return out + text.slice(idx, n)
+        }
+        out ← out + text.slice(idx, pos)
+        const int stop ← index_of(text, brace_close, pos + 2)
+        if stop < 0 {
+            return out + text.slice(pos, n)
+        }
+        const string label ← text.slice(pos + 2, stop)
+        if is_hole_label(label) {
+            if glossary_has(present, label) ≡ false {
+                die("unknown glossary key " + label + " area=" + area + " path=" + path)
+            }
+            out ← out + (glossary[label] ↦ string)
+            idx ← stop + 1
+        } else {
+            out ← out + hole_open
+            idx ← pos + 2
+        }
+    }
+    if out.contains(hole_open) {
+        die("zero-residual leftover hole area=" + area + " path=" + path)
+    }
+    return out
+}
+
+fn mark_ebnf_keywords(string text, map<string, string> glossary, map<string, bool> present) → string {
+    const list<string> parts ← text.split(q)
+    const int n ← parts.length()
+    if n ≤ 1 {
+        return text
+    }
+    var string out ← ""
+    var int i ← 0
+    while i < n {
+        if (i - (i / 2) * 2) ≡ 0 {
+            out ← out + parts[i]
+        } else {
+            const string inner ← parts[i]
+            if glossary_has(present, inner) {
+                out ← out + q + (glossary[inner] ↦ string) + q
+            } else {
+                out ← out + q + inner + q
+            }
+        }
+        i ← i + 1
+    }
+    return out
+}
+
+fn mark_ident_keywords(string text, map<string, string> glossary, map<string, bool> present) → string {
+    if glossary_has(present, text) {
+        return glossary[text] ↦ string
+    }
+    var string out ← ""
+    var int i ← 0
+    const int n ← text.length()
+    while i < n {
+        if is_ident_start(ch(text, i)) {
+            var int j ← i + 1
+            while j < n {
+                if is_ident_continue(ch(text, j)) ≡ false {
+                    break
+                }
+                j ← j + 1
+            }
+            const string token ← text.slice(i, j)
+            if glossary_has(present, token) {
+                out ← out + (glossary[token] ↦ string)
+            } else {
+                out ← out + token
+            }
+            i ← j
+        } else {
+            out ← out + ch(text, i)
+            i ← i + 1
+        }
+    }
+    return out
+}
+
+fn is_even(int n) → bool {
+    return n ≡ (n / 2) * 2
+}
+
+fn fill_inline(string inner, map<string, string> glossary, map<string, bool> present, string path) → string {
+    if glossary_has(present, inner) {
+        return glossary[inner] ↦ string
+    }
+    var string out ← mark_ident_keywords(inner, glossary, present)
+    if out.contains(hole_open) {
+        out ← substitute_holes(out, glossary, present, "inline", path)
+    }
+    return out
+}
+
+fn process_inlines(string text, map<string, string> glossary, map<string, bool> present, string path) → string {
+    if text.contains(tick) ≡ false {
+        return text
+    }
+    if text.contains(tick + tick) ≡ false {
+        const list<string> parts ← text.split(tick)
+        const int n ← parts.length()
+        var string out ← ""
+        var int i ← 0
+        while i < n {
+            if is_even(i) {
+                out ← out + parts[i]
+            } else {
+                out ← out + tick + fill_inline(parts[i], glossary, present, path) + tick
+            }
+            i ← i + 1
+        }
+        return out
+    }
+    var string out ← ""
+    var int i ← 0
+    const int n ← text.length()
+    while i < n {
+        const int tick_at ← index_of(text, tick, i)
+        if tick_at < 0 {
+            out ← out + text.slice(i, n)
+            return out
+        }
+        if tick_at > i {
+            out ← out + text.slice(i, tick_at)
+        }
+        var int ticks ← 1
+        while tick_at + ticks < n and ch(text, tick_at + ticks) ≡ tick {
+            ticks ← ticks + 1
+        }
+        const string closer ← text.slice(tick_at, tick_at + ticks)
+        const int close ← index_of(text, closer, tick_at + ticks)
+        if close < 0 {
+            out ← out + text.slice(tick_at, n)
+            return out
+        }
+        const string inner ← text.slice(tick_at + ticks, close)
+        out ← out + closer + fill_inline(inner, glossary, present, path) + closer
+        i ← close + ticks
+    }
+    return out
+}
+
+fn apply_glossary(string text, map<string, string> glossary, map<string, bool> present, string path) → string {
+    const string delim ← "\n" + fence
+    const list<string> chunks ← text.split(delim)
+    const int n ← chunks.length()
+    if n ≤ 1 {
+        return process_inlines(text, glossary, present, path)
+    }
+    var string out ← ""
+    var int i ← 0
+    while i < n {
+        if is_even(i) {
+            out ← out + process_inlines(chunks[i], glossary, present, path)
+        } else {
+            const string chunk ← chunks[i]
+            const int nl ← index_of(chunk, "\n", 0)
+            var string info ← chunk
+            var string inner ← ""
+            if nl < 0 {
+                info ← chunk.trim()
+            } else {
+                info ← chunk.slice(0, nl).trim()
+                inner ← chunk.slice(nl + 1, chunk.length())
+            }
+            var string lang ← info
+            const int sp ← index_of(info, " ", 0)
+            if sp ≥ 0 {
+                lang ← info.slice(0, sp)
+            }
+            if lang ≡ "ebnf" {
+                inner ← mark_ebnf_keywords(inner, glossary, present)
+                if inner.contains(hole_open) {
+                    inner ← substitute_holes(inner, glossary, present, "ebnf", path)
+                }
+            }
+            out ← out + delim + info + "\n" + inner
+            if i + 1 < n {
+                out ← out + delim
+            }
+        }
+        i ← i + 1
+    }
+    return out
+}
+
+fn stamp_locale_banner(string text, string locale) → string {
+    const string replacement ← «This file is generated from `docs/grammar/source.fg` and `docs/grammar/glossary.» + locale + «.toml`;
+hand edits fail the locale-render gate.»
+    if text.contains(identity_banner) ≡ false {
+        consolum.warn_line("identity banner missing; cannot stamp locale render")
+        processus.exit_process(1)
+    }
+    return text.replace(identity_banner, replacement)
+}
+
+fn load_spine(string jsonl_path) → map<string, bool> {
+    const string raw ← solum.read_file(jsonl_path) ↦ string
+    const list<string> lines ← raw.split("\n")
+    var map<string, bool> spine ← empty
+    for from lines const line {
+        if line.length() ≡ 0 {
+            continue
+        }
+        const map<string, value> rec ← json.parse(line) ↦ map<string, value>
+        const string id ← rec["id"] ↦ string
+        spine.put(id, true)
+        const list<value> kws ← rec["keywords"] ↦ list<value>
+        var int i ← 0
+        while i < kws.length() {
+            const string kw ← kws[i] ↦ string
+            spine.put(kw, true)
+            i ← i + 1
+        }
+    }
+    return spine
+}
+
+fn identity_map(map<string, bool> spine) → map<string, string> {
+    var map<string, string> out ← empty
+    const list<string> keys ← spine.keys()
+    for from keys const k {
+        out.put(k, k)
+    }
+    return out
+}
+
+fn load_glossary(string path, map<string, bool> spine) → map<string, string> {
+    const map<string, value> doc ← toml.parse(solum.read_file(path) ↦ string) ↦ map<string, value>
+    const map<string, value> table ← doc["keywords"] ↦ map<string, value>
+    const list<string> keys ← table.keys()
+    var map<string, string> mapping ← empty
+    var string extras ← ""
+    for from keys const k {
+        if has_flag(spine, k) ≡ false {
+            if extras.length() ≡ 0 {
+                extras ← k
+            } else {
+                extras ← extras + ", " + k
+            }
+        }
+        mapping.put(k, table[k] ↦ string)
+    }
+    if extras.length() > 0 {
+        consolum.warn_line(path + ": glossary key(s) not in jsonl production/keyword spine: " + extras)
+        processus.exit_process(1)
+    }
+    return mapping
+}
+
+fn ensure_parent(string path) → void {
+    const string parent ← solum.parent(path) ↦ string
+    if parent.length() ≡ 0 {
+        return
+    }
+    if (solum.is_directory(parent) ↦ bool) ≡ false {
+        solum.create_dir(parent)
+    }
+}
+
+fn usage() → void {
+    print "usage: generate-grammar [--all-locales] [--locale <name>]... [--jsonl PATH] [--identity PATH] [--glossary-dir PATH]"
 }
 
 main {
-    const list<string> argv ← processus.argumenta() ↦ list<string>
-    var bool use_all ← falsum
-    var bool pending_locale ← falsum
+    const list<string> argv ← processus.argv() ↦ list<string>
+    var bool use_all ← false
+    var bool pending_locale ← false
+    var bool pending_jsonl ← false
+    var bool pending_identity ← false
+    var bool pending_glossary_dir ← false
     var list<string> locales ← []
-    for from argv const a {
+    var string jsonl_path ← "../faber/docs/grammar/grammar.jsonl"
+    var string identity_path ← "../faber/docs/EBNF.md"
+    var string glossary_dir ← "../faber/docs/grammar"
+    var int ai ← 0
+    while ai < argv.length() {
+        const string a ← argv[ai]
         if pending_locale {
-            locales.appende(a)
-            pending_locale ← falsum
+            locales.append(a)
+            pending_locale ← false
+        } elif pending_jsonl {
+            jsonl_path ← a
+            pending_jsonl ← false
+        } elif pending_identity {
+            identity_path ← a
+            pending_identity ← false
+        } elif pending_glossary_dir {
+            glossary_dir ← a
+            pending_glossary_dir ← false
         } elif a ≡ "--all-locales" {
-            use_all ← verum
+            use_all ← true
         } elif a ≡ "--locale" {
-            pending_locale ← verum
-        } elif a.initium("--locale=") {
-            locales.appende(a.sectio(9, a.longitudo()))
+            pending_locale ← true
+        } elif a.starts_with("--locale=") {
+            locales.append(a.slice(9, a.length()))
+        } elif a ≡ "--jsonl" {
+            pending_jsonl ← true
+        } elif a ≡ "--identity" {
+            pending_identity ← true
+        } elif a ≡ "--glossary-dir" {
+            pending_glossary_dir ← true
         } elif a ≡ "-h" or a ≡ "--help" {
-            print "usage: generate-grammar [--all-locales] [--locale <name>]..."
-            processus.exi(0)
+            usage()
+            processus.exit_process(0)
         } else {
-            consolum.mone("error: unrecognized arguments: " + a)
-            processus.exi(2)
+            consolum.warn_line("error: unrecognized arguments: " + a)
+            processus.exit_process(2)
         }
+        ai ← ai + 1
     }
-    if pending_locale {
-        consolum.mone("error: argument --locale: expected one argument")
-        processus.exi(2)
+    if pending_locale or pending_jsonl or pending_identity or pending_glossary_dir {
+        consolum.warn_line("error: argument expected a value")
+        processus.exit_process(2)
     }
     if use_all {
         locales ← locale_names()
     }
-    if locales.longitudo() ≡ 0 {
-        locales.appende("en-US")
+    if locales.length() ≡ 0 {
+        locales.append("en-US")
     }
+    if (solum.exists(jsonl_path) ↦ bool) ≡ false {
+        consolum.warn_line("generate-grammar: missing grammar.jsonl: " + jsonl_path)
+        processus.exit_process(1)
+    }
+    if (solum.exists(identity_path) ↦ bool) ≡ false {
+        consolum.warn_line("generate-grammar: missing identity EBNF: " + identity_path)
+        processus.exit_process(1)
+    }
+    const map<string, bool> spine ← load_spine(jsonl_path)
+    const string identity ← solum.read_file(identity_path) ↦ string
     var int written ← 0
     for from locales const locale {
-        var string src ← "../faber/docs/EBNF.md"
+        var map<string, string> glossary ← identity_map(spine)
+        var string path_label ← jsonl_path
         if locale ≠ "en-US" {
-            src ← "generator/grammar/EBNF." + locale + ".md"
+            const string gpath ← glossary_dir + "/glossary." + locale + ".toml"
+            if (solum.exists(gpath) ↦ bool) ≡ false {
+                consolum.warn_line("  warning: no grammar source for " + locale + " (" + gpath + ")")
+                continue
+            }
+            glossary ← load_glossary(gpath, spine)
+            path_label ← gpath
         }
-        if fileio.exstat(src) ↦ bivalens ≡ falsum {
-            consolum.mone("  warning: no grammar source for " + locale + " (" + src + ")")
-            continue
+        const map<string, bool> present ← present_of(glossary)
+        var string rendered ← apply_glossary(identity, glossary, present, path_label)
+        if locale ≠ "en-US" {
+            rendered ← stamp_locale_banner(rendered, locale)
         }
-        const string raw ← read_text(src)
-        const list<string> lines ← raw.divide("\n") ↦ list<string>
+        const list<string> lines ← rendered.split("\n")
         const string body ← transform(lines, locale ≡ "en-US")
         const string page ← render_page(body, locale)
         const string out ← "src/" + locale + "/reference/grammar.md"
-        const string parent ← fileio.parens(out) ↦ string
-        if fileio.directoriumne(parent) ↦ bivalens ≡ falsum {
-            fileio.crea(parent)
-        }
-        fileio.scribe(out, page)
-        const list<string> page_lines ← page.divide("\n") ↦ list<string>
-        const int line_count ← page_lines.longitudo() - 1
+        ensure_parent(out)
+        solum.write_file(out, page)
+        const list<string> page_lines ← page.split("\n")
+        const int line_count ← page_lines.length() - 1
         print "  grammar: " + out + " (" + "§"(line_count) + " lines)"
         written ← written + 1
     }
     if written ≡ 0 {
-        consolum.mone("ERROR: no grammar page written")
-        processus.exi(1)
+        consolum.warn_line("ERROR: no grammar page written")
+        processus.exit_process(1)
     }
 }
