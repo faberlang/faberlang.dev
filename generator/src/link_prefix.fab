@@ -8,7 +8,7 @@
 # Non-content paths (/llms.txt, /agents/, /.well-known/, /llms-full.txt,
 # https://...) pass through unchanged.
 
-importa ex "./string_util" privata * ut su
+importa ex "./string_util" * ut su
 
 
 functio est_content_path(textus href) → bivalens {

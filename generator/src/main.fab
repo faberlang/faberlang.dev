@@ -6,11 +6,11 @@
 # norma:solum for source file reads, so shell wrappers only build and invoke
 # the compiled generator.
 
-importa ex "norma:solum" privata solum
-importa ex "./types" privata * ut types_mod
-importa ex "./html" privata * ut html_mod
-importa ex "./string_util" privata * ut su
-importa ex "./corpus" privata * ut corpus_mod
+importa ex "norma:solum" solum
+importa ex "./types" * ut types_mod
+importa ex "./html" * ut html_mod
+importa ex "./string_util" * ut su
+importa ex "./corpus" * ut corpus_mod
 
 # Build a single page from a Markdown source string.
 functio genera(textus source, textus iter, textus site_locale, textus reader_locale, textus stylesheet_link) → textus {

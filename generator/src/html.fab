@@ -4,11 +4,11 @@
 # component vocabulary. The emitter cannot write CSS.
 # New chrome must use document_ir.Node builders and doc_mod.html().
 
-importa ex "./types" privata * ut types_mod
-importa ex "./markdown" privata * ut markdown_mod
-importa ex "./document_ir" privata * ut doc_mod
-importa ex "./link_prefix" privata * ut lp
-importa ex "./string_util" privata * ut su
+importa ex "./types" * ut types_mod
+importa ex "./markdown" * ut markdown_mod
+importa ex "./document_ir" * ut doc_mod
+importa ex "./link_prefix" * ut lp
+importa ex "./string_util" * ut su
 
 functio a(textus href, textus label) → doc_mod.Node {
     redde doc_mod.leaf("a", [doc_mod.attr("href", href)], label)

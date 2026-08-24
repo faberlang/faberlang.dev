@@ -17,10 +17,10 @@
 # This module builds document_ir.Node values. The document_ir serializer is
 # the single place that writes HTML tags for the Markdown path.
 
-importa ex "./string_util" privata * ut su
-importa ex "./span" privata * ut span_mod
-importa ex "./document_ir" privata * ut doc_mod
-importa ex "./link_prefix" privata * ut lp
+importa ex "./string_util" * ut su
+importa ex "./span" * ut span_mod
+importa ex "./document_ir" * ut doc_mod
+importa ex "./link_prefix" * ut lp
 
 
 # A heading split into its title text and optional anchor id.

@@ -14,7 +14,7 @@ locale = "en"
 # yields exactly the same sorted locale list. Redirect stubs (retired paths
 # carrying a meta refresh + noindex) are skipped; so is any 404.html.
 #
-# Execution surface (pinned): the released faber binary via `faber script`,
+# Execution surface (pinned): the released faber binary via `faber run`,
 # staged outside every faber.toml tree by the launcher (generator/scripts/
 # generate-sitemap). FABER_BIN overrides the binary; the PATH `faber` (1.3.0)
 # is never a valid surface. Recursive per-locale .html walks shell out to
@@ -24,9 +24,9 @@ locale = "en"
 # Exit contract (same as the Python original): 0 on success, 2 when
 # <dist_dir> is not a directory.
 
-import from "faber:solum" private fileio
-import from "faber:processus" private processus
-import from "faber:consolum" private consolum
+import from "faber:solum" fileio
+import from "faber:processus" processus
+import from "faber:consolum" consolum
 
 # XML-escape a URL value exactly like xml.sax.saxutils.escape (entity table:
 # & < > " '). Replacements run in that order so the entities introduced never

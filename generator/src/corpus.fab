@@ -3,12 +3,12 @@
 # The shell wrapper owns filesystem traversal. This module owns the corpus
 # frontmatter model and the generated Markdown/HTML contract.
 
-importa ex "./frontmatter" privata * ut fm
-importa ex "./html" privata * ut html_mod
-importa ex "./string_util" privata * ut su
-importa ex "./types" privata * ut types_mod
-importa ex "./document_ir" privata * ut doc_mod
-importa ex "./link_prefix" privata * ut lp
+importa ex "./frontmatter" * ut fm
+importa ex "./html" * ut html_mod
+importa ex "./string_util" * ut su
+importa ex "./types" * ut types_mod
+importa ex "./document_ir" * ut doc_mod
+importa ex "./link_prefix" * ut lp
 
 genus CorpusExample {
     textus path
@@ -64,7 +64,7 @@ functio parse_example(textus record) → CorpusExample {
         aliases = types_mod.field_vale(fields, "aliases", "[]"),
         canonical = canonical ≡ "true",
         source = split.body,
-        expected = expected,
+        expected = expected
     }
 }
 
@@ -173,7 +173,7 @@ functio genera_corpus_markdown(textus term, textus bundle) → textus {
         aliases = primary.aliases,
         canonical = primary.canonical,
         source = primary.source,
-        expected = primary.expected,
+        expected = primary.expected
     }
     redde su.recide(corpus_markdown(term, page_primary, examples))
 }
@@ -184,7 +184,7 @@ functio genera_corpus(textus term, textus bundle, textus site_locale, textus rea
         "corpus/" + term,
         markdown,
         site_locale,
-        reader_locale,
+        reader_locale
     )
     redde html_mod.genera_paginam(page, stylesheet)
 }

@@ -12,7 +12,11 @@ set -euo pipefail
 # ${TMPDIR:-/tmp}.
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT"
-FABER_BIN="${FABER_BIN:-$(cd "$ROOT/.." && pwd)/faber/target/debug/faber}"
+FABER_WORKSPACE="${FABER_LIBRARY_HOME:-$(cd "$ROOT/.." && pwd)}"
+if [[ ! -x "$FABER_WORKSPACE/radix/target/debug/faber" && -x "$ROOT/../../radix/target/debug/faber" ]]; then
+    FABER_WORKSPACE="$(cd "$ROOT/../.." && pwd)"
+fi
+FABER_BIN="${FABER_BIN:-$FABER_WORKSPACE/radix/target/debug/faber}"
 export FABER_BIN
 if [[ ! -x "$FABER_BIN" ]]; then
     echo "generate-grammar: released faber binary not found: $FABER_BIN (set FABER_BIN)" >&2

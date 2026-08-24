@@ -8,8 +8,8 @@
 #
 # See CONTENT-PLAN.md § Machine contracts §4.
 
-importa ex "./string_util" privata * ut su
-importa ex "./document_ir" privata * ut doc_mod
+importa ex "./string_util" * ut su
+importa ex "./document_ir" * ut doc_mod
 
 # The 37 mappable keywords. These are the Latin spellings that have
 # localized forms in reader-locale packs (th-TH, ar, hi, vi, zh-Hans,

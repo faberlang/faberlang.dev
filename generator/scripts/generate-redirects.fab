@@ -16,13 +16,13 @@ locale = "en"
 # the source locale directory is missing (a warning, not a failure) — and 2
 # on usage errors.
 #
-# Execution surface (pinned): the released faber binary via `faber script`,
+# Execution surface (pinned): the released faber binary via `faber run`,
 # staged outside every faber.toml tree by the launcher (generator/scripts/
 # generate-redirects). The recursive .html walk shells out to `find`.
 
-import from "faber:solum" private fileio
-import from "faber:processus" private processus
-import from "faber:consolum" private consolum
+import from "faber:solum" fileio
+import from "faber:processus" processus
+import from "faber:consolum" consolum
 
 const string base_url ← "https://faberlang.dev"
 

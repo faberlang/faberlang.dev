@@ -6,8 +6,8 @@ locale = "la"
 # Not a Stage 7 migration — document_ir stays the site serializer.
 # This file is not imported by main.fab.
 
-importa ex "./document_ir" privata * ut speculum
-importa ex "tela:tela" privata * ut tela
+importa ex "./document_ir" * ut speculum
+importa ex "tela:tela" * ut tela
 
 functio speculum_paragraphus() → textus {
     fixum speculum.Node nodus ← speculum.leaf("p", vacua, "salve & vale")
