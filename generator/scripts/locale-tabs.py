@@ -9,7 +9,7 @@ undersells it. So each example becomes the same tabbed card the landing hero
 uses, carrying all eight reader surfaces.
 
 One base source, eight renderings. The Latin fence in the Markdown is the
-authority; every other panel is `faber format --locale <X>` output. Nobody
+authority; every other panel is `faber convert --to <X>` output. Nobody
 hand-writes Thai or Arabic Faber, and a reader-pack change re-renders them all.
 
 Two subcommands, mirroring diagrams.py:
@@ -22,7 +22,7 @@ the cache, so a build without `faber` still produces a complete site — panels
 simply stay as the plain Latin block they started as.
 
 A fence marked `mode=package` is left alone: it is one file of a multi-file
-package, so `faber format` cannot resolve its siblings and there is nothing
+package, so `faber convert` cannot resolve its siblings and there is nothing
 honest to render. Those blocks stay as the plain source they were.
 
 Usage:
@@ -111,7 +111,7 @@ def find_faber() -> str | None:
 def stage_packs(faber: str) -> bool:
     """Make reader packs resolvable beside the faber binary.
 
-    `faber format --locale` looks for share/faber/locale/<X>/pack.toml relative
+    `faber convert --to` looks for share/faber/locale/<X>/pack.toml relative
     to its own executable. A workspace build has no such directory, so every
     locale fails with a pack-not-found error and the transcode silently
     produces nothing. The packs themselves live in the radix tree; link them
@@ -140,7 +140,7 @@ def transcode(faber: str, source: str, locale: str) -> str | None:
     tmp.write_text(source, encoding="utf-8")
     try:
         proc = subprocess.run(
-            [faber, "format", "--locale", locale, "--stdout", str(tmp)],
+            [faber, "convert", "--to", locale, "--stdout", str(tmp)],
             text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
         )
     finally:
@@ -285,7 +285,7 @@ def card(key: str, index: int) -> str | None:
         bodies += (
             f'<div class="fdt-panel{" active" if i == 0 else ""}" id="{pid}" '
             f'role="tabpanel" aria-labelledby="{root}-t-{loc["id"]}">'
-            f'<div class="fdt-panel-label"><code>faber format --locale '
+            f'<div class="fdt-panel-label"><code>faber convert --to '
             f'{esc(loc["id"])}</code> <span class="fdt-note">— '
             f'{esc(loc["note"])}</span></div>'
             f'<pre{script_class}{direction}>'

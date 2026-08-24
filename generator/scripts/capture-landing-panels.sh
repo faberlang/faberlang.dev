@@ -33,7 +33,7 @@ FABER="${WORKSPACE}/faber/target/release/faber"
 
 echo "toolchain: $("$RADIX" --version) at ${RADIX}"
 echo "toolchain: $("$FABER" --version) at ${FABER}"
-# `faber format --locale` resolves reader packs relative to its own binary, and
+# `faber convert --to` resolves reader packs relative to its own binary, and
 # a workspace build has no share/faber/locale/. Without this every locale panel
 # fails and the committed captures quietly stay at whatever the toolchain
 # produced last time — which is how tensor/vacua sat untranslated in the
@@ -100,7 +100,7 @@ cp "${WORK}/demo/src/main.fab" "${OUT}/targets/source.fab"
 # `en` is the English reader surface; `la` is canonical Faber. The rest are
 # the shipped human reader packs.
 #
-# NOTE: `faber format --reader-locale la` fails pack validation on faber 1.4.0,
+# NOTE: `faber convert --to la` fails pack validation on faber 1.4.0,
 # so canonical Latin comes from `"$RADIX" emit -t faber` (canonical re-emission),
 # which produces the same surface by a different path. Revisit once the `la`
 # pack validates.
@@ -109,7 +109,7 @@ echo "reader locales:"
 echo "  la (via radix emit -t faber)"
 
 for loc in en th-TH zh-Hans zh-Hant vi ar hi; do
-    if "$FABER" format --locale "$loc" --stdout "${WORK}/demo" \
+    if "$FABER" convert --to "$loc" --stdout "${WORK}/demo" \
         > "${OUT}/locales/${loc}.fab" 2>/dev/null \
         && [ -s "${OUT}/locales/${loc}.fab" ]; then
         echo "  ${loc}"

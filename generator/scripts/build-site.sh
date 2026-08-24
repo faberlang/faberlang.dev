@@ -43,12 +43,18 @@ FABER="${FABER:-faber}"
 # pin separately when reader packs are newer than the installed faber's
 # pack validator (e.g. FABER_LOCALIZE=path/to/workspace-faber).
 FABER_LOCALIZE="${FABER_LOCALIZE:-$FABER}"
-# Rendering source INTO a reader locale is `faber format --locale`; radix
-# cannot do it (`emit -t faber` is canonical Latin by definition). Prefer the
-# workspace build, which is current with the packs.
+# Rendering source INTO a reader locale is `faber convert --to`; radix cannot
+# do it (`emit -t faber` is canonical Latin by definition). Prefer the
+# workspace build, which is current with the packs, but fall back to the
+# resolving binary when that build is absent or does not support convert.
 WORKSPACE_FABER="${WORKSPACE_DIR}/faber/target/release/faber"
-if [ -x "$WORKSPACE_FABER" ] && [ "${FABER_LOCALIZE}" = "$FABER" ]; then
+if [ -x "$WORKSPACE_FABER" ] && [ "${FABER_LOCALIZE}" = "$FABER" ] \
+    && "$WORKSPACE_FABER" convert --help >/dev/null 2>&1; then
     FABER_LOCALIZE="$WORKSPACE_FABER"
+fi
+if ! "$FABER_LOCALIZE" convert --help >/dev/null 2>&1; then
+    echo "ERROR: ${FABER_LOCALIZE} does not support 'faber convert'" >&2
+    exit 1
 fi
 BUILD_DIR="${GENERATOR_DIR}/target/faber"
 
