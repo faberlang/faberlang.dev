@@ -7,18 +7,13 @@ render-llms.py) and emits, per site locale, a compact JSON array:
     [{"t": term, "d": display, "k": kind, "c": category, "s": summary,
       "a": [aliases]}]
 
-"d" is the locale's pack spelling for the term (from
-stdlib/locale/{reader_locale}/pack.toml [keywords]/[types]); it is omitted
-when the pack has no mapping or the mapping is Latin-identical, so the
-client falls back to the canonical Latin "t". As packs fill in, rebuilding
-regenerates richer indexes — no schema change.
+"d" is the locale pack slug used as the corpus filename
+(/{site_locale}/corpus/{encodeURIComponent(d)}.html). It is omitted when
+the slug equals the Latin identity "t", so the client falls back to "t".
+Keyword pages prefer [keywords] then [types]; type pages do the reverse.
 
 Also emits the locale-less base search-index.json (no "d"), which the
 client falls back to if a per-locale file is missing.
-
-Hrefs stay locale-prefixed Latin-term pages — built client-side as
-/{site_locale}/corpus/{encodeURIComponent(term)}.html, matching the corpus
-renderer (see render-llms.py corpus_page).
 
 Usage:
     generate-search-index.py --corpus <radix/corpus> --output-dir <dist>
@@ -37,6 +32,8 @@ try:
     import tomllib
 except ModuleNotFoundError:  # pragma: no cover - Python < 3.11 fallback
     import tomli as tomllib  # type: ignore
+
+from corpus_locale import assign_slugs, default_reader_root, load_pack
 
 
 def parse_frontmatter(path: Path) -> dict[str, object] | None:
@@ -57,19 +54,6 @@ def load_toml(path: Path) -> dict:
         return tomllib.load(f)
 
 
-def pack_display_map(pack_path: Path) -> dict[str, str]:
-    """Latin term → localized spelling from a reader pack."""
-    if not pack_path.is_file():
-        return {}
-    data = load_toml(pack_path)
-    display: dict[str, str] = {}
-    for section in ("keywords", "types"):
-        for latin, native in data.get(section, {}).items():
-            if isinstance(native, str) and native and native != latin:
-                display[latin] = native
-    return display
-
-
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--corpus", required=True, type=Path)
@@ -83,7 +67,7 @@ def main() -> None:
     if args.locales is None:
         args.locales = generator_dir / "locales.toml"
     if args.reader_root is None:
-        args.reader_root = generator_dir.parent.parent / "radix" / "stdlib" / "locale"
+        args.reader_root = default_reader_root()
 
     canonical: dict[str, dict[str, object]] = {}
     for path in sorted(args.corpus.rglob("*.fab")):
@@ -104,12 +88,13 @@ def main() -> None:
     terms = sorted(canonical, key=str.casefold)
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
-    def emit(path: Path, display: dict[str, str]) -> None:
+    def emit(path: Path, slugs: dict[str, str]) -> None:
         entries = []
         for term in terms:
             entry = dict(canonical[term])
-            if term in display:
-                entry["d"] = display[term]
+            slug = slugs.get(term, term)
+            if slug != term:
+                entry["d"] = slug
             entries.append(entry)
         path.write_text(
             json.dumps(entries, ensure_ascii=False, separators=(",", ":")) + "\n",
@@ -119,14 +104,16 @@ def main() -> None:
     # Base (locale-less) index: canonical Latin only.
     emit(args.output_dir / "search-index.json", {})
 
-    # Per-site-locale indexes with pack display spellings.
+    # Per-site-locale indexes with pack slugs (same rule as the corpus renderer).
     registry = load_toml(args.locales).get("locales", {})
+    kinds = [(term, str(canonical[term]["k"])) for term in terms]
     for site, entry in sorted(registry.items()):
         reader_loc = entry.get("reader_locale", site)
-        display = pack_display_map(args.reader_root / reader_loc / "pack.toml")
+        slugs, _collisions = assign_slugs(kinds, load_pack(args.reader_root, reader_loc))
         out = args.output_dir / f"search-index.{site}.json"
-        emit(out, display)
-        print(f"  {out.name}: {len(terms)} terms, {sum(1 for t in terms if t in display)} localized spellings")
+        emit(out, slugs)
+        remapped = sum(1 for term in terms if slugs.get(term, term) != term)
+        print(f"  {out.name}: {len(terms)} terms, {remapped} localized slugs")
 
     print(f"generated {len(terms)} canonical terms → {args.output_dir}")
 

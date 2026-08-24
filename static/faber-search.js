@@ -5,10 +5,10 @@
  * (generated at build time from corpus frontmatter). Without JS the box
  * simply never appears — the renderbar is unchanged.
  *
- * Index entry: {t: term, k: kind, c: category, s: summary, a: [aliases]}.
+ * Index entry: {t: term, d?: slug, k: kind, c: category, s: summary, a: [aliases]}.
  * Hrefs are built per current page locale as
- *   /{site_locale}/corpus/{encodeURIComponent(term)}.html
- * matching the corpus renderer's literal-term filenames.
+ *   /{site_locale}/corpus/{encodeURIComponent(d || t)}.html
+ * matching the corpus renderer's pack-localized filenames.
  */
 (function () {
   var box = document.querySelector('[data-search]');
@@ -39,8 +39,12 @@
       .catch(function () { index = []; });
   }
 
-  function hrefFor(term) {
-    return '/' + locale + '/corpus/' + encodeURIComponent(term) + '.html';
+  function slugFor(entry) {
+    return (entry && entry.d) ? entry.d : (entry ? entry.t : '');
+  }
+
+  function hrefFor(entry) {
+    return '/' + locale + '/corpus/' + encodeURIComponent(slugFor(entry)) + '.html';
   }
 
   /* Rank: term prefix > display/alias prefix > term substring > display/alias substring. */
@@ -80,7 +84,7 @@
       li.setAttribute('role', 'option');
       li.className = i === active ? 'active' : '';
       var a = document.createElement('a');
-      a.href = hrefFor(m.e.t);
+      a.href = hrefFor(m.e);
       var term = document.createElement('code');
       term.textContent = m.e.d || m.e.t;
       a.appendChild(term);
@@ -132,7 +136,7 @@
       e.preventDefault();
     } else if (e.key === 'Enter') {
       if (open && active >= 0 && matches[active]) {
-        window.location.href = hrefFor(matches[active].e.t);
+        window.location.href = hrefFor(matches[active].e);
         e.preventDefault();
       }
     } else if (e.key === 'Escape') {

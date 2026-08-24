@@ -117,8 +117,11 @@ Before editing, inspect:
   sync intelligence lives in separate, human-run tooling.
 - Code fences always regenerate from `en-US` via `faber emit`; the LLM never
   touches code (Decision 8).
-- Stable Latin slugs (Decision 2): paths are locale-invariant; only prose
-  translates; `title` is free prose, never slugified.
+- Corpus term pages use the locale's reader-pack display slug (Decision 2
+  amended by operator ruling `6a563c35`, 2026-08-24): for `en-US`,
+  `functio` is written as `fn`; Latin identity keys remain static alias
+  redirects, and slug collisions fall back to the Latin key with a build
+  warning. Page `title` remains free prose and is never slugified.
 - The generator cannot write CSS (Decision 14); one stylesheet.
 - Prose translation is never build-time or automatic. Drift must stay visible
   (Decision 8): the oracle reports, the human commits; no silent regeneration.

@@ -19,12 +19,12 @@ functio genera(textus source, textus iter, textus site_locale, textus reader_loc
 }
 
 # Build one corpus term page from a shell-provided record bundle.
-functio genera_corpus(textus term, textus bundle, textus site_locale, textus reader_locale, textus stylesheet_link) → textus {
-    redde corpus_mod.genera_corpus(term, bundle, site_locale, reader_locale, stylesheet_link)
+functio genera_corpus(textus term, textus bundle, textus site_locale, textus reader_locale, textus stylesheet_link, textus display) → textus {
+    redde corpus_mod.genera_corpus(term, bundle, site_locale, reader_locale, stylesheet_link, display)
 }
 
-functio genera_corpus_markdown(textus term, textus bundle) → textus {
-    redde corpus_mod.genera_corpus_markdown(term, bundle)
+functio genera_corpus_markdown(textus term, textus bundle, textus display) → textus {
+    redde corpus_mod.genera_corpus_markdown(term, bundle, display)
 }
 
 # Build the static alias bridge for a non-canonical term.
@@ -56,7 +56,7 @@ functio operandum(lista<textus> operands, numerus index, textus defectus) → te
 }
 
 functio usus() → textus {
-    redde "Usage: speculum-gen <source.md> <site_locale> [reader_locale] [stylesheet] | --page <iter> <source.md> <site_locale> [reader_locale] [stylesheet] | --corpus <term> <bundle> <site_locale> [reader_locale] [stylesheet] | --corpus-markdown <term> <bundle> | --alias <alias> <canonical> <site_locale> [stylesheet]"
+    redde "Usage: speculum-gen <source.md> <site_locale> [reader_locale] [stylesheet] | --page <iter> <source.md> <site_locale> [reader_locale] [stylesheet] | --corpus <term> <bundle> <site_locale> [reader_locale] [stylesheet] [display] | --corpus-markdown <term> <bundle> [display] | --alias <alias> <canonical> <site_locale> [stylesheet]"
 }
 
 functio lege_paginam(textus source_path, textus iter, textus site_locale, textus reader_locale, textus stylesheet) → textus {
@@ -75,13 +75,13 @@ functio ex_operands(lista<textus> operands) → textus {
     }
     si mode ≡ "--corpus-markdown" {
         si operands.longitudo() < 3 ergo redde "missing corpus term or bundle"
-        redde genera_corpus_markdown(operands[1], solum.lege<textus>(operands[2]))
+        redde genera_corpus_markdown(operands[1], solum.lege<textus>(operands[2]), operandum(operands, 3, ""))
     }
     si mode ≡ "--corpus" {
         si operands.longitudo() < 3 ergo redde "missing corpus term or bundle"
         fixum textus site_locale ← operandum(operands, 3, "en-US")
         fixum textus reader_locale ← operandum(operands, 4, site_locale)
-        redde genera_corpus(operands[1], solum.lege<textus>(operands[2]), site_locale, reader_locale, operandum(operands, 5, "/speculum.css"))
+        redde genera_corpus(operands[1], solum.lege<textus>(operands[2]), site_locale, reader_locale, operandum(operands, 5, "/speculum.css"), operandum(operands, 6, ""))
     }
     si mode ≡ "--alias" {
         si operands.longitudo() < 3 ergo redde "missing alias or canonical term"

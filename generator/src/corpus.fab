@@ -124,6 +124,11 @@ functio aliases_line(textus raw) → textus {
     redde result + "\n\n"
 }
 
+functio visum_titulus(textus term, textus display) → textus {
+    si display.longitudo() > 0 ergo redde display
+    redde term
+}
+
 functio corpus_markdown(textus term, CorpusExample primary, lista<CorpusExample> examples) → textus {
     fixum textus aliases ← aliases_line(primary.aliases)
     varia textus markdown ← "+++\ntitle = \"§\"\nsection = \"corpus\"\nsources = [\"§\"]\n+++\n\n§\n\n§**Syntax:** `§`\n\n## Category\n\n`§`\n\n## Related\n\n§\n\n## Examples\n\n"(term, primary.path, primary.summary, aliases, primary.syntax, primary.category, related_links(primary.related))
@@ -135,7 +140,7 @@ functio corpus_markdown(textus term, CorpusExample primary, lista<CorpusExample>
     redde markdown
 }
 
-functio genera_corpus_markdown(textus term, textus bundle) → textus {
+functio genera_corpus_markdown(textus term, textus bundle, textus display) → textus {
     fixum lista<textus> records ← su.divide(bundle, "\n§§CORPUS_RECORD§§\n")
     varia lista<CorpusExample> examples ← vacua
     varia textus summary ← ""
@@ -175,13 +180,13 @@ functio genera_corpus_markdown(textus term, textus bundle) → textus {
         source = primary.source,
         expected = primary.expected
     }
-    redde su.recide(corpus_markdown(term, page_primary, examples))
+    redde su.recide(corpus_markdown(visum_titulus(term, display), page_primary, examples))
 }
 
-functio genera_corpus(textus term, textus bundle, textus site_locale, textus reader_locale, textus stylesheet) → textus {
-    fixum textus markdown ← genera_corpus_markdown(term, bundle)
+functio genera_corpus(textus term, textus bundle, textus site_locale, textus reader_locale, textus stylesheet, textus display) → textus {
+    fixum textus markdown ← genera_corpus_markdown(term, bundle, display)
     fixum types_mod.Pagina page ← types_mod.aedifica_paginam(
-        "corpus/" + term,
+        "corpus/" + visum_titulus(term, display),
         markdown,
         site_locale,
         reader_locale
@@ -221,5 +226,11 @@ probandum "corpus term page" tag "corpus" {
         fixum textus html ← genera_alias_redirect("assert", "adfirma", "en-US", "/speculum.css")
         adfirma su.initium_index(html, "url=/en-US/corpus/adfirma.html") ≥ 0
         adfirma su.initium_index(html, "rel=\"canonical\"") ≥ 0
+    }
+
+    proba "alias redirects can target a localized slug" {
+        fixum textus html ← genera_alias_redirect("functio", "fn", "en-US", "/speculum.css")
+        adfirma su.initium_index(html, "url=/en-US/corpus/fn.html") ≥ 0
+        adfirma su.initium_index(html, "https://faberlang.dev/en-US/corpus/fn.html") ≥ 0
     }
 }

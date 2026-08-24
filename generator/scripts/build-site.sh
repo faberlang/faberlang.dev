@@ -363,7 +363,10 @@ if [ "$FULL_SITE" = true ]; then
         smoke_contains "${OUTPUT_DIR}/robots.txt" "Sitemap:" "robots.txt"
         smoke_contains "${OUTPUT_DIR}/robots.txt" "Allow: /" "robots allow all"
         smoke_contains "${OUTPUT_DIR}/search-index.json" '"t":"redde"' "search index dataset"
+        smoke_contains "${OUTPUT_DIR}/search-index.en-US.json" '"d":"fn"' "search index English slugs"
         smoke_contains "${OUTPUT_DIR}/search-index.zh-Hans.json" '"d":"函数"' "search index zh-Hans spellings"
+        smoke_contains "${OUTPUT_DIR}/en-US/corpus/fn.html" "<title>fn — Faber</title>" "localized corpus fn page"
+        smoke_contains "${OUTPUT_DIR}/en-US/corpus/functio.html" "url=/en-US/corpus/fn.html" "latin corpus identity redirects"
         # IA restructure: the five journey sections must all render
         for sec in language toolchain libraries reference; do
             smoke_contains "${OUTPUT_DIR}/en-US/${sec}/index.html" "<!DOCTYPE html>" "${sec} index"
