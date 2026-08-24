@@ -43,12 +43,29 @@ FABER="${FABER:-faber}"
 # pin separately when reader packs are newer than the installed faber's
 # pack validator (e.g. FABER_LOCALIZE=path/to/workspace-faber).
 FABER_LOCALIZE="${FABER_LOCALIZE:-$FABER}"
-# Rendering source INTO a reader locale is `faber format --locale`; radix
-# cannot do it (`emit -t faber` is canonical Latin by definition). Prefer the
-# workspace build, which is current with the packs.
+# Rendering source INTO a reader locale is `faber convert --to`; radix cannot
+# do it (`emit -t faber` is canonical Latin by definition). Prefer the
+# workspace build, which is current with the packs, but fall back to the
+# resolving binary when that build is absent or does not support convert.
 WORKSPACE_FABER="${WORKSPACE_DIR}/faber/target/release/faber"
-if [ -x "$WORKSPACE_FABER" ] && [ "${FABER_LOCALIZE}" = "$FABER" ]; then
+if [ -x "$WORKSPACE_FABER" ] && [ "${FABER_LOCALIZE}" = "$FABER" ] \
+    && "$WORKSPACE_FABER" convert --help >/dev/null 2>&1; then
     FABER_LOCALIZE="$WORKSPACE_FABER"
+fi
+if ! "$FABER_LOCALIZE" convert --help >/dev/null 2>&1; then
+    echo "ERROR: ${FABER_LOCALIZE} does not support 'faber convert'" >&2
+    exit 1
+fi
+# Provider manifests are in the container's hosts checkout. In a normal
+# checkout WORKSPACE_DIR is already the container root; in this workspace's
+# worktree layout, the container root is its parent.
+SUPPORT_PATH_ROOT="$WORKSPACE_DIR"
+if [ ! -f "$SUPPORT_PATH_ROOT/hosts/crates/solum/src/manifest.json" ] \
+    && [ -f "$SUPPORT_PATH_ROOT/../hosts/crates/solum/src/manifest.json" ]; then
+    SUPPORT_PATH_ROOT="$(cd "$SUPPORT_PATH_ROOT/.." && pwd)"
+fi
+if [ -f "$SUPPORT_PATH_ROOT/hosts/crates/solum/src/manifest.json" ]; then
+    export FABER_SUPPORT_PATH_OVERRIDE="${FABER_SUPPORT_PATH_OVERRIDE:-$SUPPORT_PATH_ROOT}"
 fi
 BUILD_DIR="${GENERATOR_DIR}/target/faber"
 
@@ -346,7 +363,10 @@ if [ "$FULL_SITE" = true ]; then
         smoke_contains "${OUTPUT_DIR}/robots.txt" "Sitemap:" "robots.txt"
         smoke_contains "${OUTPUT_DIR}/robots.txt" "Allow: /" "robots allow all"
         smoke_contains "${OUTPUT_DIR}/search-index.json" '"t":"redde"' "search index dataset"
+        smoke_contains "${OUTPUT_DIR}/search-index.en-US.json" '"d":"fn"' "search index English slugs"
         smoke_contains "${OUTPUT_DIR}/search-index.zh-Hans.json" '"d":"函数"' "search index zh-Hans spellings"
+        smoke_contains "${OUTPUT_DIR}/en-US/corpus/fn.html" "<title>fn — Faber</title>" "localized corpus fn page"
+        smoke_contains "${OUTPUT_DIR}/en-US/corpus/functio.html" "url=/en-US/corpus/fn.html" "latin corpus identity redirects"
         # IA restructure: the five journey sections must all render
         for sec in language toolchain libraries reference; do
             smoke_contains "${OUTPUT_DIR}/en-US/${sec}/index.html" "<!DOCTYPE html>" "${sec} index"

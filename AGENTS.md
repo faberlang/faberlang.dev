@@ -264,6 +264,11 @@ out as `{#anchor}`. `inject-toc.py` derives a slug for the rest so every
 heading is linkable; explicit anchors are never overwritten.
 
 The corpus renderer (`render-corpus-batch.sh`) also post-processes its output:
+- Writes each term page under the reader-pack slug (`fn.html` on `en-US`);
+  the Latin identity key stays as a static alias redirect (`functio.html` → `fn.html`)
+- Remaps leftover Latin related-link hrefs onto those slugs
+- On slug collisions, keeps the first sorted identity on the pack slug and
+  leaves later identities on their Latin keys with a build warning
 - Suppresses dead cross-reference links (converts to plain text)
 - Injects "Translation status" notice on locale corpus pages (`locale != la`)
 

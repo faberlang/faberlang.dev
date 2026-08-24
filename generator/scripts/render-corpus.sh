@@ -9,8 +9,13 @@
 set -euo pipefail
 
 GENERATOR_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-WORKSPACE_DIR="$(cd "$GENERATOR_DIR/.." && pwd)"
-CORPUS_DIR="${WORKSPACE_DIR}/../radix/corpus"
+REPO_DIR="$(cd "$GENERATOR_DIR/.." && pwd)"
+WORKSPACE_DIR="$(cd "$REPO_DIR/.." && pwd)"
+CORPUS_DIR="${WORKSPACE_DIR}/radix/corpus"
+if [ ! -d "$CORPUS_DIR" ] && [ -d "${WORKSPACE_DIR}/../radix/corpus" ]; then
+    WORKSPACE_DIR="$(cd "$WORKSPACE_DIR/.." && pwd)"
+    CORPUS_DIR="${WORKSPACE_DIR}/radix/corpus"
+fi
 BUILD_DIR="${GENERATOR_DIR}/target/faber"
 FABER="${FABER:-faber}"
 
@@ -83,33 +88,34 @@ echo "Compiling corpus generator..." >&2
 (cd "$BUILD_DIR" && cargo build --release --quiet 2>/dev/null)
 
 mkdir -p "$(dirname "$OUTPUT")"
-"${BUILD_DIR}/target/release/speculum-gen" -- --corpus "$TERM" "$BUNDLE" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET" > "$OUTPUT"
-echo "Wrote: $OUTPUT" >&2
-
-if [ -n "$PROOF_MARKDOWN" ]; then
-    mkdir -p "$(dirname "$PROOF_MARKDOWN")"
-    "${BUILD_DIR}/target/release/speculum-gen" -- --corpus-markdown "$TERM" "$BUNDLE" > "$PROOF_MARKDOWN"
-    echo "Wrote proof Markdown: $PROOF_MARKDOWN" >&2
-fi
-
-# Generate static alias bridges from the selected canonical example. These are
-# intentionally files, not runtime rewrites, so deployment remains static-host
-# friendly and every alias has one canonical destination.
-BUNDLE_PATH="$BUNDLE" CORPUS_DIR="$CORPUS_DIR" TERM="$TERM" OUTPUT="$OUTPUT" \
-SITE_LOCALE="$SITE_LOCALE" READER_LOCALE="$READER_LOCALE" \
-STYLESHEET="$STYLESHEET" BIN="${BUILD_DIR}/target/release/speculum-gen" python3 << 'PYEOF'
+TERM="$TERM" OUTPUT="$OUTPUT" SITE_LOCALE="$SITE_LOCALE" \
+READER_LOCALE="$READER_LOCALE" STYLESHEET="$STYLESHEET" \
+PROOF_MARKDOWN="$PROOF_MARKDOWN" BUNDLE="$BUNDLE" \
+BIN="${BUILD_DIR}/target/release/speculum-gen" \
+GENERATOR_DIR="$GENERATOR_DIR" CORPUS_DIR="$CORPUS_DIR" \
+READER_ROOT="${FABER_LIBRARY_HOME:-$WORKSPACE_DIR}/radix/stdlib/locale" \
+python3 << 'PYEOF'
 import os
+import subprocess
+import sys
 import tomllib
 from pathlib import Path
 
-corpus = Path(os.environ["CORPUS_DIR"])
+sys.path.insert(0, str(Path(os.environ["GENERATOR_DIR"]) / "scripts"))
+from corpus_locale import display_slug, load_pack
+
 term = os.environ["TERM"]
 output = Path(os.environ["OUTPUT"])
 site_locale = os.environ["SITE_LOCALE"]
 reader_locale = os.environ["READER_LOCALE"]
 stylesheet = os.environ["STYLESHEET"]
 binary = os.environ["BIN"]
-canonical = None
+bundle = os.environ["BUNDLE"]
+proof = os.environ.get("PROOF_MARKDOWN") or ""
+corpus = Path(os.environ["CORPUS_DIR"])
+pack = load_pack(Path(os.environ["READER_ROOT"]), reader_locale)
+
+kind = "keyword"
 aliases = []
 for path in sorted(corpus.rglob("*.fab")):
     source = path.read_text()
@@ -118,17 +124,44 @@ for path in sorted(corpus.rglob("*.fab")):
         continue
     fields = tomllib.loads(parts[1])
     if fields.get("term") == term and fields.get("canonical", False):
-        canonical = term
+        kind = str(fields.get("kind", "keyword"))
         aliases = fields.get("aliases", [])
         break
-if canonical is None:
-    raise SystemExit(0)
+
+slug = display_slug(term, kind, pack)
+if output.name == f"{term}.html" and slug != term:
+    page_path = output.with_name(f"{slug}.html")
+else:
+    page_path = output
+page_path.parent.mkdir(parents=True, exist_ok=True)
+page_path.write_text(subprocess.check_output(
+    [binary, "--", "--corpus", term, bundle, site_locale, reader_locale, stylesheet, slug],
+    text=True,
+))
+print(f"Wrote: {page_path}", file=sys.stderr)
+
+if proof:
+    proof_path = Path(proof)
+    if proof_path.name == f"{term}.md" and slug != term:
+        proof_path = proof_path.with_name(f"{slug}.md")
+    proof_path.parent.mkdir(parents=True, exist_ok=True)
+    proof_path.write_text(subprocess.check_output(
+        [binary, "--", "--corpus-markdown", term, bundle, slug],
+        text=True,
+    ))
+    print(f"Wrote proof Markdown: {proof_path}", file=sys.stderr)
+
+redirects = []
+if term != slug:
+    redirects.append(term)
 for alias in aliases:
-    alias_path = output.parent / f"{alias}.html"
-    alias_path.parent.mkdir(parents=True, exist_ok=True)
-    rendered = __import__("subprocess").check_output(
-        [binary, "--", "--alias", alias, canonical, site_locale, stylesheet], text=True
-    )
-    alias_path.write_text(rendered)
-    print(f"Wrote: {alias_path}", file=os.sys.stderr)
+    if alias != slug:
+        redirects.append(alias)
+for alias in redirects:
+    alias_path = page_path.with_name(f"{alias}.html")
+    alias_path.write_text(subprocess.check_output(
+        [binary, "--", "--alias", alias, slug, site_locale, stylesheet],
+        text=True,
+    ))
+    print(f"Wrote: {alias_path}", file=sys.stderr)
 PYEOF

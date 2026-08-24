@@ -41,7 +41,7 @@ def is_fluid_faber(info: str) -> bool:
         if token == "outcome=rejects":
             return False
         if token == "mode=package":
-            # One file of a multi-file package. `faber format` cannot resolve
+            # One file of a multi-file package. `faber convert` cannot resolve
             # its siblings, so it warns LOCALE001 per unresolved import and
             # reformats what it does not understand — on the Examples pages
             # that means the "real package source" stops being the real file.
@@ -53,7 +53,7 @@ def is_fluid_faber(info: str) -> bool:
 def stage_reader_packs(faber: str) -> None:
     """Make reader packs resolvable beside the faber binary.
 
-    `faber format --locale` looks for share/faber/locale/<X>/pack.toml relative
+    `faber convert --to` looks for share/faber/locale/<X>/pack.toml relative
     to its own executable, and a workspace build has no such directory. The
     packs live in the radix tree; link them into place. Writes only inside
     faber/target/, which is build output.
@@ -79,13 +79,13 @@ def transcode_faber(source: str, locale: str, faber: str, label: str) -> str:
     if locale == "la":
         return source
 
-    # `faber format --locale` is the only thing that renders source INTO a
+    # `faber convert --to` is the only thing that renders source INTO a
     # reader locale. `radix emit -t faber` is *canonical* re-emission — Latin by
     # definition — and its --locale flag declares what the input is written in,
     # not what to print. Routing through radix therefore returned Latin while
     # reporting success, which is why localized doc pages carried untranslated
     # fences for as long as they did.
-    args = [faber, "format", "--locale", locale, "--stdout"]
+    args = [faber, "convert", "--to", locale, "--stdout"]
 
     with tempfile.TemporaryDirectory(prefix="speculum-locale-") as tmp:
         path = Path(tmp) / "fence.fab"

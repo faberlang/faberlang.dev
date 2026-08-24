@@ -15,6 +15,8 @@ try:
 except ModuleNotFoundError:  # pragma: no cover - Python < 3.11 fallback
     import tomli as tomllib  # type: ignore
 
+from corpus_locale import default_reader_root, display_slug, load_pack
+
 
 @dataclass(frozen=True)
 class Term:
@@ -46,8 +48,12 @@ def corpus_slug(value: str) -> str:
     return slug or "uncategorized"
 
 
-def corpus_page(term: str) -> str:
-    return quote(f"{term}.html", safe="")
+_EN_PACK = load_pack(default_reader_root(), "en")
+
+
+def corpus_page(term: str, kind: str = "keyword") -> str:
+    """English-site filename: pack slug, falling back to the Latin identity."""
+    return quote(f"{display_slug(term, kind, _EN_PACK)}.html", safe="")
 
 
 def load_terms(corpus: Path) -> tuple[list[Term], dict[str, list[str]], int]:
@@ -179,7 +185,7 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
             f"- Syntax: `{syntax_text}`",
             f"- Aliases: {aliases_text}",
             f"- Related: {related_text}",
-            f"- Page: https://faberlang.dev/en-US/corpus/{corpus_page(term.name)}",
+            f"- Page: https://faberlang.dev/en-US/corpus/{corpus_page(term.name, term.kind)}",
             f"- Source: radix/corpus/{term.source}",
             "",
         ])

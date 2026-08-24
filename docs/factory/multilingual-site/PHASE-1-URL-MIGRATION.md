@@ -50,7 +50,12 @@ build gates green.
 - Decision 17: no render-time prose merge
 - Decision 8: code still via `faber emit`; not LLM
 - Decision 14: no CSS from generator
-- Decision 2: Latin slugs only; `title` never slugified
+- Decision 2 (amended by operator ruling `6a563c35`, 2026-08-24): corpus
+  term pages use the locale reader-pack display slug; Latin identity-key
+  paths remain static alias redirects; collisions fall back to the Latin key
+  with a build warning. For example, `/en-US/corpus/fn.html` is canonical
+  and `/en-US/corpus/functio.html` redirects to it. `title` is never
+  slugified.
 - Shared workspace: no destructive git; leave foreign dirt alone
 - No production deploy/push without operator auth
 

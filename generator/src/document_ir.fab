@@ -7,7 +7,7 @@ genus Attr {
 }
 
 discretio Node {
-    Element { textus tag_name, lista<Attr> attrs, lista<Node> children },
+    Element { textus tag_name lista<Attr> attrs lista<Node> children },
     Text { textus valor },
     Frag { lista<Node> children }
 }

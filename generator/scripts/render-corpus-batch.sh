@@ -16,6 +16,10 @@ GENERATOR_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 REPO_DIR="$(cd "$GENERATOR_DIR/.." && pwd)"
 WORKSPACE_DIR="$(cd "$REPO_DIR/.." && pwd)"
 CORPUS_DIR="${WORKSPACE_DIR}/radix/corpus"
+if [ ! -d "$CORPUS_DIR" ] && [ -d "${WORKSPACE_DIR}/../radix/corpus" ]; then
+    WORKSPACE_DIR="$(cd "$WORKSPACE_DIR/.." && pwd)"
+    CORPUS_DIR="${WORKSPACE_DIR}/radix/corpus"
+fi
 BUILD_DIR="${GENERATOR_DIR}/target/faber"
 FABER="${FABER:-faber}"
 
@@ -59,7 +63,10 @@ echo "Compiling corpus batch generator..." >&2
 CORPUS_DIR="$CORPUS_DIR" BUILD_DIR="$BUILD_DIR" OUTPUT_DIR="$OUTPUT_DIR" \
 SITE_LOCALE="$SITE_LOCALE" READER_LOCALE="$READER_LOCALE" \
 STYLESHEET="$STYLESHEET" PROOF_DIR="$PROOF_DIR" \
-GENERATOR_DIR="$GENERATOR_DIR" "$PYTHON" << 'PYEOF'
+GENERATOR_DIR="$GENERATOR_DIR" \
+READER_ROOT="${WORKSPACE_DIR}/radix/stdlib/locale" \
+"$PYTHON" << 'PYEOF'
+import html as html_lib
 import json
 import os
 import re
@@ -72,6 +79,9 @@ except ModuleNotFoundError:  # Python < 3.11
 from collections import defaultdict
 from pathlib import Path
 
+sys.path.insert(0, str(Path(os.environ["GENERATOR_DIR"]) / "scripts"))
+from corpus_locale import assign_slugs, load_pack
+
 corpus = Path(os.environ["CORPUS_DIR"])
 build = Path(os.environ["BUILD_DIR"])
 output = Path(os.environ["OUTPUT_DIR"])
@@ -80,6 +90,7 @@ reader_locale = os.environ["READER_LOCALE"]
 stylesheet = os.environ["STYLESHEET"]
 proof_dir = os.environ.get("PROOF_DIR")
 generator_dir = Path(os.environ["GENERATOR_DIR"])
+reader_root = Path(os.environ["READER_ROOT"])
 binary = build / "target/release/speculum-gen"
 
 marker = "\n§§CORPUS_RECORD§§\n"
@@ -118,12 +129,23 @@ for path in sorted(corpus.rglob("*.fab")):
 
 terms = sorted(canonical)
 term_set = set(terms)
-alias_targets = defaultdict(list)
+pack = load_pack(reader_root, reader_locale)
+slugs, collisions = assign_slugs(
+    [(term, str(canonical[term].get("kind", "keyword"))) for term in terms],
+    pack,
+)
+if collisions:
+    for term, wanted, owner in collisions:
+        print(
+            f"warning: corpus slug {wanted!r} already owned by {owner!r}; "
+            f"keeping {term!r} on its identity key",
+            file=sys.stderr,
+        )
+slug_values = set(slugs.values())
+
 for term in terms:
     fields = canonical[term]
     category_terms[fields.get("category", "uncategorized")].append(term)
-    for alias in fields.get("aliases", []):
-        alias_targets[alias].append(term)
 
 bundle_dir = build / "corpus-bundles"
 bundle_dir.mkdir(parents=True, exist_ok=True)
@@ -131,30 +153,55 @@ corpus_out = output / "corpus"
 corpus_out.mkdir(parents=True, exist_ok=True)
 
 for term in terms:
+    term_slug = slugs[term]
     selected = sorted(records_by_term[term], key=lambda item: (item[0], item[1]))
     bundle = bundle_dir / f"{term}.bundle"
     bundle.write_text(marker.join(path + source_marker + source + expected_marker + expected for _, path, source, expected in selected))
-    html_path = corpus_out / f"{term}.html"
-    html = subprocess.check_output([str(binary), "--", "--corpus", term, str(bundle), site_locale, reader_locale, stylesheet], text=True)
+    html_path = corpus_out / f"{term_slug}.html"
+    html = subprocess.check_output(
+        [str(binary), "--", "--corpus", term, str(bundle), site_locale, reader_locale, stylesheet, term_slug],
+        text=True,
+    )
+    if term_slug != term:
+        html = html.replace(f"<title>{term} — Faber</title>", f"<title>{term_slug} — Faber</title>")
+        html = html.replace(f"<h1>{term}</h1>", f"<h1>{term_slug}</h1>")
+        html = html.replace(f"/corpus/{term}.html", f"/corpus/{term_slug}.html")
+        html = html.replace(f'content="{term} — Faber"', f'content="{term_slug} — Faber"')
     html_path.write_text(clean_generated(html))
     if proof_dir:
-        proof_path = Path(proof_dir) / f"{term}.md"
+        proof_path = Path(proof_dir) / f"{term_slug}.md"
         proof_path.parent.mkdir(parents=True, exist_ok=True)
-        markdown = subprocess.check_output([str(binary), "--", "--corpus-markdown", term, str(bundle)], text=True)
+        markdown = subprocess.check_output(
+            [str(binary), "--", "--corpus-markdown", term, str(bundle), term_slug],
+            text=True,
+        )
         proof_path.write_text(markdown)
 
-written_aliases = set()
+redirects = {}
 skipped_aliases = []
-for alias in sorted(alias_targets):
-    targets = sorted(alias_targets[alias])
-    if alias in term_set:
-        skipped_aliases.append((alias, targets, "canonical-term-path"))
-        continue
-    target = targets[0]
-    if len(targets) > 1:
-        skipped_aliases.append((alias, targets[1:], f"duplicate-alias-kept:{target}"))
+for term in terms:
+    term_slug = slugs[term]
+    if term != term_slug:
+        redirects[term] = term_slug
+    for alias in canonical[term].get("aliases", []):
+        if alias == term_slug:
+            continue
+        if alias in term_set or alias in slug_values:
+            skipped_aliases.append((alias, [term], "canonical-term-path"))
+            continue
+        existing = redirects.get(alias)
+        if existing is None:
+            redirects[alias] = term_slug
+        elif existing != term_slug:
+            skipped_aliases.append((alias, [term], f"duplicate-alias-kept:{existing}"))
+
+written_aliases = set()
+for alias, target in sorted(redirects.items()):
     alias_path = corpus_out / f"{alias}.html"
-    alias_html = subprocess.check_output([str(binary), "--", "--alias", alias, target, site_locale, stylesheet], text=True)
+    alias_html = subprocess.check_output(
+        [str(binary), "--", "--alias", alias, target, site_locale, stylesheet],
+        text=True,
+    )
     alias_path.write_text(clean_generated(alias_html))
     written_aliases.add(alias)
 
@@ -193,7 +240,10 @@ for category in sorted(category_terms):
         f"{len(terms_in_category)} canonical terms in this category.",
         "",
     ]
-    md.extend(f"- [`{term}`](/corpus/{term}.html)" for term in terms_in_category)
+    md.extend(
+        f"- [`{slugs[term]}`](/corpus/{slugs[term]}.html)"
+        for term in terms_in_category
+    )
     source = generated_dir / f"category-{category_slug}.md"
     source.write_text("\n".join(md) + "\n")
     out = corpus_out / "category" / f"{category_slug}.html"
@@ -218,28 +268,38 @@ hub = [
 ]
 hub.extend(f"- [{category}](/corpus/category/{category_slug}.html) — {count} terms" for category, category_slug, count in category_index)
 hub.extend(["", "## Terms", ""])
-hub.extend(f"- [`{term}`](/corpus/{term}.html)" for term in terms)
+hub.extend(f"- [`{slugs[term]}`](/corpus/{slugs[term]}.html)" for term in terms)
 hub_source = generated_dir / "corpus-index.md"
 hub_source.write_text("\n".join(hub) + "\n")
 hub_html = subprocess.check_output([str(binary), "--", "--page", "corpus/index", str(hub_source), site_locale, reader_locale, stylesheet], text=True)
 (corpus_out / "index.html").write_text(clean_generated(hub_html))
 
-# --- Suppress dead corpus cross-references (fail-soft) ---
-# After all pages exist, convert <a href="/corpus/X.html">text</a> to plain
-# text when X.html was not generated. No lying 404 links.
+# Remap leftover Latin identity hrefs (related links from the Faber
+# generator still emit `term`) onto this locale's pack slugs, then drop
+# any remaining href whose file was never written.
 existing_corpus = set()
 for p in corpus_out.rglob("*.html"):
     existing_corpus.add(str(p.relative_to(corpus_out)))
 
-import html as html_lib
+stem_to_slug = {term: slugs[term] for term in terms if slugs[term] != term}
 
 suppress_count = [0]
-def _suppress_dead_link(m):
-    # href may contain HTML entities for special filenames (e.g. modulus&lt;u16&gt;)
-    target = html_lib.unescape(m.group(1))
+remap_count = [0]
+
+def _rewrite_corpus_link(m):
+    raw = html_lib.unescape(m.group(1))
+    label = m.group(2)
+    stem = raw[:-5] if raw.endswith(".html") else raw
+    slug = stem_to_slug.get(stem)
+    if slug:
+        remap_count[0] += 1
+        new_href = f"/{site_locale}/corpus/{slug}.html"
+        new_label = slug if html_lib.unescape(re.sub(r"<[^>]+>", "", label)) == stem else label
+        return f'<a href="{new_href}">{new_label}</a>'
+    target = raw if raw.endswith(".html") else raw + ".html"
     if target not in existing_corpus:
         suppress_count[0] += 1
-        return m.group(2)
+        return label
     return m.group(0)
 
 # Generator prefixes content paths: /{site_locale}/corpus/…
@@ -248,20 +308,20 @@ corpus_href_re = re.compile(
 )
 for p in corpus_out.rglob("*.html"):
     page_html = p.read_text()
-    page_html = corpus_href_re.sub(_suppress_dead_link, page_html)
+    page_html = corpus_href_re.sub(_rewrite_corpus_link, page_html)
     p.write_text(page_html)
 
 # --- Inject Translation status notice on locale corpus pages ---
 # Portal/start pages get their notice from authored Markdown. Corpus pages
 # are generated; inject a notice for non-la locales so readers know the
-# prose is canonical Latin while code fences use the locale pipeline.
+# term names follow the pack while supporting prose may still be English.
 notice_count = 0
 if reader_locale != "la":
     lang_name = native_name_for(site_locale)
     notice = (
         f'<p><strong>Translation status:</strong> {lang_name} reader-locale proof. '
-        f'Code fences render through the <code>{reader_locale}</code> pipeline; '
-        f'prose is canonical Latin.</p>'
+        f'Term names and code fences follow the <code>{reader_locale}</code> pack; '
+        f'supporting prose may still be English.</p>'
     )
     for p in corpus_out.rglob("*.html"):
         html = p.read_text()
@@ -273,11 +333,14 @@ if reader_locale != "la":
 
 manifest = {
     "terms": len(terms),
+    "localized_slugs": sum(1 for term in terms if slugs[term] != term),
     "aliases": len(written_aliases),
     "alias_residuals": len(skipped_aliases),
     "categories": len(category_terms),
+    "hrefs_remapped": remap_count[0],
     "dead_links_suppressed": suppress_count[0],
     "locale_notices_injected": notice_count,
+    "slug_collisions": len(collisions),
 }
 print(json.dumps(manifest, sort_keys=True))
 PYEOF

@@ -205,7 +205,7 @@ English prose sitting inside Thai source.
 ## Switching locale {#switching}
 
 ```bash
-faber format --reader-locale th-TH <package>
+faber convert --to th-TH <package>
 ```
 
 A reader locale is a rendering choice, not a fork. There is one grammar; only

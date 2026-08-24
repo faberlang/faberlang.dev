@@ -3,7 +3,7 @@
 # Extracts ```faber code blocks from Markdown source, parsing the
 # fence info string for locale, mode, and outcome contracts.
 
-importa ex "./string_util" privata * ut su
+importa ex "./string_util" * ut su
 
 # A single code fence extracted from Markdown.
 genus Fence {

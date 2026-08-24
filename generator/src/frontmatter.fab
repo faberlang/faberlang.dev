@@ -1,6 +1,6 @@
 # Frontmatter parser for Markdown +++ TOML blocks.
 
-importa ex "./string_util" privata * ut su
+importa ex "./string_util" * ut su
 
 # Result of splitting frontmatter from body.
 genus Split {
