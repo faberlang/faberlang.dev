@@ -56,6 +56,17 @@ if ! "$FABER_LOCALIZE" convert --help >/dev/null 2>&1; then
     echo "ERROR: ${FABER_LOCALIZE} does not support 'faber convert'" >&2
     exit 1
 fi
+# Provider manifests are in the container's hosts checkout. In a normal
+# checkout WORKSPACE_DIR is already the container root; in this workspace's
+# worktree layout, the container root is its parent.
+SUPPORT_PATH_ROOT="$WORKSPACE_DIR"
+if [ ! -f "$SUPPORT_PATH_ROOT/hosts/crates/solum/src/manifest.json" ] \
+    && [ -f "$SUPPORT_PATH_ROOT/../hosts/crates/solum/src/manifest.json" ]; then
+    SUPPORT_PATH_ROOT="$(cd "$SUPPORT_PATH_ROOT/.." && pwd)"
+fi
+if [ -f "$SUPPORT_PATH_ROOT/hosts/crates/solum/src/manifest.json" ]; then
+    export FABER_SUPPORT_PATH_OVERRIDE="${FABER_SUPPORT_PATH_OVERRIDE:-$SUPPORT_PATH_ROOT}"
+fi
 BUILD_DIR="${GENERATOR_DIR}/target/faber"
 
 # Binary path candidates (old radix-out subdir vs new top-level target)
