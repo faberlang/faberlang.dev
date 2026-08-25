@@ -322,8 +322,8 @@ fixum _ nested ← [[1, 2], [3, 4]]
 使用 `sparge` 展开：
 
 ```faber
-fixum _ a ← [1, 2, 3]
-fixum _ b ← [4, 5, 6]
+fixum lista<numerus> a ← [1, 2, 3]
+fixum lista<numerus> b ← [4, 5, 6]
 fixum _ combined ← [sparge a, sparge b]
 fixum _ headed ← [0, sparge a, 99]
 ```
