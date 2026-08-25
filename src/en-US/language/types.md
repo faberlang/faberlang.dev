@@ -302,19 +302,19 @@ incipit {
 }
 ```
 
-### Postfix increment and decrement {#postfix-increment-and-decrement}
+### Mutable numeric updates {#postfix-increment-and-decrement}
 
-`⊕` and `⊖` are postfix increment/decrement statements for mutable
-`numerus` places. They are statement-only — no expression value, no
-prefix forms:
+Use binary `+` and `-` with runtime assignment `←` to update mutable
+`numerus` places. Both operators take two operands; they are not postfix
+statements:
 
 ```faber
 incipit {
     varia numerus i ← 0
     # i becomes 1
-    i ⊕
+    i ← i + 1
     # i becomes 0
-    i ⊖
+    i ← i - 1
 }
 ```
 

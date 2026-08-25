@@ -141,8 +141,8 @@ fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 
 ```faber
 fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> vector ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← vector[0]
+fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+fixum numerus ∪ nihil first ← row[0]
 ```
 
 ### GPU 核心型別 {#gpu-core-types}
@@ -292,17 +292,17 @@ incipit {
 }
 ```
 
-### 後置遞增與遞減 {#postfix-increment-and-decrement}
+### 更新可變數值 {#postfix-increment-and-decrement}
 
-`⊕` 與 `⊖` 是可變 `numerus` 儲存處的後置遞增／遞減陳述式。它們只能作為陳述式使用——沒有運算式值，也沒有前置形式：
+使用二元運算子 `+` 與 `-` 搭配執行期賦值 `←`，更新可變的 `numerus` 儲存處。兩個運算子都需要兩個運算元；它們不是後置陳述式：
 
 ```faber
 incipit {
     varia numerus i ← 0
     # i becomes 1
-    i ⊕
+    i ← i + 1
     # i becomes 0
-    i ⊖
+    i ← i - 1
 }
 ```
 
@@ -340,8 +340,8 @@ fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 
 ```faber
 fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> vector ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← vector[0]
+fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+fixum numerus ∪ nihil first ← row[0]
 ```
 
 Tensor 語法糖（數值運算密集的程式碼）：

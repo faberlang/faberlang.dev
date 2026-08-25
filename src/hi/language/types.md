@@ -141,8 +141,8 @@ fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 
 ```faber
 fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> vector ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← vector[0]
+fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+fixum numerus ∪ nihil first ← row[0]
 ```
 
 ### GPU कोर प्रकार {#gpu-core-types}
@@ -292,17 +292,17 @@ incipit {
 }
 ```
 
-### Postfix increment और decrement {#postfix-increment-and-decrement}
+### परिवर्तनशील संख्यात्मक अपडेट {#postfix-increment-and-decrement}
 
-`⊕` और `⊖`, परिवर्तनशील `numerus` places के लिए postfix increment/decrement statements हैं। ये केवल statements के रूप में उपयोग किए जा सकते हैं — इनका कोई expression value नहीं होता और इनके prefix रूप नहीं हैं:
+परिवर्तनशील `numerus` places को अपडेट करने के लिए binary `+` और `-` को runtime assignment `←` के साथ उपयोग करें। दोनों operators दो operands लेते हैं; ये postfix statements नहीं हैं:
 
 ```faber
 incipit {
     varia numerus i ← 0
     # i becomes 1
-    i ⊕
+    i ← i + 1
     # i becomes 0
-    i ⊖
+    i ← i - 1
 }
 ```
 
@@ -340,8 +340,8 @@ fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 
 ```faber
 fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> vector ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← vector[0]
+fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+fixum numerus ∪ nihil first ← row[0]
 ```
 
 Tensor शुगर (संख्यात्मक कोड के लिए):

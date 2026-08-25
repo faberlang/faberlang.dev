@@ -105,7 +105,7 @@ decode across `json`, `toml`, `yaml`, `csv`, and `chorda`.
 importa ex "norma:solum" solum
 
 functio legeConfig() → textus {
-    redde solum.lege("config.toml")
+    redde solum.read_file("config.toml") ↦ textus
 }
 ```
 

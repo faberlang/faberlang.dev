@@ -141,8 +141,8 @@ fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 
 ```faber
 fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> vector ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← vector[0]
+fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+fixum numerus ∪ nihil first ← row[0]
 ```
 
 ### ชนิดข้อมูลแกนหลักสำหรับ GPU {#gpu-core-types}
@@ -291,17 +291,17 @@ incipit {
 }
 ```
 
-### การเพิ่มและลดค่าต่อท้าย {#postfix-increment-and-decrement}
+### การอัปเดตค่าตัวเลขที่เปลี่ยนแปลงได้ {#postfix-increment-and-decrement}
 
-`⊕` และ `⊖` เป็นคำสั่งเพิ่มหรือลดค่าต่อท้ายสำหรับตำแหน่ง `numerus` ที่เปลี่ยนแปลงได้ คำสั่งเหล่านี้ใช้ได้เฉพาะในรูปคำสั่งเท่านั้น — ไม่มีค่าผลลัพธ์แบบนิพจน์ และไม่มีรูปนำหน้า:
+ใช้ตัวดำเนินการแบบไบนารี `+` และ `-` ร่วมกับการกำหนดค่าเวลารันไทม์ `←` เพื่ออัปเดตตำแหน่ง `numerus` ที่เปลี่ยนแปลงได้ ตัวดำเนินการทั้งสองต้องมีตัวถูกดำเนินการสองตัว และไม่ใช่คำสั่งแบบต่อท้าย:
 
 ```faber
 incipit {
     varia numerus i ← 0
     # i becomes 1
-    i ⊕
+    i ← i + 1
     # i becomes 0
-    i ⊖
+    i ← i - 1
 }
 ```
 
@@ -339,8 +339,8 @@ fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 
 ```faber
 fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> vector ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← vector[0]
+fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+fixum numerus ∪ nihil first ← row[0]
 ```
 
 ไวยากรณ์ย่อของ Tensor (สำหรับโค้ดที่เน้นการคำนวณเชิงตัวเลข):

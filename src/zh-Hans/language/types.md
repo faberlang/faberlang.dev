@@ -141,8 +141,8 @@ fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 
 ```faber
 fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> vector ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← vector[0]
+fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+fixum numerus ∪ nihil first ← row[0]
 ```
 
 ### GPU 核心类型 {#gpu-core-types}
@@ -291,17 +291,17 @@ incipit {
 }
 ```
 
-### 后缀自增与自减 {#postfix-increment-and-decrement}
+### 更新可变数值 {#postfix-increment-and-decrement}
 
-`⊕` 和 `⊖` 是用于可变 `numerus` 位置的后缀自增/自减语句。它们仅作为语句使用——没有表达式值，也没有前缀形式：
+使用二元运算符 `+` 和 `-` 配合运行时赋值 `←`，更新可变的 `numerus` 位置。两个运算符都需要两个操作数；它们不是后缀语句：
 
 ```faber
 incipit {
     varia numerus i ← 0
     # i becomes 1
-    i ⊕
+    i ← i + 1
     # i becomes 0
-    i ⊖
+    i ← i - 1
 }
 ```
 
@@ -339,8 +339,8 @@ fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 
 ```faber
 fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> vector ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← vector[0]
+fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+fixum numerus ∪ nihil first ← row[0]
 ```
 
 Tensor 语法糖（用于数值密集型代码）：

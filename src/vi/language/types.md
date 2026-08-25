@@ -144,8 +144,8 @@ fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 
 ```faber
 fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> vector ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← vector[0]
+fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+fixum numerus ∪ nihil first ← row[0]
 ```
 
 ### Các kiểu lõi GPU {#gpu-core-types}
@@ -296,17 +296,17 @@ incipit {
 }
 ```
 
-### Tăng và giảm hậu tố {#postfix-increment-and-decrement}
+### Cập nhật số khả biến {#postfix-increment-and-decrement}
 
-`⊕` và `⊖` là các câu lệnh tăng/giảm hậu tố dành cho các vị trí `numerus` khả biến. Chúng chỉ được dùng như câu lệnh — không có giá trị biểu thức và không có dạng tiền tố:
+Dùng các toán tử nhị phân `+` và `-` cùng phép gán thời gian chạy `←` để cập nhật các vị trí `numerus` khả biến. Cả hai toán tử đều nhận hai toán hạng; chúng không phải câu lệnh hậu tố:
 
 ```faber
 incipit {
     varia numerus i ← 0
     # i becomes 1
-    i ⊕
+    i ← i + 1
     # i becomes 0
-    i ⊖
+    i ← i - 1
 }
 ```
 
@@ -344,8 +344,8 @@ fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 
 ```faber
 fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> vector ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← vector[0]
+fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+fixum numerus ∪ nihil first ← row[0]
 ```
 
 Cú pháp rút gọn cho Tensor (mã thiên về số):
