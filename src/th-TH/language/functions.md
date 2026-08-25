@@ -96,7 +96,7 @@ Faber ระบุวิธีส่งค่าด้วยคำบุพบ�
 | *(ไม่มี)* | ค่าที่เป็นเจ้าของ | `T` แบบส่งด้วยค่า |
 | `de` | การยืมร่วม (อ่านอย่างเดียว) | `&T` |
 | `in` | การยืมที่เปลี่ยนแปลงได้ | `&mut T` |
-| `ex` | การใช้จนหมด (ย้ายค่าเข้า callee) | `T` แบบย้ายค่า |
+| `own` | การใช้จนหมด (ย้ายค่าเข้า callee) | `T` แบบย้ายค่า |
 
 ```faber locale=la
 # Shared borrow
@@ -110,7 +110,7 @@ functio duplica(in numerus value) → vacuum {
 }
 
 # Consume
-functio consume(ex textus buffer) → textus {
+functio consume(own textus buffer) → textus {
     redde buffer
 }
 
@@ -126,7 +126,7 @@ functio salve(textus nomen) → textus {
 |---------|------|
 | `de textus name` บนพารามิเตอร์ | การยืมร่วม |
 | `in numerus count` บนพารามิเตอร์ | การยืมที่เปลี่ยนแปลงได้ |
-| `ex textus buffer` บนพารามิเตอร์ | การย้ายค่าเข้า callee |
+| `own textus buffer` บนพารามิเตอร์ | การย้ายค่าเข้า callee |
 | `itera ex items fixum item` | วนซ้ำค่าต่าง ๆ |
 | `itera de tabula fixum key` | วนซ้ำคีย์ |
 | `ex source fixum x, ceteri rest` | แยกโครงสร้างฟิลด์ |

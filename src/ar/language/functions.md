@@ -96,7 +96,7 @@ functio tace() → vacuum {
 | *(بدون)* | قيمة مملوكة | `T` بالقيمة |
 | `de` | استعارة مشتركة (للقراءة فقط) | `&T` |
 | `in` | استعارة قابلة للتعديل | `&mut T` |
-| `ex` | استهلاك (نقل إلى الدالة المستدعاة) | `T` بالنقل |
+| `own` | استهلاك (نقل إلى الدالة المستدعاة) | `T` بالنقل |
 
 ```faber locale=la
 # Shared borrow
@@ -110,7 +110,7 @@ functio duplica(in numerus value) → vacuum {
 }
 
 # Consume
-functio consume(ex textus buffer) → textus {
+functio consume(own textus buffer) → textus {
     redde buffer
 }
 
@@ -126,7 +126,7 @@ functio salve(textus nomen) → textus {
 |--------|-------|
 | `de textus name` على معامل | استعارة مشتركة |
 | `in numerus count` على معامل | استعارة قابلة للتعديل |
-| `ex textus buffer` على معامل | نقل إلى الدالة المستدعاة |
+| `own textus buffer` على معامل | نقل إلى الدالة المستدعاة |
 | `itera ex items fixum item` | تكرار على القيم |
 | `itera de tabula fixum key` | تكرار على المفاتيح |
 | `ex source fixum x, ceteri rest` | تفكيك الحقول |

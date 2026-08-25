@@ -167,7 +167,7 @@ functio swap(atomic<i32> cell, i32 value) → i32 {
 
 ### Marker mượn trên kiểu {#borrow-markers}
 
-Các marker mượn (`de`, `in`, `ex`) có thể xuất hiện trên kiểu ở vị trí tham số
+Các marker mượn (`de`, `in`, `own`) có thể xuất hiện trên kiểu ở vị trí tham số
 để cho biết cách truyền một giá trị:
 
 ```faber locale=la
@@ -178,7 +178,7 @@ functio imprime(de textus label) → vacuum { }
 functio duplica(in numerus value) → vacuum { }
 
 # move — caller gives up ownership
-functio consume(ex textus buffer) → textus {
+functio consume(own textus buffer) → textus {
     redde buffer
 }
 ```

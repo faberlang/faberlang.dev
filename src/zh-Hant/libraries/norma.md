@@ -56,6 +56,6 @@ Norma 遵循 morphologia 政策來命名所有方法。拉丁文動詞變化形�
 importa ex "norma:solum" solum
 
 functio legeConfig() → textus {
-    redde solum.lege("config.toml")
+    redde solum.lege("config.toml") ↦ textus
 }
 ```

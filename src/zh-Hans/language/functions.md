@@ -96,7 +96,7 @@ Faber 通过参数上的短介词来标记值的传递方式：
 | *(无)* | 拥有的值 | 按值传递 `T` |
 | `de` | 共享借用（只读） | `&T` |
 | `in` | 可变借用 | `&mut T` |
-| `ex` | 消耗（移动到被调用方） | 按移动传递 `T` |
+| `own` | 消耗（移动到被调用方） | 按移动传递 `T` |
 
 ```faber locale=la
 # Shared borrow
@@ -110,7 +110,7 @@ functio duplica(in numerus value) → vacuum {
 }
 
 # Consume
-functio consume(ex textus buffer) → textus {
+functio consume(own textus buffer) → textus {
     redde buffer
 }
 
@@ -126,7 +126,7 @@ functio salve(textus nomen) → textus {
 |---------|------|
 | 参数上的 `de textus name` | 共享借用 |
 | 参数上的 `in numerus count` | 可变借用 |
-| 参数上的 `ex textus buffer` | 移动到被调用方 |
+| 参数上的 `own textus buffer` | 移动到被调用方 |
 | `itera ex items fixum item` | 遍历值 |
 | `itera de tabula fixum key` | 遍历键 |
 | `ex source fixum x, ceteri rest` | 解构字段 |

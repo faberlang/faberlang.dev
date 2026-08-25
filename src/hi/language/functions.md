@@ -96,7 +96,7 @@ Faber पैरामीटर पर छोटे पूर्वसर्ग�
 | *(none)* | स्वामित्व वाला मान | `T` by value |
 | `de` | साझा borrow (केवल पढ़ने योग्य) | `&T` |
 | `in` | mutable borrow | `&mut T` |
-| `ex` | consume करना (callee में move करना) | `T` by move |
+| `own` | consume करना (callee में move करना) | `T` by move |
 
 ```faber locale=la
 # Shared borrow
@@ -110,7 +110,7 @@ functio duplica(in numerus value) → vacuum {
 }
 
 # Consume
-functio consume(ex textus buffer) → textus {
+functio consume(own textus buffer) → textus {
     redde buffer
 }
 
@@ -126,7 +126,7 @@ functio salve(textus nomen) → textus {
 |---------|--------|
 | पैरामीटर पर `de textus name` | साझा borrow |
 | पैरामीटर पर `in numerus count` | mutable borrow |
-| पैरामीटर पर `ex textus buffer` | callee में move करना |
+| पैरामीटर पर `own textus buffer` | callee में move करना |
 | `itera ex items fixum item` | मानों पर iterate करना |
 | `itera de tabula fixum key` | keys पर iterate करना |
 | `ex source fixum x, ceteri rest` | fields को destructure करना |

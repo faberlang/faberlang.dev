@@ -169,7 +169,7 @@ functio swap(atomic<i32> cell, i32 value) → i32 {
 
 ### Borrow markers on types {#borrow-markers}
 
-Borrow markers (`de`, `in`, `ex`) can appear on types in parameter
+Borrow markers (`de`, `in`, `own`) can appear on types in parameter
 positions to indicate how a value is passed:
 
 ```faber locale=la
@@ -180,7 +180,7 @@ functio imprime(de textus label) → vacuum { }
 functio duplica(in numerus value) → vacuum { }
 
 # move — caller gives up ownership
-functio consume(ex textus buffer) → textus {
+functio consume(own textus buffer) → textus {
     redde buffer
 }
 ```

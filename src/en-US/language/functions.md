@@ -229,7 +229,7 @@ Faber marks how a value is passed with short prepositions on parameters:
 | *(none)* | Owned value | `T` by value |
 | `de` | Shared borrow (read-only) | `&T` |
 | `in` | Mutable borrow | `&mut T` |
-| `ex` | Consume (move into callee) | `T` by move |
+| `own` | Consume (move into callee) | `T` by move |
 
 ```faber locale=la
 # Shared borrow
@@ -243,7 +243,7 @@ functio duplica(in numerus value) → vacuum {
 }
 
 # Consume
-functio consume(ex textus buffer) → textus {
+functio consume(own textus buffer) → textus {
     redde buffer
 }
 
@@ -260,7 +260,7 @@ every `ex` as "consume":
 |---------|------|
 | `de textus name` on parameter | Shared borrow |
 | `in numerus count` on parameter | Mutable borrow |
-| `ex textus buffer` on parameter | Move into callee |
+| `own textus buffer` on parameter | Move into callee |
 | `itera ex items fixum item` | Iterate values |
 | `itera de tabula fixum key` | Iterate keys |
 | `ex source fixum x, ceteri rest` | Destructure fields |

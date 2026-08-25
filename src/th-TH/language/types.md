@@ -163,7 +163,7 @@ functio swap(atomic<i32> cell, i32 value) → i32 {
 
 ### เครื่องหมายการยืมบนชนิดข้อมูล {#borrow-markers}
 
-เครื่องหมายการยืม (`de`, `in`, `ex`) สามารถปรากฏบนชนิดข้อมูลในตำแหน่งพารามิเตอร์ เพื่อระบุวิธีส่งค่า:
+เครื่องหมายการยืม (`de`, `in`, `own`) สามารถปรากฏบนชนิดข้อมูลในตำแหน่งพารามิเตอร์ เพื่อระบุวิธีส่งค่า:
 
 ```faber locale=la
 # shared borrow — caller retains ownership
@@ -173,7 +173,7 @@ functio imprime(de textus label) → vacuum { }
 functio duplica(in numerus value) → vacuum { }
 
 # move — caller gives up ownership
-functio consume(ex textus buffer) → textus {
+functio consume(own textus buffer) → textus {
     redde buffer
 }
 ```

@@ -96,7 +96,7 @@ Faber 使用參數上的簡短介系詞標記值的傳遞方式：
 | *(無)* | 擁有值 | 以值傳遞的 `T` |
 | `de` | 共用借用（唯讀） | `&T` |
 | `in` | 可變借用 | `&mut T` |
-| `ex` | 消耗（移入被呼叫者） | 以移動傳遞的 `T` |
+| `own` | 消耗（移入被呼叫者） | 以移動傳遞的 `T` |
 
 ```faber locale=la
 # Shared borrow
@@ -110,7 +110,7 @@ functio duplica(in numerus value) → vacuum {
 }
 
 # Consume
-functio consume(ex textus buffer) → textus {
+functio consume(own textus buffer) → textus {
     redde buffer
 }
 
@@ -126,7 +126,7 @@ functio salve(textus nomen) → textus {
 |---------|------|
 | 參數上的 `de textus name` | 共用借用 |
 | 參數上的 `in numerus count` | 可變借用 |
-| 參數上的 `ex textus buffer` | 移入被呼叫者 |
+| 參數上的 `own textus buffer` | 移入被呼叫者 |
 | `itera ex items fixum item` | 迭代值 |
 | `itera de tabula fixum key` | 迭代鍵 |
 | `ex source fixum x, ceteri rest` | 解構欄位 |

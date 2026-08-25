@@ -164,7 +164,7 @@ functio swap(atomic<i32> cell, i32 value) → i32 {
 
 ### علامات الاستعارة على الأنواع {#borrow-markers}
 
-يمكن أن تظهر علامات الاستعارة (`de`، `in`، `ex`) على الأنواع في مواضع المعاملات للإشارة إلى كيفية تمرير القيمة:
+يمكن أن تظهر علامات الاستعارة (`de`، `in`، `own`) على الأنواع في مواضع المعاملات للإشارة إلى كيفية تمرير القيمة:
 
 ```faber locale=la
 # shared borrow — caller retains ownership
@@ -174,7 +174,7 @@ functio imprime(de textus label) → vacuum { }
 functio duplica(in numerus value) → vacuum { }
 
 # move — caller gives up ownership
-functio consume(ex textus buffer) → textus {
+functio consume(own textus buffer) → textus {
     redde buffer
 }
 ```

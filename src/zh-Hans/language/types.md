@@ -163,7 +163,7 @@ functio swap(atomic<i32> cell, i32 value) → i32 {
 
 ### 类型上的借用标记 {#borrow-markers}
 
-借用标记（`de`、`in`、`ex`）可以出现在参数位置的类型上，用于表示值的传递方式：
+借用标记（`de`、`in`、`own`）可以出现在参数位置的类型上，用于表示值的传递方式：
 
 ```faber locale=la
 # shared borrow — caller retains ownership
@@ -173,7 +173,7 @@ functio imprime(de textus label) → vacuum { }
 functio duplica(in numerus value) → vacuum { }
 
 # move — caller gives up ownership
-functio consume(ex textus buffer) → textus {
+functio consume(own textus buffer) → textus {
     redde buffer
 }
 ```

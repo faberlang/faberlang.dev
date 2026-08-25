@@ -59,6 +59,6 @@ sources = [
 importa ex "norma:solum" solum
 
 functio legeConfig() → textus {
-    redde solum.lege("config.toml")
+    redde solum.lege("config.toml") ↦ textus
 }
 ```

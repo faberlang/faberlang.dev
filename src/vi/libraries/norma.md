@@ -56,6 +56,6 @@ Các cặp quyền sở hữu (biến đổi so với sao chép kết quả):
 importa ex "norma:solum" solum
 
 functio legeConfig() → textus {
-    redde solum.lege("config.toml")
+    redde solum.lege("config.toml") ↦ textus
 }
 ```

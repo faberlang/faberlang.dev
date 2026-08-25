@@ -96,7 +96,7 @@ Faber đánh dấu cách truyền một giá trị bằng các giới từ ngắ
 | *(không có)* | Giá trị sở hữu | `T` truyền theo giá trị |
 | `de` | Mượn dùng chung (chỉ đọc) | `&T` |
 | `in` | Mượn có thể thay đổi | `&mut T` |
-| `ex` | Tiêu thụ (move vào hàm gọi) | `T` move |
+| `own` | Tiêu thụ (move vào hàm gọi) | `T` move |
 
 ```faber locale=la
 # Shared borrow
@@ -110,7 +110,7 @@ functio duplica(in numerus value) → vacuum {
 }
 
 # Consume
-functio consume(ex textus buffer) → textus {
+functio consume(own textus buffer) → textus {
     redde buffer
 }
 
@@ -126,7 +126,7 @@ Các từ tương tự (`de`, `ex`) cũng được dùng lại trong những c�
 |---------|---------|
 | `de textus name` trên tham số | Mượn dùng chung |
 | `in numerus count` trên tham số | Mượn có thể thay đổi |
-| `ex textus buffer` trên tham số | Move vào hàm gọi |
+| `own textus buffer` trên tham số | Move vào hàm gọi |
 | `itera ex items fixum item` | Lặp qua các giá trị |
 | `itera de tabula fixum key` | Lặp qua các khóa |
 | `ex source fixum x, ceteri rest` | Phân rã các trường |

@@ -164,7 +164,7 @@ functio swap(atomic<i32> cell, i32 value) → i32 {
 
 ### प्रकारों पर borrow मार्कर {#borrow-markers}
 
-Borrow मार्कर (`de`, `in`, `ex`) पैरामीटर स्थितियों में प्रकारों पर दिखाई दे सकते हैं। वे बताते हैं कि कोई मान किस प्रकार पास किया जाता है:
+Borrow मार्कर (`de`, `in`, `own`) पैरामीटर स्थितियों में प्रकारों पर दिखाई दे सकते हैं। वे बताते हैं कि कोई मान किस प्रकार पास किया जाता है:
 
 ```faber locale=la
 # shared borrow — caller retains ownership
@@ -174,7 +174,7 @@ functio imprime(de textus label) → vacuum { }
 functio duplica(in numerus value) → vacuum { }
 
 # move — caller gives up ownership
-functio consume(ex textus buffer) → textus {
+functio consume(own textus buffer) → textus {
     redde buffer
 }
 ```
