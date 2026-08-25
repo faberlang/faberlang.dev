@@ -56,7 +56,7 @@ One file of a multi-file package: it refers to siblings that are not shown here.
 # Backend: stepper+Rust
 # =============================================================================
 
-importa ex "norma:solum" solum
+importa ex "norma:fs" solum
 importa ex "§gnu/stdio" gnu_stdio
 
 functio modus_stdin(lista<textus> operands) → bivalens {
