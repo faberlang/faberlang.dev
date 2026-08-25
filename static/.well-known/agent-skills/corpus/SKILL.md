@@ -31,7 +31,7 @@ description: "Look up language constructs via generated corpus pages and the exa
 5. Other site locales mirror corpus under `/{locale}/corpus/` with the same
    term set and locale-specific code samples.
 
-Example term page: https://faberlang.dev/en-US/corpus/functio.html
+Example term page: https://faberlang.dev/en-US/corpus/fn.html
 
 ## Notes
 
