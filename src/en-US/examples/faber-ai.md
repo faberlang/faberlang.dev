@@ -14,12 +14,12 @@ Source: [`examples/ai-workbench/packages/faber-ai`](https://github.com/faberlang
 ```faber
 # Faber AI workbench command surface.
 
-importa ex "./commands/model" privata * ut modelModule
-importa ex "./commands/embed" privata * ut embedModule
-importa ex "./commands/index" privata * ut indexModule
-importa ex "./commands/query" privata * ut queryModule
-importa ex "./commands/generate" privata * ut generateModule
-importa ex "./commands/chat" privata * ut chatModule
+importa ex "./commands/model" * ut modelModule
+importa ex "./commands/embed" * ut embedModule
+importa ex "./commands/index" * ut indexModule
+importa ex "./commands/query" * ut queryModule
+importa ex "./commands/generate" * ut generateModule
+importa ex "./commands/chat" * ut chatModule
 
 @ cli "faber-ai"
 @ versio "0.1.0"
@@ -44,7 +44,7 @@ functio embed() argumenta args → vacuum {
         "§"(args.format),
         "§"(args.map),
         "§"(args.oracle_runner),
-        "§"(args.oracle_label),
+        "§"(args.oracle_label)
     )
 }
 
@@ -59,7 +59,7 @@ functio index() argumenta args → vacuum {
         "§"(args.vectors),
         "§"(args.out),
         "§"(args.format),
-        "§"(args.metric),
+        "§"(args.metric)
     )
 }
 
@@ -76,7 +76,7 @@ functio query() argumenta args → vacuum {
         "§"(args.query_text),
         args.top,
         "§"(args.format),
-        "§"(args.query_vector),
+        "§"(args.query_vector)
     )
 }
 
@@ -103,7 +103,7 @@ functio generate() argumenta args → vacuum {
         "§"(args.oracle_label),
         args.max_new_tokens,
         "§"(args.temperature),
-        args.seed,
+        args.seed
     )
 }
 
@@ -126,7 +126,7 @@ functio chat() argumenta args → vacuum {
         "§"(args.map),
         "§"(args.router_runner),
         "§"(args.router_label),
-        "§"(args.router_url),
+        "§"(args.router_url)
     )
 }
 ```

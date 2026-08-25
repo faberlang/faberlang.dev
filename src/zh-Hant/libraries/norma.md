@@ -53,7 +53,7 @@ Norma 遵循 morphologia 政策來命名所有方法。拉丁文動詞變化形�
 ## 使用方式 {#usage}
 
 ```faber locale=la
-importa ex "norma:solum" privata solum
+importa ex "norma:solum" solum
 
 functio legeConfig() → textus {
     redde solum.lege("config.toml")

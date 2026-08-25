@@ -56,7 +56,7 @@ sources = [
 ## الاستعمال {#usage}
 
 ```faber locale=la
-importa ex "norma:solum" privata solum
+importa ex "norma:solum" solum
 
 functio legeConfig() → textus {
     redde solum.lege("config.toml")

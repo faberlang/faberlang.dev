@@ -66,11 +66,11 @@ is no type re-export — import the leaf that owns what you use.
 | `gradus:gradus` | Package map facade only — holds no genera |
 
 ```faber mode=package
-importa ex "gradus:tensor" privata tensor
-importa ex "gradus:math" privata math
-importa ex "gradus:gradient" privata gradient
-importa ex "gradus:loss" privata loss
-importa ex "gradus:optimize" privata optimize
+importa ex "gradus:tensor" tensor
+importa ex "gradus:math" math
+importa ex "gradus:gradient" gradient
+importa ex "gradus:loss" loss
+importa ex "gradus:optimize" optimize
 ```
 
 The `gradus:tensor` / `gradus:gradient` split is the one to internalise:

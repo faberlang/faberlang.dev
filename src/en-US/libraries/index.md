@@ -15,8 +15,8 @@ The standard library. Imported as `norma:*`, no installation step, no entry in
 `faber.toml`:
 
 ```faber
-importa ex "norma:solum" privata solum
-importa ex "norma:textus" privata textus
+importa ex "norma:solum" solum
+importa ex "norma:textus" textus
 
 incipit {
     nota "ready"

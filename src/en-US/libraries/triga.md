@@ -48,13 +48,13 @@ the leaf that owns the genus they use.
 | `triga:triga` | Facade / module map only (no genera) |
 
 ```faber mode=package
-importa ex "triga:math" privata math
-importa ex "triga:graph" privata graph
-importa ex "triga:material" privata material
-importa ex "triga:geometry" privata geometry
-importa ex "triga:primitives" privata primitives
-importa ex "triga:scene" privata scene
-importa ex "triga:resource" privata resource
+importa ex "triga:math" math
+importa ex "triga:graph" graph
+importa ex "triga:material" material
+importa ex "triga:geometry" geometry
+importa ex "triga:primitives" primitives
+importa ex "triga:scene" scene
+importa ex "triga:resource" resource
 ```
 
 ## API shape {#api-shape}
@@ -68,7 +68,7 @@ Faber morphologia applies: **Imperativus** mutates a `varia` receiver in
 place, while **Perfectum** returns a new value and leaves the receiver alone.
 
 ```faber mode=package
-importa ex "triga:math" privata math
+importa ex "triga:math" math
 
 # Perfectum — returns a new Box3, receiver unchanged
 fixum math.Box3 bounds ← math.Box3 { min = math.vector3(0.0, 0.0, 0.0), max = math.vector3(2.0, 2.0, 2.0) }
