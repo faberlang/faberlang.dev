@@ -29,7 +29,7 @@ const string base_url ← "https://faberlang.dev"
 # html.escape(target, quote=True) entity table: & < > " ' (the single quote
 # is the hex entity &#x27;, matching the Python original exactly).
 fn html_escape(string s) → string {
-    return s.muta("&", "&amp;").muta("<", "&lt;").muta(">", "&gt;").muta("\"", "&quot;").muta("'", "&#x27;")
+    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;").replace("\"", "&quot;").replace("'", "&#x27;")
 }
 
 # The redirect stub template (the Python STUB.format, with both values
@@ -39,10 +39,10 @@ fn stub(string target_url, string canonical_url) → string {
 }
 
 main {
-    const list<string> argv ← processus.argumenta() ↦ list<string>
-    if argv.longitudo() ≠ 2 {
-        consolum.mone("usage: generate-redirects <dist_dir> <source_site_locale>")
-        processus.exi(2)
+    const list<string> argv ← processus.argv() ↦ list<string>
+    if argv.length() ≠ 2 {
+        consolum.warn_line("usage: generate-redirects <dist_dir> <source_site_locale>")
+        processus.exit_process(2)
     }
     var string dist_dir ← ""
     var string site_locale ← ""
@@ -57,24 +57,24 @@ main {
         idx ← idx + 1
     }
     const string source_dir ← dist_dir + "/" + site_locale
-    if fileio.directoriumne(source_dir) ↦ bivalens ≡ falsum {
+    if fileio.is_directory(source_dir) ↦ bool ≡ false {
         print "WARNING: source locale directory not found: " + source_dir
-        processus.exi(0)
+        processus.exit_process(0)
     }
-    const string found ← processus.exsequi("find '" + source_dir + "' -type f -name '*.html'") ↦ string
-    const list<string> lines ← found.divide("\n") ↦ list<string>
+    const string found ← processus.exec("find '" + source_dir + "' -type f -name '*.html'") ↦ string
+    const list<string> lines ← found.split("\n") ↦ list<string>
     var list<string> paths ← []
     for from lines const p {
-        if p.longitudo() > 0 {
-            paths.appende(p)
+        if p.length() > 0 {
+            paths.append(p)
         }
     }
-    const list<string> sorted ← paths.ordinata() ↦ list<string>
+    const list<string> sorted ← paths.sorted() ↦ list<string>
     var int written ← 0
     var int skipped ← 0
     for from sorted const html_path {
-        const int prefix_len ← source_dir.longitudo() + 1
-        const string rel ← html_path.sectio(prefix_len, html_path.longitudo())
+        const int prefix_len ← source_dir.length() + 1
+        const string rel ← html_path.slice(prefix_len, html_path.length())
         if rel ≡ "index.html" {
             skipped ← skipped + 1
         } else {
@@ -83,11 +83,11 @@ main {
             const string canon ← base_url + target
             const string enc_canonical ← html_escape(canon)
             const string stub_path ← dist_dir + "/" + rel
-            const string parent ← fileio.parens(stub_path) ↦ string
-            if fileio.directoriumne(parent) ↦ bivalens ≡ falsum {
-                fileio.crea(parent)
+            const string parent ← fileio.parent(stub_path) ↦ string
+            if fileio.is_directory(parent) ↦ bool ≡ false {
+                fileio.create_dir(parent)
             }
-            fileio.scribe(stub_path, stub(enc_target, enc_canonical))
+            fileio.write_file(stub_path, stub(enc_target, enc_canonical))
             written ← written + 1
         }
     }
