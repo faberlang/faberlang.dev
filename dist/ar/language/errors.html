@@ -62,12 +62,12 @@
     <span class="tok-kw">أكد</span> x ≻ <span class="tok-nu">0</span>
 
 <span class="tok-co">    # With custom message</span>
-    <span class="tok-kw">أكد</span> x <span class="tok-op">≡</span> <span class="tok-nu">10</span> secus <span class="tok-st">"x decem esse debet"</span>
+    <span class="tok-kw">أكد</span> x <span class="tok-op">≡</span> <span class="tok-nu">10</span> <span class="tok-kw">انهر</span> <span class="tok-st">"x decem esse debet"</span>
 
 <span class="tok-co">    # Multiple assertions in sequence</span>
     <span class="tok-kw">ثابت</span> <span class="tok-kw">نص</span> nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
     <span class="tok-kw">أكد</span> nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">أكد</span> nomen <span class="tok-op">≠</span> <span class="tok-st">""</span> secus <span class="tok-st">"nomen vacuum non sit"</span>
+    <span class="tok-kw">أكد</span> nomen <span class="tok-op">≠</span> <span class="tok-st">""</span> <span class="tok-kw">انهر</span> <span class="tok-st">"nomen vacuum non sit"</span>
 }</code></pre><h3 id="workflow">سير العمل<a class="anchor" href="#workflow">#</a></h3><p>تُشغَّل الاختبارات عبر الأمر <code>faber test</code>:</p><pre class="faber-code"><code class="lang-text">faber test                        # run all tests in the current package
 faber test examples/coreutils/packages/echo  # run tests for a specific package</code></pre><p>لأن الاختبارات تعيش جنبًا إلى جنب مع المصدر في نفس ملف <code>.fab</code>، فلا يوجد هيكل
 مجلدات منفصل للاختبارات، ولا إعلان لوحدة اختبارات، ولا تمييز في سكربت البناء

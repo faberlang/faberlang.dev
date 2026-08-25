@@ -89,7 +89,7 @@ mostly translation, not architecture.</p><h2 id="invariant">What does not change
 same everywhere.</li><li><strong>Identifiers and string literals</strong> stay exactly as written.</li><li><strong>The machine interior</strong> — HIR, stable diagnostic codes, <code>norma:*</code> package
 ids — stays Latin behind the curtain, so tooling is not chasing a moving
 target.</li></ul><p>Diagnostics render in your reader locale too. An error at the fault site is not
-English prose sitting inside Thai source.</p><h2 id="switching">Switching locale<a class="anchor" href="#switching">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> format <span class="tok-op">--reader-locale</span> th-TH &lt;package&gt;</code></pre><p>A reader locale is a rendering choice, not a fork. There is one grammar; only
+English prose sitting inside Thai source.</p><h2 id="switching">Switching locale<a class="anchor" href="#switching">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> convert <span class="tok-op">--to</span> th-TH &lt;package&gt;</code></pre><p>A reader locale is a rendering choice, not a fork. There is one grammar; only
 its surface spelling moves.</p><p>Related: <a href="/en-US/language/reader-locales.html">Reader locales</a> for the full
 mechanism · <a href="/en-US/language/glyphs.html">Glyphs and Latin</a> for why the glyphs hold
 still · <a href="/en-US/cheatsheet/">Cheat sheet</a> where every example carries all eight

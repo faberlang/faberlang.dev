@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="th-TH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Starts a for-each iteration statement."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="วน — Faber"><meta property="og:description" content="Starts a for-each iteration statement."><meta property="og:url" content="https://faberlang.dev/th-TH/corpus/วน.html"><meta property="og:locale" content="th_TH"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/th-TH/corpus/วน.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>วน — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">การเรนเดอร์</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">th-TH</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/th-TH/start/install.html">ติดตั้ง</a></nav></div></div><div class="page"><aside><a class="brand" href="/th-TH/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">เอกสารภาษา</span></span></a><ul class="nav"><li><a href="/th-TH/">Home</a></li><li><a href="/th-TH/start/install.html">ติดตั้ง</a></li><li><a href="/th-TH/localization.html">Localization</a></li><li><a href="/th-TH/cheatsheet/">Cheat sheet</a></li><li><a href="/th-TH/releases/">รุ่นเผยแพร่</a></li><li><a href="/th-TH/open-source.html">Open source</a></li><li><a href="/th-TH/examples/">ตัวอย่าง</a></li><li><a href="/th-TH/targets/">Target lanes</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/th-TH/language/">The language</a></li><li><a href="/th-TH/language/types.html">Types and values</a></li><li><a href="/th-TH/language/functions.html">Functions and flow</a></li><li><a href="/th-TH/language/errors.html">Errors and testing</a></li><li><a href="/th-TH/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/th-TH/language/reader-locales.html">Reader locales</a></li><li><a href="/th-TH/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/th-TH/toolchain/">Toolchain</a></li><li><a href="/th-TH/toolchain/cli.html">The faber CLI</a></li><li><a href="/th-TH/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/th-TH/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/th-TH/targets/">Target lanes</a></li><li><a href="/th-TH/toolchain/packages.html">Packages with Cista</a></li><li><a href="/th-TH/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/th-TH/libraries/">Libraries</a></li><li><a href="/th-TH/libraries/norma.html">Norma — stdlib</a></li><li><a href="/th-TH/libraries/triga.html">Triga — graphics</a></li><li><a href="/th-TH/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/th-TH/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/th-TH/reference/">Reference</a></li><li><a href="/th-TH/reference/grammar.html">Grammar</a></li><li><a href="/th-TH/corpus/" class="active">Corpus index</a></li><li><a href="/th-TH/reference/design.html">Design notes</a></li><li><a href="/th-TH/open-source.html">Open source</a></li></ul><div class="side-h">สำหรับเอเจนต์</div><ul class="nav nav-compact"><li><a href="/llms.txt">ดัชนีเอเจนต์</a></li><li><a href="/agents/index.md">คู่มือเอเจนต์</a></li><li><a href="/.well-known/agent-skills/index.json">ทักษะเอเจนต์</a></li><li><a href="/llms-full.txt">เอกสารอ้างอิงเต็ม</a></li></ul><div class="side-h">Release 1.6.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/th-TH/releases/">ทุกรุ่นที่เผยแพร่</a></li><li><a href="/th-TH/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">กระบวนทัศน์</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">ระบบชนิด</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">เป้าหมาย</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">สัญญาอนุญาต</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>วน</h1><p><strong>Translation status:</strong> ภาษาไทย reader-locale proof. Term names and code fences follow the <code>th-TH</code> pack; supporting prose may still be English.</p><div class="content"><p>Starts a for-each iteration statement.</p><p><strong>Aliases:</strong> <code>iterate</code></p><p><strong>Syntax:</strong> <code>itera &lt;mode&gt; &lt;expression&gt; &lt;binding&gt; &lt;block&gt;</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>control-flow</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/th-TH/corpus/ออก.html">ออก</a></li><li><a href="/th-TH/corpus/จาก.html">จาก</a></li><li><a href="/th-TH/corpus/ช่วง.html">ช่วง</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusiteracursor-iteratiofab-canonical-keyword">radix/corpus/itera/cursor-iteratio.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteracursor-iteratiofab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># itera — Starts a for-each iteration statement.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • for-each iteration using stream functions — consumes values yielded via</span>
+<span class="tok-co">#     `cede` from `fiunt` and `fient` functions</span>
+<span class="tok-co">#   • sync and async stream modes — `fiunt` and `fient` function signatures</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Forgetting that stream functions must use `fiunt` or `fient` and yield</span>
+<span class="tok-co">#     values with `cede`.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: ex, de, ab</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># itera ex — cursor function return iteration</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># itera ex &lt;cursor-call&gt; fixum &lt;item&gt; { &lt;body&gt; }</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   forInStmt  :← 'itera' 'ex' callExpr 'fixum' ident block</span>
+<span class="tok-co">#   cursorDecl :← funcDecl 'fiunt' | funcDecl 'fient'</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   Sync cursor values and collected lista of doubled results.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># BACKEND:</span>
+<span class="tok-co">#   Rust lowers `fient` through the async-cursor carrier. Go supports the</span>
+<span class="tok-co">#   `fiunt` half and reports `fient` as an explicit target gap.</span>
+
+<span class="tok-co"># Multi-value sync stream function that yields values via cede</span>
+fn grena(int n) generator <span class="tok-op">→</span> int {
+    for range <span class="tok-nu">0</span>‥n const i {
+        yield i
+    }
+}
+
+<span class="tok-co"># Multi-value async stream function that yields values via cede</span>
+fn grena_futurum(int n) async_generator <span class="tok-op">→</span> int {
+    for range <span class="tok-nu">0</span>‥n const i {
+        yield i
+    }
+}
+
+async_main {
+<span class="tok-co">    # Direct consumption of cursor yield stream</span>
+    print <span class="tok-st">"Sync cursor iteration:"</span>
+    for from grena(<span class="tok-nu">3</span>) const num {
+        print <span class="tok-st">"  numerus: §"</span>(num)
+    }
+
+<span class="tok-co">    # Collect all results from cursor function</span>
+    var _ effecta <span class="tok-op">←</span> []
+    for from grena(<span class="tok-nu">5</span>) const num {
+        effecta.append(num <span class="tok-op">*</span> <span class="tok-nu">2</span>)
+    }
+    print <span class="tok-st">"Sync collected:"</span>
+    print effecta
+
+    print <span class="tok-st">"Async cursor iteration:"</span>
+    for from grena_futurum(<span class="tok-nu">3</span>) const num {
+        print <span class="tok-st">"  async numerus: §"</span>(num)
+    }
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Sync cursor iteration:
+  numerus: 0
+  numerus: 1
+  numerus: 2
+Sync collected:
+[0, 2, 4, 6, 8]
+Async cursor iteration:
+  async numerus: 0
+  async numerus: 1
+  async numerus: 2
+</code></pre><h3 id="radixcorpusiterain-functionefab-canonical-keyword">radix/corpus/itera/in-functione.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiterain-functionefab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># itera — Starts a for-each iteration statement.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • accumulator patterns inside functions — using `itera ex` to compute sums, maxima, and counts</span>
+<span class="tok-co">#   • combining iteration with conditional logic (`si`) inside the loop body</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Using the wrong iteration keyword — ex for values, de for indices/keys, ab for ranges; mixing them up produces unexpected results.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: ex, de, ab</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># itera ex — accumulator pattern inside functio</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># itera ex &lt;lista&gt; fixum &lt;item&gt; { &lt;body&gt; }</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   forInStmt :← 'itera' 'ex' expr 'fixum' ident block</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   Sums, maxima, and counts above a threshold for sample listas.</span>
+
+fn summa(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> int {
+    var int total <span class="tok-op">←</span> <span class="tok-nu">0</span>
+
+    for from numeri const n {
+        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
+    }
+
+    return total
+}
+
+<span class="tok-co"># Assumes non-empty lista (seed from first element)</span>
+fn maximum(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> int {
+    var int max <span class="tok-op">←</span> numeri[<span class="tok-nu">0</span>]
+
+    for from numeri const n {
+        if n <span class="tok-op">&gt;</span> max {
+            max <span class="tok-op">←</span> n
+        }
+    }
+
+    return max
+}
+
+fn supra(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri, int limen) <span class="tok-op">→</span> int {
+    var int int <span class="tok-op">←</span> <span class="tok-nu">0</span>
+
+    for from numeri const n {
+        if n <span class="tok-op">&gt;</span> limen {
+            int <span class="tok-op">←</span> int <span class="tok-op">+</span> <span class="tok-nu">1</span>
+        }
+    }
+
+    return int
+}
+
+main {
+    const _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+
+    print summa(numeri)
+    print maximum(numeri)
+    print supra(numeri, <span class="tok-nu">3</span>)
+
+    print summa([<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>])
+    print maximum([<span class="tok-nu">5</span>, <span class="tok-nu">12</span>, <span class="tok-nu">8</span>, <span class="tok-nu">20</span>, <span class="tok-nu">3</span>])
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>15
+5
+2
+60
+20
+</code></pre><h3 id="radixcorpusiteraintervallum-gradusfab-canonical-keyword">radix/corpus/itera/intervallum-gradus.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteraintervallum-gradusfab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># itera — Starts a for-each iteration statement.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • range iteration with a step value using `per` — controls stride between elements</span>
+<span class="tok-co">#   • descending ranges with negative step values</span>
+<span class="tok-co">#   • exclusive (`‥`) vs inclusive (`…`) range bounds with step</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Using a step value that never reaches the end bound — ensure the step direction matches the range direction.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: ex, de, ab</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># itera ab — ranges with step using per</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># itera ab &lt;start&gt;‥&lt;end&gt; per &lt;step&gt; fixum &lt;item&gt; { &lt;body&gt; }</span>
+<span class="tok-co"># itera ab &lt;start&gt;…&lt;end&gt; per &lt;step&gt; fixum &lt;item&gt; { &lt;body&gt; }</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   forRangeStmt :← 'itera' 'ab' rangeExpr 'per' expr ('fixum' | 'varia') ident block</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   none — stdout not pinned for this exemplum.</span>
+
+main {
+<span class="tok-co">    # Step by 2 (exclusive: 0, 2, 4, 6, 8)</span>
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> step <span class="tok-nu">2</span> const i {
+        print i
+    }
+
+<span class="tok-co">    # Step by 2 (inclusive: 0, 2, 4, 6, 8, 10)</span>
+    for range <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">10</span> step <span class="tok-nu">2</span> const i {
+        print i
+    }
+
+<span class="tok-co">    # Step by 3</span>
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">15</span> step <span class="tok-nu">3</span> const i {
+        print i
+    }
+
+<span class="tok-co">    # Descending with negative step</span>
+    for range <span class="tok-nu">10</span>‥<span class="tok-nu">0</span> step <span class="tok-op">-</span><span class="tok-nu">1</span> const i {
+        print i
+    }
+
+<span class="tok-co">    # Descending by 2</span>
+    for range <span class="tok-nu">10</span>‥<span class="tok-nu">0</span> step <span class="tok-op">-</span><span class="tok-nu">2</span> const i {
+        print i
+    }
+}</code></pre><h3 id="radixcorpusiteraintervallumfab-canonical-keyword">radix/corpus/itera/intervallum.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteraintervallumfab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># itera — Starts a for-each iteration statement.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • range expressions with exclusive (`‥`) and inclusive (`…`) bounds</span>
+<span class="tok-co">#   • the explicit `ante` keyword for readability in exclusive ranges</span>
+<span class="tok-co">#   • descending direction in range iteration</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Confusing ‥ (exclusive upper bound) with … (inclusive upper bound) — off-by-one errors are the most common range bug.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: ex, de, ab</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># itera ab — range expressions with exclusive and inclusive bounds</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># itera ab &lt;start&gt;‥&lt;end&gt; fixum &lt;item&gt; { &lt;body&gt; }       — exclusive end</span>
+<span class="tok-co"># itera ab &lt;start&gt; ante &lt;end&gt; fixum &lt;item&gt; { &lt;body&gt; }  — explicit exclusive</span>
+<span class="tok-co"># itera ab &lt;start&gt;…&lt;end&gt; fixum &lt;item&gt; { &lt;body&gt; }        — inclusive end</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   forRangeStmt :← 'itera' 'ab' rangeExpr ('fixum' | 'varia') ident block</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   none — stdout not pinned for this exemplum.</span>
+
+main {
+<span class="tok-co">    # Basic range (exclusive: 0, 1, 2, 3, 4)</span>
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">5</span> const i {
+        print i
+    }
+
+<span class="tok-co">    # Explicit exclusive with ante (same as ‥)</span>
+    for range <span class="tok-nu">0</span> before <span class="tok-nu">5</span> const i {
+        print i
+    }
+
+<span class="tok-co">    # Inclusive range with … (0, 1, 2, 3, 4, 5)</span>
+    for range <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">5</span> const i {
+        print i
+    }
+
+<span class="tok-co">    # Range starting from non-zero</span>
+    for range <span class="tok-nu">5</span>‥<span class="tok-nu">10</span> const i {
+        print i
+    }
+
+<span class="tok-co">    # Descending direction</span>
+    for range <span class="tok-nu">5</span>‥<span class="tok-nu">0</span> const i {
+        print i
+    }
+}</code></pre><h3 id="radixcorpusiteranidificatusfab-canonical-keyword">radix/corpus/itera/nidificatus.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteranidificatusfab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># itera — Starts a for-each iteration statement.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • nested iteration — combining `itera ex` and `itera ab` loops for Cartesian products</span>
+<span class="tok-co">#   • multiplication tables and coordinate grids as practical examples</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Using ab (range iteration) when ex or de is needed for a collection — each nested itera must independently choose the correct mode.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: ex, de, ab</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># itera ex — nested loops (Cartesian product)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># itera ex &lt;collection&gt; fixum &lt;item&gt; { &lt;body&gt; }</span>
+<span class="tok-co"># itera ab &lt;start&gt;‥&lt;end&gt; fixum &lt;item&gt; { &lt;body&gt; }</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   forInStmt    :← 'itera' 'ex' expr 'fixum' ident block</span>
+<span class="tok-co">#   forRangeStmt :← 'itera' 'ab' rangeExpr 'fixum' ident block</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   none — row/col pairs, multiplication table, coordinate grids.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># BACKEND:</span>
+<span class="tok-co">#   Go backend does not emit nested itera yet — compile-only smoke.</span>
+
+main {
+<span class="tok-co">    # Nested lista iteration — 3 × 3 combinations</span>
+    const _ rows <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    const _ cols <span class="tok-op">←</span> [<span class="tok-st">"A"</span>, <span class="tok-st">"B"</span>, <span class="tok-st">"C"</span>]
+
+    for from rows const row {
+        for from cols const col {
+            print row, col
+        }
+    }
+
+<span class="tok-co">    # Multiplication table over exclusive ranges 1‥4 (i, j ∈ {1,2,3})</span>
+    for range <span class="tok-nu">1</span>‥<span class="tok-nu">4</span> const i {
+        for range <span class="tok-nu">1</span>‥<span class="tok-nu">4</span> const j {
+            print i, <span class="tok-st">"*"</span>, j, <span class="tok-st">"←"</span>, i <span class="tok-op">*</span> j
+        }
+    }
+
+<span class="tok-co">    # Nested ranges: 4 × 4 grid of (x, y) with x, y ∈ {0,1,2,3}</span>
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">3</span> const x {
+        for range <span class="tok-nu">0</span>‥<span class="tok-nu">3</span> const y {
+            print x, y
+        }
+    }
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1 A
+1 B
+1 C
+2 A
+2 B
+2 C
+3 A
+3 B
+3 C
+1 * 1 ← 1
+1 * 2 ← 2
+1 * 3 ← 3
+2 * 1 ← 2
+2 * 2 ← 4
+2 * 3 ← 6
+3 * 1 ← 3
+3 * 2 ← 6
+3 * 3 ← 9
+0 0
+0 1
+0 2
+1 0
+1 1
+1 2
+2 0
+2 1
+2 2
+</code></pre><h3 id="radixcorpusiteraapud-declinefab-supporting-reject">radix/corpus/itera/apud-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusiteraapud-declinefab-supporting-reject">#</a></h3><p>apud coordinate iteration declines arity mismatch and non-shaped iterables with structured issues.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># apud decline — arity mismatch and non-shaped iterables fail closed.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Decline rows (reject reason in each comment):</span>
+<span class="tok-co">#   1. arity mismatch — `at [i]` over tensor&lt;f32, [2, 3]&gt; binds 1 coordinate</span>
+<span class="tok-co">#      for rank 2: SEM010 itera_apud_arity_mismatch (expected=2, actual=1);</span>
+<span class="tok-co">#      partial binding never happens — the statement declines whole</span>
+<span class="tok-co">#   2. ragged — `list&lt;list&lt;f32&gt;&gt;` has no static rank: SEM010</span>
+<span class="tok-co">#      itera_apud_requires_shaped_iterable (apud requires a tensor or matrix</span>
+<span class="tok-co">#      iterable with a static rank)</span>
+<span class="tok-co">#   3. generic dims — `size R, size C` dims are not concrete at lowering, so</span>
+<span class="tok-co">#      the base lane declines with the MIR unsupported diagnostic</span>
+<span class="tok-co">#      "itera collection before iterator MIR lowering" (declared fail-closed;</span>
+<span class="tok-co">#      `faber check` admits the symbolic rank — the decline is at MIR, pinned</span>
+<span class="tok-co">#      in radix-module lower_test, not in this checker oracle)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • expecting half-bound coordinates on mismatch — arity == rank is a type</span>
+<span class="tok-co">#     error, never a partial bind</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: apud, itera, ex, tensor</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># apud reject cases — expected compile failure</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># WHY: documents the arity and shaped-iterable contracts for coordinate</span>
+<span class="tok-co"># iteration. Cases 1 and 2 must reject under `faber check` with the tokens</span>
+<span class="tok-co"># pinned in apud-decline.expected; case 3 is an MIR-lane decline kept here as</span>
+<span class="tok-co"># the documented third row.</span>
+
+fn arity(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> grid) <span class="tok-op">→</span> void {
+    for from grid at [i] const cell {
+        print cell
+    }
+}
+
+fn ragged(list<span class="tok-op">&lt;</span>list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> rows) <span class="tok-op">→</span> void {
+    for from rows at [r, c] const cell {
+        print cell
+    }
+}
+
+fn generic<span class="tok-op">&lt;</span>size R, size C<span class="tok-op">&gt;</span>(tensor<span class="tok-op">&lt;</span>f32, [R, C]<span class="tok-op">&gt;</span> grid) <span class="tok-op">→</span> void {
+    for from grid at [r, c] const cell {
+        print cell
+    }
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusiteracursor-iteratiofab-canonical-keyword">radix/corpus/itera/cursor-iteratio.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterain-functionefab-canonical-keyword">radix/corpus/itera/in-functione.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraintervallum-gradusfab-canonical-keyword">radix/corpus/itera/intervallum-gradus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraintervallumfab-canonical-keyword">radix/corpus/itera/intervallum.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteranidificatusfab-canonical-keyword">radix/corpus/itera/nidificatus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraapud-declinefab-supporting-reject">radix/corpus/itera/apud-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/itera/cursor-iteratio.fab&quot;]</li></ul></div></footer></div></body></html>

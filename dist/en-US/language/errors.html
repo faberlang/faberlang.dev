@@ -3,12 +3,12 @@
 shape:</p><div class="table-scroll"><table><thead><tr><th>Construct</th><th>Meaning</th></tr></thead><tbody><tr><td><code>→ T</code></td><td>Normal success return channel</td></tr><tr><td><code>T ∪ nihil</code></td><td>Absence in the success value domain</td></tr><tr><td><code>⇥ E</code></td><td>Recoverable alternate-exit channel for errors</td></tr></tbody></table></div><h3 id="normal-return">Normal return<a class="anchor" href="#normal-return">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> porta(<span class="tok-kw">int</span> x) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
     <span class="tok-kw">if</span> x ≺ <span class="tok-nu">0</span> then <span class="tok-kw">return</span> <span class="tok-nu">0</span>
     <span class="tok-kw">return</span> x <span class="tok-op">*</span> <span class="tok-nu">2</span>
-}</code></pre><h3 id="failable-functions">Failable functions<a class="anchor" href="#failable-functions">#</a></h3><p>Use <code>⇥</code> when a function can leave by an error channel:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ <span class="tok-kw">string</span> {
+}</code></pre><h3 id="failable-functions">Failable functions<a class="anchor" href="#failable-functions">#</a></h3><p>Use <code>⇥</code> when a function can leave by an error channel:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ string {
     <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">throw</span> <span class="tok-st">"division by zero"</span>
     }
     <span class="tok-kw">return</span> a <span class="tok-op">/</span> b
-}</code></pre><h3 id="throwing--iace">Throwing — iace<a class="anchor" href="#throwing--iace">#</a></h3><p><code>iace</code> sends a value on the error channel:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> exigePositivum(<span class="tok-kw">int</span> value) <span class="tok-op">→</span> <span class="tok-kw">void</span> ⇥ <span class="tok-kw">string</span> {
+}</code></pre><h3 id="throwing--iace">Throwing — iace<a class="anchor" href="#throwing--iace">#</a></h3><p><code>iace</code> sends a value on the error channel:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> exigePositivum(<span class="tok-kw">int</span> value) <span class="tok-op">→</span> <span class="tok-kw">void</span> ⇥ string {
     <span class="tok-kw">if</span> value ≺ <span class="tok-nu">0</span> {
         <span class="tok-kw">throw</span> <span class="tok-st">"negative value"</span>
     }
@@ -36,9 +36,9 @@ like a failable sync call.</p><p>Async and sync streams carry the channel too: <
 pull a promise that can yield, end, or fail (the first failure ends the
 stream, handled by <code>itera ex</code>); <code>fiunt → T ⇥ E</code> makes the stream call itself
 failable, recovered with <code class="kw">do</code> / <code class="kw">catch</code>.</p><p>See <a href="/en-US/language/functions.html#two-channel-promises">Functions — two-channel promises</a>
-for the full treatment.</p><h3 id="inline-conversion-recovery">Inline conversion recovery<a class="anchor" href="#inline-conversion-recovery">#</a></h3><p><code>⇥</code> can also specify an inline recovery value on <code>↦</code> conversions:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> <span class="tok-kw">string</span> raw <span class="tok-op">←</span> <span class="tok-st">"42"</span>
+for the full treatment.</p><h3 id="inline-conversion-recovery">Inline conversion recovery<a class="anchor" href="#inline-conversion-recovery">#</a></h3><p><code>⇥</code> can also specify an inline recovery value on <code>↦</code> conversions:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> string raw <span class="tok-op">←</span> <span class="tok-st">"42"</span>
 
-<span class="tok-kw">const</span> <span class="tok-kw">int</span> n <span class="tok-op">←</span> raw ↦ <span class="tok-kw">int</span> ⇥ <span class="tok-nu">0</span></code></pre><h3 id="effectonly-failable">Effect-only failable<a class="anchor" href="#effectonly-failable">#</a></h3><p>For functions that error but do not return a success value, omit <code>→ T</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> exigePositivum(<span class="tok-kw">int</span> value) <span class="tok-op">→</span> <span class="tok-kw">void</span> ⇥ <span class="tok-kw">string</span> {
+<span class="tok-kw">const</span> <span class="tok-kw">int</span> n <span class="tok-op">←</span> raw ↦ <span class="tok-kw">int</span> ⇥ <span class="tok-nu">0</span></code></pre><h3 id="effectonly-failable">Effect-only failable<a class="anchor" href="#effectonly-failable">#</a></h3><p>For functions that error but do not return a success value, omit <code>→ T</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> exigePositivum(<span class="tok-kw">int</span> value) <span class="tok-op">→</span> <span class="tok-kw">void</span> ⇥ string {
     <span class="tok-kw">if</span> value ≺ <span class="tok-nu">0</span> {
         <span class="tok-kw">throw</span> <span class="tok-st">"negative value"</span>
     }
@@ -76,12 +76,12 @@ An optional message string provides context on failure:</p><pre class="faber-cod
     <span class="tok-kw">assert</span> x ≻ <span class="tok-nu">0</span>
 
 <span class="tok-co">    # With custom message</span>
-    <span class="tok-kw">assert</span> x <span class="tok-op">≡</span> <span class="tok-nu">10</span> <span class="tok-kw">secus</span> <span class="tok-st">"x decem esse debet"</span>
+    <span class="tok-kw">assert</span> x <span class="tok-op">≡</span> <span class="tok-nu">10</span> <span class="tok-kw">panic</span> <span class="tok-st">"x decem esse debet"</span>
 
 <span class="tok-co">    # Multiple assertions in sequence</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">string</span> nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    <span class="tok-kw">const</span> string nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
     <span class="tok-kw">assert</span> nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">assert</span> nomen <span class="tok-op">≠</span> <span class="tok-st">""</span> <span class="tok-kw">secus</span> <span class="tok-st">"nomen vacuum non sit"</span>
+    <span class="tok-kw">assert</span> nomen <span class="tok-op">≠</span> <span class="tok-st">""</span> <span class="tok-kw">panic</span> <span class="tok-st">"nomen vacuum non sit"</span>
 }</code></pre><h3 id="workflow">Workflow<a class="anchor" href="#workflow">#</a></h3><p>Tests run through the <code>faber test</code> command, which executes proba cases on
 the MIR stepper — no Cargo or rustc is invoked for the package:</p><pre class="faber-code"><code class="lang-text">faber test                        # run all tests in the current package
 faber test examples/coreutils/packages/echo  # run tests for a specific package

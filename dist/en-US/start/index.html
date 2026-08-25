@@ -3,8 +3,9 @@
 then open a real package. For a sequenced path, follow: <a href="/en-US/start/install.html">Install</a> →
 <a href="/en-US/start/hello.html">Hello</a> → <a href="/en-US/cheatsheet/commands.html">Commands</a> →
 <a href="/en-US/start/projects.html">Projects</a>.</p><h2 id="install">1. Install the CLI<a class="anchor" href="#install">#</a></h2><p>Download the current release (<strong>1.6.0</strong>) for your platform from the
-<a href="/en-US/start/install.html">install page</a>, verify the archive checksum, and put the
-extracted <code>faber-v1.6.0-&lt;target-triple&gt;/faber</code> binary on your <code>PATH</code>. Confirm:</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> <span class="tok-op">--version</span></code></pre><h2 id="shape">2. Shape of a function<a class="anchor" href="#shape">#</a></h2><p>Type-first parameters, glyph return type, Latin control words, nullable
+<a href="/en-US/start/install.html">install page</a>, verify the archive checksum, and put
+<code>bin/faber</code> from the archive's <code>bin/</code> and <code>share/</code> trees on your <code>PATH</code>
+(keep the trees together so the reader packs resolve). Confirm:</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> <span class="tok-op">--version</span></code></pre><h2 id="shape">2. Shape of a function<a class="anchor" href="#shape">#</a></h2><p>Type-first parameters, glyph return type, Latin control words, nullable
 union:</p><pre class="faber-code"><code class="lang-text">functio divide(numerus a, numerus b) → numerus ∪ nihil {
     si b ≡ 0 ergo redde nihil
     redde a / b

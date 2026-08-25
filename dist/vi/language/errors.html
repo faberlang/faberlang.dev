@@ -54,12 +54,12 @@ Một chuỗi thông báo tùy chọn cung cấp ngữ cảnh khi xảy ra lỗi
     <span class="tok-kw">khẳng_định</span> x ≻ <span class="tok-nu">0</span>
 
 <span class="tok-co">    # With custom message</span>
-    <span class="tok-kw">khẳng_định</span> x <span class="tok-op">≡</span> <span class="tok-nu">10</span> secus <span class="tok-st">"x decem esse debet"</span>
+    <span class="tok-kw">khẳng_định</span> x <span class="tok-op">≡</span> <span class="tok-nu">10</span> <span class="tok-kw">chết</span> <span class="tok-st">"x decem esse debet"</span>
 
 <span class="tok-co">    # Multiple assertions in sequence</span>
     <span class="tok-kw">hằng</span> <span class="tok-kw">văn_bản</span> nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
     <span class="tok-kw">khẳng_định</span> nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">khẳng_định</span> nomen <span class="tok-op">≠</span> <span class="tok-st">""</span> secus <span class="tok-st">"nomen vacuum non sit"</span>
+    <span class="tok-kw">khẳng_định</span> nomen <span class="tok-op">≠</span> <span class="tok-st">""</span> <span class="tok-kw">chết</span> <span class="tok-st">"nomen vacuum non sit"</span>
 }</code></pre><h3 id="workflow">Quy trình<a class="anchor" href="#workflow">#</a></h3><p>Các bài kiểm thử được chạy thông qua lệnh <code>faber test</code>:</p><pre class="faber-code"><code class="lang-text">faber test                        # run all tests in the current package
 faber test examples/coreutils/packages/echo  # run tests for a specific package</code></pre><p>Vì các bài kiểm thử nằm cạnh mã nguồn trong cùng tệp <code>.fab</code>, nên không có cấu trúc
 thư mục kiểm thử riêng, không cần khai báo module kiểm thử, và cũng không có sự

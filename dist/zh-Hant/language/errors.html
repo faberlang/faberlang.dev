@@ -54,12 +54,12 @@
     <span class="tok-kw">斷言</span> x ≻ <span class="tok-nu">0</span>
 
 <span class="tok-co">    # With custom message</span>
-    <span class="tok-kw">斷言</span> x <span class="tok-op">≡</span> <span class="tok-nu">10</span> secus <span class="tok-st">"x decem esse debet"</span>
+    <span class="tok-kw">斷言</span> x <span class="tok-op">≡</span> <span class="tok-nu">10</span> <span class="tok-kw">崩潰</span> <span class="tok-st">"x decem esse debet"</span>
 
 <span class="tok-co">    # Multiple assertions in sequence</span>
     <span class="tok-kw">定值</span> <span class="tok-kw">文字</span> nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
     <span class="tok-kw">斷言</span> nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">斷言</span> nomen <span class="tok-op">≠</span> <span class="tok-st">""</span> secus <span class="tok-st">"nomen vacuum non sit"</span>
+    <span class="tok-kw">斷言</span> nomen <span class="tok-op">≠</span> <span class="tok-st">""</span> <span class="tok-kw">崩潰</span> <span class="tok-st">"nomen vacuum non sit"</span>
 }</code></pre><h3 id="workflow">工作流程<a class="anchor" href="#workflow">#</a></h3><p>測試透過 <code>faber test</code> 指令執行：</p><pre class="faber-code"><code class="lang-text">faber test                        # run all tests in the current package
 faber test examples/coreutils/packages/echo  # run tests for a specific package</code></pre><p>由於測試與原始碼位於同一個 <code>.fab</code> 檔案中，因此不需要獨立的測試目錄結構、不需要測試模組宣告，也不需要在測試建置與正式建置之間區分建置指令碼。編譯器會根據所使用的關鍵字，辨識哪些區塊是測試程式碼、哪些區塊是正式程式碼——<code>probandum</code> 和 <code>proba</code> 會被解析，但會從正式建置中排除。</p><h3 id="real-world">實際範例<a class="anchor" href="#real-world">#</a></h3><p>coreutils 的 <code>echo</code> 套件展示了測試框架的實際應用。測試與實作位於同一個檔案中，涵蓋選項解析、跳脫展開及邊界情況：</p><pre class="faber-code"><code class="lang-text">probandum &quot;echo formatting&quot; tag &quot;coreutils&quot; {
     proba &quot;empty operands format as empty text&quot; {

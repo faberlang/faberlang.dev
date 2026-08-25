@@ -7,21 +7,10 @@
   <url><loc>https://faberlang.dev/ar/corpus/!..html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/?..html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/@.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/ab.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/abstractus.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/ad.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/adfirma.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/ante.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/applications.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/argumenta.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/ascii.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/async solum leget.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/async tempus dormiet.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/aut.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/bivalens.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/block-string.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/cape.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/casu.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/category/ad.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/category/aliasing.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/category/application.html</loc></url>
@@ -47,6 +36,7 @@
   <url><loc>https://faberlang.dev/ar/corpus/category/expression.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/category/format.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/category/function.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/category/identifier.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/category/integration.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/category/io.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/category/iteration.html</loc></url>
@@ -69,158 +59,182 @@
   <url><loc>https://faberlang.dev/ar/corpus/category/transfer.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/category/type.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/category/types.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/cede.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/ceteri.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/ceterum.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/clausa.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/clausura.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/cli.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/commune.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/conversio-fallibilis.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/copia.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/cura.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/curata.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/cursor.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/custodi.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/de.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/descriptio.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/discerne.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/discretio.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/dum.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/ego.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/elige.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/ergo.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/errata.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/est.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/et.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/ex.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/exitus.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/fac.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/falsum.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/fient.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/fiet.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/figendum.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/finge.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/fiunt.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/fixum.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/finite.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/forma.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/fractus.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/fragilis.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/functio.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/futura.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/futurum.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/generic-call-type-args.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/generic.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/generics.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/generis.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/genus.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/iace.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/iacit.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/immutata.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/implendum.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/implet.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/importa.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/in.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/incipiet.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/incipit.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/instans.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/integratio.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/inter.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/intervallum.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/intra.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/itera.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/json.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/lege.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/lineam.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/lista.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/keyword-as-ident.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/manifest.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/membrum.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/metior.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/meus.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/modulus&lt;u16&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/modulus&lt;u32&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/modulus&lt;u64&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/modulus&lt;u8&gt;.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/mone.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/mori.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/morphologia.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/nexum.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/nihil.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/non.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/nondum.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/numerus.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/numquam.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/octeti.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/omitte.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/omnia.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/operandus.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/optio.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/optiones.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/ordo.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/per.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/perge.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/postpara.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/postparabit.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/praefixum.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/praepara.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/praeparabit.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/privata.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/proba.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/probandum.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/promissum.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/protecta.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/publica.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/mutabilitas.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/named-holes.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/primus_quem.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/radix-lane.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/redde.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/reddet.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/regex.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/repete.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/requirit.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/rumpe.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/ratio.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/scalaria.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/scribe.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/scriptum.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/secus.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/si.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/sic.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/sin.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/sit.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/solum lege generic.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/solum.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/solum_in.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/sparge.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/sparsa.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/sponte.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/solum lege carpe hauri.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/string.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/sub.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/summa.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/tabula.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/tacebit.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/tacet.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/tag.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/targets.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/temporis.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/tensor.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/textus.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/tensor-shape-generic.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/tuus.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/type-hole-union.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/typus.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/ubique.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/unarius.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/usque.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/ut.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/vacuum.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/valor.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/varia.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/variandum.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/vel.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/versio.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/verte.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/verum.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/vide.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/vocatio.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/§.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/·.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/×.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/أبدا.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/أسكي.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/أعد.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/أعد_منتظرا.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/أكد.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/أنشئ.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/أهمل.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/أو.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/إذا.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/إذن.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/إعادة_تسمية.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/إغلاق.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/اتصل.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/احرس.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/اختبر.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/اختر.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/اختياري.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/ارم.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/استهلال.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/استورد.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/اعتن.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/افتراضي.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/افعل.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/اقرأ.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/اكتب.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/اكسر.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/التقط.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/امتد.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/انتظر.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/انتظر_ثابت.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/انتظر_متغير.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/انشر.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/انهر.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/بادئة.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/باقي.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/بايتات.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/بداية.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/بين.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/تابع.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/ترتيب.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/تعبير.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/تمايز.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/توبل.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/ثابت.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/ثابتة.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/جدول.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/جسون.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/جميع.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/جهز.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/حالة.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/حتى.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/حر.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/حرر.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/حصري.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/حقق.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/خاص.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/خطأ.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/خيار.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/خيارات.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/دالة.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/ذات.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/زمني.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/سطرا.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/سكوني.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/سلم.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/سيلحق.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/سيهيئ.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/شاهد.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/صمت.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/صنف.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/صواب.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/ضمن.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/طابق.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/طالما.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/عام.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/عدد.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/عقد.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/عمومي.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/عن.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/عوض.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/غير_مستقر.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/غيرمتزامن.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/فإذا.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/فترة.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/فراغ.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/فقط.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/في.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/قائمة.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/قبل.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/قس.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/قيمة.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/كرر.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/كسر.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/كـ.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/كل.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/لاحق.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/لاشيء.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/لحظة.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/ليس.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/ليكن.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/متغير.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/متفرقة.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/مجرد.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/مجموع.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/مجموعة.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/محمي.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/مختبر.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/مخرج.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/مخصص.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/مخطئ.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/مرتبط.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/مستقبل.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/مستقبلي.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/معاد.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/معامل.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/من.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/منطقي.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/موتر.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/مولد.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/مولد_غيرمتزامن.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/نبه.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/نص.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/نطاق.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/نمط.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/هش.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/هو.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/و.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/وإلا.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/وإلاإذا.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/وسائط.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/وسم.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/وصف.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/وعد.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/يتطلب.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/يرمي.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/‥.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/←.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/↑.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/→.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/↤.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/↦.html</loc></url>
@@ -229,7 +243,8 @@
   <url><loc>https://faberlang.dev/ar/corpus/∪.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/≈.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/≡.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/corpus/⊕.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/⊗.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/⊙.html</loc></url>
   <url><loc>https://faberlang.dev/ar/language/capabilities.html</loc></url>
   <url><loc>https://faberlang.dev/ar/language/errors.html</loc></url>
   <url><loc>https://faberlang.dev/ar/language/functions.html</loc></url>
@@ -269,21 +284,35 @@
   <url><loc>https://faberlang.dev/en-US/corpus/!..html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/?..html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/@.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/ab.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/abstractus.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/ad.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/adfirma.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/ante.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/abstract.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/all.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/allocator.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/and.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/applications.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/argumenta.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/args.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/as.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/ascii.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/assert.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/async solum leget.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/async tempus dormiet.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/aut.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/bivalens.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/async.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/async_generator.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/async_main.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/async_setup.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/async_teardown.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/await.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/await_const.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/await_var.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/before.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/bench.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/between.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/block-string.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/cape.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/casu.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/bool.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/break.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/bytes.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/call.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/case.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/catch.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/category/ad.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/category/aliasing.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/category/application.html</loc></url>
@@ -309,6 +338,7 @@
   <url><loc>https://faberlang.dev/en-US/corpus/category/expression.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/category/format.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/category/function.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/category/identifier.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/category/integration.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/category/io.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/category/iteration.html</loc></url>
@@ -331,158 +361,157 @@
   <url><loc>https://faberlang.dev/en-US/corpus/category/transfer.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/category/type.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/category/types.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/cede.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/ceteri.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/ceterum.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/class.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/clausa.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/clausura.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/cli.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/coalesce.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/commune.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/comptime.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/const.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/continue.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/conversio-fallibilis.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/copia.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/cura.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/curata.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/cursor.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/custodi.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/de.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/descriptio.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/discerne.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/discretio.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/dum.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/ego.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/elige.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/ergo.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/errata.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/est.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/et.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/ex.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/exitus.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/fac.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/falsum.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/fient.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/fiet.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/figendum.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/finge.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/fiunt.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/fixum.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/debug.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/default.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/describe.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/description.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/do.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/elif.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/else.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/enum.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/errors.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/exit.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/extends.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/false.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/finite.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/flaky.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/float.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/fn.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/for.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/forma.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/fractus.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/fragilis.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/functio.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/futura.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/futurum.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/format.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/free.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/from.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/future.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/generator.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/generic-call-type-args.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/generic.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/generics.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/generis.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/genus.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/iace.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/iacit.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/immutata.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/implendum.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/implet.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/importa.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/in.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/incipiet.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/incipit.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/instans.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/global.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/guard.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/if.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/implements.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/import.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/instant.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/int.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/integratio.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/inter.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/interface.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/intervallum.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/intra.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/itera.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/is.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/json.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/lege.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/lineam.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/lista.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/keyword-as-ident.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/lambda.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/let.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/line.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/list.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/main.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/manifest.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/map.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/match.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/membrum.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/metior.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/meus.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/modulus&lt;u16&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/modulus&lt;u32&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/modulus&lt;u64&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/modulus&lt;u8&gt;.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/mone.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/mori.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/morphologia.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/mut.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/mutabilitas.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/named-holes.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/never.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/nexum.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/nihil.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/non.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/nondum.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/numerus.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/numquam.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/octeti.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/omitte.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/omnia.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/operandus.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/optio.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/optiones.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/ordo.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/per.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/perge.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/postpara.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/postparabit.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/praefixum.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/praepara.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/praeparabit.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/privata.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/proba.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/probandum.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/promissum.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/protecta.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/publica.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/not.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/null.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/only.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/only_in.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/operand.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/option.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/optional.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/options.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/or.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/panic.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/pass.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/primus_quem.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/private.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/promise.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/protected.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/public.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/radix-lane.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/redde.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/reddet.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/range.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/read.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/readonly.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/record.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/ref.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/regex.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/repete.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/requirit.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/rumpe.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/rename.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/repeat.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/require.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/rest.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/return.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/return_await.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/scalaria.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/scribe.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/scriptum.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/secus.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/si.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/sic.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/sin.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/sit.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/solum lege generic.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/solum.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/solum_in.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/sparge.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/self.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/set.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/setup.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/skip.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/solum lege carpe hauri.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/sparsa.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/sponte.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/spread.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/static.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/step.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/string.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/sub.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/summa.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/tabula.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/tacebit.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/tacet.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/sum.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/switch.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/tag.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/targets.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/temporis.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/teardown.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/tensor-shape-generic.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/tensor.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/test.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/textus.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/then.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/throw.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/throws.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/timeout.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/todo.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/true.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/tuple.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/tuus.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/type-hole-union.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/typus.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/ubique.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/type.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/unarius.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/usque.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/ut.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/vacuum.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/valor.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/varia.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/variandum.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/vel.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/union.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/unstable.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/until.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/value.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/var.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/variant.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/versio.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/verte.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/verum.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/vide.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/vocatio.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/void.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/warn.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/while.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/with.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/within.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/write.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/yield.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/yields.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/§.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/·.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/×.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/‥.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/←.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/↑.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/→.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/↤.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/↦.html</loc></url>
@@ -491,7 +520,8 @@
   <url><loc>https://faberlang.dev/en-US/corpus/∪.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/≈.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/≡.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/⊕.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/⊗.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/⊙.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/examples/</loc></url>
   <url><loc>https://faberlang.dev/en-US/examples/arena-handle.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/examples/cat.html</loc></url>
@@ -526,6 +556,7 @@
   <url><loc>https://faberlang.dev/en-US/releases/faber-1.5.0.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/releases/faber-1.5.1.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/releases/faber-1.6.0.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/releases/faber-1.8.0.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/releases/radix-0.10.0.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/releases/radix-0.11.0.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/releases/radix-0.12.0.html</loc></url>
@@ -605,6 +636,7 @@
   <url><loc>https://faberlang.dev/en-US/releases/radix-0.8.0.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/releases/radix-0.80.0.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/releases/radix-0.81.0.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/releases/radix-0.83.0.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/releases/radix-0.9.0.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/start/</loc></url>
   <url><loc>https://faberlang.dev/en-US/start/hello.html</loc></url>
@@ -634,21 +666,13 @@
   <url><loc>https://faberlang.dev/hi/corpus/!..html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/?..html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/@.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/ab.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/abstractus.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/ad.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/adfirma.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/ante.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/applications.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/argumenta.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/ascii.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/async solum leget.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/async tempus dormiet.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/aut.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/bivalens.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/async.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/async_जनक.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/block-string.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/cape.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/casu.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/category/ad.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/category/aliasing.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/category/application.html</loc></url>
@@ -674,6 +698,7 @@
   <url><loc>https://faberlang.dev/hi/corpus/category/expression.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/category/format.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/category/function.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/category/identifier.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/category/integration.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/category/io.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/category/iteration.html</loc></url>
@@ -696,158 +721,179 @@
   <url><loc>https://faberlang.dev/hi/corpus/category/transfer.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/category/type.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/category/types.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/cede.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/ceteri.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/ceterum.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/clausa.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/clausura.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/cli.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/commune.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/conversio-fallibilis.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/copia.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/cura.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/curata.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/cursor.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/custodi.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/de.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/descriptio.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/discerne.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/discretio.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/dum.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/ego.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/elige.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/ergo.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/errata.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/est.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/et.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/ex.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/exitus.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/fac.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/falsum.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/fient.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/fiet.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/figendum.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/finge.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/fiunt.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/fixum.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/finite.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/forma.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/fractus.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/fragilis.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/functio.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/futura.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/futurum.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/generic-call-type-args.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/generic.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/generics.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/generis.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/genus.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/iace.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/iacit.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/immutata.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/implendum.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/implet.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/importa.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/in.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/incipiet.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/incipit.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/instans.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/integratio.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/inter.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/intervallum.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/intra.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/itera.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/json.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/lege.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/lineam.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/lista.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/keyword-as-ident.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/manifest.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/membrum.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/metior.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/meus.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/modulus&lt;u16&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/modulus&lt;u32&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/modulus&lt;u64&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/modulus&lt;u8&gt;.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/mone.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/mori.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/morphologia.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/nexum.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/nihil.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/non.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/nondum.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/numerus.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/numquam.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/octeti.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/omitte.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/omnia.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/operandus.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/optio.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/optiones.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/ordo.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/per.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/perge.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/postpara.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/postparabit.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/praefixum.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/praepara.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/praeparabit.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/privata.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/proba.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/probandum.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/promissum.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/protecta.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/publica.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/mutabilitas.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/named-holes.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/primus_quem.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/radix-lane.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/redde.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/reddet.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/ratio.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/regex.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/repete.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/requirit.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/rumpe.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/scalaria.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/scribe.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/scriptum.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/secus.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/si.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/sic.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/sin.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/sit.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/solum lege generic.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/solum.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/solum_in.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/sparge.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/sparsa.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/sponte.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/solum lege carpe hauri.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/string.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/sub.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/summa.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/tabula.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/tacebit.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/tacet.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/tag.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/targets.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/temporis.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/tensor.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/textus.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/tensor-shape-generic.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/tuus.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/type-hole-union.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/typus.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/ubique.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/unarius.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/usque.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/ut.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/vacuum.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/valor.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/varia.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/variandum.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/vel.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/versio.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/verte.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/verum.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/vide.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/vocatio.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/§.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/·.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/×.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/अंतराल.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/अतः.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/अधीन.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/अनुबन्ध.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/अन्यतम.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/अन्यथा.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/अन्यथायदि.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/अपरिवर्तित.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/अमूर्त.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/असत्य.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/अस्थिर.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/आगेबढ़ो.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/आयात.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/आरंभ.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/आरंभasync.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/आवंटक.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/आवश्यक.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/इधरफेंको.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/उपसर्ग.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/ऐसा.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/ऑपरेंड.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/और.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/कभीनहीं.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/करो.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/केवल.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/केवलमें.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/क्रम.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/क्षण.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/गढ़ो.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/चयन.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/चर.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/चुनो.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/चेताओ.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/छोड़ो.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/जनक.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/जबतक.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/जारी.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/टपल.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/टेंसर.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/टैग.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/डिफ़ॉल्ट.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/तक.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/तर्क.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/तार्किक.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/तालिका.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/तोड़ो.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/त्रुटि.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/देखभाल.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/देखो.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/दोहराओ.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/नहीं.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/नाज़ुक.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/नाम_बदलें.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/निजी.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/निर्गम.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/पंक्ति.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/पकड़ो.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/पढ़ो.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/परीक्षण.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/परीक्षणसमूह.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/पश्चतैयार.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/पश्चतैयारasync.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/पहले.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/पाठ.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/पुनरावृत्ति.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/पुष्टि.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/पूर्वतैयार.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/पूर्वतैयारasync.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/प्रकार.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/प्रति.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/फलन.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/फेंकता.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/फैलाओ.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/बाइट.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/बाकी.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/बीच.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/बैठा.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/भविष्य.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/भिन्न.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/भीतर.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/मरोजाओ.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/मान.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/मापो.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/मिलाओ.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/मुक्त.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/में.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/मैं.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/मौन.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/यदि.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/या.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/योग.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/रक्षक.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/रिक्त.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/रुको.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/रुको_चर.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/रुको_लौटाओ.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/रुको_स्थिर.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/रूपमें.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/लंबित.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/लागूकरता.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/लिखित.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/लिखो.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/लौटाओ.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/वर्ग.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/वादा.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/विकल्प.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/विभेद.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/विरल.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/विवरण.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/वैश्विक.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/शून्य.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/संकेतक.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/संख्या.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/संबद्ध.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/संरक्षित.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/सत्य.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/सब.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/समय.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/समापन.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/समुच्चय.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/सार्वजनिक.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/सीमा.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/सूची.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/से.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/सेवन.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/सेवा.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/स्थिति.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/स्थिर.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/स्थैतिक.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/स्वेच्छा.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/है.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/‥.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/←.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/↑.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/→.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/↤.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/↦.html</loc></url>
@@ -856,7 +902,8 @@
   <url><loc>https://faberlang.dev/hi/corpus/∪.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/≈.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/≡.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/corpus/⊕.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/⊗.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/⊙.html</loc></url>
   <url><loc>https://faberlang.dev/hi/language/capabilities.html</loc></url>
   <url><loc>https://faberlang.dev/hi/language/errors.html</loc></url>
   <url><loc>https://faberlang.dev/hi/language/functions.html</loc></url>
@@ -885,21 +932,11 @@
   <url><loc>https://faberlang.dev/th-TH/corpus/!..html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/?..html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/@.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/ab.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/abstractus.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/ad.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/adfirma.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/ante.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/applications.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/argumenta.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/ascii.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/async solum leget.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/async tempus dormiet.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/aut.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/bivalens.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/block-string.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/cape.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/casu.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/category/ad.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/category/aliasing.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/category/application.html</loc></url>
@@ -925,6 +962,7 @@
   <url><loc>https://faberlang.dev/th-TH/corpus/category/expression.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/category/format.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/category/function.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/category/identifier.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/category/integration.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/category/io.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/category/iteration.html</loc></url>
@@ -947,158 +985,181 @@
   <url><loc>https://faberlang.dev/th-TH/corpus/category/transfer.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/category/type.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/category/types.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/cede.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/ceteri.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/ceterum.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/clausa.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/clausura.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/cli.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/commune.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/conversio-fallibilis.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/copia.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/cura.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/curata.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/cursor.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/custodi.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/de.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/descriptio.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/discerne.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/discretio.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/dum.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/ego.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/elige.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/ergo.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/errata.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/est.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/et.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/ex.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/exitus.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/fac.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/falsum.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/fient.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/fiet.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/figendum.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/finge.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/fiunt.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/fixum.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/finite.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/forma.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/fractus.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/fragilis.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/functio.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/futura.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/futurum.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/generic-call-type-args.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/generic.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/generics.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/generis.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/genus.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/iace.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/iacit.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/immutata.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/implendum.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/implet.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/importa.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/in.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/incipiet.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/incipit.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/instans.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/integratio.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/inter.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/intervallum.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/intra.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/itera.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/json.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/lege.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/lineam.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/lista.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/keyword-as-ident.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/manifest.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/membrum.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/metior.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/meus.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/modulus&lt;u16&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/modulus&lt;u32&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/modulus&lt;u64&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/modulus&lt;u8&gt;.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/mone.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/mori.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/morphologia.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/nexum.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/nihil.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/non.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/nondum.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/numerus.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/numquam.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/octeti.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/omitte.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/omnia.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/operandus.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/optio.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/optiones.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/ordo.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/per.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/perge.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/postpara.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/postparabit.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/praefixum.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/praepara.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/praeparabit.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/privata.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/proba.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/probandum.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/promissum.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/protecta.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/publica.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/mutabilitas.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/named-holes.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/primus_quem.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/radix-lane.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/redde.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/reddet.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ratio.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/regex.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/repete.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/requirit.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/rumpe.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/scalaria.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/scribe.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/scriptum.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/secus.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/si.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/sic.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/sin.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/sit.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/solum lege generic.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/solum.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/solum_in.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/sparge.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/sparsa.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/sponte.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/solum lege carpe hauri.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/string.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/sub.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/summa.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/tabula.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/tacebit.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/tacet.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/tag.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/targets.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/temporis.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/tensor.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/textus.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/tensor-shape-generic.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/tuus.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/type-hole-union.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/typus.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/ubique.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/unarius.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/usque.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/ut.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/vacuum.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/valor.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/varia.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/variandum.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/vel.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/versio.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/verte.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/verum.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/vide.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/vocatio.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/§.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/·.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/×.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/กรณี.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/กระจัดกระจาย.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/กระจาย.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ก่อน.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ขณะ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ของชนิด.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ข้อความ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ข้อผิดพลาด.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/คงที่.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/คำมั่น.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/คำอธิบาย.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/คืน.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/คุ้มครอง.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ค่า.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ค้าง.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/จนถึง.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/จริง.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/จะหลังเตรียม.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/จะเตรียม.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/จัดการ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/จับ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/จาก.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/จารึก.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/จำนวน.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ชนิด.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ชนิดนามแฝง.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ชุด.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ช่วง.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ดังนั้น.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ดู.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ดูแล.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ตรรกะ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ตัวฉัน.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ตัวถูกดำเนินการ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ตัวเลือก.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ตาย.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ตาราง.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ต่อ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ต้องการ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ถึง.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ถ้า.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ถ้าไม่ก็.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ทดสอบ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ทดสอบชุด.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ทั้งหมด.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ทางออก.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ทางเลือก.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ทำ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ทำซ้ำ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ที่เหลือ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ทูเพิล.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/นามธรรม.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/นำหน้า.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/นำเข้า.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/บรรทัด.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ปิดล้อม.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ป้องกัน.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ผลรวม.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ผูก.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ฟังก์ชัน.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ภายใน.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/มิฉะนั้น.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ยืนยัน.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/รอคง.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/รอคืน.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/รอทิ้ง.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/รอแปร.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ระหว่าง.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/รายการ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ละเว้น.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ลำดับ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/วน.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/วัด.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ว่าง.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/สตรีม.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/สตรีมอะซิงก์.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/สมัครใจ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/สร้าง.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/สหภาพแยก.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/สัญญา.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/สาธารณะ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/สืบทอด.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ส่วนตัว.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/หยุด.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/หรือ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/หรือว่าง.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/หลังเตรียม.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/อนาคต.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/อนุมานคงที่.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ออก.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/อะซิงก์.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/อันตรภาค.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/อาร์กิวเมนต์.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/อินสแตนซ์.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/อิสระ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/อื่น.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/อ่าน.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เขียน.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เคอร์เซอร์.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เงียบ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เฉพาะ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เฉพาะใน.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เช่นนั้น.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เตรียม.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เติมเต็ม.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เตือน.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เทนเซอร์.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เท็จ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เปราะบาง.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เปลี่ยนชื่อ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เปล่า.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เป็น.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เริ่ม.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เริ่มอะซิงก์.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เลือก.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เวลา.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/เศษ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/แท็ก.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/แปร.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/แยก.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/และ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/โกลบอล.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/โยน.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/โยนผล.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ใน.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ในชื่อ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ให้.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ไบต์.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ไปต่อ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ไม่.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ไม่เคย.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ไม่เปลี่ยนแปลง.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ไม่เสถียร.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/‥.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/←.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/↑.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/→.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/↤.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/↦.html</loc></url>
@@ -1107,7 +1168,8 @@
   <url><loc>https://faberlang.dev/th-TH/corpus/∪.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/≈.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/≡.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/⊕.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/⊗.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/⊙.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/language/capabilities.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/language/errors.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/language/functions.html</loc></url>
@@ -1136,21 +1198,24 @@
   <url><loc>https://faberlang.dev/vi/corpus/!..html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/?..html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/@.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/ab.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/abstractus.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/ad.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/adfirma.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/ante.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/applications.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/argumenta.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/ascii.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/async solum leget.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/async tempus dormiet.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/aut.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/bivalens.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/async.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/async_sinh.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/biến.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/block-string.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/cape.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/casu.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/byte.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/bảng.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/bảo_vệ.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/bất_biến.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/bắt.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/bắt_đầu.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/bắt_đầu_bất_đồng_bộ.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/bỏ_qua.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/bộ.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/canh_gác.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/category/ad.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/category/aliasing.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/category/application.html</loc></url>
@@ -1176,6 +1241,7 @@
   <url><loc>https://faberlang.dev/vi/corpus/category/expression.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/category/format.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/category/function.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/category/identifier.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/category/integration.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/category/io.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/category/iteration.html</loc></url>
@@ -1198,158 +1264,168 @@
   <url><loc>https://faberlang.dev/vi/corpus/category/transfer.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/category/type.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/category/types.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/cede.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/ceteri.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/ceterum.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/chuẩn_bị.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/chính_quy.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/chăm_sóc.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/chết.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/chỉ.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/chỉ_trong.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/chọn.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/clausa.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/clausura.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/cli.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/commune.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/con_trỏ.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/conversio-fallibilis.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/copia.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/cura.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/curata.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/cursor.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/custodi.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/de.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/descriptio.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/discerne.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/discretio.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/dum.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/ego.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/elige.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/ergo.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/errata.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/est.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/et.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/ex.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/exitus.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/fac.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/falsum.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/fient.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/fiet.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/figendum.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/finge.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/fiunt.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/fixum.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/còn_lại.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/công_khai.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/cảnh_báo.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/danh_sách.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/do_đó.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/dòng.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/dưới.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/dừng.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/finite.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/forma.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/fractus.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/fragilis.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/functio.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/futura.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/futurum.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/generic-call-type-args.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/generic.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/generics.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/generis.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/genus.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/iace.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/iacit.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/immutata.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/implendum.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/implet.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/importa.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/in.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/incipiet.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/incipit.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/instans.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/giao_ước.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/giá_trị.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/giữa.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/gọi.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/hoặc.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/hoặc_nếu_rỗng.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/hàm.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/hằng.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/hợp_nhất.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/im_lặng.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/integratio.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/inter.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/intervallum.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/intra.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/itera.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/json.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/lege.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/lineam.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/lista.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/keyword-as-ident.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/khoảng.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/khác.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/không.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/không_bao_giờ.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/không_ổn_định.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/khẳng_định.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/kiểm_thử.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/kiểu.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/kiểu_tên.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/liệt_kê.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/logic.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/là.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/làm.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/lặp.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/lặp_lại.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/lỗi.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/lời_hứa.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/lựa_chọn.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/manifest.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/membrum.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/metior.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/meus.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/miền.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/modulus&lt;u16&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/modulus&lt;u32&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/modulus&lt;u64&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/modulus&lt;u8&gt;.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/mone.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/mori.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/mong_manh.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/morphologia.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/nexum.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/nihil.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/non.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/nondum.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/numerus.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/numquam.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/octeti.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/omitte.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/omnia.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/operandus.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/optio.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/optiones.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/ordo.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/per.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/perge.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/postpara.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/postparabit.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/praefixum.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/praepara.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/praeparabit.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/privata.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/proba.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/probandum.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/promissum.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/protecta.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/publica.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/mutabilitas.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/mô_tả.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/mặc_định.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/mọi.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/named-holes.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/nhãn.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/như.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/nhường.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/nhập.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/ném.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/ném_lỗi.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/nếu.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/nếukhôngthì.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/phân_tích.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/primus_quem.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/qua.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/ra.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/radix-lane.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/redde.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/reddet.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/regex.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/repete.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/requirit.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/rumpe.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/ratio.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/riêng_tư.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/ràng_buộc.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/rải.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/rỗng.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/sai.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/sau_chuẩn_bị.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/scalaria.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/scribe.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/scriptum.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/secus.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/si.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/sic.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/sin.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/sit.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/solum lege generic.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/solum.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/solum_in.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/sparge.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/sparsa.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/sponte.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/sinh.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/solum lege carpe hauri.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/string.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/sub.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/summa.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/tabula.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/tacebit.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/tacet.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/tag.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/sẽ_chuẩn_bị.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/sẽ_sau_chuẩn_bị.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/số.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/targets.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/temporis.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/tensor.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/textus.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/ten_xo.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/tensor-shape-generic.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/thoát.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/thưa.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/thập_phân.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/thế.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/thời_gian.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/thời_điểm.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/thực_thi.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/tiếp.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/tiền_tố.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/toàn_cục.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/toán_hạng.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/trong.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/trong_khi.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/trước.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/trường_hợp.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/trả.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/trống.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/trừu_tượng.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/tuus.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/type-hole-union.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/typus.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/ubique.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/tôi.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/tùy_chọn.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/tĩnh.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/tương_lai.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/tạo.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/tập_hợp.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/tổng.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/tới.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/từ.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/tự_do.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/tự_nguyện.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/unarius.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/usque.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/ut.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/vacuum.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/valor.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/varia.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/variandum.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/vel.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/versio.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/verte.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/verum.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/vide.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/viết.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/việc_cần_làm.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/vocatio.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/và.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/vào.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/văn_bản.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/văn_bản_hóa.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/xem.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/yêu_cầu.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/§.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/·.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/×.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/đo_lường.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/đóng.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/đúng.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/được_sửa.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/đặt.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/đọc.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/đối_số.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/đối_tượng_kiểm_thử.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/đổi_tên.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/đợi_biến.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/đợi_bỏ.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/đợi_hằng.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/đợi_trả.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/‥.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/←.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/↑.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/→.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/↤.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/↦.html</loc></url>
@@ -1358,7 +1434,8 @@
   <url><loc>https://faberlang.dev/vi/corpus/∪.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/≈.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/≡.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/corpus/⊕.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/⊗.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/⊙.html</loc></url>
   <url><loc>https://faberlang.dev/vi/language/capabilities.html</loc></url>
   <url><loc>https://faberlang.dev/vi/language/errors.html</loc></url>
   <url><loc>https://faberlang.dev/vi/language/functions.html</loc></url>
@@ -1387,21 +1464,10 @@
   <url><loc>https://faberlang.dev/zh-Hans/corpus/!..html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/?..html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/@.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/ab.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/abstractus.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/ad.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/adfirma.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/ante.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/applications.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/argumenta.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/ascii.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/async solum leget.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/async tempus dormiet.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/aut.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/bivalens.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/block-string.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/cape.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/casu.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/category/ad.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/category/aliasing.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/category/application.html</loc></url>
@@ -1427,6 +1493,7 @@
   <url><loc>https://faberlang.dev/zh-Hans/corpus/category/expression.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/category/format.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/category/function.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/category/identifier.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/category/integration.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/category/io.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/category/iteration.html</loc></url>
@@ -1449,158 +1516,47 @@
   <url><loc>https://faberlang.dev/zh-Hans/corpus/category/transfer.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/category/type.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/category/types.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/cede.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/ceteri.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/ceterum.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/clausa.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/clausura.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/cli.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/commune.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/conversio-fallibilis.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/copia.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/cura.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/curata.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/cursor.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/custodi.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/de.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/descriptio.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/discerne.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/discretio.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/dum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/ego.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/elige.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/ergo.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/errata.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/est.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/et.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/ex.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/exitus.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/fac.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/falsum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/fient.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/fiet.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/figendum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/finge.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/fiunt.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/fixum.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/finite.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/forma.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/fractus.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/fragilis.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/functio.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/futura.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/futurum.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/generic-call-type-args.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/generic.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/generics.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/generis.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/genus.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/iace.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/iacit.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/immutata.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/implendum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/implet.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/importa.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/in.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/incipiet.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/incipit.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/instans.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/integratio.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/inter.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/intervallum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/intra.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/itera.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/json.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/lege.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/lineam.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/lista.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/keyword-as-ident.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/manifest.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/membrum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/metior.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/meus.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/modulus&lt;u16&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/modulus&lt;u32&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/modulus&lt;u64&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/modulus&lt;u8&gt;.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/mone.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/mori.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/morphologia.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/nexum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/nihil.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/non.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/nondum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/numerus.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/numquam.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/octeti.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/omitte.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/omnia.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/operandus.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/optio.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/optiones.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/ordo.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/per.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/perge.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/postpara.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/postparabit.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/praefixum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/praepara.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/praeparabit.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/privata.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/proba.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/probandum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/promissum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/protecta.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/publica.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/mutabilitas.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/named-holes.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/primus_quem.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/radix-lane.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/redde.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/reddet.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/ratio.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/regex.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/repete.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/requirit.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/rumpe.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/scalaria.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/scribe.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/scriptum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/secus.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/si.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/sic.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/sin.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/sit.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/solum lege generic.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/solum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/solum_in.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/sparge.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/sparsa.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/sponte.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/solum lege carpe hauri.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/string.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/sub.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/summa.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/tabula.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/tacebit.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/tacet.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/tag.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/targets.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/temporis.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/tensor.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/textus.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/tensor-shape-generic.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/tuus.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/type-hole-union.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/typus.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/ubique.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/unarius.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/usque.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/ut.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/vacuum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/valor.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/varia.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/variandum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/vel.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/versio.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/verte.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/verum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/vide.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/vocatio.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/§.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/·.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/×.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/‥.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/←.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/↑.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/→.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/↤.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/↦.html</loc></url>
@@ -1609,7 +1565,143 @@
   <url><loc>https://faberlang.dev/zh-Hans/corpus/∪.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/≈.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/≡.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/corpus/⊕.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/⊗.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/⊙.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/不变.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/不稳定.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/且.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/中断.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/乃.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/仅.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/仅于.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/传入.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/作为.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/保护.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/借自.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/假.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/元组.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/兜底.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/入口.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/全局.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/全部.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/公开.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/其余.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/内.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/写入.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/函数.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/列表.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/则.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/判别.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/到.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/前缀.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/动态值.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/勘误.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/匹配.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/区间.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/参数.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/取自.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/变量.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/可抛.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/可选.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/可选项.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/否则.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/否则如果.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/命令行.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/备置.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/契约.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/如果.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/委派.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/字节.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/守护.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/实现.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/导入.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/小数.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/展开.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/属性.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/崩溃.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/布尔.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/常量.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/异步.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/异步入口.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/异步备置.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/异步收尾.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/异流.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/张量.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/当.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/情况.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/或.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/执行.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/抛错.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/抽象.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/捕获.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/描述.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/操作数.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/收尾.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/改名.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/整数.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/文本.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/断言.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/无值.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/时刻.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/时限.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/易碎.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/映射.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/是.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/期约.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/未来.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/构造.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/枚举.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/查看.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/标签.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/格式化.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/步.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/永不.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/求和.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/流.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/测试.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/真.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/私有.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/稀疏.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/空.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/窄字串.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/等变.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/等定.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/等弃.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/等返.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/管护.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/类.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/类型.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/继承.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/继续.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/自由.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/自身.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/范围.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/行.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/警告.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/计量.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/让出.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/设.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/读取.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/调用.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/跳过.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/迄.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/返回.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/迭代器.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/退出.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/选择.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/选项.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/遍历.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/重复.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/闭包.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/间.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/集合.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/需求.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/静态.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/静默.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/非.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/预期.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/验题.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/默认.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/language/capabilities.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/language/errors.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/language/functions.html</loc></url>
@@ -1638,21 +1730,11 @@
   <url><loc>https://faberlang.dev/zh-Hant/corpus/!..html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/?..html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/@.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/ab.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/abstractus.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/ad.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/adfirma.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/ante.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/applications.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/argumenta.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/ascii.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/async solum leget.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/async tempus dormiet.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/aut.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/bivalens.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/block-string.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/cape.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/casu.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/category/ad.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/category/aliasing.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/category/application.html</loc></url>
@@ -1678,6 +1760,7 @@
   <url><loc>https://faberlang.dev/zh-Hant/corpus/category/expression.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/category/format.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/category/function.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/category/identifier.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/category/integration.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/category/io.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/category/iteration.html</loc></url>
@@ -1700,158 +1783,45 @@
   <url><loc>https://faberlang.dev/zh-Hant/corpus/category/transfer.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/category/type.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/category/types.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/cede.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/ceteri.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/ceterum.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/clausa.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/clausura.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/cli.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/commune.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/conversio-fallibilis.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/copia.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/cura.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/curata.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/cursor.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/custodi.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/de.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/descriptio.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/discerne.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/discretio.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/dum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/ego.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/elige.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/ergo.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/errata.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/est.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/et.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/ex.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/exitus.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/fac.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/falsum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/fient.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/fiet.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/figendum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/finge.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/fiunt.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/fixum.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/finite.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/forma.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/fractus.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/fragilis.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/functio.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/futura.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/futurum.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/generic-call-type-args.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/generic.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/generics.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/generis.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/genus.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/iace.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/iacit.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/immutata.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/implendum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/implet.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/importa.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/in.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/incipiet.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/incipit.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/instans.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/integratio.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/inter.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/intervallum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/intra.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/itera.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/json.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/lege.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/lineam.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/lista.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/keyword-as-ident.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/manifest.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/membrum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/metior.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/meus.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/modulus&lt;u16&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/modulus&lt;u32&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/modulus&lt;u64&gt;.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/modulus&lt;u8&gt;.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/mone.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/mori.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/morphologia.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/nexum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/nihil.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/non.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/nondum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/numerus.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/numquam.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/octeti.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/omitte.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/omnia.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/operandus.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/optio.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/optiones.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/ordo.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/per.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/perge.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/postpara.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/postparabit.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/praefixum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/praepara.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/praeparabit.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/privata.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/proba.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/probandum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/promissum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/protecta.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/publica.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/mutabilitas.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/named-holes.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/primus_quem.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/radix-lane.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/redde.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/reddet.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/regex.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/repete.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/requirit.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/rumpe.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/ratio.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/scalaria.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/scribe.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/scriptum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/secus.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/si.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/sic.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/sin.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/sit.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/solum lege generic.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/solum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/solum_in.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/sparge.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/sparsa.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/sponte.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/solum lege carpe hauri.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/string.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/sub.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/summa.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/tabula.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/tacebit.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/tacet.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/tag.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/targets.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/temporis.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/tensor.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/textus.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/tensor-shape-generic.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/tuus.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/type-hole-union.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/typus.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/ubique.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/unarius.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/usque.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/ut.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/vacuum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/valor.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/varia.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/variandum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/vel.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/versio.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/verte.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/verum.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/vide.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/vocatio.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/§.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/·.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/×.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/‥.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/←.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/↑.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/→.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/↤.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/↦.html</loc></url>
@@ -1860,7 +1830,143 @@
   <url><loc>https://faberlang.dev/zh-Hant/corpus/∪.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/≈.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/≡.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/corpus/⊕.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/⊗.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/⊙.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/不穩定.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/不變.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/且.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/中斷.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/之前.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/之間.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/位元組.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/作為.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/保護.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/值.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/假.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/傳入.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/傳回.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/僅限.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/僅限於.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/元組.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/入口.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/內含.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/全局.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/全部.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/公開.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/其餘.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/出口.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/函式.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/分支.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/分支聯集.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/列舉.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/列表.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/則.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/前綴.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/副本.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/匯入.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/區間.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/取自.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/可拋.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/可選.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/可選項.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/否則.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/否則若.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/命令行.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/型別.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/執行.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/執行個體.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/如此.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/子.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/守衛.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/定值.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/實作.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/寫出.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/小數.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/展開.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/崩潰.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/布林.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/引數.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/張量.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/待實作介面.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/後置準備.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/後置準備非同步.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/從.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/或.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/或取.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/承諾.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/抽象.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/拋出.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/捕捉.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/描述.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/操作數.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/改名.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/整數.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/文字.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/斷言.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/是.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/時限.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/未來.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/格式文字.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/標籤.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/檢視.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/正規表示式.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/每.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/比對.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/永不.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/求和.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/流.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/測試.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/測試規格.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/測量.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/準備.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/準備非同步.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/略過.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/異步.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/異流.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/當.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/直到.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/真.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/私有.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/稀疏.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/空.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/空值.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/端點.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/等定.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/等棄.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/等變.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/等返.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/管理.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/範圍.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/綁定.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/繼續.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/脆弱.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/自由.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/自身.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/若.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/虛構.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/行.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/表格.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/設為.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/警告.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/讀取.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/變值.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/讓出.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/資源.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/迭代器.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/遍歷.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/選擇.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/選項.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/重複.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/錯誤.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/閉包.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/需要.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/靜態.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/靜默.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/非.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/非同步入口.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/預期.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/預設.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/類型.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/language/capabilities.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/language/errors.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/language/functions.html</loc></url>

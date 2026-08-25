@@ -57,12 +57,12 @@
     <span class="tok-kw">पुष्टि</span> x ≻ <span class="tok-nu">0</span>
 
 <span class="tok-co">    # With custom message</span>
-    <span class="tok-kw">पुष्टि</span> x <span class="tok-op">≡</span> <span class="tok-nu">10</span> secus <span class="tok-st">"x decem esse debet"</span>
+    <span class="tok-kw">पुष्टि</span> x <span class="tok-op">≡</span> <span class="tok-nu">10</span> <span class="tok-kw">मरोजाओ</span> <span class="tok-st">"x decem esse debet"</span>
 
 <span class="tok-co">    # Multiple assertions in sequence</span>
     <span class="tok-kw">स्थिर</span> <span class="tok-kw">पाठ</span> nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
     <span class="tok-kw">पुष्टि</span> nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">पुष्टि</span> nomen <span class="tok-op">≠</span> <span class="tok-st">""</span> secus <span class="tok-st">"nomen vacuum non sit"</span>
+    <span class="tok-kw">पुष्टि</span> nomen <span class="tok-op">≠</span> <span class="tok-st">""</span> <span class="tok-kw">मरोजाओ</span> <span class="tok-st">"nomen vacuum non sit"</span>
 }</code></pre><h3 id="workflow">कार्यप्रवाह<a class="anchor" href="#workflow">#</a></h3><p>परीक्षण <code>faber test</code> कमांड के माध्यम से चलते हैं:</p><pre class="faber-code"><code class="lang-text">faber test                        # run all tests in the current package
 faber test examples/coreutils/packages/echo  # run tests for a specific package</code></pre><p>क्योंकि परीक्षण उसी <code>.fab</code> फ़ाइल में स्रोत कोड के साथ रहते हैं, इसलिए अलग परीक्षण डायरेक्टरी संरचना, परीक्षण मॉड्यूल घोषणा या परीक्षण और प्रोडक्शन बिल्ड के बीच अलग बिल्ड स्क्रिप्ट की आवश्यकता नहीं होती। कंपाइलर इस्तेमाल किए गए कीवर्ड के आधार पर यह जानता है कि कौन-से ब्लॉक परीक्षण कोड हैं और कौन-से प्रोडक्शन कोड — <code>probandum</code> और <code>proba</code> को पार्स किया जाता है, लेकिन प्रोडक्शन बिल्ड से बाहर रखा जाता है।</p><h3 id="real-world">वास्तविक उदाहरण<a class="anchor" href="#real-world">#</a></h3><p>coreutils का <code>echo</code> पैकेज परीक्षण फ्रेमवर्क को व्यवहार में प्रदर्शित करता है। परीक्षण उसी फ़ाइल में इम्प्लीमेंटेशन के साथ रहते हैं और विकल्प पार्सिंग, एस्केप विस्तार तथा किनारी स्थितियों को कवर करते हैं:</p><pre class="faber-code"><code class="lang-text">probandum &quot;echo formatting&quot; tag &quot;coreutils&quot; {
     proba &quot;empty operands format as empty text&quot; {

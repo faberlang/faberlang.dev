@@ -50,12 +50,12 @@
     <span class="tok-kw">ยืนยัน</span> x ≻ <span class="tok-nu">0</span>
 
 <span class="tok-co">    # With custom message</span>
-    <span class="tok-kw">ยืนยัน</span> x <span class="tok-op">≡</span> <span class="tok-nu">10</span> secus <span class="tok-st">"x decem esse debet"</span>
+    <span class="tok-kw">ยืนยัน</span> x <span class="tok-op">≡</span> <span class="tok-nu">10</span> <span class="tok-kw">ตาย</span> <span class="tok-st">"x decem esse debet"</span>
 
 <span class="tok-co">    # Multiple assertions in sequence</span>
     <span class="tok-kw">คงที่</span> <span class="tok-kw">ข้อความ</span> nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
     <span class="tok-kw">ยืนยัน</span> nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">ยืนยัน</span> nomen <span class="tok-op">≠</span> <span class="tok-st">""</span> secus <span class="tok-st">"nomen vacuum non sit"</span>
+    <span class="tok-kw">ยืนยัน</span> nomen <span class="tok-op">≠</span> <span class="tok-st">""</span> <span class="tok-kw">ตาย</span> <span class="tok-st">"nomen vacuum non sit"</span>
 }</code></pre><h3 id="workflow">เวิร์กโฟลว์<a class="anchor" href="#workflow">#</a></h3><p>การทดสอบทำงานผ่านคำสั่ง <code>faber test</code>:</p><pre class="faber-code"><code class="lang-text">faber test                        # run all tests in the current package
 faber test examples/coreutils/packages/echo  # run tests for a specific package</code></pre><p>เนื่องจากการทดสอบอยู่ร่วมกับซอร์สโค้ดในไฟล์ <code>.fab</code> เดียวกัน จึงไม่ต้องมีโครงสร้างไดเรกทอรีทดสอบแยกต่างหาก ไม่ต้องประกาศโมดูลทดสอบ และไม่มีความแตกต่างของสคริปต์การบิลด์ระหว่างบิลด์สำหรับการทดสอบกับบิลด์สำหรับการใช้งานจริง คอมไพเลอร์จะแยกได้ว่าบล็อกใดเป็นโค้ดทดสอบและบล็อกใดเป็นโค้ดสำหรับการใช้งานจริงจากคีย์เวิร์ดที่ใช้ — <code>probandum</code> และ <code>proba</code> จะถูกพาร์ส แต่จะถูกตัดออกจากบิลด์สำหรับการใช้งานจริง</p><h3 id="real-world">ตัวอย่างการใช้งานจริง<a class="anchor" href="#real-world">#</a></h3><p>แพ็กเกจ <code>echo</code> ใน coreutils แสดงการใช้งานเฟรมเวิร์กการทดสอบในทางปฏิบัติ การทดสอบอยู่ในไฟล์เดียวกับส่วนการทำงานจริง และครอบคลุมการพาร์สออปชัน การขยายเอสเคป และกรณีขอบ:</p><pre class="faber-code"><code class="lang-text">probandum &quot;echo formatting&quot; tag &quot;coreutils&quot; {
     proba &quot;empty operands format as empty text&quot; {

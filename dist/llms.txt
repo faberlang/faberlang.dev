@@ -186,7 +186,7 @@ Sequenced tutorial pages. No longer a sidebar group; still live and linked.
 
 ### Corpus (generated keyword pages)
 - Hub: https://faberlang.dev/en-US/corpus/
-- Example term: https://faberlang.dev/en-US/corpus/functio.html
+- Example term: https://faberlang.dev/en-US/corpus/fn.html
 - Category indexes (per slug, no category hub page):  
   e.g. https://faberlang.dev/en-US/corpus/category/function.html
 - Other locales also ship corpus under `/{locale}/corpus/` (same terms, locale code)
