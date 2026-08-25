@@ -189,8 +189,9 @@ functio consume(ex textus buffer) → textus {
 
 | Operator | Family | Behaviour |
 |----------|--------|-----------|
-| `≡`, `≠` | Exact equality | Identical types required; `nihil` bypass |
-| `≈`, `≉` | Numeric value equality | Numeric lattice only |
+| `≡`, `≠`, `≢` | Exact equality | Identical types required; `nihil` bypass |
+| `≅`, `≇` | Promoted exact equality | Numeric widths join, then exact compare |
+| `≈`, `≉` | Fuzzy equality | Tolerance match — `isclose` defaults (rel_tol 1e-09); numeric operands only |
 | `<`, `≤`, `>`, `≥` | Ordering | Numeric, instant, scalar text |
 | `intra` | Range containment | Numeric in range |
 | `inter` | Collection membership | Element in collection |

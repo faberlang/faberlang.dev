@@ -187,8 +187,9 @@ functio consume(ex textus buffer) → textus {
 
 | Toán tử | Nhóm | Hành vi |
 |----------|------|---------|
-| `≡`, `≠` | Bằng chính xác | Bắt buộc các kiểu giống hệt nhau; `nihil` được bỏ qua |
-| `≈`, `≉` | Bằng theo giá trị số | Chỉ áp dụng cho lattice số |
+| `≡`, `≠`, `≢` | Bằng chính xác | Bắt buộc các kiểu giống hệt nhau; `nihil` được bỏ qua |
+| `≅`, `≇` | Bằng chính xác sau nâng cấp | Độ rộng số được nối rồi so sánh chính xác |
+| `≈`, `≉` | Bằng mờ | Khớp dung sai — mặc định `isclose` (rel_tol 1e-09); chỉ toán tử số |
 | `<`, `≤`, `>`, `≥` | Thứ tự | Số, thời điểm, văn bản vô hướng |
 | `intra` | Chứa trong khoảng | Số nằm trong khoảng |
 | `inter` | Thành viên tập hợp | Phần tử nằm trong tập hợp |

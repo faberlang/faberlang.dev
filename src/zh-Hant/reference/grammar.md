@@ -403,7 +403,7 @@ et_expr ::= equality (('且') equality)*
 equality ::= comparison equality_tail*
 # formerly: equalityTail
 # [135] equality_tail
-equality_tail ::= ('≡' | '≠' | '≈' | '≉' | '是' | '非' '是') comparison
+equality_tail ::= ('≡' | '≢' | '≠' | '≅' | '≇' | '≈' | '≉' | '是' | '非' '是') comparison
 # [136] comparison
 comparison ::= bitwise_or_expr (('≺' | '≻' | '≤' | '≥' | '內含' | '之間') bitwise_or_expr)*
 # formerly: bitwiseOr
@@ -426,10 +426,10 @@ range_expr ::= additive_expr range_tail?
 range_tail ::= ('‥' | '…' | '之前' | '直到') additive_expr ('每' additive_expr)?
 # formerly: additive
 # [143] additive_expr
-additive_expr ::= multiplicative_expr (('+' | '-') multiplicative_expr)*
+additive_expr ::= multiplicative_expr (('+' | '-' | '⤒' | '⤓') multiplicative_expr)*
 # formerly: multiplicative
 # [144] multiplicative_expr
-multiplicative_expr ::= vel_expr (('*' | '/' | '%' | '·' | '×' | '⊗' | '⊙') vel_expr)*
+multiplicative_expr ::= vel_expr (('*' | '/' | '%' | '·' | '×' | '⊗' | '⊙' | '⊘') vel_expr)*
 # formerly: coalesce
 # [145] vel_expr
 vel_expr ::= unary_expr ('或取' vel_rhs)*
@@ -486,7 +486,14 @@ argument ::= template_argument | '展開'? expression
 # [162] template_argument
 template_argument ::= '展開'? IDENTIFIER ':' expression
 # [163] literal
-literal ::= NUMBER | STRING | ASCII_STRING | BACKTICK_STRING | OCTETI_STRING | '真' | '假' | '空'
+# Non-finite literals are contextual floating-point values: `∞` is positive
+# infinity and `nonnumerus` is NaN. The named form is `nonnumerus` in the
+# Latin (`la`) pack and `nan` in every other shipped pack. Their width follows
+# a surrounding `f32` or `f64` context when present; bare `fractus` remains
+# unsized, and neither form has a width suffix. A leading `-` is supplied by
+# `unary_expr`, so `-∞` is unary negation of `∞`, not a separate token. A
+# `numerus` context rejects both forms (fail-closed); neither maps to an integer.
+literal ::= NUMBER | STRING | ASCII_STRING | BACKTICK_STRING | OCTETI_STRING | '真' | '假' | '空' | '∞' | 'nonnumerus'
 # [164] primary
 primary ::= IDENTIFIER | literal | '自身' | array_literal | json_literal | typed_constructor | iuncta_expr | ad_expr | clausura_expr | praefixum_expr | scriptum_expr | lege_expr | first_match_expr | summa_expr | '(' expression ')'
 # formerly: adExpr
@@ -970,6 +977,7 @@ productions. It is not a second keyword authority.
 | Genus | `綁定` | link field |
 | Literals | `空` | none |
 | Declarations | `名稱` | import binding name |
+| Literals | `nonnumerus` | named NaN literal: `nonnumerus` in the Latin (`la`) pack, `nan` in every other shipped pack |
 | Boolean | `非` | not |
 | Diagnostics | `註記` | note |
 | Annotation | `內核` | kernel annotation |
@@ -1299,7 +1307,7 @@ into `faber.<module>.<verb>` calls. It is not a wildcard re-export and does not 
 ## Types
 
 - Declaration parameters (`genericParams`) and applied arguments (`typeArguments`) are distinct grammar categories. Applied arguments admit nested types and static `figura` values. `typeArguments` still admits `NATURAL`.
-- Applied `NATURAL` arguments are `尺寸` capacity facts, not width markers. Shipped bounded forms use that slot: `lista<T, N>`, `textus<N>`, `ascii<N>`, `octeti<N>`. Width-marker families such as `numerus<i32>` stay the separate `widthTypeSugar` production below.
+- Applied `NATURAL` arguments are `尺寸` capacity facts, not width markers. Shipped bounded forms use that slot: `lista<T, N>`, `queue<T, N>`, `stack<T, N>`, `textus<N>`, `ascii<N>`, `octeti<N>`. Width-marker families such as `numerus<i32>` stay the separate `widthTypeSugar` production below.
 - A second applied argument on a `↦` target (`numerus<W, Hex>`, `numerus<W, Be>`) is a convert-slot hint, not a type identity, not a width marker, and not a keyword. Live text-parse hints are `Hex` / `Bin` / `Oct`. `Be` / `Le` occupy that same Hex slot for endian unpack — both integer (`octeti[lo‥hi] ↦ numerus<W, Be|Le>`) and float windows (`octeti[lo‥hi] ↦ fractus<f32|f64, Be|Le>`, window 4/8, same fail rules as the integer rows). `Bits` occupies the same slot as an exact-width bitcast hint (reinterpretation, not value conversion; never a base). `typeArguments` is unchanged: these are ordinary `IDENTIFIER` arguments interpreted by conversio, not new `baseType` productions.
 - Type arguments admit the hole forms: `lista<∪>` infers a heterogeneous element union and `tabula<K, ∪>` a heterogeneous value union; `lista<_>` keeps the monomorphic single-inhabitant hole.
 - Explicit generic call-site lists use the same `typeArguments` production: `id<_>(x)` is a type hole (equivalent to omitted `id(x)` for a one-param callee), and mixed lists such as `both<_, textus>(a, b)` are legal. Arity stays exact (`both<_>` is still one argument). `∪` in that list is rejected (`explicit_union_type_arg_unsupported`): a callee type param is a monomorphic witness slot.
@@ -1385,6 +1393,10 @@ full wrap. Cross-width modular arithmetic is rejected.
 | -------------- | -------- |
 | `lista<T>`     | array    |
 | `lista<T, N>`  | shipped; bounded array; `N` is a `尺寸` / `NATURAL` capacity, not a width marker. `lista<T, _>` is the capacity hole (infer `N`). |
+| `queue<T>`     | shipped; unbounded FIFO queue |
+| `queue<T, N>`  | shipped; bounded FIFO queue; `N` is a `尺寸` / `NATURAL` capacity, not a width marker. `queue<T, _>` is the capacity hole (infer `N`). |
+| `stack<T>`     | shipped; unbounded LIFO stack |
+| `stack<T, N>`  | shipped; bounded LIFO stack; `N` is a `尺寸` / `NATURAL` capacity, not a width marker. `stack<T, _>` is the capacity hole (infer `N`). |
 | `tabula<K,V>`  | map      |
 | `copia<T>`     | set      |
 | `promissum<T>` | promise  |
@@ -1527,7 +1539,7 @@ spellings on the right perform runtime variant/type tests, while `空`,
 `真`, `假`, and ordinary value expressions use the value-test path. Radix
 currently recognizes type targets through a fixed core-type vocabulary. Extending
 that recognition to arbitrary declared types is a separate language decision.
-Use `≡` / `≠` for structural value equality and `↦` for runtime conversion.
+Use `≡` / `≠` (or `≢`) for structural value equality, `≅` / `≇` for promoted exact equality (same value after numeric widths join), `≈` / `≉` for fuzzy equality (tolerance match with Python-isclose defaults: rel_tol 1e-09, abs_tol 0.0), and `↦` for runtime conversion.
 
 Retired predicate keywords are not prefix unary syntax. Use `expr 是 真`,
 `expr 是 假`, `expr 是 空`, `expr 非 是 空`, `expr ≺ 0`, or
@@ -1573,6 +1585,12 @@ Inline failure recovery uses `⇥` immediately after the conversio target (`↦ 
 Using `或取` as conversio recovery is rejected with a migration diagnostic. `或取` is local nullable elimination only (`x 或取 y`, parameter defaults) — not logical `或`. A parenthesized conversio result may still combine with `或取` as ordinary defaulting.
 
 ### Call and Member Access
+
+A `call_expr` may continue with the zero-argument `transpose_suffix` `ᵀ`
+(U+1D40) after its ordinary primary/member/index chain. This is postfix
+source sugar, not a method spelling: semantic analysis applies the rank-2-only
+law and lowers the admitted form through the existing `transpone`/
+`Transpose` plan entry. `a · bᵀ ∇ [x]` is settled as `(a · bᵀ) ∇ [x]`.
 
 ### String And Template Literals
 

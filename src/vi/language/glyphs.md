@@ -41,8 +41,9 @@ Faber sử dụng các glyph, trong đó ký hiệu mang vai trò cấu trúc. D
 | Glyph | Ý nghĩa |
 |-------|---------|
 | `≡` `≠` | Bằng và khác chính xác |
+| `≅` `≇` | Bằng chính xác sau nâng cấp — cùng giá trị, kiểu số tương thích |
 | `<` `>` `≤` `≥` | Thứ tự |
-| `≈` `≉` | Bằng nhau về giá trị số |
+| `≈` `≉` | Bằng mờ — khớp trong dung sai mặc định `isclose` |
 
 ### Logic và thao tác bit {#logical-and-bitwise}
 
@@ -198,7 +199,9 @@ Trong khi từ vựng hành vi sử dụng các từ Latin, ý nghĩa cấu trú
 
 | Ký hiệu | Nghĩa |
 |-------|---------|
-| `≡` `≠` | Bằng và khác tuyệt đối — yêu cầu khớp kiểu nghiêm ngặt |
+| `≡` `≠` `≢` | Bằng và khác tuyệt đối — yêu cầu khớp kiểu nghiêm ngặt |
+| `≅` `≇` | Bằng chính xác sau nâng cấp — nối độ rộng số rồi so sánh chính xác |
+| `≈` `≉` | Bằng mờ — khớp trong dung sai mặc định `isclose` |
 | `<` `>` `≤` `≥` | So sánh thứ tự |
 | `∧` `∨` `⊻` `¬` | Logic và bitwise: and, or, xor, not |
 

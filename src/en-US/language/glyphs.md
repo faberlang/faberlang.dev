@@ -41,8 +41,9 @@ of source glyphs recognised by the lexer.
 | Glyph | Meaning |
 |-------|---------|
 | `≡` `≠` | Exact equality and inequality |
+| `≅` `≇` | Promoted exact equality — same value, compatible numeric types |
 | `<` `>` `≤` `≥` | Ordering |
-| `≈` `≉` | Numeric value equality |
+| `≈` `≉` | Fuzzy equality — tolerance match with `isclose` defaults |
 
 ### Logical and bitwise {#logical-and-bitwise}
 
@@ -249,7 +250,9 @@ which human language the keywords are rendered in.
 
 | Glyph | Meaning |
 |-------|---------|
-| `≡` `≠` | Exact equality and inequality — strict type match required |
+| `≡` `≠` `≢` | Exact equality and inequality — strict type match required |
+| `≅` `≇` | Promoted exact equality — numeric widths join, then exact compare |
+| `≈` `≉` | Fuzzy equality — tolerance match with `isclose` defaults |
 | `<` `>` `≤` `≥` | Ordering comparisons |
 | `∧` `∨` `⊻` `¬` | Logical and bitwise: and, or, xor, not |
 
