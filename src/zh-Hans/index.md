@@ -17,23 +17,20 @@ source_locale = "en-US"
 
 **初次接触？** 请从 [安装与下载](/start/install.html) 开始，然后依次运行入门学习轨道：[Hello](/start/hello.html)、[命令](/cheatsheet/commands.html) 和 [项目](/start/projects.html)。
 
-## 下载 Faber 1.6.0 {#download}
+## 下载 Faber 1.8.0 {#download}
 
-当前发布版本：**Faber 1.6.0**（标签 `faber-v1.6.0`），发布于 2026-08-10。提供 macOS 和 Linux 的预构建 CLI 归档文件；每个归档都包含 `bin/` 和 `share/` 目录树——将 `bin/faber` 放入您的 `PATH`，并让 `share/faber` 与二进制文件保持在一起，以便 reader packs 能够解析。
+当前发布版本：**Faber 1.8.0**（标签 `faber/v1.8.0`），发布于 2026-08-18。当前条目列出一个 macOS arm64 的预构建 CLI 归档；归档包含 `bin/` 和 `share/` 目录树——将 `bin/faber` 放入您的 `PATH`，并让 `share/faber` 与二进制文件保持在一起，以便 reader packs 能够解析。随附的 Radix 编译器为 0.83.0，与 Faber 1.8.0 同线发布。
 
 | 平台 | 归档文件 | 校验和 |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** (Apple Silicon) | [faber-v1.8.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/radix/releases/download/faber%2Fv1.8.0/faber-v1.8.0-aarch64-apple-darwin.tar.gz) | `22d688cce1565af4b8e4382ad425c5d6f66354352c7b3db5b9c1614356a8dbea` |
 
 快速安装（以 macOS arm64 为例）：
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz
-curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256
-expected=$(awk '{print $1}' faber.tgz.sha256)
+  https://github.com/faberlang/radix/releases/download/faber%2Fv1.8.0/faber-v1.8.0-aarch64-apple-darwin.tar.gz
+expected=22d688cce1565af4b8e4382ad425c5d6f66354352c7b3db5b9c1614356a8dbea
 actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
@@ -43,7 +40,7 @@ sudo mv share/faber /usr/local/share/faber
 faber --version
 ```
 
-所有发行说明和资源：[github.com/faberlang/releases · faber-v1.6.0](https://github.com/faberlang/releases/releases/tag/faber-v1.6.0)。
+所有发行说明和资源：[faber/v1.8.0](https://github.com/faberlang/radix/releases/tag/faber%2Fv1.8.0)。
 详细步骤：[安装指南](/start/install.html)。完整历史清单：
 [发行版本](/releases/)。
 
@@ -56,8 +53,8 @@ faber --version
 | **首次出现** | 2025 年 |
 | **编译器** | Radix (Rust) |
 | **轨道** | 应用 (HIR) · 系统 (MIR) |
-| **主要目标** | Rust → 原生二进制 |
-| **读者区域** | 已发布 7 种 (la, ar, hi, vi, th-TH, zh-Hans, zh-Hant) |
+| **主要目标** | HIR/MIR 投影（Rust、Faber、TS、Go 等） |
+| **读者区域** | 已发布 8 种 (en, la, ar, hi, vi, th-TH, zh-Hans, zh-Hant) |
 | **标准库** | Norma (`norma:*`) |
 | **许可证** | MIT |
 
@@ -143,7 +140,7 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 
 ## 实时渲染 {#live-rendering}
 
-上面的 divide 函数默认以拉丁语包渲染。编译器可以在七种读者区域中渲染同一程序——泰语、简体中文、繁体中文、阿拉伯语、印地语、越南语——每种都将关键字和类型重新映射为该语言，同时保持符号和标识符不变。这并不是应用于页面的翻译层；它是编译器用于生成本地化源代码的同一机制。
+上面的 divide 函数默认以拉丁语包渲染。编译器可以在八种读者区域中渲染同一程序——英语、拉丁语、泰语、简体中文、繁体中文、阿拉伯语、印地语和越南语——每种都将关键字和类型重新映射为该语言，同时保持符号和标识符不变。这并不是应用于页面的翻译层；它是编译器用于生成本地化源代码的同一机制。
 
 有关完整讨论，请参阅 [读者区域](/language/reader-locales.html) 文档。
 

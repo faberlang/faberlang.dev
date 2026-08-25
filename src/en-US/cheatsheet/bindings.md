@@ -40,9 +40,10 @@ incipit {
 The hole infers a type; it does not make the binding dynamic. `nomen` is
 `textus` from this point on.
 
-## Union holes {#union-holes}
+## Union types and holes {#union-holes}
 
-`∪` in type position is a *union* hole — the binding admits a finite set of
+An inline `A ∪ B` in type position names its union members explicitly. A
+standalone `∪` is a *union* hole: the compiler infers a finite set of member
 types rather than one.
 
 ```faber
