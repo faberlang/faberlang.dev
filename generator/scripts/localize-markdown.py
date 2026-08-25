@@ -85,7 +85,7 @@ def transcode_faber(source: str, locale: str, faber: str, label: str) -> str:
     # not what to print. Routing through radix therefore returned Latin while
     # reporting success, which is why localized doc pages carried untranslated
     # fences for as long as they did.
-    args = [faber, "convert", "--to", locale, "--stdout"]
+    args = [faber, "convert", "--from", "la", "--to", locale, "--stdout"]
 
     with tempfile.TemporaryDirectory(prefix="speculum-locale-") as tmp:
         path = Path(tmp) / "fence.fab"

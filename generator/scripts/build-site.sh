@@ -47,7 +47,7 @@ FABER_LOCALIZE="${FABER_LOCALIZE:-$FABER}"
 # do it (`emit -t faber` is canonical Latin by definition). Prefer the
 # workspace build, which is current with the packs, but fall back to the
 # resolving binary when that build is absent or does not support convert.
-WORKSPACE_FABER="${WORKSPACE_DIR}/faber/target/release/faber"
+WORKSPACE_FABER="${WORKSPACE_DIR}/radix/target/release/faber"
 if [ -x "$WORKSPACE_FABER" ] && [ "${FABER_LOCALIZE}" = "$FABER" ] \
     && "$WORKSPACE_FABER" convert --help >/dev/null 2>&1; then
     FABER_LOCALIZE="$WORKSPACE_FABER"
