@@ -98,524 +98,544 @@ clausura_expr ::= compact_clausura_expr | clausura_legacy_expr
 compact_clausura_expr ::= clausura_signature clausura_joint (expression | fac_block)
 # formerly: clausuraSignature
 # [028] clausura_signature
-clausura_signature ::= (clausura_param | '(' clausura_params? ')') return_clause? alternate_exit_clause?
+clausura_signature ::= (clausura_param | '(' clausura_params? ')') closure_modifier? return_clause? alternate_exit_clause?
+# [029] closure_modifier
+closure_modifier ::= 'อิสระ'
 # formerly: closureFacBlock
-# [029] fac_block
+# [030] fac_block
 fac_block ::= 'ทำ' block_stmt cape_clause?
 # formerly: legacyClausuraExpr
-# [030] clausura_legacy_expr
-clausura_legacy_expr ::= 'ปิดล้อม' clausura_params? ('→' type_annotation)? (':' expression | block_stmt)
+# [031] clausura_legacy_expr
+clausura_legacy_expr ::= 'ปิดล้อม' clausura_params? closure_modifier? ('→' type_annotation)? (':' expression | block_stmt)
 # formerly: clausuraParams
-# [031] clausura_params
+# [032] clausura_params
 clausura_params ::= clausura_param (',' clausura_param)*
 # formerly: clausuraParam
-# [032] clausura_param
+# [033] clausura_param
 clausura_param ::= type_annotation IDENTIFIER
 # formerly: genusDecl
-# [033] genus_decl
+# [034] genus_decl
 genus_decl ::= 'นามธรรม'? 'ชนิด' IDENTIFIER generic_params? ('สืบทอด' IDENTIFIER)? ('เติมเต็ม' IDENTIFIER (',' IDENTIFIER)*)? '{' genus_member* '}'
 # formerly: genusMember
-# [034] genus_member
+# [035] genus_member
 genus_member ::= annotation* (field_decl | functio_method_decl)
 # formerly: fieldDecl
-# [035] field_decl
+# [036] field_decl
 field_decl ::= 'ของชนิด'? 'ผูก'? type_annotation IDENTIFIER 'สมัครใจ'? ('=' expression)?
 # formerly: methodDecl
-# [036] functio_method_decl
+# [037] functio_method_decl
 functio_method_decl ::= 'ฟังก์ชัน' IDENTIFIER generic_params? '(' param_list ')' func_modifier* callable_posture? return_clause? alternate_exit_clause? block_stmt
-# [037] annotation
+# [038] annotation
 annotation ::= nucleum_annotation | braced_annotation | annotation_sugar
 # formerly: annotationName
-# [038] annotation_name
+# [039] annotation_name
 annotation_name ::= ANNOTATION_NAME
 # formerly: bracedAnnotation
-# [039] braced_annotation
+# [040] braced_annotation
 braced_annotation ::= '@' annotation_name '{' annotation_field_list? '}'
 # formerly: annotationFieldList
-# [040] annotation_field_list
+# [041] annotation_field_list
 annotation_field_list ::= annotation_field (',' annotation_field)*
 # formerly: annotationField
-# [041] annotation_field
+# [042] annotation_field
 annotation_field ::= ANNOTATION_FIELD_NAME '=' (expression | type_annotation)
 # formerly: annotationSugar
-# [042] annotation_sugar
+# [043] annotation_sugar
 annotation_sugar ::= '@' annotation_name NON_NEWLINE_TOKEN* NEWLINE
 # formerly: nucleumAnnotation
-# [043] nucleum_annotation
+# [044] nucleum_annotation
 nucleum_annotation ::= nucleum_sugar | nucleum_braced
 # formerly: nucleumSugar
-# [044] nucleum_sugar
+# [045] nucleum_sugar
 nucleum_sugar ::= '@' 'เคอร์เนล' nucleum_modifier? NEWLINE
 # formerly: nucleumBraced
-# [045] nucleum_braced
+# [046] nucleum_braced
 nucleum_braced ::= '@' 'เคอร์เนล' '{' nucleum_field_list? '}'
 # formerly: nucleumModifier
-# [046] nucleum_modifier
+# [047] nucleum_modifier
 nucleum_modifier ::= 'ส่วนย่อย'
 # formerly: nucleumFieldList
-# [047] nucleum_field_list
+# [048] nucleum_field_list
 nucleum_field_list ::= nucleum_field (',' nucleum_field)*
 # formerly: nucleumField
-# [048] nucleum_field
+# [049] nucleum_field
 nucleum_field ::= 'ส่วนย่อย' '=' ('จริง' | 'เท็จ')
 # formerly: implendumDecl
-# [049] implendum_decl
+# [050] implendum_decl
 implendum_decl ::= 'สัญญา' IDENTIFIER generic_params? '{' implendum_method_decl* '}'
 # formerly: implendumMethod
-# [050] implendum_method_decl
+# [051] implendum_method_decl
 implendum_method_decl ::= annotation* 'ฟังก์ชัน' IDENTIFIER '(' param_list ')' func_modifier* callable_posture? return_clause? alternate_exit_clause?
 # formerly: typeAliasDecl
-# [051] typus_decl
+# [052] typus_decl
 typus_decl ::= 'ชนิดนามแฝง' IDENTIFIER generic_params? '=' type_annotation
 # formerly: enumDecl
-# [052] ordo_decl
+# [053] ordo_decl
 ordo_decl ::= 'ลำดับ' IDENTIFIER '{' enum_member (',' enum_member)* '}'
 # formerly: enumMember
-# [053] enum_member
+# [054] enum_member
 enum_member ::= IDENTIFIER ('=' ('-'? NUMBER | STRING))?
 # formerly: discretioDecl
-# [054] discretio_decl
+# [055] discretio_decl
 discretio_decl ::= 'สหภาพแยก' IDENTIFIER generic_params? '{' union_member* variant (',' variant)* '}'
 # formerly: unionMember
-# [055] union_member
-union_member ::= annotation* field_decl
-# [056] variant
+# [056] union_member
+union_member ::= annotation* field_decl | conversio_arm
+# formerly: conversioArm
+conversio_arm ::= '@' ('conversio' | 'conversion') type_annotation IDENT? '{' stmt* '}'
+# [057] variant
 variant ::= IDENTIFIER ('{' variant_fields '}')?
 # formerly: variantFields
-# [057] variant_fields
+# [058] variant_fields
 variant_fields ::= (type_annotation IDENTIFIER)*
 # formerly: importDecl
-# [058] importa_decl
+# [059] importa_decl
 importa_decl ::= importa_record | importa_sugar
 # formerly: importRecord
-# [059] importa_record
+# [060] importa_record
 importa_record ::= 'นำเข้า' '{' import_field_list? '}'
 # formerly: importFieldList
-# [060] import_field_list
+# [061] import_field_list
 import_field_list ::= import_field (',' import_field)*
 # formerly: importField
-# [061] import_field
+# [062] import_field
 import_field ::= ex_field | visibilitas_field | nomen_field | ut_field | omnia_field
 # formerly: importSourceField
-# [062] ex_field
+# [063] ex_field
 ex_field ::= 'ออก' '=' STRING
 # formerly: importVisibilityField
-# [063] visibilitas_field
+# [064] visibilitas_field
 visibilitas_field ::= 'visibilitas' '=' publica
 # formerly: importNameField
-# [064] nomen_field
+# [065] nomen_field
 nomen_field ::= 'ชื่อ' '=' IDENTIFIER
 # formerly: importAliasField
-# [065] ut_field
+# [066] ut_field
 ut_field ::= 'ในชื่อ' '=' IDENTIFIER
 # formerly: importWildcardField
-# [066] omnia_field
+# [067] omnia_field
 omnia_field ::= 'ทั้งหมด' '=' IDENTIFIER
 # formerly: importSugar
-# [067] importa_sugar
-importa_sugar ::= 'นำเข้า' 'ออก' STRING publica? (named_import | wildcard_import)?
+# [068] importa_sugar
+importa_sugar ::= 'นำเข้า' 'ออก' STRING publica? (named_import | wildcard_import | selective_import)?
 # formerly: visibility
-# [068] publica
+# [069] publica
 publica ::= 'สาธารณะ'
 # formerly: namedImport
-# [069] named_import
+# [070] named_import
 named_import ::= IDENTIFIER ('ในชื่อ' IDENTIFIER)?
 # formerly: wildcardImport
-# [070] wildcard_import
+# [071] wildcard_import
 wildcard_import ::= '*' 'ในชื่อ' IDENTIFIER
+# [072] selective_import
+selective_import ::= 'คงที่' import_value_binding (',' import_value_binding)*
+# [073] import_value_binding
+import_value_binding ::= IDENTIFIER ('ในชื่อ' IDENTIFIER)?
 # formerly: typeAnnotation
-# [071] type_annotation
+# [074] type_annotation
 type_annotation ::= owned_type ('∪' owned_type)*
 # formerly: ownedType
-# [072] owned_type
+# [075] owned_type
 owned_type ::= ('จาก' | 'ใน' | 'เป็นเจ้าของ' | 'สำเนา')? base_type
 # formerly: baseType
-# [073] base_type
+# [076] base_type
 base_type ::= hole_type | function_type | width_type_sugar | ratio_type | qualified_type type_arguments? | '(' type_annotation ')'
-# [074] ratio_type
+# [077] ratio_type
 ratio_type ::= 'ratio' '<' labeled_type_argument (',' labeled_type_argument)* '>'
 # formerly: holeType
-# [075] hole_type
+# [078] hole_type
 hole_type ::= '_' | '∪'
 # formerly: qualifiedType
-# [076] qualified_type
+# [079] qualified_type
 qualified_type ::= IDENTIFIER ('.' IDENTIFIER)*
 # formerly: typeArguments
-# [077] type_arguments
+# [080] type_arguments
 type_arguments ::= '<' type_argument (',' type_argument)* '>'
 # formerly: typeArgument
-# [078] type_argument
+# [081] type_argument
 type_argument ::= labeled_type_argument | type_annotation | NATURAL | '[' figura_list? ']'
 # formerly: labeledTypeArgument
-# [079] labeled_type_argument
+# [082] labeled_type_argument
 labeled_type_argument ::= IDENTIFIER ':' type_annotation
 # formerly: widthTypeSugar
-# [080] width_type_sugar
+# [083] width_type_sugar
 width_type_sugar ::= WIDTH_MARKER | LISTA_WIDTH_SUGAR | (TENSOR_WIDTH_SUGAR | SPARSA_WIDTH_SUGAR | VECTOR_WIDTH_SUGAR) shape_suffix? | MATRIX_WIDTH_SUGAR shape_suffix
 # formerly: shapeSuffix
-# [081] shape_suffix
+# [084] shape_suffix
 shape_suffix ::= '[' figura_list? ']'
-# [082] figura
+# [085] figura
 figura ::= '_' | NATURAL | IDENTIFIER | '[' figura_list? ']'
 # formerly: figuraList
-# [083] figura_list
+# [086] figura_list
 figura_list ::= figura (',' figura)*
 # formerly: functionType
-# [084] function_type
+# [087] function_type
 function_type ::= '(' type_list? ')' '→' type_annotation alternate_exit_clause?
 # formerly: typeList
-# [085] type_list
+# [088] type_list
 type_list ::= type_annotation (',' type_annotation)*
 # formerly: ifStmt
-# [086] si_stmt
+# [089] si_stmt
 si_stmt ::= 'ถ้า' expression arm ('ถ้าไม่ก็' si_stmt | secus_clause)?
 # formerly: elseClause
-# [087] secus_clause
+# [090] secus_clause
 secus_clause ::= 'มิฉะนั้น' else_arm
-# [088] arm
+# [091] arm
 arm ::= (block_stmt | ergo_joint statement) cape_clause?
 # formerly: elseArm
-# [089] else_arm
+# [092] else_arm
 else_arm ::= (block_stmt | ergo_joint statement) cape_clause?
 # formerly: whileStmt
-# [090] dum_stmt
+# [093] dum_stmt
 dum_stmt ::= 'ขณะ' expression (block_stmt | ergo_joint statement) cape_clause?
 # formerly: iteraStmt
-# [091] itera_stmt
-itera_stmt ::= 'วน' (('ออก' | 'จาก') expression | 'ช่วง' expression) ('คงที่' | 'แปร') IDENTIFIER (block_stmt | ergo_joint statement) cape_clause?
+# [094] itera_stmt
+itera_stmt ::= 'วน' (('ออก' | 'จาก') expression | 'ช่วง' expression) apud_clause? ('คงที่' | 'แปร') (array_pattern | object_pattern | IDENTIFIER) (block_stmt | ergo_joint statement) cape_clause?
+# [095] apud_clause
+apud_clause ::= 'ที่' '[' IDENTIFIER (',' IDENTIFIER)* ']'
 # formerly: eligeStmt
-# [092] elige_stmt
+# [096] elige_stmt
 elige_stmt ::= 'เลือก' expression '{' casu_elige_clause* ceterum_clause? '}' cape_clause?
 # formerly: eligeCase
-# [093] casu_elige_clause
+# [097] casu_elige_clause
 casu_elige_clause ::= 'กรณี' expression (block_stmt | ergo_joint statement)
 # formerly: defaultCase
-# [094] ceterum_clause
+# [098] ceterum_clause
 ceterum_clause ::= 'อื่น' (block_stmt | ergo_joint statement)
 # formerly: discerneStmt
-# [095] discerne_stmt
+# [099] discerne_stmt
 discerne_stmt ::= 'แยก' 'ทั้งหมด'? discriminants '{' casu_variant_clause* ceterum_clause? '}'
-# [096] discriminants
+# [100] discriminants
 discriminants ::= expression (',' expression)*
 # formerly: variantCase
-# [097] casu_variant_clause
+# [101] casu_variant_clause
 casu_variant_clause ::= 'กรณี' patterns (block_stmt | ergo_joint statement)
-# [098] patterns
+# [102] patterns
 patterns ::= pattern ((',' | 'และ') pattern)*
-# [099] pattern
+# [103] pattern
 pattern ::= '_' | literal | (IDENTIFIER ut_pattern?)
 # formerly: patternBind
-# [100] ut_pattern
+# [104] ut_pattern
 ut_pattern ::= ('ในชื่อ' IDENTIFIER) | (('คงที่' | 'แปร') pattern_binding (',' pattern_binding)*)
 # formerly: patternBinding
-# [101] pattern_binding
+# [105] pattern_binding
 pattern_binding ::= IDENTIFIER ('ในชื่อ' IDENTIFIER)?
 # formerly: guardStmt
-# [102] custodi_stmt
+# [106] custodi_stmt
 custodi_stmt ::= 'คุ้มครอง' '{' si_guard_clause+ '}'
 # formerly: guardClause
-# [103] si_guard_clause
+# [107] si_guard_clause
 si_guard_clause ::= 'ถ้า' expression (block_stmt | ergo_joint statement)
 # formerly: curaStmt
-# [104] cura_stmt
+# [108] cura_stmt
 cura_stmt ::= 'ดูแล' STRING ('คงที่' | 'แปร') type_annotation IDENTIFIER block_stmt cape_clause?
 # formerly: extractStmt
-# [105] ex_stmt
+# [109] ex_stmt
 ex_stmt ::= 'ออก' expression ('คงที่' | 'แปร') extract_fields
 # formerly: extractFields
-# [106] extract_fields
+# [110] extract_fields
 extract_fields ::= extract_field (',' extract_field)* (',' ceteri_field)? | ceteri_field
 # formerly: extractField
-# [107] extract_field
+# [111] extract_field
 extract_field ::= IDENTIFIER ('ในชื่อ' IDENTIFIER)?
 # formerly: restField
-# [108] ceteri_field
+# [112] ceteri_field
 ceteri_field ::= 'ที่เหลือ' IDENTIFIER
 # formerly: returnStmt
-# [109] redde_stmt
+# [113] redde_stmt
 redde_stmt ::= 'คืน' expression?
 # formerly: returnAwaitStmt
-# [110] reddet_stmt
+# [114] reddet_stmt
 reddet_stmt ::= 'รอคืน' expression
 # formerly: awaitDiscardStmt
-# [111] tacebit_stmt
+# [115] tacebit_stmt
 tacebit_stmt ::= 'รอทิ้ง' expression
 # formerly: yieldStmt
-# [112] cede_stmt
+# [116] cede_stmt
 cede_stmt ::= 'ให้' expression
 # formerly: breakStmt
-# [113] rumpe_stmt
+# [117] rumpe_stmt
 rumpe_stmt ::= 'หยุด'
 # formerly: continueStmt
-# [114] perge_stmt
+# [118] perge_stmt
 perge_stmt ::= 'ไปต่อ'
 # formerly: noopStmt
-# [115] tacet_stmt
+# [119] tacet_stmt
 tacet_stmt ::= 'เงียบ'
 # formerly: throwStmt
-# [116] iace_stmt
+# [120] iace_stmt
 iace_stmt ::= iace_expr | iace_guarded_expr
 # formerly: bareThrow
-# [117] iace_expr
+# [121] iace_expr
 iace_expr ::= ('โยน' | 'ตาย') expression
 # formerly: guardedThrowSugar
-# [118] iace_guarded_expr
+# [122] iace_guarded_expr
 iace_guarded_expr ::= ('โยน' | 'ตาย') expression NO_NEWLINE 'ถ้า' expression
 # formerly: catchClause
-# [119] cape_clause
+# [123] cape_clause
 cape_clause ::= 'จับ' IDENTIFIER block_stmt
 # formerly: assertStmt
-# [120] adfirma_stmt
+# [124] adfirma_stmt
 adfirma_stmt ::= 'ยืนยัน' expression ('ตาย' expression)?
 # formerly: requiritStmt
-# [121] requirit_stmt
+# [125] requirit_stmt
 requirit_stmt ::= 'ต้องการ' expression 'โยน' expression
-# [122] expression
+# [126] expression
 expression ::= assignment
-# [123] assignment
-assignment ::= ternary ('←' assignment | '↤' assignment inline_recovery?)?
+# [127] transfer
+transfer ::= ternary ('⇇' ternary)*
+# [128] assignment
+assignment ::= transfer ('←' assignment | '↤' assignment inline_recovery?)?
 # formerly: incDecStmt
-# [124] inc_dec_stmt
+# [129] inc_dec_stmt
 inc_dec_stmt ::= place ('↑' | '↓')
-# [125] place
+# [130] place
 place ::= call_expr
-# [126] ternary
+# [131] ternary
 ternary ::= aut_expr (('?' expression ':' | 'เช่นนั้น' expression 'มิฉะนั้น') ternary)?
 # formerly: or
-# [127] aut_expr
+# [132] aut_expr
 aut_expr ::= et_expr (('หรือ') et_expr)*
 # formerly: and
-# [128] et_expr
+# [133] et_expr
 et_expr ::= equality (('และ') equality)*
-# [129] equality
+# [134] equality
 equality ::= comparison equality_tail*
 # formerly: equalityTail
-# [130] equality_tail
+# [135] equality_tail
 equality_tail ::= ('≡' | '≠' | '≈' | '≉' | 'เป็น' | 'ไม่' 'เป็น') comparison
-# [131] comparison
+# [136] comparison
 comparison ::= bitwise_or_expr (('≺' | '≻' | '≤' | '≥' | 'ภายใน' | 'ระหว่าง') bitwise_or_expr)*
 # formerly: bitwiseOr
-# [132] bitwise_or_expr
+# [137] bitwise_or_expr
 bitwise_or_expr ::= bitwise_xor_expr ('∨' bitwise_xor_expr)*
 # formerly: bitwiseXor
-# [133] bitwise_xor_expr
+# [138] bitwise_xor_expr
 bitwise_xor_expr ::= bitwise_and_expr ('⊻' bitwise_and_expr)*
 # formerly: bitwiseAnd
-# [134] bitwise_and_expr
+# [139] bitwise_and_expr
 bitwise_and_expr ::= shift_expr ('∧' shift_expr)*
 # formerly: shift
-# [135] shift_expr
+# [140] shift_expr
 shift_expr ::= range_expr (('⇐' | '⇒') range_expr)*
 # formerly: range
-# [136] range_expr
+# [141] range_expr
 range_expr ::= additive_expr range_tail?
 # formerly: rangeTail
-# [137] range_tail
+# [142] range_tail
 range_tail ::= ('‥' | '…' | 'ก่อน' | 'จนถึง') additive_expr ('ต่อ' additive_expr)?
 # formerly: additive
-# [138] additive_expr
+# [143] additive_expr
 additive_expr ::= multiplicative_expr (('+' | '-') multiplicative_expr)*
 # formerly: multiplicative
-# [139] multiplicative_expr
+# [144] multiplicative_expr
 multiplicative_expr ::= vel_expr (('*' | '/' | '%' | '·' | '×' | '⊗' | '⊙') vel_expr)*
 # formerly: coalesce
-# [140] vel_expr
+# [145] vel_expr
 vel_expr ::= unary_expr ('หรือว่าง' vel_rhs)*
 # formerly: velRhs
-# [141] vel_rhs
+# [146] vel_rhs
 vel_rhs ::= unary_expr vel_range_tail?
 # formerly: velRangeTail
-# [142] vel_range_tail
+# [147] vel_range_tail
 vel_range_tail ::= ('‥' | '…' | 'ก่อน' | 'จนถึง') unary_expr ('ต่อ' unary_expr)?
 # formerly: unary
-# [143] unary_expr
+# [148] unary_expr
 unary_expr ::= ('-' | '¬' | 'ไม่') unary_expr | finge_expr | cast_expr
 # formerly: gradientExpr
-# [144] gradient_expr
+# [149] gradient_expr
 gradient_expr ::= call_expr ('∇' gradient_selection?)?
 # formerly: gradientSelection
-# [145] gradient_selection
+# [150] gradient_selection
 gradient_selection ::= '[' gradient_place (',' gradient_place)* ']'
 # formerly: gradientPlace
-# [146] gradient_place
+# [151] gradient_place
 gradient_place ::= expression
 # formerly: cast
-# [147] cast_expr
+# [152] cast_expr
 cast_expr ::= gradient_expr ('∷' type_annotation | conversio_expr)*
 # formerly: conversio
-# [148] conversio_expr
+# [153] conversio_expr
 conversio_expr ::= '↦' type_annotation inline_recovery?
 # formerly: inlineRecovery
-# [149] inline_recovery
+# [154] inline_recovery
 inline_recovery ::= '⇥' unary_expr
 # formerly: call
-# [150] call_expr
-call_expr ::= primary (call_suffix | member_suffix | optional_suffix | non_null_suffix)*
+# [155] call_expr
+call_expr ::= primary (call_suffix | member_suffix | transpose_suffix | optional_suffix | non_null_suffix)*
 # formerly: callSuffix
-# [151] call_suffix
+# [156] call_suffix
 call_suffix ::= call_type_args? '(' argument_list ')'
 # formerly: memberSuffix
-# [152] member_suffix
+# [157] member_suffix
 member_suffix ::= '.' IDENTIFIER | '[' expression ']'
+# [157a] transpose_suffix
+transpose_suffix ::= 'ᵀ'
 # formerly: optionalSuffix
-# [153] optional_suffix
+# [158] optional_suffix
 optional_suffix ::= '?.' IDENTIFIER | '?[' expression ']' | '?(' argument_list ')'
 # formerly: nonNullSuffix
-# [154] non_null_suffix
+# [159] non_null_suffix
 non_null_suffix ::= '!.' IDENTIFIER | '![' expression ']' | '!(' argument_list ')'
 # formerly: argumentList
-# [155] argument_list
+# [160] argument_list
 argument_list ::= (argument (',' argument)*)?
-# [156] argument
+# [161] argument
 argument ::= template_argument | 'กระจาย'? expression
 # formerly: templateArgument
-# [157] template_argument
+# [162] template_argument
 template_argument ::= 'กระจาย'? IDENTIFIER ':' expression
-# [158] literal
+# [163] literal
 literal ::= NUMBER | STRING | ASCII_STRING | BACKTICK_STRING | OCTETI_STRING | 'จริง' | 'เท็จ' | 'ว่าง'
-# [159] primary
-primary ::= IDENTIFIER | literal | 'ตัวฉัน' | array_literal | json_literal | typed_constructor | iuncta_expr | ad_expr | clausura_expr | praefixum_expr | scriptum_expr | lege_expr | '(' expression ')'
+# [164] primary
+primary ::= IDENTIFIER | literal | 'ตัวฉัน' | array_literal | json_literal | typed_constructor | iuncta_expr | ad_expr | clausura_expr | praefixum_expr | scriptum_expr | lege_expr | first_match_expr | summa_expr | '(' expression ')'
 # formerly: adExpr
-# [160] ad_expr
+# [165] ad_expr
 ad_expr ::= 'ถึง' ASCII_STRING ad_opener?
 # formerly: adOpener
-# [161] ad_opener
+# [166] ad_opener
 ad_opener ::= '(' expression ')'
 # formerly: arrayLiteral
-# [162] array_literal
+# [167] array_literal
 array_literal ::= '[' argument_list? ']'
 # formerly: iunctaExpr
-# [163] iuncta_expr
+# [168] iuncta_expr
 iuncta_expr ::= 'ทูเพิล' type_arguments '[' argument_list? ']'
 # formerly: jsonLiteral
-# [164] json_literal
+# [169] json_literal
 json_literal ::= '{' (json_member (',' json_member)*)? '}'
 # formerly: jsonMember
-# [165] json_member
+# [170] json_member
 json_member ::= STRING ':' json_value
 # formerly: typedConstructor
-# [166] typed_constructor
+# [171] typed_constructor
 typed_constructor ::= type_annotation '{' field_list? '}'
 # formerly: fieldList
-# [167] field_list
+# [172] field_list
 field_list ::= field_init (',' field_init)*
 # formerly: fieldInit
-# [168] field_init
+# [173] field_init
 field_init ::= ('กระจาย' expression) | (field_key '=' expression) | IDENTIFIER
 # formerly: fieldKey
-# [169] field_key
+# [174] field_key
 field_key ::= IDENTIFIER | STRING | '[' expression ']'
 # formerly: jsonValue
-# [170] json_value
+# [175] json_value
 json_value ::= json_object | json_array | json_string | json_number | 'true' | 'false' | 'null'
 # formerly: jsonObject
-# [171] json_object
+# [176] json_object
 json_object ::= '{' (json_member (',' json_member)*)? '}'
 # formerly: jsonArray
-# [172] json_array
+# [177] json_array
 json_array ::= '[' (json_value (',' json_value)*)? ']'
 # formerly: jsonString
-# [173] json_string
+# [178] json_string
 json_string ::= STRING
 # formerly: jsonNumber
-# [174] json_number
+# [179] json_number
 json_number ::= NUMBER
 # formerly: fingeExpr
-# [175] finge_expr
+# [180] finge_expr
 finge_expr ::= 'สร้าง' qualified_ident ('{' field_list '}')? ('∷' type_annotation)?
 # formerly: qualifiedIdent
-# [176] qualified_ident
+# [181] qualified_ident
 qualified_ident ::= IDENTIFIER ('.' IDENTIFIER)*
 # formerly: praefixumExpr
-# [177] praefixum_expr
+# [182] praefixum_expr
 praefixum_expr ::= 'นำหน้า' (block_stmt | '(' expression ')')
 # formerly: scriptumExpr
-# [178] scriptum_expr
+# [183] scriptum_expr
 scriptum_expr ::= 'จารึก' '(' STRING (',' expression)* ')'
 # formerly: legeExpr
-# [179] lege_expr
+# [184] lege_expr
 lege_expr ::= 'อ่าน' 'บรรทัด'?
+# [185] first_match_expr
+first_match_expr ::= 'ตรงแรก' '(' expression apud_clause? ',' 'ที่ซึ่ง' IDENTIFIER block_stmt ')'
+# [186] summa_expr
+summa_expr ::= 'ผลรวม' 'ออก' expression apud_clause? filum_clause? ('คงที่' | 'แปร') IDENTIFIER block_stmt
+# [187] filum_clause
+filum_clause ::= 'เส้นใย' IDENTIFIER
 # formerly: objectPattern
-# [180] object_pattern
+# [188] object_pattern
 object_pattern ::= '{' pattern_property (',' pattern_property)* '}'
 # formerly: patternProperty
-# [181] pattern_property
+# [189] pattern_property
 pattern_property ::= 'ที่เหลือ'? IDENTIFIER ('ในชื่อ' IDENTIFIER)?
 # formerly: arrayPattern
-# [182] array_pattern
+# [190] array_pattern
 array_pattern ::= '[' array_pattern_element (',' array_pattern_element)* ']'
 # formerly: arrayPatternElement
-# [183] array_pattern_element
+# [191] array_pattern_element
 array_pattern_element ::= '_' | 'ที่เหลือ'? IDENTIFIER
 # formerly: outputStmt
-# [184] nota_stmt
+# [192] nota_stmt
 nota_stmt ::= ('บันทึก' | 'ดู' | 'เตือน' | 'เขียน') expression (',' expression)*
 # formerly: entryHeader
-# [185] entry_header
+# [193] entry_header
 entry_header ::= ('อาร์กิวเมนต์' IDENTIFIER)? ('ทางออก' expression)?
 # formerly: incipitStmt
-# [186] incipit_stmt
+# [194] incipit_stmt
 incipit_stmt ::= 'เริ่ม' entry_header block_stmt
 # formerly: incipietStmt
-# [187] incipiet_stmt
+# [195] incipiet_stmt
 incipiet_stmt ::= 'เริ่มอะซิงก์' entry_header block_stmt
 # formerly: probandumDecl
-# [188] probandum_decl
+# [196] probandum_decl
 probandum_decl ::= 'ทดสอบชุด' STRING proba_modifier* '{' probandum_body '}'
 # formerly: probandumBody
-# [189] probandum_body
+# [197] probandum_body
 probandum_body ::= (praepara_block | probandum_decl | proba_stmt)*
 # formerly: probaStmt
-# [190] proba_stmt
+# [198] proba_stmt
 proba_stmt ::= 'ทดสอบ' STRING proba_modifier* block_stmt
 # formerly: probaModifier
-# [191] proba_modifier
+# [199] proba_modifier
 proba_modifier ::= 'ละเว้น' STRING | 'ค้าง' STRING | 'เฉพาะ' | 'แท็ก' STRING | 'เวลา' NUMBER | 'วัด' | 'ทำซ้ำ' NUMBER | 'เปราะบาง' NUMBER | 'เฉพาะใน' STRING
 # formerly: praeparaBlock
-# [192] praepara_block
+# [200] praepara_block
 praepara_block ::= ('เตรียม' | 'จะเตรียม' | 'หลังเตรียม' | 'จะหลังเตรียม') 'ทั้งหมด'? block_stmt
 # formerly: facBlockStmt
-# [193] fac_stmt
+# [201] fac_stmt
 fac_stmt ::= 'ทำ' block_stmt cape_clause? ('ขณะ' expression)?
-# [194] IDENTIFIER
+# [202] IDENTIFIER
 IDENTIFIER ::=
-# [195] NUMBER
+# [203] NUMBER
 NUMBER ::=
-# [196] NATURAL
+# [204] NATURAL
 NATURAL ::=
-# [197] STRING
+# [205] STRING
 STRING ::=
-# [198] ASCII_STRING
+# [206] ASCII_STRING
 ASCII_STRING ::=
-# [199] BACKTICK_STRING
+# [207] BACKTICK_STRING
 BACKTICK_STRING ::=
-# [200] OCTETI_STRING
+# [208] OCTETI_STRING
 OCTETI_STRING ::=
-# [201] NEWLINE
+# [209] NEWLINE
 NEWLINE ::=
-# [202] WIDTH_MARKER
+# [210] WIDTH_MARKER
 WIDTH_MARKER ::=
-# [203] LISTA_WIDTH_SUGAR
+# [211] LISTA_WIDTH_SUGAR
 LISTA_WIDTH_SUGAR ::=
-# [204] TENSOR_WIDTH_SUGAR
+# [212] TENSOR_WIDTH_SUGAR
 TENSOR_WIDTH_SUGAR ::=
-# [205] SPARSA_WIDTH_SUGAR
+# [213] SPARSA_WIDTH_SUGAR
 SPARSA_WIDTH_SUGAR ::=
-# [206] VECTOR_WIDTH_SUGAR
+# [214] VECTOR_WIDTH_SUGAR
 VECTOR_WIDTH_SUGAR ::=
-# [207] MATRIX_WIDTH_SUGAR
+# [215] MATRIX_WIDTH_SUGAR
 MATRIX_WIDTH_SUGAR ::=
-# [208] FRONTMATTER_DELIMITER
+# [216] FRONTMATTER_DELIMITER
 FRONTMATTER_DELIMITER ::=
-# [209] TOML_LINES
+# [217] TOML_LINES
 TOML_LINES ::=
-# [210] ANNOTATION_NAME
+# [218] ANNOTATION_NAME
 ANNOTATION_NAME ::=
-# [211] ANNOTATION_FIELD_NAME
+# [219] ANNOTATION_FIELD_NAME
 ANNOTATION_FIELD_NAME ::=
-# [212] NON_NEWLINE_TOKEN
+# [220] NON_NEWLINE_TOKEN
 NON_NEWLINE_TOKEN ::=
-# [213] NO_NEWLINE
+# [221] NO_NEWLINE
 NO_NEWLINE ::=
 ```
 
@@ -671,6 +691,7 @@ NO_NEWLINE ::=
 | [`clausura_expr`](#clausura-expr) | `#ปิดล้อม-expr` | live | clausuraExpr |
 | [`compact_clausura_expr`](#compact-clausura-expr) | `#compact-ปิดล้อม-expr` | live | compactClausuraExpr |
 | [`clausura_signature`](#clausura-signature) | `#ปิดล้อม-signature` | live | clausuraSignature |
+| [`closure_modifier`](#closure-modifier) | `#closure-modifier` | live | — |
 | [`fac_block`](#fac-block) | `#ทำ-block` | live | closureFacBlock |
 | [`clausura_legacy_expr`](#clausura-legacy-expr) | `#ปิดล้อม-legacy-expr` | live | legacyClausuraExpr |
 | [`clausura_params`](#clausura-params) | `#ปิดล้อม-params` | live | clausuraParams |
@@ -713,6 +734,8 @@ NO_NEWLINE ::=
 | [`สาธารณะ`](#publica) | `#สาธารณะ` | live | visibility |
 | [`named_import`](#named-import) | `#named-import` | live | namedImport |
 | [`wildcard_import`](#wildcard-import) | `#wildcard-import` | live | wildcardImport |
+| [`selective_import`](#selective-import) | `#selective-import` | live | — |
+| [`import_value_binding`](#import-value-binding) | `#import-value-binding` | live | — |
 | [`type_annotation`](#type-annotation) | `#type-annotation` | live | typeAnnotation |
 | [`owned_type`](#owned-type) | `#owned-type` | live | ownedType |
 | [`base_type`](#base-type) | `#base-type` | live | baseType |
@@ -734,6 +757,7 @@ NO_NEWLINE ::=
 | [`else_arm`](#else-arm) | `#else-arm` | live | elseArm |
 | [`dum_stmt`](#dum-stmt) | `#ขณะ-stmt` | live | whileStmt |
 | [`itera_stmt`](#itera-stmt) | `#วน-stmt` | live | iteraStmt |
+| [`apud_clause`](#apud-clause) | `#ที่-clause` | live | — |
 | [`elige_stmt`](#elige-stmt) | `#เลือก-stmt` | live | eligeStmt |
 | [`casu_elige_clause`](#casu-elige-clause) | `#กรณี-เลือก-clause` | live | eligeCase |
 | [`ceterum_clause`](#ceterum-clause) | `#อื่น-clause` | live | defaultCase |
@@ -765,6 +789,7 @@ NO_NEWLINE ::=
 | [`adfirma_stmt`](#adfirma-stmt) | `#ยืนยัน-stmt` | live | assertStmt |
 | [`requirit_stmt`](#requirit-stmt) | `#ต้องการ-stmt` | live | requiritStmt |
 | [`expression`](#expression) | `#expression` | live | — |
+| [`transfer`](#transfer) | `#transfer` | live | — |
 | [`assignment`](#assignment) | `#assignment` | live | — |
 | [`inc_dec_stmt`](#inc-dec-stmt) | `#inc-dec-stmt` | live | incDecStmt |
 | [`place`](#place) | `#place` | live | — |
@@ -795,6 +820,7 @@ NO_NEWLINE ::=
 | [`call_expr`](#call-expr) | `#call-expr` | live | call |
 | [`call_suffix`](#call-suffix) | `#call-suffix` | live | callSuffix |
 | [`member_suffix`](#member-suffix) | `#member-suffix` | live | memberSuffix |
+| [`transpose_suffix`](#transpose-suffix) | `#transpose-suffix` | live | transposeSuffix |
 | [`optional_suffix`](#optional-suffix) | `#optional-suffix` | live | optionalSuffix |
 | [`non_null_suffix`](#non-null-suffix) | `#ไม่-null-suffix` | live | nonNullSuffix |
 | [`argument_list`](#argument-list) | `#argument-list` | live | argumentList |
@@ -822,6 +848,9 @@ NO_NEWLINE ::=
 | [`praefixum_expr`](#praefixum-expr) | `#นำหน้า-expr` | live | praefixumExpr |
 | [`scriptum_expr`](#scriptum-expr) | `#จารึก-expr` | live | scriptumExpr |
 | [`lege_expr`](#lege-expr) | `#อ่าน-expr` | live | legeExpr |
+| [`first_match_expr`](#first-match-expr) | `#first-match-expr` | live | — |
+| [`summa_expr`](#summa-expr) | `#ผลรวม-expr` | live | — |
+| [`filum_clause`](#filum-clause) | `#เส้นใย-clause` | live | — |
 | [`object_pattern`](#object-pattern) | `#object-pattern` | live | objectPattern |
 | [`pattern_property`](#pattern-property) | `#pattern-property` | live | patternProperty |
 | [`array_pattern`](#array-pattern) | `#array-pattern` | live | arrayPattern |
@@ -877,6 +906,7 @@ productions. It is not a second keyword authority.
 | Endpoints | `ถึง` | capability call |
 | Error | `ยืนยัน` | assert |
 | Iteration | `ก่อน` | range until exclusive |
+| Grammar | `ที่` | keyword literal derived from the production |
 | Params | `อาร์กิวเมนต์` | CLI arguments modifier |
 | Boolean | `หรือ` | or |
 | Error | `จับ` | local handler |
@@ -907,6 +937,7 @@ productions. It is not a second keyword authority.
 | Async | `สตรีมอะซิงก์` | async stream posture |
 | Async | `อะซิงก์` | async finite posture |
 | Async | `รอคง` | await-bind immutable |
+| Grammar | `เส้นใย` | keyword literal derived from the production |
 | Objects | `สร้าง` | construct variant |
 | Async | `สตรีม` | sync stream posture |
 | Declarations | `คงที่` | immutable binding |
@@ -930,6 +961,7 @@ productions. It is not a second keyword authority.
 | Control | `วน` | for |
 | Objects | `ทูเพิล` | tuple type/constructor |
 | Builtin | `อ่าน` | read |
+| Objects | `อิสระ` | capture-free closure modifier |
 | Builtin | `บรรทัด` | line |
 | Declarations | `ขนาด` | size/index generic parameter |
 | Testing | `วัด` | benchmark |
@@ -954,6 +986,7 @@ productions. It is not a second keyword authority.
 | Objects | `นำหน้า` | prefix expression |
 | Testing | `เตรียม` | setup |
 | Testing | `จะเตรียม` | async setup |
+| Grammar | `ตรงแรก` | first-match selection head |
 | Testing | `ทดสอบ` | test |
 | Testing | `ทดสอบชุด` | test suite |
 | Declarations | `สาธารณะ` | public visibility |
@@ -975,12 +1008,14 @@ productions. It is not a second keyword authority.
 | Params | `กระจาย` | spread |
 | Declarations | `สมัครใจ` | optional declaration slot |
 | Genus | `สืบทอด` | extends |
+| Grammar | `ผลรวม` | keyword literal derived from the production |
 | Async | `รอทิ้ง` | await-discard |
 | Control | `เงียบ` | no-op |
 | Testing | `แท็ก` | tag |
 | Testing | `เวลา` | timeout |
 | JSON | `true` | JSON true |
 | Declarations | `ชนิดนามแฝง` | type alias |
+| Grammar | `ที่ซึ่ง` | first-match predicate tail |
 | Iteration | `จนถึง` | range until inclusive |
 | Params | `ในชื่อ` | as / alias |
 | Declarations | `แปร` | mutable binding |
@@ -1099,6 +1134,15 @@ Entries are trivia-delimited.
   rejected. The definite-assignment pass (semantic Phase 3a) enforces this.
 
 ### Functions
+
+### Capture-free closures
+
+`อิสระ` is the canonical Latin spelling of the `closure_modifier`; the English reader spelling is `free`. The modifier follows the parameter list in both compact and legacy `ปิดล้อม` forms, before any `→` return or `⇥` alternate-exit clause. It declares a checked capture-free contract: the closure may use its own parameters, body locals, and module-level items, but it must not reference a local or parameter from an enclosing function. Such a capture is rejected by the compiler.
+
+```text
+sit summa ← (numerus a, numerus b) libera ∴ a + b
+clausura numerus x libera: x * 2
+```
 
 - Return syntax: `→` declares the normal success type. A bodyful function with no `→` is effect-only (`vacuum`) and must not contain `คืน`. A statement-bodied closure (`ทำ { ... }` or legacy block body) must also spell `→ T` before it can use `คืน`; expression-bodied closures may infer their result from the expression.
 - Recoverable alternate-exit syntax: `⇥` declares the error-channel type. It can appear after `→ T` or alone on an effect-only failable function or closure. A closure body that uses an escaping `โยน` must declare its own `⇥ E`; it cannot inherit the enclosing function's error channel. A local `ทำ { ... } จับ err { ... }` may catch `โยน` without an enclosing `⇥`. A failable function call (`→ T ⇥ E`) inside a `⇥`-declaring function propagates to the function's alternate exit without a `ทำ`/`จับ` wrapper, mirroring how bare `↦` conversio and `โยน` throws already behave; the call lowers to Rust `?`. A closure must still declare its own `⇥` to propagate a failable call — the enclosing function's error channel does not cross the closure boundary.
@@ -1233,6 +1277,8 @@ importa ex "faber:*" faber
 importa ex "lodash" * ut _
 # Re-export.
 importa ex "./types" publica User
+# Selective value imports.
+importa ex "norma:consolum" fixum dic ut output
 ```
 
 The `privata` import marker was removed (VM-U3); an import without a marker
@@ -1241,6 +1287,8 @@ defaults to the
 last import path segment when it is a valid, non-conflicting identifier. If the
 inferred name is invalid or collides with an existing top-level binding, spell an
 explicit `ชื่อ` or `ในชื่อ` binding.
+
+**Selective value imports** create ordinary immutable value bindings: `นำเข้า ออก "norma:consolum" คงที่ dic ในชื่อ output, funde ในชื่อ output_bytes` imports one exported value member per `คงที่` local. The pre-`ในชื่อ` identifier names an exported value in the imported file; the post-`ในชื่อ` identifier is the caller-owned local binding; the imported file interface supplies the complete type. Functions and constants are values and may be imported; types are not. The bindings obey ordinary local-binding rules (duplicates, shadowing, lints), are locale-resolved through the imported module, and are never re-exports. Wildcard members cannot mix into the list. The current parser tolerates one trailing comma after the final member; the canonical spine keeps every comma required.
 
 `นำเข้า ออก "faber:*" faber` is kernel-specific sugar: the glob lives
 inside the import path string and expands the released binary's kernel manifest
@@ -1252,7 +1300,7 @@ into `faber.<module>.<verb>` calls. It is not a wildcard re-export and does not 
 
 - Declaration parameters (`genericParams`) and applied arguments (`typeArguments`) are distinct grammar categories. Applied arguments admit nested types and static `figura` values. `typeArguments` still admits `NATURAL`.
 - Applied `NATURAL` arguments are `ขนาด` capacity facts, not width markers. Shipped bounded forms use that slot: `lista<T, N>`, `textus<N>`, `ascii<N>`, `octeti<N>`. Width-marker families such as `numerus<i32>` stay the separate `widthTypeSugar` production below.
-- A second applied argument on a `↦` target (`numerus<W, Hex>`, `numerus<W, Be>`) is a convert-slot hint, not a type identity, not a width marker, and not a keyword. Live text-parse hints are `Hex` / `Bin` / `Oct`. `Be` / `Le` occupy that same Hex slot for endian unpack. `typeArguments` is unchanged: these are ordinary `IDENTIFIER` arguments interpreted by conversio, not new `baseType` productions.
+- A second applied argument on a `↦` target (`numerus<W, Hex>`, `numerus<W, Be>`) is a convert-slot hint, not a type identity, not a width marker, and not a keyword. Live text-parse hints are `Hex` / `Bin` / `Oct`. `Be` / `Le` occupy that same Hex slot for endian unpack — both integer (`octeti[lo‥hi] ↦ numerus<W, Be|Le>`) and float windows (`octeti[lo‥hi] ↦ fractus<f32|f64, Be|Le>`, window 4/8, same fail rules as the integer rows). `Bits` occupies the same slot as an exact-width bitcast hint (reinterpretation, not value conversion; never a base). `typeArguments` is unchanged: these are ordinary `IDENTIFIER` arguments interpreted by conversio, not new `baseType` productions.
 - Type arguments admit the hole forms: `lista<∪>` infers a heterogeneous element union and `tabula<K, ∪>` a heterogeneous value union; `lista<_>` keeps the monomorphic single-inhabitant hole.
 - Explicit generic call-site lists use the same `typeArguments` production: `id<_>(x)` is a type hole (equivalent to omitted `id(x)` for a one-param callee), and mixed lists such as `both<_, textus>(a, b)` are legal. Arity stays exact (`both<_>` is still one argument). `∪` in that list is rejected (`explicit_union_type_arg_unsupported`): a callee type param is a monomorphic witness slot.
 - `labeledTypeArgument` is the optional label prefix on `ทูเพิล` type arguments only (`ทูเพิล<gx: f32, T>`; mixed labeled/unlabeled legal). A label in a non-`ทูเพิล` list (`f<gx: T>(x)`, `lista<gx: T>`) is a parse error. Absence is the only unlabeled form; there is no `_: T` spelling. Keyword spellings are legal labels under the contextual law (`ทูเพิล<คงที่: A>`).
@@ -1315,7 +1363,7 @@ Sized primitives accept one optional **width marker** (not a user type parameter
 | Family | Markers | Invalid example |
 | ------ | ------- | --------------- |
 | `numerus<W>` | `i8`, `i16`, `i32`, `i64`, `u8`, `u16`, `u32`, `u64` | `numerus<f32>` → use `fractus<f32>` |
-| `fractus<W>` | `f16`, `f32`, `f64` | `fractus<i32>` → use `numerus<i32>`; `bf16` is deferred |
+| `fractus<W>` | `f16`, `bf16`, `f32`, `f64` | `fractus<i32>` → use `numerus<i32>` |
 | `modulus<W>` | `u8`, `u16`, `u32`, `u64` | `modulus<i32>` → signed widths are not modular words |
 
 Bare `numerus` / `fractus` remain shorthand for `numerus<i64>` / `fractus<f64>`.
@@ -1452,6 +1500,17 @@ prefer sugar. Choose per module or file.
 
 ### Operators (by precedence, lowest to highest)
 
+**Postfix tensor transpose (`ᵀ`, U+1D40):** `valueᵀ` is rank-2-only
+sugar for the existing `transpone` intrinsic and `Transpose` plan entry. It
+maps `[M,N]` to `[N,M]`; rank-1 is a permanent decline because there is no
+row/column distinction, while rank-3+ waits for a batched-transpose consumer.
+The precedence interaction with parse-only gradient selection is settled law,
+not an open fork: `a · bᵀ ∇ [x]` parses `(a · bᵀ) ∇ [x]`, so the transpose
+suffix is consumed before the selection suffix. `⊤` remains unspent.
+
+**Exact-output transfer (`⇇`):** `sink ⇇ payload` invokes a callable sink value — one argument, `vacuum` result — once per payload. The operator performs no formatting, adds no separators or terminator, selects no channel, and runs no conversions: the bound value owns destination and behavior, and the compiler holds no console knowledge. A chain `sink ⇇ a ⇇ b` evaluates the sink expression once, each payload once left-to-right, and invokes the sink once per payload left-to-right; the chain result is `vacuum`. `⇇` binds above assignment and below ternary, so postfix calls, conversions, and string-constructor applications finish before transfer; formatting is explicit on the right (`output ⇇ "§ §
+"(a, b)`). Combined with selective value imports it replaces compiler-owned output statements with ordinary typed values.
+
 **Conversion-directed assignment (`↤` / conversio-assign):** `place ↤ value`
 evaluates the right side, converts it to the statically known type of the left
 place through the existing `↦` route, then assigns. It binds at the same
@@ -1501,10 +1560,12 @@ The `↦` glyph (U+21A6, "rightwards arrow from bar") is the runtime value conve
 - `n ↦ ascii<N, Hex|Bin|Oct>` — shipped; fixed-width lowercase digits, zero-padded to `N`, with overflow and negative sources rejected.
 - `n ↦ ascii<_, Hex|Bin|Oct>` — shipped for const-foldable numerus sources; the hole is solved to the source digit count. Runtime sources leave the hole unsolved and require explicit `N`.
 
-The second type argument of a `↦` target is the convert-hint slot. `Hex` / `Bin` / `Oct` / `Be` / `Le` are convert hints in that slot, not keywords and not new `baseType` productions. For ascii output, `Hex` / `Bin` / `Oct` select the lowercase fixed-width digit pack; the hint is not part of type identity. Target support is not a grammar production (see Target Support).
+The second type argument of a `↦` target is the convert-hint slot. `Hex` / `Bin` / `Oct` / `Be` / `Le` / `Bits` are convert hints in that slot, not keywords and not new `baseType` productions. For ascii output, `Hex` / `Bin` / `Oct` select the lowercase fixed-width digit pack; the hint is not part of type identity. Target support is not a grammar production (see Target Support).
 
 - `"ff" ↦ numerus<i32, Hex>` — shipped; text parse at radix 16 (`Bin` = 2, `Oct` = 8). Hex/Bin/Oct text parse is unchanged by endian hints.
 - `octeti[lo‥hi] ↦ numerus<W, Be>` / `… ↦ numerus<W, Le>` — endian unpack of an exact-width window (`W` is `i16` / `i32` / `i64` / `u16` / `u32` / `u64`; window length 2 / 4 / 8). Shipped on rust, the MIR runner, Go, and TypeScript. TypeScript `i64`/`u64` stay fail-closed (JS number is not exact). English `int<W, Be>` is the same form. `octeti` itself has no endian; `bytes ↦ numerus<u32>` without `Be`/`Le` stays rejected. A short window fails (no pad).
+- `octeti[lo‥hi] ↦ fractus<f32, Be|Le>` / `… ↦ fractus<f64, Be|Le>` — shipped alongside the integer rows (float endian unpack of an exact-width window, 4 / 8 bytes; same fail rules: exact window required, a short window fails, `Be`/`Le` mandatory).
+- `n ↦ numerus<u32, Bits>` / `n ↦ numerus<u64, Bits>` / `n ↦ fractus<f32, Bits>` / `n ↦ fractus<f64, Bits>` / `n ↦ fractus<f16, Bits>` — shipped; the `Bits` hint reinterprets between exact-width integer/float pairs (u32↔f32, u64↔f64, u16↔f16, u16↔bf16) bit-identically. It is reinterpretation, not value conversion; wrong-pair rows reject with the structured issue, and `Bits` is never a base or an ascii format hint. `Bits` is a convert-slot hint in the same Hex slot, not a keyword and not a `baseType` production.
 - `n ↦ octeti<N, Be>` / `… ↦ octeti<N, Le>` — proposed (not shipped); write convert after `octeti<N>` (`N` ∈ {2, 4, 8}). `Be`/`Le` stay Hex-slot hints, not a second capacity.
 
 Inline failure recovery uses `⇥` immediately after the conversio target (`↦ T ⇥ recovery-expr`). The unparenthesized recovery operand is a unary-precedence expression; parenthesize arithmetic, coalescing, ternary, or assignment recovery expressions. The recovery value must have type `T`.
@@ -1688,6 +1749,16 @@ construction `Type { field = expr }` uses the Faber `=` grammar unchanged.
 
 ### Special Expressions
 
+`ตรงแรก(source, ที่ซึ่ง binder { predicate })` is the dedicated first-match
+selection expression over a statically bounded source: the predicate is
+evaluated for every candidate lane (total evaluation, no early exit), the
+first live match is selected, and a no-match or empty source yields `ว่าง`
+(the result type is `T ∪ ว่าง`). The `ที่ซึ่ง` predicate tail is owned by this
+head and never shares the reduce/scan `คงที่`/`แปร` binder tail.
+`ตรงแรก` claims only the expression-head position immediately followed
+by `(`; elsewhere the spelling stays an ordinary identifier. An optional
+`ที่` coordinate clause binds per-axis indices as in `วน ออก`.
+
 `จารึก` and `อ่าน`/`บรรทัด` are builtin claims that resolve to a user binding
 when the surface spelling is bound in scope (parameter, local, function, or any
 in-scope definition); otherwise they are the builtin. The same binding-wins rule
@@ -1818,10 +1889,30 @@ grammar-level query expression. `textus`, `numerus`, `fractus`, `lista<T>`,
 `tabula<K,V>`, and `copia<T>` are compiler-owned core types; their method
 surfaces are not Norma declarations.
 
-`prima` and `ultima` are ordinary method names, not transform keywords. `ubi` is
-not active collection syntax.
+`prima` and `ultima` are ordinary method names, not transform keywords. `ที่ซึ่ง` is
+the owned predicate-tail introducer of the `ตรงแรก` first-match expression
+(see Special Expressions), not collection syntax.
 
 `ออก` is used for iteration (`วน ออก items คงที่ x`) and imports (`นำเข้า ออก "path"`).
+
+### Iteration coordinates (`ที่`)
+
+The optional `ที่` coordinate clause binds per-axis indices for an `วน ออก`
+loop: `วน ออก grid ที่ [r, c] คงที่ cell { … }`. The en reader spelling is
+"at" — `วน ออก grid ที่ [r, c]` reads as iterating `grid` at coordinates
+`[r, c]`.
+
+- **First bound name = outer axis.** The first identifier in the bracket group
+  walks the first (outermost) axis; later names walk successively inner axes.
+- **Bracket-group convention.** The coordinate group follows the tensor
+  bracket-index convention `grid[[r, c]]`: one bracketed group, comma-separated
+  coordinate names, in axis order.
+- **Arity == rank.** The number of coordinate names must equal the tensor rank.
+  Fewer or more names is a structured reject (arity mismatch).
+- **`ที่` requires `ออก`.** The coordinate clause is only valid on `วน ออก`
+  (element iteration); `วน ช่วง` range loops and `วน จาก` reject it.
+- The coordinate names are immutable index bindings scoped to the loop body,
+  distinct from the element binder that follows the clause.
 
 ---
 
