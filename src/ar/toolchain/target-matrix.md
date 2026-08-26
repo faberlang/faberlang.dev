@@ -7,7 +7,7 @@ sources = "faber/docs/EBNF_MATRIX.md · target-capability-matrix.md · faber tar
 translation_kind = "translated"
 prose_hash = "sha256:072bb640381f428a62c864f2b4643269cda448c4f0c04877cf22f4ca1af3b392"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "98655de26e3e17508f9c7bea7cae629bbe7211bd"
+source_commit = "38b7404e4fd177d97334a92e43bdcd95bd84fb70"
 source_locale = "en-US"
 +++
 

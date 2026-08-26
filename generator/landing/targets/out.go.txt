@@ -2,11 +2,7 @@
 
 package main
 
-import (
-    "fmt"
-    "strconv"
-    "strings"
-)
+import "fmt"
 
 type faberTensor[T any] struct {
     data []T
@@ -210,12 +206,8 @@ func (t faberTensor[T]) Sectio(start int, end int) faberTensor[T] {
 }
 
 func main() {
-    flat_a := []float32{float32(1), float32(2), float32(3), float32(4), float32(5), float32(6)}
-    flat_b := []float32{float32(1), float32(2), float32(3), float32(4), float32(5), float32(6), float32(7), float32(8), float32(9), float32(10), float32(11), float32(12)}
-    seed := faberTensor[float32]{shape: []int{}}
-    a := seed.Strue(flat_a, []int{2, 3})
-    b := seed.Strue(flat_b, []int{3, 4})
+    a := faberTensor[float32]{}.Crea(*new(float32), []int{2, 3})
+    b := faberTensor[float32]{}.Crea(*new(float32), []int{3, 4})
     product := a.Matmul(b)
-    mean := float32(product.Media())
-    fmt.Println(func(v float64) string { s := strconv.FormatFloat(v, 'f', -1, 64); if !strings.ContainsAny(s, ".eE") { return s + ".0" }; return s }(float64(mean)))
+    fmt.Println(product)
 }

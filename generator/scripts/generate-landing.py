@@ -68,7 +68,7 @@ TARGETS: list[dict[str, str]] = [
      "note": "HIR projection — reviewable source; package product path via Cargo"},
     {"id": "go", "name": "Go", "note": "HIR projection — file emission + e2e floors"},
     {"id": "ts", "name": "TypeScript", "note": "HIR projection — file emission + e2e floors",
-     "elide_before": "        const flat_a"},
+     "elide_before": "        const a: FaberTensor<number> = FaberTensor.empty"},
     {"id": "llvm-text", "name": "LLVM IR",
      "note": "MIR staging text for external LLVM tools — not embedded native codegen"},
 ]

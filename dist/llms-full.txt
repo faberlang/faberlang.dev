@@ -47,7 +47,7 @@ faber explain SEM001
 
 ## Generated corpus frontmatter reference
 
-- Distinct frontmatter terms: 225
+- Distinct frontmatter terms: 226
 - Canonical term pages: 197
 - Alias spellings: 120
 - Categories: 48

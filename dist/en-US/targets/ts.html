@@ -1,575 +1,750 @@
 <!DOCTYPE html>
-<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="HIR projection with file emission and end-to-end floors."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="TypeScript — Faber"><meta property="og:description" content="HIR projection with file emission and end-to-end floors."><meta property="og:url" content="https://faberlang.dev/en-US/targets/ts.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/targets/ts.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>TypeScript — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs"><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><ul class="nav"><li><a href="/en-US/">Home</a></li><li><a href="/en-US/start/install.html">Install</a></li><li><a href="/en-US/localization.html">Localization</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li><li><a href="/en-US/releases/">Releases</a></li><li><a href="/en-US/open-source.html">Open source</a></li><li><a href="/en-US/examples/">Examples</a></li><li><a href="/en-US/targets/" class="active">Target lanes</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/en-US/language/">The language</a></li><li><a href="/en-US/language/types.html">Types and values</a></li><li><a href="/en-US/language/functions.html">Functions and flow</a></li><li><a href="/en-US/language/errors.html">Errors and testing</a></li><li><a href="/en-US/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/en-US/toolchain/">Toolchain</a></li><li><a href="/en-US/toolchain/cli.html">The faber CLI</a></li><li><a href="/en-US/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/en-US/targets/" class="active">Target lanes</a></li><li><a href="/en-US/toolchain/packages.html">Packages with Cista</a></li><li><a href="/en-US/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/">Libraries</a></li><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/en-US/reference/">Reference</a></li><li><a href="/en-US/reference/grammar.html">Grammar</a></li><li><a href="/en-US/corpus/">Corpus index</a></li><li><a href="/en-US/reference/design.html">Design notes</a></li><li><a href="/en-US/open-source.html">Open source</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.6.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/en-US/releases/">All releases</a></li><li><a href="/en-US/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main><h1>TypeScript</h1><div class="content"><p>HIR projection with file emission and end-to-end floors.</p><p>Part of the <a href="/en-US/targets/hir.html">HIR lane</a>. Every panel below is compiler output.</p><h2 id="reading">How to read it</h2><p>The largest expansion among the host languages, because Faber's typed numerics and tensors have no TypeScript counterpart and arrive as generated runtime scaffolding.</p><h2 id="tensores">Typed tensors</h2><p>Builds two shaped matrices, multiplies them, and reduces the product to a scalar. Exercises shape-bearing types and a reduction.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber">main {
-    const list&lt;f32&gt; flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    const list&lt;f32&gt; flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    const tensor&lt;f32, []&gt; seed ← empty
-    const tensor&lt;f32, [2, 3]&gt; a ← seed.from_flat(flat_a, [2, 3])
-    const tensor&lt;f32, [3, 4]&gt; b ← seed.from_flat(flat_b, [3, 4])
-    const tensor&lt;f32, [2, 4]&gt; product ← a.matmul(b)
-    const f32 mean ← product.mean()
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="HIR projection with file emission and end-to-end floors."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="TypeScript — Faber"><meta property="og:description" content="HIR projection with file emission and end-to-end floors."><meta property="og:url" content="https://faberlang.dev/en-US/targets/ts.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/targets/ts.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>TypeScript — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><ul class="nav"><li><a href="/en-US/">Home</a></li><li><a href="/en-US/start/install.html">Install</a></li><li><a href="/en-US/localization.html">Localization</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li><li><a href="/en-US/releases/">Releases</a></li><li><a href="/en-US/open-source.html">Open source</a></li><li><a href="/en-US/examples/">Examples</a></li><li><a href="/en-US/targets/" class="active">Target lanes</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/en-US/language/">The language</a></li><li><a href="/en-US/language/types.html">Types and values</a></li><li><a href="/en-US/language/functions.html">Functions and flow</a></li><li><a href="/en-US/language/errors.html">Errors and testing</a></li><li><a href="/en-US/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/en-US/toolchain/">Toolchain</a></li><li><a href="/en-US/toolchain/cli.html">The faber CLI</a></li><li><a href="/en-US/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/en-US/targets/" class="active">Target lanes</a></li><li><a href="/en-US/toolchain/packages.html">Packages with Cista</a></li><li><a href="/en-US/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/">Libraries</a></li><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/en-US/reference/">Reference</a></li><li><a href="/en-US/reference/grammar.html">Grammar</a></li><li><a href="/en-US/corpus/">Corpus index</a></li><li><a href="/en-US/reference/design.html">Design notes</a></li><li><a href="/en-US/open-source.html">Open source</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.6.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/en-US/releases/">All releases</a></li><li><a href="/en-US/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>TypeScript</h1><div class="content"><p>HIR projection with file emission and end-to-end floors.</p><p>Part of the <a href="/en-US/targets/hir.html">HIR lane</a>. Every panel below is compiler output.</p><h2 id="reading">How to read it<a class="anchor" href="#reading">#</a></h2><p>The largest expansion among the host languages, because Faber's typed numerics and tensors have no TypeScript counterpart and arrive as generated runtime scaffolding.</p><h2 id="tensores">Typed tensors<a class="anchor" href="#tensores">#</a></h2><p>Builds two shaped matrices, multiplies them, and reduces the product to a scalar. Exercises shape-bearing types and a reduction.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> empty
+    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> seed.from_flat(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> seed.from_flat(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a.matmul(b)
+    <span class="tok-kw">const</span> f32 mean <span class="tok-op">←</span> product.mean()
     print mean
-}</code></pre><p><strong>TypeScript</strong> — 10 lines in, 294 out (29.4×)</p><pre class="faber-code"><code class="lang-ts">// Generated by radix - do not edit
+}</code></pre><p><strong>TypeScript</strong> — 10 lines in, 294 out (29.4×)</p><pre class="faber-code"><code class="lang-ts"><span class="tok-co">// Generated by radix - do not edit</span>
 
-type FaberDisplayHint =
-      &quot;unknown&quot;
-    | &quot;textus&quot;
-    | &quot;ascii&quot;
-    | &quot;numerus&quot;
-    | &quot;fractus&quot;
-    | &quot;bivalens&quot;
-    | &quot;nihil&quot;
-    | &quot;vacuum&quot;
-    | &quot;valor&quot;
-    | &quot;instans&quot;
-    | &quot;regex&quot;
-    | { kind: &quot;nullable&quot;; inner: FaberDisplayHint }
-    | { kind: &quot;lista&quot;; element: FaberDisplayHint }
-    | { kind: &quot;tensor&quot;; element: FaberDisplayHint }
-    | { kind: &quot;sparsa&quot;; element: FaberDisplayHint }
-    | { kind: &quot;map&quot;; key: FaberDisplayHint; value: FaberDisplayHint }
-    | { kind: &quot;set&quot;; element: FaberDisplayHint }
+<span class="tok-kw">type</span> FaberDisplayHint =
+      <span class="tok-st">"unknown"</span>
+    | <span class="tok-st">"textus"</span>
+    | <span class="tok-st">"ascii"</span>
+    | <span class="tok-st">"numerus"</span>
+    | <span class="tok-st">"fractus"</span>
+    | <span class="tok-st">"bivalens"</span>
+    | <span class="tok-st">"nihil"</span>
+    | <span class="tok-st">"vacuum"</span>
+    | <span class="tok-st">"valor"</span>
+    | <span class="tok-st">"instans"</span>
+    | <span class="tok-st">"regex"</span>
+    | { kind: <span class="tok-st">"nullable"</span>; inner: FaberDisplayHint }
+    | { kind: <span class="tok-st">"lista"</span>; element: FaberDisplayHint }
+    | { kind: <span class="tok-st">"tensor"</span>; element: FaberDisplayHint }
+    | { kind: <span class="tok-st">"sparsa"</span>; element: FaberDisplayHint }
+    | { kind: <span class="tok-st">"map"</span>; key: FaberDisplayHint; value: FaberDisplayHint }
+    | { kind: <span class="tok-st">"set"</span>; element: FaberDisplayHint }
 ;
 
-function __faberDisplay(value: any, hint: FaberDisplayHint = &quot;unknown&quot;): string {
-    if (typeof hint === &quot;object&quot;) {
-        if (hint.kind === &quot;nullable&quot;) {
-            return value === null || value === undefined ? &quot;nihil&quot; : __faberDisplay(value, hint.inner);
+<span class="tok-kw">function</span> __faberDisplay(value: <span class="tok-ty">any</span>, hint: FaberDisplayHint = <span class="tok-st">"unknown"</span>): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (typeof hint === <span class="tok-st">"object"</span>) {
+        <span class="tok-kw">if</span> (hint.kind === <span class="tok-st">"nullable"</span>) {
+            <span class="tok-kw">return</span> value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span> ? <span class="tok-st">"nihil"</span> : __faberDisplay(value, hint.inner);
         }
-        if (hint.kind === &quot;lista&quot;) { return __faberDisplayList(value, hint.element); }
-        if (hint.kind === &quot;tensor&quot;) { return __faberDisplayTensor(value, hint.element); }
-        if (hint.kind === &quot;sparsa&quot;) { return __faberDisplaySparsa(value, hint.element); }
-        if (hint.kind === &quot;map&quot;) { return __faberDisplayMap(value, hint.key, hint.value); }
-        return __faberDisplayList(value, hint.element);
+        <span class="tok-kw">if</span> (hint.kind === <span class="tok-st">"lista"</span>) { <span class="tok-kw">return</span> __faberDisplayList(value, hint.element); }
+        <span class="tok-kw">if</span> (hint.kind === <span class="tok-st">"tensor"</span>) { <span class="tok-kw">return</span> __faberDisplayTensor(value, hint.element); }
+        <span class="tok-kw">if</span> (hint.kind === <span class="tok-st">"sparsa"</span>) { <span class="tok-kw">return</span> __faberDisplaySparsa(value, hint.element); }
+        <span class="tok-kw">if</span> (hint.kind === <span class="tok-st">"map"</span>) { <span class="tok-kw">return</span> __faberDisplayMap(value, hint.key, hint.value); }
+        <span class="tok-kw">return</span> __faberDisplayList(value, hint.element);
     }
-    if (value === null || value === undefined) {
-        return hint === &quot;vacuum&quot; ? &quot;vacuum&quot; : &quot;nihil&quot;;
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) {
+        <span class="tok-kw">return</span> hint === <span class="tok-st">"vacuum"</span> ? <span class="tok-st">"vacuum"</span> : <span class="tok-st">"nihil"</span>;
     }
-    switch (hint) {
-        case &quot;bivalens&quot;: return value ? &quot;verum&quot; : &quot;falsum&quot;;
-        case &quot;fractus&quot;: return __faberDisplayFractus(value);
-        case &quot;nihil&quot;: return &quot;nihil&quot;;
-        case &quot;vacuum&quot;: return &quot;vacuum&quot;;
-        case &quot;valor&quot;: return __faberDisplayValor(value);
-        case &quot;regex&quot;: return String(value);
-        case &quot;textus&quot;:
-        case &quot;ascii&quot;:
-        case &quot;instans&quot;:
-        case &quot;numerus&quot;: return String(value);
-        default: return __faberDisplayValor(value);
-    }
-}
-
-function __faberDisplayFractus(value: any): string {
-    const n = Number(value);
-    if (!Number.isFinite(n)) { return String(value); }
-    return Number.isInteger(n) ? `${n}.0` : String(n);
-}
-
-function __faberDisplayList(value: any, element: FaberDisplayHint): string {
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    return `[${Array.from(value as Array&lt;any&gt;).map((item) =&gt; __faberDisplay(item, element)).join(&quot;, &quot;)}]`;
-}
-
-function __faberDisplayTensor(value: any, element: FaberDisplayHint): string {
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    if (typeof value.planata === &quot;function&quot;) { return __faberDisplayList(value.planata(), element); }
-    if (Array.isArray(value.data)) { return __faberDisplayList(value.data, element); }
-    return __faberDisplayValor(value);
-}
-
-function __faberDisplaySparsa(value: any, element: FaberDisplayHint): string {
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    if (typeof value.densata === &quot;function&quot;) { return __faberDisplayTensor(value.densata(), element); }
-    return __faberDisplayValor(value);
-}
-
-function __faberDisplayMap(value: any, keyHint: FaberDisplayHint, valueHint: FaberDisplayHint): string {
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    const entries = value instanceof Map ? Array.from(value.entries()) : Object.entries(value);
-    return `{${entries.map(([key, item]) =&gt; `${JSON.stringify(__faberDisplay(key, keyHint))}: ${__faberDisplay(item, valueHint)}`).join(&quot;, &quot;)}}`;
-}
-
-function __faberDisplayValor(value: any): string {
-    if (value !== null &amp;&amp; typeof value === &quot;object&quot; &amp;&amp; typeof value.__faberValorTag === &quot;string&quot;) { return __faberDisplayTaggedValor(value); }
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    if (typeof value === &quot;boolean&quot;) { return value ? &quot;verum&quot; : &quot;falsum&quot;; }
-    if (typeof value === &quot;number&quot;) { return String(value); }
-    if (typeof value === &quot;string&quot;) { return value; }
-    if (Array.isArray(value)) { return __faberDisplayList(value, &quot;valor&quot;); }
-    if (typeof value.text === &quot;function&quot;) { return String(value.text()); }
-    if (typeof value.toString === &quot;function&quot; &amp;&amp; value.toString !== Object.prototype.toString) { return String(value); }
-    return __faberDisplayMap(value, &quot;textus&quot;, &quot;valor&quot;);
-}
-
-function __faberDisplayTaggedValor(value: any): string {
-    const payload = value.__faberValorPayload;
-    switch (value.__faberValorTag) {
-        case &quot;Nihil&quot;: return &quot;nihil&quot;;
-        case &quot;Bivalens&quot;: return payload ? &quot;verum&quot; : &quot;falsum&quot;;
-        case &quot;Numerus&quot;: return String(payload);
-        case &quot;Fractus&quot;: return __faberDisplayFractus(payload);
-        case &quot;Textus&quot;: return String(payload);
-        case &quot;Instans&quot;: return String(payload);
-        case &quot;Octeti&quot;: return `&lt;${Array.isArray(payload) ? payload.length : 0} bytes&gt;`;
-        case &quot;Lista&quot;: return __faberDisplayList(payload, &quot;valor&quot;);
-        case &quot;Tabula&quot;: return __faberDisplayMap(payload, &quot;textus&quot;, &quot;valor&quot;);
-        default: return __faberDisplayValor(payload);
+    <span class="tok-kw">switch</span> (hint) {
+        <span class="tok-kw">case</span> <span class="tok-st">"bivalens"</span>: <span class="tok-kw">return</span> value ? <span class="tok-st">"verum"</span> : <span class="tok-st">"falsum"</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"fractus"</span>: <span class="tok-kw">return</span> __faberDisplayFractus(value);
+        <span class="tok-kw">case</span> <span class="tok-st">"nihil"</span>: <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"vacuum"</span>: <span class="tok-kw">return</span> <span class="tok-st">"vacuum"</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"valor"</span>: <span class="tok-kw">return</span> __faberDisplayValor(value);
+        <span class="tok-kw">case</span> <span class="tok-st">"regex"</span>: <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value);
+        <span class="tok-kw">case</span> <span class="tok-st">"textus"</span>:
+        <span class="tok-kw">case</span> <span class="tok-st">"ascii"</span>:
+        <span class="tok-kw">case</span> <span class="tok-st">"instans"</span>:
+        <span class="tok-kw">case</span> <span class="tok-st">"numerus"</span>: <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value);
+        <span class="tok-kw">default</span>: <span class="tok-kw">return</span> __faberDisplayValor(value);
     }
 }
 
-class FaberTensor&lt;T&gt; {
+<span class="tok-kw">function</span> __faberDisplayFractus(value: <span class="tok-ty">any</span>): <span class="tok-ty">string</span> {
+    <span class="tok-kw">const</span> n = Number(value);
+    <span class="tok-kw">if</span> (!Number.isFinite(n)) { <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value); }
+    <span class="tok-kw">return</span> Number.isInteger(n) ? <span class="tok-st">`${n}.0`</span> : <span class="tok-ty">String</span>(n);
+}
+
+<span class="tok-kw">function</span> __faberDisplayList(value: <span class="tok-ty">any</span>, element: FaberDisplayHint): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) { <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>; }
+    <span class="tok-kw">return</span> <span class="tok-st">`[${Array.from(value as Array&lt;any&gt;).map((item) =&gt; __faberDisplay(item, element)).join(", ")}]`</span>;
+}
+
+<span class="tok-kw">function</span> __faberDisplayTensor(value: <span class="tok-ty">any</span>, element: FaberDisplayHint): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) { <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>; }
+    <span class="tok-kw">if</span> (typeof value.planata === <span class="tok-st">"function"</span>) { <span class="tok-kw">return</span> __faberDisplayList(value.planata(), element); }
+    <span class="tok-kw">if</span> (Array.isArray(value.data)) { <span class="tok-kw">return</span> __faberDisplayList(value.data, element); }
+    <span class="tok-kw">return</span> __faberDisplayValor(value);
+}
+
+<span class="tok-kw">function</span> __faberDisplaySparsa(value: <span class="tok-ty">any</span>, element: FaberDisplayHint): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) { <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>; }
+    <span class="tok-kw">if</span> (typeof value.densata === <span class="tok-st">"function"</span>) { <span class="tok-kw">return</span> __faberDisplayTensor(value.densata(), element); }
+    <span class="tok-kw">return</span> __faberDisplayValor(value);
+}
+
+<span class="tok-kw">function</span> __faberDisplayMap(value: <span class="tok-ty">any</span>, keyHint: FaberDisplayHint, valueHint: FaberDisplayHint): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) { <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>; }
+    <span class="tok-kw">const</span> entries = value instanceof Map ? Array.from(value.entries()) : Object.entries(value);
+    <span class="tok-kw">return</span> <span class="tok-st">`{${entries.map(([key, item]) =&gt; `</span>${JSON.stringify(__faberDisplay(key, keyHint))}: ${__faberDisplay(item, valueHint)}<span class="tok-st">`).join(", ")}}`</span>;
+}
+
+<span class="tok-kw">function</span> __faberDisplayValor(value: <span class="tok-ty">any</span>): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (value !== <span class="tok-kw">null</span> &amp;&amp; typeof value === <span class="tok-st">"object"</span> &amp;&amp; typeof value.__faberValorTag === <span class="tok-st">"string"</span>) { <span class="tok-kw">return</span> __faberDisplayTaggedValor(value); }
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) { <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>; }
+    <span class="tok-kw">if</span> (typeof value === <span class="tok-st">"boolean"</span>) { <span class="tok-kw">return</span> value ? <span class="tok-st">"verum"</span> : <span class="tok-st">"falsum"</span>; }
+    <span class="tok-kw">if</span> (typeof value === <span class="tok-st">"number"</span>) { <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value); }
+    <span class="tok-kw">if</span> (typeof value === <span class="tok-st">"string"</span>) { <span class="tok-kw">return</span> value; }
+    <span class="tok-kw">if</span> (Array.isArray(value)) { <span class="tok-kw">return</span> __faberDisplayList(value, <span class="tok-st">"valor"</span>); }
+    <span class="tok-kw">if</span> (typeof value.text === <span class="tok-st">"function"</span>) { <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value.text()); }
+    <span class="tok-kw">if</span> (typeof value.toString === <span class="tok-st">"function"</span> &amp;&amp; value.toString !== Object.prototype.toString) { <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value); }
+    <span class="tok-kw">return</span> __faberDisplayMap(value, <span class="tok-st">"textus"</span>, <span class="tok-st">"valor"</span>);
+}
+
+<span class="tok-kw">function</span> __faberDisplayTaggedValor(value: <span class="tok-ty">any</span>): <span class="tok-ty">string</span> {
+    <span class="tok-kw">const</span> payload = value.__faberValorPayload;
+    <span class="tok-kw">switch</span> (value.__faberValorTag) {
+        <span class="tok-kw">case</span> <span class="tok-st">"Nihil"</span>: <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"Bivalens"</span>: <span class="tok-kw">return</span> payload ? <span class="tok-st">"verum"</span> : <span class="tok-st">"falsum"</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"Numerus"</span>: <span class="tok-kw">return</span> <span class="tok-ty">String</span>(payload);
+        <span class="tok-kw">case</span> <span class="tok-st">"Fractus"</span>: <span class="tok-kw">return</span> __faberDisplayFractus(payload);
+        <span class="tok-kw">case</span> <span class="tok-st">"Textus"</span>: <span class="tok-kw">return</span> <span class="tok-ty">String</span>(payload);
+        <span class="tok-kw">case</span> <span class="tok-st">"Instans"</span>: <span class="tok-kw">return</span> <span class="tok-ty">String</span>(payload);
+        <span class="tok-kw">case</span> <span class="tok-st">"Octeti"</span>: <span class="tok-kw">return</span> <span class="tok-st">`&lt;${Array.isArray(payload) ? payload.length : 0} bytes&gt;`</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"Lista"</span>: <span class="tok-kw">return</span> __faberDisplayList(payload, <span class="tok-st">"valor"</span>);
+        <span class="tok-kw">case</span> <span class="tok-st">"Tabula"</span>: <span class="tok-kw">return</span> __faberDisplayMap(payload, <span class="tok-st">"textus"</span>, <span class="tok-st">"valor"</span>);
+        <span class="tok-kw">default</span>: <span class="tok-kw">return</span> __faberDisplayValor(payload);
+    }
+}
+
+<span class="tok-kw">class</span> FaberTensor&lt;T&gt; {
     data: T[];
-    shape: number[];
-    constructor(data: T[], shape: number[]) {
-        this.data = data.slice();
-        this.shape = shape.slice();
+    shape: <span class="tok-ty">number</span>[];
+    constructor(data: T[], shape: <span class="tok-ty">number</span>[]) {
+        <span class="tok-kw">this</span>.data = data.slice();
+        <span class="tok-kw">this</span>.shape = shape.slice();
     }
-    private static elementCount(shape: number[]): number {
-        if (shape.some((dim) =&gt; dim &lt; 0)) {
-            throw new Error(&quot;tensor shape dimension must be non-negative&quot;);
+    private static elementCount(shape: <span class="tok-ty">number</span>[]): <span class="tok-ty">number</span> {
+        <span class="tok-kw">if</span> (shape.some((dim) =&gt; dim &lt; <span class="tok-nu">0</span>)) {
+            throw <span class="tok-kw">new</span> Error(<span class="tok-st">"tensor shape dimension must be non-negative"</span>);
         }
-        return shape.reduce((total, dim) =&gt; total * dim, 1);
+        <span class="tok-kw">return</span> shape.reduce((total, dim) =&gt; total * dim, <span class="tok-nu">1</span>);
     }
-    private static coordinates(flat: number, shape: number[]): number[] {
-        const coords = new Array(shape.length).fill(0);
-        for (let axis = shape.length - 1; axis &gt;= 0; axis--) {
-            const dim = shape[axis];
-            coords[axis] = dim === 0 ? 0 : flat % dim;
-            flat = dim === 0 ? 0 : Math.floor(flat / dim);
+    private static coordinates(flat: <span class="tok-ty">number</span>, shape: <span class="tok-ty">number</span>[]): <span class="tok-ty">number</span>[] {
+        <span class="tok-kw">const</span> coords = <span class="tok-kw">new</span> Array(shape.length).fill(<span class="tok-nu">0</span>);
+        <span class="tok-kw">for</span> (<span class="tok-kw">let</span> axis = shape.length - <span class="tok-nu">1</span>; axis &gt;= <span class="tok-nu">0</span>; axis--) {
+            <span class="tok-kw">const</span> dim = shape[axis];
+            coords[axis] = dim === <span class="tok-nu">0</span> ? <span class="tok-nu">0</span> : flat % dim;
+            flat = dim === <span class="tok-nu">0</span> ? <span class="tok-nu">0</span> : Math.floor(flat / dim);
         }
-        return coords;
+        <span class="tok-kw">return</span> coords;
     }
-    private static offset(shape: number[], indices: number[]): number | null {
-        if (indices.some((idx) =&gt; idx &lt; 0)) {
-            throw new Error(&quot;tensor accipe invalid index&quot;);
+    private static offset(shape: <span class="tok-ty">number</span>[], indices: <span class="tok-ty">number</span>[]): <span class="tok-ty">number</span> | <span class="tok-kw">null</span> {
+        <span class="tok-kw">if</span> (indices.some((idx) =&gt; idx &lt; <span class="tok-nu">0</span>)) {
+            throw <span class="tok-kw">new</span> Error(<span class="tok-st">"tensor accipe invalid index"</span>);
         }
-        if (indices.length !== shape.length) {
-            return null;
+        <span class="tok-kw">if</span> (indices.length !== shape.length) {
+            <span class="tok-kw">return</span> <span class="tok-kw">null</span>;
         }
-        let offset = 0;
-        let stride = 1;
-        for (let axis = shape.length - 1; axis &gt;= 0; axis--) {
-            const idx = indices[axis];
-            const dim = shape[axis];
-            if (idx &gt;= dim) {
-                return null;
+        <span class="tok-kw">let</span> offset = <span class="tok-nu">0</span>;
+        <span class="tok-kw">let</span> stride = <span class="tok-nu">1</span>;
+        <span class="tok-kw">for</span> (<span class="tok-kw">let</span> axis = shape.length - <span class="tok-nu">1</span>; axis &gt;= <span class="tok-nu">0</span>; axis--) {
+            <span class="tok-kw">const</span> idx = indices[axis];
+            <span class="tok-kw">const</span> dim = shape[axis];
+            <span class="tok-kw">if</span> (idx &gt;= dim) {
+                <span class="tok-kw">return</span> <span class="tok-kw">null</span>;
             }
             offset += idx * stride;
             stride *= dim;
         }
-        return offset;
+        <span class="tok-kw">return</span> offset;
     }
-    private static broadcastShape(left: number[], right: number[]): number[] {
-        const rank = Math.max(left.length, right.length);
-        const shape = new Array(rank);
-        for (let i = 0; i &lt; rank; i++) {
-            const l = left[left.length - rank + i] ?? 1;
-            const r = right[right.length - rank + i] ?? 1;
-            if (l !== r &amp;&amp; l !== 1 &amp;&amp; r !== 1) {
-                throw new Error(&quot;tensor broadcast shape mismatch&quot;);
+    private static broadcastShape(left: <span class="tok-ty">number</span>[], right: <span class="tok-ty">number</span>[]): <span class="tok-ty">number</span>[] {
+        <span class="tok-kw">const</span> rank = Math.max(left.length, right.length);
+        <span class="tok-kw">const</span> shape = <span class="tok-kw">new</span> Array(rank);
+        <span class="tok-kw">for</span> (<span class="tok-kw">let</span> i = <span class="tok-nu">0</span>; i &lt; rank; i++) {
+            <span class="tok-kw">const</span> l = left[left.length - rank + i] ?? <span class="tok-nu">1</span>;
+            <span class="tok-kw">const</span> r = right[right.length - rank + i] ?? <span class="tok-nu">1</span>;
+            <span class="tok-kw">if</span> (l !== r &amp;&amp; l !== <span class="tok-nu">1</span> &amp;&amp; r !== <span class="tok-nu">1</span>) {
+                throw <span class="tok-kw">new</span> Error(<span class="tok-st">"tensor broadcast shape mismatch"</span>);
             }
             shape[i] = Math.max(l, r);
         }
-        return shape;
+        <span class="tok-kw">return</span> shape;
     }
-    private static broadcastOffset(sourceShape: number[], resultCoords: number[]): number | null {
-        const offset = resultCoords.length - sourceShape.length;
-        const coords = sourceShape.map((dim, axis) =&gt; dim === 1 ? 0 : resultCoords[axis + offset]);
-        return FaberTensor.offset(sourceShape, coords);
+    private static broadcastOffset(sourceShape: <span class="tok-ty">number</span>[], resultCoords: <span class="tok-ty">number</span>[]): <span class="tok-ty">number</span> | <span class="tok-kw">null</span> {
+        <span class="tok-kw">const</span> offset = resultCoords.length - sourceShape.length;
+        <span class="tok-kw">const</span> coords = sourceShape.map((dim, axis) =&gt; dim === <span class="tok-nu">1</span> ? <span class="tok-nu">0</span> : resultCoords[axis + offset]);
+        <span class="tok-kw">return</span> FaberTensor.offset(sourceShape, coords);
     }
-    private static flatten(source: unknown): any[] {
-        if (!Array.isArray(source)) {
-            return [source];
+    private static flatten(source: <span class="tok-ty">unknown</span>): <span class="tok-ty">any</span>[] {
+        <span class="tok-kw">if</span> (!Array.isArray(source)) {
+            <span class="tok-kw">return</span> [source];
         }
-        return source.flatMap((value) =&gt; FaberTensor.flatten(value));
+        <span class="tok-kw">return</span> source.flatMap((value) =&gt; FaberTensor.flatten(value));
     }
-    static empty&lt;T&gt;(shape: number[] = []): FaberTensor&lt;T&gt; {
-        return new FaberTensor&lt;T&gt;([], shape);
+    static empty&lt;T&gt;(shape: <span class="tok-ty">number</span>[] = []): FaberTensor&lt;T&gt; {
+        <span class="tok-kw">return</span> <span class="tok-kw">new</span> FaberTensor&lt;T&gt;([], shape);
     }
-    static fromArray&lt;T&gt;(source: unknown, shape: number[], convert: (value: any) =&gt; T = (value) =&gt; value as T): FaberTensor&lt;T&gt; {
-        const data = FaberTensor.flatten(source).map(convert);
-        if (FaberTensor.elementCount(shape) !== data.length) {
-            throw new Error(&quot;tensor conversio element count does not match shape&quot;);
+    static fromArray&lt;T&gt;(source: <span class="tok-ty">unknown</span>, shape: <span class="tok-ty">number</span>[], convert: (value: <span class="tok-ty">any</span>) =&gt; T = (value) =&gt; value <span class="tok-kw">as</span> T): FaberTensor&lt;T&gt; {
+        <span class="tok-kw">const</span> data = FaberTensor.flatten(source).map(convert);
+        <span class="tok-kw">if</span> (FaberTensor.elementCount(shape) !== data.length) {
+            throw <span class="tok-kw">new</span> Error(<span class="tok-st">"tensor conversio element count does not match shape"</span>);
         }
-        return new FaberTensor&lt;T&gt;(data, shape);
+        <span class="tok-kw">return</span> <span class="tok-kw">new</span> FaberTensor&lt;T&gt;(data, shape);
     }
-    crea(fill: T, shape: number[]): FaberTensor&lt;T&gt; {
-        return new FaberTensor&lt;T&gt;(new Array(FaberTensor.elementCount(shape)).fill(fill), shape);
+    crea(fill: T, shape: <span class="tok-ty">number</span>[]): FaberTensor&lt;T&gt; {
+        <span class="tok-kw">return</span> <span class="tok-kw">new</span> FaberTensor&lt;T&gt;(<span class="tok-kw">new</span> Array(FaberTensor.elementCount(shape)).fill(fill), shape);
     }
-    strue(data: T[], shape: number[]): FaberTensor&lt;T&gt; {
-        if (FaberTensor.elementCount(shape) !== data.length) {
-            throw new Error(&quot;tensor structa element count does not match shape&quot;);
+    strue(data: T[], shape: <span class="tok-ty">number</span>[]): FaberTensor&lt;T&gt; {
+        <span class="tok-kw">if</span> (FaberTensor.elementCount(shape) !== data.length) {
+            throw <span class="tok-kw">new</span> Error(<span class="tok-st">"tensor structa element count does not match shape"</span>);
         }
-        return new FaberTensor&lt;T&gt;(data, shape);
+        <span class="tok-kw">return</span> <span class="tok-kw">new</span> FaberTensor&lt;T&gt;(data, shape);
     }
-    longitudo(): number {
-        return this.shape.length;
+    longitudo(): <span class="tok-ty">number</span> {
+        <span class="tok-kw">return</span> <span class="tok-kw">this</span>.shape.length;
     }
-    magnitudines(): Array&lt;number&gt; {
-        return this.shape.slice();
+    magnitudines(): Array&lt;<span class="tok-ty">number</span>&gt; {
+        <span class="tok-kw">return</span> <span class="tok-kw">this</span>.shape.slice();
     }
-    forma(shape: number[]): FaberTensor&lt;T&gt; {
-        if (FaberTensor.elementCount(shape) !== this.data.length) {
-            throw new Error(&quot;tensor forma (reshape) element count mismatch&quot;);
+    forma(shape: <span class="tok-ty">number</span>[]): FaberTensor&lt;T&gt; {
+        <span class="tok-kw">if</span> (FaberTensor.elementCount(shape) !== <span class="tok-kw">this</span>.data.length) {
+            throw <span class="tok-kw">new</span> Error(<span class="tok-st">"tensor forma (reshape) element count mismatch"</span>);
         }
-        return new FaberTensor&lt;T&gt;(this.data, shape);
+        <span class="tok-kw">return</span> <span class="tok-kw">new</span> FaberTensor&lt;T&gt;(<span class="tok-kw">this</span>.data, shape);
     }
-    accipe(indices: number[]): T | null {
-        const offset = FaberTensor.offset(this.shape, indices);
-        return offset == null ? null : this.data[offset];
+    accipe(indices: <span class="tok-ty">number</span>[]): T | <span class="tok-kw">null</span> {
+        <span class="tok-kw">const</span> offset = FaberTensor.offset(<span class="tok-kw">this</span>.shape, indices);
+        <span class="tok-kw">return</span> offset == <span class="tok-kw">null</span> ? <span class="tok-kw">null</span> : <span class="tok-kw">this</span>.data[offset];
     }
-    ponde(indices: number[], value: T): void {
-        const offset = FaberTensor.offset(this.shape, indices);
-        if (offset == null) {
-            throw new Error(&quot;tensor ponde invalid index&quot;);
+    ponde(indices: <span class="tok-ty">number</span>[], value: T): <span class="tok-kw">void</span> {
+        <span class="tok-kw">const</span> offset = FaberTensor.offset(<span class="tok-kw">this</span>.shape, indices);
+        <span class="tok-kw">if</span> (offset == <span class="tok-kw">null</span>) {
+            throw <span class="tok-kw">new</span> Error(<span class="tok-st">"tensor ponde invalid index"</span>);
         }
-        this.data[offset] = value;
+        <span class="tok-kw">this</span>.data[offset] = value;
     }
-    reple(value: T): void {
-        this.data.fill(value);
+    reple(value: T): <span class="tok-kw">void</span> {
+        <span class="tok-kw">this</span>.data.fill(value);
     }
     planata(): T[] {
-        return this.data.slice();
+        <span class="tok-kw">return</span> <span class="tok-kw">this</span>.data.slice();
     }
-    sectio(start: number, end: number): FaberTensor&lt;T&gt; {
-        if (start &lt; 0 || end &lt; 0 || end &lt; start) {
-            throw new Error(&quot;tensor sectio invalid slice bounds&quot;);
+    sectio(start: <span class="tok-ty">number</span>, end: <span class="tok-ty">number</span>): FaberTensor&lt;T&gt; {
+        <span class="tok-kw">if</span> (start &lt; <span class="tok-nu">0</span> || end &lt; <span class="tok-nu">0</span> || end &lt; start) {
+            throw <span class="tok-kw">new</span> Error(<span class="tok-st">"tensor sectio invalid slice bounds"</span>);
         }
-        const inner = FaberTensor.elementCount(this.shape.slice(1));
-        const shape = [end - start, ...this.shape.slice(1)];
-        return new FaberTensor&lt;T&gt;(this.data.slice(start * inner, end * inner), shape);
+        <span class="tok-kw">const</span> inner = FaberTensor.elementCount(<span class="tok-kw">this</span>.shape.slice(<span class="tok-nu">1</span>));
+        <span class="tok-kw">const</span> shape = [end - start, ...this.shape.slice(<span class="tok-nu">1</span>)];
+        <span class="tok-kw">return</span> <span class="tok-kw">new</span> FaberTensor&lt;T&gt;(<span class="tok-kw">this</span>.data.slice(start * inner, end * inner), shape);
     }
     materialize(): FaberTensor&lt;T&gt; {
-        return new FaberTensor&lt;T&gt;(this.data, this.shape);
+        <span class="tok-kw">return</span> <span class="tok-kw">new</span> FaberTensor&lt;T&gt;(<span class="tok-kw">this</span>.data, <span class="tok-kw">this</span>.shape);
     }
-    private elementwise(other: FaberTensor&lt;T&gt;, op: (left: any, right: any) =&gt; any): FaberTensor&lt;T&gt; {
-        const shape = FaberTensor.broadcastShape(this.shape, other.shape);
-        const data = new Array(FaberTensor.elementCount(shape));
-        for (let i = 0; i &lt; data.length; i++) {
-            const coords = FaberTensor.coordinates(i, shape);
-            const left = FaberTensor.broadcastOffset(this.shape, coords);
-            const right = FaberTensor.broadcastOffset(other.shape, coords);
-            data[i] = op(this.data[left ?? 0], other.data[right ?? 0]);
+    private elementwise(other: FaberTensor&lt;T&gt;, op: (left: <span class="tok-ty">any</span>, right: <span class="tok-ty">any</span>) =&gt; <span class="tok-ty">any</span>): FaberTensor&lt;T&gt; {
+        <span class="tok-kw">const</span> shape = FaberTensor.broadcastShape(<span class="tok-kw">this</span>.shape, other.shape);
+        <span class="tok-kw">const</span> data = <span class="tok-kw">new</span> Array(FaberTensor.elementCount(shape));
+        <span class="tok-kw">for</span> (<span class="tok-kw">let</span> i = <span class="tok-nu">0</span>; i &lt; data.length; i++) {
+            <span class="tok-kw">const</span> coords = FaberTensor.coordinates(i, shape);
+            <span class="tok-kw">const</span> left = FaberTensor.broadcastOffset(<span class="tok-kw">this</span>.shape, coords);
+            <span class="tok-kw">const</span> right = FaberTensor.broadcastOffset(other.shape, coords);
+            data[i] = op(<span class="tok-kw">this</span>.data[left ?? <span class="tok-nu">0</span>], other.data[right ?? <span class="tok-nu">0</span>]);
         }
-        return new FaberTensor&lt;T&gt;(data as T[], shape);
+        <span class="tok-kw">return</span> <span class="tok-kw">new</span> FaberTensor&lt;T&gt;(data <span class="tok-kw">as</span> T[], shape);
     }
     addita(other: FaberTensor&lt;T&gt;): FaberTensor&lt;T&gt; {
-        return this.elementwise(other, (left, right) =&gt; left + right);
+        <span class="tok-kw">return</span> <span class="tok-kw">this</span>.elementwise(other, (left, right) =&gt; left + right);
     }
     subtrahe(other: FaberTensor&lt;T&gt;): FaberTensor&lt;T&gt; {
-        return this.elementwise(other, (left, right) =&gt; left - right);
+        <span class="tok-kw">return</span> <span class="tok-kw">this</span>.elementwise(other, (left, right) =&gt; left - right);
     }
     multiplica(other: FaberTensor&lt;T&gt;): FaberTensor&lt;T&gt; {
-        return this.elementwise(other, (left, right) =&gt; left * right);
+        <span class="tok-kw">return</span> <span class="tok-kw">this</span>.elementwise(other, (left, right) =&gt; left * right);
     }
     summa(): T {
-        return this.data.reduce((total: any, value: any) =&gt; total + value, 0) as T;
+        <span class="tok-kw">return</span> <span class="tok-kw">this</span>.data.reduce((total: <span class="tok-ty">any</span>, value: <span class="tok-ty">any</span>) =&gt; total + value, <span class="tok-nu">0</span>) <span class="tok-kw">as</span> T;
     }
-    media(): number {
-        return this.data.length === 0 ? 0 : this.data.reduce((total: any, value: any) =&gt; total + value, 0) / this.data.length;
+    media(): <span class="tok-ty">number</span> {
+        <span class="tok-kw">return</span> <span class="tok-kw">this</span>.data.length === <span class="tok-nu">0</span> ? <span class="tok-nu">0</span> : <span class="tok-kw">this</span>.data.reduce((total: <span class="tok-ty">any</span>, value: <span class="tok-ty">any</span>) =&gt; total + value, <span class="tok-nu">0</span>) / <span class="tok-kw">this</span>.data.length;
     }
     matmul(other: FaberTensor&lt;T&gt;): FaberTensor&lt;T&gt; {
-        if (this.shape.length !== 2 || other.shape.length !== 2) {
-            throw new Error(&quot;matmul requires rank-2 tensor&quot;);
+        <span class="tok-kw">if</span> (<span class="tok-kw">this</span>.shape.length !== <span class="tok-nu">2</span> || other.shape.length !== <span class="tok-nu">2</span>) {
+            throw <span class="tok-kw">new</span> Error(<span class="tok-st">"matmul requires rank-2 tensor"</span>);
         }
-        const [m, k1] = this.shape;
-        const [k2, n] = other.shape;
-        if (k1 !== k2) {
-            throw new Error(&quot;matmul inner dimension mismatch&quot;);
+        <span class="tok-kw">const</span> [m, k1] = <span class="tok-kw">this</span>.shape;
+        <span class="tok-kw">const</span> [k2, n] = other.shape;
+        <span class="tok-kw">if</span> (k1 !== k2) {
+            throw <span class="tok-kw">new</span> Error(<span class="tok-st">"matmul inner dimension mismatch"</span>);
         }
-        const data = new Array(m * n).fill(0);
-        for (let row = 0; row &lt; m; row++) {
-            for (let column = 0; column &lt; n; column++) {
-                let total: any = 0;
-                for (let k = 0; k &lt; k1; k++) {
-                    total += (this.accipe([row, k]) as any) * (other.accipe([k, column]) as any);
+        <span class="tok-kw">const</span> data = <span class="tok-kw">new</span> Array(m * n).fill(<span class="tok-nu">0</span>);
+        <span class="tok-kw">for</span> (<span class="tok-kw">let</span> row = <span class="tok-nu">0</span>; row &lt; m; row++) {
+            <span class="tok-kw">for</span> (<span class="tok-kw">let</span> column = <span class="tok-nu">0</span>; column &lt; n; column++) {
+                <span class="tok-kw">let</span> total: <span class="tok-ty">any</span> = <span class="tok-nu">0</span>;
+                <span class="tok-kw">for</span> (<span class="tok-kw">let</span> k = <span class="tok-nu">0</span>; k &lt; k1; k++) {
+                    total += (<span class="tok-kw">this</span>.accipe([row, k]) <span class="tok-kw">as</span> <span class="tok-ty">any</span>) * (other.accipe([k, column]) <span class="tok-kw">as</span> <span class="tok-ty">any</span>);
                 }
                 data[row * n + column] = total;
             }
         }
-        return new FaberTensor&lt;T&gt;(data as T[], [m, n]);
+        <span class="tok-kw">return</span> <span class="tok-kw">new</span> FaberTensor&lt;T&gt;(data <span class="tok-kw">as</span> T[], [m, n]);
     }
 }
 
 (() =&gt; {
     {
-        const flat_a: Array&lt;number&gt; = [1, 2, 3, 4, 5, 6];
-        const flat_b: Array&lt;number&gt; = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-        const seed: FaberTensor&lt;number&gt; = FaberTensor.empty&lt;number&gt;([]);
-        const a: FaberTensor&lt;number&gt; = seed.strue(flat_a, [2, 3]);
-        const b: FaberTensor&lt;number&gt; = seed.strue(flat_b, [3, 4]);
-        const product: FaberTensor&lt;number&gt; = a.matmul(b);
-        const mean: number = product.media();
-        console.log(__faberDisplay(mean, &quot;fractus&quot;));
-    }})();</code></pre><h2 id="fallibilis">The error channel</h2><p>A function that may fail, and a caller that catches. Shows how the <code>⇥</code> channel becomes each target's own error idiom.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber">fn divide(int a, int b) → int ⇥ string {
-    if b ≡ 0 {
-        throw &quot;division by zero&quot;
+        <span class="tok-kw">const</span> flat_a: Array&lt;<span class="tok-ty">number</span>&gt; = [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>];
+        <span class="tok-kw">const</span> flat_b: Array&lt;<span class="tok-ty">number</span>&gt; = [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>, <span class="tok-nu">7</span>, <span class="tok-nu">8</span>, <span class="tok-nu">9</span>, <span class="tok-nu">10</span>, <span class="tok-nu">11</span>, <span class="tok-nu">12</span>];
+        <span class="tok-kw">const</span> seed: FaberTensor&lt;<span class="tok-ty">number</span>&gt; = FaberTensor.empty&lt;<span class="tok-ty">number</span>&gt;([]);
+        <span class="tok-kw">const</span> a: FaberTensor&lt;<span class="tok-ty">number</span>&gt; = seed.strue(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]);
+        <span class="tok-kw">const</span> b: FaberTensor&lt;<span class="tok-ty">number</span>&gt; = seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]);
+        <span class="tok-kw">const</span> product: FaberTensor&lt;<span class="tok-ty">number</span>&gt; = a.matmul(b);
+        <span class="tok-kw">const</span> mean: <span class="tok-ty">number</span> = product.media();
+        console.log(__faberDisplay(mean, <span class="tok-st">"fractus"</span>));
+    }})();</code></pre><h2 id="fallibilis">The error channel<a class="anchor" href="#fallibilis">#</a></h2><p>A function that may fail, and a caller that catches. Shows how the <code>⇥</code> channel becomes each target's own error idiom.</p><p><strong>Faber source</strong></p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-en" data-panel="lt-85ccdd726a36dc08-0-p-en" data-name="English" aria-controls="lt-85ccdd726a36dc08-0-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-la" data-panel="lt-85ccdd726a36dc08-0-p-la" data-name="Latin" aria-controls="lt-85ccdd726a36dc08-0-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-th-TH" data-panel="lt-85ccdd726a36dc08-0-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-85ccdd726a36dc08-0-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-zh-Hans" data-panel="lt-85ccdd726a36dc08-0-p-zh-Hans" data-name="简体中文" aria-controls="lt-85ccdd726a36dc08-0-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-zh-Hant" data-panel="lt-85ccdd726a36dc08-0-p-zh-Hant" data-name="繁體中文" aria-controls="lt-85ccdd726a36dc08-0-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-vi" data-panel="lt-85ccdd726a36dc08-0-p-vi" data-name="Tiếng Việt" aria-controls="lt-85ccdd726a36dc08-0-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-ar" data-panel="lt-85ccdd726a36dc08-0-p-ar" data-name="العربية" aria-controls="lt-85ccdd726a36dc08-0-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-hi" data-panel="lt-85ccdd726a36dc08-0-p-hi" data-name="हिन्दी" aria-controls="lt-85ccdd726a36dc08-0-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-85ccdd726a36dc08-0-p-en" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ <span class="tok-kw">string</span> {
+    <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+        <span class="tok-kw">throw</span> <span class="tok-st">"division by zero"</span>
     }
-    return a / b
+    <span class="tok-kw">return</span> a <span class="tok-op">/</span> b
 }
 
-main {
-    do {
-        print divide(10, 2)
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">do</span> {
+        <span class="tok-kw">print</span> divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
     }
-    catch err {
-        warn err
+    <span class="tok-kw">catch</span> err {
+        <span class="tok-kw">warn</span> err
     }
-}</code></pre><p><strong>TypeScript</strong> — 13 lines in, 127 out (9.8×)</p><pre class="faber-code"><code class="lang-ts">// Generated by radix - do not edit
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-la" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">functio</span> divide(<span class="tok-kw">numerus</span> a, <span class="tok-kw">numerus</span> b) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
+    <span class="tok-kw">si</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+        <span class="tok-kw">iace</span> <span class="tok-st">"division by zero"</span>
+    }
+    <span class="tok-kw">redde</span> a <span class="tok-op">/</span> b
+}
 
-type FaberResult&lt;T, E&gt; = { ok: true; value: T } | { ok: false; error: E };
+<span class="tok-kw">incipit</span> {
+    <span class="tok-kw">fac</span> {
+        <span class="tok-kw">nota</span> divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
+    }
+    <span class="tok-kw">cape</span> err {
+        <span class="tok-kw">mone</span> err
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-th-TH" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ฟังก์ชัน</span> divide(<span class="tok-kw">จำนวน</span> a, <span class="tok-kw">จำนวน</span> b) <span class="tok-op">→</span> <span class="tok-kw">จำนวน</span> ⇥ <span class="tok-kw">ข้อความ</span> {
+    <span class="tok-kw">ถ้า</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+        <span class="tok-kw">โยน</span> <span class="tok-st">"division by zero"</span>
+    }
+    <span class="tok-kw">คืน</span> a <span class="tok-op">/</span> b
+}
 
-type FaberDisplayHint =
-      &quot;unknown&quot;
-    | &quot;textus&quot;
-    | &quot;ascii&quot;
-    | &quot;numerus&quot;
-    | &quot;fractus&quot;
-    | &quot;bivalens&quot;
-    | &quot;nihil&quot;
-    | &quot;vacuum&quot;
-    | &quot;valor&quot;
-    | &quot;instans&quot;
-    | &quot;regex&quot;
-    | { kind: &quot;nullable&quot;; inner: FaberDisplayHint }
-    | { kind: &quot;lista&quot;; element: FaberDisplayHint }
-    | { kind: &quot;tensor&quot;; element: FaberDisplayHint }
-    | { kind: &quot;sparsa&quot;; element: FaberDisplayHint }
-    | { kind: &quot;map&quot;; key: FaberDisplayHint; value: FaberDisplayHint }
-    | { kind: &quot;set&quot;; element: FaberDisplayHint }
+<span class="tok-kw">เริ่ม</span> {
+    <span class="tok-kw">ทำ</span> {
+        <span class="tok-kw">บันทึก</span> divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
+    }
+    <span class="tok-kw">จับ</span> err {
+        <span class="tok-kw">เตือน</span> err
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-zh-Hans" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">函数</span> divide(<span class="tok-kw">整数</span> a, <span class="tok-kw">整数</span> b) <span class="tok-op">→</span> <span class="tok-kw">整数</span> ⇥ <span class="tok-kw">文本</span> {
+    <span class="tok-kw">如果</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+        <span class="tok-kw">抛错</span> <span class="tok-st">"division by zero"</span>
+    }
+    <span class="tok-kw">返回</span> a <span class="tok-op">/</span> b
+}
+
+<span class="tok-kw">入口</span> {
+    <span class="tok-kw">执行</span> {
+        <span class="tok-kw">显示</span> divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
+    }
+    <span class="tok-kw">捕获</span> err {
+        <span class="tok-kw">警告</span> err
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-zh-Hant" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">函式</span> divide(<span class="tok-kw">整數</span> a, <span class="tok-kw">整數</span> b) <span class="tok-op">→</span> <span class="tok-kw">整數</span> ⇥ <span class="tok-kw">文字</span> {
+    <span class="tok-kw">若</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+        <span class="tok-kw">拋出</span> <span class="tok-st">"division by zero"</span>
+    }
+    <span class="tok-kw">傳回</span> a <span class="tok-op">/</span> b
+}
+
+<span class="tok-kw">入口</span> {
+    <span class="tok-kw">執行</span> {
+        <span class="tok-kw">註記</span> divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
+    }
+    <span class="tok-kw">捕捉</span> err {
+        <span class="tok-kw">警告</span> err
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-vi" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">hàm</span> divide(<span class="tok-kw">số</span> a, <span class="tok-kw">số</span> b) <span class="tok-op">→</span> <span class="tok-kw">số</span> ⇥ <span class="tok-kw">văn_bản</span> {
+    <span class="tok-kw">nếu</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+        <span class="tok-kw">ném</span> <span class="tok-st">"division by zero"</span>
+    }
+    <span class="tok-kw">trả</span> a <span class="tok-op">/</span> b
+}
+
+<span class="tok-kw">bắt_đầu</span> {
+    <span class="tok-kw">làm</span> {
+        <span class="tok-kw">ghi_chú</span> divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
+    }
+    <span class="tok-kw">bắt</span> err {
+        <span class="tok-kw">cảnh_báo</span> err
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-ar" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">دالة</span> divide(<span class="tok-kw">عدد</span> a, <span class="tok-kw">عدد</span> b) <span class="tok-op">→</span> <span class="tok-kw">عدد</span> ⇥ <span class="tok-kw">نص</span> {
+    <span class="tok-kw">إذا</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+        <span class="tok-kw">ارم</span> <span class="tok-st">"division by zero"</span>
+    }
+    <span class="tok-kw">أعد</span> a <span class="tok-op">/</span> b
+}
+
+<span class="tok-kw">بداية</span> {
+    <span class="tok-kw">افعل</span> {
+        <span class="tok-kw">اعرض</span> divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
+    }
+    <span class="tok-kw">التقط</span> err {
+        <span class="tok-kw">نبه</span> err
+    }
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-hi" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">फलन</span> divide(<span class="tok-kw">संख्या</span> a, <span class="tok-kw">संख्या</span> b) <span class="tok-op">→</span> <span class="tok-kw">संख्या</span> ⇥ <span class="tok-kw">पाठ</span> {
+    <span class="tok-kw">यदि</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+        <span class="tok-kw">इधरफेंको</span> <span class="tok-st">"division by zero"</span>
+    }
+    <span class="tok-kw">लौटाओ</span> a <span class="tok-op">/</span> b
+}
+
+<span class="tok-kw">आरंभ</span> {
+    <span class="tok-kw">करो</span> {
+        <span class="tok-kw">दिखाओ</span> divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
+    }
+    <span class="tok-kw">पकड़ो</span> err {
+        <span class="tok-kw">चेताओ</span> err
+    }
+}</code></pre></div></div><p><strong>TypeScript</strong> — 13 lines in, 127 out (9.8×)</p><pre class="faber-code"><code class="lang-ts"><span class="tok-co">// Generated by radix - do not edit</span>
+
+<span class="tok-kw">type</span> FaberResult&lt;T, E&gt; = { ok: <span class="tok-kw">true</span>; value: T } | { ok: <span class="tok-kw">false</span>; <span class="tok-ty">error</span>: E };
+
+<span class="tok-kw">type</span> FaberDisplayHint =
+      <span class="tok-st">"unknown"</span>
+    | <span class="tok-st">"textus"</span>
+    | <span class="tok-st">"ascii"</span>
+    | <span class="tok-st">"numerus"</span>
+    | <span class="tok-st">"fractus"</span>
+    | <span class="tok-st">"bivalens"</span>
+    | <span class="tok-st">"nihil"</span>
+    | <span class="tok-st">"vacuum"</span>
+    | <span class="tok-st">"valor"</span>
+    | <span class="tok-st">"instans"</span>
+    | <span class="tok-st">"regex"</span>
+    | { kind: <span class="tok-st">"nullable"</span>; inner: FaberDisplayHint }
+    | { kind: <span class="tok-st">"lista"</span>; element: FaberDisplayHint }
+    | { kind: <span class="tok-st">"tensor"</span>; element: FaberDisplayHint }
+    | { kind: <span class="tok-st">"sparsa"</span>; element: FaberDisplayHint }
+    | { kind: <span class="tok-st">"map"</span>; key: FaberDisplayHint; value: FaberDisplayHint }
+    | { kind: <span class="tok-st">"set"</span>; element: FaberDisplayHint }
 ;
 
-function __faberDisplay(value: any, hint: FaberDisplayHint = &quot;unknown&quot;): string {
-    if (typeof hint === &quot;object&quot;) {
-        if (hint.kind === &quot;nullable&quot;) {
-            return value === null || value === undefined ? &quot;nihil&quot; : __faberDisplay(value, hint.inner);
+<span class="tok-kw">function</span> __faberDisplay(value: <span class="tok-ty">any</span>, hint: FaberDisplayHint = <span class="tok-st">"unknown"</span>): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (typeof hint === <span class="tok-st">"object"</span>) {
+        <span class="tok-kw">if</span> (hint.kind === <span class="tok-st">"nullable"</span>) {
+            <span class="tok-kw">return</span> value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span> ? <span class="tok-st">"nihil"</span> : __faberDisplay(value, hint.inner);
         }
-        if (hint.kind === &quot;lista&quot;) { return __faberDisplayList(value, hint.element); }
-        if (hint.kind === &quot;tensor&quot;) { return __faberDisplayTensor(value, hint.element); }
-        if (hint.kind === &quot;sparsa&quot;) { return __faberDisplaySparsa(value, hint.element); }
-        if (hint.kind === &quot;map&quot;) { return __faberDisplayMap(value, hint.key, hint.value); }
-        return __faberDisplayList(value, hint.element);
+        <span class="tok-kw">if</span> (hint.kind === <span class="tok-st">"lista"</span>) { <span class="tok-kw">return</span> __faberDisplayList(value, hint.element); }
+        <span class="tok-kw">if</span> (hint.kind === <span class="tok-st">"tensor"</span>) { <span class="tok-kw">return</span> __faberDisplayTensor(value, hint.element); }
+        <span class="tok-kw">if</span> (hint.kind === <span class="tok-st">"sparsa"</span>) { <span class="tok-kw">return</span> __faberDisplaySparsa(value, hint.element); }
+        <span class="tok-kw">if</span> (hint.kind === <span class="tok-st">"map"</span>) { <span class="tok-kw">return</span> __faberDisplayMap(value, hint.key, hint.value); }
+        <span class="tok-kw">return</span> __faberDisplayList(value, hint.element);
     }
-    if (value === null || value === undefined) {
-        return hint === &quot;vacuum&quot; ? &quot;vacuum&quot; : &quot;nihil&quot;;
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) {
+        <span class="tok-kw">return</span> hint === <span class="tok-st">"vacuum"</span> ? <span class="tok-st">"vacuum"</span> : <span class="tok-st">"nihil"</span>;
     }
-    switch (hint) {
-        case &quot;bivalens&quot;: return value ? &quot;verum&quot; : &quot;falsum&quot;;
-        case &quot;fractus&quot;: return __faberDisplayFractus(value);
-        case &quot;nihil&quot;: return &quot;nihil&quot;;
-        case &quot;vacuum&quot;: return &quot;vacuum&quot;;
-        case &quot;valor&quot;: return __faberDisplayValor(value);
-        case &quot;regex&quot;: return String(value);
-        case &quot;textus&quot;:
-        case &quot;ascii&quot;:
-        case &quot;instans&quot;:
-        case &quot;numerus&quot;: return String(value);
-        default: return __faberDisplayValor(value);
-    }
-}
-
-function __faberDisplayFractus(value: any): string {
-    const n = Number(value);
-    if (!Number.isFinite(n)) { return String(value); }
-    return Number.isInteger(n) ? `${n}.0` : String(n);
-}
-
-function __faberDisplayList(value: any, element: FaberDisplayHint): string {
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    return `[${Array.from(value as Array&lt;any&gt;).map((item) =&gt; __faberDisplay(item, element)).join(&quot;, &quot;)}]`;
-}
-
-function __faberDisplayTensor(value: any, element: FaberDisplayHint): string {
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    if (typeof value.planata === &quot;function&quot;) { return __faberDisplayList(value.planata(), element); }
-    if (Array.isArray(value.data)) { return __faberDisplayList(value.data, element); }
-    return __faberDisplayValor(value);
-}
-
-function __faberDisplaySparsa(value: any, element: FaberDisplayHint): string {
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    if (typeof value.densata === &quot;function&quot;) { return __faberDisplayTensor(value.densata(), element); }
-    return __faberDisplayValor(value);
-}
-
-function __faberDisplayMap(value: any, keyHint: FaberDisplayHint, valueHint: FaberDisplayHint): string {
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    const entries = value instanceof Map ? Array.from(value.entries()) : Object.entries(value);
-    return `{${entries.map(([key, item]) =&gt; `${JSON.stringify(__faberDisplay(key, keyHint))}: ${__faberDisplay(item, valueHint)}`).join(&quot;, &quot;)}}`;
-}
-
-function __faberDisplayValor(value: any): string {
-    if (value !== null &amp;&amp; typeof value === &quot;object&quot; &amp;&amp; typeof value.__faberValorTag === &quot;string&quot;) { return __faberDisplayTaggedValor(value); }
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    if (typeof value === &quot;boolean&quot;) { return value ? &quot;verum&quot; : &quot;falsum&quot;; }
-    if (typeof value === &quot;number&quot;) { return String(value); }
-    if (typeof value === &quot;string&quot;) { return value; }
-    if (Array.isArray(value)) { return __faberDisplayList(value, &quot;valor&quot;); }
-    if (typeof value.text === &quot;function&quot;) { return String(value.text()); }
-    if (typeof value.toString === &quot;function&quot; &amp;&amp; value.toString !== Object.prototype.toString) { return String(value); }
-    return __faberDisplayMap(value, &quot;textus&quot;, &quot;valor&quot;);
-}
-
-function __faberDisplayTaggedValor(value: any): string {
-    const payload = value.__faberValorPayload;
-    switch (value.__faberValorTag) {
-        case &quot;Nihil&quot;: return &quot;nihil&quot;;
-        case &quot;Bivalens&quot;: return payload ? &quot;verum&quot; : &quot;falsum&quot;;
-        case &quot;Numerus&quot;: return String(payload);
-        case &quot;Fractus&quot;: return __faberDisplayFractus(payload);
-        case &quot;Textus&quot;: return String(payload);
-        case &quot;Instans&quot;: return String(payload);
-        case &quot;Octeti&quot;: return `&lt;${Array.isArray(payload) ? payload.length : 0} bytes&gt;`;
-        case &quot;Lista&quot;: return __faberDisplayList(payload, &quot;valor&quot;);
-        case &quot;Tabula&quot;: return __faberDisplayMap(payload, &quot;textus&quot;, &quot;valor&quot;);
-        default: return __faberDisplayValor(payload);
+    <span class="tok-kw">switch</span> (hint) {
+        <span class="tok-kw">case</span> <span class="tok-st">"bivalens"</span>: <span class="tok-kw">return</span> value ? <span class="tok-st">"verum"</span> : <span class="tok-st">"falsum"</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"fractus"</span>: <span class="tok-kw">return</span> __faberDisplayFractus(value);
+        <span class="tok-kw">case</span> <span class="tok-st">"nihil"</span>: <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"vacuum"</span>: <span class="tok-kw">return</span> <span class="tok-st">"vacuum"</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"valor"</span>: <span class="tok-kw">return</span> __faberDisplayValor(value);
+        <span class="tok-kw">case</span> <span class="tok-st">"regex"</span>: <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value);
+        <span class="tok-kw">case</span> <span class="tok-st">"textus"</span>:
+        <span class="tok-kw">case</span> <span class="tok-st">"ascii"</span>:
+        <span class="tok-kw">case</span> <span class="tok-st">"instans"</span>:
+        <span class="tok-kw">case</span> <span class="tok-st">"numerus"</span>: <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value);
+        <span class="tok-kw">default</span>: <span class="tok-kw">return</span> __faberDisplayValor(value);
     }
 }
 
-function divide(a: number, b: number): FaberResult&lt;number, string&gt; {
-    if (((b as number) === (0 as number))) {
-        return { ok: false as const, error: &quot;division by zero&quot; };
+<span class="tok-kw">function</span> __faberDisplayFractus(value: <span class="tok-ty">any</span>): <span class="tok-ty">string</span> {
+    <span class="tok-kw">const</span> n = Number(value);
+    <span class="tok-kw">if</span> (!Number.isFinite(n)) { <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value); }
+    <span class="tok-kw">return</span> Number.isInteger(n) ? <span class="tok-st">`${n}.0`</span> : <span class="tok-ty">String</span>(n);
+}
+
+<span class="tok-kw">function</span> __faberDisplayList(value: <span class="tok-ty">any</span>, element: FaberDisplayHint): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) { <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>; }
+    <span class="tok-kw">return</span> <span class="tok-st">`[${Array.from(value as Array&lt;any&gt;).map((item) =&gt; __faberDisplay(item, element)).join(", ")}]`</span>;
+}
+
+<span class="tok-kw">function</span> __faberDisplayTensor(value: <span class="tok-ty">any</span>, element: FaberDisplayHint): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) { <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>; }
+    <span class="tok-kw">if</span> (typeof value.planata === <span class="tok-st">"function"</span>) { <span class="tok-kw">return</span> __faberDisplayList(value.planata(), element); }
+    <span class="tok-kw">if</span> (Array.isArray(value.data)) { <span class="tok-kw">return</span> __faberDisplayList(value.data, element); }
+    <span class="tok-kw">return</span> __faberDisplayValor(value);
+}
+
+<span class="tok-kw">function</span> __faberDisplaySparsa(value: <span class="tok-ty">any</span>, element: FaberDisplayHint): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) { <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>; }
+    <span class="tok-kw">if</span> (typeof value.densata === <span class="tok-st">"function"</span>) { <span class="tok-kw">return</span> __faberDisplayTensor(value.densata(), element); }
+    <span class="tok-kw">return</span> __faberDisplayValor(value);
+}
+
+<span class="tok-kw">function</span> __faberDisplayMap(value: <span class="tok-ty">any</span>, keyHint: FaberDisplayHint, valueHint: FaberDisplayHint): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) { <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>; }
+    <span class="tok-kw">const</span> entries = value instanceof Map ? Array.from(value.entries()) : Object.entries(value);
+    <span class="tok-kw">return</span> <span class="tok-st">`{${entries.map(([key, item]) =&gt; `</span>${JSON.stringify(__faberDisplay(key, keyHint))}: ${__faberDisplay(item, valueHint)}<span class="tok-st">`).join(", ")}}`</span>;
+}
+
+<span class="tok-kw">function</span> __faberDisplayValor(value: <span class="tok-ty">any</span>): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (value !== <span class="tok-kw">null</span> &amp;&amp; typeof value === <span class="tok-st">"object"</span> &amp;&amp; typeof value.__faberValorTag === <span class="tok-st">"string"</span>) { <span class="tok-kw">return</span> __faberDisplayTaggedValor(value); }
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) { <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>; }
+    <span class="tok-kw">if</span> (typeof value === <span class="tok-st">"boolean"</span>) { <span class="tok-kw">return</span> value ? <span class="tok-st">"verum"</span> : <span class="tok-st">"falsum"</span>; }
+    <span class="tok-kw">if</span> (typeof value === <span class="tok-st">"number"</span>) { <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value); }
+    <span class="tok-kw">if</span> (typeof value === <span class="tok-st">"string"</span>) { <span class="tok-kw">return</span> value; }
+    <span class="tok-kw">if</span> (Array.isArray(value)) { <span class="tok-kw">return</span> __faberDisplayList(value, <span class="tok-st">"valor"</span>); }
+    <span class="tok-kw">if</span> (typeof value.text === <span class="tok-st">"function"</span>) { <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value.text()); }
+    <span class="tok-kw">if</span> (typeof value.toString === <span class="tok-st">"function"</span> &amp;&amp; value.toString !== Object.prototype.toString) { <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value); }
+    <span class="tok-kw">return</span> __faberDisplayMap(value, <span class="tok-st">"textus"</span>, <span class="tok-st">"valor"</span>);
+}
+
+<span class="tok-kw">function</span> __faberDisplayTaggedValor(value: <span class="tok-ty">any</span>): <span class="tok-ty">string</span> {
+    <span class="tok-kw">const</span> payload = value.__faberValorPayload;
+    <span class="tok-kw">switch</span> (value.__faberValorTag) {
+        <span class="tok-kw">case</span> <span class="tok-st">"Nihil"</span>: <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"Bivalens"</span>: <span class="tok-kw">return</span> payload ? <span class="tok-st">"verum"</span> : <span class="tok-st">"falsum"</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"Numerus"</span>: <span class="tok-kw">return</span> <span class="tok-ty">String</span>(payload);
+        <span class="tok-kw">case</span> <span class="tok-st">"Fractus"</span>: <span class="tok-kw">return</span> __faberDisplayFractus(payload);
+        <span class="tok-kw">case</span> <span class="tok-st">"Textus"</span>: <span class="tok-kw">return</span> <span class="tok-ty">String</span>(payload);
+        <span class="tok-kw">case</span> <span class="tok-st">"Instans"</span>: <span class="tok-kw">return</span> <span class="tok-ty">String</span>(payload);
+        <span class="tok-kw">case</span> <span class="tok-st">"Octeti"</span>: <span class="tok-kw">return</span> <span class="tok-st">`&lt;${Array.isArray(payload) ? payload.length : 0} bytes&gt;`</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"Lista"</span>: <span class="tok-kw">return</span> __faberDisplayList(payload, <span class="tok-st">"valor"</span>);
+        <span class="tok-kw">case</span> <span class="tok-st">"Tabula"</span>: <span class="tok-kw">return</span> __faberDisplayMap(payload, <span class="tok-st">"textus"</span>, <span class="tok-st">"valor"</span>);
+        <span class="tok-kw">default</span>: <span class="tok-kw">return</span> __faberDisplayValor(payload);
     }
-    return { ok: true as const, value: (a / b) };
+}
+
+<span class="tok-kw">function</span> divide(a: <span class="tok-ty">number</span>, b: <span class="tok-ty">number</span>): FaberResult&lt;<span class="tok-ty">number</span>, <span class="tok-ty">string</span>&gt; {
+    <span class="tok-kw">if</span> (((b <span class="tok-kw">as</span> <span class="tok-ty">number</span>) === (<span class="tok-nu">0</span> <span class="tok-kw">as</span> <span class="tok-ty">number</span>))) {
+        <span class="tok-kw">return</span> { ok: <span class="tok-kw">false</span> <span class="tok-kw">as</span> <span class="tok-kw">const</span>, <span class="tok-ty">error</span>: <span class="tok-st">"division by zero"</span> };
+    }
+    <span class="tok-kw">return</span> { ok: <span class="tok-kw">true</span> <span class="tok-kw">as</span> <span class="tok-kw">const</span>, value: (a / b) };
 }
 (() =&gt; {
     {
-        const t24: FaberResult&lt;any, string&gt; = (() =&gt; { console.log(__faberDisplay(divide(10, 2), &quot;numerus&quot;));
-         return { ok: true as const, value: undefined }; })();
-        if (!t24.ok) {
-            const err = t24.error;
+        <span class="tok-kw">const</span> t24: FaberResult&lt;<span class="tok-ty">any</span>, <span class="tok-ty">string</span>&gt; = (() =&gt; { console.log(__faberDisplay(divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>), <span class="tok-st">"numerus"</span>));
+         <span class="tok-kw">return</span> { ok: <span class="tok-kw">true</span> <span class="tok-kw">as</span> <span class="tok-kw">const</span>, value: <span class="tok-kw">undefined</span> }; })();
+        <span class="tok-kw">if</span> (!t24.ok) {
+            <span class="tok-kw">const</span> err = t24.error;
             {
-                console.warn(__faberDisplay(err, &quot;textus&quot;));
+                console.warn(__faberDisplay(err, <span class="tok-st">"textus"</span>));
             }}
-    }})();</code></pre><h2 id="collectiones">Collections and iteration</h2><p>A list folded to a total with <code>itera ex</code>. The plainest possible read on how loops lower.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber">fn summa(list&lt;int&gt; numeri) → int {
-    var int total ← 0
-    for from numeri const n {
-        total ← total + n
+    }})();</code></pre><h2 id="collectiones">Collections and iteration<a class="anchor" href="#collectiones">#</a></h2><p>A list folded to a total with <code>itera ex</code>. The plainest possible read on how loops lower.</p><p><strong>Faber source</strong></p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-8041271761b5f609-1-t-en" data-panel="lt-8041271761b5f609-1-p-en" data-name="English" aria-controls="lt-8041271761b5f609-1-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-8041271761b5f609-1-t-la" data-panel="lt-8041271761b5f609-1-p-la" data-name="Latin" aria-controls="lt-8041271761b5f609-1-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-8041271761b5f609-1-t-th-TH" data-panel="lt-8041271761b5f609-1-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-8041271761b5f609-1-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-8041271761b5f609-1-t-zh-Hans" data-panel="lt-8041271761b5f609-1-p-zh-Hans" data-name="简体中文" aria-controls="lt-8041271761b5f609-1-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-8041271761b5f609-1-t-zh-Hant" data-panel="lt-8041271761b5f609-1-p-zh-Hant" data-name="繁體中文" aria-controls="lt-8041271761b5f609-1-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-8041271761b5f609-1-t-vi" data-panel="lt-8041271761b5f609-1-p-vi" data-name="Tiếng Việt" aria-controls="lt-8041271761b5f609-1-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-8041271761b5f609-1-t-ar" data-panel="lt-8041271761b5f609-1-p-ar" data-name="العربية" aria-controls="lt-8041271761b5f609-1-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-8041271761b5f609-1-t-hi" data-panel="lt-8041271761b5f609-1-p-hi" data-name="हिन्दी" aria-controls="lt-8041271761b5f609-1-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-8041271761b5f609-1-p-en" role="tabpanel" aria-labelledby="lt-8041271761b5f609-1-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">fn</span> summa(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">for</span> <span class="tok-kw">from</span> numeri <span class="tok-kw">const</span> n {
+        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
     }
-    return total
+    <span class="tok-kw">return</span> total
 }
 
-main {
-    const list&lt;int&gt; valores ← [1, 2, 3, 4, 5]
-    print summa(valores)
-}</code></pre><p><strong>TypeScript</strong> — 12 lines in, 121 out (10.1×)</p><pre class="faber-code"><code class="lang-ts">// Generated by radix - do not edit
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    <span class="tok-kw">print</span> summa(valores)
+}</code></pre></div><div class="fdt-panel" id="lt-8041271761b5f609-1-p-la" role="tabpanel" aria-labelledby="lt-8041271761b5f609-1-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">functio</span> summa(<span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">numerus</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
+    <span class="tok-kw">varia</span> <span class="tok-kw">numerus</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">itera</span> <span class="tok-kw">ex</span> numeri <span class="tok-kw">fixum</span> n {
+        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
+    }
+    <span class="tok-kw">redde</span> total
+}
 
-type FaberDisplayHint =
-      &quot;unknown&quot;
-    | &quot;textus&quot;
-    | &quot;ascii&quot;
-    | &quot;numerus&quot;
-    | &quot;fractus&quot;
-    | &quot;bivalens&quot;
-    | &quot;nihil&quot;
-    | &quot;vacuum&quot;
-    | &quot;valor&quot;
-    | &quot;instans&quot;
-    | &quot;regex&quot;
-    | { kind: &quot;nullable&quot;; inner: FaberDisplayHint }
-    | { kind: &quot;lista&quot;; element: FaberDisplayHint }
-    | { kind: &quot;tensor&quot;; element: FaberDisplayHint }
-    | { kind: &quot;sparsa&quot;; element: FaberDisplayHint }
-    | { kind: &quot;map&quot;; key: FaberDisplayHint; value: FaberDisplayHint }
-    | { kind: &quot;set&quot;; element: FaberDisplayHint }
+<span class="tok-kw">incipit</span> {
+    <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">numerus</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    <span class="tok-kw">nota</span> summa(valores)
+}</code></pre></div><div class="fdt-panel" id="lt-8041271761b5f609-1-p-th-TH" role="tabpanel" aria-labelledby="lt-8041271761b5f609-1-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ฟังก์ชัน</span> summa(<span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span><span class="tok-kw">จำนวน</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">จำนวน</span> {
+    <span class="tok-kw">แปร</span> <span class="tok-kw">จำนวน</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">วน</span> <span class="tok-kw">ออก</span> numeri <span class="tok-kw">คงที่</span> n {
+        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
+    }
+    <span class="tok-kw">คืน</span> total
+}
+
+<span class="tok-kw">เริ่ม</span> {
+    <span class="tok-kw">คงที่</span> <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span><span class="tok-kw">จำนวน</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    <span class="tok-kw">บันทึก</span> summa(valores)
+}</code></pre></div><div class="fdt-panel" id="lt-8041271761b5f609-1-p-zh-Hans" role="tabpanel" aria-labelledby="lt-8041271761b5f609-1-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">函数</span> summa(<span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">整数</span> {
+    <span class="tok-kw">变量</span> <span class="tok-kw">整数</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">遍历</span> <span class="tok-kw">取自</span> numeri <span class="tok-kw">常量</span> n {
+        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
+    }
+    <span class="tok-kw">返回</span> total
+}
+
+<span class="tok-kw">入口</span> {
+    <span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    <span class="tok-kw">显示</span> summa(valores)
+}</code></pre></div><div class="fdt-panel" id="lt-8041271761b5f609-1-p-zh-Hant" role="tabpanel" aria-labelledby="lt-8041271761b5f609-1-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">函式</span> summa(<span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整數</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">整數</span> {
+    <span class="tok-kw">變值</span> <span class="tok-kw">整數</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">遍歷</span> <span class="tok-kw">取自</span> numeri <span class="tok-kw">定值</span> n {
+        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
+    }
+    <span class="tok-kw">傳回</span> total
+}
+
+<span class="tok-kw">入口</span> {
+    <span class="tok-kw">定值</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整數</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    <span class="tok-kw">註記</span> summa(valores)
+}</code></pre></div><div class="fdt-panel" id="lt-8041271761b5f609-1-p-vi" role="tabpanel" aria-labelledby="lt-8041271761b5f609-1-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">hàm</span> summa(<span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span><span class="tok-kw">số</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">số</span> {
+    <span class="tok-kw">biến</span> <span class="tok-kw">số</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">lặp</span> <span class="tok-kw">từ</span> numeri <span class="tok-kw">hằng</span> n {
+        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
+    }
+    <span class="tok-kw">trả</span> total
+}
+
+<span class="tok-kw">bắt_đầu</span> {
+    <span class="tok-kw">hằng</span> <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span><span class="tok-kw">số</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    <span class="tok-kw">ghi_chú</span> summa(valores)
+}</code></pre></div><div class="fdt-panel" id="lt-8041271761b5f609-1-p-ar" role="tabpanel" aria-labelledby="lt-8041271761b5f609-1-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">دالة</span> summa(<span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span><span class="tok-kw">عدد</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">عدد</span> {
+    <span class="tok-kw">متغير</span> <span class="tok-kw">عدد</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">كرر</span> <span class="tok-kw">من</span> numeri <span class="tok-kw">ثابت</span> n {
+        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
+    }
+    <span class="tok-kw">أعد</span> total
+}
+
+<span class="tok-kw">بداية</span> {
+    <span class="tok-kw">ثابت</span> <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span><span class="tok-kw">عدد</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    <span class="tok-kw">اعرض</span> summa(valores)
+}</code></pre></div><div class="fdt-panel" id="lt-8041271761b5f609-1-p-hi" role="tabpanel" aria-labelledby="lt-8041271761b5f609-1-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">फलन</span> summa(<span class="tok-kw">सूची</span><span class="tok-op">&lt;</span><span class="tok-kw">संख्या</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">संख्या</span> {
+    <span class="tok-kw">चर</span> <span class="tok-kw">संख्या</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">दोहराओ</span> <span class="tok-kw">सेवन</span> numeri <span class="tok-kw">स्थिर</span> n {
+        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
+    }
+    <span class="tok-kw">लौटाओ</span> total
+}
+
+<span class="tok-kw">आरंभ</span> {
+    <span class="tok-kw">स्थिर</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span><span class="tok-kw">संख्या</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    <span class="tok-kw">दिखाओ</span> summa(valores)
+}</code></pre></div></div><p><strong>TypeScript</strong> — 12 lines in, 121 out (10.1×)</p><pre class="faber-code"><code class="lang-ts"><span class="tok-co">// Generated by radix - do not edit</span>
+
+<span class="tok-kw">type</span> FaberDisplayHint =
+      <span class="tok-st">"unknown"</span>
+    | <span class="tok-st">"textus"</span>
+    | <span class="tok-st">"ascii"</span>
+    | <span class="tok-st">"numerus"</span>
+    | <span class="tok-st">"fractus"</span>
+    | <span class="tok-st">"bivalens"</span>
+    | <span class="tok-st">"nihil"</span>
+    | <span class="tok-st">"vacuum"</span>
+    | <span class="tok-st">"valor"</span>
+    | <span class="tok-st">"instans"</span>
+    | <span class="tok-st">"regex"</span>
+    | { kind: <span class="tok-st">"nullable"</span>; inner: FaberDisplayHint }
+    | { kind: <span class="tok-st">"lista"</span>; element: FaberDisplayHint }
+    | { kind: <span class="tok-st">"tensor"</span>; element: FaberDisplayHint }
+    | { kind: <span class="tok-st">"sparsa"</span>; element: FaberDisplayHint }
+    | { kind: <span class="tok-st">"map"</span>; key: FaberDisplayHint; value: FaberDisplayHint }
+    | { kind: <span class="tok-st">"set"</span>; element: FaberDisplayHint }
 ;
 
-function __faberDisplay(value: any, hint: FaberDisplayHint = &quot;unknown&quot;): string {
-    if (typeof hint === &quot;object&quot;) {
-        if (hint.kind === &quot;nullable&quot;) {
-            return value === null || value === undefined ? &quot;nihil&quot; : __faberDisplay(value, hint.inner);
+<span class="tok-kw">function</span> __faberDisplay(value: <span class="tok-ty">any</span>, hint: FaberDisplayHint = <span class="tok-st">"unknown"</span>): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (typeof hint === <span class="tok-st">"object"</span>) {
+        <span class="tok-kw">if</span> (hint.kind === <span class="tok-st">"nullable"</span>) {
+            <span class="tok-kw">return</span> value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span> ? <span class="tok-st">"nihil"</span> : __faberDisplay(value, hint.inner);
         }
-        if (hint.kind === &quot;lista&quot;) { return __faberDisplayList(value, hint.element); }
-        if (hint.kind === &quot;tensor&quot;) { return __faberDisplayTensor(value, hint.element); }
-        if (hint.kind === &quot;sparsa&quot;) { return __faberDisplaySparsa(value, hint.element); }
-        if (hint.kind === &quot;map&quot;) { return __faberDisplayMap(value, hint.key, hint.value); }
-        return __faberDisplayList(value, hint.element);
+        <span class="tok-kw">if</span> (hint.kind === <span class="tok-st">"lista"</span>) { <span class="tok-kw">return</span> __faberDisplayList(value, hint.element); }
+        <span class="tok-kw">if</span> (hint.kind === <span class="tok-st">"tensor"</span>) { <span class="tok-kw">return</span> __faberDisplayTensor(value, hint.element); }
+        <span class="tok-kw">if</span> (hint.kind === <span class="tok-st">"sparsa"</span>) { <span class="tok-kw">return</span> __faberDisplaySparsa(value, hint.element); }
+        <span class="tok-kw">if</span> (hint.kind === <span class="tok-st">"map"</span>) { <span class="tok-kw">return</span> __faberDisplayMap(value, hint.key, hint.value); }
+        <span class="tok-kw">return</span> __faberDisplayList(value, hint.element);
     }
-    if (value === null || value === undefined) {
-        return hint === &quot;vacuum&quot; ? &quot;vacuum&quot; : &quot;nihil&quot;;
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) {
+        <span class="tok-kw">return</span> hint === <span class="tok-st">"vacuum"</span> ? <span class="tok-st">"vacuum"</span> : <span class="tok-st">"nihil"</span>;
     }
-    switch (hint) {
-        case &quot;bivalens&quot;: return value ? &quot;verum&quot; : &quot;falsum&quot;;
-        case &quot;fractus&quot;: return __faberDisplayFractus(value);
-        case &quot;nihil&quot;: return &quot;nihil&quot;;
-        case &quot;vacuum&quot;: return &quot;vacuum&quot;;
-        case &quot;valor&quot;: return __faberDisplayValor(value);
-        case &quot;regex&quot;: return String(value);
-        case &quot;textus&quot;:
-        case &quot;ascii&quot;:
-        case &quot;instans&quot;:
-        case &quot;numerus&quot;: return String(value);
-        default: return __faberDisplayValor(value);
-    }
-}
-
-function __faberDisplayFractus(value: any): string {
-    const n = Number(value);
-    if (!Number.isFinite(n)) { return String(value); }
-    return Number.isInteger(n) ? `${n}.0` : String(n);
-}
-
-function __faberDisplayList(value: any, element: FaberDisplayHint): string {
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    return `[${Array.from(value as Array&lt;any&gt;).map((item) =&gt; __faberDisplay(item, element)).join(&quot;, &quot;)}]`;
-}
-
-function __faberDisplayTensor(value: any, element: FaberDisplayHint): string {
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    if (typeof value.planata === &quot;function&quot;) { return __faberDisplayList(value.planata(), element); }
-    if (Array.isArray(value.data)) { return __faberDisplayList(value.data, element); }
-    return __faberDisplayValor(value);
-}
-
-function __faberDisplaySparsa(value: any, element: FaberDisplayHint): string {
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    if (typeof value.densata === &quot;function&quot;) { return __faberDisplayTensor(value.densata(), element); }
-    return __faberDisplayValor(value);
-}
-
-function __faberDisplayMap(value: any, keyHint: FaberDisplayHint, valueHint: FaberDisplayHint): string {
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    const entries = value instanceof Map ? Array.from(value.entries()) : Object.entries(value);
-    return `{${entries.map(([key, item]) =&gt; `${JSON.stringify(__faberDisplay(key, keyHint))}: ${__faberDisplay(item, valueHint)}`).join(&quot;, &quot;)}}`;
-}
-
-function __faberDisplayValor(value: any): string {
-    if (value !== null &amp;&amp; typeof value === &quot;object&quot; &amp;&amp; typeof value.__faberValorTag === &quot;string&quot;) { return __faberDisplayTaggedValor(value); }
-    if (value === null || value === undefined) { return &quot;nihil&quot;; }
-    if (typeof value === &quot;boolean&quot;) { return value ? &quot;verum&quot; : &quot;falsum&quot;; }
-    if (typeof value === &quot;number&quot;) { return String(value); }
-    if (typeof value === &quot;string&quot;) { return value; }
-    if (Array.isArray(value)) { return __faberDisplayList(value, &quot;valor&quot;); }
-    if (typeof value.text === &quot;function&quot;) { return String(value.text()); }
-    if (typeof value.toString === &quot;function&quot; &amp;&amp; value.toString !== Object.prototype.toString) { return String(value); }
-    return __faberDisplayMap(value, &quot;textus&quot;, &quot;valor&quot;);
-}
-
-function __faberDisplayTaggedValor(value: any): string {
-    const payload = value.__faberValorPayload;
-    switch (value.__faberValorTag) {
-        case &quot;Nihil&quot;: return &quot;nihil&quot;;
-        case &quot;Bivalens&quot;: return payload ? &quot;verum&quot; : &quot;falsum&quot;;
-        case &quot;Numerus&quot;: return String(payload);
-        case &quot;Fractus&quot;: return __faberDisplayFractus(payload);
-        case &quot;Textus&quot;: return String(payload);
-        case &quot;Instans&quot;: return String(payload);
-        case &quot;Octeti&quot;: return `&lt;${Array.isArray(payload) ? payload.length : 0} bytes&gt;`;
-        case &quot;Lista&quot;: return __faberDisplayList(payload, &quot;valor&quot;);
-        case &quot;Tabula&quot;: return __faberDisplayMap(payload, &quot;textus&quot;, &quot;valor&quot;);
-        default: return __faberDisplayValor(payload);
+    <span class="tok-kw">switch</span> (hint) {
+        <span class="tok-kw">case</span> <span class="tok-st">"bivalens"</span>: <span class="tok-kw">return</span> value ? <span class="tok-st">"verum"</span> : <span class="tok-st">"falsum"</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"fractus"</span>: <span class="tok-kw">return</span> __faberDisplayFractus(value);
+        <span class="tok-kw">case</span> <span class="tok-st">"nihil"</span>: <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"vacuum"</span>: <span class="tok-kw">return</span> <span class="tok-st">"vacuum"</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"valor"</span>: <span class="tok-kw">return</span> __faberDisplayValor(value);
+        <span class="tok-kw">case</span> <span class="tok-st">"regex"</span>: <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value);
+        <span class="tok-kw">case</span> <span class="tok-st">"textus"</span>:
+        <span class="tok-kw">case</span> <span class="tok-st">"ascii"</span>:
+        <span class="tok-kw">case</span> <span class="tok-st">"instans"</span>:
+        <span class="tok-kw">case</span> <span class="tok-st">"numerus"</span>: <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value);
+        <span class="tok-kw">default</span>: <span class="tok-kw">return</span> __faberDisplayValor(value);
     }
 }
 
-function summa(numeri: Array&lt;number&gt;): number {
-    let total: number = 0;
-    for (const n of numeri) {
+<span class="tok-kw">function</span> __faberDisplayFractus(value: <span class="tok-ty">any</span>): <span class="tok-ty">string</span> {
+    <span class="tok-kw">const</span> n = Number(value);
+    <span class="tok-kw">if</span> (!Number.isFinite(n)) { <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value); }
+    <span class="tok-kw">return</span> Number.isInteger(n) ? <span class="tok-st">`${n}.0`</span> : <span class="tok-ty">String</span>(n);
+}
+
+<span class="tok-kw">function</span> __faberDisplayList(value: <span class="tok-ty">any</span>, element: FaberDisplayHint): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) { <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>; }
+    <span class="tok-kw">return</span> <span class="tok-st">`[${Array.from(value as Array&lt;any&gt;).map((item) =&gt; __faberDisplay(item, element)).join(", ")}]`</span>;
+}
+
+<span class="tok-kw">function</span> __faberDisplayTensor(value: <span class="tok-ty">any</span>, element: FaberDisplayHint): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) { <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>; }
+    <span class="tok-kw">if</span> (typeof value.planata === <span class="tok-st">"function"</span>) { <span class="tok-kw">return</span> __faberDisplayList(value.planata(), element); }
+    <span class="tok-kw">if</span> (Array.isArray(value.data)) { <span class="tok-kw">return</span> __faberDisplayList(value.data, element); }
+    <span class="tok-kw">return</span> __faberDisplayValor(value);
+}
+
+<span class="tok-kw">function</span> __faberDisplaySparsa(value: <span class="tok-ty">any</span>, element: FaberDisplayHint): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) { <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>; }
+    <span class="tok-kw">if</span> (typeof value.densata === <span class="tok-st">"function"</span>) { <span class="tok-kw">return</span> __faberDisplayTensor(value.densata(), element); }
+    <span class="tok-kw">return</span> __faberDisplayValor(value);
+}
+
+<span class="tok-kw">function</span> __faberDisplayMap(value: <span class="tok-ty">any</span>, keyHint: FaberDisplayHint, valueHint: FaberDisplayHint): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) { <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>; }
+    <span class="tok-kw">const</span> entries = value instanceof Map ? Array.from(value.entries()) : Object.entries(value);
+    <span class="tok-kw">return</span> <span class="tok-st">`{${entries.map(([key, item]) =&gt; `</span>${JSON.stringify(__faberDisplay(key, keyHint))}: ${__faberDisplay(item, valueHint)}<span class="tok-st">`).join(", ")}}`</span>;
+}
+
+<span class="tok-kw">function</span> __faberDisplayValor(value: <span class="tok-ty">any</span>): <span class="tok-ty">string</span> {
+    <span class="tok-kw">if</span> (value !== <span class="tok-kw">null</span> &amp;&amp; typeof value === <span class="tok-st">"object"</span> &amp;&amp; typeof value.__faberValorTag === <span class="tok-st">"string"</span>) { <span class="tok-kw">return</span> __faberDisplayTaggedValor(value); }
+    <span class="tok-kw">if</span> (value === <span class="tok-kw">null</span> || value === <span class="tok-kw">undefined</span>) { <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>; }
+    <span class="tok-kw">if</span> (typeof value === <span class="tok-st">"boolean"</span>) { <span class="tok-kw">return</span> value ? <span class="tok-st">"verum"</span> : <span class="tok-st">"falsum"</span>; }
+    <span class="tok-kw">if</span> (typeof value === <span class="tok-st">"number"</span>) { <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value); }
+    <span class="tok-kw">if</span> (typeof value === <span class="tok-st">"string"</span>) { <span class="tok-kw">return</span> value; }
+    <span class="tok-kw">if</span> (Array.isArray(value)) { <span class="tok-kw">return</span> __faberDisplayList(value, <span class="tok-st">"valor"</span>); }
+    <span class="tok-kw">if</span> (typeof value.text === <span class="tok-st">"function"</span>) { <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value.text()); }
+    <span class="tok-kw">if</span> (typeof value.toString === <span class="tok-st">"function"</span> &amp;&amp; value.toString !== Object.prototype.toString) { <span class="tok-kw">return</span> <span class="tok-ty">String</span>(value); }
+    <span class="tok-kw">return</span> __faberDisplayMap(value, <span class="tok-st">"textus"</span>, <span class="tok-st">"valor"</span>);
+}
+
+<span class="tok-kw">function</span> __faberDisplayTaggedValor(value: <span class="tok-ty">any</span>): <span class="tok-ty">string</span> {
+    <span class="tok-kw">const</span> payload = value.__faberValorPayload;
+    <span class="tok-kw">switch</span> (value.__faberValorTag) {
+        <span class="tok-kw">case</span> <span class="tok-st">"Nihil"</span>: <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"Bivalens"</span>: <span class="tok-kw">return</span> payload ? <span class="tok-st">"verum"</span> : <span class="tok-st">"falsum"</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"Numerus"</span>: <span class="tok-kw">return</span> <span class="tok-ty">String</span>(payload);
+        <span class="tok-kw">case</span> <span class="tok-st">"Fractus"</span>: <span class="tok-kw">return</span> __faberDisplayFractus(payload);
+        <span class="tok-kw">case</span> <span class="tok-st">"Textus"</span>: <span class="tok-kw">return</span> <span class="tok-ty">String</span>(payload);
+        <span class="tok-kw">case</span> <span class="tok-st">"Instans"</span>: <span class="tok-kw">return</span> <span class="tok-ty">String</span>(payload);
+        <span class="tok-kw">case</span> <span class="tok-st">"Octeti"</span>: <span class="tok-kw">return</span> <span class="tok-st">`&lt;${Array.isArray(payload) ? payload.length : 0} bytes&gt;`</span>;
+        <span class="tok-kw">case</span> <span class="tok-st">"Lista"</span>: <span class="tok-kw">return</span> __faberDisplayList(payload, <span class="tok-st">"valor"</span>);
+        <span class="tok-kw">case</span> <span class="tok-st">"Tabula"</span>: <span class="tok-kw">return</span> __faberDisplayMap(payload, <span class="tok-st">"textus"</span>, <span class="tok-st">"valor"</span>);
+        <span class="tok-kw">default</span>: <span class="tok-kw">return</span> __faberDisplayValor(payload);
+    }
+}
+
+<span class="tok-kw">function</span> summa(numeri: Array&lt;<span class="tok-ty">number</span>&gt;): <span class="tok-ty">number</span> {
+    <span class="tok-kw">let</span> total: <span class="tok-ty">number</span> = <span class="tok-nu">0</span>;
+    <span class="tok-kw">for</span> (<span class="tok-kw">const</span> n <span class="tok-kw">of</span> numeri) {
         total = (total + n);
     }
-    return total;
+    <span class="tok-kw">return</span> total;
 }
 (() =&gt; {
     {
-        const valores: Array&lt;number&gt; = [1, 2, 3, 4, 5];
-        console.log(__faberDisplay(summa(valores), &quot;numerus&quot;));
-    }})();</code></pre><p>---</p><p><a href="/en-US/targets/">All lanes</a> · <a href="/en-US/toolchain/target-matrix.html">Measured support per term</a></p></div></main><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[]</li></ul></div></footer></div></body></html>
+        <span class="tok-kw">const</span> valores: Array&lt;<span class="tok-ty">number</span>&gt; = [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>];
+        console.log(__faberDisplay(summa(valores), <span class="tok-st">"numerus"</span>));
+    }})();</code></pre><p>---</p><p><a href="/en-US/targets/">All lanes</a> · <a href="/en-US/toolchain/target-matrix.html">Measured support per term</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#reading">How to read it</a></li><li class="toc-2"><a href="#tensores">Typed tensors</a></li><li class="toc-2"><a href="#fallibilis">The error channel</a></li><li class="toc-2"><a href="#collectiones">Collections and iteration</a></li></ul></div></nav></div></body></html>

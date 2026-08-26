@@ -28,8 +28,14 @@ for candidate in "${WORKSPACE}/radix/target/release/radix" \
     [ -x "$candidate" ] && RADIX="$candidate" && break
 done
 RADIX="${RADIX:-radix}"
-FABER="${WORKSPACE}/faber/target/release/faber"
-[ -x "$FABER" ] || FABER="faber"
+for candidate in "${WORKSPACE}/radix/target/release/faber" \
+                 "${WORKSPACE}/radix/target/debug/faber"; do
+    [ -x "$candidate" ] && FABER="$candidate" && break
+done
+FABER="${FABER:-faber}"
+# Installed releases lag the workspace tree; resolve library packs from the
+# workspace so `faber convert` validates against current reader packs.
+export FABER_LIBRARY_HOME="${FABER_LIBRARY_HOME:-${WORKSPACE}}"
 
 echo "toolchain: $("$RADIX" --version) at ${RADIX}"
 echo "toolchain: $("$FABER" --version) at ${FABER}"
@@ -58,13 +64,15 @@ mkdir -p "${OUT}/locales" "${OUT}/targets"
 
 # -- the demo program ---------------------------------------------------------
 # Deliberately not hello-world. This is a small dense-tensor computation:
-# construct two typed matrices, multiply them, and reduce the result to a
-# scalar. The locale and application-target tabs therefore demonstrate the
-# same compute-shaped program that the headline promises, while the separate
+# construct two typed matrices, multiply them, and print the result. The
+# locale and application-target tabs therefore demonstrate the same
+# compute-shaped program that the headline promises, while the separate
 # GPU axis below shows the kernel form used for device execution.
 #
-# Keep the example small enough to read at a glance, but real enough to expose
-# shape-bearing tensor types, matrix multiplication, and a reduction.
+# The program is the universal-vocabulary form the localization page ships:
+# shape-bearing tensor types, the `·` matmul glyph, and `vacua`/`empty`
+# spelled by each pack — no strue/matmul/media members, which translated
+# packs lack. Locale panels must regenerate localization.md byte-for-byte.
 mkdir -p "${WORK}/demo/src"
 cat > "${WORK}/demo/faber.toml" <<'TOML'
 [package]
@@ -83,33 +91,31 @@ TOML
 
 cat > "${WORK}/demo/src/main.fab" <<'FAB'
 incipit {
-    fixum lista<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    fixum lista<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    fixum tf32[] seed ← vacua
-    fixum tf32[2, 3] a ← seed.strue(flat_a, [2, 3])
-    fixum tf32[3, 4] b ← seed.strue(flat_b, [3, 4])
-    fixum tf32[2, 4] product ← a.matmul(b)
-    fixum f32 mean ← product.media()
-    nota mean
+    fixum tensor<f32, [2, 3]> a ← vacua
+    fixum tensor<f32, [3, 4]> b ← vacua
+    fixum tensor<f32, [2, 4]> product ← a · b
+    nota product
 }
 FAB
 
 cp "${WORK}/demo/src/main.fab" "${OUT}/targets/source.fab"
 
+# The reader axis must carry the `·` glyph — translated packs have no matmul
+# member row — but the Go and TypeScript backends reject the glyph outright
+# (CODEGEN001, Phase 3 parity). The target axis therefore lowers the
+# member-call form of the same program: identical declarations and shape
+# arithmetic, the matmul spelled `a.matmul(b)` the way every backend accepts.
+sed 's/a · b/a.matmul(b)/' "${WORK}/demo/src/main.fab" > "${WORK}/main-targets.fab"
+
 # -- axis 1: reader locales ---------------------------------------------------
 # `en` is the English reader surface; `la` is canonical Faber. The rest are
-# the shipped human reader packs.
-#
-# NOTE: `faber convert --to la` fails pack validation on faber 1.4.0,
-# so canonical Latin comes from `"$RADIX" emit -t faber` (canonical re-emission),
-# which produces the same surface by a different path. Revisit once the `la`
-# pack validates.
+# the shipped human reader packs. The demo source is Latin with no
+# frontmatter, and `faber convert` defaults `--from` to the source's
+# frontmatter locale (falling back to `en`), so the Latin identity must be
+# stated explicitly or every parse dies on `vacua`.
 echo "reader locales:"
-"$RADIX" emit -t faber "${WORK}/demo/src/main.fab" > "${OUT}/locales/la.fab"
-echo "  la (via radix emit -t faber)"
-
-for loc in en th-TH zh-Hans zh-Hant vi ar hi; do
-    if "$FABER" convert --to "$loc" --stdout "${WORK}/demo" \
+for loc in la en th-TH zh-Hans zh-Hant vi ar hi; do
+    if "$FABER" convert --from la --to "$loc" --stdout "${WORK}/demo" \
         > "${OUT}/locales/${loc}.fab" 2>/dev/null \
         && [ -s "${OUT}/locales/${loc}.fab" ]; then
         echo "  ${loc}"
@@ -122,7 +128,7 @@ done
 # -- axis 2: compilation targets ----------------------------------------------
 echo "targets:"
 for t in rust go ts llvm-text wasm-text; do
-    if "$RADIX" emit --target "$t" "${WORK}/demo/src/main.fab" \
+    if "$RADIX" emit --target "$t" "${WORK}/main-targets.fab" \
         > "${OUT}/targets/out.${t}.txt" 2>/dev/null \
         && [ -s "${OUT}/targets/out.${t}.txt" ]; then
         echo "  ${t}"

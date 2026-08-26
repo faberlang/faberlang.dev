@@ -1,262 +1,262 @@
 <!DOCTYPE html>
-<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber has a static, type-first type system. Every declaration places the type before the name — the textus comes first, then the identifier it names, not the..."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Types and values — Faber"><meta property="og:description" content="Faber has a static, type-first type system. Every declaration places the type before the name — the textus comes first, then the identifier it names, not the..."><meta property="og:url" content="https://faberlang.dev/en-US/language/types.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/language/types.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Types and values — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs"><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><ul class="nav"><li><a href="/en-US/">Home</a></li><li><a href="/en-US/start/install.html">Install</a></li><li><a href="/en-US/localization.html">Localization</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li><li><a href="/en-US/releases/">Releases</a></li><li><a href="/en-US/open-source.html">Open source</a></li><li><a href="/en-US/examples/">Examples</a></li><li><a href="/en-US/targets/">Target lanes</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/en-US/language/" class="active">The language</a></li><li><a href="/en-US/language/types.html">Types and values</a></li><li><a href="/en-US/language/functions.html">Functions and flow</a></li><li><a href="/en-US/language/errors.html">Errors and testing</a></li><li><a href="/en-US/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/en-US/toolchain/">Toolchain</a></li><li><a href="/en-US/toolchain/cli.html">The faber CLI</a></li><li><a href="/en-US/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/en-US/targets/">Target lanes</a></li><li><a href="/en-US/toolchain/packages.html">Packages with Cista</a></li><li><a href="/en-US/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/">Libraries</a></li><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/en-US/reference/">Reference</a></li><li><a href="/en-US/reference/grammar.html">Grammar</a></li><li><a href="/en-US/corpus/">Corpus index</a></li><li><a href="/en-US/reference/design.html">Design notes</a></li><li><a href="/en-US/open-source.html">Open source</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.6.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/en-US/releases/">All releases</a></li><li><a href="/en-US/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main><h1>Types and values</h1><div class="content"><h2>Data types</h2><p>Faber has a static, type-first type system. Every declaration places the type
-before the name — the <code class="typ">textus</code> comes first, then the identifier it names, not
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber has a static, type-first type system. Every declaration places the type before the name — the textus comes first, then the identifier it names, not the..."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Types and values — Faber"><meta property="og:description" content="Faber has a static, type-first type system. Every declaration places the type before the name — the textus comes first, then the identifier it names, not the..."><meta property="og:url" content="https://faberlang.dev/en-US/language/types.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/language/types.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Types and values — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><ul class="nav"><li><a href="/en-US/">Home</a></li><li><a href="/en-US/start/install.html">Install</a></li><li><a href="/en-US/localization.html">Localization</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li><li><a href="/en-US/releases/">Releases</a></li><li><a href="/en-US/open-source.html">Open source</a></li><li><a href="/en-US/examples/">Examples</a></li><li><a href="/en-US/targets/">Target lanes</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/en-US/language/" class="active">The language</a></li><li><a href="/en-US/language/types.html">Types and values</a></li><li><a href="/en-US/language/functions.html">Functions and flow</a></li><li><a href="/en-US/language/errors.html">Errors and testing</a></li><li><a href="/en-US/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/en-US/toolchain/">Toolchain</a></li><li><a href="/en-US/toolchain/cli.html">The faber CLI</a></li><li><a href="/en-US/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/en-US/targets/">Target lanes</a></li><li><a href="/en-US/toolchain/packages.html">Packages with Cista</a></li><li><a href="/en-US/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/">Libraries</a></li><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/en-US/reference/">Reference</a></li><li><a href="/en-US/reference/grammar.html">Grammar</a></li><li><a href="/en-US/corpus/">Corpus index</a></li><li><a href="/en-US/reference/design.html">Design notes</a></li><li><a href="/en-US/open-source.html">Open source</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.6.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/en-US/releases/">All releases</a></li><li><a href="/en-US/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Types and values</h1><div class="content"><h2 id="data-types">Data types<a class="anchor" href="#data-types">#</a></h2><p>Faber has a static, type-first type system. Every declaration places the type
+before the name — the <code class="typ">string</code> comes first, then the identifier it names, not
 the other way round. The type system covers
 scalar primitives, generic collections, sized numerics, tensors, and GPU-facing
-register types.</p><h3 id="primitive-types">Primitive types</h3><div class="table-scroll"><table><thead><tr><th>Type</th><th>Role</th><th>Example literal</th></tr></thead><tbody><tr><td><code class="typ">textus</code></td><td>Unicode string</td><td><code>&quot;Salve, munde&quot;</code></td></tr><tr><td><code>ascii</code></td><td>Fixed machine token</td><td><code>'solum:lege'</code></td></tr><tr><td><code class="typ">numerus</code></td><td>Signed integer (default i64)</td><td><code>42</code></td></tr><tr><td><code class="typ">fractus</code></td><td>Floating-point (default f64)</td><td><code>3.14</code></td></tr><tr><td><code class="typ">bivalens</code></td><td>Boolean</td><td><code class="kw">verum</code>, <code class="kw">falsum</code></td></tr><tr><td><code class="typ">vacuum</code></td><td>Unit / no value</td><td>—</td></tr><tr><td><code class="kw">nihil</code></td><td>Null / absent</td><td><code class="kw">nihil</code></td></tr><tr><td><code class="typ">instans</code></td><td>Duration / time instant</td><td>—</td></tr><tr><td><code class="typ">json</code></td><td>Compile-time JSON value</td><td><code>{ &quot;key&quot;: &quot;value&quot; }</code></td></tr><tr><td><code class="typ">octeti</code></td><td>Hex byte sequence</td><td>\|00ff\|</td></tr></tbody></table></div><h3 id="sized-numeric-types">Sized numeric types</h3><p><code class="typ">numerus</code> and <code class="typ">fractus</code> have default widths (i64 and f64) and explicit width
-forms:</p><pre class="faber-code"><code class="lang-faber">const int&lt;i32&gt; narrow ← 7 ∷ int&lt;i32&gt;
+register types.</p><h3 id="primitive-types">Primitive types<a class="anchor" href="#primitive-types">#</a></h3><div class="table-scroll"><table><thead><tr><th>Type</th><th>Role</th><th>Example literal</th></tr></thead><tbody><tr><td><code class="typ">string</code></td><td>Unicode string</td><td><code>&quot;Salve, munde&quot;</code></td></tr><tr><td><code>ascii</code></td><td>Fixed machine token</td><td><code>'solum:lege'</code></td></tr><tr><td><code class="typ">int</code></td><td>Signed integer (default i64)</td><td><code>42</code></td></tr><tr><td><code class="typ">float</code></td><td>Floating-point (default f64)</td><td><code>3.14</code></td></tr><tr><td><code class="typ">bool</code></td><td>Boolean</td><td><code class="kw">true</code>, <code class="kw">false</code></td></tr><tr><td><code class="typ">void</code></td><td>Unit / no value</td><td>—</td></tr><tr><td><code class="kw">null</code></td><td>Null / absent</td><td><code class="kw">null</code></td></tr><tr><td><code class="typ">instant</code></td><td>Duration / time instant</td><td>—</td></tr><tr><td><code class="typ">json</code></td><td>Compile-time JSON value</td><td><code>{ &quot;key&quot;: &quot;value&quot; }</code></td></tr><tr><td><code class="typ">bytes</code></td><td>Hex byte sequence</td><td>\|00ff\|</td></tr></tbody></table></div><h3 id="sized-numeric-types">Sized numeric types<a class="anchor" href="#sized-numeric-types">#</a></h3><p><code class="typ">int</code> and <code class="typ">float</code> have default widths (i64 and f64) and explicit width
+forms:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> <span class="tok-kw">int</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ <span class="tok-kw">int</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span>
 
-const int&lt;u64&gt; wide ← 255 ∷ int&lt;u64&gt;
+<span class="tok-kw">const</span> <span class="tok-kw">int</span><span class="tok-op">&lt;</span>u64<span class="tok-op">&gt;</span> wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ <span class="tok-kw">int</span><span class="tok-op">&lt;</span>u64<span class="tok-op">&gt;</span>
 
-const f32 single ← 1.5 ∷ f32</code></pre><p>Width sugar is available in type position: <code>i8</code> … <code>u64</code>, <code>f16</code>, <code>f32</code>, <code>f64</code>
-are equivalent to <code>numerus&lt;W&gt;</code> / <code>fractus&lt;W&gt;</code>.</p><h3 id="nullable-types">Nullable types</h3><p>Nullable values use the union syntax <code>T ∪ nihil</code>:</p><pre class="faber-code"><code class="lang-faber">fn find(string key) → int ∪ null {
-    return null
+<span class="tok-kw">const</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32</code></pre><p>Width sugar is available in type position: <code>i8</code> … <code>u64</code>, <code>f16</code>, <code>f32</code>, <code>f64</code>
+are equivalent to <code>numerus&lt;W&gt;</code> / <code>fractus&lt;W&gt;</code>.</p><h3 id="nullable-types">Nullable types<a class="anchor" href="#nullable-types">#</a></h3><p>Nullable values use the union syntax <code>T ∪ nihil</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> find(string key) <span class="tok-op">→</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> {
+    <span class="tok-kw">return</span> <span class="tok-kw">null</span>
 }
 
-fn maybe() → string ∪ null {
-    return null
-}</code></pre><p>There is no <code>T?</code> or <code>Option&lt;T&gt;</code> syntax in Faber. The union is explicit.</p><h3 id="type-aliases">Type aliases</h3><pre class="faber-code"><code class="lang-faber">type UserId = int</code></pre><h3 id="generics">Generics</h3><p>Functions, type aliases, <code class="kw">genus</code>, and <code>implendum</code> accept type parameters with
-<code>&lt;T&gt;</code> syntax:</p><pre class="faber-code"><code class="lang-faber">fn identitas&lt;T&gt;(T valor) → T {
-    return valor
+<span class="tok-kw">fn</span> maybe() <span class="tok-op">→</span> string <span class="tok-op">∪</span> <span class="tok-kw">null</span> {
+    <span class="tok-kw">return</span> <span class="tok-kw">null</span>
+}</code></pre><p>There is no <code>T?</code> or <code>Option&lt;T&gt;</code> syntax in Faber. The union is explicit.</p><h3 id="type-aliases">Type aliases<a class="anchor" href="#type-aliases">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">type</span> UserId <span class="tok-op">=</span> <span class="tok-kw">int</span></code></pre><h3 id="generics">Generics<a class="anchor" href="#generics">#</a></h3><p>Functions, type aliases, <code class="kw">class</code>, and <code>implendum</code> accept type parameters with
+<code>&lt;T&gt;</code> syntax:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T valor) <span class="tok-op">→</span> T {
+    <span class="tok-kw">return</span> valor
 }
 
-fn primum&lt;T&gt;(list&lt;T&gt; res) → T ∪ null {
-    return res.first()
-}</code></pre><p>Explicit call-site type arguments are supported:</p><pre class="faber-code"><code class="lang-faber">fn identitas&lt;T&gt;(T datum) → T {
-    return datum
+<span class="tok-kw">fn</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">list</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> <span class="tok-kw">null</span> {
+    <span class="tok-kw">return</span> res.first()
+}</code></pre><p>Explicit call-site type arguments are supported:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T datum) <span class="tok-op">→</span> T {
+    <span class="tok-kw">return</span> datum
 }
 
-const int seven ← identitas&lt;int&gt;(7)</code></pre><h3 id="collections">Collections</h3><div class="table-scroll"><table><thead><tr><th>Type</th><th>Role</th><th>Sugar</th></tr></thead><tbody><tr><td><code>lista&lt;T&gt;</code></td><td>Ordered dynamic collection</td><td><code>lf32</code>, <code>lu32</code></td></tr><tr><td><code>tabula&lt;K, V&gt;</code></td><td>Key-value map</td><td>—</td></tr><tr><td><code>tensor&lt;T, Figura&gt;</code></td><td>Dense fixed-shape buffer</td><td><code>tf32[4]</code>, <code>ti64[2,3]</code></td></tr><tr><td><code>sparsa&lt;T, Figura&gt;</code></td><td>Sparse fixed-shape buffer</td><td><code>sf32[4]</code>, <code>si64[2,3]</code></td></tr><tr><td><code>intervallum</code></td><td>Range type</td><td>—</td></tr><tr><td><code>copia&lt;T&gt;</code></td><td>Unordered set</td><td>—</td></tr><tr><td><code>cursor&lt;T&gt;</code></td><td>Lazy stream</td><td>—</td></tr><tr><td><code>promissum&lt;T&gt;</code></td><td>Async finite result from <code>fiet</code> functions; <code>promissum&lt;T ⇥ E&gt;</code> carries a delayed alternate channel</td><td>—</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber">const list&lt;int&gt; nums ← [1, 2, 3]
+<span class="tok-kw">const</span> <span class="tok-kw">int</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)</code></pre><h3 id="collections">Collections<a class="anchor" href="#collections">#</a></h3><div class="table-scroll"><table><thead><tr><th>Type</th><th>Role</th><th>Sugar</th></tr></thead><tbody><tr><td><code>lista&lt;T&gt;</code></td><td>Ordered dynamic collection</td><td><code>lf32</code>, <code>lu32</code></td></tr><tr><td><code>tabula&lt;K, V&gt;</code></td><td>Key-value map</td><td>—</td></tr><tr><td><code>tensor&lt;T, Figura&gt;</code></td><td>Dense fixed-shape buffer</td><td><code>tf32[4]</code>, <code>ti64[2,3]</code></td></tr><tr><td><code>sparsa&lt;T, Figura&gt;</code></td><td>Sparse fixed-shape buffer</td><td><code>sf32[4]</code>, <code>si64[2,3]</code></td></tr><tr><td><code>intervallum</code></td><td>Range type</td><td>—</td></tr><tr><td><code>copia&lt;T&gt;</code></td><td>Unordered set</td><td>—</td></tr><tr><td><code>cursor&lt;T&gt;</code></td><td>Lazy stream</td><td>—</td></tr><tr><td><code>promissum&lt;T&gt;</code></td><td>Async finite result from <code>fiet</code> functions; <code>promissum&lt;T ⇥ E&gt;</code> carries a delayed alternate channel</td><td>—</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> nums <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
 
-const map&lt;string, int&gt; scores ← { &quot;alice&quot;: 10, &quot;bob&quot;: 20 }</code></pre><h3 id="tensor-types">Tensor types</h3><p><code>tensor&lt;T, Figura&gt;</code> is the dense fixed-shape container:</p><div class="table-scroll"><table><thead><tr><th>Form</th><th>Meaning</th></tr></thead><tbody><tr><td><code>tensor&lt;T, Figura&gt;</code></td><td>Canonical spelling</td></tr><tr><td><code>tensor&lt;T, []&gt;</code></td><td>Rank-0 (scalar container)</td></tr><tr><td><code>tensor&lt;T, _&gt;</code></td><td>Shape inference hole</td></tr><tr><td><code>tensor&lt;T, [N]&gt;</code></td><td>Rank-1 vector</td></tr><tr><td><code>tensor&lt;T, [N, M]&gt;</code></td><td>Rank-2 matrix</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber">const tensor&lt;f32, []&gt; scalar ← empty
+<span class="tok-kw">const</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alice"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"bob"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> }</code></pre><h3 id="tensor-types">Tensor types<a class="anchor" href="#tensor-types">#</a></h3><p><code>tensor&lt;T, Figura&gt;</code> is the dense fixed-shape container:</p><div class="table-scroll"><table><thead><tr><th>Form</th><th>Meaning</th></tr></thead><tbody><tr><td><code>tensor&lt;T, Figura&gt;</code></td><td>Canonical spelling</td></tr><tr><td><code>tensor&lt;T, []&gt;</code></td><td>Rank-0 (scalar container)</td></tr><tr><td><code>tensor&lt;T, _&gt;</code></td><td>Shape inference hole</td></tr><tr><td><code>tensor&lt;T, [N]&gt;</code></td><td>Rank-1 vector</td></tr><tr><td><code>tensor&lt;T, [N, M]&gt;</code></td><td>Rank-2 matrix</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> scalar <span class="tok-op">←</span> empty
 
-const tensor&lt;int, [4]&gt; row ← [1, 2, 3, 4] ↦ tensor&lt;int, [4]&gt;
+<span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> row <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>] ↦ tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
 
-const int ∪ null first ← row[0]</code></pre><h3 id="gpu-core-types">GPU core types</h3><p>These are recognised by the systems lane for GPU and register work.
-Package targets that lack hardware support reject them:</p><pre class="faber-code"><code class="lang-faber">fn half(f16 x) → f16 {
-    return x
+<span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> first <span class="tok-op">←</span> row[<span class="tok-nu">0</span>]</code></pre><h3 id="gpu-core-types">GPU core types<a class="anchor" href="#gpu-core-types">#</a></h3><p>These are recognised by the systems lane for GPU and register work.
+Package targets that lack hardware support reject them:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> half(f16 x) <span class="tok-op">→</span> f16 {
+    <span class="tok-kw">return</span> x
 }
 
-fn add(matrix&lt;f32, [2, 2]&gt; a, matrix&lt;f32, [2, 2]&gt; b) → matrix&lt;f32, [2, 2]&gt; {
-    return a.added(b)
+<span class="tok-kw">fn</span> add(matrix<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> a, matrix<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> b) <span class="tok-op">→</span> matrix<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> {
+    <span class="tok-kw">return</span> a.added(b)
 }
 
-fn swap(atomic&lt;int&lt;i32&gt;&gt; cell, int&lt;i32&gt; value) → int&lt;i32&gt; {
-    return cell.exchange(value)
-}</code></pre><h3 id="borrow-markers">Borrow markers on types</h3><p>Borrow markers (<code class="kw">de</code>, <code class="kw">in</code>, <code>own</code>) can appear on types in parameter
-positions to indicate how a value is passed:</p><pre class="faber-code"><code class="lang-faber locale=la"># shared borrow — caller retains ownership
-functio imprime(de textus label) → vacuum { }
+<span class="tok-kw">fn</span> swap(atomic<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> cell, <span class="tok-kw">int</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> value) <span class="tok-op">→</span> <span class="tok-kw">int</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> {
+    <span class="tok-kw">return</span> cell.exchange(value)
+}</code></pre><h3 id="borrow-markers">Borrow markers on types<a class="anchor" href="#borrow-markers">#</a></h3><p>Borrow markers (<code class="kw">ref</code>, <code class="kw">mut</code>, <code>own</code>) can appear on types in parameter
+positions to indicate how a value is passed:</p><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-co"># shared borrow — caller retains ownership</span>
+<span class="tok-kw">functio</span> imprime(<span class="tok-kw">de</span> <span class="tok-kw">textus</span> label) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> { }
 
-# mutable borrow — caller lends mutable access
-functio duplica(in numerus value) → vacuum { }
+<span class="tok-co"># mutable borrow — caller lends mutable access</span>
+<span class="tok-kw">functio</span> duplica(<span class="tok-kw">in</span> <span class="tok-kw">numerus</span> value) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> { }
 
-# move — caller gives up ownership
-functio consume(own textus buffer) → textus {
-    redde buffer
-}</code></pre><h3 id="comparison-policy">Comparison policy</h3><div class="table-scroll"><table><thead><tr><th>Operator</th><th>Family</th><th>Behaviour</th></tr></thead><tbody><tr><td><code>≡</code>, <code>≠</code>, <code>≢</code></td><td>Exact equality</td><td>Identical types required; <code class="kw">nihil</code> bypass</td></tr><tr><td><code>≅</code>, <code>≇</code></td><td>Promoted exact equality</td><td>Numeric widths join, then exact compare</td></tr><tr><td><code>≈</code>, <code>≉</code></td><td>Fuzzy equality</td><td>Tolerance match — <code>isclose</code> defaults (rel_tol 1e-09); numeric operands only</td></tr><tr><td><code>&lt;</code>, <code>≤</code>, <code>&gt;</code>, <code>≥</code></td><td>Ordering</td><td>Numeric, instant, scalar text</td></tr><tr><td><code>intra</code></td><td>Range containment</td><td>Numeric in range</td></tr><tr><td><code>inter</code></td><td>Collection membership</td><td>Element in collection</td></tr></tbody></table></div><h2>Variables and binding</h2><p>Faber has three variable keywords and a dedicated assignment glyph. The key
-distinction is between <code class="kw">fixum</code> (write-once) and <code class="kw">varia</code> (freely reassignable),
-and between <code>←</code> (runtime flow) and <code>=</code> (structural field shape).</p><h3 id="fixum-immutable-binding">fixum — immutable binding</h3><p><code class="kw">fixum</code> bindings are write-once. They may be declared with or without an
+<span class="tok-co"># move — caller gives up ownership</span>
+<span class="tok-kw">functio</span> consume(own <span class="tok-kw">textus</span> buffer) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
+    <span class="tok-kw">redde</span> buffer
+}</code></pre><h3 id="comparison-policy">Comparison policy<a class="anchor" href="#comparison-policy">#</a></h3><div class="table-scroll"><table><thead><tr><th>Operator</th><th>Family</th><th>Behaviour</th></tr></thead><tbody><tr><td><code>≡</code>, <code>≠</code>, <code>≢</code></td><td>Exact equality</td><td>Identical types required; <code class="kw">null</code> bypass</td></tr><tr><td><code>≅</code>, <code>≇</code></td><td>Promoted exact equality</td><td>Numeric widths join, then exact compare</td></tr><tr><td><code>≈</code>, <code>≉</code></td><td>Fuzzy equality</td><td>Tolerance match — <code>isclose</code> defaults (rel_tol 1e-09); numeric operands only</td></tr><tr><td><code>&lt;</code>, <code>≤</code>, <code>&gt;</code>, <code>≥</code></td><td>Ordering</td><td>Numeric, instant, scalar text</td></tr><tr><td><code>intra</code></td><td>Range containment</td><td>Numeric in range</td></tr><tr><td><code>inter</code></td><td>Collection membership</td><td>Element in collection</td></tr></tbody></table></div><h2 id="variables-and-binding">Variables and binding<a class="anchor" href="#variables-and-binding">#</a></h2><p>Faber has three variable keywords and a dedicated assignment glyph. The key
+distinction is between <code class="kw">const</code> (write-once) and <code class="kw">var</code> (freely reassignable),
+and between <code>←</code> (runtime flow) and <code>=</code> (structural field shape).</p><h3 id="fixum-immutable-binding">fixum — immutable binding<a class="anchor" href="#fixum-immutable-binding">#</a></h3><p><code class="kw">const</code> bindings are write-once. They may be declared with or without an
 initializer; if declared without, they must be assigned exactly once before
-reading. A second assignment is rejected.</p><pre class="faber-code"><code class="lang-faber">const int count ← 0
+reading. A second assignment is rejected.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
 
-const string name ← &quot;Marcus&quot;
+<span class="tok-kw">const</span> string name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
 
-const list&lt;int, 3&gt; inferred ← [1, 2, 3]</code></pre><p>Deferred initialisation:</p><pre class="faber-code"><code class="lang-faber">main {
-    const int factor
-    if true {
-        factor ← 10
+<span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> inferred <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]</code></pre><p>Deferred initialisation:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> factor
+    <span class="tok-kw">if</span> <span class="tok-kw">true</span> {
+        factor <span class="tok-op">←</span> <span class="tok-nu">10</span>
     }
-    else {
-        factor ← 100
+    <span class="tok-kw">else</span> {
+        factor <span class="tok-op">←</span> <span class="tok-nu">100</span>
     }
     print factor
-}</code></pre><h3 id="varia-mutable-binding">varia — mutable binding</h3><p><code class="kw">varia</code> bindings are freely reassignable:</p><pre class="faber-code"><code class="lang-faber">main {
-    var int count ← 0
-    count ← count + 1
-    count ← count * 2
-}</code></pre><h3 id="sit-inferred-immutable-sugar">sit — inferred immutable sugar</h3><p><code>sit</code> is sugar for <code>fixum _</code> — an immutable binding with inferred type:</p><pre class="faber-code"><code class="lang-faber">main {
-    const string salve ← &quot;Salve&quot;
-    const string nomen ← &quot;Marcus&quot;
-    const int x ← 42
+}</code></pre><h3 id="varia-mutable-binding">varia — mutable binding<a class="anchor" href="#varia-mutable-binding">#</a></h3><p><code class="kw">var</code> bindings are freely reassignable:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    count <span class="tok-op">←</span> count <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    count <span class="tok-op">←</span> count <span class="tok-op">*</span> <span class="tok-nu">2</span>
+}</code></pre><h3 id="sit-inferred-immutable-sugar">sit — inferred immutable sugar<a class="anchor" href="#sit-inferred-immutable-sugar">#</a></h3><p><code>sit</code> is sugar for <code>fixum _</code> — an immutable binding with inferred type:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> string salve <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
+    <span class="tok-kw">const</span> string nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> x <span class="tok-op">←</span> <span class="tok-nu">42</span>
 
-    # Deferred form
-    const string label
-    label ← &quot;deferred&quot;
-}</code></pre><h3 id="runtime-binding-vs-structural-definition">Runtime binding vs structural definition</h3><p>Faber splits what most languages collapse into <code>=</code>:</p><div class="table-scroll"><table><thead><tr><th>Glyph</th><th>Role</th><th>Use for</th></tr></thead><tbody><tr><td><code>←</code></td><td>Runtime flow</td><td>Initial binding, reassignment, mutation</td></tr><tr><td><code>=</code></td><td>Structural shape</td><td>Field names inside literals and metadata</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber">class Point {
-    int x
-    int y
+<span class="tok-co">    # Deferred form</span>
+    <span class="tok-kw">const</span> string label
+    label <span class="tok-op">←</span> <span class="tok-st">"deferred"</span>
+}</code></pre><h3 id="runtime-binding-vs-structural-definition">Runtime binding vs structural definition<a class="anchor" href="#runtime-binding-vs-structural-definition">#</a></h3><p>Faber splits what most languages collapse into <code>=</code>:</p><div class="table-scroll"><table><thead><tr><th>Glyph</th><th>Role</th><th>Use for</th></tr></thead><tbody><tr><td><code>←</code></td><td>Runtime flow</td><td>Initial binding, reassignment, mutation</td></tr><tr><td><code>=</code></td><td>Structural shape</td><td>Field names inside literals and metadata</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Point {
+    <span class="tok-kw">int</span> x
+    <span class="tok-kw">int</span> y
 }
 
-main {
-    # Runtime: ← attaches a value to a name at execution time
-    var int count ← 0
-    var string label ← &quot;ready&quot;
-    count ← count + 1
+<span class="tok-kw">main</span> {
+<span class="tok-co">    # Runtime: ← attaches a value to a name at execution time</span>
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">var</span> string label <span class="tok-op">←</span> <span class="tok-st">"ready"</span>
+    count <span class="tok-op">←</span> count <span class="tok-op">+</span> <span class="tok-nu">1</span>
 
-    # Structural: = defines field values inside a type literal
-    const Point p ← Point {x = 10, y = 20}
-}</code></pre><h3 id="ex-field-extraction">Ex field extraction</h3><p><code class="kw">ex</code> extracts fields from a value into local bindings:</p><pre class="faber-code"><code class="lang-faber">class Persona {
+<span class="tok-co">    # Structural: = defines field values inside a type literal</span>
+    <span class="tok-kw">const</span> Point p <span class="tok-op">←</span> Point {x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span>}
+}</code></pre><h3 id="ex-field-extraction">Ex field extraction<a class="anchor" href="#ex-field-extraction">#</a></h3><p><code class="kw">from</code> extracts fields from a value into local bindings:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Persona {
     string nomen
-    int aetas
+    <span class="tok-kw">int</span> aetas
 }
 
-main {
-    const Persona p ← Persona {nomen = &quot;Marcus&quot;, aetas = 30}
-    const string nomen ← p.nomen
-    const int aetas ← p.aetas
-    # prints &quot;Marcus&quot;
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> Persona p <span class="tok-op">←</span> Persona {nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span>}
+    <span class="tok-kw">const</span> string nomen <span class="tok-op">←</span> p.nomen
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> aetas <span class="tok-op">←</span> p.aetas
+<span class="tok-co">    # prints "Marcus"</span>
     print nomen
-}</code></pre><h3 id="postfix-increment-and-decrement">Mutable numeric updates</h3><p>Use binary <code>+</code> and <code>-</code> with runtime assignment <code>←</code> to update mutable
-<code class="typ">numerus</code> places. Both operators take two operands; they are not postfix
-statements:</p><pre class="faber-code"><code class="lang-faber">main {
-    var int i ← 0
-    # i becomes 1
-    i ← i + 1
-    # i becomes 0
-    i ← i - 1
-}</code></pre><h2>Collections</h2><p>Faber has several compiler-owned collection types. Their canonical methods
-live in the compiler, not in the standard library.</p><h3 id="lista">Lista — ordered dynamic collection</h3><pre class="faber-code"><code class="lang-faber">const list&lt;int&gt; empty ← empty
+}</code></pre><h3 id="postfix-increment-and-decrement">Mutable numeric updates<a class="anchor" href="#postfix-increment-and-decrement">#</a></h3><p>Use binary <code>+</code> and <code>-</code> with runtime assignment <code>←</code> to update mutable
+<code class="typ">int</code> places. Both operators take two operands; they are not postfix
+statements:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+<span class="tok-co">    # i becomes 1</span>
+    i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
+<span class="tok-co">    # i becomes 0</span>
+    i <span class="tok-op">←</span> i <span class="tok-op">-</span> <span class="tok-nu">1</span>
+}</code></pre><h2 id="collections-2">Collections<a class="anchor" href="#collections-2">#</a></h2><p>Faber has several compiler-owned collection types. Their canonical methods
+live in the compiler, not in the standard library.</p><h3 id="lista">Lista — ordered dynamic collection<a class="anchor" href="#lista">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> empty <span class="tok-op">←</span> empty
 
-const list&lt;int, 5&gt; numbers ← [1, 2, 3, 4, 5]
+<span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-nu">5</span><span class="tok-op">&gt;</span> numbers <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
 
-const list&lt;string, 3&gt; names ← [&quot;Marcus&quot;, &quot;Julia&quot;, &quot;Gaius&quot;]
+<span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> names <span class="tok-op">←</span> [<span class="tok-st">"Marcus"</span>, <span class="tok-st">"Julia"</span>, <span class="tok-st">"Gaius"</span>]
 
-const list&lt;list&lt;int, 2&gt;, 2&gt; nested ← [[1, 2], [3, 4]]</code></pre><p>Spread with <code>sparge</code>:</p><pre class="faber-code"><code class="lang-faber">const list&lt;int&gt; a ← [1, 2, 3]
+<span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-nu">2</span><span class="tok-op">&gt;</span>, <span class="tok-nu">2</span><span class="tok-op">&gt;</span> nested <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]]</code></pre><p>Spread with <code>sparge</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
 
-const list&lt;int&gt; b ← [4, 5, 6]
+<span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> b <span class="tok-op">←</span> [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]
 
-const list&lt;int&gt; combined ← [spread a, spread b]
+<span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> combined <span class="tok-op">←</span> [<span class="tok-kw">spread</span> a, <span class="tok-kw">spread</span> b]
 
-const list&lt;int&gt; headed ← [0, spread a, 99]</code></pre><p>Key methods: <code>longitudo</code>, <code>accipe</code>, <code>appende</code>, <code>summa</code>, <code>primus</code>, <code>novissimus</code>.</p><h3 id="tabula">Tabula — key-value map</h3><pre class="faber-code"><code class="lang-faber">const map&lt;string, int&gt; scores ← { &quot;alice&quot;: 10, &quot;bob&quot;: 20 }</code></pre><p>The <code>:</code> there is not map syntax. A bare <code>{ … }</code> is always
+<span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> headed <span class="tok-op">←</span> [<span class="tok-nu">0</span>, <span class="tok-kw">spread</span> a, <span class="tok-nu">99</span>]</code></pre><p>Key methods: <code>longitudo</code>, <code>accipe</code>, <code>appende</code>, <code>summa</code>, <code>primus</code>, <code>novissimus</code>.</p><h3 id="tabula">Tabula — key-value map<a class="anchor" href="#tabula">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alice"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"bob"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> }</code></pre><p>The <code>:</code> there is not map syntax. A bare <code>{ … }</code> is always
 <a href="#inline-json">inline JSON</a> — a compile-time <code class="typ">json</code> document whose keys are
-quoted strings separated by <code>:</code>. Declaring the binding as a <code class="typ">tabula</code> ascribes
+quoted strings separated by <code>:</code>. Declaring the binding as a <code class="typ">map</code> ascribes
 that document to a map type, which lowers it to a real constant map.</p><p>Faber's own key-value shape uses <code>=</code>, and it is only available on a named
 type: <code>Point { x = 10 }</code>. There is no anonymous <code>{ key = expr }</code> object —
 writing one is a parse error, not a second spelling of the line above.</p><p>For a map you build up rather than declare whole, start from <code>vacua</code> and
-assign by key:</p><pre class="faber-code"><code class="lang-faber">main {
-    var map&lt;string, int&gt; puncta ← empty
-    puncta[&quot;alpha&quot;] ← 1
-    puncta[&quot;beta&quot;] ← 2
+assign by key:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
+    <span class="tok-kw">var</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> empty
+    puncta[<span class="tok-st">"alpha"</span>] <span class="tok-op">←</span> <span class="tok-nu">1</span>
+    puncta[<span class="tok-st">"beta"</span>] <span class="tok-op">←</span> <span class="tok-nu">2</span>
     print puncta.length()
-}</code></pre><h3 id="tensor">Tensor — dense fixed-shape buffer</h3><pre class="faber-code"><code class="lang-faber">const tensor&lt;f32, []&gt; scalar ← empty
+}</code></pre><h3 id="tensor">Tensor — dense fixed-shape buffer<a class="anchor" href="#tensor">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> scalar <span class="tok-op">←</span> empty
 
-const tensor&lt;int, [4]&gt; row ← [1, 2, 3, 4] ↦ tensor&lt;int, [4]&gt;
+<span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> row <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>] ↦ tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
 
-const int ∪ null first ← row[0]</code></pre><p>Tensor sugar (numeric-heavy code):</p><pre class="faber-code"><code class="lang-faber">const tensor&lt;f32, []&gt; seed ← empty
+<span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> first <span class="tok-op">←</span> row[<span class="tok-nu">0</span>]</code></pre><p>Tensor sugar (numeric-heavy code):</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> empty
 
-const tensor&lt;f32, [4]&gt; lanes ← seed.from_flat([1.0, 2.0, 3.0, 4.0], [4])</code></pre><p>Key methods: <code>forma</code>, <code>accipe</code>, <code>ponde</code>, <code>crea</code>, <code>structa</code>, <code>strue</code>, plus
+<span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> lanes <span class="tok-op">←</span> seed.from_flat([<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>], [<span class="tok-nu">4</span>])</code></pre><p>Key methods: <code>forma</code>, <code>accipe</code>, <code>ponde</code>, <code>crea</code>, <code>structa</code>, <code>strue</code>, plus
 elementwise arithmetic, matrix multiplication (<code>multiplicatio</code>), and
-reductions (<code>summa</code>, <code>productum</code>).</p><h3 id="sparsa">Sparsa — sparse fixed-shape buffer</h3><pre class="faber-code"><code class="lang-faber">const sparsa&lt;f32, [2, 3]&gt; sparse ← empty
+reductions (<code>summa</code>, <code>productum</code>).</p><h3 id="sparsa">Sparsa — sparse fixed-shape buffer<a class="anchor" href="#sparsa">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> sparsa<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> sparse <span class="tok-op">←</span> empty
 
-main {
-    sparse.set([0, 1], 4.0)
-    sparse.set([1, 2], 9.0)
+<span class="tok-kw">main</span> {
+    sparse.<span class="tok-kw">set</span>([<span class="tok-nu">0</span>, <span class="tok-nu">1</span>], <span class="tok-nu">4.0</span>)
+    sparse.<span class="tok-kw">set</span>([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], <span class="tok-nu">9.0</span>)
 
-    # accipe returns the stored value, here 4.0
-    print sparse.get([0, 1])
-    # count of stored entries
+<span class="tok-co">    # accipe returns the stored value, here 4.0</span>
+    print sparse.get([<span class="tok-nu">0</span>, <span class="tok-nu">1</span>])
+<span class="tok-co">    # count of stored entries</span>
     print sparse.nonzero_count()
-}</code></pre><p>Conversion between dense and sparse:</p><pre class="faber-code"><code class="lang-faber">const tensor&lt;f32, [2, 2]&gt; dense ← [[1.0, 0.0], [0.0, 2.0]] ↦ tensor&lt;f32, [2, 2]&gt;
+}</code></pre><p>Conversion between dense and sparse:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> dense <span class="tok-op">←</span> [[<span class="tok-nu">1.0</span>, <span class="tok-nu">0.0</span>], [<span class="tok-nu">0.0</span>, <span class="tok-nu">2.0</span>]] ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
 
-const sparsa&lt;f32, [2, 2]&gt; sparse ← dense ↦ sparsa&lt;f32, [2, 2]&gt;
+<span class="tok-kw">const</span> sparsa<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> sparse <span class="tok-op">←</span> dense ↦ sparsa<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
 
-const tensor&lt;f32, [2, 2]&gt; roundtrip ← sparse ↦ tensor&lt;f32, [2, 2]&gt;</code></pre><h3 id="cursors">Cursors — lazy streams</h3><p><code>cursor&lt;T&gt;</code> is a lazy stream type. Created from collection iterators,
-tuus views, or generator functions. Consumed via <code>itera ex</code>:</p><pre class="faber-code"><code class="lang-faber">const list&lt;int, 3&gt; items ← [1, 2, 3]
+<span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> roundtrip <span class="tok-op">←</span> sparse ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span></code></pre><h3 id="cursors">Cursors — lazy streams<a class="anchor" href="#cursors">#</a></h3><p><code>cursor&lt;T&gt;</code> is a lazy stream type. Created from collection iterators,
+tuus views, or generator functions. Consumed via <code>itera ex</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> items <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
 
-main {
-    for from items const item {
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">for</span> <span class="tok-kw">from</span> items <span class="tok-kw">const</span> item {
         print item
     }
 }</code></pre><p>Generator <em>functions</em> declare their stream posture in the signature slot:
 <code>fiunt</code> is a synchronous stream and <code>fient</code> an asynchronous stream; the body
-yields values with <code>cede</code> (see <a href="/en-US/language/functions.html#async-and-streams">Functions — async and streams</a>).</p><h3 id="intervallum">Intervallum — ranges</h3><pre class="faber-code"><code class="lang-faber">main {
-    # exclusive range: 0, 1, 2, 3, 4
-    for range 0‥5 const i {
+yields values with <code>cede</code> (see <a href="/en-US/language/functions.html#async-and-streams">Functions — async and streams</a>).</p><h3 id="intervallum">Intervallum — ranges<a class="anchor" href="#intervallum">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
+<span class="tok-co">    # exclusive range: 0, 1, 2, 3, 4</span>
+    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥<span class="tok-nu">5</span> <span class="tok-kw">const</span> i {
         print i
     }
-    # inclusive range: 0, 1, 2, 3, 4, 5
-    for range 0…5 const i {
+<span class="tok-co">    # inclusive range: 0, 1, 2, 3, 4, 5</span>
+    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">5</span> <span class="tok-kw">const</span> i {
         print i
     }
-}</code></pre><p><code>‥</code> is exclusive range endpoint; <code>…</code> is inclusive.</p><h2>String and template literals</h2><p>Faber uses delimiter semantics — each quote form means a different source
-shape. They are not interchangeable synonyms.</p><h3 id="literal-forms">Literal forms</h3><div class="table-scroll"><table><thead><tr><th>Form</th><th>Type</th><th>Role</th></tr></thead><tbody><tr><td><code>'…'</code></td><td><code>ascii</code></td><td>Fixed machine tokens; no <code>§</code>; no <code>(…)</code></td></tr><tr><td><code>&quot;…&quot;</code></td><td><code class="typ">textus</code></td><td>Short Unicode line strings; <code>(…)</code> renders</td></tr><tr><td><code>«…»</code></td><td><code class="typ">textus</code></td><td>Block/multiline Unicode; <code>(…)</code> renders</td></tr><tr><td><code></code> <code>…</code> <code></code></td><td><code>forma</code></td><td>Captured templates; <code>(…)</code> captures</td></tr><tr><td><code>{ … }</code></td><td><code class="typ">json</code></td><td>Compile-time JSON document</td></tr><tr><td>`</td><td>…</td><td>`</td><td><code class="typ">octeti</code></td><td>Compile-time hex bytes</td></tr><tr><td><code>[ … ]</code></td><td><code>lista&lt;T&gt;</code></td><td>Faber list literal</td></tr></tbody></table></div><h3 id="string-template-application">String-template application</h3><p>Faber formats text with string-template application: a <code>&quot;…&quot;</code> or <code>«…»</code>
-literal with <code>§</code> holes, then parenthesised arguments:</p><pre class="faber-code"><code class="lang-faber">fn greet(string nomen) → string {
-    return &quot;Salve, §!&quot;(nomen)
+}</code></pre><p><code>‥</code> is exclusive range endpoint; <code>…</code> is inclusive.</p><h2 id="string-and-template-literals">String and template literals<a class="anchor" href="#string-and-template-literals">#</a></h2><p>Faber uses delimiter semantics — each quote form means a different source
+shape. They are not interchangeable synonyms.</p><h3 id="literal-forms">Literal forms<a class="anchor" href="#literal-forms">#</a></h3><div class="table-scroll"><table><thead><tr><th>Form</th><th>Type</th><th>Role</th></tr></thead><tbody><tr><td><code>'…'</code></td><td><code>ascii</code></td><td>Fixed machine tokens; no <code>§</code>; no <code>(…)</code></td></tr><tr><td><code>&quot;…&quot;</code></td><td><code class="typ">string</code></td><td>Short Unicode line strings; <code>(…)</code> renders</td></tr><tr><td><code>«…»</code></td><td><code class="typ">string</code></td><td>Block/multiline Unicode; <code>(…)</code> renders</td></tr><tr><td><code></code> <code>…</code> <code></code></td><td><code>forma</code></td><td>Captured templates; <code>(…)</code> captures</td></tr><tr><td><code>{ … }</code></td><td><code class="typ">json</code></td><td>Compile-time JSON document</td></tr><tr><td>`</td><td>…</td><td>`</td><td><code class="typ">bytes</code></td><td>Compile-time hex bytes</td></tr><tr><td><code>[ … ]</code></td><td><code>lista&lt;T&gt;</code></td><td>Faber list literal</td></tr></tbody></table></div><h3 id="string-template-application">String-template application<a class="anchor" href="#string-template-application">#</a></h3><p>Faber formats text with string-template application: a <code>&quot;…&quot;</code> or <code>«…»</code>
+literal with <code>§</code> holes, then parenthesised arguments:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> greet(string nomen) <span class="tok-op">→</span> string {
+    <span class="tok-kw">return</span> <span class="tok-st">"Salve, §!"</span>(nomen)
 }
 
-const int pagina ← 3
+<span class="tok-kw">const</span> <span class="tok-kw">int</span> pagina <span class="tok-op">←</span> <span class="tok-nu">3</span>
 
-const int totum ← 10
+<span class="tok-kw">const</span> <span class="tok-kw">int</span> totum <span class="tok-op">←</span> <span class="tok-nu">10</span>
 
-const string code ← &quot;200&quot;
+<span class="tok-kw">const</span> string code <span class="tok-op">←</span> <span class="tok-st">"200"</span>
 
-const string label ← &quot;OK&quot;
+<span class="tok-kw">const</span> string label <span class="tok-op">←</span> <span class="tok-st">"OK"</span>
 
-const string msg ← &quot;Page § of §&quot;(pagina, totum)
+<span class="tok-kw">const</span> string msg <span class="tok-op">←</span> <span class="tok-st">"Page § of §"</span>(pagina, totum)
 
-const string block ← &quot;status: § (§)&quot;(code, label)</code></pre><p>Key rules:</p><ul><li><code>§</code> (U+00A7) is the template hole</li><li>Positional holes: <code>§0</code>, <code>§1</code>, … for explicit ordering</li><li>Trailing <code>!</code> selects display formatting: <code>&quot;Salve, §!&quot;(nomen)</code></li><li>The <code>(args)</code> suffix is template application, not a function call</li></ul><h3 id="block-strings">Block strings</h3><p>Multiline blocks use guillemets <code>«…»</code>:</p><pre class="faber-code"><code class="lang-faber">const string sql ← «
+<span class="tok-kw">const</span> string block <span class="tok-op">←</span> <span class="tok-st">"status: § (§)"</span>(code, label)</code></pre><p>Key rules:</p><ul><li><code>§</code> (U+00A7) is the template hole</li><li>Positional holes: <code>§0</code>, <code>§1</code>, … for explicit ordering</li><li>Trailing <code>!</code> selects display formatting: <code>&quot;Salve, §!&quot;(nomen)</code></li><li>The <code>(args)</code> suffix is template application, not a function call</li></ul><h3 id="block-strings">Block strings<a class="anchor" href="#block-strings">#</a></h3><p>Multiline blocks use guillemets <code>«…»</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> string sql <span class="tok-op">←</span> «
     select id, email
-    from accounts
+    <span class="tok-kw">from</span> accounts
 »</code></pre><p>Guillemets are the only block-string spelling since Radix v0.79.0 — the
-retired <code>&quot;&quot;&quot;</code> and <code>❝…❞</code> spellings fail as ordinary lex errors.</p><h3 id="captured-templates">Captured templates (forma)</h3><p>Backtick templates capture text and parameters without rendering.
-Safe for bound SQL/URL payloads:</p><pre class="faber-code"><code class="lang-faber">const int user_id ← 42
+retired <code>&quot;&quot;&quot;</code> and <code>❝…❞</code> spellings fail as ordinary lex errors.</p><h3 id="captured-templates">Captured templates (forma)<a class="anchor" href="#captured-templates">#</a></h3><p>Backtick templates capture text and parameters without rendering.
+Safe for bound SQL/URL payloads:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> <span class="tok-kw">int</span> user_id <span class="tok-op">←</span> <span class="tok-nu">42</span>
 
-const forma query ← `select * from users where id = §`(user_id)</code></pre><h3 id="inline-json">Inline JSON</h3><p>A bare <code>{ … }</code> is inline JSON: a compile-time <code class="typ">json</code> document, not an
+<span class="tok-kw">const</span> forma query <span class="tok-op">←</span> <span class="tok-st">`select * from users where id = §`</span>(user_id)</code></pre><h3 id="inline-json">Inline JSON<a class="anchor" href="#inline-json">#</a></h3><p>A bare <code>{ … }</code> is inline JSON: a compile-time <code class="typ">json</code> document, not an
 anonymous Faber object. Keys are quoted strings separated by <code>:</code>. Values are
 JSON constants only — no variable references, no Faber expressions. Ascribing
-one to a <a href="#tabula"><code class="typ">tabula</code></a> lowers it to a real constant map; <code>↦ valor</code>
-widens it to the dynamic carrier instead:</p><pre class="faber-code"><code class="lang-faber">const json empty ← {}
+one to a <a href="#tabula"><code class="typ">map</code></a> lowers it to a real constant map; <code>↦ valor</code>
+widens it to the dynamic carrier instead:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> json empty <span class="tok-op">←</span> {}
 
-const json user ← { &quot;name&quot;: &quot;Marcus&quot;, &quot;age&quot;: 30, &quot;active&quot;: true }
+<span class="tok-kw">const</span> json user <span class="tok-op">←</span> { <span class="tok-st">"name"</span><span class="tok-op">:</span> <span class="tok-st">"Marcus"</span>, <span class="tok-st">"age"</span><span class="tok-op">:</span> <span class="tok-nu">30</span>, <span class="tok-st">"active"</span><span class="tok-op">:</span> <span class="tok-kw">true</span> }
 
-const json nested ← { &quot;meta&quot;: { &quot;version&quot;: 1 }, &quot;tags&quot;: [&quot;alpha&quot;, &quot;beta&quot;] }</code></pre><p>For typed genus construction, use the type name and <code>=</code> field shape:</p><pre class="faber-code"><code class="lang-faber">class Point {
-    int x
-    int y
+<span class="tok-kw">const</span> json nested <span class="tok-op">←</span> { <span class="tok-st">"meta"</span><span class="tok-op">:</span> { <span class="tok-st">"version"</span><span class="tok-op">:</span> <span class="tok-nu">1</span> }, <span class="tok-st">"tags"</span><span class="tok-op">:</span> [<span class="tok-st">"alpha"</span>, <span class="tok-st">"beta"</span>] }</code></pre><p>For typed genus construction, use the type name and <code>=</code> field shape:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Point {
+    <span class="tok-kw">int</span> x
+    <span class="tok-kw">int</span> y
 }
 
-const Point p ← Point {x = 10, y = 20}</code></pre><h2>Nullability and optionality</h2><p>Faber distinguishes absence in a value from optional provision at a
-declaration site.</p><h3 id="nullable-values">Nullable values — T ∪ nihil</h3><p>Use <code>T ∪ nihil</code> when the value can be absent:</p><pre class="faber-code"><code class="lang-faber">fn find(string key) → int ∪ null {
-    return null
+<span class="tok-kw">const</span> Point p <span class="tok-op">←</span> Point {x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span>}</code></pre><h2 id="nullability-and-optionality">Nullability and optionality<a class="anchor" href="#nullability-and-optionality">#</a></h2><p>Faber distinguishes absence in a value from optional provision at a
+declaration site.</p><h3 id="nullable-values">Nullable values — T ∪ nihil<a class="anchor" href="#nullable-values">#</a></h3><p>Use <code>T ∪ nihil</code> when the value can be absent:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> find(string key) <span class="tok-op">→</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> {
+    <span class="tok-kw">return</span> <span class="tok-kw">null</span>
 }
 
-fn divide(int a, int b) → int ∪ null {
-    if b ≡ 0 then return null
-    return a / b
-}</code></pre><h3 id="optional-declaration-slots">Optional declaration slots — sponte</h3><p>Use <code>sponte</code> after the name when a parameter or field may be omitted
-by the caller or constructor:</p><pre class="faber-code"><code class="lang-faber">fn connect(string host, int port optional) → void {
+<span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> {
+    <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> then <span class="tok-kw">return</span> <span class="tok-kw">null</span>
+    <span class="tok-kw">return</span> a <span class="tok-op">/</span> b
+}</code></pre><h3 id="optional-declaration-slots">Optional declaration slots — sponte<a class="anchor" href="#optional-declaration-slots">#</a></h3><p>Use <code>sponte</code> after the name when a parameter or field may be omitted
+by the caller or constructor:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> connect(string host, <span class="tok-kw">int</span> port <span class="tok-kw">optional</span>) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
 }
 
-class User {
-    string email optional
-}</code></pre><p>Borrow markers can combine with optional parameters:</p><pre class="faber-code"><code class="lang-faber">fn process(ref int depth optional) → void {
-}</code></pre><h3 id="non-null-assertion">Non-null assertion — !</h3><p>Use <code>!.</code>, <code>![</code>, <code>!(</code> to assert a nullable value is not <code class="kw">nihil</code>:</p><pre class="faber-code"><code class="lang-faber">class Box {
-    int ∪ null val
+<span class="tok-kw">class</span> User {
+    string email <span class="tok-kw">optional</span>
+}</code></pre><p>Borrow markers can combine with optional parameters:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> process(<span class="tok-kw">ref</span> <span class="tok-kw">int</span> depth <span class="tok-kw">optional</span>) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+}</code></pre><h3 id="non-null-assertion">Non-null assertion — !<a class="anchor" href="#non-null-assertion">#</a></h3><p>Use <code>!.</code>, <code>![</code>, <code>!(</code> to assert a nullable value is not <code class="kw">null</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Box {
+    <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> val
 }
 
-const Box ∪ null maybe_name ← Box {val = 7}
+<span class="tok-kw">const</span> Box <span class="tok-op">∪</span> <span class="tok-kw">null</span> maybe_name <span class="tok-op">←</span> Box {val <span class="tok-op">=</span> <span class="tok-nu">7</span>}
 
-const int ∪ null name ← maybe_name!.val</code></pre><p>A non-null assertion on <code class="kw">nihil</code> aborts at runtime.</p><h3 id="nullish-coalescing">Nullish coalescing — vel</h3><pre class="faber-code"><code class="lang-faber">const string ∪ null provided ← null
+<span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> name <span class="tok-op">←</span> maybe_name<span class="tok-op">!.</span>val</code></pre><p>A non-null assertion on <code class="kw">null</code> aborts at runtime.</p><h3 id="nullish-coalescing">Nullish coalescing — vel<a class="anchor" href="#nullish-coalescing">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> string <span class="tok-op">∪</span> <span class="tok-kw">null</span> provided <span class="tok-op">←</span> <span class="tok-kw">null</span>
 
-const string name ← provided coalesce &quot;default&quot;</code></pre><h3 id="ignotum">ignotum</h3><p><code>ignotum</code> is the top-level unknown type for escape hatches and incomplete
-knowledge. It is not a nullability mechanism.</p><h2>Conversion and construction</h2><p>Two important conversion operators, one for runtime and one for compile-time:</p><pre class="faber-code"><code class="lang-faber"># runtime conversion
-const int parsed ← &quot;42&quot; ↦ int
-# static ascription
-const int count ← 7
+<span class="tok-kw">const</span> string name <span class="tok-op">←</span> provided coalesce <span class="tok-st">"default"</span></code></pre><h3 id="ignotum">ignotum<a class="anchor" href="#ignotum">#</a></h3><p><code>ignotum</code> is the top-level unknown type for escape hatches and incomplete
+knowledge. It is not a nullability mechanism.</p><h2 id="conversion-and-construction">Conversion and construction<a class="anchor" href="#conversion-and-construction">#</a></h2><p>Two important conversion operators, one for runtime and one for compile-time:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># runtime conversion</span>
+<span class="tok-kw">const</span> <span class="tok-kw">int</span> parsed <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ <span class="tok-kw">int</span>
+<span class="tok-co"># static ascription</span>
+<span class="tok-kw">const</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> <span class="tok-nu">7</span>
 
-const string text ← count ∷ string</code></pre><h3 id="runtime-conversion">Runtime conversion — ↦</h3><p>Use <code>↦</code> for runtime conversion, especially parsing or coercion that may
-fail. Supply inline recovery with <code>⇥</code>:</p><pre class="faber-code"><code class="lang-faber">const string input ← &quot;9&quot;
+<span class="tok-kw">const</span> string text <span class="tok-op">←</span> count ∷ string</code></pre><h3 id="runtime-conversion">Runtime conversion — ↦<a class="anchor" href="#runtime-conversion">#</a></h3><p>Use <code>↦</code> for runtime conversion, especially parsing or coercion that may
+fail. Supply inline recovery with <code>⇥</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> string input <span class="tok-op">←</span> <span class="tok-st">"9"</span>
 
-const int n ← &quot;42&quot; ↦ int
+<span class="tok-kw">const</span> <span class="tok-kw">int</span> n <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ <span class="tok-kw">int</span>
 
-const int safe ← input ↦ int ⇥ 0</code></pre><p>Type-directed materialization:</p><pre class="faber-code"><code class="lang-faber">const string path ← &quot;/etc/hosts&quot;
+<span class="tok-kw">const</span> <span class="tok-kw">int</span> safe <span class="tok-op">←</span> input ↦ <span class="tok-kw">int</span> ⇥ <span class="tok-nu">0</span></code></pre><p>Type-directed materialization:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> string path <span class="tok-op">←</span> <span class="tok-st">"/etc/hosts"</span>
 
-const vector&lt;f32, 4&gt; lanes ← [1.0, 2.0, 3.0, 4.0] ↦ vector&lt;f32, 4&gt;
+<span class="tok-kw">const</span> vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">4</span><span class="tok-op">&gt;</span> lanes <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>] ↦ vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">4</span><span class="tok-op">&gt;</span>
 
-const string body ← call 'solum:lege' (path) ↦ string</code></pre><h3 id="static-ascription">Static ascription — ∷</h3><p>Use <code>∷</code> for explicit static type ascription. It is postfix and
-target-type driven:</p><pre class="faber-code"><code class="lang-faber">const int count ← 7
+<span class="tok-kw">const</span> string body <span class="tok-op">←</span> <span class="tok-kw">call</span> <span class="tok-st">'solum:lege'</span> (path) ↦ string</code></pre><h3 id="static-ascription">Static ascription — ∷<a class="anchor" href="#static-ascription">#</a></h3><p>Use <code>∷</code> for explicit static type ascription. It is postfix and
+target-type driven:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> <span class="tok-nu">7</span>
 
-const int&lt;i32&gt; x ← 7 ∷ int&lt;i32&gt;
+<span class="tok-kw">const</span> <span class="tok-kw">int</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> x <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ <span class="tok-kw">int</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span>
 
-const string text ← count ∷ string</code></pre><h3 id="nullish-coalescing">Nullish coalescing — vel</h3><p>Use <code>vel</code> for nullish coalescing when a value is <code class="kw">nihil</code>:</p><pre class="faber-code"><code class="lang-faber">const string ∪ null provided_name ← null
+<span class="tok-kw">const</span> string text <span class="tok-op">←</span> count ∷ string</code></pre><h3 id="nullish-coalescing">Nullish coalescing — vel<a class="anchor" href="#nullish-coalescing">#</a></h3><p>Use <code>vel</code> for nullish coalescing when a value is <code class="kw">null</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> string <span class="tok-op">∪</span> <span class="tok-kw">null</span> provided_name <span class="tok-op">←</span> <span class="tok-kw">null</span>
 
-const string name ← provided_name coalesce &quot;default&quot;</code></pre></div></main><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div></footer></div></body></html>
+<span class="tok-kw">const</span> string name <span class="tok-op">←</span> provided_name coalesce <span class="tok-st">"default"</span></code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#data-types">Data types</a></li><li class="toc-3"><a href="#primitive-types">Primitive types</a></li><li class="toc-3"><a href="#sized-numeric-types">Sized numeric types</a></li><li class="toc-3"><a href="#nullable-types">Nullable types</a></li><li class="toc-3"><a href="#type-aliases">Type aliases</a></li><li class="toc-3"><a href="#generics">Generics</a></li><li class="toc-3"><a href="#collections">Collections</a></li><li class="toc-3"><a href="#tensor-types">Tensor types</a></li><li class="toc-3"><a href="#gpu-core-types">GPU core types</a></li><li class="toc-3"><a href="#borrow-markers">Borrow markers on types</a></li><li class="toc-3"><a href="#comparison-policy">Comparison policy</a></li><li class="toc-2"><a href="#variables-and-binding">Variables and binding</a></li><li class="toc-3"><a href="#fixum-immutable-binding">fixum — immutable binding</a></li><li class="toc-3"><a href="#varia-mutable-binding">varia — mutable binding</a></li><li class="toc-3"><a href="#sit-inferred-immutable-sugar">sit — inferred immutable sugar</a></li><li class="toc-3"><a href="#runtime-binding-vs-structural-definition">Runtime binding vs structural definition</a></li><li class="toc-3"><a href="#ex-field-extraction">Ex field extraction</a></li><li class="toc-3"><a href="#postfix-increment-and-decrement">Mutable numeric updates</a></li><li class="toc-2"><a href="#collections-2">Collections</a></li><li class="toc-3"><a href="#lista">Lista — ordered dynamic collection</a></li><li class="toc-3"><a href="#tabula">Tabula — key-value map</a></li><li class="toc-3"><a href="#tensor">Tensor — dense fixed-shape buffer</a></li><li class="toc-3"><a href="#sparsa">Sparsa — sparse fixed-shape buffer</a></li><li class="toc-3"><a href="#cursors">Cursors — lazy streams</a></li><li class="toc-3"><a href="#intervallum">Intervallum — ranges</a></li><li class="toc-2"><a href="#string-and-template-literals">String and template literals</a></li><li class="toc-3"><a href="#literal-forms">Literal forms</a></li><li class="toc-3"><a href="#string-template-application">String-template application</a></li><li class="toc-3"><a href="#block-strings">Block strings</a></li><li class="toc-3"><a href="#captured-templates">Captured templates (forma)</a></li><li class="toc-3"><a href="#inline-json">Inline JSON</a></li><li class="toc-2"><a href="#nullability-and-optionality">Nullability and optionality</a></li><li class="toc-3"><a href="#nullable-values">Nullable values — T ∪ nihil</a></li><li class="toc-3"><a href="#optional-declaration-slots">Optional declaration slots — sponte</a></li><li class="toc-3"><a href="#non-null-assertion">Non-null assertion — !</a></li><li class="toc-3"><a href="#nullish-coalescing">Nullish coalescing — vel</a></li><li class="toc-3"><a href="#ignotum">ignotum</a></li><li class="toc-2"><a href="#conversion-and-construction">Conversion and construction</a></li><li class="toc-3"><a href="#runtime-conversion">Runtime conversion — ↦</a></li><li class="toc-3"><a href="#static-ascription">Static ascription — ∷</a></li><li class="toc-3"><a href="#nullish-coalescing">Nullish coalescing — vel</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div></footer></div></body></html>
