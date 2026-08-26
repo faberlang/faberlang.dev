@@ -47,9 +47,9 @@ faber explain SEM001
 
 ## Generated corpus frontmatter reference
 
-- Distinct frontmatter terms: 220
-- Canonical term pages: 193
-- Alias spellings: 115
+- Distinct frontmatter terms: 225
+- Canonical term pages: 197
+- Alias spellings: 120
 - Categories: 48
 - Source: radix/corpus/**/*.fab TOML frontmatter
 
@@ -60,7 +60,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - ad (3) — https://faberlang.dev/en-US/corpus/category/ad.html
 - aliasing (1) — https://faberlang.dev/en-US/corpus/category/aliasing.html
 - application (1) — https://faberlang.dev/en-US/corpus/category/application.html
-- arithmetic (8) — https://faberlang.dev/en-US/corpus/category/arithmetic.html
+- arithmetic (10) — https://faberlang.dev/en-US/corpus/category/arithmetic.html
 - assignment (2) — https://faberlang.dev/en-US/corpus/category/assignment.html
 - async (11) — https://faberlang.dev/en-US/corpus/category/async.html
 - availability (1) — https://faberlang.dev/en-US/corpus/category/availability.html
@@ -86,8 +86,8 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - integration (1) — https://faberlang.dev/en-US/corpus/category/integration.html
 - io (2) — https://faberlang.dev/en-US/corpus/category/io.html
 - iteration (2) — https://faberlang.dev/en-US/corpus/category/iteration.html
-- lane (1) — https://faberlang.dev/en-US/corpus/category/lane.html
-- literal (6) — https://faberlang.dev/en-US/corpus/category/literal.html
+- lane (2) — https://faberlang.dev/en-US/corpus/category/lane.html
+- literal (7) — https://faberlang.dev/en-US/corpus/category/literal.html
 - logic (6) — https://faberlang.dev/en-US/corpus/category/logic.html
 - metadata (1) — https://faberlang.dev/en-US/corpus/category/metadata.html
 - modifier (3) — https://faberlang.dev/en-US/corpus/category/modifier.html
@@ -108,16 +108,16 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 
 ### Kinds
 
-- annotation: 9
+- annotation: 10
 - concept: 17
 - conversio: 5
 - existing-home: 6
 - keyword: 119
-- literal: 1
+- literal: 2
 - method: 2
 - modifier: 1
 - operator: 2
-- operator-group: 25
+- operator-group: 27
 - pointer: 1
 - type: 5
 
@@ -255,16 +255,16 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/ascii.html
 - Source: radix/corpus/literalia/ascii.fab
 
-#### `async solum leget`
+#### `async fs leget`
 
-- Canonical: `async solum leget`
+- Canonical: `async fs leget`
 - Kind: concept
 - Category: ad
-- Summary: Async solum.read_file_async<T> uses the same solum:lege route as sync solum.read_file<T>.
-- Syntax: `solum.read_file_async<textus>(via)`
+- Summary: Async fs.read_file_async<T> uses the same fs:lege route as sync fs.read_file<T>.
+- Syntax: `fs.read_file_async<textus>(via)`
 - Aliases: none
-- Related: `ad`, `solum`, `futura`, `sermo`
-- Page: https://faberlang.dev/en-US/corpus/async%20solum%20leget.html
+- Related: `ad`, `fs`, `futura`, `sermo`
+- Page: https://faberlang.dev/en-US/corpus/async%20fs%20leget.html
 - Source: radix/corpus/ad/async-solum-leget.fab
 
 #### `async tempus dormiet`
@@ -795,6 +795,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/flaky.html
 - Source: radix/corpus/fragilis/fragilis.fab
 
+#### `fs lege carpe hauri`
+
+- Canonical: `fs lege carpe hauri`
+- Kind: concept
+- Category: ad
+- Summary: fs file reads are shape-specific: lege<textus>, carpe (lista<textus>), hauri (octeti).
+- Syntax: `fs.read_file<textus>(via) | call 'fs:carpe' (via) ↦ lista<textus> | call 'fs:hauri' (via) ↦ octeti`
+- Aliases: none
+- Related: `ad`, `fs`, `lege`, `carpe`, `hauri`
+- Page: https://faberlang.dev/en-US/corpus/fs%20lege%20carpe%20hauri.html
+- Source: radix/corpus/ad/solum-lege-generic.fab
+
 #### `functio`
 
 - Canonical: `functio`
@@ -957,7 +969,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: keyword
 - Category: package
 - Summary: Canonical braced import record with private binding inferred from the path.
-- Syntax: `importa { ex = "norma:chorda" }`
+- Syntax: `importa { ex = "norma:text" }`
 - Aliases: `import`
 - Related: `ex`, `privata`, `annotation-sugar`
 - Page: https://faberlang.dev/en-US/corpus/import.html
@@ -998,6 +1010,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `functio`, `importa`
 - Page: https://faberlang.dev/en-US/corpus/main.html
 - Source: radix/corpus/incipit/incipit.fab
+
+#### `infinity`
+
+- Canonical: `infinity`
+- Kind: literal
+- Category: literal
+- Summary: Non-finite floating-point literals with contextual width, unary negation, and fail-closed integer contexts.
+- Syntax: `∞ | -∞ | nan`
+- Aliases: none
+- Related: `fractus`, `numerus`, `nan`
+- Page: https://faberlang.dev/en-US/corpus/infinity.html
+- Source: radix/corpus/literalia/infinity.fab
 
 #### `instans`
 
@@ -1358,6 +1382,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `nondum`, `annotation-sugar`
 - Page: https://faberlang.dev/en-US/corpus/unstable.html
 - Source: radix/corpus/annotation-sugar/nondum-braced.fab
+
+#### `nucleum`
+
+- Canonical: `nucleum`
+- Kind: annotation
+- Category: lane
+- Summary: Sugar @ nucleum fragment modifier marks a fragment-shader entry on the nucleum surface.
+- Syntax: `@ nucleum fragment`
+- Aliases: none
+- Related: `nucleum`, `annotation-sugar`
+- Page: https://faberlang.dev/en-US/corpus/kernel.html
+- Source: radix/corpus/annotation-sugar/nucleum-fragment.fab
 
 #### `numerus`
 
@@ -1838,18 +1874,6 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `omitte`, `futurum`
 - Page: https://faberlang.dev/en-US/corpus/only.html
 - Source: radix/corpus/solum/solum.fab
-
-#### `solum lege carpe hauri`
-
-- Canonical: `solum lege carpe hauri`
-- Kind: concept
-- Category: ad
-- Summary: solum file reads are shape-specific: lege<textus>, carpe (lista<textus>), hauri (octeti).
-- Syntax: `solum.read_file<textus>(via) | call 'solum:carpe' (via) ↦ lista<textus> | call 'solum:hauri' (via) ↦ octeti`
-- Aliases: none
-- Related: `ad`, `solum`, `lege`, `carpe`, `hauri`
-- Page: https://faberlang.dev/en-US/corpus/solum%20lege%20carpe%20hauri.html
-- Source: radix/corpus/ad/solum-lege-generic.fab
 
 #### `solum_in`
 
@@ -2391,16 +2415,16 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/%E2%88%AA.html
 - Source: radix/corpus/unio/unio.fab
 
-#### `≈`
+#### `≅`
 
-- Canonical: `≈`
+- Canonical: `≅`
 - Kind: operator
 - Category: comparison
-- Summary: Numeric value equality after promotion join — not fuzzy float.
-- Syntax: `<expression> ≈ <expression> | <expression> ≉ <expression>`
+- Summary: Numeric value equality (≅) after promotion join — exact, not fuzzy float.
+- Syntax: `<expression> ≅ <expression> | <expression> ≇ <expression>`
 - Aliases: none
 - Related: `≡`, `≠`, `↦`, `adfirma`
-- Page: https://faberlang.dev/en-US/corpus/%E2%89%88.html
+- Page: https://faberlang.dev/en-US/corpus/%E2%89%85.html
 - Source: radix/corpus/operatores/numeric-value-eq.fab
 
 #### `≡`
@@ -2427,6 +2451,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/%E2%8A%97.html
 - Source: radix/corpus/tensor/glyph-outer.fab
 
+#### `⊘`
+
+- Canonical: `⊘`
+- Kind: operator-group
+- Category: arithmetic
+- Summary: Glyph Hadamard divide: identical-shape elementwise division on tensors.
+- Syntax: `<expression> ⊘ <expression>`
+- Aliases: none
+- Related: `tensor`, `arithmetic`
+- Page: https://faberlang.dev/en-US/corpus/%E2%8A%98.html
+- Source: radix/corpus/tensor/glyph-hadamard-divide.fab
+
 #### `⊙`
 
 - Canonical: `⊙`
@@ -2438,6 +2474,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `tensor`, `vector`, `matrix`
 - Page: https://faberlang.dev/en-US/corpus/%E2%8A%99.html
 - Source: radix/corpus/tensor/glyph-elementwise.fab
+
+#### `⤒`
+
+- Canonical: `⤒`
+- Kind: operator-group
+- Category: arithmetic
+- Summary: Maximum/minimum infix arrows on scalars, lists, and tensors, including chained clamp syntax.
+- Syntax: `<expression> ⤒ <expression> | <expression> ⤓ <expression>`
+- Aliases: none
+- Related: `⤒`, `⤓`, `maximus`, `minimus`, `lista`, `tensor`
+- Page: https://faberlang.dev/en-US/corpus/%E2%A4%92.html
+- Source: radix/corpus/summa/minmax-infix.fab
 
 ### Alias map
 
@@ -2459,6 +2507,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `await_const` → `figendum`
 - `await_var` → `variandum`
 - `backends` → `targets`
+- `block-body closure` → `clausura`
 - `break` → `rumpe`
 - `bytes` → `octeti`
 - `case` → `casu`
@@ -2481,8 +2530,10 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `entry` → `incipit`
 - `enum` → `ordo`
 - `ergo` → `ergo`
+- `error-channel closure` → `clausura`
 - `extends` → `sub`
 - `faber.toml` → `manifest`
+- `fac-block closure` → `clausura`
 - `float` → `fractus`
 - `function` → `functio`
 - `generator` → `fiunt`
@@ -2500,6 +2551,8 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `iterate` → `itera`
 - `json` → `valor`
 - `lambda` → `clausa`
+- `legacy clausura head` → `clausura`
+- `legacy libera` → `libera`
 - `let` → `varia`
 - `libera` → `libera`
 - `list` → `lista`

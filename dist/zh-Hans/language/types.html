@@ -1,218 +1,218 @@
 <!DOCTYPE html>
-<html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber 拥有静态、类型优先的类型系统。每个声明都把类型放在名称之前：textus nomen，而不是 nomen: textus。类型系统涵盖标量原语、泛型集合、定宽数值、张量，以及面向 GPU 的寄存器类型。"><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Types and values — Faber"><meta property="og:description" content="Faber 拥有静态、类型优先的类型系统。每个声明都把类型放在名称之前：textus nomen，而不是 nomen: textus。类型系统涵盖标量原语、泛型集合、定宽数值、张量，以及面向 GPU 的寄存器类型。"><meta property="og:url" content="https://faberlang.dev/zh-Hans/language/types.html"><meta property="og:locale" content="zh_CN"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/zh-Hans/language/types.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Types and values — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">渲染</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">zh-Hans</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/zh-Hans/start/install.html">安装</a></nav></div></div><div class="page"><aside><a class="brand" href="/zh-Hans/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">语言文档</span></span></a><ul class="nav"><li><a href="/zh-Hans/">Home</a></li><li><a href="/zh-Hans/start/install.html">安装</a></li><li><a href="/zh-Hans/localization.html">Localization</a></li><li><a href="/zh-Hans/cheatsheet/">Cheat sheet</a></li><li><a href="/zh-Hans/releases/">发行版</a></li><li><a href="/zh-Hans/open-source.html">Open source</a></li><li><a href="/zh-Hans/examples/">示例</a></li><li><a href="/zh-Hans/targets/">Target lanes</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/zh-Hans/language/" class="active">The language</a></li><li><a href="/zh-Hans/language/types.html">Types and values</a></li><li><a href="/zh-Hans/language/functions.html">Functions and flow</a></li><li><a href="/zh-Hans/language/errors.html">Errors and testing</a></li><li><a href="/zh-Hans/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/zh-Hans/language/reader-locales.html">Reader locales</a></li><li><a href="/zh-Hans/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/zh-Hans/toolchain/">Toolchain</a></li><li><a href="/zh-Hans/toolchain/cli.html">The faber CLI</a></li><li><a href="/zh-Hans/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/zh-Hans/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/zh-Hans/targets/">Target lanes</a></li><li><a href="/zh-Hans/toolchain/packages.html">Packages with Cista</a></li><li><a href="/zh-Hans/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/zh-Hans/libraries/">Libraries</a></li><li><a href="/zh-Hans/libraries/norma.html">Norma — stdlib</a></li><li><a href="/zh-Hans/libraries/triga.html">Triga — graphics</a></li><li><a href="/zh-Hans/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/zh-Hans/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/zh-Hans/reference/">Reference</a></li><li><a href="/zh-Hans/reference/grammar.html">Grammar</a></li><li><a href="/zh-Hans/corpus/">Corpus index</a></li><li><a href="/zh-Hans/reference/design.html">Design notes</a></li><li><a href="/zh-Hans/open-source.html">Open source</a></li></ul><div class="side-h">面向智能体</div><ul class="nav nav-compact"><li><a href="/llms.txt">智能体索引</a></li><li><a href="/agents/index.md">智能体指南</a></li><li><a href="/.well-known/agent-skills/index.json">智能体技能</a></li><li><a href="/llms-full.txt">完整参考</a></li></ul><div class="side-h">Release 1.6.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/zh-Hans/releases/">全部发行版</a></li><li><a href="/zh-Hans/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">范式</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">类型</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">目标</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">许可证</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Types and values</h1><div class="content"><h2 id="data-types">Data types<a class="anchor" href="#data-types">#</a></h2><p>Faber 拥有静态、类型优先的类型系统。每个声明都把类型放在名称之前：<code>textus nomen</code>，而不是 <code>nomen: textus</code>。类型系统涵盖标量原语、泛型集合、定宽数值、张量，以及面向 GPU 的寄存器类型。</p><h3 id="primitive-types">原语类型<a class="anchor" href="#primitive-types">#</a></h3><div class="table-scroll"><table><thead><tr><th>类型</th><th>作用</th><th>示例字面量</th></tr></thead><tbody><tr><td><code class="typ">文本</code></td><td>Unicode 字符串</td><td><code>&quot;Salve, munde&quot;</code></td></tr><tr><td><code>ascii</code></td><td>固定机器令牌</td><td><code>'solum:lege'</code></td></tr><tr><td><code class="typ">整数</code></td><td>有符号整数（默认 i64）</td><td><code>42</code></td></tr><tr><td><code class="typ">小数</code></td><td>浮点数（默认 f64）</td><td><code>3.14</code></td></tr><tr><td><code class="typ">布尔</code></td><td>布尔值</td><td><code class="kw">真</code>, <code class="kw">假</code></td></tr><tr><td><code class="typ">无值</code></td><td>单元类型 / 无值</td><td>—</td></tr><tr><td><code class="kw">空</code></td><td>空值 / 缺失</td><td><code class="kw">空</code></td></tr><tr><td><code class="typ">时刻</code></td><td>时长 / 时间点</td><td>—</td></tr><tr><td><code class="typ">json</code></td><td>编译期 JSON 值</td><td><code>{ &quot;key&quot;: &quot;value&quot; }</code></td></tr><tr><td><code class="typ">字节</code></td><td>十六进制字节序列</td><td>\|00ff\|</td></tr></tbody></table></div><h3 id="sized-numeric-types">定宽数值类型<a class="anchor" href="#sized-numeric-types">#</a></h3><p><code class="typ">整数</code> 和 <code class="typ">小数</code> 拥有默认位宽（i64 和 f64）以及显式位宽形式：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">整数</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ <span class="tok-kw">整数</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span>
+<html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Faber 拥有静态、类型优先的类型系统。每个声明都把类型放在名称之前：textus nomen，而不是 nomen: textus。类型系统涵盖标量原语、泛型集合、定宽数值、张量，以及面向 GPU 的寄存器类型。"><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Types and values — Faber"><meta property="og:description" content="Faber 拥有静态、类型优先的类型系统。每个声明都把类型放在名称之前：textus nomen，而不是 nomen: textus。类型系统涵盖标量原语、泛型集合、定宽数值、张量，以及面向 GPU 的寄存器类型。"><meta property="og:url" content="https://faberlang.dev/zh-Hans/language/types.html"><meta property="og:locale" content="zh_CN"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/zh-Hans/language/types.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Types and values — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs"><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">zh-Hans</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/zh-Hans/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/zh-Hans/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><ul class="nav"><li><a href="/zh-Hans/">Home</a></li><li><a href="/zh-Hans/start/install.html">Install</a></li><li><a href="/zh-Hans/localization.html">Localization</a></li><li><a href="/zh-Hans/cheatsheet/">Cheat sheet</a></li><li><a href="/zh-Hans/releases/">Releases</a></li><li><a href="/zh-Hans/open-source.html">Open source</a></li><li><a href="/zh-Hans/examples/">Examples</a></li><li><a href="/zh-Hans/targets/">Target lanes</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/zh-Hans/language/" class="active">The language</a></li><li><a href="/zh-Hans/language/types.html">Types and values</a></li><li><a href="/zh-Hans/language/functions.html">Functions and flow</a></li><li><a href="/zh-Hans/language/errors.html">Errors and testing</a></li><li><a href="/zh-Hans/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/zh-Hans/language/reader-locales.html">Reader locales</a></li><li><a href="/zh-Hans/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/zh-Hans/toolchain/">Toolchain</a></li><li><a href="/zh-Hans/toolchain/cli.html">The faber CLI</a></li><li><a href="/zh-Hans/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/zh-Hans/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/zh-Hans/targets/">Target lanes</a></li><li><a href="/zh-Hans/toolchain/packages.html">Packages with Cista</a></li><li><a href="/zh-Hans/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/zh-Hans/libraries/">Libraries</a></li><li><a href="/zh-Hans/libraries/norma.html">Norma — stdlib</a></li><li><a href="/zh-Hans/libraries/triga.html">Triga — graphics</a></li><li><a href="/zh-Hans/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/zh-Hans/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/zh-Hans/reference/">Reference</a></li><li><a href="/zh-Hans/reference/grammar.html">Grammar</a></li><li><a href="/zh-Hans/corpus/">Corpus index</a></li><li><a href="/zh-Hans/reference/design.html">Design notes</a></li><li><a href="/zh-Hans/open-source.html">Open source</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.6.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/zh-Hans/releases/">All releases</a></li><li><a href="/zh-Hans/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main><h1>Types and values</h1><div class="content"><h2>Data types</h2><p>Faber 拥有静态、类型优先的类型系统。每个声明都把类型放在名称之前：<code>textus nomen</code>，而不是 <code>nomen: textus</code>。类型系统涵盖标量原语、泛型集合、定宽数值、张量，以及面向 GPU 的寄存器类型。</p><h3 id="primitive-types">原语类型</h3><div class="table-scroll"><table><thead><tr><th>类型</th><th>作用</th><th>示例字面量</th></tr></thead><tbody><tr><td><code class="typ">textus</code></td><td>Unicode 字符串</td><td><code>&quot;Salve, munde&quot;</code></td></tr><tr><td><code>ascii</code></td><td>固定机器令牌</td><td><code>'solum:lege'</code></td></tr><tr><td><code class="typ">numerus</code></td><td>有符号整数（默认 i64）</td><td><code>42</code></td></tr><tr><td><code class="typ">fractus</code></td><td>浮点数（默认 f64）</td><td><code>3.14</code></td></tr><tr><td><code class="typ">bivalens</code></td><td>布尔值</td><td><code class="kw">verum</code>, <code class="kw">falsum</code></td></tr><tr><td><code class="typ">vacuum</code></td><td>单元类型 / 无值</td><td>—</td></tr><tr><td><code class="kw">nihil</code></td><td>空值 / 缺失</td><td><code class="kw">nihil</code></td></tr><tr><td><code class="typ">instans</code></td><td>时长 / 时间点</td><td>—</td></tr><tr><td><code class="typ">json</code></td><td>编译期 JSON 值</td><td><code>{ &quot;key&quot;: &quot;value&quot; }</code></td></tr><tr><td><code class="typ">octeti</code></td><td>十六进制字节序列</td><td>\|00ff\|</td></tr></tbody></table></div><h3 id="sized-numeric-types">定宽数值类型</h3><p><code class="typ">numerus</code> 和 <code class="typ">fractus</code> 拥有默认位宽（i64 和 f64）以及显式位宽形式：</p><pre class="faber-code"><code class="lang-faber">常量 整数&lt;i32&gt; narrow ← 7 ∷ 整数&lt;i32&gt;
 
-<span class="tok-kw">常量</span> <span class="tok-kw">整数</span><span class="tok-op">&lt;</span>u64<span class="tok-op">&gt;</span> wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ <span class="tok-kw">整数</span><span class="tok-op">&lt;</span>u64<span class="tok-op">&gt;</span>
+常量 整数&lt;u64&gt; wide ← 255 ∷ 整数&lt;u64&gt;
 
-<span class="tok-kw">常量</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32</code></pre><p>类型位置支持位宽简写：<code>i8</code> … <code>u64</code>、<code>f16</code>、<code>f32</code>、<code>f64</code> 等价于 <code>numerus&lt;W&gt;</code> / <code>fractus&lt;W&gt;</code>。</p><h3 id="nullable-types">可空类型<a class="anchor" href="#nullable-types">#</a></h3><p>可空值使用联合语法 <code>T ∪ nihil</code>：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函数</span> find(<span class="tok-kw">文本</span> key) <span class="tok-op">→</span> <span class="tok-kw">整数</span> <span class="tok-op">∪</span> <span class="tok-kw">空</span> {
-    <span class="tok-kw">返回</span> <span class="tok-kw">空</span>
+常量 f32 single ← 1.5 ∷ f32</code></pre><p>类型位置支持位宽简写：<code>i8</code> … <code>u64</code>、<code>f16</code>、<code>f32</code>、<code>f64</code> 等价于 <code>numerus&lt;W&gt;</code> / <code>fractus&lt;W&gt;</code>。</p><h3 id="nullable-types">可空类型</h3><p>可空值使用联合语法 <code>T ∪ nihil</code>：</p><pre class="faber-code"><code class="lang-faber">函数 find(文本 key) → 整数 ∪ 空 {
+    返回 空
 }
 
-<span class="tok-kw">函数</span> maybe() <span class="tok-op">→</span> <span class="tok-kw">文本</span> <span class="tok-op">∪</span> <span class="tok-kw">空</span> {
-    <span class="tok-kw">返回</span> <span class="tok-kw">空</span>
-}</code></pre><p>Faber 中没有 <code>T?</code> 或 <code>Option&lt;T&gt;</code> 语法。联合是显式的。</p><h3 id="type-aliases">类型别名<a class="anchor" href="#type-aliases">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">类型</span> UserId <span class="tok-op">=</span> <span class="tok-kw">整数</span></code></pre><h3 id="generics">泛型<a class="anchor" href="#generics">#</a></h3><p>函数、类型别名、<code class="kw">类</code> 和 <code>implendum</code> 接受使用 <code>&lt;T&gt;</code> 语法的类型参数：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函数</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T valor) <span class="tok-op">→</span> T {
-    <span class="tok-kw">返回</span> valor
+函数 maybe() → 文本 ∪ 空 {
+    返回 空
+}</code></pre><p>Faber 中没有 <code>T?</code> 或 <code>Option&lt;T&gt;</code> 语法。联合是显式的。</p><h3 id="type-aliases">类型别名</h3><pre class="faber-code"><code class="lang-faber">类型 UserId = 整数</code></pre><h3 id="generics">泛型</h3><p>函数、类型别名、<code class="kw">genus</code> 和 <code>implendum</code> 接受使用 <code>&lt;T&gt;</code> 语法的类型参数：</p><pre class="faber-code"><code class="lang-faber">函数 identitas&lt;T&gt;(T valor) → T {
+    返回 valor
 }
 
-<span class="tok-kw">函数</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">列表</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> <span class="tok-kw">空</span> {
-    <span class="tok-kw">返回</span> res.primus()
-}</code></pre><p>支持在调用处显式指定类型参数：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函数</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T valor) <span class="tok-op">→</span> T {
-    <span class="tok-kw">返回</span> valor
+函数 primum&lt;T&gt;(列表&lt;T&gt; res) → T ∪ 空 {
+    返回 res.primus()
+}</code></pre><p>支持在调用处显式指定类型参数：</p><pre class="faber-code"><code class="lang-faber">函数 identitas&lt;T&gt;(T valor) → T {
+    返回 valor
 }
 
-<span class="tok-kw">常量</span> <span class="tok-kw">整数</span> value <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)</code></pre><h3 id="collections">集合<a class="anchor" href="#collections">#</a></h3><div class="table-scroll"><table><thead><tr><th>类型</th><th>作用</th><th>简写</th></tr></thead><tbody><tr><td><code>lista&lt;T&gt;</code></td><td>有序动态集合</td><td><code>lf32</code>, <code>lu32</code></td></tr><tr><td><code>tabula&lt;K, V&gt;</code></td><td>键值映射</td><td>—</td></tr><tr><td><code>tensor&lt;T, Figura&gt;</code></td><td>稠密定形缓冲区</td><td><code>tf32[4]</code>, <code>ti64[2,3]</code></td></tr><tr><td><code>sparsa&lt;T, Figura&gt;</code></td><td>稀疏定形缓冲区</td><td><code>sf32[4]</code>, <code>si64[2,3]</code></td></tr><tr><td><code>intervallum</code></td><td>区间类型</td><td>—</td></tr><tr><td><code>copia&lt;T&gt;</code></td><td>无序集合</td><td>—</td></tr><tr><td><code>cursor&lt;T&gt;</code></td><td>惰性流</td><td>—</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span> nums <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+常量 整数 value ← identitas&lt;整数&gt;(7)</code></pre><h3 id="collections">集合</h3><div class="table-scroll"><table><thead><tr><th>类型</th><th>作用</th><th>简写</th></tr></thead><tbody><tr><td><code>lista&lt;T&gt;</code></td><td>有序动态集合</td><td><code>lf32</code>, <code>lu32</code></td></tr><tr><td><code>tabula&lt;K, V&gt;</code></td><td>键值映射</td><td>—</td></tr><tr><td><code>tensor&lt;T, Figura&gt;</code></td><td>稠密定形缓冲区</td><td><code>tf32[4]</code>, <code>ti64[2,3]</code></td></tr><tr><td><code>sparsa&lt;T, Figura&gt;</code></td><td>稀疏定形缓冲区</td><td><code>sf32[4]</code>, <code>si64[2,3]</code></td></tr><tr><td><code>intervallum</code></td><td>区间类型</td><td>—</td></tr><tr><td><code>copia&lt;T&gt;</code></td><td>无序集合</td><td>—</td></tr><tr><td><code>cursor&lt;T&gt;</code></td><td>惰性流</td><td>—</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber">常量 列表&lt;整数&gt; nums ← [1, 2, 3]
 
-<span class="tok-kw">常量</span> <span class="tok-kw">映射</span><span class="tok-op">&lt;</span><span class="tok-kw">文本</span>, <span class="tok-kw">整数</span><span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alice"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"bob"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> }</code></pre><h3 id="tensor-types">张量类型<a class="anchor" href="#tensor-types">#</a></h3><p><code>tensor&lt;T, Figura&gt;</code> 是稠密定形容器：</p><div class="table-scroll"><table><thead><tr><th>形式</th><th>含义</th></tr></thead><tbody><tr><td><code>tensor&lt;T, Figura&gt;</code></td><td>规范写法</td></tr><tr><td><code>tensor&lt;T, []&gt;</code></td><td>0 阶（标量容器）</td></tr><tr><td><code>tensor&lt;T, _&gt;</code></td><td>形状推断占位符</td></tr><tr><td><code>tensor&lt;T, [N]&gt;</code></td><td>1 阶向量</td></tr><tr><td><code>tensor&lt;T, [N, M]&gt;</code></td><td>2 阶矩阵</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">张量</span><span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> scalar <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+常量 映射&lt;文本, 整数&gt; scores ← { &quot;alice&quot;: 10, &quot;bob&quot;: 20 }</code></pre><h3 id="tensor-types">张量类型</h3><p><code>tensor&lt;T, Figura&gt;</code> 是稠密定形容器：</p><div class="table-scroll"><table><thead><tr><th>形式</th><th>含义</th></tr></thead><tbody><tr><td><code>tensor&lt;T, Figura&gt;</code></td><td>规范写法</td></tr><tr><td><code>tensor&lt;T, []&gt;</code></td><td>0 阶（标量容器）</td></tr><tr><td><code>tensor&lt;T, _&gt;</code></td><td>形状推断占位符</td></tr><tr><td><code>tensor&lt;T, [N]&gt;</code></td><td>1 阶向量</td></tr><tr><td><code>tensor&lt;T, [N, M]&gt;</code></td><td>2 阶矩阵</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber">常量 张量&lt;f32, []&gt; scalar ← 空集
 
-<span class="tok-kw">常量</span> <span class="tok-kw">张量</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span>, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> row <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>] ↦ <span class="tok-kw">张量</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span>, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
+常量 张量&lt;整数, [4]&gt; row ← [1, 2, 3, 4] ↦ 张量&lt;整数, [4]&gt;
 
-<span class="tok-kw">常量</span> <span class="tok-kw">整数</span> <span class="tok-op">∪</span> <span class="tok-kw">空</span> first <span class="tok-op">←</span> row[<span class="tok-nu">0</span>]</code></pre><h3 id="gpu-core-types">GPU 核心类型<a class="anchor" href="#gpu-core-types">#</a></h3><p>这些类型由系统通道识别，用于 GPU 和寄存器相关工作。缺乏硬件支持的包目标会拒绝它们：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函数</span> half(f16 x) <span class="tok-op">→</span> f16 {
-    <span class="tok-kw">返回</span> x
+常量 整数 ∪ 空 first ← row[0]</code></pre><h3 id="gpu-core-types">GPU 核心类型</h3><p>这些类型由系统通道识别，用于 GPU 和寄存器相关工作。缺乏硬件支持的包目标会拒绝它们：</p><pre class="faber-code"><code class="lang-faber">函数 half(f16 x) → f16 {
+    返回 x
 }
 
-<span class="tok-kw">函数</span> add(<span class="tok-kw">矩阵</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> a, <span class="tok-kw">矩阵</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> b) <span class="tok-op">→</span> <span class="tok-kw">矩阵</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> {
-    <span class="tok-kw">返回</span> a.addita(b)
+函数 add(矩阵&lt;f32, [2, 2]&gt; a, 矩阵&lt;f32, [2, 2]&gt; b) → 矩阵&lt;f32, [2, 2]&gt; {
+    返回 a.addita(b)
 }
 
-<span class="tok-kw">函数</span> swap(<span class="tok-kw">原子</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> cell, <span class="tok-kw">整数</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> value) <span class="tok-op">→</span> <span class="tok-kw">整数</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> {
-    <span class="tok-kw">返回</span> cell.exchange(value)
-}</code></pre><h3 id="borrow-markers">类型上的借用标记<a class="anchor" href="#borrow-markers">#</a></h3><p>借用标记（<code class="kw">借自</code>、<code class="kw">传入</code>、<code class="kw">取自</code>）可以出现在参数位置的类型上，用于表示值的传递方式：</p><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-co"># shared borrow — caller retains ownership</span>
-<span class="tok-kw">functio</span> imprime(<span class="tok-kw">de</span> <span class="tok-kw">textus</span> label) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> { }
+函数 swap(原子&lt;整数&lt;i32&gt;&gt; cell, 整数&lt;i32&gt; value) → 整数&lt;i32&gt; {
+    返回 cell.exchange(value)
+}</code></pre><h3 id="borrow-markers">类型上的借用标记</h3><p>借用标记（<code class="kw">de</code>、<code class="kw">in</code>、<code>own</code>）可以出现在参数位置的类型上，用于表示值的传递方式：</p><pre class="faber-code"><code class="lang-faber locale=la"># shared borrow — caller retains ownership
+functio imprime(de textus label) → vacuum { }
 
-<span class="tok-co"># mutable borrow — caller lends mutable access</span>
-<span class="tok-kw">functio</span> duplica(<span class="tok-kw">in</span> <span class="tok-kw">numerus</span> value) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> { }
+# mutable borrow — caller lends mutable access
+functio duplica(in numerus value) → vacuum { }
 
-<span class="tok-co"># move — caller gives up ownership</span>
-<span class="tok-kw">functio</span> consume(<span class="tok-kw">ex</span> <span class="tok-kw">textus</span> buffer) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
-    <span class="tok-kw">redde</span> buffer
-}</code></pre><h3 id="comparison-policy">比较策略<a class="anchor" href="#comparison-policy">#</a></h3><div class="table-scroll"><table><thead><tr><th>运算符</th><th>家族</th><th>行为</th></tr></thead><tbody><tr><td><code>≡</code>, <code>≠</code></td><td>精确相等</td><td>要求类型完全相同；<code class="kw">空</code> 旁路</td></tr><tr><td><code>≈</code>, <code>≉</code></td><td>数值相等</td><td>仅限数值格</td></tr><tr><td><code>&lt;</code>, <code>≤</code>, <code>&gt;</code>, <code>≥</code></td><td>排序</td><td>数值、时间点、标量文本</td></tr><tr><td><code>intra</code></td><td>区间包含</td><td>数值在区间内</td></tr><tr><td><code>inter</code></td><td>集合归属</td><td>元素在集合中</td></tr></tbody></table></div><h2 id="variables-and-binding">Variables and binding<a class="anchor" href="#variables-and-binding">#</a></h2><p>Faber 拥有三个变量关键字和一个专门的赋值符。核心区别在于 <code class="kw">常量</code>（一次写入）与 <code class="kw">变量</code>（可自由重赋值），以及 <code>←</code>（运行时流）与 <code>=</code>（结构体字段形状）。</p><h3 id="fixum-immutable-binding">fixum — 不可变绑定<a class="anchor" href="#fixum-immutable-binding">#</a></h3><p><code class="kw">常量</code> 绑定只能写入一次。声明时可带或不带初始化式；若声明时不带，则必须在读取之前精确赋值一次。第二次赋值会被拒绝。</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">整数</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
+# move — caller gives up ownership
+functio consume(own textus buffer) → textus {
+    redde buffer
+}</code></pre><h3 id="comparison-policy">比较策略</h3><div class="table-scroll"><table><thead><tr><th>运算符</th><th>家族</th><th>行为</th></tr></thead><tbody><tr><td><code>≡</code>, <code>≠</code>, <code>≢</code></td><td>精确相等</td><td>要求类型完全相同；<code class="kw">nihil</code> 旁路</td></tr><tr><td><code>≅</code>, <code>≇</code></td><td>提升后精确相等</td><td>数值宽度合并后精确比较</td></tr><tr><td><code>≈</code>, <code>≉</code></td><td>模糊相等</td><td>容差匹配——<code>isclose</code> 默认（rel_tol 1e-09）；仅数值操作数</td></tr><tr><td><code>&lt;</code>, <code>≤</code>, <code>&gt;</code>, <code>≥</code></td><td>排序</td><td>数值、时间点、标量文本</td></tr><tr><td><code>intra</code></td><td>区间包含</td><td>数值在区间内</td></tr><tr><td><code>inter</code></td><td>集合归属</td><td>元素在集合中</td></tr></tbody></table></div><h2>Variables and binding</h2><p>Faber 拥有三个变量关键字和一个专门的赋值符。核心区别在于 <code class="kw">fixum</code>（一次写入）与 <code class="kw">varia</code>（可自由重赋值），以及 <code>←</code>（运行时流）与 <code>=</code>（结构体字段形状）。</p><h3 id="fixum-immutable-binding">fixum — 不可变绑定</h3><p><code class="kw">fixum</code> 绑定只能写入一次。声明时可带或不带初始化式；若声明时不带，则必须在读取之前精确赋值一次。第二次赋值会被拒绝。</p><pre class="faber-code"><code class="lang-faber">常量 整数 count ← 0
 
-<span class="tok-kw">常量</span> <span class="tok-kw">文本</span> name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+常量 文本 name ← &quot;Marcus&quot;
 
-<span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span> inferred <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]</code></pre><p>延迟初始化：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">入口</span> {
-    <span class="tok-kw">常量</span> <span class="tok-kw">整数</span> factor
-    <span class="tok-kw">如果</span> <span class="tok-kw">真</span> {
-        factor <span class="tok-op">←</span> <span class="tok-nu">10</span>
+常量 列表&lt;整数, 3&gt; inferred ← [1, 2, 3]</code></pre><p>延迟初始化：</p><pre class="faber-code"><code class="lang-faber">入口 {
+    常量 整数 factor
+    如果 真 {
+        factor ← 10
     }
-    <span class="tok-kw">否则</span> {
-        factor <span class="tok-op">←</span> <span class="tok-nu">100</span>
+    否则 {
+        factor ← 100
     }
-    <span class="tok-kw">显示</span> factor
-}</code></pre><h3 id="varia-mutable-binding">varia — 可变绑定<a class="anchor" href="#varia-mutable-binding">#</a></h3><p><code class="kw">变量</code> 绑定可自由重赋值：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">入口</span> {
-    <span class="tok-kw">变量</span> <span class="tok-kw">整数</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    count <span class="tok-op">←</span> count <span class="tok-op">+</span> <span class="tok-nu">1</span>
-    count <span class="tok-op">←</span> count <span class="tok-op">*</span> <span class="tok-nu">2</span>
-}</code></pre><h3 id="sit-inferred-immutable-sugar">sit — 推断不可变语法糖<a class="anchor" href="#sit-inferred-immutable-sugar">#</a></h3><p><code>sit</code> 是 <code>fixum _</code> 的语法糖——一种类型推断的不可变绑定：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">入口</span> {
-    <span class="tok-kw">常量</span> <span class="tok-kw">文本</span> salve <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
-    <span class="tok-kw">常量</span> <span class="tok-kw">文本</span> nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">常量</span> <span class="tok-kw">整数</span> x <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    显示 factor
+}</code></pre><h3 id="varia-mutable-binding">varia — 可变绑定</h3><p><code class="kw">varia</code> 绑定可自由重赋值：</p><pre class="faber-code"><code class="lang-faber">入口 {
+    变量 整数 count ← 0
+    count ← count + 1
+    count ← count * 2
+}</code></pre><h3 id="sit-inferred-immutable-sugar">sit — 推断不可变语法糖</h3><p><code>sit</code> 是 <code>fixum _</code> 的语法糖——一种类型推断的不可变绑定：</p><pre class="faber-code"><code class="lang-faber">入口 {
+    常量 文本 salve ← &quot;Salve&quot;
+    常量 文本 nomen ← &quot;Marcus&quot;
+    常量 整数 x ← 42
 
-<span class="tok-co">    # Deferred form</span>
-    <span class="tok-kw">常量</span> <span class="tok-kw">文本</span> label
-    label <span class="tok-op">←</span> <span class="tok-st">"deferred"</span>
-}</code></pre><h3 id="runtime-binding-vs-structural-definition">运行时绑定与结构体定义<a class="anchor" href="#runtime-binding-vs-structural-definition">#</a></h3><p>Faber 将大多数语言合并为 <code>=</code> 的语义拆分为两种：</p><div class="table-scroll"><table><thead><tr><th>符号</th><th>角色</th><th>用途</th></tr></thead><tbody><tr><td><code>←</code></td><td>运行时流</td><td>初始绑定、重赋值、变更</td></tr><tr><td><code>=</code></td><td>结构形状</td><td>字面量与元数据内的字段名</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">类</span> Point {
-    <span class="tok-kw">整数</span> x
-    <span class="tok-kw">整数</span> y
+    # Deferred form
+    常量 文本 label
+    label ← &quot;deferred&quot;
+}</code></pre><h3 id="runtime-binding-vs-structural-definition">运行时绑定与结构体定义</h3><p>Faber 将大多数语言合并为 <code>=</code> 的语义拆分为两种：</p><div class="table-scroll"><table><thead><tr><th>符号</th><th>角色</th><th>用途</th></tr></thead><tbody><tr><td><code>←</code></td><td>运行时流</td><td>初始绑定、重赋值、变更</td></tr><tr><td><code>=</code></td><td>结构形状</td><td>字面量与元数据内的字段名</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber">类 Point {
+    整数 x
+    整数 y
 }
 
-<span class="tok-kw">入口</span> {
-<span class="tok-co">    # Runtime: ← attaches a value to a name at execution time</span>
-    <span class="tok-kw">变量</span> <span class="tok-kw">整数</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">变量</span> <span class="tok-kw">文本</span> label <span class="tok-op">←</span> <span class="tok-st">"ready"</span>
-    count <span class="tok-op">←</span> count <span class="tok-op">+</span> <span class="tok-nu">1</span>
+入口 {
+    # Runtime: ← attaches a value to a name at execution time
+    变量 整数 count ← 0
+    变量 文本 label ← &quot;ready&quot;
+    count ← count + 1
 
-<span class="tok-co">    # Structural: = defines field values inside a type literal</span>
-    <span class="tok-kw">常量</span> Point p <span class="tok-op">←</span> Point {x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span>}
-}</code></pre><h3 id="ex-field-extraction">ex 字段提取<a class="anchor" href="#ex-field-extraction">#</a></h3><p><code class="kw">取自</code> 将值的字段提取为局部绑定：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">类</span> Persona {
-    <span class="tok-kw">文本</span> nomen
-    <span class="tok-kw">整数</span> aetas
+    # Structural: = defines field values inside a type literal
+    常量 Point p ← Point {x = 10, y = 20}
+}</code></pre><h3 id="ex-field-extraction">ex 字段提取</h3><p><code class="kw">ex</code> 将值的字段提取为局部绑定：</p><pre class="faber-code"><code class="lang-faber">类 Persona {
+    文本 nomen
+    整数 aetas
 }
 
-<span class="tok-kw">入口</span> {
-    <span class="tok-kw">常量</span> Persona p <span class="tok-op">←</span> Persona {nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span>}
-    <span class="tok-kw">常量</span> <span class="tok-kw">文本</span> nomen <span class="tok-op">←</span> p.nomen
-    <span class="tok-kw">常量</span> <span class="tok-kw">整数</span> aetas <span class="tok-op">←</span> p.aetas
-<span class="tok-co">    # prints "Marcus"</span>
-    <span class="tok-kw">显示</span> nomen
-}</code></pre><h3 id="postfix-increment-and-decrement">更新可变数值<a class="anchor" href="#postfix-increment-and-decrement">#</a></h3><p>使用二元运算符 <code>+</code> 和 <code>-</code> 配合运行时赋值 <code>←</code>，更新可变的 <code class="typ">整数</code> 位置。两个运算符都需要两个操作数；它们不是后缀语句：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">入口</span> {
-    <span class="tok-kw">变量</span> <span class="tok-kw">整数</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
-<span class="tok-co">    # i becomes 1</span>
-    i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
-<span class="tok-co">    # i becomes 0</span>
-    i <span class="tok-op">←</span> i <span class="tok-op">-</span> <span class="tok-nu">1</span>
-}</code></pre><h2 id="collections-2">Collections<a class="anchor" href="#collections-2">#</a></h2><p>Faber 拥有多种由编译器内置的集合类型。其规范方法位于编译器中，而非标准库中。</p><h3 id="lista">Lista — 有序动态集合<a class="anchor" href="#lista">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span> empty <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+入口 {
+    常量 Persona p ← Persona {nomen = &quot;Marcus&quot;, aetas = 30}
+    常量 文本 nomen ← p.nomen
+    常量 整数 aetas ← p.aetas
+    # prints &quot;Marcus&quot;
+    显示 nomen
+}</code></pre><h3 id="postfix-increment-and-decrement">更新可变数值</h3><p>使用二元运算符 <code>+</code> 和 <code>-</code> 配合运行时赋值 <code>←</code>，更新可变的 <code class="typ">numerus</code> 位置。两个运算符都需要两个操作数；它们不是后缀语句：</p><pre class="faber-code"><code class="lang-faber">入口 {
+    变量 整数 i ← 0
+    # i becomes 1
+    i ← i + 1
+    # i becomes 0
+    i ← i - 1
+}</code></pre><h2>Collections</h2><p>Faber 拥有多种由编译器内置的集合类型。其规范方法位于编译器中，而非标准库中。</p><h3 id="lista">Lista — 有序动态集合</h3><pre class="faber-code"><code class="lang-faber">常量 列表&lt;整数&gt; empty ← 空集
 
-<span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span> numbers <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+常量 列表&lt;整数, 5&gt; numbers ← [1, 2, 3, 4, 5]
 
-<span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">文本</span><span class="tok-op">&gt;</span> names <span class="tok-op">←</span> [<span class="tok-st">"Marcus"</span>, <span class="tok-st">"Julia"</span>, <span class="tok-st">"Gaius"</span>]
+常量 列表&lt;文本, 3&gt; names ← [&quot;Marcus&quot;, &quot;Julia&quot;, &quot;Gaius&quot;]
 
-<span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> nested <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]]</code></pre><p>使用 <code>sparge</code> 展开：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+常量 列表&lt;列表&lt;整数, 2&gt;, 2&gt; nested ← [[1, 2], [3, 4]]</code></pre><p>使用 <code>sparge</code> 展开：</p><pre class="faber-code"><code class="lang-faber">常量 列表&lt;整数&gt; a ← [1, 2, 3]
 
-<span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span> b <span class="tok-op">←</span> [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]
+常量 列表&lt;整数&gt; b ← [4, 5, 6]
 
-<span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span> combined <span class="tok-op">←</span> [<span class="tok-kw">展开</span> a, <span class="tok-kw">展开</span> b]
+常量 列表&lt;整数&gt; combined ← [展开 a, 展开 b]
 
-<span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span> headed <span class="tok-op">←</span> [<span class="tok-nu">0</span>, <span class="tok-kw">展开</span> a, <span class="tok-nu">99</span>]</code></pre><p>关键方法：<code>longitudo</code>、<code>accipe</code>、<code>appende</code>、<code>summa</code>、<code>primus</code>、<code>novissimus</code>。</p><h3 id="tabula">Tabula — 键值映射<a class="anchor" href="#tabula">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">映射</span><span class="tok-op">&lt;</span><span class="tok-kw">文本</span>, <span class="tok-kw">整数</span><span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alice"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"bob"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> }</code></pre><h3 id="tensor">Tensor — 密集定形缓冲区<a class="anchor" href="#tensor">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">张量</span><span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> scalar <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+常量 列表&lt;整数&gt; headed ← [0, 展开 a, 99]</code></pre><p>关键方法：<code>longitudo</code>、<code>accipe</code>、<code>appende</code>、<code>summa</code>、<code>primus</code>、<code>novissimus</code>。</p><h3 id="tabula">Tabula — 键值映射</h3><pre class="faber-code"><code class="lang-faber">常量 映射&lt;文本, 整数&gt; scores ← { &quot;alice&quot;: 10, &quot;bob&quot;: 20 }</code></pre><h3 id="tensor">Tensor — 密集定形缓冲区</h3><pre class="faber-code"><code class="lang-faber">常量 张量&lt;f32, []&gt; scalar ← 空集
 
-<span class="tok-kw">常量</span> <span class="tok-kw">张量</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span>, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> row <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>] ↦ <span class="tok-kw">张量</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span>, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
+常量 张量&lt;整数, [4]&gt; row ← [1, 2, 3, 4] ↦ 张量&lt;整数, [4]&gt;
 
-<span class="tok-kw">常量</span> <span class="tok-kw">整数</span> <span class="tok-op">∪</span> <span class="tok-kw">空</span> first <span class="tok-op">←</span> row[<span class="tok-nu">0</span>]</code></pre><p>Tensor 语法糖（用于数值密集型代码）：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">张量</span><span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+常量 整数 ∪ 空 first ← row[0]</code></pre><p>Tensor 语法糖（用于数值密集型代码）：</p><pre class="faber-code"><code class="lang-faber">常量 张量&lt;f32, []&gt; seed ← 空集
 
-<span class="tok-kw">常量</span> <span class="tok-kw">张量</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> lanes <span class="tok-op">←</span> seed.strue([<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>], [<span class="tok-nu">4</span>])</code></pre><p>关键方法：<code>forma</code>、<code>accipe</code>、<code>ponde</code>、<code>crea</code>、<code>structa</code>、<code>strue</code>，以及逐元素算术、矩阵乘法（<code>multiplicatio</code>）和归约（<code>summa</code>、<code>productum</code>）。</p><h3 id="sparsa">Sparsa — 稀疏定形缓冲区<a class="anchor" href="#sparsa">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">稀疏</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> sparse <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+常量 张量&lt;f32, [4]&gt; lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])</code></pre><p>关键方法：<code>forma</code>、<code>accipe</code>、<code>ponde</code>、<code>crea</code>、<code>structa</code>、<code>strue</code>，以及逐元素算术、矩阵乘法（<code>multiplicatio</code>）和归约（<code>summa</code>、<code>productum</code>）。</p><h3 id="sparsa">Sparsa — 稀疏定形缓冲区</h3><pre class="faber-code"><code class="lang-faber">常量 稀疏&lt;f32, [2, 3]&gt; sparse ← 空集
 
-<span class="tok-kw">入口</span> {
-    sparse.ponde([<span class="tok-nu">0</span>, <span class="tok-nu">1</span>], <span class="tok-nu">4.0</span>)
-    sparse.ponde([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], <span class="tok-nu">9.0</span>)
+入口 {
+    sparse.ponde([0, 1], 4.0)
+    sparse.ponde([1, 2], 9.0)
 
-<span class="tok-co">    # accipe returns the stored value, here 4.0</span>
-    <span class="tok-kw">显示</span> sparse.accipe([<span class="tok-nu">0</span>, <span class="tok-nu">1</span>])
-<span class="tok-co">    # count of stored entries</span>
-    <span class="tok-kw">显示</span> sparse.nonnihil()
-}</code></pre><p>密集与稀疏之间的转换：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">张量</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> dense <span class="tok-op">←</span> [[<span class="tok-nu">1.0</span>, <span class="tok-nu">0.0</span>], [<span class="tok-nu">0.0</span>, <span class="tok-nu">2.0</span>]] ↦ <span class="tok-kw">张量</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
+    # accipe returns the stored value, here 4.0
+    显示 sparse.accipe([0, 1])
+    # count of stored entries
+    显示 sparse.nonnihil()
+}</code></pre><p>密集与稀疏之间的转换：</p><pre class="faber-code"><code class="lang-faber">常量 张量&lt;f32, [2, 2]&gt; dense ← [[1.0, 0.0], [0.0, 2.0]] ↦ 张量&lt;f32, [2, 2]&gt;
 
-<span class="tok-kw">常量</span> <span class="tok-kw">稀疏</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> sparse <span class="tok-op">←</span> dense ↦ <span class="tok-kw">稀疏</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
+常量 稀疏&lt;f32, [2, 2]&gt; sparse ← dense ↦ 稀疏&lt;f32, [2, 2]&gt;
 
-<span class="tok-kw">常量</span> <span class="tok-kw">张量</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> roundtrip <span class="tok-op">←</span> sparse ↦ <span class="tok-kw">张量</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span></code></pre><h3 id="cursors">游标 — 惰性流<a class="anchor" href="#cursors">#</a></h3><p><code>cursor&lt;T&gt;</code> 是一种惰性流类型。可由集合迭代器、tuus 视图或生成器函数创建。通过 <code>itera ex</code> 消费：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span> items <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+常量 张量&lt;f32, [2, 2]&gt; roundtrip ← sparse ↦ 张量&lt;f32, [2, 2]&gt;</code></pre><h3 id="cursors">游标 — 惰性流</h3><p><code>cursor&lt;T&gt;</code> 是一种惰性流类型。可由集合迭代器、tuus 视图或生成器函数创建。通过 <code>itera ex</code> 消费：</p><pre class="faber-code"><code class="lang-faber">常量 列表&lt;整数, 3&gt; items ← [1, 2, 3]
 
-<span class="tok-kw">入口</span> {
-    <span class="tok-kw">遍历</span> <span class="tok-kw">取自</span> items <span class="tok-kw">常量</span> item {
-        <span class="tok-kw">显示</span> item
+入口 {
+    遍历 取自 items 常量 item {
+        显示 item
     }
-}</code></pre><h3 id="intervallum">Intervallum — 范围<a class="anchor" href="#intervallum">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">入口</span> {
-<span class="tok-co">    # exclusive range: 0, 1, 2, 3, 4</span>
-    <span class="tok-kw">遍历</span> <span class="tok-kw">范围</span> <span class="tok-nu">0</span>‥<span class="tok-nu">5</span> <span class="tok-kw">常量</span> i {
-        <span class="tok-kw">显示</span> i
+}</code></pre><h3 id="intervallum">Intervallum — 范围</h3><pre class="faber-code"><code class="lang-faber">入口 {
+    # exclusive range: 0, 1, 2, 3, 4
+    遍历 范围 0‥5 常量 i {
+        显示 i
     }
-<span class="tok-co">    # inclusive range: 0, 1, 2, 3, 4, 5</span>
-    <span class="tok-kw">遍历</span> <span class="tok-kw">范围</span> <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">5</span> <span class="tok-kw">常量</span> i {
-        <span class="tok-kw">显示</span> i
+    # inclusive range: 0, 1, 2, 3, 4, 5
+    遍历 范围 0…5 常量 i {
+        显示 i
     }
-}</code></pre><p><code>‥</code> 是排他范围的端点；<code>…</code> 是包含端点。</p><h2 id="string-and-template-literals">String and template literals<a class="anchor" href="#string-and-template-literals">#</a></h2><p>Faber 使用分隔符语义 — 每种引号形式表示不同的源代码形态。它们之间不能互换。</p><h3 id="literal-forms">字面量形式<a class="anchor" href="#literal-forms">#</a></h3><div class="table-scroll"><table><thead><tr><th>形式</th><th>类型</th><th>角色</th></tr></thead><tbody><tr><td><code>'…'</code></td><td><code>ascii</code></td><td>固定机器令牌；无 <code>§</code>；无 <code>(…)</code></td></tr><tr><td><code>&quot;…&quot;</code></td><td><code class="typ">文本</code></td><td>短 Unicode 单行字符串；<code>(…)</code> 渲染</td></tr><tr><td><code>«…»</code></td><td><code class="typ">文本</code></td><td>块/多行 Unicode；<code>(…)</code> 渲染</td></tr><tr><td><code></code> <code>…</code> <code></code></td><td><code>forma</code></td><td>捕获模板；<code>(…)</code> 捕获</td></tr><tr><td><code>{ … }</code></td><td><code class="typ">json</code></td><td>编译期 JSON 文档</td></tr><tr><td>`</td><td>…</td><td>`</td><td><code class="typ">字节</code></td><td>编译期十六进制字节</td></tr><tr><td><code>[ … ]</code></td><td><code>lista&lt;T&gt;</code></td><td>Faber 列表字面量</td></tr></tbody></table></div><h3 id="string-template-application">字符串模板应用<a class="anchor" href="#string-template-application">#</a></h3><p>Faber 通过字符串模板应用格式化文本：一个带有 <code>§</code> 占位符的 <code>&quot;…&quot;</code> 或 <code>«…»</code> 字面量，后接括号参数：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函数</span> greet(<span class="tok-kw">文本</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">文本</span> {
-    <span class="tok-kw">返回</span> <span class="tok-st">"Salve, §!"</span>(nomen)
+}</code></pre><p><code>‥</code> 是排他范围的端点；<code>…</code> 是包含端点。</p><h2>String and template literals</h2><p>Faber 使用分隔符语义 — 每种引号形式表示不同的源代码形态。它们之间不能互换。</p><h3 id="literal-forms">字面量形式</h3><div class="table-scroll"><table><thead><tr><th>形式</th><th>类型</th><th>角色</th></tr></thead><tbody><tr><td><code>'…'</code></td><td><code>ascii</code></td><td>固定机器令牌；无 <code>§</code>；无 <code>(…)</code></td></tr><tr><td><code>&quot;…&quot;</code></td><td><code class="typ">textus</code></td><td>短 Unicode 单行字符串；<code>(…)</code> 渲染</td></tr><tr><td><code>«…»</code></td><td><code class="typ">textus</code></td><td>块/多行 Unicode；<code>(…)</code> 渲染</td></tr><tr><td><code></code> <code>…</code> <code></code></td><td><code>forma</code></td><td>捕获模板；<code>(…)</code> 捕获</td></tr><tr><td><code>{ … }</code></td><td><code class="typ">json</code></td><td>编译期 JSON 文档</td></tr><tr><td>`</td><td>…</td><td>`</td><td><code class="typ">octeti</code></td><td>编译期十六进制字节</td></tr><tr><td><code>[ … ]</code></td><td><code>lista&lt;T&gt;</code></td><td>Faber 列表字面量</td></tr></tbody></table></div><h3 id="string-template-application">字符串模板应用</h3><p>Faber 通过字符串模板应用格式化文本：一个带有 <code>§</code> 占位符的 <code>&quot;…&quot;</code> 或 <code>«…»</code> 字面量，后接括号参数：</p><pre class="faber-code"><code class="lang-faber">函数 greet(文本 nomen) → 文本 {
+    返回 &quot;Salve, §!&quot;(nomen)
 }
 
-<span class="tok-kw">常量</span> <span class="tok-kw">整数</span> pagina <span class="tok-op">←</span> <span class="tok-nu">3</span>
+常量 整数 pagina ← 3
 
-<span class="tok-kw">常量</span> <span class="tok-kw">整数</span> totum <span class="tok-op">←</span> <span class="tok-nu">10</span>
+常量 整数 totum ← 10
 
-<span class="tok-kw">常量</span> <span class="tok-kw">文本</span> code <span class="tok-op">←</span> <span class="tok-st">"200"</span>
+常量 文本 code ← &quot;200&quot;
 
-<span class="tok-kw">常量</span> <span class="tok-kw">文本</span> label <span class="tok-op">←</span> <span class="tok-st">"OK"</span>
+常量 文本 label ← &quot;OK&quot;
 
-<span class="tok-kw">常量</span> <span class="tok-kw">文本</span> msg <span class="tok-op">←</span> <span class="tok-st">"Page § of §"</span>(pagina, totum)
+常量 文本 msg ← &quot;Page § of §&quot;(pagina, totum)
 
-<span class="tok-kw">常量</span> <span class="tok-kw">文本</span> block <span class="tok-op">←</span> <span class="tok-st">"status: § (§)"</span>(code, label)</code></pre><p>关键规则：</p><ul><li><code>§</code> (U+00A7) 是模板占位符</li><li>位置占位符：<code>§0</code>、<code>§1</code>、…… 用于显式排序</li><li>结尾的 <code>!</code> 选择显示格式化：<code>&quot;Salve, §!&quot;(nomen)</code></li><li><code>(args)</code> 后缀是模板应用，不是函数调用</li></ul><h3 id="block-strings">块字符串<a class="anchor" href="#block-strings">#</a></h3><p>多行块使用书名号 <code>«…»</code>：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">文本</span> sql <span class="tok-op">←</span> «
+常量 文本 block ← &quot;status: § (§)&quot;(code, label)</code></pre><p>关键规则：</p><ul><li><code>§</code> (U+00A7) 是模板占位符</li><li>位置占位符：<code>§0</code>、<code>§1</code>、…… 用于显式排序</li><li>结尾的 <code>!</code> 选择显示格式化：<code>&quot;Salve, §!&quot;(nomen)</code></li><li><code>(args)</code> 后缀是模板应用，不是函数调用</li></ul><h3 id="block-strings">块字符串</h3><p>多行块使用书名号 <code>«…»</code>：</p><pre class="faber-code"><code class="lang-faber">常量 文本 sql ← «
     select id, email
     from accounts
-»</code></pre><h3 id="captured-templates">捕获模板 (forma)<a class="anchor" href="#captured-templates">#</a></h3><p>反引号模板捕获文本和参数而不渲染。
-对于绑定的 SQL/URL 载荷是安全的：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">整数</span> user_id <span class="tok-op">←</span> <span class="tok-nu">42</span>
+»</code></pre><h3 id="captured-templates">捕获模板 (forma)</h3><p>反引号模板捕获文本和参数而不渲染。
+对于绑定的 SQL/URL 载荷是安全的：</p><pre class="faber-code"><code class="lang-faber">常量 整数 user_id ← 42
 
-<span class="tok-kw">常量</span> forma query <span class="tok-op">←</span> <span class="tok-st">`select * from users where id = §`</span>(user_id)</code></pre><h3 id="inline-json">内联 JSON<a class="anchor" href="#inline-json">#</a></h3><p>裸 <code>{ … }</code> 是内联 JSON：一个编译期的 <code class="typ">json</code> 文档，不是匿名的 Faber 对象。键是用 <code>:</code> 分隔的带引号字符串：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">json</span> empty <span class="tok-op">←</span> {}
+常量 forma query ← `select * from users where id = §`(user_id)</code></pre><h3 id="inline-json">内联 JSON</h3><p>裸 <code>{ … }</code> 是内联 JSON：一个编译期的 <code class="typ">json</code> 文档，不是匿名的 Faber 对象。键是用 <code>:</code> 分隔的带引号字符串：</p><pre class="faber-code"><code class="lang-faber">常量 json empty ← {}
 
-<span class="tok-kw">常量</span> <span class="tok-kw">json</span> user <span class="tok-op">←</span> { <span class="tok-st">"name"</span><span class="tok-op">:</span> <span class="tok-st">"Marcus"</span>, <span class="tok-st">"age"</span><span class="tok-op">:</span> <span class="tok-nu">30</span>, <span class="tok-st">"active"</span><span class="tok-op">:</span> true }
+常量 json user ← { &quot;name&quot;: &quot;Marcus&quot;, &quot;age&quot;: 30, &quot;active&quot;: true }
 
-<span class="tok-kw">常量</span> <span class="tok-kw">json</span> nested <span class="tok-op">←</span> { <span class="tok-st">"meta"</span><span class="tok-op">:</span> { <span class="tok-st">"version"</span><span class="tok-op">:</span> <span class="tok-nu">1</span> }, <span class="tok-st">"tags"</span><span class="tok-op">:</span> [<span class="tok-st">"alpha"</span>, <span class="tok-st">"beta"</span>] }</code></pre><p>若要构造有类型的属，请使用类型名和 <code>=</code> 字段形态：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">类</span> Point {
-    <span class="tok-kw">整数</span> x
-    <span class="tok-kw">整数</span> y
+常量 json nested ← { &quot;meta&quot;: { &quot;version&quot;: 1 }, &quot;tags&quot;: [&quot;alpha&quot;, &quot;beta&quot;] }</code></pre><p>若要构造有类型的属，请使用类型名和 <code>=</code> 字段形态：</p><pre class="faber-code"><code class="lang-faber">类 Point {
+    整数 x
+    整数 y
 }
 
-<span class="tok-kw">常量</span> Point p <span class="tok-op">←</span> Point {x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span>}</code></pre><h2 id="nullability-and-optionality">Nullability and optionality<a class="anchor" href="#nullability-and-optionality">#</a></h2><p>Faber 在值层面区分&quot;空缺&quot;与声明位置的&quot;可选提供&quot;。</p><h3 id="nullable-values">可空值 — T ∪ nihil<a class="anchor" href="#nullable-values">#</a></h3><p>当值可能缺失时，使用 <code>T ∪ nihil</code>：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函数</span> find(<span class="tok-kw">文本</span> key) <span class="tok-op">→</span> <span class="tok-kw">整数</span> <span class="tok-op">∪</span> <span class="tok-kw">空</span> {
-    <span class="tok-kw">返回</span> <span class="tok-kw">空</span>
+常量 Point p ← Point {x = 10, y = 20}</code></pre><h2>Nullability and optionality</h2><p>Faber 在值层面区分&quot;空缺&quot;与声明位置的&quot;可选提供&quot;。</p><h3 id="nullable-values">可空值 — T ∪ nihil</h3><p>当值可能缺失时，使用 <code>T ∪ nihil</code>：</p><pre class="faber-code"><code class="lang-faber">函数 find(文本 key) → 整数 ∪ 空 {
+    返回 空
 }
 
-<span class="tok-kw">函数</span> divide(<span class="tok-kw">整数</span> a, <span class="tok-kw">整数</span> b) <span class="tok-op">→</span> <span class="tok-kw">整数</span> <span class="tok-op">∪</span> <span class="tok-kw">空</span> {
-    <span class="tok-kw">如果</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> <span class="tok-kw">则</span> <span class="tok-kw">返回</span> <span class="tok-kw">空</span>
-    <span class="tok-kw">返回</span> a <span class="tok-op">/</span> b
-}</code></pre><h3 id="optional-declaration-slots">可选声明槽 — sponte<a class="anchor" href="#optional-declaration-slots">#</a></h3><p>当参数或字段可由调用者或构造函数省略时，在名称之后使用 <code>sponte</code>：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函数</span> connect(<span class="tok-kw">文本</span> host, <span class="tok-kw">整数</span> port <span class="tok-kw">可选</span>) <span class="tok-op">→</span> <span class="tok-kw">无值</span> {
+函数 divide(整数 a, 整数 b) → 整数 ∪ 空 {
+    如果 b ≡ 0 则 返回 空
+    返回 a / b
+}</code></pre><h3 id="optional-declaration-slots">可选声明槽 — sponte</h3><p>当参数或字段可由调用者或构造函数省略时，在名称之后使用 <code>sponte</code>：</p><pre class="faber-code"><code class="lang-faber">函数 connect(文本 host, 整数 port 可选) → 无值 {
 }
 
-<span class="tok-kw">类</span> User {
-    <span class="tok-kw">文本</span> email <span class="tok-kw">可选</span>
-}</code></pre><p>借用标记可与可选参数组合使用：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">函数</span> process(<span class="tok-kw">借自</span> <span class="tok-kw">整数</span> depth <span class="tok-kw">可选</span>) <span class="tok-op">→</span> <span class="tok-kw">无值</span> {
-}</code></pre><h3 id="non-null-assertion">非空断言 — !<a class="anchor" href="#non-null-assertion">#</a></h3><p>使用 <code>!.</code>, <code>![</code>, <code>!(</code> 来断言某个可空值不是 <code class="kw">空</code>：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">类</span> Box {
-    <span class="tok-kw">整数</span> <span class="tok-op">∪</span> <span class="tok-kw">空</span> val
+类 User {
+    文本 email 可选
+}</code></pre><p>借用标记可与可选参数组合使用：</p><pre class="faber-code"><code class="lang-faber">函数 process(借自 整数 depth 可选) → 无值 {
+}</code></pre><h3 id="non-null-assertion">非空断言 — !</h3><p>使用 <code>!.</code>, <code>![</code>, <code>!(</code> 来断言某个可空值不是 <code class="kw">nihil</code>：</p><pre class="faber-code"><code class="lang-faber">类 Box {
+    整数 ∪ 空 val
 }
 
-<span class="tok-kw">常量</span> Box <span class="tok-op">∪</span> <span class="tok-kw">空</span> maybe_name <span class="tok-op">←</span> Box {val <span class="tok-op">=</span> <span class="tok-nu">7</span>}
+常量 Box ∪ 空 maybe_name ← Box {val = 7}
 
-<span class="tok-kw">常量</span> <span class="tok-kw">整数</span> <span class="tok-op">∪</span> <span class="tok-kw">空</span> name <span class="tok-op">←</span> maybe_name<span class="tok-op">!.</span>val</code></pre><p>对 <code class="kw">空</code> 进行非空断言会在运行时中止。</p><h3 id="nullish-coalescing">空值合并 — vel<a class="anchor" href="#nullish-coalescing">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">文本</span> <span class="tok-op">∪</span> <span class="tok-kw">空</span> provided <span class="tok-op">←</span> <span class="tok-kw">空</span>
+常量 整数 ∪ 空 name ← maybe_name!.val</code></pre><p>对 <code class="kw">nihil</code> 进行非空断言会在运行时中止。</p><h3 id="nullish-coalescing">空值合并 — vel</h3><pre class="faber-code"><code class="lang-faber">常量 文本 ∪ 空 provided ← 空
 
-<span class="tok-kw">常量</span> <span class="tok-kw">文本</span> name <span class="tok-op">←</span> provided <span class="tok-kw">兜底</span> <span class="tok-st">"default"</span></code></pre><h3 id="ignotum">ignotum<a class="anchor" href="#ignotum">#</a></h3><p><code>ignotum</code> 是用于应急通道和不完整知识的顶层未知类型。它不是一种可空性机制。</p><h2 id="conversion-and-construction">Conversion and construction<a class="anchor" href="#conversion-and-construction">#</a></h2><p>两个重要的转换运算符,一个用于运行时,一个用于编译时:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># runtime conversion</span>
-<span class="tok-kw">常量</span> <span class="tok-kw">整数</span> parsed <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ <span class="tok-kw">整数</span>
-<span class="tok-co"># static ascription</span>
-<span class="tok-kw">常量</span> <span class="tok-kw">整数</span> value <span class="tok-op">←</span> <span class="tok-nu">7</span>
+常量 文本 name ← provided 兜底 &quot;default&quot;</code></pre><h3 id="ignotum">ignotum</h3><p><code>ignotum</code> 是用于应急通道和不完整知识的顶层未知类型。它不是一种可空性机制。</p><h2>Conversion and construction</h2><p>两个重要的转换运算符,一个用于运行时,一个用于编译时:</p><pre class="faber-code"><code class="lang-faber"># runtime conversion
+常量 整数 parsed ← &quot;42&quot; ↦ 整数
+# static ascription
+常量 整数 value ← 7
 
-<span class="tok-kw">常量</span> <span class="tok-kw">文本</span> text <span class="tok-op">←</span> value ∷ <span class="tok-kw">文本</span></code></pre><h3 id="runtime-conversion">运行时转换 — ↦<a class="anchor" href="#runtime-conversion">#</a></h3><p>使用 <code>↦</code> 进行运行时转换,尤其是可能失败的解析或强制转换。用 <code>⇥</code> 提供内联恢复:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">文本</span> input <span class="tok-op">←</span> <span class="tok-st">"9"</span>
+常量 文本 text ← value ∷ 文本</code></pre><h3 id="runtime-conversion">运行时转换 — ↦</h3><p>使用 <code>↦</code> 进行运行时转换,尤其是可能失败的解析或强制转换。用 <code>⇥</code> 提供内联恢复:</p><pre class="faber-code"><code class="lang-faber">常量 文本 input ← &quot;9&quot;
 
-<span class="tok-kw">常量</span> <span class="tok-kw">整数</span> n <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ <span class="tok-kw">整数</span>
+常量 整数 n ← &quot;42&quot; ↦ 整数
 
-<span class="tok-kw">常量</span> <span class="tok-kw">整数</span> safe <span class="tok-op">←</span> input ↦ <span class="tok-kw">整数</span> ⇥ <span class="tok-nu">0</span></code></pre><p>类型驱动的具象化:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">文本</span> path <span class="tok-op">←</span> <span class="tok-st">"/etc/hosts"</span>
+常量 整数 safe ← input ↦ 整数 ⇥ 0</code></pre><p>类型驱动的具象化:</p><pre class="faber-code"><code class="lang-faber">常量 文本 path ← &quot;/etc/hosts&quot;
 
-<span class="tok-kw">常量</span> <span class="tok-kw">向量</span><span class="tok-op">&lt;</span>f32, <span class="tok-nu">4</span><span class="tok-op">&gt;</span> lanes <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>] ↦ <span class="tok-kw">向量</span><span class="tok-op">&lt;</span>f32, <span class="tok-nu">4</span><span class="tok-op">&gt;</span>
+常量 向量&lt;f32, 4&gt; lanes ← [1.0, 2.0, 3.0, 4.0] ↦ 向量&lt;f32, 4&gt;
 
-<span class="tok-kw">常量</span> <span class="tok-kw">文本</span> body <span class="tok-op">←</span> <span class="tok-kw">调用</span> <span class="tok-st">'solum:lege'</span> (path) ↦ <span class="tok-kw">文本</span></code></pre><h3 id="static-ascription">静态标注 — ∷<a class="anchor" href="#static-ascription">#</a></h3><p>使用 <code>∷</code> 进行显式静态类型标注。它是后置的,并且由目标类型驱动:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">整数</span> value <span class="tok-op">←</span> <span class="tok-nu">7</span>
+常量 文本 body ← 调用 'solum:lege' (path) ↦ 文本</code></pre><h3 id="static-ascription">静态标注 — ∷</h3><p>使用 <code>∷</code> 进行显式静态类型标注。它是后置的,并且由目标类型驱动:</p><pre class="faber-code"><code class="lang-faber">常量 整数 value ← 7
 
-<span class="tok-kw">常量</span> <span class="tok-kw">整数</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> x <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ <span class="tok-kw">整数</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span>
+常量 整数&lt;i32&gt; x ← 7 ∷ 整数&lt;i32&gt;
 
-<span class="tok-kw">常量</span> <span class="tok-kw">文本</span> text <span class="tok-op">←</span> value ∷ <span class="tok-kw">文本</span></code></pre><h3 id="nullish-coalescing">空值合并 — vel<a class="anchor" href="#nullish-coalescing">#</a></h3><p>当值为 <code class="kw">空</code> 时,使用 <code>vel</code> 进行空值合并:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">常量</span> <span class="tok-kw">文本</span> <span class="tok-op">∪</span> <span class="tok-kw">空</span> provided_name <span class="tok-op">←</span> <span class="tok-kw">空</span>
+常量 文本 text ← value ∷ 文本</code></pre><h3 id="nullish-coalescing">空值合并 — vel</h3><p>当值为 <code class="kw">nihil</code> 时,使用 <code>vel</code> 进行空值合并:</p><pre class="faber-code"><code class="lang-faber">常量 文本 ∪ 空 provided_name ← 空
 
-<span class="tok-kw">常量</span> <span class="tok-kw">文本</span> name <span class="tok-op">←</span> provided_name <span class="tok-kw">兜底</span> <span class="tok-st">"default"</span></code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#data-types">Data types</a></li><li class="toc-3"><a href="#primitive-types">原语类型</a></li><li class="toc-3"><a href="#sized-numeric-types">定宽数值类型</a></li><li class="toc-3"><a href="#nullable-types">可空类型</a></li><li class="toc-3"><a href="#type-aliases">类型别名</a></li><li class="toc-3"><a href="#generics">泛型</a></li><li class="toc-3"><a href="#collections">集合</a></li><li class="toc-3"><a href="#tensor-types">张量类型</a></li><li class="toc-3"><a href="#gpu-core-types">GPU 核心类型</a></li><li class="toc-3"><a href="#borrow-markers">类型上的借用标记</a></li><li class="toc-3"><a href="#comparison-policy">比较策略</a></li><li class="toc-2"><a href="#variables-and-binding">Variables and binding</a></li><li class="toc-3"><a href="#fixum-immutable-binding">fixum — 不可变绑定</a></li><li class="toc-3"><a href="#varia-mutable-binding">varia — 可变绑定</a></li><li class="toc-3"><a href="#sit-inferred-immutable-sugar">sit — 推断不可变语法糖</a></li><li class="toc-3"><a href="#runtime-binding-vs-structural-definition">运行时绑定与结构体定义</a></li><li class="toc-3"><a href="#ex-field-extraction">ex 字段提取</a></li><li class="toc-3"><a href="#postfix-increment-and-decrement">更新可变数值</a></li><li class="toc-2"><a href="#collections-2">Collections</a></li><li class="toc-3"><a href="#lista">Lista — 有序动态集合</a></li><li class="toc-3"><a href="#tabula">Tabula — 键值映射</a></li><li class="toc-3"><a href="#tensor">Tensor — 密集定形缓冲区</a></li><li class="toc-3"><a href="#sparsa">Sparsa — 稀疏定形缓冲区</a></li><li class="toc-3"><a href="#cursors">游标 — 惰性流</a></li><li class="toc-3"><a href="#intervallum">Intervallum — 范围</a></li><li class="toc-2"><a href="#string-and-template-literals">String and template literals</a></li><li class="toc-3"><a href="#literal-forms">字面量形式</a></li><li class="toc-3"><a href="#string-template-application">字符串模板应用</a></li><li class="toc-3"><a href="#block-strings">块字符串</a></li><li class="toc-3"><a href="#captured-templates">捕获模板 (forma)</a></li><li class="toc-3"><a href="#inline-json">内联 JSON</a></li><li class="toc-2"><a href="#nullability-and-optionality">Nullability and optionality</a></li><li class="toc-3"><a href="#nullable-values">可空值 — T ∪ nihil</a></li><li class="toc-3"><a href="#optional-declaration-slots">可选声明槽 — sponte</a></li><li class="toc-3"><a href="#non-null-assertion">非空断言 — !</a></li><li class="toc-3"><a href="#nullish-coalescing">空值合并 — vel</a></li><li class="toc-3"><a href="#ignotum">ignotum</a></li><li class="toc-2"><a href="#conversion-and-construction">Conversion and construction</a></li><li class="toc-3"><a href="#runtime-conversion">运行时转换 — ↦</a></li><li class="toc-3"><a href="#static-ascription">静态标注 — ∷</a></li><li class="toc-3"><a href="#nullish-coalescing">空值合并 — vel</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">来源</span><ul><li>[</li></ul></div></footer></div></body></html>
+常量 文本 name ← provided_name 兜底 &quot;default&quot;</code></pre></div></main><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div></footer></div></body></html>

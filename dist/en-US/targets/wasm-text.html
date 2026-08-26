@@ -1,288 +1,211 @@
 <!DOCTYPE html>
-<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="WAT emission from the same MIR."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="WebAssembly text — Faber"><meta property="og:description" content="WAT emission from the same MIR."><meta property="og:url" content="https://faberlang.dev/en-US/targets/wasm-text.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/targets/wasm-text.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>WebAssembly text — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><ul class="nav"><li><a href="/en-US/">Home</a></li><li><a href="/en-US/start/install.html">Install</a></li><li><a href="/en-US/localization.html">Localization</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li><li><a href="/en-US/releases/">Releases</a></li><li><a href="/en-US/open-source.html">Open source</a></li><li><a href="/en-US/examples/">Examples</a></li><li><a href="/en-US/targets/" class="active">Target lanes</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/en-US/language/">The language</a></li><li><a href="/en-US/language/types.html">Types and values</a></li><li><a href="/en-US/language/functions.html">Functions and flow</a></li><li><a href="/en-US/language/errors.html">Errors and testing</a></li><li><a href="/en-US/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/en-US/toolchain/">Toolchain</a></li><li><a href="/en-US/toolchain/cli.html">The faber CLI</a></li><li><a href="/en-US/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/en-US/targets/" class="active">Target lanes</a></li><li><a href="/en-US/toolchain/packages.html">Packages with Cista</a></li><li><a href="/en-US/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/">Libraries</a></li><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/en-US/reference/">Reference</a></li><li><a href="/en-US/reference/grammar.html">Grammar</a></li><li><a href="/en-US/corpus/">Corpus index</a></li><li><a href="/en-US/reference/design.html">Design notes</a></li><li><a href="/en-US/open-source.html">Open source</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.6.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/en-US/releases/">All releases</a></li><li><a href="/en-US/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>WebAssembly text</h1><div class="content"><p>WAT emission from the same MIR.</p><p>Part of the <a href="/en-US/targets/mir.html">MIR lane</a>. Every panel below is compiler output.</p><h2 id="reading">How to read it<a class="anchor" href="#reading">#</a></h2><p>A stack machine, so the arithmetic reads inside out. Useful as a check on what actually crosses into a sandboxed runtime.</p><h2 id="tensores">Typed tensors<a class="anchor" href="#tensores">#</a></h2><p>Builds two shaped matrices, multiplies them, and reduces the product to a scalar. Exercises shape-bearing types and a reduction.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
-    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> empty
-    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> seed.from_flat(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
-    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> seed.from_flat(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
-    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a.matmul(b)
-    <span class="tok-kw">const</span> f32 mean <span class="tok-op">←</span> product.mean()
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="WAT emission from the same MIR."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="WebAssembly text — Faber"><meta property="og:description" content="WAT emission from the same MIR."><meta property="og:url" content="https://faberlang.dev/en-US/targets/wasm-text.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/targets/wasm-text.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>WebAssembly text — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs"><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><ul class="nav"><li><a href="/en-US/">Home</a></li><li><a href="/en-US/start/install.html">Install</a></li><li><a href="/en-US/localization.html">Localization</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li><li><a href="/en-US/releases/">Releases</a></li><li><a href="/en-US/open-source.html">Open source</a></li><li><a href="/en-US/examples/">Examples</a></li><li><a href="/en-US/targets/" class="active">Target lanes</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/en-US/language/">The language</a></li><li><a href="/en-US/language/types.html">Types and values</a></li><li><a href="/en-US/language/functions.html">Functions and flow</a></li><li><a href="/en-US/language/errors.html">Errors and testing</a></li><li><a href="/en-US/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/en-US/toolchain/">Toolchain</a></li><li><a href="/en-US/toolchain/cli.html">The faber CLI</a></li><li><a href="/en-US/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/en-US/targets/" class="active">Target lanes</a></li><li><a href="/en-US/toolchain/packages.html">Packages with Cista</a></li><li><a href="/en-US/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/">Libraries</a></li><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/en-US/reference/">Reference</a></li><li><a href="/en-US/reference/grammar.html">Grammar</a></li><li><a href="/en-US/corpus/">Corpus index</a></li><li><a href="/en-US/reference/design.html">Design notes</a></li><li><a href="/en-US/open-source.html">Open source</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.6.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/en-US/releases/">All releases</a></li><li><a href="/en-US/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main><h1>WebAssembly text</h1><div class="content"><p>WAT emission from the same MIR.</p><p>Part of the <a href="/en-US/targets/mir.html">MIR lane</a>. Every panel below is compiler output.</p><h2 id="reading">How to read it</h2><p>A stack machine, so the arithmetic reads inside out. Useful as a check on what actually crosses into a sandboxed runtime.</p><h2 id="tensores">Typed tensors</h2><p>Builds two shaped matrices, multiplies them, and reduces the product to a scalar. Exercises shape-bearing types and a reduction.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber">main {
+    const list&lt;f32&gt; flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    const list&lt;f32&gt; flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
+    const tensor&lt;f32, []&gt; seed ← empty
+    const tensor&lt;f32, [2, 3]&gt; a ← seed.from_flat(flat_a, [2, 3])
+    const tensor&lt;f32, [3, 4]&gt; b ← seed.from_flat(flat_b, [3, 4])
+    const tensor&lt;f32, [2, 4]&gt; product ← a.matmul(b)
+    const f32 mean ← product.mean()
     print mean
-}</code></pre><p><strong>WebAssembly text</strong> — 10 lines in, 104 out (10.4×)</p><pre class="faber-code"><code class="lang-wasm-text"><span class="tok-co">;; Generated by radix MIR WASM text probe - experimental artifact.</span>
-(<span class="tok-kw">module</span>
-    (<span class="tok-kw">import</span> <span class="tok-st">"faber_rt_v1"</span> <span class="tok-st">"__faber_rt_v1_array_new"</span> (<span class="tok-kw">func</span> <span class="tok-an">$__faber_rt_v1_array_new__construct</span> (<span class="tok-kw">param</span> <span class="tok-ty">i32</span>) (<span class="tok-kw">result</span> <span class="tok-ty">i32</span>)))
-    (<span class="tok-kw">import</span> <span class="tok-st">"faber_rt_v1"</span> <span class="tok-st">"__faber_rt_v1_array_push"</span> (<span class="tok-kw">func</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">param</span> <span class="tok-ty">i32</span> <span class="tok-ty">i64</span>) (<span class="tok-kw">result</span> <span class="tok-ty">i32</span>)))
-    (<span class="tok-kw">import</span> <span class="tok-st">"faber_rt_v1"</span> <span class="tok-st">"__faber_rt_v1_tensor_new"</span> (<span class="tok-kw">func</span> <span class="tok-an">$__faber_rt_v1_tensor_new__construct</span> (<span class="tok-kw">param</span> <span class="tok-ty">i32</span>) (<span class="tok-kw">result</span> <span class="tok-ty">i32</span>)))
-    (<span class="tok-kw">import</span> <span class="tok-st">"faber_rt_v1"</span> <span class="tok-st">"__faber_rt_v1_tensor_from_flat"</span> (<span class="tok-kw">func</span> <span class="tok-an">$__faber_rt_v1_tensor_from_flat__tensor_from_flat_3_aggregate_aggregate_aggregate_to_aggregate</span> (<span class="tok-kw">param</span> <span class="tok-ty">i32</span> <span class="tok-ty">i32</span> <span class="tok-ty">i32</span>) (<span class="tok-kw">result</span> <span class="tok-ty">i32</span>)))
-    (<span class="tok-kw">import</span> <span class="tok-st">"faber_rt_v1"</span> <span class="tok-st">"__faber_rt_v1_tensor_matmul"</span> (<span class="tok-kw">func</span> <span class="tok-an">$__faber_rt_v1_tensor_matmul__tensor_matmul_2_aggregate_aggregate_to_aggregate</span> (<span class="tok-kw">param</span> <span class="tok-ty">i32</span> <span class="tok-ty">i32</span>) (<span class="tok-kw">result</span> <span class="tok-ty">i32</span>)))
-    (<span class="tok-kw">import</span> <span class="tok-st">"faber_rt_v1"</span> <span class="tok-st">"__faber_rt_v1_tensor_mean"</span> (<span class="tok-kw">func</span> <span class="tok-an">$__faber_rt_v1_tensor_mean__tensor_mean_1_aggregate_to_f64</span> (<span class="tok-kw">param</span> <span class="tok-ty">i32</span>) (<span class="tok-kw">result</span> <span class="tok-ty">f64</span>)))
-    (<span class="tok-kw">import</span> <span class="tok-st">"faber_rt_v1"</span> <span class="tok-st">"__faber_rt_v1_diagnostic_nota_f64"</span> (<span class="tok-kw">func</span> <span class="tok-an">$__faber_rt_v1_diagnostic_nota_f64</span> (<span class="tok-kw">param</span> <span class="tok-ty">f64</span>)))
-    (<span class="tok-kw">func</span> <span class="tok-an">$incipit</span> (<span class="tok-kw">export</span> <span class="tok-st">"incipit"</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$l0</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$l1</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$l2</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$l3</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$l4</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$l5</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$l6</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t0</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t1</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t2</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t3</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t4</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t5</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t6</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t7</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t8</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t9</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t10</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t11</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t12</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t13</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t14</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t15</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t16</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t17</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t18</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t19</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t20</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t21</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t22</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t23</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t24</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t25</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t26</span> <span class="tok-ty">f64</span>)
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t0</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">1.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t1</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">2.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t2</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">3.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t3</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">4.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t4</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">5.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t5</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">6.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t6</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_new__construct</span> (<span class="tok-ty">i32</span>.const <span class="tok-nu">6</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t6</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t6</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t0</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t6</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t6</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t1</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t6</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t6</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t2</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t6</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t6</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t3</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t6</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t6</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t4</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t6</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t6</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t5</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$l0</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t6</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t7</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">1.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t8</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">2.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t9</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">3.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t10</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">4.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t11</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">5.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t12</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">6.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t13</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">7.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t14</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">8.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t15</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">9.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t16</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">10.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t17</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">11.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t18</span> (<span class="tok-ty">f64</span>.const <span class="tok-nu">12.0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t19</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_new__construct</span> (<span class="tok-ty">i32</span>.const <span class="tok-nu">6</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t19</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t19</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t7</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t19</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t19</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t8</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t19</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t19</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t9</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t19</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t19</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t10</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t19</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t19</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t11</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t19</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t19</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t12</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t19</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t19</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t13</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t19</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t19</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t14</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t19</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t19</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t15</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t19</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t19</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t16</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t19</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t19</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t17</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t19</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t19</span>) (<span class="tok-ty">i64</span>.reinterpret_f64 (<span class="tok-kw">local</span>.get <span class="tok-an">$t18</span>))))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$l1</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t19</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t20</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_tensor_new__construct</span> (<span class="tok-ty">i32</span>.const <span class="tok-nu">6</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$l2</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t20</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t21</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_new__construct</span> (<span class="tok-ty">i32</span>.const <span class="tok-nu">4</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t21</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t21</span>) (<span class="tok-ty">i64</span>.const <span class="tok-nu">2</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t21</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t21</span>) (<span class="tok-ty">i64</span>.const <span class="tok-nu">3</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t22</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_tensor_from_flat__tensor_from_flat_3_aggregate_aggregate_aggregate_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$l2</span>) (<span class="tok-kw">local</span>.get <span class="tok-an">$l0</span>) (<span class="tok-kw">local</span>.get <span class="tok-an">$t21</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$l3</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t22</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t23</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_new__construct</span> (<span class="tok-ty">i32</span>.const <span class="tok-nu">4</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t23</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t23</span>) (<span class="tok-ty">i64</span>.const <span class="tok-nu">3</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t23</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t23</span>) (<span class="tok-ty">i64</span>.const <span class="tok-nu">4</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t24</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_tensor_from_flat__tensor_from_flat_3_aggregate_aggregate_aggregate_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$l2</span>) (<span class="tok-kw">local</span>.get <span class="tok-an">$l1</span>) (<span class="tok-kw">local</span>.get <span class="tok-an">$t23</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$l4</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t24</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t25</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_tensor_matmul__tensor_matmul_2_aggregate_aggregate_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$l3</span>) (<span class="tok-kw">local</span>.get <span class="tok-an">$l4</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$l5</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t25</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t26</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_tensor_mean__tensor_mean_1_aggregate_to_f64</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$l5</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$l6</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t26</span>))
-          (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_diagnostic_nota_f64</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$l6</span>))
+}</code></pre><p><strong>WebAssembly text</strong> — 10 lines in, 104 out (10.4×)</p><pre class="faber-code"><code class="lang-wasm-text">;; Generated by radix MIR WASM text probe - experimental artifact.
+(module
+    (import &quot;faber_rt_v1&quot; &quot;__faber_rt_v1_array_new&quot; (func $__faber_rt_v1_array_new__construct (param i32) (result i32)))
+    (import &quot;faber_rt_v1&quot; &quot;__faber_rt_v1_array_push&quot; (func $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (param i32 i64) (result i32)))
+    (import &quot;faber_rt_v1&quot; &quot;__faber_rt_v1_tensor_new&quot; (func $__faber_rt_v1_tensor_new__construct (param i32) (result i32)))
+    (import &quot;faber_rt_v1&quot; &quot;__faber_rt_v1_tensor_from_flat&quot; (func $__faber_rt_v1_tensor_from_flat__tensor_from_flat_3_aggregate_aggregate_aggregate_to_aggregate (param i32 i32 i32) (result i32)))
+    (import &quot;faber_rt_v1&quot; &quot;__faber_rt_v1_tensor_matmul&quot; (func $__faber_rt_v1_tensor_matmul__tensor_matmul_2_aggregate_aggregate_to_aggregate (param i32 i32) (result i32)))
+    (import &quot;faber_rt_v1&quot; &quot;__faber_rt_v1_tensor_mean&quot; (func $__faber_rt_v1_tensor_mean__tensor_mean_1_aggregate_to_f64 (param i32) (result f64)))
+    (import &quot;faber_rt_v1&quot; &quot;__faber_rt_v1_diagnostic_nota_f64&quot; (func $__faber_rt_v1_diagnostic_nota_f64 (param f64)))
+    (func $incipit (export &quot;incipit&quot;)
+          (local $l0 i32)
+          (local $l1 i32)
+          (local $l2 i32)
+          (local $l3 i32)
+          (local $l4 i32)
+          (local $l5 i32)
+          (local $l6 f64)
+          (local $t0 f64)
+          (local $t1 f64)
+          (local $t2 f64)
+          (local $t3 f64)
+          (local $t4 f64)
+          (local $t5 f64)
+          (local $t6 i32)
+          (local $t7 f64)
+          (local $t8 f64)
+          (local $t9 f64)
+          (local $t10 f64)
+          (local $t11 f64)
+          (local $t12 f64)
+          (local $t13 f64)
+          (local $t14 f64)
+          (local $t15 f64)
+          (local $t16 f64)
+          (local $t17 f64)
+          (local $t18 f64)
+          (local $t19 i32)
+          (local $t20 i32)
+          (local $t21 i32)
+          (local $t22 i32)
+          (local $t23 i32)
+          (local $t24 i32)
+          (local $t25 i32)
+          (local $t26 f64)
+          (local.set $t0 (f64.const 1.0))
+          (local.set $t1 (f64.const 2.0))
+          (local.set $t2 (f64.const 3.0))
+          (local.set $t3 (f64.const 4.0))
+          (local.set $t4 (f64.const 5.0))
+          (local.set $t5 (f64.const 6.0))
+          (local.set $t6 (call $__faber_rt_v1_array_new__construct (i32.const 6)))
+          (local.set $t6 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t6) (i64.reinterpret_f64 (local.get $t0))))
+          (local.set $t6 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t6) (i64.reinterpret_f64 (local.get $t1))))
+          (local.set $t6 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t6) (i64.reinterpret_f64 (local.get $t2))))
+          (local.set $t6 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t6) (i64.reinterpret_f64 (local.get $t3))))
+          (local.set $t6 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t6) (i64.reinterpret_f64 (local.get $t4))))
+          (local.set $t6 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t6) (i64.reinterpret_f64 (local.get $t5))))
+          (local.set $l0 (local.get $t6))
+          (local.set $t7 (f64.const 1.0))
+          (local.set $t8 (f64.const 2.0))
+          (local.set $t9 (f64.const 3.0))
+          (local.set $t10 (f64.const 4.0))
+          (local.set $t11 (f64.const 5.0))
+          (local.set $t12 (f64.const 6.0))
+          (local.set $t13 (f64.const 7.0))
+          (local.set $t14 (f64.const 8.0))
+          (local.set $t15 (f64.const 9.0))
+          (local.set $t16 (f64.const 10.0))
+          (local.set $t17 (f64.const 11.0))
+          (local.set $t18 (f64.const 12.0))
+          (local.set $t19 (call $__faber_rt_v1_array_new__construct (i32.const 6)))
+          (local.set $t19 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t19) (i64.reinterpret_f64 (local.get $t7))))
+          (local.set $t19 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t19) (i64.reinterpret_f64 (local.get $t8))))
+          (local.set $t19 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t19) (i64.reinterpret_f64 (local.get $t9))))
+          (local.set $t19 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t19) (i64.reinterpret_f64 (local.get $t10))))
+          (local.set $t19 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t19) (i64.reinterpret_f64 (local.get $t11))))
+          (local.set $t19 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t19) (i64.reinterpret_f64 (local.get $t12))))
+          (local.set $t19 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t19) (i64.reinterpret_f64 (local.get $t13))))
+          (local.set $t19 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t19) (i64.reinterpret_f64 (local.get $t14))))
+          (local.set $t19 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t19) (i64.reinterpret_f64 (local.get $t15))))
+          (local.set $t19 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t19) (i64.reinterpret_f64 (local.get $t16))))
+          (local.set $t19 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t19) (i64.reinterpret_f64 (local.get $t17))))
+          (local.set $t19 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t19) (i64.reinterpret_f64 (local.get $t18))))
+          (local.set $l1 (local.get $t19))
+          (local.set $t20 (call $__faber_rt_v1_tensor_new__construct (i32.const 6)))
+          (local.set $l2 (local.get $t20))
+          (local.set $t21 (call $__faber_rt_v1_array_new__construct (i32.const 4)))
+          (local.set $t21 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t21) (i64.const 2)))
+          (local.set $t21 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t21) (i64.const 3)))
+          (local.set $t22 (call $__faber_rt_v1_tensor_from_flat__tensor_from_flat_3_aggregate_aggregate_aggregate_to_aggregate (local.get $l2) (local.get $l0) (local.get $t21)))
+          (local.set $l3 (local.get $t22))
+          (local.set $t23 (call $__faber_rt_v1_array_new__construct (i32.const 4)))
+          (local.set $t23 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t23) (i64.const 3)))
+          (local.set $t23 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t23) (i64.const 4)))
+          (local.set $t24 (call $__faber_rt_v1_tensor_from_flat__tensor_from_flat_3_aggregate_aggregate_aggregate_to_aggregate (local.get $l2) (local.get $l1) (local.get $t23)))
+          (local.set $l4 (local.get $t24))
+          (local.set $t25 (call $__faber_rt_v1_tensor_matmul__tensor_matmul_2_aggregate_aggregate_to_aggregate (local.get $l3) (local.get $l4)))
+          (local.set $l5 (local.get $t25))
+          (local.set $t26 (call $__faber_rt_v1_tensor_mean__tensor_mean_1_aggregate_to_f64 (local.get $l5)))
+          (local.set $l6 (local.get $t26))
+          (call $__faber_rt_v1_diagnostic_nota_f64 (local.get $l6))
           (return)
     )
-)</code></pre><h2 id="fallibilis">The error channel<a class="anchor" href="#fallibilis">#</a></h2><p>A function that may fail, and a caller that catches. Shows how the <code>⇥</code> channel becomes each target's own error idiom.</p><p><strong>WebAssembly text does not lower this scenario.</strong> That is a measured gap, not an omission — the emitter rejects it rather than producing something that would not run.</p><h2 id="collectiones">Collections and iteration<a class="anchor" href="#collectiones">#</a></h2><p>A list folded to a total with <code>itera ex</code>. The plainest possible read on how loops lower.</p><p><strong>Faber source</strong></p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-8041271761b5f609-0-t-en" data-panel="lt-8041271761b5f609-0-p-en" data-name="English" aria-controls="lt-8041271761b5f609-0-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-8041271761b5f609-0-t-la" data-panel="lt-8041271761b5f609-0-p-la" data-name="Latin" aria-controls="lt-8041271761b5f609-0-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-8041271761b5f609-0-t-th-TH" data-panel="lt-8041271761b5f609-0-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-8041271761b5f609-0-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-8041271761b5f609-0-t-zh-Hans" data-panel="lt-8041271761b5f609-0-p-zh-Hans" data-name="简体中文" aria-controls="lt-8041271761b5f609-0-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-8041271761b5f609-0-t-zh-Hant" data-panel="lt-8041271761b5f609-0-p-zh-Hant" data-name="繁體中文" aria-controls="lt-8041271761b5f609-0-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-8041271761b5f609-0-t-vi" data-panel="lt-8041271761b5f609-0-p-vi" data-name="Tiếng Việt" aria-controls="lt-8041271761b5f609-0-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-8041271761b5f609-0-t-ar" data-panel="lt-8041271761b5f609-0-p-ar" data-name="العربية" aria-controls="lt-8041271761b5f609-0-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-8041271761b5f609-0-t-hi" data-panel="lt-8041271761b5f609-0-p-hi" data-name="हिन्दी" aria-controls="lt-8041271761b5f609-0-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-8041271761b5f609-0-p-en" role="tabpanel" aria-labelledby="lt-8041271761b5f609-0-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">fn</span> summa(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> numeri <span class="tok-kw">const</span> n {
-        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
+)</code></pre><h2 id="fallibilis">The error channel</h2><p>A function that may fail, and a caller that catches. Shows how the <code>⇥</code> channel becomes each target's own error idiom.</p><p><strong>WebAssembly text does not lower this scenario.</strong> That is a measured gap, not an omission — the emitter rejects it rather than producing something that would not run.</p><h2 id="collectiones">Collections and iteration</h2><p>A list folded to a total with <code>itera ex</code>. The plainest possible read on how loops lower.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber">fn summa(list&lt;int&gt; numeri) → int {
+    var int total ← 0
+    for from numeri const n {
+        total ← total + n
     }
-    <span class="tok-kw">return</span> total
+    return total
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
-    <span class="tok-kw">print</span> summa(valores)
-}</code></pre></div><div class="fdt-panel" id="lt-8041271761b5f609-0-p-la" role="tabpanel" aria-labelledby="lt-8041271761b5f609-0-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">functio</span> summa(<span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">numerus</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
-    <span class="tok-kw">varia</span> <span class="tok-kw">numerus</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">itera</span> <span class="tok-kw">ex</span> numeri <span class="tok-kw">fixum</span> n {
-        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
-    }
-    <span class="tok-kw">redde</span> total
-}
-
-<span class="tok-kw">incipit</span> {
-    <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">numerus</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
-    <span class="tok-kw">nota</span> summa(valores)
-}</code></pre></div><div class="fdt-panel" id="lt-8041271761b5f609-0-p-th-TH" role="tabpanel" aria-labelledby="lt-8041271761b5f609-0-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ฟังก์ชัน</span> summa(<span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span><span class="tok-kw">จำนวน</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">จำนวน</span> {
-    <span class="tok-kw">แปร</span> <span class="tok-kw">จำนวน</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">วน</span> <span class="tok-kw">ออก</span> numeri <span class="tok-kw">คงที่</span> n {
-        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
-    }
-    <span class="tok-kw">คืน</span> total
-}
-
-<span class="tok-kw">เริ่ม</span> {
-    <span class="tok-kw">คงที่</span> <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span><span class="tok-kw">จำนวน</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
-    <span class="tok-kw">บันทึก</span> summa(valores)
-}</code></pre></div><div class="fdt-panel" id="lt-8041271761b5f609-0-p-zh-Hans" role="tabpanel" aria-labelledby="lt-8041271761b5f609-0-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">函数</span> summa(<span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">整数</span> {
-    <span class="tok-kw">变量</span> <span class="tok-kw">整数</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">遍历</span> <span class="tok-kw">取自</span> numeri <span class="tok-kw">常量</span> n {
-        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
-    }
-    <span class="tok-kw">返回</span> total
-}
-
-<span class="tok-kw">入口</span> {
-    <span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
-    <span class="tok-kw">显示</span> summa(valores)
-}</code></pre></div><div class="fdt-panel" id="lt-8041271761b5f609-0-p-zh-Hant" role="tabpanel" aria-labelledby="lt-8041271761b5f609-0-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">函式</span> summa(<span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整數</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">整數</span> {
-    <span class="tok-kw">變值</span> <span class="tok-kw">整數</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">遍歷</span> <span class="tok-kw">取自</span> numeri <span class="tok-kw">定值</span> n {
-        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
-    }
-    <span class="tok-kw">傳回</span> total
-}
-
-<span class="tok-kw">入口</span> {
-    <span class="tok-kw">定值</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span><span class="tok-kw">整數</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
-    <span class="tok-kw">註記</span> summa(valores)
-}</code></pre></div><div class="fdt-panel" id="lt-8041271761b5f609-0-p-vi" role="tabpanel" aria-labelledby="lt-8041271761b5f609-0-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">hàm</span> summa(<span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span><span class="tok-kw">số</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">số</span> {
-    <span class="tok-kw">biến</span> <span class="tok-kw">số</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">lặp</span> <span class="tok-kw">từ</span> numeri <span class="tok-kw">hằng</span> n {
-        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
-    }
-    <span class="tok-kw">trả</span> total
-}
-
-<span class="tok-kw">bắt_đầu</span> {
-    <span class="tok-kw">hằng</span> <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span><span class="tok-kw">số</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
-    <span class="tok-kw">ghi_chú</span> summa(valores)
-}</code></pre></div><div class="fdt-panel" id="lt-8041271761b5f609-0-p-ar" role="tabpanel" aria-labelledby="lt-8041271761b5f609-0-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">دالة</span> summa(<span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span><span class="tok-kw">عدد</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">عدد</span> {
-    <span class="tok-kw">متغير</span> <span class="tok-kw">عدد</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">كرر</span> <span class="tok-kw">من</span> numeri <span class="tok-kw">ثابت</span> n {
-        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
-    }
-    <span class="tok-kw">أعد</span> total
-}
-
-<span class="tok-kw">بداية</span> {
-    <span class="tok-kw">ثابت</span> <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span><span class="tok-kw">عدد</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
-    <span class="tok-kw">اعرض</span> summa(valores)
-}</code></pre></div><div class="fdt-panel" id="lt-8041271761b5f609-0-p-hi" role="tabpanel" aria-labelledby="lt-8041271761b5f609-0-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">फलन</span> summa(<span class="tok-kw">सूची</span><span class="tok-op">&lt;</span><span class="tok-kw">संख्या</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">संख्या</span> {
-    <span class="tok-kw">चर</span> <span class="tok-kw">संख्या</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">दोहराओ</span> <span class="tok-kw">सेवन</span> numeri <span class="tok-kw">स्थिर</span> n {
-        total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
-    }
-    <span class="tok-kw">लौटाओ</span> total
-}
-
-<span class="tok-kw">आरंभ</span> {
-    <span class="tok-kw">स्थिर</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span><span class="tok-kw">संख्या</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
-    <span class="tok-kw">दिखाओ</span> summa(valores)
-}</code></pre></div></div><p><strong>WebAssembly text</strong> — 12 lines in, 87 out (7.2×)</p><pre class="faber-code"><code class="lang-wasm-text"><span class="tok-co">;; Generated by radix MIR WASM text probe - experimental artifact.</span>
-(<span class="tok-kw">module</span>
-    (<span class="tok-kw">import</span> <span class="tok-st">"faber_rt_v1"</span> <span class="tok-st">"__faber_rt_v1_array_new"</span> (<span class="tok-kw">func</span> <span class="tok-an">$__faber_rt_v1_array_new__construct</span> (<span class="tok-kw">param</span> <span class="tok-ty">i32</span>) (<span class="tok-kw">result</span> <span class="tok-ty">i32</span>)))
-    (<span class="tok-kw">import</span> <span class="tok-st">"faber_rt_v1"</span> <span class="tok-st">"__faber_rt_v1_array_push"</span> (<span class="tok-kw">func</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">param</span> <span class="tok-ty">i32</span> <span class="tok-ty">i64</span>) (<span class="tok-kw">result</span> <span class="tok-ty">i32</span>)))
-    (<span class="tok-kw">import</span> <span class="tok-st">"faber_rt_v1"</span> <span class="tok-st">"__faber_rt_v1_array_get"</span> (<span class="tok-kw">func</span> <span class="tok-an">$__faber_rt_v1_array_get__index_2_aggregate_i64_to_i64</span> (<span class="tok-kw">param</span> <span class="tok-ty">i32</span> <span class="tok-ty">i64</span>) (<span class="tok-kw">result</span> <span class="tok-ty">i64</span>)))
-    (<span class="tok-kw">import</span> <span class="tok-st">"faber_rt_v1"</span> <span class="tok-st">"__faber_rt_v1_array_length"</span> (<span class="tok-kw">func</span> <span class="tok-an">$__faber_rt_v1_array_length__length_1_aggregate_to_i64</span> (<span class="tok-kw">param</span> <span class="tok-ty">i32</span>) (<span class="tok-kw">result</span> <span class="tok-ty">i64</span>)))
-    (<span class="tok-kw">import</span> <span class="tok-st">"faber_rt_v1"</span> <span class="tok-st">"__faber_rt_v1_diagnostic_nota_i64"</span> (<span class="tok-kw">func</span> <span class="tok-an">$__faber_rt_v1_diagnostic_nota_i64</span> (<span class="tok-kw">param</span> <span class="tok-ty">i64</span>)))
-    (<span class="tok-kw">func</span> <span class="tok-an">$summa</span> (<span class="tok-kw">export</span> <span class="tok-st">"summa"</span>) (<span class="tok-kw">param</span> <span class="tok-an">$l0</span> <span class="tok-ty">i32</span>) (<span class="tok-kw">result</span> <span class="tok-ty">i64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$l1</span> <span class="tok-ty">i64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$l2</span> <span class="tok-ty">i64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$l3</span> <span class="tok-ty">i64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t0</span> <span class="tok-ty">i64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t1</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t2</span> <span class="tok-ty">i64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t3</span> <span class="tok-ty">i64</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$p0</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$p0</span> (<span class="tok-ty">i32</span>.const <span class="tok-nu">0</span>))
-          (<span class="tok-kw">loop</span> <span class="tok-an">$dispatch</span>
-              (if (<span class="tok-ty">i32</span>.eq (<span class="tok-kw">local</span>.get <span class="tok-an">$p0</span>) (<span class="tok-ty">i32</span>.const <span class="tok-nu">0</span>))
+main {
+    const list&lt;int&gt; valores ← [1, 2, 3, 4, 5]
+    print summa(valores)
+}</code></pre><p><strong>WebAssembly text</strong> — 12 lines in, 87 out (7.2×)</p><pre class="faber-code"><code class="lang-wasm-text">;; Generated by radix MIR WASM text probe - experimental artifact.
+(module
+    (import &quot;faber_rt_v1&quot; &quot;__faber_rt_v1_array_new&quot; (func $__faber_rt_v1_array_new__construct (param i32) (result i32)))
+    (import &quot;faber_rt_v1&quot; &quot;__faber_rt_v1_array_push&quot; (func $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (param i32 i64) (result i32)))
+    (import &quot;faber_rt_v1&quot; &quot;__faber_rt_v1_array_get&quot; (func $__faber_rt_v1_array_get__index_2_aggregate_i64_to_i64 (param i32 i64) (result i64)))
+    (import &quot;faber_rt_v1&quot; &quot;__faber_rt_v1_array_length&quot; (func $__faber_rt_v1_array_length__length_1_aggregate_to_i64 (param i32) (result i64)))
+    (import &quot;faber_rt_v1&quot; &quot;__faber_rt_v1_diagnostic_nota_i64&quot; (func $__faber_rt_v1_diagnostic_nota_i64 (param i64)))
+    (func $summa (export &quot;summa&quot;) (param $l0 i32) (result i64)
+          (local $l1 i64)
+          (local $l2 i64)
+          (local $l3 i64)
+          (local $t0 i64)
+          (local $t1 i32)
+          (local $t2 i64)
+          (local $t3 i64)
+          (local $p0 i32)
+          (local.set $p0 (i32.const 0))
+          (loop $dispatch
+              (if (i32.eq (local.get $p0) (i32.const 0))
                   (then
-                      (<span class="tok-kw">local</span>.set <span class="tok-an">$l1</span> (<span class="tok-ty">i64</span>.const <span class="tok-nu">0</span>))
-                      (<span class="tok-kw">local</span>.set <span class="tok-an">$l2</span> (<span class="tok-ty">i64</span>.const <span class="tok-nu">0</span>))
-                      (<span class="tok-kw">local</span>.set <span class="tok-an">$t0</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_length__length_1_aggregate_to_i64</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$l0</span>)))
-                      (<span class="tok-kw">local</span>.set <span class="tok-an">$p0</span> (<span class="tok-ty">i32</span>.const <span class="tok-nu">1</span>))
-                      (<span class="tok-kw">br</span> <span class="tok-an">$dispatch</span>)
+                      (local.set $l1 (i64.const 0))
+                      (local.set $l2 (i64.const 0))
+                      (local.set $t0 (call $__faber_rt_v1_array_length__length_1_aggregate_to_i64 (local.get $l0)))
+                      (local.set $p0 (i32.const 1))
+                      (br $dispatch)
                   )
               )
-              (if (<span class="tok-ty">i32</span>.eq (<span class="tok-kw">local</span>.get <span class="tok-an">$p0</span>) (<span class="tok-ty">i32</span>.const <span class="tok-nu">1</span>))
+              (if (i32.eq (local.get $p0) (i32.const 1))
                   (then
-                      <span class="tok-co">;; v2 = (i64.lt_s (local.get $l2) (local.get $t0))</span>
-                      (<span class="tok-kw">local</span>.set <span class="tok-an">$t1</span> (<span class="tok-ty">i64</span>.lt_s (<span class="tok-kw">local</span>.get <span class="tok-an">$l2</span>) (<span class="tok-kw">local</span>.get <span class="tok-an">$t0</span>)))
-                      (if (<span class="tok-kw">local</span>.get <span class="tok-an">$t1</span>)
+                      ;; v2 = (i64.lt_s (local.get $l2) (local.get $t0))
+                      (local.set $t1 (i64.lt_s (local.get $l2) (local.get $t0)))
+                      (if (local.get $t1)
                           (then
-                              (<span class="tok-kw">local</span>.set <span class="tok-an">$p0</span> (<span class="tok-ty">i32</span>.const <span class="tok-nu">2</span>))
-                              (<span class="tok-kw">br</span> <span class="tok-an">$dispatch</span>)
+                              (local.set $p0 (i32.const 2))
+                              (br $dispatch)
                           )
                           (else
-                              (<span class="tok-kw">local</span>.set <span class="tok-an">$p0</span> (<span class="tok-ty">i32</span>.const <span class="tok-nu">4</span>))
-                              (<span class="tok-kw">br</span> <span class="tok-an">$dispatch</span>)
+                              (local.set $p0 (i32.const 4))
+                              (br $dispatch)
                           )
                       )
                   )
               )
-              (if (<span class="tok-ty">i32</span>.eq (<span class="tok-kw">local</span>.get <span class="tok-an">$p0</span>) (<span class="tok-ty">i32</span>.const <span class="tok-nu">2</span>))
+              (if (i32.eq (local.get $p0) (i32.const 2))
                   (then
-                      (<span class="tok-kw">local</span>.set <span class="tok-an">$l3</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_get__index_2_aggregate_i64_to_i64</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$l0</span>) (<span class="tok-kw">local</span>.get <span class="tok-an">$l2</span>)))
-                      <span class="tok-co">;; v4 = (i64.add (local.get $l1) (local.get $l3))</span>
-                      (<span class="tok-kw">local</span>.set <span class="tok-an">$t2</span> (<span class="tok-ty">i64</span>.add (<span class="tok-kw">local</span>.get <span class="tok-an">$l1</span>) (<span class="tok-kw">local</span>.get <span class="tok-an">$l3</span>)))
-                      (<span class="tok-kw">local</span>.set <span class="tok-an">$l1</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t2</span>))
-                      (<span class="tok-kw">local</span>.set <span class="tok-an">$p0</span> (<span class="tok-ty">i32</span>.const <span class="tok-nu">3</span>))
-                      (<span class="tok-kw">br</span> <span class="tok-an">$dispatch</span>)
+                      (local.set $l3 (call $__faber_rt_v1_array_get__index_2_aggregate_i64_to_i64 (local.get $l0) (local.get $l2)))
+                      ;; v4 = (i64.add (local.get $l1) (local.get $l3))
+                      (local.set $t2 (i64.add (local.get $l1) (local.get $l3)))
+                      (local.set $l1 (local.get $t2))
+                      (local.set $p0 (i32.const 3))
+                      (br $dispatch)
                   )
               )
-              (if (<span class="tok-ty">i32</span>.eq (<span class="tok-kw">local</span>.get <span class="tok-an">$p0</span>) (<span class="tok-ty">i32</span>.const <span class="tok-nu">3</span>))
+              (if (i32.eq (local.get $p0) (i32.const 3))
                   (then
-                      <span class="tok-co">;; v6 = (i64.add (local.get $l2) (i64.const 1))</span>
-                      (<span class="tok-kw">local</span>.set <span class="tok-an">$t3</span> (<span class="tok-ty">i64</span>.add (<span class="tok-kw">local</span>.get <span class="tok-an">$l2</span>) (<span class="tok-ty">i64</span>.const <span class="tok-nu">1</span>)))
-                      (<span class="tok-kw">local</span>.set <span class="tok-an">$l2</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t3</span>))
-                      (<span class="tok-kw">local</span>.set <span class="tok-an">$p0</span> (<span class="tok-ty">i32</span>.const <span class="tok-nu">1</span>))
-                      (<span class="tok-kw">br</span> <span class="tok-an">$dispatch</span>)
+                      ;; v6 = (i64.add (local.get $l2) (i64.const 1))
+                      (local.set $t3 (i64.add (local.get $l2) (i64.const 1)))
+                      (local.set $l2 (local.get $t3))
+                      (local.set $p0 (i32.const 1))
+                      (br $dispatch)
                   )
               )
-              (if (<span class="tok-ty">i32</span>.eq (<span class="tok-kw">local</span>.get <span class="tok-an">$p0</span>) (<span class="tok-ty">i32</span>.const <span class="tok-nu">4</span>))
+              (if (i32.eq (local.get $p0) (i32.const 4))
                   (then
-                      (return (<span class="tok-kw">local</span>.get <span class="tok-an">$l1</span>))
+                      (return (local.get $l1))
                   )
               )
-              (<span class="tok-kw">unreachable</span>)
+              (unreachable)
           )
-          (<span class="tok-kw">unreachable</span>)
+          (unreachable)
     )
-    (<span class="tok-kw">func</span> <span class="tok-an">$incipit</span> (<span class="tok-kw">export</span> <span class="tok-st">"incipit"</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$l0</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t0</span> <span class="tok-ty">i32</span>)
-          (<span class="tok-kw">local</span> <span class="tok-an">$t1</span> <span class="tok-ty">i64</span>)
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t0</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_new__construct</span> (<span class="tok-ty">i32</span>.const <span class="tok-nu">4</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t0</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t0</span>) (<span class="tok-ty">i64</span>.const <span class="tok-nu">1</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t0</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t0</span>) (<span class="tok-ty">i64</span>.const <span class="tok-nu">2</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t0</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t0</span>) (<span class="tok-ty">i64</span>.const <span class="tok-nu">3</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t0</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t0</span>) (<span class="tok-ty">i64</span>.const <span class="tok-nu">4</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t0</span> (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t0</span>) (<span class="tok-ty">i64</span>.const <span class="tok-nu">5</span>)))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$l0</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t0</span>))
-          (<span class="tok-kw">local</span>.set <span class="tok-an">$t1</span> (<span class="tok-kw">call</span> <span class="tok-an">$summa</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$l0</span>)))
-          (<span class="tok-kw">call</span> <span class="tok-an">$__faber_rt_v1_diagnostic_nota_i64</span> (<span class="tok-kw">local</span>.get <span class="tok-an">$t1</span>))
+    (func $incipit (export &quot;incipit&quot;)
+          (local $l0 i32)
+          (local $t0 i32)
+          (local $t1 i64)
+          (local.set $t0 (call $__faber_rt_v1_array_new__construct (i32.const 4)))
+          (local.set $t0 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t0) (i64.const 1)))
+          (local.set $t0 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t0) (i64.const 2)))
+          (local.set $t0 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t0) (i64.const 3)))
+          (local.set $t0 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t0) (i64.const 4)))
+          (local.set $t0 (call $__faber_rt_v1_array_push__construct_2_aggregate_i64_to_aggregate (local.get $t0) (i64.const 5)))
+          (local.set $l0 (local.get $t0))
+          (local.set $t1 (call $summa (local.get $l0)))
+          (call $__faber_rt_v1_diagnostic_nota_i64 (local.get $t1))
           (return)
     )
-)</code></pre><p>---</p><p><a href="/en-US/targets/">All lanes</a> · <a href="/en-US/toolchain/target-matrix.html">Measured support per term</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#reading">How to read it</a></li><li class="toc-2"><a href="#tensores">Typed tensors</a></li><li class="toc-2"><a href="#fallibilis">The error channel</a></li><li class="toc-2"><a href="#collectiones">Collections and iteration</a></li></ul></div></nav></div></body></html>
+)</code></pre><p>---</p><p><a href="/en-US/targets/">All lanes</a> · <a href="/en-US/toolchain/target-matrix.html">Measured support per term</a></p></div></main><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[]</li></ul></div></footer></div></body></html>
