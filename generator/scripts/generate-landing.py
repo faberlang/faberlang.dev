@@ -2,14 +2,12 @@
 """
 generate-landing.py — Generate the Faber landing page at /.
 
-Narrative order, deliberately plain — show the thing, then explain it:
+Narrative order: first screen is three doors, not a scroll.
 
-    1. readable in your language: the same program across eight reader locales
-    2. one semantic program: that program lowered to application targets
-    3. compiler lanes: the table, now that both axes have been demonstrated
-    4. real GPU work: Metal/CUDA training, the kernel, and what is not shipped
-    5. the supporting graphics and scripting proofs
-    6. where to go
+    0. experimental banner + short claim + MIT/Radix line
+    1. see the language (short English Gradus program), try it, for agents
+    2. below the fold: reader locales, emit dumps, lanes, GPU honesty,
+       Triga frames, speed table, where to go
 
 The lanes table used to sit directly under the buttons, asking a visitor to
 read an inventory of HIR/AIR/MIR/FMIR before seeing a line of Faber. It reads
@@ -212,6 +210,7 @@ def main() -> None:
     gpu_panels = build_target_panels(args.landing, GPU_TARGETS)
 
     kernel_fab = (args.landing / "targets" / "kernel.fab").read_text(encoding="utf-8").strip()
+    gradus_fab = (args.landing / "gradus-hello.fab").read_text(encoding="utf-8").strip()
 
     read_tabs = demo_tabs(
         root_id="fl-loc", file_label="main.fab · reader locale",
@@ -259,6 +258,12 @@ def main() -> None:
 <body class="landing">
 <a class="skip-link" href="#top">Skip to content</a>
 
+<aside class="fl-banner" role="status">
+  <strong>Experimental through version 1.</strong>
+  Version 0 was alpha. This is the first language release: the interface is
+  relatively stable, not frozen. Nothing is promised stable until version 2.
+</aside>
+
 <header class="fl-top">
   <a class="fl-brand" href="/"><span class="fl-brand-mark" aria-hidden="true">f</span> Faber</a>
   <nav class="fl-topnav" aria-label="Primary">
@@ -276,36 +281,35 @@ def main() -> None:
     <p class="fl-kicker">Multilingual semantic programming for application code and GPU work · MIT</p>
     <h1>Write compute programs<br>in the language you think in.</h1>
     <p class="fl-lede">
-      Faber keeps one semantic program readable across human-language surfaces,
-      then lowers it toward application targets and a measured GPU path. Use
-      the same typed source for package work, training proofs, and device
-      kernels — with support stated target by target.
-    </p>
-    <p class="fl-thesis">
-      Faber is mechanical, token-oriented, and <strong>LLM-first</strong> by
-      design. <strong>Glyphs</strong> provide the stable structural frame;
-      <strong>keywords</strong> provide the flexible, human-facing rendering.
-      English keywords are selected for high-probability LLM generation,
-      reducing transcription and coding errors when people and models write
-      Faber together. <strong>HIR</strong> is the semantic core: every target
-      language is a projection of the meaning held there. <strong>MIR</strong> is
-      the systems lane, where that meaning takes execution-shaped form for
-      low-level targets, validation surfaces, and package runtimes.
-      <strong>GPU</strong> is the device lane, linking the compiler to real Metal
-      and CUDA execution: bounded training is proven now, and inference is
-      being built next.
+      One typed program stays readable in the language you work in, then
+      lowers toward application targets and a measured GPU path. Support is
+      stated target by target.
     </p>
     <p class="fl-open-source">
-      The language, public libraries, examples, and user tooling ship under the
-      <strong>MIT</strong> license. <strong>Radix</strong>, the compiler, is
-      closed source for now and is planned for open release once the language
-      has clearer market demand — not as a permanent fence around Faber.
+      The language, public libraries (including <strong>Gradus</strong>),
+      examples, and tooling ship under the <strong>MIT</strong> license.
+      <strong>Radix</strong>, the compiler, is closed only while it is under
+      active development. That is temporary, not a permanent fence.
     </p>
 
-    <div class="fl-cta">
-      <a class="fl-btn fl-btn-primary" href="/en-US/">Explore Faber</a>
-      <a class="fl-btn" href="/en-US/start/install.html">Install</a>
-      <a class="fl-btn" href="/en-US/cheatsheet/">Cheat sheet</a>
+    <div class="fl-first-doors" aria-label="Start here">
+      <div class="fl-door fl-door-see">
+        <strong>See the language</strong>
+        <span>
+          <a href="https://github.com/faberlang/gradus">Gradus</a> is the
+          large open MIT autograd and ML library, with a structural inference
+          surface. This is a short English program.
+        </span>
+        <pre class="fl-src"><code class="lang-faber locale=en">{esc(gradus_fab)}</code></pre>
+      </div>
+      <a class="fl-door" href="/en-US/start/">
+        <strong>Try it</strong>
+        <span>Install and a five-minute tour of the language.</span>
+      </a>
+      <a class="fl-door" href="/llms.txt">
+        <strong>For agents</strong>
+        <span>Machine index at <code>/llms.txt</code>.</span>
+      </a>
     </div>
   </section>
 
@@ -494,7 +498,7 @@ $ faber run --backend cuda  &lt;package&gt;</pre>
       </a>
       <a class="fl-door" href="/en-US/libraries/">
         <strong>Libraries</strong>
-        <span>Norma, Triga, Cista, the language corpus.</span>
+        <span>Norma, Gradus, Triga, Cista, the language corpus.</span>
       </a>
     </div>
   </section>
@@ -516,7 +520,7 @@ $ faber run --backend cuda  &lt;package&gt;</pre>
 <footer class="fl-foot">
   <div>
     <strong>Faber</strong> · designed by Ian Zepp · language &amp; libraries MIT ·
-    <a href="/en-US/toolchain/radix.html">Radix</a> closed for now
+    <a href="/en-US/toolchain/radix.html">Radix</a> closed while under active development
   </div>
   <div>
     <a href="/porta/">All languages</a> ·

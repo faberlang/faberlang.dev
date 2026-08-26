@@ -1546,6 +1546,21 @@ body.landing {
 .fl-topnav a:hover { color: var(--glyph); border-bottom-color: var(--glyph); }
 .fl-locale { color: var(--ink-faint) !important; }
 
+.fl-banner {
+    background: var(--glyph);
+    color: var(--on-glyph);
+    padding: var(--s4) var(--gutter);
+    font-size: 15px;
+    line-height: 1.55;
+    text-align: center;
+}
+.fl-banner strong {
+    display: block;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    margin-bottom: var(--s1);
+}
+
 .fl-wrap {
     max-width: calc(var(--measure) + var(--gutter) * 2);
     margin: 0 auto;
@@ -1553,7 +1568,7 @@ body.landing {
 }
 
 /* -- hero -- */
-.fl-hero { padding: var(--s8) 0 var(--s7); }
+.fl-hero { padding: var(--s6) 0 var(--s5); }
 .fl-kicker {
     font-size: 12px;
     letter-spacing: 0.12em;
@@ -1592,6 +1607,27 @@ body.landing {
 .fl-open-source strong { color: var(--ink-dim); font-weight: 600; }
 
 .fl-cta { display: flex; gap: var(--s3); flex-wrap: wrap; margin: var(--s6) 0 var(--s6); }
+
+.fl-first-doors {
+    display: grid;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    gap: var(--s4);
+    margin: var(--s6) 0 0;
+}
+.fl-door-see {
+    grid-row: 1 / span 2;
+}
+.fl-door-see a { color: var(--glyph); text-decoration: none; border-bottom: 1px solid var(--rule-strong); }
+.fl-door-see a:hover { border-bottom-color: var(--glyph); }
+.fl-door-see pre.fl-src { margin: var(--s4) 0 0; }
+@media (max-width: 720px) {
+    .fl-first-doors {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto;
+    }
+    .fl-door-see { grid-row: auto; }
+}
 .fl-btn {
     display: inline-block;
     padding: var(--s3) var(--s5);
