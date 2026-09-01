@@ -13,7 +13,7 @@ Layout (Speculum porta):
 
 Defaults:
     --locales       generator/locales.toml
-    --reader-root   workspace/radix/stdlib/locale
+    --reader-root   workspace/radix/locale
     --exemplars     generator/portal/exemplars (hero panels; falls back to
                     pack exemplars under --reader-root)
     --css           /speculum.css

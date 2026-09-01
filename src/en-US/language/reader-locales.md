@@ -7,7 +7,7 @@ section = "language"
 order = 6
 sources = [
   "examples/reader-locale/ (6 locale packages with localized Faber source)",
-  "radix/stdlib/locale/ (8 installed reader packs)",
+  "radix/locale/ (8 installed reader packs)",
 ]
 +++
 
@@ -292,7 +292,7 @@ or deferred.
 
 1. `radix/docs/design/reader-locale.md` — full design document (69 KB)
 2. `examples/reader-locale/` — 6 locale packages with localised source
-3. `stdlib/locale/*/pack.toml` — 8 installed pack definitions
+3. `locale/*/pack.toml` — 8 installed pack definitions
 4. `radix/crates/radix/src/locale.rs` — runtime implementation
 5. `radix/docs/design/faber-canonical-surface.md` — canonical mode and `faber format`
 6. `radix/docs/factory/lex-nfkc-normalization/` — NFKC prerequisite delivery

@@ -18,7 +18,7 @@ client falls back to if a per-locale file is missing.
 Usage:
     generate-search-index.py --corpus <radix/corpus> --output-dir <dist>
         [--locales generator/locales.toml]
-        [--reader-root workspace/radix/stdlib/locale]
+        [--reader-root workspace/radix/locale]
 """
 
 from __future__ import annotations

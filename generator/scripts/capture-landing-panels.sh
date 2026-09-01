@@ -44,7 +44,7 @@ echo "toolchain: $("$FABER" --version) at ${FABER}"
 # fails and the committed captures quietly stay at whatever the toolchain
 # produced last time — which is how tensor/vacua sat untranslated in the
 # shipped panels long after the compiler learned to render them.
-PACK_SRC="${WORKSPACE}/radix/stdlib/locale"
+PACK_SRC="${WORKSPACE}/radix/locale"
 PACK_DEST="$(cd "$(dirname "$FABER")/.." && pwd)/share/faber/locale"
 if [ -d "$PACK_SRC" ]; then
     mkdir -p "$PACK_DEST"

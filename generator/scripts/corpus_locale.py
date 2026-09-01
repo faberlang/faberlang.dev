@@ -25,17 +25,17 @@ except ModuleNotFoundError:  # pragma: no cover - Python < 3.11 fallback
 
 
 def default_reader_root() -> Path:
-    """Locate the workspace `radix/stdlib/locale` checkout."""
+    """Locate the workspace `radix/locale` checkout."""
     configured = os.environ.get("FABER_LIBRARY_HOME")
     if configured:
-        candidate = Path(configured) / "radix" / "stdlib" / "locale"
+        candidate = Path(configured) / "radix" / "locale"
         if candidate.is_dir():
             return candidate
     for parent in Path(__file__).resolve().parents:
-        candidate = parent / "radix" / "stdlib" / "locale"
+        candidate = parent / "radix" / "locale"
         if candidate.is_dir():
             return candidate
-    return Path(__file__).resolve().parents[3] / "radix" / "stdlib" / "locale"
+    return Path(__file__).resolve().parents[3] / "radix" / "locale"
 
 
 def load_pack(reader_root: Path, reader_locale: str) -> dict[str, dict[str, str]]:

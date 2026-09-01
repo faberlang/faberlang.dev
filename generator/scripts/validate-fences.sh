@@ -47,7 +47,7 @@ if [ -z "${RADIX:-}" ]; then
     done
 fi
 RADIX="${RADIX:-radix}"
-LOCALE_PACK_DIR="${WORKSPACE_VF}/radix/stdlib/locale"
+LOCALE_PACK_DIR="${WORKSPACE_VF}/radix/locale"
 
 # Build the code-locale argument for a fence's declared locale. Latin is the
 # canonical surface and needs no pack.
