@@ -12,7 +12,7 @@ then open a real package. For a sequenced path, follow: [Install](/start/install
 
 ## 1. Install the CLI {#install}
 
-Download the current release (**1.6.0**) for your platform from the
+Download the current release (**1.8.0**) for your platform from the
 [install page](/start/install.html), verify the archive checksum, and put
 `bin/faber` from the archive's `bin/` and `share/` trees on your `PATH`
 (keep the trees together so the reader packs resolve). Confirm:
@@ -89,7 +89,7 @@ Browse them on the [examples page](/examples/).
 
 | Step | Page | Outcome |
 |---|---|---|
-| 1 | [Install & download](/start/install.html) | Put Faber 1.6.0 on `PATH` and verify it |
+| 1 | [Install & download](/start/install.html) | Put Faber 1.8.0 on `PATH` and verify it |
 | 2 | [Hello, Faber](/start/hello.html) | Create and run `salve-munde` |
 | 3 | [Commands you will use](/cheatsheet/commands.html) | Learn `check`, `build`, `run`, `test`, `explain` |
 | 4 | [Projects and examples](/start/projects.html) | Move into real packages and corpus pages |

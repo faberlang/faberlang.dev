@@ -52,6 +52,34 @@ functio exigePositivum(numerus value) ⇥ textus {
 }
 ```
 
+### Guards — requirit / reice {#guards--requirit--reice}
+
+Guard statements pair a condition with a throw in one line. `requirit`
+(English reader spelling `require`) throws when the condition **fails** —
+it demands that the condition hold:
+
+```faber
+functio divide(numerus a, numerus b) → numerus ⇥ textus {
+    requirit b ≢ 0 iace "division by zero"
+    redde a / b
+}
+```
+
+`reice` (English reader spelling `reject`) is its boolean opposite: it
+throws when the condition **holds**. Read it as an early rejection — the
+happy path is whatever the condition rules out:
+
+```faber
+functio exigePositivum(numerus value) → numerus ⇥ textus {
+    reice value ≺ 0 iace "negative value"
+    redde value
+}
+```
+
+Both compile to the same shape as an `si` around `iace` — `reice cond
+iace err` is exactly `si cond { iace err }` — and, like `iace` itself,
+they require the enclosing function to declare a `⇥` channel.
+
 ### Recovery — fac / cape {#recovery--fac--cape}
 
 Callers recover locally with a `fac` block and a `cape` handler:

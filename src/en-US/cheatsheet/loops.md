@@ -25,6 +25,28 @@ incipit {
 }
 ```
 
+### In lockstep {#lockstep}
+
+`ex` also accepts a comma series: give it N collections and N name binders,
+and the loop walks them all in lockstep — one shared index, one value from
+each list per turn:
+
+```faber
+incipit {
+    fixum lista<textus> nomina ← ["Alia", "Brunus"]
+    fixum lista<numerus> aetates ← [34, 27]
+
+    itera ex nomina, aetates apud [i] fixum nomen, aetas {
+        nota i, nomen, aetas
+    }
+}
+```
+
+`apud` (English `at`) names the shared index. The sources are listas, the
+binders are plain names, and the first source owns the length: if a later
+list is shorter, the loop stops with a runtime error rather than silently
+truncating to the minimum.
+
 ## Over keys {#keys}
 
 ```faber

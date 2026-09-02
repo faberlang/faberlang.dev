@@ -51,8 +51,9 @@ the [target matrix](/toolchain/target-matrix.html).
 
 ## Download Faber 1.8.0 {#download}
 
-Current release: **Faber 1.8.0** (tag `faber/v1.8.0`), published 2026-08-18.
-The current release entry lists one prebuilt CLI archive for macOS arm64; it
+Current release: **Faber 1.8.0** (tag `faber/v1.8.0`), published 2026-08-24.
+The current release entry lists prebuilt CLI archives for macOS arm64 and
+Linux x64; each
 ships a `bin/` and a `share/` tree — put `bin/faber` on your `PATH`, keeping
 `share/faber` beside the binary so the reader packs resolve.
 
@@ -64,14 +65,15 @@ Full detail: [Faber 1.8.0 release notes](/releases/faber-1.8.0.html).
 
 | Platform | Archive | Checksum |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [faber-v1.8.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/radix/releases/download/faber%2Fv1.8.0/faber-v1.8.0-aarch64-apple-darwin.tar.gz) | `22d688cce1565af4b8e4382ad425c5d6f66354352c7b3db5b9c1614356a8dbea` |
+| **macOS arm64** (Apple Silicon) | [faber-v1.8.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-aarch64-apple-darwin.tar.gz) | `dd584ebf035da4850ce7d43cfe9662223940d338b75ff12b0c4931a09dd37a36` |
+| **Linux x64** (glibc) | [faber-v1.8.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-x86_64-unknown-linux-gnu.tar.gz) | `1b64b591f58782bdf3aafa35c8b26e3315c1c4c642a875de19af277a0b28e61b` |
 
 Quick install (macOS arm64 example):
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/radix/releases/download/faber%2Fv1.8.0/faber-v1.8.0-aarch64-apple-darwin.tar.gz
-expected=22d688cce1565af4b8e4382ad425c5d6f66354352c7b3db5b9c1614356a8dbea
+  https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-aarch64-apple-darwin.tar.gz
+expected=dd584ebf035da4850ce7d43cfe9662223940d338b75ff12b0c4931a09dd37a36
 actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
@@ -82,7 +84,7 @@ sudo mv share/faber /usr/local/share/faber
 faber --version
 ```
 
-Assets on GitHub: [faber/v1.8.0](https://github.com/faberlang/radix/releases/tag/faber%2Fv1.8.0).
+Assets on GitHub: [faber-v1.8.0](https://github.com/faberlang/releases/releases/tag/faber-v1.8.0).
 Step-by-step: [Install guide](/start/install.html). Full historical inventory:
 [Releases](/releases/).
 
@@ -93,7 +95,8 @@ Faber. The 0.83.0 line ships alongside Faber 1.8.0 and is released as source
 plus tag (library crates), not as a standalone binary:
 
 - Release notes: [Radix 0.83.0](/releases/radix-0.83.0.html)
-- Source and tag: [v0.83.0](https://github.com/faberlang/radix/releases/tag/v0.83.0)
+- Source and tag: `v0.83.0` in the Radix source repository (closed source;
+  ships inside Faber)
 
 Radix is the compiler component behind the Faber binary product.
 

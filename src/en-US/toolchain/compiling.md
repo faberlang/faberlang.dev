@@ -48,7 +48,12 @@ supports, erases, warns on, or rejects.
 
 *`run` via device execution: `faber run --backend cuda` (llvm-text) /
 `--backend metal` (metal-text) launches `@ nucleum` kernels on a real GPU;
-`-t llvm-text` / `-t metal-text` themselves remain emit-only. TypeScript and
+`-t llvm-text` / `-t metal-text` themselves remain emit-only. Only *public*
+`@ nucleum` functions are launchable entries — a private `@ nucleum`
+function stays a module-internal helper with no entry row. Kernel closures
+marked `nucleum` follow a device-safe contract: device-safe signature
+types, no error channel, no host effects, and no escapes out of the
+closure. TypeScript and
 Go also have exempla e2e harnesses that execute emitted code under host
 toolchains; that is a measurement surface, not a `faber package` product path.
 

@@ -16,12 +16,12 @@ own pinned download and full release notes — see [Releases](/releases/).
 
 | Field | Value |
 |---|---|
-| **Version** | 1.6.0 |
-| **Tag** | `faber-v1.6.0` |
-| **Published** | 2026-08-10 |
-| **Release notes** | [Faber 1.6.0](/releases/faber-1.6.0.html) |
-| **Bundled compiler** | [Radix 0.81.0](/releases/radix-0.81.0.html) |
-| **Release page** | [faber-v1.6.0 on GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.6.0) |
+| **Version** | 1.8.0 |
+| **Tag** | `faber-v1.8.0` |
+| **Published** | 2026-08-24 |
+| **Release notes** | [Faber 1.8.0](/releases/faber-1.8.0.html) |
+| **Bundled compiler** | [Radix 0.83.0](/releases/radix-0.83.0.html) |
+| **Release page** | [faber-v1.8.0 on GitHub](https://github.com/faberlang/releases/releases/tag/faber-v1.8.0) |
 | **All releases** | [Site releases inventory](/releases/) |
 | **License** | MIT |
 
@@ -29,8 +29,8 @@ own pinned download and full release notes — see [Releases](/releases/).
 
 | Platform | Download | SHA-256 |
 |---|---|---|
-| **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** (Apple Silicon) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-aarch64-apple-darwin.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** (glibc) | [tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-x86_64-unknown-linux-gnu.tar.gz) | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
 The archives ship a `bin/` and a `share/` tree. Install both so the reader
 packs resolve beside the binary (the checksum files may name the original
@@ -41,9 +41,9 @@ archive instead of relying on `sha256sum -c` path matching).
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-aarch64-apple-darwin.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-aarch64-apple-darwin.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
@@ -59,9 +59,9 @@ faber --version
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-x86_64-unknown-linux-gnu.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-x86_64-unknown-linux-gnu.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(sha256sum faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"

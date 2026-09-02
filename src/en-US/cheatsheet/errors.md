@@ -28,6 +28,26 @@ looking at the body.
 `iace` sends a value down the error channel. It is not `redde`: it exits by the
 other route.
 
+## Guards: requirit / reice {#guards}
+
+A guard pairs the condition and the throw in one statement. `requirit`
+(English `require`) throws when the condition fails; `reice` (English
+`reject`) throws when the condition holds:
+
+```faber
+functio divide(numerus a, numerus b) → numerus ⇥ textus {
+    requirit b ≢ 0 iace "division by zero"
+    redde a / b
+}
+
+functio exigePositivum(numerus value) → numerus ⇥ textus {
+    reice value ≺ 0 iace "negative value"
+    redde value
+}
+```
+
+Like `iace` itself, guards need the function to declare a `⇥` channel.
+
 ## Catching {#cape}
 
 `cape` binds whatever came down the error channel.
