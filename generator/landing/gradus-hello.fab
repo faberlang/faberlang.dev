@@ -5,6 +5,6 @@ main {
     const list<int> shape_2x2 ← [2, 2]
     const tensor<f32, [2, 2]> prediction ← seed.from_flat([1.0, 2.0, 3.0, 4.0], shape_2x2)
     const tensor<f32, [2, 2]> target ← seed.from_flat([1.0, 2.0, 3.0, 3.0], shape_2x2)
-    const f32 value ← loss.mse_2x2(prediction, target)
+    const f32 value ← loss.mse(prediction, target)
     print value
 }
