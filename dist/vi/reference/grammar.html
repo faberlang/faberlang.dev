@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="This file is generated from docs/grammar/source.fg and docs/grammar/glossary.vi.toml; hand edits fail the locale-render gate. Production IDs are the grammar'..."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Grammar — Faber"><meta property="og:description" content="This file is generated from docs/grammar/source.fg and docs/grammar/glossary.vi.toml; hand edits fail the locale-render gate. Production IDs are the grammar'..."><meta property="og:url" content="https://faberlang.dev/vi/reference/grammar.html"><meta property="og:locale" content="vi_VN"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/vi/reference/grammar.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Grammar — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Kết xuất</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">vi</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/vi/start/install.html">cài đặt</a></nav></div></div><div class="page"><aside><a class="brand" href="/vi/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">tài liệu ngôn ngữ</span></span></a><ul class="nav"><li><a href="/vi/">Home</a></li><li><a href="/vi/start/install.html">Cài đặt</a></li><li><a href="/vi/localization.html">Localization</a></li><li><a href="/vi/cheatsheet/">Cheat sheet</a></li><li><a href="/vi/releases/">Bản phát hành</a></li><li><a href="/vi/open-source.html">Open source</a></li><li><a href="/vi/examples/">Ví dụ</a></li><li><a href="/vi/targets/">Target lanes</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/vi/language/">The language</a></li><li><a href="/vi/language/types.html">Types and values</a></li><li><a href="/vi/language/functions.html">Functions and flow</a></li><li><a href="/vi/language/errors.html">Errors and testing</a></li><li><a href="/vi/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/vi/language/reader-locales.html">Reader locales</a></li><li><a href="/vi/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/vi/toolchain/">Toolchain</a></li><li><a href="/vi/toolchain/cli.html">The faber CLI</a></li><li><a href="/vi/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/vi/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/vi/targets/">Target lanes</a></li><li><a href="/vi/toolchain/packages.html">Packages with Cista</a></li><li><a href="/vi/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/vi/libraries/">Libraries</a></li><li><a href="/vi/libraries/norma.html">Norma — stdlib</a></li><li><a href="/vi/libraries/triga.html">Triga — graphics</a></li><li><a href="/vi/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/vi/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/vi/reference/" class="active">Reference</a></li><li><a href="/vi/reference/grammar.html">Grammar</a></li><li><a href="/vi/corpus/">Corpus index</a></li><li><a href="/vi/reference/design.html">Design notes</a></li><li><a href="/vi/open-source.html">Open source</a></li></ul><div class="side-h">Cho tác nhân</div><ul class="nav nav-compact"><li><a href="/llms.txt">Mục lục tác nhân</a></li><li><a href="/agents/index.md">Hướng dẫn tác nhân</a></li><li><a href="/.well-known/agent-skills/index.json">Kỹ năng tác nhân</a></li><li><a href="/llms-full.txt">Tham khảo đầy đủ</a></li></ul><div class="side-h">Release 1.6.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/vi/releases/">Tất cả bản phát hành</a></li><li><a href="/vi/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Mô hình</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Kiểu</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Đích</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">Giấy phép</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Grammar</h1><div class="content"><p>This file is generated from <code>docs/grammar/source.fg</code> and <code>docs/grammar/glossary.vi.toml</code>;
 hand edits fail the locale-render gate. Production IDs are the grammar's stable
-snake_case spine and their anchors are derived from those IDs.</p><h2 id="grammar">Grammar<a class="anchor" href="#grammar">#</a></h2><p>The grammar below is the identity rendering of the validated source. Normative detail is kept in this English sidecar and rendered as documentation; the source remains the syntax authority.</p><pre class="faber-code"><code class="lang-ebnf"># formerly: fabFile
-# [001] fab_file
+snake_case spine and their anchors are derived from those IDs.</p><h2 id="grammar">Grammar<a class="anchor" href="#grammar">#</a></h2><p>The grammar below is the identity rendering of the validated source. Normative detail is kept in this English sidecar and rendered as documentation; the source remains the syntax authority.</p><pre class="faber-code"><code class="lang-ebnf"># [001] fab_file
 fab_file ::= frontmatter? program
 # [002] frontmatter
 frontmatter ::= FRONTMATTER_DELIMITER NEWLINE TOML_LINES FRONTMATTER_DELIMITER NEWLINE?
@@ -10,615 +9,454 @@ frontmatter ::= FRONTMATTER_DELIMITER NEWLINE TOML_LINES FRONTMATTER_DELIMITER N
 program ::= statement*
 # [004] statement
 statement ::= annotation* statement_core
-# formerly: statementCore
 # [005] statement_core
-statement_core ::= importa_decl | binding_decl | functio_decl | genus_decl | implendum_decl | typus_decl | ordo_decl | discretio_decl | si_stmt | dum_stmt | itera_stmt | elige_stmt | discerne_stmt | custodi_stmt | cura_stmt | fac_stmt | redde_stmt | reddet_stmt | tacebit_stmt | cede_stmt | rumpe_stmt | perge_stmt | tacet_stmt | iace_stmt | adfirma_stmt | requirit_stmt | nota_stmt | incipit_stmt | incipiet_stmt | ex_stmt | probandum_decl | proba_stmt | block_stmt | inc_dec_stmt | expr_stmt
-# formerly: bindingDecl
+statement_core ::= importa_decl | binding_decl | functio_decl | genus_decl | implendum_decl | typus_decl | ordo_decl | discretio_decl | si_stmt | dum_stmt | itera_stmt | elige_stmt | discerne_stmt | custodi_stmt | cura_stmt | fac_stmt | redde_stmt | reddet_stmt | tacebit_stmt | cede_stmt | rumpe_stmt | perge_stmt | tacet_stmt | iace_stmt | adfirma_stmt | requirit_stmt | reice_stmt | nota_stmt | incipit_stmt | incipiet_stmt | ex_stmt | probandum_decl | proba_stmt | block_stmt | inc_dec_stmt | expr_stmt
 # [006] binding_decl
 binding_decl ::= fixum_decl | sit_decl | array_destruct | object_destruct | figendum_decl
-# formerly: exprStmt
 # [007] expr_stmt
 expr_stmt ::= expression
-# formerly: blockStmt
 # [008] block_stmt
 block_stmt ::= '{' statement* '}'
-# formerly: varDecl
 # [009] fixum_decl
-fixum_decl ::= ('hằng' | 'biến') type_annotation IDENTIFIER (('←' expression) | ('↤' assignment inline_recovery?))?
-# formerly: awaitVarDecl
+fixum_decl ::= ('hằng' | 'biến') type_annotation IDENTIFIER (('←' expression) | ('↤' assignment inline_recovery?) | ('↢' expression))?
 # [010] figendum_decl
 figendum_decl ::= ('đợi_hằng' | 'đợi_biến') type_annotation IDENTIFIER '←' expression
-# formerly: sitDecl
 # [011] sit_decl
-sit_decl ::= 'đặt' IDENTIFIER ('←' expression)?
-# formerly: arrayDestruct
+sit_decl ::= 'đặt' IDENTIFIER (('←' | '↢') expression)?
 # [012] array_destruct
 array_destruct ::= ('hằng' | 'biến') array_pattern '←' expression
-# formerly: objectDestruct
 # [013] object_destruct
 object_destruct ::= ('hằng' | 'biến') object_pattern '←' expression
-# formerly: funcDecl
 # [014] functio_decl
 functio_decl ::= 'hàm' IDENTIFIER generic_params? '(' param_list ')' func_modifier* callable_posture? return_clause? alternate_exit_clause? block_stmt
-# formerly: paramList
 # [015] param_list
 param_list ::= (parameter (',' parameter)*)?
-# formerly: genericParams
 # [016] generic_params
 generic_params ::= '&lt;' generic_param (',' generic_param)* '&gt;'
-# formerly: genericParam
 # [017] generic_param
-generic_param ::= IDENTIFIER | 'kích_thước' IDENTIFIER
-# formerly: callTypeArgs
-# [018] call_type_args
+generic_param ::= IDENTIFIER generic_type_default? | 'kích_thước' IDENTIFIER generic_size_default?
+# [018] generic_type_default
+generic_type_default ::= '=' type_annotation
+# [019] generic_size_default
+generic_size_default ::= '=' NATURAL
+# [020] call_type_args
 call_type_args ::= '&lt;' type_annotation (',' type_annotation)* '&gt;'
-# [019] parameter
+# [021] parameter
 parameter ::= 'còn_lại'? type_annotation IDENTIFIER 'tự_nguyện'? ('như' IDENTIFIER)? ('hoặc_nếu_rỗng' expression)?
-# formerly: funcModifier
-# [020] func_modifier
+# [022] func_modifier
 func_modifier ::= 'đối_số' IDENTIFIER | 'được_sửa' IDENTIFIER ('như' IDENTIFIER)? | 'lỗi' IDENTIFIER | 'thoát' (IDENTIFIER | NUMBER) | 'bất_biến' | 'ném_lỗi' | 'lựa_chọn' IDENTIFIER
-# formerly: callablePosture
-# [021] callable_posture
+# [023] callable_posture
 callable_posture ::= 'async' | 'sinh' | 'async_sinh'
-# formerly: returnClause
-# [022] return_clause
+# [024] return_clause
 return_clause ::= '→' type_annotation
-# formerly: alternateExitClause
-# [023] alternate_exit_clause
+# [025] alternate_exit_clause
 alternate_exit_clause ::= '⇥' type_annotation
-# formerly: stmtBodyJoint
-# [024] ergo_joint
+# [026] ergo_joint
 ergo_joint ::= 'do_đó'
-# formerly: clausuraJoint
-# [025] clausura_joint
+# [027] clausura_joint
 clausura_joint ::= '∴'
-# formerly: clausuraExpr
-# [026] clausura_expr
+# [028] clausura_expr
 clausura_expr ::= compact_clausura_expr | clausura_legacy_expr
-# formerly: compactClausuraExpr
-# [027] compact_clausura_expr
+# [029] compact_clausura_expr
 compact_clausura_expr ::= clausura_signature clausura_joint (expression | fac_block)
-# formerly: clausuraSignature
-# [028] clausura_signature
+# [030] clausura_signature
 clausura_signature ::= (clausura_param | '(' clausura_params? ')') closure_modifier? return_clause? alternate_exit_clause?
-# [029] closure_modifier
-closure_modifier ::= 'tự_do'
-# formerly: closureFacBlock
-# [030] fac_block
+# [031] closure_modifier
+closure_modifier ::= 'tự_do' | 'hạt_nhân'
+# [032] fac_block
 fac_block ::= 'làm' block_stmt cape_clause?
-# formerly: legacyClausuraExpr
-# [031] clausura_legacy_expr
+# [033] clausura_legacy_expr
 clausura_legacy_expr ::= 'đóng' clausura_params? closure_modifier? ('→' type_annotation)? (':' expression | block_stmt)
-# formerly: clausuraParams
-# [032] clausura_params
+# [034] clausura_params
 clausura_params ::= clausura_param (',' clausura_param)*
-# formerly: clausuraParam
-# [033] clausura_param
+# [035] clausura_param
 clausura_param ::= type_annotation IDENTIFIER
-# formerly: genusDecl
-# [034] genus_decl
+# [036] genus_decl
 genus_decl ::= 'trừu_tượng'? 'kiểu' IDENTIFIER generic_params? ('dưới' IDENTIFIER)? ('thực_thi' IDENTIFIER ((',' | '∩') IDENTIFIER)*)? '{' genus_member* '}'
-# formerly: genusMember
-# [035] genus_member
+# [037] genus_member
 genus_member ::= annotation* (field_decl | functio_method_decl)
-# formerly: fieldDecl
-# [036] field_decl
+# [038] field_decl
 field_decl ::= 'tĩnh'? 'ràng_buộc'? type_annotation IDENTIFIER 'tự_nguyện'? ('=' expression)?
-# formerly: methodDecl
-# [037] functio_method_decl
+# [039] functio_method_decl
 functio_method_decl ::= 'hàm' IDENTIFIER generic_params? '(' param_list ')' func_modifier* callable_posture? return_clause? alternate_exit_clause? block_stmt
-# [038] annotation
+# [040] annotation
 annotation ::= nucleum_annotation | braced_annotation | annotation_sugar
-# formerly: annotationName
-# [039] annotation_name
+# [041] annotation_name
 annotation_name ::= ANNOTATION_NAME
-# formerly: bracedAnnotation
-# [040] braced_annotation
+# [042] braced_annotation
 braced_annotation ::= '@' annotation_name '{' annotation_field_list? '}'
-# formerly: annotationFieldList
-# [041] annotation_field_list
+# [043] annotation_field_list
 annotation_field_list ::= annotation_field (',' annotation_field)*
-# formerly: annotationField
-# [042] annotation_field
+# [044] annotation_field
 annotation_field ::= ANNOTATION_FIELD_NAME '=' (expression | type_annotation)
-# formerly: annotationSugar
-# [043] annotation_sugar
+# [045] annotation_sugar
 annotation_sugar ::= '@' annotation_name NON_NEWLINE_TOKEN* NEWLINE
-# formerly: nucleumAnnotation
-# [044] nucleum_annotation
+# [046] nucleum_annotation
 nucleum_annotation ::= nucleum_sugar | nucleum_braced
-# formerly: nucleumSugar
-# [045] nucleum_sugar
+# [047] nucleum_sugar
 nucleum_sugar ::= '@' 'hạt_nhân' nucleum_modifier? NEWLINE
-# formerly: nucleumBraced
-# [046] nucleum_braced
+# [048] nucleum_braced
 nucleum_braced ::= '@' 'hạt_nhân' '{' nucleum_field_list? '}'
-# formerly: nucleumModifier
-# [047] nucleum_modifier
+# [049] nucleum_modifier
 nucleum_modifier ::= 'mảnh'
-# formerly: nucleumFieldList
-# [048] nucleum_field_list
+# [050] nucleum_field_list
 nucleum_field_list ::= nucleum_field (',' nucleum_field)*
-# formerly: nucleumField
-# [049] nucleum_field
+# [051] nucleum_field
 nucleum_field ::= 'mảnh' '=' ('đúng' | 'sai')
-# formerly: implendumDecl
-# [050] implendum_decl
+# [052] implendum_decl
 implendum_decl ::= 'giao_ước' IDENTIFIER generic_params? '{' implendum_method_decl* '}'
-# formerly: implendumMethod
-# [051] implendum_method_decl
+# [053] implendum_method_decl
 implendum_method_decl ::= annotation* 'hàm' IDENTIFIER '(' param_list ')' func_modifier* callable_posture? return_clause? alternate_exit_clause?
-# formerly: typeAliasDecl
-# [052] typus_decl
+# [054] typus_decl
 typus_decl ::= 'kiểu_tên' IDENTIFIER generic_params? '=' type_annotation
-# formerly: enumDecl
-# [053] ordo_decl
+# [055] ordo_decl
 ordo_decl ::= 'liệt_kê' IDENTIFIER '{' enum_member (',' enum_member)* '}'
-# formerly: enumMember
-# [054] enum_member
+# [056] enum_member
 enum_member ::= IDENTIFIER ('=' ('-'? NUMBER | STRING))?
-# formerly: discretioDecl
-# [055] discretio_decl
+# [057] discretio_decl
 discretio_decl ::= 'hợp_nhất' IDENTIFIER generic_params? '{' union_member* variant (',' variant)* '}'
-# formerly: unionMember
-# [056] union_member
+# [058] union_member
 union_member ::= annotation* field_decl
-# [057] variant
+# [059] variant
 variant ::= IDENTIFIER ('{' variant_fields '}')?
-# formerly: variantFields
-# [058] variant_fields
+# [060] variant_fields
 variant_fields ::= (type_annotation IDENTIFIER)*
-# formerly: importDecl
-# [059] importa_decl
+# [061] importa_decl
 importa_decl ::= importa_record | importa_sugar
-# formerly: importRecord
-# [060] importa_record
+# [062] importa_record
 importa_record ::= 'nhập' '{' import_field_list? '}'
-# formerly: importFieldList
-# [061] import_field_list
+# [063] import_field_list
 import_field_list ::= import_field (',' import_field)*
-# formerly: importField
-# [062] import_field
+# [064] import_field
 import_field ::= ex_field | visibilitas_field | nomen_field | ut_field | omnia_field
-# formerly: importSourceField
-# [063] ex_field
+# [065] ex_field
 ex_field ::= 'từ' '=' STRING
-# formerly: importVisibilityField
-# [064] visibilitas_field
+# [066] visibilitas_field
 visibilitas_field ::= 'visibilitas' '=' publica
-# formerly: importNameField
-# [065] nomen_field
+# [067] nomen_field
 nomen_field ::= 'tên' '=' IDENTIFIER
-# formerly: importAliasField
-# [066] ut_field
+# [068] ut_field
 ut_field ::= 'như' '=' IDENTIFIER
-# formerly: importWildcardField
-# [067] omnia_field
+# [069] omnia_field
 omnia_field ::= 'mọi' '=' IDENTIFIER
-# formerly: importSugar
-# [068] importa_sugar
+# [070] importa_sugar
 importa_sugar ::= 'nhập' 'từ' STRING publica? (named_import | wildcard_import | selective_import)?
-# formerly: visibility
-# [069] publica
+# [071] publica
 publica ::= 'công_khai'
-# formerly: namedImport
-# [070] named_import
+# [072] named_import
 named_import ::= IDENTIFIER ('như' IDENTIFIER)?
-# formerly: wildcardImport
-# [071] wildcard_import
+# [073] wildcard_import
 wildcard_import ::= '*' 'như' IDENTIFIER
-# [072] selective_import
+# [074] selective_import
 selective_import ::= 'hằng' import_value_binding (',' import_value_binding)*
-# [073] import_value_binding
+# [075] import_value_binding
 import_value_binding ::= IDENTIFIER ('như' IDENTIFIER)?
-# formerly: typeAnnotation
-# [074] type_annotation
+# [076] type_annotation
 type_annotation ::= intersection_type ('∪' intersection_type)*
-# `∩` binds tighter than `∪`: the cup tail parses at intersection level.
+# [077] intersection_type
 intersection_type ::= owned_type ('∩' owned_type)*
-# formerly: ownedType
-# [075] owned_type
+# [078] owned_type
 owned_type ::= ('ra' | 'vào' | 'sở_hữu' | 'sao_chép')? base_type
-# formerly: baseType
-# [076] base_type
+# [079] base_type
 base_type ::= hole_type | function_type | width_type_sugar | ratio_type | qualified_type type_arguments? | '(' type_annotation ')'
-# [077] ratio_type
+# [080] ratio_type
 ratio_type ::= 'ratio' '&lt;' labeled_type_argument (',' labeled_type_argument)* '&gt;'
-# formerly: holeType
-# [078] hole_type
+# [081] hole_type
 hole_type ::= '_' | '∪'
-# formerly: qualifiedType
-# [079] qualified_type
+# [082] qualified_type
 qualified_type ::= IDENTIFIER ('.' IDENTIFIER)*
-# formerly: typeArguments
-# [080] type_arguments
+# [083] type_arguments
 type_arguments ::= '&lt;' type_argument (',' type_argument)* '&gt;'
-# formerly: typeArgument
-# [081] type_argument
+# [084] type_argument
 type_argument ::= labeled_type_argument | type_annotation | NATURAL | '[' figura_list? ']'
-# formerly: labeledTypeArgument
-# [082] labeled_type_argument
+# [085] labeled_type_argument
 labeled_type_argument ::= IDENTIFIER ':' type_annotation
-# formerly: widthTypeSugar
-# [083] width_type_sugar
+# [086] width_type_sugar
 width_type_sugar ::= WIDTH_MARKER | LISTA_WIDTH_SUGAR | (TENSOR_WIDTH_SUGAR | SPARSA_WIDTH_SUGAR | VECTOR_WIDTH_SUGAR) shape_suffix? | MATRIX_WIDTH_SUGAR shape_suffix
-# formerly: shapeSuffix
-# [084] shape_suffix
+# [087] shape_suffix
 shape_suffix ::= '[' figura_list? ']'
-# [085] figura
+# [088] figura
 figura ::= '_' | NATURAL | IDENTIFIER | '[' figura_list? ']'
-# formerly: figuraList
-# [086] figura_list
+# [089] figura_list
 figura_list ::= figura (',' figura)*
-# formerly: functionType
-# [087] function_type
+# [090] function_type
 function_type ::= '(' type_list? ')' '→' type_annotation alternate_exit_clause?
-# formerly: typeList
-# [088] type_list
+# [091] type_list
 type_list ::= type_annotation (',' type_annotation)*
-# formerly: ifStmt
-# [089] si_stmt
+# [092] si_stmt
 si_stmt ::= 'nếu' expression arm ('nếukhôngthì' si_stmt | secus_clause)?
-# formerly: elseClause
-# [090] secus_clause
+# [093] secus_clause
 secus_clause ::= 'khác' else_arm
-# [091] arm
+# [094] arm
 arm ::= (block_stmt | ergo_joint statement) cape_clause?
-# formerly: elseArm
-# [092] else_arm
+# [095] else_arm
 else_arm ::= (block_stmt | ergo_joint statement) cape_clause?
-# formerly: whileStmt
-# [093] dum_stmt
+# [096] dum_stmt
 dum_stmt ::= 'trong_khi' expression (block_stmt | ergo_joint statement) cape_clause?
-# formerly: iteraStmt
-# [094] itera_stmt
-itera_stmt ::= 'lặp' (('từ' | 'ra') expression | 'khoảng' expression) apud_clause? ('hằng' | 'biến') (array_pattern | object_pattern | IDENTIFIER) (block_stmt | ergo_joint statement) cape_clause?
-# [095] apud_clause
+# [097] itera_stmt
+itera_stmt ::= 'lặp' ('từ' expression (',' expression)* | 'ra' expression | 'khoảng' expression (',' expression)*) apud_clause? ('hằng' | 'biến') itera_binding (block_stmt | ergo_joint statement) cape_clause?
+# [098] itera_binding
+itera_binding ::= array_pattern | object_pattern | IDENTIFIER (',' IDENTIFIER)*
+# [099] apud_clause
 apud_clause ::= 'tại' '[' IDENTIFIER (',' IDENTIFIER)* ']'
-# formerly: eligeStmt
-# [096] elige_stmt
+# [100] elige_stmt
 elige_stmt ::= 'chọn' expression '{' casu_elige_clause* ceterum_clause? '}' cape_clause?
-# formerly: eligeCase
-# [097] casu_elige_clause
+# [101] casu_elige_clause
 casu_elige_clause ::= 'trường_hợp' expression (block_stmt | ergo_joint statement)
-# formerly: defaultCase
-# [098] ceterum_clause
+# [102] ceterum_clause
 ceterum_clause ::= 'mặc_định' (block_stmt | ergo_joint statement)
-# formerly: discerneStmt
-# [099] discerne_stmt
+# [103] discerne_stmt
 discerne_stmt ::= 'phân_tích' 'mọi'? discriminants '{' casu_variant_clause* ceterum_clause? '}'
-# [100] discriminants
+# [104] discriminants
 discriminants ::= expression (',' expression)*
-# formerly: variantCase
-# [101] casu_variant_clause
+# [105] casu_variant_clause
 casu_variant_clause ::= 'trường_hợp' patterns (block_stmt | ergo_joint statement)
-# [102] patterns
+# [106] patterns
 patterns ::= pattern ((',' | 'và') pattern)*
-# [103] pattern
-pattern ::= '_' | literal | (IDENTIFIER ut_pattern?)
-# formerly: patternBind
-# [104] ut_pattern
+# [107] pattern
+pattern ::= '_' | literal | type_pattern | (IDENTIFIER ut_pattern?)
+# [108] type_pattern
+type_pattern ::= IDENTIFIER type_arguments? ut_pattern?
+# [109] ut_pattern
 ut_pattern ::= ('như' IDENTIFIER) | (('hằng' | 'biến') pattern_binding (',' pattern_binding)*)
-# formerly: patternBinding
-# [105] pattern_binding
+# [110] pattern_binding
 pattern_binding ::= IDENTIFIER ('như' IDENTIFIER)?
-# formerly: guardStmt
-# [106] custodi_stmt
+# [111] custodi_stmt
 custodi_stmt ::= 'canh_gác' '{' si_guard_clause+ '}'
-# formerly: guardClause
-# [107] si_guard_clause
+# [112] si_guard_clause
 si_guard_clause ::= 'nếu' expression (block_stmt | ergo_joint statement)
-# formerly: curaStmt
-# [108] cura_stmt
+# [113] cura_stmt
 cura_stmt ::= 'chăm_sóc' STRING ('hằng' | 'biến') type_annotation IDENTIFIER block_stmt cape_clause?
-# formerly: extractStmt
-# [109] ex_stmt
+# [114] ex_stmt
 ex_stmt ::= 'từ' expression ('hằng' | 'biến') extract_fields
-# formerly: extractFields
-# [110] extract_fields
+# [115] extract_fields
 extract_fields ::= extract_field (',' extract_field)* (',' ceteri_field)? | ceteri_field
-# formerly: extractField
-# [111] extract_field
+# [116] extract_field
 extract_field ::= IDENTIFIER ('như' IDENTIFIER)?
-# formerly: restField
-# [112] ceteri_field
+# [117] ceteri_field
 ceteri_field ::= 'còn_lại' IDENTIFIER
-# formerly: returnStmt
-# [113] redde_stmt
+# [118] redde_stmt
 redde_stmt ::= 'trả' expression?
-# formerly: returnAwaitStmt
-# [114] reddet_stmt
+# [119] reddet_stmt
 reddet_stmt ::= 'đợi_trả' expression
-# formerly: awaitDiscardStmt
-# [115] tacebit_stmt
+# [120] tacebit_stmt
 tacebit_stmt ::= 'đợi_bỏ' expression
-# formerly: yieldStmt
-# [116] cede_stmt
+# [121] cede_stmt
 cede_stmt ::= 'nhường' expression
-# formerly: breakStmt
-# [117] rumpe_stmt
+# [122] rumpe_stmt
 rumpe_stmt ::= 'dừng'
-# formerly: continueStmt
-# [118] perge_stmt
+# [123] perge_stmt
 perge_stmt ::= 'tiếp'
-# formerly: noopStmt
-# [119] tacet_stmt
+# [124] tacet_stmt
 tacet_stmt ::= 'im_lặng'
-# formerly: throwStmt
-# [120] iace_stmt
+# [125] iace_stmt
 iace_stmt ::= iace_expr | iace_guarded_expr
-# formerly: bareThrow
-# [121] iace_expr
+# [126] iace_expr
 iace_expr ::= ('ném' | 'chết') expression
-# formerly: guardedThrowSugar
-# [122] iace_guarded_expr
+# [127] iace_guarded_expr
 iace_guarded_expr ::= ('ném' | 'chết') expression NO_NEWLINE 'nếu' expression
-# formerly: catchClause
-# [123] cape_clause
+# [128] cape_clause
 cape_clause ::= 'bắt' IDENTIFIER block_stmt
-# formerly: assertStmt
-# [124] adfirma_stmt
+# [129] adfirma_stmt
 adfirma_stmt ::= 'khẳng_định' expression ('chết' expression)?
-# formerly: requiritStmt
-# [125] requirit_stmt
+# [130] requirit_stmt
 requirit_stmt ::= 'yêu_cầu' expression 'ném' expression
-# [126] expression
+# [131] reice_stmt
+reice_stmt ::= 'từ_chối' expression 'ném' expression
+# [132] expression
 expression ::= assignment
-# [127] transfer
+# [133] transfer
 transfer ::= ternary ('⇇' ternary)*
-# [128] assignment
+# [134] assignment
 assignment ::= transfer ('←' assignment | '↤' assignment inline_recovery?)?
-# formerly: incDecStmt
-# [129] inc_dec_stmt
+# [135] inc_dec_stmt
 inc_dec_stmt ::= place ('↑' | '↓')
-# [130] place
+# [136] place
 place ::= call_expr
-# [131] ternary
+# [137] ternary
 ternary ::= aut_expr (('?' expression ':' | 'thế' expression 'khác') ternary)?
-# formerly: or
-# [132] aut_expr
+# [138] aut_expr
 aut_expr ::= et_expr (('hoặc') et_expr)*
-# formerly: and
-# [133] et_expr
+# [139] et_expr
 et_expr ::= equality (('và') equality)*
-# [134] equality
+# [140] equality
 equality ::= comparison equality_tail*
-# formerly: equalityTail
-# [135] equality_tail
+# [141] equality_tail
 equality_tail ::= ('≡' | '≢' | '≠' | '≅' | '≇' | '≈' | '≉' | 'là' | 'không' 'là') comparison
-# [136] comparison
+# [142] comparison
 comparison ::= bitwise_or_expr (('≺' | '≻' | '≤' | '≥' | 'trong' | 'giữa') bitwise_or_expr)*
-# formerly: bitwiseOr
-# [137] bitwise_or_expr
+# [143] bitwise_or_expr
 bitwise_or_expr ::= bitwise_xor_expr ('∨' bitwise_xor_expr)*
-# formerly: bitwiseXor
-# [138] bitwise_xor_expr
+# [144] bitwise_xor_expr
 bitwise_xor_expr ::= bitwise_and_expr ('⊻' bitwise_and_expr)*
-# formerly: bitwiseAnd
-# [139] bitwise_and_expr
+# [145] bitwise_and_expr
 bitwise_and_expr ::= shift_expr ('∧' shift_expr)*
-# formerly: shift
-# [140] shift_expr
+# [146] shift_expr
 shift_expr ::= range_expr (('⇐' | '⇒') range_expr)*
-# formerly: range
-# [141] range_expr
+# [147] range_expr
 range_expr ::= additive_expr range_tail?
-# formerly: rangeTail
-# [142] range_tail
+# [148] range_tail
 range_tail ::= ('‥' | '…' | 'trước' | 'tới') additive_expr ('qua' additive_expr)?
-# formerly: additive
-# [143] additive_expr
+# [149] additive_expr
 additive_expr ::= multiplicative_expr (('+' | '-') multiplicative_expr)*
-# formerly: multiplicative
-# [144] multiplicative_expr
+# [150] multiplicative_expr
 multiplicative_expr ::= vel_expr (('*' | '/' | '%' | '·' | '×' | '⊗' | '⊙') vel_expr)*
-# formerly: coalesce
-# [145] vel_expr
+# [151] vel_expr
 vel_expr ::= unary_expr ('hoặc_nếu_rỗng' vel_rhs)*
-# formerly: velRhs
-# [146] vel_rhs
+# [152] vel_rhs
 vel_rhs ::= unary_expr vel_range_tail?
-# formerly: velRangeTail
-# [147] vel_range_tail
+# [153] vel_range_tail
 vel_range_tail ::= ('‥' | '…' | 'trước' | 'tới') unary_expr ('qua' unary_expr)?
-# formerly: unary
-# [148] unary_expr
+# [154] unary_expr
 unary_expr ::= ('-' | '¬' | 'không') unary_expr | finge_expr | cast_expr
-# formerly: gradientExpr
-# [149] gradient_expr
+# [155] gradient_expr
 gradient_expr ::= call_expr ('∇' gradient_selection?)?
-# formerly: gradientSelection
-# [150] gradient_selection
+# [156] gradient_selection
 gradient_selection ::= '[' gradient_place (',' gradient_place)* ']'
-# formerly: gradientPlace
-# [151] gradient_place
+# [157] gradient_place
 gradient_place ::= expression
-# formerly: cast
-# [152] cast_expr
+# [158] cast_expr
 cast_expr ::= gradient_expr ('∷' type_annotation | conversio_expr)*
-# formerly: conversio
-# [153] conversio_expr
+# [159] conversio_expr
 conversio_expr ::= '↦' type_annotation inline_recovery?
-# formerly: inlineRecovery
-# [154] inline_recovery
+# [160] inline_recovery
 inline_recovery ::= '⇥' unary_expr
-# formerly: call
-# [155] call_expr
+# [161] call_expr
 call_expr ::= primary (call_suffix | member_suffix | optional_suffix | non_null_suffix)*
-# formerly: callSuffix
-# [156] call_suffix
+# [162] call_suffix
 call_suffix ::= call_type_args? '(' argument_list ')'
-# formerly: memberSuffix
-# [157] member_suffix
+# [163] member_suffix
 member_suffix ::= '.' IDENTIFIER | '[' expression ']'
-# formerly: optionalSuffix
-# [158] optional_suffix
+# [164] optional_suffix
 optional_suffix ::= '?.' IDENTIFIER | '?[' expression ']' | '?(' argument_list ')'
-# formerly: nonNullSuffix
-# [159] non_null_suffix
+# [165] non_null_suffix
 non_null_suffix ::= '!.' IDENTIFIER | '![' expression ']' | '!(' argument_list ')'
-# formerly: argumentList
-# [160] argument_list
+# [166] argument_list
 argument_list ::= (argument (',' argument)*)?
-# [161] argument
+# [167] argument
 argument ::= template_argument | 'rải'? expression
-# formerly: templateArgument
-# [162] template_argument
+# [168] template_argument
 template_argument ::= 'rải'? IDENTIFIER ':' expression
-# [163] literal
+# [169] literal
 literal ::= NUMBER | STRING | ASCII_STRING | BACKTICK_STRING | OCTETI_STRING | 'đúng' | 'sai' | 'rỗng'
-# [164] primary
+# [170] primary
 primary ::= IDENTIFIER | literal | 'tôi' | array_literal | json_literal | typed_constructor | iuncta_expr | ad_expr | clausura_expr | praefixum_expr | scriptum_expr | lege_expr | first_match_expr | summa_expr | '(' expression ')'
-# formerly: adExpr
-# [165] ad_expr
+# [171] ad_expr
 ad_expr ::= 'gọi' ASCII_STRING ad_opener?
-# formerly: adOpener
-# [166] ad_opener
+# [172] ad_opener
 ad_opener ::= '(' expression ')'
-# formerly: arrayLiteral
-# [167] array_literal
+# [173] array_literal
 array_literal ::= '[' argument_list? ']'
-# formerly: iunctaExpr
-# [168] iuncta_expr
+# [174] iuncta_expr
 iuncta_expr ::= 'bộ' type_arguments '[' argument_list? ']'
-# formerly: jsonLiteral
-# [169] json_literal
+# [175] json_literal
 json_literal ::= '{' (json_member (',' json_member)*)? '}'
-# formerly: jsonMember
-# [170] json_member
+# [176] json_member
 json_member ::= STRING ':' json_value
-# formerly: typedConstructor
-# [171] typed_constructor
+# [177] typed_constructor
 typed_constructor ::= type_annotation '{' field_list? '}'
-# formerly: fieldList
-# [172] field_list
+# [178] field_list
 field_list ::= field_init (',' field_init)*
-# formerly: fieldInit
-# [173] field_init
+# [179] field_init
 field_init ::= ('rải' expression) | (field_key '=' expression) | IDENTIFIER
-# formerly: fieldKey
-# [174] field_key
+# [180] field_key
 field_key ::= IDENTIFIER | STRING | '[' expression ']'
-# formerly: jsonValue
-# [175] json_value
+# [181] json_value
 json_value ::= json_object | json_array | json_string | json_number | 'true' | 'false' | 'null'
-# formerly: jsonObject
-# [176] json_object
+# [182] json_object
 json_object ::= '{' (json_member (',' json_member)*)? '}'
-# formerly: jsonArray
-# [177] json_array
+# [183] json_array
 json_array ::= '[' (json_value (',' json_value)*)? ']'
-# formerly: jsonString
-# [178] json_string
+# [184] json_string
 json_string ::= STRING
-# formerly: jsonNumber
-# [179] json_number
+# [185] json_number
 json_number ::= NUMBER
-# formerly: fingeExpr
-# [180] finge_expr
+# [186] finge_expr
 finge_expr ::= 'tạo' qualified_ident ('{' field_list '}')? ('∷' type_annotation)?
-# formerly: qualifiedIdent
-# [181] qualified_ident
+# [187] qualified_ident
 qualified_ident ::= IDENTIFIER ('.' IDENTIFIER)*
-# formerly: praefixumExpr
-# [182] praefixum_expr
+# [188] praefixum_expr
 praefixum_expr ::= 'tiền_tố' (block_stmt | '(' expression ')')
-# formerly: scriptumExpr
-# [183] scriptum_expr
+# [189] scriptum_expr
 scriptum_expr ::= 'văn_bản_hóa' '(' STRING (',' expression)* ')'
-# formerly: legeExpr
-# [184] lege_expr
+# [190] lege_expr
 lege_expr ::= 'đọc' 'dòng'?
-# [185] first_match_expr
+# [191] first_match_expr
 first_match_expr ::= 'khớp_đầu_tiên' '(' expression apud_clause? ',' 'nơi' IDENTIFIER block_stmt ')'
-# [186] summa_expr
+# [192] summa_expr
 summa_expr ::= 'tổng' 'từ' expression apud_clause? filum_clause? ('hằng' | 'biến') IDENTIFIER block_stmt
-# [187] filum_clause
+# [193] filum_clause
 filum_clause ::= 'sợi' IDENTIFIER
-# formerly: objectPattern
-# [188] object_pattern
+# [194] object_pattern
 object_pattern ::= '{' pattern_property (',' pattern_property)* '}'
-# formerly: patternProperty
-# [189] pattern_property
+# [195] pattern_property
 pattern_property ::= 'còn_lại'? IDENTIFIER ('như' IDENTIFIER)?
-# formerly: arrayPattern
-# [190] array_pattern
+# [196] array_pattern
 array_pattern ::= '[' array_pattern_element (',' array_pattern_element)* ']'
-# formerly: arrayPatternElement
-# [191] array_pattern_element
+# [197] array_pattern_element
 array_pattern_element ::= '_' | 'còn_lại'? IDENTIFIER
-# formerly: outputStmt
-# [192] nota_stmt
+# [198] nota_stmt
 nota_stmt ::= ('ghi_chú' | 'xem' | 'cảnh_báo' | 'viết') expression (',' expression)*
-# formerly: entryHeader
-# [193] entry_header
+# [199] entry_header
 entry_header ::= ('đối_số' IDENTIFIER)? ('thoát' expression)?
-# formerly: incipitStmt
-# [194] incipit_stmt
+# [200] incipit_stmt
 incipit_stmt ::= 'bắt_đầu' entry_header block_stmt
-# formerly: incipietStmt
-# [195] incipiet_stmt
+# [201] incipiet_stmt
 incipiet_stmt ::= 'bắt_đầu_bất_đồng_bộ' entry_header block_stmt
-# formerly: probandumDecl
-# [196] probandum_decl
+# [202] probandum_decl
 probandum_decl ::= 'đối_tượng_kiểm_thử' STRING proba_modifier* '{' probandum_body '}'
-# formerly: probandumBody
-# [197] probandum_body
+# [203] probandum_body
 probandum_body ::= (praepara_block | probandum_decl | proba_stmt)*
-# formerly: probaStmt
-# [198] proba_stmt
+# [204] proba_stmt
 proba_stmt ::= 'kiểm_thử' STRING proba_modifier* block_stmt
-# formerly: probaModifier
-# [199] proba_modifier
+# [205] proba_modifier
 proba_modifier ::= 'bỏ_qua' STRING | 'việc_cần_làm' STRING | 'chỉ' | 'nhãn' STRING | 'thời_gian' NUMBER | 'đo_lường' | 'lặp_lại' NUMBER | 'mong_manh' NUMBER | 'chỉ_trong' STRING
-# formerly: praeparaBlock
-# [200] praepara_block
+# [206] praepara_block
 praepara_block ::= ('chuẩn_bị' | 'sẽ_chuẩn_bị' | 'sau_chuẩn_bị' | 'sẽ_sau_chuẩn_bị') 'mọi'? block_stmt
-# formerly: facBlockStmt
-# [201] fac_stmt
+# [207] fac_stmt
 fac_stmt ::= 'làm' block_stmt cape_clause? ('trong_khi' expression)?
-# [202] IDENTIFIER
+# [208] IDENTIFIER
 IDENTIFIER ::=
-# [203] NUMBER
+# [209] NUMBER
 NUMBER ::=
-# [204] NATURAL
+# [210] NATURAL
 NATURAL ::=
-# [205] STRING
+# [211] STRING
 STRING ::=
-# [206] ASCII_STRING
+# [212] ASCII_STRING
 ASCII_STRING ::=
-# [207] BACKTICK_STRING
+# [213] BACKTICK_STRING
 BACKTICK_STRING ::=
-# [208] OCTETI_STRING
+# [214] OCTETI_STRING
 OCTETI_STRING ::=
-# [209] NEWLINE
+# [215] NEWLINE
 NEWLINE ::=
-# [210] WIDTH_MARKER
+# [216] WIDTH_MARKER
 WIDTH_MARKER ::=
-# [211] LISTA_WIDTH_SUGAR
+# [217] LISTA_WIDTH_SUGAR
 LISTA_WIDTH_SUGAR ::=
-# [212] TENSOR_WIDTH_SUGAR
+# [218] TENSOR_WIDTH_SUGAR
 TENSOR_WIDTH_SUGAR ::=
-# [213] SPARSA_WIDTH_SUGAR
+# [219] SPARSA_WIDTH_SUGAR
 SPARSA_WIDTH_SUGAR ::=
-# [214] VECTOR_WIDTH_SUGAR
+# [220] VECTOR_WIDTH_SUGAR
 VECTOR_WIDTH_SUGAR ::=
-# [215] MATRIX_WIDTH_SUGAR
+# [221] MATRIX_WIDTH_SUGAR
 MATRIX_WIDTH_SUGAR ::=
-# [216] FRONTMATTER_DELIMITER
+# [222] FRONTMATTER_DELIMITER
 FRONTMATTER_DELIMITER ::=
-# [217] TOML_LINES
+# [223] TOML_LINES
 TOML_LINES ::=
-# [218] ANNOTATION_NAME
+# [224] ANNOTATION_NAME
 ANNOTATION_NAME ::=
-# [219] ANNOTATION_FIELD_NAME
+# [225] ANNOTATION_FIELD_NAME
 ANNOTATION_FIELD_NAME ::=
-# [220] NON_NEWLINE_TOKEN
+# [226] NON_NEWLINE_TOKEN
 NON_NEWLINE_TOKEN ::=
-# [221] NO_NEWLINE
-NO_NEWLINE ::=</code></pre><h2 id="production-index">Production Index<a class="anchor" href="#production-index">#</a></h2><div class="table-scroll"><table><thead><tr><th>ID</th><th>Anchor</th><th>Status</th><th>Former names</th></tr></thead><tbody><tr><td><a href="#identifier"><code>IDENTIFIER</code></a></td><td><code>#identifier</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#number"><code>NUMBER</code></a></td><td><code>#number</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#natural"><code>NATURAL</code></a></td><td><code>#natural</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#string"><code>STRING</code></a></td><td><code>#string</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#ascii-string"><code>ASCII_STRING</code></a></td><td><code>#ascii-string</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#backtick-string"><code>BACKTICK_STRING</code></a></td><td><code>#backtick-string</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#octeti-string"><code>OCTETI_STRING</code></a></td><td><code>#octeti-string</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#newline"><code>NEWLINE</code></a></td><td><code>#newline</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#width-marker"><code>WIDTH_MARKER</code></a></td><td><code>#width-marker</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#lista-width-sugar"><code>LISTA_WIDTH_SUGAR</code></a></td><td><code>#lista-width-sugar</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#tensor-width-sugar"><code>TENSOR_WIDTH_SUGAR</code></a></td><td><code>#tensor-width-sugar</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#sparsa-width-sugar"><code>SPARSA_WIDTH_SUGAR</code></a></td><td><code>#sparsa-width-sugar</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#vector-width-sugar"><code>VECTOR_WIDTH_SUGAR</code></a></td><td><code>#vector-width-sugar</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#matrix-width-sugar"><code>MATRIX_WIDTH_SUGAR</code></a></td><td><code>#matrix-width-sugar</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#frontmatter-delimiter"><code>FRONTMATTER_DELIMITER</code></a></td><td><code>#frontmatter-delimiter</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#toml-lines"><code>TOML_LINES</code></a></td><td><code>#toml-lines</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#annotation-name"><code>ANNOTATION_NAME</code></a></td><td><code>#annotation-name</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#annotation-field-name"><code>ANNOTATION_FIELD_NAME</code></a></td><td><code>#annotation-field-name</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#non-newline-token"><code>NON_NEWLINE_TOKEN</code></a></td><td><code>#không-newline-token</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#no-newline"><code>NO_NEWLINE</code></a></td><td><code>#no-newline</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#fab-file"><code>fab_file</code></a></td><td><code>#fab-file</code></td><td>live</td><td>fabFile</td></tr><tr><td><a href="#frontmatter"><code>frontmatter</code></a></td><td><code>#frontmatter</code></td><td>live</td><td>—</td></tr><tr><td><a href="#program"><code>program</code></a></td><td><code>#program</code></td><td>live</td><td>—</td></tr><tr><td><a href="#statement"><code>statement</code></a></td><td><code>#statement</code></td><td>live</td><td>—</td></tr><tr><td><a href="#statement-core"><code>statement_core</code></a></td><td><code>#statement-core</code></td><td>live</td><td>statementCore</td></tr><tr><td><a href="#binding-decl"><code>binding_decl</code></a></td><td><code>#binding-decl</code></td><td>live</td><td>bindingDecl</td></tr><tr><td><a href="#expr-stmt"><code>expr_stmt</code></a></td><td><code>#expr-stmt</code></td><td>live</td><td>exprStmt</td></tr><tr><td><a href="#block-stmt"><code>block_stmt</code></a></td><td><code>#block-stmt</code></td><td>live</td><td>blockStmt</td></tr><tr><td><a href="#fixum-decl"><code>fixum_decl</code></a></td><td><code>#hằng-decl</code></td><td>live</td><td>varDecl</td></tr><tr><td><a href="#figendum-decl"><code>figendum_decl</code></a></td><td><code>#đợi_hằng-decl</code></td><td>live</td><td>awaitVarDecl</td></tr><tr><td><a href="#sit-decl"><code>sit_decl</code></a></td><td><code>#đặt-decl</code></td><td>live</td><td>sitDecl</td></tr><tr><td><a href="#array-destruct"><code>array_destruct</code></a></td><td><code>#array-destruct</code></td><td>live</td><td>arrayDestruct</td></tr><tr><td><a href="#object-destruct"><code>object_destruct</code></a></td><td><code>#object-destruct</code></td><td>live</td><td>objectDestruct</td></tr><tr><td><a href="#functio-decl"><code>functio_decl</code></a></td><td><code>#hàm-decl</code></td><td>live</td><td>funcDecl</td></tr><tr><td><a href="#param-list"><code>param_list</code></a></td><td><code>#param-list</code></td><td>live</td><td>paramList</td></tr><tr><td><a href="#generic-params"><code>generic_params</code></a></td><td><code>#generic-params</code></td><td>live</td><td>genericParams</td></tr><tr><td><a href="#generic-param"><code>generic_param</code></a></td><td><code>#generic-param</code></td><td>live</td><td>genericParam</td></tr><tr><td><a href="#call-type-args"><code>call_type_args</code></a></td><td><code>#call-type-args</code></td><td>live</td><td>callTypeArgs</td></tr><tr><td><a href="#parameter"><code>parameter</code></a></td><td><code>#parameter</code></td><td>live</td><td>—</td></tr><tr><td><a href="#func-modifier"><code>func_modifier</code></a></td><td><code>#func-modifier</code></td><td>live</td><td>funcModifier</td></tr><tr><td><a href="#callable-posture"><code>callable_posture</code></a></td><td><code>#callable-posture</code></td><td>live</td><td>callablePosture</td></tr><tr><td><a href="#return-clause"><code>return_clause</code></a></td><td><code>#return-clause</code></td><td>live</td><td>returnClause</td></tr><tr><td><a href="#alternate-exit-clause"><code>alternate_exit_clause</code></a></td><td><code>#alternate-exit-clause</code></td><td>live</td><td>alternateExitClause</td></tr><tr><td><a href="#ergo-joint"><code>ergo_joint</code></a></td><td><code>#do_đó-joint</code></td><td>live</td><td>stmtBodyJoint</td></tr><tr><td><a href="#clausura-joint"><code>clausura_joint</code></a></td><td><code>#đóng-joint</code></td><td>live</td><td>clausuraJoint</td></tr><tr><td><a href="#clausura-expr"><code>clausura_expr</code></a></td><td><code>#đóng-expr</code></td><td>live</td><td>clausuraExpr</td></tr><tr><td><a href="#compact-clausura-expr"><code>compact_clausura_expr</code></a></td><td><code>#compact-đóng-expr</code></td><td>live</td><td>compactClausuraExpr</td></tr><tr><td><a href="#clausura-signature"><code>clausura_signature</code></a></td><td><code>#đóng-signature</code></td><td>live</td><td>clausuraSignature</td></tr><tr><td><a href="#closure-modifier"><code>closure_modifier</code></a></td><td><code>#closure-modifier</code></td><td>live</td><td>—</td></tr><tr><td><a href="#fac-block"><code>fac_block</code></a></td><td><code>#làm-block</code></td><td>live</td><td>closureFacBlock</td></tr><tr><td><a href="#clausura-legacy-expr"><code>clausura_legacy_expr</code></a></td><td><code>#đóng-legacy-expr</code></td><td>live</td><td>legacyClausuraExpr</td></tr><tr><td><a href="#clausura-params"><code>clausura_params</code></a></td><td><code>#đóng-params</code></td><td>live</td><td>clausuraParams</td></tr><tr><td><a href="#clausura-param"><code>clausura_param</code></a></td><td><code>#đóng-param</code></td><td>live</td><td>clausuraParam</td></tr><tr><td><a href="#genus-decl"><code>genus_decl</code></a></td><td><code>#kiểu-decl</code></td><td>live</td><td>genusDecl</td></tr><tr><td><a href="#genus-member"><code>genus_member</code></a></td><td><code>#kiểu-member</code></td><td>live</td><td>genusMember</td></tr><tr><td><a href="#field-decl"><code>field_decl</code></a></td><td><code>#field-decl</code></td><td>live</td><td>fieldDecl</td></tr><tr><td><a href="#functio-method-decl"><code>functio_method_decl</code></a></td><td><code>#hàm-method-decl</code></td><td>live</td><td>methodDecl</td></tr><tr><td><a href="#annotation"><code>annotation</code></a></td><td><code>#annotation</code></td><td>live</td><td>—</td></tr><tr><td><a href="#annotation-name"><code>annotation_name</code></a></td><td><code>#annotation-name</code></td><td>live</td><td>annotationName</td></tr><tr><td><a href="#braced-annotation"><code>braced_annotation</code></a></td><td><code>#braced-annotation</code></td><td>live</td><td>bracedAnnotation</td></tr><tr><td><a href="#annotation-field-list"><code>annotation_field_list</code></a></td><td><code>#annotation-field-list</code></td><td>live</td><td>annotationFieldList</td></tr><tr><td><a href="#annotation-field"><code>annotation_field</code></a></td><td><code>#annotation-field</code></td><td>live</td><td>annotationField</td></tr><tr><td><a href="#annotation-sugar"><code>annotation_sugar</code></a></td><td><code>#annotation-sugar</code></td><td>live</td><td>annotationSugar</td></tr><tr><td><a href="#nucleum-annotation"><code>nucleum_annotation</code></a></td><td><code>#hạt_nhân-annotation</code></td><td>live</td><td>nucleumAnnotation</td></tr><tr><td><a href="#nucleum-sugar"><code>nucleum_sugar</code></a></td><td><code>#hạt_nhân-sugar</code></td><td>live</td><td>nucleumSugar</td></tr><tr><td><a href="#nucleum-braced"><code>nucleum_braced</code></a></td><td><code>#hạt_nhân-braced</code></td><td>live</td><td>nucleumBraced</td></tr><tr><td><a href="#nucleum-modifier"><code>nucleum_modifier</code></a></td><td><code>#hạt_nhân-modifier</code></td><td>live</td><td>nucleumModifier</td></tr><tr><td><a href="#nucleum-field-list"><code>nucleum_field_list</code></a></td><td><code>#hạt_nhân-field-list</code></td><td>live</td><td>nucleumFieldList</td></tr><tr><td><a href="#nucleum-field"><code>nucleum_field</code></a></td><td><code>#hạt_nhân-field</code></td><td>live</td><td>nucleumField</td></tr><tr><td><a href="#implendum-decl"><code>implendum_decl</code></a></td><td><code>#giao_ước-decl</code></td><td>live</td><td>implendumDecl</td></tr><tr><td><a href="#implendum-method-decl"><code>implendum_method_decl</code></a></td><td><code>#giao_ước-method-decl</code></td><td>live</td><td>implendumMethod</td></tr><tr><td><a href="#typus-decl"><code>typus_decl</code></a></td><td><code>#kiểu_tên-decl</code></td><td>live</td><td>typeAliasDecl</td></tr><tr><td><a href="#ordo-decl"><code>ordo_decl</code></a></td><td><code>#liệt_kê-decl</code></td><td>live</td><td>enumDecl</td></tr><tr><td><a href="#enum-member"><code>enum_member</code></a></td><td><code>#enum-member</code></td><td>live</td><td>enumMember</td></tr><tr><td><a href="#discretio-decl"><code>discretio_decl</code></a></td><td><code>#hợp_nhất-decl</code></td><td>live</td><td>discretioDecl</td></tr><tr><td><a href="#union-member"><code>union_member</code></a></td><td><code>#union-member</code></td><td>live</td><td>unionMember</td></tr><tr><td><a href="#variant"><code>variant</code></a></td><td><code>#variant</code></td><td>live</td><td>—</td></tr><tr><td><a href="#variant-fields"><code>variant_fields</code></a></td><td><code>#variant-fields</code></td><td>live</td><td>variantFields</td></tr><tr><td><a href="#importa-decl"><code>importa_decl</code></a></td><td><code>#nhập-decl</code></td><td>live</td><td>importDecl</td></tr><tr><td><a href="#importa-record"><code>importa_record</code></a></td><td><code>#nhập-record</code></td><td>live</td><td>importRecord</td></tr><tr><td><a href="#import-field-list"><code>import_field_list</code></a></td><td><code>#import-field-list</code></td><td>live</td><td>importFieldList</td></tr><tr><td><a href="#import-field"><code>import_field</code></a></td><td><code>#import-field</code></td><td>live</td><td>importField</td></tr><tr><td><a href="#ex-field"><code>ex_field</code></a></td><td><code>#từ-field</code></td><td>live</td><td>importSourceField</td></tr><tr><td><a href="#visibilitas-field"><code>visibilitas_field</code></a></td><td><code>#visibilitas-field</code></td><td>live</td><td>importVisibilityField</td></tr><tr><td><a href="#nomen-field"><code>nomen_field</code></a></td><td><code>#tên-field</code></td><td>live</td><td>importNameField</td></tr><tr><td><a href="#ut-field"><code>ut_field</code></a></td><td><code>#như-field</code></td><td>live</td><td>importAliasField</td></tr><tr><td><a href="#omnia-field"><code>omnia_field</code></a></td><td><code>#mọi-field</code></td><td>live</td><td>importWildcardField</td></tr><tr><td><a href="#importa-sugar"><code>importa_sugar</code></a></td><td><code>#nhập-sugar</code></td><td>live</td><td>importSugar</td></tr><tr><td><a href="#publica"><code>công_khai</code></a></td><td><code>#công_khai</code></td><td>live</td><td>visibility</td></tr><tr><td><a href="#named-import"><code>named_import</code></a></td><td><code>#named-import</code></td><td>live</td><td>namedImport</td></tr><tr><td><a href="#wildcard-import"><code>wildcard_import</code></a></td><td><code>#wildcard-import</code></td><td>live</td><td>wildcardImport</td></tr><tr><td><a href="#selective-import"><code>selective_import</code></a></td><td><code>#selective-import</code></td><td>live</td><td>—</td></tr><tr><td><a href="#import-value-binding"><code>import_value_binding</code></a></td><td><code>#import-value-binding</code></td><td>live</td><td>—</td></tr><tr><td><a href="#type-annotation"><code>type_annotation</code></a></td><td><code>#type-annotation</code></td><td>live</td><td>typeAnnotation</td></tr><tr><td><a href="#owned-type"><code>owned_type</code></a></td><td><code>#owned-type</code></td><td>live</td><td>ownedType</td></tr><tr><td><a href="#base-type"><code>base_type</code></a></td><td><code>#base-type</code></td><td>live</td><td>baseType</td></tr><tr><td><a href="#ratio-type"><code>ratio_type</code></a></td><td><code>#ratio-type</code></td><td>live</td><td>—</td></tr><tr><td><a href="#hole-type"><code>hole_type</code></a></td><td><code>#hole-type</code></td><td>live</td><td>holeType</td></tr><tr><td><a href="#qualified-type"><code>qualified_type</code></a></td><td><code>#qualified-type</code></td><td>live</td><td>qualifiedType</td></tr><tr><td><a href="#type-arguments"><code>type_arguments</code></a></td><td><code>#type-arguments</code></td><td>live</td><td>typeArguments</td></tr><tr><td><a href="#type-argument"><code>type_argument</code></a></td><td><code>#type-argument</code></td><td>live</td><td>typeArgument</td></tr><tr><td><a href="#labeled-type-argument"><code>labeled_type_argument</code></a></td><td><code>#labeled-type-argument</code></td><td>live</td><td>labeledTypeArgument</td></tr><tr><td><a href="#width-type-sugar"><code>width_type_sugar</code></a></td><td><code>#width-type-sugar</code></td><td>live</td><td>widthTypeSugar</td></tr><tr><td><a href="#shape-suffix"><code>shape_suffix</code></a></td><td><code>#shape-suffix</code></td><td>live</td><td>shapeSuffix</td></tr><tr><td><a href="#figura"><code>figura</code></a></td><td><code>#figura</code></td><td>live</td><td>—</td></tr><tr><td><a href="#figura-list"><code>figura_list</code></a></td><td><code>#figura-list</code></td><td>live</td><td>figuraList</td></tr><tr><td><a href="#function-type"><code>function_type</code></a></td><td><code>#function-type</code></td><td>live</td><td>functionType</td></tr><tr><td><a href="#type-list"><code>type_list</code></a></td><td><code>#type-list</code></td><td>live</td><td>typeList</td></tr><tr><td><a href="#si-stmt"><code>si_stmt</code></a></td><td><code>#nếu-stmt</code></td><td>live</td><td>ifStmt</td></tr><tr><td><a href="#secus-clause"><code>secus_clause</code></a></td><td><code>#khác-clause</code></td><td>live</td><td>elseClause</td></tr><tr><td><a href="#arm"><code>arm</code></a></td><td><code>#arm</code></td><td>live</td><td>—</td></tr><tr><td><a href="#else-arm"><code>else_arm</code></a></td><td><code>#else-arm</code></td><td>live</td><td>elseArm</td></tr><tr><td><a href="#dum-stmt"><code>dum_stmt</code></a></td><td><code>#trong_khi-stmt</code></td><td>live</td><td>whileStmt</td></tr><tr><td><a href="#itera-stmt"><code>itera_stmt</code></a></td><td><code>#lặp-stmt</code></td><td>live</td><td>iteraStmt</td></tr><tr><td><a href="#apud-clause"><code>apud_clause</code></a></td><td><code>#tại-clause</code></td><td>live</td><td>—</td></tr><tr><td><a href="#elige-stmt"><code>elige_stmt</code></a></td><td><code>#chọn-stmt</code></td><td>live</td><td>eligeStmt</td></tr><tr><td><a href="#casu-elige-clause"><code>casu_elige_clause</code></a></td><td><code>#trường_hợp-chọn-clause</code></td><td>live</td><td>eligeCase</td></tr><tr><td><a href="#ceterum-clause"><code>ceterum_clause</code></a></td><td><code>#mặc_định-clause</code></td><td>live</td><td>defaultCase</td></tr><tr><td><a href="#discerne-stmt"><code>discerne_stmt</code></a></td><td><code>#phân_tích-stmt</code></td><td>live</td><td>discerneStmt</td></tr><tr><td><a href="#discriminants"><code>discriminants</code></a></td><td><code>#discriminants</code></td><td>live</td><td>—</td></tr><tr><td><a href="#casu-variant-clause"><code>casu_variant_clause</code></a></td><td><code>#trường_hợp-variant-clause</code></td><td>live</td><td>variantCase</td></tr><tr><td><a href="#patterns"><code>patterns</code></a></td><td><code>#patterns</code></td><td>live</td><td>—</td></tr><tr><td><a href="#pattern"><code>pattern</code></a></td><td><code>#pattern</code></td><td>live</td><td>—</td></tr><tr><td><a href="#ut-pattern"><code>ut_pattern</code></a></td><td><code>#như-pattern</code></td><td>live</td><td>patternBind</td></tr><tr><td><a href="#pattern-binding"><code>pattern_binding</code></a></td><td><code>#pattern-binding</code></td><td>live</td><td>patternBinding</td></tr><tr><td><a href="#custodi-stmt"><code>custodi_stmt</code></a></td><td><code>#canh_gác-stmt</code></td><td>live</td><td>guardStmt</td></tr><tr><td><a href="#si-guard-clause"><code>si_guard_clause</code></a></td><td><code>#nếu-guard-clause</code></td><td>live</td><td>guardClause</td></tr><tr><td><a href="#cura-stmt"><code>cura_stmt</code></a></td><td><code>#chăm_sóc-stmt</code></td><td>live</td><td>curaStmt</td></tr><tr><td><a href="#ex-stmt"><code>ex_stmt</code></a></td><td><code>#từ-stmt</code></td><td>live</td><td>extractStmt</td></tr><tr><td><a href="#extract-fields"><code>extract_fields</code></a></td><td><code>#extract-fields</code></td><td>live</td><td>extractFields</td></tr><tr><td><a href="#extract-field"><code>extract_field</code></a></td><td><code>#extract-field</code></td><td>live</td><td>extractField</td></tr><tr><td><a href="#ceteri-field"><code>ceteri_field</code></a></td><td><code>#còn_lại-field</code></td><td>live</td><td>restField</td></tr><tr><td><a href="#redde-stmt"><code>redde_stmt</code></a></td><td><code>#trả-stmt</code></td><td>live</td><td>returnStmt</td></tr><tr><td><a href="#reddet-stmt"><code>reddet_stmt</code></a></td><td><code>#đợi_trả-stmt</code></td><td>live</td><td>returnAwaitStmt</td></tr><tr><td><a href="#tacebit-stmt"><code>tacebit_stmt</code></a></td><td><code>#đợi_bỏ-stmt</code></td><td>live</td><td>awaitDiscardStmt</td></tr><tr><td><a href="#cede-stmt"><code>cede_stmt</code></a></td><td><code>#nhường-stmt</code></td><td>live</td><td>yieldStmt</td></tr><tr><td><a href="#rumpe-stmt"><code>rumpe_stmt</code></a></td><td><code>#dừng-stmt</code></td><td>live</td><td>breakStmt</td></tr><tr><td><a href="#perge-stmt"><code>perge_stmt</code></a></td><td><code>#tiếp-stmt</code></td><td>live</td><td>continueStmt</td></tr><tr><td><a href="#tacet-stmt"><code>tacet_stmt</code></a></td><td><code>#im_lặng-stmt</code></td><td>live</td><td>noopStmt</td></tr><tr><td><a href="#iace-stmt"><code>iace_stmt</code></a></td><td><code>#ném-stmt</code></td><td>live</td><td>throwStmt</td></tr><tr><td><a href="#iace-expr"><code>iace_expr</code></a></td><td><code>#ném-expr</code></td><td>live</td><td>bareThrow</td></tr><tr><td><a href="#iace-guarded-expr"><code>iace_guarded_expr</code></a></td><td><code>#ném-guarded-expr</code></td><td>live</td><td>guardedThrowSugar</td></tr><tr><td><a href="#cape-clause"><code>cape_clause</code></a></td><td><code>#bắt-clause</code></td><td>live</td><td>catchClause</td></tr><tr><td><a href="#adfirma-stmt"><code>adfirma_stmt</code></a></td><td><code>#khẳng_định-stmt</code></td><td>live</td><td>assertStmt</td></tr><tr><td><a href="#requirit-stmt"><code>requirit_stmt</code></a></td><td><code>#yêu_cầu-stmt</code></td><td>live</td><td>requiritStmt</td></tr><tr><td><a href="#expression"><code>expression</code></a></td><td><code>#expression</code></td><td>live</td><td>—</td></tr><tr><td><a href="#transfer"><code>transfer</code></a></td><td><code>#transfer</code></td><td>live</td><td>—</td></tr><tr><td><a href="#assignment"><code>assignment</code></a></td><td><code>#assignment</code></td><td>live</td><td>—</td></tr><tr><td><a href="#inc-dec-stmt"><code>inc_dec_stmt</code></a></td><td><code>#inc-dec-stmt</code></td><td>live</td><td>incDecStmt</td></tr><tr><td><a href="#place"><code>place</code></a></td><td><code>#place</code></td><td>live</td><td>—</td></tr><tr><td><a href="#ternary"><code>ternary</code></a></td><td><code>#ternary</code></td><td>live</td><td>—</td></tr><tr><td><a href="#aut-expr"><code>aut_expr</code></a></td><td><code>#hoặc-expr</code></td><td>live</td><td>or</td></tr><tr><td><a href="#et-expr"><code>et_expr</code></a></td><td><code>#và-expr</code></td><td>live</td><td>and</td></tr><tr><td><a href="#equality"><code>equality</code></a></td><td><code>#equality</code></td><td>live</td><td>—</td></tr><tr><td><a href="#equality-tail"><code>equality_tail</code></a></td><td><code>#equality-tail</code></td><td>live</td><td>equalityTail</td></tr><tr><td><a href="#comparison"><code>comparison</code></a></td><td><code>#comparison</code></td><td>live</td><td>—</td></tr><tr><td><a href="#bitwise-or-expr"><code>bitwise_or_expr</code></a></td><td><code>#bitwise-or-expr</code></td><td>live</td><td>bitwiseOr</td></tr><tr><td><a href="#bitwise-xor-expr"><code>bitwise_xor_expr</code></a></td><td><code>#bitwise-xor-expr</code></td><td>live</td><td>bitwiseXor</td></tr><tr><td><a href="#bitwise-and-expr"><code>bitwise_and_expr</code></a></td><td><code>#bitwise-and-expr</code></td><td>live</td><td>bitwiseAnd</td></tr><tr><td><a href="#shift-expr"><code>shift_expr</code></a></td><td><code>#shift-expr</code></td><td>live</td><td>shift</td></tr><tr><td><a href="#range-expr"><code>range_expr</code></a></td><td><code>#range-expr</code></td><td>live</td><td>range</td></tr><tr><td><a href="#range-tail"><code>range_tail</code></a></td><td><code>#range-tail</code></td><td>live</td><td>rangeTail</td></tr><tr><td><a href="#additive-expr"><code>additive_expr</code></a></td><td><code>#additive-expr</code></td><td>live</td><td>additive</td></tr><tr><td><a href="#multiplicative-expr"><code>multiplicative_expr</code></a></td><td><code>#multiplicative-expr</code></td><td>live</td><td>multiplicative</td></tr><tr><td><a href="#vel-expr"><code>vel_expr</code></a></td><td><code>#hoặc_nếu_rỗng-expr</code></td><td>live</td><td>coalesce</td></tr><tr><td><a href="#vel-rhs"><code>vel_rhs</code></a></td><td><code>#hoặc_nếu_rỗng-rhs</code></td><td>live</td><td>velRhs</td></tr><tr><td><a href="#vel-range-tail"><code>vel_range_tail</code></a></td><td><code>#hoặc_nếu_rỗng-range-tail</code></td><td>live</td><td>velRangeTail</td></tr><tr><td><a href="#unary-expr"><code>unary_expr</code></a></td><td><code>#unary-expr</code></td><td>live</td><td>unary</td></tr><tr><td><a href="#gradient-expr"><code>gradient_expr</code></a></td><td><code>#gradient-expr</code></td><td>live</td><td>gradientExpr</td></tr><tr><td><a href="#gradient-selection"><code>gradient_selection</code></a></td><td><code>#gradient-selection</code></td><td>live</td><td>gradientSelection</td></tr><tr><td><a href="#gradient-place"><code>gradient_place</code></a></td><td><code>#gradient-place</code></td><td>live</td><td>gradientPlace</td></tr><tr><td><a href="#cast-expr"><code>cast_expr</code></a></td><td><code>#cast-expr</code></td><td>live</td><td>cast</td></tr><tr><td><a href="#conversio-expr"><code>conversio_expr</code></a></td><td><code>#conversio-expr</code></td><td>live</td><td>conversio</td></tr><tr><td><a href="#inline-recovery"><code>inline_recovery</code></a></td><td><code>#inline-recovery</code></td><td>live</td><td>inlineRecovery</td></tr><tr><td><a href="#call-expr"><code>call_expr</code></a></td><td><code>#call-expr</code></td><td>live</td><td>call</td></tr><tr><td><a href="#call-suffix"><code>call_suffix</code></a></td><td><code>#call-suffix</code></td><td>live</td><td>callSuffix</td></tr><tr><td><a href="#member-suffix"><code>member_suffix</code></a></td><td><code>#member-suffix</code></td><td>live</td><td>memberSuffix</td></tr><tr><td><a href="#optional-suffix"><code>optional_suffix</code></a></td><td><code>#optional-suffix</code></td><td>live</td><td>optionalSuffix</td></tr><tr><td><a href="#non-null-suffix"><code>non_null_suffix</code></a></td><td><code>#không-null-suffix</code></td><td>live</td><td>nonNullSuffix</td></tr><tr><td><a href="#argument-list"><code>argument_list</code></a></td><td><code>#argument-list</code></td><td>live</td><td>argumentList</td></tr><tr><td><a href="#argument"><code>argument</code></a></td><td><code>#argument</code></td><td>live</td><td>—</td></tr><tr><td><a href="#template-argument"><code>template_argument</code></a></td><td><code>#template-argument</code></td><td>live</td><td>templateArgument</td></tr><tr><td><a href="#literal"><code>literal</code></a></td><td><code>#literal</code></td><td>live</td><td>—</td></tr><tr><td><a href="#primary"><code>primary</code></a></td><td><code>#primary</code></td><td>live</td><td>—</td></tr><tr><td><a href="#ad-expr"><code>ad_expr</code></a></td><td><code>#gọi-expr</code></td><td>live</td><td>adExpr</td></tr><tr><td><a href="#ad-opener"><code>ad_opener</code></a></td><td><code>#gọi-opener</code></td><td>live</td><td>adOpener</td></tr><tr><td><a href="#array-literal"><code>array_literal</code></a></td><td><code>#array-literal</code></td><td>live</td><td>arrayLiteral</td></tr><tr><td><a href="#iuncta-expr"><code>iuncta_expr</code></a></td><td><code>#bộ-expr</code></td><td>live</td><td>iunctaExpr</td></tr><tr><td><a href="#json-literal"><code>json_literal</code></a></td><td><code>#json-literal</code></td><td>live</td><td>jsonLiteral</td></tr><tr><td><a href="#json-member"><code>json_member</code></a></td><td><code>#json-member</code></td><td>live</td><td>jsonMember</td></tr><tr><td><a href="#typed-constructor"><code>typed_constructor</code></a></td><td><code>#typed-constructor</code></td><td>live</td><td>typedConstructor</td></tr><tr><td><a href="#field-list"><code>field_list</code></a></td><td><code>#field-list</code></td><td>live</td><td>fieldList</td></tr><tr><td><a href="#field-init"><code>field_init</code></a></td><td><code>#field-init</code></td><td>live</td><td>fieldInit</td></tr><tr><td><a href="#field-key"><code>field_key</code></a></td><td><code>#field-key</code></td><td>live</td><td>fieldKey</td></tr><tr><td><a href="#json-value"><code>json_value</code></a></td><td><code>#json-value</code></td><td>live</td><td>jsonValue</td></tr><tr><td><a href="#json-object"><code>json_object</code></a></td><td><code>#json-object</code></td><td>live</td><td>jsonObject</td></tr><tr><td><a href="#json-array"><code>json_array</code></a></td><td><code>#json-array</code></td><td>live</td><td>jsonArray</td></tr><tr><td><a href="#json-string"><code>json_string</code></a></td><td><code>#json-string</code></td><td>live</td><td>jsonString</td></tr><tr><td><a href="#json-number"><code>json_number</code></a></td><td><code>#json-number</code></td><td>live</td><td>jsonNumber</td></tr><tr><td><a href="#finge-expr"><code>finge_expr</code></a></td><td><code>#tạo-expr</code></td><td>live</td><td>fingeExpr</td></tr><tr><td><a href="#qualified-ident"><code>qualified_ident</code></a></td><td><code>#qualified-ident</code></td><td>live</td><td>qualifiedIdent</td></tr><tr><td><a href="#praefixum-expr"><code>praefixum_expr</code></a></td><td><code>#tiền_tố-expr</code></td><td>live</td><td>praefixumExpr</td></tr><tr><td><a href="#scriptum-expr"><code>scriptum_expr</code></a></td><td><code>#văn_bản_hóa-expr</code></td><td>live</td><td>scriptumExpr</td></tr><tr><td><a href="#lege-expr"><code>lege_expr</code></a></td><td><code>#đọc-expr</code></td><td>live</td><td>legeExpr</td></tr><tr><td><a href="#first-match-expr"><code>first_match_expr</code></a></td><td><code>#first-match-expr</code></td><td>live</td><td>—</td></tr><tr><td><a href="#summa-expr"><code>summa_expr</code></a></td><td><code>#tổng-expr</code></td><td>live</td><td>—</td></tr><tr><td><a href="#filum-clause"><code>filum_clause</code></a></td><td><code>#sợi-clause</code></td><td>live</td><td>—</td></tr><tr><td><a href="#object-pattern"><code>object_pattern</code></a></td><td><code>#object-pattern</code></td><td>live</td><td>objectPattern</td></tr><tr><td><a href="#pattern-property"><code>pattern_property</code></a></td><td><code>#pattern-property</code></td><td>live</td><td>patternProperty</td></tr><tr><td><a href="#array-pattern"><code>array_pattern</code></a></td><td><code>#array-pattern</code></td><td>live</td><td>arrayPattern</td></tr><tr><td><a href="#array-pattern-element"><code>array_pattern_element</code></a></td><td><code>#array-pattern-element</code></td><td>live</td><td>arrayPatternElement</td></tr><tr><td><a href="#nota-stmt"><code>nota_stmt</code></a></td><td><code>#ghi_chú-stmt</code></td><td>live</td><td>outputStmt</td></tr><tr><td><a href="#entry-header"><code>entry_header</code></a></td><td><code>#entry-header</code></td><td>live</td><td>entryHeader</td></tr><tr><td><a href="#incipit-stmt"><code>incipit_stmt</code></a></td><td><code>#bắt_đầu-stmt</code></td><td>live</td><td>incipitStmt</td></tr><tr><td><a href="#incipiet-stmt"><code>incipiet_stmt</code></a></td><td><code>#bắt_đầu_bất_đồng_bộ-stmt</code></td><td>live</td><td>incipietStmt</td></tr><tr><td><a href="#probandum-decl"><code>probandum_decl</code></a></td><td><code>#đối_tượng_kiểm_thử-decl</code></td><td>live</td><td>probandumDecl</td></tr><tr><td><a href="#probandum-body"><code>probandum_body</code></a></td><td><code>#đối_tượng_kiểm_thử-body</code></td><td>live</td><td>probandumBody</td></tr><tr><td><a href="#proba-stmt"><code>proba_stmt</code></a></td><td><code>#kiểm_thử-stmt</code></td><td>live</td><td>probaStmt</td></tr><tr><td><a href="#proba-modifier"><code>proba_modifier</code></a></td><td><code>#kiểm_thử-modifier</code></td><td>live</td><td>probaModifier</td></tr><tr><td><a href="#praepara-block"><code>praepara_block</code></a></td><td><code>#chuẩn_bị-block</code></td><td>live</td><td>praeparaBlock</td></tr><tr><td><a href="#fac-stmt"><code>fac_stmt</code></a></td><td><code>#làm-stmt</code></td><td>live</td><td>facBlockStmt</td></tr></tbody></table></div><h2 id="lexicon">Lexicon Appendix<a class="anchor" href="#lexicon">#</a></h2><p>The lexical tier is descriptive and remains owned by the live lexer and
+# [227] NO_NEWLINE
+NO_NEWLINE ::=</code></pre><h2 id="production-index">Production Index<a class="anchor" href="#production-index">#</a></h2><div class="table-scroll"><table><thead><tr><th>ID</th><th>Anchor</th><th>Status</th></tr></thead><tbody><tr><td><a href="#identifier"><code>IDENTIFIER</code></a></td><td><code>#identifier</code></td><td>capture-pending</td></tr><tr><td><a href="#number"><code>NUMBER</code></a></td><td><code>#number</code></td><td>capture-pending</td></tr><tr><td><a href="#natural"><code>NATURAL</code></a></td><td><code>#natural</code></td><td>capture-pending</td></tr><tr><td><a href="#string"><code>STRING</code></a></td><td><code>#string</code></td><td>capture-pending</td></tr><tr><td><a href="#ascii-string"><code>ASCII_STRING</code></a></td><td><code>#ascii-string</code></td><td>capture-pending</td></tr><tr><td><a href="#backtick-string"><code>BACKTICK_STRING</code></a></td><td><code>#backtick-string</code></td><td>capture-pending</td></tr><tr><td><a href="#octeti-string"><code>OCTETI_STRING</code></a></td><td><code>#octeti-string</code></td><td>capture-pending</td></tr><tr><td><a href="#newline"><code>NEWLINE</code></a></td><td><code>#newline</code></td><td>capture-pending</td></tr><tr><td><a href="#width-marker"><code>WIDTH_MARKER</code></a></td><td><code>#width-marker</code></td><td>capture-pending</td></tr><tr><td><a href="#lista-width-sugar"><code>LISTA_WIDTH_SUGAR</code></a></td><td><code>#lista-width-sugar</code></td><td>capture-pending</td></tr><tr><td><a href="#tensor-width-sugar"><code>TENSOR_WIDTH_SUGAR</code></a></td><td><code>#tensor-width-sugar</code></td><td>capture-pending</td></tr><tr><td><a href="#sparsa-width-sugar"><code>SPARSA_WIDTH_SUGAR</code></a></td><td><code>#sparsa-width-sugar</code></td><td>capture-pending</td></tr><tr><td><a href="#vector-width-sugar"><code>VECTOR_WIDTH_SUGAR</code></a></td><td><code>#vector-width-sugar</code></td><td>capture-pending</td></tr><tr><td><a href="#matrix-width-sugar"><code>MATRIX_WIDTH_SUGAR</code></a></td><td><code>#matrix-width-sugar</code></td><td>capture-pending</td></tr><tr><td><a href="#frontmatter-delimiter"><code>FRONTMATTER_DELIMITER</code></a></td><td><code>#frontmatter-delimiter</code></td><td>capture-pending</td></tr><tr><td><a href="#toml-lines"><code>TOML_LINES</code></a></td><td><code>#toml-lines</code></td><td>capture-pending</td></tr><tr><td><a href="#annotation-name"><code>ANNOTATION_NAME</code></a></td><td><code>#annotation-name</code></td><td>capture-pending</td></tr><tr><td><a href="#annotation-field-name"><code>ANNOTATION_FIELD_NAME</code></a></td><td><code>#annotation-field-name</code></td><td>capture-pending</td></tr><tr><td><a href="#non-newline-token"><code>NON_NEWLINE_TOKEN</code></a></td><td><code>#không-newline-token</code></td><td>capture-pending</td></tr><tr><td><a href="#no-newline"><code>NO_NEWLINE</code></a></td><td><code>#no-newline</code></td><td>capture-pending</td></tr><tr><td><a href="#fab-file"><code>fab_file</code></a></td><td><code>#fab-file</code></td><td>live</td></tr><tr><td><a href="#frontmatter"><code>frontmatter</code></a></td><td><code>#frontmatter</code></td><td>live</td></tr><tr><td><a href="#program"><code>program</code></a></td><td><code>#program</code></td><td>live</td></tr><tr><td><a href="#statement"><code>statement</code></a></td><td><code>#statement</code></td><td>live</td></tr><tr><td><a href="#statement-core"><code>statement_core</code></a></td><td><code>#statement-core</code></td><td>live</td></tr><tr><td><a href="#binding-decl"><code>binding_decl</code></a></td><td><code>#binding-decl</code></td><td>live</td></tr><tr><td><a href="#expr-stmt"><code>expr_stmt</code></a></td><td><code>#expr-stmt</code></td><td>live</td></tr><tr><td><a href="#block-stmt"><code>block_stmt</code></a></td><td><code>#block-stmt</code></td><td>live</td></tr><tr><td><a href="#fixum-decl"><code>fixum_decl</code></a></td><td><code>#hằng-decl</code></td><td>live</td></tr><tr><td><a href="#figendum-decl"><code>figendum_decl</code></a></td><td><code>#đợi_hằng-decl</code></td><td>live</td></tr><tr><td><a href="#sit-decl"><code>sit_decl</code></a></td><td><code>#đặt-decl</code></td><td>live</td></tr><tr><td><a href="#array-destruct"><code>array_destruct</code></a></td><td><code>#array-destruct</code></td><td>live</td></tr><tr><td><a href="#object-destruct"><code>object_destruct</code></a></td><td><code>#object-destruct</code></td><td>live</td></tr><tr><td><a href="#functio-decl"><code>functio_decl</code></a></td><td><code>#hàm-decl</code></td><td>live</td></tr><tr><td><a href="#param-list"><code>param_list</code></a></td><td><code>#param-list</code></td><td>live</td></tr><tr><td><a href="#generic-params"><code>generic_params</code></a></td><td><code>#generic-params</code></td><td>live</td></tr><tr><td><a href="#generic-param"><code>generic_param</code></a></td><td><code>#generic-param</code></td><td>live</td></tr><tr><td><a href="#generic-type-default"><code>generic_type_default</code></a></td><td><code>#generic-type-default</code></td><td>live</td></tr><tr><td><a href="#generic-size-default"><code>generic_size_default</code></a></td><td><code>#generic-size-default</code></td><td>live</td></tr><tr><td><a href="#call-type-args"><code>call_type_args</code></a></td><td><code>#call-type-args</code></td><td>live</td></tr><tr><td><a href="#parameter"><code>parameter</code></a></td><td><code>#parameter</code></td><td>live</td></tr><tr><td><a href="#func-modifier"><code>func_modifier</code></a></td><td><code>#func-modifier</code></td><td>live</td></tr><tr><td><a href="#callable-posture"><code>callable_posture</code></a></td><td><code>#callable-posture</code></td><td>live</td></tr><tr><td><a href="#return-clause"><code>return_clause</code></a></td><td><code>#return-clause</code></td><td>live</td></tr><tr><td><a href="#alternate-exit-clause"><code>alternate_exit_clause</code></a></td><td><code>#alternate-exit-clause</code></td><td>live</td></tr><tr><td><a href="#ergo-joint"><code>ergo_joint</code></a></td><td><code>#do_đó-joint</code></td><td>live</td></tr><tr><td><a href="#clausura-joint"><code>clausura_joint</code></a></td><td><code>#đóng-joint</code></td><td>live</td></tr><tr><td><a href="#clausura-expr"><code>clausura_expr</code></a></td><td><code>#đóng-expr</code></td><td>live</td></tr><tr><td><a href="#compact-clausura-expr"><code>compact_clausura_expr</code></a></td><td><code>#compact-đóng-expr</code></td><td>live</td></tr><tr><td><a href="#clausura-signature"><code>clausura_signature</code></a></td><td><code>#đóng-signature</code></td><td>live</td></tr><tr><td><a href="#closure-modifier"><code>closure_modifier</code></a></td><td><code>#closure-modifier</code></td><td>live</td></tr><tr><td><a href="#fac-block"><code>fac_block</code></a></td><td><code>#làm-block</code></td><td>live</td></tr><tr><td><a href="#clausura-legacy-expr"><code>clausura_legacy_expr</code></a></td><td><code>#đóng-legacy-expr</code></td><td>live</td></tr><tr><td><a href="#clausura-params"><code>clausura_params</code></a></td><td><code>#đóng-params</code></td><td>live</td></tr><tr><td><a href="#clausura-param"><code>clausura_param</code></a></td><td><code>#đóng-param</code></td><td>live</td></tr><tr><td><a href="#genus-decl"><code>genus_decl</code></a></td><td><code>#kiểu-decl</code></td><td>live</td></tr><tr><td><a href="#genus-member"><code>genus_member</code></a></td><td><code>#kiểu-member</code></td><td>live</td></tr><tr><td><a href="#field-decl"><code>field_decl</code></a></td><td><code>#field-decl</code></td><td>live</td></tr><tr><td><a href="#functio-method-decl"><code>functio_method_decl</code></a></td><td><code>#hàm-method-decl</code></td><td>live</td></tr><tr><td><a href="#annotation"><code>annotation</code></a></td><td><code>#annotation</code></td><td>live</td></tr><tr><td><a href="#annotation-name"><code>annotation_name</code></a></td><td><code>#annotation-name</code></td><td>live</td></tr><tr><td><a href="#braced-annotation"><code>braced_annotation</code></a></td><td><code>#braced-annotation</code></td><td>live</td></tr><tr><td><a href="#annotation-field-list"><code>annotation_field_list</code></a></td><td><code>#annotation-field-list</code></td><td>live</td></tr><tr><td><a href="#annotation-field"><code>annotation_field</code></a></td><td><code>#annotation-field</code></td><td>live</td></tr><tr><td><a href="#annotation-sugar"><code>annotation_sugar</code></a></td><td><code>#annotation-sugar</code></td><td>live</td></tr><tr><td><a href="#nucleum-annotation"><code>nucleum_annotation</code></a></td><td><code>#hạt_nhân-annotation</code></td><td>live</td></tr><tr><td><a href="#nucleum-sugar"><code>nucleum_sugar</code></a></td><td><code>#hạt_nhân-sugar</code></td><td>live</td></tr><tr><td><a href="#nucleum-braced"><code>nucleum_braced</code></a></td><td><code>#hạt_nhân-braced</code></td><td>live</td></tr><tr><td><a href="#nucleum-modifier"><code>nucleum_modifier</code></a></td><td><code>#hạt_nhân-modifier</code></td><td>live</td></tr><tr><td><a href="#nucleum-field-list"><code>nucleum_field_list</code></a></td><td><code>#hạt_nhân-field-list</code></td><td>live</td></tr><tr><td><a href="#nucleum-field"><code>nucleum_field</code></a></td><td><code>#hạt_nhân-field</code></td><td>live</td></tr><tr><td><a href="#implendum-decl"><code>implendum_decl</code></a></td><td><code>#giao_ước-decl</code></td><td>live</td></tr><tr><td><a href="#implendum-method-decl"><code>implendum_method_decl</code></a></td><td><code>#giao_ước-method-decl</code></td><td>live</td></tr><tr><td><a href="#typus-decl"><code>typus_decl</code></a></td><td><code>#kiểu_tên-decl</code></td><td>live</td></tr><tr><td><a href="#ordo-decl"><code>ordo_decl</code></a></td><td><code>#liệt_kê-decl</code></td><td>live</td></tr><tr><td><a href="#enum-member"><code>enum_member</code></a></td><td><code>#enum-member</code></td><td>live</td></tr><tr><td><a href="#discretio-decl"><code>discretio_decl</code></a></td><td><code>#hợp_nhất-decl</code></td><td>live</td></tr><tr><td><a href="#union-member"><code>union_member</code></a></td><td><code>#union-member</code></td><td>live</td></tr><tr><td><a href="#variant"><code>variant</code></a></td><td><code>#variant</code></td><td>live</td></tr><tr><td><a href="#variant-fields"><code>variant_fields</code></a></td><td><code>#variant-fields</code></td><td>live</td></tr><tr><td><a href="#importa-decl"><code>importa_decl</code></a></td><td><code>#nhập-decl</code></td><td>live</td></tr><tr><td><a href="#importa-record"><code>importa_record</code></a></td><td><code>#nhập-record</code></td><td>live</td></tr><tr><td><a href="#import-field-list"><code>import_field_list</code></a></td><td><code>#import-field-list</code></td><td>live</td></tr><tr><td><a href="#import-field"><code>import_field</code></a></td><td><code>#import-field</code></td><td>live</td></tr><tr><td><a href="#ex-field"><code>ex_field</code></a></td><td><code>#từ-field</code></td><td>live</td></tr><tr><td><a href="#visibilitas-field"><code>visibilitas_field</code></a></td><td><code>#visibilitas-field</code></td><td>live</td></tr><tr><td><a href="#nomen-field"><code>nomen_field</code></a></td><td><code>#tên-field</code></td><td>live</td></tr><tr><td><a href="#ut-field"><code>ut_field</code></a></td><td><code>#như-field</code></td><td>live</td></tr><tr><td><a href="#omnia-field"><code>omnia_field</code></a></td><td><code>#mọi-field</code></td><td>live</td></tr><tr><td><a href="#importa-sugar"><code>importa_sugar</code></a></td><td><code>#nhập-sugar</code></td><td>live</td></tr><tr><td><a href="#publica"><code>công_khai</code></a></td><td><code>#công_khai</code></td><td>live</td></tr><tr><td><a href="#named-import"><code>named_import</code></a></td><td><code>#named-import</code></td><td>live</td></tr><tr><td><a href="#wildcard-import"><code>wildcard_import</code></a></td><td><code>#wildcard-import</code></td><td>live</td></tr><tr><td><a href="#selective-import"><code>selective_import</code></a></td><td><code>#selective-import</code></td><td>live</td></tr><tr><td><a href="#import-value-binding"><code>import_value_binding</code></a></td><td><code>#import-value-binding</code></td><td>live</td></tr><tr><td><a href="#type-annotation"><code>type_annotation</code></a></td><td><code>#type-annotation</code></td><td>live</td></tr><tr><td><a href="#intersection-type"><code>intersection_type</code></a></td><td><code>#intersection-type</code></td><td>live</td></tr><tr><td><a href="#owned-type"><code>owned_type</code></a></td><td><code>#owned-type</code></td><td>live</td></tr><tr><td><a href="#base-type"><code>base_type</code></a></td><td><code>#base-type</code></td><td>live</td></tr><tr><td><a href="#ratio-type"><code>ratio_type</code></a></td><td><code>#ratio-type</code></td><td>live</td></tr><tr><td><a href="#hole-type"><code>hole_type</code></a></td><td><code>#hole-type</code></td><td>live</td></tr><tr><td><a href="#qualified-type"><code>qualified_type</code></a></td><td><code>#qualified-type</code></td><td>live</td></tr><tr><td><a href="#type-arguments"><code>type_arguments</code></a></td><td><code>#type-arguments</code></td><td>live</td></tr><tr><td><a href="#type-argument"><code>type_argument</code></a></td><td><code>#type-argument</code></td><td>live</td></tr><tr><td><a href="#labeled-type-argument"><code>labeled_type_argument</code></a></td><td><code>#labeled-type-argument</code></td><td>live</td></tr><tr><td><a href="#width-type-sugar"><code>width_type_sugar</code></a></td><td><code>#width-type-sugar</code></td><td>live</td></tr><tr><td><a href="#shape-suffix"><code>shape_suffix</code></a></td><td><code>#shape-suffix</code></td><td>live</td></tr><tr><td><a href="#figura"><code>figura</code></a></td><td><code>#figura</code></td><td>live</td></tr><tr><td><a href="#figura-list"><code>figura_list</code></a></td><td><code>#figura-list</code></td><td>live</td></tr><tr><td><a href="#function-type"><code>function_type</code></a></td><td><code>#function-type</code></td><td>live</td></tr><tr><td><a href="#type-list"><code>type_list</code></a></td><td><code>#type-list</code></td><td>live</td></tr><tr><td><a href="#si-stmt"><code>si_stmt</code></a></td><td><code>#nếu-stmt</code></td><td>live</td></tr><tr><td><a href="#secus-clause"><code>secus_clause</code></a></td><td><code>#khác-clause</code></td><td>live</td></tr><tr><td><a href="#arm"><code>arm</code></a></td><td><code>#arm</code></td><td>live</td></tr><tr><td><a href="#else-arm"><code>else_arm</code></a></td><td><code>#else-arm</code></td><td>live</td></tr><tr><td><a href="#dum-stmt"><code>dum_stmt</code></a></td><td><code>#trong_khi-stmt</code></td><td>live</td></tr><tr><td><a href="#itera-stmt"><code>itera_stmt</code></a></td><td><code>#lặp-stmt</code></td><td>live</td></tr><tr><td><a href="#itera-binding"><code>itera_binding</code></a></td><td><code>#lặp-binding</code></td><td>live</td></tr><tr><td><a href="#apud-clause"><code>apud_clause</code></a></td><td><code>#tại-clause</code></td><td>live</td></tr><tr><td><a href="#elige-stmt"><code>elige_stmt</code></a></td><td><code>#chọn-stmt</code></td><td>live</td></tr><tr><td><a href="#casu-elige-clause"><code>casu_elige_clause</code></a></td><td><code>#trường_hợp-chọn-clause</code></td><td>live</td></tr><tr><td><a href="#ceterum-clause"><code>ceterum_clause</code></a></td><td><code>#mặc_định-clause</code></td><td>live</td></tr><tr><td><a href="#discerne-stmt"><code>discerne_stmt</code></a></td><td><code>#phân_tích-stmt</code></td><td>live</td></tr><tr><td><a href="#discriminants"><code>discriminants</code></a></td><td><code>#discriminants</code></td><td>live</td></tr><tr><td><a href="#casu-variant-clause"><code>casu_variant_clause</code></a></td><td><code>#trường_hợp-variant-clause</code></td><td>live</td></tr><tr><td><a href="#patterns"><code>patterns</code></a></td><td><code>#patterns</code></td><td>live</td></tr><tr><td><a href="#pattern"><code>pattern</code></a></td><td><code>#pattern</code></td><td>live</td></tr><tr><td><a href="#type-pattern"><code>type_pattern</code></a></td><td><code>#type-pattern</code></td><td>live</td></tr><tr><td><a href="#ut-pattern"><code>ut_pattern</code></a></td><td><code>#như-pattern</code></td><td>live</td></tr><tr><td><a href="#pattern-binding"><code>pattern_binding</code></a></td><td><code>#pattern-binding</code></td><td>live</td></tr><tr><td><a href="#custodi-stmt"><code>custodi_stmt</code></a></td><td><code>#canh_gác-stmt</code></td><td>live</td></tr><tr><td><a href="#si-guard-clause"><code>si_guard_clause</code></a></td><td><code>#nếu-guard-clause</code></td><td>live</td></tr><tr><td><a href="#cura-stmt"><code>cura_stmt</code></a></td><td><code>#chăm_sóc-stmt</code></td><td>live</td></tr><tr><td><a href="#ex-stmt"><code>ex_stmt</code></a></td><td><code>#từ-stmt</code></td><td>live</td></tr><tr><td><a href="#extract-fields"><code>extract_fields</code></a></td><td><code>#extract-fields</code></td><td>live</td></tr><tr><td><a href="#extract-field"><code>extract_field</code></a></td><td><code>#extract-field</code></td><td>live</td></tr><tr><td><a href="#ceteri-field"><code>ceteri_field</code></a></td><td><code>#còn_lại-field</code></td><td>live</td></tr><tr><td><a href="#redde-stmt"><code>redde_stmt</code></a></td><td><code>#trả-stmt</code></td><td>live</td></tr><tr><td><a href="#reddet-stmt"><code>reddet_stmt</code></a></td><td><code>#đợi_trả-stmt</code></td><td>live</td></tr><tr><td><a href="#tacebit-stmt"><code>tacebit_stmt</code></a></td><td><code>#đợi_bỏ-stmt</code></td><td>live</td></tr><tr><td><a href="#cede-stmt"><code>cede_stmt</code></a></td><td><code>#nhường-stmt</code></td><td>live</td></tr><tr><td><a href="#rumpe-stmt"><code>rumpe_stmt</code></a></td><td><code>#dừng-stmt</code></td><td>live</td></tr><tr><td><a href="#perge-stmt"><code>perge_stmt</code></a></td><td><code>#tiếp-stmt</code></td><td>live</td></tr><tr><td><a href="#tacet-stmt"><code>tacet_stmt</code></a></td><td><code>#im_lặng-stmt</code></td><td>live</td></tr><tr><td><a href="#iace-stmt"><code>iace_stmt</code></a></td><td><code>#ném-stmt</code></td><td>live</td></tr><tr><td><a href="#iace-expr"><code>iace_expr</code></a></td><td><code>#ném-expr</code></td><td>live</td></tr><tr><td><a href="#iace-guarded-expr"><code>iace_guarded_expr</code></a></td><td><code>#ném-guarded-expr</code></td><td>live</td></tr><tr><td><a href="#cape-clause"><code>cape_clause</code></a></td><td><code>#bắt-clause</code></td><td>live</td></tr><tr><td><a href="#adfirma-stmt"><code>adfirma_stmt</code></a></td><td><code>#khẳng_định-stmt</code></td><td>live</td></tr><tr><td><a href="#requirit-stmt"><code>requirit_stmt</code></a></td><td><code>#yêu_cầu-stmt</code></td><td>live</td></tr><tr><td><a href="#reice-stmt"><code>reice_stmt</code></a></td><td><code>#từ_chối-stmt</code></td><td>live</td></tr><tr><td><a href="#expression"><code>expression</code></a></td><td><code>#expression</code></td><td>live</td></tr><tr><td><a href="#transfer"><code>transfer</code></a></td><td><code>#transfer</code></td><td>live</td></tr><tr><td><a href="#assignment"><code>assignment</code></a></td><td><code>#assignment</code></td><td>live</td></tr><tr><td><a href="#inc-dec-stmt"><code>inc_dec_stmt</code></a></td><td><code>#inc-dec-stmt</code></td><td>live</td></tr><tr><td><a href="#place"><code>place</code></a></td><td><code>#place</code></td><td>live</td></tr><tr><td><a href="#ternary"><code>ternary</code></a></td><td><code>#ternary</code></td><td>live</td></tr><tr><td><a href="#aut-expr"><code>aut_expr</code></a></td><td><code>#hoặc-expr</code></td><td>live</td></tr><tr><td><a href="#et-expr"><code>et_expr</code></a></td><td><code>#và-expr</code></td><td>live</td></tr><tr><td><a href="#equality"><code>equality</code></a></td><td><code>#equality</code></td><td>live</td></tr><tr><td><a href="#equality-tail"><code>equality_tail</code></a></td><td><code>#equality-tail</code></td><td>live</td></tr><tr><td><a href="#comparison"><code>comparison</code></a></td><td><code>#comparison</code></td><td>live</td></tr><tr><td><a href="#bitwise-or-expr"><code>bitwise_or_expr</code></a></td><td><code>#bitwise-or-expr</code></td><td>live</td></tr><tr><td><a href="#bitwise-xor-expr"><code>bitwise_xor_expr</code></a></td><td><code>#bitwise-xor-expr</code></td><td>live</td></tr><tr><td><a href="#bitwise-and-expr"><code>bitwise_and_expr</code></a></td><td><code>#bitwise-and-expr</code></td><td>live</td></tr><tr><td><a href="#shift-expr"><code>shift_expr</code></a></td><td><code>#shift-expr</code></td><td>live</td></tr><tr><td><a href="#range-expr"><code>range_expr</code></a></td><td><code>#range-expr</code></td><td>live</td></tr><tr><td><a href="#range-tail"><code>range_tail</code></a></td><td><code>#range-tail</code></td><td>live</td></tr><tr><td><a href="#additive-expr"><code>additive_expr</code></a></td><td><code>#additive-expr</code></td><td>live</td></tr><tr><td><a href="#multiplicative-expr"><code>multiplicative_expr</code></a></td><td><code>#multiplicative-expr</code></td><td>live</td></tr><tr><td><a href="#vel-expr"><code>vel_expr</code></a></td><td><code>#hoặc_nếu_rỗng-expr</code></td><td>live</td></tr><tr><td><a href="#vel-rhs"><code>vel_rhs</code></a></td><td><code>#hoặc_nếu_rỗng-rhs</code></td><td>live</td></tr><tr><td><a href="#vel-range-tail"><code>vel_range_tail</code></a></td><td><code>#hoặc_nếu_rỗng-range-tail</code></td><td>live</td></tr><tr><td><a href="#unary-expr"><code>unary_expr</code></a></td><td><code>#unary-expr</code></td><td>live</td></tr><tr><td><a href="#gradient-expr"><code>gradient_expr</code></a></td><td><code>#gradient-expr</code></td><td>live</td></tr><tr><td><a href="#gradient-selection"><code>gradient_selection</code></a></td><td><code>#gradient-selection</code></td><td>live</td></tr><tr><td><a href="#gradient-place"><code>gradient_place</code></a></td><td><code>#gradient-place</code></td><td>live</td></tr><tr><td><a href="#cast-expr"><code>cast_expr</code></a></td><td><code>#cast-expr</code></td><td>live</td></tr><tr><td><a href="#conversio-expr"><code>conversio_expr</code></a></td><td><code>#conversio-expr</code></td><td>live</td></tr><tr><td><a href="#inline-recovery"><code>inline_recovery</code></a></td><td><code>#inline-recovery</code></td><td>live</td></tr><tr><td><a href="#call-expr"><code>call_expr</code></a></td><td><code>#call-expr</code></td><td>live</td></tr><tr><td><a href="#call-suffix"><code>call_suffix</code></a></td><td><code>#call-suffix</code></td><td>live</td></tr><tr><td><a href="#member-suffix"><code>member_suffix</code></a></td><td><code>#member-suffix</code></td><td>live</td></tr><tr><td><a href="#optional-suffix"><code>optional_suffix</code></a></td><td><code>#optional-suffix</code></td><td>live</td></tr><tr><td><a href="#non-null-suffix"><code>non_null_suffix</code></a></td><td><code>#không-null-suffix</code></td><td>live</td></tr><tr><td><a href="#argument-list"><code>argument_list</code></a></td><td><code>#argument-list</code></td><td>live</td></tr><tr><td><a href="#argument"><code>argument</code></a></td><td><code>#argument</code></td><td>live</td></tr><tr><td><a href="#template-argument"><code>template_argument</code></a></td><td><code>#template-argument</code></td><td>live</td></tr><tr><td><a href="#literal"><code>literal</code></a></td><td><code>#literal</code></td><td>live</td></tr><tr><td><a href="#primary"><code>primary</code></a></td><td><code>#primary</code></td><td>live</td></tr><tr><td><a href="#ad-expr"><code>ad_expr</code></a></td><td><code>#gọi-expr</code></td><td>live</td></tr><tr><td><a href="#ad-opener"><code>ad_opener</code></a></td><td><code>#gọi-opener</code></td><td>live</td></tr><tr><td><a href="#array-literal"><code>array_literal</code></a></td><td><code>#array-literal</code></td><td>live</td></tr><tr><td><a href="#iuncta-expr"><code>iuncta_expr</code></a></td><td><code>#bộ-expr</code></td><td>live</td></tr><tr><td><a href="#json-literal"><code>json_literal</code></a></td><td><code>#json-literal</code></td><td>live</td></tr><tr><td><a href="#json-member"><code>json_member</code></a></td><td><code>#json-member</code></td><td>live</td></tr><tr><td><a href="#typed-constructor"><code>typed_constructor</code></a></td><td><code>#typed-constructor</code></td><td>live</td></tr><tr><td><a href="#field-list"><code>field_list</code></a></td><td><code>#field-list</code></td><td>live</td></tr><tr><td><a href="#field-init"><code>field_init</code></a></td><td><code>#field-init</code></td><td>live</td></tr><tr><td><a href="#field-key"><code>field_key</code></a></td><td><code>#field-key</code></td><td>live</td></tr><tr><td><a href="#json-value"><code>json_value</code></a></td><td><code>#json-value</code></td><td>live</td></tr><tr><td><a href="#json-object"><code>json_object</code></a></td><td><code>#json-object</code></td><td>live</td></tr><tr><td><a href="#json-array"><code>json_array</code></a></td><td><code>#json-array</code></td><td>live</td></tr><tr><td><a href="#json-string"><code>json_string</code></a></td><td><code>#json-string</code></td><td>live</td></tr><tr><td><a href="#json-number"><code>json_number</code></a></td><td><code>#json-number</code></td><td>live</td></tr><tr><td><a href="#finge-expr"><code>finge_expr</code></a></td><td><code>#tạo-expr</code></td><td>live</td></tr><tr><td><a href="#qualified-ident"><code>qualified_ident</code></a></td><td><code>#qualified-ident</code></td><td>live</td></tr><tr><td><a href="#praefixum-expr"><code>praefixum_expr</code></a></td><td><code>#tiền_tố-expr</code></td><td>live</td></tr><tr><td><a href="#scriptum-expr"><code>scriptum_expr</code></a></td><td><code>#văn_bản_hóa-expr</code></td><td>live</td></tr><tr><td><a href="#lege-expr"><code>lege_expr</code></a></td><td><code>#đọc-expr</code></td><td>live</td></tr><tr><td><a href="#first-match-expr"><code>first_match_expr</code></a></td><td><code>#first-match-expr</code></td><td>live</td></tr><tr><td><a href="#summa-expr"><code>summa_expr</code></a></td><td><code>#tổng-expr</code></td><td>live</td></tr><tr><td><a href="#filum-clause"><code>filum_clause</code></a></td><td><code>#sợi-clause</code></td><td>live</td></tr><tr><td><a href="#object-pattern"><code>object_pattern</code></a></td><td><code>#object-pattern</code></td><td>live</td></tr><tr><td><a href="#pattern-property"><code>pattern_property</code></a></td><td><code>#pattern-property</code></td><td>live</td></tr><tr><td><a href="#array-pattern"><code>array_pattern</code></a></td><td><code>#array-pattern</code></td><td>live</td></tr><tr><td><a href="#array-pattern-element"><code>array_pattern_element</code></a></td><td><code>#array-pattern-element</code></td><td>live</td></tr><tr><td><a href="#nota-stmt"><code>nota_stmt</code></a></td><td><code>#ghi_chú-stmt</code></td><td>live</td></tr><tr><td><a href="#entry-header"><code>entry_header</code></a></td><td><code>#entry-header</code></td><td>live</td></tr><tr><td><a href="#incipit-stmt"><code>incipit_stmt</code></a></td><td><code>#bắt_đầu-stmt</code></td><td>live</td></tr><tr><td><a href="#incipiet-stmt"><code>incipiet_stmt</code></a></td><td><code>#bắt_đầu_bất_đồng_bộ-stmt</code></td><td>live</td></tr><tr><td><a href="#probandum-decl"><code>probandum_decl</code></a></td><td><code>#đối_tượng_kiểm_thử-decl</code></td><td>live</td></tr><tr><td><a href="#probandum-body"><code>probandum_body</code></a></td><td><code>#đối_tượng_kiểm_thử-body</code></td><td>live</td></tr><tr><td><a href="#proba-stmt"><code>proba_stmt</code></a></td><td><code>#kiểm_thử-stmt</code></td><td>live</td></tr><tr><td><a href="#proba-modifier"><code>proba_modifier</code></a></td><td><code>#kiểm_thử-modifier</code></td><td>live</td></tr><tr><td><a href="#praepara-block"><code>praepara_block</code></a></td><td><code>#chuẩn_bị-block</code></td><td>live</td></tr><tr><td><a href="#fac-stmt"><code>fac_stmt</code></a></td><td><code>#làm-stmt</code></td><td>live</td></tr></tbody></table></div><h2 id="lexicon">Lexicon Appendix<a class="anchor" href="#lexicon">#</a></h2><p>The lexical tier is descriptive and remains owned by the live lexer and
 driver. <code>capture-pending</code> rows intentionally carry no invented token shape.</p><div class="table-scroll"><table><thead><tr><th>Terminal</th><th>Status</th><th>Capture notes</th></tr></thead><tbody><tr><td><code>IDENTIFIER</code></td><td><code>capture-pending</code></td><td>Lexical tier. Empty RHS; status is capture-pending. radix-lexer / driver / parser is the authority (crates/radix-lexer/src/). Not a second lexer spec. scan.rs scan_identifier; Unicode XID_Start or '_' then XID_Continue or '_'; NFKC intern; TokenKind::Ident (keywords also lex as identifiers)</td></tr><tr><td><code>NUMBER</code></td><td><code>capture-pending</code></td><td>scan.rs scan_number; decimal/hex/bin/oct integers and floats with '_' separators; TokenKind::Integer(u64) or Float(f64)</td></tr><tr><td><code>NATURAL</code></td><td><code>capture-pending</code></td><td>not a distinct lexer token; type-position TokenKind::Integer used as magnitudo capacity (no fraction/exponent)</td></tr><tr><td><code>STRING</code></td><td><code>capture-pending</code></td><td>scan.rs scan_string / scan_guillemet_block_string; double-quoted or guillemet block; TokenKind::String</td></tr><tr><td><code>ASCII_STRING</code></td><td><code>capture-pending</code></td><td>scan.rs scan_ascii_string; single-quoted; TokenKind::AsciiString</td></tr><tr><td><code>BACKTICK_STRING</code></td><td><code>capture-pending</code></td><td>scan.rs scan_backtick_string; backtick forma template; TokenKind::BacktickString</td></tr><tr><td><code>OCTETI_STRING</code></td><td><code>capture-pending</code></td><td>scan.rs scan_octeti_string; pipe-delimited hex; TokenKind::OctetiString</td></tr><tr><td><code>NEWLINE</code></td><td><code>capture-pending</code></td><td>scan.rs scan_line_break; LF or CRLF; TokenKind::Newline</td></tr><tr><td><code>WIDTH_MARKER</code></td><td><code>capture-pending</code></td><td>parser type-position identifier i8/i16/i32/i64/u8/u16/u32/u64/f16/f32/f64; not a lexer token</td></tr><tr><td><code>LISTA_WIDTH_SUGAR</code></td><td><code>capture-pending</code></td><td>parser type-position l + WIDTH_MARKER; not a lexer token</td></tr><tr><td><code>TENSOR_WIDTH_SUGAR</code></td><td><code>capture-pending</code></td><td>parser type-position t + WIDTH_MARKER; not a lexer token</td></tr><tr><td><code>SPARSA_WIDTH_SUGAR</code></td><td><code>capture-pending</code></td><td>parser type-position s + WIDTH_MARKER; not a lexer token</td></tr><tr><td><code>VECTOR_WIDTH_SUGAR</code></td><td><code>capture-pending</code></td><td>parser type-position v + WIDTH_MARKER; not a lexer token</td></tr><tr><td><code>MATRIX_WIDTH_SUGAR</code></td><td><code>capture-pending</code></td><td>parser type-position m + WIDTH_MARKER; not a lexer token</td></tr><tr><td><code>FRONTMATTER_DELIMITER</code></td><td><code>capture-pending</code></td><td>driver peels a line whose trimmed content is exactly +++ before lexing</td></tr><tr><td><code>TOML_LINES</code></td><td><code>capture-pending</code></td><td>driver; TOML body between FRONTMATTER_DELIMITER lines</td></tr><tr><td><code>ANNOTATION_NAME</code></td><td><code>capture-pending</code></td><td>parser; identifier spelling after @, including keyword spellings</td></tr><tr><td><code>ANNOTATION_FIELD_NAME</code></td><td><code>capture-pending</code></td><td>parser; identifier spelling in annotation field position</td></tr><tr><td><code>NON_NEWLINE_TOKEN</code></td><td><code>capture-pending</code></td><td>parser; one ordinary token other than TokenKind::Newline</td></tr><tr><td><code>NO_NEWLINE</code></td><td><code>capture-pending</code></td><td>parser zero-width constraint: adjacent parts stay on the same logical line</td></tr></tbody></table></div><h2 id="keyword-reference">Keyword Reference<a class="anchor" href="#keyword-reference">#</a></h2><p>This table is derived from the quoted Latin literals in the source
-productions. It is not a second keyword authority.</p><div class="table-scroll"><table><thead><tr><th>Category</th><th>Faber</th><th>Meaning</th></tr></thead><tbody><tr><td>Iteration</td><td><code>khoảng</code></td><td>range iteration</td></tr><tr><td>Declarations</td><td><code>trừu_tượng</code></td><td>abstract genus modifier</td></tr><tr><td>Endpoints</td><td><code>gọi</code></td><td>capability call</td></tr><tr><td>Error</td><td><code>khẳng_định</code></td><td>assert</td></tr><tr><td>Iteration</td><td><code>trước</code></td><td>range until exclusive</td></tr><tr><td>Grammar</td><td><code>tại</code></td><td>keyword literal derived from the production</td></tr><tr><td>Params</td><td><code>đối_số</code></td><td>CLI arguments modifier</td></tr><tr><td>Boolean</td><td><code>hoặc</code></td><td>or</td></tr><tr><td>Error</td><td><code>bắt</code></td><td>local handler</td></tr><tr><td>Control</td><td><code>trường_hợp</code></td><td>case</td></tr><tr><td>Async</td><td><code>nhường</code></td><td>yield</td></tr><tr><td>Params</td><td><code>còn_lại</code></td><td>rest</td></tr><tr><td>Control</td><td><code>mặc_định</code></td><td>default case</td></tr><tr><td>Objects</td><td><code>đóng</code></td><td>legacy closure</td></tr><tr><td>Type</td><td><code>sao_chép</code></td><td>copy ownership</td></tr><tr><td>Objects</td><td><code>chăm_sóc</code></td><td>with-resource</td></tr><tr><td>Params</td><td><code>được_sửa</code></td><td>curated options</td></tr><tr><td>Control</td><td><code>canh_gác</code></td><td>guard</td></tr><tr><td>Type</td><td><code>ra</code></td><td>borrow / for-in keys</td></tr><tr><td>Control</td><td><code>phân_tích</code></td><td>pattern match</td></tr><tr><td>Declarations</td><td><code>hợp_nhất</code></td><td>tagged union</td></tr><tr><td>Control</td><td><code>trong_khi</code></td><td>while / postfix until</td></tr><tr><td>Objects</td><td><code>tôi</code></td><td>self</td></tr><tr><td>Control</td><td><code>chọn</code></td><td>switch</td></tr><tr><td>Control</td><td><code>do_đó</code></td><td>compact statement-body joint</td></tr><tr><td>Params</td><td><code>lỗi</code></td><td>error channel</td></tr><tr><td>Boolean</td><td><code>là</code></td><td>is / equality</td></tr><tr><td>Boolean</td><td><code>và</code></td><td>and</td></tr><tr><td>Iteration</td><td><code>từ</code></td><td>for-of / import from</td></tr><tr><td>Params</td><td><code>thoát</code></td><td>exit code</td></tr><tr><td>Control</td><td><code>làm</code></td><td>do block / post-test loop</td></tr><tr><td>JSON</td><td><code>false</code></td><td>JSON false</td></tr><tr><td>Boolean</td><td><code>sai</code></td><td>false</td></tr><tr><td>Async</td><td><code>async_sinh</code></td><td>async stream posture</td></tr><tr><td>Async</td><td><code>async</code></td><td>async finite posture</td></tr><tr><td>Async</td><td><code>đợi_hằng</code></td><td>await-bind immutable</td></tr><tr><td>Grammar</td><td><code>sợi</code></td><td>keyword literal derived from the production</td></tr><tr><td>Objects</td><td><code>tạo</code></td><td>construct variant</td></tr><tr><td>Async</td><td><code>sinh</code></td><td>sync stream posture</td></tr><tr><td>Declarations</td><td><code>hằng</code></td><td>immutable binding</td></tr><tr><td>Testing</td><td><code>mong_manh</code></td><td>flaky</td></tr><tr><td>Annotation</td><td><code>mảnh</code></td><td>nucleum fragment</td></tr><tr><td>Declarations</td><td><code>hàm</code></td><td>function</td></tr><tr><td>Testing</td><td><code>việc_cần_làm</code></td><td>future</td></tr><tr><td>Genus</td><td><code>tĩnh</code></td><td>static member</td></tr><tr><td>Declarations</td><td><code>kiểu</code></td><td>class</td></tr><tr><td>Error</td><td><code>ném</code></td><td>throw</td></tr><tr><td>Error</td><td><code>ném_lỗi</code></td><td>throws marker</td></tr><tr><td>Params</td><td><code>bất_biến</code></td><td>immutable modifier</td></tr><tr><td>Declarations</td><td><code>giao_ước</code></td><td>interface contract</td></tr><tr><td>Genus</td><td><code>thực_thi</code></td><td>implements</td></tr><tr><td>Declarations</td><td><code>nhập</code></td><td>import</td></tr><tr><td>Type</td><td><code>vào</code></td><td>ownership in</td></tr><tr><td>Declarations</td><td><code>bắt_đầu_bất_đồng_bộ</code></td><td>async entrypoint</td></tr><tr><td>Declarations</td><td><code>bắt_đầu</code></td><td>entrypoint</td></tr><tr><td>Iteration</td><td><code>giữa</code></td><td>between</td></tr><tr><td>Iteration</td><td><code>trong</code></td><td>membership</td></tr><tr><td>Control</td><td><code>lặp</code></td><td>for</td></tr><tr><td>Objects</td><td><code>bộ</code></td><td>tuple type/constructor</td></tr><tr><td>Builtin</td><td><code>đọc</code></td><td>read</td></tr><tr><td>Objects</td><td><code>tự_do</code></td><td>capture-free closure modifier</td></tr><tr><td>Builtin</td><td><code>dòng</code></td><td>line</td></tr><tr><td>Declarations</td><td><code>kích_thước</code></td><td>size/index generic parameter</td></tr><tr><td>Testing</td><td><code>đo_lường</code></td><td>benchmark</td></tr><tr><td>Diagnostics</td><td><code>cảnh_báo</code></td><td>warn</td></tr><tr><td>Error</td><td><code>chết</code></td><td>panic</td></tr><tr><td>Genus</td><td><code>ràng_buộc</code></td><td>link field</td></tr><tr><td>Literals</td><td><code>rỗng</code></td><td>none</td></tr><tr><td>Declarations</td><td><code>tên</code></td><td>import binding name</td></tr><tr><td>Boolean</td><td><code>không</code></td><td>not</td></tr><tr><td>Diagnostics</td><td><code>ghi_chú</code></td><td>note</td></tr><tr><td>Annotation</td><td><code>hạt_nhân</code></td><td>kernel annotation</td></tr><tr><td>JSON</td><td><code>null</code></td><td>JSON null</td></tr><tr><td>Testing</td><td><code>bỏ_qua</code></td><td>skip</td></tr><tr><td>Params</td><td><code>mọi</code></td><td>all / glob</td></tr><tr><td>Params</td><td><code>lựa_chọn</code></td><td>options modifier</td></tr><tr><td>Declarations</td><td><code>liệt_kê</code></td><td>enum</td></tr><tr><td>Type</td><td><code>sở_hữu</code></td><td>owned</td></tr><tr><td>Iteration</td><td><code>qua</code></td><td>range step</td></tr><tr><td>Control</td><td><code>tiếp</code></td><td>continue</td></tr><tr><td>Testing</td><td><code>sau_chuẩn_bị</code></td><td>teardown</td></tr><tr><td>Testing</td><td><code>sẽ_sau_chuẩn_bị</code></td><td>async teardown</td></tr><tr><td>Objects</td><td><code>tiền_tố</code></td><td>prefix expression</td></tr><tr><td>Testing</td><td><code>chuẩn_bị</code></td><td>setup</td></tr><tr><td>Testing</td><td><code>sẽ_chuẩn_bị</code></td><td>async setup</td></tr><tr><td>Grammar</td><td><code>khớp_đầu_tiên</code></td><td>first-match selection head</td></tr><tr><td>Testing</td><td><code>kiểm_thử</code></td><td>test</td></tr><tr><td>Testing</td><td><code>đối_tượng_kiểm_thử</code></td><td>test suite</td></tr><tr><td>Declarations</td><td><code>công_khai</code></td><td>public visibility</td></tr><tr><td>Objects</td><td><code>ratio</code></td><td>named-field aggregate type/constructor</td></tr><tr><td>Control</td><td><code>trả</code></td><td>return</td></tr><tr><td>Async</td><td><code>đợi_trả</code></td><td>await-return</td></tr><tr><td>Testing</td><td><code>lặp_lại</code></td><td>repeat</td></tr><tr><td>Error</td><td><code>yêu_cầu</code></td><td>require</td></tr><tr><td>Control</td><td><code>dừng</code></td><td>break</td></tr><tr><td>Diagnostics</td><td><code>viết</code></td><td>diagnostic channel</td></tr><tr><td>Builtin</td><td><code>văn_bản_hóa</code></td><td>write</td></tr><tr><td>Control</td><td><code>khác</code></td><td>else</td></tr><tr><td>Control</td><td><code>nếu</code></td><td>if</td></tr><tr><td>Control</td><td><code>thế</code></td><td>then (ternary)</td></tr><tr><td>Control</td><td><code>nếukhôngthì</code></td><td>else-if</td></tr><tr><td>Declarations</td><td><code>đặt</code></td><td>inferred immutable local</td></tr><tr><td>Testing</td><td><code>chỉ</code></td><td>only</td></tr><tr><td>Testing</td><td><code>chỉ_trong</code></td><td>only-in</td></tr><tr><td>Params</td><td><code>rải</code></td><td>spread</td></tr><tr><td>Declarations</td><td><code>tự_nguyện</code></td><td>optional declaration slot</td></tr><tr><td>Genus</td><td><code>dưới</code></td><td>extends</td></tr><tr><td>Grammar</td><td><code>tổng</code></td><td>keyword literal derived from the production</td></tr><tr><td>Async</td><td><code>đợi_bỏ</code></td><td>await-discard</td></tr><tr><td>Control</td><td><code>im_lặng</code></td><td>no-op</td></tr><tr><td>Testing</td><td><code>nhãn</code></td><td>tag</td></tr><tr><td>Testing</td><td><code>thời_gian</code></td><td>timeout</td></tr><tr><td>JSON</td><td><code>true</code></td><td>JSON true</td></tr><tr><td>Declarations</td><td><code>kiểu_tên</code></td><td>type alias</td></tr><tr><td>Grammar</td><td><code>nơi</code></td><td>first-match predicate tail</td></tr><tr><td>Iteration</td><td><code>tới</code></td><td>range until inclusive</td></tr><tr><td>Params</td><td><code>như</code></td><td>as / alias</td></tr><tr><td>Declarations</td><td><code>biến</code></td><td>mutable binding</td></tr><tr><td>Async</td><td><code>đợi_biến</code></td><td>await-bind mutable</td></tr><tr><td>Boolean</td><td><code>hoặc_nếu_rỗng</code></td><td>nullable default</td></tr><tr><td>Boolean</td><td><code>đúng</code></td><td>true</td></tr><tr><td>Diagnostics</td><td><code>xem</code></td><td>debug</td></tr><tr><td>Declarations</td><td><code>visibilitas</code></td><td>visibility field</td></tr></tbody></table></div><h2 id="comma-separator-law">Comma Separator Table<a class="anchor" href="#comma-separator-law">#</a></h2><p>Optional commas are forbidden. The source currently has no <code>','?</code>
+productions. It is not a second keyword authority.</p><div class="table-scroll"><table><thead><tr><th>Category</th><th>Faber</th><th>Meaning</th></tr></thead><tbody><tr><td>Iteration</td><td><code>khoảng</code></td><td>range iteration</td></tr><tr><td>Declarations</td><td><code>trừu_tượng</code></td><td>abstract genus modifier</td></tr><tr><td>Endpoints</td><td><code>gọi</code></td><td>capability call</td></tr><tr><td>Error</td><td><code>khẳng_định</code></td><td>assert</td></tr><tr><td>Iteration</td><td><code>trước</code></td><td>range until exclusive</td></tr><tr><td>Grammar</td><td><code>tại</code></td><td>keyword literal derived from the production</td></tr><tr><td>Params</td><td><code>đối_số</code></td><td>CLI arguments modifier</td></tr><tr><td>Boolean</td><td><code>hoặc</code></td><td>or</td></tr><tr><td>Error</td><td><code>bắt</code></td><td>local handler</td></tr><tr><td>Control</td><td><code>trường_hợp</code></td><td>case</td></tr><tr><td>Async</td><td><code>nhường</code></td><td>yield</td></tr><tr><td>Params</td><td><code>còn_lại</code></td><td>rest</td></tr><tr><td>Control</td><td><code>mặc_định</code></td><td>default case</td></tr><tr><td>Objects</td><td><code>đóng</code></td><td>legacy closure</td></tr><tr><td>Type</td><td><code>sao_chép</code></td><td>copy ownership</td></tr><tr><td>Objects</td><td><code>chăm_sóc</code></td><td>with-resource</td></tr><tr><td>Params</td><td><code>được_sửa</code></td><td>curated options</td></tr><tr><td>Control</td><td><code>canh_gác</code></td><td>guard</td></tr><tr><td>Type</td><td><code>ra</code></td><td>borrow / for-in keys</td></tr><tr><td>Control</td><td><code>phân_tích</code></td><td>pattern match</td></tr><tr><td>Declarations</td><td><code>hợp_nhất</code></td><td>tagged union</td></tr><tr><td>Control</td><td><code>trong_khi</code></td><td>while / postfix until</td></tr><tr><td>Objects</td><td><code>tôi</code></td><td>self</td></tr><tr><td>Control</td><td><code>chọn</code></td><td>switch</td></tr><tr><td>Control</td><td><code>do_đó</code></td><td>compact statement-body joint</td></tr><tr><td>Params</td><td><code>lỗi</code></td><td>error channel</td></tr><tr><td>Boolean</td><td><code>là</code></td><td>is / equality</td></tr><tr><td>Boolean</td><td><code>và</code></td><td>and</td></tr><tr><td>Iteration</td><td><code>từ</code></td><td>for-of / import from</td></tr><tr><td>Params</td><td><code>thoát</code></td><td>exit code</td></tr><tr><td>Control</td><td><code>làm</code></td><td>do block / post-test loop</td></tr><tr><td>JSON</td><td><code>false</code></td><td>JSON false</td></tr><tr><td>Boolean</td><td><code>sai</code></td><td>false</td></tr><tr><td>Async</td><td><code>async_sinh</code></td><td>async stream posture</td></tr><tr><td>Async</td><td><code>async</code></td><td>async finite posture</td></tr><tr><td>Async</td><td><code>đợi_hằng</code></td><td>await-bind immutable</td></tr><tr><td>Grammar</td><td><code>sợi</code></td><td>keyword literal derived from the production</td></tr><tr><td>Objects</td><td><code>tạo</code></td><td>construct variant</td></tr><tr><td>Async</td><td><code>sinh</code></td><td>sync stream posture</td></tr><tr><td>Declarations</td><td><code>hằng</code></td><td>immutable binding</td></tr><tr><td>Testing</td><td><code>mong_manh</code></td><td>flaky</td></tr><tr><td>Annotation</td><td><code>mảnh</code></td><td>nucleum fragment</td></tr><tr><td>Declarations</td><td><code>hàm</code></td><td>function</td></tr><tr><td>Testing</td><td><code>việc_cần_làm</code></td><td>future</td></tr><tr><td>Genus</td><td><code>tĩnh</code></td><td>static member</td></tr><tr><td>Declarations</td><td><code>kiểu</code></td><td>class</td></tr><tr><td>Error</td><td><code>ném</code></td><td>throw</td></tr><tr><td>Error</td><td><code>ném_lỗi</code></td><td>throws marker</td></tr><tr><td>Params</td><td><code>bất_biến</code></td><td>immutable modifier</td></tr><tr><td>Declarations</td><td><code>giao_ước</code></td><td>interface contract</td></tr><tr><td>Genus</td><td><code>thực_thi</code></td><td>implements</td></tr><tr><td>Declarations</td><td><code>nhập</code></td><td>import</td></tr><tr><td>Type</td><td><code>vào</code></td><td>ownership in</td></tr><tr><td>Declarations</td><td><code>bắt_đầu_bất_đồng_bộ</code></td><td>async entrypoint</td></tr><tr><td>Declarations</td><td><code>bắt_đầu</code></td><td>entrypoint</td></tr><tr><td>Iteration</td><td><code>giữa</code></td><td>between</td></tr><tr><td>Iteration</td><td><code>trong</code></td><td>membership</td></tr><tr><td>Control</td><td><code>lặp</code></td><td>for</td></tr><tr><td>Objects</td><td><code>bộ</code></td><td>tuple type/constructor</td></tr><tr><td>Builtin</td><td><code>đọc</code></td><td>read</td></tr><tr><td>Objects</td><td><code>tự_do</code></td><td>capture-free closure modifier</td></tr><tr><td>Builtin</td><td><code>dòng</code></td><td>line</td></tr><tr><td>Declarations</td><td><code>kích_thước</code></td><td>size/index generic parameter</td></tr><tr><td>Testing</td><td><code>đo_lường</code></td><td>benchmark</td></tr><tr><td>Diagnostics</td><td><code>cảnh_báo</code></td><td>warn</td></tr><tr><td>Error</td><td><code>chết</code></td><td>panic</td></tr><tr><td>Genus</td><td><code>ràng_buộc</code></td><td>link field</td></tr><tr><td>Literals</td><td><code>rỗng</code></td><td>none</td></tr><tr><td>Declarations</td><td><code>tên</code></td><td>import binding name</td></tr><tr><td>Boolean</td><td><code>không</code></td><td>not</td></tr><tr><td>Diagnostics</td><td><code>ghi_chú</code></td><td>note</td></tr><tr><td>Annotation</td><td><code>hạt_nhân</code></td><td>kernel annotation; kernel closure modifier</td></tr><tr><td>JSON</td><td><code>null</code></td><td>JSON null</td></tr><tr><td>Testing</td><td><code>bỏ_qua</code></td><td>skip</td></tr><tr><td>Params</td><td><code>mọi</code></td><td>all / glob</td></tr><tr><td>Params</td><td><code>lựa_chọn</code></td><td>options modifier</td></tr><tr><td>Declarations</td><td><code>liệt_kê</code></td><td>enum</td></tr><tr><td>Type</td><td><code>sở_hữu</code></td><td>owned</td></tr><tr><td>Iteration</td><td><code>qua</code></td><td>range step</td></tr><tr><td>Control</td><td><code>tiếp</code></td><td>continue</td></tr><tr><td>Testing</td><td><code>sau_chuẩn_bị</code></td><td>teardown</td></tr><tr><td>Testing</td><td><code>sẽ_sau_chuẩn_bị</code></td><td>async teardown</td></tr><tr><td>Objects</td><td><code>tiền_tố</code></td><td>prefix expression</td></tr><tr><td>Testing</td><td><code>chuẩn_bị</code></td><td>setup</td></tr><tr><td>Testing</td><td><code>sẽ_chuẩn_bị</code></td><td>async setup</td></tr><tr><td>Grammar</td><td><code>khớp_đầu_tiên</code></td><td>first-match selection head</td></tr><tr><td>Testing</td><td><code>kiểm_thử</code></td><td>test</td></tr><tr><td>Testing</td><td><code>đối_tượng_kiểm_thử</code></td><td>test suite</td></tr><tr><td>Declarations</td><td><code>công_khai</code></td><td>public visibility</td></tr><tr><td>Objects</td><td><code>ratio</code></td><td>named-field aggregate type/constructor</td></tr><tr><td>Control</td><td><code>trả</code></td><td>return</td></tr><tr><td>Async</td><td><code>đợi_trả</code></td><td>await-return</td></tr><tr><td>Error</td><td><code>từ_chối</code></td><td>reject</td></tr><tr><td>Testing</td><td><code>lặp_lại</code></td><td>repeat</td></tr><tr><td>Error</td><td><code>yêu_cầu</code></td><td>require</td></tr><tr><td>Control</td><td><code>dừng</code></td><td>break</td></tr><tr><td>Diagnostics</td><td><code>viết</code></td><td>diagnostic channel</td></tr><tr><td>Builtin</td><td><code>văn_bản_hóa</code></td><td>write</td></tr><tr><td>Control</td><td><code>khác</code></td><td>else</td></tr><tr><td>Control</td><td><code>nếu</code></td><td>if</td></tr><tr><td>Control</td><td><code>thế</code></td><td>then (ternary)</td></tr><tr><td>Control</td><td><code>nếukhôngthì</code></td><td>else-if</td></tr><tr><td>Declarations</td><td><code>đặt</code></td><td>inferred immutable local</td></tr><tr><td>Testing</td><td><code>chỉ</code></td><td>only</td></tr><tr><td>Testing</td><td><code>chỉ_trong</code></td><td>only-in</td></tr><tr><td>Params</td><td><code>rải</code></td><td>spread</td></tr><tr><td>Declarations</td><td><code>tự_nguyện</code></td><td>optional declaration slot</td></tr><tr><td>Genus</td><td><code>dưới</code></td><td>extends</td></tr><tr><td>Grammar</td><td><code>tổng</code></td><td>keyword literal derived from the production</td></tr><tr><td>Async</td><td><code>đợi_bỏ</code></td><td>await-discard</td></tr><tr><td>Control</td><td><code>im_lặng</code></td><td>no-op</td></tr><tr><td>Testing</td><td><code>nhãn</code></td><td>tag</td></tr><tr><td>Testing</td><td><code>thời_gian</code></td><td>timeout</td></tr><tr><td>JSON</td><td><code>true</code></td><td>JSON true</td></tr><tr><td>Declarations</td><td><code>kiểu_tên</code></td><td>type alias</td></tr><tr><td>Grammar</td><td><code>nơi</code></td><td>first-match predicate tail</td></tr><tr><td>Iteration</td><td><code>tới</code></td><td>range until inclusive</td></tr><tr><td>Params</td><td><code>như</code></td><td>as / alias</td></tr><tr><td>Declarations</td><td><code>biến</code></td><td>mutable binding</td></tr><tr><td>Async</td><td><code>đợi_biến</code></td><td>await-bind mutable</td></tr><tr><td>Boolean</td><td><code>hoặc_nếu_rỗng</code></td><td>nullable default</td></tr><tr><td>Boolean</td><td><code>đúng</code></td><td>true</td></tr><tr><td>Diagnostics</td><td><code>xem</code></td><td>debug</td></tr><tr><td>Declarations</td><td><code>visibilitas</code></td><td>visibility field</td></tr></tbody></table></div><h2 id="comma-separator-law">Comma Separator Table<a class="anchor" href="#comma-separator-law">#</a></h2><p>Optional commas are forbidden. The source currently has no <code>','?</code>
 positions; every comma-bearing production is either required or absent.</p><div class="table-scroll"><table><thead><tr><th>Production</th><th>Source row</th></tr></thead><tbody><tr><td>—</td><td>no optional comma positions</td></tr></tbody></table></div><h2 id="normative-language-notes">Normative Language Notes<a class="anchor" href="#normative-language-notes">#</a></h2><p>Formal grammar for the Faber programming language. This file is the canonical
 grammar and spec-commentary surface for the public language; the compiler
 (Radix) implements it. The rendered, localized grammar is published on
@@ -662,14 +500,19 @@ members, <code>giao_ước</code> methods, <code>hợp_nhất</code> payload fie
 Entries are trivia-delimited.</p><p>---</p><h2 id="declarations">Declarations<a class="anchor" href="#declarations">#</a></h2><h3 id="variables">Variables<a class="anchor" href="#variables">#</a></h3><ul><li><code>hằng</code> = immutable binding (write-once): it may be declared without an
 initializer and assigned exactly once later, then frozen. <code>biến</code> = mutable
 binding (reassignable), like <code>let</code>.</li><li><code>đợi_hằng</code> / <code>đợi_biến</code> await a <code>promissum&lt;T&gt;</code> or <code>promissum&lt;T ⇥ E&gt;</code>, bind
-the resolved <code>T</code>, and propagate a compatible alternate <code>E</code>.</li><li>Use <code>_</code> as the type annotation when the initializer determines the type: <code>hằng _ name ← value</code></li><li><code>đặt name ← value</code> is sugar for <code>hằng _ name ← value</code> (inferred immutable local)</li><li><code>đặt name</code> (no initializer) is sugar for <code>hằng _ name</code> — the inferred deferred
+the resolved <code>T</code>, and propagate a compatible alternate <code>E</code>.</li><li><code>↢</code> is the await-directed initializer for an ordinary declaration:
+<code>hằng T name ↢ future</code>, <code>biến T name ↢ future</code>, or <code>đặt name ↢ future</code>.
+It has the same await and alternate-propagation semantics as
+<code>đợi_hằng T name ← future</code>, but it is not a general expression operator and
+cannot target an existing place.</li><li>Use <code>_</code> as the type annotation when the initializer determines the type: <code>hằng _ name ← value</code></li><li><code>đặt name ← value</code> is sugar for <code>hằng _ name ← value</code> (inferred immutable local)</li><li><code>đặt name</code> (no initializer) is sugar for <code>hằng _ name</code> — the inferred deferred
 immutable. Assign exactly once before any read.</li><li>Typed <code>hằng</code>/<code>biến</code> initializers accept <code>↤</code> (<code>hằng numerus x ↤ &quot;42&quot;</code>):
 the written type is the conversion destination, then the binding is
 initialized. <code>đợi_hằng</code>/<code>đợi_biến</code> keep <code>←</code>; <code>hằng _</code>, <code>đặt</code>, and untyped
 destructuring reject <code>↤</code> (no concrete destination type).</li><li>Deferred init: <code>hằng numerus x</code> or <code>đặt x</code> declares an uninitialized immutable
 slot that must be assigned exactly once before any read; a second assignment is
 rejected. The definite-assignment pass (semantic Phase 3a) enforces this.</li></ul><h3 id="functions">Functions<a class="anchor" href="#functions">#</a></h3><h3 id="capture-free-closures">Capture-free closures<a class="anchor" href="#capture-free-closures">#</a></h3><p><code>tự_do</code> is the canonical Latin spelling of the <code>closure_modifier</code>; the English reader spelling is <code>free</code>. The modifier follows the parameter list in both compact and legacy <code>đóng</code> forms, before any <code>→</code> return or <code>⇥</code> alternate-exit clause. It declares a checked capture-free contract: the closure may use its own parameters, body locals, and module-level items, but it must not reference a local or parameter from an enclosing function. Such a capture is rejected by the compiler.</p><pre class="faber-code"><code class="lang-text">sit summa ← (numerus a, numerus b) libera ∴ a + b
-clausura numerus x libera: x * 2</code></pre><ul><li>Return syntax: <code>→</code> declares the normal success type. A bodyful function with no <code>→</code> is effect-only (<code class="typ">vacuum</code>) and must not contain <code>trả</code>. A statement-bodied closure (<code>làm { ... }</code> or legacy block body) must also spell <code>→ T</code> before it can use <code>trả</code>; expression-bodied closures may infer their result from the expression.</li><li>Recoverable alternate-exit syntax: <code>⇥</code> declares the error-channel type. It can appear after <code>→ T</code> or alone on an effect-only failable function or closure. A closure body that uses an escaping <code>ném</code> must declare its own <code>⇥ E</code>; it cannot inherit the enclosing function's error channel. A local <code>làm { ... } bắt err { ... }</code> may catch <code>ném</code> without an enclosing <code>⇥</code>. A failable function call (<code>→ T ⇥ E</code>) inside a <code>⇥</code>-declaring function propagates to the function's alternate exit without a <code>làm</code>/<code>bắt</code> wrapper, mirroring how bare <code>↦</code> conversio and <code>ném</code> throws already behave; the call lowers to Rust <code>?</code>. A closure must still declare its own <code>⇥</code> to propagate a failable call — the enclosing function's error channel does not cross the closure boundary.</li><li>Parameter access markers live in the type position: <code>ra</code>/<code>ref</code> (read), <code>vào</code>/<code>mut</code> (mutate), <code>sở_hữu</code> (consume), and <code>sao_chép</code> (duplicate then own). The retired parameter-prefix slot is not part of the grammar; <code>từ</code>/<code>from</code> remains the import/iteration/extraction token identity.</li><li>Post-name marker: <code>tự_nguyện</code> (voluntary/optional provision)</li><li><code>còn_lại</code> marks rest parameter</li><li><code>được_sửa NAME ('như' LOCAL)?</code> declares an allocator requirement; <code>LOCAL</code> is the function-body alias.</li><li>Ordinary <code>hàm</code> declarations and genus methods require bodies. Signature-only methods belong in <code>giao_ước</code>.</li><li><code>lỗi NAME</code> is a legacy runtime-injected <code>ignotum</code> local, and <code>ném_lỗi</code> is a legacy marker with no current semantic effect. Neither declares the typed alternate-exit contract. New failable APIs should use <code>⇥ E</code>; whether either legacy modifier should survive is unresolved.</li><li><code>do_đó</code> is the compact <strong>statement-body</strong> joint only (one-statement <code>nếu</code>/<code>trong_khi</code>/<code>trường_hợp</code>/… arms).</li><li><code>∴</code> is the compact <strong>clausura</strong> joint only. The two are not aliases.</li><li>Compact closure block bodies must use <code>làm { ... }</code>; a closure-local <code>làm</code> body may attach <code>bắt</code>, but cannot use postfix <code>trong_khi</code>.</li></ul><h3 id="classes">Classes<a class="anchor" href="#classes">#</a></h3><h3 id="annotations">Annotations<a class="anchor" href="#annotations">#</a></h3><p><code>@ hạt_nhân mảnh</code> is a modifier on the <code>hạt_nhân</code> annotation (sugar or
+clausura numerus x libera: x * 2</code></pre><p><code>hạt_nhân</code> is the second spelling of the <code>closure_modifier</code>; the English reader spelling is <code>kernel</code>. The alternative is locale-sealed and singular: at most one modifier may occupy the slot, each reader pack admits only its declared spelling, and stacked spellings such as <code>free kernel</code> are rejected as a duplicate modifier. A <code>kernel</code> closure requires everything <code>free</code> requires — no reference to an enclosing function's local or parameter, while its own parameters, body locals, and module-level items stay legal — plus the device-safe subset used by kernel functions: typed tensors and scalars, glyphs, structured control, and calls to other device functions. Host allocation, I/O, bags, dynamic calls, <code>⇥</code> clauses, <code>ném</code> throws, and <code>bắt</code> recovery are rejected in the kernel contract; <code>trả</code> returns only the closure's own <code>→</code> result. Declaration annotations <code>@ hạt_nhân</code> (<code>@ kernel</code> in the English reader) are unchanged: they remain the role marker for named functions, and the closure modifier is their expression-form twin.</p><p>The body joint keeps the existing closure law: <code>∴</code> followed by one expression, or <code>∴ làm { ... }</code> (<code>do</code> in the English reader); bare <code>{ ... }</code> is not a closure body. A kernel closure is usable only as a local immutable binding in its enclosing function and only called there, or invoked immediately in the same expression; it is not a first-class value and cannot escape into a field, list element, return value, or ordinary-function argument. The compiler lowers it to a private synthetic kernel with a stable identity: one launch when its host caller invokes it, direct composition with no surviving device-to-device runtime call when a kernel caller invokes it, and never a public launch entry or ABI row. The modifier does not request fusion; two local kernel closures remain two launches unless a later cross-launch pass fuses them.</p><pre class="faber-code"><code class="lang-text">fixum _ duplica ← (tensor&lt;f32, [8]&gt; x) nucleum ∴ x + x
+fixum _ dup ← duplica(xs)</code></pre><ul><li>Return syntax: <code>→</code> declares the normal success type. A bodyful function with no <code>→</code> is effect-only (<code class="typ">vacuum</code>) and must not contain <code>trả</code>. A statement-bodied closure (<code>làm { ... }</code> or legacy block body) must also spell <code>→ T</code> before it can use <code>trả</code>; expression-bodied closures may infer their result from the expression.</li><li>Recoverable alternate-exit syntax: <code>⇥</code> declares the error-channel type. It can appear after <code>→ T</code> or alone on an effect-only failable function or closure. A closure body that uses an escaping <code>ném</code> must declare its own <code>⇥ E</code>; it cannot inherit the enclosing function's error channel. A local <code>làm { ... } bắt err { ... }</code> may catch <code>ném</code> without an enclosing <code>⇥</code>. A failable function call (<code>→ T ⇥ E</code>) inside a <code>⇥</code>-declaring function propagates to the function's alternate exit without a <code>làm</code>/<code>bắt</code> wrapper, mirroring how bare <code>↦</code> conversio and <code>ném</code> throws already behave; the call lowers to Rust <code>?</code>. A closure must still declare its own <code>⇥</code> to propagate a failable call — the enclosing function's error channel does not cross the closure boundary.</li><li>Parameter access markers live in the type position: <code>ra</code>/<code>ref</code> (read), <code>vào</code>/<code>mut</code> (mutate), <code>sở_hữu</code> (consume), and <code>sao_chép</code> (duplicate then own). The retired parameter-prefix slot is not part of the grammar; <code>từ</code>/<code>from</code> remains the import/iteration/extraction token identity.</li><li>Post-name marker: <code>tự_nguyện</code> (voluntary/optional provision)</li><li><code>còn_lại</code> marks rest parameter</li><li><code>được_sửa NAME ('như' LOCAL)?</code> declares an allocator requirement; <code>LOCAL</code> is the function-body alias.</li><li>Ordinary <code>hàm</code> declarations and genus methods require bodies. Signature-only methods belong in <code>giao_ước</code>.</li><li><code>lỗi NAME</code> is a legacy runtime-injected <code>ignotum</code> local, and <code>ném_lỗi</code> is a legacy marker with no current semantic effect. Neither declares the typed alternate-exit contract. New failable APIs should use <code>⇥ E</code>; whether either legacy modifier should survive is unresolved.</li><li><code>do_đó</code> is the compact <strong>statement-body</strong> joint only (one-statement <code>nếu</code>/<code>trong_khi</code>/<code>trường_hợp</code>/… arms).</li><li><code>∴</code> is the compact <strong>clausura</strong> joint only. The two are not aliases.</li><li>Compact closure block bodies must use <code>làm { ... }</code>; a closure-local <code>làm</code> body may attach <code>bắt</code>, but cannot use postfix <code>trong_khi</code>.</li></ul><h3 id="classes">Classes<a class="anchor" href="#classes">#</a></h3><h3 id="annotations">Annotations<a class="anchor" href="#annotations">#</a></h3><p><code>@ hạt_nhân mảnh</code> is a modifier on the <code>hạt_nhân</code> annotation (sugar or
 braced <code>mảnh = đúng</code> / <code>sai</code>), not a fused annotation name and not the
 graphics <code>@ mảnh</code> stage. Standalone <code>@ mảnh</code> is unchanged.</p><p>Braced annotation records (<code>@ futura { }</code>, <code>@ optio { binding = verbose, ... }</code>)
 are canonical and compression-safe. Unbraced annotations are line-sensitive,
@@ -760,7 +603,14 @@ not this form.</p><p><code>modulus&lt;W&gt;</code> is a distinct semantic family
 with <code>numerus&lt;W&gt;</code>, while explicit same-width conversion remains available.
 Literals must be in <code>0..=2^W-1</code> (for <code>modulus&lt;u64&gt;</code> up to
 <code>18446744073709551615</code>). Shift counts are themselves modular: <code>x ⇐ W</code> is a
-full wrap. Cross-width modular arithmetic is rejected.</p><h3 id="generic-collections">Generic Collections<a class="anchor" href="#generic-collections">#</a></h3><div class="table-scroll"><table><thead><tr><th>Faber</th><th>Meaning</th></tr></thead><tbody><tr><td><code>lista&lt;T&gt;</code></td><td>array</td></tr><tr><td><code>lista&lt;T, N&gt;</code></td><td>shipped; bounded array; <code>N</code> is a <code>kích_thước</code> / <code>NATURAL</code> capacity, not a width marker. <code>lista&lt;T, _&gt;</code> is the capacity hole (infer <code>N</code>).</td></tr><tr><td><code>tabula&lt;K,V&gt;</code></td><td>map</td></tr><tr><td><code>copia&lt;T&gt;</code></td><td>set</td></tr><tr><td><code>promissum&lt;T&gt;</code></td><td>promise</td></tr><tr><td><code>cursor&lt;T&gt;</code></td><td>iterator</td></tr><tr><td><code>tensor&lt;T, Figura&gt;</code></td><td>dense homogeneous buffer with static shape <code>Figura</code>; numeric methods require numeric element types</td></tr><tr><td><code>vector&lt;T, N&gt;</code></td><td>register-class numeric vector with static width <code>N</code> (single dimension, not buffer-backed)</td></tr><tr><td><code>matrix&lt;T, [R, C]&gt;</code></td><td>register-class numeric matrix with exactly two static dimensions (not buffer-backed and not a tensor alias)</td></tr><tr><td><code>atomic&lt;T&gt;</code></td><td>storage-sensitive atomic cell; v1 accepts <code>i32</code> / <code>u32</code> elements only and access must go through atomic methods</td></tr><tr><td><code>sparsa&lt;T, Figura&gt;</code></td><td>sparse homogeneous buffer with static shape <code>Figura</code>; omitted coordinates equal zero; numeric methods require numeric element types</td></tr></tbody></table></div><p>A <code>figura</code> is <code>_</code>, a natural number, a size identifier, or a bracketed list of nested figura values; empty <code>[]</code> is rank-0. Bare <code>tensor&lt;T&gt;</code> is incomplete — use <code>tensor&lt;T, []&gt;</code> for rank-0 or <code>tensor&lt;T, _&gt;</code> to infer shape.</p><p><code>vacua</code> for <code>tensor&lt;T, []&gt;</code> produces a rank-0 tensor (one default-initialized element slot).
+full wrap. Cross-width modular arithmetic is rejected.</p><p>Conversion is the deliberate complement to the checked arithmetic policy:
+<code>fractus ↦ numerus&lt;W&gt;</code> saturates at the target width — NaN converts to <code>0</code>,
+and an out-of-range value clamps to the width's bounds (the cross-tier Rust
+<code>as</code> status quo). The <code>∷</code> ascription surface follows the same saturation when
+it crosses numeric families. Integer <code>numerus&lt;W&gt;</code> arithmetic errors on
+overflow while float→integer conversion clamps; <code>modulus&lt;W&gt;</code> stays the only
+wrapping family (FORK-2, operator mail 2fb79900). Runner cast-path alignment
+is tracked as want 34821b73.</p><h3 id="generic-collections">Generic Collections<a class="anchor" href="#generic-collections">#</a></h3><div class="table-scroll"><table><thead><tr><th>Faber</th><th>Meaning</th></tr></thead><tbody><tr><td><code>lista&lt;T&gt;</code></td><td>array</td></tr><tr><td><code>lista&lt;T, N&gt;</code></td><td>shipped; bounded array; <code>N</code> is a <code>kích_thước</code> / <code>NATURAL</code> capacity, not a width marker. <code>lista&lt;T, _&gt;</code> is the capacity hole (infer <code>N</code>).</td></tr><tr><td><code>tabula&lt;K,V&gt;</code></td><td>map</td></tr><tr><td><code>copia&lt;T&gt;</code></td><td>set</td></tr><tr><td><code>promissum&lt;T&gt;</code></td><td>promise</td></tr><tr><td><code>cursor&lt;T&gt;</code></td><td>iterator</td></tr><tr><td><code>tensor&lt;T, Figura&gt;</code></td><td>dense homogeneous buffer with static shape <code>Figura</code>; numeric methods require numeric element types</td></tr><tr><td><code>vector&lt;T, N&gt;</code></td><td>register-class numeric vector with static width <code>N</code> (single dimension, not buffer-backed)</td></tr><tr><td><code>matrix&lt;T, [R, C]&gt;</code></td><td>register-class numeric matrix with exactly two static dimensions (not buffer-backed and not a tensor alias)</td></tr><tr><td><code>atomic&lt;T&gt;</code></td><td>storage-sensitive atomic cell; v1 accepts <code>i32</code> / <code>u32</code> elements only and access must go through atomic methods</td></tr><tr><td><code>sparsa&lt;T, Figura&gt;</code></td><td>sparse homogeneous buffer with static shape <code>Figura</code>; omitted coordinates equal zero; numeric methods require numeric element types</td></tr></tbody></table></div><p>A <code>figura</code> is <code>_</code>, a natural number, a size identifier, or a bracketed list of nested figura values; empty <code>[]</code> is rank-0. Bare <code>tensor&lt;T&gt;</code> is incomplete — use <code>tensor&lt;T, []&gt;</code> for rank-0 or <code>tensor&lt;T, _&gt;</code> to infer shape.</p><p><code>vacua</code> for <code>tensor&lt;T, []&gt;</code> produces a rank-0 tensor (one default-initialized element slot).
 <code>vacua</code> for <code>sparsa&lt;T, Figura&gt;</code> (any shape) produces an all-zero sparse tensor with no stored entries.
 <code>matrix&lt;T, Figura&gt;</code> requires exactly two dimensions; bare <code>matrix&lt;T&gt;</code> and one- or three-axis matrix shapes are rejected.
 <code>atomic&lt;T&gt;</code> requires <code>T</code> to be <code>i32</code> or <code>u32</code> in v1. Atomic cells are not interchangeable with their element type; use <code>load</code>, <code>store</code>, <code>exchange</code>, and <code>compare_exchange</code> receiver methods.
@@ -784,7 +634,8 @@ tends toward long form for readability; numeric/tensor-primary modules may
 prefer sugar. Choose per module or file.</p><p>---</p><h2 id="control-flow">Control Flow<a class="anchor" href="#control-flow">#</a></h2><h3 id="conditionals">Conditionals<a class="anchor" href="#conditionals">#</a></h3><ul><li><code>nếu</code> = if, <code>nếukhôngthì</code> = else-if, <code>khác</code> = else</li><li><code>do_đó</code> for one-statement bodies, including <code>do_đó trả</code>, <code>do_đó ném</code>, <code>do_đó chết</code>, and <code>do_đó im_lặng</code> (<code>∴</code> is not accepted here)</li><li><code>im_lặng</code> for explicit no-op (from musical notation: &quot;it is silent&quot;)</li></ul><h3 id="loops">Loops<a class="anchor" href="#loops">#</a></h3><ul><li><code>trong_khi</code> = while</li><li><code>lặp từ...hằng</code>/<code>lặp từ...biến</code> = for-of (values)</li><li><code>lặp ra...hằng</code>/<code>lặp ra...biến</code> = for-in (keys)</li><li><code>lặp khoảng range hằng/biến i</code> = range iteration (e.g. <code>lặp khoảng 0‥10 qua 2 hằng i { ghi_chú i }</code>; <code>qua</code> belongs to the range expression)</li></ul><h3 id="switchmatch">Switch/Match<a class="anchor" href="#switchmatch">#</a></h3><h3 id="pattern-matching">Pattern Matching<a class="anchor" href="#pattern-matching">#</a></h3><h3 id="guards">Guards<a class="anchor" href="#guards">#</a></h3><h3 id="resource-management">Resource Management<a class="anchor" href="#resource-management">#</a></h3><h3 id="destructuring-extraction">Destructuring Extraction<a class="anchor" href="#destructuring-extraction">#</a></h3><h3 id="control-transfer">Control Transfer<a class="anchor" href="#control-transfer">#</a></h3><ul><li><code>đợi_trả</code> awaits a compatible promise and returns its success value from a
 <code>async</code> function.</li><li><code>đợi_bỏ</code> awaits a compatible promise to completion and discards any success
 value.</li><li><code>nhường</code> is statement-initial yield from <code>sinh</code> / <code>async_sinh</code>; it is not an
-expression-form await.</li></ul><p>---</p><h2 id="error-handling">Error Handling<a class="anchor" href="#error-handling">#</a></h2><ul><li><code>bắt</code> attaches to the structured forms whose productions name <code>catchClause</code>: conditional arms, <code>trong_khi</code>, <code>lặp</code>, <code>chọn</code>, <code>chăm_sóc</code>, and <code>làm</code>. It does not attach to arbitrary bare blocks.</li><li>Use the explicit do block when a standalone block needs a handler: <code>làm { ... } bắt err { ... }</code>.</li><li><code>ném</code> = throw (recoverable), <code>chết</code> = panic (fatal).</li><li>A same-line <code>nếu &lt;expr&gt;</code> guard on <code>ném</code> and <code>chết</code> is line-sensitive parser sugar: <code>ném val nếu cond</code> desugars to <code>nếu cond { ném val }</code> at parse time. Its canonical, compression-safe spelling is the expanded <code>nếu</code> block. A source compressor must expand this sugar before removing line breaks; the guarded shorthand remains under language review.</li><li><code>khẳng_định</code> is a runtime invariant check. It desugars conceptually to <code>chết &quot;msg&quot; nếu !cond</code>, with the positive condition kept in source form and the inversion applied during lowering. The optional particle is <code>chết</code> (en <code>panic</code>): <code>khẳng_định cond chết msg</code> / <code>assert cond panic msg</code>. Bare <code>khẳng_định cond</code> stays legal. An <code>khẳng_định</code> failure is fatal and uncatchable by <code>bắt</code> (it lowers to a panic, not a <code>Result</code>-channel error); in test context the harness isolates each <code>kiểm_thử</code> so a failed assertion ends that test without ending the suite.</li><li><code>yêu_cầu</code> is the recoverable require statement (en surface <code>require … throw …</code>), the typed-error-channel twin of <code>khẳng_định</code>. <code>yêu_cầu cond ném err</code> desugars to <code>nếu không (cond) { ném err }</code> at lowering; the thrown value enters the function's <code>⇥ E</code> channel and is catchable by <code>bắt</code>/<code>làm</code>, unlike <code>khẳng_định</code> (fatal). A <code>yêu_cầu</code> statement in a <code>⇥</code>-less function is a compile error, same as <code>ném</code>. The particle is <code>ném</code> (en <code>throw</code>) and is required.</li></ul><p>---</p><h2 id="expressions">Expressions<a class="anchor" href="#expressions">#</a></h2><h3 id="operators-by-precedence-lowest-to-highest">Operators (by precedence, lowest to highest)<a class="anchor" href="#operators-by-precedence-lowest-to-highest">#</a></h3><p><strong>Exact-output transfer (`⇇`):</strong> <code>sink ⇇ payload</code> invokes a callable sink value — one argument, <code class="typ">vacuum</code> result — once per payload. The operator performs no formatting, adds no separators or terminator, selects no channel, and runs no conversions: the bound value owns destination and behavior, and the compiler holds no console knowledge. A chain <code>sink ⇇ a ⇇ b</code> evaluates the sink expression once, each payload once left-to-right, and invokes the sink once per payload left-to-right; the chain result is <code class="typ">vacuum</code>. <code>⇇</code> binds above assignment and below ternary, so postfix calls, conversions, and string-constructor applications finish before transfer; formatting is explicit on the right (`output ⇇ &quot;§ §
+expression-form await.</li></ul><p>---</p><h2 id="error-handling">Error Handling<a class="anchor" href="#error-handling">#</a></h2><ul><li><code>bắt</code> attaches to the structured forms whose productions name <code>catchClause</code>: conditional arms, <code>trong_khi</code>, <code>lặp</code>, <code>chọn</code>, <code>chăm_sóc</code>, and <code>làm</code>. It does not attach to arbitrary bare blocks.</li><li>Use the explicit do block when a standalone block needs a handler: <code>làm { ... } bắt err { ... }</code>.</li><li><code>ném</code> = throw (recoverable), <code>chết</code> = panic (fatal).</li><li>A same-line <code>nếu &lt;expr&gt;</code> guard on <code>ném</code> and <code>chết</code> is line-sensitive parser sugar: <code>ném val nếu cond</code> desugars to <code>nếu cond { ném val }</code> at parse time. Its canonical, compression-safe spelling is the expanded <code>nếu</code> block. A source compressor must expand this sugar before removing line breaks; the guarded shorthand remains under language review.</li><li><code>khẳng_định</code> is a runtime invariant check. It desugars conceptually to <code>chết &quot;msg&quot; nếu !cond</code>, with the positive condition kept in source form and the inversion applied during lowering. The optional particle is <code>chết</code> (en <code>panic</code>): <code>khẳng_định cond chết msg</code> / <code>assert cond panic msg</code>. Bare <code>khẳng_định cond</code> stays legal. An <code>khẳng_định</code> failure is fatal and uncatchable by <code>bắt</code> (it lowers to a panic, not a <code>Result</code>-channel error); in test context the harness isolates each <code>kiểm_thử</code> so a failed assertion ends that test without ending the suite.</li><li><code>yêu_cầu</code> is the recoverable require statement (en surface <code>require … throw …</code>), the typed-error-channel twin of <code>khẳng_định</code>. <code>yêu_cầu cond ném err</code> desugars to <code>nếu không (cond) { ném err }</code> at lowering; the thrown value enters the function's <code>⇥ E</code> channel and is catchable by <code>bắt</code>/<code>làm</code>, unlike <code>khẳng_định</code> (fatal). A <code>yêu_cầu</code> statement in a <code>⇥</code>-less function is a compile error, same as <code>ném</code>. The particle is <code>ném</code> (en <code>throw</code>) and is required.</li></ul><ul><li><code>từ_chối</code> is the reject statement (en surface <code>reject … throw …</code>), the boolean opposite of <code>yêu_cầu</code>. <code>từ_chối cond ném err</code> desugars to <code>nếu (cond) { ném err }</code> at lowering — it throws when the condition holds, where <code>yêu_cầu</code> throws when it fails. The thrown value enters the function's <code>⇥ E</code> channel and is catchable by <code>bắt</code>/<code>làm</code>. A <code>từ_chối</code> statement in a <code>⇥</code>-less function is a compile error, same as <code>ném</code>. The particle is <code>ném</code> (en <code>throw</code>) and is required.</li><li><code>@ conversio</code> (en <code>@ conversion</code>) on a top-level <code>hàm</code> declares an admitted error conversion: the parameter's type is the source error, the return type is the destination, and the compiler enrolls that ordered pair so a propagating <code>⇥ E</code> failure converts at the boundary instead of needing a per-caller wrapper. The marker is bare and the conversion is an ordinary function outside any union body; only a direct (source, destination) row is admitted — a missing row fails closed and is never auto-composed into a chain. The earlier union-arm form (the marker carrying a payload inside a <code>hợp_nhất</code> body) is retracted.
+---</li></ul><h2 id="expressions">Expressions<a class="anchor" href="#expressions">#</a></h2><h3 id="operators-by-precedence-lowest-to-highest">Operators (by precedence, lowest to highest)<a class="anchor" href="#operators-by-precedence-lowest-to-highest">#</a></h3><p><strong>Exact-output transfer (`⇇`):</strong> <code>sink ⇇ payload</code> invokes a callable sink value — one argument, <code class="typ">vacuum</code> result — once per payload. The operator performs no formatting, adds no separators or terminator, selects no channel, and runs no conversions: the bound value owns destination and behavior, and the compiler holds no console knowledge. A chain <code>sink ⇇ a ⇇ b</code> evaluates the sink expression once, each payload once left-to-right, and invokes the sink once per payload left-to-right; the chain result is <code class="typ">vacuum</code>. <code>⇇</code> binds above assignment and below ternary, so postfix calls, conversions, and string-constructor applications finish before transfer; formatting is explicit on the right (`output ⇇ &quot;§ §
 &quot;(a, b)`). Combined with selective value imports it replaces compiler-owned output statements with ordinary typed values.</p><p><strong>Conversion-directed assignment (`↤` / conversio-assign):</strong> <code>place ↤ value</code>
 evaluates the right side, converts it to the statically known type of the left
 place through the existing <code>↦</code> route, then assigns. It binds at the same

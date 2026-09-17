@@ -12,8 +12,7 @@ precisely because no living language has a claim on it, so no locale's
 spelling has to be the one every other is defined against; each reader pack
 is a projection of the productions below. The
 <a href="/en-US/language/reader-locales.html">reader locale pages</a> give the mapping, and
-<code>faber explain &lt;term&gt;</code> prints it from the compiler itself.</p><h2 id="grammar">Grammar<a class="anchor" href="#grammar">#</a></h2><p>The grammar below is the identity rendering of the validated source. Normative detail is kept in this English sidecar and rendered as documentation; the source remains the syntax authority.</p><pre class="faber-code"><code class="lang-ebnf"># formerly: fabFile
-# [001] fab_file
+<code>faber explain &lt;term&gt;</code> prints it from the compiler itself.</p><h2 id="grammar">Grammar<a class="anchor" href="#grammar">#</a></h2><p>The grammar below is the identity rendering of the validated source. Normative detail is kept in this English sidecar and rendered as documentation; the source remains the syntax authority.</p><pre class="faber-code"><code class="lang-ebnf"># [001] fab_file
 fab_file ::= frontmatter? program
 # [002] frontmatter
 frontmatter ::= FRONTMATTER_DELIMITER NEWLINE TOML_LINES FRONTMATTER_DELIMITER NEWLINE?
@@ -21,615 +20,454 @@ frontmatter ::= FRONTMATTER_DELIMITER NEWLINE TOML_LINES FRONTMATTER_DELIMITER N
 program ::= statement*
 # [004] statement
 statement ::= annotation* statement_core
-# formerly: statementCore
 # [005] statement_core
-statement_core ::= importa_decl | binding_decl | functio_decl | genus_decl | implendum_decl | typus_decl | ordo_decl | discretio_decl | si_stmt | dum_stmt | itera_stmt | elige_stmt | discerne_stmt | custodi_stmt | cura_stmt | fac_stmt | redde_stmt | reddet_stmt | tacebit_stmt | cede_stmt | rumpe_stmt | perge_stmt | tacet_stmt | iace_stmt | adfirma_stmt | requirit_stmt | nota_stmt | incipit_stmt | incipiet_stmt | ex_stmt | probandum_decl | proba_stmt | block_stmt | inc_dec_stmt | expr_stmt
-# formerly: bindingDecl
+statement_core ::= importa_decl | binding_decl | functio_decl | genus_decl | implendum_decl | typus_decl | ordo_decl | discretio_decl | si_stmt | dum_stmt | itera_stmt | elige_stmt | discerne_stmt | custodi_stmt | cura_stmt | fac_stmt | redde_stmt | reddet_stmt | tacebit_stmt | cede_stmt | rumpe_stmt | perge_stmt | tacet_stmt | iace_stmt | adfirma_stmt | requirit_stmt | reice_stmt | nota_stmt | incipit_stmt | incipiet_stmt | ex_stmt | probandum_decl | proba_stmt | block_stmt | inc_dec_stmt | expr_stmt
 # [006] binding_decl
 binding_decl ::= fixum_decl | sit_decl | array_destruct | object_destruct | figendum_decl
-# formerly: exprStmt
 # [007] expr_stmt
 expr_stmt ::= expression
-# formerly: blockStmt
 # [008] block_stmt
 block_stmt ::= '{' statement* '}'
-# formerly: varDecl
 # [009] fixum_decl
-fixum_decl ::= ('fixum' | 'varia') type_annotation IDENTIFIER (('←' expression) | ('↤' assignment inline_recovery?))?
-# formerly: awaitVarDecl
+fixum_decl ::= ('fixum' | 'varia') type_annotation IDENTIFIER (('←' expression) | ('↤' assignment inline_recovery?) | ('↢' expression))?
 # [010] figendum_decl
 figendum_decl ::= ('figendum' | 'variandum') type_annotation IDENTIFIER '←' expression
-# formerly: sitDecl
 # [011] sit_decl
-sit_decl ::= 'sit' IDENTIFIER ('←' expression)?
-# formerly: arrayDestruct
+sit_decl ::= 'sit' IDENTIFIER (('←' | '↢') expression)?
 # [012] array_destruct
 array_destruct ::= ('fixum' | 'varia') array_pattern '←' expression
-# formerly: objectDestruct
 # [013] object_destruct
 object_destruct ::= ('fixum' | 'varia') object_pattern '←' expression
-# formerly: funcDecl
 # [014] functio_decl
 functio_decl ::= 'functio' IDENTIFIER generic_params? '(' param_list ')' func_modifier* callable_posture? return_clause? alternate_exit_clause? block_stmt
-# formerly: paramList
 # [015] param_list
 param_list ::= (parameter (',' parameter)*)?
-# formerly: genericParams
 # [016] generic_params
 generic_params ::= '&lt;' generic_param (',' generic_param)* '&gt;'
-# formerly: genericParam
 # [017] generic_param
-generic_param ::= IDENTIFIER | 'magnitudo' IDENTIFIER
-# formerly: callTypeArgs
-# [018] call_type_args
+generic_param ::= IDENTIFIER generic_type_default? | 'magnitudo' IDENTIFIER generic_size_default?
+# [018] generic_type_default
+generic_type_default ::= '=' type_annotation
+# [019] generic_size_default
+generic_size_default ::= '=' NATURAL
+# [020] call_type_args
 call_type_args ::= '&lt;' type_annotation (',' type_annotation)* '&gt;'
-# [019] parameter
+# [021] parameter
 parameter ::= 'ceteri'? type_annotation IDENTIFIER 'sponte'? ('ut' IDENTIFIER)? ('vel' expression)?
-# formerly: funcModifier
-# [020] func_modifier
+# [022] func_modifier
 func_modifier ::= 'argumenta' IDENTIFIER | 'curata' IDENTIFIER ('ut' IDENTIFIER)? | 'errata' IDENTIFIER | 'exitus' (IDENTIFIER | NUMBER) | 'immutata' | 'iacit' | 'optiones' IDENTIFIER
-# formerly: callablePosture
-# [021] callable_posture
+# [023] callable_posture
 callable_posture ::= 'fiet' | 'fiunt' | 'fient'
-# formerly: returnClause
-# [022] return_clause
+# [024] return_clause
 return_clause ::= '→' type_annotation
-# formerly: alternateExitClause
-# [023] alternate_exit_clause
+# [025] alternate_exit_clause
 alternate_exit_clause ::= '⇥' type_annotation
-# formerly: stmtBodyJoint
-# [024] ergo_joint
+# [026] ergo_joint
 ergo_joint ::= 'ergo'
-# formerly: clausuraJoint
-# [025] clausura_joint
+# [027] clausura_joint
 clausura_joint ::= '∴'
-# formerly: clausuraExpr
-# [026] clausura_expr
+# [028] clausura_expr
 clausura_expr ::= compact_clausura_expr | clausura_legacy_expr
-# formerly: compactClausuraExpr
-# [027] compact_clausura_expr
+# [029] compact_clausura_expr
 compact_clausura_expr ::= clausura_signature clausura_joint (expression | fac_block)
-# formerly: clausuraSignature
-# [028] clausura_signature
+# [030] clausura_signature
 clausura_signature ::= (clausura_param | '(' clausura_params? ')') closure_modifier? return_clause? alternate_exit_clause?
-# [029] closure_modifier
-closure_modifier ::= 'libera'
-# formerly: closureFacBlock
-# [030] fac_block
+# [031] closure_modifier
+closure_modifier ::= 'libera' | 'nucleum'
+# [032] fac_block
 fac_block ::= 'fac' block_stmt cape_clause?
-# formerly: legacyClausuraExpr
-# [031] clausura_legacy_expr
+# [033] clausura_legacy_expr
 clausura_legacy_expr ::= 'clausura' clausura_params? closure_modifier? ('→' type_annotation)? (':' expression | block_stmt)
-# formerly: clausuraParams
-# [032] clausura_params
+# [034] clausura_params
 clausura_params ::= clausura_param (',' clausura_param)*
-# formerly: clausuraParam
-# [033] clausura_param
+# [035] clausura_param
 clausura_param ::= type_annotation IDENTIFIER
-# formerly: genusDecl
-# [034] genus_decl
+# [036] genus_decl
 genus_decl ::= 'abstractus'? 'genus' IDENTIFIER generic_params? ('sub' IDENTIFIER)? ('implet' IDENTIFIER ((',' | '∩') IDENTIFIER)*)? '{' genus_member* '}'
-# formerly: genusMember
-# [035] genus_member
+# [037] genus_member
 genus_member ::= annotation* (field_decl | functio_method_decl)
-# formerly: fieldDecl
-# [036] field_decl
+# [038] field_decl
 field_decl ::= 'generis'? 'nexum'? type_annotation IDENTIFIER 'sponte'? ('=' expression)?
-# formerly: methodDecl
-# [037] functio_method_decl
+# [039] functio_method_decl
 functio_method_decl ::= 'functio' IDENTIFIER generic_params? '(' param_list ')' func_modifier* callable_posture? return_clause? alternate_exit_clause? block_stmt
-# [038] annotation
+# [040] annotation
 annotation ::= nucleum_annotation | braced_annotation | annotation_sugar
-# formerly: annotationName
-# [039] annotation_name
+# [041] annotation_name
 annotation_name ::= ANNOTATION_NAME
-# formerly: bracedAnnotation
-# [040] braced_annotation
+# [042] braced_annotation
 braced_annotation ::= '@' annotation_name '{' annotation_field_list? '}'
-# formerly: annotationFieldList
-# [041] annotation_field_list
+# [043] annotation_field_list
 annotation_field_list ::= annotation_field (',' annotation_field)*
-# formerly: annotationField
-# [042] annotation_field
+# [044] annotation_field
 annotation_field ::= ANNOTATION_FIELD_NAME '=' (expression | type_annotation)
-# formerly: annotationSugar
-# [043] annotation_sugar
+# [045] annotation_sugar
 annotation_sugar ::= '@' annotation_name NON_NEWLINE_TOKEN* NEWLINE
-# formerly: nucleumAnnotation
-# [044] nucleum_annotation
+# [046] nucleum_annotation
 nucleum_annotation ::= nucleum_sugar | nucleum_braced
-# formerly: nucleumSugar
-# [045] nucleum_sugar
+# [047] nucleum_sugar
 nucleum_sugar ::= '@' 'nucleum' nucleum_modifier? NEWLINE
-# formerly: nucleumBraced
-# [046] nucleum_braced
+# [048] nucleum_braced
 nucleum_braced ::= '@' 'nucleum' '{' nucleum_field_list? '}'
-# formerly: nucleumModifier
-# [047] nucleum_modifier
+# [049] nucleum_modifier
 nucleum_modifier ::= 'fragment'
-# formerly: nucleumFieldList
-# [048] nucleum_field_list
+# [050] nucleum_field_list
 nucleum_field_list ::= nucleum_field (',' nucleum_field)*
-# formerly: nucleumField
-# [049] nucleum_field
+# [051] nucleum_field
 nucleum_field ::= 'fragment' '=' ('verum' | 'falsum')
-# formerly: implendumDecl
-# [050] implendum_decl
+# [052] implendum_decl
 implendum_decl ::= 'implendum' IDENTIFIER generic_params? '{' implendum_method_decl* '}'
-# formerly: implendumMethod
-# [051] implendum_method_decl
+# [053] implendum_method_decl
 implendum_method_decl ::= annotation* 'functio' IDENTIFIER '(' param_list ')' func_modifier* callable_posture? return_clause? alternate_exit_clause?
-# formerly: typeAliasDecl
-# [052] typus_decl
+# [054] typus_decl
 typus_decl ::= 'typus' IDENTIFIER generic_params? '=' type_annotation
-# formerly: enumDecl
-# [053] ordo_decl
+# [055] ordo_decl
 ordo_decl ::= 'ordo' IDENTIFIER '{' enum_member (',' enum_member)* '}'
-# formerly: enumMember
-# [054] enum_member
+# [056] enum_member
 enum_member ::= IDENTIFIER ('=' ('-'? NUMBER | STRING))?
-# formerly: discretioDecl
-# [055] discretio_decl
+# [057] discretio_decl
 discretio_decl ::= 'discretio' IDENTIFIER generic_params? '{' union_member* variant (',' variant)* '}'
-# formerly: unionMember
-# [056] union_member
+# [058] union_member
 union_member ::= annotation* field_decl
-# [057] variant
+# [059] variant
 variant ::= IDENTIFIER ('{' variant_fields '}')?
-# formerly: variantFields
-# [058] variant_fields
+# [060] variant_fields
 variant_fields ::= (type_annotation IDENTIFIER)*
-# formerly: importDecl
-# [059] importa_decl
+# [061] importa_decl
 importa_decl ::= importa_record | importa_sugar
-# formerly: importRecord
-# [060] importa_record
+# [062] importa_record
 importa_record ::= 'importa' '{' import_field_list? '}'
-# formerly: importFieldList
-# [061] import_field_list
+# [063] import_field_list
 import_field_list ::= import_field (',' import_field)*
-# formerly: importField
-# [062] import_field
+# [064] import_field
 import_field ::= ex_field | visibilitas_field | nomen_field | ut_field | omnia_field
-# formerly: importSourceField
-# [063] ex_field
+# [065] ex_field
 ex_field ::= 'ex' '=' STRING
-# formerly: importVisibilityField
-# [064] visibilitas_field
+# [066] visibilitas_field
 visibilitas_field ::= 'visibilitas' '=' publica
-# formerly: importNameField
-# [065] nomen_field
+# [067] nomen_field
 nomen_field ::= 'nomen' '=' IDENTIFIER
-# formerly: importAliasField
-# [066] ut_field
+# [068] ut_field
 ut_field ::= 'ut' '=' IDENTIFIER
-# formerly: importWildcardField
-# [067] omnia_field
+# [069] omnia_field
 omnia_field ::= 'omnia' '=' IDENTIFIER
-# formerly: importSugar
-# [068] importa_sugar
+# [070] importa_sugar
 importa_sugar ::= 'importa' 'ex' STRING publica? (named_import | wildcard_import | selective_import)?
-# formerly: visibility
-# [069] publica
+# [071] publica
 publica ::= 'publica'
-# formerly: namedImport
-# [070] named_import
+# [072] named_import
 named_import ::= IDENTIFIER ('ut' IDENTIFIER)?
-# formerly: wildcardImport
-# [071] wildcard_import
+# [073] wildcard_import
 wildcard_import ::= '*' 'ut' IDENTIFIER
-# [072] selective_import
+# [074] selective_import
 selective_import ::= 'fixum' import_value_binding (',' import_value_binding)*
-# [073] import_value_binding
+# [075] import_value_binding
 import_value_binding ::= IDENTIFIER ('ut' IDENTIFIER)?
-# formerly: typeAnnotation
-# [074] type_annotation
+# [076] type_annotation
 type_annotation ::= intersection_type ('∪' intersection_type)*
-# `∩` binds tighter than `∪`: the cup tail parses at intersection level.
+# [077] intersection_type
 intersection_type ::= owned_type ('∩' owned_type)*
-# formerly: ownedType
-# [075] owned_type
+# [078] owned_type
 owned_type ::= ('de' | 'in' | 'own' | 'copy')? base_type
-# formerly: baseType
-# [076] base_type
+# [079] base_type
 base_type ::= hole_type | function_type | width_type_sugar | ratio_type | qualified_type type_arguments? | '(' type_annotation ')'
-# [077] ratio_type
+# [080] ratio_type
 ratio_type ::= 'ratio' '&lt;' labeled_type_argument (',' labeled_type_argument)* '&gt;'
-# formerly: holeType
-# [078] hole_type
+# [081] hole_type
 hole_type ::= '_' | '∪'
-# formerly: qualifiedType
-# [079] qualified_type
+# [082] qualified_type
 qualified_type ::= IDENTIFIER ('.' IDENTIFIER)*
-# formerly: typeArguments
-# [080] type_arguments
+# [083] type_arguments
 type_arguments ::= '&lt;' type_argument (',' type_argument)* '&gt;'
-# formerly: typeArgument
-# [081] type_argument
+# [084] type_argument
 type_argument ::= labeled_type_argument | type_annotation | NATURAL | '[' figura_list? ']'
-# formerly: labeledTypeArgument
-# [082] labeled_type_argument
+# [085] labeled_type_argument
 labeled_type_argument ::= IDENTIFIER ':' type_annotation
-# formerly: widthTypeSugar
-# [083] width_type_sugar
+# [086] width_type_sugar
 width_type_sugar ::= WIDTH_MARKER | LISTA_WIDTH_SUGAR | (TENSOR_WIDTH_SUGAR | SPARSA_WIDTH_SUGAR | VECTOR_WIDTH_SUGAR) shape_suffix? | MATRIX_WIDTH_SUGAR shape_suffix
-# formerly: shapeSuffix
-# [084] shape_suffix
+# [087] shape_suffix
 shape_suffix ::= '[' figura_list? ']'
-# [085] figura
+# [088] figura
 figura ::= '_' | NATURAL | IDENTIFIER | '[' figura_list? ']'
-# formerly: figuraList
-# [086] figura_list
+# [089] figura_list
 figura_list ::= figura (',' figura)*
-# formerly: functionType
-# [087] function_type
+# [090] function_type
 function_type ::= '(' type_list? ')' '→' type_annotation alternate_exit_clause?
-# formerly: typeList
-# [088] type_list
+# [091] type_list
 type_list ::= type_annotation (',' type_annotation)*
-# formerly: ifStmt
-# [089] si_stmt
+# [092] si_stmt
 si_stmt ::= 'si' expression arm ('sin' si_stmt | secus_clause)?
-# formerly: elseClause
-# [090] secus_clause
+# [093] secus_clause
 secus_clause ::= 'secus' else_arm
-# [091] arm
+# [094] arm
 arm ::= (block_stmt | ergo_joint statement) cape_clause?
-# formerly: elseArm
-# [092] else_arm
+# [095] else_arm
 else_arm ::= (block_stmt | ergo_joint statement) cape_clause?
-# formerly: whileStmt
-# [093] dum_stmt
+# [096] dum_stmt
 dum_stmt ::= 'dum' expression (block_stmt | ergo_joint statement) cape_clause?
-# formerly: iteraStmt
-# [094] itera_stmt
-itera_stmt ::= 'itera' (('ex' | 'de') expression | 'ab' expression) apud_clause? ('fixum' | 'varia') (array_pattern | object_pattern | IDENTIFIER) (block_stmt | ergo_joint statement) cape_clause?
-# [095] apud_clause
+# [097] itera_stmt
+itera_stmt ::= 'itera' ('ex' expression (',' expression)* | 'de' expression | 'ab' expression (',' expression)*) apud_clause? ('fixum' | 'varia') itera_binding (block_stmt | ergo_joint statement) cape_clause?
+# [098] itera_binding
+itera_binding ::= array_pattern | object_pattern | IDENTIFIER (',' IDENTIFIER)*
+# [099] apud_clause
 apud_clause ::= 'apud' '[' IDENTIFIER (',' IDENTIFIER)* ']'
-# formerly: eligeStmt
-# [096] elige_stmt
+# [100] elige_stmt
 elige_stmt ::= 'elige' expression '{' casu_elige_clause* ceterum_clause? '}' cape_clause?
-# formerly: eligeCase
-# [097] casu_elige_clause
+# [101] casu_elige_clause
 casu_elige_clause ::= 'casu' expression (block_stmt | ergo_joint statement)
-# formerly: defaultCase
-# [098] ceterum_clause
+# [102] ceterum_clause
 ceterum_clause ::= 'ceterum' (block_stmt | ergo_joint statement)
-# formerly: discerneStmt
-# [099] discerne_stmt
+# [103] discerne_stmt
 discerne_stmt ::= 'discerne' 'omnia'? discriminants '{' casu_variant_clause* ceterum_clause? '}'
-# [100] discriminants
+# [104] discriminants
 discriminants ::= expression (',' expression)*
-# formerly: variantCase
-# [101] casu_variant_clause
+# [105] casu_variant_clause
 casu_variant_clause ::= 'casu' patterns (block_stmt | ergo_joint statement)
-# [102] patterns
+# [106] patterns
 patterns ::= pattern ((',' | 'et') pattern)*
-# [103] pattern
-pattern ::= '_' | literal | (IDENTIFIER ut_pattern?)
-# formerly: patternBind
-# [104] ut_pattern
+# [107] pattern
+pattern ::= '_' | literal | type_pattern | (IDENTIFIER ut_pattern?)
+# [108] type_pattern
+type_pattern ::= IDENTIFIER type_arguments? ut_pattern?
+# [109] ut_pattern
 ut_pattern ::= ('ut' IDENTIFIER) | (('fixum' | 'varia') pattern_binding (',' pattern_binding)*)
-# formerly: patternBinding
-# [105] pattern_binding
+# [110] pattern_binding
 pattern_binding ::= IDENTIFIER ('ut' IDENTIFIER)?
-# formerly: guardStmt
-# [106] custodi_stmt
+# [111] custodi_stmt
 custodi_stmt ::= 'custodi' '{' si_guard_clause+ '}'
-# formerly: guardClause
-# [107] si_guard_clause
+# [112] si_guard_clause
 si_guard_clause ::= 'si' expression (block_stmt | ergo_joint statement)
-# formerly: curaStmt
-# [108] cura_stmt
+# [113] cura_stmt
 cura_stmt ::= 'cura' STRING ('fixum' | 'varia') type_annotation IDENTIFIER block_stmt cape_clause?
-# formerly: extractStmt
-# [109] ex_stmt
+# [114] ex_stmt
 ex_stmt ::= 'ex' expression ('fixum' | 'varia') extract_fields
-# formerly: extractFields
-# [110] extract_fields
+# [115] extract_fields
 extract_fields ::= extract_field (',' extract_field)* (',' ceteri_field)? | ceteri_field
-# formerly: extractField
-# [111] extract_field
+# [116] extract_field
 extract_field ::= IDENTIFIER ('ut' IDENTIFIER)?
-# formerly: restField
-# [112] ceteri_field
+# [117] ceteri_field
 ceteri_field ::= 'ceteri' IDENTIFIER
-# formerly: returnStmt
-# [113] redde_stmt
+# [118] redde_stmt
 redde_stmt ::= 'redde' expression?
-# formerly: returnAwaitStmt
-# [114] reddet_stmt
+# [119] reddet_stmt
 reddet_stmt ::= 'reddet' expression
-# formerly: awaitDiscardStmt
-# [115] tacebit_stmt
+# [120] tacebit_stmt
 tacebit_stmt ::= 'tacebit' expression
-# formerly: yieldStmt
-# [116] cede_stmt
+# [121] cede_stmt
 cede_stmt ::= 'cede' expression
-# formerly: breakStmt
-# [117] rumpe_stmt
+# [122] rumpe_stmt
 rumpe_stmt ::= 'rumpe'
-# formerly: continueStmt
-# [118] perge_stmt
+# [123] perge_stmt
 perge_stmt ::= 'perge'
-# formerly: noopStmt
-# [119] tacet_stmt
+# [124] tacet_stmt
 tacet_stmt ::= 'tacet'
-# formerly: throwStmt
-# [120] iace_stmt
+# [125] iace_stmt
 iace_stmt ::= iace_expr | iace_guarded_expr
-# formerly: bareThrow
-# [121] iace_expr
+# [126] iace_expr
 iace_expr ::= ('iace' | 'mori') expression
-# formerly: guardedThrowSugar
-# [122] iace_guarded_expr
+# [127] iace_guarded_expr
 iace_guarded_expr ::= ('iace' | 'mori') expression NO_NEWLINE 'si' expression
-# formerly: catchClause
-# [123] cape_clause
+# [128] cape_clause
 cape_clause ::= 'cape' IDENTIFIER block_stmt
-# formerly: assertStmt
-# [124] adfirma_stmt
+# [129] adfirma_stmt
 adfirma_stmt ::= 'adfirma' expression ('mori' expression)?
-# formerly: requiritStmt
-# [125] requirit_stmt
+# [130] requirit_stmt
 requirit_stmt ::= 'requirit' expression 'iace' expression
-# [126] expression
+# [131] reice_stmt
+reice_stmt ::= 'reice' expression 'iace' expression
+# [132] expression
 expression ::= assignment
-# [127] transfer
+# [133] transfer
 transfer ::= ternary ('⇇' ternary)*
-# [128] assignment
+# [134] assignment
 assignment ::= transfer ('←' assignment | '↤' assignment inline_recovery?)?
-# formerly: incDecStmt
-# [129] inc_dec_stmt
+# [135] inc_dec_stmt
 inc_dec_stmt ::= place ('↑' | '↓')
-# [130] place
+# [136] place
 place ::= call_expr
-# [131] ternary
+# [137] ternary
 ternary ::= aut_expr (('?' expression ':' | 'sic' expression 'secus') ternary)?
-# formerly: or
-# [132] aut_expr
+# [138] aut_expr
 aut_expr ::= et_expr (('aut') et_expr)*
-# formerly: and
-# [133] et_expr
+# [139] et_expr
 et_expr ::= equality (('et') equality)*
-# [134] equality
+# [140] equality
 equality ::= comparison equality_tail*
-# formerly: equalityTail
-# [135] equality_tail
+# [141] equality_tail
 equality_tail ::= ('≡' | '≢' | '≠' | '≅' | '≇' | '≈' | '≉' | 'est' | 'non' 'est') comparison
-# [136] comparison
+# [142] comparison
 comparison ::= bitwise_or_expr (('≺' | '≻' | '≤' | '≥' | 'intra' | 'inter') bitwise_or_expr)*
-# formerly: bitwiseOr
-# [137] bitwise_or_expr
+# [143] bitwise_or_expr
 bitwise_or_expr ::= bitwise_xor_expr ('∨' bitwise_xor_expr)*
-# formerly: bitwiseXor
-# [138] bitwise_xor_expr
+# [144] bitwise_xor_expr
 bitwise_xor_expr ::= bitwise_and_expr ('⊻' bitwise_and_expr)*
-# formerly: bitwiseAnd
-# [139] bitwise_and_expr
+# [145] bitwise_and_expr
 bitwise_and_expr ::= shift_expr ('∧' shift_expr)*
-# formerly: shift
-# [140] shift_expr
+# [146] shift_expr
 shift_expr ::= range_expr (('⇐' | '⇒') range_expr)*
-# formerly: range
-# [141] range_expr
+# [147] range_expr
 range_expr ::= additive_expr range_tail?
-# formerly: rangeTail
-# [142] range_tail
+# [148] range_tail
 range_tail ::= ('‥' | '…' | 'ante' | 'usque') additive_expr ('per' additive_expr)?
-# formerly: additive
-# [143] additive_expr
+# [149] additive_expr
 additive_expr ::= multiplicative_expr (('+' | '-') multiplicative_expr)*
-# formerly: multiplicative
-# [144] multiplicative_expr
+# [150] multiplicative_expr
 multiplicative_expr ::= vel_expr (('*' | '/' | '%' | '·' | '×' | '⊗' | '⊙') vel_expr)*
-# formerly: coalesce
-# [145] vel_expr
+# [151] vel_expr
 vel_expr ::= unary_expr ('vel' vel_rhs)*
-# formerly: velRhs
-# [146] vel_rhs
+# [152] vel_rhs
 vel_rhs ::= unary_expr vel_range_tail?
-# formerly: velRangeTail
-# [147] vel_range_tail
+# [153] vel_range_tail
 vel_range_tail ::= ('‥' | '…' | 'ante' | 'usque') unary_expr ('per' unary_expr)?
-# formerly: unary
-# [148] unary_expr
+# [154] unary_expr
 unary_expr ::= ('-' | '¬' | 'non') unary_expr | finge_expr | cast_expr
-# formerly: gradientExpr
-# [149] gradient_expr
+# [155] gradient_expr
 gradient_expr ::= call_expr ('∇' gradient_selection?)?
-# formerly: gradientSelection
-# [150] gradient_selection
+# [156] gradient_selection
 gradient_selection ::= '[' gradient_place (',' gradient_place)* ']'
-# formerly: gradientPlace
-# [151] gradient_place
+# [157] gradient_place
 gradient_place ::= expression
-# formerly: cast
-# [152] cast_expr
+# [158] cast_expr
 cast_expr ::= gradient_expr ('∷' type_annotation | conversio_expr)*
-# formerly: conversio
-# [153] conversio_expr
+# [159] conversio_expr
 conversio_expr ::= '↦' type_annotation inline_recovery?
-# formerly: inlineRecovery
-# [154] inline_recovery
+# [160] inline_recovery
 inline_recovery ::= '⇥' unary_expr
-# formerly: call
-# [155] call_expr
+# [161] call_expr
 call_expr ::= primary (call_suffix | member_suffix | optional_suffix | non_null_suffix)*
-# formerly: callSuffix
-# [156] call_suffix
+# [162] call_suffix
 call_suffix ::= call_type_args? '(' argument_list ')'
-# formerly: memberSuffix
-# [157] member_suffix
+# [163] member_suffix
 member_suffix ::= '.' IDENTIFIER | '[' expression ']'
-# formerly: optionalSuffix
-# [158] optional_suffix
+# [164] optional_suffix
 optional_suffix ::= '?.' IDENTIFIER | '?[' expression ']' | '?(' argument_list ')'
-# formerly: nonNullSuffix
-# [159] non_null_suffix
+# [165] non_null_suffix
 non_null_suffix ::= '!.' IDENTIFIER | '![' expression ']' | '!(' argument_list ')'
-# formerly: argumentList
-# [160] argument_list
+# [166] argument_list
 argument_list ::= (argument (',' argument)*)?
-# [161] argument
+# [167] argument
 argument ::= template_argument | 'sparge'? expression
-# formerly: templateArgument
-# [162] template_argument
+# [168] template_argument
 template_argument ::= 'sparge'? IDENTIFIER ':' expression
-# [163] literal
+# [169] literal
 literal ::= NUMBER | STRING | ASCII_STRING | BACKTICK_STRING | OCTETI_STRING | 'verum' | 'falsum' | 'nihil'
-# [164] primary
+# [170] primary
 primary ::= IDENTIFIER | literal | 'ego' | array_literal | json_literal | typed_constructor | iuncta_expr | ad_expr | clausura_expr | praefixum_expr | scriptum_expr | lege_expr | first_match_expr | summa_expr | '(' expression ')'
-# formerly: adExpr
-# [165] ad_expr
+# [171] ad_expr
 ad_expr ::= 'ad' ASCII_STRING ad_opener?
-# formerly: adOpener
-# [166] ad_opener
+# [172] ad_opener
 ad_opener ::= '(' expression ')'
-# formerly: arrayLiteral
-# [167] array_literal
+# [173] array_literal
 array_literal ::= '[' argument_list? ']'
-# formerly: iunctaExpr
-# [168] iuncta_expr
+# [174] iuncta_expr
 iuncta_expr ::= 'iuncta' type_arguments '[' argument_list? ']'
-# formerly: jsonLiteral
-# [169] json_literal
+# [175] json_literal
 json_literal ::= '{' (json_member (',' json_member)*)? '}'
-# formerly: jsonMember
-# [170] json_member
+# [176] json_member
 json_member ::= STRING ':' json_value
-# formerly: typedConstructor
-# [171] typed_constructor
+# [177] typed_constructor
 typed_constructor ::= type_annotation '{' field_list? '}'
-# formerly: fieldList
-# [172] field_list
+# [178] field_list
 field_list ::= field_init (',' field_init)*
-# formerly: fieldInit
-# [173] field_init
+# [179] field_init
 field_init ::= ('sparge' expression) | (field_key '=' expression) | IDENTIFIER
-# formerly: fieldKey
-# [174] field_key
+# [180] field_key
 field_key ::= IDENTIFIER | STRING | '[' expression ']'
-# formerly: jsonValue
-# [175] json_value
+# [181] json_value
 json_value ::= json_object | json_array | json_string | json_number | 'true' | 'false' | 'null'
-# formerly: jsonObject
-# [176] json_object
+# [182] json_object
 json_object ::= '{' (json_member (',' json_member)*)? '}'
-# formerly: jsonArray
-# [177] json_array
+# [183] json_array
 json_array ::= '[' (json_value (',' json_value)*)? ']'
-# formerly: jsonString
-# [178] json_string
+# [184] json_string
 json_string ::= STRING
-# formerly: jsonNumber
-# [179] json_number
+# [185] json_number
 json_number ::= NUMBER
-# formerly: fingeExpr
-# [180] finge_expr
+# [186] finge_expr
 finge_expr ::= 'finge' qualified_ident ('{' field_list '}')? ('∷' type_annotation)?
-# formerly: qualifiedIdent
-# [181] qualified_ident
+# [187] qualified_ident
 qualified_ident ::= IDENTIFIER ('.' IDENTIFIER)*
-# formerly: praefixumExpr
-# [182] praefixum_expr
+# [188] praefixum_expr
 praefixum_expr ::= 'praefixum' (block_stmt | '(' expression ')')
-# formerly: scriptumExpr
-# [183] scriptum_expr
+# [189] scriptum_expr
 scriptum_expr ::= 'scriptum' '(' STRING (',' expression)* ')'
-# formerly: legeExpr
-# [184] lege_expr
+# [190] lege_expr
 lege_expr ::= 'lege' 'lineam'?
-# [185] first_match_expr
+# [191] first_match_expr
 first_match_expr ::= 'primus_quem' '(' expression apud_clause? ',' 'ubi' IDENTIFIER block_stmt ')'
-# [186] summa_expr
+# [192] summa_expr
 summa_expr ::= 'summa' 'ex' expression apud_clause? filum_clause? ('fixum' | 'varia') IDENTIFIER block_stmt
-# [187] filum_clause
+# [193] filum_clause
 filum_clause ::= 'filum' IDENTIFIER
-# formerly: objectPattern
-# [188] object_pattern
+# [194] object_pattern
 object_pattern ::= '{' pattern_property (',' pattern_property)* '}'
-# formerly: patternProperty
-# [189] pattern_property
+# [195] pattern_property
 pattern_property ::= 'ceteri'? IDENTIFIER ('ut' IDENTIFIER)?
-# formerly: arrayPattern
-# [190] array_pattern
+# [196] array_pattern
 array_pattern ::= '[' array_pattern_element (',' array_pattern_element)* ']'
-# formerly: arrayPatternElement
-# [191] array_pattern_element
+# [197] array_pattern_element
 array_pattern_element ::= '_' | 'ceteri'? IDENTIFIER
-# formerly: outputStmt
-# [192] nota_stmt
+# [198] nota_stmt
 nota_stmt ::= ('nota' | 'vide' | 'mone' | 'scribe') expression (',' expression)*
-# formerly: entryHeader
-# [193] entry_header
+# [199] entry_header
 entry_header ::= ('argumenta' IDENTIFIER)? ('exitus' expression)?
-# formerly: incipitStmt
-# [194] incipit_stmt
+# [200] incipit_stmt
 incipit_stmt ::= 'incipit' entry_header block_stmt
-# formerly: incipietStmt
-# [195] incipiet_stmt
+# [201] incipiet_stmt
 incipiet_stmt ::= 'incipiet' entry_header block_stmt
-# formerly: probandumDecl
-# [196] probandum_decl
+# [202] probandum_decl
 probandum_decl ::= 'probandum' STRING proba_modifier* '{' probandum_body '}'
-# formerly: probandumBody
-# [197] probandum_body
+# [203] probandum_body
 probandum_body ::= (praepara_block | probandum_decl | proba_stmt)*
-# formerly: probaStmt
-# [198] proba_stmt
+# [204] proba_stmt
 proba_stmt ::= 'proba' STRING proba_modifier* block_stmt
-# formerly: probaModifier
-# [199] proba_modifier
+# [205] proba_modifier
 proba_modifier ::= 'omitte' STRING | 'futurum' STRING | 'solum' | 'tag' STRING | 'temporis' NUMBER | 'metior' | 'repete' NUMBER | 'fragilis' NUMBER | 'solum_in' STRING
-# formerly: praeparaBlock
-# [200] praepara_block
+# [206] praepara_block
 praepara_block ::= ('praepara' | 'praeparabit' | 'postpara' | 'postparabit') 'omnia'? block_stmt
-# formerly: facBlockStmt
-# [201] fac_stmt
+# [207] fac_stmt
 fac_stmt ::= 'fac' block_stmt cape_clause? ('dum' expression)?
-# [202] IDENTIFIER
+# [208] IDENTIFIER
 IDENTIFIER ::=
-# [203] NUMBER
+# [209] NUMBER
 NUMBER ::=
-# [204] NATURAL
+# [210] NATURAL
 NATURAL ::=
-# [205] STRING
+# [211] STRING
 STRING ::=
-# [206] ASCII_STRING
+# [212] ASCII_STRING
 ASCII_STRING ::=
-# [207] BACKTICK_STRING
+# [213] BACKTICK_STRING
 BACKTICK_STRING ::=
-# [208] OCTETI_STRING
+# [214] OCTETI_STRING
 OCTETI_STRING ::=
-# [209] NEWLINE
+# [215] NEWLINE
 NEWLINE ::=
-# [210] WIDTH_MARKER
+# [216] WIDTH_MARKER
 WIDTH_MARKER ::=
-# [211] LISTA_WIDTH_SUGAR
+# [217] LISTA_WIDTH_SUGAR
 LISTA_WIDTH_SUGAR ::=
-# [212] TENSOR_WIDTH_SUGAR
+# [218] TENSOR_WIDTH_SUGAR
 TENSOR_WIDTH_SUGAR ::=
-# [213] SPARSA_WIDTH_SUGAR
+# [219] SPARSA_WIDTH_SUGAR
 SPARSA_WIDTH_SUGAR ::=
-# [214] VECTOR_WIDTH_SUGAR
+# [220] VECTOR_WIDTH_SUGAR
 VECTOR_WIDTH_SUGAR ::=
-# [215] MATRIX_WIDTH_SUGAR
+# [221] MATRIX_WIDTH_SUGAR
 MATRIX_WIDTH_SUGAR ::=
-# [216] FRONTMATTER_DELIMITER
+# [222] FRONTMATTER_DELIMITER
 FRONTMATTER_DELIMITER ::=
-# [217] TOML_LINES
+# [223] TOML_LINES
 TOML_LINES ::=
-# [218] ANNOTATION_NAME
+# [224] ANNOTATION_NAME
 ANNOTATION_NAME ::=
-# [219] ANNOTATION_FIELD_NAME
+# [225] ANNOTATION_FIELD_NAME
 ANNOTATION_FIELD_NAME ::=
-# [220] NON_NEWLINE_TOKEN
+# [226] NON_NEWLINE_TOKEN
 NON_NEWLINE_TOKEN ::=
-# [221] NO_NEWLINE
-NO_NEWLINE ::=</code></pre><h2 id="production-index">Production Index<a class="anchor" href="#production-index">#</a></h2><div class="table-scroll"><table><thead><tr><th>ID</th><th>Anchor</th><th>Status</th><th>Former names</th></tr></thead><tbody><tr><td><a href="#identifier"><code>IDENTIFIER</code></a></td><td><code>#identifier</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#number"><code>NUMBER</code></a></td><td><code>#number</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#natural"><code>NATURAL</code></a></td><td><code>#natural</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#string"><code>STRING</code></a></td><td><code>#string</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#ascii-string"><code>ASCII_STRING</code></a></td><td><code>#ascii-string</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#backtick-string"><code>BACKTICK_STRING</code></a></td><td><code>#backtick-string</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#octeti-string"><code>OCTETI_STRING</code></a></td><td><code>#octeti-string</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#newline"><code>NEWLINE</code></a></td><td><code>#newline</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#width-marker"><code>WIDTH_MARKER</code></a></td><td><code>#width-marker</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#lista-width-sugar"><code>LISTA_WIDTH_SUGAR</code></a></td><td><code>#lista-width-sugar</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#tensor-width-sugar"><code>TENSOR_WIDTH_SUGAR</code></a></td><td><code>#tensor-width-sugar</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#sparsa-width-sugar"><code>SPARSA_WIDTH_SUGAR</code></a></td><td><code>#sparsa-width-sugar</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#vector-width-sugar"><code>VECTOR_WIDTH_SUGAR</code></a></td><td><code>#vector-width-sugar</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#matrix-width-sugar"><code>MATRIX_WIDTH_SUGAR</code></a></td><td><code>#matrix-width-sugar</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#frontmatter-delimiter"><code>FRONTMATTER_DELIMITER</code></a></td><td><code>#frontmatter-delimiter</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#toml-lines"><code>TOML_LINES</code></a></td><td><code>#toml-lines</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#annotation-name"><code>ANNOTATION_NAME</code></a></td><td><code>#annotation-name</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#annotation-field-name"><code>ANNOTATION_FIELD_NAME</code></a></td><td><code>#annotation-field-name</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#non-newline-token"><code>NON_NEWLINE_TOKEN</code></a></td><td><code>#non-newline-token</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#no-newline"><code>NO_NEWLINE</code></a></td><td><code>#no-newline</code></td><td>capture-pending</td><td>—</td></tr><tr><td><a href="#fab-file"><code>fab_file</code></a></td><td><code>#fab-file</code></td><td>live</td><td>fabFile</td></tr><tr><td><a href="#frontmatter"><code>frontmatter</code></a></td><td><code>#frontmatter</code></td><td>live</td><td>—</td></tr><tr><td><a href="#program"><code>program</code></a></td><td><code>#program</code></td><td>live</td><td>—</td></tr><tr><td><a href="#statement"><code>statement</code></a></td><td><code>#statement</code></td><td>live</td><td>—</td></tr><tr><td><a href="#statement-core"><code>statement_core</code></a></td><td><code>#statement-core</code></td><td>live</td><td>statementCore</td></tr><tr><td><a href="#binding-decl"><code>binding_decl</code></a></td><td><code>#binding-decl</code></td><td>live</td><td>bindingDecl</td></tr><tr><td><a href="#expr-stmt"><code>expr_stmt</code></a></td><td><code>#expr-stmt</code></td><td>live</td><td>exprStmt</td></tr><tr><td><a href="#block-stmt"><code>block_stmt</code></a></td><td><code>#block-stmt</code></td><td>live</td><td>blockStmt</td></tr><tr><td><a href="#fixum-decl"><code>fixum_decl</code></a></td><td><code>#fixum-decl</code></td><td>live</td><td>varDecl</td></tr><tr><td><a href="#figendum-decl"><code>figendum_decl</code></a></td><td><code>#figendum-decl</code></td><td>live</td><td>awaitVarDecl</td></tr><tr><td><a href="#sit-decl"><code>sit_decl</code></a></td><td><code>#sit-decl</code></td><td>live</td><td>sitDecl</td></tr><tr><td><a href="#array-destruct"><code>array_destruct</code></a></td><td><code>#array-destruct</code></td><td>live</td><td>arrayDestruct</td></tr><tr><td><a href="#object-destruct"><code>object_destruct</code></a></td><td><code>#object-destruct</code></td><td>live</td><td>objectDestruct</td></tr><tr><td><a href="#functio-decl"><code>functio_decl</code></a></td><td><code>#functio-decl</code></td><td>live</td><td>funcDecl</td></tr><tr><td><a href="#param-list"><code>param_list</code></a></td><td><code>#param-list</code></td><td>live</td><td>paramList</td></tr><tr><td><a href="#generic-params"><code>generic_params</code></a></td><td><code>#generic-params</code></td><td>live</td><td>genericParams</td></tr><tr><td><a href="#generic-param"><code>generic_param</code></a></td><td><code>#generic-param</code></td><td>live</td><td>genericParam</td></tr><tr><td><a href="#call-type-args"><code>call_type_args</code></a></td><td><code>#call-type-args</code></td><td>live</td><td>callTypeArgs</td></tr><tr><td><a href="#parameter"><code>parameter</code></a></td><td><code>#parameter</code></td><td>live</td><td>—</td></tr><tr><td><a href="#func-modifier"><code>func_modifier</code></a></td><td><code>#func-modifier</code></td><td>live</td><td>funcModifier</td></tr><tr><td><a href="#callable-posture"><code>callable_posture</code></a></td><td><code>#callable-posture</code></td><td>live</td><td>callablePosture</td></tr><tr><td><a href="#return-clause"><code>return_clause</code></a></td><td><code>#return-clause</code></td><td>live</td><td>returnClause</td></tr><tr><td><a href="#alternate-exit-clause"><code>alternate_exit_clause</code></a></td><td><code>#alternate-exit-clause</code></td><td>live</td><td>alternateExitClause</td></tr><tr><td><a href="#ergo-joint"><code>ergo_joint</code></a></td><td><code>#ergo-joint</code></td><td>live</td><td>stmtBodyJoint</td></tr><tr><td><a href="#clausura-joint"><code>clausura_joint</code></a></td><td><code>#clausura-joint</code></td><td>live</td><td>clausuraJoint</td></tr><tr><td><a href="#clausura-expr"><code>clausura_expr</code></a></td><td><code>#clausura-expr</code></td><td>live</td><td>clausuraExpr</td></tr><tr><td><a href="#compact-clausura-expr"><code>compact_clausura_expr</code></a></td><td><code>#compact-clausura-expr</code></td><td>live</td><td>compactClausuraExpr</td></tr><tr><td><a href="#clausura-signature"><code>clausura_signature</code></a></td><td><code>#clausura-signature</code></td><td>live</td><td>clausuraSignature</td></tr><tr><td><a href="#closure-modifier"><code>closure_modifier</code></a></td><td><code>#closure-modifier</code></td><td>live</td><td>—</td></tr><tr><td><a href="#fac-block"><code>fac_block</code></a></td><td><code>#fac-block</code></td><td>live</td><td>closureFacBlock</td></tr><tr><td><a href="#clausura-legacy-expr"><code>clausura_legacy_expr</code></a></td><td><code>#clausura-legacy-expr</code></td><td>live</td><td>legacyClausuraExpr</td></tr><tr><td><a href="#clausura-params"><code>clausura_params</code></a></td><td><code>#clausura-params</code></td><td>live</td><td>clausuraParams</td></tr><tr><td><a href="#clausura-param"><code>clausura_param</code></a></td><td><code>#clausura-param</code></td><td>live</td><td>clausuraParam</td></tr><tr><td><a href="#genus-decl"><code>genus_decl</code></a></td><td><code>#genus-decl</code></td><td>live</td><td>genusDecl</td></tr><tr><td><a href="#genus-member"><code>genus_member</code></a></td><td><code>#genus-member</code></td><td>live</td><td>genusMember</td></tr><tr><td><a href="#field-decl"><code>field_decl</code></a></td><td><code>#field-decl</code></td><td>live</td><td>fieldDecl</td></tr><tr><td><a href="#functio-method-decl"><code>functio_method_decl</code></a></td><td><code>#functio-method-decl</code></td><td>live</td><td>methodDecl</td></tr><tr><td><a href="#annotation"><code>annotation</code></a></td><td><code>#annotation</code></td><td>live</td><td>—</td></tr><tr><td><a href="#annotation-name"><code>annotation_name</code></a></td><td><code>#annotation-name</code></td><td>live</td><td>annotationName</td></tr><tr><td><a href="#braced-annotation"><code>braced_annotation</code></a></td><td><code>#braced-annotation</code></td><td>live</td><td>bracedAnnotation</td></tr><tr><td><a href="#annotation-field-list"><code>annotation_field_list</code></a></td><td><code>#annotation-field-list</code></td><td>live</td><td>annotationFieldList</td></tr><tr><td><a href="#annotation-field"><code>annotation_field</code></a></td><td><code>#annotation-field</code></td><td>live</td><td>annotationField</td></tr><tr><td><a href="#annotation-sugar"><code>annotation_sugar</code></a></td><td><code>#annotation-sugar</code></td><td>live</td><td>annotationSugar</td></tr><tr><td><a href="#nucleum-annotation"><code>nucleum_annotation</code></a></td><td><code>#nucleum-annotation</code></td><td>live</td><td>nucleumAnnotation</td></tr><tr><td><a href="#nucleum-sugar"><code>nucleum_sugar</code></a></td><td><code>#nucleum-sugar</code></td><td>live</td><td>nucleumSugar</td></tr><tr><td><a href="#nucleum-braced"><code>nucleum_braced</code></a></td><td><code>#nucleum-braced</code></td><td>live</td><td>nucleumBraced</td></tr><tr><td><a href="#nucleum-modifier"><code>nucleum_modifier</code></a></td><td><code>#nucleum-modifier</code></td><td>live</td><td>nucleumModifier</td></tr><tr><td><a href="#nucleum-field-list"><code>nucleum_field_list</code></a></td><td><code>#nucleum-field-list</code></td><td>live</td><td>nucleumFieldList</td></tr><tr><td><a href="#nucleum-field"><code>nucleum_field</code></a></td><td><code>#nucleum-field</code></td><td>live</td><td>nucleumField</td></tr><tr><td><a href="#implendum-decl"><code>implendum_decl</code></a></td><td><code>#implendum-decl</code></td><td>live</td><td>implendumDecl</td></tr><tr><td><a href="#implendum-method-decl"><code>implendum_method_decl</code></a></td><td><code>#implendum-method-decl</code></td><td>live</td><td>implendumMethod</td></tr><tr><td><a href="#typus-decl"><code>typus_decl</code></a></td><td><code>#typus-decl</code></td><td>live</td><td>typeAliasDecl</td></tr><tr><td><a href="#ordo-decl"><code>ordo_decl</code></a></td><td><code>#ordo-decl</code></td><td>live</td><td>enumDecl</td></tr><tr><td><a href="#enum-member"><code>enum_member</code></a></td><td><code>#enum-member</code></td><td>live</td><td>enumMember</td></tr><tr><td><a href="#discretio-decl"><code>discretio_decl</code></a></td><td><code>#discretio-decl</code></td><td>live</td><td>discretioDecl</td></tr><tr><td><a href="#union-member"><code>union_member</code></a></td><td><code>#union-member</code></td><td>live</td><td>unionMember</td></tr><tr><td><a href="#variant"><code>variant</code></a></td><td><code>#variant</code></td><td>live</td><td>—</td></tr><tr><td><a href="#variant-fields"><code>variant_fields</code></a></td><td><code>#variant-fields</code></td><td>live</td><td>variantFields</td></tr><tr><td><a href="#importa-decl"><code>importa_decl</code></a></td><td><code>#importa-decl</code></td><td>live</td><td>importDecl</td></tr><tr><td><a href="#importa-record"><code>importa_record</code></a></td><td><code>#importa-record</code></td><td>live</td><td>importRecord</td></tr><tr><td><a href="#import-field-list"><code>import_field_list</code></a></td><td><code>#import-field-list</code></td><td>live</td><td>importFieldList</td></tr><tr><td><a href="#import-field"><code>import_field</code></a></td><td><code>#import-field</code></td><td>live</td><td>importField</td></tr><tr><td><a href="#ex-field"><code>ex_field</code></a></td><td><code>#ex-field</code></td><td>live</td><td>importSourceField</td></tr><tr><td><a href="#visibilitas-field"><code>visibilitas_field</code></a></td><td><code>#visibilitas-field</code></td><td>live</td><td>importVisibilityField</td></tr><tr><td><a href="#nomen-field"><code>nomen_field</code></a></td><td><code>#nomen-field</code></td><td>live</td><td>importNameField</td></tr><tr><td><a href="#ut-field"><code>ut_field</code></a></td><td><code>#ut-field</code></td><td>live</td><td>importAliasField</td></tr><tr><td><a href="#omnia-field"><code>omnia_field</code></a></td><td><code>#omnia-field</code></td><td>live</td><td>importWildcardField</td></tr><tr><td><a href="#importa-sugar"><code>importa_sugar</code></a></td><td><code>#importa-sugar</code></td><td>live</td><td>importSugar</td></tr><tr><td><a href="#publica"><code>publica</code></a></td><td><code>#publica</code></td><td>live</td><td>visibility</td></tr><tr><td><a href="#named-import"><code>named_import</code></a></td><td><code>#named-import</code></td><td>live</td><td>namedImport</td></tr><tr><td><a href="#wildcard-import"><code>wildcard_import</code></a></td><td><code>#wildcard-import</code></td><td>live</td><td>wildcardImport</td></tr><tr><td><a href="#selective-import"><code>selective_import</code></a></td><td><code>#selective-import</code></td><td>live</td><td>—</td></tr><tr><td><a href="#import-value-binding"><code>import_value_binding</code></a></td><td><code>#import-value-binding</code></td><td>live</td><td>—</td></tr><tr><td><a href="#type-annotation"><code>type_annotation</code></a></td><td><code>#type-annotation</code></td><td>live</td><td>typeAnnotation</td></tr><tr><td><a href="#owned-type"><code>owned_type</code></a></td><td><code>#owned-type</code></td><td>live</td><td>ownedType</td></tr><tr><td><a href="#base-type"><code>base_type</code></a></td><td><code>#base-type</code></td><td>live</td><td>baseType</td></tr><tr><td><a href="#ratio-type"><code>ratio_type</code></a></td><td><code>#ratio-type</code></td><td>live</td><td>—</td></tr><tr><td><a href="#hole-type"><code>hole_type</code></a></td><td><code>#hole-type</code></td><td>live</td><td>holeType</td></tr><tr><td><a href="#qualified-type"><code>qualified_type</code></a></td><td><code>#qualified-type</code></td><td>live</td><td>qualifiedType</td></tr><tr><td><a href="#type-arguments"><code>type_arguments</code></a></td><td><code>#type-arguments</code></td><td>live</td><td>typeArguments</td></tr><tr><td><a href="#type-argument"><code>type_argument</code></a></td><td><code>#type-argument</code></td><td>live</td><td>typeArgument</td></tr><tr><td><a href="#labeled-type-argument"><code>labeled_type_argument</code></a></td><td><code>#labeled-type-argument</code></td><td>live</td><td>labeledTypeArgument</td></tr><tr><td><a href="#width-type-sugar"><code>width_type_sugar</code></a></td><td><code>#width-type-sugar</code></td><td>live</td><td>widthTypeSugar</td></tr><tr><td><a href="#shape-suffix"><code>shape_suffix</code></a></td><td><code>#shape-suffix</code></td><td>live</td><td>shapeSuffix</td></tr><tr><td><a href="#figura"><code>figura</code></a></td><td><code>#figura</code></td><td>live</td><td>—</td></tr><tr><td><a href="#figura-list"><code>figura_list</code></a></td><td><code>#figura-list</code></td><td>live</td><td>figuraList</td></tr><tr><td><a href="#function-type"><code>function_type</code></a></td><td><code>#function-type</code></td><td>live</td><td>functionType</td></tr><tr><td><a href="#type-list"><code>type_list</code></a></td><td><code>#type-list</code></td><td>live</td><td>typeList</td></tr><tr><td><a href="#si-stmt"><code>si_stmt</code></a></td><td><code>#si-stmt</code></td><td>live</td><td>ifStmt</td></tr><tr><td><a href="#secus-clause"><code>secus_clause</code></a></td><td><code>#secus-clause</code></td><td>live</td><td>elseClause</td></tr><tr><td><a href="#arm"><code>arm</code></a></td><td><code>#arm</code></td><td>live</td><td>—</td></tr><tr><td><a href="#else-arm"><code>else_arm</code></a></td><td><code>#else-arm</code></td><td>live</td><td>elseArm</td></tr><tr><td><a href="#dum-stmt"><code>dum_stmt</code></a></td><td><code>#dum-stmt</code></td><td>live</td><td>whileStmt</td></tr><tr><td><a href="#itera-stmt"><code>itera_stmt</code></a></td><td><code>#itera-stmt</code></td><td>live</td><td>iteraStmt</td></tr><tr><td><a href="#apud-clause"><code>apud_clause</code></a></td><td><code>#apud-clause</code></td><td>live</td><td>—</td></tr><tr><td><a href="#elige-stmt"><code>elige_stmt</code></a></td><td><code>#elige-stmt</code></td><td>live</td><td>eligeStmt</td></tr><tr><td><a href="#casu-elige-clause"><code>casu_elige_clause</code></a></td><td><code>#casu-elige-clause</code></td><td>live</td><td>eligeCase</td></tr><tr><td><a href="#ceterum-clause"><code>ceterum_clause</code></a></td><td><code>#ceterum-clause</code></td><td>live</td><td>defaultCase</td></tr><tr><td><a href="#discerne-stmt"><code>discerne_stmt</code></a></td><td><code>#discerne-stmt</code></td><td>live</td><td>discerneStmt</td></tr><tr><td><a href="#discriminants"><code>discriminants</code></a></td><td><code>#discriminants</code></td><td>live</td><td>—</td></tr><tr><td><a href="#casu-variant-clause"><code>casu_variant_clause</code></a></td><td><code>#casu-variant-clause</code></td><td>live</td><td>variantCase</td></tr><tr><td><a href="#patterns"><code>patterns</code></a></td><td><code>#patterns</code></td><td>live</td><td>—</td></tr><tr><td><a href="#pattern"><code>pattern</code></a></td><td><code>#pattern</code></td><td>live</td><td>—</td></tr><tr><td><a href="#ut-pattern"><code>ut_pattern</code></a></td><td><code>#ut-pattern</code></td><td>live</td><td>patternBind</td></tr><tr><td><a href="#pattern-binding"><code>pattern_binding</code></a></td><td><code>#pattern-binding</code></td><td>live</td><td>patternBinding</td></tr><tr><td><a href="#custodi-stmt"><code>custodi_stmt</code></a></td><td><code>#custodi-stmt</code></td><td>live</td><td>guardStmt</td></tr><tr><td><a href="#si-guard-clause"><code>si_guard_clause</code></a></td><td><code>#si-guard-clause</code></td><td>live</td><td>guardClause</td></tr><tr><td><a href="#cura-stmt"><code>cura_stmt</code></a></td><td><code>#cura-stmt</code></td><td>live</td><td>curaStmt</td></tr><tr><td><a href="#ex-stmt"><code>ex_stmt</code></a></td><td><code>#ex-stmt</code></td><td>live</td><td>extractStmt</td></tr><tr><td><a href="#extract-fields"><code>extract_fields</code></a></td><td><code>#extract-fields</code></td><td>live</td><td>extractFields</td></tr><tr><td><a href="#extract-field"><code>extract_field</code></a></td><td><code>#extract-field</code></td><td>live</td><td>extractField</td></tr><tr><td><a href="#ceteri-field"><code>ceteri_field</code></a></td><td><code>#ceteri-field</code></td><td>live</td><td>restField</td></tr><tr><td><a href="#redde-stmt"><code>redde_stmt</code></a></td><td><code>#redde-stmt</code></td><td>live</td><td>returnStmt</td></tr><tr><td><a href="#reddet-stmt"><code>reddet_stmt</code></a></td><td><code>#reddet-stmt</code></td><td>live</td><td>returnAwaitStmt</td></tr><tr><td><a href="#tacebit-stmt"><code>tacebit_stmt</code></a></td><td><code>#tacebit-stmt</code></td><td>live</td><td>awaitDiscardStmt</td></tr><tr><td><a href="#cede-stmt"><code>cede_stmt</code></a></td><td><code>#cede-stmt</code></td><td>live</td><td>yieldStmt</td></tr><tr><td><a href="#rumpe-stmt"><code>rumpe_stmt</code></a></td><td><code>#rumpe-stmt</code></td><td>live</td><td>breakStmt</td></tr><tr><td><a href="#perge-stmt"><code>perge_stmt</code></a></td><td><code>#perge-stmt</code></td><td>live</td><td>continueStmt</td></tr><tr><td><a href="#tacet-stmt"><code>tacet_stmt</code></a></td><td><code>#tacet-stmt</code></td><td>live</td><td>noopStmt</td></tr><tr><td><a href="#iace-stmt"><code>iace_stmt</code></a></td><td><code>#iace-stmt</code></td><td>live</td><td>throwStmt</td></tr><tr><td><a href="#iace-expr"><code>iace_expr</code></a></td><td><code>#iace-expr</code></td><td>live</td><td>bareThrow</td></tr><tr><td><a href="#iace-guarded-expr"><code>iace_guarded_expr</code></a></td><td><code>#iace-guarded-expr</code></td><td>live</td><td>guardedThrowSugar</td></tr><tr><td><a href="#cape-clause"><code>cape_clause</code></a></td><td><code>#cape-clause</code></td><td>live</td><td>catchClause</td></tr><tr><td><a href="#adfirma-stmt"><code>adfirma_stmt</code></a></td><td><code>#adfirma-stmt</code></td><td>live</td><td>assertStmt</td></tr><tr><td><a href="#requirit-stmt"><code>requirit_stmt</code></a></td><td><code>#requirit-stmt</code></td><td>live</td><td>requiritStmt</td></tr><tr><td><a href="#expression"><code>expression</code></a></td><td><code>#expression</code></td><td>live</td><td>—</td></tr><tr><td><a href="#transfer"><code>transfer</code></a></td><td><code>#transfer</code></td><td>live</td><td>—</td></tr><tr><td><a href="#assignment"><code>assignment</code></a></td><td><code>#assignment</code></td><td>live</td><td>—</td></tr><tr><td><a href="#inc-dec-stmt"><code>inc_dec_stmt</code></a></td><td><code>#inc-dec-stmt</code></td><td>live</td><td>incDecStmt</td></tr><tr><td><a href="#place"><code>place</code></a></td><td><code>#place</code></td><td>live</td><td>—</td></tr><tr><td><a href="#ternary"><code>ternary</code></a></td><td><code>#ternary</code></td><td>live</td><td>—</td></tr><tr><td><a href="#aut-expr"><code>aut_expr</code></a></td><td><code>#aut-expr</code></td><td>live</td><td>or</td></tr><tr><td><a href="#et-expr"><code>et_expr</code></a></td><td><code>#et-expr</code></td><td>live</td><td>and</td></tr><tr><td><a href="#equality"><code>equality</code></a></td><td><code>#equality</code></td><td>live</td><td>—</td></tr><tr><td><a href="#equality-tail"><code>equality_tail</code></a></td><td><code>#equality-tail</code></td><td>live</td><td>equalityTail</td></tr><tr><td><a href="#comparison"><code>comparison</code></a></td><td><code>#comparison</code></td><td>live</td><td>—</td></tr><tr><td><a href="#bitwise-or-expr"><code>bitwise_or_expr</code></a></td><td><code>#bitwise-or-expr</code></td><td>live</td><td>bitwiseOr</td></tr><tr><td><a href="#bitwise-xor-expr"><code>bitwise_xor_expr</code></a></td><td><code>#bitwise-xor-expr</code></td><td>live</td><td>bitwiseXor</td></tr><tr><td><a href="#bitwise-and-expr"><code>bitwise_and_expr</code></a></td><td><code>#bitwise-and-expr</code></td><td>live</td><td>bitwiseAnd</td></tr><tr><td><a href="#shift-expr"><code>shift_expr</code></a></td><td><code>#shift-expr</code></td><td>live</td><td>shift</td></tr><tr><td><a href="#range-expr"><code>range_expr</code></a></td><td><code>#range-expr</code></td><td>live</td><td>range</td></tr><tr><td><a href="#range-tail"><code>range_tail</code></a></td><td><code>#range-tail</code></td><td>live</td><td>rangeTail</td></tr><tr><td><a href="#additive-expr"><code>additive_expr</code></a></td><td><code>#additive-expr</code></td><td>live</td><td>additive</td></tr><tr><td><a href="#multiplicative-expr"><code>multiplicative_expr</code></a></td><td><code>#multiplicative-expr</code></td><td>live</td><td>multiplicative</td></tr><tr><td><a href="#vel-expr"><code>vel_expr</code></a></td><td><code>#vel-expr</code></td><td>live</td><td>coalesce</td></tr><tr><td><a href="#vel-rhs"><code>vel_rhs</code></a></td><td><code>#vel-rhs</code></td><td>live</td><td>velRhs</td></tr><tr><td><a href="#vel-range-tail"><code>vel_range_tail</code></a></td><td><code>#vel-range-tail</code></td><td>live</td><td>velRangeTail</td></tr><tr><td><a href="#unary-expr"><code>unary_expr</code></a></td><td><code>#unary-expr</code></td><td>live</td><td>unary</td></tr><tr><td><a href="#gradient-expr"><code>gradient_expr</code></a></td><td><code>#gradient-expr</code></td><td>live</td><td>gradientExpr</td></tr><tr><td><a href="#gradient-selection"><code>gradient_selection</code></a></td><td><code>#gradient-selection</code></td><td>live</td><td>gradientSelection</td></tr><tr><td><a href="#gradient-place"><code>gradient_place</code></a></td><td><code>#gradient-place</code></td><td>live</td><td>gradientPlace</td></tr><tr><td><a href="#cast-expr"><code>cast_expr</code></a></td><td><code>#cast-expr</code></td><td>live</td><td>cast</td></tr><tr><td><a href="#conversio-expr"><code>conversio_expr</code></a></td><td><code>#conversio-expr</code></td><td>live</td><td>conversio</td></tr><tr><td><a href="#inline-recovery"><code>inline_recovery</code></a></td><td><code>#inline-recovery</code></td><td>live</td><td>inlineRecovery</td></tr><tr><td><a href="#call-expr"><code>call_expr</code></a></td><td><code>#call-expr</code></td><td>live</td><td>call</td></tr><tr><td><a href="#call-suffix"><code>call_suffix</code></a></td><td><code>#call-suffix</code></td><td>live</td><td>callSuffix</td></tr><tr><td><a href="#member-suffix"><code>member_suffix</code></a></td><td><code>#member-suffix</code></td><td>live</td><td>memberSuffix</td></tr><tr><td><a href="#optional-suffix"><code>optional_suffix</code></a></td><td><code>#optional-suffix</code></td><td>live</td><td>optionalSuffix</td></tr><tr><td><a href="#non-null-suffix"><code>non_null_suffix</code></a></td><td><code>#non-null-suffix</code></td><td>live</td><td>nonNullSuffix</td></tr><tr><td><a href="#argument-list"><code>argument_list</code></a></td><td><code>#argument-list</code></td><td>live</td><td>argumentList</td></tr><tr><td><a href="#argument"><code>argument</code></a></td><td><code>#argument</code></td><td>live</td><td>—</td></tr><tr><td><a href="#template-argument"><code>template_argument</code></a></td><td><code>#template-argument</code></td><td>live</td><td>templateArgument</td></tr><tr><td><a href="#literal"><code>literal</code></a></td><td><code>#literal</code></td><td>live</td><td>—</td></tr><tr><td><a href="#primary"><code>primary</code></a></td><td><code>#primary</code></td><td>live</td><td>—</td></tr><tr><td><a href="#ad-expr"><code>ad_expr</code></a></td><td><code>#ad-expr</code></td><td>live</td><td>adExpr</td></tr><tr><td><a href="#ad-opener"><code>ad_opener</code></a></td><td><code>#ad-opener</code></td><td>live</td><td>adOpener</td></tr><tr><td><a href="#array-literal"><code>array_literal</code></a></td><td><code>#array-literal</code></td><td>live</td><td>arrayLiteral</td></tr><tr><td><a href="#iuncta-expr"><code>iuncta_expr</code></a></td><td><code>#iuncta-expr</code></td><td>live</td><td>iunctaExpr</td></tr><tr><td><a href="#json-literal"><code>json_literal</code></a></td><td><code>#json-literal</code></td><td>live</td><td>jsonLiteral</td></tr><tr><td><a href="#json-member"><code>json_member</code></a></td><td><code>#json-member</code></td><td>live</td><td>jsonMember</td></tr><tr><td><a href="#typed-constructor"><code>typed_constructor</code></a></td><td><code>#typed-constructor</code></td><td>live</td><td>typedConstructor</td></tr><tr><td><a href="#field-list"><code>field_list</code></a></td><td><code>#field-list</code></td><td>live</td><td>fieldList</td></tr><tr><td><a href="#field-init"><code>field_init</code></a></td><td><code>#field-init</code></td><td>live</td><td>fieldInit</td></tr><tr><td><a href="#field-key"><code>field_key</code></a></td><td><code>#field-key</code></td><td>live</td><td>fieldKey</td></tr><tr><td><a href="#json-value"><code>json_value</code></a></td><td><code>#json-value</code></td><td>live</td><td>jsonValue</td></tr><tr><td><a href="#json-object"><code>json_object</code></a></td><td><code>#json-object</code></td><td>live</td><td>jsonObject</td></tr><tr><td><a href="#json-array"><code>json_array</code></a></td><td><code>#json-array</code></td><td>live</td><td>jsonArray</td></tr><tr><td><a href="#json-string"><code>json_string</code></a></td><td><code>#json-string</code></td><td>live</td><td>jsonString</td></tr><tr><td><a href="#json-number"><code>json_number</code></a></td><td><code>#json-number</code></td><td>live</td><td>jsonNumber</td></tr><tr><td><a href="#finge-expr"><code>finge_expr</code></a></td><td><code>#finge-expr</code></td><td>live</td><td>fingeExpr</td></tr><tr><td><a href="#qualified-ident"><code>qualified_ident</code></a></td><td><code>#qualified-ident</code></td><td>live</td><td>qualifiedIdent</td></tr><tr><td><a href="#praefixum-expr"><code>praefixum_expr</code></a></td><td><code>#praefixum-expr</code></td><td>live</td><td>praefixumExpr</td></tr><tr><td><a href="#scriptum-expr"><code>scriptum_expr</code></a></td><td><code>#scriptum-expr</code></td><td>live</td><td>scriptumExpr</td></tr><tr><td><a href="#lege-expr"><code>lege_expr</code></a></td><td><code>#lege-expr</code></td><td>live</td><td>legeExpr</td></tr><tr><td><a href="#first-match-expr"><code>first_match_expr</code></a></td><td><code>#first-match-expr</code></td><td>live</td><td>—</td></tr><tr><td><a href="#summa-expr"><code>summa_expr</code></a></td><td><code>#summa-expr</code></td><td>live</td><td>—</td></tr><tr><td><a href="#filum-clause"><code>filum_clause</code></a></td><td><code>#filum-clause</code></td><td>live</td><td>—</td></tr><tr><td><a href="#object-pattern"><code>object_pattern</code></a></td><td><code>#object-pattern</code></td><td>live</td><td>objectPattern</td></tr><tr><td><a href="#pattern-property"><code>pattern_property</code></a></td><td><code>#pattern-property</code></td><td>live</td><td>patternProperty</td></tr><tr><td><a href="#array-pattern"><code>array_pattern</code></a></td><td><code>#array-pattern</code></td><td>live</td><td>arrayPattern</td></tr><tr><td><a href="#array-pattern-element"><code>array_pattern_element</code></a></td><td><code>#array-pattern-element</code></td><td>live</td><td>arrayPatternElement</td></tr><tr><td><a href="#nota-stmt"><code>nota_stmt</code></a></td><td><code>#nota-stmt</code></td><td>live</td><td>outputStmt</td></tr><tr><td><a href="#entry-header"><code>entry_header</code></a></td><td><code>#entry-header</code></td><td>live</td><td>entryHeader</td></tr><tr><td><a href="#incipit-stmt"><code>incipit_stmt</code></a></td><td><code>#incipit-stmt</code></td><td>live</td><td>incipitStmt</td></tr><tr><td><a href="#incipiet-stmt"><code>incipiet_stmt</code></a></td><td><code>#incipiet-stmt</code></td><td>live</td><td>incipietStmt</td></tr><tr><td><a href="#probandum-decl"><code>probandum_decl</code></a></td><td><code>#probandum-decl</code></td><td>live</td><td>probandumDecl</td></tr><tr><td><a href="#probandum-body"><code>probandum_body</code></a></td><td><code>#probandum-body</code></td><td>live</td><td>probandumBody</td></tr><tr><td><a href="#proba-stmt"><code>proba_stmt</code></a></td><td><code>#proba-stmt</code></td><td>live</td><td>probaStmt</td></tr><tr><td><a href="#proba-modifier"><code>proba_modifier</code></a></td><td><code>#proba-modifier</code></td><td>live</td><td>probaModifier</td></tr><tr><td><a href="#praepara-block"><code>praepara_block</code></a></td><td><code>#praepara-block</code></td><td>live</td><td>praeparaBlock</td></tr><tr><td><a href="#fac-stmt"><code>fac_stmt</code></a></td><td><code>#fac-stmt</code></td><td>live</td><td>facBlockStmt</td></tr></tbody></table></div><h2 id="lexicon">Lexicon Appendix<a class="anchor" href="#lexicon">#</a></h2><p>The lexical tier is descriptive and remains owned by the live lexer and
+# [227] NO_NEWLINE
+NO_NEWLINE ::=</code></pre><h2 id="production-index">Production Index<a class="anchor" href="#production-index">#</a></h2><div class="table-scroll"><table><thead><tr><th>ID</th><th>Anchor</th><th>Status</th></tr></thead><tbody><tr><td><a href="#identifier"><code>IDENTIFIER</code></a></td><td><code>#identifier</code></td><td>capture-pending</td></tr><tr><td><a href="#number"><code>NUMBER</code></a></td><td><code>#number</code></td><td>capture-pending</td></tr><tr><td><a href="#natural"><code>NATURAL</code></a></td><td><code>#natural</code></td><td>capture-pending</td></tr><tr><td><a href="#string"><code>STRING</code></a></td><td><code>#string</code></td><td>capture-pending</td></tr><tr><td><a href="#ascii-string"><code>ASCII_STRING</code></a></td><td><code>#ascii-string</code></td><td>capture-pending</td></tr><tr><td><a href="#backtick-string"><code>BACKTICK_STRING</code></a></td><td><code>#backtick-string</code></td><td>capture-pending</td></tr><tr><td><a href="#octeti-string"><code>OCTETI_STRING</code></a></td><td><code>#octeti-string</code></td><td>capture-pending</td></tr><tr><td><a href="#newline"><code>NEWLINE</code></a></td><td><code>#newline</code></td><td>capture-pending</td></tr><tr><td><a href="#width-marker"><code>WIDTH_MARKER</code></a></td><td><code>#width-marker</code></td><td>capture-pending</td></tr><tr><td><a href="#lista-width-sugar"><code>LISTA_WIDTH_SUGAR</code></a></td><td><code>#lista-width-sugar</code></td><td>capture-pending</td></tr><tr><td><a href="#tensor-width-sugar"><code>TENSOR_WIDTH_SUGAR</code></a></td><td><code>#tensor-width-sugar</code></td><td>capture-pending</td></tr><tr><td><a href="#sparsa-width-sugar"><code>SPARSA_WIDTH_SUGAR</code></a></td><td><code>#sparsa-width-sugar</code></td><td>capture-pending</td></tr><tr><td><a href="#vector-width-sugar"><code>VECTOR_WIDTH_SUGAR</code></a></td><td><code>#vector-width-sugar</code></td><td>capture-pending</td></tr><tr><td><a href="#matrix-width-sugar"><code>MATRIX_WIDTH_SUGAR</code></a></td><td><code>#matrix-width-sugar</code></td><td>capture-pending</td></tr><tr><td><a href="#frontmatter-delimiter"><code>FRONTMATTER_DELIMITER</code></a></td><td><code>#frontmatter-delimiter</code></td><td>capture-pending</td></tr><tr><td><a href="#toml-lines"><code>TOML_LINES</code></a></td><td><code>#toml-lines</code></td><td>capture-pending</td></tr><tr><td><a href="#annotation-name"><code>ANNOTATION_NAME</code></a></td><td><code>#annotation-name</code></td><td>capture-pending</td></tr><tr><td><a href="#annotation-field-name"><code>ANNOTATION_FIELD_NAME</code></a></td><td><code>#annotation-field-name</code></td><td>capture-pending</td></tr><tr><td><a href="#non-newline-token"><code>NON_NEWLINE_TOKEN</code></a></td><td><code>#non-newline-token</code></td><td>capture-pending</td></tr><tr><td><a href="#no-newline"><code>NO_NEWLINE</code></a></td><td><code>#no-newline</code></td><td>capture-pending</td></tr><tr><td><a href="#fab-file"><code>fab_file</code></a></td><td><code>#fab-file</code></td><td>live</td></tr><tr><td><a href="#frontmatter"><code>frontmatter</code></a></td><td><code>#frontmatter</code></td><td>live</td></tr><tr><td><a href="#program"><code>program</code></a></td><td><code>#program</code></td><td>live</td></tr><tr><td><a href="#statement"><code>statement</code></a></td><td><code>#statement</code></td><td>live</td></tr><tr><td><a href="#statement-core"><code>statement_core</code></a></td><td><code>#statement-core</code></td><td>live</td></tr><tr><td><a href="#binding-decl"><code>binding_decl</code></a></td><td><code>#binding-decl</code></td><td>live</td></tr><tr><td><a href="#expr-stmt"><code>expr_stmt</code></a></td><td><code>#expr-stmt</code></td><td>live</td></tr><tr><td><a href="#block-stmt"><code>block_stmt</code></a></td><td><code>#block-stmt</code></td><td>live</td></tr><tr><td><a href="#fixum-decl"><code>fixum_decl</code></a></td><td><code>#fixum-decl</code></td><td>live</td></tr><tr><td><a href="#figendum-decl"><code>figendum_decl</code></a></td><td><code>#figendum-decl</code></td><td>live</td></tr><tr><td><a href="#sit-decl"><code>sit_decl</code></a></td><td><code>#sit-decl</code></td><td>live</td></tr><tr><td><a href="#array-destruct"><code>array_destruct</code></a></td><td><code>#array-destruct</code></td><td>live</td></tr><tr><td><a href="#object-destruct"><code>object_destruct</code></a></td><td><code>#object-destruct</code></td><td>live</td></tr><tr><td><a href="#functio-decl"><code>functio_decl</code></a></td><td><code>#functio-decl</code></td><td>live</td></tr><tr><td><a href="#param-list"><code>param_list</code></a></td><td><code>#param-list</code></td><td>live</td></tr><tr><td><a href="#generic-params"><code>generic_params</code></a></td><td><code>#generic-params</code></td><td>live</td></tr><tr><td><a href="#generic-param"><code>generic_param</code></a></td><td><code>#generic-param</code></td><td>live</td></tr><tr><td><a href="#generic-type-default"><code>generic_type_default</code></a></td><td><code>#generic-type-default</code></td><td>live</td></tr><tr><td><a href="#generic-size-default"><code>generic_size_default</code></a></td><td><code>#generic-size-default</code></td><td>live</td></tr><tr><td><a href="#call-type-args"><code>call_type_args</code></a></td><td><code>#call-type-args</code></td><td>live</td></tr><tr><td><a href="#parameter"><code>parameter</code></a></td><td><code>#parameter</code></td><td>live</td></tr><tr><td><a href="#func-modifier"><code>func_modifier</code></a></td><td><code>#func-modifier</code></td><td>live</td></tr><tr><td><a href="#callable-posture"><code>callable_posture</code></a></td><td><code>#callable-posture</code></td><td>live</td></tr><tr><td><a href="#return-clause"><code>return_clause</code></a></td><td><code>#return-clause</code></td><td>live</td></tr><tr><td><a href="#alternate-exit-clause"><code>alternate_exit_clause</code></a></td><td><code>#alternate-exit-clause</code></td><td>live</td></tr><tr><td><a href="#ergo-joint"><code>ergo_joint</code></a></td><td><code>#ergo-joint</code></td><td>live</td></tr><tr><td><a href="#clausura-joint"><code>clausura_joint</code></a></td><td><code>#clausura-joint</code></td><td>live</td></tr><tr><td><a href="#clausura-expr"><code>clausura_expr</code></a></td><td><code>#clausura-expr</code></td><td>live</td></tr><tr><td><a href="#compact-clausura-expr"><code>compact_clausura_expr</code></a></td><td><code>#compact-clausura-expr</code></td><td>live</td></tr><tr><td><a href="#clausura-signature"><code>clausura_signature</code></a></td><td><code>#clausura-signature</code></td><td>live</td></tr><tr><td><a href="#closure-modifier"><code>closure_modifier</code></a></td><td><code>#closure-modifier</code></td><td>live</td></tr><tr><td><a href="#fac-block"><code>fac_block</code></a></td><td><code>#fac-block</code></td><td>live</td></tr><tr><td><a href="#clausura-legacy-expr"><code>clausura_legacy_expr</code></a></td><td><code>#clausura-legacy-expr</code></td><td>live</td></tr><tr><td><a href="#clausura-params"><code>clausura_params</code></a></td><td><code>#clausura-params</code></td><td>live</td></tr><tr><td><a href="#clausura-param"><code>clausura_param</code></a></td><td><code>#clausura-param</code></td><td>live</td></tr><tr><td><a href="#genus-decl"><code>genus_decl</code></a></td><td><code>#genus-decl</code></td><td>live</td></tr><tr><td><a href="#genus-member"><code>genus_member</code></a></td><td><code>#genus-member</code></td><td>live</td></tr><tr><td><a href="#field-decl"><code>field_decl</code></a></td><td><code>#field-decl</code></td><td>live</td></tr><tr><td><a href="#functio-method-decl"><code>functio_method_decl</code></a></td><td><code>#functio-method-decl</code></td><td>live</td></tr><tr><td><a href="#annotation"><code>annotation</code></a></td><td><code>#annotation</code></td><td>live</td></tr><tr><td><a href="#annotation-name"><code>annotation_name</code></a></td><td><code>#annotation-name</code></td><td>live</td></tr><tr><td><a href="#braced-annotation"><code>braced_annotation</code></a></td><td><code>#braced-annotation</code></td><td>live</td></tr><tr><td><a href="#annotation-field-list"><code>annotation_field_list</code></a></td><td><code>#annotation-field-list</code></td><td>live</td></tr><tr><td><a href="#annotation-field"><code>annotation_field</code></a></td><td><code>#annotation-field</code></td><td>live</td></tr><tr><td><a href="#annotation-sugar"><code>annotation_sugar</code></a></td><td><code>#annotation-sugar</code></td><td>live</td></tr><tr><td><a href="#nucleum-annotation"><code>nucleum_annotation</code></a></td><td><code>#nucleum-annotation</code></td><td>live</td></tr><tr><td><a href="#nucleum-sugar"><code>nucleum_sugar</code></a></td><td><code>#nucleum-sugar</code></td><td>live</td></tr><tr><td><a href="#nucleum-braced"><code>nucleum_braced</code></a></td><td><code>#nucleum-braced</code></td><td>live</td></tr><tr><td><a href="#nucleum-modifier"><code>nucleum_modifier</code></a></td><td><code>#nucleum-modifier</code></td><td>live</td></tr><tr><td><a href="#nucleum-field-list"><code>nucleum_field_list</code></a></td><td><code>#nucleum-field-list</code></td><td>live</td></tr><tr><td><a href="#nucleum-field"><code>nucleum_field</code></a></td><td><code>#nucleum-field</code></td><td>live</td></tr><tr><td><a href="#implendum-decl"><code>implendum_decl</code></a></td><td><code>#implendum-decl</code></td><td>live</td></tr><tr><td><a href="#implendum-method-decl"><code>implendum_method_decl</code></a></td><td><code>#implendum-method-decl</code></td><td>live</td></tr><tr><td><a href="#typus-decl"><code>typus_decl</code></a></td><td><code>#typus-decl</code></td><td>live</td></tr><tr><td><a href="#ordo-decl"><code>ordo_decl</code></a></td><td><code>#ordo-decl</code></td><td>live</td></tr><tr><td><a href="#enum-member"><code>enum_member</code></a></td><td><code>#enum-member</code></td><td>live</td></tr><tr><td><a href="#discretio-decl"><code>discretio_decl</code></a></td><td><code>#discretio-decl</code></td><td>live</td></tr><tr><td><a href="#union-member"><code>union_member</code></a></td><td><code>#union-member</code></td><td>live</td></tr><tr><td><a href="#variant"><code>variant</code></a></td><td><code>#variant</code></td><td>live</td></tr><tr><td><a href="#variant-fields"><code>variant_fields</code></a></td><td><code>#variant-fields</code></td><td>live</td></tr><tr><td><a href="#importa-decl"><code>importa_decl</code></a></td><td><code>#importa-decl</code></td><td>live</td></tr><tr><td><a href="#importa-record"><code>importa_record</code></a></td><td><code>#importa-record</code></td><td>live</td></tr><tr><td><a href="#import-field-list"><code>import_field_list</code></a></td><td><code>#import-field-list</code></td><td>live</td></tr><tr><td><a href="#import-field"><code>import_field</code></a></td><td><code>#import-field</code></td><td>live</td></tr><tr><td><a href="#ex-field"><code>ex_field</code></a></td><td><code>#ex-field</code></td><td>live</td></tr><tr><td><a href="#visibilitas-field"><code>visibilitas_field</code></a></td><td><code>#visibilitas-field</code></td><td>live</td></tr><tr><td><a href="#nomen-field"><code>nomen_field</code></a></td><td><code>#nomen-field</code></td><td>live</td></tr><tr><td><a href="#ut-field"><code>ut_field</code></a></td><td><code>#ut-field</code></td><td>live</td></tr><tr><td><a href="#omnia-field"><code>omnia_field</code></a></td><td><code>#omnia-field</code></td><td>live</td></tr><tr><td><a href="#importa-sugar"><code>importa_sugar</code></a></td><td><code>#importa-sugar</code></td><td>live</td></tr><tr><td><a href="#publica"><code>publica</code></a></td><td><code>#publica</code></td><td>live</td></tr><tr><td><a href="#named-import"><code>named_import</code></a></td><td><code>#named-import</code></td><td>live</td></tr><tr><td><a href="#wildcard-import"><code>wildcard_import</code></a></td><td><code>#wildcard-import</code></td><td>live</td></tr><tr><td><a href="#selective-import"><code>selective_import</code></a></td><td><code>#selective-import</code></td><td>live</td></tr><tr><td><a href="#import-value-binding"><code>import_value_binding</code></a></td><td><code>#import-value-binding</code></td><td>live</td></tr><tr><td><a href="#type-annotation"><code>type_annotation</code></a></td><td><code>#type-annotation</code></td><td>live</td></tr><tr><td><a href="#intersection-type"><code>intersection_type</code></a></td><td><code>#intersection-type</code></td><td>live</td></tr><tr><td><a href="#owned-type"><code>owned_type</code></a></td><td><code>#owned-type</code></td><td>live</td></tr><tr><td><a href="#base-type"><code>base_type</code></a></td><td><code>#base-type</code></td><td>live</td></tr><tr><td><a href="#ratio-type"><code>ratio_type</code></a></td><td><code>#ratio-type</code></td><td>live</td></tr><tr><td><a href="#hole-type"><code>hole_type</code></a></td><td><code>#hole-type</code></td><td>live</td></tr><tr><td><a href="#qualified-type"><code>qualified_type</code></a></td><td><code>#qualified-type</code></td><td>live</td></tr><tr><td><a href="#type-arguments"><code>type_arguments</code></a></td><td><code>#type-arguments</code></td><td>live</td></tr><tr><td><a href="#type-argument"><code>type_argument</code></a></td><td><code>#type-argument</code></td><td>live</td></tr><tr><td><a href="#labeled-type-argument"><code>labeled_type_argument</code></a></td><td><code>#labeled-type-argument</code></td><td>live</td></tr><tr><td><a href="#width-type-sugar"><code>width_type_sugar</code></a></td><td><code>#width-type-sugar</code></td><td>live</td></tr><tr><td><a href="#shape-suffix"><code>shape_suffix</code></a></td><td><code>#shape-suffix</code></td><td>live</td></tr><tr><td><a href="#figura"><code>figura</code></a></td><td><code>#figura</code></td><td>live</td></tr><tr><td><a href="#figura-list"><code>figura_list</code></a></td><td><code>#figura-list</code></td><td>live</td></tr><tr><td><a href="#function-type"><code>function_type</code></a></td><td><code>#function-type</code></td><td>live</td></tr><tr><td><a href="#type-list"><code>type_list</code></a></td><td><code>#type-list</code></td><td>live</td></tr><tr><td><a href="#si-stmt"><code>si_stmt</code></a></td><td><code>#si-stmt</code></td><td>live</td></tr><tr><td><a href="#secus-clause"><code>secus_clause</code></a></td><td><code>#secus-clause</code></td><td>live</td></tr><tr><td><a href="#arm"><code>arm</code></a></td><td><code>#arm</code></td><td>live</td></tr><tr><td><a href="#else-arm"><code>else_arm</code></a></td><td><code>#else-arm</code></td><td>live</td></tr><tr><td><a href="#dum-stmt"><code>dum_stmt</code></a></td><td><code>#dum-stmt</code></td><td>live</td></tr><tr><td><a href="#itera-stmt"><code>itera_stmt</code></a></td><td><code>#itera-stmt</code></td><td>live</td></tr><tr><td><a href="#itera-binding"><code>itera_binding</code></a></td><td><code>#itera-binding</code></td><td>live</td></tr><tr><td><a href="#apud-clause"><code>apud_clause</code></a></td><td><code>#apud-clause</code></td><td>live</td></tr><tr><td><a href="#elige-stmt"><code>elige_stmt</code></a></td><td><code>#elige-stmt</code></td><td>live</td></tr><tr><td><a href="#casu-elige-clause"><code>casu_elige_clause</code></a></td><td><code>#casu-elige-clause</code></td><td>live</td></tr><tr><td><a href="#ceterum-clause"><code>ceterum_clause</code></a></td><td><code>#ceterum-clause</code></td><td>live</td></tr><tr><td><a href="#discerne-stmt"><code>discerne_stmt</code></a></td><td><code>#discerne-stmt</code></td><td>live</td></tr><tr><td><a href="#discriminants"><code>discriminants</code></a></td><td><code>#discriminants</code></td><td>live</td></tr><tr><td><a href="#casu-variant-clause"><code>casu_variant_clause</code></a></td><td><code>#casu-variant-clause</code></td><td>live</td></tr><tr><td><a href="#patterns"><code>patterns</code></a></td><td><code>#patterns</code></td><td>live</td></tr><tr><td><a href="#pattern"><code>pattern</code></a></td><td><code>#pattern</code></td><td>live</td></tr><tr><td><a href="#type-pattern"><code>type_pattern</code></a></td><td><code>#type-pattern</code></td><td>live</td></tr><tr><td><a href="#ut-pattern"><code>ut_pattern</code></a></td><td><code>#ut-pattern</code></td><td>live</td></tr><tr><td><a href="#pattern-binding"><code>pattern_binding</code></a></td><td><code>#pattern-binding</code></td><td>live</td></tr><tr><td><a href="#custodi-stmt"><code>custodi_stmt</code></a></td><td><code>#custodi-stmt</code></td><td>live</td></tr><tr><td><a href="#si-guard-clause"><code>si_guard_clause</code></a></td><td><code>#si-guard-clause</code></td><td>live</td></tr><tr><td><a href="#cura-stmt"><code>cura_stmt</code></a></td><td><code>#cura-stmt</code></td><td>live</td></tr><tr><td><a href="#ex-stmt"><code>ex_stmt</code></a></td><td><code>#ex-stmt</code></td><td>live</td></tr><tr><td><a href="#extract-fields"><code>extract_fields</code></a></td><td><code>#extract-fields</code></td><td>live</td></tr><tr><td><a href="#extract-field"><code>extract_field</code></a></td><td><code>#extract-field</code></td><td>live</td></tr><tr><td><a href="#ceteri-field"><code>ceteri_field</code></a></td><td><code>#ceteri-field</code></td><td>live</td></tr><tr><td><a href="#redde-stmt"><code>redde_stmt</code></a></td><td><code>#redde-stmt</code></td><td>live</td></tr><tr><td><a href="#reddet-stmt"><code>reddet_stmt</code></a></td><td><code>#reddet-stmt</code></td><td>live</td></tr><tr><td><a href="#tacebit-stmt"><code>tacebit_stmt</code></a></td><td><code>#tacebit-stmt</code></td><td>live</td></tr><tr><td><a href="#cede-stmt"><code>cede_stmt</code></a></td><td><code>#cede-stmt</code></td><td>live</td></tr><tr><td><a href="#rumpe-stmt"><code>rumpe_stmt</code></a></td><td><code>#rumpe-stmt</code></td><td>live</td></tr><tr><td><a href="#perge-stmt"><code>perge_stmt</code></a></td><td><code>#perge-stmt</code></td><td>live</td></tr><tr><td><a href="#tacet-stmt"><code>tacet_stmt</code></a></td><td><code>#tacet-stmt</code></td><td>live</td></tr><tr><td><a href="#iace-stmt"><code>iace_stmt</code></a></td><td><code>#iace-stmt</code></td><td>live</td></tr><tr><td><a href="#iace-expr"><code>iace_expr</code></a></td><td><code>#iace-expr</code></td><td>live</td></tr><tr><td><a href="#iace-guarded-expr"><code>iace_guarded_expr</code></a></td><td><code>#iace-guarded-expr</code></td><td>live</td></tr><tr><td><a href="#cape-clause"><code>cape_clause</code></a></td><td><code>#cape-clause</code></td><td>live</td></tr><tr><td><a href="#adfirma-stmt"><code>adfirma_stmt</code></a></td><td><code>#adfirma-stmt</code></td><td>live</td></tr><tr><td><a href="#requirit-stmt"><code>requirit_stmt</code></a></td><td><code>#requirit-stmt</code></td><td>live</td></tr><tr><td><a href="#reice-stmt"><code>reice_stmt</code></a></td><td><code>#reice-stmt</code></td><td>live</td></tr><tr><td><a href="#expression"><code>expression</code></a></td><td><code>#expression</code></td><td>live</td></tr><tr><td><a href="#transfer"><code>transfer</code></a></td><td><code>#transfer</code></td><td>live</td></tr><tr><td><a href="#assignment"><code>assignment</code></a></td><td><code>#assignment</code></td><td>live</td></tr><tr><td><a href="#inc-dec-stmt"><code>inc_dec_stmt</code></a></td><td><code>#inc-dec-stmt</code></td><td>live</td></tr><tr><td><a href="#place"><code>place</code></a></td><td><code>#place</code></td><td>live</td></tr><tr><td><a href="#ternary"><code>ternary</code></a></td><td><code>#ternary</code></td><td>live</td></tr><tr><td><a href="#aut-expr"><code>aut_expr</code></a></td><td><code>#aut-expr</code></td><td>live</td></tr><tr><td><a href="#et-expr"><code>et_expr</code></a></td><td><code>#et-expr</code></td><td>live</td></tr><tr><td><a href="#equality"><code>equality</code></a></td><td><code>#equality</code></td><td>live</td></tr><tr><td><a href="#equality-tail"><code>equality_tail</code></a></td><td><code>#equality-tail</code></td><td>live</td></tr><tr><td><a href="#comparison"><code>comparison</code></a></td><td><code>#comparison</code></td><td>live</td></tr><tr><td><a href="#bitwise-or-expr"><code>bitwise_or_expr</code></a></td><td><code>#bitwise-or-expr</code></td><td>live</td></tr><tr><td><a href="#bitwise-xor-expr"><code>bitwise_xor_expr</code></a></td><td><code>#bitwise-xor-expr</code></td><td>live</td></tr><tr><td><a href="#bitwise-and-expr"><code>bitwise_and_expr</code></a></td><td><code>#bitwise-and-expr</code></td><td>live</td></tr><tr><td><a href="#shift-expr"><code>shift_expr</code></a></td><td><code>#shift-expr</code></td><td>live</td></tr><tr><td><a href="#range-expr"><code>range_expr</code></a></td><td><code>#range-expr</code></td><td>live</td></tr><tr><td><a href="#range-tail"><code>range_tail</code></a></td><td><code>#range-tail</code></td><td>live</td></tr><tr><td><a href="#additive-expr"><code>additive_expr</code></a></td><td><code>#additive-expr</code></td><td>live</td></tr><tr><td><a href="#multiplicative-expr"><code>multiplicative_expr</code></a></td><td><code>#multiplicative-expr</code></td><td>live</td></tr><tr><td><a href="#vel-expr"><code>vel_expr</code></a></td><td><code>#vel-expr</code></td><td>live</td></tr><tr><td><a href="#vel-rhs"><code>vel_rhs</code></a></td><td><code>#vel-rhs</code></td><td>live</td></tr><tr><td><a href="#vel-range-tail"><code>vel_range_tail</code></a></td><td><code>#vel-range-tail</code></td><td>live</td></tr><tr><td><a href="#unary-expr"><code>unary_expr</code></a></td><td><code>#unary-expr</code></td><td>live</td></tr><tr><td><a href="#gradient-expr"><code>gradient_expr</code></a></td><td><code>#gradient-expr</code></td><td>live</td></tr><tr><td><a href="#gradient-selection"><code>gradient_selection</code></a></td><td><code>#gradient-selection</code></td><td>live</td></tr><tr><td><a href="#gradient-place"><code>gradient_place</code></a></td><td><code>#gradient-place</code></td><td>live</td></tr><tr><td><a href="#cast-expr"><code>cast_expr</code></a></td><td><code>#cast-expr</code></td><td>live</td></tr><tr><td><a href="#conversio-expr"><code>conversio_expr</code></a></td><td><code>#conversio-expr</code></td><td>live</td></tr><tr><td><a href="#inline-recovery"><code>inline_recovery</code></a></td><td><code>#inline-recovery</code></td><td>live</td></tr><tr><td><a href="#call-expr"><code>call_expr</code></a></td><td><code>#call-expr</code></td><td>live</td></tr><tr><td><a href="#call-suffix"><code>call_suffix</code></a></td><td><code>#call-suffix</code></td><td>live</td></tr><tr><td><a href="#member-suffix"><code>member_suffix</code></a></td><td><code>#member-suffix</code></td><td>live</td></tr><tr><td><a href="#optional-suffix"><code>optional_suffix</code></a></td><td><code>#optional-suffix</code></td><td>live</td></tr><tr><td><a href="#non-null-suffix"><code>non_null_suffix</code></a></td><td><code>#non-null-suffix</code></td><td>live</td></tr><tr><td><a href="#argument-list"><code>argument_list</code></a></td><td><code>#argument-list</code></td><td>live</td></tr><tr><td><a href="#argument"><code>argument</code></a></td><td><code>#argument</code></td><td>live</td></tr><tr><td><a href="#template-argument"><code>template_argument</code></a></td><td><code>#template-argument</code></td><td>live</td></tr><tr><td><a href="#literal"><code>literal</code></a></td><td><code>#literal</code></td><td>live</td></tr><tr><td><a href="#primary"><code>primary</code></a></td><td><code>#primary</code></td><td>live</td></tr><tr><td><a href="#ad-expr"><code>ad_expr</code></a></td><td><code>#ad-expr</code></td><td>live</td></tr><tr><td><a href="#ad-opener"><code>ad_opener</code></a></td><td><code>#ad-opener</code></td><td>live</td></tr><tr><td><a href="#array-literal"><code>array_literal</code></a></td><td><code>#array-literal</code></td><td>live</td></tr><tr><td><a href="#iuncta-expr"><code>iuncta_expr</code></a></td><td><code>#iuncta-expr</code></td><td>live</td></tr><tr><td><a href="#json-literal"><code>json_literal</code></a></td><td><code>#json-literal</code></td><td>live</td></tr><tr><td><a href="#json-member"><code>json_member</code></a></td><td><code>#json-member</code></td><td>live</td></tr><tr><td><a href="#typed-constructor"><code>typed_constructor</code></a></td><td><code>#typed-constructor</code></td><td>live</td></tr><tr><td><a href="#field-list"><code>field_list</code></a></td><td><code>#field-list</code></td><td>live</td></tr><tr><td><a href="#field-init"><code>field_init</code></a></td><td><code>#field-init</code></td><td>live</td></tr><tr><td><a href="#field-key"><code>field_key</code></a></td><td><code>#field-key</code></td><td>live</td></tr><tr><td><a href="#json-value"><code>json_value</code></a></td><td><code>#json-value</code></td><td>live</td></tr><tr><td><a href="#json-object"><code>json_object</code></a></td><td><code>#json-object</code></td><td>live</td></tr><tr><td><a href="#json-array"><code>json_array</code></a></td><td><code>#json-array</code></td><td>live</td></tr><tr><td><a href="#json-string"><code>json_string</code></a></td><td><code>#json-string</code></td><td>live</td></tr><tr><td><a href="#json-number"><code>json_number</code></a></td><td><code>#json-number</code></td><td>live</td></tr><tr><td><a href="#finge-expr"><code>finge_expr</code></a></td><td><code>#finge-expr</code></td><td>live</td></tr><tr><td><a href="#qualified-ident"><code>qualified_ident</code></a></td><td><code>#qualified-ident</code></td><td>live</td></tr><tr><td><a href="#praefixum-expr"><code>praefixum_expr</code></a></td><td><code>#praefixum-expr</code></td><td>live</td></tr><tr><td><a href="#scriptum-expr"><code>scriptum_expr</code></a></td><td><code>#scriptum-expr</code></td><td>live</td></tr><tr><td><a href="#lege-expr"><code>lege_expr</code></a></td><td><code>#lege-expr</code></td><td>live</td></tr><tr><td><a href="#first-match-expr"><code>first_match_expr</code></a></td><td><code>#first-match-expr</code></td><td>live</td></tr><tr><td><a href="#summa-expr"><code>summa_expr</code></a></td><td><code>#summa-expr</code></td><td>live</td></tr><tr><td><a href="#filum-clause"><code>filum_clause</code></a></td><td><code>#filum-clause</code></td><td>live</td></tr><tr><td><a href="#object-pattern"><code>object_pattern</code></a></td><td><code>#object-pattern</code></td><td>live</td></tr><tr><td><a href="#pattern-property"><code>pattern_property</code></a></td><td><code>#pattern-property</code></td><td>live</td></tr><tr><td><a href="#array-pattern"><code>array_pattern</code></a></td><td><code>#array-pattern</code></td><td>live</td></tr><tr><td><a href="#array-pattern-element"><code>array_pattern_element</code></a></td><td><code>#array-pattern-element</code></td><td>live</td></tr><tr><td><a href="#nota-stmt"><code>nota_stmt</code></a></td><td><code>#nota-stmt</code></td><td>live</td></tr><tr><td><a href="#entry-header"><code>entry_header</code></a></td><td><code>#entry-header</code></td><td>live</td></tr><tr><td><a href="#incipit-stmt"><code>incipit_stmt</code></a></td><td><code>#incipit-stmt</code></td><td>live</td></tr><tr><td><a href="#incipiet-stmt"><code>incipiet_stmt</code></a></td><td><code>#incipiet-stmt</code></td><td>live</td></tr><tr><td><a href="#probandum-decl"><code>probandum_decl</code></a></td><td><code>#probandum-decl</code></td><td>live</td></tr><tr><td><a href="#probandum-body"><code>probandum_body</code></a></td><td><code>#probandum-body</code></td><td>live</td></tr><tr><td><a href="#proba-stmt"><code>proba_stmt</code></a></td><td><code>#proba-stmt</code></td><td>live</td></tr><tr><td><a href="#proba-modifier"><code>proba_modifier</code></a></td><td><code>#proba-modifier</code></td><td>live</td></tr><tr><td><a href="#praepara-block"><code>praepara_block</code></a></td><td><code>#praepara-block</code></td><td>live</td></tr><tr><td><a href="#fac-stmt"><code>fac_stmt</code></a></td><td><code>#fac-stmt</code></td><td>live</td></tr></tbody></table></div><h2 id="lexicon">Lexicon Appendix<a class="anchor" href="#lexicon">#</a></h2><p>The lexical tier is descriptive and remains owned by the live lexer and
 driver. <code>capture-pending</code> rows intentionally carry no invented token shape.</p><div class="table-scroll"><table><thead><tr><th>Terminal</th><th>Status</th><th>Capture notes</th></tr></thead><tbody><tr><td><code>IDENTIFIER</code></td><td><code>capture-pending</code></td><td>Lexical tier. Empty RHS; status is capture-pending. radix-lexer / driver / parser is the authority (crates/radix-lexer/src/). Not a second lexer spec. scan.rs scan_identifier; Unicode XID_Start or '_' then XID_Continue or '_'; NFKC intern; TokenKind::Ident (keywords also lex as identifiers)</td></tr><tr><td><code>NUMBER</code></td><td><code>capture-pending</code></td><td>scan.rs scan_number; decimal/hex/bin/oct integers and floats with '_' separators; TokenKind::Integer(u64) or Float(f64)</td></tr><tr><td><code>NATURAL</code></td><td><code>capture-pending</code></td><td>not a distinct lexer token; type-position TokenKind::Integer used as magnitudo capacity (no fraction/exponent)</td></tr><tr><td><code>STRING</code></td><td><code>capture-pending</code></td><td>scan.rs scan_string / scan_guillemet_block_string; double-quoted or guillemet block; TokenKind::String</td></tr><tr><td><code>ASCII_STRING</code></td><td><code>capture-pending</code></td><td>scan.rs scan_ascii_string; single-quoted; TokenKind::AsciiString</td></tr><tr><td><code>BACKTICK_STRING</code></td><td><code>capture-pending</code></td><td>scan.rs scan_backtick_string; backtick forma template; TokenKind::BacktickString</td></tr><tr><td><code>OCTETI_STRING</code></td><td><code>capture-pending</code></td><td>scan.rs scan_octeti_string; pipe-delimited hex; TokenKind::OctetiString</td></tr><tr><td><code>NEWLINE</code></td><td><code>capture-pending</code></td><td>scan.rs scan_line_break; LF or CRLF; TokenKind::Newline</td></tr><tr><td><code>WIDTH_MARKER</code></td><td><code>capture-pending</code></td><td>parser type-position identifier i8/i16/i32/i64/u8/u16/u32/u64/f16/f32/f64; not a lexer token</td></tr><tr><td><code>LISTA_WIDTH_SUGAR</code></td><td><code>capture-pending</code></td><td>parser type-position l + WIDTH_MARKER; not a lexer token</td></tr><tr><td><code>TENSOR_WIDTH_SUGAR</code></td><td><code>capture-pending</code></td><td>parser type-position t + WIDTH_MARKER; not a lexer token</td></tr><tr><td><code>SPARSA_WIDTH_SUGAR</code></td><td><code>capture-pending</code></td><td>parser type-position s + WIDTH_MARKER; not a lexer token</td></tr><tr><td><code>VECTOR_WIDTH_SUGAR</code></td><td><code>capture-pending</code></td><td>parser type-position v + WIDTH_MARKER; not a lexer token</td></tr><tr><td><code>MATRIX_WIDTH_SUGAR</code></td><td><code>capture-pending</code></td><td>parser type-position m + WIDTH_MARKER; not a lexer token</td></tr><tr><td><code>FRONTMATTER_DELIMITER</code></td><td><code>capture-pending</code></td><td>driver peels a line whose trimmed content is exactly +++ before lexing</td></tr><tr><td><code>TOML_LINES</code></td><td><code>capture-pending</code></td><td>driver; TOML body between FRONTMATTER_DELIMITER lines</td></tr><tr><td><code>ANNOTATION_NAME</code></td><td><code>capture-pending</code></td><td>parser; identifier spelling after @, including keyword spellings</td></tr><tr><td><code>ANNOTATION_FIELD_NAME</code></td><td><code>capture-pending</code></td><td>parser; identifier spelling in annotation field position</td></tr><tr><td><code>NON_NEWLINE_TOKEN</code></td><td><code>capture-pending</code></td><td>parser; one ordinary token other than TokenKind::Newline</td></tr><tr><td><code>NO_NEWLINE</code></td><td><code>capture-pending</code></td><td>parser zero-width constraint: adjacent parts stay on the same logical line</td></tr></tbody></table></div><h2 id="keyword-reference">Keyword Reference<a class="anchor" href="#keyword-reference">#</a></h2><p>This table is derived from the quoted Latin literals in the source
-productions. It is not a second keyword authority.</p><div class="table-scroll"><table><thead><tr><th>Category</th><th>Faber</th><th>Meaning</th></tr></thead><tbody><tr><td>Iteration</td><td><code>ab</code></td><td>range iteration</td></tr><tr><td>Declarations</td><td><code>abstractus</code></td><td>abstract genus modifier</td></tr><tr><td>Endpoints</td><td><code>ad</code></td><td>capability call</td></tr><tr><td>Error</td><td><code>adfirma</code></td><td>assert</td></tr><tr><td>Iteration</td><td><code>ante</code></td><td>range until exclusive</td></tr><tr><td>Grammar</td><td><code>apud</code></td><td>keyword literal derived from the production</td></tr><tr><td>Params</td><td><code class="kw">argumenta</code></td><td>CLI arguments modifier</td></tr><tr><td>Boolean</td><td><code class="kw">aut</code></td><td>or</td></tr><tr><td>Error</td><td><code class="kw">cape</code></td><td>local handler</td></tr><tr><td>Control</td><td><code class="kw">casu</code></td><td>case</td></tr><tr><td>Async</td><td><code>cede</code></td><td>yield</td></tr><tr><td>Params</td><td><code>ceteri</code></td><td>rest</td></tr><tr><td>Control</td><td><code class="kw">ceterum</code></td><td>default case</td></tr><tr><td>Objects</td><td><code>clausura</code></td><td>legacy closure</td></tr><tr><td>Type</td><td><code>copy</code></td><td>copy ownership</td></tr><tr><td>Objects</td><td><code>cura</code></td><td>with-resource</td></tr><tr><td>Params</td><td><code>curata</code></td><td>curated options</td></tr><tr><td>Control</td><td><code>custodi</code></td><td>guard</td></tr><tr><td>Type</td><td><code class="kw">de</code></td><td>borrow / for-in keys</td></tr><tr><td>Control</td><td><code class="kw">discerne</code></td><td>pattern match</td></tr><tr><td>Declarations</td><td><code>discretio</code></td><td>tagged union</td></tr><tr><td>Control</td><td><code class="kw">dum</code></td><td>while / postfix until</td></tr><tr><td>Objects</td><td><code>ego</code></td><td>self</td></tr><tr><td>Control</td><td><code class="kw">elige</code></td><td>switch</td></tr><tr><td>Control</td><td><code>ergo</code></td><td>compact statement-body joint</td></tr><tr><td>Params</td><td><code>errata</code></td><td>error channel</td></tr><tr><td>Boolean</td><td><code class="kw">est</code></td><td>is / equality</td></tr><tr><td>Boolean</td><td><code class="kw">et</code></td><td>and</td></tr><tr><td>Iteration</td><td><code class="kw">ex</code></td><td>for-of / import from</td></tr><tr><td>Params</td><td><code>exitus</code></td><td>exit code</td></tr><tr><td>Control</td><td><code class="kw">fac</code></td><td>do block / post-test loop</td></tr><tr><td>JSON</td><td><code>false</code></td><td>JSON false</td></tr><tr><td>Boolean</td><td><code class="kw">falsum</code></td><td>false</td></tr><tr><td>Async</td><td><code>fient</code></td><td>async stream posture</td></tr><tr><td>Async</td><td><code>fiet</code></td><td>async finite posture</td></tr><tr><td>Async</td><td><code>figendum</code></td><td>await-bind immutable</td></tr><tr><td>Grammar</td><td><code>filum</code></td><td>keyword literal derived from the production</td></tr><tr><td>Objects</td><td><code>finge</code></td><td>construct variant</td></tr><tr><td>Async</td><td><code>fiunt</code></td><td>sync stream posture</td></tr><tr><td>Declarations</td><td><code class="kw">fixum</code></td><td>immutable binding</td></tr><tr><td>Testing</td><td><code>fragilis</code></td><td>flaky</td></tr><tr><td>Annotation</td><td><code>fragment</code></td><td>nucleum fragment</td></tr><tr><td>Declarations</td><td><code class="kw">functio</code></td><td>function</td></tr><tr><td>Testing</td><td><code>futurum</code></td><td>future</td></tr><tr><td>Genus</td><td><code>generis</code></td><td>static member</td></tr><tr><td>Declarations</td><td><code class="kw">genus</code></td><td>class</td></tr><tr><td>Error</td><td><code>iace</code></td><td>throw</td></tr><tr><td>Error</td><td><code>iacit</code></td><td>throws marker</td></tr><tr><td>Params</td><td><code>immutata</code></td><td>immutable modifier</td></tr><tr><td>Declarations</td><td><code>implendum</code></td><td>interface contract</td></tr><tr><td>Genus</td><td><code>implet</code></td><td>implements</td></tr><tr><td>Declarations</td><td><code class="kw">importa</code></td><td>import</td></tr><tr><td>Type</td><td><code class="kw">in</code></td><td>ownership in</td></tr><tr><td>Declarations</td><td><code>incipiet</code></td><td>async entrypoint</td></tr><tr><td>Declarations</td><td><code class="kw">incipit</code></td><td>entrypoint</td></tr><tr><td>Iteration</td><td><code>inter</code></td><td>between</td></tr><tr><td>Iteration</td><td><code>intra</code></td><td>membership</td></tr><tr><td>Control</td><td><code class="kw">itera</code></td><td>for</td></tr><tr><td>Objects</td><td><code>iuncta</code></td><td>tuple type/constructor</td></tr><tr><td>Builtin</td><td><code>lege</code></td><td>read</td></tr><tr><td>Objects</td><td><code>libera</code></td><td>capture-free closure modifier</td></tr><tr><td>Builtin</td><td><code>lineam</code></td><td>line</td></tr><tr><td>Declarations</td><td><code>magnitudo</code></td><td>size/index generic parameter</td></tr><tr><td>Testing</td><td><code>metior</code></td><td>benchmark</td></tr><tr><td>Diagnostics</td><td><code class="kw">mone</code></td><td>warn</td></tr><tr><td>Error</td><td><code>mori</code></td><td>panic</td></tr><tr><td>Genus</td><td><code>nexum</code></td><td>link field</td></tr><tr><td>Literals</td><td><code class="kw">nihil</code></td><td>none</td></tr><tr><td>Declarations</td><td><code>nomen</code></td><td>import binding name</td></tr><tr><td>Boolean</td><td><code class="kw">non</code></td><td>not</td></tr><tr><td>Diagnostics</td><td><code class="kw">nota</code></td><td>note</td></tr><tr><td>Annotation</td><td><code>nucleum</code></td><td>kernel annotation</td></tr><tr><td>JSON</td><td><code>null</code></td><td>JSON null</td></tr><tr><td>Testing</td><td><code>omitte</code></td><td>skip</td></tr><tr><td>Params</td><td><code>omnia</code></td><td>all / glob</td></tr><tr><td>Params</td><td><code>optiones</code></td><td>options modifier</td></tr><tr><td>Declarations</td><td><code>ordo</code></td><td>enum</td></tr><tr><td>Type</td><td><code>own</code></td><td>owned</td></tr><tr><td>Iteration</td><td><code>per</code></td><td>range step</td></tr><tr><td>Control</td><td><code class="kw">perge</code></td><td>continue</td></tr><tr><td>Testing</td><td><code>postpara</code></td><td>teardown</td></tr><tr><td>Testing</td><td><code>postparabit</code></td><td>async teardown</td></tr><tr><td>Objects</td><td><code>praefixum</code></td><td>prefix expression</td></tr><tr><td>Testing</td><td><code>praepara</code></td><td>setup</td></tr><tr><td>Testing</td><td><code>praeparabit</code></td><td>async setup</td></tr><tr><td>Grammar</td><td><code>primus_quem</code></td><td>first-match selection head</td></tr><tr><td>Testing</td><td><code>proba</code></td><td>test</td></tr><tr><td>Testing</td><td><code>probandum</code></td><td>test suite</td></tr><tr><td>Declarations</td><td><code>publica</code></td><td>public visibility</td></tr><tr><td>Objects</td><td><code>ratio</code></td><td>named-field aggregate type/constructor</td></tr><tr><td>Control</td><td><code class="kw">redde</code></td><td>return</td></tr><tr><td>Async</td><td><code>reddet</code></td><td>await-return</td></tr><tr><td>Testing</td><td><code>repete</code></td><td>repeat</td></tr><tr><td>Error</td><td><code>requirit</code></td><td>require</td></tr><tr><td>Control</td><td><code class="kw">rumpe</code></td><td>break</td></tr><tr><td>Diagnostics</td><td><code class="kw">scribe</code></td><td>diagnostic channel</td></tr><tr><td>Builtin</td><td><code>scriptum</code></td><td>write</td></tr><tr><td>Control</td><td><code class="kw">secus</code></td><td>else</td></tr><tr><td>Control</td><td><code class="kw">si</code></td><td>if</td></tr><tr><td>Control</td><td><code>sic</code></td><td>then (ternary)</td></tr><tr><td>Control</td><td><code class="kw">sin</code></td><td>else-if</td></tr><tr><td>Declarations</td><td><code>sit</code></td><td>inferred immutable local</td></tr><tr><td>Testing</td><td><code>solum</code></td><td>only</td></tr><tr><td>Testing</td><td><code>solum_in</code></td><td>only-in</td></tr><tr><td>Params</td><td><code>sparge</code></td><td>spread</td></tr><tr><td>Declarations</td><td><code>sponte</code></td><td>optional declaration slot</td></tr><tr><td>Genus</td><td><code>sub</code></td><td>extends</td></tr><tr><td>Grammar</td><td><code>summa</code></td><td>keyword literal derived from the production</td></tr><tr><td>Async</td><td><code>tacebit</code></td><td>await-discard</td></tr><tr><td>Control</td><td><code>tacet</code></td><td>no-op</td></tr><tr><td>Testing</td><td><code>tag</code></td><td>tag</td></tr><tr><td>Testing</td><td><code>temporis</code></td><td>timeout</td></tr><tr><td>JSON</td><td><code>true</code></td><td>JSON true</td></tr><tr><td>Declarations</td><td><code>typus</code></td><td>type alias</td></tr><tr><td>Grammar</td><td><code>ubi</code></td><td>first-match predicate tail</td></tr><tr><td>Iteration</td><td><code>usque</code></td><td>range until inclusive</td></tr><tr><td>Params</td><td><code class="kw">ut</code></td><td>as / alias</td></tr><tr><td>Declarations</td><td><code class="kw">varia</code></td><td>mutable binding</td></tr><tr><td>Async</td><td><code>variandum</code></td><td>await-bind mutable</td></tr><tr><td>Boolean</td><td><code>vel</code></td><td>nullable default</td></tr><tr><td>Boolean</td><td><code class="kw">verum</code></td><td>true</td></tr><tr><td>Diagnostics</td><td><code class="kw">vide</code></td><td>debug</td></tr><tr><td>Declarations</td><td><code>visibilitas</code></td><td>visibility field</td></tr></tbody></table></div><h2 id="comma-separator-law">Comma Separator Table<a class="anchor" href="#comma-separator-law">#</a></h2><p>Optional commas are forbidden. The source currently has no <code>','?</code>
+productions. It is not a second keyword authority.</p><div class="table-scroll"><table><thead><tr><th>Category</th><th>Faber</th><th>Meaning</th></tr></thead><tbody><tr><td>Iteration</td><td><code>ab</code></td><td>range iteration</td></tr><tr><td>Declarations</td><td><code>abstractus</code></td><td>abstract genus modifier</td></tr><tr><td>Endpoints</td><td><code>ad</code></td><td>capability call</td></tr><tr><td>Error</td><td><code>adfirma</code></td><td>assert</td></tr><tr><td>Iteration</td><td><code>ante</code></td><td>range until exclusive</td></tr><tr><td>Grammar</td><td><code>apud</code></td><td>keyword literal derived from the production</td></tr><tr><td>Params</td><td><code class="kw">argumenta</code></td><td>CLI arguments modifier</td></tr><tr><td>Boolean</td><td><code class="kw">aut</code></td><td>or</td></tr><tr><td>Error</td><td><code class="kw">cape</code></td><td>local handler</td></tr><tr><td>Control</td><td><code class="kw">casu</code></td><td>case</td></tr><tr><td>Async</td><td><code>cede</code></td><td>yield</td></tr><tr><td>Params</td><td><code>ceteri</code></td><td>rest</td></tr><tr><td>Control</td><td><code class="kw">ceterum</code></td><td>default case</td></tr><tr><td>Objects</td><td><code>clausura</code></td><td>legacy closure</td></tr><tr><td>Type</td><td><code>copy</code></td><td>copy ownership</td></tr><tr><td>Objects</td><td><code>cura</code></td><td>with-resource</td></tr><tr><td>Params</td><td><code>curata</code></td><td>curated options</td></tr><tr><td>Control</td><td><code>custodi</code></td><td>guard</td></tr><tr><td>Type</td><td><code class="kw">de</code></td><td>borrow / for-in keys</td></tr><tr><td>Control</td><td><code class="kw">discerne</code></td><td>pattern match</td></tr><tr><td>Declarations</td><td><code>discretio</code></td><td>tagged union</td></tr><tr><td>Control</td><td><code class="kw">dum</code></td><td>while / postfix until</td></tr><tr><td>Objects</td><td><code>ego</code></td><td>self</td></tr><tr><td>Control</td><td><code class="kw">elige</code></td><td>switch</td></tr><tr><td>Control</td><td><code>ergo</code></td><td>compact statement-body joint</td></tr><tr><td>Params</td><td><code>errata</code></td><td>error channel</td></tr><tr><td>Boolean</td><td><code class="kw">est</code></td><td>is / equality</td></tr><tr><td>Boolean</td><td><code class="kw">et</code></td><td>and</td></tr><tr><td>Iteration</td><td><code class="kw">ex</code></td><td>for-of / import from</td></tr><tr><td>Params</td><td><code>exitus</code></td><td>exit code</td></tr><tr><td>Control</td><td><code class="kw">fac</code></td><td>do block / post-test loop</td></tr><tr><td>JSON</td><td><code>false</code></td><td>JSON false</td></tr><tr><td>Boolean</td><td><code class="kw">falsum</code></td><td>false</td></tr><tr><td>Async</td><td><code>fient</code></td><td>async stream posture</td></tr><tr><td>Async</td><td><code>fiet</code></td><td>async finite posture</td></tr><tr><td>Async</td><td><code>figendum</code></td><td>await-bind immutable</td></tr><tr><td>Grammar</td><td><code>filum</code></td><td>keyword literal derived from the production</td></tr><tr><td>Objects</td><td><code>finge</code></td><td>construct variant</td></tr><tr><td>Async</td><td><code>fiunt</code></td><td>sync stream posture</td></tr><tr><td>Declarations</td><td><code class="kw">fixum</code></td><td>immutable binding</td></tr><tr><td>Testing</td><td><code>fragilis</code></td><td>flaky</td></tr><tr><td>Annotation</td><td><code>fragment</code></td><td>nucleum fragment</td></tr><tr><td>Declarations</td><td><code class="kw">functio</code></td><td>function</td></tr><tr><td>Testing</td><td><code>futurum</code></td><td>future</td></tr><tr><td>Genus</td><td><code>generis</code></td><td>static member</td></tr><tr><td>Declarations</td><td><code class="kw">genus</code></td><td>class</td></tr><tr><td>Error</td><td><code>iace</code></td><td>throw</td></tr><tr><td>Error</td><td><code>iacit</code></td><td>throws marker</td></tr><tr><td>Params</td><td><code>immutata</code></td><td>immutable modifier</td></tr><tr><td>Declarations</td><td><code>implendum</code></td><td>interface contract</td></tr><tr><td>Genus</td><td><code>implet</code></td><td>implements</td></tr><tr><td>Declarations</td><td><code class="kw">importa</code></td><td>import</td></tr><tr><td>Type</td><td><code class="kw">in</code></td><td>ownership in</td></tr><tr><td>Declarations</td><td><code>incipiet</code></td><td>async entrypoint</td></tr><tr><td>Declarations</td><td><code class="kw">incipit</code></td><td>entrypoint</td></tr><tr><td>Iteration</td><td><code>inter</code></td><td>between</td></tr><tr><td>Iteration</td><td><code>intra</code></td><td>membership</td></tr><tr><td>Control</td><td><code class="kw">itera</code></td><td>for</td></tr><tr><td>Objects</td><td><code>iuncta</code></td><td>tuple type/constructor</td></tr><tr><td>Builtin</td><td><code>lege</code></td><td>read</td></tr><tr><td>Objects</td><td><code>libera</code></td><td>capture-free closure modifier</td></tr><tr><td>Builtin</td><td><code>lineam</code></td><td>line</td></tr><tr><td>Declarations</td><td><code>magnitudo</code></td><td>size/index generic parameter</td></tr><tr><td>Testing</td><td><code>metior</code></td><td>benchmark</td></tr><tr><td>Diagnostics</td><td><code class="kw">mone</code></td><td>warn</td></tr><tr><td>Error</td><td><code>mori</code></td><td>panic</td></tr><tr><td>Genus</td><td><code>nexum</code></td><td>link field</td></tr><tr><td>Literals</td><td><code class="kw">nihil</code></td><td>none</td></tr><tr><td>Declarations</td><td><code>nomen</code></td><td>import binding name</td></tr><tr><td>Boolean</td><td><code class="kw">non</code></td><td>not</td></tr><tr><td>Diagnostics</td><td><code class="kw">nota</code></td><td>note</td></tr><tr><td>Annotation</td><td><code>nucleum</code></td><td>kernel annotation; kernel closure modifier</td></tr><tr><td>JSON</td><td><code>null</code></td><td>JSON null</td></tr><tr><td>Testing</td><td><code>omitte</code></td><td>skip</td></tr><tr><td>Params</td><td><code>omnia</code></td><td>all / glob</td></tr><tr><td>Params</td><td><code>optiones</code></td><td>options modifier</td></tr><tr><td>Declarations</td><td><code>ordo</code></td><td>enum</td></tr><tr><td>Type</td><td><code>own</code></td><td>owned</td></tr><tr><td>Iteration</td><td><code>per</code></td><td>range step</td></tr><tr><td>Control</td><td><code class="kw">perge</code></td><td>continue</td></tr><tr><td>Testing</td><td><code>postpara</code></td><td>teardown</td></tr><tr><td>Testing</td><td><code>postparabit</code></td><td>async teardown</td></tr><tr><td>Objects</td><td><code>praefixum</code></td><td>prefix expression</td></tr><tr><td>Testing</td><td><code>praepara</code></td><td>setup</td></tr><tr><td>Testing</td><td><code>praeparabit</code></td><td>async setup</td></tr><tr><td>Grammar</td><td><code>primus_quem</code></td><td>first-match selection head</td></tr><tr><td>Testing</td><td><code>proba</code></td><td>test</td></tr><tr><td>Testing</td><td><code>probandum</code></td><td>test suite</td></tr><tr><td>Declarations</td><td><code>publica</code></td><td>public visibility</td></tr><tr><td>Objects</td><td><code>ratio</code></td><td>named-field aggregate type/constructor</td></tr><tr><td>Control</td><td><code class="kw">redde</code></td><td>return</td></tr><tr><td>Async</td><td><code>reddet</code></td><td>await-return</td></tr><tr><td>Error</td><td><code>reice</code></td><td>reject</td></tr><tr><td>Testing</td><td><code>repete</code></td><td>repeat</td></tr><tr><td>Error</td><td><code>requirit</code></td><td>require</td></tr><tr><td>Control</td><td><code class="kw">rumpe</code></td><td>break</td></tr><tr><td>Diagnostics</td><td><code class="kw">scribe</code></td><td>diagnostic channel</td></tr><tr><td>Builtin</td><td><code>scriptum</code></td><td>write</td></tr><tr><td>Control</td><td><code class="kw">secus</code></td><td>else</td></tr><tr><td>Control</td><td><code class="kw">si</code></td><td>if</td></tr><tr><td>Control</td><td><code>sic</code></td><td>then (ternary)</td></tr><tr><td>Control</td><td><code class="kw">sin</code></td><td>else-if</td></tr><tr><td>Declarations</td><td><code>sit</code></td><td>inferred immutable local</td></tr><tr><td>Testing</td><td><code>solum</code></td><td>only</td></tr><tr><td>Testing</td><td><code>solum_in</code></td><td>only-in</td></tr><tr><td>Params</td><td><code>sparge</code></td><td>spread</td></tr><tr><td>Declarations</td><td><code>sponte</code></td><td>optional declaration slot</td></tr><tr><td>Genus</td><td><code>sub</code></td><td>extends</td></tr><tr><td>Grammar</td><td><code>summa</code></td><td>keyword literal derived from the production</td></tr><tr><td>Async</td><td><code>tacebit</code></td><td>await-discard</td></tr><tr><td>Control</td><td><code>tacet</code></td><td>no-op</td></tr><tr><td>Testing</td><td><code>tag</code></td><td>tag</td></tr><tr><td>Testing</td><td><code>temporis</code></td><td>timeout</td></tr><tr><td>JSON</td><td><code>true</code></td><td>JSON true</td></tr><tr><td>Declarations</td><td><code>typus</code></td><td>type alias</td></tr><tr><td>Grammar</td><td><code>ubi</code></td><td>first-match predicate tail</td></tr><tr><td>Iteration</td><td><code>usque</code></td><td>range until inclusive</td></tr><tr><td>Params</td><td><code class="kw">ut</code></td><td>as / alias</td></tr><tr><td>Declarations</td><td><code class="kw">varia</code></td><td>mutable binding</td></tr><tr><td>Async</td><td><code>variandum</code></td><td>await-bind mutable</td></tr><tr><td>Boolean</td><td><code>vel</code></td><td>nullable default</td></tr><tr><td>Boolean</td><td><code class="kw">verum</code></td><td>true</td></tr><tr><td>Diagnostics</td><td><code class="kw">vide</code></td><td>debug</td></tr><tr><td>Declarations</td><td><code>visibilitas</code></td><td>visibility field</td></tr></tbody></table></div><h2 id="comma-separator-law">Comma Separator Table<a class="anchor" href="#comma-separator-law">#</a></h2><p>Optional commas are forbidden. The source currently has no <code>','?</code>
 positions; every comma-bearing production is either required or absent.</p><div class="table-scroll"><table><thead><tr><th>Production</th><th>Source row</th></tr></thead><tbody><tr><td>—</td><td>no optional comma positions</td></tr></tbody></table></div><h2 id="normative-language-notes">Normative Language Notes<a class="anchor" href="#normative-language-notes">#</a></h2><p>Formal grammar for the Faber programming language. This file is the canonical
 grammar and spec-commentary surface for the public language; the compiler
 (Radix) implements it. The rendered, localized grammar is published on
@@ -673,14 +511,19 @@ members, <code>implendum</code> methods, <code>discretio</code> payload fields) 
 Entries are trivia-delimited.</p><p>---</p><h2 id="declarations">Declarations<a class="anchor" href="#declarations">#</a></h2><h3 id="variables">Variables<a class="anchor" href="#variables">#</a></h3><ul><li><code class="kw">fixum</code> = immutable binding (write-once): it may be declared without an
 initializer and assigned exactly once later, then frozen. <code class="kw">varia</code> = mutable
 binding (reassignable), like <code>let</code>.</li><li><code>figendum</code> / <code>variandum</code> await a <code>promissum&lt;T&gt;</code> or <code>promissum&lt;T ⇥ E&gt;</code>, bind
-the resolved <code>T</code>, and propagate a compatible alternate <code>E</code>.</li><li>Use <code>_</code> as the type annotation when the initializer determines the type: <code>fixum _ name ← value</code></li><li><code>sit name ← value</code> is sugar for <code>fixum _ name ← value</code> (inferred immutable local)</li><li><code>sit name</code> (no initializer) is sugar for <code>fixum _ name</code> — the inferred deferred
+the resolved <code>T</code>, and propagate a compatible alternate <code>E</code>.</li><li><code>↢</code> is the await-directed initializer for an ordinary declaration:
+<code>fixum T name ↢ future</code>, <code>varia T name ↢ future</code>, or <code>sit name ↢ future</code>.
+It has the same await and alternate-propagation semantics as
+<code>figendum T name ← future</code>, but it is not a general expression operator and
+cannot target an existing place.</li><li>Use <code>_</code> as the type annotation when the initializer determines the type: <code>fixum _ name ← value</code></li><li><code>sit name ← value</code> is sugar for <code>fixum _ name ← value</code> (inferred immutable local)</li><li><code>sit name</code> (no initializer) is sugar for <code>fixum _ name</code> — the inferred deferred
 immutable. Assign exactly once before any read.</li><li>Typed <code class="kw">fixum</code>/<code class="kw">varia</code> initializers accept <code>↤</code> (<code>fixum numerus x ↤ &quot;42&quot;</code>):
 the written type is the conversion destination, then the binding is
 initialized. <code>figendum</code>/<code>variandum</code> keep <code>←</code>; <code>fixum _</code>, <code>sit</code>, and untyped
 destructuring reject <code>↤</code> (no concrete destination type).</li><li>Deferred init: <code>fixum numerus x</code> or <code>sit x</code> declares an uninitialized immutable
 slot that must be assigned exactly once before any read; a second assignment is
 rejected. The definite-assignment pass (semantic Phase 3a) enforces this.</li></ul><h3 id="functions">Functions<a class="anchor" href="#functions">#</a></h3><h3 id="capture-free-closures">Capture-free closures<a class="anchor" href="#capture-free-closures">#</a></h3><p><code>libera</code> is the canonical Latin spelling of the <code>closure_modifier</code>; the English reader spelling is <code>free</code>. The modifier follows the parameter list in both compact and legacy <code>clausura</code> forms, before any <code>→</code> return or <code>⇥</code> alternate-exit clause. It declares a checked capture-free contract: the closure may use its own parameters, body locals, and module-level items, but it must not reference a local or parameter from an enclosing function. Such a capture is rejected by the compiler.</p><pre class="faber-code"><code class="lang-text">sit summa ← (numerus a, numerus b) libera ∴ a + b
-clausura numerus x libera: x * 2</code></pre><ul><li>Return syntax: <code>→</code> declares the normal success type. A bodyful function with no <code>→</code> is effect-only (<code class="typ">vacuum</code>) and must not contain <code class="kw">redde</code>. A statement-bodied closure (<code>fac { ... }</code> or legacy block body) must also spell <code>→ T</code> before it can use <code class="kw">redde</code>; expression-bodied closures may infer their result from the expression.</li><li>Recoverable alternate-exit syntax: <code>⇥</code> declares the error-channel type. It can appear after <code>→ T</code> or alone on an effect-only failable function or closure. A closure body that uses an escaping <code>iace</code> must declare its own <code>⇥ E</code>; it cannot inherit the enclosing function's error channel. A local <code>fac { ... } cape err { ... }</code> may catch <code>iace</code> without an enclosing <code>⇥</code>. A failable function call (<code>→ T ⇥ E</code>) inside a <code>⇥</code>-declaring function propagates to the function's alternate exit without a <code class="kw">fac</code>/<code class="kw">cape</code> wrapper, mirroring how bare <code>↦</code> conversio and <code>iace</code> throws already behave; the call lowers to Rust <code>?</code>. A closure must still declare its own <code>⇥</code> to propagate a failable call — the enclosing function's error channel does not cross the closure boundary.</li><li>Parameter access markers live in the type position: <code class="kw">de</code>/<code>ref</code> (read), <code class="kw">in</code>/<code>mut</code> (mutate), <code>own</code> (consume), and <code>copy</code> (duplicate then own). The retired parameter-prefix slot is not part of the grammar; <code class="kw">ex</code>/<code>from</code> remains the import/iteration/extraction token identity.</li><li>Post-name marker: <code>sponte</code> (voluntary/optional provision)</li><li><code>ceteri</code> marks rest parameter</li><li><code>curata NAME ('ut' LOCAL)?</code> declares an allocator requirement; <code>LOCAL</code> is the function-body alias.</li><li>Ordinary <code class="kw">functio</code> declarations and genus methods require bodies. Signature-only methods belong in <code>implendum</code>.</li><li><code>errata NAME</code> is a legacy runtime-injected <code>ignotum</code> local, and <code>iacit</code> is a legacy marker with no current semantic effect. Neither declares the typed alternate-exit contract. New failable APIs should use <code>⇥ E</code>; whether either legacy modifier should survive is unresolved.</li><li><code>ergo</code> is the compact <strong>statement-body</strong> joint only (one-statement <code class="kw">si</code>/<code class="kw">dum</code>/<code class="kw">casu</code>/… arms).</li><li><code>∴</code> is the compact <strong>clausura</strong> joint only. The two are not aliases.</li><li>Compact closure block bodies must use <code>fac { ... }</code>; a closure-local <code class="kw">fac</code> body may attach <code class="kw">cape</code>, but cannot use postfix <code class="kw">dum</code>.</li></ul><h3 id="classes">Classes<a class="anchor" href="#classes">#</a></h3><h3 id="annotations">Annotations<a class="anchor" href="#annotations">#</a></h3><p><code>@ nucleum fragment</code> is a modifier on the <code>nucleum</code> annotation (sugar or
+clausura numerus x libera: x * 2</code></pre><p><code>nucleum</code> is the second spelling of the <code>closure_modifier</code>; the English reader spelling is <code>kernel</code>. The alternative is locale-sealed and singular: at most one modifier may occupy the slot, each reader pack admits only its declared spelling, and stacked spellings such as <code>free kernel</code> are rejected as a duplicate modifier. A <code>kernel</code> closure requires everything <code>free</code> requires — no reference to an enclosing function's local or parameter, while its own parameters, body locals, and module-level items stay legal — plus the device-safe subset used by kernel functions: typed tensors and scalars, glyphs, structured control, and calls to other device functions. Host allocation, I/O, bags, dynamic calls, <code>⇥</code> clauses, <code>iace</code> throws, and <code class="kw">cape</code> recovery are rejected in the kernel contract; <code class="kw">redde</code> returns only the closure's own <code>→</code> result. Declaration annotations <code>@ nucleum</code> (<code>@ kernel</code> in the English reader) are unchanged: they remain the role marker for named functions, and the closure modifier is their expression-form twin.</p><p>The body joint keeps the existing closure law: <code>∴</code> followed by one expression, or <code>∴ fac { ... }</code> (<code>do</code> in the English reader); bare <code>{ ... }</code> is not a closure body. A kernel closure is usable only as a local immutable binding in its enclosing function and only called there, or invoked immediately in the same expression; it is not a first-class value and cannot escape into a field, list element, return value, or ordinary-function argument. The compiler lowers it to a private synthetic kernel with a stable identity: one launch when its host caller invokes it, direct composition with no surviving device-to-device runtime call when a kernel caller invokes it, and never a public launch entry or ABI row. The modifier does not request fusion; two local kernel closures remain two launches unless a later cross-launch pass fuses them.</p><pre class="faber-code"><code class="lang-text">fixum _ duplica ← (tensor&lt;f32, [8]&gt; x) nucleum ∴ x + x
+fixum _ dup ← duplica(xs)</code></pre><ul><li>Return syntax: <code>→</code> declares the normal success type. A bodyful function with no <code>→</code> is effect-only (<code class="typ">vacuum</code>) and must not contain <code class="kw">redde</code>. A statement-bodied closure (<code>fac { ... }</code> or legacy block body) must also spell <code>→ T</code> before it can use <code class="kw">redde</code>; expression-bodied closures may infer their result from the expression.</li><li>Recoverable alternate-exit syntax: <code>⇥</code> declares the error-channel type. It can appear after <code>→ T</code> or alone on an effect-only failable function or closure. A closure body that uses an escaping <code>iace</code> must declare its own <code>⇥ E</code>; it cannot inherit the enclosing function's error channel. A local <code>fac { ... } cape err { ... }</code> may catch <code>iace</code> without an enclosing <code>⇥</code>. A failable function call (<code>→ T ⇥ E</code>) inside a <code>⇥</code>-declaring function propagates to the function's alternate exit without a <code class="kw">fac</code>/<code class="kw">cape</code> wrapper, mirroring how bare <code>↦</code> conversio and <code>iace</code> throws already behave; the call lowers to Rust <code>?</code>. A closure must still declare its own <code>⇥</code> to propagate a failable call — the enclosing function's error channel does not cross the closure boundary.</li><li>Parameter access markers live in the type position: <code class="kw">de</code>/<code>ref</code> (read), <code class="kw">in</code>/<code>mut</code> (mutate), <code>own</code> (consume), and <code>copy</code> (duplicate then own). The retired parameter-prefix slot is not part of the grammar; <code class="kw">ex</code>/<code>from</code> remains the import/iteration/extraction token identity.</li><li>Post-name marker: <code>sponte</code> (voluntary/optional provision)</li><li><code>ceteri</code> marks rest parameter</li><li><code>curata NAME ('ut' LOCAL)?</code> declares an allocator requirement; <code>LOCAL</code> is the function-body alias.</li><li>Ordinary <code class="kw">functio</code> declarations and genus methods require bodies. Signature-only methods belong in <code>implendum</code>.</li><li><code>errata NAME</code> is a legacy runtime-injected <code>ignotum</code> local, and <code>iacit</code> is a legacy marker with no current semantic effect. Neither declares the typed alternate-exit contract. New failable APIs should use <code>⇥ E</code>; whether either legacy modifier should survive is unresolved.</li><li><code>ergo</code> is the compact <strong>statement-body</strong> joint only (one-statement <code class="kw">si</code>/<code class="kw">dum</code>/<code class="kw">casu</code>/… arms).</li><li><code>∴</code> is the compact <strong>clausura</strong> joint only. The two are not aliases.</li><li>Compact closure block bodies must use <code>fac { ... }</code>; a closure-local <code class="kw">fac</code> body may attach <code class="kw">cape</code>, but cannot use postfix <code class="kw">dum</code>.</li></ul><h3 id="classes">Classes<a class="anchor" href="#classes">#</a></h3><h3 id="annotations">Annotations<a class="anchor" href="#annotations">#</a></h3><p><code>@ nucleum fragment</code> is a modifier on the <code>nucleum</code> annotation (sugar or
 braced <code>fragment = verum</code> / <code class="kw">falsum</code>), not a fused annotation name and not the
 graphics <code>@ fragment</code> stage. Standalone <code>@ fragment</code> is unchanged.</p><p>Braced annotation records (<code>@ futura { }</code>, <code>@ optio { binding = verbose, ... }</code>)
 are canonical and compression-safe. Unbraced annotations are line-sensitive,
@@ -771,7 +614,14 @@ not this form.</p><p><code>modulus&lt;W&gt;</code> is a distinct semantic family
 with <code>numerus&lt;W&gt;</code>, while explicit same-width conversion remains available.
 Literals must be in <code>0..=2^W-1</code> (for <code>modulus&lt;u64&gt;</code> up to
 <code>18446744073709551615</code>). Shift counts are themselves modular: <code>x ⇐ W</code> is a
-full wrap. Cross-width modular arithmetic is rejected.</p><h3 id="generic-collections">Generic Collections<a class="anchor" href="#generic-collections">#</a></h3><div class="table-scroll"><table><thead><tr><th>Faber</th><th>Meaning</th></tr></thead><tbody><tr><td><code>lista&lt;T&gt;</code></td><td>array</td></tr><tr><td><code>lista&lt;T, N&gt;</code></td><td>shipped; bounded array; <code>N</code> is a <code>magnitudo</code> / <code>NATURAL</code> capacity, not a width marker. <code>lista&lt;T, _&gt;</code> is the capacity hole (infer <code>N</code>).</td></tr><tr><td><code>tabula&lt;K,V&gt;</code></td><td>map</td></tr><tr><td><code>copia&lt;T&gt;</code></td><td>set</td></tr><tr><td><code>promissum&lt;T&gt;</code></td><td>promise</td></tr><tr><td><code>cursor&lt;T&gt;</code></td><td>iterator</td></tr><tr><td><code>tensor&lt;T, Figura&gt;</code></td><td>dense homogeneous buffer with static shape <code>Figura</code>; numeric methods require numeric element types</td></tr><tr><td><code>vector&lt;T, N&gt;</code></td><td>register-class numeric vector with static width <code>N</code> (single dimension, not buffer-backed)</td></tr><tr><td><code>matrix&lt;T, [R, C]&gt;</code></td><td>register-class numeric matrix with exactly two static dimensions (not buffer-backed and not a tensor alias)</td></tr><tr><td><code>atomic&lt;T&gt;</code></td><td>storage-sensitive atomic cell; v1 accepts <code>i32</code> / <code>u32</code> elements only and access must go through atomic methods</td></tr><tr><td><code>sparsa&lt;T, Figura&gt;</code></td><td>sparse homogeneous buffer with static shape <code>Figura</code>; omitted coordinates equal zero; numeric methods require numeric element types</td></tr></tbody></table></div><p>A <code>figura</code> is <code>_</code>, a natural number, a size identifier, or a bracketed list of nested figura values; empty <code>[]</code> is rank-0. Bare <code>tensor&lt;T&gt;</code> is incomplete — use <code>tensor&lt;T, []&gt;</code> for rank-0 or <code>tensor&lt;T, _&gt;</code> to infer shape.</p><p><code>vacua</code> for <code>tensor&lt;T, []&gt;</code> produces a rank-0 tensor (one default-initialized element slot).
+full wrap. Cross-width modular arithmetic is rejected.</p><p>Conversion is the deliberate complement to the checked arithmetic policy:
+<code>fractus ↦ numerus&lt;W&gt;</code> saturates at the target width — NaN converts to <code>0</code>,
+and an out-of-range value clamps to the width's bounds (the cross-tier Rust
+<code>as</code> status quo). The <code>∷</code> ascription surface follows the same saturation when
+it crosses numeric families. Integer <code>numerus&lt;W&gt;</code> arithmetic errors on
+overflow while float→integer conversion clamps; <code>modulus&lt;W&gt;</code> stays the only
+wrapping family (FORK-2, operator mail 2fb79900). Runner cast-path alignment
+is tracked as want 34821b73.</p><h3 id="generic-collections">Generic Collections<a class="anchor" href="#generic-collections">#</a></h3><div class="table-scroll"><table><thead><tr><th>Faber</th><th>Meaning</th></tr></thead><tbody><tr><td><code>lista&lt;T&gt;</code></td><td>array</td></tr><tr><td><code>lista&lt;T, N&gt;</code></td><td>shipped; bounded array; <code>N</code> is a <code>magnitudo</code> / <code>NATURAL</code> capacity, not a width marker. <code>lista&lt;T, _&gt;</code> is the capacity hole (infer <code>N</code>).</td></tr><tr><td><code>tabula&lt;K,V&gt;</code></td><td>map</td></tr><tr><td><code>copia&lt;T&gt;</code></td><td>set</td></tr><tr><td><code>promissum&lt;T&gt;</code></td><td>promise</td></tr><tr><td><code>cursor&lt;T&gt;</code></td><td>iterator</td></tr><tr><td><code>tensor&lt;T, Figura&gt;</code></td><td>dense homogeneous buffer with static shape <code>Figura</code>; numeric methods require numeric element types</td></tr><tr><td><code>vector&lt;T, N&gt;</code></td><td>register-class numeric vector with static width <code>N</code> (single dimension, not buffer-backed)</td></tr><tr><td><code>matrix&lt;T, [R, C]&gt;</code></td><td>register-class numeric matrix with exactly two static dimensions (not buffer-backed and not a tensor alias)</td></tr><tr><td><code>atomic&lt;T&gt;</code></td><td>storage-sensitive atomic cell; v1 accepts <code>i32</code> / <code>u32</code> elements only and access must go through atomic methods</td></tr><tr><td><code>sparsa&lt;T, Figura&gt;</code></td><td>sparse homogeneous buffer with static shape <code>Figura</code>; omitted coordinates equal zero; numeric methods require numeric element types</td></tr></tbody></table></div><p>A <code>figura</code> is <code>_</code>, a natural number, a size identifier, or a bracketed list of nested figura values; empty <code>[]</code> is rank-0. Bare <code>tensor&lt;T&gt;</code> is incomplete — use <code>tensor&lt;T, []&gt;</code> for rank-0 or <code>tensor&lt;T, _&gt;</code> to infer shape.</p><p><code>vacua</code> for <code>tensor&lt;T, []&gt;</code> produces a rank-0 tensor (one default-initialized element slot).
 <code>vacua</code> for <code>sparsa&lt;T, Figura&gt;</code> (any shape) produces an all-zero sparse tensor with no stored entries.
 <code>matrix&lt;T, Figura&gt;</code> requires exactly two dimensions; bare <code>matrix&lt;T&gt;</code> and one- or three-axis matrix shapes are rejected.
 <code>atomic&lt;T&gt;</code> requires <code>T</code> to be <code>i32</code> or <code>u32</code> in v1. Atomic cells are not interchangeable with their element type; use <code>load</code>, <code>store</code>, <code>exchange</code>, and <code>compare_exchange</code> receiver methods.
@@ -795,7 +645,8 @@ tends toward long form for readability; numeric/tensor-primary modules may
 prefer sugar. Choose per module or file.</p><p>---</p><h2 id="control-flow">Control Flow<a class="anchor" href="#control-flow">#</a></h2><h3 id="conditionals">Conditionals<a class="anchor" href="#conditionals">#</a></h3><ul><li><code class="kw">si</code> = if, <code class="kw">sin</code> = else-if, <code class="kw">secus</code> = else</li><li><code>ergo</code> for one-statement bodies, including <code>ergo redde</code>, <code>ergo iace</code>, <code>ergo mori</code>, and <code>ergo tacet</code> (<code>∴</code> is not accepted here)</li><li><code>tacet</code> for explicit no-op (from musical notation: &quot;it is silent&quot;)</li></ul><h3 id="loops">Loops<a class="anchor" href="#loops">#</a></h3><ul><li><code class="kw">dum</code> = while</li><li><code>itera ex...fixum</code>/<code>itera ex...varia</code> = for-of (values)</li><li><code>itera de...fixum</code>/<code>itera de...varia</code> = for-in (keys)</li><li><code>itera ab range fixum/varia i</code> = range iteration (e.g. <code>itera ab 0‥10 per 2 fixum i { nota i }</code>; <code>per</code> belongs to the range expression)</li></ul><h3 id="switchmatch">Switch/Match<a class="anchor" href="#switchmatch">#</a></h3><h3 id="pattern-matching">Pattern Matching<a class="anchor" href="#pattern-matching">#</a></h3><h3 id="guards">Guards<a class="anchor" href="#guards">#</a></h3><h3 id="resource-management">Resource Management<a class="anchor" href="#resource-management">#</a></h3><h3 id="destructuring-extraction">Destructuring Extraction<a class="anchor" href="#destructuring-extraction">#</a></h3><h3 id="control-transfer">Control Transfer<a class="anchor" href="#control-transfer">#</a></h3><ul><li><code>reddet</code> awaits a compatible promise and returns its success value from a
 <code>fiet</code> function.</li><li><code>tacebit</code> awaits a compatible promise to completion and discards any success
 value.</li><li><code>cede</code> is statement-initial yield from <code>fiunt</code> / <code>fient</code>; it is not an
-expression-form await.</li></ul><p>---</p><h2 id="error-handling">Error Handling<a class="anchor" href="#error-handling">#</a></h2><ul><li><code class="kw">cape</code> attaches to the structured forms whose productions name <code>catchClause</code>: conditional arms, <code class="kw">dum</code>, <code class="kw">itera</code>, <code class="kw">elige</code>, <code>cura</code>, and <code class="kw">fac</code>. It does not attach to arbitrary bare blocks.</li><li>Use the explicit do block when a standalone block needs a handler: <code>fac { ... } cape err { ... }</code>.</li><li><code>iace</code> = throw (recoverable), <code>mori</code> = panic (fatal).</li><li>A same-line <code>si &lt;expr&gt;</code> guard on <code>iace</code> and <code>mori</code> is line-sensitive parser sugar: <code>iace val si cond</code> desugars to <code>si cond { iace val }</code> at parse time. Its canonical, compression-safe spelling is the expanded <code class="kw">si</code> block. A source compressor must expand this sugar before removing line breaks; the guarded shorthand remains under language review.</li><li><code>adfirma</code> is a runtime invariant check. It desugars conceptually to <code>mori &quot;msg&quot; si !cond</code>, with the positive condition kept in source form and the inversion applied during lowering. The optional particle is <code>mori</code> (en <code>panic</code>): <code>adfirma cond mori msg</code> / <code>assert cond panic msg</code>. Bare <code>adfirma cond</code> stays legal. An <code>adfirma</code> failure is fatal and uncatchable by <code class="kw">cape</code> (it lowers to a panic, not a <code>Result</code>-channel error); in test context the harness isolates each <code>proba</code> so a failed assertion ends that test without ending the suite.</li><li><code>requirit</code> is the recoverable require statement (en surface <code>require … throw …</code>), the typed-error-channel twin of <code>adfirma</code>. <code>requirit cond iace err</code> desugars to <code>si non (cond) { iace err }</code> at lowering; the thrown value enters the function's <code>⇥ E</code> channel and is catchable by <code class="kw">cape</code>/<code class="kw">fac</code>, unlike <code>adfirma</code> (fatal). A <code>requirit</code> statement in a <code>⇥</code>-less function is a compile error, same as <code>iace</code>. The particle is <code>iace</code> (en <code>throw</code>) and is required.</li></ul><p>---</p><h2 id="expressions">Expressions<a class="anchor" href="#expressions">#</a></h2><h3 id="operators-by-precedence-lowest-to-highest">Operators (by precedence, lowest to highest)<a class="anchor" href="#operators-by-precedence-lowest-to-highest">#</a></h3><p><strong>Exact-output transfer (`⇇`):</strong> <code>sink ⇇ payload</code> invokes a callable sink value — one argument, <code class="typ">vacuum</code> result — once per payload. The operator performs no formatting, adds no separators or terminator, selects no channel, and runs no conversions: the bound value owns destination and behavior, and the compiler holds no console knowledge. A chain <code>sink ⇇ a ⇇ b</code> evaluates the sink expression once, each payload once left-to-right, and invokes the sink once per payload left-to-right; the chain result is <code class="typ">vacuum</code>. <code>⇇</code> binds above assignment and below ternary, so postfix calls, conversions, and string-constructor applications finish before transfer; formatting is explicit on the right (`output ⇇ &quot;§ §
+expression-form await.</li></ul><p>---</p><h2 id="error-handling">Error Handling<a class="anchor" href="#error-handling">#</a></h2><ul><li><code class="kw">cape</code> attaches to the structured forms whose productions name <code>catchClause</code>: conditional arms, <code class="kw">dum</code>, <code class="kw">itera</code>, <code class="kw">elige</code>, <code>cura</code>, and <code class="kw">fac</code>. It does not attach to arbitrary bare blocks.</li><li>Use the explicit do block when a standalone block needs a handler: <code>fac { ... } cape err { ... }</code>.</li><li><code>iace</code> = throw (recoverable), <code>mori</code> = panic (fatal).</li><li>A same-line <code>si &lt;expr&gt;</code> guard on <code>iace</code> and <code>mori</code> is line-sensitive parser sugar: <code>iace val si cond</code> desugars to <code>si cond { iace val }</code> at parse time. Its canonical, compression-safe spelling is the expanded <code class="kw">si</code> block. A source compressor must expand this sugar before removing line breaks; the guarded shorthand remains under language review.</li><li><code>adfirma</code> is a runtime invariant check. It desugars conceptually to <code>mori &quot;msg&quot; si !cond</code>, with the positive condition kept in source form and the inversion applied during lowering. The optional particle is <code>mori</code> (en <code>panic</code>): <code>adfirma cond mori msg</code> / <code>assert cond panic msg</code>. Bare <code>adfirma cond</code> stays legal. An <code>adfirma</code> failure is fatal and uncatchable by <code class="kw">cape</code> (it lowers to a panic, not a <code>Result</code>-channel error); in test context the harness isolates each <code>proba</code> so a failed assertion ends that test without ending the suite.</li><li><code>requirit</code> is the recoverable require statement (en surface <code>require … throw …</code>), the typed-error-channel twin of <code>adfirma</code>. <code>requirit cond iace err</code> desugars to <code>si non (cond) { iace err }</code> at lowering; the thrown value enters the function's <code>⇥ E</code> channel and is catchable by <code class="kw">cape</code>/<code class="kw">fac</code>, unlike <code>adfirma</code> (fatal). A <code>requirit</code> statement in a <code>⇥</code>-less function is a compile error, same as <code>iace</code>. The particle is <code>iace</code> (en <code>throw</code>) and is required.</li></ul><ul><li><code>reice</code> is the reject statement (en surface <code>reject … throw …</code>), the boolean opposite of <code>requirit</code>. <code>reice cond iace err</code> desugars to <code>si (cond) { iace err }</code> at lowering — it throws when the condition holds, where <code>requirit</code> throws when it fails. The thrown value enters the function's <code>⇥ E</code> channel and is catchable by <code class="kw">cape</code>/<code class="kw">fac</code>. A <code>reice</code> statement in a <code>⇥</code>-less function is a compile error, same as <code>iace</code>. The particle is <code>iace</code> (en <code>throw</code>) and is required.</li><li><code>@ conversio</code> (en <code>@ conversion</code>) on a top-level <code class="kw">functio</code> declares an admitted error conversion: the parameter's type is the source error, the return type is the destination, and the compiler enrolls that ordered pair so a propagating <code>⇥ E</code> failure converts at the boundary instead of needing a per-caller wrapper. The marker is bare and the conversion is an ordinary function outside any union body; only a direct (source, destination) row is admitted — a missing row fails closed and is never auto-composed into a chain. The earlier union-arm form (the marker carrying a payload inside a <code>discretio</code> body) is retracted.
+---</li></ul><h2 id="expressions">Expressions<a class="anchor" href="#expressions">#</a></h2><h3 id="operators-by-precedence-lowest-to-highest">Operators (by precedence, lowest to highest)<a class="anchor" href="#operators-by-precedence-lowest-to-highest">#</a></h3><p><strong>Exact-output transfer (`⇇`):</strong> <code>sink ⇇ payload</code> invokes a callable sink value — one argument, <code class="typ">vacuum</code> result — once per payload. The operator performs no formatting, adds no separators or terminator, selects no channel, and runs no conversions: the bound value owns destination and behavior, and the compiler holds no console knowledge. A chain <code>sink ⇇ a ⇇ b</code> evaluates the sink expression once, each payload once left-to-right, and invokes the sink once per payload left-to-right; the chain result is <code class="typ">vacuum</code>. <code>⇇</code> binds above assignment and below ternary, so postfix calls, conversions, and string-constructor applications finish before transfer; formatting is explicit on the right (`output ⇇ &quot;§ §
 &quot;(a, b)`). Combined with selective value imports it replaces compiler-owned output statements with ordinary typed values.</p><p><strong>Conversion-directed assignment (`↤` / conversio-assign):</strong> <code>place ↤ value</code>
 evaluates the right side, converts it to the statically known type of the left
 place through the existing <code>↦</code> route, then assigns. It binds at the same
