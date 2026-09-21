@@ -41,19 +41,12 @@
 
 <span class="tok-kw">main</span> {
 <span class="tok-co">    # Instantiate with all required fields</span>
-    <span class="tok-kw">const</span> _ p <span class="tok-op">←</span> Punctum {
-        x <span class="tok-op">=</span> <span class="tok-nu">10</span>,
-        y <span class="tok-op">=</span> <span class="tok-nu">20</span>
-    }
-
+    <span class="tok-kw">const</span> Punctum p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
     print p.x
     print p.y
 
 <span class="tok-co">    # Instantiate with required + optional defaults</span>
-    <span class="tok-kw">const</span> _ marcus <span class="tok-op">←</span> Persona {
-        nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>
-    }
-
+    <span class="tok-kw">const</span> Persona marcus <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span> }
     print marcus.nomen
 <span class="tok-co">    # 0 from default</span>
     print marcus.aetas
@@ -61,12 +54,7 @@
     print marcus.activus
 
 <span class="tok-co">    # Override defaults explicitly</span>
-    <span class="tok-kw">const</span> _ julia <span class="tok-op">←</span> Persona {
-        nomen <span class="tok-op">=</span> <span class="tok-st">"Julia"</span>,
-        aetas <span class="tok-op">=</span> <span class="tok-nu">25</span>,
-        activus <span class="tok-op">=</span> <span class="tok-kw">false</span>
-    }
-
+    <span class="tok-kw">const</span> Persona julia <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Julia"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">25</span>, activus <span class="tok-op">=</span> <span class="tok-kw">false</span> }
     print julia.nomen
     print julia.aetas
     print julia.activus

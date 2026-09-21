@@ -19,19 +19,19 @@
 
 <span class="tok-kw">main</span> {
 <span class="tok-co">    # A labeled actual fills the named hole.</span>
-    <span class="tok-kw">const</span> _ named <span class="tok-op">←</span> <span class="tok-st">"§{greet} world"</span>(greet<span class="tok-op">:</span> <span class="tok-st">"Salve"</span>)
+    <span class="tok-kw">const</span> string named <span class="tok-op">←</span> <span class="tok-st">"§ world"</span>(<span class="tok-st">"Salve"</span>)
     print named
 
 <span class="tok-co">    # A named and an anonymous hole share one positional sequence.</span>
-    <span class="tok-kw">const</span> _ mixed <span class="tok-op">←</span> <span class="tok-st">"§{greet} §"</span>(<span class="tok-st">"Salve"</span>, <span class="tok-st">"Mundus"</span>)
+    <span class="tok-kw">const</span> string mixed <span class="tok-op">←</span> <span class="tok-st">"§ §"</span>(<span class="tok-st">"Salve"</span>, <span class="tok-st">"Mundus"</span>)
     print mixed
 
 <span class="tok-co">    # Named-hole erasure renders the same as the positional § form.</span>
-    <span class="tok-kw">const</span> _ erased <span class="tok-op">←</span> <span class="tok-st">"§{greet} world"</span>(<span class="tok-st">"Salve"</span>)
+    <span class="tok-kw">const</span> string erased <span class="tok-op">←</span> <span class="tok-st">"§ world"</span>(<span class="tok-st">"Salve"</span>)
     print erased
 
 <span class="tok-co">    # Forma capture accepts labels but stores only erased template text.</span>
-    <span class="tok-kw">const</span> _ captured <span class="tok-op">←</span> <span class="tok-st">`where id = §{id}`</span>(id<span class="tok-op">:</span> <span class="tok-st">"42"</span>)
+    <span class="tok-kw">const</span> forma captured <span class="tok-op">←</span> <span class="tok-st">`where id = §`</span>(<span class="tok-st">"42"</span>)
     print captured.template
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve world
 Salve Mundus

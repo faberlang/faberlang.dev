@@ -36,19 +36,13 @@
 }
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ aelia <span class="tok-op">←</span> Civis {
-        nomen <span class="tok-op">=</span> <span class="tok-st">"Aelia"</span>,
-        locus <span class="tok-op">=</span> Locus { urbs <span class="tok-op">=</span> <span class="tok-st">"Roma"</span>, regio <span class="tok-op">=</span> <span class="tok-st">"Italia"</span> }
-    }
-
+    <span class="tok-kw">const</span> Civis aelia <span class="tok-op">←</span> Civis { nomen <span class="tok-op">=</span> <span class="tok-st">"Aelia"</span>, locus <span class="tok-op">=</span> Locus { urbs <span class="tok-op">=</span> <span class="tok-st">"Roma"</span>, regio <span class="tok-op">=</span> <span class="tok-st">"Italia"</span> } }
     print aelia<span class="tok-op">?.</span>locus<span class="tok-op">?.</span>urbs
     print aelia<span class="tok-op">?.</span>locus<span class="tok-op">?.</span>regio
-
-    <span class="tok-kw">const</span> _ brutus <span class="tok-op">←</span> Civis { nomen <span class="tok-op">=</span> <span class="tok-st">"Brutus"</span> }
+    <span class="tok-kw">const</span> Civis brutus <span class="tok-op">←</span> Civis { nomen <span class="tok-op">=</span> <span class="tok-st">"Brutus"</span> }
     print brutus<span class="tok-op">?.</span>locus<span class="tok-op">?.</span>urbs
     print brutus<span class="tok-op">?.</span>locus<span class="tok-op">?.</span>regio
-
-    <span class="tok-kw">const</span> _ litterae <span class="tok-op">←</span> [<span class="tok-st">"a"</span>, <span class="tok-st">"b"</span>, <span class="tok-st">"c"</span>]
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> litterae <span class="tok-op">←</span> [<span class="tok-st">"a"</span>, <span class="tok-st">"b"</span>, <span class="tok-st">"c"</span>]
     print litterae<span class="tok-op">?</span>[<span class="tok-nu">0</span>]
     print litterae<span class="tok-op">?</span>[<span class="tok-nu">10</span>]
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Roma

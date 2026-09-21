@@ -31,21 +31,21 @@ locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
 <span class="tok-co"># today's type rules do not preserve enough static shape through elementwise</span>
 <span class="tok-co"># tensors to feed the next matmul or return from this kernel shape.</span>
 
-@ kernel { }
-<span class="tok-kw">fn</span> rung2_mlp_kernel(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> input, tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> w0, tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> w1) <span class="tok-op">→</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> {
-    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> hidden <span class="tok-op">←</span> input · w0
+@ kernel
+<span class="tok-kw">fn</span> rung2_mlp_kernel(tf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] input, tf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] w0, tf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] w1) <span class="tok-op">→</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] {
+    <span class="tok-kw">const</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] hidden <span class="tok-op">←</span> input · w0
     <span class="tok-kw">return</span> hidden · w1
 }
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> empty
+    <span class="tok-kw">const</span> tf32[] seed <span class="tok-op">←</span> empty
     <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_input <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>]
     <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_w0 <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-nu">1.0</span>]
     <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_w1 <span class="tok-op">←</span> [<span class="tok-nu">2.0</span>, <span class="tok-nu">1.0</span>, <span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>]
-    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> input <span class="tok-op">←</span> seed.from_flat(flat_input, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>])
-    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> w0 <span class="tok-op">←</span> seed.from_flat(flat_w0, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>])
-    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> w1 <span class="tok-op">←</span> seed.from_flat(flat_w1, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>])
-    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> reference <span class="tok-op">←</span> rung2_mlp_kernel(input, w0, w1)
+    <span class="tok-kw">const</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] input <span class="tok-op">←</span> seed.from_flat(flat_input, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>])
+    <span class="tok-kw">const</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] w0 <span class="tok-op">←</span> seed.from_flat(flat_w0, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>])
+    <span class="tok-kw">const</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] w1 <span class="tok-op">←</span> seed.from_flat(flat_w1, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>])
+    <span class="tok-kw">const</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] reference <span class="tok-op">←</span> rung2_mlp_kernel(input, w0, w1)
     <span class="tok-kw">const</span> <span class="tok-kw">void</span> _launch <span class="tok-op">←</span> <span class="tok-kw">call</span> <span class="tok-st">'cuda:launch'</span> (<span class="tok-st">"rung2_mlp_kernel"</span>) ↦ <span class="tok-kw">void</span>
     print reference.flatten()
 }</code></pre><p>---</p><p><a href="/en-US/examples/">All examples</a> · <a href="/en-US/start/install.html">Install</a> · <a href="/en-US/cheatsheet/">Cheat sheet</a></p></div></main></div></body></html>

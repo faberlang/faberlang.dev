@@ -30,17 +30,17 @@
 <span class="tok-co">#   ordinata nova: [1, 2, 3, 4, 5]</span>
 <span class="tok-co">#   ordina mutat: [1, 2, 3]</span>
 <span class="tok-co">#   mappata nova: [2, 4, 6, 8, 10]</span>
-<span class="tok-co">#   res prima: [1, 2, 3, 4, 5]</span>
+<span class="tok-co">#   numeri prima: [1, 2, 3, 4, 5]</span>
 
 main {
-    var _ res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
 
 <span class="tok-co">    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡</span>
 <span class="tok-co">    # FILTRA: filtr-</span>
 <span class="tok-co">    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡</span>
 
 <span class="tok-co">    # filtrata returns a new filtered list</span>
-    const _ pares <span class="tok-op">←</span> res.filter(int x ∴ x <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≡</span> <span class="tok-nu">0</span>)
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> pares <span class="tok-op">←</span> numeri.filter(int x ∴ x <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≡</span> <span class="tok-nu">0</span>)
     print <span class="tok-st">"filtrata nova: §"</span>(pares)
 
 <span class="tok-co">    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡</span>
@@ -48,11 +48,11 @@ main {
 <span class="tok-co">    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡</span>
 
 <span class="tok-co">    # addita returns a new list with an added element</span>
-    const _ aucta <span class="tok-op">←</span> res.added(<span class="tok-nu">6</span>)
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> aucta <span class="tok-op">←</span> numeri.added(<span class="tok-nu">6</span>)
     print <span class="tok-st">"addita nova: §"</span>(aucta)
 
 <span class="tok-co">    # appende mutates in place</span>
-    var _ mutanda <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> mutanda <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     mutanda.append(<span class="tok-nu">4</span>)
     print <span class="tok-st">"appende mutat: §"</span>(mutanda)
 
@@ -61,11 +61,11 @@ main {
 <span class="tok-co">    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡</span>
 
 <span class="tok-co">    # inversa returns a new reversed list</span>
-    const _ versa <span class="tok-op">←</span> res.invert()
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> versa <span class="tok-op">←</span> numeri.invert()
     print <span class="tok-st">"inversa nova: §"</span>(versa)
 
 <span class="tok-co">    # inverte mutates in place</span>
-    var _ invertenda <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> invertenda <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     invertenda.reverse()
     print <span class="tok-st">"inverte mutat: §"</span>(invertenda)
 
@@ -74,11 +74,11 @@ main {
 <span class="tok-co">    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡</span>
 
 <span class="tok-co">    # ordinata returns a new sorted list</span>
-    const _ ordinata <span class="tok-op">←</span> res.sorted()
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> ordinata <span class="tok-op">←</span> numeri.sorted()
     print <span class="tok-st">"ordinata nova: §"</span>(ordinata)
 
 <span class="tok-co">    # ordina mutates in place</span>
-    var _ ordinanda <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> ordinanda <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
     ordinanda.sort()
     print <span class="tok-st">"ordina mutat: §"</span>(ordinanda)
 
@@ -87,13 +87,13 @@ main {
 <span class="tok-co">    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡</span>
 
 <span class="tok-co">    # mappata returns a new mapped list</span>
-    const _ duplicata <span class="tok-op">←</span> res.map(int x ∴ x <span class="tok-op">*</span> <span class="tok-nu">2</span>)
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> duplicata <span class="tok-op">←</span> numeri.map(int x ∴ x <span class="tok-op">*</span> <span class="tok-nu">2</span>)
     print <span class="tok-st">"mappata nova: §"</span>(duplicata)
 
 <span class="tok-co">    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡</span>
 <span class="tok-co">    # Participle operations leave the original list unchanged</span>
 <span class="tok-co">    # ≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡≡</span>
-    print <span class="tok-st">"res prima: §"</span>(res)
+    print <span class="tok-st">"numeri prima: §"</span>(numeri)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>filtrata nova: [2, 4]
 addita nova: [1, 2, 3, 4, 5, 6]
 appende mutat: [1, 2, 3, 4]
@@ -102,5 +102,5 @@ inverte mutat: [3, 2, 1]
 ordinata nova: [1, 2, 3, 4, 5]
 ordina mutat: [1, 2, 3]
 mappata nova: [2, 4, 6, 8, 10]
-res prima: [1, 2, 3, 4, 5]
+numeri prima: [1, 2, 3, 4, 5]
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusmorphologiamorphologiafab-canonical-concept">radix/corpus/morphologia/morphologia.fab (canonical · concept)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[&quot;radix/corpus/morphologia/morphologia.fab&quot;]</li></ul></div></footer></div></body></html>

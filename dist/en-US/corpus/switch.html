@@ -29,9 +29,8 @@
 
 <span class="tok-kw">main</span> {
 <span class="tok-co">    # Text matching</span>
-    <span class="tok-kw">const</span> _ condicio <span class="tok-op">←</span> <span class="tok-st">"agens"</span>
-
-    <span class="tok-kw">switch</span> condicio {
+    <span class="tok-kw">const</span> string condicio <span class="tok-op">←</span> <span class="tok-st">"agens"</span>
+    <span class="tok-kw">match</span> condicio {
         <span class="tok-kw">case</span> <span class="tok-st">"pendens"</span> {
             print <span class="tok-st">"exspectat..."</span>
         }
@@ -44,9 +43,8 @@
     }
 
 <span class="tok-co">    # Numerus matching</span>
-    <span class="tok-kw">const</span> _ codex <span class="tok-op">←</span> <span class="tok-nu">200</span>
-
-    <span class="tok-kw">switch</span> codex {
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> codex <span class="tok-op">←</span> <span class="tok-nu">200</span>
+    <span class="tok-kw">match</span> codex {
         <span class="tok-kw">case</span> <span class="tok-nu">200</span> {
             print <span class="tok-st">"Recte"</span>
         }
@@ -59,9 +57,8 @@
     }
 
 <span class="tok-co">    # Multiple statements per case</span>
-    <span class="tok-kw">const</span> _ modus <span class="tok-op">←</span> <span class="tok-st">"opera"</span>
-
-    <span class="tok-kw">switch</span> modus {
+    <span class="tok-kw">const</span> string modus <span class="tok-op">←</span> <span class="tok-st">"opera"</span>
+    <span class="tok-kw">match</span> modus {
         <span class="tok-kw">case</span> <span class="tok-st">"labor"</span> {
             print <span class="tok-st">"modus laboris"</span>
             print <span class="tok-st">"verba multa"</span>

@@ -32,8 +32,9 @@
 
 fn validata(string input) <span class="tok-op">→</span> string ⇥ string {
 <span class="tok-co">    # Guard: throw if input is empty</span>
-    throw <span class="tok-st">"empty input"</span> if input.length() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
-
+    if input.length() <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+        throw <span class="tok-st">"empty input"</span>
+    }
     return <span class="tok-st">"valid: §"</span>(input)
 }
 
@@ -58,7 +59,9 @@ main {
 
 <span class="tok-co">    # iace with si on same line</span>
     do {
-        throw <span class="tok-st">"force throw"</span> if true
+        if true {
+            throw <span class="tok-st">"force throw"</span>
+        }
         print <span class="tok-st">"should not reach"</span>
     }
     catch err {
@@ -104,7 +107,7 @@ main {
     }
 
 <span class="tok-co">    # iace with interpolated message</span>
-    const _ code <span class="tok-op">←</span> <span class="tok-nu">404</span>
+    const int code <span class="tok-op">←</span> <span class="tok-nu">404</span>
     do {
         throw <span class="tok-st">"Error code: §"</span>(code)
     }
@@ -113,9 +116,9 @@ main {
     }
 
 <span class="tok-co">    # Conditional iace inside fac — validation guard</span>
-    const _ value <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">5</span>
+    const int value <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">5</span>
     do {
-        if value <span class="tok-op">&lt;</span> <span class="tok-nu">0</span> {
+        if value ≺ <span class="tok-nu">0</span> {
             throw <span class="tok-st">"Value must be non-negative"</span>
         }
         print <span class="tok-st">"Value is valid"</span>

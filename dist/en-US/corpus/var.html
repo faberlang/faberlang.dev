@@ -30,29 +30,27 @@
 <span class="tok-kw">main</span> {
 <span class="tok-co">    # --- Mutable bindings with varia ---</span>
 
-    <span class="tok-kw">var</span> _ computus <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> computus <span class="tok-op">←</span> <span class="tok-nu">0</span>
     print computus
-
     computus <span class="tok-op">←</span> <span class="tok-nu">1</span>
     print computus
-
     computus <span class="tok-op">←</span> computus <span class="tok-op">+</span> <span class="tok-nu">10</span>
     print computus
 
 <span class="tok-co">    # --- Immutable bindings: fixum _ and sit ---</span>
 
-    <span class="tok-kw">const</span> _ salutatio <span class="tok-op">←</span> <span class="tok-st">"Salve, Mundus!"</span>
+    <span class="tok-kw">const</span> string salutatio <span class="tok-op">←</span> <span class="tok-st">"Salve, Mundus!"</span>
     print salutatio
 
 <span class="tok-co">    # sit compresses repeated fixum _ when chaining inferred locals</span>
-    <span class="tok-kw">let</span> x <span class="tok-op">←</span> <span class="tok-nu">10</span>
-    <span class="tok-kw">let</span> y <span class="tok-op">←</span> <span class="tok-nu">20</span>
-    <span class="tok-kw">let</span> summa <span class="tok-op">←</span> x <span class="tok-op">+</span> y
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> x <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> y <span class="tok-op">←</span> <span class="tok-nu">20</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> summa <span class="tok-op">←</span> x <span class="tok-op">+</span> y
     print summa
 
 <span class="tok-co">    # --- Reassign only varia bindings ---</span>
 
-    <span class="tok-kw">var</span> _ nuntius <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
+    <span class="tok-kw">var</span> string nuntius <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
     nuntius <span class="tok-op">←</span> <span class="tok-st">"Vale"</span>
     print nuntius
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0

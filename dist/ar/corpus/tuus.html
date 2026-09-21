@@ -18,8 +18,7 @@
 <span class="tok-co"># sermo.tuus&lt;T&gt;() — typed inbound frame stream</span>
 
 main {
-    const _ s <span class="tok-op">←</span> call <span class="tok-st">'runtime:echo'</span> (<span class="tok-st">"salve"</span>)
-
+    const sermo s <span class="tok-op">←</span> call <span class="tok-st">'runtime:echo'</span> (<span class="tok-st">"salve"</span>)
     for from s.tuus<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>().<span class="tok-kw">cursor</span>() const frame {
         assert frame.data <span class="tok-op">≡</span> <span class="tok-st">"salve"</span>
     }

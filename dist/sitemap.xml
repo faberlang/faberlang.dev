@@ -64,10 +64,13 @@
   <url><loc>https://faberlang.dev/ar/corpus/commune.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/conversio-fallibilis.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/cursor.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/discerne type patterns.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/discerne width patterns.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/finite.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/forma.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/fs lege carpe hauri.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/generic-call-type-args.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/generic-defaults.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/generic.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/generics.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/infinity.html</loc></url>
@@ -177,6 +180,7 @@
   <url><loc>https://faberlang.dev/ar/corpus/عقد.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/عمومي.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/عن.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/عند.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/عوض.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/غير_مستقر.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/غيرمتزامن.html</loc></url>
@@ -233,11 +237,13 @@
   <url><loc>https://faberlang.dev/ar/corpus/وصف.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/وعد.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/يتطلب.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/يرفض.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/يرمي.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/‥.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/←.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/↑.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/→.html</loc></url>
+  <url><loc>https://faberlang.dev/ar/corpus/↢.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/↤.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/↦.html</loc></url>
   <url><loc>https://faberlang.dev/ar/corpus/∧.html</loc></url>
@@ -304,6 +310,7 @@
   <url><loc>https://faberlang.dev/en-US/corpus/async_main.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/async_setup.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/async_teardown.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/at.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/await.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/await_const.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/await_var.html</loc></url>
@@ -369,7 +376,6 @@
   <url><loc>https://faberlang.dev/en-US/corpus/clausa.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/cli.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/coalesce.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/commune.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/comptime.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/const.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/continue.html</loc></url>
@@ -379,6 +385,8 @@
   <url><loc>https://faberlang.dev/en-US/corpus/default.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/describe.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/description.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/discerne type patterns.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/discerne width patterns.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/do.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/elif.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/else.html</loc></url>
@@ -400,6 +408,7 @@
   <url><loc>https://faberlang.dev/en-US/corpus/future.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/generator.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/generic-call-type-args.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/generic-defaults.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/generic.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/generics.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/global.html</loc></url>
@@ -460,6 +469,7 @@
   <url><loc>https://faberlang.dev/en-US/corpus/record.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/ref.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/regex.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/reject.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/rename.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/repeat.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/require.html</loc></url>
@@ -470,6 +480,7 @@
   <url><loc>https://faberlang.dev/en-US/corpus/self.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/set.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/setup.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/shared.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/skip.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/sparsa.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/spread.html</loc></url>
@@ -519,6 +530,7 @@
   <url><loc>https://faberlang.dev/en-US/corpus/←.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/↑.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/→.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/↢.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/↤.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/↦.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/∧.html</loc></url>
@@ -733,10 +745,13 @@
   <url><loc>https://faberlang.dev/hi/corpus/cli.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/commune.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/conversio-fallibilis.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/discerne type patterns.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/discerne width patterns.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/finite.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/forma.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/fs lege carpe hauri.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/generic-call-type-args.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/generic-defaults.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/generic.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/generics.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/infinity.html</loc></url>
@@ -780,6 +795,7 @@
   <url><loc>https://faberlang.dev/hi/corpus/अमूर्त.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/असत्य.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/अस्थिर.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/अस्वीकार.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/आगेबढ़ो.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/आयात.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/आरंभ.html</loc></url>
@@ -828,6 +844,7 @@
   <url><loc>https://faberlang.dev/hi/corpus/पंक्ति.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/पकड़ो.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/पढ़ो.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/पर.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/परीक्षण.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/परीक्षणसमूह.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/पश्चतैयार.html</loc></url>
@@ -905,6 +922,7 @@
   <url><loc>https://faberlang.dev/hi/corpus/←.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/↑.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/→.html</loc></url>
+  <url><loc>https://faberlang.dev/hi/corpus/↢.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/↤.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/↦.html</loc></url>
   <url><loc>https://faberlang.dev/hi/corpus/∧.html</loc></url>
@@ -1001,10 +1019,13 @@
   <url><loc>https://faberlang.dev/th-TH/corpus/cli.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/commune.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/conversio-fallibilis.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/discerne type patterns.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/discerne width patterns.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/finite.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/forma.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/fs lege carpe hauri.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/generic-call-type-args.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/generic-defaults.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/generic.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/generics.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/infinity.html</loc></url>
@@ -1060,7 +1081,7 @@
   <url><loc>https://faberlang.dev/th-TH/corpus/จับ.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/จาก.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/จารึก.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/corpus/จำนวน.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/จํานวน.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/ชนิด.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/ชนิดนามแฝง.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/ชุด.html</loc></url>
@@ -1086,12 +1107,14 @@
   <url><loc>https://faberlang.dev/th-TH/corpus/ทางเลือก.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/ทำ.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/ทำซ้ำ.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ที่.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/ที่เหลือ.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/ทูเพิล.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/นามธรรม.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/นำหน้า.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/นำเข้า.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/บรรทัด.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/ปฏิเสธ.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/ปิดล้อม.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/ป้องกัน.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/ผลรวม.html</loc></url>
@@ -1175,6 +1198,7 @@
   <url><loc>https://faberlang.dev/th-TH/corpus/←.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/↑.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/→.html</loc></url>
+  <url><loc>https://faberlang.dev/th-TH/corpus/↢.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/↤.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/↦.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/corpus/∧.html</loc></url>
@@ -1296,6 +1320,8 @@
   <url><loc>https://faberlang.dev/vi/corpus/công_khai.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/cảnh_báo.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/danh_sách.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/discerne type patterns.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/discerne width patterns.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/do_đó.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/dòng.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/dưới.html</loc></url>
@@ -1304,6 +1330,7 @@
   <url><loc>https://faberlang.dev/vi/corpus/forma.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/fs lege carpe hauri.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/generic-call-type-args.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/generic-defaults.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/generic.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/generics.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/giao_ước.html</loc></url>
@@ -1407,11 +1434,13 @@
   <url><loc>https://faberlang.dev/vi/corpus/tùy_chọn.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/tĩnh.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/tương_lai.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/tại.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/tạo.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/tập_hợp.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/tổng.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/tới.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/từ.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/từ_chối.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/tự_do.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/tự_nguyện.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/unarius.html</loc></url>
@@ -1445,6 +1474,7 @@
   <url><loc>https://faberlang.dev/vi/corpus/←.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/↑.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/→.html</loc></url>
+  <url><loc>https://faberlang.dev/vi/corpus/↢.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/↤.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/↦.html</loc></url>
   <url><loc>https://faberlang.dev/vi/corpus/∧.html</loc></url>
@@ -1539,10 +1569,13 @@
   <url><loc>https://faberlang.dev/zh-Hans/corpus/clausa.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/commune.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/conversio-fallibilis.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/discerne type patterns.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/discerne width patterns.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/finite.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/forma.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/fs lege carpe hauri.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/generic-call-type-args.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/generic-defaults.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/generic.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/generics.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/infinity.html</loc></url>
@@ -1579,6 +1612,7 @@
   <url><loc>https://faberlang.dev/zh-Hans/corpus/←.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/↑.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/→.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/↢.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/↤.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/↦.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/∧.html</loc></url>
@@ -1631,6 +1665,7 @@
   <url><loc>https://faberlang.dev/zh-Hans/corpus/否则.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/否则如果.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/命令行.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/在.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/备置.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/契约.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/如果.html</loc></url>
@@ -1657,6 +1692,7 @@
   <url><loc>https://faberlang.dev/zh-Hans/corpus/执行.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/抛错.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/抽象.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hans/corpus/拒绝.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/捕获.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/描述.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/corpus/操作数.html</loc></url>
@@ -1810,10 +1846,13 @@
   <url><loc>https://faberlang.dev/zh-Hant/corpus/clausa.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/commune.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/conversio-fallibilis.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/discerne type patterns.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/discerne width patterns.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/finite.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/forma.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/fs lege carpe hauri.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/generic-call-type-args.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/generic-defaults.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/generic.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/generics.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/infinity.html</loc></url>
@@ -1848,6 +1887,7 @@
   <url><loc>https://faberlang.dev/zh-Hant/corpus/←.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/↑.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/→.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/↢.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/↤.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/↦.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/∧.html</loc></url>
@@ -1900,6 +1940,7 @@
   <url><loc>https://faberlang.dev/zh-Hant/corpus/否則.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/否則若.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/命令行.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/在.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/型別.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/執行.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/執行個體.html</loc></url>
@@ -1924,6 +1965,7 @@
   <url><loc>https://faberlang.dev/zh-Hant/corpus/承諾.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/抽象.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/拋出.html</loc></url>
+  <url><loc>https://faberlang.dev/zh-Hant/corpus/拒絕.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/捕捉.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/描述.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/corpus/操作數.html</loc></url>

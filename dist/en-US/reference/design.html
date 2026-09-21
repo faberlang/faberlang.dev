@@ -14,7 +14,10 @@ numerus aetas
 functio salve(textus name) → textus</code></pre><h3 id="ii-mechanical-over-magical">II. Mechanical over magical<a class="anchor" href="#ii-mechanical-over-magical">#</a></h3><p>The same construct should mean the same thing everywhere. If a reader needs
 distant context to know what a symbol does, the syntax is suspect. Faber
 prefers explicit, local reasoning — the declaration site carries enough
-information to understand what will happen at the use site.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># The meaning of a call is determined by the function's signature,</span>
+information to understand what will happen at the use site.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-co"># The meaning of a call is determined by the function's signature,</span>
 <span class="tok-co"># not by invisible trait resolution or implicit conversions.</span>
 <span class="tok-kw">fn</span> duplica(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
     <span class="tok-kw">return</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
@@ -25,8 +28,8 @@ for error exit, <code>ergo</code> for compact statement body,
 types. Glyphs are universal — they never localise and never change meaning
 across renderings. A Thai reader and a French reader see the same glyphs,
 even if the keywords around them differ.</p><h3 id="iv-latin-carries-behaviour">IV. Latin carries behaviour<a class="anchor" href="#iv-latin-carries-behaviour">#</a></h3><p>Words are for declarations, statements, lifecycle, and behavioural intent:
-<code class="kw">fn</code>, <code class="kw">class</code>, <code class="kw">const</code>,
-<code class="kw">var</code>, <code class="kw">return</code>, <code class="kw">catch</code>.
+<code class="kw">functio</code>, <code class="kw">genus</code>, <code class="kw">fixum</code>,
+<code class="kw">varia</code>, <code class="kw">redde</code>, <code class="kw">cape</code>.
 These are bindable through reader-locale packs — they are the vocabulary,
 not the grammar. The Latin choice is not about Latin superiority; it is
 about picking <em>one</em> consistent classical source so that all keywords

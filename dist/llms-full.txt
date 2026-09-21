@@ -47,9 +47,9 @@ faber explain SEM001
 
 ## Generated corpus frontmatter reference
 
-- Distinct frontmatter terms: 226
-- Canonical term pages: 197
-- Alias spellings: 120
+- Distinct frontmatter terms: 236
+- Canonical term pages: 203
+- Alias spellings: 121
 - Categories: 48
 - Source: radix/corpus/**/*.fab TOML frontmatter
 
@@ -62,7 +62,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - application (1) — https://faberlang.dev/en-US/corpus/category/application.html
 - arithmetic (10) — https://faberlang.dev/en-US/corpus/category/arithmetic.html
 - assignment (2) — https://faberlang.dev/en-US/corpus/category/assignment.html
-- async (11) — https://faberlang.dev/en-US/corpus/category/async.html
+- async (12) — https://faberlang.dev/en-US/corpus/category/async.html
 - availability (1) — https://faberlang.dev/en-US/corpus/category/availability.html
 - binding (3) — https://faberlang.dev/en-US/corpus/category/binding.html
 - bitwise (1) — https://faberlang.dev/en-US/corpus/category/bitwise.html
@@ -72,13 +72,13 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - collection (10) — https://faberlang.dev/en-US/corpus/category/collection.html
 - comparison (2) — https://faberlang.dev/en-US/corpus/category/comparison.html
 - comptime (1) — https://faberlang.dev/en-US/corpus/category/comptime.html
-- control-flow (13) — https://faberlang.dev/en-US/corpus/category/control-flow.html
+- control-flow (16) — https://faberlang.dev/en-US/corpus/category/control-flow.html
 - conversion (5) — https://faberlang.dev/en-US/corpus/category/conversion.html
 - declaration (1) — https://faberlang.dev/en-US/corpus/category/declaration.html
 - destructuring (1) — https://faberlang.dev/en-US/corpus/category/destructuring.html
 - endpoint (3) — https://faberlang.dev/en-US/corpus/category/endpoint.html
 - entry (4) — https://faberlang.dev/en-US/corpus/category/entry.html
-- errors (4) — https://faberlang.dev/en-US/corpus/category/errors.html
+- errors (5) — https://faberlang.dev/en-US/corpus/category/errors.html
 - expression (2) — https://faberlang.dev/en-US/corpus/category/expression.html
 - format (2) — https://faberlang.dev/en-US/corpus/category/format.html
 - function (13) — https://faberlang.dev/en-US/corpus/category/function.html
@@ -103,20 +103,21 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - template (2) — https://faberlang.dev/en-US/corpus/category/template.html
 - testing (17) — https://faberlang.dev/en-US/corpus/category/testing.html
 - transfer (4) — https://faberlang.dev/en-US/corpus/category/transfer.html
-- type (27) — https://faberlang.dev/en-US/corpus/category/type.html
+- type (28) — https://faberlang.dev/en-US/corpus/category/type.html
 - types (1) — https://faberlang.dev/en-US/corpus/category/types.html
 
 ### Kinds
 
 - annotation: 10
-- concept: 17
+- concept: 18
 - conversio: 5
 - existing-home: 6
-- keyword: 119
+- feature: 2
+- keyword: 121
 - literal: 2
 - method: 2
 - modifier: 1
-- operator: 2
+- operator: 3
 - operator-group: 27
 - pointer: 1
 - type: 5
@@ -230,6 +231,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `cli`, `argumenta`, `operandus`, `exitus`
 - Page: https://faberlang.dev/en-US/corpus/applications.html
 - Source: radix/corpus/applications/coreutils.fab
+
+#### `apud`
+
+- Canonical: `apud`
+- Kind: keyword
+- Category: control-flow
+- Summary: One shared at [i] coordinate on a lockstep list walk.
+- Syntax: `for from <a>, <b> at [i] const <x>, <y> { }`
+- Aliases: none
+- Related: `apud`, `itera`, `ex`
+- Page: https://faberlang.dev/en-US/corpus/at.html
+- Source: radix/corpus/itera/lockstep-at-index.fab
 
 #### `argumenta`
 
@@ -420,7 +433,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `@ commune`
 - Aliases: `shared`
 - Related: `discretio`, `discerne`, `finge`
-- Page: https://faberlang.dev/en-US/corpus/commune.html
+- Page: https://faberlang.dev/en-US/corpus/shared.html
 - Source: radix/corpus/commune/commune.fab
 
 #### `conversio-fallibilis`
@@ -530,6 +543,30 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `discretio`, `casu`
 - Page: https://faberlang.dev/en-US/corpus/match.html
 - Source: radix/corpus/discerne/discerne.fab
+
+#### `discerne type patterns`
+
+- Canonical: `discerne type patterns`
+- Kind: feature
+- Category: control-flow
+- Summary: Discerne cases can test nominal type members and bind the narrowed value.
+- Syntax: `discerne <union> { casu <type> fixum <name> { ... } }`
+- Aliases: none
+- Related: `discerne`, `casu`, `discretio`, `est`
+- Page: https://faberlang.dev/en-US/corpus/discerne%20type%20patterns.html
+- Source: radix/corpus/discerne/type-patterns.fab
+
+#### `discerne width patterns`
+
+- Canonical: `discerne width patterns`
+- Kind: feature
+- Category: control-flow
+- Summary: Discerne orders bounded collection patterns before their unbounded family catch-all.
+- Syntax: `discerne <list<T>> { case list<T, N> ... case list<T> ... }`
+- Aliases: none
+- Related: `discerne`, `casu`, `lista`
+- Page: https://faberlang.dev/en-US/corpus/discerne%20width%20patterns.html
+- Source: radix/corpus/discerne/width-patterns.fab
 
 #### `discretio`
 
@@ -801,7 +838,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: concept
 - Category: ad
 - Summary: fs file reads are shape-specific: lege<textus>, carpe (lista<textus>), hauri (octeti).
-- Syntax: `fs.read_file<textus>(via) | call 'fs:carpe' (via) ↦ lista<textus> | call 'fs:hauri' (via) ↦ octeti`
+- Syntax: `charta.read_file<textus>(via) | call 'fs:carpe' (via) ↦ lista<textus> | call 'fs:hauri' (via) ↦ octeti`
 - Aliases: none
 - Related: `ad`, `fs`, `lege`, `carpe`, `hauri`
 - Page: https://faberlang.dev/en-US/corpus/fs%20lege%20carpe%20hauri.html
@@ -866,6 +903,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `functio`, `tensor`, `typi-parametri`
 - Page: https://faberlang.dev/en-US/corpus/generic-call-type-args.html
 - Source: radix/corpus/functio/generic-call-type-args.fab
+
+#### `generic-defaults`
+
+- Canonical: `generic-defaults`
+- Kind: concept
+- Category: type
+- Summary: Generic parameter defaults declared with = ; explicit arguments and inference beat the default.
+- Syntax: `fn f<T = string, size D = 64>(...) — binding order: explicit, then inference, then the declared default`
+- Aliases: none
+- Related: `generic`, `generic-call-type-args`, `functio`
+- Page: https://faberlang.dev/en-US/corpus/generic-defaults.html
+- Source: radix/corpus/generic/generic-defaults.fab
 
 #### `generics`
 
@@ -1731,6 +1780,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/regex.html
 - Source: radix/corpus/literalia/regex.fab
 
+#### `reice`
+
+- Canonical: `reice`
+- Kind: keyword
+- Category: errors
+- Summary: Reject a condition or throw a recoverable error.
+- Syntax: `reice <expression> iace <expression>`
+- Aliases: `reject`
+- Related: `requirit`, `adfirma`, `iace`, `cape`, `⇥`
+- Page: https://faberlang.dev/en-US/corpus/reject.html
+- Source: radix/corpus/meta/reice.fab
+
 #### `repete`
 
 - Canonical: `repete`
@@ -2024,7 +2085,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `temporis`
 - Kind: keyword
 - Category: testing
-- Summary: Sets a timeout-like duration for a test modifier.
+- Summary: Sets a wall-clock timeout in seconds for a test modifier.
 - Syntax: `temporis <number>`
 - Aliases: none
 - Related: `metior`, `repete`
@@ -2355,6 +2416,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/%E2%86%92.html
 - Source: radix/corpus/operatores/function-types.fab
 
+#### `↢`
+
+- Canonical: `↢`
+- Kind: operator
+- Category: async
+- Summary: Awaits a promissum while initializing an ordinary binding.
+- Syntax: `fixum T name ↢ future`
+- Aliases: none
+- Related: `figendum`, `variandum`, `fiet`, `promissum`
+- Page: https://faberlang.dev/en-US/corpus/%E2%86%A2.html
+- Source: radix/corpus/await-assignment/await-assignment.fab
+
 #### `↤`
 
 - Canonical: `↤`
@@ -2577,6 +2650,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `protected` → `protecta`
 - `public` → `publica`
 - `record` → `ratio`
+- `reject` → `reice`
 - `require` → `requirit`
 - `rest` → `ceteri`
 - `return` → `redde`

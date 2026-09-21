@@ -26,7 +26,7 @@
 
 <span class="tok-kw">class</span> Computator {
 <span class="tok-co">    # bound field — same value for every instance</span>
-    <span class="tok-kw">nexum</span> <span class="tok-kw">int</span> valor <span class="tok-op">=</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">int</span> valor <span class="tok-op">=</span> <span class="tok-nu">0</span>
 
     <span class="tok-kw">fn</span> accipe() <span class="tok-op">→</span> <span class="tok-kw">int</span> {
         <span class="tok-kw">return</span> <span class="tok-kw">self</span>.valor
@@ -35,7 +35,7 @@
 
 <span class="tok-kw">main</span> {
 <span class="tok-co">    # instance overrides bound default</span>
-    <span class="tok-kw">const</span> _ c <span class="tok-op">←</span> Computator { valor <span class="tok-op">=</span> <span class="tok-nu">7</span> }
+    <span class="tok-kw">const</span> Computator c <span class="tok-op">←</span> Computator { valor <span class="tok-op">=</span> <span class="tok-nu">7</span> }
     print c.accipe()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>7
 </code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusnexumnexumfab-canonical-keyword">radix/corpus/nexum/nexum.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/nexum/nexum.fab&quot;]</li></ul></div></footer></div></body></html>

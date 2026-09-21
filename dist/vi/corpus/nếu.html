@@ -29,10 +29,9 @@
 
 main {
 <span class="tok-co">    # logged in</span>
-    const _ intravit <span class="tok-op">←</span> true
+    const bool intravit <span class="tok-op">←</span> true
 <span class="tok-co">    # has permission</span>
-    const _ licet <span class="tok-op">←</span> true
-
+    const bool licet <span class="tok-op">←</span> true
     if intravit {
 <span class="tok-co">        # Inner branch: permission check after login succeeds</span>
         if licet {
@@ -47,7 +46,34 @@ main {
         print <span class="tok-st">"Please log in"</span>
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Access granted
-</code></pre><h3 id="radixcorpussisifab-canonical-keyword">radix/corpus/si/si.fab (canonical · keyword)<a class="anchor" href="#radixcorpussisifab-canonical-keyword">#</a></h3><p>Starts a conditional branch that runs when its condition is true.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+</code></pre><h3 id="radixcorpussisifab-canonical-keyword">radix/corpus/si/si.fab (canonical · keyword)<a class="anchor" href="#radixcorpussisifab-canonical-keyword">#</a></h3><p>Starts a conditional branch that runs when its condition is true.</p><pre class="faber-code"><code class="lang-faber outcome=compiles">test <span class="tok-st">"si runs its body on a verum condition"</span> {
+    const int x <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    var bool maior <span class="tok-op">←</span> false
+    if x ≻ <span class="tok-nu">5</span> {
+        maior <span class="tok-op">←</span> true
+    }
+    assert maior
+}
+
+test <span class="tok-st">"si skips its body on a falsum condition"</span> {
+    const int x <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    var bool maior <span class="tok-op">←</span> false
+    if x ≻ <span class="tok-nu">20</span> {
+        maior <span class="tok-op">←</span> true
+    }
+    assert not maior
+}
+
+test <span class="tok-st">"si block body runs every statement"</span> {
+    const int aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
+    var int gradus <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    if aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> {
+        gradus <span class="tok-op">←</span> gradus <span class="tok-op">+</span> <span class="tok-nu">1</span>
+        gradus <span class="tok-op">←</span> gradus <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    }
+    assert gradus <span class="tok-op">≡</span> <span class="tok-nu">2</span>
+}
+<span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># si — Starts a conditional branch that runs when its condition is true.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -75,52 +101,21 @@ main {
 
 main {
 <span class="tok-co">    # Simple truthy branch — only the first condition matches</span>
-    const _ x <span class="tok-op">←</span> <span class="tok-nu">10</span>
-
-    if x <span class="tok-op">&gt;</span> <span class="tok-nu">5</span> {
+    const int x <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    if x ≻ <span class="tok-nu">5</span> {
         print <span class="tok-st">"x maior quam 5"</span>
     }
-
-    if x <span class="tok-op">&gt;</span> <span class="tok-nu">20</span> {
+    if x ≻ <span class="tok-nu">20</span> {
 <span class="tok-co">        # skipped: 10 ≯ 20</span>
         print <span class="tok-st">"x maior quam 20"</span>
     }
 
 <span class="tok-co">    # Block body: multiple statements run together when condition holds</span>
-    const _ aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
-
+    const int aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
     if aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> {
         print <span class="tok-st">"Adult"</span>
         print <span class="tok-st">"Can vote"</span>
     }
-}
-
-test <span class="tok-st">"si runs its body on a verum condition"</span> {
-    const _ x <span class="tok-op">←</span> <span class="tok-nu">10</span>
-    var bool maior <span class="tok-op">←</span> false
-    if x <span class="tok-op">&gt;</span> <span class="tok-nu">5</span> {
-        maior <span class="tok-op">←</span> true
-    }
-    assert maior
-}
-
-test <span class="tok-st">"si skips its body on a falsum condition"</span> {
-    const _ x <span class="tok-op">←</span> <span class="tok-nu">10</span>
-    var bool maior <span class="tok-op">←</span> false
-    if x <span class="tok-op">&gt;</span> <span class="tok-nu">20</span> {
-        maior <span class="tok-op">←</span> true
-    }
-    assert not maior
-}
-
-test <span class="tok-st">"si block body runs every statement"</span> {
-    const _ aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
-    var int gradus <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    if aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> {
-        gradus <span class="tok-op">←</span> gradus <span class="tok-op">+</span> <span class="tok-nu">1</span>
-        gradus <span class="tok-op">←</span> gradus <span class="tok-op">+</span> <span class="tok-nu">1</span>
-    }
-    assert gradus <span class="tok-op">≡</span> <span class="tok-nu">2</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>x maior quam 5
 Adult
 Can vote

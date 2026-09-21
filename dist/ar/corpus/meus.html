@@ -24,22 +24,18 @@
 
 main {
     const sermo s <span class="tok-op">←</span> call <span class="tok-st">'runtime:echo'</span> (<span class="tok-st">"salve"</span>)
-
     const meus<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> m <span class="tok-op">←</span> s.meus<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>()
     m.da(<span class="tok-st">"ping"</span>)
     const status outbound <span class="tok-op">←</span> m.fini()
-
     const tuus<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> t <span class="tok-op">←</span> s.tuus<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>()
     for from t.<span class="tok-kw">cursor</span>() const frame {
         assert frame.data <span class="tok-op">≡</span> <span class="tok-st">"salve"</span>
     }
     const status inbound <span class="tok-op">←</span> t.fini()
-
     const sermo s2 <span class="tok-op">←</span> call <span class="tok-st">'runtime:echo'</span> (<span class="tok-st">"salve"</span>)
     const tuus<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> t2 <span class="tok-op">←</span> s2.tuus<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>()
     const scrinium<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> null got <span class="tok-op">←</span> t2.accipe()
     const status accipe_done <span class="tok-op">←</span> t2.fini()
-
     print outbound
     print inbound
     print got

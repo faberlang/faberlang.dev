@@ -45,23 +45,9 @@ fn scale(bool compact, int base) <span class="tok-op">→</span> int {
     return base <span class="tok-op">*</span> factor
 }
 
-main {
-    const _ nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    const _ salve <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
-
-    print salve
-
-    const int pending
-    pending <span class="tok-op">←</span> <span class="tok-nu">7</span>
-    print pending
-
-    print scale(true, <span class="tok-nu">3</span>)
-    print scale(false, <span class="tok-nu">3</span>)
-}
-
 test <span class="tok-st">"fixum immediate init"</span> {
-    const _ nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    const _ salve <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
+    const string nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    const string salve <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
     assert nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
     assert salve <span class="tok-op">≡</span> <span class="tok-st">"Salve, Marcus!"</span>
 }
@@ -75,6 +61,17 @@ test <span class="tok-st">"fixum deferred init writes once"</span> {
 test <span class="tok-st">"fixum factor selected per branch"</span> {
     assert scale(true, <span class="tok-nu">3</span>) <span class="tok-op">≡</span> <span class="tok-nu">30</span>
     assert scale(false, <span class="tok-nu">3</span>) <span class="tok-op">≡</span> <span class="tok-nu">300</span>
+}
+
+main {
+    const string nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    const string salve <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
+    print salve
+    const int pending
+    pending <span class="tok-op">←</span> <span class="tok-nu">7</span>
+    print pending
+    print scale(true, <span class="tok-nu">3</span>)
+    print scale(false, <span class="tok-nu">3</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Marcus!
 7
 30

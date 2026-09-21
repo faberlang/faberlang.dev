@@ -16,8 +16,8 @@
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-kw">interface</span> tempus {
-  @ unstable { target <span class="tok-op">=</span> rs, <span class="tok-kw">ratio</span> <span class="tok-op">=</span> <span class="tok-st">"timer handles are not implemented"</span> }
-  <span class="tok-kw">fn</span> siste(<span class="tok-kw">int</span> handle) <span class="tok-op">→</span> <span class="tok-kw">void</span>
+    @ unstable { target <span class="tok-op">=</span> rs, <span class="tok-kw">ratio</span> <span class="tok-op">=</span> <span class="tok-st">"timer handles are not implemented"</span> }
+    <span class="tok-kw">fn</span> siste(<span class="tok-kw">int</span> handle) <span class="tok-op">→</span> <span class="tok-kw">void</span>
 }
 
 <span class="tok-kw">main</span> {
@@ -49,7 +49,7 @@
 <span class="tok-co">#   Calls to @ nondum methods fail semantic check (SEM017); do not invoke here.</span>
 
 <span class="tok-kw">interface</span> tempus {
-    @ unstable rs <span class="tok-st">"timer handles are not implemented yet"</span>
+    @ unstable { target <span class="tok-op">=</span> rs, <span class="tok-kw">ratio</span> <span class="tok-op">=</span> <span class="tok-st">"timer handles are not implemented yet"</span> }
     <span class="tok-kw">fn</span> siste(<span class="tok-kw">int</span> handle) <span class="tok-op">→</span> <span class="tok-kw">void</span>
 }
 

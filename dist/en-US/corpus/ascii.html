@@ -18,7 +18,7 @@
 <span class="tok-co">#   pg:query</span>
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ route <span class="tok-op">←</span> <span class="tok-st">'pg:query'</span>
+    <span class="tok-kw">const</span> ascii route <span class="tok-op">←</span> <span class="tok-st">'pg:query'</span>
     print route
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>pg:query
 </code></pre><h3 id="radixcorpusboundedconversio-ascii-overflow-declinefab-supporting-reject">radix/corpus/bounded/conversio-ascii-overflow-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusboundedconversio-ascii-overflow-declinefab-supporting-reject">#</a></h3><p>Decline: an ascii literal longer than the target capacity rejects with ascii_literal_too_long.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>

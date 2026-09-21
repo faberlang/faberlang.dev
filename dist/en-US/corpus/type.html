@@ -29,13 +29,17 @@
 <span class="tok-co"># --- Primitive type aliases ---</span>
 
 <span class="tok-kw">type</span> Signum <span class="tok-op">=</span> <span class="tok-kw">int</span>
+
 <span class="tok-kw">type</span> Cognomen <span class="tok-op">=</span> string
+
 <span class="tok-kw">type</span> Viget <span class="tok-op">=</span> <span class="tok-kw">bool</span>
 
 <span class="tok-co"># --- Generic type aliases ---</span>
 
 <span class="tok-kw">type</span> Nomina <span class="tok-op">=</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>
+
 <span class="tok-kw">type</span> Puncta <span class="tok-op">=</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
+
 <span class="tok-kw">type</span> Index <span class="tok-op">=</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span>
 
 <span class="tok-co"># Nullable type alias (canonical T ∪ nihil form)</span>
@@ -43,18 +47,16 @@
 
 <span class="tok-kw">main</span> {
 <span class="tok-co">    # Using primitive aliases</span>
-    <span class="tok-kw">const</span> Signum signum <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    <span class="tok-kw">const</span> Cognomen cognomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">const</span> Viget viget <span class="tok-op">←</span> <span class="tok-kw">true</span>
-
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> signum <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    <span class="tok-kw">const</span> string cognomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> viget <span class="tok-op">←</span> <span class="tok-kw">true</span>
     print signum
     print cognomen
     print viget
 
 <span class="tok-co">    # Using generic aliases</span>
-    <span class="tok-kw">const</span> Nomina sodales <span class="tok-op">←</span> [<span class="tok-st">"Gaius"</span>, <span class="tok-st">"Lucius"</span>, <span class="tok-st">"Titus"</span>]
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> sodales <span class="tok-op">←</span> [<span class="tok-st">"Gaius"</span>, <span class="tok-st">"Lucius"</span>, <span class="tok-st">"Titus"</span>]
     print sodales
-
-    <span class="tok-kw">const</span> Puncta puncta <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">95</span>, <span class="tok-nu">87</span>]
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">95</span>, <span class="tok-nu">87</span>]
     print puncta
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpustypustypusfab-canonical-keyword">radix/corpus/typus/typus.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/typus/typus.fab&quot;]</li></ul></div></footer></div></body></html>

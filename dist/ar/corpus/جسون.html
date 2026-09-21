@@ -16,9 +16,8 @@
 
 import from <span class="tok-st">"norma:json"</span> json
 
-@ json
+@ json { }
 class Payload {
-    @ json { nomen <span class="tok-op">=</span> <span class="tok-st">"wire_name"</span> }
     string name
 }
 
@@ -26,16 +25,13 @@ main {
     const json literal <span class="tok-op">←</span> { <span class="tok-st">"wire_name"</span><span class="tok-op">:</span> <span class="tok-st">"Ada"</span>, <span class="tok-st">"items"</span><span class="tok-op">:</span> [<span class="tok-nu">1</span>, { <span class="tok-st">"ok"</span><span class="tok-op">:</span> true }] }
     const value broad <span class="tok-op">←</span> literal ↦ value
     const json narrowed <span class="tok-op">←</span> broad ↦ json
-
     const Payload payload <span class="tok-op">←</span> narrowed ↦ Payload
     const json encoded <span class="tok-op">←</span> payload ↦ json
     const string wire <span class="tok-op">←</span> json.stringify(encoded)
     const json <span class="tok-op">∪</span> null tentativa <span class="tok-op">←</span> json.try_parse(wire)
-
     print payload.name
     print wire
     print tentativa
-
     do {
         const json reparsed <span class="tok-op">←</span> json.parse(wire)
         const Payload roundtrip <span class="tok-op">←</span> reparsed ↦ Payload

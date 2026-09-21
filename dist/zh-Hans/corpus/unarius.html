@@ -29,28 +29,28 @@
 
 main {
 <span class="tok-co">    # Numeric negation</span>
-    const _ x <span class="tok-op">←</span> <span class="tok-nu">5</span>
-    const _ neg <span class="tok-op">←</span> <span class="tok-op">-</span>x
+    const int x <span class="tok-op">←</span> <span class="tok-nu">5</span>
+    const int neg <span class="tok-op">←</span> <span class="tok-op">-</span>x
 <span class="tok-co">    # -5</span>
     print neg
 
 <span class="tok-co">    # Logical negation</span>
-    const _ flag <span class="tok-op">←</span> true
-    const _ non_signum <span class="tok-op">←</span> not flag
+    const bool flag <span class="tok-op">←</span> true
+    const bool non_signum <span class="tok-op">←</span> not flag
 <span class="tok-co">    # falsum</span>
     print non_signum
 
 <span class="tok-co">    # Positive/negative checks</span>
-    const _ a <span class="tok-op">←</span> <span class="tok-nu">10</span>
-    const _ b <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">3</span>
+    const int a <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    const int b <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">3</span>
 <span class="tok-co">    # verum</span>
-    print a <span class="tok-op">&gt;</span> <span class="tok-nu">0</span>
+    print a ≻ <span class="tok-nu">0</span>
 <span class="tok-co">    # falsum</span>
-    print a <span class="tok-op">&lt;</span> <span class="tok-nu">0</span>
+    print a ≺ <span class="tok-nu">0</span>
 <span class="tok-co">    # falsum</span>
-    print b <span class="tok-op">&gt;</span> <span class="tok-nu">0</span>
+    print b ≻ <span class="tok-nu">0</span>
 <span class="tok-co">    # verum</span>
-    print b <span class="tok-op">&lt;</span> <span class="tok-nu">0</span>
+    print b ≺ <span class="tok-nu">0</span>
 
 <span class="tok-co">    # Null checks</span>
     const string <span class="tok-op">∪</span> null forsitan <span class="tok-op">←</span> null
@@ -58,7 +58,6 @@ main {
     print forsitan is null
 <span class="tok-co">    # falsum</span>
     print forsitan not is null
-
     const string <span class="tok-op">∪</span> null adest <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
 <span class="tok-co">    # falsum</span>
     print adest is null

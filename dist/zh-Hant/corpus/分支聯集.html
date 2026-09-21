@@ -30,23 +30,44 @@
 
 <span class="tok-co"># Discretio with payload variants</span>
 union Exitus {
-    Bonum { string nuntius },
-    Malum { string causa }
+    Bonum {
+        string nuntius
+    },
+    Malum {
+        string causa
+    }
 }
 
 <span class="tok-co"># Discretio with mixed unit and payload variants</span>
 <span class="tok-co"># (Finis is a unit variant — no payload fields)</span>
 union Actum {
-    Pulsus { int x int y },
-    Clavis { string clavis },
+    Pulsus {
+        int x
+        int y
+    },
+    Clavis {
+        string clavis
+    },
     Finis
 }
 
 <span class="tok-co"># Discretio with many fields per variant</span>
 union Figura {
-    Rectum { int x int y int latitudo int altitudo },
-    Circulus { int cx int cy int radius },
-    Punctum { int x int y }
+    Rectum {
+        int x
+        int y
+        int latitudo
+        int altitudo
+    },
+    Circulus {
+        int cx
+        int cy
+        int radius
+    },
+    Punctum {
+        int x
+        int y
+    }
 }
 
 main {

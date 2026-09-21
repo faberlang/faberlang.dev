@@ -31,7 +31,7 @@ main {
     var int attempt <span class="tok-op">←</span> <span class="tok-nu">0</span>
     do {
         attempt <span class="tok-op">←</span> attempt <span class="tok-op">+</span> <span class="tok-nu">1</span>
-        if attempt <span class="tok-op">&gt;</span> <span class="tok-nu">1</span> {
+        if attempt ≻ <span class="tok-nu">1</span> {
             throw <span class="tok-st">"simulated failure"</span>
         }
         print <span class="tok-st">"attempt §"</span>(attempt)

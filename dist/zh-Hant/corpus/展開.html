@@ -27,8 +27,7 @@
 main {
     const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> media <span class="tok-op">←</span> [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
 <span class="tok-co">    # → [1, 2, 3, 4]</span>
-    const _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, spread media, <span class="tok-nu">4</span>]
-
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, spread media, <span class="tok-nu">4</span>]
     for from numeri const n {
         print n
     }

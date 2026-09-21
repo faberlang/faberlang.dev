@@ -37,22 +37,33 @@
 }
 
 <span class="tok-kw">union</span> Nuntius {
-    Pulsus { <span class="tok-kw">int</span> x <span class="tok-kw">int</span> y },
-    Clavis { string clavis },
+    Pulsus {
+        <span class="tok-kw">int</span> x
+        <span class="tok-kw">int</span> y
+    },
+    Clavis {
+        string clavis
+    },
     Finis
 }
 
 <span class="tok-co"># Simple casu matching on unit variants (no payload)</span>
 <span class="tok-kw">fn</span> nomina(Condicio s) <span class="tok-op">→</span> string {
     <span class="tok-kw">match</span> s {
-        <span class="tok-kw">case</span> Agens { <span class="tok-kw">return</span> <span class="tok-st">"agens"</span> }
-        <span class="tok-kw">case</span> Iners { <span class="tok-kw">return</span> <span class="tok-st">"iners"</span> }
-        <span class="tok-kw">case</span> Pendens { <span class="tok-kw">return</span> <span class="tok-st">"pendens"</span> }
+        <span class="tok-kw">case</span> Agens {
+            <span class="tok-kw">return</span> <span class="tok-st">"agens"</span>
+        }
+        <span class="tok-kw">case</span> Iners {
+            <span class="tok-kw">return</span> <span class="tok-st">"iners"</span>
+        }
+        <span class="tok-kw">case</span> Pendens {
+            <span class="tok-kw">return</span> <span class="tok-st">"pendens"</span>
+        }
     }
 }
 
 <span class="tok-co"># casu with fixum bindings destructures variant fields</span>
-<span class="tok-kw">fn</span> tracta(Nuntius e) <span class="tok-op">→</span> <span class="tok-kw">null</span> {
+<span class="tok-kw">fn</span> tracta(Nuntius e) <span class="tok-op">→</span> null_ty {
     <span class="tok-kw">match</span> e {
         <span class="tok-kw">case</span> Pulsus <span class="tok-kw">const</span> x, y {
             print <span class="tok-st">"pulsus: § §"</span>(x, y)

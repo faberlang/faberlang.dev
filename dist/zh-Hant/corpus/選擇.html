@@ -29,9 +29,8 @@
 
 main {
 <span class="tok-co">    # Text matching</span>
-    const _ condicio <span class="tok-op">←</span> <span class="tok-st">"agens"</span>
-
-    switch condicio {
+    const string condicio <span class="tok-op">←</span> <span class="tok-st">"agens"</span>
+    match condicio {
         case <span class="tok-st">"pendens"</span> {
             print <span class="tok-st">"exspectat..."</span>
         }
@@ -44,9 +43,8 @@ main {
     }
 
 <span class="tok-co">    # Numerus matching</span>
-    const _ codex <span class="tok-op">←</span> <span class="tok-nu">200</span>
-
-    switch codex {
+    const int codex <span class="tok-op">←</span> <span class="tok-nu">200</span>
+    match codex {
         case <span class="tok-nu">200</span> {
             print <span class="tok-st">"Recte"</span>
         }
@@ -59,9 +57,8 @@ main {
     }
 
 <span class="tok-co">    # Multiple statements per case</span>
-    const _ modus <span class="tok-op">←</span> <span class="tok-st">"opera"</span>
-
-    switch modus {
+    const string modus <span class="tok-op">←</span> <span class="tok-st">"opera"</span>
+    match modus {
         case <span class="tok-st">"labor"</span> {
             print <span class="tok-st">"modus laboris"</span>
             print <span class="tok-st">"verba multa"</span>

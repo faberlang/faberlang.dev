@@ -31,13 +31,17 @@ union Condicio {
 fn narra(Condicio condicio) <span class="tok-op">→</span> string {
 <span class="tok-co">    # every variant must have a casu</span>
     match all condicio {
-        case Activa { return <span class="tok-st">"activa"</span> }
-        case Quietus { return <span class="tok-st">"quietus"</span> }
+        case Activa {
+            return <span class="tok-st">"activa"</span>
+        }
+        case Quietus {
+            return <span class="tok-st">"quietus"</span>
+        }
     }
 }
 
 main {
-    const _ condicio <span class="tok-op">←</span> variant Activa
+    const Condicio condicio <span class="tok-op">←</span> variant Activa
     print narra(condicio)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>activa
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusomniaomniafab-canonical-keyword">radix/corpus/omnia/omnia.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">المصادر</span><ul><li>[&quot;radix/corpus/omnia/omnia.fab&quot;]</li></ul></div></footer></div></body></html>

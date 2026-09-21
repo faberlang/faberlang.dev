@@ -26,19 +26,17 @@
 <span class="tok-co">#   Negated est parses as `expr non est target`.</span>
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ vexilla <span class="tok-op">←</span> <span class="tok-nu">0</span>b1010
-    <span class="tok-kw">const</span> _ persona <span class="tok-op">←</span> <span class="tok-nu">0</span>b1100
-    <span class="tok-kw">const</span> _ velata <span class="tok-op">←</span> vexilla ∨ persona
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> vexilla <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> persona <span class="tok-op">←</span> <span class="tok-nu">12</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> velata <span class="tok-op">←</span> vexilla ∨ persona
 <span class="tok-co">    # 14 (0b1110)</span>
     print velata
-
     <span class="tok-kw">const</span> string <span class="tok-op">∪</span> <span class="tok-kw">null</span> praesens <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
     <span class="tok-kw">const</span> string <span class="tok-op">∪</span> <span class="tok-kw">null</span> absens <span class="tok-op">←</span> <span class="tok-kw">null</span>
-    <span class="tok-kw">const</span> _ habetValorem <span class="tok-op">←</span> praesens <span class="tok-kw">not</span> <span class="tok-kw">is</span> <span class="tok-kw">null</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> habetValorem <span class="tok-op">←</span> praesens <span class="tok-kw">not</span> <span class="tok-kw">is</span> <span class="tok-kw">null</span>
 <span class="tok-co">    # verum</span>
     print habetValorem
-
-    <span class="tok-kw">const</span> _ caretValorem <span class="tok-op">←</span> absens <span class="tok-kw">not</span> <span class="tok-kw">is</span> <span class="tok-kw">null</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> caretValorem <span class="tok-op">←</span> absens <span class="tok-kw">not</span> <span class="tok-kw">is</span> <span class="tok-kw">null</span>
 <span class="tok-co">    # falsum</span>
     print caretValorem
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>14

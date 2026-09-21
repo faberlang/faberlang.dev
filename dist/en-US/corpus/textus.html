@@ -30,15 +30,13 @@
 <span class="tok-co">#   Smoke asserts exit 0 only.</span>
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">let</span> nuntius <span class="tok-op">←</span> <span class="tok-st">" Ave Roma "</span>
-
-    <span class="tok-kw">let</span> secta <span class="tok-op">←</span> nuntius.slice(<span class="tok-nu">1</span>, <span class="tok-nu">4</span>)
-    <span class="tok-kw">let</span> magna <span class="tok-op">←</span> nuntius.uppercase()
-    <span class="tok-kw">let</span> parva <span class="tok-op">←</span> nuntius.lowercase()
-    <span class="tok-kw">let</span> rasa <span class="tok-op">←</span> nuntius.trim()
-    <span class="tok-kw">let</span> partes <span class="tok-op">←</span> rasa.split(<span class="tok-st">" "</span>)
-    <span class="tok-kw">let</span> mutata <span class="tok-op">←</span> rasa.replace(<span class="tok-st">"Roma"</span>, <span class="tok-st">"Munde"</span>)
-
+    <span class="tok-kw">const</span> string nuntius <span class="tok-op">←</span> <span class="tok-st">" Ave Roma "</span>
+    <span class="tok-kw">const</span> string secta <span class="tok-op">←</span> nuntius.slice(<span class="tok-nu">1</span>, <span class="tok-nu">4</span>)
+    <span class="tok-kw">const</span> string magna <span class="tok-op">←</span> nuntius.uppercase()
+    <span class="tok-kw">const</span> string parva <span class="tok-op">←</span> nuntius.lowercase()
+    <span class="tok-kw">const</span> string rasa <span class="tok-op">←</span> nuntius.trim()
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> partes <span class="tok-op">←</span> rasa.split(<span class="tok-st">" "</span>)
+    <span class="tok-kw">const</span> string mutata <span class="tok-op">←</span> rasa.replace(<span class="tok-st">"Roma"</span>, <span class="tok-st">"Munde"</span>)
     print secta, magna, parva
     print rasa, partes, mutata
 }</code></pre><h3 id="radixcorpusboundedconversio-textus-overflow-declinefab-supporting-reject">radix/corpus/bounded/conversio-textus-overflow-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusboundedconversio-textus-overflow-declinefab-supporting-reject">#</a></h3><p>Decline: a textus literal longer than the target capacity rejects with textus_literal_too_long.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>

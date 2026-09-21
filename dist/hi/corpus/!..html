@@ -33,8 +33,7 @@ main {
     const Persona <span class="tok-op">∪</span> null p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, urbs <span class="tok-op">=</span> <span class="tok-st">"Roma"</span> }
     print p<span class="tok-op">!.</span>nomen
     print p<span class="tok-op">!.</span>urbs
-
-    const _ litterae <span class="tok-op">←</span> [<span class="tok-st">"a"</span>, <span class="tok-st">"b"</span>, <span class="tok-st">"c"</span>]
+    const list<span class="tok-op">&lt;</span>string, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> litterae <span class="tok-op">←</span> [<span class="tok-st">"a"</span>, <span class="tok-st">"b"</span>, <span class="tok-st">"c"</span>]
     print litterae<span class="tok-op">!</span>[<span class="tok-nu">0</span>]
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Marcus
 Roma

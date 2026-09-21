@@ -28,10 +28,14 @@
 <span class="tok-co">#</span>
 
 main {
-    const _ tag <span class="tok-op">←</span> <span class="tok-st">"z"</span>
-    switch tag {
-        case <span class="tok-st">"a"</span> { print <span class="tok-st">"a"</span> }
-        default { print <span class="tok-st">"default"</span> }
+    const string tag <span class="tok-op">←</span> <span class="tok-st">"z"</span>
+    match tag {
+        case <span class="tok-st">"a"</span> {
+            print <span class="tok-st">"a"</span>
+        }
+        case _ {
+            print <span class="tok-st">"default"</span>
+        }
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>default
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusceterumceterumfab-canonical-keyword">radix/corpus/ceterum/ceterum.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/ceterum/ceterum.fab&quot;]</li></ul></div></footer></div></body></html>

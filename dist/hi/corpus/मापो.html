@@ -29,15 +29,13 @@
 <span class="tok-co"># (whitelist: lista/methodi-accessus.fab).</span>
 
 main {
-    const _ res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
-
-    const _ primus <span class="tok-op">←</span> res.first()
-    const _ ultimus <span class="tok-op">←</span> res.last()
-    const _ tertius <span class="tok-op">←</span> res.get(<span class="tok-nu">2</span>)
-    const _ longitudo <span class="tok-op">←</span> res.length()
-    const _ vacuaest <span class="tok-op">←</span> res.is_empty()
-    const _ habettres <span class="tok-op">←</span> res.contains(<span class="tok-nu">3</span>)
-
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
+    const int <span class="tok-op">∪</span> null primus <span class="tok-op">←</span> res.first()
+    const int <span class="tok-op">∪</span> null ultimus <span class="tok-op">←</span> res.last()
+    const int <span class="tok-op">∪</span> null tertius <span class="tok-op">←</span> res.get(<span class="tok-nu">2</span>)
+    const int longitudo <span class="tok-op">←</span> res.length()
+    const bool vacuaest <span class="tok-op">←</span> res.is_empty()
+    const bool habettres <span class="tok-op">←</span> res.contains(<span class="tok-nu">3</span>)
     print primus, ultimus, tertius
     print longitudo, vacuaest, habettres
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1 5 3

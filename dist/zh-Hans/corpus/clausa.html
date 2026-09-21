@@ -30,21 +30,20 @@
 
 main {
 <span class="tok-co">    # Single-parameter closure: numerus x ∴ x * 2</span>
-    const _ duplica <span class="tok-op">←</span> int x ∴ x <span class="tok-op">*</span> <span class="tok-nu">2</span>
+    const (int) <span class="tok-op">→</span> int duplica <span class="tok-op">←</span> int x ∴ x <span class="tok-op">*</span> <span class="tok-nu">2</span>
     print duplica(<span class="tok-nu">5</span>)
 
 <span class="tok-co">    # Multi-parameter typed closure</span>
-    const _ adde <span class="tok-op">←</span> (int a, int b) <span class="tok-op">→</span> int ∴ a <span class="tok-op">+</span> b
+    const (int, int) <span class="tok-op">→</span> int adde <span class="tok-op">←</span> (int a, int b) <span class="tok-op">→</span> int ∴ a <span class="tok-op">+</span> b
     print adde(<span class="tok-nu">3</span>, <span class="tok-nu">4</span>)
-
-    const _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> duplicati <span class="tok-op">←</span> empty
 <span class="tok-co">    # predicate closure</span>
-    const _ par <span class="tok-op">←</span> int x <span class="tok-op">→</span> bool ∴ x <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+    const (int) <span class="tok-op">→</span> bool paritas <span class="tok-op">←</span> int x <span class="tok-op">→</span> bool ∴ x <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≡</span> <span class="tok-nu">0</span>
     var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> pares <span class="tok-op">←</span> empty
     for from numeri const n {
         duplicati.append(duplica(n))
-        if par(n) {
+        if paritas(n) {
             pares.append(n)
         }
     }
@@ -53,10 +52,9 @@ main {
     print duplicati[<span class="tok-nu">2</span>]
     print pares.length()
     print pares[<span class="tok-nu">0</span>]
-
-    const _ positivus <span class="tok-op">←</span> int n <span class="tok-op">→</span> bool ∴ n <span class="tok-op">&gt;</span> <span class="tok-nu">0</span>
-    print positivus(<span class="tok-nu">10</span>)
-    print positivus(<span class="tok-op">-</span><span class="tok-nu">5</span>)
+    const (int) <span class="tok-op">→</span> bool plus <span class="tok-op">←</span> int n <span class="tok-op">→</span> bool ∴ n ≻ <span class="tok-nu">0</span>
+    print plus(<span class="tok-nu">10</span>)
+    print plus(<span class="tok-op">-</span><span class="tok-nu">5</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>10
 7
 3

@@ -28,12 +28,12 @@
 <span class="tok-co">#</span>
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ code <span class="tok-op">←</span> <span class="tok-nu">200</span>
-    <span class="tok-kw">switch</span> code {
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> code <span class="tok-op">←</span> <span class="tok-nu">200</span>
+    <span class="tok-kw">match</span> code {
         <span class="tok-kw">case</span> <span class="tok-nu">200</span> {
             print <span class="tok-st">"ok"</span>
         }
-        <span class="tok-kw">default</span> {
+        <span class="tok-kw">case</span> _ {
             print <span class="tok-st">"other"</span>
         }
     }

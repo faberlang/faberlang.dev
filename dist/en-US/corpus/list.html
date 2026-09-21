@@ -34,11 +34,10 @@
     <span class="tok-kw">const</span> _ nomina <span class="tok-op">←</span> [<span class="tok-st">"Marcus"</span>, <span class="tok-st">"Julia"</span>, <span class="tok-st">"Gaius"</span>]
     <span class="tok-kw">const</span> _ vexilla <span class="tok-op">←</span> [<span class="tok-kw">true</span>, <span class="tok-kw">false</span>, <span class="tok-kw">true</span>]
     <span class="tok-kw">const</span> _ matrix <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>], [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>]]
-    <span class="tok-kw">const</span> _ prima <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">const</span> _ secunda <span class="tok-op">←</span> [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]
-    <span class="tok-kw">const</span> _ coniuncta <span class="tok-op">←</span> [<span class="tok-kw">spread</span> prima, <span class="tok-kw">spread</span> secunda]
-    <span class="tok-kw">const</span> _ aucta <span class="tok-op">←</span> [<span class="tok-nu">0</span>, <span class="tok-kw">spread</span> prima, <span class="tok-nu">99</span>]
-
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> primum <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> secundum <span class="tok-op">←</span> [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]
+    <span class="tok-kw">const</span> _ coniuncta <span class="tok-op">←</span> [<span class="tok-kw">spread</span> primum, <span class="tok-kw">spread</span> secundum]
+    <span class="tok-kw">const</span> _ aucta <span class="tok-op">←</span> [<span class="tok-nu">0</span>, <span class="tok-kw">spread</span> primum, <span class="tok-nu">99</span>]
     print vacuares.length()
     print numeri.length()
     print numeri[<span class="tok-nu">0</span>]
@@ -104,7 +103,6 @@ verum
 
 <span class="tok-kw">main</span> {
     <span class="tok-kw">const</span> _ res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
-
     <span class="tok-kw">const</span> _ addita <span class="tok-op">←</span> res.added(<span class="tok-nu">6</span>)
     <span class="tok-kw">const</span> _ sectio <span class="tok-op">←</span> res.slice(<span class="tok-nu">1</span>, <span class="tok-nu">4</span>)
     <span class="tok-kw">const</span> _ primaduo <span class="tok-op">←</span> res.take(<span class="tok-nu">2</span>)
@@ -112,7 +110,6 @@ verum
     <span class="tok-kw">const</span> _ omissaduo <span class="tok-op">←</span> res.drop(<span class="tok-nu">2</span>)
     <span class="tok-kw">const</span> _ inversa <span class="tok-op">←</span> res.invert()
     <span class="tok-kw">const</span> _ ordinata <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">1</span>, <span class="tok-nu">2</span>].sorted()
-
     print addita
     print sectio
     print primaduo
@@ -157,14 +154,12 @@ verum
 <span class="tok-co"># (whitelist: lista/methodi-mutatio.fab).</span>
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> _ res <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">1</span>, <span class="tok-nu">2</span>] ∷ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
-
+    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> res <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">1</span>, <span class="tok-nu">2</span>] ∷ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
     res.append(<span class="tok-nu">4</span>)
-    <span class="tok-kw">const</span> _ primusremotus <span class="tok-op">←</span> res.remove_first()
-    <span class="tok-kw">const</span> _ ultimusremotus <span class="tok-op">←</span> res.remove_last()
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> primusremotus <span class="tok-op">←</span> res.remove_first()
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> ultimusremotus <span class="tok-op">←</span> res.remove_last()
     res.reverse()
     res.sort()
-
     print res
     print primusremotus
     print ultimusremotus

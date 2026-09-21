@@ -8,7 +8,16 @@
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>verum
 falsum
 verum
-</code></pre><h3 id="radixcorpusverumverumfab-canonical-keyword">radix/corpus/verum/verum.fab (canonical · keyword)<a class="anchor" href="#radixcorpusverumverumfab-canonical-keyword">#</a></h3><p>Represents the true boolean value and can prefix a truthiness check.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+</code></pre><h3 id="radixcorpusverumverumfab-canonical-keyword">radix/corpus/verum/verum.fab (canonical · keyword)<a class="anchor" href="#radixcorpusverumverumfab-canonical-keyword">#</a></h3><p>Represents the true boolean value and can prefix a truthiness check.</p><pre class="faber-code"><code class="lang-faber outcome=compiles">test <span class="tok-st">"verum is the true literal"</span> {
+    const bool active <span class="tok-op">←</span> true
+    assert active
+    assert active <span class="tok-op">≡</span> true
+}
+
+test <span class="tok-st">"verum stands alone as a truthy condition"</span> {
+    assert true
+}
+<span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># verum — Represents the true boolean value and can prefix a truthiness check.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -34,17 +43,7 @@ verum
 <span class="tok-co">#</span>
 
 main {
-    const _ active <span class="tok-op">←</span> true
+    const bool active <span class="tok-op">←</span> true
     print active
-}
-
-test <span class="tok-st">"verum is the true literal"</span> {
-    const _ active <span class="tok-op">←</span> true
-    assert active
-    assert active <span class="tok-op">≡</span> true
-}
-
-test <span class="tok-st">"verum stands alone as a truthy condition"</span> {
-    assert true
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>verum
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusliteraliabooleanfab-canonical-keyword">radix/corpus/literalia/boolean.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusverumverumfab-canonical-keyword">radix/corpus/verum/verum.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">स्रोत</span><ul><li>[&quot;radix/corpus/literalia/boolean.fab&quot;]</li></ul></div></footer></div></body></html>

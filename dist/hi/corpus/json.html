@@ -16,9 +16,8 @@
 
 import from <span class="tok-st">"norma:json"</span> <span class="tok-kw">json</span>
 
-@ <span class="tok-kw">json</span>
+@ <span class="tok-kw">json</span> { }
 class Payload {
-    @ <span class="tok-kw">json</span> { nomen <span class="tok-op">=</span> <span class="tok-st">"wire_name"</span> }
     string name
 }
 
@@ -26,16 +25,13 @@ main {
     const <span class="tok-kw">json</span> literal <span class="tok-op">←</span> { <span class="tok-st">"wire_name"</span><span class="tok-op">:</span> <span class="tok-st">"Ada"</span>, <span class="tok-st">"items"</span><span class="tok-op">:</span> [<span class="tok-nu">1</span>, { <span class="tok-st">"ok"</span><span class="tok-op">:</span> true }] }
     const value broad <span class="tok-op">←</span> literal ↦ value
     const <span class="tok-kw">json</span> narrowed <span class="tok-op">←</span> broad ↦ <span class="tok-kw">json</span>
-
     const Payload payload <span class="tok-op">←</span> narrowed ↦ Payload
     const <span class="tok-kw">json</span> encoded <span class="tok-op">←</span> payload ↦ <span class="tok-kw">json</span>
     const string wire <span class="tok-op">←</span> <span class="tok-kw">json</span>.stringify(encoded)
     const <span class="tok-kw">json</span> <span class="tok-op">∪</span> null tentativa <span class="tok-op">←</span> <span class="tok-kw">json</span>.try_parse(wire)
-
     print payload.name
     print wire
     print tentativa
-
     do {
         const <span class="tok-kw">json</span> reparsed <span class="tok-op">←</span> <span class="tok-kw">json</span>.parse(wire)
         const Payload roundtrip <span class="tok-op">←</span> reparsed ↦ Payload

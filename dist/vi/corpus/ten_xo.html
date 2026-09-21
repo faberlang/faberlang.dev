@@ -27,14 +27,13 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Rank-0 tensor longitudo after round-trip identity call.</span>
 
-fn identity(tensor<span class="tok-op">&lt;</span>float<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span>, []<span class="tok-op">&gt;</span> value) <span class="tok-op">→</span> tensor<span class="tok-op">&lt;</span>float<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span>, []<span class="tok-op">&gt;</span> {
+fn identity(tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> value) <span class="tok-op">→</span> tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> {
     return value
 }
 
 main {
-    const tensor<span class="tok-op">&lt;</span>float<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span>, []<span class="tok-op">&gt;</span> empty <span class="tok-op">←</span> empty
-    const tensor<span class="tok-op">&lt;</span>float<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span>, []<span class="tok-op">&gt;</span> roundtrip <span class="tok-op">←</span> identity(empty)
-
+    const tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> empty <span class="tok-op">←</span> empty
+    const tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> roundtrip <span class="tok-op">←</span> identity(empty)
     print roundtrip.length()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
 </code></pre><h3 id="radixcorpustensorarithmetic-rejectfab-supporting-reject">radix/corpus/tensor/arithmetic-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpustensorarithmetic-rejectfab-supporting-reject">#</a></h3><p>Tensor arithmetic rejects non-numeric elements and mixed numeric widths.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>

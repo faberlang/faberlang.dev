@@ -29,19 +29,15 @@
 <span class="tok-co"># BACKEND: No incipit block — test-runner surface; exempla e2e whitelists as</span>
 <span class="tok-co"># declaration-only (whitelist: probandum/probandum.fab).</span>
 
-describe <span class="tok-st">"arithmetica"</span> {
-    test <span class="tok-st">"unum plus unum"</span> {
-        assert <span class="tok-nu">1</span> <span class="tok-op">+</span> <span class="tok-nu">1</span> <span class="tok-op">≡</span> <span class="tok-nu">2</span>
-    }
+test <span class="tok-st">"unum plus unum"</span> {
+    assert <span class="tok-nu">1</span> <span class="tok-op">+</span> <span class="tok-nu">1</span> <span class="tok-op">≡</span> <span class="tok-nu">2</span>
+}
 
-    test <span class="tok-st">"multiplicatio"</span> {
-        assert <span class="tok-nu">3</span> <span class="tok-op">*</span> <span class="tok-nu">4</span> <span class="tok-op">≡</span> <span class="tok-nu">12</span>
-    }
+test <span class="tok-st">"multiplicatio"</span> {
+    assert <span class="tok-nu">3</span> <span class="tok-op">*</span> <span class="tok-nu">4</span> <span class="tok-op">≡</span> <span class="tok-nu">12</span>
+}
 
-    describe <span class="tok-st">"implicata"</span> {
-        test <span class="tok-st">"comparatio"</span> {
-            const _ x <span class="tok-op">←</span> <span class="tok-nu">10</span>
-            assert x <span class="tok-op">≥</span> <span class="tok-nu">10</span>
-        }
-    }
+test <span class="tok-st">"comparatio"</span> {
+    const int x <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    assert x <span class="tok-op">≥</span> <span class="tok-nu">10</span>
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusprobandumprobandumfab-canonical-keyword">radix/corpus/probandum/probandum.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/probandum/probandum.fab&quot;]</li></ul></div></footer></div></body></html>

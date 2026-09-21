@@ -25,34 +25,26 @@
 
 main {
 <span class="tok-co">    # Skip even numbers</span>
-    var _ i <span class="tok-op">←</span> <span class="tok-nu">0</span>
-
-    while i <span class="tok-op">&lt;</span> <span class="tok-nu">10</span> {
+    var int i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    while i ≺ <span class="tok-nu">10</span> {
         i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
-
         if i <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
             continue
         }
-
         print i
     }
 
 <span class="tok-co">    # Continue in nested loop</span>
-    var _ exterior <span class="tok-op">←</span> <span class="tok-nu">0</span>
-
-    while exterior <span class="tok-op">&lt;</span> <span class="tok-nu">3</span> {
-        var _ interior <span class="tok-op">←</span> <span class="tok-nu">0</span>
-
-        while interior <span class="tok-op">&lt;</span> <span class="tok-nu">5</span> {
+    var int exterior <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    while exterior ≺ <span class="tok-nu">3</span> {
+        var int interior <span class="tok-op">←</span> <span class="tok-nu">0</span>
+        while interior ≺ <span class="tok-nu">5</span> {
             interior <span class="tok-op">←</span> interior <span class="tok-op">+</span> <span class="tok-nu">1</span>
-
             if interior <span class="tok-op">≡</span> <span class="tok-nu">3</span> {
                 continue
             }
-
             print <span class="tok-st">"exterior←§, interior←§"</span>(exterior, interior)
         }
-
         exterior <span class="tok-op">←</span> exterior <span class="tok-op">+</span> <span class="tok-nu">1</span>
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1

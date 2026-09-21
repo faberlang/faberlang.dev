@@ -30,16 +30,15 @@
             <span class="tok-kw">return</span> <span class="tok-nu">0</span>
         }
     }
-
     <span class="tok-kw">return</span> a <span class="tok-op">/</span> b
 }
 
 <span class="tok-kw">fn</span> tracta(<span class="tok-kw">int</span> x) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
     <span class="tok-kw">guard</span> {
-        <span class="tok-kw">if</span> x <span class="tok-op">&lt;</span> <span class="tok-nu">0</span> {
+        <span class="tok-kw">if</span> x ≺ <span class="tok-nu">0</span> {
             <span class="tok-kw">return</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
         }
-        <span class="tok-kw">if</span> x <span class="tok-op">&gt;</span> <span class="tok-nu">100</span> {
+        <span class="tok-kw">if</span> x ≻ <span class="tok-nu">100</span> {
             <span class="tok-kw">return</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
         }
     }
@@ -50,14 +49,13 @@
 
 <span class="tok-kw">fn</span> stringe(<span class="tok-kw">int</span> value, <span class="tok-kw">int</span> minimum, <span class="tok-kw">int</span> maximum) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
     <span class="tok-kw">guard</span> {
-        <span class="tok-kw">if</span> minimum <span class="tok-op">&gt;</span> value {
+        <span class="tok-kw">if</span> minimum ≻ value {
             <span class="tok-kw">return</span> minimum
         }
-        <span class="tok-kw">if</span> maximum <span class="tok-op">&lt;</span> value {
+        <span class="tok-kw">if</span> maximum ≺ value {
             <span class="tok-kw">return</span> maximum
         }
     }
-
     <span class="tok-kw">return</span> value
 }
 
@@ -70,7 +68,6 @@
     print tracta(<span class="tok-nu">50</span>)
     print tracta(<span class="tok-op">-</span><span class="tok-nu">10</span>)
     print tracta(<span class="tok-nu">150</span>)
-
     print stringe(<span class="tok-nu">5</span>, <span class="tok-nu">0</span>, <span class="tok-nu">10</span>)
     print stringe(<span class="tok-op">-</span><span class="tok-nu">5</span>, <span class="tok-nu">0</span>, <span class="tok-nu">10</span>)
     print stringe(<span class="tok-nu">15</span>, <span class="tok-nu">0</span>, <span class="tok-nu">10</span>)

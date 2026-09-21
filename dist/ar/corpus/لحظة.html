@@ -29,25 +29,20 @@
 main {
     const string utc <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00.123456Z"</span>
     const string offset <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T16:32:00+0900"</span>
-
     const instant seconds <span class="tok-op">←</span> utc ↦ instant
     const instant<span class="tok-op">&lt;</span>ms<span class="tok-op">&gt;</span> millis <span class="tok-op">←</span> seconds ↦ instant<span class="tok-op">&lt;</span>ms<span class="tok-op">&gt;</span>
     const instant<span class="tok-op">&lt;</span>us<span class="tok-op">&gt;</span> micros <span class="tok-op">←</span> utc ↦ instant<span class="tok-op">&lt;</span>us<span class="tok-op">&gt;</span>
     const instant<span class="tok-op">&lt;</span>ns<span class="tok-op">&gt;</span> nanos <span class="tok-op">←</span> utc ↦ instant<span class="tok-op">&lt;</span>ns<span class="tok-op">&gt;</span>
     const instant normalized <span class="tok-op">←</span> offset ↦ instant
-
-    assert millis ↦ string <span class="tok-op">≡</span> <span class="tok-st">"1979-05-27T07:32:00.000Z"</span>
-    assert micros ↦ string <span class="tok-op">≡</span> <span class="tok-st">"1979-05-27T07:32:00.123456Z"</span>
+    assert (millis ↦ string) <span class="tok-op">≡</span> <span class="tok-st">"1979-05-27T07:32:00.000Z"</span>
+    assert (micros ↦ string) <span class="tok-op">≡</span> <span class="tok-st">"1979-05-27T07:32:00.123456Z"</span>
     assert normalized <span class="tok-op">≡</span> seconds panic <span class="tok-st">"offset ingest lands on same UTC instant"</span>
-
     const instant<span class="tok-op">&lt;</span>ns<span class="tok-op">&gt;</span> fine <span class="tok-op">←</span> nanos
     const instant narrowed <span class="tok-op">←</span> fine ↦ instant
-    assert narrowed ↦ string <span class="tok-op">≡</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
-
+    assert (narrowed ↦ string) <span class="tok-op">≡</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
     const string bad <span class="tok-op">←</span> <span class="tok-st">"not-a-datetime"</span>
     const instant recovered <span class="tok-op">←</span> bad ↦ instant ⇥ seconds
     assert recovered <span class="tok-op">≡</span> seconds
-
     print seconds ↦ string
     print millis ↦ string
     print micros ↦ string
@@ -83,7 +78,9 @@ main {
 <span class="tok-co">#   Smoke asserts exit 0 only.</span>
 
 import from <span class="tok-st">"norma:time"</span> tempus
+
 import from <span class="tok-st">"norma:toml"</span> toml
+
 import from <span class="tok-st">"norma:value"</span> valor
 
 fn epoch_wire(instant t) <span class="tok-op">→</span> string {
@@ -98,22 +95,21 @@ main {
     const instant<span class="tok-op">&lt;</span>us<span class="tok-op">&gt;</span> micros <span class="tok-op">←</span> nanos ↦ instant<span class="tok-op">&lt;</span>us<span class="tok-op">&gt;</span>
 
 <span class="tok-co">    # --- valor ↦ instans: UTC wire and numeric offset normalize to same instant ---</span>
-    const valor utc <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
-    const valor offset <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T03:32:00-04:00"</span>
+    const value utc <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
+    const value offset <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T03:32:00-04:00"</span>
     const instant parsed <span class="tok-op">←</span> utc ↦ instant
     const instant normalized <span class="tok-op">←</span> offset ↦ instant
-
     assert parsed <span class="tok-op">≡</span> normalized panic <span class="tok-st">"offset ingest normalizes to UTC instant"</span>
 
 <span class="tok-co">    # --- TOML datetime provenance (Valor::Instans carrier, not textus) ---</span>
-    const valor doc <span class="tok-op">←</span> toml.parse(<span class="tok-st">"creatus = 1979-05-27T07:32:00.123456Z"</span>)
-    const valor carrier <span class="tok-op">←</span> valor.get(doc, <span class="tok-st">"creatus"</span>)
+    const value doc <span class="tok-op">←</span> toml.parse(<span class="tok-st">"creatus = 1979-05-27T07:32:00.123456Z"</span>)
+    const value carrier <span class="tok-op">←</span> valor.get(doc, <span class="tok-st">"creatus"</span>)
     const instant<span class="tok-op">&lt;</span>us<span class="tok-op">&gt;</span> fromToml <span class="tok-op">←</span> carrier ↦ instant<span class="tok-op">&lt;</span>us<span class="tok-op">&gt;</span>
-    assert fromToml ↦ string <span class="tok-op">≡</span> <span class="tok-st">"1979-05-27T07:32:00.123456Z"</span> panic <span class="tok-st">"emit honors micros contract"</span>
+    assert (fromToml ↦ string) <span class="tok-op">≡</span> <span class="tok-st">"1979-05-27T07:32:00.123456Z"</span> panic <span class="tok-st">"emit honors micros contract"</span>
 
 <span class="tok-co">    # --- precision-tagged equality: distinct at ns, equal at ms ---</span>
-    const valor leftWire <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00.123456Z"</span>
-    const valor rightWire <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00.123999Z"</span>
+    const value leftWire <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00.123456Z"</span>
+    const value rightWire <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00.123999Z"</span>
     const instant<span class="tok-op">&lt;</span>ns<span class="tok-op">&gt;</span> left <span class="tok-op">←</span> leftWire ↦ instant<span class="tok-op">&lt;</span>ns<span class="tok-op">&gt;</span>
     const instant<span class="tok-op">&lt;</span>ns<span class="tok-op">&gt;</span> right <span class="tok-op">←</span> rightWire ↦ instant<span class="tok-op">&lt;</span>ns<span class="tok-op">&gt;</span>
     assert left <span class="tok-op">≠</span> right panic <span class="tok-st">"sub-millisecond bits differ at nanosecond precision"</span>
@@ -125,18 +121,16 @@ main {
     const instant<span class="tok-op">&lt;</span>ns<span class="tok-op">&gt;</span> fine <span class="tok-op">←</span> parsed ↦ instant<span class="tok-op">&lt;</span>ns<span class="tok-op">&gt;</span>
     const instant<span class="tok-op">&lt;</span>ms<span class="tok-op">&gt;</span> coarse <span class="tok-op">←</span> fine ↦ instant<span class="tok-op">&lt;</span>ms<span class="tok-op">&gt;</span>
     const instant seconds <span class="tok-op">←</span> fine ↦ instant
-    assert seconds ↦ string <span class="tok-op">≡</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span> panic <span class="tok-st">"narrow to seconds strips sub-second wire"</span>
-
+    assert (seconds ↦ string) <span class="tok-op">≡</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span> panic <span class="tok-st">"narrow to seconds strips sub-second wire"</span>
     const instant<span class="tok-op">&lt;</span>ms<span class="tok-op">&gt;</span> wider <span class="tok-op">←</span> secunda ↦ instant<span class="tok-op">&lt;</span>ms<span class="tok-op">&gt;</span>
     assert wider <span class="tok-op">≤</span> millis panic <span class="tok-st">"cross-precision comparison at coarser operand"</span>
 
 <span class="tok-co">    # --- wire emit and parse-back via TOML (same instant) ---</span>
     const string wire <span class="tok-op">←</span> epoch_wire(parsed)
-    const valor replayDoc <span class="tok-op">←</span> toml.parse(<span class="tok-st">"creatus = 1979-05-27T07:32:00Z"</span>)
-    const valor replayCarrier <span class="tok-op">←</span> valor.get(replayDoc, <span class="tok-st">"creatus"</span>)
+    const value replayDoc <span class="tok-op">←</span> toml.parse(<span class="tok-st">"creatus = 1979-05-27T07:32:00Z"</span>)
+    const value replayCarrier <span class="tok-op">←</span> valor.get(replayDoc, <span class="tok-st">"creatus"</span>)
     const instant roundtrip <span class="tok-op">←</span> replayCarrier ↦ instant
     assert roundtrip <span class="tok-op">≡</span> parsed panic <span class="tok-st">"TOML ingest roundtrip matches UTC valor extract"</span>
     assert wire <span class="tok-op">≡</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span> panic <span class="tok-st">"seconds-precision wire emit"</span>
-
     print wire, secunda, millis, micros, nanos, fromToml, coarse
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusconversioinstansfab-canonical-conversio">radix/corpus/conversio/instans.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusinstansinstansfab-canonical-keyword">radix/corpus/instans/instans.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">المصادر</span><ul><li>[&quot;radix/corpus/conversio/instans.fab&quot;]</li></ul></div></footer></div></body></html>

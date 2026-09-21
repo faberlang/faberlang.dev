@@ -25,7 +25,6 @@
     <span class="tok-kw">const</span> uint<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> one <span class="tok-op">←</span> <span class="tok-nu">1</span>
     <span class="tok-kw">var</span> uint<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> zero <span class="tok-op">←</span> <span class="tok-nu">0</span>
     <span class="tok-kw">const</span> <span class="tok-kw">int</span><span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> converted ↤ one
-
     print max <span class="tok-op">+</span> one
     print zero <span class="tok-op">-</span> one
     print max <span class="tok-op">*</span> <span class="tok-nu">2</span>
@@ -33,13 +32,11 @@
     print <span class="tok-op">¬</span>zero
     print one ⇐ <span class="tok-nu">16</span>
     print max ⇒ <span class="tok-nu">16</span>
-    print max <span class="tok-op">&gt;</span> zero
-
+    print max ≻ zero
     max ↑
     zero ↓
     print max
     print zero
-
     <span class="tok-kw">const</span> uint<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> methodSum <span class="tok-op">←</span> max.added(one)
     <span class="tok-kw">const</span> uint<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> methodShift <span class="tok-op">←</span> max.shifted_left(<span class="tok-nu">16</span>)
     <span class="tok-kw">var</span> uint<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> methodAcc <span class="tok-op">←</span> <span class="tok-nu">0</span>
@@ -49,9 +46,8 @@
     print methodSum
     print methodShift
     print methodAcc
-
     <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>uint<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> words <span class="tok-op">←</span> [one, max]
-    print words.get(<span class="tok-nu">1</span>) coalesce (<span class="tok-nu">0</span> ∷ uint<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span>)
+    print words.get(<span class="tok-nu">1</span>) coalesce <span class="tok-nu">0</span> ∷ uint<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
 65535
 65534

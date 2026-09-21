@@ -32,8 +32,9 @@
 
 <span class="tok-kw">fn</span> validata(string input) <span class="tok-op">→</span> string ⇥ string {
 <span class="tok-co">    # Guard: throw if input is empty</span>
-    <span class="tok-kw">throw</span> <span class="tok-st">"empty input"</span> <span class="tok-kw">if</span> input.length() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
-
+    <span class="tok-kw">if</span> input.length() <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+        <span class="tok-kw">throw</span> <span class="tok-st">"empty input"</span>
+    }
     <span class="tok-kw">return</span> <span class="tok-st">"valid: §"</span>(input)
 }
 
@@ -58,7 +59,9 @@
 
 <span class="tok-co">    # iace with si on same line</span>
     <span class="tok-kw">do</span> {
-        <span class="tok-kw">throw</span> <span class="tok-st">"force throw"</span> <span class="tok-kw">if</span> <span class="tok-kw">true</span>
+        <span class="tok-kw">if</span> <span class="tok-kw">true</span> {
+            <span class="tok-kw">throw</span> <span class="tok-st">"force throw"</span>
+        }
         print <span class="tok-st">"should not reach"</span>
     }
     <span class="tok-kw">catch</span> err {
@@ -104,7 +107,7 @@
     }
 
 <span class="tok-co">    # iace with interpolated message</span>
-    <span class="tok-kw">const</span> _ code <span class="tok-op">←</span> <span class="tok-nu">404</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> code <span class="tok-op">←</span> <span class="tok-nu">404</span>
     <span class="tok-kw">do</span> {
         <span class="tok-kw">throw</span> <span class="tok-st">"Error code: §"</span>(code)
     }
@@ -113,9 +116,9 @@
     }
 
 <span class="tok-co">    # Conditional iace inside fac — validation guard</span>
-    <span class="tok-kw">const</span> _ value <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">5</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> value <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">5</span>
     <span class="tok-kw">do</span> {
-        <span class="tok-kw">if</span> value <span class="tok-op">&lt;</span> <span class="tok-nu">0</span> {
+        <span class="tok-kw">if</span> value ≺ <span class="tok-nu">0</span> {
             <span class="tok-kw">throw</span> <span class="tok-st">"Value must be non-negative"</span>
         }
         print <span class="tok-st">"Value is valid"</span>

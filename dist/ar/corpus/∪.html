@@ -30,25 +30,33 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># BACKEND: Inline-union `discerne` enum lowering gap on Rust (whitelist: unio/unio.fab).</span>
 
-type Valor <span class="tok-op">=</span> int <span class="tok-op">∪</span> string
+type Valor <span class="tok-op">=</span> string <span class="tok-op">∪</span> int
 
 union Forma {
-    Numerus { int v },
-    Textus { string v }
+    Numerus {
+        int v
+    },
+    Textus {
+        string v
+    }
 }
 
 fn describe(Forma f) <span class="tok-op">→</span> string {
     match f {
-        case Numerus const v { return <span class="tok-st">"n: §"</span>(v) }
-        case Textus const v { return <span class="tok-st">"t: §"</span>(v) }
+        case Numerus const v {
+            return <span class="tok-st">"n: §"</span>(v)
+        }
+        case Textus const v {
+            return <span class="tok-st">"t: §"</span>(v)
+        }
     }
 }
 
 main {
 <span class="tok-co">    # --- Ad-hoc inline union values ---</span>
 
-    const Valor a <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    const Valor b <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
+    const string <span class="tok-op">∪</span> int a <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    const string <span class="tok-op">∪</span> int b <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
     print a
     print b
 

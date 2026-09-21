@@ -42,8 +42,9 @@
     maybeNota(<span class="tok-kw">false</span>)
 
 <span class="tok-co">    # condition false, so tacet never runs</span>
-    <span class="tok-kw">if</span> <span class="tok-kw">false</span> then <span class="tok-kw">pass</span>
-
+    <span class="tok-kw">if</span> <span class="tok-kw">false</span> {
+        <span class="tok-kw">pass</span>
+    }
     print <span class="tok-st">"finis"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>cond verum
 finis

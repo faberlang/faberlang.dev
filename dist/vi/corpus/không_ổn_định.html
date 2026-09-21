@@ -16,8 +16,8 @@
 <span class="tok-co"># =============================================================================</span>
 
 interface tempus {
-  @ unstable { target <span class="tok-op">=</span> rs, ratio <span class="tok-op">=</span> <span class="tok-st">"timer handles are not implemented"</span> }
-  fn siste(int handle) <span class="tok-op">→</span> void
+    @ unstable { target <span class="tok-op">=</span> rs, ratio <span class="tok-op">=</span> <span class="tok-st">"timer handles are not implemented"</span> }
+    fn siste(int handle) <span class="tok-op">→</span> void
 }
 
 main {
@@ -49,7 +49,7 @@ main {
 <span class="tok-co">#   Calls to @ nondum methods fail semantic check (SEM017); do not invoke here.</span>
 
 interface tempus {
-    @ unstable rs <span class="tok-st">"timer handles are not implemented yet"</span>
+    @ unstable { target <span class="tok-op">=</span> rs, ratio <span class="tok-op">=</span> <span class="tok-st">"timer handles are not implemented yet"</span> }
     fn siste(int handle) <span class="tok-op">→</span> void
 }
 

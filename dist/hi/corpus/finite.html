@@ -46,20 +46,20 @@
 <span class="tok-co"># finite() — field-read gate, the dtype.fab-compatible NaN check.</span>
 <span class="tok-co"># A value is finite iff its exponent field is not all-ones (0xFF); the</span>
 <span class="tok-co"># fraction field (≠ 0) is what separates NaN from ±Inf inside that class.</span>
-fn finite(float<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> x) <span class="tok-op">→</span> bool {
+fn finite(f32 x) <span class="tok-op">→</span> bool {
     const _ bits <span class="tok-op">←</span> x ↦ int<span class="tok-op">&lt;</span>u32, Bits<span class="tok-op">&gt;</span>
-    const _ exponent <span class="tok-op">←</span> (bits ⇒ <span class="tok-nu">23</span>) ∧ (<span class="tok-nu">255</span> ∷ int<span class="tok-op">&lt;</span>u32<span class="tok-op">&gt;</span>)
+    const _ exponent <span class="tok-op">←</span> bits ⇒ <span class="tok-nu">23</span> ∧ <span class="tok-nu">255</span> ∷ int<span class="tok-op">&lt;</span>u32<span class="tok-op">&gt;</span>
     const _ omnino <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ int<span class="tok-op">&lt;</span>u32<span class="tok-op">&gt;</span>
     return exponent <span class="tok-op">≠</span> omnino
 }
 
 <span class="tok-co"># nan() — the same field gate narrowed to NaN only (exponent 0xFF, fraction ≠ 0).</span>
-fn nan(float<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> x) <span class="tok-op">→</span> bool {
+fn nan(f32 x) <span class="tok-op">→</span> bool {
     const _ bits <span class="tok-op">←</span> x ↦ int<span class="tok-op">&lt;</span>u32, Bits<span class="tok-op">&gt;</span>
-    const _ exponent <span class="tok-op">←</span> (bits ⇒ <span class="tok-nu">23</span>) ∧ (<span class="tok-nu">255</span> ∷ int<span class="tok-op">&lt;</span>u32<span class="tok-op">&gt;</span>)
-    const _ fraction <span class="tok-op">←</span> bits ∧ (<span class="tok-nu">8388607</span> ∷ int<span class="tok-op">&lt;</span>u32<span class="tok-op">&gt;</span>)
-    const _ omnino <span class="tok-op">←</span> exponent <span class="tok-op">≡</span> (<span class="tok-nu">255</span> ∷ int<span class="tok-op">&lt;</span>u32<span class="tok-op">&gt;</span>)
-    const _ non_nihil <span class="tok-op">←</span> fraction <span class="tok-op">≠</span> (<span class="tok-nu">0</span> ∷ int<span class="tok-op">&lt;</span>u32<span class="tok-op">&gt;</span>)
+    const _ exponent <span class="tok-op">←</span> bits ⇒ <span class="tok-nu">23</span> ∧ <span class="tok-nu">255</span> ∷ int<span class="tok-op">&lt;</span>u32<span class="tok-op">&gt;</span>
+    const _ fraction <span class="tok-op">←</span> bits ∧ <span class="tok-nu">8388607</span> ∷ int<span class="tok-op">&lt;</span>u32<span class="tok-op">&gt;</span>
+    const _ omnino <span class="tok-op">←</span> exponent <span class="tok-op">≡</span> <span class="tok-nu">255</span> ∷ int<span class="tok-op">&lt;</span>u32<span class="tok-op">&gt;</span>
+    const _ non_nihil <span class="tok-op">←</span> fraction <span class="tok-op">≠</span> <span class="tok-nu">0</span> ∷ int<span class="tok-op">&lt;</span>u32<span class="tok-op">&gt;</span>
     return omnino and non_nihil
 }
 
@@ -72,7 +72,6 @@ main {
 
 <span class="tok-co">    # 0x7F800000 — +Inf.</span>
     const _ infinitas <span class="tok-op">←</span> <span class="tok-nu">2139095040</span> ∷ int<span class="tok-op">&lt;</span>u32<span class="tok-op">&gt;</span> ↦ float<span class="tok-op">&lt;</span>f32, Bits<span class="tok-op">&gt;</span>
-
     print finite(one_and_half)
     print finite(quiet_nan)
     print finite(infinitas)
@@ -83,7 +82,7 @@ main {
 <span class="tok-co">    # touches non-canonical spellings — see the header note).</span>
     const _ back <span class="tok-op">←</span> quiet_nan ↦ int<span class="tok-op">&lt;</span>u32, Bits<span class="tok-op">&gt;</span>
     print back
-    print back <span class="tok-op">≡</span> (<span class="tok-nu">2143289344</span> ∷ int<span class="tok-op">&lt;</span>u32<span class="tok-op">&gt;</span>)
+    print back <span class="tok-op">≡</span> <span class="tok-nu">2143289344</span> ∷ int<span class="tok-op">&lt;</span>u32<span class="tok-op">&gt;</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>verum
 falsum
 falsum

@@ -30,16 +30,15 @@ fn divide(int a, int b) <span class="tok-op">→</span> int {
             return <span class="tok-nu">0</span>
         }
     }
-
     return a <span class="tok-op">/</span> b
 }
 
 fn tracta(int x) <span class="tok-op">→</span> int {
     guard {
-        if x <span class="tok-op">&lt;</span> <span class="tok-nu">0</span> {
+        if x ≺ <span class="tok-nu">0</span> {
             return <span class="tok-op">-</span><span class="tok-nu">1</span>
         }
-        if x <span class="tok-op">&gt;</span> <span class="tok-nu">100</span> {
+        if x ≻ <span class="tok-nu">100</span> {
             return <span class="tok-op">-</span><span class="tok-nu">1</span>
         }
     }
@@ -50,14 +49,13 @@ fn tracta(int x) <span class="tok-op">→</span> int {
 
 fn stringe(int value, int minimum, int maximum) <span class="tok-op">→</span> int {
     guard {
-        if minimum <span class="tok-op">&gt;</span> value {
+        if minimum ≻ value {
             return minimum
         }
-        if maximum <span class="tok-op">&lt;</span> value {
+        if maximum ≺ value {
             return maximum
         }
     }
-
     return value
 }
 
@@ -70,7 +68,6 @@ main {
     print tracta(<span class="tok-nu">50</span>)
     print tracta(<span class="tok-op">-</span><span class="tok-nu">10</span>)
     print tracta(<span class="tok-nu">150</span>)
-
     print stringe(<span class="tok-nu">5</span>, <span class="tok-nu">0</span>, <span class="tok-nu">10</span>)
     print stringe(<span class="tok-op">-</span><span class="tok-nu">5</span>, <span class="tok-nu">0</span>, <span class="tok-nu">10</span>)
     print stringe(<span class="tok-nu">15</span>, <span class="tok-nu">0</span>, <span class="tok-nu">10</span>)

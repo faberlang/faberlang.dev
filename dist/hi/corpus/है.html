@@ -31,14 +31,14 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   est.expected</span>
 
-fn explora(unknown x) <span class="tok-op">→</span> string {
-    if x is null { return <span class="tok-st">"nihil est"</span> }
+fn explora(any x) <span class="tok-op">→</span> string {
+    if x is null then return <span class="tok-st">"nihil est"</span>
     return <span class="tok-st">"aliud est"</span>
 }
 
 fn explora_bivalens(bool x) <span class="tok-op">→</span> string {
-    if x is true { return <span class="tok-st">"verum est"</span> }
-    if x is false { return <span class="tok-st">"falsum est"</span> }
+    if x is true then return <span class="tok-st">"verum est"</span>
+    if x is false then return <span class="tok-st">"falsum est"</span>
     return <span class="tok-st">"aliud est"</span>
 }
 
@@ -64,7 +64,7 @@ main {
     print defectum_debet
 
 <span class="tok-co">    # Parenthesized for clarity</span>
-    const _ utraque_nihil <span class="tok-op">←</span> (forsitan is null) and (nomen is null)
+    const _ utraque_nihil <span class="tok-op">←</span> forsitan is null and nomen is null
     print utraque_nihil
 
 <span class="tok-co">    # Dynamic ignotum dispatch for nihil and exact boolean checks on bivalens</span>
@@ -80,18 +80,16 @@ main {
 <span class="tok-co">    # by design — see docs/factory/est-variant-check/goal.md).</span>
 
     const value name <span class="tok-op">←</span> <span class="tok-st">"faber"</span> ↦ value
-    const value count <span class="tok-op">←</span> <span class="tok-nu">42</span> ↦ value
-    const value tags <span class="tok-op">←</span> [<span class="tok-st">"a"</span>, <span class="tok-st">"b"</span>] ↦ value
+    const value quantitas <span class="tok-op">←</span> <span class="tok-nu">42</span> ↦ value
+    const value notae <span class="tok-op">←</span> [<span class="tok-st">"a"</span>, <span class="tok-st">"b"</span>] ↦ value
     const value active <span class="tok-op">←</span> true ↦ value
-    const value ratio <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ↦ value
-
+    const value proportio <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ↦ value
     assert name is string
-    assert count is int
-    assert tags is list<span class="tok-op">&lt;</span>value<span class="tok-op">&gt;</span>
+    assert quantitas is int
+    assert notae is list<span class="tok-op">&lt;</span>value<span class="tok-op">&gt;</span>
     assert active is bool
-    assert ratio is float
-
-    assert count not is string
+    assert proportio is float
+    assert quantitas not is string
     assert name not is int
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>verum
 verum

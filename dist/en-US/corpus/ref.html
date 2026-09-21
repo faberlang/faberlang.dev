@@ -31,7 +31,7 @@
     <span class="tok-kw">for</span> <span class="tok-kw">ref</span> persona <span class="tok-kw">const</span> clavis {
         print clavis
     }
-    <span class="tok-kw">const</span> _ numeri <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
     <span class="tok-kw">for</span> <span class="tok-kw">ref</span> numeri <span class="tok-kw">const</span> index {
         print index
     }
@@ -63,7 +63,6 @@
 <span class="tok-kw">main</span> {
 <span class="tok-co">    # Iterate over tabula keys</span>
     <span class="tok-kw">const</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, string<span class="tok-op">&gt;</span> persona <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Marcus"</span>, <span class="tok-st">"urbs"</span><span class="tok-op">:</span> <span class="tok-st">"Roma"</span> }
-
     <span class="tok-kw">for</span> <span class="tok-kw">ref</span> persona <span class="tok-kw">const</span> clavis {
         print clavis
     }
@@ -74,8 +73,7 @@
     }
 
 <span class="tok-co">    # Iterate over lista indices</span>
-    <span class="tok-kw">const</span> _ numeri <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
-
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
     <span class="tok-kw">for</span> <span class="tok-kw">ref</span> numeri <span class="tok-kw">const</span> index {
         print <span class="tok-st">"index: § valor: §"</span>(index, numeri[index])
     }

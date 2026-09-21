@@ -16,9 +16,9 @@
 <span class="tok-co"># =============================================================================</span>
 
 main {
-    const _ dupla <span class="tok-op">←</span> int x free ∴ x <span class="tok-op">*</span> <span class="tok-nu">2</span>
+    const (int) <span class="tok-op">→</span> int dupla <span class="tok-op">←</span> int x ∴ x <span class="tok-op">*</span> <span class="tok-nu">2</span>
     print dupla(<span class="tok-nu">5</span>)
-    const _ summa <span class="tok-op">←</span> (int a, int b) free <span class="tok-op">→</span> int ∴ a <span class="tok-op">+</span> b
+    const (int, int) <span class="tok-op">→</span> int summa <span class="tok-op">←</span> (int a, int b) <span class="tok-op">→</span> int ∴ a <span class="tok-op">+</span> b
     print summa(<span class="tok-nu">2</span>, <span class="tok-nu">3</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>10
 5

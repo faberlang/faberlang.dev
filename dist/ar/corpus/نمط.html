@@ -29,13 +29,17 @@
 <span class="tok-co"># --- Primitive type aliases ---</span>
 
 type Signum <span class="tok-op">=</span> int
+
 type Cognomen <span class="tok-op">=</span> string
+
 type Viget <span class="tok-op">=</span> bool
 
 <span class="tok-co"># --- Generic type aliases ---</span>
 
 type Nomina <span class="tok-op">=</span> list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>
+
 type Puncta <span class="tok-op">=</span> list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
+
 type Index <span class="tok-op">=</span> map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span>
 
 <span class="tok-co"># Nullable type alias (canonical T ∪ nihil form)</span>
@@ -43,18 +47,16 @@ type NomenOptivum <span class="tok-op">=</span> string <span class="tok-op">∪<
 
 main {
 <span class="tok-co">    # Using primitive aliases</span>
-    const Signum signum <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    const Cognomen cognomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    const Viget viget <span class="tok-op">←</span> true
-
+    const int signum <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    const string cognomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    const bool viget <span class="tok-op">←</span> true
     print signum
     print cognomen
     print viget
 
 <span class="tok-co">    # Using generic aliases</span>
-    const Nomina sodales <span class="tok-op">←</span> [<span class="tok-st">"Gaius"</span>, <span class="tok-st">"Lucius"</span>, <span class="tok-st">"Titus"</span>]
+    const list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> sodales <span class="tok-op">←</span> [<span class="tok-st">"Gaius"</span>, <span class="tok-st">"Lucius"</span>, <span class="tok-st">"Titus"</span>]
     print sodales
-
-    const Puncta puncta <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">95</span>, <span class="tok-nu">87</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">95</span>, <span class="tok-nu">87</span>]
     print puncta
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpustypustypusfab-canonical-keyword">radix/corpus/typus/typus.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">المصادر</span><ul><li>[&quot;radix/corpus/typus/typus.fab&quot;]</li></ul></div></footer></div></body></html>

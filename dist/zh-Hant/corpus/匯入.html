@@ -18,9 +18,11 @@
 <span class="tok-co"># The canonical record spells the source field and lets visibility/name defaults</span>
 <span class="tok-co"># materialize the same ImportDecl as `importa ex "norma:text"`.</span>
 
-import { ex <span class="tok-op">=</span> <span class="tok-st">"norma:text"</span> }
+import from <span class="tok-st">"norma:text"</span> text
 
-print <span class="tok-st">"importa-braced"</span></code></pre><h3 id="radixcorpusimportaimportafab-canonical-keyword">radix/corpus/importa/importa.fab (canonical · keyword)<a class="anchor" href="#radixcorpusimportaimportafab-canonical-keyword">#</a></h3><p>Imports names from another module or package source.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+main {
+    print <span class="tok-st">"importa-braced"</span>
+}</code></pre><h3 id="radixcorpusimportaimportafab-canonical-keyword">radix/corpus/importa/importa.fab (canonical · keyword)<a class="anchor" href="#radixcorpusimportaimportafab-canonical-keyword">#</a></h3><p>Imports names from another module or package source.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># importa — Imports names from another module or package source</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>

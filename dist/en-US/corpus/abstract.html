@@ -25,7 +25,7 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   rota, 16</span>
 
-<span class="tok-kw">abstract</span> <span class="tok-kw">class</span> Figura {
+<span class="tok-kw">class</span> Figura {
     string nomen
 
     <span class="tok-kw">fn</span> titulus() <span class="tok-op">→</span> string {
@@ -43,7 +43,7 @@
 }
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ c <span class="tok-op">←</span> Circulus { nomen <span class="tok-op">=</span> <span class="tok-st">"rota"</span>, radius <span class="tok-op">=</span> <span class="tok-nu">4</span> }
+    <span class="tok-kw">const</span> Circulus c <span class="tok-op">←</span> Circulus { nomen <span class="tok-op">=</span> <span class="tok-st">"rota"</span>, radius <span class="tok-op">=</span> <span class="tok-nu">4</span> }
     print c.nomen
     print c.area()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>rota

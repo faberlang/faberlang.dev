@@ -25,8 +25,8 @@
 <span class="tok-co">#   Cross-ref si/ergo-redde.fab for ergo-redde guard-return spelling.</span>
 
 <span class="tok-kw">fn</span> clamp(<span class="tok-kw">int</span> x) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">if</span> x <span class="tok-op">&lt;</span> <span class="tok-nu">0</span> then <span class="tok-kw">return</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">if</span> x <span class="tok-op">&gt;</span> <span class="tok-nu">100</span> then <span class="tok-kw">return</span> <span class="tok-nu">100</span>
+    <span class="tok-kw">if</span> x ≺ <span class="tok-nu">0</span> then <span class="tok-kw">return</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">if</span> x ≻ <span class="tok-nu">100</span> then <span class="tok-kw">return</span> <span class="tok-nu">100</span>
     <span class="tok-kw">return</span> x
 }
 
@@ -169,23 +169,34 @@ nihil
 
 <span class="tok-kw">main</span> {
 <span class="tok-co">    # ergo replaces a one-statement block body</span>
-    <span class="tok-kw">const</span> _ x <span class="tok-op">←</span> <span class="tok-nu">10</span>
-
-    <span class="tok-kw">if</span> x <span class="tok-op">&gt;</span> <span class="tok-nu">5</span> then print <span class="tok-st">"x magnum est"</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> x <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    <span class="tok-kw">if</span> x ≻ <span class="tok-nu">5</span> {
+        print <span class="tok-st">"x magnum est"</span>
+    }
 
 <span class="tok-co">    # secus ergo pairs else with a single consequent</span>
-    <span class="tok-kw">const</span> _ aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
-    <span class="tok-kw">if</span> aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> then print <span class="tok-st">"adultus"</span>
-    <span class="tok-kw">else</span> then print <span class="tok-st">"minor"</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
+    <span class="tok-kw">if</span> aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> {
+        print <span class="tok-st">"adultus"</span>
+    }
+    <span class="tok-kw">else</span> {
+        print <span class="tok-st">"minor"</span>
+    }
 
 <span class="tok-co">    # Two-way one-liner (85 &lt; 90 → "non A")</span>
-    <span class="tok-kw">const</span> _ puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
-    <span class="tok-kw">if</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> then print <span class="tok-st">"A"</span>
-    <span class="tok-kw">else</span> then print <span class="tok-st">"non A"</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
+    <span class="tok-kw">if</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
+        print <span class="tok-st">"A"</span>
+    }
+    <span class="tok-kw">else</span> {
+        print <span class="tok-st">"non A"</span>
+    }
 
 <span class="tok-co">    # bivalens condition used directly</span>
-    <span class="tok-kw">const</span> _ valet <span class="tok-op">←</span> <span class="tok-kw">true</span>
-    <span class="tok-kw">if</span> valet then print <span class="tok-st">"Recte"</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> valet <span class="tok-op">←</span> <span class="tok-kw">true</span>
+    <span class="tok-kw">if</span> valet {
+        print <span class="tok-st">"Recte"</span>
+    }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>x magnum est
 adultus
 non A

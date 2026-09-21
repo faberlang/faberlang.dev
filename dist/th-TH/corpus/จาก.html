@@ -31,7 +31,7 @@ main {
     for ref persona const clavis {
         print clavis
     }
-    const _ numeri <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
+    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
     for ref numeri const index {
         print index
     }
@@ -63,7 +63,6 @@ main {
 main {
 <span class="tok-co">    # Iterate over tabula keys</span>
     const map<span class="tok-op">&lt;</span>string, string<span class="tok-op">&gt;</span> persona <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Marcus"</span>, <span class="tok-st">"urbs"</span><span class="tok-op">:</span> <span class="tok-st">"Roma"</span> }
-
     for ref persona const clavis {
         print clavis
     }
@@ -74,8 +73,7 @@ main {
     }
 
 <span class="tok-co">    # Iterate over lista indices</span>
-    const _ numeri <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
-
+    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
     for ref numeri const index {
         print <span class="tok-st">"index: § valor: §"</span>(index, numeri[index])
     }

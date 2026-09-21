@@ -29,7 +29,9 @@ fn saluta() <span class="tok-op">→</span> string {
 }
 
 fn divide(int a, int b) <span class="tok-op">→</span> int ⇥ string {
-    if b <span class="tok-op">≡</span> <span class="tok-nu">0</span> then throw <span class="tok-st">"division by zero"</span>
+    if b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+        throw <span class="tok-st">"division by zero"</span>
+    }
     return a <span class="tok-op">/</span> b
 }
 

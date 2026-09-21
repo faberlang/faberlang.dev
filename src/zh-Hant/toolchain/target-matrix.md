@@ -5,9 +5,9 @@ order = 2
 sources = "faber/docs/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:2c8e480d9a1871ebc153711ca73b518b669180cc15c8daf9555a147180c37a7f"
+prose_hash = "sha256:6f4c9cd19262b07c8c3d4b18dd87f89f4321de822f6fab5c138a0b1c13f3dee1"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "38b7404e4fd177d97334a92e43bdcd95bd84fb70"
+source_commit = "abae3f195790fe8cfe9061376b8f66e3d08489b9"
 source_locale = "en-US"
 +++
 
@@ -50,21 +50,21 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 
 | 目標 | 可支援 | 可分析 | % |
 |---|---|---|---|
-| rust | 288 | 290 | 99% |
-| go | 267 | 290 | 92% |
-| ts | 290 | 290 | 100% |
-| faber | 290 | 290 | 100% |
+| rust | 340 | 344 | 99% |
+| go | 319 | 344 | 93% |
+| ts | 344 | 344 | 100% |
+| faber | 344 | 344 | 100% |
 
 **系統途徑（MIR → 裝置/IR 產物）**
 
 | 目標 | 可支援 | 可分析 | % |
 |---|---|---|---|
-| llvm-text | 279 | 285 | 98% |
-| wasm-text | 256 | 285 | 90% |
-| wasm | 256 | 285 | 90% |
-| sexp-struct | 223 | 285 | 78% |
-| sexp | 223 | 285 | 78% |
-| scena | 242 | 285 | 85% |
+| llvm-text | 311 | 338 | 92% |
+| wasm-text | 249 | 338 | 74% |
+| wasm | 249 | 338 | 74% |
+| sexp-struct | 272 | 338 | 80% |
+| sexp | 272 | 338 | 80% |
+| scena | 282 | 338 | 83% |
 
 ## 關鍵字 — 應用途徑
 
@@ -124,13 +124,13 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | <a id="immutata"></a>`immutata` | ✓ | ✓ | ✓ | ✓ |
 | <a id="implet"></a>`implet` | ✓ | ✓ | ✓ | ✓ |
 | <a id="importa"></a>`importa` | ✓ | ✓ | ✓ | ✓ |
-| <a id="in"></a>`in` | ✓ | ✓ | ✓ | ✓ |
+| <a id="in"></a>`in` | — | — | — | — |
 | <a id="incipiet"></a>`incipiet` | ✓ | ✓ | ✓ | ✓ |
 | <a id="incipit"></a>`incipit` | ✓ | ✓ | ✓ | ✓ |
 | <a id="inter"></a>`inter` | ✓ | ✓ | ✓ | ✓ |
 | <a id="intra"></a>`intra` | ✓ | ✓ | ✓ | ✓ |
 | <a id="instans"></a>`instans` | ✓ | ✓ | ✓ | ✓ |
-| <a id="itera"></a>`itera` | ✓ | ✓ | ✓ | ✓ |
+| <a id="itera"></a>`itera` | ✓ | ◐ | ✓ | ✓ |
 | <a id="lege"></a>`lege` | ✓ | ✓ | ✓ | ✓ |
 | <a id="lineam"></a>`lineam` | ✓ | ✓ | ✓ | ✓ |
 | <a id="lista"></a>`lista` | ✓ | ✓ | ✓ | ✓ |
@@ -164,10 +164,12 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | <a id="probandum"></a>`probandum` | ✓ | ✓ | ✓ | ✓ |
 | <a id="protecta"></a>`protecta` | — | — | — | — |
 | <a id="publica"></a>`publica` | ✓ | ✓ | ✓ | ✓ |
+| <a id="ratio"></a>`ratio` | ✓ | ✓ | ✓ | ✓ |
 | <a id="redde"></a>`redde` | ✓ | ✓ | ✓ | ✓ |
 | <a id="reddet"></a>`reddet` | ✓ | ✓ | ✓ | ✓ |
 | <a id="repete"></a>`repete` | ✓ | ✓ | ✓ | ✓ |
 | <a id="requirit"></a>`requirit` | ✓ | ✓ | ✓ | ✓ |
+| <a id="reice"></a>`reice` | ✓ | ✓ | ✓ | ✓ |
 | <a id="rumpe"></a>`rumpe` | ✓ | ✓ | ✓ | ✓ |
 | <a id="scribe"></a>`scribe` | ✓ | ✓ | ✓ | ✓ |
 | <a id="scriptum"></a>`scriptum` | ✓ | ✓ | ✓ | ✓ |
@@ -180,7 +182,8 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | <a id="solum"></a>`solum` | ✓ | ✓ | ✓ | ✓ |
 | <a id="sparge"></a>`sparge` | ✓ | ✓ | ✓ | ✓ |
 | <a id="sponte"></a>`sponte` | ✓ | ✓ | ✓ | ✓ |
-| <a id="sub"></a>`sub` | ✓ | ✓ | ✓ | ✓ |
+| <a id="sub"></a>`sub` | — | — | — | — |
+| <a id="selective-import"></a>`selective_import` | ✓ | ✓ | ✓ | ✓ |
 | <a id="tacet"></a>`tacet` | ✓ | ✓ | ✓ | ✓ |
 | <a id="tacebit"></a>`tacebit` | ✓ | ✓ | ✓ | ✓ |
 | <a id="tabula"></a>`tabula` | ✓ | ✓ | ✓ | ✓ |
@@ -207,7 +210,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 |---|---|---|---|---|
 | <a id=""></a>`⊜` | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`∧` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`·` | ✓ | ◐ | ✓ | ✓ |
+| <a id=""></a>`·` | ◐ | ◐ | ✓ | ✓ |
 | <a id=""></a>`×` | ✓ | ○ | ✓ | ✓ |
 | <a id=""></a>`⊗` | ✓ | ○ | ✓ | ✓ |
 | <a id=""></a>`⊙` | ✓ | ◐ | ✓ | ✓ |
@@ -267,19 +270,19 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | <a id="atomic"></a>`atomic` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
 | <a id="argumenta"></a>`argumenta` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="bivalens"></a>`bivalens` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="cape"></a>`cape` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="cape"></a>`cape` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
 | <a id="casu"></a>`casu` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="cede"></a>`cede` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="ceteri"></a>`ceteri` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="ceterum"></a>`ceterum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="clausura"></a>`clausura` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="clausura"></a>`clausura` | ✓ | ◐ | ◐ | ✓ | ✓ | ✓ |
 | <a id="cli"></a>`cli` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="copia"></a>`copia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="cura"></a>`cura` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="curata"></a>`curata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="cursor"></a>`cursor` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="custodi"></a>`custodi` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="de"></a>`de` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="de"></a>`de` | — | — | — | — | — | — |
 | <a id="descriptio"></a>`descriptio` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="discerne"></a>`discerne` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="discretio"></a>`discretio` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -287,8 +290,8 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | <a id="ego"></a>`ego` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="elige"></a>`elige` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="errata"></a>`errata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| <a id="est"></a>`est` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
-| <a id="ex"></a>`ex` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="est"></a>`est` | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
+| <a id="ex"></a>`ex` | ◐ | ◐ | ◐ | ✓ | ✓ | ✓ |
 | <a id="exitus"></a>`exitus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="fac"></a>`fac` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="falsum"></a>`falsum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -299,7 +302,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | <a id="fiunt"></a>`fiunt` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="fixum"></a>`fixum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="fragilis"></a>`fragilis` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| <a id="fractus"></a>`fractus` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
+| <a id="fractus"></a>`fractus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="functio"></a>`functio` | ✓ | ◐ | ◐ | ✓ | ✓ | ✓ |
 | <a id="futura"></a>`futura` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="futurum"></a>`futurum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
@@ -314,20 +317,20 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | <a id="in"></a>`in` | — | — | — | — | — | — |
 | <a id="incipiet"></a>`incipiet` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="incipit"></a>`incipit` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="inter"></a>`inter` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="inter"></a>`inter` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | <a id="intra"></a>`intra` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="instans"></a>`instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ◐ |
-| <a id="itera"></a>`itera` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
+| <a id="itera"></a>`itera` | ◐ | ◐ | ◐ | ◐ | ◐ | ✓ |
 | <a id="lege"></a>`lege` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="lineam"></a>`lineam` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="lista"></a>`lista` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
+| <a id="lista"></a>`lista` | ◐ | ◐ | ◐ | ◐ | ◐ | ✓ |
 | <a id="matrix"></a>`matrix` | ✕ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | <a id="mone"></a>`mone` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="mori"></a>`mori` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="nexum"></a>`nexum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="nihil"></a>`nihil` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="numquam"></a>`numquam` | ✓ | ✓ | ✓ | ✕ | ✕ | ✕ |
-| <a id="numerus"></a>`numerus` | ✓ | ✓ | ✓ | ◐ | ◐ | ◐ |
+| <a id="numerus"></a>`numerus` | ✓ | ✓ | ✓ | ✓ | ✓ | ◐ |
 | <a id="non"></a>`non` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="omitte"></a>`omitte` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="omnia"></a>`omnia` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -335,7 +338,7 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | <a id="optio"></a>`optio` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="optiones"></a>`optiones` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="ordo"></a>`ordo` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="octeti"></a>`octeti` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="octeti"></a>`octeti` | ✓ | ◐ | ◐ | ◐ | ◐ | ◐ |
 | <a id="implendum"></a>`implendum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="per"></a>`per` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="perge"></a>`perge` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -351,10 +354,12 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | <a id="probandum"></a>`probandum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="protecta"></a>`protecta` | — | — | — | — | — | — |
 | <a id="publica"></a>`publica` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="ratio"></a>`ratio` | — | — | — | — | — | — |
 | <a id="redde"></a>`redde` | ✓ | ✓ | ✓ | ✓ | ✓ | ◐ |
 | <a id="reddet"></a>`reddet` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="repete"></a>`repete` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="requirit"></a>`requirit` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| <a id="reice"></a>`reice` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | <a id="rumpe"></a>`rumpe` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="scribe"></a>`scribe` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="scriptum"></a>`scriptum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -367,13 +372,14 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | <a id="solum"></a>`solum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="sparge"></a>`sparge` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="sponte"></a>`sponte` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| <a id="sub"></a>`sub` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="sub"></a>`sub` | — | — | — | — | — | — |
+| <a id="selective-import"></a>`selective_import` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="tacet"></a>`tacet` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="tacebit"></a>`tacebit` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="tabula"></a>`tabula` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="tag"></a>`tag` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="temporis"></a>`temporis` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| <a id="tensor"></a>`tensor` | ✓ | ✓ | ✓ | ◐ | ◐ | ◐ |
+| <a id="tensor"></a>`tensor` | ✓ | ◐ | ◐ | ✓ | ✓ | ◐ |
 | <a id="textus"></a>`textus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="typus"></a>`typus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="ubique"></a>`ubique` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -394,21 +400,21 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | --- | --- | --- | --- | --- | --- | --- |
 | <a id=""></a>`⊜` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`∧` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`·` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ |
+| <a id=""></a>`·` | ◐ | ◐ | ◐ | ✓ | ✓ | ◐ |
 | <a id=""></a>`×` | ✓ | ○ | ○ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⊗` | ○ | ○ | ○ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⊙` | ◐ | ◐ | ◐ | ○ | ○ | ◐ |
+| <a id=""></a>`⊙` | ◐ | ◐ | ◐ | ✓ | ✓ | ◐ |
 | <a id=""></a>`→` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⇥` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | <a id=""></a>`←` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`↤` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="aut"></a>`aut` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`![` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`!.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`![` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| <a id=""></a>`!.` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≠` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`!(` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`!(` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⊻` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`↦` | ✓ | ◐ | ◐ | ✕ | ✕ | ✓ |
+| <a id=""></a>`↦` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ |
 | <a id=""></a>`⇒` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`‥` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`…` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -427,12 +433,12 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | <a id=""></a>`∨` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`∪` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`↑` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?[` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?(` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?[` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?.` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?(` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | <a id=""></a>`§` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⇐` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⊘` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⊘` | ✓ | ◐ | ◐ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⊛` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`¬` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="vel"></a>`vel` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -450,16 +456,18 @@ term，報告**可降階能力** — target X 是否能將 grammar production Y 
 | <a id="arena"></a>`arena` | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`@` | ✓ | ✓ | ✓ | ✓ |
 | <a id="f16"></a>`f16` | ✕ | ✓ | ✓ | ✓ |
+| <a id="forma"></a>`forma` | ✓ | ✓ | ✓ | ✓ |
 | <a id="imperia"></a>`imperia` | ✓ | ✓ | ✓ | ✓ |
 | <a id="imperium"></a>`imperium` | ✓ | ✓ | ✓ | ✓ |
+| <a id="iuncta"></a>`iuncta` | ✓ | ✓ | ✓ | ✓ |
 | <a id="manifest"></a>`manifest` | ✓ | ✓ | ✓ | ✓ |
 | <a id="metior"></a>`metior` | ✓ | ✓ | ✓ | ✓ |
+| <a id="named-holes"></a>`named-holes` | ✓ | ✓ | ✓ | ✓ |
 | <a id="nondum"></a>`nondum` | ✓ | ✓ | ✓ | ✓ |
 | <a id="objectum"></a>`objectum` | ✓ | ✓ | ✓ | ✓ |
 | <a id="prima"></a>`prima` | ✓ | ✓ | ✓ | ✓ |
 | <a id="string"></a>`string` | ✓ | ✓ | ✓ | ✓ |
 | <a id="block-string"></a>`block-string` | ✓ | ✓ | ✓ | ✓ |
-| <a id="summa"></a>`summa` | ✓ | ✓ | ✓ | ✓ |
 | <a id="targets"></a>`targets` | ✓ | ✓ | ✓ | ✓ |
 | <a id="ultima"></a>`ultima` | ✓ | ✓ | ✓ | ✓ |
 | <a id="versio"></a>`versio` | ✓ | ✓ | ✓ | ✓ |

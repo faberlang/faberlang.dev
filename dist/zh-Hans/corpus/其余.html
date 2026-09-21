@@ -25,13 +25,11 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   none</span>
 
-fn summa(rest list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> int {
-    var _ total <span class="tok-op">←</span> <span class="tok-nu">0</span>
-
+fn summa(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> int {
+    var int total <span class="tok-op">←</span> <span class="tok-nu">0</span>
     for from numeri const n {
         total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
     }
-
     return total
 }
 

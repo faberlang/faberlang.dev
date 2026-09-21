@@ -28,12 +28,41 @@
 
 main {
     const int value <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">7</span>
-    const _ absolutus <span class="tok-op">←</span> value.abs()
-    const _ signum <span class="tok-op">←</span> value.sign()
-    const _ minor <span class="tok-op">←</span> value.minimum(<span class="tok-nu">3</span>)
-    const _ maior <span class="tok-op">←</span> value.maximum(<span class="tok-nu">3</span>)
-
+    const int absolutus <span class="tok-op">←</span> value.abs()
+    const int signum <span class="tok-op">←</span> value.sign()
+    const int minor <span class="tok-op">←</span> value.minimum(<span class="tok-nu">3</span>)
+    const int maior <span class="tok-op">←</span> value.maximum(<span class="tok-nu">3</span>)
     print absolutus, signum, minor, maior
+}</code></pre><h3 id="radixcorpusoperatoresnumerus-overflow-sizesfab-canonical-operator-group">radix/corpus/operatores/numerus-overflow-sizes.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusoperatoresnumerus-overflow-sizesfab-canonical-operator-group">#</a></h3><p>Checked numerus arithmetic traps at sized widths instead of wrapping.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># numerus — Checked numerus arithmetic traps at sized widths instead of wrapping.</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Sized-width overflow — `int&lt;i8&gt;` arithmetic traps on overflow at the</span>
+<span class="tok-co">#     declared width rather than wrapping.</span>
+<span class="tok-co">#   • Policy distinction — every numerus width follows checked semantics</span>
+<span class="tok-co">#     (operator ruling 2fb79900); only `modulus&lt;W&gt;` wraps mod 2^W.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Assuming sized numerus wraps on overflow like modular word types.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: +, numerus, modulus&lt;u8&gt;</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># numerus-overflow-sizes — sized-width checked scalar arithmetic failure</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># POLICY:</span>
+<span class="tok-co">#   `int&lt;i8&gt;` carries its declared width. Arithmetic traps on overflow at that</span>
+<span class="tok-co">#   width; it does not inherit the host's silent integer wrap. The rhs is a</span>
+<span class="tok-co">#   function call so the overflow stays a runtime fact on every target.</span>
+
+fn uno() <span class="tok-op">→</span> int<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> {
+    return <span class="tok-nu">1</span>
+}
+
+main {
+    var int<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> max <span class="tok-op">←</span> <span class="tok-nu">127</span> ∷ int<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span>
+    print max <span class="tok-op">+</span> uno()
 }</code></pre><h3 id="radixcorpusoperatoresnumerus-overflowfab-canonical-operator-group">radix/corpus/operatores/numerus-overflow.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusoperatoresnumerus-overflowfab-canonical-operator-group">#</a></h3><p>Checked numerus arithmetic traps instead of wrapping on overflow.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># numerus — Checked numerus arithmetic traps instead of wrapping on overflow.</span>
 <span class="tok-co"># =============================================================================</span>
@@ -57,4 +86,4 @@ main {
 main {
     const int max <span class="tok-op">←</span> <span class="tok-nu">9223372036854775807</span>
     print max <span class="tok-op">+</span> <span class="tok-nu">1</span>
-}</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusintrinsecanumerus-methodifab-canonical-keyword">radix/corpus/intrinseca/numerus-methodi.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusoperatoresnumerus-overflowfab-canonical-operator-group">radix/corpus/operatores/numerus-overflow.fab (canonical · operator-group)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">來源</span><ul><li>[&quot;radix/corpus/intrinseca/numerus-methodi.fab&quot;]</li></ul></div></footer></div></body></html>
+}</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusintrinsecanumerus-methodifab-canonical-keyword">radix/corpus/intrinseca/numerus-methodi.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusoperatoresnumerus-overflow-sizesfab-canonical-operator-group">radix/corpus/operatores/numerus-overflow-sizes.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusoperatoresnumerus-overflowfab-canonical-operator-group">radix/corpus/operatores/numerus-overflow.fab (canonical · operator-group)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">來源</span><ul><li>[&quot;radix/corpus/intrinseca/numerus-methodi.fab&quot;]</li></ul></div></footer></div></body></html>

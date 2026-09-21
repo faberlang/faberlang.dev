@@ -30,29 +30,27 @@
 main {
 <span class="tok-co">    # --- Mutable bindings with varia ---</span>
 
-    var _ computus <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    var int computus <span class="tok-op">←</span> <span class="tok-nu">0</span>
     print computus
-
     computus <span class="tok-op">←</span> <span class="tok-nu">1</span>
     print computus
-
     computus <span class="tok-op">←</span> computus <span class="tok-op">+</span> <span class="tok-nu">10</span>
     print computus
 
 <span class="tok-co">    # --- Immutable bindings: fixum _ and sit ---</span>
 
-    const _ salutatio <span class="tok-op">←</span> <span class="tok-st">"Salve, Mundus!"</span>
+    const string salutatio <span class="tok-op">←</span> <span class="tok-st">"Salve, Mundus!"</span>
     print salutatio
 
 <span class="tok-co">    # sit compresses repeated fixum _ when chaining inferred locals</span>
-    let x <span class="tok-op">←</span> <span class="tok-nu">10</span>
-    let y <span class="tok-op">←</span> <span class="tok-nu">20</span>
-    let summa <span class="tok-op">←</span> x <span class="tok-op">+</span> y
+    const int x <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    const int y <span class="tok-op">←</span> <span class="tok-nu">20</span>
+    const int summa <span class="tok-op">←</span> x <span class="tok-op">+</span> y
     print summa
 
 <span class="tok-co">    # --- Reassign only varia bindings ---</span>
 
-    var _ nuntius <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
+    var string nuntius <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
     nuntius <span class="tok-op">←</span> <span class="tok-st">"Vale"</span>
     print nuntius
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0

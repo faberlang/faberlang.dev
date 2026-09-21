@@ -26,8 +26,8 @@
 <span class="tok-co">#   declaration-only CLI metadata (whitelist: operandus/operandus.fab).</span>
 <span class="tok-co">#</span>
 
-@ cli <span class="tok-st">"operandus-smoke"</span>
-@ <span class="tok-kw">operand</span> string input <span class="tok-kw">description</span> <span class="tok-st">"Input path"</span>
-@ <span class="tok-kw">operand</span> <span class="tok-kw">rest</span> string files <span class="tok-kw">description</span> <span class="tok-st">"Extra files"</span>
+@ cli { name <span class="tok-op">=</span> <span class="tok-st">"operandus-smoke"</span> }
+@ <span class="tok-kw">operand</span> { <span class="tok-kw">type</span> <span class="tok-op">=</span> string, binding <span class="tok-op">=</span> input, <span class="tok-kw">description</span> <span class="tok-op">=</span> <span class="tok-st">"Input path"</span> }
+@ <span class="tok-kw">operand</span> { <span class="tok-kw">rest</span> <span class="tok-op">=</span> <span class="tok-kw">true</span>, <span class="tok-kw">type</span> <span class="tok-op">=</span> string, binding <span class="tok-op">=</span> files, <span class="tok-kw">description</span> <span class="tok-op">=</span> <span class="tok-st">"Extra files"</span> }
 <span class="tok-kw">main</span> <span class="tok-kw">args</span> <span class="tok-kw">args</span> {
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusoperandusoperandusfab-canonical-keyword">radix/corpus/operandus/operandus.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/operandus/operandus.fab&quot;]</li></ul></div></footer></div></body></html>

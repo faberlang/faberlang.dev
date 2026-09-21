@@ -33,13 +33,11 @@
 <span class="tok-co"># (whitelist: lista/methodi-functionales.fab).</span>
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
-
-    <span class="tok-kw">const</span> _ pares <span class="tok-op">←</span> res.filter(<span class="tok-kw">int</span> x ∴ x <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≡</span> <span class="tok-nu">0</span>)
-    <span class="tok-kw">const</span> _ duplicata <span class="tok-op">←</span> res.<span class="tok-kw">map</span>(<span class="tok-kw">int</span> x ∴ x <span class="tok-op">*</span> <span class="tok-nu">2</span>)
-    <span class="tok-kw">const</span> _ summa <span class="tok-op">←</span> res.reduce((<span class="tok-kw">int</span> collectus, <span class="tok-kw">int</span> x) ∴ collectus <span class="tok-op">+</span> x, <span class="tok-nu">0</span>)
-    <span class="tok-kw">const</span> _ cumulata <span class="tok-op">←</span> res.cumulate((<span class="tok-kw">int</span> collectus, <span class="tok-kw">int</span> x) ∴ collectus <span class="tok-op">+</span> x, <span class="tok-nu">0</span>)
-
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> pares <span class="tok-op">←</span> res.filter(<span class="tok-kw">int</span> x ∴ x <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≡</span> <span class="tok-nu">0</span>)
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> duplicata <span class="tok-op">←</span> res.<span class="tok-kw">map</span>(<span class="tok-kw">int</span> x ∴ x <span class="tok-op">*</span> <span class="tok-nu">2</span>)
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> summa <span class="tok-op">←</span> res.reduce((<span class="tok-kw">int</span> collectus, <span class="tok-kw">int</span> x) ∴ collectus <span class="tok-op">+</span> x, <span class="tok-nu">0</span>)
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> cumulata <span class="tok-op">←</span> res.cumulate((<span class="tok-kw">int</span> collectus, <span class="tok-kw">int</span> x) ∴ collectus <span class="tok-op">+</span> x, <span class="tok-nu">0</span>)
     print pares
     print duplicata
     print summa
@@ -70,11 +68,13 @@
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-kw">functio</span> identity(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> f32 {
-    <span class="tok-kw">redde</span> summa <span class="tok-kw">ex</span> a apud [i] <span class="tok-kw">fixum</span> s { <span class="tok-kw">redde</span> s }
+    <span class="tok-kw">redde</span> summa <span class="tok-kw">ex</span> a <span class="tok-kw">apud</span> [i] <span class="tok-kw">fixum</span> s {
+        <span class="tok-kw">redde</span> s
+    }
 }
 
 <span class="tok-kw">functio</span> shifted(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> f32 {
-    <span class="tok-kw">redde</span> summa <span class="tok-kw">ex</span> a apud [i] <span class="tok-kw">fixum</span> s {
+    <span class="tok-kw">redde</span> summa <span class="tok-kw">ex</span> a <span class="tok-kw">apud</span> [i] <span class="tok-kw">fixum</span> s {
         <span class="tok-kw">varia</span> f32 t <span class="tok-op">←</span> s
         t <span class="tok-op">←</span> t <span class="tok-op">+</span> <span class="tok-nu">1.0</span>
         <span class="tok-kw">redde</span> t
@@ -83,13 +83,11 @@
 
 <span class="tok-kw">incipit</span> {
     <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>]
-    <span class="tok-kw">fixum</span> tf32[] seed <span class="tok-op">←</span> vacua
-    <span class="tok-kw">fixum</span> tf32[<span class="tok-nu">8</span>] a <span class="tok-op">←</span> seed.strue(flat, [<span class="tok-nu">8</span>])
-
+    <span class="tok-kw">fixum</span> tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> vacua
+    <span class="tok-kw">fixum</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> seed.strue(flat, [<span class="tok-nu">8</span>])
     <span class="tok-kw">fixum</span> f32 per_summam <span class="tok-op">←</span> a.summa()
     <span class="tok-kw">fixum</span> f32 plicatum <span class="tok-op">←</span> identity(a)
     <span class="tok-kw">fixum</span> f32 summam_totam <span class="tok-op">←</span> shifted(a)
-
     nota per_summam
     nota plicatum
     nota summam_totam
@@ -116,7 +114,7 @@
 
 <span class="tok-co"># 1. general combine — a combine-operator tail is not grammar; parse reject</span>
 <span class="tok-kw">functio</span> product(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> f32 {
-    <span class="tok-kw">redde</span> summa <span class="tok-kw">ex</span> a apud [i] <span class="tok-kw">fixum</span> sconiunge <span class="tok-st">'*'</span> { <span class="tok-kw">redde</span> s }
+    <span class="tok-kw">redde</span> summa <span class="tok-kw">ex</span> a <span class="tok-kw">apud</span> [i] <span class="tok-kw">fixum</span> sconiunge <span class="tok-st">'*'</span> { <span class="tok-kw">redde</span> s }
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpussummasumma-declinefab-supporting-reject">radix/corpus/summa/summa-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpussummasumma-declinefab-supporting-reject">#</a></h3><p>summa decline rows: filum placement outside @ nucleum, K % 32 ≠ 0 tails, and non-scalar terms fail closed.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># summa decline — placement, tail alignment, and scalar terms fail closed.</span>
 <span class="tok-co"># =============================================================================</span>
@@ -141,17 +139,18 @@
 
 <span class="tok-co"># 1. placement — filum outside @ nucleum declines</span>
 <span class="tok-kw">functio</span> placement(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">32</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> f32 {
-    <span class="tok-kw">redde</span> summa <span class="tok-kw">ex</span> a apud [i] filum f <span class="tok-kw">fixum</span> s { <span class="tok-kw">redde</span> s }
+    <span class="tok-kw">redde</span> summa <span class="tok-kw">ex</span> a <span class="tok-kw">apud</span> [i] filum f <span class="tok-kw">fixum</span> s { <span class="tok-kw">redde</span> s }
 }
 
 <span class="tok-co"># 2. tail — K = 8 not aligned to the 32-lane width declines</span>
 @ nucleum lane <span class="tok-st">"id"</span>
+@ <span class="tok-kw">publica</span>
 <span class="tok-kw">functio</span> tail(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> a, tf32[<span class="tok-nu">1</span>] out) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> {
-    <span class="tok-kw">fixum</span> f32 total <span class="tok-op">←</span> summa <span class="tok-kw">ex</span> a apud [i] filum f <span class="tok-kw">fixum</span> s { <span class="tok-kw">redde</span> s }
+    <span class="tok-kw">fixum</span> f32 total <span class="tok-op">←</span> summa <span class="tok-kw">ex</span> a <span class="tok-kw">apud</span> [i] filum f <span class="tok-kw">fixum</span> s { <span class="tok-kw">redde</span> s }
     out[id] <span class="tok-op">←</span> total
 }
 
 <span class="tok-co"># 3. non-scalar term — a textus element is not a numeric scalar</span>
 <span class="tok-kw">functio</span> non_scalar(tensor<span class="tok-op">&lt;</span><span class="tok-kw">textus</span>, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> t) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {
-    <span class="tok-kw">redde</span> summa <span class="tok-kw">ex</span> t apud [i] <span class="tok-kw">fixum</span> s { <span class="tok-kw">redde</span> s }
+    <span class="tok-kw">redde</span> summa <span class="tok-kw">ex</span> t <span class="tok-kw">apud</span> [i] <span class="tok-kw">fixum</span> s { <span class="tok-kw">redde</span> s }
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuslistamethodi-functionalesfab-canonical-existing-home">radix/corpus/lista/methodi-functionales.fab (canonical · existing-home)</a></li><li class="toc-3"><a href="#radixcorpussummasummafab-canonical-concept">radix/corpus/summa/summa.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpussummasumma-combine-refusalfab-supporting-reject">radix/corpus/summa/summa-combine-refusal.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpussummasumma-declinefab-supporting-reject">radix/corpus/summa/summa-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/lista/methodi-functionales.fab&quot;]</li></ul></div></footer></div></body></html>

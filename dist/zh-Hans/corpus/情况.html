@@ -28,12 +28,12 @@
 <span class="tok-co">#</span>
 
 main {
-    const _ code <span class="tok-op">←</span> <span class="tok-nu">200</span>
-    switch code {
+    const int code <span class="tok-op">←</span> <span class="tok-nu">200</span>
+    match code {
         case <span class="tok-nu">200</span> {
             print <span class="tok-st">"ok"</span>
         }
-        default {
+        case _ {
             print <span class="tok-st">"other"</span>
         }
     }

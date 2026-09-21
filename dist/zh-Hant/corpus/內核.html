@@ -22,7 +22,7 @@
 <span class="tok-co"># See also: nucleum, annotation-sugar</span>
 <span class="tok-co"># =============================================================================</span>
 
-@ nucleum fragment
+@ nucleum { fragment <span class="tok-op">=</span> verum }
 functio umbra() <span class="tok-op">→</span> vacuum {
 }
 
@@ -33,4 +33,150 @@ functio identitas(numerus x) <span class="tok-op">→</span> numerus {
 incipit {
     nota identitas(<span class="tok-nu">5</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>5
-</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusannotation-sugarnucleum-fragmentfab-canonical-annotation">radix/corpus/annotation-sugar/nucleum-fragment.fab (canonical · annotation)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">來源</span><ul><li>[&quot;radix/corpus/annotation-sugar/nucleum-fragment.fab&quot;]</li></ul></div></footer></div></body></html>
+</code></pre><h3 id="radixcorpuskernel-closureargument-escapefab-supporting-reject">radix/corpus/kernel-closure/argument-escape.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernel-closureargument-escapefab-supporting-reject">#</a></h3><p>A kernel closure cannot be passed to an ordinary function argument.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — reject ordinary-argument escape</span>
+<span class="tok-co"># =============================================================================</span>
+
+fn apply(int value) <span class="tok-op">→</span> int {
+    return value
+}
+
+fn take() <span class="tok-op">→</span> void {
+    const _ kernel <span class="tok-op">←</span> (int value) kernel ∴ value
+    const int result <span class="tok-op">←</span> apply(kernel)
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernel-closurebag-resultfab-supporting-reject">radix/corpus/kernel-closure/bag-result.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernel-closurebag-resultfab-supporting-reject">#</a></h3><p>A kernel closure cannot return a host list/bag, including an append-built result.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — reject list/bag result protocol</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># A list is a host-managed bag/result carrier. The closure cannot return it,</span>
+<span class="tok-co"># even when it is populated with append before the return.</span>
+<span class="tok-co"># =============================================================================</span>
+
+fn take(int value) <span class="tok-op">→</span> void {
+    const _ bad <span class="tok-op">←</span> (int value) kernel <span class="tok-op">→</span> list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> ∴ do {
+        var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> items <span class="tok-op">←</span> empty
+        items.append(value)
+        return items
+    }
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernel-closurebare-bodyfab-supporting-reject">radix/corpus/kernel-closure/bare-body.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernel-closurebare-bodyfab-supporting-reject">#</a></h3><p>A compact closure body cannot be a bare block; use do in the body joint.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — reject bare compact brace body</span>
+<span class="tok-co"># =============================================================================</span>
+
+main {
+    const _ bad <span class="tok-op">←</span> (int value) kernel ∴ {
+        return value
+    }
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernel-closurecapefab-supporting-reject">radix/corpus/kernel-closure/cape.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernel-closurecapefab-supporting-reject">#</a></h3><p>A kernel closure cannot contain do/catch recovery.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — reject cape/catch recovery in closure body</span>
+<span class="tok-co"># =============================================================================</span>
+
+fn take(int value) <span class="tok-op">→</span> void {
+    const _ bad <span class="tok-op">←</span> (int value) kernel <span class="tok-op">→</span> int ∴ do {
+        do {
+            const int probe <span class="tok-op">←</span> value
+        } catch err {
+            print err
+        }
+        return value
+    }
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernel-closurecapturefab-supporting-reject">radix/corpus/kernel-closure/capture.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernel-closurecapturefab-supporting-reject">#</a></h3><p>A kernel closure cannot capture an enclosing value local.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — reject enclosing local capture</span>
+<span class="tok-co"># =============================================================================</span>
+
+main {
+    const int seed <span class="tok-op">←</span> <span class="tok-nu">2</span>
+    const _ bad <span class="tok-op">←</span> (int value) kernel ∴ value <span class="tok-op">+</span> seed
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernel-closuredynamic-valuefab-supporting-reject">radix/corpus/kernel-closure/dynamic-value.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernel-closuredynamic-valuefab-supporting-reject">#</a></h3><p>A kernel closure cannot produce a nested dynamic closure value.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — reject dynamic closure value</span>
+<span class="tok-co"># =============================================================================</span>
+
+fn take(int value) <span class="tok-op">→</span> void {
+    const _ bad <span class="tok-op">←</span> (int value) kernel ∴ (int inner) ∴ inner
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernel-closureerror-channelfab-supporting-reject">radix/corpus/kernel-closure/error-channel.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernel-closureerror-channelfab-supporting-reject">#</a></h3><p>A kernel closure cannot declare an alternate-exit error channel.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — reject closure error channel</span>
+<span class="tok-co"># =============================================================================</span>
+
+main {
+    const _ bad <span class="tok-op">←</span> (int value) kernel <span class="tok-op">→</span> int ⇥ string ∴ value
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernel-closurefield-escapefab-supporting-reject">radix/corpus/kernel-closure/field-escape.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernel-closurefield-escapefab-supporting-reject">#</a></h3><p>A kernel closure cannot be stored in a field.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — reject field escape</span>
+<span class="tok-co"># =============================================================================</span>
+
+class Capsule {
+    int stored
+}
+
+fn take() <span class="tok-op">→</span> void {
+    const _ kernel <span class="tok-op">←</span> (int value) kernel ∴ value
+    const Capsule boxed <span class="tok-op">←</span> Capsule { stored <span class="tok-op">=</span> kernel }
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernel-closurehost-effectfab-supporting-reject">radix/corpus/kernel-closure/host-effect.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernel-closurehost-effectfab-supporting-reject">#</a></h3><p>A kernel closure cannot perform host output.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — reject host effect in closure body</span>
+<span class="tok-co"># =============================================================================</span>
+
+fn take(int value) <span class="tok-op">→</span> void {
+    const _ bad <span class="tok-op">←</span> (int value) kernel <span class="tok-op">→</span> int ∴ do {
+        print value
+        return value
+    }
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernel-closurelist-escapefab-supporting-reject">radix/corpus/kernel-closure/list-escape.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernel-closurelist-escapefab-supporting-reject">#</a></h3><p>A kernel closure cannot be stored in a list.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — reject list escape</span>
+<span class="tok-co"># =============================================================================</span>
+
+fn take() <span class="tok-op">→</span> void {
+    const _ kernel <span class="tok-op">←</span> (int value) kernel ∴ value
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> items <span class="tok-op">←</span> [kernel, kernel]
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernel-closurerejectfab-supporting-reject">radix/corpus/kernel-closure/reject.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernel-closurerejectfab-supporting-reject">#</a></h3><p>A kernel closure cannot use a reject guard that throws.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — reject reject guard in closure body</span>
+<span class="tok-co"># =============================================================================</span>
+
+fn take(int value) <span class="tok-op">→</span> void {
+    const _ bad <span class="tok-op">←</span> (int value) kernel <span class="tok-op">→</span> int ∴ do {
+        reject value <span class="tok-op">&gt;</span> <span class="tok-nu">10</span> throw value
+        return value
+    }
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernel-closurerequirefab-supporting-reject">radix/corpus/kernel-closure/require.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernel-closurerequirefab-supporting-reject">#</a></h3><p>A kernel closure cannot use a require guard that throws.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — reject require guard in closure body</span>
+<span class="tok-co"># =============================================================================</span>
+
+fn take(int value) <span class="tok-op">→</span> void {
+    const _ bad <span class="tok-op">←</span> (int value) kernel <span class="tok-op">→</span> int ∴ do {
+        require value <span class="tok-op">&lt;</span> <span class="tok-nu">10</span> throw value
+        return value
+    }
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernel-closurereturn-escapefab-supporting-reject">radix/corpus/kernel-closure/return-escape.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernel-closurereturn-escapefab-supporting-reject">#</a></h3><p>A kernel closure cannot be returned as an outer function value.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — reject return escape</span>
+<span class="tok-co"># =============================================================================</span>
+
+fn take() <span class="tok-op">→</span> void {
+    const _ kernel <span class="tok-op">←</span> (int value) kernel ∴ value
+    return kernel
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernel-closuresource-callbackfab-supporting-reject">radix/corpus/kernel-closure/source-callback.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernel-closuresource-callbackfab-supporting-reject">#</a></h3><p>A kernel closure cannot capture a host source callback value.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — reject source callback capture</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># A source callback is an enclosing function value. Referencing it from a</span>
+<span class="tok-co"># kernel closure is a capture and therefore cannot cross the device boundary.</span>
+<span class="tok-co"># =============================================================================</span>
+
+fn take((string, int) <span class="tok-op">→</span> int source, int value) <span class="tok-op">→</span> void {
+    const _ bad <span class="tok-op">←</span> (int x) kernel <span class="tok-op">→</span> int ∴ source(<span class="tok-st">"weights"</span>, x)
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernel-closurestack-free-kernelfab-supporting-reject">radix/corpus/kernel-closure/stack-free-kernel.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernel-closurestack-free-kernelfab-supporting-reject">#</a></h3><p>A closure cannot stack free and kernel modifiers.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — reject stacked free then kernel modifiers</span>
+<span class="tok-co"># =============================================================================</span>
+
+main {
+    const _ bad <span class="tok-op">←</span> (int value) free kernel ∴ value
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernel-closurestack-kernel-freefab-supporting-reject">radix/corpus/kernel-closure/stack-kernel-free.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernel-closurestack-kernel-freefab-supporting-reject">#</a></h3><p>A closure cannot stack kernel and free modifiers.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — reject stacked kernel then free modifiers</span>
+<span class="tok-co"># =============================================================================</span>
+
+main {
+    const _ bad <span class="tok-op">←</span> (int value) kernel free ∴ value
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernel-closurethrowfab-supporting-reject">radix/corpus/kernel-closure/throw.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernel-closurethrowfab-supporting-reject">#</a></h3><p>A kernel closure cannot throw an alternate-exit value.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — reject throw in closure body</span>
+<span class="tok-co"># =============================================================================</span>
+
+fn take(int value) <span class="tok-op">→</span> void {
+    const _ bad <span class="tok-op">←</span> (int value) kernel <span class="tok-op">→</span> int ∴ do {
+        throw value
+        return value
+    }
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusannotation-sugarnucleum-fragmentfab-canonical-annotation">radix/corpus/annotation-sugar/nucleum-fragment.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closureargument-escapefab-supporting-reject">radix/corpus/kernel-closure/argument-escape.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurebag-resultfab-supporting-reject">radix/corpus/kernel-closure/bag-result.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurebare-bodyfab-supporting-reject">radix/corpus/kernel-closure/bare-body.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurecapefab-supporting-reject">radix/corpus/kernel-closure/cape.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurecapturefab-supporting-reject">radix/corpus/kernel-closure/capture.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closuredynamic-valuefab-supporting-reject">radix/corpus/kernel-closure/dynamic-value.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closureerror-channelfab-supporting-reject">radix/corpus/kernel-closure/error-channel.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurefield-escapefab-supporting-reject">radix/corpus/kernel-closure/field-escape.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurehost-effectfab-supporting-reject">radix/corpus/kernel-closure/host-effect.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurelist-escapefab-supporting-reject">radix/corpus/kernel-closure/list-escape.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurerejectfab-supporting-reject">radix/corpus/kernel-closure/reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurerequirefab-supporting-reject">radix/corpus/kernel-closure/require.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurereturn-escapefab-supporting-reject">radix/corpus/kernel-closure/return-escape.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closuresource-callbackfab-supporting-reject">radix/corpus/kernel-closure/source-callback.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurestack-free-kernelfab-supporting-reject">radix/corpus/kernel-closure/stack-free-kernel.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurestack-kernel-freefab-supporting-reject">radix/corpus/kernel-closure/stack-kernel-free.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurethrowfab-supporting-reject">radix/corpus/kernel-closure/throw.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">來源</span><ul><li>[&quot;radix/corpus/annotation-sugar/nucleum-fragment.fab&quot;]</li></ul></div></footer></div></body></html>

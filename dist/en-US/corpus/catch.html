@@ -31,7 +31,7 @@
     <span class="tok-kw">var</span> <span class="tok-kw">int</span> attempt <span class="tok-op">←</span> <span class="tok-nu">0</span>
     <span class="tok-kw">do</span> {
         attempt <span class="tok-op">←</span> attempt <span class="tok-op">+</span> <span class="tok-nu">1</span>
-        <span class="tok-kw">if</span> attempt <span class="tok-op">&gt;</span> <span class="tok-nu">1</span> {
+        <span class="tok-kw">if</span> attempt ≻ <span class="tok-nu">1</span> {
             <span class="tok-kw">throw</span> <span class="tok-st">"simulated failure"</span>
         }
         print <span class="tok-st">"attempt §"</span>(attempt)

@@ -33,13 +33,11 @@
 <span class="tok-co"># (whitelist: lista/methodi-functionales.fab).</span>
 
 main {
-    const _ res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
-
-    const _ pares <span class="tok-op">←</span> res.filter(int x ∴ x <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≡</span> <span class="tok-nu">0</span>)
-    const _ duplicata <span class="tok-op">←</span> res.map(int x ∴ x <span class="tok-op">*</span> <span class="tok-nu">2</span>)
-    const _ summa <span class="tok-op">←</span> res.reduce((int collectus, int x) ∴ collectus <span class="tok-op">+</span> x, <span class="tok-nu">0</span>)
-    const _ cumulata <span class="tok-op">←</span> res.cumulate((int collectus, int x) ∴ collectus <span class="tok-op">+</span> x, <span class="tok-nu">0</span>)
-
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> pares <span class="tok-op">←</span> res.filter(int x ∴ x <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≡</span> <span class="tok-nu">0</span>)
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> duplicata <span class="tok-op">←</span> res.map(int x ∴ x <span class="tok-op">*</span> <span class="tok-nu">2</span>)
+    const int summa <span class="tok-op">←</span> res.reduce((int collectus, int x) ∴ collectus <span class="tok-op">+</span> x, <span class="tok-nu">0</span>)
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> cumulata <span class="tok-op">←</span> res.cumulate((int collectus, int x) ∴ collectus <span class="tok-op">+</span> x, <span class="tok-nu">0</span>)
     print pares
     print duplicata
     print summa
@@ -70,7 +68,9 @@ main {
 <span class="tok-co"># =============================================================================</span>
 
 functio identity(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> f32 {
-    redde summa ex a apud [i] fixum s { redde s }
+    redde summa ex a apud [i] fixum s {
+        redde s
+    }
 }
 
 functio shifted(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> f32 {
@@ -83,13 +83,11 @@ functio shifted(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu"
 
 incipit {
     fixum lista<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>]
-    fixum tf32[] seed <span class="tok-op">←</span> vacua
-    fixum tf32[<span class="tok-nu">8</span>] a <span class="tok-op">←</span> seed.strue(flat, [<span class="tok-nu">8</span>])
-
+    fixum tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> vacua
+    fixum tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> seed.strue(flat, [<span class="tok-nu">8</span>])
     fixum f32 per_summam <span class="tok-op">←</span> a.summa()
     fixum f32 plicatum <span class="tok-op">←</span> identity(a)
     fixum f32 summam_totam <span class="tok-op">←</span> shifted(a)
-
     nota per_summam
     nota plicatum
     nota summam_totam
@@ -146,6 +144,7 @@ functio placement(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-n
 
 <span class="tok-co"># 2. tail — K = 8 not aligned to the 32-lane width declines</span>
 @ nucleum lane <span class="tok-st">"id"</span>
+@ publica
 functio tail(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> a, tf32[<span class="tok-nu">1</span>] out) <span class="tok-op">→</span> vacuum {
     fixum f32 total <span class="tok-op">←</span> summa ex a apud [i] filum f fixum s { redde s }
     out[id] <span class="tok-op">←</span> total

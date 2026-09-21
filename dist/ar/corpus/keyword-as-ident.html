@@ -59,7 +59,9 @@ main {
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   print-call.expected — print</span>
 
-fn print(string print) { print print }
+fn print(string print) <span class="tok-op">→</span> void {
+    print print
+}
 
 main {
     print(<span class="tok-st">"print"</span>)
@@ -94,7 +96,9 @@ main {
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   print-fn.expected — hello</span>
 
-fn print(string print) { print print }
+fn print(string print) <span class="tok-op">→</span> void {
+    print print
+}
 
 main {
     print(<span class="tok-st">"hello"</span>)
@@ -160,6 +164,6 @@ main {
 <span class="tok-co">#   Rust/Go/roundtrip e2e follow the lege/lege.fab stdin-read class.</span>
 
 main {
-    const _ input <span class="tok-op">←</span> read
+    const string <span class="tok-op">∪</span> null input <span class="tok-op">←</span> read
     print input
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identprint-bindingfab-canonical-concept">radix/corpus/keyword-as-ident/print-binding.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identprint-callfab-canonical-concept">radix/corpus/keyword-as-ident/print-call.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identprint-fnfab-canonical-concept">radix/corpus/keyword-as-ident/print-fn.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identread-shadowedfab-canonical-concept">radix/corpus/keyword-as-ident/read-shadowed.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identread-unshadowedfab-canonical-concept">radix/corpus/keyword-as-ident/read-unshadowed.fab (canonical · concept)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">المصادر</span><ul><li>[&quot;radix/corpus/keyword-as-ident/print-binding.fab&quot;]</li></ul></div></footer></div></body></html>

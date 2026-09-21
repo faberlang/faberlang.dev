@@ -26,19 +26,17 @@
 <span class="tok-co">#   Negated est parses as `expr non est target`.</span>
 
 main {
-    const _ vexilla <span class="tok-op">←</span> <span class="tok-nu">0</span>b1010
-    const _ persona <span class="tok-op">←</span> <span class="tok-nu">0</span>b1100
-    const _ velata <span class="tok-op">←</span> vexilla ∨ persona
+    const int vexilla <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    const int persona <span class="tok-op">←</span> <span class="tok-nu">12</span>
+    const int velata <span class="tok-op">←</span> vexilla ∨ persona
 <span class="tok-co">    # 14 (0b1110)</span>
     print velata
-
     const string <span class="tok-op">∪</span> null praesens <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
     const string <span class="tok-op">∪</span> null absens <span class="tok-op">←</span> null
-    const _ habetValorem <span class="tok-op">←</span> praesens not is null
+    const bool habetValorem <span class="tok-op">←</span> praesens not is null
 <span class="tok-co">    # verum</span>
     print habetValorem
-
-    const _ caretValorem <span class="tok-op">←</span> absens not is null
+    const bool caretValorem <span class="tok-op">←</span> absens not is null
 <span class="tok-co">    # falsum</span>
     print caretValorem
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>14

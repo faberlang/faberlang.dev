@@ -20,15 +20,26 @@
 <span class="tok-co"># TARGET: annotation-sugar stage 2</span>
 <span class="tok-co"># PAIR: sugar `@ cli "NAME"` (see optio/optio.fab)</span>
 
-@ <span class="tok-kw">cli</span> { nomen <span class="tok-op">=</span> <span class="tok-st">"annotation-sugar-smoke"</span> }
-@ option {
-    binding <span class="tok-op">=</span> verbose,
-    brevis <span class="tok-op">=</span> <span class="tok-st">"v"</span>,
-    longum <span class="tok-op">=</span> <span class="tok-st">"verbose"</span>,
-    typus <span class="tok-op">=</span> bool,
-    descriptio <span class="tok-op">=</span> <span class="tok-st">"Verbose mode"</span>
+@ <span class="tok-kw">cli</span> { name <span class="tok-op">=</span> <span class="tok-st">"annotation-sugar-smoke"</span> }
+@ option { binding <span class="tok-op">=</span> verbose, short <span class="tok-op">=</span> <span class="tok-st">"v"</span>, long <span class="tok-op">=</span> <span class="tok-st">"verbose"</span>, type <span class="tok-op">=</span> bool, description <span class="tok-op">=</span> <span class="tok-st">"Verbose mode"</span> }
+main args args {
+}</code></pre><h3 id="radixcorpuscliclifab-canonical-annotation">radix/corpus/cli/cli.fab (canonical · annotation)<a class="anchor" href="#radixcorpuscliclifab-canonical-annotation">#</a></h3><p>CLI root with options, operands, subcommands, and module mounts.</p><pre class="faber-code"><code class="lang-faber outcome=compiles">@ command { name <span class="tok-op">=</span> <span class="tok-st">"greet"</span> }
+@ alias <span class="tok-st">"g"</span>
+@ description <span class="tok-st">"Greet by name"</span>
+@ operand { type <span class="tok-op">=</span> string, binding <span class="tok-op">=</span> nomen, description <span class="tok-op">=</span> <span class="tok-st">"Name to greet"</span> }
+fn greet() args args <span class="tok-op">→</span> void {
+    if args.verbose {
+        print <span class="tok-st">"verbose"</span>
+    }
+    print <span class="tok-st">"Salve, §!"</span>(args.nomen)
 }
-main args args { }</code></pre><h3 id="radixcorpuscliclifab-canonical-annotation">radix/corpus/cli/cli.fab (canonical · annotation)<a class="anchor" href="#radixcorpuscliclifab-canonical-annotation">#</a></h3><p>CLI root with options, operands, subcommands, and module mounts.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+
+@ command { name <span class="tok-op">=</span> <span class="tok-st">"version"</span> }
+@ alias <span class="tok-st">"v"</span>
+fn version() <span class="tok-op">→</span> void {
+    print <span class="tok-st">"exemplum v0.1.0"</span>
+}
+<span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># cli — CLI root with options, operands, subcommands, and module mounts.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -63,26 +74,9 @@ main args args { }</code></pre><h3 id="radixcorpuscliclifab-canonical-annotation
 <span class="tok-co">#   Rust runtime whitelist (missing operand 'nomen'); Go compile whitelist.</span>
 <span class="tok-co">#   Cross-ref optio/, operandus/, descriptio/, ubique/, argumenta/ keyword dirs.</span>
 
-@ <span class="tok-kw">cli</span> <span class="tok-st">"exemplum"</span>
+@ <span class="tok-kw">cli</span> { name <span class="tok-op">=</span> <span class="tok-st">"exemplum"</span> }
 @ versio <span class="tok-st">"0.1.0"</span>
 @ description <span class="tok-st">"Faber CLI framework smoke exemplum"</span>
-@ option verbose short <span class="tok-st">"v"</span> long <span class="tok-st">"verbose"</span> type bool global description <span class="tok-st">"Enable verbose output"</span>
+@ option { binding <span class="tok-op">=</span> verbose, short <span class="tok-op">=</span> <span class="tok-st">"v"</span>, long <span class="tok-op">=</span> <span class="tok-st">"verbose"</span>, type <span class="tok-op">=</span> bool, description <span class="tok-op">=</span> <span class="tok-st">"Enable verbose output"</span>, global <span class="tok-op">=</span> true }
 main args args {
-}
-
-@ command <span class="tok-st">"greet"</span>
-@ alias <span class="tok-st">"g"</span>
-@ description <span class="tok-st">"Greet by name"</span>
-@ operand string nomen description <span class="tok-st">"Name to greet"</span>
-fn greet() args args <span class="tok-op">→</span> void {
-    if args.verbose {
-        print <span class="tok-st">"verbose"</span>
-    }
-    print <span class="tok-st">"Salve, §!"</span>(args.nomen)
-}
-
-@ command <span class="tok-st">"version"</span>
-@ alias <span class="tok-st">"v"</span>
-fn version() <span class="tok-op">→</span> void {
-    print <span class="tok-st">"exemplum v0.1.0"</span>
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusannotation-sugarcli-bracedfab-canonical-annotation">radix/corpus/annotation-sugar/cli-braced.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpuscliclifab-canonical-annotation">radix/corpus/cli/cli.fab (canonical · annotation)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[&quot;radix/corpus/annotation-sugar/cli-braced.fab&quot;]</li></ul></div></footer></div></body></html>

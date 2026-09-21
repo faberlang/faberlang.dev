@@ -24,22 +24,18 @@
 
 <span class="tok-kw">main</span> {
     <span class="tok-kw">const</span> sermo s <span class="tok-op">←</span> <span class="tok-kw">call</span> <span class="tok-st">'runtime:echo'</span> (<span class="tok-st">"salve"</span>)
-
     <span class="tok-kw">const</span> meus<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> m <span class="tok-op">←</span> s.meus<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>()
     m.da(<span class="tok-st">"ping"</span>)
     <span class="tok-kw">const</span> status outbound <span class="tok-op">←</span> m.fini()
-
     <span class="tok-kw">const</span> tuus<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> t <span class="tok-op">←</span> s.tuus<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>()
     <span class="tok-kw">for</span> <span class="tok-kw">from</span> t.<span class="tok-kw">cursor</span>() <span class="tok-kw">const</span> frame {
         <span class="tok-kw">assert</span> frame.data <span class="tok-op">≡</span> <span class="tok-st">"salve"</span>
     }
     <span class="tok-kw">const</span> status inbound <span class="tok-op">←</span> t.fini()
-
     <span class="tok-kw">const</span> sermo s2 <span class="tok-op">←</span> <span class="tok-kw">call</span> <span class="tok-st">'runtime:echo'</span> (<span class="tok-st">"salve"</span>)
     <span class="tok-kw">const</span> tuus<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> t2 <span class="tok-op">←</span> s2.tuus<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>()
     <span class="tok-kw">const</span> scrinium<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> got <span class="tok-op">←</span> t2.accipe()
     <span class="tok-kw">const</span> status accipe_done <span class="tok-op">←</span> t2.fini()
-
     print outbound
     print inbound
     print got

@@ -26,37 +26,45 @@
 <span class="tok-co">#   rubrum</span>
 <span class="tok-co">#   actum</span>
 
-<span class="tok-kw">enum</span> Color { rubrum, viridis, caeruleum }
+<span class="tok-kw">union</span> Color {
+    rubrum,
+    viridis,
+    caeruleum
+}
 
-<span class="tok-kw">enum</span> Condicio { pendens <span class="tok-op">=</span> <span class="tok-nu">0</span>, actum <span class="tok-op">=</span> <span class="tok-nu">1</span>, finitum <span class="tok-op">=</span> <span class="tok-nu">2</span> }
+<span class="tok-kw">union</span> Condicio {
+    pendens,
+    actum,
+    finitum
+}
 
 <span class="tok-kw">main</span> {
 <span class="tok-co">    # Using ordo values</span>
-    <span class="tok-kw">const</span> _ color <span class="tok-op">←</span> Color.rubrum
-    <span class="tok-kw">const</span> _ condicio <span class="tok-op">←</span> Condicio.actum
+    <span class="tok-kw">const</span> Color color <span class="tok-op">←</span> rubrum
+    <span class="tok-kw">const</span> Condicio condicio <span class="tok-op">←</span> actum
 
 <span class="tok-co">    # Select by ordo</span>
-    <span class="tok-kw">switch</span> color {
-        <span class="tok-kw">case</span> Color.rubrum {
+    <span class="tok-kw">match</span> color {
+        <span class="tok-kw">case</span> rubrum {
             print <span class="tok-st">"rubrum"</span>
         }
-        <span class="tok-kw">case</span> Color.viridis {
+        <span class="tok-kw">case</span> viridis {
             print <span class="tok-st">"viridis"</span>
         }
-        <span class="tok-kw">case</span> Color.caeruleum {
+        <span class="tok-kw">case</span> caeruleum {
             print <span class="tok-st">"caeruleum"</span>
         }
     }
 
 <span class="tok-co">    # Select by ordo with numeric values</span>
-    <span class="tok-kw">switch</span> condicio {
-        <span class="tok-kw">case</span> Condicio.pendens {
+    <span class="tok-kw">match</span> condicio {
+        <span class="tok-kw">case</span> pendens {
             print <span class="tok-st">"pendens"</span>
         }
-        <span class="tok-kw">case</span> Condicio.actum {
+        <span class="tok-kw">case</span> actum {
             print <span class="tok-st">"actum"</span>
         }
-        <span class="tok-kw">case</span> Condicio.finitum {
+        <span class="tok-kw">case</span> finitum {
             print <span class="tok-st">"finitum"</span>
         }
     }

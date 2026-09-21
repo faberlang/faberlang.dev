@@ -58,15 +58,11 @@ fn tutumDirect(value v) <span class="tok-op">→</span> instant {
 main {
     const value good <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
     const value bad <span class="tok-op">←</span> <span class="tok-st">"not-a-datetime"</span>
-
     assert inlineRecovery(good) <span class="tok-op">≡</span> (good ↦ instant)
     assert inlineRecovery(bad) <span class="tok-op">≡</span> epochZero()
-
     assert tutum(good) <span class="tok-op">≡</span> (good ↦ instant)
     assert tutum(bad) <span class="tok-op">≡</span> epochZero()
-
     assert tutumDirect(good) <span class="tok-op">≡</span> (good ↦ instant)
     assert tutumDirect(bad) <span class="tok-op">≡</span> epochZero()
-
     print inlineRecovery(good), tutum(good), tutumDirect(good)
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusconversiofallibilisfab-canonical-conversio">radix/corpus/conversio/fallibilis.fab (canonical · conversio)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">来源</span><ul><li>[&quot;radix/corpus/conversio/fallibilis.fab&quot;]</li></ul></div></footer></div></body></html>

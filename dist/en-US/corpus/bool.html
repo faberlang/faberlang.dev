@@ -28,13 +28,13 @@
     print <span class="tok-st">"primitiva smoke"</span>
 }
 
-<span class="tok-kw">fn</span> <span class="tok-kw">describe</span>(unknown value) <span class="tok-op">→</span> string {
-    <span class="tok-kw">if</span> value <span class="tok-kw">is</span> <span class="tok-kw">null</span> { <span class="tok-kw">return</span> <span class="tok-st">"nihil est"</span> }
+<span class="tok-kw">fn</span> <span class="tok-kw">describe</span>(any value) <span class="tok-op">→</span> string {
+    <span class="tok-kw">if</span> value <span class="tok-kw">is</span> <span class="tok-kw">null</span> then <span class="tok-kw">return</span> <span class="tok-st">"nihil est"</span>
     <span class="tok-kw">return</span> <span class="tok-st">"aliud est"</span>
 }
 
 <span class="tok-kw">fn</span> describe_boolean(<span class="tok-kw">bool</span> value) <span class="tok-op">→</span> string {
-    <span class="tok-kw">if</span> value <span class="tok-kw">is</span> <span class="tok-kw">true</span> { <span class="tok-kw">return</span> <span class="tok-st">"verum est"</span> }
+    <span class="tok-kw">if</span> value <span class="tok-kw">is</span> <span class="tok-kw">true</span> then <span class="tok-kw">return</span> <span class="tok-st">"verum est"</span>
     <span class="tok-kw">return</span> <span class="tok-st">"aliud est"</span>
 }
 

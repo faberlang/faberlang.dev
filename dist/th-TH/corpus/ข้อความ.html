@@ -30,15 +30,13 @@
 <span class="tok-co">#   Smoke asserts exit 0 only.</span>
 
 main {
-    let nuntius <span class="tok-op">←</span> <span class="tok-st">" Ave Roma "</span>
-
-    let secta <span class="tok-op">←</span> nuntius.slice(<span class="tok-nu">1</span>, <span class="tok-nu">4</span>)
-    let magna <span class="tok-op">←</span> nuntius.uppercase()
-    let parva <span class="tok-op">←</span> nuntius.lowercase()
-    let rasa <span class="tok-op">←</span> nuntius.trim()
-    let partes <span class="tok-op">←</span> rasa.split(<span class="tok-st">" "</span>)
-    let mutata <span class="tok-op">←</span> rasa.replace(<span class="tok-st">"Roma"</span>, <span class="tok-st">"Munde"</span>)
-
+    const string nuntius <span class="tok-op">←</span> <span class="tok-st">" Ave Roma "</span>
+    const string secta <span class="tok-op">←</span> nuntius.slice(<span class="tok-nu">1</span>, <span class="tok-nu">4</span>)
+    const string magna <span class="tok-op">←</span> nuntius.uppercase()
+    const string parva <span class="tok-op">←</span> nuntius.lowercase()
+    const string rasa <span class="tok-op">←</span> nuntius.trim()
+    const list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> partes <span class="tok-op">←</span> rasa.split(<span class="tok-st">" "</span>)
+    const string mutata <span class="tok-op">←</span> rasa.replace(<span class="tok-st">"Roma"</span>, <span class="tok-st">"Munde"</span>)
     print secta, magna, parva
     print rasa, partes, mutata
 }</code></pre><h3 id="radixcorpusboundedconversio-textus-overflow-declinefab-supporting-reject">radix/corpus/bounded/conversio-textus-overflow-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusboundedconversio-textus-overflow-declinefab-supporting-reject">#</a></h3><p>Decline: a textus literal longer than the target capacity rejects with textus_literal_too_long.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>

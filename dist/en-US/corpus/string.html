@@ -23,11 +23,10 @@
 <span class="tok-co">#   Salve, Salve, Mundus!</span>
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ greeting <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
+    <span class="tok-kw">const</span> string greeting <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
     print greeting
-
-    <span class="tok-kw">const</span> _ nomen <span class="tok-op">←</span> <span class="tok-st">"Mundus"</span>
-    <span class="tok-kw">const</span> _ message <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
+    <span class="tok-kw">const</span> string nomen <span class="tok-op">←</span> <span class="tok-st">"Mundus"</span>
+    <span class="tok-kw">const</span> string message <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
     print message
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve
 Salve, Mundus!

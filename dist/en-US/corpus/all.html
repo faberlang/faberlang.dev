@@ -31,13 +31,17 @@
 <span class="tok-kw">fn</span> narra(Condicio condicio) <span class="tok-op">→</span> string {
 <span class="tok-co">    # every variant must have a casu</span>
     <span class="tok-kw">match</span> <span class="tok-kw">all</span> condicio {
-        <span class="tok-kw">case</span> Activa { <span class="tok-kw">return</span> <span class="tok-st">"activa"</span> }
-        <span class="tok-kw">case</span> Quietus { <span class="tok-kw">return</span> <span class="tok-st">"quietus"</span> }
+        <span class="tok-kw">case</span> Activa {
+            <span class="tok-kw">return</span> <span class="tok-st">"activa"</span>
+        }
+        <span class="tok-kw">case</span> Quietus {
+            <span class="tok-kw">return</span> <span class="tok-st">"quietus"</span>
+        }
     }
 }
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ condicio <span class="tok-op">←</span> <span class="tok-kw">variant</span> Activa
+    <span class="tok-kw">const</span> Condicio condicio <span class="tok-op">←</span> <span class="tok-kw">variant</span> Activa
     print narra(condicio)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>activa
 </code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusomniaomniafab-canonical-keyword">radix/corpus/omnia/omnia.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/omnia/omnia.fab&quot;]</li></ul></div></footer></div></body></html>

@@ -29,9 +29,9 @@
 <span class="tok-co">#   [-3.0, 6.0, -3.0]</span>
 
 main {
-    const vf32[<span class="tok-nu">3</span>] a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>] ↦ vf32[<span class="tok-nu">3</span>]
-    const vf32[<span class="tok-nu">3</span>] b <span class="tok-op">←</span> [<span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>] ↦ vf32[<span class="tok-nu">3</span>]
-    const vf32[<span class="tok-nu">3</span>] c <span class="tok-op">←</span> a <span class="tok-op">×</span> b
+    const vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>] ↦ vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span>
+    const vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> b <span class="tok-op">←</span> [<span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>] ↦ vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span>
+    const vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> c <span class="tok-op">←</span> a <span class="tok-op">×</span> b
     print c
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[-3.0, 6.0, -3.0]
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusvectorglyph-crossfab-canonical-operator-group">radix/corpus/vector/glyph-cross.fab (canonical · operator-group)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[&quot;radix/corpus/vector/glyph-cross.fab&quot;]</li></ul></div></footer></div></body></html>

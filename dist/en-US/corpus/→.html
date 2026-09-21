@@ -29,7 +29,9 @@
 }
 
 <span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ string {
-    <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> then <span class="tok-kw">throw</span> <span class="tok-st">"division by zero"</span>
+    <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+        <span class="tok-kw">throw</span> <span class="tok-st">"division by zero"</span>
+    }
     <span class="tok-kw">return</span> a <span class="tok-op">/</span> b
 }
 

@@ -25,14 +25,13 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Rank and stored non-zero count after round-trip identity call.</span>
 
-fn identity(sparsa<span class="tok-op">&lt;</span>float<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span>, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> value) <span class="tok-op">→</span> sparsa<span class="tok-op">&lt;</span>float<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span>, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> {
+fn identity(sparsa<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> value) <span class="tok-op">→</span> sparsa<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> {
     return value
 }
 
 main {
-    const sparsa<span class="tok-op">&lt;</span>float<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span>, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> empty <span class="tok-op">←</span> empty
-    const sparsa<span class="tok-op">&lt;</span>float<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span>, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> roundtrip <span class="tok-op">←</span> identity(empty)
-
+    const sparsa<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> empty <span class="tok-op">←</span> empty
+    const sparsa<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> roundtrip <span class="tok-op">←</span> identity(empty)
     print roundtrip.length(), roundtrip.nonzero_count()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>2 0
 </code></pre><h3 id="radixcorpussparsasugarfab-canonical-type">radix/corpus/sparsa/sugar.fab (canonical · type)<a class="anchor" href="#radixcorpussparsasugarfab-canonical-type">#</a></h3><p>Sparse tensor width sugar mirrors dense tensor sugar with an s prefix.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
@@ -52,14 +51,12 @@ main {
 <span class="tok-co"># STYLE: sparse tensor sugar (sf32, si64[N]) — see docs/design/numeric-type-sugar.md</span>
 
 main {
-    var sf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] grid <span class="tok-op">←</span> empty
+    var sparsa<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> empty
     grid.set([<span class="tok-nu">0</span>, <span class="tok-nu">1</span>], <span class="tok-nu">4.0</span>)
-
-    const _ value <span class="tok-op">←</span> grid.get([<span class="tok-nu">0</span>, <span class="tok-nu">1</span>])
-    const _ absent <span class="tok-op">←</span> grid.get([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>])
-    const _ count <span class="tok-op">←</span> grid.nonzero_count()
-
-    const tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] dense <span class="tok-op">←</span> grid.densify()
+    const f32 value <span class="tok-op">←</span> grid.get([<span class="tok-nu">0</span>, <span class="tok-nu">1</span>])
+    const f32 absent <span class="tok-op">←</span> grid.get([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>])
+    const int count <span class="tok-op">←</span> grid.nonzero_count()
+    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> dense <span class="tok-op">←</span> grid.densify()
     print value, absent, count, dense.length()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>4.0 0.0 1 2
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpussparsadeclfab-canonical-type">radix/corpus/sparsa/decl.fab (canonical · type)</a></li><li class="toc-3"><a href="#radixcorpussparsasugarfab-canonical-type">radix/corpus/sparsa/sugar.fab (canonical · type)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">المصادر</span><ul><li>[&quot;radix/corpus/sparsa/decl.fab&quot;]</li></ul></div></footer></div></body></html>

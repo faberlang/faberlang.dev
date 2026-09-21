@@ -36,17 +36,14 @@
 <span class="tok-co">#   sit.expected</span>
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">let</span> salve <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
-    <span class="tok-kw">let</span> nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">let</span> nuntius <span class="tok-op">←</span> <span class="tok-st">"§, §!"</span>(salve, nomen)
-
+    <span class="tok-kw">const</span> string salve <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
+    <span class="tok-kw">const</span> string nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    <span class="tok-kw">const</span> string nuntius <span class="tok-op">←</span> <span class="tok-st">"§, §!"</span>(salve, nomen)
     print nuntius
-
-    <span class="tok-kw">let</span> label
+    <span class="tok-kw">const</span> string label
     label <span class="tok-op">←</span> <span class="tok-st">"deferred"</span>
     print label
-
-    <span class="tok-kw">const</span> _ idem <span class="tok-op">←</span> nuntius
+    <span class="tok-kw">const</span> string idem <span class="tok-op">←</span> nuntius
     print idem
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Marcus!
 deferred

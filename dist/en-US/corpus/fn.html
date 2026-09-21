@@ -25,12 +25,12 @@
 <span class="tok-co">#   functio.expected — four diagnostics (greetings, name, integer).</span>
 
 <span class="tok-co"># Function with no parameters, no return</span>
-<span class="tok-kw">fn</span> saluta() {
+<span class="tok-kw">fn</span> saluta() <span class="tok-op">→</span> <span class="tok-kw">void</span> {
     print <span class="tok-st">"Salve, Mundus!"</span>
 }
 
 <span class="tok-co"># Function with parameter, no explicit return type</span>
-<span class="tok-kw">fn</span> dic(string verbum) {
+<span class="tok-kw">fn</span> dic(string verbum) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
     print verbum
 }
 
@@ -46,12 +46,9 @@
 
 <span class="tok-kw">main</span> {
     saluta()
-
     dic(<span class="tok-st">"Bonum diem!"</span>)
-
-    <span class="tok-kw">const</span> _ rex <span class="tok-op">←</span> nomen()
+    <span class="tok-kw">const</span> string rex <span class="tok-op">←</span> nomen()
     print rex
-
     print duplica(<span class="tok-nu">21</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Mundus!
 Bonum diem!
@@ -111,7 +108,6 @@ Marcus Aurelius
 
 <span class="tok-kw">main</span> {
     imprime(<span class="tok-st">"mutabile"</span>)
-
     <span class="tok-kw">var</span> <span class="tok-kw">int</span> value <span class="tok-op">←</span> <span class="tok-nu">3</span>
 <span class="tok-co">    # mut borrows the caller's scalar inside duplica</span>
     duplica(value)
@@ -158,20 +154,14 @@ salve
 
 <span class="tok-co"># Fibonacci: fib(n) ← fib(n-1) + fib(n-2)</span>
 <span class="tok-kw">fn</span> fibonacci(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">if</span> n <span class="tok-op">≤</span> <span class="tok-nu">0</span> {
-        <span class="tok-kw">return</span> <span class="tok-nu">0</span>
-    }
-    <span class="tok-kw">if</span> n <span class="tok-op">≡</span> <span class="tok-nu">1</span> {
-        <span class="tok-kw">return</span> <span class="tok-nu">1</span>
-    }
+    <span class="tok-kw">if</span> n <span class="tok-op">≤</span> <span class="tok-nu">0</span> then <span class="tok-kw">return</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">if</span> n <span class="tok-op">≡</span> <span class="tok-nu">1</span> then <span class="tok-kw">return</span> <span class="tok-nu">1</span>
     <span class="tok-kw">return</span> fibonacci(n <span class="tok-op">-</span> <span class="tok-nu">1</span>) <span class="tok-op">+</span> fibonacci(n <span class="tok-op">-</span> <span class="tok-nu">2</span>)
 }
 
 <span class="tok-co"># Sum from 1 to n</span>
 <span class="tok-kw">fn</span> summatio(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">if</span> n <span class="tok-op">≤</span> <span class="tok-nu">0</span> {
-        <span class="tok-kw">return</span> <span class="tok-nu">0</span>
-    }
+    <span class="tok-kw">if</span> n <span class="tok-op">≤</span> <span class="tok-nu">0</span> then <span class="tok-kw">return</span> <span class="tok-nu">0</span>
     <span class="tok-kw">return</span> n <span class="tok-op">+</span> summatio(n <span class="tok-op">-</span> <span class="tok-nu">1</span>)
 }
 
@@ -229,9 +219,7 @@ salve
 <span class="tok-co">#   codex length and metire results, civis summary strings</span>
 
 <span class="tok-kw">fn</span> saluta(string nomen, string titulus <span class="tok-kw">optional</span>) <span class="tok-op">→</span> string {
-    <span class="tok-kw">if</span> titulus <span class="tok-kw">is</span> <span class="tok-kw">null</span> {
-        <span class="tok-kw">return</span> <span class="tok-st">"Salve, §!"</span>(nomen)
-    }
+    <span class="tok-kw">if</span> titulus <span class="tok-kw">is</span> <span class="tok-kw">null</span> then <span class="tok-kw">return</span> <span class="tok-st">"Salve, §!"</span>(nomen)
     <span class="tok-kw">return</span> <span class="tok-st">"Salve, § §!"</span>(titulus, nomen)
 }
 
@@ -253,20 +241,16 @@ salve
 
 <span class="tok-kw">main</span> {
     print saluta(<span class="tok-st">"Marcus"</span>)
-
     print saluta(<span class="tok-st">"Marcus"</span>, <span class="tok-st">"Dominus"</span>)
 
 <span class="tok-co">    # both sponte params use vel defaults</span>
     print pagina()
-
     print pagina(<span class="tok-nu">2</span>, <span class="tok-nu">25</span>)
 
 <span class="tok-co">    # quantitas defaults to 10</span>
     print pagina(<span class="tok-nu">5</span>)
-
     print metire(<span class="tok-st">"codex"</span>)
     print metire(<span class="tok-st">"codex"</span>, <span class="tok-nu">5</span>)
-
     print civis(<span class="tok-st">"Julia"</span>)
     print civis(<span class="tok-st">"Julia"</span>, <span class="tok-nu">25</span>)
     print civis(<span class="tok-st">"Julia"</span>, <span class="tok-nu">25</span>, <span class="tok-kw">false</span>)
@@ -321,14 +305,10 @@ salve
 
 <span class="tok-kw">main</span> {
     print quadratum(<span class="tok-nu">7</span>)
-
     print adde(<span class="tok-nu">100</span>, <span class="tok-nu">200</span>)
-
     print narra(<span class="tok-st">"Julius"</span>, <span class="tok-nu">30</span>)
-
     print nega(<span class="tok-kw">true</span>)
     print nega(<span class="tok-kw">false</span>)
-
     print media(<span class="tok-nu">3.0</span>, <span class="tok-nu">7.0</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>49
 300

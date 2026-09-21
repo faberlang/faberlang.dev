@@ -33,23 +33,20 @@
 <span class="tok-co">#   [1.0, 4.0, 9.0, 16.0]</span>
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> vf32[<span class="tok-nu">3</span>] a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>] ↦ vf32[<span class="tok-nu">3</span>]
-    <span class="tok-kw">const</span> vf32[<span class="tok-nu">3</span>] b <span class="tok-op">←</span> [<span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>] ↦ vf32[<span class="tok-nu">3</span>]
-    <span class="tok-kw">const</span> vf32[<span class="tok-nu">2</span>] q <span class="tok-op">←</span> [<span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>] ↦ vf32[<span class="tok-nu">2</span>]
+    <span class="tok-kw">const</span> vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>] ↦ vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span>
+    <span class="tok-kw">const</span> vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> b <span class="tok-op">←</span> [<span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>] ↦ vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span>
+    <span class="tok-kw">const</span> vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">2</span><span class="tok-op">&gt;</span> q <span class="tok-op">←</span> [<span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>] ↦ vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">2</span><span class="tok-op">&gt;</span>
     <span class="tok-kw">const</span> matrix<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> o <span class="tok-op">←</span> a <span class="tok-op">⊗</span> q
-
-    <span class="tok-kw">const</span> vf32[<span class="tok-nu">3</span>] v <span class="tok-op">←</span> a ⊙ b
+    <span class="tok-kw">const</span> vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> v <span class="tok-op">←</span> a ⊙ b
     print v
-
     <span class="tok-kw">const</span> matrix<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> m <span class="tok-op">←</span> o ⊙ o
     print m
-
     <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>]
     <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>]
-    <span class="tok-kw">const</span> tf32[] seed <span class="tok-op">←</span> empty
-    <span class="tok-kw">var</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] ta <span class="tok-op">←</span> seed.from_flat(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>])
-    <span class="tok-kw">var</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] tb <span class="tok-op">←</span> seed.from_flat(flat_b, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>])
-    <span class="tok-kw">const</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] t <span class="tok-op">←</span> ta ⊙ tb
+    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> empty
+    <span class="tok-kw">var</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> ta <span class="tok-op">←</span> seed.from_flat(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>])
+    <span class="tok-kw">var</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> tb <span class="tok-op">←</span> seed.from_flat(flat_b, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>])
+    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> t <span class="tok-op">←</span> ta ⊙ tb
     <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> out <span class="tok-op">←</span> t.flatten()
     print out
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[4.0, 10.0, 18.0]

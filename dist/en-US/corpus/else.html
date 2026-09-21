@@ -28,8 +28,8 @@
 <span class="tok-co">#</span>
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ hour <span class="tok-op">←</span> <span class="tok-nu">23</span>
-    <span class="tok-kw">if</span> hour <span class="tok-op">&lt;</span> <span class="tok-nu">12</span> {
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> hour <span class="tok-op">←</span> <span class="tok-nu">23</span>
+    <span class="tok-kw">if</span> hour ≺ <span class="tok-nu">12</span> {
         print <span class="tok-st">"morning"</span>
     }
     <span class="tok-kw">else</span> {
@@ -70,8 +70,7 @@
 
 <span class="tok-kw">main</span> {
 <span class="tok-co">    # Two-way branch: exactly one arm runs</span>
-    <span class="tok-kw">const</span> _ puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
-
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
     <span class="tok-kw">if</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
         print <span class="tok-st">"gradus: A"</span>
     }
@@ -81,9 +80,8 @@
     }
 
 <span class="tok-co">    # Each branch may contain several statements</span>
-    <span class="tok-kw">const</span> _ calor <span class="tok-op">←</span> <span class="tok-nu">22</span>
-
-    <span class="tok-kw">if</span> calor <span class="tok-op">&gt;</span> <span class="tok-nu">30</span> {
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> calor <span class="tok-op">←</span> <span class="tok-nu">22</span>
+    <span class="tok-kw">if</span> calor ≻ <span class="tok-nu">30</span> {
         print <span class="tok-st">"calidum"</span>
         print <span class="tok-st">"aquam bibe"</span>
     }
@@ -94,8 +92,7 @@
     }
 
 <span class="tok-co">    # sin chains additional tests; first match wins (75 → C)</span>
-    <span class="tok-kw">const</span> _ gradus <span class="tok-op">←</span> <span class="tok-nu">75</span>
-
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> gradus <span class="tok-op">←</span> <span class="tok-nu">75</span>
     <span class="tok-kw">if</span> gradus <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
         print <span class="tok-st">"A - optimum"</span>
     }

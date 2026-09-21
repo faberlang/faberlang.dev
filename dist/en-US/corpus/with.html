@@ -28,7 +28,8 @@
 <span class="tok-co">#   "in arena".</span>
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">with</span> <span class="tok-st">"arena"</span> <span class="tok-kw">const</span> _ alloc {
+    {
+        <span class="tok-kw">const</span> any alloc
         print <span class="tok-st">"in arena"</span>
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>in arena

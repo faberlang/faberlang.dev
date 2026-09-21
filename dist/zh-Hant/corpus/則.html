@@ -25,8 +25,8 @@
 <span class="tok-co">#   Cross-ref si/ergo-redde.fab for ergo-redde guard-return spelling.</span>
 
 fn clamp(int x) <span class="tok-op">→</span> int {
-    if x <span class="tok-op">&lt;</span> <span class="tok-nu">0</span> then return <span class="tok-nu">0</span>
-    if x <span class="tok-op">&gt;</span> <span class="tok-nu">100</span> then return <span class="tok-nu">100</span>
+    if x ≺ <span class="tok-nu">0</span> then return <span class="tok-nu">0</span>
+    if x ≻ <span class="tok-nu">100</span> then return <span class="tok-nu">100</span>
     return x
 }
 
@@ -169,23 +169,34 @@ nihil
 
 main {
 <span class="tok-co">    # ergo replaces a one-statement block body</span>
-    const _ x <span class="tok-op">←</span> <span class="tok-nu">10</span>
-
-    if x <span class="tok-op">&gt;</span> <span class="tok-nu">5</span> then print <span class="tok-st">"x magnum est"</span>
+    const int x <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    if x ≻ <span class="tok-nu">5</span> {
+        print <span class="tok-st">"x magnum est"</span>
+    }
 
 <span class="tok-co">    # secus ergo pairs else with a single consequent</span>
-    const _ aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
-    if aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> then print <span class="tok-st">"adultus"</span>
-    else then print <span class="tok-st">"minor"</span>
+    const int aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
+    if aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> {
+        print <span class="tok-st">"adultus"</span>
+    }
+    else {
+        print <span class="tok-st">"minor"</span>
+    }
 
 <span class="tok-co">    # Two-way one-liner (85 &lt; 90 → "non A")</span>
-    const _ puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
-    if puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> then print <span class="tok-st">"A"</span>
-    else then print <span class="tok-st">"non A"</span>
+    const int puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
+    if puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
+        print <span class="tok-st">"A"</span>
+    }
+    else {
+        print <span class="tok-st">"non A"</span>
+    }
 
 <span class="tok-co">    # bivalens condition used directly</span>
-    const _ valet <span class="tok-op">←</span> true
-    if valet then print <span class="tok-st">"Recte"</span>
+    const bool valet <span class="tok-op">←</span> true
+    if valet {
+        print <span class="tok-st">"Recte"</span>
+    }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>x magnum est
 adultus
 non A

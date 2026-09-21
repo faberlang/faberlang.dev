@@ -25,34 +25,26 @@
 
 <span class="tok-kw">main</span> {
 <span class="tok-co">    # Skip even numbers</span>
-    <span class="tok-kw">var</span> _ i <span class="tok-op">←</span> <span class="tok-nu">0</span>
-
-    <span class="tok-kw">while</span> i <span class="tok-op">&lt;</span> <span class="tok-nu">10</span> {
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">while</span> i ≺ <span class="tok-nu">10</span> {
         i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
-
         <span class="tok-kw">if</span> i <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
             <span class="tok-kw">continue</span>
         }
-
         print i
     }
 
 <span class="tok-co">    # Continue in nested loop</span>
-    <span class="tok-kw">var</span> _ exterior <span class="tok-op">←</span> <span class="tok-nu">0</span>
-
-    <span class="tok-kw">while</span> exterior <span class="tok-op">&lt;</span> <span class="tok-nu">3</span> {
-        <span class="tok-kw">var</span> _ interior <span class="tok-op">←</span> <span class="tok-nu">0</span>
-
-        <span class="tok-kw">while</span> interior <span class="tok-op">&lt;</span> <span class="tok-nu">5</span> {
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> exterior <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">while</span> exterior ≺ <span class="tok-nu">3</span> {
+        <span class="tok-kw">var</span> <span class="tok-kw">int</span> interior <span class="tok-op">←</span> <span class="tok-nu">0</span>
+        <span class="tok-kw">while</span> interior ≺ <span class="tok-nu">5</span> {
             interior <span class="tok-op">←</span> interior <span class="tok-op">+</span> <span class="tok-nu">1</span>
-
             <span class="tok-kw">if</span> interior <span class="tok-op">≡</span> <span class="tok-nu">3</span> {
                 <span class="tok-kw">continue</span>
             }
-
             print <span class="tok-st">"exterior←§, interior←§"</span>(exterior, interior)
         }
-
         exterior <span class="tok-op">←</span> exterior <span class="tok-op">+</span> <span class="tok-nu">1</span>
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1

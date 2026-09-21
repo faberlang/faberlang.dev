@@ -33,7 +33,7 @@
 <span class="tok-kw">class</span> Circulus <span class="tok-kw">implements</span> Figurabile {
     <span class="tok-kw">int</span> radius <span class="tok-op">=</span> <span class="tok-nu">10</span>
 
-    <span class="tok-kw">fn</span> depinge() {
+    <span class="tok-kw">fn</span> depinge() <span class="tok-op">→</span> <span class="tok-kw">void</span> {
         print <span class="tok-st">"circulus radius: §"</span>(<span class="tok-kw">self</span>.radius)
     }
 }
@@ -41,15 +41,14 @@
 <span class="tok-kw">class</span> Quadratum <span class="tok-kw">implements</span> Figurabile {
     <span class="tok-kw">int</span> latus <span class="tok-op">=</span> <span class="tok-nu">5</span>
 
-    <span class="tok-kw">fn</span> depinge() {
+    <span class="tok-kw">fn</span> depinge() <span class="tok-op">→</span> <span class="tok-kw">void</span> {
         print <span class="tok-st">"quadratum latus: §"</span>(<span class="tok-kw">self</span>.latus)
     }
 }
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ circulus <span class="tok-op">←</span> Circulus { radius <span class="tok-op">=</span> <span class="tok-nu">25</span> }
-    <span class="tok-kw">const</span> _ quadratum <span class="tok-op">←</span> Quadratum { latus <span class="tok-op">=</span> <span class="tok-nu">15</span> }
-
+    <span class="tok-kw">const</span> Circulus circulus <span class="tok-op">←</span> Circulus { radius <span class="tok-op">=</span> <span class="tok-nu">25</span> }
+    <span class="tok-kw">const</span> Quadratum quadratum <span class="tok-op">←</span> Quadratum { latus <span class="tok-op">=</span> <span class="tok-nu">15</span> }
     circulus.depinge()
     quadratum.depinge()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>circulus radius: 25

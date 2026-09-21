@@ -30,21 +30,18 @@
 
 main {
 <span class="tok-co">    # ↦ converts textus → numerus</span>
-    let n1 <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ int
+    const int n1 <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ int
 <span class="tok-co">    # ⇥ supplies recovery on failure</span>
-    let n2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ int ⇥ <span class="tok-nu">0</span>
-    let n3 <span class="tok-op">←</span> <span class="tok-st">"255"</span> ↦ int<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span>
-
-    let f1 <span class="tok-op">←</span> <span class="tok-st">"3.14159"</span> ↦ float
-    let f2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ float ⇥ <span class="tok-nu">0.0</span>
-
-    let s1 <span class="tok-op">←</span> <span class="tok-nu">42</span> ↦ string
-    let s2 <span class="tok-op">←</span> <span class="tok-nu">3.14</span> ↦ string
-    let s3 <span class="tok-op">←</span> true ↦ string
+    const int n2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ int ⇥ <span class="tok-nu">0</span>
+    const int<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> n3 <span class="tok-op">←</span> <span class="tok-st">"255"</span> ↦ int<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span>
+    const float f1 <span class="tok-op">←</span> <span class="tok-st">"3.14159"</span> ↦ float
+    const float f2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ float ⇥ <span class="tok-nu">0.0</span>
+    const string s1 <span class="tok-op">←</span> <span class="tok-nu">42</span> ↦ string
+    const string s2 <span class="tok-op">←</span> <span class="tok-nu">3.14</span> ↦ string
+    const string s3 <span class="tok-op">←</span> true ↦ string
 
 <span class="tok-co">    # chained ↦ left-to-right</span>
-    let roundtrip <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ int ↦ string
-
+    const string roundtrip <span class="tok-op">←</span> (<span class="tok-st">"42"</span> ↦ int) ↦ string
     print n1
     print n2
     print n3

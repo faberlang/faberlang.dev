@@ -30,7 +30,7 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Salve, arithmetic results, chained builder output, spread-arg sum.</span>
 
-fn saluta() {
+fn saluta() <span class="tok-op">→</span> void {
     print <span class="tok-st">"Salve!"</span>
 }
 
@@ -65,30 +65,30 @@ main {
     saluta()
 
 <span class="tok-co">    # Call with arguments</span>
-    const _ summa <span class="tok-op">←</span> adde(<span class="tok-nu">10</span>, <span class="tok-nu">20</span>)
+    const int summa <span class="tok-op">←</span> adde(<span class="tok-nu">10</span>, <span class="tok-nu">20</span>)
 <span class="tok-co">    # 30</span>
     print summa
 
 <span class="tok-co">    # Multiple arguments</span>
-    const _ productum <span class="tok-op">←</span> multiplica(<span class="tok-nu">5</span>, <span class="tok-nu">6</span>)
+    const int productum <span class="tok-op">←</span> multiplica(<span class="tok-nu">5</span>, <span class="tok-nu">6</span>)
 <span class="tok-co">    # 30</span>
     print productum
 
 <span class="tok-co">    # Method call on objectum</span>
-    var _ computator <span class="tok-op">←</span> Computator {}
+    var Computator computator <span class="tok-op">←</span> Computator {}
     computator.pone(<span class="tok-nu">10</span>)
 <span class="tok-co">    # 10</span>
     print computator.accipe()
 
 <span class="tok-co">    # Chained method calls</span>
-    var _ alter <span class="tok-op">←</span> Computator {}
-    const _ value <span class="tok-op">←</span> alter.pone(<span class="tok-nu">5</span>).duplica().duplica().accipe()
+    var Computator alter <span class="tok-op">←</span> Computator {}
+    const int value <span class="tok-op">←</span> alter.pone(<span class="tok-nu">5</span>).duplica().duplica().accipe()
 <span class="tok-co">    # 20</span>
     print value
 
 <span class="tok-co">    # Call with sparge</span>
     const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">7</span>]
-    const _ sparsa <span class="tok-op">←</span> adde(spread numeri)
+    const int sparsa <span class="tok-op">←</span> adde(spread numeri)
 <span class="tok-co">    # 10</span>
     print sparsa
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve!

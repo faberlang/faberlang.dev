@@ -28,10 +28,14 @@
 <span class="tok-co">#</span>
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ <span class="tok-kw">tag</span> <span class="tok-op">←</span> <span class="tok-st">"z"</span>
-    <span class="tok-kw">switch</span> <span class="tok-kw">tag</span> {
-        <span class="tok-kw">case</span> <span class="tok-st">"a"</span> { print <span class="tok-st">"a"</span> }
-        <span class="tok-kw">default</span> { print <span class="tok-st">"default"</span> }
+    <span class="tok-kw">const</span> string <span class="tok-kw">tag</span> <span class="tok-op">←</span> <span class="tok-st">"z"</span>
+    <span class="tok-kw">match</span> <span class="tok-kw">tag</span> {
+        <span class="tok-kw">case</span> <span class="tok-st">"a"</span> {
+            print <span class="tok-st">"a"</span>
+        }
+        <span class="tok-kw">case</span> _ {
+            print <span class="tok-st">"default"</span>
+        }
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>default
 </code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusceterumceterumfab-canonical-keyword">radix/corpus/ceterum/ceterum.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/ceterum/ceterum.fab&quot;]</li></ul></div></footer></div></body></html>

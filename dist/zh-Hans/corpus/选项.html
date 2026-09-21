@@ -20,16 +20,10 @@
 <span class="tok-co"># TARGET: annotation-sugar stage 2</span>
 <span class="tok-co"># PAIR: sugar `@ optio NAME brevis \"x\" ...` (see optio/optio.fab)</span>
 
-@ cli { nomen <span class="tok-op">=</span> <span class="tok-st">"optio-braced-smoke"</span> }
-@ option {
-    binding <span class="tok-op">=</span> verbose,
-    brevis <span class="tok-op">=</span> <span class="tok-st">"v"</span>,
-    longum <span class="tok-op">=</span> <span class="tok-st">"verbose"</span>,
-    typus <span class="tok-op">=</span> bool,
-    descriptio <span class="tok-op">=</span> <span class="tok-st">"Verbose mode"</span>,
-    ubique <span class="tok-op">=</span> true
-}
-main args args { }</code></pre><h3 id="radixcorpusoptiooptiofab-canonical-keyword">radix/corpus/optio/optio.fab (canonical · keyword)<a class="anchor" href="#radixcorpusoptiooptiofab-canonical-keyword">#</a></h3><p>Declares a CLI option annotation.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+@ cli { name <span class="tok-op">=</span> <span class="tok-st">"optio-braced-smoke"</span> }
+@ option { binding <span class="tok-op">=</span> verbose, short <span class="tok-op">=</span> <span class="tok-st">"v"</span>, long <span class="tok-op">=</span> <span class="tok-st">"verbose"</span>, type <span class="tok-op">=</span> bool, description <span class="tok-op">=</span> <span class="tok-st">"Verbose mode"</span>, global <span class="tok-op">=</span> true }
+main args args {
+}</code></pre><h3 id="radixcorpusoptiooptiofab-canonical-keyword">radix/corpus/optio/optio.fab (canonical · keyword)<a class="anchor" href="#radixcorpusoptiooptiofab-canonical-keyword">#</a></h3><p>Declares a CLI option annotation.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># optio — Declares a CLI option annotation.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -55,8 +49,8 @@ main args args { }</code></pre><h3 id="radixcorpusoptiooptiofab-canonical-keywor
 <span class="tok-co">#   declaration-only CLI metadata (whitelist: optio/optio.fab).</span>
 <span class="tok-co">#</span>
 
-@ cli <span class="tok-st">"optio-smoke"</span>
-@ option verbose short <span class="tok-st">"v"</span> long <span class="tok-st">"verbose"</span> type bool description <span class="tok-st">"Verbose mode"</span>
-@ option count long <span class="tok-st">"count"</span> type int description <span class="tok-st">"Repeat count"</span>
+@ cli { name <span class="tok-op">=</span> <span class="tok-st">"optio-smoke"</span> }
+@ option { binding <span class="tok-op">=</span> verbose, short <span class="tok-op">=</span> <span class="tok-st">"v"</span>, long <span class="tok-op">=</span> <span class="tok-st">"verbose"</span>, type <span class="tok-op">=</span> bool, description <span class="tok-op">=</span> <span class="tok-st">"Verbose mode"</span> }
+@ option { binding <span class="tok-op">=</span> count, long <span class="tok-op">=</span> <span class="tok-st">"count"</span>, type <span class="tok-op">=</span> int, description <span class="tok-op">=</span> <span class="tok-st">"Repeat count"</span> }
 main args args {
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusannotation-sugaroptio-bracedfab-canonical-annotation">radix/corpus/annotation-sugar/optio-braced.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpusoptiooptiofab-canonical-keyword">radix/corpus/optio/optio.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">来源</span><ul><li>[&quot;radix/corpus/annotation-sugar/optio-braced.fab&quot;]</li></ul></div></footer></div></body></html>

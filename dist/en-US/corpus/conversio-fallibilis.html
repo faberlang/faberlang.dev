@@ -58,15 +58,11 @@
 <span class="tok-kw">main</span> {
     <span class="tok-kw">const</span> value good <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
     <span class="tok-kw">const</span> value bad <span class="tok-op">←</span> <span class="tok-st">"not-a-datetime"</span>
-
     <span class="tok-kw">assert</span> inlineRecovery(good) <span class="tok-op">≡</span> (good ↦ instant)
     <span class="tok-kw">assert</span> inlineRecovery(bad) <span class="tok-op">≡</span> epochZero()
-
     <span class="tok-kw">assert</span> tutum(good) <span class="tok-op">≡</span> (good ↦ instant)
     <span class="tok-kw">assert</span> tutum(bad) <span class="tok-op">≡</span> epochZero()
-
     <span class="tok-kw">assert</span> tutumDirect(good) <span class="tok-op">≡</span> (good ↦ instant)
     <span class="tok-kw">assert</span> tutumDirect(bad) <span class="tok-op">≡</span> epochZero()
-
     print inlineRecovery(good), tutum(good), tutumDirect(good)
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusconversiofallibilisfab-canonical-conversio">radix/corpus/conversio/fallibilis.fab (canonical · conversio)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/conversio/fallibilis.fab&quot;]</li></ul></div></footer></div></body></html>

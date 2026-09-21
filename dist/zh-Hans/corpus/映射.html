@@ -35,15 +35,13 @@ main {
     var map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> empty
     puncta.put(<span class="tok-st">"aelia"</span>, <span class="tok-nu">95</span>)
     puncta.put(<span class="tok-st">"balbus"</span>, <span class="tok-nu">87</span>)
-
-    const _ aelia <span class="tok-op">←</span> puncta.get(<span class="tok-st">"aelia"</span>)
-    const _ absens <span class="tok-op">←</span> puncta.get(<span class="tok-st">"carus"</span>)
-    const _ carus <span class="tok-op">←</span> puncta.get(<span class="tok-st">"carus"</span>) coalesce <span class="tok-nu">0</span>
-    const _ habetbalbum <span class="tok-op">←</span> puncta.has(<span class="tok-st">"balbus"</span>)
-    const _ remotus <span class="tok-op">←</span> puncta.delete(<span class="tok-st">"balbus"</span>)
-    const _ longitudo <span class="tok-op">←</span> puncta.length()
-    const _ vacuaest <span class="tok-op">←</span> puncta.is_empty()
-
+    const int <span class="tok-op">∪</span> null aelia <span class="tok-op">←</span> puncta.get(<span class="tok-st">"aelia"</span>)
+    const int <span class="tok-op">∪</span> null absens <span class="tok-op">←</span> puncta.get(<span class="tok-st">"carus"</span>)
+    const int carus <span class="tok-op">←</span> puncta.get(<span class="tok-st">"carus"</span>) coalesce <span class="tok-nu">0</span>
+    const bool habetbalbum <span class="tok-op">←</span> puncta.has(<span class="tok-st">"balbus"</span>)
+    const bool remotus <span class="tok-op">←</span> puncta.delete(<span class="tok-st">"balbus"</span>)
+    const int longitudo <span class="tok-op">←</span> puncta.length()
+    const bool vacuaest <span class="tok-op">←</span> puncta.is_empty()
     print aelia, absens, carus, habetbalbum, remotus, longitudo, vacuaest
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>95 nihil 0 verum verum 1 falsum
 </code></pre><h3 id="radixcorpustabulatabulafab-canonical-keyword">radix/corpus/tabula/tabula.fab (canonical · keyword)<a class="anchor" href="#radixcorpustabulatabulafab-canonical-keyword">#</a></h3><p>Generic key/value map type.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
@@ -82,7 +80,6 @@ main {
     puncta[<span class="tok-st">"alpha"</span>] <span class="tok-op">←</span> <span class="tok-nu">1</span>
     puncta[<span class="tok-st">"beta"</span>] <span class="tok-op">←</span> <span class="tok-nu">2</span>
     puncta[<span class="tok-st">"gamma"</span>] <span class="tok-op">←</span> <span class="tok-nu">3</span>
-
     print puncta.length()
     print puncta[<span class="tok-st">"alpha"</span>]
     print puncta[<span class="tok-st">"beta"</span>]

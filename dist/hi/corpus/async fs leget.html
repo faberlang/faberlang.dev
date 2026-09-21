@@ -22,12 +22,11 @@
 <span class="tok-co"># declares the wrapper with compatibility `@ futura`; callers consume it through</span>
 <span class="tok-co"># the explicit morphology forms such as `figendum`.</span>
 
-import from <span class="tok-st">"norma:fs"</span> fs
+import from <span class="tok-st">"norma:fs"</span> charta
 
 async_main {
     const string textPath <span class="tok-op">←</span> <span class="tok-st">"/tmp/faber-async-fs-leget.txt"</span>
-    fs.write_file(textPath, <span class="tok-st">"async fs\n"</span>)
-
-    await_const string body <span class="tok-op">←</span> fs.read_file_async<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>(textPath)
+    charta.write_file(textPath, <span class="tok-st">"async fs\n"</span>)
+    await_const string body <span class="tok-op">←</span> charta.read_file_async<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>(textPath)
     assert body <span class="tok-op">≡</span> <span class="tok-st">"async fs\n"</span>
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusadasync-solum-legetfab-canonical-concept">radix/corpus/ad/async-solum-leget.fab (canonical · concept)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">स्रोत</span><ul><li>[&quot;radix/corpus/ad/async-solum-leget.fab&quot;]</li></ul></div></footer></div></body></html>

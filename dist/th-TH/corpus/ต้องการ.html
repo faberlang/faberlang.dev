@@ -28,22 +28,16 @@
 <span class="tok-co">#   empty — success-path main only (requirit.expected)</span>
 
 union GuardError {
-    Invalid { string causa }
+    Invalid {
+        string causa
+    }
 }
 
 fn guarded(int value) <span class="tok-op">→</span> int ⇥ GuardError {
-    require value <span class="tok-op">&gt;</span> <span class="tok-nu">0</span> throw variant Invalid { causa <span class="tok-op">=</span> <span class="tok-st">"value must be positive"</span> }
+    if not (value ≻ <span class="tok-nu">0</span>) {
+        throw variant Invalid { causa <span class="tok-op">=</span> <span class="tok-st">"value must be positive"</span> }
+    }
     return value
-}
-
-main {
-    do {
-        const int ok <span class="tok-op">←</span> guarded(<span class="tok-nu">1</span>)
-        assert ok <span class="tok-op">≡</span> <span class="tok-nu">1</span>
-    }
-    catch err {
-        assert false panic <span class="tok-st">"success path must not throw"</span>
-    }
 }
 
 test <span class="tok-st">"false path is recoverable"</span> {
@@ -53,5 +47,15 @@ test <span class="tok-st">"false path is recoverable"</span> {
     }
     catch err {
 <span class="tok-co">        # recovered — require entered ⇥ and catch intercepted it</span>
+    }
+}
+
+main {
+    do {
+        const int ok <span class="tok-op">←</span> guarded(<span class="tok-nu">1</span>)
+        assert ok <span class="tok-op">≡</span> <span class="tok-nu">1</span>
+    }
+    catch err {
+        assert false panic <span class="tok-st">"success path must not throw"</span>
     }
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusmetarequiritfab-canonical-keyword">radix/corpus/meta/requirit.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/meta/requirit.fab&quot;]</li></ul></div></footer></div></body></html>

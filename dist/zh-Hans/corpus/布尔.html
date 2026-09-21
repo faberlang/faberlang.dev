@@ -28,13 +28,13 @@ fn ping() <span class="tok-op">→</span> void {
     print <span class="tok-st">"primitiva smoke"</span>
 }
 
-fn describe(unknown value) <span class="tok-op">→</span> string {
-    if value is null { return <span class="tok-st">"nihil est"</span> }
+fn describe(any value) <span class="tok-op">→</span> string {
+    if value is null then return <span class="tok-st">"nihil est"</span>
     return <span class="tok-st">"aliud est"</span>
 }
 
 fn describe_boolean(bool value) <span class="tok-op">→</span> string {
-    if value is true { return <span class="tok-st">"verum est"</span> }
+    if value is true then return <span class="tok-st">"verum est"</span>
     return <span class="tok-st">"aliud est"</span>
 }
 

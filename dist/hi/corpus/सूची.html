@@ -34,11 +34,10 @@ main {
     const _ nomina <span class="tok-op">←</span> [<span class="tok-st">"Marcus"</span>, <span class="tok-st">"Julia"</span>, <span class="tok-st">"Gaius"</span>]
     const _ vexilla <span class="tok-op">←</span> [true, false, true]
     const _ matrix <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>], [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>]]
-    const _ prima <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    const _ secunda <span class="tok-op">←</span> [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]
-    const _ coniuncta <span class="tok-op">←</span> [spread prima, spread secunda]
-    const _ aucta <span class="tok-op">←</span> [<span class="tok-nu">0</span>, spread prima, <span class="tok-nu">99</span>]
-
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> primum <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> secundum <span class="tok-op">←</span> [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]
+    const _ coniuncta <span class="tok-op">←</span> [spread primum, spread secundum]
+    const _ aucta <span class="tok-op">←</span> [<span class="tok-nu">0</span>, spread primum, <span class="tok-nu">99</span>]
     print vacuares.length()
     print numeri.length()
     print numeri[<span class="tok-nu">0</span>]
@@ -104,7 +103,6 @@ verum
 
 main {
     const _ res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
-
     const _ addita <span class="tok-op">←</span> res.added(<span class="tok-nu">6</span>)
     const _ sectio <span class="tok-op">←</span> res.slice(<span class="tok-nu">1</span>, <span class="tok-nu">4</span>)
     const _ primaduo <span class="tok-op">←</span> res.take(<span class="tok-nu">2</span>)
@@ -112,7 +110,6 @@ main {
     const _ omissaduo <span class="tok-op">←</span> res.drop(<span class="tok-nu">2</span>)
     const _ inversa <span class="tok-op">←</span> res.invert()
     const _ ordinata <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">1</span>, <span class="tok-nu">2</span>].sorted()
-
     print addita
     print sectio
     print primaduo
@@ -157,14 +154,12 @@ main {
 <span class="tok-co"># (whitelist: lista/methodi-mutatio.fab).</span>
 
 main {
-    var _ res <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">1</span>, <span class="tok-nu">2</span>] ∷ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
-
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">1</span>, <span class="tok-nu">2</span>] ∷ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
     res.append(<span class="tok-nu">4</span>)
-    const _ primusremotus <span class="tok-op">←</span> res.remove_first()
-    const _ ultimusremotus <span class="tok-op">←</span> res.remove_last()
+    const int <span class="tok-op">∪</span> null primusremotus <span class="tok-op">←</span> res.remove_first()
+    const int <span class="tok-op">∪</span> null ultimusremotus <span class="tok-op">←</span> res.remove_last()
     res.reverse()
     res.sort()
-
     print res
     print primusremotus
     print ultimusremotus

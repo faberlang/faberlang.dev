@@ -29,15 +29,13 @@
 <span class="tok-co"># (whitelist: lista/methodi-accessus.fab).</span>
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
-
-    <span class="tok-kw">const</span> _ primus <span class="tok-op">←</span> res.first()
-    <span class="tok-kw">const</span> _ ultimus <span class="tok-op">←</span> res.last()
-    <span class="tok-kw">const</span> _ tertius <span class="tok-op">←</span> res.get(<span class="tok-nu">2</span>)
-    <span class="tok-kw">const</span> _ longitudo <span class="tok-op">←</span> res.length()
-    <span class="tok-kw">const</span> _ vacuaest <span class="tok-op">←</span> res.is_empty()
-    <span class="tok-kw">const</span> _ habettres <span class="tok-op">←</span> res.contains(<span class="tok-nu">3</span>)
-
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> primus <span class="tok-op">←</span> res.first()
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> ultimus <span class="tok-op">←</span> res.last()
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> tertius <span class="tok-op">←</span> res.get(<span class="tok-nu">2</span>)
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> longitudo <span class="tok-op">←</span> res.length()
+    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> vacuaest <span class="tok-op">←</span> res.is_empty()
+    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> habettres <span class="tok-op">←</span> res.contains(<span class="tok-nu">3</span>)
     print primus, ultimus, tertius
     print longitudo, vacuaest, habettres
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1 5 3

@@ -45,23 +45,9 @@
     <span class="tok-kw">return</span> base <span class="tok-op">*</span> factor
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">const</span> _ salve <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
-
-    print salve
-
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> pending
-    pending <span class="tok-op">←</span> <span class="tok-nu">7</span>
-    print pending
-
-    print scale(<span class="tok-kw">true</span>, <span class="tok-nu">3</span>)
-    print scale(<span class="tok-kw">false</span>, <span class="tok-nu">3</span>)
-}
-
 <span class="tok-kw">test</span> <span class="tok-st">"fixum immediate init"</span> {
-    <span class="tok-kw">const</span> _ nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">const</span> _ salve <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
+    <span class="tok-kw">const</span> string nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    <span class="tok-kw">const</span> string salve <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
     <span class="tok-kw">assert</span> nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
     <span class="tok-kw">assert</span> salve <span class="tok-op">≡</span> <span class="tok-st">"Salve, Marcus!"</span>
 }
@@ -75,6 +61,17 @@
 <span class="tok-kw">test</span> <span class="tok-st">"fixum factor selected per branch"</span> {
     <span class="tok-kw">assert</span> scale(<span class="tok-kw">true</span>, <span class="tok-nu">3</span>) <span class="tok-op">≡</span> <span class="tok-nu">30</span>
     <span class="tok-kw">assert</span> scale(<span class="tok-kw">false</span>, <span class="tok-nu">3</span>) <span class="tok-op">≡</span> <span class="tok-nu">300</span>
+}
+
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> string nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    <span class="tok-kw">const</span> string salve <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
+    print salve
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> pending
+    pending <span class="tok-op">←</span> <span class="tok-nu">7</span>
+    print pending
+    print scale(<span class="tok-kw">true</span>, <span class="tok-nu">3</span>)
+    print scale(<span class="tok-kw">false</span>, <span class="tok-nu">3</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Marcus!
 7
 30

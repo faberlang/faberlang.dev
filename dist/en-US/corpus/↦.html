@@ -30,21 +30,18 @@
 
 <span class="tok-kw">main</span> {
 <span class="tok-co">    # ↦ converts textus → numerus</span>
-    <span class="tok-kw">let</span> n1 <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ <span class="tok-kw">int</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> n1 <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ <span class="tok-kw">int</span>
 <span class="tok-co">    # ⇥ supplies recovery on failure</span>
-    <span class="tok-kw">let</span> n2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ <span class="tok-kw">int</span> ⇥ <span class="tok-nu">0</span>
-    <span class="tok-kw">let</span> n3 <span class="tok-op">←</span> <span class="tok-st">"255"</span> ↦ <span class="tok-kw">int</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span>
-
-    <span class="tok-kw">let</span> f1 <span class="tok-op">←</span> <span class="tok-st">"3.14159"</span> ↦ <span class="tok-kw">float</span>
-    <span class="tok-kw">let</span> f2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ <span class="tok-kw">float</span> ⇥ <span class="tok-nu">0.0</span>
-
-    <span class="tok-kw">let</span> s1 <span class="tok-op">←</span> <span class="tok-nu">42</span> ↦ string
-    <span class="tok-kw">let</span> s2 <span class="tok-op">←</span> <span class="tok-nu">3.14</span> ↦ string
-    <span class="tok-kw">let</span> s3 <span class="tok-op">←</span> <span class="tok-kw">true</span> ↦ string
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> n2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ <span class="tok-kw">int</span> ⇥ <span class="tok-nu">0</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> n3 <span class="tok-op">←</span> <span class="tok-st">"255"</span> ↦ <span class="tok-kw">int</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">float</span> f1 <span class="tok-op">←</span> <span class="tok-st">"3.14159"</span> ↦ <span class="tok-kw">float</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">float</span> f2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ <span class="tok-kw">float</span> ⇥ <span class="tok-nu">0.0</span>
+    <span class="tok-kw">const</span> string s1 <span class="tok-op">←</span> <span class="tok-nu">42</span> ↦ string
+    <span class="tok-kw">const</span> string s2 <span class="tok-op">←</span> <span class="tok-nu">3.14</span> ↦ string
+    <span class="tok-kw">const</span> string s3 <span class="tok-op">←</span> <span class="tok-kw">true</span> ↦ string
 
 <span class="tok-co">    # chained ↦ left-to-right</span>
-    <span class="tok-kw">let</span> roundtrip <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ <span class="tok-kw">int</span> ↦ string
-
+    <span class="tok-kw">const</span> string roundtrip <span class="tok-op">←</span> (<span class="tok-st">"42"</span> ↦ <span class="tok-kw">int</span>) ↦ string
     print n1
     print n2
     print n3

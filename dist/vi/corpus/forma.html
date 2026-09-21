@@ -25,20 +25,16 @@
 main {
     const string tenantId <span class="tok-op">←</span> <span class="tok-st">"tenant-42"</span>
     const string plan <span class="tok-op">←</span> <span class="tok-st">"pro"</span>
-
-    const _ q <span class="tok-op">←</span> `
+    const forma q <span class="tok-op">←</span> `
         select id, email, plan
         from accounts
         where tenant_id <span class="tok-op">=</span> §
           and plan <span class="tok-op">=</span> §
     `(tenantId, plan)
-
     print q.template
-
-    const _ indexed <span class="tok-op">←</span> <span class="tok-st">`where tenant_id = §0 or parent_tenant_id = §0`</span>(tenantId, tenantId)
+    const forma indexed <span class="tok-op">←</span> <span class="tok-st">`where tenant_id = §0 or parent_tenant_id = §0`</span>(tenantId, tenantId)
     print indexed.template
-
-    const _ bare <span class="tok-op">←</span> <span class="tok-st">`select 1`</span>
+    const forma bare <span class="tok-op">←</span> <span class="tok-st">`select 1`</span>
     print bare.template
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>        select id, email, plan
         from accounts

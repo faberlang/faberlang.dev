@@ -32,14 +32,23 @@
 }
 
 <span class="tok-kw">union</span> Nuntius {
-    Pulsus { <span class="tok-kw">int</span> x <span class="tok-kw">int</span> y },
-    Clavis { string clavis },
+    Pulsus {
+        <span class="tok-kw">int</span> x
+        <span class="tok-kw">int</span> y
+    },
+    Clavis {
+        string clavis
+    },
     Finis
 }
 
 <span class="tok-kw">union</span> Responsum {
-    Bonum { string nuntius },
-    Malum { string causa }
+    Bonum {
+        string nuntius
+    },
+    Malum {
+        string causa
+    }
 }
 
 <span class="tok-kw">main</span> {
@@ -58,7 +67,6 @@
 
     <span class="tok-kw">const</span> Responsum r1 <span class="tok-op">←</span> <span class="tok-kw">variant</span> Bonum { nuntius <span class="tok-op">=</span> <span class="tok-st">"opus perfectum"</span> } ∷ Responsum
     <span class="tok-kw">const</span> Responsum r2 <span class="tok-op">←</span> <span class="tok-kw">variant</span> Malum { causa <span class="tok-op">=</span> <span class="tok-st">"opus fractum"</span> } ∷ Responsum
-
     print <span class="tok-st">"finge expressiones paratae"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>finge expressiones paratae
 </code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusfingefingefab-canonical-keyword">radix/corpus/finge/finge.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/finge/finge.fab&quot;]</li></ul></div></footer></div></body></html>

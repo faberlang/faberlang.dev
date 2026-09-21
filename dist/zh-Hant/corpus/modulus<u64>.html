@@ -25,7 +25,6 @@ main {
     const uint<span class="tok-op">&lt;</span>u64<span class="tok-op">&gt;</span> one <span class="tok-op">←</span> <span class="tok-nu">1</span>
     var uint<span class="tok-op">&lt;</span>u64<span class="tok-op">&gt;</span> zero <span class="tok-op">←</span> <span class="tok-nu">0</span>
     const int<span class="tok-op">&lt;</span>u64<span class="tok-op">&gt;</span> converted ↤ one
-
     print max <span class="tok-op">+</span> one
     print zero <span class="tok-op">-</span> one
     print max <span class="tok-op">*</span> <span class="tok-nu">2</span>
@@ -33,19 +32,17 @@ main {
     print <span class="tok-op">¬</span>zero
     print one ⇐ <span class="tok-nu">64</span>
     print max ⇒ <span class="tok-nu">64</span>
-    print max <span class="tok-op">&gt;</span> zero
+    print max ≻ zero
 
 <span class="tok-co">    # Carrier-mix equality: conversions and arithmetic results compare by</span>
 <span class="tok-co">    # value against literals (review regression).</span>
     const uint<span class="tok-op">&lt;</span>u64<span class="tok-op">&gt;</span> uno ↤ <span class="tok-nu">1</span>
     print one <span class="tok-op">≡</span> uno
     print one <span class="tok-op">≡</span> one <span class="tok-op">+</span> <span class="tok-nu">0</span>
-
     max ↑
     zero ↓
     print max
     print zero
-
     const uint<span class="tok-op">&lt;</span>u64<span class="tok-op">&gt;</span> methodSum <span class="tok-op">←</span> max.added(one)
     const uint<span class="tok-op">&lt;</span>u64<span class="tok-op">&gt;</span> methodShift <span class="tok-op">←</span> max.shifted_left(<span class="tok-nu">64</span>)
     var uint<span class="tok-op">&lt;</span>u64<span class="tok-op">&gt;</span> methodAcc <span class="tok-op">←</span> <span class="tok-nu">0</span>
@@ -55,10 +52,8 @@ main {
     print methodSum
     print methodShift
     print methodAcc
-
     const list<span class="tok-op">&lt;</span>uint<span class="tok-op">&lt;</span>u64<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> words <span class="tok-op">←</span> [one, max]
-    print words.get(<span class="tok-nu">1</span>) coalesce (<span class="tok-nu">0</span> ∷ uint<span class="tok-op">&lt;</span>u64<span class="tok-op">&gt;</span>)
-
+    print words.get(<span class="tok-nu">1</span>) coalesce <span class="tok-nu">0</span> ∷ uint<span class="tok-op">&lt;</span>u64<span class="tok-op">&gt;</span>
     var list<span class="tok-op">&lt;</span>uint<span class="tok-op">&lt;</span>u64<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> sorted <span class="tok-op">←</span> [<span class="tok-nu">18446744073709551615</span>, <span class="tok-nu">3</span>, <span class="tok-nu">10</span>, <span class="tok-nu">2</span>]
     sorted.sort()
     print sorted

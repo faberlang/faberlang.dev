@@ -26,7 +26,7 @@
 
 class Computator {
 <span class="tok-co">    # bound field — same value for every instance</span>
-    nexum int valor <span class="tok-op">=</span> <span class="tok-nu">0</span>
+    int valor <span class="tok-op">=</span> <span class="tok-nu">0</span>
 
     fn accipe() <span class="tok-op">→</span> int {
         return self.valor
@@ -35,7 +35,7 @@ class Computator {
 
 main {
 <span class="tok-co">    # instance overrides bound default</span>
-    const _ c <span class="tok-op">←</span> Computator { valor <span class="tok-op">=</span> <span class="tok-nu">7</span> }
+    const Computator c <span class="tok-op">←</span> Computator { valor <span class="tok-op">=</span> <span class="tok-nu">7</span> }
     print c.accipe()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>7
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusnexumnexumfab-canonical-keyword">radix/corpus/nexum/nexum.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">来源</span><ul><li>[&quot;radix/corpus/nexum/nexum.fab&quot;]</li></ul></div></footer></div></body></html>

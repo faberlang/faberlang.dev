@@ -28,7 +28,10 @@ surface อื่นได้ทุกแบบ รวมถึงภาษา�
 อักษรละติน:</p><div class="table-scroll"><table><thead><tr><th>Locale</th><th>การเข้าถึง</th><th>แรงกดดันทางสถาปัตยกรรม</th></tr></thead><tbody><tr><td><code>th-TH</code></td><td>สูง</td><td>ระบบอักษรไร้ช่องว่าง — การทดสอบความเครียดของตัวแยกโทเคน</td></tr><tr><td><code>zh-Hans</code> / <code>zh-Hant</code></td><td>สูงมาก</td><td>คีย์เวิร์ดคู่; การสืบทอดแพ็กพี่น้อง; การยุบความกว้างด้วย NFKC</td></tr><tr><td><code>ar</code></td><td>สูง</td><td>ขวาไปซ้าย; การแยกทิศทางแบบ bidi ในข้อความแจ้งข้อผิดพลาด</td></tr><tr><td><code>hi</code></td><td>สูงมาก</td><td>กลุ่มมาตรา/วิรามะ; ตัวเลขอินดิก</td></tr><tr><td><code>vi</code></td><td>สูง</td><td>เครื่องหมายกำกับเสียงจำนวนมากบนอักษรละติน; กรณีขอบของ NFKC</td></tr></tbody></table></div><p><em>ชุดอ้างอิงนี้เลือกเพื่อครอบคลุมสถาปัตยกรรม ไม่ใช่เพื่อจำนวนประชากร จำนวนประชากรเพียงอย่างเดียวไม่อาจพิสูจน์สิ่งใดที่ substrate ยังไม่รองรับได้</em></p><h3 id="examples">ตัวอย่างซอร์สที่แปลเป็นภาษาท้องถิ่น<a class="anchor" href="#examples">#</a></h3><p>locale ที่ไม่ใช่ canonical ทั้งหกมีแพ็ก Faber ครบชุดอยู่ใต้
 <code>examples/reader-locale/</code> โดยมีซอร์สที่แปลเป็นภาษาท้องถิ่น กรณีทดสอบ
 ข้อผิดพลาด และ manifest <code>faber.toml</code> โปรแกรม <code>greet</code> เดียวกันเมื่อเรนเดอร์
-ผ่านทุก locale ที่จัดส่ง:</p><p><strong>ภาษาละติน</strong> <code>la</code> — <em>canonical</em></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">ฟังก์ชัน</span> salve(<span class="tok-kw">ข้อความ</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">ข้อความ</span> {
+ผ่านทุก locale ที่จัดส่ง:</p><p><strong>ภาษาละติน</strong> <code>la</code> — <em>canonical</em></p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+locale <span class="tok-op">=</span> <span class="tok-st">"th-TH"</span>
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">ฟังก์ชัน</span> salve(<span class="tok-kw">ข้อความ</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">ข้อความ</span> {
     <span class="tok-kw">คงที่</span> <span class="tok-kw">ข้อความ</span> msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
     <span class="tok-kw">คืน</span> msg
 }

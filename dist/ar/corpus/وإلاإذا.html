@@ -29,19 +29,18 @@
 <span class="tok-co">#   Afternoon (hour=14 matches first sin branch).</span>
 
 main {
-    const _ hour <span class="tok-op">←</span> <span class="tok-nu">14</span>
-
-    if hour <span class="tok-op">&lt;</span> <span class="tok-nu">6</span> {
+    const int hour <span class="tok-op">←</span> <span class="tok-nu">14</span>
+    if hour ≺ <span class="tok-nu">6</span> {
         print <span class="tok-st">"Late night"</span>
     }
-    elif hour <span class="tok-op">&lt;</span> <span class="tok-nu">12</span> {
+    elif hour ≺ <span class="tok-nu">12</span> {
         print <span class="tok-st">"Morning"</span>
     }
-    elif hour <span class="tok-op">&lt;</span> <span class="tok-nu">18</span> {
+    elif hour ≺ <span class="tok-nu">18</span> {
 <span class="tok-co">        # 14 ≥ 12 and 14 &lt; 18</span>
         print <span class="tok-st">"Afternoon"</span>
     }
-    elif hour <span class="tok-op">&lt;</span> <span class="tok-nu">22</span> {
+    elif hour ≺ <span class="tok-nu">22</span> {
         print <span class="tok-st">"Evening"</span>
     }
     else {
@@ -76,7 +75,7 @@ main {
 <span class="tok-co">#</span>
 
 main {
-    const _ score <span class="tok-op">←</span> <span class="tok-nu">85</span>
+    const int score <span class="tok-op">←</span> <span class="tok-nu">85</span>
     if score <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
         print <span class="tok-st">"excellent"</span>
     }

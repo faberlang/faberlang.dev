@@ -26,22 +26,18 @@
 <span class="tok-co">#   Unary ¬ documented in syntax; Rust emits `~` (whitelist if reintroduced in body).</span>
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ vexilla <span class="tok-op">←</span> <span class="tok-nu">0</span>b1010
-    <span class="tok-kw">const</span> _ persona <span class="tok-op">←</span> <span class="tok-nu">0</span>b1100
-
-    <span class="tok-kw">const</span> _ coniuncta <span class="tok-op">←</span> vexilla ∧ persona
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> vexilla <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> persona <span class="tok-op">←</span> <span class="tok-nu">12</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> coniuncta <span class="tok-op">←</span> vexilla ∧ persona
 <span class="tok-co">    # 8 (0b1000)</span>
     print coniuncta
-
-    <span class="tok-kw">const</span> _ diversa <span class="tok-op">←</span> vexilla ⊻ persona
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> diversa <span class="tok-op">←</span> vexilla ⊻ persona
 <span class="tok-co">    # 6 (0b0110)</span>
     print diversa
-
-    <span class="tok-kw">const</span> _ sinistra <span class="tok-op">←</span> <span class="tok-nu">1</span> ⇐ <span class="tok-nu">4</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> sinistra <span class="tok-op">←</span> <span class="tok-nu">1</span> ⇐ <span class="tok-nu">4</span>
 <span class="tok-co">    # 16</span>
     print sinistra
-
-    <span class="tok-kw">const</span> _ dextra <span class="tok-op">←</span> <span class="tok-nu">16</span> ⇒ <span class="tok-nu">2</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> dextra <span class="tok-op">←</span> <span class="tok-nu">16</span> ⇒ <span class="tok-nu">2</span>
 <span class="tok-co">    # 4</span>
     print dextra
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>8

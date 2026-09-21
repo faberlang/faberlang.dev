@@ -25,22 +25,7 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   none — stdout not pinned for this exemplum.</span>
 
-const _ aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
-
-<span class="tok-co"># Basic intra with ‥ operator (exclusive end)</span>
-if aetas within <span class="tok-nu">0</span>‥<span class="tok-nu">100</span> {
-    print <span class="tok-st">"aetas intra fines est"</span>
-}
-
-<span class="tok-co"># intra with … (inclusive end)</span>
-if aetas within <span class="tok-nu">18</span><span class="tok-op">…</span><span class="tok-nu">65</span> {
-    print <span class="tok-st">"aetas laboris"</span>
-}
-
-<span class="tok-co"># intra with ante (explicit exclusive)</span>
-if aetas within <span class="tok-nu">0</span> before <span class="tok-nu">18</span> {
-    print <span class="tok-st">"minor"</span>
-}
+const int aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
 
 main {
     print <span class="tok-st">"exempla intra"</span>

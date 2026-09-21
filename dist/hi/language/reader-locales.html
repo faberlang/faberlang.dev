@@ -24,7 +24,10 @@
 चार गैर-लैटिन लिपियों का उपयोग करते हैं; वियतनामी लैटिन-लिपि नियंत्रण मामला है:</p><div class="table-scroll"><table><thead><tr><th>लोकेल</th><th>पहुँच</th><th>वास्तुशिल्पीय तनाव</th></tr></thead><tbody><tr><td><code>th-TH</code></td><td>उच्च</td><td>बिना रिक्ति वाली लिपि — टोकनाइज़र का तनाव परीक्षण</td></tr><tr><td><code>zh-Hans</code> / <code>zh-Hant</code></td><td>बहुत उच्च</td><td>युग्मित कीवर्ड; सहोदर पैक इनहेरिटेंस; NFKC चौड़ाई-संकुचन</td></tr><tr><td><code>ar</code></td><td>उच्च</td><td>दाएँ-से-बाएँ; डायग्नोस्टिक्स में bidi पृथक्करण</td></tr><tr><td><code>hi</code></td><td>बहुत उच्च</td><td>मात्रा/विराम क्लस्टर; Indic अंक</td></tr><tr><td><code>vi</code></td><td>उच्च</td><td>लैटिन लिपि पर भारी डायक्रिटिक्स; NFKC के किनारी मामले</td></tr></tbody></table></div><p><em>संदर्भ सेट जनसंख्या के लिए नहीं, वास्तुशिल्पीय कवरेज के लिए चुना गया है। केवल जनसंख्या से ऐसा कुछ सिद्ध नहीं होता जिसे आधार-तंत्र पहले से संभालता न हो।</em></p><h3 id="examples">स्थानीयकृत स्रोत उदाहरण<a class="anchor" href="#examples">#</a></h3><p>छह में से हर गैर-कैनोनिकल लोकेल के पास <code>examples/reader-locale/</code> के अंतर्गत
 एक पूर्ण Faber पैकेज है, जिसमें स्थानीयकृत स्रोत, डायग्नोस्टिक परीक्षण मामले और
 <code>faber.toml</code> मैनिफ़ेस्ट शामिल हैं। सभी उपलब्ध लोकेलों में रेंडर किया गया वही
-<code>greet</code> प्रोग्राम:</p><p><strong>लैटिन</strong> <code>la</code> — <em>कैनोनिकल</em></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">फलन</span> salve(<span class="tok-kw">पाठ</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">पाठ</span> {
+<code>greet</code> प्रोग्राम:</p><p><strong>लैटिन</strong> <code>la</code> — <em>कैनोनिकल</em></p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+locale <span class="tok-op">=</span> <span class="tok-st">"hi"</span>
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">फलन</span> salve(<span class="tok-kw">पाठ</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">पाठ</span> {
     <span class="tok-kw">स्थिर</span> <span class="tok-kw">पाठ</span> msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
     <span class="tok-kw">लौटाओ</span> msg
 }

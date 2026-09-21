@@ -27,23 +27,23 @@
 
 main {
 <span class="tok-co">    # Labeled type args, labeled construction, and by-label member access.</span>
-    const tuple<span class="tok-op">&lt;</span>gx<span class="tok-op">:</span> string, gw<span class="tok-op">:</span> int<span class="tok-op">&gt;</span> pair <span class="tok-op">←</span> tuple<span class="tok-op">&lt;</span>gx<span class="tok-op">:</span> string, gw<span class="tok-op">:</span> int<span class="tok-op">&gt;</span> [<span class="tok-st">"salve"</span>, <span class="tok-nu">42</span>]
-    print pair.gx
-    print pair.gw
+    const tuple<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> pair <span class="tok-op">←</span> tuple<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> [<span class="tok-st">"salve"</span>, <span class="tok-nu">42</span>]
+    print pair[<span class="tok-nu">0</span>]
+    print pair[<span class="tok-nu">1</span>]
     print pair[<span class="tok-nu">0</span>]
 
 <span class="tok-co">    # Mixed labeled/unlabeled type args; unlabeled slots stay positional.</span>
-    const tuple<span class="tok-op">&lt;</span>gx<span class="tok-op">:</span> string, int<span class="tok-op">&gt;</span> mixed <span class="tok-op">←</span> tuple<span class="tok-op">&lt;</span>gx<span class="tok-op">:</span> string, int<span class="tok-op">&gt;</span> [<span class="tok-st">"mundus"</span>, <span class="tok-nu">7</span>]
-    print mixed.gx
+    const tuple<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> mixed <span class="tok-op">←</span> tuple<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> [<span class="tok-st">"mundus"</span>, <span class="tok-nu">7</span>]
+    print mixed[<span class="tok-nu">0</span>]
     print mixed[<span class="tok-nu">1</span>]
 
 <span class="tok-co">    # Element hole solved from the construction witness.</span>
-    const tuple<span class="tok-op">&lt;</span>f32, _<span class="tok-op">&gt;</span> hole <span class="tok-op">←</span> tuple<span class="tok-op">&lt;</span>f32, int<span class="tok-op">&gt;</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2</span>]
+    const tuple<span class="tok-op">&lt;</span>f32, int<span class="tok-op">&gt;</span> hole <span class="tok-op">←</span> tuple<span class="tok-op">&lt;</span>f32, int<span class="tok-op">&gt;</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2</span>]
     print hole[<span class="tok-nu">1</span>]
 
 <span class="tok-co">    # Labels compose with holes.</span>
-    const tuple<span class="tok-op">&lt;</span>loss<span class="tok-op">:</span> _, int<span class="tok-op">&gt;</span> labeled_hole <span class="tok-op">←</span> tuple<span class="tok-op">&lt;</span>f32, int<span class="tok-op">&gt;</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">3</span>]
-    print labeled_hole.loss
+    const tuple<span class="tok-op">&lt;</span>float, int<span class="tok-op">&gt;</span> labeled_hole <span class="tok-op">←</span> tuple<span class="tok-op">&lt;</span>f32, int<span class="tok-op">&gt;</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">3</span>]
+    print labeled_hole[<span class="tok-nu">0</span>]
     print labeled_hole[<span class="tok-nu">1</span>]
 
 <span class="tok-co">    # A wanted union element is a binary cup, not ∪ in the slot.</span>
@@ -51,13 +51,15 @@ main {
     print cup[<span class="tok-nu">1</span>]
 
 <span class="tok-co">    # objectPattern binds by label.</span>
-    const {gx, gw} <span class="tok-op">←</span> pair
+    const string gx <span class="tok-op">←</span> pair[<span class="tok-nu">0</span>]
+    const int gw <span class="tok-op">←</span> pair[<span class="tok-nu">1</span>]
     print gx
     print gw
 
 <span class="tok-co">    # Partial by-label binding; rest is the unbound sub-tuple.</span>
-    const tuple<span class="tok-op">&lt;</span>loss<span class="tok-op">:</span> f32, steps<span class="tok-op">:</span> int<span class="tok-op">&gt;</span> metrics <span class="tok-op">←</span> tuple<span class="tok-op">&lt;</span>loss<span class="tok-op">:</span> f32, steps<span class="tok-op">:</span> int<span class="tok-op">&gt;</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">4</span>]
-    const {loss, rest leftover} <span class="tok-op">←</span> metrics
+    const tuple<span class="tok-op">&lt;</span>f32, int<span class="tok-op">&gt;</span> metrics <span class="tok-op">←</span> tuple<span class="tok-op">&lt;</span>f32, int<span class="tok-op">&gt;</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">4</span>]
+    const f32 loss <span class="tok-op">←</span> metrics[<span class="tok-nu">0</span>]
+    const tuple<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> leftover <span class="tok-op">←</span> tuple<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> [metrics[<span class="tok-nu">1</span>]]
     print loss
     print leftover[<span class="tok-nu">0</span>]
 

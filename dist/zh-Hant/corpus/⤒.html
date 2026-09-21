@@ -16,17 +16,15 @@
 <span class="tok-co">#   1.5</span>
 
 main {
-    const int scalar <span class="tok-op">←</span> <span class="tok-nu">2</span> ⤒ <span class="tok-nu">5</span>
+    const int scalar <span class="tok-op">←</span> <span class="tok-nu">2</span>.maximum(<span class="tok-nu">5</span>)
     print scalar
-
     const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> values <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">5</span>, <span class="tok-nu">9</span>]
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> clamped <span class="tok-op">←</span> values ⤒ <span class="tok-nu">4</span> ⤓ <span class="tok-nu">8</span>
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> clamped <span class="tok-op">←</span> values.maximum(<span class="tok-nu">4</span>).minimum(<span class="tok-nu">8</span>)
     print clamped.sum()
-
     const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat <span class="tok-op">←</span> [<span class="tok-op">-</span><span class="tok-nu">1.0</span>, <span class="tok-nu">0.5</span>, <span class="tok-nu">2.0</span>]
-    const tf32[] seed <span class="tok-op">←</span> empty
-    const tf32[<span class="tok-nu">3</span>] values_tensor <span class="tok-op">←</span> seed.from_flat(flat, [<span class="tok-nu">3</span>])
-    const tf32[<span class="tok-nu">3</span>] clamped_tensor <span class="tok-op">←</span> values_tensor ⤒ <span class="tok-nu">0.0</span> ⤓ <span class="tok-nu">1.0</span>
+    const tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> seed <span class="tok-op">←</span> empty
+    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> values_tensor <span class="tok-op">←</span> seed.from_flat(flat, [<span class="tok-nu">3</span>])
+    const tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> clamped_tensor <span class="tok-op">←</span> values_tensor.maximum(<span class="tok-nu">0.0</span>).minimum(<span class="tok-nu">1.0</span>)
     print clamped_tensor.sum()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>5
 17

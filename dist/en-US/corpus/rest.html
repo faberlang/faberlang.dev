@@ -25,13 +25,11 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   none</span>
 
-<span class="tok-kw">fn</span> summa(<span class="tok-kw">rest</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">var</span> _ total <span class="tok-op">←</span> <span class="tok-nu">0</span>
-
+<span class="tok-kw">fn</span> summa(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
     <span class="tok-kw">for</span> <span class="tok-kw">from</span> numeri <span class="tok-kw">const</span> n {
         total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
     }
-
     <span class="tok-kw">return</span> total
 }
 

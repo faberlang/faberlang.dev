@@ -32,14 +32,23 @@ union Condicio {
 }
 
 union Nuntius {
-    Pulsus { int x int y },
-    Clavis { string clavis },
+    Pulsus {
+        int x
+        int y
+    },
+    Clavis {
+        string clavis
+    },
     Finis
 }
 
 union Responsum {
-    Bonum { string nuntius },
-    Malum { string causa }
+    Bonum {
+        string nuntius
+    },
+    Malum {
+        string causa
+    }
 }
 
 main {
@@ -58,7 +67,6 @@ main {
 
     const Responsum r1 <span class="tok-op">←</span> variant Bonum { nuntius <span class="tok-op">=</span> <span class="tok-st">"opus perfectum"</span> } ∷ Responsum
     const Responsum r2 <span class="tok-op">←</span> variant Malum { causa <span class="tok-op">=</span> <span class="tok-st">"opus fractum"</span> } ∷ Responsum
-
     print <span class="tok-st">"finge expressiones paratae"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>finge expressiones paratae
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusfingefingefab-canonical-keyword">radix/corpus/finge/finge.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/finge/finge.fab&quot;]</li></ul></div></footer></div></body></html>

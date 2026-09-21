@@ -32,7 +32,7 @@
     <span class="tok-kw">int</span> y
 }
 
-<span class="tok-kw">class</span> Forma {
+<span class="tok-kw">class</span> Figura {
     string nomen
     <span class="tok-kw">int</span> valor
 }
@@ -50,7 +50,7 @@
 }
 
 <span class="tok-kw">class</span> Datum {
-    <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> res
+    <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> nomina
 }
 
 <span class="tok-kw">class</span> Adest {
@@ -64,40 +64,40 @@
 <span class="tok-kw">main</span> {
 <span class="tok-co">    # --- Dot accessus ---</span>
 
-    <span class="tok-kw">const</span> _ punctum <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
+    <span class="tok-kw">const</span> Punctum punctum <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
     print punctum.x
     print punctum.y
 
 <span class="tok-co">    # --- Bracket accessus on lista ---</span>
 
-    <span class="tok-kw">const</span> _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     print numeri[<span class="tok-nu">0</span>]
     print numeri[<span class="tok-nu">2</span>]
 
 <span class="tok-co">    # --- Bracket accessus on tabula ---</span>
 
-    <span class="tok-kw">const</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> tab <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"valor"</span><span class="tok-op">:</span> <span class="tok-nu">42</span> }
-    print tab[<span class="tok-st">"nomen"</span>]
-    print tab[<span class="tok-st">"valor"</span>]
+    <span class="tok-kw">const</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> indicium <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"valor"</span><span class="tok-op">:</span> <span class="tok-nu">42</span> }
+    print indicium[<span class="tok-st">"nomen"</span>]
+    print indicium[<span class="tok-st">"valor"</span>]
 
 <span class="tok-co">    # --- Chained member access ---</span>
 
-    <span class="tok-kw">const</span> _ nidum <span class="tok-op">←</span> Extra { extra <span class="tok-op">=</span> Medium { medium <span class="tok-op">=</span> Imum { imum <span class="tok-op">=</span> <span class="tok-st">"inventum"</span> } } }
-    print nidum.extra.medium.imum
+    <span class="tok-kw">const</span> Extra nidus <span class="tok-op">←</span> Extra { extra <span class="tok-op">=</span> Medium { medium <span class="tok-op">=</span> Imum { imum <span class="tok-op">=</span> <span class="tok-st">"inventum"</span> } } }
+    print nidus.extra.medium.imum
 
 <span class="tok-co">    # --- Mixed dot and bracket ---</span>
 
-    <span class="tok-kw">const</span> _ datum <span class="tok-op">←</span> Datum { res <span class="tok-op">=</span> [<span class="tok-st">"primus"</span>, <span class="tok-st">"secundus"</span>, <span class="tok-st">"tertius"</span>] }
-    print datum.res[<span class="tok-nu">0</span>]
-    print datum.res[<span class="tok-nu">2</span>]
+    <span class="tok-kw">const</span> Datum datum <span class="tok-op">←</span> Datum { nomina <span class="tok-op">=</span> [<span class="tok-st">"primus"</span>, <span class="tok-st">"secundus"</span>, <span class="tok-st">"tertius"</span>] }
+    print datum.nomina[<span class="tok-nu">0</span>]
+    print datum.nomina[<span class="tok-nu">2</span>]
 
 <span class="tok-co">    # --- Accessus optionalis ---</span>
 
-    <span class="tok-kw">const</span> _ forsitan <span class="tok-op">←</span> Forsitan { adest <span class="tok-op">=</span> Adest { valor <span class="tok-op">=</span> <span class="tok-nu">100</span> } }
+    <span class="tok-kw">const</span> Forsitan forsitan <span class="tok-op">←</span> Forsitan { adest <span class="tok-op">=</span> Adest { valor <span class="tok-op">=</span> <span class="tok-nu">100</span> } }
     print forsitan<span class="tok-op">?.</span>adest<span class="tok-op">?.</span>valor
 
 <span class="tok-co">    # Accessus optionalis on nihil binding</span>
-    <span class="tok-kw">const</span> _ <span class="tok-kw">void</span> <span class="tok-op">←</span> <span class="tok-kw">null</span>
+    <span class="tok-kw">const</span> null_ty <span class="tok-kw">void</span> <span class="tok-op">←</span> <span class="tok-kw">null</span>
     print <span class="tok-kw">void</span><span class="tok-op">?.</span>absens
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>10
 20

@@ -27,19 +27,19 @@
 <span class="tok-co">#   Salve greeting, persona notice, and computed summa string.</span>
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">const</span> _ aetas <span class="tok-op">←</span> <span class="tok-nu">30</span>
+    <span class="tok-kw">const</span> string nomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> aetas <span class="tok-op">←</span> <span class="tok-nu">30</span>
 
 <span class="tok-co">    # One slot</span>
-    <span class="tok-kw">const</span> _ salutatio <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
+    <span class="tok-kw">const</span> string salutatio <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
     print salutatio
 
 <span class="tok-co">    # Multiple slots</span>
-    <span class="tok-kw">const</span> _ notitia <span class="tok-op">←</span> <span class="tok-st">"§ habet annos §"</span>(nomen, aetas)
+    <span class="tok-kw">const</span> string notitia <span class="tok-op">←</span> <span class="tok-st">"§ habet annos §"</span>(nomen, aetas)
     print notitia
 
 <span class="tok-co">    # With an expression</span>
-    <span class="tok-kw">const</span> _ summa <span class="tok-op">←</span> <span class="tok-st">"10 + 20 ← §"</span>(<span class="tok-nu">10</span> <span class="tok-op">+</span> <span class="tok-nu">20</span>)
+    <span class="tok-kw">const</span> string summa <span class="tok-op">←</span> <span class="tok-st">"10 + 20 ← §"</span>(<span class="tok-nu">10</span> <span class="tok-op">+</span> <span class="tok-nu">20</span>)
     print summa
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Marcus!
 Marcus habet annos 30

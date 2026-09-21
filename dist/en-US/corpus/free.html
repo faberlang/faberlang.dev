@@ -16,9 +16,9 @@
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ dupla <span class="tok-op">←</span> <span class="tok-kw">int</span> x <span class="tok-kw">free</span> ∴ x <span class="tok-op">*</span> <span class="tok-nu">2</span>
+    <span class="tok-kw">const</span> (<span class="tok-kw">int</span>) <span class="tok-op">→</span> <span class="tok-kw">int</span> dupla <span class="tok-op">←</span> <span class="tok-kw">int</span> x ∴ x <span class="tok-op">*</span> <span class="tok-nu">2</span>
     print dupla(<span class="tok-nu">5</span>)
-    <span class="tok-kw">const</span> _ summa <span class="tok-op">←</span> (<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-kw">free</span> <span class="tok-op">→</span> <span class="tok-kw">int</span> ∴ a <span class="tok-op">+</span> b
+    <span class="tok-kw">const</span> (<span class="tok-kw">int</span>, <span class="tok-kw">int</span>) <span class="tok-op">→</span> <span class="tok-kw">int</span> summa <span class="tok-op">←</span> (<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> ∴ a <span class="tok-op">+</span> b
     print summa(<span class="tok-nu">2</span>, <span class="tok-nu">3</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>10
 5

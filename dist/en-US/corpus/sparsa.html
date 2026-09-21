@@ -25,14 +25,13 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Rank and stored non-zero count after round-trip identity call.</span>
 
-<span class="tok-kw">fn</span> identity(sparsa<span class="tok-op">&lt;</span><span class="tok-kw">float</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span>, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> value) <span class="tok-op">→</span> sparsa<span class="tok-op">&lt;</span><span class="tok-kw">float</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span>, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> {
+<span class="tok-kw">fn</span> identity(sparsa<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> value) <span class="tok-op">→</span> sparsa<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> {
     <span class="tok-kw">return</span> value
 }
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> sparsa<span class="tok-op">&lt;</span><span class="tok-kw">float</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span>, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> empty <span class="tok-op">←</span> empty
-    <span class="tok-kw">const</span> sparsa<span class="tok-op">&lt;</span><span class="tok-kw">float</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span>, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> roundtrip <span class="tok-op">←</span> identity(empty)
-
+    <span class="tok-kw">const</span> sparsa<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> empty <span class="tok-op">←</span> empty
+    <span class="tok-kw">const</span> sparsa<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> roundtrip <span class="tok-op">←</span> identity(empty)
     print roundtrip.length(), roundtrip.nonzero_count()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>2 0
 </code></pre><h3 id="radixcorpussparsasugarfab-canonical-type">radix/corpus/sparsa/sugar.fab (canonical · type)<a class="anchor" href="#radixcorpussparsasugarfab-canonical-type">#</a></h3><p>Sparse tensor width sugar mirrors dense tensor sugar with an s prefix.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
@@ -52,14 +51,12 @@
 <span class="tok-co"># STYLE: sparse tensor sugar (sf32, si64[N]) — see docs/design/numeric-type-sugar.md</span>
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> sf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] grid <span class="tok-op">←</span> empty
+    <span class="tok-kw">var</span> sparsa<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> empty
     grid.<span class="tok-kw">set</span>([<span class="tok-nu">0</span>, <span class="tok-nu">1</span>], <span class="tok-nu">4.0</span>)
-
-    <span class="tok-kw">const</span> _ value <span class="tok-op">←</span> grid.get([<span class="tok-nu">0</span>, <span class="tok-nu">1</span>])
-    <span class="tok-kw">const</span> _ absent <span class="tok-op">←</span> grid.get([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>])
-    <span class="tok-kw">const</span> _ count <span class="tok-op">←</span> grid.nonzero_count()
-
-    <span class="tok-kw">const</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] dense <span class="tok-op">←</span> grid.densify()
+    <span class="tok-kw">const</span> f32 value <span class="tok-op">←</span> grid.get([<span class="tok-nu">0</span>, <span class="tok-nu">1</span>])
+    <span class="tok-kw">const</span> f32 absent <span class="tok-op">←</span> grid.get([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>])
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> grid.nonzero_count()
+    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> dense <span class="tok-op">←</span> grid.densify()
     print value, absent, count, dense.length()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>4.0 0.0 1 2
 </code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpussparsadeclfab-canonical-type">radix/corpus/sparsa/decl.fab (canonical · type)</a></li><li class="toc-3"><a href="#radixcorpussparsasugarfab-canonical-type">radix/corpus/sparsa/sugar.fab (canonical · type)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/sparsa/decl.fab&quot;]</li></ul></div></footer></div></body></html>

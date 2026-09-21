@@ -28,15 +28,14 @@
 <span class="tok-co">#   Cross-ref scriptum/scriptum.fab for § template application.</span>
 
 main {
-    const _ digits <span class="tok-op">←</span> <span class="tok-st">"\d+"</span> ↦ <span class="tok-kw">regex</span>
+    const <span class="tok-kw">regex</span> digits <span class="tok-op">←</span> <span class="tok-st">"\d+"</span> ↦ <span class="tok-kw">regex</span>
     print digits
-
-    const _ word <span class="tok-op">←</span> <span class="tok-st">"(?i)\w+"</span> ↦ <span class="tok-kw">regex</span>
+    const <span class="tok-kw">regex</span> word <span class="tok-op">←</span> <span class="tok-st">"(?i)\w+"</span> ↦ <span class="tok-kw">regex</span>
     print word
 
 <span class="tok-co">    # Template application → textus, then conversio to regex (dynamic path segments)</span>
-    const _ tenant <span class="tok-op">←</span> <span class="tok-st">"acme"</span>
-    const _ homePath <span class="tok-op">←</span> <span class="tok-st">"/home/§/.*"</span>(tenant) ↦ <span class="tok-kw">regex</span>
+    const string tenant <span class="tok-op">←</span> <span class="tok-st">"acme"</span>
+    const <span class="tok-kw">regex</span> homePath <span class="tok-op">←</span> <span class="tok-st">"/home/§/.*"</span>(tenant) ↦ <span class="tok-kw">regex</span>
     print homePath
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>\d+
 (?i)\w+

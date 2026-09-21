@@ -33,17 +33,20 @@
 
 fn clamp(int x, int min, int max) <span class="tok-op">→</span> int {
 <span class="tok-co">    # Guard: abort if min &gt; max — invariant violation</span>
-    panic <span class="tok-st">"range inverted"</span> if min <span class="tok-op">&gt;</span> max
+    if min ≻ max {
+        panic <span class="tok-st">"range inverted"</span>
+    }
 
 <span class="tok-co">    # Guard: abort if value out of range</span>
-    panic <span class="tok-st">"value out of range"</span> if x <span class="tok-op">&lt;</span> min or x <span class="tok-op">&gt;</span> max
-
+    if x ≺ min or x ≻ max {
+        panic <span class="tok-st">"value out of range"</span>
+    }
     return x
 }
 
 fn accessus(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res, int index) <span class="tok-op">→</span> int {
 <span class="tok-co">    # Unconditional mori — unchanged form</span>
-    if index <span class="tok-op">&lt;</span> <span class="tok-nu">0</span> or index <span class="tok-op">≥</span> res.length() {
+    if index ≺ <span class="tok-nu">0</span> or index <span class="tok-op">≥</span> res.length() {
         panic <span class="tok-st">"index out of bounds"</span>
     }
     return res[index]
@@ -58,7 +61,6 @@ main {
     const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     const int y <span class="tok-op">←</span> accessus(xs, <span class="tok-nu">1</span>)
     print <span class="tok-st">"positive"</span>
-
     const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> ys <span class="tok-op">←</span> [<span class="tok-nu">42</span>]
     const int z <span class="tok-op">←</span> accessus(ys, <span class="tok-nu">0</span>)
     print <span class="tok-st">"not empty"</span>
@@ -94,17 +96,17 @@ fn divide(int a, int b) <span class="tok-op">→</span> float {
     return (a ↦ float) <span class="tok-op">/</span> (b ↦ float)
 }
 
-fn accipe(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res, int index) <span class="tok-op">→</span> int {
+fn accipe(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri, int index) <span class="tok-op">→</span> int {
 <span class="tok-co">    # Bounds check with mori</span>
-    if index <span class="tok-op">&lt;</span> <span class="tok-nu">0</span> or index <span class="tok-op">≥</span> res.length() {
+    if index ≺ <span class="tok-nu">0</span> or index <span class="tok-op">≥</span> numeri.length() {
         panic <span class="tok-st">"index extra fines"</span>
     }
-    return res[index]
+    return numeri[index]
 }
 
 main {
 <span class="tok-co">    # Happy path — mori branches not taken</span>
-    const _ value <span class="tok-op">←</span> divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
+    const float value <span class="tok-op">←</span> divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
 <span class="tok-co">    # 5.0</span>
     print <span class="tok-st">"valor: §"</span>(value)
 
@@ -112,8 +114,8 @@ main {
 <span class="tok-co">    # fixum _ malum ← divide(10, 0)</span>
 
 <span class="tok-co">    # Lista accessus</span>
-    const _ nums <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    const _ lectum <span class="tok-op">←</span> accipe(nums, <span class="tok-nu">1</span>)
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> nums <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    const int lectum <span class="tok-op">←</span> accipe(nums, <span class="tok-nu">1</span>)
 <span class="tok-co">    # 2</span>
     print <span class="tok-st">"valor: §"</span>(lectum)
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusmorimori-si-guardfab-canonical-keyword">radix/corpus/mori/mori-si-guard.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusmorimorifab-canonical-keyword">radix/corpus/mori/mori.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">स्रोत</span><ul><li>[&quot;radix/corpus/mori/mori-si-guard.fab&quot;]</li></ul></div></footer></div></body></html>

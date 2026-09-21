@@ -37,22 +37,33 @@ union Condicio {
 }
 
 union Nuntius {
-    Pulsus { int x int y },
-    Clavis { string clavis },
+    Pulsus {
+        int x
+        int y
+    },
+    Clavis {
+        string clavis
+    },
     Finis
 }
 
 <span class="tok-co"># Simple casu matching on unit variants (no payload)</span>
 fn nomina(Condicio s) <span class="tok-op">→</span> string {
     match s {
-        case Agens { return <span class="tok-st">"agens"</span> }
-        case Iners { return <span class="tok-st">"iners"</span> }
-        case Pendens { return <span class="tok-st">"pendens"</span> }
+        case Agens {
+            return <span class="tok-st">"agens"</span>
+        }
+        case Iners {
+            return <span class="tok-st">"iners"</span>
+        }
+        case Pendens {
+            return <span class="tok-st">"pendens"</span>
+        }
     }
 }
 
 <span class="tok-co"># casu with fixum bindings destructures variant fields</span>
-fn tracta(Nuntius e) <span class="tok-op">→</span> null {
+fn tracta(Nuntius e) <span class="tok-op">→</span> null_ty {
     match e {
         case Pulsus const x, y {
             print <span class="tok-st">"pulsus: § §"</span>(x, y)

@@ -28,14 +28,13 @@ main {
     const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> early <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">5</span>
     const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> late <span class="tok-op">←</span> <span class="tok-nu">5</span>‥<span class="tok-nu">10</span>
     const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> workday <span class="tok-op">←</span> early.union(late) coalesce <span class="tok-nu">0</span>‥<span class="tok-nu">0</span>
-    const _ overlap_span <span class="tok-op">←</span> overlap.length()
-    const _ workday_span <span class="tok-op">←</span> workday.length()
+    const int overlap_span <span class="tok-op">←</span> overlap.length()
+    const int workday_span <span class="tok-op">←</span> workday.length()
     assert overlap_span <span class="tok-op">≡</span> <span class="tok-nu">2</span>
     assert workday_span <span class="tok-op">≡</span> <span class="tok-nu">10</span>
-
     const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> gap_left <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">3</span>
     const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> gap_right <span class="tok-op">←</span> <span class="tok-nu">6</span>‥<span class="tok-nu">9</span>
-    const _ no_union <span class="tok-op">←</span> gap_left.union(gap_right)
+    const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> null no_union <span class="tok-op">←</span> gap_left.union(gap_right)
     assert no_union is null
 }</code></pre><h3 id="radixcorpusintervallumconversiofab-canonical-type">radix/corpus/intervallum/conversio.fab (canonical · type)<a class="anchor" href="#radixcorpusintervallumconversiofab-canonical-type">#</a></h3><p>Clamp, materialize, and contain via conversio and continet.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># intervallum — Clamp, materialize, and contain via conversio and continet</span>
@@ -61,8 +60,8 @@ main {
 
 main {
 <span class="tok-co">    # --- value clamp (half-open interior vs inclusive endpoint) ---</span>
-    const _ half <span class="tok-op">←</span> <span class="tok-nu">15</span> ↦ <span class="tok-nu">0</span>‥<span class="tok-nu">10</span>
-    const _ closed <span class="tok-op">←</span> <span class="tok-nu">15</span> ↦ <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">10</span>
+    const int half <span class="tok-op">←</span> <span class="tok-nu">15</span> ↦ <span class="tok-nu">0</span>‥<span class="tok-nu">10</span>
+    const int closed <span class="tok-op">←</span> <span class="tok-nu">15</span> ↦ <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">10</span>
     assert half <span class="tok-op">≡</span> <span class="tok-nu">9</span>
     assert closed <span class="tok-op">≡</span> <span class="tok-nu">10</span>
 
@@ -85,6 +84,6 @@ main {
 
 <span class="tok-co">    # --- stored containment via continet (intra desugars to the same surface) ---</span>
     const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> fines <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">10</span>
-    const _ inside <span class="tok-op">←</span> fines.contains(<span class="tok-nu">5</span>)
+    const bool inside <span class="tok-op">←</span> fines.contains(<span class="tok-nu">5</span>)
     assert inside
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusintervallumalgebrafab-canonical-type">radix/corpus/intervallum/algebra.fab (canonical · type)</a></li><li class="toc-3"><a href="#radixcorpusintervallumconversiofab-canonical-type">radix/corpus/intervallum/conversio.fab (canonical · type)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">來源</span><ul><li>[&quot;radix/corpus/intervallum/algebra.fab&quot;]</li></ul></div></footer></div></body></html>

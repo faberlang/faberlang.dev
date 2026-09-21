@@ -25,20 +25,16 @@
 <span class="tok-kw">main</span> {
     <span class="tok-kw">const</span> string tenantId <span class="tok-op">←</span> <span class="tok-st">"tenant-42"</span>
     <span class="tok-kw">const</span> string plan <span class="tok-op">←</span> <span class="tok-st">"pro"</span>
-
-    <span class="tok-kw">const</span> _ q <span class="tok-op">←</span> `
+    <span class="tok-kw">const</span> forma q <span class="tok-op">←</span> `
         select id, email, plan
         <span class="tok-kw">from</span> accounts
         where tenant_id <span class="tok-op">=</span> §
           and plan <span class="tok-op">=</span> §
     `(tenantId, plan)
-
     print q.template
-
-    <span class="tok-kw">const</span> _ indexed <span class="tok-op">←</span> <span class="tok-st">`where tenant_id = §0 or parent_tenant_id = §0`</span>(tenantId, tenantId)
+    <span class="tok-kw">const</span> forma indexed <span class="tok-op">←</span> <span class="tok-st">`where tenant_id = §0 or parent_tenant_id = §0`</span>(tenantId, tenantId)
     print indexed.template
-
-    <span class="tok-kw">const</span> _ bare <span class="tok-op">←</span> <span class="tok-st">`select 1`</span>
+    <span class="tok-kw">const</span> forma bare <span class="tok-op">←</span> <span class="tok-st">`select 1`</span>
     print bare.template
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>        select id, email, plan
         from accounts

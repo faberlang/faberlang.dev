@@ -13,9 +13,12 @@ numerus aetas
 functio salve(textus name) → textus</code></pre><h3 id="ii-mechanical-over-magical">II. ใช้กลไกที่ชัดเจน ไม่พึ่งเวทมนตร์<a class="anchor" href="#ii-mechanical-over-magical">#</a></h3><p>โครงสร้างเดียวกันควรมีความหมายเหมือนกันในทุกที่ หากผู้อ่านต้องอาศัยบริบทที่อยู่
 ห่างไกลเพื่อรู้ว่าสัญลักษณ์หนึ่งทำอะไร ไวยากรณ์นั้นก็น่าสงสัย Faber ให้ความสำคัญ
 กับการให้เหตุผลอย่างชัดเจนและอยู่ในบริเวณใกล้เคียง — จุดประกาศควรมีข้อมูลเพียงพอ
-ให้เข้าใจได้ว่าจะเกิดอะไรขึ้นที่จุดใช้งาน</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># The meaning of a call is determined by the function's signature,</span>
+ให้เข้าใจได้ว่าจะเกิดอะไรขึ้นที่จุดใช้งาน</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+locale <span class="tok-op">=</span> <span class="tok-st">"th-TH"</span>
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-co"># The meaning of a call is determined by the function's signature,</span>
 <span class="tok-co"># not by invisible trait resolution or implicit conversions.</span>
-<span class="tok-kw">ฟังก์ชัน</span> duplica(<span class="tok-kw">จำนวน</span> n) <span class="tok-op">→</span> <span class="tok-kw">จำนวน</span> {
+<span class="tok-kw">ฟังก์ชัน</span> duplica(จําน<span class="tok-kw">วน</span> n) <span class="tok-op">→</span> จําน<span class="tok-kw">วน</span> {
     <span class="tok-kw">คืน</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }</code></pre><h3 id="iii-glyphs-carry-structure">III. อักขระภาพทำหน้าที่บอกโครงสร้าง<a class="anchor" href="#iii-glyphs-carry-structure">#</a></h3><p>ความหมายเชิงโครงสร้างและตัวดำเนินการใช้สัญลักษณ์ภาพ ไม่ใช้คำ: <code>←</code>
 สำหรับการผูกค่า, <code>→</code> สำหรับประเภทผลลัพธ์, <code>⇥</code>
@@ -24,8 +27,8 @@ functio salve(textus name) → textus</code></pre><h3 id="ii-mechanical-over-mag
 ยูเนียน สัญลักษณ์ภาพเป็นสากล — ไม่แปลตามภาษาและไม่เปลี่ยนความหมาย
 ระหว่างการเรนเดอร์ ภาษาไทยและภาษาฝรั่งเศสจึงเห็นสัญลักษณ์ภาพเดียวกัน
 แม้คีย์เวิร์ดที่อยู่รอบข้างจะแตกต่างกัน</p><h3 id="iv-latin-carries-behaviour">IV. อักษรละตินทำหน้าที่บอกพฤติกรรม<a class="anchor" href="#iv-latin-carries-behaviour">#</a></h3><p>คำต่าง ๆ ใช้สำหรับการประกาศ คำสั่ง วงจรชีวิต และเจตนาเชิงพฤติกรรม:
-<code class="kw">ฟังก์ชัน</code>, <code class="kw">ชนิด</code>, <code class="kw">คงที่</code>,
-<code class="kw">แปร</code>, <code class="kw">คืน</code>, <code class="kw">จับ</code>
+<code class="kw">functio</code>, <code class="kw">genus</code>, <code class="kw">fixum</code>,
+<code class="kw">varia</code>, <code class="kw">redde</code>, <code class="kw">cape</code>
 คำเหล่านี้สามารถผูกเข้ากับแพ็กภาษาของผู้อ่านได้ — คำเหล่านี้คือคลังคำศัพท์
 ไม่ใช่ไวยากรณ์ การเลือกใช้ภาษาละตินไม่ได้หมายถึงความเหนือกว่าของภาษาละติน
 แต่หมายถึงการเลือกแหล่งภาษาคลาสสิก <em>เพียงแหล่งเดียว</em> ที่สอดคล้องกัน

@@ -4,13 +4,16 @@ of source glyphs recognised by the lexer.</p><h3 id="value-flow">Value flow<a cl
 attaches a value the compiler already knows — field shape inside a literal,
 declaration metadata, annotation fields. Most languages spell both with <code>=</code>
 and leave the reader to infer which is meant; Faber splits them, so the glyph
-itself tells you whether anything happens at runtime.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Punctum {
+itself tells you whether anything happens at runtime.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">class</span> Punctum {
     <span class="tok-kw">int</span> x
     <span class="tok-kw">int</span> y
 }
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> Punctum p <span class="tok-op">←</span> Punctum {x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span>}
+    <span class="tok-kw">const</span> _ p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
     <span class="tok-kw">var</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
     count <span class="tok-op">←</span> count <span class="tok-op">+</span> <span class="tok-nu">1</span>
     print p.x, count
@@ -24,7 +27,10 @@ A reader who knows the Rust backend can still recognise the Faber source because
 the Latin keywords and type-first order produce a distinct visual register.</p><h3 id="type-first">Type-first declarations<a class="anchor" href="#type-first">#</a></h3><p>Faber puts the type before the name in every declaration. This is the opposite of
 mainstream C-family syntax, and it is deliberate:</p><div class="table-scroll"><table><thead><tr><th>Construct</th><th>C-family habit</th><th>Faber</th></tr></thead><tbody><tr><td>Variable</td><td><code>int count = 0</code></td><td><code>numerus count ← 0</code></td></tr><tr><td>Function</td><td><code>fn greet(name: String) → String</code></td><td><code>functio salve(textus nomen) → textus</code></td></tr><tr><td>Parameter</td><td><code>(String name)</code></td><td><code>(textus nomen)</code></td></tr></tbody></table></div><p>Type-first declarations mean the shape of data is the first thing the reader sees.
 This aligns naturally with languages that read left-to-right for semantic breadth
-— Chinese, Hindi, and Arabic declarations follow the same order.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> {
+— Chinese, Hindi, and Arabic declarations follow the same order.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> {
     <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> then <span class="tok-kw">return</span> <span class="tok-kw">null</span>
     <span class="tok-kw">return</span> a <span class="tok-op">/</span> b
 }</code></pre><h3 id="latin">Latin behavioural vocabulary<a class="anchor" href="#latin">#</a></h3><p>Faber uses Latin words for every construct that has behavioural or grammatical
@@ -62,18 +68,27 @@ Multiple surfaces parse to the same <code>HirAnnotation</code> or type node.
 <code>faber format --locale la</code> re-emits canonical spellings; author
 mode preserves the sugar the author wrote.</p></blockquote><h3 id="numeric-type-sugar">Numeric type sugar<a class="anchor" href="#numeric-type-sugar">#</a></h3><p>Numeric types have long-form canonical spellings and compact sugar forms.
 The choice is per-module, not per-repository — a CLI package may use long
-form everywhere, while a tensor kernel module uses sugar:</p><div class="table-scroll"><table><thead><tr><th>Sugar</th><th>Canonical form</th><th>Domain</th></tr></thead><tbody><tr><td><code>f32</code>, <code>f64</code>, <code>i32</code>, <code>u64</code></td><td><code>fractus&lt;f32&gt;</code>, <code>numerus&lt;i32&gt;</code></td><td>Width markers — scalar numeric types</td></tr><tr><td><code>tf32</code>, <code>tf32[4]</code>, <code>ti64[2, 3]</code></td><td><code>tensor&lt;f32, _&gt;</code>, <code>tensor&lt;f32, [4]&gt;</code></td><td>Dense tensor — <code>t</code> + width + optional shape</td></tr><tr><td><code>sf32</code>, <code>sf32[2, 3]</code>, <code>si64[N]</code></td><td><code>sparsa&lt;f32, _&gt;</code>, <code>sparsa&lt;f32, [2, 3]&gt;</code></td><td>Sparse tensor — <code>s</code> + width + optional shape</td></tr><tr><td><code>mf32[4, 4]</code>, <code>mu32[3, 3]</code></td><td><code>matrix&lt;f32, [4, 4]&gt;</code></td><td>Register-class matrix — <code>m</code> + width + shape</td></tr><tr><td><code>lf32</code>, <code>lu32</code>, <code>li64</code></td><td><code>lista&lt;f32&gt;</code>, <code>lista&lt;u32&gt;</code></td><td>List — <code>l</code> + width</td></tr><tr><td><code>f16</code></td><td><code>fractus&lt;f16&gt;</code></td><td>Half-float width marker (semantic/layout only)</td></tr></tbody></table></div><p><strong>General Faber (prefer long form):</strong></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> values <span class="tok-op">←</span> empty
+form everywhere, while a tensor kernel module uses sugar:</p><div class="table-scroll"><table><thead><tr><th>Sugar</th><th>Canonical form</th><th>Domain</th></tr></thead><tbody><tr><td><code>f32</code>, <code>f64</code>, <code>i32</code>, <code>u64</code></td><td><code>fractus&lt;f32&gt;</code>, <code>numerus&lt;i32&gt;</code></td><td>Width markers — scalar numeric types</td></tr><tr><td><code>tf32</code>, <code>tf32[4]</code>, <code>ti64[2, 3]</code></td><td><code>tensor&lt;f32, _&gt;</code>, <code>tensor&lt;f32, [4]&gt;</code></td><td>Dense tensor — <code>t</code> + width + optional shape</td></tr><tr><td><code>sf32</code>, <code>sf32[2, 3]</code>, <code>si64[N]</code></td><td><code>sparsa&lt;f32, _&gt;</code>, <code>sparsa&lt;f32, [2, 3]&gt;</code></td><td>Sparse tensor — <code>s</code> + width + optional shape</td></tr><tr><td><code>mf32[4, 4]</code>, <code>mu32[3, 3]</code></td><td><code>matrix&lt;f32, [4, 4]&gt;</code></td><td>Register-class matrix — <code>m</code> + width + shape</td></tr><tr><td><code>lf32</code>, <code>lu32</code>, <code>li64</code></td><td><code>lista&lt;f32&gt;</code>, <code>lista&lt;u32&gt;</code></td><td>List — <code>l</code> + width</td></tr><tr><td><code>f16</code></td><td><code>fractus&lt;f16&gt;</code></td><td>Half-float width marker (semantic/layout only)</td></tr></tbody></table></div><p><strong>General Faber (prefer long form):</strong></p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> values <span class="tok-op">←</span> empty
 
 <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> empty
 
-<span class="tok-kw">const</span> <span class="tok-kw">int</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> narrow <span class="tok-op">←</span> <span class="tok-nu">7</span></code></pre><p><strong>Numeric modules (prefer sugar):</strong></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> values <span class="tok-op">←</span> empty
+<span class="tok-kw">const</span> <span class="tok-kw">int</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> narrow <span class="tok-op">←</span> <span class="tok-nu">7</span></code></pre><p><strong>Numeric modules (prefer sugar):</strong></p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">const</span> lf32 values <span class="tok-op">←</span> empty
 
-<span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> empty
+<span class="tok-kw">const</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] grid <span class="tok-op">←</span> empty
 
-<span class="tok-kw">const</span> <span class="tok-kw">int</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> narrow <span class="tok-op">←</span> <span class="tok-nu">7</span></code></pre><p>Sugar is <strong>type-position only</strong>. Value identifiers named <code>f32</code>,
+<span class="tok-kw">const</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span></code></pre><p>Sugar is <strong>type-position only</strong>. Value identifiers named <code>f32</code>,
 <code>tf32</code>, or <code>mf32</code> are unchanged — the compiler only
 interprets these as sugar when they appear in type positions. A file that
-consistently uses sugar should say so once at the top:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># STYLE: numeric sugar (tf32, mf32, sf32, lf32, lu32)</span></code></pre><h3 id="annotation-sugar">Annotation sugar<a class="anchor" href="#annotation-sugar">#</a></h3><p>Faber annotations follow the same dual-surface model as numeric types.
+consistently uses sugar should say so once at the top:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
+<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-co"># STYLE: numeric sugar (tf32, mf32, sf32, lf32, lu32)</span></code></pre><h3 id="annotation-sugar">Annotation sugar<a class="anchor" href="#annotation-sugar">#</a></h3><p>Faber annotations follow the same dual-surface model as numeric types.
 Annotations are compiler-owned metadata attached to declarations — like
 <code>@ optio</code> for CLI option definitions or <code>@ futura</code> for async functions
 (legacy — prefer the <code>fiet</code> posture word in the signature slot).</p><p><strong>Canonical form:</strong> a braced record with explicit field names:</p><pre class="faber-code"><code class="lang-text">@ optio {

@@ -30,25 +30,33 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># BACKEND: Inline-union `discerne` enum lowering gap on Rust (whitelist: unio/unio.fab).</span>
 
-<span class="tok-kw">type</span> Valor <span class="tok-op">=</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> string
+<span class="tok-kw">type</span> Valor <span class="tok-op">=</span> string <span class="tok-op">∪</span> <span class="tok-kw">int</span>
 
 <span class="tok-kw">union</span> Forma {
-    Numerus { <span class="tok-kw">int</span> v },
-    Textus { string v }
+    Numerus {
+        <span class="tok-kw">int</span> v
+    },
+    Textus {
+        string v
+    }
 }
 
 <span class="tok-kw">fn</span> <span class="tok-kw">describe</span>(Forma f) <span class="tok-op">→</span> string {
     <span class="tok-kw">match</span> f {
-        <span class="tok-kw">case</span> Numerus <span class="tok-kw">const</span> v { <span class="tok-kw">return</span> <span class="tok-st">"n: §"</span>(v) }
-        <span class="tok-kw">case</span> Textus <span class="tok-kw">const</span> v { <span class="tok-kw">return</span> <span class="tok-st">"t: §"</span>(v) }
+        <span class="tok-kw">case</span> Numerus <span class="tok-kw">const</span> v {
+            <span class="tok-kw">return</span> <span class="tok-st">"n: §"</span>(v)
+        }
+        <span class="tok-kw">case</span> Textus <span class="tok-kw">const</span> v {
+            <span class="tok-kw">return</span> <span class="tok-st">"t: §"</span>(v)
+        }
     }
 }
 
 <span class="tok-kw">main</span> {
 <span class="tok-co">    # --- Ad-hoc inline union values ---</span>
 
-    <span class="tok-kw">const</span> Valor a <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    <span class="tok-kw">const</span> Valor b <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
+    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> <span class="tok-kw">int</span> a <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> <span class="tok-kw">int</span> b <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
     print a
     print b
 
