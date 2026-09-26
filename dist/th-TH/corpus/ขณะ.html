@@ -24,7 +24,7 @@ test <span class="tok-st">"dum counts down to zero"</span> {
 <span class="tok-co">#   • Ascending and descending loops — counting up from 0 or down from N until the condition is falsum.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Using `rumpe` or `perge` outside a loop — both are only valid inside `dum`, `itera`, `fac`, `meus`, or `tuus` blocks (SEM030, SEM031).</span>
+<span class="tok-co">#   • Using `rumpe` or `perge` outside a loop — `perge` needs an enclosing loop (`dum`, `itera`, `fac … dum`) in the same function (SEM031); `rumpe` also accepts a plain `fac` block (SEM030).</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># See also: si, ergo, fac</span>
 <span class="tok-co"># =============================================================================</span>

@@ -569,12 +569,12 @@ fixum _ text ← value ∷ textus
 ### التحويل وقت التشغيل — ↦ {#runtime-conversion}
 
 استعمل `↦` للتحويل وقت التشغيل، خصوصًا التحليل أو الإكراه الذي قد يفشل.
-وفّر استردادًا مضمنًا باستعمال `⇥`:
+وفّر استردادًا مضمنًا باستعمال `⊥`:
 
 ```faber
 fixum textus input ← "9"
 fixum _ n ← "42" ↦ numerus
-fixum _ safe ← input ↦ numerus ⇥ 0
+fixum _ safe ← input ↦ numerus ⊥ 0
 ```
 
 تجسيد موجّه بالنوع:

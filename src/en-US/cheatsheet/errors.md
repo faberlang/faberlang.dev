@@ -122,7 +122,7 @@ callers must deal with it or declare their own channel.
 ```faber
 functio parse(textus raw) → numerus ⇥ textus {
     si raw ≡ "" ergo iace "empty input"
-    redde raw ↦ numerus ⇥ 0
+    redde raw ↦ numerus ⊥ 0
 }
 
 functio duplum(textus raw) → numerus ⇥ textus {
@@ -154,6 +154,6 @@ functio logga(textus context) errata textus → vacuum {
 ```
 
 Related: [Testing](/cheatsheet/testing.html) ·
-[Conversions](/cheatsheet/conversions.html) for `⇥` in its other role, as
-conversion recovery · [Errors and testing](/language/errors.html) for the full
+[Conversions](/cheatsheet/conversions.html) for `⊥`, the
+conversion default · [Errors and testing](/language/errors.html) for the full
 treatment.

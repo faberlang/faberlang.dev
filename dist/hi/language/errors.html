@@ -39,12 +39,12 @@ locale <span class="tok-op">=</span> <span class="tok-st">"hi"</span>
         <span class="tok-kw">लौटाओ</span> <span class="tok-nu">0</span>
     }
 }</code></pre><p>किसी विफल हो सकने वाले <code>→ T ⇥ E</code> फ़ंक्शन को सीधे कॉल करना सामान्य
-एक्सप्रेशन नहीं है। ऐसे कॉल को सक्रिय <code class="kw">fac</code> / <code class="kw">cape</code> सीमा के भीतर रखें।</p><h3 id="inline-conversion-recovery">इनलाइन रूपांतरण रिकवरी<a class="anchor" href="#inline-conversion-recovery">#</a></h3><p><code>⇥</code>, <code>↦</code> रूपांतरणों पर इनलाइन रिकवरी मान भी निर्दिष्ट कर सकता है:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+एक्सप्रेशन नहीं है। ऐसे कॉल को सक्रिय <code class="kw">fac</code> / <code class="kw">cape</code> सीमा के भीतर रखें।</p><h3 id="inline-conversion-recovery">इनलाइन रूपांतरण रिकवरी<a class="anchor" href="#inline-conversion-recovery">#</a></h3><p><code>⊥</code>, <code>↦</code> रूपांतरणों पर इनलाइन रिकवरी मान भी निर्दिष्ट कर सकता है:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"hi"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">स्थिर</span> <span class="tok-kw">पाठ</span> raw <span class="tok-op">←</span> <span class="tok-st">"42"</span>
 
-<span class="tok-kw">स्थिर</span> _ n <span class="tok-op">←</span> raw ↦ <span class="tok-kw">संख्या</span> ⇥ <span class="tok-nu">0</span></code></pre><h3 id="effectonly-failable">केवल-प्रभाव वाला विफल हो सकने वाला फ़ंक्शन<a class="anchor" href="#effectonly-failable">#</a></h3><p>ऐसे फ़ंक्शन जो त्रुटि देते हैं, लेकिन सफलता मान वापस नहीं करते, उनमें
+<span class="tok-kw">स्थिर</span> _ n <span class="tok-op">←</span> raw ↦ <span class="tok-kw">संख्या</span> ⊥ <span class="tok-nu">0</span></code></pre><h3 id="effectonly-failable">केवल-प्रभाव वाला विफल हो सकने वाला फ़ंक्शन<a class="anchor" href="#effectonly-failable">#</a></h3><p>ऐसे फ़ंक्शन जो त्रुटि देते हैं, लेकिन सफलता मान वापस नहीं करते, उनमें
 <code>→ T</code> छोड़ दें:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"hi"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>

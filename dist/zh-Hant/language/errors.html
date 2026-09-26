@@ -37,12 +37,12 @@ locale <span class="tok-op">=</span> <span class="tok-st">"zh-Hant"</span>
         <span class="tok-kw">傳回</span> <span class="tok-nu">0</span>
     }
 }</code></pre><p>直接呼叫可失敗函式並不是一般運算式。請將對
-<code>→ T ⇥ E</code> 函式的呼叫放在作用中的 <code class="kw">fac</code> / <code class="kw">cape</code> 邊界內。</p><h3 id="inline-conversion-recovery">內嵌轉換復原<a class="anchor" href="#inline-conversion-recovery">#</a></h3><p><code>⇥</code> 也可以在 <code>↦</code> 轉換上指定內嵌復原值：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<code>→ T ⇥ E</code> 函式的呼叫放在作用中的 <code class="kw">fac</code> / <code class="kw">cape</code> 邊界內。</p><h3 id="inline-conversion-recovery">內嵌轉換復原<a class="anchor" href="#inline-conversion-recovery">#</a></h3><p><code>⊥</code> 也可以在 <code>↦</code> 轉換上指定內嵌復原值：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"zh-Hant"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">定值</span> <span class="tok-kw">文字</span> raw <span class="tok-op">←</span> <span class="tok-st">"42"</span>
 
-<span class="tok-kw">定值</span> _ n <span class="tok-op">←</span> raw ↦ <span class="tok-kw">整數</span> ⇥ <span class="tok-nu">0</span></code></pre><h3 id="effectonly-failable">僅效果的可失敗函式<a class="anchor" href="#effectonly-failable">#</a></h3><p>對於會發生錯誤但不回傳成功值的函式，省略 <code>→ T</code>：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">定值</span> _ n <span class="tok-op">←</span> raw ↦ <span class="tok-kw">整數</span> ⊥ <span class="tok-nu">0</span></code></pre><h3 id="effectonly-failable">僅效果的可失敗函式<a class="anchor" href="#effectonly-failable">#</a></h3><p>對於會發生錯誤但不回傳成功值的函式，省略 <code>→ T</code>：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"zh-Hant"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">函式</span> exigePositivum(<span class="tok-kw">整數</span> value) <span class="tok-op">→</span> <span class="tok-kw">空值</span> ⇥ <span class="tok-kw">文字</span> {

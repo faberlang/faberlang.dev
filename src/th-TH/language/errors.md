@@ -80,11 +80,11 @@ functio tutum(numerus a, numerus b) → numerus {
 
 ### การกู้คืนจากการแปลงแบบแทรกในบรรทัด {#inline-conversion-recovery}
 
-นอกจากนี้ `⇥` ยังใช้ระบุค่าการกู้คืนแบบแทรกในบรรทัดสำหรับการแปลง `↦` ได้:
+นอกจากนี้ `⊥` ยังใช้ระบุค่าการกู้คืนแบบแทรกในบรรทัดสำหรับการแปลง `↦` ได้:
 
 ```faber
 fixum textus raw ← "42"
-fixum _ n ← raw ↦ numerus ⇥ 0
+fixum _ n ← raw ↦ numerus ⊥ 0
 ```
 
 ### ฟังก์ชันที่อาจล้มเหลวและมีเฉพาะผลข้างเคียง {#effectonly-failable}

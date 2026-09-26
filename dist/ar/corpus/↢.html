@@ -11,17 +11,20 @@
 <span class="tok-co"># See also: figendum, variandum, fiet, promissum</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-st">``</span>
-`fab
-functio responde(numerus value) fiet <span class="tok-op">→</span> numerus {
-    redde value
+functio responde(numerus valor) fiet <span class="tok-op">→</span> numerus {
+    redde valor
 }
 
 incipiet {
-    fixum promissum<span class="tok-op">&lt;</span>numerus<span class="tok-op">&gt;</span> pending <span class="tok-op">←</span> responde(<span class="tok-nu">7</span>)
-    fixum numerus immutable ↢ pending
-    varia numerus mutable ↢ responde(<span class="tok-nu">8</span>)
-    sit inferred ↢ responde(<span class="tok-nu">9</span>)
-}
-`
-<span class="tok-st">``</span></code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusawait-assignmentawait-assignmentfab-canonical-operator">radix/corpus/await-assignment/await-assignment.fab (canonical · operator)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">المصادر</span><ul><li>[&quot;radix/corpus/await-assignment/await-assignment.fab&quot;]</li></ul></div></footer></div></body></html>
+    fixum promissum<span class="tok-op">&lt;</span>numerus<span class="tok-op">&gt;</span> futurum <span class="tok-op">←</span> responde(<span class="tok-nu">7</span>)
+    fixum numerus immotum ↢ futurum
+    varia numerus mutabile ↢ responde(<span class="tok-nu">8</span>)
+    sit illatum ↢ responde(<span class="tok-nu">9</span>)
+    mutabile <span class="tok-op">←</span> mutabile <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    nota immotum
+    nota mutabile
+    nota illatum
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>7
+9
+9
+</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusawait-assignmentawait-assignmentfab-canonical-operator">radix/corpus/await-assignment/await-assignment.fab (canonical · operator)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">المصادر</span><ul><li>[&quot;radix/corpus/await-assignment/await-assignment.fab&quot;]</li></ul></div></footer></div></body></html>

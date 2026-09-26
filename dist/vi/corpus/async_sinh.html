@@ -5,7 +5,7 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • Async stream posture: `fient → T` yields promised pulls of `T`.</span>
-<span class="tok-co">#   • Yield with `cede`; await other work with await morphology.</span>
+<span class="tok-co">#   • Yield with `cede`; consume the stream with `itera ex` inside an async body.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • Expecting every backend to lower `fient` — some fail closed until a</span>
@@ -20,15 +20,15 @@
 <span class="tok-co"># BACKEND:</span>
 <span class="tok-co">#   Product path is Rust async-cursor; other backends may fail closed.</span>
 
-<span class="tok-st">``</span>
-`fab
 functio stream() fient <span class="tok-op">→</span> numerus {
     cede <span class="tok-nu">1</span>
     cede <span class="tok-nu">2</span>
 }
 
 incipiet {
-    nota stream()
-}
-`
-<span class="tok-st">``</span></code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusfientfientfab-canonical-keyword">radix/corpus/fient/fient.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[&quot;radix/corpus/fient/fient.fab&quot;]</li></ul></div></footer></div></body></html>
+    itera ex stream() fixum n {
+        nota n
+    }
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1
+2
+</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusfientfientfab-canonical-keyword">radix/corpus/fient/fient.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[&quot;radix/corpus/fient/fient.fab&quot;]</li></ul></div></footer></div></body></html>

@@ -81,11 +81,11 @@ functio tutum(numerus a, numerus b) → numerus {
 
 ### استرداد تحويل مضمن {#inline-conversion-recovery}
 
-يمكن لـ `⇥` أيضًا تحديد قيمة استرداد مضمنة على تحويلات `↦`:
+يمكن لـ `⊥` أيضًا تحديد قيمة استرداد مضمنة على تحويلات `↦`:
 
 ```faber
 fixum textus raw ← "42"
-fixum _ n ← raw ↦ numerus ⇥ 0
+fixum _ n ← raw ↦ numerus ⊥ 0
 ```
 
 ### تأثير قابل للفشل فقط {#effectonly-failable}

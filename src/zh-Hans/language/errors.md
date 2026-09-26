@@ -80,11 +80,11 @@ functio tutum(numerus a, numerus b) → numerus {
 
 ### 内联转换恢复 {#inline-conversion-recovery}
 
-`⇥` 也可以在 `↦` 转换上指定内联恢复值：
+`⊥` 也可以在 `↦` 转换上指定内联恢复值：
 
 ```faber
 fixum textus raw ← "42"
-fixum _ n ← raw ↦ numerus ⇥ 0
+fixum _ n ← raw ↦ numerus ⊥ 0
 ```
 
 ### 仅效果可失败 {#effectonly-failable}

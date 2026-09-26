@@ -36,12 +36,12 @@ locale <span class="tok-op">=</span> <span class="tok-st">"zh-Hans"</span>
         <span class="tok-kw">警告</span> err
         <span class="tok-kw">返回</span> <span class="tok-nu">0</span>
     }
-}</code></pre><p>直接的可失败调用不是普通表达式。请将 <code>→ T ⇥ E</code> 函数的调用放在活动的 <code class="kw">fac</code> / <code class="kw">cape</code> 边界内。</p><h3 id="inline-conversion-recovery">内联转换恢复<a class="anchor" href="#inline-conversion-recovery">#</a></h3><p><code>⇥</code> 也可以在 <code>↦</code> 转换上指定内联恢复值：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+}</code></pre><p>直接的可失败调用不是普通表达式。请将 <code>→ T ⇥ E</code> 函数的调用放在活动的 <code class="kw">fac</code> / <code class="kw">cape</code> 边界内。</p><h3 id="inline-conversion-recovery">内联转换恢复<a class="anchor" href="#inline-conversion-recovery">#</a></h3><p><code>⊥</code> 也可以在 <code>↦</code> 转换上指定内联恢复值：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"zh-Hans"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">常量</span> <span class="tok-kw">文本</span> raw <span class="tok-op">←</span> <span class="tok-st">"42"</span>
 
-<span class="tok-kw">常量</span> _ n <span class="tok-op">←</span> raw ↦ <span class="tok-kw">整数</span> ⇥ <span class="tok-nu">0</span></code></pre><h3 id="effectonly-failable">仅效果可失败<a class="anchor" href="#effectonly-failable">#</a></h3><p>对于会出错但不返回成功值的函数，省略 <code>→ T</code>：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">常量</span> _ n <span class="tok-op">←</span> raw ↦ <span class="tok-kw">整数</span> ⊥ <span class="tok-nu">0</span></code></pre><h3 id="effectonly-failable">仅效果可失败<a class="anchor" href="#effectonly-failable">#</a></h3><p>对于会出错但不返回成功值的函数，省略 <code>→ T</code>：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"zh-Hans"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">函数</span> exigePositivum(<span class="tok-kw">整数</span> value) <span class="tok-op">→</span> <span class="tok-kw">无值</span> ⇥ <span class="tok-kw">文本</span> {

@@ -91,7 +91,7 @@ locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
     <span class="tok-kw">if</span> raw <span class="tok-op">≡</span> <span class="tok-st">""</span> {
         <span class="tok-kw">throw</span> <span class="tok-st">"empty input"</span>
     }
-    <span class="tok-kw">return</span> raw ↦ <span class="tok-kw">int</span> ⇥ <span class="tok-nu">0</span>
+    <span class="tok-kw">return</span> raw ↦ <span class="tok-kw">int</span> ⊥ <span class="tok-nu">0</span>
 }
 
 <span class="tok-kw">fn</span> duplum(string raw) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ string {
@@ -113,6 +113,6 @@ locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
 <span class="tok-kw">fn</span> logga(string context) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
     <span class="tok-kw">warn</span> context
 }</code></pre><p>Related: <a href="/en-US/cheatsheet/testing.html">Testing</a> ·
-<a href="/en-US/cheatsheet/conversions.html">Conversions</a> for <code>⇥</code> in its other role, as
-conversion recovery · <a href="/en-US/language/errors.html">Errors and testing</a> for the full
+<a href="/en-US/cheatsheet/conversions.html">Conversions</a> for <code>⊥</code>, the
+conversion default · <a href="/en-US/language/errors.html">Errors and testing</a> for the full
 treatment.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#channel">The error channel</a></li><li class="toc-2"><a href="#guards">Guards: requirit / reice</a></li><li class="toc-2"><a href="#cape">Catching</a></li><li class="toc-2"><a href="#attachment">cape attaches to more than fac</a></li><li class="toc-2"><a href="#propagate">Failing without a message</a></li><li class="toc-2"><a href="#errata">Errors as a parameter</a></li></ul></div></nav></div></body></html>

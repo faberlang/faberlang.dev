@@ -47,10 +47,10 @@ faber explain SEM001
 
 ## Generated corpus frontmatter reference
 
-- Distinct frontmatter terms: 236
+- Distinct frontmatter terms: 237
 - Canonical term pages: 203
-- Alias spellings: 121
-- Categories: 48
+- Alias spellings: 123
+- Categories: 47
 - Source: radix/corpus/**/*.fab TOML frontmatter
 
 Each canonical record has: term, kind, category, summary, syntax signature, aliases, relations, and page URL.
@@ -72,16 +72,16 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - collection (10) — https://faberlang.dev/en-US/corpus/category/collection.html
 - comparison (2) — https://faberlang.dev/en-US/corpus/category/comparison.html
 - comptime (1) — https://faberlang.dev/en-US/corpus/category/comptime.html
-- control-flow (16) — https://faberlang.dev/en-US/corpus/category/control-flow.html
+- control-flow (17) — https://faberlang.dev/en-US/corpus/category/control-flow.html
 - conversion (5) — https://faberlang.dev/en-US/corpus/category/conversion.html
 - declaration (1) — https://faberlang.dev/en-US/corpus/category/declaration.html
 - destructuring (1) — https://faberlang.dev/en-US/corpus/category/destructuring.html
-- endpoint (3) — https://faberlang.dev/en-US/corpus/category/endpoint.html
+- endpoint (4) — https://faberlang.dev/en-US/corpus/category/endpoint.html
 - entry (4) — https://faberlang.dev/en-US/corpus/category/entry.html
 - errors (5) — https://faberlang.dev/en-US/corpus/category/errors.html
 - expression (2) — https://faberlang.dev/en-US/corpus/category/expression.html
 - format (2) — https://faberlang.dev/en-US/corpus/category/format.html
-- function (13) — https://faberlang.dev/en-US/corpus/category/function.html
+- function (12) — https://faberlang.dev/en-US/corpus/category/function.html
 - identifier (1) — https://faberlang.dev/en-US/corpus/category/identifier.html
 - integration (1) — https://faberlang.dev/en-US/corpus/category/integration.html
 - io (2) — https://faberlang.dev/en-US/corpus/category/io.html
@@ -99,7 +99,6 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - output (3) — https://faberlang.dev/en-US/corpus/category/output.html
 - package (3) — https://faberlang.dev/en-US/corpus/category/package.html
 - range (6) — https://faberlang.dev/en-US/corpus/category/range.html
-- resource (1) — https://faberlang.dev/en-US/corpus/category/resource.html
 - template (2) — https://faberlang.dev/en-US/corpus/category/template.html
 - testing (17) — https://faberlang.dev/en-US/corpus/category/testing.html
 - transfer (4) — https://faberlang.dev/en-US/corpus/category/transfer.html
@@ -112,15 +111,15 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - concept: 18
 - conversio: 5
 - existing-home: 6
-- feature: 2
-- keyword: 121
+- feature: 4
+- keyword: 118
 - literal: 2
 - method: 2
 - modifier: 1
 - operator: 3
 - operator-group: 27
 - pointer: 1
-- type: 5
+- type: 6
 
 ### Canonical terms
 
@@ -441,10 +440,10 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `conversio-fallibilis`
 - Kind: conversio
 - Category: conversion
-- Summary: Three recovery postures for fallible conversio: inline ⇥, ⇥ propagation, and fac/cape.
+- Summary: Three recovery postures for fallible conversio: inline ⊥ default, ⇥ propagation, and fac/cape.
 - Syntax: `<expression> ↦ <type> | functio … → T ⇥ E | fac { … } cape err { … }`
 - Aliases: none
-- Related: `↦`, `⇥`, `fac`, `cape`, `iace`
+- Related: `↦`, `⇥`, `⊥`, `fac`, `cape`, `iace`
 - Page: https://faberlang.dev/en-US/corpus/conversio-fallibilis.html
 - Source: radix/corpus/conversio/fallibilis.fab
 
@@ -459,30 +458,6 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `lista`, `tabula`, `inter`
 - Page: https://faberlang.dev/en-US/corpus/set.html
 - Source: radix/corpus/intrinseca/copia-fundamenta.fab
-
-#### `cura`
-
-- Canonical: `cura`
-- Kind: keyword
-- Category: resource
-- Summary: Starts an allocator scope.
-- Syntax: `cura "<allocator-kind>" fixum _ <alloc> <block>`
-- Aliases: none
-- Related: `arena`
-- Page: https://faberlang.dev/en-US/corpus/with.html
-- Source: radix/corpus/cura/cura.fab
-
-#### `curata`
-
-- Canonical: `curata`
-- Kind: keyword
-- Category: function
-- Summary: Marks a function as requiring an allocator binding.
-- Syntax: `functio <name>(...) curata <required> [ut <local>] → <type>`
-- Aliases: none
-- Related: `cura`, `arena`
-- Page: https://faberlang.dev/en-US/corpus/allocator.html
-- Source: radix/corpus/curata/curata.fab
 
 #### `cursor`
 
@@ -544,6 +519,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/match.html
 - Source: radix/corpus/discerne/discerne.fab
 
+#### `discerne negative patterns`
+
+- Canonical: `discerne negative patterns`
+- Kind: feature
+- Category: control-flow
+- Summary: A leading minus before a number literal is a pattern in discerne and a case value in elige.
+- Syntax: `discerne <number> { case -1 ... case -2.5 ... case -∞ ... }`
+- Aliases: none
+- Related: `discerne`, `elige`, `casu`
+- Page: https://faberlang.dev/en-US/corpus/discerne%20negative%20patterns.html
+- Source: radix/corpus/discerne/negative-patterns.fab
+
 #### `discerne type patterns`
 
 - Canonical: `discerne type patterns`
@@ -600,7 +587,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Summary: Refers to the current instance inside a method.
 - Syntax: `ego.<member>`
 - Aliases: `self`, `this`
-- Related: `generis`, `nexum`
+- Related: `generis`, `genus`
 - Page: https://faberlang.dev/en-US/corpus/self.html
 - Source: radix/corpus/ego/ego.fab
 
@@ -852,7 +839,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Summary: Declares a named function or method.
 - Syntax: `functio <name>(<params>) [modifiers] [→ <type>] [⇥ <error-type>] <block>`
 - Aliases: `function`
-- Related: `→`, `⇥`, `redde`, `sponte`, `ceteri`, `prae`, `curata`, `futura`, `cursor`
+- Related: `→`, `⇥`, `redde`, `sponte`, `ceteri`, `prae`, `futura`, `cursor`
 - Page: https://faberlang.dev/en-US/corpus/fn.html
 - Source: radix/corpus/functio/functio.fab
 
@@ -936,7 +923,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Summary: Marks a class member as belonging to the type itself.
 - Syntax: `generis <type> <name> [= <expression>]`
 - Aliases: none
-- Related: `genus`, `nexum`
+- Related: `genus`, `ego`
 - Page: https://faberlang.dev/en-US/corpus/static.html
 - Source: radix/corpus/generis/generis.fab
 
@@ -984,7 +971,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Summary: Marks a function as non-mutating.
 - Syntax: `functio <name>(...) immutata → <type>`
 - Aliases: none
-- Related: `curata`, `iacit`
+- Related: `iacit`
 - Page: https://faberlang.dev/en-US/corpus/readonly.html
 - Source: radix/corpus/immutata/immutata.fab
 
@@ -1080,7 +1067,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Summary: Conversio arms for instans precision family and textus datetime provenance.
 - Syntax: `<expression> ↦ instans | instans<ms> | instans<us> | instans<ns>`
 - Aliases: none
-- Related: `↦`, `⇥`, `textus`
+- Related: `↦`, `⊥`, `textus`
 - Page: https://faberlang.dev/en-US/corpus/instant.html
 - Source: radix/corpus/conversio/instans.fab
 
@@ -1273,7 +1260,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `n/a`
 - Aliases: none
 - Related: `ad`, `sermo`, `tuus`, `scrinium`, `cursor`, `accipe`
-- Page: https://faberlang.dev/en-US/corpus/meus.html
+- Page: https://faberlang.dev/en-US/corpus/send.html
 - Source: radix/corpus/ad/sermo-live-directional.fab
 
 #### `modulus<u16>`
@@ -1383,18 +1370,6 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `forma`, `scriptum`, `string`, `textus`, `§`
 - Page: https://faberlang.dev/en-US/corpus/named-holes.html
 - Source: radix/corpus/literalia/named-holes.fab
-
-#### `nexum`
-
-- Canonical: `nexum`
-- Kind: keyword
-- Category: type
-- Summary: Marks a class member as bound to the current instance.
-- Syntax: `nexum <type> <name> [= <expression>]`
-- Aliases: none
-- Related: `genus`, `ego`
-- Page: https://faberlang.dev/en-US/corpus/nexum.html
-- Source: radix/corpus/nexum/nexum.fab
 
 #### `nihil`
 
@@ -1744,6 +1719,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/record.html
 - Source: radix/corpus/ratio/ratio.fab
 
+#### `recursive types`
+
+- Canonical: `recursive types`
+- Kind: feature
+- Category: type
+- Summary: A discretio or genus may name itself in its own fields; every backend gives it a finite carrier.
+- Syntax: `discretio <name> { <Variant> { <name> <field> } } · genus <name> { <name> ∪ nihil <field> }`
+- Aliases: none
+- Related: `discretio`, `genus`, `discerne`, `finge`, `nihil`
+- Page: https://faberlang.dev/en-US/corpus/recursive%20types.html
+- Source: radix/corpus/recursio/expressio-arbor.fab
+
 #### `redde`
 
 - Canonical: `redde`
@@ -1875,6 +1862,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `si`, `sin`
 - Page: https://faberlang.dev/en-US/corpus/else.html
 - Source: radix/corpus/secus/secus.fab
+
+#### `sermo`
+
+- Canonical: `sermo`
+- Kind: type
+- Category: endpoint
+- Summary: English reader names for the conversation family: channel, frame, send<T>, recv<T>
+- Syntax: `n/a`
+- Aliases: none
+- Related: `ad`, `sermo`, `scrinium`, `meus`, `tuus`, `cursor`
+- Page: https://faberlang.dev/en-US/corpus/channel.html
+- Source: radix/corpus/ad/sermo-channel.fab
 
 #### `si`
 
@@ -2137,7 +2136,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `n/a`
 - Aliases: none
 - Related: `ad`, `sermo`, `scrinium`, `cursor`
-- Page: https://faberlang.dev/en-US/corpus/tuus.html
+- Page: https://faberlang.dev/en-US/corpus/recv.html
 - Source: radix/corpus/ad/sermo-tuus.fab
 
 #### `type-hole-union`
@@ -2434,9 +2433,9 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: operator-group
 - Category: assignment
 - Summary: Conversion-directed assignment: evaluate the right side, convert it to the statically known type of the left place through the ↦ route, then assign.
-- Syntax: `<place> ↤ <expression> [⇥ <recovery>]`
+- Syntax: `<place> ↤ <expression> [⊥ <recovery>]`
 - Aliases: `conversion-directed-assignment`, `conversio assign`
-- Related: `←`, `↦`, `⇥`, `fixum`, `varia`
+- Related: `←`, `↦`, `⊥`, `fixum`, `varia`
 - Page: https://faberlang.dev/en-US/corpus/%E2%86%A4.html
 - Source: radix/corpus/assignatio/conversio-assign.fab
 
@@ -2446,9 +2445,9 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: operator-group
 - Category: conversion
 - Summary: Converts a value with explicit runtime parsing or coercion semantics.
-- Syntax: `<expression> ↦ <type> [⇥ <recovery>]`
+- Syntax: `<expression> ↦ <type> [⊥ <recovery>]`
 - Aliases: `convert`, `conversio`
-- Related: `∷`, `⇥`
+- Related: `∷`, `⊥`
 - Page: https://faberlang.dev/en-US/corpus/%E2%86%A6.html
 - Source: radix/corpus/conversio/conversio.fab
 
@@ -2583,6 +2582,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `block-body closure` → `clausura`
 - `break` → `rumpe`
 - `bytes` → `octeti`
+- `capture by reference` → `clausura`
 - `case` → `casu`
 - `catch` → `cape`
 - `choose` → `elige`
@@ -2659,6 +2659,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `self` → `ego`
 - `set` → `copia`
 - `shared` → `commune`
+- `shared capture` → `clausura`
 - `silent noop` → `tacet`
 - `skip` → `omitte`
 - `string` → `textus`

@@ -83,11 +83,11 @@ functio tutum(numerus a, numerus b) → numerus {
 
 ### इनलाइन रूपांतरण रिकवरी {#inline-conversion-recovery}
 
-`⇥`, `↦` रूपांतरणों पर इनलाइन रिकवरी मान भी निर्दिष्ट कर सकता है:
+`⊥`, `↦` रूपांतरणों पर इनलाइन रिकवरी मान भी निर्दिष्ट कर सकता है:
 
 ```faber
 fixum textus raw ← "42"
-fixum _ n ← raw ↦ numerus ⇥ 0
+fixum _ n ← raw ↦ numerus ⊥ 0
 ```
 
 ### केवल-प्रभाव वाला विफल हो सकने वाला फ़ंक्शन {#effectonly-failable}
