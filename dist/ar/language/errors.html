@@ -37,12 +37,12 @@ locale <span class="tok-op">=</span> <span class="tok-st">"ar"</span>
         <span class="tok-kw">أعد</span> <span class="tok-nu">0</span>
     }
 }</code></pre><p>لا يُعد الاستدعاء المباشر القابل للفشل تعبيرًا عاديًا. ضع استدعاءات
-الدوال من النمط <code>→ T ⇥ E</code> داخل حدود <code class="kw">fac</code> / <code class="kw">cape</code> نشطة.</p><h3 id="inline-conversion-recovery">استرداد تحويل مضمن<a class="anchor" href="#inline-conversion-recovery">#</a></h3><p>يمكن لـ <code>⇥</code> أيضًا تحديد قيمة استرداد مضمنة على تحويلات <code>↦</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+الدوال من النمط <code>→ T ⇥ E</code> داخل حدود <code class="kw">fac</code> / <code class="kw">cape</code> نشطة.</p><h3 id="inline-conversion-recovery">استرداد تحويل مضمن<a class="anchor" href="#inline-conversion-recovery">#</a></h3><p>يمكن لـ <code>⊥</code> أيضًا تحديد قيمة استرداد مضمنة على تحويلات <code>↦</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"ar"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">ثابت</span> <span class="tok-kw">نص</span> raw <span class="tok-op">←</span> <span class="tok-st">"42"</span>
 
-<span class="tok-kw">ثابت</span> _ n <span class="tok-op">←</span> raw ↦ <span class="tok-kw">عدد</span> ⇥ <span class="tok-nu">0</span></code></pre><h3 id="effectonly-failable">تأثير قابل للفشل فقط<a class="anchor" href="#effectonly-failable">#</a></h3><p>للدوال التي تخطئ لكن لا تعيد قيمة نجاح، احذف <code>→ T</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">ثابت</span> _ n <span class="tok-op">←</span> raw ↦ <span class="tok-kw">عدد</span> ⊥ <span class="tok-nu">0</span></code></pre><h3 id="effectonly-failable">تأثير قابل للفشل فقط<a class="anchor" href="#effectonly-failable">#</a></h3><p>للدوال التي تخطئ لكن لا تعيد قيمة نجاح، احذف <code>→ T</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"ar"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">دالة</span> exigePositivum(<span class="tok-kw">عدد</span> value) <span class="tok-op">→</span> <span class="tok-kw">فراغ</span> ⇥ <span class="tok-kw">نص</span> {

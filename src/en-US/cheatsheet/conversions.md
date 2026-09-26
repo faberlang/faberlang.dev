@@ -21,19 +21,19 @@ incipit {
 
 ## Recovery on failure {#recovery}
 
-`⇥` after a conversion supplies the value to use when it fails. Without it, a
+`⊥` after a conversion supplies the value to use when it fails. Without it, a
 failed conversion travels down the [error channel](/cheatsheet/errors.html).
 
 ```faber
 incipit {
-    fixum numerus good ← "42" ↦ numerus ⇥ 0
-    fixum numerus bad ← "not a number" ↦ numerus ⇥ 0
+    fixum numerus good ← "42" ↦ numerus ⊥ 0
+    fixum numerus bad ← "not a number" ↦ numerus ⊥ 0
     nota good, bad
 }
 ```
 
-This is the same glyph as the error channel in a function signature, doing the
-same job in miniature: *this may fail, and here is the other path*.
+`⊥` is not the error channel. `⇥` only ever names the error type a function may
+fail with; `⊥` only ever holds a value. Read `⊥ 0` as *on failure, 0*.
 
 ## Chaining {#chaining}
 
@@ -63,7 +63,7 @@ incipit {
 | | Conversion `↦` | Casting |
 |---|---|---|
 | When | Runtime | Compile time |
-| Can fail | Yes — that is why `⇥` exists | No |
+| Can fail | Yes — that is why `⊥` and the error channel exist | No |
 | Means | "Parse or coerce this into that" | "I already know this is that" |
 
 A conversion does work: it reads `"42"` and produces a number, and it has to

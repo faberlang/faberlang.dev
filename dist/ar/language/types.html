@@ -314,14 +314,14 @@ locale <span class="tok-op">=</span> <span class="tok-st">"ar"</span>
 <span class="tok-kw">ثابت</span> <span class="tok-kw">عدد</span> value <span class="tok-op">←</span> <span class="tok-nu">7</span>
 
 <span class="tok-kw">ثابت</span> _ text <span class="tok-op">←</span> value ∷ <span class="tok-kw">نص</span></code></pre><h3 id="runtime-conversion">التحويل وقت التشغيل — ↦<a class="anchor" href="#runtime-conversion">#</a></h3><p>استعمل <code>↦</code> للتحويل وقت التشغيل، خصوصًا التحليل أو الإكراه الذي قد يفشل.
-وفّر استردادًا مضمنًا باستعمال <code>⇥</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+وفّر استردادًا مضمنًا باستعمال <code>⊥</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"ar"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">ثابت</span> <span class="tok-kw">نص</span> input <span class="tok-op">←</span> <span class="tok-st">"9"</span>
 
 <span class="tok-kw">ثابت</span> _ n <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ <span class="tok-kw">عدد</span>
 
-<span class="tok-kw">ثابت</span> _ safe <span class="tok-op">←</span> input ↦ <span class="tok-kw">عدد</span> ⇥ <span class="tok-nu">0</span></code></pre><p>تجسيد موجّه بالنوع:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">ثابت</span> _ safe <span class="tok-op">←</span> input ↦ <span class="tok-kw">عدد</span> ⊥ <span class="tok-nu">0</span></code></pre><p>تجسيد موجّه بالنوع:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"ar"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">ثابت</span> <span class="tok-kw">نص</span> path <span class="tok-op">←</span> <span class="tok-st">"/etc/hosts"</span>

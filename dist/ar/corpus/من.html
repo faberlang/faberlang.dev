@@ -32,27 +32,22 @@
 main {
 <span class="tok-co">    # --- Basic lista destructuring ---</span>
 
-    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    const int a <span class="tok-op">←</span> numeri[<span class="tok-nu">0</span>]
-    const int b <span class="tok-op">←</span> numeri[<span class="tok-nu">1</span>]
-    const int c <span class="tok-op">←</span> numeri[<span class="tok-nu">2</span>]
+    const _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    const [a, b, c] <span class="tok-op">←</span> numeri
     print a
     print b
     print c
 
 <span class="tok-co">    # Destructure inline lista literal</span>
-    const int primus <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>][<span class="tok-nu">0</span>]
-    const int secundus <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>][<span class="tok-nu">1</span>]
-    const int tertius <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>][<span class="tok-nu">2</span>]
+    const [primus, secundus, tertius] <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
     print primus
     print secundus
     print tertius
 
 <span class="tok-co">    # --- Mutable destructuring with varia ---</span>
 
-    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">2</span><span class="tok-op">&gt;</span> coordinata <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">200</span>]
-    var int x <span class="tok-op">←</span> coordinata[<span class="tok-nu">0</span>]
-    var int y <span class="tok-op">←</span> coordinata[<span class="tok-nu">1</span>]
+    const _ coordinata <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">200</span>]
+    var [x, y] <span class="tok-op">←</span> coordinata
     print x
     print y
     x <span class="tok-op">←</span> x <span class="tok-op">+</span> <span class="tok-nu">50</span>
@@ -62,31 +57,28 @@ main {
 
 <span class="tok-co">    # --- Partial destructuring (fewer variables than elements) ---</span>
 
-    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">5</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
-    const int unus <span class="tok-op">←</span> valores[<span class="tok-nu">0</span>]
-    const int duo <span class="tok-op">←</span> valores[<span class="tok-nu">1</span>]
+    const _ valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    const [unus, duo] <span class="tok-op">←</span> valores
     print unus
     print duo
 
 <span class="tok-co">    # --- Rest pattern with ceteri ---</span>
 
-    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">5</span><span class="tok-op">&gt;</span> res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
-    const int caput <span class="tok-op">←</span> res[<span class="tok-nu">0</span>]
-    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">5</span><span class="tok-op">&gt;</span> cauda <span class="tok-op">←</span> res
+    const _ res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    const [caput, rest cauda] <span class="tok-op">←</span> res
     print caput
     print cauda
 
 <span class="tok-co">    # --- Skip elements with underscore ---</span>
 
-    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> triplex <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
-    const int medius <span class="tok-op">←</span> triplex[<span class="tok-nu">1</span>]
+    const _ triplex <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
+    const [_, medius, _] <span class="tok-op">←</span> triplex
     print medius
 
 <span class="tok-co">    # --- Nested listas ---</span>
 
-    const list<span class="tok-op">&lt;</span>list<span class="tok-op">&lt;</span>int, <span class="tok-nu">2</span><span class="tok-op">&gt;</span>, <span class="tok-nu">2</span><span class="tok-op">&gt;</span> matrix <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]]
-    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">2</span><span class="tok-op">&gt;</span> ordo1 <span class="tok-op">←</span> matrix[<span class="tok-nu">0</span>]
-    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">2</span><span class="tok-op">&gt;</span> ordo2 <span class="tok-op">←</span> matrix[<span class="tok-nu">1</span>]
+    const _ matrix <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]]
+    const [ordo1, ordo2] <span class="tok-op">←</span> matrix
     print ordo1
     print ordo2
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1
@@ -102,7 +94,7 @@ main {
 1
 2
 1
-[1, 2, 3, 4, 5]
+[2, 3, 4, 5]
 20
 [1, 2]
 [3, 4]
@@ -336,44 +328,36 @@ class Punctum {
 main {
 <span class="tok-co">    # --- Records: object_pattern over lista of genus elements ---</span>
 
-    const list<span class="tok-op">&lt;</span>Punctum, <span class="tok-nu">2</span><span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> [Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }, Punctum { x <span class="tok-op">=</span> <span class="tok-nu">3</span>, y <span class="tok-op">=</span> <span class="tok-nu">4</span> }]
-    for from puncta const __itera_element_0 {
-        const int x <span class="tok-op">←</span> __itera_element_0.x
-        const int y <span class="tok-op">←</span> __itera_element_0.y
+    const _ puncta <span class="tok-op">←</span> [Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }, Punctum { x <span class="tok-op">=</span> <span class="tok-nu">3</span>, y <span class="tok-op">=</span> <span class="tok-nu">4</span> }]
+    for from puncta const {x, y} {
         print x <span class="tok-op">+</span> y
     }
 
 <span class="tok-co">    # --- Labeled tuples: object_pattern binds by label ---</span>
 
-    const list<span class="tok-op">&lt;</span>tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> paria <span class="tok-op">←</span> [tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span> [<span class="tok-nu">50</span>, <span class="tok-nu">60</span>], tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span> [<span class="tok-nu">70</span>, <span class="tok-nu">80</span>]]
-    for from paria const __itera_element_0 {
-        const int gx <span class="tok-op">←</span> __itera_element_0[<span class="tok-nu">0</span>]
+    const list<span class="tok-op">&lt;</span>tuple<span class="tok-op">&lt;</span>gx<span class="tok-op">:</span> int, int<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> paria <span class="tok-op">←</span> [tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span> [<span class="tok-nu">50</span>, <span class="tok-nu">60</span>], tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span> [<span class="tok-nu">70</span>, <span class="tok-nu">80</span>]]
+    for from paria const {gx} {
         print gx
     }
 
 <span class="tok-co">    # --- Positional tuples: array_pattern over fixed-width rows ---</span>
 
     const list<span class="tok-op">&lt;</span>tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> ordines <span class="tok-op">←</span> [tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>], tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span> [<span class="tok-nu">30</span>, <span class="tok-nu">40</span>]]
-    for from ordines const __itera_element_0 {
-        const int a <span class="tok-op">←</span> __itera_element_0[<span class="tok-nu">0</span>]
-        const int b <span class="tok-op">←</span> __itera_element_0[<span class="tok-nu">1</span>]
+    for from ordines const [a, b] {
         print a <span class="tok-op">+</span> b
     }
 
 <span class="tok-co">    # --- Rest patterns: first element plus the remaining lista ---</span>
 
-    const list<span class="tok-op">&lt;</span>list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span>, <span class="tok-nu">2</span><span class="tok-op">&gt;</span> matricula <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>], [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]]
-    for from matricula const __itera_element_0 {
-        const int caput <span class="tok-op">←</span> __itera_element_0[<span class="tok-nu">0</span>]
-        const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> cauda <span class="tok-op">←</span> __itera_element_0
+    const _ matricula <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>], [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]]
+    for from matricula const [caput, rest cauda] {
         print caput
         print cauda[<span class="tok-nu">1</span>]
     }
 
 <span class="tok-co">    # --- Holes: `_` skips a slot ---</span>
 
-    for from ordines const __itera_element_0 {
-        const int secundus <span class="tok-op">←</span> __itera_element_0[<span class="tok-nu">1</span>]
+    for from ordines const [_, secundus] {
         print secundus
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>3
@@ -383,9 +367,9 @@ main {
 30
 70
 1
-2
+3
 4
-5
+6
 20
 40
 </code></pre><h3 id="radixcorpusiteraexfab-canonical-keyword">radix/corpus/itera/ex.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteraexfab-canonical-keyword">#</a></h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>

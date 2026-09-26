@@ -310,14 +310,14 @@ locale <span class="tok-op">=</span> <span class="tok-st">"vi"</span>
 <span class="tok-co"># static ascription</span>
 <span class="tok-kw">hằng</span> <span class="tok-kw">số</span> value <span class="tok-op">←</span> <span class="tok-nu">7</span>
 
-<span class="tok-kw">hằng</span> _ text <span class="tok-op">←</span> value ∷ <span class="tok-kw">văn_bản</span></code></pre><h3 id="runtime-conversion">Chuyển đổi khi chạy chương trình — ↦<a class="anchor" href="#runtime-conversion">#</a></h3><p>Dùng <code>↦</code> để chuyển đổi khi chạy chương trình, đặc biệt là khi phân tích cú pháp hoặc ép kiểu có thể thất bại. Cung cấp xử lý phục hồi nội tuyến bằng <code>⇥</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">hằng</span> _ text <span class="tok-op">←</span> value ∷ <span class="tok-kw">văn_bản</span></code></pre><h3 id="runtime-conversion">Chuyển đổi khi chạy chương trình — ↦<a class="anchor" href="#runtime-conversion">#</a></h3><p>Dùng <code>↦</code> để chuyển đổi khi chạy chương trình, đặc biệt là khi phân tích cú pháp hoặc ép kiểu có thể thất bại. Cung cấp xử lý phục hồi nội tuyến bằng <code>⊥</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"vi"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">hằng</span> <span class="tok-kw">văn_bản</span> input <span class="tok-op">←</span> <span class="tok-st">"9"</span>
 
 <span class="tok-kw">hằng</span> _ n <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ <span class="tok-kw">số</span>
 
-<span class="tok-kw">hằng</span> _ safe <span class="tok-op">←</span> input ↦ <span class="tok-kw">số</span> ⇥ <span class="tok-nu">0</span></code></pre><p>Vật chất hóa theo kiểu:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">hằng</span> _ safe <span class="tok-op">←</span> input ↦ <span class="tok-kw">số</span> ⊥ <span class="tok-nu">0</span></code></pre><p>Vật chất hóa theo kiểu:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"vi"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">hằng</span> <span class="tok-kw">văn_bản</span> path <span class="tok-op">←</span> <span class="tok-st">"/etc/hosts"</span>

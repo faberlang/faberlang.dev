@@ -303,14 +303,14 @@ locale <span class="tok-op">=</span> <span class="tok-st">"hi"</span>
 <span class="tok-co"># static ascription</span>
 <span class="tok-kw">स्थिर</span> <span class="tok-kw">संख्या</span> value <span class="tok-op">←</span> <span class="tok-nu">7</span>
 
-<span class="tok-kw">स्थिर</span> _ text <span class="tok-op">←</span> value ∷ <span class="tok-kw">पाठ</span></code></pre><h3 id="runtime-conversion">रनटाइम रूपांतरण — ↦<a class="anchor" href="#runtime-conversion">#</a></h3><p>रनटाइम रूपांतरण के लिए <code>↦</code> का उपयोग करें, विशेष रूप से ऐसी पार्सिंग या कोअर्शन के लिए जो विफल हो सकती है। <code>⇥</code> के साथ इनलाइन रिकवरी दें:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">स्थिर</span> _ text <span class="tok-op">←</span> value ∷ <span class="tok-kw">पाठ</span></code></pre><h3 id="runtime-conversion">रनटाइम रूपांतरण — ↦<a class="anchor" href="#runtime-conversion">#</a></h3><p>रनटाइम रूपांतरण के लिए <code>↦</code> का उपयोग करें, विशेष रूप से ऐसी पार्सिंग या कोअर्शन के लिए जो विफल हो सकती है। <code>⊥</code> के साथ इनलाइन रिकवरी दें:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"hi"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">स्थिर</span> <span class="tok-kw">पाठ</span> input <span class="tok-op">←</span> <span class="tok-st">"9"</span>
 
 <span class="tok-kw">स्थिर</span> _ n <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ <span class="tok-kw">संख्या</span>
 
-<span class="tok-kw">स्थिर</span> _ safe <span class="tok-op">←</span> input ↦ <span class="tok-kw">संख्या</span> ⇥ <span class="tok-nu">0</span></code></pre><p>टाइप-निर्देशित मटेरियलाइज़ेशन:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">स्थिर</span> _ safe <span class="tok-op">←</span> input ↦ <span class="tok-kw">संख्या</span> ⊥ <span class="tok-nu">0</span></code></pre><p>टाइप-निर्देशित मटेरियलाइज़ेशन:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"hi"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">स्थिर</span> <span class="tok-kw">पाठ</span> path <span class="tok-op">←</span> <span class="tok-st">"/etc/hosts"</span>

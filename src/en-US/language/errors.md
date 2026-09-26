@@ -126,11 +126,12 @@ for the full treatment.
 
 ### Inline conversion recovery {#inline-conversion-recovery}
 
-`⇥` can also specify an inline recovery value on `↦` conversions:
+`⊥` specifies an inline default value on `↦` conversions (`⇥` only ever names
+an error type):
 
 ```faber
 fixum textus raw ← "42"
-fixum _ n ← raw ↦ numerus ⇥ 0
+fixum _ n ← raw ↦ numerus ⊥ 0
 ```
 
 ### Effect-only failable {#effectonly-failable}

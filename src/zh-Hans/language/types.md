@@ -555,12 +555,12 @@ fixum _ text ← value ∷ textus
 
 ### 运行时转换 — ↦ {#runtime-conversion}
 
-使用 `↦` 进行运行时转换,尤其是可能失败的解析或强制转换。用 `⇥` 提供内联恢复:
+使用 `↦` 进行运行时转换,尤其是可能失败的解析或强制转换。用 `⊥` 提供内联恢复:
 
 ```faber
 fixum textus input ← "9"
 fixum _ n ← "42" ↦ numerus
-fixum _ safe ← input ↦ numerus ⇥ 0
+fixum _ safe ← input ↦ numerus ⊥ 0
 ```
 
 类型驱动的具象化:

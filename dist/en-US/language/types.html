@@ -346,14 +346,14 @@ locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
 <span class="tok-kw">const</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> <span class="tok-nu">7</span>
 
 <span class="tok-kw">const</span> _ text <span class="tok-op">←</span> count ∷ string</code></pre><h3 id="runtime-conversion">Runtime conversion — ↦<a class="anchor" href="#runtime-conversion">#</a></h3><p>Use <code>↦</code> for runtime conversion, especially parsing or coercion that may
-fail. Supply inline recovery with <code>⇥</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+fail. Supply an inline default with <code>⊥</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">const</span> string input <span class="tok-op">←</span> <span class="tok-st">"9"</span>
 
 <span class="tok-kw">const</span> _ n <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ <span class="tok-kw">int</span>
 
-<span class="tok-kw">const</span> _ safe <span class="tok-op">←</span> input ↦ <span class="tok-kw">int</span> ⇥ <span class="tok-nu">0</span></code></pre><p>Type-directed materialization:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">const</span> _ safe <span class="tok-op">←</span> input ↦ <span class="tok-kw">int</span> ⊥ <span class="tok-nu">0</span></code></pre><p>Type-directed materialization:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">const</span> string path <span class="tok-op">←</span> <span class="tok-st">"/etc/hosts"</span>

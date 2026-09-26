@@ -25,7 +25,8 @@ of source glyphs recognised by the lexer.
 | `←` | Runtime binding, reassignment, and mutation |
 | `=` | Compile-time assignment — values known while compiling |
 | `→` | Function return type |
-| `⇥` | Alternate exit — error-channel type or inline conversion recovery |
+| `⇥` | Alternate exit — error-channel type |
+| `⊥` | Default — inline value used when a conversion fails (`↦ numerus ⊥ 0`) |
 | `∴` | Clausura joint — connects closure body to signature (`(a, b) → T ∴ a + b`) |
 
 ### Type shape {#type-shape}
@@ -235,7 +236,8 @@ which human language the keywords are rendered in.
 |-------|---------|
 | `←` | Runtime binding, reassignment, and mutation — the only assignment operator |
 | `→` | Function return type declaration |
-| `⇥` | Alternate exit: error-channel type or inline conversion recovery |
+| `⇥` | Alternate exit: error-channel type |
+| `⊥` | Default: inline value used when a conversion fails |
 | `∴` | Clausura joint — connects a closure body to its signature |
 
 #### Type shape {#type-shape}

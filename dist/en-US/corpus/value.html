@@ -49,25 +49,25 @@
 {&quot;alpha&quot;: 10}
 {&quot;x&quot;: 3, &quot;y&quot;: 4}
 [5, 6]
-</code></pre><h3 id="radixcorpusconversiovalor-genusfab-canonical-conversio">radix/corpus/conversio/valor-genus.fab (canonical · conversio)<a class="anchor" href="#radixcorpusconversiovalor-genusfab-canonical-conversio">#</a></h3><p>valor ↦ genus extraction with missing-field defaults and mandatory-field failure via ⇥ recovery.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
-<span class="tok-co"># valor — valor ↦ genus extraction with missing-field defaults and mandatory-field failure via ⇥ recovery.</span>
+</code></pre><h3 id="radixcorpusconversiovalor-genusfab-canonical-conversio">radix/corpus/conversio/valor-genus.fab (canonical · conversio)<a class="anchor" href="#radixcorpusconversiovalor-genusfab-canonical-conversio">#</a></h3><p>valor ↦ genus extraction with missing-field defaults and mandatory-field failure via ⊥ recovery.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># valor — valor ↦ genus extraction with missing-field defaults and mandatory-field failure via ⊥ recovery.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • JSON-to-struct deserialization — `valor ↦ genus` deserializes JSON objects into typed genus records.</span>
-<span class="tok-co">#   • Field policies — missing `sponte` fields zero-initialize; missing mandatory fields fail at runtime (recoverable via `⇥`); extra JSON keys are ignored.</span>
+<span class="tok-co">#   • Field policies — missing `sponte` fields zero-initialize; missing mandatory fields fail at runtime (recoverable via a `⊥` default); extra JSON keys are ignored.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • Omitting a mandatory field from the JSON and expecting a default value — only `sponte` or default-valued fields are optional; missing mandatory fields fail at runtime.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: ↦, ⇥</span>
+<span class="tok-co"># See also: ↦, ⊥</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># conversio — valor to genus extraction</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># WHY: `valor ↦ genus` deserializes JSON objects into typed records. Missing</span>
 <span class="tok-co"># defaultable fields zero-initialize; missing mandatory fields fail at runtime</span>
-<span class="tok-co"># (recoverable via `⇥`). Extra JSON keys are ignored.</span>
+<span class="tok-co"># (recoverable via a `⊥` default). Extra JSON keys are ignored.</span>
 
 <span class="tok-kw">class</span> Persona {
     string nomen
@@ -83,7 +83,7 @@
     <span class="tok-kw">assert</span> good.aetas <span class="tok-op">≡</span> <span class="tok-kw">null</span>
     <span class="tok-kw">assert</span> good.regio <span class="tok-op">≡</span> <span class="tok-st">"Roma"</span>
     <span class="tok-kw">const</span> value stale <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Livia"</span> } ↦ value
-    <span class="tok-kw">const</span> Persona recovered <span class="tok-op">←</span> stale ↦ Persona ⇥ good
+    <span class="tok-kw">const</span> Persona recovered <span class="tok-op">←</span> stale ↦ Persona ⊥ good
     <span class="tok-kw">assert</span> recovered.nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
     <span class="tok-kw">const</span> value boxed <span class="tok-op">←</span> recovered ↦ value
     <span class="tok-kw">const</span> Persona roundtrip <span class="tok-op">←</span> boxed ↦ Persona
@@ -106,9 +106,9 @@ Roma
 <span class="tok-co">#   • Recovery — `⇥` provides a fallback on variant mismatch.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Assuming `valor ↦ textus` works for non-text valor variants — only Textus and Instans wire strings are accepted; other variants fail without `⇥` recovery.</span>
+<span class="tok-co">#   • Assuming `valor ↦ textus` works for non-text valor variants — only Textus and Instans wire strings are accepted; other variants fail without a `⊥` default.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: ↦, ⇥, instans, textus</span>
+<span class="tok-co"># See also: ↦, ⊥, instans, textus</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># conversio — scalar valor extraction</span>
@@ -116,7 +116,7 @@ Roma
 <span class="tok-co"># WHY: `valor ↦ T` is the default runtime extraction for dynamic JSON carriers.</span>
 <span class="tok-co"># Scalar arms match `Valor` variants; `valor ↦ fractus` widens `Numerus` losslessly;</span>
 <span class="tok-co"># `valor ↦ textus` accepts `Textus` and `Instans` wire strings. Typed datetime</span>
-<span class="tok-co"># provenance stays on `valor ↦ instans` (see conversio/instans.fab). `⇥`</span>
+<span class="tok-co"># provenance stays on `valor ↦ instans` (see conversio/instans.fab). `⊥`</span>
 <span class="tok-co"># recovers on variant mismatch.</span>
 
 <span class="tok-kw">main</span> {
@@ -142,7 +142,7 @@ Roma
     <span class="tok-kw">const</span> ascii token <span class="tok-op">←</span> asAscii ↦ ascii
     <span class="tok-kw">assert</span> token <span class="tok-op">≡</span> <span class="tok-st">'yes'</span>
     <span class="tok-kw">const</span> value bad <span class="tok-op">←</span> <span class="tok-st">"not-a-number"</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> recovered <span class="tok-op">←</span> bad ↦ <span class="tok-kw">int</span> ⇥ <span class="tok-nu">0</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> recovered <span class="tok-op">←</span> bad ↦ <span class="tok-kw">int</span> ⊥ <span class="tok-nu">0</span>
     <span class="tok-kw">assert</span> recovered <span class="tok-op">≡</span> <span class="tok-nu">0</span>
     print count
     print <span class="tok-kw">ratio</span>

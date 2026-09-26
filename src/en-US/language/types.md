@@ -610,12 +610,12 @@ fixum _ text ← count ∷ textus
 ### Runtime conversion — ↦ {#runtime-conversion}
 
 Use `↦` for runtime conversion, especially parsing or coercion that may
-fail. Supply inline recovery with `⇥`:
+fail. Supply an inline default with `⊥`:
 
 ```faber
 fixum textus input ← "9"
 fixum _ n ← "42" ↦ numerus
-fixum _ safe ← input ↦ numerus ⇥ 0
+fixum _ safe ← input ↦ numerus ⊥ 0
 ```
 
 Type-directed materialization:

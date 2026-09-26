@@ -557,12 +557,12 @@ fixum _ text ← value ∷ textus
 
 ### 執行期轉換 — ↦ {#runtime-conversion}
 
-使用 `↦` 進行執行期轉換，尤其適用於可能失敗的剖析或強制轉型。使用 `⇥` 提供行內復原：
+使用 `↦` 進行執行期轉換，尤其適用於可能失敗的剖析或強制轉型。使用 `⊥` 提供行內復原：
 
 ```faber
 fixum textus input ← "9"
 fixum _ n ← "42" ↦ numerus
-fixum _ safe ← input ↦ numerus ⇥ 0
+fixum _ safe ← input ↦ numerus ⊥ 0
 ```
 
 由型別導向的具現化：

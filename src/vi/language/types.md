@@ -566,12 +566,12 @@ fixum _ text ← value ∷ textus
 
 ### Chuyển đổi khi chạy chương trình — ↦ {#runtime-conversion}
 
-Dùng `↦` để chuyển đổi khi chạy chương trình, đặc biệt là khi phân tích cú pháp hoặc ép kiểu có thể thất bại. Cung cấp xử lý phục hồi nội tuyến bằng `⇥`:
+Dùng `↦` để chuyển đổi khi chạy chương trình, đặc biệt là khi phân tích cú pháp hoặc ép kiểu có thể thất bại. Cung cấp xử lý phục hồi nội tuyến bằng `⊥`:
 
 ```faber
 fixum textus input ← "9"
 fixum _ n ← "42" ↦ numerus
-fixum _ safe ← input ↦ numerus ⇥ 0
+fixum _ safe ← input ↦ numerus ⊥ 0
 ```
 
 Vật chất hóa theo kiểu:

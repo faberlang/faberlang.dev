@@ -26,45 +26,45 @@
 <span class="tok-co">#   rubrum</span>
 <span class="tok-co">#   actum</span>
 
-union Color {
+enum Color {
     rubrum,
     viridis,
     caeruleum
 }
 
-union Condicio {
-    pendens,
-    actum,
-    finitum
+enum Condicio {
+    pendens <span class="tok-op">=</span> <span class="tok-nu">0</span>,
+    actum <span class="tok-op">=</span> <span class="tok-nu">1</span>,
+    finitum <span class="tok-op">=</span> <span class="tok-nu">2</span>
 }
 
 main {
-<span class="tok-co">    # Using ordo values</span>
-    const Color color <span class="tok-op">←</span> rubrum
-    const Condicio condicio <span class="tok-op">←</span> actum
+<span class="tok-co">    # Using ordo values: members are qualified by their ordo name</span>
+    const Color color <span class="tok-op">←</span> Color.rubrum
+    const Condicio condicio <span class="tok-op">←</span> Condicio.actum
 
 <span class="tok-co">    # Select by ordo</span>
-    match color {
-        case rubrum {
+    switch color {
+        case Color.rubrum {
             print <span class="tok-st">"rubrum"</span>
         }
-        case viridis {
+        case Color.viridis {
             print <span class="tok-st">"viridis"</span>
         }
-        case caeruleum {
+        case Color.caeruleum {
             print <span class="tok-st">"caeruleum"</span>
         }
     }
 
 <span class="tok-co">    # Select by ordo with numeric values</span>
-    match condicio {
-        case pendens {
+    switch condicio {
+        case Condicio.pendens {
             print <span class="tok-st">"pendens"</span>
         }
-        case actum {
+        case Condicio.actum {
             print <span class="tok-st">"actum"</span>
         }
-        case finitum {
+        case Condicio.finitum {
             print <span class="tok-st">"finitum"</span>
         }
     }

@@ -66,12 +66,13 @@ like a failable sync call.</p><p>Async and sync streams carry the channel too: <
 pull a promise that can yield, end, or fail (the first failure ends the
 stream, handled by <code>itera ex</code>); <code>fiunt → T ⇥ E</code> makes the stream call itself
 failable, recovered with <code class="kw">fac</code> / <code class="kw">cape</code>.</p><p>See <a href="/en-US/language/functions.html#two-channel-promises">Functions — two-channel promises</a>
-for the full treatment.</p><h3 id="inline-conversion-recovery">Inline conversion recovery<a class="anchor" href="#inline-conversion-recovery">#</a></h3><p><code>⇥</code> can also specify an inline recovery value on <code>↦</code> conversions:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+for the full treatment.</p><h3 id="inline-conversion-recovery">Inline conversion recovery<a class="anchor" href="#inline-conversion-recovery">#</a></h3><p><code>⊥</code> specifies an inline default value on <code>↦</code> conversions (<code>⇥</code> only ever names
+an error type):</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">const</span> string raw <span class="tok-op">←</span> <span class="tok-st">"42"</span>
 
-<span class="tok-kw">const</span> _ n <span class="tok-op">←</span> raw ↦ <span class="tok-kw">int</span> ⇥ <span class="tok-nu">0</span></code></pre><h3 id="effectonly-failable">Effect-only failable<a class="anchor" href="#effectonly-failable">#</a></h3><p>For functions that error but do not return a success value, omit <code>→ T</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">const</span> _ n <span class="tok-op">←</span> raw ↦ <span class="tok-kw">int</span> ⊥ <span class="tok-nu">0</span></code></pre><h3 id="effectonly-failable">Effect-only failable<a class="anchor" href="#effectonly-failable">#</a></h3><p>For functions that error but do not return a success value, omit <code>→ T</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">fn</span> exigePositivum(<span class="tok-kw">int</span> value) <span class="tok-op">→</span> <span class="tok-kw">void</span> ⇥ string {

@@ -302,14 +302,14 @@ locale <span class="tok-op">=</span> <span class="tok-st">"th-TH"</span>
 <span class="tok-co"># static ascription</span>
 <span class="tok-kw">คงที่</span> จําน<span class="tok-kw">วน</span> value <span class="tok-op">←</span> <span class="tok-nu">7</span>
 
-<span class="tok-kw">คงที่</span> _ text <span class="tok-op">←</span> value ∷ <span class="tok-kw">ข้อความ</span></code></pre><h3 id="runtime-conversion">การแปลงขณะรันไทม์ — ↦<a class="anchor" href="#runtime-conversion">#</a></h3><p>ใช้ <code>↦</code> สำหรับการแปลงขณะรันไทม์ โดยเฉพาะการแปลงจากข้อความหรือการบังคับแปลงชนิดข้อมูลที่อาจล้มเหลว กำหนดการกู้คืนแบบอินไลน์ด้วย <code>⇥</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">คงที่</span> _ text <span class="tok-op">←</span> value ∷ <span class="tok-kw">ข้อความ</span></code></pre><h3 id="runtime-conversion">การแปลงขณะรันไทม์ — ↦<a class="anchor" href="#runtime-conversion">#</a></h3><p>ใช้ <code>↦</code> สำหรับการแปลงขณะรันไทม์ โดยเฉพาะการแปลงจากข้อความหรือการบังคับแปลงชนิดข้อมูลที่อาจล้มเหลว กำหนดการกู้คืนแบบอินไลน์ด้วย <code>⊥</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"th-TH"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">คงที่</span> <span class="tok-kw">ข้อความ</span> input <span class="tok-op">←</span> <span class="tok-st">"9"</span>
 
 <span class="tok-kw">คงที่</span> _ n <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ จําน<span class="tok-kw">วน</span>
 
-<span class="tok-kw">คงที่</span> _ safe <span class="tok-op">←</span> input ↦ จําน<span class="tok-kw">วน</span> ⇥ <span class="tok-nu">0</span></code></pre><p>การสร้างค่าตามชนิดข้อมูล:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">คงที่</span> _ safe <span class="tok-op">←</span> input ↦ จําน<span class="tok-kw">วน</span> ⊥ <span class="tok-nu">0</span></code></pre><p>การสร้างค่าตามชนิดข้อมูล:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"th-TH"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">คงที่</span> <span class="tok-kw">ข้อความ</span> path <span class="tok-op">←</span> <span class="tok-st">"/etc/hosts"</span>

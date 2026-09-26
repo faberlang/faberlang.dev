@@ -40,7 +40,7 @@ main {
         print <span class="tok-st">"caught"</span>
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>attempt 1
-</code></pre><h3 id="radixcorpuscapereceptio-declinefab-supporting-reject">radix/corpus/cape/receptio-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpuscapereceptio-declinefab-supporting-reject">#</a></h3><p>cape AIR decline rows: whole-loop dum/itera cape stays out under the loop-spectrum causes, a rethrow from a recovery arm declines (rethrow_in_recovery), and the cura construct keeps its independent deferred-init keep-out.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+</code></pre><h3 id="radixcorpuscapereceptio-declinefab-supporting-reject">radix/corpus/cape/receptio-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpuscapereceptio-declinefab-supporting-reject">#</a></h3><p>cape AIR decline rows: whole-loop dum/itera cape stays out under the loop-spectrum causes, a rethrow from a recovery arm declines (rethrow_in_recovery).</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># receptio decline — the Tier 0.5 keep-outs stay fail-closed.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -55,9 +55,6 @@ main {
 <span class="tok-co">#   3. rethrow — a throw from inside the catch arm is a rethrow; it</span>
 <span class="tok-co">#      declines to Tier 2 fail-closed and is never silently treated as a</span>
 <span class="tok-co">#      recovered value: SEM059 rethrow_in_recovery</span>
-<span class="tok-co">#   4. cura construct — the cape handler itself does not decline; the</span>
-<span class="tok-co">#      construct's independent deferred-init ruling keeps the function out</span>
-<span class="tok-co">#      of AIR: SEM059 deferred_local_init</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • expecting the trailing loop `cape` to recover per iteration — the</span>
@@ -66,10 +63,8 @@ main {
 <span class="tok-co">#   • expecting a rethrow to admit because the region admitted — the</span>
 <span class="tok-co">#      recovery arm is checked as a catch region; throwing from it is the</span>
 <span class="tok-co">#      named Tier 2 decline</span>
-<span class="tok-co">#   • reading the cura row as a handler decline — the handler admits; the</span>
-<span class="tok-co">#      construct's own keep-out is what fails</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: cape, dum, itera, cura, iace, receptio-air</span>
+<span class="tok-co"># See also: cape, dum, itera, iace, receptio-air</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># 1. whole-loop cape on dum — loop-spectrum keep-out</span>
@@ -98,11 +93,4 @@ functio reicit(bivalens malum) <span class="tok-op">→</span> numerus ⇥ textu
         iace <span class="tok-st">"reicitur"</span>
     }
     redde <span class="tok-nu">2</span>
-}
-
-<span class="tok-co"># 4. cura construct — the handler admits; deferred-init keeps the function out</span>
-@ <span class="tok-kw">radix</span> lane <span class="tok-st">"air"</span>
-functio cura_recepta() <span class="tok-op">→</span> numerus {
-    cura <span class="tok-st">"arena"</span> fixum _ res { redde <span class="tok-nu">1</span> } cape err { redde <span class="tok-nu">0</span> }
-    redde <span class="tok-nu">3</span>
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuscapecapefab-canonical-keyword">radix/corpus/cape/cape.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpuscapereceptio-declinefab-supporting-reject">radix/corpus/cape/receptio-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">來源</span><ul><li>[&quot;radix/corpus/cape/cape.fab&quot;]</li></ul></div></footer></div></body></html>

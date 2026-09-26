@@ -56,7 +56,7 @@ assignment reads right-to-left into the name. `nota` prints.
 | [Loops](/cheatsheet/loops.html) | `itera` over values, keys, and ranges; `dum` |
 | [Control flow](/cheatsheet/control-flow.html) | `si` / `sin` / `secus`, `elige`, `discerne` over unions |
 | [Errors and catching](/cheatsheet/errors.html) | The `⇥` error channel, `iace`, and `cape` on many block forms |
-| [Conversions](/cheatsheet/conversions.html) | `↦` conversion, recovery with `⇥`, conversion vs casting |
+| [Conversions](/cheatsheet/conversions.html) | `↦` conversion, recovery with `⊥`, conversion vs casting |
 | [Imports](/cheatsheet/imports.html) | Standard library, local files, aliasing, and `publica` re-exports |
 | [Reader locales](/localization.html) | The same program in eight human languages, side by side |
 | [Testing](/cheatsheet/testing.html) | `probandum`, `proba`, `adfirma`, tags, running tests |

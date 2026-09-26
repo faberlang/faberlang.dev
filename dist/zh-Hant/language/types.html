@@ -301,14 +301,14 @@ locale <span class="tok-op">=</span> <span class="tok-st">"zh-Hant"</span>
 <span class="tok-co"># static ascription</span>
 <span class="tok-kw">定值</span> <span class="tok-kw">整數</span> value <span class="tok-op">←</span> <span class="tok-nu">7</span>
 
-<span class="tok-kw">定值</span> _ text <span class="tok-op">←</span> value ∷ <span class="tok-kw">文字</span></code></pre><h3 id="runtime-conversion">執行期轉換 — ↦<a class="anchor" href="#runtime-conversion">#</a></h3><p>使用 <code>↦</code> 進行執行期轉換，尤其適用於可能失敗的剖析或強制轉型。使用 <code>⇥</code> 提供行內復原：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">定值</span> _ text <span class="tok-op">←</span> value ∷ <span class="tok-kw">文字</span></code></pre><h3 id="runtime-conversion">執行期轉換 — ↦<a class="anchor" href="#runtime-conversion">#</a></h3><p>使用 <code>↦</code> 進行執行期轉換，尤其適用於可能失敗的剖析或強制轉型。使用 <code>⊥</code> 提供行內復原：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"zh-Hant"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">定值</span> <span class="tok-kw">文字</span> input <span class="tok-op">←</span> <span class="tok-st">"9"</span>
 
 <span class="tok-kw">定值</span> _ n <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ <span class="tok-kw">整數</span>
 
-<span class="tok-kw">定值</span> _ safe <span class="tok-op">←</span> input ↦ <span class="tok-kw">整數</span> ⇥ <span class="tok-nu">0</span></code></pre><p>由型別導向的具現化：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+<span class="tok-kw">定值</span> _ safe <span class="tok-op">←</span> input ↦ <span class="tok-kw">整數</span> ⊥ <span class="tok-nu">0</span></code></pre><p>由型別導向的具現化：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"zh-Hant"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">定值</span> <span class="tok-kw">文字</span> path <span class="tok-op">←</span> <span class="tok-st">"/etc/hosts"</span>

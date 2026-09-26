@@ -8,16 +8,16 @@ locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
     <span class="tok-kw">const</span> string s <span class="tok-op">←</span> <span class="tok-nu">42</span> ↦ string
     <span class="tok-kw">const</span> f64 f <span class="tok-op">←</span> <span class="tok-st">"3.14159"</span> ↦ f64
     print n, s, f
-}</code></pre><h2 id="recovery">Recovery on failure<a class="anchor" href="#recovery">#</a></h2><p><code>⇥</code> after a conversion supplies the value to use when it fails. Without it, a
+}</code></pre><h2 id="recovery">Recovery on failure<a class="anchor" href="#recovery">#</a></h2><p><code>⊥</code> after a conversion supplies the value to use when it fails. Without it, a
 failed conversion travels down the <a href="/en-US/cheatsheet/errors.html">error channel</a>.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> good <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ <span class="tok-kw">int</span> ⇥ <span class="tok-nu">0</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> bad <span class="tok-op">←</span> <span class="tok-st">"not a number"</span> ↦ <span class="tok-kw">int</span> ⇥ <span class="tok-nu">0</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> good <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ <span class="tok-kw">int</span> ⊥ <span class="tok-nu">0</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> bad <span class="tok-op">←</span> <span class="tok-st">"not a number"</span> ↦ <span class="tok-kw">int</span> ⊥ <span class="tok-nu">0</span>
     print good, bad
-}</code></pre><p>This is the same glyph as the error channel in a function signature, doing the
-same job in miniature: <em>this may fail, and here is the other path</em>.</p><h2 id="chaining">Chaining<a class="anchor" href="#chaining">#</a></h2><p>Conversions apply left to right.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
+}</code></pre><p><code>⊥</code> is not the error channel. <code>⇥</code> only ever names the error type a function may
+fail with; <code>⊥</code> only ever holds a value. Read <code>⊥ 0</code> as <em>on failure, 0</em>.</p><h2 id="chaining">Chaining<a class="anchor" href="#chaining">#</a></h2><p>Conversions apply left to right.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
 <span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
 <span class="tok-kw">main</span> {
@@ -30,7 +30,7 @@ locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
     <span class="tok-kw">const</span> i32 narrow <span class="tok-op">←</span> <span class="tok-st">"255"</span> ↦ <span class="tok-kw">int</span><span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span>
     <span class="tok-kw">const</span> f32 single <span class="tok-op">←</span> <span class="tok-st">"1.5"</span> ↦ f32
     print narrow, single
-}</code></pre><h2 id="not-casting">Conversion is not casting<a class="anchor" href="#not-casting">#</a></h2><div class="table-scroll"><table><thead><tr><th>Conversion <code>↦</code></th><th>Casting</th></tr></thead><tbody><tr><td>When</td><td>Runtime</td><td>Compile time</td></tr><tr><td>Can fail</td><td>Yes — that is why <code>⇥</code> exists</td><td>No</td></tr><tr><td>Means</td><td>&quot;Parse or coerce this into that&quot;</td><td>&quot;I already know this is that&quot;</td></tr></tbody></table></div><p>A conversion does work: it reads <code>&quot;42&quot;</code> and produces a number, and it has to
+}</code></pre><h2 id="not-casting">Conversion is not casting<a class="anchor" href="#not-casting">#</a></h2><div class="table-scroll"><table><thead><tr><th>Conversion <code>↦</code></th><th>Casting</th></tr></thead><tbody><tr><td>When</td><td>Runtime</td><td>Compile time</td></tr><tr><td>Can fail</td><td>Yes — that is why <code>⊥</code> and the error channel exist</td><td>No</td></tr><tr><td>Means</td><td>&quot;Parse or coerce this into that&quot;</td><td>&quot;I already know this is that&quot;</td></tr></tbody></table></div><p>A conversion does work: it reads <code>&quot;42&quot;</code> and produces a number, and it has to
 cope with <code>&quot;banana&quot;</code>. A cast asserts something to the compiler and produces no
 runtime behaviour. If a value might not be what you claim, you want <code>↦</code> and a
 recovery, not a cast.</p><p>Related: <a href="/en-US/cheatsheet/types.html">Types and widths</a> ·

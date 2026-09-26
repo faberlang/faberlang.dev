@@ -28,6 +28,7 @@ test <span class="tok-st">"vel chains to the first non-nihil value"</span> {
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • Nullish coalescing — `vel` supplies a fallback when the left operand is `nihil`</span>
 <span class="tok-co">#   • Chaining — multiple `vel` expressions fall through until the first non-`nihil` value</span>
+<span class="tok-co">#   • Short-circuit — like `et`/`aut`, the right operand runs only when the left is `nihil`</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • confusing vel (nullish coalescing, checks nihil only) with aut (logical OR), or using vel for conversio recovery instead of ⇥</span>
@@ -46,7 +47,17 @@ test <span class="tok-st">"vel chains to the first non-nihil value"</span> {
 <span class="tok-co">#   coalesceExpr :← expr 'vel' expr</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
-<span class="tok-co">#   ignotus, Marcus, 0, false, defectum, inventum (vel.expected).</span>
+<span class="tok-co">#   ignotus, Marcus, 0, false, defectum, inventum, 7, supplementum, 9 (vel.expected).</span>
+
+fn fortasse(bool adest) <span class="tok-op">→</span> int <span class="tok-op">∪</span> null {
+    if adest { return <span class="tok-nu">7</span> }
+    return null
+}
+
+fn supplementum(int valor) <span class="tok-op">→</span> int {
+    print <span class="tok-st">"supplementum"</span>
+    return valor
+}
 
 main {
 <span class="tok-co">    # Basic nihil coalescing</span>
@@ -83,6 +94,12 @@ main {
     const string primum <span class="tok-op">←</span> ((a coalesce b) coalesce c) coalesce <span class="tok-st">"nihil"</span>
 <span class="tok-co">    # "inventum"</span>
     print primum
+
+<span class="tok-co">    # Short-circuit: the fallback runs only when the left side is nihil</span>
+<span class="tok-co">    # 7 (no "supplementum" line)</span>
+    print fortasse(true) coalesce supplementum(<span class="tok-nu">9</span>)
+<span class="tok-co">    # "supplementum", then 9</span>
+    print fortasse(false) coalesce supplementum(<span class="tok-nu">9</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>ignotus
 Marcus
 0
@@ -90,4 +107,7 @@ Marcus
 falsum
 defectum
 inventum
+7
+supplementum
+9
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusvelvelfab-canonical-operator-group">radix/corpus/vel/vel.fab (canonical · operator-group)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">स्रोत</span><ul><li>[&quot;radix/corpus/vel/vel.fab&quot;]</li></ul></div></footer></div></body></html>
