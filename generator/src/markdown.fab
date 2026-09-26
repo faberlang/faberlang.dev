@@ -354,6 +354,7 @@ functio est_initium_blocki(textus linea) → bivalens {
 # ──────────────────────────────────────────────
 
 # Convert full Markdown body to Document IR blocks.
+@ publica
 functio converte_nodes(textus source, textus site_locale) → lista<doc_mod.Node> {
     fixum textus nl ← su.nl()
     fixum lista<textus> lines ← su.divide(source, nl)

@@ -6,6 +6,7 @@
 importa ex "./string_util" * ut su
 
 # A single code fence extracted from Markdown.
+@ publica
 genus Fence {
     textus locale
     textus modus
@@ -15,6 +16,7 @@ genus Fence {
 }
 
 # Extract all code fences from Markdown source.
+@ publica
 functio extract(textus source) → lista<Fence> {
     varia lista<Fence> fences ← vacua
     fixum textus nl_char ← su.nl()

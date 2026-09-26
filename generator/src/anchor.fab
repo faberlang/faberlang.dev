@@ -5,6 +5,7 @@
 importa ex "./string_util" * ut su
 
 # A heading with its stable anchor ID.
+@ publica
 genus Heading {
     numerus level
     textus text
@@ -13,6 +14,7 @@ genus Heading {
 }
 
 # Extract all headings from Markdown source.
+@ publica
 functio extract(textus source) → lista<Heading> {
     varia lista<Heading> headings ← vacua
     fixum textus nl_char ← su.nl()

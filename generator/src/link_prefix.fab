@@ -37,6 +37,7 @@ functio est_content_path(textus href) → bivalens {
 }
 
 
+@ publica
 functio content_href(textus href, textus site_locale) → textus {
     si site_locale.longitudo() ≡ 0 ergo redde href
     si non su.initium_cum(href, "/") ergo redde href

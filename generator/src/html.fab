@@ -23,6 +23,7 @@ functio li(doc_mod.Node child) → doc_mod.Node {
 }
 
 # Render a full HTML page from a Pagina.
+@ publica
 functio genera_paginam(types_mod.Pagina pag, textus stylesheet_link) → textus {
     varia textus body_class ← "docs"
     si pag.section ≡ "" {

@@ -2,6 +2,7 @@
 # Centralizes textus operations so the rest of the generator reads clearly.
 
 # Newline character constant.
+@ publica
 functio nl() → textus {
     redde "\n"
 }
@@ -9,6 +10,7 @@ functio nl() → textus {
 # Find the first index of needle in haystack. Returns -1 if not found.
 # Uses littera (single-character sectio) for the first-char quick check,
 # falling back to sectio only on first-character match.
+@ publica
 functio initium_index(textus haystack, textus needle) → numerus {
     si needle.longitudo() ≡ 0 ergo redde 0
     si haystack.longitudo() < needle.longitudo() ergo redde -1
@@ -30,6 +32,7 @@ functio initium_index(textus haystack, textus needle) → numerus {
 }
 
 # Find first index of needle in haystack, starting from position start.
+@ publica
 functio initium_index_post(textus haystack, textus needle, numerus start) → numerus {
     si needle.longitudo() ≡ 0 ergo redde start
 
@@ -45,12 +48,14 @@ functio initium_index_post(textus haystack, textus needle, numerus start) → nu
 }
 
 # Check if text starts with prefix.
+@ publica
 functio initium_cum(textus text, textus prefix) → bivalens {
     si text.longitudo() < prefix.longitudo() ergo redde falsum
     redde text.sectio(0, prefix.longitudo()) ≡ prefix
 }
 
 # Split text by a delimiter, returning a lista of parts.
+@ publica
 functio divide(textus text, textus delim) → lista<textus> {
     varia lista<textus> parts ← vacua
     varia numerus start ← 0
@@ -75,6 +80,7 @@ functio divide(textus text, textus delim) → lista<textus> {
 }
 
 # Trim leading and trailing whitespace.
+@ publica
 functio recide(textus text) → textus {
     redde text.recide()
 }
@@ -83,11 +89,13 @@ functio recide(textus text) → textus {
 # textus[i] expression is neither equality-comparable with literals nor
 # correctly emitted to Rust in the current compiler, so the parser uses this
 # sectio-based helper when it needs a comparable character.
+@ publica
 functio littera_ad(textus s, numerus i) → textus {
     redde s.sectio(i, i + 1)
 }
 
 # True when ch is an ASCII digit.
+@ publica
 functio est_digitus(textus ch) → bivalens {
     redde ch ≡ "0" aut ch ≡ "1" aut ch ≡ "2" aut ch ≡ "3" aut ch ≡ "4"
         aut ch ≡ "5" aut ch ≡ "6" aut ch ≡ "7" aut ch ≡ "8" aut ch ≡ "9"

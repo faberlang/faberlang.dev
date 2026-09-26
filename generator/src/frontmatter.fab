@@ -3,12 +3,14 @@
 importa ex "./string_util" * ut su
 
 # Result of splitting frontmatter from body.
+@ publica
 genus Split {
     tabula<textus, textus> fields
     textus body
 }
 
 # Split a Markdown source into frontmatter fields and body.
+@ publica
 functio divide(textus source) → Split {
     fixum textus plus3 ← "+++"
     fixum numerus primus ← su.initium_index(source, plus3)
@@ -53,6 +55,7 @@ functio parse_toml_lines(textus toml_text, textus nl_char) → tabula<textus, te
 }
 
 # Remove surrounding quotes from a TOML string value.
+@ publica
 functio strip_quotes(textus value) → textus {
     fixum numerus len ← value.longitudo()
     si len < 2 ergo redde value

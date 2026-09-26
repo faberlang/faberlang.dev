@@ -1,52 +1,63 @@
 # Document IR for Speculum HTML output.
 # New chrome must be modeled here and serialized with html().
 
+@ publica
 genus Attr {
     textus nomen
     textus valor
 }
 
+@ publica
 discretio Node {
     Element { textus tag_name lista<Attr> attrs lista<Node> children },
     Text { textus valor },
     Frag { lista<Node> children }
 }
 
+@ publica
 genus Document {
     Node root
 }
 
+@ publica
 functio attr(textus nomen, textus valor) → Attr {
     redde Attr { nomen = nomen, valor = valor }
 }
 
+@ publica
 functio text(textus value) → Node {
     redde finge Text { valor = value } ∷ Node
 }
 
+@ publica
 functio frag(lista<Node> children) → Node {
     redde finge Frag { children = children } ∷ Node
 }
 
+@ publica
 functio element(textus tag, lista<Attr> attrs, lista<Node> children) → Node {
     redde finge Element { tag_name = tag, attrs = attrs, children = children } ∷ Node
 }
 
+@ publica
 functio leaf(textus tag, lista<Attr> attrs, textus value) → Node {
     varia lista<Node> children ← vacua
     children.appende(text(value))
     redde element(tag, attrs, children)
 }
 
+@ publica
 functio void_element(textus tag, lista<Attr> attrs) → Node {
     fixum lista<Node> children ← vacua
     redde element(tag, attrs, children)
 }
 
+@ publica
 functio document(Node root) → Document {
     redde Document { root = root }
 }
 
+@ publica
 functio is_empty(Node node) → bivalens {
     discerne node {
         casu Text fixum valor { redde valor ≡ "" }
@@ -127,6 +138,7 @@ functio is_void_element(textus tag) → bivalens {
     redde falsum
 }
 
+@ publica
 functio node_html(Node node) → textus {
     discerne node {
         casu Text fixum valor { redde html_escape(valor) }
@@ -151,6 +163,7 @@ functio node_html(Node node) → textus {
     }
 }
 
+@ publica
 functio html(Document doc) → textus {
     redde "<!DOCTYPE html>\n" + node_html(doc.root)
 }

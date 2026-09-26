@@ -5,6 +5,7 @@ importa ex "./fence" * ut fence_mod
 importa ex "./anchor" * ut anchor_mod
 
 # A documentation page in any locale.
+@ publica
 genus Pagina {
     textus iter
     textus titulus
@@ -28,6 +29,7 @@ genus SiteManifest {
 }
 
 # Build a Pagina from raw Markdown source.
+@ publica
 functio aedifica_paginam(textus iter, textus source, textus site_locale, textus reader_locale) → Pagina {
     fixum fm.Split split ← fm.divide(source)
     fixum textus titulus ← field_vale(split.fields, "title", iter)
@@ -40,6 +42,7 @@ functio aedifica_paginam(textus iter, textus source, textus site_locale, textus 
 }
 
 # Get a string value from frontmatter, with fallback.
+@ publica
 functio field_vale(tabula<textus, textus> fields, textus key, textus fallback) → textus {
     si fields.habet(key) {
         redde fields[key] ↦ textus

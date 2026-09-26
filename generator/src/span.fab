@@ -92,6 +92,7 @@ functio classifica(textus span) → textus {
 
 # Render an inline code span to Document IR.
 # Wraps in code class=kw, code class=typ, or plain code.
+@ publica
 functio genera_span_node(textus span) → doc_mod.Node {
     fixum textus cls ← classifica(span)
     si cls ≡ "kw" ergo redde doc_mod.leaf("code", [doc_mod.attr("class", "kw")], span)
