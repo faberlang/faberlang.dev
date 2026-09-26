@@ -19,7 +19,7 @@ functio initium_index(textus haystack, textus needle) → numerus {
 
     dum i ≤ hlen - nlen {
         # First-char quick check
-        si littera(haystack, i) ≡ littera(needle, 0) {
+        si littera_ad(haystack, i) ≡ littera_ad(needle, 0) {
             si nlen ≡ 1 ergo redde i
             si haystack.sectio(i, i + nlen) ≡ needle ergo redde i
         }
@@ -83,7 +83,7 @@ functio recide(textus text) → textus {
 # textus[i] expression is neither equality-comparable with literals nor
 # correctly emitted to Rust in the current compiler, so the parser uses this
 # sectio-based helper when it needs a comparable character.
-functio littera(textus s, numerus i) → textus {
+functio littera_ad(textus s, numerus i) → textus {
     redde s.sectio(i, i + 1)
 }
 
