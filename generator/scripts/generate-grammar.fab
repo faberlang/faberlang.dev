@@ -81,8 +81,8 @@ fn is_hole_label(string label) → bool {
 }
 
 fn has_flag(map<string, bool> flags, string key) → bool {
-    const bool ∪ null flag ← flags[key]
-    if flag is null {
+    const bool ∪ none flag ← flags[key]
+    if flag is none {
         return false
     }
     return flag ↦ bool
@@ -213,8 +213,8 @@ fn present_of(map<string, string> glossary) → map<string, bool> {
 }
 
 fn glossary_has(map<string, bool> present, string key) → bool {
-    const bool ∪ null flag ← present[key]
-    if flag is null {
+    const bool ∪ none flag ← present[key]
+    if flag is none {
         return false
     }
     return flag ↦ bool

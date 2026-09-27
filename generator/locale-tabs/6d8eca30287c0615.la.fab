@@ -1,5 +1,5 @@
 functio primum<T>(lista<T> res) → T ∪ nihil {
-    si res.longitudo() ≡ 0 ergo redde nihil
+    si res.longitudo() ≡ 0 ergo redde nulla
     redde res[0]
 }
 
