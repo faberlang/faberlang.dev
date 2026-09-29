@@ -11,17 +11,17 @@ importa ex "./document_ir" * ut doc_mod
 importa ex "./link_prefix" * ut lp
 
 genus CorpusExample {
-    textus path
-    textus term
-    textus kind
-    textus category
-    textus summary
-    textus syntax
-    textus related
-    textus aliases
-    bivalens canonical
-    textus source
-    textus expected
+    varia textus path
+    varia textus term
+    varia textus kind
+    varia textus category
+    varia textus summary
+    varia textus syntax
+    varia textus related
+    varia textus aliases
+    varia bivalens canonical
+    varia textus source
+    varia textus expected
 }
 
 functio lista_vale(textus raw) → lista<textus> {

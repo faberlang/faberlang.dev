@@ -5,8 +5,8 @@ importa ex "./string_util" * ut su
 # Result of splitting frontmatter from body.
 @ publica
 genus Split {
-    tabula<textus, textus> fields
-    textus body
+    varia tabula<textus, textus> fields
+    varia textus body
 }
 
 # Split a Markdown source into frontmatter fields and body.

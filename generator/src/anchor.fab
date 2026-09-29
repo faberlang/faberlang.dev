@@ -7,10 +7,10 @@ importa ex "./string_util" * ut su
 # A heading with its stable anchor ID.
 @ publica
 genus Heading {
-    numerus level
-    textus text
-    textus anchor
-    numerus linea
+    varia numerus level
+    varia textus text
+    varia textus anchor
+    varia numerus linea
 }
 
 # Extract all headings from Markdown source.

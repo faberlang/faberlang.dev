@@ -7,25 +7,25 @@ importa ex "./anchor" * ut anchor_mod
 # A documentation page in any locale.
 @ publica
 genus Pagina {
-    textus iter
-    textus titulus
-    textus section
-    numerus positio
-    textus corpus
-    tabula<textus, textus> metadata
-    lista<fence_mod.Fence> fences
-    lista<anchor_mod.Heading> headings
-    lista<textus> sources
-    textus site_locale
-    textus reader_locale
+    varia textus iter
+    varia textus titulus
+    varia textus section
+    varia numerus positio
+    varia textus corpus
+    varia tabula<textus, textus> metadata
+    varia lista<fence_mod.Fence> fences
+    varia lista<anchor_mod.Heading> headings
+    varia lista<textus> sources
+    varia textus site_locale
+    varia textus reader_locale
 }
 
 # The site manifest describes every page.
 genus SiteManifest {
-    lista<Pagina> paginae
-    lista<textus> locales
-    textus default_locale
-    textus version
+    varia lista<Pagina> paginae
+    varia lista<textus> locales
+    varia textus default_locale
+    varia textus version
 }
 
 # Build a Pagina from raw Markdown source.

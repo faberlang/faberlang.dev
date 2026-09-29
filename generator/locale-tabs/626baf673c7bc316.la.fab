@@ -1,6 +1,6 @@
 genus Punctum {
-    numerus x
-    numerus y
+    varia numerus x
+    varia numerus y
 
     functio summa() → numerus {
         redde ego.x + ego.y

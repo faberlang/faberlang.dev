@@ -1,6 +1,6 @@
 genus Punctum {
-    numerus x
-    numerus y
+    varia numerus x
+    varia numerus y
 }
 
 incipit {

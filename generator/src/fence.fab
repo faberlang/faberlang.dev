@@ -8,11 +8,11 @@ importa ex "./string_util" * ut su
 # A single code fence extracted from Markdown.
 @ publica
 genus Fence {
-    textus locale
-    textus modus
-    textus outcome
-    textus source
-    numerus linea
+    varia textus locale
+    varia textus modus
+    varia textus outcome
+    varia textus source
+    varia numerus linea
 }
 
 # Extract all code fences from Markdown source.

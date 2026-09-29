@@ -1,6 +1,6 @@
 genus Persona {
-    textus nomen
-    numerus aetas
+    varia textus nomen
+    varia numerus aetas
 }
 
 incipit {

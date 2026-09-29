@@ -25,8 +25,8 @@ importa ex "./link_prefix" * ut lp
 
 # A heading split into its title text and optional anchor id.
 genus AnchoredHeading {
-    textus title
-    textus anchor
+    varia textus title
+    varia textus anchor
 }
 
 

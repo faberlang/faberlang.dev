@@ -3,8 +3,8 @@
 
 @ publica
 genus Attr {
-    textus nomen
-    textus valor
+    varia textus nomen
+    varia textus valor
 }
 
 @ publica
@@ -16,7 +16,7 @@ discretio Node {
 
 @ publica
 genus Document {
-    Node root
+    varia Node root
 }
 
 @ publica
