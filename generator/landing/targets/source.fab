@@ -1,6 +1,0 @@
-incipit {
-    fixum tensor<f32, [2, 3]> a ← vacua
-    fixum tensor<f32, [3, 4]> b ← vacua
-    fixum tensor<f32, [2, 4]> product ← a · b
-    nota product
-}

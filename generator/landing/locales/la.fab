@@ -1,6 +1,23 @@
+genus Span {
+    fixum f64 low
+    fixum f64 high
+
+    functio contains(f64 x) → bivalens {
+        redde ego.low ≤ x et x ≤ ego.high
+    }
+
+    functio center() → f64 {
+        redde (ego.low + ego.high) ÷ 2.0
+    }
+}
+
+functio choose<T>(bivalens first, T a, T b) → T {
+    redde first ✓ a ✗ b
+}
+
 incipit {
-    fixum tensor<f32, [2, 3]> a ← vacua
-    fixum tensor<f32, [3, 4]> b ← vacua
-    fixum tensor<f32, [2, 4]> product ← a · b
-    nota product
+    fixum Span bytes ← Span { low = 0.0, high = 255.0 }
+    nota bytes.center()
+    nota choose(bytes.contains(300.0), "inside", "outside")
+    nota -7 / 2
 }

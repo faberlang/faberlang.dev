@@ -1,6 +1,23 @@
+kiểu Span {
+    hằng f64 low
+    hằng f64 high
+
+    hàm contains(f64 x) → logic {
+        trả tôi.low ≤ x và x ≤ tôi.high
+    }
+
+    hàm center() → f64 {
+        trả (tôi.low + tôi.high) ÷ 2.0
+    }
+}
+
+hàm choose<T>(logic first, T a, T b) → T {
+    trả first ✓ a ✗ b
+}
+
 bắt_đầu {
-    hằng ten_xo<f32, [2, 3]> a ← tập_rỗng
-    hằng ten_xo<f32, [3, 4]> b ← tập_rỗng
-    hằng ten_xo<f32, [2, 4]> product ← a · b
-    ghi_chú product
+    hằng Span bytes ← Span { low = 0.0, high = 255.0 }
+    ghi_chú bytes.center()
+    ghi_chú choose(bytes.contains(300.0), "inside", "outside")
+    ghi_chú -7 / 2
 }

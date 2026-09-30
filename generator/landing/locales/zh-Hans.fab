@@ -1,6 +1,23 @@
+类 Span {
+    常量 f64 low
+    常量 f64 high
+
+    函数 contains(f64 x) → 布尔 {
+        返回 自身.low ≤ x 且 x ≤ 自身.high
+    }
+
+    函数 center() → f64 {
+        返回 (自身.low + 自身.high) ÷ 2.0
+    }
+}
+
+函数 choose<T>(布尔 first, T a, T b) → T {
+    返回 first ✓ a ✗ b
+}
+
 入口 {
-    常量 张量<f32, [2, 3]> a ← 空集
-    常量 张量<f32, [3, 4]> b ← 空集
-    常量 张量<f32, [2, 4]> product ← a · b
-    显示 product
+    常量 Span bytes ← Span { low = 0.0, high = 255.0 }
+    显示 bytes.center()
+    显示 choose(bytes.contains(300.0), "inside", "outside")
+    显示 -7 / 2
 }

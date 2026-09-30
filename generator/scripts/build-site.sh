@@ -391,28 +391,43 @@ if [ "$FULL_SITE" = true ]; then
             exit 1
         fi
 
-        # Landing page checks (/) — user outcome, honesty bounds, and proofs.
-        # The capability ladder is no longer a card grid: each rung is stated by
-        # the section that demonstrates it, so the checks below assert the
-        # not-shipped boundaries survive rather than looking for the old grid.
+        # Landing page checks (/) — what the language is, the locale doors,
+        # the cross-compile proof, the libraries, and the honesty bounds.
+        # These run on the raw generated page, before highlighting.
         smoke_contains "${OUTPUT_DIR}/index.html" 'class="landing"' "landing body class"
-        smoke_contains "${OUTPUT_DIR}/index.html" "Write compute programs" "landing headline"
+        smoke_contains "${OUTPUT_DIR}/index.html" "Written by models," "landing headline"
+        smoke_contains "${OUTPUT_DIR}/index.html" "Built for models to write" "landing LLM-first section"
+        smoke_contains "${OUTPUT_DIR}/index.html" "A mechanical grammar" "landing grammar point"
+        smoke_contains "${OUTPUT_DIR}/index.html" "Explicit static and generic types" "landing typing point"
+        smoke_contains "${OUTPUT_DIR}/index.html" "Math-oriented operators" "landing operators point"
+        smoke_contains "${OUTPUT_DIR}/index.html" "Start in your own language" "landing locale section"
+        smoke_contains "${OUTPUT_DIR}/index.html" "Write it once. Put it in the project you already have." "landing cross-compile section"
+        smoke_contains "${OUTPUT_DIR}/index.html" "Libraries written in Faber" "landing libraries section"
         smoke_contains "${OUTPUT_DIR}/index.html" "device inference is not shipped" "landing inference bound"
-        smoke_contains "${OUTPUT_DIR}/index.html" "Readable in your language" "landing locale axis"
-        smoke_contains "${OUTPUT_DIR}/index.html" "Training through Metal or CUDA" "landing training section"
-        smoke_contains "${OUTPUT_DIR}/index.html" "faber run --backend cuda" "landing CUDA route"
-        smoke_contains "${OUTPUT_DIR}/index.html" "Inference is being built next" "landing inference status"
-        smoke_contains "${OUTPUT_DIR}/index.html" "Future · multi-device scale" "landing multi-device status"
-        smoke_contains "${OUTPUT_DIR}/index.html" "const tensor&lt;f32, [2, 3]&gt; a ← empty" "landing English reader panel"
-        smoke_contains "${OUTPUT_DIR}/index.html" "fixum tensor&lt;f32, [2, 3]&gt; a ← vacua" "landing Latin reader panel"
+        smoke_contains "${OUTPUT_DIR}/index.html" "fail-closed" "landing device fail-closed bound"
+        # Each locale tile must link to that locale's docs home, and that
+        # home must exist in the built tree.
+        for site in en-US th-TH zh-Hans zh-Hant vi ar hi; do
+            smoke_contains "${OUTPUT_DIR}/index.html" "href=\"/${site}/\"" "landing locale door ${site}"
+            if [ ! -s "${OUTPUT_DIR}/${site}/index.html" ]; then
+                echo "ERROR: landing locale door target missing: ${site}/index.html" >&2
+                exit 1
+            fi
+        done
+        for lib in Norma Gradus Triga Tela Inferentia Cista; do
+            smoke_contains "${OUTPUT_DIR}/index.html" "<strong>${lib}</strong>" "landing library ${lib}"
+        done
+        smoke_contains "${OUTPUT_DIR}/index.html" "const Span bytes ← Span { low = 0.0, high = 255.0 }" "landing English reader panel"
+        smoke_contains "${OUTPUT_DIR}/index.html" "fixum Span bytes ← Span { low = 0.0, high = 255.0 }" "landing Latin reader panel"
         smoke_contains "${OUTPUT_DIR}/index.html" "ภาษาไทย" "landing Thai reader panel"
-        smoke_contains "${OUTPUT_DIR}/index.html" "tensor&lt;f32" "landing demo shows tensor types"
-        smoke_contains "${OUTPUT_DIR}/index.html" "a · b" "landing reader panel shows matmul glyph"
-        smoke_contains "${OUTPUT_DIR}/index.html" "a.matmul(b)" "landing Rust target shows matrix multiplication"
-        smoke_contains "${OUTPUT_DIR}/index.html" "tensor_matmul" "landing WASM target shows tensor lowering"
-        smoke_contains "${OUTPUT_DIR}/index.html" "@compute @workgroup_size" "landing WGSL target panel"
-        smoke_contains "${OUTPUT_DIR}/index.html" "metal_stdlib" "landing Metal target panel"
-        smoke_contains "${OUTPUT_DIR}/index.html" "triga-budapest.png" "landing GPU frame"
+        smoke_contains "${OUTPUT_DIR}/index.html" "÷ 2.0" "landing demo shows true division"
+        smoke_contains "${OUTPUT_DIR}/index.html" "pub struct Span" "landing Rust target panel"
+        smoke_contains "${OUTPUT_DIR}/index.html" "class Span {" "landing TypeScript/Swift target panel"
+        smoke_contains "${OUTPUT_DIR}/index.html" "type Span struct" "landing Go target panel"
+        smoke_contains "${OUTPUT_DIR}/index.html" "radix emit --target swift" "landing Swift target panel"
+        smoke_contains "${OUTPUT_DIR}/index.html" "<code>faber targets</code>" "landing capability table source"
+        smoke_contains "${OUTPUT_DIR}/index.html" "grammar productions" "landing grammar size"
+        smoke_contains "${OUTPUT_DIR}/index.html" "triga-budapest.png" "landing Triga frame"
         # The reader axis must never present Latin under an English label again.
         if grep -q 'fl-loc-t-en[^>]*>English' "${OUTPUT_DIR}/index.html" \
            && grep -q 'fl-loc-p-en[^>]*>.*functio ' "${OUTPUT_DIR}/index.html"; then

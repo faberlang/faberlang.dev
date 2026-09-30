@@ -2,9 +2,27 @@
 // Requires the faber language-runtime crate (add to Cargo.toml):
 //   faber = { path = "../faber" }  # adjust path for your layout
 
-fn main() {
-    let a: faber::Tensor<f32> /* tensor<fractus<f32>, [2, 3]> */ = faber::Tensor::vacua();
-    let b: faber::Tensor<f32> /* tensor<fractus<f32>, [3, 4]> */ = faber::Tensor::vacua();
-    let product: faber::Tensor<f32> /* tensor<fractus<f32>, [2, 4]> */ = { let t6 = &a; t6.matmul(&(b)) }.expect("tensor matmul failed");
-    println!("{:?}", product);
+// SCR-09 recorded suppressions: identifier/literal fidelity, plan-directed
+// casts and parameter passing, library-shaped artifact items.
+#![allow(non_camel_case_types, non_snake_case, dead_code, clippy::unreadable_literal, clippy::cast_lossless, clippy::cast_possible_truncation, clippy::cast_possible_wrap, clippy::cast_sign_loss, clippy::cast_precision_loss, clippy::needless_pass_by_value)]
+
+#[derive(Clone, PartialEq)]
+pub struct Span {
+    pub low: f64,
+    pub high: f64,
+}
+
+impl ::core::fmt::Debug for Span {
+    fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+        write!(f, "Span {{ low = {}, high = {} }}", faber::display_fractus(*&self.low), faber::display_fractus(*&self.high))
+    }
+}
+
+impl Span {
+    pub fn contains(&self, x: f64) -> bool {
+        self.low <= x && x <= self.high
+    }
+    pub fn center(&self) -> f64 {
+        (self.low + self.high) / 2.0
+    }
 }

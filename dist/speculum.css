@@ -1829,6 +1829,104 @@ pre.fl-src {
 .fl-agents a:hover { border-bottom-color: var(--glyph); }
 .fl-agents code { font-family: var(--mono); font-size: 13px; }
 
+/* -- hero run output (sits directly under the locale demo) -- */
+.fl-hero .fl-run { margin-top: 0; }
+
+/* -- locale strip: a door into each language's own docs home -- */
+.fl-locs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 150px), 1fr));
+    gap: var(--s3);
+    margin: 0 0 var(--s4);
+}
+.fl-proof a.fl-loc, .fl-loc {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s1);
+    padding: var(--s4) var(--s4);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: var(--paper-alt);
+    text-decoration: none;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+.fl-proof a.fl-loc:hover, .fl-loc:hover { border-color: var(--glyph); background: var(--paper-deep); }
+.fl-loc-name { font-size: 20px; line-height: 1.3; color: var(--ink); }
+.fl-loc-code { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-faint); }
+
+/* -- why it suits models: four plain points -- */
+.fl-points {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: var(--s5);
+}
+.fl-point {
+    padding: var(--s5);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: var(--paper-alt);
+}
+.fl-point strong { display: block; font-family: var(--serif); font-size: 18px; color: var(--ink); margin-bottom: var(--s2); font-weight: 600; }
+.fl-point span { display: block; font-size: 14px; line-height: 1.65; color: var(--ink-dim); }
+.fl-point code { font-family: var(--mono); font-size: 13px; color: var(--ink); }
+.fl-point a { color: var(--glyph); text-decoration: none; border-bottom: 1px solid var(--rule-strong); white-space: nowrap; }
+.fl-point a:hover { border-bottom-color: var(--glyph); }
+
+/* -- libraries -- */
+.fl-libs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: var(--s4);
+    margin-bottom: var(--s6);
+}
+.fl-proof a.fl-lib, .fl-lib {
+    display: block;
+    padding: var(--s4) var(--s5);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    background: var(--paper-alt);
+    text-decoration: none;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+.fl-proof a.fl-lib:hover, .fl-lib:hover { border-color: var(--glyph); background: var(--paper-deep); }
+.fl-lib strong { display: inline; font-family: var(--serif); font-size: 18px; color: var(--ink); font-weight: 600; }
+.fl-lib em { display: inline; margin-left: var(--s2); font-style: normal; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--glyph); }
+.fl-lib > span { display: block; margin-top: var(--s2); font-size: 13.5px; line-height: 1.6; color: var(--ink-dim); }
+.fl-lib code { font-family: var(--mono); font-size: 12px; }
+
+/* -- target capability table (cells come from `faber targets`) -- */
+.fl-cap {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 14px;
+    margin-top: var(--s5);
+}
+.fl-cap caption { text-align: left; font-size: 13px; color: var(--ink-faint); padding-bottom: var(--s3); }
+.fl-cap th, .fl-cap td {
+    text-align: left;
+    padding: var(--s3) var(--s4) var(--s3) 0;
+    border-bottom: 1px solid var(--rule);
+    color: var(--ink-dim);
+    vertical-align: top;
+}
+.fl-cap thead th { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-faint); font-weight: 500; }
+.fl-cap tr.fl-cap-group th {
+    padding-top: var(--s5);
+    font-family: var(--serif);
+    font-size: 15px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--ink);
+    font-weight: 600;
+}
+.fl-cap td strong { color: var(--ink); white-space: nowrap; }
+.fl-cap td:nth-child(2), .fl-cap td:nth-child(3), .fl-cap td:nth-child(4) { white-space: nowrap; }
+@media (max-width: 720px) {
+    /* The sentence column drops under narrow widths; the three measured cells stay. */
+    .fl-cap th:nth-child(5), .fl-cap td:nth-child(5) { display: none; }
+    .fl-cap tr.fl-cap-group th { display: table-cell; }
+}
+
 .fl-foot {
     max-width: calc(var(--measure) + var(--gutter) * 2);
     margin: 0 auto;

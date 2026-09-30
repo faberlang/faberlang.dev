@@ -1,6 +1,23 @@
+वर्ग Span {
+    स्थिर f64 low
+    स्थिर f64 high
+
+    फलन contains(f64 x) → तार्किक {
+        लौटाओ मैं.low ≤ x और x ≤ मैं.high
+    }
+
+    फलन center() → f64 {
+        लौटाओ (मैं.low + मैं.high) ÷ 2.0
+    }
+}
+
+फलन choose<T>(तार्किक first, T a, T b) → T {
+    लौटाओ first ✓ a ✗ b
+}
+
 आरंभ {
-    स्थिर टेंसर<f32, [2, 3]> a ← खाली
-    स्थिर टेंसर<f32, [3, 4]> b ← खाली
-    स्थिर टेंसर<f32, [2, 4]> product ← a · b
-    दिखाओ product
+    स्थिर Span bytes ← Span { low = 0.0, high = 255.0 }
+    दिखाओ bytes.center()
+    दिखाओ choose(bytes.contains(300.0), "inside", "outside")
+    दिखाओ -7 / 2
 }

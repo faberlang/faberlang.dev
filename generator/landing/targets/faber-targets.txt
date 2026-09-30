@@ -1,0 +1,18 @@
+rust available=yes check=yes build=yes run=yes package=yes note=primary backend; full package build + run via `faber`
+faber available=yes check=yes build=yes run=no package=no note=canonical Faber re-emission for compiler inspection; package compilation not supported
+ts available=yes check=yes build=yes run=no package=no note=file emission supported; package compilation not yet supported
+go available=yes check=yes build=yes run=no package=no note=file emission supported; package compilation not yet supported
+python available=yes check=yes build=yes run=no package=no note=file emission supported; package compilation not yet supported
+haskell available=yes check=yes build=yes run=no package=no note=file emission supported; package compilation not yet supported
+wasm-text available=yes check=yes build=yes run=no package=no note=supported MIR-backed WAT emit (fail-closed subset); binary conversion via external wat2wasm/wasm-tools; external host + faber_* imports; not faber run/package
+wasm available=yes check=yes build=yes run=no package=no note=supported MIR-backed WAT emit (fail-closed subset); binary conversion via external wat2wasm/wasm-tools; external host + faber_* imports; not faber run/package
+llvm-text available=yes check=yes build=yes run=yes package=yes note=CUDA device execution via `faber run --backend cuda` or a compiled FMIR image runner; `-t llvm-text` remains emit-only
+metal-text available=yes check=yes build=yes run=yes package=yes note=Metal device execution via `faber run --backend metal` or a compiled FMIR image runner; `-t metal-text` remains emit-only
+wgsl-text available=yes check=yes build=yes run=no package=no note=supported MIR-backed WGSL compute shader source (fail-closed device-safe subset); external naga validate; not GPU launch or package runtime
+sexp available=yes check=yes build=yes run=no package=no note=supported MIR-backed Racket validation target (fail-closed subset); run via external racket; not a package runtime
+swift available=yes check=yes build=yes run=no package=no note=file emission supported; package compilation not yet supported
+fhir available=yes check=yes build=yes run=yes package=yes note=portable FHIR package envelope via `faber build --target fhir`; load and lower to FMIR for run (Rust stays explicit)
+llvm-host available=yes check=yes build=yes run=yes package=yes note=native host executable via `faber build/run --target llvm-host` (MIR-to-LLVM emitter + llvm-as/clang + faber-host-llvm runtime archive on the local host triple)
+fmir-text available=yes check=yes build=yes run=yes package=yes note=faber package MIR image target: `faber build --target fmir-text`
+fmir available=yes check=yes build=yes run=yes package=yes note=faber package MIR image target: `faber build --target fmir`
+fmir-bin available=yes check=yes build=yes run=yes package=yes note=faber package MIR image target: `faber build --target fmir-bin`

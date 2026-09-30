@@ -1,6 +1,23 @@
+ชนิด Span {
+    คงที่ f64 low
+    คงที่ f64 high
+
+    ฟังก์ชัน contains(f64 x) → ตรรกะ {
+        คืน ตัวฉัน.low ≤ x และ x ≤ ตัวฉัน.high
+    }
+
+    ฟังก์ชัน center() → f64 {
+        คืน (ตัวฉัน.low + ตัวฉัน.high) ÷ 2.0
+    }
+}
+
+ฟังก์ชัน choose<T>(ตรรกะ first, T a, T b) → T {
+    คืน first ✓ a ✗ b
+}
+
 เริ่ม {
-    คงที่ เทนเซอร์<f32, [2, 3]> a ← เซตว่าง
-    คงที่ เทนเซอร์<f32, [3, 4]> b ← เซตว่าง
-    คงที่ เทนเซอร์<f32, [2, 4]> product ← a · b
-    บันทึก product
+    คงที่ Span bytes ← Span { low = 0.0, high = 255.0 }
+    บันทึก bytes.center()
+    บันทึก choose(bytes.contains(300.0), "inside", "outside")
+    บันทึก -7 / 2
 }

@@ -1,6 +1,23 @@
+類型 Span {
+    定值 f64 low
+    定值 f64 high
+
+    函式 contains(f64 x) → 布林 {
+        傳回 自身.low ≤ x 且 x ≤ 自身.high
+    }
+
+    函式 center() → f64 {
+        傳回 (自身.low + 自身.high) ÷ 2.0
+    }
+}
+
+函式 choose<T>(布林 first, T a, T b) → T {
+    傳回 first ✓ a ✗ b
+}
+
 入口 {
-    定值 張量<f32, [2, 3]> a ← 空集
-    定值 張量<f32, [3, 4]> b ← 空集
-    定值 張量<f32, [2, 4]> product ← a · b
-    註記 product
+    定值 Span bytes ← Span { low = 0.0, high = 255.0 }
+    註記 bytes.center()
+    註記 choose(bytes.contains(300.0), "inside", "outside")
+    註記 -7 / 2
 }

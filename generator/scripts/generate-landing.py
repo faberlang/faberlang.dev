@@ -2,30 +2,28 @@
 """
 generate-landing.py — Generate the Faber landing page at /.
 
-Narrative order: first screen is three doors, not a scroll.
+The page answers "what is this?" before anything else, in this order:
 
-    0. experimental banner + short claim + MIT/Radix line
-    1. see the language (short English Gradus program), try it, for agents
-    2. below the fold: reader locales, emit dumps, lanes, GPU honesty,
-       Triga frames, speed table, where to go
+    1. claim + the one program, in every reader locale, with its real output
+    2. locale strip: a door into each language's own docs home
+    3. why it suits models: mechanical grammar, explicit types, math operators
+    4. cross-compilation: one library emitted for each target, plus a
+       capability table parsed from `faber targets`
+    5. libraries (Norma, Gradus, Triga, Tela, Inferentia, Cista)
+    6. the grammar, sized from the generated EBNF
+    7. compute as one capability among them, with its honesty bounds
+    8. where to go; machine surfaces
 
-The lanes table used to sit directly under the buttons, asking a visitor to
-read an inventory of HIR/AIR/MIR/FMIR before seeing a line of Faber. It reads
-far better as a summary of two things already shown than as an introduction to
-two things not yet shown.
+Compute and GPU work used to be the headline (commit e8d3dde91). They are now
+one section among several: the language is the subject, not one workload.
 
-There was also a "one tool, four honest states" card grid here. In this order
-every rung it named — shipped reader locales, proven Metal/CUDA training,
-inference being built, multi-device as frontier — has already been made
-concretely by the section that demonstrates it, so the grid had become a
-summary of what the reader just finished reading.
-
-Both demo axes show the SAME program, and every panel is compiler output
-captured by capture-landing-panels.sh — never hand-authored. Run that script
-after a compiler or reader-pack change, then rebuild.
+Every code panel is compiler output captured by capture-landing-panels.sh —
+never hand-authored. Run that script after a compiler or reader-pack change,
+then rebuild. Counts (grammar productions) and the target capability table are
+read from their sources at generation time so they cannot drift.
 
 CLI:
-    generate-landing.py <output.html> [--landing path] [--matrix path]
+    generate-landing.py <output.html> [--landing path] [--ebnf path]
                         [--css /speculum.css]
 """
 
@@ -36,46 +34,65 @@ import html as html_mod
 import re
 from pathlib import Path
 
-# Reader-pack axis. Order is the argument: the English reader surface, then
-# canonical Faber, then the human packs.
+# Reader-pack axis. Order is the argument: English reader surface, canonical
+# Latin, then the human packs. `site` is the docs home the locale strip links
+# to; Latin is canonical Faber and has no docs site of its own.
 LOCALES: list[dict[str, str]] = [
-    {"id": "en", "name": "English", "code": "en", "script": "",
+    {"id": "en", "name": "English", "code": "en", "script": "", "site": "en-US",
      "note": "English reader surface — the base spelling for everyday source"},
-    {"id": "la", "name": "Latin", "code": "la", "script": "",
+    {"id": "la", "name": "Latin", "code": "la", "script": "", "site": "",
      "note": "canonical Faber — the classical surface the language is named for"},
-    {"id": "th-TH", "name": "ภาษาไทย", "code": "th-TH", "script": "th",
+    {"id": "th-TH", "name": "ภาษาไทย", "code": "th-TH", "script": "th", "site": "th-TH",
      "note": "Thai — spaceless script"},
-    {"id": "zh-Hans", "name": "简体中文", "code": "zh-Hans", "script": "zh",
+    {"id": "zh-Hans", "name": "简体中文", "code": "zh-Hans", "script": "zh", "site": "zh-Hans",
      "note": "Simplified Chinese"},
-    {"id": "zh-Hant", "name": "繁體中文", "code": "zh-Hant", "script": "zh",
+    {"id": "zh-Hant", "name": "繁體中文", "code": "zh-Hant", "script": "zh", "site": "zh-Hant",
      "note": "Traditional Chinese"},
-    {"id": "vi", "name": "Tiếng Việt", "code": "vi", "script": "",
+    {"id": "vi", "name": "Tiếng Việt", "code": "vi", "script": "", "site": "vi",
      "note": "Vietnamese"},
-    {"id": "ar", "name": "العربية", "code": "ar", "script": "ar",
+    {"id": "ar", "name": "العربية", "code": "ar", "script": "ar", "site": "ar",
      "note": "Arabic — right-to-left, bidi isolated", "rtl": "1"},
-    {"id": "hi", "name": "हिन्दी", "code": "hi", "script": "hi",
+    {"id": "hi", "name": "हिन्दी", "code": "hi", "script": "hi", "site": "hi",
      "note": "Hindi — Devanagari"},
 ]
 
-# The target axis splits in two. Ordinary lowering comes from the demo program;
-# the GPU shading languages need an `@ nucleum` kernel, which is a different
-# source file. Mixing them in one tab strip made the kernel look like a variant
-# of the same program when it is not.
+# Library targets shown as emitted source. Only targets whose emitted library
+# was compile-checked in its own toolchain are listed (see the capture script).
 TARGETS: list[dict[str, str]] = [
     {"id": "rust", "name": "Rust",
-     "note": "HIR projection — reviewable source; package product path via Cargo"},
-    {"id": "go", "name": "Go", "note": "HIR projection — file emission + e2e floors"},
-    {"id": "ts", "name": "TypeScript", "note": "HIR projection — file emission + e2e floors",
-     "elide_before": "        const a: FaberTensor<number> = FaberTensor.empty"},
-    {"id": "llvm-text", "name": "LLVM IR",
-     "note": "MIR staging text for external LLVM tools — not embedded native codegen"},
+     "note": "builds as a Cargo package with `faber build`; uses the small faber runtime crate",
+     "elide_before": "#[derive(Clone, PartialEq)]"},
+    {"id": "ts", "name": "TypeScript",
+     "note": "a source file you add to your project; imports `@faber/runtime`",
+     "elide_before": "class Span {"},
+    {"id": "go", "name": "Go", "note": "a source file in `package main`"},
+    {"id": "swift", "name": "Swift", "note": "a source file; no runtime dependency"},
 ]
 
-GPU_TARGETS: list[dict[str, str]] = [
-    {"id": "wgsl-text", "name": "WGSL", "kernel": "1",
-     "note": "WebGPU compute shader"},
-    {"id": "metal-text", "name": "Metal", "kernel": "1",
-     "note": "Apple GPU compute shader"},
+# Capability table rows: (target id in `faber targets`, display name, what it is).
+# The yes/no cells come from the toolchain; the sentence is editorial and kept
+# within what the cells and `radix/docs/design/target-capability-matrix.md`
+# actually say.
+CAPABILITY_GROUPS: list[tuple[str, list[tuple[str, str, str]]]] = [
+    ("Source for your existing project", [
+        ("rust", "Rust", "The primary target: a full Cargo package, and runnable through faber."),
+        ("ts", "TypeScript", "Source emission; package assembly is not built yet."),
+        ("go", "Go", "Source emission; package assembly is not built yet."),
+        ("swift", "Swift", "Source emission; a subset."),
+        ("python", "Python", "Source emission; a limited subset."),
+        ("haskell", "Haskell", "Source emission; a limited subset."),
+    ]),
+    ("Systems, native and device", [
+        ("llvm-host", "Native executable", "MIR lowered to LLVM, linked for the local host."),
+        ("wasm-text", "WebAssembly", "WAT text; binary conversion uses external tools."),
+        ("llvm-text", "LLVM IR", "Text for LLVM tooling; also the CUDA device route."),
+        ("metal-text", "Metal", "Shader source; device execution through the Metal route."),
+        ("wgsl-text", "WGSL", "WebGPU compute shader source."),
+    ]),
+    ("Portable package images", [
+        ("fhir", "FHIR", "A portable analyzed-program package envelope."),
+        ("fmir", "FMIR", "A source-independent package image that faber can run."),
+    ]),
 ]
 
 FRAMES: list[dict[str, str]] = [
@@ -90,23 +107,77 @@ FRAMES: list[dict[str, str]] = [
      "cap": "Primitive geometry set from <code>triga:geometria</code>"},
 ]
 
+# Libraries: honest one-line status, verified against each repo's own README /
+# AGENTS.md / source on 2026-09-30. Status wording is deliberately plain.
+LIBRARIES: list[dict[str, str]] = [
+    {"name": "Norma", "href": "/en-US/libraries/norma.html", "status": "the standard library",
+     "desc": "The default public library: text, JSON, TOML and YAML, files, HTTP, time, "
+             "crypto, collections and math, imported as <code>norma:*</code>."},
+    {"name": "Gradus", "href": "/en-US/libraries/gradus.html", "status": "autograd and ML",
+     "desc": "Automatic differentiation, losses, optimizers and neural-network primitives. "
+             "Models are pure functions; the backward pass is compiler-generated code."},
+    {"name": "Triga", "href": "/en-US/libraries/triga.html", "status": "graphics and geometry",
+     "desc": "Scene graph, materials and geometry modeled on three.js shapes, written as a "
+             "small, readable Faber library."},
+    {"name": "Tela", "href": "https://github.com/faberlang/tela", "status": "early; UI and view protocol",
+     "desc": "Typed HTML and SVG view values with fail-closed validation and deterministic "
+             "HTML and CSS output. The static renderer comes first."},
+    {"name": "Inferentia", "href": "https://github.com/faberlang/inferentia", "status": "in development",
+     "desc": "A local-first GGUF inference server written in Faber. Today it is a command-line "
+             "shell; model loading and HTTP serving are the next stages."},
+    {"name": "Cista", "href": "/en-US/toolchain/packages.html", "status": "package store",
+     "desc": "The package manager: install, resolve, inspect and cache Faber packages, "
+             "independent of the compiler."},
+]
+
 
 def esc(s: str) -> str:
     return html_mod.escape(s)
 
 
-def read_matrix(path: Path) -> dict[str, str]:
-    """Pull generated per-target coverage off the targets page, so the hero
-    statistics cannot drift away from their own source."""
-    out: dict[str, str] = {}
-    if not path.is_file():
-        return out
-    for row in re.finditer(
-        r"^\|\s*([a-z-]+)\s*\|\s*(\d+)\s*\|\s*(\d+)\s*\|\s*(\d+)%\s*\|",
-        path.read_text(encoding="utf-8"), re.M,
-    ):
-        out[row.group(1)] = row.group(4)
+def ebnf_productions(path: Path) -> int:
+    """Count grammar productions in the generated EBNF so the page's size claim
+    is read from the grammar, not typed in."""
+    text = path.read_text(encoding="utf-8")
+    return len(re.findall(r"^# \[\d+\] ", text, re.M))
+
+
+def read_targets(path: Path) -> dict[str, dict[str, str]]:
+    """Parse `faber targets` rows: `key available=yes check=yes build=yes ...`."""
+    out: dict[str, dict[str, str]] = {}
+    for line in path.read_text(encoding="utf-8").splitlines():
+        key, _, rest = line.partition(" ")
+        row = {m.group(1): m.group(2) for m in re.finditer(r"(\w+)=(\S+)", rest.split(" note=")[0])}
+        if key and row:
+            out[key] = row
     return out
+
+
+def yn(v: str | None) -> str:
+    return "yes" if v == "yes" else "—"
+
+
+def capability_table(targets: dict[str, dict[str, str]]) -> str:
+    rows = ""
+    for group, items in CAPABILITY_GROUPS:
+        rows += f'        <tr class="fl-cap-group"><th colspan="5" scope="colgroup">{esc(group)}</th></tr>\n'
+        for tid, name, sentence in items:
+            t = targets.get(tid)
+            if t is None or t.get("available") != "yes":
+                raise SystemExit(f"capability table: `{tid}` is not an available target in `faber targets`")
+            rows += (
+                f'        <tr><td><strong>{esc(name)}</strong></td>'
+                f'<td>{yn(t.get("build"))}</td><td>{yn(t.get("package"))}</td>'
+                f'<td>{yn(t.get("run"))}</td><td>{esc(sentence)}</td></tr>\n'
+            )
+    return f"""\
+    <table class="fl-cap">
+      <caption>What each target does today. The first three columns are read from <code>faber targets</code>.</caption>
+      <thead><tr><th>Target</th><th>Emits</th><th>Package</th><th>Runs</th><th>In practice</th></tr></thead>
+      <tbody>
+{rows}      </tbody>
+    </table>
+"""
 
 
 def demo_tabs(*, root_id: str, file_label: str, tablist_label: str,
@@ -146,7 +217,7 @@ def build_locale_panels(d: Path) -> list[dict[str, str]]:
     for loc in LOCALES:
         f = d / "locales" / f"{loc['id']}.fab"
         if not f.is_file():
-            continue
+            raise SystemExit(f"missing locale panel {f}; run capture-landing-panels.sh")
         name = (f'<span class="{loc["script"]}">{esc(loc["name"])}</span>'
                 if loc["script"] else esc(loc["name"]))
         panels.append({
@@ -165,62 +236,82 @@ def build_locale_panels(d: Path) -> list[dict[str, str]]:
     return panels
 
 
-def build_target_panels(d: Path, targets: list[dict[str, str]]) -> list[dict[str, str]]:
+def build_target_panels(d: Path) -> list[dict[str, str]]:
     panels = []
-    for t in targets:
+    for t in TARGETS:
         f = d / "targets" / f"out.{t['id']}.txt"
         if not f.is_file():
-            continue
+            raise SystemExit(f"missing target panel {f}; run capture-landing-panels.sh")
         body = f.read_text(encoding="utf-8").strip()
-        # Some backends prepend a fixed runtime shim. Showing 120 lines of it
-        # buries the lowering the panel exists to demonstrate — so cut it, and
-        # say so in the output rather than trimming quietly.
+        # Some backends prepend a fixed header or runtime shim. Showing it buries
+        # the lowering the panel exists to demonstrate — so cut it, and say so in
+        # the output rather than trimming quietly.
         marker = t.get("elide_before")
         if marker and marker in body:
             head, _, tail = body.partition(marker)
-            body = (f"// … {head.count(chr(10))} lines of generated "
-                    f"display/runtime shim elided …\n\n{marker}{tail}")
-        origin = "kernel.fab" if t.get("kernel") else "main.fab"
+            body = (f"// … {head.count(chr(10)) + 1} lines of generated header and "
+                    f"runtime shim elided …\n\n{marker}{tail}")
         panels.append({
             "id": esc(t["id"]), "name": esc(t["name"]),
             "tab": esc(t["name"]), "hint": esc(t["id"]),
-            "label": f'<code>radix emit --target {esc(t["id"])} {origin}</code> '
-                     f'<span class="fdt-note">— {esc(t["note"])}</span>',
+            "label": f'<code>radix emit --target {esc(t["id"])} span.fab</code> '
+                     f'<span class="fdt-note">— {t["note"].replace("`", "")}</span>',
             "code": esc(body),
             "lang": esc(t["id"]),
         })
     return panels
 
 
+def locale_strip() -> str:
+    tiles = ""
+    for loc in LOCALES:
+        if not loc["site"]:
+            continue
+        script = f' class="{loc["script"]}"' if loc["script"] else ""
+        rtl = ' dir="rtl"' if loc.get("rtl") else ""
+        tiles += (
+            f'      <a class="fl-loc" href="/{loc["site"]}/" hreflang="{esc(loc["code"])}" '
+            f'lang="{esc(loc["code"])}">'
+            f'<span class="fl-loc-name"><span{script}{rtl}>{esc(loc["name"])}</span></span>'
+            f'<span class="fl-loc-code">{esc(loc["code"])}</span></a>\n'
+        )
+    return f'    <div class="fl-locs" role="list" aria-label="Documentation by language">\n{tiles}    </div>\n'
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("output", type=Path)
     ap.add_argument("--landing", type=Path, default=None)
-    ap.add_argument("--matrix", type=Path, default=None)
+    ap.add_argument("--ebnf", type=Path, default=None)
     ap.add_argument("--css", type=str, default="/speculum.css")
     args = ap.parse_args()
 
     gen = Path(__file__).resolve().parent.parent
     args.landing = args.landing or gen / "landing"
-    args.matrix = args.matrix or gen.parent / "src" / "en-US" / "tooling" / "targets.md"
+    args.ebnf = args.ebnf or gen.parent.parent / "faber" / "docs" / "EBNF.md"
 
-    matrix = read_matrix(args.matrix)
+    productions = ebnf_productions(args.ebnf)
+    targets = read_targets(args.landing / "targets" / "faber-targets.txt")
     locale_panels = build_locale_panels(args.landing)
-    target_panels = build_target_panels(args.landing, TARGETS)
-    gpu_panels = build_target_panels(args.landing, GPU_TARGETS)
-
-    kernel_fab = (args.landing / "targets" / "kernel.fab").read_text(encoding="utf-8").strip()
-    gradus_fab = (args.landing / "gradus-hello.fab").read_text(encoding="utf-8").strip()
+    target_panels = build_target_panels(args.landing)
+    program_out = (args.landing / "program.out.txt").read_text(encoding="utf-8").strip()
+    span_fab = (args.landing / "targets" / "span.fab").read_text(encoding="utf-8").strip()
 
     read_tabs = demo_tabs(
         root_id="fl-loc", file_label="main.fab · reader locale",
         tablist_label="Reader locale", panels=locale_panels)
     target_tabs = demo_tabs(
-        root_id="fl-tgt", file_label="main.fab → target",
+        root_id="fl-tgt", file_label="span.fab → target",
         tablist_label="Compilation target", panels=target_panels)
-    gpu_tabs = demo_tabs(
-        root_id="fl-gpu", file_label="kernel.fab → GPU",
-        tablist_label="GPU shading language", panels=gpu_panels)
+
+    libs = "".join(
+        f"""\
+      <a class="fl-lib" href="{l['href']}">
+        <strong>{esc(l['name'])}</strong>
+        <em>{esc(l['status'])}</em>
+        <span>{l['desc']}</span>
+      </a>
+""" for l in LIBRARIES)
 
     frames = "".join(
         f"""\
@@ -230,9 +321,11 @@ def main() -> None:
         </figure>
 """ for f in FRAMES)
 
-    desc = ("Faber is a multilingual developer tool for typed compute programs. "
-            "One semantic program stays readable in your language and lowers "
-            "toward application targets and a measured Metal/CUDA training path.")
+    title = "Faber — a programming language models write well, in the language you read"
+    desc = ("Faber is a statically typed programming language for coding agents and human "
+            "authors: a mechanical grammar, explicit generic types and math-oriented "
+            "operators, written in eight language surfaces and compiled to Rust, "
+            "TypeScript, Go, Swift and more.")
 
     html = f"""\
 <!DOCTYPE html>
@@ -240,7 +333,7 @@ def main() -> None:
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Faber — multilingual compute programs for applications and GPUs</title>
+<title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
 <link rel="canonical" href="https://faberlang.dev/">
 <link rel="alternate" hreflang="x-default" href="https://faberlang.dev/">
@@ -248,7 +341,7 @@ def main() -> None:
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;family=Noto+Sans+Arabic:wght@400;600;700&amp;family=Noto+Sans+Devanagari:wght@400;600&amp;family=Noto+Sans+SC:wght@400;600&amp;family=Noto+Sans+Thai:wght@400;600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{esc(args.css)}">
-<meta property="og:title" content="Faber — multilingual compute programs for applications and GPUs">
+<meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://faberlang.dev/">
@@ -270,205 +363,188 @@ def main() -> None:
     <a href="/en-US/start/install.html">Install</a>
     <a href="/en-US/">Docs</a>
     <a href="/en-US/language/">Language</a>
+    <a href="/en-US/libraries/">Libraries</a>
     <a href="https://github.com/faberlang">GitHub</a>
-    <a class="fl-locale" href="/porta/">Language <span aria-hidden="true">▾</span></a>
+    <a class="fl-locale" href="/porta/">All languages <span aria-hidden="true">▾</span></a>
   </nav>
 </header>
 
 <main class="fl-wrap" id="top">
 
   <section class="fl-hero">
-    <p class="fl-kicker">Multilingual semantic programming for application code and GPU work · MIT</p>
-    <h1>Write compute programs<br>in the language you think in.</h1>
+    <p class="fl-kicker">A statically typed language for coding agents and human authors · MIT</p>
+    <h1>Written by models,<br>read in your language.</h1>
     <p class="fl-lede">
-      One typed program stays readable in the language you work in, then
-      lowers toward application targets and a measured GPU path. Support is
-      stated target by target.
+      Faber has a clear mechanical grammar, explicit static and generic types,
+      and math-oriented operators. The same program is written and read in
+      eight language surfaces, and compiles to Rust, TypeScript, Go, Swift and
+      more — so a library you write once can go into the project you already
+      have.
     </p>
     <p class="fl-open-source">
-      The language, public libraries (including <strong>Gradus</strong>),
-      examples, and tooling ship under the <strong>MIT</strong> license.
-      <strong>Radix</strong>, the compiler, is closed only while it is under
-      active development. That is temporary, not a permanent fence.
+      The language, public libraries, examples, and tooling ship under the
+      <strong>MIT</strong> license. <strong>Radix</strong>, the compiler, is
+      closed only while it is under active development. That is temporary,
+      not a permanent fence.
     </p>
-
-    <div class="fl-first-doors" aria-label="Start here">
-      <div class="fl-door fl-door-see">
-        <strong>See the language</strong>
-        <span>
-          <a href="https://github.com/faberlang/gradus">Gradus</a> is the
-          large open MIT autograd and ML library, with a structural inference
-          surface. This is a short English program.
-        </span>
-        <pre class="fl-src"><code class="lang-faber locale=en">{esc(gradus_fab)}</code></pre>
-      </div>
-      <a class="fl-door" href="/en-US/start/">
-        <strong>Try it</strong>
-        <span>Install and a five-minute tour of the language.</span>
-      </a>
-      <a class="fl-door" href="/llms.txt">
-        <strong>For agents</strong>
-        <span>Machine index at <code>/llms.txt</code>.</span>
-      </a>
+    <div class="fl-cta">
+      <a class="fl-btn fl-btn-primary" href="/en-US/start/install.html">Install</a>
+      <a class="fl-btn" href="/en-US/start/">Five-minute tour</a>
+      <a class="fl-btn" href="/en-US/reference/grammar.html">Read the grammar</a>
     </div>
-  </section>
-
-
-
-  <section class="fl-proof">
-    <div class="fl-proof-head">
-      <h2>Readable in your language. Same meaning.</h2>
-      <p>
-        Faber’s reader locales change keywords, types, and diagnostics without
-        changing program meaning. This example constructs two typed matrices,
-        multiplies them, and reduces the product to a scalar. Pick a tab and
-        that same compute program remains the same program. Identifiers and
-        string literals stay intact, so teams can review durable code across
-        language surfaces without a translation service in the middle.
-      </p>
-    </div>
-{read_tabs}    <pre class="fl-run">$ faber run --interpret &lt;package&gt;
-76.25</pre>
+{read_tabs}    <pre class="fl-run">$ faber run
+{esc(program_out)}</pre>
     <p class="fl-note">
-      A reviewer sets their locale once. This is the compiler’s own rendering,
-      so the program you approve is the program that ships.
+      One program, eight readings. Every tab is the compiler’s own rendering
+      (<code>faber convert</code>), and each one runs. Keywords, types and
+      diagnostics change; identifiers and string literals do not.
     </p>
   </section>
 
-  <section class="fl-proof">
+  <section class="fl-proof" id="languages">
     <div class="fl-proof-head">
-      <h2>One semantic program for applications and GPU work</h2>
+      <h2>Start in your own language</h2>
       <p>
-        The same analyzed program can feed application targets or a device
-        program. Every target is a projection of HIR/MIR meaning — support is
-        stated target by target. The target matrix is the source of truth, not a
-        promise that every backend behaves the same way.
-      </p>
-      <p class="fl-note">
-        Every panel below is literal <code>radix emit</code> output. The matrix
-        records where a target emits, validates, runs, or remains limited. See
-        <a href="/en-US/toolchain/target-matrix.html">target matrix</a>
-        for the current boundary.
+        People should not need English to use a model for code, or to read what
+        the model wrote. Each language has its own documentation home, written
+        in that language. Source is written the same way: one reader locale per
+        file, sealed against the others, so a Thai file contains Thai keywords
+        and nothing else.
       </p>
     </div>
-{target_tabs}  </section>
-
-  <section class="fl-lanes">
-    <h2>Compiler lanes</h2>
-    <table>
-      <thead><tr><th>Lane</th><th>Targets / outputs</th></tr></thead>
-      <tbody>
-        <tr><td><strong>Locale</strong></td><td>en (base surface) · la (canonical classical) · th-TH · zh-Hans · zh-Hant · ar · vi · hi</td></tr>
-        <tr><td><strong>HIR</strong></td><td>Rust · Faber · TypeScript · Go · Swift</td></tr>
-        <tr><td><strong>AIR (autograd)</strong></td><td>Typed HIR → reverse-mode AD / fusion → MIR</td></tr>
-        <tr><td><strong>MIR</strong></td><td>LLVM · WASM · WGSL · S-expression · FMIR</td></tr>
-        <tr><td><strong>GPU</strong></td><td>Metal · CUDA</td></tr>
-        <tr><td><strong>Packaging</strong></td><td>FHIR · FMIR</td></tr>
-      </tbody>
-    </table>
+{locale_strip()}    <p class="fl-note">
+      Latin is the canonical interchange form the language is named for. Reader
+      locales also localize compiler diagnostics. <a href="/porta/">See all languages</a> ·
+      <a href="/en-US/language/reader-locales.html">How reader locales work</a>
+    </p>
   </section>
 
-  <section class="fl-proof">
+  <section class="fl-proof" id="models">
     <div class="fl-proof-head">
-      <h2>Training through Metal or CUDA</h2>
+      <h2>Built for models to write</h2>
       <p>
-        The ordinary <code>faber run --backend metal|cuda</code> route executes
-        a bounded device-program subset on accepted Metal and CUDA machines.
-        The accepted dual-backend MLP training path runs device-resident
-        forward, AIR-generated backward, and optimizer update steps with
-        gradient mapping and per-element numeric comparison against a pinned
-        CPU oracle.
-      </p>
-      <pre class="fl-run">$ faber run --backend metal &lt;package&gt;
-$ faber run --backend cuda  &lt;package&gt;</pre>
-      <p>
-        This is a bounded training proof, not a claim of a general training
-        framework, broad hardware coverage, or a released package surface.
-        Device execution is explicit and fail-closed: a requested backend does
-        not silently fall back to CPU.
-      </p>
-      <p class="fl-note">
-        <a href="/en-US/toolchain/cli.html#device-execution">Read the device
-        execution contract</a> ·
-        <a href="https://github.com/faberlang/examples/tree/main/training/device-summa">Open the training proof</a>
+        A model writes best against a surface with few surprises. Faber keeps
+        the rules small, regular and explicit, then shows the result in the
+        reader’s language.
       </p>
     </div>
-    <div class="fl-proof-head fl-proof-sub">
-      <h3>One kernel, backend-specific output</h3>
-      <p>
-        A function marked <code>@ nucleum</code> is a compute kernel. The source
-        stays small while Faber emits backend-specific shader code. These panels
-        show the lowering surface; the real-device route above is the narrower
-        product proof.
-      </p>
-      <pre class="fl-src"><code class="lang-faber">{esc(kernel_fab)}</code></pre>
-    </div>
-{gpu_tabs}  </section>
-
-  <section class="fl-proof">
-    <div class="fl-proof-head">
-      <h2>Inference is being built next</h2>
-      <p>
-        Faber-owned GPU inference is in active development behind a pinned model
-        contract and a correctness oracle. The CPU oracle track (admission,
-        dequant, decoder ops, greedy decode agreement) is engineering-real;
-        end-to-end device inference is not shipped, and this is not a broad
-        GGUF product claim.
-      </p>
-      <p class="fl-note">
-        Follow the <a href="/en-US/start/examples.html#applications">AI and GPU examples</a>
-        while the persistent inference path is built.
-      </p>
-    </div>
-    <div class="fl-door-grid">
-      <a class="fl-door" href="/en-US/toolchain/compiling.html#device-execution">
-        <strong>Now · device substrate</strong>
-        <span>Kernel lowering, explicit backend selection, and bounded training execution.</span>
-      </a>
-      <a class="fl-door" href="/en-US/toolchain/target-matrix.html">
-        <strong>Next · persistent inference</strong>
-        <span>One pinned model contract first; broader serving remains outside today’s claim.</span>
-      </a>
-      <a class="fl-door" href="/en-US/toolchain/compiling.html#gpu">
-        <strong>Future · multi-device scale</strong>
-        <span>Topology, placement, collectives, virtual GPUs, and sharding need their own accepted runtime path.</span>
-      </a>
+    <div class="fl-points">
+      <div class="fl-point">
+        <strong>A mechanical grammar</strong>
+        <span>
+          {productions} grammar productions, generated and checked as the parser’s
+          authority. One construct has one spelling. Arrows mean runtime effects
+          (<code>←</code> assign, <code>→</code> return, <code>⇥</code> error channel);
+          <code>=</code> and <code>:</code> only state compile-time facts.
+          <a href="/en-US/reference/grammar.html">Read the grammar</a>
+        </span>
+      </div>
+      <div class="fl-point">
+        <strong>Explicit static and generic types</strong>
+        <span>
+          Declarations are type-first: <code>f64 low</code>, never <code>low: f64</code>.
+          Nullability is written <code>T ∪ none</code>. Generics are written out
+          (<code>fn choose&lt;T&gt;</code>), and crossing between integer and float is
+          an explicit <code>↦</code>, not an accident.
+          <a href="/en-US/language/types.html">Types and values</a>
+        </span>
+      </div>
+      <div class="fl-point">
+        <strong>Math-oriented operators</strong>
+        <span>
+          Integer <code>/</code> floors, so <code>-7 / 2</code> is <code>-4</code>; true
+          division is <code>÷</code>. Comparisons read as math (<code>≤ ≥ ≠ ≈</code>),
+          and tensor work has its own operators (<code>·</code> matmul,
+          <code>⊙</code> elementwise). When math and hardware convention disagree,
+          Faber follows the math.
+          <a href="/en-US/language/glyphs.html">Glyphs and Latin</a>
+        </span>
+      </div>
+      <div class="fl-point">
+        <strong>Machine-readable by design</strong>
+        <span>
+          Diagnostics are coded and explainable. The documentation ships an agent
+          index and focused skill guides at fixed paths, so a model can learn the
+          language from the site itself.
+          <a href="/llms.txt">/llms.txt</a>
+        </span>
+      </div>
     </div>
   </section>
 
-  <section class="fl-proof">
+  <section class="fl-proof" id="targets">
     <div class="fl-proof-head">
-      <h2>Build the rest of the application around it</h2>
+      <h2>Write it once. Put it in the project you already have.</h2>
       <p>
-        <a href="/en-US/libraries/triga.html">Triga</a> is a graphics and
-        geometry engine written in Faber. These frames are supporting evidence
-        that the same language can carry application and GPU-shaped work — not
-        a replacement for the training and inference path above.
+        Faber compiles through one analyzed program to many targets. Write a
+        library in Faber, emit it in the language your project already uses, and
+        add it alongside your existing code. This small library, with no
+        generics and no <code>main</code>, is emitted below exactly as
+        <code>radix emit</code> produces it, and each panel was checked in its
+        own toolchain.
+      </p>
+      <pre class="fl-src"><code class="lang-faber locale=en">{esc(span_fab)}</code></pre>
+    </div>
+{target_tabs}    <p class="fl-note">
+      Rust builds as a Cargo package today. TypeScript, Go and Swift give you
+      source files to add to your project; assembling them into installable
+      packages is not built yet. Support is stated target by target: generics and
+      some operators do not lower to every target, and the target matrix records
+      where. <a href="/en-US/toolchain/target-matrix.html">Read the target matrix</a>
+    </p>
+{capability_table(targets)}  </section>
+
+  <section class="fl-proof" id="libraries">
+    <div class="fl-proof-head">
+      <h2>Libraries written in Faber</h2>
+      <p>
+        The libraries are ordinary Faber source. They show what the language is
+        for, and each one can be read, changed and emitted like your own code.
+        Status is stated plainly.
       </p>
     </div>
+    <div class="fl-libs">
+{libs}    </div>
     <div class="fl-frames">
 {frames}    </div>
-    <div class="fl-proof-head fl-proof-sub">
-      <h3>Fast enough to use like a script</h3>
+    <p class="fl-note">
+      Example scenes built with <a href="/en-US/libraries/triga.html">Triga</a>.
+    </p>
+  </section>
+
+  <section class="fl-proof" id="grammar">
+    <div class="fl-proof-head">
+      <h2>A grammar you can read in one sitting</h2>
       <p>
-        Faber also runs with no build step. <code>faber run --interpret</code>
-        takes source through parse, typecheck and MIR lowering, then steps the
-        MIR in-process — no <code>rustc</code>, no linker, no build directory.
+        The language is specified as {productions} productions in a single
+        EBNF, generated from one source and published in full. It is large
+        enough to be expressive and regular enough to hold in your head or a
+        model’s context. The reference pages are generated from the same source,
+        so they cannot disagree with the parser.
+      </p>
+      <p class="fl-note">
+        <a href="/en-US/reference/grammar.html">EBNF grammar</a> ·
+        <a href="/en-US/syntax/">Syntax guide</a> ·
+        <a href="/en-US/corpus/">Corpus of keyword examples</a> ·
+        <a href="/en-US/cheatsheet/">Cheat sheet</a>
       </p>
     </div>
-    <div class="fl-bench">
-      <table>
-        <caption>Same program, end to end, median of 15 runs (M-series Mac)</caption>
-        <thead><tr><th>Command</th><th>Wall clock</th></tr></thead>
-        <tbody>
-          <tr><td><code>faber run --interpret</code> <span class="fl-note">(incl. full typecheck)</span></td><td><strong>4.4 ms</strong></td></tr>
-          <tr><td><code>python3 script.py</code> <span class="fl-note">(no typecheck)</span></td><td>13.3 ms</td></tr>
-        </tbody>
-      </table>
+  </section>
+
+  <section class="fl-proof" id="compute">
+    <div class="fl-proof-head">
+      <h2>Compute is one thing you can build</h2>
+      <p>
+        The same language carries numeric and device work. Tensor operators and
+        <code>@ nucleum</code> kernels lower to WGSL, Metal and CUDA routes, and
+        <a href="/en-US/libraries/gradus.html">Gradus</a> uses them for
+        autograd. Device execution is explicit and fail-closed: a requested
+        backend never silently falls back to CPU. Bounded training runs on
+        accepted Metal and CUDA machines; device inference is not shipped.
+      </p>
       <p class="fl-note">
-        Reproduce with <a href="/en-US/tooling/scripting.html">the scripting
-        docs</a>. A statically typed language should not be slower to start
-        than a dynamic one, and it isn't.
+        <a href="/en-US/toolchain/compiling.html#device-execution">Device execution contract</a> ·
+        <a href="https://github.com/faberlang/examples/tree/main/training/device-summa">Training proof</a>
       </p>
     </div>
   </section>
@@ -490,7 +566,7 @@ $ faber run --backend cuda  &lt;package&gt;</pre>
       </a>
       <a class="fl-door" href="/en-US/language/reader-locales.html">
         <strong>Reader locales</strong>
-        <span>How the rendering actually works.</span>
+        <span>How the same program reads in every language.</span>
       </a>
       <a class="fl-door" href="/en-US/toolchain/target-matrix.html">
         <strong>Target matrix</strong>
@@ -498,7 +574,7 @@ $ faber run --backend cuda  &lt;package&gt;</pre>
       </a>
       <a class="fl-door" href="/en-US/libraries/">
         <strong>Libraries</strong>
-        <span>Norma, Gradus, Triga, Cista, the language corpus.</span>
+        <span>Norma, Gradus, Triga, Tela, Inferentia, Cista.</span>
       </a>
     </div>
   </section>
@@ -538,7 +614,8 @@ $ faber run --backend cuda  &lt;package&gt;</pre>
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(html, encoding="utf-8")
     print(f"landing: {args.output} "
-          f"({len(locale_panels)} reader panels, {len(target_panels)} target panels)")
+          f"({len(locale_panels)} reader panels, {len(target_panels)} target panels, "
+          f"{productions} grammar productions)")
 
 
 if __name__ == "__main__":
