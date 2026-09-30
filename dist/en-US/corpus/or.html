@@ -82,21 +82,21 @@
     print short
 
 <span class="tok-co">    # vel</span>
-    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> <span class="tok-kw">null</span> nomen <span class="tok-op">←</span> <span class="tok-kw">null</span>
+    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> none nomen <span class="tok-op">←</span> null
     <span class="tok-kw">const</span> string solutum <span class="tok-op">←</span> nomen coalesce <span class="tok-st">"defectum"</span>
     print solutum
-    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> <span class="tok-kw">null</span> primum <span class="tok-op">←</span> <span class="tok-kw">null</span>
-    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> <span class="tok-kw">null</span> secundum <span class="tok-op">←</span> <span class="tok-kw">null</span>
+    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> none primum <span class="tok-op">←</span> null
+    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> none secundum <span class="tok-op">←</span> null
     <span class="tok-kw">const</span> string tertium <span class="tok-op">←</span> <span class="tok-st">"inventum"</span>
     <span class="tok-kw">const</span> string inventum <span class="tok-op">←</span> (primum coalesce secundum) coalesce tertium
     print inventum
 
-<span class="tok-co">    # sic/secus — ternary conditional (sic = "thus", secus = "otherwise")</span>
+<span class="tok-co">    # ✓ ✗ — value conditional, one level only</span>
     <span class="tok-kw">const</span> <span class="tok-kw">int</span> aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
-    <span class="tok-kw">const</span> string condicio <span class="tok-op">←</span> aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> <span class="tok-kw">yields</span> <span class="tok-st">"adultus"</span> <span class="tok-kw">else</span> <span class="tok-st">"minor"</span>
+    <span class="tok-kw">const</span> string condicio <span class="tok-op">←</span> aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> ✓ <span class="tok-st">"adultus"</span> ✗ <span class="tok-st">"minor"</span>
     print condicio
     <span class="tok-kw">const</span> <span class="tok-kw">int</span> puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
-    <span class="tok-kw">const</span> string gradus <span class="tok-op">←</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> <span class="tok-kw">yields</span> <span class="tok-st">"A"</span> <span class="tok-kw">else</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">80</span> <span class="tok-kw">yields</span> <span class="tok-st">"B"</span> <span class="tok-kw">else</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">70</span> <span class="tok-kw">yields</span> <span class="tok-st">"C"</span> <span class="tok-kw">else</span> <span class="tok-st">"F"</span>
+    <span class="tok-kw">const</span> string gradus <span class="tok-op">←</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">80</span> ✓ <span class="tok-st">"B"</span> ✗ <span class="tok-st">"F"</span>
     print gradus
 
 <span class="tok-co">    # Bit per bit</span>

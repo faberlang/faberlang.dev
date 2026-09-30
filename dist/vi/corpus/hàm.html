@@ -219,7 +219,7 @@ main {
 <span class="tok-co">#   codex length and metire results, civis summary strings</span>
 
 fn saluta(string nomen, string titulus optional) <span class="tok-op">→</span> string {
-    if titulus is null then return <span class="tok-st">"Salve, §!"</span>(nomen)
+    if titulus is none then return <span class="tok-st">"Salve, §!"</span>(nomen)
     return <span class="tok-st">"Salve, § §!"</span>(titulus, nomen)
 }
 
@@ -228,7 +228,7 @@ fn pagina(int pagina optional coalesce <span class="tok-nu">1</span>, int quanti
 }
 
 fn metire(string fons, ref int altitudo optional) <span class="tok-op">→</span> int {
-    if altitudo is null {
+    if altitudo is none {
 <span class="tok-co">        # de = shared borrow of fons</span>
         return fons.length()
     }

@@ -82,21 +82,21 @@ main {
     print short
 
 <span class="tok-co">    # vel</span>
-    const string <span class="tok-op">∪</span> null nomen <span class="tok-op">←</span> null
+    const string <span class="tok-op">∪</span> none nomen <span class="tok-op">←</span> null
     const string solutum <span class="tok-op">←</span> nomen coalesce <span class="tok-st">"defectum"</span>
     print solutum
-    const string <span class="tok-op">∪</span> null primum <span class="tok-op">←</span> null
-    const string <span class="tok-op">∪</span> null secundum <span class="tok-op">←</span> null
+    const string <span class="tok-op">∪</span> none primum <span class="tok-op">←</span> null
+    const string <span class="tok-op">∪</span> none secundum <span class="tok-op">←</span> null
     const string tertium <span class="tok-op">←</span> <span class="tok-st">"inventum"</span>
     const string inventum <span class="tok-op">←</span> (primum coalesce secundum) coalesce tertium
     print inventum
 
-<span class="tok-co">    # sic/secus — ternary conditional (sic = "thus", secus = "otherwise")</span>
+<span class="tok-co">    # ✓ ✗ — value conditional, one level only</span>
     const int aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
-    const string condicio <span class="tok-op">←</span> aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> yields <span class="tok-st">"adultus"</span> else <span class="tok-st">"minor"</span>
+    const string condicio <span class="tok-op">←</span> aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> ✓ <span class="tok-st">"adultus"</span> ✗ <span class="tok-st">"minor"</span>
     print condicio
     const int puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
-    const string gradus <span class="tok-op">←</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> yields <span class="tok-st">"A"</span> else puncta <span class="tok-op">≥</span> <span class="tok-nu">80</span> yields <span class="tok-st">"B"</span> else puncta <span class="tok-op">≥</span> <span class="tok-nu">70</span> yields <span class="tok-st">"C"</span> else <span class="tok-st">"F"</span>
+    const string gradus <span class="tok-op">←</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">80</span> ✓ <span class="tok-st">"B"</span> ✗ <span class="tok-st">"F"</span>
     print gradus
 
 <span class="tok-co">    # Bit per bit</span>

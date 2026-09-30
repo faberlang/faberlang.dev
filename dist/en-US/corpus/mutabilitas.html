@@ -79,7 +79,7 @@
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
 <span class="tok-kw">class</span> Person {
-    <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> friends
+    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> friends
 }
 
 <span class="tok-kw">main</span> {
@@ -117,7 +117,7 @@
 <span class="tok-kw">main</span> {
     <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>]
     <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> b <span class="tok-op">←</span> [<span class="tok-nu">2</span>]
-    <span class="tok-kw">const</span> own <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> c <span class="tok-op">←</span> <span class="tok-kw">true</span> <span class="tok-op">?</span> a <span class="tok-op">:</span> b
+    <span class="tok-kw">const</span> own <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> c <span class="tok-op">←</span> <span class="tok-kw">true</span> ✓ a ✗ b
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasown-from-unmarkedfab-supporting-reject">radix/corpus/mutabilitas/own-from-unmarked.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasown-from-unmarkedfab-supporting-reject">#</a></h3><p>MU-3 red: live unmarked source into own rejects with copy suggestion.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — unmarked live into own (MU-3)</span>
 <span class="tok-co"># =============================================================================</span>
@@ -152,7 +152,7 @@
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
 <span class="tok-kw">class</span> Person {
-    <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> friends
+    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> friends
 }
 
 <span class="tok-kw">main</span> {

@@ -29,26 +29,12 @@
 <span class="tok-co">#   empty — success-path main only (reice.expected)</span>
 
 union GuardError {
-    Invalid {
-        string causa
-    }
+    Invalid { string causa }
 }
 
 fn guarded(int value) <span class="tok-op">→</span> int ⇥ GuardError {
-    if value ≺ <span class="tok-nu">0</span> {
-        throw variant Invalid { causa <span class="tok-op">=</span> <span class="tok-st">"value must not be negative"</span> }
-    }
+    reject value <span class="tok-op">&lt;</span> <span class="tok-nu">0</span> throw variant Invalid { causa <span class="tok-op">=</span> <span class="tok-st">"value must not be negative"</span> }
     return value
-}
-
-test <span class="tok-st">"true path is recoverable"</span> {
-    do {
-        const int dropped <span class="tok-op">←</span> guarded(<span class="tok-op">-</span><span class="tok-nu">1</span>)
-        assert false panic <span class="tok-st">"true path must throw"</span>
-    }
-    catch err {
-<span class="tok-co">        # recovered — reject entered ⇥ and catch intercepted it</span>
-    }
 }
 
 main {
@@ -58,5 +44,15 @@ main {
     }
     catch err {
         assert false panic <span class="tok-st">"success path must not throw"</span>
+    }
+}
+
+test <span class="tok-st">"true path is recoverable"</span> {
+    do {
+        const int dropped <span class="tok-op">←</span> guarded(<span class="tok-op">-</span><span class="tok-nu">1</span>)
+        assert false panic <span class="tok-st">"true path must throw"</span>
+    }
+    catch err {
+<span class="tok-co">        # recovered — reject entered ⇥ and catch intercepted it</span>
     }
 }</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusmetareicefab-canonical-keyword">radix/corpus/meta/reice.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">来源</span><ul><li>[&quot;radix/corpus/meta/reice.fab&quot;]</li></ul></div></footer></div></body></html>

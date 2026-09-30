@@ -52,9 +52,9 @@ fn consume(string <span class="tok-op">∪</span> int value) <span class="tok-op
 }
 
 <span class="tok-co"># `T ∪ null` is one optional inhabitant, so a `null` arm is the null case.</span>
-fn maybe_len(string <span class="tok-op">∪</span> null value) <span class="tok-op">→</span> int {
+fn maybe_len(string <span class="tok-op">∪</span> none value) <span class="tok-op">→</span> int {
     match value {
-        case null_ty {
+        case none {
             return <span class="tok-nu">0</span>
         }
         case _ {
@@ -75,8 +75,8 @@ test <span class="tok-st">"the two hole kinds infer cleanly without shape warnin
     const list<span class="tok-op">&lt;</span>string <span class="tok-op">∪</span> int<span class="tok-op">&gt;</span> nodes <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-st">"two"</span>, <span class="tok-nu">3</span>]
 
 <span class="tok-co">    # `T ∪ null`: one optional inhabitant — `_` over it stays quiet.</span>
-    const string <span class="tok-op">∪</span> null opt <span class="tok-op">←</span> <span class="tok-st">"text"</span>
-    const string <span class="tok-op">∪</span> null maybe <span class="tok-op">←</span> opt
+    const string <span class="tok-op">∪</span> none opt <span class="tok-op">←</span> <span class="tok-st">"text"</span>
+    const string <span class="tok-op">∪</span> none maybe <span class="tok-op">←</span> opt
     const int m <span class="tok-op">←</span> member_count(nodes)
     const int n <span class="tok-op">←</span> consume(mixed)
     const int o <span class="tok-op">←</span> maybe_len(maybe)
@@ -100,8 +100,8 @@ main {
     const list<span class="tok-op">&lt;</span>string <span class="tok-op">∪</span> int<span class="tok-op">&gt;</span> nodes <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-st">"two"</span>, <span class="tok-nu">3</span>]
 
 <span class="tok-co">    # `T ∪ null`: one optional inhabitant — `_` over it stays quiet.</span>
-    const string <span class="tok-op">∪</span> null opt <span class="tok-op">←</span> <span class="tok-st">"text"</span>
-    const string <span class="tok-op">∪</span> null maybe <span class="tok-op">←</span> opt
+    const string <span class="tok-op">∪</span> none opt <span class="tok-op">←</span> <span class="tok-st">"text"</span>
+    const string <span class="tok-op">∪</span> none maybe <span class="tok-op">←</span> opt
     const int m <span class="tok-op">←</span> member_count(nodes)
     const int n <span class="tok-op">←</span> consume(mixed)
     const int o <span class="tok-op">←</span> maybe_len(maybe)

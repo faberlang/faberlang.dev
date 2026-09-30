@@ -34,8 +34,8 @@ main {
     assert workday_span <span class="tok-op">≡</span> <span class="tok-nu">10</span>
     const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> gap_left <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">3</span>
     const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> gap_right <span class="tok-op">←</span> <span class="tok-nu">6</span>‥<span class="tok-nu">9</span>
-    const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> null no_union <span class="tok-op">←</span> gap_left.union(gap_right)
-    assert no_union is null
+    const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> none no_union <span class="tok-op">←</span> gap_left.union(gap_right)
+    assert no_union is none
 }</code></pre><h3 id="radixcorpusintervallumconversiofab-canonical-type">radix/corpus/intervallum/conversio.fab (canonical · type)<a class="anchor" href="#radixcorpusintervallumconversiofab-canonical-type">#</a></h3><p>Clamp, materialize, and contain via conversio and continet.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># intervallum — Clamp, materialize, and contain via conversio and continet</span>
 <span class="tok-co"># =============================================================================</span>

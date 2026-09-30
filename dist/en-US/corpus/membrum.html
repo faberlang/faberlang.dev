@@ -28,37 +28,37 @@
 <span class="tok-co">#   membrum.expected — chained access samples.</span>
 
 <span class="tok-kw">class</span> Punctum {
-    <span class="tok-kw">int</span> x
-    <span class="tok-kw">int</span> y
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> x
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> y
 }
 
 <span class="tok-kw">class</span> Figura {
-    string nomen
-    <span class="tok-kw">int</span> valor
+    <span class="tok-kw">var</span> string nomen
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> valor
 }
 
 <span class="tok-kw">class</span> Imum {
-    string imum
+    <span class="tok-kw">var</span> string imum
 }
 
 <span class="tok-kw">class</span> Medium {
-    Imum medium
+    <span class="tok-kw">var</span> Imum medium
 }
 
 <span class="tok-kw">class</span> Extra {
-    Medium extra
+    <span class="tok-kw">var</span> Medium extra
 }
 
 <span class="tok-kw">class</span> Datum {
-    <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> nomina
+    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> nomina
 }
 
 <span class="tok-kw">class</span> Adest {
-    <span class="tok-kw">int</span> valor
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> valor
 }
 
 <span class="tok-kw">class</span> Forsitan {
-    Adest adest
+    <span class="tok-kw">var</span> Adest adest
 }
 
 <span class="tok-kw">main</span> {
@@ -97,7 +97,7 @@
     print forsitan<span class="tok-op">?.</span>adest<span class="tok-op">?.</span>valor
 
 <span class="tok-co">    # Accessus optionalis on nihil binding</span>
-    <span class="tok-kw">const</span> null_ty <span class="tok-kw">void</span> <span class="tok-op">←</span> <span class="tok-kw">null</span>
+    <span class="tok-kw">const</span> none <span class="tok-kw">void</span> <span class="tok-op">←</span> null
     print <span class="tok-kw">void</span><span class="tok-op">?.</span>absens
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>10
 20

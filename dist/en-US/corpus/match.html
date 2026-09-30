@@ -63,7 +63,7 @@
 }
 
 <span class="tok-co"># casu with fixum bindings destructures variant fields</span>
-<span class="tok-kw">fn</span> tracta(Nuntius e) <span class="tok-op">→</span> null_ty {
+<span class="tok-kw">fn</span> tracta(Nuntius e) <span class="tok-op">→</span> none {
     <span class="tok-kw">match</span> e {
         <span class="tok-kw">case</span> Pulsus <span class="tok-kw">const</span> x, y {
             print <span class="tok-st">"pulsus: § §"</span>(x, y)

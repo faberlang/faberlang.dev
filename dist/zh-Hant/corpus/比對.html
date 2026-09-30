@@ -63,7 +63,7 @@ fn nomina(Condicio s) <span class="tok-op">→</span> string {
 }
 
 <span class="tok-co"># casu with fixum bindings destructures variant fields</span>
-fn tracta(Nuntius e) <span class="tok-op">→</span> null_ty {
+fn tracta(Nuntius e) <span class="tok-op">→</span> none {
     match e {
         case Pulsus const x, y {
             print <span class="tok-st">"pulsus: § §"</span>(x, y)

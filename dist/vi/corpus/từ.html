@@ -134,50 +134,50 @@ main {
 <span class="tok-co">#   Extracted field values, aliased names, mutated varia bindings, rest maps.</span>
 
 class Persona {
-    string nomen
-    int aetas
-    string urbs
+    var string nomen
+    var int aetas
+    var string urbs
 }
 
 class Civis {
-    string nomen
-    string epistula
+    var string nomen
+    var string epistula
 }
 
 class Datum {
-    int numerus
-    bool activus
+    var int numerus
+    var bool activus
 }
 
 class Forma {
-    string hospes
-    int portus
-    bool tutus
+    var string hospes
+    var int portus
+    var bool tutus
 }
 
 class Plenus {
-    int signum
-    string nomen
-    string epistula
-    string munus
+    var int signum
+    var string nomen
+    var string epistula
+    var string munus
 }
 
 class Sodalis {
-    string nomen
-    bool probatus
+    var string nomen
+    var bool probatus
 }
 
 class Relatus {
-    Sodalis civis
+    var Sodalis civis
 }
 
 class Responsum {
-    Relatus datum
+    var Relatus datum
 }
 
 class Vestis {
-    string modus
-    string lingua
+    var string modus
+    var string lingua
 }
 
 main {
@@ -267,8 +267,8 @@ main {
 <span class="tok-co">#</span>
 
 class Persona {
-    string nomen
-    int aetas
+    var string nomen
+    var int aetas
 }
 
 main {
@@ -321,8 +321,8 @@ main {
 <span class="tok-co">#   destructuring.expected — sums and elements from every pattern form.</span>
 
 class Punctum {
-    int x
-    int y
+    var int x
+    var int y
 }
 
 main {

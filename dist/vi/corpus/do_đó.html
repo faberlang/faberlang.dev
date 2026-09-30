@@ -30,7 +30,7 @@ fn clamp(int x) <span class="tok-op">→</span> int {
     return x
 }
 
-fn inveni(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res, int quaesitum) <span class="tok-op">→</span> int <span class="tok-op">∪</span> null {
+fn inveni(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res, int quaesitum) <span class="tok-op">→</span> int <span class="tok-op">∪</span> none {
     for from res const item {
         if item <span class="tok-op">≡</span> quaesitum then return item
     }
@@ -79,7 +79,7 @@ fn classis(int x) <span class="tok-op">→</span> string {
 }
 
 <span class="tok-co"># Optional return: nihil when divisor is zero</span>
-fn divide(int a, int b) <span class="tok-op">→</span> int <span class="tok-op">∪</span> null {
+fn divide(int a, int b) <span class="tok-op">→</span> int <span class="tok-op">∪</span> none {
     if b <span class="tok-op">≡</span> <span class="tok-nu">0</span> then return null
     return a <span class="tok-op">/</span> b
 }
@@ -94,7 +94,7 @@ fn gradus(int puncta) <span class="tok-op">→</span> string {
 }
 
 <span class="tok-co"># Early return inside itera ex loop</span>
-fn inveni(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res, int quaesitum) <span class="tok-op">→</span> int <span class="tok-op">∪</span> null {
+fn inveni(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res, int quaesitum) <span class="tok-op">→</span> int <span class="tok-op">∪</span> none {
     for from res const item {
         if item <span class="tok-op">≡</span> quaesitum then return item
     }

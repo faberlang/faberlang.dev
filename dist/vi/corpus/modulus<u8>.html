@@ -21,9 +21,9 @@
 <span class="tok-co">#   Division and remainder by zero fail.</span>
 
 main {
-    var uint<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> max <span class="tok-op">←</span> <span class="tok-nu">255</span>
-    const uint<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> one <span class="tok-op">←</span> <span class="tok-nu">1</span>
-    var uint<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> zero <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    var wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> max <span class="tok-op">←</span> <span class="tok-nu">255</span>
+    const wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> one <span class="tok-op">←</span> <span class="tok-nu">1</span>
+    var wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> zero <span class="tok-op">←</span> <span class="tok-nu">0</span>
     const int<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> converted ↤ one
     print max <span class="tok-op">+</span> one
     print zero <span class="tok-op">-</span> one
@@ -37,30 +37,30 @@ main {
     zero ↓
     print max
     print zero
-    const uint<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> methodSum <span class="tok-op">←</span> max.added(one)
-    const uint<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> methodShift <span class="tok-op">←</span> max.shifted_left(<span class="tok-nu">8</span>)
-    var uint<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> methodAcc <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    const wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> methodSum <span class="tok-op">←</span> max.added(one)
+    const wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> methodShift <span class="tok-op">←</span> max.shifted_left(<span class="tok-nu">8</span>)
+    var wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> methodAcc <span class="tok-op">←</span> <span class="tok-nu">0</span>
     methodAcc.add(one)
     methodAcc.shift_left(<span class="tok-nu">8</span>)
     print converted
     print methodSum
     print methodShift
     print methodAcc
-    const list<span class="tok-op">&lt;</span>uint<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> words <span class="tok-op">←</span> [one, max]
-    print words.get(<span class="tok-nu">1</span>) coalesce <span class="tok-nu">0</span> ∷ uint<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
+    const list<span class="tok-op">&lt;</span>wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> words <span class="tok-op">←</span> [one, max]
+    print words.get(<span class="tok-nu">1</span>) coalesce <span class="tok-nu">0</span> ∷ wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
 255
 254
 255
 255
-1
-255
+0
+0
 verum
 0
 255
 1
 1
 0
-1
+0
 0
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusoperatoresmodular-word-u8fab-canonical-operator-group">radix/corpus/operatores/modular-word-u8.fab (canonical · operator-group)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[&quot;radix/corpus/operatores/modular-word-u8.fab&quot;]</li></ul></div></footer></div></body></html>

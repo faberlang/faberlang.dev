@@ -81,19 +81,19 @@ fn depinge(Expr e) <span class="tok-op">→</span> string {
 }
 
 class Nodus {
-    int valor
-    Nodus <span class="tok-op">∪</span> null sequens
+    var int valor
+    var Nodus <span class="tok-op">∪</span> none sequens
 }
 
-fn summa(Nodus <span class="tok-op">∪</span> null n) <span class="tok-op">→</span> int {
-    if n is null {
+fn summa(Nodus <span class="tok-op">∪</span> none n) <span class="tok-op">→</span> int {
+    if n is none {
         return <span class="tok-nu">0</span>
     }
     return n.valor <span class="tok-op">+</span> summa(n.sequens)
 }
 
-fn longitudo(Nodus <span class="tok-op">∪</span> null n) <span class="tok-op">→</span> int {
-    if n is null {
+fn longitudo(Nodus <span class="tok-op">∪</span> none n) <span class="tok-op">→</span> int {
+    if n is none {
         return <span class="tok-nu">0</span>
     }
     return <span class="tok-nu">1</span> <span class="tok-op">+</span> longitudo(n.sequens)

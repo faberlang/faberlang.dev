@@ -47,7 +47,7 @@ main {
     print labeled_hole[<span class="tok-nu">1</span>]
 
 <span class="tok-co">    # A wanted union element is a binary cup, not ∪ in the slot.</span>
-    const tuple<span class="tok-op">&lt;</span>f32, string <span class="tok-op">∪</span> null<span class="tok-op">&gt;</span> cup <span class="tok-op">←</span> tuple<span class="tok-op">&lt;</span>f32, string <span class="tok-op">∪</span> null<span class="tok-op">&gt;</span> [<span class="tok-nu">1.0</span>, <span class="tok-st">"x"</span>]
+    const tuple<span class="tok-op">&lt;</span>f32, string <span class="tok-op">∪</span> none<span class="tok-op">&gt;</span> cup <span class="tok-op">←</span> tuple<span class="tok-op">&lt;</span>f32, string <span class="tok-op">∪</span> none<span class="tok-op">&gt;</span> [<span class="tok-nu">1.0</span>, <span class="tok-st">"x"</span>]
     print cup[<span class="tok-nu">1</span>]
 
 <span class="tok-co">    # objectPattern binds by label.</span>

@@ -28,37 +28,37 @@
 <span class="tok-co">#   membrum.expected — chained access samples.</span>
 
 class Punctum {
-    int x
-    int y
+    var int x
+    var int y
 }
 
 class Figura {
-    string nomen
-    int valor
+    var string nomen
+    var int valor
 }
 
 class Imum {
-    string imum
+    var string imum
 }
 
 class Medium {
-    Imum medium
+    var Imum medium
 }
 
 class Extra {
-    Medium extra
+    var Medium extra
 }
 
 class Datum {
-    list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> nomina
+    var list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> nomina
 }
 
 class Adest {
-    int valor
+    var int valor
 }
 
 class Forsitan {
-    Adest adest
+    var Adest adest
 }
 
 main {
@@ -97,7 +97,7 @@ main {
     print forsitan<span class="tok-op">?.</span>adest<span class="tok-op">?.</span>valor
 
 <span class="tok-co">    # Accessus optionalis on nihil binding</span>
-    const null_ty void <span class="tok-op">←</span> null
+    const none void <span class="tok-op">←</span> null
     print void<span class="tok-op">?.</span>absens
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>10
 20

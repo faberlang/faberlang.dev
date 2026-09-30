@@ -27,7 +27,7 @@ guard, and extracted MIR test module with dedicated test file
 (<code>c2f52e1cb</code>)</li><li><code>exempla_e2e/wasm_external.rs</code>: dedup the instantiation probe assembly
 (wasm-bindgen-style extern blocks) into a shared helper (<code>79fb81562</code>)</li><li><code>exempla_e2e/llvm</code>: module-level docs and run-probe constructor helpers for
 the LLVM e2e fixture layer (<code>911995179</code>)</li><li>Close out the <code>rust-codegen-smoke-check</code> factory goal (<code>6734f213d</code>)</li></ul><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li><code>parser/stmt.rs</code>: dedup mutability parsing paths and align transfer-statement
-documentation (<code>12df6fa0d</code>)</li><li><code>hir/lower/stmt.rs</code>: dedup <code class="kw">elige</code> variant lowering across
+documentation (<code>12df6fa0d</code>)</li><li><code>hir/lower/stmt.rs</code>: dedup <code class="kw">switch</code> variant lowering across
 if-let / while-let / for patterns; add statement-lower module docs
 (<code>1d6bc72b4</code>)</li><li><code>hir/nodes.rs</code>: clarify HIR variant docs for dispatch and <code>ad</code> nodes
 (<code>150aedbf0</code>)</li><li><code>codegen/go/expr/convert.rs</code>: final pipeline-polish touch to close the loop

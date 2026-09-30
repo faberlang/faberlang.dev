@@ -11,7 +11,7 @@
 <span class="tok-co"># ---------------------------------------------------------------------------</span>
 
 @ <span class="tok-kw">privata</span>
-<span class="tok-kw">functio</span> _append_face(
+<span class="tok-kw">functio</span> append_face(
     <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> payload,
     f32 x1, f32 y1, f32 z1,
     f32 x2, f32 y2, f32 z2,
@@ -87,7 +87,7 @@
 <span class="tok-co"># for 24 lit vertices.  This is the only payload the host needs.</span>
 <span class="tok-co"># ---------------------------------------------------------------------------</span>
 <span class="tok-kw">functio</span> box_vertex_payload(<span class="tok-kw">de</span> math.Box3 bounds, f32 r, f32 g, f32 b) <span class="tok-op">→</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> <span class="tok-kw">nihil</span> {
-    <span class="tok-kw">si</span> bounds.validum() <span class="tok-op">≡</span> <span class="tok-kw">falsum</span> ergo <span class="tok-kw">redde</span> <span class="tok-kw">nihil</span>
+    <span class="tok-kw">si</span> bounds.validum() <span class="tok-op">≡</span> <span class="tok-kw">falsum</span> ergo <span class="tok-kw">redde</span> nulla
 
     <span class="tok-kw">fixum</span> f32 x1 <span class="tok-op">←</span> bounds.min.x
     <span class="tok-kw">fixum</span> f32 y1 <span class="tok-op">←</span> bounds.min.y
@@ -99,22 +99,22 @@
     <span class="tok-kw">varia</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> p <span class="tok-op">←</span> vacua
 
 <span class="tok-co">    # +X face (right) — normal (1,0,0)</span>
-    p <span class="tok-op">←</span> _append_face(p, x2, y1, z1, x2, y2, z1, x2, y2, z2, x2, y1, z2, <span class="tok-nu">1.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>, r, g, b)
+    p <span class="tok-op">←</span> append_face(p, x2, y1, z1, x2, y2, z1, x2, y2, z2, x2, y1, z2, <span class="tok-nu">1.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>, r, g, b)
 
 <span class="tok-co">    # -X face (left) — normal (-1,0,0)</span>
-    p <span class="tok-op">←</span> _append_face(p, x1, y1, z2, x1, y2, z2, x1, y2, z1, x1, y1, z1, <span class="tok-op">-</span><span class="tok-nu">1.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>, r, g, b)
+    p <span class="tok-op">←</span> append_face(p, x1, y1, z2, x1, y2, z2, x1, y2, z1, x1, y1, z1, <span class="tok-op">-</span><span class="tok-nu">1.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>, r, g, b)
 
 <span class="tok-co">    # +Y face (top) — normal (0,1,0)</span>
-    p <span class="tok-op">←</span> _append_face(p, x1, y2, z1, x2, y2, z1, x2, y2, z2, x1, y2, z2, <span class="tok-nu">0.0</span>, <span class="tok-nu">1.0</span>, <span class="tok-nu">0.0</span>, r, g, b)
+    p <span class="tok-op">←</span> append_face(p, x1, y2, z1, x2, y2, z1, x2, y2, z2, x1, y2, z2, <span class="tok-nu">0.0</span>, <span class="tok-nu">1.0</span>, <span class="tok-nu">0.0</span>, r, g, b)
 
 <span class="tok-co">    # -Y face (bottom) — normal (0,-1,0)</span>
-    p <span class="tok-op">←</span> _append_face(p, x1, y1, z2, x2, y1, z2, x2, y1, z1, x1, y1, z1, <span class="tok-nu">0.0</span>, <span class="tok-op">-</span><span class="tok-nu">1.0</span>, <span class="tok-nu">0.0</span>, r, g, b)
+    p <span class="tok-op">←</span> append_face(p, x1, y1, z2, x2, y1, z2, x2, y1, z1, x1, y1, z1, <span class="tok-nu">0.0</span>, <span class="tok-op">-</span><span class="tok-nu">1.0</span>, <span class="tok-nu">0.0</span>, r, g, b)
 
 <span class="tok-co">    # +Z face (front/pest) — normal (0,0,1)</span>
-    p <span class="tok-op">←</span> _append_face(p, x1, y1, z2, x2, y1, z2, x2, y2, z2, x1, y2, z2, <span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-nu">1.0</span>, r, g, b)
+    p <span class="tok-op">←</span> append_face(p, x1, y1, z2, x2, y1, z2, x2, y2, z2, x1, y2, z2, <span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-nu">1.0</span>, r, g, b)
 
 <span class="tok-co">    # -Z face (back/buda) — normal (0,0,-1)</span>
-    p <span class="tok-op">←</span> _append_face(p, x2, y1, z1, x1, y1, z1, x1, y2, z1, x2, y2, z1, <span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-op">-</span><span class="tok-nu">1.0</span>, r, g, b)
+    p <span class="tok-op">←</span> append_face(p, x2, y1, z1, x1, y1, z1, x1, y2, z1, x2, y2, z1, <span class="tok-nu">0.0</span>, <span class="tok-nu">0.0</span>, <span class="tok-op">-</span><span class="tok-nu">1.0</span>, r, g, b)
 
     <span class="tok-kw">redde</span> p
 }</code></pre><p>---</p><p><a href="/en-US/examples/">All examples</a> · <a href="/en-US/start/install.html">Install</a> · <a href="/en-US/cheatsheet/">Cheat sheet</a></p></div></main></div></body></html>

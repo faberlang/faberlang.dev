@@ -32,9 +32,8 @@
 
 fn validata(string input) <span class="tok-op">→</span> string ⇥ string {
 <span class="tok-co">    # Guard: throw if input is empty</span>
-    if input.length() <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
-        throw <span class="tok-st">"empty input"</span>
-    }
+    throw <span class="tok-st">"empty input"</span> if input.length() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+
     return <span class="tok-st">"valid: §"</span>(input)
 }
 
@@ -59,9 +58,7 @@ main {
 
 <span class="tok-co">    # iace with si on same line</span>
     do {
-        if true {
-            throw <span class="tok-st">"force throw"</span>
-        }
+        throw <span class="tok-st">"force throw"</span> if true
         print <span class="tok-st">"should not reach"</span>
     }
     catch err {

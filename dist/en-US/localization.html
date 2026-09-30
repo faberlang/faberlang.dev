@@ -10,46 +10,182 @@ the substrate did not already handle; a set chosen for
 &quot;derive architecture.&quot;
 Every major Unicode axis — spaceless tokenization, width normalization,
 bidirectional rendering, consonant clusters, diacritic-heavy Latin — is
-stressed by at least one language here, on purpose.</p><h2 id="en">English<a class="anchor" href="#en">#</a></h2><p><strong>Base surface.</strong> The spelling most people write day to day, and the one English-trained models emit most reliably. It is a reader pack like any other — not a privileged default — but it is where most source starts.</p><p><em>Architectural stress:</em> None unique. It is the baseline the others are measured against.</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> empty
-    <span class="tok-kw">const</span> <span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> empty
-    <span class="tok-kw">const</span> <span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a · b
-    <span class="tok-kw">print</span> product
-}</code></pre><h2 id="la">Latin<a class="anchor" href="#la">#</a></h2><p><strong>Canonical surface.</strong> Latin is the interchange dialect because it is <strong>neutral relative to every modern national language</strong>. No living population has a claim on it, so no reader pack has to be the one that everyone else is a translation of.</p><p><em>Architectural stress:</em> None unique — by design. It is the complete template every translated pack is built from.</p><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-kw">incipit</span> {
-    <span class="tok-kw">fixum</span> <span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-kw">vacua</span>
-    <span class="tok-kw">fixum</span> <span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> <span class="tok-kw">vacua</span>
-    <span class="tok-kw">fixum</span> <span class="tok-kw">tensor</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a · b
-    <span class="tok-kw">nota</span> product
-}</code></pre><h2 id="th-th">ภาษาไทย — Thai<a class="anchor" href="#th-th">#</a></h2><p><strong>The tokenizer stress test.</strong> The original access-wedge choice: a large developer population with low English proficiency and no existing native-programming-language tradition. It tests the access thesis directly rather than theoretically.</p><p><em>Architectural stress:</em> <strong>Spaceless script.</strong> Thai has no inter-word boundaries, so a tokenizer that quietly assumed whitespace separates words breaks immediately. Combining vowel and tone marks stack on base characters, so a keyword is not a run of independent code points.</p><pre class="faber-code"><code class="lang-faber locale=th-TH"><span class="tok-kw">เริ่ม</span> {
-    <span class="tok-kw">คงที่</span> <span class="tok-kw">เทนเซอร์</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-kw">เซตว่าง</span>
-    <span class="tok-kw">คงที่</span> <span class="tok-kw">เทนเซอร์</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> <span class="tok-kw">เซตว่าง</span>
-    <span class="tok-kw">คงที่</span> <span class="tok-kw">เทนเซอร์</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a · b
-    <span class="tok-kw">บันทึก</span> product
-}</code></pre><h2 id="zh-hans">简体中文 — Simplified Chinese<a class="anchor" href="#zh-hans">#</a></h2><p><strong>Width, pairing, and emission fidelity.</strong> Optimizes for reach while surfacing the deepest set of script problems beyond tokenization.</p><p><em>Architectural stress:</em> <strong>Full-width and half-width punctuation</strong> collapse under NFKC normalization, so the compiler cannot treat visually distinct characters as distinct tokens. <strong>Paired keywords</strong> (如果 / 否则) are single tokens rather than multi-token phrases, which is what forced reader packs to support keyword groups at all.</p><pre class="faber-code"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">入口</span> {
-    <span class="tok-kw">常量</span> <span class="tok-kw">张量</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-kw">空集</span>
-    <span class="tok-kw">常量</span> <span class="tok-kw">张量</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> <span class="tok-kw">空集</span>
-    <span class="tok-kw">常量</span> <span class="tok-kw">张量</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a · b
-    <span class="tok-kw">显示</span> product
-}</code></pre><h2 id="zh-hant">繁體中文 — Traditional Chinese<a class="anchor" href="#zh-hant">#</a></h2><p><strong>Sibling-pack divergence.</strong> Not a variant spelling of Simplified — a separate pack with genuinely different vocabulary. <code>常量</code> against <code>定值</code> for the same concept.</p><p><em>Architectural stress:</em> <strong>Sibling packs.</strong> Two packs for one language proved the substrate could carry divergent vocabulary over identical semantics, and forced the vocabulary-governance rules that keep them from drifting apart.</p><pre class="faber-code"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">入口</span> {
-    <span class="tok-kw">定值</span> <span class="tok-kw">張量</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-kw">空集</span>
-    <span class="tok-kw">定值</span> <span class="tok-kw">張量</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> <span class="tok-kw">空集</span>
-    <span class="tok-kw">定值</span> <span class="tok-kw">張量</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a · b
-    <span class="tok-kw">註記</span> product
-}</code></pre><h2 id="vi">Tiếng Việt — Vietnamese<a class="anchor" href="#vi">#</a></h2><p><strong>The Latin-script control.</strong> The control case. Without it the architecture could be &quot;works on exotic scripts, unproven on Latin&quot; — correct for the hard cases and quietly wrong for the familiar one.</p><p><em>Architectural stress:</em> <strong>Heavy diacritics on Latin script.</strong> NFKC edge cases and accent-sensitive suggestion matching, where two spellings look nearly identical and must not be confused. Multi-word keywords join with underscores: <code>bắt_đầu</code>.</p><pre class="faber-code"><code class="lang-faber locale=vi"><span class="tok-kw">bắt_đầu</span> {
-    <span class="tok-kw">hằng</span> <span class="tok-kw">ten_xo</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-kw">tập_rỗng</span>
-    <span class="tok-kw">hằng</span> <span class="tok-kw">ten_xo</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> <span class="tok-kw">tập_rỗng</span>
-    <span class="tok-kw">hằng</span> <span class="tok-kw">ten_xo</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a · b
-    <span class="tok-kw">ghi_chú</span> product
-}</code></pre><h2 id="ar">العربية — Arabic<a class="anchor" href="#ar">#</a></h2><p><strong>The required RTL pack.</strong> The only right-to-left language in the set. Without it the architecture can ship code that is correct on paper and renders wrong on screen — and nobody would find out from a test suite.</p><p><em>Architectural stress:</em> <strong>Bidirectional text.</strong> Contextual glyph shaping, ligatures, and the split between logical and visual order. Diagnostics have to bidi-isolate the source they quote, or an error message points at the wrong character.</p><pre class="faber-code"><code class="lang-faber locale=ar"><span class="tok-kw">بداية</span> {
-    <span class="tok-kw">ثابت</span> <span class="tok-kw">موتر</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-kw">فارغ</span>
-    <span class="tok-kw">ثابت</span> <span class="tok-kw">موتر</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> <span class="tok-kw">فارغ</span>
-    <span class="tok-kw">ثابت</span> <span class="tok-kw">موتر</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a · b
-    <span class="tok-kw">اعرض</span> product
-}</code></pre><h2 id="hi">हिन्दी — Hindi<a class="anchor" href="#hi">#</a></h2><p><strong>The Indic-family representative.</strong> Stands in for the whole Indic family. A pack that handles Devanagari proves the path for Bengali, Tamil, Telugu, Gujarati, and the rest — they inherit the substrate this one established.</p><p><em>Architectural stress:</em> <strong>Matra and virama consonant clusters</strong>, where a grapheme spans several code points and NFKC equivalence has to hold. It is also the pack that confirmed <strong>Indic numerals</strong> (०-९) stay rejected inside numeric literals — a digit that looks like a number but is not one.</p><pre class="faber-code"><code class="lang-faber locale=hi"><span class="tok-kw">आरंभ</span> {
-    <span class="tok-kw">स्थिर</span> <span class="tok-kw">टेंसर</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-kw">खाली</span>
-    <span class="tok-kw">स्थिर</span> <span class="tok-kw">टेंसर</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> <span class="tok-kw">खाली</span>
-    <span class="tok-kw">स्थिर</span> <span class="tok-kw">टेंसर</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> product <span class="tok-op">←</span> a · b
-    <span class="tok-kw">दिखाओ</span> product
+stressed by at least one language here, on purpose.</p><h2 id="en">English<a class="anchor" href="#en">#</a></h2><p><strong>Base surface.</strong> The spelling most people write day to day, and the one English-trained models emit most reliably. It is a reader pack like any other — not a privileged default — but it is where most source starts.</p><p><em>Architectural stress:</em> None unique. It is the baseline the others are measured against.</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">class</span> Span {
+    <span class="tok-kw">const</span> f64 low
+    <span class="tok-kw">const</span> f64 high
+
+    <span class="tok-kw">fn</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">bool</span> {
+        <span class="tok-kw">return</span> <span class="tok-kw">self</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">and</span> x <span class="tok-op">≤</span> <span class="tok-kw">self</span>.high
+    }
+
+    <span class="tok-kw">fn</span> center() <span class="tok-op">→</span> f64 {
+        <span class="tok-kw">return</span> (<span class="tok-kw">self</span>.low <span class="tok-op">+</span> <span class="tok-kw">self</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    }
+}
+
+<span class="tok-kw">fn</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">bool</span> first, T a, T b) <span class="tok-op">→</span> T {
+    <span class="tok-kw">return</span> first ✓ a ✗ b
+}
+
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> Span <span class="tok-kw">bytes</span> <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
+    <span class="tok-kw">print</span> <span class="tok-kw">bytes</span>.center()
+    <span class="tok-kw">print</span> choose(<span class="tok-kw">bytes</span>.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
+    <span class="tok-kw">print</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
+}</code></pre><h2 id="la">Latin<a class="anchor" href="#la">#</a></h2><p><strong>Canonical surface.</strong> Latin is the interchange dialect because it is <strong>neutral relative to every modern national language</strong>. No living population has a claim on it, so no reader pack has to be the one that everyone else is a translation of.</p><p><em>Architectural stress:</em> None unique — by design. It is the complete template every translated pack is built from.</p><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-kw">genus</span> Span {
+    <span class="tok-kw">fixum</span> f64 low
+    <span class="tok-kw">fixum</span> f64 high
+
+    <span class="tok-kw">functio</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">bivalens</span> {
+        <span class="tok-kw">redde</span> <span class="tok-kw">ego</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">et</span> x <span class="tok-op">≤</span> <span class="tok-kw">ego</span>.high
+    }
+
+    <span class="tok-kw">functio</span> center() <span class="tok-op">→</span> f64 {
+        <span class="tok-kw">redde</span> (<span class="tok-kw">ego</span>.low <span class="tok-op">+</span> <span class="tok-kw">ego</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    }
+}
+
+<span class="tok-kw">functio</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">bivalens</span> first, T a, T b) <span class="tok-op">→</span> T {
+    <span class="tok-kw">redde</span> first ✓ a ✗ b
+}
+
+<span class="tok-kw">incipit</span> {
+    <span class="tok-kw">fixum</span> Span bytes <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
+    <span class="tok-kw">nota</span> bytes.center()
+    <span class="tok-kw">nota</span> choose(bytes.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
+    <span class="tok-kw">nota</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
+}</code></pre><h2 id="th-th">ภาษาไทย — Thai<a class="anchor" href="#th-th">#</a></h2><p><strong>The tokenizer stress test.</strong> The original access-wedge choice: a large developer population with low English proficiency and no existing native-programming-language tradition. It tests the access thesis directly rather than theoretically.</p><p><em>Architectural stress:</em> <strong>Spaceless script.</strong> Thai has no inter-word boundaries, so a tokenizer that quietly assumed whitespace separates words breaks immediately. Combining vowel and tone marks stack on base characters, so a keyword is not a run of independent code points.</p><pre class="faber-code"><code class="lang-faber locale=th-TH"><span class="tok-kw">ชนิด</span> Span {
+    <span class="tok-kw">คงที่</span> f64 low
+    <span class="tok-kw">คงที่</span> f64 high
+
+    <span class="tok-kw">ฟังก์ชัน</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">ตรรกะ</span> {
+        <span class="tok-kw">คืน</span> <span class="tok-kw">ตัวฉัน</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">และ</span> x <span class="tok-op">≤</span> <span class="tok-kw">ตัวฉัน</span>.high
+    }
+
+    <span class="tok-kw">ฟังก์ชัน</span> center() <span class="tok-op">→</span> f64 {
+        <span class="tok-kw">คืน</span> (<span class="tok-kw">ตัวฉัน</span>.low <span class="tok-op">+</span> <span class="tok-kw">ตัวฉัน</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    }
+}
+
+<span class="tok-kw">ฟังก์ชัน</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">ตรรกะ</span> first, T a, T b) <span class="tok-op">→</span> T {
+    <span class="tok-kw">คืน</span> first ✓ a ✗ b
+}
+
+<span class="tok-kw">เริ่ม</span> {
+    <span class="tok-kw">คงที่</span> Span bytes <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
+    <span class="tok-kw">บันทึก</span> bytes.center()
+    <span class="tok-kw">บันทึก</span> choose(bytes.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
+    <span class="tok-kw">บันทึก</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
+}</code></pre><h2 id="zh-hans">简体中文 — Simplified Chinese<a class="anchor" href="#zh-hans">#</a></h2><p><strong>Width, pairing, and emission fidelity.</strong> Optimizes for reach while surfacing the deepest set of script problems beyond tokenization.</p><p><em>Architectural stress:</em> <strong>Full-width and half-width punctuation</strong> collapse under NFKC normalization, so the compiler cannot treat visually distinct characters as distinct tokens. <strong>Paired keywords</strong> (如果 / 否则) are single tokens rather than multi-token phrases, which is what forced reader packs to support keyword groups at all.</p><pre class="faber-code"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">类</span> Span {
+    <span class="tok-kw">常量</span> f64 low
+    <span class="tok-kw">常量</span> f64 high
+
+    <span class="tok-kw">函数</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">布尔</span> {
+        <span class="tok-kw">返回</span> <span class="tok-kw">自身</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">且</span> x <span class="tok-op">≤</span> <span class="tok-kw">自身</span>.high
+    }
+
+    <span class="tok-kw">函数</span> center() <span class="tok-op">→</span> f64 {
+        <span class="tok-kw">返回</span> (<span class="tok-kw">自身</span>.low <span class="tok-op">+</span> <span class="tok-kw">自身</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    }
+}
+
+<span class="tok-kw">函数</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">布尔</span> first, T a, T b) <span class="tok-op">→</span> T {
+    <span class="tok-kw">返回</span> first ✓ a ✗ b
+}
+
+<span class="tok-kw">入口</span> {
+    <span class="tok-kw">常量</span> Span bytes <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
+    <span class="tok-kw">显示</span> bytes.center()
+    <span class="tok-kw">显示</span> choose(bytes.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
+    <span class="tok-kw">显示</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
+}</code></pre><h2 id="zh-hant">繁體中文 — Traditional Chinese<a class="anchor" href="#zh-hant">#</a></h2><p><strong>Sibling-pack divergence.</strong> Not a variant spelling of Simplified — a separate pack with genuinely different vocabulary. <code>常量</code> against <code>定值</code> for the same concept.</p><p><em>Architectural stress:</em> <strong>Sibling packs.</strong> Two packs for one language proved the substrate could carry divergent vocabulary over identical semantics, and forced the vocabulary-governance rules that keep them from drifting apart.</p><pre class="faber-code"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">類型</span> Span {
+    <span class="tok-kw">定值</span> f64 low
+    <span class="tok-kw">定值</span> f64 high
+
+    <span class="tok-kw">函式</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">布林</span> {
+        <span class="tok-kw">傳回</span> <span class="tok-kw">自身</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">且</span> x <span class="tok-op">≤</span> <span class="tok-kw">自身</span>.high
+    }
+
+    <span class="tok-kw">函式</span> center() <span class="tok-op">→</span> f64 {
+        <span class="tok-kw">傳回</span> (<span class="tok-kw">自身</span>.low <span class="tok-op">+</span> <span class="tok-kw">自身</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    }
+}
+
+<span class="tok-kw">函式</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">布林</span> first, T a, T b) <span class="tok-op">→</span> T {
+    <span class="tok-kw">傳回</span> first ✓ a ✗ b
+}
+
+<span class="tok-kw">入口</span> {
+    <span class="tok-kw">定值</span> Span bytes <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
+    <span class="tok-kw">註記</span> bytes.center()
+    <span class="tok-kw">註記</span> choose(bytes.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
+    <span class="tok-kw">註記</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
+}</code></pre><h2 id="vi">Tiếng Việt — Vietnamese<a class="anchor" href="#vi">#</a></h2><p><strong>The Latin-script control.</strong> The control case. Without it the architecture could be &quot;works on exotic scripts, unproven on Latin&quot; — correct for the hard cases and quietly wrong for the familiar one.</p><p><em>Architectural stress:</em> <strong>Heavy diacritics on Latin script.</strong> NFKC edge cases and accent-sensitive suggestion matching, where two spellings look nearly identical and must not be confused. Multi-word keywords join with underscores: <code>bắt_đầu</code>.</p><pre class="faber-code"><code class="lang-faber locale=vi"><span class="tok-kw">kiểu</span> Span {
+    <span class="tok-kw">hằng</span> f64 low
+    <span class="tok-kw">hằng</span> f64 high
+
+    <span class="tok-kw">hàm</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">logic</span> {
+        <span class="tok-kw">trả</span> <span class="tok-kw">tôi</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">và</span> x <span class="tok-op">≤</span> <span class="tok-kw">tôi</span>.high
+    }
+
+    <span class="tok-kw">hàm</span> center() <span class="tok-op">→</span> f64 {
+        <span class="tok-kw">trả</span> (<span class="tok-kw">tôi</span>.low <span class="tok-op">+</span> <span class="tok-kw">tôi</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    }
+}
+
+<span class="tok-kw">hàm</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">logic</span> first, T a, T b) <span class="tok-op">→</span> T {
+    <span class="tok-kw">trả</span> first ✓ a ✗ b
+}
+
+<span class="tok-kw">bắt_đầu</span> {
+    <span class="tok-kw">hằng</span> Span bytes <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
+    <span class="tok-kw">ghi_chú</span> bytes.center()
+    <span class="tok-kw">ghi_chú</span> choose(bytes.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
+    <span class="tok-kw">ghi_chú</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
+}</code></pre><h2 id="ar">العربية — Arabic<a class="anchor" href="#ar">#</a></h2><p><strong>The required RTL pack.</strong> The only right-to-left language in the set. Without it the architecture can ship code that is correct on paper and renders wrong on screen — and nobody would find out from a test suite.</p><p><em>Architectural stress:</em> <strong>Bidirectional text.</strong> Contextual glyph shaping, ligatures, and the split between logical and visual order. Diagnostics have to bidi-isolate the source they quote, or an error message points at the wrong character.</p><pre class="faber-code"><code class="lang-faber locale=ar"><span class="tok-kw">صنف</span> Span {
+    <span class="tok-kw">ثابت</span> f64 low
+    <span class="tok-kw">ثابت</span> f64 high
+
+    <span class="tok-kw">دالة</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">منطقي</span> {
+        <span class="tok-kw">أعد</span> <span class="tok-kw">ذات</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">و</span> x <span class="tok-op">≤</span> <span class="tok-kw">ذات</span>.high
+    }
+
+    <span class="tok-kw">دالة</span> center() <span class="tok-op">→</span> f64 {
+        <span class="tok-kw">أعد</span> (<span class="tok-kw">ذات</span>.low <span class="tok-op">+</span> <span class="tok-kw">ذات</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    }
+}
+
+<span class="tok-kw">دالة</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">منطقي</span> first, T a, T b) <span class="tok-op">→</span> T {
+    <span class="tok-kw">أعد</span> first ✓ a ✗ b
+}
+
+<span class="tok-kw">بداية</span> {
+    <span class="tok-kw">ثابت</span> Span bytes <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
+    <span class="tok-kw">اعرض</span> bytes.center()
+    <span class="tok-kw">اعرض</span> choose(bytes.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
+    <span class="tok-kw">اعرض</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
+}</code></pre><h2 id="hi">हिन्दी — Hindi<a class="anchor" href="#hi">#</a></h2><p><strong>The Indic-family representative.</strong> Stands in for the whole Indic family. A pack that handles Devanagari proves the path for Bengali, Tamil, Telugu, Gujarati, and the rest — they inherit the substrate this one established.</p><p><em>Architectural stress:</em> <strong>Matra and virama consonant clusters</strong>, where a grapheme spans several code points and NFKC equivalence has to hold. It is also the pack that confirmed <strong>Indic numerals</strong> (०-९) stay rejected inside numeric literals — a digit that looks like a number but is not one.</p><pre class="faber-code"><code class="lang-faber locale=hi"><span class="tok-kw">वर्ग</span> Span {
+    <span class="tok-kw">स्थिर</span> f64 low
+    <span class="tok-kw">स्थिर</span> f64 high
+
+    <span class="tok-kw">फलन</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">तार्किक</span> {
+        <span class="tok-kw">लौटाओ</span> <span class="tok-kw">मैं</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">और</span> x <span class="tok-op">≤</span> <span class="tok-kw">मैं</span>.high
+    }
+
+    <span class="tok-kw">फलन</span> center() <span class="tok-op">→</span> f64 {
+        <span class="tok-kw">लौटाओ</span> (<span class="tok-kw">मैं</span>.low <span class="tok-op">+</span> <span class="tok-kw">मैं</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    }
+}
+
+<span class="tok-kw">फलन</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">तार्किक</span> first, T a, T b) <span class="tok-op">→</span> T {
+    <span class="tok-kw">लौटाओ</span> first ✓ a ✗ b
+}
+
+<span class="tok-kw">आरंभ</span> {
+    <span class="tok-kw">स्थिर</span> Span bytes <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
+    <span class="tok-kw">दिखाओ</span> bytes.center()
+    <span class="tok-kw">दिखाओ</span> choose(bytes.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
+    <span class="tok-kw">दिखाओ</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
 }</code></pre><h2 id="why-not">Why not others<a class="anchor" href="#why-not">#</a></h2><p>Reasonable languages that are deliberately absent, and what it would take to
 add them:</p><div class="table-scroll"><table><thead><tr><th>Language</th><th>Why not yet</th></tr></thead><tbody><tr><td><strong>Japanese</strong></td><td>The natural next addition. Its concerns — Kanji/Kana mixing, paired constructs — overlap heavily with Chinese, so it adds reach more than new architecture. If the set grows, this is next.</td></tr><tr><td><strong>Korean</strong></td><td>Hangul handles cleanly under XID identifier rules, so it needs no new substrate work.</td></tr><tr><td><strong>Spanish · French · Russian · Portuguese</strong></td><td>Little unique architectural stress, and weaker access wedges — these populations broadly reach English already. Adding them is vocabulary work, not compiler work.</td></tr><tr><td><strong>Bengali · Tamil · Telugu · Gujarati</strong></td><td>Subsumed by Hindi as the Indic representative. Their packs inherit the substrate Hindi proved; they are additions, not new problems.</td></tr><tr><td><strong>Swahili · Hausa</strong></td><td>A genuine access wedge, but current LLM coverage is thin and developer populations small, so the authoring loop does not close yet. Worth revisiting as coverage improves.</td></tr></tbody></table></div><p>Absence is not judgement. A language missing from this list is missing because
 it would not teach the compiler anything new — which means adding it later is

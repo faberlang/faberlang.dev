@@ -30,11 +30,11 @@
     <span class="tok-kw">return</span> x
 }
 
-<span class="tok-kw">fn</span> inveni(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> res, <span class="tok-kw">int</span> quaesitum) <span class="tok-op">→</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> {
+<span class="tok-kw">fn</span> inveni(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> res, <span class="tok-kw">int</span> quaesitum) <span class="tok-op">→</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> none {
     <span class="tok-kw">for</span> <span class="tok-kw">from</span> res <span class="tok-kw">const</span> item {
         <span class="tok-kw">if</span> item <span class="tok-op">≡</span> quaesitum then <span class="tok-kw">return</span> item
     }
-    <span class="tok-kw">return</span> <span class="tok-kw">null</span>
+    <span class="tok-kw">return</span> null
 }
 
 <span class="tok-kw">main</span> {
@@ -79,8 +79,8 @@
 }
 
 <span class="tok-co"># Optional return: nihil when divisor is zero</span>
-<span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> {
-    <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> then <span class="tok-kw">return</span> <span class="tok-kw">null</span>
+<span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> none {
+    <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> then <span class="tok-kw">return</span> null
     <span class="tok-kw">return</span> a <span class="tok-op">/</span> b
 }
 
@@ -94,11 +94,11 @@
 }
 
 <span class="tok-co"># Early return inside itera ex loop</span>
-<span class="tok-kw">fn</span> inveni(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> res, <span class="tok-kw">int</span> quaesitum) <span class="tok-op">→</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> {
+<span class="tok-kw">fn</span> inveni(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> res, <span class="tok-kw">int</span> quaesitum) <span class="tok-op">→</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> none {
     <span class="tok-kw">for</span> <span class="tok-kw">from</span> res <span class="tok-kw">const</span> item {
         <span class="tok-kw">if</span> item <span class="tok-op">≡</span> quaesitum then <span class="tok-kw">return</span> item
     }
-    <span class="tok-kw">return</span> <span class="tok-kw">null</span>
+    <span class="tok-kw">return</span> null
 }
 
 <span class="tok-kw">fn</span> habet(<span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> <span class="tok-kw">map</span>, string clavis) <span class="tok-op">→</span> <span class="tok-kw">bool</span> {

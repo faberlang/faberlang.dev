@@ -23,8 +23,10 @@
 <span class="tok-co">#   Rust lowers all three postures (inline `⊥`, propagation, `fac`/`cape`).</span>
 <span class="tok-co">#   Go/TS remain diagnostic-only until their failable stacks mature.</span>
 
+<span class="tok-co"># Why: this function is itself the `⊥` default below, so it cannot default</span>
+<span class="tok-co"># itself; epoch seconds 0 cannot fail to convert, so it needs no handler.</span>
 fn epochZero() <span class="tok-op">→</span> instant {
-    return <span class="tok-st">"1970-01-01T00:00:00Z"</span> ↦ instant
+    return <span class="tok-nu">0</span> ↦ instant
 }
 
 fn parseInstans(value v) <span class="tok-op">→</span> instant ⇥ string {

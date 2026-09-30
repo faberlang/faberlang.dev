@@ -143,11 +143,11 @@ functio placement(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-n
 }
 
 <span class="tok-co"># 2. tail — K = 8 not aligned to the 32-lane width declines</span>
-@ nucleum lane <span class="tok-st">"id"</span>
+@ nucleum
 @ publica
 functio tail(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> a, tf32[<span class="tok-nu">1</span>] out) <span class="tok-op">→</span> vacuum {
     fixum f32 total <span class="tok-op">←</span> summa ex a apud [i] filum f fixum s { redde s }
-    out[id] <span class="tok-op">←</span> total
+    out[<span class="tok-nu">0</span>] <span class="tok-op">←</span> total
 }
 
 <span class="tok-co"># 3. non-scalar term — a textus element is not a numeric scalar</span>

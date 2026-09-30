@@ -18,7 +18,8 @@
 
 @ json { }
 <span class="tok-kw">class</span> Payload {
-    string name
+    @ json { name <span class="tok-op">=</span> <span class="tok-st">"wire_name"</span> }
+    <span class="tok-kw">var</span> string name
 }
 
 <span class="tok-kw">main</span> {
@@ -28,7 +29,7 @@
     <span class="tok-kw">const</span> Payload payload <span class="tok-op">←</span> narrowed ↦ Payload
     <span class="tok-kw">const</span> json encoded <span class="tok-op">←</span> payload ↦ json
     <span class="tok-kw">const</span> string wire <span class="tok-op">←</span> json.stringify(encoded)
-    <span class="tok-kw">const</span> json <span class="tok-op">∪</span> <span class="tok-kw">null</span> tentativa <span class="tok-op">←</span> json.try_parse(wire)
+    <span class="tok-kw">const</span> json <span class="tok-op">∪</span> none tentativa <span class="tok-op">←</span> json.try_parse(wire)
     print payload.name
     print wire
     print tentativa

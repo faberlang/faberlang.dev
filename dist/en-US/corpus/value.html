@@ -18,10 +18,13 @@
 <span class="tok-co"># WHY: `T ↦ valor` boxes typed values into the canonical dynamic carrier.</span>
 <span class="tok-co"># `octeti` composes as a list of numeric byte values; it must not lossy-decode</span>
 <span class="tok-co"># bytes as text.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># A valor object has no defined key order (DECISIONS D2.9), so the genus case</span>
+<span class="tok-co"># reads its fields back instead of printing the object text.</span>
 
 <span class="tok-kw">class</span> Punctum {
-    <span class="tok-kw">int</span> x
-    <span class="tok-kw">int</span> y
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> x
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> y
 }
 
 <span class="tok-kw">main</span> {
@@ -39,7 +42,9 @@
     print boxedMap
     <span class="tok-kw">const</span> Punctum punctum <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">3</span>, y <span class="tok-op">=</span> <span class="tok-nu">4</span> }
     <span class="tok-kw">const</span> value boxedGenus <span class="tok-op">←</span> punctum ↦ value
-    print boxedGenus
+    <span class="tok-kw">const</span> Punctum unboxed <span class="tok-op">←</span> boxedGenus ↦ Punctum
+    print unboxed.x
+    print unboxed.y
     <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>] ↦ tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
     <span class="tok-kw">const</span> value boxedTensor <span class="tok-op">←</span> grid ↦ value
     print boxedTensor
@@ -47,7 +52,8 @@
 [222, 173]
 [1, 2]
 {&quot;alpha&quot;: 10}
-{&quot;x&quot;: 3, &quot;y&quot;: 4}
+3
+4
 [5, 6]
 </code></pre><h3 id="radixcorpusconversiovalor-genusfab-canonical-conversio">radix/corpus/conversio/valor-genus.fab (canonical · conversio)<a class="anchor" href="#radixcorpusconversiovalor-genusfab-canonical-conversio">#</a></h3><p>valor ↦ genus extraction with missing-field defaults and mandatory-field failure via ⊥ recovery.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># valor — valor ↦ genus extraction with missing-field defaults and mandatory-field failure via ⊥ recovery.</span>
@@ -70,17 +76,17 @@
 <span class="tok-co"># (recoverable via a `⊥` default). Extra JSON keys are ignored.</span>
 
 <span class="tok-kw">class</span> Persona {
-    string nomen
-    <span class="tok-kw">int</span> aetas <span class="tok-kw">optional</span>
-    string regio <span class="tok-op">=</span> <span class="tok-st">"Roma"</span>
-    instant born
+    <span class="tok-kw">var</span> string nomen
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> aetas <span class="tok-kw">optional</span>
+    <span class="tok-kw">var</span> string regio <span class="tok-op">=</span> <span class="tok-st">"Roma"</span>
+    <span class="tok-kw">var</span> instant born
 }
 
 <span class="tok-kw">main</span> {
     <span class="tok-kw">const</span> value payload <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Marcus"</span>, <span class="tok-st">"born"</span><span class="tok-op">:</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>, <span class="tok-st">"extra"</span><span class="tok-op">:</span> <span class="tok-st">"ignored"</span> } ↦ value
     <span class="tok-kw">const</span> Persona good <span class="tok-op">←</span> payload ↦ Persona
     <span class="tok-kw">assert</span> good.nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">assert</span> good.aetas <span class="tok-op">≡</span> <span class="tok-kw">null</span>
+    <span class="tok-kw">assert</span> good.aetas <span class="tok-op">≡</span> null
     <span class="tok-kw">assert</span> good.regio <span class="tok-op">≡</span> <span class="tok-st">"Roma"</span>
     <span class="tok-kw">const</span> value stale <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Livia"</span> } ↦ value
     <span class="tok-kw">const</span> Persona recovered <span class="tok-op">←</span> stale ↦ Persona ⊥ good

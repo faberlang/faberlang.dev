@@ -3,24 +3,24 @@
 <span class="tok-fn">  https</span>://github.com/faberlang/releases/releases/download/radix-v0.49.0/radix-v0.49.0-aarch64-apple-darwin.tar.gz
 <span class="tok-fn">tar</span> <span class="tok-op">-xzf</span> radix.tgz
 <span class="tok-fn">sudo</span> mv radix-v0.49.0-aarch64-apple-darwin/radix /usr/local/bin/
-<span class="tok-fn">radix</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><p>Breakable blocks ship end-to-end: <code class="kw">rumpe</code> generalises from <code class="kw">fac</code> to loops,
+<span class="tok-fn">radix</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><p>Breakable blocks ship end-to-end: <code class="kw">break</code> generalises from <code class="kw">do</code> to loops,
 closures, and <code>meus</code>/<code>tuus</code> ad arms. The frame gateway architecture design is
 laid in parallel, establishing the protocol model and stage-1 stream-types
-spec that <code>emitte</code> will build on. Backend smoke-check CI hardens alongside.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>37</td></tr><tr><td>Date span</td><td>2026-06-25 → 2026-06-26</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="breakable-blocks-rumpe-with-fac-meus-tuus">Breakable blocks: <code class="kw">rumpe</code> with <code class="kw">fac</code>, <code>meus</code>, <code>tuus</code><a class="anchor" href="#breakable-blocks-rumpe-with-fac-meus-tuus">#</a></h4><p>The breakable-block work that began in earlier cycles reaches a
-cross-target implementation milestone. <code class="kw">rumpe</code> — the breakable-block
-construct — generalises beyond <code class="kw">fac</code> (loop) to cover closure fac and
+spec that <code>emitte</code> will build on. Backend smoke-check CI hardens alongside.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>37</td></tr><tr><td>Date span</td><td>2026-06-25 → 2026-06-26</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="breakable-blocks-break-with-do-meus-tuus">Breakable blocks: <code class="kw">break</code> with <code class="kw">do</code>, <code>meus</code>, <code>tuus</code><a class="anchor" href="#breakable-blocks-break-with-do-meus-tuus">#</a></h4><p>The breakable-block work that began in earlier cycles reaches a
+cross-target implementation milestone. <code class="kw">break</code> — the breakable-block
+construct — generalises beyond <code class="kw">do</code> (loop) to cover closure fac and
 arbitrary statement blocks. The <code>meus</code> (receive) and <code>tuus</code> (send) ad
 arms are parsed, lowered through HIR/MIR, and codegenned for Rust, Go,
-and TypeScript targets.</p><ul><li>Generalise <code class="kw">rumpe</code> to breakable blocks: <code class="kw">fac</code>, loops, closure fac
-(<code>db7ecf75f</code>)</li><li>Parser-first <code>meus</code>/<code>tuus</code> breakable ad arms for <code class="kw">rumpe</code>
-(<code>496f77901</code>)</li><li>Correct breakable fac closure codegen for <code class="kw">rumpe</code> (<code>0df91398a</code>)</li><li>Emit <code>meus</code> auto-done epilogue in breakable ad codegen (<code>92f28333e</code>)</li><li>Repair breakable-block MIR CFG for <code class="kw">rumpe</code> (fac, meus, tuus)
+and TypeScript targets.</p><ul><li>Generalise <code class="kw">break</code> to breakable blocks: <code class="kw">do</code>, loops, closure fac
+(<code>db7ecf75f</code>)</li><li>Parser-first <code>meus</code>/<code>tuus</code> breakable ad arms for <code class="kw">break</code>
+(<code>496f77901</code>)</li><li>Correct breakable fac closure codegen for <code class="kw">break</code> (<code>0df91398a</code>)</li><li>Emit <code>meus</code> auto-done epilogue in breakable ad codegen (<code>92f28333e</code>)</li><li>Repair breakable-block MIR CFG for <code class="kw">break</code> (fac, meus, tuus)
 (<code>62b5dfbef</code>)</li><li>Close breakable-blocks codegen skeptic gaps, phase 1 (<code>a43dd2ad4</code>)</li><li>Close breakable-blocks codegen skeptic gaps, phase 3 (<code>34d7a279f</code>)</li><li>Add breakable-blocks goal design doc; link from gateway architecture
 (<code>2736c44ff</code>)</li><li>Clarify <code>tuus rumpe</code> drains gateway terminal before ad completes
 (<code>3428f9b19</code>)</li></ul><h4 id="frame-gateway-architecture-design-emitte-groundwork">Frame gateway architecture design (<code>emitte</code> groundwork)<a class="anchor" href="#frame-gateway-architecture-design-emitte-groundwork">#</a></h4><p>A dense design track lays the foundation for stream-based frame
 gateways. The architecture document (<code>frame-gateway-architecture.md</code>)
 goes through multiple review rounds: opaque routing, bidirectional
 protocol with <code>meus</code>/<code>tuus</code> arms, Latin type naming (<code>nuntius</code>,
-<code>status</code>, <code>sermo</code>; envelope → <code>scrinium</code>; <code class="kw">discerne</code>), sequential ad
+<code>status</code>, <code>sermo</code>; envelope → <code>scrinium</code>; <code class="kw">match</code>), sequential ad
 arms with one <code>emitte</code> per frame, and an ASCII route requirement at the
 Faber layer. A campaign and stage-1 <code>frame-stream-types</code> spec are
 published. The architecture is then aligned with the breakable-blocks
@@ -28,7 +28,7 @@ shipment that shipped alongside it.</p><ul><li>Capture frame gateway architectur
 (<code>b37e3e5de</code>)</li><li>Address frame-gateway review: frame types, ABI, strict shape
 (<code>1a4087549</code>)</li><li>Fix frame-gateway review leftovers: slice gating, host ABI, refs
 (<code>9c58d7d55</code>)</li><li>Revert ad input ABI to opaque payload (<code>fcf383170</code>)</li><li>Make frame protocol bidirectional with <code>meus</code>/<code>tuus</code> arms
-(<code>acfa02c36</code>)</li><li>Tighten frame protocol terminology and termination (<code>c96c2b0fc</code>)</li><li>Adopt Latin type names <code>nuntius</code>/<code>status</code>/<code>sermo</code> (<code>1cdbaaf9f</code>)</li><li>Rename envelope to <code>scrinium</code>; use <code class="kw">discerne</code> for status
+(<code>acfa02c36</code>)</li><li>Tighten frame protocol terminology and termination (<code>c96c2b0fc</code>)</li><li>Adopt Latin type names <code>nuntius</code>/<code>status</code>/<code>sermo</code> (<code>1cdbaaf9f</code>)</li><li>Rename envelope to <code>scrinium</code>; use <code class="kw">match</code> for status
 (<code>c94391ada</code>)</li><li>Capture ad consumer and payload decisions in gateway architecture
 (<code>84f5ec46a</code>)</li><li>Settle sequential ad arms and one <code>emitte</code> per frame (<code>27e30d931</code>)</li><li>Require ASCII route at the Faber layer (<code>466907f70</code>)</li><li>Close remaining review questions in gateway and breakable-blocks
 (<code>97d83dc29</code>)</li><li>Add frame-gateway campaign and stage-1 <code>frame-stream-types</code> spec

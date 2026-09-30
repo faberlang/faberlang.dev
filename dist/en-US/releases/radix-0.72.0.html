@@ -15,9 +15,9 @@ rejection.</p><p><strong>G5 target qualification measurement matrix</strong> (<c
 <code>qualify_for_target</code> to <code>classify_hir_coverage</code> gap slugs, add stable slug
 fixtures, and ship a fast exempla HIR matrix (rust/go/ts/faber) with pinned
 floors and <code>scripta/hir-target-coverage</code> for <code>--full</code>.</p><p>Provider import plumbing:</p><ul><li>Unblock <code>triga</code> provider imports with two-phase file-interface install; emit
-<code class="kw">de</code>/<code class="kw">in</code> parameters as <code>&amp;T</code>/<code>&amp;mut T</code> with matching call sites; nullable
+<code class="kw">ref</code>/<code class="kw">mut</code> parameters as <code>&amp;T</code>/<code>&amp;mut T</code> with matching call sites; nullable
 <code>est nihil</code> uses <code>Option::is_none</code> so payload <code>PartialEq</code> is not required
-(<code>93e1c682e</code>)</li><li>Resolve provider imports and <code class="kw">de</code> field loads: wire radix check/emit contracts
+(<code>93e1c682e</code>)</li><li>Resolve provider imports and <code class="kw">ref</code> field loads: wire radix check/emit contracts
 to <code>FABER_LIBRARY_HOME</code> provider modules, skip partial export failures
 instead of dropping the whole interface, clone non-Copy fields through de/in
 (<code>93ecd2ba0</code>)</li><li>Emit provider imports as Rust modules with typed paths: single-file emit

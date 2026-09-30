@@ -156,8 +156,8 @@ verum
 <span class="tok-kw">main</span> {
     <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> res <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">1</span>, <span class="tok-nu">2</span>] ∷ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
     res.append(<span class="tok-nu">4</span>)
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> primusremotus <span class="tok-op">←</span> res.remove_first()
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">null</span> ultimusremotus <span class="tok-op">←</span> res.remove_last()
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> none primusremotus <span class="tok-op">←</span> res.remove_first()
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> none ultimusremotus <span class="tok-op">←</span> res.remove_last()
     res.reverse()
     res.sort()
     print res

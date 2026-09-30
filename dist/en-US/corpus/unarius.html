@@ -53,16 +53,16 @@
     print b ≺ <span class="tok-nu">0</span>
 
 <span class="tok-co">    # Null checks</span>
-    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> <span class="tok-kw">null</span> forsitan <span class="tok-op">←</span> <span class="tok-kw">null</span>
+    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> none forsitan <span class="tok-op">←</span> null
 <span class="tok-co">    # verum</span>
-    print forsitan <span class="tok-kw">is</span> <span class="tok-kw">null</span>
+    print forsitan <span class="tok-kw">is</span> none
 <span class="tok-co">    # falsum</span>
-    print forsitan <span class="tok-kw">not</span> <span class="tok-kw">is</span> <span class="tok-kw">null</span>
-    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> <span class="tok-kw">null</span> adest <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
+    print forsitan <span class="tok-kw">not</span> <span class="tok-kw">is</span> none
+    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> none adest <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
 <span class="tok-co">    # falsum</span>
-    print adest <span class="tok-kw">is</span> <span class="tok-kw">null</span>
+    print adest <span class="tok-kw">is</span> none
 <span class="tok-co">    # verum</span>
-    print adest <span class="tok-kw">not</span> <span class="tok-kw">is</span> <span class="tok-kw">null</span>
+    print adest <span class="tok-kw">not</span> <span class="tok-kw">is</span> none
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>-5
 falsum
 verum

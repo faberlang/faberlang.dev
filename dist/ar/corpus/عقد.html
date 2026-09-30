@@ -31,7 +31,7 @@ interface Figurabile {
 }
 
 class Circulus implements Figurabile {
-    int radius <span class="tok-op">=</span> <span class="tok-nu">10</span>
+    var int radius <span class="tok-op">=</span> <span class="tok-nu">10</span>
 
     fn depinge() <span class="tok-op">→</span> void {
         print <span class="tok-st">"circulus radius: §"</span>(self.radius)
@@ -39,7 +39,7 @@ class Circulus implements Figurabile {
 }
 
 class Quadratum implements Figurabile {
-    int latus <span class="tok-op">=</span> <span class="tok-nu">5</span>
+    var int latus <span class="tok-op">=</span> <span class="tok-nu">5</span>
 
     fn depinge() <span class="tok-op">→</span> void {
         print <span class="tok-st">"quadratum latus: §"</span>(self.latus)

@@ -6,7 +6,7 @@
 <span class="tok-fn">radix</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><p>A dense single-day release shipping <strong>live sermo directional views</strong>
 (<code>meus&lt;T&gt;</code>/<code>tuus&lt;T&gt;</code>), the <strong>tuus cursor Phase 2 escape analysis</strong>, <strong>radix type parameter domains</strong>, the full <strong>`sparsa` sparse tensor type</strong> through
 Phase G (docs/exempla), and the <strong>legacy ad syntax removal</strong> clean break.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>51</td></tr><tr><td><code>feat(...)</code> commits</td><td>2</td></tr><tr><td><code>fix(...)</code> commits</td><td>10</td></tr><tr><td>Date span</td><td>2026-07-01</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="live-sermo-directional-views-meust-tuust">Live sermo directional views (<code>meus&lt;T&gt;</code> / <code>tuus&lt;T&gt;</code>)<a class="anchor" href="#live-sermo-directional-views-meust-tuust">#</a></h4><ul><li>Ship <code>meus&lt;T&gt;</code> and <code>tuus&lt;T&gt;</code> as shared-conversation runtime views with
-<code>da</code>/<code>accipe</code>/<code class="typ">cursor</code>/<code>exhauri</code>/<code>fini</code>. Demote <code>meus</code>/<code>tuus</code> from lexer
+<code>da</code>/<code>accipe</code>/<code class="typ">iterator</code>/<code>exhauri</code>/<code>fini</code>. Demote <code>meus</code>/<code>tuus</code> from lexer
 keywords to type names. Wire compiler typecheck and Rust lowering to
 <code>faber::frame</code> carriers. Add canonical exempla and updated frame-stream
 design docs. (<code>93dc76fe0</code>)</li><li>Retain tuus terminal status on accipe/cursor drain; make <code>tuus_cursor</code> a
@@ -16,7 +16,7 @@ rendering and view dispatch. (<code>ec7a52fd8</code>)</li></ul><h4 id="tuus-curs
 and <code>generate_local</code> hook. Reject unsupported cursor escapes (params,
 returns, copy, reassignment, conversio) in semantic analysis before codegen
 can eager-drain. (<code>0e509487d</code>, <code>64c7d6eca</code>)</li><li>Rewrite the escape pass on <code>HirVisitor</code> with parent-context stack, fixing
-traversal holes in Array/Tuple/Binary operands, <code class="kw">nota</code>/<code class="typ">lista</code> entries,
+traversal holes in Array/Tuple/Binary operands, <code class="kw">print</code>/<code class="typ">list</code> entries,
 and array literals. Allow <code>tuus.cursor()</code> in <code>IteraSource</code> for direct
 <code>itera ex</code> loops. (<code>99b58429f</code>, <code>4cd3c61c0</code>)</li><li>Close the live cursor factory goal with ledger and delivery spec
 bookkeeping. (<code>399667483</code>, <code>fcf58a19b</code>, <code>337a8a2a8</code>)</li></ul><h4 id="type-parameter-domains">Type parameter domains<a class="anchor" href="#type-parameter-domains">#</a></h4><ul><li>Implement the <code>radix</code> type parameter domains system: parser syntax for

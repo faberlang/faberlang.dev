@@ -219,7 +219,7 @@ salve
 <span class="tok-co">#   codex length and metire results, civis summary strings</span>
 
 <span class="tok-kw">fn</span> saluta(string nomen, string titulus <span class="tok-kw">optional</span>) <span class="tok-op">→</span> string {
-    <span class="tok-kw">if</span> titulus <span class="tok-kw">is</span> <span class="tok-kw">null</span> then <span class="tok-kw">return</span> <span class="tok-st">"Salve, §!"</span>(nomen)
+    <span class="tok-kw">if</span> titulus <span class="tok-kw">is</span> none then <span class="tok-kw">return</span> <span class="tok-st">"Salve, §!"</span>(nomen)
     <span class="tok-kw">return</span> <span class="tok-st">"Salve, § §!"</span>(titulus, nomen)
 }
 
@@ -228,7 +228,7 @@ salve
 }
 
 <span class="tok-kw">fn</span> metire(string fons, <span class="tok-kw">ref</span> <span class="tok-kw">int</span> altitudo <span class="tok-kw">optional</span>) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">if</span> altitudo <span class="tok-kw">is</span> <span class="tok-kw">null</span> {
+    <span class="tok-kw">if</span> altitudo <span class="tok-kw">is</span> none {
 <span class="tok-co">        # de = shared borrow of fons</span>
         <span class="tok-kw">return</span> fons.length()
     }

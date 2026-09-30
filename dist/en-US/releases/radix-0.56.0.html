@@ -11,7 +11,7 @@ and retypes the temporal HAL wall-clock surface; <strong>valor extraction</stron
 <code>FromValor</code> for scalar and aggregate carriers; and the <strong>conversio</strong> (<code>↦</code>)
 surface reaches near-complete coverage across primitive, collection, and tensor
 element-width arms — backed by a failable-recovery rewrite from <code>vel</code> to <code>⇥</code>
-with declared <code>err_ty</code> support in Rust codegen.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>76</td></tr><tr><td>Date span</td><td>2026-06-27 → 2026-06-28</td></tr><tr><td>Files changed</td><td>151</td></tr><tr><td>Lines inserted</td><td>10,692</td></tr><tr><td>Lines deleted</td><td>1,126</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="instans-primitive-commits-abc">Instans primitive (Commits A/B/C)<a class="anchor" href="#instans-primitive-commits-abc">#</a></h4><ul><li><strong>Commit A — primitive, carrier rename, `faber::Instans`:</strong> Add <code class="typ">instans</code> /
+with declared <code>err_ty</code> support in Rust codegen.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>76</td></tr><tr><td>Date span</td><td>2026-06-27 → 2026-06-28</td></tr><tr><td>Files changed</td><td>151</td></tr><tr><td>Lines inserted</td><td>10,692</td></tr><tr><td>Lines deleted</td><td>1,126</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="instans-primitive-commits-abc">Instans primitive (Commits A/B/C)<a class="anchor" href="#instans-primitive-commits-abc">#</a></h4><ul><li><strong>Commit A — primitive, carrier rename, `faber::Instans`:</strong> Add <code class="typ">instant</code> /
 <code>instans&lt;ms|us|ns&gt;</code> to the type system with <code>InstansPrecision</code> lowering,
 Rust codegen to <code>faber::Instans</code>, and rename <code>Valor::Tempus</code> → <code>Valor::Instans</code>
 across faber, norma, and stdlib TOML paths. (<code>a1ed38859</code>)</li><li><strong>Commit B — lattice, conversio, valor extraction:</strong> Coarse→fine precision
@@ -41,9 +41,9 @@ shared <code>emit_from_valor_extract</code>. (<code>fd5a3e7eb</code>, <code>0caf
 <code>419d37eb9</code>)</li><li>Fix: defer vertebra source check for struct/map object literals so <code>∷</code> field
 context is preserved. (<code>a42e734a9</code>)</li><li>Docs: refresh valor extraction goal after instans delivery; mark ready to
 implement with shipped numeric/collection/tensor conversio surface.
-(<code>0839ba4f7</code>, <code>a1b48deb7</code>, <code>d2f147e9a</code>, <code>2036156cc</code>)</li></ul><h4 id="conversio-coverage-primitives-collections-tensors">Conversio coverage — primitives, collections, tensors<a class="anchor" href="#conversio-coverage-primitives-collections-tensors">#</a></h4><ul><li><strong>Numeric/bool Rust codegen:</strong> <code class="typ">fractus</code>/<code class="typ">bivalens</code>/<code>ascii</code> numeric and
+(<code>0839ba4f7</code>, <code>a1b48deb7</code>, <code>d2f147e9a</code>, <code>2036156cc</code>)</li></ul><h4 id="conversio-coverage-primitives-collections-tensors">Conversio coverage — primitives, collections, tensors<a class="anchor" href="#conversio-coverage-primitives-collections-tensors">#</a></h4><ul><li><strong>Numeric/bool Rust codegen:</strong> <code class="typ">float</code>/<code class="typ">bool</code>/<code>ascii</code> numeric and
 truthiness lowering with driver tests and <code>numeric-bool.fab</code> exemplum.
-(<code>a7ced27bb</code>)</li><li><strong>Reject ambiguous primitives:</strong> <code class="typ">numerus</code>/<code class="typ">fractus</code>/<code class="typ">bivalens</code> ↔ <code class="typ">octeti</code>
+(<code>a7ced27bb</code>)</li><li><strong>Reject ambiguous primitives:</strong> <code class="typ">int</code>/<code class="typ">float</code>/<code class="typ">bool</code> ↔ <code class="typ">bytes</code>
 and <code>octeti ↦ bivalens</code> rejected at typecheck with clear diagnostics.
 (<code>d6dfefca2</code>)</li><li><strong>Collection Tier 1 Rust codegen:</strong> Eight cross-collection <code>↦</code> lowerings:
 <code>lista↔copia</code>, <code>lista↔tensor</code> (1-d), tensor flatten via <code>ad_lista</code>, tabula
@@ -62,12 +62,12 @@ tests for the <code>⇥</code> recovery contract. (<code>eb22c61ee</code>)</li><
 <code>↦ … vel …</code> to <code>↦ … ⇥ …</code>; trim <code>vel.fab</code> to nullish-only examples.
 (<code>3eeeb504e</code>)</li><li>Polish: extract <code>parse_conversio_postfix</code> from the postfix loop so the ↦ ⇥
 grammar and vel migration diagnostic live in one place. (<code>5db23396f</code>)</li></ul><h4 id="failable-codegen-declared-err-ty-honored">Failable codegen: declared <code>err_ty</code> honored<a class="anchor" href="#failable-codegen-declared-err-ty-honored">#</a></h4><ul><li>Emit <code>Result&lt;T, E_rust&gt;</code> from declared alternate-exit types, mark
-<code>⇥</code>-declaring functions failable without body evidence, type <code class="kw">fac</code>/<code class="kw">cape</code>
+<code>⇥</code>-declaring functions failable without body evidence, type <code class="kw">do</code>/<code class="kw">catch</code>
 and <code>iace</code> against <code>E</code>, and reject heterogeneous <code>?</code> propagation at direct
 call sites. (<code>7ee958f7e</code>)</li><li>Multiple polish commits: shared HIR builders for throw/propagation, throw
 payload emission helper, failable prepass HIR walk, RustCodegen function
 indexing, and centralized heterogeneous-error checking. (<code>7e32b8ec8</code>,
-<code>0d2fd08a3</code>, <code>dd30b015f</code>, <code>bf3641dca</code>, <code>f01e45477</code>, <code>981757bbe</code>)</li><li>Propagate bare conversio through <code>⇥</code> and <code class="kw">fac</code>/<code class="kw">cape</code> (Commit B): bare <code>↦</code>
+<code>0d2fd08a3</code>, <code>dd30b015f</code>, <code>bf3641dca</code>, <code>f01e45477</code>, <code>981757bbe</code>)</li><li>Propagate bare conversio through <code>⇥</code> and <code class="kw">do</code>/<code class="kw">catch</code> (Commit B): bare <code>↦</code>
 without inline <code>⇥</code> now lowers to <code>?</code> when the emission context permits
 propagation. (<code>8688bfe4c</code>)</li></ul><h4 id="air-architecture-design">AIR architecture design<a class="anchor" href="#air-architecture-design">#</a></h4><ul><li>Add <code>docs/design/air-dialect.md</code>: AIR is a pure-functional IR entered by
 annotation (<code>@ graduabilis</code>) that forks from HIR (alongside MIR), runs ML
@@ -75,7 +75,7 @@ transforms (autodiff, fusion), and re-lowers to MIR for backend emission.
 Two invariants: AIR owns no backend and owns no semantics — a shape-adjusting
 detour, not a parallel IR. (<code>34939bd73</code>)</li></ul><h4 id="aiml-language-foundation-vision">AI/ML language foundation vision<a class="anchor" href="#aiml-language-foundation-vision">#</a></h4><ul><li>Add <code>docs/design/aiml-foundation.md</code>: capture the shipped numeric + tensor
 substrate (dtype-in-types, explicit ↦ conversio, <code>tensor&lt;T&gt;</code> shell, valor
-compose, series/census rows, <code class="kw">fac</code>/<code class="kw">cape</code> error surface) as the
+compose, series/census rows, <code class="kw">do</code>/<code class="kw">catch</code> error surface) as the
 NumPy-equivalent foundation. Open seams flagged for factory goals:
 broadcasting policy, static-shape seam, views-vs-copies, MIR
 differentiability stance, backend kernel story. (<code>be0f582f2</code>)</li></ul><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li><strong>Fix: close DEFER-004</strong> — repair wasm e2e and HTTP codegen test; emit Wasm

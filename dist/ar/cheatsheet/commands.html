@@ -7,7 +7,7 @@
 من قبل الواجهة الأمامية للمترجم. لا يعني أن سلسلة الأدوات الأصلية النهائية قد تم
 استدعاؤها.</p><h2 id="build">البناء<a class="anchor" href="#build">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> build . <span class="tok-op">-t</span> rust</code></pre><p>هدف Rust قابل للمراجعة عن قصد. Rust المُولّد هو ناتج
 مترجم، وليس مصدر الحقيقة؛ حرر حزمة Faber وأعد البناء بدلاً من
-ترقيع Rust المُصدر يدوياً.</p><h2 id="run">التنفيذ<a class="anchor" href="#run">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run .</code></pre><p>استخدم <code>run</code> للحزم التطبيقية التي تحتوي على نقطة دخول <code class="kw">incipit</code>. الحزم
+ترقيع Rust المُصدر يدوياً.</p><h2 id="run">التنفيذ<a class="anchor" href="#run">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run .</code></pre><p>استخدم <code>run</code> للحزم التطبيقية التي تحتوي على نقطة دخول <code class="kw">بداية</code>. الحزم
 المكتبية فقط يجب التحقق منها واختبارها بدلاً من ذلك.</p><h2 id="explain">شرح التشخيصات<a class="anchor" href="#explain">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> explain SEM001
 <span class="tok-fn">faber</span> explain LEX006</code></pre><p>عائلات التشخيص هي مقابض مستقرة: <code>LEX</code> للأخطاء المعجمية، <code>PAR</code> لأخطاء
 المحلل النحوي، <code>SEM</code> للأخطاء الدلالية/النوعية. في الوثائق وتقارير الوكلاء، استشهد

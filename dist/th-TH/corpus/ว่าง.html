@@ -26,16 +26,16 @@
 <span class="tok-co"># BACKEND:</span>
 <span class="tok-co">#   Cross-ref nihil/nihil.fab.</span>
 
-fn maybe() <span class="tok-op">→</span> int <span class="tok-op">∪</span> null {
+fn maybe() <span class="tok-op">→</span> int <span class="tok-op">∪</span> none {
     return <span class="tok-nu">42</span>
 }
 
 main {
-    const int <span class="tok-op">∪</span> null absent <span class="tok-op">←</span> null
+    const int <span class="tok-op">∪</span> none absent <span class="tok-op">←</span> null
     print absent
-    const bool nihilne <span class="tok-op">←</span> absent is null
+    const bool nihilne <span class="tok-op">←</span> absent is none
     print nihilne
-    print maybe() not is null
+    print maybe() not is none
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>nihil
 verum
 verum
@@ -62,7 +62,7 @@ verum
 <span class="tok-co">#</span>
 
 main {
-    const null_ty nothing <span class="tok-op">←</span> null
+    const none nothing <span class="tok-op">←</span> null
     print nothing
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>nihil
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusliteralianihilfab-canonical-keyword">radix/corpus/literalia/nihil.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusnihilnihilfab-canonical-keyword">radix/corpus/nihil/nihil.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/literalia/nihil.fab&quot;]</li></ul></div></footer></div></body></html>

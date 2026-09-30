@@ -14,9 +14,9 @@ exemplar corpus, compiler-side parser/decl and codegen wiring for method
 dispatch, and supporting runtime glue in <code>norma/chorda.rs</code> and
 <code>faber-cli/src/package.rs</code> (<code>57a5df61e</code>).</li><li><strong>Stage 5</strong> delivers the final chorda-native-body surface plus EBNF grammar
 updates: parser/decl stripping of the placeholder <code>segmentum</code> rules, and
-removal of the legacy codegen rust <code>const_tabula</code> path (<code>b3bfbc9b3</code>).</li><li>Mechanical design locked to a UTF-8 <code class="typ">textus</code> ↔ <code class="typ">octeti</code> trio: design docs
+removal of the legacy codegen rust <code>const_tabula</code> path (<code>b3bfbc9b3</code>).</li><li>Mechanical design locked to a UTF-8 <code class="typ">string</code> ↔ <code class="typ">bytes</code> trio: design docs
 for <code>chorda-methods.md</code> and <code>stdlib-mechanical-verbs.md</code> updated to the v1
-subset (<code>5cc78773b</code>).</li><li><strong>DEFER-029</strong> tracks the remaining <code class="typ">octeti</code> UTF-8 native-body gap — tagged
+subset (<code>5cc78773b</code>).</li><li><strong>DEFER-029</strong> tracks the remaining <code class="typ">bytes</code> UTF-8 native-body gap — tagged
 as deferred rather than blocking the milestone (<code>0bf8371e2</code>).</li></ul><h4 id="mir-shape-query-refactors-strata-1-2">MIR shape-query refactors (Strata 1 &amp; 2)<a class="anchor" href="#mir-shape-query-refactors-strata-1-2">#</a></h4><ul><li><strong>Stratum 1</strong> moves four pure MIR shape functions (<code>kind_name</code>,
 <code>definition_id</code>, <code>operands</code>, <code>has_spread</code>) from byte-for-byte duplicated
 free functions in <code>llvm_text.rs</code> / <code>wasm_text.rs</code> into inherent methods on

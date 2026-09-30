@@ -14,10 +14,7 @@ numerus aetas
 functio salve(textus name) → textus</code></pre><h3 id="ii-mechanical-over-magical">II. Mechanical over magical<a class="anchor" href="#ii-mechanical-over-magical">#</a></h3><p>The same construct should mean the same thing everywhere. If a reader needs
 distant context to know what a symbol does, the syntax is suspect. Faber
 prefers explicit, local reasoning — the declaration site carries enough
-information to understand what will happen at the use site.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
-locale <span class="tok-op">=</span> <span class="tok-st">"en"</span>
-<span class="tok-op">+</span><span class="tok-op">+</span><span class="tok-op">+</span>
-<span class="tok-co"># The meaning of a call is determined by the function's signature,</span>
+information to understand what will happen at the use site.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># The meaning of a call is determined by the function's signature,</span>
 <span class="tok-co"># not by invisible trait resolution or implicit conversions.</span>
 <span class="tok-kw">fn</span> duplica(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
     <span class="tok-kw">return</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>

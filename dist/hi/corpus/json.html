@@ -18,7 +18,8 @@ import from <span class="tok-st">"norma:json"</span> <span class="tok-kw">json</
 
 @ <span class="tok-kw">json</span> { }
 class Payload {
-    string name
+    @ <span class="tok-kw">json</span> { name <span class="tok-op">=</span> <span class="tok-st">"wire_name"</span> }
+    var string name
 }
 
 main {
@@ -28,7 +29,7 @@ main {
     const Payload payload <span class="tok-op">←</span> narrowed ↦ Payload
     const <span class="tok-kw">json</span> encoded <span class="tok-op">←</span> payload ↦ <span class="tok-kw">json</span>
     const string wire <span class="tok-op">←</span> <span class="tok-kw">json</span>.stringify(encoded)
-    const <span class="tok-kw">json</span> <span class="tok-op">∪</span> null tentativa <span class="tok-op">←</span> <span class="tok-kw">json</span>.try_parse(wire)
+    const <span class="tok-kw">json</span> <span class="tok-op">∪</span> none tentativa <span class="tok-op">←</span> <span class="tok-kw">json</span>.try_parse(wire)
     print payload.name
     print wire
     print tentativa

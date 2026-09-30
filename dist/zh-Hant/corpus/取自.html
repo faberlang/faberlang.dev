@@ -134,111 +134,113 @@ main {
 <span class="tok-co">#   Extracted field values, aliased names, mutated varia bindings, rest maps.</span>
 
 class Persona {
-    string nomen
-    int aetas
-    string urbs
+    var string nomen
+    var int aetas
+    var string urbs
 }
 
 class Civis {
-    string nomen
-    string epistula
+    var string nomen
+    var string epistula
 }
 
 class Datum {
-    int numerus
-    bool activus
+    var int numerus
+    var bool activus
 }
 
 class Forma {
-    string hospes
-    int portus
-    bool tutus
+    var string hospes
+    var int portus
+    var bool tutus
 }
 
 class Plenus {
-    int signum
-    string nomen
-    string epistula
-    string munus
+    var int signum
+    var string nomen
+    var string epistula
+    var string munus
 }
 
 class Sodalis {
-    string nomen
-    bool probatus
+    var string nomen
+    var bool probatus
 }
 
 class Relatus {
-    Sodalis civis
+    var Sodalis civis
 }
 
 class Responsum {
-    Relatus datum
+    var Relatus datum
 }
 
 class Vestis {
-    string modus
-    string lingua
+    var string modus
+    var string lingua
 }
 
 main {
 <span class="tok-co">    # --- Basic field extraction ---</span>
 
-    const Persona persona <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span>, urbs <span class="tok-op">=</span> <span class="tok-st">"Roma"</span> }
-    const string nomen <span class="tok-op">←</span> persona.nomen
-    const int aetas <span class="tok-op">←</span> persona.aetas
+    const _ persona <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span>, urbs <span class="tok-op">=</span> <span class="tok-st">"Roma"</span> }
+    from persona const nomen, aetas
+
     print nomen
     print aetas
 
 <span class="tok-co">    # --- Extract with alias using 'ut' ---</span>
 
-    const Civis civis <span class="tok-op">←</span> Civis { nomen <span class="tok-op">=</span> <span class="tok-st">"Julia"</span>, epistula <span class="tok-op">=</span> <span class="tok-st">"julia@roma.com"</span> }
-    const string cognomen <span class="tok-op">←</span> civis.nomen
-    const string epistula2 <span class="tok-op">←</span> civis.epistula
+    const _ civis <span class="tok-op">←</span> Civis { nomen <span class="tok-op">=</span> <span class="tok-st">"Julia"</span>, epistula <span class="tok-op">=</span> <span class="tok-st">"julia@roma.com"</span> }
+    from civis const nomen as cognomen, epistula as epistula2
+
     print cognomen
     print epistula2
 
 <span class="tok-co">    # --- Mutable destructuring with varia ---</span>
 
-    const Datum datum <span class="tok-op">←</span> Datum { numerus <span class="tok-op">=</span> <span class="tok-nu">100</span>, activus <span class="tok-op">=</span> true }
-    var int numerus <span class="tok-op">←</span> datum.numerus
-    var bool activus <span class="tok-op">←</span> datum.activus
+    const _ datum <span class="tok-op">←</span> Datum { numerus <span class="tok-op">=</span> <span class="tok-nu">100</span>, activus <span class="tok-op">=</span> true }
+    from datum var numerus, activus
+
     print numerus
     print activus
+
     numerus <span class="tok-op">←</span> <span class="tok-nu">200</span>
     activus <span class="tok-op">←</span> false
+
     print numerus
     print activus
 
 <span class="tok-co">    # --- Mixed alias and regular fields ---</span>
 
-    const Forma forma <span class="tok-op">←</span> Forma { hospes <span class="tok-op">=</span> <span class="tok-st">"localis"</span>, portus <span class="tok-op">=</span> <span class="tok-nu">8080</span>, tutus <span class="tok-op">=</span> true }
-    const string hospes <span class="tok-op">←</span> forma.hospes
-    const int porta <span class="tok-op">←</span> forma.portus
-    const bool tutus <span class="tok-op">←</span> forma.tutus
+    const _ forma <span class="tok-op">←</span> Forma { hospes <span class="tok-op">=</span> <span class="tok-st">"localis"</span>, portus <span class="tok-op">=</span> <span class="tok-nu">8080</span>, tutus <span class="tok-op">=</span> true }
+    from forma const hospes, portus as porta, tutus
+
     print hospes
     print porta
     print tutus
 
 <span class="tok-co">    # --- Rest pattern with ceteri ---</span>
 
-    const Plenus plenus <span class="tok-op">←</span> Plenus { signum <span class="tok-op">=</span> <span class="tok-nu">1</span>, nomen <span class="tok-op">=</span> <span class="tok-st">"Gaius"</span>, epistula <span class="tok-op">=</span> <span class="tok-st">"g@roma.com"</span>, munus <span class="tok-op">=</span> <span class="tok-st">"admin"</span> }
-    const int signum <span class="tok-op">←</span> plenus.signum
-    const Plenus reliqua <span class="tok-op">←</span> plenus
+    const _ plenus <span class="tok-op">←</span> Plenus { signum <span class="tok-op">=</span> <span class="tok-nu">1</span>, nomen <span class="tok-op">=</span> <span class="tok-st">"Gaius"</span>, epistula <span class="tok-op">=</span> <span class="tok-st">"g@roma.com"</span>, munus <span class="tok-op">=</span> <span class="tok-st">"admin"</span> }
+    from plenus const signum, rest reliqua
+
     print signum
     print reliqua
 
 <span class="tok-co">    # --- Destructura ex nested path ---</span>
 
-    const Responsum responsum <span class="tok-op">←</span> Responsum { datum <span class="tok-op">=</span> Relatus { civis <span class="tok-op">=</span> Sodalis { nomen <span class="tok-op">=</span> <span class="tok-st">"Claudia"</span>, probatus <span class="tok-op">=</span> true } } }
-    const string internum <span class="tok-op">←</span> responsum.datum.civis.nomen
-    const bool probatus <span class="tok-op">←</span> responsum.datum.civis.probatus
+    const _ responsum <span class="tok-op">←</span> Responsum { datum <span class="tok-op">=</span> Relatus { civis <span class="tok-op">=</span> Sodalis { nomen <span class="tok-op">=</span> <span class="tok-st">"Claudia"</span>, probatus <span class="tok-op">=</span> true } } }
+    from responsum.datum.civis const nomen as internum, probatus
+
     print internum
     print probatus
 
 <span class="tok-co">    # --- Single field extraction ---</span>
 
-    const Vestis vestis <span class="tok-op">←</span> Vestis { modus <span class="tok-op">=</span> <span class="tok-st">"nigrum"</span>, lingua <span class="tok-op">=</span> <span class="tok-st">"la"</span> }
-    const string modus <span class="tok-op">←</span> vestis.modus
+    const _ vestis <span class="tok-op">←</span> Vestis { modus <span class="tok-op">=</span> <span class="tok-st">"nigrum"</span>, lingua <span class="tok-op">=</span> <span class="tok-st">"la"</span> }
+    from vestis const modus
+
     print modus
 }</code></pre><h3 id="radixcorpusexexfab-canonical-keyword">radix/corpus/ex/ex.fab (canonical · keyword)<a class="anchor" href="#radixcorpusexexfab-canonical-keyword">#</a></h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># ex — Extracts fields from a value into local bindings.</span>
@@ -267,14 +269,13 @@ main {
 <span class="tok-co">#</span>
 
 class Persona {
-    string nomen
-    int aetas
+    var string nomen
+    var int aetas
 }
 
 main {
-    const Persona p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
-    const string nomen <span class="tok-op">←</span> p.nomen
-    const int aetas <span class="tok-op">←</span> p.aetas
+    const _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    from p const nomen, aetas
     print nomen
     print aetas
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Marcus
@@ -321,8 +322,8 @@ main {
 <span class="tok-co">#   destructuring.expected — sums and elements from every pattern form.</span>
 
 class Punctum {
-    int x
-    int y
+    var int x
+    var int y
 }
 
 main {

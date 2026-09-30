@@ -102,7 +102,7 @@ main {
 <span class="tok-co"># =============================================================================</span>
 
 class Capsule {
-    int stored
+    var int stored
 }
 
 fn take() <span class="tok-op">→</span> void {
@@ -179,4 +179,72 @@ fn take(int value) <span class="tok-op">→</span> void {
         throw value
         return value
     }
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusannotation-sugarnucleum-fragmentfab-canonical-annotation">radix/corpus/annotation-sugar/nucleum-fragment.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closureargument-escapefab-supporting-reject">radix/corpus/kernel-closure/argument-escape.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurebag-resultfab-supporting-reject">radix/corpus/kernel-closure/bag-result.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurebare-bodyfab-supporting-reject">radix/corpus/kernel-closure/bare-body.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurecapefab-supporting-reject">radix/corpus/kernel-closure/cape.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurecapturefab-supporting-reject">radix/corpus/kernel-closure/capture.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closuredynamic-valuefab-supporting-reject">radix/corpus/kernel-closure/dynamic-value.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closureerror-channelfab-supporting-reject">radix/corpus/kernel-closure/error-channel.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurefield-escapefab-supporting-reject">radix/corpus/kernel-closure/field-escape.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurehost-effectfab-supporting-reject">radix/corpus/kernel-closure/host-effect.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurelist-escapefab-supporting-reject">radix/corpus/kernel-closure/list-escape.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurerejectfab-supporting-reject">radix/corpus/kernel-closure/reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurerequirefab-supporting-reject">radix/corpus/kernel-closure/require.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurereturn-escapefab-supporting-reject">radix/corpus/kernel-closure/return-escape.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closuresource-callbackfab-supporting-reject">radix/corpus/kernel-closure/source-callback.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurestack-free-kernelfab-supporting-reject">radix/corpus/kernel-closure/stack-free-kernel.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurestack-kernel-freefab-supporting-reject">radix/corpus/kernel-closure/stack-kernel-free.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurethrowfab-supporting-reject">radix/corpus/kernel-closure/throw.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[&quot;radix/corpus/annotation-sugar/nucleum-fragment.fab&quot;]</li></ul></div></footer></div></body></html>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuskernellegality-rejectfab-supporting-reject">radix/corpus/kernel/legality-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernellegality-rejectfab-supporting-reject">#</a></h3><p>Kernel legality at check time: host output, host-only types, calls to non-kernels, host calls to private kernels, and raw thread-id calls are named diagnostics.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># nucleum — kernel legality is decided by `faber check`</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • A kernel body must not need the host runtime: no console output, no</span>
+<span class="tok-co">#     conversations, no async or generator forms, no heap-backed values</span>
+<span class="tok-co">#     (`list`, `map`, `set`, `string`, `json`, `value`), no local handlers.</span>
+<span class="tok-co">#   • A kernel may call another kernel or a built-in device operation, never</span>
+<span class="tok-co">#     an ordinary function.</span>
+<span class="tok-co">#   • Only a public kernel is launchable: host code may call a public kernel</span>
+<span class="tok-co">#     but not a private one.</span>
+<span class="tok-co">#   • A kernel never names its own lane: the thread-id builtins</span>
+<span class="tok-co">#     (`global_invocation_id()` and its siblings) are raw lane ids and are</span>
+<span class="tok-co">#     rejected in user code; the parallel pattern is an `itera … apud`</span>
+<span class="tok-co">#     loop over the tensor.</span>
+<span class="tok-co">#   • Each violation is a named diagnostic on the offending line, reported</span>
+<span class="tok-co">#     by `faber check` before any device lowering runs.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • printing from a kernel to debug it — run the kernel on the runner</span>
+<span class="tok-co">#     oracle instead.</span>
+<span class="tok-co">#   • passing a `list` to a kernel — use a tensor.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: nucleum, publica</span>
+<span class="tok-co"># =============================================================================</span>
+
+fn host_double(f32 x) <span class="tok-op">→</span> f32 {
+    return x <span class="tok-op">*</span> <span class="tok-nu">2.0</span>
+}
+
+<span class="tok-co"># 1. host output</span>
+@ kernel
+@ public
+fn noisy(f32 x) <span class="tok-op">→</span> f32 {
+    print x
+    return x
+}
+
+<span class="tok-co"># 2. call to an ordinary function</span>
+@ kernel
+@ public
+fn calls_host(f32 x) <span class="tok-op">→</span> f32 {
+    return host_double(x)
+}
+
+<span class="tok-co"># 3. host-only parameter type</span>
+@ kernel
+@ public
+fn takes_list(list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> void {
+}
+
+<span class="tok-co"># 4. host call to a private kernel</span>
+@ kernel
+fn helper(f32 x) <span class="tok-op">→</span> f32 {
+    return x <span class="tok-op">+</span> <span class="tok-nu">1.0</span>
+}
+
+fn launches_private() <span class="tok-op">→</span> f32 {
+    return helper(<span class="tok-nu">1.0</span>)
+}
+
+<span class="tok-co"># 5. raw lane id</span>
+@ kernel
+@ public
+fn names_its_lane(float<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> x) <span class="tok-op">→</span> float<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> {
+    const vector<span class="tok-op">&lt;</span>u32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> gid <span class="tok-op">←</span> global_invocation_id()
+    return x
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusannotation-sugarnucleum-fragmentfab-canonical-annotation">radix/corpus/annotation-sugar/nucleum-fragment.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closureargument-escapefab-supporting-reject">radix/corpus/kernel-closure/argument-escape.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurebag-resultfab-supporting-reject">radix/corpus/kernel-closure/bag-result.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurebare-bodyfab-supporting-reject">radix/corpus/kernel-closure/bare-body.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurecapefab-supporting-reject">radix/corpus/kernel-closure/cape.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurecapturefab-supporting-reject">radix/corpus/kernel-closure/capture.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closuredynamic-valuefab-supporting-reject">radix/corpus/kernel-closure/dynamic-value.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closureerror-channelfab-supporting-reject">radix/corpus/kernel-closure/error-channel.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurefield-escapefab-supporting-reject">radix/corpus/kernel-closure/field-escape.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurehost-effectfab-supporting-reject">radix/corpus/kernel-closure/host-effect.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurelist-escapefab-supporting-reject">radix/corpus/kernel-closure/list-escape.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurerejectfab-supporting-reject">radix/corpus/kernel-closure/reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurerequirefab-supporting-reject">radix/corpus/kernel-closure/require.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurereturn-escapefab-supporting-reject">radix/corpus/kernel-closure/return-escape.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closuresource-callbackfab-supporting-reject">radix/corpus/kernel-closure/source-callback.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurestack-free-kernelfab-supporting-reject">radix/corpus/kernel-closure/stack-free-kernel.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurestack-kernel-freefab-supporting-reject">radix/corpus/kernel-closure/stack-kernel-free.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernel-closurethrowfab-supporting-reject">radix/corpus/kernel-closure/throw.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuskernellegality-rejectfab-supporting-reject">radix/corpus/kernel/legality-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Nguồn</span><ul><li>[&quot;radix/corpus/annotation-sugar/nucleum-fragment.fab&quot;]</li></ul></div></footer></div></body></html>

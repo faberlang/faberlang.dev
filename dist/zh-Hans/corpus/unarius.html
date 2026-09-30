@@ -53,16 +53,16 @@ main {
     print b ≺ <span class="tok-nu">0</span>
 
 <span class="tok-co">    # Null checks</span>
-    const string <span class="tok-op">∪</span> null forsitan <span class="tok-op">←</span> null
+    const string <span class="tok-op">∪</span> none forsitan <span class="tok-op">←</span> null
 <span class="tok-co">    # verum</span>
-    print forsitan is null
+    print forsitan is none
 <span class="tok-co">    # falsum</span>
-    print forsitan not is null
-    const string <span class="tok-op">∪</span> null adest <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
+    print forsitan not is none
+    const string <span class="tok-op">∪</span> none adest <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
 <span class="tok-co">    # falsum</span>
-    print adest is null
+    print adest is none
 <span class="tok-co">    # verum</span>
-    print adest not is null
+    print adest not is none
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>-5
 falsum
 verum

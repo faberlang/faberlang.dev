@@ -134,50 +134,50 @@
 <span class="tok-co">#   Extracted field values, aliased names, mutated varia bindings, rest maps.</span>
 
 <span class="tok-kw">class</span> Persona {
-    string nomen
-    <span class="tok-kw">int</span> aetas
-    string urbs
+    <span class="tok-kw">var</span> string nomen
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> aetas
+    <span class="tok-kw">var</span> string urbs
 }
 
 <span class="tok-kw">class</span> Civis {
-    string nomen
-    string epistula
+    <span class="tok-kw">var</span> string nomen
+    <span class="tok-kw">var</span> string epistula
 }
 
 <span class="tok-kw">class</span> Datum {
-    <span class="tok-kw">int</span> <span class="tok-kw">numerus</span>
-    <span class="tok-kw">bool</span> activus
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> <span class="tok-kw">numerus</span>
+    <span class="tok-kw">var</span> <span class="tok-kw">bool</span> activus
 }
 
 <span class="tok-kw">class</span> Forma {
-    string hospes
-    <span class="tok-kw">int</span> portus
-    <span class="tok-kw">bool</span> tutus
+    <span class="tok-kw">var</span> string hospes
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> portus
+    <span class="tok-kw">var</span> <span class="tok-kw">bool</span> tutus
 }
 
 <span class="tok-kw">class</span> Plenus {
-    <span class="tok-kw">int</span> signum
-    string nomen
-    string epistula
-    string munus
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> signum
+    <span class="tok-kw">var</span> string nomen
+    <span class="tok-kw">var</span> string epistula
+    <span class="tok-kw">var</span> string munus
 }
 
 <span class="tok-kw">class</span> Sodalis {
-    string nomen
-    <span class="tok-kw">bool</span> probatus
+    <span class="tok-kw">var</span> string nomen
+    <span class="tok-kw">var</span> <span class="tok-kw">bool</span> probatus
 }
 
 <span class="tok-kw">class</span> Relatus {
-    Sodalis civis
+    <span class="tok-kw">var</span> Sodalis civis
 }
 
 <span class="tok-kw">class</span> Responsum {
-    Relatus datum
+    <span class="tok-kw">var</span> Relatus datum
 }
 
 <span class="tok-kw">class</span> Vestis {
-    string modus
-    string lingua
+    <span class="tok-kw">var</span> string modus
+    <span class="tok-kw">var</span> string lingua
 }
 
 <span class="tok-kw">main</span> {
@@ -267,8 +267,8 @@
 <span class="tok-co">#</span>
 
 <span class="tok-kw">class</span> Persona {
-    string nomen
-    <span class="tok-kw">int</span> aetas
+    <span class="tok-kw">var</span> string nomen
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> aetas
 }
 
 <span class="tok-kw">main</span> {
@@ -321,8 +321,8 @@
 <span class="tok-co">#   destructuring.expected — sums and elements from every pattern form.</span>
 
 <span class="tok-kw">class</span> Punctum {
-    <span class="tok-kw">int</span> x
-    <span class="tok-kw">int</span> y
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> x
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> y
 }
 
 <span class="tok-kw">main</span> {

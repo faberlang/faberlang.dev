@@ -16,7 +16,7 @@ complete control-flow syntax (<code>e0d00ada4</code>), and the lexicon design do
 complete declension support (<code>396148872</code>).</li><li>Implements the tokenizer (<code>10a64cf30</code>), parser (<code>8902b097d</code>), and code
 generator plus CLI (<code>261cf8569</code>).</li><li>Adds a semantic-analysis phase with type resolution — <code>src/semantic/</code>
 (<code>index.ts</code> 759 lines, <code>scope.ts</code>, <code>types.ts</code>) with a 257-line test suite
-(<code>4b6e6bd26</code>).</li><li>Fixes the <code>run</code> command and maps <code class="kw">scribe</code> to <code>console.log</code> (<code>29ba362d5</code>).</li></ul><h4 id="multi-target-codegen-ts-zig-wasm">Multi-target codegen: TS, Zig, WASM<a class="anchor" href="#multi-target-codegen-ts-zig-wasm">#</a></h4><ul><li>Adds dual codegen (TS + Zig) and renames the source extension to <code>.la</code>
+(<code>4b6e6bd26</code>).</li><li>Fixes the <code>run</code> command and maps <code class="kw">write</code> to <code>console.log</code> (<code>29ba362d5</code>).</li></ul><h4 id="multi-target-codegen-ts-zig-wasm">Multi-target codegen: TS, Zig, WASM<a class="anchor" href="#multi-target-codegen-ts-zig-wasm">#</a></h4><ul><li>Adds dual codegen (TS + Zig) and renames the source extension to <code>.la</code>
 (<code>0bae43f63</code>), with a later rename to <code>.fab</code> when the Zed extension lands
 (<code>db84800c3</code>).</li><li>Adds WASM as a third compilation target — a 759-line <code>src/codegen/wasm.ts</code>
 (<code>0e3bfda36</code>).</li><li>Adds comprehensive codegen tests and updates the Zig target (<code>4aa219cd9</code>);
@@ -28,9 +28,9 @@ then changes function return types from type-first to arrow syntax
 destructuring (<code>ec1dfef43</code>).</li><li>Changes for-loop syntax to source-first <code>ex/in ... pro</code> (<code>384e5703a</code>) and
 adds range syntax with a per-step form: <code>0..10 per 2</code> (<code>2a1d901e2</code>).</li><li>Adds control-flow statements: <code>adfirma</code> assertion (<code>652d57733</code>), <code>custodi</code>
 guard (<code>bcf394c56</code>), <code>elige/si</code> switch (<code>f73e39d4b</code>), <code>cum</code> with-blocks
-(<code>d49bd6551</code>), and <code>ergo</code> one-liners for <code class="kw">si</code>/<code>aliter</code> (<code>7c99020aa</code>) and
-loops (<code>c9aa89580</code>).</li><li>Adds <code class="kw">scribe</code> as a statement keyword, fixing the switch <code>ergo</code> parser bug
-(<code>032d30e17</code>) and <code class="kw">scribe</code> global plus <code>ergo</code> switch syntax (<code>134ae36e2</code>).</li><li>Adds <code>nulla</code>/<code>nonnulla</code> empty/non-empty operators (<code>3253a67cb</code>).</li><li>Adds an intrinsics layer and the <code>norma</code> stdlib written in Faber
+(<code>d49bd6551</code>), and <code>ergo</code> one-liners for <code class="kw">if</code>/<code>aliter</code> (<code>7c99020aa</code>) and
+loops (<code>c9aa89580</code>).</li><li>Adds <code class="kw">write</code> as a statement keyword, fixing the switch <code>ergo</code> parser bug
+(<code>032d30e17</code>) and <code class="kw">write</code> global plus <code>ergo</code> switch syntax (<code>134ae36e2</code>).</li><li>Adds <code>nulla</code>/<code>nonnulla</code> empty/non-empty operators (<code>3253a67cb</code>).</li><li>Adds an intrinsics layer and the <code>norma</code> stdlib written in Faber
 (<code>1c2902314</code>), then underscores all intrinsics for consistency
 (<code>c9c1050c3</code>).</li></ul><h4 id="lexicon-and-latin-keyword-surface">Lexicon and Latin keyword surface<a class="anchor" href="#lexicon-and-latin-keyword-surface">#</a></h4><ul><li>Refines the verb lexicon around a Unix command philosophy (<code>9b3e0e940</code>),
 adding the 2nd conjugation for stateful operations (<code>19d885e5c</code>) and the 4th
@@ -44,7 +44,7 @@ linter-applied pass (<code>75c7017d0</code>).</li><li>Adds the systems-language 
 comprehensive module documentation (<code>f36339c5d</code>).</li></ul><h4 id="build-release-and-repo-organization">Build, release, and repo organization<a class="anchor" href="#build-release-and-repo-organization">#</a></h4><ul><li>Renames directories to Latin: <code>src</code>→<code>fons</code>, <code>examples</code>→<code>exempla</code>
 (<code>9113c1560</code>); adds <code>scripta/</code> for package scripts (<code>79f029a6a</code>) and a
 standalone executable build (<code>bun run build</code> → <code>opus/faber</code>, <code>3c6b7d9bf</code>).</li><li>Adds the <code>release</code> script (<code>da966fdfc</code>) and ESLint (<code>d6247b081</code>) and Zig
-<code>build-exe</code> (<code>1455fd481</code>) verification to <code>build:exempla</code>.</li><li>Updates examples to the <code class="kw">fixum</code> keyword (<code>6ed3cc00d</code>) and <code class="kw">scribe</code> statement
+<code>build-exe</code> (<code>1455fd481</code>) verification to <code>build:exempla</code>.</li><li>Updates examples to the <code class="kw">const</code> keyword (<code>6ed3cc00d</code>) and <code class="kw">write</code> statement
 syntax (<code>c28c27f12</code>); deletes <code>examples/app</code> (<code>5729c1823</code>).</li><li>Adds the comprehensive README (<code>e4f135fc2</code>), the WASM-target architecture
 README update (<code>fe78436b8</code>), user-defined types documentation (<code>ac3a7e92f</code>),
 the current-features README update (<code>046560505</code>), and a documentation
