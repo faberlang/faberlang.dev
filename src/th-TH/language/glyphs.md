@@ -129,7 +129,7 @@ Faber วางชนิดข้อมูลไว้ก่อนชื่อ�
 
 ```faber
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
+    si b ≡ 0 ergo redde nulla
     redde a / b
 }
 ```
@@ -277,17 +277,21 @@ fixum _ p ← Point {
 **Faber ทั่วไป (แนะนำให้ใช้รูปแบบเต็ม):**
 
 ```faber
-fixum lista<f32> values ← vacua
-fixum tensor<f32, [2, 3]> grid ← vacua
-fixum numerus<i32> narrow ← 7
+incipit {
+    fixum lista<f32> values ← vacua
+    fixum tensor<f32, [2, 3]> grid ← vacua
+    fixum numerus<i32> narrow ← 7
+}
 ```
 
 **โมดูลตัวเลข (แนะนำให้ใช้รูปแบบย่อ):**
 
 ```faber
-fixum lf32 values ← vacua
-fixum tf32[2, 3] grid ← vacua
-fixum i32 narrow ← 7
+incipit {
+    fixum lf32 values ← vacua
+    fixum tf32[2, 3] grid ← vacua
+    fixum i32 narrow ← 7
+}
 ```
 
 รูปแบบย่อใช้ได้ **เฉพาะในตำแหน่งชนิดข้อมูลเท่านั้น** ตัวระบุค่าที่ชื่อ `f32`,

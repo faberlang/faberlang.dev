@@ -50,7 +50,7 @@ register types.
 | `fractus` | Floating-point (default f64) | `3.14` |
 | `bivalens` | Boolean | `verum`, `falsum` |
 | `vacuum` | Unit / no value | — |
-| `nihil` | Null / absent | `nihil` |
+| `nihil` | Null / absent (the null value is `nulla`) | `nulla` |
 | `instans` | Duration / time instant | — |
 | `json` | Compile-time JSON value | `{ "key": "value" }` |
 | `octeti` | Hex byte sequence | \|00ff\| |
@@ -61,9 +61,11 @@ register types.
 forms:
 
 ```faber
-fixum numerus<i32> narrow ← 7 ∷ numerus<i32>
-fixum numerus<u64> wide ← 255 ∷ numerus<u64>
-fixum fractus<f32> single ← 1.5 ∷ fractus<f32>
+incipit {
+    fixum numerus<i32> narrow ← 7 ∷ numerus<i32>
+    fixum numerus<u64> wide ← 255 ∷ numerus<u64>
+    fixum fractus<f32> single ← 1.5 ∷ fractus<f32>
+}
 ```
 
 Width sugar is available in type position: `i8` … `u64`, `f16`, `f32`, `f64`
@@ -75,11 +77,11 @@ Nullable values use the union syntax `T ∪ nihil`:
 
 ```faber
 functio find(textus key) → numerus ∪ nihil {
-    redde nihil
+    redde nulla
 }
 
 functio maybe() → textus ∪ nihil {
-    redde nihil
+    redde nulla
 }
 ```
 
@@ -111,7 +113,9 @@ Explicit call-site type arguments are supported:
 ```faber
 functio identitas<T>(T datum) → T { redde datum }
 
-fixum numerus seven ← identitas<numerus>(7)
+incipit {
+    fixum numerus seven ← identitas<numerus>(7)
+}
 ```
 
 ### Collections {#collections}
@@ -128,8 +132,10 @@ fixum numerus seven ← identitas<numerus>(7)
 | `promissum<T>` | Async finite result from `fiet` functions; `promissum<T ⇥ E>` carries a delayed alternate channel | — |
 
 ```faber
-fixum lista<numerus> nums ← [1, 2, 3]
-fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+incipit {
+    fixum lista<numerus> nums ← [1, 2, 3]
+    fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+}
 ```
 
 ### Tensor types {#tensor-types}
@@ -145,9 +151,11 @@ fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 | `tensor<T, [N, M]>` | Rank-2 matrix |
 
 ```faber
-fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← row[0]
+incipit {
+    fixum tensor<fractus<f32>, []> scalar ← vacua
+    fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+    fixum numerus ∪ nihil first ← row[0]
+}
 ```
 
 ### GPU core types {#gpu-core-types}
@@ -189,7 +197,7 @@ functio consume(own textus buffer) → textus {
 
 | Operator | Family | Behaviour |
 |----------|--------|-----------|
-| `≡`, `≠`, `≢` | Exact equality | Identical types required; `nihil` bypass |
+| `≡`, `≠`, `≢` | Exact equality | Identical types required; `nulla` bypass |
 | `≅`, `≇` | Promoted exact equality | Numeric widths join, then exact compare |
 | `≈`, `≉` | Fuzzy equality | Tolerance match — `isclose` defaults (rel_tol 1e-09); numeric operands only |
 | `<`, `≤`, `>`, `≥` | Ordering | Numeric, instant, scalar text |
@@ -209,9 +217,11 @@ initializer; if declared without, they must be assigned exactly once before
 reading. A second assignment is rejected.
 
 ```faber
-fixum numerus count ← 0
-fixum textus name ← "Marcus"
-fixum _ inferred ← [1, 2, 3]
+incipit {
+    fixum numerus count ← 0
+    fixum textus name ← "Marcus"
+    fixum _ inferred ← [1, 2, 3]
+}
 ```
 
 Deferred initialisation:
@@ -267,8 +277,8 @@ Faber splits what most languages collapse into `=`:
 
 ```faber
 genus Point {
-    numerus x
-    numerus y
+    fixum numerus x
+    fixum numerus y
 }
 
 incipit {
@@ -291,8 +301,8 @@ incipit {
 
 ```faber
 genus Persona {
-    textus nomen
-    numerus aetas
+    fixum textus nomen
+    fixum numerus aetas
 }
 
 incipit {
@@ -327,19 +337,23 @@ live in the compiler, not in the standard library.
 ### Lista — ordered dynamic collection {#lista}
 
 ```faber
-fixum lista<numerus> empty ← vacua
-fixum _ numbers ← [1, 2, 3, 4, 5]
-fixum _ names ← ["Marcus", "Julia", "Gaius"]
-fixum _ nested ← [[1, 2], [3, 4]]
+incipit {
+    fixum lista<numerus> empty ← vacua
+    fixum _ numbers ← [1, 2, 3, 4, 5]
+    fixum _ names ← ["Marcus", "Julia", "Gaius"]
+    fixum _ nested ← [[1, 2], [3, 4]]
+}
 ```
 
 Spread with `sparge`:
 
 ```faber
-fixum lista<numerus> a ← [1, 2, 3]
-fixum lista<numerus> b ← [4, 5, 6]
-fixum _ combined ← [sparge a, sparge b]
-fixum _ headed ← [0, sparge a, 99]
+incipit {
+    fixum lista<numerus> a ← [1, 2, 3]
+    fixum lista<numerus> b ← [4, 5, 6]
+    fixum _ combined ← [sparge a, sparge b]
+    fixum _ headed ← [0, sparge a, 99]
+}
 ```
 
 Key methods: `longitudo`, `accipe`, `appende`, `summa`, `primus`, `novissimus`.
@@ -347,7 +361,9 @@ Key methods: `longitudo`, `accipe`, `appende`, `summa`, `primus`, `novissimus`.
 ### Tabula — key-value map {#tabula}
 
 ```faber
-fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+incipit {
+    fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+}
 ```
 
 The `:` there is not map syntax. A bare `{ … }` is always
@@ -374,16 +390,20 @@ incipit {
 ### Tensor — dense fixed-shape buffer {#tensor}
 
 ```faber
-fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← row[0]
+incipit {
+    fixum tensor<fractus<f32>, []> scalar ← vacua
+    fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+    fixum numerus ∪ nihil first ← row[0]
+}
 ```
 
 Tensor sugar (numeric-heavy code):
 
 ```faber
-fixum tf32[] seed ← vacua
-fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
+incipit {
+    fixum tf32[] seed ← vacua
+    fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
+}
 ```
 
 Key methods: `forma`, `accipe`, `ponde`, `crea`, `structa`, `strue`, plus
@@ -393,22 +413,26 @@ reductions (`summa`, `productum`).
 ### Sparsa — sparse fixed-shape buffer {#sparsa}
 
 ```faber
-fixum sparsa<fractus<f32>, [2, 3]> sparse ← vacua
-sparse.ponde([0, 1], 4.0)
-sparse.ponde([1, 2], 9.0)
+incipit {
+    fixum sparsa<fractus<f32>, [2, 3]> sparse ← vacua
+    sparse.ponde([0, 1], 4.0)
+    sparse.ponde([1, 2], 9.0)
 
-# accipe returns the stored value, here 4.0
-nota sparse.accipe([0, 1])
-# count of stored entries
-nota sparse.nonnihil()
+    # accipe returns the stored value, here 4.0
+    nota sparse.accipe([0, 1])
+    # count of stored entries
+    nota sparse.nonnihil()
+}
 ```
 
 Conversion between dense and sparse:
 
 ```faber
-fixum tf32[2, 2] dense ← [[1.0, 0.0], [0.0, 2.0]] ↦ tf32[2, 2]
-fixum sf32[2, 2] sparse ← dense ↦ sf32[2, 2]
-fixum tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]
+incipit {
+    fixum tf32[2, 2] dense ← [[1.0, 0.0], [0.0, 2.0]] ↦ tf32[2, 2]
+    fixum sf32[2, 2] sparse ← dense ↦ sf32[2, 2]
+    fixum tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]
+}
 ```
 
 ### Cursors — lazy streams {#cursors}
@@ -417,9 +441,11 @@ fixum tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]
 tuus views, or generator functions. Consumed via `itera ex`:
 
 ```faber
-fixum _ items ← [1, 2, 3]
-itera ex items fixum item {
-    nota item
+incipit {
+    fixum _ items ← [1, 2, 3]
+    itera ex items fixum item {
+        nota item
+    }
 }
 ```
 
@@ -469,13 +495,15 @@ functio greet(textus nomen) → textus {
     redde "Salve, §!"(nomen)
 }
 
-fixum numerus pagina ← 3
-fixum numerus totum ← 10
-fixum textus code ← "200"
-fixum textus label ← "OK"
+incipit {
+    fixum numerus pagina ← 3
+    fixum numerus totum ← 10
+    fixum textus code ← "200"
+    fixum textus label ← "OK"
 
-fixum _ msg ← "Page § of §"(pagina, totum)
-fixum _ block ← «status: § (§)»(code, label)
+    fixum _ msg ← "Page § of §"(pagina, totum)
+    fixum _ block ← «status: § (§)»(code, label)
+}
 ```
 
 Key rules:
@@ -489,10 +517,12 @@ Key rules:
 Multiline blocks use guillemets `«…»`:
 
 ```faber
-fixum _ sql ← «
-    select id, email
-    from accounts
-»
+incipit {
+    fixum _ sql ← «
+        select id, email
+        from accounts
+    »
+}
 ```
 
 Guillemets are the only block-string spelling since Radix v0.79.0 — the
@@ -504,8 +534,10 @@ Backtick templates capture text and parameters without rendering.
 Safe for bound SQL/URL payloads:
 
 ```faber
-fixum numerus user_id ← 42
-fixum _ query ← `select * from users where id = §`(user_id)
+incipit {
+    fixum numerus user_id ← 42
+    fixum _ query ← `select * from users where id = §`(user_id)
+}
 ```
 
 ### Inline JSON {#inline-json}
@@ -517,19 +549,23 @@ one to a [`tabula`](#tabula) lowers it to a real constant map; `↦ valor`
 widens it to the dynamic carrier instead:
 
 ```faber
-fixum _ empty ← {}
-fixum _ user ← { "name": "Marcus", "age": 30, "active": true }
-fixum _ nested ← { "meta": { "version": 1 }, "tags": ["alpha", "beta"] }
+incipit {
+    fixum _ empty ← {}
+    fixum _ user ← { "name": "Marcus", "age": 30, "active": true }
+    fixum _ nested ← { "meta": { "version": 1 }, "tags": ["alpha", "beta"] }
+}
 ```
 
 For typed genus construction, use the type name and `=` field shape:
 
 ```faber
 genus Point {
-    numerus x
-    numerus y
+    fixum numerus x
+    fixum numerus y
 }
-fixum _ p ← Point { x = 10, y = 20 }
+incipit {
+    fixum _ p ← Point { x = 10, y = 20 }
+}
 ```
 
 ## Nullability and optionality
@@ -543,11 +579,11 @@ Use `T ∪ nihil` when the value can be absent:
 
 ```faber
 functio find(textus key) → numerus ∪ nihil {
-    redde nihil
+    redde nulla
 }
 
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
+    si b ≡ 0 ergo redde nulla
     redde a / b
 }
 ```
@@ -561,7 +597,7 @@ by the caller or constructor:
 functio connect(textus host, numerus port sponte) → vacuum { }
 
 genus User {
-    textus email sponte
+    fixum textus email sponte
 }
 ```
 
@@ -573,21 +609,25 @@ functio process(de numerus depth sponte) → vacuum { }
 
 ### Non-null assertion — ! {#non-null-assertion}
 
-Use `!.`, `![`, `!(` to assert a nullable value is not `nihil`:
+Use `!.`, `![`, `!(` to assert a nullable value is not `nulla`:
 
 ```faber
-genus Box { numerus ∪ nihil val }
-fixum Box ∪ nihil maybe_name ← Box { val = 7 }
-fixum _ name ← maybe_name!.val
+genus Box { fixum numerus ∪ nihil val }
+incipit {
+    fixum Box ∪ nihil maybe_name ← Box { val = 7 }
+    fixum _ name ← maybe_name!.val
+}
 ```
 
-A non-null assertion on `nihil` aborts at runtime.
+A non-null assertion on `nulla` aborts at runtime.
 
 ### Nullish coalescing — vel {#nullish-coalescing}
 
 ```faber
-fixum textus ∪ nihil provided ← nihil
-fixum _ name ← provided vel "default"
+incipit {
+    fixum textus ∪ nihil provided ← nulla
+    fixum _ name ← provided vel "default"
+}
 ```
 
 ### ignotum {#ignotum}
@@ -600,11 +640,13 @@ knowledge. It is not a nullability mechanism.
 Two important conversion operators, one for runtime and one for compile-time:
 
 ```faber
-# runtime conversion
-fixum _ parsed ← "42" ↦ numerus
-# static ascription
-fixum numerus count ← 7
-fixum _ text ← count ∷ textus
+incipit {
+    # runtime conversion
+    fixum _ parsed ← "42" ↦ numerus ⊥ 0
+    # static ascription
+    fixum numerus count ← 7
+    fixum _ text ← count ∷ textus
+}
 ```
 
 ### Runtime conversion — ↦ {#runtime-conversion}
@@ -613,17 +655,21 @@ Use `↦` for runtime conversion, especially parsing or coercion that may
 fail. Supply an inline default with `⊥`:
 
 ```faber
-fixum textus input ← "9"
-fixum _ n ← "42" ↦ numerus
-fixum _ safe ← input ↦ numerus ⊥ 0
+incipit {
+    fixum textus input ← "9"
+    fixum _ n ← "42" ↦ numerus ⊥ 0
+    fixum _ safe ← input ↦ numerus ⊥ 0
+}
 ```
 
 Type-directed materialization:
 
 ```faber
-fixum textus path ← "/etc/hosts"
-fixum _ lanes ← [1.0, 2.0, 3.0, 4.0] ↦ vf32[4]
-fixum _ body ← ad 'solum:lege' (path) ↦ textus
+incipit {
+    fixum textus path ← "/etc/hosts"
+    fixum _ lanes ← [1.0, 2.0, 3.0, 4.0] ↦ vf32[4]
+    fixum _ body ← ad 'solum:lege' (path) ↦ textus
+}
 ```
 
 ### Static ascription — ∷ {#static-ascription}
@@ -632,16 +678,20 @@ Use `∷` for explicit static type ascription. It is postfix and
 target-type driven:
 
 ```faber
-fixum numerus count ← 7
-fixum _ x ← 7 ∷ numerus<i32>
-fixum _ text ← count ∷ textus
+incipit {
+    fixum numerus count ← 7
+    fixum _ x ← 7 ∷ numerus<i32>
+    fixum _ text ← count ∷ textus
+}
 ```
 
 ### Nullish coalescing — vel {#nullish-coalescing}
 
-Use `vel` for nullish coalescing when a value is `nihil`:
+Use `vel` for nullish coalescing when a value is `nulla`:
 
 ```faber
-fixum textus ∪ nihil provided_name ← nihil
-fixum _ name ← provided_name vel "default"
+incipit {
+    fixum textus ∪ nihil provided_name ← nulla
+    fixum _ name ← provided_name vel "default"
+}
 ```

@@ -145,6 +145,12 @@ def render_project(p: dict, order: int) -> str | None:
         # imports when checked alone. Say so in the fence contract rather than
         # letting the gate fail on something that is correct in place.
         info = "faber mode=package" if p.get("package") else "faber"
+        # `faber convert` drops the suite path of a `probandum` block, so the
+        # transcode to a reader locale fails hir_meaning_diverged. Pin such a
+        # file to its Latin source until the converter is fixed; then delete
+        # this rule (radix: convert suite_path, reproducer in the site commit).
+        if "probandum" in body and not p.get("package"):
+            info = "faber mode=pinned"
         lines += [f"```{info}", body, "```", ""]
 
     lines += [

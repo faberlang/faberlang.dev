@@ -8,6 +8,7 @@ sources = [
   "sibling triga/ repository",
   "radix/README.md (mentions triga)",
 ]
+translate_spans = false  # prose lists Latin operation verbs (cape = get) as Latin
 +++
 
 Triga 是一个可选的公共源代码库，提供几何、场景以及面向 GPU 的类型契约。在常规项目中，请在 `faber.toml` 中将 Triga 声明为 Cista 包依赖；Cista 会将解析后的源代码记录到 `faber.lock`，并由编译器从包存储中解析它。

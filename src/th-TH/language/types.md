@@ -59,9 +59,11 @@ Faber มีระบบชนิดข้อมูลแบบสถิตท�
 `numerus` และ `fractus` มีความกว้างเริ่มต้น (i64 และ f64) และมีรูปแบบที่ระบุความกว้างได้อย่างชัดเจน:
 
 ```faber
-fixum numerus<i32> narrow ← 7 ∷ numerus<i32>
-fixum numerus<u64> wide ← 255 ∷ numerus<u64>
-fixum fractus<f32> single ← 1.5 ∷ fractus<f32>
+incipit {
+    fixum numerus<i32> narrow ← 7 ∷ numerus<i32>
+    fixum numerus<u64> wide ← 255 ∷ numerus<u64>
+    fixum fractus<f32> single ← 1.5 ∷ fractus<f32>
+}
 ```
 
 สามารถใช้ชวเลขความกว้างในตำแหน่งชนิดข้อมูลได้: `i8` … `u64`, `f16`, `f32`, `f64` เทียบเท่ากับ `numerus<W>` / `fractus<W>`
@@ -72,11 +74,11 @@ fixum fractus<f32> single ← 1.5 ∷ fractus<f32>
 
 ```faber
 functio find(textus key) → numerus ∪ nihil {
-    redde nihil
+    redde nulla
 }
 
 functio maybe() → textus ∪ nihil {
-    redde nihil
+    redde nulla
 }
 ```
 
@@ -107,7 +109,9 @@ functio primum<T>(lista<T> res) → T ∪ nihil {
 ```faber
 functio identitas<T>(T valor) → T { redde valor }
 
-fixum numerus value ← identitas<numerus>(7)
+incipit {
+    fixum numerus value ← identitas<numerus>(7)
+}
 ```
 
 ### คอลเลกชัน {#collections}
@@ -123,8 +127,10 @@ fixum numerus value ← identitas<numerus>(7)
 | `cursor<T>` | สตรีมแบบขี้เกียจ | — |
 
 ```faber
-fixum lista<numerus> nums ← [1, 2, 3]
-fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+incipit {
+    fixum lista<numerus> nums ← [1, 2, 3]
+    fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+}
 ```
 
 ### ชนิดเทนเซอร์ {#tensor-types}
@@ -140,9 +146,11 @@ fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 | `tensor<T, [N, M]>` | เมทริกซ์แรงก์ 2 |
 
 ```faber
-fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← row[0]
+incipit {
+    fixum tensor<fractus<f32>, []> scalar ← vacua
+    fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+    fixum numerus ∪ nihil first ← row[0]
+}
 ```
 
 ### ชนิดข้อมูลแกนหลักสำหรับ GPU {#gpu-core-types}
@@ -198,9 +206,11 @@ Faber มีคีย์เวิร์ดสำหรับตัวแปร�
 การผูกค่าด้วย `fixum` เขียนได้ครั้งเดียว สามารถประกาศพร้อมตัวกำหนดค่าเริ่มต้นหรือไม่มีก็ได้ หากประกาศโดยไม่มีตัวกำหนดค่าเริ่มต้น ต้องกำหนดค่าให้พอดีหนึ่งครั้งก่อนอ่านค่า การกำหนดค่าครั้งที่สองจะถูกปฏิเสธ
 
 ```faber
-fixum numerus count ← 0
-fixum textus name ← "Marcus"
-fixum _ inferred ← [1, 2, 3]
+incipit {
+    fixum numerus count ← 0
+    fixum textus name ← "Marcus"
+    fixum _ inferred ← [1, 2, 3]
+}
 ```
 
 การกำหนดค่าเริ่มต้นภายหลัง:
@@ -256,8 +266,8 @@ Faber แยกสิ่งที่ภาษาส่วนใหญ่มั�
 
 ```faber
 genus Point {
-    numerus x
-    numerus y
+    fixum numerus x
+    fixum numerus y
 }
 
 incipit {
@@ -280,8 +290,8 @@ incipit {
 
 ```faber
 genus Persona {
-    textus nomen
-    numerus aetas
+    fixum textus nomen
+    fixum numerus aetas
 }
 
 incipit {
@@ -313,19 +323,23 @@ Faber มีชนิดคอลเลกชันหลายชนิดท�
 ### Lista — คอลเลกชันแบบลำดับที่ปรับขนาดได้แบบไดนามิก {#lista}
 
 ```faber
-fixum lista<numerus> empty ← vacua
-fixum _ numbers ← [1, 2, 3, 4, 5]
-fixum _ names ← ["Marcus", "Julia", "Gaius"]
-fixum _ nested ← [[1, 2], [3, 4]]
+incipit {
+    fixum lista<numerus> empty ← vacua
+    fixum _ numbers ← [1, 2, 3, 4, 5]
+    fixum _ names ← ["Marcus", "Julia", "Gaius"]
+    fixum _ nested ← [[1, 2], [3, 4]]
+}
 ```
 
 การกระจายสมาชิกด้วย `sparge`:
 
 ```faber
-fixum lista<numerus> a ← [1, 2, 3]
-fixum lista<numerus> b ← [4, 5, 6]
-fixum _ combined ← [sparge a, sparge b]
-fixum _ headed ← [0, sparge a, 99]
+incipit {
+    fixum lista<numerus> a ← [1, 2, 3]
+    fixum lista<numerus> b ← [4, 5, 6]
+    fixum _ combined ← [sparge a, sparge b]
+    fixum _ headed ← [0, sparge a, 99]
+}
 ```
 
 เมธอดสำคัญ: `longitudo`, `accipe`, `appende`, `summa`, `primus`, `novissimus`
@@ -333,22 +347,28 @@ fixum _ headed ← [0, sparge a, 99]
 ### Tabula — แมปแบบคีย์-ค่า {#tabula}
 
 ```faber
-fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+incipit {
+    fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+}
 ```
 
 ### Tensor — บัฟเฟอร์หนาแน่นที่มีรูปร่างตายตัว {#tensor}
 
 ```faber
-fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← row[0]
+incipit {
+    fixum tensor<fractus<f32>, []> scalar ← vacua
+    fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+    fixum numerus ∪ nihil first ← row[0]
+}
 ```
 
 ไวยากรณ์ย่อของ Tensor (สำหรับโค้ดที่เน้นการคำนวณเชิงตัวเลข):
 
 ```faber
-fixum tf32[] seed ← vacua
-fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
+incipit {
+    fixum tf32[] seed ← vacua
+    fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
+}
 ```
 
 เมธอดสำคัญ: `forma`, `accipe`, `ponde`, `crea`, `structa`, `strue` รวมถึง
@@ -358,22 +378,26 @@ fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
 ### Sparsa — บัฟเฟอร์เบาบางที่มีรูปร่างตายตัว {#sparsa}
 
 ```faber
-fixum sparsa<fractus<f32>, [2, 3]> sparse ← vacua
-sparse.ponde([0, 1], 4.0)
-sparse.ponde([1, 2], 9.0)
+incipit {
+    fixum sparsa<fractus<f32>, [2, 3]> sparse ← vacua
+    sparse.ponde([0, 1], 4.0)
+    sparse.ponde([1, 2], 9.0)
 
-# accipe returns the stored value, here 4.0
-nota sparse.accipe([0, 1])
-# count of stored entries
-nota sparse.nonnihil()
+    # accipe returns the stored value, here 4.0
+    nota sparse.accipe([0, 1])
+    # count of stored entries
+    nota sparse.nonnihil()
+}
 ```
 
 การแปลงระหว่างบัฟเฟอร์หนาแน่นและบัฟเฟอร์เบาบาง:
 
 ```faber
-fixum tf32[2, 2] dense ← [[1.0, 0.0], [0.0, 2.0]] ↦ tf32[2, 2]
-fixum sf32[2, 2] sparse ← dense ↦ sf32[2, 2]
-fixum tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]
+incipit {
+    fixum tf32[2, 2] dense ← [[1.0, 0.0], [0.0, 2.0]] ↦ tf32[2, 2]
+    fixum sf32[2, 2] sparse ← dense ↦ sf32[2, 2]
+    fixum tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]
+}
 ```
 
 ### Cursors — สตรีมแบบประเมินค่าอย่างเลื่อนลอย {#cursors}
@@ -382,9 +406,11 @@ fixum tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]
 มุมมอง `tuus` หรือฟังก์ชันสร้างค่า ใช้งานผ่าน `itera ex`:
 
 ```faber
-fixum _ items ← [1, 2, 3]
-itera ex items fixum item {
-    nota item
+incipit {
+    fixum _ items ← [1, 2, 3]
+    itera ex items fixum item {
+        nota item
+    }
 }
 ```
 
@@ -428,13 +454,15 @@ functio greet(textus nomen) → textus {
     redde "Salve, §!"(nomen)
 }
 
-fixum numerus pagina ← 3
-fixum numerus totum ← 10
-fixum textus code ← "200"
-fixum textus label ← "OK"
+incipit {
+    fixum numerus pagina ← 3
+    fixum numerus totum ← 10
+    fixum textus code ← "200"
+    fixum textus label ← "OK"
 
-fixum _ msg ← "Page § of §"(pagina, totum)
-fixum _ block ← «status: § (§)»(code, label)
+    fixum _ msg ← "Page § of §"(pagina, totum)
+    fixum _ block ← «status: § (§)»(code, label)
+}
 ```
 
 กฎสำคัญ:
@@ -449,10 +477,12 @@ fixum _ block ← «status: § (§)»(code, label)
 บล็อกหลายบรรทัดใช้เครื่องหมายกีโยแมต์ `«…»`:
 
 ```faber
-fixum _ sql ← «
-    select id, email
-    from accounts
-»
+incipit {
+    fixum _ sql ← «
+        select id, email
+        from accounts
+    »
+}
 ```
 
 ### เทมเพลตที่บันทึกไว้ (forma) {#captured-templates}
@@ -460,8 +490,10 @@ fixum _ sql ← «
 เทมเพลตที่ใช้เครื่องหมายแบ็กทิกจะจับข้อความและพารามิเตอร์ไว้โดยไม่เรนเดอร์ เหมาะสำหรับเพย์โหลด SQL/URL ที่ผูกค่าอย่างปลอดภัย:
 
 ```faber
-fixum numerus user_id ← 42
-fixum _ query ← `select * from users where id = §`(user_id)
+incipit {
+    fixum numerus user_id ← 42
+    fixum _ query ← `select * from users where id = §`(user_id)
+}
 ```
 
 ### JSON แบบอินไลน์ {#inline-json}
@@ -469,19 +501,23 @@ fixum _ query ← `select * from users where id = §`(user_id)
 `{ … }` เปล่าคือ JSON แบบอินไลน์ ซึ่งเป็นเอกสาร `json` ที่สร้างระหว่างคอมไพล์ ไม่ใช่ออบเจ็กต์ Faber แบบไม่ระบุชนิด คีย์ต้องเป็นสตริงที่ใส่เครื่องหมายคำพูด และคั่นด้วย `:`:
 
 ```faber
-fixum _ empty ← {}
-fixum _ user ← { "name": "Marcus", "age": 30, "active": true }
-fixum _ nested ← { "meta": { "version": 1 }, "tags": ["alpha", "beta"] }
+incipit {
+    fixum _ empty ← {}
+    fixum _ user ← { "name": "Marcus", "age": 30, "active": true }
+    fixum _ nested ← { "meta": { "version": 1 }, "tags": ["alpha", "beta"] }
+}
 ```
 
 สำหรับการสร้าง `genus` แบบระบุชนิด ให้ใช้ชื่อชนิดและรูปแบบฟิลด์ที่มี `=`:
 
 ```faber
 genus Point {
-    numerus x
-    numerus y
+    fixum numerus x
+    fixum numerus y
 }
-fixum _ p ← Point { x = 10, y = 20 }
+incipit {
+    fixum _ p ← Point { x = 10, y = 20 }
+}
 ```
 
 ## Nullability and optionality
@@ -494,11 +530,11 @@ Faber แยกความแตกต่างระหว่างการ�
 
 ```faber
 functio find(textus key) → numerus ∪ nihil {
-    redde nihil
+    redde nulla
 }
 
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
+    si b ≡ 0 ergo redde nulla
     redde a / b
 }
 ```
@@ -511,7 +547,7 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 functio connect(textus host, numerus port sponte) → vacuum { }
 
 genus User {
-    textus email sponte
+    fixum textus email sponte
 }
 ```
 
@@ -526,9 +562,11 @@ functio process(de numerus depth sponte) → vacuum { }
 ใช้ `!.`, `![`, `!(` เพื่อยืนยันว่าค่าที่อาจไม่มีค่าไม่ใช่ `nihil`:
 
 ```faber
-genus Box { numerus ∪ nihil val }
-fixum Box ∪ nihil maybe_name ← Box { val = 7 }
-fixum _ name ← maybe_name!.val
+genus Box { fixum numerus ∪ nihil val }
+incipit {
+    fixum Box ∪ nihil maybe_name ← Box { val = 7 }
+    fixum _ name ← maybe_name!.val
+}
 ```
 
 การยืนยันว่าไม่เป็นค่าว่างกับ `nihil` จะยุติการทำงานขณะรันไทม์
@@ -536,8 +574,10 @@ fixum _ name ← maybe_name!.val
 ### การรวมค่าเมื่อเป็นค่าว่าง — vel {#nullish-coalescing}
 
 ```faber
-fixum textus ∪ nihil provided ← nihil
-fixum _ name ← provided vel "default"
+incipit {
+    fixum textus ∪ nihil provided ← nulla
+    fixum _ name ← provided vel "default"
+}
 ```
 
 ### ignotum {#ignotum}
@@ -550,10 +590,12 @@ fixum _ name ← provided vel "default"
 
 ```faber
 # runtime conversion
-fixum _ parsed ← "42" ↦ numerus
-# static ascription
-fixum numerus value ← 7
-fixum _ text ← value ∷ textus
+incipit {
+    fixum _ parsed ← "42" ↦ numerus ⊥ 0
+    # static ascription
+    fixum numerus value ← 7
+    fixum _ text ← value ∷ textus
+}
 ```
 
 ### การแปลงขณะรันไทม์ — ↦ {#runtime-conversion}
@@ -561,17 +603,21 @@ fixum _ text ← value ∷ textus
 ใช้ `↦` สำหรับการแปลงขณะรันไทม์ โดยเฉพาะการแปลงจากข้อความหรือการบังคับแปลงชนิดข้อมูลที่อาจล้มเหลว กำหนดการกู้คืนแบบอินไลน์ด้วย `⊥`:
 
 ```faber
-fixum textus input ← "9"
-fixum _ n ← "42" ↦ numerus
-fixum _ safe ← input ↦ numerus ⊥ 0
+incipit {
+    fixum textus input ← "9"
+    fixum _ n ← "42" ↦ numerus ⊥ 0
+    fixum _ safe ← input ↦ numerus ⊥ 0
+}
 ```
 
 การสร้างค่าตามชนิดข้อมูล:
 
 ```faber
-fixum textus path ← "/etc/hosts"
-fixum _ lanes ← [1.0, 2.0, 3.0, 4.0] ↦ vf32[4]
-fixum _ body ← ad 'solum:lege' (path) ↦ textus
+incipit {
+    fixum textus path ← "/etc/hosts"
+    fixum _ lanes ← [1.0, 2.0, 3.0, 4.0] ↦ vf32[4]
+    fixum _ body ← ad 'solum:lege' (path) ↦ textus
+}
 ```
 
 ### การระบุชนิดข้อมูลแบบคงที่ — ∷ {#static-ascription}
@@ -579,9 +625,11 @@ fixum _ body ← ad 'solum:lege' (path) ↦ textus
 ใช้ `∷` เพื่อระบุชนิดข้อมูลแบบคงที่อย่างชัดเจน ตัวดำเนินการนี้วางต่อท้าย และขับเคลื่อนด้วยชนิดข้อมูลเป้าหมาย:
 
 ```faber
-fixum numerus value ← 7
-fixum _ x ← 7 ∷ numerus<i32>
-fixum _ text ← value ∷ textus
+incipit {
+    fixum numerus value ← 7
+    fixum _ x ← 7 ∷ numerus<i32>
+    fixum _ text ← value ∷ textus
+}
 ```
 
 ### การรวมค่าเมื่อเป็นค่าว่าง — `vel` {#nullish-coalescing}
@@ -589,6 +637,8 @@ fixum _ text ← value ∷ textus
 ใช้ `vel` สำหรับการรวมค่าเมื่อค่าหนึ่งเป็น `nihil`:
 
 ```faber
-fixum textus ∪ nihil provided_name ← nihil
-fixum _ name ← provided_name vel "default"
+incipit {
+    fixum textus ∪ nihil provided_name ← nulla
+    fixum _ name ← provided_name vel "default"
+}
 ```

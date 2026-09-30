@@ -8,6 +8,7 @@ sources = [
   "sibling triga/ repository",
   "radix/README.md (mentions triga)",
 ]
+translate_spans = false  # prose lists Latin operation verbs (cape = get) as Latin
 +++
 
 Triga là một thư viện mã nguồn công khai tùy chọn dành cho hình học, cảnh và các hợp đồng kiểu hướng đến GPU. Trong các dự án thông thường, hãy khai báo Triga là một phần phụ thuộc gói Cista trong `faber.toml`; Cista ghi lại mã nguồn đã được phân giải trong `faber.lock`, còn trình biên dịch sẽ phân giải thư viện này từ kho gói.

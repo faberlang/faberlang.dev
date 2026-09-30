@@ -8,6 +8,7 @@ sources = [
   "sibling triga/ repository",
   "radix/README.md (mentions triga)",
 ]
+translate_spans = false  # prose lists Latin operation verbs (cape = get) as Latin
 +++
 
 Triga เป็นไลบรารีซอร์สสาธารณะเสริมสำหรับสัญญาประเภทที่เกี่ยวกับเรขาคณิต ฉาก และ GPU ในโครงการทั่วไป ให้ประกาศ Triga เป็นแพ็กเกจที่ Cista ใช้เป็นดีเพนเดนซีใน `faber.toml`; Cista จะบันทึกซอร์สที่แก้ไขแล้วลงใน `faber.lock` และคอมไพเลอร์จะค้นหาแพ็กเกจจากคลังแพ็กเกจ

@@ -129,7 +129,7 @@ Khai báo đặt kiểu trước có nghĩa là hình dạng của dữ liệu l
 
 ```faber
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
+    si b ≡ 0 ergo redde nulla
     redde a / b
 }
 ```
@@ -286,17 +286,21 @@ dùng dạng đường tắt:
 **Faber thông thường (ưu tiên dạng đầy đủ):**
 
 ```faber
-fixum lista<f32> values ← vacua
-fixum tensor<f32, [2, 3]> grid ← vacua
-fixum numerus<i32> narrow ← 7
+incipit {
+    fixum lista<f32> values ← vacua
+    fixum tensor<f32, [2, 3]> grid ← vacua
+    fixum numerus<i32> narrow ← 7
+}
 ```
 
 **Các mô-đun số (ưu tiên dạng đường tắt):**
 
 ```faber
-fixum lf32 values ← vacua
-fixum tf32[2, 3] grid ← vacua
-fixum i32 narrow ← 7
+incipit {
+    fixum lf32 values ← vacua
+    fixum tf32[2, 3] grid ← vacua
+    fixum i32 narrow ← 7
+}
 ```
 
 Đường tắt **chỉ dùng ở vị trí kiểu**. Các định danh giá trị có tên

@@ -10,6 +10,7 @@ sources = [
   "norma/exempla/",
   "radix/docs/stdlib/morphologia.md",
 ]
+translate_spans = false  # prose names the Latin vocabulary as Latin
 +++
 
 Norma 是 Faber 的标准库。它通过 `norma:*` 路径提供扁平的拉丁命名模块。标准库声明是位于同级 `norma` 仓库中的 Faber 源代码。

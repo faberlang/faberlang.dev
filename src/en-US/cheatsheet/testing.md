@@ -22,7 +22,7 @@ proba "additio" {
 
 `probandum` groups related tests under one name.
 
-```faber
+```faber mode=pinned
 probandum "arithmetica" {
     proba "additio" {
         adfirma 1 + 1 ≡ 2
@@ -38,7 +38,7 @@ probandum "arithmetica" {
 
 `tag` labels a test so it can be selected or filtered when running.
 
-```faber
+```faber mode=pinned
 probandum "textus" {
     proba "concatenatio" tag "fast" {
         adfirma "a" + "b" ≡ "ab"
@@ -50,7 +50,7 @@ probandum "textus" {
 
 Modifiers follow the test name.
 
-```faber
+```faber mode=pinned
 probandum "modifiers" {
     proba "stable" tag "fast" {
         adfirma verum
@@ -80,7 +80,7 @@ probandum "modifiers" {
 
 `adfirma` takes any boolean expression.
 
-```faber
+```faber mode=pinned
 probandum "assertiones" {
     proba "comparisons" {
         adfirma 1 + 1 ≡ 2

@@ -8,6 +8,7 @@ sources = [
   "sibling triga/ repository",
   "radix/README.md (mentions triga)",
 ]
+translate_spans = false  # prose lists Latin operation verbs (cape = get) as Latin
 +++
 
 تريغا مكتبة مصدرية عامة اختيارية لعقود الأنواع الهندسية والمشهدية والموجَّهة إلى وحدة معالجة الرسوميات. في المشاريع العادية، تُعلن تريغا كتبعية حزمة Cista في `faber.toml`؛ تسجل Cista المصدر المُحلَّل في `faber.lock` ويحلله المترجم من مخزن الحزم.

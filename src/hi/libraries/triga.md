@@ -8,6 +8,7 @@ sources = [
   "sibling triga/ repository",
   "radix/README.md (mentions triga)",
 ]
+translate_spans = false  # prose lists Latin operation verbs (cape = get) as Latin
 +++
 
 Triga ज्यामिति, सीन और GPU-उन्मुख प्रकार अनुबंधों के लिए एक वैकल्पिक सार्वजनिक स्रोत लाइब्रेरी है। सामान्य प्रोजेक्ट्स में, `faber.toml` में Triga को Cista पैकेज निर्भरता के रूप में घोषित करें; Cista समाधान किए गए स्रोत को `faber.lock` में दर्ज करता है और कंपाइलर उसे पैकेज स्टोर से प्राप्त करता है।

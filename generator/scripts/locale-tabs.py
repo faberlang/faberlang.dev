@@ -117,7 +117,7 @@ def stage_packs(faber: str) -> bool:
     produces nothing. The packs themselves live in the radix tree; link them
     into place. This writes only inside radix/target/, which is build output.
     """
-    src = WORKSPACE / "radix" / "stdlib" / "locale"
+    src = WORKSPACE / "radix" / "locale"
     if not src.is_dir():
         print(f"  no reader packs at {src}", file=sys.stderr)
         return False
@@ -165,7 +165,7 @@ def cache_vocabularies() -> int:
     """
     import tomllib
 
-    src = WORKSPACE / "radix" / "stdlib" / "locale"
+    src = WORKSPACE / "radix" / "locale"
     written = 0
     for loc in LOCALES:
         pack = src / loc["id"] / "pack.toml"

@@ -84,8 +84,10 @@ functio tutum(numerus a, numerus b) → numerus {
 يمكن لـ `⊥` أيضًا تحديد قيمة استرداد مضمنة على تحويلات `↦`:
 
 ```faber
-fixum textus raw ← "42"
-fixum _ n ← raw ↦ numerus ⊥ 0
+incipit {
+    fixum textus raw ← "42"
+    fixum _ n ← raw ↦ numerus ⊥ 0
+}
 ```
 
 ### تأثير قابل للفشل فقط {#effectonly-failable}
@@ -126,7 +128,7 @@ functio exigePositivum(numerus value) ⇥ textus {
 تجمّع كتلة `probandum` حالات الاختبار المرتبطة ببعضها. يمكن تداخل المجموعات
 لتنظيم الاختبارات بشكل هرمي:
 
-```faber
+```faber mode=pinned
 probandum "arithmetica" {
     proba "unum plus unum" {
         adfirma 1 + 1 ≡ 2

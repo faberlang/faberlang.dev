@@ -10,6 +10,7 @@ sources = [
   "norma/exempla/",
   "radix/docs/stdlib/morphologia.md",
 ]
+translate_spans = false  # prose names the Latin vocabulary as Latin
 +++
 
 Norma 是 Faber 的標準函式庫。它提供以拉丁文命名的扁平模組，透過 `norma:*` 路徑存取。標準函式庫宣告是鄰近 `norma` 儲存庫中的 Faber 原始碼。

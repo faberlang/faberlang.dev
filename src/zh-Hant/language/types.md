@@ -59,9 +59,11 @@ Faber 採用靜態、型別優先的型別系統。每個宣告都將型別置�
 `numerus` 和 `fractus` 具有預設定寬（i64 和 f64），也支援明確指定定寬的形式：
 
 ```faber
-fixum numerus<i32> narrow ← 7 ∷ numerus<i32>
-fixum numerus<u64> wide ← 255 ∷ numerus<u64>
-fixum fractus<f32> single ← 1.5 ∷ fractus<f32>
+incipit {
+    fixum numerus<i32> narrow ← 7 ∷ numerus<i32>
+    fixum numerus<u64> wide ← 255 ∷ numerus<u64>
+    fixum fractus<f32> single ← 1.5 ∷ fractus<f32>
+}
 ```
 
 在型別位置可使用定寬簡寫：`i8` … `u64`、`f16`、`f32`、`f64` 分別等同於 `numerus<W>`／`fractus<W>`。
@@ -72,11 +74,11 @@ fixum fractus<f32> single ← 1.5 ∷ fractus<f32>
 
 ```faber
 functio find(textus key) → numerus ∪ nihil {
-    redde nihil
+    redde nulla
 }
 
 functio maybe() → textus ∪ nihil {
-    redde nihil
+    redde nulla
 }
 ```
 
@@ -107,7 +109,9 @@ functio primum<T>(lista<T> res) → T ∪ nihil {
 ```faber
 functio identitas<T>(T valor) → T { redde valor }
 
-fixum numerus value ← identitas<numerus>(7)
+incipit {
+    fixum numerus value ← identitas<numerus>(7)
+}
 ```
 
 ### 集合 {#collections}
@@ -123,8 +127,10 @@ fixum numerus value ← identitas<numerus>(7)
 | `cursor<T>` | 惰性串流 | — |
 
 ```faber
-fixum lista<numerus> nums ← [1, 2, 3]
-fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+incipit {
+    fixum lista<numerus> nums ← [1, 2, 3]
+    fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+}
 ```
 
 ### 張量型別 {#tensor-types}
@@ -140,9 +146,11 @@ fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 | `tensor<T, [N, M]>` | 秩 2 矩陣 |
 
 ```faber
-fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← row[0]
+incipit {
+    fixum tensor<fractus<f32>, []> scalar ← vacua
+    fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+    fixum numerus ∪ nihil first ← row[0]
+}
 ```
 
 ### GPU 核心型別 {#gpu-core-types}
@@ -199,9 +207,11 @@ Faber 有三個變數關鍵字，以及專用的指派字元。關鍵差異在�
 `fixum` 繫結只能寫入一次。宣告時可以提供初始值，也可以不提供；若未提供初始值，則必須在讀取前恰好指派一次。第二次指派會被拒絕。
 
 ```faber
-fixum numerus count ← 0
-fixum textus name ← "Marcus"
-fixum _ inferred ← [1, 2, 3]
+incipit {
+    fixum numerus count ← 0
+    fixum textus name ← "Marcus"
+    fixum _ inferred ← [1, 2, 3]
+}
 ```
 
 延遲初始化：
@@ -257,8 +267,8 @@ Faber 將多數語言合併在 `=` 中的概念分開：
 
 ```faber
 genus Point {
-    numerus x
-    numerus y
+    fixum numerus x
+    fixum numerus y
 }
 
 incipit {
@@ -281,8 +291,8 @@ incipit {
 
 ```faber
 genus Persona {
-    textus nomen
-    numerus aetas
+    fixum textus nomen
+    fixum numerus aetas
 }
 
 incipit {
@@ -314,19 +324,23 @@ Faber 有數種由編譯器擁有的集合型別。它們的標準方法定義�
 ### Lista — 有序動態集合 {#lista}
 
 ```faber
-fixum lista<numerus> empty ← vacua
-fixum _ numbers ← [1, 2, 3, 4, 5]
-fixum _ names ← ["Marcus", "Julia", "Gaius"]
-fixum _ nested ← [[1, 2], [3, 4]]
+incipit {
+    fixum lista<numerus> empty ← vacua
+    fixum _ numbers ← [1, 2, 3, 4, 5]
+    fixum _ names ← ["Marcus", "Julia", "Gaius"]
+    fixum _ nested ← [[1, 2], [3, 4]]
+}
 ```
 
 使用 `sparge` 展開：
 
 ```faber
-fixum lista<numerus> a ← [1, 2, 3]
-fixum lista<numerus> b ← [4, 5, 6]
-fixum _ combined ← [sparge a, sparge b]
-fixum _ headed ← [0, sparge a, 99]
+incipit {
+    fixum lista<numerus> a ← [1, 2, 3]
+    fixum lista<numerus> b ← [4, 5, 6]
+    fixum _ combined ← [sparge a, sparge b]
+    fixum _ headed ← [0, sparge a, 99]
+}
 ```
 
 主要方法：`longitudo`、`accipe`、`appende`、`summa`、`primus`、`novissimus`。
@@ -334,22 +348,28 @@ fixum _ headed ← [0, sparge a, 99]
 ### Tabula — 鍵值對映射 {#tabula}
 
 ```faber
-fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+incipit {
+    fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+}
 ```
 
 ### Tensor — 密集固定形狀緩衝區 {#tensor}
 
 ```faber
-fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← row[0]
+incipit {
+    fixum tensor<fractus<f32>, []> scalar ← vacua
+    fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+    fixum numerus ∪ nihil first ← row[0]
+}
 ```
 
 Tensor 語法糖（數值運算密集的程式碼）：
 
 ```faber
-fixum tf32[] seed ← vacua
-fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
+incipit {
+    fixum tf32[] seed ← vacua
+    fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
+}
 ```
 
 主要方法：`forma`、`accipe`、`ponde`、`crea`、`structa`、`strue`，以及逐元素算術、矩陣乘法（`multiplicatio`）和歸約（`summa`、`productum`）。
@@ -357,22 +377,26 @@ fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
 ### Sparsa — 稀疏固定形狀緩衝區 {#sparsa}
 
 ```faber
-fixum sparsa<fractus<f32>, [2, 3]> sparse ← vacua
-sparse.ponde([0, 1], 4.0)
-sparse.ponde([1, 2], 9.0)
+incipit {
+    fixum sparsa<fractus<f32>, [2, 3]> sparse ← vacua
+    sparse.ponde([0, 1], 4.0)
+    sparse.ponde([1, 2], 9.0)
 
-# accipe returns the stored value, here 4.0
-nota sparse.accipe([0, 1])
-# count of stored entries
-nota sparse.nonnihil()
+    # accipe returns the stored value, here 4.0
+    nota sparse.accipe([0, 1])
+    # count of stored entries
+    nota sparse.nonnihil()
+}
 ```
 
 在密集與稀疏格式之間轉換：
 
 ```faber
-fixum tf32[2, 2] dense ← [[1.0, 0.0], [0.0, 2.0]] ↦ tf32[2, 2]
-fixum sf32[2, 2] sparse ← dense ↦ sf32[2, 2]
-fixum tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]
+incipit {
+    fixum tf32[2, 2] dense ← [[1.0, 0.0], [0.0, 2.0]] ↦ tf32[2, 2]
+    fixum sf32[2, 2] sparse ← dense ↦ sf32[2, 2]
+    fixum tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]
+}
 ```
 
 ### Cursors — 延遲串流 {#cursors}
@@ -380,9 +404,11 @@ fixum tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]
 `cursor<T>` 是延遲串流型別。它可以由集合迭代器、`tuus` 檢視或產生器函式建立。使用 `itera ex` 消費：
 
 ```faber
-fixum _ items ← [1, 2, 3]
-itera ex items fixum item {
-    nota item
+incipit {
+    fixum _ items ← [1, 2, 3]
+    itera ex items fixum item {
+        nota item
+    }
 }
 ```
 
@@ -426,13 +452,15 @@ functio greet(textus nomen) → textus {
     redde "Salve, §!"(nomen)
 }
 
-fixum numerus pagina ← 3
-fixum numerus totum ← 10
-fixum textus code ← "200"
-fixum textus label ← "OK"
+incipit {
+    fixum numerus pagina ← 3
+    fixum numerus totum ← 10
+    fixum textus code ← "200"
+    fixum textus label ← "OK"
 
-fixum _ msg ← "Page § of §"(pagina, totum)
-fixum _ block ← «status: § (§)»(code, label)
+    fixum _ msg ← "Page § of §"(pagina, totum)
+    fixum _ block ← «status: § (§)»(code, label)
+}
 ```
 
 主要規則：
@@ -447,10 +475,12 @@ fixum _ block ← «status: § (§)»(code, label)
 多行區塊使用書名號 `«…»`：
 
 ```faber
-fixum _ sql ← «
-    select id, email
-    from accounts
-»
+incipit {
+    fixum _ sql ← «
+        select id, email
+        from accounts
+    »
+}
 ```
 
 ### 擷取的範本（forma） {#captured-templates}
@@ -459,8 +489,10 @@ fixum _ sql ← «
 適合用於繫結的 SQL／URL 承載內容：
 
 ```faber
-fixum numerus user_id ← 42
-fixum _ query ← `select * from users where id = §`(user_id)
+incipit {
+    fixum numerus user_id ← 42
+    fixum _ query ← `select * from users where id = §`(user_id)
+}
 ```
 
 ### 內嵌 JSON {#inline-json}
@@ -468,19 +500,23 @@ fixum _ query ← `select * from users where id = §`(user_id)
 裸露的 `{ … }` 是內嵌 JSON：它是編譯期的 `json` 文件，不是匿名的 Faber 物件。鍵是以引號括起、並以 `:` 分隔的字串：
 
 ```faber
-fixum _ empty ← {}
-fixum _ user ← { "name": "Marcus", "age": 30, "active": true }
-fixum _ nested ← { "meta": { "version": 1 }, "tags": ["alpha", "beta"] }
+incipit {
+    fixum _ empty ← {}
+    fixum _ user ← { "name": "Marcus", "age": 30, "active": true }
+    fixum _ nested ← { "meta": { "version": 1 }, "tags": ["alpha", "beta"] }
+}
 ```
 
 若要建構具型別的 `genus`，請使用型別名稱與 `=` 欄位形狀：
 
 ```faber
 genus Point {
-    numerus x
-    numerus y
+    fixum numerus x
+    fixum numerus y
 }
-fixum _ p ← Point { x = 10, y = 20 }
+incipit {
+    fixum _ p ← Point { x = 10, y = 20 }
+}
 ```
 
 ## Nullability and optionality
@@ -493,11 +529,11 @@ Faber 區分值中的缺失與宣告位置上的可選提供。
 
 ```faber
 functio find(textus key) → numerus ∪ nihil {
-    redde nihil
+    redde nulla
 }
 
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
+    si b ≡ 0 ergo redde nulla
     redde a / b
 }
 ```
@@ -510,7 +546,7 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 functio connect(textus host, numerus port sponte) → vacuum { }
 
 genus User {
-    textus email sponte
+    fixum textus email sponte
 }
 ```
 
@@ -525,9 +561,11 @@ functio process(de numerus depth sponte) → vacuum { }
 使用 `!.`、`![`、`!(` 來斷言可為空值不是 `nihil`：
 
 ```faber
-genus Box { numerus ∪ nihil val }
-fixum Box ∪ nihil maybe_name ← Box { val = 7 }
-fixum _ name ← maybe_name!.val
+genus Box { fixum numerus ∪ nihil val }
+incipit {
+    fixum Box ∪ nihil maybe_name ← Box { val = 7 }
+    fixum _ name ← maybe_name!.val
+}
 ```
 
 對 `nihil` 進行非空值斷言會在執行階段中止。
@@ -535,8 +573,10 @@ fixum _ name ← maybe_name!.val
 ### 空值合併 — vel {#nullish-coalescing}
 
 ```faber
-fixum textus ∪ nihil provided ← nihil
-fixum _ name ← provided vel "default"
+incipit {
+    fixum textus ∪ nihil provided ← nulla
+    fixum _ name ← provided vel "default"
+}
 ```
 
 ### ignotum {#ignotum}
@@ -549,10 +589,12 @@ fixum _ name ← provided vel "default"
 
 ```faber
 # runtime conversion
-fixum _ parsed ← "42" ↦ numerus
-# static ascription
-fixum numerus value ← 7
-fixum _ text ← value ∷ textus
+incipit {
+    fixum _ parsed ← "42" ↦ numerus ⊥ 0
+    # static ascription
+    fixum numerus value ← 7
+    fixum _ text ← value ∷ textus
+}
 ```
 
 ### 執行期轉換 — ↦ {#runtime-conversion}
@@ -560,17 +602,21 @@ fixum _ text ← value ∷ textus
 使用 `↦` 進行執行期轉換，尤其適用於可能失敗的剖析或強制轉型。使用 `⊥` 提供行內復原：
 
 ```faber
-fixum textus input ← "9"
-fixum _ n ← "42" ↦ numerus
-fixum _ safe ← input ↦ numerus ⊥ 0
+incipit {
+    fixum textus input ← "9"
+    fixum _ n ← "42" ↦ numerus ⊥ 0
+    fixum _ safe ← input ↦ numerus ⊥ 0
+}
 ```
 
 由型別導向的具現化：
 
 ```faber
-fixum textus path ← "/etc/hosts"
-fixum _ lanes ← [1.0, 2.0, 3.0, 4.0] ↦ vf32[4]
-fixum _ body ← ad 'solum:lege' (path) ↦ textus
+incipit {
+    fixum textus path ← "/etc/hosts"
+    fixum _ lanes ← [1.0, 2.0, 3.0, 4.0] ↦ vf32[4]
+    fixum _ body ← ad 'solum:lege' (path) ↦ textus
+}
 ```
 
 ### 靜態歸屬 — ∷ {#static-ascription}
@@ -578,9 +624,11 @@ fixum _ body ← ad 'solum:lege' (path) ↦ textus
 使用 `∷` 明確標註靜態型別。它是後綴運算子，並由目標型別決定：
 
 ```faber
-fixum numerus value ← 7
-fixum _ x ← 7 ∷ numerus<i32>
-fixum _ text ← value ∷ textus
+incipit {
+    fixum numerus value ← 7
+    fixum _ x ← 7 ∷ numerus<i32>
+    fixum _ text ← value ∷ textus
+}
 ```
 
 ### 空值合併 — `vel` {#nullish-coalescing}
@@ -588,6 +636,8 @@ fixum _ text ← value ∷ textus
 當值為 `nihil` 時，使用 `vel` 進行空值合併：
 
 ```faber
-fixum textus ∪ nihil provided_name ← nihil
-fixum _ name ← provided_name vel "default"
+incipit {
+    fixum textus ∪ nihil provided_name ← nulla
+    fixum _ name ← provided_name vel "default"
+}
 ```

@@ -51,7 +51,7 @@ incipit {
     # a generic
     fixum lista<numerus> scores ← [1, 2, 3]
     # a nullable
-    fixum numerus ∪ nihil maybe ← nihil
+    fixum numerus ∪ nihil maybe ← nulla
     nota count, name, scores, maybe
 }
 ```

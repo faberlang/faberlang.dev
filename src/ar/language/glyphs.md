@@ -130,7 +130,7 @@ sources = [
 
 ```faber
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
+    si b ≡ 0 ergo redde nulla
     redde a / b
 }
 ```
@@ -285,17 +285,21 @@ fixum _ p ← Point {
 **Faber العام (تفضيل الصيغة المطوّلة):**
 
 ```faber
-fixum lista<f32> values ← vacua
-fixum tensor<f32, [2, 3]> grid ← vacua
-fixum numerus<i32> narrow ← 7
+incipit {
+    fixum lista<f32> values ← vacua
+    fixum tensor<f32, [2, 3]> grid ← vacua
+    fixum numerus<i32> narrow ← 7
+}
 ```
 
 **الوحدات العددية (تفضيل المختصر):**
 
 ```faber
-fixum lf32 values ← vacua
-fixum tf32[2, 3] grid ← vacua
-fixum i32 narrow ← 7
+incipit {
+    fixum lf32 values ← vacua
+    fixum tf32[2, 3] grid ← vacua
+    fixum i32 narrow ← 7
+}
 ```
 
 المختصر **في موضع النوع فقط**. معرّفات القيم المسماة `f32`

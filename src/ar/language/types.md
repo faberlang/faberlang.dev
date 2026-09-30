@@ -59,9 +59,11 @@ sources = [
 يمتلك `numerus` و`fractus` عرضين افتراضيين (i64 وf64) وصيغاً ذات عرض صريح:
 
 ```faber
-fixum numerus<i32> narrow ← 7 ∷ numerus<i32>
-fixum numerus<u64> wide ← 255 ∷ numerus<u64>
-fixum fractus<f32> single ← 1.5 ∷ fractus<f32>
+incipit {
+    fixum numerus<i32> narrow ← 7 ∷ numerus<i32>
+    fixum numerus<u64> wide ← 255 ∷ numerus<u64>
+    fixum fractus<f32> single ← 1.5 ∷ fractus<f32>
+}
 ```
 
 يتوفر اختزال العرض في موضع النوع: `i8` … `u64`، `f16`، `f32`، `f64` تكافئ `numerus<W>` / `fractus<W>`.
@@ -72,11 +74,11 @@ fixum fractus<f32> single ← 1.5 ∷ fractus<f32>
 
 ```faber
 functio find(textus key) → numerus ∪ nihil {
-    redde nihil
+    redde nulla
 }
 
 functio maybe() → textus ∪ nihil {
-    redde nihil
+    redde nulla
 }
 ```
 
@@ -107,7 +109,9 @@ functio primum<T>(lista<T> res) → T ∪ nihil {
 ```faber
 functio identitas<T>(T valor) → T { redde valor }
 
-fixum numerus value ← identitas<numerus>(7)
+incipit {
+    fixum numerus value ← identitas<numerus>(7)
+}
 ```
 
 ### المجموعات {#collections}
@@ -123,8 +127,10 @@ fixum numerus value ← identitas<numerus>(7)
 | `cursor<T>` | دفق كسول | — |
 
 ```faber
-fixum lista<numerus> nums ← [1, 2, 3]
-fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+incipit {
+    fixum lista<numerus> nums ← [1, 2, 3]
+    fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+}
 ```
 
 ### أنواع الموترات {#tensor-types}
@@ -140,9 +146,11 @@ fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 | `tensor<T, [N, M]>` | الرتبة 2 (مصفوفة) |
 
 ```faber
-fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> lanes ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil head ← lanes[0]
+incipit {
+    fixum tensor<fractus<f32>, []> scalar ← vacua
+    fixum tensor<numerus, [4]> lanes ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+    fixum numerus ∪ nihil head ← lanes[0]
+}
 ```
 
 ### أنواع نواة وحدة معالجة الرسوميات {#gpu-core-types}
@@ -203,9 +211,11 @@ Faber تمتلك ثلاث كلمات مفتاحية للمتغيرات ورمز 
 الثاني مرفوض.
 
 ```faber
-fixum numerus count ← 0
-fixum textus name ← "Marcus"
-fixum _ inferred ← [1, 2, 3]
+incipit {
+    fixum numerus count ← 0
+    fixum textus name ← "Marcus"
+    fixum _ inferred ← [1, 2, 3]
+}
 ```
 
 التهيئة المؤجلة:
@@ -261,8 +271,8 @@ Faber يفصل ما تدمجه معظم اللغات في `=`:
 
 ```faber
 genus Point {
-    numerus x
-    numerus y
+    fixum numerus x
+    fixum numerus y
 }
 
 incipit {
@@ -285,8 +295,8 @@ incipit {
 
 ```faber
 genus Persona {
-    textus nomen
-    numerus aetas
+    fixum textus nomen
+    fixum numerus aetas
 }
 
 incipit {
@@ -320,19 +330,23 @@ incipit {
 ### Lista — مجموعة ديناميكية مرتبة {#lista}
 
 ```faber
-fixum lista<numerus> empty ← vacua
-fixum _ numbers ← [1, 2, 3, 4, 5]
-fixum _ names ← ["Marcus", "Julia", "Gaius"]
-fixum _ nested ← [[1, 2], [3, 4]]
+incipit {
+    fixum lista<numerus> empty ← vacua
+    fixum _ numbers ← [1, 2, 3, 4, 5]
+    fixum _ names ← ["Marcus", "Julia", "Gaius"]
+    fixum _ nested ← [[1, 2], [3, 4]]
+}
 ```
 
 النشر باستخدام `sparge`:
 
 ```faber
-fixum lista<numerus> a ← [1, 2, 3]
-fixum lista<numerus> b ← [4, 5, 6]
-fixum _ combined ← [sparge a, sparge b]
-fixum _ headed ← [0, sparge a, 99]
+incipit {
+    fixum lista<numerus> a ← [1, 2, 3]
+    fixum lista<numerus> b ← [4, 5, 6]
+    fixum _ combined ← [sparge a, sparge b]
+    fixum _ headed ← [0, sparge a, 99]
+}
 ```
 
 الطرائق الرئيسية: `longitudo`، `accipe`، `appende`، `summa`، `primus`، `novissimus`.
@@ -340,22 +354,28 @@ fixum _ headed ← [0, sparge a, 99]
 ### Tabula — خريطة مفتاح-قيمة {#tabula}
 
 ```faber
-fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+incipit {
+    fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+}
 ```
 
 ### Tensor — مصفوفة كثيفة ثابتة الشكل {#tensor}
 
 ```faber
-fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> lanes ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil head ← lanes[0]
+incipit {
+    fixum tensor<fractus<f32>, []> scalar ← vacua
+    fixum tensor<numerus, [4]> lanes ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+    fixum numerus ∪ nihil head ← lanes[0]
+}
 ```
 
 تبسيط Tensor (للأكواد ذات الحسابات العددية الكثيفة):
 
 ```faber
-fixum tf32[] seed ← vacua
-fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
+incipit {
+    fixum tf32[] seed ← vacua
+    fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
+}
 ```
 
 الطرائق الرئيسية: `forma`، `accipe`، `ponde`، `crea`، `structa`، `strue`،
@@ -365,22 +385,26 @@ fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
 ### Sparsa — مصفوفة متفرقة ثابتة الشكل {#sparsa}
 
 ```faber
-fixum sparsa<fractus<f32>, [2, 3]> sparse ← vacua
-sparse.ponde([0, 1], 4.0)
-sparse.ponde([1, 2], 9.0)
+incipit {
+    fixum sparsa<fractus<f32>, [2, 3]> sparse ← vacua
+    sparse.ponde([0, 1], 4.0)
+    sparse.ponde([1, 2], 9.0)
 
-# accipe returns the stored value, here 4.0
-nota sparse.accipe([0, 1])
-# count of stored entries
-nota sparse.nonnihil()
+    # accipe returns the stored value, here 4.0
+    nota sparse.accipe([0, 1])
+    # count of stored entries
+    nota sparse.nonnihil()
+}
 ```
 
 التحويل بين الكثيف والمتفرق:
 
 ```faber
-fixum tf32[2, 2] dense ← [[1.0, 0.0], [0.0, 2.0]] ↦ tf32[2, 2]
-fixum sf32[2, 2] sparse ← dense ↦ sf32[2, 2]
-fixum tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]
+incipit {
+    fixum tf32[2, 2] dense ← [[1.0, 0.0], [0.0, 2.0]] ↦ tf32[2, 2]
+    fixum sf32[2, 2] sparse ← dense ↦ sf32[2, 2]
+    fixum tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]
+}
 ```
 
 ### Cursors — تيارات كسولة {#cursors}
@@ -389,9 +413,11 @@ fixum tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]
 أو مناظير tuus، أو دوال مولدة. يُستهلك عبر `itera ex`:
 
 ```faber
-fixum _ items ← [1, 2, 3]
-itera ex items fixum item {
-    nota item
+incipit {
+    fixum _ items ← [1, 2, 3]
+    itera ex items fixum item {
+        nota item
+    }
 }
 ```
 
@@ -436,13 +462,15 @@ functio greet(textus nomen) → textus {
     redde "Salve, §!"(nomen)
 }
 
-fixum numerus pagina ← 3
-fixum numerus totum ← 10
-fixum textus code ← "200"
-fixum textus label ← "OK"
+incipit {
+    fixum numerus pagina ← 3
+    fixum numerus totum ← 10
+    fixum textus code ← "200"
+    fixum textus label ← "OK"
 
-fixum _ msg ← "Page § of §"(pagina, totum)
-fixum _ block ← «status: § (§)»(code, label)
+    fixum _ msg ← "Page § of §"(pagina, totum)
+    fixum _ block ← «status: § (§)»(code, label)
+}
 ```
 
 القواعد الأساسية:
@@ -456,10 +484,12 @@ fixum _ block ← «status: § (§)»(code, label)
 تستخدم الكتل متعددة الأسطر علامات التنصيص المزدوجة `«…»`:
 
 ```faber
-fixum _ sql ← «
-    select id, email
-    from accounts
-»
+incipit {
+    fixum _ sql ← «
+        select id, email
+        from accounts
+    »
+}
 ```
 
 ### القوالب المأسورة (forma) {#captured-templates}
@@ -468,8 +498,10 @@ fixum _ sql ← «
 آمنة للحمولات المقيّدة SQL/URL:
 
 ```faber
-fixum numerus user_id ← 42
-fixum _ query ← `select * from users where id = §`(user_id)
+incipit {
+    fixum numerus user_id ← 42
+    fixum _ query ← `select * from users where id = §`(user_id)
+}
 ```
 
 ### JSON المُضمّن {#inline-json}
@@ -478,19 +510,23 @@ fixum _ query ← `select * from users where id = §`(user_id)
 كائن Faber مجهول. المفاتيح هي سلاسل نصية بين علامتي تنصيص مفصولة بـ `:`:
 
 ```faber
-fixum _ empty ← {}
-fixum _ user ← { "name": "Marcus", "age": 30, "active": true }
-fixum _ nested ← { "meta": { "version": 1 }, "tags": ["alpha", "beta"] }
+incipit {
+    fixum _ empty ← {}
+    fixum _ user ← { "name": "Marcus", "age": 30, "active": true }
+    fixum _ nested ← { "meta": { "version": 1 }, "tags": ["alpha", "beta"] }
+}
 ```
 
 لبناء genus مُنمّط، استخدم اسم النوع وشكل الحقل `=`:
 
 ```faber
 genus Point {
-    numerus x
-    numerus y
+    fixum numerus x
+    fixum numerus y
 }
-fixum _ p ← Point { x = 10, y = 20 }
+incipit {
+    fixum _ p ← Point { x = 10, y = 20 }
+}
 ```
 
 ## Nullability and optionality
@@ -503,11 +539,11 @@ fixum _ p ← Point { x = 10, y = 20 }
 
 ```faber
 functio find(textus key) → numerus ∪ nihil {
-    redde nihil
+    redde nulla
 }
 
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
+    si b ≡ 0 ergo redde nulla
     redde a / b
 }
 ```
@@ -520,7 +556,7 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 functio connect(textus host, numerus port sponte) → vacuum { }
 
 genus User {
-    textus email sponte
+    fixum textus email sponte
 }
 ```
 
@@ -535,9 +571,11 @@ functio process(de numerus depth sponte) → vacuum { }
 استخدِم `!.` و `![` و `!(` لتأكيد أن القيمة القابلة للعدم ليست `nihil`:
 
 ```faber
-genus Box { numerus ∪ nihil val }
-fixum Box ∪ nihil maybe_name ← Box { val = 7 }
-fixum _ name ← maybe_name!.val
+genus Box { fixum numerus ∪ nihil val }
+incipit {
+    fixum Box ∪ nihil maybe_name ← Box { val = 7 }
+    fixum _ name ← maybe_name!.val
+}
 ```
 
 يؤدي تأكيد عدم العدم على `nihil` إلى إجهاض التنفيذ وقت التشغيل.
@@ -545,8 +583,10 @@ fixum _ name ← maybe_name!.val
 ### الدمج العدمي — vel {#nullish-coalescing}
 
 ```faber
-fixum textus ∪ nihil provided ← nihil
-fixum _ name ← provided vel "default"
+incipit {
+    fixum textus ∪ nihil provided ← nulla
+    fixum _ name ← provided vel "default"
+}
 ```
 
 ### ignotum {#ignotum}
@@ -560,10 +600,12 @@ fixum _ name ← provided vel "default"
 
 ```faber
 # runtime conversion
-fixum _ parsed ← "42" ↦ numerus
-# static ascription
-fixum numerus value ← 7
-fixum _ text ← value ∷ textus
+incipit {
+    fixum _ parsed ← "42" ↦ numerus ⊥ 0
+    # static ascription
+    fixum numerus value ← 7
+    fixum _ text ← value ∷ textus
+}
 ```
 
 ### التحويل وقت التشغيل — ↦ {#runtime-conversion}
@@ -572,17 +614,21 @@ fixum _ text ← value ∷ textus
 وفّر استردادًا مضمنًا باستعمال `⊥`:
 
 ```faber
-fixum textus input ← "9"
-fixum _ n ← "42" ↦ numerus
-fixum _ safe ← input ↦ numerus ⊥ 0
+incipit {
+    fixum textus input ← "9"
+    fixum _ n ← "42" ↦ numerus ⊥ 0
+    fixum _ safe ← input ↦ numerus ⊥ 0
+}
 ```
 
 تجسيد موجّه بالنوع:
 
 ```faber
-fixum textus path ← "/etc/hosts"
-fixum _ lanes ← [1.0, 2.0, 3.0, 4.0] ↦ vf32[4]
-fixum _ body ← ad 'solum:lege' (path) ↦ textus
+incipit {
+    fixum textus path ← "/etc/hosts"
+    fixum _ lanes ← [1.0, 2.0, 3.0, 4.0] ↦ vf32[4]
+    fixum _ body ← ad 'solum:lege' (path) ↦ textus
+}
 ```
 
 ### الإسناد الثابت — ∷ {#static-ascription}
@@ -590,9 +636,11 @@ fixum _ body ← ad 'solum:lege' (path) ↦ textus
 استعمل `∷` للإسناد الثابت الصريح للنوع. هو لاحق وموجّه بالنوع الهدف:
 
 ```faber
-fixum numerus value ← 7
-fixum _ x ← 7 ∷ numerus<i32>
-fixum _ text ← value ∷ textus
+incipit {
+    fixum numerus value ← 7
+    fixum _ x ← 7 ∷ numerus<i32>
+    fixum _ text ← value ∷ textus
+}
 ```
 
 ### الدمج العدمي — vel {#nullish-coalescing}
@@ -600,6 +648,8 @@ fixum _ text ← value ∷ textus
 استعمل `vel` للدمج العدمي حينما تكون القيمة `nihil`:
 
 ```faber
-fixum textus ∪ nihil provided_name ← nihil
-fixum _ name ← provided_name vel "default"
+incipit {
+    fixum textus ∪ nihil provided_name ← nulla
+    fixum _ name ← provided_name vel "default"
+}
 ```

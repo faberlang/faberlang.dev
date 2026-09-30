@@ -86,8 +86,10 @@ functio tutum(numerus a, numerus b) → numerus {
 `⊥`, `↦` रूपांतरणों पर इनलाइन रिकवरी मान भी निर्दिष्ट कर सकता है:
 
 ```faber
-fixum textus raw ← "42"
-fixum _ n ← raw ↦ numerus ⊥ 0
+incipit {
+    fixum textus raw ← "42"
+    fixum _ n ← raw ↦ numerus ⊥ 0
+}
 ```
 
 ### केवल-प्रभाव वाला विफल हो सकने वाला फ़ंक्शन {#effectonly-failable}
@@ -124,7 +126,7 @@ Faber में भाषा के भीतर ही निर्मित �
 
 `probandum` ब्लॉक संबंधित परीक्षण मामलों को एक साथ समूहित करता है। परीक्षणों को पदानुक्रम के अनुसार व्यवस्थित करने के लिए सूट को नेस्ट किया जा सकता है:
 
-```faber
+```faber mode=pinned
 probandum "arithmetica" {
     proba "unum plus unum" {
         adfirma 1 + 1 ≡ 2

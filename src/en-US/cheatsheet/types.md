@@ -19,7 +19,7 @@ incipit {
     fixum numerus aetas ← 30
     fixum bivalens ready ← verum
     fixum lista<numerus> empty ← vacua
-    fixum numerus ∪ nihil missing ← nihil
+    fixum numerus ∪ nihil missing ← nulla
     nota nomen, aetas, ready, empty, missing
     nihil_agit()
 }
@@ -150,8 +150,8 @@ incipit {
 
 ```faber
 genus Persona {
-    textus nomen
-    numerus aetas
+    fixum textus nomen
+    fixum numerus aetas
 }
 
 incipit {

@@ -8,6 +8,7 @@ sources = [
   "sibling triga/ repository",
   "radix/README.md (mentions triga)",
 ]
+translate_spans = false  # prose lists Latin operation verbs (cape = get) as Latin
 +++
 
 Triga 是一個可選的公開原始碼函式庫，提供幾何、場景與面向 GPU 的型別契約。在一般專案中，請在 `faber.toml` 將 Triga 宣告為 Cista 套件相依項目；Cista 會將解析後的原始碼記錄在 `faber.lock` 中，而編譯器會從套件儲存區解析它。

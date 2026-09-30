@@ -47,7 +47,7 @@ from locales_registry import load_registry  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[2]
 WORKSPACE = REPO.parent
-PACKS = WORKSPACE / "radix" / "stdlib" / "locale"
+PACKS = WORKSPACE / "radix" / "locale"
 
 # Whole pages whose Latin is the subject rather than the spelling.
 SKIP_PAGES = {

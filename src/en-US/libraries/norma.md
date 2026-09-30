@@ -9,6 +9,7 @@ sources = [
   "radix/docs/stdlib/morphologia.md",
   "radix/docs/stdlib/caelum-module-structure.md",
 ]
+translate_spans = false  # prose names the Latin vocabulary as Latin
 +++
 
 Norma is Faber's standard library. It provides Latin-named modules accessed

@@ -10,6 +10,7 @@ sources = [
   "norma/exempla/",
   "radix/docs/stdlib/morphologia.md",
 ]
+translate_spans = false  # prose names the Latin vocabulary as Latin
 +++
 
 Norma, Faber की मानक लाइब्रेरी है। यह `norma:*` पथों से एक्सेस किए जाने वाले सरल Latin-नाम वाले मॉड्यूल प्रदान करती है। मानक लाइब्रेरी की घोषणाएँ सहायक `norma` रिपॉज़िटरी में Faber स्रोत के रूप में उपलब्ध हैं।

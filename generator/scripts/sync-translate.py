@@ -70,7 +70,7 @@ def _read_llm_snippet(workspace: Path, reader: str) -> str:
         The system_prompt_snippet string, or an empty string if the pack
         file or snippet key is missing.
     """
-    pack_path = workspace / "radix" / "stdlib" / "reader" / reader / "pack.toml"
+    pack_path = workspace / "radix" / "locale" / reader / "pack.toml"
     if not pack_path.is_file():
         print(
             f"warning: pack not found at {pack_path}", file=sys.stderr,

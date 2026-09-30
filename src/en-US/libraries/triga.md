@@ -10,6 +10,7 @@ sources = [
   "examples/triga-budapest/README.md",
   "examples/triga-drift-city/README.md",
 ]
+translate_spans = false  # prose lists Latin operation verbs (cape = get) as Latin
 +++
 
 Triga is Faber's native graphics and geometry library: the typed contract

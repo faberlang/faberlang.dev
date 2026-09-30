@@ -129,7 +129,7 @@ Faber हर घोषणा में नाम से पहले प्र�
 
 ```faber
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
+    si b ≡ 0 ergo redde nulla
     redde a / b
 }
 ```
@@ -285,17 +285,21 @@ kernel module sugar का उपयोग कर सकता है:
 **सामान्य Faber (long form को प्राथमिकता दें):**
 
 ```faber
-fixum lista<f32> values ← vacua
-fixum tensor<f32, [2, 3]> grid ← vacua
-fixum numerus<i32> narrow ← 7
+incipit {
+    fixum lista<f32> values ← vacua
+    fixum tensor<f32, [2, 3]> grid ← vacua
+    fixum numerus<i32> narrow ← 7
+}
 ```
 
 **Numeric modules (sugar को प्राथमिकता दें):**
 
 ```faber
-fixum lf32 values ← vacua
-fixum tf32[2, 3] grid ← vacua
-fixum i32 narrow ← 7
+incipit {
+    fixum lf32 values ← vacua
+    fixum tf32[2, 3] grid ← vacua
+    fixum i32 narrow ← 7
+}
 ```
 
 Sugar केवल **type-position** में मान्य है। `f32`, `tf32`, या `mf32` नाम वाले

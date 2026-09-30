@@ -22,6 +22,7 @@ Defaults:
 from __future__ import annotations
 
 import argparse
+import re
 import html as html_mod
 import math
 import tomllib
@@ -68,20 +69,31 @@ def load_locales(path: Path) -> dict:
     return data.get("locales", {})
 
 
+def read_sample(path: Path) -> str:
+    """Read an exemplar, minus its `+++ locale = ... +++` frontmatter header.
+
+    Pack exemplars carry the header so they are valid standalone sources; the
+    portal shows them inside a panel that already names the locale.
+    """
+    text = path.read_text(encoding="utf-8")
+    text = re.sub(r"\A\+\+\+\n.*?\n\+\+\+\n", "", text, count=1, flags=re.S)
+    return text.strip()
+
+
 def load_sample(exemplars_dir: Path, reader_root: Path, reader_locale: str) -> str:
     """Load hero panel: site exemplars first, then the pack's exemplars."""
     local = exemplars_dir / f"salve-munde.{reader_locale}.fab"
     if local.is_file():
-        return local.read_text(encoding="utf-8").strip()
+        return read_sample(local)
 
     pack_dir = reader_root / reader_locale / "exemplars"
     if pack_dir.is_dir():
         salve = pack_dir / f"salve-munde.{reader_locale}.fab"
         if salve.is_file():
-            return salve.read_text(encoding="utf-8").strip()
+            return read_sample(salve)
         for child in sorted(pack_dir.iterdir()):
             if child.suffix == ".fab":
-                return child.read_text(encoding="utf-8").strip()
+                return read_sample(child)
 
     return ""
 
@@ -132,7 +144,7 @@ def main() -> None:
     if args.reader_root is None:
         repo_dir = generator_dir.parent
         workspace_dir = repo_dir.parent
-        args.reader_root = workspace_dir / "radix" / "stdlib" / "locale"
+        args.reader_root = workspace_dir / "radix" / "locale"
 
     registry = load_locales(args.locales)
     sorted_keys = sort_locale_keys(list(registry.keys()))

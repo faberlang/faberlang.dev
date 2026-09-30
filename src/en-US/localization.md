@@ -41,11 +41,28 @@ stressed by at least one language here, on purpose.
 *Architectural stress:* None unique. It is the baseline the others are measured against.
 
 ```faber locale=en
+class Span {
+    const f64 low
+    const f64 high
+
+    fn contains(f64 x) → bool {
+        return self.low ≤ x and x ≤ self.high
+    }
+
+    fn center() → f64 {
+        return (self.low + self.high) ÷ 2.0
+    }
+}
+
+fn choose<T>(bool first, T a, T b) → T {
+    return first ✓ a ✗ b
+}
+
 main {
-    const tensor<f32, [2, 3]> a ← empty
-    const tensor<f32, [3, 4]> b ← empty
-    const tensor<f32, [2, 4]> product ← a · b
-    print product
+    const Span bytes ← Span { low = 0.0, high = 255.0 }
+    print bytes.center()
+    print choose(bytes.contains(300.0), "inside", "outside")
+    print -7 / 2
 }
 ```
 
@@ -56,11 +73,28 @@ main {
 *Architectural stress:* None unique — by design. It is the complete template every translated pack is built from.
 
 ```faber locale=la
+genus Span {
+    fixum f64 low
+    fixum f64 high
+
+    functio contains(f64 x) → bivalens {
+        redde ego.low ≤ x et x ≤ ego.high
+    }
+
+    functio center() → f64 {
+        redde (ego.low + ego.high) ÷ 2.0
+    }
+}
+
+functio choose<T>(bivalens first, T a, T b) → T {
+    redde first ✓ a ✗ b
+}
+
 incipit {
-    fixum tensor<f32, [2, 3]> a ← vacua
-    fixum tensor<f32, [3, 4]> b ← vacua
-    fixum tensor<f32, [2, 4]> product ← a · b
-    nota product
+    fixum Span bytes ← Span { low = 0.0, high = 255.0 }
+    nota bytes.center()
+    nota choose(bytes.contains(300.0), "inside", "outside")
+    nota -7 / 2
 }
 ```
 
@@ -71,11 +105,28 @@ incipit {
 *Architectural stress:* **Spaceless script.** Thai has no inter-word boundaries, so a tokenizer that quietly assumed whitespace separates words breaks immediately. Combining vowel and tone marks stack on base characters, so a keyword is not a run of independent code points.
 
 ```faber locale=th-TH
+ชนิด Span {
+    คงที่ f64 low
+    คงที่ f64 high
+
+    ฟังก์ชัน contains(f64 x) → ตรรกะ {
+        คืน ตัวฉัน.low ≤ x และ x ≤ ตัวฉัน.high
+    }
+
+    ฟังก์ชัน center() → f64 {
+        คืน (ตัวฉัน.low + ตัวฉัน.high) ÷ 2.0
+    }
+}
+
+ฟังก์ชัน choose<T>(ตรรกะ first, T a, T b) → T {
+    คืน first ✓ a ✗ b
+}
+
 เริ่ม {
-    คงที่ เทนเซอร์<f32, [2, 3]> a ← เซตว่าง
-    คงที่ เทนเซอร์<f32, [3, 4]> b ← เซตว่าง
-    คงที่ เทนเซอร์<f32, [2, 4]> product ← a · b
-    บันทึก product
+    คงที่ Span bytes ← Span { low = 0.0, high = 255.0 }
+    บันทึก bytes.center()
+    บันทึก choose(bytes.contains(300.0), "inside", "outside")
+    บันทึก -7 / 2
 }
 ```
 
@@ -86,11 +137,28 @@ incipit {
 *Architectural stress:* **Full-width and half-width punctuation** collapse under NFKC normalization, so the compiler cannot treat visually distinct characters as distinct tokens. **Paired keywords** (如果 / 否则) are single tokens rather than multi-token phrases, which is what forced reader packs to support keyword groups at all.
 
 ```faber locale=zh-Hans
+类 Span {
+    常量 f64 low
+    常量 f64 high
+
+    函数 contains(f64 x) → 布尔 {
+        返回 自身.low ≤ x 且 x ≤ 自身.high
+    }
+
+    函数 center() → f64 {
+        返回 (自身.low + 自身.high) ÷ 2.0
+    }
+}
+
+函数 choose<T>(布尔 first, T a, T b) → T {
+    返回 first ✓ a ✗ b
+}
+
 入口 {
-    常量 张量<f32, [2, 3]> a ← 空集
-    常量 张量<f32, [3, 4]> b ← 空集
-    常量 张量<f32, [2, 4]> product ← a · b
-    显示 product
+    常量 Span bytes ← Span { low = 0.0, high = 255.0 }
+    显示 bytes.center()
+    显示 choose(bytes.contains(300.0), "inside", "outside")
+    显示 -7 / 2
 }
 ```
 
@@ -101,11 +169,28 @@ incipit {
 *Architectural stress:* **Sibling packs.** Two packs for one language proved the substrate could carry divergent vocabulary over identical semantics, and forced the vocabulary-governance rules that keep them from drifting apart.
 
 ```faber locale=zh-Hant
+類型 Span {
+    定值 f64 low
+    定值 f64 high
+
+    函式 contains(f64 x) → 布林 {
+        傳回 自身.low ≤ x 且 x ≤ 自身.high
+    }
+
+    函式 center() → f64 {
+        傳回 (自身.low + 自身.high) ÷ 2.0
+    }
+}
+
+函式 choose<T>(布林 first, T a, T b) → T {
+    傳回 first ✓ a ✗ b
+}
+
 入口 {
-    定值 張量<f32, [2, 3]> a ← 空集
-    定值 張量<f32, [3, 4]> b ← 空集
-    定值 張量<f32, [2, 4]> product ← a · b
-    註記 product
+    定值 Span bytes ← Span { low = 0.0, high = 255.0 }
+    註記 bytes.center()
+    註記 choose(bytes.contains(300.0), "inside", "outside")
+    註記 -7 / 2
 }
 ```
 
@@ -116,11 +201,28 @@ incipit {
 *Architectural stress:* **Heavy diacritics on Latin script.** NFKC edge cases and accent-sensitive suggestion matching, where two spellings look nearly identical and must not be confused. Multi-word keywords join with underscores: `bắt_đầu`.
 
 ```faber locale=vi
+kiểu Span {
+    hằng f64 low
+    hằng f64 high
+
+    hàm contains(f64 x) → logic {
+        trả tôi.low ≤ x và x ≤ tôi.high
+    }
+
+    hàm center() → f64 {
+        trả (tôi.low + tôi.high) ÷ 2.0
+    }
+}
+
+hàm choose<T>(logic first, T a, T b) → T {
+    trả first ✓ a ✗ b
+}
+
 bắt_đầu {
-    hằng ten_xo<f32, [2, 3]> a ← tập_rỗng
-    hằng ten_xo<f32, [3, 4]> b ← tập_rỗng
-    hằng ten_xo<f32, [2, 4]> product ← a · b
-    ghi_chú product
+    hằng Span bytes ← Span { low = 0.0, high = 255.0 }
+    ghi_chú bytes.center()
+    ghi_chú choose(bytes.contains(300.0), "inside", "outside")
+    ghi_chú -7 / 2
 }
 ```
 
@@ -131,11 +233,28 @@ bắt_đầu {
 *Architectural stress:* **Bidirectional text.** Contextual glyph shaping, ligatures, and the split between logical and visual order. Diagnostics have to bidi-isolate the source they quote, or an error message points at the wrong character.
 
 ```faber locale=ar
+صنف Span {
+    ثابت f64 low
+    ثابت f64 high
+
+    دالة contains(f64 x) → منطقي {
+        أعد ذات.low ≤ x و x ≤ ذات.high
+    }
+
+    دالة center() → f64 {
+        أعد (ذات.low + ذات.high) ÷ 2.0
+    }
+}
+
+دالة choose<T>(منطقي first, T a, T b) → T {
+    أعد first ✓ a ✗ b
+}
+
 بداية {
-    ثابت موتر<f32, [2, 3]> a ← فارغ
-    ثابت موتر<f32, [3, 4]> b ← فارغ
-    ثابت موتر<f32, [2, 4]> product ← a · b
-    اعرض product
+    ثابت Span bytes ← Span { low = 0.0, high = 255.0 }
+    اعرض bytes.center()
+    اعرض choose(bytes.contains(300.0), "inside", "outside")
+    اعرض -7 / 2
 }
 ```
 
@@ -146,11 +265,28 @@ bắt_đầu {
 *Architectural stress:* **Matra and virama consonant clusters**, where a grapheme spans several code points and NFKC equivalence has to hold. It is also the pack that confirmed **Indic numerals** (०-९) stay rejected inside numeric literals — a digit that looks like a number but is not one.
 
 ```faber locale=hi
+वर्ग Span {
+    स्थिर f64 low
+    स्थिर f64 high
+
+    फलन contains(f64 x) → तार्किक {
+        लौटाओ मैं.low ≤ x और x ≤ मैं.high
+    }
+
+    फलन center() → f64 {
+        लौटाओ (मैं.low + मैं.high) ÷ 2.0
+    }
+}
+
+फलन choose<T>(तार्किक first, T a, T b) → T {
+    लौटाओ first ✓ a ✗ b
+}
+
 आरंभ {
-    स्थिर टेंसर<f32, [2, 3]> a ← खाली
-    स्थिर टेंसर<f32, [3, 4]> b ← खाली
-    स्थिर टेंसर<f32, [2, 4]> product ← a · b
-    दिखाओ product
+    स्थिर Span bytes ← Span { low = 0.0, high = 255.0 }
+    दिखाओ bytes.center()
+    दिखाओ choose(bytes.contains(300.0), "inside", "outside")
+    दिखाओ -7 / 2
 }
 ```
 

@@ -10,6 +10,7 @@ sources = [
   "norma/exempla/",
   "radix/docs/stdlib/morphologia.md",
 ]
+translate_spans = false  # prose names the Latin vocabulary as Latin
 +++
 
 Norma là thư viện chuẩn của Faber. Thư viện cung cấp các mô-đun tên bằng tiếng Latinh, được truy cập qua các đường dẫn `norma:*`. Các khai báo của thư viện chuẩn là mã nguồn Faber trong kho `norma` lân cận.

@@ -129,7 +129,7 @@ Faber 在每个声明中把类型置于名称之前。这与主流的 C 语系�
 
 ```faber
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
+    si b ≡ 0 ergo redde nulla
     redde a / b
 }
 ```
@@ -318,9 +318,11 @@ fixum numerus<i32> narrow ← 7
 **数值模块（偏好糖式）：**
 
 ```faber
-fixum lf32 values ← vacua
-fixum tf32[2, 3] grid ← vacua
-fixum i32 narrow ← 7
+incipit {
+    fixum lf32 values ← vacua
+    fixum tf32[2, 3] grid ← vacua
+    fixum i32 narrow ← 7
+}
 ```
 
 糖式**仅适用于类型位置**。命名为 `f32`、`tf32` 或 `mf32` 的值标识符不受影响——编译器只有当它们出现在类型位置时，才将其解释为糖式。一个一致使用糖式的文件，应在文件顶部声明一次：

@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -62,7 +63,7 @@ def stage_reader_packs(faber: str) -> None:
     if not binary.is_file():
         return
     workspace = binary.parent.parent.parent.parent
-    src = workspace / "radix" / "stdlib" / "locale"
+    src = workspace / "radix" / "locale"
     if not src.is_dir():
         return
     dest = binary.parent.parent / "share" / "faber" / "locale"
@@ -102,7 +103,11 @@ def transcode_faber(source: str, locale: str, faber: str, label: str) -> str:
         sys.stderr.write(proc.stderr)
         raise SystemExit(proc.returncode)
 
-    return proc.stdout.rstrip("\n")
+    # `faber convert --stdout` stamps the target locale into a TOML frontmatter
+    # block. The fence is already inside a Markdown code block that names its
+    # locale, so the block would only show up as stray text in the rendered code.
+    out = re.sub(r"\A\+\+\+\n.*?\n\+\+\+\n", "", proc.stdout, count=1, flags=re.S)
+    return out.rstrip("\n")
 
 
 def localize_text(text: str, locale: str, faber: str, label: str) -> str:

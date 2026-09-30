@@ -10,6 +10,7 @@ sources = [
   "norma/exempla/",
   "radix/docs/stdlib/morphologia.md",
 ]
+translate_spans = false  # prose names the Latin vocabulary as Latin
 +++
 
 نورما هي المكتبة القياسية للغة Faber. توفّر وحدات مسطّحة ذات أسماء لاتينية

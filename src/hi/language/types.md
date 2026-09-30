@@ -59,9 +59,11 @@ Faber में एक स्थिर, प्रकार-प्रथम प�
 `numerus` और `fractus` की डिफ़ॉल्ट चौड़ाइयाँ (i64 और f64) होती हैं और इनके लिए स्पष्ट चौड़ाई वाले रूप भी उपलब्ध हैं:
 
 ```faber
-fixum numerus<i32> narrow ← 7 ∷ numerus<i32>
-fixum numerus<u64> wide ← 255 ∷ numerus<u64>
-fixum fractus<f32> single ← 1.5 ∷ fractus<f32>
+incipit {
+    fixum numerus<i32> narrow ← 7 ∷ numerus<i32>
+    fixum numerus<u64> wide ← 255 ∷ numerus<u64>
+    fixum fractus<f32> single ← 1.5 ∷ fractus<f32>
+}
 ```
 
 प्रकार की स्थिति में चौड़ाई-संक्षेप उपलब्ध है: `i8` … `u64`, `f16`, `f32`, `f64`, `numerus<W>` / `fractus<W>` के समतुल्य हैं।
@@ -72,11 +74,11 @@ Nullable मान यूनियन सिंटैक्स `T ∪ nihil` क
 
 ```faber
 functio find(textus key) → numerus ∪ nihil {
-    redde nihil
+    redde nulla
 }
 
 functio maybe() → textus ∪ nihil {
-    redde nihil
+    redde nulla
 }
 ```
 
@@ -107,7 +109,9 @@ functio primum<T>(lista<T> res) → T ∪ nihil {
 ```faber
 functio identitas<T>(T valor) → T { redde valor }
 
-fixum numerus value ← identitas<numerus>(7)
+incipit {
+    fixum numerus value ← identitas<numerus>(7)
+}
 ```
 
 ### संग्रह {#collections}
@@ -123,8 +127,10 @@ fixum numerus value ← identitas<numerus>(7)
 | `cursor<T>` | लेज़ी स्ट्रीम | — |
 
 ```faber
-fixum lista<numerus> nums ← [1, 2, 3]
-fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+incipit {
+    fixum lista<numerus> nums ← [1, 2, 3]
+    fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+}
 ```
 
 ### टेंसर प्रकार {#tensor-types}
@@ -140,9 +146,11 @@ fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
 | `tensor<T, [N, M]>` | रैंक-2 मैट्रिक्स |
 
 ```faber
-fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← row[0]
+incipit {
+    fixum tensor<fractus<f32>, []> scalar ← vacua
+    fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+    fixum numerus ∪ nihil first ← row[0]
+}
 ```
 
 ### GPU कोर प्रकार {#gpu-core-types}
@@ -199,9 +207,11 @@ Faber में तीन variable keywords और assignment के लिए �
 `fixum` bindings केवल एक बार लिखी जा सकती हैं। इन्हें initializer के साथ या उसके बिना declare किया जा सकता है। यदि initializer के बिना declare किया गया हो, तो पढ़ने से पहले इन्हें ठीक एक बार assign करना आवश्यक है। दूसरी assignment अस्वीकार कर दी जाती है।
 
 ```faber
-fixum numerus count ← 0
-fixum textus name ← "Marcus"
-fixum _ inferred ← [1, 2, 3]
+incipit {
+    fixum numerus count ← 0
+    fixum textus name ← "Marcus"
+    fixum _ inferred ← [1, 2, 3]
+}
 ```
 
 Deferred initialisation:
@@ -257,8 +267,8 @@ Faber उस `=` को दो अलग भूमिकाओं में ब�
 
 ```faber
 genus Point {
-    numerus x
-    numerus y
+    fixum numerus x
+    fixum numerus y
 }
 
 incipit {
@@ -281,8 +291,8 @@ incipit {
 
 ```faber
 genus Persona {
-    textus nomen
-    numerus aetas
+    fixum textus nomen
+    fixum numerus aetas
 }
 
 incipit {
@@ -314,19 +324,23 @@ Faber में कंपाइलर द्वारा स्वामित�
 ### Lista — क्रमबद्ध डायनेमिक कलेक्शन {#lista}
 
 ```faber
-fixum lista<numerus> empty ← vacua
-fixum _ numbers ← [1, 2, 3, 4, 5]
-fixum _ names ← ["Marcus", "Julia", "Gaius"]
-fixum _ nested ← [[1, 2], [3, 4]]
+incipit {
+    fixum lista<numerus> empty ← vacua
+    fixum _ numbers ← [1, 2, 3, 4, 5]
+    fixum _ names ← ["Marcus", "Julia", "Gaius"]
+    fixum _ nested ← [[1, 2], [3, 4]]
+}
 ```
 
 `sparge` के साथ स्प्रेड करें:
 
 ```faber
-fixum lista<numerus> a ← [1, 2, 3]
-fixum lista<numerus> b ← [4, 5, 6]
-fixum _ combined ← [sparge a, sparge b]
-fixum _ headed ← [0, sparge a, 99]
+incipit {
+    fixum lista<numerus> a ← [1, 2, 3]
+    fixum lista<numerus> b ← [4, 5, 6]
+    fixum _ combined ← [sparge a, sparge b]
+    fixum _ headed ← [0, sparge a, 99]
+}
 ```
 
 मुख्य तरीके: `longitudo`, `accipe`, `appende`, `summa`, `primus`, `novissimus`।
@@ -334,22 +348,28 @@ fixum _ headed ← [0, sparge a, 99]
 ### Tabula — कुंजी-मान मैप {#tabula}
 
 ```faber
-fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+incipit {
+    fixum tabula<textus, numerus> scores ← { "alice": 10, "bob": 20 }
+}
 ```
 
 ### Tensor — घना निश्चित-आकार बफ़र {#tensor}
 
 ```faber
-fixum tensor<fractus<f32>, []> scalar ← vacua
-fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
-fixum numerus ∪ nihil first ← row[0]
+incipit {
+    fixum tensor<fractus<f32>, []> scalar ← vacua
+    fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
+    fixum numerus ∪ nihil first ← row[0]
+}
 ```
 
 Tensor शुगर (संख्यात्मक कोड के लिए):
 
 ```faber
-fixum tf32[] seed ← vacua
-fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
+incipit {
+    fixum tf32[] seed ← vacua
+    fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
+}
 ```
 
 मुख्य तरीके: `forma`, `accipe`, `ponde`, `crea`, `structa`, `strue`, साथ ही
@@ -359,22 +379,26 @@ fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
 ### Sparsa — विरल निश्चित-आकार बफ़र {#sparsa}
 
 ```faber
-fixum sparsa<fractus<f32>, [2, 3]> sparse ← vacua
-sparse.ponde([0, 1], 4.0)
-sparse.ponde([1, 2], 9.0)
+incipit {
+    fixum sparsa<fractus<f32>, [2, 3]> sparse ← vacua
+    sparse.ponde([0, 1], 4.0)
+    sparse.ponde([1, 2], 9.0)
 
-# accipe returns the stored value, here 4.0
-nota sparse.accipe([0, 1])
-# count of stored entries
-nota sparse.nonnihil()
+    # accipe returns the stored value, here 4.0
+    nota sparse.accipe([0, 1])
+    # count of stored entries
+    nota sparse.nonnihil()
+}
 ```
 
 घने और विरल रूपों के बीच रूपांतरण:
 
 ```faber
-fixum tf32[2, 2] dense ← [[1.0, 0.0], [0.0, 2.0]] ↦ tf32[2, 2]
-fixum sf32[2, 2] sparse ← dense ↦ sf32[2, 2]
-fixum tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]
+incipit {
+    fixum tf32[2, 2] dense ← [[1.0, 0.0], [0.0, 2.0]] ↦ tf32[2, 2]
+    fixum sf32[2, 2] sparse ← dense ↦ sf32[2, 2]
+    fixum tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]
+}
 ```
 
 ### Cursors — लेज़ी स्ट्रीम {#cursors}
@@ -382,9 +406,11 @@ fixum tf32[2, 2] roundtrip ← sparse ↦ tf32[2, 2]
 `cursor<T>` एक लेज़ी स्ट्रीम प्रकार है। इसे कलेक्शन इटरेटर, `tuus` व्यू या जनरेटर फ़ंक्शन से बनाया जाता है। इसका उपभोग `itera ex` के माध्यम से किया जाता है:
 
 ```faber
-fixum _ items ← [1, 2, 3]
-itera ex items fixum item {
-    nota item
+incipit {
+    fixum _ items ← [1, 2, 3]
+    itera ex items fixum item {
+        nota item
+    }
 }
 ```
 
@@ -428,13 +454,15 @@ functio greet(textus nomen) → textus {
     redde "Salve, §!"(nomen)
 }
 
-fixum numerus pagina ← 3
-fixum numerus totum ← 10
-fixum textus code ← "200"
-fixum textus label ← "OK"
+incipit {
+    fixum numerus pagina ← 3
+    fixum numerus totum ← 10
+    fixum textus code ← "200"
+    fixum textus label ← "OK"
 
-fixum _ msg ← "Page § of §"(pagina, totum)
-fixum _ block ← «status: § (§)»(code, label)
+    fixum _ msg ← "Page § of §"(pagina, totum)
+    fixum _ block ← «status: § (§)»(code, label)
+}
 ```
 
 मुख्य नियम:
@@ -449,10 +477,12 @@ fixum _ block ← «status: § (§)»(code, label)
 बहुपंक्ति ब्लॉक गिलेमे `«…»` का उपयोग करते हैं:
 
 ```faber
-fixum _ sql ← «
-    select id, email
-    from accounts
-»
+incipit {
+    fixum _ sql ← «
+        select id, email
+        from accounts
+    »
+}
 ```
 
 ### कैप्चर किए गए टेम्पलेट (`forma`) {#captured-templates}
@@ -461,8 +491,10 @@ fixum _ sql ← «
 बाउंड SQL/URL पेलोड के लिए ये सुरक्षित हैं:
 
 ```faber
-fixum numerus user_id ← 42
-fixum _ query ← `select * from users where id = §`(user_id)
+incipit {
+    fixum numerus user_id ← 42
+    fixum _ query ← `select * from users where id = §`(user_id)
+}
 ```
 
 ### इनलाइन JSON {#inline-json}
@@ -470,19 +502,23 @@ fixum _ query ← `select * from users where id = §`(user_id)
 सादा `{ … }` इनलाइन JSON है: यह संकलन-समय का `json` दस्तावेज़ है, अनाम Faber ऑब्जेक्ट नहीं। कुंजियाँ उद्धृत स्ट्रिंग होती हैं और `:` से अलग की जाती हैं:
 
 ```faber
-fixum _ empty ← {}
-fixum _ user ← { "name": "Marcus", "age": 30, "active": true }
-fixum _ nested ← { "meta": { "version": 1 }, "tags": ["alpha", "beta"] }
+incipit {
+    fixum _ empty ← {}
+    fixum _ user ← { "name": "Marcus", "age": 30, "active": true }
+    fixum _ nested ← { "meta": { "version": 1 }, "tags": ["alpha", "beta"] }
+}
 ```
 
 टाइप किए गए `genus` निर्माण के लिए, प्रकार का नाम और `=` फ़ील्ड संरचना का उपयोग करें:
 
 ```faber
 genus Point {
-    numerus x
-    numerus y
+    fixum numerus x
+    fixum numerus y
 }
-fixum _ p ← Point { x = 10, y = 20 }
+incipit {
+    fixum _ p ← Point { x = 10, y = 20 }
+}
 ```
 
 ## Nullability and optionality
@@ -495,11 +531,11 @@ Faber किसी मान में अनुपस्थिति और घ
 
 ```faber
 functio find(textus key) → numerus ∪ nihil {
-    redde nihil
+    redde nulla
 }
 
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
+    si b ≡ 0 ergo redde nulla
     redde a / b
 }
 ```
@@ -512,7 +548,7 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 functio connect(textus host, numerus port sponte) → vacuum { }
 
 genus User {
-    textus email sponte
+    fixum textus email sponte
 }
 ```
 
@@ -527,9 +563,11 @@ functio process(de numerus depth sponte) → vacuum { }
 किसी नलनीय मान के `nihil` न होने का अभिकथन करने के लिए `!.`, `![`, `!(` का उपयोग करें:
 
 ```faber
-genus Box { numerus ∪ nihil val }
-fixum Box ∪ nihil maybe_name ← Box { val = 7 }
-fixum _ name ← maybe_name!.val
+genus Box { fixum numerus ∪ nihil val }
+incipit {
+    fixum Box ∪ nihil maybe_name ← Box { val = 7 }
+    fixum _ name ← maybe_name!.val
+}
 ```
 
 `nihil` पर नल-रहित अभिकथन रनटाइम पर प्रोग्राम को रोक देता है।
@@ -537,8 +575,10 @@ fixum _ name ← maybe_name!.val
 ### नलिश सहसंयोजन — vel {#nullish-coalescing}
 
 ```faber
-fixum textus ∪ nihil provided ← nihil
-fixum _ name ← provided vel "default"
+incipit {
+    fixum textus ∪ nihil provided ← nulla
+    fixum _ name ← provided vel "default"
+}
 ```
 
 ### ignotum {#ignotum}
@@ -551,10 +591,12 @@ fixum _ name ← provided vel "default"
 
 ```faber
 # runtime conversion
-fixum _ parsed ← "42" ↦ numerus
-# static ascription
-fixum numerus value ← 7
-fixum _ text ← value ∷ textus
+incipit {
+    fixum _ parsed ← "42" ↦ numerus ⊥ 0
+    # static ascription
+    fixum numerus value ← 7
+    fixum _ text ← value ∷ textus
+}
 ```
 
 ### रनटाइम रूपांतरण — ↦ {#runtime-conversion}
@@ -562,17 +604,21 @@ fixum _ text ← value ∷ textus
 रनटाइम रूपांतरण के लिए `↦` का उपयोग करें, विशेष रूप से ऐसी पार्सिंग या कोअर्शन के लिए जो विफल हो सकती है। `⊥` के साथ इनलाइन रिकवरी दें:
 
 ```faber
-fixum textus input ← "9"
-fixum _ n ← "42" ↦ numerus
-fixum _ safe ← input ↦ numerus ⊥ 0
+incipit {
+    fixum textus input ← "9"
+    fixum _ n ← "42" ↦ numerus ⊥ 0
+    fixum _ safe ← input ↦ numerus ⊥ 0
+}
 ```
 
 टाइप-निर्देशित मटेरियलाइज़ेशन:
 
 ```faber
-fixum textus path ← "/etc/hosts"
-fixum _ lanes ← [1.0, 2.0, 3.0, 4.0] ↦ vf32[4]
-fixum _ body ← ad 'solum:lege' (path) ↦ textus
+incipit {
+    fixum textus path ← "/etc/hosts"
+    fixum _ lanes ← [1.0, 2.0, 3.0, 4.0] ↦ vf32[4]
+    fixum _ body ← ad 'solum:lege' (path) ↦ textus
+}
 ```
 
 ### स्थिर प्रकार-निर्देशन — ∷ {#static-ascription}
@@ -580,9 +626,11 @@ fixum _ body ← ad 'solum:lege' (path) ↦ textus
 स्पष्ट स्थिर प्रकार-निर्देशन के लिए `∷` का उपयोग करें। यह पोस्टफ़िक्स होता है और लक्ष्य-प्रकार द्वारा निर्देशित होता है:
 
 ```faber
-fixum numerus value ← 7
-fixum _ x ← 7 ∷ numerus<i32>
-fixum _ text ← value ∷ textus
+incipit {
+    fixum numerus value ← 7
+    fixum _ x ← 7 ∷ numerus<i32>
+    fixum _ text ← value ∷ textus
+}
 ```
 
 ### नलिश कोअलेसिंग — vel {#nullish-coalescing}
@@ -590,6 +638,8 @@ fixum _ text ← value ∷ textus
 जब कोई मान `nihil` हो, तब नलिश कोअलेसिंग के लिए `vel` का उपयोग करें:
 
 ```faber
-fixum textus ∪ nihil provided_name ← nihil
-fixum _ name ← provided_name vel "default"
+incipit {
+    fixum textus ∪ nihil provided_name ← nulla
+    fixum _ name ← provided_name vel "default"
+}
 ```

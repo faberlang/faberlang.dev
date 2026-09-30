@@ -129,7 +129,7 @@ Faber 在每個宣告中都將型別放在名稱之前。這與主流 C 家族�
 
 ```faber
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
+    si b ≡ 0 ergo redde nulla
     redde a / b
 }
 ```
@@ -278,17 +278,21 @@ Faber 設計中反覆出現一種模式：語言為每個建構定義**一種規
 **一般 Faber（偏好長形式）：**
 
 ```faber
-fixum lista<f32> values ← vacua
-fixum tensor<f32, [2, 3]> grid ← vacua
-fixum numerus<i32> narrow ← 7
+incipit {
+    fixum lista<f32> values ← vacua
+    fixum tensor<f32, [2, 3]> grid ← vacua
+    fixum numerus<i32> narrow ← 7
+}
 ```
 
 **數值模組（偏好語法糖）：**
 
 ```faber
-fixum lf32 values ← vacua
-fixum tf32[2, 3] grid ← vacua
-fixum i32 narrow ← 7
+incipit {
+    fixum lf32 values ← vacua
+    fixum tf32[2, 3] grid ← vacua
+    fixum i32 narrow ← 7
+}
 ```
 
 語法糖**僅限型別位置**。名為 `f32`、`tf32` 或 `mf32` 的值識別字維持不變——編譯器只會在它們出現在型別位置時，將其解讀為語法糖。若檔案一致使用語法糖，應在檔案頂端說明一次：

@@ -30,7 +30,7 @@ generically.
 
 ```faber
 functio primum<T>(lista<T> res) → T ∪ nihil {
-    si res.longitudo() ≡ 0 ergo redde nihil
+    si res.longitudo() ≡ 0 ergo redde nulla
     redde res[0]
 }
 
@@ -57,8 +57,8 @@ incipit {
 
 ```faber
 genus Persona {
-    textus nomen
-    numerus aetas
+    fixum textus nomen
+    fixum numerus aetas
 }
 
 functio descriptio(Persona p) → textus {
@@ -77,8 +77,8 @@ A `genus` can carry functions alongside its fields.
 
 ```faber
 genus Punctum {
-    numerus x
-    numerus y
+    fixum numerus x
+    fixum numerus y
 
     functio summa() → numerus {
         redde ego.x + ego.y

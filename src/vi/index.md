@@ -10,6 +10,7 @@ prose_hash = "sha256:e63352acf54515593d9aeccf392881d72018d55e6b21d6e1ddd5a3979be
 code_hash = "sha256:a02ba6ea46d65efd212b09e097d3240402bfe1d46f89b993e389cd53ca1a9c9e"
 source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
+translate_spans = false  # prose names the Latin vocabulary as Latin
 +++
 **Faber** là một ngôn ngữ lập trình hướng gói với từ vựng hành vi bằng tiếng Latinh, ngữ pháp chính quy nhỏ gọn và hệ thống kiểu tĩnh ưu tiên kiểu. Mã nguồn được biên dịch qua trình biên dịch Radix thành mã Rust có thể xem xét và các tệp nhị phân native. Đặc tính kiến trúc cốt lõi của ngôn ngữ là ý nghĩa nằm trong lõi ngữ nghĩa — HIR (biểu diễn trung gian cấp cao) — thay vì trong bất kỳ dạng hiển thị cụ thể nào.
 

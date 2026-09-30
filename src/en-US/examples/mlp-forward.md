@@ -46,6 +46,7 @@ locale = "la"
 # tensors to feed the next matmul or return from this kernel shape.
 
 @ nucleum
+@ publica
 functio rung2_mlp_kernel(tf32[2, 2] input, tf32[2, 2] w0, tf32[2, 2] w1) → tf32[2, 2] {
     fixum tf32[2, 2] hidden ← input · w0
     redde hidden · w1
@@ -60,7 +61,7 @@ incipit {
     fixum tf32[2, 2] w0 ← seed.strue(flat_w0, [2, 2])
     fixum tf32[2, 2] w1 ← seed.strue(flat_w1, [2, 2])
     fixum tf32[2, 2] reference ← rung2_mlp_kernel(input, w0, w1)
-    fixum vacuum _launch ← ad 'cuda:launch' ("rung2_mlp_kernel") ↦ vacuum
+    fixum vacuum launch ← ad 'cuda:launch' ("rung2_mlp_kernel") ↦ vacuum
 
     nota reference.planata()
 }

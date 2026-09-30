@@ -204,9 +204,9 @@ incipit {
 
 ```faber
 functio classify(numerus b, bivalens ready, numerus value) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
+    si b ≡ 0 ergo redde nulla
     si ready ergo redde value
-    redde nihil
+    redde nulla
 }
 ```
 
@@ -219,7 +219,7 @@ functio inveni(lista<numerus> items, numerus target) → numerus ∪ nihil {
     itera ex items fixum item {
         si item ≡ target ergo redde item
     }
-    redde nihil
+    redde nulla
 }
 ```
 
@@ -227,7 +227,7 @@ functio inveni(lista<numerus> items, numerus target) → numerus ∪ nihil {
 
 ```faber
 incipit {
-    fixum _ tabula ← { "unus": 1, "duo": 2 }
+    fixum tabula<textus, numerus> tabula ← { "unus": 1, "duo": 2 }
     itera de tabula fixum key {
         nota key
     }
@@ -345,19 +345,21 @@ functio primum<T>(lista<T> res) → T ∪ nihil {
 functio identitas<T>(T valor) → T { redde valor }
 
 functio primum<T>(lista<T> res) → T ∪ nihil {
-    redde nihil
+    redde nulla
 }
 
-fixum _ value ← identitas<numerus>(7)
-fixum _ maybe ← primum<numerus>([value])
+incipit {
+    fixum _ value ← identitas<numerus>(7)
+    fixum _ maybe ← primum<numerus>([value])
+}
 ```
 
 ### 泛型 genus {#generic-genus}
 
 ```faber
 genus Par<T> {
-    T primus
-    T secundus
+    fixum T primus
+    fixum T secundus
 }
 ```
 

@@ -10,6 +10,7 @@ prose_hash = "sha256:e63352acf54515593d9aeccf392881d72018d55e6b21d6e1ddd5a3979be
 code_hash = "sha256:a02ba6ea46d65efd212b09e097d3240402bfe1d46f89b993e389cd53ca1a9c9e"
 source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
+translate_spans = false  # prose names the Latin vocabulary as Latin
 +++
 **Faber** 是一種以套件為導向的程式語言，具有拉丁文行為詞彙、小型規則文法，以及以型別為先的靜態型別系統。原始碼會透過 Radix 編譯器編譯為易於審查的 Rust 與原生二進位檔。其定義性的架構特徵是：意義存在於語意核心——HIR（高階中間表示）——而不是存在於任何特定的呈現方式中。
 

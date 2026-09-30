@@ -83,8 +83,10 @@ functio tutum(numerus a, numerus b) → numerus {
 นอกจากนี้ `⊥` ยังใช้ระบุค่าการกู้คืนแบบแทรกในบรรทัดสำหรับการแปลง `↦` ได้:
 
 ```faber
-fixum textus raw ← "42"
-fixum _ n ← raw ↦ numerus ⊥ 0
+incipit {
+    fixum textus raw ← "42"
+    fixum _ n ← raw ↦ numerus ⊥ 0
+}
 ```
 
 ### ฟังก์ชันที่อาจล้มเหลวและมีเฉพาะผลข้างเคียง {#effectonly-failable}
@@ -117,7 +119,7 @@ Faber มีเฟรมเวิร์กการทดสอบแบบม�
 
 บล็อก `probandum` ใช้จัดกลุ่มกรณีทดสอบที่เกี่ยวข้องกัน ชุดทดสอบสามารถซ้อนกันได้เพื่อจัดระเบียบการทดสอบเป็นลำดับชั้น:
 
-```faber
+```faber mode=pinned
 probandum "arithmetica" {
     proba "unum plus unum" {
         adfirma 1 + 1 ≡ 2

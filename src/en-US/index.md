@@ -3,6 +3,7 @@ title = "Faber"
 section = ""
 order = 0
 sources = []
+translate_spans = false  # prose names the Latin vocabulary as Latin
 +++
 
 **Faber** is a developer tool for writing typed compute programs that remain

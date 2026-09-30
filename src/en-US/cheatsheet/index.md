@@ -21,7 +21,7 @@ Latin, and structure is carried by glyphs rather than punctuation soup.
 
 ```faber
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
+    si b ≡ 0 ergo redde nulla
     redde a / b
 }
 ```

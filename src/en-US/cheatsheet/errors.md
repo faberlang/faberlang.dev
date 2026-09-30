@@ -144,14 +144,33 @@ incipit {
 
 ## Errors as a parameter {#errata}
 
-`errata` marks a parameter that carries an error value, for functions written
-to receive one rather than produce it.
+A caught error is an ordinary value, so a function can receive one like any
+other parameter. Declare the parameter with the error's type and pass the
+`cape` binding straight in.
 
 ```faber
-functio logga(textus context) errata textus → vacuum {
+functio divide(numerus a, numerus b) → numerus ⇥ textus {
+    si b ≡ 0 ergo iace "division by zero"
+    redde a / b
+}
+
+functio logga(textus context, textus err) → vacuum {
     mone context
+    mone err
+}
+
+incipit {
+    fac {
+        nota divide(1, 0)
+    }
+    cape err {
+        logga("divide", err)
+    }
 }
 ```
+
+There is no special parameter keyword for this. The legacy `errata` function
+modifier is not how a function receives an error; use an ordinary parameter.
 
 Related: [Testing](/cheatsheet/testing.html) ·
 [Conversions](/cheatsheet/conversions.html) for `⊥`, the

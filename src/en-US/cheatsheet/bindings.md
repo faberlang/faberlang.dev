@@ -64,7 +64,7 @@ is nothing — Faber has no separate nullable syntax.
 
 ```faber
 functio primum(lista<numerus> res) → numerus ∪ nihil {
-    si res.longitudo() ≡ 0 ergo redde nihil
+    si res.longitudo() ≡ 0 ergo redde nulla
     redde res[0]
 }
 
@@ -79,8 +79,8 @@ incipit {
 
 ```faber
 genus Punctum {
-    numerus x
-    numerus y
+    fixum numerus x
+    fixum numerus y
 }
 
 incipit {

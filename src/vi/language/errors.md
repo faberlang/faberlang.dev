@@ -83,8 +83,10 @@ Một lời gọi hàm có thể thất bại trực tiếp không phải là m�
 `⊥` cũng có thể chỉ định một giá trị phục hồi nội tuyến trên các phép chuyển đổi `↦`:
 
 ```faber
-fixum textus raw ← "42"
-fixum _ n ← raw ↦ numerus ⊥ 0
+incipit {
+    fixum textus raw ← "42"
+    fixum _ n ← raw ↦ numerus ⊥ 0
+}
 ```
 
 ### Hàm có thể thất bại chỉ tạo hiệu ứng {#effectonly-failable}
@@ -117,7 +119,7 @@ Faber có một framework kiểm thử hạng nhất được tích hợp sẵn 
 
 Một khối `probandum` nhóm các ca kiểm thử có liên quan. Các nhóm có thể lồng nhau để tổ chức kiểm thử theo cấp bậc:
 
-```faber
+```faber mode=pinned
 probandum "arithmetica" {
     proba "unum plus unum" {
         adfirma 1 + 1 ≡ 2

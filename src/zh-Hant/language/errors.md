@@ -84,8 +84,10 @@ functio tutum(numerus a, numerus b) → numerus {
 `⊥` 也可以在 `↦` 轉換上指定內嵌復原值：
 
 ```faber
-fixum textus raw ← "42"
-fixum _ n ← raw ↦ numerus ⊥ 0
+incipit {
+    fixum textus raw ← "42"
+    fixum _ n ← raw ↦ numerus ⊥ 0
+}
 ```
 
 ### 僅效果的可失敗函式 {#effectonly-failable}
@@ -121,7 +123,7 @@ Faber 將一流的測試框架內建於語言中，提供三個關鍵字：`prob
 
 `probandum` 區塊會將相關的測試案例分組。套件可以巢狀，以階層方式組織測試：
 
-```faber
+```faber mode=pinned
 probandum "arithmetica" {
     proba "unum plus unum" {
         adfirma 1 + 1 ≡ 2

@@ -130,8 +130,10 @@ for the full treatment.
 an error type):
 
 ```faber
-fixum textus raw ← "42"
-fixum _ n ← raw ↦ numerus ⊥ 0
+incipit {
+    fixum textus raw ← "42"
+    fixum _ n ← raw ↦ numerus ⊥ 0
+}
 ```
 
 ### Effect-only failable {#effectonly-failable}
@@ -174,7 +176,7 @@ target-neutral.
 A `probandum` block groups related test cases. Suites can be nested to
 organise tests hierarchically:
 
-```faber
+```faber mode=pinned
 probandum "arithmetica" {
     proba "unum plus unum" {
         adfirma 1 + 1 ≡ 2

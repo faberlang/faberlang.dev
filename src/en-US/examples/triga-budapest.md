@@ -26,7 +26,7 @@ importa ex "triga:math" math
 # ---------------------------------------------------------------------------
 
 @ privata
-functio _append_face(
+functio append_face(
     lista<f32> payload,
     f32 x1, f32 y1, f32 z1,
     f32 x2, f32 y2, f32 z2,
@@ -102,7 +102,7 @@ functio box_indices() → lista<u32> {
 # for 24 lit vertices.  This is the only payload the host needs.
 # ---------------------------------------------------------------------------
 functio box_vertex_payload(de math.Box3 bounds, f32 r, f32 g, f32 b) → lista<f32> ∪ nihil {
-    si bounds.validum() ≡ falsum ergo redde nihil
+    si bounds.validum() ≡ falsum ergo redde nulla
 
     fixum f32 x1 ← bounds.min.x
     fixum f32 y1 ← bounds.min.y
@@ -114,22 +114,22 @@ functio box_vertex_payload(de math.Box3 bounds, f32 r, f32 g, f32 b) → lista<f
     varia lista<f32> p ← vacua
 
     # +X face (right) — normal (1,0,0)
-    p ← _append_face(p, x2, y1, z1, x2, y2, z1, x2, y2, z2, x2, y1, z2, 1.0, 0.0, 0.0, r, g, b)
+    p ← append_face(p, x2, y1, z1, x2, y2, z1, x2, y2, z2, x2, y1, z2, 1.0, 0.0, 0.0, r, g, b)
 
     # -X face (left) — normal (-1,0,0)
-    p ← _append_face(p, x1, y1, z2, x1, y2, z2, x1, y2, z1, x1, y1, z1, -1.0, 0.0, 0.0, r, g, b)
+    p ← append_face(p, x1, y1, z2, x1, y2, z2, x1, y2, z1, x1, y1, z1, -1.0, 0.0, 0.0, r, g, b)
 
     # +Y face (top) — normal (0,1,0)
-    p ← _append_face(p, x1, y2, z1, x2, y2, z1, x2, y2, z2, x1, y2, z2, 0.0, 1.0, 0.0, r, g, b)
+    p ← append_face(p, x1, y2, z1, x2, y2, z1, x2, y2, z2, x1, y2, z2, 0.0, 1.0, 0.0, r, g, b)
 
     # -Y face (bottom) — normal (0,-1,0)
-    p ← _append_face(p, x1, y1, z2, x2, y1, z2, x2, y1, z1, x1, y1, z1, 0.0, -1.0, 0.0, r, g, b)
+    p ← append_face(p, x1, y1, z2, x2, y1, z2, x2, y1, z1, x1, y1, z1, 0.0, -1.0, 0.0, r, g, b)
 
     # +Z face (front/pest) — normal (0,0,1)
-    p ← _append_face(p, x1, y1, z2, x2, y1, z2, x2, y2, z2, x1, y2, z2, 0.0, 0.0, 1.0, r, g, b)
+    p ← append_face(p, x1, y1, z2, x2, y1, z2, x2, y2, z2, x1, y2, z2, 0.0, 0.0, 1.0, r, g, b)
 
     # -Z face (back/buda) — normal (0,0,-1)
-    p ← _append_face(p, x2, y1, z1, x1, y1, z1, x1, y2, z1, x2, y2, z1, 0.0, 0.0, -1.0, r, g, b)
+    p ← append_face(p, x2, y1, z1, x1, y1, z1, x1, y2, z1, x2, y2, z1, 0.0, 0.0, -1.0, r, g, b)
 
     redde p
 }

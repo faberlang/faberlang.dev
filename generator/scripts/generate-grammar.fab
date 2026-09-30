@@ -438,12 +438,18 @@ fn load_spine(string jsonl_path) → map<string, bool> {
             continue
         }
         const map<string, value> rec ← json.parse(line) ↦ map<string, value>
-        const string id ← rec["id"] ↦ string
+        const string id ← rec["id"] ↦ string ⊥ ""
+        if id.length() ≡ 0 {
+            die(jsonl_path + ": record without a string id")
+        }
         spine.put(id, true)
-        const list<value> kws ← rec["keywords"] ↦ list<value>
+        const list<value> kws ← rec["keywords"] ↦ list<value> ⊥ empty
         var int i ← 0
         while i < kws.length() {
-            const string kw ← kws[i] ↦ string
+            const string kw ← kws[i] ↦ string ⊥ ""
+            if kw.length() ≡ 0 {
+                die(jsonl_path + ": keyword that is not a string in record " + id)
+            }
             spine.put(kw, true)
             i ← i + 1
         }
@@ -462,8 +468,11 @@ fn identity_map(map<string, bool> spine) → map<string, string> {
 
 fn load_glossary(string path, map<string, bool> spine) → map<string, string> {
     const map<string, value> doc ← toml.parse(solum.read_file(path) ↦ string) ↦ map<string, value>
-    const map<string, value> table ← doc["keywords"] ↦ map<string, value>
+    const map<string, value> table ← doc["keywords"] ↦ map<string, value> ⊥ empty
     const list<string> keys ← table.keys()
+    if keys.length() ≡ 0 {
+        die(path + ": no [keywords] table")
+    }
     var map<string, string> mapping ← empty
     var string extras ← ""
     for from keys const k {
@@ -474,7 +483,11 @@ fn load_glossary(string path, map<string, bool> spine) → map<string, string> {
                 extras ← extras + ", " + k
             }
         }
-        mapping.put(k, table[k] ↦ string)
+        const string translated ← table[k] ↦ string ⊥ ""
+        if translated.length() ≡ 0 {
+            die(path + ": glossary entry '" + k + "' is not a string")
+        }
+        mapping.put(k, translated)
     }
     if extras.length() > 0 {
         consolum.warn_line(path + ": glossary key(s) not in jsonl production/keyword spine: " + extras)

@@ -523,6 +523,14 @@ if [ "$FULL_SITE" = true ]; then
         exit 1
     }
 
+    # A `faber convert` stamp (`+++ locale = ... +++`) inside a rendered code
+    # block means a transcoded fence kept the converter's frontmatter.
+    echo "  [gate] Stray frontmatter in rendered code..."
+    "$PYTHON" "${SCRIPT_DIR}/check-frontmatter-leak.py" "$OUTPUT_DIR" || {
+        echo "ERROR: converter frontmatter leaked into rendered code" >&2
+        exit 1
+    }
+
     # Sitemap and canonical
     echo "  [sitemap] Generating sitemap.xml..."
     "${SCRIPT_DIR}/generate-sitemap" "$OUTPUT_DIR" "https://faberlang.dev"

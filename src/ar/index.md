@@ -10,6 +10,7 @@ prose_hash = "sha256:e63352acf54515593d9aeccf392881d72018d55e6b21d6e1ddd5a3979be
 code_hash = "sha256:a02ba6ea46d65efd212b09e097d3240402bfe1d46f89b993e389cd53ca1a9c9e"
 source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
 source_locale = "en-US"
+translate_spans = false  # prose names the Latin vocabulary as Latin
 +++
 **Faber** هي لغة برمجة موجهة للحزم بمفردات سلوكية لاتينية، وقواعد نحوية منتظمة صغيرة، ونظام أنواع ثابت قائم على النوع أولاً. يُصرَّف المصدر عبر مصرف Radix إلى Rust قابل للمراجعة وثنائيات أصلية. الخاصية المعمارية المميزة لها هي أن المعنى يكمن في نواة دلالية — التمثيل الوسيط عالي المستوى (HIR) — بدلاً من أي تصيير معين.
 

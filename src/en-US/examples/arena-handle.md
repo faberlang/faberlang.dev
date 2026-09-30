@@ -13,7 +13,7 @@ Source: [`examples/arena-handle`](https://github.com/faberlang/examples/tree/mai
 
 230 lines — the whole file, unabridged.
 
-```faber
+```faber mode=pinned
 # =============================================================================
 # arena-handle — generational arena-handle contract via pure value updates
 # =============================================================================
@@ -76,23 +76,23 @@ Source: [`examples/arena-handle`](https://github.com/faberlang/examples/tree/mai
 # Rust stays sound; the runtime crate is the authoritative store implementation.
 
 genus Manus {
-    numerus index
-    numerus generatio
+    varia numerus index
+    varia numerus generatio
 }
 
 genus Loculus {
-    numerus generatio
-    bivalens vivus
-    textus valor
+    varia numerus generatio
+    varia bivalens vivus
+    varia textus valor
 }
 
 genus Area {
-    lista<Loculus> loculi
+    varia lista<Loculus> loculi
 }
 
 genus AreaCumManus {
-    Area area
-    Manus manus
+    varia Area area
+    varia Manus manus
 }
 
 functio manus_aequat(de Manus a, de Manus b) → bivalens {

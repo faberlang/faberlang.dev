@@ -5,6 +5,7 @@ order = 3
 sources = [
   "radix/docs/design/README.md",
 ]
+translate_spans = false  # prose names the Latin vocabulary as Latin
 +++
 
 ## Commandments

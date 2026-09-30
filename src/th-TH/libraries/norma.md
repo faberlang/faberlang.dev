@@ -10,6 +10,7 @@ sources = [
   "norma/exempla/",
   "radix/docs/stdlib/morphologia.md",
 ]
+translate_spans = false  # prose names the Latin vocabulary as Latin
 +++
 
 Norma คือไลบรารีมาตรฐานของ Faber ไลบรารีนี้มีโมดูลชื่อภาษาละตินแบบแบน ซึ่งเข้าถึงผ่านพาธ `norma:*` การประกาศของไลบรารีมาตรฐานเป็นซอร์ส Faber ที่อยู่ในรีโพซิทอรี `norma` ซึ่งอยู่เคียงข้างกัน
