@@ -372,6 +372,14 @@ if [ "$FULL_SITE" = true ]; then
             smoke_contains "${OUTPUT_DIR}/en-US/${sec}/index.html" "<!DOCTYPE html>" "${sec} index"
         done
         smoke_contains "${OUTPUT_DIR}/en-US/language/index.html" "saturate" "language index shows code"
+        # Library pages and their sidebar entries
+        for lib in norma triga gradus tela inferentia; do
+            smoke_contains "${OUTPUT_DIR}/en-US/libraries/${lib}.html" "<!DOCTYPE html>" "library page ${lib}"
+            smoke_contains "${OUTPUT_DIR}/en-US/libraries/index.html" "/libraries/${lib}.html" "libraries index links ${lib}"
+            smoke_contains "${OUTPUT_DIR}/en-US/index.html" "/en-US/libraries/${lib}.html" "sidebar library link ${lib}"
+        done
+        smoke_contains "${OUTPUT_DIR}/en-US/libraries/tela.html" "html_view" "Tela page shows the serializer"
+        smoke_contains "${OUTPUT_DIR}/en-US/libraries/inferentia.html" "/generate" "Inferentia page lists the API"
         # The en-US pages render in the `en` reader locale, not `la`. This is
         # the guard on that: `functio` is the Latin spelling of `fn`, so its
         # presence in a rendered en-US body means the transcode step was

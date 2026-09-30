@@ -5,9 +5,10 @@ order = 0
 sources = []
 +++
 
-**Norma** ships with the compiler and you can use it immediately. **Triga**
-and **Gradus** are optional dependencies you declare when you need graphics
-work or automatic differentiation.
+**Norma** ships with the compiler and you can use it immediately. **Triga**,
+**Gradus**, and **Tela** are optional dependencies you declare when you need
+graphics work, automatic differentiation, or typed views. **Inferentia** is an
+application built on them, still in development.
 
 ## Norma — bundled {#norma}
 
@@ -52,6 +53,21 @@ parameters, and there is no module class hierarchy or runtime tape. It is also
 pre-1.0 and narrower than its module list suggests — shapes are concrete
 overloads rather than generics, and training is CPU-correct rather than fast.
 [Gradus →](/libraries/gradus.html)
+
+## Tela — opt in {#tela}
+
+A view library: typed HTML and SVG values, a fail-closed serializer that turns
+a valid tree into markup, and the DOM and Canvas2D contracts for a browser
+host. Imported as `tela:*`. It is early (version 0.0.0): the view protocol and
+static renderer work, while its Rust output and parts of its own proof suite do
+not yet. [Tela →](/libraries/tela.html)
+
+## Inferentia — an application {#inferentia}
+
+A local-first inference server written in Faber: a command line and a small
+HTTP API over a GGUF model, built on Gradus and Norma. It is not a library and
+not a released product. The page states what exists and what does not.
+[Inferentia →](/libraries/inferentia.html)
 
 ## The corpus — not a library {#corpus}
 

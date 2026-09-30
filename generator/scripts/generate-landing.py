@@ -119,10 +119,10 @@ LIBRARIES: list[dict[str, str]] = [
     {"name": "Triga", "href": "/en-US/libraries/triga.html", "status": "graphics and geometry",
      "desc": "Scene graph, materials and geometry modeled on three.js shapes, written as a "
              "small, readable Faber library."},
-    {"name": "Tela", "href": "https://github.com/faberlang/tela", "status": "early; UI and view protocol",
+    {"name": "Tela", "href": "/en-US/libraries/tela.html", "status": "early; UI and view protocol",
      "desc": "Typed HTML and SVG view values with fail-closed validation and deterministic "
              "HTML and CSS output. The static renderer comes first."},
-    {"name": "Inferentia", "href": "https://github.com/faberlang/inferentia", "status": "in development",
+    {"name": "Inferentia", "href": "/en-US/libraries/inferentia.html", "status": "in development",
      "desc": "A local-first GGUF inference server written in Faber. Today it is a command-line "
              "shell; model loading and HTTP serving are the next stages."},
     {"name": "Cista", "href": "/en-US/toolchain/packages.html", "status": "package store",
