@@ -13,15 +13,15 @@ import from "faber:consolum" consolum
 import from "faber:json" json
 import from "faber:toml" toml
 
-const string tick ← «`»
-const string fence ← «```»
-const string fence_fab ← «```fab»
-const string fence_text ← «```text
+static string tick = «`»
+static string fence = «```»
+static string fence_fab = «```fab»
+static string fence_text = «```text
 »
-const string hole_open ← "§" + "{"
-const string q ← "'"
-const string brace_close ← "}"
-const string lead_en ← «The formal grammar for every Faber production, generated from the compiler's
+static string hole_open = "§" + "{"
+static string q = "'"
+static string brace_close = "}"
+static string lead_en = «The formal grammar for every Faber production, generated from the compiler's
 own specification. This is the authority on whether something is valid syntax;
 the [target matrix](/toolchain/target-matrix.html) is the authority on whether
 a given target supports it.
@@ -40,8 +40,8 @@ is a projection of the productions below. The
 [reader locale pages](/language/reader-locales.html) give the mapping, and
 `faber explain <term>` prints it from the compiler itself.»
 
-const string identity_banner ← «This file is generated from `docs/grammar/source.fg`; hand edits fail the
-stage-1 normative-triple gate.»
+static string identity_banner = «This file is generated from `docs/grammar/source.fg`, its `sidecar.en.toml`
+and its `prose.en.md`; hand edits fail the stage-1 normative-triple gate.»
 
 fn ch(string s, int i) → string {
     return s.slice(i, i + 1)
@@ -420,8 +420,8 @@ fn apply_glossary(string text, map<string, string> glossary, map<string, bool> p
 }
 
 fn stamp_locale_banner(string text, string locale) → string {
-    const string replacement ← «This file is generated from `docs/grammar/source.fg` and `docs/grammar/glossary.» + locale + «.toml`;
-hand edits fail the locale-render gate.»
+    const string replacement ← «This file is generated from `docs/grammar/source.fg`, its `sidecar.en.toml` and its `prose.en.md`, and
+`docs/grammar/glossary.» + locale + «.toml`; hand edits fail the locale-render gate.»
     if text.contains(identity_banner) ≡ false {
         consolum.warn_line("identity banner missing; cannot stamp locale render")
         processus.exit_process(1)
