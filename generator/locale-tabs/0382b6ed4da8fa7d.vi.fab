@@ -1,0 +1,11 @@
+bắt_đầu {
+    hằng văn_bản ∪ số signum ← 7
+    phân_tích signum {
+        trường_hợp số hằng n {
+            ghi_chú "a number"
+        }
+        trường_hợp văn_bản hằng s {
+            ghi_chú "a text"
+        }
+    }
+}
