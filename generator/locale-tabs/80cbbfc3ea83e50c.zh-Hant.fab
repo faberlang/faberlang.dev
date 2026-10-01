@@ -1,3 +1,0 @@
-測試 "concatenatio" 標籤 "fast" {
-    斷言 "a" + "b" ≡ "ab"
-}

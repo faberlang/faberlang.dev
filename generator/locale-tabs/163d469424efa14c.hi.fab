@@ -1,0 +1,7 @@
+आरंभ {
+    स्थिर सूची<पाठ> nomina ← ["Alia", "Brunus"]
+    स्थिर सूची<संख्या> aetates ← [34, 27]
+    दोहराओ सेवन nomina, aetates पर [i] स्थिर nomen, aetas {
+        दिखाओ i, nomen, aetas
+    }
+}

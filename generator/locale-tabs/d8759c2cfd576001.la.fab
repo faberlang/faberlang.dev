@@ -1,0 +1,5 @@
+importa ex "./auxilium" saluta
+
+incipit {
+    nota "ready"
+}

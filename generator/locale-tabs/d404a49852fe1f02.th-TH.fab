@@ -1,0 +1,5 @@
+นำเข้า ออก "./auxilium" saluta ในชื่อ greet
+
+เริ่ม {
+    บันทึก "ready"
+}

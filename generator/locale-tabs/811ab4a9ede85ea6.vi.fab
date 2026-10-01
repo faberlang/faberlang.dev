@@ -1,0 +1,4 @@
+@ hạt_nhân
+hàm multiplico(tf32[16, 8] a, tf32[8, 16] b, tf32[16, 16] out, u32 id) → trống {
+    hằng tf32[16, 16] c ← a.nhân_ma_trận(b)
+}

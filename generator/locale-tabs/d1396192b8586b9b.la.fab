@@ -1,3 +1,0 @@
-functio logga(textus context) → vacuum {
-    mone context
-}

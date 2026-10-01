@@ -140,12 +140,18 @@ def transcode(faber: str, source: str, locale: str) -> str | None:
     tmp.write_text(source, encoding="utf-8")
     try:
         proc = subprocess.run(
-            [faber, "convert", "--to", locale, "--stdout", str(tmp)],
+            # The fences are Latin source; the product default reader is `en`.
+            [faber, "convert", "--from", "la", "--to", locale, "--stdout",
+             str(tmp)],
             text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
         )
     finally:
         tmp.unlink(missing_ok=True)
-    out = proc.stdout.strip()
+    # `--stdout` stamps the target locale into a TOML frontmatter block; the
+    # panel already sits under a card that names its locale. Same strip as
+    # localize-markdown.py, so the key digests what the page carries.
+    out = re.sub(r"\A\+\+\+\n.*?\n\+\+\+\n", "", proc.stdout, count=1,
+                 flags=re.S).strip()
     # A pack failure still exits 0 and prints warnings to stderr, so an empty
     # or unchanged body is the real signal that nothing was rendered.
     if proc.returncode != 0 or not out:

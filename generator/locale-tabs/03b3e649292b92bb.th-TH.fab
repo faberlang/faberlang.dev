@@ -1,0 +1,5 @@
+ทดสอบชุด "textus" {
+    ทดสอบ "concatenatio" แท็ก "fast" {
+        ยืนยัน "a" + "b" ≡ "ab"
+    }
+}

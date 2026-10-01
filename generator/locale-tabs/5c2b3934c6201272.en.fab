@@ -1,0 +1,9 @@
+fn divide(int a, int b) → int ⇥ string {
+    require b ≠ 0 throw "division by zero"
+    return a / b
+}
+
+fn exigePositivum(int value) → int ⇥ string {
+    reject value ≺ 0 throw "negative value"
+    return value
+}

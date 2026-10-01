@@ -1,9 +1,0 @@
-genus Persona {
-    varia textus nomen
-    varia numerus aetas
-}
-
-incipit {
-    fixum Persona p ← Persona {nomen = "Marcus", aetas = 30}
-    nota p.nomen, p.aetas
-}

@@ -1,5 +1,0 @@
-main {
-    const list<string ∪ int> mixed ← [1, "two", 3]
-    const list<int> inferred ← [1, 2, 3]
-    print mixed, inferred
-}

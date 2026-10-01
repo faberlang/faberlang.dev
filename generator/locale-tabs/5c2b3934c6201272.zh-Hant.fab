@@ -1,0 +1,9 @@
+函式 divide(整數 a, 整數 b) → 整數 ⇥ 文字 {
+    需要 b ≠ 0 拋出 "division by zero"
+    傳回 a / b
+}
+
+函式 exigePositivum(整數 value) → 整數 ⇥ 文字 {
+    拒絕 value ≺ 0 拋出 "negative value"
+    傳回 value
+}

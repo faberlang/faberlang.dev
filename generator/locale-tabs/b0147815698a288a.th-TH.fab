@@ -1,0 +1,20 @@
+ฟังก์ชัน divide(จํานวน a, จํานวน b) → จํานวน ⇥ ข้อความ {
+    ถ้า b ≡ 0 {
+        โยน "division by zero"
+    }
+    คืน a / b
+}
+
+ฟังก์ชัน logga(ข้อความ context, ข้อความ err) → เปล่า {
+    เตือน context
+    เตือน err
+}
+
+เริ่ม {
+    ทำ {
+        บันทึก divide(1, 0)
+    }
+    จับ err {
+        logga("divide", err)
+    }
+}

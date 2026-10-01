@@ -1,0 +1,5 @@
+入口 {
+    定值 _ nomen ← "Marcus"
+    定值 _ numeri ← [1, 2, 3]
+    註記 nomen, numeri
+}

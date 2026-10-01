@@ -1,0 +1,5 @@
+đối_tượng_kiểm_thử "textus" {
+    kiểm_thử "concatenatio" nhãn "fast" {
+        khẳng_định "a" + "b" ≡ "ab"
+    }
+}

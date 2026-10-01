@@ -1,0 +1,9 @@
+hàm divide(số a, số b) → số ⇥ văn_bản {
+    yêu_cầu b ≠ 0 ném "division by zero"
+    trả a / b
+}
+
+hàm exigePositivum(số value) → số ⇥ văn_bản {
+    từ_chối value ≺ 0 ném "negative value"
+    trả value
+}

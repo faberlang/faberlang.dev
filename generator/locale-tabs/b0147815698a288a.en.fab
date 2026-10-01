@@ -1,0 +1,20 @@
+fn divide(int a, int b) → int ⇥ string {
+    if b ≡ 0 {
+        throw "division by zero"
+    }
+    return a / b
+}
+
+fn logga(string context, string err) → void {
+    warn context
+    warn err
+}
+
+main {
+    do {
+        print divide(1, 0)
+    }
+    catch err {
+        logga("divide", err)
+    }
+}

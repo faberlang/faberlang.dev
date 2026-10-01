@@ -1,5 +1,0 @@
-import from "./auxilium" private saluta
-
-main {
-    print "ready"
-}

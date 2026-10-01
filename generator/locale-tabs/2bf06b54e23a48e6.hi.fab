@@ -1,0 +1,9 @@
+वर्ग Persona {
+    स्थिर पाठ nomen
+    स्थिर संख्या aetas
+}
+
+आरंभ {
+    स्थिर _ p ← Persona { nomen = "Marcus", aetas = 30 }
+    दिखाओ p.nomen, p.aetas
+}

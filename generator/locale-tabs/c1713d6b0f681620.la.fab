@@ -1,5 +1,0 @@
-importa ex "./auxilium" privata saluta ut greet
-
-incipit {
-    nota "ready"
-}

@@ -1,0 +1,5 @@
+importa ex "norma:textus" textus
+
+incipit {
+    nota "ready"
+}

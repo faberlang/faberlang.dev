@@ -1,0 +1,5 @@
+describe "textus" {
+    test "concatenatio" tag "fast" {
+        assert "a" + "b" ≡ "ab"
+    }
+}

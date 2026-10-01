@@ -1,0 +1,5 @@
+匯入 取自 "./auxilium" saluta
+
+入口 {
+    註記 "ready"
+}

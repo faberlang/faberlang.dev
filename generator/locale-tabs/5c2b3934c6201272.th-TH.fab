@@ -1,0 +1,9 @@
+ฟังก์ชัน divide(จํานวน a, จํานวน b) → จํานวน ⇥ ข้อความ {
+    ต้องการ b ≠ 0 โยน "division by zero"
+    คืน a / b
+}
+
+ฟังก์ชัน exigePositivum(จํานวน value) → จํานวน ⇥ ข้อความ {
+    ปฏิเสธ value ≺ 0 โยน "negative value"
+    คืน value
+}

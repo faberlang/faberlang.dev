@@ -1,0 +1,5 @@
+probandum "textus" {
+    proba "concatenatio" tag "fast" {
+        adfirma "a" + "b" ≡ "ab"
+    }
+}

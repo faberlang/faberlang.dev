@@ -1,0 +1,9 @@
+函数 divide(整数 a, 整数 b) → 整数 ⇥ 文本 {
+    需求 b ≠ 0 抛错 "division by zero"
+    返回 a / b
+}
+
+函数 exigePositivum(整数 value) → 整数 ⇥ 文本 {
+    拒绝 value ≺ 0 抛错 "negative value"
+    返回 value
+}

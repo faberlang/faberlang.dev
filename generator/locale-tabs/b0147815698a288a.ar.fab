@@ -1,0 +1,20 @@
+دالة divide(عدد a, عدد b) → عدد ⇥ نص {
+    إذا b ≡ 0 {
+        ارم "division by zero"
+    }
+    أعد a / b
+}
+
+دالة logga(نص context, نص err) → فراغ {
+    نبه context
+    نبه err
+}
+
+بداية {
+    افعل {
+        اعرض divide(1, 0)
+    }
+    التقط err {
+        logga("divide", err)
+    }
+}

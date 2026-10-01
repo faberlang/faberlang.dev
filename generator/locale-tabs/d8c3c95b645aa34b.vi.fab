@@ -1,0 +1,9 @@
+đối_tượng_kiểm_thử "arithmetica" {
+    kiểm_thử "additio" {
+        khẳng_định 1 + 1 ≡ 2
+    }
+
+    kiểm_thử "multiplicatio" {
+        khẳng_định 2 * 3 ≡ 6
+    }
+}

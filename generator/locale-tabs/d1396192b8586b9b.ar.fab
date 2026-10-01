@@ -1,3 +1,0 @@
-دالة logga(نص context) → فراغ {
-    نبه context
-}

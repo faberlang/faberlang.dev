@@ -1,0 +1,9 @@
+測試規格 "arithmetica" {
+    測試 "additio" {
+        斷言 1 + 1 ≡ 2
+    }
+
+    測試 "multiplicatio" {
+        斷言 2 * 3 ≡ 6
+    }
+}

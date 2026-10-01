@@ -1,0 +1,20 @@
+functio divide(numerus a, numerus b) → numerus ⇥ textus {
+    si b ≡ 0 {
+        iace "division by zero"
+    }
+    redde a / b
+}
+
+functio logga(textus context, textus err) → vacuum {
+    mone context
+    mone err
+}
+
+incipit {
+    fac {
+        nota divide(1, 0)
+    }
+    cape err {
+        logga("divide", err)
+    }
+}

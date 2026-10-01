@@ -1,0 +1,9 @@
+验题 "arithmetica" {
+    测试 "additio" {
+        断言 1 + 1 ≡ 2
+    }
+
+    测试 "multiplicatio" {
+        断言 2 * 3 ≡ 6
+    }
+}

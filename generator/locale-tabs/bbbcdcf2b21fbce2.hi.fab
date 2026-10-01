@@ -1,0 +1,13 @@
+वर्ग Persona {
+    स्थिर पाठ nomen
+    स्थिर संख्या aetas
+}
+
+फलन descriptio(Persona p) → पाठ {
+    लौटाओ p.nomen
+}
+
+आरंभ {
+    स्थिर _ p ← Persona { nomen = "Marcus", aetas = 30 }
+    दिखाओ descriptio(p)
+}

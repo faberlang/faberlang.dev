@@ -1,0 +1,6 @@
+เริ่ม {
+    คงที่ i32 signed ← -7
+    คงที่ u8 byte ← 255
+    คงที่ f64 wide ← 1.5
+    บันทึก signed, byte, wide
+}

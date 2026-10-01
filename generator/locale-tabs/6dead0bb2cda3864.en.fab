@@ -1,0 +1,10 @@
+fn medium(tf32[2, 3] m) → f32 {
+    return m.mean()
+}
+
+main {
+    const list<f32> flat ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    const tf32[] seed ← empty
+    const tf32[2, 3] m ← seed.from_flat(flat, [2, 3])
+    print medium(m)
+}

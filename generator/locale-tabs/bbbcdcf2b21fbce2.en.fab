@@ -1,0 +1,13 @@
+class Persona {
+    const string nomen
+    const int aetas
+}
+
+fn descriptio(Persona p) → string {
+    return p.nomen
+}
+
+main {
+    const _ p ← Persona { nomen = "Marcus", aetas = 30 }
+    print descriptio(p)
+}

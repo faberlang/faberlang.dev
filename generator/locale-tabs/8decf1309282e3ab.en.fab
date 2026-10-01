@@ -1,7 +1,0 @@
-test "additio" {
-    assert 1 + 1 ≡ 2
-}
-
-test "multiplicatio" {
-    assert 2 * 3 ≡ 6
-}

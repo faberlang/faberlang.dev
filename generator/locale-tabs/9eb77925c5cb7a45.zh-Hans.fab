@@ -1,0 +1,5 @@
+导入 取自 "norma:consolum" consolum
+
+入口 {
+    显示 "ready"
+}

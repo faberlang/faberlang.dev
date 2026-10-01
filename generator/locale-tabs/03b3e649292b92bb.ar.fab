@@ -1,0 +1,5 @@
+مختبر "textus" {
+    اختبر "concatenatio" وسم "fast" {
+        أكد "a" + "b" ≡ "ab"
+    }
+}

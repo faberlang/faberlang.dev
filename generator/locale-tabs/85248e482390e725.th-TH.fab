@@ -1,9 +1,0 @@
-ชนิด Persona {
-    ข้อความ nomen
-    จำนวน aetas
-}
-
-เริ่ม {
-    คงที่ Persona p ← Persona {nomen = "Marcus", aetas = 30}
-    บันทึก p.nomen, p.aetas
-}

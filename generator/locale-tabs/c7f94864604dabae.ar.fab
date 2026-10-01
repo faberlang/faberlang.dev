@@ -1,0 +1,5 @@
+بداية {
+    ثابت i32 narrow ← "255" ↦ i32
+    ثابت f32 single ← "1.5" ↦ f32
+    اعرض narrow, single
+}

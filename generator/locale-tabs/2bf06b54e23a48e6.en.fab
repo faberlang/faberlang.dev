@@ -1,0 +1,9 @@
+class Persona {
+    const string nomen
+    const int aetas
+}
+
+main {
+    const _ p ← Persona { nomen = "Marcus", aetas = 30 }
+    print p.nomen, p.aetas
+}

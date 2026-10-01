@@ -1,3 +1,0 @@
-函数 logga(文本 context) → 无值 {
-    警告 context
-}

@@ -1,0 +1,10 @@
+hàm medium(tf32[2, 3] m) → f32 {
+    trả m.trung_bình()
+}
+
+bắt_đầu {
+    hằng danh_sách<f32> flat ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    hằng tf32[] seed ← tập_rỗng
+    hằng tf32[2, 3] m ← seed.dựng_từ_phẳng(flat, [2, 3])
+    ghi_chú medium(m)
+}

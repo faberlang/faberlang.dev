@@ -1,3 +1,0 @@
-परीक्षण "concatenatio" टैग "fast" {
-    पुष्टि "a" + "b" ≡ "ab"
-}

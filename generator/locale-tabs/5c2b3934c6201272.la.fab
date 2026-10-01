@@ -1,0 +1,9 @@
+functio divide(numerus a, numerus b) → numerus ⇥ textus {
+    requirit b ≠ 0 iace "division by zero"
+    redde a / b
+}
+
+functio exigePositivum(numerus value) → numerus ⇥ textus {
+    reice value ≺ 0 iace "negative value"
+    redde value
+}

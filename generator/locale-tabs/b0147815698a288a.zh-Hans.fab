@@ -1,0 +1,20 @@
+函数 divide(整数 a, 整数 b) → 整数 ⇥ 文本 {
+    如果 b ≡ 0 {
+        抛错 "division by zero"
+    }
+    返回 a / b
+}
+
+函数 logga(文本 context, 文本 err) → 无值 {
+    警告 context
+    警告 err
+}
+
+入口 {
+    执行 {
+        显示 divide(1, 0)
+    }
+    捕获 err {
+        logga("divide", err)
+    }
+}

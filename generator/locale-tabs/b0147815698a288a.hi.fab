@@ -1,0 +1,20 @@
+फलन divide(संख्या a, संख्या b) → संख्या ⇥ पाठ {
+    यदि b ≡ 0 {
+        इधरफेंको "division by zero"
+    }
+    लौटाओ a / b
+}
+
+फलन logga(पाठ context, पाठ err) → रिक्त {
+    चेताओ context
+    चेताओ err
+}
+
+आरंभ {
+    करो {
+        दिखाओ divide(1, 0)
+    }
+    पकड़ो err {
+        logga("divide", err)
+    }
+}

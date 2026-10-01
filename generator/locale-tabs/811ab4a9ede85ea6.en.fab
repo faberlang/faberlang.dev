@@ -1,0 +1,4 @@
+@ kernel
+fn multiplico(tf32[16, 8] a, tf32[8, 16] b, tf32[16, 16] out, u32 id) → void {
+    const tf32[16, 16] c ← a.matmul(b)
+}

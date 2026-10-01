@@ -1,5 +1,0 @@
-import from "norma:consolum" private consolum
-
-main {
-    print "ready"
-}

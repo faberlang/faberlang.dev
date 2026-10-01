@@ -1,5 +1,0 @@
-import from "norma:textus" private textus
-
-main {
-    print "ready"
-}

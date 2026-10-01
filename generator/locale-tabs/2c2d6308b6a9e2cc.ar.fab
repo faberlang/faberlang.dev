@@ -1,0 +1,5 @@
+بداية {
+    ثابت _ nomen ← "Marcus"
+    ثابت _ numeri ← [1, 2, 3]
+    اعرض nomen, numeri
+}

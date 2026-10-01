@@ -1,0 +1,13 @@
+类 Persona {
+    常量 文本 nomen
+    常量 整数 aetas
+}
+
+函数 descriptio(Persona p) → 文本 {
+    返回 p.nomen
+}
+
+入口 {
+    常量 _ p ← Persona { nomen = "Marcus", aetas = 30 }
+    显示 descriptio(p)
+}

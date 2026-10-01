@@ -1,0 +1,4 @@
+hàm divide(số a, số b) → số ∪ rỗng_ty {
+    nếu b ≡ 0 do_đó trả không_gì
+    trả a / b
+}

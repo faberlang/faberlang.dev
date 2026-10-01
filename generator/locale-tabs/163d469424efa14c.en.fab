@@ -1,0 +1,7 @@
+main {
+    const list<string> nomina ← ["Alia", "Brunus"]
+    const list<int> aetates ← [34, 27]
+    for from nomina, aetates at [i] const nomen, aetas {
+        print i, nomen, aetas
+    }
+}

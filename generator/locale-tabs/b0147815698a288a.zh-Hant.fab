@@ -1,0 +1,20 @@
+函式 divide(整數 a, 整數 b) → 整數 ⇥ 文字 {
+    若 b ≡ 0 {
+        拋出 "division by zero"
+    }
+    傳回 a / b
+}
+
+函式 logga(文字 context, 文字 err) → 空值 {
+    警告 context
+    警告 err
+}
+
+入口 {
+    執行 {
+        註記 divide(1, 0)
+    }
+    捕捉 err {
+        logga("divide", err)
+    }
+}

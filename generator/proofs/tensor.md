@@ -35,13 +35,13 @@ tensor<T, Figura> declaration shell with rank-0 vacua.
 # EXPECTED OUTPUT:
 #   Rank-0 tensor longitudo after round-trip identity call.
 
-functio identity(tensor<fractus<f32>, []> value) → tensor<fractus<f32>, []> {
+functio identity(tensor<f32, []> value) → tensor<f32, []> {
     redde value
 }
 
 incipit {
-    fixum tensor<fractus<f32>, []> empty ← vacua
-    fixum tensor<fractus<f32>, []> roundtrip ← identity(empty)
+    fixum tensor<f32, []> empty ← vacua
+    fixum tensor<f32, []> roundtrip ← identity(empty)
 
     nota roundtrip.longitudo()
 }
@@ -62,7 +62,7 @@ Tensor arithmetic rejects non-numeric elements and mixed numeric widths.
 # WHY: documents the typecheck contract for elementwise tensor arithmetic.
 # Both cases must reject:
 #   1. tensor<textus, …> — non-numeric element (numeric gate).
-#   2. numerus<i32> + numerus<i64> — mixed width is a ↦ conversio problem,
+#   2. i32 + i64 — mixed width is a ↦ conversio problem,
 #      never silent promotion at the kernel.
 #
 # This exemplum intentionally fails to compile; it is registered in the
@@ -74,9 +74,9 @@ incipit {
     fixum tensor<textus, [2]> words_sum ← words_a.addita(words_b)
     nota words_sum.longitudo()
 
-    fixum tensor<numerus<i32>, [2]> i32_a ← vacua
-    fixum tensor<numerus<i64>, [2]> i64_b ← vacua
-    fixum tensor<numerus<i32>, [2]> mixed ← i32_a.addita(i64_b)
+    fixum tensor<i32, [2]> i32_a ← vacua
+    fixum tensor<i64, [2]> i64_b ← vacua
+    fixum tensor<i32, [2]> mixed ← i32_a.addita(i64_b)
     nota mixed.longitudo()
 }
 ```

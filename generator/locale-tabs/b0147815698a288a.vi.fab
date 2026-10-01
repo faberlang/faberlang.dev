@@ -1,0 +1,20 @@
+hàm divide(số a, số b) → số ⇥ văn_bản {
+    nếu b ≡ 0 {
+        ném "division by zero"
+    }
+    trả a / b
+}
+
+hàm logga(văn_bản context, văn_bản err) → trống {
+    cảnh_báo context
+    cảnh_báo err
+}
+
+bắt_đầu {
+    làm {
+        ghi_chú divide(1, 0)
+    }
+    bắt err {
+        logga("divide", err)
+    }
+}

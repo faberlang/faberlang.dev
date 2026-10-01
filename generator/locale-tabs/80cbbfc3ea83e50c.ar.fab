@@ -1,3 +1,0 @@
-اختبر "concatenatio" وسم "fast" {
-    أكد "a" + "b" ≡ "ab"
-}

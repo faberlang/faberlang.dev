@@ -1,0 +1,13 @@
+ชนิด Persona {
+    คงที่ ข้อความ nomen
+    คงที่ จํานวน aetas
+}
+
+ฟังก์ชัน descriptio(Persona p) → ข้อความ {
+    คืน p.nomen
+}
+
+เริ่ม {
+    คงที่ _ p ← Persona { nomen = "Marcus", aetas = 30 }
+    บันทึก descriptio(p)
+}

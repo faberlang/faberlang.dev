@@ -1,0 +1,5 @@
+import from "./auxilium" saluta
+
+main {
+    print "ready"
+}

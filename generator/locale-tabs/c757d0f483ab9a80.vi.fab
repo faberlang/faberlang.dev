@@ -1,0 +1,7 @@
+đối_tượng_kiểm_thử "assertiones" {
+    kiểm_thử "comparisons" {
+        khẳng_định 1 + 1 ≡ 2
+        khẳng_định 3 ≻ 2
+        khẳng_định "abc".độ_dài() ≡ 3
+    }
+}

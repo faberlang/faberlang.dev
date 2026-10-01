@@ -1,0 +1,5 @@
+आरंभ {
+    स्थिर _ nomen ← "Marcus"
+    स्थिर _ numeri ← [1, 2, 3]
+    दिखाओ nomen, numeri
+}

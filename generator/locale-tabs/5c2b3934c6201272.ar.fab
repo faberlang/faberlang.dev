@@ -1,0 +1,9 @@
+دالة divide(عدد a, عدد b) → عدد ⇥ نص {
+    يتطلب b ≠ 0 ارم "division by zero"
+    أعد a / b
+}
+
+دالة exigePositivum(عدد value) → عدد ⇥ نص {
+    يرفض value ≺ 0 ارم "negative value"
+    أعد value
+}

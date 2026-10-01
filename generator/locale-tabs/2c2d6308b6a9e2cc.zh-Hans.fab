@@ -1,0 +1,5 @@
+入口 {
+    常量 _ nomen ← "Marcus"
+    常量 _ numeri ← [1, 2, 3]
+    显示 nomen, numeri
+}
