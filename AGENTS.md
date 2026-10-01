@@ -166,6 +166,17 @@ generator or the upstream source instead.
 | `generate-examples.py` | `src/{locale}/examples/*.md` | `examples/` sibling |
 | `generate-localization.py` | `src/{locale}/localization.md` | locale registry + captured panels |
 | `generate-releases.py` | `src/en-US/releases/*.md` | `gh` release tags + sibling `docs/release/v*.md` |
+| `generate-agent-locales.py` | `static/agents/locales.md`, `dist/agents/locales.md` | `radix/locale/*/pack.toml` |
+
+`generate-agent-locales.py` is the one generator that writes an agent static
+surface rather than `src/`, so it runs in step 0 ahead of the static copy. It
+joins the eight reader packs on the canonical key, ordered `English | Latin |
+ar | hi | th-TH | vi | zh-Hans | zh-Hant`. `--strict` fails on drift that is
+neither a designed shape nor the expected list in
+`generator/scripts/agent_locales.py`; the designed shape is `la` carrying no
+`[intrinsics]` section, which
+`radix/crates/radix-module/src/intrinsic_pack_completeness_test.rs` asserts, and
+the expected list is the pack drift owned by a compiler-side fix.
 
 Each degrades to leaving its committed output alone when its inputs are
 absent, so a checkout without siblings still builds. **`generate-releases.py`

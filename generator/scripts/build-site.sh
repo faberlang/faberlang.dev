@@ -240,6 +240,13 @@ if [ "$FULL_SITE" = true ]; then
         echo "  Skipping grammar generate (no ${WORKSPACE_DIR}/faber/docs/EBNF.md)"
     fi
 
+    # The agent locales table joins the eight reader packs in radix/locale. It
+    # writes static/ and dist/ rather than src/, so it must run before the
+    # static copy. --strict fails on drift that is neither a designed shape nor
+    # the expected list in agent_locales.py.
+    echo "[0/10] Generating the agent locales table..."
+    "$PYTHON" "${SCRIPT_DIR}/generate-agent-locales.py" --strict
+
     # Releases is NOT regenerated here: it needs `gh` and network access, and a
     # build that silently depends on the network is a build that breaks on a
     # plane. Run generate-releases.py by hand when a release lands.
