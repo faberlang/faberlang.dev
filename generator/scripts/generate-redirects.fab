@@ -24,7 +24,7 @@ import from "faber:solum" fileio
 import from "faber:processus" processus
 import from "faber:consolum" consolum
 
-static string base_url = "https://faberlang.dev"
+const string base_url = "https://faberlang.dev"
 
 # html.escape(target, quote=True) entity table: & < > " ' (the single quote
 # is the hex entity &#x27;, matching the Python original exactly).
