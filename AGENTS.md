@@ -167,6 +167,18 @@ generator or the upstream source instead.
 | `generate-localization.py` | `src/{locale}/localization.md` | locale registry + captured panels |
 | `generate-releases.py` | `src/en-US/releases/*.md` | `gh` release tags + sibling `docs/release/v*.md` |
 | `generate-agent-locales.py` | `static/agents/locales.md`, `dist/agents/locales.md` | `radix/locale/*/pack.toml` |
+| `generate-agent-reference.py` | `static/agents/reference/`, `dist/agents/reference/` | `faber explain --list` and `faber explain <term> --json` |
+
+`generate-agent-reference.py` mirrors the compiler's explain registry: one page
+per entry, plus alias stubs and a section index. It needs a `faber` binary that
+resolves its reference pack — an installed binary carries none unless one was
+installed beside it — so it prefers `radix/target/debug/faber` and accepts
+`--faber`. It uses the compiler as a tiebreaker on its own output: projection is
+a token rewrite, and because Faber allows a keyword as an identifier a rewrite
+can break code that prose survives, so each example ships in whichever form
+`faber check --locale=en` accepts. Slugs come from the reader pack, and the
+first term in sorted order keeps a contested slug; the loser falls back to its
+own name and then to a numeric suffix.
 
 `generate-agent-locales.py` is the one generator that writes an agent static
 surface rather than `src/`, so it runs in step 0 ahead of the static copy. It

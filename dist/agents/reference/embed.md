@@ -1,0 +1,66 @@
+# embed
+
+Embeds a package file into a module constant at build time.
+
+**Term** `insere` · **Section** KEYWORDS
+
+## Syntax
+
+```
+const <type> <name> = embed "<path>"
+```
+
+## What this teaches
+
+- Build-time embed — `const T X = embed "path"` reads a file while compiling; the program carries its contents as a literal.
+- One keyword, two results — the declared type decides: `string` requires valid UTF-8, `bytes` takes the raw bytes.
+- Package-relative paths — resolved against the package root (the nearest `faber.toml`), or this file's directory when there is none.
+
+## Common mistakes
+
+- Using an absolute path or `..` to reach outside the package — both are compile errors (SEM061).
+- Declaring `string` for a binary file — invalid UTF-8 is a compile error; declare `bytes`.
+- Expecting a runtime read — changing the file needs a rebuild; for run-time I/O use a `call` route.
+
+## Grammar
+
+```
+fixum_decl  :← 'fixum' type_annotation IDENTIFIER '=' const_init
+const_init  :← insere_expr | expression
+insere_expr :← 'insere' STRING
+```
+
+## Expected output
+
+```
+insere.expected — the embedded text, its length, and the byte count.
+```
+
+## Example
+
+```fab
+const string NUNTIUS = embed "nuntius.txt"
+
+const bytes SIGNUM = embed "signum.bin"
+
+class Tabula {
+    static string TITULUS = embed "nuntius.txt"
+}
+
+# `embed` is contextual: directly before a string literal it is the embed; any
+# other use of the name, like this call, is an ordinary identifier.
+fn embed(int n) → int {
+    return n * 2
+}
+
+main {
+    print NUNTIUS
+    print NUNTIUS.length()
+    print SIGNUM.length()
+    print embed(21)
+}
+```
+
+See also: [`static`](static.md), [`string`](textus.md), [`bytes`](bytes.md), [`comptime`](comptime.md).
+
+Fetch list: https://faberlang.dev/agents/index.md

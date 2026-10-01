@@ -1,0 +1,90 @@
+# finite
+
+finite()-style NaN detection on float payloads via the Bits field-read gate (exponent 0xFF, fraction ≠ 0), never via x ≠ x.
+
+**Term** `finite` · **Section** CONVERSIONS
+
+## Syntax
+
+```
+x ↦ u32 via Bits field reads: (bits ⇒ 23) ∧ 255 and bits ∧ 8388607
+```
+
+## What this teaches
+
+- NaN detection must read the bit fields — exponent all-ones (0xFF) with a nonzero fraction — not rely on `x ≠ x`. The MIR runner seam is NaN-total for `≠` (value ≠ value never fires there), so a dtype.fab-style `x ≠ x then return false` finite() gate is undermined on that lane; the field-read gate below is lane-stable (native check + faber run agree).
+- `x ↦ u32 via Bits` gives the IEEE binary32 payload for inspection, and the canonical quiet NaN 0x7FC00000 survives the round trip bit-identically through both lanes (see conversion/bits-conversio.fab).
+- ±Inf shares exponent 0xFF with a zero fraction, so the same gate excludes both non-finite classes from finite(). Known residual (pinned, current behavior): the runner seam re-canonicalizes non-canonical NaN spellings (0xFE00 → 0x7E00 for f16, per the bits-f16 goal ledger residual; bits-conversio.fab:20 precedent). This exemplum therefore pins only the canonical quiet-NaN payload, which round-trips identically on both lanes.
+
+## Common mistakes
+
+- NaN gate via `x ≠ x` — lane-dependent (NaN-total `≠` on the runner); read the exponent/fraction fields instead.
+- Testing only exponent 0xFF — that class is NaN and ±Inf; the fraction field distinguishes them.
+
+## Expected output
+
+```
+verum
+falsum
+falsum
+falsum
+2143289344
+verum
+```
+
+## Backend
+
+```
+HIR-direct Rust emits to_bits / from_bits. MIR-stepper reinterprets the
+same bits. Field reads are plain integer ⇐/⇒/∧ on the bitcast payload.
+finite() — field-read gate, the dtype.fab-compatible NaN check.
+A value is finite iff its exponent field is not all-ones (0xFF); the
+fraction field (≠ 0) is what separates NaN from ±Inf inside that class.
+```
+
+## Example
+
+```fab
+fn finite(f32 x) → bool {
+    const _ bits ← x ↦ u32 via Bits
+    const _ exponent ← bits ⇒ 23 ∧ 255 ∷ u32
+    const _ omnino ← 255 ∷ u32
+    return exponent ≠ omnino
+}
+
+# nan() — the same field gate narrowed to NaN only (exponent 0xFF, fraction ≠ 0).
+fn nan(f32 x) → bool {
+    const _ bits ← x ↦ u32 via Bits
+    const _ exponent ← bits ⇒ 23 ∧ 255 ∷ u32
+    const _ fraction ← bits ∧ 8388607 ∷ u32
+    const _ omnino ← exponent ≡ 255 ∷ u32
+    const _ non_nihil ← fraction ≠ 0 ∷ u32
+    return omnino and non_nihil
+}
+
+main {
+    # 0x3FC00000 = 1.5f32 — finite.
+    const _ one_and_half ← 1069547520 ∷ u32 ↦ f32 via Bits
+
+    # 0x7FC00000 — canonical quiet NaN.
+    const _ quiet_nan ← 2143289344 ∷ u32 ↦ f32 via Bits
+
+    # 0x7F800000 — +Inf.
+    const _ infinitas ← 2139095040 ∷ u32 ↦ f32 via Bits
+    print finite(one_and_half)
+    print finite(quiet_nan)
+    print finite(infinitas)
+    print nan(quiet_nan)
+
+    # The canonical quiet NaN payload survives the round trip bit-identically
+    # on both lanes (the 0xFE00→0x7E00 re-canonicalization residual only
+    # touches non-canonical spellings — see the header note).
+    const _ back ← quiet_nan ↦ u32 via Bits
+    print back
+    print back ≡ (2143289344 ∷ u32)
+}
+```
+
+See also: [`↦`](↦.md), [`float`](float.md), [`fn`](fn.md).
+
+Fetch list: https://faberlang.dev/agents/index.md

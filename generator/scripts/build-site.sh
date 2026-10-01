@@ -247,6 +247,18 @@ if [ "$FULL_SITE" = true ]; then
     echo "[0/10] Generating the agent locales table..."
     "$PYTHON" "${SCRIPT_DIR}/generate-agent-locales.py" --strict
 
+    # The agent reference mirrors the compiler's explain registry, so it needs
+    # a faber binary that can resolve its reference pack. The workspace
+    # development build is preferred; the generator reports when none is found
+    # rather than emptying the tree.
+    echo "[0/10] Generating the agent reference tree..."
+    if "$PYTHON" "${SCRIPT_DIR}/generate-agent-reference.py" --strict; then
+        :
+    else
+        echo "ERROR: agent reference generate failed" >&2
+        exit 1
+    fi
+
     # Releases is NOT regenerated here: it needs `gh` and network access, and a
     # build that silently depends on the network is a build that breaks on a
     # plane. Run generate-releases.py by hand when a release lands.

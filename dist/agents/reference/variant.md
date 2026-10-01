@@ -1,0 +1,86 @@
+# variant
+
+Constructs a tagged union variant.
+
+**Term** `finge` · **Section** KEYWORDS
+
+## Syntax
+
+```
+variant <variant> [{ <field> = <expr>, ... }] [∷ <type>]
+```
+
+## What this teaches
+
+- Constructs a tagged union variant.
+- Related keywords: union
+
+## Common mistakes
+
+- Constructing a variant with the wrong field names — `variant Varians { field = expr } ∷ DiscretioNomen` must match the variant's declared fields exactly.
+
+## Grammar
+
+```
+variantExpr :← 'finge' variantName (fieldInitBlock)? '∷' typeName
+```
+
+## Expected output
+
+```
+finge expressiones paratae
+--- Discretio types to construct ---
+```
+
+## Example
+
+```fab
+union Condicio {
+    Agens,
+    Iners,
+    Pendens
+}
+
+union Nuntius {
+    Pulsus {
+        int x
+        int y
+    },
+    Clavis {
+        string clavis
+    },
+    Finis
+}
+
+union Responsum {
+    Bonum {
+        string nuntius
+    },
+    Malum {
+        string causa
+    }
+}
+
+main {
+    # --- Unit variants with explicit type ---
+
+    const Condicio s1 ← variant Agens ∷ Condicio
+    const Condicio s2 ← variant Pendens ∷ Condicio
+
+    # --- Payload variants with explicit type ---
+
+    const Nuntius e1 ← variant Pulsus { x = 100, y = 200 } ∷ Nuntius
+    const Nuntius e2 ← variant Clavis { clavis = "intro" } ∷ Nuntius
+    const Nuntius e3 ← variant Finis ∷ Nuntius
+
+    # --- Responsum variants ---
+
+    const Responsum r1 ← variant Bonum { nuntius = "opus perfectum" } ∷ Responsum
+    const Responsum r2 ← variant Malum { causa = "opus fractum" } ∷ Responsum
+    print "variant expressiones paratae"
+}
+```
+
+See also: [`union`](union.md).
+
+Fetch list: https://faberlang.dev/agents/index.md
