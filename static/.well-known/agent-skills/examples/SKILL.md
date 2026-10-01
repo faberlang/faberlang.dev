@@ -9,12 +9,15 @@ description: "Open real application packages in faberlang/examples (AI Workbench
 
 - a human wants to see non-toy Faber applications
 - you need package layout precedents
-- you are teaching application structure (CLI, I/O, multi-command tools)
+- you are teaching application structure
+
+## Write first
+
+Writing Faber starts at https://faberlang.dev/agents/index.md. Follow only the links that page names. The repositories below are applications, not the writing guide.
 
 ## Source
 
 - Repo: https://github.com/faberlang/examples
-- Site: https://faberlang.dev/en-US/examples/
 
 ## Open these first
 
@@ -24,27 +27,23 @@ description: "Open real application packages in faberlang/examples (AI Workbench
 | 2 | `vivilite` | Local mailspace / agent coordination CLI |
 | 3 | `coreutils` | Larger application campaign + parity harnesses |
 | 4 | `gpu-workload` | Systems / GPU rungs |
-| 5 | `corpus/` | Construct-level programs (also drives docs) |
+| 5 | `corpus/` | Construct-level programs |
 
 ## How to exercise
 
 ```bash
 git clone https://github.com/faberlang/examples.git
-# often also: git clone https://github.com/faberlang/norma.git
 faber check examples/ai-workbench/packages/faber-ai
 faber test examples/ai-workbench/packages/faber-ai
 ```
 
-Always read the package `README.md` for exact run arguments.
-
-## Site cross-links
-
-- AI Workbench: https://faberlang.dev/en-US/examples/faber-ai.html
-- Corpus hub: https://faberlang.dev/en-US/corpus/
-- Norma: https://faberlang.dev/en-US/libraries/norma.html
+Read the package `README.md` for exact run arguments.
 
 ## Related
 
+- https://faberlang.dev/agents/index.md
+- https://faberlang.dev/agents/packages.md
+- https://faberlang.dev/agents/libraries.md
 - skill: `packages`
 - skill: `corpus`
 - skill: `install`

@@ -1,6 +1,6 @@
 # GOAL: agent canon — plain Markdown an agent can fetch
 
-**Status**: active — unit 1 committed; units 2–6 pending
+**Status**: done — units 1–6 landed. The agent canon is `/agents/index.md`. Install pin is Faber 1.8.0. Publish by pushing `main`.
 **Created**: 2026-10-01
 **Campaign:** —
 **Source:** operator session 2026-10-01. People will hand an agent `faberlang.dev` and say "find the docs," not read the HTML themselves.
@@ -76,11 +76,11 @@ The `llms-full.txt` preamble is edited to match that pointer and to stop teachin
 | Unit | Scope | Depends on | Status |
 | --- | --- | --- | --- |
 | 1 | Spine. See below. | — | done |
-| 2 | `functions/{returns,borrows,async,entry}.md`, and the matching lines in `functions.md` | 1 | pending |
-| 3 | `types.md` plus `types/{widths,null,collections}.md`; `index.md` gains `types.md` | 1 | pending |
-| 4 | `errors.md` plus `errors/{failable,recovery,guards}.md`; `index.md` gains `errors.md` | 1 | pending |
-| 5 | The remaining single-file overviews in the table above; `index.md` gains each as it lands | 1 | pending |
-| 6 | Point `.well-known/agent-skills/` at `/agents/` and remove Latin samples there | 1 | pending |
+| 2 | `functions/{returns,borrows,async,entry}.md`, and the matching lines in `functions.md` | 1 | done |
+| 3 | `types.md` plus `types/{widths,null,collections}.md`; `index.md` gains `types.md` | 1 | done |
+| 4 | `errors.md` plus `errors/{failable,recovery,guards}.md`; `index.md` gains `errors.md` | 1 | done |
+| 5 | The remaining single-file overviews in the table above; `index.md` gains each as it lands. Also the `program.md` manifest, which `faber check .` now requires. | 1 | done |
+| 6 | Point `.well-known/agent-skills/` at `/agents/` and remove Latin samples there. Install pin matches Faber 1.8.0. | 1 | done |
 
 Units 2–5 may proceed in parallel after unit 1. They share `index.md` only when a unit adds its own overview line. Unit 2 edits `functions.md`, which unit 1 creates, so unit 2 waits. Units 3–5 do not edit `functions.md`.
 
@@ -127,12 +127,12 @@ Release: not-applicable. This repo publishes by pushing `main`; this goal does n
 
 | Unit | Status | Receipt |
 | --- | --- | --- |
-| 1 spine | done | 2026-10-01 commit; fences 3/3; agent-surface URLs 0 broken, 0 stubs |
-| 2 function children | pending | — |
-| 3 types | pending | — |
-| 4 errors | pending | — |
-| 5 remaining overviews | pending | — |
-| 6 skills | pending | — |
+| 1 spine | done | `f665e3349` |
+| 2 function children | done | 26 fences, 0 failed, with units 3–6 |
+| 3 types | done | 26 fences, 0 failed, with units 2 and 4–6 |
+| 4 errors | done | 26 fences, 0 failed, with units 2–3 and 5–6 |
+| 5 remaining overviews | done | 26 fences passed, 0 failed. Agent-surface URLs 414, 0 broken, 0 stubs. HTML scan 0 broken. `static/agents` matches `dist/agents`. `faber init` manifest: `faber check .` exits 0 and `faber run .` prints `Salve, munde!`. Modules package: check exits 0 with `WARN003`, run prints `Salve, Marcus!`. `norma:text` run prints `ba`. No Triga or Gradus import on `libraries.md`. |
+| 6 skills | done | Skills point at `/agents/index.md`. Install pin is Faber 1.8.0 with `bin/faber` and `share/faber`. No Latin sample. Same link gate: 414 URLs, 0 broken, 0 stubs. `static/.well-known/agent-skills` matches `dist/`. |
 
 ## Open questions
 

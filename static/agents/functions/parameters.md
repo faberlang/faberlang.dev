@@ -21,3 +21,4 @@ Do not write:
 A missing value is the type `int ∪ none`. The value itself is `null`.
 
 Parent: https://faberlang.dev/agents/functions.md
+Next: https://faberlang.dev/agents/functions/returns.md

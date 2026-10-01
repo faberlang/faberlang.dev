@@ -1,6 +1,6 @@
 ---
 name: "language"
-description: "Write and review Faber source: type-first declarations, Latin keywords, glyphs, nullability, comments, and HIR-as-truth."
+description: "Write Faber in the English reader spelling. Start at the agent canon and follow its links."
 ---
 
 # Faber language shape
@@ -9,55 +9,43 @@ description: "Write and review Faber source: type-first declarations, Latin keyw
 
 - writing or reviewing `.fab` source
 - translating an idea from another language into Faber
-- explaining diagnostics or teaching the grammar signals
+- explaining a diagnostic
 
 ## Authority
 
-Meaning lives in **HIR**. Keyword locales and codegen targets are renderings.
-Do not privilege English-like syntax that does not exist in Faber.
+Fetch https://faberlang.dev/agents/index.md and follow only the links that page names. Those pages are the writing guide. The programs there are English.
 
-## Signals (required)
+Meaning lives in HIR. A reader locale is a rendering of that core. One source file uses one pack.
+
+## Signals
 
 | Signal | Rule |
 |---|---|
-| Type-first | `textus nomen`, `numerus x` — type before name |
-| Functions | `functio name(params) → Ret { … }` |
+| Type-first | `string name`, `int n` |
+| Functions | `fn name(int a) → int` |
 | Bind | `←` |
 | Equality | `≡` |
-| Compact branch | `si cond ∴ body` |
-| Return | `redde expr` |
-| Nullable | `T ∪ nihil` |
-| Comments | `#` on its own line only — never `//` |
+| Return | `return` |
+| Nullable | `int ∪ none`, and the missing value is `null` |
+| Comments | a `#` line by itself |
 
-## Minimal example
+## Do not write
 
-```text
-functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ∴ redde nihil
-    redde a / b
-}
-```
+- `name: T`
+- `int?`
+- `//`
+- a `#` after code on the same line
 
-## Anti-patterns
+## Programs
 
-- Type-after-name (`nomen: textus`) as primary style
-- `//` or `/* */` comments
-- Inventing `?T` as the only nullability story without `∪ nihil`
-- C-style `return` keyword instead of `redde`
+- https://faberlang.dev/agents/program.md
+- https://faberlang.dev/agents/functions.md
+- https://faberlang.dev/agents/types.md
+- https://faberlang.dev/agents/errors.md
+- https://faberlang.dev/agents/grammar.md
 
-## Canonical docs (English tree)
+## Related
 
-- Syntax hub: https://faberlang.dev/en-US/language/
-- Types: https://faberlang.dev/en-US/language/types.html
-- Functions: https://faberlang.dev/en-US/language/functions.html
-- Nullability: https://faberlang.dev/en-US/language/types.html
-- Glyphs: https://faberlang.dev/en-US/language/glyphs.html
-- Features (Latin + glyphs): https://faberlang.dev/en-US/language/glyphs.html
-- Corpus lookup: https://faberlang.dev/en-US/corpus/
-- Language portal: https://faberlang.dev/
-
-## Related skills
-
-- `packages`
-- `corpus`
-- `examples`
+- skill: `packages`
+- skill: `corpus`
+- https://faberlang.dev/llms.txt

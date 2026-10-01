@@ -1,6 +1,7 @@
 # Program
 
-The smallest package that checks. Two files.
+The smallest package that checks. Two files. `faber init` writes this
+manifest; the name here is `salve-munde`.
 
 `faber.toml`:
 
@@ -8,6 +9,14 @@ The smallest package that checks. Two files.
 [package]
 name = "salve-munde"
 version = "0.1.0"
+edition = "2026"
+
+[paths]
+source = "src"
+entry = "main.fab"
+
+[build]
+kind = "bin"
 ```
 
 `src/main.fab`:
@@ -28,7 +37,7 @@ main {
 faber check .
 ```
 
-`faber check` is lexing, parsing, and type checking. It does not build a
-native binary.
+`faber check .` exits 0. It is lexing, parsing, and type checking. It does
+not build a native binary. `faber run .` prints `Salve, munde!`.
 
 Next: https://faberlang.dev/agents/functions.md

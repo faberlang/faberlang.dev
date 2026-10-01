@@ -1,6 +1,6 @@
 ---
 name: "packages"
-description: "Scaffold and drive Faber packages with faber check/build/run/test/format and faber.toml layout."
+description: "Scaffold and drive Faber packages with the faber init manifest and faber check, build, run, test, and format."
 ---
 
 # Faber packages
@@ -8,48 +8,53 @@ description: "Scaffold and drive Faber packages with faber check/build/run/test/
 ## Use this skill when
 
 - creating a new Faber package
-- running the check/build/test loop
-- wiring `faber.toml` and `src/` layout
+- running the check loop
+- wiring `faber.toml` and `src/`
 
 ## Layout
 
+`faber init` writes this manifest. The canon package name is `salve-munde`.
+
 ```text
-my-package/
+salve-munde/
   faber.toml
   src/
     main.fab
 ```
 
-Copy structure from a real package when unsure:
+```toml
+[package]
+name = "salve-munde"
+version = "0.1.0"
+edition = "2026"
 
-- https://github.com/faberlang/examples/tree/main/ai-workbench
-- https://github.com/faberlang/examples/tree/main/vivilite
+[paths]
+source = "src"
+entry = "main.fab"
+
+[build]
+kind = "bin"
+```
+
+A second source file is imported by path. See the modules page.
 
 ## Commands
 
 | Command | Purpose |
 |---|---|
-| `faber check <path>` | Type-check; no emit |
-| `faber build <path> -t rust` | Compile (default rust) |
-| `faber run <path>` | Build and execute |
-| `faber test <path>` | Run proba suites |
-| `faber format <path>` | Canonical format |
-| `faber explain <code>` | Explain a diagnostic |
-
-## Loop
-
-1. Edit source.
-2. `faber check <pkg>` until clean.
-3. On errors: `faber explain CODE` and fix source (do not weaken structure).
-4. `faber test <pkg>` when suites exist.
-5. `faber build <pkg> -t rust` for native output.
+| `faber check .` | Type-check. Exits 0 on the canon package. |
+| `faber run .` | Interpret. Prints `Salve, munde!` for that package. |
+| `faber build . -t rust` | Compile. Listed by `faber --help`. |
+| `faber test .` | Run proba suites. Listed by `faber --help`. |
+| `faber format .` | Format source. Listed by `faber --help`. |
+| `faber explain SEM010` | Explain a diagnostic. |
 
 ## Docs
 
-- https://faberlang.dev/en-US/toolchain/cli.html
-- https://faberlang.dev/en-US/toolchain/radix.html
-- https://faberlang.dev/en-US/toolchain/compiling.html
-- https://faberlang.dev/en-US/start/projects.html
+- https://faberlang.dev/agents/packages.md
+- https://faberlang.dev/agents/program.md
+- https://faberlang.dev/agents/modules.md
+- https://faberlang.dev/agents/check.md
 
 ## Related
 

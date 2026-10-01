@@ -1,46 +1,39 @@
 ---
 name: "corpus"
-description: "Look up language constructs via generated corpus pages and the examples/corpus source tree."
+description: "Look up a keyword in the generated catalog after the writing guide."
 ---
 
 # Faber language corpus
 
 ## Use this skill when
 
-- you need an example for a specific keyword, glyph, or construct
-- docs HTML is thin and you want source programs
-- generating or validating language-surface coverage
+- you need the catalog entry for a keyword, glyph, or construct
+- you want the page URL the catalog names
 
-## Surfaces
+## Write first
+
+Writing Faber starts at https://faberlang.dev/agents/index.md. Follow only the links that page names. Use the catalog after that, as a lookup list.
+
+## Lookup
 
 | Surface | URL |
 |---|---|
-| Generated docs hub (English) | https://faberlang.dev/en-US/corpus/ |
-| Example category index | https://faberlang.dev/en-US/corpus/category/function.html |
-| Source tree | https://github.com/faberlang/examples/tree/main/corpus |
-| Ecosystem note | https://faberlang.dev/en-US/libraries/corpus.html |
-| Machine index (all terms) | https://faberlang.dev/llms.txt |
+| Writing guide | https://faberlang.dev/agents/index.md |
+| Keyword catalog | https://faberlang.dev/llms-full.txt |
+| One term page the catalog names | https://faberlang.dev/en-US/corpus/fn.html |
+| Corpus index | https://faberlang.dev/en-US/corpus/index.html |
 
 ## How to look up a construct
 
-1. Guess the Latin or English term (e.g. `functio`, `si`, `redde`, `←`).
-2. Open `https://faberlang.dev/en-US/corpus/<term>.html` when known
-   (URL-encode special characters in the term).
-3. Or browse https://faberlang.dev/en-US/corpus/ and category pages.
-4. For source programs, open the matching directory under `examples/corpus/`.
-5. Other site locales mirror corpus under `/{locale}/corpus/` with the same
-   term set and locale-specific code samples.
+1. Read https://faberlang.dev/llms-full.txt.
+2. Use the English reader spelling the catalog entry names.
+3. Open the page URL in that entry.
+4. Source programs for the site live under https://github.com/faberlang/examples/tree/main/corpus.
 
-Example term page: https://faberlang.dev/en-US/corpus/fn.html
-
-## Notes
-
-- Corpus programs are the authority for construct shape used by the site generator.
-- Prefer corpus + syntax docs together over inventing syntax from memory.
-- Prefer `/en-US/corpus/…` over bare `/corpus/…` (the latter is a redirect stub).
+The catalog record for `fn` names https://faberlang.dev/en-US/corpus/fn.html.
 
 ## Related
 
 - skill: `language`
 - skill: `examples`
-- Syntax hub: https://faberlang.dev/en-US/language/
+- https://faberlang.dev/agents/grammar.md
