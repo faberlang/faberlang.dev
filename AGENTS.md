@@ -18,8 +18,12 @@ faberlang.dev/
   src/en-US/               English Markdown (sole prose authority)
   src/{locale}/            Per-locale Markdown (full-file copies; partial OK)
   static/                  Machine surfaces copied into dist/ as-is
-    llms.txt               Agent index (start here for models)
-    agents/index.md        Agent learning path
+    llms.txt               Short pointer. Models start here, then /agents/index.md
+    agents/                Plain Markdown canon. index.md is the fetch list.
+                           Overviews are agents/<topic>.md. A detail page is
+                           agents/<topic>/<slug>.md. Fences are English
+                           (`locale=en`). This tree is the writing contract,
+                           not a map of the HTML docs.
     .well-known/agent-skills/  Skill catalog + SKILL.md guides
     faber-demo-tabs.js     Progressive enhancer for .faber-demo-tabs code
                            cards

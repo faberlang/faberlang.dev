@@ -101,51 +101,45 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
     lines: list[str] = [
         "# Faber",
         "",
-        "Faber is a package-oriented programming language with a Latin behavioural",
-        "vocabulary, a small regular grammar, and a type-first static type system.",
-        "Source compiles through the Radix compiler to reviewable Rust and native",
-        "binaries. Meaning lives in a semantic core (HIR); every human-language",
-        "keyword surface and every codegen target is a rendering of that core.",
+        "Faber is a package-oriented programming language. Meaning lives in a",
+        "semantic core (HIR); reader locales and codegen targets are renderings",
+        "of that core. Write the English reader spelling unless asked otherwise.",
         "",
-        "This document is the machine-readable public entrypoint for agents.",
-        "It is generated during the site build from radix/corpus frontmatter.",
+        "The writing guide is https://faberlang.dev/agents/index.md.",
+        "Follow only /agents/ links from that page.",
+        "This file is the generated keyword catalog, not the writing guide.",
     ]
 
     write_section(lines, "Start here")
     lines.extend([
-        "1. Host: https://faberlang.dev — `/` is the language portal (locale chooser).",
-        "2. Full authored HTML docs: https://faberlang.dev/en-US/ (prefer this unless the user asked for another locale).",
-        "3. Read this file before editing Faber source or scaffolding packages.",
-        "4. Use corpus term links below for exact keyword, syntax, alias, and relation data.",
-        "5. Read https://faberlang.dev/agents/index.md for the agent learning path.",
-        "6. Read https://faberlang.dev/llms-full.txt for the generated keyword/category/alias catalog.",
-        "7. Choose focused skills from https://faberlang.dev/.well-known/agent-skills/index.json.",
-        "8. Other site locales (`/th-TH/`, `/zh-Hans/`, `/ar/`, …) ship full translated prose docs + localized chrome; code via each pack's reader locale.",
+        "1. Fetch https://faberlang.dev/agents/index.md and follow it.",
+        "2. Host: https://faberlang.dev. `/` is the product landing page. `/porta/` is the locale chooser.",
+        "3. The records below are a term lookup. They are not the writing guide.",
+        "4. Install from the block below. The human page is https://faberlang.dev/en-US/start/install.html.",
     ])
 
     write_section(lines, "Install")
     lines.extend([
-        "Current release: Faber 1.1.1",
+        "Current release: Faber 1.8.0",
         "",
-        "- Release: https://github.com/faberlang/releases/releases/tag/faber-v1.1.1",
-        "- macOS arm64: https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-aarch64-apple-darwin.tar.gz",
-        "- Linux x64: https://github.com/faberlang/releases/releases/download/faber-v1.1.1/faber-v1.1.1-x86_64-unknown-linux-gnu.tar.gz",
+        "- Release: https://github.com/faberlang/releases/releases/tag/faber-v1.8.0",
+        "- macOS arm64: https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-aarch64-apple-darwin.tar.gz",
+        "- Linux x64: https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-x86_64-unknown-linux-gnu.tar.gz",
         "- Human install page: https://faberlang.dev/en-US/start/install.html",
         "",
         "Minimal verify after install:",
         "",
         "```bash",
         "faber --version",
-        "faber explain SEM001",
         "```",
     ])
 
     write_section(lines, "Language shape")
     lines.extend([
-        "- Type-first bindings: `textus nomen` not `nomen: textus`.",
-        "- Latin behavioural words: `functio`, `genus`, `fixum`, `redde`, `si`, `itera`.",
-        "- Glyphs: `←` bind, `→` return type, `∴` compact branch, `≡` equality, `∪` union.",
-        "- Nullable: `T ∪ nihil`.",
+        "- Type-first bindings: `string name`, not `name: string`.",
+        "- English reader words: `fn`, `class`, `const`, `return`, `if`, `for`, `main`, `print`.",
+        "- Glyphs: `←` bind, `→` return type, `≡` equality, `∪` union.",
+        "- Nullable type: `T ∪ none`. Null value: `null`.",
         "- Comments: `#` only, on its own line. No `//`, no trailing `#`.",
         "- Packages: directory with `faber.toml` + `src/*.fab`.",
     ])

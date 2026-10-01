@@ -94,7 +94,11 @@ AGENT_SURFACES = (
     "agents/index.md",
     ".well-known/agent-skills/index.json",
 )
-AGENT_SURFACE_GLOBS = (".well-known/agent-skills/*/SKILL.md",)
+AGENT_SURFACE_GLOBS = (
+    ".well-known/agent-skills/*/SKILL.md",
+    "agents/*.md",
+    "agents/**/*.md",
+)
 
 # Placeholder URLs that teach a shape rather than naming a page.
 AGENT_URL_PLACEHOLDER = re.compile(r"[<{]")
