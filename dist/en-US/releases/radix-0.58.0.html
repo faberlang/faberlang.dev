@@ -5,32 +5,32 @@
 <span class="tok-fn">sudo</span> mv radix-v0.58.0-aarch64-apple-darwin/radix /usr/local/bin/
 <span class="tok-fn">radix</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><p>Minor release spanning <strong>24 non-merge commits</strong> (<code>v0.57.0..v0.58.0</code>).
 Introduces the <code>intervallum&lt;T&gt;</code> range primitive through its full Commit A–C
-sequence: construction, conversio clamp, materialization, algebra, instans
+sequence: construction, conversion clamp, materialization, algebra, instant
 bounds, and cross-stack type-system integration. Alongside the range work,
 exact-type equality reaches Commit C, scalar text ordering closes the
 comparison-gaps factory track, and the AI/ML foundation docs are restructured
 around <code>indexed-types</code>.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>24</td></tr><tr><td>Date span</td><td>2026-06-28 (single day)</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="intervallumt-range-primitive-commit-ac"><code>intervallum&lt;T&gt;</code> range primitive (Commit A–C)<a class="anchor" href="#intervallumt-range-primitive-commit-ac">#</a></h4><ul><li><strong>Commit A — type and construction:</strong> HIR <code>Intervallum</code> type node, parser
-grammar for half-open (<code>‥</code>) and inclusive (<code>…</code> / <code>usque</code>) range expressions,
+grammar for half-open (<code>‥</code>) and inclusive (<code>…</code> / <code>until</code>) range expressions,
 typecheck pass (<code>intervallum.rs</code>), codegen stubs across Rust/Go/TS/Faber,
 codegen refactor of iteration control to consume the new range IR, and
 <code>faber::Intervallum&lt;T&gt;</code> runtime carrier with <code>longitudo</code> and iterator traits.
-(<code>b8bdb4f81</code>)</li></ul><ul><li><strong>Commit B — conversio clamp, materialize, continet:</strong> Parser expands to
-<code>↦</code> conversio targets: <code>intervallum</code> → <code class="typ">int</code> (clamp), <code>intervallum</code> →
-<code>lista&lt;T&gt;</code> (materialize), <code>intervallum</code> → <code>intervallum</code> (range-to-range
-clamp). Intrinsic <code>continet</code> (point containment → <code class="typ">bool</code>). HIR nodes for
+(<code>b8bdb4f81</code>)</li></ul><ul><li><strong>Commit B — conversion clamp, materialize, continet:</strong> Parser expands to
+<code>↦</code> conversion targets: <code>intervallum</code> → <code>int</code> (clamp), <code>intervallum</code> →
+<code>list&lt;T&gt;</code> (materialize), <code>intervallum</code> → <code>intervallum</code> (range-to-range
+clamp). Intrinsic <code>continet</code> (point containment → <code>bool</code>). HIR nodes for
 clamp/conversio/materia, MIR lowering, all four codegen backends. Exempla
 corpus <code>intervallum/conversio.fab</code>. (<code>67e159921</code>)</li></ul><ul><li><strong>Materialize to 1-d tensor:</strong> Extends the materialize path (<code>intervallum ↦
 tensor&lt;T&gt;</code>) producing a 1-dimensional tensor from range bounds. Rust codegen
-and typecheck conversions, exempla and test coverage. (<code>2f035d853</code>)</li></ul><ul><li><strong>Commit C — range algebra, instans bounds:</strong> Intersection (<code>inter</code>) and union
+and typecheck conversions, exempla and test coverage. (<code>2f035d853</code>)</li></ul><ul><li><strong>Commit C — range algebra, instant bounds:</strong> Intersection (<code>between</code>) and union
 (<code>union</code>) intrinsics with inclusivity-propagating semantics (half-open
 preserves half-open, inclusive union requires both operands inclusive).
-<code class="typ">instant</code> (datetime) bound support in addition to <code class="typ">int</code>. Infallible clamp
-adjacent to fallible <code>inter</code>/<code>union</code> (return <code class="kw">nihil</code> on disjoint/gap).
+<code>instant</code> (datetime) bound support in addition to <code>int</code>. Infallible clamp
+adjacent to fallible <code>between</code>/<code>union</code> (return <code>none</code> on disjoint/gap).
 <code>faber::Instans</code> carrier hooks. Full intrinsic registry entries and design doc
 <code>docs/design/intervallum-intrinsics.md</code>. (<code>243d8424a</code>)</li></ul><ul><li><strong>Docs:</strong> Proposed range type renamed from placeholder to <code>intervallum&lt;T&gt;</code>
 across factory goals, comparison-operators design, and corda/conversio
 docs. (<code>371230541</code>)</li></ul><ul><li><strong>Stage 1 ledger and probes:</strong> 10 probe files covering iteration, inclusivity
-variants, binding inference, type rejection, reverse iteration, and textus
+variants, binding inference, type rejection, reverse iteration, and string
 slice-index. Ledger tracks each probe against the stage gates.
 (<code>a5a2edea3</code>)</li></ul><h4 id="exact-type-equality-commit-bc">Exact-type equality (Commit B–C)<a class="anchor" href="#exact-type-equality-commit-bc">#</a></h4><ul><li><strong>Commit B — exact-type equality:</strong> <code>equality_exact_types_test.rs</code> matrix (133
 lines) exercising equality across exact numeric and text types, separate from
@@ -39,7 +39,7 @@ guards. (<code>37594e2ae</code>)</li></ul><ul><li><strong>Commit C fallout close
 design, and <code>instans-intrinsics.md</code> updated for exact-type equality semantics.
 Ledger SHA anchors for Commit B/C. (<code>6ca197fbc</code>, <code>6360fef2a</code>)</li></ul><ul><li><strong>Polish:</strong> Extracted shared <code>infer.rs</code> equality helpers from <code>ops.rs</code>;
 factored <code>convert_test.rs</code> matrix into the dedicated test module.
-(<code>64d904bbd</code>, <code>b1afd9408</code>)</li></ul><h4 id="scalar-text-ordering-comparison-gaps-closeout">Scalar text ordering (comparison-gaps closeout)<a class="anchor" href="#scalar-text-ordering-comparison-gaps-closeout">#</a></h4><ul><li><strong>Faber runtime:</strong> <code class="typ">string</code> scalar <code>cmp</code> helper and matching test coverage.
+(<code>64d904bbd</code>, <code>b1afd9408</code>)</li></ul><h4 id="scalar-text-ordering-comparison-gaps-closeout">Scalar text ordering (comparison-gaps closeout)<a class="anchor" href="#scalar-text-ordering-comparison-gaps-closeout">#</a></h4><ul><li><strong>Faber runtime:</strong> <code>string</code> scalar <code>cmp</code> helper and matching test coverage.
 (<code>66667fa22</code>)</li></ul><ul><li><strong>Typecheck and codegen:</strong> Scalar text ordering typecheck probes and inference
 rules; Rust codegen emits <code>Ord::cmp</code> / <code>PartialOrd::partial_cmp</code> for text
 types. (<code>13dad17e3</code>, <code>751b0533c</code>)</li></ul><ul><li><strong>Chorda library:</strong> Interval helpers refactored with a shared

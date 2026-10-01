@@ -3,7 +3,7 @@
 dependency management, and the public package store.</p><h2 id="overview">Overview<a class="anchor" href="#overview">#</a></h2><p>Cista manages Faber packages defined by <code>faber.toml</code> manifests. Each
 package declares its name, entry point, target backend, and dependencies.</p><h2 id="manifest">Package manifest<a class="anchor" href="#manifest">#</a></h2><pre class="faber-code"><code class="lang-text">faber.toml
 
-[nomen]
+[name]
 speculum-gen
 
 [ingressus]
@@ -12,9 +12,9 @@ main.fab
 [scopulus]
 rust
 
-[genus]
-bin</code></pre><p>The <code>[nomen]</code> field is the package name, <code>[ingressus]</code> is the entry
-point module, <code>[scopulus]</code> selects the codegen target, and <code>[genus]</code>
+[class]
+bin</code></pre><p>The <code>[name]</code> field is the package name, <code>[ingressus]</code> is the entry
+point module, <code>[scopulus]</code> selects the codegen target, and <code>[class]</code>
 declares the package kind (<code>bin</code> for executables, <code>lib</code> for libraries).</p><h2 id="dependencies">Dependencies<a class="anchor" href="#dependencies">#</a></h2><p>Packages declare dependencies that Cista resolves from the package store.
 Dependency resolution produces a lock file that ensures reproducible
 builds.</p><h2 id="status">Status<a class="anchor" href="#status">#</a></h2><p>Cista is under active development. The public package registry

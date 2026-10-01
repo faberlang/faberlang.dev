@@ -6,10 +6,10 @@ sau đó mở một gói thực tế. Để đi theo lộ trình tuần tự, h�
 <a href="/vi/start/install.html">trang cài đặt</a>, xác minh checksum của tệp lưu trữ,
 sau đó đặt <code>bin/faber</code> từ các cây <code>bin/</code> và <code>share/</code> của tệp lưu trữ vào
 <code>PATH</code> của bạn (giữ các cây cùng nhau để các gói ngôn ngữ phân giải được). Xác nhận:</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> <span class="tok-op">--version</span></code></pre><h2 id="shape">2. Hình dạng của một hàm<a class="anchor" href="#shape">#</a></h2><p>Tham số ưu tiên kiểu, kiểu trả về bằng glyph, từ điều khiển Latin, hợp
-kiểu có thể là null:</p><pre class="faber-code"><code class="lang-text">functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
-    redde a / b
-}</code></pre><div class="table-scroll"><table><thead><tr><th>Tín hiệu</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td><code class="kw">hàm</code></td><td>Khai báo hàm</td></tr><tr><td><code>numerus a</code></td><td>Kiểu trước, tên sau</td></tr><tr><td><code>→</code></td><td>Kiểu trả về</td></tr><tr><td><code>∪ nihil</code></td><td>Có thể là null (<code>T ∪ nihil</code>)</td></tr><tr><td><code>si … ergo</code></td><td>Nhánh rút gọn</td></tr><tr><td><code class="kw">trả</code></td><td>Trả về</td></tr></tbody></table></div><h2 id="package">3. Bố cục gói<a class="anchor" href="#package">#</a></h2><p>Một gói là một thư mục có <code>faber.toml</code> và <code>src/</code>:</p><pre class="faber-code"><code class="lang-text">my-app/
+kiểu có thể là null:</p><pre class="faber-code"><code class="lang-text">hàm divide(số a, số b) → số ∪ rỗng_ty {
+    nếu b ≡ 0 do_đó trả rỗng_ty
+    trả a / b
+}</code></pre><div class="table-scroll"><table><thead><tr><th>Tín hiệu</th><th>Ý nghĩa</th></tr></thead><tbody><tr><td><code>hàm</code></td><td>Khai báo hàm</td></tr><tr><td><code>số a</code></td><td>Kiểu trước, tên sau</td></tr><tr><td><code>→</code></td><td>Kiểu trả về</td></tr><tr><td><code>∪ rỗng_ty</code></td><td>Có thể là null (<code>T ∪ rỗng_ty</code>)</td></tr><tr><td><code>nếu … do_đó</code></td><td>Nhánh rút gọn</td></tr><tr><td><code>trả</code></td><td>Trả về</td></tr></tbody></table></div><h2 id="package">3. Bố cục gói<a class="anchor" href="#package">#</a></h2><p>Một gói là một thư mục có <code>faber.toml</code> và <code>src/</code>:</p><pre class="faber-code"><code class="lang-text">my-app/
   faber.toml
   src/
     main.fab</code></pre><p>Các lệnh thường dùng:</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> check my-app/

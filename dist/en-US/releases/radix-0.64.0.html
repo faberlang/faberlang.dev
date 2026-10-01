@@ -3,22 +3,22 @@
 <span class="tok-fn">  https</span>://github.com/faberlang/releases/releases/download/radix-v0.64.0/radix-v0.64.0-aarch64-apple-darwin.tar.gz
 <span class="tok-fn">tar</span> <span class="tok-op">-xzf</span> radix.tgz
 <span class="tok-fn">sudo</span> mv radix-v0.64.0-aarch64-apple-darwin/radix /usr/local/bin/
-<span class="tok-fn">radix</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><p>A dense single-day release shipping <strong>live sermo directional views</strong>
-(<code>meus&lt;T&gt;</code>/<code>tuus&lt;T&gt;</code>), the <strong>tuus cursor Phase 2 escape analysis</strong>, <strong>radix type parameter domains</strong>, the full <strong>`sparsa` sparse tensor type</strong> through
-Phase G (docs/exempla), and the <strong>legacy ad syntax removal</strong> clean break.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>51</td></tr><tr><td><code>feat(...)</code> commits</td><td>2</td></tr><tr><td><code>fix(...)</code> commits</td><td>10</td></tr><tr><td>Date span</td><td>2026-07-01</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="live-sermo-directional-views-meust-tuust">Live sermo directional views (<code>meus&lt;T&gt;</code> / <code>tuus&lt;T&gt;</code>)<a class="anchor" href="#live-sermo-directional-views-meust-tuust">#</a></h4><ul><li>Ship <code>meus&lt;T&gt;</code> and <code>tuus&lt;T&gt;</code> as shared-conversation runtime views with
-<code>da</code>/<code>accipe</code>/<code class="typ">iterator</code>/<code>exhauri</code>/<code>fini</code>. Demote <code>meus</code>/<code>tuus</code> from lexer
+<span class="tok-fn">radix</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><p>A dense single-day release shipping <strong>live channel directional views</strong>
+(<code>send&lt;T&gt;</code>/<code>recv&lt;T&gt;</code>), the <strong>recv cursor Phase 2 escape analysis</strong>, <strong>radix type parameter domains</strong>, the full <strong>`sparsa` sparse tensor type</strong> through
+Phase G (docs/exempla), and the <strong>legacy call syntax removal</strong> clean break.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>51</td></tr><tr><td><code>feat(...)</code> commits</td><td>2</td></tr><tr><td><code>fix(...)</code> commits</td><td>10</td></tr><tr><td>Date span</td><td>2026-07-01</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="live-channel-directional-views-sendt-recvt">Live channel directional views (<code>send&lt;T&gt;</code> / <code>recv&lt;T&gt;</code>)<a class="anchor" href="#live-channel-directional-views-sendt-recvt">#</a></h4><ul><li>Ship <code>send&lt;T&gt;</code> and <code>recv&lt;T&gt;</code> as shared-conversation runtime views with
+<code>da</code>/<code>accipe</code>/<code class="typ">iterator</code>/<code>exhauri</code>/<code>fini</code>. Demote <code>send</code>/<code>recv</code> from lexer
 keywords to type names. Wire compiler typecheck and Rust lowering to
 <code>faber::frame</code> carriers. Add canonical exempla and updated frame-stream
-design docs. (<code>93dc76fe0</code>)</li><li>Retain tuus terminal status on accipe/cursor drain; make <code>tuus_cursor</code> a
-lazy iterator with per-frame for-loop codegen. (<code>202a977f0</code>)</li><li>Borrow directional view receivers and fix accipe scrinium data emit so
+design docs. (<code>93dc76fe0</code>)</li><li>Retain recv terminal status on accipe/cursor drain; make <code>tuus_cursor</code> a
+lazy iterator with per-frame for-loop codegen. (<code>202a977f0</code>)</li><li>Borrow directional view receivers and fix accipe frame data emit so
 chained calls compile. (<code>3fda96adc</code>)</li><li>Resolve frame builtins by <code>DefId</code> not <code>NameCatalog</code> for reliable type
 rendering and view dispatch. (<code>ec7a52fd8</code>)</li></ul><h4 id="tuus-cursor-values-phase-2-escape-diagnostics">Tuus cursor values (Phase 2 escape diagnostics)<a class="anchor" href="#tuus-cursor-values-phase-2-escape-diagnostics">#</a></h4><ul><li>Ship Phase 1 local bind and lazy bound iteration via <code>TuusCursor</code> metadata
 and <code>generate_local</code> hook. Reject unsupported cursor escapes (params,
-returns, copy, reassignment, conversio) in semantic analysis before codegen
+returns, copy, reassignment, conversion) in semantic analysis before codegen
 can eager-drain. (<code>0e509487d</code>, <code>64c7d6eca</code>)</li><li>Rewrite the escape pass on <code>HirVisitor</code> with parent-context stack, fixing
-traversal holes in Array/Tuple/Binary operands, <code class="kw">print</code>/<code class="typ">list</code> entries,
+traversal holes in Array/Tuple/Binary operands, <code>print</code>/<code>list</code> entries,
 and array literals. Allow <code>tuus.cursor()</code> in <code>IteraSource</code> for direct
-<code>itera ex</code> loops. (<code>99b58429f</code>, <code>4cd3c61c0</code>)</li><li>Close the live cursor factory goal with ledger and delivery spec
+<code>for from</code> loops. (<code>99b58429f</code>, <code>4cd3c61c0</code>)</li><li>Close the live cursor factory goal with ledger and delivery spec
 bookkeeping. (<code>399667483</code>, <code>fcf58a19b</code>, <code>337a8a2a8</code>)</li></ul><h4 id="type-parameter-domains">Type parameter domains<a class="anchor" href="#type-parameter-domains">#</a></h4><ul><li>Implement the <code>radix</code> type parameter domains system: parser syntax for
 domain annotations on generic parameters, HIR lowering, typecheck
 unification, and Rust codegen support. Add <code>solum-lege-generic</code> exemplar.
@@ -27,18 +27,18 @@ Lock architecture decisions and refine annotation syntax in design docs.
 as a sibling sparse tensor type with omitted-coordinates-equal-zero
 semantics. (<code>8b20b902d</code>)</li><li><strong>Phase B:</strong> Parser recognition (<code>TypeExprKind::Sparsa</code>), semantic
 <code>Type::Sparsa</code> variant, exhaustiveness across all IR/codegen/MIR/forma
-arms, and numeric-only v1 enforcement. (<code>df581ffc3</code>)</li><li><strong>Phase C:</strong> Runtime core — <code>faber::Sparsa&lt;T&gt;</code> with <code>vacua</code>, <code>accipe</code>,
-<code>ponde</code>, <code>nonnihil</code>, <code>densata</code> and 17 unit tests. (<code>d37b1d2f0</code>)</li><li><strong>Phase D:</strong> Intrinsic registration (<code>IntrinsicReceiver::Sparsa</code> with 6
+arms, and numeric-only v1 enforcement. (<code>df581ffc3</code>)</li><li><strong>Phase C:</strong> Runtime core — <code>faber::Sparsa&lt;T&gt;</code> with <code>empty</code>, <code>accipe</code>,
+<code>ponde</code>, <code>some</code>, <code>densata</code> and 17 unit tests. (<code>d37b1d2f0</code>)</li><li><strong>Phase D:</strong> Intrinsic registration (<code>IntrinsicReceiver::Sparsa</code> with 6
 methods), Rust codegen (real <code>faber::Sparsa&lt;T&gt;</code> emit), typecheck routing,
-and vacua literal resolution. (<code>878ec7ab4</code>, <code>1f98eb0ae</code>)</li><li>Fix 4 bugs: sparsa equality arm, vacua typecheck acceptance, densata
+and empty literal resolution. (<code>878ec7ab4</code>, <code>1f98eb0ae</code>)</li><li>Fix 4 bugs: sparsa equality arm, empty typecheck acceptance, densata
 zero-dim coordinate generation, and Go/TS fail-closed rejection.
 (<code>77adc5128</code>)</li><li>Tighten shape plumbing: extract standalone <code>codegen/rust/expr/call/sparsa.rs</code>
 module. (<code>bb9b214fb</code>); polish runtime lowering. (<code>31a32bc3d</code>)</li><li><strong>Phase E:</strong> Numeric type sugar (<code>sf32</code>, <code>si64[N]</code>) for sparsa shorthand.
 (<code>a12b1b73c</code>)</li><li><strong>Phase F:</strong> Conversio coverage — typecheck conversion rules and Rust
 codegen for sparsa-&gt;tensor and tensor-&gt;sparsar conversions.
-(<code>8ba98158b</code>, <code>73539bbaa</code>)</li><li><strong>Phase G:</strong> Exempla docs — full corpus fixtures (decl, access, conversio,
+(<code>8ba98158b</code>, <code>73539bbaa</code>)</li><li><strong>Phase G:</strong> Exempla docs — full corpus fixtures (decl, access, conversion,
 sugar, rejection cases) wired into the e2e test matrix for Rust, Go, TS,
-Sexp, and Wasm. (<code>9e50d4d14</code>)</li><li>Sparse tensor follow-up plan refined. (<code>33051ffd1</code>)</li></ul><h4 id="legacy-ad-syntax-removal">Legacy ad syntax removal<a class="anchor" href="#legacy-ad-syntax-removal">#</a></h4><ul><li>Hard-error statement-level ad, block <code>meus</code>/<code>tuus</code> arms, and <code>emitte</code> at
+Sexp, and Wasm. (<code>9e50d4d14</code>)</li><li>Sparse tensor follow-up plan refined. (<code>33051ffd1</code>)</li></ul><h4 id="legacy-call-syntax-removal">Legacy call syntax removal<a class="anchor" href="#legacy-call-syntax-removal">#</a></h4><ul><li>Hard-error statement-level call, block <code>send</code>/<code>recv</code> arms, and <code>emitte</code> at
 parse time. Delete legacy HIR/MIR/codegen paths (provider stmt lowering,
 <code>__faber_ad</code> shim) and block-only frame runtime helpers. Retire five legacy
 exempla fixtures; add <code>scripta/check-exempla-ad-canonical</code> guardrail.

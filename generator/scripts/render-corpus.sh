@@ -18,6 +18,11 @@ if [ ! -d "$CORPUS_DIR" ] && [ -d "${WORKSPACE_DIR}/../radix/corpus" ]; then
 fi
 BUILD_DIR="${GENERATOR_DIR}/target/faber"
 FABER="${FABER:-faber}"
+FABER_LOCALIZE="${FABER_LOCALIZE:-$FABER}"
+WORKSPACE_FABER="${WORKSPACE_DIR}/radix/target/release/faber"
+if [ -x "$WORKSPACE_FABER" ] && [ "$FABER_LOCALIZE" = "$FABER" ]; then
+    FABER_LOCALIZE="$WORKSPACE_FABER"
+fi
 
 TERM="${1:-}"
 OUTPUT="${2:-}"
@@ -42,10 +47,18 @@ echo "Building generator for corpus term $TERM..." >&2
 "$FABER" build "$GENERATOR_DIR" -t rust 2>/dev/null
 
 BUNDLE="${BUILD_DIR}/corpus-${TERM}.bundle"
-BUNDLE_PATH="$BUNDLE" CORPUS_DIR="$CORPUS_DIR" TERM="$TERM" python3 << 'PYEOF'
+BUNDLE_PATH="$BUNDLE" CORPUS_DIR="$CORPUS_DIR" TERM="$TERM" \
+READER_LOCALE="$READER_LOCALE" READER_ROOT="${WORKSPACE_DIR}/radix/locale" \
+GENERATOR_DIR="$GENERATOR_DIR" FABER_LOCALIZE="${FABER_LOCALIZE:-${FABER:-faber}}" python3 << 'PYEOF'
 import os
+import sys
 import tomllib
 from pathlib import Path
+sys.path.insert(0, str(Path(os.environ["GENERATOR_DIR"]) / "scripts"))
+from project_reader_terms import load_mapping, project_corpus_source
+reader = os.environ["READER_LOCALE"]
+mapping = load_mapping(Path(os.environ["READER_ROOT"]) / reader / "pack.toml") if reader != "la" else {}
+faber = os.environ["FABER_LOCALIZE"]
 
 corpus = Path(os.environ["CORPUS_DIR"])
 term = os.environ["TERM"]
@@ -69,6 +82,8 @@ for path in sorted(corpus.rglob("*.fab")):
         continue
     expected_path = path.with_suffix(".expected")
     expected = expected_path.read_text() if expected_path.exists() else ""
+    if reader != "la":
+        source = project_corpus_source(source, mapping, reader, faber)
     selected.append((not fields.get("canonical", False), str(path.relative_to(corpus.parent.parent)), source, expected))
 
 if not selected:

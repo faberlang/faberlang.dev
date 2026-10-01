@@ -56,6 +56,7 @@ if ! "$FABER_LOCALIZE" convert --help >/dev/null 2>&1; then
     echo "ERROR: ${FABER_LOCALIZE} does not support 'faber convert'" >&2
     exit 1
 fi
+export FABER_LOCALIZE
 # Provider manifests are in the container's hosts checkout. In a normal
 # checkout WORKSPACE_DIR is already the container root; in this workspace's
 # worktree layout, the container root is its parent.
@@ -187,6 +188,7 @@ render_locale() {
         localized_source="$(mktemp -d)"
         TEMPDIRS+=("$localized_source")
         "${SCRIPT_DIR}/localize-markdown.py" "$src" "$localized_source" --locale "$reader" --faber "$FABER_LOCALIZE"
+        python3 "${SCRIPT_DIR}/project-reader-terms.py" "$localized_source" --locale "$reader"
         render_source="$localized_source"
     fi
 

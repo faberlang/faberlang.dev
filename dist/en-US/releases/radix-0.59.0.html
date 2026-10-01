@@ -5,19 +5,19 @@
 <span class="tok-fn">sudo</span> mv radix-v0.59.0-aarch64-apple-darwin/radix /usr/local/bin/
 <span class="tok-fn">radix</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><p>Indexed tensor types land across eight stages: <code>tensor&lt;T, Figura&gt;</code> replaces the
 legacy bare tensor spelling with explicit shape expressions, shape holes (<code>_</code>),
-and constraint-based inference. The generics spine gates close: <code>prae typus</code> is
-replaced by angle-bracket <code>&lt;T, magnitudo N&gt;</code> syntax, and <code>magnitudo</code> is a keyword
+and constraint-based inference. The generics spine gates close: <code>prae type</code> is
+replaced by angle-bracket <code>&lt;T, magnitudo N&gt;</code> syntax, and <code>size</code> is a keyword
 for size parameters. The macOS-arm64 host carries frame data as <code>faber::Valor</code>.
 The release pipeline switches to a local Docker build lane and drops GitHub CI.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>36</td></tr><tr><td>Date span</td><td>2026-06-28 → 2026-06-28</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="indexed-tensor-types-tensort-figura-stages-18">Indexed tensor types: <code>tensor&lt;T, Figura&gt;</code> (Stages 1–8)<a class="anchor" href="#indexed-tensor-types-tensort-figura-stages-18">#</a></h4><ul><li><strong>Stage 1:</strong> Index term representation — add <code>IndexExpr</code>/<code>IndexId</code> arena in
 the semantic layer; extend <code>Type::Tensor</code> to carry a <code>Figura</code> index alongside
 the element type; legacy <code>tensor&lt;T&gt;</code> attaches an <code>Unspecified</code> bridge until
 grammar deployment. (<code>8b30eaec3</code>)</li><li><strong>Stage 2:</strong> Index unification engine with NumPy-style size-1 broadcast
-(e.g. <code>[N] + [N, 1] → [N, N]</code>); wire strict unify into tensor conversio
+(e.g. <code>[N] + [N, 1] → [N, N]</code>); wire strict unify into tensor conversion
 shape checks. (<code>ef9d3831a</code>)</li><li><strong>Stage 3:</strong> Index inference core with <code>solve</code> and <code>finalize</code> — constraint
 registration, deduplication, and shape hole resolution for tensor shapes.
 (<code>bd86bc12f</code>)</li><li><strong>Stage 4:</strong> <code>tensor&lt;T, Figura&gt;</code> grammar and shape holes — add <code>FiguraExpr</code>
 to the parser and AST; lower <code>Figura</code> into <code>IndexExpr</code>; require an explicit
-shape in tensor type spellings; rank-0 vacua uses <code>[]</code>; <code>_</code> marks infer
+shape in tensor type spellings; rank-0 empty uses <code>[]</code>; <code>_</code> marks infer
 holes. (<code>dfb4f22e5</code>)</li><li><strong>Stage 5:</strong> Deploy tensor shape inference at typecheck — wire index
 constraints from tensor intrinsics (<code>ex.lista</code>, <code>forma</code>, <code>crea</code>, <code>sectio</code>),
 literal shape witnesses, and <code>Type::Tensor</code> unification; fix per-tensor
@@ -27,19 +27,19 @@ arithmetic intrinsics via <code>tensor_method_requires_numeric_element</code>; r
 <code>tensor addita</code> with the operation gate. (<code>bf3e2ef9e</code>)</li><li><strong>Stage 7:</strong> Rust emit tensor Faber shape annotations — codegen keeps
 runtime <code>faber::Tensor&lt;T&gt;</code> carriers while attaching
 <code>tensor&lt;elem, Figura&gt;</code> comments from the semantic type table; add shared
-<code>format_faber_type</code> and <code>literal_index_i64s</code> helpers. (<code>96167dd57</code>)</li><li><strong>Stage 8:</strong> Migrate exempla to <code>tensor&lt;T, Figura&gt;</code> — update conversio and
+<code>format_faber_type</code> and <code>literal_index_i64s</code> helpers. (<code>96167dd57</code>)</li><li><strong>Stage 8:</strong> Migrate exempla to <code>tensor&lt;T, Figura&gt;</code> — update conversion and
 intervallum tensor exempla to indexed spellings; <code>shape.fab</code> uses explicit
 static Figura; add <code>tensor/textus.fab</code> for non-numeric elements; rename HAL
 <code>mensura</code> bindings; regenerate exempla index (240 files). (<code>5f09714b6</code>)</li><li>Close Gate 2: lock hole-and-unify index inference parallel to <code>Type::Infer</code>,
-no default Figura, engine-first staging with sugar deferred. (<code>cc638effe</code>)</li></ul><p><strong>Polish (indexed types):</strong></p><ul><li>Share tensor element-type diagnostic constant (<code>0a13a33d4</code>)</li><li>Reuse figura constant in tensor arity error (<code>3443060fe</code>)</li><li>Deduplicate tensor shape conversio diagnostic constant (<code>ee80e5014</code>)</li><li>Parser union flatten for tensor types (<code>0e9d1652a</code>)</li><li>Classify <code>index_infer</code> constraint errors (<code>a241167d6</code>)</li><li>Unify broadcast dim for literal one (<code>85a599681</code>)</li><li>Add <code>is_infer</code> helper and test for index exprs (<code>5f501a745</code>)</li><li>Resolve Figura diagnostics to use figura constants (<code>51e3c6e54</code>)</li><li>Figura lowering with shared index-param errors (<code>feac8b7ee</code>)</li><li>Syntax AST docs for <code>Figura</code> and <code>TypeExprKind</code> (<code>c2867ec9b</code>)</li></ul><h4 id="angle-bracket-generics-and-magnitudo-size-parameters">Angle-bracket generics and <code>magnitudo</code> size parameters<a class="anchor" href="#angle-bracket-generics-and-magnitudo-size-parameters">#</a></h4><p>Replace <code>prae typus</code> with angle-bracket <code>&lt;T, magnitudo N&gt;</code> syntax. Functions
+no default Figura, engine-first staging with sugar deferred. (<code>cc638effe</code>)</li></ul><p><strong>Polish (indexed types):</strong></p><ul><li>Share tensor element-type diagnostic constant (<code>0a13a33d4</code>)</li><li>Reuse figura constant in tensor arity error (<code>3443060fe</code>)</li><li>Deduplicate tensor shape conversion diagnostic constant (<code>ee80e5014</code>)</li><li>Parser union flatten for tensor types (<code>0e9d1652a</code>)</li><li>Classify <code>index_infer</code> constraint errors (<code>a241167d6</code>)</li><li>Unify broadcast dim for literal one (<code>85a599681</code>)</li><li>Add <code>is_infer</code> helper and test for index exprs (<code>5f501a745</code>)</li><li>Resolve Figura diagnostics to use figura constants (<code>51e3c6e54</code>)</li><li>Figura lowering with shared index-param errors (<code>feac8b7ee</code>)</li><li>Syntax AST docs for <code>Figura</code> and <code>TypeExprKind</code> (<code>c2867ec9b</code>)</li></ul><h4 id="angle-bracket-generics-and-size-size-parameters">Angle-bracket generics and <code>size</code> size parameters<a class="anchor" href="#angle-bracket-generics-and-size-size-parameters">#</a></h4><p>Replace <code>prae type</code> with angle-bracket <code>&lt;T, magnitudo N&gt;</code> syntax. Functions
 declare type and size parameters in <code>&lt;...&gt;</code> before value parameters; `prae
-typus<code> is rejected with a migration diagnostic. </code>magnitudo` becomes a keyword
+type<code> is rejected with a migration diagnostic. </code>size` becomes a keyword
 for explicit size-parameter prefix. Gate 1 of the indexed-types-foundation
 spine. (<code>4e2dabafd</code>)</p><h4 id="host-valor-frame-data-migration">Host Valor frame data migration<a class="anchor" href="#host-valor-frame-data-migration">#</a></h4><ul><li><strong>macOS-arm64:</strong> Replace <code>FrameData = serde_json::Map</code> with <code>faber::Valor</code>
 across the kernel; add <code>frame_data</code> construction helpers and <code>valor_wire</code>
 JSON transport encoding so the <code>Frame</code> envelope stays serializable without
 collapsing carrier and codec. (<code>d455db760</code>)</li><li>Migrate consolum arg projection, Wasm route stubs, and CLI JSON ingest onto
-Valor tabula helpers backed by <code>FromValor</code>. (<code>24d95637c</code>)</li><li>Record frame valor carrier correction and deferred wire codecs in docs.
+Valor map helpers backed by <code>FromValor</code>. (<code>24d95637c</code>)</li><li>Record frame value carrier correction and deferred wire codecs in docs.
 (<code>43783e74c</code>)</li></ul><h4 id="release-pipeline-local-docker-build-lane">Release pipeline: local Docker build lane<a class="anchor" href="#release-pipeline-local-docker-build-lane">#</a></h4><p>Replace GitHub Actions CI and release workflows with a local, Docker-based
 release build lane. Adds <code>packaging/docker/build-linux.Dockerfile</code> (one
 parametrized Linux image for x86_64 and aarch64), <code>scripta/release-build</code>
@@ -47,11 +47,11 @@ parametrized Linux image for x86_64 and aarch64), <code>scripta/release-build</c
 <code>gh</code>), and <code>.dockerignore</code>. Removes <code>.github/workflows/ci.yml</code> and
 <code>release.yml</code>. Extends <code>scripta/update-homebrew-faber</code> with the aarch64 Linux
 formula branch. (<code>517ee2e8d</code>)</p><h4 id="intervallum-polish">Intervallum polish<a class="anchor" href="#intervallum-polish">#</a></h4><ul><li>Narrow <code>longitudo</code> typecheck guard to reject non-numeric arguments earlier
-(<code>0675bd6da</code>)</li><li>Wire <code>longitudo</code> as a runtime <code class="typ">int</code> intrinsic (<code>44a2c187a</code>)</li><li>Polish intra continet Rust codegen (<code>b4435dd13</code>)</li><li>Clean up intrinsics module doc for intervallum (<code>159e7d6bc</code>)</li><li>Share intervallum bound diagnostic constant (<code>608d56c7b</code>)</li></ul><h4 id="fixes">Fixes<a class="anchor" href="#fixes">#</a></h4><ul><li>Restore unary parsing in range-bound factors — the intervallum precedence
+(<code>0675bd6da</code>)</li><li>Wire <code>longitudo</code> as a runtime <code>int</code> intrinsic (<code>44a2c187a</code>)</li><li>Polish within continet Rust codegen (<code>b4435dd13</code>)</li><li>Clean up intrinsics module doc for intervallum (<code>159e7d6bc</code>)</li><li>Share intervallum bound diagnostic constant (<code>608d56c7b</code>)</li></ul><h4 id="fixes">Fixes<a class="anchor" href="#fixes">#</a></h4><ul><li>Restore unary parsing in range-bound factors — the intervallum precedence
 refactor routed expression factors through <code>parse_postfix_inner</code> and skipped
-<code>parse_unary</code>, breaking <code>cede</code> and other prefix operators; route through
+<code>parse_unary</code>, breaking <code>yield</code> and other prefix operators; route through
 <code>parse_unary_inner</code> instead. (<code>7e9f600cd</code>)</li></ul><h4 id="chore-housekeeping">Chore / housekeeping<a class="anchor" href="#chore-housekeeping">#</a></h4><ul><li>Format workspace and clear clippy warnings — rustfmt drift from intervallum
-work; clippy lints in faber instans ordering, radix conversio codegen, and
-equality test cases. (<code>b972273c3</code>)</li><li>Regenerate exempla corpus index after exempla migration. (<code>90b367ab5</code>)</li><li>Polish conversio outcome and failable test formatting. (<code>2f799ce4b</code>)</li></ul><h4 id="documentation">Documentation<a class="anchor" href="#documentation">#</a></h4><ul><li>Tighten <code>AGENTS.md</code> for agent-facing brevity (75 insertions, 169 deletions).
+work; clippy lints in faber instant ordering, radix conversion codegen, and
+equality test cases. (<code>b972273c3</code>)</li><li>Regenerate exempla corpus index after exempla migration. (<code>90b367ab5</code>)</li><li>Polish conversion outcome and failable test formatting. (<code>2f799ce4b</code>)</li></ul><h4 id="documentation">Documentation<a class="anchor" href="#documentation">#</a></h4><ul><li>Tighten <code>AGENTS.md</code> for agent-facing brevity (75 insertions, 169 deletions).
 (<code>d6fe3d5f1</code>)</li><li>Document non-standard local release process in <code>AGENTS.md</code>. (<code>7afc367cd</code>)</li><li>Add factory recent-commit review campaign (<code>docs/factory/recent-commit-review-campaign.md</code>).
 (<code>987f6db6b</code>)</li></ul><p>---</p><p><a href="/en-US/releases/">All releases</a> · <a href="/en-US/start/install.html">Install the current release</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#install">Install this version</a></li><li class="toc-2"><a href="#notes">Release notes</a></li><li class="toc-3"><a href="#scale">Scale</a></li><li class="toc-3"><a href="#major-tracks">Major tracks</a></li></ul></div></nav></div></body></html>

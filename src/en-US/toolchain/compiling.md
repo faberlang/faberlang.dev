@@ -200,7 +200,7 @@ AIR (Autograd / AI Representation) is a pure-functional transform detour off
 the HIR → MIR path. It is entered by explicit annotation on individual
 functions:
 
-```faber locale=la
+```faber
 @ radix lane "air"
 functio loss(numerus predicted, numerus expected) → numerus {
     fixum numerus delta ← predicted - expected

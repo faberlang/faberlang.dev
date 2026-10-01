@@ -28,15 +28,15 @@ That is a complete, compilable package entry point. Reading it left to right:
 
 | Piece | What it is |
 |---|---|
-| `functio` | declares a function |
-| `numerus x` | **the type comes before the name** — always, everywhere |
-| `→ numerus` | the return type |
-| `si … ergo` | a compact single-branch conditional |
-| `redde` | return |
-| `incipit` | the program entry point, like `main` |
-| `fixum` | an immutable binding (`varia` is the mutable one) |
+| `fn` | declares a function |
+| `int x` | **the type comes before the name** — always, everywhere |
+| `→ int` | the return type |
+| `if … then` | a compact single-branch conditional |
+| `return` | return |
+| `main` | the program entry point |
+| `const` | an immutable binding (`var` is the mutable one) |
 | `←` | bind this value to that name |
-| `nota` | print |
+| `print` | print |
 
 ## Type before name, always {#type-first}
 
@@ -56,9 +56,10 @@ incipit {
 }
 ```
 
-There is no `let`, no `:`, and no type inference syntax to learn. A
-declaration is a type followed by a name, whether it is a parameter, a local,
-or a field. See [Types and values](/language/types.html).
+There is no `name: type` form to learn. A declaration is a type followed by a
+name, whether it is a parameter, a local, or a field. Bindings come in three
+words: `const` is write-once, `var` is freely reassignable, and `let` is the
+concise inferred immutable. See [Types and values](/language/types.html).
 
 ## Six glyphs, and what they mean {#glyphs}
 
@@ -79,24 +80,16 @@ Two more appear when you convert between types: `∷` for a compile-time
 ascription and `↦` for a runtime conversion that can fail. Full table in
 [Glyphs and Latin](/language/glyphs.html).
 
-## The words are Latin, the structure is not {#latin}
+## The words you write, and the compiler's Latin {#latin}
 
-`functio`, `redde`, `si`, `fixum` are Latin verbs and adjectives chosen so the
-keyword carries the behaviour. But the vocabulary is a **rendering**, not the
-language. The same program in the model-facing pack:
-
-```text
-fn saturate(int x) → int {
-    if x < 0 then return 0
-    if x > 255 then return 255
-    return x
-}
-```
-
-Identical program, identical semantics, different spelling. The glyphs and the
-type-first shape survive untouched. That is the point of
-[reader locales](/language/reader-locales.html) — and it is why identifiers
-like `saturate` are never translated.
+The words in the program above — `fn`, `if`, `return`, `const`, `int` — are
+the spellings an English reader writes; every page on this site teaches the
+English reader surface. Latin is the compiler's canonical form: the identity
+key programs are stored and exchanged under. `faber convert --to la` prints
+any program in that canonical spelling, and
+[reader locales](/language/reader-locales.html) render the same program in
+seven other languages. The glyphs and the type-first shape survive every
+rendering untouched — and identifiers like `saturate` are never translated.
 
 ## Where the rest lives {#deeper}
 
@@ -104,7 +97,7 @@ like `saturate` are never translated.
 |---|---|
 | [Types and values](/language/types.html) | primitives, collections, strings, nullability, conversion, bindings |
 | [Functions and control flow](/language/functions.html) | parameters, returns, branching, loops, generics |
-| [Errors and testing](/language/errors.html) | the `⇥` error channel, and inline `probandum`/`proba`/`adfirma` suites |
+| [Errors and testing](/language/errors.html) | the `⇥` error channel, and inline `describe`/`test`/`assert` suites |
 | [Glyphs and Latin](/language/glyphs.html) | the full glyph table, vocabulary rationale, canonical vs sugar |
 | [Reader locales](/language/reader-locales.html) | how one program renders in eight surfaces |
-| [Capabilities and frames](/language/capabilities.html) | `ad` dispatch and the host I/O boundary |
+| [Capabilities and frames](/language/capabilities.html) | `call` dispatch and the host I/O boundary |

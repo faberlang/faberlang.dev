@@ -4,29 +4,29 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Preferred stream posture — write `fiunt` for a synchronous stream or</span>
-<span class="tok-co">#     `fient` for an asynchronous stream.</span>
+<span class="tok-co">#   • Preferred stream posture — write `مولد` for a synchronous stream or</span>
+<span class="tok-co">#     `مولد_غيرمتزامن` for an asynchronous stream.</span>
 <span class="tok-co">#   • Compatibility annotation — `@ cursor` remains accepted and preserved as</span>
 <span class="tok-co">#     the legacy spelling for stream/generator posture.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Using `cede` outside a stream body — `cede` is valid only inside `fiunt`</span>
-<span class="tok-co">#     or `fient` bodies, including compatible `@ cursor` declarations.</span>
+<span class="tok-co">#   • Using `سلم` outside a stream body — `سلم` is valid only inside `مولد`</span>
+<span class="tok-co">#     or `مولد_غيرمتزامن` bodies, including compatible `@ cursor` declarations.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: fiunt, fient, cede</span>
+<span class="tok-co"># See also: مولد, مولد_غيرمتزامن, سلم</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># cursor — compatibility stream annotation</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
 <span class="tok-co">#   annotation :← '@' 'cursor'</span>
-<span class="tok-co">#   callablePosture :← 'fiunt' | 'fient'</span>
+<span class="tok-co">#   callablePosture :← 'مولد' | 'مولد_غيرمتزامن'</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Scalar stdout smoke (see body).</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># BACKEND:</span>
-<span class="tok-co">#   Cross-ref: futura/futura.fab, itera/cursor-iteratio.fab; Go whitelist: cursor/cursor.fab.</span>
+<span class="tok-co">#   Cross-ref: مستقبل/futura.fab, كرر/cursor-iteratio.fab; Go whitelist: cursor/cursor.fab.</span>
 <span class="tok-co">#</span>
 
 @ <span class="tok-kw">cursor</span> { }

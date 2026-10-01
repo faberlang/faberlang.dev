@@ -6,7 +6,7 @@
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • Expression assignment — `place ↤ value` converts `value` to the place's</span>
 <span class="tok-co">#     type through the existing `↦` route, then stores it exactly once.</span>
-<span class="tok-co">#   • Typed initialization — `fixum numerus n ↤ "42"` converts to the written</span>
+<span class="tok-co">#   • Typed initialization — `const int n ↤ "42"` converts to the written</span>
 <span class="tok-co">#     type, then initializes the binding.</span>
 <span class="tok-co">#   • Inline recovery — `place ↤ value ⊥ fallback` stores the fallback only</span>
 <span class="tok-co">#     when the conversion fails.</span>
@@ -14,35 +14,35 @@
 <span class="tok-co">#     stores each link.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • using `↤` when the destination type is inferred — `fixum _ x ↤ …` is</span>
+<span class="tok-co">#   • using `↤` when the destination type is inferred — `const _ x ↤ …` is</span>
 <span class="tok-co">#     rejected (no concrete conversion target).</span>
 <span class="tok-co">#   • `⊥` default on ordinary `←` — legal only on `↤`; `⇥` never takes a value.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: ←, ↦, ⊥, fixum, varia</span>
+<span class="tok-co"># See also: ←, ↦, ⊥, const, var</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">incipit</span> {
-<span class="tok-co">    # Expression assignment: "42" converts to numerus through the ↦ route.</span>
-    <span class="tok-kw">varia</span> <span class="tok-kw">numerus</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
+<span class="tok-kw">main</span> {
+<span class="tok-co">    # Expression assignment: "42" converts to int through the ↦ route.</span>
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
     count ↤ <span class="tok-st">"42"</span>
-    nota count
+    print count
 
 <span class="tok-co">    # Typed initialization: convert to the written type, then initialize.</span>
-    <span class="tok-kw">fixum</span> <span class="tok-kw">numerus</span> typed ↤ <span class="tok-st">"7"</span>
-    nota typed
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> typed ↤ <span class="tok-st">"7"</span>
+    print typed
 
-<span class="tok-co">    # Inline recovery: "x" cannot parse as numerus, so ⊥ 0 is stored.</span>
-    <span class="tok-kw">varia</span> <span class="tok-kw">numerus</span> recovered <span class="tok-op">←</span> <span class="tok-nu">0</span>
+<span class="tok-co">    # Inline recovery: "x" cannot parse as int, so ⊥ 0 is stored.</span>
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> recovered <span class="tok-op">←</span> <span class="tok-nu">0</span>
     recovered ↤ <span class="tok-st">"x"</span> ⊥ <span class="tok-nu">0</span>
-    nota recovered
+    print recovered
 
 <span class="tok-co">    # Right-associated chain: inner b converts first, then the inner result</span>
 <span class="tok-co">    # feeds the outer conversion into a. Both links store 42.</span>
-    <span class="tok-kw">varia</span> <span class="tok-kw">numerus</span> a <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">varia</span> <span class="tok-kw">numerus</span> b <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> a <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> b <span class="tok-op">←</span> <span class="tok-nu">0</span>
     a ↤ (b ↤ <span class="tok-st">"42"</span>)
-    nota a
-    nota b
+    print a
+    print b
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>42
 7
 0

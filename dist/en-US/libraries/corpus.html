@@ -4,13 +4,13 @@ directory per keyword, operator group, or language type surface. It is the
 development source for <code>faber explain</code> and the primary input for
 multi-target compile matrices.</p><h2 id="location">Location<a class="anchor" href="#location">#</a></h2><p>The corpus was split in Radix v0.79.0:</p><div class="table-scroll"><table><thead><tr><th>Content</th><th>Lives in</th></tr></thead><tbody><tr><td>Single-file language exempla (keywords, operators, types, concepts)</td><td><code>radix/corpus/</code></td></tr><tr><td>Package-shaped corpus fixtures</td><td><code>faber/corpus/</code></td></tr><tr><td>Application demos</td><td><code>examples/</code> (sibling dirs)</td></tr></tbody></table></div><p>The old <code>examples/corpus/</code> path is a redirect stub. The generated corpus
 pages on this site are built from <code>radix/corpus/</code>.</p><h2 id="stats">Stats<a class="anchor" href="#stats">#</a></h2><ul><li>304 <code>.fab</code> exemplar files</li><li>185 registry terms in <code>index.toml</code></li><li>~135 keyword and concept directories</li></ul><h2 id="layout">Layout<a class="anchor" href="#layout">#</a></h2><pre class="faber-code"><code>corpus/
-  functio/           # function keyword exemplars
-  genus/             # record type exemplars
-  si/                # conditional branch exemplars
-  itera/             # iteration exemplars
-  lista/ tabula/     # collection type exemplars
+  fn/           # function keyword exemplars
+  class/             # record type exemplars
+  if/                # conditional branch exemplars
+  for/             # iteration exemplars
+  list/ map/     # collection type exemplars
   tensor/ sparsa/    # tensor exemplars
-  ad/                # capability call exemplars
+  call/                # capability call exemplars
   operatores/        # glyph / operator groups
   ...
   index.toml         # generated explain manifest</code></pre><h2 id="file-format">File format<a class="anchor" href="#file-format">#</a></h2><p>Each <code>.fab</code> file begins with TOML frontmatter describing the term:</p><pre class="faber-code"><code class="lang-toml">+++
@@ -24,9 +24,9 @@ pages on this site are built from <code>radix/corpus/</code>.</p><h2 id="stats">
 <span class="tok-an">related</span> = [<span class="tok-st">"→"</span>, <span class="tok-st">"⇥"</span>, <span class="tok-st">"redde"</span>, <span class="tok-st">"sponte"</span>]
 +++
 
-functio saluta() {
-    nota <span class="tok-st">"Salve, Mundus!"</span>
-}</code></pre><h2 id="usage">Usage<a class="anchor" href="#usage">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> explain functio       # show keyword reference
+fn saluta() {
+    print <span class="tok-st">"Salve, Mundus!"</span>
+}</code></pre><h2 id="usage">Usage<a class="anchor" href="#usage">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> explain fn       # show keyword reference
 <span class="tok-fn">faber</span> explain ≡             # show glyph reference
 <span class="tok-fn">faber</span> explain <span class="tok-op">--search</span> query # search across corpus
 <span class="tok-fn">faber</span> explain <span class="tok-op">--list</span>         # list all terms</code></pre><h2 id="categories">Categories<a class="anchor" href="#categories">#</a></h2><p>Terms are organised by category: <code>function</code>, <code>control-flow</code>, <code>type</code>,

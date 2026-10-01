@@ -4,15 +4,15 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Type checking — `&lt;expr&gt; est &lt;type&gt;` tests a valor's runtime variant tag without extraction.</span>
+<span class="tok-co">#   • Type checking — `&lt;expr&gt; est &lt;type&gt;` tests a value's runtime variant tag without extraction.</span>
 <span class="tok-co">#   • Null checking — `&lt;expr&gt; est null` tests the null type (the null value is `null`).</span>
-<span class="tok-co">#   • Negation — `&lt;expr&gt; non est &lt;type&gt;` negates the type check.</span>
-<span class="tok-co">#   • Chaining — `est` composes with `et` and parenthesized expressions.</span>
+<span class="tok-co">#   • Negation — `&lt;expr&gt; is not &lt;type&gt;` negates the type check.</span>
+<span class="tok-co">#   • Chaining — `is` composes with `et` and parenthesized expressions.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Using `est` to compare values — its right-hand side is always a type; use `≡` (or `≠`) for value comparison: `&lt;expr&gt; ≡ verum`, `&lt;expr&gt; ≡ falsum`.</span>
+<span class="tok-co">#   • Using `is` to compare values — its right-hand side is always a type; use `≡` (or `≠`) for value comparison: `&lt;expr&gt; ≡ true`, `&lt;expr&gt; ≡ false`.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: non est, ≡</span>
+<span class="tok-co"># See also: is not, ≡</span>
 <span class="tok-co"># =============================================================================</span>
 
 
@@ -20,11 +20,11 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># &lt;expr&gt; est null       — null-type check (lowers to is_nil)</span>
 <span class="tok-co"># &lt;expr&gt; est &lt;type&gt;      — variant tag check (lowers to matches!)</span>
-<span class="tok-co"># &lt;expr&gt; non est &lt;type&gt;  — negated variant tag check</span>
+<span class="tok-co"># &lt;expr&gt; is not &lt;type&gt;  — negated variant tag check</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Value comparison is the equality family's job:</span>
-<span class="tok-co"># &lt;expr&gt; ≡ verum         — exact true comparison</span>
-<span class="tok-co"># &lt;expr&gt; ≡ falsum        — exact false comparison</span>
+<span class="tok-co"># &lt;expr&gt; ≡ true         — exact true comparison</span>
+<span class="tok-co"># &lt;expr&gt; ≡ false        — exact false comparison</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
 <span class="tok-co">#   typeCheckExpr :← expr 'est' type</span>
@@ -45,7 +45,7 @@
 
 <span class="tok-kw">main</span> {
 <span class="tok-co">    # Null checking with est</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> none forsitan <span class="tok-op">←</span> null
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> none forsitan <span class="tok-op">←</span> <span class="tok-kw">null</span>
     <span class="tok-kw">const</span> _ nihil_est <span class="tok-op">←</span> forsitan <span class="tok-kw">is</span> none
     print nihil_est
 
@@ -60,23 +60,23 @@
     print falsum_est
 
 <span class="tok-co">    # Chained with logical operators</span>
-    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> none nomen <span class="tok-op">←</span> null
-    <span class="tok-kw">const</span> _ defectum_debet <span class="tok-op">←</span> nomen <span class="tok-kw">is</span> none and enabled <span class="tok-op">≡</span> <span class="tok-kw">true</span>
+    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> none name <span class="tok-op">←</span> <span class="tok-kw">null</span>
+    <span class="tok-kw">const</span> _ defectum_debet <span class="tok-op">←</span> name <span class="tok-kw">is</span> none and enabled <span class="tok-op">≡</span> <span class="tok-kw">true</span>
     print defectum_debet
 
 <span class="tok-co">    # Parenthesized for clarity</span>
-    <span class="tok-kw">const</span> _ utraque_nihil <span class="tok-op">←</span> forsitan <span class="tok-kw">is</span> none and nomen <span class="tok-kw">is</span> none
+    <span class="tok-kw">const</span> _ utraque_nihil <span class="tok-op">←</span> forsitan <span class="tok-kw">is</span> none and name <span class="tok-kw">is</span> none
     print utraque_nihil
 
-<span class="tok-co">    # Dynamic ignotum dispatch for nihil and exact boolean checks on bivalens</span>
-    print explora(null)
+<span class="tok-co">    # Dynamic unknown dispatch for none and exact boolean checks on bool</span>
+    print explora(<span class="tok-kw">null</span>)
     print explora_bivalens(<span class="tok-kw">true</span>)
     print explora(<span class="tok-nu">42</span>)
 
 <span class="tok-co">    # --- Variant checks against concrete types ---</span>
 <span class="tok-co">    #</span>
-<span class="tok-co">    # `est &lt;type&gt;` tests a valor's runtime variant tag directly, without</span>
-<span class="tok-co">    # attempting extraction. The inner type parameters of lista/tabula are</span>
+<span class="tok-co">    # `est &lt;type&gt;` tests a value's runtime variant tag directly, without</span>
+<span class="tok-co">    # attempting extraction. The inner type parameters of list/tabula are</span>
 <span class="tok-co">    # not checked (width and element types are erased at Valor boxing time</span>
 <span class="tok-co">    # by design — see docs/factory/est-variant-check/goal.md).</span>
 

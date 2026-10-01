@@ -7,13 +7,13 @@
 <span class="tok-co">#   • Call default — `f(x) ⊥ v` gives `v` when `f` fails through its `⇥` channel, and the call's value otherwise.</span>
 <span class="tok-co">#   • Lazy default — `v` is evaluated only when the call fails.</span>
 <span class="tok-co">#   • Propagation versus default — inside a `⇥` function a bare failable call propagates; `⊥` handles the failure at the call site instead.</span>
-<span class="tok-co">#   • Traps are not caught — `⊥` catches only the `⇥` channel, never `mori` or runtime traps.</span>
+<span class="tok-co">#   • Traps are not caught — `⊥` catches only the `⇥` channel, never `崩潰` or runtime traps.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • Using `⊥` on a call that cannot fail — only a call whose signature has `⇥` takes a default.</span>
 <span class="tok-co">#   • Writing both — `f(x) ⊥ 0 ⇥ E` is rejected: one expression propagates or defaults, never both.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: ⊥, ⇥, iace, capta, mori</span>
+<span class="tok-co"># See also: ⊥, ⇥, 拋出, 陷阱, 崩潰</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># defectus — the call-site default channel (D17.7)</span>
@@ -29,8 +29,8 @@
 <span class="tok-co">#   2 -1</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># BACKEND:</span>
-<span class="tok-co">#   Desugars through the `capta` trap machinery; Go and TypeScript fail</span>
-<span class="tok-co">#   closed until they emit `capta`.</span>
+<span class="tok-co">#   Desugars through the `陷阱` trap machinery; Go and TypeScript fail</span>
+<span class="tok-co">#   closed until they emit `陷阱`.</span>
 
 fn half(int n) <span class="tok-op">→</span> int ⇥ string {
     if n <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≠</span> <span class="tok-nu">0</span> {

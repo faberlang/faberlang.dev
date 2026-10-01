@@ -7,7 +7,7 @@
 centerpiece, alongside a compiler-wide production function naming policy and
 several refactors that tighten the stepper containment boundary.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>15</td></tr><tr><td>Date span</td><td>2026-06-27 (single day)</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="tensor-and-sized-numeric-types-factory-stages-16">Tensor and sized numeric types (factory stages 1–6)<a class="anchor" href="#tensor-and-sized-numeric-types-factory-stages-16">#</a></h4><p>Six-stage factory campaign adding tensor types and width-parameterised numeric
 primitives to the compiler, runtime, and exempla suite.</p><ul><li><strong>Stage 1 — Spec merge</strong> (EBNF for tensor declarations, target-capability
-matrix, factory ledger/plan docs) (<code>4935b29a7</code>)</li><li><strong>Stage 2 — Sized numerus/fractus primitives</strong>: new <code>NumericWidth</code> type
+matrix, factory ledger/plan docs) (<code>4935b29a7</code>)</li><li><strong>Stage 2 — Sized int/fractus primitives</strong>: new <code>NumericWidth</code> type
 hierarchy, <code>sized-numerus</code> and <code>sized-family-error</code> exempla, codegen types
 across Rust/TS/Go/Faber emit surfaces (<code>4f948074f</code>)</li><li><strong>Stage 3 — Conversio width unify</strong>: HIR lowering and Rust codegen for
 conversions between sized numeric widths, plus typecheck conversion rules
@@ -22,7 +22,7 @@ tests, tensor exempla registered in <code>index.toml</code> (<code>3d39a4526</co
 Rust/TS/Go/Faber, HIR/MIR lowering, semantic passes — to enforce a consistent
 production function naming convention. Includes a Python audit script
 (<code>scripta/audit-radix-fn-naming.py</code>) and documented policy in
-<code>docs/compiler-engineering-rules.md</code> (<code>879058689</code>).</p><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li><strong>Host trait containment</strong>: route <code>processus.{lege,scribe,sedes,muta}</code> and
+<code>docs/compiler-engineering-rules.md</code> (<code>879058689</code>).</p><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li><strong>Host trait containment</strong>: route <code>processus.{read,write,sedes,muta}</code> and
 <code>identitas.pid</code> through the <code>Host</code> trait. <code>StdioHost</code> wraps real process
 env/cwd; <code>BufferHost</code> uses an in-memory sandbox so test and exempla runs
 never touch the real process environment. Drops five <code>std::env/std::process</code>
@@ -35,10 +35,10 @@ exhaustive pass (<code>3c41f7611</code>)</li><li><strong>FRN naming completion</
 helpers to <code>*_dynamic_valor*</code> to match the runtime type they describe.
 The case-sensitive FRN grep gate missed the snake_case residue
 (<code>10ab08dec</code>)</li><li><strong>Naming ledger tidying</strong>: drop stale <code>#[allow(dead_code)]</code> on
-<code>MirNames::value</code>; clarify <code>NameCatalog::iter</code> doc comment (<code>068fdc754</code>)</li><li><strong>Fix omnia mixed-arm catchall evasion (DEFER-028)</strong>: the omnia catchall
+<code>MirNames::value</code>; clarify <code>NameCatalog::iter</code> doc comment (<code>068fdc754</code>)</li><li><strong>Fix all mixed-arm catchall evasion (DEFER-028)</strong>: the all catchall
 detection used <code>all()</code> instead of <code>any()</code>, letting a mixed arm like
-<code>casu A, _</code> slip through unflagged. Fix the quantifier and add a regression
+<code>case A, _</code> slip through unflagged. Fix the quantifier and add a regression
 test (<code>1faba7e75</code>)</li><li><strong>`.gitignore` guardrail</strong>: add <code>/*.rs</code> to block accidental root-level
 Rust emit artifacts from <code>faber emit</code> (<code>24fc5e1a1</code>)</li><li><strong>Doc corrections</strong>: add missing <code>ex.series</code> method to census-types plan;
-fix banned colon-type syntax and missing <code>ignotum</code> assignability in clavis
+fix banned colon-type syntax and missing <code>unknown</code> assignability in clavis
 goal docs (<code>b03d644a5</code>)</li></ul><p>---</p><p><a href="/en-US/releases/">All releases</a> · <a href="/en-US/start/install.html">Install the current release</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#install">Install this version</a></li><li class="toc-2"><a href="#notes">Release notes</a></li><li class="toc-3"><a href="#scale">Scale</a></li><li class="toc-3"><a href="#major-tracks">Major tracks</a></li><li class="toc-3"><a href="#other-changes">Other changes</a></li></ul></div></nav></div></body></html>

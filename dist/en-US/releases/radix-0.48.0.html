@@ -9,11 +9,11 @@ helpers, semantic validators extract shared logic, and the e2e harness lands a
 all within a single ~15-minute window.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>25</td></tr><tr><td>Date span</td><td>2026-06-25 17:48 → 2026-06-25 18:03 EDT</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="mir-lowering-modules">MIR lowering modules<a class="anchor" href="#mir-lowering-modules">#</a></h4><ul><li><code>mir/lower.rs</code>: extract shared callable body lowering helper, reducing
 duplication across the main lower entry point (<code>4071866cc</code>)</li><li><code>mir/lower/callable.rs</code>: dedup <code>emit_call</code> for function and value callees —
 one path for both dispatch forms (<code>bb6e3af2e</code>)</li><li><code>mir/lower/runtime.rs</code>: share HIR call-arg lowering helper between runtime and
-non-runtime lower sites (<code>d9e15df0b</code>)</li><li><code>mir/lower/async_surface.rs</code>: document the <code>cede</code> lowering surface contract
-(<code>babe03931</code>)</li><li><code>mir/lower/provider.rs</code>: document the <code>ad</code> binding contract and its lowering
+non-runtime lower sites (<code>d9e15df0b</code>)</li><li><code>mir/lower/async_surface.rs</code>: document the <code>yield</code> lowering surface contract
+(<code>babe03931</code>)</li><li><code>mir/lower/provider.rs</code>: document the <code>call</code> binding contract and its lowering
 invariants (<code>758111f6a</code>)</li><li><code>mir/lower/collection_higher_order.rs</code>: module-level docs and if-block hygiene
 for collection higher-order lowerings (<code>c24b45778</code>)</li><li><code>mir/validate.rs</code>: dedup duplicate local-id diagnostics, collapsing repeated
-error paths (<code>7a46b458f</code>)</li></ul><h4 id="validators-and-semantic-passes">Validators and semantic passes<a class="anchor" href="#validators-and-semantic-passes">#</a></h4><ul><li><code>semantic/passes/typecheck/convert.rs</code>: extract regex conversio validator into
+error paths (<code>7a46b458f</code>)</li></ul><h4 id="validators-and-semantic-passes">Validators and semantic passes<a class="anchor" href="#validators-and-semantic-passes">#</a></h4><ul><li><code>semantic/passes/typecheck/convert.rs</code>: extract regex conversion validator into
 its own helper, isolating conversion validation from general type-checking
 (<code>f4355cc9f</code>)</li><li><code>semantic/passes/borrow.rs</code>: extract callee signature lookup into a shared
 helper used by both borrow-check branches (<code>47e1309b55</code>)</li><li><code>semantic/passes/definite_assignment.rs</code>: guard early-return paths to prevent
@@ -27,9 +27,9 @@ guard, and extracted MIR test module with dedicated test file
 (<code>c2f52e1cb</code>)</li><li><code>exempla_e2e/wasm_external.rs</code>: dedup the instantiation probe assembly
 (wasm-bindgen-style extern blocks) into a shared helper (<code>79fb81562</code>)</li><li><code>exempla_e2e/llvm</code>: module-level docs and run-probe constructor helpers for
 the LLVM e2e fixture layer (<code>911995179</code>)</li><li>Close out the <code>rust-codegen-smoke-check</code> factory goal (<code>6734f213d</code>)</li></ul><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li><code>parser/stmt.rs</code>: dedup mutability parsing paths and align transfer-statement
-documentation (<code>12df6fa0d</code>)</li><li><code>hir/lower/stmt.rs</code>: dedup <code class="kw">switch</code> variant lowering across
+documentation (<code>12df6fa0d</code>)</li><li><code>hir/lower/stmt.rs</code>: dedup <code>switch</code> variant lowering across
 if-let / while-let / for patterns; add statement-lower module docs
-(<code>1d6bc72b4</code>)</li><li><code>hir/nodes.rs</code>: clarify HIR variant docs for dispatch and <code>ad</code> nodes
+(<code>1d6bc72b4</code>)</li><li><code>hir/nodes.rs</code>: clarify HIR variant docs for dispatch and <code>call</code> nodes
 (<code>150aedbf0</code>)</li><li><code>codegen/go/expr/convert.rs</code>: final pipeline-polish touch to close the loop
 (<code>52eac17dd</code>)</li><li><code>docs(scripta)</code>: track compiler-pipeline polish progress, record subagent
 containment rules, and update the polish-loop file list (<code>d85b87758</code>,

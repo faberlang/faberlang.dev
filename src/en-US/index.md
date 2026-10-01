@@ -3,7 +3,6 @@ title = "Faber"
 section = ""
 order = 0
 sources = []
-translate_spans = false  # prose names the Latin vocabulary as Latin
 +++
 
 **Faber** is a developer tool for writing typed compute programs that remain
@@ -104,7 +103,7 @@ Radix is the compiler component behind the Faber binary product.
 | | |
 |---|---|
 | **Paradigm** | Package-oriented; semantic staging |
-| **Typing** | Static, type-first; nullable via `T ∪ nihil` |
+| **Typing** | Static, type-first; nullable via `T ∪ none` |
 | **Glyphs** | `← → ∴ ≡ ∪ ⇥` |
 | **Designed by** | Ian Zepp |
 | **First appeared** | 2025 |
@@ -153,12 +152,12 @@ the current support boundary.
 
 The language makes three deliberate signal choices that work together:
 
-- **Type-first declarations** — shape reads toward binding: `textus nomen`,
-  not `nomen: textus`.
-- **Latin behavioural words** — declarations, statements, and lifecycle:
-  `functio`, `genus`, `fixum`, `redde`, `si`.
+- **Type-first declarations** — shape reads toward binding: `string name`,
+  not `name: string`.
+- **Behavioural words** — declarations, statements, and lifecycle:
+  `fn`, `class`, `const`, `return`, `if`.
 - **Structural glyphs** — value flow and type joints: `←` (bind), `→`
-  (return type), `∴` (clausura joint), `≡` (equality), `∪` (union).
+  (return type), `∴` (closure joint), `≡` (equality), `∪` (union).
 
 The result is source with stable grammatical shape that can be reviewed,
 transformed, and lowered without losing the reader's sense of intent.
@@ -166,7 +165,7 @@ transformed, and lowered without losing the reader's sense of intent.
 ## GPU device execution {#gpu-device-execution}
 
 Faber now runs device programs on real GPUs. A package carries a device
-program when its source declares an `@ nucleum` compute kernel and its
+program when its source declares a compute kernel with `@ kernel` and its
 manifest declares a `[device]` section; the packaged image embeds Metal MSL
 and CUDA PTX artifacts, each with a provenance hash. `faber run` selects the
 backend explicitly and fails closed with a stable code rather than silently
@@ -222,9 +221,9 @@ complete program and the meaning of every token in it.
 ## Quick example {#quick-example}
 
 A simple function demonstrating key Faber patterns — type-first
-parameters, glyph return type, nullable union, Latin control words:
+parameters, glyph return type, nullable union, and control flow:
 
-```text
+```faber
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
     si b ≡ 0 ergo redde nihil
     redde a / b
@@ -233,12 +232,13 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 
 ## Live rendering {#live-rendering}
 
-The divide function above is rendered in the Latin pack by default. The
-compiler can render the same program in eight reader locales — English,
-Latin, Thai, Simplified Chinese, Traditional Chinese, Arabic, Hindi, and
-Vietnamese — each remapping keywords and types (Latin is the classical
-surface; others remap to that language) while glyphs and identifiers remain
-unchanged. This is not a translation layer applied to the page; it is the
+The divide function above renders in your reader locale — the English
+reader spelling on this page. The compiler can render the same program in
+eight reader locales — English, Latin, Thai, Simplified Chinese,
+Traditional Chinese, Arabic, Hindi, and Vietnamese — each remapping
+keywords and types (Latin is the canonical compiler surface; the others
+render the same program in that language) while glyphs and identifiers
+remain unchanged. This is not a translation layer applied to the page; it is the
 same mechanism the compiler uses to produce localized source.
 
 See the [reader locale](/language/reader-locales.html) documentation for

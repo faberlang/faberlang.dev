@@ -3,35 +3,35 @@
 language-level changes including a <strong>breaking</strong> modifier syntax migration,
 contextual keyword resolution, and new test-hook keywords.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>16</td></tr><tr><td>Date span</td><td>2025-12-30 → 2025-12-31</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="bootstrap-phase-5-typescript-faber-ast-port">Bootstrap Phase 5 — TypeScript → Faber AST port<a class="anchor" href="#bootstrap-phase-5-typescript-faber-ast-port">#</a></h4><p>The bootstrap compiler (<code>fons-fab/</code>) tracks all 92 TypeScript AST types as
 native Faber definitions across expressia, sententia, and lexema surfaces.</p><ul><li>Adds <code>positio</code> (position) and <code>lexema</code> (token) types plus a Zig codegen fix
-for enum member naming (<code>2f1782649</code>)</li><li>Renames AST files to Latin and adds <code>radix/expressia/{nomen,littera}</code> —
+for enum member naming (<code>2f1782649</code>)</li><li>Renames AST files to Latin and adds <code>radix/expressia/{name,char}</code> —
 identifier and literal types (<code>2e9eae7e9</code>)</li><li>Completes the expressia subtree: <code>operatio</code> (binary), <code>vocatio</code> (call),
 <code>collectio</code> (collection), <code>lambda</code>, and <code>index</code> (<code>e0340a42f</code>)</li><li>Latinizes all bootstrap AST type names, field names, and enums across
-expressia, lexema, positio, and radix (<code>d4fd17697</code>)</li><li>Adds all sententia (statement) types: functio, genus, actio, discretio,
-error, imperium, ordo, proba, varia (<code>51c64cd5d</code>)</li><li>Fills remaining expressia gaps: <code>ObiectumForma</code>, <code>CatenaExpressia</code>,
+expressia, lexema, positio, and radix (<code>d4fd17697</code>)</li><li>Adds all sententia (statement) types: fn, class, actio, union,
+error, command, enum, test, var (<code>51c64cd5d</code>)</li><li>Fills remaining expressia gaps: <code>ObiectumForma</code>, <code>CatenaExpressia</code>,
 <code>PraefixumExpressia</code> (<code>561dc8846</code>)</li><li>Implements the bootstrap <code>Lexor</code> (tokenizer) module with keyword lookup,
 error codes, and a <code>lexare()</code> entry point; fixes Zig <code>getCurator()</code> default
 from throwing to returning <code>'alloc'</code> (<code>78d91db90</code>)</li><li>Documents bootstrap patterns and adds inline code comments to the lexor
 (<code>b85a7703a</code>)</li><li>Adds Phase 5 bootstrap analysis with effort estimates, structural
-challenges, and blocking issues to <code>consilia/bootstrap.md</code> (<code>b99ed3735</code>)</li></ul><h4 id="language-postfix-function-modifiers-and-curata-keyword">Language: postfix function modifiers and <code>curata</code> keyword<a class="anchor" href="#language-postfix-function-modifiers-and-curata-keyword">#</a></h4><p><strong>BREAKING:</strong> Function modifiers (<code>futura</code>, <code class="typ">iterator</code>) move from prefix to
-postfix position — declarations now start with <code class="kw">fn</code> uniformly.</p><pre class="faber-code"><code class="lang-text"># Before
-futura functio fetch(url) -&gt; Response
+challenges, and blocking issues to <code>consilia/bootstrap.md</code> (<code>b99ed3735</code>)</li></ul><h4 id="language-postfix-function-modifiers-and-curata-keyword">Language: postfix function modifiers and <code>curata</code> keyword<a class="anchor" href="#language-postfix-function-modifiers-and-curata-keyword">#</a></h4><p><strong>BREAKING:</strong> Function modifiers (<code>future</code>, <code class="typ">iterator</code>) move from prefix to
+postfix position — declarations now start with <code>fn</code> uniformly.</p><pre class="faber-code"><code class="lang-text"># Before
+future fn fetch(url) -&gt; Response
 
 # After
-functio fetch(url) futura -&gt; Response</code></pre><p>Adds the <code>curata</code> modifier for allocator-managed functions. A function
+fn fetch(url) future -&gt; Response</code></pre><p>Adds the <code>curata</code> modifier for allocator-managed functions. A function
 declared <code>curata alloc</code> receives an allocator bound to the given name; call
 sites must be inside a <code>cura</code> block. (<code>14bb1368d</code>)</p><h4 id="language-contextual-keyword-resolution">Language: contextual keyword resolution<a class="anchor" href="#language-contextual-keyword-resolution">#</a></h4><p>Implements the <code>reserved-conflicts.md</code> design: keywords are accepted as
 identifiers in positions where context disambiguates intent — field names in
-genus declarations, parameter names, loop variables, catch parameters,
-discerne variant bindings, lambda parameters, and object keys. Structural
-contexts (statement start, declarations) remain strict. (<code>b4011e2e7</code>)</p><h4 id="test-syntax-praepara-postpara-test-hooks">Test syntax: <code>praepara</code> / <code>postpara</code> test hooks<a class="anchor" href="#test-syntax-praepara-postpara-test-hooks">#</a></h4><p>Replaces the overloaded <code>cura</code> test-hook keywords (<code>cura ante</code>, <code>cura post</code>)
-with dedicated <code>praepara</code> / <code>postpara</code> keyword pairs. Adds <code>-bit</code> suffix for
-async variants (<code>praeparabit</code>, <code>postparabit</code>). <code>cura</code> is now resource-
+class declarations, parameter names, loop variables, catch parameters,
+match variant bindings, lambda parameters, and object keys. Structural
+contexts (statement start, declarations) remain strict. (<code>b4011e2e7</code>)</p><h4 id="test-syntax-setup-teardown-test-hooks">Test syntax: <code>setup</code> / <code>teardown</code> test hooks<a class="anchor" href="#test-syntax-setup-teardown-test-hooks">#</a></h4><p>Replaces the overloaded <code>cura</code> test-hook keywords (<code>cura before</code>, <code>cura post</code>)
+with dedicated <code>setup</code> / <code>teardown</code> keyword pairs. Adds <code>-bit</code> suffix for
+async variants (<code>async_setup</code>, <code>async_teardown</code>). <code>cura</code> is now resource-
 management only. Updates all codegen targets (TS, Python, Rust, C++, Zig,
 Faber). (<code>5dc13f073</code>)</p><p>Corresponding bootstrap AST rename: <code>CuraMassa</code> → <code>PraeparaMassa</code> with a
-<code>PraeparaTempus</code> enum (<code>c3987f751</code>).</p><h4 id="zig-codegen-selfalloc-pattern-for-collection-fields">Zig codegen: <code>self.alloc</code> pattern for collection fields<a class="anchor" href="#zig-codegen-selfalloc-pattern-for-collection-fields">#</a></h4><p>Structs with <code class="typ">list</code>/<code class="typ">map</code>/<code class="typ">set</code> fields automatically add an
+<code>PraeparaTempus</code> enum (<code>c3987f751</code>).</p><h4 id="zig-codegen-selfalloc-pattern-for-collection-fields">Zig codegen: <code>self.alloc</code> pattern for collection fields<a class="anchor" href="#zig-codegen-selfalloc-pattern-for-collection-fields">#</a></h4><p>Structs with <code>list</code>/<code>map</code>/<code>set</code> fields automatically add an
 <code>alloc: std.mem.Allocator</code> field, <code>init()</code> takes an allocator as the first
 parameter, and methods use <code>self.alloc</code> for collection operations.
 (<code>1a4793b02</code>)</p><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li>Simplifies bootstrap field names from compound workarounds to plain
-identifiers (e.g. <code>typusAdnotatio</code> → <code>typus</code>) now that contextual keyword
+identifiers (e.g. <code>typusAdnotatio</code> → <code>type</code>) now that contextual keyword
 resolution is available (<code>450f054a3</code>)</li><li>Removes <code>consilia/futura/reserved-conflicts.md</code> — its design has been
 implemented in commit <code>b4011e2</code> (<code>1ac7617c8</code>)</li></ul><p>---</p><p><a href="/en-US/releases/">All releases</a> · <a href="/en-US/start/install.html">Install the current release</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#install">Install this version</a></li><li class="toc-2"><a href="#notes">Release notes</a></li><li class="toc-3"><a href="#scale">Scale</a></li><li class="toc-3"><a href="#major-tracks">Major tracks</a></li><li class="toc-3"><a href="#other-changes">Other changes</a></li></ul></div></nav></div></body></html>

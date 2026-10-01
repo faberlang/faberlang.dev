@@ -9,7 +9,7 @@ and the <strong>MIR LLVM campaign</strong> (Stages 0–2 establishing the shared
 pre-emission capability vocabulary and runtime-boundary classification
 ledger).</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>30</td></tr><tr><td>Date span</td><td>2026-07-01 (single day)</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="file-namespace-visibility-and-imports">File namespace visibility and imports<a class="anchor" href="#file-namespace-visibility-and-imports">#</a></h4><p>Ship the <code>file-namespace-imports</code> factory goal across three milestones,
 closing the gap between kernel-glob re-export semantics and proper
-package/library namespace routing.</p><ul><li><strong>Enforce file namespace export visibility.</strong> <code>publica</code>/<code>protecta</code>
+package/library namespace routing.</p><ul><li><strong>Enforce file namespace export visibility.</strong> <code>public</code>/<code>protected</code>
 annotations on declarations within imported file namespaces gate access;
 the visibility annotation pass resolves each scope decision against the
 import binding. (<code>176b9b99c</code>)</li><li><strong>Wire public library namespace reexports.</strong> Library packages now
@@ -17,12 +17,12 @@ propagate re-exported items through <code>library_interface_items</code>, extend
 the existing kernel-glob precedent to the package boundary.
 (<code>c60fa4042</code>)</li><li><strong>Preserve library import visibility.</strong> The import graph tracks each
 binding's original visibility so downstream packages see the intended
-surface. (<code>b3f0d611e</code>)</li><li><strong>Support type-only file namespace imports.</strong> Syntax (<code>importa Type ex
+surface. (<code>b3f0d611e</code>)</li><li><strong>Support type-only file namespace imports.</strong> Syntax (<code>import Type from
 lib:mod</code>), parser, HIR lowering, and resolver accept qualified type-only
 imports alongside value imports. (<code>bc1fc658a</code>)</li><li><strong>Lower local file namespace calls.</strong> Rust codegen emits cross-namespace
 calls through the import-params seam, routing qualified function
-references through the correct module path. (<code>744ee8866</code>)</li><li><strong>Reserve protecta visibility annotation.</strong> EBNF, semantic pass, and
-exempla register <code>protecta</code> as the file-private visibility specifier.
+references through the correct module path. (<code>744ee8866</code>)</li><li><strong>Reserve protected visibility annotation.</strong> EBNF, semantic pass, and
+exempla register <code>protected</code> as the file-private visibility specifier.
 (<code>27e89d50d</code>)</li></ul><p>Supporting fixes in the same area:</p><ul><li>Preserve local namespace import identity through codegen and semantic
 resolution. (<code>4c2c11f08</code>)</li><li>Resolve local file namespace types with correct type-path construction.
 (<code>ad28ddab3</code>)</li><li>Count qualified type namespace imports as used (fixes spurious
@@ -43,14 +43,14 @@ verdict) and an LLVM pre-emission classifier that rejects structurally
 known-unsupported programs with classified diagnostics before deep emit
 runs. Wasm is the reciprocal design client. (<code>8cb157283</code>)</li><li><strong>Campaign routing refined.</strong> Stage goals renumbered 00–10 and routing
 rationalized across the MIR LLVM campaign. (<code>e8c0cf32c</code>)</li><li><strong>Debt ratchet.</strong> Unsupported diagnostic ceiling raised 5→6
-(<code>conversio/fallibilis.fab</code> hits the existing <code>try_call</code> MIR-to-LLVM gap,
+(<code>conversion/fallibilis.fab</code> hits the existing <code>try_call</code> MIR-to-LLVM gap,
 tracked to Stage 8). (<code>098686c38</code>)</li><li><strong>Staging gate refreshed.</strong> <code>llvm-staging-gate.sh</code> pins stable
 floor/ceiling annotations instead of drifting exact ratios.
 (<code>a7f23b012</code>)</li><li><strong>Delivery spec corrected.</strong> Stage 2 delivery spec synced to as-built
 code (infallible visitor, no callee pre-classification, deviation log).
 (<code>8615b2e28</code>)</li></ul><h4 id="canonical-faber-emit-in-radix">Canonical Faber emit in radix<a class="anchor" href="#canonical-faber-emit-in-radix">#</a></h4><ul><li>Move canonical Faber emit from <code>forma</code> into <code>radix::codegen::faber</code>,
 exposing <code>--emit faber</code> through the <code>radix</code> CLI's compile command. The
-<code>forma</code> crate retains its transform-only role. (<code>f0a1810ed</code>)</li></ul><h4 id="morphologia-cleanup">Morphologia cleanup<a class="anchor" href="#morphologia-cleanup">#</a></h4><ul><li>Clean up <code>morphologia</code> intrinsic surfaces: <code class="kw">nihil</code>, <code>insum</code>,
+<code>forma</code> crate retains its transform-only role. (<code>f0a1810ed</code>)</li></ul><h4 id="morphologia-cleanup">Morphologia cleanup<a class="anchor" href="#morphologia-cleanup">#</a></h4><ul><li>Clean up <code>morphologia</code> intrinsic surfaces: <code>none</code>, <code>insum</code>,
 <code>exsero</code>/<code>exime</code>, JSON/YAML conversion methods, and the MIR dump/stepper
 representations. Deprecates the old <code>mixed-case-naming-debt.md</code> design
 doc. (<code>5676d700e</code>)</li></ul><h4 id="stdlib-directory-module-pattern">Stdlib directory module pattern<a class="anchor" href="#stdlib-directory-module-pattern">#</a></h4><ul><li>Split <code>caelum.fab</code> into sub-modules (<code>terminus</code>, <code>connexus</code>,

@@ -47,7 +47,7 @@ faber explain SEM001
 
 ## Generated corpus frontmatter reference
 
-- Distinct frontmatter terms: 249
+- Distinct frontmatter terms: 254
 - Canonical term pages: 207
 - Alias spellings: 129
 - Categories: 47
@@ -1076,8 +1076,8 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `insere`
 - Kind: keyword
 - Category: comptime
-- Summary: Embeds a package file into a static at build time.
-- Syntax: `static <type> <name> = embed "<path>"`
+- Summary: Embeds a package file into a module constant at build time.
+- Syntax: `const <type> <name> = embed "<path>"`
 - Aliases: none
 - Related: `generis`, `textus`, `octeti`, `praefixum`
 - Page: https://faberlang.dev/en-US/corpus/embed.html
@@ -1388,8 +1388,8 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `mutabilitas`
 - Kind: concept
 - Category: type
-- Summary: MU-1 baseline: shallow const list mutation stays legal.
-- Syntax: `const list<int> xs`
+- Summary: MU-1 baseline narrowed by tcs1: in-place list mutation requires a var binding.
+- Syntax: `var list<int> xs`
 - Aliases: none
 - Related: `fixum`, `lista`
 - Page: https://faberlang.dev/en-US/corpus/mutabilitas.html
@@ -1416,7 +1416,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `nihil`
 - Aliases: none
 - Related: `∪`, `sponte`, `nihil`
-- Page: https://faberlang.dev/en-US/corpus/nihil.html
+- Page: https://faberlang.dev/en-US/corpus/null.html
 - Source: radix/corpus/literalia/nihil.fab
 
 #### `non`
@@ -1628,8 +1628,8 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `praefixum`
 - Kind: keyword
 - Category: comptime
-- Summary: Computes a static's value at build time.
-- Syntax: `static <type> <name> = comptime { … return <value> }`
+- Summary: Computes a module constant's value at build time.
+- Syntax: `const <type> <name> = comptime { … return <value> }`
 - Aliases: none
 - Related: `generis`, `insere`, `redde`
 - Page: https://faberlang.dev/en-US/corpus/comptime.html

@@ -9,7 +9,6 @@ sources = [
   "radix/docs/stdlib/morphologia.md",
   "radix/docs/stdlib/caelum-module-structure.md",
 ]
-translate_spans = false  # prose names the Latin vocabulary as Latin
 +++
 
 Norma is Faber's standard library. It provides Latin-named modules accessed
@@ -19,7 +18,7 @@ sibling `norma` repository. Norma is a platform default — apps use it without
 declaring it in `faber.toml` `[dependencies]`.
 
 Modules marked **native** ship real Faber bodies today; **deferred** modules
-are declared with `mori` stubs pending implementation; **target** modules are
+are declared with `panic` stubs pending implementation; **target** modules are
 committed in target form and do not compile yet.
 
 ## Modules {#modules}
@@ -71,33 +70,34 @@ subdirectory is a separately importable module:
 
 ## Morphologia naming convention {#morphologia-naming-convention}
 
-Norma follows the morphologia policy for all method names. Latin verb
-conjugation carries execution mode; number carries flow. Two axes compose:
+Norma follows the morphologia policy for all method names. Verb form carries
+execution mode; number carries flow. Two axes compose:
 **time × flow** (sync/async × finite/stream) and **ownership** (mutate vs
 copy-out).
 
 Callable posture is a signature slot: bare means synchronous finite,
-`fiet` an asynchronous finite function, `fiunt` a synchronous stream,
-`fient` an asynchronous stream. `@ futura` / `@ cursor` remain accepted
-compatibility spellings, but the posture words are the canonical surface.
+`async` an asynchronous finite function, `generator` a synchronous stream,
+`async_generator` an asynchronous stream. `@ future` / `@ cursor` remain
+accepted compatibility spellings, but the posture words are the canonical
+surface.
 
 | Stem | Sync | Async | Meaning |
 |------|------|-------|---------|
-| `leg-` | `lege` | `leget` | Read |
-| `scrib-` | `scribe` | `scribet` | Write |
-| `quaer-` | — | `quaeret` | Query (finite) |
-| `quaer-` | — | `quaerent` | Query (stream) |
+| `read-` | `read_file` | `read_file_async` | Read |
+| `write-` | `write_file` | `write_file_async` | Write |
+| `query-` | — | `query` | Query (finite) |
+| `query-` | — | `query_stream` | Query (stream) |
 
 Ownership pairs (mutate vs copy-out):
 
 | Mutate | Copy-out | Meaning |
 |--------|----------|---------|
-| `adde` | `addita` | Add |
-| `inverte` | `inversa` | Reverse |
-| `filtra` | `filtrata` | Filter |
+| `add` | `added` | Add |
+| `reverse` | `invert` | Reverse |
+| `sort` | `sorted` | Sort |
 
-Async finite verbs return `promissum<T>`; async streams yield values through
-`cede`. The `pange` / `solve` / `tempta` mechanical trio covers wire encode /
+Async finite verbs return `promise<T>`; async streams yield values through
+`yield`. The `pange` / `solve` / `tempta` mechanical trio covers wire encode /
 decode across `json`, `toml`, `yaml`, `csv`, and `chorda`.
 
 ## Usage {#usage}

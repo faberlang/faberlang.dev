@@ -6,43 +6,43 @@
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • Expression assignment — `place ↤ value` converts `value` to the place's</span>
 <span class="tok-co">#     type through the existing `↦` route, then stores it exactly once.</span>
-<span class="tok-co">#   • Typed initialization — `fixum numerus n ↤ "42"` converts to the written</span>
+<span class="tok-co">#   • Typed initialization — `स्थिर संख्या n ↤ "42"` converts to the written</span>
 <span class="tok-co">#     type, then initializes the binding.</span>
 <span class="tok-co">#   • Inline recovery — `place ↤ value ⊥ fallback` stores the fallback only</span>
-<span class="tok-co">#     when the conversion fails.</span>
+<span class="tok-co">#     when the बदलें fails.</span>
 <span class="tok-co">#   • Right-associated chains — `a ↤ b ↤ "42"` converts inner-to-outer and</span>
 <span class="tok-co">#     stores each link.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • using `↤` when the destination type is inferred — `fixum _ x ↤ …` is</span>
-<span class="tok-co">#     rejected (no concrete conversion target).</span>
+<span class="tok-co">#   • using `↤` when the destination type is inferred — `स्थिर _ x ↤ …` is</span>
+<span class="tok-co">#     rejected (no concrete बदलें target).</span>
 <span class="tok-co">#   • `⊥` default on ordinary `←` — legal only on `↤`; `⇥` never takes a value.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: ←, ↦, ⊥, fixum, varia</span>
+<span class="tok-co"># See also: ←, ↦, ⊥, स्थिर, चर</span>
 <span class="tok-co"># =============================================================================</span>
 
-incipit {
-<span class="tok-co">    # Expression assignment: "42" converts to numerus through the ↦ route.</span>
-    varia numerus count <span class="tok-op">←</span> <span class="tok-nu">0</span>
+<span class="tok-kw">आरंभ</span> {
+<span class="tok-co">    # Expression assignment: "42" converts to संख्या through the ↦ route.</span>
+    <span class="tok-kw">चर</span> <span class="tok-kw">संख्या</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
     count ↤ <span class="tok-st">"42"</span>
-    nota count
+    <span class="tok-kw">दिखाओ</span> count
 
 <span class="tok-co">    # Typed initialization: convert to the written type, then initialize.</span>
-    fixum numerus typed ↤ <span class="tok-st">"7"</span>
-    nota typed
+    <span class="tok-kw">स्थिर</span> <span class="tok-kw">संख्या</span> typed ↤ <span class="tok-st">"7"</span>
+    <span class="tok-kw">दिखाओ</span> typed
 
-<span class="tok-co">    # Inline recovery: "x" cannot parse as numerus, so ⊥ 0 is stored.</span>
-    varia numerus recovered <span class="tok-op">←</span> <span class="tok-nu">0</span>
+<span class="tok-co">    # Inline recovery: "x" cannot parse as संख्या, so ⊥ 0 is stored.</span>
+    <span class="tok-kw">चर</span> <span class="tok-kw">संख्या</span> recovered <span class="tok-op">←</span> <span class="tok-nu">0</span>
     recovered ↤ <span class="tok-st">"x"</span> ⊥ <span class="tok-nu">0</span>
-    nota recovered
+    <span class="tok-kw">दिखाओ</span> recovered
 
 <span class="tok-co">    # Right-associated chain: inner b converts first, then the inner result</span>
-<span class="tok-co">    # feeds the outer conversion into a. Both links store 42.</span>
-    varia numerus a <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    varia numerus b <span class="tok-op">←</span> <span class="tok-nu">0</span>
+<span class="tok-co">    # feeds the outer बदलें into a. Both links store 42.</span>
+    <span class="tok-kw">चर</span> <span class="tok-kw">संख्या</span> a <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    <span class="tok-kw">चर</span> <span class="tok-kw">संख्या</span> b <span class="tok-op">←</span> <span class="tok-nu">0</span>
     a ↤ (b ↤ <span class="tok-st">"42"</span>)
-    nota a
-    nota b
+    <span class="tok-kw">दिखाओ</span> a
+    <span class="tok-kw">दिखाओ</span> b
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>42
 7
 0

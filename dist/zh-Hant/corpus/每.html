@@ -8,17 +8,17 @@
 <span class="tok-co">#   • Custom step sizes — Unlike the default step of 1, `per 2` iterates over even numbers only.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Confusing `per` (range step) with `perge` (continue) — they are unrelated keywords.</span>
+<span class="tok-co">#   • Confusing `每` (range step) with `繼續` (continue) — they are unrelated keywords.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: ante, usque</span>
+<span class="tok-co"># See also: 之前, 直到</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># per — step size for range iteration</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># itera ab &lt;initium&gt;‥&lt;finis&gt; per &lt;gradus&gt; &lt;var&gt; { … }   -- half-open range step</span>
+<span class="tok-co"># 遍歷 範圍 &lt;initium&gt;‥&lt;finis&gt; per &lt;gradus&gt; &lt;var&gt; { … }   -- half-open range step</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   iterStmt :← 'itera' 'ab' expr '‥' expr 'per' expr binding block</span>
+<span class="tok-co">#   iterStmt :← '遍歷' '範圍' expr '‥' expr 'per' expr binding block</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   0, 2, 4, 6 (step by 2 over 0‥8).</span>

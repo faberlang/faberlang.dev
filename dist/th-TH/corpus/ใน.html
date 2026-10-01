@@ -5,12 +5,12 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • Marks a mutable borrowed parameter.</span>
-<span class="tok-co">#   • Related keywords: de, ex</span>
+<span class="tok-co">#   • Related keywords: จาก, ออก</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Mode mismatch — passing a `de` (read-only) value to an `in` position, or using `in` to mutate a parameter declared as `de` (SEM057).</span>
+<span class="tok-co">#   • Mode mismatch — passing a `จาก` (read-only) value to an `ใน` position, or using `ใน` to mutate a parameter declared as `จาก` (SEM057).</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: de, ex</span>
+<span class="tok-co"># See also: จาก, ออก</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># in — value parameter passing mode</span>
@@ -22,15 +22,15 @@
 <span class="tok-co">#   Scalar stdout smoke (see body).</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># BACKEND:</span>
-<span class="tok-co">#   Cross-ref: functio/in-ex.fab.</span>
+<span class="tok-co">#   Cross-ref: ฟังก์ชัน/in-ex.fab.</span>
 <span class="tok-co">#</span>
 
-fn summa(mut list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> values) <span class="tok-op">→</span> int {
+fn ผลรวม(mut list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> values) <span class="tok-op">→</span> int {
     return values.sum()
 }
 
 main {
     const _ xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    print summa(xs)
+    print ผลรวม(xs)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>6
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusininfab-canonical-keyword">radix/corpus/in/in.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/in/in.fab&quot;]</li></ul></div></footer></div></body></html>

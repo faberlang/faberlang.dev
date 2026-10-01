@@ -4,15 +4,15 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Type checking — `&lt;expr&gt; est &lt;type&gt;` tests a valor's runtime variant tag without extraction.</span>
+<span class="tok-co">#   • Type checking — `&lt;expr&gt; est &lt;type&gt;` tests a 动态值's runtime variant tag without extraction.</span>
 <span class="tok-co">#   • Null checking — `&lt;expr&gt; est null` tests the null type (the null value is `null`).</span>
-<span class="tok-co">#   • Negation — `&lt;expr&gt; non est &lt;type&gt;` negates the type check.</span>
-<span class="tok-co">#   • Chaining — `est` composes with `et` and parenthesized expressions.</span>
+<span class="tok-co">#   • Negation — `&lt;expr&gt; 非 est &lt;type&gt;` negates the type check.</span>
+<span class="tok-co">#   • Chaining — `是` composes with `et` and parenthesized expressions.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Using `est` to compare values — its right-hand side is always a type; use `≡` (or `≠`) for value comparison: `&lt;expr&gt; ≡ verum`, `&lt;expr&gt; ≡ falsum`.</span>
+<span class="tok-co">#   • Using `是` to compare values — its right-hand side is always a type; use `≡` (or `≠`) for value comparison: `&lt;expr&gt; ≡ 真`, `&lt;expr&gt; ≡ 假`.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: non est, ≡</span>
+<span class="tok-co"># See also: 非 est, ≡</span>
 <span class="tok-co"># =============================================================================</span>
 
 
@@ -20,11 +20,11 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># &lt;expr&gt; est null       — null-type check (lowers to is_nil)</span>
 <span class="tok-co"># &lt;expr&gt; est &lt;type&gt;      — variant tag check (lowers to matches!)</span>
-<span class="tok-co"># &lt;expr&gt; non est &lt;type&gt;  — negated variant tag check</span>
+<span class="tok-co"># &lt;expr&gt; 非 est &lt;type&gt;  — negated variant tag check</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Value comparison is the equality family's job:</span>
-<span class="tok-co"># &lt;expr&gt; ≡ verum         — exact true comparison</span>
-<span class="tok-co"># &lt;expr&gt; ≡ falsum        — exact false comparison</span>
+<span class="tok-co"># &lt;expr&gt; ≡ 真         — exact true comparison</span>
+<span class="tok-co"># &lt;expr&gt; ≡ 假        — exact false comparison</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
 <span class="tok-co">#   typeCheckExpr :← expr 'est' type</span>
@@ -60,23 +60,23 @@ main {
     print falsum_est
 
 <span class="tok-co">    # Chained with logical operators</span>
-    const string <span class="tok-op">∪</span> none nomen <span class="tok-op">←</span> null
-    const _ defectum_debet <span class="tok-op">←</span> nomen is none and enabled <span class="tok-op">≡</span> true
+    const string <span class="tok-op">∪</span> none <span class="tok-kw">名称</span> <span class="tok-op">←</span> null
+    const _ defectum_debet <span class="tok-op">←</span> <span class="tok-kw">名称</span> is none and enabled <span class="tok-op">≡</span> true
     print defectum_debet
 
 <span class="tok-co">    # Parenthesized for clarity</span>
-    const _ utraque_nihil <span class="tok-op">←</span> forsitan is none and nomen is none
+    const _ utraque_nihil <span class="tok-op">←</span> forsitan is none and <span class="tok-kw">名称</span> is none
     print utraque_nihil
 
-<span class="tok-co">    # Dynamic ignotum dispatch for nihil and exact boolean checks on bivalens</span>
+<span class="tok-co">    # Dynamic 未知 dispatch for 空类型 and exact boolean checks on 布尔</span>
     print explora(null)
     print explora_bivalens(true)
     print explora(<span class="tok-nu">42</span>)
 
 <span class="tok-co">    # --- Variant checks against concrete types ---</span>
 <span class="tok-co">    #</span>
-<span class="tok-co">    # `est &lt;type&gt;` tests a valor's runtime variant tag directly, without</span>
-<span class="tok-co">    # attempting extraction. The inner type parameters of lista/tabula are</span>
+<span class="tok-co">    # `est &lt;type&gt;` tests a 动态值's runtime variant tag directly, without</span>
+<span class="tok-co">    # attempting extraction. The inner type parameters of 列表/tabula are</span>
 <span class="tok-co">    # not checked (width and element types are erased at Valor boxing time</span>
 <span class="tok-co">    # by design — see docs/factory/est-variant-check/goal.md).</span>
 

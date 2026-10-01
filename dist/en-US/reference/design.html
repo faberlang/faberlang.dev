@@ -8,10 +8,10 @@ rendered in or which target backend the code compiles to.</p><h3 id="i-types-bef
 reader needs to know <em>what kind of thing</em> this is before the name
 tells them <em>which</em> thing. This aligns with languages whose
 grammatical order reads from category to instance — Chinese, Hindi, Arabic
-— and produces declarations that scan uniformly.</p><pre class="faber-code"><code class="lang-text"># Type before name in every declaration
-textus nomen
-numerus aetas
-functio salve(textus name) → textus</code></pre><h3 id="ii-mechanical-over-magical">II. Mechanical over magical<a class="anchor" href="#ii-mechanical-over-magical">#</a></h3><p>The same construct should mean the same thing everywhere. If a reader needs
+— and produces declarations that scan uniformly.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># Type before name in every declaration</span>
+string name
+<span class="tok-kw">int</span> aetas
+<span class="tok-kw">fn</span> salve(string name) <span class="tok-op">→</span> string</code></pre><h3 id="ii-mechanical-over-magical">II. Mechanical over magical<a class="anchor" href="#ii-mechanical-over-magical">#</a></h3><p>The same construct should mean the same thing everywhere. If a reader needs
 distant context to know what a symbol does, the syntax is suspect. Faber
 prefers explicit, local reasoning — the declaration site carries enough
 information to understand what will happen at the use site.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># The meaning of a call is determined by the function's signature,</span>
@@ -20,50 +20,52 @@ information to understand what will happen at the use site.</p><pre class="faber
     <span class="tok-kw">return</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }</code></pre><h3 id="iii-glyphs-carry-structure">III. Glyphs carry structure<a class="anchor" href="#iii-glyphs-carry-structure">#</a></h3><p>Structural and operator meaning uses glyphs, not words: <code>←</code>
 for binding, <code>→</code> for return type, <code>⇥</code>
-for error exit, <code>ergo</code> for compact statement body,
+for error exit, <code>then</code> for compact statement body,
 <code>≡</code> for equality, <code>∪</code> for union
 types. Glyphs are universal — they never localise and never change meaning
 across renderings. A Thai reader and a French reader see the same glyphs,
-even if the keywords around them differ.</p><h3 id="iv-latin-carries-behaviour">IV. Latin carries behaviour<a class="anchor" href="#iv-latin-carries-behaviour">#</a></h3><p>Words are for declarations, statements, lifecycle, and behavioural intent:
-<code class="kw">functio</code>, <code class="kw">genus</code>, <code class="kw">fixum</code>,
-<code class="kw">varia</code>, <code class="kw">redde</code>, <code class="kw">cape</code>.
+even if the keywords around them differ.</p><h3 id="iv-latin-carries-behaviour">IV. Words carry behaviour<a class="anchor" href="#iv-latin-carries-behaviour">#</a></h3><p>Words are for declarations, statements, lifecycle, and behavioural intent:
+<code>fn</code>, <code>class</code>, <code>const</code>,
+<code>var</code>, <code>return</code>, <code>catch</code>.
 These are bindable through reader-locale packs — they are the vocabulary,
-not the grammar. The Latin choice is not about Latin superiority; it is
-about picking <em>one</em> consistent classical source so that all keywords
+not the grammar. Underneath the reader surfaces, Latin is the canonical
+corpus key: one classical spelling every program is stored and exchanged
+under. That choice is not about Latin superiority; it is about picking
+<em>one</em> consistent source so that all keywords
 belong to the same register and no keyword is privileged by being the
 language the implementation was written in.</p><h3 id="v-conjugation-carries-time-and-flow">V. Conjugation carries time and flow<a class="anchor" href="#v-conjugation-carries-time-and-flow">#</a></h3><p>When the same root logic can run synchronously, asynchronously, or as a
 generator, the conjugated form of the verb should carry that execution mode.
 Ownership pairs — mutate vs copy-out — use related forms of the same stem.
 This is the morphologia principle. The standard library (Norma) follows this
-convention for all method names: <code>lege</code> (sync read) vs
-<code>leget</code> (async read), <code>adde</code> (mutate in place) vs
-<code>addita</code> (return new copy). The compiler does not enforce or
+convention for all method names: <code>read_file</code> (sync read) vs
+<code>read_file_async</code> (async read), <code>add</code> (mutate in place) vs
+<code>added</code> (return new copy). The compiler does not enforce or
 derive conjugations — it is a naming policy, not a language feature.</p><h3 id="vi-one-sign-one-job">VI. One sign, one job<a class="anchor" href="#vi-one-sign-one-job">#</a></h3><p>A glyph or keyword may have exact aliases, but it should not carry unrelated
 meanings. Aliases must point back to one canonical concept. This is the
 principle that drives Faber's split between <code>←</code>
 (runtime binding) and <code>=</code> (structural field shape) — most
 languages collapse both into <code>=</code>, but that overloading hides
-whether a line is a data-flow operation or a type-level definition.</p><pre class="faber-code"><code class="lang-text"># ← is always runtime flow
-fixum numerus count ← 0
-count ← count + 1
+whether a line is a data-flow operation or a type-level definition.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># ← is always runtime flow</span>
+<span class="tok-kw">const</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
+count <span class="tok-op">←</span> count <span class="tok-op">+</span> <span class="tok-nu">1</span>
 
-# = is always structural shape inside Type { }
-fixum _ p ← Point {
-    x = 10,
-    y = 20
+<span class="tok-co"># = is always structural shape inside Type { }</span>
+<span class="tok-kw">const</span> _ p <span class="tok-op">←</span> Point {
+    x <span class="tok-op">=</span> <span class="tok-nu">10</span>,
+    y <span class="tok-op">=</span> <span class="tok-nu">20</span>
 }</code></pre><h3 id="vii-runtime-flow-is-explicit">VII. Runtime flow is explicit<a class="anchor" href="#vii-runtime-flow-is-explicit">#</a></h3><p>Runtime binding, reassignment, and mutation use <code>←</code>;
 structural definition uses <code>=</code>. A reader scanning source can see
 every data-flow operation immediately: every <code>←</code> is a
 runtime event. There is no syntactic ambiguity about whether a particular
-<code>=</code> means &quot;store into this variable&quot; or &quot;define this field.&quot;</p><h3 id="viii-absence-is-typed">VIII. Absence is typed<a class="anchor" href="#viii-absence-is-typed">#</a></h3><p>Nullable value types are written as unions: <code>T ∪ nihil</code>. Optional
-declaration slots use post-name markers: <code>sponte</code>. These are
+<code>=</code> means &quot;store into this variable&quot; or &quot;define this field.&quot;</p><h3 id="viii-absence-is-typed">VIII. Absence is typed<a class="anchor" href="#viii-absence-is-typed">#</a></h3><p>Nullable value types are written as unions: <code>T ∪ none</code>. Optional
+declaration slots use post-name markers: <code>optional</code>. These are
 distinct concepts — <em>a value that may be absent</em> vs *a slot the
 caller may omit* — and Faber keeps them syntactically separate rather
-than collapsing both into <code>T?</code> or <code>Option&lt;T&gt;</code>.</p><pre class="faber-code"><code class="lang-text"># Absence in a value: T ∪ nihil
-functio find(textus key) → numerus ∪ nihil
+than collapsing both into <code>T?</code> or <code>Option&lt;T&gt;</code>.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># Absence in a value: T ∪ none</span>
+<span class="tok-kw">fn</span> find(string key) <span class="tok-op">→</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> none
 
-# Omission at declaration: sponte
-functio connect(textus host, numerus port sponte) → vacuum</code></pre><h3 id="ix-compiler-does-not-guess">IX. The compiler does not guess to hide missing information<a class="anchor" href="#ix-compiler-does-not-guess">#</a></h3><p>Missing type information is an analysis problem to fix upstream, not a codegen
+<span class="tok-co"># Omission at declaration: optional</span>
+<span class="tok-kw">fn</span> connect(string host, <span class="tok-kw">int</span> port <span class="tok-kw">optional</span>) <span class="tok-op">→</span> <span class="tok-kw">void</span></code></pre><h3 id="ix-compiler-does-not-guess">IX. The compiler does not guess to hide missing information<a class="anchor" href="#ix-compiler-does-not-guess">#</a></h3><p>Missing type information is an analysis problem to fix upstream, not a codegen
 detail to paper over. The compiler never silently infers a type that the
 programmer did not provide when the information is genuinely absent — it
 reports the gap and stops. This is the rule that keeps Faber honest: if a
@@ -95,4 +97,4 @@ grammar.</p><p>The project began in TypeScript, was later rewritten in Rust, and
 grammar was frozen for the 1.x line with edition 2026. The original five
 ADRs (file extension <code>.fab</code>, error hints, case endings, recursive descent
 parser, custom AST) are still visible in the git history.</p><h3 id="releases">Releases<a class="anchor" href="#releases">#</a></h3><p>Prebuilt CLI archives — current Faber release at the top, then every published
-tag and binary from <a href="https://github.com/faberlang/releases">faberlang/releases</a>:</p><ul><li><strong>[Releases](/releases/)</strong> — download links and historical inventory</li><li><strong>[Install and download](/start/install.html)</strong> — PATH setup and first <code>faber check</code></li></ul></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#commandments">Commandments</a></li><li class="toc-3"><a href="#i-types-before-names">I. Types before names</a></li><li class="toc-3"><a href="#ii-mechanical-over-magical">II. Mechanical over magical</a></li><li class="toc-3"><a href="#iii-glyphs-carry-structure">III. Glyphs carry structure</a></li><li class="toc-3"><a href="#iv-latin-carries-behaviour">IV. Latin carries behaviour</a></li><li class="toc-3"><a href="#v-conjugation-carries-time-and-flow">V. Conjugation carries time and flow</a></li><li class="toc-3"><a href="#vi-one-sign-one-job">VI. One sign, one job</a></li><li class="toc-3"><a href="#vii-runtime-flow-is-explicit">VII. Runtime flow is explicit</a></li><li class="toc-3"><a href="#viii-absence-is-typed">VIII. Absence is typed</a></li><li class="toc-3"><a href="#ix-compiler-does-not-guess">IX. The compiler does not guess to hide missing information</a></li><li class="toc-3"><a href="#purpose">Purpose</a></li><li class="toc-2"><a href="#design-documents">Design documents</a></li><li class="toc-3"><a href="#index">Index</a></li><li class="toc-3"><a href="#stdlib-design-docs">Stdlib design docs</a></li><li class="toc-2"><a href="#history">History</a></li><li class="toc-3"><a href="#origins">Origins</a></li><li class="toc-3"><a href="#releases">Releases</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div></footer></div></body></html>
+tag and binary from <a href="https://github.com/faberlang/releases">faberlang/releases</a>:</p><ul><li><strong>[Releases](/releases/)</strong> — download links and historical inventory</li><li><strong>[Install and download](/start/install.html)</strong> — PATH setup and first <code>faber check</code></li></ul></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#commandments">Commandments</a></li><li class="toc-3"><a href="#i-types-before-names">I. Types before names</a></li><li class="toc-3"><a href="#ii-mechanical-over-magical">II. Mechanical over magical</a></li><li class="toc-3"><a href="#iii-glyphs-carry-structure">III. Glyphs carry structure</a></li><li class="toc-3"><a href="#iv-latin-carries-behaviour">IV. Words carry behaviour</a></li><li class="toc-3"><a href="#v-conjugation-carries-time-and-flow">V. Conjugation carries time and flow</a></li><li class="toc-3"><a href="#vi-one-sign-one-job">VI. One sign, one job</a></li><li class="toc-3"><a href="#vii-runtime-flow-is-explicit">VII. Runtime flow is explicit</a></li><li class="toc-3"><a href="#viii-absence-is-typed">VIII. Absence is typed</a></li><li class="toc-3"><a href="#ix-compiler-does-not-guess">IX. The compiler does not guess to hide missing information</a></li><li class="toc-3"><a href="#purpose">Purpose</a></li><li class="toc-2"><a href="#design-documents">Design documents</a></li><li class="toc-3"><a href="#index">Index</a></li><li class="toc-3"><a href="#stdlib-design-docs">Stdlib design docs</a></li><li class="toc-2"><a href="#history">History</a></li><li class="toc-3"><a href="#origins">Origins</a></li><li class="toc-3"><a href="#releases">Releases</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div></footer></div></body></html>

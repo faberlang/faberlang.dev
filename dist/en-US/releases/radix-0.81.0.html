@@ -16,13 +16,13 @@ instead of twice (<code>9ea3c1242</code>).</li><li><strong>Rust: right-associate
 assignments in Rust (<code>b = …</code> evaluates to <code>()</code>), so the chain emits as a
 block expression with the inner store as its own statement
 (<code>f95aa9565</code>).</li><li><strong>Go: chains and typed init.</strong> The chain emits sequential statements, and a
-typed initializer (<code>fixum T x ↤ value</code>) emits the conversion value rather
+typed initializer (<code>const T x ↤ value</code>) emits the conversion value rather
 than an invalid <code>x := x = v</code> (<code>d6efb606d</code>). The import walker now records
 <code>strconv</code>/<code>fmt</code> for parse-backed <code>↤</code> sources with <code>⇥</code> recovery
-(<code>cd629cb1a</code>).</li><li><strong>TypeScript: typed init.</strong> <code>fixum T x ↤ value</code> emits the conversion result
+(<code>cd629cb1a</code>).</li><li><strong>TypeScript: typed init.</strong> <code>const T x ↤ value</code> emits the conversion result
 directly (<code>const x: T = Number(&quot;7&quot;)</code>), not a self-referential
 <code>const x: T = x = …</code> that tsc rejects (TS2448/TS2588). All backends now use
-the precise self-target check so <code>fixum T x ← (y ↤ v)</code> with a different
+the precise self-target check so <code>const T x ← (y ↤ v)</code> with a different
 target falls through to ordinary expression emission (<code>6a3e5f020</code>).</li></ul><h4 id="validation-ladder-rebuild">Validation ladder rebuild<a class="anchor" href="#validation-ladder-rebuild">#</a></h4><p>The ladder was restructured so the unit gate stays fast and honest:</p><ul><li><strong>Doctests disabled across the ladder.</strong> The rustdoc pass is a full
 per-crate compile with near-zero doctest coverage in this repo; it made the
 stage-4 unit gate take 30+ minutes. Stage 4, the module-boundary parity
@@ -68,7 +68,7 @@ with reflection-carrier content (<code>437b9fe6f</code>).</li><li><strong>Contra
 <code>ae878f72f</code>, <code>3d15b9e29</code>), execution-descriptor authority (DIC-U1,
 <code>2489a8875</code>), and lossless-locale-transcode contract (LTC-U1, <code>d63c0f34e</code>).</li></ul><h4 id="forma-format-pretty-policies">forma FORMAT-PRETTY policies<a class="anchor" href="#forma-format-pretty-policies">#</a></h4><p>The format policy registry lands: FORMAT-PRETTY S1 promotes <code>normalise-v1</code>
 with policy selection (<code>f3a3639f8</code>), and S3 completes the <code>pretty-v1</code>
-registry with engine fixes (<code>becee4908</code>).</p><h4 id="numeric-validators-and-runtime-intrinsics">Numeric validators and runtime intrinsics<a class="anchor" href="#numeric-validators-and-runtime-intrinsics">#</a></h4><ul><li><code>fractus potentia</code> lowers as the exponentiation identity (<code>e9e77d62a</code>);
+registry with engine fixes (<code>becee4908</code>).</p><h4 id="numeric-validators-and-runtime-intrinsics">Numeric validators and runtime intrinsics<a class="anchor" href="#numeric-validators-and-runtime-intrinsics">#</a></h4><ul><li><code>float potentia</code> lowers as the exponentiation identity (<code>e9e77d62a</code>);
 rounding (<code>d0c9708fa</code>) and absolutum/signum (<code>2df1af436</code>) validators accept
 <code>SizedNumeric(Fractus, _)</code> receivers.</li><li><code>textus.accipe</code> intrinsic + SizedNumeric zero-init arm (<code>43c0102ba</code>);
 zero-init arm for no-initializer nominal struct/union locals

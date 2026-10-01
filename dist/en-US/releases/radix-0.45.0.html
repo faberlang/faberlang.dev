@@ -4,28 +4,28 @@
 <span class="tok-fn">tar</span> <span class="tok-op">-xzf</span> radix.tgz
 <span class="tok-fn">sudo</span> mv radix-v0.45.0-aarch64-apple-darwin/radix /usr/local/bin/
 <span class="tok-fn">radix</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><p>Operator spelling cleanup: shift arrows migrate to <code>⇐</code>/<code>⇒</code> (<code>≪</code>/<code>≫</code> retired),
-and the conversion (conversio) glyph moves to <code>↦</code> (U+21A6). On the declaration
-side, <code>sit x</code> gains an optional initializer that desugars to <code>fixum _ x</code>, and
-the unenforced <code>fixus</code> post-name marker is removed.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>14</td></tr><tr><td>Date span</td><td>2026-06-24 → 2026-06-25</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="shift-arrows-and-conversio-glyph-migration">Shift arrows (<code>⇐</code>/<code>⇒</code>) and conversio (<code>↦</code>) glyph migration<a class="anchor" href="#shift-arrows-and-conversio-glyph-migration">#</a></h4><p>Retire <code>≪</code>/<code>≫</code> as scan errors. Conversio vacates <code>⇒</code> so the double-arrow pair
+and the conversion (conversion) glyph moves to <code>↦</code> (U+21A6). On the declaration
+side, <code>let x</code> gains an optional initializer that desugars to <code>const _ x</code>, and
+the unenforced <code>fixus</code> post-name marker is removed.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>14</td></tr><tr><td>Date span</td><td>2026-06-24 → 2026-06-25</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="shift-arrows-and-conversion-glyph-migration">Shift arrows (<code>⇐</code>/<code>⇒</code>) and conversion (<code>↦</code>) glyph migration<a class="anchor" href="#shift-arrows-and-conversion-glyph-migration">#</a></h4><p>Retire <code>≪</code>/<code>≫</code> as scan errors. Conversio vacates <code>⇒</code> so the double-arrow pair
 hosts bitwise shifts; the runtime conversion operator moves to <code>↦</code> (U+21A6,
 &quot;rightwards arrow from bar&quot;). Updates span the lexer, parser, Faber codegen
-roundtrip, HIR node types, AST, EBNF, exempla, and MIR tests (<code>31f312d27</code>).</p><h4 id="sit-x-as-inferred-deferred-immutable"><code>sit x</code> as inferred deferred immutable<a class="anchor" href="#sit-x-as-inferred-deferred-immutable">#</a></h4><p>The <code>sit</code> initializer is now optional: <code>sit x</code> desugars to <code>fixum _ x</code> — the
-inferred deferred immutable — completing symmetry with the init-now <code>sit x ← v</code>
+roundtrip, HIR node types, AST, EBNF, exempla, and MIR tests (<code>31f312d27</code>).</p><h4 id="let-x-as-inferred-deferred-immutable"><code>let x</code> as inferred deferred immutable<a class="anchor" href="#let-x-as-inferred-deferred-immutable">#</a></h4><p>The <code>let</code> initializer is now optional: <code>let x</code> desugars to <code>const _ x</code> — the
+inferred deferred immutable — completing symmetry with the init-now <code>let x ← v</code>
 shape. EBNF updated to <code>sitDecl := 'sit' IDENTIFIER ('←' expression)?</code>,
 parser guards removed, and definite-assignment tests added (<code>c18840350</code>).</p><h4 id="fixus-post-name-declaration-marker-removed"><code>fixus</code> post-name declaration marker removed<a class="anchor" href="#fixus-post-name-declaration-marker-removed">#</a></h4><p>Drop the unenforced <code>fixus</code> keyword from lexer through HIR and Faber emit.
 The parser rejects lingering spellings with a migration diagnostic. Deletes
-the <code>fixus</code> exemplum, refreshes <code>sponte</code> frontmatter, and aligns EBNF, README,
-factory docs, and reference-pack term counts (<code>4822950d0</code>).</p><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li>Expand fixum/sit deferred-init coverage with parser and definite-assignment
+the <code>fixus</code> exemplum, refreshes <code>optional</code> frontmatter, and aligns EBNF, README,
+factory docs, and reference-pack term counts (<code>4822950d0</code>).</p><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li>Expand const/sit deferred-init coverage with parser and definite-assignment
 edge-case tests for typed and inferred deferred immutables, including
 partial-branch rejection and compound-assignment rules (<code>b9c6ec770</code>)</li><li>Clear clippy warnings (duplicate test attribute, unused import, needless mut
 bindings) surfaced by <code>-D warnings</code> during glyph migration validation
-(<code>4f40f8323</code>)</li><li>Update README: add inline JSON valor example contrasting JSON colon syntax
-with genus equals construction (<code>53a8bca2a</code>);
+(<code>4f40f8323</code>)</li><li>Update README: add inline JSON value example contrasting JSON colon syntax
+with class equals construction (<code>53a8bca2a</code>);
 expand glyph inventory to the full lexer surface (<code>ee6d427b0</code>);
-align user-facing examples with <code>↦</code> conversio and <code>⇐</code>/<code>⇒</code> shifts
+align user-facing examples with <code>↦</code> conversion and <code>⇐</code>/<code>⇒</code> shifts
 (<code>791db253a</code>)</li><li>Close out factory delivery doc headers for MIR M-001, semantic passes P1–P3a,
-compiler vocabulary consistency, valor unification policy, and library import
+compiler vocabulary consistency, value unification policy, and library import
 provenance (<code>c8e5758a2</code>)</li><li>Close out forma parameterized templates delivery — literal-family Stage 3
-(<code>e521ddfd8</code>)</li><li>Close out inline JSON valor delivery — literal-family Stage 6 (<code>135fb2732</code>)</li><li>Close out literal, exempla, and hygiene doc tracks — Stage 7 (<code>87063aab9</code>)</li><li>Archive superseded stdlib-data-formats factory track to
+(<code>e521ddfd8</code>)</li><li>Close out inline JSON value delivery — literal-family Stage 6 (<code>135fb2732</code>)</li><li>Close out literal, exempla, and hygiene doc tracks — Stage 7 (<code>87063aab9</code>)</li><li>Archive superseded stdlib-data-formats factory track to
 <code>docs/factory/archive/</code> (<code>5c58a3b8f</code>)</li><li>Close out shift-arrows-and-conversio-glyph factory goal — zero deviations
 from plan confirmed (<code>9d2b3c08d</code>)</li></ul><h3 id="verification-pre-release">Verification (pre-release)<a class="anchor" href="#verification-pre-release">#</a></h3><div class="table-scroll"><table><thead><tr><th>Gate</th><th>Result</th></tr></thead><tbody><tr><td><code>cargo test --workspace</code></td><td>990 tests pass</td></tr><tr><td><code>cargo clippy -- -D warnings</code></td><td>clean</td></tr></tbody></table></div><p>---</p><p><a href="/en-US/releases/">All releases</a> · <a href="/en-US/start/install.html">Install the current release</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#install">Install this version</a></li><li class="toc-2"><a href="#notes">Release notes</a></li><li class="toc-3"><a href="#scale">Scale</a></li><li class="toc-3"><a href="#major-tracks">Major tracks</a></li><li class="toc-3"><a href="#other-changes">Other changes</a></li><li class="toc-3"><a href="#verification-pre-release">Verification (pre-release)</a></li></ul></div></nav></div></body></html>

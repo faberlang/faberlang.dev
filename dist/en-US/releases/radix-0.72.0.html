@@ -3,8 +3,8 @@
 (HIR, types, resolver, annotation contracts, function facts, resolved uses,
 qualified identity) built only through analysis. Add <code>AnalyzedUnit</code> with
 <code>annotation_contracts</code> and fact tables; HIR backends install shared function
-facts; production emission routes through <code>generate_from_analyzed</code>.</p><p>Target-neutral <strong>G2 mode and access traps</strong> (<code>36ec2a6ea</code>): split de/in/ex mode
-analysis from Rust lifetime qualification. Plain lista/textus/tabula access
+facts; production emission routes through <code>generate_from_analyzed</code>.</p><p>Target-neutral <strong>G2 mode and access traps</strong> (<code>36ec2a6ea</code>): split ref/in/ex mode
+analysis from Rust lifetime qualification. Plain list/textus/tabula access
 traps on absence for Rust/TS/Go; optional paths stay accipe/tensor bracket.</p><p><strong>G3 structured emission needs</strong> (<code>33c2a9a5f</code>): introduce <code>RustNeeds</code>/<code>TsNeeds</code>/
 <code>GoNeeds</code> collectors driven by HIR and type tables. Rust prelude no longer scans
 body text for runtime types. Wire <code>resolved_uses</code> on analyzed emit.</p><p><strong>G4 package spine and P2 artifact plan</strong> (<code>9f8289c11</code>): add target-neutral
@@ -15,33 +15,33 @@ rejection.</p><p><strong>G5 target qualification measurement matrix</strong> (<c
 <code>qualify_for_target</code> to <code>classify_hir_coverage</code> gap slugs, add stable slug
 fixtures, and ship a fast exempla HIR matrix (rust/go/ts/faber) with pinned
 floors and <code>scripta/hir-target-coverage</code> for <code>--full</code>.</p><p>Provider import plumbing:</p><ul><li>Unblock <code>triga</code> provider imports with two-phase file-interface install; emit
-<code class="kw">ref</code>/<code class="kw">mut</code> parameters as <code>&amp;T</code>/<code>&amp;mut T</code> with matching call sites; nullable
-<code>est nihil</code> uses <code>Option::is_none</code> so payload <code>PartialEq</code> is not required
-(<code>93e1c682e</code>)</li><li>Resolve provider imports and <code class="kw">ref</code> field loads: wire radix check/emit contracts
+<code>ref</code>/<code>mut</code> parameters as <code>&amp;T</code>/<code>&amp;mut T</code> with matching call sites; nullable
+<code>is none</code> uses <code>Option::is_none</code> so payload <code>PartialEq</code> is not required
+(<code>93e1c682e</code>)</li><li>Resolve provider imports and <code>ref</code> field loads: wire radix check/emit contracts
 to <code>FABER_LIBRARY_HOME</code> provider modules, skip partial export failures
-instead of dropping the whole interface, clone non-Copy fields through de/in
+instead of dropping the whole interface, clone non-Copy fields through ref/in
 (<code>93ecd2ba0</code>)</li><li>Emit provider imports as Rust modules with typed paths: single-file emit
 materializes file-namespace providers as <code>pub mod</code> blocks, wires
-<code>ImportedNamespaceInfo</code> for <code>crate::ns::name</code> paths (<code>d5b5c17af</code>)</li><li>Fix auto-deref de/in borrow ABI in path emission: provider-import emit uses
+<code>ImportedNamespaceInfo</code> for <code>crate::ns::name</code> paths (<code>d5b5c17af</code>)</li><li>Fix auto-deref ref/in borrow ABI in path emission: provider-import emit uses
 <code>&amp;T</code>/<code>&amp;mut T</code>; path loads/stores must deref the payload (<code>33502365b</code>)</li></ul><h4 id="mir-cpu-matrix-register-matmul-and-applica-subset">MIR: CPU matrix register matmul and applica subset<a class="anchor" href="#mir-cpu-matrix-register-matmul-and-applica-subset">#</a></h4><p>Admit nested-lista matrix materialize (≤4×4), expand matmul and <code>matrix.applica</code>
 into cell/lane mul-add MIR, and execute construct/cell/lane paths in the
 stepper. GPU/device parity remains out of scope (<code>582701f5d</code>).</p><p>Add <code>MirUnOp::Sqrt</code> and expand register-vector length/normalize (Triga near-zero
 → zero policy). Admit square 2×2 inverse and affine 4×4 inverse with
-singular→nihil <code>Option</code>. GPU matrix targets stay fail-closed (<code>a02a00fd8</code>).</p><p>Add CPU stepper evidence for the shared register-vector subset and for the T*S
+singular→none <code>Option</code>. GPU matrix targets stay fail-closed (<code>a02a00fd8</code>).</p><p>Add CPU stepper evidence for the shared register-vector subset and for the T*S
 point product matching <code>triga-transforms.fab</code> numbers (7,4,-1). Row-major
-language matrix with column-vector applica (<code>436ff0bff</code>).</p><h4 id="llvm-host-stage-4-lowerings-4aa4af">LLVM host Stage 4 lowerings (4AA–4AF)<a class="anchor" href="#llvm-host-stage-4-lowerings-4aa4af">#</a></h4><p>Lower valor map-literal via <code>map_new</code> (Stage 4AA) (<code>cd18070e2</code>), array-literal
+language matrix with column-vector applica (<code>436ff0bff</code>).</p><h4 id="llvm-host-stage-4-lowerings-4aa4af">LLVM host Stage 4 lowerings (4AA–4AF)<a class="anchor" href="#llvm-host-stage-4-lowerings-4aa4af">#</a></h4><p>Lower value map-literal via <code>map_new</code> (Stage 4AA) (<code>cd18070e2</code>), array-literal
 via <code>array_new</code> (Stage 4AB) (<code>cfda0ef8c</code>), intervallum via versioned ABI
-(Stage 4AC) (<code>ab57113a9</code>), and collection convert bridges — lista↔copia,
-tabula↦lista keys/values, lista↔cursor (Stage 4AD) (<code>77d6f5b10</code>).</p><p>Close isolable aggregate residuals: empty valor maps and tabula index, plus
-tensor→valor boxing (Stage 4AE) (<code>4e4643c21</code>). Unique sparse construct status
-latch ids to fix <code>llvm-as</code> collisions (Stage 4AF) (<code>441a2f795</code>).</p><p>Lower scalar numeric intrinsics (<code>0aed139b0</code>), lista value methods
-(<code>89bb0e567</code>), lista option results (<code>314c19163</code>), unified option lowering ABI
-(<code>7cd5529a3</code>), lista order and sum (<code>bae31b737</code>), text handles and formatting
+(Stage 4AC) (<code>ab57113a9</code>), and collection convert bridges — list↔set,
+map↦list keys/values, list↔cursor (Stage 4AD) (<code>77d6f5b10</code>).</p><p>Close isolable aggregate residuals: empty value maps and map index, plus
+tensor→value boxing (Stage 4AE) (<code>4e4643c21</code>). Unique sparse construct status
+latch ids to fix <code>llvm-as</code> collisions (Stage 4AF) (<code>441a2f795</code>).</p><p>Lower scalar numeric intrinsics (<code>0aed139b0</code>), list value methods
+(<code>89bb0e567</code>), list option results (<code>314c19163</code>), unified option lowering ABI
+(<code>7cd5529a3</code>), list order and sum (<code>bae31b737</code>), text handles and formatting
 (<code>c00af6cb6</code>), text query transformations (<code>6bc3620a0</code>), and text scalar
 conversions (<code>1ab433936</code>).</p><p>Lower map and set runtime (<code>38f86e14b</code>). Valor scalar conversions
-(<code>1ab433936</code>), opaque Valor aggregates (<code>e958ef48c</code>), atomic Valor genus
-conversions (<code>1da7c84c7</code>), typed octeti operations (<code>cb6c30d7b</code>), and typed
-instans conversions (<code>9b15d1ddd</code>).</p><p>Lower typed tensor core carrier (Stage 4V) (<code>1a22f7b1e</code>), tensor arithmetic
+(<code>1ab433936</code>), opaque Valor aggregates (<code>e958ef48c</code>), atomic Valor class
+conversions (<code>1da7c84c7</code>), typed bytes operations (<code>cb6c30d7b</code>), and typed
+instant conversions (<code>9b15d1ddd</code>).</p><p>Lower typed tensor core carrier (Stage 4V) (<code>1a22f7b1e</code>), tensor arithmetic
 family (Stage 4W) (<code>ad03cd06d</code>), tensor conversion bridges (Stage 4X)
 (<code>4e534c8d6</code>), sparse tensor carrier (Stage 4Y) (<code>b3d3f6b62</code>), and regex
 conversion (Stage 4Z) (<code>02830b4e5</code>).</p><p>Gap ledger documentation across the range: residual census (<code>327a860f4</code>),
@@ -58,9 +58,9 @@ non-GPU evidence (<code>5b7260be1</code>, <code>2c6217251</code>).</p><p>Plan an
 phase status correction, and host parity goal definition (<code>03081b5b0</code>,
 <code>389f27e50</code>, <code>e4866047f</code>, <code>ecfaac463</code>).</p><h4 id="native-host-bootstrap-and-codegen">Native host bootstrap and codegen<a class="anchor" href="#native-host-bootstrap-and-codegen">#</a></h4><p>Emit structured native host bootstrap: add package-only <code>native_host_bootstrap</code>
 so generated entrypoints call <code>host_register::install_or_exit</code> without rewriting
-source text (<code>91ef4302b</code>). Close solum live route residuals (<code>4ce91cd7d</code>) and
-Platform P6 authority (<code>05d87fc15</code>).</p><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li>Style: cargo fmt for matrix/normalize and de/in paths (<code>cc3919c77</code>)</li><li>Fix(llvm-host): unique sparse construct status latch ids to fix <code>llvm-as</code>
-SSA collision (Stage 4AF) (<code>441a2f795</code>)</li><li>Fix(mir): validate sparse shape queries (<code>dc3fa705c</code>)</li><li>Fix(rust): auto-deref de/in borrow ABI in path emission (<code>33502365b</code>)</li><li>Fix(hir): unblock triga provider imports and Rust de/nil ABI (<code>93e1c682e</code>)</li><li>Fix(hir): resolve provider imports and de field loads for Triga (<code>93ecd2ba0</code>)</li><li>Fix(hir): emit provider imports as Rust modules with typed paths (<code>d5b5c17af</code>)</li><li>Factory docs: draft faber-mir-v1 release roadmap campaign (<code>38f86e14b</code>),
+source text (<code>91ef4302b</code>). Close only live route residuals (<code>4ce91cd7d</code>) and
+Platform P6 authority (<code>05d87fc15</code>).</p><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li>Style: cargo fmt for matrix/normalize and ref/in paths (<code>cc3919c77</code>)</li><li>Fix(llvm-host): unique sparse construct status latch ids to fix <code>llvm-as</code>
+SSA collision (Stage 4AF) (<code>441a2f795</code>)</li><li>Fix(mir): validate sparse shape queries (<code>dc3fa705c</code>)</li><li>Fix(rust): auto-deref ref/in borrow ABI in path emission (<code>33502365b</code>)</li><li>Fix(hir): unblock triga provider imports and Rust ref/nil ABI (<code>93e1c682e</code>)</li><li>Fix(hir): resolve provider imports and ref field loads for Triga (<code>93ecd2ba0</code>)</li><li>Fix(hir): emit provider imports as Rust modules with typed paths (<code>d5b5c17af</code>)</li><li>Factory docs: draft faber-mir-v1 release roadmap campaign (<code>38f86e14b</code>),
 CPU host ABI v1 unify sidecar goal (<code>2a05ba028</code>), operator-managed worktree
 packets (<code>9bdcde389</code>), HIR-v1 delivery queue (<code>1f339134a</code>), HIR-v1 release
 roadmap (<code>b77025b83</code>)</li><li>MIR-v1 documentation: block routing (<code>26ef8c99c</code>), host north-star gates

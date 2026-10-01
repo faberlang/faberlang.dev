@@ -10,14 +10,14 @@ stdlib interface (<code>stdlib/norma/hal/http.fab</code>) and Radix codegen brid
 lowers <code>norma:hal/http</code> calls to the Rust runtime (<code>0832baa86</code>, <code>4a5fd1859</code>,
 <code>7dcb6a322</code>).</li><li><strong>Tempus (clock/sleep)</strong>: <code>hal/tempus.rs</code> exposing wall clock, monotonic
 clock, process uptime, async dormiet, and millisecond duration constants;
-<code>destina</code>/<code>repete</code>/<code>siste</code> gated behind <code>@ nondum</code> (<code>7aea83903</code>).</li><li><strong>Aleator (random)</strong>: <code>hal/aleator.rs</code> with subsidia-backed
+<code>destina</code>/<code>repeat</code>/<code>siste</code> gated behind <code>@ unstable</code> (<code>7aea83903</code>).</li><li><strong>Aleator (random)</strong>: <code>hal/aleator.rs</code> with subsidia-backed
 fractum/sortire/octetos/uuid/semina, plus YAML Valor ABI migration that
 pushes <code>yaml.rs</code> through <code>TryFrom</code>/<code>try_to_yaml</code> via <code>norma::datum::Valor</code>
-(<code>0cab42ab9</code>).</li><li><strong>Nondum availability annotation</strong>: <code>@ nondum</code> gating syntax, parser,
+(<code>0cab42ab9</code>).</li><li><strong>Nondum availability annotation</strong>: <code>@ unstable</code> gating syntax, parser,
 semantic availability check, and <code>faber check</code> enforcement so HAL stubs
 yield clear diagnostics (<code>012d371cd</code>).</li><li><strong>Promissum/cursor lowering and HAL type alignment</strong>: semantic
-<code>Type::Promissum</code>/<code>Type::Cursor</code> variants; <code>series</code> → <code>tabula&lt;textus, valor&gt;</code>;
-<code>arca</code> bind params → <code>lista&lt;valor&gt;</code> (<code>3610b8f75</code>).</li><li>Factory plans and exempla for the HTTP HAL, aleator, and the general HAL
+<code>Type::Promissum</code>/<code>Type::Cursor</code> variants; <code>series</code> → <code>map&lt;textus, valor&gt;</code>;
+<code>arca</code> bind params → <code>list&lt;valor&gt;</code> (<code>3610b8f75</code>).</li><li>Factory plans and exempla for the HTTP HAL, aleator, and the general HAL
 expansion pattern (<code>4f77f1c3f</code>, <code>a71eff9a5</code>, <code>f651690c0</code>, <code>dfa2662d6</code>,
 <code>d41ea9efa</code>, <code>bb795e1b8</code>).</li></ul><h4 id="library-import-provenance">Library import provenance<a class="anchor" href="#library-import-provenance">#</a></h4><ul><li><strong>Provenance analysis</strong>: HIR nodes carry which <code>norma</code> library (e.g.
 <code>norma:hal/http</code>) an import originates from. The analysis propagates through
@@ -29,35 +29,35 @@ syntax (<code>b4b21aeb1</code>).</li><li><strong>Solum provenance test</strong>:
 provenance pipeline (<code>32bc84c09</code>).</li><li><strong>Runtime method symbols</strong>: Package metadata encodes method arity and symbols
 so generated code maps <code>tempus.*</code> verbs to <code>sleep</code>, <code>clock</code> etc.
 (<code>14c6f8909</code>).</li></ul><h4 id="mir-lowering-enum-const-pattern">MIR lowering (enum, const, pattern)<a class="anchor" href="#mir-lowering-enum-const-pattern">#</a></h4><ul><li><strong>Top-level consts</strong>: Lower constants into entry MIR so they appear in the
-MIR image (<code>b646c1658</code>).</li><li><strong>Unit variant discerne</strong>: Lower <code class="kw">match</code> on unit variants to MIR dynamic
-switch (<code>1ec11b2c2</code>).</li><li><strong>Payload discerne patterns</strong>: Lower destructing <code class="kw">match</code> with payload
-bindings (<code>13c235d86</code>).</li><li><strong>Enum paths and inter membership</strong>: Lower qualified enum paths and
-<code>est inter</code> membership checks to MIR (<code>6afade453</code>).</li><li><strong>Filtrata/mappata</strong>: Lower list <code>filtrata</code>/<code>mappata</code> via synthetic closure
+MIR image (<code>b646c1658</code>).</li><li><strong>Unit variant match</strong>: Lower <code>match</code> on unit variants to MIR dynamic
+switch (<code>1ec11b2c2</code>).</li><li><strong>Payload match patterns</strong>: Lower destructing <code>match</code> with payload
+bindings (<code>13c235d86</code>).</li><li><strong>Enum paths and between membership</strong>: Lower qualified enum paths and
+<code>is between</code> membership checks to MIR (<code>6afade453</code>).</li><li><strong>Filtrata/mappata</strong>: Lower list <code>filtrata</code>/<code>mappata</code> via synthetic closure
 functions and indexed loops. Harness 75/101 MIR lowered (was 72), 74
 runnable (was 71) (<code>0d3b97650</code>).</li><li><strong>Nested collection callbacks</strong>: Preserve MIR for collection callbacks that
 contain nested collection intrinsics (<code>88de16dd5</code>).</li></ul><h4 id="llvm-codegen-phase-002008">LLVM codegen (phase 002–008)<a class="anchor" href="#llvm-codegen-phase-002008">#</a></h4><ul><li><strong>Exempla e2e harness</strong>: LLVM target runner in the exempla e2e suite
 (<code>2a4ab115c</code>).</li><li><strong>Scalar operations</strong>: Arithmetic, comparison, and type operation coverage
 with <code>scalaria.fab</code> exempla (<code>aa0ed33c5</code>).</li><li><strong>Scalar CFG and calls</strong>: Direct scalar calls and CFG lowering
-(<code>5185b9a55</code>, <code>d74a457a7</code>).</li><li><strong>Scalar switches</strong>: LLVM <code>switch</code> emission for discerne patterns, including
+(<code>5185b9a55</code>, <code>d74a457a7</code>).</li><li><strong>Scalar switches</strong>: LLVM <code>switch</code> emission for match patterns, including
 failable control flow (<code>966ba9a88</code>).</li><li><strong>Nullable operations</strong>: LLVM lowering for nullable (<code>?T</code>) operations
-(<code>d50f9cfe7</code>).</li><li><strong>Handle ABI lowering</strong>: Text aggregate handle ABI and <code>promissum</code>/<code class="typ">iterator</code>
+(<code>d50f9cfe7</code>).</li><li><strong>Handle ABI lowering</strong>: Text aggregate handle ABI and <code>promise</code>/<code class="typ">iterator</code>
 handle types (<code>f16db2930</code>).</li><li><strong>Runtime calls</strong>: Lower runtime intrinsic calls to LLVM (<code>702ff8cc1</code>).</li><li><strong>Entrypoint symbol</strong>: Named LLVM entrypoint (<code>aa6bcbe1b</code>).</li><li><strong>Verifier policy</strong>: LLVM IR verifier integration (<code>3b5bddd95</code>).</li><li><strong>Option operand projections fix</strong>: LLVM <code>Option</code> operand field projections
 (<code>aa658f705</code>).</li></ul><h4 id="wasm-codegen-phase-022028">Wasm codegen (phase 022–028)<a class="anchor" href="#wasm-codegen-phase-022028">#</a></h4><ul><li><strong>Phase 022</strong>: In-process wasmtime instantiation harness with compile-valid
 bucket classification (<code>3aaa5abfb</code>).</li><li><strong>Phase 023</strong>: Default-value Wasm import stub host; all compile-valid
-exempla reach instantiate-valid (<code>655765e53</code>).</li><li><strong>Phase 024</strong>: Export incipit entrypoints and harness run tiers with
+exempla reach instantiate-valid (<code>655765e53</code>).</li><li><strong>Phase 024</strong>: Export main entrypoints and harness run tiers with
 behavior fixtures (<code>609f0aced</code>).</li><li><strong>Phase 025</strong>: Runtime collection MIR and Wasm emission for array stdlib
 methods (primus, ultimus, inversa, inverte, ordinata, appende); <code>innatum</code>
 reaches compile-valid Wasm 72/101 (<code>331400b1a</code>).</li><li><strong>Phase 028 adjunct</strong>: Wasm option map union shapes emitted from MIR
 adjunct (<code>3d475a012</code>).</li><li><strong>Optional member correctness</strong>: Wasm optional member handling advanced
-(<code>07bdce389</code>).</li></ul><h4 id="itera-ab-range-syntax">Itera <code>ab</code> range syntax<a class="anchor" href="#itera-ab-range-syntax">#</a></h4><ul><li>Refactor range syntax from <code>pro</code> to <code>ab</code>: <code>ab 0 usque 10</code> replaces
-<code>pro 0 usque 10</code>, with lexer/parser/HIR/MIR/codegen/cross-target changes
-across 41 files (<code>01d767caa</code>).</li><li>Latin naming boundary enforced so <code>ab</code> keeps Latin mode naming (<code>805c8f21e</code>).</li></ul><h4 id="language-and-naming-boundary">Language and naming boundary<a class="anchor" href="#language-and-naming-boundary">#</a></h4><ul><li><strong>Contextual keywords as identifiers</strong>: <code>parse_contextual_ident</code> driven by
-<code>KeywordOwner</code> policy allows <code>solum</code>, <code class="kw">args</code>, <code>publica</code>, <code>incipiet</code> in
+(<code>07bdce389</code>).</li></ul><h4 id="itera-range-range-syntax">Itera <code>range</code> range syntax<a class="anchor" href="#itera-range-range-syntax">#</a></h4><ul><li>Refactor range syntax from <code>pro</code> to <code>range</code>: <code>range 0 until 10</code> replaces
+<code>pro 0 until 10</code>, with lexer/parser/HIR/MIR/codegen/cross-target changes
+across 41 files (<code>01d767caa</code>).</li><li>Latin naming boundary enforced so <code>range</code> keeps Latin mode naming (<code>805c8f21e</code>).</li></ul><h4 id="language-and-naming-boundary">Language and naming boundary<a class="anchor" href="#language-and-naming-boundary">#</a></h4><ul><li><strong>Contextual keywords as identifiers</strong>: <code>parse_contextual_ident</code> driven by
+<code>KeywordOwner</code> policy allows <code>only</code>, <code>args</code>, <code>public</code>, <code>async_main</code> in
 pactum declarations and parameter positions (<code>2107735dc</code>).</li><li><strong>Naming boundary alignment</strong>: Compiler enum variants renamed to match Faber
-source markers (<code class="kw">ref</code>/<code class="kw">mut</code>/<code class="kw">from</code>, <code>privata</code>/<code>publica</code>); parser-level enums
+source markers (<code>ref</code>/<code>mut</code>/<code>from</code>, <code>private</code>/<code>public</code>); parser-level enums
 aligned, semantic/MIR families kept English (<code>62a012fff</code>).</li></ul><h4 id="stdlib-hygiene">Stdlib hygiene<a class="anchor" href="#stdlib-hygiene">#</a></h4><ul><li>HIR lowering tracks lexical type parameters in function/genus/pactum/discretio
 signatures so <code>innatum</code> specs use <code>T</code>/<code>K</code>/<code>V</code>/<code>U</code> without spurious unknown-type
-errors. Stdlib fixes across <code>tempus</code>, <code>innatum</code> (copia, lista, tabula, textus),
+errors. Stdlib fixes across <code>tempus</code>, <code>innatum</code> (set, list, map, string),
 <code>yaml</code>, and <code>nuncius</code> (<code>6b1e4e1bf</code>).</li></ul><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li><strong>CLI restructuring</strong>: <code>faber</code> commands split into <code>init</code>, <code>explain</code>, <code>run</code>,
 <code>test</code> modules (<code>beb601adc</code>). <code>radix</code> tool commands split into focused
 submodules (<code>d901e0de9</code>). Both aligned with operator-cli help/layout patterns
@@ -68,6 +68,6 @@ per-target modules (rust, go, ts, wasm) with shared types
 (<code>505e1dba7</code>).</li><li><strong>Docs</strong>: Pruned historical factory/epic artifacts (<code>832c8b8c4</code>). Refreshed
 Wasm/LLVM factory plans (<code>b844b5846</code>). Expanded README with multi-target
 codegen orientation (<code>88cd51d4b</code>, <code>9a5dd996d</code>, <code>d93fef284</code>). Documented
-llvm-mir continuation, wasm-mir continuation, futura proba delivery plan,
+llvm-mir continuation, wasm-mir continuation, future test delivery plan,
 and library provenance validation gate (<code>a8af99714</code>, <code>b6b79b40a</code>,
 <code>0da78e44a</code>, <code>a0a60f316</code>).</li></ul><p>---</p><p><a href="/en-US/releases/">All releases</a> · <a href="/en-US/start/install.html">Install the current release</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#install">Install this version</a></li><li class="toc-2"><a href="#notes">Release notes</a></li><li class="toc-3"><a href="#scale">Scale</a></li><li class="toc-3"><a href="#major-tracks">Major tracks</a></li><li class="toc-3"><a href="#other-changes">Other changes</a></li></ul></div></nav></div></body></html>

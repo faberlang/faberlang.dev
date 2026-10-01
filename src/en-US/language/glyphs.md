@@ -1,7 +1,4 @@
 +++
-# This page discusses Latin keywords as Latin. Rendering them in
-# the reader locale would turn its own examples into nonsense.
-translate_spans = false
 title = "Glyphs and Latin"
 section = "language"
 order = 5
@@ -26,8 +23,8 @@ of source glyphs recognised by the lexer.
 | `=` | Compile-time assignment — values known while compiling |
 | `→` | Function return type |
 | `⇥` | Alternate exit — error-channel type |
-| `⊥` | Default — inline value used when a conversion fails (`↦ numerus ⊥ 0`) |
-| `∴` | Clausura joint — connects closure body to signature (`(a, b) → T ∴ a + b`) |
+| `⊥` | Default — inline value used when a conversion fails (`↦ int ⊥ 0`) |
+| `∴` | Lambda joint — connects closure body to signature (`(a, b) → T ∴ a + b`) |
 
 ### Type shape {#type-shape}
 
@@ -35,7 +32,7 @@ of source glyphs recognised by the lexer.
 |-------|---------|
 | `∷` | Static type ascription (compile-time cast) |
 | `↦` | Runtime conversion (can-fail parse/coerce) |
-| `∪` | Inline union type (`T ∪ nihil`) |
+| `∪` | Inline union type (`T ∪ none`) |
 
 ### Comparison {#comparison}
 
@@ -59,7 +56,7 @@ of source glyphs recognised by the lexer.
 |-------|---------|
 | `←` | Runtime assignment — the only assignment operator in expressions |
 | `=` | Compile-time assignment — a value fixed and known while compiling |
-| `⊕` `⊖` | Postfix increment/decrement statements (mutable numerus only) |
+| `⊕` `⊖` | Postfix increment/decrement statements (mutable int only) |
 
 Both are assignment. They differ in **when** the value is decided.
 
@@ -108,10 +105,10 @@ Worked through in full under
 | Glyph | Type | Role |
 |-------|------|------|
 | `'` | `ascii` | Fixed machine tokens |
-| `"` | `textus` | Line string |
-| `«` `»` | `textus` | Block string (guillemets) |
+| `"` | `string` | Line string |
+| `«` `»` | `string` | Block string (guillemets) |
 | `` ` `` | `forma` | Captured template |
-| `|` | `octeti` | Hex literal |
+| `|` | `bytes` | Hex literal |
 | `§` | template hole | Placeholder inside `"…"`, `«…»`, `` `…` `` |
 
 ### Punctuation {#punctuation}
@@ -119,7 +116,7 @@ Worked through in full under
 | Glyph | Role |
 |-------|------|
 | `(` `)` | Grouping and call |
-| `{` `}` | Block, genus literal, or JSON document |
+| `{` `}` | Block, class literal, or JSON document |
 | `[` `]` | List literal and indexing |
 | `.` | Member access |
 | `,` | Separator |
@@ -129,7 +126,7 @@ Worked through in full under
 | `@` | Annotation marker |
 | `#` | Line comment |
 
-## Latin vocabulary and structural glyphs
+## Vocabulary and structural glyphs
 
 *Three signal choices that make Faber source recognisable at a glance.*
 
@@ -141,14 +138,14 @@ construct before knowing which target backend the code will be compiled to.
 
 | Signal | Examples | Role |
 |--------|----------|------|
-| Type-first declarations | `textus nomen`, `numerus aetas` | Shape reads toward binding — type, then name. |
-| Latin behavioural words | `functio`, `genus`, `si`, `redde`, `fixum` | Declarations, statements, lifecycle, and behavioural intent. |
+| Type-first declarations | `string name`, `int age` | Shape reads toward binding — type, then name. |
+| Behavioural words | `fn`, `class`, `if`, `return`, `const` | Declarations, statements, lifecycle, and behavioural intent. |
 | Structural glyphs | `← → ∴ ≡ ∪ ⇥` | Value flow, type flow, and structural joints — universal, never localise. |
 
 These three are designed to be mutually reinforcing. A reader who knows Faber in
 one locale can read it in any locale because the glyphs and structure never change.
 A reader who knows the Rust backend can still recognise the Faber source because
-the Latin keywords and type-first order produce a distinct visual register.
+the keyword vocabulary and type-first order produce a distinct visual register.
 
 ### Type-first declarations {#type-first}
 
@@ -157,9 +154,9 @@ mainstream C-family syntax, and it is deliberate:
 
 | Construct | C-family habit | Faber |
 |-----------|----------------|-------|
-| Variable | `int count = 0` | `numerus count ← 0` |
-| Function | `fn greet(name: String) → String` | `functio salve(textus nomen) → textus` |
-| Parameter | `(String name)` | `(textus nomen)` |
+| Variable | `int count = 0` | `int count ← 0` |
+| Function | `fn greet(name: String) → String` | `fn salve(string nomen) → string` |
+| Parameter | `(String name)` | `(string nomen)` |
 
 Type-first declarations mean the shape of data is the first thing the reader sees.
 This aligns naturally with languages that read left-to-right for semantic breadth
@@ -172,60 +169,63 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 }
 ```
 
-### Latin behavioural vocabulary {#latin}
+### The behavioural vocabulary {#latin}
 
-Faber uses Latin words for every construct that has behavioural or grammatical
-shape. The vocabulary is small and regular, drawn from a single classical source
-rather than the mixed etymologies of most programming languages.
+Faber gives every construct that has behavioural or grammatical shape a word.
+The English reader surface is what the tables below show; the compiler's
+canonical corpus keeps the same vocabulary under Latin spellings, which
+`faber convert --to la` prints — a small, regular set drawn from a single
+classical source rather than the mixed etymologies of most programming
+languages.
 
 #### Declarations {#declarations}
 
 | Keyword | Role | Approximate equivalent |
 |---------|------|------------------------|
-| `functio` | Declares a named function or method | `fn`, `def`, `function` |
-| `genus` | Declares a concrete type with fields | `class`, `struct` |
-| `implendum` | Declares a behavioural contract | `interface`, `trait` |
-| `typus` | Declares a type alias | `typedef`, `type` |
-| `discretio` | Declares a tagged union | `enum`, `sum type` |
+| `fn` | Declares a named function or method | `def`, `function` |
+| `class` | Declares a concrete type with fields | `class`, `struct` |
+| `interface` | Declares a behavioural contract | `interface`, `trait` |
+| `type` | Declares a type alias | `typedef`, `type` |
+| `union` | Declares a tagged union | `enum`, `sum type` |
 
 #### Bindings and transfer {#bindings-and-transfer}
 
 | Keyword | Role | Approximate equivalent |
 |---------|------|------------------------|
-| `fixum` | Immutable binding (write-once) | `let`, `const` |
-| `varia` | Mutable binding | `let mut`, `var` |
-| `sit` | Concise inferred immutable | `let` (inferred) |
-| `redde` | Return a value from a function | `return` |
-| `iace` | Throw on the error channel | `throw`, `raise` |
-| `mori` | Deferred — behaviour not yet expressible | `unimplemented!`, `todo` |
+| `const` | Immutable binding (write-once) | `const`, `final` |
+| `var` | Mutable binding | `let mut`, `var` |
+| `let` | Concise inferred immutable | `val`, `auto` |
+| `return` | Return a value from a function | `return` |
+| `throw` | Throw on the error channel | `throw`, `raise` |
+| `panic` | Deferred — behaviour not yet expressible | `unimplemented!`, `todo` |
 
 #### Control flow {#control-flow}
 
 | Keyword | Role | Approximate equivalent |
 |---------|------|------------------------|
-| `si` | Conditional branch | `if` |
-| `sin` | Else-if branch | `else if` |
-| `secus` | Else branch | `else` |
-| `dum` | While loop | `while` |
-| `itera` | Iteration (values, keys, or range) | `for` |
-| `elige` | Pattern-match (first arm wins) | `match`, `switch` |
-| `fac` | Try block with error recovery | `try`, `do` |
-| `cape` | Error handler for fac | `catch` |
+| `if` | Conditional branch | `if` |
+| `elif` | Else-if branch | `else if` |
+| `else` | Else branch | `else` |
+| `while` | While loop | `while` |
+| `for` | Iteration (values, keys, or range) | `for` |
+| `switch` | Pattern-match (first arm wins) | `match`, `switch` |
+| `do` | Try block with error recovery | `try`, `do` |
+| `catch` | Error handler for do | `catch` |
 
-> The Latin vocabulary is **bindable** — it ships with the canonical pack but can be remapped through reader locale. A Thai programmer sees `ถ้า` instead of `si`; a Chinese programmer sees `函数` instead of `functio`. The vocabulary is not privileged; only the grammar is.
+> The vocabulary is **bindable** — it ships with the canonical pack but can be remapped through reader locale. A Thai programmer sees `ถ้า` for `if`; a Chinese programmer sees `函数` for `fn`. The vocabulary is not privileged; only the grammar is.
 
 Keywords are **contextual**: since Radix v0.79.0 there is no global reserved
 keyword table. The lexer emits identifiers for all words and the parser
 recognizes a keyword by spelling in its grammar position. A word is only a
 keyword in the slot where it is expected; everywhere else it is an ordinary
-identifier — you can name a variable `si`, a function `functio`, or a
-parameter `vel`. A small residual set (`cape`, `custodi`, `itera`, `sic`,
-`iace`, `mori`, `adfirma`, `cede`, `incipit`, `incipiet`, `importa`, `ex`)
+identifier — you can name a variable `if`, a function `fn`, or a
+parameter `coalesce`. A small residual set (`catch`, `guard`, `for`, `yields`,
+`throw`, `panic`, `assert`, `yield`, `main`, `async_main`, `import`, `from`)
 is still globally reserved.
 
 ### Structural glyphs {#glyphs}
 
-Where behavioural vocabulary uses Latin words, structural meaning uses universal
+Where behavioural vocabulary uses your reader locale's words, structural meaning uses universal
 glyphs. These never localise and never change their meaning across renderings.
 They are the visual anchor that makes Faber source recognisable regardless of
 which human language the keywords are rendered in.
@@ -238,7 +238,7 @@ which human language the keywords are rendered in.
 | `→` | Function return type declaration |
 | `⇥` | Alternate exit: error-channel type |
 | `⊥` | Default: inline value used when a conversion fails |
-| `∴` | Clausura joint — connects a closure body to its signature |
+| `∴` | Lambda joint — connects a closure body to its signature |
 
 #### Type shape {#type-shape}
 
@@ -246,7 +246,7 @@ which human language the keywords are rendered in.
 |-------|---------|
 | `∷` | Static type ascription — compile-time assertion about a value's type |
 | `↦` | Runtime conversion — parsing or coercion that may fail |
-| `∪` | Inline union type — connects two types (as in `T ∪ nihil`) |
+| `∪` | Inline union type — connects two types (as in `T ∪ none`) |
 
 #### Comparison and logic {#comparison-and-logic}
 
@@ -271,9 +271,9 @@ point of confusion for new readers:
 Most languages overload `=` for both "define this field in a type"
 and "put a runtime value in this variable." Faber splits those jobs. Every
 `←` is live data flow; every `=` inside `Type { … }`
-is genus field layout.
+is class field layout.
 
-```text
+```faber
 # Runtime binding: ← attaches a value to a name
 fixum numerus count ← 0
 varia textus label ← "ready"
@@ -294,12 +294,12 @@ each distinct semantic job — no overloading.
 
 | Semantic job | Common in other languages | Faber |
 |--------------|---------------------------|-------|
-| Parameter type declaration | `name: String` | `textus nomen` |
-| Return type | `→ String`, `: String` | `→` `textus` |
+| Parameter type declaration | `name: String` | `string name` |
+| Return type | `→ String`, `: String` | `→` `string` |
 | Runtime assignment | `x = value` | `←` |
 | Equality test | `==` | `≡` |
-| Nullability | `T?`, `Option<T>` | `T ∪ nihil` |
-| Branch + one statement | `if (cond) return x` | `si cond ergo redde x` |
+| Nullability | `T?`, `Option<T>` | `T ∪ none` |
+| Branch + one statement | `if (cond) return x` | `if cond then return x` |
 | Type cast | `(T)value`, `value as T` | `value ∷ T` |
 | Conversion (may fail) | `try_into()` | `value ↦ T` |
 
@@ -326,18 +326,21 @@ to emit based on context and mode.
 
 ### Numeric type sugar {#numeric-type-sugar}
 
-Numeric types have long-form canonical spellings and compact sugar forms.
-The choice is per-module, not per-repository — a CLI package may use long
-form everywhere, while a tensor kernel module uses sugar:
+Sized numeric types have one canonical spelling: the bare width marker
+(`i8` … `u64`, `d64`, `inf`, `f16`, `f32`, `f64`). The wrapped forms
+`numerus<i32>` / `fractus<f32>` (en `int<i32>` / `float<f32>`) are the retired
+spelling — the parser still reads them for now, but the formatter and the
+diagnostics print the bare marker. The compact sugar families below build on
+the markers. The choice between a container's long form and its sugar is
+per-module, not per-repository — a CLI package may use long form everywhere,
+while a tensor kernel module uses sugar:
 
 | Sugar | Canonical form | Domain |
 |-------|----------------|--------|
-| `f32`, `f64`, `i32`, `u64` | `fractus<f32>`, `numerus<i32>` | Width markers — scalar numeric types |
 | `tf32`, `tf32[4]`, `ti64[2, 3]` | `tensor<f32, _>`, `tensor<f32, [4]>` | Dense tensor — `t` + width + optional shape |
 | `sf32`, `sf32[2, 3]`, `si64[N]` | `sparsa<f32, _>`, `sparsa<f32, [2, 3]>` | Sparse tensor — `s` + width + optional shape |
 | `mf32[4, 4]`, `mu32[3, 3]` | `matrix<f32, [4, 4]>` | Register-class matrix — `m` + width + shape |
-| `lf32`, `lu32`, `li64` | `lista<f32>`, `lista<u32>` | List — `l` + width |
-| `f16` | `fractus<f16>` | Half-float width marker (semantic/layout only) |
+| `lf32`, `lu32`, `li64` | `list<f32>`, `list<u32>` | List — `l` + width |
 
 **General Faber (prefer long form):**
 
@@ -345,7 +348,7 @@ form everywhere, while a tensor kernel module uses sugar:
 incipit {
     fixum lista<f32> values ← vacua
     fixum tensor<f32, [2, 3]> grid ← vacua
-    fixum numerus<i32> narrow ← 7
+    fixum i32 narrow ← 7
 }
 ```
 
@@ -372,12 +375,12 @@ consistently uses sugar should say so once at the top:
 
 Faber annotations follow the same dual-surface model as numeric types.
 Annotations are compiler-owned metadata attached to declarations — like
-`@ optio` for CLI option definitions or `@ futura` for async functions
-(legacy — prefer the `fiet` posture word in the signature slot).
+`@ option` for CLI option definitions or `@ future` for async functions
+(legacy — prefer the `async` posture word in the signature slot).
 
 **Canonical form:** a braced record with explicit field names:
 
-```text
+```faber
 @ optio {
     binding = verbose,
     brevis = "v",
@@ -390,7 +393,7 @@ Annotations are compiler-owned metadata attached to declarations — like
 
 **Sugar form:** positional arguments and named aliases:
 
-```text
+```faber
 @ optio verbose brevis "v" longum "verbose" typus bivalens ubique descriptio "Enable verbose output"
 ```
 
@@ -420,8 +423,8 @@ Key rules for both modes:
 - Stroustrup braces: opening `{` on the same line as the controlling header
 - Author mode preserves the *presence* of blank lines but collapses runs of more than one
 - Author mode does not insert blank lines the source did not contain
-- Canonical mode normalises type spellings to long form, tensor sugar to canonical, annotations to braced records
-- Canonical mode emits `T ∪ nihil` for nullable unions, `sponte` for optional parameters
+- Canonical mode normalises container sugar to long form (`tf32[4]` → `tensor<f32, [4]>`) and annotations to braced records; width markers such as `i32` are already canonical
+- Canonical mode emits `T ∪ none` for nullable unions, `optional` for optional parameters
 
 ### Design principle {#design-principle}
 
@@ -430,15 +433,14 @@ deliberate design principle, not a collection of one-off conveniences:
 
 | Domain | Canonical | Sugar |
 |--------|-----------|-------|
-| Numeric types | `numerus<i32>` | `i32` |
 | Tensor types | `tensor<f32, [4]>` | `tf32[4]` |
-| Annotations | `@ optio { binding = verbose }` | `@ optio verbose ...` |
+| Annotations | `@ option { binding = verbose }` | `@ option verbose ...` |
 | Formatting | `faber format --locale la` | `faber format` (author mode) |
 | Reader locale | Latin (`la`) | Any locale pack |
 
 The pattern serves two goals. First, it lowers the barrier to entry — new
 users can write `tf32[4]` without typing
-`tensor<fractus<f32>, [4]>`. Second, it keeps the
+`tensor<f32, [4]>`. Second, it keeps the
 canonical language unambiguous — when precision matters, the long form says
 exactly what it means. The formatter bridges the two: authors write sugar,
 reviewers can request canonical, and CI can enforce either.

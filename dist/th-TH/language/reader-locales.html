@@ -28,8 +28,8 @@ surface อื่นได้ทุกแบบ รวมถึงภาษา�
 อักษรละติน:</p><div class="table-scroll"><table><thead><tr><th>Locale</th><th>การเข้าถึง</th><th>แรงกดดันทางสถาปัตยกรรม</th></tr></thead><tbody><tr><td><code>th-TH</code></td><td>สูง</td><td>ระบบอักษรไร้ช่องว่าง — การทดสอบความเครียดของตัวแยกโทเคน</td></tr><tr><td><code>zh-Hans</code> / <code>zh-Hant</code></td><td>สูงมาก</td><td>คีย์เวิร์ดคู่; การสืบทอดแพ็กพี่น้อง; การยุบความกว้างด้วย NFKC</td></tr><tr><td><code>ar</code></td><td>สูง</td><td>ขวาไปซ้าย; การแยกทิศทางแบบ bidi ในข้อความแจ้งข้อผิดพลาด</td></tr><tr><td><code>hi</code></td><td>สูงมาก</td><td>กลุ่มมาตรา/วิรามะ; ตัวเลขอินดิก</td></tr><tr><td><code>vi</code></td><td>สูง</td><td>เครื่องหมายกำกับเสียงจำนวนมากบนอักษรละติน; กรณีขอบของ NFKC</td></tr></tbody></table></div><p><em>ชุดอ้างอิงนี้เลือกเพื่อครอบคลุมสถาปัตยกรรม ไม่ใช่เพื่อจำนวนประชากร จำนวนประชากรเพียงอย่างเดียวไม่อาจพิสูจน์สิ่งใดที่ substrate ยังไม่รองรับได้</em></p><h3 id="examples">ตัวอย่างซอร์สที่แปลเป็นภาษาท้องถิ่น<a class="anchor" href="#examples">#</a></h3><p>locale ที่ไม่ใช่ canonical ทั้งหกมีแพ็ก Faber ครบชุดอยู่ใต้
 <code>examples/reader-locale/</code> โดยมีซอร์สที่แปลเป็นภาษาท้องถิ่น กรณีทดสอบ
 ข้อผิดพลาด และ manifest <code>faber.toml</code> โปรแกรม <code>greet</code> เดียวกันเมื่อเรนเดอร์
-ผ่านทุก locale ที่จัดส่ง:</p><p><strong>ภาษาละติน</strong> <code>la</code> — <em>canonical</em></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">ฟังก์ชัน</span> salve(<span class="tok-kw">ข้อความ</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">ข้อความ</span> {
-    <span class="tok-kw">คงที่</span> <span class="tok-kw">ข้อความ</span> msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
+ผ่านทุก locale ที่จัดส่ง:</p><p><strong>ภาษาละติน</strong> <code>la</code> — <em>canonical</em></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">ฟังก์ชัน</span> salve(<span class="tok-kw">ข้อความ</span> <span class="tok-kw">ชื่อ</span>) <span class="tok-op">→</span> <span class="tok-kw">ข้อความ</span> {
+    <span class="tok-kw">คงที่</span> <span class="tok-kw">ข้อความ</span> msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(<span class="tok-kw">ชื่อ</span>)
     <span class="tok-kw">คืน</span> msg
 }
 
@@ -38,8 +38,8 @@ surface อื่นได้ทุกแบบ รวมถึงภาษา�
     <span class="tok-kw">บันทึก</span> m
 }</code></pre><p>การเรนเดอร์แบบ canonical <code>faber format --canonical</code> มีความหมายตรงกับ
 <code>faber format --reader-locale=la</code> คีย์เวิร์ดภาษาละตินแมปเข้าหาตัวเอง
-และชื่อชนิดข้อมูลใช้รูปสะกดแบบ canonical</p><p><strong>ไทย</strong> <code>th-TH</code> — <em>ข้อพิสูจน์อ้างอิง</em></p><pre class="faber-code"><code class="lang-text">ฟังก์ชัน salve(ข้อความ nomen) → ข้อความ {
-    ค่าคงที่ ข้อความ msg ← &quot;Salve, §!&quot;(nomen)
+และชื่อชนิดข้อมูลใช้รูปสะกดแบบ canonical</p><p><strong>ไทย</strong> <code>th-TH</code> — <em>ข้อพิสูจน์อ้างอิง</em></p><pre class="faber-code"><code class="lang-text">ฟังก์ชัน salve(ข้อความ ชื่อ) → ข้อความ {
+    ค่าคงที่ ข้อความ msg ← &quot;Salve, §!&quot;(ชื่อ)
     คืนค่า msg
 }
 
@@ -56,12 +56,12 @@ reader locale ทุกขอบเขตของโทเคนต้องถ
 入口 {
     常量 文本 消息 ← 问候(&quot;世界&quot;)
     显示 消息
-}</code></pre><p>คีย์เวิร์ดคู่ (如果/否则 สำหรับ si/secus) ต้องใช้กลุ่มคีย์เวิร์ดของแพ็ก;
+}</code></pre><p>คีย์เวิร์ดคู่ (如果/否则 สำหรับ ถ้า/secus) ต้องใช้กลุ่มคีย์เวิร์ดของแพ็ก;
 เครื่องหมายวรรคตอนแบบเต็มความกว้าง/ครึ่งความกว้าง; และการยุบความกว้างด้วย NFKC
 เมื่อเข้าสู่ lexer นี่เป็นกรณีการส่งออกด้วย LLM ที่ยากที่สุด เนื่องจากขอบเขต
 โทเคนของตัวแยก CJK แพ็กพี่น้องสำหรับภาษาจีนตัวเต็ม (<code>zh-Hant</code>) จะสืบทอดและ
-โอเวอร์ไรด์รากของ <code>zh-Hans</code></p><p><strong>อาหรับ</strong> <code>ar</code></p><pre class="faber-code"><code class="lang-text">دالة salve(نص nomen) → نص {
-    ثابت نص msg ← &quot;مرحبا، §!&quot;(nomen)
+โอเวอร์ไรด์รากของ <code>zh-Hans</code></p><p><strong>อาหรับ</strong> <code>ar</code></p><pre class="faber-code"><code class="lang-text">دالة salve(نص ชื่อ) → نص {
+    ثابت نص msg ← &quot;مرحبا، §!&quot;(ชื่อ)
     أعد msg
 }
 
@@ -71,8 +71,8 @@ reader locale ทุกขอบเขตของโทเคนต้องถ
 }</code></pre><p>ระบบอักษรขวาไปซ้ายที่ฝังอยู่ภายในบล็อกโค้ดลำดับตรรกะซ้ายไปขวา คีย์เวิร์ดจะถูก
 ห่อด้วย <code>&lt;bdi&gt;</code> (การแยกทิศทางแบบ bidi) ในเอาต์พุต HTML ของข้อความแจ้งข้อผิดพลาด
 จากคอมไพเลอร์ เพื่อป้องกันการบิดเบือนแบบ RFO (ขวาตามซ้าย) ซอร์สดิบใช้อักษรอาหรับ
-ตามลำดับตรรกะ ส่วนแสดงผลจะจัดการการนำเสนอแบบ bidi</p><p><strong>ฮินดี</strong> <code>hi</code></p><pre class="faber-code"><code class="lang-text">फलन salve(पाठ nomen) → पाठ {
-    स्थिर पाठ msg ← &quot;Salve, §!&quot;(nomen)
+ตามลำดับตรรกะ ส่วนแสดงผลจะจัดการการนำเสนอแบบ bidi</p><p><strong>ฮินดี</strong> <code>hi</code></p><pre class="faber-code"><code class="lang-text">फलन salve(पाठ ชื่อ) → पाठ {
+    स्थिर पाठ msg ← &quot;Salve, §!&quot;(ชื่อ)
     लौटा msg
 }
 
@@ -113,4 +113,4 @@ locale:</p><ul><li><code>examples/reader-locale/vi/src/type-mismatch.fab</code><
 คำอธิบาย stdlib การวัดผลการส่งออกด้วย LLM และเอกสารหลายภาษาที่สร้างขึ้น —
 ยังคงระบุไว้อย่างชัดเจนว่าอยู่ระหว่างดำเนินการหรือเลื่อนออกไป</p><h3 id="references">แหล่งอ้างอิง<a class="anchor" href="#references">#</a></h3><ol><li><code>radix/docs/design/reader-locale.md</code> — เอกสารการออกแบบฉบับเต็ม (69 KB)</li><li><code>examples/reader-locale/</code> — แพ็ก locale 6 แพ็กพร้อมซอร์สที่แปลเป็นภาษาท้องถิ่น</li><li><code>stdlib/reader/*/pack.toml</code> — นิยามแพ็กที่ติดตั้งแล้ว 7 รายการ</li><li><code>radix/crates/radix/src/reader_locale.rs</code> — การทำงานของ runtime</li><li><code>radix/docs/design/faber-canonical-surface.md</code> — โหมด canonical และ <code>faber format</code></li><li><code>radix/docs/factory/lex-nfkc-normalization/</code> — การส่งมอบข้อกำหนดเบื้องต้น NFKC</li></ol><h2 id="reader-locale-packages">Reader-locale packages<a class="anchor" href="#reader-locale-packages">#</a></h2><p>แต่ละภาษาสำหรับผู้อ่านที่ไม่ใช่ภาษาละตินจะมีแพ็กเกจ Faber แบบสมบูรณ์อยู่ภายใต้
 <code>examples/reader-locale/</code> โดยมีซอร์สที่แปลเป็นภาษาท้องถิ่น กรณีทดสอบการวินิจฉัย
-และไฟล์แมนนิเฟสต์ <code>faber.toml</code></p><p>แพ็กเกจที่มีให้ใช้งาน {#available-packages}</p><div class="table-scroll"><table><thead><tr><th>ภาษา</th><th>เส้นทาง</th><th>ตัวอย่างซอร์ส</th></tr></thead><tbody><tr><td>th-TH</td><td><code>examples/reader-locale/th-TH/</code></td><td><code>ฟังก์ชัน salve(ข้อความ nomen) → ข้อความ</code></td></tr><tr><td>zh-Hans</td><td><code>examples/reader-locale/zh-Hans/</code></td><td><code>函数 问候(文本 名字) → 文本</code></td></tr><tr><td>zh-Hant</td><td><code>examples/reader-locale/zh-Hant/</code></td><td><code>函式 問候(文字 名字) → 文字</code></td></tr><tr><td>ar</td><td><code>examples/reader-locale/ar/</code></td><td><code>دالة تحية(نص اسم) → نص</code></td></tr><tr><td>hi</td><td><code>examples/reader-locale/hi/</code></td><td><code>फलन नमस्कार(पाठ नाम) → पाठ</code></td></tr><tr><td>vi</td><td><code>examples/reader-locale/vi/</code></td><td><code>hàm chào(vănbản tên) → vănbản</code></td></tr></tbody></table></div><p>กรณีทดสอบการวินิจฉัย {#diagnostic-test-cases}</p><p>แต่ละแพ็กเกจมีกรณีทดสอบที่ยืนยันว่ากระบวนการคอมไพเลอร์ทั้งหมดรองรับภาษาแต่ละภาษา:</p><ul><li><code>type-mismatch.fab</code> — ข้อผิดพลาดด้านชนิดข้อมูลที่แปลเป็นภาษาท้องถิ่น</li><li><code>undefined-variable.fab</code> — ข้อผิดพลาดการแก้ชื่อที่แปลเป็นภาษาท้องถิ่น</li><li><code>non-ascii-number.fab</code> — การจัดการ NFKC</li><li><code>keyword-suggestion.fab</code> — คำแนะนำ “คุณหมายถึง?” ที่แปลเป็นภาษาท้องถิ่น</li></ul></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#reader-locale">Reader locale</a></li><li class="toc-3"><a href="#problem">ปัญหา</a></li><li class="toc-3"><a href="#how">วิธีทำงาน</a></li><li class="toc-3"><a href="#locales">แพ็กที่จัดส่งแล้ว</a></li><li class="toc-3"><a href="#examples">ตัวอย่างซอร์สที่แปลเป็นภาษาท้องถิ่น</a></li><li class="toc-3"><a href="#diagnostics">ข้อความแจ้งข้อผิดพลาดที่แปลเป็นภาษาท้องถิ่น</a></li><li class="toc-3"><a href="#status">สถานะ</a></li><li class="toc-3"><a href="#references">แหล่งอ้างอิง</a></li><li class="toc-2"><a href="#reader-locale-packages">Reader-locale packages</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[</li></ul></div></footer></div></body></html>
+และไฟล์แมนนิเฟสต์ <code>faber.toml</code></p><p>แพ็กเกจที่มีให้ใช้งาน {#available-packages}</p><div class="table-scroll"><table><thead><tr><th>ภาษา</th><th>เส้นทาง</th><th>ตัวอย่างซอร์ส</th></tr></thead><tbody><tr><td>th-TH</td><td><code>examples/reader-locale/th-TH/</code></td><td><code>ฟังก์ชัน salve(ข้อความ ชื่อ) → ข้อความ</code></td></tr><tr><td>zh-Hans</td><td><code>examples/reader-locale/zh-Hans/</code></td><td><code>函数 问候(文本 名字) → 文本</code></td></tr><tr><td>zh-Hant</td><td><code>examples/reader-locale/zh-Hant/</code></td><td><code>函式 問候(文字 名字) → 文字</code></td></tr><tr><td>ar</td><td><code>examples/reader-locale/ar/</code></td><td><code>دالة تحية(نص اسم) → نص</code></td></tr><tr><td>hi</td><td><code>examples/reader-locale/hi/</code></td><td><code>फलन नमस्कार(पाठ नाम) → पाठ</code></td></tr><tr><td>vi</td><td><code>examples/reader-locale/vi/</code></td><td><code>hàm chào(vănbản tên) → vănbản</code></td></tr></tbody></table></div><p>กรณีทดสอบการวินิจฉัย {#diagnostic-test-cases}</p><p>แต่ละแพ็กเกจมีกรณีทดสอบที่ยืนยันว่ากระบวนการคอมไพเลอร์ทั้งหมดรองรับภาษาแต่ละภาษา:</p><ul><li><code>type-mismatch.fab</code> — ข้อผิดพลาดด้านชนิดข้อมูลที่แปลเป็นภาษาท้องถิ่น</li><li><code>undefined-variable.fab</code> — ข้อผิดพลาดการแก้ชื่อที่แปลเป็นภาษาท้องถิ่น</li><li><code>non-ascii-number.fab</code> — การจัดการ NFKC</li><li><code>keyword-suggestion.fab</code> — คำแนะนำ “คุณหมายถึง?” ที่แปลเป็นภาษาท้องถิ่น</li></ul></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#reader-locale">Reader locale</a></li><li class="toc-3"><a href="#problem">ปัญหา</a></li><li class="toc-3"><a href="#how">วิธีทำงาน</a></li><li class="toc-3"><a href="#locales">แพ็กที่จัดส่งแล้ว</a></li><li class="toc-3"><a href="#examples">ตัวอย่างซอร์สที่แปลเป็นภาษาท้องถิ่น</a></li><li class="toc-3"><a href="#diagnostics">ข้อความแจ้งข้อผิดพลาดที่แปลเป็นภาษาท้องถิ่น</a></li><li class="toc-3"><a href="#status">สถานะ</a></li><li class="toc-3"><a href="#references">แหล่งอ้างอิง</a></li><li class="toc-2"><a href="#reader-locale-packages">Reader-locale packages</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[</li></ul></div></footer></div></body></html>

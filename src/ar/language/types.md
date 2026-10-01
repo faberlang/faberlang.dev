@@ -60,9 +60,9 @@ sources = [
 
 ```faber
 incipit {
-    fixum numerus<i32> narrow ← 7 ∷ numerus<i32>
-    fixum numerus<u64> wide ← 255 ∷ numerus<u64>
-    fixum fractus<f32> single ← 1.5 ∷ fractus<f32>
+    fixum i32 narrow ← 7 ∷ i32
+    fixum u64 wide ← 255 ∷ u64
+    fixum f32 single ← 1.5 ∷ f32
 }
 ```
 
@@ -147,7 +147,7 @@ incipit {
 
 ```faber
 incipit {
-    fixum tensor<fractus<f32>, []> scalar ← vacua
+    fixum tensor<f32, []> scalar ← vacua
     fixum tensor<numerus, [4]> lanes ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
     fixum numerus ∪ nihil head ← lanes[0]
 }
@@ -363,7 +363,7 @@ incipit {
 
 ```faber
 incipit {
-    fixum tensor<fractus<f32>, []> scalar ← vacua
+    fixum tensor<f32, []> scalar ← vacua
     fixum tensor<numerus, [4]> lanes ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
     fixum numerus ∪ nihil head ← lanes[0]
 }
@@ -386,7 +386,7 @@ incipit {
 
 ```faber
 incipit {
-    fixum sparsa<fractus<f32>, [2, 3]> sparse ← vacua
+    fixum sparsa<f32, [2, 3]> sparse ← vacua
     sparse.ponde([0, 1], 4.0)
     sparse.ponde([1, 2], 9.0)
 
@@ -638,7 +638,7 @@ incipit {
 ```faber
 incipit {
     fixum numerus value ← 7
-    fixum _ x ← 7 ∷ numerus<i32>
+    fixum _ x ← 7 ∷ i32
     fixum _ text ← value ∷ textus
 }
 ```

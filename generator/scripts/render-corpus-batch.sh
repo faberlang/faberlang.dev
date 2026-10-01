@@ -81,6 +81,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(os.environ["GENERATOR_DIR"]) / "scripts"))
 from corpus_locale import assign_slugs, load_pack
+from project_reader_terms import load_mapping, project_corpus_source
 
 corpus = Path(os.environ["CORPUS_DIR"])
 build = Path(os.environ["BUILD_DIR"])
@@ -130,6 +131,8 @@ for path in sorted(corpus.rglob("*.fab")):
 terms = sorted(canonical)
 term_set = set(terms)
 pack = load_pack(reader_root, reader_locale)
+term_mapping = load_mapping(reader_root / reader_locale / "pack.toml") if reader_locale != "la" else {}
+convert_faber = os.environ.get("FABER_LOCALIZE", os.environ.get("FABER", "faber"))
 slugs, collisions = assign_slugs(
     [(term, str(canonical[term].get("kind", "keyword"))) for term in terms],
     pack,
@@ -156,7 +159,12 @@ for term in terms:
     term_slug = slugs[term]
     selected = sorted(records_by_term[term], key=lambda item: (item[0], item[1]))
     bundle = bundle_dir / f"{term}.bundle"
-    bundle.write_text(marker.join(path + source_marker + source + expected_marker + expected for _, path, source, expected in selected))
+    bundle_records = []
+    for _, path, source, expected in selected:
+        if reader_locale != "la":
+            source = project_corpus_source(source, term_mapping, reader_locale, convert_faber)
+        bundle_records.append(path + source_marker + source + expected_marker + expected)
+    bundle.write_text(marker.join(bundle_records))
     html_path = corpus_out / f"{term_slug}.html"
     html = subprocess.check_output(
         [str(binary), "--", "--corpus", term, str(bundle), site_locale, reader_locale, stylesheet, term_slug],

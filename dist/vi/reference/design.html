@@ -10,9 +10,9 @@ hay mã được biên dịch cho backend đích nào.</p><h3 id="i-types-before
 nào*. Cách này phù hợp với những ngôn ngữ có trật tự ngữ pháp đi từ phạm trù
 đến thể hiện — tiếng Trung, tiếng Hindi, tiếng Ả Rập — và tạo ra các khai báo
 có hình thức nhất quán khi quét qua mã.</p><pre class="faber-code"><code class="lang-text"># Type before name in every declaration
-textus nomen
-numerus aetas
-functio salve(textus name) → textus</code></pre><h3 id="ii-mechanical-over-magical">II. Cơ học thay vì huyền bí<a class="anchor" href="#ii-mechanical-over-magical">#</a></h3><p>Cùng một cấu trúc phải có cùng ý nghĩa ở mọi nơi. Nếu người đọc cần dựa vào
+văn_bản tên
+số aetas
+hàm salve(văn_bản name) → văn_bản</code></pre><h3 id="ii-mechanical-over-magical">II. Cơ học thay vì huyền bí<a class="anchor" href="#ii-mechanical-over-magical">#</a></h3><p>Cùng một cấu trúc phải có cùng ý nghĩa ở mọi nơi. Nếu người đọc cần dựa vào
 ngữ cảnh ở nơi xa để biết một ký hiệu thực hiện điều gì, thì cú pháp đó đáng
 ngờ. Faber ưu tiên suy luận tường minh và cục bộ — vị trí khai báo phải mang
 đủ thông tin để hiểu điều gì sẽ xảy ra tại vị trí sử dụng.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># The meaning of a call is determined by the function's signature,</span>
@@ -20,12 +20,12 @@ ngờ. Faber ưu tiên suy luận tường minh và cục bộ — vị trí kha
 <span class="tok-kw">hàm</span> duplica(<span class="tok-kw">số</span> n) <span class="tok-op">→</span> <span class="tok-kw">số</span> {
     <span class="tok-kw">trả</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }</code></pre><h3 id="iii-glyphs-carry-structure">III. Ký hiệu mang cấu trúc<a class="anchor" href="#iii-glyphs-carry-structure">#</a></h3><p>Ý nghĩa cấu trúc và toán tử được biểu thị bằng ký hiệu, không phải bằng từ:
-<code>←</code> cho liên kết, <code>→</code> cho kiểu trả về, <code>⇥</code> cho lối thoát khi có lỗi, <code>ergo</code> cho
+<code>←</code> cho liên kết, <code>→</code> cho kiểu trả về, <code>⇥</code> cho lối thoát khi có lỗi, <code>do_đó</code> cho
 thân nhánh rút gọn, <code>≡</code> cho phép bằng nhau, <code>∪</code> cho kiểu hợp. Ký hiệu mang
 tính phổ quát — chúng không bao giờ được bản địa hóa và không bao giờ đổi
 nghĩa giữa các cách hiển thị. Người đọc tiếng Thái và người đọc tiếng Pháp
 nhìn thấy cùng một ký hiệu, ngay cả khi các từ khóa xung quanh khác nhau.</p><h3 id="iv-latin-carries-behaviour">IV. Latin mang hành vi<a class="anchor" href="#iv-latin-carries-behaviour">#</a></h3><p>Từ ngữ dành cho khai báo, câu lệnh, vòng đời và ý định hành vi:
-<code class="kw">functio</code>, <code class="kw">genus</code>, <code class="kw">fixum</code>, <code class="kw">varia</code>, <code class="kw">redde</code>, <code class="kw">cape</code>. Các từ này có thể được
+<code>hàm</code>, <code>kiểu</code>, <code>hằng</code>, <code>biến</code>, <code>trả</code>, <code>bắt</code>. Các từ này có thể được
 liên kết thông qua các gói ngôn ngữ của người đọc — chúng là từ vựng, không
 phải ngữ pháp. Việc chọn tiếng Latin không nhằm đề cao tiếng Latin; mục đích
 là chọn <em>một</em> nguồn cổ điển nhất quán để mọi từ khóa cùng thuộc một văn phong
@@ -35,7 +35,7 @@ generator, dạng biến cách của động từ phải biểu thị chế đ�
 cặp liên quan đến quyền sở hữu — biến đổi so với sao chép và trả ra — dùng
 những dạng liên quan của cùng một gốc từ. Đây là nguyên tắc morphologia. Thư
 viện chuẩn (Norma) tuân theo quy ước này cho mọi tên phương thức:
-<code>lege</code> (đọc đồng bộ) so với <code>leget</code> (đọc bất đồng bộ), <code>adde</code> (biến đổi tại
+<code>đọc</code> (đọc đồng bộ) so với <code>leget</code> (đọc bất đồng bộ), <code>adde</code> (biến đổi tại
 chỗ) so với <code>addita</code> (trả về một bản sao mới). Trình biên dịch không áp đặt
 hay tự suy ra các dạng biến cách — đây là chính sách đặt tên, không phải tính
 năng ngôn ngữ.</p><h3 id="vi-one-sign-one-job">VI. Một ký hiệu, một nhiệm vụ<a class="anchor" href="#vi-one-sign-one-job">#</a></h3><p>Một ký hiệu hoặc từ khóa có thể có các bí danh hoàn toàn tương đương, nhưng
@@ -44,26 +44,26 @@ khái niệm chuẩn duy nhất. Đây là nguyên tắc dẫn đến sự phân
 (liên kết thời gian chạy) và <code>=</code> (hình dạng trường mang tính cấu trúc) trong
 Faber — hầu hết ngôn ngữ gộp cả hai vào <code>=</code>, nhưng cách nạp chồng đó che khuất
 việc một dòng là thao tác luồng dữ liệu hay định nghĩa ở cấp kiểu.</p><pre class="faber-code"><code class="lang-text"># ← is always runtime flow
-fixum numerus count ← 0
+hằng số count ← 0
 count ← count + 1
 
 # = is always structural shape inside Type { }
-fixum _ p ← Point {
+hằng _ p ← Point {
     x = 10,
     y = 20
 }</code></pre><h3 id="vii-runtime-flow-is-explicit">VII. Luồng thời gian chạy phải tường minh<a class="anchor" href="#vii-runtime-flow-is-explicit">#</a></h3><p>Liên kết thời gian chạy, gán lại và biến đổi dùng <code>←</code>; định nghĩa cấu trúc
 dùng <code>=</code>. Khi quét mã nguồn, người đọc có thể thấy ngay mọi thao tác luồng dữ
 liệu: mỗi <code>←</code> là một sự kiện trong thời gian chạy. Không có sự mơ hồ cú pháp
 về việc một <code>=</code> cụ thể có nghĩa là “lưu vào biến này” hay “định nghĩa trường
-này”.</p><h3 id="viii-absence-is-typed">VIII. Sự vắng mặt có kiểu<a class="anchor" href="#viii-absence-is-typed">#</a></h3><p>Các kiểu giá trị có thể rỗng được viết dưới dạng hợp: <code>T ∪ nihil</code>. Các vị trí
-khai báo tùy chọn dùng dấu đánh dấu sau tên: <code>sponte</code>. Đây là hai khái niệm
+này”.</p><h3 id="viii-absence-is-typed">VIII. Sự vắng mặt có kiểu<a class="anchor" href="#viii-absence-is-typed">#</a></h3><p>Các kiểu giá trị có thể rỗng được viết dưới dạng hợp: <code>T ∪ rỗng_ty</code>. Các vị trí
+khai báo tùy chọn dùng dấu đánh dấu sau tên: <code>tự_nguyện</code>. Đây là hai khái niệm
 khác nhau — <em>một giá trị có thể vắng mặt</em> so với *một vị trí mà bên gọi có thể
 bỏ qua* — và Faber giữ chúng tách biệt về mặt cú pháp thay vì gộp cả hai vào
-<code>T?</code> hoặc <code>Option&lt;T&gt;</code>.</p><pre class="faber-code"><code class="lang-text"># Absence in a value: T ∪ nihil
-functio find(textus key) → numerus ∪ nihil
+<code>T?</code> hoặc <code>Option&lt;T&gt;</code>.</p><pre class="faber-code"><code class="lang-text"># Absence in a value: T ∪ rỗng_ty
+hàm find(văn_bản key) → số ∪ rỗng_ty
 
-# Omission at declaration: sponte
-functio connect(textus host, numerus port sponte) → vacuum</code></pre><h3 id="ix-compiler-does-not-guess">IX. Trình biên dịch không đoán để che giấu thông tin còn thiếu<a class="anchor" href="#ix-compiler-does-not-guess">#</a></h3><p>Thông tin kiểu còn thiếu là vấn đề phân tích cần được sửa từ thượng nguồn,
+# Omission at declaration: tự_nguyện
+hàm connect(văn_bản host, số port tự_nguyện) → trống</code></pre><h3 id="ix-compiler-does-not-guess">IX. Trình biên dịch không đoán để che giấu thông tin còn thiếu<a class="anchor" href="#ix-compiler-does-not-guess">#</a></h3><p>Thông tin kiểu còn thiếu là vấn đề phân tích cần được sửa từ thượng nguồn,
 không phải chi tiết sinh mã cần được che đậy. Khi thông tin thực sự không có,
 trình biên dịch không bao giờ âm thầm suy ra một kiểu mà lập trình viên chưa
 cung cấp — nó báo phần thiếu và dừng lại. Đây là quy tắc giữ cho Faber trung
@@ -77,7 +77,7 @@ bổ sung thông thường.</p><p>Trong thực tế, các điều răn thường
 xuất cú pháp mới. Một đề xuất làm suy yếu “kiểu dữ liệu trước tên” bằng cách
 thêm lựa chọn đặt tên trước, hoặc làm mờ “một ký hiệu, một nhiệm vụ” bằng cách
 nạp chồng một ký hiệu, phải giải thích vì sao Faber nên uốn cong bản sắc của
-mình cho tính năng đó.</p><h2 id="design-documents">Design documents<a class="anchor" href="#design-documents">#</a></h2><p>Kho lưu trữ Radix chứa các tài liệu thiết kế có tính thẩm quyền về cách Faber hoạt động như một ngôn ngữ và trình biên dịch. Các tài liệu này nằm trong <code>radix/docs/design/</code>.</p><h3 id="index">Mục lục<a class="anchor" href="#index">#</a></h3><div class="table-scroll"><table><thead><tr><th>Phạm vi</th><th>Tệp</th></tr></thead><tbody><tr><td>Đích và hạ tầng hạ cấp</td><td><code>target-capability-matrix.md</code>, <code>lowering-routes.md</code>, <code>semantic-ownership.md</code></td></tr><tr><td>Kiểu và cú pháp rút gọn</td><td><code>numeric-type-sugar.md</code>, <code>comparison-operators.md</code>, <code>annotation-sugar.md</code></td></tr><tr><td>Nội tại bộ sưu tập</td><td><code>lista-intrinsics.md</code>, <code>tabula-intrinsics.md</code>, <code>tensor-intrinsics.md</code>, <code>numerus-intrinsics.md</code>, <code>fractus-intrinsics.md</code>, <code>textus-intrinsics.md</code>, <code>intervallum-intrinsics.md</code>, <code>instans-intrinsics.md</code>, <code>copia-intrinsics.md</code></td></tr><tr><td>Chuyển đổi</td><td><code>conversio-valor.md</code>, <code>failable-conversio.md</code></td></tr><tr><td>Frame và hiệu ứng</td><td><code>frame-stream-types.md</code>, <code>host-provider-gateway.md</code></td></tr><tr><td>Reader và định dạng</td><td><code>reader-locale.md</code>, <code>faber-canonical-surface.md</code></td></tr><tr><td>Hệ thống / AIR</td><td><code>air-dialect.md</code>, <code>aiml-foundation.md</code>, <code>systems-shaped-values.md</code></td></tr><tr><td>Bề mặt công cụ</td><td><code>faber-scripting.md</code></td></tr><tr><td>Khoản nợ đặt tên</td><td><code>mixed-case-naming-debt.md</code></td></tr></tbody></table></div><h3 id="stdlib-design-docs">Tài liệu thiết kế thư viện chuẩn<a class="anchor" href="#stdlib-design-docs">#</a></h3><p>Thư mục <code>radix/docs/stdlib/</code> chứa:</p><div class="table-scroll"><table><thead><tr><th>Tài liệu</th><th>Vai trò</th></tr></thead><tbody><tr><td><code>morphologia.md</code></td><td>Chính sách chia dạng cho mọi tên phương thức của thư viện chuẩn</td></tr><tr><td><code>tensor-methods.md</code></td><td>Tài liệu tham khảo phương thức nhận <code>tensor</code></td></tr><tr><td><code>chorda-methods.md</code></td><td>Tài liệu tham khảo phương thức <code>chorda</code> (văn bản)</td></tr><tr><td><code>mathesis-methods.md</code></td><td>Tài liệu tham khảo phương thức toán học</td></tr><tr><td><code>tempus-methods.md</code></td><td>Tài liệu tham khảo phương thức thời gian</td></tr><tr><td><code>stdlib-mechanical-verbs.md</code></td><td>Chính sách bộ ba <code>pange</code>/<code>solve</code>/<code class="kw">tempta</code></td></tr></tbody></table></div><h2 id="history">History<a class="anchor" href="#history">#</a></h2><h3 id="origins">Nguồn gốc<a class="anchor" href="#origins">#</a></h3><p>Cam kết đầu tiên cho trình biên dịch Radix được thực hiện vào <strong>ngày 20 tháng 12 năm 2025</strong>
+mình cho tính năng đó.</p><h2 id="design-documents">Design documents<a class="anchor" href="#design-documents">#</a></h2><p>Kho lưu trữ Radix chứa các tài liệu thiết kế có tính thẩm quyền về cách Faber hoạt động như một ngôn ngữ và trình biên dịch. Các tài liệu này nằm trong <code>radix/docs/design/</code>.</p><h3 id="index">Mục lục<a class="anchor" href="#index">#</a></h3><div class="table-scroll"><table><thead><tr><th>Phạm vi</th><th>Tệp</th></tr></thead><tbody><tr><td>Đích và hạ tầng hạ cấp</td><td><code>target-capability-matrix.md</code>, <code>lowering-routes.md</code>, <code>semantic-ownership.md</code></td></tr><tr><td>Kiểu và cú pháp rút gọn</td><td><code>numeric-type-sugar.md</code>, <code>comparison-operators.md</code>, <code>annotation-sugar.md</code></td></tr><tr><td>Nội tại bộ sưu tập</td><td><code>lista-intrinsics.md</code>, <code>tabula-intrinsics.md</code>, <code>tensor-intrinsics.md</code>, <code>numerus-intrinsics.md</code>, <code>fractus-intrinsics.md</code>, <code>textus-intrinsics.md</code>, <code>intervallum-intrinsics.md</code>, <code>instans-intrinsics.md</code>, <code>copia-intrinsics.md</code></td></tr><tr><td>Chuyển đổi</td><td><code>conversio-valor.md</code>, <code>failable-conversio.md</code></td></tr><tr><td>Frame và hiệu ứng</td><td><code>frame-stream-types.md</code>, <code>host-provider-gateway.md</code></td></tr><tr><td>Reader và định dạng</td><td><code>reader-locale.md</code>, <code>faber-canonical-surface.md</code></td></tr><tr><td>Hệ thống / AIR</td><td><code>air-dialect.md</code>, <code>aiml-foundation.md</code>, <code>systems-shaped-values.md</code></td></tr><tr><td>Bề mặt công cụ</td><td><code>faber-scripting.md</code></td></tr><tr><td>Khoản nợ đặt tên</td><td><code>mixed-case-naming-debt.md</code></td></tr></tbody></table></div><h3 id="stdlib-design-docs">Tài liệu thiết kế thư viện chuẩn<a class="anchor" href="#stdlib-design-docs">#</a></h3><p>Thư mục <code>radix/docs/stdlib/</code> chứa:</p><div class="table-scroll"><table><thead><tr><th>Tài liệu</th><th>Vai trò</th></tr></thead><tbody><tr><td><code>morphologia.md</code></td><td>Chính sách chia dạng cho mọi tên phương thức của thư viện chuẩn</td></tr><tr><td><code>tensor-methods.md</code></td><td>Tài liệu tham khảo phương thức nhận <code>ten_xo</code></td></tr><tr><td><code>chorda-methods.md</code></td><td>Tài liệu tham khảo phương thức <code>chorda</code> (văn bản)</td></tr><tr><td><code>mathesis-methods.md</code></td><td>Tài liệu tham khảo phương thức toán học</td></tr><tr><td><code>tempus-methods.md</code></td><td>Tài liệu tham khảo phương thức thời gian</td></tr><tr><td><code>stdlib-mechanical-verbs.md</code></td><td>Chính sách bộ ba <code>pange</code>/<code>solve</code>/<code class="kw">tempta</code></td></tr></tbody></table></div><h2 id="history">History<a class="anchor" href="#history">#</a></h2><h3 id="origins">Nguồn gốc<a class="anchor" href="#origins">#</a></h3><p>Cam kết đầu tiên cho trình biên dịch Radix được thực hiện vào <strong>ngày 20 tháng 12 năm 2025</strong>
 dưới dạng một dự án Bun + TypeScript với duy nhất tệp <code>docs/decisions.md</code>. Cam kết
 thứ hai đã hệ thống hóa năm Hồ sơ Quyết định Kiến trúc vẫn định hình ngôn ngữ cho đến
 ngày nay.</p><p><strong>ADR-003</strong>, có tiêu đề &quot;Đuôi cách mang ý nghĩa ngữ nghĩa&quot;, ngay từ đầu đã xác lập

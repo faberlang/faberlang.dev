@@ -4,34 +4,34 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this example teaches:</span>
-<span class="tok-co">#   • Recursive functio — cat_stdin calls itself to process lines until EOF</span>
-<span class="tok-co">#   • textus ∪ nihil — nullable lege return for end-of-stream detection</span>
-<span class="tok-co">#   • itera ex solum.carpe — file line iteration via the solum stdlib</span>
-<span class="tok-co">#   • si branch — dispatching stdin vs file mode based on operand count</span>
-<span class="tok-co">#   • probandum/proba — testing mode selection without I/O</span>
+<span class="tok-co">#   • Recursive fn — cat_stdin calls itself to process lines until EOF</span>
+<span class="tok-co">#   • string ∪ none — nullable read return for end-of-stream detection</span>
+<span class="tok-co">#   • for from solum.carpe — file line iteration via the only stdlib</span>
+<span class="tok-co">#   • if branch — dispatching stdin vs file mode based on operand count</span>
+<span class="tok-co">#   • describe/proba — testing mode selection without I/O</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Syntaxes used:</span>
-<span class="tok-co">#   • importa — lines 1-2</span>
-<span class="tok-co">#   • functio … → bivalens — line 4</span>
-<span class="tok-co">#   • functio … → vacuum — lines 10, 18, 23</span>
-<span class="tok-co">#   • redde — lines 4, 30, 32</span>
-<span class="tok-co">#   • si / secus — lines 14, 21, 28-29</span>
-<span class="tok-co">#   • itera ex — lines 20, 24</span>
-<span class="tok-co">#   • lege (built-in) — line 14</span>
-<span class="tok-co">#   • varia / fixum — throughout</span>
-<span class="tok-co">#   • ≡ / non est — lines 5, 13, 14</span>
+<span class="tok-co">#   • import — lines 1-2</span>
+<span class="tok-co">#   • fn … → bool — line 4</span>
+<span class="tok-co">#   • fn … → void — lines 10, 18, 23</span>
+<span class="tok-co">#   • return — lines 4, 30, 32</span>
+<span class="tok-co">#   • if / else — lines 14, 21, 28-29</span>
+<span class="tok-co">#   • for from — lines 20, 24</span>
+<span class="tok-co">#   • read (built-in) — line 14</span>
+<span class="tok-co">#   • var / const — throughout</span>
+<span class="tok-co">#   • ≡ / is not — lines 5, 13, 14</span>
 <span class="tok-co">#   • vel (default) — line 16</span>
-<span class="tok-co">#   • probandum / proba / adfirma — lines 30-33</span>
-<span class="tok-co">#   • ∪ nihil — line 13</span>
-<span class="tok-co">#   • @ cli / @ descriptio / @ operandus — lines 38-40</span>
-<span class="tok-co">#   • incipit — line 41</span>
+<span class="tok-co">#   • describe / test / assert — lines 30-33</span>
+<span class="tok-co">#   • ∪ none — line 13</span>
+<span class="tok-co">#   • @ cli / @ description / @ operand — lines 38-40</span>
+<span class="tok-co">#   • main — line 41</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Alternate approaches (not shown):</span>
-<span class="tok-co">#   • recursive stdin read vs fac/dum verum iterative loop — avoids stack growth for large input (alternates doc §Recursive stdin read)</span>
+<span class="tok-co">#   • recursive stdin read vs do/dum true iterative loop — avoids stack growth for large input (alternates doc §Recursive stdin read)</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Anti-patterns (avoid these):</span>
-<span class="tok-co">#   • si condition must be bivalens — Faber requires explicit boolean conditions, no truthy/falsy coercion</span>
-<span class="tok-co">#   • lege returns textus ∪ nihil — always check est nihil before use, vel for default fallback</span>
+<span class="tok-co">#   • if condition must be bool — Faber requires explicit boolean conditions, no truthy/falsy coercion</span>
+<span class="tok-co">#   • read returns string ∪ none — always check est none before use, vel for default fallback</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Learning path:</span>
 <span class="tok-co">#   Before: pwd, yes</span>
@@ -41,54 +41,54 @@
 <span class="tok-co"># Backend: stepper+Rust</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">importa</span> <span class="tok-kw">ex</span> <span class="tok-st">"norma:fs"</span> <span class="tok-kw">solum</span>
-<span class="tok-kw">importa</span> <span class="tok-kw">ex</span> <span class="tok-st">"§gnu/stdio"</span> gnu_stdio
+<span class="tok-kw">import</span> <span class="tok-kw">from</span> <span class="tok-st">"norma:fs"</span> <span class="tok-kw">only</span>
+<span class="tok-kw">import</span> <span class="tok-kw">from</span> <span class="tok-st">"§gnu/stdio"</span> gnu_stdio
 
-<span class="tok-kw">functio</span> modus_stdin(<span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">textus</span><span class="tok-op">&gt;</span> operands) <span class="tok-op">→</span> <span class="tok-kw">bivalens</span> {
-    <span class="tok-kw">redde</span> operands.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+<span class="tok-kw">fn</span> modus_stdin(<span class="tok-kw">list</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> operands) <span class="tok-op">→</span> <span class="tok-kw">bool</span> {
+    <span class="tok-kw">return</span> operands.longitudo() <span class="tok-op">≡</span> <span class="tok-nu">0</span>
 }
 
-<span class="tok-co"># lege returns nihil at EOF, so recursion stops without printing a final</span>
+<span class="tok-co"># read returns none at EOF, so recursion stops without printing a final</span>
 <span class="tok-co"># synthetic line.</span>
-<span class="tok-kw">functio</span> cat_stdin() <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> {
-    <span class="tok-kw">fixum</span> <span class="tok-kw">textus</span> <span class="tok-op">∪</span> <span class="tok-kw">nihil</span> linea <span class="tok-op">←</span> <span class="tok-kw">lege</span>
-    <span class="tok-kw">si</span> linea <span class="tok-kw">non</span> <span class="tok-kw">est</span> <span class="tok-kw">nihil</span> {
-        gnu_stdio.scribe_linea(linea vel <span class="tok-st">""</span>)
+<span class="tok-kw">fn</span> cat_stdin() <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> none linea <span class="tok-op">←</span> <span class="tok-kw">read</span>
+    <span class="tok-kw">if</span> linea <span class="tok-kw">is</span> <span class="tok-kw">not</span> none {
+        gnu_stdio.scribe_linea(linea coalesce <span class="tok-st">""</span>)
         cat_stdin()
     }
 }
 
-<span class="tok-kw">functio</span> cat_file(<span class="tok-kw">textus</span> path) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> {
-    <span class="tok-kw">itera</span> <span class="tok-kw">ex</span> <span class="tok-kw">solum</span>.carpe(path) <span class="tok-kw">fixum</span> linea {
+<span class="tok-kw">fn</span> cat_file(string path) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+    <span class="tok-kw">for</span> <span class="tok-kw">from</span> <span class="tok-kw">solum</span>.carpe(path) <span class="tok-kw">const</span> linea {
         gnu_stdio.scribe_linea(linea)
     }
 }
 
-<span class="tok-kw">functio</span> cat_files(<span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">textus</span><span class="tok-op">&gt;</span> operands) <span class="tok-op">→</span> <span class="tok-kw">vacuum</span> {
-    <span class="tok-kw">itera</span> <span class="tok-kw">ex</span> operands <span class="tok-kw">fixum</span> path {
+<span class="tok-kw">fn</span> cat_files(<span class="tok-kw">list</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> operands) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+    <span class="tok-kw">for</span> <span class="tok-kw">from</span> operands <span class="tok-kw">const</span> path {
         cat_file(path)
     }
 }
 
-<span class="tok-kw">probandum</span> <span class="tok-st">"cat operand mode"</span> <span class="tok-kw">tag</span> <span class="tok-st">"coreutils"</span> {
-    <span class="tok-kw">proba</span> <span class="tok-st">"no operands selects stdin mode"</span> {
-        <span class="tok-kw">adfirma</span> modus_stdin([]) <span class="tok-op">≡</span> <span class="tok-kw">verum</span>
+<span class="tok-kw">describe</span> <span class="tok-st">"cat operand mode"</span> <span class="tok-kw">tag</span> <span class="tok-st">"coreutils"</span> {
+    <span class="tok-kw">test</span> <span class="tok-st">"no operands selects stdin mode"</span> {
+        <span class="tok-kw">assert</span> modus_stdin([]) <span class="tok-op">≡</span> <span class="tok-kw">true</span>
     }
-    <span class="tok-kw">proba</span> <span class="tok-st">"file operands select file mode"</span> {
-        <span class="tok-kw">adfirma</span> modus_stdin([<span class="tok-st">"input.txt"</span>]) <span class="tok-op">≡</span> <span class="tok-kw">falsum</span>
+    <span class="tok-kw">test</span> <span class="tok-st">"file operands select file mode"</span> {
+        <span class="tok-kw">assert</span> modus_stdin([<span class="tok-st">"input.txt"</span>]) <span class="tok-op">≡</span> <span class="tok-kw">false</span>
     }
 }
 
 @ cli <span class="tok-st">"cat"</span>
-@ <span class="tok-kw">descriptio</span> <span class="tok-st">"GNU coreutils cat stdin parity exemplum"</span>
-@ <span class="tok-kw">operandus</span> <span class="tok-kw">ceteri</span> <span class="tok-kw">textus</span> operands
-<span class="tok-kw">incipit</span> <span class="tok-kw">argumenta</span> <span class="tok-kw">args</span> {
-    <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">textus</span><span class="tok-op">&gt;</span> operands <span class="tok-op">←</span> <span class="tok-kw">args</span>.operands
-    <span class="tok-kw">fixum</span> <span class="tok-kw">numerus</span> count <span class="tok-op">←</span> operands.longitudo()
-    <span class="tok-kw">si</span> count <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+@ <span class="tok-kw">description</span> <span class="tok-st">"GNU coreutils cat stdin parity exemplum"</span>
+@ <span class="tok-kw">operand</span> <span class="tok-kw">rest</span> string operands
+<span class="tok-kw">main</span> <span class="tok-kw">args</span> <span class="tok-kw">args</span> {
+    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> operands <span class="tok-op">←</span> <span class="tok-kw">args</span>.operands
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> operands.longitudo()
+    <span class="tok-kw">if</span> count <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         cat_stdin()
     }
-    <span class="tok-kw">si</span> count <span class="tok-op">&gt;</span> <span class="tok-nu">0</span> {
+    <span class="tok-kw">if</span> count <span class="tok-op">&gt;</span> <span class="tok-nu">0</span> {
         cat_files(operands)
     }
 }</code></pre><p>---</p><p><a href="/en-US/examples/">All examples</a> · <a href="/en-US/start/install.html">Install</a> · <a href="/en-US/cheatsheet/">Cheat sheet</a></p></div></main></div></body></html>

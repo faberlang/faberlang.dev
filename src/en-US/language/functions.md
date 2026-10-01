@@ -220,7 +220,7 @@ incipit {
 }
 ```
 
-### Borrowing and mutability (de, in, ex) {#borrowing-and-mutability}
+### Borrowing and mutability (ref, mut, from) {#borrowing-and-mutability}
 
 Faber marks how a value is passed with short prepositions on parameters:
 
@@ -231,7 +231,7 @@ Faber marks how a value is passed with short prepositions on parameters:
 | `in` | Mutable borrow | `&mut T` |
 | `own` | Consume (move into callee) | `T` by move |
 
-```faber locale=la
+```faber
 # Shared borrow
 functio imprime(de textus label) → vacuum {
     nota label
@@ -283,7 +283,7 @@ incipit {
 
 For CLI programs, `incipit argumenta` receives parsed command arguments:
 
-```faber locale=la
+```faber
 @ cli "echo"
 @ descriptio "Prints text"
 @ operandus ceteri textus words

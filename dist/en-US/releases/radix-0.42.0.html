@@ -3,27 +3,27 @@
 <span class="tok-fn">  https</span>://github.com/faberlang/releases/releases/download/radix-v0.42.0/radix-v0.42.0-aarch64-apple-darwin.tar.gz
 <span class="tok-fn">tar</span> <span class="tok-op">-xzf</span> radix.tgz
 <span class="tok-fn">sudo</span> mv radix-v0.42.0-aarch64-apple-darwin/radix /usr/local/bin/
-<span class="tok-fn">radix</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><p>Synthetic release spanning <strong>19 commits</strong> (<code>v0.41.0..v0.42.0</code>). The tag theme is <strong>Rust keyword runnability factory and `sit`/binding ergonomics</strong> — the first focused campaign
+<span class="tok-fn">radix</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><p>Synthetic release spanning <strong>19 commits</strong> (<code>v0.41.0..v0.42.0</code>). The tag theme is <strong>Rust keyword runnability factory and `let`/binding ergonomics</strong> — the first focused campaign
 to drive Faber exempla through Rust emit, rustc, and run, paired with the introduction
-of <code>sit</code> as shorthand sugar for inferred immutable bindings.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>19</td></tr><tr><td>Date span</td><td>2026-06-23</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="rust-keyword-runnability-factory">Rust keyword runnability factory<a class="anchor" href="#rust-keyword-runnability-factory">#</a></h4><p>Established and executed a factory campaign measuring Rust codegen keyword coverage
+of <code>let</code> as shorthand sugar for inferred immutable bindings.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>19</td></tr><tr><td>Date span</td><td>2026-06-23</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="rust-keyword-runnability-factory">Rust keyword runnability factory<a class="anchor" href="#rust-keyword-runnability-factory">#</a></h4><p>Established and executed a factory campaign measuring Rust codegen keyword coverage
 against emit/rustc/run success. The campaign ran each exemplum through three gates
 (emit parity, rustc compilation, binary execution) with a live ledger and audit script.</p><ul><li>Factory goal, plan, baseline ledger, and <code>scripta/audit-rust-keyword-runnability.py</code>
 audit script added (<code>bdf4de463</code>)</li><li>Rust exempla runnability audit aligned across 52 files — cleaned up exempla whitelist
 drift, fixture frontmatter, intrinsic registration, and parser/keyword tables
-(<code>7085c7f7e</code>)</li><li>Handled errors and <code>lege</code> lowered to Rust codegen — touched the HIR, MIR, semantic
+(<code>7085c7f7e</code>)</li><li>Handled errors and <code>read</code> lowered to Rust codegen — touched the HIR, MIR, semantic
 typecheck, all backends, and the driver (<code>ca4de3094</code>)</li><li>Async executor switched to std-only (<code>da0665178</code>)</li><li>Inline union (tagged union) locals lowered — statement emitter, dynamic tests, exempla
 e2e (<code>c5f6ab96e</code>)</li><li>Nullable non-null access lowered — option chain and operator emission, optional tests
-(<code>748d2e2d0</code>)</li><li>Generic and <code class="kw">mut</code> parameter exempla lowered — match expression, statement emitter,
+(<code>748d2e2d0</code>)</li><li>Generic and <code>mut</code> parameter exempla lowered — match expression, statement emitter,
 collection and decl tests (<code>9950772c9</code>)</li><li>Regex literals lowered standalone — literal/format emitter, Rust prelude (<code class="typ">regex</code> crate
-integration), type mapping (<code>856780f18</code>)</li><li><code class="kw">import</code> exemplum run through package path — package resolution, decl/module codegen,
-exempla e2e (<code>2487ebe20</code>)</li><li>Naked stub bodies emitted for <code>externa</code> declarations (<code>f8714e9a9</code>)</li><li><code>lista summa</code> promoted from intrinsic registry to Rust codegen, with typecheck and
-collection test coverage (<code>035ad4fa3</code>)</li><li><code>operandus</code> exemplum executed with argv fixture — CLI operand plumbing and audit script
+integration), type mapping (<code>856780f18</code>)</li><li><code>import</code> exemplum run through package path — package resolution, decl/module codegen,
+exempla e2e (<code>2487ebe20</code>)</li><li>Naked stub bodies emitted for <code>externa</code> declarations (<code>f8714e9a9</code>)</li><li><code>list sum</code> promoted from intrinsic registry to Rust codegen, with typecheck and
+collection test coverage (<code>035ad4fa3</code>)</li><li><code>operand</code> exemplum executed with argv fixture — CLI operand plumbing and audit script
 wiring (<code>d127057f3</code>)</li><li>Factory closed with adjusted denominator accounting for target parity exclusions
-(<code>17c4431eb</code>)</li></ul><h4 id="sit-keyword-for-inferred-immutable-bindings">sit keyword for inferred immutable bindings<a class="anchor" href="#sit-keyword-for-inferred-immutable-bindings">#</a></h4><p><code>sit name ← expr</code> introduced as parser sugar for <code>fixum _ name ← expr</code> (<code>11b6222fc</code>).
+(<code>17c4431eb</code>)</li></ul><h4 id="let-keyword-for-inferred-immutable-bindings">let keyword for inferred immutable bindings<a class="anchor" href="#let-keyword-for-inferred-immutable-bindings">#</a></h4><p><code>let name ← expr</code> introduced as parser sugar for <code>const _ name ← expr</code> (<code>11b6222fc</code>).
 The implementation rejects typed, destructuring, and initializer-less forms at parse
 time. Includes parser tests, EBNF coverage, canonical <code>examples/exempla/sit/</code> exempla,
-and selective migrations that reduce repetition while keeping <code>fixum _</code> in teaching
-contexts. Closes the sit-inferred-binding design doc.</p><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li>Factory plan added for core ad capabilities (<code>677161f0a</code>)</li><li>Frame-native concurrency vision document marked as strongly theoretical / speculative
+and selective migrations that reduce repetition while keeping <code>const _</code> in teaching
+contexts. Closes the sit-inferred-binding design doc.</p><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li>Factory plan added for core call capabilities (<code>677161f0a</code>)</li><li>Frame-native concurrency vision document marked as strongly theoretical / speculative
 (<code>e7b531431</code>)</li><li>Exempla reference pack and explain-merge factory deliveries closed out with closure
 notes, final corpus counts, deferred follow-ups (<code>bfbca8502</code>)</li><li>Retired <code>explain/</code> Markdown corpus removed entirely — exempla is now the sole
 reference source. All migration scripts, legacy redirects, and excluded-term ratchets

@@ -10,7 +10,7 @@ surface lowering; Stage 6 unifies two-backend emission for all landed MIR
 surfaces. Backend floors (Wasm + LLVM) are pinned, evidenced, and ratcheted.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>26</td></tr><tr><td><code>feat(...)</code> commits</td><td>7</td></tr><tr><td><code>fix(...)</code> commits</td><td>4</td></tr><tr><td><code>docs(...)</code> commits</td><td>7</td></tr><tr><td><code>Polish</code> commits</td><td>4</td></tr><tr><td><code>chore(...)</code> commits</td><td>2</td></tr><tr><td>Date span</td><td>2026-06-25 → 2026-06-25</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="stage-3-mir-lowering-coverage-m-002m-008">Stage 3: MIR lowering coverage (M-002…M-008)<a class="anchor" href="#stage-3-mir-lowering-coverage-m-002m-008">#</a></h4><p>Five commits advancing MIR exempla coverage from 174/210 through 184/210, with
 call/aggregate repair, iterator/collection lowering, type zero-init policy, and
 struct field materialization.</p><ul><li>M-002 call/aggregate repair — 174/210 exempla lowered (<code>003945b5e</code>)</li><li>M-003/M-007/M-008 coverage — 183/210 exempla lowered (<code>e7dc66a55</code>)</li><li>M-007 type zero-init policy + verification evidence (<code>88b47ae13</code>)</li><li>Stage 3 close-out: unify struct field materialization and MIR evidence
-script (<code>3b53b8dfb</code>)</li><li>Fix MIR evidence capture honesty and strengthen sponte struct test
+script (<code>3b53b8dfb</code>)</li><li>Fix MIR evidence capture honesty and strengthen optional struct test
 (<code>e74df14e9</code>)</li></ul><h4 id="stage-4-wasmllvm-backend-e2e-infrastructure">Stage 4: Wasm/LLVM backend e2e infrastructure<a class="anchor" href="#stage-4-wasmllvm-backend-e2e-infrastructure">#</a></h4><p>Ground-up e2e test harness for both Wasm and LLVM backends, including a Wasm
 stub host binary, LLVM C runtime, Wasm binary utilities, staged evidence
 capture script, and complete toolchain wiring — replacing the old monolithic
@@ -19,9 +19,9 @@ capture script, and complete toolchain wiring — replacing the old monolithic
 (<code>4b818e40c</code>)</li><li>Documentation: on-demand stub host build in <code>locate_stub_host_binary</code>
 (<code>1c2f08f14</code>)</li></ul><h4 id="stage-5-callable-provider-and-async-surface-lowering">Stage 5: Callable, provider, and async surface lowering<a class="anchor" href="#stage-5-callable-provider-and-async-surface-lowering">#</a></h4><p>Lowering support for three new MIR surface areas — <code>callable</code> (closures,
 function references), <code>provider</code> (trait object dispatch), and <code>async</code> surface
-— plus flattening of the <code>lower_call</code> dispatch and hardened <code>ad</code> binding
+— plus flattening of the <code>lower_call</code> dispatch and hardened <code>call</code> binding
 recovery.</p><ul><li>Stage 5 MIR lowering for callable, provider, and async surfaces
-(+622/−180 lines, 27 files) (<code>17f321b33</code>)</li><li>Wire Stage 5 callable/ad/cursor lowering correctly (<code>5e4b7c13e</code>)</li><li>Align Stage 5 delivery spec with 194/210 harness (<code>996a1c893</code>)</li><li>Flatten <code>lower_call</code> dispatch, harden ad binding recovery, fix EOF hygiene
+(+622/−180 lines, 27 files) (<code>17f321b33</code>)</li><li>Wire Stage 5 callable/ad/cursor lowering correctly (<code>5e4b7c13e</code>)</li><li>Align Stage 5 delivery spec with 194/210 harness (<code>996a1c893</code>)</li><li>Flatten <code>lower_call</code> dispatch, harden call binding recovery, fix EOF hygiene
 (<code>8f7ddd364</code>)</li></ul><h4 id="stage-6-unified-two-backend-emission">Stage 6: Unified two-backend emission<a class="anchor" href="#stage-6-unified-two-backend-emission">#</a></h4><p>Emission for all landed MIR surfaces unified across Wasm text and LLVM text
 backends. Both emitters see substantial additions (~887 lines to Wasm text,
 ~573 to LLVM text). Backend floors are pinned and verified through evidence

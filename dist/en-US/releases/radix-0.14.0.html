@@ -6,7 +6,7 @@ The Faber compiler received P0/P1 fixes and a build-infra rewrite.</p><h3 id="sc
 endings to determine collection-method semantics:</p><ul><li><strong>Verb conjugation dispatch</strong>: Imperative endings (<code>-a</code>, <code>-e</code>, <code>-i</code>) mutate in
 place; perfect participles (<code>-ata</code>, <code>-ita</code>, <code>-sa</code>) return a new collection;
 future participles (<code>-atura</code>, <code>-itura</code>) are async returning; future indicative
-(<code>-abit</code>, <code>-ebit</code>) is async mutating (<code>81feafefb</code>)</li><li><strong>Morphology registry</strong>: Receiver-bound method dispatch with built-in <code class="typ">list</code>
+(<code>-abit</code>, <code>-ebit</code>) is async mutating (<code>81feafefb</code>)</li><li><strong>Morphology registry</strong>: Receiver-bound method dispatch with built-in <code>list</code>
 morphology registration (add, filtr, mapp, etc.) (<code>300e09f07</code>, <code>e64456b66</code>)</li><li><strong>Radices (stem dictionary)</strong>: Central stem dictionary with TS generators
 (<code>81feafefb</code>)</li><li><strong>Canonical verbum IDs</strong>: <code>VerbumId</code> keyword dispatch expanded with dialect
 plumbing for return-verb specialization (<code>b33ef5750</code>, <code>665758dee</code>, <code>f8af94086</code>)</li><li><strong>Latinized generator fields</strong>: <code>codegen/radices.fab</code> maps Latin keyword IDs
@@ -14,27 +14,27 @@ to generator methods (<code>a6212043b</code>)</li><li><strong>Design docs</stron
 IO-domains and Zig-codegen expansion (<code>13c0cb0c3</code>, <code>f30287e06</code>, <code>87bd8e4de</code>,
 <code>3760072b3</code>, <code>8c4dc480f</code>, <code>0000f559b</code>)</li></ul><h4 id="rivus-parser-expansion">Rivus parser expansion<a class="anchor" href="#rivus-parser-expansion">#</a></h4><p>Substantial expansion of the Rivus bootstrap parser to handle more Faber
 constructs:</p><ul><li><strong>Bitwise operators</strong>: <code>|</code>, <code>^</code>, <code>&amp;</code>, <code>&lt;&lt;</code>, <code>&gt;&gt;</code>, <code>&gt;&gt;&gt;</code> with C/JS precedence in
-the expression parser (<code>382601b1b</code>)</li><li><strong>`verum` / `falsum` / `nihil` literal recognition</strong>: Fix keyword literal
+the expression parser (<code>382601b1b</code>)</li><li><strong>`true` / `false` / `none` literal recognition</strong>: Fix keyword literal
 detection using <code>probaVerbum()</code> instead of token-type checking
-(<code>33db4d755</code>)</li><li><strong>`verum`/`falsum` unary operators</strong>: Prefix operators for strict boolean
-equality checks (<code>=== true</code> / <code>=== false</code>) (<code>4afb5c5f7</code>, <code>f54dd7c89</code>)</li><li><strong>`innatum` keyword</strong>: Native type construction for <code class="typ">list</code> and <code class="typ">map</code>
+(<code>33db4d755</code>)</li><li><strong>`true`/`false` unary operators</strong>: Prefix operators for strict boolean
+equality checks (<code>=== true</code> / <code>=== false</code>) (<code>4afb5c5f7</code>, <code>f54dd7c89</code>)</li><li><strong>`innatum` keyword</strong>: Native type construction for <code>list</code> and <code>map</code>
 literals, replacing <code>qua</code> (type assertion → constructor) (<code>b12c00c1f</code>,
-<code>edc3d09df</code>)</li><li><strong>Multi-discriminant pattern matching</strong>: <code>discerne a, b { casu X, Y { … } }</code>
+<code>edc3d09df</code>)</li><li><strong>Multi-discriminant pattern matching</strong>: <code>match a, b { case X, Y { … } }</code>
 with exhaustiveness checking, wildcard patterns, per-pattern binding
 (<code>08cbb9a2d</code>, <code>32b70d0d5</code>)</li><li><strong>Optional chaining and primary expressions</strong>: <code>?.</code>, <code>??</code>, short-form arrow
 bodies, catch clause parsing (<code>ee053486b</code>, <code>ae8c82ba0</code>)</li><li><strong>Core expression parsing</strong>: Ranges, unary ops, binary op chain, member access,
-chaining alignment with Faber parser (<code>9fa15a4b3</code>, <code>d14473b38</code>, <code>62c00d6f4</code>)</li><li><strong>`probandum`/`proba` parsing</strong>: Test/assert expressions in the parser
-(<code>0995ea0ff</code>)</li><li><strong>`praefixum` blocks and parenthesized expressions</strong> (<code>6043f1b7b</code>)</li><li><strong>Compound assignment tokens</strong>: <code>+=</code>, <code>-=</code>, <code>*=</code>, etc. in the lexer and parser
+chaining alignment with Faber parser (<code>9fa15a4b3</code>, <code>d14473b38</code>, <code>62c00d6f4</code>)</li><li><strong>`describe`/`test` parsing</strong>: Test/assert expressions in the parser
+(<code>0995ea0ff</code>)</li><li><strong>`comptime` blocks and parenthesized expressions</strong> (<code>6043f1b7b</code>)</li><li><strong>Compound assignment tokens</strong>: <code>+=</code>, <code>-=</code>, <code>*=</code>, etc. in the lexer and parser
 (<code>52071ee16</code>)</li><li><strong>Template literals</strong>: <code>Exemplar</code> token type with backtick codegen
 (<code>20cc6caec</code>)</li><li><strong>Section sign (`§`) as interpolation placeholder</strong>: Replaces <code>{}</code> to avoid
 brace-escape issues in codegen (<code>98c2dbabb</code>, <code>c51add25b</code>, <code>472b84a74</code>)</li><li><strong>Parameter parsing</strong>: Preposition-based and type-first parameter expansion
-(<code>529440025</code>)</li><li><strong>Expression fixes</strong>: Contextual typing, finge field key typing, novum/object
-spread, unary nihil/iace alignment, short-form body parsing improvements,
-comma-token usage fix, <code>scriba</code> multi-arg parsing correction, <code>proba</code>
-<code>futurum</code> name handling (<code>3d1e8db37</code>, <code>9a0d9e03a</code>, <code>4af76ea34</code>,
+(<code>529440025</code>)</li><li><strong>Expression fixes</strong>: Contextual typing, variant field key typing, novum/object
+spread, unary none/iace alignment, short-form body parsing improvements,
+comma-token usage fix, <code>scriba</code> multi-arg parsing correction, <code>test</code>
+<code>todo</code> name handling (<code>3d1e8db37</code>, <code>9a0d9e03a</code>, <code>4af76ea34</code>,
 <code>574665f0a</code>, <code>f66b4c887</code>, <code>6d0935b9b</code>, <code>9ad7ec94c</code>, <code>02c0da02f</code>,
-<code>22b12bca9</code>, <code>a2a5e3c3a</code>)</li><li><strong>Parser refactors</strong>: <code>errores.fab</code> novum construction cleanup; <code class="kw">true</code>/
-<code class="kw">false</code>/<code class="kw">nihil</code> tokenized as literal tokens; <code>VerbumId</code> helpers split
+<code>22b12bca9</code>, <code>a2a5e3c3a</code>)</li><li><strong>Parser refactors</strong>: <code>errores.fab</code> novum construction cleanup; <code>true</code>/
+<code>false</code>/<code>none</code> tokenized as literal tokens; <code>VerbumId</code> helpers split
 with reddit shorthand mapping; <code>qua</code> casts wrapped in parentheses
 (<code>88cee9a65</code>, <code>eac93a02d</code>, <code>113c5eaac</code>, <code>63daebedd</code>, <code>5d07b0e7c</code>)</li><li><strong>Parser coverage expansion</strong>: Lambda parsing and mutation-operator
 coverage improvements (<code>0fa85dea0</code>)</li></ul><h4 id="rivus-codegen-refactor">Rivus codegen refactor<a class="anchor" href="#rivus-codegen-refactor">#</a></h4><p>Major codebase reorganization and expansion of the bootstrap compiler's codegen:</p><ul><li><strong>Split into individual files</strong>: Monolithic <code>index.fab</code> files broken into
@@ -46,16 +46,16 @@ handlers, expression handlers, <code>rivus-zig</code> CLI script (<code>c3f2d2f0
 both the TS and Zig codegen backends (<code>5ba1d6998</code>, <code>9fa870fdc</code>)</li><li><strong>Flumina preamble</strong>: Async/effect runtime preamble emission for TS targets
 (<code>61caadff4</code>, <code>4eeb83954</code>)</li><li><strong>Codegen fixes</strong>: String literal quoting, regex slash escaping, templating
 alignment, <code>cura</code> (resource) statement codegen, return-verb wrapping,
-<code class="kw">class</code>/<code class="kw">tempta</code> codegen alignment, bootstrap test conformance, parser/
+<code>class</code>/<code class="kw">tempta</code> codegen alignment, bootstrap test conformance, parser/
 codegen gap fixes with in-process tests (<code>8189d95d3</code>, <code>91b8cac56</code>,
 <code>76c3e8cbf</code>, <code>fbd3d4ca2</code>, <code>bda952455</code>, <code>f6b7b723b</code>, <code>736016eed</code>,
 <code>322f6b0ce</code>, <code>04d622d1e</code>, <code>69a46fa2a</code>, <code>87a90602a</code>)</li></ul><h4 id="faber-compiler-fixes">Faber compiler fixes<a class="anchor" href="#faber-compiler-fixes">#</a></h4><p>Stability improvements for the reference (TypeScript) compiler:</p><ul><li><strong>P0 blocker fixes</strong>: Parser infinite loop and semantic analysis gaps
-(<code>b3c54d52d</code>)</li><li><strong>P1 fixes</strong>: Expression type inference and <code>ad</code> statement codegen
+(<code>b3c54d52d</code>)</li><li><strong>P1 fixes</strong>: Expression type inference and <code>call</code> statement codegen
 (<code>b4ed625e0</code>)</li><li><strong>Circular imports</strong>: Allowed in the semantic analyzer for mutually
 recursive definitions (<code>9de4cfc08</code>)</li><li><strong>Preamble inlining</strong>: External <code>.txt</code> preamble files converted to inline
 string constants for bundled binary compatibility (<code>0d6ba74dd</code>)</li><li><strong>`build:exempla` script</strong>: Compiles all exempla through both compilers
-(<code>c4b2c3214</code>)</li></ul><h4 id="exhaustiveness-and-pattern-matching">Exhaustiveness and pattern matching<a class="anchor" href="#exhaustiveness-and-pattern-matching">#</a></h4><ul><li><strong>Exhaustiveness checking</strong>: Semantic error S017 for non-exhaustive <code class="kw">match</code>
-statements; all variants must be handled (<code>32b70d0d5</code>)</li><li><strong>Rivus `typi discerne` refactor</strong>: 72-line reduction in the semantic
+(<code>c4b2c3214</code>)</li></ul><h4 id="exhaustiveness-and-pattern-matching">Exhaustiveness and pattern matching<a class="anchor" href="#exhaustiveness-and-pattern-matching">#</a></h4><ul><li><strong>Exhaustiveness checking</strong>: Semantic error S017 for non-exhaustive <code>match</code>
+statements; all variants must be handled (<code>32b70d0d5</code>)</li><li><strong>Rivus `typi match` refactor</strong>: 72-line reduction in the semantic
 exhaustiveness analyzer (<code>769437955</code>)</li><li><strong>Discerne alias bindings</strong>: Multi-pattern alias support (<code>6d0935b9b</code>)</li></ul><h4 id="module-system">Module system<a class="anchor" href="#module-system">#</a></h4><ul><li><strong>Local file import resolution</strong>: <code>modulus.fab</code> resolves <code>./path</code> imports,
 extracts exports, caches modules, pre-declares symbols (<code>37a22693b</code>)</li><li><strong>Standard comments and section headers</strong> across the Rivus codebase
 (<code>7428a5682</code>)</li><li><strong>File-level test skipping</strong>: <code>rivus: false</code> metadata to skip YAML test files
@@ -64,7 +64,7 @@ functions (<code>8e5fff425</code>)</li></ul><h4 id="build-infrastructure">Build 
 replace bash scripts; parallel compilation via <code>Promise.all</code> (~3× faster);
 <code>-t</code>/<code>--target</code> flag for multi-target builds (<code>023c2db7a</code>)</li><li><strong>Typecheck script</strong>: Full type error fixes across the codebase (<code>23a973ee3</code>)</li><li><strong>Compiler flag to exempla script</strong>: <code>-c</code> flag selects faber vs rivus
 (<code>8a3937ce9</code>)</li><li><strong>Test rename</strong>: <code>runner.test.ts</code> → <code>faber.test.ts</code> with <code>test:faber</code> npm
-script (<code>16e740304</code>)</li><li><strong>Loose equality for null checks</strong>: <code class="kw">nihil</code>/<code>nonnihil</code> uses <code>== null</code> / <code>!= null</code>
+script (<code>16e740304</code>)</li><li><strong>Loose equality for null checks</strong>: <code>none</code>/<code>some</code> uses <code>== null</code> / <code>!= null</code>
 for JS compatibility (<code>210421432</code>)</li></ul><h4 id="documentation">Documentation<a class="anchor" href="#documentation">#</a></h4><ul><li><strong>Grammar regeneration</strong>: Updated GRAMMAR.md and all <code>grammatica/</code> source files
 (<code>a440bd643</code>, <code>2bdc625fa</code>)</li><li><strong>AGENTS.md restructured</strong>: Comprehensive project layout (<code>b8011d816</code>)</li><li><strong>PhD thesis</strong>: Notes reworked into rigor plan; audience analysis and
 Claude Opus 4.5 / GLM 4.7 / GPT 5.2 reviews (<code>89f3ce792</code>, <code>684fc67c0</code>,

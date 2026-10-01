@@ -10,9 +10,9 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • Expecting ≅ to be fuzzy or approximate — it is exact value equality after promotion.</span>
-<span class="tok-co">#   • Treating −1 as the unsigned maximum — the sign-boundary comparison is falsum, not a wrapped match.</span>
+<span class="tok-co">#   • Treating −1 as the unsigned maximum — the sign-boundary comparison is เท็จ, not a wrapped match.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: ≡, ≠, ↦, adfirma</span>
+<span class="tok-co"># See also: ≡, ≠, ↦, ยืนยัน</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># operatores/numeric-value-eq — ≅ ≇</span>
@@ -23,27 +23,30 @@
 main {
     const int<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> port <span class="tok-op">←</span> <span class="tok-nu">42</span> ∷ int<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
     const int count <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    const bool same_width <span class="tok-op">←</span> port <span class="tok-op">≅</span> count
+    const _ same_width <span class="tok-op">←</span> port <span class="tok-op">≅</span> count
     print same_width
-    const bool int_float <span class="tok-op">←</span> <span class="tok-nu">1</span> <span class="tok-op">≅</span> <span class="tok-nu">1.0</span>
+
+    const _ int_float <span class="tok-op">←</span> <span class="tok-nu">1</span> <span class="tok-op">≅</span> <span class="tok-nu">1.0</span>
     print int_float
-    const bool not_fuzzy <span class="tok-op">←</span> <span class="tok-nu">42.145</span> ∷ f64 <span class="tok-op">≅</span> <span class="tok-nu">42.0</span> ∷ f64
+
+    const _ not_fuzzy <span class="tok-op">←</span> <span class="tok-nu">42.145</span> ∷ float<span class="tok-op">&lt;</span>f64<span class="tok-op">&gt;</span> <span class="tok-op">≅</span> <span class="tok-nu">42.0</span> ∷ float<span class="tok-op">&lt;</span>f64<span class="tok-op">&gt;</span>
     print not_fuzzy
-    const bool differs <span class="tok-op">←</span> <span class="tok-nu">1</span> <span class="tok-op">≇</span> <span class="tok-nu">2</span>
+
+    const _ differs <span class="tok-op">←</span> <span class="tok-nu">1</span> <span class="tok-op">≇</span> <span class="tok-nu">2</span>
     print differs
 
 <span class="tok-co">    # Sign-boundary pin: a negative signed value never wraps to u64::MAX.</span>
     const int<span class="tok-op">&lt;</span>i64<span class="tok-op">&gt;</span> signed_negative <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
     const int<span class="tok-op">&lt;</span>u64<span class="tok-op">&gt;</span> unsigned_max <span class="tok-op">←</span> <span class="tok-nu">18446744073709551615</span>
-    const bool sign_equal <span class="tok-op">←</span> signed_negative <span class="tok-op">≅</span> unsigned_max
-    const bool sign_different <span class="tok-op">←</span> signed_negative <span class="tok-op">≇</span> unsigned_max
+    const _ sign_equal <span class="tok-op">←</span> signed_negative <span class="tok-op">≅</span> unsigned_max
+    const _ sign_different <span class="tok-op">←</span> signed_negative <span class="tok-op">≇</span> unsigned_max
     print sign_equal
     print sign_different
 
 <span class="tok-co">    # Cross-width pin: the 2^53+1 integer remains distinct from 2^53.</span>
     const int<span class="tok-op">&lt;</span>i64<span class="tok-op">&gt;</span> above_precision <span class="tok-op">←</span> <span class="tok-nu">9007199254740993</span>
     const int<span class="tok-op">&lt;</span>u64<span class="tok-op">&gt;</span> below_precision <span class="tok-op">←</span> <span class="tok-nu">9007199254740992</span>
-    const bool cross_width <span class="tok-op">←</span> above_precision <span class="tok-op">≅</span> below_precision
+    const _ cross_width <span class="tok-op">←</span> above_precision <span class="tok-op">≅</span> below_precision
     print cross_width
 
 <span class="tok-co">    # Exactness pin: 2^53+1 is not representable as f64, so it is not equal to</span>

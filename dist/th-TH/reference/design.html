@@ -8,9 +8,9 @@
 <em>สิ่งนี้เป็นสิ่งประเภทใด</em> ก่อนที่ชื่อจะบอกว่า <em>เป็นสิ่งใด</em> ลำดับนี้สอดคล้องกับ
 ภาษาที่มีโครงสร้างทางไวยากรณ์จากหมวดหมู่ไปยังสิ่งเฉพาะ — เช่น ภาษาจีน ภาษาฮินดี
 และภาษาอาหรับ — และทำให้การประกาศกวาดสายตาได้อย่างสม่ำเสมอ</p><pre class="faber-code"><code class="lang-text"># Type before name in every declaration
-textus nomen
-numerus aetas
-functio salve(textus name) → textus</code></pre><h3 id="ii-mechanical-over-magical">II. ใช้กลไกที่ชัดเจน ไม่พึ่งเวทมนตร์<a class="anchor" href="#ii-mechanical-over-magical">#</a></h3><p>โครงสร้างเดียวกันควรมีความหมายเหมือนกันในทุกที่ หากผู้อ่านต้องอาศัยบริบทที่อยู่
+ข้อความ ชื่อ
+จํานวน aetas
+ฟังก์ชัน salve(ข้อความ name) → ข้อความ</code></pre><h3 id="ii-mechanical-over-magical">II. ใช้กลไกที่ชัดเจน ไม่พึ่งเวทมนตร์<a class="anchor" href="#ii-mechanical-over-magical">#</a></h3><p>โครงสร้างเดียวกันควรมีความหมายเหมือนกันในทุกที่ หากผู้อ่านต้องอาศัยบริบทที่อยู่
 ห่างไกลเพื่อรู้ว่าสัญลักษณ์หนึ่งทำอะไร ไวยากรณ์นั้นก็น่าสงสัย Faber ให้ความสำคัญ
 กับการให้เหตุผลอย่างชัดเจนและอยู่ในบริเวณใกล้เคียง — จุดประกาศควรมีข้อมูลเพียงพอ
 ให้เข้าใจได้ว่าจะเกิดอะไรขึ้นที่จุดใช้งาน</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># The meaning of a call is determined by the function's signature,</span>
@@ -19,13 +19,13 @@ functio salve(textus name) → textus</code></pre><h3 id="ii-mechanical-over-mag
     <span class="tok-kw">คืน</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }</code></pre><h3 id="iii-glyphs-carry-structure">III. อักขระภาพทำหน้าที่บอกโครงสร้าง<a class="anchor" href="#iii-glyphs-carry-structure">#</a></h3><p>ความหมายเชิงโครงสร้างและตัวดำเนินการใช้สัญลักษณ์ภาพ ไม่ใช้คำ: <code>←</code>
 สำหรับการผูกค่า, <code>→</code> สำหรับประเภทผลลัพธ์, <code>⇥</code>
-สำหรับการออกเมื่อเกิดข้อผิดพลาด, <code>ergo</code> สำหรับบอดีของแขนงแบบกระชับ,
+สำหรับการออกเมื่อเกิดข้อผิดพลาด, <code>ดังนั้น</code> สำหรับบอดีของแขนงแบบกระชับ,
 <code>≡</code> สำหรับความเท่ากัน และ <code>∪</code> สำหรับประเภท
 ยูเนียน สัญลักษณ์ภาพเป็นสากล — ไม่แปลตามภาษาและไม่เปลี่ยนความหมาย
 ระหว่างการเรนเดอร์ ภาษาไทยและภาษาฝรั่งเศสจึงเห็นสัญลักษณ์ภาพเดียวกัน
 แม้คีย์เวิร์ดที่อยู่รอบข้างจะแตกต่างกัน</p><h3 id="iv-latin-carries-behaviour">IV. อักษรละตินทำหน้าที่บอกพฤติกรรม<a class="anchor" href="#iv-latin-carries-behaviour">#</a></h3><p>คำต่าง ๆ ใช้สำหรับการประกาศ คำสั่ง วงจรชีวิต และเจตนาเชิงพฤติกรรม:
-<code class="kw">functio</code>, <code class="kw">genus</code>, <code class="kw">fixum</code>,
-<code class="kw">varia</code>, <code class="kw">redde</code>, <code class="kw">cape</code>
+<code>ฟังก์ชัน</code>, <code>ชนิด</code>, <code>คงที่</code>,
+<code>แปร</code>, <code>คืน</code>, <code>จับ</code>
 คำเหล่านี้สามารถผูกเข้ากับแพ็กภาษาของผู้อ่านได้ — คำเหล่านี้คือคลังคำศัพท์
 ไม่ใช่ไวยากรณ์ การเลือกใช้ภาษาละตินไม่ได้หมายถึงความเหนือกว่าของภาษาละติน
 แต่หมายถึงการเลือกแหล่งภาษาคลาสสิก <em>เพียงแหล่งเดียว</em> ที่สอดคล้องกัน
@@ -35,7 +35,7 @@ functio salve(textus name) → textus</code></pre><h3 id="ii-mechanical-over-mag
 คู่คำที่เกี่ยวกับ ownership — กลายค่าเทียบกับคัดลอกผลลัพธ์ออก —
 ควรใช้รูปที่สัมพันธ์กันของรากคำเดียวกัน นี่คือหลักการ morphologia
 ไลบรารีมาตรฐาน (Norma) ใช้แบบแผนนี้กับชื่อเมธอดทั้งหมด:
-<code>lege</code> (อ่านแบบซิงโครนัส) เทียบกับ
+<code>อ่าน</code> (อ่านแบบซิงโครนัส) เทียบกับ
 <code>leget</code> (อ่านแบบอะซิงโครนัส), <code>adde</code> (กลายค่าในที่เดิม) เทียบกับ
 <code>addita</code> (คืนสำเนาใหม่) คอมไพเลอร์ไม่ได้บังคับหรือสร้างรูปผันเหล่านี้
 เพราะนี่เป็นนโยบายการตั้งชื่อ ไม่ใช่ฟีเจอร์ของภาษา</p><h3 id="vi-one-sign-one-job">VI. หนึ่งสัญลักษณ์ หนึ่งหน้าที่<a class="anchor" href="#vi-one-sign-one-job">#</a></h3><p>สัญลักษณ์ภาพหรือคีย์เวิร์ดอาจมีนามแฝงที่มีความหมายตรงกันได้
@@ -45,26 +45,26 @@ functio salve(textus name) → textus</code></pre><h3 id="ii-mechanical-over-mag
 ภาษาส่วนใหญ่รวมทั้งสองอย่างไว้เป็น <code>=</code>
 แต่การใช้ซ้ำเช่นนั้นบดบังว่าบรรทัดหนึ่งเป็นการดำเนินการไหลของข้อมูล
 หรือเป็นการกำหนดในระดับประเภท</p><pre class="faber-code"><code class="lang-text"># ← is always runtime flow
-fixum numerus count ← 0
+คงที่ จํานวน count ← 0
 count ← count + 1
 
 # = is always structural shape inside Type { }
-fixum _ p ← Point {
+คงที่ _ p ← Point {
     x = 10,
     y = 20
 }</code></pre><h3 id="vii-runtime-flow-is-explicit">VII. การไหลของการทำงานขณะรันไทม์ต้องชัดเจน<a class="anchor" href="#vii-runtime-flow-is-explicit">#</a></h3><p>การผูกค่าในขณะทำงาน การกำหนดค่าใหม่ และการกลายค่าใช้ <code>←</code>;
 การกำหนดเชิงโครงสร้างใช้ <code>=</code> ผู้อ่านที่กวาดสายตาผ่านซอร์สโค้ดจะเห็น
 การดำเนินการไหลของข้อมูลทุกจุดได้ทันที: ทุก <code>←</code> คือเหตุการณ์ขณะรันไทม์
 จึงไม่มีความกำกวมทางไวยากรณ์ว่า <code>=</code> ในบรรทัดหนึ่งหมายถึง
-“เก็บค่าลงในตัวแปรนี้” หรือ “กำหนดฟิลด์นี้”</p><h3 id="viii-absence-is-typed">VIII. การไม่มีค่าต้องมีประเภท<a class="anchor" href="#viii-absence-is-typed">#</a></h3><p>ประเภทค่าที่อาจเป็นค่าว่างเขียนเป็นยูเนียน: <code>T ∪ nihil</code>
-ช่องการประกาศที่เลือกละเว้นได้ใช้เครื่องหมายหลังชื่อ: <code>sponte</code>
+“เก็บค่าลงในตัวแปรนี้” หรือ “กำหนดฟิลด์นี้”</p><h3 id="viii-absence-is-typed">VIII. การไม่มีค่าต้องมีประเภท<a class="anchor" href="#viii-absence-is-typed">#</a></h3><p>ประเภทค่าที่อาจเป็นค่าว่างเขียนเป็นยูเนียน: <code>T ∪ นัล</code>
+ช่องการประกาศที่เลือกละเว้นได้ใช้เครื่องหมายหลังชื่อ: <code>สมัครใจ</code>
 สองอย่างนี้เป็นแนวคิดที่แตกต่างกัน — <em>ค่าที่อาจไม่มีอยู่</em> เทียบกับ
 <em>ช่องที่ผู้เรียกอาจไม่ระบุ</em> — และ Faber แยกสองแนวคิดนี้ทางไวยากรณ์
-แทนที่จะรวมทั้งคู่ไว้เป็น <code>T?</code> หรือ <code>Option&lt;T&gt;</code></p><pre class="faber-code"><code class="lang-text"># Absence in a value: T ∪ nihil
-functio find(textus key) → numerus ∪ nihil
+แทนที่จะรวมทั้งคู่ไว้เป็น <code>T?</code> หรือ <code>Option&lt;T&gt;</code></p><pre class="faber-code"><code class="lang-text"># Absence in a value: T ∪ นัล
+ฟังก์ชัน find(ข้อความ key) → จํานวน ∪ นัล
 
-# Omission at declaration: sponte
-functio connect(textus host, numerus port sponte) → vacuum</code></pre><h3 id="ix-compiler-does-not-guess">IX. คอมไพเลอร์จะไม่เดาเพื่อปกปิดข้อมูลที่ขาดหาย<a class="anchor" href="#ix-compiler-does-not-guess">#</a></h3><p>ข้อมูลประเภทที่ขาดหายเป็นปัญหาด้านการวิเคราะห์ที่ต้องแก้จากต้นทาง
+# Omission at declaration: สมัครใจ
+ฟังก์ชัน connect(ข้อความ host, จํานวน port สมัครใจ) → เปล่า</code></pre><h3 id="ix-compiler-does-not-guess">IX. คอมไพเลอร์จะไม่เดาเพื่อปกปิดข้อมูลที่ขาดหาย<a class="anchor" href="#ix-compiler-does-not-guess">#</a></h3><p>ข้อมูลประเภทที่ขาดหายเป็นปัญหาด้านการวิเคราะห์ที่ต้องแก้จากต้นทาง
 ไม่ใช่รายละเอียดของการสร้างโค้ดที่ควรปกปิด คอมไพเลอร์จะไม่อนุมานประเภท
 ที่โปรแกรมเมอร์ไม่ได้ระบุอย่างเงียบ ๆ เมื่อข้อมูลนั้นขาดหายไปจริง —
 คอมไพเลอร์จะแจ้งช่องว่างดังกล่าวแล้วหยุดทำงาน กฎนี้ทำให้ Faber ซื่อตรง:

@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """Materialize locale-specific Markdown for Speculum rendering.
 
-For non-Latin locale builds, fluid Faber fences are rendered through the Faber
-canonical emitter before the Markdown page reaches the generator. Pinned fences
-(`locale=...`) and reject fences are left unchanged because the author declared
-that source surface explicitly.
+For non-Latin locale builds, fluid Faber fences are converted to the reader
+locale before rendering. Pinned and eligible text fences are also converted
+when possible; package and reject fences remain structurally intact.
 """
 
 from __future__ import annotations
@@ -76,7 +75,7 @@ def stage_reader_packs(faber: str) -> None:
             link.symlink_to(pack, target_is_directory=True)
 
 
-def transcode_faber(source: str, locale: str, faber: str, label: str) -> str:
+def transcode_faber(source: str, locale: str, faber: str, label: str) -> str | None:
     if locale == "la":
         return source
 
@@ -99,9 +98,10 @@ def transcode_faber(source: str, locale: str, faber: str, label: str) -> str:
         )
 
     if proc.returncode != 0:
-        sys.stderr.write(f"ERROR: failed to transcode {label} for {locale}\n")
-        sys.stderr.write(proc.stderr)
-        raise SystemExit(proc.returncode)
+        sys.stderr.write(f"WARNING: failed to transcode {label} for {locale}; keeping source\n")
+        if proc.stderr:
+            sys.stderr.write(proc.stderr)
+        return None
 
     # `faber convert --stdout` stamps the target locale into a TOML frontmatter
     # block. The fence is already inside a Markdown code block that names its
@@ -112,6 +112,10 @@ def transcode_faber(source: str, locale: str, faber: str, label: str) -> str:
 
 def localize_text(text: str, locale: str, faber: str, label: str) -> str:
     out: list[str] = []
+    sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from project_reader_terms import load_mapping
+    pack = Path(__file__).resolve().parents[3] / "radix" / "locale" / locale / "pack.toml"
+    mapping = load_mapping(pack) if pack.is_file() else {}
     lines = text.splitlines()
     i = 0
     while i < len(lines):
@@ -126,8 +130,20 @@ def localize_text(text: str, locale: str, faber: str, label: str) -> str:
                 body.append(lines[i])
                 i += 1
             body_text = "\n".join(body)
-            if is_fluid_faber(info):
-                body_text = transcode_faber(body_text, locale, faber, label)
+            tokens = info.split()
+            pinned = "mode=pinned" in tokens
+            eligible_text = tokens and tokens[0] == "text" and (
+                "←" in body_text
+                or any(re.match(rf"^\s*{re.escape(key)}(?:\b|(?=[<{{(]))", body_text, re.M) for key in mapping)
+            )
+            transcode = is_fluid_faber(info) or pinned or bool(eligible_text)
+            if transcode:
+                converted = transcode_faber(body_text, locale, faber, label)
+                if converted is not None:
+                    body_text = converted
+                    if pinned:
+                        info = " ".join(token for token in tokens if token != "mode=pinned")
+                        out[-1] = line[:line.find(stripped)] + "```" + info
             if body_text:
                 out.extend(body_text.splitlines())
             if i < len(lines):

@@ -11,7 +11,7 @@
 <span class="tok-co">#   • shape mismatch — `⊙` rejects differing shapes at compile time (no broadcast stretch)</span>
 <span class="tok-co">#   • confusing `⊙` with `×` — cross is width-3 only; Hadamard is elementwise for any identical shape</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: tensor, vector, matrix</span>
+<span class="tok-co"># See also: 张量, 向量, 矩阵</span>
 <span class="tok-co"># =============================================================================</span>
 
 
@@ -19,13 +19,13 @@
 <span class="tok-co"># ⊙ on vectors, matrices, and tensors (identical shapes)</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># WHY: `⊙` is the elementwise product glyph. Identical built-in shapes multiply</span>
-<span class="tok-co"># per-element; tensor operands lower to the same recoverable elementwise kernel</span>
+<span class="tok-co"># per-element; 张量 operands lower to the same recoverable elementwise kernel</span>
 <span class="tok-co"># as the `multiplica` intrinsic (one host carrier). Matrix operands come from</span>
 <span class="tok-co"># `⊗` results (register matrices have no literal construction surface yet).</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># a ⊙ b = [1*4, 2*5, 3*6] = [4.0, 10.0, 18.0]</span>
 <span class="tok-co"># o ⊙ o (o = a ⊗ b) = [[16,25],[64,100],[144,225]]</span>
-<span class="tok-co"># ta ⊙ tb (tensor [2,2]) = [1.0, 4.0, 9.0, 16.0]</span>
+<span class="tok-co"># ta ⊙ tb (张量 [2,2]) = [1.0, 4.0, 9.0, 16.0]</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED stdout:</span>
 <span class="tok-co">#   [4.0, 10.0, 18.0]</span>
@@ -36,12 +36,12 @@ main {
     const vf32[<span class="tok-nu">3</span>] a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>] ↦ vf32[<span class="tok-nu">3</span>]
     const vf32[<span class="tok-nu">3</span>] b <span class="tok-op">←</span> [<span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>] ↦ vf32[<span class="tok-nu">3</span>]
     const vf32[<span class="tok-nu">2</span>] q <span class="tok-op">←</span> [<span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>] ↦ vf32[<span class="tok-nu">2</span>]
-    const matrix<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> o <span class="tok-op">←</span> a <span class="tok-op">⊗</span> q
+    const <span class="tok-kw">矩阵</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> o <span class="tok-op">←</span> a <span class="tok-op">⊗</span> q
 
     const vf32[<span class="tok-nu">3</span>] v <span class="tok-op">←</span> a ⊙ b
     print v
 
-    const matrix<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> m <span class="tok-op">←</span> o ⊙ o
+    const <span class="tok-kw">矩阵</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">3</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> m <span class="tok-op">←</span> o ⊙ o
     print m
 
     const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>]

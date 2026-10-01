@@ -3,7 +3,7 @@
 <span class="tok-fn">  https</span>://github.com/faberlang/releases/releases/download/radix-v0.70.0/radix-v0.70.0-aarch64-apple-darwin.tar.gz
 <span class="tok-fn">tar</span> <span class="tok-op">-xzf</span> radix.tgz
 <span class="tok-fn">sudo</span> mv radix-v0.70.0-aarch64-apple-darwin/radix /usr/local/bin/
-<span class="tok-fn">radix</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><p>Package host bridge milestone: JSON genus contracts enforce cross-target serialization
+<span class="tok-fn">radix</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><p>Package host bridge milestone: JSON class contracts enforce cross-target serialization
 contracts, the package host attach hook and <code>norma:solum</code> bridge complete package-MIR
 stdout I/O, annotation contracts (<code>@ annotatio</code>) land as a compiler-owned schema
 mechanism, and the MIR target promotion campaign graduates all planned emit targets.
@@ -12,15 +12,15 @@ and indexed access parity.</p><h3 id="scale">Scale<a class="anchor" href="#scale
 (dic/scribe/mone), host <code>write_stdout_raw</code>, and stepper dispatch so interpreted
 packages emit raw stdout without a forced newline. Unblocks coreutils <code>echo -n</code>
 and <code>printf</code> parity. (<code>4a7987793</code>)</li><li><strong>Emit package host attach hook:</strong> <code>frame_shim.rs</code> generates the attach/detach
-wrapper so compiled packages wire into the host runtime. (<code>44540dd20</code>)</li><li><strong>Complete package host solum bridge:</strong> <code>hosts/macos-arm64/src/norma/solum.rs</code>
-implements the solum kernel module with full test coverage. (<code>5c7c06373</code>)</li></ul><h4 id="annotation-contracts-and-json-genus-contracts">Annotation contracts and JSON genus contracts<a class="anchor" href="#annotation-contracts-and-json-genus-contracts">#</a></h4><ul><li><strong>Annotation contracts (`@ annotatio`):</strong> adds compiler-owned contract machinery —
-<code>@ annotatio</code> marks a genus as a compile-time schema; braced applications validate
+wrapper so compiled packages wire into the host runtime. (<code>44540dd20</code>)</li><li><strong>Complete package host only bridge:</strong> <code>hosts/macos-arm64/src/norma/solum.rs</code>
+implements the only kernel module with full test coverage. (<code>5c7c06373</code>)</li></ul><h4 id="annotation-contracts-and-json-class-contracts">Annotation contracts and JSON class contracts<a class="anchor" href="#annotation-contracts-and-json-class-contracts">#</a></h4><ul><li><strong>Annotation contracts (`@ annotatio`):</strong> adds compiler-owned contract machinery —
+<code>@ annotatio</code> marks a class as a compile-time schema; braced applications validate
 constant fields and attachment targets; HIR carries <code>contract_id</code> for consumers;
 file interfaces export/import schemas without framework-specific compiler families.
 877-line semantic pass with 311-line test module. (<code>82537ee52</code>)</li><li><strong>Polish passes on annotation contracts:</strong> structure tightening, pipeline extraction,
 simplified HIR lowering, shared named-type value helpers, and doc coverage across
 contract HIR and file-interface surfaces. (4 <code>polish</code> commits: <code>527c8ef5f</code>,
-<code>4c835c276</code>, <code>a387e9544</code>, <code>8b52ee0ba</code>, <code>598a766b1</code>, <code>e08b79b15</code>)</li><li><strong>JSON genus contracts:</strong> enforces cross-target serialization contracts through a
+<code>4c835c276</code>, <code>a387e9544</code>, <code>8b52ee0ba</code>, <code>598a766b1</code>, <code>e08b79b15</code>)</li><li><strong>JSON class contracts:</strong> enforces cross-target serialization contracts through a
 dedicated semantic pass (<code>json_genus.rs</code>), updates EBNF, forma, typechecker, HIR
 lowering, and adds a 130-line <code>json_genus_test.rs</code>. 24 files changed, +560/−10.
 (<code>159a7a167</code>)</li></ul><h4 id="mir-target-promotion-campaign">MIR target promotion campaign<a class="anchor" href="#mir-target-promotion-campaign">#</a></h4><p>All five planned MIR emit targets promoted from probe to supported-with-limitations:</p><div class="table-scroll"><table><thead><tr><th>Target</th><th>Delivery doc</th><th>Key commit</th></tr></thead><tbody><tr><td>sexp (Stage 1, substrate routing)</td><td><code>stage-1-substrate-decision.md</code>, <code>stage-2-sexp-promotion-delivery.md</code></td><td><code>23a7f25b5</code></td></tr><tr><td>llvm-text / metal-text / wasm</td><td><code>stage-2-{llvm,metal,wasm}-promotion-delivery.md</code></td><td><code>75d43918a</code></td></tr><tr><td>wgsl-text (via naga gate)</td><td><code>stage-2-wgsl-promotion-delivery.md</code>, <code>stage-3-closeout-delivery.md</code></td><td><code>01148512e</code></td></tr></tbody></table></div><ul><li><strong>Naga WGSL gate:</strong> wire a skip-if-missing naga validate test for promoted wgsl-text
@@ -34,14 +34,14 @@ across all promotion commits. Campaign closeout documented in
 matmul. (<code>b71c7fda4</code>, <code>7d20f704a</code>, <code>550dfdd96</code>, <code>da0b9dd91</code>)</li><li><strong>Target support</strong> recorded for tensor systems with operation floor, workload proof
 floor, and FMIR package proof. (<code>385ebe3d3</code>, <code>2f4ca0b26</code>, <code>fabd05dba</code>, <code>00e85a52c</code>,
 <code>4a14474c9</code>)</li><li><strong>Campaign closeout</strong> with e2e closeout fixtures and stage-13 delivery doc.
-(<code>401ea1398</code>)</li></ul><h4 id="vel-defaulting-and-expression-lowering">Vel defaulting and expression lowering<a class="anchor" href="#vel-defaulting-and-expression-lowering">#</a></h4><ul><li><strong>Local `vel` defaulting and intervallum bound conversio:</strong> reclassify expression
-<code>vel</code> as tight nullable elimination (above multiplicative), with RHS interval
-constructor completion so <code>maybeRange vel 0‥0</code> stays intact. Emit intervallum width
-conversio bound-wise instead of invalid <code>as</code> carrier. EBNF, forma/faber precedence
-updated. (<code>6ca0a24d9</code>)</li><li><strong>Lower expression AD to sermo MIR:</strong> expression lowering path from abstract
-declarations to sermo MIR, with stepper runtime support. (<code>1f41facfb</code>)</li><li><strong>Captured argv process calls:</strong> stepper kernel and host processus support for
-captured <code>argv</code> in subprocess calls. (<code>d9d63a69d</code>)</li><li><strong>Fix numeric conversions and dense octeti valor:</strong> numeric cast corrections in
-Rust codegen and dense octeti tag preservation through stepper valor wire.
+(<code>401ea1398</code>)</li></ul><h4 id="vel-defaulting-and-expression-lowering">Vel defaulting and expression lowering<a class="anchor" href="#vel-defaulting-and-expression-lowering">#</a></h4><ul><li><strong>Local `coalesce` defaulting and intervallum bound conversion:</strong> reclassify expression
+<code>coalesce</code> as tight nullable elimination (above multiplicative), with RHS interval
+constructor completion so <code>maybeRange coalesce 0‥0</code> stays intact. Emit intervallum width
+conversion bound-wise instead of invalid <code>as</code> carrier. EBNF, forma/faber precedence
+updated. (<code>6ca0a24d9</code>)</li><li><strong>Lower expression AD to channel MIR:</strong> expression lowering path from abstract
+declarations to channel MIR, with stepper runtime support. (<code>1f41facfb</code>)</li><li><strong>Captured argv process calls:</strong> stepper kernel and host processus support for
+captured <code>argv</code> in subprocess calls. (<code>d9d63a69d</code>)</li><li><strong>Fix numeric conversions and dense bytes value:</strong> numeric cast corrections in
+Rust codegen and dense bytes tag preservation through stepper value wire.
 (<code>effc4aba8</code>, <code>0ff60098a</code>)</li></ul><h4 id="workspace-reorganization">Workspace reorganization<a class="anchor" href="#workspace-reorganization">#</a></h4><p>Two large refactoring waves consolidate the private compiler workspace:</p><ul><li><strong>Absorb forma into `radix::forma`; extract `faber-runtime`:</strong> fold the forma
 formatter crate into the compiler (private surface), move <code>faber-runtime</code> to the
 public sibling <code>faberlang/faber-runtime</code>. 55 files changed, +60/−4551.

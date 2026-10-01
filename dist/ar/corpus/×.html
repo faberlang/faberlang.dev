@@ -4,19 +4,19 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Cross product — `a × b` on two width-3 vectors yields the perpendicular vector</span>
+<span class="tok-co">#   • Cross product — `a × b` on two width-3 vectors yields the perpendicular متجه</span>
 <span class="tok-co">#   • Width pin — the glyph rejects non-3 widths at compile time (physics 3-vector convention)</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • cross on width ≠ 3 vectors — width 4 (or non-vector operands) fail closed with a rank diagnostic</span>
 <span class="tok-co">#   • confusing `×` with elementwise multiply — Hadamard is `⊙`; `×` is the cross product glyph</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: vector</span>
+<span class="tok-co"># See also: متجه</span>
 <span class="tok-co"># =============================================================================</span>
 
 
 
-<span class="tok-co"># vector × vector → perpendicular vector (width 3 only)</span>
+<span class="tok-co"># متجه × متجه → perpendicular متجه (width 3 only)</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># WHY: `×` is pinned to the width-3 cross product in Phase 1. `emit_vector_transversum`</span>
 <span class="tok-co"># enforces width 3 in codegen; the typecheck rejects any other width with a</span>
@@ -29,9 +29,9 @@
 <span class="tok-co">#   [-3.0, 6.0, -3.0]</span>
 
 main {
-    const vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>] ↦ vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span>
-    const vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> b <span class="tok-op">←</span> [<span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>] ↦ vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span>
-    const vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> c <span class="tok-op">←</span> a <span class="tok-op">×</span> b
+    const vf32[<span class="tok-nu">3</span>] a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>] ↦ vf32[<span class="tok-nu">3</span>]
+    const vf32[<span class="tok-nu">3</span>] b <span class="tok-op">←</span> [<span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>] ↦ vf32[<span class="tok-nu">3</span>]
+    const vf32[<span class="tok-nu">3</span>] c <span class="tok-op">←</span> a <span class="tok-op">×</span> b
     print c
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[-3.0, 6.0, -3.0]
 </code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusvectorglyph-crossfab-canonical-operator-group">radix/corpus/vector/glyph-cross.fab (canonical · operator-group)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">المصادر</span><ul><li>[&quot;radix/corpus/vector/glyph-cross.fab&quot;]</li></ul></div></footer></div></body></html>

@@ -5,7 +5,6 @@ order = 3
 sources = [
   "radix/docs/design/README.md",
 ]
-translate_spans = false  # prose names the Latin vocabulary as Latin
 +++
 
 ## Commandments
@@ -29,7 +28,7 @@ tells them *which* thing. This aligns with languages whose
 grammatical order reads from category to instance — Chinese, Hindi, Arabic
 — and produces declarations that scan uniformly.
 
-```text
+```faber
 # Type before name in every declaration
 textus nomen
 numerus aetas
@@ -55,20 +54,22 @@ functio duplica(numerus n) → numerus {
 
 Structural and operator meaning uses glyphs, not words: `←`
 for binding, `→` for return type, `⇥`
-for error exit, `ergo` for compact statement body,
+for error exit, `then` for compact statement body,
 `≡` for equality, `∪` for union
 types. Glyphs are universal — they never localise and never change meaning
 across renderings. A Thai reader and a French reader see the same glyphs,
 even if the keywords around them differ.
 
-### IV. Latin carries behaviour {#iv-latin-carries-behaviour}
+### IV. Words carry behaviour {#iv-latin-carries-behaviour}
 
 Words are for declarations, statements, lifecycle, and behavioural intent:
-`functio`, `genus`, `fixum`,
-`varia`, `redde`, `cape`.
+`fn`, `class`, `const`,
+`var`, `return`, `catch`.
 These are bindable through reader-locale packs — they are the vocabulary,
-not the grammar. The Latin choice is not about Latin superiority; it is
-about picking *one* consistent classical source so that all keywords
+not the grammar. Underneath the reader surfaces, Latin is the canonical
+corpus key: one classical spelling every program is stored and exchanged
+under. That choice is not about Latin superiority; it is about picking
+*one* consistent source so that all keywords
 belong to the same register and no keyword is privileged by being the
 language the implementation was written in.
 
@@ -78,9 +79,9 @@ When the same root logic can run synchronously, asynchronously, or as a
 generator, the conjugated form of the verb should carry that execution mode.
 Ownership pairs — mutate vs copy-out — use related forms of the same stem.
 This is the morphologia principle. The standard library (Norma) follows this
-convention for all method names: `lege` (sync read) vs
-`leget` (async read), `adde` (mutate in place) vs
-`addita` (return new copy). The compiler does not enforce or
+convention for all method names: `read_file` (sync read) vs
+`read_file_async` (async read), `add` (mutate in place) vs
+`added` (return new copy). The compiler does not enforce or
 derive conjugations — it is a naming policy, not a language feature.
 
 ### VI. One sign, one job {#vi-one-sign-one-job}
@@ -92,7 +93,7 @@ principle that drives Faber's split between `←`
 languages collapse both into `=`, but that overloading hides
 whether a line is a data-flow operation or a type-level definition.
 
-```text
+```faber
 # ← is always runtime flow
 fixum numerus count ← 0
 count ← count + 1
@@ -114,13 +115,13 @@ runtime event. There is no syntactic ambiguity about whether a particular
 
 ### VIII. Absence is typed {#viii-absence-is-typed}
 
-Nullable value types are written as unions: `T ∪ nihil`. Optional
-declaration slots use post-name markers: `sponte`. These are
+Nullable value types are written as unions: `T ∪ none`. Optional
+declaration slots use post-name markers: `optional`. These are
 distinct concepts — *a value that may be absent* vs *a slot the
 caller may omit* — and Faber keeps them syntactically separate rather
 than collapsing both into `T?` or `Option<T>`.
 
-```text
+```faber
 # Absence in a value: T ∪ nihil
 functio find(textus key) → numerus ∪ nihil
 

@@ -13,27 +13,27 @@ aligning with Faber's Latin naming convention: faber (craftsman) → rivus (stre
 add <code>--verify-diff</code> support for comparing against faber output (<code>f3e0b52bb</code>)</li><li>Fix <code>build-exempla</code> to use stdin for all compilers — rivus/artifex read from
 stdin differently than faber's CLI interface (<code>34144198e</code>)</li><li>Add norma-generated artifact to <code>build-artifex</code> — rivus source imports
 <code>norma-registry.gen.fab</code> at compile time (<code>4d9985daf</code>)</li></ul><h4 id="norma-registry-flat-json-format">Norma registry: flat JSON format<a class="anchor" href="#norma-registry-flat-json-format">#</a></h4><ul><li>Add a flat JSON format for the norma registry with <code>collection:method:target</code>
-keys — O(1) hash lookup vs O(n) control flow, 72 KB vs 122 KB for the FAB elige
+keys — O(1) hash lookup vs O(n) control flow, 72 KB vs 122 KB for the FAB switch
 equivalent (<code>e02724744</code>)</li><li>Populate the registry with innatum (collection metadata) and radixForms (method
 metadata) data — 878 entries: 11 collections, 48 methods, 819 translations
 (<code>65bcd3dd1</code>)</li><li>Migrate faber codegen to consume <code>fons/norma/index.json</code> directly instead of
-the generated <code>norma-registry.gen.ts</code> (<code>edf07dcfe</code>)</li></ul><h4 id="rivus-semantic-analyzer-fixes-type-inference">Rivus semantic analyzer fixes (type inference)<a class="anchor" href="#rivus-semantic-analyzer-fixes-type-inference">#</a></h4><ul><li>Fix pattern binding type inference in <code class="kw">match</code> statements — alias bindings
-(<code>ut g</code>) now resolve to variant types instead of IGNOTUM; partial field binding
+the generated <code>norma-registry.gen.ts</code> (<code>edf07dcfe</code>)</li></ul><h4 id="rivus-semantic-analyzer-fixes-type-inference">Rivus semantic analyzer fixes (type inference)<a class="anchor" href="#rivus-semantic-analyzer-fixes-type-inference">#</a></h4><ul><li>Fix pattern binding type inference in <code>match</code> statements — alias bindings
+(<code>as g</code>) now resolve to variant types instead of IGNOTUM; partial field binding
 support (<code>30a8bf6a3</code>, fixes #78)</li><li>Add <code>InnatumExpressia</code> type resolution — variables declared with <code>[] innatum</code>
 expressions now resolve to their target type, reducing artifex build errors from
 1198 to 39 (<code>b8a37110f</code>, fixes #74)</li><li>Resolve <code>Usitatum</code> field types via symbol table lookup — field access on
 user-defined types (<code>lexResult.errores</code>) now resolves the actual Genus
-definition to enable norma translation (<code>9235f4e64</code>, fixes #68/#69)</li><li>Fix <code>ignotum</code> type annotation to produce the proper <code>Ignotum{}</code> variant instead
-of <code>Usitatum{nomen: &quot;ignotum&quot;}</code> (<code>fdb86c2dc</code>, fixes #62/#64)</li><li>Fix predeclaration: use IGNOTUM instead of VACUUM for declared return types,
+definition to enable norma translation (<code>9235f4e64</code>, fixes #68/#69)</li><li>Fix <code>unknown</code> type annotation to produce the proper <code>Ignotum{}</code> variant instead
+of <code>Usitatum{name: &quot;ignotum&quot;}</code> (<code>fdb86c2dc</code>, fixes #62/#64)</li><li>Fix predeclaration: use IGNOTUM instead of VACUUM for declared return types,
 matching faber's behavior (<code>51c27a069</code>, fixes #51/#58)</li></ul><h4 id="rivus-codegen-improvements">Rivus codegen improvements<a class="anchor" href="#rivus-codegen-improvements">#</a></h4><ul><li>Emit <code>export</code> keyword for public declarations — add visibility tracking to AST
 types and all codegen generators so module-level symbols are properly exported
 (<code>a570115a6</code>, fixes #67/#70)</li><li>Fix class field visibility inheritance — fields in public classes now inherit
 parent visibility instead of defaulting to private, matching TypeScript implicit
-public semantics (<code>030620876</code>, fixes #75)</li><li>Fix double braces in rivus TypeScript codegen <code>scriptum()</code> templates — <code>{{</code>/<code>}}</code>
+public semantics (<code>030620876</code>, fixes #75)</li><li>Fix double braces in rivus TypeScript codegen <code>format()</code> templates — <code>{{</code>/<code>}}</code>
 passed through literally in 11 template files, causing malformed output for
 for-loops, async IIFEs, classes, and other block constructs (<code>5c2968c4c</code>,
-fixes #66/#71)</li></ul><h4 id="rivus-parser-multi-discriminant-discerne">Rivus parser: multi-discriminant discerne<a class="anchor" href="#rivus-parser-multi-discriminant-discerne">#</a></h4><ul><li>Implement multi-discriminant pattern matching in the rivus parser — enables
-<code>discerne left, right { casu A ut l, B ut r { … } }</code> syntax across AST,
+fixes #66/#71)</li></ul><h4 id="rivus-parser-multi-discriminant-match">Rivus parser: multi-discriminant match<a class="anchor" href="#rivus-parser-multi-discriminant-match">#</a></h4><ul><li>Implement multi-discriminant pattern matching in the rivus parser — enables
+<code>match left, right { case A as l, B as r { … } }</code> syntax across AST,
 parser, codegen, and semantic analysis (<code>637769d0b</code>, fixes #48/#63)</li><li>Fix pactum methods map type in module export extraction — <code>Map&lt;string, SemanticType&gt;</code>
 vs <code>Map&lt;string, FunctionType&gt;</code> mismatch (<code>96ff0077f</code>, fixes #65)</li></ul><h4 id="nucleus-runtime-design">Nucleus runtime design<a class="anchor" href="#nucleus-runtime-design">#</a></h4><ul><li>Consolidate Nucleus runtime design around async generators as the fundamental
 primitive — first revision adds Latin conjugation mapping, stdlib examples, and
@@ -44,6 +44,6 @@ responsum, streaming, executor, dispatch, targets, and implementation (<code>a79
 conjugation ambiguity, database streaming, architecture boundaries, executor
 concerns, backpressure, and phase-specific issues (<code>27c9acdb8</code>)</li><li>Resolve design review findings and add <code>probationes.md</code> — protocol naming
 (Latin canonical), target-varying protocol shapes, allocator threading, verb
-syntax codegen, and execution test framework using Faber's proba syntax
+syntax codegen, and execution test framework using Faber's test syntax
 (<code>678e7dbca</code>)</li></ul><h4 id="development-tooling">Development tooling<a class="anchor" href="#development-tooling">#</a></h4><ul><li>Add <strong>augur</strong> agent — a forward-looking consequence analyst with feedback,
 revision, and issues modes for design document review (<code>b86aeb89d</code>)</li><li>Update <code>columbo.md</code> with additional investigation procedures (<code>8c571d54f</code>)</li><li>Update <code>augur.md</code> (<code>d63ebc5ca</code>)</li></ul><p>---</p><p><a href="/en-US/releases/">All releases</a> · <a href="/en-US/start/install.html">Install the current release</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#install">Install this version</a></li><li class="toc-2"><a href="#notes">Release notes</a></li><li class="toc-3"><a href="#scale">Scale</a></li><li class="toc-3"><a href="#major-tracks">Major tracks</a></li></ul></div></nav></div></body></html>

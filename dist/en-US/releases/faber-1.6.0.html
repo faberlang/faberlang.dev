@@ -38,7 +38,7 @@ fix (<code>acb5dda</code>) and regression tests for the forma-shadowing guard
 faber <code>1.6.0</code> against <strong>radix 0.81.0</strong> (tag commit), cista <code>0.1.0</code>,
 faber-runtime and hosts per <code>release-manifest.yaml</code>. The <code>--locked</code> release
 build from these pins is the proof; <code>publication.releaseTag</code> is
-<code>faber-v1.6.0</code>.</p><h3 id="known-limitations">Known limitations<a class="anchor" href="#known-limitations">#</a></h3><ul><li><strong>Cross-module `textus` handles</strong> remain limited by separate linear
+<code>faber-v1.6.0</code>.</p><h3 id="known-limitations">Known limitations<a class="anchor" href="#known-limitations">#</a></h3><ul><li><strong>Cross-module `string` handles</strong> remain limited by separate linear
 memories at the package-wasm boundary.</li><li><strong>Numeric inference accuracy is deferred.</strong> Device execution remains a
 capability statement (<code>faber run --backend metal|cuda</code>, package/run proven
 at RC level on burgus and pharos); no numeric parity band is claimed.</li><li>The AMD device surface is emit/compile capability — <code>amd</code> selection stays

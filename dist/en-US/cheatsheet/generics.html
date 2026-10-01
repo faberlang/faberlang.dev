@@ -58,7 +58,7 @@
 }</code></pre></div></div><p>The same function serves both calls. <code>T</code> is fixed per call site, not erased to
 a dynamic value.</p><h2 id="union-return">Generic with a union return<a class="anchor" href="#union-return">#</a></h2><p>Type parameters compose with unions, which is how &quot;maybe nothing&quot; is expressed
 generically.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">list</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> none {
-    <span class="tok-kw">if</span> res.length() <span class="tok-op">≡</span> <span class="tok-nu">0</span> then <span class="tok-kw">return</span> null
+    <span class="tok-kw">if</span> res.length() <span class="tok-op">≡</span> <span class="tok-nu">0</span> then <span class="tok-kw">return</span> <span class="tok-kw">null</span>
     <span class="tok-kw">return</span> res[<span class="tok-nu">0</span>]
 }
 
@@ -96,23 +96,23 @@ generically.</p><pre class="faber-code"><code class="lang-faber"><span class="to
     <span class="tok-kw">स्थिर</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span><span class="tok-kw">पाठ</span><span class="tok-op">&gt;</span> nomina <span class="tok-op">←</span> [<span class="tok-st">"Marcus"</span>, <span class="tok-st">"Julia"</span>]
     <span class="tok-kw">स्थिर</span> <span class="tok-kw">तालिका</span><span class="tok-op">&lt;</span><span class="tok-kw">पाठ</span>, <span class="tok-kw">संख्या</span><span class="tok-op">&gt;</span> aetates <span class="tok-op">←</span> { <span class="tok-st">"Marcus"</span><span class="tok-op">:</span> <span class="tok-nu">30</span> }
     <span class="tok-kw">दिखाओ</span> nomina, aetates
-}</code></pre></div></div><h2 id="genus">Records<a class="anchor" href="#genus">#</a></h2><p><code class="kw">class</code> declares a record type with type-first fields.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Persona {
-    <span class="tok-kw">const</span> string nomen
+}</code></pre></div></div><h2 id="genus">Records<a class="anchor" href="#genus">#</a></h2><p><code>class</code> declares a record type with type-first fields.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Persona {
+    <span class="tok-kw">const</span> string name
     <span class="tok-kw">const</span> <span class="tok-kw">int</span> aetas
 }
 
-<span class="tok-kw">fn</span> <span class="tok-kw">descriptio</span>(Persona p) <span class="tok-op">→</span> string {
+<span class="tok-kw">fn</span> <span class="tok-kw">description</span>(Persona p) <span class="tok-op">→</span> string {
     <span class="tok-kw">return</span> p.nomen
 }
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
-    print <span class="tok-kw">descriptio</span>(p)
-}</code></pre><h2 id="methods">Functions on a record<a class="anchor" href="#methods">#</a></h2><p>A <code class="kw">class</code> can carry functions alongside its fields.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Punctum {
+    <span class="tok-kw">const</span> _ p <span class="tok-op">←</span> Persona { name <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    print <span class="tok-kw">description</span>(p)
+}</code></pre><h2 id="methods">Functions on a record<a class="anchor" href="#methods">#</a></h2><p>A <code>class</code> can carry functions alongside its fields.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Punctum {
     <span class="tok-kw">const</span> <span class="tok-kw">int</span> x
     <span class="tok-kw">const</span> <span class="tok-kw">int</span> y
 
-    <span class="tok-kw">fn</span> summa() <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+    <span class="tok-kw">fn</span> sum() <span class="tok-op">→</span> <span class="tok-kw">int</span> {
         <span class="tok-kw">return</span> <span class="tok-kw">self</span>.x <span class="tok-op">+</span> <span class="tok-kw">self</span>.y
     }
 }
@@ -120,5 +120,5 @@ generically.</p><pre class="faber-code"><code class="lang-faber"><span class="to
 <span class="tok-kw">main</span> {
     <span class="tok-kw">const</span> _ p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
     print p.summa()
-}</code></pre><p><code>ego</code> — &quot;I&quot; — is the receiver, what other languages spell <code>this</code> or <code>self</code>.</p><p>Related: <a href="/en-US/cheatsheet/types.html">Types and widths</a> ·
+}</code></pre><p><code>self</code> — &quot;I&quot; — is the receiver, what other languages spell <code>this</code> or <code>self</code>.</p><p>Related: <a href="/en-US/cheatsheet/types.html">Types and widths</a> ·
 <a href="/en-US/language/functions.html">Functions and flow</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#functions">Generic functions</a></li><li class="toc-2"><a href="#union-return">Generic with a union return</a></li><li class="toc-2"><a href="#containers">Generic containers</a></li><li class="toc-2"><a href="#genus">Records</a></li><li class="toc-2"><a href="#methods">Functions on a record</a></li></ul></div></nav></div></body></html>

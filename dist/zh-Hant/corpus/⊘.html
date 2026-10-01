@@ -6,7 +6,7 @@
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • Hadamard divide — `a ⊘ b` divides elementwise under the same</span>
 <span class="tok-co">#     identical-shape contract as `a ⊙ b`; it is the glyph spelling of the</span>
-<span class="tok-co">#     tensor `divisio` method twin and the existing TensorDiv MIR operation.</span>
+<span class="tok-co">#     張量 `divisio` method twin and the existing TensorDiv MIR operation.</span>
 <span class="tok-co">#   • This is not broadcasting — mismatched static shapes reject at typecheck,</span>
 <span class="tok-co">#     just as they do for `⊙`.</span>
 <span class="tok-co">#   • Device posture — `⊘` remains fail-closed until its first device</span>
@@ -16,10 +16,10 @@
 <span class="tok-co"># EXPECTED stdout:</span>
 <span class="tok-co">#   [2.0, 2.0, 3.0, 4.0]</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: tensor, arithmetic, ⊙, ⊘</span>
+<span class="tok-co"># See also: 張量, arithmetic, ⊙, ⊘</span>
 <span class="tok-co"># =============================================================================</span>
 
-fn hadamard_divide(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> numerator, tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> denominator) <span class="tok-op">→</span> tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> {
+fn hadamard_divide(<span class="tok-kw">張量</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> numerator, <span class="tok-kw">張量</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> denominator) <span class="tok-op">→</span> <span class="tok-kw">張量</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> {
     return numerator ⊘ denominator
 }
 

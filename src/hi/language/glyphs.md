@@ -275,12 +275,10 @@ kernel module sugar का उपयोग कर सकता है:
 
 | Sugar | Canonical form | Domain |
 |-------|----------------|--------|
-| `f32`, `f64`, `i32`, `u64` | `fractus<f32>`, `numerus<i32>` | Width markers — scalar numeric types |
 | `tf32`, `tf32[4]`, `ti64[2, 3]` | `tensor<f32, _>`, `tensor<f32, [4]>` | Dense tensor — `t` + width + optional shape |
 | `sf32`, `sf32[2, 3]`, `si64[N]` | `sparsa<f32, _>`, `sparsa<f32, [2, 3]>` | Sparse tensor — `s` + width + optional shape |
 | `mf32[4, 4]`, `mu32[3, 3]` | `matrix<f32, [4, 4]>` | Register-class matrix — `m` + width + shape |
 | `lf32`, `lu32`, `li64` | `lista<f32>`, `lista<u32>` | List — `l` + width |
-| `f16` | `fractus<f16>` | Half-float width marker (semantic/layout only) |
 
 **सामान्य Faber (long form को प्राथमिकता दें):**
 
@@ -288,7 +286,7 @@ kernel module sugar का उपयोग कर सकता है:
 incipit {
     fixum lista<f32> values ← vacua
     fixum tensor<f32, [2, 3]> grid ← vacua
-    fixum numerus<i32> narrow ← 7
+    fixum i32 narrow ← 7
 }
 ```
 
@@ -372,14 +370,13 @@ Canonical-vs-sugar pattern कई स्थानों पर दिखाई �
 
 | Domain | Canonical | Sugar |
 |--------|-----------|-------|
-| Numeric types | `numerus<i32>` | `i32` |
 | Tensor types | `tensor<f32, [4]>` | `tf32[4]` |
 | Annotations | `@ optio { binding = verbose }` | `@ optio verbose ...` |
 | Formatting | `faber format --canonical` | `faber format` (author mode) |
 | Reader locale | Latin (`la`) | कोई भी locale pack |
 
 यह pattern दो उद्देश्यों की पूर्ति करता है। पहला, यह प्रवेश की बाधा कम करता है —
-नए users `tensor<fractus<f32>, [4]>` लिखे बिना `tf32[4]` लिख सकते हैं। दूसरा,
+नए users `tensor<f32, [4]>` लिखे बिना `tf32[4]` लिख सकते हैं। दूसरा,
 यह canonical language को अस्पष्ट नहीं होने देता — जब precision महत्वपूर्ण हो,
 तो long form ठीक-ठीक बताता है कि उसका अर्थ क्या है। Formatter दोनों के बीच
 पुल का काम करता है: authors sugar लिखते हैं, reviewers canonical की मांग कर

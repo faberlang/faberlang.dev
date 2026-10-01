@@ -20,16 +20,16 @@ in the page's reader pack and print the local spelling.
 
 Which makes this a presentation post-process like `highlight-code.py` — it
 reads rendered HTML, it is idempotent, and it needs no generator rebuild.
+The Markdown projection runs earlier and handles compounds with token rules
+that protect paths, anchors, production ids, quoted strings, and English `in`.
 
-Not translated:
+Not translated here:
 
     reference/grammar.html      the productions ARE the canonical grammar
-    toolchain/target-matrix.html  the terms are the matrix's row keys
-    corpus/                     a term page is *about* its Latin term
 
-    pages marked `translate_spans = false` in frontmatter — prose that
-    discusses Latin as Latin. "Latin behavioural words: `functio`, `genus`,
-    `si`" must not become "Latin behavioural words: `fn`, `class`, `if`".
+Pages marked `translate_spans = false` skip only this HTML span pass. The
+Markdown projection still runs before rendering, so the flag does not preserve
+Latin keywords there.
 
 Usage:
     localize-spans.py <dist_dir>
@@ -50,11 +50,8 @@ WORKSPACE = REPO.parent
 PACKS = WORKSPACE / "radix" / "locale"
 
 # Whole pages whose Latin is the subject rather than the spelling.
-SKIP_PAGES = {
-    Path("reference/grammar.html"),
-    Path("toolchain/target-matrix.html"),
-}
-SKIP_DIRS = {"corpus"}
+SKIP_PAGES = {Path("reference/grammar.html")}
+SKIP_DIRS: set[str] = set()
 
 SPAN_RE = re.compile(r'<code class="(kw|typ)">([^<]*)</code>')
 

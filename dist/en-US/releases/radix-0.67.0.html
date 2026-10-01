@@ -24,7 +24,7 @@ closeout.</p><ul><li><strong>Stage 3 (SA-002):</strong> Conversion target-width 
 numeric literals against the target <code>NumericWidth</code> so the stepper matches Rust
 codegen's fallible <code>parse::&lt;T&gt;()</code> behavior (<code>8dcfa00e8</code>)</li><li><strong>Stage 4 (SA-003):</strong> Cede / CursorStream stepper handlers — <code>Cede</code> is
 dual-mode (synchronous await vs generator yield); <code>CursorStream</code> collects a
-<code>@cursor</code> generator's yields into <code>lista&lt;T&gt;</code> (<code>f9782d0aa</code>)</li><li>Phase-6 ratchet closeout and capability matrix updates (<code>bdd03e0ff</code>)</li></ul><h4 id="rust-e2e-failures-matrix">Rust e2e failures matrix<a class="anchor" href="#rust-e2e-failures-matrix">#</a></h4><p>Structured classification of expected Rust compile/runtime failures with a
+<code>@cursor</code> generator's yields into <code>list&lt;T&gt;</code> (<code>f9782d0aa</code>)</li><li>Phase-6 ratchet closeout and capability matrix updates (<code>bdd03e0ff</code>)</li></ul><h4 id="rust-e2e-failures-matrix">Rust e2e failures matrix<a class="anchor" href="#rust-e2e-failures-matrix">#</a></h4><p>Structured classification of expected Rust compile/runtime failures with a
 ratchetted regression ledger.</p><ul><li>Expected compile failure classification for script kernel, vector builtins,
 matrix host, AD runtime, library imports (<code>132f524af</code>, <code>c249dbbe4</code>,
 <code>9589c1957</code>, <code>98ae481f3</code>, <code>b52f1a037</code>)</li><li>Expected runtime failure classification and exit-code acceptance
@@ -38,42 +38,42 @@ library packages (<code>c9ff93528</code>, <code>30e29c0d7</code>)</li><li><stron
 lowering, frame shim, and runtime intrinsics — replaced by numeric widening
 casts and library-based iteration (<code>c9798859b</code>, <code>a4fd3bf1d</code>, <code>2a84cfa8d</code>,
 <code>6ad8f7ac2</code>, <code>735e103b4</code>)</li><li>Stdlib file interfaces migrated to the new package path (<code>2033a1371</code>)</li><li>Factory campaign lock and delivery docs (<code>d0ca3d7bb</code>, <code>f06f81330</code>,
-<code>bf6b07883</code>, <code>a4fd3bf1d</code>, <code>5100edd4a</code>)</li></ul><h4 id="mir-rust-codegen-fixes">MIR / Rust codegen fixes<a class="anchor" href="#mir-rust-codegen-fixes">#</a></h4><p>A broad sweep of Rust emit fixes across valor carriers, call propagation, and
+<code>bf6b07883</code>, <code>a4fd3bf1d</code>, <code>5100edd4a</code>)</li></ul><h4 id="mir-rust-codegen-fixes">MIR / Rust codegen fixes<a class="anchor" href="#mir-rust-codegen-fixes">#</a></h4><p>A broad sweep of Rust emit fixes across value carriers, call propagation, and
 builtin lowering.</p><ul><li><strong>Failable call propagation:</strong> lowers failable call-site propagation through
-MIR (<code>2fe9e825d</code>)</li><li><strong>Valor boxing:</strong> box sized numerics and lista literals through valor carriers
-(<code>030f4d592</code>, <code>e31e8f932</code>); check sized numerus valor extraction
-(<code>ba5f73236</code>); reject unsupported valor sized extraction (<code>79e8ab33e</code>)</li><li><strong>Vector intrinsics:</strong> lower vector intrinsics to Rust arrays
+MIR (<code>2fe9e825d</code>)</li><li><strong>Valor boxing:</strong> box sized numerics and list literals through value carriers
+(<code>030f4d592</code>, <code>e31e8f932</code>); check sized int value extraction
+(<code>ba5f73236</code>); reject unsupported value sized extraction (<code>79e8ab33e</code>)</li><li><strong>Vector intrinsics:</strong> lower vector intrinsics to Rust arrays
 (<code>fece8bc53</code>)</li><li><strong>Captured callbacks:</strong> emit wasm captured callback closures, captured
 collection callbacks, and sexp probe handlers (<code>8a9f6a6bf</code>,
 <code>008b18ce7</code>, <code>f785acdc9</code>)</li><li><strong>Numeric cast and interval helpers:</strong> emit numeric widening casts, interval
 list materialization helper, reject unsupported sized interval helpers
 (<code>6ad8f7ac2</code>, <code>735e103b4</code>, <code>871f34c91</code>)</li><li><strong>Stepped/rejected values:</strong> reject stepped interval values, reject nested
 tensor shape holes, reject truthiness recovery arms, reject failable closure
-rust emit (<code>11539a4b4</code>, <code>ccbc5c872</code>, <code>6bcc78941</code>, <code>06b34c68b</code>)</li><li><strong>Misc:</strong> clone octeti call args, enforce aggregate numeric target direction,
-close lista filter lowering, preserve frame trace conversions, clone octeti
-call args, align exempla stdout with fractus display
+rust emit (<code>11539a4b4</code>, <code>ccbc5c872</code>, <code>6bcc78941</code>, <code>06b34c68b</code>)</li><li><strong>Misc:</strong> clone bytes call args, enforce aggregate numeric target direction,
+close list filter lowering, preserve frame trace conversions, clone bytes
+call args, align exempla stdout with float display
 (<code>963f1a787</code>, <code>2a84cfa8d</code>, <code>98f99a81c</code>, <code>d7198ab9d</code>, <code>ccce2199c</code>,
 <code>98d2c9122</code>, <code>ca3fa3c82</code>, <code>e9cceb46e</code>)</li></ul><h4 id="reader-locale-packs">Reader locale packs<a class="anchor" href="#reader-locale-packs">#</a></h4><ul><li>Add locale pack TOML assets for <code>ar</code>, <code>hi</code>, <code>la</code>, <code>th-TH</code>, <code>zh-Hans</code> with
 keyword/type entries (<code>32696f4fa</code>)</li><li>Reader locale pack campaign docs and audit (<code>de2578e86</code>, <code>aa4a4172f</code>)</li></ul><h4 id="polish-code-extraction">Polish (code extraction)<a class="anchor" href="#polish-code-extraction">#</a></h4><p>Ten structural extractions isolating compiler modules for future crate
 extraction:</p><ul><li><code>polish(parser):</code> extract lex error conversion, drop dead annotation span
 merge (<code>9816e6f04</code>, <code>670e3bbc1</code>)</li><li><code>polish(radix):</code> extract sexp storage defaults, centralize HIR call argument
-walks, derive MIR program default, isolate Rust redde emission, extract emit
+walks, derive MIR program default, isolate Rust return emission, extract emit
 reflection output (<code>3ed9cc64a</code>, <code>81eba92ff</code>, <code>ee60b1d32</code>, <code>ee2f5bc58</code>,
 <code>ea031e19f</code>)</li><li><code>polish(faber-cli):</code> extract package unit Rust generation, extract package
 source loading, name package MIR dispatch lookup (<code>74b5f5457</code>,
 <code>ccda71a81</code>, <code>36a96b818</code>)</li></ul><h4 id="deferred-audit-trail">Deferred audit trail<a class="anchor" href="#deferred-audit-trail">#</a></h4><p>Thirty-three docs commits recording and narrowing deferred items across the
-compiler surface:</p><ul><li>Defer audits: frame valor, JSON build, import path, chorda regex, recursion,
+compiler surface:</p><ul><li>Defer audits: frame value, JSON build, import path, chorda regex, recursion,
 import, sparse MIR, intervals, LLVM leaf, regex guard, curata allocator,
 collection conversion source (<code>8020c4651</code>, <code>3576ab89d</code>, <code>0a336e90f</code>,
 <code>522a29653</code>, <code>e48f2bdb7</code>, <code>731a8fd53</code>, <code>8f0f786f0</code>, <code>8c3afd086</code>,
 <code>6113ac845</code>, <code>12444481b</code>, <code>cc396d64d</code>, <code>1cf9b4bef</code>)</li><li>Narrowed defer notes: interval direction, CLI MIR, interval algebra
 (<code>0a336e90f</code>, <code>5232ec6cf</code>, <code>8c3afd086</code>)</li><li>Extern trust verification, Go status defer, stream sequencing defer, sized
-numeric defer, scrinium Go shim defer, captured closure defer
+numeric defer, frame Go shim defer, captured closure defer
 (<code>241d62b0c</code>, <code>fb588d1fa</code>, <code>e77ea2bbd</code>, <code>21db0fcdf</code>, <code>bdf7924eb</code>,
 <code>755d3e0e</code>)</li><li>Deferred CLI MIR refresh, sparse MIR refresh, JSON build blocker reframe
 (<code>28ea0f3c8</code>, <code>d98236194</code>, <code>460ff5c6c</code>)</li><li>Resolved deferred audit batch closeout (<code>5c02503c7</code>)</li></ul><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li><strong>Faber runtime script campaign:</strong> add Faber script runtime campaign
 (<code>111a8d790</code>)</li><li><strong>Unified lookup delivery:</strong> add unified lookup delivery (<code>0b54584a7</code>)</li><li><strong>Go and TS e2e exempla campaigns:</strong> add factory docs for Go and TS e2e
 exempla campaigns (<code>ab67c9519</code>), file-interface campaign closeout
 (<code>940fe3723</code>)</li><li><strong>Type-call constructor clean break:</strong> close type-call constructor clean break
-goal (<code>b2ab4b0dd</code>)</li><li><strong>Faber runtime extraction:</strong> bridge runtime valor extraction from exempla
+goal (<code>b2ab4b0dd</code>)</li><li><strong>Faber runtime extraction:</strong> bridge runtime value extraction from exempla
 (<code>2616475da</code>)</li><li><strong>Document reader locale pack upkeep</strong> (<code>bdd03e0ff</code>)</li><li><strong>Numeric trap defer closeout</strong> (<code>0430a3754</code>)</li><li><strong>Unify stepper coverage traps</strong> (<code>f3cc3265e</code>)</li></ul><p>---</p><p><a href="/en-US/releases/">All releases</a> · <a href="/en-US/start/install.html">Install the current release</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#install">Install this version</a></li><li class="toc-2"><a href="#notes">Release notes</a></li><li class="toc-3"><a href="#scale">Scale</a></li><li class="toc-3"><a href="#major-tracks">Major tracks</a></li><li class="toc-3"><a href="#other-changes">Other changes</a></li></ul></div></nav></div></body></html>

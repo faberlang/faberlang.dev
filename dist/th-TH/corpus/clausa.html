@@ -12,15 +12,15 @@
 <span class="tok-co">#     iterators, and used as predicates</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • confusing `clausa` (closure expression) with `functio` (named function declaration), or omitting parentheses on multi-parameter typed closures</span>
+<span class="tok-co">#   • confusing `clausa` (closure expression) with `ฟังก์ชัน` (named function declaration), or omitting parentheses on multi-parameter typed closures</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: ∴, functio, numerus</span>
+<span class="tok-co"># See also: ∴, ฟังก์ชัน, จํานวน</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># clausa — closure / lambda expressions</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># &lt;params&gt; ∴ &lt;expr&gt;</span>
-<span class="tok-co"># (&lt;params&gt;) → &lt;typus&gt; ∴ &lt;expr&gt;</span>
+<span class="tok-co"># (&lt;params&gt;) → &lt;ชนิดนามแฝง&gt; ∴ &lt;expr&gt;</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
 <span class="tok-co">#   closureExpr :← paramList '∴' expr | '(' paramList ')' '→' type '∴' expr</span>
@@ -29,7 +29,7 @@
 <span class="tok-co">#   clausa.expected</span>
 
 main {
-<span class="tok-co">    # Single-parameter closure: numerus x ∴ x * 2</span>
+<span class="tok-co">    # Single-parameter closure: จํานวน x ∴ x * 2</span>
     const (int) <span class="tok-op">→</span> int duplica <span class="tok-op">←</span> int x ∴ x <span class="tok-op">*</span> <span class="tok-nu">2</span>
     print duplica(<span class="tok-nu">5</span>)
 

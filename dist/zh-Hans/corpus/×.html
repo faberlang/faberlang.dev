@@ -4,19 +4,19 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Cross product — `a × b` on two width-3 vectors yields the perpendicular vector</span>
+<span class="tok-co">#   • Cross product — `a × b` on two width-3 vectors yields the perpendicular 向量</span>
 <span class="tok-co">#   • Width pin — the glyph rejects non-3 widths at compile time (physics 3-vector convention)</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • cross on width ≠ 3 vectors — width 4 (or non-vector operands) fail closed with a rank diagnostic</span>
 <span class="tok-co">#   • confusing `×` with elementwise multiply — Hadamard is `⊙`; `×` is the cross product glyph</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: vector</span>
+<span class="tok-co"># See also: 向量</span>
 <span class="tok-co"># =============================================================================</span>
 
 
 
-<span class="tok-co"># vector × vector → perpendicular vector (width 3 only)</span>
+<span class="tok-co"># 向量 × 向量 → perpendicular 向量 (width 3 only)</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># WHY: `×` is pinned to the width-3 cross product in Phase 1. `emit_vector_transversum`</span>
 <span class="tok-co"># enforces width 3 in codegen; the typecheck rejects any other width with a</span>

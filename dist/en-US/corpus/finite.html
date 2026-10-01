@@ -11,7 +11,7 @@
 <span class="tok-co">#     field-read gate below is lane-stable (native check + faber run agree).</span>
 <span class="tok-co">#   • `x ↦ u32 via Bits` gives the IEEE binary32 payload for inspection, and</span>
 <span class="tok-co">#     the canonical quiet NaN 0x7FC00000 survives the round trip bit-identically</span>
-<span class="tok-co">#     through both lanes (see conversio/bits-conversio.fab).</span>
+<span class="tok-co">#     through both lanes (see conversion/bits-conversio.fab).</span>
 <span class="tok-co">#   • ±Inf shares exponent 0xFF with a zero fraction, so the same gate excludes</span>
 <span class="tok-co">#     both non-finite classes from finite().</span>
 <span class="tok-co">#</span>
@@ -27,17 +27,17 @@
 <span class="tok-co">#   • Testing only exponent 0xFF — that class is NaN and ±Inf; the fraction</span>
 <span class="tok-co">#     field distinguishes them.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: ↦, fractus, int, conversio/bits-conversio.fab</span>
+<span class="tok-co"># See also: ↦, float, int, conversion/bits-conversio.fab</span>
 <span class="tok-co"># =============================================================================</span>
 
 
 <span class="tok-co"># EXPECTED OUTPUT:</span>
-<span class="tok-co">#   verum</span>
-<span class="tok-co">#   falsum</span>
-<span class="tok-co">#   falsum</span>
-<span class="tok-co">#   falsum</span>
+<span class="tok-co">#   true</span>
+<span class="tok-co">#   false</span>
+<span class="tok-co">#   false</span>
+<span class="tok-co">#   false</span>
 <span class="tok-co">#   2143289344</span>
-<span class="tok-co">#   verum</span>
+<span class="tok-co">#   true</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># BACKEND:</span>
 <span class="tok-co">#   HIR-direct Rust emits to_bits / from_bits. MIR-stepper reinterprets the</span>
@@ -82,7 +82,7 @@
 <span class="tok-co">    # touches non-canonical spellings — see the header note).</span>
     <span class="tok-kw">const</span> _ back <span class="tok-op">←</span> quiet_nan ↦ u32 via Bits
     print back
-    print back <span class="tok-op">≡</span> <span class="tok-nu">2143289344</span> ∷ <span class="tok-kw">int</span><span class="tok-op">&lt;</span>u32<span class="tok-op">&gt;</span>
+    print back <span class="tok-op">≡</span> (<span class="tok-nu">2143289344</span> ∷ <span class="tok-kw">int</span><span class="tok-op">&lt;</span>u32<span class="tok-op">&gt;</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>verum
 falsum
 falsum

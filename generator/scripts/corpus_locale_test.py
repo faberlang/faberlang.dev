@@ -23,9 +23,9 @@ class PackSlugTests(unittest.TestCase):
         self.assertEqual(display_slug("si", "keyword", self.pack), "if")
         self.assertEqual(display_slug("redde", "keyword", self.pack), "return")
 
-    def test_nihil_keyword_is_null_not_null_ty(self) -> None:
+    def test_nihil_keyword_is_null_and_type_uses_pack_spelling(self) -> None:
         self.assertEqual(display_slug("nihil", "keyword", self.pack), "null")
-        self.assertEqual(display_slug("nihil", "type", self.pack), "null_ty")
+        self.assertEqual(display_slug("nihil", "type", self.pack), "none")
 
     def test_type_fallback_when_not_in_keywords(self) -> None:
         self.assertEqual(display_slug("lista", "keyword", self.pack), "list")

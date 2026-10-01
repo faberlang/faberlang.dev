@@ -11,7 +11,7 @@
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • Defaults must trail — a parameter without a default may not follow one — and `=` here is a compile-time fact, not the removed vel/coalesce runtime fallback.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: generic, generic-call-type-args, functio</span>
+<span class="tok-co"># See also: generic, generic-call-type-args, ฟังก์ชัน</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># generic-defaults — declared = defaults on generic parameters</span>
@@ -30,7 +30,7 @@
 <span class="tok-co"># call consults `T = string`.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># BACKEND: A call whose default actually fires has no call-site MIR</span>
-<span class="tok-co"># evidence until specialization consumes the resolved binding vector.</span>
+<span class="tok-co"># evidence until specialization consumes the resolved binding เวกเตอร์.</span>
 <span class="tok-co"># Defaulted call sites (fallback(), and bounded(1) relying on</span>
 <span class="tok-co"># `size D = 64` with D absent from the shapes) are declared here and</span>
 <span class="tok-co"># proven by `faber check` and the semantic binder; their execution is</span>

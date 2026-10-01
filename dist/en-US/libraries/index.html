@@ -3,9 +3,9 @@
 <strong>Gradus</strong>, and <strong>Tela</strong> are optional dependencies you declare when you need
 graphics work, automatic differentiation, or typed views. <strong>Inferentia</strong> is an
 application built on them, still in development.</p><h2 id="norma">Norma — bundled<a class="anchor" href="#norma">#</a></h2><p>The standard library. Imported as <code>norma:*</code>, no installation step, no entry in
-<code>faber.toml</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">import</span> <span class="tok-kw">from</span> <span class="tok-st">"norma:solum"</span> <span class="tok-kw">solum</span>
+<code>faber.toml</code>:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">import</span> <span class="tok-kw">from</span> <span class="tok-st">"norma:solum"</span> <span class="tok-kw">only</span>
 
-<span class="tok-kw">import</span> <span class="tok-kw">from</span> <span class="tok-st">"norma:textus"</span> <span class="tok-kw">textus</span>
+<span class="tok-kw">import</span> <span class="tok-kw">from</span> <span class="tok-st">"norma:textus"</span> string
 
 <span class="tok-kw">main</span> {
     print <span class="tok-st">"ready"</span>

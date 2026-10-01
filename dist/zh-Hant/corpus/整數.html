@@ -1,21 +1,21 @@
 <!DOCTYPE html>
-<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="An integer power never has a negative exponent: a constant one is a compile error, any other traps."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="整數 — Faber"><meta property="og:description" content="An integer power never has a negative exponent: a constant one is a compile error, any other traps."><meta property="og:url" content="https://faberlang.dev/zh-Hant/corpus/整數.html"><meta property="og:locale" content="zh_TW"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/zh-Hant/corpus/整數.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>整數 — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">渲染</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">zh-Hant</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/zh-Hant/start/install.html">安裝</a></nav></div></div><div class="page"><aside><a class="brand" href="/zh-Hant/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">語言文件</span></span></a><ul class="nav"><li><a href="/zh-Hant/">Home</a></li><li><a href="/zh-Hant/start/install.html">安裝</a></li><li><a href="/zh-Hant/localization.html">Localization</a></li><li><a href="/zh-Hant/cheatsheet/">Cheat sheet</a></li><li><a href="/zh-Hant/releases/">發行版</a></li><li><a href="/zh-Hant/open-source.html">Open source</a></li><li><a href="/zh-Hant/examples/">範例</a></li><li><a href="/zh-Hant/targets/">Target lanes</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/zh-Hant/language/">The language</a></li><li><a href="/zh-Hant/language/types.html">Types and values</a></li><li><a href="/zh-Hant/language/functions.html">Functions and flow</a></li><li><a href="/zh-Hant/language/errors.html">Errors and testing</a></li><li><a href="/zh-Hant/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/zh-Hant/language/reader-locales.html">Reader locales</a></li><li><a href="/zh-Hant/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/zh-Hant/toolchain/">Toolchain</a></li><li><a href="/zh-Hant/toolchain/cli.html">The faber CLI</a></li><li><a href="/zh-Hant/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/zh-Hant/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/zh-Hant/targets/">Target lanes</a></li><li><a href="/zh-Hant/toolchain/packages.html">Packages with Cista</a></li><li><a href="/zh-Hant/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/zh-Hant/libraries/">Libraries</a></li><li><a href="/zh-Hant/libraries/norma.html">Norma — stdlib</a></li><li><a href="/zh-Hant/libraries/triga.html">Triga — graphics</a></li><li><a href="/zh-Hant/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/zh-Hant/libraries/tela.html">Tela — views</a></li><li><a href="/zh-Hant/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/zh-Hant/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/zh-Hant/reference/">Reference</a></li><li><a href="/zh-Hant/reference/grammar.html">Grammar</a></li><li><a href="/zh-Hant/corpus/" class="active">Corpus index</a></li><li><a href="/zh-Hant/reference/design.html">Design notes</a></li><li><a href="/zh-Hant/open-source.html">Open source</a></li></ul><div class="side-h">面向智慧體</div><ul class="nav nav-compact"><li><a href="/llms.txt">智慧體索引</a></li><li><a href="/agents/index.md">智慧體指南</a></li><li><a href="/.well-known/agent-skills/index.json">智慧體技能</a></li><li><a href="/llms-full.txt">完整參考</a></li></ul><div class="side-h">Release 1.6.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/zh-Hant/releases/">全部發行版</a></li><li><a href="/zh-Hant/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">範式</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">型別</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">目標</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">授權</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>整數</h1><p><strong>Translation status:</strong> 繁體中文 reader-locale proof. Term names and code fences follow the <code>zh-Hant</code> pack; supporting prose may still be English.</p><div class="content"><p>An integer power never has a negative exponent: a constant one is a compile error, any other traps.</p><p><strong>Aliases:</strong> <code>integer</code>, <code>int</code></p><p><strong>Syntax:</strong> <code>&lt;numerus&gt;.power(&lt;numerus&gt;)</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>type</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/zh-Hant/corpus/小數.html">小數</a></li><li><a href="/zh-Hant/corpus/↦.html">↦</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusintrinsecanumerus-methodifab-canonical-keyword">radix/corpus/intrinseca/numerus-methodi.fab (canonical · keyword)<a class="anchor" href="#radixcorpusintrinsecanumerus-methodifab-canonical-keyword">#</a></h3><p>Primitive integer number type.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
-<span class="tok-co"># numerus — Primitive integer number type</span>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="An integer power never has a negative exponent: a constant one is a compile error, any other traps."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="整數 — Faber"><meta property="og:description" content="An integer power never has a negative exponent: a constant one is a compile error, any other traps."><meta property="og:url" content="https://faberlang.dev/zh-Hant/corpus/整數.html"><meta property="og:locale" content="zh_TW"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/zh-Hant/corpus/整數.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>整數 — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">渲染</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">zh-Hant</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/zh-Hant/start/install.html">安裝</a></nav></div></div><div class="page"><aside><a class="brand" href="/zh-Hant/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">語言文件</span></span></a><ul class="nav"><li><a href="/zh-Hant/">Home</a></li><li><a href="/zh-Hant/start/install.html">安裝</a></li><li><a href="/zh-Hant/localization.html">Localization</a></li><li><a href="/zh-Hant/cheatsheet/">Cheat sheet</a></li><li><a href="/zh-Hant/releases/">發行版</a></li><li><a href="/zh-Hant/open-source.html">Open source</a></li><li><a href="/zh-Hant/examples/">範例</a></li><li><a href="/zh-Hant/targets/">Target lanes</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/zh-Hant/language/">The language</a></li><li><a href="/zh-Hant/language/types.html">Types and values</a></li><li><a href="/zh-Hant/language/functions.html">Functions and flow</a></li><li><a href="/zh-Hant/language/errors.html">Errors and testing</a></li><li><a href="/zh-Hant/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/zh-Hant/language/reader-locales.html">Reader locales</a></li><li><a href="/zh-Hant/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/zh-Hant/toolchain/">Toolchain</a></li><li><a href="/zh-Hant/toolchain/cli.html">The faber CLI</a></li><li><a href="/zh-Hant/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/zh-Hant/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/zh-Hant/targets/">Target lanes</a></li><li><a href="/zh-Hant/toolchain/packages.html">Packages with Cista</a></li><li><a href="/zh-Hant/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/zh-Hant/libraries/">Libraries</a></li><li><a href="/zh-Hant/libraries/norma.html">Norma — stdlib</a></li><li><a href="/zh-Hant/libraries/triga.html">Triga — graphics</a></li><li><a href="/zh-Hant/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/zh-Hant/libraries/tela.html">Tela — views</a></li><li><a href="/zh-Hant/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/zh-Hant/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/zh-Hant/reference/">Reference</a></li><li><a href="/zh-Hant/reference/grammar.html">Grammar</a></li><li><a href="/zh-Hant/corpus/" class="active">Corpus index</a></li><li><a href="/zh-Hant/reference/design.html">Design notes</a></li><li><a href="/zh-Hant/open-source.html">Open source</a></li></ul><div class="side-h">面向智慧體</div><ul class="nav nav-compact"><li><a href="/llms.txt">智慧體索引</a></li><li><a href="/agents/index.md">智慧體指南</a></li><li><a href="/.well-known/agent-skills/index.json">智慧體技能</a></li><li><a href="/llms-full.txt">完整參考</a></li></ul><div class="side-h">Release 1.6.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/zh-Hant/releases/">全部發行版</a></li><li><a href="/zh-Hant/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">範式</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">型別</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">目標</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">授權</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>整數</h1><p><strong>Translation status:</strong> 繁體中文 reader-locale proof. Term names and code fences follow the <code>zh-Hant</code> pack; supporting prose may still be English.</p><div class="content"><p>An integer power never has a negative exponent: a constant one is a compile error, any other traps.</p><p><strong>Aliases:</strong> <code>integer</code>, <code>int</code></p><p><strong>Syntax:</strong> <code>&lt;整數&gt;.power(&lt;整數&gt;)</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>type</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/zh-Hant/corpus/小數.html">小數</a></li><li><a href="/zh-Hant/corpus/↦.html">↦</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusintrinsecanumerus-methodifab-canonical-keyword">radix/corpus/intrinseca/numerus-methodi.fab (canonical · keyword)<a class="anchor" href="#radixcorpusintrinsecanumerus-methodifab-canonical-keyword">#</a></h3><p>Primitive integer number type.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># 整數 — Primitive integer number type</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • Primitive integer number type.</span>
-<span class="tok-co">#   • Related keywords: fractus, ↦</span>
+<span class="tok-co">#   • Related keywords: 小數, ↦</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Using `numerus` comparison methods on non-numeric types — `.abs()`, `.sign()`, `.minimum()`, `.maximum()` are numerus-only intrinsics.</span>
+<span class="tok-co">#   • Using `整數` comparison methods on non-numeric types — `.abs()`, `.sign()`, `.minimum()`, `.maximum()` are numerus-only intrinsics.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: fractus, ↦</span>
+<span class="tok-co"># See also: 小數, ↦</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-co"># numerus comparison and ordering intrinsics</span>
+<span class="tok-co"># 整數 comparison and ordering intrinsics</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># Compiler-owned numerus methodi — absolutum, signum, minimus, maximus.</span>
+<span class="tok-co"># Compiler-owned 整數 methodi — absolutum, signum, minimus, maximus.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
 <span class="tok-co">#   valor.abs() | valor.sign()</span>
@@ -33,8 +33,8 @@ main {
     const int minor <span class="tok-op">←</span> value.minimum(<span class="tok-nu">3</span>)
     const int maior <span class="tok-op">←</span> value.maximum(<span class="tok-nu">3</span>)
     print absolutus, signum, minor, maior
-}</code></pre><h3 id="radixcorpusoperatoresnumerus-overflow-sizesfab-canonical-operator-group">radix/corpus/operatores/numerus-overflow-sizes.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusoperatoresnumerus-overflow-sizesfab-canonical-operator-group">#</a></h3><p>Sized numerus arithmetic is exact; storing a value past the declared width traps.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
-<span class="tok-co"># numerus — Sized numerus arithmetic is exact; storing past the declared width traps.</span>
+}</code></pre><h3 id="radixcorpusoperatoresnumerus-overflow-sizesfab-canonical-operator-group">radix/corpus/operatores/numerus-overflow-sizes.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusoperatoresnumerus-overflow-sizesfab-canonical-operator-group">#</a></h3><p>Sized 整數 arithmetic is exact; storing a value past the declared width traps.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># 整數 — Sized 整數 arithmetic is exact; storing past the declared width traps.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
@@ -43,15 +43,15 @@ main {
 <span class="tok-co">#   • Trap at the store — `var int&lt;i8&gt; total ← max + uno()` fails because 128</span>
 <span class="tok-co">#     does not fit `int&lt;i8&gt;`; the program aborts with</span>
 <span class="tok-co">#     "128 does not fit in `i8`" and never wraps.</span>
-<span class="tok-co">#   • Policy distinction — every numerus width traps at its store; only</span>
+<span class="tok-co">#   • Policy distinction — every 整數 width traps at its store; only</span>
 <span class="tok-co">#     `wrapping&lt;W&gt;` reduces mod 2^W and `saturating&lt;W&gt;` clamps.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Assuming sized numerus wraps at the declared width like `wrapping&lt;W&gt;` words.</span>
+<span class="tok-co">#   • Assuming sized 整數 wraps at the declared width like `wrapping&lt;W&gt;` words.</span>
 <span class="tok-co">#   • Expecting the trap at the `+`: the width is a property of the slot, so an</span>
 <span class="tok-co">#     expression with no slot (`print max + uno()`) never traps for size.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: +, numerus, wrapping</span>
+<span class="tok-co"># See also: +, 整數, wrapping</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># numerus-overflow-sizes — sized-width exact arithmetic, checked store</span>
@@ -73,7 +73,7 @@ main {
     print total
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>128
 </code></pre><h3 id="radixcorpusoperatoresnumerus-overflowfab-canonical-operator-group">radix/corpus/operatores/numerus-overflow.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusoperatoresnumerus-overflowfab-canonical-operator-group">#</a></h3><p>Numerus arithmetic is exact; a value that does not fit its slot traps at the store.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
-<span class="tok-co"># numerus — Numerus arithmetic is exact; a value that does not fit traps at the store.</span>
+<span class="tok-co"># 整數 — Numerus arithmetic is exact; a value that does not fit traps at the store.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
@@ -84,21 +84,21 @@ main {
 <span class="tok-co">#     value does not fit `int`; the program aborts with</span>
 <span class="tok-co">#     "9223372036854775808 does not fit in `i64`" and never wraps.</span>
 <span class="tok-co">#   • The exact range — intermediates may reach [−2⁶³, 2⁶⁴ − 1]; past it</span>
-<span class="tok-co">#     (`max * max`) the arithmetic itself traps with "numerus overflow".</span>
+<span class="tok-co">#     (`max * max`) the arithmetic itself traps with "整數 overflow".</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • Expecting `max + 1` to wrap to the minimum, or to trap where it is computed.</span>
-<span class="tok-co">#   • Expecting the store trap to be recoverable with `fac … cape` — an implicit</span>
+<span class="tok-co">#   • Expecting the store trap to be recoverable with `執行 … 捕捉` — an implicit</span>
 <span class="tok-co">#     store trap is not in the `⇥` channel; use `↦ … ⊥` for a recoverable check.</span>
-<span class="tok-co">#   • Expecting numerus to wrap like modular words — use `wrapping&lt;W&gt;` for that.</span>
+<span class="tok-co">#   • Expecting 整數 to wrap like modular words — use `wrapping&lt;W&gt;` for that.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: +, numerus, wrapping</span>
+<span class="tok-co"># See also: +, 整數, wrapping</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># numerus-overflow — exact arithmetic, checked store</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># POLICY:</span>
-<span class="tok-co">#   Bare `numerus` is i64. Integer arithmetic is exact. The policy of the</span>
+<span class="tok-co">#   Bare `整數` is i64. Integer arithmetic is exact. The policy of the</span>
 <span class="tok-co">#   destination slot is applied where a value lands in it, and a trapping slot</span>
 <span class="tok-co">#   aborts on a value that does not fit. No arithmetic wraps silently.</span>
 
@@ -111,7 +111,7 @@ main {
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>9223372036854775808
 9223372036854775807
 </code></pre><h3 id="radixcorpusoperatoresnumerus-wideningfab-canonical-operator-group">radix/corpus/operatores/numerus-widening.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusoperatoresnumerus-wideningfab-canonical-operator-group">#</a></h3><p>Integer arithmetic widens exactly; the slot that stores a value applies its policy.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
-<span class="tok-co"># numerus — Integer arithmetic widens exactly; the slot that stores a value applies its policy.</span>
+<span class="tok-co"># 整數 — Integer arithmetic widens exactly; the slot that stores a value applies its policy.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
@@ -129,7 +129,7 @@ main {
 <span class="tok-co">#   • Mixing `u64` with a signed operand: `u64 + i8` is a compile error, and so</span>
 <span class="tok-co">#     is storing an integer in a float slot without `↦` (use `÷` for a quotient).</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: numerus, /, %, ÷, wrapping, saturating</span>
+<span class="tok-co"># See also: 整數, /, %, ÷, wrapping, saturating</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># numerus-widening — the numeric model in seven short sections</span>
@@ -193,26 +193,26 @@ main {
 400
 verum
 </code></pre><h3 id="radixcorpusoperatorespotentia-negative-exponentfab-canonical-operator-group">radix/corpus/operatores/potentia-negative-exponent.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusoperatorespotentia-negative-exponentfab-canonical-operator-group">#</a></h3><p>An integer power never has a negative exponent: a constant one is a compile error, any other traps.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
-<span class="tok-co"># numerus — An integer power never has a negative exponent.</span>
+<span class="tok-co"># 整數 — An integer power never has a negative exponent.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • Exact integer powers — `2.power(10)` is 1024 and `0.power(0)` is 1 (the</span>
-<span class="tok-co">#     empty product) on every family, integer and fractus alike.</span>
+<span class="tok-co">#     empty product) on every family, integer and 小數 alike.</span>
 <span class="tok-co">#   • A constant negative exponent is a compile error — `2.power(-1)` has no</span>
 <span class="tok-co">#     integer value (it is 1/2), so the compiler rejects it with</span>
 <span class="tok-co">#     `potentia_exponent_negative`, the way it rejects a negative shift count.</span>
 <span class="tok-co">#   • A computed negative exponent traps — `2.power(minus())` aborts with</span>
-<span class="tok-co">#     "numerus potentia failed: negative exponent", in the class of a zero</span>
+<span class="tok-co">#     "整數 potentia failed: negative exponent", in the class of a zero</span>
 <span class="tok-co">#     divisor. It is not an `⇥` failure: no handler is needed on any power.</span>
-<span class="tok-co">#   • fractus keeps IEEE pow — `half.power(-1.0)` is 0.5 with no error.</span>
+<span class="tok-co">#   • 小數 keeps IEEE pow — `half.power(-1.0)` is 0.5 with no error.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Expecting `2.power(-1)` to be 0 or 1. It is neither; use a fractus base</span>
+<span class="tok-co">#   • Expecting `2.power(-1)` to be 0 or 1. It is neither; use a 小數 base</span>
 <span class="tok-co">#     (`2.0.power(-1.0)` is 0.5).</span>
-<span class="tok-co">#   • Expecting the trap to be recoverable with `fac … cape`.</span>
+<span class="tok-co">#   • Expecting the trap to be recoverable with `執行 … 捕捉`.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: numerus, fractus, wrapping</span>
+<span class="tok-co"># See also: 整數, 小數, wrapping</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># potentia-negative-exponent — integer power, negative exponent</span>

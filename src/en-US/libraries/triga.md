@@ -10,7 +10,6 @@ sources = [
   "examples/triga-budapest/README.md",
   "examples/triga-drift-city/README.md",
 ]
-translate_spans = false  # prose lists Latin operation verbs (cape = get) as Latin
 +++
 
 Triga is Faber's native graphics and geometry library: the typed contract
@@ -34,7 +33,7 @@ into when they need graphics or geometry work. The current package version is
 
 Each `triga:<stem>` import resolves to `src/<stem>.fab`. The layout follows
 Norma's flat-leaf pattern; there is **no type re-export**, so consumers import
-the leaf that owns the genus they use.
+the leaf that owns the class they use.
 
 | Import | Owns |
 |--------|------|
@@ -44,9 +43,9 @@ the leaf that owns the genus they use.
 | `triga:face` | `FaceQuad` + unit/colored quad builders |
 | `triga:geometry` | `BufferGeometry`, `BufferAttribute`, vertex-layout reflection, draw batches |
 | `triga:primitives` | Deterministic mesh generators (`plane_geometry`, `box_geometry`, …) |
-| `triga:scene` | `SceneStore`, `SceneHandle`, node kinds, traversal, `visibilia` |
+| `triga:scene` | `SceneStore`, `SceneHandle`, node kinds, traversal, visibility queries |
 | `triga:resource` | `ResourceHandle` + lifecycle free functions |
-| `triga:triga` | Facade / module map only (no genera) |
+| `triga:triga` | Facade / module map only (no classes) |
 
 ```faber mode=package
 importa ex "triga:math" math
@@ -60,12 +59,12 @@ importa ex "triga:resource" resource
 
 ## API shape {#api-shape}
 
-Public operations on Triga genera are **receiver methods** with an implicit
-`ego` receiver. Free functions survive only as constructors (`vector3`,
-`box3_ex_minimo_et_maximo`, `matrix4_conspectus`), pure scalar helpers, and
+Public operations on Triga's classes are **receiver methods** with an implicit
+`self` receiver. Free functions survive only as constructors (`vector3`,
+`box_from_min_max`, `matrix_perspective`), pure scalar helpers, and
 primitive generators.
 
-Faber morphologia applies: **Imperativus** mutates a `varia` receiver in
+Faber morphologia applies: **Imperativus** mutates a `var` receiver in
 place, while **Perfectum** returns a new value and leaves the receiver alone.
 
 ```faber mode=package
@@ -80,13 +79,13 @@ varia math.Box3 mutable ← math.Box3 { min = math.vector3(0.0, 0.0, 0.0), max =
 mutable.infla(2.0)
 ```
 
-Vocabulary is technical Latin: carrier nouns stay English where the standard
-identity is the point (`Vector3`, `Matrix4`, `Quaternion`, `Box3`, `Ray`,
-`BufferGeometry`, `f32`, `WebGPU`), while operation stems are Latinised
-(`normata` normalize, `productum` dot product, `transversum` cross product,
-`insere` insert, `adiunge` attach, `cape` get, `inveni` find, `continet`
-contains, `visibilia` visible). The material constructor is
-`materia_ex_nomine(name)`, and `BufferGeometry` attributes carry
+Vocabulary keeps the standard identity where that is the point: carrier nouns
+stay English (`Vector3`, `Matrix4`, `Quaternion`, `Box3`, `Ray`,
+`BufferGeometry`, `f32`, `WebGPU`), and operation methods are English verbs
+(`normalized3` normalize, `dot` dot product, `cross` cross product,
+`insert` insert, `attach` attach, `take` get, `find` find, `contains`
+contains, `set_visible` visibility). The material constructor is
+`material_from_name(name)`, and `BufferGeometry` attributes carry
 `float32_values()` payload projection for host upload.
 
 ## Design {#design}
@@ -107,8 +106,8 @@ contains, `visibilia` visible). The material constructor is
 ## Exempla {#exempla}
 
 Instructional demos live under `triga/exempla/`: `triga-scene-store.fab`
-(stable heterogeneous scene store with `insere` / `adiunge` / `cape` /
-`visibilia`), `triga-transforms.fab` (Vector3 / Matrix4 transform chains),
+(stable heterogeneous scene store with `insert` / `attach` / `take` /
+visibility queries), `triga-transforms.fab` (Vector3 / Matrix4 transform chains),
 `triga-geometry-attributes.fab`, `triga-basics.fab`, plus three Hello Voxel
 fixtures that exercise the `@vertex` / `@fragment` shader-surface path end to
 end.

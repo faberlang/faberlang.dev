@@ -4,20 +4,20 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Core conversion — the `↦` operator converts between types with explicit parsing (textus→numerus) and coercion (numerus→textus).</span>
-<span class="tok-co">#   • Default with `⊥` — the `⊥` operator supplies a default value when conversion fails at runtime (`⇥` only names error types).</span>
+<span class="tok-co">#   • Core बदलें — the `↦` operator converts between types with explicit parsing (पाठ→संख्या) and coercion (संख्या→पाठ).</span>
+<span class="tok-co">#   • Default with `⊥` — the `⊥` operator supplies a default value when बदलें fails at runtime (`⇥` only names error types).</span>
 <span class="tok-co">#   • Chaining — `↦` composes left-to-right for roundtrip conversions.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Confusing `∷` (compile-time type ascription) with `↦` (runtime conversion) and using `vel` instead of `⊥` for conversio recovery.</span>
+<span class="tok-co">#   • Confusing `∷` (compile-time type ascription) with `↦` (runtime बदलें) and using `vel` instead of `⊥` for रूपांतरण recovery.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># See also: ∷, ⊥</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-co"># conversio — type conversion operator (↦)</span>
+<span class="tok-co"># रूपांतरण — type बदलें operator (↦)</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># &lt;expr&gt; ↦ &lt;typus&gt;</span>
-<span class="tok-co"># &lt;expr&gt; ↦ &lt;typus&gt;&lt;params&gt;</span>
+<span class="tok-co"># &lt;expr&gt; ↦ &lt;प्रकार&gt;</span>
+<span class="tok-co"># &lt;expr&gt; ↦ &lt;प्रकार&gt;&lt;params&gt;</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
 <span class="tok-co">#   convertExpr :← expr '↦' type</span>
@@ -29,19 +29,19 @@
 <span class="tok-co">#   Siblings radix.fab and bivalens.fab compile-only until Go semantics align.</span>
 
 main {
-<span class="tok-co">    # ↦ converts textus → numerus</span>
-    const int n1 <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ int
+<span class="tok-co">    # ↦ converts पाठ → संख्या</span>
+    let n1 <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ int
 <span class="tok-co">    # ⊥ supplies a default on failure</span>
-    const int n2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ int ⊥ <span class="tok-nu">0</span>
-    const int<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> n3 <span class="tok-op">←</span> <span class="tok-st">"255"</span> ↦ int<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span>
-    const float f1 <span class="tok-op">←</span> <span class="tok-st">"3.14159"</span> ↦ float
-    const float f2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ float ⊥ <span class="tok-nu">0.0</span>
-    const string s1 <span class="tok-op">←</span> <span class="tok-nu">42</span> ↦ string
-    const string s2 <span class="tok-op">←</span> <span class="tok-nu">3.14</span> ↦ string
-    const string s3 <span class="tok-op">←</span> true ↦ string
+    let n2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ int ⊥ <span class="tok-nu">0</span>
+    let n3 <span class="tok-op">←</span> <span class="tok-st">"255"</span> ↦ int<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span>
+    let f1 <span class="tok-op">←</span> <span class="tok-st">"3.14159"</span> ↦ float
+    let f2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ float ⊥ <span class="tok-nu">0.0</span>
+    let s1 <span class="tok-op">←</span> <span class="tok-nu">42</span> ↦ string
+    let s2 <span class="tok-op">←</span> <span class="tok-nu">3.14</span> ↦ string
+    let s3 <span class="tok-op">←</span> true ↦ string
 
 <span class="tok-co">    # chained ↦ left-to-right</span>
-    const string roundtrip <span class="tok-op">←</span> (<span class="tok-st">"42"</span> ↦ int) ↦ string
+    let roundtrip <span class="tok-op">←</span> (<span class="tok-st">"42"</span> ↦ int) ↦ string
     print n1
     print n2
     print n3

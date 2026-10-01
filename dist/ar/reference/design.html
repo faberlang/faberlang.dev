@@ -8,9 +8,9 @@
 أن يعرف <em>ما نوع الشيء</em> قبل أن يخبره الاسم <em>أي شيء</em> هو. يتوافق هذا
 مع اللغات التي يقرأ ترتيبها النحوي من الفئة إلى الحالة — الصينية،
 الهندية، العربية — ويُنتج تصريحات تُمسح بشكل موحد.</p><pre class="faber-code"><code class="lang-text"># Type before name in every declaration
-textus nomen
-numerus aetas
-functio salve(textus name) → textus</code></pre><h3 id="ii-mechanical-over-magical">٢. الآلي فوق السحري<a class="anchor" href="#ii-mechanical-over-magical">#</a></h3><p>يجب أن تعني البنية نفسها الشيء نفسه في كل مكان. إذا احتاج القارئ
+نص اسم
+عدد aetas
+دالة salve(نص name) → نص</code></pre><h3 id="ii-mechanical-over-magical">٢. الآلي فوق السحري<a class="anchor" href="#ii-mechanical-over-magical">#</a></h3><p>يجب أن تعني البنية نفسها الشيء نفسه في كل مكان. إذا احتاج القارئ
 سياقًا بعيدًا ليعرف ما يفعله رمز، فالتركيب مشبوه. تفضل فيبر
 الاستدلال الصريح والمحلي — موقع التصريح يحمل معلومات كافية لفهم
 ما سيحدث في موقع الاستخدام.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># The meaning of a call is determined by the function's signature,</span>
@@ -19,13 +19,13 @@ functio salve(textus name) → textus</code></pre><h3 id="ii-mechanical-over-mag
     <span class="tok-kw">أعد</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }</code></pre><h3 id="iii-glyphs-carry-structure">٣. الرموز تحمل البنية<a class="anchor" href="#iii-glyphs-carry-structure">#</a></h3><p>يستخدم المعنى البنيوي والمعاملاتي رموزًا، لا كلمات: <code>←</code>
 للربط، <code>→</code> لنوع الإرجاع، <code>⇥</code>
-للخروج بخطأ، <code>ergo</code> لجسم الفرع المختصر،
+للخروج بخطأ، <code>إذن</code> لجسم الفرع المختصر،
 <code>≡</code> للمساواة، <code>∪</code> لأنواع
 الاتحاد. الرموز عالمية — لا تُترجم أبدًا ولا يتغير معناها
 أبدًا عبر العروض. يرى القارئ التايلندي والقارئ الفرنسي الرموز
 نفسها، حتى لو اختلفت الكلمات المفتاحية حولها.</p><h3 id="iv-latin-carries-behaviour">٤. اللاتينية تحمل السلوك<a class="anchor" href="#iv-latin-carries-behaviour">#</a></h3><p>الكلمات للتصريحات، والجمل، ودورة الحياة، والقصد السلوكي:
-<code class="kw">functio</code>، <code class="kw">genus</code>، <code class="kw">fixum</code>،
-<code class="kw">varia</code>، <code class="kw">redde</code>، <code class="kw">cape</code>.
+<code>دالة</code>، <code>صنف</code>، <code>ثابت</code>،
+<code>متغير</code>، <code>أعد</code>، <code>التقط</code>.
 هذه قابلة للربط عبر حزم لغة القارئ — إنها المفردات،
 لا القواعد. الخيار اللاتيني ليس عن تفوق اللاتينية؛ إنه عن
 اختيار <em>مصدر</em> كلاسيكي واحد متسق بحيث تنتمي كل الكلمات
@@ -35,7 +35,7 @@ functio salve(textus name) → textus</code></pre><h3 id="ii-mechanical-over-mag
 أزواج الملكية — التعديل في المكان مقابل النسخ للخارج — تستخدم
 أشكالًا مرتبطة من الجذر نفسه. هذا هو مبدأ التصريف
 (morphologia). تتبع المكتبة المعيارية (نورما) هذه
-الاتفاقية لكل أسماء الدوال: <code>lege</code> (قراءة تزامنية) مقابل
+الاتفاقية لكل أسماء الدوال: <code>اقرأ</code> (قراءة تزامنية) مقابل
 <code>leget</code> (قراءة لا تزامنية)، <code>adde</code> (تعديل في المكان) مقابل
 <code>addita</code> (إرجاع نسخة جديدة). لا يفرض المصرّف التصريفات
 ولا يشتقها — إنها سياسة تسمية، لا ميزة لغة.</p><h3 id="vi-one-sign-one-job">٦. إشارة واحدة، مهمة واحدة<a class="anchor" href="#vi-one-sign-one-job">#</a></h3><p>قد يكون للرمز أو الكلمة المفتاحية بدائل دقيقة، لكن لا ينبغي أن
@@ -44,26 +44,26 @@ functio salve(textus name) → textus</code></pre><h3 id="ii-mechanical-over-mag
 (ربط وقت التشغيل) و <code>=</code> (شكل الحقل البنيوي) — معظم
 اللغات تدمج كليهما في <code>=</code>، لكن هذا التحميل الزائد يُخفي
 ما إذا كان السطر عملية تدفق بيانات أم تعريفًا على مستوى النوع.</p><pre class="faber-code"><code class="lang-text"># ← is always runtime flow
-fixum numerus count ← 0
+ثابت عدد count ← 0
 count ← count + 1
 
 # = is always structural shape inside Type { }
-fixum _ p ← Point {
+ثابت _ p ← Point {
     x = 10,
     y = 20
 }</code></pre><h3 id="vii-runtime-flow-is-explicit">٧. تدفق وقت التشغيل صريح<a class="anchor" href="#vii-runtime-flow-is-explicit">#</a></h3><p>يستخدم الربط وقت التشغيل وإعادة الإسناد والتعديل <code>←</code>؛
 ويستخدم التعريف البنيوي <code>=</code>. يستطيع القارئ الذي يمسح
 المصدر رؤية كل عملية تدفق بيانات فورًا: كل <code>←</code> هو
 حدث وقت تشغيل. لا يوجد غموض نحوي حول ما إذا كانت <code>=</code>
-معينة تعني &quot;خزّن في هذا المتغير&quot; أم &quot;عرّف هذا الحقل.&quot;</p><h3 id="viii-absence-is-typed">٨. الغياب مُنوَّع<a class="anchor" href="#viii-absence-is-typed">#</a></h3><p>تُكتب أنواع القيم القابلة للإلغاء كاتحادات: <code>T ∪ nihil</code>.
-تستخدم فتحات التصريح الاختيارية علامات بعد الاسم: <code>sponte</code>.
+معينة تعني &quot;خزّن في هذا المتغير&quot; أم &quot;عرّف هذا الحقل.&quot;</p><h3 id="viii-absence-is-typed">٨. الغياب مُنوَّع<a class="anchor" href="#viii-absence-is-typed">#</a></h3><p>تُكتب أنواع القيم القابلة للإلغاء كاتحادات: <code>T ∪ نوع_لاشيء</code>.
+تستخدم فتحات التصريح الاختيارية علامات بعد الاسم: <code>اختياري</code>.
 هذان مفهومان مختلفان — <em>قيمة قد تكون غائبة</em> مقابل *فتحة
 قد يحذفها المستدعي* — وتبقيهما فيبر منفصلين نحوياً بدلًا
-من دمج كليهما في <code>T?</code> أو <code>Option&lt;T&gt;</code>.</p><pre class="faber-code"><code class="lang-text"># Absence in a value: T ∪ nihil
-functio find(textus key) → numerus ∪ nihil
+من دمج كليهما في <code>T?</code> أو <code>Option&lt;T&gt;</code>.</p><pre class="faber-code"><code class="lang-text"># Absence in a value: T ∪ نوع_لاشيء
+دالة find(نص key) → عدد ∪ نوع_لاشيء
 
-# Omission at declaration: sponte
-functio connect(textus host, numerus port sponte) → vacuum</code></pre><h3 id="ix-compiler-does-not-guess">٩. المصرّف لا يخمن لإخفاء المعلومات الناقصة<a class="anchor" href="#ix-compiler-does-not-guess">#</a></h3><p>المعلومات النوعية الناقصة هي مشكلة تحليل يجب إصلاحها في المنبع،
+# Omission at declaration: اختياري
+دالة connect(نص host, عدد port اختياري) → فراغ</code></pre><h3 id="ix-compiler-does-not-guess">٩. المصرّف لا يخمن لإخفاء المعلومات الناقصة<a class="anchor" href="#ix-compiler-does-not-guess">#</a></h3><p>المعلومات النوعية الناقصة هي مشكلة تحليل يجب إصلاحها في المنبع،
 لا تفصيلة توليد كود يجب تسترها. لا يستنتج المصرّف أبدًا بصمت
 نوعًا لم يقدمه المبرمج عندما تكون المعلومة غائبة حقًا — يبلغ
 عن الفجوة ويتوقف. هذه هي القاعدة التي تبقي فيبر صادقًا: إذا

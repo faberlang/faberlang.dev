@@ -4,10 +4,10 @@
 <a href="/ar/start/projects.html">المشاريع</a>.</p><h2 id="install">١. ثبّت CLI<a class="anchor" href="#install">#</a></h2><p>نزّل الإصدار الحالي (<strong>1.6.0</strong>) لمنصتك من
 <a href="/ar/start/install.html">صفحة التثبيت</a>، تحقق من بصمة الأرشيف، وضع
 <code>bin/faber</code> من شجرتي <code>bin/</code> و<code>share/</code> في الأرشيف على <code>PATH</code> لديك (أبقِ الشجرتين معاً لتُحل حزم القارئ). تأكد:</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> <span class="tok-op">--version</span></code></pre><h2 id="shape">٢. شكل الدالة<a class="anchor" href="#shape">#</a></h2><p>وسائط النوع أولاً، نوع الإرجاع بالرمز، كلمات تحكم لاتينية، اتحاد
-قابل للعدم:</p><pre class="faber-code"><code class="lang-text">functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
-    redde a / b
-}</code></pre><div class="table-scroll"><table><thead><tr><th>إشارة</th><th>معنى</th></tr></thead><tbody><tr><td><code class="kw">دالة</code></td><td>تعريف دالة</td></tr><tr><td><code>numerus a</code></td><td>النوع أولاً، ثم الاسم</td></tr><tr><td><code>→</code></td><td>نوع الإرجاع</td></tr><tr><td><code>∪ nihil</code></td><td>قابل للعدم (<code>T ∪ nihil</code>)</td></tr><tr><td><code>si … ergo</code></td><td>تفرع مضغوط</td></tr><tr><td><code class="kw">أعد</code></td><td>إرجاع</td></tr></tbody></table></div><h2 id="package">٣. تخطيط الحزمة<a class="anchor" href="#package">#</a></h2><p>الحزمة هي مجلد فيه <code>faber.toml</code> و <code>src/</code>:</p><pre class="faber-code"><code class="lang-text">my-app/
+قابل للعدم:</p><pre class="faber-code"><code class="lang-text">دالة divide(عدد a, عدد b) → عدد ∪ نوع_لاشيء {
+    إذا b ≡ 0 إذن أعد نوع_لاشيء
+    أعد a / b
+}</code></pre><div class="table-scroll"><table><thead><tr><th>إشارة</th><th>معنى</th></tr></thead><tbody><tr><td><code>دالة</code></td><td>تعريف دالة</td></tr><tr><td><code>عدد a</code></td><td>النوع أولاً، ثم الاسم</td></tr><tr><td><code>→</code></td><td>نوع الإرجاع</td></tr><tr><td><code>∪ نوع_لاشيء</code></td><td>قابل للعدم (<code>T ∪ نوع_لاشيء</code>)</td></tr><tr><td><code>إذا … إذن</code></td><td>تفرع مضغوط</td></tr><tr><td><code>أعد</code></td><td>إرجاع</td></tr></tbody></table></div><h2 id="package">٣. تخطيط الحزمة<a class="anchor" href="#package">#</a></h2><p>الحزمة هي مجلد فيه <code>faber.toml</code> و <code>src/</code>:</p><pre class="faber-code"><code class="lang-text">my-app/
   faber.toml
   src/
     main.fab</code></pre><p>الأوامر النموذجية:</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> check my-app/

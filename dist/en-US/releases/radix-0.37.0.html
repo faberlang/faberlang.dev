@@ -8,7 +8,7 @@ The theme is <strong>Rust backend cleanup and writer refactor, with closure/code
 largest single wave of Rust codegen bug fixes in the project's history, paired with a
 wholesale migration from a monolithic writer to an <code>ExprEmitter</code>-based dispatch architecture.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>113</td></tr><tr><td><code>refactor(...)</code> commits</td><td>15</td></tr><tr><td><code>fix(...)</code> commits</td><td>33</td></tr><tr><td><code>docs(...)</code> commits</td><td>10</td></tr><tr><td>Date span</td><td>2026-05-23 → 2026-05-24</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="rust-codegen-writer-expremitter-refactor">Rust codegen writer → ExprEmitter refactor<a class="anchor" href="#rust-codegen-writer-expremitter-refactor">#</a></h4><p>Extracted an <code>ExprEmitter</code> context and migrated every expression-emitting path from the
 monolithic writer to the new emitter pattern:</p><ul><li>Introduced the expression emitter context (<code>f1873ca8a</code>)</li><li>Migrated expression helpers (<code>96cba70f4</code>), operators (<code>f49baa18b</code>), access emission
-(<code>a35c15b3b</code>), verte emission (<code>792edabe2</code>), match expressions (<code>7aebe1ae9</code>),
+(<code>a35c15b3b</code>), rename emission (<code>792edabe2</code>), match expressions (<code>7aebe1ae9</code>),
 iteration (<code>d35549ec4</code>), branch emission (<code>ac9e1205a</code>), and control expressions
 (<code>937859cb8</code>)</li><li>Split call expression emitter (<code>3a5ca1a9f</code>) and control expression emitter
 (<code>975db2382</code>)</li><li>Centralized optional and dynamic emission (<code>ed515a658</code>) and type shape predicates
@@ -18,30 +18,30 @@ to the new shape</li></ul><h4 id="closurecodegen-fix-wave-33-fix-commits">Closur
 plain receivers (<code>dae54c04b</code>), optional parameter defaults (<code>4b58d34c1</code>), optional
 if-branch coercion (<code>40b96bda6</code>)</li><li><strong>Dynamic values</strong>: dynamic value emission (<code>850c906ff</code>), dynamic context coercion
 (<code>759f5fcd2</code>)</li><li><strong>Collections</strong>: typed innatum collections (<code>480416a5f</code>), cursor functions as
-iterables (<code>3b16b140e</code>), array borrows in itera ex (<code>0cff1abed</code>), array spread sources
-(<code>22dff5638</code>), indexed destructuring clones (<code>3d25a9e84</code>), lista index casts
-(<code>23045999b</code>), lista morphology methods (<code>abb059606</code>)</li><li><strong>Control flow</strong>: nullable return wrapping (<code>c1e0f52eb</code>), elige match exhaustiveness
-(<code>7932a548f</code>), textus match operations (<code>58fca4c3d</code>), itera de keys and indices
-(<code>cbfb20c5a</code>), text concatenation safety (<code>5882610d2</code>), iterable itera pro ranges
+iterables (<code>3b16b140e</code>), array borrows in for from (<code>0cff1abed</code>), array spread sources
+(<code>22dff5638</code>), indexed destructuring clones (<code>3d25a9e84</code>), list index casts
+(<code>23045999b</code>), list morphology methods (<code>abb059606</code>)</li><li><strong>Control flow</strong>: nullable return wrapping (<code>c1e0f52eb</code>), switch match exhaustiveness
+(<code>7932a548f</code>), string match operations (<code>58fca4c3d</code>), for ref keys and indices
+(<code>cbfb20c5a</code>), text concatenation safety (<code>5882610d2</code>), iterable for pro ranges
 (<code>1ec5fcc6d</code>)</li><li><strong>Calls and binding</strong>: owned call argument cloning (<code>a4c04de54</code>), vel operand
 consumption avoidance (<code>d6fe93e37</code>), self receiver emission for methods
 (<code>149c2ded8</code>), self-returning method bridging (<code>743ff2d08</code>), spread call argument
-preservation (<code>31a282e1c</code> — HIR + all backends)</li><li><strong>Numeric/type</strong>: enum variant qualification (<code>1724e0028</code>), fractus arithmetic operand
-casting (<code>31a282e1c</code>), conversio radix hints (<code>fc2f29a4b</code>)</li><li><strong>Async/genus</strong>: async incipiet entries (<code>caa2fa377</code>), genus creo hooks
-(<code>fce6e6ede</code>)</li><li><strong>Parser</strong>: empty typed constructors (<code>b0cebda79</code>)</li></ul><p>The closure ergo factory was marked complete (<code>3fbd74f67</code>), with exempla modernized
-(<code>4119d75cb</code>) and made standalone (<code>3efcfa8a2</code>).</p><h4 id="ad-capability-channel">Ad capability channel<a class="anchor" href="#ad-capability-channel">#</a></h4><p>Adopted a <strong>type-first ad channel syntax</strong> (<code>2d0b23115</code>, 19 files, +198/−78) and
-implemented <strong>non-strict ad capability calls</strong> (<code>fd8157e22</code>, 15 files, +538/−41),
+preservation (<code>31a282e1c</code> — HIR + all backends)</li><li><strong>Numeric/type</strong>: enum variant qualification (<code>1724e0028</code>), float arithmetic operand
+casting (<code>31a282e1c</code>), conversion radix hints (<code>fc2f29a4b</code>)</li><li><strong>Async/genus</strong>: async async_main entries (<code>caa2fa377</code>), class creo hooks
+(<code>fce6e6ede</code>)</li><li><strong>Parser</strong>: empty typed constructors (<code>b0cebda79</code>)</li></ul><p>The closure then factory was marked complete (<code>3fbd74f67</code>), with exempla modernized
+(<code>4119d75cb</code>) and made standalone (<code>3efcfa8a2</code>).</p><h4 id="ad-capability-channel">Ad capability channel<a class="anchor" href="#ad-capability-channel">#</a></h4><p>Adopted a <strong>type-first call channel syntax</strong> (<code>2d0b23115</code>, 19 files, +198/−78) and
+implemented <strong>non-strict call capability calls</strong> (<code>fd8157e22</code>, 15 files, +538/−41),
 establishing the grammar and Rust codegen path for capability ad-invocations. Capability
-call policy was recorded (<code>6a51785e4</code>) and the ad exemplar category clarified
+call policy was recorded (<code>6a51785e4</code>) and the call exemplar category clarified
 (<code>40df5ea81</code>).</p><h4 id="hir-visitor">HIR visitor<a class="anchor" href="#hir-visitor">#</a></h4><p>Added a <strong>mutable HIR visitor</strong> (<code>0cc6e23b0</code>, 422-line <code>hir::visit</code> module), replacing
 ~281 lines of manual finalization traversal in the typecheck pass. The visitor was
 adopted in codegen error scanning (<code>87c3d5acc</code>), semantic analyses (<code>a8ea63c46</code>), and
 codegen analyses (<code>933da3102</code>). Decomposition analysis was refreshed after the visitor
-landed (<code>50f7ac3e1</code>).</p><h4 id="legacy-removal">Legacy removal<a class="anchor" href="#legacy-removal">#</a></h4><p>Executed <strong>execution roadmap epic 1</strong> (<code>6b8950c38</code>, +400/−1121 lines): removed the <code>ab</code>
+landed (<code>50f7ac3e1</code>).</p><h4 id="legacy-removal">Legacy removal<a class="anchor" href="#legacy-removal">#</a></h4><p>Executed <strong>execution roadmap epic 1</strong> (<code>6b8950c38</code>, +400/−1121 lines): removed the <code>range</code>
 collection DSL from the Lexer, parser, HIR, all three codegen backends (Rust, Go, TS),
 exempla, and explain docs. Removed legacy Go runtime binaries (<code>707bc6cb4</code>) and the
 entire <code>runtimes/norma-go/</code> and <code>runtimes/norma-py/</code> directories (<code>b6d3b271d</code>, −2901
-lines). Planned the removal of the ab collection DSL (<code>8bc2fc8c5</code>).</p><h4 id="phase-aware-diagnostics">Phase-aware diagnostics<a class="anchor" href="#phase-aware-diagnostics">#</a></h4><p>Added <strong>phase-aware diagnostics mode</strong> (<code>054554510</code>, 13 files, +646/−18): diagnostics
+lines). Planned the removal of the range collection DSL (<code>8bc2fc8c5</code>).</p><h4 id="phase-aware-diagnostics">Phase-aware diagnostics<a class="anchor" href="#phase-aware-diagnostics">#</a></h4><p>Added <strong>phase-aware diagnostics mode</strong> (<code>054554510</code>, 13 files, +646/−18): diagnostics
 now carry a phase tag, rendered in the driver and CLI bin, with the tool surface updated
 to filter by phase. Constrained by a diagnostics mode plan (<code>bdeca3155</code>).</p><h4 id="ascription-glyph-realignment">Ascription glyph realignment<a class="anchor" href="#ascription-glyph-realignment">#</a></h4><p>Switched the static ascription glyph from a dedicated <code>∴</code> keyword to <code>:proportion</code>
 syntax (<code>a01941078</code>, 37 files, +165/−145). Renamed <code>explain/∴.md</code> → <code>explain/ascription.md</code>

@@ -7,7 +7,7 @@
 release moves the exempla corpus and e2e harness into their own crate; retools
 the Rust, TypeScript, and Go e2e runners for shared target dirs, batch builds,
 and parallel subprocess tiers (cutting full-corpus time from ~10 min to ~30 s);
-and introduces the <code>modulus</code> namespace construct as Stage 2 of the native stdlib
+and introduces the <code>wrapping</code> namespace construct as Stage 2 of the native stdlib
 campaign.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>26</td></tr><tr><td>Date span</td><td>2026-06-27 → 2026-06-27</td></tr></tbody></table></div><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="exempla-crate-migration">Exempla crate migration<a class="anchor" href="#exempla-crate-migration">#</a></h4><p>The exempla corpus (220+ <code>.fab</code> files, expectations, support files) and the
 entire <code>exempla_e2e</code> harness (Rust, TS, Go, MIR, LLVM, WASM, script, smoke,
 roundtrip tiers) move from <code>crates/radix/src/</code> into a dedicated
@@ -40,10 +40,10 @@ parallel safety. <strong>27.97 s (was 64.45 s)</strong> — ~2.3× speedup.</li>
 benchmarks the full pipeline (frontend ~16 MB/s linear, Rust codegen, scena
 scripting path). Documented in README.md with backend/linking scaling analysis
 (<code>c580cadc8</code>): dep model, per-package target-dir reuse, the what-recompiles
-matrix, and cold-vs-warm costs.</p><h4 id="modulus-namespace-stage-2">Modulus namespace (Stage 2)<a class="anchor" href="#modulus-namespace-stage-2">#</a></h4><p>The <code>modulus</code> keyword introduces a body-bearing namespace/module construct,
+matrix, and cold-vs-warm costs.</p><h4 id="modulus-namespace-stage-2">Modulus namespace (Stage 2)<a class="anchor" href="#modulus-namespace-stage-2">#</a></h4><p>The <code>wrapping</code> keyword introduces a body-bearing namespace/module construct,
 separating the overloaded <code>pactum</code> role into two distinct constructs
 (<code>b77f20186</code>):</p><ul><li><strong>modulus</strong> (new): namespace/module façade with body-bearing methods by
-default. First customer: <code>norma:chorda</code>.</li><li><strong>pactum</strong> (unchanged): interface contract, signature-only, <code>implet</code> target.</li><li><strong>genus</strong> (unchanged): instantiable object with <code>ego</code> and instance state.</li></ul><p>Prerequisite: the untyped frontmatter metadata key <code>modulus</code> is renamed to
+default. First customer: <code>norma:chorda</code>.</li><li><strong>pactum</strong> (unchanged): interface contract, signature-only, <code>implements</code> target.</li><li><strong>class</strong> (unchanged): instantiable object with <code>self</code> and instance state.</li></ul><p>Prerequisite: the untyped frontmatter metadata key <code>wrapping</code> is renamed to
 <code>group</code> to free the keyword for permanent language surface (<code>84cac383d</code>).</p><p>The full parse/lower/codegen path lands in <code>9892f3722</code>: lexer token, parser
 decl, AST node, HIR lower (<code>LoweredProgram.modules</code>, <code>AnalyzedUnit.modules</code>),
 Rust codegen dispatch, and five targeted tests. Chorda surface docs

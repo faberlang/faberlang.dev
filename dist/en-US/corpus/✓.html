@@ -20,7 +20,7 @@
 <span class="tok-co">#   • Using the heavy emoji `✔` / `✘` — the lexer suggests `✓` / `✗`.</span>
 <span class="tok-co">#   • Chaining `c ✓ a ✗ d ✓ b ✗ e` — nesting is rejected; use a function.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: si, sin, discerne</span>
+<span class="tok-co"># See also: if, elif, match</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># ✓ ✗ — value conditional</span>
@@ -56,7 +56,7 @@
     print <span class="tok-st">"maximum: §"</span>(maximum)
 
 <span class="tok-co">    # Narrowing: the ✓ branch sees a non-null string</span>
-    <span class="tok-kw">var</span> string <span class="tok-op">∪</span> none forsitan <span class="tok-op">←</span> null ∷ string <span class="tok-op">∪</span> none
+    <span class="tok-kw">var</span> string <span class="tok-op">∪</span> none forsitan <span class="tok-op">←</span> <span class="tok-kw">null</span> ∷ string <span class="tok-op">∪</span> none
     <span class="tok-kw">const</span> string solutum <span class="tok-op">←</span> forsitan <span class="tok-kw">not</span> <span class="tok-kw">is</span> none ✓ forsitan ✗ <span class="tok-st">"defectum"</span>
 <span class="tok-co">    # "defectum"</span>
     print solutum

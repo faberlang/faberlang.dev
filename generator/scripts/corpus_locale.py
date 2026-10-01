@@ -6,8 +6,7 @@ search hrefs, and hub links use the matching reader-pack spelling so each
 site locale organizes the corpus the way that locale writes Faber.
 
 Keyword pages prefer `[keywords]`, then `[types]`. Type pages do the reverse.
-That keeps `nihil` (kind=keyword) at English `null` rather than the type
-disambiguator `null_ty`.
+That keeps `nihil` (kind=keyword) at English `null`; the type row is `none`.
 
 If two terms want the same slug, the earlier identity (sorted) keeps it and
 the other stays on its Latin key so we never overwrite a real page.
@@ -61,6 +60,12 @@ def display_slug(term: str, kind: str, pack: dict[str, dict[str, str]]) -> str:
         primary, secondary = types, keywords
     else:
         primary, secondary = keywords, types
+    if term == "nihil" and (kind or "").lower() != "type":
+        # English's `nihil = "nihil"` keyword row is transitional; corpus
+        # identity pages use the reader-facing null spelling, not the type's
+        # internal disambiguator (`none`).
+        if keywords.get(term) == term and types.get(term) == "none":
+            return "null"
     for table in (primary, secondary):
         native = table.get(term)
         if native:

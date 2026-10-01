@@ -13,7 +13,7 @@ rejects <code>--reader-locale</code>, and <code>faber format</code> no longer re
 <code>radix::tool::cmd_emit_with_reader_pack</code>, so `faber emit -t faber
 --reader-locale=&lt;X&gt;<code> emits localized Faber. </code>--canonical` remains the Latin
 alias; no flags keeps author mode.</p><p>Phase 3 proves the surface: a new test shows <code>--reader-locale=ar</code> emits Arabic
-keywords (دالة functio، بداية incipit) in logical codepoint order — no Latin
+keywords (دالة fn، بداية main) in logical codepoint order — no Latin
 survives and no Bidi isolates / embedding controls (U+202A–U+202E,
 U+2066–U+2069) are injected.</p><h4 id="go-codegen-dispatch-adaptation">Go codegen dispatch adaptation<a class="anchor" href="#go-codegen-dispatch-adaptation">#</a></h4><p>The radix <code>generate_from_analyzed</code> dispatch seam gained a <code>KeywordSurface</code>
 parameter after reader-locale emit threading. Go is not a localized target, so

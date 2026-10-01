@@ -7,11 +7,11 @@ values, Tela checks the tree, and only a valid tree becomes markup. Nothing is
 concatenated by hand, so the usual ways of producing broken or unsafe HTML are
 not available on the ordinary path.</p><p>The current package version is 0.0.0. Read the <a href="#status">status</a> section before
 planning work on it — it is early, and the protocol and the static renderer
-are the part that works today.</p><h2 id="first">A first view<a class="anchor" href="#first">#</a></h2><p>Build a value, serialize it. The text contains a bare <code>&amp;</code>; Tela escapes it.</p><pre class="faber-code"><code class="lang-faber mode=package"><span class="tok-kw">importa</span> <span class="tok-kw">ex</span> <span class="tok-st">"tela:tela"</span> tela
+are the part that works today.</p><h2 id="first">A first view<a class="anchor" href="#first">#</a></h2><p>Build a value, serialize it. The text contains a bare <code>&amp;</code>; Tela escapes it.</p><pre class="faber-code"><code class="lang-faber mode=package"><span class="tok-kw">import</span> <span class="tok-kw">from</span> <span class="tok-st">"tela:tela"</span> tela
 
-<span class="tok-kw">incipit</span> {
-    <span class="tok-kw">fixum</span> tela.View greeting <span class="tok-op">←</span> tela.element_view(tela.html_space(), <span class="tok-st">"p"</span>, [tela.text_view(<span class="tok-st">"Fish &amp; chips"</span>)])
-    nota tela.html_view(greeting) vel <span class="tok-st">"invalid"</span>
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> tela.View greeting <span class="tok-op">←</span> tela.element_view(tela.html_space(), <span class="tok-st">"p"</span>, [tela.text_view(<span class="tok-st">"Fish &amp; chips"</span>)])
+    print tela.html_view(greeting) coalesce <span class="tok-st">"invalid"</span>
 }</code></pre><p>This prints <code>&lt;p&gt;Fish &amp;amp; chips&lt;/p&gt;</code>. <code>html_view</code> returns text or null: if
 any check on the tree fails, it returns null and emits nothing — never
 partial markup.</p><h2 id="design">Design<a class="anchor" href="#design">#</a></h2><ul><li><strong>A typed tree.</strong> A <code>View</code> is one of three things: an element (tag, space,

@@ -4,20 +4,20 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • dot access (`expr.field`) on genus records — direct field lookup</span>
+<span class="tok-co">#   • dot access (`expr.field`) on 類型 records — direct field lookup</span>
 <span class="tok-co">#   • bracket access (`expr[index]`) on listas and tabulae — indexed access</span>
-<span class="tok-co">#   • optional chaining (`expr?.field`) — safe navigation that returns nihil on missing values</span>
+<span class="tok-co">#   • optional chaining (`expr?.field`) — safe navigation that returns 無 on missing values</span>
 <span class="tok-co">#   • chained access combining dot, bracket, and optional access</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Accessing a field that does not exist on the receiver type — dot access requires a matching member on the genus.</span>
+<span class="tok-co">#   • Accessing a field that does not exist on the receiver type — dot access requires a matching member on the 類型.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: ?., lista, tabula, genus</span>
+<span class="tok-co"># See also: ?., 列表, 表格, 類型</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># membrum — dot, bracket, chained, and optional access</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># expr.&lt;field&gt;        -- dot access on genus records</span>
+<span class="tok-co"># expr.&lt;field&gt;        -- dot access on 類型 records</span>
 <span class="tok-co"># expr[index]         -- bracket access on listas and tabulae</span>
 <span class="tok-co"># expr?.&lt;field&gt;       -- optional chaining (see optionalis/optionalis.fab)</span>
 <span class="tok-co">#</span>
@@ -33,8 +33,8 @@ class Punctum {
 }
 
 class Figura {
-    var string nomen
-    var int valor
+    var string <span class="tok-kw">名稱</span>
+    var int <span class="tok-kw">值</span>
 }
 
 class Imum {
@@ -54,7 +54,7 @@ class Datum {
 }
 
 class Adest {
-    var int valor
+    var int <span class="tok-kw">值</span>
 }
 
 class Forsitan {
@@ -68,13 +68,13 @@ main {
     print punctum.x
     print punctum.y
 
-<span class="tok-co">    # --- Bracket accessus on lista ---</span>
+<span class="tok-co">    # --- Bracket accessus on 列表 ---</span>
 
     const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     print numeri[<span class="tok-nu">0</span>]
     print numeri[<span class="tok-nu">2</span>]
 
-<span class="tok-co">    # --- Bracket accessus on tabula ---</span>
+<span class="tok-co">    # --- Bracket accessus on 表格 ---</span>
 
     const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> indicium <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"valor"</span><span class="tok-op">:</span> <span class="tok-nu">42</span> }
     print indicium[<span class="tok-st">"nomen"</span>]
@@ -93,10 +93,10 @@ main {
 
 <span class="tok-co">    # --- Accessus optionalis ---</span>
 
-    const Forsitan forsitan <span class="tok-op">←</span> Forsitan { adest <span class="tok-op">=</span> Adest { valor <span class="tok-op">=</span> <span class="tok-nu">100</span> } }
+    const Forsitan forsitan <span class="tok-op">←</span> Forsitan { adest <span class="tok-op">=</span> Adest { <span class="tok-kw">值</span> <span class="tok-op">=</span> <span class="tok-nu">100</span> } }
     print forsitan<span class="tok-op">?.</span>adest<span class="tok-op">?.</span>valor
 
-<span class="tok-co">    # Accessus optionalis on nihil binding</span>
+<span class="tok-co">    # Accessus optionalis on 無 binding</span>
     const none void <span class="tok-op">←</span> null
     print void<span class="tok-op">?.</span>absens
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>10

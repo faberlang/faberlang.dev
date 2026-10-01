@@ -157,7 +157,7 @@ generator or the upstream source instead.
 | Script | Writes | Reads |
 |---|---|---|
 | `generate-target-matrix.py` | `src/{locale}/toolchain/target-matrix.md` | `faber/docs/EBNF_MATRIX.md` + `generator/locales/{locale}/targets.toml` |
-| `generate-grammar` (native Faber gate) | `src/{locale}/reference/grammar.md` | `faber/docs/EBNF.md`, `generator/grammar/EBNF.{locale}.md` |
+| `generate-grammar` (native Faber gate) | `src/{locale}/reference/grammar.md` | `faber/docs/EBNF.md`, `faber/docs/grammar/grammar.jsonl`, `glossary.<locale>.toml`; en-US reads `radix/locale/en/pack.toml` |
 | `generate-target-lanes.py` | `src/{locale}/targets/*.md` | captured lane panels |
 | `generate-examples.py` | `src/{locale}/examples/*.md` | `examples/` sibling |
 | `generate-localization.py` | `src/{locale}/localization.md` | locale registry + captured panels |
@@ -197,24 +197,31 @@ operate on rendered HTML, so none of them requires a generator rebuild.
 **Reader locale.** Every site locale renders its code in its own reader
 locale, English included (`locales.toml` maps `en-US` → `en`). Latin is the
 canonical source surface in `src/` and the compiler's interchange dialect, not
-the surface a page presents. Three layers carry it:
+the surface a page presents. These layers carry it:
 
 | Layer | Handled by |
 |---|---|
-| Fluid `faber` fences | `localize-markdown.py`, before the render |
+| Fluid and eligible pinned/text Faber fences | `localize-markdown.py`, before the render |
+| All Markdown terms and corpus examples | `project-reader-terms.py` and the corpus bundle wrappers |
 | Cheat sheet / examples / targets fences | `locale-tabs.py`, as 8-locale cards defaulting to `en` |
-| Inline `` `term` `` spans in prose | `localize-spans.py`, after the render |
+| Remaining single-token `` `term` `` spans in prose | `localize-spans.py`, after the render |
 
 `span.fab` resolves each inline span against a closed set — 37 keywords + 13
 types — and emits `class="kw"` or `class="typ"`; `localize-spans.py` swaps the
-spelling. Compounds (`` `T ∪ nihil` ``, `` `importa ex "norma:textus"` ``) are
-deliberately unclassified and stay Latin: naive token substitution would
-rewrite the module path `norma:textus` and the annotation `@ cursor`.
+spelling. Compounds are projected by token rules that refuse paths
+(`norma:textus`, `solum:lege`), anchors, production ids (`itera_stmt`),
+hyphenated names (`device-summa`, `non-null`), and quoted strings. The English
+word `in` stays in prose and in comments, except when a comment names `` `in` ``,
+`` `per` ``, or `` `est` `` as a keyword. Inside Faber code, `in` / `per` / `est`
+become `mut` / `step` / `is` when the span also contains another Faber term,
+and `non est` becomes `is not`. `T ∪ nihil` can become `T ∪ none`.
 
-A page whose subject *is* Latin sets `translate_spans = false` in its
-frontmatter — `glyphs.md`, `reader-locales.md`, `localization.md` do. The
-grammar, target matrix, and corpus pages are skipped by path, and the first
-two carry a note saying why their terms stay Latin.
+A page may set `translate_spans = false` to skip only the HTML span pass.
+en-US does not set it: an English page shows English keywords. Other locale
+copies still use the flag where their prose is discussing the Latin vocabulary.
+Markdown projection still runs either way. Grammar remains skipped by span
+localization because its generated productions retain their bilingual contrast
+and production ids.
 
 **Diagrams.** The SVG cache is committed, so a build without Node still
 produces a complete site; `render` is a source-side authoring step and

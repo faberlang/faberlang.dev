@@ -5,7 +5,7 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • Multi-layer perceptron forward — two sequential matmul stages on device</span>
-<span class="tok-co">#   • @ nucleum kernel — shape-typed tf32[2,2] tensors through matmul</span>
+<span class="tok-co">#   • @ kernel kernel — shape-typed tf32[2,2] tensors through matmul</span>
 <span class="tok-co">#   • Tensor pipeline — building input, weight, and bias tensors from flat lists</span>
 <span class="tok-co">#     via seed.strue(), then launching the device kernel</span>
 <span class="tok-co">#</span>
@@ -13,7 +13,7 @@
 <span class="tok-co">#   • Assuming elementwise activation (ReLU) between layers is statically shape-preserving with current type rules — today's type rules do not preserve enough static shape through elementwise tensors to feed the next matmul</span>
 <span class="tok-co">#     shape-preserving with current type rules</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: tensor, matmul, mlp, nucleum</span>
+<span class="tok-co"># See also: tensor, matmul, mlp, kernel</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># GPU workload rung 2 — two-layer MLP forward pass</span>

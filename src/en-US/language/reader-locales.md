@@ -1,7 +1,4 @@
 +++
-# This page discusses Latin keywords as Latin. Rendering them in
-# the reader locale would turn its own examples into nonsense.
-translate_spans = false
 title = "Reader locales"
 section = "language"
 order = 6
@@ -123,12 +120,30 @@ substrate because they are the base surfaces:
 
 Each of the six non-canonical locales has a complete Faber package under
 `examples/reader-locale/` with localised source, diagnostic test
-cases, and a `faber.toml` manifest. The same `greet`
-program rendered in Latin and the six packaged locale surfaces below:
+cases, and a `faber.toml` manifest. The same program rendered in the two
+base surfaces — English (this page's reader locale) and canonical Latin —
+then the six packaged locale surfaces below:
+
+**English** `en` — *base surface*
+
+```faber
+functio salve(textus nomen) → textus {
+    fixum textus msg ← "Salve, §!"(nomen)
+    redde msg
+}
+
+incipit {
+    fixum textus m ← salve("munde")
+    nota m
+}
+```
+
+The surface an English reader writes: `fn`, `const`, `string`, `return`,
+`main`, `print` — the spellings every page on this site teaches.
 
 **Latin** `la` — *canonical*
 
-```faber
+```faber locale=la
 functio salve(textus nomen) → textus {
     fixum textus msg ← "Salve, §!"(nomen)
     redde msg

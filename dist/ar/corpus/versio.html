@@ -5,12 +5,12 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • the `@versio` annotation — attaches a semantic version string to a CLI application</span>
-<span class="tok-co">#   • combining with `@cli` and `@descriptio` for complete CLI metadata</span>
+<span class="tok-co">#   • combining with `@cli` and `@وصف` for complete CLI metadata</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Applying @ versio without @ cli — @ versio only has meaning when attached to a CLI incipit.</span>
+<span class="tok-co">#   • Applying @ versio without @ cli — @ versio only has meaning when attached to a CLI بداية.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: cli, descriptio</span>
+<span class="tok-co"># See also: cli, وصف</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># meta/versio — CLI version annotation</span>
@@ -19,12 +19,12 @@
 <span class="tok-co">#   annotation :← '@' 'versio' stringLit</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
-<span class="tok-co">#   No incipit runtime — declaration-only CLI metadata.</span>
+<span class="tok-co">#   No بداية runtime — declaration-only CLI metadata.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># BACKEND:</span>
 <span class="tok-co">#   declaration-only CLI metadata (whitelist: meta/versio.fab).</span>
 
-@ <span class="tok-kw">cli</span> { name <span class="tok-op">=</span> <span class="tok-st">"versio-smoke"</span> }
+@ <span class="tok-kw">cli</span> <span class="tok-st">"versio-smoke"</span>
 @ versio <span class="tok-st">"0.1.0"</span>
 @ description <span class="tok-st">"Version metadata exemplum"</span>
 main args args {

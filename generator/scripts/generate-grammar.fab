@@ -6,6 +6,10 @@ locale = "en"
 # Identity EBNF.md is the gated page template (prose + productions).
 # jsonl is the production-ID spine; unknown glossary keys hard-fail.
 # Missing locale packs warn and skip (degrade-gracefully).
+# en-US is the English reader projection of that identity: quoted terminals
+# and Faber examples come from radix/locale/en/pack.toml. Prose backticks
+# change only when the whole span is one pack spelling, so a bilingual
+# sentence or a production anchor is left alone.
 
 import from "faber:solum" solum
 import from "faber:processus" processus
@@ -22,23 +26,19 @@ const string hole_open = "§" + "{"
 const string q = "'"
 const string brace_close = "}"
 const string lead_en = «The formal grammar for every Faber production, generated from the compiler's
-own specification. This is the authority on whether something is valid syntax;
-the [target matrix](/toolchain/target-matrix.html) is the authority on whether
+own specification and shown in the English reader spellings. The words in
+quotes are the words you write: a loop is `for`, a class is `class`, a
+function is `fn`. Rule names (`itera_stmt`, `genus_decl`) are stable grammar
+identifiers. Latin stays the compiler's canonical form; `faber explain <term>`
+prints a mapping from the compiler itself.
+
+This page is the authority on whether something is valid syntax. The
+[target matrix](/toolchain/target-matrix.html) is the authority on whether
 a given target supports it.
 
-Uppercase names in the productions are lexical terminals. Grammar examples are
-fragments shown to illustrate a production — they are not standalone programs
-and are not expected to compile on their own.
-
-**Why the keywords below are in Latin.** Everywhere else on this site, code
-renders in your reader locale — `fixum` prints as `const`, and a Chinese
-reader sees `常量`. The grammar does not, because it is the canonical
-definition rather than a rendering of it. Latin is Faber's canonical form
-precisely because no living language has a claim on it, so no locale's
-spelling has to be the one every other is defined against; each reader pack
-is a projection of the productions below. The
-[reader locale pages](/language/reader-locales.html) give the mapping, and
-`faber explain <term>` prints it from the compiler itself.»
+Uppercase names in the productions are lexical terminals. Grammar examples
+are fragments shown to illustrate a production — they are not standalone
+programs and are not expected to compile on their own.»
 
 const string identity_banner = «This file is generated from `docs/grammar/source.fg`, its `sidecar.en.toml`
 and its `prose.en.md`; hand edits fail the stage-1 normative-triple gate.»
@@ -181,7 +181,9 @@ fn render_page(string body, string locale) → string {
     page ← page + "order = 1\n"
     page ← page + "sources = [\n"
     page ← page + "  \"faber/docs/grammar/grammar.jsonl\",\n"
-    if locale ≠ "en-US" {
+    if locale ≡ "en-US" {
+        page ← page + "  \"radix/locale/en/pack.toml\",\n"
+    } else {
         page ← page + "  \"faber/docs/grammar/glossary." + locale + ".toml\",\n"
     }
     page ← page + "]\n"
@@ -316,9 +318,12 @@ fn is_even(int n) → bool {
     return n ≡ (n / 2) * 2
 }
 
-fn fill_inline(string inner, map<string, string> glossary, map<string, bool> present, string path) → string {
+fn fill_inline(string inner, map<string, string> glossary, map<string, bool> present, string path, bool exact_only) → string {
     if glossary_has(present, inner) {
         return glossary[inner] ↦ string
+    }
+    if exact_only {
+        return inner
     }
     var string out ← mark_ident_keywords(inner, glossary, present)
     if out.contains(hole_open) {
@@ -327,7 +332,7 @@ fn fill_inline(string inner, map<string, string> glossary, map<string, bool> pre
     return out
 }
 
-fn process_inlines(string text, map<string, string> glossary, map<string, bool> present, string path) → string {
+fn process_inlines(string text, map<string, string> glossary, map<string, bool> present, string path, bool exact_only) → string {
     if text.contains(tick) ≡ false {
         return text
     }
@@ -340,7 +345,7 @@ fn process_inlines(string text, map<string, string> glossary, map<string, bool> 
             if is_even(i) {
                 out ← out + parts[i]
             } else {
-                out ← out + tick + fill_inline(parts[i], glossary, present, path) + tick
+                out ← out + tick + fill_inline(parts[i], glossary, present, path, exact_only) + tick
             }
             i ← i + 1
         }
@@ -369,24 +374,24 @@ fn process_inlines(string text, map<string, string> glossary, map<string, bool> 
             return out
         }
         const string inner ← text.slice(tick_at + ticks, close)
-        out ← out + closer + fill_inline(inner, glossary, present, path) + closer
+        out ← out + closer + fill_inline(inner, glossary, present, path, exact_only) + closer
         i ← close + ticks
     }
     return out
 }
 
-fn apply_glossary(string text, map<string, string> glossary, map<string, bool> present, string path) → string {
+fn apply_glossary(string text, map<string, string> glossary, map<string, bool> present, string path, bool project_english) → string {
     const string delim ← "\n" + fence
     const list<string> chunks ← text.split(delim)
     const int n ← chunks.length()
     if n ≤ 1 {
-        return process_inlines(text, glossary, present, path)
+        return process_inlines(text, glossary, present, path, project_english)
     }
     var string out ← ""
     var int i ← 0
     while i < n {
         if is_even(i) {
-            out ← out + process_inlines(chunks[i], glossary, present, path)
+            out ← out + process_inlines(chunks[i], glossary, present, path, project_english)
         } else {
             const string chunk ← chunks[i]
             const int nl ← index_of(chunk, "\n", 0)
@@ -408,6 +413,8 @@ fn apply_glossary(string text, map<string, string> glossary, map<string, bool> p
                 if inner.contains(hole_open) {
                     inner ← substitute_holes(inner, glossary, present, "ebnf", path)
                 }
+            } elif project_english and lang ≡ "fab" {
+                inner ← mark_ident_keywords(inner, glossary, present)
             }
             out ← out + delim + info + "\n" + inner
             if i + 1 < n {
@@ -462,6 +469,43 @@ fn identity_map(map<string, bool> spine) → map<string, string> {
     const list<string> keys ← spine.keys()
     for from keys const k {
         out.put(k, k)
+    }
+    return out
+}
+
+fn read_string_table(map<string, value> doc, string section) → map<string, string> {
+    const map<string, value> table ← doc[section] ↦ map<string, value> ⊥ empty
+    const list<string> keys ← table.keys()
+    var map<string, string> out ← empty
+    for from keys const k {
+        const string spelling ← table[k] ↦ string ⊥ ""
+        if spelling.length() ≡ 0 {
+            die("english pack section " + section + " entry '" + k + "' is not a string")
+        }
+        out.put(k, spelling)
+    }
+    return out
+}
+
+fn english_projection(string pack_path) → map<string, string> {
+    const map<string, value> doc ← toml.parse(solum.read_file(pack_path) ↦ string) ↦ map<string, value>
+    const map<string, string> types ← read_string_table(doc, "types")
+    const map<string, string> keywords ← read_string_table(doc, "keywords")
+    const list<string> keyword_keys ← keywords.keys()
+    if keyword_keys.length() ≡ 0 {
+        die(pack_path + ": no [keywords] table")
+    }
+    var map<string, string> out ← empty
+    const list<string> type_keys ← types.keys()
+    for from type_keys const k {
+        out.put(k, types[k] ↦ string)
+    }
+    for from keyword_keys const k {
+        out.put(k, keywords[k] ↦ string)
+    }
+    const string null_type ← types["nihil"] ↦ string ⊥ ""
+    if null_type.length() > 0 {
+        out.put("nihil", null_type)
     }
     return out
 }
@@ -581,7 +625,16 @@ main {
     for from locales const locale {
         var map<string, string> glossary ← identity_map(spine)
         var string path_label ← jsonl_path
-        if locale ≠ "en-US" {
+        var bool project_english ← false
+        if locale ≡ "en-US" {
+            const string pack_path ← "../radix/locale/en/pack.toml"
+            if (solum.exists(pack_path) ↦ bool) ≡ false {
+                die("generate-grammar: missing English reader pack: " + pack_path)
+            }
+            glossary ← english_projection(pack_path)
+            path_label ← pack_path
+            project_english ← true
+        } else {
             const string gpath ← glossary_dir + "/glossary." + locale + ".toml"
             if (solum.exists(gpath) ↦ bool) ≡ false {
                 consolum.warn_line("  warning: no grammar source for " + locale + " (" + gpath + ")")
@@ -591,8 +644,17 @@ main {
             path_label ← gpath
         }
         const map<string, bool> present ← present_of(glossary)
-        var string rendered ← apply_glossary(identity, glossary, present, path_label)
-        if locale ≠ "en-US" {
+        var string rendered ← apply_glossary(identity, glossary, present, path_label, project_english)
+        if project_english {
+            if rendered.contains("the identity rendering") ≡ false {
+                die("generate-grammar: English page is missing the identity-rendering sentence")
+            }
+            rendered ← rendered.replace("the identity rendering", "the English reader rendering")
+            if rendered.contains("quoted Latin literals") ≡ false {
+                die("generate-grammar: English page is missing the Latin-literals sentence")
+            }
+            rendered ← rendered.replace("quoted Latin literals", "English reader spellings")
+        } else {
             rendered ← stamp_locale_banner(rendered, locale)
         }
         const list<string> lines ← rendered.split("\n")

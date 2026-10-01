@@ -276,12 +276,10 @@ dùng dạng đường tắt:
 
 | Đường tắt | Dạng chuẩn | Miền |
 |-------|----------------|--------|
-| `f32`, `f64`, `i32`, `u64` | `fractus<f32>`, `numerus<i32>` | Dấu độ rộng — kiểu số vô hướng |
 | `tf32`, `tf32[4]`, `ti64[2, 3]` | `tensor<f32, _>`, `tensor<f32, [4]>` | Tensor dày — `t` + độ rộng + hình dạng tùy chọn |
 | `sf32`, `sf32[2, 3]`, `si64[N]` | `sparsa<f32, _>`, `sparsa<f32, [2, 3]>` | Tensor thưa — `s` + độ rộng + hình dạng tùy chọn |
 | `mf32[4, 4]`, `mu32[3, 3]` | `matrix<f32, [4, 4]>` | Ma trận lớp thanh ghi — `m` + độ rộng + hình dạng |
 | `lf32`, `lu32`, `li64` | `lista<f32>`, `lista<u32>` | Danh sách — `l` + độ rộng |
-| `f16` | `fractus<f16>` | Dấu độ rộng half-float (chỉ có ý nghĩa về ngữ nghĩa/bố cục) |
 
 **Faber thông thường (ưu tiên dạng đầy đủ):**
 
@@ -289,7 +287,7 @@ dùng dạng đường tắt:
 incipit {
     fixum lista<f32> values ← vacua
     fixum tensor<f32, [2, 3]> grid ← vacua
-    fixum numerus<i32> narrow ← 7
+    fixum i32 narrow ← 7
 }
 ```
 
@@ -375,7 +373,6 @@ nguyên tắc thiết kế có chủ ý, không phải tập hợp các tiện �
 
 | Miền | Dạng chuẩn | Đường tắt |
 --------|-----------|-------|
-| Kiểu số | `numerus<i32>` | `i32` |
 | Kiểu tensor | `tensor<f32, [4]>` | `tf32[4]` |
 | Chú thích | `@ optio { binding = verbose }` | `@ optio verbose ...` |
 | Định dạng | `faber format --canonical` | `faber format` (chế độ tác giả) |
@@ -383,7 +380,7 @@ nguyên tắc thiết kế có chủ ý, không phải tập hợp các tiện �
 
 Mẫu này phục vụ hai mục tiêu. Thứ nhất, nó hạ thấp rào cản tiếp cận —
 người dùng mới có thể viết `tf32[4]` mà không phải gõ
-`tensor<fractus<f32>, [4]>`. Thứ hai, nó giữ cho ngôn ngữ chuẩn không mơ hồ —
+`tensor<f32, [4]>`. Thứ hai, nó giữ cho ngôn ngữ chuẩn không mơ hồ —
 khi độ chính xác quan trọng, dạng đầy đủ nói chính xác ý nghĩa của nó.
 Bộ định dạng kết nối hai dạng này: tác giả viết dạng đường tắt,
 người đánh giá có thể yêu cầu dạng chuẩn, và CI có thể thực thi một trong hai.

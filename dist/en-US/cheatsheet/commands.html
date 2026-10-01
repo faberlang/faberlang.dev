@@ -6,7 +6,7 @@ before proposing generated code as valid Faber.</p><h2 id="check">Check<a class=
 to the compiler front end. It does not mean the final native toolchain has been
 invoked.</p><h2 id="build">Build<a class="anchor" href="#build">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> build . <span class="tok-op">-t</span> rust</code></pre><p>The Rust target is intentionally reviewable. Generated Rust is a compiler
 artifact, not source of truth; edit the Faber package and rebuild rather than
-patching emitted Rust by hand.</p><h2 id="run">Run<a class="anchor" href="#run">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run .</code></pre><p>Use <code>run</code> for application packages with an <code class="kw">main</code> entry point. Library-only
+patching emitted Rust by hand.</p><h2 id="run">Run<a class="anchor" href="#run">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run .</code></pre><p>Use <code>run</code> for application packages with an <code>main</code> entry point. Library-only
 packages should be checked and tested instead.</p><h2 id="explain">Explain diagnostics<a class="anchor" href="#explain">#</a></h2><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> explain SEM001
 <span class="tok-fn">faber</span> explain LEX006</code></pre><p>Diagnostic families are stable handles: <code>LEX</code> for lexical errors, <code>PAR</code> for
 parser errors, <code>SEM</code> for semantic/type errors. In docs and agent reports, cite
@@ -14,7 +14,7 @@ the diagnostic code instead of paraphrasing a compiler failure loosely.</p><h2 i
 <span class="tok-fn">faber</span> format <span class="tok-op">--locale</span>=th-TH path/to/file.fab
 <span class="tok-fn">faber</span> emit <span class="tok-op">-t</span> faber <span class="tok-op">--locale</span>=zh-Hans path/to/file.fab</code></pre><p>Reader locale output is a rendering of the compiler's semantic model, not a
 browser-time translation layer. Locale work belongs after a package checks in
-canonical form.</p><h2 id="device">Device execution<a class="anchor" href="#device">#</a></h2><p>Packages carrying an <code>@ nucleum</code> compute kernel run on a GPU. Backend selection
+canonical form.</p><h2 id="device">Device execution<a class="anchor" href="#device">#</a></h2><p>Packages carrying an <code>@ kernel</code> compute kernel run on a GPU. Backend selection
 is explicit and fail-closed — a named backend never silently falls back to CPU.</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run <span class="tok-op">--backend</span> metal &lt;package&gt;
 <span class="tok-fn">faber</span> run <span class="tok-op">--backend</span> cuda &lt;package&gt;
 <span class="tok-fn">faber</span> run <span class="tok-op">--backend</span> auto &lt;package&gt;</code></pre><p>See <a href="/en-US/toolchain/cli.html#device-execution">device execution</a> for the contract.</p><p>Related: <a href="/en-US/cheatsheet/">Cheat sheet</a> · <a href="/en-US/cheatsheet/testing.html">Testing</a> ·

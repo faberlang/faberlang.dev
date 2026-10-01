@@ -3,7 +3,7 @@
 相依性管理，以及公開套件儲存庫。</p><h2 id="overview">概覽<a class="anchor" href="#overview">#</a></h2><p>Cista 管理由 <code>faber.toml</code> manifest 定義的 Faber 套件。每個
 套件會宣告其名稱、進入點、目標後端，以及相依性。</p><h2 id="manifest">套件 manifest<a class="anchor" href="#manifest">#</a></h2><pre class="faber-code"><code class="lang-text">faber.toml
 
-[nomen]
+[名稱]
 speculum-gen
 
 [ingressus]
@@ -12,9 +12,9 @@ main.fab
 [scopulus]
 rust
 
-[genus]
-bin</code></pre><p><code>[nomen]</code> 欄位是套件名稱，<code>[ingressus]</code> 是進入點模組，
-<code>[scopulus]</code> 選取程式碼產生目標，而 <code>[genus]</code> 宣告套件類型
+[類型]
+bin</code></pre><p><code>[名稱]</code> 欄位是套件名稱，<code>[ingressus]</code> 是進入點模組，
+<code>[scopulus]</code> 選取程式碼產生目標，而 <code>[類型]</code> 宣告套件類型
 （<code>bin</code> 代表可執行檔，<code>lib</code> 代表函式庫）。</p><h2 id="dependencies">相依性<a class="anchor" href="#dependencies">#</a></h2><p>套件會宣告由 Cista 從套件儲存庫解析的相依性。
 相依性解析會產生鎖定檔，以確保可重現的建置。</p><h2 id="status">狀態<a class="anchor" href="#status">#</a></h2><p>Cista 正在積極開發中。公開套件登錄庫
 （<code>cista.dev</code>）是與網站實作分開的活動。在同一工作區內的套件，

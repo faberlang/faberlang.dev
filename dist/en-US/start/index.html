@@ -6,10 +6,10 @@ then open a real package. For a sequenced path, follow: <a href="/en-US/start/in
 <a href="/en-US/start/install.html">install page</a>, verify the archive checksum, and put
 <code>bin/faber</code> from the archive's <code>bin/</code> and <code>share/</code> trees on your <code>PATH</code>
 (keep the trees together so the reader packs resolve). Confirm:</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> <span class="tok-op">--version</span></code></pre><h2 id="shape">2. Shape of a function<a class="anchor" href="#shape">#</a></h2><p>Type-first parameters, glyph return type, Latin control words, nullable
-union:</p><pre class="faber-code"><code class="lang-text">functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
-    redde a / b
-}</code></pre><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Meaning</th></tr></thead><tbody><tr><td><code class="kw">fn</code></td><td>Function declaration</td></tr><tr><td><code>numerus a</code></td><td>Type first, then name</td></tr><tr><td><code>→</code></td><td>Return type</td></tr><tr><td><code>∪ nihil</code></td><td>Nullable (<code>T ∪ nihil</code>)</td></tr><tr><td><code>si … ergo</code></td><td>Compact branch</td></tr><tr><td><code class="kw">return</code></td><td>Return</td></tr></tbody></table></div><h2 id="package">3. Package layout<a class="anchor" href="#package">#</a></h2><p>A package is a directory with <code>faber.toml</code> and <code>src/</code>:</p><pre class="faber-code"><code class="lang-text">my-app/
+union:</p><pre class="faber-code"><code class="lang-text">fn divide(int a, int b) → int ∪ none {
+    if b ≡ 0 then return none
+    return a / b
+}</code></pre><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Meaning</th></tr></thead><tbody><tr><td><code>fn</code></td><td>Function declaration</td></tr><tr><td><code>int a</code></td><td>Type first, then name</td></tr><tr><td><code>→</code></td><td>Return type</td></tr><tr><td><code>∪ none</code></td><td>Nullable (<code>T ∪ none</code>)</td></tr><tr><td><code>if … then</code></td><td>Compact branch</td></tr><tr><td><code>return</code></td><td>Return</td></tr></tbody></table></div><h2 id="package">3. Package layout<a class="anchor" href="#package">#</a></h2><p>A package is a directory with <code>faber.toml</code> and <code>src/</code>:</p><pre class="faber-code"><code class="lang-text">my-app/
   faber.toml
   src/
     main.fab</code></pre><p>Typical commands:</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> check my-app/

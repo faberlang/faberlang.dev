@@ -5,10 +5,10 @@
 <a href="/hi/start/projects.html">प्रोजेक्ट</a>।</p><h2 id="install">1. CLI इंस्टॉल करें<a class="anchor" href="#install">#</a></h2><p>अपने प्लेटफ़ॉर्म के लिए वर्तमान रिलीज़ (<strong>1.6.0</strong>) <a href="/hi/start/install.html">इंस्टॉल पेज</a> से डाउनलोड करें,
 आर्काइव का चेकसम सत्यापित करें, और आर्काइव के <code>bin/</code> और <code>share/</code> ट्री से <code>bin/faber</code> को अपने
 <code>PATH</code> में रखें (दोनों ट्री को साथ रखें ताकि रीडर पैक रिज़ॉल्व हो सकें)। पुष्टि करें:</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> <span class="tok-op">--version</span></code></pre><h2 id="shape">2. फ़ंक्शन का आकार<a class="anchor" href="#shape">#</a></h2><p>टाइप-प्रथम पैरामीटर, ग्लिफ़ रिटर्न टाइप, लैटिन नियंत्रण शब्द, nullable
-यूनियन:</p><pre class="faber-code"><code class="lang-text">functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
-    redde a / b
-}</code></pre><div class="table-scroll"><table><thead><tr><th>संकेत</th><th>अर्थ</th></tr></thead><tbody><tr><td><code class="kw">फलन</code></td><td>फ़ंक्शन घोषणा</td></tr><tr><td><code>numerus a</code></td><td>पहले टाइप, फिर नाम</td></tr><tr><td><code>→</code></td><td>रिटर्न टाइप</td></tr><tr><td><code>∪ nihil</code></td><td>Nullable (<code>T ∪ nihil</code>)</td></tr><tr><td><code>si … ergo</code></td><td>संक्षिप्त शाखा</td></tr><tr><td><code class="kw">लौटाओ</code></td><td>रिटर्न</td></tr></tbody></table></div><h2 id="package">3. पैकेज का विन्यास<a class="anchor" href="#package">#</a></h2><p>एक पैकेज <code>faber.toml</code> और <code>src/</code> वाली निर्देशिका होती है:</p><pre class="faber-code"><code class="lang-text">my-app/
+यूनियन:</p><pre class="faber-code"><code class="lang-text">फलन divide(संख्या a, संख्या b) → संख्या ∪ शून्य_मान {
+    यदि b ≡ 0 अतः लौटाओ शून्य_मान
+    लौटाओ a / b
+}</code></pre><div class="table-scroll"><table><thead><tr><th>संकेत</th><th>अर्थ</th></tr></thead><tbody><tr><td><code>फलन</code></td><td>फ़ंक्शन घोषणा</td></tr><tr><td><code>संख्या a</code></td><td>पहले टाइप, फिर नाम</td></tr><tr><td><code>→</code></td><td>रिटर्न टाइप</td></tr><tr><td><code>∪ शून्य_मान</code></td><td>Nullable (<code>T ∪ शून्य_मान</code>)</td></tr><tr><td><code>यदि … अतः</code></td><td>संक्षिप्त शाखा</td></tr><tr><td><code>लौटाओ</code></td><td>रिटर्न</td></tr></tbody></table></div><h2 id="package">3. पैकेज का विन्यास<a class="anchor" href="#package">#</a></h2><p>एक पैकेज <code>faber.toml</code> और <code>src/</code> वाली निर्देशिका होती है:</p><pre class="faber-code"><code class="lang-text">my-app/
   faber.toml
   src/
     main.fab</code></pre><p>सामान्य कमांड:</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> check my-app/

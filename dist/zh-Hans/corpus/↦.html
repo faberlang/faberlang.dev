@@ -4,20 +4,20 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Core conversion — the `↦` operator converts between types with explicit parsing (textus→numerus) and coercion (numerus→textus).</span>
-<span class="tok-co">#   • Default with `⊥` — the `⊥` operator supplies a default value when conversion fails at runtime (`⇥` only names error types).</span>
+<span class="tok-co">#   • Core 变换 — the `↦` operator converts between types with explicit parsing (文本→整数) and coercion (整数→文本).</span>
+<span class="tok-co">#   • Default with `⊥` — the `⊥` operator supplies a default value when 变换 fails at runtime (`⇥` only names error types).</span>
 <span class="tok-co">#   • Chaining — `↦` composes left-to-right for roundtrip conversions.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Confusing `∷` (compile-time type ascription) with `↦` (runtime conversion) and using `vel` instead of `⊥` for conversio recovery.</span>
+<span class="tok-co">#   • Confusing `∷` (compile-time type ascription) with `↦` (runtime 变换) and using `vel` instead of `⊥` for 转换 recovery.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># See also: ∷, ⊥</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-co"># conversio — type conversion operator (↦)</span>
+<span class="tok-co"># 转换 — type 变换 operator (↦)</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># &lt;expr&gt; ↦ &lt;typus&gt;</span>
-<span class="tok-co"># &lt;expr&gt; ↦ &lt;typus&gt;&lt;params&gt;</span>
+<span class="tok-co"># &lt;expr&gt; ↦ &lt;类型&gt;</span>
+<span class="tok-co"># &lt;expr&gt; ↦ &lt;类型&gt;&lt;params&gt;</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
 <span class="tok-co">#   convertExpr :← expr '↦' type</span>
@@ -29,7 +29,7 @@
 <span class="tok-co">#   Siblings radix.fab and bivalens.fab compile-only until Go semantics align.</span>
 
 main {
-<span class="tok-co">    # ↦ converts textus → numerus</span>
+<span class="tok-co">    # ↦ converts 文本 → 整数</span>
     let n1 <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ int
 <span class="tok-co">    # ⊥ supplies a default on failure</span>
     let n2 <span class="tok-op">←</span> <span class="tok-st">"invalid"</span> ↦ int ⊥ <span class="tok-nu">0</span>

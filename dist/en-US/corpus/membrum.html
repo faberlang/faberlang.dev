@@ -4,20 +4,20 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • dot access (`expr.field`) on genus records — direct field lookup</span>
+<span class="tok-co">#   • dot access (`expr.field`) on class records — direct field lookup</span>
 <span class="tok-co">#   • bracket access (`expr[index]`) on listas and tabulae — indexed access</span>
-<span class="tok-co">#   • optional chaining (`expr?.field`) — safe navigation that returns nihil on missing values</span>
+<span class="tok-co">#   • optional chaining (`expr?.field`) — safe navigation that returns none on missing values</span>
 <span class="tok-co">#   • chained access combining dot, bracket, and optional access</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Accessing a field that does not exist on the receiver type — dot access requires a matching member on the genus.</span>
+<span class="tok-co">#   • Accessing a field that does not exist on the receiver type — dot access requires a matching member on the class.</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># See also: ?., lista, tabula, genus</span>
+<span class="tok-co"># See also: ?., list, map, class</span>
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># membrum — dot, bracket, chained, and optional access</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># expr.&lt;field&gt;        -- dot access on genus records</span>
+<span class="tok-co"># expr.&lt;field&gt;        -- dot access on class records</span>
 <span class="tok-co"># expr[index]         -- bracket access on listas and tabulae</span>
 <span class="tok-co"># expr?.&lt;field&gt;       -- optional chaining (see optionalis/optionalis.fab)</span>
 <span class="tok-co">#</span>
@@ -33,8 +33,8 @@
 }
 
 <span class="tok-kw">class</span> Figura {
-    <span class="tok-kw">var</span> string nomen
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> valor
+    <span class="tok-kw">var</span> string name
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> value
 }
 
 <span class="tok-kw">class</span> Imum {
@@ -54,7 +54,7 @@
 }
 
 <span class="tok-kw">class</span> Adest {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> valor
+    <span class="tok-kw">var</span> <span class="tok-kw">int</span> value
 }
 
 <span class="tok-kw">class</span> Forsitan {
@@ -68,13 +68,13 @@
     print punctum.x
     print punctum.y
 
-<span class="tok-co">    # --- Bracket accessus on lista ---</span>
+<span class="tok-co">    # --- Bracket accessus on list ---</span>
 
     <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     print numeri[<span class="tok-nu">0</span>]
     print numeri[<span class="tok-nu">2</span>]
 
-<span class="tok-co">    # --- Bracket accessus on tabula ---</span>
+<span class="tok-co">    # --- Bracket accessus on map ---</span>
 
     <span class="tok-kw">const</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> indicium <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"valor"</span><span class="tok-op">:</span> <span class="tok-nu">42</span> }
     print indicium[<span class="tok-st">"nomen"</span>]
@@ -93,11 +93,11 @@
 
 <span class="tok-co">    # --- Accessus optionalis ---</span>
 
-    <span class="tok-kw">const</span> Forsitan forsitan <span class="tok-op">←</span> Forsitan { adest <span class="tok-op">=</span> Adest { valor <span class="tok-op">=</span> <span class="tok-nu">100</span> } }
+    <span class="tok-kw">const</span> Forsitan forsitan <span class="tok-op">←</span> Forsitan { adest <span class="tok-op">=</span> Adest { value <span class="tok-op">=</span> <span class="tok-nu">100</span> } }
     print forsitan<span class="tok-op">?.</span>adest<span class="tok-op">?.</span>valor
 
-<span class="tok-co">    # Accessus optionalis on nihil binding</span>
-    <span class="tok-kw">const</span> none <span class="tok-kw">void</span> <span class="tok-op">←</span> null
+<span class="tok-co">    # Accessus optionalis on none binding</span>
+    <span class="tok-kw">const</span> none <span class="tok-kw">void</span> <span class="tok-op">←</span> <span class="tok-kw">null</span>
     print <span class="tok-kw">void</span><span class="tok-op">?.</span>absens
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>10
 20

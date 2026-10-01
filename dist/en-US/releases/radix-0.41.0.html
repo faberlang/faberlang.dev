@@ -26,8 +26,8 @@ tours (<code>literalia/</code>, <code>intrinseca/primitiva.fab</code>), deeper C
 <code>index.toml</code>, and mark exempla as the source of truth.</p><ul><li>Generic TOML frontmatter container for exempla explain-metadata
 (<code>bd15ad082</code>)</li><li>Inject explain-parity <code>+++</code> frontmatter across 90+ exempla files
 (<code>38b7892f0</code>)</li><li>Keyword-dir smoke exempla to fill explain coverage gaps (<code>bc148223e</code>)</li><li><code>operatores/</code> tours: bitwise, comparison, logic, optional/nonnull chains,
-function types, metadata, control, range glyphs (<code>81e4bd0f0</code>)</li><li><code>literalia/</code> (boolean, nihil, string, block-string, regex, textus) and
-<code>intrinseca/primitiva.fab</code> tours (<code>5dc7febb6</code>)</li><li>CLI deep dive (<code>versio</code>, <code>optio</code>, <code>imperium</code>, alias) and <code>meta/</code> family
+function types, metadata, control, range glyphs (<code>81e4bd0f0</code>)</li><li><code>literalia/</code> (boolean, none, string, block-string, regex, string) and
+<code>intrinseca/primitiva.fab</code> tours (<code>5dc7febb6</code>)</li><li>CLI deep dive (<code>versio</code>, <code>option</code>, <code>command</code>, alias) and <code>meta/</code> family
 (<code>9519b7074</code>)</li><li>Freeze explain corpus, canonical <code>index.toml</code> (2306 entries), website
 export plan (<code>2044a1cb4</code>)</li></ul><h4 id="disk-reference-pack-stages-16">Disk reference pack (Stages 1–6)<a class="anchor" href="#disk-reference-pack-stages-16">#</a></h4><p>Extract the exempla reference pack from a compile-time binary embed to a
 versioned disk layout with <code>PACK.toml</code> metadata, a TOML index and legacy
@@ -43,11 +43,11 @@ metadata ratchets. Normalize file headers to a canonical template, add
 educational comments across the full corpus, and redesign stdout contracts
 for cross-target (Rust/Go) parity.</p><ul><li>Hygiene pass: coverage gaps, stdout contracts, file renames, removed stale
 exempla (<code>3e83d9658</code>)</li><li>Harness metadata ratchet for Rust, Go, and Wasm (124-file suite green)
-(<code>2fc853bf7</code>)</li><li>Phase 5: secondary coverage for cura, externa, functio, integratio, octeti,
-probandum, promissum, tacet (<code>52d6275af</code>)</li><li>Redesign deferred stdout contracts: scalar checks replace native list/map
-debug printing for cross-target <code>.expected</code> sharing (<code>ef43bb872</code>)</li><li>Normalize all exempla file headers to canonical template (<code>5be813381</code>)</li><li>Add educational comments across the full corpus (<code>db0c2e2e4</code>)</li></ul><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li><code class="kw">as</code> aliases on <code class="kw">match</code> variant payload bindings: parse <code>fixum field ut
+(<code>2fc853bf7</code>)</li><li>Phase 5: secondary coverage for cura, externa, fn, integratio, bytes,
+describe, promise, pass (<code>52d6275af</code>)</li><li>Redesign deferred stdout contracts: scalar checks replace native list/map
+debug printing for cross-target <code>.expected</code> sharing (<code>ef43bb872</code>)</li><li>Normalize all exempla file headers to canonical template (<code>5be813381</code>)</li><li>Add educational comments across the full corpus (<code>db0c2e2e4</code>)</li></ul><h3 id="other-changes">Other changes<a class="anchor" href="#other-changes">#</a></h3><ul><li><code>as</code> aliases on <code>match</code> variant payload bindings: parse <code>const field as
 alias</code> in pattern arms, resolve/lower through HIR/MIR, emit Rust/Go field
 renames (<code>b638e9620</code>)</li><li>Align README and EBNF with current compiler contract: correct legacy
 error-handling guidance, add missing keyword entries, drop stale harness
-scoreboard (<code>b9662ae4c</code>)</li><li>Canonicalize array types on <code>lista&lt;T&gt;</code>, align EBNF with parser
+scoreboard (<code>b9662ae4c</code>)</li><li>Canonicalize array types on <code>list&lt;T&gt;</code>, align EBNF with parser
 (<code>b93dd672b</code>)</li></ul><p>---</p><p><a href="/en-US/releases/">All releases</a> · <a href="/en-US/start/install.html">Install the current release</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#install">Install this version</a></li><li class="toc-2"><a href="#notes">Release notes</a></li><li class="toc-3"><a href="#scale">Scale</a></li><li class="toc-3"><a href="#major-tracks">Major tracks</a></li><li class="toc-3"><a href="#other-changes">Other changes</a></li></ul></div></nav></div></body></html>

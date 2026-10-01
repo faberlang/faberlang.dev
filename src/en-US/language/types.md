@@ -62,14 +62,16 @@ forms:
 
 ```faber
 incipit {
-    fixum numerus<i32> narrow ← 7 ∷ numerus<i32>
-    fixum numerus<u64> wide ← 255 ∷ numerus<u64>
-    fixum fractus<f32> single ← 1.5 ∷ fractus<f32>
+    fixum i32 narrow ← 7 ∷ i32
+    fixum u64 wide ← 255 ∷ u64
+    fixum f32 single ← 1.5 ∷ f32
 }
 ```
 
-Width sugar is available in type position: `i8` … `u64`, `f16`, `f32`, `f64`
-are equivalent to `numerus<W>` / `fractus<W>`.
+The bare width marker is the canonical spelling in type position: `i8` … `u64`,
+`d64`, `inf`, `f16`, `f32`, `f64`. The wrapped forms `numerus<W>` /
+`fractus<W>` are the retired spelling of the same types; the formatter emits
+the bare marker.
 
 ### Nullable types {#nullable-types}
 
@@ -152,7 +154,7 @@ incipit {
 
 ```faber
 incipit {
-    fixum tensor<fractus<f32>, []> scalar ← vacua
+    fixum tensor<f32, []> scalar ← vacua
     fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
     fixum numerus ∪ nihil first ← row[0]
 }
@@ -180,7 +182,7 @@ functio swap(atomic<i32> cell, i32 value) → i32 {
 Borrow markers (`de`, `in`, `own`) can appear on types in parameter
 positions to indicate how a value is passed:
 
-```faber locale=la
+```faber
 # shared borrow — caller retains ownership
 functio imprime(de textus label) → vacuum { }
 
@@ -295,7 +297,7 @@ incipit {
 }
 ```
 
-### Ex field extraction {#ex-field-extraction}
+### Field extraction (`from`) {#ex-field-extraction}
 
 `ex` extracts fields from a value into local bindings:
 
@@ -391,7 +393,7 @@ incipit {
 
 ```faber
 incipit {
-    fixum tensor<fractus<f32>, []> scalar ← vacua
+    fixum tensor<f32, []> scalar ← vacua
     fixum tensor<numerus, [4]> row ← [1, 2, 3, 4] ↦ tensor<numerus, [4]>
     fixum numerus ∪ nihil first ← row[0]
 }
@@ -414,7 +416,7 @@ reductions (`summa`, `productum`).
 
 ```faber
 incipit {
-    fixum sparsa<fractus<f32>, [2, 3]> sparse ← vacua
+    fixum sparsa<f32, [2, 3]> sparse ← vacua
     sparse.ponde([0, 1], 4.0)
     sparse.ponde([1, 2], 9.0)
 
@@ -680,7 +682,7 @@ target-type driven:
 ```faber
 incipit {
     fixum numerus count ← 7
-    fixum _ x ← 7 ∷ numerus<i32>
+    fixum _ x ← 7 ∷ i32
     fixum _ text ← count ∷ textus
 }
 ```
