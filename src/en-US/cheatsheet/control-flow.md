@@ -64,9 +64,8 @@ incipit {
     fixum numerus ∪ textus signum ← 7
 
     discerne signum {
-        casu 7 { nota "the number seven" }
-        casu "x" { nota "the letter x" }
-        ceterum { nota "something else" }
+        casu numerus fixum n { nota "a number" }
+        casu textus fixum s { nota "a text" }
     }
 }
 ```

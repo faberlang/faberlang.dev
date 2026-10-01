@@ -1,0 +1,11 @@
+main {
+    const string ∪ int signum ← 7
+    match signum {
+        case int const n {
+            print "a number"
+        }
+        case string const s {
+            print "a text"
+        }
+    }
+}
