@@ -1,4 +1,4 @@
-# Faber — agent canon
+# Faber Romanus — agent canon
 
 Read these, in order. Writing Faber starts here, not in the HTML documentation.
 

@@ -5,7 +5,7 @@ order = 0
 sources = []
 +++
 
-Faber is written by models, so you install it by handing your model a link.
+Faber Romanus is written by models, so you install it by handing your model a link.
 
 ::agent-pass::
 

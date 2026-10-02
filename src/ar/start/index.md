@@ -12,7 +12,7 @@ code_hash = "sha256:4e3dec0ba47836476297e320d6822e4528d0f7edb88f02133372d6375d79
 source_commit = "6658dc687c30abd27b12dc4307f8ffef48170d46"
 source_locale = "en-US"
 +++
-Faber لغة تكتبها النماذج، لذلك تثبّتها بتسليم نموذجك رابطًا.
+Faber Romanus لغة تكتبها النماذج، لذلك تثبّتها بتسليم نموذجك رابطًا.
 
 ::agent-pass::
 

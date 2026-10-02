@@ -1,6 +1,6 @@
-# Faber
+# Faber Romanus
 
-Faber is a programming language written by models. To install it, fetch
+Faber Romanus is a programming language written by models. To install it, fetch
 https://faberlang.dev/install.md and follow that route.
 
 ## Canon
