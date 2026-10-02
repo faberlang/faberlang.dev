@@ -161,7 +161,7 @@ Units 2–5 are parallelizable after 1. Each stage ships a complete site.
 | --- | --- | --- | --- | --- |
 | 0 — baseline tag | done | — | tag `site-v1.6.0` | 2026-10-02 |
 | 1 — tree nav engine | in flight | seat …bd47b (zai-glm-5.3-flash) | — | prerequisite for all buckets |
-| 2 — The Language | in flight | seat …c8d2b (deepseek-flash) | — | respawned off dead qwen slug |
+| 2 — The Language | done | seat …c8d2b (deepseek-flash) | 50bb04267, f2bb3b460 → 84c049c1c | Overview + 6 Behavior pages |
 | 3a — grammar tree | done | seat …586c (deepseek-flash) | 54095c9d0 → 343dd137b | 258 productions, 9 families |
 | 3b — corpus reference | in flight | seat …e1b5 (zai-glm-5.3-flash) | — | taxonomy + anatomy + transcode |
 | 4 — By Target | done | seat …a3e39 (deepseek-flash) | 6c81ddd5b, 224ad6a94 → 993f4400b | releases → faber 1.11.0 |
@@ -185,9 +185,14 @@ Units 2–5 are parallelizable after 1. Each stage ships a complete site.
 6. Chrome wiring for all five nav groups (unit 1 engine + receipt entries).
 7. Decide grammar family-page `section` stamping vs URL-derived active path
    (see `receipts/unit-3a.md`).
-8. Follow-ups outside this repo: device-emit regression (metal/wgsl
+8. Follow-ups outside this repo (radix): device-emit regression (metal/wgsl
    `mir_metal_text_unsupported`); `radix check --locale=<non-la>` pack
-   validation failure.
+   validation failure; **runner mid-expression numeric reduction**
+   (`(a+b)/2` over `modulus<u8>` → 22, violating the store-only law).
+9. Unit 6 must reconcile `ia-redirects.py`'s existing `features/` mappings
+   with the newer `generator/redirects/language-bucket.toml` rows (fragment
+   supersedes). Small fix queued: `toolchain/packages.html` stale manifest
+   shape.
 
 ## Open questions
 
