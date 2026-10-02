@@ -1,0 +1,6 @@
+error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab: 未闭合字符串字面量（字符串中出现换行）
+phase: lex
+file: generator/locale-captures/error.fab
+span: 173..187
+source: ⁨fixum textus nuntius ← "Salve, munde!⁩
+help: 在行尾或文件结束前闭合字符串字面量

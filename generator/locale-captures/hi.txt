@@ -1,0 +1,6 @@
+error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab: समाप्त न हुआ string literal (string में newline)
+phase: lex
+file: generator/locale-captures/error.fab
+span: 173..187
+source: ⁨fixum textus nuntius ← "Salve, munde!⁩
+help: पंक्ति या फ़ाइल के अंत से पहले string literal बंद करें
