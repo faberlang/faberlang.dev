@@ -163,7 +163,7 @@ Units 2–5 are parallelizable after 1. Each stage ships a complete site.
 | 1 — tree nav engine | in flight | seat …bd47b (zai-glm-5.3-flash) | — | prerequisite for all buckets |
 | 2 — The Language | done | seat …c8d2b (deepseek-flash) | 50bb04267, f2bb3b460 → 84c049c1c | Overview + 6 Behavior pages |
 | 3a — grammar tree | done | seat …586c (deepseek-flash) | 54095c9d0 → 343dd137b | 258 productions, 9 families |
-| 3b — corpus reference | in flight | seat …e1b5 (zai-glm-5.3-flash) | — | taxonomy + anatomy + transcode |
+| 3b — corpus reference | done | seat …e1b5 (zai-glm-5.3-flash) | 928a34ef5 → fe66ec36b | 9 buckets + A–Z + transcode |
 | 4 — By Target | done | seat …a3e39 (deepseek-flash) | 6c81ddd5b, 224ad6a94 → 993f4400b | releases → faber 1.11.0 |
 | 5 — By Locale | done | seat …bc9e0 (deepseek-flash) | c3cd35893, be307073f → 3db2202ce | 8-pack join + captures |
 | 6 — migration closeout | pending | — | — | gates + redirects last; injector parent-owned |
@@ -188,7 +188,11 @@ Units 2–5 are parallelizable after 1. Each stage ships a complete site.
 8. Follow-ups outside this repo (radix): device-emit regression (metal/wgsl
    `mir_metal_text_unsupported`); `radix check --locale=<non-la>` pack
    validation failure; **runner mid-expression numeric reduction**
-   (`(a+b)/2` over `modulus<u8>` → 22, violating the store-only law).
+   (`(a+b)/2` over `modulus<u8>` → 22, violating the store-only law);
+   **emit/runtime alias split** (emit spells `faber::display_bivalens`,
+   runtime renamed to `faber::display::*` — blocks HEAD-toolchain builds;
+   1.11.0 release pair is consistent); `faber convert` corpus mode
+   (317/601 exempla refused → token-projection fallback).
 9. Unit 6 must reconcile `ia-redirects.py`'s existing `features/` mappings
    with the newer `generator/redirects/language-bucket.toml` rows (fragment
    supersedes). Small fix queued: `toolchain/packages.html` stale manifest
