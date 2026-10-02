@@ -1,0 +1,6 @@
+error[LEX001:newline_in_string_literal] lex generator/locale-captures/error.fab: حرفية سلسلة غير مغلقة (سطر جديد في السلسلة)
+phase: lex
+file: generator/locale-captures/error.fab
+span: 173..187
+source: ⁨fixum textus nuntius ← "Salve, munde!⁩
+help: أغلق حرفية السلسلة قبل نهاية السطر أو الملف

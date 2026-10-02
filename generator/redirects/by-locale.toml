@@ -1,0 +1,10 @@
+# Redirect registry — the "By Locale" group (Reader locales).
+#
+# One row per *retired* URL: `from` is the path the build writes a meta-refresh
+# stub at, `to` is where the reader lands. A new page needs no row, so this
+# list is empty when the group only adds URLs — which is the case here.
+#
+# This unit adds /language/locales/** as new pages and keeps the section hub at
+# its existing /language/reader-locales.html, so nothing is retired.
+
+redirects = []
