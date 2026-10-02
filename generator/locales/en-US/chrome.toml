@@ -74,3 +74,192 @@ license_key = "License"
 
 [footer]
 sources_heading = "Sources"
+
+# Sidebar nav labels exactly as nav.fab emits them. inject-chrome.py replaces
+# these strings inside <aside>; a label must be declared here even when no
+# locale translates it, or a shorter translated label can be substituted
+# inside it. Labels covered by the sections above (Overview, Examples,
+# Releases, All releases, the agent items) are not repeated.
+[nav]
+group_language = "The Language"
+group_targets = "By Target"
+group_locales = "By Locale"
+group_libraries = "Libraries"
+behavior = "Behavior"
+grammar = "Grammar"
+installation = "Installation"
+hir = "HIR"
+rust = "Rust"
+typescript = "TypeScript"
+go = "Go"
+faber_target = "Faber"
+mir = "MIR"
+llvm = "LLVM IR"
+wasm = "WebAssembly text"
+wgsl = "WGSL"
+gpu = "GPU"
+metal = "Metal"
+target_matrix = "Target matrix"
+reader_locales = "Reader locales"
+localization = "Localization"
+norma = "Norma — stdlib"
+triga = "Triga — graphics"
+gradus = "Gradus — autograd"
+tela = "Tela — views"
+inferentia = "Inferentia — inference"
+the_corpus = "The corpus"
+macos_arm64 = "macOS arm64"
+linux_x64 = "Linux x64"
+
+# The sidebar tree, mirroring nav.fab item for item (nav.fab renders; this
+# registers structure and per-locale labels). section is the target page's
+# frontmatter section. When adding an entry: extend nav.fab, then mirror it
+# here in every locale, and add the label to [nav] above plus its
+# translation in each locale file.
+[[nav.group]]
+id = "language"
+label = "The Language"
+[[nav.group.item]]
+label = "Overview"
+href = "/language/"
+section = "language"
+[[nav.group.item]]
+label = "Behavior"
+href = "/language/"
+section = "language"
+[[nav.group.item]]
+label = "Grammar"
+href = "/reference/grammar.html"
+section = "reference"
+[[nav.group.item]]
+label = "Examples"
+href = "/examples/"
+section = "examples"
+[[nav.group.item]]
+label = "Installation"
+href = "/start/install.html"
+section = "install"
+[[nav.group]]
+id = "targets"
+label = "By Target"
+[[nav.group.item]]
+label = "HIR"
+href = "/targets/hir.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "Rust"
+href = "/targets/rust.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "TypeScript"
+href = "/targets/ts.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "Go"
+href = "/targets/go.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "Faber"
+href = "/targets/faber.html"
+section = "targets"
+[[nav.group.item]]
+label = "MIR"
+href = "/targets/mir.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "LLVM IR"
+href = "/targets/llvm-text.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "WebAssembly text"
+href = "/targets/wasm-text.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "WGSL"
+href = "/targets/wgsl-text.html"
+section = "targets"
+[[nav.group.item]]
+label = "GPU"
+href = "/targets/gpu.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "Metal"
+href = "/targets/metal-text.html"
+section = "targets"
+[[nav.group.item]]
+label = "Target matrix"
+href = "/toolchain/target-matrix.html"
+section = "targets"
+[[nav.group]]
+id = "locales"
+label = "By Locale"
+[[nav.group.item]]
+label = "Reader locales"
+href = "/language/reader-locales.html"
+section = "language"
+[[nav.group.item]]
+label = "Localization"
+href = "/localization.html"
+section = "localization"
+[[nav.group]]
+id = "libraries"
+label = "Libraries"
+[[nav.group.item]]
+label = "Norma — stdlib"
+href = "/libraries/norma.html"
+section = "libraries"
+[[nav.group.item]]
+label = "Triga — graphics"
+href = "/libraries/triga.html"
+section = "libraries"
+[[nav.group.item]]
+label = "Gradus — autograd"
+href = "/libraries/gradus.html"
+section = "libraries"
+[[nav.group.item]]
+label = "Tela — views"
+href = "/libraries/tela.html"
+section = "libraries"
+[[nav.group.item]]
+label = "Inferentia — inference"
+href = "/libraries/inferentia.html"
+section = "libraries"
+[[nav.group.item]]
+label = "The corpus"
+href = "/libraries/corpus.html"
+section = "libraries"
+[[nav.group]]
+id = "releases"
+label = "Releases"
+[[nav.group.item]]
+label = "All releases"
+href = "/releases/"
+section = "releases"
+[[nav.group.item]]
+label = "macOS arm64"
+href = "https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz"
+section = ""
+[[nav.group.item]]
+label = "Linux x64"
+href = "https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz"
+section = ""
+[[nav.group]]
+id = "agents"
+label = "For agents"
+compact = true
+[[nav.group.item]]
+label = "Agent index"
+href = "/llms.txt"
+section = ""
+[[nav.group.item]]
+label = "Agent guide"
+href = "/agents/index.md"
+section = ""
+[[nav.group.item]]
+label = "Agent skills"
+href = "/.well-known/agent-skills/index.json"
+section = ""
+[[nav.group.item]]
+label = "Full reference"
+href = "/llms-full.txt"
+section = ""
