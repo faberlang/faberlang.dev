@@ -1,0 +1,10 @@
+# Redirect fragments for the grammar tree (site-ia-rework unit 3).
+#
+# Empty by design. `/reference/grammar.html` keeps its URL and becomes the
+# family index, and the family pages under `/reference/grammar/<family>.html`
+# are new paths with no predecessor, so no grammar URL is retired by this unit.
+#
+# Add a row only when a grammar URL genuinely retires, in the shape consumed by
+# `apply-redirects.py`:
+#
+#   "/en-US/reference/grammar.html" = "/en-US/reference/grammar/somewhere.html"
