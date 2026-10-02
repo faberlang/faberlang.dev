@@ -162,11 +162,32 @@ Units 2–5 are parallelizable after 1. Each stage ships a complete site.
 | 0 — baseline tag | done | — | tag `site-v1.6.0` | 2026-10-02 |
 | 1 — tree nav engine | in flight | seat …bd47b (zai-glm-5.3-flash) | — | prerequisite for all buckets |
 | 2 — The Language | in flight | seat …c8d2b (deepseek-flash) | — | respawned off dead qwen slug |
-| 3a — grammar tree | in flight | seat …586c (deepseek-flash) | — | split from 3; respawned off qwen |
+| 3a — grammar tree | done | seat …586c (deepseek-flash) | 54095c9d0 → 343dd137b | 258 productions, 9 families |
 | 3b — corpus reference | in flight | seat …e1b5 (zai-glm-5.3-flash) | — | taxonomy + anatomy + transcode |
-| 4 — By Target | in flight | seat …a3e39 (deepseek-flash) | — | incl. releases refresh to 1.11.0 |
-| 5 — By Locale | in flight | seat …bc9e0 (deepseek-flash) | — | respawned off dead qwen slug |
+| 4 — By Target | done | seat …a3e39 (deepseek-flash) | 6c81ddd5b, 224ad6a94 → 993f4400b | releases → faber 1.11.0 |
+| 5 — By Locale | done | seat …bc9e0 (deepseek-flash) | c3cd35893, be307073f → 3db2202ce | 8-pack join + captures |
 | 6 — migration closeout | pending | — | — | gates + redirects last; injector parent-owned |
+
+## Integration queue (parent-owned, after units 1/2/3b land)
+
+1. Wire `build-site.sh` step 0b: `generate-grammar-tree.py` (after
+   generate-grammar); `capture-locale-diagnostics.sh` +
+   `generate-locale-reference.py` (after generate-agent-locales.py);
+   unit 2's `generate-overview.py` line (from its receipt).
+2. Fix `generate-releases.py` `notes_dir`: `faber/docs/release` →
+   `radix/docs/release/faber/` (seat bridged with symlinks outside repo).
+3. Sidebar release pin → faber 1.11.0 (URLs in `receipts/unit-4.md`).
+4. Toolchain: generator rebuild needs faber 1.11.0 (1.10.0 fails
+   `E0425 display_bivalens` / parse errors — confirmed in main checkout).
+   Use the 1.11.0 tarball on PATH/FABER for builds; ask operator before
+   replacing the installed `~/.cargo/bin/faber`.
+5. Verify `faber-1.8.0.md` curated-content loss vs the imported notes.
+6. Chrome wiring for all five nav groups (unit 1 engine + receipt entries).
+7. Decide grammar family-page `section` stamping vs URL-derived active path
+   (see `receipts/unit-3a.md`).
+8. Follow-ups outside this repo: device-emit regression (metal/wgsl
+   `mir_metal_text_unsupported`); `radix check --locale=<non-la>` pack
+   validation failure.
 
 ## Open questions
 
