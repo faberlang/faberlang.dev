@@ -207,7 +207,8 @@ def _project_inline(line: str, mapping: dict[str, str]) -> str:
 
 
 def project_markdown(text: str, mapping: dict[str, str], *, relative_path: str = "", reader: str = "en") -> str:
-    if relative_path.replace("\\", "/").endswith("reference/grammar.md"):
+    rel = relative_path.replace("\\", "/")
+    if rel.endswith("reference/grammar.md") or "/reference/grammar/" in rel:
         return text
     lines = text.splitlines(keepends=True)
     out: list[str] = []
