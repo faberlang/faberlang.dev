@@ -1,0 +1,14 @@
+# Corpus IA rework — retired-URL rows (site-ia-rework unit 3, corpus half).
+#
+# Rows are added ONLY for corpus URLs the unit actually retires. The corpus
+# rework retires none: the hub keeps /corpus/index.html, the legacy per-tag
+# category pages keep rendering at /corpus/category/<tag>.html (they leave
+# the hub but stay live), and /corpus/az.html plus /corpus/bucket/<key>.html
+# are new paths, not moves.
+#
+# Schema — site-root URLs, locale-less, same convention as ia-redirects.py;
+# consumed by the redirect stub injector when the first row lands:
+#
+# [[redirect]]
+# from = "/corpus/<retired>.html"
+# to   = "/corpus/<replacement>.html"

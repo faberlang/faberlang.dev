@@ -1,0 +1,127 @@
+# Curated corpus taxonomy — site-ia-rework unit 3 (corpus half).
+#
+# Maps the mechanical `category = "…"` tags in radix/corpus frontmatter onto
+# reader-facing buckets. The corpus hub lists only these buckets; the legacy
+# per-tag category pages keep rendering but leave the hub.
+#
+# A tag listed under no bucket lands in the catch-all bucket (exactly one,
+# `catchall = true`), so a new corpus tag can never strand its terms off the
+# hub. Table order is hub order. `key` is the URL slug under
+# /corpus/bucket/; `label`/`blurb` are English (per-locale labels are a
+# chrome concern, not a corpus one).
+
+[[bucket]]
+key = "declarations"
+label = "Declarations"
+blurb = "Binding names, annotations, visibility, and compile-time constants."
+tags = [
+    "aliasing",
+    "assignment",
+    "availability",
+    "binding",
+    "codegen",
+    "comptime",
+    "declaration",
+    "identifier",
+    "lane",
+    "metadata",
+    "modifier",
+]
+
+[[bucket]]
+key = "types"
+label = "Types & collections"
+blurb = "The type system: records, unions, generics, collections, literals, and ranges."
+tags = [
+    "boolean",
+    "collection",
+    "literal",
+    "object",
+    "range",
+    "type",
+    "types",
+    "values",
+]
+
+[[bucket]]
+key = "control-flow"
+label = "Control flow"
+blurb = "Branching, matching, loops, destructuring, and jumps."
+tags = [
+    "control-flow",
+    "destructuring",
+    "iteration",
+    "transfer",
+]
+
+[[bucket]]
+key = "operators"
+label = "Operators & expressions"
+blurb = "Arithmetic, logic, comparison, member access, and call expressions."
+tags = [
+    "arithmetic",
+    "bitwise",
+    "comparison",
+    "expression",
+    "logic",
+    "mutation",
+    "non-null-chain",
+    "operators",
+    "optional-chain",
+]
+
+[[bucket]]
+key = "functions"
+label = "Functions & modules"
+blurb = "Functions, closures, generics at call sites, packages, and program entries."
+tags = [
+    "application",
+    "entry",
+    "function",
+    "package",
+    "scalar",
+]
+
+[[bucket]]
+key = "conversions"
+label = "Conversions & formatting"
+blurb = "Casts between types, fallible conversion, and text formatting."
+tags = [
+    "conversion",
+    "format",
+    "template",
+]
+
+[[bucket]]
+key = "errors"
+label = "Errors"
+blurb = "Throwing, catching, and aborting."
+tags = [
+    "errors",
+]
+
+[[bucket]]
+key = "concurrency"
+label = "Concurrency & I/O"
+blurb = "Async functions, futures, streams, channels, and file I/O."
+tags = [
+    "ad",
+    "async",
+    "endpoint",
+    "io",
+]
+
+[[bucket]]
+key = "testing"
+label = "Testing"
+blurb = "The test library: assertions, fixtures, suites, and benchmarks."
+tags = [
+    "testing",
+]
+
+[[bucket]]
+key = "other"
+label = "Other"
+blurb = "Everything the curated buckets above do not claim."
+catchall = true
+tags = []
