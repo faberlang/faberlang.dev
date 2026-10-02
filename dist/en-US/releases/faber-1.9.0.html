@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="No prebuilt archives were published for this version. It is listed here because its release notes are part of the record."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Faber 1.9.0 — Faber"><meta property="og:description" content="No prebuilt archives were published for this version. It is listed here because its release notes are part of the record."><meta property="og:url" content="https://faberlang.dev/en-US/releases/faber-1.9.0.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/releases/faber-1.9.0.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Faber 1.9.0 — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">The Language</div><ul class="nav"><li><a href="/en-US/language/overview.html">Overview</a></li><li><details class="nav-branch"><summary>Behavior</summary><ul><li><a href="/en-US/language/behavior/type-first.html">Types before names</a></li><li><a href="/en-US/language/behavior/glyph-law.html">The glyph law</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">Sealed reader locales</a></li><li><a href="/en-US/language/behavior/packages.html">A program is a package</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">Errors as values, tests as declarations</a></li></ul></details></li><li><details class="nav-branch"><summary>Grammar</summary><ul><li><a href="/en-US/reference/grammar.html">Grammar overview</a></li><li><a href="/en-US/reference/grammar/program.html">Programs, regions &amp; imports</a></li><li><a href="/en-US/reference/grammar/declarations.html">Declarations &amp; bindings</a></li><li><a href="/en-US/reference/grammar/annotations.html">Annotations &amp; directives</a></li><li><a href="/en-US/reference/grammar/types.html">Types &amp; contracts</a></li><li><a href="/en-US/reference/grammar/statements.html">Statements &amp; control flow</a></li><li><a href="/en-US/reference/grammar/expressions.html">Expressions &amp; operators</a></li><li><a href="/en-US/reference/grammar/patterns.html">Patterns &amp; destructuring</a></li><li><a href="/en-US/reference/grammar/errors.html">Error channel</a></li><li><a href="/en-US/reference/grammar/lexical.html">Lexical structure &amp; glyphs</a></li><li><a href="/en-US/corpus/az.html">Terms A–Z</a></li></ul></details></li><li><a href="/en-US/examples/">Examples</a></li><li><a href="/en-US/start/install.html">Installation</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">By target</div><ul class="nav"><li><a href="/en-US/targets/">All targets</a></li><li><details class="nav-branch"><summary>HIR — application</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>MIR — systems</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly text</a></li></ul></details></li><li><details class="nav-branch"><summary>GPU — device</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li></ul><div class="side-h">Reader locales</div><ul class="nav"><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/locales/keywords.html">Keyword reference</a></li><li><a href="/en-US/language/locales/examples.html">Locale examples</a></li><li><a href="/en-US/language/locales/diagnostics.html">Diagnostics by locale</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Releases</div><ul class="nav"><li><a href="/en-US/releases/" class="active">All releases</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Faber 1.9.0</h1><div class="content"><div class="table-scroll"><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td><strong>Product</strong></td><td>Faber</td></tr><tr><td><strong>Version</strong></td><td>1.9.0</td></tr><tr><td><strong>License</strong></td><td>MIT</td></tr></tbody></table></div><h2 id="install">Install this version<a class="anchor" href="#install">#</a></h2><p>No prebuilt archives were published for this version. It is listed here because its release notes are part of the record.</p><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><blockquote><p><strong>Status</strong>: final</p></blockquote><p>Minor product release on the odd-major 1.x development line (<code>policy.md</code>),
+cut from the <code>release/1.9.0</code> branch under the release-branch model (operator
+amendment 2026-08-25: freeze commit → soak → ladder on branch tips → tag).
+Range: <code>faber/v1.8.0</code> (<code>1277976c7</code>, 2026-08-18) → branch tip <code>e3af59886</code>
+(+ release commit; 2026-08-18→2026-08-26). Headline: <strong>MIR completeness lands</strong> (the release hold condition), the <strong>stage-4b recipe repair</strong> ends the
+canary blind spot, and the window carries the <strong>kernel/reduction wave</strong>,
+<strong>tensor glyphs</strong>, <strong>container-bounds law</strong>, and the <strong>equality ladder</strong>.
+The release pins the tested <strong>radix 0.84.0</strong> companion (no radix archive,
+per the 2026-08-25 recomposition).</p><h3 id="provenance">Provenance<a class="anchor" href="#provenance">#</a></h3><p>Routine disclosure. Anchor: <code>faber/v1.8.0</code> (last final tag of the faber
+family). Window: <code>git log faber/v1.8.0..e3af59886</code> (2016 no-merge commits,
+2026-08-18→2026-08-26). Sources consulted: the window git log, factory goal
+docs (<code>docs/factory/</code>, <code>docs/archived/</code>), the release-prep plan
+(<code>v1.9.0-plan.md</code>, need <code>332513a9</code>), the stage-4b classification record
+(<code>1.9.0-stage4b-classification.md</code>), the operator SHIP decision (memo
+<code>b70088fa</code>, 2026-08-26 21:2xZ), and the release-lane execution receipts in
+this document. The <code>release-notes</code> skill template governs section shape.
+Not consulted: full Vivi dumps (handles cited inline where they were part of
+the release record); per-goal delivery audits beyond the status lines.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>2016</td></tr><tr><td>Merge commits</td><td>314</td></tr><tr><td><code>feat(...)</code> commits</td><td>296</td></tr><tr><td><code>fix(...)</code> commits</td><td>272</td></tr><tr><td><code>docs(...)</code> commits</td><td>784</td></tr><tr><td><code>test(...)</code> commits</td><td>206</td></tr><tr><td><code>style(...)</code> commits</td><td>56</td></tr><tr><td><code>chore(...)</code> commits</td><td>61</td></tr><tr><td><code>refactor(...)</code> commits</td><td>37</td></tr><tr><td><code>perf(...)</code> commits</td><td>2</td></tr></tbody></table></div><p>Reconstruct the full log:</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">git</span> log faber/v1.8.0..e3af59886 <span class="tok-op">--oneline</span> <span class="tok-op">--no-merges</span></code></pre><h3 id="release-branch-record">Release-branch record<a class="anchor" href="#release-branch-record">#</a></h3><ul><li><strong>Freeze commit:</strong> <code>9c8bd6a99</code> (operator-declared 2026-08-25).</li><li><strong>Branch:</strong> <code>release/1.9.0</code>; stabilization commits on the branch:
+<code>a1ec273f1</code> (e2e coverage-ledger regen), <code>2d1fa5319</code> (metal
+FunctionScope param-struct clippy fix), <code>ee376deee</code> (rustfmt drift),
+<code>e3af59886</code> (stage-4b recipe cherry-pick of main <code>6c5b42528</code>).</li><li><strong>Soak:</strong> 24h target from freeze declaration; canary-refire waves closed
+the known-red picture to 7 genuine reds + 9 env-gated skips at main
+(handle <code>65351193</code>, classification doc &quot;Post-wave delta&quot;).</li><li><strong>Operator decision:</strong> SHIP with the 7-row known-red table acked
+(memo <code>b70088fa</code>, verdict verbatim &quot;SHIP IT&quot;, 2026-08-26 21:2xZ).</li></ul><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="mir-completeness-the-release-hold">MIR completeness (the release hold)<a class="anchor" href="#mir-completeness-the-release-hold">#</a></h4><p>The 1.9.0 plan existed because of this goal; it landed at <code>9518b21c5</code>
+(closeout audit <code>3788f300</code> — residual, no blocker), satisfying the &quot;hold
+until MIR implementation is in place&quot; condition from release instruction
+need <code>332513a9</code>. The systems lane (MIR → FMIR runtime/emit/staging/
+validation, tensors/kernels/low-level targets) reached its completeness
+gate inside this window.</p><h4 id="stage-4b-recipe-repair-test-harness-integrity">Stage-4b recipe repair (test-harness integrity)<a class="anchor" href="#stage-4b-recipe-repair-test-harness-integrity">#</a></h4><p>Stage 4b previously ran one workspace-wide fail-fast <code>cargo test</code>, which
+aborted at the first failing crate and hid later crates from the
+canary/gate verdict — a blind spot that hid 67 failures across prior
+&quot;green&quot; runs. The fix — a per-crate <code>--no-fail-fast</code> loop with an
+env-gated skip taxonomy — landed on main as <code>6c5b42528</code> and was
+cherry-picked to this branch as <code>e3af59886</code> (the branch tip). The full
+classification record (67 hidden failures → 7 genuine reds + 9 env-gated
+skips after the canary-closure waves) is
+<a href="1.9.0-stage4b-classification.md"><code>1.9.0-stage4b-classification.md</code></a>.</p><h4 id="kernel-reduction-wave">Kernel / reduction wave<a class="anchor" href="#kernel-reduction-wave">#</a></h4><p>Kernel-lane K1/K2 and reduction verbs M1–M4a+R2 (window content per need
+<code>332513a9</code>); the <code>faber-kernel-*</code> goal family (host, json, namespace,
+processus, glob-import, aleator) moved through the window with 242
+MIR-touching commits, 35 kernel-named and 20 reduction-named.</p><h4 id="tensor-glyphs-tensor-glyphs-3">Tensor glyphs (tensor-glyphs-3)<a class="anchor" href="#tensor-glyphs-tensor-glyphs-3">#</a></h4><p>U1 (operator form <code>⊙</code> + exemplar pins), U2 (homoglyph diagnostics:
+<code>∘→⊙</code>, <code>‖/∥→.rms_norm(...)</code> did-you-mean), U3 (<code>ᵀ</code> transpose sugar,
+rank-1 permanent decline + rank-3+ deferred), U4 (<code>⊘</code> identical-shape
+law), U6 (u32→position-independent idiom migration). EBNF, tree-sitter,
+and skills rode each unit.</p><h4 id="container-bounds-law">Container-bounds law<a class="anchor" href="#container-bounds-law">#</a></h4><p>B1 literal-bounds check (<code>0598206dd</code>) and B2 hard-error at lowering +
+runtime (<code>e46e598c0</code>); B3 folding follow-up deferred, B4 skill-leg open
+(goal status: active — the deferred/open units are not release gates).</p><h4 id="equality-ladder">Equality ladder<a class="anchor" href="#equality-ladder">#</a></h4><p>Goal archived this window (<code>docs/archived/equality-ladder/</code>): A+B+C+E
+landed with closeout; the ≅/≈ promotion-exact vs fuzzy tiers and the
+pairs ≡≢ ≅≇ ≈≉ re-spelling (need record in the 1.8.0→1.9.0 window).</p><h4 id="other-window-content-per-release-instruction-332513a9">Other window content (per release instruction <code>332513a9</code>)<a class="anchor" href="#other-window-content-per-release-instruction-332513a9">#</a></h4><p>Error-conversion E1–E5, infinity literals IL-1..5, the collection
+program, silu admission, the int-power fix, and pack parity. The
+<code>collection-ergonomics</code> goal itself remained pre-implementation at freeze
+(status: planned) — the collection window content rode other goals.</p><h3 id="pin-pair">Pin pair<a class="anchor" href="#pin-pair">#</a></h3><p><code>release-manifest.yaml</code> (regenerated by <code>scripta/assemble-dev-kit</code>,
+prepared 2026-08-26) pins this candidate against <strong>radix 0.84.0</strong>
+(source <code>e3af59886a8ce9ecf5ded89cab24f7efbdca3a75</code> — faber and radix
+share the pin per the sweep-14 E2 rule), <strong>hosts `c1f9fd1e17ca`</strong>
+(<code>c1f9fd1e17ca6da0389538bc9a0dee101f68c150</code>), launcher digest
+<code>sha256:6d1d89ff07bcbe5c717556a551d318db97657a46cc3da7879ea38dda64cd772f</code>,
+reference-pack digest
+<code>sha256:0037686316a5ee23b20c36c98b804dd9219a09d1c19b925b8e6d29090716709e</code>.
+<code>releaseIntent.version</code> is <code>1.9.0</code>, channel candidate, line <code>1.x</code>.
+The <code>--locked</code> release build from these pins is the proof.</p><h3 id="radix-companion">Radix companion<a class="anchor" href="#radix-companion">#</a></h3><p>Radix minor-bumps to <strong>0.84.0</strong> with this release (39 workspace crates;
+<code>faber-hir-rust</code> stays 1.4.0, support crates stay 0.1.0). No radix binary
+archive: the Radix binary release workflow is retired (2026-08-25
+recomposition); Faber is the only active binary release surface. The
+companion tag <code>v0.84.0</code> is created locally and <strong>not pushed</strong> (1.8.0
+precedent). Companion notes: <a href="../v0.84.0.md"><code>../v0.84.0.md</code></a>.</p><h3 id="known-issues-operator-acked-verbatim">Known-issues (operator-acked, verbatim)<a class="anchor" href="#known-issues-operator-acked-verbatim">#</a></h3><p>Operator decision 2026-08-26 21:2xZ (memo <code>b70088fa</code>): verdict verbatim
+<strong>&quot;SHIP IT&quot;</strong>; known-red releases are legal with operator ack
+(<code>radix/AGENTS.md</code>). The acked list — the 7-row table in the 21:21Z
+package — recorded verbatim from the decision memo:</p><blockquote><p>Acked list = the 7-row table in the 21:21Z package: classification-table
+7, CTR-08 transitional (self-deleting), PML4 FMIR (gradus-owned,
+self-deleting), PTX IR (diagnosis queued), corpus-count 365-&gt;368 re-pin
+(owner filed), runner/async-tempus rows, bijection transpone gap.</p></blockquote><p>Row 1 (&quot;classification-table 7&quot;) is the seven genuine unit-test reds,
+recorded verbatim from
+<a href="1.9.0-stage4b-classification.md"><code>1.9.0-stage4b-classification.md</code></a>
+(&quot;Remaining genuine reds (7)&quot;, post-wave delta at pin <code>18519ccd3</code>):</p><div class="table-scroll"><table><thead><tr><th>#</th><th>Crate</th><th>Test</th><th>Class</th></tr></thead><tbody><tr><td>1</td><td>faber</td><td><code>faber_build_writes_static_assets_and_manifest_for_browser_product</code></td><td>web2_build (tela-validate.ts TS2345)</td></tr><tr><td>2</td><td>mir-emit-harness</td><td><code>conversio_tests::valor_lista_to_lista_numerus_preserves_dynamic_strictness_per_element</code></td><td>bounded-literal conversion/copiae class</td></tr><tr><td>3</td><td>mir-emit-harness</td><td><code>runner_tests::runner_runs_lista_methodi_copiae_fixture</code></td><td>same class as #2</td></tr><tr><td>4</td><td>radix-module</td><td><code>empty_array_and_spread_literals_no_longer_report_annotation_or_type_errors</code></td><td>array_spread mechanical (cluster 3)</td></tr><tr><td>5</td><td>radix-module</td><td><code>lowers_nested_collection_higher_order_synthetic_closures</code></td><td>collection-transform mechanical (cluster 3)</td></tr><tr><td>6</td><td>radix-module</td><td><code>discerne_alias_and_multi_subject_roundtrip_through_faber_codegen</code></td><td>match SEM004</td></tr><tr><td>7</td><td>radix-module</td><td><code>bijection_ratchet_equals_probe_derived_gap_set</code></td><td>bijection ratchet gap (cluster 8)</td></tr></tbody></table></div><p>Env-gated skips (9, not red): the 5 <code>gea*_pipeline_exports_*</code> /
+<code>gea3_pipeline_plan_admission</code> artifact-dir gates (mir-emit-harness) plus
+the 4 faber-prefill-oracle GEA_SOURCE / GEA2_F32_GGUF gates.</p><p>Branch-base note (disclosed, not re-derived): the canary-closure regens
+(pin <code>18519ccd3</code> era) landed on main after the freeze and are not on the
+<code>release/1.9.0</code> branch; the branch therefore measures the pre-closure
+known-red picture (13 genuine reds per the classification record) unless
+a wave landed on-branch. The operator ack covers the 7-row table above;
+the branch-measured delta is recorded in the Verification section as
+receipt lines, not investigated here (release-lane charter: dispatch is
+the decision).</p><h3 id="verification">Verification<a class="anchor" href="#verification">#</a></h3><p>Release-lane receipts (candidate = <code>release/1.9.0</code> tip <code>e3af59886</code> +
+version-bump/manifest/notes release commit, packet
+<code>worktrees/release-190</code>):</p><ul><li><strong>Version bump:</strong> <code>crates/faber</code> 1.8.0→1.9.0; 39 radix-line crates
+0.83.0→0.84.0; <code>cargo update</code> lockfile refresh (61/61 lines).</li><li><strong>Cheap gates:</strong> <code>cargo build --locked --release -p faber --bin faber</code> —
+green, <code>target/release/faber --version</code> → <code>faber 1.9.0</code>.
+<code>scripta/validate-release-manifest release-manifest.yaml</code> — ok.
+<code>scripta/faber-regen-lock --pinned-siblings --check</code> — ok
+(hosts=<code>c1f9fd1e17ca</code>, Cargo.lock fresh).</li><li><strong>Release boundary ladder</strong> (<code>./scripta/test --release</code>, packet
+<code>worktrees/release-190</code>, run log receipts retained by the release seat):</li><li>stage 1 gate + fmt: <strong>green</strong>; stage 2 clippy <code>-D warnings</code>:
+<strong>0 errors</strong> (inventory <code>target/stage-2-clippy.jsonl</code>).</li><li>stage 3 test canary: <strong>1 package ok</strong> (ratchet list clean).</li><li>stage 4a measurement freshness: initially <strong>red — committed compat JSON stale</strong>; regenerated per the protocol step
+(<code>./scripta/emit-compat-json.py</code>, 13 files) — gate <strong>green</strong> after
+regen. The regen is part of the release commit (1.8.0 hand-65
+precedent).</li><li>stage 4b per-crate <code>--no-fail-fast</code> (the branch-tip recipe
+<code>e3af59886</code>): <strong>genuine FAILs 63 across 6 crates; env-gated skips 7</strong>
+— faber 1 (the acked row #1), mir-emit-harness 24, radix-mir-metal 1,
+radix-module 34, radix-program 1, radix-semantic 2. This is the
+<strong>pre-closure</strong> picture (classification record pin <code>06eefed00</code>: 63
+genuine + 9 env-gated); the canary-closure regens that reduce it to
+the acked 7 landed on main after the freeze and are not on the
+branch. The ladder aborts at 4b on genuine reds by design; the
+remaining boundary legs ran as separate receipts (below). Per the
+release charter the operator ack governs; reds are notes lines, not
+holds.</li><li>stage 4c boundary (module-boundary parity), 4d metal spike, 4e
+generated-crate check: <strong>green</strong> (<code>./scripta/test --stage 4c-4e</code>,
+exit 0).</li><li>e2e fleet (<code>./scripta/e2e all</code> then per-target lanes): receipts in
+the e2e section below.</li><li><strong>Matrix refresh (faber repo):</strong> <code>scripta/render-matrices.py</code> over the
+regenerated measurement JSON (packet faber sibling, path-limited
+commit on its packet branch) — <code>docs/EBNF_MATRIX.md</code> +
+<code>docs/CONVERSIO_MATRIX.md</code> rewritten, <code>--check</code> → <strong>matrices fresh</strong>.</li><li><strong>Packet pinning (mechanical environment facts, disclosed):</strong> the
+release packet carries writable <code>radix</code> + <code>faber</code> only; the ladder's
+sibling lookups were pinned read-only — container symlinks for
+<code>hosts</code>/<code>gradus</code>/<code>examples</code>/<code>norma</code>/<code>triga</code>/<code>tela</code>/<code>cista</code>, plus
+packet-local env pins for the frozen surfaces
+(<code>FABER_RADIX_STDLIB=$PWD/stdlib</code>, <code>FABER_EXEMPLA_CORPUS=$PWD/corpus</code>,
+<code>FABER_PACKAGE_CORPUS=$PWD/product-corpus</code>,
+<code>FABER_LIBRARY_HOME=/tmp/freeze-home-190</code> — a read-only freeze-era
+library home: gradus <code>a39eefe</code>, norma <code>46732cc</code>, faber <code>1b7100d</code>,
+extracted by <code>git archive</code>). Without the stdlib pin the exempla
+harness resolves the <strong>main</strong> checkout's stdlib through
+<code>faberlang_home()</code> and reports <code>HIR analysis_ok floor regression:
+0 &lt; 279</code>; with the pin the parse floor passes (354/413).</li><li><strong>e2e fleet</strong> (packet-local corpus pins as above; per-target lanes run
+individually because <code>all</code> aborts at the first red lane): <strong>green</strong> —
+<code>canonical</code>, <code>mir</code>, <code>gpu</code> (exit 0). <strong>red</strong> — <code>rust</code> (emit: 20
+unexpected exempla failures, LOCALE002/SEM010/CODEGEN001 classes —
+the classification record's locale-drift &quot;corpus-emit helpers&quot; family
+and codegen string-shape drift cluster), <code>go</code> (emit: 24), <code>ts</code>
+(lint: 89), <code>wasm</code> (environmental: <code>RADIX_WASM_STUB_HOST</code> absent —
+the carried 1.8.0 environmental class), <code>llvm</code>, <code>roundtrip</code> (69),
+<code>sexp</code> (481), <code>runner</code> (includes <code>call/async-tempus-dormiet.fab</code> — the
+acked runner/async-tempus row), <code>swift</code> (optional target; emit reds).
+These are the frozen-branch e2e known-reds; per the charter they are
+notes lines under the operator ack, not investigation targets.</li><li><strong>`./scripta/release-gate --locked-release-build`</strong> (run once on the
+exact candidate): locked release build <strong>ok</strong>, hygiene <strong>ok</strong>
+(851 passed), <code>cargo test -p faber</code> green except <strong>one</strong> red —
+<code>faber_build_writes_static_assets_and_manifest_for_browser_product</code>
+(web2_build) — exactly acked row #1. Exit 101 on that single acked
+red.</li><li><strong>Artifact + install-from-artifact proof</strong> (runbook local proof,
+<code>aarch64-apple-darwin</code> leg): <code>assemble-dev-kit</code> → staging +
+regenerated <code>release-manifest.yaml</code>; <code>package-archive</code> →
+<code>dist/faber-v1.9.0-aarch64-apple-darwin.tar.gz</code> (10,699,506 bytes) +
+basename-only <code>.sha256</code>, <code>--check</code> <strong>ok</strong>;
+<code>smoke-test-release-archive</code> → <strong>RELEASABLE</strong> (bare-binary locale
+explains en/la/zh-Hans/zh-Hant/th-TH/vi, reference pack, rust emit,
+MIR-runner hello-world, 18-subcommand tree, package intake, 9 emit
+lanes, convert, <code>faber --version</code> contains 1.9.0, archive layout);
+<code>install-faber --version 1.9.0 --triple aarch64-apple-darwin
+--base-url dist --prefix dist/install-prefix</code> (SHA-256-verified
+local-mirror channel) → installed <code>bin/faber --version</code> →
+<strong>faber 1.9.0</strong>; installed-binary <code>faber explain SEM001</code> (en) and
+<code>--diagnostics-locale la</code> → embedded reader-locale packs load;
+<code>faber check</code> + <code>faber run</code> on <code>corpus/incipit/salve-munde.fab</code> →
+<code>ok</code> / <code>Salve, Munde!</code>.</li><li><strong>`verify-dev-kit` (stale script, disclosed):</strong> crashes with
+<code>FileNotFoundError … share/faber/locale</code> — the verifier still expects
+the pre-<code>e8b840c09</code> locale-tree layout, but the dev kit dropped
+locale packs from the payload on 2026-08-21 (reader locales are
+embedded in the binary; manifest and payload agree;
+<code>validate-release-manifest</code> green). Identical on main — a repo
+defect in the verifier, not an artifact defect. Embedded-locale
+usability is instead proven by the smoke + installed-binary receipts
+above.</li><li><strong>Leakage scan (disclosed finding):</strong> no credentials, private checkout
+URLs, or hidden build logs in the archive; the only absolute paths in
+<code>bin/faber</code> are build-machine paths compiled in via
+<code>env!(&quot;CARGO_MANIFEST_DIR&quot;)</code> defaults
+(<code>/Users/ianzepp/work/faberlang/worktrees/release-190/radix/crates/faber</code>)
+plus public <code>~/.cargo/registry</code> panic locations. The installed
+public-channel 1.7.0 binary carries the same class
+(<code>worktrees/release/radix/crates/faber</code>, 193 path strings) —
+pre-existing product shape, recorded for the operator's
+publish-time verification.</li></ul><h3 id="known-limitations">Known limitations<a class="anchor" href="#known-limitations">#</a></h3><p>Carried from 1.8.0 unless the window provably changed them: cross-module
+<code>string</code> handles, no numeric-inference accuracy claim, Haskell/Python are
+source-emit surfaces, AMD stays fail-closed until ROCm clang is
+provisioned.</p><h3 id="deferred">Deferred<a class="anchor" href="#deferred">#</a></h3><p>Per the 1.9.0 plan D1: GEA2-U5e physical receipt and U6b/U6c closeout
+continue post-1.9.0 (not release-gating). Container-bounds B3/B4.
+Tensor-glyphs U5 (law text) gated. <code>collection-ergonomics</code> minted but
+pre-implementation. Cista stays <code>0.1.0</code>-line (no protocol call this
+release).</p><p>---</p><p><a href="/en-US/releases/">All releases</a> · <a href="/en-US/start/install.html">Install the current release</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#install">Install this version</a></li><li class="toc-2"><a href="#notes">Release notes</a></li><li class="toc-3"><a href="#provenance">Provenance</a></li><li class="toc-3"><a href="#scale">Scale</a></li><li class="toc-3"><a href="#release-branch-record">Release-branch record</a></li><li class="toc-3"><a href="#major-tracks">Major tracks</a></li><li class="toc-3"><a href="#pin-pair">Pin pair</a></li><li class="toc-3"><a href="#radix-companion">Radix companion</a></li><li class="toc-3"><a href="#known-issues-operator-acked-verbatim">Known-issues (operator-acked, verbatim)</a></li><li class="toc-3"><a href="#verification">Verification</a></li><li class="toc-3"><a href="#known-limitations">Known limitations</a></li><li class="toc-3"><a href="#deferred">Deferred</a></li></ul></div></nav></div></body></html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="A § slot shows each value exactly as print does: booleans as true/false, a whole float with .0."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="scriptum-display — Faber"><meta property="og:description" content="A § slot shows each value exactly as print does: booleans as true/false, a whole float with .0."><meta property="og:url" content="https://faberlang.dev/en-US/corpus/scriptum-display.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/corpus/scriptum-display.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>scriptum-display — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">The Language</div><ul class="nav"><li><a href="/en-US/language/overview.html">Overview</a></li><li><details class="nav-branch"><summary>Behavior</summary><ul><li><a href="/en-US/language/behavior/type-first.html">Types before names</a></li><li><a href="/en-US/language/behavior/glyph-law.html">The glyph law</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">Sealed reader locales</a></li><li><a href="/en-US/language/behavior/packages.html">A program is a package</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">Errors as values, tests as declarations</a></li></ul></details></li><li><details class="nav-branch" open><summary>Grammar</summary><ul><li><a href="/en-US/reference/grammar.html">Grammar overview</a></li><li><a href="/en-US/reference/grammar/program.html">Programs, regions &amp; imports</a></li><li><a href="/en-US/reference/grammar/declarations.html">Declarations &amp; bindings</a></li><li><a href="/en-US/reference/grammar/annotations.html">Annotations &amp; directives</a></li><li><a href="/en-US/reference/grammar/types.html">Types &amp; contracts</a></li><li><a href="/en-US/reference/grammar/statements.html">Statements &amp; control flow</a></li><li><a href="/en-US/reference/grammar/expressions.html">Expressions &amp; operators</a></li><li><a href="/en-US/reference/grammar/patterns.html">Patterns &amp; destructuring</a></li><li><a href="/en-US/reference/grammar/errors.html">Error channel</a></li><li><a href="/en-US/reference/grammar/lexical.html">Lexical structure &amp; glyphs</a></li><li><a href="/en-US/corpus/az.html" class="active">Terms A–Z</a></li></ul></details></li><li><a href="/en-US/examples/">Examples</a></li><li><a href="/en-US/start/install.html">Installation</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">By target</div><ul class="nav"><li><a href="/en-US/targets/">All targets</a></li><li><details class="nav-branch"><summary>HIR — application</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>MIR — systems</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly text</a></li></ul></details></li><li><details class="nav-branch"><summary>GPU — device</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li></ul><div class="side-h">Reader locales</div><ul class="nav"><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/locales/keywords.html">Keyword reference</a></li><li><a href="/en-US/language/locales/examples.html">Locale examples</a></li><li><a href="/en-US/language/locales/diagnostics.html">Diagnostics by locale</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Releases</div><ul class="nav"><li><a href="/en-US/releases/">All releases</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/en-US/corpus/index.html">Corpus</a> &rsaquo; <a href="/en-US/corpus/bucket/conversions.html">Conversions &amp; formatting</a> &rsaquo; scriptum-display</nav><h1>scriptum-display</h1><p><strong>Translation status:</strong> English reader-locale proof. Term names and code fences follow the <code>en</code> pack; supporting prose may still be English.</p><div class="content"><p>A <code>§</code> slot shows each value exactly as <code>print</code> does: booleans as <code>true</code>/<code>false</code>, a whole float with <code>.0</code>.</p><p><strong>Syntax:</strong> <code>\&quot;&lt;template&gt;\&quot;(&lt;args&gt;...)</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>format</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/en-US/corpus/format.html">format</a></li><li><a href="/en-US/corpus/write.html">write</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusscriptumscriptum-displayfab-canonical-concept">radix/corpus/scriptum/scriptum-display.fab (canonical · concept)<a class="anchor" href="#radixcorpusscriptumscriptum-displayfab-canonical-concept">#</a></h3><p>A <code>§</code> slot shows each value exactly as <code>print</code> does: booleans as <code>true</code>/<code>false</code>, a whole float with <code>.0</code>.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># scriptum-display — a `§` slot and `print` show a value the same way</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • A scalar placed in a `§` slot is displayed by the same rule as a bare</span>
+<span class="tok-co">#     `print` of it: a boolean as the language's own spelling (never the</span>
+<span class="tok-co">#     host language's), a whole float keeping its `.0`.</span>
+<span class="tok-co">#   • The text of a template and the text printed line by line agree on every</span>
+<span class="tok-co">#     backend.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Expecting a whole float to lose its fraction in a template (`2` for</span>
+<span class="tok-co">#     `2.0`); it prints `2.0`.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: format, write</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># scriptum-display — scalar spellings inside `§` slots</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   scriptum-display.expected — each template line, then the same values printed alone.</span>
+
+<span class="tok-kw">fn</span> half(<span class="tok-kw">float</span> x) <span class="tok-op">→</span> <span class="tok-kw">float</span> {
+    <span class="tok-kw">return</span> x <span class="tok-op">/</span> <span class="tok-nu">2.0</span>
+}
+
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> yes <span class="tok-op">←</span> <span class="tok-kw">true</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> no <span class="tok-op">←</span> <span class="tok-kw">false</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">float</span> whole <span class="tok-op">←</span> <span class="tok-nu">2.0</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">float</span> frac <span class="tok-op">←</span> <span class="tok-nu">2.5</span>
+    <span class="tok-kw">const</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> <span class="tok-nu">7</span>
+    <span class="tok-kw">const</span> string word <span class="tok-op">←</span> <span class="tok-st">"hi"</span>
+
+    print <span class="tok-st">"yes=§"</span>(yes)
+    print <span class="tok-st">"no=§"</span>(no)
+    print <span class="tok-st">"whole=§"</span>(whole)
+    print <span class="tok-st">"frac=§"</span>(frac)
+    print <span class="tok-st">"count=§"</span>(count)
+    print <span class="tok-st">"word=§"</span>(word)
+    print <span class="tok-st">"computed=§"</span>(half(<span class="tok-nu">5.0</span>))
+    print <span class="tok-st">"negated=§"</span>(<span class="tok-nu">1</span> ≻ <span class="tok-nu">2</span>)
+    print <span class="tok-st">"literal=§"</span>(<span class="tok-nu">3.0</span>)
+
+    print yes
+    print no
+    print whole
+    print frac
+    print count
+    print word
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>yes=verum
+no=falsum
+whole=2.0
+frac=2.5
+count=7
+word=hi
+computed=2.5
+negated=falsum
+literal=3.0
+verum
+falsum
+2.0
+2.5
+7
+hi
+</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusscriptumscriptum-displayfab-canonical-concept">radix/corpus/scriptum/scriptum-display.fab (canonical · concept)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/scriptum/scriptum-display.fab&quot;]</li></ul></div></footer></div></body></html>

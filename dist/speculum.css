@@ -477,6 +477,62 @@ aside .sidelist li {
 }
 aside .sidelist .v { font-family: var(--sans); font-size: 10.5px; }
 
+/* Nav branches: items with children render as <details class="nav-branch">
+   with a <summary>; the generator sets open on the active path. The marker
+   is CSS-only — disclosure is native details/summary, no script. */
+aside ul.nav li details.nav-branch { display: block; }
+aside .nav-branch summary {
+    border: none;
+    display: block;
+    padding: 5px 9px;
+    margin: 0 -9px;
+    border-radius: var(--radius);
+    color: var(--ink-dim);
+    font-family: var(--sans);
+    cursor: pointer;
+    list-style: none;
+}
+aside .nav-branch summary::-webkit-details-marker { display: none; }
+aside .nav-branch summary::before {
+    content: "▸";
+    display: inline-block;
+    width: 0.9em;
+    font-size: 9px;
+    color: var(--ink-faint);
+}
+aside .nav-branch[open] > summary::before { content: "▾"; }
+aside .nav-branch summary:hover {
+    border: none;
+    color: var(--ink);
+    background: var(--paper-alt);
+}
+aside .nav-branch > ul {
+    list-style: none;
+    margin: 1px 0 4px 9px;
+    padding: 0 0 0 10px;
+    border-left: 1px solid var(--rule);
+}
+aside .nav-branch > ul li { font-size: 13px; line-height: 1.35; }
+aside .nav-branch > ul li a {
+    border: none;
+    display: block;
+    padding: 4px 9px;
+    margin: 0 -9px;
+    border-radius: var(--radius);
+    color: var(--ink-dim);
+    font-family: var(--sans);
+}
+aside .nav-branch > ul li a:hover {
+    border: none;
+    color: var(--ink);
+    background: var(--paper-alt);
+}
+aside .nav-branch > ul li a.active {
+    font-weight: 600;
+    color: var(--ink);
+    background: var(--glyph-soft);
+}
+
 /* ==========================================================================
    6. Contents rail
    ==========================================================================
@@ -1441,6 +1497,11 @@ body.porta {
         display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: var(--s3);
     }
     aside ul.nav li a { padding: 6px 10px; margin: 0; }
+    aside .nav-branch summary { padding: 6px 10px; margin: 0; }
+    aside .nav-branch > ul {
+        margin-left: 4px; padding-left: 12px; border-left: none;
+    }
+    aside .nav-branch > ul li a { padding: 4px 8px; margin: 0; }
     aside .side-meta { display: none; }
     .renderbar .in { padding: var(--s2) 20px; }
     .renderbar .machine-links { margin-left: 0; width: 100%; }

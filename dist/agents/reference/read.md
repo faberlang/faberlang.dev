@@ -38,7 +38,7 @@ BACKEND: Rust/Go/roundtrip e2e whitelist — lege not yet lowered for Rust/Go
 
 ```fab
 main {
-    const regex pattern ← "(?g)\d+" ↦ regex
+    const regex pattern ← "(?i)\d+" ↦ regex
     print pattern
     const string ∪ none input ← read
     print input

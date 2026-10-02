@@ -26,7 +26,6 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [await_const](await_const.md) (`figendum`) — Awaits a promissum and binds an immutable name.
 - [await_var](await_var.md) (`variandum`) — Awaits a promissum and binds a mutable name.
 - [before](before.md) (`ante`) — Creates an exclusive range with a Latin keyword.
-- [between](between.md) (`inter`) — Checks whether a value appears in a collection.
 - [bool](bool.md) (`bivalens`) — Primitive types bivalens, vacuum, and ignotum.
 - [break](break.md) (`rumpe`) — Breaks out of the innermost loop.
 - [bytes](bytes.md) (`octeti`) — Primitive byte-buffer type.
@@ -128,7 +127,6 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [void](void.md) (`vacuum`) — Primitive no-value return type.
 - [warn](warn.md) (`mone`) — Writes a warning message.
 - [while](while.md) (`dum`) — Repeats a block while a condition remains true.
-- [within](within.md) (`intra`) — Checks whether a value lies within a range.
 - [write](write.md) (`scribe`) — Writes a value to standard output.
 - [yield](yield.md) (`cede`) — Yields one value from a generator.
 - [∪](∪.md) — Declares a type alias.
@@ -155,8 +153,8 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [¬](¬.md) — Bitwise and, or, xor, not, and shifts on numerus operands.
 - [·](·.md) — Glyph inner product: vector · vector reduces to a scalar dot product.
 - [×](×.md) — Glyph cross product: width-3 vectors × multiply into the perpendicular vector.
-- [‥](‥.md) — Half-open and inclusive range endpoints in itera ab and intra.
-- […](….md) — Half-open and inclusive range endpoints in itera ab and intra.
+- [‥](‥.md) — Half-open and inclusive range endpoints in itera ab and ∈.
+- […](….md) — Half-open and inclusive range endpoints in itera ab and ∈.
 - [←](←.md) — Assigns a value to a binding, field, or assignable expression.
 - [↑](↑.md) — Postfix increment statement for a mutable numerus place.
 - [→](→.md) — Success return type and recoverable alternate-exit type in function signatures.
@@ -167,6 +165,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [⇐](⇐.md) — Bitwise and, or, xor, not, and shifts on numerus operands.
 - [⇒](⇒.md) — Bitwise and, or, xor, not, and shifts on numerus operands.
 - [⇥](⇥.md) — Success return type and recoverable alternate-exit type in function signatures.
+- [∈](∈.md) — Checks whether a value appears in a collection.
 - [∧](∧.md) — Bitwise and, or, xor, not, and shifts on numerus operands.
 - [∨](∨.md) — Bitwise or and est-negation operators.
 - [∴](∴.md) — Compact consequent after si/dum heads via ergo, with ∴ reserved for closure bodies.

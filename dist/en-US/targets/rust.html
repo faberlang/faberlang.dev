@@ -1,27 +1,97 @@
 <!DOCTYPE html>
-<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="HIR projection. The package product path compiles this through Cargo."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Rust — Faber"><meta property="og:description" content="HIR projection. The package product path compiles this through Cargo."><meta property="og:url" content="https://faberlang.dev/en-US/targets/rust.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/targets/rust.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Rust — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><ul class="nav"><li><a href="/en-US/">Home</a></li><li><a href="/en-US/start/install.html">Install</a></li><li><a href="/en-US/localization.html">Localization</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li><li><a href="/en-US/releases/">Releases</a></li><li><a href="/en-US/open-source.html">Open source</a></li><li><a href="/en-US/examples/">Examples</a></li><li><a href="/en-US/targets/" class="active">Target lanes</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/en-US/language/">The language</a></li><li><a href="/en-US/language/types.html">Types and values</a></li><li><a href="/en-US/language/functions.html">Functions and flow</a></li><li><a href="/en-US/language/errors.html">Errors and testing</a></li><li><a href="/en-US/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/en-US/toolchain/">Toolchain</a></li><li><a href="/en-US/toolchain/cli.html">The faber CLI</a></li><li><a href="/en-US/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/en-US/targets/" class="active">Target lanes</a></li><li><a href="/en-US/toolchain/packages.html">Packages with Cista</a></li><li><a href="/en-US/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/">Libraries</a></li><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/en-US/reference/">Reference</a></li><li><a href="/en-US/reference/grammar.html">Grammar</a></li><li><a href="/en-US/corpus/">Corpus index</a></li><li><a href="/en-US/reference/design.html">Design notes</a></li><li><a href="/en-US/open-source.html">Open source</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.6.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/en-US/releases/">All releases</a></li><li><a href="/en-US/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Rust</h1><div class="content"><p>HIR projection. The package product path compiles this through Cargo.</p><p>Part of the <a href="/en-US/targets/hir.html">HIR lane</a>. Every panel below is compiler output.</p><h2 id="reading">How to read it<a class="anchor" href="#reading">#</a></h2><p>Close to one-for-one with the source. That is the point of this emitter: generated Rust is meant to be <em>read</em> and reviewed, so it keeps the shape of the Faber it came from rather than expanding into something unrecognisable.</p><h2 id="tensores">Typed tensors<a class="anchor" href="#tensores">#</a></h2><p>Builds two shaped matrices, multiplies them, and reduces the product to a scalar. Exercises shape-bearing types and a reduction.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="HIR projection. The package product path compiles this through Cargo."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Rust — Faber"><meta property="og:description" content="HIR projection. The package product path compiles this through Cargo."><meta property="og:url" content="https://faberlang.dev/en-US/targets/rust.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/targets/rust.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Rust — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">The Language</div><ul class="nav"><li><a href="/en-US/language/overview.html">Overview</a></li><li><details class="nav-branch"><summary>Behavior</summary><ul><li><a href="/en-US/language/behavior/type-first.html">Types before names</a></li><li><a href="/en-US/language/behavior/glyph-law.html">The glyph law</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">Sealed reader locales</a></li><li><a href="/en-US/language/behavior/packages.html">A program is a package</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">Errors as values, tests as declarations</a></li></ul></details></li><li><details class="nav-branch"><summary>Grammar</summary><ul><li><a href="/en-US/reference/grammar.html">Grammar overview</a></li><li><a href="/en-US/reference/grammar/program.html">Programs, regions &amp; imports</a></li><li><a href="/en-US/reference/grammar/declarations.html">Declarations &amp; bindings</a></li><li><a href="/en-US/reference/grammar/annotations.html">Annotations &amp; directives</a></li><li><a href="/en-US/reference/grammar/types.html">Types &amp; contracts</a></li><li><a href="/en-US/reference/grammar/statements.html">Statements &amp; control flow</a></li><li><a href="/en-US/reference/grammar/expressions.html">Expressions &amp; operators</a></li><li><a href="/en-US/reference/grammar/patterns.html">Patterns &amp; destructuring</a></li><li><a href="/en-US/reference/grammar/errors.html">Error channel</a></li><li><a href="/en-US/reference/grammar/lexical.html">Lexical structure &amp; glyphs</a></li><li><a href="/en-US/corpus/az.html">Terms A–Z</a></li></ul></details></li><li><a href="/en-US/examples/">Examples</a></li><li><a href="/en-US/start/install.html">Installation</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">By target</div><ul class="nav"><li><a href="/en-US/targets/" class="active">All targets</a></li><li><details class="nav-branch" open><summary>HIR — application</summary><ul><li><a href="/en-US/targets/rust.html" class="active">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>MIR — systems</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly text</a></li></ul></details></li><li><details class="nav-branch"><summary>GPU — device</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li></ul><div class="side-h">Reader locales</div><ul class="nav"><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/locales/keywords.html">Keyword reference</a></li><li><a href="/en-US/language/locales/examples.html">Locale examples</a></li><li><a href="/en-US/language/locales/diagnostics.html">Diagnostics by locale</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Releases</div><ul class="nav"><li><a href="/en-US/releases/">All releases</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Rust</h1><div class="content"><p>HIR projection. The package product path compiles this through Cargo.</p><p>Part of the <a href="/en-US/targets/hir.html">HIR lane</a>. Every panel below is compiler output.</p><h2 id="reading">How to read it<a class="anchor" href="#reading">#</a></h2><p>Close to one-for-one with the source. That is the point of this emitter: generated Rust is meant to be <em>read</em> and reviewed, so it keeps the shape of the Faber it came from rather than expanding into something unrecognisable.</p><h2 id="support">Measured support<a class="anchor" href="#support">#</a></h2><div class="table-scroll"><table><thead><tr><th>Capable</th><th>Analyzable</th><th>Coverage</th></tr></thead><tbody><tr><td>360</td><td>364</td><td>99%</td></tr></tbody></table></div><p>From the <a href="/en-US/toolchain/target-matrix.html">target matrix</a>: how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.</p><h3 id="gaps">Not fully supported<a class="anchor" href="#gaps">#</a></h3><p>Terms the matrix records as partial, planned, or unsupported for this target. A term here is a measured gap, not an omission.</p><div class="table-scroll"><table><thead><tr><th>Category</th><th>Terms</th></tr></thead><tbody><tr><td>Keywords — application lane</td><td>&lt;a id=&quot;atomic&quot;&gt;&lt;/a&gt;<code>atomic</code></td></tr><tr><td>Operators — application lane</td><td><code>·</code></td></tr><tr><td>Types, intrinsics &amp; meta</td><td>&lt;a id=&quot;f16&quot;&gt;&lt;/a&gt;<code>f16</code></td></tr></tbody></table></div><h2 id="tensores">Typed tensors<a class="anchor" href="#tensores">#</a></h2><p>Builds two shaped matrices, multiplies them, and reduces the product to a scalar. Exercises shape-bearing types and a reduction.</p><p><strong>Faber source</strong></p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-e62aac5142451361-0-t-en" data-panel="lt-e62aac5142451361-0-p-en" data-name="English" aria-controls="lt-e62aac5142451361-0-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-e62aac5142451361-0-t-la" data-panel="lt-e62aac5142451361-0-p-la" data-name="Latin" aria-controls="lt-e62aac5142451361-0-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-e62aac5142451361-0-t-th-TH" data-panel="lt-e62aac5142451361-0-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-e62aac5142451361-0-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-e62aac5142451361-0-t-zh-Hans" data-panel="lt-e62aac5142451361-0-p-zh-Hans" data-name="简体中文" aria-controls="lt-e62aac5142451361-0-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-e62aac5142451361-0-t-zh-Hant" data-panel="lt-e62aac5142451361-0-p-zh-Hant" data-name="繁體中文" aria-controls="lt-e62aac5142451361-0-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-e62aac5142451361-0-t-vi" data-panel="lt-e62aac5142451361-0-p-vi" data-name="Tiếng Việt" aria-controls="lt-e62aac5142451361-0-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-e62aac5142451361-0-t-ar" data-panel="lt-e62aac5142451361-0-p-ar" data-name="العربية" aria-controls="lt-e62aac5142451361-0-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-e62aac5142451361-0-t-hi" data-panel="lt-e62aac5142451361-0-p-hi" data-name="हिन्दी" aria-controls="lt-e62aac5142451361-0-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-e62aac5142451361-0-p-en" role="tabpanel" aria-labelledby="lt-e62aac5142451361-0-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
     <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
     <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
-    <span class="tok-kw">const</span> tf32[] seed <span class="tok-op">←</span> empty
+    <span class="tok-kw">const</span> tf32[] seed <span class="tok-op">←</span> <span class="tok-kw">empty</span>
     <span class="tok-kw">const</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.from_flat(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
     <span class="tok-kw">const</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.from_flat(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
     <span class="tok-kw">const</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.matmul(b)
     <span class="tok-kw">const</span> f32 mean <span class="tok-op">←</span> product.mean()
-    print mean
-}</code></pre><p><strong>Rust</strong> — 10 lines in, 14 out (1.4×)</p><pre class="faber-code"><code class="lang-rust"><span class="tok-co">// Generated by radix - do not edit</span>
+    <span class="tok-kw">print</span> mean
+}</code></pre></div><div class="fdt-panel" id="lt-e62aac5142451361-0-p-la" role="tabpanel" aria-labelledby="lt-e62aac5142451361-0-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">incipit</span> {
+    <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">fixum</span> tf32[] seed <span class="tok-op">←</span> <span class="tok-kw">vacua</span>
+    <span class="tok-kw">fixum</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.strue(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">fixum</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">fixum</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.matmul(b)
+    <span class="tok-kw">fixum</span> f32 mean <span class="tok-op">←</span> product.media()
+    <span class="tok-kw">nota</span> mean
+}</code></pre></div><div class="fdt-panel" id="lt-e62aac5142451361-0-p-th-TH" role="tabpanel" aria-labelledby="lt-e62aac5142451361-0-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">เริ่ม</span> {
+    <span class="tok-kw">คงที่</span> <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">คงที่</span> <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">คงที่</span> tf32[] seed <span class="tok-op">←</span> <span class="tok-kw">เซตว่าง</span>
+    <span class="tok-kw">คงที่</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.<span class="tok-kw">สร้าง</span><span class="tok-kw">จาก</span>ข้อมูลแบน(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">คงที่</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.<span class="tok-kw">สร้าง</span><span class="tok-kw">จาก</span>ข้อมูลแบน(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">คงที่</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.คูณ<span class="tok-kw">เมทริกซ์</span>(b)
+    <span class="tok-kw">คงที่</span> f32 mean <span class="tok-op">←</span> product.<span class="tok-kw">ค่า</span>เฉลี่ย()
+    <span class="tok-kw">บันทึก</span> mean
+}</code></pre></div><div class="fdt-panel" id="lt-e62aac5142451361-0-p-zh-Hans" role="tabpanel" aria-labelledby="lt-e62aac5142451361-0-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">常量</span> tf32[] seed <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+    <span class="tok-kw">常量</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.由扁平<span class="tok-kw">构造</span>(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">常量</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.由扁平<span class="tok-kw">构造</span>(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">常量</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.<span class="tok-kw">矩阵</span>乘法(b)
+    <span class="tok-kw">常量</span> f32 mean <span class="tok-op">←</span> product.均值()
+    <span class="tok-kw">显示</span> mean
+}</code></pre></div><div class="fdt-panel" id="lt-e62aac5142451361-0-p-zh-Hant" role="tabpanel" aria-labelledby="lt-e62aac5142451361-0-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">定值</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">定值</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">定值</span> tf32[] seed <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+    <span class="tok-kw">定值</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.由扁平建構(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">定值</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.由扁平建構(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">定值</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.<span class="tok-kw">矩陣</span>乘法(b)
+    <span class="tok-kw">定值</span> f32 mean <span class="tok-op">←</span> product.平均<span class="tok-kw">值</span>()
+    <span class="tok-kw">註記</span> mean
+}</code></pre></div><div class="fdt-panel" id="lt-e62aac5142451361-0-p-vi" role="tabpanel" aria-labelledby="lt-e62aac5142451361-0-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">bắt_đầu</span> {
+    <span class="tok-kw">hằng</span> <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">hằng</span> <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">hằng</span> tf32[] seed <span class="tok-op">←</span> <span class="tok-kw">tập_rỗng</span>
+    <span class="tok-kw">hằng</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.dựng_từ_phẳng(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">hằng</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.dựng_từ_phẳng(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">hằng</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.nhân_ma_trận(b)
+    <span class="tok-kw">hằng</span> f32 mean <span class="tok-op">←</span> product.trung_bình()
+    <span class="tok-kw">ghi_chú</span> mean
+}</code></pre></div><div class="fdt-panel" id="lt-e62aac5142451361-0-p-ar" role="tabpanel" aria-labelledby="lt-e62aac5142451361-0-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">بداية</span> {
+    <span class="tok-kw">ثابت</span> <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">ثابت</span> <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">ثابت</span> tf32[] seed <span class="tok-op">←</span> <span class="tok-kw">فارغ</span>
+    <span class="tok-kw">ثابت</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.ابن_من_مسطح(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">ثابت</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.ابن_من_مسطح(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">ثابت</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.ضرب_المصف<span class="tok-kw">و</span>فات(b)
+    <span class="tok-kw">ثابت</span> f32 mean <span class="tok-op">←</span> product.المت<span class="tok-kw">و</span>سط()
+    <span class="tok-kw">اعرض</span> mean
+}</code></pre></div><div class="fdt-panel" id="lt-e62aac5142451361-0-p-hi" role="tabpanel" aria-labelledby="lt-e62aac5142451361-0-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">आरंभ</span> {
+    <span class="tok-kw">स्थिर</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">स्थिर</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">स्थिर</span> tf32[] seed <span class="tok-op">←</span> <span class="tok-kw">खाली</span>
+    <span class="tok-kw">स्थिर</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.समतल_से_बनाओ(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">स्थिर</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.समतल_से_बनाओ(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">स्थिर</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.आव्यूह_गुणन(b)
+    <span class="tok-kw">स्थिर</span> f32 mean <span class="tok-op">←</span> product.माध्य()
+    <span class="tok-kw">दिखाओ</span> mean
+}</code></pre></div></div><p><strong>Rust</strong> — 10 lines in, 21 out (2.1×)</p><pre class="faber-code"><code class="lang-rust"><span class="tok-co">// Generated by radix - do not edit</span>
 <span class="tok-co">// Requires the faber language-runtime crate (add to Cargo.toml):</span>
 <span class="tok-co">//   faber = { path = "../faber" }  # adjust path for your layout</span>
 
+<span class="tok-co">// SCR-09 recorded suppressions: identifier/literal fidelity, plan-directed</span>
+<span class="tok-co">// casts and parameter passing, library-shaped artifact items.</span>
+#![allow(non_camel_case_types, non_snake_case, dead_code, clippy::unreadable_literal, clippy::cast_lossless, clippy::cast_possible_truncation, clippy::cast_possible_wrap, clippy::cast_sign_loss, clippy::cast_precision_loss, clippy::needless_pass_by_value)]
+
+<span class="tok-kw">mod</span> host_register;
+
 <span class="tok-kw">fn</span> main() {
+    host_register::install_or_exit();
     <span class="tok-kw">let</span> flat_a: <span class="tok-ty">Vec</span>&lt;<span class="tok-ty">f32</span>&gt; = vec![<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>];
     <span class="tok-kw">let</span> flat_b: <span class="tok-ty">Vec</span>&lt;<span class="tok-ty">f32</span>&gt; = vec![<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>];
-    <span class="tok-kw">let</span> seed: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;float&lt;f32&gt;, []&gt; */</span> = faber::Tensor::vacua();
-    <span class="tok-kw">let</span> a: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;float&lt;f32&gt;, [2, 3]&gt; */</span> = faber::Tensor::&lt;<span class="tok-ty">f32</span>&gt;::structa(flat_a, &amp;{ <span class="tok-kw">let</span> t28 = &amp;vec![<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]; t28.iter().copied().map(|value| value <span class="tok-kw">as</span> <span class="tok-ty">i64</span>).collect::&lt;<span class="tok-ty">Vec</span>&lt;<span class="tok-ty">i64</span>&gt;&gt;() }).expect(<span class="tok-st">"tensor structa element count does not match shape"</span>);
-    <span class="tok-kw">let</span> b: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;float&lt;f32&gt;, [3, 4]&gt; */</span> = faber::Tensor::&lt;<span class="tok-ty">f32</span>&gt;::structa(flat_b, &amp;{ <span class="tok-kw">let</span> t35 = &amp;vec![<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]; t35.iter().copied().map(|value| value <span class="tok-kw">as</span> <span class="tok-ty">i64</span>).collect::&lt;<span class="tok-ty">Vec</span>&lt;<span class="tok-ty">i64</span>&gt;&gt;() }).expect(<span class="tok-st">"tensor structa element count does not match shape"</span>);
-    <span class="tok-kw">let</span> product: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;float&lt;f32&gt;, [2, 4]&gt; */</span> = { <span class="tok-kw">let</span> t40 = &amp;a; t40.matmul(&amp;(b)) }.expect(<span class="tok-st">"tensor matmul failed"</span>);
+    <span class="tok-kw">let</span> seed: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;f32, []&gt; */</span> = faber::Tensor::vacua();
+    <span class="tok-kw">let</span> a: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;f32, [2, 3]&gt; */</span> = faber::Tensor::&lt;<span class="tok-ty">f32</span>&gt;::structa(flat_a, &amp;{ <span class="tok-kw">let</span> t28 = &amp;vec![<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]; t28.iter().copied().map(|value| value <span class="tok-kw">as</span> <span class="tok-ty">i64</span>).collect::&lt;<span class="tok-ty">Vec</span>&lt;<span class="tok-ty">i64</span>&gt;&gt;() }).expect(<span class="tok-st">"tensor structa element count does not match shape"</span>);
+    <span class="tok-kw">let</span> b: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;f32, [3, 4]&gt; */</span> = faber::Tensor::&lt;<span class="tok-ty">f32</span>&gt;::structa(flat_b, &amp;{ <span class="tok-kw">let</span> t35 = &amp;vec![<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]; t35.iter().copied().map(|value| value <span class="tok-kw">as</span> <span class="tok-ty">i64</span>).collect::&lt;<span class="tok-ty">Vec</span>&lt;<span class="tok-ty">i64</span>&gt;&gt;() }).expect(<span class="tok-st">"tensor structa element count does not match shape"</span>);
+    <span class="tok-kw">let</span> product: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;f32, [2, 4]&gt; */</span> = { <span class="tok-kw">let</span> t40 = &amp;a; t40.matmul(&amp;(b)) }.expect(<span class="tok-st">"tensor matmul failed"</span>);
     <span class="tok-kw">let</span> mean: <span class="tok-ty">f32</span> = { <span class="tok-kw">let</span> t44 = &amp;product; <span class="tok-kw">let</span> c44: <span class="tok-ty">f32</span> = t44.planata().iter().map(|x| *x <span class="tok-kw">as</span> <span class="tok-ty">f32</span>).sum(); c44 / t44.element_count() <span class="tok-kw">as</span> <span class="tok-ty">f32</span> };
     println!(<span class="tok-st">"{}"</span>, faber::display_fractus(mean));
-}</code></pre><h2 id="fallibilis">The error channel<a class="anchor" href="#fallibilis">#</a></h2><p>A function that may fail, and a caller that catches. Shows how the <code>⇥</code> channel becomes each target's own error idiom.</p><p><strong>Faber source</strong></p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-en" data-panel="lt-85ccdd726a36dc08-0-p-en" data-name="English" aria-controls="lt-85ccdd726a36dc08-0-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-la" data-panel="lt-85ccdd726a36dc08-0-p-la" data-name="Latin" aria-controls="lt-85ccdd726a36dc08-0-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-th-TH" data-panel="lt-85ccdd726a36dc08-0-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-85ccdd726a36dc08-0-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-zh-Hans" data-panel="lt-85ccdd726a36dc08-0-p-zh-Hans" data-name="简体中文" aria-controls="lt-85ccdd726a36dc08-0-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-zh-Hant" data-panel="lt-85ccdd726a36dc08-0-p-zh-Hant" data-name="繁體中文" aria-controls="lt-85ccdd726a36dc08-0-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-vi" data-panel="lt-85ccdd726a36dc08-0-p-vi" data-name="Tiếng Việt" aria-controls="lt-85ccdd726a36dc08-0-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-ar" data-panel="lt-85ccdd726a36dc08-0-p-ar" data-name="العربية" aria-controls="lt-85ccdd726a36dc08-0-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-hi" data-panel="lt-85ccdd726a36dc08-0-p-hi" data-name="हिन्दी" aria-controls="lt-85ccdd726a36dc08-0-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-85ccdd726a36dc08-0-p-en" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ <span class="tok-kw">string</span> {
+}</code></pre><h2 id="fallibilis">The error channel<a class="anchor" href="#fallibilis">#</a></h2><p>A function that may fail, and a caller that catches. Shows how the <code>⇥</code> channel becomes each target's own error idiom.</p><p><strong>Faber source</strong></p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-en" data-panel="lt-85ccdd726a36dc08-1-p-en" data-name="English" aria-controls="lt-85ccdd726a36dc08-1-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-la" data-panel="lt-85ccdd726a36dc08-1-p-la" data-name="Latin" aria-controls="lt-85ccdd726a36dc08-1-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-th-TH" data-panel="lt-85ccdd726a36dc08-1-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-85ccdd726a36dc08-1-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-zh-Hans" data-panel="lt-85ccdd726a36dc08-1-p-zh-Hans" data-name="简体中文" aria-controls="lt-85ccdd726a36dc08-1-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-zh-Hant" data-panel="lt-85ccdd726a36dc08-1-p-zh-Hant" data-name="繁體中文" aria-controls="lt-85ccdd726a36dc08-1-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-vi" data-panel="lt-85ccdd726a36dc08-1-p-vi" data-name="Tiếng Việt" aria-controls="lt-85ccdd726a36dc08-1-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-ar" data-panel="lt-85ccdd726a36dc08-1-p-ar" data-name="العربية" aria-controls="lt-85ccdd726a36dc08-1-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-hi" data-panel="lt-85ccdd726a36dc08-1-p-hi" data-name="हिन्दी" aria-controls="lt-85ccdd726a36dc08-1-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-85ccdd726a36dc08-1-p-en" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ <span class="tok-kw">string</span> {
     <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">throw</span> <span class="tok-st">"division by zero"</span>
     }
@@ -35,7 +105,7 @@
     <span class="tok-kw">catch</span> err {
         <span class="tok-kw">warn</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-la" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">functio</span> divide(<span class="tok-kw">numerus</span> a, <span class="tok-kw">numerus</span> b) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-1-p-la" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">functio</span> divide(<span class="tok-kw">numerus</span> a, <span class="tok-kw">numerus</span> b) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
     <span class="tok-kw">si</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">iace</span> <span class="tok-st">"division by zero"</span>
     }
@@ -49,7 +119,7 @@
     <span class="tok-kw">cape</span> err {
         <span class="tok-kw">mone</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-th-TH" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ฟังก์ชัน</span> divide(<span class="tok-kw">จำนวน</span> a, <span class="tok-kw">จำนวน</span> b) <span class="tok-op">→</span> <span class="tok-kw">จำนวน</span> ⇥ <span class="tok-kw">ข้อความ</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-1-p-th-TH" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ฟังก์ชัน</span> divide(จำน<span class="tok-kw">วน</span> a, จำน<span class="tok-kw">วน</span> b) <span class="tok-op">→</span> จำน<span class="tok-kw">วน</span> ⇥ <span class="tok-kw">ข้อความ</span> {
     <span class="tok-kw">ถ้า</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">โยน</span> <span class="tok-st">"division by zero"</span>
     }
@@ -63,7 +133,7 @@
     <span class="tok-kw">จับ</span> err {
         <span class="tok-kw">เตือน</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-zh-Hans" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">函数</span> divide(<span class="tok-kw">整数</span> a, <span class="tok-kw">整数</span> b) <span class="tok-op">→</span> <span class="tok-kw">整数</span> ⇥ <span class="tok-kw">文本</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-1-p-zh-Hans" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">函数</span> divide(<span class="tok-kw">整数</span> a, <span class="tok-kw">整数</span> b) <span class="tok-op">→</span> <span class="tok-kw">整数</span> ⇥ <span class="tok-kw">文本</span> {
     <span class="tok-kw">如果</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">抛错</span> <span class="tok-st">"division by zero"</span>
     }
@@ -77,7 +147,7 @@
     <span class="tok-kw">捕获</span> err {
         <span class="tok-kw">警告</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-zh-Hant" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">函式</span> divide(<span class="tok-kw">整數</span> a, <span class="tok-kw">整數</span> b) <span class="tok-op">→</span> <span class="tok-kw">整數</span> ⇥ <span class="tok-kw">文字</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-1-p-zh-Hant" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">函式</span> divide(<span class="tok-kw">整數</span> a, <span class="tok-kw">整數</span> b) <span class="tok-op">→</span> <span class="tok-kw">整數</span> ⇥ <span class="tok-kw">文字</span> {
     <span class="tok-kw">若</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">拋出</span> <span class="tok-st">"division by zero"</span>
     }
@@ -91,7 +161,7 @@
     <span class="tok-kw">捕捉</span> err {
         <span class="tok-kw">警告</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-vi" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">hàm</span> divide(<span class="tok-kw">số</span> a, <span class="tok-kw">số</span> b) <span class="tok-op">→</span> <span class="tok-kw">số</span> ⇥ <span class="tok-kw">văn_bản</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-1-p-vi" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">hàm</span> divide(<span class="tok-kw">số</span> a, <span class="tok-kw">số</span> b) <span class="tok-op">→</span> <span class="tok-kw">số</span> ⇥ <span class="tok-kw">văn_bản</span> {
     <span class="tok-kw">nếu</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">ném</span> <span class="tok-st">"division by zero"</span>
     }
@@ -105,7 +175,7 @@
     <span class="tok-kw">bắt</span> err {
         <span class="tok-kw">cảnh_báo</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-ar" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">دالة</span> divide(<span class="tok-kw">عدد</span> a, <span class="tok-kw">عدد</span> b) <span class="tok-op">→</span> <span class="tok-kw">عدد</span> ⇥ <span class="tok-kw">نص</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-1-p-ar" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">دالة</span> divide(<span class="tok-kw">عدد</span> a, <span class="tok-kw">عدد</span> b) <span class="tok-op">→</span> <span class="tok-kw">عدد</span> ⇥ <span class="tok-kw">نص</span> {
     <span class="tok-kw">إذا</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">ارم</span> <span class="tok-st">"division by zero"</span>
     }
@@ -119,7 +189,7 @@
     <span class="tok-kw">التقط</span> err {
         <span class="tok-kw">نبه</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-hi" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">फलन</span> divide(<span class="tok-kw">संख्या</span> a, <span class="tok-kw">संख्या</span> b) <span class="tok-op">→</span> <span class="tok-kw">संख्या</span> ⇥ <span class="tok-kw">पाठ</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-1-p-hi" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">फलन</span> divide(<span class="tok-kw">संख्या</span> a, <span class="tok-kw">संख्या</span> b) <span class="tok-op">→</span> <span class="tok-kw">संख्या</span> ⇥ <span class="tok-kw">पाठ</span> {
     <span class="tok-kw">यदि</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">इधरफेंको</span> <span class="tok-st">"division by zero"</span>
     }
@@ -133,28 +203,212 @@
     <span class="tok-kw">पकड़ो</span> err {
         <span class="tok-kw">चेताओ</span> err
     }
-}</code></pre></div></div><p><strong>Rust</strong> — 13 lines in, 22 out (1.7×)</p><pre class="faber-code"><code class="lang-rust"><span class="tok-co">// Generated by radix - do not edit</span>
+}</code></pre></div></div><p><strong>Rust</strong> — 13 lines in, 206 out (15.8×)</p><pre class="faber-code"><code class="lang-rust"><span class="tok-co">// Generated by radix - do not edit</span>
 <span class="tok-co">// Requires the faber language-runtime crate (add to Cargo.toml):</span>
 <span class="tok-co">//   faber = { path = "../faber" }  # adjust path for your layout</span>
+
+<span class="tok-co">// SCR-09 recorded suppressions: identifier/literal fidelity, plan-directed</span>
+<span class="tok-co">// casts and parameter passing, library-shaped artifact items.</span>
+#![allow(non_camel_case_types, non_snake_case, dead_code, clippy::unreadable_literal, clippy::cast_lossless, clippy::cast_possible_truncation, clippy::cast_possible_wrap, clippy::cast_sign_loss, clippy::cast_precision_loss, clippy::needless_pass_by_value)]
+
+<span class="tok-kw">const</span> <span class="tok-kw">fn</span> __faber_approx_int(a: i128, b: i128) -&gt; <span class="tok-ty">bool</span> {
+    <span class="tok-co">// `const fn`: class `static` fields are Rust associated consts, and `Ord::max` is not const.</span>
+    <span class="tok-kw">let</span> (a_abs, b_abs) = (a.abs(), b.abs());
+    <span class="tok-kw">let</span> larger = <span class="tok-kw">if</span> a_abs &gt;= b_abs { a_abs } <span class="tok-kw">else</span> { b_abs };
+    <span class="tok-nu">1_000_000_000</span> * (a - b).abs() &lt;= larger
+}
+
+<span class="tok-kw">fn</span> __faber_int(value: Option&lt;i128&gt;) -&gt; i128 {
+    <span class="tok-kw">match</span> value {
+        Some(value) <span class="tok-kw">if</span> (-<span class="tok-nu">9_223_372_036_854_775_808</span>..=<span class="tok-nu">18_446_744_073_709_551_615</span>).contains(&amp;value) =&gt; value,
+        _ =&gt; panic!(<span class="tok-st">"numerus overflow"</span>),
+    }
+}
+
+<span class="tok-kw">fn</span> __faber_fit&lt;T: TryFrom&lt;i128&gt;&gt;(value: i128) -&gt; T {
+    T::try_from(value).unwrap_or_else(|_| panic!(<span class="tok-st">"numerus overflow"</span>))
+}
+
+<span class="tok-kw">fn</span> __faber_pow(base: i128, exponent: i128) -&gt; i128 {
+    <span class="tok-kw">if</span> exponent &lt; <span class="tok-nu">0</span> {
+        panic!(<span class="tok-st">"numerus potentia failed: negative exponent"</span>);
+    }
+    <span class="tok-kw">let</span> <span class="tok-kw">mut</span> accumulator: i128 = <span class="tok-nu">1</span>;
+    <span class="tok-kw">let</span> <span class="tok-kw">mut</span> base = base;
+    <span class="tok-kw">let</span> <span class="tok-kw">mut</span> exponent = exponent;
+    <span class="tok-kw">while</span> exponent &gt; <span class="tok-nu">0</span> {
+        <span class="tok-kw">if</span> exponent % <span class="tok-nu">2</span> != <span class="tok-nu">0</span> {
+            accumulator = __faber_int(accumulator.checked_mul(base));
+        }
+        exponent /= <span class="tok-nu">2</span>;
+        <span class="tok-kw">if</span> exponent &gt; <span class="tok-nu">0</span> {
+            base = __faber_int(base.checked_mul(base));
+        }
+    }
+    accumulator
+}
+
+<span class="tok-kw">fn</span> __faber_div(a: i128, b: i128) -&gt; i128 {
+    <span class="tok-kw">if</span> b == <span class="tok-nu">0</span> {
+        panic!(<span class="tok-st">"numerus division failed"</span>);
+    }
+    <span class="tok-kw">let</span> quotient = a / b;
+    <span class="tok-kw">if</span> a % b != <span class="tok-nu">0</span> &amp;&amp; ((a &lt; <span class="tok-nu">0</span>) != (b &lt; <span class="tok-nu">0</span>)) { quotient - <span class="tok-nu">1</span> } <span class="tok-kw">else</span> { quotient }
+}
+
+<span class="tok-kw">fn</span> __faber_rem(a: i128, b: i128) -&gt; i128 {
+    a - b * __faber_div(a, b)
+}
+
+<span class="tok-kw">fn</span> __faber_shl(value: i128, count: i128) -&gt; i128 {
+    <span class="tok-kw">if</span> count &lt; <span class="tok-nu">0</span> {
+        panic!(<span class="tok-st">"negative shift count"</span>);
+    }
+    <span class="tok-kw">if</span> value == <span class="tok-nu">0</span> {
+        <span class="tok-kw">return</span> <span class="tok-nu">0</span>;
+    }
+    <span class="tok-kw">if</span> count &gt; <span class="tok-nu">64</span> {
+        panic!(<span class="tok-st">"numerus overflow"</span>);
+    }
+    __faber_int(value.checked_mul(<span class="tok-nu">1_</span>i128 &lt;&lt; count))
+}
+
+<span class="tok-kw">fn</span> __faber_shr(value: i128, count: i128) -&gt; i128 {
+    <span class="tok-kw">if</span> count &lt; <span class="tok-nu">0</span> {
+        panic!(<span class="tok-st">"negative shift count"</span>);
+    }
+    <span class="tok-kw">if</span> count &gt;= <span class="tok-nu">127</span> {
+        <span class="tok-kw">if</span> value &lt; <span class="tok-nu">0</span> { -<span class="tok-nu">1</span> } <span class="tok-kw">else</span> { <span class="tok-nu">0</span> }
+    } <span class="tok-kw">else</span> {
+        value &gt;&gt; count
+    }
+}
+
+<span class="tok-kw">fn</span> __faber_store&lt;T: TryFrom&lt;i128&gt;&gt;(value: i128, at: &amp;<span class="tok-ty">str</span>, inferred: &amp;<span class="tok-ty">str</span>) -&gt; T {
+    T::try_from(value).unwrap_or_else(|_| {
+        <span class="tok-kw">let</span> ty = std::<span class="tok-ty">any</span>::type_name::&lt;T&gt;();
+        <span class="tok-kw">let</span> note = <span class="tok-kw">if</span> value &lt; <span class="tok-nu">0</span> &amp;&amp; ty.starts_with(<span class="tok-st">'u'</span>) {
+            <span class="tok-st">" (a negative value cannot be stored in an unsigned slot)"</span>
+        } <span class="tok-kw">else</span> {
+            <span class="tok-st">""</span>
+        };
+        panic!(<span class="tok-st">"{value} does not fit in `{ty}` ({at}){inferred}{note}"</span>)
+    })
+}
+
+<span class="tok-kw">fn</span> __faber_cmp_int_float(<span class="tok-ty">int</span>: i128, <span class="tok-ty">float</span>: <span class="tok-ty">f64</span>) -&gt; Option&lt;std::cmp::Ordering&gt; {
+    <span class="tok-kw">use</span> std::cmp::Ordering;
+    <span class="tok-kw">if</span> <span class="tok-ty">float</span>.is_nan() {
+        <span class="tok-kw">return</span> None;
+    }
+    <span class="tok-kw">const</span> LIMIT: <span class="tok-ty">f64</span> = <span class="tok-nu">170_141_183_460_469_231_731_687_303_715_884_105_728.0</span>;
+    <span class="tok-kw">if</span> <span class="tok-ty">float</span> &gt;= LIMIT {
+        <span class="tok-kw">return</span> Some(Ordering::Less);
+    }
+    <span class="tok-kw">if</span> <span class="tok-ty">float</span> &lt;= -LIMIT {
+        <span class="tok-kw">return</span> Some(Ordering::Greater);
+    }
+    <span class="tok-kw">let</span> whole = <span class="tok-ty">float</span>.trunc();
+    <span class="tok-kw">match</span> <span class="tok-ty">int</span>.cmp(&amp;(whole <span class="tok-kw">as</span> i128)) {
+        Ordering::Equal =&gt; {
+            <span class="tok-kw">let</span> fraction = <span class="tok-ty">float</span> - whole;
+            Some(<span class="tok-kw">if</span> fraction &gt; <span class="tok-nu">0.0</span> {
+                Ordering::Less
+            } <span class="tok-kw">else</span> <span class="tok-kw">if</span> fraction &lt; <span class="tok-nu">0.0</span> {
+                Ordering::Greater
+            } <span class="tok-kw">else</span> {
+                Ordering::Equal
+            })
+        }
+        other =&gt; Some(other),
+    }
+}
+
+<span class="tok-kw">fn</span> __faber_cmp_scaled_float(scaled: i128, scale: i128, <span class="tok-ty">float</span>: <span class="tok-ty">f64</span>) -&gt; Option&lt;std::cmp::Ordering&gt; {
+    <span class="tok-kw">use</span> std::cmp::Ordering;
+    <span class="tok-kw">if</span> <span class="tok-ty">float</span>.is_nan() {
+        <span class="tok-kw">return</span> None;
+    }
+    <span class="tok-kw">const</span> HUGE: <span class="tok-ty">f64</span> = <span class="tok-nu">170_141_183_460_469_231_731_687_303_715_884_105_728.0</span>;
+    <span class="tok-kw">if</span> <span class="tok-ty">float</span> &gt;= HUGE {
+        <span class="tok-kw">return</span> Some(Ordering::Less);
+    }
+    <span class="tok-kw">if</span> <span class="tok-ty">float</span> &lt;= -HUGE {
+        <span class="tok-kw">return</span> Some(Ordering::Greater);
+    }
+    <span class="tok-kw">if</span> <span class="tok-ty">float</span> &lt; <span class="tok-nu">0.0</span> {
+        <span class="tok-kw">if</span> <span class="tok-kw">let</span> Some(negated) = <span class="tok-nu">0</span>i128.checked_sub(scaled) {
+            <span class="tok-kw">return</span> __faber_cmp_scaled_float(negated, scale, -<span class="tok-ty">float</span>).map(Ordering::reverse);
+        }
+    }
+    <span class="tok-kw">let</span> floor = <span class="tok-ty">float</span>.floor();
+    <span class="tok-kw">let</span> fraction = <span class="tok-ty">float</span> - floor;
+    <span class="tok-kw">let</span> whole = floor <span class="tok-kw">as</span> i128;
+    <span class="tok-kw">let</span> quotient = __faber_div(scaled, scale);
+    <span class="tok-kw">let</span> remainder = __faber_rem(scaled, scale);
+    <span class="tok-kw">match</span> quotient.cmp(&amp;whole) {
+        Ordering::Equal =&gt; {}
+        other =&gt; <span class="tok-kw">return</span> Some(other),
+    }
+    <span class="tok-kw">if</span> fraction == <span class="tok-nu">0.0</span> {
+        <span class="tok-kw">return</span> Some(<span class="tok-kw">if</span> remainder == <span class="tok-nu">0</span> { Ordering::Equal } <span class="tok-kw">else</span> { Ordering::Greater });
+    }
+    <span class="tok-kw">if</span> remainder == <span class="tok-nu">0</span> {
+        <span class="tok-kw">return</span> Some(Ordering::Less);
+    }
+    <span class="tok-kw">let</span> bits = fraction.to_bits();
+    <span class="tok-kw">let</span> exponent = ((bits &gt;&gt; <span class="tok-nu">52</span>) &amp; <span class="tok-nu">0</span>x7ff) <span class="tok-kw">as</span> <span class="tok-ty">i32</span>;
+    <span class="tok-kw">let</span> (mantissa, shift) = <span class="tok-kw">if</span> exponent == <span class="tok-nu">0</span> {
+        ((bits &amp; ((<span class="tok-nu">1</span> &lt;&lt; <span class="tok-nu">52</span>) - <span class="tok-nu">1</span>)) <span class="tok-kw">as</span> u128, <span class="tok-nu">1074_</span>u32)
+    } <span class="tok-kw">else</span> {
+        ((((bits &amp; ((<span class="tok-nu">1</span> &lt;&lt; <span class="tok-nu">52</span>) - <span class="tok-nu">1</span>)) | (<span class="tok-nu">1</span> &lt;&lt; <span class="tok-nu">52</span>)) <span class="tok-kw">as</span> u128), (<span class="tok-nu">1075</span> - exponent) <span class="tok-kw">as</span> <span class="tok-ty">u32</span>)
+    };
+    <span class="tok-kw">let</span> remainder = remainder.unsigned_abs();
+    <span class="tok-kw">let</span> scale = scale.unsigned_abs();
+    <span class="tok-kw">let</span> left_bits = (<span class="tok-nu">128</span> - remainder.leading_zeros()) + shift;
+    <span class="tok-kw">let</span> right_bits = (<span class="tok-nu">128</span> - mantissa.leading_zeros()) + (<span class="tok-nu">128</span> - scale.leading_zeros());
+    <span class="tok-kw">if</span> left_bits &gt; right_bits {
+        <span class="tok-kw">return</span> Some(Ordering::Greater);
+    }
+    <span class="tok-kw">if</span> left_bits + <span class="tok-nu">1</span> &lt; right_bits {
+        <span class="tok-kw">return</span> Some(Ordering::Less);
+    }
+    <span class="tok-kw">let</span> left = <span class="tok-kw">match</span> shift {
+        <span class="tok-nu">0</span> =&gt; (<span class="tok-nu">0</span>u128, remainder),
+        <span class="tok-nu">1</span>..=<span class="tok-nu">127</span> =&gt; (remainder &gt;&gt; (<span class="tok-nu">128</span> - shift), remainder &lt;&lt; shift),
+        <span class="tok-nu">128</span> =&gt; (remainder, <span class="tok-nu">0</span>),
+        _ =&gt; (remainder &lt;&lt; (shift - <span class="tok-nu">128</span>), <span class="tok-nu">0</span>),
+    };
+    <span class="tok-kw">let</span> mask = <span class="tok-ty">u64</span>::MAX <span class="tok-kw">as</span> u128;
+    <span class="tok-kw">let</span> (a_hi, a_lo) = (mantissa &gt;&gt; <span class="tok-nu">64</span>, mantissa &amp; mask);
+    <span class="tok-kw">let</span> (b_hi, b_lo) = (scale &gt;&gt; <span class="tok-nu">64</span>, scale &amp; mask);
+    <span class="tok-kw">let</span> low = a_lo * b_lo;
+    <span class="tok-kw">let</span> mid1 = a_hi * b_lo;
+    <span class="tok-kw">let</span> mid2 = a_lo * b_hi;
+    <span class="tok-kw">let</span> (mid, carry) = mid1.overflowing_add(mid2);
+    <span class="tok-kw">let</span> (low_sum, carry_low) = low.overflowing_add(mid &lt;&lt; <span class="tok-nu">64</span>);
+    <span class="tok-kw">let</span> high = a_hi * b_hi + (mid &gt;&gt; <span class="tok-nu">64</span>) + ((carry <span class="tok-kw">as</span> u128) &lt;&lt; <span class="tok-nu">64</span>) + (carry_low <span class="tok-kw">as</span> u128);
+    Some(left.cmp(&amp;(high, low_sum)))
+}
+
+<span class="tok-kw">mod</span> host_register;
 
 <span class="tok-kw">fn</span> divide(a: <span class="tok-ty">i64</span>, b: <span class="tok-ty">i64</span>) -&gt; Result&lt;<span class="tok-ty">i64</span>, <span class="tok-ty">String</span>&gt; {
     <span class="tok-kw">if</span> b == <span class="tok-nu">0</span> {
         <span class="tok-kw">return</span> Err(<span class="tok-ty">String</span>::from(<span class="tok-st">"division by zero"</span>));
-    };
-    <span class="tok-kw">return</span> Ok((<span class="tok-ty">i64</span>::checked_div(a, b).expect(<span class="tok-st">"numerus division failed"</span>)));
+    }Ok(__faber_store::&lt;<span class="tok-ty">i64</span>&gt;(__faber_div(a <span class="tok-kw">as</span> i128, b <span class="tok-kw">as</span> i128), <span class="tok-st">"return"</span>, <span class="tok-st">""</span>))
 }
 
 <span class="tok-kw">fn</span> main() {
+    host_register::install_or_exit();
     <span class="tok-kw">match</span> { <span class="tok-kw">let</span> ok: Result&lt;(), <span class="tok-ty">String</span>&gt; = 'fac_result: {
     <span class="tok-kw">loop</span> {
         println!(<span class="tok-st">"{}"</span>, <span class="tok-kw">match</span> divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>) { Ok(fac_value) =&gt; fac_value, Err(fac_err) =&gt; <span class="tok-kw">break</span> 'fac_result Err(fac_err) });
     <span class="tok-kw">break</span>;
     }Ok(())
     }; ok } { Ok(ok) =&gt; ok, Err(err) =&gt; {
-        <span class="tok-kw">let</span> err = err;
-        eprintln!(<span class="tok-st">"{}"</span>, err);
-        ()} };
-}</code></pre><h2 id="collectiones">Collections and iteration<a class="anchor" href="#collectiones">#</a></h2><p>A list folded to a total with <code>for from</code>. The plainest possible read on how loops lower.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> sum(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+        eprintln!(<span class="tok-st">"{err}"</span>);
+        ()} }}</code></pre><h2 id="collectiones">Collections and iteration<a class="anchor" href="#collectiones">#</a></h2><p>A list folded to a total with <code>for from</code>. The plainest possible read on how loops lower.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> sum(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
     <span class="tok-kw">var</span> <span class="tok-kw">int</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
     <span class="tok-kw">for</span> <span class="tok-kw">from</span> numeri <span class="tok-kw">const</span> n {
         total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
@@ -165,20 +419,206 @@
 <span class="tok-kw">main</span> {
     <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
     print sum(valores)
-}</code></pre><p><strong>Rust</strong> — 12 lines in, 17 out (1.4×)</p><pre class="faber-code"><code class="lang-rust"><span class="tok-co">// Generated by radix - do not edit</span>
+}</code></pre><p><strong>Rust</strong> — 12 lines in, 203 out (16.9×)</p><pre class="faber-code"><code class="lang-rust"><span class="tok-co">// Generated by radix - do not edit</span>
 <span class="tok-co">// Requires the faber language-runtime crate (add to Cargo.toml):</span>
 <span class="tok-co">//   faber = { path = "../faber" }  # adjust path for your layout</span>
+
+<span class="tok-co">// SCR-09 recorded suppressions: identifier/literal fidelity, plan-directed</span>
+<span class="tok-co">// casts and parameter passing, library-shaped artifact items.</span>
+#![allow(non_camel_case_types, non_snake_case, dead_code, clippy::unreadable_literal, clippy::cast_lossless, clippy::cast_possible_truncation, clippy::cast_possible_wrap, clippy::cast_sign_loss, clippy::cast_precision_loss, clippy::needless_pass_by_value)]
+
+<span class="tok-kw">const</span> <span class="tok-kw">fn</span> __faber_approx_int(a: i128, b: i128) -&gt; <span class="tok-ty">bool</span> {
+    <span class="tok-co">// `const fn`: class `static` fields are Rust associated consts, and `Ord::max` is not const.</span>
+    <span class="tok-kw">let</span> (a_abs, b_abs) = (a.abs(), b.abs());
+    <span class="tok-kw">let</span> larger = <span class="tok-kw">if</span> a_abs &gt;= b_abs { a_abs } <span class="tok-kw">else</span> { b_abs };
+    <span class="tok-nu">1_000_000_000</span> * (a - b).abs() &lt;= larger
+}
+
+<span class="tok-kw">fn</span> __faber_int(value: Option&lt;i128&gt;) -&gt; i128 {
+    <span class="tok-kw">match</span> value {
+        Some(value) <span class="tok-kw">if</span> (-<span class="tok-nu">9_223_372_036_854_775_808</span>..=<span class="tok-nu">18_446_744_073_709_551_615</span>).contains(&amp;value) =&gt; value,
+        _ =&gt; panic!(<span class="tok-st">"numerus overflow"</span>),
+    }
+}
+
+<span class="tok-kw">fn</span> __faber_fit&lt;T: TryFrom&lt;i128&gt;&gt;(value: i128) -&gt; T {
+    T::try_from(value).unwrap_or_else(|_| panic!(<span class="tok-st">"numerus overflow"</span>))
+}
+
+<span class="tok-kw">fn</span> __faber_pow(base: i128, exponent: i128) -&gt; i128 {
+    <span class="tok-kw">if</span> exponent &lt; <span class="tok-nu">0</span> {
+        panic!(<span class="tok-st">"numerus potentia failed: negative exponent"</span>);
+    }
+    <span class="tok-kw">let</span> <span class="tok-kw">mut</span> accumulator: i128 = <span class="tok-nu">1</span>;
+    <span class="tok-kw">let</span> <span class="tok-kw">mut</span> base = base;
+    <span class="tok-kw">let</span> <span class="tok-kw">mut</span> exponent = exponent;
+    <span class="tok-kw">while</span> exponent &gt; <span class="tok-nu">0</span> {
+        <span class="tok-kw">if</span> exponent % <span class="tok-nu">2</span> != <span class="tok-nu">0</span> {
+            accumulator = __faber_int(accumulator.checked_mul(base));
+        }
+        exponent /= <span class="tok-nu">2</span>;
+        <span class="tok-kw">if</span> exponent &gt; <span class="tok-nu">0</span> {
+            base = __faber_int(base.checked_mul(base));
+        }
+    }
+    accumulator
+}
+
+<span class="tok-kw">fn</span> __faber_div(a: i128, b: i128) -&gt; i128 {
+    <span class="tok-kw">if</span> b == <span class="tok-nu">0</span> {
+        panic!(<span class="tok-st">"numerus division failed"</span>);
+    }
+    <span class="tok-kw">let</span> quotient = a / b;
+    <span class="tok-kw">if</span> a % b != <span class="tok-nu">0</span> &amp;&amp; ((a &lt; <span class="tok-nu">0</span>) != (b &lt; <span class="tok-nu">0</span>)) { quotient - <span class="tok-nu">1</span> } <span class="tok-kw">else</span> { quotient }
+}
+
+<span class="tok-kw">fn</span> __faber_rem(a: i128, b: i128) -&gt; i128 {
+    a - b * __faber_div(a, b)
+}
+
+<span class="tok-kw">fn</span> __faber_shl(value: i128, count: i128) -&gt; i128 {
+    <span class="tok-kw">if</span> count &lt; <span class="tok-nu">0</span> {
+        panic!(<span class="tok-st">"negative shift count"</span>);
+    }
+    <span class="tok-kw">if</span> value == <span class="tok-nu">0</span> {
+        <span class="tok-kw">return</span> <span class="tok-nu">0</span>;
+    }
+    <span class="tok-kw">if</span> count &gt; <span class="tok-nu">64</span> {
+        panic!(<span class="tok-st">"numerus overflow"</span>);
+    }
+    __faber_int(value.checked_mul(<span class="tok-nu">1_</span>i128 &lt;&lt; count))
+}
+
+<span class="tok-kw">fn</span> __faber_shr(value: i128, count: i128) -&gt; i128 {
+    <span class="tok-kw">if</span> count &lt; <span class="tok-nu">0</span> {
+        panic!(<span class="tok-st">"negative shift count"</span>);
+    }
+    <span class="tok-kw">if</span> count &gt;= <span class="tok-nu">127</span> {
+        <span class="tok-kw">if</span> value &lt; <span class="tok-nu">0</span> { -<span class="tok-nu">1</span> } <span class="tok-kw">else</span> { <span class="tok-nu">0</span> }
+    } <span class="tok-kw">else</span> {
+        value &gt;&gt; count
+    }
+}
+
+<span class="tok-kw">fn</span> __faber_store&lt;T: TryFrom&lt;i128&gt;&gt;(value: i128, at: &amp;<span class="tok-ty">str</span>, inferred: &amp;<span class="tok-ty">str</span>) -&gt; T {
+    T::try_from(value).unwrap_or_else(|_| {
+        <span class="tok-kw">let</span> ty = std::<span class="tok-ty">any</span>::type_name::&lt;T&gt;();
+        <span class="tok-kw">let</span> note = <span class="tok-kw">if</span> value &lt; <span class="tok-nu">0</span> &amp;&amp; ty.starts_with(<span class="tok-st">'u'</span>) {
+            <span class="tok-st">" (a negative value cannot be stored in an unsigned slot)"</span>
+        } <span class="tok-kw">else</span> {
+            <span class="tok-st">""</span>
+        };
+        panic!(<span class="tok-st">"{value} does not fit in `{ty}` ({at}){inferred}{note}"</span>)
+    })
+}
+
+<span class="tok-kw">fn</span> __faber_cmp_int_float(<span class="tok-ty">int</span>: i128, <span class="tok-ty">float</span>: <span class="tok-ty">f64</span>) -&gt; Option&lt;std::cmp::Ordering&gt; {
+    <span class="tok-kw">use</span> std::cmp::Ordering;
+    <span class="tok-kw">if</span> <span class="tok-ty">float</span>.is_nan() {
+        <span class="tok-kw">return</span> None;
+    }
+    <span class="tok-kw">const</span> LIMIT: <span class="tok-ty">f64</span> = <span class="tok-nu">170_141_183_460_469_231_731_687_303_715_884_105_728.0</span>;
+    <span class="tok-kw">if</span> <span class="tok-ty">float</span> &gt;= LIMIT {
+        <span class="tok-kw">return</span> Some(Ordering::Less);
+    }
+    <span class="tok-kw">if</span> <span class="tok-ty">float</span> &lt;= -LIMIT {
+        <span class="tok-kw">return</span> Some(Ordering::Greater);
+    }
+    <span class="tok-kw">let</span> whole = <span class="tok-ty">float</span>.trunc();
+    <span class="tok-kw">match</span> <span class="tok-ty">int</span>.cmp(&amp;(whole <span class="tok-kw">as</span> i128)) {
+        Ordering::Equal =&gt; {
+            <span class="tok-kw">let</span> fraction = <span class="tok-ty">float</span> - whole;
+            Some(<span class="tok-kw">if</span> fraction &gt; <span class="tok-nu">0.0</span> {
+                Ordering::Less
+            } <span class="tok-kw">else</span> <span class="tok-kw">if</span> fraction &lt; <span class="tok-nu">0.0</span> {
+                Ordering::Greater
+            } <span class="tok-kw">else</span> {
+                Ordering::Equal
+            })
+        }
+        other =&gt; Some(other),
+    }
+}
+
+<span class="tok-kw">fn</span> __faber_cmp_scaled_float(scaled: i128, scale: i128, <span class="tok-ty">float</span>: <span class="tok-ty">f64</span>) -&gt; Option&lt;std::cmp::Ordering&gt; {
+    <span class="tok-kw">use</span> std::cmp::Ordering;
+    <span class="tok-kw">if</span> <span class="tok-ty">float</span>.is_nan() {
+        <span class="tok-kw">return</span> None;
+    }
+    <span class="tok-kw">const</span> HUGE: <span class="tok-ty">f64</span> = <span class="tok-nu">170_141_183_460_469_231_731_687_303_715_884_105_728.0</span>;
+    <span class="tok-kw">if</span> <span class="tok-ty">float</span> &gt;= HUGE {
+        <span class="tok-kw">return</span> Some(Ordering::Less);
+    }
+    <span class="tok-kw">if</span> <span class="tok-ty">float</span> &lt;= -HUGE {
+        <span class="tok-kw">return</span> Some(Ordering::Greater);
+    }
+    <span class="tok-kw">if</span> <span class="tok-ty">float</span> &lt; <span class="tok-nu">0.0</span> {
+        <span class="tok-kw">if</span> <span class="tok-kw">let</span> Some(negated) = <span class="tok-nu">0</span>i128.checked_sub(scaled) {
+            <span class="tok-kw">return</span> __faber_cmp_scaled_float(negated, scale, -<span class="tok-ty">float</span>).map(Ordering::reverse);
+        }
+    }
+    <span class="tok-kw">let</span> floor = <span class="tok-ty">float</span>.floor();
+    <span class="tok-kw">let</span> fraction = <span class="tok-ty">float</span> - floor;
+    <span class="tok-kw">let</span> whole = floor <span class="tok-kw">as</span> i128;
+    <span class="tok-kw">let</span> quotient = __faber_div(scaled, scale);
+    <span class="tok-kw">let</span> remainder = __faber_rem(scaled, scale);
+    <span class="tok-kw">match</span> quotient.cmp(&amp;whole) {
+        Ordering::Equal =&gt; {}
+        other =&gt; <span class="tok-kw">return</span> Some(other),
+    }
+    <span class="tok-kw">if</span> fraction == <span class="tok-nu">0.0</span> {
+        <span class="tok-kw">return</span> Some(<span class="tok-kw">if</span> remainder == <span class="tok-nu">0</span> { Ordering::Equal } <span class="tok-kw">else</span> { Ordering::Greater });
+    }
+    <span class="tok-kw">if</span> remainder == <span class="tok-nu">0</span> {
+        <span class="tok-kw">return</span> Some(Ordering::Less);
+    }
+    <span class="tok-kw">let</span> bits = fraction.to_bits();
+    <span class="tok-kw">let</span> exponent = ((bits &gt;&gt; <span class="tok-nu">52</span>) &amp; <span class="tok-nu">0</span>x7ff) <span class="tok-kw">as</span> <span class="tok-ty">i32</span>;
+    <span class="tok-kw">let</span> (mantissa, shift) = <span class="tok-kw">if</span> exponent == <span class="tok-nu">0</span> {
+        ((bits &amp; ((<span class="tok-nu">1</span> &lt;&lt; <span class="tok-nu">52</span>) - <span class="tok-nu">1</span>)) <span class="tok-kw">as</span> u128, <span class="tok-nu">1074_</span>u32)
+    } <span class="tok-kw">else</span> {
+        ((((bits &amp; ((<span class="tok-nu">1</span> &lt;&lt; <span class="tok-nu">52</span>) - <span class="tok-nu">1</span>)) | (<span class="tok-nu">1</span> &lt;&lt; <span class="tok-nu">52</span>)) <span class="tok-kw">as</span> u128), (<span class="tok-nu">1075</span> - exponent) <span class="tok-kw">as</span> <span class="tok-ty">u32</span>)
+    };
+    <span class="tok-kw">let</span> remainder = remainder.unsigned_abs();
+    <span class="tok-kw">let</span> scale = scale.unsigned_abs();
+    <span class="tok-kw">let</span> left_bits = (<span class="tok-nu">128</span> - remainder.leading_zeros()) + shift;
+    <span class="tok-kw">let</span> right_bits = (<span class="tok-nu">128</span> - mantissa.leading_zeros()) + (<span class="tok-nu">128</span> - scale.leading_zeros());
+    <span class="tok-kw">if</span> left_bits &gt; right_bits {
+        <span class="tok-kw">return</span> Some(Ordering::Greater);
+    }
+    <span class="tok-kw">if</span> left_bits + <span class="tok-nu">1</span> &lt; right_bits {
+        <span class="tok-kw">return</span> Some(Ordering::Less);
+    }
+    <span class="tok-kw">let</span> left = <span class="tok-kw">match</span> shift {
+        <span class="tok-nu">0</span> =&gt; (<span class="tok-nu">0</span>u128, remainder),
+        <span class="tok-nu">1</span>..=<span class="tok-nu">127</span> =&gt; (remainder &gt;&gt; (<span class="tok-nu">128</span> - shift), remainder &lt;&lt; shift),
+        <span class="tok-nu">128</span> =&gt; (remainder, <span class="tok-nu">0</span>),
+        _ =&gt; (remainder &lt;&lt; (shift - <span class="tok-nu">128</span>), <span class="tok-nu">0</span>),
+    };
+    <span class="tok-kw">let</span> mask = <span class="tok-ty">u64</span>::MAX <span class="tok-kw">as</span> u128;
+    <span class="tok-kw">let</span> (a_hi, a_lo) = (mantissa &gt;&gt; <span class="tok-nu">64</span>, mantissa &amp; mask);
+    <span class="tok-kw">let</span> (b_hi, b_lo) = (scale &gt;&gt; <span class="tok-nu">64</span>, scale &amp; mask);
+    <span class="tok-kw">let</span> low = a_lo * b_lo;
+    <span class="tok-kw">let</span> mid1 = a_hi * b_lo;
+    <span class="tok-kw">let</span> mid2 = a_lo * b_hi;
+    <span class="tok-kw">let</span> (mid, carry) = mid1.overflowing_add(mid2);
+    <span class="tok-kw">let</span> (low_sum, carry_low) = low.overflowing_add(mid &lt;&lt; <span class="tok-nu">64</span>);
+    <span class="tok-kw">let</span> high = a_hi * b_hi + (mid &gt;&gt; <span class="tok-nu">64</span>) + ((carry <span class="tok-kw">as</span> u128) &lt;&lt; <span class="tok-nu">64</span>) + (carry_low <span class="tok-kw">as</span> u128);
+    Some(left.cmp(&amp;(high, low_sum)))
+}
+
+<span class="tok-kw">mod</span> host_register;
 
 <span class="tok-kw">fn</span> sum(numeri: <span class="tok-ty">Vec</span>&lt;<span class="tok-ty">i64</span>&gt;) -&gt; <span class="tok-ty">i64</span> {
     <span class="tok-kw">let</span> <span class="tok-kw">mut</span> total: <span class="tok-ty">i64</span> = <span class="tok-nu">0</span>;
     <span class="tok-kw">for</span> i1000002 <span class="tok-kw">in</span> &amp;(numeri) {
         <span class="tok-kw">let</span> n = i1000002.clone();
-        total = <span class="tok-ty">i64</span>::checked_add(total, n).expect(<span class="tok-st">"numerus overflow"</span>);
-    };
-    <span class="tok-kw">return</span> total;
+        total = __faber_store::&lt;<span class="tok-ty">i64</span>&gt;(__faber_int(i128::checked_add(total <span class="tok-kw">as</span> i128, n <span class="tok-kw">as</span> i128)), <span class="tok-st">"assignment to `total`"</span>, <span class="tok-st">""</span>);
+    }total
 }
 
 <span class="tok-kw">fn</span> main() {
+    host_register::install_or_exit();
     <span class="tok-kw">let</span> valores: <span class="tok-ty">Vec</span>&lt;<span class="tok-ty">i64</span>&gt; = vec![<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>];
     println!(<span class="tok-st">"{}"</span>, sum(valores.clone()));
-}</code></pre><p>---</p><p><a href="/en-US/targets/">All lanes</a> · <a href="/en-US/toolchain/target-matrix.html">Measured support per term</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#reading">How to read it</a></li><li class="toc-2"><a href="#tensores">Typed tensors</a></li><li class="toc-2"><a href="#fallibilis">The error channel</a></li><li class="toc-2"><a href="#collectiones">Collections and iteration</a></li></ul></div></nav></div></body></html>
+}</code></pre><p>---</p><p><a href="/en-US/targets/">All targets</a> · <a href="/en-US/toolchain/target-matrix.html">Measured support per term</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#reading">How to read it</a></li><li class="toc-2"><a href="#support">Measured support</a></li><li class="toc-3"><a href="#gaps">Not fully supported</a></li><li class="toc-2"><a href="#tensores">Typed tensors</a></li><li class="toc-2"><a href="#fallibilis">The error channel</a></li><li class="toc-2"><a href="#collectiones">Collections and iteration</a></li></ul></div></nav></div></body></html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="th-TH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Checks whether a value is in a list, set, map key set, or enum value set."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="∈ — Faber"><meta property="og:description" content="Checks whether a value is in a list, set, map key set, or enum value set."><meta property="og:url" content="https://faberlang.dev/th-TH/corpus/∈.html"><meta property="og:locale" content="th_TH"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/th-TH/corpus/∈.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>∈ — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">การเรนเดอร์</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">th-TH</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/th-TH/start/install.html">ติดตั้ง</a></nav></div></div><div class="page"><aside><a class="brand" href="/th-TH/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">เอกสารภาษา</span></span></a><div class="side-h">ภาษา</div><ul class="nav"><li><a href="/th-TH/language/overview.html">ภาพรวม</a></li><li><details class="nav-branch"><summary>พฤติกรรม</summary><ul><li><a href="/th-TH/language/behavior/type-first.html">ชนิดก่อนชื่อ</a></li><li><a href="/th-TH/language/behavior/glyph-law.html">กฎสัญลักษณ์</a></li><li><a href="/th-TH/language/behavior/numeric-widths.html">ความกว้างตัวเลข</a></li><li><a href="/th-TH/language/behavior/sealed-locales.html">ภาษาผู้อ่านแบบปิดผนึก</a></li><li><a href="/th-TH/language/behavior/packages.html">โปรแกรมคือแพ็กเกจ</a></li><li><a href="/th-TH/language/behavior/errors-and-tests.html">ข้อผิดพลาดเป็นค่า การทดสอบเป็นการประกาศ</a></li></ul></details></li><li><details class="nav-branch" open><summary>ไวยากรณ์</summary><ul><li><a href="/th-TH/reference/grammar.html">ภาพรวมไวยากรณ์</a></li><li><a href="/th-TH/reference/grammar/program.html">โปรแกรม ภูมิภาค และการนำเข้า</a></li><li><a href="/th-TH/reference/grammar/declarations.html">การประกาศและการผูกค่า</a></li><li><a href="/th-TH/reference/grammar/annotations.html">คำอธิบายประกอบและคำสั่ง</a></li><li><a href="/th-TH/reference/grammar/types.html">ชนิดและสัญญา</a></li><li><a href="/th-TH/reference/grammar/statements.html">คำสั่งและการควบคุมลำดับ</a></li><li><a href="/th-TH/reference/grammar/expressions.html">นิพจน์และตัวดำเนินการ</a></li><li><a href="/th-TH/reference/grammar/patterns.html">รูปแบบและการแยกโครงสร้าง</a></li><li><a href="/th-TH/reference/grammar/errors.html">ช่องทางข้อผิดพลาด</a></li><li><a href="/th-TH/reference/grammar/lexical.html">โครงสร้างคำและสัญลักษณ์</a></li><li><a href="/th-TH/corpus/az.html" class="active">ศัพท์ ก–ฮ</a></li></ul></details></li><li><a href="/th-TH/examples/">ตัวอย่าง</a></li><li><a href="/th-TH/start/install.html">การติดตั้ง</a></li><li><a href="/th-TH/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">ตามเป้าหมาย</div><ul class="nav"><li><a href="/th-TH/targets/">เป้าหมายทั้งหมด</a></li><li><details class="nav-branch"><summary>HIR — แอปพลิเคชัน</summary><ul><li><a href="/th-TH/targets/rust.html">Rust</a></li><li><a href="/th-TH/targets/ts.html">TypeScript</a></li><li><a href="/th-TH/targets/go.html">Go</a></li><li><a href="/th-TH/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>MIR — ระบบ</summary><ul><li><a href="/th-TH/targets/llvm-text.html">LLVM IR</a></li><li><a href="/th-TH/targets/wasm-text.html">ข้อความ WebAssembly</a></li></ul></details></li><li><details class="nav-branch"><summary>GPU — อุปกรณ์</summary><ul><li><a href="/th-TH/targets/metal-text.html">Metal</a></li><li><a href="/th-TH/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/th-TH/toolchain/target-matrix.html">ตารางเป้าหมาย</a></li></ul><div class="side-h">ภาษาผู้อ่าน</div><ul class="nav"><li><a href="/th-TH/language/reader-locales.html">ภาษาผู้อ่าน</a></li><li><a href="/th-TH/language/locales/keywords.html">เอกสารอ้างอิงคีย์เวิร์ด</a></li><li><a href="/th-TH/language/locales/examples.html">ตัวอย่างตามภาษา</a></li><li><a href="/th-TH/language/locales/diagnostics.html">การวินิจฉัยตามภาษา</a></li></ul><div class="side-h">ไลบรารี</div><ul class="nav"><li><a href="/th-TH/libraries/norma.html">Norma — ไลบรารีมาตรฐาน</a></li><li><a href="/th-TH/libraries/triga.html">Triga — กราฟิกส์</a></li><li><a href="/th-TH/libraries/gradus.html">Gradus — ออโตเกรด</a></li><li><a href="/th-TH/libraries/tela.html">Tela — วิว</a></li><li><a href="/th-TH/libraries/inferentia.html">Inferentia — อนุมาน</a></li><li><a href="/th-TH/libraries/corpus.html">คลังภาษา</a></li></ul><div class="side-h">รุ่นเผยแพร่</div><ul class="nav"><li><a href="/th-TH/releases/">ทุกรุ่นที่เผยแพร่</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li></ul><div class="side-h">สำหรับเอเจนต์</div><ul class="nav nav-compact"><li><a href="/llms.txt">ดัชนีเอเจนต์</a></li><li><a href="/agents/index.md">คู่มือเอเจนต์</a></li><li><a href="/.well-known/agent-skills/index.json">ทักษะเอเจนต์</a></li><li><a href="/llms-full.txt">เอกสารอ้างอิงเต็ม</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">กระบวนทัศน์</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">ระบบชนิด</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">เป้าหมาย</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">สัญญาอนุญาต</span><span class="v">MIT</span></div></div></aside><main id="main-content"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/th-TH/corpus/index.html">Corpus</a> &rsaquo; <a href="/th-TH/corpus/bucket/types.html">Types &amp; collections</a> &rsaquo; ∈</nav><h1>∈</h1><p><strong>Translation status:</strong> ภาษาไทย reader-locale proof. Term names and code fences follow the <code>th-TH</code> pack; supporting prose may still be English.</p><div class="content"><p>Checks whether a value is in a list, set, map key set, or enum value set.</p><p><strong>Syntax:</strong> <code>&lt;expression&gt; ∈ &lt;collection&gt; | &lt;expression&gt; ∉ &lt;collection&gt;</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>collection</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/th-TH/corpus/‥.html">‥</a></li><li>…</li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusoperatoresmembership-collectionfab-canonical-operator-group">radix/corpus/operatores/membership-collection.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusoperatoresmembership-collectionfab-canonical-operator-group">#</a></h3><p>Checks whether a value appears in a collection.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># ∈ — Checks whether a value appears in a collection</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Checks whether a value appears in a collection.</span>
+<span class="tok-co">#   • Related operators: ‥, …</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Using `∈` with a non-collection right operand — `∈` checks membership in a รายการ, ตาราง, or ชุด (or a range), and a scalar right operand is rejected (SEM010); for a substring test on text use `contains`.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: ‥, …</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># ∈ — collection membership (element in set)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># &lt;expr&gt; ∈ &lt;รายการ&gt;</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   membershipExpr :← expr '∈' expr</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   none — stdout not pinned for this exemplum.</span>
+
+main {
+    const string condicio <span class="tok-op">←</span> <span class="tok-st">"agens"</span>
+    const int aetas <span class="tok-op">←</span> <span class="tok-nu">21</span>
+
+<span class="tok-co">    # Basic ∈ with ข้อความ รายการ</span>
+    if condicio <span class="tok-op">∈</span> [<span class="tok-st">"pendens"</span>, <span class="tok-st">"agens"</span>, <span class="tok-st">"pausa"</span>] {
+        print <span class="tok-st">"condicio valida"</span>
+    }
+
+<span class="tok-co">    # ∈ with numeric รายการ</span>
+    if aetas <span class="tok-op">∈</span> [<span class="tok-nu">18</span>, <span class="tok-nu">21</span>, <span class="tok-nu">65</span>] {
+        print <span class="tok-st">"aetas insignis"</span>
+    }
+    print <span class="tok-st">"exempla ∈"</span>
+}</code></pre><h3 id="radixcorpusoperatoresmembership-rangefab-canonical-operator-group">radix/corpus/operatores/membership-range.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusoperatoresmembership-rangefab-canonical-operator-group">#</a></h3><p>Checks whether a value lies within a range.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># ∈ — Checks whether a value lies within a range</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • Checks whether a value lies within a range.</span>
+<span class="tok-co">#   • Related operators: ‥, …</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Confusing `∈` over a range (numeric interval) with `∈` over a collection (set membership) — the right operand decides: a range such as `0‥100` tests the interval, a รายการ, ตาราง, or ชุด tests membership.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: ‥, …</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># ∈ — range containment (membership in a numeric interval)</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># &lt;expr&gt; ∈ &lt;initium&gt;‥&lt;finis&gt;    — half-open [initium, finis)</span>
+<span class="tok-co"># &lt;expr&gt; ∈ &lt;initium&gt;…&lt;finis&gt;     — inclusive [initium, finis]</span>
+<span class="tok-co"># &lt;expr&gt; ∈ &lt;initium&gt; before &lt;finis&gt; — explicit exclusive end</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   rangeMembership :← expr '∈' rangeExpr</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   none — stdout not pinned for this exemplum.</span>
+
+const int aetas <span class="tok-op">=</span> <span class="tok-nu">25</span>
+
+main {
+    print <span class="tok-st">"exempla ∈"</span>
+
+<span class="tok-co">    # Basic ∈ with ‥ operator (exclusive end)</span>
+    if aetas <span class="tok-op">∈</span> <span class="tok-nu">0</span>‥<span class="tok-nu">100</span> {
+        print <span class="tok-st">"aetas intra fines est"</span>
+    }
+
+<span class="tok-co">    # ∈ with … (inclusive end)</span>
+    if aetas <span class="tok-op">∈</span> <span class="tok-nu">18</span><span class="tok-op">…</span><span class="tok-nu">65</span> {
+        print <span class="tok-st">"aetas laboris"</span>
+    }
+
+<span class="tok-co">    # ∈ with before (explicit exclusive)</span>
+    if aetas <span class="tok-op">∈</span> <span class="tok-nu">0</span> before <span class="tok-nu">18</span> {
+        print <span class="tok-st">"minor"</span>
+    }
+}</code></pre><h3 id="radixcorpusoperatoresmembership-valuesfab-canonical-operator-group">radix/corpus/operatores/membership-values.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusoperatoresmembership-valuesfab-canonical-operator-group">#</a></h3><p>Checks whether a value is in a list, set, map key set, or enum value set.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># ∈ — Membership over lists, sets, map keys, and enum value sets (∈ and ∉)</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • `∈` is true when the left value is in the right collection; `∉` is its negation.</span>
+<span class="tok-co">#   • The right operand may be a list, a set, or a map (the test is on the keys).</span>
+<span class="tok-co">#   • An enum value set is a list of enum members: `c ∈ [Color.rubrum, Color.viridis]`.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • Using `∈` or `∉` with text on the right — they never apply to text; use `contains` for a substring test.</span>
+<span class="tok-co">#   • Using `∈` with a scalar, nullable, or unresolved empty `[]` right operand — each is rejected.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: ‥, …</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># ∈ / ∉ — membership in list, set, map key, and enum value set</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># &lt;expr&gt; ∈ &lt;รายการ | ชุด | ตาราง | [enum members]&gt;</span>
+<span class="tok-co"># &lt;expr&gt; ∉ &lt;รายการ | ชุด | ตาราง | [enum members]&gt;</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># GRAMMAR:</span>
+<span class="tok-co">#   membershipExpr :← expr ('∈' | '∉') expr</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED OUTPUT:</span>
+<span class="tok-co">#   list in</span>
+<span class="tok-co">#   list out</span>
+<span class="tok-co">#   set in</span>
+<span class="tok-co">#   set out</span>
+<span class="tok-co">#   map key in</span>
+<span class="tok-co">#   map key out</span>
+<span class="tok-co">#   enum in</span>
+<span class="tok-co">#   enum out</span>
+
+enum Color {
+    rubrum,
+    viridis,
+    caeruleum
+}
+
+fn classify(Color c) <span class="tok-op">→</span> void {
+    if c <span class="tok-op">∈</span> [Color.rubrum, Color.viridis] {
+        print <span class="tok-st">"enum in"</span>
+    }
+    if c <span class="tok-op">∉</span> [Color.rubrum, Color.caeruleum] {
+        print <span class="tok-st">"enum out"</span>
+    }
+}
+
+main {
+<span class="tok-co">    # list</span>
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> primi <span class="tok-op">←</span> [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">5</span>, <span class="tok-nu">7</span>]
+    if <span class="tok-nu">5</span> <span class="tok-op">∈</span> primi {
+        print <span class="tok-st">"list in"</span>
+    }
+    if <span class="tok-nu">4</span> <span class="tok-op">∉</span> primi {
+        print <span class="tok-st">"list out"</span>
+    }
+
+<span class="tok-co">    # set</span>
+    var set<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> visi <span class="tok-op">←</span> empty
+    visi.add(<span class="tok-st">"alpha"</span>)
+    visi.add(<span class="tok-st">"beta"</span>)
+    if <span class="tok-st">"alpha"</span> <span class="tok-op">∈</span> visi {
+        print <span class="tok-st">"set in"</span>
+    }
+    if <span class="tok-st">"gamma"</span> <span class="tok-op">∉</span> visi {
+        print <span class="tok-st">"set out"</span>
+    }
+
+<span class="tok-co">    # map: the test is on the keys</span>
+    var map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> empty
+    puncta[<span class="tok-st">"alpha"</span>] <span class="tok-op">←</span> <span class="tok-nu">1</span>
+    puncta[<span class="tok-st">"beta"</span>] <span class="tok-op">←</span> <span class="tok-nu">2</span>
+    const string present <span class="tok-op">←</span> <span class="tok-st">"beta"</span>
+    const string absent <span class="tok-op">←</span> <span class="tok-st">"gamma"</span>
+    if present <span class="tok-op">∈</span> puncta {
+        print <span class="tok-st">"map key in"</span>
+    }
+    if absent <span class="tok-op">∉</span> puncta {
+        print <span class="tok-st">"map key out"</span>
+    }
+
+<span class="tok-co">    # enum value set: a list of enum members</span>
+    classify(Color.viridis)
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>list in
+list out
+set in
+set out
+map key in
+map key out
+enum in
+enum out
+</code></pre><h3 id="radixcorpusoperatoresmembership-declinefab-supporting-reject">radix/corpus/operatores/membership-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusoperatoresmembership-declinefab-supporting-reject">#</a></h3><p>Membership reject harness: a scalar, nullable, unresolved empty list, text, or mixed value-set right operand is rejected.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># ∈ — membership decline (MG-6b)</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># This exemplum intentionally fails to compile. The sibling .expected file</span>
+<span class="tok-co"># pins only the stable diagnostic identities, not paths or rendered prose.</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Each statement below is one reject cell:</span>
+<span class="tok-co">#   • scalar right operand            1 ∈ 5</span>
+<span class="tok-co">#   • nullable collection right       n ∈ maybe</span>
+<span class="tok-co">#   • unresolved empty list right     1 ∈ []</span>
+<span class="tok-co">#   • mixed enum/scalar value set     c ∈ [Color.rubrum, 3]</span>
+<span class="tok-co">#   • text right operand              "a" ∈ "abc" (membership never applies to</span>
+<span class="tok-co">#                                     text; use contains)</span>
+
+enum Color {
+    rubrum,
+    viridis
+}
+
+fn scalar() <span class="tok-op">→</span> void {
+    if <span class="tok-nu">1</span> <span class="tok-op">∈</span> <span class="tok-nu">5</span> {
+        print <span class="tok-st">"scalar"</span>
+    }
+}
+
+fn nullable(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> none maybe) <span class="tok-op">→</span> void {
+    if <span class="tok-nu">1</span> <span class="tok-op">∈</span> maybe {
+        print <span class="tok-st">"nullable"</span>
+    }
+}
+
+fn unresolved() <span class="tok-op">→</span> void {
+    if <span class="tok-nu">1</span> <span class="tok-op">∈</span> [] {
+        print <span class="tok-st">"unresolved"</span>
+    }
+}
+
+fn mixed(Color c) <span class="tok-op">→</span> void {
+    if c <span class="tok-op">∈</span> [Color.rubrum, <span class="tok-nu">3</span>] {
+        print <span class="tok-st">"mixed"</span>
+    }
+}
+
+fn text() <span class="tok-op">→</span> void {
+    if <span class="tok-st">"a"</span> <span class="tok-op">∈</span> <span class="tok-st">"abc"</span> {
+        print <span class="tok-st">"text"</span>
+    }
+}
+
+main {
+    scalar()
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusoperatoresmembership-collectionfab-canonical-operator-group">radix/corpus/operatores/membership-collection.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusoperatoresmembership-rangefab-canonical-operator-group">radix/corpus/operatores/membership-range.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusoperatoresmembership-valuesfab-canonical-operator-group">radix/corpus/operatores/membership-values.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusoperatoresmembership-declinefab-supporting-reject">radix/corpus/operatores/membership-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[&quot;radix/corpus/operatores/membership-collection.fab&quot;]</li></ul></div></footer></div></body></html>

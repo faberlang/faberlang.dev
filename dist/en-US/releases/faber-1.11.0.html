@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Pinned download for Faber 1.11.0. For the current release, use [Install](/start/install.html) instead."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Faber 1.11.0 — Faber"><meta property="og:description" content="Pinned download for Faber 1.11.0. For the current release, use [Install](/start/install.html) instead."><meta property="og:url" content="https://faberlang.dev/en-US/releases/faber-1.11.0.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/releases/faber-1.11.0.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Faber 1.11.0 — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">The Language</div><ul class="nav"><li><a href="/en-US/language/overview.html">Overview</a></li><li><details class="nav-branch"><summary>Behavior</summary><ul><li><a href="/en-US/language/behavior/type-first.html">Types before names</a></li><li><a href="/en-US/language/behavior/glyph-law.html">The glyph law</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">Sealed reader locales</a></li><li><a href="/en-US/language/behavior/packages.html">A program is a package</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">Errors as values, tests as declarations</a></li></ul></details></li><li><details class="nav-branch"><summary>Grammar</summary><ul><li><a href="/en-US/reference/grammar.html">Grammar overview</a></li><li><a href="/en-US/reference/grammar/program.html">Programs, regions &amp; imports</a></li><li><a href="/en-US/reference/grammar/declarations.html">Declarations &amp; bindings</a></li><li><a href="/en-US/reference/grammar/annotations.html">Annotations &amp; directives</a></li><li><a href="/en-US/reference/grammar/types.html">Types &amp; contracts</a></li><li><a href="/en-US/reference/grammar/statements.html">Statements &amp; control flow</a></li><li><a href="/en-US/reference/grammar/expressions.html">Expressions &amp; operators</a></li><li><a href="/en-US/reference/grammar/patterns.html">Patterns &amp; destructuring</a></li><li><a href="/en-US/reference/grammar/errors.html">Error channel</a></li><li><a href="/en-US/reference/grammar/lexical.html">Lexical structure &amp; glyphs</a></li><li><a href="/en-US/corpus/az.html">Terms A–Z</a></li></ul></details></li><li><a href="/en-US/examples/">Examples</a></li><li><a href="/en-US/start/install.html">Installation</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">By target</div><ul class="nav"><li><a href="/en-US/targets/">All targets</a></li><li><details class="nav-branch"><summary>HIR — application</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>MIR — systems</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly text</a></li></ul></details></li><li><details class="nav-branch"><summary>GPU — device</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li></ul><div class="side-h">Reader locales</div><ul class="nav"><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/locales/keywords.html">Keyword reference</a></li><li><a href="/en-US/language/locales/examples.html">Locale examples</a></li><li><a href="/en-US/language/locales/diagnostics.html">Diagnostics by locale</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Releases</div><ul class="nav"><li><a href="/en-US/releases/" class="active">All releases</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Faber 1.11.0</h1><div class="content"><div class="table-scroll"><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td><strong>Product</strong></td><td>Faber</td></tr><tr><td><strong>Version</strong></td><td>1.11.0</td></tr><tr><td><strong>Tag</strong></td><td><code>faber-v1.11.0</code></td></tr><tr><td><strong>GitHub</strong></td><td><a href="https://github.com/faberlang/releases/releases/tag/faber-v1.11.0">faber-v1.11.0</a></td></tr><tr><td><strong>Published</strong></td><td>2026-10-02</td></tr><tr><td><strong>License</strong></td><td>MIT</td></tr></tbody></table></div><h2 id="install">Install this version<a class="anchor" href="#install">#</a></h2><p>Pinned download for <strong>Faber 1.11.0</strong>. For the current release, use <a href="/en-US/start/install.html">Install</a> instead.</p><div class="table-scroll"><table><thead><tr><th>Platform</th><th>Archive</th><th>Size</th><th>Checksum</th></tr></thead><tbody><tr><td><strong>macOS arm64</strong></td><td><a href="https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz">faber-v1.11.0-aarch64-apple-darwin.tar.gz</a></td><td>12.6 MB</td><td><a href="https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz.sha256">sha256</a></td></tr><tr><td><strong>Linux x64</strong></td><td><a href="https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz">faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz</a></td><td>14.2 MB</td><td><a href="https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz.sha256">sha256</a></td></tr></tbody></table></div><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">curl</span> <span class="tok-op">-fsSL</span> <span class="tok-op">-o</span> faber.tgz \
+<span class="tok-fn">  https</span>://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz
+<span class="tok-fn">tar</span> <span class="tok-op">-xzf</span> faber.tgz
+<span class="tok-co"># The archive ships bin/ and share/; keep them together so the</span>
+<span class="tok-co"># reader packs resolve beside the binary.</span>
+<span class="tok-fn">sudo</span> mv bin/faber /usr/local/bin/faber
+<span class="tok-fn">sudo</span> mv share/faber /usr/local/share/faber
+<span class="tok-fn">faber</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><blockquote><p><strong>Status</strong>: draft (release candidate; <code>final</code> at the operator's release commit)</p></blockquote><p>Faber 1.11 is a large language step. Since 1.10.0 (2 September 2026) the
+language-decisions work landed: numbers now state their overflow
+policy in the type, the unbounded integer <code>inf</code> exists, failure handling no
+longer hides defaults, records and sum types have settled rules, concurrency is
+conversations (<code>call</code> / <code>channel</code>), and several old forms are gone. The release
+also adds float cells (<code>trapping&lt;f32&gt;</code> and friends), makes <code>faber format</code>
+and the codemods report-only by default, and tidies the code every backend
+emits. Many of these are breaking changes; read &quot;Breaking changes&quot; before you
+upgrade a package.</p><h3 id="language">Language<a class="anchor" href="#language">#</a></h3><p><strong>Numbers state their policy.</strong> The outer word is the overflow policy and the
+inner marker is the width: <code>trapping&lt;W&gt;</code>, <code>wrapping&lt;W&gt;</code>, <code>saturating&lt;W&gt;</code> (Latin
+<code>trapping</code>, <code>wrapping</code>, <code>saturating</code>). A bare marker (<code>u8</code>, <code>i32</code>, <code>f64</code>) is the
+trapping default and the same type as <code>trapping&lt;W&gt;</code>. Signed <code>wrapping&lt;i8..i64&gt;</code>
+is allowed. The long wrapped spellings (<code>int&lt;u8&gt;</code>, <code>float&lt;f32&gt;</code>, the
+<code>int&lt;_&gt;</code> holes) are rejected with <code>PARSE040 numeric_wrapper_retired</code>.</p><p><strong>Arithmetic is exact until the store.</strong> Integer arithmetic runs at 64 bits or
+wider, and a width limit is applied once, where the value is stored into a
+narrower cell. Nothing clamps, traps, or saturates per operation. <code>/</code> and <code>%</code>
+on integers floor (<code>7 / -2</code> is <code>-4</code>; <code>-7 % 3</code> is <code>2</code>); <code>÷</code> is true division
+(<code>7 ÷ 2</code> is <code>3.5</code>). Implicit widening is lossless and never crosses number
+families. <code>∷</code> states only what the compiler can prove; anything that can fail at
+run time goes through <code>↦</code>. An integer power with a negative exponent is rejected.</p><p><strong>Float cells.</strong> <code>trapping&lt;W&gt;</code> and <code>saturating&lt;W&gt;</code> now work over <code>f16</code>, <code>bf16</code>,
+<code>f32</code> and <code>f64</code>, under the same store-only law. A <code>saturating</code> float cell is the
+bare IEEE float: overflow gives infinity, <code>0.0 / 0.0</code> gives NaN, nothing clamps
+to the largest finite value. A <code>trapping</code> cell checks only where a value is
+stored or converted into it: <code>print t * t</code> prints <code>inf</code>, but
+<code>const trapping&lt;f32&gt; u ← t * t</code> stops with &quot;inf does not fit in <code>f32</code>&quot;. Support
+by target: the MIR runner, Racket (<code>sexp</code>), Rust, Go, TypeScript, Python and
+Swift emit cells; the WebAssembly and LLVM targets refuse a cell with a named
+diagnostic (<code>wasm_target_policy_float_unsupported</code>,
+<code>llvm_target_policy_float_unsupported</code>); Go refuses <code>f16</code> and <code>bf16</code> by name;
+Haskell refuses a cell. See Known issues for the Rust half-width gap.</p><p><strong>Unbounded integers.</strong> <code>inf</code> is an opt-in arbitrary-precision integer: exact
+arithmetic, ruled conversions, shifts past 64 bits, any-length JSON
+integers. It runs on the MIR runner, Rust (<code>faber::Magnus</code>), Go (<code>math/big</code>),
+TypeScript (<code>bigint</code>), Python (<code>int</code>) and Racket. Swift and Haskell refuse it by
+name (<code>inf_target_unsupported</code>). It is never the default.</p><p><strong>Decimals.</strong> <code>d64</code> is the only decimal width (<code>d32</code> is removed:
+<code>SEM008 removed_decimal_width_d32</code>). A <code>d64</code> is <code>i64 × 10⁻⁸</code>, arithmetic is
+exact until the store, division rounds half-even, and untyped constants join by
+exact value. Display prints the shortest form (<code>12.5</code>, <code>12</code>); a <code>¶</code> format spec
+prints exactly what it says (<code>12.5 ¶ &quot;.2&quot;</code> is <code>12.50</code>). Decimal display and
+decimal-operand repairs landed on the runner, Rust, Go, TypeScript, Swift,
+Python and Racket.</p><p><strong>Failure handling has no silent defaults.</strong> <code>⇥</code> only ever names an error type.
+The inline recovery <code>↦ T ⇥ value</code> is gone (<code>PARSE030 recovery_uses_exit_arrow</code>).
+A default is written with the <code>⊥</code> channel: <code>&quot;abc&quot; ↦ int ⊥ 0</code>, and also on
+failable calls. A failable conversion must be handled, by <code>⊥</code>, an enclosing
+<code>do { } catch</code>, <code>trap { }</code>, or a function that declares <code>⇥ E</code>; <code>main</code> is
+exempt. An unhandled failable call directly in <code>main</code> panics on every backend.
+Conversions have a <code>via</code> clause for hints: <code>&quot;ff&quot; ↦ u8 via Hex</code>, `65 ↦ char via
+Code<code>; the type-argument hint is gone. A registered </code>@ conversion` pair also
+serves explicit <code>↦</code>, and <code>enum</code> has built-in <code>↦</code> rows.</p><p><strong>One conditional expression.</strong> <code>c ✓ a ✗ b</code> is the only conditional
+expression, one level deep, the same in every locale. <code>c ? a : b</code> and
+<code>c sic a else b</code> are removed (<code>PARSE030 conditional_question_colon_removed</code>).</p><p><strong>Null words are split.</strong> In the English reader the null value is <code>null</code> and
+the null type is <code>none</code> (Latin <code>null</code> / <code>none</code>). <code>is</code> / <code>is not</code> (<code>is</code> /
+<code>is not</code>) is a type test only; a value on its right-hand side is
+<code>SEM011 est_value_rhs</code>. An imported type is a legal <code>is</code> target.</p><p><strong>Records.</strong> Every <code>class</code> (<code>class</code>) field declares exactly one of <code>const</code>, <code>var</code>,
+<code>static</code> (Latin <code>const</code>, <code>var</code>, <code>static</code>); an unmarked field is <code>PARSE010</code>.
+<code>nexum</code> is removed. Copy-with-changes is <code>Genus { x = 1 } from p</code> (Latin <code>from</code>);
+<code>spread</code> is gone from construction literals. Members are public by default, and
+<code>@ private</code> is enforced. Class inheritance (<code>extends</code>, <code>abstract</code>; Latin <code>sub</code>,
+<code>abstractus</code>) is removed: contracts are <code>interface</code> and <code>implements</code>
+(<code>interface</code>, <code>implements</code>), shared data is composition. A bound on a type
+parameter uses <code>implements</code>, and <code>implements</code> takes type arguments. The <code>Orderable</code>
+contract drives every ordering glyph; tuples order lexicographically; <code>sort</code>
+(<code>ordina</code>) takes a key selector; whole-string <code>≺</code> compares code points. Recursive types
+box automatically on Rust. Declarations inside a function body are rejected.</p><p><strong>Modules and constants.</strong> A top-level runtime <code>←</code> binding is an error
+(<code>SEM062 top_level_binding</code>). The module constant is <code>const T X = e</code>
+(<code>const T X = e</code>); <code>static T X = e</code> at statement start is
+<code>PARSE010 static_decl_retired</code>. <code>const T x = e</code> is also a typed local
+compile-time constant. <code>comptime { … }</code> (<code>comptime</code>) initializes constants at
+build time, <code>embed</code> (<code>embed</code>) reads a neighbouring file at build time, and
+<code>module</code> (<code>module</code>) names a file. Executable top-level statements beside an
+explicit entry point are rejected (<code>SEM008 top_level_statement_beside_entry</code>);
+move them into <code>main</code>. Selective imports bind types as well as values.</p><p><strong>Matching.</strong> <code>case A or B</code> (<code>case A or B</code>) or-patterns bind the same names and
+types. <code>match</code> (<code>match</code>) matches closed sets only (enums, unions); width and
+length-shape type patterns are retired, and signed literal patterns work. NaN
+patterns are rejected. <code>enum</code> (<code>enum</code>) and <code>union</code> (<code>union</code>) are pure data:
+no methods, no <code>implements</code>.</p><p><strong>Iteration.</strong> <code>at</code> (<code>at</code>) iterates lists and maps as well as tensors:
+<code>for from xs at [i] const x</code>. Composite keys are tuple keys
+(a map keyed by <code>tuple&lt;K1, K2&gt;</code>), and map keys must be hashable (checked).
+Sets and maps iterate in unspecified order; sort when order matters.
+<code>for</code> binds real element types, and a non-iterable is rejected.</p><p><strong>Concurrency is conversations.</strong> <code>@ call</code> (<code>call</code>) serves a route from Faber code, with a
+static route table, a task per local handler, and copies across the boundary.
+The conversation type is <code>channel&lt;O, R&gt;</code> (<code>channel&lt;O, R&gt;</code>); the English names
+are <code>channel</code>, <code>frame</code>, <code>send&lt;T&gt;</code>, <code>recv&lt;T&gt;</code>. A channel closes itself when its conversation completes,
+and <code>Closable</code> / <code>close()</code> exist on all four backends. Sync generators (<code>generator</code>, <code>generator</code>)
+are lazy on the runner and TypeScript, and on Rust and Go for most forms. <code>continue</code> passes through a <code>do</code>
+block to the enclosing loop. <code>cura</code> / <code>curata</code> are removed.</p><p><strong>Text and bytes.</strong> <code>char</code> (<code>char</code>) is a Unicode scalar; <code>byte</code> (<code>byte</code>)
+is <code>u8</code>; <code>bytes</code> is <code>list&lt;octetus&gt;</code>; indexing a string gives <code>char</code>.
+Numbers convert to digits, not code points. <code>value ¶ &quot;spec&quot;</code> formats a value
+(width, fill, precision, sign, hex/bin/oct) with a literal spec checked against
+the value's type. <code>print</code> shows a <code>class</code> as its construction literal, lists as
+<code>[0, 1, 2]</code>, maps as <code>{&quot;k&quot;: v}</code>, tuples as <code>tuple [..]</code>, uniformly across
+backends.</p><p><strong>Tensors and kernels.</strong> Scalar operators lift over tensors elementwise, and
+<code>abs sqrt exp ln log10 elif cos tan</code> lift over tensors. Kernel legality is a
+checked pass: thread-id builtins are rejected in user code, builtin-named kernel
+parameters are rejected, and <code>gather</code> takes <code>tensor&lt;u32, [n]&gt;</code> ids. Stage
+bodies for shaders can bind resources and reflect them (WGSL text).</p><p><strong>Keyword and naming sweep.</strong> <code>en</code> names for the conversation family,
+<code>bytes</code>/<code>byte</code>/<code>char</code>, and <code>wrapping</code> for the modulus family. A leading <code>_</code> on
+an identifier warns (<code>WARN030</code>). The <code>LOCALE002</code> near-keyword suggestion fires
+only at an error span.</p><h3 id="tooling">Tooling<a class="anchor" href="#tooling">#</a></h3><ul><li><strong>`faber format`, `faber convert`, `output-transfer-codemod` and `field-modifier-codemod` report by default.</strong> They list the files that would
+change and exit 1 if any would; <code>--write</code> applies the change, <code>--stdout</code>
+prints it. The retired <code>--locale</code> and <code>--canonical</code> flags are gone from
+<code>format</code> (use <code>faber convert --to &lt;LOCALE&gt;</code> to change locales). A script that
+relied on the old in-place default must add <code>--write</code>.</li><li><code>faber format</code> refuses to drop source constructs the HIR cannot carry, keeps
+in-place numeric twins and the transpose glyph, and re-emits the long numeric
+forms as bare width markers.</li><li><code>faber doc</code> renders the exported API with its doc comments. A comment block
+directly above a declaration is its documentation.</li><li><code>faber run</code> prints <code>abort: &lt;reason&gt;</code> for runner traps, once.</li><li>Manifests reject unknown <code>[target.&lt;key&gt;]</code> tables with a structured
+diagnostic; a binding manifest has one schema with a types table.</li><li><code>faber check</code> rejects mutating intrinsics on immutable bindings and unknown
+methods on scalar numeric receivers.</li></ul><h3 id="targets">Targets<a class="anchor" href="#targets">#</a></h3><p>Generated code is cleaner and more uniform; these are repairs, not new claims.</p><ul><li><strong>Rust.</strong> Unit-returning signatures omit <code>-&gt; ()</code>, index casts drop redundant
+parentheses and <code>0usize</code>, and reserved words emit as raw identifiers.</li><li><strong>Go.</strong> The generated header is the one Go tooling recognises; <code>else { if }</code>
+emits as <code>else if</code>; every imported package name and <code>rt</code> is reserved for user
+bindings, so a user name no longer collides with a package; bounded arrays
+are typed slices with the capacity trap; maps print as <code>{&quot;k&quot;: v}</code>.</li><li><strong>TypeScript.</strong> Identity lambdas, single-expression IIFEs, dead one-shot
+loops and redundant numeric casts are gone; a statically non-optional <code>string</code>
+prints without the display helper; reserved-word fields and methods are one
+property name everywhere.</li><li><strong>Swift.</strong> Keyword identifiers are escaped with backticks, tuples lower to
+Swift tuples, and numeric list arithmetic is elementwise.</li><li><strong>Python.</strong> Decimal values display correctly, integers are exact, and <code>inf</code>
+rides Python's <code>int</code>.</li><li><strong>Racket (`sexp`).</strong> <code>d64</code> is an exact rational, composites behind a <code>value</code>
+work, and <code>inf</code> is uncapped.</li></ul><h3 id="gpu">GPU<a class="anchor" href="#gpu">#</a></h3><p>This release makes no GPU product claim. No Faber program drives the GPU
+through <code>faber run</code> yet; the device work from earlier releases is a developer
+surface and the GPU campaign is paused. What does ship is language-level:
+kernel legality checks, tensor elementwise lifting, and shader stage binding
+declarations.</p><h3 id="breaking-changes">Breaking changes<a class="anchor" href="#breaking-changes">#</a></h3><ol><li><strong>Report-only tooling.</strong> <code>faber format</code>, <code>convert</code>, <code>output-transfer-codemod</code>
+and <code>field-modifier-codemod</code> no longer write by default; add <code>--write</code>.
+<code>--locale</code> and <code>--canonical</code> are removed from <code>faber format</code>.</li><li><strong>Wrapped numeric spellings</strong> (<code>int&lt;u8&gt;</code>, <code>float&lt;f32&gt;</code>, <code>int&lt;_&gt;</code>,
+<code>int&lt;inf&gt;</code>) are rejected; write <code>u8</code>, <code>f32</code>, <code>inf</code>.</li><li><strong>`d32` is removed</strong>; use <code>d64</code>.</li><li><strong>Inline recovery is removed</strong>: <code>↦ T ⇥ value</code> and <code>↤ … ⇥ value</code> become
+<code>↦ T ⊥ value</code>. A failable conversion with no handler is a compile error.</li><li><strong>`c ? a : b` and `c sic a else b` are removed</strong>; write <code>c ✓ a ✗ b</code>.</li><li><strong>`static T X = e` is removed</strong>; write <code>const T X = e</code>. A top-level
+<code>const x ← e</code> (runtime binding) is <code>SEM062</code>.</li><li><strong>Every `class` field needs `const`, `var`, or `static`</strong> (<code>const</code>,
+<code>var</code>, <code>static</code>); <code>nexum</code> and <code>spread</code> in construction literals are
+removed. <code>faber field-modifier-codemod --write</code> migrates source.</li><li><strong>Class inheritance is removed</strong> (<code>extends</code>, <code>abstract</code>, bodyless abstract
+methods). Use <code>interface</code> / <code>implements</code> and composition.</li><li><strong>`is` is a type test only.</strong> <code>x is null</code> and <code>x is CONST</code> are errors; the
+English null type is <code>none</code>, the null value is <code>null</code>.</li><li><strong>Executable top-level statements beside `main` / `main` are rejected</strong>
+(<code>SEM008</code>); they were previously dropped silently.</li><li><strong>`cura` / `curata`</strong> allocator syntax is removed.</li><li><strong>`match` (`match`) matches closed sets only</strong>; width and length-shape
+type patterns are rejected.</li><li><strong>Declarations inside a function body are rejected.</strong></li><li><strong>Integer `/` floors and `%` is the floor remainder</strong> on every number
+family; integer <code>^</code> rejects a negative exponent. Programs that relied on
+truncating division must be rewritten.</li><li><strong>`print` output changed</strong> for decimals, <code>class</code> values, maps and tuples
+(see Language); golden files that capture it need regenerating.</li></ol><h3 id="known-issues">Known issues<a class="anchor" href="#known-issues">#</a></h3><ul><li><strong>Rust half-width float cells.</strong> <code>trapping&lt;f16&gt;</code>, <code>saturating&lt;f16&gt;</code>, and the
+<code>bf16</code> forms (and bare <code>f16</code> / <code>bf16</code>) emit through <code>faber emit --target
+rust</code> and exit 0, then fail at <code>rustc</code>. Rust does not refuse them by name.</li><li><strong>Rust corpus builds.</strong> Two programs still fail to build on Rust: one that
+stores an awaited promise at a <code>←</code> binding, and one that converts composite
+values behind a <code>value</code> (the same program fails the canonical-Rust compile
+floor).</li><li><strong>Range containment</strong> (<code>x within a‥b</code>, the <code>within</code> keyword) has no MIR
+lowering: it does not run on the MIR runner or the Racket target.</li><li><strong>WebAssembly.</strong> Programs that use a <code>list</code> are refused by the Wasm emitter
+(<code>type BoundedArray</code> unsupported); seventeen corpus programs let below their
+recorded Wasm tier. No stub host ships, so Wasm run tiers are unmeasured.</li><li><strong>Per-target conformance gaps</strong> against the 570-program corpus: Go has 14
+unexpected failures, Swift 17, TypeScript 5 (plus 4 recorded gaps that now
+pass), Racket 5, and the Faber re-emit round trip 8 files. LLVM refuses 58
+programs with a named diagnostic. The MIR runner passes 398 programs end to
+end; Rust passes 462.</li><li><strong>Swift and `inf`.</strong> The float-cell exemplum remains a Swift expected failure
+because it also uses <code>inf</code>.</li><li><strong>Stage-2 lint and one ratchet are red on the release tree</strong>: seven clippy
+findings under <code>-D warnings</code> in the Go, Rust, Swift, TypeScript, Faber and MIR
+crates, and the generated-Rust helper-spelling budget (258 against 254). The
+emitted-Metal spike gate still uses a retired wrapped spelling.</li><li><strong>Compat measurement is not recommitted.</strong> The corpus measurement JSON and the
+public compatibility matrices lag the tree (additive drift, and the <code>within</code>
+capability loss).</li><li>Carried from 1.10: the Gather reverse-mode check, environment-gated device
+checks, and package checks that need the optional Triga provider.</li></ul><h3 id="not-in-this-release">Not in this release<a class="anchor" href="#not-in-this-release">#</a></h3><ul><li>Multi-subject <code>match a and b</code> is partly landed (header parsing and
+re-emit) but not checked or lowered; do not rely on it.</li><li>Regex operations (<code>find</code>, <code>captures</code>, <code>split</code>, <code>replace</code>, failable
+<code>↦ regex</code>) and the membership glyph (<code>∈</code> / <code>∉</code> replacing <code>within</code> / <code>between</code>)
+are designed and not shipped.</li><li>Collection-ergonomics rewrite, set-algebra glyphs, superscript powers,
+<code>reduce</code> / <code>thread</code> kernel forms, and <code>do all</code> remain planned.</li><li><code>externa</code> typing and conditional-compilation enforcement stay held; there is
+no LSP.</li><li>Translated reader packs (<code>ar</code>, <code>hi</code>, <code>th-TH</code>, <code>vi</code>, <code>zh-Hans</code>, <code>zh-Hant</code>) keep
+their own spelling for the null type until the word is chosen.</li><li>No GPU program runs through <code>faber run</code>.</li><li>Cista stays on the 0.1.0 line; Radix stays at 0.84.0 (no separate Radix
+release).</li></ul><h3 id="candidate-evidence-operator-record">Candidate evidence (operator record)<a class="anchor" href="#candidate-evidence-operator-record">#</a></h3><p>This section records the local gates run on the candidate tree. It is for the
+operator and is omitted from public rendering. Paths are relative; the lane is a
+detached packet on an 18-core Mac. Gate results quote the run as it happened.</p><p><strong>Pins.</strong> Radix source commit the candidate is cut from: the batch 18 merge
+(<code>2fe88fb3b</code>), plus one bump commit and this notes commit. Hosts pin moved
+<code>46b235209469</code> to <code>e755e5c969fe</code> (the packet sibling; manifest and
+<code>HOSTS_PINNED_REV</code> agree). Public Faber target API: <code>faberlang/faber</code> main
+<code>ca6939426a51</code> (<code>v1.11.0</code> is the tag the generated manifests resolve; the tag
+does not exist yet, which <code>verify-dev-kit</code> reports as its one RESIDUAL). Radix
+crate version stays 0.84.0; the faber crate is 1.11.0. Regex aggregate and
+<code>faber::exact</code> emission are not in this tree.</p><p><strong>Runbook local proof.</strong> <code>validate-release-manifest</code> ok;
+<code>faber-regen-lock --pinned-siblings --check</code> ok; <code>cargo build --locked -p faber</code>
+ok (23 s); release-gate recipe (remapped, <code>--locked --release</code>) ok (42 s);
+<code>faber --version</code> prints <code>faber 1.11.0</code>; <code>scan-release-leakage</code> clean (0
+workspace paths, 0 registry paths); <code>assemble-dev-kit</code> ok; <code>verify-dev-kit</code>
+PASSED (all positives and negatives; one RESIDUAL: the D1 git-dependency build
+needs the faber tag); <code>package-archive</code> ok; <code>smoke-test-release-archive</code>
+RELEASABLE. Local archive <code>faber-v1.11.0-aarch64-apple-darwin.tar.gz</code> sha256
+<code>b7bec5239e1580128da153ba83cb3cf9d784275f4e029be6819f25ece13d0dc8</code>; local
+launcher digest <code>933f8f1b…c320529</code>; reference-pack digest <code>3b0d29c5…5416</code> (both
+recorded in the manifest; CI rebuilds the launcher, so its digest will differ).
+<code>release-gate</code> equivalent (run by hand, because the script's own cleanup uses
+<code>rm</code>): <code>cargo test -p faber --test hygiene</code> 1 passed; <code>cargo test -p faber</code> 1170
+passed, 0 failed, 23 ignored.</p><p><strong>Ladder.</strong> Stage 1 ok (18.6 s, 49 members fmt clean). Stage 2 RED: 7 clippy
+errors (<code>needless_lifetimes</code> hir-faber <code>expr.rs:66</code>; <code>match_like_matches_macro</code>
+hir-go <code>decimal.rs:36</code>, hir-rust <code>decimal.rs:32</code>, hir-ts <code>ops.rs:74</code>;
+<code>too_many_arguments</code> hir-swift <code>control.rs:363</code>, hir-ts <code>access.rs:411</code>;
+<code>collapsible_if</code> mir <code>vector_expand.rs:228</code>). Stage 3 ok (1 canary package).
+Stage 4a: reader-pack ok; compat JSON freshness RED (capability loss for
+<code>within</code>, plus additive drift); MIR coverage ok; HIR coverage ok. Stage 4b (9 min
+8 s, over the 300 s estimate): 2 crates FAIL: <code>faber</code> (1 test needs <code>tela</code>
+beside radix, passes with <code>FABER_TELA_HOME</code>) and <code>radix-codegen-shared</code>
+(<code>legacy_helper_spellings_stay_within_budget</code>, 258 against 254); all 47 other
+crates pass. Stage 4c ok. Stage 4d RED (<code>scripta/metal-faber-spike</code> still writes
+<code>float&lt;f32&gt;</code>, <code>PARSE040</code>). Stage 4e ok. Stage 5 ok. The packet has no
+<code>examples</code> or <code>tela</code> sibling; the conversion fixtures and <code>tela</code> were read from
+the main checkout (<code>CONVERSIO_MATRIX_FIXTURES</code>, <code>FABER_TELA_HOME</code>).</p><p><strong>E2E (one lane at a time).</strong> runner ok (398/570 pass; 35 s). Rust ok (462/570
+pass, 568/570 accepted, 2 ledger-known build failures; 4 min 22 s), run against
+<code>faberlang/faber</code> main. canonical RED (2 miscompiling members, the same two Rust
+build failures). Go: parse ok, emit stage 2 unexpected (<code>defectus</code>, <code>async_generator</code>),
+golden 381/570 pass, 556/570 accepted, 14 unexpected. TypeScript: lint 3
+unexpected; golden 186/191 expected outcomes, 5 unexpected, 4 stale. Swift: emit
+stage red; golden 553/570 accepted, 225 run, 17 unexpected. Wasm: parse, emit,
+lint, build ok; golden RED (17 tier regressions, 314/570 emitted, 0 runnable).
+LLVM golden ok (verifier-valid 391, runnable 309, output-checked 252,
+unsupported 58 at ceiling 58; only golden run: the full emit stage is a known
+slow gate). Racket <code>sexp</code>: 327/570 pass, 5 unexpected. roundtrip: 472/570
+stabilize, 8 unexpected files. mir ok. The optional <code>gpu</code> lane was not run.</p><p><strong>Operator steps the runbook requires.</strong> (1) Push <code>faberlang/hosts</code> main (6
+commits; the manifest hosts pin must exist on the remote) and <code>faberlang/faber</code>
+main (8 commits). (2) Tag <code>faberlang/faber</code> <code>v1.11.0</code> at the commit named in the
+hand-off. (3) Merge the release branch to Radix main, then tag <code>faber/v1.11.0</code>
+on the release commit and push it to start the release workflow. (4) After the
+workflow, verify downloaded archives by checksum and smoke before promotion.
+(5) Refresh the public matrices in the faber repo only after fresh Radix
+measurement is committed. Known-red items above need the operator's
+acknowledgement, per the release protocol.</p><p>---</p><p><a href="/en-US/releases/">All releases</a> · <a href="/en-US/start/install.html">Install the current release</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#install">Install this version</a></li><li class="toc-2"><a href="#notes">Release notes</a></li><li class="toc-3"><a href="#language">Language</a></li><li class="toc-3"><a href="#tooling">Tooling</a></li><li class="toc-3"><a href="#targets">Targets</a></li><li class="toc-3"><a href="#gpu">GPU</a></li><li class="toc-3"><a href="#breaking-changes">Breaking changes</a></li><li class="toc-3"><a href="#known-issues">Known issues</a></li><li class="toc-3"><a href="#not-in-this-release">Not in this release</a></li><li class="toc-3"><a href="#candidate-evidence-operator-record">Candidate evidence (operator record)</a></li></ul></div></nav></div></body></html>

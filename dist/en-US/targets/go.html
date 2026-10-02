@@ -1,14 +1,77 @@
 <!DOCTYPE html>
-<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="HIR projection with file emission and end-to-end floors."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Go — Faber"><meta property="og:description" content="HIR projection with file emission and end-to-end floors."><meta property="og:url" content="https://faberlang.dev/en-US/targets/go.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/targets/go.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Go — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><ul class="nav"><li><a href="/en-US/">Home</a></li><li><a href="/en-US/start/install.html">Install</a></li><li><a href="/en-US/localization.html">Localization</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li><li><a href="/en-US/releases/">Releases</a></li><li><a href="/en-US/open-source.html">Open source</a></li><li><a href="/en-US/examples/">Examples</a></li><li><a href="/en-US/targets/" class="active">Target lanes</a></li></ul><div class="side-h">Language</div><ul class="nav"><li><a href="/en-US/language/">The language</a></li><li><a href="/en-US/language/types.html">Types and values</a></li><li><a href="/en-US/language/functions.html">Functions and flow</a></li><li><a href="/en-US/language/errors.html">Errors and testing</a></li><li><a href="/en-US/language/glyphs.html">Glyphs and Latin</a></li><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/capabilities.html">Capabilities</a></li></ul><div class="side-h">Toolchain</div><ul class="nav"><li><a href="/en-US/toolchain/">Toolchain</a></li><li><a href="/en-US/toolchain/cli.html">The faber CLI</a></li><li><a href="/en-US/toolchain/compiling.html">Compiling and targets</a></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li><li><a href="/en-US/targets/" class="active">Target lanes</a></li><li><a href="/en-US/toolchain/packages.html">Packages with Cista</a></li><li><a href="/en-US/toolchain/radix.html">Inside Radix</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/">Libraries</a></li><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Reference</div><ul class="nav"><li><a href="/en-US/reference/">Reference</a></li><li><a href="/en-US/reference/grammar.html">Grammar</a></li><li><a href="/en-US/corpus/">Corpus index</a></li><li><a href="/en-US/reference/design.html">Design notes</a></li><li><a href="/en-US/open-source.html">Open source</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-h">Release 1.6.0</div><ul class="nav nav-compact"><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li><li><a href="/en-US/releases/">All releases</a></li><li><a href="/en-US/open-source.html">GitHub &amp; issues</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Go</h1><div class="content"><p>HIR projection with file emission and end-to-end floors.</p><p>Part of the <a href="/en-US/targets/hir.html">HIR lane</a>. Every panel below is compiler output.</p><h2 id="reading">How to read it<a class="anchor" href="#reading">#</a></h2><p>Go has no generics-free way to express some Faber types, so the emitter materialises helpers the source never wrote. Borrow modes (<code>ref</code> / <code>mut</code> / <code>from</code>) erase here — they lower, but they do not survive as distinctions.</p><h2 id="tensores">Typed tensors<a class="anchor" href="#tensores">#</a></h2><p>Builds two shaped matrices, multiplies them, and reduces the product to a scalar. Exercises shape-bearing types and a reduction.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="HIR projection with file emission and end-to-end floors."><meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Go — Faber"><meta property="og:description" content="HIR projection with file emission and end-to-end floors."><meta property="og:url" content="https://faberlang.dev/en-US/targets/go.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/targets/go.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Go — Faber</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;display=swap" rel="stylesheet"><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-ambient.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">f</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/en-US/start/install.html">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">f</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">The Language</div><ul class="nav"><li><a href="/en-US/language/overview.html">Overview</a></li><li><details class="nav-branch"><summary>Behavior</summary><ul><li><a href="/en-US/language/behavior/type-first.html">Types before names</a></li><li><a href="/en-US/language/behavior/glyph-law.html">The glyph law</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">Sealed reader locales</a></li><li><a href="/en-US/language/behavior/packages.html">A program is a package</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">Errors as values, tests as declarations</a></li></ul></details></li><li><details class="nav-branch"><summary>Grammar</summary><ul><li><a href="/en-US/reference/grammar.html">Grammar overview</a></li><li><a href="/en-US/reference/grammar/program.html">Programs, regions &amp; imports</a></li><li><a href="/en-US/reference/grammar/declarations.html">Declarations &amp; bindings</a></li><li><a href="/en-US/reference/grammar/annotations.html">Annotations &amp; directives</a></li><li><a href="/en-US/reference/grammar/types.html">Types &amp; contracts</a></li><li><a href="/en-US/reference/grammar/statements.html">Statements &amp; control flow</a></li><li><a href="/en-US/reference/grammar/expressions.html">Expressions &amp; operators</a></li><li><a href="/en-US/reference/grammar/patterns.html">Patterns &amp; destructuring</a></li><li><a href="/en-US/reference/grammar/errors.html">Error channel</a></li><li><a href="/en-US/reference/grammar/lexical.html">Lexical structure &amp; glyphs</a></li><li><a href="/en-US/corpus/az.html">Terms A–Z</a></li></ul></details></li><li><a href="/en-US/examples/">Examples</a></li><li><a href="/en-US/start/install.html">Installation</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">By target</div><ul class="nav"><li><a href="/en-US/targets/" class="active">All targets</a></li><li><details class="nav-branch" open><summary>HIR — application</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html" class="active">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>MIR — systems</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly text</a></li></ul></details></li><li><details class="nav-branch"><summary>GPU — device</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li></ul><div class="side-h">Reader locales</div><ul class="nav"><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/locales/keywords.html">Keyword reference</a></li><li><a href="/en-US/language/locales/examples.html">Locale examples</a></li><li><a href="/en-US/language/locales/diagnostics.html">Diagnostics by locale</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul><div class="side-h">Releases</div><ul class="nav"><li><a href="/en-US/releases/">All releases</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz">macOS arm64</a></li><li><a href="https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz">Linux x64</a></li></ul><div class="side-h">For agents</div><ul class="nav nav-compact"><li><a href="/llms.txt">Agent index</a></li><li><a href="/agents/index.md">Agent guide</a></li><li><a href="/.well-known/agent-skills/index.json">Agent skills</a></li><li><a href="/llms-full.txt">Full reference</a></li></ul><div class="side-meta"><div class="side-meta-row"><span class="k">Paradigm</span><span class="v">packages</span></div><div class="side-meta-row"><span class="k">Typing</span><span class="v">static · type-first</span></div><div class="side-meta-row"><span class="k">Target</span><span class="v">Rust → native</span></div><div class="side-meta-row"><span class="k">License</span><span class="v">MIT</span></div></div></aside><main id="main-content"><h1>Go</h1><div class="content"><p>HIR projection with file emission and end-to-end floors.</p><p>Part of the <a href="/en-US/targets/hir.html">HIR lane</a>. Every panel below is compiler output.</p><h2 id="reading">How to read it<a class="anchor" href="#reading">#</a></h2><p>Go has no generics-free way to express some Faber types, so the emitter materialises helpers the source never wrote. Borrow modes (<code>ref</code> / <code>mut</code> / <code>from</code>) erase here — they lower, but they do not survive as distinctions.</p><h2 id="support">Measured support<a class="anchor" href="#support">#</a></h2><div class="table-scroll"><table><thead><tr><th>Capable</th><th>Analyzable</th><th>Coverage</th></tr></thead><tbody><tr><td>337</td><td>364</td><td>93%</td></tr></tbody></table></div><p>From the <a href="/en-US/toolchain/target-matrix.html">target matrix</a>: how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.</p><h3 id="gaps">Not fully supported<a class="anchor" href="#gaps">#</a></h3><p>Terms the matrix records as partial, planned, or unsupported for this target. A term here is a measured gap, not an omission.</p><div class="table-scroll"><table><thead><tr><th>Category</th><th>Terms</th></tr></thead><tbody><tr><td>Keywords — application lane</td><td>&lt;a id=&quot;ad&quot;&gt;&lt;/a&gt;<code>call</code>, &lt;a id=&quot;itera&quot;&gt;&lt;/a&gt;<code>for</code>, &lt;a id=&quot;matrix&quot;&gt;&lt;/a&gt;<code>matrix</code>, &lt;a id=&quot;numerus&quot;&gt;&lt;/a&gt;<code>int</code>, &lt;a id=&quot;vector&quot;&gt;&lt;/a&gt;<code>vector</code></td></tr><tr><td>Operators — application lane</td><td><code>·</code>, <code>×</code>, <code>⊗</code>, <code>⊙</code>, &lt;a id=&quot;modulus-u16&quot;&gt;&lt;/a&gt;<code>wrapping&lt;u16&gt;</code>, &lt;a id=&quot;modulus-u32&quot;&gt;&lt;/a&gt;<code>wrapping&lt;u32&gt;</code>, &lt;a id=&quot;modulus-u64&quot;&gt;&lt;/a&gt;<code>wrapping&lt;u64&gt;</code>, &lt;a id=&quot;modulus-u8&quot;&gt;&lt;/a&gt;<code>wrapping&lt;u8&gt;</code></td></tr></tbody></table></div><h2 id="tensores">Typed tensors<a class="anchor" href="#tensores">#</a></h2><p>Builds two shaped matrices, multiplies them, and reduces the product to a scalar. Exercises shape-bearing types and a reduction.</p><p><strong>Faber source</strong></p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-e62aac5142451361-0-t-en" data-panel="lt-e62aac5142451361-0-p-en" data-name="English" aria-controls="lt-e62aac5142451361-0-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-e62aac5142451361-0-t-la" data-panel="lt-e62aac5142451361-0-p-la" data-name="Latin" aria-controls="lt-e62aac5142451361-0-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-e62aac5142451361-0-t-th-TH" data-panel="lt-e62aac5142451361-0-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-e62aac5142451361-0-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-e62aac5142451361-0-t-zh-Hans" data-panel="lt-e62aac5142451361-0-p-zh-Hans" data-name="简体中文" aria-controls="lt-e62aac5142451361-0-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-e62aac5142451361-0-t-zh-Hant" data-panel="lt-e62aac5142451361-0-p-zh-Hant" data-name="繁體中文" aria-controls="lt-e62aac5142451361-0-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-e62aac5142451361-0-t-vi" data-panel="lt-e62aac5142451361-0-p-vi" data-name="Tiếng Việt" aria-controls="lt-e62aac5142451361-0-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-e62aac5142451361-0-t-ar" data-panel="lt-e62aac5142451361-0-p-ar" data-name="العربية" aria-controls="lt-e62aac5142451361-0-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-e62aac5142451361-0-t-hi" data-panel="lt-e62aac5142451361-0-p-hi" data-name="हिन्दी" aria-controls="lt-e62aac5142451361-0-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-e62aac5142451361-0-p-en" role="tabpanel" aria-labelledby="lt-e62aac5142451361-0-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
     <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
     <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
-    <span class="tok-kw">const</span> tf32[] seed <span class="tok-op">←</span> empty
+    <span class="tok-kw">const</span> tf32[] seed <span class="tok-op">←</span> <span class="tok-kw">empty</span>
     <span class="tok-kw">const</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.from_flat(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
     <span class="tok-kw">const</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.from_flat(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
     <span class="tok-kw">const</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.matmul(b)
     <span class="tok-kw">const</span> f32 mean <span class="tok-op">←</span> product.mean()
-    print mean
-}</code></pre><p><strong>Go</strong> — 10 lines in, 221 out (22.1×)</p><pre class="faber-code"><code class="lang-go"><span class="tok-co">// Generated by radix - do not edit</span>
+    <span class="tok-kw">print</span> mean
+}</code></pre></div><div class="fdt-panel" id="lt-e62aac5142451361-0-p-la" role="tabpanel" aria-labelledby="lt-e62aac5142451361-0-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">incipit</span> {
+    <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">fixum</span> <span class="tok-kw">lista</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">fixum</span> tf32[] seed <span class="tok-op">←</span> <span class="tok-kw">vacua</span>
+    <span class="tok-kw">fixum</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.strue(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">fixum</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.strue(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">fixum</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.matmul(b)
+    <span class="tok-kw">fixum</span> f32 mean <span class="tok-op">←</span> product.media()
+    <span class="tok-kw">nota</span> mean
+}</code></pre></div><div class="fdt-panel" id="lt-e62aac5142451361-0-p-th-TH" role="tabpanel" aria-labelledby="lt-e62aac5142451361-0-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">เริ่ม</span> {
+    <span class="tok-kw">คงที่</span> <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">คงที่</span> <span class="tok-kw">รายการ</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">คงที่</span> tf32[] seed <span class="tok-op">←</span> <span class="tok-kw">เซตว่าง</span>
+    <span class="tok-kw">คงที่</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.<span class="tok-kw">สร้าง</span><span class="tok-kw">จาก</span>ข้อมูลแบน(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">คงที่</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.<span class="tok-kw">สร้าง</span><span class="tok-kw">จาก</span>ข้อมูลแบน(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">คงที่</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.คูณ<span class="tok-kw">เมทริกซ์</span>(b)
+    <span class="tok-kw">คงที่</span> f32 mean <span class="tok-op">←</span> product.<span class="tok-kw">ค่า</span>เฉลี่ย()
+    <span class="tok-kw">บันทึก</span> mean
+}</code></pre></div><div class="fdt-panel" id="lt-e62aac5142451361-0-p-zh-Hans" role="tabpanel" aria-labelledby="lt-e62aac5142451361-0-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">常量</span> tf32[] seed <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+    <span class="tok-kw">常量</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.由扁平<span class="tok-kw">构造</span>(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">常量</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.由扁平<span class="tok-kw">构造</span>(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">常量</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.<span class="tok-kw">矩阵</span>乘法(b)
+    <span class="tok-kw">常量</span> f32 mean <span class="tok-op">←</span> product.均值()
+    <span class="tok-kw">显示</span> mean
+}</code></pre></div><div class="fdt-panel" id="lt-e62aac5142451361-0-p-zh-Hant" role="tabpanel" aria-labelledby="lt-e62aac5142451361-0-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">定值</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">定值</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">定值</span> tf32[] seed <span class="tok-op">←</span> <span class="tok-kw">空集</span>
+    <span class="tok-kw">定值</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.由扁平建構(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">定值</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.由扁平建構(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">定值</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.<span class="tok-kw">矩陣</span>乘法(b)
+    <span class="tok-kw">定值</span> f32 mean <span class="tok-op">←</span> product.平均<span class="tok-kw">值</span>()
+    <span class="tok-kw">註記</span> mean
+}</code></pre></div><div class="fdt-panel" id="lt-e62aac5142451361-0-p-vi" role="tabpanel" aria-labelledby="lt-e62aac5142451361-0-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">bắt_đầu</span> {
+    <span class="tok-kw">hằng</span> <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">hằng</span> <span class="tok-kw">danh_sách</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">hằng</span> tf32[] seed <span class="tok-op">←</span> <span class="tok-kw">tập_rỗng</span>
+    <span class="tok-kw">hằng</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.dựng_từ_phẳng(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">hằng</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.dựng_từ_phẳng(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">hằng</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.nhân_ma_trận(b)
+    <span class="tok-kw">hằng</span> f32 mean <span class="tok-op">←</span> product.trung_bình()
+    <span class="tok-kw">ghi_chú</span> mean
+}</code></pre></div><div class="fdt-panel" id="lt-e62aac5142451361-0-p-ar" role="tabpanel" aria-labelledby="lt-e62aac5142451361-0-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">بداية</span> {
+    <span class="tok-kw">ثابت</span> <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">ثابت</span> <span class="tok-kw">قائمة</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">ثابت</span> tf32[] seed <span class="tok-op">←</span> <span class="tok-kw">فارغ</span>
+    <span class="tok-kw">ثابت</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.ابن_من_مسطح(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">ثابت</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.ابن_من_مسطح(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">ثابت</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.ضرب_المصف<span class="tok-kw">و</span>فات(b)
+    <span class="tok-kw">ثابت</span> f32 mean <span class="tok-op">←</span> product.المت<span class="tok-kw">و</span>سط()
+    <span class="tok-kw">اعرض</span> mean
+}</code></pre></div><div class="fdt-panel" id="lt-e62aac5142451361-0-p-hi" role="tabpanel" aria-labelledby="lt-e62aac5142451361-0-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">आरंभ</span> {
+    <span class="tok-kw">स्थिर</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_a <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>]
+    <span class="tok-kw">स्थिर</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat_b <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>]
+    <span class="tok-kw">स्थिर</span> tf32[] seed <span class="tok-op">←</span> <span class="tok-kw">खाली</span>
+    <span class="tok-kw">स्थिर</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>] a <span class="tok-op">←</span> seed.समतल_से_बनाओ(flat_a, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>])
+    <span class="tok-kw">स्थिर</span> tf32[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>] b <span class="tok-op">←</span> seed.समतल_से_बनाओ(flat_b, [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
+    <span class="tok-kw">स्थिर</span> tf32[<span class="tok-nu">2</span>, <span class="tok-nu">4</span>] product <span class="tok-op">←</span> a.आव्यूह_गुणन(b)
+    <span class="tok-kw">स्थिर</span> f32 mean <span class="tok-op">←</span> product.माध्य()
+    <span class="tok-kw">दिखाओ</span> mean
+}</code></pre></div></div><p><strong>Go</strong> — 10 lines in, 221 out (22.1×)</p><pre class="faber-code"><code class="lang-go"><span class="tok-co">// Generated by radix - do not edit</span>
 
 <span class="tok-kw">package</span> main
 
@@ -220,15 +283,15 @@
 }
 
 <span class="tok-kw">func</span> main() {
-    flat_a := []float32{float32(<span class="tok-nu">1</span>), float32(<span class="tok-nu">2</span>), float32(<span class="tok-nu">3</span>), float32(<span class="tok-nu">4</span>), float32(<span class="tok-nu">5</span>), float32(<span class="tok-nu">6</span>)}
-    flat_b := []float32{float32(<span class="tok-nu">1</span>), float32(<span class="tok-nu">2</span>), float32(<span class="tok-nu">3</span>), float32(<span class="tok-nu">4</span>), float32(<span class="tok-nu">5</span>), float32(<span class="tok-nu">6</span>), float32(<span class="tok-nu">7</span>), float32(<span class="tok-nu">8</span>), float32(<span class="tok-nu">9</span>), float32(<span class="tok-nu">10</span>), float32(<span class="tok-nu">11</span>), float32(<span class="tok-nu">12</span>)}
-    seed := faberTensor[float32]{shape: []<span class="tok-ty">int</span>{}}
-    a := seed.Strue(flat_a, []<span class="tok-ty">int</span>{<span class="tok-nu">2</span>, <span class="tok-nu">3</span>})
-    b := seed.Strue(flat_b, []<span class="tok-ty">int</span>{<span class="tok-nu">3</span>, <span class="tok-nu">4</span>})
+    flat_a := []float32{float32(<span class="tok-nu">1.0</span>), float32(<span class="tok-nu">2.0</span>), float32(<span class="tok-nu">3.0</span>), float32(<span class="tok-nu">4.0</span>), float32(<span class="tok-nu">5.0</span>), float32(<span class="tok-nu">6.0</span>)}
+    flat_b := []float32{float32(<span class="tok-nu">1.0</span>), float32(<span class="tok-nu">2.0</span>), float32(<span class="tok-nu">3.0</span>), float32(<span class="tok-nu">4.0</span>), float32(<span class="tok-nu">5.0</span>), float32(<span class="tok-nu">6.0</span>), float32(<span class="tok-nu">7.0</span>), float32(<span class="tok-nu">8.0</span>), float32(<span class="tok-nu">9.0</span>), float32(<span class="tok-nu">10.0</span>), float32(<span class="tok-nu">11.0</span>), float32(<span class="tok-nu">12.0</span>)}
+    seed := faberTensor[float32]{}.Crea(*<span class="tok-kw">new</span>(float32), []<span class="tok-ty">int</span>{})
+    a := seed.Strue(flat_a, []<span class="tok-ty">any</span>{<span class="tok-nu">2</span>, <span class="tok-nu">3</span>})
+    b := seed.Strue(flat_b, []<span class="tok-ty">any</span>{<span class="tok-nu">3</span>, <span class="tok-nu">4</span>})
     product := a.Matmul(b)
     mean := float32(product.Media())
-    fmt.Println(<span class="tok-kw">func</span>(v float64) <span class="tok-ty">string</span> { s := strconv.FormatFloat(v, <span class="tok-st">'f'</span>, -<span class="tok-nu">1</span>, <span class="tok-nu">64</span>); <span class="tok-kw">if</span> !strings.ContainsAny(s, <span class="tok-st">".eE"</span>) { <span class="tok-kw">return</span> s + <span class="tok-st">".0"</span> }; <span class="tok-kw">return</span> s }(float64(mean)))
-}</code></pre><h2 id="fallibilis">The error channel<a class="anchor" href="#fallibilis">#</a></h2><p>A function that may fail, and a caller that catches. Shows how the <code>⇥</code> channel becomes each target's own error idiom.</p><p><strong>Faber source</strong></p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-en" data-panel="lt-85ccdd726a36dc08-0-p-en" data-name="English" aria-controls="lt-85ccdd726a36dc08-0-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-la" data-panel="lt-85ccdd726a36dc08-0-p-la" data-name="Latin" aria-controls="lt-85ccdd726a36dc08-0-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-th-TH" data-panel="lt-85ccdd726a36dc08-0-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-85ccdd726a36dc08-0-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-zh-Hans" data-panel="lt-85ccdd726a36dc08-0-p-zh-Hans" data-name="简体中文" aria-controls="lt-85ccdd726a36dc08-0-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-zh-Hant" data-panel="lt-85ccdd726a36dc08-0-p-zh-Hant" data-name="繁體中文" aria-controls="lt-85ccdd726a36dc08-0-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-vi" data-panel="lt-85ccdd726a36dc08-0-p-vi" data-name="Tiếng Việt" aria-controls="lt-85ccdd726a36dc08-0-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-ar" data-panel="lt-85ccdd726a36dc08-0-p-ar" data-name="العربية" aria-controls="lt-85ccdd726a36dc08-0-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-0-t-hi" data-panel="lt-85ccdd726a36dc08-0-p-hi" data-name="हिन्दी" aria-controls="lt-85ccdd726a36dc08-0-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-85ccdd726a36dc08-0-p-en" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ <span class="tok-kw">string</span> {
+    fmt.Println(<span class="tok-kw">func</span>(v float32) <span class="tok-ty">string</span> { s := strconv.FormatFloat(float64(v), <span class="tok-st">'f'</span>, -<span class="tok-nu">1</span>, <span class="tok-nu">32</span>); <span class="tok-kw">if</span> s == <span class="tok-st">"NaN"</span> { <span class="tok-kw">return</span> s }; <span class="tok-kw">if</span> s == <span class="tok-st">"+Inf"</span> { <span class="tok-kw">return</span> <span class="tok-st">"inf"</span> }; <span class="tok-kw">if</span> s == <span class="tok-st">"-Inf"</span> { <span class="tok-kw">return</span> <span class="tok-st">"-inf"</span> }; <span class="tok-kw">if</span> !strings.Contains(s, <span class="tok-st">"."</span>) { <span class="tok-kw">return</span> s + <span class="tok-st">".0"</span> }; <span class="tok-kw">return</span> s }(float32(mean)))
+}</code></pre><h2 id="fallibilis">The error channel<a class="anchor" href="#fallibilis">#</a></h2><p>A function that may fail, and a caller that catches. Shows how the <code>⇥</code> channel becomes each target's own error idiom.</p><p><strong>Faber source</strong></p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-en" data-panel="lt-85ccdd726a36dc08-1-p-en" data-name="English" aria-controls="lt-85ccdd726a36dc08-1-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-la" data-panel="lt-85ccdd726a36dc08-1-p-la" data-name="Latin" aria-controls="lt-85ccdd726a36dc08-1-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-th-TH" data-panel="lt-85ccdd726a36dc08-1-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-85ccdd726a36dc08-1-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-zh-Hans" data-panel="lt-85ccdd726a36dc08-1-p-zh-Hans" data-name="简体中文" aria-controls="lt-85ccdd726a36dc08-1-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-zh-Hant" data-panel="lt-85ccdd726a36dc08-1-p-zh-Hant" data-name="繁體中文" aria-controls="lt-85ccdd726a36dc08-1-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-vi" data-panel="lt-85ccdd726a36dc08-1-p-vi" data-name="Tiếng Việt" aria-controls="lt-85ccdd726a36dc08-1-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-ar" data-panel="lt-85ccdd726a36dc08-1-p-ar" data-name="العربية" aria-controls="lt-85ccdd726a36dc08-1-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-hi" data-panel="lt-85ccdd726a36dc08-1-p-hi" data-name="हिन्दी" aria-controls="lt-85ccdd726a36dc08-1-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-85ccdd726a36dc08-1-p-en" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ <span class="tok-kw">string</span> {
     <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">throw</span> <span class="tok-st">"division by zero"</span>
     }
@@ -242,7 +305,7 @@
     <span class="tok-kw">catch</span> err {
         <span class="tok-kw">warn</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-la" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">functio</span> divide(<span class="tok-kw">numerus</span> a, <span class="tok-kw">numerus</span> b) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-1-p-la" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">functio</span> divide(<span class="tok-kw">numerus</span> a, <span class="tok-kw">numerus</span> b) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> ⇥ <span class="tok-kw">textus</span> {
     <span class="tok-kw">si</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">iace</span> <span class="tok-st">"division by zero"</span>
     }
@@ -256,7 +319,7 @@
     <span class="tok-kw">cape</span> err {
         <span class="tok-kw">mone</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-th-TH" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ฟังก์ชัน</span> divide(<span class="tok-kw">จำนวน</span> a, <span class="tok-kw">จำนวน</span> b) <span class="tok-op">→</span> <span class="tok-kw">จำนวน</span> ⇥ <span class="tok-kw">ข้อความ</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-1-p-th-TH" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ฟังก์ชัน</span> divide(จำน<span class="tok-kw">วน</span> a, จำน<span class="tok-kw">วน</span> b) <span class="tok-op">→</span> จำน<span class="tok-kw">วน</span> ⇥ <span class="tok-kw">ข้อความ</span> {
     <span class="tok-kw">ถ้า</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">โยน</span> <span class="tok-st">"division by zero"</span>
     }
@@ -270,7 +333,7 @@
     <span class="tok-kw">จับ</span> err {
         <span class="tok-kw">เตือน</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-zh-Hans" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">函数</span> divide(<span class="tok-kw">整数</span> a, <span class="tok-kw">整数</span> b) <span class="tok-op">→</span> <span class="tok-kw">整数</span> ⇥ <span class="tok-kw">文本</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-1-p-zh-Hans" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">函数</span> divide(<span class="tok-kw">整数</span> a, <span class="tok-kw">整数</span> b) <span class="tok-op">→</span> <span class="tok-kw">整数</span> ⇥ <span class="tok-kw">文本</span> {
     <span class="tok-kw">如果</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">抛错</span> <span class="tok-st">"division by zero"</span>
     }
@@ -284,7 +347,7 @@
     <span class="tok-kw">捕获</span> err {
         <span class="tok-kw">警告</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-zh-Hant" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">函式</span> divide(<span class="tok-kw">整數</span> a, <span class="tok-kw">整數</span> b) <span class="tok-op">→</span> <span class="tok-kw">整數</span> ⇥ <span class="tok-kw">文字</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-1-p-zh-Hant" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">函式</span> divide(<span class="tok-kw">整數</span> a, <span class="tok-kw">整數</span> b) <span class="tok-op">→</span> <span class="tok-kw">整數</span> ⇥ <span class="tok-kw">文字</span> {
     <span class="tok-kw">若</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">拋出</span> <span class="tok-st">"division by zero"</span>
     }
@@ -298,7 +361,7 @@
     <span class="tok-kw">捕捉</span> err {
         <span class="tok-kw">警告</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-vi" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">hàm</span> divide(<span class="tok-kw">số</span> a, <span class="tok-kw">số</span> b) <span class="tok-op">→</span> <span class="tok-kw">số</span> ⇥ <span class="tok-kw">văn_bản</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-1-p-vi" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">hàm</span> divide(<span class="tok-kw">số</span> a, <span class="tok-kw">số</span> b) <span class="tok-op">→</span> <span class="tok-kw">số</span> ⇥ <span class="tok-kw">văn_bản</span> {
     <span class="tok-kw">nếu</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">ném</span> <span class="tok-st">"division by zero"</span>
     }
@@ -312,7 +375,7 @@
     <span class="tok-kw">bắt</span> err {
         <span class="tok-kw">cảnh_báo</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-ar" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">دالة</span> divide(<span class="tok-kw">عدد</span> a, <span class="tok-kw">عدد</span> b) <span class="tok-op">→</span> <span class="tok-kw">عدد</span> ⇥ <span class="tok-kw">نص</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-1-p-ar" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">دالة</span> divide(<span class="tok-kw">عدد</span> a, <span class="tok-kw">عدد</span> b) <span class="tok-op">→</span> <span class="tok-kw">عدد</span> ⇥ <span class="tok-kw">نص</span> {
     <span class="tok-kw">إذا</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">ارم</span> <span class="tok-st">"division by zero"</span>
     }
@@ -326,7 +389,7 @@
     <span class="tok-kw">التقط</span> err {
         <span class="tok-kw">نبه</span> err
     }
-}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-0-p-hi" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-0-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">फलन</span> divide(<span class="tok-kw">संख्या</span> a, <span class="tok-kw">संख्या</span> b) <span class="tok-op">→</span> <span class="tok-kw">संख्या</span> ⇥ <span class="tok-kw">पाठ</span> {
+}</code></pre></div><div class="fdt-panel" id="lt-85ccdd726a36dc08-1-p-hi" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">फलन</span> divide(<span class="tok-kw">संख्या</span> a, <span class="tok-kw">संख्या</span> b) <span class="tok-op">→</span> <span class="tok-kw">संख्या</span> ⇥ <span class="tok-kw">पाठ</span> {
     <span class="tok-kw">यदि</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">इधरफेंको</span> <span class="tok-st">"division by zero"</span>
     }
@@ -340,26 +403,355 @@
     <span class="tok-kw">पकड़ो</span> err {
         <span class="tok-kw">चेताओ</span> err
     }
-}</code></pre></div></div><p><strong>Go</strong> — 13 lines in, 27 out (2.1×)</p><pre class="faber-code"><code class="lang-go"><span class="tok-co">// Generated by radix - do not edit</span>
+}</code></pre></div></div><p><strong>Go</strong> — 13 lines in, 356 out (27.4×)</p><pre class="faber-code"><code class="lang-go"><span class="tok-co">// Generated by radix - do not edit</span>
 
 <span class="tok-kw">package</span> main
 
 <span class="tok-kw">import</span> (
     <span class="tok-st">"errors"</span>
     <span class="tok-st">"fmt"</span>
+    <span class="tok-st">"math"</span>
+    <span class="tok-st">"math/bits"</span>
     <span class="tok-st">"os"</span>
+    <span class="tok-st">"strconv"</span>
 )
+
+<span class="tok-kw">type</span> faberX <span class="tok-kw">struct</span> {
+	neg <span class="tok-ty">bool</span>
+	m   <span class="tok-ty">uint64</span>
+}
+
+<span class="tok-kw">func</span> faberXMk(neg <span class="tok-ty">bool</span>, m <span class="tok-ty">uint64</span>) faberX {
+	<span class="tok-kw">if</span> m == <span class="tok-nu">0</span> {
+		<span class="tok-kw">return</span> faberX{}
+	}
+	<span class="tok-kw">if</span> neg &amp;&amp; m &gt; <span class="tok-nu">1</span>&lt;&lt;<span class="tok-nu">63</span> {
+		panic(<span class="tok-st">"numerus overflow"</span>)
+	}
+	<span class="tok-kw">return</span> faberX{neg, m}
+}
+
+<span class="tok-kw">func</span> faberXI(v <span class="tok-ty">int64</span>) faberX {
+	<span class="tok-kw">if</span> v &lt; <span class="tok-nu">0</span> {
+		<span class="tok-kw">return</span> faberX{<span class="tok-kw">true</span>, -<span class="tok-ty">uint64</span>(v)}
+	}
+	<span class="tok-kw">return</span> faberX{<span class="tok-kw">false</span>, <span class="tok-ty">uint64</span>(v)}
+}
+
+<span class="tok-kw">func</span> faberXU(v <span class="tok-ty">uint64</span>) faberX { <span class="tok-kw">return</span> faberX{<span class="tok-kw">false</span>, v} }
+
+<span class="tok-kw">func</span> faberXNeg(a faberX) faberX { <span class="tok-kw">return</span> faberXMk(!a.neg, a.m) }
+
+<span class="tok-kw">func</span> faberXAddS(a faberX, bneg <span class="tok-ty">bool</span>, bm <span class="tok-ty">uint64</span>) faberX {
+	<span class="tok-kw">if</span> a.neg == bneg {
+		s, c := bits.Add64(a.m, bm, <span class="tok-nu">0</span>)
+		<span class="tok-kw">if</span> c != <span class="tok-nu">0</span> {
+			panic(<span class="tok-st">"numerus overflow"</span>)
+		}
+		<span class="tok-kw">return</span> faberXMk(a.neg, s)
+	}
+	<span class="tok-kw">if</span> a.m &gt;= bm {
+		<span class="tok-kw">return</span> faberXMk(a.neg, a.m-bm)
+	}
+	<span class="tok-kw">return</span> faberXMk(bneg, bm-a.m)
+}
+
+<span class="tok-kw">func</span> faberXAdd(a faberX, b faberX) faberX { <span class="tok-kw">return</span> faberXAddS(a, b.neg, b.m) }
+
+<span class="tok-kw">func</span> faberXSub(a faberX, b faberX) faberX { <span class="tok-kw">return</span> faberXAddS(a, !b.neg, b.m) }
+
+<span class="tok-kw">func</span> faberXMul(a faberX, b faberX) faberX {
+	hi, lo := bits.Mul64(a.m, b.m)
+	<span class="tok-kw">if</span> hi != <span class="tok-nu">0</span> {
+		panic(<span class="tok-st">"numerus overflow"</span>)
+	}
+	<span class="tok-kw">return</span> faberXMk(a.neg != b.neg, lo)
+}
+
+<span class="tok-kw">func</span> faberXDiv(a faberX, b faberX) faberX {
+	<span class="tok-kw">if</span> b.m == <span class="tok-nu">0</span> {
+		panic(<span class="tok-st">"numerus division failed"</span>)
+	}
+	q, r := a.m/b.m, a.m%b.m
+	<span class="tok-kw">if</span> a.neg == b.neg {
+		<span class="tok-kw">return</span> faberXMk(<span class="tok-kw">false</span>, q)
+	}
+	<span class="tok-kw">if</span> r != <span class="tok-nu">0</span> {
+		q++
+	}
+	<span class="tok-kw">return</span> faberXMk(<span class="tok-kw">true</span>, q)
+}
+
+<span class="tok-kw">func</span> faberXMod(a faberX, b faberX) faberX {
+	<span class="tok-kw">if</span> b.m == <span class="tok-nu">0</span> {
+		panic(<span class="tok-st">"numerus division failed"</span>)
+	}
+	r := a.m % b.m
+	<span class="tok-kw">if</span> r != <span class="tok-nu">0</span> &amp;&amp; a.neg != b.neg {
+		r = b.m - r
+	}
+	<span class="tok-kw">return</span> faberXMk(b.neg, r)
+}
+
+<span class="tok-kw">func</span> faberXShl(a faberX, n faberX) faberX {
+	<span class="tok-kw">if</span> n.neg {
+		panic(<span class="tok-st">"negative shift count"</span>)
+	}
+	<span class="tok-kw">if</span> a.m == <span class="tok-nu">0</span> {
+		<span class="tok-kw">return</span> faberX{}
+	}
+	<span class="tok-kw">if</span> n.m &gt; <span class="tok-nu">64</span> || <span class="tok-ty">uint64</span>(bits.LeadingZeros64(a.m)) &lt; n.m {
+		panic(<span class="tok-st">"numerus overflow"</span>)
+	}
+	<span class="tok-kw">return</span> faberXMk(a.neg, a.m&lt;&lt;n.m)
+}
+
+<span class="tok-kw">func</span> faberXShr(a faberX, n faberX) faberX {
+	<span class="tok-kw">if</span> n.neg {
+		panic(<span class="tok-st">"negative shift count"</span>)
+	}
+	<span class="tok-kw">if</span> n.m &gt;= <span class="tok-nu">64</span> {
+		<span class="tok-kw">if</span> a.neg {
+			<span class="tok-kw">return</span> faberX{<span class="tok-kw">true</span>, <span class="tok-nu">1</span>}
+		}
+		<span class="tok-kw">return</span> faberX{}
+	}
+	m := a.m &gt;&gt; n.m
+	<span class="tok-kw">if</span> a.neg &amp;&amp; a.m&amp;(<span class="tok-nu">1</span>&lt;&lt;n.m-<span class="tok-nu">1</span>) != <span class="tok-nu">0</span> {
+		m++
+	}
+	<span class="tok-kw">return</span> faberXMk(a.neg, m)
+}
+
+<span class="tok-kw">func</span> faberXW(a faberX) (<span class="tok-ty">uint64</span>, <span class="tok-ty">uint64</span>) {
+	<span class="tok-kw">if</span> !a.neg {
+		<span class="tok-kw">return</span> <span class="tok-nu">0</span>, a.m
+	}
+	<span class="tok-kw">return</span> ^<span class="tok-ty">uint64</span>(<span class="tok-nu">0</span>), -a.m
+}
+
+<span class="tok-kw">func</span> faberXFromW(hi <span class="tok-ty">uint64</span>, lo <span class="tok-ty">uint64</span>) faberX {
+	<span class="tok-kw">if</span> hi == <span class="tok-nu">0</span> {
+		<span class="tok-kw">return</span> faberX{<span class="tok-kw">false</span>, lo}
+	}
+	<span class="tok-kw">if</span> hi == ^<span class="tok-ty">uint64</span>(<span class="tok-nu">0</span>) &amp;&amp; lo&gt;&gt;<span class="tok-nu">63</span> == <span class="tok-nu">1</span> {
+		<span class="tok-kw">return</span> faberXMk(<span class="tok-kw">true</span>, -lo)
+	}
+	panic(<span class="tok-st">"numerus overflow"</span>)
+}
+
+<span class="tok-kw">func</span> faberXAnd(a faberX, b faberX) faberX {
+	ah, al := faberXW(a)
+	bh, bl := faberXW(b)
+	<span class="tok-kw">return</span> faberXFromW(ah&amp;bh, al&amp;bl)
+}
+
+<span class="tok-kw">func</span> faberXOr(a faberX, b faberX) faberX {
+	ah, al := faberXW(a)
+	bh, bl := faberXW(b)
+	<span class="tok-kw">return</span> faberXFromW(ah|bh, al|bl)
+}
+
+<span class="tok-kw">func</span> faberXXor(a faberX, b faberX) faberX {
+	ah, al := faberXW(a)
+	bh, bl := faberXW(b)
+	<span class="tok-kw">return</span> faberXFromW(ah^bh, al^bl)
+}
+
+<span class="tok-kw">func</span> faberXNot(a faberX) faberX { <span class="tok-kw">return</span> faberXSub(faberXNeg(a), faberXU(<span class="tok-nu">1</span>)) }
+
+<span class="tok-kw">func</span> faberXAbs(a faberX) faberX { <span class="tok-kw">return</span> faberXMk(<span class="tok-kw">false</span>, a.m) }
+
+<span class="tok-kw">func</span> faberXPow(base faberX, exponent faberX) faberX {
+	<span class="tok-kw">if</span> exponent.neg {
+		panic(<span class="tok-st">"numerus potentia failed: negative exponent"</span>)
+	}
+	accumulator := faberXU(<span class="tok-nu">1</span>)
+	<span class="tok-kw">for</span> !exponent.neg &amp;&amp; exponent.m &gt; <span class="tok-nu">0</span> {
+		<span class="tok-kw">if</span> exponent.m%<span class="tok-nu">2</span> != <span class="tok-nu">0</span> {
+			accumulator = faberXMul(accumulator, base)
+		}
+		exponent = faberXU(exponent.m / <span class="tok-nu">2</span>)
+		<span class="tok-kw">if</span> exponent.m &gt; <span class="tok-nu">0</span> {
+			base = faberXMul(base, base)
+		}
+	}
+	<span class="tok-kw">return</span> accumulator
+}
+
+<span class="tok-kw">func</span> faberXCmp(a faberX, b faberX) <span class="tok-ty">int</span> {
+	<span class="tok-kw">if</span> a.neg != b.neg {
+		<span class="tok-kw">if</span> a.neg {
+			<span class="tok-kw">return</span> -<span class="tok-nu">1</span>
+		}
+		<span class="tok-kw">return</span> <span class="tok-nu">1</span>
+	}
+	c := <span class="tok-nu">0</span>
+	<span class="tok-kw">if</span> a.m &lt; b.m {
+		c = -<span class="tok-nu">1</span>
+	} <span class="tok-kw">else</span> <span class="tok-kw">if</span> a.m &gt; b.m {
+		c = <span class="tok-nu">1</span>
+	}
+	<span class="tok-kw">if</span> a.neg {
+		<span class="tok-kw">return</span> -c
+	}
+	<span class="tok-kw">return</span> c
+}
+
+<span class="tok-co">// faberXApprox is `≈` on integers: 10^9 * |a - b| &lt;= max(|a|, |b|), exactly.</span>
+<span class="tok-co">// |a - b| reaches 2^64 + 2^63, so the scaled distance is a 128-bit value.</span>
+<span class="tok-kw">func</span> faberXApprox(a faberX, b faberX) <span class="tok-ty">bool</span> {
+	<span class="tok-kw">var</span> hi, lo <span class="tok-ty">uint64</span>
+	<span class="tok-kw">if</span> a.neg == b.neg {
+		lo = a.m - b.m
+		<span class="tok-kw">if</span> a.m &lt; b.m {
+			lo = b.m - a.m
+		}
+	} <span class="tok-kw">else</span> {
+		lo, hi = bits.Add64(a.m, b.m, <span class="tok-nu">0</span>)
+	}
+	mulHi, mulLo := bits.Mul64(lo, <span class="tok-nu">1000000000</span>)
+	<span class="tok-kw">if</span> hi*<span class="tok-nu">1000000000</span>+mulHi != <span class="tok-nu">0</span> {
+		<span class="tok-kw">return</span> <span class="tok-kw">false</span>
+	}
+	limit := a.m
+	<span class="tok-kw">if</span> b.m &gt; limit {
+		limit = b.m
+	}
+	<span class="tok-kw">return</span> mulLo &lt;= limit
+}
+
+<span class="tok-kw">func</span> faberXCmpF(a faberX, f float64) (<span class="tok-ty">int</span>, <span class="tok-ty">bool</span>) {
+	<span class="tok-kw">if</span> f != f {
+		<span class="tok-kw">return</span> <span class="tok-nu">0</span>, <span class="tok-kw">false</span>
+	}
+	<span class="tok-kw">if</span> f &gt;= <span class="tok-nu">18446744073709551616.0</span> {
+		<span class="tok-kw">return</span> -<span class="tok-nu">1</span>, <span class="tok-kw">true</span>
+	}
+	<span class="tok-kw">if</span> f &lt; -<span class="tok-nu">9223372036854775808.0</span> {
+		<span class="tok-kw">return</span> <span class="tok-nu">1</span>, <span class="tok-kw">true</span>
+	}
+	w := math.Trunc(f)
+	wx := faberX{<span class="tok-kw">false</span>, <span class="tok-ty">uint64</span>(w)}
+	<span class="tok-kw">if</span> w &lt; <span class="tok-nu">0</span> {
+		wx = faberX{<span class="tok-kw">true</span>, <span class="tok-ty">uint64</span>(-w)}
+	}
+	<span class="tok-kw">if</span> c := faberXCmp(a, wx); c != <span class="tok-nu">0</span> {
+		<span class="tok-kw">return</span> c, <span class="tok-kw">true</span>
+	}
+	fr := f - w
+	<span class="tok-kw">if</span> fr &gt; <span class="tok-nu">0</span> {
+		<span class="tok-kw">return</span> -<span class="tok-nu">1</span>, <span class="tok-kw">true</span>
+	}
+	<span class="tok-kw">if</span> fr &lt; <span class="tok-nu">0</span> {
+		<span class="tok-kw">return</span> <span class="tok-nu">1</span>, <span class="tok-kw">true</span>
+	}
+	<span class="tok-kw">return</span> <span class="tok-nu">0</span>, <span class="tok-kw">true</span>
+}
+
+<span class="tok-kw">func</span> faberXLtF(a faberX, f float64) <span class="tok-ty">bool</span> { c, ok := faberXCmpF(a, f); <span class="tok-kw">return</span> ok &amp;&amp; c &lt; <span class="tok-nu">0</span> }
+
+<span class="tok-kw">func</span> faberXLeF(a faberX, f float64) <span class="tok-ty">bool</span> { c, ok := faberXCmpF(a, f); <span class="tok-kw">return</span> ok &amp;&amp; c &lt;= <span class="tok-nu">0</span> }
+
+<span class="tok-kw">func</span> faberXGtF(a faberX, f float64) <span class="tok-ty">bool</span> { c, ok := faberXCmpF(a, f); <span class="tok-kw">return</span> ok &amp;&amp; c &gt; <span class="tok-nu">0</span> }
+
+<span class="tok-kw">func</span> faberXGeF(a faberX, f float64) <span class="tok-ty">bool</span> { c, ok := faberXCmpF(a, f); <span class="tok-kw">return</span> ok &amp;&amp; c &gt;= <span class="tok-nu">0</span> }
+
+<span class="tok-kw">func</span> faberXEqF(a faberX, f float64) <span class="tok-ty">bool</span> { c, ok := faberXCmpF(a, f); <span class="tok-kw">return</span> ok &amp;&amp; c == <span class="tok-nu">0</span> }
+
+<span class="tok-kw">func</span> faberXStr(a faberX) <span class="tok-ty">string</span> {
+	s := strconv.FormatUint(a.m, <span class="tok-nu">10</span>)
+	<span class="tok-kw">if</span> a.neg {
+		<span class="tok-kw">return</span> <span class="tok-st">"-"</span> + s
+	}
+	<span class="tok-kw">return</span> s
+}
+
+<span class="tok-kw">func</span> faberXTrap(a faberX, ty <span class="tok-ty">string</span>, pos <span class="tok-ty">string</span>, extra <span class="tok-ty">string</span>, unsigned <span class="tok-ty">bool</span>) {
+	msg := faberXStr(a) + <span class="tok-st">" does not fit in `"</span> + ty + <span class="tok-st">"` ("</span> + pos + <span class="tok-st">")"</span> + extra
+	<span class="tok-kw">if</span> unsigned &amp;&amp; a.neg {
+		msg += <span class="tok-st">" (a negative value cannot be stored in an unsigned slot)"</span>
+	}
+	panic(msg)
+}
+
+<span class="tok-kw">func</span> faberXFloat(a faberX) float64 {
+	f := float64(a.m)
+	<span class="tok-kw">if</span> a.neg {
+		<span class="tok-kw">return</span> -f
+	}
+	<span class="tok-kw">return</span> f
+}
+
+<span class="tok-kw">func</span> faberXFitsI(a faberX, lo <span class="tok-ty">int64</span>, hi <span class="tok-ty">int64</span>) <span class="tok-ty">bool</span> {
+	<span class="tok-kw">return</span> (!a.neg &amp;&amp; a.m &lt;= <span class="tok-ty">uint64</span>(hi)) || (a.neg &amp;&amp; a.m &lt;= -<span class="tok-ty">uint64</span>(lo))
+}
+
+<span class="tok-kw">func</span> faberXFitsU(a faberX, hi <span class="tok-ty">uint64</span>) <span class="tok-ty">bool</span> { <span class="tok-kw">return</span> !a.neg &amp;&amp; a.m &lt;= hi }
+
+<span class="tok-kw">func</span> faberXStoreI(a faberX, lo <span class="tok-ty">int64</span>, hi <span class="tok-ty">int64</span>, ty <span class="tok-ty">string</span>, pos <span class="tok-ty">string</span>, extra <span class="tok-ty">string</span>) <span class="tok-ty">int64</span> {
+	<span class="tok-kw">if</span> !a.neg &amp;&amp; a.m &lt;= <span class="tok-ty">uint64</span>(hi) {
+		<span class="tok-kw">return</span> <span class="tok-ty">int64</span>(a.m)
+	}
+	<span class="tok-kw">if</span> a.neg &amp;&amp; a.m &lt;= -<span class="tok-ty">uint64</span>(lo) {
+		<span class="tok-kw">return</span> -<span class="tok-ty">int64</span>(a.m)
+	}
+	faberXTrap(a, ty, pos, extra, <span class="tok-kw">false</span>)
+	<span class="tok-kw">return</span> <span class="tok-nu">0</span>
+}
+
+<span class="tok-kw">func</span> faberXStoreU(a faberX, hi <span class="tok-ty">uint64</span>, ty <span class="tok-ty">string</span>, pos <span class="tok-ty">string</span>, extra <span class="tok-ty">string</span>) <span class="tok-ty">uint64</span> {
+	<span class="tok-kw">if</span> !a.neg &amp;&amp; a.m &lt;= hi {
+		<span class="tok-kw">return</span> a.m
+	}
+	faberXTrap(a, ty, pos, extra, <span class="tok-kw">true</span>)
+	<span class="tok-kw">return</span> <span class="tok-nu">0</span>
+}
+
+<span class="tok-kw">func</span> faberXWrap(a faberX) <span class="tok-ty">uint64</span> {
+	<span class="tok-kw">if</span> a.neg {
+		<span class="tok-kw">return</span> -a.m
+	}
+	<span class="tok-kw">return</span> a.m
+}
+
+<span class="tok-kw">func</span> faberXClampI(a faberX, lo <span class="tok-ty">int64</span>, hi <span class="tok-ty">int64</span>) <span class="tok-ty">int64</span> {
+	<span class="tok-kw">if</span> a.neg {
+		<span class="tok-kw">if</span> a.m &gt; -<span class="tok-ty">uint64</span>(lo) {
+			<span class="tok-kw">return</span> lo
+		}
+		<span class="tok-kw">return</span> -<span class="tok-ty">int64</span>(a.m)
+	}
+	<span class="tok-kw">if</span> a.m &gt; <span class="tok-ty">uint64</span>(hi) {
+		<span class="tok-kw">return</span> hi
+	}
+	<span class="tok-kw">return</span> <span class="tok-ty">int64</span>(a.m)
+}
+
+<span class="tok-kw">func</span> faberXClampU(a faberX, hi <span class="tok-ty">uint64</span>) <span class="tok-ty">uint64</span> {
+	<span class="tok-kw">if</span> a.neg {
+		<span class="tok-kw">return</span> <span class="tok-nu">0</span>
+	}
+	<span class="tok-kw">if</span> a.m &gt; hi {
+		<span class="tok-kw">return</span> hi
+	}
+	<span class="tok-kw">return</span> a.m
+}
 
 <span class="tok-kw">func</span> divide(a <span class="tok-ty">int</span>, b <span class="tok-ty">int</span>) (<span class="tok-ty">int</span>, <span class="tok-ty">error</span>) {
     <span class="tok-kw">if</span> (b == <span class="tok-nu">0</span>) {
         <span class="tok-kw">return</span> <span class="tok-nu">0</span>, errors.New(<span class="tok-st">"division by zero"</span>)
     }
-    <span class="tok-kw">return</span> <span class="tok-kw">func</span>() <span class="tok-ty">int</span> { left := a; right := b; max := <span class="tok-ty">int</span>(^<span class="tok-ty">uint</span>(<span class="tok-nu">0</span>) &gt;&gt; <span class="tok-nu">1</span>); min := -max - <span class="tok-nu">1</span>; <span class="tok-kw">if</span> right == <span class="tok-nu">0</span> || (left == min &amp;&amp; right == -<span class="tok-nu">1</span>) { panic(<span class="tok-st">"numerus division failed"</span>) }; <span class="tok-kw">return</span> left / right }(), <span class="tok-kw">nil</span>
+    <span class="tok-kw">return</span> <span class="tok-ty">int</span>(faberXStoreI(faberXDiv(faberXI(<span class="tok-ty">int64</span>(a)), faberXI(<span class="tok-ty">int64</span>(b))), -<span class="tok-nu">9223372036854775808</span>, <span class="tok-nu">9223372036854775807</span>, <span class="tok-st">"i64"</span>, <span class="tok-st">"return"</span>, <span class="tok-st">""</span>)), <span class="tok-kw">nil</span>
 }
 
 <span class="tok-kw">func</span> main() {
     faberErr0 := <span class="tok-kw">func</span>() <span class="tok-ty">error</span> {
-        fmt.Println(divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>))
+        faberVal1, faberErr1 := divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
+        <span class="tok-kw">if</span> faberErr1 != <span class="tok-kw">nil</span> {
+            <span class="tok-kw">return</span> faberErr1
+        }
+        fmt.Println(faberVal1)
         <span class="tok-kw">return</span> <span class="tok-kw">nil</span>
     }()
     <span class="tok-kw">if</span> faberErr0 != <span class="tok-kw">nil</span> {
@@ -377,16 +769,343 @@
 <span class="tok-kw">main</span> {
     <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
     print sum(valores)
-}</code></pre><p><strong>Go</strong> — 12 lines in, 18 out (1.5×)</p><pre class="faber-code"><code class="lang-go"><span class="tok-co">// Generated by radix - do not edit</span>
+}</code></pre><p><strong>Go</strong> — 12 lines in, 345 out (28.8×)</p><pre class="faber-code"><code class="lang-go"><span class="tok-co">// Generated by radix - do not edit</span>
 
 <span class="tok-kw">package</span> main
 
-<span class="tok-kw">import</span> <span class="tok-st">"fmt"</span>
+<span class="tok-kw">import</span> (
+    <span class="tok-st">"fmt"</span>
+    <span class="tok-st">"math"</span>
+    <span class="tok-st">"math/bits"</span>
+    <span class="tok-st">"strconv"</span>
+)
+
+<span class="tok-kw">type</span> faberX <span class="tok-kw">struct</span> {
+	neg <span class="tok-ty">bool</span>
+	m   <span class="tok-ty">uint64</span>
+}
+
+<span class="tok-kw">func</span> faberXMk(neg <span class="tok-ty">bool</span>, m <span class="tok-ty">uint64</span>) faberX {
+	<span class="tok-kw">if</span> m == <span class="tok-nu">0</span> {
+		<span class="tok-kw">return</span> faberX{}
+	}
+	<span class="tok-kw">if</span> neg &amp;&amp; m &gt; <span class="tok-nu">1</span>&lt;&lt;<span class="tok-nu">63</span> {
+		panic(<span class="tok-st">"numerus overflow"</span>)
+	}
+	<span class="tok-kw">return</span> faberX{neg, m}
+}
+
+<span class="tok-kw">func</span> faberXI(v <span class="tok-ty">int64</span>) faberX {
+	<span class="tok-kw">if</span> v &lt; <span class="tok-nu">0</span> {
+		<span class="tok-kw">return</span> faberX{<span class="tok-kw">true</span>, -<span class="tok-ty">uint64</span>(v)}
+	}
+	<span class="tok-kw">return</span> faberX{<span class="tok-kw">false</span>, <span class="tok-ty">uint64</span>(v)}
+}
+
+<span class="tok-kw">func</span> faberXU(v <span class="tok-ty">uint64</span>) faberX { <span class="tok-kw">return</span> faberX{<span class="tok-kw">false</span>, v} }
+
+<span class="tok-kw">func</span> faberXNeg(a faberX) faberX { <span class="tok-kw">return</span> faberXMk(!a.neg, a.m) }
+
+<span class="tok-kw">func</span> faberXAddS(a faberX, bneg <span class="tok-ty">bool</span>, bm <span class="tok-ty">uint64</span>) faberX {
+	<span class="tok-kw">if</span> a.neg == bneg {
+		s, c := bits.Add64(a.m, bm, <span class="tok-nu">0</span>)
+		<span class="tok-kw">if</span> c != <span class="tok-nu">0</span> {
+			panic(<span class="tok-st">"numerus overflow"</span>)
+		}
+		<span class="tok-kw">return</span> faberXMk(a.neg, s)
+	}
+	<span class="tok-kw">if</span> a.m &gt;= bm {
+		<span class="tok-kw">return</span> faberXMk(a.neg, a.m-bm)
+	}
+	<span class="tok-kw">return</span> faberXMk(bneg, bm-a.m)
+}
+
+<span class="tok-kw">func</span> faberXAdd(a faberX, b faberX) faberX { <span class="tok-kw">return</span> faberXAddS(a, b.neg, b.m) }
+
+<span class="tok-kw">func</span> faberXSub(a faberX, b faberX) faberX { <span class="tok-kw">return</span> faberXAddS(a, !b.neg, b.m) }
+
+<span class="tok-kw">func</span> faberXMul(a faberX, b faberX) faberX {
+	hi, lo := bits.Mul64(a.m, b.m)
+	<span class="tok-kw">if</span> hi != <span class="tok-nu">0</span> {
+		panic(<span class="tok-st">"numerus overflow"</span>)
+	}
+	<span class="tok-kw">return</span> faberXMk(a.neg != b.neg, lo)
+}
+
+<span class="tok-kw">func</span> faberXDiv(a faberX, b faberX) faberX {
+	<span class="tok-kw">if</span> b.m == <span class="tok-nu">0</span> {
+		panic(<span class="tok-st">"numerus division failed"</span>)
+	}
+	q, r := a.m/b.m, a.m%b.m
+	<span class="tok-kw">if</span> a.neg == b.neg {
+		<span class="tok-kw">return</span> faberXMk(<span class="tok-kw">false</span>, q)
+	}
+	<span class="tok-kw">if</span> r != <span class="tok-nu">0</span> {
+		q++
+	}
+	<span class="tok-kw">return</span> faberXMk(<span class="tok-kw">true</span>, q)
+}
+
+<span class="tok-kw">func</span> faberXMod(a faberX, b faberX) faberX {
+	<span class="tok-kw">if</span> b.m == <span class="tok-nu">0</span> {
+		panic(<span class="tok-st">"numerus division failed"</span>)
+	}
+	r := a.m % b.m
+	<span class="tok-kw">if</span> r != <span class="tok-nu">0</span> &amp;&amp; a.neg != b.neg {
+		r = b.m - r
+	}
+	<span class="tok-kw">return</span> faberXMk(b.neg, r)
+}
+
+<span class="tok-kw">func</span> faberXShl(a faberX, n faberX) faberX {
+	<span class="tok-kw">if</span> n.neg {
+		panic(<span class="tok-st">"negative shift count"</span>)
+	}
+	<span class="tok-kw">if</span> a.m == <span class="tok-nu">0</span> {
+		<span class="tok-kw">return</span> faberX{}
+	}
+	<span class="tok-kw">if</span> n.m &gt; <span class="tok-nu">64</span> || <span class="tok-ty">uint64</span>(bits.LeadingZeros64(a.m)) &lt; n.m {
+		panic(<span class="tok-st">"numerus overflow"</span>)
+	}
+	<span class="tok-kw">return</span> faberXMk(a.neg, a.m&lt;&lt;n.m)
+}
+
+<span class="tok-kw">func</span> faberXShr(a faberX, n faberX) faberX {
+	<span class="tok-kw">if</span> n.neg {
+		panic(<span class="tok-st">"negative shift count"</span>)
+	}
+	<span class="tok-kw">if</span> n.m &gt;= <span class="tok-nu">64</span> {
+		<span class="tok-kw">if</span> a.neg {
+			<span class="tok-kw">return</span> faberX{<span class="tok-kw">true</span>, <span class="tok-nu">1</span>}
+		}
+		<span class="tok-kw">return</span> faberX{}
+	}
+	m := a.m &gt;&gt; n.m
+	<span class="tok-kw">if</span> a.neg &amp;&amp; a.m&amp;(<span class="tok-nu">1</span>&lt;&lt;n.m-<span class="tok-nu">1</span>) != <span class="tok-nu">0</span> {
+		m++
+	}
+	<span class="tok-kw">return</span> faberXMk(a.neg, m)
+}
+
+<span class="tok-kw">func</span> faberXW(a faberX) (<span class="tok-ty">uint64</span>, <span class="tok-ty">uint64</span>) {
+	<span class="tok-kw">if</span> !a.neg {
+		<span class="tok-kw">return</span> <span class="tok-nu">0</span>, a.m
+	}
+	<span class="tok-kw">return</span> ^<span class="tok-ty">uint64</span>(<span class="tok-nu">0</span>), -a.m
+}
+
+<span class="tok-kw">func</span> faberXFromW(hi <span class="tok-ty">uint64</span>, lo <span class="tok-ty">uint64</span>) faberX {
+	<span class="tok-kw">if</span> hi == <span class="tok-nu">0</span> {
+		<span class="tok-kw">return</span> faberX{<span class="tok-kw">false</span>, lo}
+	}
+	<span class="tok-kw">if</span> hi == ^<span class="tok-ty">uint64</span>(<span class="tok-nu">0</span>) &amp;&amp; lo&gt;&gt;<span class="tok-nu">63</span> == <span class="tok-nu">1</span> {
+		<span class="tok-kw">return</span> faberXMk(<span class="tok-kw">true</span>, -lo)
+	}
+	panic(<span class="tok-st">"numerus overflow"</span>)
+}
+
+<span class="tok-kw">func</span> faberXAnd(a faberX, b faberX) faberX {
+	ah, al := faberXW(a)
+	bh, bl := faberXW(b)
+	<span class="tok-kw">return</span> faberXFromW(ah&amp;bh, al&amp;bl)
+}
+
+<span class="tok-kw">func</span> faberXOr(a faberX, b faberX) faberX {
+	ah, al := faberXW(a)
+	bh, bl := faberXW(b)
+	<span class="tok-kw">return</span> faberXFromW(ah|bh, al|bl)
+}
+
+<span class="tok-kw">func</span> faberXXor(a faberX, b faberX) faberX {
+	ah, al := faberXW(a)
+	bh, bl := faberXW(b)
+	<span class="tok-kw">return</span> faberXFromW(ah^bh, al^bl)
+}
+
+<span class="tok-kw">func</span> faberXNot(a faberX) faberX { <span class="tok-kw">return</span> faberXSub(faberXNeg(a), faberXU(<span class="tok-nu">1</span>)) }
+
+<span class="tok-kw">func</span> faberXAbs(a faberX) faberX { <span class="tok-kw">return</span> faberXMk(<span class="tok-kw">false</span>, a.m) }
+
+<span class="tok-kw">func</span> faberXPow(base faberX, exponent faberX) faberX {
+	<span class="tok-kw">if</span> exponent.neg {
+		panic(<span class="tok-st">"numerus potentia failed: negative exponent"</span>)
+	}
+	accumulator := faberXU(<span class="tok-nu">1</span>)
+	<span class="tok-kw">for</span> !exponent.neg &amp;&amp; exponent.m &gt; <span class="tok-nu">0</span> {
+		<span class="tok-kw">if</span> exponent.m%<span class="tok-nu">2</span> != <span class="tok-nu">0</span> {
+			accumulator = faberXMul(accumulator, base)
+		}
+		exponent = faberXU(exponent.m / <span class="tok-nu">2</span>)
+		<span class="tok-kw">if</span> exponent.m &gt; <span class="tok-nu">0</span> {
+			base = faberXMul(base, base)
+		}
+	}
+	<span class="tok-kw">return</span> accumulator
+}
+
+<span class="tok-kw">func</span> faberXCmp(a faberX, b faberX) <span class="tok-ty">int</span> {
+	<span class="tok-kw">if</span> a.neg != b.neg {
+		<span class="tok-kw">if</span> a.neg {
+			<span class="tok-kw">return</span> -<span class="tok-nu">1</span>
+		}
+		<span class="tok-kw">return</span> <span class="tok-nu">1</span>
+	}
+	c := <span class="tok-nu">0</span>
+	<span class="tok-kw">if</span> a.m &lt; b.m {
+		c = -<span class="tok-nu">1</span>
+	} <span class="tok-kw">else</span> <span class="tok-kw">if</span> a.m &gt; b.m {
+		c = <span class="tok-nu">1</span>
+	}
+	<span class="tok-kw">if</span> a.neg {
+		<span class="tok-kw">return</span> -c
+	}
+	<span class="tok-kw">return</span> c
+}
+
+<span class="tok-co">// faberXApprox is `≈` on integers: 10^9 * |a - b| &lt;= max(|a|, |b|), exactly.</span>
+<span class="tok-co">// |a - b| reaches 2^64 + 2^63, so the scaled distance is a 128-bit value.</span>
+<span class="tok-kw">func</span> faberXApprox(a faberX, b faberX) <span class="tok-ty">bool</span> {
+	<span class="tok-kw">var</span> hi, lo <span class="tok-ty">uint64</span>
+	<span class="tok-kw">if</span> a.neg == b.neg {
+		lo = a.m - b.m
+		<span class="tok-kw">if</span> a.m &lt; b.m {
+			lo = b.m - a.m
+		}
+	} <span class="tok-kw">else</span> {
+		lo, hi = bits.Add64(a.m, b.m, <span class="tok-nu">0</span>)
+	}
+	mulHi, mulLo := bits.Mul64(lo, <span class="tok-nu">1000000000</span>)
+	<span class="tok-kw">if</span> hi*<span class="tok-nu">1000000000</span>+mulHi != <span class="tok-nu">0</span> {
+		<span class="tok-kw">return</span> <span class="tok-kw">false</span>
+	}
+	limit := a.m
+	<span class="tok-kw">if</span> b.m &gt; limit {
+		limit = b.m
+	}
+	<span class="tok-kw">return</span> mulLo &lt;= limit
+}
+
+<span class="tok-kw">func</span> faberXCmpF(a faberX, f float64) (<span class="tok-ty">int</span>, <span class="tok-ty">bool</span>) {
+	<span class="tok-kw">if</span> f != f {
+		<span class="tok-kw">return</span> <span class="tok-nu">0</span>, <span class="tok-kw">false</span>
+	}
+	<span class="tok-kw">if</span> f &gt;= <span class="tok-nu">18446744073709551616.0</span> {
+		<span class="tok-kw">return</span> -<span class="tok-nu">1</span>, <span class="tok-kw">true</span>
+	}
+	<span class="tok-kw">if</span> f &lt; -<span class="tok-nu">9223372036854775808.0</span> {
+		<span class="tok-kw">return</span> <span class="tok-nu">1</span>, <span class="tok-kw">true</span>
+	}
+	w := math.Trunc(f)
+	wx := faberX{<span class="tok-kw">false</span>, <span class="tok-ty">uint64</span>(w)}
+	<span class="tok-kw">if</span> w &lt; <span class="tok-nu">0</span> {
+		wx = faberX{<span class="tok-kw">true</span>, <span class="tok-ty">uint64</span>(-w)}
+	}
+	<span class="tok-kw">if</span> c := faberXCmp(a, wx); c != <span class="tok-nu">0</span> {
+		<span class="tok-kw">return</span> c, <span class="tok-kw">true</span>
+	}
+	fr := f - w
+	<span class="tok-kw">if</span> fr &gt; <span class="tok-nu">0</span> {
+		<span class="tok-kw">return</span> -<span class="tok-nu">1</span>, <span class="tok-kw">true</span>
+	}
+	<span class="tok-kw">if</span> fr &lt; <span class="tok-nu">0</span> {
+		<span class="tok-kw">return</span> <span class="tok-nu">1</span>, <span class="tok-kw">true</span>
+	}
+	<span class="tok-kw">return</span> <span class="tok-nu">0</span>, <span class="tok-kw">true</span>
+}
+
+<span class="tok-kw">func</span> faberXLtF(a faberX, f float64) <span class="tok-ty">bool</span> { c, ok := faberXCmpF(a, f); <span class="tok-kw">return</span> ok &amp;&amp; c &lt; <span class="tok-nu">0</span> }
+
+<span class="tok-kw">func</span> faberXLeF(a faberX, f float64) <span class="tok-ty">bool</span> { c, ok := faberXCmpF(a, f); <span class="tok-kw">return</span> ok &amp;&amp; c &lt;= <span class="tok-nu">0</span> }
+
+<span class="tok-kw">func</span> faberXGtF(a faberX, f float64) <span class="tok-ty">bool</span> { c, ok := faberXCmpF(a, f); <span class="tok-kw">return</span> ok &amp;&amp; c &gt; <span class="tok-nu">0</span> }
+
+<span class="tok-kw">func</span> faberXGeF(a faberX, f float64) <span class="tok-ty">bool</span> { c, ok := faberXCmpF(a, f); <span class="tok-kw">return</span> ok &amp;&amp; c &gt;= <span class="tok-nu">0</span> }
+
+<span class="tok-kw">func</span> faberXEqF(a faberX, f float64) <span class="tok-ty">bool</span> { c, ok := faberXCmpF(a, f); <span class="tok-kw">return</span> ok &amp;&amp; c == <span class="tok-nu">0</span> }
+
+<span class="tok-kw">func</span> faberXStr(a faberX) <span class="tok-ty">string</span> {
+	s := strconv.FormatUint(a.m, <span class="tok-nu">10</span>)
+	<span class="tok-kw">if</span> a.neg {
+		<span class="tok-kw">return</span> <span class="tok-st">"-"</span> + s
+	}
+	<span class="tok-kw">return</span> s
+}
+
+<span class="tok-kw">func</span> faberXTrap(a faberX, ty <span class="tok-ty">string</span>, pos <span class="tok-ty">string</span>, extra <span class="tok-ty">string</span>, unsigned <span class="tok-ty">bool</span>) {
+	msg := faberXStr(a) + <span class="tok-st">" does not fit in `"</span> + ty + <span class="tok-st">"` ("</span> + pos + <span class="tok-st">")"</span> + extra
+	<span class="tok-kw">if</span> unsigned &amp;&amp; a.neg {
+		msg += <span class="tok-st">" (a negative value cannot be stored in an unsigned slot)"</span>
+	}
+	panic(msg)
+}
+
+<span class="tok-kw">func</span> faberXFloat(a faberX) float64 {
+	f := float64(a.m)
+	<span class="tok-kw">if</span> a.neg {
+		<span class="tok-kw">return</span> -f
+	}
+	<span class="tok-kw">return</span> f
+}
+
+<span class="tok-kw">func</span> faberXFitsI(a faberX, lo <span class="tok-ty">int64</span>, hi <span class="tok-ty">int64</span>) <span class="tok-ty">bool</span> {
+	<span class="tok-kw">return</span> (!a.neg &amp;&amp; a.m &lt;= <span class="tok-ty">uint64</span>(hi)) || (a.neg &amp;&amp; a.m &lt;= -<span class="tok-ty">uint64</span>(lo))
+}
+
+<span class="tok-kw">func</span> faberXFitsU(a faberX, hi <span class="tok-ty">uint64</span>) <span class="tok-ty">bool</span> { <span class="tok-kw">return</span> !a.neg &amp;&amp; a.m &lt;= hi }
+
+<span class="tok-kw">func</span> faberXStoreI(a faberX, lo <span class="tok-ty">int64</span>, hi <span class="tok-ty">int64</span>, ty <span class="tok-ty">string</span>, pos <span class="tok-ty">string</span>, extra <span class="tok-ty">string</span>) <span class="tok-ty">int64</span> {
+	<span class="tok-kw">if</span> !a.neg &amp;&amp; a.m &lt;= <span class="tok-ty">uint64</span>(hi) {
+		<span class="tok-kw">return</span> <span class="tok-ty">int64</span>(a.m)
+	}
+	<span class="tok-kw">if</span> a.neg &amp;&amp; a.m &lt;= -<span class="tok-ty">uint64</span>(lo) {
+		<span class="tok-kw">return</span> -<span class="tok-ty">int64</span>(a.m)
+	}
+	faberXTrap(a, ty, pos, extra, <span class="tok-kw">false</span>)
+	<span class="tok-kw">return</span> <span class="tok-nu">0</span>
+}
+
+<span class="tok-kw">func</span> faberXStoreU(a faberX, hi <span class="tok-ty">uint64</span>, ty <span class="tok-ty">string</span>, pos <span class="tok-ty">string</span>, extra <span class="tok-ty">string</span>) <span class="tok-ty">uint64</span> {
+	<span class="tok-kw">if</span> !a.neg &amp;&amp; a.m &lt;= hi {
+		<span class="tok-kw">return</span> a.m
+	}
+	faberXTrap(a, ty, pos, extra, <span class="tok-kw">true</span>)
+	<span class="tok-kw">return</span> <span class="tok-nu">0</span>
+}
+
+<span class="tok-kw">func</span> faberXWrap(a faberX) <span class="tok-ty">uint64</span> {
+	<span class="tok-kw">if</span> a.neg {
+		<span class="tok-kw">return</span> -a.m
+	}
+	<span class="tok-kw">return</span> a.m
+}
+
+<span class="tok-kw">func</span> faberXClampI(a faberX, lo <span class="tok-ty">int64</span>, hi <span class="tok-ty">int64</span>) <span class="tok-ty">int64</span> {
+	<span class="tok-kw">if</span> a.neg {
+		<span class="tok-kw">if</span> a.m &gt; -<span class="tok-ty">uint64</span>(lo) {
+			<span class="tok-kw">return</span> lo
+		}
+		<span class="tok-kw">return</span> -<span class="tok-ty">int64</span>(a.m)
+	}
+	<span class="tok-kw">if</span> a.m &gt; <span class="tok-ty">uint64</span>(hi) {
+		<span class="tok-kw">return</span> hi
+	}
+	<span class="tok-kw">return</span> <span class="tok-ty">int64</span>(a.m)
+}
+
+<span class="tok-kw">func</span> faberXClampU(a faberX, hi <span class="tok-ty">uint64</span>) <span class="tok-ty">uint64</span> {
+	<span class="tok-kw">if</span> a.neg {
+		<span class="tok-kw">return</span> <span class="tok-nu">0</span>
+	}
+	<span class="tok-kw">if</span> a.m &gt; hi {
+		<span class="tok-kw">return</span> hi
+	}
+	<span class="tok-kw">return</span> a.m
+}
 
 <span class="tok-kw">func</span> sum(numeri []<span class="tok-ty">int</span>) <span class="tok-ty">int</span> {
     total := <span class="tok-nu">0</span>
     <span class="tok-kw">for</span> _, n := <span class="tok-kw">range</span> numeri {
-        total = <span class="tok-kw">func</span>() <span class="tok-ty">int</span> { left := total; right := n; max := <span class="tok-ty">int</span>(^<span class="tok-ty">uint</span>(<span class="tok-nu">0</span>) &gt;&gt; <span class="tok-nu">1</span>); min := -max - <span class="tok-nu">1</span>; <span class="tok-kw">if</span> (right &gt; <span class="tok-nu">0</span> &amp;&amp; left &gt; max-right) || (right &lt; <span class="tok-nu">0</span> &amp;&amp; left &lt; min-right) { panic(<span class="tok-st">"numerus overflow"</span>) }; <span class="tok-kw">return</span> left + right }()
+        total = <span class="tok-ty">int</span>(faberXStoreI(faberXAdd(faberXI(<span class="tok-ty">int64</span>(total)), faberXI(<span class="tok-ty">int64</span>(n))), -<span class="tok-nu">9223372036854775808</span>, <span class="tok-nu">9223372036854775807</span>, <span class="tok-st">"i64"</span>, <span class="tok-st">"assignment to `total`"</span>, <span class="tok-st">""</span>))
     }
     <span class="tok-kw">return</span> total
 }
@@ -394,4 +1113,4 @@
 <span class="tok-kw">func</span> main() {
     valores := []<span class="tok-ty">int</span>{<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>}
     fmt.Println(sum(valores))
-}</code></pre><p>---</p><p><a href="/en-US/targets/">All lanes</a> · <a href="/en-US/toolchain/target-matrix.html">Measured support per term</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#reading">How to read it</a></li><li class="toc-2"><a href="#tensores">Typed tensors</a></li><li class="toc-2"><a href="#fallibilis">The error channel</a></li><li class="toc-2"><a href="#collectiones">Collections and iteration</a></li></ul></div></nav></div></body></html>
+}</code></pre><p>---</p><p><a href="/en-US/targets/">All targets</a> · <a href="/en-US/toolchain/target-matrix.html">Measured support per term</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#reading">How to read it</a></li><li class="toc-2"><a href="#support">Measured support</a></li><li class="toc-3"><a href="#gaps">Not fully supported</a></li><li class="toc-2"><a href="#tensores">Typed tensors</a></li><li class="toc-2"><a href="#fallibilis">The error channel</a></li><li class="toc-2"><a href="#collectiones">Collections and iteration</a></li></ul></div></nav></div></body></html>
