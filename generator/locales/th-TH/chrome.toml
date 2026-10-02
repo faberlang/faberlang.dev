@@ -51,3 +51,179 @@ license_key = "สัญญาอนุญาต"
 
 [footer]
 sources_heading = "แหล่งที่มา"
+
+# Sidebar nav labels exactly as nav.fab emits them. inject-chrome.py replaces
+# these strings inside <aside>; a label must be declared here even when no
+# locale translates it, or a shorter translated label can be substituted
+# inside it. Labels covered by the sections above (Overview, Examples,
+# Releases, All releases, the agent items) are not repeated.
+[nav]
+group_language = "ภาษา"
+group_targets = "ตามเป้าหมาย"
+group_locales = "ตามภาษา"
+group_libraries = "ไลบรารี"
+behavior = "พฤติกรรม"
+grammar = "ไวยากรณ์"
+installation = "การติดตั้ง"
+target_matrix = "ตารางเป้าหมาย"
+reader_locales = "ภาษาสำหรับอ่าน"
+localization = "การแปลภาษา"
+norma = "Norma — ไลบรารีมาตรฐาน"
+triga = "Triga — กราฟิกส์"
+gradus = "Gradus — ออโตเกรด"
+tela = "Tela — วิว"
+inferentia = "Inferentia — อนุมาน"
+the_corpus = "คลังภาษา"
+
+# The sidebar tree, mirroring nav.fab item for item (nav.fab renders; this
+# registers structure and per-locale labels). section is the target page's
+# frontmatter section. When adding an entry: extend nav.fab, then mirror it
+# here in every locale, and add the label to [nav] above plus its
+# translation in each locale file.
+[[nav.group]]
+id = "language"
+label = "ภาษา"
+[[nav.group.item]]
+label = "Overview"
+href = "/language/"
+section = "language"
+[[nav.group.item]]
+label = "พฤติกรรม"
+href = "/language/"
+section = "language"
+[[nav.group.item]]
+label = "ไวยากรณ์"
+href = "/reference/grammar.html"
+section = "reference"
+[[nav.group.item]]
+label = "Examples"
+href = "/examples/"
+section = "examples"
+[[nav.group.item]]
+label = "การติดตั้ง"
+href = "/start/install.html"
+section = "install"
+[[nav.group]]
+id = "targets"
+label = "ตามเป้าหมาย"
+[[nav.group.item]]
+label = "HIR"
+href = "/targets/hir.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "Rust"
+href = "/targets/rust.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "TypeScript"
+href = "/targets/ts.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "Go"
+href = "/targets/go.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "Faber"
+href = "/targets/faber.html"
+section = "targets"
+[[nav.group.item]]
+label = "MIR"
+href = "/targets/mir.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "LLVM IR"
+href = "/targets/llvm-text.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "WebAssembly text"
+href = "/targets/wasm-text.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "WGSL"
+href = "/targets/wgsl-text.html"
+section = "targets"
+[[nav.group.item]]
+label = "GPU"
+href = "/targets/gpu.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "Metal"
+href = "/targets/metal-text.html"
+section = "targets"
+[[nav.group.item]]
+label = "ตารางเป้าหมาย"
+href = "/toolchain/target-matrix.html"
+section = "targets"
+[[nav.group]]
+id = "locales"
+label = "ตามภาษา"
+[[nav.group.item]]
+label = "ภาษาสำหรับอ่าน"
+href = "/language/reader-locales.html"
+section = "language"
+[[nav.group.item]]
+label = "การแปลภาษา"
+href = "/localization.html"
+section = "localization"
+[[nav.group]]
+id = "libraries"
+label = "ไลบรารี"
+[[nav.group.item]]
+label = "Norma — ไลบรารีมาตรฐาน"
+href = "/libraries/norma.html"
+section = "libraries"
+[[nav.group.item]]
+label = "Triga — กราฟิกส์"
+href = "/libraries/triga.html"
+section = "libraries"
+[[nav.group.item]]
+label = "Gradus — ออโตเกรด"
+href = "/libraries/gradus.html"
+section = "libraries"
+[[nav.group.item]]
+label = "Tela — วิว"
+href = "/libraries/tela.html"
+section = "libraries"
+[[nav.group.item]]
+label = "Inferentia — อนุมาน"
+href = "/libraries/inferentia.html"
+section = "libraries"
+[[nav.group.item]]
+label = "คลังภาษา"
+href = "/libraries/corpus.html"
+section = "libraries"
+[[nav.group]]
+id = "releases"
+label = "Releases"
+[[nav.group.item]]
+label = "All releases"
+href = "/releases/"
+section = "releases"
+[[nav.group.item]]
+label = "macOS arm64"
+href = "https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz"
+section = ""
+[[nav.group.item]]
+label = "Linux x64"
+href = "https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz"
+section = ""
+[[nav.group]]
+id = "agents"
+label = "For agents"
+compact = true
+[[nav.group.item]]
+label = "Agent index"
+href = "/llms.txt"
+section = ""
+[[nav.group.item]]
+label = "Agent guide"
+href = "/agents/index.md"
+section = ""
+[[nav.group.item]]
+label = "Agent skills"
+href = "/.well-known/agent-skills/index.json"
+section = ""
+[[nav.group.item]]
+label = "Full reference"
+href = "/llms-full.txt"
+section = ""

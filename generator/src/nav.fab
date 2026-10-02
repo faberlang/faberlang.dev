@@ -1,0 +1,220 @@
+# Hierarchical site navigation.
+#
+# Owns the sidebar tree: five reader-task groups plus the compact agents
+# group. Labels here are English; per-locale spellings come from
+# generator/locales/<locale>/chrome.toml through inject-chrome.py, which
+# replaces these exact strings inside <aside> after render. chrome.toml
+# mirrors the same tree under [[nav.group]] as the registry seats edit;
+# this file is what actually renders, so a structural change lands in both.
+#
+# Items with children render as <details class="nav-branch"> with a
+# <summary>; the branch is open when its subtree covers the page's section
+# or the exact page. An item is active on exact URL match, or when it is
+# the only nav item carrying the page's section.
+
+importa ex "./document_ir" * ut doc_mod
+importa ex "./link_prefix" * ut lp
+
+genus NavItem {
+    varia textus label
+    varia textus href
+    varia textus section
+    varia lista<NavItem> children
+}
+
+genus NavGroup {
+    varia textus id
+    varia textus label
+    varia bivalens compact
+    varia lista<NavItem> items
+}
+
+functio finge_item(textus label, textus href, textus section) → NavItem {
+    redde NavItem { label = label, href = href, section = section, children = vacua }
+}
+
+functio finge_branch(textus label, textus href, textus section, lista<NavItem> children) → NavItem {
+    redde NavItem { label = label, href = href, section = section, children = children }
+}
+
+functio finge_group(textus id, textus label, bivalens compact, lista<NavItem> items) → NavGroup {
+    redde NavGroup { id = id, label = label, compact = compact, items = items }
+}
+
+# The sidebar tree. Hrefs are locale-relative content paths; sections are
+# the frontmatter `section` of the target pages.
+functio nav_tree() → lista<NavGroup> {
+    varia lista<NavItem> language_items ← vacua
+    language_items.appende(finge_item("Overview", "/language/", "language"))
+    language_items.appende(finge_item("Behavior", "/language/", "language"))
+    language_items.appende(finge_item("Grammar", "/reference/grammar.html", "reference"))
+    language_items.appende(finge_item("Examples", "/examples/", "examples"))
+    language_items.appende(finge_item("Installation", "/start/install.html", "install"))
+
+    varia lista<NavItem> hir_children ← vacua
+    hir_children.appende(finge_item("Rust", "/targets/rust.html", "targets"))
+    hir_children.appende(finge_item("TypeScript", "/targets/ts.html", "targets"))
+    hir_children.appende(finge_item("Go", "/targets/go.html", "targets"))
+    hir_children.appende(finge_item("Faber", "/targets/faber.html", "targets"))
+
+    varia lista<NavItem> mir_children ← vacua
+    mir_children.appende(finge_item("LLVM IR", "/targets/llvm-text.html", "targets"))
+    mir_children.appende(finge_item("WebAssembly text", "/targets/wasm-text.html", "targets"))
+    mir_children.appende(finge_item("WGSL", "/targets/wgsl-text.html", "targets"))
+
+    varia lista<NavItem> gpu_children ← vacua
+    gpu_children.appende(finge_item("Metal", "/targets/metal-text.html", "targets"))
+
+    varia lista<NavItem> targets_items ← vacua
+    targets_items.appende(finge_branch("HIR", "/targets/hir.html", "targets", hir_children))
+    targets_items.appende(finge_branch("MIR", "/targets/mir.html", "targets", mir_children))
+    targets_items.appende(finge_branch("GPU", "/targets/gpu.html", "targets", gpu_children))
+    targets_items.appende(finge_item("Target matrix", "/toolchain/target-matrix.html", "targets"))
+
+    varia lista<NavItem> locales_items ← vacua
+    locales_items.appende(finge_item("Reader locales", "/language/reader-locales.html", "language"))
+    locales_items.appende(finge_item("Localization", "/localization.html", "localization"))
+
+    varia lista<NavItem> libraries_items ← vacua
+    libraries_items.appende(finge_item("Norma — stdlib", "/libraries/norma.html", "libraries"))
+    libraries_items.appende(finge_item("Triga — graphics", "/libraries/triga.html", "libraries"))
+    libraries_items.appende(finge_item("Gradus — autograd", "/libraries/gradus.html", "libraries"))
+    libraries_items.appende(finge_item("Tela — views", "/libraries/tela.html", "libraries"))
+    libraries_items.appende(finge_item("Inferentia — inference", "/libraries/inferentia.html", "libraries"))
+    libraries_items.appende(finge_item("The corpus", "/libraries/corpus.html", "libraries"))
+
+    varia lista<NavItem> releases_items ← vacua
+    releases_items.appende(finge_item("All releases", "/releases/", "releases"))
+    releases_items.appende(finge_item("macOS arm64", "https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz", ""))
+    releases_items.appende(finge_item("Linux x64", "https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz", ""))
+
+    varia lista<NavItem> agents_items ← vacua
+    agents_items.appende(finge_item("Agent index", "/llms.txt", ""))
+    agents_items.appende(finge_item("Agent guide", "/agents/index.md", ""))
+    agents_items.appende(finge_item("Agent skills", "/.well-known/agent-skills/index.json", ""))
+    agents_items.appende(finge_item("Full reference", "/llms-full.txt", ""))
+
+    varia lista<NavGroup> groups ← vacua
+    groups.appende(finge_group("language", "The Language", falsum, language_items))
+    groups.appende(finge_group("targets", "By Target", falsum, targets_items))
+    groups.appende(finge_group("locales", "By Locale", falsum, locales_items))
+    groups.appende(finge_group("libraries", "Libraries", falsum, libraries_items))
+    groups.appende(finge_group("releases", "Releases", falsum, releases_items))
+    groups.appende(finge_group("agents", "For agents", verum, agents_items))
+    redde groups
+}
+
+# True when the item or any descendant names the page's section.
+functio subtree_habet_sectionem(NavItem it, textus active_section) → bivalens {
+    si it.section ≡ active_section et active_section.longitudo() > 0 ergo redde verum
+    varia bivalens found ← falsum
+    itera ex it.children fixum child {
+        si subtree_habet_sectionem(child, active_section) {
+            found ← verum
+        }
+    }
+    redde found
+}
+
+# Count nav items across the whole tree carrying one section.
+functio numerus_sectionis(lista<NavGroup> groups, textus section) → numerus {
+    varia numerus n ← 0
+    itera ex groups fixum g {
+        itera ex g.items fixum it {
+            si it.section ≡ section {
+                n ← n + 1
+            }
+            itera ex it.children fixum child {
+                si child.section ≡ section {
+                    n ← n + 1
+                }
+            }
+        }
+    }
+    redde n
+}
+
+# Exact page match: the item's rendered href equals the page's own URL.
+functio est_pagina(NavItem it, textus pagina_href, textus site_locale) → bivalens {
+    redde lp.content_href(it.href, site_locale) ≡ pagina_href
+}
+
+# Active on exact match, else when uniquely carrying the page's section.
+functio est_activa(NavItem it, textus active_section, textus pagina_href, textus site_locale, numerus section_n) → bivalens {
+    si est_pagina(it, pagina_href, site_locale) ergo redde verum
+    si section_n ≡ 1 et it.section ≡ active_section ergo redde verum
+    redde falsum
+}
+
+# A branch stays open when its subtree covers the active section or page.
+functio patet_brachium(NavItem it, textus active_section, textus pagina_href, textus site_locale) → bivalens {
+    si subtree_habet_sectionem(it, active_section) ergo redde verum
+    varia bivalens found ← falsum
+    itera ex it.children fixum child {
+        si est_pagina(child, pagina_href, site_locale) {
+            found ← verum
+        }
+    }
+    redde found
+}
+
+functio nav_link_node(NavItem it, textus active_section, textus pagina_href, textus site_locale, numerus section_n) → doc_mod.Node {
+    fixum textus href ← lp.content_href(it.href, site_locale)
+    si est_activa(it, active_section, pagina_href, site_locale, section_n) {
+        redde doc_mod.leaf("a", [doc_mod.attr("href", href), doc_mod.attr("class", "active")], it.label)
+    }
+    redde doc_mod.leaf("a", [doc_mod.attr("href", href)], it.label)
+}
+
+functio nav_branch_node(NavItem it, textus active_section, textus pagina_href, textus site_locale, numerus section_n) → doc_mod.Node {
+    varia lista<doc_mod.Attr> attrs ← vacua
+    attrs.appende(doc_mod.attr("class", "nav-branch"))
+    si patet_brachium(it, active_section, pagina_href, site_locale) {
+        attrs.appende(doc_mod.attr("open", ""))
+    }
+
+    varia lista<doc_mod.Node> child_items ← vacua
+    itera ex it.children fixum child {
+        child_items.appende(doc_mod.element("li", vacua, [nav_link_node(child, active_section, pagina_href, site_locale, section_n)]))
+    }
+
+    fixum doc_mod.Node summary ← doc_mod.leaf("summary", vacua, it.label)
+    fixum doc_mod.Node list ← doc_mod.element("ul", vacua, child_items)
+    redde doc_mod.element("details", attrs, [summary, list])
+}
+
+functio nav_item_node(NavItem it, textus active_section, textus pagina_href, textus site_locale, numerus section_n) → doc_mod.Node {
+    si it.children.longitudo() > 0 {
+        redde doc_mod.element("li", vacua, [nav_branch_node(it, active_section, pagina_href, site_locale, section_n)])
+    }
+    redde doc_mod.element("li", vacua, [nav_link_node(it, active_section, pagina_href, site_locale, section_n)])
+}
+
+functio nav_group_node(NavGroup g, textus active_section, textus pagina_href, textus site_locale, numerus section_n) → doc_mod.Node {
+    varia textus class_name ← "nav"
+    si g.compact {
+        class_name ← "nav nav-compact"
+    }
+
+    varia lista<doc_mod.Node> items ← vacua
+    itera ex g.items fixum it {
+        items.appende(nav_item_node(it, active_section, pagina_href, site_locale, section_n))
+    }
+
+    fixum doc_mod.Node heading ← doc_mod.leaf("div", [doc_mod.attr("class", "side-h")], g.label)
+    fixum doc_mod.Node list ← doc_mod.element("ul", [doc_mod.attr("class", class_name)], items)
+    redde doc_mod.frag([heading, list])
+}
+
+# Render every sidebar group for one page.
+@ publica
+functio genera_nav(textus active_section, textus pagina_href, textus site_locale) → doc_mod.Node {
+    fixum lista<NavGroup> groups ← nav_tree()
+    fixum numerus section_n ← numerus_sectionis(groups, active_section)
+
+    varia lista<doc_mod.Node> nodes ← vacua
+    itera ex groups fixum g {
+        nodes.appende(nav_group_node(g, active_section, pagina_href, site_locale, section_n))
+    }
+    redde doc_mod.frag(nodes)
+}

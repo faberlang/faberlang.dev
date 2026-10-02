@@ -51,3 +51,179 @@ license_key = "लाइसेंस"
 
 [footer]
 sources_heading = "स्रोत"
+
+# Sidebar nav labels exactly as nav.fab emits them. inject-chrome.py replaces
+# these strings inside <aside>; a label must be declared here even when no
+# locale translates it, or a shorter translated label can be substituted
+# inside it. Labels covered by the sections above (Overview, Examples,
+# Releases, All releases, the agent items) are not repeated.
+[nav]
+group_language = "भाषा"
+group_targets = "लक्ष्य के अनुसार"
+group_locales = "भाषा के अनुसार"
+group_libraries = "लाइब्रेरी"
+behavior = "व्यवहार"
+grammar = "व्याकरण"
+installation = "स्थापना"
+target_matrix = "लक्ष्य मैट्रिक्स"
+reader_locales = "पाठक भाषाएँ"
+localization = "स्थानीयकरण"
+norma = "Norma — मानक लाइब्रेरी"
+triga = "Triga — ग्राफ़िक्स"
+gradus = "Gradus — ऑटोग्रैड"
+tela = "Tela — व्यूज़"
+inferentia = "Inferentia — इन्फ़रेंस"
+the_corpus = "कॉर्पस"
+
+# The sidebar tree, mirroring nav.fab item for item (nav.fab renders; this
+# registers structure and per-locale labels). section is the target page's
+# frontmatter section. When adding an entry: extend nav.fab, then mirror it
+# here in every locale, and add the label to [nav] above plus its
+# translation in each locale file.
+[[nav.group]]
+id = "language"
+label = "भाषा"
+[[nav.group.item]]
+label = "Overview"
+href = "/language/"
+section = "language"
+[[nav.group.item]]
+label = "व्यवहार"
+href = "/language/"
+section = "language"
+[[nav.group.item]]
+label = "व्याकरण"
+href = "/reference/grammar.html"
+section = "reference"
+[[nav.group.item]]
+label = "Examples"
+href = "/examples/"
+section = "examples"
+[[nav.group.item]]
+label = "स्थापना"
+href = "/start/install.html"
+section = "install"
+[[nav.group]]
+id = "targets"
+label = "लक्ष्य के अनुसार"
+[[nav.group.item]]
+label = "HIR"
+href = "/targets/hir.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "Rust"
+href = "/targets/rust.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "TypeScript"
+href = "/targets/ts.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "Go"
+href = "/targets/go.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "Faber"
+href = "/targets/faber.html"
+section = "targets"
+[[nav.group.item]]
+label = "MIR"
+href = "/targets/mir.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "LLVM IR"
+href = "/targets/llvm-text.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "WebAssembly text"
+href = "/targets/wasm-text.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "WGSL"
+href = "/targets/wgsl-text.html"
+section = "targets"
+[[nav.group.item]]
+label = "GPU"
+href = "/targets/gpu.html"
+section = "targets"
+[[nav.group.item.child]]
+label = "Metal"
+href = "/targets/metal-text.html"
+section = "targets"
+[[nav.group.item]]
+label = "लक्ष्य मैट्रिक्स"
+href = "/toolchain/target-matrix.html"
+section = "targets"
+[[nav.group]]
+id = "locales"
+label = "भाषा के अनुसार"
+[[nav.group.item]]
+label = "पाठक भाषाएँ"
+href = "/language/reader-locales.html"
+section = "language"
+[[nav.group.item]]
+label = "स्थानीयकरण"
+href = "/localization.html"
+section = "localization"
+[[nav.group]]
+id = "libraries"
+label = "लाइब्रेरी"
+[[nav.group.item]]
+label = "Norma — मानक लाइब्रेरी"
+href = "/libraries/norma.html"
+section = "libraries"
+[[nav.group.item]]
+label = "Triga — ग्राफ़िक्स"
+href = "/libraries/triga.html"
+section = "libraries"
+[[nav.group.item]]
+label = "Gradus — ऑटोग्रैड"
+href = "/libraries/gradus.html"
+section = "libraries"
+[[nav.group.item]]
+label = "Tela — व्यूज़"
+href = "/libraries/tela.html"
+section = "libraries"
+[[nav.group.item]]
+label = "Inferentia — इन्फ़रेंस"
+href = "/libraries/inferentia.html"
+section = "libraries"
+[[nav.group.item]]
+label = "कॉर्पस"
+href = "/libraries/corpus.html"
+section = "libraries"
+[[nav.group]]
+id = "releases"
+label = "Releases"
+[[nav.group.item]]
+label = "All releases"
+href = "/releases/"
+section = "releases"
+[[nav.group.item]]
+label = "macOS arm64"
+href = "https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz"
+section = ""
+[[nav.group.item]]
+label = "Linux x64"
+href = "https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz"
+section = ""
+[[nav.group]]
+id = "agents"
+label = "For agents"
+compact = true
+[[nav.group.item]]
+label = "Agent index"
+href = "/llms.txt"
+section = ""
+[[nav.group.item]]
+label = "Agent guide"
+href = "/agents/index.md"
+section = ""
+[[nav.group.item]]
+label = "Agent skills"
+href = "/.well-known/agent-skills/index.json"
+section = ""
+[[nav.group.item]]
+label = "Full reference"
+href = "/llms-full.txt"
+section = ""
