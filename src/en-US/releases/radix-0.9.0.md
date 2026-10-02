@@ -128,4 +128,4 @@ additions (`finge`, `fac...dum`, relative imports).
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

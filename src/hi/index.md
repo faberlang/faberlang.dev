@@ -23,41 +23,7 @@ Rust और नेटिव बाइनरी में संकलित क�
 Radix है, जो लैटिन *root* से लिया गया है। भाषा को Ian Zepp विकसित करते
 हैं और यह MIT लाइसेंस के अंतर्गत जारी की जाती है।
 
-**यहाँ नए हैं?** [इंस्टॉल और डाउनलोड](/start/install.html) से शुरू करें,
-फिर क्रमबद्ध प्रारंभिक ट्रैक चलाएँ: [Hello](/start/hello.html),
-[Commands](/cheatsheet/commands.html), और [Projects](/start/projects.html)।
-
-## Faber 1.6.0 डाउनलोड करें {#download}
-
-वर्तमान रिलीज़: **Faber 1.6.0** (टैग `faber-v1.6.0`), 2026-08-10 को प्रकाशित। macOS और Linux के लिए
-पहले से बने CLI आर्काइव उपलब्ध हैं; हर आर्काइव में `bin/` और `share/` ट्री होते हैं — `bin/faber` को
-अपने `PATH` में रखें, और `share/faber` को बाइनरी के पास ही रखें ताकि रीडर पैक रिज़ॉल्व हो सकें।
-
-| प्लेटफ़ॉर्म | आर्काइव | चेकसम |
-|---|---|---|
-| **macOS arm64** (Apple Silicon) | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
-
-त्वरित इंस्टॉल (macOS arm64 उदाहरण):
-
-```bash
-curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz
-curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256
-expected=$(awk '{print $1}' faber.tgz.sha256)
-actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
-test "$actual" = "$expected"
-tar -xzf faber.tgz
-# आर्काइव में bin/ और share/ होते हैं; दोनों को साथ रखें ताकि रीडर पैक बाइनरी के पास रिज़ॉल्व हो सकें
-sudo mv bin/faber /usr/local/bin/faber
-sudo mv share/faber /usr/local/share/faber
-faber --version
-```
-
-सभी रिलीज़ नोट्स और एसेट: [github.com/faberlang/releases · faber-v1.6.0](https://github.com/faberlang/releases/releases/tag/faber-v1.6.0)।
-चरण-दर-चरण: [इंस्टॉल गाइड](/start/install.html)। पूरा ऐतिहासिक
-इन्वेंटरी: [रिलीज़](/releases/)।
+**यहाँ नए हैं?** [शुरू करें](/start/) पर जाएँ: अपने मॉडल को एक लिंक दें और वह आपके लिए Faber इंस्टॉल कर देगा। फिर [Commands](/cheatsheet/commands.html) पढ़ें।
 
 | | |
 |---|---|
@@ -77,13 +43,10 @@ faber --version
 
 | पथ | किसके लिए | क्या |
 |---|---|---|
-| [इंस्टॉल](/start/install.html) | मानव | डाउनलोड, PATH, पहला `faber check` |
-| [Hello](/start/hello.html) | मानव | `salve-munde` बनाएँ और चलाएँ |
+| [शुरू करें](/start/) | मानव | अपने मॉडल को एक लिंक दें; वह आपके लिए Faber इंस्टॉल करेगा |
 | [Commands](/cheatsheet/commands.html) | मानव + एजेंट | दैनिक CLI चक्र: check, build, run, test, explain |
-| [Projects](/start/projects.html) | मानव + एजेंट | hello-world से वास्तविक पैकेजों तक जाएँ |
-| [त्वरित परिचय](/start/) | मानव | पाँच मिनट में भाषा का रूप |
 | [उदाहरण](/examples/) | मानव + एजेंट | वास्तविक पैकेज: CLI ऐप्स, mailspace, GPU, corpus |
-| [`/llms.txt`](/llms.txt) | एजेंट | मशीन इंडेक्स — यदि आप मॉडल हैं तो यहाँ से शुरू करें |
+| [`/install.md`](/install.md) | एजेंट | मशीन इंडेक्स — यदि आप मॉडल हैं तो यहाँ से शुरू करें |
 | [एजेंट गाइड](/agents/index.md) | एजेंट | Faber सीखने और पैकेज जारी करने का तरीका |
 | [एजेंट स्किल्स](/.well-known/agent-skills/index.json) | एजेंट | केंद्रित स्किल गाइड (इंस्टॉल, भाषा, उदाहरण, …) |
 

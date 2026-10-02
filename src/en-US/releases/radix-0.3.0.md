@@ -69,4 +69,4 @@ highlighting — alongside CLI refinements and build/release tooling improvement
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

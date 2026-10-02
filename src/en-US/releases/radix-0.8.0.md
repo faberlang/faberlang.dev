@@ -108,4 +108,4 @@ parameter, and methods use `self.alloc` for collection operations.
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

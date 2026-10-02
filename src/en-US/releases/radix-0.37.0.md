@@ -16,7 +16,7 @@ sources = []
 
 ## Install this version {#install}
 
-Pinned download for **Radix 0.37.0**. For the current release, use [Install](/start/install.html) instead.
+Pinned download for **Radix 0.37.0**. For the current release, use [Start](/start/) instead.
 
 | Platform | Archive | Size | Checksum |
 |---|---|---|---|
@@ -182,4 +182,4 @@ Standardized TOML frontmatter on `+++` delimiters (`5be70b433`, matching the
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

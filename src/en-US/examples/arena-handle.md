@@ -248,4 +248,4 @@ incipit {
 
 ---
 
-[All examples](/examples/) · [Install](/start/install.html) · [Cheat sheet](/cheatsheet/)
+[All examples](/examples/) · [Start](/start/) · [Cheat sheet](/cheatsheet/)

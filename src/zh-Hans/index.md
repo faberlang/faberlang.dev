@@ -16,34 +16,7 @@ translate_spans = false  # prose names the Latin vocabulary as Latin
 
 其名称源自拉丁语中表示*制造者*或*工匠*的词。编译器名为 Radix，源自拉丁语的*根*。该语言由 Ian Zepp 开发，并基于 MIT 许可证发布。
 
-**初次接触？** 请从 [安装与下载](/start/install.html) 开始，然后依次运行入门学习轨道：[Hello](/start/hello.html)、[命令](/cheatsheet/commands.html) 和 [项目](/start/projects.html)。
-
-## 下载 Faber 1.8.0 {#download}
-
-当前发布版本：**Faber 1.8.0**（标签 `faber/v1.8.0`），发布于 2026-08-18。当前条目列出一个 macOS arm64 的预构建 CLI 归档；归档包含 `bin/` 和 `share/` 目录树——将 `bin/faber` 放入您的 `PATH`，并让 `share/faber` 与二进制文件保持在一起，以便 reader packs 能够解析。随附的 Radix 编译器为 0.83.0，与 Faber 1.8.0 同线发布。
-
-| 平台 | 归档文件 | 校验和 |
-|---|---|---|
-| **macOS arm64** (Apple Silicon) | [faber-v1.8.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/radix/releases/download/faber%2Fv1.8.0/faber-v1.8.0-aarch64-apple-darwin.tar.gz) | `22d688cce1565af4b8e4382ad425c5d6f66354352c7b3db5b9c1614356a8dbea` |
-
-快速安装（以 macOS arm64 为例）：
-
-```bash
-curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/radix/releases/download/faber%2Fv1.8.0/faber-v1.8.0-aarch64-apple-darwin.tar.gz
-expected=22d688cce1565af4b8e4382ad425c5d6f66354352c7b3db5b9c1614356a8dbea
-actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
-test "$actual" = "$expected"
-tar -xzf faber.tgz
-# 归档包含 bin/ 和 share/；将它们放在一起，以便 reader packs 在二进制文件旁解析
-sudo mv bin/faber /usr/local/bin/faber
-sudo mv share/faber /usr/local/share/faber
-faber --version
-```
-
-所有发行说明和资源：[faber/v1.8.0](https://github.com/faberlang/radix/releases/tag/faber%2Fv1.8.0)。
-详细步骤：[安装指南](/start/install.html)。完整历史清单：
-[发行版本](/releases/)。
+**初次接触？** 请前往 [开始](/start/)：把一个链接交给你的模型，它会为你安装 Faber。然后阅读 [命令](/cheatsheet/commands.html)。
 
 | | |
 |---|---|
@@ -63,13 +36,10 @@ faber --version
 
 | 路径 | 适用对象 | 内容 |
 |---|---|---|
-| [安装](/start/install.html) | 人类用户 | 下载、PATH 配置、首次 `faber check` |
-| [Hello](/start/hello.html) | 人类用户 | 创建并运行 `salve-munde` |
+| [开始](/start/) | 人类用户 | 把一个链接交给你的模型，由它为你安装 Faber |
 | [命令](/cheatsheet/commands.html) | 人类用户 + 代理 | 日常 CLI 循环：检查、构建、运行、测试、解释 |
-| [项目](/start/projects.html) | 人类用户 + 代理 | 从 Hello World 迈向真正的包 |
-| [快速导览](/start/) | 人类用户 | 五分钟了解语言形态 |
 | [示例](/examples/) | 人类用户 + 代理 | 真实的包：CLI 应用、邮件空间、GPU、语料库 |
-| [`/llms.txt`](/llms.txt) | 代理 | 机器索引——如果您是模型，请从这里开始 |
+| [`/install.md`](/install.md) | 代理 | 机器索引——如果您是模型，请从这里开始 |
 | [代理指南](/agents/index.md) | 代理 | 如何学习 Faber 并交付一个包 |
 | [代理技能](/.well-known/agent-skills/index.json) | 代理 | 专题技能指南（安装、语言、示例等） |
 

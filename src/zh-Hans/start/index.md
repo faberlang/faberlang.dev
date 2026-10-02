@@ -1,109 +1,21 @@
 +++
 translation_kind = "translated"
 
-title = "Quick tour"
+title = "开始"
 section = "start"
 order = 0
 sources = []
 
-prose_hash = "sha256:fb6f791ae0e9b73d0c92c2127726f558a2b845351779f80217616b8f55629ff0"
-code_hash = "sha256:f9eb22ab8a2408fe0076d846dd4266cff4ded675ad8d63a5b2d9ee59c3e0156f"
-source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
+prose_hash = "sha256:f60d676c60b081effa2dcd0f99bf2d35b5194909f1a044c77f314843f88a147d"
+code_hash = "sha256:c8e5b9b166f413d5889eae20e5f130ac1ca46737609acfd20560b9daf04acaa7"
+source_commit = "b463c0bad3a1a09e83efc170965bb279f2528d6d"
 source_locale = "en-US"
 +++
-五分钟了解 Faber 的形态：安装 CLI，阅读一个函数，然后打开一个真实的包。如需按顺序学习，请遵循：[安装](/start/install.html) →
-[你好](/start/hello.html) →
-[命令](/cheatsheet/commands.html) →
-[项目](/start/projects.html)。
-
-## 1. 安装 CLI {#install}
-
-从[安装页面](/start/install.html)下载适用于您平台的最新版本（**1.6.0**），校验归档校验和，并将归档 `bin/` 和 `share/` 目录树中的 `bin/faber` 放入您的 `PATH` 中（保持两个目录树在一起，以便 reader packs 解析）。确认：
-
-```bash
-faber --version
-```
-
-## 2. 函数形态 {#shape}
-
-类型优先的参数，字形返回类型，拉丁控制词，可空联合类型：
+Faber 是由模型来编写的语言，所以你不必手动安装它。
+把这个链接交给你的模型：
 
 ```text
-functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
-    redde a / b
-}
+https://faberlang.dev/install.md
 ```
 
-| 信号 | 含义 |
-|---|---|
-| `functio` | 函数声明 |
-| `numerus a` | 类型在前，名称在后 |
-| `→` | 返回类型 |
-| `∪ nihil` | 可空（`T ∪ nihil`） |
-| `si … ergo` | 紧凑分支 |
-| `redde` | 返回 |
-
-## 3. 包布局 {#package}
-
-一个包是一个包含 `faber.toml` 和 `src/` 的目录：
-
-```text
-my-app/
-  faber.toml
-  src/
-    main.fab
-```
-
-常用命令：
-
-```bash
-faber check my-app/
-faber build my-app/ -t rust
-faber run my-app/
-faber test my-app/
-```
-
-详情请见：[Faber 构建工具](/toolchain/cli.html)。
-
-## 4. 真实应用 {#applications}
-
-不要止步于 hello-world。公开的 **示例** 仓库包含多命令 CLI、本地邮件空间、GPU 工作负载轨道和完整的语言语料库。
-
-| 包 | 展示内容 |
-|---|---|
-| AI 工作台 | 多命令 CLI，模型检查，嵌入 |
-| ViviLite | 基于文件的邮件空间 / 代理协调 CLI |
-| coreutils | 更大的应用活动（对齐测试套件） |
-| gpu-workload | 系统 / GPU 等级 |
-| corpus | 每个语言构造一个目录 |
-
-请在[示例页面](/examples/)上浏览它们。
-
-## 5. 如果您是代理 {#agents}
-
-1. 阅读 [`/llms.txt`](/llms.txt)。
-2. 打开 [`/agents/index.md`](/agents/index.md)。
-3. 从 [`/.well-known/agent-skills/index.json`](/.well-known/agent-skills/index.json) 中选择一个技能。
-
-## 学习路径 {#start-track}
-
-| 步骤 | 页面 | 成果 |
-|---|---|---|
-| 1 | [安装与下载](/start/install.html) | 将 Faber 1.6.0 放入 `PATH` 并验证它 |
-| 2 | [你好，Faber](/start/hello.html) | 创建并运行 `salve-munde` |
-| 3 | [您将使用的命令](/cheatsheet/commands.html) | 学习 `check`、`build`、`run`、`test`、`explain` |
-| 4 | [项目与示例](/start/projects.html) | 进入真实的包和语料库页面 |
-
-## 下一步 {#next}
-
-| 主题 | 链接 |
-|---|---|
-| 安装与下载 | [安装](/start/install.html) |
-| 你好，Faber | [你好](/start/hello.html) |
-| 命令 | [命令](/cheatsheet/commands.html) |
-| 项目 | [项目](/start/projects.html) |
-| 语法参考 | [语法](/language/) |
-| 功能（区域设置，通道） | [功能](/language/) |
-| 生态系统库 | [生态系统](/libraries/) |
-| 关键词语料库 | [语料库](/corpus/) |
+你的模型会读取该文件，下载适合你机器的当前发布版本，校验其校验和，并安装 `faber` 命令。随后它会编写一个简短的 hello 程序，并对它运行 `faber check`。这一切都发生在你自己的机器上，检查通过后模型会向你报告。

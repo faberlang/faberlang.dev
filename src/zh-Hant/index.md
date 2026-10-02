@@ -16,36 +16,7 @@ translate_spans = false  # prose names the Latin vocabulary as Latin
 
 此名稱源自拉丁文 *maker* 或 *craftsman* 一詞。編譯器名為 Radix，源自拉丁文 *root*。此語言由 Ian Zepp 開發，並以 MIT 授權條款發布。
 
-**第一次來到這裡？** 請先閱讀[安裝與下載](/start/install.html)，然後依序執行入門路線：[Hello](/start/hello.html)、[命令](/cheatsheet/commands.html) 以及[專案](/start/projects.html)。
-
-## 下載 Faber 1.6.0 {#download}
-
-目前版本：**Faber 1.6.0**（標籤 `faber-v1.6.0`），發布於 2026-08-10。提供 macOS 與 Linux 的預建 CLI 封存檔；每個封存檔都包含 `bin/` 與 `share/` 樹——將 `bin/faber` 放入你的 `PATH`，並讓 `share/faber` 與二進位檔放在一起，以便 reader packs 解析。
-
-| 平臺 | 封存檔 | 校驗碼 |
-|---|---|---|
-| **macOS arm64**（Apple Silicon） | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64**（glibc） | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
-
-快速安裝（macOS arm64 範例）：
-
-```bash
-curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz
-curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256
-expected=$(awk '{print $1}' faber.tgz.sha256)
-actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
-test "$actual" = "$expected"
-tar -xzf faber.tgz
-# 封存檔包含 bin/ 與 share/；請將兩者放在一起，以便 reader packs 在二進位檔旁解析
-sudo mv bin/faber /usr/local/bin/faber
-sudo mv share/faber /usr/local/share/faber
-faber --version
-```
-
-所有版本說明與資產：[github.com/faberlang/releases · faber-v1.6.0](https://github.com/faberlang/releases/releases/tag/faber-v1.6.0)。
-逐步說明：[安裝指南](/start/install.html)。完整歷史清單：[版本](/releases/)。
+**第一次來到這裡？** 請前往[開始](/start/)：把一個連結交給你的模型，它會為你安裝 Faber。然後閱讀[命令](/cheatsheet/commands.html)。
 
 | | |
 |---|---|
@@ -65,13 +36,10 @@ faber --version
 
 | 路徑 | 對象 | 說明 |
 |---|---|---|
-| [安裝](/start/install.html) | 人類 | 下載、PATH，以及第一次執行 `faber check` |
-| [Hello](/start/hello.html) | 人類 | 建立並執行 `salve-munde` |
+| [開始](/start/) | 人類 | 把一個連結交給你的模型，由它為你安裝 Faber |
 | [命令](/cheatsheet/commands.html) | 人類 + 代理程式 | 日常 CLI 迴圈：check、build、run、test、explain |
-| [專案](/start/projects.html) | 人類 + 代理程式 | 從 hello-world 邁向實際套件 |
-| [快速導覽](/start/) | 人類 | 五分鐘了解語言形貌 |
 | [範例](/examples/) | 人類 + 代理程式 | 實際套件：CLI 應用程式、郵件空間、GPU、語料庫 |
-| [`/llms.txt`](/llms.txt) | 代理程式 | 機器索引——如果你是模型，請從這裡開始 |
+| [`/install.md`](/install.md) | 代理程式 | 機器索引——如果你是模型，請從這裡開始 |
 | [代理程式指南](/agents/index.md) | 代理程式 | 如何學習 Faber 並發布套件 |
 | [代理程式技能](/.well-known/agent-skills/index.json) | 代理程式 | 專注的技能指南（安裝、語言、範例……） |
 

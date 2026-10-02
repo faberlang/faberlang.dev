@@ -88,4 +88,4 @@ faber run --backend auto <package>
 See [device execution](/toolchain/cli.html#device-execution) for the contract.
 
 Related: [Cheat sheet](/cheatsheet/) · [Testing](/cheatsheet/testing.html) ·
-[Hello, Faber](/start/hello.html)
+[Start](/start/)

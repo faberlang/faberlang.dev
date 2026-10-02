@@ -17,7 +17,7 @@ The largest expansion among the host languages, because Faber's typed numerics a
 
 | Capable | Analyzable | Coverage |
 |---|---|---|
-| 364 | 364 | 100% |
+| 378 | 378 | 100% |
 
 From the [target matrix](/toolchain/target-matrix.html): how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.
 

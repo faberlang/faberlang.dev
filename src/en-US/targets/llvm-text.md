@@ -17,7 +17,7 @@ The widest ratio on the site, and the least surprising one: SSA form names every
 
 | Capable | Analyzable | Coverage |
 |---|---|---|
-| 323 | 359 | 90% |
+| 334 | 373 | 90% |
 
 From the [target matrix](/toolchain/target-matrix.html): how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.
 
@@ -27,7 +27,7 @@ Terms the matrix records as partial, planned, or unsupported for this target. A 
 
 | Category | Terms |
 |---|---|
-| Keywords — systems lane | <a id="atomic"></a>`atomic`, <a id="clausura"></a>`clausura`, <a id="ex"></a>`ex`, <a id="genus"></a>`genus`, <a id="itera"></a>`itera`, <a id="lista"></a>`lista`, <a id="matrix"></a>`matrix`, <a id="numerus"></a>`numerus`, <a id="tensor"></a>`tensor` |
+| Keywords — systems lane | <a id="atomic"></a>`atomic`, <a id="clausura"></a>`clausura`, <a id="ex"></a>`ex`, <a id="genus"></a>`genus`, <a id="itera"></a>`itera`, <a id="lista"></a>`lista`, <a id="matrix"></a>`matrix`, <a id="numerus"></a>`numerus`, <a id="tensor"></a>`tensor`, <a id="vector"></a>`vector` |
 | Operators — systems lane | `·`, `⊗`, `⊙`, `![`, `!.`, `!(`, `↦`, `?[`, `?.`, `?(` |
 
 ## Typed tensors {#tensores}

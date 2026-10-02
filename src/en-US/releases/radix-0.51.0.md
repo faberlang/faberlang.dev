@@ -16,7 +16,7 @@ sources = []
 
 ## Install this version {#install}
 
-Pinned download for **Radix 0.51.0**. For the current release, use [Install](/start/install.html) instead.
+Pinned download for **Radix 0.51.0**. For the current release, use [Start](/start/) instead.
 
 | Platform | Archive | Size | Checksum |
 |---|---|---|---|
@@ -145,4 +145,4 @@ tool), retargeting norma HAL and radix Rust codegen to `faber::Valor`.
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

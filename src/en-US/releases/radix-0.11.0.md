@@ -121,4 +121,4 @@ fixed idiom bugs, and simplified casts.
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

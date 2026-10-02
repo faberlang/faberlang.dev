@@ -73,4 +73,4 @@ faber emit -t faber --reader-locale=zh-Hans path/to/file.fab
 
 | 上一页 | 下一页 |
 |---|---|
-| [你好，Faber](/start/hello.html) | [项目与示例](/start/projects.html) |
+| [开始](/start/) | [示例](/examples/) |

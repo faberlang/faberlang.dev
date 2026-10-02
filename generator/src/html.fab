@@ -38,10 +38,7 @@ functio genera_paginam(types_mod.Pagina pag, textus stylesheet_link) → textus 
     page_children.appende(genera_sidebar(pag))
     page_children.appende(genera_main(pag))
 
-    fixum doc_mod.Node footer ← genera_source_list(pag.sources)
-    si non doc_mod.is_empty(footer) {
-        page_children.appende(footer)
-    }
+    page_children.appende(genera_footer(pag.site_locale, pag.sources))
 
     body_children.appende(doc_mod.element("div", [doc_mod.attr("class", "page")], page_children))
 
@@ -161,6 +158,13 @@ functio pagina_description(types_mod.Pagina pag) → textus {
     redde brevia_description(«§ — Faber programming language documentation.»(pag.titulus), 160)
 }
 
+# The favicon: a vermillion square carrying a dark left arrow. The arrow is a
+# stroked path, not font text, so it renders the same everywhere. This is the
+# one definition; the head emits it as a data URI.
+functio favicon_href() → textus {
+    redde "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"
+}
+
 # Generate the <head> element.
 functio genera_head(types_mod.Pagina pag, textus stylesheet_link) → doc_mod.Node {
     varia textus title ← pag.titulus
@@ -176,27 +180,23 @@ functio genera_head(types_mod.Pagina pag, textus stylesheet_link) → doc_mod.No
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("charset", "utf-8")]))
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("name", "viewport"), doc_mod.attr("content", "width=device-width, initial-scale=1")]))
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("name", "description"), doc_mod.attr("content", description)]))
-    children.appende(doc_mod.void_element("meta", [doc_mod.attr("name", "theme-color"), doc_mod.attr("content", "#faf9f6"), doc_mod.attr("media", "(prefers-color-scheme: light)")]))
-    children.appende(doc_mod.void_element("meta", [doc_mod.attr("name", "theme-color"), doc_mod.attr("content", "#1c1b19"), doc_mod.attr("media", "(prefers-color-scheme: dark)")]))
+    children.appende(doc_mod.void_element("meta", [doc_mod.attr("name", "theme-color"), doc_mod.attr("content", "#e8e5db"), doc_mod.attr("media", "(prefers-color-scheme: light)")]))
+    children.appende(doc_mod.void_element("meta", [doc_mod.attr("name", "theme-color"), doc_mod.attr("content", "#0a0c0f"), doc_mod.attr("media", "(prefers-color-scheme: dark)")]))
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("property", "og:site_name"), doc_mod.attr("content", "Faber")]))
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("property", "og:type"), doc_mod.attr("content", "website")]))
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("property", "og:title"), doc_mod.attr("content", title)]))
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("property", "og:description"), doc_mod.attr("content", description)]))
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("property", "og:url"), doc_mod.attr("content", canonical)]))
     children.appende(doc_mod.void_element("meta", [doc_mod.attr("property", "og:locale"), doc_mod.attr("content", og_loc)]))
-    children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "icon"), doc_mod.attr("href", "data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E")]))
+    children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "icon"), doc_mod.attr("href", favicon_href())]))
     children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "canonical"), doc_mod.attr("href", canonical)]))
     children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "alternate"), doc_mod.attr("type", "text/plain"), doc_mod.attr("href", "/llms.txt"), doc_mod.attr("title", "Agent index")]))
     children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "alternate"), doc_mod.attr("type", "text/markdown"), doc_mod.attr("href", "/agents/index.md"), doc_mod.attr("title", "Agent guide")]))
     children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "alternate"), doc_mod.attr("type", "application/json"), doc_mod.attr("href", "/.well-known/agent-skills/index.json"), doc_mod.attr("title", "Agent skills")]))
     children.appende(doc_mod.leaf("title", vacua, title))
-    children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "preconnect"), doc_mod.attr("href", "https://fonts.googleapis.com")]))
-    children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "preconnect"), doc_mod.attr("href", "https://fonts.gstatic.com"), doc_mod.attr("crossorigin", "")]))
-    children.appende(doc_mod.void_element("link", [doc_mod.attr("href", "https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&family=Noto+Serif:wght@400;600&family=Noto+Sans+Mono:wght@400;600&display=swap"), doc_mod.attr("rel", "stylesheet")]))
     children.appende(doc_mod.void_element("link", [doc_mod.attr("rel", "stylesheet"), doc_mod.attr("href", stylesheet_link)]))
     children.appende(doc_mod.element("script", [doc_mod.attr("src", "/faber-search.js"), doc_mod.attr("defer", "")], vacua))
     children.appende(doc_mod.element("script", [doc_mod.attr("src", "/faber-demo-tabs.js"), doc_mod.attr("defer", "")], vacua))
-    children.appende(doc_mod.element("script", [doc_mod.attr("src", "/faber-ambient.js"), doc_mod.attr("defer", "")], vacua))
     redde doc_mod.element("head", vacua, children)
 }
 
@@ -205,10 +205,10 @@ functio genera_renderbar(textus site_locale) → doc_mod.Node {
     links.appende(a("/llms.txt", "/llms.txt"))
     links.appende(a("/agents/index.md", "/agents"))
     links.appende(a("/.well-known/agent-skills/index.json", "/skills"))
-    links.appende(a(lp.content_href("/start/install.html", site_locale), "install"))
+    links.appende(a("/install.md", "install"))
 
     fixum doc_mod.Node nav ← doc_mod.element("nav", [doc_mod.attr("class", "machine-links"), doc_mod.attr("aria-label", "Machine documentation")], links)
-    fixum doc_mod.Node mark ← doc_mod.leaf("span", [doc_mod.attr("class", "portal-mark"), doc_mod.attr("aria-hidden", "true")], "f")
+    fixum doc_mod.Node mark ← doc_mod.leaf("span", [doc_mod.attr("class", "portal-mark"), doc_mod.attr("aria-hidden", "true")], "←")
     fixum doc_mod.Node home ← doc_mod.element("a", [doc_mod.attr("class", "portal-home"), doc_mod.attr("href", "/"), doc_mod.attr("title", "porta · all languages"), doc_mod.attr("aria-label", "porta · all languages")], [mark])
     fixum doc_mod.Node loclink ← doc_mod.leaf("a", [doc_mod.attr("class", "loclink"), doc_mod.attr("href", "/"), doc_mod.attr("title", "porta · change language"), doc_mod.attr("aria-label", "porta · change language")], site_locale)
     fixum doc_mod.Node input ← doc_mod.void_element("input", [doc_mod.attr("type", "search"), doc_mod.attr("placeholder", "keyword…"), doc_mod.attr("aria-label", "Search keywords"), doc_mod.attr("autocomplete", "off"), doc_mod.attr("spellcheck", "false")])
@@ -221,13 +221,12 @@ functio genera_sidebar(types_mod.Pagina pag) → doc_mod.Node {
     varia lista<doc_mod.Node> children ← vacua
     children.appende(genera_brand(pag.site_locale))
     children.appende(nav_mod.genera_nav(pag.section, pagina_rel_url(pag.site_locale, pag.iter), pag.site_locale))
-    children.appende(genera_side_meta())
 
     redde doc_mod.element("aside", vacua, children)
 }
 
 functio genera_brand(textus site_locale) → doc_mod.Node {
-    fixum doc_mod.Node mark ← doc_mod.leaf("span", [doc_mod.attr("class", "brand-mark"), doc_mod.attr("aria-hidden", "true")], "f")
+    fixum doc_mod.Node mark ← doc_mod.leaf("span", [doc_mod.attr("class", "brand-mark"), doc_mod.attr("aria-hidden", "true")], "←")
     fixum doc_mod.Node name ← doc_mod.leaf("span", [doc_mod.attr("class", "brand-name")], "Faber")
     fixum doc_mod.Node tag ← doc_mod.leaf("span", [doc_mod.attr("class", "brand-tag")], "language docs")
     fixum doc_mod.Node text ← doc_mod.element("span", [doc_mod.attr("class", "brand-text")], [name, tag])
@@ -236,14 +235,6 @@ functio genera_brand(textus site_locale) → doc_mod.Node {
 
 functio side_h(textus label) → doc_mod.Node {
     redde doc_mod.leaf("div", [doc_mod.attr("class", "side-h")], label)
-}
-
-functio meta_row(textus key, textus value) → doc_mod.Node {
-    redde doc_mod.element("div", [doc_mod.attr("class", "side-meta-row")], [doc_mod.leaf("span", [doc_mod.attr("class", "k")], key), doc_mod.leaf("span", [doc_mod.attr("class", "v")], value)])
-}
-
-functio genera_side_meta() → doc_mod.Node {
-    redde doc_mod.element("div", [doc_mod.attr("class", "side-meta")], [meta_row("Paradigm", "packages"), meta_row("Typing", "static · type-first"), meta_row("Target", "Rust → native"), meta_row("License", "MIT")])
 }
 
 functio genera_main(types_mod.Pagina pag) → doc_mod.Node {
@@ -258,13 +249,13 @@ functio genera_main(types_mod.Pagina pag) → doc_mod.Node {
 functio genera_agent_notice(textus site_locale) → doc_mod.Node {
     varia lista<doc_mod.Node> p_children ← vacua
     p_children.appende(doc_mod.text("If you are an AI agent: start at "))
-    p_children.appende(code_link("/llms.txt", "/llms.txt"))
+    p_children.appende(code_link("/install.md", "/install.md"))
     p_children.appende(doc_mod.text(", then read "))
     p_children.appende(code_link("/agents/index.md", "/agents/index.md"))
     p_children.appende(doc_mod.text(" and pick a skill from "))
     p_children.appende(code_link("/.well-known/agent-skills/index.json", "/.well-known/agent-skills/"))
     p_children.appende(doc_mod.text(". Humans: use "))
-    p_children.appende(a(lp.content_href("/start/install.html", site_locale), "Install"))
+    p_children.appende(a(lp.content_href("/start/", site_locale), "Install"))
     p_children.appende(doc_mod.text(" and "))
     p_children.appende(a(lp.content_href("/examples/", site_locale), "Examples"))
     p_children.appende(doc_mod.text("."))
@@ -279,6 +270,19 @@ functio genera_body(lista<doc_mod.Node> markdown_nodes) → doc_mod.Node {
     redde doc_mod.element("div", [doc_mod.attr("class", "content")], markdown_nodes)
 }
 
+# The page footer: the page's sources when it has any, then the site links.
+functio genera_footer(textus site_locale, lista<textus> sources) → doc_mod.Node {
+    varia lista<doc_mod.Node> children ← vacua
+    fixum doc_mod.Node source_list ← genera_source_list(sources)
+    si non doc_mod.is_empty(source_list) {
+        children.appende(source_list)
+    }
+
+    fixum doc_mod.Node foot_links ← doc_mod.element("nav", [doc_mod.attr("class", "foot-links"), doc_mod.attr("aria-label", "Site")], [a(lp.content_href("/releases/", site_locale), "All releases")])
+    children.appende(foot_links)
+    redde doc_mod.element("footer", vacua, children)
+}
+
 functio genera_source_list(lista<textus> sources) → doc_mod.Node {
     si sources.longitudo() ≡ 0 ergo redde doc_mod.text("")
 
@@ -289,6 +293,5 @@ functio genera_source_list(lista<textus> sources) → doc_mod.Node {
 
     fixum doc_mod.Node label ← doc_mod.leaf("span", [doc_mod.attr("class", "side-h")], "Sources")
     fixum doc_mod.Node list ← doc_mod.element("ul", vacua, items)
-    fixum doc_mod.Node source_list ← doc_mod.element("div", [doc_mod.attr("class", "source-list")], [label, list])
-    redde doc_mod.element("footer", vacua, [source_list])
+    redde doc_mod.element("div", [doc_mod.attr("class", "source-list")], [label, list])
 }

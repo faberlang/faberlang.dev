@@ -20,16 +20,8 @@ corpus = "المدونة"
 references = "المراجع"
 history = "التاريخ"
 
-[sidebar_agents]
-heading = "للوكلاء"
-index = "فهرس الوكلاء"
-guide = "دليل الوكلاء"
-skills = "مهارات الوكلاء"
-full_reference = "المرجع الكامل"
-
 [sidebar_release]
 all_releases = "جميع الإصدارات"
-github_org = "منظمة GitHub"
 
 [renderbar]
 label = "العرض"
@@ -43,12 +35,6 @@ label = "جاهز للوكلاء"
 link_install = "تثبيت"
 link_examples = "أمثلة"
 
-[side_meta]
-paradigm_key = "النموذج"
-typing_key = "نظام الأنواع"
-target_key = "الهدف"
-license_key = "الرخصة"
-
 [footer]
 sources_heading = "المصادر"
 
@@ -56,10 +42,12 @@ sources_heading = "المصادر"
 # these strings inside <aside>; a label must be declared here even when no
 # locale translates it, or a shorter translated label can be substituted
 # inside it. Labels covered by the sections above (Overview, Examples,
-# Releases, All releases, the agent items) are not repeated.
+# Releases, All releases) are not repeated.
 [nav]
 group_language = "اللغة"
-group_targets = "حسب الهدف"
+group_start = "ابدأ"
+start_here = "ابدأ هنا"
+group_targets = "الأهداف"
 group_locales = "لغات القراءة"
 group_libraries = "المكتبات"
 behavior = "السلوك"
@@ -81,11 +69,10 @@ grammar_patterns = "الأنماط والتفكيك"
 grammar_errors = "قناة الأخطاء"
 grammar_lexical = "البنية المعجمية والرموز"
 terms_az = "المصطلحات أ–ي"
-installation = "التثبيت"
 all_targets = "كل الأهداف"
-hir = "HIR — التطبيقات"
-mir = "MIR — الأنظمة"
-gpu = "GPU — الأجهزة"
+hir = "التطبيقات · HIR"
+mir = "الأنظمة · MIR"
+gpu = "الأجهزة · GPU"
 wasm = "نص WebAssembly"
 target_matrix = "مصفوفة الأهداف"
 reader_locales = "لغات القراءة"
@@ -105,6 +92,13 @@ the_corpus = "المدونة"
 # frontmatter section. When adding an entry: extend nav.fab, then mirror it
 # here in every locale, and add the label to [nav] above plus its
 # translation in each locale file.
+[[nav.group]]
+id = "start"
+label = "ابدأ"
+[[nav.group.item]]
+label = "ابدأ هنا"
+href = "/start/"
+section = "start"
 [[nav.group]]
 id = "language"
 label = "اللغة"
@@ -184,31 +178,27 @@ section = "grammar-errors"
 label = "البنية المعجمية والرموز"
 href = "/en-US/reference/grammar/lexical.html"
 section = "grammar-lexical"
-[[nav.group.item.child]]
+[[nav.group.item]]
 label = "المصطلحات أ–ي"
 href = "/corpus/az.html"
 section = "corpus"
 [[nav.group.item]]
-label = "Examples"
-href = "/examples/"
-section = "examples"
-[[nav.group.item]]
-label = "التثبيت"
-href = "/start/install.html"
-section = "install"
-[[nav.group.item]]
 label = "Cheat sheet"
 href = "/cheatsheet/"
 section = "cheatsheet"
+[[nav.group.item]]
+label = "Examples"
+href = "/examples/"
+section = "examples"
 [[nav.group]]
 id = "targets"
-label = "حسب الهدف"
+label = "الأهداف"
 [[nav.group.item]]
 label = "كل الأهداف"
 href = "/en-US/targets/"
 section = "targets"
 [[nav.group.item]]
-label = "HIR — التطبيقات"
+label = "التطبيقات · HIR"
 href = ""
 section = ""
 [[nav.group.item.child]]
@@ -228,7 +218,7 @@ label = "Faber"
 href = "/en-US/targets/faber.html"
 section = "faber"
 [[nav.group.item]]
-label = "MIR — الأنظمة"
+label = "الأنظمة · MIR"
 href = ""
 section = ""
 [[nav.group.item.child]]
@@ -240,7 +230,7 @@ label = "نص WebAssembly"
 href = "/en-US/targets/wasm-text.html"
 section = "wasm-text"
 [[nav.group.item]]
-label = "GPU — الأجهزة"
+label = "الأجهزة · GPU"
 href = ""
 section = ""
 [[nav.group.item.child]]
@@ -301,38 +291,3 @@ section = "libraries"
 label = "المدونة"
 href = "/libraries/corpus.html"
 section = "libraries"
-[[nav.group]]
-id = "releases"
-label = "Releases"
-[[nav.group.item]]
-label = "All releases"
-href = "/releases/"
-section = "releases"
-[[nav.group.item]]
-label = "macOS arm64"
-href = "https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz"
-section = ""
-[[nav.group.item]]
-label = "Linux x64"
-href = "https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz"
-section = ""
-[[nav.group]]
-id = "agents"
-label = "For agents"
-compact = true
-[[nav.group.item]]
-label = "Agent index"
-href = "/llms.txt"
-section = ""
-[[nav.group.item]]
-label = "Agent guide"
-href = "/agents/index.md"
-section = ""
-[[nav.group.item]]
-label = "Agent skills"
-href = "/.well-known/agent-skills/index.json"
-section = ""
-[[nav.group.item]]
-label = "Full reference"
-href = "/llms-full.txt"
-section = ""

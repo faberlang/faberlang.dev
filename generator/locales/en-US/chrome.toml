@@ -40,16 +40,8 @@ corpus = "Corpus"
 references = "References"
 history = "History"
 
-[sidebar_agents]
-heading = "For agents"
-index = "Agent index"
-guide = "Agent guide"
-skills = "Agent skills"
-full_reference = "Full reference"
-
 [sidebar_release]
 all_releases = "All releases"
-github_org = "GitHub org"
 
 [toc]
 heading = "On this page"
@@ -66,12 +58,6 @@ label = "Agent-ready"
 link_install = "Install"
 link_examples = "Examples"
 
-[side_meta]
-paradigm_key = "Paradigm"
-typing_key = "Typing"
-target_key = "Target"
-license_key = "License"
-
 [footer]
 sources_heading = "Sources"
 
@@ -79,10 +65,12 @@ sources_heading = "Sources"
 # these strings inside <aside>; a label must be declared here even when no
 # locale translates it, or a shorter translated label can be substituted
 # inside it. Labels covered by the sections above (Overview, Examples,
-# Releases, All releases, the agent items) are not repeated.
+# Releases, All releases) are not repeated.
 [nav]
 group_language = "The Language"
-group_targets = "By target"
+group_start = "Start"
+start_here = "Start here"
+group_targets = "Targets"
 group_locales = "Reader locales"
 group_libraries = "Libraries"
 behavior = "Behavior"
@@ -104,17 +92,16 @@ grammar_patterns = "Patterns & destructuring"
 grammar_errors = "Error channel"
 grammar_lexical = "Lexical structure & glyphs"
 terms_az = "Terms A–Z"
-installation = "Installation"
 all_targets = "All targets"
-hir = "HIR — application"
+hir = "Application · HIR"
 rust = "Rust"
 typescript = "TypeScript"
 go = "Go"
 faber_target = "Faber"
-mir = "MIR — systems"
+mir = "Systems · MIR"
 llvm = "LLVM IR"
 wasm = "WebAssembly text"
-gpu = "GPU — device"
+gpu = "Device · GPU"
 metal = "Metal"
 wgsl = "WGSL"
 target_matrix = "Target matrix"
@@ -129,14 +116,19 @@ gradus = "Gradus — autograd"
 tela = "Tela — views"
 inferentia = "Inferentia — inference"
 the_corpus = "The corpus"
-macos_arm64 = "macOS arm64"
-linux_x64 = "Linux x64"
 
 # The sidebar tree, mirroring nav.fab item for item (nav.fab renders; this
 # registers structure and per-locale labels). section is the target page's
 # frontmatter section. When adding an entry: extend nav.fab, then mirror it
 # here in every locale, and add the label to [nav] above plus its
 # translation in each locale file.
+[[nav.group]]
+id = "start"
+label = "Start"
+[[nav.group.item]]
+label = "Start here"
+href = "/start/"
+section = "start"
 [[nav.group]]
 id = "language"
 label = "The Language"
@@ -216,31 +208,27 @@ section = "grammar-errors"
 label = "Lexical structure & glyphs"
 href = "/en-US/reference/grammar/lexical.html"
 section = "grammar-lexical"
-[[nav.group.item.child]]
+[[nav.group.item]]
 label = "Terms A–Z"
 href = "/corpus/az.html"
 section = "corpus"
 [[nav.group.item]]
-label = "Examples"
-href = "/examples/"
-section = "examples"
-[[nav.group.item]]
-label = "Installation"
-href = "/start/install.html"
-section = "install"
-[[nav.group.item]]
 label = "Cheat sheet"
 href = "/cheatsheet/"
 section = "cheatsheet"
+[[nav.group.item]]
+label = "Examples"
+href = "/examples/"
+section = "examples"
 [[nav.group]]
 id = "targets"
-label = "By target"
+label = "Targets"
 [[nav.group.item]]
 label = "All targets"
 href = "/en-US/targets/"
 section = "targets"
 [[nav.group.item]]
-label = "HIR — application"
+label = "Application · HIR"
 href = ""
 section = ""
 [[nav.group.item.child]]
@@ -260,7 +248,7 @@ label = "Faber"
 href = "/en-US/targets/faber.html"
 section = "faber"
 [[nav.group.item]]
-label = "MIR — systems"
+label = "Systems · MIR"
 href = ""
 section = ""
 [[nav.group.item.child]]
@@ -272,7 +260,7 @@ label = "WebAssembly text"
 href = "/en-US/targets/wasm-text.html"
 section = "wasm-text"
 [[nav.group.item]]
-label = "GPU — device"
+label = "Device · GPU"
 href = ""
 section = ""
 [[nav.group.item.child]]
@@ -333,38 +321,3 @@ section = "libraries"
 label = "The corpus"
 href = "/libraries/corpus.html"
 section = "libraries"
-[[nav.group]]
-id = "releases"
-label = "Releases"
-[[nav.group.item]]
-label = "All releases"
-href = "/releases/"
-section = "releases"
-[[nav.group.item]]
-label = "macOS arm64"
-href = "https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz"
-section = ""
-[[nav.group.item]]
-label = "Linux x64"
-href = "https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz"
-section = ""
-[[nav.group]]
-id = "agents"
-label = "For agents"
-compact = true
-[[nav.group.item]]
-label = "Agent index"
-href = "/llms.txt"
-section = ""
-[[nav.group.item]]
-label = "Agent guide"
-href = "/agents/index.md"
-section = ""
-[[nav.group.item]]
-label = "Agent skills"
-href = "/.well-known/agent-skills/index.json"
-section = ""
-[[nav.group.item]]
-label = "Full reference"
-href = "/llms-full.txt"
-section = ""

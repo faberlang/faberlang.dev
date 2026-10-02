@@ -137,4 +137,4 @@ functio box_vertex_payload(de math.Box<3> bounds, f32 r, f32 g, f32 b) → lista
 
 ---
 
-[All examples](/examples/) · [Install](/start/install.html) · [Cheat sheet](/cheatsheet/)
+[All examples](/examples/) · [Start](/start/) · [Cheat sheet](/cheatsheet/)

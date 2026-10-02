@@ -157,7 +157,7 @@ def render_project(p: dict, order: int) -> str | None:
         "---",
         "",
         "[All examples](/examples/) · "
-        "[Install](/start/install.html) · [Cheat sheet](/cheatsheet/)",
+        "[Start](/start/) · [Cheat sheet](/cheatsheet/)",
         "",
     ]
     return "\n".join(lines)
@@ -184,7 +184,7 @@ def render_index(built: list[dict]) -> str:
         "",
         "## Running them {#running}",
         "",
-        "Once you have [installed Faber](/start/install.html):",
+        "Once you have [installed Faber](/start/):",
         "",
         "```bash",
         "git clone https://github.com/faberlang/examples.git",

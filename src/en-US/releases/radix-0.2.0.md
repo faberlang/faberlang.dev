@@ -171,4 +171,4 @@ git log 664d7a659..v0.2.0 --oneline --no-merges
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

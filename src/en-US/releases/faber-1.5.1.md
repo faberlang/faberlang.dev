@@ -16,7 +16,7 @@ sources = []
 
 ## Install this version {#install}
 
-Pinned download for **Faber 1.5.1**. For the current release, use [Install](/start/install.html) instead.
+Pinned download for **Faber 1.5.1**. For the current release, use [Start](/start/) instead.
 
 | Platform | Archive | Size | Checksum |
 |---|---|---|---|
@@ -39,4 +39,4 @@ No release notes were recorded for this version.
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

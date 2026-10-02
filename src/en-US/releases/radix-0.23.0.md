@@ -127,4 +127,4 @@ Release spanning **77 non-merge commits** (`v0.22.0..v0.23.0`, 2026-01-13 → 20
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

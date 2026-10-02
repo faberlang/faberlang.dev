@@ -76,4 +76,4 @@ incipit argumenta args {
 An option can declare `longum` without `brevis`, as `quotiens` does above.
 
 Related: [Commands](/cheatsheet/commands.html) for running what you build, and
-[Your first package](/start/projects.html) for the surrounding package layout.
+[A program is a package](/language/behavior/packages.html) for the surrounding package layout.

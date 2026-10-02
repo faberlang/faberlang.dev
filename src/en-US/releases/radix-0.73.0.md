@@ -186,4 +186,4 @@ path so that each operation's result type is carried through to the LLVM value:
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

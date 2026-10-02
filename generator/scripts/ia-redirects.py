@@ -32,6 +32,11 @@ MAP: list[tuple[str, str]] = [
     # start/examples → the Examples section, which carries real package
     # source on the site instead of describing it and linking to GitHub
     ("/start/examples.html", "/examples/"),
+    # the Start track collapsed to one page: hand your model /install.md. The
+    # install, hello and projects pages moved into the agent skills.
+    ("/start/install.html", "/start/"),
+    ("/start/hello.html", "/start/"),
+    ("/start/projects.html", "/start/"),
     # the cheat sheet's reader-locale page became its own top-level section,
     # with the selection rationale the buried version never carried
     ("/cheatsheet/locales.html", "/localization.html"),

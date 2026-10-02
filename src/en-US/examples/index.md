@@ -20,7 +20,7 @@ Every package above lives in [faberlang/examples](https://github.com/faberlang/e
 
 ## Running them {#running}
 
-Once you have [installed Faber](/start/install.html):
+Once you have [installed Faber](/start/):
 
 ```bash
 git clone https://github.com/faberlang/examples.git

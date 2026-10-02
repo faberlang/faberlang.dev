@@ -98,4 +98,4 @@ This release spans **39 non-merge commits** (`v0.27.0..v0.28.0`, 2026-01-21 → 
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

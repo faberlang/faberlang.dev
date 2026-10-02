@@ -48,4 +48,4 @@ Meaning lives in HIR. A reader locale is a rendering of that core. One source fi
 
 - skill: `packages`
 - skill: `corpus`
-- https://faberlang.dev/llms.txt
+- https://faberlang.dev/install.md

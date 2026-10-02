@@ -270,7 +270,7 @@ def install_block(v: Version) -> list[str]:
         "## Install this version {#install}",
         "",
         f"Pinned download for **{PRODUCTS[v.product]['label']} {v.version}**. "
-        "For the current release, use [Install](/start/install.html) instead.",
+        "For the current release, use [Start](/start/) instead.",
         "",
         "| Platform | Archive | Size | Checksum |",
         "|---|---|---|---|",
@@ -360,7 +360,7 @@ def render_version_page(v: Version, order: int) -> str:
     body += [
         "---",
         "",
-        "[All releases](/releases/) · [Install the current release](/start/install.html)",
+        "[All releases](/releases/) · [Start](/start/)",
         "",
     ]
     return "\n".join(body)
@@ -379,8 +379,8 @@ def render_index(grouped: dict[str, list[Version]]) -> str:
         "with pinned install instructions for that exact version and its full "
         "release notes.",
         "",
-        "Installing for the first time? Use [Install](/start/install.html) — it "
-        "covers the current release only, which is what almost everyone wants.",
+        "Installing for the first time? Use [Start](/start/): hand your model "
+        "https://faberlang.dev/install.md and it installs the current release.",
         "",
     ]
 

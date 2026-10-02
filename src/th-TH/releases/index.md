@@ -20,11 +20,8 @@ source_locale = "en-US"
 
 | เส้นทาง | เนื้อหา |
 |---|---|
-| [ติดตั้งและดาวน์โหลด](/start/install.html) | รีลีสปัจจุบัน การตั้งค่า PATH การตรวจสอบ และ `faber check` ครั้งแรก |
-| [ทัวร์สั้น ๆ](/start/) | รูปแบบของภาษาในเวลาไม่กี่นาที |
-| [สวัสดี Faber](/start/hello.html) | แพ็กเกจแรก |
+| [ติดตั้งและดาวน์โหลด](/start/) | รีลีสปัจจุบัน การตั้งค่า PATH การตรวจสอบ และ `faber check` ครั้งแรก |
 | [คำสั่ง](/cheatsheet/commands.html) | วงจรการใช้งาน CLI ประจำวัน |
-| [โปรเจกต์](/start/projects.html) | โครงสร้างแพ็กเกจจริง |
 | [ตัวอย่าง](/examples/) | แพ็กเกจตัวอย่างสาธารณะ |
 
 คำแนะนำสำหรับการสร้างจากซอร์สโค้ดจะไม่แสดงลิงก์ไว้ที่นี่โดยตั้งใจ ใช้ไฟล์เก็บถาวรที่สร้างไว้ล่วงหน้า เว้นแต่คุณจะทำงานกับต้นไม้ซอร์สโค้ดของ compiler แบบส่วนตัว.
@@ -47,7 +44,7 @@ source_locale = "en-US"
 | **macOS arm64** | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | 10.5 MB | [เช็กซัม](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
 | **Linux x64** | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | 11.9 MB | [เช็กซัม](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-ไฟล์เก็บถาวรแต่ละไฟล์ประกอบด้วยโฟลเดอร์ `bin/` และ `share/` — ใส่ `bin/faber` ลงใน `PATH` และเก็บ `share/faber` ไว้ข้างไบนารี ดูขั้นตอนโดยละเอียดได้ที่ [ติดตั้งและดาวน์โหลด](/start/install.html).
+ไฟล์เก็บถาวรแต่ละไฟล์ประกอบด้วยโฟลเดอร์ `bin/` และ `share/` — ใส่ `bin/faber` ลงใน `PATH` และเก็บ `share/faber` ไว้ข้างไบนารี ดูขั้นตอนโดยละเอียดได้ที่ [ติดตั้งและดาวน์โหลด](/start/).
 
 ## รีลีสในอดีต {#historical}
 
@@ -392,6 +389,6 @@ _ภาพรวมคลังจาก GitHub Releases API มี 41 แท็
 
 | ลิงก์ | บทบาท |
 |---|---|
-| [ติดตั้งและดาวน์โหลด](/start/install.html) | เส้นทางการติดตั้งที่แนะนำ |
+| [ติดตั้งและดาวน์โหลด](/start/) | เส้นทางการติดตั้งที่แนะนำ |
 | [ประวัติ](/reference/design.html) | ไทม์ไลน์และจุดกำเนิดของโปรเจกต์ |
 | [faberlang/releases บน GitHub](https://github.com/faberlang/releases/releases) | รายการแท็กและแอสเซ็ตดิบ |

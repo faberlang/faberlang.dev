@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-strip-empty-sources.py — Remove empty source-list footers from HTML.
+strip-empty-sources.py — Remove empty source lists from the page footer.
 
 When frontmatter has sources = [], the generator renders <li>[]</li>.
-This script strips those empty source-list footers.
+This script strips those empty source lists. The footer itself stays: it
+carries the site links (All releases).
 
 Usage:
     strip-empty-sources.py [dist_dir]
@@ -14,9 +15,9 @@ import re
 import sys
 from pathlib import Path
 
-# Match the exact empty-source footer pattern
+# Match the exact empty source-list pattern (the footer around it stays)
 EMPTY_FOOTER = re.compile(
-    r'<footer><div class="source-list"><span class="side-h">Sources</span><ul><li>\[\]</li></ul></div></footer>'
+    r'<div class="source-list"><span class="side-h">Sources</span><ul><li>\[\]</li></ul></div>'
 )
 
 
@@ -38,7 +39,7 @@ def main():
                 path.write_text(new_html, encoding="utf-8")
                 stripped += count
 
-    print(f"Empty source footers stripped: {stripped}")
+    print(f"Empty source lists stripped: {stripped}")
     return 0
 
 

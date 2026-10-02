@@ -53,14 +53,14 @@ THEME_VERSION = "1"
 
 # Sentinel hex → site token. Must match the S map in render-mermaid.mjs.
 SENTINELS = {
-    "#fe0001": "var(--paper)",
-    "#fe0002": "var(--paper-alt)",
-    "#fe0003": "var(--paper-deep)",
+    "#fe0001": "var(--bg)",
+    "#fe0002": "var(--panel)",
+    "#fe0003": "var(--panel)",
     "#fe0004": "var(--ink)",
-    "#fe0005": "var(--ink-dim)",
-    "#fe0006": "var(--rule-strong)",
-    "#fe0007": "var(--glyph)",
-    "#fe0008": "var(--glyph-soft)",
+    "#fe0005": "var(--ink-soft)",
+    "#fe0006": "var(--line-strong)",
+    "#fe0007": "var(--accent)",
+    "#fe0008": "var(--accent-soft)",
     # Mermaid derives a couple of colours by inverting the background.
     "#01fffe": "var(--ink)",
 }
@@ -70,11 +70,20 @@ SENTINELS = {
 # config, so no themeVariables override can reach them. They are stable
 # literals in the Mermaid source, mapped here by the role they play.
 MERMAID_DEFAULTS = {
-    "#eaeaea": "var(--paper-alt)",   # .actor box fill
-    "#666": "var(--rule-strong)",    # .actor / .note stroke
-    "#999": "var(--rule)",           # .actor-line lifeline
-    "#edf2ae": "var(--glyph-soft)",  # .note fill
+    "#eaeaea": "var(--panel)",        # .actor box fill
+    "#666": "var(--line-strong)",     # .actor / .note stroke
+    "#999": "var(--line)",            # .actor-line lifeline
+    "#edf2ae": "var(--accent-soft)",  # .note fill
 }
+
+# The font stack render-mermaid.mjs hands Mermaid, in the two spellings
+# Mermaid serialises it as: inside <style> text, and inside element style
+# attributes (sequence diagrams). Mermaid measures label widths with it; the
+# page then draws the diagram in the site's own sans token.
+FONT_STACKS = (
+    "ui-sans-serif,system-ui,-apple-system,'Segoe UI',Roboto,sans-serif",
+    "ui-sans-serif, system-ui, -apple-system, &quot;Segoe UI&quot;, Roboto, sans-serif",
+)
 
 NPM_DEPS = ["mermaid@11", "playwright@1.61.1"]
 
@@ -114,7 +123,10 @@ def cache_path(key: str) -> Path:
 
 
 def tokenize_svg(svg: str) -> str:
-    """Rewrite sentinel and hardcoded colours to CSS custom properties."""
+    """Rewrite sentinel and hardcoded colours, and the font stack, to CSS
+    custom properties."""
+    for stack in FONT_STACKS:
+        svg = svg.replace(stack, "var(--sans)")
     for literal, token in {**SENTINELS, **MERMAID_DEFAULTS}.items():
         # \b keeps #666 from eating the first half of a six-digit colour.
         svg = re.sub(re.escape(literal) + r"\b", token, svg, flags=re.I)

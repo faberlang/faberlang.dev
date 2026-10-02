@@ -48,4 +48,4 @@ functio summa(tf32[256] a, tf32[1] out, u32 id) → vacuum {
 
 ---
 
-[All examples](/examples/) · [Install](/start/install.html) · [Cheat sheet](/cheatsheet/)
+[All examples](/examples/) · [Start](/start/) · [Cheat sheet](/cheatsheet/)

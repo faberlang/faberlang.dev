@@ -76,4 +76,4 @@ release-boundary ladder, and the artifact install proof.
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

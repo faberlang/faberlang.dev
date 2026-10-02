@@ -115,4 +115,4 @@ conversion, expression, and statement tiers. (`5bf314f8d`, `7f174caf9`,
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

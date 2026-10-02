@@ -11,6 +11,14 @@ Layout (Speculum porta):
     + tabbed demo hero (.faber-demo-tabs, one program × every pack)
     + full index by status + footer
 
+Theme: the "instrument" theme at full intensity (generator/www/speculum.css,
+section 14 frame + section 15 portal). The frame furniture (head, grain,
+registration marks, ticker) is shared with generate-landing.py; the two
+scripts duplicate the small helpers on purpose rather than import across
+hyphenated script names. Ring nodes carry their index as a class (`i0`…`i9`)
+and the ring its count as `data-n`; the stylesheet places them by
+trigonometry, so no node needs an inline style.
+
 Defaults:
     --locales       generator/locales.toml
     --reader-root   workspace/radix/locale
@@ -24,7 +32,6 @@ from __future__ import annotations
 import argparse
 import re
 import html as html_mod
-import math
 import tomllib
 from pathlib import Path
 
@@ -40,6 +47,12 @@ SCRIPT_CLASSES: dict[str, str] = {
 }
 
 RTL_READER_LOCALES: set[str] = {"ar"}
+
+# The glyphs at the centre of the ring: they never localize.
+GLYPHS: list[str] = ["←", "→", "∴", "≡", "∪", "⇥"]
+
+# The stylesheet places 5..10 ring nodes (speculum.css section 15).
+RING_SIZES = range(5, 11)
 
 # Short status line under each ring node (honest, not mockup "proposed")
 STATUS_LINE: dict[str, str] = {
@@ -57,6 +70,79 @@ STRESS: dict[str, str] = {
     "ar": "right-to-left; bidi isolation",
     "hi": "Devanagari clusters; Indic numerals",
 }
+
+
+def esc(s: str) -> str:
+    return html_mod.escape(s)
+
+
+def read_release(repo: Path) -> dict[str, object]:
+    """The current release, read from the agent lobby and the install skill.
+
+    The version is stated once in static/install.md ("Current release: Faber
+    X.Y.Z."), which build-site.sh also reads. The license comes from the
+    install skill's release block. Any shape change fails the build instead of
+    printing a guessed value."""
+    lobby = (repo / "static" / "install.md").read_text(encoding="utf-8")
+    m = re.search(r"^Current release: Faber (\S+)\.$", lobby, re.M)
+    if not m:
+        raise SystemExit("could not read the current release from static/install.md")
+    skill = (repo / "static" / ".well-known" / "agent-skills" / "install" / "SKILL.md"
+             ).read_text(encoding="utf-8")
+    lic = re.search(r"^- \*\*License:\*\* (.+?)\s*$", skill, re.M)
+    if not lic:
+        raise SystemExit("could not read the license from the install skill")
+    return {"version": m.group(1), "license": lic.group(1)}
+
+
+def favicon_href(gen: Path) -> str:
+    """The site favicon data URI, read from its one definition in html.fab."""
+    src = (gen / "src" / "html.fab").read_text(encoding="utf-8")
+    m = re.search(r'favicon_href\(\)[^{]*\{\s*redde "(data:image/svg\+xml,[^"]+)"', src)
+    if not m:
+        raise SystemExit("could not read the favicon from generator/src/html.fab")
+    return m.group(1)
+
+
+def ticker(items: list[str]) -> str:
+    """Bottom ticker: mono facts separated by accent squares, the group twice
+    so the marquee loops. Decorative for assistive tech (aria-hidden)."""
+    group = ('<div class="ticker-group">'
+             + "<i></i>".join(f"<span>{esc(i)}</span>" for i in items)
+             + "<i></i></div>")
+    return f'<div class="ticker"><div class="ticker-track">{group}{group}</div></div>'
+
+
+def hud(label: str, facts: list[str]) -> str:
+    """Grain, four registration marks, corner labels, tick ruler, ticker."""
+    return f"""\
+<div class="grain" aria-hidden="true"></div>
+<div class="hud" aria-hidden="true">
+  <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+  <span class="lbl l1">{esc(label)}</span><span class="lbl l2" id="hud-clock">UTC --:--:--</span>
+  <i class="ruler"></i>
+  {ticker(facts)}
+</div>
+"""
+
+
+def assert_no_external_requests(page: str, name: str) -> None:
+    """The ticker says "zero external requests". Make that true by construction:
+    no script, image or stylesheet may point off-site."""
+    bad = re.findall(r'<(?:script|img)\b[^>]*\bsrc="https?://[^"]*"', page)
+    bad += re.findall(r'<link\b[^>]*\brel="(?:stylesheet|preconnect|preload)"[^>]*\bhref="https?://[^"]*"', page)
+    if bad:
+        raise SystemExit(f"{name}: external request found: {bad[0]}")
+
+
+def tag_html(site: str, script_name: str) -> str:
+    """The small mono tag under a ring node: `site · script name`. The label
+    recipe tracks and uppercases Latin text only; a native-script name goes in
+    its own span so the stylesheet leaves it untracked."""
+    name = html_mod.escape(script_name)
+    if not script_name.isascii():
+        name = f'<span class="porta-script">{name}</span>'
+    return f"{html_mod.escape(site)} · {name}"
 
 
 def infer_script_class(native_script: str) -> str:
@@ -96,14 +182,6 @@ def load_sample(exemplars_dir: Path, reader_root: Path, reader_locale: str) -> s
                 return read_sample(child)
 
     return ""
-
-
-def ring_position(index: int, count: int) -> tuple[float, float]:
-    """Heptagon (or n-gon) positions for the Speculum ring, top-start, CSS px."""
-    # Ring canvas: 560 × 520; center slightly above geometric midpoint for balance
-    cx, cy, radius = 280.0, 250.0, 200.0
-    angle = -math.pi / 2 + (2 * math.pi * index / count)
-    return cx + radius * math.cos(angle), cy + radius * math.sin(angle)
 
 
 def status_line_for(_site: str, status: str) -> tuple[str, str]:
@@ -149,6 +227,8 @@ def main() -> None:
     registry = load_locales(args.locales)
     sorted_keys = sort_locale_keys(list(registry.keys()))
     n = len(sorted_keys)
+    if n not in RING_SIZES:
+        raise SystemExit(f"portal ring: {n} locales; speculum.css places {RING_SIZES.start}..{RING_SIZES.stop - 1}")
 
     # -- build per-locale records ------------------------------------------
     locales: list[dict[str, str]] = []
@@ -166,7 +246,6 @@ def main() -> None:
         if not sample:
             sample = f"# exemplar missing for {reader_loc}"
 
-        left, top = ring_position(i, n)
         native_cls = f"porta-native {script_cls}".strip() if script_cls else "porta-native"
 
         locales.append({
@@ -178,18 +257,16 @@ def main() -> None:
             "st_line": html_mod.escape(st_line),
             "native_cls": native_cls,
             "script_cls": script_cls,
-            "tag": html_mod.escape(f"{site} · {native_script or site}"),
+            "tag": tag_html(site, native_script or site),
             "stress": html_mod.escape(STRESS.get(site, "")),
             "href": f"/{html_mod.escape(site)}/",
-            "left": f"{left:.1f}",
-            "top": f"{top:.1f}",
             "code_dir": ' dir="rtl"' if is_rtl else "",
             "sample": html_mod.escape(sample),
         })
 
     # -- ring nodes --------------------------------------------------------
     node_html = ""
-    for c in locales:
+    for i, c in enumerate(locales):
         # Status lines only earn their place when a locale is not complete.
         st_html = ""
         if c["status"] != "complete":
@@ -198,7 +275,7 @@ def main() -> None:
                 f'{c["st_line"]}</span>'
             )
         node_html += f"""\
-        <div class="porta-node" style="left:{c['left']}px;top:{c['top']}px">
+        <div class="porta-node i{i}">
           <a href="{c['href']}">
             <span class="{c['native_cls']}">{c['native_name']}</span>
             <span class="porta-tag">{c['tag']}</span>{st_html}
@@ -234,7 +311,7 @@ def main() -> None:
     hero_html = f"""\
   <div class="faber-demo-tabs fdt-hero" data-fdt data-typing>
     <div class="fdt-bar">
-      <span class="fdt-mark" aria-hidden="true">f</span>
+      <span class="fdt-mark" aria-hidden="true">←</span>
       <span class="fdt-file">salve-munde.fab</span>
       <a class="fdt-goto" href="{first['href']}" data-fdt-continue-link>Continue to {first['native_name']} →</a>
       <button class="fdt-copy" type="button">Copy</button>
@@ -303,6 +380,27 @@ def main() -> None:
         "Choose your documentation locale."
     )
 
+    release = read_release(generator_dir.parent)
+    icon = favicon_href(generator_dir)
+    glyph_html = "".join(f"<span>{g}</span>" for g in GLYPHS)
+
+    # Ticker: every item is derived at generation time or a plain true
+    # statement about this page. No invented numbers.
+    facts = [
+        f"Faber {release['version']}",
+        str(release["license"]),
+        f"{n} documentation locales",
+        f"{len(complete)} complete",
+    ]
+    if partial:
+        facts.append(f"{len(partial)} partial")
+    facts += [
+        f"{len(GLYPHS)} glyphs never localize",
+        "Latin · canonical interchange",
+        "No accounts",
+        "System fonts · zero external requests",
+    ]
+
     html = f"""\
 <!DOCTYPE html>
 <html lang="en">
@@ -310,41 +408,49 @@ def main() -> None:
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="{html_mod.escape(portal_desc)}">
-<meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)">
 <meta property="og:site_name" content="Faber">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Faber · porta">
 <meta property="og:description" content="{html_mod.escape(portal_desc)}">
 <meta property="og:url" content="https://faberlang.dev/">
 <meta property="og:locale" content="en_US">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="{icon}">
 <link rel="canonical" href="https://faberlang.dev/">
 {hreflang_links}<link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index">
 <link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide">
 <link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;family=Noto+Sans+Arabic:wght@400;600;700&amp;family=Noto+Sans+Devanagari:wght@400;600&amp;family=Noto+Sans+SC:wght@400;600&amp;family=Noto+Sans+Thai:wght@400;600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{css_href}">
 <title>Faber · porta</title>
 </head>
 <body class="porta">
 <a href="#porta-locales" class="skip-link">Skip to locales</a>
+{hud("Faber · porta", facts)}
+<header class="site-top">
+  <a class="site-brand" href="/" aria-label="Faber home"><span class="site-brand-mark" aria-hidden="true">←</span><span>Faber</span></a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/">Home</a>
+    <a href="/en-US/">Docs</a>
+    <a href="/install.md">Install</a>
+    <a href="/llms.txt">llms.txt</a>
+    <a href="https://github.com/faberlang">GitHub ↗</a>
+  </nav>
+</header>
 
-<main class="porta-wrap">
+<main class="porta-wrap" id="main">
+  <h1 class="sr-only">Faber language portal</h1>
 
   <div class="porta-gate">
-    <div class="porta-kicker">Faber · porta · what do you read?</div>
+    <p class="kicker live porta-kicker"><i class="sq" aria-hidden="true"></i>Faber · porta · what do you read?</p>
 
-    <div id="porta-locales" class="porta-ring" aria-label="Language portals">
+    <div id="porta-locales" class="porta-ring" data-n="{n}" aria-label="Language portals">
       <div class="porta-mark">
         <div class="porta-glyphgrid" aria-hidden="true">
-          <span>←</span><span>→</span><span>∴</span>
-          <span>≡</span><span>∪</span><span>⇥</span>
+          {glyph_html}
         </div>
-        <div class="porta-name">FABER</div>
-        <div class="porta-gloss">these six never localize</div>
+        <div class="porta-name">Faber</div>
+        <div class="porta-gloss">these {len(GLYPHS)} never localize</div>
       </div>
 {node_html}    </div>
 
@@ -356,26 +462,26 @@ def main() -> None:
     </p>
 
     <div class="porta-note">
-      <p class="porta-agent-links">
+      <nav class="chips" aria-label="Agent surfaces">
         <a href="/llms.txt">Agent index</a>
-        ·
         <a href="/agents/index.md">Agent guide</a>
-        ·
-        <a href="/en-US/start/install.html">Install</a>
-      </p>
+        <a href="/install.md">Install · for models</a>
+      </nav>
     </div>
   </div>
 
   <section id="porta-samples" class="porta-samples-section">
+    <p class="kicker"><i class="sq" aria-hidden="true"></i>Reader packs</p>
     <h2>Same program, every pack</h2>
     <p class="porta-lede">
-      One program, seven renderings. The HIR is one; the rendering is the
+      One program, {n} renderings. The HIR is one; the rendering is the
       pack. Pick a tab to preview Faber in that reader locale — the panels
       are real pack source, not mock copy.
     </p>
 {hero_html}  </section>
 
   <section class="porta-index" id="porta-index">
+    <p class="kicker"><i class="sq" aria-hidden="true"></i>Index</p>
     <h2>All site locales</h2>
     <p class="porta-lede">
       Every listed locale ships a full documentation tree. Stress notes call out
@@ -383,24 +489,31 @@ def main() -> None:
     </p>
 {index_body}  </section>
 
-  <footer class="porta-footer">
-    <span>Faber language · MIT license</span>
-    <span>
-      <a href="/en-US/">docs</a>
-      ·
-      <a href="/en-US/start/install.html">install</a>
-      ·
-      <a href="https://github.com/faberlang">github.com/faberlang</a>
-    </span>
-  </footer>
-
 </main>
 
+<footer class="site-foot">
+  <div class="inner">
+    <div>
+      <h2>Faber language · {html_mod.escape(str(release['license']))} license</h2>
+      <nav class="links" aria-label="Project">
+        <a href="/en-US/">Docs</a>
+        <a href="/install.md">Install</a>
+        <a href="https://github.com/faberlang">github.com/faberlang ↗</a>
+      </nav>
+    </div>
+    <div>
+      <p>One semantic core, many renderings: pick the language you read and the same program follows you into its docs.</p>
+    </div>
+  </div>
+</footer>
+
 <script src="/faber-demo-tabs.js" defer></script>
-<script src="/faber-ambient.js" defer></script>
+<script src="/faber-instrument.js" defer></script>
 </body>
 </html>
 """
+
+    assert_no_external_requests(html, "portal")
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(html, encoding="utf-8")

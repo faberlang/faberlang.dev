@@ -17,7 +17,7 @@ A stack machine, so the arithmetic reads inside out. Useful as a check on what a
 
 | Capable | Analyzable | Coverage |
 |---|---|---|
-| 259 | 359 | 72% |
+| 263 | 373 | 71% |
 
 From the [target matrix](/toolchain/target-matrix.html): how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.
 
@@ -27,8 +27,8 @@ Terms the matrix records as partial, planned, or unsupported for this target. A 
 
 | Category | Terms |
 |---|---|
-| Keywords — systems lane | <a id="ad"></a>`ad`, <a id="atomic"></a>`atomic`, <a id="clausura"></a>`clausura`, <a id="est"></a>`est`, <a id="ex"></a>`ex`, <a id="functio"></a>`functio`, <a id="genus"></a>`genus`, <a id="iace"></a>`iace`, <a id="implet"></a>`implet`, <a id="importa"></a>`importa`, <a id="inter"></a>`inter`, <a id="instans"></a>`instans`, <a id="itera"></a>`itera`, <a id="lista"></a>`lista`, <a id="matrix"></a>`matrix`, <a id="numerus"></a>`numerus`, <a id="octeti"></a>`octeti`, <a id="requirit"></a>`requirit`, <a id="reice"></a>`reice`, <a id="tabula"></a>`tabula`, <a id="tensor"></a>`tensor`, <a id="vector"></a>`vector` |
-| Operators — systems lane | `·`, `×`, `⊗`, `⊙`, `→`, `⇥`, `![`, `!.`, `!(`, `↦`, `?[`, `?.`, `?(`, `⊘` |
+| Keywords — systems lane | <a id="ad"></a>`ad`, <a id="atomic"></a>`atomic`, <a id="clausura"></a>`clausura`, <a id="est"></a>`est`, <a id="ex"></a>`ex`, <a id="functio"></a>`functio`, <a id="genus"></a>`genus`, <a id="iace"></a>`iace`, <a id="implet"></a>`implet`, <a id="importa"></a>`importa`, <a id="instans"></a>`instans`, <a id="itera"></a>`itera`, <a id="lista"></a>`lista`, <a id="matrix"></a>`matrix`, <a id="numerus"></a>`numerus`, <a id="octeti"></a>`octeti`, <a id="requirit"></a>`requirit`, <a id="reice"></a>`reice`, <a id="tabula"></a>`tabula`, <a id="tensor"></a>`tensor`, <a id="vector"></a>`vector` |
+| Operators — systems lane | `·`, `×`, `⊗`, `⊙`, `→`, `⇥`, `![`, `!.`, `!(`, `↦`, `∈`, `?[`, `?.`, `?(`, `⊘` |
 
 ## Typed tensors {#tensores}
 

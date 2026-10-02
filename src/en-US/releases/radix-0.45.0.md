@@ -16,7 +16,7 @@ sources = []
 
 ## Install this version {#install}
 
-Pinned download for **Radix 0.45.0**. For the current release, use [Install](/start/install.html) instead.
+Pinned download for **Radix 0.45.0**. For the current release, use [Start](/start/) instead.
 
 | Platform | Archive | Size | Checksum |
 |---|---|---|---|
@@ -101,4 +101,4 @@ factory docs, and reference-pack term counts (`4822950d0`).
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

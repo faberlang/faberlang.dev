@@ -359,29 +359,32 @@ if [ "$FULL_SITE" = true ]; then
 
     # Step 8: Smoke checks against en-US paths
     echo "[9/10] Smoke checks..."
-    # The current release is stated once, in the Install page's fact table.
-    # Reading it back from there keeps a version bump a content edit rather
-    # than a build-script edit, and still fails closed if the download links
-    # were left pointing at the previous version.
-    current_faber="$(sed -n 's/^| \*\*Version\*\* | \(.*\) |$/\1/p' \
-        "${REPO_DIR}/src/en-US/start/install.md" | head -1)"
+    # The current release is stated once, in the agent lobby static/install.md
+    # ("Current release: Faber X.Y.Z."). Reading it back from there keeps a
+    # version bump a content edit rather than a build-script edit, and still
+    # fails closed if the install skill or the skill catalog were left on the
+    # previous version.
+    current_faber="$(sed -n 's/^Current release: Faber \(.*\)\.$/\1/p' \
+        "${REPO_DIR}/static/install.md" | head -1)"
     if [ -z "$current_faber" ]; then
-        echo "ERROR: smoke could not read the current version from src/en-US/start/install.md" >&2
+        echo "ERROR: smoke could not read the current version from static/install.md" >&2
         exit 1
     fi
     smoke_contains "${OUTPUT_DIR}/en-US/index.html" "<!DOCTYPE html>" "home doctype"
     if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
         smoke_contains "${OUTPUT_DIR}/en-US/index.html" "/llms.txt" "home agent link"
-        smoke_contains "${OUTPUT_DIR}/en-US/index.html" "faber-v${current_faber}" "home release link"
         smoke_contains "${OUTPUT_DIR}/llms-full.txt" "Generated corpus frontmatter reference" "llms-full surface"
-        smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "<!DOCTYPE html>" "install doctype"
-        smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "/en-US/start/install.html" "install path"
-        smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "faber-v${current_faber}" "install release link"
-        smoke_contains "${OUTPUT_DIR}/en-US/start/hello.html" "Salve, munde" "hello start page"
+        # The agent front door: /llms.txt points at /install.md, the lobby
+        # states the current release, and the skill and catalog carry it.
+        smoke_contains "${OUTPUT_DIR}/llms.txt" "https://faberlang.dev/install.md" "llms.txt install pointer"
+        smoke_contains "${OUTPUT_DIR}/install.md" "Current release: Faber ${current_faber}." "install lobby version"
+        smoke_contains "${OUTPUT_DIR}/.well-known/agent-skills/install/SKILL.md" "faber-v${current_faber}" "install skill release link"
+        smoke_contains "${OUTPUT_DIR}/.well-known/agent-skills/index.json" "\"version\": \"${current_faber}\"" "skill catalog version"
+        smoke_contains "${OUTPUT_DIR}/en-US/start/index.html" "https://faberlang.dev/install.md" "start page install link"
+        smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "url=/en-US/start/" "retired install page redirects to start"
         smoke_contains "${OUTPUT_DIR}/en-US/cheatsheet/commands.html" "faber check" "cheat sheet commands"
         smoke_contains "${OUTPUT_DIR}/en-US/cheatsheet/index.html" "Cheat sheet" "cheat sheet index"
         smoke_contains "${OUTPUT_DIR}/en-US/cheatsheet/errors.html" "error channel" "cheat sheet errors"
-        smoke_contains "${OUTPUT_DIR}/en-US/start/projects.html" "faberlang/examples" "projects start page"
         smoke_contains "${OUTPUT_DIR}/en-US/examples/index.html" "device-summa" "examples index"
         smoke_contains "${OUTPUT_DIR}/en-US/examples/cat.html" "faber-code" "example source shown"
         smoke_contains "${OUTPUT_DIR}/en-US/targets/index.html" "Target lanes" "target lanes index"
@@ -425,9 +428,6 @@ if [ "$FULL_SITE" = true ]; then
         smoke_contains "${OUTPUT_DIR}/en-US/syntax/types.html" "http-equiv=\"refresh\"" "retired syntax path redirects"
         smoke_contains "${OUTPUT_DIR}/en-US/index.html" 'data-search' "renderbar searchbox"
         smoke_contains "${OUTPUT_DIR}/en-US/index.html" 'faber-search.js' "search script include"
-        smoke_contains "${OUTPUT_DIR}/en-US/index.html" 'faber-ambient.js' "ambient script include"
-        smoke_contains "${OUTPUT_DIR}/index.html" 'faber-ambient.js' "landing ambient script include"
-        smoke_contains "${OUTPUT_DIR}/porta/index.html" 'faber-ambient.js' "portal ambient script include"
         if grep -Eq '^Disallow: /(ar|th-TH|vi|hi|zh-Hans|zh-Hant)/' "${OUTPUT_DIR}/robots.txt"; then
             echo "ERROR: robots.txt must not disallow locale trees" >&2
             exit 1
@@ -496,6 +496,13 @@ if [ "$FULL_SITE" = true ]; then
         smoke_contains "${OUTPUT_DIR}/porta/index.html" "简体中文" "portal zh-Hans native"
         smoke_contains "${OUTPUT_DIR}/porta/index.html" 'href="/en-US/"' "portal en-US link"
 
+        # Instrument theme: both pages carry the shared enhancer (UTC clock,
+        # copy buttons), and the landing pass links the one install surface.
+        smoke_contains "${OUTPUT_DIR}/index.html" 'faber-instrument.js' "landing instrument script include"
+        smoke_contains "${OUTPUT_DIR}/porta/index.html" 'faber-instrument.js' "portal instrument script include"
+        smoke_contains "${OUTPUT_DIR}/faber-instrument.js" 'data-copy' "instrument script copied to dist"
+        smoke_contains "${OUTPUT_DIR}/index.html" 'class="channel" href="/install.md"' "landing agent pass install link"
+
         # Redirect stub checks
         smoke_contains "${OUTPUT_DIR}/start/install.html" "<!DOCTYPE html>" "redirect install doctype"
         smoke_contains "${OUTPUT_DIR}/start/install.html" "/en-US/start/install.html" "redirect install target"
@@ -536,6 +543,10 @@ if [ "$FULL_SITE" = true ]; then
 
     echo "[9/10] Code highlighting..."
     "$PYTHON" "${SCRIPT_DIR}/highlight-code.py" "$OUTPUT_DIR"
+
+    # Target matrix: real term anchors and status classes on glyph cells.
+    echo "[9/10] Target matrix cells..."
+    "$PYTHON" "${SCRIPT_DIR}/matrix-cells.py" "$OUTPUT_DIR"
 
     echo "[9/10] Contents rails..."
     "$PYTHON" "${SCRIPT_DIR}/inject-toc.py" "$OUTPUT_DIR"

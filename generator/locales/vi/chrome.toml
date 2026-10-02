@@ -20,16 +20,8 @@ corpus = "Kho ngữ liệu"
 references = "Tham khảo"
 history = "Lịch sử"
 
-[sidebar_agents]
-heading = "Cho tác nhân"
-index = "Mục lục tác nhân"
-guide = "Hướng dẫn tác nhân"
-skills = "Kỹ năng tác nhân"
-full_reference = "Tham khảo đầy đủ"
-
 [sidebar_release]
 all_releases = "Tất cả bản phát hành"
-github_org = "Tổ chức GitHub"
 
 [renderbar]
 label = "Kết xuất"
@@ -43,12 +35,6 @@ label = "Sẵn sàng cho tác nhân"
 link_install = "Cài đặt"
 link_examples = "Ví dụ"
 
-[side_meta]
-paradigm_key = "Mô hình"
-typing_key = "Kiểu"
-target_key = "Đích"
-license_key = "Giấy phép"
-
 [footer]
 sources_heading = "Nguồn"
 
@@ -56,10 +42,12 @@ sources_heading = "Nguồn"
 # these strings inside <aside>; a label must be declared here even when no
 # locale translates it, or a shorter translated label can be substituted
 # inside it. Labels covered by the sections above (Overview, Examples,
-# Releases, All releases, the agent items) are not repeated.
+# Releases, All releases) are not repeated.
 [nav]
 group_language = "Ngôn ngữ"
-group_targets = "Theo mục tiêu"
+group_start = "Bắt đầu"
+start_here = "Bắt đầu tại đây"
+group_targets = "Mục tiêu"
 group_locales = "Ngôn ngữ người đọc"
 group_libraries = "Thư viện"
 behavior = "Hành vi"
@@ -81,11 +69,10 @@ grammar_patterns = "Mẫu và giải cấu trúc"
 grammar_errors = "Kênh lỗi"
 grammar_lexical = "Cấu trúc từ vựng và ký hiệu"
 terms_az = "Thuật ngữ A–Z"
-installation = "Cài đặt"
 all_targets = "Tất cả mục tiêu"
-hir = "HIR — ứng dụng"
-mir = "MIR — hệ thống"
-gpu = "GPU — thiết bị"
+hir = "Ứng dụng · HIR"
+mir = "Hệ thống · MIR"
+gpu = "Thiết bị · GPU"
 wasm = "Văn bản WebAssembly"
 target_matrix = "Ma trận mục tiêu"
 reader_locales = "Ngôn ngữ người đọc"
@@ -105,6 +92,13 @@ the_corpus = "Kho ngữ liệu"
 # frontmatter section. When adding an entry: extend nav.fab, then mirror it
 # here in every locale, and add the label to [nav] above plus its
 # translation in each locale file.
+[[nav.group]]
+id = "start"
+label = "Bắt đầu"
+[[nav.group.item]]
+label = "Bắt đầu tại đây"
+href = "/start/"
+section = "start"
 [[nav.group]]
 id = "language"
 label = "Ngôn ngữ"
@@ -184,31 +178,27 @@ section = "grammar-errors"
 label = "Cấu trúc từ vựng và ký hiệu"
 href = "/en-US/reference/grammar/lexical.html"
 section = "grammar-lexical"
-[[nav.group.item.child]]
+[[nav.group.item]]
 label = "Thuật ngữ A–Z"
 href = "/corpus/az.html"
 section = "corpus"
 [[nav.group.item]]
-label = "Examples"
-href = "/examples/"
-section = "examples"
-[[nav.group.item]]
-label = "Cài đặt"
-href = "/start/install.html"
-section = "install"
-[[nav.group.item]]
 label = "Cheat sheet"
 href = "/cheatsheet/"
 section = "cheatsheet"
+[[nav.group.item]]
+label = "Examples"
+href = "/examples/"
+section = "examples"
 [[nav.group]]
 id = "targets"
-label = "Theo mục tiêu"
+label = "Mục tiêu"
 [[nav.group.item]]
 label = "Tất cả mục tiêu"
 href = "/en-US/targets/"
 section = "targets"
 [[nav.group.item]]
-label = "HIR — ứng dụng"
+label = "Ứng dụng · HIR"
 href = ""
 section = ""
 [[nav.group.item.child]]
@@ -228,7 +218,7 @@ label = "Faber"
 href = "/en-US/targets/faber.html"
 section = "faber"
 [[nav.group.item]]
-label = "MIR — hệ thống"
+label = "Hệ thống · MIR"
 href = ""
 section = ""
 [[nav.group.item.child]]
@@ -240,7 +230,7 @@ label = "Văn bản WebAssembly"
 href = "/en-US/targets/wasm-text.html"
 section = "wasm-text"
 [[nav.group.item]]
-label = "GPU — thiết bị"
+label = "Thiết bị · GPU"
 href = ""
 section = ""
 [[nav.group.item.child]]
@@ -301,38 +291,3 @@ section = "libraries"
 label = "Kho ngữ liệu"
 href = "/libraries/corpus.html"
 section = "libraries"
-[[nav.group]]
-id = "releases"
-label = "Releases"
-[[nav.group.item]]
-label = "All releases"
-href = "/releases/"
-section = "releases"
-[[nav.group.item]]
-label = "macOS arm64"
-href = "https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz"
-section = ""
-[[nav.group.item]]
-label = "Linux x64"
-href = "https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz"
-section = ""
-[[nav.group]]
-id = "agents"
-label = "For agents"
-compact = true
-[[nav.group.item]]
-label = "Agent index"
-href = "/llms.txt"
-section = ""
-[[nav.group.item]]
-label = "Agent guide"
-href = "/agents/index.md"
-section = ""
-[[nav.group.item]]
-label = "Agent skills"
-href = "/.well-known/agent-skills/index.json"
-section = ""
-[[nav.group.item]]
-label = "Full reference"
-href = "/llms-full.txt"
-section = ""

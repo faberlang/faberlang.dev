@@ -223,4 +223,4 @@ Prebuilt CLI archives — current Faber release at the top, then every published
 tag and binary from [faberlang/releases](https://github.com/faberlang/releases):
 
 - **[Releases](/releases/)** — download links and historical inventory
-- **[Install and download](/start/install.html)** — PATH setup and first `faber check`
+- **[Start](/start/)** — hand your model one link to install Faber

@@ -20,11 +20,8 @@ source_locale = "en-US"
 
 | पथ | इसमें क्या है |
 |---|---|
-| [इंस्टॉल और डाउनलोड करें](/start/install.html) | वर्तमान रिलीज़, PATH सेटअप, सत्यापन, पहला `faber check` |
-| [त्वरित परिचय](/start/) | कुछ ही मिनटों में भाषा का स्वरूप |
-| [नमस्कार, Faber](/start/hello.html) | पहला पैकेज |
+| [इंस्टॉल और डाउनलोड करें](/start/) | वर्तमान रिलीज़, PATH सेटअप, सत्यापन, पहला `faber check` |
 | [कमांड](/cheatsheet/commands.html) | रोज़ाना का CLI कार्यचक्र |
-| [प्रोजेक्ट](/start/projects.html) | वास्तविक पैकेज संरचना |
 | [उदाहरण](/examples/) | सार्वजनिक नमूना पैकेज |
 
 स्रोत से बिल्ड करने के निर्देश जानबूझकर यहाँ लिंक नहीं किए गए हैं। जब तक आप निजी कंपाइलर ट्री पर काम न कर रहे हों, प्रीबिल्ट आर्काइव का उपयोग करें।
@@ -47,7 +44,7 @@ source_locale = "en-US"
 | **macOS arm64** | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | 10.5 MB | [चेकसम](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
 | **Linux x64** | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | 11.9 MB | [चेकसम](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-हर आर्काइव में `bin/` और `share/` ट्री होते हैं — `bin/faber` को अपने `PATH` में रखें, और `share/faber` को बाइनरी के पास रखें। चरण-दर-चरण निर्देश: [इंस्टॉल और डाउनलोड करें](/start/install.html).
+हर आर्काइव में `bin/` और `share/` ट्री होते हैं — `bin/faber` को अपने `PATH` में रखें, और `share/faber` को बाइनरी के पास रखें। चरण-दर-चरण निर्देश: [इंस्टॉल और डाउनलोड करें](/start/).
 
 ## ऐतिहासिक रिलीज़ {#historical}
 
@@ -392,6 +389,6 @@ _यह सूची GitHub Releases API से लिए गए स्नैप
 
 | लिंक | भूमिका |
 |---|---|
-| [इंस्टॉल और डाउनलोड करें](/start/install.html) | अनुशंसित इंस्टॉल पथ |
+| [इंस्टॉल और डाउनलोड करें](/start/) | अनुशंसित इंस्टॉल पथ |
 | [इतिहास](/reference/design.html) | प्रोजेक्ट की समयरेखा और उत्पत्ति |
 | [GitHub पर faberlang/releases](https://github.com/faberlang/releases/releases) | कच्ची टैग सूची और एसेट |

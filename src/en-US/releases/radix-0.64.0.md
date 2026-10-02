@@ -16,7 +16,7 @@ sources = []
 
 ## Install this version {#install}
 
-Pinned download for **Radix 0.64.0**. For the current release, use [Install](/start/install.html) instead.
+Pinned download for **Radix 0.64.0**. For the current release, use [Start](/start/) instead.
 
 | Platform | Archive | Size | Checksum |
 |---|---|---|---|
@@ -135,4 +135,4 @@ Phase G (docs/exempla), and the **legacy ad syntax removal** clean break.
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

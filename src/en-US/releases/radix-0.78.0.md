@@ -220,4 +220,4 @@ manifests — CI uses `cargo build --locked`.
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

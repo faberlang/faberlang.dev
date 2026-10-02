@@ -18,11 +18,8 @@ source_locale = "en-US"
 
 | المسار | ما يغطّيه |
 |---|---|
-| [التثبيت والتنزيل](/start/install.html) | الإصدار الحالي، إعداد PATH، التحقّق، أوّل `faber check` |
-| [جولة سريعة](/start/) | شكل اللغة في دقائق |
-| [مرحبًا، Faber](/start/hello.html) | أوّل حزمة |
+| [التثبيت والتنزيل](/start/) | الإصدار الحالي، إعداد PATH، التحقّق، أوّل `faber check` |
 | [الأوامر](/cheatsheet/commands.html) | حلقة CLI اليومية |
-| [المشاريع](/start/projects.html) | تخطيط حزمة حقيقي |
 | [الأمثلة](/examples/) | حزم نموذجية عامّة |
 
 تعليمات البناء من المصدر غير مرتبطة هنا **عمدًا**. استخدم الأرشيفات مُسبقة البناء إلّا إذا كنت تعمل على شجرة المُصرّف الخاصّة.
@@ -45,7 +42,7 @@ source_locale = "en-US"
 | **macOS arm64** | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | 10.5 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
 | **Linux x64** | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | 11.9 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-يحوي كل أرشيف شجرتي `bin/` و`share/` — ضع `bin/faber` في `PATH` لديك مع إبقاء `share/faber` بجوار الثنائي. خطوة بخطوة: [التثبيت والتنزيل](/start/install.html).
+يحوي كل أرشيف شجرتي `bin/` و`share/` — ضع `bin/faber` في `PATH` لديك مع إبقاء `share/faber` بجوار الثنائي. خطوة بخطوة: [التثبيت والتنزيل](/start/).
 
 ## الإصدارات التاريخية {#historical}
 
@@ -390,6 +387,6 @@ _لقطة جرد من GitHub Releases API. 41 وسمًا، أُعيد توليد
 
 | الرابط | الدّور |
 |---|---|
-| [التثبيت والتنزيل](/start/install.html) | مسار التثبيت المُوصى به |
+| [التثبيت والتنزيل](/start/) | مسار التثبيت المُوصى به |
 | [التاريخ](/reference/design.html) | الجدول الزمني للمشروع وأصوله |
 | [faberlang/releases على GitHub](https://github.com/faberlang/releases/releases) | قائمة الوسوم الخام والأصول |

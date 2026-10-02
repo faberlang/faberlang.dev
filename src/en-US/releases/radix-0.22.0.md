@@ -161,4 +161,4 @@ lexicon, parser morphology, type semantics, and all codegen targets
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

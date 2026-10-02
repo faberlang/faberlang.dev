@@ -201,4 +201,4 @@ Stability improvements for the reference (TypeScript) compiler:
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

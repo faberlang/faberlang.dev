@@ -16,7 +16,7 @@ sources = []
 
 ## Install this version {#install}
 
-Pinned download for **Radix 0.66.0**. For the current release, use [Install](/start/install.html) instead.
+Pinned download for **Radix 0.66.0**. For the current release, use [Start](/start/) instead.
 
 | Platform | Archive | Size | Checksum |
 |---|---|---|---|
@@ -362,4 +362,4 @@ should show dates from 2026-07-01 through 2026-07-05 inclusive.
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

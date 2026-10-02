@@ -1,112 +1,21 @@
 +++
 translation_kind = "translated"
 
-title = "Quick tour"
+title = "ابدأ"
 section = "start"
 order = 0
 sources = []
 
-prose_hash = "sha256:fb6f791ae0e9b73d0c92c2127726f558a2b845351779f80217616b8f55629ff0"
-code_hash = "sha256:f9eb22ab8a2408fe0076d846dd4266cff4ded675ad8d63a5b2d9ee59c3e0156f"
-source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
+prose_hash = "sha256:f60d676c60b081effa2dcd0f99bf2d35b5194909f1a044c77f314843f88a147d"
+code_hash = "sha256:c8e5b9b166f413d5889eae20e5f130ac1ca46737609acfd20560b9daf04acaa7"
+source_commit = "b463c0bad3a1a09e83efc170965bb279f2528d6d"
 source_locale = "en-US"
 +++
-خمس دقائق لشكل Faber: ثبّت CLI، اقرأ دالة واحدة، ثم افتح حزمة حقيقية. لمسار متسلسل، اتبع: [تثبيت](/start/install.html) →
-[مرحباً](/start/hello.html) → [الأوامر](/cheatsheet/commands.html) →
-[المشاريع](/start/projects.html).
-
-## ١. ثبّت CLI {#install}
-
-نزّل الإصدار الحالي (**1.6.0**) لمنصتك من
-[صفحة التثبيت](/start/install.html)، تحقق من بصمة الأرشيف، وضع
-`bin/faber` من شجرتي `bin/` و`share/` في الأرشيف على `PATH` لديك (أبقِ الشجرتين معاً لتُحل حزم القارئ). تأكد:
-
-```bash
-faber --version
-```
-
-## ٢. شكل الدالة {#shape}
-
-وسائط النوع أولاً، نوع الإرجاع بالرمز، كلمات تحكم لاتينية، اتحاد
-قابل للعدم:
+Faber لغة تكتبها النماذج، لذلك لا تثبّتها يدويًا.
+أعطِ نموذجك هذا الرابط:
 
 ```text
-functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
-    redde a / b
-}
+https://faberlang.dev/install.md
 ```
 
-| إشارة | معنى |
-|---|---|
-| `functio` | تعريف دالة |
-| `numerus a` | النوع أولاً، ثم الاسم |
-| `→` | نوع الإرجاع |
-| `∪ nihil` | قابل للعدم (`T ∪ nihil`) |
-| `si … ergo` | تفرع مضغوط |
-| `redde` | إرجاع |
-
-## ٣. تخطيط الحزمة {#package}
-
-الحزمة هي مجلد فيه `faber.toml` و `src/`:
-
-```text
-my-app/
-  faber.toml
-  src/
-    main.fab
-```
-
-الأوامر النموذجية:
-
-```bash
-faber check my-app/
-faber build my-app/ -t rust
-faber run my-app/
-faber test my-app/
-```
-
-تفاصيل: [أداة بناء Faber](/toolchain/cli.html).
-
-## ٤. تطبيقات حقيقية {#applications}
-
-لا تتوقف عند hello-world. مستودع **الأمثلة** العام يحتوي على CLI متعدد الأوامر،
-مساحة بريد محلية، سجلات أعباء GPU، ومجموعة لغة كاملة.
-
-| حزمة | ما تعرضه |
-|---|---|
-| منصة عمل AI | CLI متعدد الأوامر، فحص النماذج، تضمينات |
-| ViviLite | مساحة بريد مدعومة بملفات / CLI تنسيق الوكلاء |
-| coreutils | حملة تطبيق أكبر (أدوات مضاهاة) |
-| gpu-workload | أنظمة / درجات GPU |
-| corpus | مجلد واحد لكل بناء لغوي |
-
-استعرضها في [صفحة الأمثلة](/examples/).
-
-## ٥. إذا كنت وكيلاً {#agents}
-
-1. اقرأ [`/llms.txt`](/llms.txt).
-2. افتح [`/agents/index.md`](/agents/index.md).
-3. اختر مهارة من [`/.well-known/agent-skills/index.json`](/.well-known/agent-skills/index.json).
-
-## مسار البداية {#start-track}
-
-| خطوة | صفحة | النتيجة |
-|---|---|---|
-| ١ | [تثبيت وتنزيل](/start/install.html) | ضع Faber 1.6.0 على `PATH` وتحقق منه |
-| ٢ | [مرحباً، Faber](/start/hello.html) | أنشئ وشغّل `salve-munde` |
-| ٣ | [أوامر ستستخدمها](/cheatsheet/commands.html) | تعلم `check`، `build`، `run`، `test`، `explain` |
-| ٤ | [مشاريع وأمثلة](/start/projects.html) | انتقل إلى حزم حقيقية وصفحات المجموعة |
-
-## التالي {#next}
-
-| موضوع | رابط |
-|---|---|
-| تثبيت وتنزيل | [تثبيت](/start/install.html) |
-| مرحباً، Faber | [مرحباً](/start/hello.html) |
-| الأوامر | [أوامر](/cheatsheet/commands.html) |
-| المشاريع | [مشاريع](/start/projects.html) |
-| مرجع الصياغة | [الصياغة](/language/) |
-| ميزات (مواضع، مسارات) | [ميزات](/language/) |
-| مكتبات النظام البيئي | [نظام بيئي](/libraries/) |
-| مجموعة الكلمات المفتاحية | [مجموعة](/corpus/) |
+سيقرأ نموذجك ذلك الملف، وينزّل الإصدار الحالي لجهازك، ويتحقق من بصمته، ويثبّت الأمر `faber`. ثم يكتب برنامج hello صغيرًا ويشغّل `faber check` عليه. يحدث كل ذلك على جهازك أنت، ويخبرك نموذجك عند نجاح الفحص.

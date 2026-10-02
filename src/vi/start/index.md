@@ -1,115 +1,21 @@
 +++
 translation_kind = "translated"
 
-title = "Quick tour"
+title = "Bắt đầu"
 section = "start"
 order = 0
 sources = []
 
-prose_hash = "sha256:fb6f791ae0e9b73d0c92c2127726f558a2b845351779f80217616b8f55629ff0"
-code_hash = "sha256:f9eb22ab8a2408fe0076d846dd4266cff4ded675ad8d63a5b2d9ee59c3e0156f"
-source_commit = "6572815c8c5595e60956471d75c4a60e67cba58f"
+prose_hash = "sha256:f60d676c60b081effa2dcd0f99bf2d35b5194909f1a044c77f314843f88a147d"
+code_hash = "sha256:c8e5b9b166f413d5889eae20e5f130ac1ca46737609acfd20560b9daf04acaa7"
+source_commit = "b463c0bad3a1a09e83efc170965bb279f2528d6d"
 source_locale = "en-US"
 +++
-Năm phút để nắm hình dạng của Faber: cài đặt CLI, đọc một hàm,
-sau đó mở một gói thực tế. Để đi theo lộ trình tuần tự, hãy xem: [Cài đặt](/start/install.html) →
-[Hello](/start/hello.html) → [Các lệnh](/cheatsheet/commands.html) →
-[Dự án](/start/projects.html).
-
-## 1. Cài đặt CLI {#install}
-
-Tải bản phát hành hiện tại (**1.6.0**) cho nền tảng của bạn từ
-[trang cài đặt](/start/install.html), xác minh checksum của tệp lưu trữ,
-sau đó đặt `bin/faber` từ các cây `bin/` và `share/` của tệp lưu trữ vào
-`PATH` của bạn (giữ các cây cùng nhau để các gói ngôn ngữ phân giải được). Xác nhận:
-
-```bash
-faber --version
-```
-
-## 2. Hình dạng của một hàm {#shape}
-
-Tham số ưu tiên kiểu, kiểu trả về bằng glyph, từ điều khiển Latin, hợp
-kiểu có thể là null:
+Faber là ngôn ngữ do các mô hình viết, nên bạn không cần cài đặt thủ công.
+Hãy đưa cho mô hình của bạn liên kết này:
 
 ```text
-functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
-    redde a / b
-}
+https://faberlang.dev/install.md
 ```
 
-| Tín hiệu | Ý nghĩa |
-|---|---|
-| `functio` | Khai báo hàm |
-| `numerus a` | Kiểu trước, tên sau |
-| `→` | Kiểu trả về |
-| `∪ nihil` | Có thể là null (`T ∪ nihil`) |
-| `si … ergo` | Nhánh rút gọn |
-| `redde` | Trả về |
-
-## 3. Bố cục gói {#package}
-
-Một gói là một thư mục có `faber.toml` và `src/`:
-
-```text
-my-app/
-  faber.toml
-  src/
-    main.fab
-```
-
-Các lệnh thường dùng:
-
-```bash
-faber check my-app/
-faber build my-app/ -t rust
-faber run my-app/
-faber test my-app/
-```
-
-Chi tiết: [Công cụ build Faber](/toolchain/cli.html).
-
-## 4. Ứng dụng thực tế {#applications}
-
-Đừng dừng lại ở hello-world. Kho **examples** công khai có các CLI nhiều
-lệnh, một mailspace cục bộ, các nhánh workload GPU và một corpus ngôn ngữ
-đầy đủ.
-
-| Gói | Nội dung minh họa |
-|---|---|
-| AI Workbench | CLI nhiều lệnh, kiểm tra model, embeddings |
-| ViviLite | CLI mailspace / điều phối agent dựa trên tệp |
-| coreutils | Chiến dịch ứng dụng lớn hơn (các parity harness) |
-| gpu-workload | Các nấc hệ thống / GPU |
-| corpus | Mỗi cấu trúc ngôn ngữ một thư mục |
-
-Xem chúng trên [trang examples](/examples/).
-
-## 5. Nếu bạn là agent {#agents}
-
-1. Đọc [`/llms.txt`](/llms.txt).
-2. Mở [`/agents/index.md`](/agents/index.md).
-3. Chọn một skill từ [`/.well-known/agent-skills/index.json`](/.well-known/agent-skills/index.json).
-
-## Lộ trình bắt đầu {#start-track}
-
-| Bước | Trang | Kết quả |
-|---|---|---|
-| 1 | [Cài đặt & tải xuống](/start/install.html) | Đặt Faber 1.6.0 vào `PATH` và xác minh |
-| 2 | [Hello, Faber](/start/hello.html) | Tạo và chạy `salve-munde` |
-| 3 | [Các lệnh bạn sẽ dùng](/cheatsheet/commands.html) | Tìm hiểu `check`, `build`, `run`, `test`, `explain` |
-| 4 | [Dự án và examples](/start/projects.html) | Chuyển sang các gói thực tế và các trang corpus |
-
-## Tiếp theo {#next}
-
-| Chủ đề | Liên kết |
-|---|---|
-| Cài đặt & tải xuống | [Cài đặt](/start/install.html) |
-| Hello, Faber | [Hello](/start/hello.html) |
-| Các lệnh | [Các lệnh](/cheatsheet/commands.html) |
-| Dự án | [Dự án](/start/projects.html) |
-| Tham chiếu cú pháp | [Cú pháp](/language/) |
-| Tính năng (locale, lane) | [Tính năng](/language/) |
-| Thư viện hệ sinh thái | [Hệ sinh thái](/libraries/) |
-| Corpus từ khóa | [Corpus](/corpus/) |
+Mô hình của bạn sẽ đọc tệp đó, tải bản phát hành hiện tại cho máy của bạn, xác minh checksum và cài đặt lệnh `faber`. Sau đó nó viết một chương trình hello nhỏ và chạy `faber check` trên đó. Mọi việc diễn ra trên máy của bạn, và mô hình sẽ báo lại khi phép kiểm tra thành công.

@@ -17,7 +17,7 @@ Close to one-for-one with the source. That is the point of this emitter: generat
 
 | Capable | Analyzable | Coverage |
 |---|---|---|
-| 360 | 364 | 99% |
+| 373 | 378 | 99% |
 
 From the [target matrix](/toolchain/target-matrix.html): how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.
 
@@ -28,7 +28,7 @@ Terms the matrix records as partial, planned, or unsupported for this target. A 
 | Category | Terms |
 |---|---|
 | Keywords — application lane | <a id="atomic"></a>`atomic` |
-| Operators — application lane | `·` |
+| Operators — application lane | `·`, `↦` |
 | Types, intrinsics & meta | <a id="f16"></a>`f16` |
 
 ## Typed tensors {#tensores}

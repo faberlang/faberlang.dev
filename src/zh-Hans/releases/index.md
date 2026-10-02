@@ -18,11 +18,8 @@ source_locale = "en-US"
 
 | 路径 | 涵盖内容 |
 |---|---|
-| [安装与下载](/start/install.html) | 当前版本、PATH 配置、验证、首次 `faber check` |
-| [快速导览](/start/) | 几分钟了解语言概貌 |
-| [Hello, Faber](/start/hello.html) | 第一个包 |
+| [安装与下载](/start/) | 当前版本、PATH 配置、验证、首次 `faber check` |
 | [命令](/cheatsheet/commands.html) | 日常 CLI 工作流 |
-| [项目](/start/projects.html) | 真实的包布局 |
 | [示例](/examples/) | 公开示例包 |
 
 这里**没有**提供从源码构建的说明。除非你在开发私有编译器代码树，否则请使用预构建归档文件。
@@ -45,7 +42,7 @@ source_locale = "en-US"
 | **macOS arm64** | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | 10.5 MB | [校验和](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
 | **Linux x64** | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | 11.9 MB | [校验和](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-每个归档文件都包含 `bin/` 和 `share/` 目录树——将 `bin/faber` 放入你的 `PATH`，并让 `share/faber` 与二进制文件保持在一起。详细步骤请见：[安装与下载](/start/install.html)。
+每个归档文件都包含 `bin/` 和 `share/` 目录树——将 `bin/faber` 放入你的 `PATH`，并让 `share/faber` 与二进制文件保持在一起。详细步骤请见：[安装与下载](/start/)。
 
 ## 历史版本 {#historical}
 
@@ -390,6 +387,6 @@ _本清单为 GitHub Releases API 的快照。共 41 个标签，为本页面重
 
 | 链接 | 作用 |
 |---|---|
-| [安装与下载](/start/install.html) | 推荐的安装路径 |
+| [安装与下载](/start/) | 推荐的安装路径 |
 | [历史](/reference/design.html) | 项目时间线与起源 |
 | [GitHub 上的 faberlang/releases](https://github.com/faberlang/releases/releases) | 原始标签列表与资产 |

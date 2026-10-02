@@ -43,62 +43,10 @@ Language and supporting libraries are MIT open source; Radix remains closed
 source until there is clearer demand for an open compiler (see the note
 above).
 
-**New here?** Start with [Install and download](/start/install.html), then run
-the sequenced start track: [Hello](/start/hello.html),
-[Commands](/cheatsheet/commands.html), and [Projects](/start/projects.html). For the
-GPU path, read [device execution](/toolchain/cli.html#device-execution) and
-the [target matrix](/toolchain/target-matrix.html).
-
-## Download Faber 1.8.0 {#download}
-
-Current release: **Faber 1.8.0** (tag `faber/v1.8.0`), published 2026-08-24.
-The current release entry lists prebuilt CLI archives for macOS arm64 and
-Linux x64; each
-ships a `bin/` and a `share/` tree — put `bin/faber` on your `PATH`, keeping
-`share/faber` beside the binary so the reader packs resolve.
-
-What it adds: compiled inference verified against pinned goldens, shape
-generics, keyword-as-identifier semantics, and new F16/MXFP4 and KV-cache
-formats. The bundled Radix 0.83.0 line is released as source plus tag rather
-than as a standalone binary.
-Full detail: [Faber 1.8.0 release notes](/releases/faber-1.8.0.html).
-
-| Platform | Archive | Checksum |
-|---|---|---|
-| **macOS arm64** (Apple Silicon) | [faber-v1.8.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-aarch64-apple-darwin.tar.gz) | `dd584ebf035da4850ce7d43cfe9662223940d338b75ff12b0c4931a09dd37a36` |
-| **Linux x64** (glibc) | [faber-v1.8.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-x86_64-unknown-linux-gnu.tar.gz) | `1b64b591f58782bdf3aafa35c8b26e3315c1c4c642a875de19af277a0b28e61b` |
-
-Quick install (macOS arm64 example):
-
-```bash
-curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-aarch64-apple-darwin.tar.gz
-expected=dd584ebf035da4850ce7d43cfe9662223940d338b75ff12b0c4931a09dd37a36
-actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
-test "$actual" = "$expected"
-tar -xzf faber.tgz
-# The archive ships bin/ and share/; keep them together so the reader packs
-# resolve beside the binary.
-sudo mv bin/faber /usr/local/bin/faber
-sudo mv share/faber /usr/local/share/faber
-faber --version
-```
-
-Assets on GitHub: [faber-v1.8.0](https://github.com/faberlang/releases/releases/tag/faber-v1.8.0).
-Step-by-step: [Install guide](/start/install.html). Full historical inventory:
-[Releases](/releases/).
-
-### Radix compiler {#download-radix}
-
-The **Radix** compiler (v0.83.0, published 2026-08-18) is bundled inside
-Faber. The 0.83.0 line ships alongside Faber 1.8.0 and is released as source
-plus tag (library crates), not as a standalone binary:
-
-- Release notes: [Radix 0.83.0](/releases/radix-0.83.0.html)
-- Source and tag: `v0.83.0` in the Radix source repository (closed source;
-  ships inside Faber)
-
-Radix is the compiler component behind the Faber binary product.
+**New here?** Go to [Start](/start/): give your model one link and it
+installs Faber for you. Then read the [Commands](/cheatsheet/commands.html).
+For the GPU path, read [device execution](/toolchain/cli.html#device-execution)
+and the [target matrix](/toolchain/target-matrix.html).
 
 | | |
 |---|---|
@@ -118,13 +66,10 @@ Radix is the compiler component behind the Faber binary product.
 
 | Path | Who | What |
 |---|---|---|
-| [Install](/start/install.html) | Human | Download, PATH, first `faber check` |
-| [Hello](/start/hello.html) | Human | Create and run `salve-munde` |
+| [Start](/start/) | Human | One link to hand your model; it installs Faber for you |
 | [Commands](/cheatsheet/commands.html) | Human + agent | Daily CLI loop: check, build, run, test, explain |
-| [Projects](/start/projects.html) | Human + agent | Move from hello-world into real packages |
-| [Quick tour](/start/) | Human | Language shape in five minutes |
 | [Examples](/examples/) | Human + agent | Real packages: CLI apps, mailspace, GPU, corpus |
-| [`/llms.txt`](/llms.txt) | Agent | Machine index — start here if you are a model |
+| [`/install.md`](/install.md) | Agent | Install route — start here if you are a model |
 | [Agent guide](/agents/index.md) | Agent | How to learn Faber and ship a package |
 | [Agent skills](/.well-known/agent-skills/index.json) | Agent | Focused skill guides (install, language, examples, …) |
 
@@ -209,7 +154,7 @@ Five sections, in the order most people need them.
 
 | Section | What is in it |
 |---|---|
-| [Start](/start/) | Install, hello world, the daily commands, your first package, real examples |
+| [Start](/start/) | One link to hand your model; it installs Faber for you |
 | [Language](/language/) | The whole language: types, functions, errors, glyphs, reader locales, capabilities |
 | [Toolchain](/toolchain/) | The `faber` CLI, compilation lanes and targets, Cista packages, Radix internals |
 | [Libraries](/libraries/) | Norma (bundled), Triga (graphics), and the language corpus |

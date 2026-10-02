@@ -145,4 +145,4 @@ results database, token tracking, and ~17k trial runs across 30+ models.
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

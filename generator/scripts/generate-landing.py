@@ -4,23 +4,32 @@ generate-landing.py — Generate the Faber landing page at /.
 
 The page answers "what is this?" before anything else, in this order:
 
-    1. claim + the one program, in every reader locale, with its real output
-    2. locale strip: a door into each language's own docs home
-    3. why it suits models: mechanical grammar, explicit types, math operators
-    4. cross-compilation: one library emitted for each target, plus a
+    1. claim + the agent pass: the one install call to action is a link a
+       human hands to a model (/install.md), with copy buttons
+    2. the one program, in every reader locale, with its real output
+    3. locale strip: a door into each language's own docs home
+    4. why it suits models: mechanical grammar, explicit types, math operators
+    5. cross-compilation: one library emitted for each target, plus a
        capability table parsed from `faber targets`
-    5. libraries (Norma, Gradus, Triga, Tela, Inferentia, Cista)
-    6. the grammar, sized from the generated EBNF
-    7. compute as one capability among them, with its honesty bounds
-    8. where to go; machine surfaces
+    6. libraries (Norma, Gradus, Triga, Tela, Inferentia, Cista)
+    7. the grammar, sized from the generated EBNF
+    8. compute as one capability among them, with its honesty bounds
+    9. where to go; machine surfaces
+
+Theme: the "instrument" theme at full intensity (generator/www/speculum.css,
+section 14 frame + section 16 landing). The frame furniture is shared with
+generate-portal.py; the two scripts duplicate the small head/HUD/ticker
+helpers on purpose rather than import across hyphenated script names.
 
 Compute and GPU work used to be the headline (commit e8d3dde91). They are now
 one section among several: the language is the subject, not one workload.
 
 Every code panel is compiler output captured by capture-landing-panels.sh —
 never hand-authored. Run that script after a compiler or reader-pack change,
-then rebuild. Counts (grammar productions) and the target capability table are
-read from their sources at generation time so they cannot drift.
+then rebuild. Counts (grammar productions, targets), the release version,
+platforms and license, and the target capability table are read from their
+sources at generation time so they cannot drift. Every ticker item is one of
+those derived facts or a plain true statement about the page.
 
 CLI:
     generate-landing.py <output.html> [--landing path] [--ebnf path]
@@ -135,6 +144,66 @@ def esc(s: str) -> str:
     return html_mod.escape(s)
 
 
+def read_release(repo: Path) -> dict[str, object]:
+    """The current release, read from the agent lobby and the install skill.
+
+    The version is stated once in static/install.md ("Current release: Faber
+    X.Y.Z."), which build-site.sh also reads. The license and the platform
+    names come from the install skill's release block and archive table. Any
+    shape change fails the build instead of printing a guessed value."""
+    lobby = (repo / "static" / "install.md").read_text(encoding="utf-8")
+    m = re.search(r"^Current release: Faber (\S+)\.$", lobby, re.M)
+    if not m:
+        raise SystemExit("could not read the current release from static/install.md")
+    skill = (repo / "static" / ".well-known" / "agent-skills" / "install" / "SKILL.md"
+             ).read_text(encoding="utf-8")
+    lic = re.search(r"^- \*\*License:\*\* (.+?)\s*$", skill, re.M)
+    platforms = re.findall(r"^\| ([^|]+?) \| https://", skill, re.M)
+    if not lic or not platforms:
+        raise SystemExit("could not read license/platforms from the install skill")
+    return {"version": m.group(1), "license": lic.group(1), "platforms": platforms}
+
+
+def favicon_href(gen: Path) -> str:
+    """The site favicon data URI, read from its one definition in html.fab."""
+    src = (gen / "src" / "html.fab").read_text(encoding="utf-8")
+    m = re.search(r'favicon_href\(\)[^{]*\{\s*redde "(data:image/svg\+xml,[^"]+)"', src)
+    if not m:
+        raise SystemExit("could not read the favicon from generator/src/html.fab")
+    return m.group(1)
+
+
+def ticker(items: list[str]) -> str:
+    """Bottom ticker: mono facts separated by accent squares, the group twice
+    so the marquee loops. Decorative for assistive tech (aria-hidden)."""
+    group = ('<div class="ticker-group">'
+             + "<i></i>".join(f"<span>{esc(i)}</span>" for i in items)
+             + "<i></i></div>")
+    return f'<div class="ticker"><div class="ticker-track">{group}{group}</div></div>'
+
+
+def hud(label: str, facts: list[str]) -> str:
+    """Grain, four registration marks, corner labels, tick ruler, ticker."""
+    return f"""\
+<div class="grain" aria-hidden="true"></div>
+<div class="hud" aria-hidden="true">
+  <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+  <span class="lbl l1">{esc(label)}</span><span class="lbl l2" id="hud-clock">UTC --:--:--</span>
+  <i class="ruler"></i>
+  {ticker(facts)}
+</div>
+"""
+
+
+def assert_no_external_requests(page: str, name: str) -> None:
+    """The ticker says "zero external requests". Make that true by construction:
+    no script, image or stylesheet may point off-site."""
+    bad = re.findall(r'<(?:script|img)\b[^>]*\bsrc="https?://[^"]*"', page)
+    bad += re.findall(r'<link\b[^>]*\brel="(?:stylesheet|preconnect|preload)"[^>]*\bhref="https?://[^"]*"', page)
+    if bad:
+        raise SystemExit(f"{name}: external request found: {bad[0]}")
+
+
 def ebnf_productions(path: Path) -> int:
     """Count grammar productions in the generated EBNF so the page's size claim
     is read from the grammar, not typed in."""
@@ -154,7 +223,11 @@ def read_targets(path: Path) -> dict[str, dict[str, str]]:
 
 
 def yn(v: str | None) -> str:
-    return "yes" if v == "yes" else "—"
+    """A measured cell: `yes` (st-ok) or an em dash (st-defer). The word or
+    dash stays; colour only reinforces it."""
+    if v == "yes":
+        return '<td class="st-ok">yes</td>'
+    return '<td class="st-defer">—</td>'
 
 
 def capability_table(targets: dict[str, dict[str, str]]) -> str:
@@ -167,16 +240,18 @@ def capability_table(targets: dict[str, dict[str, str]]) -> str:
                 raise SystemExit(f"capability table: `{tid}` is not an available target in `faber targets`")
             rows += (
                 f'        <tr><td><strong>{esc(name)}</strong></td>'
-                f'<td>{yn(t.get("build"))}</td><td>{yn(t.get("package"))}</td>'
-                f'<td>{yn(t.get("run"))}</td><td>{esc(sentence)}</td></tr>\n'
+                f'{yn(t.get("build"))}{yn(t.get("package"))}'
+                f'{yn(t.get("run"))}<td>{esc(sentence)}</td></tr>\n'
             )
     return f"""\
+    <div class="fl-cap-wrap">
     <table class="fl-cap">
       <caption>What each target does today. The first three columns are read from <code>faber targets</code>.</caption>
       <thead><tr><th>Target</th><th>Emits</th><th>Package</th><th>Runs</th><th>In practice</th></tr></thead>
       <tbody>
 {rows}      </tbody>
     </table>
+    </div>
 """
 
 
@@ -202,7 +277,7 @@ def demo_tabs(*, root_id: str, file_label: str, tablist_label: str,
     return f"""\
   <div class="faber-demo-tabs fdt-hero" data-fdt>
     <div class="fdt-bar">
-      <span class="fdt-mark" aria-hidden="true">f</span>
+      <span class="fdt-mark" aria-hidden="true">←</span>
       <span class="fdt-file">{file_label}</span>
       <button class="fdt-copy" type="button">Copy</button>
     </div>
@@ -321,11 +396,36 @@ def main() -> None:
         </figure>
 """ for f in FRAMES)
 
+    repo = gen.parent
+    release = read_release(repo)
+    version = esc(str(release["version"]))
+    license_name = esc(str(release["license"]))
+    platforms = esc(" · ".join(release["platforms"]))
+    icon = favicon_href(gen)
+    n_targets = sum(1 for t in targets.values() if t.get("available") == "yes")
+
+    # Ticker: every item is derived at generation time or a plain true
+    # statement about this page. No invented numbers.
+    facts = [
+        f"Faber {release['version']}",
+        str(release["license"]),
+        f"{len(LOCALES)} reader locales",
+        f"{n_targets} targets",
+        f"{productions} grammar productions",
+        "No accounts",
+        "Experimental through version 1",
+        "System fonts · zero external requests",
+    ]
+
     title = "Faber — a programming language models write well, in the language you read"
     desc = ("Faber is a statically typed programming language for coding agents and human "
             "authors: a mechanical grammar, explicit generic types and math-oriented "
             "operators, written in eight language surfaces and compiled to Rust, "
             "TypeScript, Go, Swift and more.")
+
+    install_url = "https://faberlang.dev/install.md"
+    install_prompt = ("Read https://faberlang.dev/install.md and install Faber, "
+                      "then show me a hello program.")
 
     html = f"""\
 <!DOCTYPE html>
@@ -335,11 +435,11 @@ def main() -> None:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{esc(title)}</title>
 <meta name="description" content="{esc(desc)}">
+<meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)">
+<link rel="icon" href="{icon}">
 <link rel="canonical" href="https://faberlang.dev/">
 <link rel="alternate" hreflang="x-default" href="https://faberlang.dev/">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;family=Noto+Sans+Arabic:wght@400;600;700&amp;family=Noto+Sans+Devanagari:wght@400;600&amp;family=Noto+Sans+SC:wght@400;600&amp;family=Noto+Sans+Thai:wght@400;600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="{esc(args.css)}">
 <meta property="og:title" content="{esc(title)}">
 <meta property="og:description" content="{esc(desc)}">
@@ -350,50 +450,80 @@ def main() -> None:
 </head>
 <body class="landing">
 <a class="skip-link" href="#top">Skip to content</a>
-
-<aside class="fl-banner" role="status">
-  <strong>Experimental through version 1.</strong>
-  Version 0 was alpha. This is the first language release: the interface is
-  relatively stable, not frozen. Nothing is promised stable until version 2.
-</aside>
-
-<header class="fl-top">
-  <a class="fl-brand" href="/"><span class="fl-brand-mark" aria-hidden="true">f</span> Faber</a>
-  <nav class="fl-topnav" aria-label="Primary">
-    <a href="/en-US/start/install.html">Install</a>
+{hud(f"Faber · {release['version']}", facts)}
+<header class="site-top">
+  <a class="site-brand" href="/" aria-label="Faber home"><span class="site-brand-mark" aria-hidden="true">←</span><span>Faber</span></a>
+  <nav class="site-nav" aria-label="Primary">
     <a href="/en-US/">Docs</a>
     <a href="/en-US/language/">Language</a>
+    <a href="/en-US/reference/grammar.html">Grammar</a>
     <a href="/en-US/libraries/">Libraries</a>
-    <a href="https://github.com/faberlang">GitHub</a>
-    <a class="fl-locale" href="/porta/">All languages <span aria-hidden="true">▾</span></a>
+    <a href="https://github.com/faberlang">GitHub ↗</a>
+    <a href="/porta/">All languages</a>
   </nav>
 </header>
 
+<div class="fl-banner" role="status">
+  <p><strong>Experimental through version 1.</strong>
+  Version 0 was alpha. This is the first language release: the interface is
+  relatively stable, not frozen. Nothing is promised stable until version 2.</p>
+</div>
+
 <main class="fl-wrap" id="top">
 
-  <section class="fl-hero">
-    <p class="fl-kicker">A statically typed language for coding agents and human authors · MIT</p>
-    <h1>Written by models,<br>read in your language.</h1>
-    <p class="fl-lede">
-      Faber has a clear mechanical grammar, explicit static and generic types,
-      and math-oriented operators. The same program is written and read in
-      eight language surfaces, and compiles to Rust, TypeScript, Go, Swift and
-      more — so a library you write once can go into the project you already
-      have.
-    </p>
+  <section class="fl-hero" aria-label="Faber">
+    <div class="fl-claim">
+      <p class="kicker live"><i class="sq" aria-hidden="true"></i>A statically typed language for coding agents and human authors · MIT</p>
+      <h1 class="hook">Written by models,<br>read in your language.</h1>
+      <div class="rule" aria-hidden="true"></div>
+      <p class="subhook">
+        Faber has a clear mechanical grammar, explicit static and generic types,
+        and math-oriented operators. The same program is written and read in
+        eight language surfaces, and compiles to Rust, TypeScript, Go, Swift and
+        more — so a library you write once can go into the project you already
+        have.
+      </p>
+    </div>
+
+    <section class="pass-wrap" aria-label="Install">
+      <article class="pass" aria-label="Agent pass">
+        <div class="pass-main">
+          <div class="pass-top"><span>Faber · agent pass</span><span>v{version}</span></div>
+          <h2 class="pass-title">Give your model this link</h2>
+          <a class="channel" href="/install.md">faberlang.dev<wbr>/install.md</a>
+          <dl class="fields">
+            <div class="row"><dt>Version</dt><i class="ld"></i><dd>{version}</dd></div>
+            <div class="row"><dt>Platforms</dt><i class="ld"></i><dd>{platforms}</dd></div>
+            <div class="row"><dt>License</dt><i class="ld"></i><dd>{license_name}</dd></div>
+          </dl>
+        </div>
+        <div class="pass-stub">
+          <h2 class="share-title">Hand it to your model</h2>
+          <div class="actions">
+            <button type="button" class="btn btn-accent" data-copy="{esc(install_url)}">Copy link</button>
+            <button type="button" class="btn btn-ghost" data-copy="{esc(install_prompt)}">Copy prompt</button>
+          </div>
+        </div>
+      </article>
+      <p class="hint">Your model reads that file, downloads the current release for
+      your machine, verifies its checksum, installs the <code>faber</code> command, and runs
+      <code>faber check</code> on a hello program. It all happens on your machine.</p>
+    </section>
+
     <p class="fl-open-source">
       The language, public libraries, examples, and tooling ship under the
       <strong>MIT</strong> license. <strong>Radix</strong>, the compiler, is
       closed only while it is under active development. That is temporary,
       not a permanent fence.
     </p>
-    <div class="fl-cta">
-      <a class="fl-btn fl-btn-primary" href="/en-US/start/install.html">Install</a>
-      <a class="fl-btn" href="/en-US/start/">Five-minute tour</a>
-      <a class="fl-btn" href="/en-US/reference/grammar.html">Read the grammar</a>
-    </div>
-{read_tabs}    <pre class="fl-run">$ faber run
+  </section>
+
+  <section class="fl-demo" aria-label="The program">
+{read_tabs}    <div class="term fl-out brackets" role="group" aria-label="Output">
+      <div class="term-bar">Output</div>
+<pre><span class="p">$ </span>faber run
 {esc(program_out)}</pre>
+    </div>
     <p class="fl-note">
       One program, eight readings. Every tab is the compiler’s own rendering
       (<code>faber convert</code>), and each one runs. Keywords, types and
@@ -403,6 +533,7 @@ def main() -> None:
 
   <section class="fl-proof" id="languages">
     <div class="fl-proof-head">
+      <p class="kicker"><i class="sq" aria-hidden="true"></i>Reader locales</p>
       <h2>Start in your own language</h2>
       <p>
         People should not need English to use a model for code, or to read what
@@ -421,6 +552,7 @@ def main() -> None:
 
   <section class="fl-proof" id="models">
     <div class="fl-proof-head">
+      <p class="kicker"><i class="sq" aria-hidden="true"></i>Why Faber</p>
       <h2>Built for models to write</h2>
       <p>
         A model writes best against a surface with few surprises. Faber keeps
@@ -428,52 +560,53 @@ def main() -> None:
         reader’s language.
       </p>
     </div>
-    <div class="fl-points">
-      <div class="fl-point">
-        <strong>A mechanical grammar</strong>
-        <span>
+    <ol class="spec fl-points">
+      <li>
+        <h3>A mechanical grammar</h3>
+        <p>
           {productions} grammar productions, generated and checked as the parser’s
           authority. One construct has one spelling. Arrows mean runtime effects
           (<code>←</code> assign, <code>→</code> return, <code>⇥</code> error channel);
           <code>=</code> and <code>:</code> only state compile-time facts.
           <a href="/en-US/reference/grammar.html">Read the grammar</a>
-        </span>
-      </div>
-      <div class="fl-point">
-        <strong>Explicit static and generic types</strong>
-        <span>
+        </p>
+      </li>
+      <li>
+        <h3>Explicit static and generic types</h3>
+        <p>
           Declarations are type-first: <code>f64 low</code>, never <code>low: f64</code>.
           Nullability is written <code>T ∪ none</code>. Generics are written out
           (<code>fn choose&lt;T&gt;</code>), and crossing between integer and float is
           an explicit <code>↦</code>, not an accident.
           <a href="/en-US/language/types.html">Types and values</a>
-        </span>
-      </div>
-      <div class="fl-point">
-        <strong>Math-oriented operators</strong>
-        <span>
+        </p>
+      </li>
+      <li>
+        <h3>Math-oriented operators</h3>
+        <p>
           Integer <code>/</code> floors, so <code>-7 / 2</code> is <code>-4</code>; true
           division is <code>÷</code>. Comparisons read as math (<code>≤ ≥ ≠ ≈</code>),
           and tensor work has its own operators (<code>·</code> matmul,
           <code>⊙</code> elementwise). When math and hardware convention disagree,
           Faber follows the math.
           <a href="/en-US/language/glyphs.html">Glyphs and Latin</a>
-        </span>
-      </div>
-      <div class="fl-point">
-        <strong>Machine-readable by design</strong>
-        <span>
+        </p>
+      </li>
+      <li>
+        <h3>Machine-readable by design</h3>
+        <p>
           Diagnostics are coded and explainable. The documentation ships an agent
           index and focused skill guides at fixed paths, so a model can learn the
           language from the site itself.
           <a href="/llms.txt">/llms.txt</a>
-        </span>
-      </div>
-    </div>
+        </p>
+      </li>
+    </ol>
   </section>
 
   <section class="fl-proof" id="targets">
     <div class="fl-proof-head">
+      <p class="kicker"><i class="sq" aria-hidden="true"></i>Cross-compile</p>
       <h2>Write it once. Put it in the project you already have.</h2>
       <p>
         Faber compiles through one analyzed program to many targets. Write a
@@ -483,9 +616,14 @@ def main() -> None:
         <code>radix emit</code> produces it, and each panel was checked in its
         own toolchain.
       </p>
-      <pre class="fl-src"><code class="lang-faber locale=en">{esc(span_fab)}</code></pre>
     </div>
-{target_tabs}    <p class="fl-note">
+    <div class="term fl-source brackets">
+      <div class="term-bar">span.fab · source</div>
+<pre class="fl-src"><code class="lang-faber locale=en">{esc(span_fab)}</code></pre>
+    </div>
+    <div class="fl-targets">
+{target_tabs}    </div>
+    <p class="fl-note">
       Rust builds as a Cargo package today. TypeScript, Go and Swift give you
       source files to add to your project; assembling them into installable
       packages is not built yet. Support is stated target by target: generics and
@@ -496,6 +634,7 @@ def main() -> None:
 
   <section class="fl-proof" id="libraries">
     <div class="fl-proof-head">
+      <p class="kicker"><i class="sq" aria-hidden="true"></i>Libraries</p>
       <h2>Libraries written in Faber</h2>
       <p>
         The libraries are ordinary Faber source. They show what the language is
@@ -514,6 +653,7 @@ def main() -> None:
 
   <section class="fl-proof" id="grammar">
     <div class="fl-proof-head">
+      <p class="kicker"><i class="sq" aria-hidden="true"></i>Grammar</p>
       <h2>A grammar you can read in one sitting</h2>
       <p>
         The language is specified as {productions} productions in a single
@@ -522,17 +662,18 @@ def main() -> None:
         model’s context. The reference pages are generated from the same source,
         so they cannot disagree with the parser.
       </p>
-      <p class="fl-note">
-        <a href="/en-US/reference/grammar.html">EBNF grammar</a> ·
-        <a href="/en-US/syntax/">Syntax guide</a> ·
-        <a href="/en-US/corpus/">Corpus of keyword examples</a> ·
+      <nav class="chips" aria-label="Grammar and syntax references">
+        <a href="/en-US/reference/grammar.html">EBNF grammar</a>
+        <a href="/en-US/syntax/">Syntax guide</a>
+        <a href="/en-US/corpus/">Corpus of keyword examples</a>
         <a href="/en-US/cheatsheet/">Cheat sheet</a>
-      </p>
+      </nav>
     </div>
   </section>
 
   <section class="fl-proof" id="compute">
     <div class="fl-proof-head">
+      <p class="kicker"><i class="sq" aria-hidden="true"></i>Compute</p>
       <h2>Compute is one thing you can build</h2>
       <p>
         The same language carries numeric and device work. Tensor operators and
@@ -542,24 +683,19 @@ def main() -> None:
         backend never silently falls back to CPU. Bounded training runs on
         accepted Metal and CUDA machines; device inference is not shipped.
       </p>
-      <p class="fl-note">
-        <a href="/en-US/toolchain/compiling.html#device-execution">Device execution contract</a> ·
-        <a href="https://github.com/faberlang/examples/tree/main/training/device-summa">Training proof</a>
-      </p>
+      <nav class="chips" aria-label="Device execution references">
+        <a href="/en-US/toolchain/compiling.html#device-execution">Device execution contract</a>
+        <a href="https://github.com/faberlang/examples/tree/main/training/device-summa">Training proof ↗</a>
+      </nav>
     </div>
   </section>
 
-  <section class="fl-doors">
-    <h2>Where to go</h2>
+  <section class="fl-proof fl-doors" id="doors">
+    <div class="fl-proof-head">
+      <p class="kicker"><i class="sq" aria-hidden="true"></i>Doors</p>
+      <h2>Where to go</h2>
+    </div>
     <div class="fl-door-grid">
-      <a class="fl-door" href="/en-US/start/install.html">
-        <strong>Install</strong>
-        <span>Download, verify, first <code>faber check</code>.</span>
-      </a>
-      <a class="fl-door" href="/en-US/start/">
-        <strong>Five-minute tour</strong>
-        <span>The shape of the language, start to finish.</span>
-      </a>
       <a class="fl-door" href="/en-US/language/">
         <strong>Language</strong>
         <span>Types, control flow, generics, glyphs, errors.</span>
@@ -576,13 +712,23 @@ def main() -> None:
         <strong>Libraries</strong>
         <span>Norma, Gradus, Triga, Tela, Inferentia, Cista.</span>
       </a>
+      <a class="fl-door" href="/en-US/reference/grammar.html">
+        <strong>Grammar</strong>
+        <span>All {productions} productions, generated from one EBNF.</span>
+      </a>
+      <a class="fl-door" href="/en-US/start/">
+        <strong>Start</strong>
+        <span>Where the documentation begins.</span>
+      </a>
     </div>
   </section>
 
   <section class="fl-agents">
+    <p class="kicker"><i class="sq" aria-hidden="true"></i>For models</p>
     <h2>Reading this as a model?</h2>
     <p>
       Machine surfaces are locale-less and live at the root:
+      <a href="/install.md"><code>/install.md</code></a> to install,
       <a href="/llms.txt"><code>/llms.txt</code></a> for the index,
       <a href="/agents/index.md"><code>/agents/index.md</code></a> for the
       learning path, and
@@ -593,23 +739,31 @@ def main() -> None:
 
 </main>
 
-<footer class="fl-foot">
-  <div>
-    <strong>Faber</strong> · designed by Ian Zepp · language &amp; libraries MIT ·
-    <a href="/en-US/toolchain/radix.html">Radix</a> closed while under active development
-  </div>
-  <div>
-    <a href="/porta/">All languages</a> ·
-    <a href="/en-US/releases/">Releases</a> ·
-    <a href="https://github.com/faberlang">GitHub</a>
+<footer class="site-foot">
+  <div class="inner">
+    <div>
+      <h2>Faber</h2>
+      <nav class="links" aria-label="Project">
+        <a href="/porta/">All languages</a>
+        <a href="/en-US/releases/">Releases</a>
+        <a href="https://github.com/faberlang">GitHub ↗</a>
+        <a href="/en-US/toolchain/radix.html">Radix</a>
+      </nav>
+    </div>
+    <div>
+      <p>Designed by Ian Zepp. The language and the public libraries ship under the MIT license.</p>
+      <p><a href="/en-US/toolchain/radix.html">Radix</a>, the compiler, is closed while it is under active development.</p>
+    </div>
   </div>
 </footer>
 
 <script src="/faber-demo-tabs.js" defer></script>
-<script src="/faber-ambient.js" defer></script>
+<script src="/faber-instrument.js" defer></script>
 </body>
 </html>
 """
+
+    assert_no_external_requests(html, "landing")
 
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(html, encoding="utf-8")

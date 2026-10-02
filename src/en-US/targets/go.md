@@ -17,7 +17,7 @@ Go has no generics-free way to express some Faber types, so the emitter material
 
 | Capable | Analyzable | Coverage |
 |---|---|---|
-| 337 | 364 | 93% |
+| 347 | 378 | 92% |
 
 From the [target matrix](/toolchain/target-matrix.html): how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.
 

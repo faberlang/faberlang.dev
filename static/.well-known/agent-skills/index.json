@@ -1,9 +1,10 @@
 {
   "name": "faberlang-agent-skills",
   "description": "Focused agent guides for the Faber programming language: install, the English reader spelling, packages, real-world examples, and corpus lookup.",
-  "version": "1.8.0",
+  "version": "1.11.0",
   "homepage": "https://faberlang.dev",
   "docs_home": "https://faberlang.dev/agents/index.md",
+  "install": "https://faberlang.dev/install.md",
   "agent_index": "https://faberlang.dev/llms.txt",
   "agent_guide": "https://faberlang.dev/agents/index.md",
   "skills": [

@@ -1,24 +1,11 @@
 # Faber
 
-Fetch https://faberlang.dev/agents/index.md and follow only the links that
-page names. Those links stay inside the agent canon.
+Faber is a programming language written by models. To install it, fetch
+https://faberlang.dev/install.md and follow that route.
 
-The keyword catalog is https://faberlang.dev/llms-full.txt. It is a lookup
-list, not the writing guide.
+## Canon
 
-## Install
-
-Current release: Faber 1.8.0
-
-- Release: https://github.com/faberlang/releases/releases/tag/faber-v1.8.0
-- macOS arm64: https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-aarch64-apple-darwin.tar.gz
-- Linux x64: https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-x86_64-unknown-linux-gnu.tar.gz
-- Human install page: https://faberlang.dev/en-US/start/install.html
-
-The archive ships `bin/faber` and `share/faber`. Install both, so the reader
-packs resolve beside the binary. Verify by comparing the first hash field in
-the `.sha256` file to the local archive hash.
-
-```bash
-faber --version
-```
+- Writing guide, the fetch list: https://faberlang.dev/agents/index.md
+- Skill catalog: https://faberlang.dev/.well-known/agent-skills/index.json
+- Keyword catalog, a lookup list and not the writing guide:
+  https://faberlang.dev/llms-full.txt

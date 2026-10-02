@@ -64,4 +64,4 @@ Patch release spanning **9 commits** (`v0.4.0..v0.5.0`). Adds `fractus`, `decimu
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

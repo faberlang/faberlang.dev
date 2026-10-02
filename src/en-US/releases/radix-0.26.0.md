@@ -125,4 +125,4 @@ support, `@ operandus ceteri` for variadic positional arguments, and
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

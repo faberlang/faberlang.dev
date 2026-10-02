@@ -18,11 +18,8 @@ source_locale = "en-US"
 
 | 路徑 | 涵蓋內容 |
 |---|---|
-| [安裝與下載](/start/install.html) | 目前版本、PATH 設定、驗證、第一個 `faber check` |
-| [快速導覽](/start/) | 幾分鐘內了解語言形貌 |
-| [Hello, Faber](/start/hello.html) | 第一個套件 |
+| [安裝與下載](/start/) | 目前版本、PATH 設定、驗證、第一個 `faber check` |
 | [命令](/cheatsheet/commands.html) | 日常 CLI 迴圈 |
-| [專案](/start/projects.html) | 實際套件配置 |
 | [範例](/examples/) | 公開範例套件 |
 
 這裡刻意**不**提供從原始碼建置的說明連結。除非你正在處理私有編譯器樹，否則請使用預先建置的封存檔。
@@ -45,7 +42,7 @@ source_locale = "en-US"
 | **macOS arm64** | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | 10.5 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
 | **Linux x64** | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | 11.9 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-每個封存檔都包含 `bin/` 與 `share/` 樹——將 `bin/faber` 放入你的 `PATH`，並讓 `share/faber` 與二進位檔保持在一起。逐步說明請見：[安裝與下載](/start/install.html)。
+每個封存檔都包含 `bin/` 與 `share/` 樹——將 `bin/faber` 放入你的 `PATH`，並讓 `share/faber` 與二進位檔保持在一起。逐步說明請見：[安裝與下載](/start/)。
 
 ## 歷史版本 {#historical}
 
@@ -390,6 +387,6 @@ _GitHub Releases API 的清單快照。本頁重新產生時共有 41 個標籤�
 
 | 連結 | 角色 |
 |---|---|
-| [安裝與下載](/start/install.html) | 建議的安裝路徑 |
+| [安裝與下載](/start/) | 建議的安裝路徑 |
 | [歷史](/reference/design.html) | 專案時間線與起源 |
 | [GitHub 上的 faberlang/releases](https://github.com/faberlang/releases/releases) | 原始標籤清單與資產 |

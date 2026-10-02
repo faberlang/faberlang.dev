@@ -92,4 +92,4 @@ The binding was later renamed from `@optio` to `@argumenta` for clarity.
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

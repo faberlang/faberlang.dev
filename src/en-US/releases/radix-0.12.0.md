@@ -99,4 +99,4 @@ The `casu-ceterum.md` design document moved from `consilia/futura/` to
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

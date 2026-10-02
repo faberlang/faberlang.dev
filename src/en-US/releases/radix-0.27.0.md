@@ -146,4 +146,4 @@ Three new implementations of the Faber microcompiler, all sharing a common
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

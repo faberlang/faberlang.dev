@@ -16,7 +16,7 @@ sources = []
 
 ## Install this version {#install}
 
-Pinned download for **Faber 1.2.0**. For the current release, use [Install](/start/install.html) instead.
+Pinned download for **Faber 1.2.0**. For the current release, use [Start](/start/) instead.
 
 | Platform | Archive | Size | Checksum |
 |---|---|---|---|
@@ -203,4 +203,4 @@ siblings in CI via `.github/workflows/release.yml`.
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

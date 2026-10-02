@@ -75,4 +75,4 @@ faber emit -t faber --reader-locale=zh-Hans path/to/file.fab
 
 | ก่อนหน้า | ถัดไป |
 |---|---|
-| [สวัสดี Faber](/start/hello.html) | [โปรเจกต์และตัวอย่าง](/start/projects.html) |
+| [เริ่มต้น](/start/) | [ตัวอย่าง](/examples/) |

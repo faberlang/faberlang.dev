@@ -91,6 +91,6 @@ Use `publica` only when you deliberately intend to widen your module's surface.
 | `importa ex "./auxilium" saluta ut greet` | …bound under a different name |
 | `importa ex "norma:textus" publica textus` | Imported and re-exported |
 
-Related: [Your first package](/start/projects.html) for how modules sit inside
+Related: [A program is a package](/language/behavior/packages.html) for how modules sit inside
 a package · [Packages with Cista](/toolchain/packages.html) for dependency
 resolution

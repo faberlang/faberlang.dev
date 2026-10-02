@@ -18,37 +18,7 @@ translate_spans = false  # prose names the Latin vocabulary as Latin
 
 ชื่อ Faber มาจากคำละตินที่หมายถึง *ผู้สร้าง* หรือ *ช่างฝีมือ* คอมไพเลอร์มีชื่อว่า Radix ซึ่งมาจากคำละติน *ราก* ภาษานี้พัฒนาโดย Ian Zepp และเผยแพร่ภายใต้สัญญาอนุญาต MIT
 
-**เพิ่งเริ่มใช่ไหม?** เริ่มจาก [ติดตั้งและดาวน์โหลด](/start/install.html) จากนั้นทำตามลำดับในเส้นทางเริ่มต้น: [Hello](/start/hello.html), [คำสั่ง](/cheatsheet/commands.html) และ [โปรเจกต์](/start/projects.html)
-
-## ดาวน์โหลด Faber 1.6.0 {#download}
-
-รุ่นปัจจุบัน: **Faber 1.6.0** (แท็ก `faber-v1.6.0`) เผยแพร่เมื่อ 2026-08-10 มีไฟล์เก็บถาวร CLI ที่คอมไพล์ไว้ล่วงหน้าสำหรับ macOS และ Linux แต่ละไฟล์เก็บถาวรประกอบด้วยโฟลเดอร์ `bin/` และ `share/` — ใส่ `bin/faber` ลงใน `PATH` และเก็บ `share/faber` ไว้ข้างไบนารีเพื่อให้ reader pack แก้ไขได้
-
-| แพลตฟอร์ม | ไฟล์เก็บถาวร | checksum |
-|---|---|---|
-| **macOS arm64** (Apple Silicon) | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** (glibc) | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | [sha256](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
-
-การติดตั้งแบบรวดเร็ว (ตัวอย่าง macOS arm64):
-
-```bash
-curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz
-curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256
-expected=$(awk '{print $1}' faber.tgz.sha256)
-actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
-test "$actual" = "$expected"
-tar -xzf faber.tgz
-# ไฟล์เก็บถาวรมี bin/ และ share/; เก็บไว้ด้วยกันเพื่อให้ reader pack แก้ไขข้างไบนารีได้
-sudo mv bin/faber /usr/local/bin/faber
-sudo mv share/faber /usr/local/share/faber
-faber --version
-```
-
-บันทึกประจำรุ่นและไฟล์ทั้งหมด: [github.com/faberlang/releases · faber-v1.6.0](https://github.com/faberlang/releases/releases/tag/faber-v1.6.0)
-ดูขั้นตอนทีละขั้น: [คู่มือการติดตั้ง](/start/install.html) รายการประวัติทั้งหมด:
-[รุ่นที่เผยแพร่](/releases/)
+**เพิ่งเริ่มใช่ไหม?** ไปที่ [เริ่มต้น](/start/): ส่งลิงก์เดียวให้โมเดลของคุณ แล้วโมเดลจะติดตั้ง Faber ให้ จากนั้นอ่าน [คำสั่ง](/cheatsheet/commands.html)
 
 | | |
 |---|---|
@@ -68,13 +38,10 @@ faber --version
 
 | เส้นทาง | ผู้ใช้ | เนื้อหา |
 |---|---|---|
-| [ติดตั้ง](/start/install.html) | มนุษย์ | ดาวน์โหลด, `PATH`, และ `faber check` ครั้งแรก |
-| [Hello](/start/hello.html) | มนุษย์ | สร้างและเรียกใช้ `salve-munde` |
+| [เริ่มต้น](/start/) | มนุษย์ | ส่งลิงก์เดียวให้โมเดล แล้วโมเดลจะติดตั้ง Faber ให้ |
 | [คำสั่ง](/cheatsheet/commands.html) | มนุษย์ + เอเจนต์ | วงจร CLI ประจำวัน: check, build, run, test, explain |
-| [โปรเจกต์](/start/projects.html) | มนุษย์ + เอเจนต์ | เปลี่ยนจาก hello-world ไปสู่แพ็กเกจจริง |
-| [ทัวร์ด่วน](/start/) | มนุษย์ | รูปแบบของภาษาในห้านาที |
 | [ตัวอย่าง](/examples/) | มนุษย์ + เอเจนต์ | แพ็กเกจจริง: แอป CLI, mailspace, GPU, corpus |
-| [`/llms.txt`](/llms.txt) | เอเจนต์ | ดัชนีสำหรับเครื่อง — หากคุณเป็นโมเดล ให้เริ่มที่นี่ |
+| [`/install.md`](/install.md) | เอเจนต์ | ดัชนีสำหรับเครื่อง — หากคุณเป็นโมเดล ให้เริ่มที่นี่ |
 | [คู่มือเอเจนต์](/agents/index.md) | เอเจนต์ | วิธีเรียนรู้ Faber และส่งมอบแพ็กเกจ |
 | [ทักษะเอเจนต์](/.well-known/agent-skills/index.json) | เอเจนต์ | คู่มือทักษะเฉพาะด้าน (การติดตั้ง, ภาษา, ตัวอย่าง, …) |
 

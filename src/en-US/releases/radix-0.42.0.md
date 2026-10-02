@@ -16,7 +16,7 @@ sources = []
 
 ## Install this version {#install}
 
-Pinned download for **Radix 0.42.0**. For the current release, use [Install](/start/install.html) instead.
+Pinned download for **Radix 0.42.0**. For the current release, use [Start](/start/) instead.
 
 | Platform | Archive | Size | Checksum |
 |---|---|---|---|
@@ -107,4 +107,4 @@ contexts. Closes the sit-inferred-binding design doc.
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

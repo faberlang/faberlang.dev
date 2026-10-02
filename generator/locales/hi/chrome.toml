@@ -20,16 +20,8 @@ corpus = "कॉर्पस"
 references = "संदर्भ"
 history = "इतिहास"
 
-[sidebar_agents]
-heading = "एजेंटों के लिए"
-index = "एजेंट सूची"
-guide = "एजेंट गाइड"
-skills = "एजेंट कौशल"
-full_reference = "पूर्ण संदर्भ"
-
 [sidebar_release]
 all_releases = "सभी रिलीज़"
-github_org = "GitHub संगठन"
 
 [renderbar]
 label = "रेंडरिंग"
@@ -43,12 +35,6 @@ label = "एजेंट-तैयार"
 link_install = "स्थापना"
 link_examples = "उदाहरण"
 
-[side_meta]
-paradigm_key = "प्रतिमान"
-typing_key = "टाइपिंग"
-target_key = "लक्ष्य"
-license_key = "लाइसेंस"
-
 [footer]
 sources_heading = "स्रोत"
 
@@ -56,10 +42,12 @@ sources_heading = "स्रोत"
 # these strings inside <aside>; a label must be declared here even when no
 # locale translates it, or a shorter translated label can be substituted
 # inside it. Labels covered by the sections above (Overview, Examples,
-# Releases, All releases, the agent items) are not repeated.
+# Releases, All releases) are not repeated.
 [nav]
 group_language = "भाषा"
-group_targets = "लक्ष्य के अनुसार"
+group_start = "शुरू करें"
+start_here = "यहाँ से शुरू करें"
+group_targets = "लक्ष्य"
 group_locales = "पाठक भाषाएँ"
 group_libraries = "लाइब्रेरी"
 behavior = "व्यवहार"
@@ -81,11 +69,10 @@ grammar_patterns = "पैटर्न और विघटन"
 grammar_errors = "त्रुटि चैनल"
 grammar_lexical = "शाब्दिक संरचना और ग्लिफ़"
 terms_az = "शब्द A–Z"
-installation = "स्थापना"
 all_targets = "सभी लक्ष्य"
-hir = "HIR — अनुप्रयोग"
-mir = "MIR — सिस्टम"
-gpu = "GPU — डिवाइस"
+hir = "अनुप्रयोग · HIR"
+mir = "सिस्टम · MIR"
+gpu = "डिवाइस · GPU"
 wasm = "WebAssembly टेक्स्ट"
 target_matrix = "लक्ष्य मैट्रिक्स"
 reader_locales = "पाठक भाषाएँ"
@@ -105,6 +92,13 @@ the_corpus = "कॉर्पस"
 # frontmatter section. When adding an entry: extend nav.fab, then mirror it
 # here in every locale, and add the label to [nav] above plus its
 # translation in each locale file.
+[[nav.group]]
+id = "start"
+label = "शुरू करें"
+[[nav.group.item]]
+label = "यहाँ से शुरू करें"
+href = "/start/"
+section = "start"
 [[nav.group]]
 id = "language"
 label = "भाषा"
@@ -184,31 +178,27 @@ section = "grammar-errors"
 label = "शाब्दिक संरचना और ग्लिफ़"
 href = "/en-US/reference/grammar/lexical.html"
 section = "grammar-lexical"
-[[nav.group.item.child]]
+[[nav.group.item]]
 label = "शब्द A–Z"
 href = "/corpus/az.html"
 section = "corpus"
 [[nav.group.item]]
-label = "Examples"
-href = "/examples/"
-section = "examples"
-[[nav.group.item]]
-label = "स्थापना"
-href = "/start/install.html"
-section = "install"
-[[nav.group.item]]
 label = "Cheat sheet"
 href = "/cheatsheet/"
 section = "cheatsheet"
+[[nav.group.item]]
+label = "Examples"
+href = "/examples/"
+section = "examples"
 [[nav.group]]
 id = "targets"
-label = "लक्ष्य के अनुसार"
+label = "लक्ष्य"
 [[nav.group.item]]
 label = "सभी लक्ष्य"
 href = "/en-US/targets/"
 section = "targets"
 [[nav.group.item]]
-label = "HIR — अनुप्रयोग"
+label = "अनुप्रयोग · HIR"
 href = ""
 section = ""
 [[nav.group.item.child]]
@@ -228,7 +218,7 @@ label = "Faber"
 href = "/en-US/targets/faber.html"
 section = "faber"
 [[nav.group.item]]
-label = "MIR — सिस्टम"
+label = "सिस्टम · MIR"
 href = ""
 section = ""
 [[nav.group.item.child]]
@@ -240,7 +230,7 @@ label = "WebAssembly टेक्स्ट"
 href = "/en-US/targets/wasm-text.html"
 section = "wasm-text"
 [[nav.group.item]]
-label = "GPU — डिवाइस"
+label = "डिवाइस · GPU"
 href = ""
 section = ""
 [[nav.group.item.child]]
@@ -301,38 +291,3 @@ section = "libraries"
 label = "कॉर्पस"
 href = "/libraries/corpus.html"
 section = "libraries"
-[[nav.group]]
-id = "releases"
-label = "Releases"
-[[nav.group.item]]
-label = "All releases"
-href = "/releases/"
-section = "releases"
-[[nav.group.item]]
-label = "macOS arm64"
-href = "https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz"
-section = ""
-[[nav.group.item]]
-label = "Linux x64"
-href = "https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz"
-section = ""
-[[nav.group]]
-id = "agents"
-label = "For agents"
-compact = true
-[[nav.group.item]]
-label = "Agent index"
-href = "/llms.txt"
-section = ""
-[[nav.group.item]]
-label = "Agent guide"
-href = "/agents/index.md"
-section = ""
-[[nav.group.item]]
-label = "Agent skills"
-href = "/.well-known/agent-skills/index.json"
-section = ""
-[[nav.group.item]]
-label = "Full reference"
-href = "/llms-full.txt"
-section = ""

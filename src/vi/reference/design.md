@@ -224,4 +224,4 @@ Các gói CLI dựng sẵn — bản phát hành Faber hiện tại ở trên c�
 và tệp nhị phân đã được phát hành từ [faberlang/releases](https://github.com/faberlang/releases):
 
 - **[Các bản phát hành](/releases/)** — liên kết tải xuống và danh mục lịch sử
-- **[Cài đặt và tải xuống](/start/install.html)** — thiết lập PATH và chạy `faber check` lần đầu
+- **[Cài đặt và tải xuống](/start/)** — thiết lập PATH và chạy `faber check` lần đầu

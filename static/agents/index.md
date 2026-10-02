@@ -16,4 +16,4 @@ Read these, in order. Writing Faber starts here, not in the HTML documentation.
 12. https://faberlang.dev/agents/grammar.md — the forms the other pages use.
 13. https://faberlang.dev/agents/reference/index.md — one page per `faber explain` entry, generated from the compiler registry.
 
-Install facts: https://faberlang.dev/llms.txt
+Install route: https://faberlang.dev/install.md

@@ -7,7 +7,7 @@ sources = []
 
 Every published version of Faber and Radix. Each entry links to a page with pinned install instructions for that exact version and its full release notes.
 
-Installing for the first time? Use [Install](/start/install.html) — it covers the current release only, which is what almost everyone wants.
+Installing for the first time? Use [Start](/start/): hand your model https://faberlang.dev/install.md and it installs the current release.
 
 ## Faber {#faber}
 

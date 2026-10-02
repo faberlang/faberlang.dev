@@ -176,4 +176,4 @@ Platform P6 authority (`05d87fc15`).
 
 ---
 
-[All releases](/releases/) · [Install the current release](/start/install.html)
+[All releases](/releases/) · [Start](/start/)

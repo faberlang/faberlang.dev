@@ -20,16 +20,8 @@ corpus = "語料庫"
 references = "參考"
 history = "歷史"
 
-[sidebar_agents]
-heading = "面向智慧體"
-index = "智慧體索引"
-guide = "智慧體指南"
-skills = "智慧體技能"
-full_reference = "完整參考"
-
 [sidebar_release]
 all_releases = "全部發行版"
-github_org = "GitHub 組織"
 
 [renderbar]
 label = "渲染"
@@ -43,12 +35,6 @@ label = "智慧體就緒"
 link_install = "安裝"
 link_examples = "範例"
 
-[side_meta]
-paradigm_key = "範式"
-typing_key = "型別"
-target_key = "目標"
-license_key = "授權"
-
 [footer]
 sources_heading = "來源"
 
@@ -56,10 +42,12 @@ sources_heading = "來源"
 # these strings inside <aside>; a label must be declared here even when no
 # locale translates it, or a shorter translated label can be substituted
 # inside it. Labels covered by the sections above (Overview, Examples,
-# Releases, All releases, the agent items) are not repeated.
+# Releases, All releases) are not repeated.
 [nav]
 group_language = "語言"
-group_targets = "按目標"
+group_start = "開始"
+start_here = "從這裡開始"
+group_targets = "目標"
 group_locales = "讀者語言"
 group_libraries = "程式庫"
 behavior = "行為"
@@ -81,11 +69,10 @@ grammar_patterns = "模式與解構"
 grammar_errors = "錯誤通道"
 grammar_lexical = "詞法結構與字符"
 terms_az = "術語 A–Z"
-installation = "安裝"
 all_targets = "全部目標"
-hir = "HIR — 應用"
-mir = "MIR — 系統"
-gpu = "GPU — 裝置"
+hir = "應用 · HIR"
+mir = "系統 · MIR"
+gpu = "裝置 · GPU"
 wasm = "WebAssembly 文字"
 target_matrix = "目標矩陣"
 reader_locales = "讀者語言"
@@ -105,6 +92,13 @@ the_corpus = "語料庫"
 # frontmatter section. When adding an entry: extend nav.fab, then mirror it
 # here in every locale, and add the label to [nav] above plus its
 # translation in each locale file.
+[[nav.group]]
+id = "start"
+label = "開始"
+[[nav.group.item]]
+label = "從這裡開始"
+href = "/start/"
+section = "start"
 [[nav.group]]
 id = "language"
 label = "語言"
@@ -184,31 +178,27 @@ section = "grammar-errors"
 label = "詞法結構與字符"
 href = "/en-US/reference/grammar/lexical.html"
 section = "grammar-lexical"
-[[nav.group.item.child]]
+[[nav.group.item]]
 label = "術語 A–Z"
 href = "/corpus/az.html"
 section = "corpus"
 [[nav.group.item]]
-label = "Examples"
-href = "/examples/"
-section = "examples"
-[[nav.group.item]]
-label = "安裝"
-href = "/start/install.html"
-section = "install"
-[[nav.group.item]]
 label = "Cheat sheet"
 href = "/cheatsheet/"
 section = "cheatsheet"
+[[nav.group.item]]
+label = "Examples"
+href = "/examples/"
+section = "examples"
 [[nav.group]]
 id = "targets"
-label = "按目標"
+label = "目標"
 [[nav.group.item]]
 label = "全部目標"
 href = "/en-US/targets/"
 section = "targets"
 [[nav.group.item]]
-label = "HIR — 應用"
+label = "應用 · HIR"
 href = ""
 section = ""
 [[nav.group.item.child]]
@@ -228,7 +218,7 @@ label = "Faber"
 href = "/en-US/targets/faber.html"
 section = "faber"
 [[nav.group.item]]
-label = "MIR — 系統"
+label = "系統 · MIR"
 href = ""
 section = ""
 [[nav.group.item.child]]
@@ -240,7 +230,7 @@ label = "WebAssembly 文字"
 href = "/en-US/targets/wasm-text.html"
 section = "wasm-text"
 [[nav.group.item]]
-label = "GPU — 裝置"
+label = "裝置 · GPU"
 href = ""
 section = ""
 [[nav.group.item.child]]
@@ -301,38 +291,3 @@ section = "libraries"
 label = "語料庫"
 href = "/libraries/corpus.html"
 section = "libraries"
-[[nav.group]]
-id = "releases"
-label = "Releases"
-[[nav.group.item]]
-label = "All releases"
-href = "/releases/"
-section = "releases"
-[[nav.group.item]]
-label = "macOS arm64"
-href = "https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz"
-section = ""
-[[nav.group.item]]
-label = "Linux x64"
-href = "https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz"
-section = ""
-[[nav.group]]
-id = "agents"
-label = "For agents"
-compact = true
-[[nav.group.item]]
-label = "Agent index"
-href = "/llms.txt"
-section = ""
-[[nav.group.item]]
-label = "Agent guide"
-href = "/agents/index.md"
-section = ""
-[[nav.group.item]]
-label = "Agent skills"
-href = "/.well-known/agent-skills/index.json"
-section = ""
-[[nav.group.item]]
-label = "Full reference"
-href = "/llms-full.txt"
-section = ""

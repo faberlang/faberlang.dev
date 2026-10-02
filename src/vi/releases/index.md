@@ -20,11 +20,8 @@ Tải xuống các gói lưu trữ Faber CLI dựng sẵn và duyệt mọi th�
 
 | Đường dẫn | Nội dung |
 |---|---|
-| [Cài đặt và tải xuống](/start/install.html) | Bản phát hành hiện tại, thiết lập `PATH`, xác minh, lệnh `faber check` đầu tiên |
-| [Tham quan nhanh](/start/) | Hình dạng ngôn ngữ trong vài phút |
-| [Xin chào, Faber](/start/hello.html) | Gói đầu tiên |
+| [Cài đặt và tải xuống](/start/) | Bản phát hành hiện tại, thiết lập `PATH`, xác minh, lệnh `faber check` đầu tiên |
 | [Các lệnh](/cheatsheet/commands.html) | Vòng lặp CLI hằng ngày |
-| [Dự án](/start/projects.html) | Bố cục gói thực tế |
 | [Ví dụ](/examples/) | Các gói mẫu công khai |
 
 Hướng dẫn dựng từ mã nguồn **cố ý không được liên kết** ở đây. Hãy dùng các gói dựng sẵn, trừ khi bạn làm việc trên cây trình biên dịch riêng tư.
@@ -47,7 +44,7 @@ Hướng dẫn dựng từ mã nguồn **cố ý không được liên kết** �
 | **macOS arm64** | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | 10.5 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
 | **Linux x64** | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | 11.9 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
-Mỗi gói lưu trữ gồm cây `bin/` và `share/` — đặt `bin/faber` vào `PATH`, giữ `share/faber` bên cạnh tệp nhị phân. Xem hướng dẫn từng bước tại [Cài đặt và tải xuống](/start/install.html).
+Mỗi gói lưu trữ gồm cây `bin/` và `share/` — đặt `bin/faber` vào `PATH`, giữ `share/faber` bên cạnh tệp nhị phân. Xem hướng dẫn từng bước tại [Cài đặt và tải xuống](/start/).
 
 ## Các bản phát hành trước đây {#historical}
 
@@ -392,6 +389,6 @@ Các tài sản nằm trong kho công khai [faberlang/releases](https://github.c
 
 | Liên kết | Vai trò |
 |---|---|
-| [Cài đặt và tải xuống](/start/install.html) | Đường dẫn cài đặt được khuyến nghị |
+| [Cài đặt và tải xuống](/start/) | Đường dẫn cài đặt được khuyến nghị |
 | [Lịch sử](/reference/design.html) | Dòng thời gian và nguồn gốc của dự án |
 | [faberlang/releases trên GitHub](https://github.com/faberlang/releases/releases) | Danh sách thẻ và tài sản thô |
