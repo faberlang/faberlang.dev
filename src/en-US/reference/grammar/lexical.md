@@ -1,6 +1,6 @@
 +++
 title = "Lexical structure & glyphs"
-section = "reference"
+section = "grammar-lexical"
 order = 10
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [

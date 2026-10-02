@@ -1,6 +1,6 @@
 +++
 title = "Statements & control flow"
-section = "reference"
+section = "grammar-statements"
 order = 6
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [

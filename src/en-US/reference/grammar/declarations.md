@@ -1,6 +1,6 @@
 +++
 title = "Declarations & bindings"
-section = "reference"
+section = "grammar-declarations"
 order = 3
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [

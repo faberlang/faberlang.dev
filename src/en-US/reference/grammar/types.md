@@ -1,6 +1,6 @@
 +++
 title = "Types & contracts"
-section = "reference"
+section = "grammar-types"
 order = 5
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [

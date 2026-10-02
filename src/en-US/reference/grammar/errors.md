@@ -1,6 +1,6 @@
 +++
 title = "Error channel"
-section = "reference"
+section = "grammar-errors"
 order = 9
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [

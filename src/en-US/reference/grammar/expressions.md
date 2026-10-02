@@ -1,6 +1,6 @@
 +++
 title = "Expressions & operators"
-section = "reference"
+section = "grammar-expressions"
 order = 7
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [

@@ -1,6 +1,6 @@
 +++
 title = "Annotations & directives"
-section = "reference"
+section = "grammar-annotations"
 order = 4
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [

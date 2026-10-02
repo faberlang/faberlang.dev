@@ -1,6 +1,6 @@
 +++
 title = "Programs, regions & imports"
-section = "reference"
+section = "grammar-program"
 order = 2
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [

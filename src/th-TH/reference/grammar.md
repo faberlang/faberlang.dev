@@ -33,197 +33,197 @@ statement ::= annotation* statement_core | ad_handler_decl
 # [006] ad_handler_decl
 ad_handler_decl ::= annotation* ad_annotation annotation* functio_decl
 # [007] statement_core
-statement_core ::= importa_decl | binding_decl | functio_decl | genus_decl | implendum_decl | typus_decl | ordo_decl | discretio_decl | schema_decl | static_decl | si_stmt | dum_stmt | itera_stmt | elige_stmt | discerne_stmt | custodi_stmt | fac_stmt | redde_stmt | reddet_stmt | tacebit_stmt | cede_stmt | rumpe_stmt | perge_stmt | tacet_stmt | iace_stmt | adfirma_stmt | requirit_stmt | reice_stmt | nota_stmt | incipit_stmt | incipiet_stmt | ex_stmt | probandum_decl | proba_stmt | block_stmt | inc_dec_stmt | expr_stmt
+statement_core ::= importa_decl | binding_decl | functio_decl | genus_decl | implendum_decl | typus_decl | ordo_decl | discretio_decl | schema_decl | si_stmt | dum_stmt | itera_stmt | elige_stmt | discerne_stmt | custodi_stmt | fac_stmt | redde_stmt | reddet_stmt | tacebit_stmt | cede_stmt | rumpe_stmt | perge_stmt | tacet_stmt | iace_stmt | adfirma_stmt | requirit_stmt | reice_stmt | nota_stmt | incipit_stmt | incipiet_stmt | ex_stmt | probandum_decl | proba_stmt | block_stmt | inc_dec_stmt | expr_stmt
 # [008] binding_decl
 binding_decl ::= fixum_decl | sit_decl | array_destruct | object_destruct | figendum_decl
 # [009] expr_stmt
 expr_stmt ::= expression
 # [010] block_stmt
 block_stmt ::= '{' statement* '}'
-# [011] static_decl
-static_decl ::= 'ของชนิด' concrete_type IDENTIFIER '=' static_init
-# [012] static_init
-static_init ::= insere_expr | expression
-# [013] insere_expr
+# [011] const_init
+const_init ::= insere_expr | expression
+# [012] insere_expr
 insere_expr ::= 'ฝัง' STRING
-# [014] fixum_decl
-fixum_decl ::= ('คงที่' | 'แปร') type_annotation IDENTIFIER (('←' expression) | ('=' expression) | ('↤' assignment inline_default?) | ('↢' expression))?
-# [015] figendum_decl
+# [013] fixum_decl
+fixum_decl ::= ('คงที่' | 'แปร') type_annotation IDENTIFIER (('←' expression) | ('=' const_init) | ('↤' assignment inline_default?) | ('↢' expression))?
+# [014] figendum_decl
 figendum_decl ::= ('รอคง' | 'รอแปร') type_annotation IDENTIFIER '←' expression
-# [016] sit_decl
+# [015] sit_decl
 sit_decl ::= 'อนุมานคงที่' IDENTIFIER (('←' | '↢') expression)?
-# [017] array_destruct
+# [016] array_destruct
 array_destruct ::= ('คงที่' | 'แปร') array_pattern '←' expression
-# [018] object_destruct
+# [017] object_destruct
 object_destruct ::= ('คงที่' | 'แปร') object_pattern '←' expression
-# [019] functio_decl
+# [018] functio_decl
 functio_decl ::= 'ฟังก์ชัน' IDENTIFIER generic_params? '(' param_list ')' func_modifier* callable_posture? return_clause? alternate_exit_clause? block_stmt
-# [020] param_list
+# [019] param_list
 param_list ::= (parameter (',' parameter)*)?
-# [021] generic_params
+# [020] generic_params
 generic_params ::= '<' (type_param_list (',' size_param_list)? | size_param_list) '>'
-# [022] type_param_list
+# [021] type_param_list
 type_param_list ::= generic_param (',' generic_param)*
-# [023] size_param_list
+# [022] size_param_list
 size_param_list ::= size_param (',' size_param)*
-# [024] generic_param
+# [023] generic_param
 generic_param ::= IDENTIFIER generic_bound? generic_type_default?
-# [025] size_param
+# [024] size_param
 size_param ::= 'ขนาด' IDENTIFIER generic_size_default?
-# [026] generic_bound
+# [025] generic_bound
 generic_bound ::= 'เติมเต็ม' contract_ref ('∩' contract_ref)*
-# [027] contract_ref
+# [026] contract_ref
 contract_ref ::= IDENTIFIER ('<' type_annotation (',' type_annotation)* '>')?
-# [028] generic_type_default
+# [027] generic_type_default
 generic_type_default ::= '=' type_annotation
-# [029] generic_size_default
+# [028] generic_size_default
 generic_size_default ::= '=' NATURAL
-# [030] call_type_args
+# [029] call_type_args
 call_type_args ::= '<' type_annotation (',' type_annotation)* '>'
-# [031] parameter
+# [030] parameter
 parameter ::= 'ที่เหลือ'? type_annotation IDENTIFIER 'สมัครใจ'? ('ในชื่อ' IDENTIFIER)? ('หรือว่าง' expression)?
-# [032] func_modifier
+# [031] func_modifier
 func_modifier ::= 'อาร์กิวเมนต์' IDENTIFIER | 'ข้อผิดพลาด' IDENTIFIER | 'ทางออก' (IDENTIFIER | NATURAL) | 'ไม่เปลี่ยนแปลง' | 'โยนผล' | 'ทางเลือก' IDENTIFIER
-# [033] callable_posture
+# [032] callable_posture
 callable_posture ::= 'อะซิงก์' | 'สตรีม' | 'สตรีมอะซิงก์'
-# [034] return_clause
+# [033] return_clause
 return_clause ::= '→' type_annotation
-# [035] alternate_exit_clause
+# [034] alternate_exit_clause
 alternate_exit_clause ::= '⇥' type_annotation
-# [036] ergo_joint
+# [035] ergo_joint
 ergo_joint ::= 'ดังนั้น'
-# [037] clausura_joint
+# [036] clausura_joint
 clausura_joint ::= '∴'
-# [038] clausura_expr
+# [037] clausura_expr
 clausura_expr ::= compact_clausura_expr | clausura_legacy_expr
-# [039] compact_clausura_expr
+# [038] compact_clausura_expr
 compact_clausura_expr ::= clausura_signature clausura_joint (expression | fac_block)
-# [040] clausura_signature
+# [039] clausura_signature
 clausura_signature ::= (clausura_param | '(' clausura_params? ')') closure_modifier? return_clause? alternate_exit_clause?
-# [041] closure_modifier
+# [040] closure_modifier
 closure_modifier ::= 'อิสระ' | 'เคอร์เนล'
-# [042] fac_block
+# [041] fac_block
 fac_block ::= 'ทำ' block_stmt cape_clause?
-# [043] clausura_legacy_expr
+# [042] clausura_legacy_expr
 clausura_legacy_expr ::= 'ปิดล้อม' clausura_params? closure_modifier? ('→' type_annotation)? (':' expression | block_stmt)
-# [044] clausura_params
+# [043] clausura_params
 clausura_params ::= clausura_param (',' clausura_param)*
-# [045] clausura_param
+# [044] clausura_param
 clausura_param ::= type_annotation IDENTIFIER
-# [046] genus_decl
+# [045] genus_decl
 genus_decl ::= 'ชนิด' IDENTIFIER generic_params? ('เติมเต็ม' contract_ref ((',' | '∩') contract_ref)*)? '{' genus_member* '}'
-# [047] genus_member
+# [046] genus_member
 genus_member ::= annotation* (genus_field_decl | functio_method_decl)
-# [048] genus_field_decl
-genus_field_decl ::= ('คงที่' | 'แปร' | 'ของชนิด') type_annotation IDENTIFIER 'สมัครใจ'? ('=' static_init)?
-# [049] field_decl
-field_decl ::= ('คงที่' | 'แปร' | 'ของชนิด')? type_annotation IDENTIFIER 'สมัครใจ'? ('=' static_init)?
-# [050] functio_method_decl
+# [047] genus_field_decl
+genus_field_decl ::= ('คงที่' | 'แปร' | 'ของชนิด') type_annotation IDENTIFIER 'สมัครใจ'? ('=' const_init)?
+# [048] field_decl
+field_decl ::= ('คงที่' | 'แปร' | 'ของชนิด')? type_annotation IDENTIFIER 'สมัครใจ'? ('=' const_init)?
+# [049] functio_method_decl
 functio_method_decl ::= 'ฟังก์ชัน' IDENTIFIER generic_params? '(' param_list ')' func_modifier* callable_posture? return_clause? alternate_exit_clause? block_stmt
-# [051] annotation
+# [050] annotation
 annotation ::= nucleum_annotation | radix_annotation | braced_annotation | annotation_sugar
-# [052] annotation_name
+# [051] annotation_name
 annotation_name ::= ANNOTATION_NAME
-# [053] braced_annotation
+# [052] braced_annotation
 braced_annotation ::= '@' annotation_name '{' annotation_field_list? '}'
-# [054] annotation_field_list
+# [053] annotation_field_list
 annotation_field_list ::= annotation_field (',' annotation_field)*
-# [055] annotation_field
+# [054] annotation_field
 annotation_field ::= ANNOTATION_FIELD_NAME '=' (expression | concrete_type)
-# [056] annotation_sugar
+# [055] annotation_sugar
 annotation_sugar ::= '@' annotation_name NON_NEWLINE_TOKEN* NEWLINE
-# [057] nucleum_annotation
+# [056] nucleum_annotation
 nucleum_annotation ::= nucleum_sugar | nucleum_braced
-# [058] nucleum_sugar
+# [057] nucleum_sugar
 nucleum_sugar ::= '@' 'เคอร์เนล' nucleum_modifier? NEWLINE
-# [059] nucleum_braced
+# [058] nucleum_braced
 nucleum_braced ::= '@' 'เคอร์เนล' '{' nucleum_field_list? '}'
-# [060] nucleum_modifier
+# [059] nucleum_modifier
 nucleum_modifier ::= 'ส่วนย่อย'
-# [061] nucleum_field_list
+# [060] nucleum_field_list
 nucleum_field_list ::= nucleum_field (',' nucleum_field)*
-# [062] nucleum_field
+# [061] nucleum_field
 nucleum_field ::= 'ส่วนย่อย' '=' ('จริง' | 'เท็จ')
-# [063] radix_annotation
+# [062] radix_annotation
 radix_annotation ::= '@' 'radix' radix_directive NEWLINE
-# [064] radix_directive
+# [063] radix_directive
 radix_directive ::= 'เลน' STRING | 'backward' STRING | 'contract' STRING | 'ชนิดนามแฝง' IDENTIFIER 'ใน' concrete_type+
-# [065] ad_annotation
+# [064] ad_annotation
 ad_annotation ::= '@' 'ถึง' ASCII_STRING NEWLINE
-# [066] implendum_decl
+# [065] implendum_decl
 implendum_decl ::= 'สัญญา' IDENTIFIER generic_params? '{' implendum_method_decl* '}'
-# [067] implendum_method_decl
+# [066] implendum_method_decl
 implendum_method_decl ::= annotation* 'ฟังก์ชัน' IDENTIFIER '(' param_list ')' func_modifier* callable_posture? return_clause? alternate_exit_clause?
-# [068] typus_decl
+# [067] typus_decl
 typus_decl ::= 'ชนิดนามแฝง' IDENTIFIER generic_params? '=' type_annotation
-# [069] ordo_decl
+# [068] ordo_decl
 ordo_decl ::= 'ลำดับ' IDENTIFIER '{' enum_member (',' enum_member)* '}'
-# [070] enum_member
+# [069] enum_member
 enum_member ::= IDENTIFIER ('=' ('-'? NUMBER | STRING))?
-# [071] discretio_decl
+# [070] discretio_decl
 discretio_decl ::= 'สหภาพแยก' IDENTIFIER generic_params? '{' union_fields? variant (',' variant)* '}'
-# [072] union_fields
+# [071] union_fields
 union_fields ::= annotation+ field_decl union_member*
-# [073] union_member
+# [072] union_member
 union_member ::= annotation* field_decl
-# [074] variant
+# [073] variant
 variant ::= IDENTIFIER ('{' variant_fields '}')?
-# [075] variant_fields
+# [074] variant_fields
 variant_fields ::= (type_annotation IDENTIFIER)*
-# [076] schema_decl
+# [075] schema_decl
 schema_decl ::= 'สคีมา' IDENTIFIER '{' (schema_column (NEWLINE schema_column)*)? '}'
-# [077] schema_column
+# [076] schema_column
 schema_column ::= 'คอลัมน์' type_annotation IDENTIFIER (':' IDENTIFIER)?
-# [078] importa_decl
+# [077] importa_decl
 importa_decl ::= importa_record | importa_sugar
-# [079] importa_record
+# [078] importa_record
 importa_record ::= 'นำเข้า' '{' import_field_list '}'
-# [080] import_field_list
+# [079] import_field_list
 import_field_list ::= import_field (',' import_field)*
-# [081] import_field
+# [080] import_field
 import_field ::= ex_field | visibilitas_field | nomen_field | ut_field | omnia_field
-# [082] ex_field
+# [081] ex_field
 ex_field ::= 'ออก' '=' STRING
-# [083] visibilitas_field
+# [082] visibilitas_field
 visibilitas_field ::= 'visibilitas' '=' publica
-# [084] nomen_field
+# [083] nomen_field
 nomen_field ::= 'ชื่อ' '=' IDENTIFIER
-# [085] ut_field
+# [084] ut_field
 ut_field ::= 'ในชื่อ' '=' IDENTIFIER
-# [086] omnia_field
+# [085] omnia_field
 omnia_field ::= 'ทั้งหมด' '=' IDENTIFIER
-# [087] importa_sugar
+# [086] importa_sugar
 importa_sugar ::= 'นำเข้า' 'ออก' STRING publica? (named_import | wildcard_import | selective_import)?
-# [088] publica
+# [087] publica
 publica ::= 'สาธารณะ'
-# [089] named_import
+# [088] named_import
 named_import ::= IDENTIFIER ('ในชื่อ' IDENTIFIER)?
-# [090] wildcard_import
+# [089] wildcard_import
 wildcard_import ::= '*' 'ในชื่อ' IDENTIFIER
-# [091] selective_import
+# [090] selective_import
 selective_import ::= 'คงที่' import_value_binding (',' import_value_binding)*
-# [092] import_value_binding
+# [091] import_value_binding
 import_value_binding ::= IDENTIFIER ('ในชื่อ' IDENTIFIER)?
-# [093] type_annotation
+# [092] type_annotation
 type_annotation ::= union_hole_type | concrete_type
-# [094] concrete_type
+# [093] concrete_type
 concrete_type ::= intersection_type ('∪' intersection_type)*
-# [095] union_hole_type
+# [094] union_hole_type
 union_hole_type ::= ('จาก' | 'ใน' | 'เป็นเจ้าของ' | 'สำเนา')? '∪'
-# [096] intersection_type
+# [095] intersection_type
 intersection_type ::= owned_type ('∩' owned_type)*
-# [097] owned_type
+# [096] owned_type
 owned_type ::= ('จาก' | 'ใน' | 'เป็นเจ้าของ' | 'สำเนา')? base_type
-# [098] base_type
+# [097] base_type
 base_type ::= hole_type | function_type | width_type_sugar | ratio_type | failable_promissum_type | qualified_type type_arguments?
-# [099] failable_promissum_type
+# [098] failable_promissum_type
 failable_promissum_type ::= IDENTIFIER '<' type_annotation alternate_exit_clause '>'
-# [100] ratio_type
+# [099] ratio_type
 ratio_type ::= 'ratio' '<' labeled_type_argument (',' labeled_type_argument)* '>'
-# [101] hole_type
+# [100] hole_type
 hole_type ::= '_'
-# [102] qualified_type
-qualified_type ::= IDENTIFIER ('.' IDENTIFIER)*
+# [101] qualified_type
+qualified_type ::= type_head ('.' IDENTIFIER)*
+# [102] type_head
+type_head ::= IDENTIFIER | 'โมดูลัส'
 # [103] type_arguments
 type_arguments ::= '<' type_argument (',' type_argument)* '>'
 # [104] type_argument
@@ -269,270 +269,272 @@ ceterum_clause ::= 'อื่น' (block_stmt | ergo_joint statement)
 # [124] discerne_stmt
 discerne_stmt ::= 'แยก' 'ทั้งหมด'? discriminants '{' casu_variant_clause* ceterum_clause? '}'
 # [125] discriminants
-discriminants ::= expression (',' expression)*
-# [126] casu_variant_clause
+discriminants ::= subject_path ('และ' subject_path)*
+# [126] subject_path
+subject_path ::= IDENTIFIER ('.' IDENTIFIER)*
+# [127] casu_variant_clause
 casu_variant_clause ::= 'กรณี' patterns (block_stmt | ergo_joint statement)
-# [127] patterns
-patterns ::= pattern ((',' | 'และ') pattern)*
-# [128] pattern
+# [128] patterns
+patterns ::= pattern ('และ' pattern)*
+# [129] pattern
 pattern ::= pattern_atom ('หรือ' pattern_atom)*
-# [129] pattern_atom
+# [130] pattern_atom
 pattern_atom ::= '_' | negated_number | literal | type_pattern | (IDENTIFIER ut_pattern?)
-# [130] negated_number
+# [131] negated_number
 negated_number ::= '-' NUMBER
-# [131] type_pattern
+# [132] type_pattern
 type_pattern ::= IDENTIFIER type_arguments? ut_pattern?
-# [132] ut_pattern
+# [133] ut_pattern
 ut_pattern ::= ('ในชื่อ' IDENTIFIER) | (('คงที่' | 'แปร') pattern_binding (',' pattern_binding)*)
-# [133] pattern_binding
+# [134] pattern_binding
 pattern_binding ::= IDENTIFIER ('ในชื่อ' IDENTIFIER)?
-# [134] custodi_stmt
+# [135] custodi_stmt
 custodi_stmt ::= 'คุ้มครอง' '{' si_guard_clause+ '}'
-# [135] si_guard_clause
+# [136] si_guard_clause
 si_guard_clause ::= 'ถ้า' expression (block_stmt | ergo_joint statement)
-# [136] ex_stmt
+# [137] ex_stmt
 ex_stmt ::= 'ออก' expression ('คงที่' | 'แปร') extract_fields
-# [137] extract_fields
+# [138] extract_fields
 extract_fields ::= extract_field (',' extract_field)* (',' ceteri_field)? | ceteri_field
-# [138] extract_field
+# [139] extract_field
 extract_field ::= IDENTIFIER ('ในชื่อ' IDENTIFIER)?
-# [139] ceteri_field
+# [140] ceteri_field
 ceteri_field ::= 'ที่เหลือ' IDENTIFIER
-# [140] redde_stmt
+# [141] redde_stmt
 redde_stmt ::= 'คืน' expression?
-# [141] reddet_stmt
+# [142] reddet_stmt
 reddet_stmt ::= 'รอคืน' expression
-# [142] tacebit_stmt
+# [143] tacebit_stmt
 tacebit_stmt ::= 'รอทิ้ง' expression
-# [143] cede_stmt
+# [144] cede_stmt
 cede_stmt ::= 'ให้' expression
-# [144] rumpe_stmt
+# [145] rumpe_stmt
 rumpe_stmt ::= 'หยุด'
-# [145] perge_stmt
+# [146] perge_stmt
 perge_stmt ::= 'ไปต่อ'
-# [146] tacet_stmt
+# [147] tacet_stmt
 tacet_stmt ::= 'เงียบ'
-# [147] iace_stmt
+# [148] iace_stmt
 iace_stmt ::= iace_expr | iace_guarded_expr
-# [148] iace_expr
+# [149] iace_expr
 iace_expr ::= ('โยน' | 'ตาย') expression
-# [149] iace_guarded_expr
+# [150] iace_guarded_expr
 iace_guarded_expr ::= ('โยน' | 'ตาย') expression NO_NEWLINE 'ถ้า' expression
-# [150] cape_clause
+# [151] cape_clause
 cape_clause ::= 'จับ' IDENTIFIER block_stmt
-# [151] adfirma_stmt
+# [152] adfirma_stmt
 adfirma_stmt ::= 'ยืนยัน' expression ('ตาย' expression)?
-# [152] requirit_stmt
+# [153] requirit_stmt
 requirit_stmt ::= 'ต้องการ' expression 'โยน' expression
-# [153] reice_stmt
+# [154] reice_stmt
 reice_stmt ::= 'ปฏิเสธ' expression 'โยน' expression
-# [154] expression
+# [155] expression
 expression ::= assignment
-# [155] transfer
+# [156] transfer
 transfer ::= ternary ('⇇' ternary)*
-# [156] assignment
+# [157] assignment
 assignment ::= transfer ('←' assignment | '↤' assignment inline_default?)?
-# [157] inc_dec_stmt
+# [158] inc_dec_stmt
 inc_dec_stmt ::= place ('↑' | '↓')
-# [158] place
+# [159] place
 place ::= call_expr
-# [159] ternary
+# [160] ternary
 ternary ::= aut_expr ('✓' expression '✗' aut_expr)?
-# [160] aut_expr
+# [161] aut_expr
 aut_expr ::= et_expr (('หรือ') et_expr)*
-# [161] et_expr
+# [162] et_expr
 et_expr ::= equality (('และ') equality)*
-# [162] equality
+# [163] equality
 equality ::= comparison equality_tail*
-# [163] equality_tail
+# [164] equality_tail
 equality_tail ::= ('≡' | '≢' | '≠' | '≅' | '≇' | '≈' | '≉') comparison | ('เป็น' | 'ไม่' 'เป็น') type_annotation
-# [164] comparison
-comparison ::= format_expr (('≺' | '≻' | '≤' | '≥' | 'ภายใน' | 'ระหว่าง') format_expr)*
-# [165] format_expr
+# [165] comparison
+comparison ::= format_expr (('≺' | '≻' | '≤' | '≥' | '∈' | '∉') format_expr)*
+# [166] format_expr
 format_expr ::= bitwise_or_expr ('¶' STRING)?
-# [166] bitwise_or_expr
+# [167] bitwise_or_expr
 bitwise_or_expr ::= bitwise_xor_expr ('∨' bitwise_xor_expr)*
-# [167] bitwise_xor_expr
+# [168] bitwise_xor_expr
 bitwise_xor_expr ::= bitwise_and_expr ('⊻' bitwise_and_expr)*
-# [168] bitwise_and_expr
+# [169] bitwise_and_expr
 bitwise_and_expr ::= shift_expr ('∧' shift_expr)*
-# [169] shift_expr
+# [170] shift_expr
 shift_expr ::= range_expr (('⇐' | '⇒') range_expr)*
-# [170] range_expr
+# [171] range_expr
 range_expr ::= additive_expr range_tail?
-# [171] range_tail
+# [172] range_tail
 range_tail ::= ('‥' | '…' | 'ก่อน' | 'จนถึง') additive_expr ('ต่อ' additive_expr)?
-# [172] additive_expr
+# [173] additive_expr
 additive_expr ::= multiplicative_expr (('+' | '-' | '⤒' | '⤓') multiplicative_expr)*
-# [173] multiplicative_expr
+# [174] multiplicative_expr
 multiplicative_expr ::= vel_expr (('*' | '/' | '÷' | '%' | '·' | '×' | '⊗' | '⊙' | '⊘') vel_expr)*
-# [174] vel_expr
+# [175] vel_expr
 vel_expr ::= unary_expr ('หรือว่าง' vel_rhs)*
-# [175] vel_rhs
+# [176] vel_rhs
 vel_rhs ::= unary_expr vel_range_tail?
-# [176] vel_range_tail
+# [177] vel_range_tail
 vel_range_tail ::= ('‥' | '…' | 'ก่อน' | 'จนถึง') unary_expr ('ต่อ' unary_expr)?
-# [177] unary_expr
+# [178] unary_expr
 unary_expr ::= ('-' | '¬' | 'ไม่') unary_expr | finge_expr | cast_expr
-# [178] gradient_expr
+# [179] gradient_expr
 gradient_expr ::= call_expr ('∇' gradient_selection?)?
-# [179] gradient_selection
+# [180] gradient_selection
 gradient_selection ::= '[' gradient_place (',' gradient_place)* ']'
-# [180] gradient_place
+# [181] gradient_place
 gradient_place ::= expression
-# [181] cast_expr
+# [182] cast_expr
 cast_expr ::= gradient_expr ('∷' type_annotation | conversio_expr)* inline_default?
-# [182] conversio_expr
+# [183] conversio_expr
 conversio_expr ::= '↦' (type_annotation | interval_target) via_clause? inline_default?
-# [183] interval_target
+# [184] interval_target
 interval_target ::= range_expr
-# [184] via_clause
+# [185] via_clause
 via_clause ::= 'ผ่านทาง' IDENTIFIER
-# [185] inline_default
+# [186] inline_default
 inline_default ::= '⊥' unary_expr
-# [186] call_expr
+# [187] call_expr
 call_expr ::= primary (call_suffix | member_suffix | transpose_suffix | optional_suffix | non_null_suffix)*
-# [187] call_suffix
+# [188] call_suffix
 call_suffix ::= call_type_args? '(' argument_list ')'
-# [188] member_suffix
+# [189] member_suffix
 member_suffix ::= '.' IDENTIFIER | '[' expression ']'
-# [189] transpose_suffix
+# [190] transpose_suffix
 transpose_suffix ::= 'ᵀ'
-# [190] optional_suffix
+# [191] optional_suffix
 optional_suffix ::= '?.' IDENTIFIER | '?[' expression ']' | '?(' argument_list ')'
-# [191] non_null_suffix
+# [192] non_null_suffix
 non_null_suffix ::= '!.' IDENTIFIER | '![' expression ']' | '!(' argument_list ')'
-# [192] argument_list
+# [193] argument_list
 argument_list ::= (argument (',' argument)*)?
-# [193] argument
+# [194] argument
 argument ::= template_argument | 'กระจาย'? expression
-# [194] template_argument
+# [195] template_argument
 template_argument ::= 'กระจาย'? IDENTIFIER ':' expression
-# [195] literal
+# [196] literal
 literal ::= NUMBER | STRING | ASCII_STRING | BACKTICK_STRING | OCTETI_STRING | 'จริง' | 'เท็จ' | 'ว่างเปล่า' | '∞' | 'nan'
-# [196] primary
+# [197] primary
 primary ::= IDENTIFIER | literal | 'ตัวฉัน' | array_literal | json_literal | typed_constructor | iuncta_expr | ad_expr | clausura_expr | praefixum_expr | scriptum_expr | lege_expr | first_match_expr | summa_expr | extrema_expr | capta_expr | '(' expression ')'
-# [197] ad_expr
+# [198] ad_expr
 ad_expr ::= 'ถึง' ASCII_STRING ad_opener?
-# [198] ad_opener
+# [199] ad_opener
 ad_opener ::= '(' expression ')'
-# [199] array_literal
+# [200] array_literal
 array_literal ::= '[' argument_list? ']'
-# [200] iuncta_expr
+# [201] iuncta_expr
 iuncta_expr ::= 'ทูเพิล' type_arguments '[' argument_list? ']'
-# [201] json_literal
+# [202] json_literal
 json_literal ::= '{' (json_member (',' json_member)*)? '}'
-# [202] json_member
+# [203] json_member
 json_member ::= STRING ':' json_value
-# [203] typed_constructor
+# [204] typed_constructor
 typed_constructor ::= type_annotation '{' field_list? '}' construction_source?
-# [204] field_list
+# [205] field_list
 field_list ::= field_init (',' field_init)*
-# [205] field_init
+# [206] field_init
 field_init ::= (field_key '=' expression) | IDENTIFIER
-# [206] field_key
+# [207] field_key
 field_key ::= IDENTIFIER | STRING | '[' expression ']'
-# [207] construction_source
+# [208] construction_source
 construction_source ::= 'ออก' call_expr
-# [208] json_value
+# [209] json_value
 json_value ::= json_object | json_array | json_string | json_number | 'true' | 'false' | 'null'
-# [209] json_object
+# [210] json_object
 json_object ::= '{' (json_member (',' json_member)*)? '}'
-# [210] json_array
+# [211] json_array
 json_array ::= '[' (json_value (',' json_value)*)? ']'
-# [211] json_string
+# [212] json_string
 json_string ::= STRING
-# [212] json_number
+# [213] json_number
 json_number ::= NUMBER
-# [213] finge_expr
+# [214] finge_expr
 finge_expr ::= 'สร้าง' qualified_ident ('{' field_list? '}')? ('∷' type_annotation)?
-# [214] qualified_ident
+# [215] qualified_ident
 qualified_ident ::= IDENTIFIER ('.' IDENTIFIER)*
-# [215] praefixum_expr
+# [216] praefixum_expr
 praefixum_expr ::= 'นำหน้า' block_stmt
-# [216] scriptum_expr
+# [217] scriptum_expr
 scriptum_expr ::= 'จารึก' '(' STRING (',' expression)* ')'
-# [217] lege_expr
+# [218] lege_expr
 lege_expr ::= 'อ่าน' 'บรรทัด'?
-# [218] first_match_expr
+# [219] first_match_expr
 first_match_expr ::= 'ตรงแรก' '(' expression apud_clause? ',' 'ที่ซึ่ง' IDENTIFIER block_stmt ')'
-# [219] summa_expr
+# [220] summa_expr
 summa_expr ::= 'ผลรวม' 'ออก' expression apud_clause? filum_clause? ('คงที่' | 'แปร') IDENTIFIER block_stmt
-# [220] filum_clause
+# [221] filum_clause
 filum_clause ::= 'เส้นใย' IDENTIFIER
-# [221] extrema_expr
+# [222] extrema_expr
 extrema_expr ::= ('สูงสุด' | 'ต่ำสุด') 'ออก' expression apud_clause? extrema_identity?
-# [222] extrema_identity
+# [223] extrema_identity
 extrema_identity ::= 'หรือว่าง' expression
-# [223] capta_expr
+# [224] capta_expr
 capta_expr ::= 'ดัก' block_stmt
-# [224] object_pattern
+# [225] object_pattern
 object_pattern ::= '{' pattern_property (',' pattern_property)* '}'
-# [225] pattern_property
+# [226] pattern_property
 pattern_property ::= 'ที่เหลือ'? IDENTIFIER ('ในชื่อ' IDENTIFIER)?
-# [226] array_pattern
+# [227] array_pattern
 array_pattern ::= '[' array_pattern_element (',' array_pattern_element)* ']'
-# [227] array_pattern_element
+# [228] array_pattern_element
 array_pattern_element ::= '_' | 'ที่เหลือ'? IDENTIFIER
-# [228] nota_stmt
+# [229] nota_stmt
 nota_stmt ::= ('บันทึก' | 'ดู' | 'เตือน' | 'เขียน') expression (',' expression)*
-# [229] entry_header
+# [230] entry_header
 entry_header ::= ('อาร์กิวเมนต์' IDENTIFIER)? ('ทางออก' expression)?
-# [230] incipit_stmt
+# [231] incipit_stmt
 incipit_stmt ::= 'เริ่ม' entry_header block_stmt
-# [231] incipiet_stmt
+# [232] incipiet_stmt
 incipiet_stmt ::= 'เริ่มอะซิงก์' entry_header block_stmt
-# [232] probandum_decl
+# [233] probandum_decl
 probandum_decl ::= 'ทดสอบชุด' STRING proba_modifier* '{' probandum_body '}'
-# [233] probandum_body
+# [234] probandum_body
 probandum_body ::= (praepara_block | probandum_decl | proba_stmt)*
-# [234] proba_stmt
+# [235] proba_stmt
 proba_stmt ::= 'ทดสอบ' STRING proba_modifier* block_stmt
-# [235] proba_modifier
+# [236] proba_modifier
 proba_modifier ::= 'คาดหวัง_ล้มเหลว' | 'ละเว้น' STRING | 'ค้าง' STRING | 'เฉพาะ' | 'แท็ก' STRING | 'เวลา' NATURAL | 'วัด' | 'ทำซ้ำ' NATURAL | 'เปราะบาง' NATURAL | 'เฉพาะใน' STRING
-# [236] praepara_block
+# [237] praepara_block
 praepara_block ::= ('เตรียม' | 'จะเตรียม' | 'หลังเตรียม' | 'จะหลังเตรียม') 'ทั้งหมด'? block_stmt
-# [237] fac_stmt
+# [238] fac_stmt
 fac_stmt ::= 'ทำ' block_stmt cape_clause? ('ขณะ' expression)?
-# [238] IDENTIFIER
+# [239] IDENTIFIER
 IDENTIFIER ::=
-# [239] NUMBER
+# [240] NUMBER
 NUMBER ::=
-# [240] NATURAL
+# [241] NATURAL
 NATURAL ::=
-# [241] STRING
+# [242] STRING
 STRING ::=
-# [242] ASCII_STRING
+# [243] ASCII_STRING
 ASCII_STRING ::=
-# [243] BACKTICK_STRING
+# [244] BACKTICK_STRING
 BACKTICK_STRING ::=
-# [244] OCTETI_STRING
+# [245] OCTETI_STRING
 OCTETI_STRING ::=
-# [245] NEWLINE
+# [246] NEWLINE
 NEWLINE ::=
-# [246] WIDTH_MARKER
+# [247] WIDTH_MARKER
 WIDTH_MARKER ::=
-# [247] LISTA_WIDTH_SUGAR
+# [248] LISTA_WIDTH_SUGAR
 LISTA_WIDTH_SUGAR ::=
-# [248] TENSOR_WIDTH_SUGAR
+# [249] TENSOR_WIDTH_SUGAR
 TENSOR_WIDTH_SUGAR ::=
-# [249] SPARSA_WIDTH_SUGAR
+# [250] SPARSA_WIDTH_SUGAR
 SPARSA_WIDTH_SUGAR ::=
-# [250] VECTOR_WIDTH_SUGAR
+# [251] VECTOR_WIDTH_SUGAR
 VECTOR_WIDTH_SUGAR ::=
-# [251] MATRIX_WIDTH_SUGAR
+# [252] MATRIX_WIDTH_SUGAR
 MATRIX_WIDTH_SUGAR ::=
-# [252] FRONTMATTER_DELIMITER
+# [253] FRONTMATTER_DELIMITER
 FRONTMATTER_DELIMITER ::=
-# [253] TOML_LINES
+# [254] TOML_LINES
 TOML_LINES ::=
-# [254] ANNOTATION_NAME
+# [255] ANNOTATION_NAME
 ANNOTATION_NAME ::=
-# [255] ANNOTATION_FIELD_NAME
+# [256] ANNOTATION_FIELD_NAME
 ANNOTATION_FIELD_NAME ::=
-# [256] NON_NEWLINE_TOKEN
+# [257] NON_NEWLINE_TOKEN
 NON_NEWLINE_TOKEN ::=
-# [257] NO_NEWLINE
+# [258] NO_NEWLINE
 NO_NEWLINE ::=
 ```
 
@@ -570,8 +572,7 @@ NO_NEWLINE ::=
 | [`binding_decl`](#binding-decl) | `#binding-decl` | live |
 | [`expr_stmt`](#expr-stmt) | `#expr-stmt` | live |
 | [`block_stmt`](#block-stmt) | `#block-stmt` | live |
-| [`static_decl`](#static-decl) | `#static-decl` | live |
-| [`static_init`](#static-init) | `#static-init` | live |
+| [`const_init`](#const-init) | `#const-init` | live |
 | [`insere_expr`](#insere-expr) | `#ฝัง-expr` | live |
 | [`fixum_decl`](#fixum-decl) | `#คงที่-decl` | live |
 | [`figendum_decl`](#figendum-decl) | `#รอคง-decl` | live |
@@ -662,6 +663,7 @@ NO_NEWLINE ::=
 | [`ratio_type`](#ratio-type) | `#ratio-type` | live |
 | [`hole_type`](#hole-type) | `#hole-type` | live |
 | [`qualified_type`](#qualified-type) | `#qualified-type` | live |
+| [`type_head`](#type-head) | `#type-head` | live |
 | [`type_arguments`](#type-arguments) | `#type-arguments` | live |
 | [`type_argument`](#type-argument) | `#type-argument` | live |
 | [`labeled_type_argument`](#labeled-type-argument) | `#labeled-type-argument` | live |
@@ -685,6 +687,7 @@ NO_NEWLINE ::=
 | [`ceterum_clause`](#ceterum-clause) | `#อื่น-clause` | live |
 | [`discerne_stmt`](#discerne-stmt) | `#แยก-stmt` | live |
 | [`discriminants`](#discriminants) | `#discriminants` | live |
+| [`subject_path`](#subject-path) | `#subject-path` | live |
 | [`casu_variant_clause`](#casu-variant-clause) | `#กรณี-variant-clause` | live |
 | [`patterns`](#patterns) | `#patterns` | live |
 | [`pattern`](#pattern) | `#pattern` | live |
@@ -806,14 +809,14 @@ driver. `capture-pending` rows intentionally carry no invented token shape.
 | Terminal | Status | Capture notes |
 |---|---|---|
 | `IDENTIFIER` | `capture-pending` | Lexical tier. Empty RHS; status is capture-pending. radix-lexer / driver / parser is the authority (crates/radix-lexer/src/). Not a second lexer spec. scan.rs scan_identifier; Unicode XID_Start or '_' then XID_Continue or '_'; NFKC intern; TokenKind::Ident (keywords also lex as identifiers) |
-| `NUMBER` | `capture-pending` | scan.rs scan_number; decimal/hex/bin/oct integers and floats with '_' separators; TokenKind::Integer(u64) when the value fits u64, TokenKind::BigInteger(text) when an integer literal is longer (no upper bound on length; inf track, F9 ruling 34) or Float(f64); a BigInteger is legal only where an expression literal or a `กรณี` constant pattern stands (its value must then fit the receiving slot: always an `inf` slot, otherwise the slot's range) and is a parse error in a NATURAL or enum-member position; scan.rs also lexes the glyph '∞' as Float(+inf), never an `inf` value |
+| `NUMBER` | `capture-pending` | scan.rs scan_number; decimal/hex/bin/oct integers and floats with '_' separators; TokenKind::Integer(u64) when the value fits u64, TokenKind::BigInteger(text) when an integer literal is longer (no upper bound on length; inf track, F9 ruling 34) or Float(f64); a BigInteger is legal only where an expression literal or a `กรณี` constant pattern stands (its value must then fit the receiving slot: always an `inf` slot, otherwise the slot's range) and is a parse error in a NATURAL, enum-member or JSON-literal position (a JSON integer keeps the signed 64-bit wire range: `json_integer_overflow` / `json_integer_underflow`); scan.rs also lexes the glyph '∞' as Float(+inf), never an `inf` value |
 | `NATURAL` | `capture-pending` | not a distinct lexer token; TokenKind::Integer (so at most u64::MAX; a BigInteger here is a parse error) used as magnitudo capacity in type position, as the count of a `ทดสอบ` modifier (`เวลา`, `ทำซ้ำ`, `เปราะบาง`; a float is `test_modifier_integer`), and as a function's `ทางออก` code (no fraction/exponent) |
 | `STRING` | `capture-pending` | scan.rs scan_string / scan_guillemet_block_string; double-quoted or guillemet block; TokenKind::String |
 | `ASCII_STRING` | `capture-pending` | scan.rs scan_ascii_string; single-quoted; TokenKind::AsciiString |
 | `BACKTICK_STRING` | `capture-pending` | scan.rs scan_backtick_string; backtick forma template; TokenKind::BacktickString |
 | `OCTETI_STRING` | `capture-pending` | scan.rs scan_octeti_string; pipe-delimited hex; TokenKind::OctetiString |
 | `NEWLINE` | `capture-pending` | scan.rs scan_line_break; LF or CRLF; TokenKind::Newline |
-| `WIDTH_MARKER` | `capture-pending` | parser type-position identifier i8/i16/i32/i64/u8/u16/u32/u64 and decimal d64 (numerus and exactus), f16/bf16/f32/f64 (fractus only); every integer width i8…u64 (modulus and saturatus; no d64, no float); integer widths and d64 (exactus; a float width is `trapping_float_not_implemented`); the unbounded integer marker `inf` (numerus, exactus, modulus and saturatus all name the same type; locale-invariant, not a keyword; never prefixed sugar; not a float width; not a tensor, sparsa, vector or matrix element); not a lexer token |
+| `WIDTH_MARKER` | `capture-pending` | parser type-position identifier i8/i16/i32/i64/u8/u16/u32/u64 and decimal d64 (numerus and exactus), f16/bf16/f32/f64 (fractus only); every integer width i8…u64 (modulus and saturatus; no d64, no float); integer widths and d64 (exactus; a float width is `trapping_float_not_implemented`); the unbounded integer marker `inf` (numerus, exactus, modulus and saturatus all name the same type; locale-invariant, not a keyword; never prefixed sugar; not a float width; not a tensor, sparsa, vector or matrix element; host-only, so no kernel or AIR-lane position takes it); not a lexer token |
 | `LISTA_WIDTH_SUGAR` | `capture-pending` | parser type-position l + WIDTH_MARKER; not a lexer token |
 | `TENSOR_WIDTH_SUGAR` | `capture-pending` | parser type-position t + WIDTH_MARKER; not a lexer token |
 | `SPARSA_WIDTH_SUGAR` | `capture-pending` | parser type-position s + WIDTH_MARKER; not a lexer token |
@@ -891,8 +894,6 @@ productions. It is not a second keyword authority.
 | Declarations | `เริ่มอะซิงก์` | async entrypoint |
 | Declarations | `เริ่ม` | entrypoint |
 | Comptime | `ฝัง` | build-time file embed |
-| Iteration | `ระหว่าง` | between |
-| Iteration | `ภายใน` | membership |
 | Control | `วน` | for |
 | Objects | `ทูเพิล` | tuple type/constructor |
 | Annotation | `เลน` | `@ radix` compiler-lane directive |
@@ -903,6 +904,7 @@ productions. It is not a second keyword authority.
 | Expression | `สูงสุด` | maximum reduction (en `max from`) |
 | Testing | `วัด` | benchmark |
 | Expression | `ต่ำสุด` | minimum reduction (en `min from`) |
+| Type | `โมดูลัส` | modular-word policy type head (en `wrapping`) |
 | Diagnostics | `เตือน` | warn |
 | Error | `ตาย` | panic |
 | Declarations | `ชื่อ` | import binding name |
@@ -1081,46 +1083,75 @@ use a top-level function.
   the written type is the conversion destination, then the binding is
   initialized. `รอคง`/`รอแปร` keep `←`; `คงที่ _`, `อนุมานคงที่`, and untyped
   destructuring reject `↤` (no concrete destination type).
-- `คงที่ T x = e` (D5.10) declares a typed **local constant**. `=` states a
+- `คงที่ T x = e` (D5.10) declares a typed **constant**; at the top of a file
+  the same declaration is the module-level constant (next section). `=` states a
   compile-time fact, so `e` is evaluated while compiling (literals, arithmetic
-  and the other operators on scalars, `ของชนิด` statics, earlier constants) and
+  and the other operators on scalars, module constants, earlier constants) and
   must fit `T` whatever `T`'s overflow policy: `คงที่ u8 d = 300` is a compile
   error even for `saturating<u8>`. `คงที่ _ x = 10` infers `int`. The result is
   an ordinary immutable local of type `T`. `แปร` never takes `=`
   (`varia_compile_time_initializer`), and a value that is not known at compile
-  time is stored with `←` (`local_constant_not_constant`, SEM060).
+  time is stored with `←` (`constant_initializer_not_constant`, SEM060).
 - Deferred init: `คงที่ numerus x` or `อนุมานคงที่ x` declares an uninitialized immutable
   slot that must be assigned exactly once before any read; a second assignment is
   rejected. The definite-assignment pass (semantic Phase 3a) enforces this.
 
-### Top-level statics
+### Module-level constants
 
-`คงที่` and `แปร` are not allowed at top level (D5.7): module-level mutable
-state does not exist. A top-level `คงที่`/`แปร` binding is a compile error: SEM062
-`top_level_binding`.
+A module declares values only as compile-time constants: `คงที่ T X = e` at the
+top of a file (en `const T X = e`), for example `คงที่ numerus LIMES = 4096`
+(D5.8, st1 R1). It is the same declaration as the block-level constant above,
+with `=` stating a compile-time fact, and it is the only top-level value
+declaration. Module-level mutable state does not exist (D5.7): a top-level
+`แปร`, `อนุมานคงที่`, destructuring, or a runtime initializer (`←`, `↤`, `↢`) is a
+compile error, SEM062 `top_level_binding` — a runtime value belongs in a
+function. `แปร T X = e` stays `varia_compile_time_initializer`, and a
+top-level declaration with no initializer is SEM008 `top_level_initializer`.
+`คงที่ _ X = 10` infers `int` as it does for a local.
 
-The top-level static is `ของชนิด` (en `static`): `ของชนิด numerus LIMES = 4096`
-(D5.8) — the same production as a `ชนิด` static field, used in a second,
-top-level-only scope. It is the only top-level value declaration; declaring
-one inside a block is a parse error (`static_not_top_level`), the same
-enforcement shape as `ฟังก์ชัน`/`ชนิด`/`ลำดับ`/`สหภาพแยก` at non-top level.
+**Retired spelling.** The module-level static `ของชนิด T X = e` (en
+`static T X = e`) no longer exists. A statement-initial `ของชนิด` followed by an
+identifier or `(`, at the top level or in a block, parses as the old
+declaration whole and is reported as `PARSE010 static_decl_retired` (args
+`keyword`, the spelling written, and `name`; the help names the `คงที่`
+spelling); there is no alias period, and the diagnostic stays. `ของชนิด`
+followed by anything else is an ordinary identifier. `ของชนิด` survives only as
+the `ชนิด` field modifier (see Classes).
 
-A static's declared type cannot be a hole: `ของชนิด _ X = …` and `ของชนิด ∪ X = …` are parse errors (the same holds for an annotation field's type value and the `@ radix ชนิดนามแฝง` domain list, which take a `concrete_type`).
-
-Statics are **immutable and initialized with `=` only** (D5.9), never `←`; a
-missing initializer or an initializer spelled with `←` is a named parse
-error. The initializer must be evaluable at compile time: literals;
+Constants are **immutable and initialized with `=` only** (D5.9), never `←`.
+The initializer must be evaluable at compile time: literals;
 arithmetic, comparison, bit, and logical operators on `numerus`, `fractus`,
 and `bivalens` scalars, plus `textus` concatenation; references to other
-statics (evaluated in dependency order — a cycle is `static_cycle`); and
+constants (evaluated in dependency order, so a constant may be used before its
+declaration — a cycle is `constant_cycle`, SEM007); and
 collection literals (`lista`, tuples, map construction) whose elements are
 constants (only their scalar leaves fold). Anything else is
-`static_initializer_not_constant`. Decimal widths and `modulus<W>`/`saturatus<W>` values are
+`constant_initializer_not_constant` (SEM060). Decimal widths and `โมดูลัส<W>`/`saturatus<W>` values are
 not folded, so arithmetic on them is not a compile-time constant today.
 Compile-time integer arithmetic is checked (overflow and division by zero are
-compile errors), matching the runner's checked runtime semantics.
+compile errors: `constant_arithmetic_overflow`, `constant_division_by_zero`),
+matching the runner's checked runtime semantics. A value that needs
+computation takes a `นำหน้า { … }` block (en `comptime { … }`), which runs
+during the build; it is legal as the whole initializer of an `=` constant, at
+module level or at block level (inside any function, method, closure or entry
+body), and as a `ชนิด` field default under any modifier. Anywhere else it is
+`SEM064` `praefixum_outside_constant`. The body stands alone: it may read module
+constants but not a parameter or local of the enclosing body
+(`praefixum_captures_local`), and inside a generic function, method or genus it
+may not mention a type parameter (`praefixum_type_parameter`). A block-level body
+is evaluated like a module constant; an inner `นำหน้า` constant runs before
+the one that contains it, and a cycle through a site is `constant_cycle`.
 
-**Build-time file embed, `ฝัง` (en `embed`, D8.10).** A `ของชนิด` initializer — top-level static or `ชนิด` static field — may open with `ฝัง "path"` instead of an ordinary expression: `ของชนิด textus LICENSE = ฝัง "LICENSE.txt"`. `ฝัง` is contextual (claimed only as the first word of a `ของชนิด` initializer, directly followed by a string literal); elsewhere the spelling is an ordinary identifier, and on a `คงที่`/`แปร` field it never claims the word. The path is package-relative, resolved against the nearest ancestor `faber.toml` (or the source file's own directory when none exists); an absolute path or a `..` escape is rejected, and a missing file is a compile error. The file is read once, at build time — it is a build input, like the source itself. The declared type decides how the bytes land: `textus` requires valid UTF-8 and fails to build otherwise; `octeti` reads the raw bytes unconditionally.
+**Build-time file embed, `ฝัง` (en `embed`, D8.10).** An `=` constant at
+module level or block level, or a `ชนิด` field default under any modifier
+(`ของชนิด`, `คงที่`, `แปร`), may take `ฝัง "path"` as its initializer
+instead of an ordinary expression:
+`คงที่ textus LICENSE = ฝัง "LICENSE.txt"`. `ฝัง` is contextual (the
+parser claims it in expression position when directly followed by a string
+literal; any other use of the spelling is an ordinary identifier). Lowering
+admits it only as the whole initializer of such a constant or field default;
+anywhere else (`x ← ฝัง "p"`, a call argument, a `คืน` value) it is `SEM061`
+`insere_outside_constant`. The path is package-relative, resolved against the nearest ancestor `faber.toml` (or the source file's own directory when none exists); an absolute path or a `..` escape is rejected, and a missing file is a compile error. The file is read once, at build time — it is a build input, like the source itself. The declared type decides how the bytes land: `textus` requires valid UTF-8 and fails to build otherwise; `octeti` reads the raw bytes unconditionally. The result type follows the slot: a `_` slot, or no slot, is `SEM061` `insere_type_required`, and any other concrete slot type is `insere_type_invalid`.
 
 ### Functions
 
@@ -1287,7 +1318,7 @@ wire operation such as `json.pange(value ↦ json)`.
   a construction literal (`Genus { field = value }`), never reassigned;
   `Genus { … } ออก p` copies it unchanged (D16.3), independent of visibility
   (`@ privata` + `คงที่` is legal). `แปร T x`: per instance, reassignable.
-  `ของชนิด T X = …`: one per type, compile-time (unchanged). A write to a
+  `ของชนิด T X = …`: one per type, compile-time (the only remaining `ของชนิด` position). A write to a
   `คงที่` field outside a construction literal is `SEM020`
   (`assignment_to_fixum_field`). The former `nexum` field modifier is removed
   and rejected with a migration diagnostic.
@@ -1448,8 +1479,8 @@ into `faber.<module>.<verb>` calls. It is not a wildcard re-export and does not 
 ## Types
 
 - Declaration parameters (`genericParams`) and applied arguments (`typeArguments`) are distinct grammar categories. Applied arguments admit nested types and static `figura` values. `typeArguments` still admits `NATURAL`.
-- Applied `NATURAL` arguments are `ขนาด` capacity facts, not width markers. Shipped bounded forms use that slot: `lista<T, N>`, `queue<T, N>`, `stack<T, N>`, `textus<N>`, `ascii<N>`, `octeti<N>`. Width-marker families such as `numerus<i32>` stay the separate `widthTypeSugar` production below.
-- **Convert hints are not type arguments (D11.9).** A hint (`Hex` / `Bin` / `Oct` / `Be` / `Le` / `Bits` / `Code`) is a `ผ่านทาง` clause on the `↦` conversion, never a further argument of the target type (see Runtime conversion). The retired spellings are parse errors with a pointer at the clause: a hint as a further type argument of a scalar head (`numerus<W, Hex>`, `fractus<f64, Bits>`, `ascii<N, Hex>`, `littera<Code>`) is `conversio_hint_type_argument`, and a bracketed hint tail after the target (`octeti<16><Le>`, `vector<numerus<u32>, 4><Be>`) is `conversio_hint_tail_argument`. Only scalar heads are checked, so a user type named like a hint stays a legal argument of a collection target (`↦ lista<Code>`).
+- Applied `NATURAL` arguments are `ขนาด` capacity facts, not width markers. Shipped bounded forms use that slot: `lista<T, N>`, `queue<T, N>`, `stack<T, N>`, `textus<N>`, `ascii<N>`, `octeti<N>`. Width markers such as `i32` and `f32` stay the separate `widthTypeSugar` production below.
+- **Convert hints are not type arguments (D11.9).** A hint (`Hex` / `Bin` / `Oct` / `Be` / `Le` / `Bits` / `Code`) is a `ผ่านทาง` clause on the `↦` conversion, never a further argument of the target type (see Runtime conversion). The retired spellings are parse errors with a pointer at the clause: a hint as a further type argument of a scalar head (`ascii<N, Hex>`, `littera<Code>`; the wrapped numeric heads `numerus<W, Hex>` and `fractus<f64, Bits>` are rejected whole as `numeric_wrapper_retired`, see Sized primitives) is `conversio_hint_type_argument`, and a bracketed hint tail after the target (`octeti<16><Le>`, `vector<u32, 4><Be>`) is `conversio_hint_tail_argument`. Only scalar heads are checked, so a user type named like a hint stays a legal argument of a collection target (`↦ lista<Code>`).
 - Type arguments admit the hole forms: `lista<∪>` infers a heterogeneous element union and `tabula<K, ∪>` a heterogeneous value union; `lista<_>` keeps the monomorphic single-inhabitant hole.
 - Explicit generic call-site lists use the same `typeArguments` production: `id<_>(x)` is a type hole (equivalent to omitted `id(x)` for a one-param callee), and mixed lists such as `both<_, textus>(a, b)` are legal. Arity stays exact (`both<_>` is still one argument). `∪` in that list is rejected (`explicit_union_type_arg_unsupported`): a callee type param is a monomorphic witness slot.
 - `labeledTypeArgument` is the optional label prefix on `ทูเพิล` type arguments only (`ทูเพิล<gx: f32, T>`; mixed labeled/unlabeled legal). A label in a non-`ทูเพิล` list (`f<gx: T>(x)`, `lista<gx: T>`) is a parse error. Absence is the only unlabeled form; there is no `_: T` spelling. Keyword spellings are legal labels under the contextual law (`ทูเพิล<คงที่: A>`).
@@ -1498,10 +1529,10 @@ functio apply((numerus) → numerus ⇥ textus op, numerus n) → numerus ⇥ te
 | `littera`  | en `char`; one Unicode scalar value (D10.1–10.2): a 4-byte value that never allocates (Rust `char`, Go `rune`). Element of `textus` / `ascii` iteration and of `textus[i]` / `ascii[i]` indexing. Grapheme clusters are norma library work, not this type. |
 | `forma`    | captured template + params |
 | `numerus`  | integer (default `i64`) |
-| `modulus<W>` | en `wrapping<W>`; modular word, signed or unsigned (N7e); a store reduces modulo 2^W |
+| `โมดูลัส<W>` | en `wrapping<W>`; modular word, signed or unsigned (N7e); a store reduces modulo 2^W |
 | `saturatus<W>` | en `saturating<W>`; saturating integer; a store clamps at both ends of W |
-| `exactus<W>` | en `trapping<W>`; the trapping policy spelled out (D11.8, N7a): the same type as `numerus<W>`, and a store traps when the value does not fit |
-| `inf` | the unbounded integer (D11.5): a width marker in the `numerus` family with no upper or lower bound, spelled `inf` in every locale (no keyword). `numerus<inf>`, `exactus<inf>`, `modulus<inf>` and `saturatus<inf>` (en `int<inf>`, `trapping<inf>`, `wrapping<inf>`, `saturating<inf>`) all name this one type. **Shipped:** the type, big literals, the join, store and conversion typing rules, and the host-only rejections. **Admitted, scheduled (inf track U4, U6\*), not shipped:** run-time arithmetic beyond a 64-bit carrier and the target backends; see The unbounded integer `inf`. |
+| `exactus<W>` | en `trapping<W>`; the trapping policy spelled out (D11.8, N7a): the same type as the bare marker `W`, and a store traps when the value does not fit |
+| `inf` | the unbounded integer (D11.5): a width marker in the `numerus` family with no upper or lower bound, spelled `inf` in every locale (no keyword). `inf`, `exactus<inf>`, `โมดูลัส<inf>` and `saturatus<inf>` (en `trapping<inf>`, `wrapping<inf>`, `saturating<inf>`) all name this one type; the wrapped `inf` is retired. **Shipped:** the type, big literals, the join, store and conversion rules, exact run-time arithmetic, and the host-only rejections, on the MIR runner, Rust, TypeScript, Go and Python, and in part on the Racket (`sexp`) target. A target with no unbounded carrier (Swift, Haskell, LLVM, Wasm) fails closed with a named diagnostic, and Metal, WGSL and AIR never carry it; see The unbounded integer `inf`. |
 | `fractus`  | float (default `f64`) |
 | `bivalens` | boolean |
 | `nihil`    | null |
@@ -1510,7 +1541,7 @@ functio apply((numerus) → numerus ⇥ textus op, numerus n) → numerus ⇥ te
 | `ignotum`  | unknown |
 | `octeti`   | bytes |
 | `octeti<N>` | shipped; bounded byte buffer; `N` is a `ขนาด` / `NATURAL` capacity, not a width marker. `octeti<_>` is the capacity hole (infer `N`; otherwise run-time bound — admitted, scheduled (K14), not shipped). |
-| `octetus`  | en `byte`; an exact alias of `numerus<u8>` (D10.4) — arithmetic and `0x0A` comparisons use it directly. Fixed-width; rejects applied parameters. |
+| `octetus`  | en `byte`; an exact alias of `u8` (D10.4) — arithmetic and `0x0A` comparisons use it directly. Fixed-width; rejects applied parameters. |
 
 Bare `textus` / `ascii` / `octeti` remain the unbounded productions. The
 shipped forms `textus<N>`, `ascii<N>`, and `octeti<N>` take
@@ -1536,24 +1567,29 @@ length one (the type of `'x'`), not a separate character type; it widens
 implicitly `ascii<1> → littera → textus` (D10.5), so `s[i] ≡ '\n'` keeps
 working across the chain.
 
-Sized primitives accept one optional **width marker** (not a user type parameter):
+A sized numeric type is written as its **bare width marker** (not a user type parameter): `i8`, `i16`, `i32`, `i64`, `u8`, `u16`, `u32`, `u64`, `d64`, `inf` (the integer family) and `f16`, `bf16`, `f32`, `f64` (the float family). The three policy words wrap a marker and keep their `<W>` argument:
 
 | Family | Markers | Invalid example |
 | ------ | ------- | --------------- |
-| `numerus<W>` | `i8`, `i16`, `i32`, `i64`, `u8`, `u16`, `u32`, `u64`, `d64`, `inf` | `numerus<f32>` → use `fractus<f32>` |
-| `fractus<W>` | `f16`, `bf16`, `f32`, `f64` | `fractus<i32>` → use `numerus<i32>` |
-| `modulus<W>` | `i8`, `i16`, `i32`, `i64`, `u8`, `u16`, `u32`, `u64`, and `inf` (the same type as `numerus<inf>`) | `modulus<f32>` or `modulus<d64>` → a modular word takes an integer width |
-| `saturatus<W>` | the same eight integer widths, and `inf` (the same type as `numerus<inf>`) | `saturatus<f32>` → use `fractus<f32>` |
+| `โมดูลัส<W>` | `i8`, `i16`, `i32`, `i64`, `u8`, `u16`, `u32`, `u64`, and `inf` (the same type as `inf`) | `โมดูลัส<f32>` or `โมดูลัส<d64>` → a modular word takes an integer width |
+| `saturatus<W>` | the same eight integer widths, and `inf` (the same type as `inf`) | `saturatus<f32>` → use `f32` |
 | `exactus<W>` | the eight integer widths, `d64`, and `inf` | `exactus<f32>` → the trapping float cell is not built (`trapping_float_not_implemented`) |
 
-Bare `numerus` / `fractus` remain shorthand for `numerus<i64>` / `fractus<f64>`.
-`inf` is the one marker with no range: `fractus<inf>` is rejected
-(`integer_width_on_fractus`), and an unbounded integer has no word to wrap or
-clamp at, so `modulus<inf>` and `saturatus<inf>` are accepted and change
-nothing.
+Bare `numerus` / `fractus` remain shorthand for `i64` / `f64`.
+The bare marker (`i32`, `f32`, `d64`, `inf`) is the canonical spelling of a sized
+numeric type. The wrapped spelling `numerus<W>` / `fractus<W>` (en `int<W>` /
+`float<W>`, and the same words of every locale pack) is **rejected** at parse
+time with `numeric_wrapper_retired` (PARSE040), which names the form written and
+the bare replacement. This covers family-correct forms (`numerus<i32>`),
+wrong-family forms (`numerus<f32>`, `fractus<i32>`), `numerus<d64>` and
+`numerus<inf>`, the removed `numerus<d32>`, extra arguments, and the marker holes
+`numerus<_>` / `fractus<_>` (write bare `numerus` / `fractus`, or a bare marker).
+`inf` is the one marker with no range: it is integer-only (not a float width),
+and an unbounded integer has no word to wrap or clamp at, so `โมดูลัส<inf>` and
+`saturatus<inf>` are accepted and change nothing.
 
-`numerus<d64>` is the one **decimal** width, for money and accounting
-(there is no narrower decimal width). A decimal literal in a decimal context (`numerus<d64> a ←
+`d64` is the one **decimal** width, for money and accounting
+(there is no narrower decimal width). A decimal literal in a decimal context (`d64 a ←
 4.2`) keeps its digit text, and `d64` is the scaled integer `i64` × 10⁻⁸: eight
 fraction digits and a range of ±92,233,720,368.54775807, so `4.2 + 0.1` is
 exactly `4.3`. Arithmetic is exact until the store, the same model as integers:
@@ -1565,8 +1601,8 @@ rounds **half-even to scale 8** and traps when the value leaves the range, so
 `amount * rate * (1 + tax)` rounds once, at the store; per-step rounding is
 written as separate stores. `d64` takes only the trapping policy
 (`saturating<d64>` and `wrapping<d64>` are rejected: a clamped money amount is
-silently wrong). The `d` marker is valid only on `numerus` (`fractus<d64>` is
-rejected). Integer literals in a decimal context are rejected
+silently wrong). The `d` marker is integer-family only: `d64` is not a float
+width. Integer literals in a decimal context are rejected
 (`decimal_integer_literal_rejected`); write `1.0` or convert explicitly with
 `↦`, as for every crossing between number families. A decimal literal with more
 than eight fraction digits into `d64` is a compile error: a written literal is
@@ -1576,11 +1612,13 @@ never silently changed, while a computed value is rounded by the slot. Display
 (`print`, `§` holes) it prints the shortest form with trailing zeros dropped,
 `12.5` and `12`, never `12.50` or `12.0`. A decimal stores its value only, with
 no per-value scale.
-`numerus<_>`, `fractus<_>`, `modulus<_>`, `saturatus<_>`, and `instans<_>` are marker holes:
+`โมดูลัส<_>`, `saturatus<_>`, and `instans<_>` are marker holes:
 the family stays identity and only the width/precision is inferred from a
 same-family witness (exact marker, no lattice widening). Unsolved `_` is an
-error, never the bare default. A convert hint is never a type argument, so
-there is no hint hole; hints are `ผ่านทาง` clauses.
+error, never the bare default. The wrapped holes `numerus<_>` and `fractus<_>`
+are retired with the wrapped numeric spelling (`numeric_wrapper_retired`). A
+convert hint is never a type argument, so there is no hint hole; hints are
+`ผ่านทาง` clauses.
 
 ### Numeric model
 
@@ -1609,40 +1647,47 @@ time.
 
 | Family | Policy at the store | Use |
 | ------ | ------------------- | --- |
-| `numerus<W>` (default) | **traps** if the value does not fit | counts, sizes, money, indices |
-| `modulus<W>` (en `wrapping<W>`) | **reduces** modulo 2^W | hashes, checksums |
+| bare marker `W` (default) | **traps** if the value does not fit | counts, sizes, money, indices |
+| `โมดูลัส<W>` (en `wrapping<W>`) | **reduces** modulo 2^W | hashes, checksums |
 | `saturatus<W>` (en `saturating<W>`) | **clamps** to W's bounds, once, at the store | pixels, audio, levels |
 
 `saturating<u8>` with `x = 250` and `x + 200 - 100` stores 255, not the 155 that
 clamping each step would give; per-step clamping is written as separate stores
 into `saturating` slots. This departs from Rust `Saturating<T>` deliberately.
-For `modulus`, reducing once at the store equals reducing each step for
-`+ - * ⇐ ∧ ∨ ⊻ ¬`; before `⇒`, `/`, `%` and comparisons the operand is reduced
-first, so ported hash and crypto code keeps its results. Within one policy
+`โมดูลัส` reduces only at the store too (operator ruling 2026-10-02: math
+happens in the ether): `(a + b) / 2` with `wrapping<u8>` 200 and 100 is
+`300 / 2 = 150`, `a + b ≡ 44` is falsum and `print a + b` prints `300`. For
+`+ - * ⇐ ∧ ∨ ⊻ ¬` that feed a store directly, reducing once at the end equals
+reducing each step, so a backend may keep per-operation modular arithmetic
+there, where no one can observe the difference; the operand of `⇒`, `/`, `%`
+and a comparison is read, so it is exact. Ported hash and crypto code keeps its
+results by storing into a `wrapping<W>` slot before dividing, shifting right or
+comparing. Within one policy
 family a store into a narrower width applies the slot's policy
 (`wrapping<u32>` into `wrapping<u8>` reduces); crossing policy families needs
 `↦`. A constant stored with `←` follows the slot's policy
 (`saturating<u8> w ← 300` is 255, `wrapping<u8> w ← -1` is 255, and a trapping
 slot's certain trap is a compile error); a constant in an `=` position
-(`ของชนิด`, field default, enum member, `คงที่ T x = e`) must fit `W` whatever
-the policy. Literals in `modulus<W>` and `saturatus<W>` slots must fit `W`.
+(a `คงที่ T X = e` constant at module level or in a block, `ของชนิด`, field
+default, enum member) must fit `W` whatever the policy. Literals in `โมดูลัส<W>` and `saturatus<W>` slots must fit `W`.
 The unbounded integer `inf` (D11.5) is a type (see its subsection below), so a
 bounded expression still obeys the 64-bit range above and an `inf` slot never
 applies a size policy.
 
 The D11.8 naming frame puts the policy outside and the representation inside:
-en `trapping<W>`, `wrapping<W>`, `saturating<W>`; la `exactus<W>`, `modulus<W>`,
+en `trapping<W>`, `wrapping<W>`, `saturating<W>`; la `exactus<W>`, `โมดูลัส<W>`,
 `saturatus<W>`. A bare marker takes its domain's default policy (`u8` is
 `trapping<u8>`; integers and `d64` trap, floats follow IEEE).
 
 **Shipped (N7a, N7e):** the trapping policy word (`exactus<W>` / en
 `trapping<W>`, integer widths and `d64`), bare markers in every type position,
-and signed widths on `modulus<W>` — `wrapping<i8>` reduces into the signed
+and signed widths on `โมดูลัส<W>` — `wrapping<i8>` reduces into the signed
 range, so `100 + 100` stored into it is −56. **Admitted, not shipped:** the
 float cells (`exactus<f32>` is rejected as `trapping_float_not_implemented`;
-`modulus` and `saturatus` take no float width) and the retirement of the long
-forms (N7c/N7d): `numerus<W>`/`fractus<W>` (en `int<W>`/`float<W>`) stay
-accepted beside the policy words, and this document writes them.
+`โมดูลัส` and `saturatus` take no float width). **Shipped (N7c/N7d):** the
+retirement of the long forms: the canonical emitter writes the bare marker and
+the parser rejects `numerus<W>`/`fractus<W>` (en `int<W>`/`float<W>`) with
+`numeric_wrapper_retired`; the policy words keep their `<W>`.
 
 **Implicit and explicit failure differ.** A failed implicit store is a trap of
 its own identity: it never enters the `⇥` channel, even inside `ทำ … จับ`,
@@ -1655,8 +1700,10 @@ expression is the smallest integer type that holds every possible result,
 computed by interval arithmetic from the operands' declared types and never
 from the destination. With `u8` operands `a + b` and `a * b` are `u16`, `a - b`,
 `-a` and `¬a` are `i16`, and `a / b`, `a % b`, `a ⇒ n`, `a ∧ b` and `a ∨ b` are
-`u8`. Only trapping types grow; `modulus<W>` stays in its ring and
-`saturatus<W>` keeps `W`. Growth stops at the 64-bit containers: past them the
+`u8`. Only trapping types grow. A `โมดูลัส<W>` or `saturatus<W>`
+operand takes part by its declared width and gives the same range-rule type: the
+word reduces or clamps only where a value is stored into a slot, never
+mid-expression. Growth stops at the 64-bit containers: past them the
 type keeps the sign of the range (`i64` if it can be negative, else `u64`), so
 `u64 - u64` is `i64` (operator ruling 2026-09-30: it does not become `inf`;
 write `a ↦ inf - b` for the exact difference). `_` slots take the expression's
@@ -1720,7 +1767,7 @@ twin. The same result type applies per element on tensors.
 exact value on infinite two's-complement integers, so `¬x` is `-x - 1` (`¬250`
 is −251, which traps when stored into an unsigned slot; `flags ∧ ¬mask` still
 works). Fixed-width complement is what `wrapping<W>` is for (`¬x` on
-`wrapping<u8>` 250 is 5). `x ⇐ n` is `x * 2ⁿ` and `x ⇒ n` is `⌊x / 2ⁿ⌋`. The
+`wrapping<u8>` 250, stored into a `wrapping<u8>` slot, is 5). `x ⇐ n` is `x * 2ⁿ` and `x ⇒ n` is `⌊x / 2ⁿ⌋`. The
 count is not masked to a receiver width: `x ⇒ n` past the value's size is 0 (or
 −1 for a negative `x`) and never traps, `x ⇐ n` traps only past the 64-bit
 range (never on an `inf` operand), on `wrapping<W>` it wraps at the store, and a
@@ -1739,9 +1786,9 @@ what the compiler can prove, and `↦` is a check). Into a trapping integer type
 it is a magnitude-checked narrowing that fails through `⇥`, `⊥` or `ดัก`. Into
 a `wrapping<W>` type it reduces the exact source value modulo 2^W, and into a
 `saturating<W>` type it clamps it; neither can fail and neither takes a `⊥`
-(integer and `d64` sources). `fractus ↦ numerus<W>` saturates at the target
+(integer and `d64` sources). `fractus ↦` an integer width `W` saturates at the target
 width, NaN converting to `0` (the cross-tier Rust `as` status quo); integer
-`numerus<W>` arithmetic traps on overflow while float→integer conversion
+`W` arithmetic traps on overflow while float→integer conversion
 clamps. Overflow policy lives in the type. There are no per-operation checked,
 wrapping, or saturating method families. To ask "does this fit?" of untrusted
 input, convert it to the narrow type with `↦` and handle the failure through the
@@ -1757,14 +1804,14 @@ outright (`air_unbounded_integer`): AIR has no representation for a heap value.
 
 **The unbounded integer `inf` (D11.5; F9 rulings 32–50, operator-ruled
 2026-09-30).** `inf` is the opt-in integer with no range: every integer is a
-value, ∞ and NaN are not (`numerus<inf>` has no upper bound; ∞ is not one of its
+value, ∞ and NaN are not (`inf` has no upper bound; ∞ is not one of its
 values). It is never a default and is never inferred from bounded operands; an
 author writes `inf` in a slot or converts with `↦ inf`. Its rules in full:
 
 - **Spelling.** `inf` is a width marker in the `numerus` family, written the
   same in every locale: it is not a keyword and has no glossary word, and, like
-  `u8`, it is reserved in type position only. `numerus<inf>`, `trapping<inf>`,
-  `wrapping<inf>` and `saturating<inf>` (la `exactus<inf>`, `modulus<inf>`,
+  `u8`, it is reserved in type position only. `inf`, `trapping<inf>`,
+  `wrapping<inf>` and `saturating<inf>` (la `exactus<inf>`, `โมดูลัส<inf>`,
   `saturatus<inf>`) are one type; the policy words are accepted and never
   produce a wrapping or saturating word. `faber format` keeps the author's
   spelling among them. `∞` remains the IEEE float literal and is never an `inf`
@@ -1836,21 +1883,33 @@ author writes `inf` in a slot or converts with `↦ inf`. Its rules in full:
   decimal digits with a leading `-` for a negative, with no grouping or suffix;
   the `¶` integer specs apply as for `int`.
 
-**What is shipped and what is not.** The compiler front end accepts and checks
-`inf`: the type in all four spellings, the host-only rejections, big literals
-and their slot rule, the join, widening, store and conversion typing rules, and
-comparisons. At run time only value flow is lowered today (declare, store, pass,
-return, collect, compare), exact for values within the 64-bit carrier; every
-operation that would compute or convert an `inf`, and every literal beyond `u64`,
-fails closed with a named `inf_mir_unsupported_<operation>` error. **Admitted,
-scheduled (inf track), not shipped:** exact run-time semantics for all of the
-rules above (U4, the MIR runner and its bignum), the `inf`-bounded `วน` binder
-(U9), `octeti`/`valor`/`json` rows (U8a), literal-only float folding on the same
-bignum (U7), and the target backends: Rust, TypeScript, Go, Python and the
-Racket (`sexp`) target are scheduled (U6r, U6t, U6g, U6p, U6x); LLVM, Wasm,
-Swift and Haskell are scheduled to fail closed with a named diagnostic (U6fc),
-and Metal, WGSL and AIR never carry `inf`. Until a unit lands, a program that
-needs its rule does not run.
+**What is shipped.** `inf` is shipped; every rule above is checked at compile
+time and computed exactly at run time. The front end accepts the type in all
+four spellings, the host-only rejections, big literals and their slot rule, the
+join, widening, store and conversion typing rules, and comparisons. Literal-only
+float expressions fold exactly before the slot rounds them. Run-time
+semantics are carried per target, on an unbounded integer of the target's own:
+
+- **Supported.** The MIR runner (the oracle), Rust, TypeScript, Go and Python
+  run the arithmetic, comparison, conversion and display rules above; the
+  runner also runs the `วน` binder over `inf` bounds. The runner, Rust and TypeScript also carry
+  the `octeti ผ่านทาง Be|Le` and `valor`/`json` rows with every digit; Go carries
+  `valor ↦ inf` and `octeti ผ่านทาง Be|Le`. The Racket (`sexp`) target carries the
+  arithmetic and comparison rows.
+- **Named gaps.** Python has no `↦ valor` and no `octeti` route; the Racket
+  target lacks formatted display, genus printing and `↦ valor` (as it does for
+  every type); Go fails closed on a few container and intrinsic constructs
+  holding an `inf`; TypeScript keeps bounded `int` and `u64` as numbers, so a
+  bounded `u64` slot past 2⁵³ still traps there. Each gap is a named
+  compile-time diagnostic or a documented trap, never a bounded substitute.
+- **Fail closed.** Swift, Haskell, LLVM and Wasm have no unbounded carrier and
+  reject `inf` with a named diagnostic (`inf_target_unsupported` on Swift and
+  Haskell, `llvm_target_inf_unsupported`, `mir_wasm_unsupported`). The language
+  does not change to fit them. Metal, WGSL and AIR never carry `inf`: it is host
+  only, rejected by language rule before emission.
+
+The per-target rows with their open gaps are kept in the target capability
+matrix and the numeric model; this file states only the language.
 
 ### Generic Collections
 
@@ -1890,11 +1949,13 @@ Value unions use inline `T ∪ U` (nullable: `T ∪ nihil`). The standalone `∪
 
 ### Type Sugar
 
-Explicit long forms such as `numerus<u32>` and `lista<numerus<u32>>` are the
-canonical spellings. Type sugar is an ergonomic alternate spelling for numeric
-and collection types. It is **type-position only** and **semantically identical**
-to the long form — the compiler treats both the same. This is the single
-canonical reference for sugar; the rest of the specification uses long form.
+The bare width marker (`u32`, `f32`, `d64`, `inf`) is the canonical spelling of a
+sized numeric type, and `lista<u32>` is the canonical collection form. The wrapped
+`numerus<W>` / `fractus<W>` form is rejected (`numeric_wrapper_retired`). Type
+sugar (`lu32`, `tf32`, …) is an ergonomic alternate spelling for collection
+types. It is **type-position only** and **semantically identical** to the long
+form — the compiler treats both the same. This is the single canonical
+reference for sugar; the rest of the specification uses the long collection form.
 
 Sugar combines a width marker with an optional one-letter family prefix. Width
 markers are `i8`/`i16`/`i32`/`i64` (signed), `u8`/`u16`/`u32`/`u64` (unsigned),
@@ -1907,7 +1968,7 @@ marker prefixed with `l`, `t`, `s`, `v`, and `m`, respectively.
 
 | Sugar | Long form | Bracket rule |
 | ----- | --------- | ------------ |
-| `i8` … `u64`, `f16`/`f32`/`f64` | `numerus<W>`, `fractus<W>` | none (bare marker) |
+| `i8` … `u64`, `f16`/`f32`/`f64`, `d64`, `inf` | none: the bare marker is the type (the wrapped `numerus<W>` / `fractus<W>` long form is rejected, `numeric_wrapper_retired`) | none (bare marker) |
 | `lf32`, `lu32`, `li64`, … | `lista<f32>`, `lista<u32>`, `lista<i64>`, … | none |
 | `tf32`, `tf32[2, 3]`, `ti64[N]` | `tensor<f32, _>`, `tensor<f32, [2, 3]>`, `tensor<i64, [N]>` | optional `Figura` |
 | `sf32`, `sf32[2, 3]`, `si64[N]` | `sparsa<f32, _>`, `sparsa<f32, [2, 3]>`, `sparsa<i64, [N]>` | optional `Figura` |
@@ -1923,12 +1984,12 @@ etc. are unchanged. `inf` takes no prefix: `linf`, `tinf`, `sinf`, `vinf` and
 `minf` are not sugar and stay ordinary identifiers (`sinf` and `linf` are
 common names, and a tensor, sparsa, vector or matrix element may not be `inf`).
 
-`modulus<W>`, `saturatus<W>` and `exactus<W>` have no sugar; write
-`modulus<u32>` / `saturatus<i16>` / `exactus<u8>` in full (the bare marker `u8`
+`โมดูลัส<W>`, `saturatus<W>` and `exactus<W>` have no sugar; write
+`โมดูลัส<u32>` / `saturatus<i16>` / `exactus<u8>` in full (the bare marker `u8`
 already is the trapping `u8`).
 
 **Spelling preference (author convention, not grammar):** general Faber code
-tends toward long form for readability; numeric/tensor-primary modules may
+tends toward the long collection form (`lista<u32>`) for readability; numeric/tensor-primary modules may
 prefer sugar. Choose per module or file.
 
 ---
@@ -1961,6 +2022,23 @@ prefer sugar. Choose per module or file.
 - `วน จาก...คงที่`/`วน จาก...แปร` = for-in (keys)
 - `วน ช่วง range คงที่/แปร i` = range iteration (e.g. `วน ช่วง 0‥10 ต่อ 2 คงที่ i { บันทึก i }`; `ต่อ` belongs to the range expression)
 
+**Range step and direction (`range_tail`, `ต่อ`).** The bounds alone pick the
+direction of a range: `a‥b` and `a…b` count up when `a <= b` and count down
+when `a > b`. The optional `ต่อ` step is a *positive stride* applied in
+whatever direction the range moves, so `10‥0 ต่อ 2` yields `10 8 6 4 2`, `0‥10
+ต่อ 2` yields `0 2 4 6 8`, and `10…0 ต่อ 5` yields `10 5 0`. A step is never
+signed: a zero or negative step is an error, a compile error
+(`range_step_not_positive`) when the step is a literal and a run-time trap
+otherwise. Equal bounds walk the ascending way (`5‥5` is empty, `5…5` is the
+single value `5`). The step never changes which endpoint a range includes:
+`…` includes its end only when the progression reaches it.
+
+A range binder declared `แปร` is a fresh per-iteration copy of the walk's
+counter. A write to it inside the body (`วน ช่วง 0‥6 แปร i { i ← i + 1 }`)
+changes only the body's copy and never steers the loop, so the example visits
+`0 1 2 3 4 5`. In an `วน ช่วง` product each binder is refreshed once per
+iteration of its own axis.
+
 **Iteration order.** A type whose order is part of its value iterates in that
 order. `lista` iterates by index. `textus` iterates its characters in order.
 `tensor`, `vector`, and `matrix` iterate by index, outer axis first
@@ -1986,7 +2064,7 @@ and definite return, and the function can be tested on its own.
 Coverage is checked as a pattern matrix. Each scrutinee has a space: the
 variants of an `ลำดับ` or `สหภาพแยก`, the members of a union, and `bivalens`
 as the closed set `{จริง, เท็จ}`. A match over several scrutinees is
-checked over their product, so `แยก a, b` over two `bivalens` values
+checked over their product, so `แยก a และ b` over two `bivalens` values
 needs all four combinations or a `อื่น`. A missing variant or combination is
 an error that names one uncovered case. The multi-subject form parses today —
 subjects are comma-separated, and an arm's patterns are separated by `,` or
@@ -2009,6 +2087,16 @@ two flat exhaustive switches.
 A negative number pattern is written with a leading minus (`กรณี -1`,
 `กรณี -∞`). The lexer never signs a number, so the pattern claims the sign;
 `-` before anything else is not pattern syntax.
+
+`แยก` matches a closed set and nothing else: the variants of an `ลำดับ` or
+`สหภาพแยก`, or the members of a union (`กรณี numerus คงที่ n` over
+`numerus ∪ textus`). It is not a generic "match this thing" keyword. A type
+pattern that is not a member of the scrutinee's closed set is rejected
+(`SEM010 discerne_pattern_not_in_closed_set`). That covers numeric-width
+patterns (`กรณี u32` over a `numerus`) and length-shaped patterns (`กรณี
+lista<numerus, 4>` over a `lista<numerus>`; bounded `textus`, `ascii` and
+`octeti`; tensor figures). Ask an integer's width or range with an `เป็น` test,
+and ask a length with `.longitudo()` in a `ถ้า`.
 
 There are no range patterns (`กรณี 1‥5`). Test the range with `ถ้า` inside the
 arm.
@@ -2118,6 +2206,15 @@ Ordering comparisons (`≺`, `≻`, `≤`, `≥`) between two `textus` values co
 the whole strings in Unicode code-point order. They do not use locale
 collation.
 
+**Membership (`∈`, `∉`).** `x ∈ xs` tests whether `x` is an element of the
+right operand and `x ∉ xs` is its first-class negation (not sugar over `ไม่`);
+both sit in the comparison tier with `≺ ≻ ≤ ≥`. One operator covers two
+meanings, chosen by the type of the right operand: a collection (key
+membership for a `tabula`) or a range. The glyphs have no ASCII spelling, and
+they never apply to text: a `textus` right operand is rejected with a
+diagnostic that points to the `contains` method. The former keywords `intra`
+and `inter` are retired from the grammar.
+
 **Format operator (`¶`, U+00B6, D2.1–D2.5, D2.7):** `value ¶ "spec"` renders a
 built-in value as `textus`. It pairs with `§`: `§` marks *where* a value
 goes, `¶` says *how* it is shown — `"Summa: §"(pretium ¶ ".2")`. `¶` is an
@@ -2201,16 +2298,16 @@ The `↦` glyph (U+21A6, "rightwards arrow from bar") is the runtime value conve
 - The clause binds tighter than the `⊥` default: `x ↦ u32 ผ่านทาง Hex ⊥ 0` is `(x ↦ u32 ผ่านทาง Hex) ⊥ 0`. Conversions chain, each hop with its own clause.
 - Whether a hint is known, and whether the target takes one, is semantic (lowering), not grammar.
 
-**Retired spellings.** Before D11.9 a hint was written as the second type argument of the `↦` target (`numerus<W, Hex>`, `littera<Code>`) or as a bracketed tail (`octeti<16><Le>`). Both are rejected at parse time (`conversio_hint_type_argument`, `conversio_hint_tail_argument`); the `ผ่านทาง` clause is the only spelling.
+**Retired spellings.** Before D11.9 a hint was written as the second type argument of the `↦` target (`ascii<N, Hex>`, `littera<Code>`) or as a bracketed tail (`octeti<16><Le>`). Both are rejected at parse time (`conversio_hint_type_argument`, `conversio_hint_tail_argument`); the `ผ่านทาง` clause is the only spelling.
 
 The hint selects the conversion row. `Hex` / `Bin` / `Oct` / `Be` / `Le` / `Bits` / `Code` are convert hints in the `ผ่านทาง` clause, not keywords and not new `baseType` productions. For ascii output, `Hex` / `Bin` / `Oct` select the lowercase fixed-width digit pack; the hint is not part of type identity. Target support is not a grammar production (see Target Support).
 
 - `"ff" ↦ i32 ผ่านทาง Hex` — shipped; text parse at radix 16 (`Bin` = 2, `Oct` = 8). Hex/Bin/Oct text parse is unchanged by endian hints.
-- `octeti[lo‥hi] ↦ W ผ่านทาง Be` / `… ↦ W ผ่านทาง Le` — endian unpack of an exact-width window (`W` is `i16` / `i32` / `i64` / `u16` / `u32` / `u64`; window length 2 / 4 / 8). Shipped on rust, the MIR runner, Go, and TypeScript. TypeScript `i64`/`u64` stay fail-closed (JS number is not exact). `int<W>` is the same target in the English reader. `octeti` itself has no endian; `bytes ↦ u32` without `ผ่านทาง Be` / `ผ่านทาง Le` stays rejected. A short window fails (no pad).
+- `octeti[lo‥hi] ↦ W ผ่านทาง Be` / `… ↦ W ผ่านทาง Le` — endian unpack of an exact-width window (`W` is `i16` / `i32` / `i64` / `u16` / `u32` / `u64`; window length 2 / 4 / 8). Shipped on rust, the MIR runner, Go, and TypeScript. TypeScript `i64`/`u64` stay fail-closed (JS number is not exact). `octeti` itself has no endian; `bytes ↦ u32` without `ผ่านทาง Be` / `ผ่านทาง Le` stays rejected. A short window fails (no pad).
 - `octeti[lo‥hi] ↦ f32 ผ่านทาง Be|Le` / `… ↦ f64 ผ่านทาง Be|Le` — shipped alongside the integer rows (float endian unpack of an exact-width window, 4 / 8 bytes; same fail rules: exact window required, a short window fails, `ผ่านทาง Be` / `ผ่านทาง Le` mandatory).
 - `n ↦ u32 ผ่านทาง Bits` / `n ↦ u64 ผ่านทาง Bits` / `n ↦ f32 ผ่านทาง Bits` / `n ↦ f64 ผ่านทาง Bits` / `n ↦ f16 ผ่านทาง Bits` — shipped; the `Bits` hint reinterprets between exact-width integer/float pairs (u32↔f32, u64↔f64, u16↔f16, u16↔bf16) bit-identically. It is reinterpretation, not value conversion; wrong-pair rows reject with the structured issue, and `Bits` is never a base or an ascii format hint. `Bits` is a `ผ่านทาง` hint, not a keyword and not a `baseType` production.
-- `n ↦ octeti<N> ผ่านทาง Be` / `… ↦ octeti<N> ผ่านทาง Le` — proposed (not shipped) for a scalar source (`N` ∈ {2, 4, 8}); the hint is a `ผ่านทาง` clause, not a second capacity. Register targets take the clause today: `v ↦ octeti<16> ผ่านทาง Le`, `corpus[0‥16] ↦ vector<numerus<u32>, 4> ผ่านทาง Be`.
-- `'A' ↦ u32 ผ่านทาง Code` — shipped; the code point as a `u32` (`u32` holds every code point, as Rust's `char as u32`); the source must be `littera`. `65 ↦ littera ผ่านทาง Code` — shipped; builds the character for that code point, failing above U+10FFFF and on a surrogate. `Code` is a `ผ่านทาง` hint like `Hex`/`Bits`; any other hint on these targets, or a source/target type other than `littera`/`numerus<u32>`, is `SEM016` (`code_hint_pair_mismatch`).
+- `n ↦ octeti<N> ผ่านทาง Be` / `… ↦ octeti<N> ผ่านทาง Le` — proposed (not shipped) for a scalar source (`N` ∈ {2, 4, 8}); the hint is a `ผ่านทาง` clause, not a second capacity. Register targets take the clause today: `v ↦ octeti<16> ผ่านทาง Le`, `corpus[0‥16] ↦ vector<u32, 4> ผ่านทาง Be`.
+- `'A' ↦ u32 ผ่านทาง Code` — shipped; the code point as a `u32` (`u32` holds every code point, as Rust's `char as u32`); the source must be `littera`. `65 ↦ littera ผ่านทาง Code` — shipped; builds the character for that code point, failing above U+10FFFF and on a surrogate. `Code` is a `ผ่านทาง` hint like `Hex`/`Bits`; any other hint on these targets, or a source/target type other than `littera`/`u32`, is `SEM016` (`code_hint_pair_mismatch`).
 - `n ↦ textus` / `n ↦ ascii` / `n ↦ littera` — a number's digits (D10.6): `7 ↦ textus` = `"7"`, `7 ↦ ascii` = `"7"`, `7 ↦ littera` = `'7'`; `littera` fails outside 0–9 (`42 ↦ littera` fails, two letters).
 - `littera ↦ numerus` — parses the digit, failing otherwise (as `"22" ↦ numerus` parses).
 - `littera ↦ textus` — the one-letter string; never fails.
@@ -2218,10 +2315,10 @@ The hint selects the conversion row. `Hex` / `Bin` / `Oct` / `Be` / `Le` / `Bits
 - `octeti ↦ textus` — UTF-8 decode; can fail. `octeti ↦ ascii` — checks every byte is below 128, same bytes; can fail. `octeti[i‥i+1] ↦ ascii` — one byte through a window (mirrors `octeti[lo‥hi] ↦ W ผ่านทาง Be`).
 
 Explicit integer narrowing is magnitude-checked on every backend:
-`n ↦ numerus<u8>` converts a value that fits unchanged, and a value out of the
+`n ↦ u8` converts a value that fits unchanged, and a value out of the
 target's range fails — it never wraps and never relabels. The failure takes the
-error channel, or the `⊥` default when one is written. Into `modulus<W>` and
-`saturatus<W>` targets `↦` reduces or clamps and cannot fail. Use `modulus<W>`
+error channel, or the `⊥` default when one is written. Into `โมดูลัส<W>` and
+`saturatus<W>` targets `↦` reduces or clamps and cannot fail. Use `โมดูลัส<W>`
 for wrapping arithmetic.
 
 **Interval clamp (`↦ lo‥hi`).** When the target of `↦` is a range instead of a type, the conversion clamps a number into that interval: `15 ↦ 0‥10` is 9 (the half-open `‥` excludes its end), `15 ↦ 0…10` is 10 (`…` includes it), `wide ↦ 10…50` clamps one `intervallum` value into another range, and a stored `intervallum` value is a legal target too (`x ↦ fines`). The grammar production is `conversio_expr := '↦' (type_annotation | interval_target) via_clause? inline_default?` with `interval_target := range_expr`. The parser reads the operand as an interval, not a type, when it opens with a number literal or a non-type identifier; a capitalized name, a known type word, or a qualified `ns.Type` stays a type. A clamp is total, so it takes no `ผ่านทาง` hint (`conversio_via_target_takes_no_hint`), no `⊥` default (`intervallum_clamp_recovery_unsupported`) and no `ต่อ` step (`intervallum_value_step_unsupported`); these are semantic rejections of a shape the grammar still admits.
@@ -2376,26 +2473,27 @@ xs[i] ← v
 ```
 
 Lista bracket access is **plain**, not nullable: it returns the bare element
-`T` and traps on out-of-bounds. This differs from `tensor`, whose bracket read
-is `accipe` sugar and returns `T ∪ nihil`. For nullable list access, use
-`xs.accipe(i) → T ∪ nihil` with `หรือว่าง`.
+`T` and traps on out-of-bounds. A `tensor` bracket read is plain in the same
+way. For nullable list access, use `xs.accipe(i) → T ∪ nihil` with `หรือว่าง`.
 
-For `tensor<T, Figura>`, bracket indexing is sugar over the tensor intrinsic
-surface:
+For `tensor<T, Figura>`, a bracket read returns the bare element `T` and traps
+on a bad index, like a list index; a literal index that is provably out of
+range is a compile error. Bracket indexing is sugar over the tensor intrinsic
+surface (the nullable read is the `accipe` method, not the bracket):
 
 ```text
-# vector.accipe([id])
+# trapping vector.accipe([id])
 vector[id]
 # vector.ponde([id], v)
 vector[id] ← v
-# grid.accipe([r, c])
+# trapping grid.accipe([r, c])
 grid[[r, c]]
 # grid.ponde([r, c], v)
 grid[[r, c]] ← v
 ```
 
-Reads return `T ∪ nihil`, matching `accipe`; use `หรือว่าง` or another ordinary
-option-handling form before arithmetic. Rank-1 tensors accept scalar integer
+Reads return `T` (no `หรือว่าง` is needed); use the `accipe` method for a nullable
+read. Rank-1 tensors accept scalar integer
 indices that fit the tensor `i64` runtime boundary (`u64` is rejected).
 Rank-N tensors use a list-shaped index expression such as `[[r, c]]` or a
 bound `lista<integer>` value. `grid[r, c]` is not syntax; `memberSuffix` still
@@ -2404,7 +2502,7 @@ contains exactly one `expression` between brackets.
 For `octeti`, bracket indexing is a byte or an exclusive window:
 
 ```text
-# One byte → numerus<u8>. O(1). Traps on out-of-bounds.
+# One byte → u8. O(1). Traps on out-of-bounds.
 buf[i]
 # Exclusive window → octeti. Fully in bounds or fail (no short slice, no pad).
 buf[lo‥hi]
@@ -2417,8 +2515,8 @@ not textus short-slice. Lista `[lo‥hi]` stays rejected.
 
 `octeti` is the endian host. Parse byte windows on the buffer
 (`buf[lo‥hi] ↦ W ผ่านทาง Be|Le`). Cross to a list once, for element work,
-via `octeti ↦ lista<numerus<u8>>` (representation change only; other element
-types fail closed). The reverse `lista<numerus<u8>> ↦ octeti` is live. Do not
+via `octeti ↦ lista<u8>` (representation change only; other element
+types fail closed). The reverse `lista<u8> ↦ octeti` is live. Do not
 detour through `valor`. Lists stay for element work, not endian windows.
 
 ### Primary Expressions
@@ -2445,7 +2543,7 @@ their ordinary meaning. No `จับ` clause, `ขณะ` tail, or early-succes
 attaches to it — those belong to `ทำ`.
 
 `vacua` is a contextual empty-collection marker (identifier form, not a reserved keyword).
-Use it with an explicit collection type: `คงที่ lista<numerus> xs ← vacua` or `คงที่ tensor<fractus<f32>, []> t ← vacua`.
+Use it with an explicit collection type: `คงที่ lista<numerus> xs ← vacua` or `คงที่ tensor<f32, []> t ← vacua`.
 
 `STRING` includes short strings delimited by `"` and block strings delimited by
 `«` and `»`. `'...'` (`ascii`) and backtick
@@ -2608,7 +2706,7 @@ ordinary postfix `conversio` materializes the resulting conversation handle.
   what the caller sends (the opener; `nihil` when the call sends none) and
   `R` is each item frame back. `sermo` (en `channel`) takes zero or exactly
   two type arguments — bare `sermo` means `sermo<valor, valor>`, the same
-  rule as bare `numerus` meaning `numerus<i64>` (any other argument count is
+  rule as bare `numerus` meaning `i64` (any other argument count is
   `sermo_arity`). For a route served by a Faber `@ ถึง` handler visible to the
   caller's module (its own handlers plus its imports), the compiler fills
   `O`/`R` from that handler's own signature — its one parameter (or `nihil`)
@@ -2735,8 +2833,7 @@ parser rejects each one.
 | `วน ออก t ที่ [i, j] เส้นใย f คงที่ v { … }` | admitted (FLD K2); a `เส้นใย` clause on `วน` is rejected (`เส้นใย` exists only in `ผลรวม ออก` inside kernels) |
 | `reducta ผ่านทาง Op ออก source …` (en `reduce ผ่านทาง Op from …`) | admitted (FLD K3), with `Op` a closed set `Sum Product Max Min Argmax Argmin All Any Count`; it would retire `ผลรวม ออก` and `max from` / `min from`, all of which stay shipped meanwhile |
 | Superscript powers `x²`, `r⁻¹` | planned goal; the lexer rejects the superscript digits (`LEX004`) |
-| The unbounded integer `inf`: run-time arithmetic and the target backends | type, literals and the typing rules shipped; exact run-time semantics (U4), `วน` binder (U9), `octeti`/`valor`/`json` rows (U8a), literal-only float folding (U7) and the Rust, TypeScript, Go, Python and Racket backends (U6r/t/g/p/x) admitted, scheduled, not shipped; LLVM, Wasm, Swift and Haskell fail closed; `inf` never reaches Metal, WGSL or AIR |
-| `trapping`/`saturating`/`wrapping` float cells; retiring `numerus<W>`/`fractus<W>` | ruled (D11.8); N7c/N7d pending |
+| `trapping`/`saturating`/`wrapping` float cells | ruled (D11.8); pending. The retirement of `numerus<W>`/`fractus<W>` shipped (N7c/N7d) |
 | Multi-subject `แยก` lowering | parses and is coverage-checked; lowered only by the Rust emitter |
 | Run-time capacities and extents (`[H, W]`, `_`) | admitted (FLD K14); today every extent and capacity is a compile-time value |
 | Slash-delimited regex literals | pending; use `"…" ↦ regex` |

@@ -1,6 +1,6 @@
 +++
 title = "Patterns & destructuring"
-section = "reference"
+section = "grammar-patterns"
 order = 8
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [
