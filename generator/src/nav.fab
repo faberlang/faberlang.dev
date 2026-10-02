@@ -73,6 +73,7 @@ functio nav_tree() → lista<NavGroup> {
 
     varia lista<NavItem> start_items ← vacua
     start_items.appende(finge_item("Start here", "/start/", "start"))
+    start_items.appende(finge_en_item("Releases", "/releases/", "releases"))
 
     varia lista<NavItem> language_items ← vacua
     language_items.appende(finge_en_item("Overview", "/language/overview.html", "overview"))

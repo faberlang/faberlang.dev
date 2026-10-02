@@ -141,6 +141,10 @@ label = "Start"
 label = "Start here"
 href = "/start/"
 section = "start"
+[[nav.group.item]]
+label = "Releases"
+href = "/en-US/releases/"
+section = "releases"
 [[nav.group]]
 id = "language"
 label = "The Language"

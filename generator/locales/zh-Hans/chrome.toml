@@ -112,6 +112,10 @@ label = "开始"
 label = "从这里开始"
 href = "/start/"
 section = "start"
+[[nav.group.item]]
+label = "发行版"
+href = "/en-US/releases/"
+section = "releases"
 [[nav.group]]
 id = "language"
 label = "语言"

@@ -112,6 +112,10 @@ label = "Bắt đầu"
 label = "Bắt đầu tại đây"
 href = "/start/"
 section = "start"
+[[nav.group.item]]
+label = "Bản phát hành"
+href = "/en-US/releases/"
+section = "releases"
 [[nav.group]]
 id = "language"
 label = "Ngôn ngữ"
