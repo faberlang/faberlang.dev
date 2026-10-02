@@ -20,7 +20,6 @@ source_locale = "en-US"
 |---|---|
 | [安装与下载](/start/) | 当前版本、PATH 配置、验证、首次 `faber check` |
 | [命令](/cheatsheet/commands.html) | 日常 CLI 工作流 |
-| [示例](/examples/) | 公开示例包 |
 
 这里**没有**提供从源码构建的说明。除非你在开发私有编译器代码树，否则请使用预构建归档文件。
 

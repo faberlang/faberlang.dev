@@ -12,31 +12,21 @@ sources = [
 
 The error channel: throwing, guarded throws, and the local `catch` handler that recovers an error into a value.
 
-Rule names (`fab_file`, `itera_stmt`) are the stable Latin grammar identifiers;
-the quoted words are the English reader spellings. Return to the
-[grammar index](/en-US/reference/grammar.html).
-
-## Productions {#productions}
-
-```ebnf
-# [148] iace_stmt
-iace_stmt ::= iace_expr | iace_guarded_expr
-# [149] iace_expr
-iace_expr ::= ('throw' | 'panic') expression
-# [150] iace_guarded_expr
-iace_guarded_expr ::= ('throw' | 'panic') expression NO_NEWLINE 'if' expression
-# [151] cape_clause
-cape_clause ::= 'catch' IDENTIFIER block_stmt
-```
+Return to the [grammar overview](/en-US/reference/grammar.html).
 
 ## Terms {#terms}
 
-Keywords in these productions that have a corpus term page. The production id
-on the left is the Latin spine name; the links are the English reader spellings
-you write.
+These are the words you write in this part of the language. Each links to its
+page. The second column names the grammar rule the word belongs to.
 
-| Production | Terms |
+| Term | Grammar rule |
 |---|---|
-| `iace_expr` | [`throw`](/en-US/corpus/throw.html), [`panic`](/en-US/corpus/panic.html) |
-| `iace_guarded_expr` | [`throw`](/en-US/corpus/throw.html), [`panic`](/en-US/corpus/panic.html), [`if`](/en-US/corpus/if.html) |
-| `cape_clause` | [`catch`](/en-US/corpus/catch.html) |
+| [`throw`](/en-US/corpus/throw.html), [`panic`](/en-US/corpus/panic.html) | `iace_expr` |
+| [`throw`](/en-US/corpus/throw.html), [`panic`](/en-US/corpus/panic.html), [`if`](/en-US/corpus/if.html) | `iace_guarded_expr` |
+| [`catch`](/en-US/corpus/catch.html) | `cape_clause` |
+
+## Formal grammar {#formal-grammar}
+
+The rules for this part of the language are the parser's own definition of it.
+They are written for models and tools, so this page does not repeat them; the
+full list is at [every production](/agents/grammar/productions.md).

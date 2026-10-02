@@ -5,7 +5,6 @@ releases = "發行版"
 hello = "你好"
 commands = "命令"
 projects = "專案"
-examples = "範例"
 quick_tour = "快速導覽"
 
 [sidebar_docs]
@@ -33,15 +32,29 @@ tagline = "語言文件"
 [agent_notice]
 label = "智慧體就緒"
 link_install = "安裝"
-link_examples = "範例"
 
 [footer]
 sources_heading = "來源"
 
+[pass]
+aria_install = "安裝 Faber"
+aria_pass = "智慧體通行證"
+label = "Faber · 智慧體通行證"
+title = "把這個連結交給你的模型"
+version = "版本"
+platforms = "平台"
+license = "授權"
+share = "交給你的模型"
+copy_link = "複製連結"
+copy_prompt = "複製提示詞"
+copied = "已複製 ✓"
+failed = "請改為選取文字"
+prompt = "閱讀 https://faberlang.dev/install.md 並安裝 Faber，然後讓我看一個 hello 程式。"
+
 # Sidebar nav labels exactly as nav.fab emits them. inject-chrome.py replaces
 # these strings inside <aside>; a label must be declared here even when no
 # locale translates it, or a shorter translated label can be substituted
-# inside it. Labels covered by the sections above (Overview, Examples,
+# inside it. Labels covered by the sections above (Overview,
 # Releases, All releases) are not repeated.
 [nav]
 group_language = "語言"
@@ -186,10 +199,6 @@ section = "corpus"
 label = "Cheat sheet"
 href = "/cheatsheet/"
 section = "cheatsheet"
-[[nav.group.item]]
-label = "Examples"
-href = "/examples/"
-section = "examples"
 [[nav.group]]
 id = "targets"
 label = "目標"

@@ -45,7 +45,6 @@ Radix है, जो लैटिन *root* से लिया गया है
 |---|---|---|
 | [शुरू करें](/start/) | मानव | अपने मॉडल को एक लिंक दें; वह आपके लिए Faber इंस्टॉल करेगा |
 | [Commands](/cheatsheet/commands.html) | मानव + एजेंट | दैनिक CLI चक्र: check, build, run, test, explain |
-| [उदाहरण](/examples/) | मानव + एजेंट | वास्तविक पैकेज: CLI ऐप्स, mailspace, GPU, corpus |
 | [`/install.md`](/install.md) | एजेंट | मशीन इंडेक्स — यदि आप मॉडल हैं तो यहाँ से शुरू करें |
 | [एजेंट गाइड](/agents/index.md) | एजेंट | Faber सीखने और पैकेज जारी करने का तरीका |
 | [एजेंट स्किल्स](/.well-known/agent-skills/index.json) | एजेंट | केंद्रित स्किल गाइड (इंस्टॉल, भाषा, उदाहरण, …) |

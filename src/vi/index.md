@@ -38,7 +38,6 @@ Tên gọi bắt nguồn từ từ Latinh *maker* hoặc *craftsman*. Trình bi�
 |---|---|---|
 | [Bắt đầu](/start/) | Người dùng | Đưa cho mô hình một liên kết; nó cài đặt Faber cho bạn |
 | [Các lệnh](/cheatsheet/commands.html) | Người dùng + tác nhân | Vòng lặp CLI hằng ngày: check, build, run, test, explain |
-| [Ví dụ](/examples/) | Người dùng + tác nhân | Các gói thực tế: ứng dụng CLI, mailspace, GPU, corpus |
 | [`/install.md`](/install.md) | Tác nhân | Chỉ mục máy — bắt đầu tại đây nếu bạn là một mô hình |
 | [Hướng dẫn tác nhân](/agents/index.md) | Tác nhân | Cách học Faber và phát hành một gói |
 | [Kỹ năng tác nhân](/.well-known/agent-skills/index.json) | Tác nhân | Các hướng dẫn kỹ năng tập trung (cài đặt, ngôn ngữ, ví dụ, …) |

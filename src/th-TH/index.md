@@ -40,7 +40,6 @@ translate_spans = false  # prose names the Latin vocabulary as Latin
 |---|---|---|
 | [เริ่มต้น](/start/) | มนุษย์ | ส่งลิงก์เดียวให้โมเดล แล้วโมเดลจะติดตั้ง Faber ให้ |
 | [คำสั่ง](/cheatsheet/commands.html) | มนุษย์ + เอเจนต์ | วงจร CLI ประจำวัน: check, build, run, test, explain |
-| [ตัวอย่าง](/examples/) | มนุษย์ + เอเจนต์ | แพ็กเกจจริง: แอป CLI, mailspace, GPU, corpus |
 | [`/install.md`](/install.md) | เอเจนต์ | ดัชนีสำหรับเครื่อง — หากคุณเป็นโมเดล ให้เริ่มที่นี่ |
 | [คู่มือเอเจนต์](/agents/index.md) | เอเจนต์ | วิธีเรียนรู้ Faber และส่งมอบแพ็กเกจ |
 | [ทักษะเอเจนต์](/.well-known/agent-skills/index.json) | เอเจนต์ | คู่มือทักษะเฉพาะด้าน (การติดตั้ง, ภาษา, ตัวอย่าง, …) |

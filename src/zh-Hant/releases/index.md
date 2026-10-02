@@ -20,7 +20,6 @@ source_locale = "en-US"
 |---|---|
 | [安裝與下載](/start/) | 目前版本、PATH 設定、驗證、第一個 `faber check` |
 | [命令](/cheatsheet/commands.html) | 日常 CLI 迴圈 |
-| [範例](/examples/) | 公開範例套件 |
 
 這裡刻意**不**提供從原始碼建置的說明連結。除非你正在處理私有編譯器樹，否則請使用預先建置的封存檔。
 

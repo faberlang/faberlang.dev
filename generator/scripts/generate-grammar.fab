@@ -40,6 +40,18 @@ Uppercase names in the productions are lexical terminals. Grammar examples
 are fragments shown to illustrate a production — they are not standalone
 programs and are not expected to compile on their own.»
 
+# Locale pages keep the full production list, so they open with what a
+# production is. The paragraph is English in every locale, like the banner
+# below it: the generator carries no per-locale prose.
+const string lead_plain = «This page is the formal grammar of Faber, written as EBNF productions. A
+production is one rule: it names a piece of the language and says what it is
+built from, for example that a loop is a keyword, a binding, and a block.
+Quoted words are the words you write, shown in this locale's spellings;
+uppercase names are lexical tokens. You do not need to read any of this to
+write Faber, because the cheat sheet and the language pages teach each form by
+example. The productions are here for tools, models, and anyone checking an
+edge case against the parser's own definition.»
+
 const string identity_banner = «This file is generated from `docs/grammar/source.fg`, its `sidecar.en.toml`
 and its `prose.en.md`; hand edits fail the stage-1 normative-triple gate.»
 
@@ -190,6 +202,8 @@ fn render_page(string body, string locale) → string {
     page ← page + "+++\n\n"
     if locale ≡ "en-US" {
         page ← page + lead_en + "\n\n"
+    } else {
+        page ← page + lead_plain + "\n\n"
     }
     return page + body
 }

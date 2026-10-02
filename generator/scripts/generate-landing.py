@@ -43,6 +43,9 @@ import html as html_mod
 import re
 from pathlib import Path
 
+# The agent pass is shared with the Start page (inject-pass.py).
+from agent_pass import load_pass_strings, read_release, render_pass
+
 # Reader-pack axis. Order is the argument: English reader surface, canonical
 # Latin, then the human packs. `site` is the docs home the locale strip links
 # to; Latin is canonical Faber and has no docs site of its own.
@@ -142,26 +145,6 @@ LIBRARIES: list[dict[str, str]] = [
 
 def esc(s: str) -> str:
     return html_mod.escape(s)
-
-
-def read_release(repo: Path) -> dict[str, object]:
-    """The current release, read from the agent lobby and the install skill.
-
-    The version is stated once in static/install.md ("Current release: Faber
-    X.Y.Z."), which build-site.sh also reads. The license and the platform
-    names come from the install skill's release block and archive table. Any
-    shape change fails the build instead of printing a guessed value."""
-    lobby = (repo / "static" / "install.md").read_text(encoding="utf-8")
-    m = re.search(r"^Current release: Faber (\S+)\.$", lobby, re.M)
-    if not m:
-        raise SystemExit("could not read the current release from static/install.md")
-    skill = (repo / "static" / ".well-known" / "agent-skills" / "install" / "SKILL.md"
-             ).read_text(encoding="utf-8")
-    lic = re.search(r"^- \*\*License:\*\* (.+?)\s*$", skill, re.M)
-    platforms = re.findall(r"^\| ([^|]+?) \| https://", skill, re.M)
-    if not lic or not platforms:
-        raise SystemExit("could not read license/platforms from the install skill")
-    return {"version": m.group(1), "license": lic.group(1), "platforms": platforms}
 
 
 def favicon_href(gen: Path) -> str:
@@ -398,9 +381,6 @@ def main() -> None:
 
     repo = gen.parent
     release = read_release(repo)
-    version = esc(str(release["version"]))
-    license_name = esc(str(release["license"]))
-    platforms = esc(" · ".join(release["platforms"]))
     icon = favicon_href(gen)
     n_targets = sum(1 for t in targets.values() if t.get("available") == "yes")
 
@@ -423,9 +403,11 @@ def main() -> None:
             "operators, written in eight language surfaces and compiled to Rust, "
             "TypeScript, Go, Swift and more.")
 
-    install_url = "https://faberlang.dev/install.md"
-    install_prompt = ("Read https://faberlang.dev/install.md and install Faber, "
-                      "then show me a hello program.")
+    pass_html = render_pass(
+        load_pass_strings("en-US"), release,
+        hint_html="""<p class="hint">Your model reads that file, downloads the current release for
+      your machine, verifies its checksum, installs the <code>faber</code> command, and runs
+      <code>faber check</code> on a hello program. It all happens on your machine.</p>""")
 
     html = f"""\
 <!DOCTYPE html>
@@ -485,31 +467,7 @@ def main() -> None:
       </p>
     </div>
 
-    <section class="pass-wrap" aria-label="Install">
-      <article class="pass" aria-label="Agent pass">
-        <div class="pass-main">
-          <div class="pass-top"><span>Faber · agent pass</span><span>v{version}</span></div>
-          <h2 class="pass-title">Give your model this link</h2>
-          <a class="channel" href="/install.md">faberlang.dev<wbr>/install.md</a>
-          <dl class="fields">
-            <div class="row"><dt>Version</dt><i class="ld"></i><dd>{version}</dd></div>
-            <div class="row"><dt>Platforms</dt><i class="ld"></i><dd>{platforms}</dd></div>
-            <div class="row"><dt>License</dt><i class="ld"></i><dd>{license_name}</dd></div>
-          </dl>
-        </div>
-        <div class="pass-stub">
-          <h2 class="share-title">Hand it to your model</h2>
-          <div class="actions">
-            <button type="button" class="btn btn-accent" data-copy="{esc(install_url)}">Copy link</button>
-            <button type="button" class="btn btn-ghost" data-copy="{esc(install_prompt)}">Copy prompt</button>
-          </div>
-        </div>
-      </article>
-      <p class="hint">Your model reads that file, downloads the current release for
-      your machine, verifies its checksum, installs the <code>faber</code> command, and runs
-      <code>faber check</code> on a hello program. It all happens on your machine.</p>
-    </section>
-
+{pass_html}
     <p class="fl-open-source">
       The language, public libraries, examples, and tooling ship under the
       <strong>MIT</strong> license. <strong>Radix</strong>, the compiler, is

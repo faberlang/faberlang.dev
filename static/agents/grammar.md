@@ -49,4 +49,8 @@ main { # trailing
 }
 ```
 
+Detail pages:
+
+- https://faberlang.dev/agents/grammar/productions.md — every grammar rule, in EBNF, for tools that need the formal grammar.
+
 Fetch list: https://faberlang.dev/agents/index.md

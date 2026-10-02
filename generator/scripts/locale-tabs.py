@@ -74,15 +74,15 @@ BASE = "la"
 # reader sees before touching anything.
 SHOWN = "en"
 
-# Sections whose Faber blocks become locale cards. All three teach by showing
-# code: the cheat sheet with short examples, Examples with real package source,
-# Target lanes with the source beside what it lowers to.
+# Sections whose Faber blocks become locale cards. Both teach by showing code:
+# the cheat sheet with short examples and Target lanes with the source beside
+# what it lowers to.
 #
 # On Target lanes only the Faber side becomes a card. The generated panels are
 # Rust, Go, LLVM and friends, and BLOCK_RE matches `lang-faber` exactly, so the
 # comparison the page exists for stays intact — one switchable source column
 # against one fixed output column.
-SECTIONS = ("cheatsheet", "examples", "targets")
+SECTIONS = ("cheatsheet", "targets")
 
 # locales.md is already a side-by-side of every reader surface; wrapping its
 # panels in another locale switcher would nest the same idea inside itself.

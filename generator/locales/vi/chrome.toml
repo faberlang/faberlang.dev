@@ -5,7 +5,6 @@ releases = "Bản phát hành"
 hello = "Xin chào"
 commands = "Lệnh"
 projects = "Dự án"
-examples = "Ví dụ"
 quick_tour = "Tour nhanh"
 
 [sidebar_docs]
@@ -33,15 +32,29 @@ tagline = "tài liệu ngôn ngữ"
 [agent_notice]
 label = "Sẵn sàng cho tác nhân"
 link_install = "Cài đặt"
-link_examples = "Ví dụ"
 
 [footer]
 sources_heading = "Nguồn"
 
+[pass]
+aria_install = "Cài đặt Faber"
+aria_pass = "Thẻ tác nhân"
+label = "Faber · thẻ tác nhân"
+title = "Đưa mô hình của bạn liên kết này"
+version = "Phiên bản"
+platforms = "Nền tảng"
+license = "Giấy phép"
+share = "Giao nó cho mô hình của bạn"
+copy_link = "Sao chép liên kết"
+copy_prompt = "Sao chép lời nhắc"
+copied = "Đã sao chép ✓"
+failed = "Hãy chọn văn bản"
+prompt = "Hãy đọc https://faberlang.dev/install.md và cài đặt Faber, rồi cho tôi xem một chương trình hello."
+
 # Sidebar nav labels exactly as nav.fab emits them. inject-chrome.py replaces
 # these strings inside <aside>; a label must be declared here even when no
 # locale translates it, or a shorter translated label can be substituted
-# inside it. Labels covered by the sections above (Overview, Examples,
+# inside it. Labels covered by the sections above (Overview,
 # Releases, All releases) are not repeated.
 [nav]
 group_language = "Ngôn ngữ"
@@ -186,10 +199,6 @@ section = "corpus"
 label = "Cheat sheet"
 href = "/cheatsheet/"
 section = "cheatsheet"
-[[nav.group.item]]
-label = "Examples"
-href = "/examples/"
-section = "examples"
 [[nav.group]]
 id = "targets"
 label = "Mục tiêu"

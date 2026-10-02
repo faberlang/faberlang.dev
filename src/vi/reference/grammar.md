@@ -10,6 +10,15 @@ sources = [
 ]
 +++
 
+This page is the formal grammar of Faber, written as EBNF productions. A
+production is one rule: it names a piece of the language and says what it is
+built from, for example that a loop is a keyword, a binding, and a block.
+Quoted words are the words you write, shown in this locale's spellings;
+uppercase names are lexical tokens. You do not need to read any of this to
+write Faber, because the cheat sheet and the language pages teach each form by
+example. The productions are here for tools, models, and anyone checking an
+edge case against the parser's own definition.
+
 This file is generated from `docs/grammar/source.fg`, its `sidecar.en.toml` and its `prose.en.md`, and
 `docs/grammar/glossary.vi.toml`; hand edits fail the locale-render gate.
 Production IDs are the grammar's stable snake_case spine and their

@@ -68,9 +68,3 @@ faber emit -t faber --reader-locale=zh-Hans path/to/file.fab
 ```
 
 Đầu ra theo locale người đọc là cách biểu diễn mô hình ngữ nghĩa của trình biên dịch, không phải lớp dịch tại thời điểm trình duyệt chạy. Công việc locale nên được thực hiện sau khi package kiểm tra thành công ở dạng chuẩn.
-
-## Tiếp theo {#next}
-
-| Trước | Tiếp theo |
-|---|---|
-| [Bắt đầu](/start/) | [Ví dụ](/examples/) |

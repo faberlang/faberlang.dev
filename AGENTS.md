@@ -35,8 +35,10 @@ faberlang.dev/
     faber-demo-tabs.js     Progressive enhancer for .faber-demo-tabs code
                            cards
     faber-search.js        Progressive enhancer for the renderbar keyword box
-    faber-instrument.js    Landing/portal enhancer: live UTC readout and the
-                           `[data-copy]` copy buttons. These three files are
+    faber-instrument.js    Every-page enhancer (docs pages load it from the
+                           head, `html.fab`): live UTC readout, the
+                           `[data-copy]` copy buttons, and a COPY button added
+                           to every fenced code block. These three files are
                            the site's only JavaScript;
                            no-JS pages remain fully readable. Fonts are system
                            fonts only: the docs head loads no web fonts.
@@ -172,9 +174,9 @@ generator or the upstream source instead.
 | Script | Writes | Reads |
 |---|---|---|
 | `generate-target-matrix.py` | `src/{locale}/toolchain/target-matrix.md` | `faber/docs/EBNF_MATRIX.md` + `generator/locales/{locale}/targets.toml` |
-| `generate-grammar` (native Faber gate) | `src/{locale}/reference/grammar.md` | `faber/docs/EBNF.md`, `faber/docs/grammar/grammar.jsonl`, `glossary.<locale>.toml`; en-US reads `radix/locale/en/pack.toml` |
+| `generate-grammar` (native Faber gate) | `src/{locale}/reference/grammar.md` (non-English locales keep the full EBNF behind a plain-language intro; en-US is then overwritten by `generate-grammar-tree.py`) | `faber/docs/EBNF.md`, `faber/docs/grammar/grammar.jsonl`, `glossary.<locale>.toml`; en-US reads `radix/locale/en/pack.toml` |
+| `generate-grammar-tree.py` | `src/en-US/reference/grammar.md` (family overview), `src/en-US/reference/grammar/*.md` (term tables, no EBNF), `static/agents/grammar/productions.md` (+ `dist/` copy; the full English-spelling EBNF) | same sibling inputs as `generate-grammar`, plus `dist/en-US/corpus/` for term links |
 | `generate-target-lanes.py` | `src/{locale}/targets/*.md` | captured lane panels |
-| `generate-examples.py` | `src/{locale}/examples/*.md` | `examples/` sibling |
 | `generate-localization.py` | `src/{locale}/localization.md` | locale registry + captured panels |
 | `generate-releases.py` | `src/en-US/releases/*.md` | `gh` release tags + sibling `docs/release/v*.md` |
 | `generate-agent-locales.py` | `static/agents/locales.md`, `dist/agents/locales.md` | `radix/locale/*/pack.toml` |
@@ -229,8 +231,10 @@ operate on rendered HTML, so none of them requires a generator rebuild.
 | `diagrams.py inject` | Inlines those SVGs into `dist/` as `<figure class="diagram">` |
 | `highlight-code.py` | Wraps tokens in fenced `faber`/`bash`/`toml` blocks in `.tok-*` spans |
 | `inject-toc.py` | Gives headings ids + `#` self-links, adds the per-page contents rail |
+| `tag-glyph-chips.py` | Adds `class="glyph"` to inline `<code>` holding only a glyph (1-4 characters, no ASCII letter or digit), which the stylesheet sizes up; fences are skipped |
+| `inject-pass.py` | Replaces a `<p>::agent-pass::</p>` marker with the agent pass card (the same component the landing renders, from `agent_pass.py`; strings from the locale's `chrome.toml` `[pass]`). The Start page carries the marker in every locale. Runs after `inject-toc.py`; fails closed when the marker is present but the pass cannot be built |
 | `matrix-cells.py` | Target matrix pages: restores the escaped term anchors (`<a id>`) from the upstream matrix as real anchors and adds `st-ok`/`st-warn`/`st-no`/`st-defer` to glyph cells (✓ ◐ ✕ ○ —) |
-| `locale-tabs.py inject` | Swaps cheat sheet and examples Faber blocks for reader-locale tab cards |
+| `locale-tabs.py inject` | Swaps cheat sheet and target-lane Faber blocks for reader-locale tab cards |
 | `localize-spans.py` | Renders inline `.kw`/`.typ` terms in the page's reader locale |
 
 **Reader locale.** Every site locale renders its code in its own reader
@@ -242,7 +246,7 @@ the surface a page presents. These layers carry it:
 |---|---|
 | Fluid and eligible pinned/text Faber fences | `localize-markdown.py`, before the render |
 | All Markdown terms and corpus examples | `project-reader-terms.py` and the corpus bundle wrappers |
-| Cheat sheet / examples / targets fences | `locale-tabs.py`, as 8-locale cards defaulting to `en` |
+| Cheat sheet / targets fences | `locale-tabs.py`, as 8-locale cards defaulting to `en` |
 | Remaining single-token `` `term` `` spans in prose | `localize-spans.py`, after the render |
 
 `span.fab` resolves each inline span against a closed set — 37 keywords + 13
@@ -277,7 +281,7 @@ python3 generator/scripts/diagrams.py render
 which installs its own Node dependencies under `generator/target/` on first
 use. Commit the new `generator/diagrams/*.svg` alongside the Markdown.
 
-**Reader-locale tabs.** Faber blocks in the **cheat sheet** and **examples**
+**Reader-locale tabs.** Faber blocks in the **cheat sheet** and **target lanes**
 sections render as tabbed cards carrying all eight reader surfaces. Like the
 diagram cache, the panels are committed so a build without the toolchain still
 produces a complete site — `inject` only ever reads the cache, and a missing

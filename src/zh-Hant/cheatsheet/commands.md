@@ -68,9 +68,3 @@ faber emit -t faber --reader-locale=zh-Hans path/to/file.fab
 ```
 
 讀者地區設定輸出是編譯器語意模型的呈現，不是瀏覽器執行時的翻譯層。地區設定工作應在套件以規範形式通過檢查後進行。
-
-## 下一步 {#next}
-
-| 上一頁 | 下一頁 |
-|---|---|
-| [開始](/start/) | [範例](/examples/) |

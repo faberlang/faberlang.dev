@@ -20,6 +20,18 @@ REPO = Path(__file__).resolve().parent.parent.parent
 
 # Ordered: specific pages before their section prefixes.
 MAP: list[tuple[str, str]] = [
+    # The Examples section was retired (its demos were half-finished and the
+    # cheat sheet already covers the same ground). Every page redirects to the
+    # cheat sheet index; the section index row comes last so the leaf rows win
+    # under rewrite's prefix matching. The en-US stubs also feed the root
+    # /examples/* stubs written by generate-redirects.
+    ("/examples/arena-handle.html", "/cheatsheet/"),
+    ("/examples/cat.html", "/cheatsheet/"),
+    ("/examples/device-summa.html", "/cheatsheet/"),
+    ("/examples/faber-ai.html", "/cheatsheet/"),
+    ("/examples/mlp-forward.html", "/cheatsheet/"),
+    ("/examples/triga-budapest.html", "/cheatsheet/"),
+    ("/examples/", "/cheatsheet/"),
     # reference/repositories → open-source (the readable front door; the
     # repository tables, host platform list, and issue routing all folded in)
     ("/reference/repositories.html", "/open-source.html"),
@@ -29,9 +41,9 @@ MAP: list[tuple[str, str]] = [
     # start/commands → the cheat sheet's Commands page (it was always a cheat
     # sheet, sitting in the middle of a sequenced tutorial track)
     ("/start/commands.html", "/cheatsheet/commands.html"),
-    # start/examples → the Examples section, which carries real package
-    # source on the site instead of describing it and linking to GitHub
-    ("/start/examples.html", "/examples/"),
+    # start/examples → the cheat sheet (the Examples section it once pointed
+    # at was retired, see the /examples/ rows above)
+    ("/start/examples.html", "/cheatsheet/"),
     # the Start track collapsed to one page: hand your model /install.md. The
     # install, hello and projects pages moved into the agent skills.
     ("/start/install.html", "/start/"),
@@ -77,8 +89,8 @@ MAP: list[tuple[str, str]] = [
     ("/ecosystem/triga.html", "/libraries/triga.html"),
     ("/ecosystem/corpus.html", "/libraries/corpus.html"),
     ("/ecosystem/reader-locale-packages.html", "/language/reader-locales.html"),
-    ("/ecosystem/ai-workbench.html", "/examples/"),
-    ("/ecosystem/coreutils.html", "/examples/"),
+    ("/ecosystem/ai-workbench.html", "/cheatsheet/"),
+    ("/ecosystem/coreutils.html", "/cheatsheet/"),
     ("/ecosystem/", "/libraries/"),
     # references/* → reference/*
     ("/references/ebnf.html", "/reference/grammar.html"),

@@ -5,7 +5,6 @@ releases = "รุ่นเผยแพร่"
 hello = "สวัสดี"
 commands = "คำสั่ง"
 projects = "โครงงาน"
-examples = "ตัวอย่าง"
 quick_tour = "แนะนำด่วน"
 
 [sidebar_docs]
@@ -33,15 +32,29 @@ tagline = "เอกสารภาษา"
 [agent_notice]
 label = "พร้อมสำหรับเอเจนต์"
 link_install = "ติดตั้ง"
-link_examples = "ตัวอย่าง"
 
 [footer]
 sources_heading = "แหล่งที่มา"
 
+[pass]
+aria_install = "ติดตั้ง Faber"
+aria_pass = "บัตรผ่านเอเจนต์"
+label = "Faber · บัตรผ่านเอเจนต์"
+title = "ส่งลิงก์นี้ให้โมเดลของคุณ"
+version = "รุ่น"
+platforms = "แพลตฟอร์ม"
+license = "สัญญาอนุญาต"
+share = "ส่งต่อให้โมเดลของคุณ"
+copy_link = "คัดลอกลิงก์"
+copy_prompt = "คัดลอกพรอมต์"
+copied = "คัดลอกแล้ว ✓"
+failed = "เลือกข้อความแทน"
+prompt = "อ่าน https://faberlang.dev/install.md แล้วติดตั้ง Faber จากนั้นแสดงโปรแกรม hello ให้ฉันดู"
+
 # Sidebar nav labels exactly as nav.fab emits them. inject-chrome.py replaces
 # these strings inside <aside>; a label must be declared here even when no
 # locale translates it, or a shorter translated label can be substituted
-# inside it. Labels covered by the sections above (Overview, Examples,
+# inside it. Labels covered by the sections above (Overview,
 # Releases, All releases) are not repeated.
 [nav]
 group_language = "ภาษา"
@@ -186,10 +199,6 @@ section = "corpus"
 label = "Cheat sheet"
 href = "/cheatsheet/"
 section = "cheatsheet"
-[[nav.group.item]]
-label = "Examples"
-href = "/examples/"
-section = "examples"
 [[nav.group]]
 id = "targets"
 label = "เป้าหมาย"

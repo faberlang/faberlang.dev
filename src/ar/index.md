@@ -38,7 +38,6 @@ translate_spans = false  # prose names the Latin vocabulary as Latin
 |---|---|---|
 | [ابدأ](/start/) | بشري | أعطِ نموذجك رابطًا واحدًا ليثبّت لك Faber |
 | [الأوامر](/cheatsheet/commands.html) | بشري + وكيل | حلقة CLI اليومية: check, build, run, test, explain |
-| [أمثلة](/examples/) | بشري + وكيل | حزم حقيقية: تطبيقات CLI، مساحة بريد، GPU، corpus |
 | [`/install.md`](/install.md) | وكيل | فهرس آلي — ابدأ هنا إذا كنت نموذجاً |
 | [دليل الوكيل](/agents/index.md) | وكيل | كيفية تعلم Faber وشحن حزمة |
 | [مهارات الوكيل](/.well-known/agent-skills/index.json) | وكيل | أدلة مهارات مركزة (تثبيت، لغة، أمثلة، …) |

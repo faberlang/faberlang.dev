@@ -13,9 +13,9 @@ or converted into one. Until then, no boundary applies to it.
 
 So arithmetic runs unbounded — or as bare IEEE for floats — and a width limit
 is applied **once**, at the store or the conversion. Nothing clamps, traps,
-saturates or wraps per operation. `100 + 200 / 2` does not "overflow a u8" in
-the middle of the expression; it evaluates to 200, and only the store into a
-`u8` cell is checked.
+saturates or wraps per operation. In `(100 + 200) / 2` the sum, 300, does not
+fit a `u8`, but nothing is checked there: the expression evaluates to 150, and
+only the store into a `u8` cell is checked, where 150 fits.
 
 The policy belongs to the cell, not to the arithmetic. An integer cell is one
 of three:

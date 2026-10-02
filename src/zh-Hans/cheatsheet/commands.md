@@ -68,9 +68,3 @@ faber emit -t faber --reader-locale=zh-Hans path/to/file.fab
 ```
 
 读取器区域输出是对编译器语义模型的渲染，而非浏览器运行时的翻译层。区域化工作应当在包以规范形式通过 check 之后进行。
-
-## 下一步 {#next}
-
-| 上一页 | 下一页 |
-|---|---|
-| [开始](/start/) | [示例](/examples/) |

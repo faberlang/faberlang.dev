@@ -80,7 +80,6 @@ functio nav_tree() → lista<NavGroup> {
     language_items.appende(finge_branch("Grammar", "", "", grammar_children))
     language_items.appende(finge_item("Terms A–Z", "/corpus/az.html", "corpus"))
     language_items.appende(finge_item("Cheat sheet", "/cheatsheet/", "cheatsheet"))
-    language_items.appende(finge_item("Examples", "/examples/", "examples"))
 
     varia lista<NavItem> hir_children ← vacua
     hir_children.appende(finge_en_item("Rust", "/targets/rust.html", "rust"))

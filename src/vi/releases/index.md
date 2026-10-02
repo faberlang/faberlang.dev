@@ -22,7 +22,6 @@ Tải xuống các gói lưu trữ Faber CLI dựng sẵn và duyệt mọi th�
 |---|---|
 | [Cài đặt và tải xuống](/start/) | Bản phát hành hiện tại, thiết lập `PATH`, xác minh, lệnh `faber check` đầu tiên |
 | [Các lệnh](/cheatsheet/commands.html) | Vòng lặp CLI hằng ngày |
-| [Ví dụ](/examples/) | Các gói mẫu công khai |
 
 Hướng dẫn dựng từ mã nguồn **cố ý không được liên kết** ở đây. Hãy dùng các gói dựng sẵn, trừ khi bạn làm việc trên cây trình biên dịch riêng tư.
 

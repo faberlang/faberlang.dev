@@ -17,12 +17,17 @@ Inputs (resolved from a sibling workspace checkout, same convention as
 Outputs:
 
   src/en-US/reference/grammar.md              the family index (URL unchanged)
-  src/en-US/reference/grammar/<family>.md     one page per family
+  src/en-US/reference/grammar/<family>.md     one page per family (term tables)
+  static/agents/grammar/productions.md        every production, for models
+  dist/agents/grammar/productions.md          (same file, when dist/ exists)
 
-Productions render in the English reader spellings: quoted words are projected
-through the reader pack, rule names and UPPERCASE terminals stay the stable
-Latin identities. Keywords that resolve to an existing canonical corpus page
-under `dist/en-US/corpus/` become term links; alias stubs are followed to
+The human family pages show no EBNF: they list the words you write in that
+part of the language, linked to their corpus term pages, beside the grammar
+rule each word belongs to. The full production list is written once, for
+models and tools, to the agent canon page above. Its quoted words are projected
+through the English reader pack; rule names and UPPERCASE terminals stay the
+stable Latin identities. Keywords that resolve to an existing canonical corpus
+page under `dist/en-US/corpus/` become term links; alias stubs are followed to
 their target so only canonical pages are linked.
 
 The script degrades gracefully: when a sibling input is absent it leaves the
@@ -32,6 +37,7 @@ still builds.
 Usage:
     generate-grammar-tree.py [--ebnf PATH] [--jsonl PATH] [--pack PATH]
                              [--corpus DIR] [--index PATH] [--family-dir DIR]
+                             [--agent-page PATH]...
 
 en-US only for now. The family map and projection are locale-shaped, but a
 locale page can be added later by substituting the reader pack and output
@@ -206,8 +212,7 @@ FAMILIES: list[dict] = [
         "title": "Lexical structure & glyphs",
         "blurb": (
             "The terminal tokens the lexer produces: identifiers, numbers, "
-            "strings, width markers, and the frontmatter delimiter. Uppercase "
-            "rule names here are lexical terminals."
+            "strings, width markers, and the frontmatter delimiter."
         ),
         # Filled from the jsonl `region` field at load time.
         "ids": [],
@@ -226,30 +231,33 @@ sources = [
 ]
 +++
 
-The formal grammar for every Faber production, generated from the compiler's
-own specification and shown in the English reader spellings. The words in
-quotes are the words you write: a loop is `for`, a class is `class`, a function
-is `fn`. Rule names (`itera_stmt`, `genus_decl`) are stable grammar identifiers.
-Latin stays the compiler's canonical form; `faber explain <term>` prints a
-mapping from the compiler itself.
+Faber's grammar is written down as a list of rules, which the compiler calls
+productions. Each rule says how one piece of the language is built from
+smaller pieces: a loop from a keyword, a binding and a block, a block from
+statements. You do not need to read the rules to write Faber. The
+[cheat sheet](/cheatsheet/) and the language pages teach every form by
+example; this section is for looking up which words belong to which part of
+the language.
 
-This page is the authority on whether something is valid syntax. The
-[target matrix](/toolchain/target-matrix.html) is the authority on whether a
-given target supports it.
-
-The productions are grouped into families below. Each family page carries its
-productions and links the productions whose keywords have a
-[corpus term page](/en-US/corpus/). Uppercase names are lexical terminals;
-grammar examples are fragments, not standalone programs.
+The {total} rules are grouped into the families below. Each family page lists
+the words you write in that part of the language and links each one to its
+[term page](/en-US/corpus/).
 
 ## Production families {{#production-families}}
 
-| Family | Productions | What it covers |
-|---|---|---|
+| Family | What it covers |
+|---|---|
 {rows}
 
-All {total} productions. Every family page links back here, and rule names stay
-stable across the tree so a search for `itera_stmt` finds its one page.
+## Formal grammar {{#formal-grammar}}
+
+The rules themselves are the parser's own definition of valid syntax. They are
+written for models and tools, in the English reader spellings, and live on one
+page: [every production](/agents/grammar/productions.md), with the shorter
+[forms the agent pages use](/agents/grammar.md). The
+[target matrix](/toolchain/target-matrix.html) is the authority on whether a
+given target supports a form. Latin stays the compiler's canonical form, and
+`faber explain <term>` prints a mapping from the compiler itself.
 """
 
 FAMILY_TEMPLATE = """\
@@ -267,27 +275,42 @@ sources = [
 
 {blurb}
 
-Rule names (`fab_file`, `itera_stmt`) are the stable Latin grammar identifiers;
-the quoted words are the English reader spellings. Return to the
-[grammar index](/en-US/reference/grammar.html).
+Return to the [grammar overview](/en-US/reference/grammar.html).
+{terms}
+## Formal grammar {{#formal-grammar}}
 
-## Productions {{#productions}}
-
-```ebnf
-{productions}
-```
+The rules for this part of the language are the parser's own definition of it.
+They are written for models and tools, so this page does not repeat them; the
+full list is at [every production](/agents/grammar/productions.md).
 """
 
 TERMS_SECTION = """
 ## Terms {{#terms}}
 
-Keywords in these productions that have a corpus term page. The production id
-on the left is the Latin spine name; the links are the English reader spellings
-you write.
+These are the words you write in this part of the language. Each links to its
+page. The second column names the grammar rule the word belongs to.
 
-| Production | Terms |
+| Term | Grammar rule |
 |---|---|
 {rows}
+"""
+
+AGENT_PAGE_TEMPLATE = """\
+# Grammar productions
+
+Every Faber grammar rule, in EBNF, with the words in quotes shown in the
+English reader spellings. Rule names and UPPERCASE lexical terminals are the
+stable Latin identities. The compiler's own grammar is the authority; this page
+is generated from it. Grammar examples are fragments, not standalone programs.
+For the short forms the other pages use, read
+https://faberlang.dev/agents/grammar.md. The human grammar overview is
+https://faberlang.dev/en-US/reference/grammar.html.
+
+```ebnf
+{productions}
+```
+
+Fetch list: https://faberlang.dev/agents/index.md
 """
 
 
@@ -306,6 +329,13 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
         "--family-dir",
         default="src/en-US/reference/grammar",
         help="family page directory, relative to the repo root",
+    )
+    ap.add_argument(
+        "--agent-page",
+        action="append",
+        default=None,
+        help="agent productions page output (repeatable); defaults to "
+        "static/ and dist/ agents/grammar/productions.md",
     )
     return ap.parse_args(argv)
 
@@ -528,12 +558,8 @@ def render_family(
     selected = sorted(
         (by_id[pid] for pid in family["ids"]), key=lambda item: item[0]
     )
-    fence_lines: list[str] = []
     term_rows: list[str] = []
     for number, pid, rhs in selected:
-        fence_lines.append(f"# [{number:03d}] {pid}")
-        fence_lines.append(f"{pid} ::= {project_rhs(rhs, projection)}".rstrip())
-
         terms: list[str] = []
         for latin in keywords.get(pid, []):
             resolved = resolve_term(latin, projection, canonical, aliases)
@@ -542,18 +568,29 @@ def render_family(
             english, slug = resolved
             terms.append(f"[`{english}`](/en-US/corpus/{slug}.html)")
         if terms:
-            term_rows.append(f"| `{pid}` | {', '.join(terms)} |")
+            term_rows.append(f"| {', '.join(terms)} | `{pid}` |")
 
     page = FAMILY_TEMPLATE.format(
         title=family["title"],
         slug=family["slug"],
         order=order,
         blurb=family["blurb"],
-        productions="\n".join(fence_lines),
+        terms=(
+            TERMS_SECTION.format(rows="\n".join(term_rows)) if term_rows else ""
+        ),
     )
-    if term_rows:
-        page += TERMS_SECTION.format(rows="\n".join(term_rows))
     return page, len(selected)
+
+
+def render_agent_page(
+    productions: list[tuple[int, str, str]], projection: dict[str, str]
+) -> str:
+    """Every production in EBNF file order, for the agent canon."""
+    lines: list[str] = []
+    for number, pid, rhs in sorted(productions, key=lambda item: item[0]):
+        lines.append(f"# [{number:03d}] {pid}")
+        lines.append(f"{pid} ::= {project_rhs(rhs, projection)}".rstrip())
+    return AGENT_PAGE_TEMPLATE.format(productions="\n".join(lines))
 
 
 def main(argv: list[str]) -> int:
@@ -625,10 +662,11 @@ def main(argv: list[str]) -> int:
 
     rows = [
         f"| [{family['title']}](/en-US/reference/grammar/{family['slug']}.html) "
-        f"| {count} | {family['blurb']} |"
+        f"| {family['blurb']} |"
         for family, _, count in rendered
     ]
     total = sum(count for _, _, count in rendered)
+    agent_page = render_agent_page(productions, projection)
     index = INDEX_TEMPLATE.format(rows="\n".join(rows), total=total)
 
     family_dir.mkdir(parents=True, exist_ok=True)
@@ -639,6 +677,17 @@ def main(argv: list[str]) -> int:
     for family, page, _ in rendered:
         (family_dir / f"{family['slug']}.md").write_text(page, encoding="utf-8")
     index_path.write_text(index, encoding="utf-8")
+    agent_targets = (
+        [Path(p) for p in args.agent_page]
+        if args.agent_page
+        else [
+            REPO / "static/agents/grammar/productions.md",
+            REPO / "dist/agents/grammar/productions.md",
+        ]
+    )
+    for target in agent_targets:
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(agent_page, encoding="utf-8")
 
     print(
         f"grammar tree: {len(FAMILIES)} families, {total} productions → {family_dir}"

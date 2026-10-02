@@ -157,7 +157,7 @@ operators do not lower to every target, and the matrix records where.
 |---|---|
 | See the reasoning behind the language | [Behavior](/language/behavior/glyph-law.html) |
 | Start writing code | [Start](/start/) |
-| Look up a construct | [Cheat sheet](/cheatsheet/) and [Examples](/examples/) |
+| Look up a construct | [Cheat sheet](/cheatsheet/) |
 | Read the formal grammar | [Grammar](/reference/grammar.html) |
 | Use the compiler | [Faber command line](/toolchain/cli.html) |
 | Pick another reader language | [Reader locales](/language/reader-locales.html) |

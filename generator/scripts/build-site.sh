@@ -232,10 +232,9 @@ if [ "$FULL_SITE" = true ]; then
     # sibling checkouts. All of these write src/ and so must run before the
     # render. Each degrades to leaving its committed output alone when its
     # inputs are absent, so a checkout without siblings still builds.
-    echo "[0/10] Generating target lanes, examples, grammar, and localization..."
+    echo "[0/10] Generating target lanes, grammar, and localization..."
     "$PYTHON" "${SCRIPT_DIR}/generate-target-lanes.py"
     "$PYTHON" "${SCRIPT_DIR}/generate-localization.py"
-    "$PYTHON" "${SCRIPT_DIR}/generate-examples.py"
     "$PYTHON" "${SCRIPT_DIR}/generate-overview.py"
     if [ -f "${WORKSPACE_DIR}/faber/docs/EBNF.md" ]; then
         "${SCRIPT_DIR}/generate-grammar" --all-locales
@@ -380,13 +379,14 @@ if [ "$FULL_SITE" = true ]; then
         smoke_contains "${OUTPUT_DIR}/install.md" "Current release: Faber ${current_faber}." "install lobby version"
         smoke_contains "${OUTPUT_DIR}/.well-known/agent-skills/install/SKILL.md" "faber-v${current_faber}" "install skill release link"
         smoke_contains "${OUTPUT_DIR}/.well-known/agent-skills/index.json" "\"version\": \"${current_faber}\"" "skill catalog version"
-        smoke_contains "${OUTPUT_DIR}/en-US/start/index.html" "https://faberlang.dev/install.md" "start page install link"
         smoke_contains "${OUTPUT_DIR}/en-US/start/install.html" "url=/en-US/start/" "retired install page redirects to start"
         smoke_contains "${OUTPUT_DIR}/en-US/cheatsheet/commands.html" "faber check" "cheat sheet commands"
         smoke_contains "${OUTPUT_DIR}/en-US/cheatsheet/index.html" "Cheat sheet" "cheat sheet index"
         smoke_contains "${OUTPUT_DIR}/en-US/cheatsheet/errors.html" "error channel" "cheat sheet errors"
-        smoke_contains "${OUTPUT_DIR}/en-US/examples/index.html" "device-summa" "examples index"
-        smoke_contains "${OUTPUT_DIR}/en-US/examples/cat.html" "faber-code" "example source shown"
+        smoke_contains "${OUTPUT_DIR}/en-US/examples/index.html" "url=/en-US/cheatsheet/" "retired examples index redirects to the cheat sheet"
+        smoke_contains "${OUTPUT_DIR}/en-US/examples/cat.html" "url=/en-US/cheatsheet/" "retired example page redirects to the cheat sheet"
+        smoke_contains "${OUTPUT_DIR}/ar/examples/index.html" "cheatsheet/" "retired examples index redirects in a locale"
+        smoke_contains "${OUTPUT_DIR}/examples/cat.html" "url=/en-US/examples/cat.html" "retired root example stub"
         smoke_contains "${OUTPUT_DIR}/en-US/targets/index.html" "Target lanes" "target lanes index"
         smoke_contains "${OUTPUT_DIR}/en-US/404.html" "404" "404 page"
         smoke_contains "${OUTPUT_DIR}/en-US/releases/index.html" "Faber ${current_faber}" "releases index"
@@ -532,7 +532,7 @@ if [ "$FULL_SITE" = true ]; then
     # Before highlighting: the tab cards carry per-locale panels, and each
     # panel names its own reader locale so the highlighter paints it in that
     # locale's spellings. Injecting after highlighting would leave them plain.
-    echo "[9/10] Reader-locale example tabs..."
+    echo "[9/10] Reader-locale tab cards (cheat sheet, target lanes)..."
     "$PYTHON" "${SCRIPT_DIR}/locale-tabs.py" inject "$OUTPUT_DIR"
 
     # Inline language terms follow the reader locale, same as the fences.
@@ -550,6 +550,21 @@ if [ "$FULL_SITE" = true ]; then
 
     echo "[9/10] Contents rails..."
     "$PYTHON" "${SCRIPT_DIR}/inject-toc.py" "$OUTPUT_DIR"
+
+    # Glyph-only inline code gets a size class (CSS cannot select it).
+    echo "[9/10] Glyph chips..."
+    "$PYTHON" "${SCRIPT_DIR}/tag-glyph-chips.py" "$OUTPUT_DIR"
+
+    # The Start page asks for the agent pass with a marker. After the contents
+    # rails, so the pass's card labels never reach a rail.
+    echo "[9/10] Agent pass..."
+    "$PYTHON" "${SCRIPT_DIR}/inject-pass.py" "$OUTPUT_DIR"
+    grep -q 'class="pass-wrap"' "${OUTPUT_DIR}/en-US/start/index.html" || {
+        echo "ERROR: Start page has no agent pass" >&2
+        exit 1
+    }
+    # The install link lives on the pass, so it can only be asserted here.
+    smoke_contains "${OUTPUT_DIR}/en-US/start/index.html" 'href="/install.md"' "start page install link"
 
     # Step 10: Gates (link check, leakage) — only for full site
     echo "[10/10] Gates..."

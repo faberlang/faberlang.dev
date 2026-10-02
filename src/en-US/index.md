@@ -68,7 +68,6 @@ and the [target matrix](/toolchain/target-matrix.html).
 |---|---|---|
 | [Start](/start/) | Human | One link to hand your model; it installs Faber for you |
 | [Commands](/cheatsheet/commands.html) | Human + agent | Daily CLI loop: check, build, run, test, explain |
-| [Examples](/examples/) | Human + agent | Real packages: CLI apps, mailspace, GPU, corpus |
 | [`/install.md`](/install.md) | Agent | Install route — start here if you are a model |
 | [Agent guide](/agents/index.md) | Agent | How to learn Faber and ship a package |
 | [Agent skills](/.well-known/agent-skills/index.json) | Agent | Focused skill guides (install, language, examples, …) |
