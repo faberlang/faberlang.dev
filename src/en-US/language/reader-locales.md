@@ -1,12 +1,28 @@
 +++
 title = "Reader locales"
-section = "language"
+section = "locales"
 order = 6
 sources = [
   "examples/reader-locale/ (6 locale packages with localized Faber source)",
   "radix/locale/ (8 installed reader packs)",
 ]
 +++
+
+Reader locale is a property of the compiler, not a translation of this site.
+The six `/{locale}/` trees are translated **prose mirrors** of the English
+documentation; a reader locale changes the **code surface** — the keywords,
+type names, and diagnostic text the compiler reads and writes. This page is the
+hub of that feature; the pages below carry the reference data.
+
+| Page | What it holds |
+|---|---|
+| [Keyword reference](/language/locales/keywords.html) | every canonical key across all eight packs |
+| [Locale examples](/language/locales/examples.html) | one program shown in all eight surfaces |
+| [Diagnostics by locale](/language/locales/diagnostics.html) | one compiler failure printed in each language |
+| [English](/language/locales/en.html) · [Latin](/language/locales/la.html) · [العربية](/language/locales/ar.html) · [हिन्दी](/language/locales/hi.html) · [ไทย](/language/locales/th-TH.html) · [Tiếng Việt](/language/locales/vi.html) · [简体中文](/language/locales/zh-Hans.html) · [繁體中文](/language/locales/zh-Hant.html) | per-locale keyword tables, native name, and script notes |
+
+The reference tables are generated from the eight reader packs themselves, so
+they cannot drift from the compiler by hand.
 
 ## Reader locale
 
