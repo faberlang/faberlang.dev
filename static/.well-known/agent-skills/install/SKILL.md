@@ -13,19 +13,19 @@ description: "Download and verify the current Faber CLI release for macOS arm64 
 
 ## Current release
 
-- **Version:** 1.11.0
-- **Tag:** `faber-v1.11.0`
+- **Version:** 1.12.0
+- **Tag:** `faber-v1.12.0`
 - **Published:** 2026-10-02
 - **Bundled compiler:** Radix 0.84.0
-- **Release page:** https://github.com/faberlang/releases/releases/tag/faber-v1.11.0
+- **Release page:** https://github.com/faberlang/releases/releases/tag/faber-v1.12.0
 - **License:** MIT
 
 ## Archives
 
 | Platform | Archive | Checksum |
 |---|---|---|
-| macOS arm64 | https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz | https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz.sha256 |
-| Linux x64 | https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz | https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz.sha256 |
+| macOS arm64 | https://github.com/faberlang/releases/releases/download/faber-v1.12.0/faber-v1.12.0-aarch64-apple-darwin.tar.gz | https://github.com/faberlang/releases/releases/download/faber-v1.12.0/faber-v1.12.0-aarch64-apple-darwin.tar.gz.sha256 |
+| Linux x64 | https://github.com/faberlang/releases/releases/download/faber-v1.12.0/faber-v1.12.0-x86_64-unknown-linux-gnu.tar.gz | https://github.com/faberlang/releases/releases/download/faber-v1.12.0/faber-v1.12.0-x86_64-unknown-linux-gnu.tar.gz.sha256 |
 
 The archive ships `bin/faber` and `share/faber`. Install both, so the reader packs resolve beside the binary. These are the only two archives published. On any other platform, stop and tell the human.
 
@@ -42,9 +42,9 @@ The archive ships `bin/faber` and `share/faber`. Install both, so the reader pac
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.12.0/faber-v1.12.0-aarch64-apple-darwin.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.12.0/faber-v1.12.0-aarch64-apple-darwin.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
@@ -58,9 +58,9 @@ faber --version
 
 ```bash
 curl -fsSL -o faber.tgz \
-  https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz
+  https://github.com/faberlang/releases/releases/download/faber-v1.12.0/faber-v1.12.0-x86_64-unknown-linux-gnu.tar.gz
 curl -fsSL -o faber.tgz.sha256 \
-  https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz.sha256
+  https://github.com/faberlang/releases/releases/download/faber-v1.12.0/faber-v1.12.0-x86_64-unknown-linux-gnu.tar.gz.sha256
 expected=$(awk '{print $1}' faber.tgz.sha256)
 actual=$(sha256sum faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"

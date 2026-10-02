@@ -1,11 +1,11 @@
 # Install Faber
 
-Faber is a programming language written by models. It is type-first, its
+Faber Romanus is a programming language written by models. It is type-first, its
 grammar is mechanical, and the source can be spelled in any of eight reader
 languages. One `faber` command checks, runs, formats, and builds Faber
 packages.
 
-Current release: Faber 1.11.0.
+Current release: Faber 1.12.0.
 
 Follow these steps in order. Each link is the file that owns that step. Fetch
 it when you reach it; do not copy commands or URLs from this page.

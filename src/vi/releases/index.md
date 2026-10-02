@@ -25,23 +25,23 @@ Tải xuống các gói lưu trữ Faber CLI dựng sẵn và duyệt mọi th�
 
 Hướng dẫn dựng từ mã nguồn **cố ý không được liên kết** ở đây. Hãy dùng các gói dựng sẵn, trừ khi bạn làm việc trên cây trình biên dịch riêng tư.
 
-## Bản phát hành mới nhất — Faber 1.6.0 {#latest}
+## Bản phát hành mới nhất — Faber 1.12.0 {#latest}
 
 | Trường | Giá trị |
 |---|---|
 | **Sản phẩm** | Faber CLI |
-| **Phiên bản** | 1.6.0 |
-| **Thẻ** | `faber-v1.6.0` |
-| **Phát hành** | 2026-08-10 |
-| **GitHub** | [faber-v1.6.0](https://github.com/faberlang/releases/releases/tag/faber-v1.6.0) |
+| **Phiên bản** | 1.12.0 |
+| **Thẻ** | `faber-v1.12.0` |
+| **Phát hành** | 2026-10-02 |
+| **GitHub** | [faber-v1.12.0](https://github.com/faberlang/releases/releases/tag/faber-v1.12.0) |
 | **Giấy phép** | MIT |
 
 ### Tệp nhị phân {#latest-binaries}
 
 | Nền tảng | Gói lưu trữ | Kích thước | SHA-256 |
 |---|---|---|---|
-| **macOS arm64** | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | 10.5 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | 11.9 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** | [faber-v1.12.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.12.0/faber-v1.12.0-aarch64-apple-darwin.tar.gz) | 12.8 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.12.0/faber-v1.12.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** | [faber-v1.12.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.12.0/faber-v1.12.0-x86_64-unknown-linux-gnu.tar.gz) | 14.4 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.12.0/faber-v1.12.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
 Mỗi gói lưu trữ gồm cây `bin/` và `share/` — đặt `bin/faber` vào `PATH`, giữ `share/faber` bên cạnh tệp nhị phân. Xem hướng dẫn từng bước tại [Cài đặt và tải xuống](/start/).
 

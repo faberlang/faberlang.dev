@@ -397,8 +397,8 @@ def main() -> None:
         "System fonts · zero external requests",
     ]
 
-    title = "Faber — a programming language models write well, in the language you read"
-    desc = ("Faber is a statically typed programming language for coding agents and human "
+    title = "Faber Romanus — a programming language models write well, in the language you read"
+    desc = ("Faber Romanus is a statically typed programming language for coding agents and human "
             "authors: a mechanical grammar, explicit generic types and math-oriented "
             "operators, written in eight language surfaces and compiled to Rust, "
             "TypeScript, Go, Swift and more.")
@@ -459,7 +459,7 @@ def main() -> None:
       <h1 class="hook">Written by models,<br>read in your language.</h1>
       <div class="rule" aria-hidden="true"></div>
       <p class="subhook">
-        Faber has a clear mechanical grammar, explicit static and generic types,
+        Faber Romanus has a clear mechanical grammar, explicit static and generic types,
         and math-oriented operators. The same program is written and read in
         eight language surfaces, and compiles to Rust, TypeScript, Go, Swift and
         more — so a library you write once can go into the project you already

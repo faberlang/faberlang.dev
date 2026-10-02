@@ -330,7 +330,7 @@ The corpus renderer (`render-corpus-batch.sh`) also post-processes its output:
 
 ### Binary versions
 
-- `faber` 1.11.0 (docs site documents this release; `static/install.md`, the install skill, and the skill catalog pin it)
+- `faber` 1.12.0 (docs site documents this release; `static/install.md`, the install skill, and the skill catalog pin it)
 - `radix` 0.84.0
 - **Generator build toolchain pin (2026-10-02):** current radix HEAD cannot
   parse the generator source (grammar moved after Sep 30), and the 1.11.0
