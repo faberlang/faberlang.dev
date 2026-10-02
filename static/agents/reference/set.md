@@ -13,7 +13,7 @@ set<T>
 ## What this teaches
 
 - Generic set collection type.
-- Related keywords: list, map, between
+- Related keywords: list, map, ∈
 
 ## Common mistakes
 
@@ -50,6 +50,6 @@ main {
 }
 ```
 
-See also: [`list`](list.md), [`map`](map.md), [`between`](between.md).
+See also: [`list`](list.md), [`map`](map.md), [`∈`](∈.md).
 
 Fetch list: https://faberlang.dev/agents/index.md
