@@ -234,11 +234,13 @@ if [ "$FULL_SITE" = true ]; then
     "$PYTHON" "${SCRIPT_DIR}/generate-target-lanes.py"
     "$PYTHON" "${SCRIPT_DIR}/generate-localization.py"
     "$PYTHON" "${SCRIPT_DIR}/generate-examples.py"
+    "$PYTHON" "${SCRIPT_DIR}/generate-overview.py"
     if [ -f "${WORKSPACE_DIR}/faber/docs/EBNF.md" ]; then
         "${SCRIPT_DIR}/generate-grammar" --all-locales
     else
         echo "  Skipping grammar generate (no ${WORKSPACE_DIR}/faber/docs/EBNF.md)"
     fi
+    "$PYTHON" "${SCRIPT_DIR}/generate-grammar-tree.py"
 
     # The agent locales table joins the eight reader packs in radix/locale. It
     # writes static/ and dist/ rather than src/, so it must run before the
@@ -246,6 +248,15 @@ if [ "$FULL_SITE" = true ]; then
     # the expected list in agent_locales.py.
     echo "[0/10] Generating the agent locales table..."
     "$PYTHON" "${SCRIPT_DIR}/generate-agent-locales.py" --strict
+
+    # The reader-locale reference joins the same packs. Diagnostics captures
+    # are a committed cache refreshed by hand (capture-locale-diagnostics.sh),
+    # so the build never depends on a faber run here.
+    if [ -d "${WORKSPACE_DIR}/radix/locale" ]; then
+        echo "[0/10] Generating the reader-locale reference..."
+        "$PYTHON" "${SCRIPT_DIR}/generate-locale-reference.py" \
+            --packs "${WORKSPACE_DIR}/radix/locale"
+    fi
 
     # The agent reference mirrors the compiler's explain registry, so it needs
     # a faber binary that can resolve its reference pack. The workspace

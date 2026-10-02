@@ -255,7 +255,7 @@ stable across the tree so a search for `itera_stmt` finds its one page.
 FAMILY_TEMPLATE = """\
 +++
 title = "{title}"
-section = "reference"
+section = "grammar-{slug}"
 order = {order}
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [
@@ -546,6 +546,7 @@ def render_family(
 
     page = FAMILY_TEMPLATE.format(
         title=family["title"],
+        slug=family["slug"],
         order=order,
         blurb=family["blurb"],
         productions="\n".join(fence_lines),

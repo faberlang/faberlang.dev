@@ -44,36 +44,61 @@ functio finge_group(textus id, textus label, bivalens compact, lista<NavItem> it
 # The sidebar tree. Hrefs are locale-relative content paths; sections are
 # the frontmatter `section` of the target pages.
 functio nav_tree() → lista<NavGroup> {
+    varia lista<NavItem> behavior_children ← vacua
+    behavior_children.appende(finge_item("Types before names", "/language/behavior/type-first.html", "behavior-type-first"))
+    behavior_children.appende(finge_item("The glyph law", "/language/behavior/glyph-law.html", "behavior-glyph-law"))
+    behavior_children.appende(finge_item("Math in the ether", "/language/behavior/numeric-widths.html", "behavior-numeric-widths"))
+    behavior_children.appende(finge_item("Sealed reader locales", "/language/behavior/sealed-locales.html", "behavior-sealed-locales"))
+    behavior_children.appende(finge_item("A program is a package", "/language/behavior/packages.html", "behavior-packages"))
+    behavior_children.appende(finge_item("Errors as values, tests as declarations", "/language/behavior/errors-and-tests.html", "behavior-errors-and-tests"))
+
+    varia lista<NavItem> grammar_children ← vacua
+    grammar_children.appende(finge_item("Grammar overview", "/reference/grammar.html", "grammar"))
+    grammar_children.appende(finge_item("Programs, regions & imports", "/reference/grammar/program.html", "grammar-program"))
+    grammar_children.appende(finge_item("Declarations & bindings", "/reference/grammar/declarations.html", "grammar-declarations"))
+    grammar_children.appende(finge_item("Annotations & directives", "/reference/grammar/annotations.html", "grammar-annotations"))
+    grammar_children.appende(finge_item("Types & contracts", "/reference/grammar/types.html", "grammar-types"))
+    grammar_children.appende(finge_item("Statements & control flow", "/reference/grammar/statements.html", "grammar-statements"))
+    grammar_children.appende(finge_item("Expressions & operators", "/reference/grammar/expressions.html", "grammar-expressions"))
+    grammar_children.appende(finge_item("Patterns & destructuring", "/reference/grammar/patterns.html", "grammar-patterns"))
+    grammar_children.appende(finge_item("Error channel", "/reference/grammar/errors.html", "grammar-errors"))
+    grammar_children.appende(finge_item("Lexical structure & glyphs", "/reference/grammar/lexical.html", "grammar-lexical"))
+    grammar_children.appende(finge_item("Terms A–Z", "/corpus/az.html", "corpus"))
+
     varia lista<NavItem> language_items ← vacua
-    language_items.appende(finge_item("Overview", "/language/", "language"))
-    language_items.appende(finge_item("Behavior", "/language/", "language"))
-    language_items.appende(finge_item("Grammar", "/reference/grammar.html", "reference"))
+    language_items.appende(finge_item("Overview", "/language/overview.html", "overview"))
+    language_items.appende(finge_branch("Behavior", "", "", behavior_children))
+    language_items.appende(finge_branch("Grammar", "", "", grammar_children))
     language_items.appende(finge_item("Examples", "/examples/", "examples"))
     language_items.appende(finge_item("Installation", "/start/install.html", "install"))
+    language_items.appende(finge_item("Cheat sheet", "/cheatsheet/", "cheatsheet"))
 
     varia lista<NavItem> hir_children ← vacua
-    hir_children.appende(finge_item("Rust", "/targets/rust.html", "targets"))
-    hir_children.appende(finge_item("TypeScript", "/targets/ts.html", "targets"))
-    hir_children.appende(finge_item("Go", "/targets/go.html", "targets"))
-    hir_children.appende(finge_item("Faber", "/targets/faber.html", "targets"))
+    hir_children.appende(finge_item("Rust", "/targets/rust.html", "rust"))
+    hir_children.appende(finge_item("TypeScript", "/targets/ts.html", "ts"))
+    hir_children.appende(finge_item("Go", "/targets/go.html", "go"))
+    hir_children.appende(finge_item("Faber", "/targets/faber.html", "faber"))
 
     varia lista<NavItem> mir_children ← vacua
-    mir_children.appende(finge_item("LLVM IR", "/targets/llvm-text.html", "targets"))
-    mir_children.appende(finge_item("WebAssembly text", "/targets/wasm-text.html", "targets"))
-    mir_children.appende(finge_item("WGSL", "/targets/wgsl-text.html", "targets"))
+    mir_children.appende(finge_item("LLVM IR", "/targets/llvm-text.html", "llvm-text"))
+    mir_children.appende(finge_item("WebAssembly text", "/targets/wasm-text.html", "wasm-text"))
 
     varia lista<NavItem> gpu_children ← vacua
-    gpu_children.appende(finge_item("Metal", "/targets/metal-text.html", "targets"))
+    gpu_children.appende(finge_item("Metal", "/targets/metal-text.html", "metal-text"))
+    gpu_children.appende(finge_item("WGSL", "/targets/wgsl-text.html", "wgsl-text"))
 
     varia lista<NavItem> targets_items ← vacua
-    targets_items.appende(finge_branch("HIR", "/targets/hir.html", "targets", hir_children))
-    targets_items.appende(finge_branch("MIR", "/targets/mir.html", "targets", mir_children))
-    targets_items.appende(finge_branch("GPU", "/targets/gpu.html", "targets", gpu_children))
-    targets_items.appende(finge_item("Target matrix", "/toolchain/target-matrix.html", "targets"))
+    targets_items.appende(finge_item("All targets", "/targets/", "targets"))
+    targets_items.appende(finge_branch("HIR — application", "", "", hir_children))
+    targets_items.appende(finge_branch("MIR — systems", "", "", mir_children))
+    targets_items.appende(finge_branch("GPU — device", "", "", gpu_children))
+    targets_items.appende(finge_item("Target matrix", "/toolchain/target-matrix.html", "target-matrix"))
 
     varia lista<NavItem> locales_items ← vacua
-    locales_items.appende(finge_item("Reader locales", "/language/reader-locales.html", "language"))
-    locales_items.appende(finge_item("Localization", "/localization.html", "localization"))
+    locales_items.appende(finge_item("Reader locales", "/language/reader-locales.html", "locales"))
+    locales_items.appende(finge_item("Keyword reference", "/language/locales/keywords.html", "locales"))
+    locales_items.appende(finge_item("Locale examples", "/language/locales/examples.html", "locales"))
+    locales_items.appende(finge_item("Diagnostics by locale", "/language/locales/diagnostics.html", "locales"))
 
     varia lista<NavItem> libraries_items ← vacua
     libraries_items.appende(finge_item("Norma — stdlib", "/libraries/norma.html", "libraries"))
@@ -85,8 +110,8 @@ functio nav_tree() → lista<NavGroup> {
 
     varia lista<NavItem> releases_items ← vacua
     releases_items.appende(finge_item("All releases", "/releases/", "releases"))
-    releases_items.appende(finge_item("macOS arm64", "https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz", ""))
-    releases_items.appende(finge_item("Linux x64", "https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz", ""))
+    releases_items.appende(finge_item("macOS arm64", "https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-aarch64-apple-darwin.tar.gz", ""))
+    releases_items.appende(finge_item("Linux x64", "https://github.com/faberlang/releases/releases/download/faber-v1.11.0/faber-v1.11.0-x86_64-unknown-linux-gnu.tar.gz", ""))
 
     varia lista<NavItem> agents_items ← vacua
     agents_items.appende(finge_item("Agent index", "/llms.txt", ""))
@@ -96,8 +121,8 @@ functio nav_tree() → lista<NavGroup> {
 
     varia lista<NavGroup> groups ← vacua
     groups.appende(finge_group("language", "The Language", falsum, language_items))
-    groups.appende(finge_group("targets", "By Target", falsum, targets_items))
-    groups.appende(finge_group("locales", "By Locale", falsum, locales_items))
+    groups.appende(finge_group("targets", "By target", falsum, targets_items))
+    groups.appende(finge_group("locales", "Reader locales", falsum, locales_items))
     groups.appende(finge_group("libraries", "Libraries", falsum, libraries_items))
     groups.appende(finge_group("releases", "Releases", falsum, releases_items))
     groups.appende(finge_group("agents", "For agents", verum, agents_items))
