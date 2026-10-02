@@ -160,7 +160,7 @@ Units 2–5 are parallelizable after 1. Each stage ships a complete site.
 | Unit | Status | Seat | Receipt | Notes |
 | --- | --- | --- | --- | --- |
 | 0 — baseline tag | done | — | tag `site-v1.6.0` | 2026-10-02 |
-| 1 — tree nav engine | in flight | seat …bd47b (zai-glm-5.3-flash) | — | prerequisite for all buckets |
+| 1 — tree nav engine | done | seat …bd47b (zai-glm-5.3-flash) | d71304b49 → ffdb50206 | measured build: 114.7s cold |
 | 2 — The Language | done | seat …c8d2b (deepseek-flash) | 50bb04267, f2bb3b460 → 84c049c1c | Overview + 6 Behavior pages |
 | 3a — grammar tree | done | seat …586c (deepseek-flash) | 54095c9d0 → 343dd137b | 258 productions, 9 families |
 | 3b — corpus reference | done | seat …e1b5 (zai-glm-5.3-flash) | 928a34ef5 → fe66ec36b | 9 buckets + A–Z + transcode |

@@ -14,5 +14,5 @@ kind = "bin"
 [target.rust]
 host = "native"
 
-[locale]
+[reader]
 locale = "la"
