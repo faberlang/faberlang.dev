@@ -1,6 +1,6 @@
 # GOAL: site-ia-rework — task-oriented human navigation for faberlang.dev
 
-**Status**: active — wave 1 dispatched 2026-10-02, six seats in flight (units 1–5)
+**Status**: active — wave 1 landed and integrated 2026-10-02 (units 1–5 + wiring + green full build); unit 6 closeout pending
 **Created**: 2026-10-02
 **Campaign:** `—`
 **Source:** operator design session 2026-10-02 (sidebar IA, corpus reference model); follow-on to `site-implementation`
@@ -166,7 +166,7 @@ Units 2–5 are parallelizable after 1. Each stage ships a complete site.
 | 3b — corpus reference | done | seat …e1b5 (zai-glm-5.3-flash) | 928a34ef5 → fe66ec36b | 9 buckets + A–Z + transcode |
 | 4 — By Target | done | seat …a3e39 (deepseek-flash) | 6c81ddd5b, 224ad6a94 → 993f4400b | releases → faber 1.11.0 |
 | 5 — By Locale | done | seat …bc9e0 (deepseek-flash) | c3cd35893, be307073f → 3db2202ce | 8-pack join + captures |
-| 6 — migration closeout | pending | — | — | gates + redirects last; injector parent-owned |
+| 6 — migration closeout | in flight | parent | emitter/build-order fixes landed | remaining: retire features/ pages + redirect stubs (apply-redirects), ia-redirects.py reconciliation, page frontmatter section alignment, cheat-sheet translations, inject-chrome [[nav.group]] flatten, linked branch heads |
 
 ## Integration queue (parent-owned, after units 1/2/3b land)
 

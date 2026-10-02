@@ -314,8 +314,17 @@ The corpus renderer (`render-corpus-batch.sh`) also post-processes its output:
 
 ### Binary versions
 
-- `faber` 1.6.0
-- `radix` 0.81.0
+- `faber` 1.11.0 (docs site documents this release; sidebar download pins updated)
+- `radix` 0.84.0
+- **Generator build toolchain pin (2026-10-02):** current radix HEAD cannot
+  parse the generator source (grammar moved after Sep 30), and the 1.11.0
+  release binary's emit aliases mismatch the post-rename container runtime.
+  The proven pair: `FABER=/tmp/radix-sep30/target/release/faber` +
+  `FABER_SUPPORT_PATH_OVERRIDE=/tmp/container-sep30` +
+  `FABER_LIBRARY_HOME=<workspace>` and
+  `WORKSPACE_FABER=<workspace>/radix/target/debug/faber`. Unpin only after
+  the radix emit/runtime alias split is fixed. **Measured full build with
+  the pin: ~3:20 wall, all gates green** (generator alone 114.7s cold).
 
 ## Campaign stages
 
