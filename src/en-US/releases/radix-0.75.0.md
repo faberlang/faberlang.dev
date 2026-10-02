@@ -1,7 +1,7 @@
 +++
 title = "Radix 0.75.0"
 section = "releases"
-order = 25
+order = 33
 sources = []
 +++
 
@@ -48,11 +48,11 @@ line.
 
 ### Major tracks
 
-- **Route Faber 1.0 preparation campaign** — Scaffold `docs/factory/faber-v1-release/CAMPAIGN.md` (319 lines) and a factory README index. Defines the campaign structure for the Faber 1.0 release. (`82283f2aa`)
+- **Route Faber 1.0 preparation campaign** — Scaffold `docs/archived/faber-v1-release/CAMPAIGN.md` (319 lines) and a factory README index. Defines the campaign structure for the Faber 1.0 release. (`82283f2aa`)
 
-- **Close RR4 release evidence** — Tighten the RR4 readiness matrix in `docs/factory/faber-hir-v1/release-readiness.md` (41 insertions, 47 deletions). Removes stale rows and marks remaining evidence as complete. (`53f3e8c0a`)
+- **Close RR4 release evidence** — Tighten the RR4 readiness matrix in `docs/archived/faber-hir-v1/release-readiness.md` (41 insertions, 47 deletions). Removes stale rows and marks remaining evidence as complete. (`53f3e8c0a`)
 
-- **Archive CPO v1 release contract** — Record the head-CPO release contract (231 lines) in `docs/factory/faber-hir-v1/head-cpo-v1-release-contract.md` as historical reference. (`bc1a51238`)
+- **Archive CPO v1 release contract** — Record the head-CPO release contract (231 lines) in `docs/archived/faber-hir-v1/head-cpo-v1-release-contract.md` as historical reference. (`bc1a51238`)
 
 - **Draft and iterate Faber 1.0 operator review** — Three-commit chain building `stage-3-operator-review.md`:
   - Present initial review content (131 new lines) plus CAMPAIGN.md edits (`224bd5387`)

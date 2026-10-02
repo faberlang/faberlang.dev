@@ -11,13 +11,17 @@ The shader text below is the lowering surface. Real device execution — `faber 
 
 ## Targets {#targets}
 
-| Target | What it is | Scenarios shown |
+| Target | Emits | Scenarios shown |
 |---|---|---|
-| [WGSL](/targets/wgsl-text.html) | WebGPU compute shader source. | 1 of 1 |
-| [Metal](/targets/metal-text.html) | Apple GPU compute shader source (MSL). | 1 of 1 |
+| [WGSL](/targets/wgsl-text.html) | WGSL compute shader | 1 of 1 |
+| [Metal](/targets/metal-text.html) | Metal MSL | 1 of 1 |
 
 A target showing fewer scenarios than the others is not broken. It means the emitter declines that shape, which the pages state directly rather than hiding.
 
+## Measured support {#support}
+
+Device-kernel emitters are not scored against the general corpus — they lower a kernel surface and nothing else. Their measured support is the [device kernel support summary](/toolchain/target-matrix.html#device-kernel-support).
+
 ---
 
-[All lanes](/targets/) · [Measured support per term](/toolchain/target-matrix.html)
+[All targets](/targets/) · [Measured support per term](/toolchain/target-matrix.html)

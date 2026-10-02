@@ -11,13 +11,22 @@ Expect large expansion ratios here and do not read them as waste. An IR names ev
 
 ## Targets {#targets}
 
-| Target | What it is | Scenarios shown |
+| Target | Emits | Scenarios shown |
 |---|---|---|
-| [LLVM IR](/targets/llvm-text.html) | MIR staging text for external LLVM tools. Also the route CUDA device programs take, via NVVM → PTX. | 3 of 3 |
-| [WebAssembly text](/targets/wasm-text.html) | WAT emission from the same MIR. | 2 of 3 |
+| [LLVM IR](/targets/llvm-text.html) | LLVM IR text | 3 of 3 |
+| [WebAssembly text](/targets/wasm-text.html) | WebAssembly text | 2 of 3 |
 
 A target showing fewer scenarios than the others is not broken. It means the emitter declines that shape, which the pages state directly rather than hiding.
 
+## Measured support {#support}
+
+| Target | Capable | Analyzable | Coverage |
+|---|---|---|---|
+| [LLVM IR](/targets/llvm-text.html) | 323 | 359 | 90% |
+| [WebAssembly text](/targets/wasm-text.html) | 259 | 359 | 72% |
+
+The matrix also measures `runner`, `sexp`, `sexp-struct`, `wasm` — MIR emit surfaces with no page here yet.
+
 ---
 
-[All lanes](/targets/) · [Measured support per term](/toolchain/target-matrix.html)
+[All targets](/targets/) · [Measured support per term](/toolchain/target-matrix.html)

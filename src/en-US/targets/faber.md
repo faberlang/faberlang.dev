@@ -13,6 +13,16 @@ Part of the [HIR lane](/targets/hir.html). Every panel below is compiler output.
 
 The round trip. Reader-locale spellings and formatting normalise to the canonical surface, which is how a program written in one locale can be reviewed in another.
 
+## Measured support {#support}
+
+| Capable | Analyzable | Coverage |
+|---|---|---|
+| 364 | 364 | 100% |
+
+From the [target matrix](/toolchain/target-matrix.html): how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.
+
+No measured gaps in the scored sections.
+
 ## Typed tensors {#tensores}
 
 Builds two shaped matrices, multiplies them, and reduces the product to a scalar. Exercises shape-bearing types and a reduction.
@@ -127,4 +137,4 @@ incipit {
 
 ---
 
-[All lanes](/targets/) · [Measured support per term](/toolchain/target-matrix.html)
+[All targets](/targets/) · [Measured support per term](/toolchain/target-matrix.html)
