@@ -62,7 +62,7 @@
       </p>
     </div>
 
-    <section class="pass-wrap" aria-label="Install">
+    <section class="pass-wrap" aria-label="Install Faber">
       <article class="pass" aria-label="Agent pass">
         <div class="pass-main">
           <div class="pass-top"><span>Faber · agent pass</span><span>v1.11.0</span></div>
@@ -77,8 +77,8 @@
         <div class="pass-stub">
           <h2 class="share-title">Hand it to your model</h2>
           <div class="actions">
-            <button type="button" class="btn btn-accent" data-copy="https://faberlang.dev/install.md">Copy link</button>
-            <button type="button" class="btn btn-ghost" data-copy="Read https://faberlang.dev/install.md and install Faber, then show me a hello program.">Copy prompt</button>
+            <button type="button" class="btn btn-accent" data-copy="https://faberlang.dev/install.md" data-copied="Copied ✓" data-failed="Select the text instead">Copy link</button>
+            <button type="button" class="btn btn-ghost" data-copy="Read https://faberlang.dev/install.md and install Faber, then show me a hello program." data-copied="Copied ✓" data-failed="Select the text instead">Copy prompt</button>
           </div>
         </div>
       </article>
@@ -355,8 +355,8 @@ outside
         <p>
           258 grammar productions, generated and checked as the parser’s
           authority. One construct has one spelling. Arrows mean runtime effects
-          (<code>←</code> assign, <code>→</code> return, <code>⇥</code> error channel);
-          <code>=</code> and <code>:</code> only state compile-time facts.
+          (<code class="glyph">←</code> assign, <code class="glyph">→</code> return, <code class="glyph">⇥</code> error channel);
+          <code class="glyph">=</code> and <code class="glyph">:</code> only state compile-time facts.
           <a href="/en-US/reference/grammar.html">Read the grammar</a>
         </p>
       </li>
@@ -366,17 +366,17 @@ outside
           Declarations are type-first: <code>f64 low</code>, never <code>low: f64</code>.
           Nullability is written <code>T ∪ none</code>. Generics are written out
           (<code>fn choose&lt;T&gt;</code>), and crossing between integer and float is
-          an explicit <code>↦</code>, not an accident.
+          an explicit <code class="glyph">↦</code>, not an accident.
           <a href="/en-US/language/types.html">Types and values</a>
         </p>
       </li>
       <li>
         <h3>Math-oriented operators</h3>
         <p>
-          Integer <code>/</code> floors, so <code>-7 / 2</code> is <code>-4</code>; true
-          division is <code>÷</code>. Comparisons read as math (<code>≤ ≥ ≠ ≈</code>),
-          and tensor work has its own operators (<code>·</code> matmul,
-          <code>⊙</code> elementwise). When math and hardware convention disagree,
+          Integer <code class="glyph">/</code> floors, so <code>-7 / 2</code> is <code>-4</code>; true
+          division is <code class="glyph">÷</code>. Comparisons read as math (<code class="glyph">≤ ≥ ≠ ≈</code>),
+          and tensor work has its own operators (<code class="glyph">·</code> matmul,
+          <code class="glyph">⊙</code> elementwise). When math and hardware convention disagree,
           Faber follows the math.
           <a href="/en-US/language/glyphs.html">Glyphs and Latin</a>
         </p>

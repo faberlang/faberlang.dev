@@ -51,6 +51,11 @@
     --accent: #ff5a2c;
     --on-accent: #0a0c0f;
     --accent-soft: color-mix(in srgb, var(--accent) 14%, transparent);
+    /* Inline literals (code chips): a clearly visible tint of the ink. */
+    --chip: color-mix(in srgb, var(--ink) 10%, transparent);
+    /* The paper pass is used on the landing page and on the Start page. */
+    --pass-shadow: rgba(0, 0, 0, 0.42);
+    --paper-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
 
     /* Status. Colour is never the only signal: every status keeps its text. */
     --ok: #4cc795;                /* supported */
@@ -137,6 +142,7 @@
         --line: rgba(21, 19, 15, 0.16);
         --line-strong: rgba(21, 19, 15, 0.36);
         --panel: rgba(255, 255, 255, 0.34);
+        --pass-shadow: rgba(40, 30, 10, 0.24);
 
         --accent: #c8330c;
         --on-accent: #fff7f2;
@@ -734,12 +740,8 @@ a.section-link { font-weight: 600; color: var(--ink); }
 .content th:last-child,
 .content td:last-child { padding-right: 0; }
 .content tbody tr:last-child td { border-bottom: none; }
-.content table code {
-    font-size: 0.85em;
-    background: none;
-    border: none;
-    padding: 0;
-}
+/* Table text is already 0.875rem; at 1em the glyph-only cells stay legible. */
+.content table code { font-size: 1em; }
 .content table p { margin: 0; }
 
 .st-ok,
@@ -791,12 +793,17 @@ a.section-link { font-weight: 600; color: var(--ink); }
 
 code { font-family: var(--mono); font-size: 0.9em; }
 
-/* Inline code in prose: faint tint, hairline, square. Fenced blocks reset below. */
+/* Inline code: a chip. Full --ink text at weight 500, a 10% ink tint and a
+   strong hairline, so a literal separates from prose in both schemes. 0.95em
+   keeps Faber's glyphs (← ↤ → ⇥ ∪ ≡ ∈ · ⊜ §) legible: mono glyphs render
+   small. Fenced blocks reset below. */
 .content code {
     color: var(--ink);
-    background: var(--panel);
-    border: 1px solid var(--line);
-    padding: 0.06em 0.35em;
+    font-size: 0.95em;
+    font-weight: 500;
+    background: var(--chip);
+    border: 1px solid var(--line-strong);
+    padding: 0.08em 0.45em;
     overflow-wrap: break-word;
 }
 .content a code { color: inherit; }
@@ -805,11 +812,29 @@ code { font-family: var(--mono); font-size: 0.9em; }
     border: none;
     padding: 0;
     font-size: 100%;
+    font-weight: inherit;
 }
 
-/* ---------- inline span classes ---------- */
-code.kw { color: var(--syn-keyword); font-weight: 600; }
-code.typ { color: var(--syn-type); }
+/* ---------- inline span classes ----------
+   `code.kw` and `code.typ` (emitted by span.fab for the closed term set) wear
+   the plain chip. Colouring them with the syntax tokens was tried and
+   dropped: only some terms on a page carry the class, so a reference table
+   turned into scattered blue and vermillion words. One treatment, in ink. */
+
+/* Glyph-only chips (tagged by tag-glyph-chips.py): a monospace face draws
+   ← ≡ ∪ ⇥ in one narrow cell, so these chips get a larger, bolder, centred
+   face of their own. */
+code.glyph,
+.content code.glyph,
+.fl-wrap code.glyph {
+    display: inline-block;
+    min-width: 1.9em;
+    padding: 0 0.35em;
+    font-size: 1.25em;
+    font-weight: 600;
+    line-height: 1.35;
+    text-align: center;
+}
 
 /* ---------- fenced blocks ----------
    A bracketed panel on the code surface with a title bar: a mono label chip
@@ -866,6 +891,45 @@ pre.faber-code:not(:has(code[class*='lang-'])) {
     border-color: var(--line-strong);
     color: var(--ink-soft);
 }
+
+/* ---------- copy buttons (added in the browser by faber-instrument.js) ----------
+   The script wraps each fenced block in .code-block and appends one button.
+   With a title bar the button sits in the bar's right end; .no-bar blocks
+   (plain text) get it in the top-right corner and keep their first line clear.
+   Without JS none of this exists and the block is just a <pre>. */
+.code-block { position: relative; margin: var(--s5) 0; }
+.code-block > pre.faber-code { margin: 0; }
+.code-block.no-bar > pre.faber-code { padding-right: 5.2rem; }
+.code-copy {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.5rem;
+    padding: 4px 9px;
+    font: 500 0.62rem/1.4 var(--mono);
+    letter-spacing: calc(0.14em * var(--lt));
+    text-transform: var(--tt);
+    color: var(--ink-soft);
+    background: var(--term-bg);
+    border: 1px solid var(--line-strong);
+    border-radius: 0;
+    cursor: pointer;
+}
+.code-copy:hover { color: var(--ink); border-color: var(--ink); }
+.code-copy.done,
+.code-copy.done:hover { color: #06140d; background: var(--ok); border-color: var(--ok); }
+
+/* A prompt to hand to a model (```text prompt): written speech, not output,
+   so it wraps, reads in the sans face and carries an accent edge. */
+pre.faber-code:has(code.prompt) {
+    font: 400 0.95rem/1.6 var(--sans);
+    color: var(--ink);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    background: var(--panel);
+    border: 1px solid var(--line-strong);
+    border-left: 3px solid var(--accent);
+}
+pre.faber-code:has(code.prompt) code { font-family: inherit; }
 
 /* ---------- syntax tokens (added post-build by highlight-code.py) ---------- */
 .tok-kw { color: var(--syn-keyword); font-weight: 600; }
@@ -1204,10 +1268,8 @@ body.porta {
     --prose: 44rem;
     --prose-s: 33rem;
     --grain-opacity: 0.1;
-    --pass-shadow: rgba(0, 0, 0, 0.42);
     /* Film grain and paper fibre are inline SVG noise: no extra requests. */
     --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    --paper-grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .22 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
     min-height: 100dvh;
     padding-bottom: calc(var(--tick-h) + 1.5rem);
     overflow-x: hidden;
@@ -1217,7 +1279,6 @@ body.porta {
     body.landing,
     body.porta {
         --grain-opacity: 0.09;
-        --pass-shadow: rgba(40, 30, 10, 0.24);
         --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
     }
 }
@@ -1419,8 +1480,8 @@ body.porta {
     padding: 0.95rem 1.15rem;
     border: 0;
     font: 600 0.72rem/1 var(--mono);
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
+    letter-spacing: calc(0.14em * var(--lt));
+    text-transform: var(--tt);
     cursor: pointer;
     clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
     transition: background 0.14s ease, color 0.14s ease, transform 0.14s ease;
@@ -1548,13 +1609,10 @@ body.porta {
 }
 .site-foot p a:hover { color: var(--accent); background: none; }
 
-/* ---------- the paper pass: warm, perforated, tilted, slightly grainy ---------- */
+/* ---------- the paper pass: warm, perforated, square, slightly grainy ---------- */
 .pass-wrap { position: relative; }
 .pass {
-    --tilt: -0.7deg;
     color: var(--paper-ink);
-    transform: rotate(var(--tilt));
-    transform-origin: 50% 0;
     filter: drop-shadow(0 26px 20px var(--pass-shadow));
 }
 .pass-main,
@@ -1608,7 +1666,7 @@ body.porta {
 a.channel:hover { color: var(--paper-ink); text-decoration-color: #d93a12; }
 a.channel:focus-visible { outline-color: #d93a12; }
 .fields { display: grid; gap: 0.38rem; margin: 0.95rem 0 0; }
-.fields .row { display: flex; align-items: baseline; gap: 0.5rem; font: 500 0.64rem/1.3 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; }
+.fields .row { display: flex; align-items: baseline; gap: 0.5rem; font: 500 0.64rem/1.3 var(--mono); letter-spacing: calc(0.12em * var(--lt)); text-transform: var(--tt); }
 .fields dt { color: var(--paper-soft); }
 .fields dd { margin: 0; font-weight: 700; color: var(--paper-ink); text-align: right; }
 .fields .ld { flex: 1; min-width: 0.5rem; border-bottom: 1px dotted rgba(24, 21, 15, 0.45); transform: translateY(-0.2em); }
@@ -1623,8 +1681,55 @@ a.channel:focus-visible { outline-color: #d93a12; }
 .btn.done:hover,
 .pass .btn.done,
 .pass .btn.done:hover { background: var(--ok); color: #06140d; box-shadow: none; }
+/* The pass on a docs page (placed by inject-pass.py): left-aligned at card
+   width, not hero-size, and square. The .content rules for headings and links
+   would otherwise reach inside it, so each is answered here. */
+.content .pass-wrap { width: min(28rem, 100%); margin: var(--s5) 0 var(--s6); }
+.content .pass h2 {
+    margin: 0 0 0.35rem;
+    padding: 0;
+    border: 0;
+    font: 600 0.9rem/1.3 var(--sans);
+    letter-spacing: -0.01em;
+    color: var(--paper-ink);
+}
+.content .pass .share-title { margin-bottom: 0.7rem; }
+.content .pass a.channel {
+    font-size: clamp(1.25rem, 5.4vw, 1.6rem);
+    color: var(--paper-ink);
+    text-decoration-color: rgba(24, 21, 15, 0.22);
+}
+.content .pass a.channel:hover { color: var(--paper-ink); text-decoration-color: #d93a12; }
+
+/* The "What your model does" steps on the Start page: the numbered spec recipe
+   (accent mono 01 02 03, hairline rows) on a plain ordered list. Positioned
+   rather than gridded so inline code inside an item cannot split the row. */
+.content #what-your-model-does + ol {
+    list-style: none;
+    margin: var(--s4) 0 var(--s4);
+    padding: 0;
+    counter-reset: step;
+}
+.content #what-your-model-does + ol > li {
+    position: relative;
+    margin: 0;
+    padding: 0.8rem 0 0.8rem 2.9rem;
+    border-top: 1px solid var(--line);
+    counter-increment: step;
+}
+.content #what-your-model-does + ol > li:last-child { border-bottom: 1px solid var(--line); }
+.content #what-your-model-does + ol > li::before {
+    content: "0" counter(step);
+    position: absolute;
+    left: 0;
+    top: 0.8rem;
+    font: 600 0.72rem/1.9 var(--mono);
+    letter-spacing: 0.1em;
+    color: var(--accent);
+}
+
 .hint { margin: 1.4rem 0.2rem 0; font-size: 0.82rem; line-height: 1.6; color: var(--ink-faint); }
-.hint code { font-size: 0.92em; color: var(--ink-soft); }
+.hint code { font-size: 0.92em; color: var(--ink); }
 
 .sr-only {
     position: absolute;
@@ -1935,9 +2040,11 @@ a.channel:focus-visible { outline-color: #d93a12; }
 .fl-wrap p a:hover,
 .fl-wrap figcaption a:hover { color: var(--accent); text-decoration-color: var(--accent); }
 .fl-wrap :not(pre) > code {
-    padding: 0.06em 0.35em;
-    background: var(--panel);
-    border: 1px solid var(--line);
+    padding: 0.08em 0.45em;
+    font-size: 0.95em;
+    font-weight: 500;
+    background: var(--chip);
+    border: 1px solid var(--line-strong);
     color: var(--ink);
     overflow-wrap: break-word;
 }
@@ -2129,7 +2236,7 @@ a.fl-lib:hover strong { color: var(--accent); }
     color: var(--accent);
 }
 .fl-lib > span { display: block; margin-top: var(--s2); font-size: 0.86rem; line-height: 1.6; color: var(--ink-soft); }
-.fl-lib code { font-size: 0.85em; }
+.fl-lib code { font-size: 0.92em; }
 
 .fl-frames {
     display: grid;
@@ -2305,7 +2412,7 @@ a.fl-door:hover::after { color: var(--accent); transform: translateX(3px); }
     }
     body { font-size: 11pt; background: #fff; color: #000; }
     body::before { display: none; }
-    .renderbar, aside, .toc, .skip-link, .fdt-copy, .fdt-goto, .hud, .grain { display: none; }
+    .renderbar, aside, .toc, .skip-link, .fdt-copy, .fdt-goto, .code-copy, .hud, .grain { display: none; }
     .page, body.has-toc .page { display: block; max-width: none; padding: 0; }
     pre.faber-code, .content .table-scroll { break-inside: avoid; }
     .content a { text-decoration: none; }

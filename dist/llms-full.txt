@@ -2810,7 +2810,6 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - https://faberlang.dev/en-US/language/ — language reference
 - https://faberlang.dev/en-US/toolchain/ — compiler, CLI, targets, device execution
 - https://faberlang.dev/en-US/targets/ — source beside what each target lowers to
-- https://faberlang.dev/en-US/examples/ — real package source
 - https://faberlang.dev/en-US/libraries/ — Norma, Triga, the corpus
 - https://faberlang.dev/en-US/corpus/ — generated keyword / construct pages
 - https://faberlang.dev/en-US/releases/ — every version, pinned installs, release notes
