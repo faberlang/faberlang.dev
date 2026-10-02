@@ -80,8 +80,9 @@ from collections import defaultdict
 from pathlib import Path
 
 sys.path.insert(0, str(Path(os.environ["GENERATOR_DIR"]) / "scripts"))
+import corpus_ia
 from corpus_locale import assign_slugs, load_pack
-from project_reader_terms import load_mapping, project_corpus_source
+from project_reader_terms import load_mapping, project_corpus_source, project_prose
 
 corpus = Path(os.environ["CORPUS_DIR"])
 build = Path(os.environ["BUILD_DIR"])
@@ -132,7 +133,22 @@ terms = sorted(canonical)
 term_set = set(terms)
 pack = load_pack(reader_root, reader_locale)
 term_mapping = load_mapping(reader_root / reader_locale / "pack.toml") if reader_locale != "la" else {}
-convert_faber = os.environ.get("FABER_LOCALIZE", os.environ.get("FABER", "faber"))
+# Transcode (faber convert) and explain need a faber that resolves reader
+# packs and the corpus reference. An explicit FABER_LOCALIZE wins; otherwise
+# the radix workspace build. Packs are staged only beside workspace builds —
+# an installed faber keeps its tree untouched and convert degrades to token
+# projection (visible in the manifest).
+convert_faber = os.environ.get("FABER_LOCALIZE") or corpus_ia.resolve_faber(corpus.parent)
+packs_staged, packs_dir = False, ""
+if reader_locale != "la":
+    try:
+        Path(convert_faber).resolve().relative_to((corpus.parent / "target").resolve())
+        packs_staged, packs_dir = corpus_ia.stage_reader_packs(convert_faber, corpus.parent)
+    except ValueError:
+        packs_staged = False
+explain_registry = corpus_ia.load_explain_semantics(corpus_ia.resolve_faber(corpus.parent))
+buckets = corpus_ia.load_buckets(generator_dir)
+term_bucket = {}
 slugs, collisions = assign_slugs(
     [(term, str(canonical[term].get("kind", "keyword"))) for term in terms],
     pack,
@@ -149,11 +165,15 @@ slug_values = set(slugs.values())
 for term in terms:
     fields = canonical[term]
     category_terms[fields.get("category", "uncategorized")].append(term)
+    term_bucket[term] = corpus_ia.bucket_for(fields.get("category", "uncategorized"), buckets)
 
 bundle_dir = build / "corpus-bundles"
 bundle_dir.mkdir(parents=True, exist_ok=True)
 corpus_out = output / "corpus"
 corpus_out.mkdir(parents=True, exist_ok=True)
+
+anatomy_payloads = {}
+semantics_added = semantics_duplicate = semantics_missing = 0
 
 for term in terms:
     term_slug = slugs[term]
@@ -184,6 +204,28 @@ for term in terms:
             text=True,
         )
         proof_path.write_text(markdown)
+    bucket = term_bucket[term]
+    crumb = corpus_ia.breadcrumb_html([
+        ("Corpus", f"/{site_locale}/corpus/index.html"),
+        (bucket.label, f"/{site_locale}/corpus/bucket/{bucket.key}.html"),
+        (term_slug, None),
+    ])
+    sem = ""
+    entry = explain_registry.get(term)
+    if entry and entry.get("summary", "").strip():
+        text = entry["summary"].strip()
+        if reader_locale != "la":
+            text = project_prose(text, term_mapping)
+        if f"<p>{html_lib.escape(text)}</p>" in html:
+            # The generated page already carries this sentence as its summary
+            # paragraph (registry and corpus share one source); never repeat it.
+            semantics_duplicate += 1
+        else:
+            sem = corpus_ia.semantics_html(text)
+            semantics_added += 1
+    else:
+        semantics_missing += 1
+    anatomy_payloads[term_slug] = (crumb, sem)
 
 redirects = {}
 skipped_aliases = []
@@ -260,27 +302,50 @@ for category in sorted(category_terms):
     out.write_text(clean_generated(html))
     category_index.append((category, category_slug, len(terms_in_category)))
 
-hub = [
-    "+++",
-    'title = "Corpus"',
-    'section = "corpus"',
-    'sources = []',
-    "+++",
-    "",
-    "# Corpus",
-    "",
-    f"Generated reference pages for {len(terms)} canonical Faber corpus terms.",
-    "",
-    "## Categories",
-    "",
-]
-hub.extend(f"- [{category}](/corpus/category/{category_slug}.html) — {count} terms" for category, category_slug, count in category_index)
-hub.extend(["", "## Terms", ""])
-hub.extend(f"- [`{slugs[term]}`](/corpus/{slugs[term]}.html)" for term in terms)
+bucket_counts = {}
+for term in terms:
+    key = term_bucket[term].key
+    bucket_counts[key] = bucket_counts.get(key, 0) + 1
+
+# The hub lists the curated buckets and the A–Z index — not the mechanical
+# per-tag categories (those pages keep rendering; they just leave the hub).
 hub_source = generated_dir / "corpus-index.md"
-hub_source.write_text("\n".join(hub) + "\n")
+hub_source.write_text(corpus_ia.hub_markdown(buckets, bucket_counts, len(terms)))
 hub_html = subprocess.check_output([str(binary), "--", "--page", "corpus/index", str(hub_source), site_locale, reader_locale, stylesheet], text=True)
 (corpus_out / "index.html").write_text(clean_generated(hub_html))
+
+# Curated bucket pages: the hub's concept path.
+bucket_dir = corpus_out / "bucket"
+bucket_dir.mkdir(parents=True, exist_ok=True)
+extra_crumbs = []
+for bucket in buckets:
+    members = sorted(
+        (term for term in terms if term_bucket[term].key == bucket.key),
+        key=lambda t: slugs[t].casefold(),
+    )
+    source = generated_dir / f"bucket-{bucket.key}.md"
+    source.write_text(corpus_ia.bucket_markdown(bucket, [slugs[t] for t in members]))
+    out = bucket_dir / f"{bucket.key}.html"
+    bucket_html = subprocess.check_output(
+        [str(binary), "--", "--page", f"corpus/bucket/{bucket.key}", str(source), site_locale, reader_locale, stylesheet], text=True,
+    )
+    out.write_text(clean_generated(bucket_html))
+    extra_crumbs.append((
+        out,
+        corpus_ia.breadcrumb_html([("Corpus", f"/{site_locale}/corpus/index.html"), (bucket.label, None)]),
+    ))
+
+# A–Z index: the flat path — one entry per term page, per-letter anchors.
+az_slugs = sorted(set(slugs.values()), key=lambda s: (s.casefold(), s))
+az_source = generated_dir / "corpus-az.md"
+az_source.write_text(corpus_ia.az_markdown(az_slugs))
+az_html = subprocess.check_output([str(binary), "--", "--page", "corpus/az", str(az_source), site_locale, reader_locale, stylesheet], text=True)
+az_path = corpus_out / "az.html"
+az_path.write_text(clean_generated(az_html))
+extra_crumbs.append((
+    az_path,
+    corpus_ia.breadcrumb_html([("Corpus", f"/{site_locale}/corpus/index.html"), ("A–Z", None)]),
+))
 
 # Remap leftover Latin identity hrefs (related links from the Faber
 # generator still emit `term`) onto this locale's pack slugs, then drop
@@ -339,12 +404,34 @@ if reader_locale != "la":
         p.write_text(html)
         notice_count += 1
 
+# --- Term-page anatomy: breadcrumb + one-line semantics ---
+# Deliberately the LAST corpus post-process: the translation-notice pass
+# above matches `</h1><div class="content"` on term pages, and both
+# insertions would break that match if they ran first.
+anatomy_pages = 0
+for term_slug, (crumb, sem) in anatomy_payloads.items():
+    page = corpus_out / f"{term_slug}.html"
+    if not page.is_file():
+        continue
+    page.write_text(corpus_ia.apply_anatomy(page.read_text(), crumb, sem))
+    anatomy_pages += 1
+for page_path, crumb in extra_crumbs:
+    page_path.write_text(corpus_ia.apply_anatomy(page_path.read_text(), crumb, ""))
+
 manifest = {
     "terms": len(terms),
     "localized_slugs": sum(1 for term in terms if slugs[term] != term),
     "aliases": len(written_aliases),
     "alias_residuals": len(skipped_aliases),
     "categories": len(category_terms),
+    "curated_buckets": len(buckets),
+    "az_terms": len(az_slugs),
+    "anatomy_pages": anatomy_pages,
+    "semantics_added": semantics_added,
+    "semantics_duplicate": semantics_duplicate,
+    "semantics_missing": semantics_missing,
+    "packs_staged": packs_staged,
+    "convert_faber": convert_faber,
     "hrefs_remapped": remap_count[0],
     "dead_links_suppressed": suppress_count[0],
     "locale_notices_injected": notice_count,
