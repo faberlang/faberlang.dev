@@ -1,0 +1,8 @@
+# URL redirects for the By Target section (consumed by scripts/apply-redirects.py).
+#
+# The By Target rework kept every existing targets/ path: the hub stays at
+# /targets/, the lane overviews at /targets/{hir,mir,gpu}.html, and the target
+# pages at /targets/<target>.html. Nothing was retired, so there are no rows.
+#
+# Add a row here only when a page actually moves:
+#   "/en-US/targets/old.html" = "/en-US/targets/new.html"

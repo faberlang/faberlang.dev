@@ -11,15 +11,24 @@ These are host languages. The emitter's job is to produce something a human woul
 
 ## Targets {#targets}
 
-| Target | What it is | Scenarios shown |
+| Target | Emits | Scenarios shown |
 |---|---|---|
-| [Rust](/targets/rust.html) | HIR projection. The package product path compiles this through Cargo. | 3 of 3 |
-| [Go](/targets/go.html) | HIR projection with file emission and end-to-end floors. | 3 of 3 |
-| [TypeScript](/targets/ts.html) | HIR projection with file emission and end-to-end floors. | 3 of 3 |
-| [Faber](/targets/faber.html) | Canonical re-emission — the compiler printing the program back. | 3 of 3 |
+| [Rust](/targets/rust.html) | Rust source | 3 of 3 |
+| [TypeScript](/targets/ts.html) | TypeScript source | 3 of 3 |
+| [Go](/targets/go.html) | Go source | 3 of 3 |
+| [Faber](/targets/faber.html) | Canonical Faber | 3 of 3 |
 
 A target showing fewer scenarios than the others is not broken. It means the emitter declines that shape, which the pages state directly rather than hiding.
 
+## Measured support {#support}
+
+| Target | Capable | Analyzable | Coverage |
+|---|---|---|---|
+| [Rust](/targets/rust.html) | 360 | 364 | 99% |
+| [TypeScript](/targets/ts.html) | 364 | 364 | 100% |
+| [Go](/targets/go.html) | 337 | 364 | 93% |
+| [Faber](/targets/faber.html) | 364 | 364 | 100% |
+
 ---
 
-[All lanes](/targets/) · [Measured support per term](/toolchain/target-matrix.html)
+[All targets](/targets/) · [Measured support per term](/toolchain/target-matrix.html)
