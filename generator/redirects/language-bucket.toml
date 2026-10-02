@@ -1,0 +1,18 @@
+# language-bucket.toml — retired features/ URLs, mapped to their Behavior home.
+#
+# The `features/` essays are curated into the Behavior section under
+# /language/behavior/. Each row is an old URL that the new page absorbs. The
+# stub mechanism is owned by the migration closeout; this file only records the
+# destination so the old URL retires to the page that now carries its content.
+#
+# Pages NOT listed keep their existing destination and are not absorbed here:
+#   /en-US/features/frames.html            → /en-US/language/capabilities.html
+#   /en-US/features/compilation-lanes.html → /en-US/toolchain/compiling.html
+#
+# Row shape: "/<old-path>" = "/<new-path>"
+
+"/en-US/features/latin-and-glyphs.html" = "/en-US/language/behavior/glyph-law.html"
+"/en-US/features/canonical-vs-sugar.html" = "/en-US/language/behavior/glyph-law.html"
+"/en-US/features/commandments.html" = "/en-US/language/behavior/glyph-law.html"
+"/en-US/features/reader-locale.html" = "/en-US/language/behavior/sealed-locales.html"
+"/en-US/features/testing.html" = "/en-US/language/behavior/errors-and-tests.html"
