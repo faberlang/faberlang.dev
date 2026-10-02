@@ -1,6 +1,6 @@
 # GOAL: site-ia-rework — task-oriented human navigation for faberlang.dev
 
-**Status**: planned — drafted with the operator 2026-10-02, pre-implementation
+**Status**: active — wave 1 dispatched 2026-10-02, six seats in flight (units 1–5)
 **Created**: 2026-10-02
 **Campaign:** `—`
 **Source:** operator design session 2026-10-02 (sidebar IA, corpus reference model); follow-on to `site-implementation`
@@ -160,12 +160,13 @@ Units 2–5 are parallelizable after 1. Each stage ships a complete site.
 | Unit | Status | Seat | Receipt | Notes |
 | --- | --- | --- | --- | --- |
 | 0 — baseline tag | done | — | tag `site-v1.6.0` | 2026-10-02 |
-| 1 — tree nav engine | pending | — | — | prerequisite for all buckets |
-| 2 — The Language | pending | — | — | fixes first impression |
-| 3 — reference spine | pending | — | — | grammar tree + corpus rework |
-| 4 — By Target | pending | — | — | incl. releases refresh to 1.11.0 |
-| 5 — By Locale | pending | — | — | mostly re-renders existing joins |
-| 6 — migration closeout | pending | — | — | gates + redirects last |
+| 1 — tree nav engine | in flight | seat …bd47b (zai-glm-5.3-flash) | — | prerequisite for all buckets |
+| 2 — The Language | in flight | seat …c8d2b (deepseek-flash) | — | respawned off dead qwen slug |
+| 3a — grammar tree | in flight | seat …586c (deepseek-flash) | — | split from 3; respawned off qwen |
+| 3b — corpus reference | in flight | seat …e1b5 (zai-glm-5.3-flash) | — | taxonomy + anatomy + transcode |
+| 4 — By Target | in flight | seat …a3e39 (deepseek-flash) | — | incl. releases refresh to 1.11.0 |
+| 5 — By Locale | in flight | seat …bc9e0 (deepseek-flash) | — | respawned off dead qwen slug |
+| 6 — migration closeout | pending | — | — | gates + redirects last; injector parent-owned |
 
 ## Open questions
 
