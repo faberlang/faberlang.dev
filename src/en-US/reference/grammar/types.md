@@ -98,6 +98,8 @@ you write.
 | `typus_decl` | [`type`](/en-US/corpus/type.html) |
 | `ordo_decl` | [`enum`](/en-US/corpus/enum.html) |
 | `discretio_decl` | [`union`](/en-US/corpus/union.html) |
+| `schema_decl` | [`schema`](/en-US/corpus/schema.html) |
+| `schema_column` | [`column`](/en-US/corpus/column.html) |
 | `union_hole_type` | [`ref`](/en-US/corpus/ref.html), [`mut`](/en-US/corpus/mut.html) |
 | `owned_type` | [`ref`](/en-US/corpus/ref.html), [`mut`](/en-US/corpus/mut.html) |
 | `ratio_type` | [`record`](/en-US/corpus/record.html) |

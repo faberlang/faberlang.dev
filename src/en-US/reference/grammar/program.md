@@ -104,5 +104,5 @@ you write.
 | `incipiet_stmt` | [`async_main`](/en-US/corpus/async_main.html) |
 | `probandum_decl` | [`describe`](/en-US/corpus/describe.html) |
 | `proba_stmt` | [`test`](/en-US/corpus/test.html) |
-| `proba_modifier` | [`flaky`](/en-US/corpus/flaky.html), [`todo`](/en-US/corpus/todo.html), [`bench`](/en-US/corpus/bench.html), [`skip`](/en-US/corpus/skip.html), [`repeat`](/en-US/corpus/repeat.html), [`only`](/en-US/corpus/only.html), [`only_in`](/en-US/corpus/only_in.html), [`tag`](/en-US/corpus/tag.html), [`timeout`](/en-US/corpus/timeout.html) |
+| `proba_modifier` | [`expect_failure`](/en-US/corpus/expect_failure.html), [`flaky`](/en-US/corpus/flaky.html), [`todo`](/en-US/corpus/todo.html), [`bench`](/en-US/corpus/bench.html), [`skip`](/en-US/corpus/skip.html), [`repeat`](/en-US/corpus/repeat.html), [`only`](/en-US/corpus/only.html), [`only_in`](/en-US/corpus/only_in.html), [`tag`](/en-US/corpus/tag.html), [`timeout`](/en-US/corpus/timeout.html) |
 | `praepara_block` | [`all`](/en-US/corpus/all.html), [`teardown`](/en-US/corpus/teardown.html), [`async_teardown`](/en-US/corpus/async_teardown.html), [`setup`](/en-US/corpus/setup.html), [`async_setup`](/en-US/corpus/async_setup.html) |

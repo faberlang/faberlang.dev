@@ -192,6 +192,12 @@ render_locale() {
         render_source="$localized_source"
     fi
 
+    # Corpus pages for this locale render BEFORE the regular pages so the
+    # page renderer sees their targets and keeps cross-reference links
+    # (the renderer suppresses links to pages that do not exist yet).
+    echo "  [corpus] Rendering corpus pages for ${site}..."
+    "${SCRIPT_DIR}/render-corpus-batch.sh" "$out" "$site" "$reader" "$style"
+
     find "$render_source" -name "*.md" -type f | sort | while read -r md_file; do
         rel_path="${md_file#${render_source}/}"
         iter="${rel_path%.md}"
@@ -207,10 +213,6 @@ render_locale() {
             rm -f "$out_path"
         fi
     done
-
-    # Corpus pages for this locale
-    echo "  [corpus] Rendering corpus pages for ${site}..."
-    "${SCRIPT_DIR}/render-corpus-batch.sh" "$out" "$site" "$reader" "$style"
 }
 
 # ==================================================================

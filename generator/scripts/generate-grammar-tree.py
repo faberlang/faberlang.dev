@@ -596,11 +596,16 @@ def main(argv: list[str]) -> int:
     if corpus_dir.is_dir():
         canonical, aliases = corpus_alias_map(corpus_dir)
     else:
+        # The corpus render owns dist/en-US/corpus; when dist is wiped the
+        # slug source is gone. Leaving the committed output alone beats
+        # emitting family pages without their term links.
         print(
-            f"  warning: no corpus dir at {corpus_dir}; term links omitted",
+            "  grammar tree skipped (no corpus dir at "
+            f"{corpus_dir}; term verification needs the previous render); "
+            "committed output left alone",
             file=sys.stderr,
         )
-        canonical, aliases = set(), {}
+        return 0
 
     family_dir = REPO / args.family_dir
     index_path = REPO / args.index
