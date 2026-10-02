@@ -29,6 +29,16 @@ Writing Faber starts at https://faberlang.dev/agents/index.md. Follow only the l
 | 4 | `gpu-workload` | Systems / GPU rungs |
 | 5 | `corpus/` | Construct-level programs |
 
+## Public repositories
+
+| Repository | Start here | Why |
+|---|---|---|
+| https://github.com/faberlang/examples | `corpus/`, application packages, tracks | Public corpus and application examples |
+| https://github.com/faberlang/norma | `norma:*` packages | Standard library source |
+| https://github.com/faberlang/faber | CLI wrapper | User-facing build tool |
+| https://github.com/faberlang/cista | package-store CLI and library | Package management surface |
+| https://github.com/faberlang/triga | `triga:*` source | Graphics and geometry library |
+
 ## How to exercise
 
 ```bash

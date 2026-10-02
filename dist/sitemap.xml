@@ -289,9 +289,6 @@
   <url><loc>https://faberlang.dev/ar/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/ar/releases/</loc></url>
   <url><loc>https://faberlang.dev/ar/start/</loc></url>
-  <url><loc>https://faberlang.dev/ar/start/hello.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/start/install.html</loc></url>
-  <url><loc>https://faberlang.dev/ar/start/projects.html</loc></url>
   <url><loc>https://faberlang.dev/ar/toolchain/cli.html</loc></url>
   <url><loc>https://faberlang.dev/ar/toolchain/compiling.html</loc></url>
   <url><loc>https://faberlang.dev/ar/toolchain/packages.html</loc></url>
@@ -734,9 +731,6 @@
   <url><loc>https://faberlang.dev/en-US/releases/radix-0.84.0.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/releases/radix-0.9.0.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/start/</loc></url>
-  <url><loc>https://faberlang.dev/en-US/start/hello.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/start/install.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/start/projects.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/targets/</loc></url>
   <url><loc>https://faberlang.dev/en-US/targets/faber.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/targets/go.html</loc></url>
@@ -1043,9 +1037,6 @@
   <url><loc>https://faberlang.dev/hi/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/hi/releases/</loc></url>
   <url><loc>https://faberlang.dev/hi/start/</loc></url>
-  <url><loc>https://faberlang.dev/hi/start/hello.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/start/install.html</loc></url>
-  <url><loc>https://faberlang.dev/hi/start/projects.html</loc></url>
   <url><loc>https://faberlang.dev/hi/toolchain/cli.html</loc></url>
   <url><loc>https://faberlang.dev/hi/toolchain/compiling.html</loc></url>
   <url><loc>https://faberlang.dev/hi/toolchain/packages.html</loc></url>
@@ -1339,9 +1330,6 @@
   <url><loc>https://faberlang.dev/th-TH/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/releases/</loc></url>
   <url><loc>https://faberlang.dev/th-TH/start/</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/start/hello.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/start/install.html</loc></url>
-  <url><loc>https://faberlang.dev/th-TH/start/projects.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/toolchain/cli.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/toolchain/compiling.html</loc></url>
   <url><loc>https://faberlang.dev/th-TH/toolchain/packages.html</loc></url>
@@ -1635,9 +1623,6 @@
   <url><loc>https://faberlang.dev/vi/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/vi/releases/</loc></url>
   <url><loc>https://faberlang.dev/vi/start/</loc></url>
-  <url><loc>https://faberlang.dev/vi/start/hello.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/start/install.html</loc></url>
-  <url><loc>https://faberlang.dev/vi/start/projects.html</loc></url>
   <url><loc>https://faberlang.dev/vi/toolchain/cli.html</loc></url>
   <url><loc>https://faberlang.dev/vi/toolchain/compiling.html</loc></url>
   <url><loc>https://faberlang.dev/vi/toolchain/packages.html</loc></url>
@@ -1931,9 +1916,6 @@
   <url><loc>https://faberlang.dev/zh-Hans/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/releases/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/start/</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/start/hello.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/start/install.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hans/start/projects.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/toolchain/cli.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/toolchain/compiling.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hans/toolchain/packages.html</loc></url>
@@ -2226,9 +2208,6 @@
   <url><loc>https://faberlang.dev/zh-Hant/reference/grammar.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/releases/</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/start/</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/start/hello.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/start/install.html</loc></url>
-  <url><loc>https://faberlang.dev/zh-Hant/start/projects.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/toolchain/cli.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/toolchain/compiling.html</loc></url>
   <url><loc>https://faberlang.dev/zh-Hant/toolchain/packages.html</loc></url>

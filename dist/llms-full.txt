@@ -13,22 +13,7 @@ This file is the generated keyword catalog, not the writing guide.
 1. Fetch https://faberlang.dev/agents/index.md and follow it.
 2. Host: https://faberlang.dev. `/` is the product landing page. `/porta/` is the locale chooser.
 3. The records below are a term lookup. They are not the writing guide.
-4. Install from the block below. The human page is https://faberlang.dev/en-US/start/install.html.
-
-## Install
-
-Current release: Faber 1.8.0
-
-- Release: https://github.com/faberlang/releases/releases/tag/faber-v1.8.0
-- macOS arm64: https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-aarch64-apple-darwin.tar.gz
-- Linux x64: https://github.com/faberlang/releases/releases/download/faber-v1.8.0/faber-v1.8.0-x86_64-unknown-linux-gnu.tar.gz
-- Human install page: https://faberlang.dev/en-US/start/install.html
-
-Minimal verify after install:
-
-```bash
-faber --version
-```
+4. Install the CLI by following https://faberlang.dev/install.md.
 
 ## Language shape
 
@@ -2818,8 +2803,8 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 ## Documentation map
 
 - https://faberlang.dev/ — language portal (pick a site locale)
-- https://faberlang.dev/en-US/ — English overview + download (canonical full tree)
-- https://faberlang.dev/en-US/start/install.html — install the current release
+- https://faberlang.dev/en-US/ — English overview (canonical full tree)
+- https://faberlang.dev/install.md — install route for agents; the human page is /en-US/start/
 - https://faberlang.dev/en-US/localization.html — the eight reader locales, and why each
 - https://faberlang.dev/en-US/cheatsheet/ — short worked examples by topic
 - https://faberlang.dev/en-US/language/ — language reference

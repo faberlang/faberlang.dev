@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Faber programming language portal — one semantic core, many renderings. Choose your documentation locale.">
-<meta name="theme-color" content="#faf9f6" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#1c1b19" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)">
 <meta property="og:site_name" content="Faber">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Faber · porta">
 <meta property="og:description" content="Faber programming language portal — one semantic core, many renderings. Choose your documentation locale.">
 <meta property="og:url" content="https://faberlang.dev/">
 <meta property="og:locale" content="en_US">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%232a4a9e'/%3E%3Ctext%20x='32'%20y='47'%20font-family='Georgia,serif'%20font-size='44'%20font-style='italic'%20text-anchor='middle'%20fill='%23faf9f6'%3Ef%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="canonical" href="https://faberlang.dev/">
   <link rel="alternate" hreflang="x-default" href="https://faberlang.dev/">
   <link rel="alternate" hreflang="en-US" href="https://faberlang.dev/en-US/">
@@ -25,69 +25,84 @@
 <link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index">
 <link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide">
 <link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;600;700&amp;family=Noto+Serif:wght@400;600&amp;family=Noto+Sans+Mono:wght@400;600&amp;family=Noto+Sans+Arabic:wght@400;600;700&amp;family=Noto+Sans+Devanagari:wght@400;600&amp;family=Noto+Sans+SC:wght@400;600&amp;family=Noto+Sans+Thai:wght@400;600&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/speculum.css">
 <title>Faber · porta</title>
 </head>
 <body class="porta">
 <a href="#porta-locales" class="skip-link">Skip to locales</a>
+<div class="grain" aria-hidden="true"></div>
+<div class="hud" aria-hidden="true">
+  <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
+  <span class="lbl l1">Faber · porta</span><span class="lbl l2" id="hud-clock">UTC --:--:--</span>
+  <i class="ruler"></i>
+  <div class="ticker"><div class="ticker-track"><div class="ticker-group"><span>Faber 1.11.0</span><i></i><span>MIT</span><i></i><span>7 documentation locales</span><i></i><span>7 complete</span><i></i><span>6 glyphs never localize</span><i></i><span>Latin · canonical interchange</span><i></i><span>No accounts</span><i></i><span>System fonts · zero external requests</span><i></i></div><div class="ticker-group"><span>Faber 1.11.0</span><i></i><span>MIT</span><i></i><span>7 documentation locales</span><i></i><span>7 complete</span><i></i><span>6 glyphs never localize</span><i></i><span>Latin · canonical interchange</span><i></i><span>No accounts</span><i></i><span>System fonts · zero external requests</span><i></i></div></div></div>
+</div>
 
-<main class="porta-wrap">
+<header class="site-top">
+  <a class="site-brand" href="/" aria-label="Faber home"><span class="site-brand-mark" aria-hidden="true">←</span><span>Faber</span></a>
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/">Home</a>
+    <a href="/en-US/">Docs</a>
+    <a href="/install.md">Install</a>
+    <a href="/llms.txt">llms.txt</a>
+    <a href="https://github.com/faberlang">GitHub ↗</a>
+  </nav>
+</header>
+
+<main class="porta-wrap" id="main">
+  <h1 class="sr-only">Faber language portal</h1>
 
   <div class="porta-gate">
-    <div class="porta-kicker">Faber · porta · what do you read?</div>
+    <p class="kicker live porta-kicker"><i class="sq" aria-hidden="true"></i>Faber · porta · what do you read?</p>
 
-    <div id="porta-locales" class="porta-ring" aria-label="Language portals">
+    <div id="porta-locales" class="porta-ring" data-n="7" aria-label="Language portals">
       <div class="porta-mark">
         <div class="porta-glyphgrid" aria-hidden="true">
-          <span>←</span><span>→</span><span>∴</span>
-          <span>≡</span><span>∪</span><span>⇥</span>
+          <span>←</span><span>→</span><span>∴</span><span>≡</span><span>∪</span><span>⇥</span>
         </div>
-        <div class="porta-name">FABER</div>
-        <div class="porta-gloss">these six never localize</div>
+        <div class="porta-name">Faber</div>
+        <div class="porta-gloss">these 6 never localize</div>
       </div>
-        <div class="porta-node" style="left:280.0px;top:50.0px">
+        <div class="porta-node i0">
           <a href="/en-US/">
             <span class="porta-native">English</span>
             <span class="porta-tag">en-US · English</span>
           </a>
         </div>
-        <div class="porta-node" style="left:436.4px;top:125.3px">
+        <div class="porta-node i1">
           <a href="/th-TH/">
             <span class="porta-native th">ภาษาไทย</span>
-            <span class="porta-tag">th-TH · ไทย</span>
+            <span class="porta-tag">th-TH · <span class="porta-script">ไทย</span></span>
           </a>
         </div>
-        <div class="porta-node" style="left:475.0px;top:294.5px">
+        <div class="porta-node i2">
           <a href="/ar/">
             <span class="porta-native ar">العربية</span>
-            <span class="porta-tag">ar · العربية</span>
+            <span class="porta-tag">ar · <span class="porta-script">العربية</span></span>
           </a>
         </div>
-        <div class="porta-node" style="left:366.8px;top:430.2px">
+        <div class="porta-node i3">
           <a href="/hi/">
             <span class="porta-native hi">हिन्दी</span>
-            <span class="porta-tag">hi · देवनागरी</span>
+            <span class="porta-tag">hi · <span class="porta-script">देवनागरी</span></span>
           </a>
         </div>
-        <div class="porta-node" style="left:193.2px;top:430.2px">
+        <div class="porta-node i4">
           <a href="/vi/">
             <span class="porta-native">Tiếng Việt</span>
             <span class="porta-tag">vi · Latin</span>
           </a>
         </div>
-        <div class="porta-node" style="left:85.0px;top:294.5px">
+        <div class="porta-node i5">
           <a href="/zh-Hans/">
             <span class="porta-native zh">简体中文</span>
-            <span class="porta-tag">zh-Hans · 简体中文</span>
+            <span class="porta-tag">zh-Hans · <span class="porta-script">简体中文</span></span>
           </a>
         </div>
-        <div class="porta-node" style="left:123.6px;top:125.3px">
+        <div class="porta-node i6">
           <a href="/zh-Hant/">
             <span class="porta-native zh">繁體中文</span>
-            <span class="porta-tag">zh-Hant · 繁體中文</span>
+            <span class="porta-tag">zh-Hant · <span class="porta-script">繁體中文</span></span>
           </a>
         </div>
     </div>
@@ -100,26 +115,25 @@
     </p>
 
     <div class="porta-note">
-      <p class="porta-agent-links">
+      <nav class="chips" aria-label="Agent surfaces">
         <a href="/llms.txt">Agent index</a>
-        ·
         <a href="/agents/index.md">Agent guide</a>
-        ·
-        <a href="/en-US/start/install.html">Install</a>
-      </p>
+        <a href="/install.md">Install · for models</a>
+      </nav>
     </div>
   </div>
 
   <section id="porta-samples" class="porta-samples-section">
+    <p class="kicker"><i class="sq" aria-hidden="true"></i>Reader packs</p>
     <h2>Same program, every pack</h2>
     <p class="porta-lede">
-      One program, seven renderings. The HIR is one; the rendering is the
+      One program, 7 renderings. The HIR is one; the rendering is the
       pack. Pick a tab to preview Faber in that reader locale — the panels
       are real pack source, not mock copy.
     </p>
   <div class="faber-demo-tabs fdt-hero" data-fdt data-typing>
     <div class="fdt-bar">
-      <span class="fdt-mark" aria-hidden="true">f</span>
+      <span class="fdt-mark" aria-hidden="true">←</span>
       <span class="fdt-file">salve-munde.fab</span>
       <a class="fdt-goto" href="/en-US/" data-fdt-continue-link>Continue to English →</a>
       <button class="fdt-copy" type="button">Copy</button>
@@ -199,6 +213,7 @@
   </section>
 
   <section class="porta-index" id="porta-index">
+    <p class="kicker"><i class="sq" aria-hidden="true"></i>Index</p>
     <h2>All site locales</h2>
     <p class="porta-lede">
       Every listed locale ships a full documentation tree. Stress notes call out
@@ -221,20 +236,25 @@
       </div>
   </section>
 
-  <footer class="porta-footer">
-    <span>Faber language · MIT license</span>
-    <span>
-      <a href="/en-US/">docs</a>
-      ·
-      <a href="/en-US/start/install.html">install</a>
-      ·
-      <a href="https://github.com/faberlang">github.com/faberlang</a>
-    </span>
-  </footer>
-
 </main>
 
+<footer class="site-foot">
+  <div class="inner">
+    <div>
+      <h2>Faber language · MIT license</h2>
+      <nav class="links" aria-label="Project">
+        <a href="/en-US/">Docs</a>
+        <a href="/install.md">Install</a>
+        <a href="https://github.com/faberlang">github.com/faberlang ↗</a>
+      </nav>
+    </div>
+    <div>
+      <p>One semantic core, many renderings: pick the language you read and the same program follows you into its docs.</p>
+    </div>
+  </div>
+</footer>
+
 <script src="/faber-demo-tabs.js" defer></script>
-<script src="/faber-ambient.js" defer></script>
+<script src="/faber-instrument.js" defer></script>
 </body>
 </html>
