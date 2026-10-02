@@ -42,5 +42,8 @@ functio content_href(textus href, textus site_locale) → textus {
     si site_locale.longitudo() ≡ 0 ergo redde href
     si non su.initium_cum(href, "/") ergo redde href
     si non est_content_path(href) ergo redde href
+    # Already-locale-absolute hrefs (en-only families) pass through on every
+    # locale; partial trees link their canonical English pages.
+    si su.initium_cum(href, "/en-US/") ergo redde href
     redde "/" + site_locale + href
 }

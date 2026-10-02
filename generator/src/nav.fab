@@ -33,6 +33,13 @@ functio finge_item(textus label, textus href, textus section) → NavItem {
     redde NavItem { label = label, href = href, section = section, children = vacua }
 }
 
+# Families that ship en-US only. The absolute href survives content_href on
+# every locale, so partial trees link the canonical English page instead of
+# a locale path that does not exist.
+functio finge_en_item(textus label, textus href, textus section) → NavItem {
+    redde finge_item(label, "/en-US" + href, section)
+}
+
 functio finge_branch(textus label, textus href, textus section, lista<NavItem> children) → NavItem {
     redde NavItem { label = label, href = href, section = section, children = children }
 }
@@ -45,28 +52,28 @@ functio finge_group(textus id, textus label, bivalens compact, lista<NavItem> it
 # the frontmatter `section` of the target pages.
 functio nav_tree() → lista<NavGroup> {
     varia lista<NavItem> behavior_children ← vacua
-    behavior_children.appende(finge_item("Types before names", "/language/behavior/type-first.html", "behavior-type-first"))
-    behavior_children.appende(finge_item("The glyph law", "/language/behavior/glyph-law.html", "behavior-glyph-law"))
-    behavior_children.appende(finge_item("Math in the ether", "/language/behavior/numeric-widths.html", "behavior-numeric-widths"))
-    behavior_children.appende(finge_item("Sealed reader locales", "/language/behavior/sealed-locales.html", "behavior-sealed-locales"))
-    behavior_children.appende(finge_item("A program is a package", "/language/behavior/packages.html", "behavior-packages"))
-    behavior_children.appende(finge_item("Errors as values, tests as declarations", "/language/behavior/errors-and-tests.html", "behavior-errors-and-tests"))
+    behavior_children.appende(finge_en_item("Types before names", "/language/behavior/type-first.html", "behavior-type-first"))
+    behavior_children.appende(finge_en_item("The glyph law", "/language/behavior/glyph-law.html", "behavior-glyph-law"))
+    behavior_children.appende(finge_en_item("Math in the ether", "/language/behavior/numeric-widths.html", "behavior-numeric-widths"))
+    behavior_children.appende(finge_en_item("Sealed reader locales", "/language/behavior/sealed-locales.html", "behavior-sealed-locales"))
+    behavior_children.appende(finge_en_item("A program is a package", "/language/behavior/packages.html", "behavior-packages"))
+    behavior_children.appende(finge_en_item("Errors as values, tests as declarations", "/language/behavior/errors-and-tests.html", "behavior-errors-and-tests"))
 
     varia lista<NavItem> grammar_children ← vacua
     grammar_children.appende(finge_item("Grammar overview", "/reference/grammar.html", "grammar"))
-    grammar_children.appende(finge_item("Programs, regions & imports", "/reference/grammar/program.html", "grammar-program"))
-    grammar_children.appende(finge_item("Declarations & bindings", "/reference/grammar/declarations.html", "grammar-declarations"))
-    grammar_children.appende(finge_item("Annotations & directives", "/reference/grammar/annotations.html", "grammar-annotations"))
-    grammar_children.appende(finge_item("Types & contracts", "/reference/grammar/types.html", "grammar-types"))
-    grammar_children.appende(finge_item("Statements & control flow", "/reference/grammar/statements.html", "grammar-statements"))
-    grammar_children.appende(finge_item("Expressions & operators", "/reference/grammar/expressions.html", "grammar-expressions"))
-    grammar_children.appende(finge_item("Patterns & destructuring", "/reference/grammar/patterns.html", "grammar-patterns"))
-    grammar_children.appende(finge_item("Error channel", "/reference/grammar/errors.html", "grammar-errors"))
-    grammar_children.appende(finge_item("Lexical structure & glyphs", "/reference/grammar/lexical.html", "grammar-lexical"))
+    grammar_children.appende(finge_en_item("Programs, regions & imports", "/reference/grammar/program.html", "grammar-program"))
+    grammar_children.appende(finge_en_item("Declarations & bindings", "/reference/grammar/declarations.html", "grammar-declarations"))
+    grammar_children.appende(finge_en_item("Annotations & directives", "/reference/grammar/annotations.html", "grammar-annotations"))
+    grammar_children.appende(finge_en_item("Types & contracts", "/reference/grammar/types.html", "grammar-types"))
+    grammar_children.appende(finge_en_item("Statements & control flow", "/reference/grammar/statements.html", "grammar-statements"))
+    grammar_children.appende(finge_en_item("Expressions & operators", "/reference/grammar/expressions.html", "grammar-expressions"))
+    grammar_children.appende(finge_en_item("Patterns & destructuring", "/reference/grammar/patterns.html", "grammar-patterns"))
+    grammar_children.appende(finge_en_item("Error channel", "/reference/grammar/errors.html", "grammar-errors"))
+    grammar_children.appende(finge_en_item("Lexical structure & glyphs", "/reference/grammar/lexical.html", "grammar-lexical"))
     grammar_children.appende(finge_item("Terms A–Z", "/corpus/az.html", "corpus"))
 
     varia lista<NavItem> language_items ← vacua
-    language_items.appende(finge_item("Overview", "/language/overview.html", "overview"))
+    language_items.appende(finge_en_item("Overview", "/language/overview.html", "overview"))
     language_items.appende(finge_branch("Behavior", "", "", behavior_children))
     language_items.appende(finge_branch("Grammar", "", "", grammar_children))
     language_items.appende(finge_item("Examples", "/examples/", "examples"))
@@ -74,21 +81,21 @@ functio nav_tree() → lista<NavGroup> {
     language_items.appende(finge_item("Cheat sheet", "/cheatsheet/", "cheatsheet"))
 
     varia lista<NavItem> hir_children ← vacua
-    hir_children.appende(finge_item("Rust", "/targets/rust.html", "rust"))
-    hir_children.appende(finge_item("TypeScript", "/targets/ts.html", "ts"))
-    hir_children.appende(finge_item("Go", "/targets/go.html", "go"))
-    hir_children.appende(finge_item("Faber", "/targets/faber.html", "faber"))
+    hir_children.appende(finge_en_item("Rust", "/targets/rust.html", "rust"))
+    hir_children.appende(finge_en_item("TypeScript", "/targets/ts.html", "ts"))
+    hir_children.appende(finge_en_item("Go", "/targets/go.html", "go"))
+    hir_children.appende(finge_en_item("Faber", "/targets/faber.html", "faber"))
 
     varia lista<NavItem> mir_children ← vacua
-    mir_children.appende(finge_item("LLVM IR", "/targets/llvm-text.html", "llvm-text"))
-    mir_children.appende(finge_item("WebAssembly text", "/targets/wasm-text.html", "wasm-text"))
+    mir_children.appende(finge_en_item("LLVM IR", "/targets/llvm-text.html", "llvm-text"))
+    mir_children.appende(finge_en_item("WebAssembly text", "/targets/wasm-text.html", "wasm-text"))
 
     varia lista<NavItem> gpu_children ← vacua
-    gpu_children.appende(finge_item("Metal", "/targets/metal-text.html", "metal-text"))
-    gpu_children.appende(finge_item("WGSL", "/targets/wgsl-text.html", "wgsl-text"))
+    gpu_children.appende(finge_en_item("Metal", "/targets/metal-text.html", "metal-text"))
+    gpu_children.appende(finge_en_item("WGSL", "/targets/wgsl-text.html", "wgsl-text"))
 
     varia lista<NavItem> targets_items ← vacua
-    targets_items.appende(finge_item("All targets", "/targets/", "targets"))
+    targets_items.appende(finge_en_item("All targets", "/targets/", "targets"))
     targets_items.appende(finge_branch("HIR — application", "", "", hir_children))
     targets_items.appende(finge_branch("MIR — systems", "", "", mir_children))
     targets_items.appende(finge_branch("GPU — device", "", "", gpu_children))
@@ -96,9 +103,9 @@ functio nav_tree() → lista<NavGroup> {
 
     varia lista<NavItem> locales_items ← vacua
     locales_items.appende(finge_item("Reader locales", "/language/reader-locales.html", "locales"))
-    locales_items.appende(finge_item("Keyword reference", "/language/locales/keywords.html", "locales"))
-    locales_items.appende(finge_item("Locale examples", "/language/locales/examples.html", "locales"))
-    locales_items.appende(finge_item("Diagnostics by locale", "/language/locales/diagnostics.html", "locales"))
+    locales_items.appende(finge_en_item("Keyword reference", "/language/locales/keywords.html", "locales"))
+    locales_items.appende(finge_en_item("Locale examples", "/language/locales/examples.html", "locales"))
+    locales_items.appende(finge_en_item("Diagnostics by locale", "/language/locales/diagnostics.html", "locales"))
 
     varia lista<NavItem> libraries_items ← vacua
     libraries_items.appende(finge_item("Norma — stdlib", "/libraries/norma.html", "libraries"))

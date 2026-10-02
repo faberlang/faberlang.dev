@@ -110,7 +110,7 @@ id = "language"
 label = "ภาษา"
 [[nav.group.item]]
 label = "Overview"
-href = "/language/overview.html"
+href = "/en-US/language/overview.html"
 section = "overview"
 [[nav.group.item]]
 label = "พฤติกรรม"
@@ -118,27 +118,27 @@ href = ""
 section = ""
 [[nav.group.item.child]]
 label = "ชนิดก่อนชื่อ"
-href = "/language/behavior/type-first.html"
+href = "/en-US/language/behavior/type-first.html"
 section = "behavior-type-first"
 [[nav.group.item.child]]
 label = "กฎสัญลักษณ์"
-href = "/language/behavior/glyph-law.html"
+href = "/en-US/language/behavior/glyph-law.html"
 section = "behavior-glyph-law"
 [[nav.group.item.child]]
 label = "ความกว้างตัวเลข"
-href = "/language/behavior/numeric-widths.html"
+href = "/en-US/language/behavior/numeric-widths.html"
 section = "behavior-numeric-widths"
 [[nav.group.item.child]]
 label = "ภาษาผู้อ่านแบบปิดผนึก"
-href = "/language/behavior/sealed-locales.html"
+href = "/en-US/language/behavior/sealed-locales.html"
 section = "behavior-sealed-locales"
 [[nav.group.item.child]]
 label = "โปรแกรมคือแพ็กเกจ"
-href = "/language/behavior/packages.html"
+href = "/en-US/language/behavior/packages.html"
 section = "behavior-packages"
 [[nav.group.item.child]]
 label = "ข้อผิดพลาดเป็นค่า การทดสอบเป็นการประกาศ"
-href = "/language/behavior/errors-and-tests.html"
+href = "/en-US/language/behavior/errors-and-tests.html"
 section = "behavior-errors-and-tests"
 [[nav.group.item]]
 label = "ไวยากรณ์"
@@ -150,39 +150,39 @@ href = "/reference/grammar.html"
 section = "grammar"
 [[nav.group.item.child]]
 label = "โปรแกรม ภูมิภาค และการนำเข้า"
-href = "/reference/grammar/program.html"
+href = "/en-US/reference/grammar/program.html"
 section = "grammar-program"
 [[nav.group.item.child]]
 label = "การประกาศและการผูกค่า"
-href = "/reference/grammar/declarations.html"
+href = "/en-US/reference/grammar/declarations.html"
 section = "grammar-declarations"
 [[nav.group.item.child]]
 label = "คำอธิบายประกอบและคำสั่ง"
-href = "/reference/grammar/annotations.html"
+href = "/en-US/reference/grammar/annotations.html"
 section = "grammar-annotations"
 [[nav.group.item.child]]
 label = "ชนิดและสัญญา"
-href = "/reference/grammar/types.html"
+href = "/en-US/reference/grammar/types.html"
 section = "grammar-types"
 [[nav.group.item.child]]
 label = "คำสั่งและการควบคุมลำดับ"
-href = "/reference/grammar/statements.html"
+href = "/en-US/reference/grammar/statements.html"
 section = "grammar-statements"
 [[nav.group.item.child]]
 label = "นิพจน์และตัวดำเนินการ"
-href = "/reference/grammar/expressions.html"
+href = "/en-US/reference/grammar/expressions.html"
 section = "grammar-expressions"
 [[nav.group.item.child]]
 label = "รูปแบบและการแยกโครงสร้าง"
-href = "/reference/grammar/patterns.html"
+href = "/en-US/reference/grammar/patterns.html"
 section = "grammar-patterns"
 [[nav.group.item.child]]
 label = "ช่องทางข้อผิดพลาด"
-href = "/reference/grammar/errors.html"
+href = "/en-US/reference/grammar/errors.html"
 section = "grammar-errors"
 [[nav.group.item.child]]
 label = "โครงสร้างคำและสัญลักษณ์"
-href = "/reference/grammar/lexical.html"
+href = "/en-US/reference/grammar/lexical.html"
 section = "grammar-lexical"
 [[nav.group.item.child]]
 label = "ศัพท์ ก–ฮ"
@@ -205,7 +205,7 @@ id = "targets"
 label = "ตามเป้าหมาย"
 [[nav.group.item]]
 label = "เป้าหมายทั้งหมด"
-href = "/targets/"
+href = "/en-US/targets/"
 section = "targets"
 [[nav.group.item]]
 label = "HIR — แอปพลิเคชัน"
@@ -213,19 +213,19 @@ href = ""
 section = ""
 [[nav.group.item.child]]
 label = "Rust"
-href = "/targets/rust.html"
+href = "/en-US/targets/rust.html"
 section = "rust"
 [[nav.group.item.child]]
 label = "TypeScript"
-href = "/targets/ts.html"
+href = "/en-US/targets/ts.html"
 section = "ts"
 [[nav.group.item.child]]
 label = "Go"
-href = "/targets/go.html"
+href = "/en-US/targets/go.html"
 section = "go"
 [[nav.group.item.child]]
 label = "Faber"
-href = "/targets/faber.html"
+href = "/en-US/targets/faber.html"
 section = "faber"
 [[nav.group.item]]
 label = "MIR — ระบบ"
@@ -233,11 +233,11 @@ href = ""
 section = ""
 [[nav.group.item.child]]
 label = "LLVM IR"
-href = "/targets/llvm-text.html"
+href = "/en-US/targets/llvm-text.html"
 section = "llvm-text"
 [[nav.group.item.child]]
 label = "ข้อความ WebAssembly"
-href = "/targets/wasm-text.html"
+href = "/en-US/targets/wasm-text.html"
 section = "wasm-text"
 [[nav.group.item]]
 label = "GPU — อุปกรณ์"
@@ -245,11 +245,11 @@ href = ""
 section = ""
 [[nav.group.item.child]]
 label = "Metal"
-href = "/targets/metal-text.html"
+href = "/en-US/targets/metal-text.html"
 section = "metal-text"
 [[nav.group.item.child]]
 label = "WGSL"
-href = "/targets/wgsl-text.html"
+href = "/en-US/targets/wgsl-text.html"
 section = "wgsl-text"
 [[nav.group.item]]
 label = "ตารางเป้าหมาย"
@@ -264,15 +264,15 @@ href = "/language/reader-locales.html"
 section = "locales"
 [[nav.group.item]]
 label = "เอกสารอ้างอิงคีย์เวิร์ด"
-href = "/language/locales/keywords.html"
+href = "/en-US/language/locales/keywords.html"
 section = "locales"
 [[nav.group.item]]
 label = "ตัวอย่างตามภาษา"
-href = "/language/locales/examples.html"
+href = "/en-US/language/locales/examples.html"
 section = "locales"
 [[nav.group.item]]
 label = "การวินิจฉัยตามภาษา"
-href = "/language/locales/diagnostics.html"
+href = "/en-US/language/locales/diagnostics.html"
 section = "locales"
 [[nav.group]]
 id = "libraries"

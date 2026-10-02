@@ -142,7 +142,7 @@ id = "language"
 label = "The Language"
 [[nav.group.item]]
 label = "Overview"
-href = "/language/overview.html"
+href = "/en-US/language/overview.html"
 section = "overview"
 [[nav.group.item]]
 label = "Behavior"
@@ -150,27 +150,27 @@ href = ""
 section = ""
 [[nav.group.item.child]]
 label = "Types before names"
-href = "/language/behavior/type-first.html"
+href = "/en-US/language/behavior/type-first.html"
 section = "behavior-type-first"
 [[nav.group.item.child]]
 label = "The glyph law"
-href = "/language/behavior/glyph-law.html"
+href = "/en-US/language/behavior/glyph-law.html"
 section = "behavior-glyph-law"
 [[nav.group.item.child]]
 label = "Math in the ether"
-href = "/language/behavior/numeric-widths.html"
+href = "/en-US/language/behavior/numeric-widths.html"
 section = "behavior-numeric-widths"
 [[nav.group.item.child]]
 label = "Sealed reader locales"
-href = "/language/behavior/sealed-locales.html"
+href = "/en-US/language/behavior/sealed-locales.html"
 section = "behavior-sealed-locales"
 [[nav.group.item.child]]
 label = "A program is a package"
-href = "/language/behavior/packages.html"
+href = "/en-US/language/behavior/packages.html"
 section = "behavior-packages"
 [[nav.group.item.child]]
 label = "Errors as values, tests as declarations"
-href = "/language/behavior/errors-and-tests.html"
+href = "/en-US/language/behavior/errors-and-tests.html"
 section = "behavior-errors-and-tests"
 [[nav.group.item]]
 label = "Grammar"
@@ -182,39 +182,39 @@ href = "/reference/grammar.html"
 section = "grammar"
 [[nav.group.item.child]]
 label = "Programs, regions & imports"
-href = "/reference/grammar/program.html"
+href = "/en-US/reference/grammar/program.html"
 section = "grammar-program"
 [[nav.group.item.child]]
 label = "Declarations & bindings"
-href = "/reference/grammar/declarations.html"
+href = "/en-US/reference/grammar/declarations.html"
 section = "grammar-declarations"
 [[nav.group.item.child]]
 label = "Annotations & directives"
-href = "/reference/grammar/annotations.html"
+href = "/en-US/reference/grammar/annotations.html"
 section = "grammar-annotations"
 [[nav.group.item.child]]
 label = "Types & contracts"
-href = "/reference/grammar/types.html"
+href = "/en-US/reference/grammar/types.html"
 section = "grammar-types"
 [[nav.group.item.child]]
 label = "Statements & control flow"
-href = "/reference/grammar/statements.html"
+href = "/en-US/reference/grammar/statements.html"
 section = "grammar-statements"
 [[nav.group.item.child]]
 label = "Expressions & operators"
-href = "/reference/grammar/expressions.html"
+href = "/en-US/reference/grammar/expressions.html"
 section = "grammar-expressions"
 [[nav.group.item.child]]
 label = "Patterns & destructuring"
-href = "/reference/grammar/patterns.html"
+href = "/en-US/reference/grammar/patterns.html"
 section = "grammar-patterns"
 [[nav.group.item.child]]
 label = "Error channel"
-href = "/reference/grammar/errors.html"
+href = "/en-US/reference/grammar/errors.html"
 section = "grammar-errors"
 [[nav.group.item.child]]
 label = "Lexical structure & glyphs"
-href = "/reference/grammar/lexical.html"
+href = "/en-US/reference/grammar/lexical.html"
 section = "grammar-lexical"
 [[nav.group.item.child]]
 label = "Terms A–Z"
@@ -237,7 +237,7 @@ id = "targets"
 label = "By target"
 [[nav.group.item]]
 label = "All targets"
-href = "/targets/"
+href = "/en-US/targets/"
 section = "targets"
 [[nav.group.item]]
 label = "HIR — application"
@@ -245,19 +245,19 @@ href = ""
 section = ""
 [[nav.group.item.child]]
 label = "Rust"
-href = "/targets/rust.html"
+href = "/en-US/targets/rust.html"
 section = "rust"
 [[nav.group.item.child]]
 label = "TypeScript"
-href = "/targets/ts.html"
+href = "/en-US/targets/ts.html"
 section = "ts"
 [[nav.group.item.child]]
 label = "Go"
-href = "/targets/go.html"
+href = "/en-US/targets/go.html"
 section = "go"
 [[nav.group.item.child]]
 label = "Faber"
-href = "/targets/faber.html"
+href = "/en-US/targets/faber.html"
 section = "faber"
 [[nav.group.item]]
 label = "MIR — systems"
@@ -265,11 +265,11 @@ href = ""
 section = ""
 [[nav.group.item.child]]
 label = "LLVM IR"
-href = "/targets/llvm-text.html"
+href = "/en-US/targets/llvm-text.html"
 section = "llvm-text"
 [[nav.group.item.child]]
 label = "WebAssembly text"
-href = "/targets/wasm-text.html"
+href = "/en-US/targets/wasm-text.html"
 section = "wasm-text"
 [[nav.group.item]]
 label = "GPU — device"
@@ -277,11 +277,11 @@ href = ""
 section = ""
 [[nav.group.item.child]]
 label = "Metal"
-href = "/targets/metal-text.html"
+href = "/en-US/targets/metal-text.html"
 section = "metal-text"
 [[nav.group.item.child]]
 label = "WGSL"
-href = "/targets/wgsl-text.html"
+href = "/en-US/targets/wgsl-text.html"
 section = "wgsl-text"
 [[nav.group.item]]
 label = "Target matrix"
@@ -296,15 +296,15 @@ href = "/language/reader-locales.html"
 section = "locales"
 [[nav.group.item]]
 label = "Keyword reference"
-href = "/language/locales/keywords.html"
+href = "/en-US/language/locales/keywords.html"
 section = "locales"
 [[nav.group.item]]
 label = "Locale examples"
-href = "/language/locales/examples.html"
+href = "/en-US/language/locales/examples.html"
 section = "locales"
 [[nav.group.item]]
 label = "Diagnostics by locale"
-href = "/language/locales/diagnostics.html"
+href = "/en-US/language/locales/diagnostics.html"
 section = "locales"
 [[nav.group]]
 id = "libraries"
