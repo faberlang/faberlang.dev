@@ -53,6 +53,30 @@ def _guarded(text: str, start: int, end: int) -> bool:
     return False
 
 
+_IDENT = r"[A-Za-z_][A-Za-z0-9_]*"
+_AFTER_DOT = re.compile(r"\.(" + _IDENT + r")")
+_BEFORE_DOT = re.compile(r"(" + _IDENT + r")\.(?=[A-Za-z_])")
+_DECL_SLOT = re.compile(r"(" + _IDENT + r")[ \t]*(?=[=←])")
+
+
+def _declined_spellings(text: str, mapping: dict[str, str]) -> set[str]:
+    """Keyword spellings a code region uses as identifiers, not as keywords.
+
+    Faber permits a keyword spelling as an identifier, so `nomen` the keyword
+    and `nomen` a field cannot be told apart by the token alone. A spelling
+    that names a member or a member's receiver (either side of `.`) *and* fills
+    a declaration or field-key slot is an identifier: rewriting only some of
+    its occurrences would split one example across two spellings, so decline
+    every occurrence in the region.
+    """
+    members = {match.group(1) for match in _AFTER_DOT.finditer(text)}
+    members |= {match.group(1) for match in _BEFORE_DOT.finditer(text)}
+    if not any(name in mapping for name in members):
+        return set()
+    slots = {match.group(1) for match in _DECL_SLOT.finditer(text)}
+    return {name for name in members if name in slots and name in mapping}
+
+
 def _compound_at(text: str, end: int, key: str, mapping: dict[str, str]) -> tuple[str, int] | None:
     match = re.match(r"(?:_[^\W_]+)+", text[end:])
     if not match:
@@ -97,13 +121,15 @@ def _project_non_est(text: str, mapping: dict[str, str]) -> str:
     return re.sub(r"(?<![\w_])non(\s+)est(?![\w_])", r"is\1not", text)
 
 
-def project_prose(text: str, mapping: dict[str, str]) -> str:
+def project_prose(text: str, mapping: dict[str, str], *, declined: set[str] | None = None) -> str:
     allowed = {k: v for k, v in mapping.items() if k in SHORT_SAFE or (len(k) >= 4 and k not in HOMOGRAPHS)}
     text = _project_compounds(text, mapping)
     text = _project_non_est(text, mapping)
 
     def replace(match: re.Match) -> str:
         key = match.group(0)
+        if declined and key in declined:
+            return key
         if key not in allowed or _guarded(text, match.start(), match.end()):
             return key
         return allowed[key]
@@ -111,13 +137,21 @@ def project_prose(text: str, mapping: dict[str, str]) -> str:
     return WORD.sub(replace, text)
 
 
-def project_code(text: str, mapping: dict[str, str], *, exact_short: bool = False) -> str:
+def project_code(
+    text: str,
+    mapping: dict[str, str],
+    *,
+    exact_short: bool = False,
+    declined: set[str] | None = None,
+) -> str:
     """Project code tokens, protecting strings, paths, labels, and unsafe comments."""
     if exact_short and text.strip() in {"in", "per", "est"}:
         token = text.strip()
         leading = text[:len(text) - len(text.lstrip())]
         trailing = text[len(text.rstrip()):]
         return leading + mapping.get(token, token) + trailing
+    if declined is None:
+        declined = _declined_spellings(text, mapping)
     keywordish = _keywordish(text, mapping)
     out: list[str] = []
     i = 0
@@ -151,7 +185,7 @@ def project_code(text: str, mapping: dict[str, str], *, exact_short: bool = Fals
 
             def comment_replace(m: re.Match) -> str:
                 key = m.group(0)
-                if _guarded(comment, m.start(), m.end()):
+                if key in declined or _guarded(comment, m.start(), m.end()):
                     return key
                 if len(key) < 4 and key not in SHORT_SAFE:
                     # `in` / `per` / `est` are English words in a comment, and
@@ -168,12 +202,12 @@ def project_code(text: str, mapping: dict[str, str], *, exact_short: bool = Fals
         if match:
             key = match.group(0)
             compound = _compound_at(text, match.end(), key, mapping)
-            if compound and not _guarded(text, i, compound[1]):
+            if compound and compound[0] not in declined and not _guarded(text, i, compound[1]):
                 out.append(mapping[compound[0]])
                 i = compound[1]
                 continue
             replace = _whole_token(text, i, match.end()) and not _guarded(text, i, match.end())
-            if key in {"in", "per", "est"} and not keywordish:
+            if key in declined or (key in {"in", "per", "est"} and not keywordish):
                 replace = False
             if key == "non" and replace:
                 phrase = re.match(r"(\s+)est(?![\w_])", text[match.end():])
@@ -189,7 +223,7 @@ def project_code(text: str, mapping: dict[str, str], *, exact_short: bool = Fals
     return "".join(out)
 
 
-def _project_inline(line: str, mapping: dict[str, str]) -> str:
+def _project_inline(line: str, mapping: dict[str, str], *, declined: set[str] | None = None) -> str:
     protected: list[str] = []
     def hold(match: re.Match) -> str:
         protected.append(match.group(0))
@@ -199,21 +233,30 @@ def _project_inline(line: str, mapping: dict[str, str]) -> str:
     for i, part in enumerate(parts):
         if part.startswith("`") and part.endswith("`"):
             run = len(part) - len(part.lstrip("`"))
-            parts[i] = part[:run] + project_code(part[run:-run], mapping, exact_short=True) + part[-run:]
+            parts[i] = part[:run] + project_code(part[run:-run], mapping, exact_short=True, declined=declined) + part[-run:]
         else:
-            parts[i] = project_prose(part, mapping)
+            parts[i] = project_prose(part, mapping, declined=declined)
     result = "".join(parts)
     return re.sub(r"\x00(\d+)\x00", lambda m: protected[int(m.group(1))], result)
 
 
-def project_markdown(text: str, mapping: dict[str, str], *, relative_path: str = "", reader: str = "en") -> str:
+def project_markdown(text: str, mapping: dict[str, str], *, relative_path: str = "", reader: str = "en", example: bool = False) -> str:
+    """Project one Markdown document, or one bare Faber example when `example`.
+
+    A Markdown page mixes prose with code regions, so identifier decline is
+    scoped to each fence or span. A bare example is all code: its decline is
+    computed once over the whole text, so a keyword-shaped field keeps one
+    spelling across declaration, construction, and member access.
+    """
     rel = relative_path.replace("\\", "/")
     if rel.endswith("reference/grammar.md") or "/reference/grammar/" in rel:
         return text
     lines = text.splitlines(keepends=True)
+    declined = _declined_spellings(text, mapping) if example else None
     out: list[str] = []
     fence: str | None = None
     skip_fence = False
+    fence_body: list[str] = []
     frontmatter = bool(lines and lines[0].strip() == "+++")
     first_frontmatter = frontmatter
     for line in lines:
@@ -232,27 +275,40 @@ def project_markdown(text: str, mapping: dict[str, str], *, relative_path: str =
             else:
                 out.append(line)
             continue
-        if stripped.startswith("```"):
-            if fence is None:
-                fence = stripped[:len(stripped) - len(stripped.lstrip("`"))]
-                info = stripped[len(fence):]
-                locale = re.search(r"(?:^|\s)locale=([^\s]+)", info)
-                skip_fence = bool(locale and locale.group(1) != reader)
+        if fence:
+            if stripped.startswith(fence):
+                if not skip_fence:
+                    region_declined = _declined_spellings("".join(fence_body), mapping)
+                    for body_line in fence_body:
+                        out.append(project_code(body_line.rstrip("\n"), mapping, declined=region_declined) + ("\n" if body_line.endswith("\n") else ""))
+                else:
+                    out.extend(fence_body)
                 out.append(line)
-            elif stripped.startswith(fence):
                 fence = None
                 skip_fence = False
-                out.append(line)
+                fence_body = []
             elif skip_fence:
                 out.append(line)
             else:
-                body = line.rstrip("\n")
-                out.append(project_code(body, mapping) + ("\n" if line.endswith("\n") else ""))
+                fence_body.append(line)
             continue
-        if fence:
-            out.append(line if skip_fence else project_code(line.rstrip("\n"), mapping) + ("\n" if line.endswith("\n") else ""))
+        if stripped.startswith("```"):
+            fence = stripped[:len(stripped) - len(stripped.lstrip("`"))]
+            info = stripped[len(fence):]
+            locale = re.search(r"(?:^|\s)locale=([^\s]+)", info)
+            skip_fence = bool(locale and locale.group(1) != reader)
+            fence_body = []
+            out.append(line)
+            continue
+        out.append(_project_inline(line, mapping, declined=declined))
+    if fence is not None and fence_body:
+        # An unterminated fence: project its body the same way a closed one is.
+        if skip_fence:
+            out.extend(fence_body)
         else:
-            out.append(_project_inline(line, mapping))
+            region_declined = _declined_spellings("".join(fence_body), mapping)
+            for body_line in fence_body:
+                out.append(project_code(body_line.rstrip("\n"), mapping, declined=region_declined) + ("\n" if body_line.endswith("\n") else ""))
     return "".join(out)
 
 
