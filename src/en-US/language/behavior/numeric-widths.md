@@ -26,6 +26,13 @@ of three:
 | `wrapping<u8>` | reduces modulo the cell's width |
 | `trapping<u8>` | errors when the value does not fit |
 
+`inf` is the integer that stays unbounded after it is stored. A value that
+does not fit a fixed-width cell does not become `inf` by itself: the cell
+still applies its policy, and a bounded intermediate that leaves the 64-bit
+range traps. Write `inf` on a slot, or put an `inf` operand in the
+expression, and the unbounded width takes over — any integer width widens
+into it, and a store into an `inf` cell is never a size check.
+
 Float cells follow the same rule: a bare `f64` and a `saturating<f64>` both
 give ±infinity on overflow, because there is no maximum finite value to clamp
 to; only a `trapping<f64>` cell errors, and only when a non-finite value is
@@ -89,3 +96,23 @@ conversion — which is exactly the point where a policy would be applied. A
 needs no default and no error channel; a `trapping` cell is where an
 out-of-range store is reported. See [Types and values](/language/types.html)
 for the cell types themselves.
+
+Every numeric width, the overflow policies it accepts, and the policy a bare
+marker uses:
+
+| Width | Policies | Bare default |
+|---|---|---|
+| `i8` | `trapping`, `wrapping`, `saturating` | `trapping` |
+| `i16` | `trapping`, `wrapping`, `saturating` | `trapping` |
+| `i32` | `trapping`, `wrapping`, `saturating` | `trapping` |
+| `i64` | `trapping`, `wrapping`, `saturating` | `trapping` |
+| `u8` | `trapping`, `wrapping`, `saturating` | `trapping` |
+| `u16` | `trapping`, `wrapping`, `saturating` | `trapping` |
+| `u32` | `trapping`, `wrapping`, `saturating` | `trapping` |
+| `u64` | `trapping`, `wrapping`, `saturating` | `trapping` |
+| `d64` | `trapping` | `trapping` |
+| `inf` | `trapping`, `wrapping`, `saturating` — one type | unbounded |
+| `f16` | `trapping`, `saturating` | `saturating` |
+| `bf16` | `trapping`, `saturating` | `saturating` |
+| `f32` | `trapping`, `saturating` | `saturating` |
+| `f64` | `trapping`, `saturating` | `saturating` |
