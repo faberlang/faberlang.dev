@@ -91,6 +91,44 @@ class ReaderTermProjectionTest(unittest.TestCase):
         source = "# itera ex\n`nihil`\n"
         self.assertEqual(self.project(source, "reference/grammar.md"), source)
 
+    def test_keyword_shaped_field_keeps_one_spelling(self) -> None:
+        # `nomen` names a field here, not the keyword `name`. It is declared,
+        # constructed, and read; all three must keep the same spelling so the
+        # emitted example compiles.
+        source = (
+            "```faber\n"
+            "class Persona {\n"
+            "    var string nomen\n"
+            "}\n"
+            "main {\n"
+            '    const Persona marcus ← Persona { nomen = "Marcus" }\n'
+            "    print marcus.nomen\n"
+            "}\n"
+            "```\n"
+        )
+        self.assertEqual(self.project(source), source)
+
+    def test_keyword_shaped_binding_used_as_receiver_keeps_one_spelling(self) -> None:
+        # `copia` is a binding that is also read through a member call; its
+        # declaration must not project to the keyword spelling while the
+        # receiver stays Latin.
+        source = (
+            "```faber\n"
+            "main {\n"
+            "    const Tabula copia ← Tabula { aetas = 1 }\n"
+            "    print copia.totum()\n"
+            "}\n"
+            "```\n"
+        )
+        self.assertEqual(self.project(source), source)
+
+    def test_member_named_keyword_is_not_a_declared_identifier(self) -> None:
+        # `meus` is the keyword `send` in a type slot; the method is spelled
+        # `meus` in every locale. Only the type projects.
+        result = self.project("```faber\nconst meus<string> m ← s.meus<string>()\n```\n")
+        self.assertIn("const send<string> m", result)
+        self.assertIn("s.meus<string>()", result)
+
 
 if __name__ == "__main__":
     unittest.main()

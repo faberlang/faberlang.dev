@@ -91,8 +91,8 @@ def main() -> int:
     scratch_path = Path(scratch.name)
     counter = itertools.count()
 
-    def project(text: str, name: str = "page") -> str:
-        return project_markdown(text, mapping, relative_path=f"agents/reference/{name}.md", reader="en")
+    def project(text: str, name: str = "page", example: bool = False) -> str:
+        return project_markdown(text, mapping, relative_path=f"agents/reference/{name}.md", reader="en", example=example)
 
     def checks(code: str) -> bool:
         path = scratch_path / f"example_{next(counter)}.fab"
@@ -102,7 +102,10 @@ def main() -> int:
         ).returncode == 0
 
     def example_for(original: str, name: str) -> str:
-        text, fell_back = choose_example(original, project(original, name), checks)
+        # The registry example is one bare Faber program, not a Markdown page:
+        # project it as a single code region so a keyword-shaped field keeps
+        # one spelling across declaration, construction, and member access.
+        text, fell_back = choose_example(original, project(original, name, example=True), checks)
         if fell_back:
             print(f"WARNING: projection broke the '{name}' example; shipping the registry text", file=sys.stderr)
         return text
