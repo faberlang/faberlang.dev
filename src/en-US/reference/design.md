@@ -30,9 +30,14 @@ grammatical order reads from category to instance — Chinese, Hindi, Arabic
 
 ```faber
 # Type before name in every declaration
-textus nomen
-numerus aetas
-functio salve(textus name) → textus
+incipit {
+    fixum textus nomen ← "Aelia"
+    fixum numerus aetas ← 30
+}
+
+functio salve(textus name) → textus {
+    redde name
+}
 ```
 
 ### II. Mechanical over magical {#ii-mechanical-over-magical}
@@ -94,14 +99,21 @@ languages collapse both into `=`, but that overloading hides
 whether a line is a data-flow operation or a type-level definition.
 
 ```faber
-# ← is always runtime flow
-fixum numerus count ← 0
-count ← count + 1
+genus Point {
+    fixum numerus x
+    fixum numerus y
+}
 
-# = is always structural shape inside Type { }
-fixum _ p ← Point {
-    x = 10,
-    y = 20
+incipit {
+    # ← is always runtime flow
+    varia numerus count ← 0
+    count ← count + 1
+
+    # = is always structural shape inside Type { }
+    fixum _ p ← Point {
+        x = 10,
+        y = 20
+    }
 }
 ```
 
@@ -122,11 +134,13 @@ caller may omit* — and Faber keeps them syntactically separate rather
 than collapsing both into `T?` or `Option<T>`.
 
 ```faber
-# Absence in a value: T ∪ nihil
-functio find(textus key) → numerus ∪ nihil
+functio find(textus key) → numerus ∪ nihil {
+    redde nihil
+}
 
-# Omission at declaration: sponte
-functio connect(textus host, numerus port sponte) → vacuum
+functio connect(textus host, numerus port sponte) → vacuum {
+    redde
+}
 ```
 
 ### IX. The compiler does not guess to hide missing information {#ix-compiler-does-not-guess}

@@ -275,14 +275,21 @@ is class field layout.
 
 ```faber
 # Runtime binding: ← attaches a value to a name
-fixum numerus count ← 0
-varia textus label ← "ready"
-count ← count + 1
+genus Point {
+    fixum numerus x
+    fixum numerus y
+}
 
-# Structural shape: = defines field values inside a literal
-fixum _ p ← Point {
-    x = 10,
-    y = 20
+incipit {
+    varia numerus count ← 0
+    varia textus label ← "ready"
+    count ← count + 1
+
+    # Structural shape: = defines field values inside a literal
+    fixum _ p ← Point {
+        x = 10,
+        y = 20
+    }
 }
 ```
 
@@ -389,12 +396,14 @@ Annotations are compiler-owned metadata attached to declarations — like
     ubique = verum,
     descriptio = "Enable verbose output"
 }
+incipit {}
 ```
 
 **Sugar form:** positional arguments and named aliases:
 
 ```faber
 @ optio verbose brevis "v" longum "verbose" typus bivalens ubique descriptio "Enable verbose output"
+incipit {}
 ```
 
 Both forms produce the same `HirAnnotation` record. The canonical

@@ -173,7 +173,8 @@ functio add(matrix<f32, [2, 2]> a, matrix<f32, [2, 2]> b) → matrix<f32, [2, 2]
 }
 
 functio swap(atomic<i32> cell, i32 value) → i32 {
-    redde cell.exchange(value)
+    varia atomic<i32> mutable_cell ← cell
+    redde mutable_cell.exchange(value)
 }
 ```
 
@@ -416,7 +417,7 @@ reductions (`summa`, `productum`).
 
 ```faber
 incipit {
-    fixum sparsa<f32, [2, 3]> sparse ← vacua
+    varia sparsa<f32, [2, 3]> sparse ← vacua
     sparse.ponde([0, 1], 4.0)
     sparse.ponde([1, 2], 9.0)
 
