@@ -17,18 +17,20 @@ Inputs (resolved from a sibling workspace checkout, same convention as
 Outputs:
 
   src/en-US/reference/grammar.md              the family index (URL unchanged)
-  src/en-US/reference/grammar/<family>.md     one page per family (term tables)
+  src/en-US/reference/grammar/<family>.md     one page per family (prose + term tables)
   static/agents/grammar/productions.md        every production, for models
   dist/agents/grammar/productions.md          (same file, when dist/ exists)
 
-The human family pages show no EBNF: they list the words you write in that
-part of the language, linked to their corpus term pages, beside the grammar
-rule each word belongs to. The full production list is written once, for
-models and tools, to the agent canon page above. Its quoted words are projected
-through the English reader pack; rule names and UPPERCASE terminals stay the
-stable Latin identities. Keywords that resolve to an existing canonical corpus
-page under `dist/en-US/corpus/` become term links; alias stubs are followed to
-their target so only canonical pages are linked.
+The human family pages show no EBNF. Each one opens with an overview of
+that part of the language, a short explanation, and one or two checked
+English examples, then lists the words you write there, linked to their
+corpus term pages, beside the grammar rule each word belongs to. The full
+production list is written once, for models and tools, to the agent canon
+page above. Its quoted words are projected through the English reader pack;
+rule names and UPPERCASE terminals stay the stable Latin identities.
+Keywords that resolve to an existing canonical corpus page under
+`dist/en-US/corpus/` become term links; alias stubs are followed to their
+target so only canonical pages are linked.
 
 The script degrades gracefully: when a sibling input is absent it leaves the
 committed output alone and exits 0, so a checkout without the compiler tree
@@ -219,6 +221,355 @@ FAMILIES: list[dict] = [
     },
 ]
 
+# Reader prose for each family page. The one-line `blurb` stays on the hub
+# table; this is the page body — what the category is, what the table means,
+# and one or two English examples. Regeneration must keep this text, so it
+# lives here rather than in the Markdown. Examples are `locale=en` and have
+# been checked with `faber check --locale=en`.
+FAMILY_PROSE: dict[str, str] = {
+    "program": """\
+A Faber source file is a program. The compiler reads it from the top: an
+optional frontmatter header, an optional `module` region, then the
+declarations, imports, tests, and the entry point that starts it. There is
+no hidden wrapper around those declarations and no separate "program"
+object to construct.
+
+The words on this page are the ones that give the file its shape. Imports
+bring a name in from another file or a library (`import from`). `main` is
+the ordinary entry; `async_main` is the one that may await. Tests are
+ordinary declarations in the same file — `describe` names a suite, `test`
+names a case — not a second language and not a second compilation target.
+
+A file that does one thing:
+
+```faber locale=en
+fn salve(string nomen) → string {
+    const string msg ← "Salve, §!"(nomen)
+    return msg
+}
+
+main {
+    const string m ← salve("munde")
+    print m
+}
+```
+
+`faber check` accepts that file. `faber run` prints `Salve, munde!`.
+
+Tests sit beside the code they exercise:
+
+```faber locale=en
+fn saturate(int x) → int {
+    if x < 0 then return 0
+    if x > 255 then return 255
+    return x
+}
+
+describe "saturate" {
+    test "clamps low" {
+        assert saturate(-1) ≡ 0
+    }
+    test "clamps high" {
+        assert saturate(300) ≡ 255
+    }
+}
+```
+""",
+    "declarations": """\
+A declaration introduces a name the rest of the file can use. Bindings hold
+values: `const` is written once, `var` can be assigned again, and `let` is
+the short inferred form of an immutable binding. Functions, closures, and
+classes are declarations too — they name a callable or a type, and the
+fields and methods it holds.
+
+The type always comes before the name: `int count`, never `count: int`.
+`←` stores a value at run time. `=` is for a field's shape inside a
+literal, not for binding a local. Generic parameters (`<T>`), `implements`
+bounds, and the modifiers on a function (`async`, `throws`, `args`) belong
+here because they are part of how the name is declared.
+
+A function and two bindings:
+
+```faber locale=en
+fn divide(int a, int b) → int ∪ none {
+    if b ≡ 0 then return null
+    return a / b
+}
+
+main {
+    const int seven ← 7
+    var int n ← 3
+    n ← n + 1
+    print divide(seven, n)
+}
+```
+
+A class names its fields the same way. Methods are functions on the class;
+`self` is the instance:
+
+```faber locale=en
+class Span {
+    const f64 low
+    const f64 high
+
+    fn contains(f64 x) → bool {
+        return self.low ≤ x and x ≤ self.high
+    }
+}
+
+main {
+    const Span bytes ← Span { low = 0.0, high = 255.0 }
+    print bytes.contains(128.0)
+}
+```
+""",
+    "annotations": """\
+An annotation is a `@` line that attaches to the declaration below it. It
+does not run. It tells the compiler a fact about that declaration: that it
+is exported, that it is a command-line program, that a kernel, compiler
+lane, or capability applies.
+
+The generic shape is `@` plus a name, optionally with fields in braces.
+`@ public` marks a function an importer can see. `@ cli` names the binary
+a package produces. The same family covers `@ kernel`, `@ radix`, and
+`@ call` — specialized directives most source meets later. The table
+below lists the words those directives use.
+
+```faber locale=en
+@ public
+fn saluta(string nomen) → string {
+    return "Salve, §!"(nomen)
+}
+```
+
+A command-line entry uses the same `@` shape above `main args`:
+
+```faber locale=en
+@ cli { name = "echo" }
+@ description "Prints text"
+@ operand { rest = true, type = string, binding = words }
+main args argv {
+    for from argv.words const word {
+        print word
+    }
+}
+```
+""",
+    "types": """\
+A type is what a value is. Faber writes the type before the name, so you
+read the kind of thing first. This page is the syntax of types and the
+declarations that introduce new ones: `interface` is a contract of
+methods, `type` is another name for an existing type, `enum` is a closed
+set of named constants, `union` is a tagged choice with variants, and
+`schema` describes relational columns.
+
+Absence is a union, not a question mark. A missing integer is
+`int ∪ none`; the missing value is `null`. There is no `int?`. Widths are
+bare markers — `i32`, `f32` — written in type position.
+
+Everyday types, type first:
+
+```faber locale=en
+main {
+    const string name ← "Marcus"
+    const int age ← 30
+    const bool flag ← true
+    const list<int> nums ← [1, 2, 3]
+    const int ∪ none missing ← null
+    print name
+    print age
+    print flag
+    print nums
+    print missing
+}
+```
+
+A `type` alias is a transparent name. It does not create a new kind of
+value:
+
+```faber locale=en
+type Signum = int
+type Nomina = list<string>
+
+main {
+    const Signum signum ← 42
+    const Nomina sodales ← ["Gaius", "Lucius"]
+    print signum
+    print sodales
+}
+```
+""",
+    "statements": """\
+A statement is a step the program takes. This family is how control
+moves: `if` / `elif` / `else` choose a branch, `while` repeats while a
+condition holds, `for` walks a collection or a range, `switch` selects an
+arm by value, and `match` exhausts the variants of a union.
+
+`then` lets a branch be a single statement instead of a block — a common
+way to write an early `return`. `guard` groups those checks at the top of
+a function. `return` leaves a function; `break` and `continue` leave or
+skip a loop; `pass` is the explicit empty body. `assert` and `panic` are
+diagnostics. `require` and `reject` are the one-line throws; they need an
+error channel, which lives on the [error channel](errors.html) page.
+
+```faber locale=en
+main {
+    const int score ← 85
+    if score ≥ 90 {
+        print "A"
+    }
+    elif score ≥ 80 {
+        print "B"
+    }
+    else {
+        print "C"
+    }
+    const list<int> nums ← [1, 2, 3]
+    for from nums const item {
+        print item
+    }
+    var int n ← 0
+    while n ≺ 2 {
+        n ← n + 1
+    }
+    print n
+}
+```
+
+`switch` picks the first matching value. `default` is the fallback:
+
+```faber locale=en
+fn describe(int value) → string {
+    switch value {
+        case 1 { return "one" }
+        case 2 { return "two" }
+        default { return "many" }
+    }
+}
+
+main {
+    print describe(2)
+}
+```
+""",
+    "expressions": """\
+An expression produces a value. This family is the operator stack:
+assignment at the root, then `or` and `and`, then comparison and
+arithmetic, then calls, members, and the literals — numbers, strings,
+`true` / `false` / `null`, lists, tuples, and inline JSON.
+
+`←` stores a value at run time. `and` / `or` / `not` are the boolean
+words. `coalesce` is the nullish default: if the left side is `null`, the
+value is the right side. A `"…"` literal with `§` holes is a template;
+the parentheses after it supply the arguments, which is not a function
+call.
+
+```faber locale=en
+fn greet(string nomen) → string {
+    return "Salve, §!"(nomen)
+}
+
+main {
+    const int a ← 7
+    const int b ← 2
+    print a / b
+    print a ≥ b and b ≠ 0
+    print greet("munde")
+}
+```
+
+`coalesce` fills in a missing value:
+
+```faber locale=en
+main {
+    const int ∪ none missing ← null
+    const int n ← missing coalesce 0
+    print n
+}
+```
+""",
+    "patterns": """\
+A pattern is what a `match` arm accepts. It is not the `match` statement
+itself — that lives with [statements](statements.html) — it is the shape
+on the left of each `case`: a literal, a type, a binding, or a
+destructured object or array.
+
+`and` joins patterns that must all hold; `or` offers alternatives.
+`const` / `var` / `as` bind a name to what matched. `rest` keeps the
+leftover fields or elements. The same atoms appear when a union-typed
+value is read back out by member type.
+
+```faber locale=en
+main {
+    const int ∪ string signum ← 7
+
+    match signum {
+        case int const n { print "a number" }
+        case string const s { print "a text" }
+    }
+}
+```
+""",
+    "errors": """\
+Failure is a second channel, not a wrapper type and not an exception that
+unwinds past you. A function that can fail writes `⇥` after the success
+type: `→ int ⇥ string` returns an int or fails with a string. `throw`
+sends a value on that channel. `do` / `catch` is the local boundary
+around a call that might fail; `catch` binds the error as an ordinary
+value.
+
+`throw if` is the guarded form. `require` and `reject` (listed with
+[statements](statements.html)) compile to the same idea: throw when a
+condition fails, or when it holds. A call to a `⇥` function sits inside
+an active `do` / `catch` (or another statement that carries `catch`).
+
+```faber locale=en
+fn divide(int a, int b) → int ⇥ string {
+    if b ≡ 0 {
+        throw "division by zero"
+    }
+    return a / b
+}
+
+main {
+    do {
+        print divide(7, 2)
+    }
+    catch err {
+        print err
+    }
+}
+```
+""",
+    "lexical": """\
+The lexer turns a file into tokens before the parser builds a tree. This
+page is those tokens: identifiers, numbers, strings, the width markers
+(`i32`, `f32`, …), and the frontmatter delimiter.
+
+Identifiers are the names you write — `score`, `divide`, `Span`. Numbers
+are the integer and floating literals. A `"…"` string is Unicode text.
+Width markers are the bare type tokens for sized numerics. None of these
+are keywords. The reserved words on the other family pages are already
+known to the parser; everything else that looks like a name is an
+identifier.
+
+There is no keyword table here: these productions are the terminal
+shapes, not the vocabulary of the language. A short program that is
+mostly those tokens:
+
+```faber locale=en
+main {
+    const i32 narrow ← 7 ∷ i32
+    const f32 single ← 1.5 ∷ f32
+    const string name ← "Marcus"
+    print name
+    print narrow
+    print single
+}
+```
+""",
+}
+
 INDEX_TEMPLATE = """\
 +++
 title = "Grammar"
@@ -239,9 +590,9 @@ statements. You do not need to read the rules to write Faber. The
 example; this section is for looking up which words belong to which part of
 the language.
 
-The {total} rules are grouped into the families below. Each family page lists
-the words you write in that part of the language and links each one to its
-[term page](/en-US/corpus/).
+The {total} rules are grouped into the families below. Each family page
+explains that part of the language, then lists the words you write there
+and links each one to its [term page](/en-US/corpus/).
 
 ## Production families {{#production-families}}
 
@@ -260,7 +611,7 @@ given target supports a form. Latin stays the compiler's canonical form, and
 `faber explain <term>` prints a mapping from the compiler itself.
 """
 
-FAMILY_TEMPLATE = """\
+FAMILY_FRONT = """\
 +++
 title = "{title}"
 section = "grammar-{slug}"
@@ -272,12 +623,10 @@ sources = [
   "radix/locale/en/pack.toml",
 ]
 +++
+"""
 
-{blurb}
-
-Return to the [grammar overview](/en-US/reference/grammar.html).
-{terms}
-## Formal grammar {{#formal-grammar}}
+FAMILY_FORMAL = """\
+## Formal grammar {#formal-grammar}
 
 The rules for this part of the language are the parser's own definition of it.
 They are written for models and tools, so this page does not repeat them; the
@@ -312,6 +661,61 @@ https://faberlang.dev/en-US/reference/grammar.html.
 
 Fetch list: https://faberlang.dev/agents/index.md
 """
+
+
+def check_prose() -> None:
+    """Every family has reader prose; no leftover slugs."""
+    slugs = {fam["slug"] for fam in FAMILIES}
+    missing = sorted(slugs - set(FAMILY_PROSE))
+    extra = sorted(set(FAMILY_PROSE) - slugs)
+    empty = sorted(
+        slug for slug, text in FAMILY_PROSE.items() if not text.strip()
+    )
+    problems: list[str] = []
+    if missing:
+        problems.append("families with no prose: " + ", ".join(missing))
+    if extra:
+        problems.append("prose for unknown families: " + ", ".join(extra))
+    if empty:
+        problems.append("empty prose: " + ", ".join(empty))
+    if problems:
+        raise SystemExit("generate-grammar-tree: " + "; ".join(problems))
+
+
+def apply_committed_prose(family_dir: Path) -> int:
+    """Rewrite the reader body of existing family pages; keep term tables.
+
+    Used when sibling compiler inputs are absent, so a prose edit still
+    lands in the committed Markdown. The full emit path rebuilds the page
+    from scratch and does not call this.
+    """
+    marker = "Return to the [grammar overview](/en-US/reference/grammar.html)."
+    updated = 0
+    for fam in FAMILIES:
+        path = family_dir / f"{fam['slug']}.md"
+        if not path.is_file():
+            continue
+        text = path.read_text(encoding="utf-8")
+        if not text.startswith("+++\n"):
+            raise SystemExit(
+                f"generate-grammar-tree: {path} does not start with frontmatter"
+            )
+        close = text.find("\n+++\n", 4)
+        if close < 0:
+            raise SystemExit(
+                f"generate-grammar-tree: {path} has no closing frontmatter"
+            )
+        head = text[: close + 5]
+        rest = text[close + 5 :]
+        idx = rest.find(marker)
+        if idx < 0:
+            raise SystemExit(
+                f"generate-grammar-tree: {path} has no grammar-overview link"
+            )
+        prose = FAMILY_PROSE[fam["slug"]].strip()
+        path.write_text(head + "\n" + prose + "\n\n" + rest[idx:], encoding="utf-8")
+        updated += 1
+    return updated
 
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
@@ -570,14 +974,29 @@ def render_family(
         if terms:
             term_rows.append(f"| {', '.join(terms)} | `{pid}` |")
 
-    page = FAMILY_TEMPLATE.format(
-        title=family["title"],
-        slug=family["slug"],
-        order=order,
-        blurb=family["blurb"],
-        terms=(
-            TERMS_SECTION.format(rows="\n".join(term_rows)) if term_rows else ""
-        ),
+    prose = FAMILY_PROSE.get(family["slug"])
+    if not prose or not prose.strip():
+        raise SystemExit(
+            f"generate-grammar-tree: family {family['slug']!r} has no reader prose"
+        )
+
+    # Concatenate so Faber fences (which contain `{` / `}`) never go through
+    # str.format.
+    page = (
+        FAMILY_FRONT.format(
+            title=family["title"],
+            slug=family["slug"],
+            order=order,
+        )
+        + "\n"
+        + prose.strip()
+        + "\n\nReturn to the [grammar overview](/en-US/reference/grammar.html).\n"
+        + (
+            TERMS_SECTION.format(rows="\n".join(term_rows))
+            if term_rows
+            else "\n"
+        )
+        + FAMILY_FORMAL
     )
     return page, len(selected)
 
@@ -595,6 +1014,7 @@ def render_agent_page(
 
 def main(argv: list[str]) -> int:
     args = parse_args(argv)
+    check_prose()
     roots = workspace_roots()
 
     ebnf_path = pick(args.ebnf, roots, "faber/docs/EBNF.md")
@@ -611,10 +1031,12 @@ def main(argv: list[str]) -> int:
         if path is None
     ]
     if missing:
+        family_dir = REPO / args.family_dir
+        n = apply_committed_prose(family_dir)
         print(
             "  grammar tree skipped (no sibling input: "
             + ", ".join(missing)
-            + "); committed output left alone",
+            + f"); applied reader prose to {n} committed family pages",
             file=sys.stderr,
         )
         return 0

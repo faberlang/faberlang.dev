@@ -10,7 +10,26 @@ sources = [
 ]
 +++
 
-Patterns and destructuring: the atoms a match arm accepts, type and alias patterns, and the object and array destructuring forms.
+A pattern is what a `match` arm accepts. It is not the `match` statement
+itself — that lives with [statements](statements.html) — it is the shape
+on the left of each `case`: a literal, a type, a binding, or a
+destructured object or array.
+
+`and` joins patterns that must all hold; `or` offers alternatives.
+`const` / `var` / `as` bind a name to what matched. `rest` keeps the
+leftover fields or elements. The same atoms appear when a union-typed
+value is read back out by member type.
+
+```faber locale=en
+main {
+    const int ∪ string signum ← 7
+
+    match signum {
+        case int const n { print "a number" }
+        case string const s { print "a text" }
+    }
+}
+```
 
 Return to the [grammar overview](/en-US/reference/grammar.html).
 

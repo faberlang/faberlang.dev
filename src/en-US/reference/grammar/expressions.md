@@ -10,7 +10,40 @@ sources = [
 ]
 +++
 
-Expressions and the operator stack, from the assignment root down through the precedence ladder to calls, literals, and the collection and JSON forms.
+An expression produces a value. This family is the operator stack:
+assignment at the root, then `or` and `and`, then comparison and
+arithmetic, then calls, members, and the literals — numbers, strings,
+`true` / `false` / `null`, lists, tuples, and inline JSON.
+
+`←` stores a value at run time. `and` / `or` / `not` are the boolean
+words. `coalesce` is the nullish default: if the left side is `null`, the
+value is the right side. A `"…"` literal with `§` holes is a template;
+the parentheses after it supply the arguments, which is not a function
+call.
+
+```faber locale=en
+fn greet(string nomen) → string {
+    return "Salve, §!"(nomen)
+}
+
+main {
+    const int a ← 7
+    const int b ← 2
+    print a / b
+    print a ≥ b and b ≠ 0
+    print greet("munde")
+}
+```
+
+`coalesce` fills in a missing value:
+
+```faber locale=en
+main {
+    const int ∪ none missing ← null
+    const int n ← missing coalesce 0
+    print n
+}
+```
 
 Return to the [grammar overview](/en-US/reference/grammar.html).
 

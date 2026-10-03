@@ -10,7 +10,52 @@ sources = [
 ]
 +++
 
-Bindings, functions, generic parameters, closures, classes, and the fields and methods a class holds.
+A declaration introduces a name the rest of the file can use. Bindings hold
+values: `const` is written once, `var` can be assigned again, and `let` is
+the short inferred form of an immutable binding. Functions, closures, and
+classes are declarations too — they name a callable or a type, and the
+fields and methods it holds.
+
+The type always comes before the name: `int count`, never `count: int`.
+`←` stores a value at run time. `=` is for a field's shape inside a
+literal, not for binding a local. Generic parameters (`<T>`), `implements`
+bounds, and the modifiers on a function (`async`, `throws`, `args`) belong
+here because they are part of how the name is declared.
+
+A function and two bindings:
+
+```faber locale=en
+fn divide(int a, int b) → int ∪ none {
+    if b ≡ 0 then return null
+    return a / b
+}
+
+main {
+    const int seven ← 7
+    var int n ← 3
+    n ← n + 1
+    print divide(seven, n)
+}
+```
+
+A class names its fields the same way. Methods are functions on the class;
+`self` is the instance:
+
+```faber locale=en
+class Span {
+    const f64 low
+    const f64 high
+
+    fn contains(f64 x) → bool {
+        return self.low ≤ x and x ≤ self.high
+    }
+}
+
+main {
+    const Span bytes ← Span { low = 0.0, high = 255.0 }
+    print bytes.contains(128.0)
+}
+```
 
 Return to the [grammar overview](/en-US/reference/grammar.html).
 
