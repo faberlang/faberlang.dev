@@ -16,7 +16,7 @@ the short inferred form of an immutable binding. Functions, closures, and
 classes are declarations too — they name a callable or a type, and the
 fields and methods it holds.
 
-The type always comes before the name: `int count`, never `count: int`.
+The type always comes before the name: `i32 count`, never `count: i32`.
 `←` stores a value at run time. `=` is for a field's shape inside a
 literal, not for binding a local. Generic parameters (`<T>`), `implements`
 bounds, and the modifiers on a function (`async`, `throws`, `args`) belong
@@ -25,14 +25,14 @@ here because they are part of how the name is declared.
 A function and two bindings:
 
 ```faber locale=en
-fn divide(int a, int b) → int ∪ none {
+fn divide(i32 a, i32 b) → i32 ∪ none {
     if b ≡ 0 then return null
     return a / b
 }
 
 main {
-    const int seven ← 7
-    var int n ← 3
+    const i32 seven ← 7
+    var i32 n ← 3
     n ← n + 1
     print divide(seven, n)
 }

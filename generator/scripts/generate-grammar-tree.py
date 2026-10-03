@@ -259,7 +259,7 @@ main {
 Tests sit beside the code they exercise:
 
 ```faber locale=en
-fn saturate(int x) → int {
+fn saturate(i32 x) → i32 {
     if x < 0 then return 0
     if x > 255 then return 255
     return x
@@ -282,7 +282,7 @@ the short inferred form of an immutable binding. Functions, closures, and
 classes are declarations too — they name a callable or a type, and the
 fields and methods it holds.
 
-The type always comes before the name: `int count`, never `count: int`.
+The type always comes before the name: `i32 count`, never `count: i32`.
 `←` stores a value at run time. `=` is for a field's shape inside a
 literal, not for binding a local. Generic parameters (`<T>`), `implements`
 bounds, and the modifiers on a function (`async`, `throws`, `args`) belong
@@ -291,14 +291,14 @@ here because they are part of how the name is declared.
 A function and two bindings:
 
 ```faber locale=en
-fn divide(int a, int b) → int ∪ none {
+fn divide(i32 a, i32 b) → i32 ∪ none {
     if b ≡ 0 then return null
     return a / b
 }
 
 main {
-    const int seven ← 7
-    var int n ← 3
+    const i32 seven ← 7
+    var i32 n ← 3
     n ← n + 1
     print divide(seven, n)
 }
@@ -364,7 +364,7 @@ set of named constants, `union` is a tagged choice with variants, and
 `schema` describes relational columns.
 
 Absence is a union, not a question mark. A missing integer is
-`int ∪ none`; the missing value is `null`. There is no `int?`. Widths are
+`i32 ∪ none`; the missing value is `null`. There is no `i32?`. Widths are
 bare markers — `i32`, `f32` — written in type position.
 
 Everyday types, type first:
@@ -372,10 +372,10 @@ Everyday types, type first:
 ```faber locale=en
 main {
     const string name ← "Marcus"
-    const int age ← 30
+    const i32 age ← 30
     const bool flag ← true
-    const list<int> nums ← [1, 2, 3]
-    const int ∪ none missing ← null
+    const list<i32> nums ← [1, 2, 3]
+    const i32 ∪ none missing ← null
     print name
     print age
     print flag
@@ -388,7 +388,7 @@ A `type` alias is a transparent name. It does not create a new kind of
 value:
 
 ```faber locale=en
-type Signum = int
+type Signum = i32
 type Nomina = list<string>
 
 main {
@@ -414,7 +414,7 @@ error channel, which lives on the [error channel](errors.html) page.
 
 ```faber locale=en
 main {
-    const int score ← 85
+    const i32 score ← 85
     if score ≥ 90 {
         print "A"
     }
@@ -424,11 +424,11 @@ main {
     else {
         print "C"
     }
-    const list<int> nums ← [1, 2, 3]
+    const list<i32> nums ← [1, 2, 3]
     for from nums const item {
         print item
     }
-    var int n ← 0
+    var i32 n ← 0
     while n ≺ 2 {
         n ← n + 1
     }
@@ -439,7 +439,7 @@ main {
 `switch` picks the first matching value. `default` is the fallback:
 
 ```faber locale=en
-fn describe(int value) → string {
+fn describe(i32 value) → string {
     switch value {
         case 1 { return "one" }
         case 2 { return "two" }
@@ -470,8 +470,8 @@ fn greet(string nomen) → string {
 }
 
 main {
-    const int a ← 7
-    const int b ← 2
+    const i32 a ← 7
+    const i32 b ← 2
     print a / b
     print a ≥ b and b ≠ 0
     print greet("munde")
@@ -482,8 +482,8 @@ main {
 
 ```faber locale=en
 main {
-    const int ∪ none missing ← null
-    const int n ← missing coalesce 0
+    const i32 ∪ none missing ← null
+    const i32 n ← missing coalesce 0
     print n
 }
 ```
@@ -501,10 +501,10 @@ value is read back out by member type.
 
 ```faber locale=en
 main {
-    const int ∪ string signum ← 7
+    const i32 ∪ string signum ← 7
 
     match signum {
-        case int const n { print "a number" }
+        case i32 const n { print "a number" }
         case string const s { print "a text" }
     }
 }
@@ -513,7 +513,7 @@ main {
     "errors": """\
 Failure is a second channel, not a wrapper type and not an exception that
 unwinds past you. A function that can fail writes `⇥` after the success
-type: `→ int ⇥ string` returns an int or fails with a string. `throw`
+type: `→ i32 ⇥ string` returns an integer or fails with a string. `throw`
 sends a value on that channel. `do` / `catch` is the local boundary
 around a call that might fail; `catch` binds the error as an ordinary
 value.
@@ -524,7 +524,7 @@ condition fails, or when it holds. A call to a `⇥` function sits inside
 an active `do` / `catch` (or another statement that carries `catch`).
 
 ```faber locale=en
-fn divide(int a, int b) → int ⇥ string {
+fn divide(i32 a, i32 b) → i32 ⇥ string {
     if b ≡ 0 {
         throw "division by zero"
     }

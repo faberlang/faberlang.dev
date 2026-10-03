@@ -24,7 +24,7 @@ error channel, which lives on the [error channel](errors.html) page.
 
 ```faber locale=en
 main {
-    const int score ← 85
+    const i32 score ← 85
     if score ≥ 90 {
         print "A"
     }
@@ -34,11 +34,11 @@ main {
     else {
         print "C"
     }
-    const list<int> nums ← [1, 2, 3]
+    const list<i32> nums ← [1, 2, 3]
     for from nums const item {
         print item
     }
-    var int n ← 0
+    var i32 n ← 0
     while n ≺ 2 {
         n ← n + 1
     }
@@ -49,7 +49,7 @@ main {
 `switch` picks the first matching value. `default` is the fallback:
 
 ```faber locale=en
-fn describe(int value) → string {
+fn describe(i32 value) → string {
     switch value {
         case 1 { return "one" }
         case 2 { return "two" }

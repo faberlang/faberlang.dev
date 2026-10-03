@@ -12,7 +12,7 @@ sources = [
 
 Failure is a second channel, not a wrapper type and not an exception that
 unwinds past you. A function that can fail writes `⇥` after the success
-type: `→ int ⇥ string` returns an int or fails with a string. `throw`
+type: `→ i32 ⇥ string` returns an integer or fails with a string. `throw`
 sends a value on that channel. `do` / `catch` is the local boundary
 around a call that might fail; `catch` binds the error as an ordinary
 value.
@@ -23,7 +23,7 @@ condition fails, or when it holds. A call to a `⇥` function sits inside
 an active `do` / `catch` (or another statement that carries `catch`).
 
 ```faber locale=en
-fn divide(int a, int b) → int ⇥ string {
+fn divide(i32 a, i32 b) → i32 ⇥ string {
     if b ≡ 0 {
         throw "division by zero"
     }

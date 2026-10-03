@@ -22,10 +22,10 @@ value is read back out by member type.
 
 ```faber locale=en
 main {
-    const int ∪ string signum ← 7
+    const i32 ∪ string signum ← 7
 
     match signum {
-        case int const n { print "a number" }
+        case i32 const n { print "a number" }
         case string const s { print "a text" }
     }
 }

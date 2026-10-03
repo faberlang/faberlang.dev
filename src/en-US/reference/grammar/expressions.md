@@ -27,8 +27,8 @@ fn greet(string nomen) → string {
 }
 
 main {
-    const int a ← 7
-    const int b ← 2
+    const i32 a ← 7
+    const i32 b ← 2
     print a / b
     print a ≥ b and b ≠ 0
     print greet("munde")
@@ -39,8 +39,8 @@ main {
 
 ```faber locale=en
 main {
-    const int ∪ none missing ← null
-    const int n ← missing coalesce 0
+    const i32 ∪ none missing ← null
+    const i32 n ← missing coalesce 0
     print n
 }
 ```

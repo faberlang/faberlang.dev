@@ -18,7 +18,7 @@ set of named constants, `union` is a tagged choice with variants, and
 `schema` describes relational columns.
 
 Absence is a union, not a question mark. A missing integer is
-`int ∪ none`; the missing value is `null`. There is no `int?`. Widths are
+`i32 ∪ none`; the missing value is `null`. There is no `i32?`. Widths are
 bare markers — `i32`, `f32` — written in type position.
 
 Everyday types, type first:
@@ -26,10 +26,10 @@ Everyday types, type first:
 ```faber locale=en
 main {
     const string name ← "Marcus"
-    const int age ← 30
+    const i32 age ← 30
     const bool flag ← true
-    const list<int> nums ← [1, 2, 3]
-    const int ∪ none missing ← null
+    const list<i32> nums ← [1, 2, 3]
+    const i32 ∪ none missing ← null
     print name
     print age
     print flag
@@ -42,7 +42,7 @@ A `type` alias is a transparent name. It does not create a new kind of
 value:
 
 ```faber locale=en
-type Signum = int
+type Signum = i32
 type Nomina = list<string>
 
 main {
