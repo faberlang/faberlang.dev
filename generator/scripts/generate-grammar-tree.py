@@ -139,7 +139,8 @@ FAMILIES: list[dict] = [
             concrete_type union_hole_type intersection_type owned_type base_type
             failable_promissum_type ratio_type hole_type qualified_type type_head
             type_arguments type_argument labeled_type_argument width_type_sugar
-            shape_suffix figura figura_list function_type type_list
+            shape_suffix figura figura_product figura_primary figura_list
+            function_type type_list
         """.split(),
     },
     {
@@ -177,8 +178,8 @@ FAMILIES: list[dict] = [
             conversio_expr interval_target via_clause inline_default call_expr
             call_suffix member_suffix transpose_suffix optional_suffix
             non_null_suffix argument_list argument template_argument literal
-            primary ad_expr ad_opener array_literal iuncta_expr json_literal
-            json_member typed_constructor field_list field_init field_key
+            primary ad_expr ad_opener array_literal array_element_list
+            array_element iuncta_expr json_literal json_member typed_constructor field_list field_init field_key
             construction_source json_value json_object json_array json_string
             json_number finge_expr qualified_ident praefixum_expr scriptum_expr
             lege_expr first_match_expr summa_expr filum_clause extrema_expr
