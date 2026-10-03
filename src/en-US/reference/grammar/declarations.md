@@ -33,7 +33,6 @@ page. The second column names the grammar rule the word belongs to.
 | [`args`](/en-US/corpus/args.html), [`errors`](/en-US/corpus/errors.html), [`exit`](/en-US/corpus/exit.html), [`throws`](/en-US/corpus/throws.html), [`readonly`](/en-US/corpus/readonly.html), [`options`](/en-US/corpus/options.html) | `func_modifier` |
 | [`async_generator`](/en-US/corpus/async_generator.html), [`async`](/en-US/corpus/async.html), [`generator`](/en-US/corpus/generator.html) | `callable_posture` |
 | [`then`](/en-US/corpus/then.html) | `ergo_joint` |
-| [`free`](/en-US/corpus/free.html), [`kernel`](/en-US/corpus/kernel.html) | `closure_modifier` |
 | [`do`](/en-US/corpus/do.html) | `fac_block` |
 | [`lambda`](/en-US/corpus/lambda.html) | `clausura_legacy_expr` |
 | [`class`](/en-US/corpus/class.html), [`implements`](/en-US/corpus/implements.html) | `genus_decl` |

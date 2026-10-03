@@ -103,7 +103,7 @@ FAMILIES: list[dict] = [
             generic_type_default generic_size_default call_type_args parameter
             func_modifier callable_posture return_clause alternate_exit_clause
             ergo_joint clausura_joint clausura_expr compact_clausura_expr
-            clausura_signature closure_modifier fac_block clausura_legacy_expr
+            clausura_signature fac_block clausura_legacy_expr
             clausura_params clausura_param genus_decl genus_member
             genus_field_decl field_decl functio_method_decl
         """.split(),

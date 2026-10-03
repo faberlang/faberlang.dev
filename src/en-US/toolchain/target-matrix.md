@@ -84,21 +84,21 @@ these corpus rows as a quality score.
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| rust | 373 | 378 | 99% |
-| go | 347 | 378 | 92% |
-| ts | 378 | 378 | 100% |
-| faber | 378 | 378 | 100% |
+| rust | 377 | 382 | 99% |
+| go | 351 | 382 | 92% |
+| ts | 382 | 382 | 100% |
+| faber | 382 | 382 | 100% |
 
 **Systems lane (MIR → device/IR artifacts)**
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| llvm-text | 334 | 373 | 90% |
-| wasm-text | 263 | 373 | 71% |
-| wasm | 263 | 373 | 71% |
-| sexp-struct | 300 | 373 | 80% |
-| sexp | 299 | 373 | 80% |
-| runner | 317 | 373 | 85% |
+| llvm-text | 351 | 378 | 93% |
+| wasm-text | 298 | 378 | 79% |
+| wasm | 298 | 378 | 79% |
+| sexp-struct | 302 | 378 | 80% |
+| sexp | 301 | 378 | 80% |
+| runner | 322 | 378 | 85% |
 
 ## Device kernel support (product summary) {#device-kernel-support}
 
@@ -394,7 +394,7 @@ registry and matrix receipts under the radix factory tree
 | <a id="elige"></a>`elige` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="errata"></a>`errata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="est"></a>`est` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id="ex"></a>`ex` | ◐ | ◐ | ◐ | ◐ | ◐ | ✓ |
+| <a id="ex"></a>`ex` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
 | <a id="exitus"></a>`exitus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="fac"></a>`fac` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="falsum"></a>`falsum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -509,10 +509,10 @@ registry and matrix receipts under the radix factory tree
 | <a id=""></a>`↤` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id=""></a>`⊥` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="aut"></a>`aut` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`![` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id=""></a>`!.` | ◐ | ◐ | ◐ | ✓ | ✓ | ✓ |
+| <a id=""></a>`![` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`!.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≠` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`!(` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| <a id=""></a>`!(` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⊻` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`↦` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ |
 | <a id=""></a>`⇒` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -522,7 +522,7 @@ registry and matrix receipts under the radix factory tree
 | <a id=""></a>`=` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="et"></a>`et` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≥` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∈` | ✓ | ◐ | ◐ | ✓ | ✓ | ✓ |
+| <a id=""></a>`∈` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≤` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`↓` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="modulus-u16"></a>`modulus<u16>` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -534,9 +534,9 @@ registry and matrix receipts under the radix factory tree
 | <a id=""></a>`∨` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`∪` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
 | <a id=""></a>`↑` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?[` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?.` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?(` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?[` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?(` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`§` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`✓` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⇐` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
