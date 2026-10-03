@@ -93,7 +93,7 @@ fn is_hole_label(string label) → bool {
 }
 
 fn has_flag(map<string, bool> flags, string key) → bool {
-    const bool ∪ none flag ← flags[key]
+    const bool ∪ none flag ← flags.get(key)
     if flag is none {
         return false
     }
@@ -229,7 +229,7 @@ fn present_of(map<string, string> glossary) → map<string, bool> {
 }
 
 fn glossary_has(map<string, bool> present, string key) → bool {
-    const bool ∪ none flag ← present[key]
+    const bool ∪ none flag ← present.get(key)
     if flag is none {
         return false
     }
