@@ -327,11 +327,9 @@ to emit based on context and mode.
 ### Numeric type sugar {#numeric-type-sugar}
 
 Sized numeric types have one canonical spelling: the bare width marker
-(`i8` … `u64`, `d64`, `inf`, `f16`, `f32`, `f64`). The wrapped forms
-`numerus<i32>` / `fractus<f32>` (en `int<i32>` / `float<f32>`) are the retired
-spelling — the parser still reads them for now, but the formatter and the
-diagnostics print the bare marker. The compact sugar families below build on
-the markers. The choice between a container's long form and its sugar is
+(`i8` … `u64`, `d64`, `inf`, `f16`, `bf16`, `f32`, `f64`). The compact sugar
+families below build on the markers. The choice between a container's long
+form and its sugar is
 per-module, not per-repository — a CLI package may use long form everywhere,
 while a tensor kernel module uses sugar:
 

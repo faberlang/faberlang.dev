@@ -45,8 +45,8 @@ Faber 採用靜態、型別優先的型別系統。每個宣告都將型別置�
 |------|------|-------------|
 | `textus` | Unicode 字串 | `"Salve, munde"` |
 | `ascii` | 固定機器權杖 | `'solum:lege'` |
-| `numerus` | 有號整數（預設為 i64） | `42` |
-| `fractus` | 浮點數（預設為 f64） | `3.14` |
+| `i32` | 有號整數 | `42` |
+| `f64` | 浮點數 | `3.14` |
 | `bivalens` | 布林值 | `verum`、`falsum` |
 | `vacuum` | 單位／無值 | — |
 | `nihil` | 空值／不存在 | `nihil` |
@@ -56,7 +56,16 @@ Faber 採用靜態、型別優先的型別系統。每個宣告都將型別置�
 
 ### 定寬數值型別 {#sized-numeric-types}
 
-`numerus` 和 `fractus` 具有預設定寬（i64 和 f64），也支援明確指定定寬的形式：
+在型別位置寫定寬。這些就是數值型別 — 與
+[Math in the ether](/language/behavior/numeric-widths.html) 相同的列表：
+
+| 族 | 定寬 |
+|---|---|
+| 有號 | `i8` `i16` `i32` `i64` |
+| 無號 | `u8` `u16` `u32` `u64` |
+| 十進位 | `d64` |
+| 無界整數 | `inf` |
+| 浮點 | `f16` `bf16` `f32` `f64` |
 
 ```faber
 incipit {
@@ -66,7 +75,7 @@ incipit {
 }
 ```
 
-在型別位置可使用定寬簡寫：`i8` … `u64`、`f16`、`f32`、`f64` 分別等同於 `numerus<W>`／`fractus<W>`。
+定寬標記本身就是型別。
 
 ### 可空型別 {#nullable-types}
 

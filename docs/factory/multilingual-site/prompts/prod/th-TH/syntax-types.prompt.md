@@ -28,8 +28,8 @@ register types.
 |------|------|-----------------|
 | `textus` | Unicode string | `"Salve, munde"` |
 | `ascii` | Fixed machine token | `'solum:lege'` |
-| `numerus` | Signed integer (default i64) | `42` |
-| `fractus` | Floating-point (default f64) | `3.14` |
+| `i32` | Signed integer | `42` |
+| `f64` | Floating-point | `3.14` |
 | `bivalens` | Boolean | `verum`, `falsum` |
 | `vacuum` | Unit / no value | — |
 | `nihil` | Null / absent | `nihil` |
@@ -39,13 +39,20 @@ register types.
 
 ## Sized numeric types {#sized-numeric-types}
 
-`numerus` and `fractus` have default widths (i64 and f64) and explicit width
-forms:
+Write the width in type position. These are the numeric types — the same
+list as [Math in the ether](/language/behavior/numeric-widths.html):
+
+| Family | Widths |
+|--------|--------|
+| Signed | `i8` `i16` `i32` `i64` |
+| Unsigned | `u8` `u16` `u32` `u64` |
+| Decimal | `d64` |
+| Unbounded integer | `inf` |
+| Floating | `f16` `bf16` `f32` `f64` |
 
 <<<FENCE 0>>>
 
-Width sugar is available in type position: `i8` … `u64`, `f16`, `f32`, `f64`
-are equivalent to `numerus<W>` / `fractus<W>`.
+The bare width marker is the type.
 
 ## Nullable types {#nullable-types}
 

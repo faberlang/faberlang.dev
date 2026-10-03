@@ -12,7 +12,7 @@ main {
 }
 ```
 
-Write the marker bare. A wrapped width is retired.
+Write the marker bare.
 
 Parent: https://faberlang.dev/agents/types.md
 Next: https://faberlang.dev/agents/types/null.md

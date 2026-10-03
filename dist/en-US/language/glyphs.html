@@ -64,11 +64,9 @@ to emit based on context and mode.</p><blockquote><p><strong>The rule:</strong> 
 Multiple surfaces parse to the same <code>HirAnnotation</code> or type node.
 <code>faber format --locale la</code> re-emits canonical spellings; author
 mode preserves the sugar the author wrote.</p></blockquote><h3 id="numeric-type-sugar">Numeric type sugar<a class="anchor" href="#numeric-type-sugar">#</a></h3><p>Sized numeric types have one canonical spelling: the bare width marker
-(<code>i8</code> … <code>u64</code>, <code>d64</code>, <code>inf</code>, <code>f16</code>, <code>f32</code>, <code>f64</code>). The wrapped forms
-<code>int&lt;i32&gt;</code> / <code>float&lt;f32&gt;</code> (en <code>int&lt;i32&gt;</code> / <code>float&lt;f32&gt;</code>) are the retired
-spelling — the parser still reads them for now, but the formatter and the
-diagnostics print the bare marker. The compact sugar families below build on
-the markers. The choice between a container's long form and its sugar is
+(<code>i8</code> … <code>u64</code>, <code>d64</code>, <code>inf</code>, <code>f16</code>, <code>bf16</code>, <code>f32</code>, <code>f64</code>). The compact sugar
+families below build on the markers. The choice between a container's long
+form and its sugar is
 per-module, not per-repository — a CLI package may use long form everywhere,
 while a tensor kernel module uses sugar:</p><div class="table-scroll"><table><thead><tr><th>Sugar</th><th>Canonical form</th><th>Domain</th></tr></thead><tbody><tr><td><code>tf32</code>, <code>tf32[4]</code>, <code>ti64[2, 3]</code></td><td><code>tensor&lt;f32, _&gt;</code>, <code>tensor&lt;f32, [4]&gt;</code></td><td>Dense tensor — <code>t</code> + width + optional shape</td></tr><tr><td><code>sf32</code>, <code>sf32[2, 3]</code>, <code>si64[N]</code></td><td><code>sparsa&lt;f32, _&gt;</code>, <code>sparsa&lt;f32, [2, 3]&gt;</code></td><td>Sparse tensor — <code>s</code> + width + optional shape</td></tr><tr><td><code>mf32[4, 4]</code>, <code>mu32[3, 3]</code></td><td><code>matrix&lt;f32, [4, 4]&gt;</code></td><td>Register-class matrix — <code>m</code> + width + shape</td></tr><tr><td><code>lf32</code>, <code>lu32</code>, <code>li64</code></td><td><code>list&lt;f32&gt;</code>, <code>list&lt;u32&gt;</code></td><td>List — <code>l</code> + width</td></tr></tbody></table></div><p><strong>General Faber (prefer long form):</strong></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
     <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> values <span class="tok-op">←</span> empty
