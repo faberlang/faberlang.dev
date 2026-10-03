@@ -10,7 +10,52 @@ sources = [
 ]
 +++
 
-The shape of a source file: optional frontmatter, the optional `module` region, the top-level statement spine, imports, and the program entry points and test suites.
+A Faber source file is a program. The compiler reads it from the top: an
+optional frontmatter header, an optional `module` region, then the
+declarations, imports, tests, and the entry point that starts it. There is
+no hidden wrapper around those declarations and no separate "program"
+object to construct.
+
+The words on this page are the ones that give the file its shape. Imports
+bring a name in from another file or a library (`import from`). `main` is
+the ordinary entry; `async_main` is the one that may await. Tests are
+ordinary declarations in the same file — `describe` names a suite, `test`
+names a case — not a second language and not a second compilation target.
+
+A file that does one thing:
+
+```faber locale=en
+fn salve(string nomen) → string {
+    const string msg ← "Salve, §!"(nomen)
+    return msg
+}
+
+main {
+    const string m ← salve("munde")
+    print m
+}
+```
+
+`faber check` accepts that file. `faber run` prints `Salve, munde!`.
+
+Tests sit beside the code they exercise:
+
+```faber locale=en
+fn saturate(i32 x) → i32 {
+    if x < 0 then return 0
+    if x > 255 then return 255
+    return x
+}
+
+describe "saturate" {
+    test "clamps low" {
+        assert saturate(-1) ≡ 0
+    }
+    test "clamps high" {
+        assert saturate(300) ≡ 255
+    }
+}
+```
 
 Return to the [grammar overview](/en-US/reference/grammar.html).
 

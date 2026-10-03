@@ -10,7 +10,35 @@ sources = [
 ]
 +++
 
-The error channel: throwing, guarded throws, and the local `catch` handler that recovers an error into a value.
+Failure is a second channel, not a wrapper type and not an exception that
+unwinds past you. A function that can fail writes `⇥` after the success
+type: `→ i32 ⇥ string` returns an integer or fails with a string. `throw`
+sends a value on that channel. `do` / `catch` is the local boundary
+around a call that might fail; `catch` binds the error as an ordinary
+value.
+
+`throw if` is the guarded form. `require` and `reject` (listed with
+[statements](statements.html)) compile to the same idea: throw when a
+condition fails, or when it holds. A call to a `⇥` function sits inside
+an active `do` / `catch` (or another statement that carries `catch`).
+
+```faber locale=en
+fn divide(i32 a, i32 b) → i32 ⇥ string {
+    if b ≡ 0 {
+        throw "division by zero"
+    }
+    return a / b
+}
+
+main {
+    do {
+        print divide(7, 2)
+    }
+    catch err {
+        print err
+    }
+}
+```
 
 Return to the [grammar overview](/en-US/reference/grammar.html).
 

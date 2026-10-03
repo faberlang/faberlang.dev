@@ -10,7 +10,57 @@ sources = [
 ]
 +++
 
-Statements and control flow: conditionals, loops, `switch` and `match`, guards, extraction, loop and function transfer, and the diagnostic statements.
+A statement is a step the program takes. This family is how control
+moves: `if` / `elif` / `else` choose a branch, `while` repeats while a
+condition holds, `for` walks a collection or a range, `switch` selects an
+arm by value, and `match` exhausts the variants of a union.
+
+`then` lets a branch be a single statement instead of a block — a common
+way to write an early `return`. `guard` groups those checks at the top of
+a function. `return` leaves a function; `break` and `continue` leave or
+skip a loop; `pass` is the explicit empty body. `assert` and `panic` are
+diagnostics. `require` and `reject` are the one-line throws; they need an
+error channel, which lives on the [error channel](errors.html) page.
+
+```faber locale=en
+main {
+    const i32 score ← 85
+    if score ≥ 90 {
+        print "A"
+    }
+    elif score ≥ 80 {
+        print "B"
+    }
+    else {
+        print "C"
+    }
+    const list<i32> nums ← [1, 2, 3]
+    for from nums const item {
+        print item
+    }
+    var i32 n ← 0
+    while n ≺ 2 {
+        n ← n + 1
+    }
+    print n
+}
+```
+
+`switch` picks the first matching value. `default` is the fallback:
+
+```faber locale=en
+fn describe(i32 value) → string {
+    switch value {
+        case 1 { return "one" }
+        case 2 { return "two" }
+        default { return "many" }
+    }
+}
+
+main {
+    print describe(2)
+}
+```
 
 Return to the [grammar overview](/en-US/reference/grammar.html).
 
