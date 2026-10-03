@@ -85,7 +85,6 @@ listed at the end.
 | `for` | `itera` | `كرر` | `दोहराओ` | `วน` | `lặp` | `遍历` | `遍歷` |
 | `format` | `scriptum` | `حرر` | `लिखित` | `จารึก` | `văn_bản_hóa` | `格式化` | `格式文字` |
 | `fragment` | `fragment` | `جزء` | `खंड` | `ส่วนย่อย` | `mảnh` | `片段` | `片段` |
-| `free` | `libera` | `حر` | `मुक्त` | `อิสระ` | `tự_do` | `自由` | `自由` |
 | `from` | `ex` | `من` | `सेवन` | `ออก` | `từ` | `取自` | `取自` |
 | `future` | `futura` | `مستقبل` | `भविष्य` | `อนาคต` | `tương_lai` | `未来` | `未來` |
 | `generator` | `fiunt` | `مولد` | `जनक` | `สตรีม` | `sinh` | `流` | `流` |
@@ -197,6 +196,7 @@ listed at the end.
 | `census` | `census` | `تعداد` | `गणना` | `สำมะโน` | `điều_tra` | `普查` | `普查` |
 | `channel` | `sermo` | `قناة` | `चैनल` | `ช่องทาง` | `kênh` | `通道` | `通道` |
 | `char` | `littera` | `حرف` | `अक्षर` | `อักขระ` | `ký_tự` | `字符` | `字元` |
+| `clamp` | `clampa` | `تثبيت_الحافة` | `किनारा_स्थिर` | `ตรึงขอบ` | `kẹp_biên` | `钳制` | `鉗制` |
 | `filter` | `filtrum` | `مرشح` | `फ़िल्टर` | `ตัวกรอง` | `bộ_lọc` | `过滤器` | `篩選器` |
 | `float` | `fractus` | `كسر` | `भिन्न` | `เศษ` | `thập_phân` | `小数` | `小數` |
 | `frame` | `scrinium` | `إطار` | `फ़्रेम` | `เฟรม` | `khung` | `帧` | `幀` |
@@ -215,6 +215,7 @@ listed at the end.
 | `queue` | `queue` | `طابور` | `कतार` | `คิว` | `hàng_đợi` | `队列` | `佇列` |
 | `record` | `ratio` | `ratio` | `ratio` | `ratio` | `ratio` | `ratio` | `ratio` |
 | `recv` | `tuus` | `استقبال` | `पाना` | `รับ` | `nhận` | `接收` | `接收` |
+| `reflect` | `reflexa` | `انعكاس_الحافة` | `किनारा_परावर्तन` | `สะท้อนขอบ` | `phản_xạ_biên` | `反射` | `反射` |
 | `regex` | `regex` | `تعبير` | `regex` | `regex` | `chính_quy` | `regex` | `正規表示式` |
 | `saturating` | `saturatus` | `مشبع` | `संतृप्त` | `อิ่มตัว` | `bão_hòa` | `饱和` | `飽和` |
 | `send` | `meus` | `إرسال` | `भेजना` | `ส่ง` | `gửi` | `发送` | `發送` |
@@ -229,6 +230,7 @@ listed at the end.
 | `value` | `valor` | `قيمة` | `मान` | `ค่า` | `giá_trị` | `动态值` | `值` |
 | `vector` | `vector` | `متجه` | `सदिश` | `เวกเตอร์` | `vectơ` | `向量` | `向量` |
 | `void` | `vacuum` | `فراغ` | `रिक्त` | `เปล่า` | `trống` | `无值` | `空值` |
+| `wrap` | `involuta` | `التفاف_الحافة` | `किनारा_लपेट` | `วนขอบ` | `vòng_biên` | `环绕` | `環繞` |
 | `wrapping_ty` | `modulus_t` | `نوع_حلقة` | `मॉड्यूल_टाइप` | `ค่ามอดุลัส` | `môđun_kiểu` | `模数类型` | `模數类型` |
 
 ## Intrinsics
@@ -279,6 +281,7 @@ Latin has no `[intrinsics]` section, so the Latin column carries each intrinsic'
 | `escape` | `munita` | `تهريب` | `एस्केप` | `เอสเคป` | `thoát_ký_tự` | `转义` | `跳脫` |
 | `exchange` | `exchange` | `بدل` | `अदलाबदली` | `สลับ` | `đổi` | `交换` | `交換` |
 | `exp` | `exponentia` | `الأسي` | `चरघातांकी` | `เอกซ์โพเนนเชียล` | `hàm_mũ` | `指数` | `指數` |
+| `expanded` | `expande` | `وسع` | `फैलाओ` | `ขยายมุมมอง` | `mở_rộng` | `扩展` | `擴展` |
 | `fill` | `reple` | `املأ` | `भरो` | `เติม` | `điền` | `填充` | `填充` |
 | `filter` | `filtrata` | `رشح` | `छानो` | `กรอง` | `lọc` | `过滤` | `過濾` |
 | `find` | `inventa` | `ابحث` | `खोज` | `ค้นหา` | `tìm` | `查找` | `尋找` |
@@ -307,6 +310,7 @@ Latin has no `[intrinsics]` section, so the Latin column carries each intrinsic'
 | `layer_norm` | `laminatio` | `تطبيع_الطبقة` | `परत_सामान्यीकरण` | `เลเยอร์นอร์ม` | `chuẩn_hóa_lớp` | `层归一化` | `層正規化` |
 | `length` | `longitudo` | `طول` | `लंबाई` | `ความยาว` | `độ_dài` | `长度` | `長度` |
 | `less` | `minor` | `أصغر` | `छोटा` | `น้อยกว่า` | `nhỏ_hơn` | `小于` | `小於` |
+| `limes` | `limes` | `حافة` | `किनारा` | `ขอบ` | `biên` | `边界` | `邊界` |
 | `ln` | `logarithmus` | `اللوغاريتم_الطبيعي` | `प्राकृतिक_लघुगणक` | `ลอการิทึมธรรมชาติ` | `lôgarit_tự_nhiên` | `自然对数` | `自然對數` |
 | `load` | `load` | `حمل` | `लोड` | `โหลด` | `nạp` | `加载` | `載入` |
 | `log10` | `logarithmus_decimalis` | `اللوغاريتم_العشري` | `दशमलव_लघुगणक` | `ลอการิทึมฐานสิบ` | `lôgarit_thập_phân` | `常用对数` | `常用對數` |
@@ -341,6 +345,7 @@ Latin has no `[intrinsics]` section, so the Latin column carries each intrinsic'
 | `round` | `rotunda` | `قرب` | `निकटतम_पूर्णांक` | `ปัดเศษ` | `làm_tròn` | `四舍五入` | `四捨五入` |
 | `set` | `ponde` | `اضبط` | `निर्धारित_करो` | `กําหนด` | `thiết_lập` | `设置` | `設定` |
 | `shape` | `magnitudines` | `الأبعاد` | `आकृति` | `รูปร่าง` | `hình_dạng` | `形状` | `形狀` |
+| `shift` | `disloco` | `أزح` | `खिसकाओ` | `เลื่อน` | `dịch` | `平移` | `平移` |
 | `shift_left` | `sinistra` | `أزح_يسارا` | `बाएँ_सरकाओ` | `เลื่อนซ้าย` | `dịch_trái` | `左移` | `左移` |
 | `shift_right` | `dextra` | `أزح_يمينا` | `दाएँ_सरकाओ` | `เลื่อนขวา` | `dịch_phải` | `右移` | `右移` |
 | `shifted_left` | `sinistrata` | `مزاح_يسارا` | `बाएँ_सरकाया` | `เลื่อนซ้ายแล้ว` | `đã_dịch_trái` | `已左移` | `已左移` |

@@ -86,7 +86,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | for              itera
 | format           scriptum
 | fragment         fragment
-| free             libera
 | from             ex
 | future           futura
 | generator        fiunt
@@ -200,6 +199,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | census       census
 | channel      sermo
 | char         littera
+| clamp        clampa
 | filter       filtrum
 | float        fractus
 | frame        scrinium
@@ -218,6 +218,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | queue        queue
 | record       ratio
 | recv         tuus
+| reflect      reflexa
 | regex        regex
 | saturating   saturatus
 | send         meus
@@ -232,6 +233,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | value        valor
 | vector       vector
 | void         vacuum
+| wrap         involuta
 | wrapping_ty  modulus_t
 ```
 
@@ -282,6 +284,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | escape                munita
 | exchange              exchange
 | exp                   exponentia
+| expanded              expande
 | fill                  reple
 | filter                filtrata
 | find                  inventa
@@ -310,6 +313,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | layer_norm            laminatio
 | length                longitudo
 | less                  minor
+| limes                 limes
 | ln                    logarithmus
 | load                  load
 | log10                 logarithmus_decimalis
@@ -344,6 +348,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | round                 rotunda
 | set                   ponde
 | shape                 magnitudines
+| shift                 disloco
 | shift_left            sinistra
 | shift_right           dextra
 | shifted_left          sinistrata

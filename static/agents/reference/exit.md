@@ -28,13 +28,7 @@ entryModifier :← 'exitus' integer
 ## Expected output
 
 ```
-No incipit — declaration or test-runner surface only.
-```
-
-## Backend
-
-```
-declaration-only entry modifier (whitelist: exitus/exitus.fab).
+The entry terminates with exit code 1, as selected by `exit 1` below.
 ```
 
 ## Example

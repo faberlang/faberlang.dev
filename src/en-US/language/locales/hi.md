@@ -86,7 +86,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | for              दोहराओ
 | format           लिखित
 | fragment         खंड
-| free             मुक्त
 | from             सेवन
 | future           भविष्य
 | generator        जनक
@@ -190,7 +189,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 
 ```text locale=la
 | English      हिन्दी
-| -----------  -----------
+| -----------  --------------
 | any          कुछभी
 | ascii        ascii
 | atomic       परमाणु
@@ -200,6 +199,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | census       गणना
 | channel      चैनल
 | char         अक्षर
+| clamp        किनारा_स्थिर
 | filter       फ़िल्टर
 | float        भिन्न
 | frame        फ़्रेम
@@ -218,6 +218,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | queue        कतार
 | record       ratio
 | recv         पाना
+| reflect      किनारा_परावर्तन
 | regex        regex
 | saturating   संतृप्त
 | send         भेजना
@@ -232,6 +233,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | value        मान
 | vector       सदिश
 | void         रिक्त
+| wrap         किनारा_लपेट
 | wrapping_ty  मॉड्यूल_टाइप
 ```
 
@@ -282,6 +284,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | escape                एस्केप
 | exchange              अदलाबदली
 | exp                   चरघातांकी
+| expanded              फैलाओ
 | fill                  भरो
 | filter                छानो
 | find                  खोज
@@ -310,6 +313,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | layer_norm            परत_सामान्यीकरण
 | length                लंबाई
 | less                  छोटा
+| limes                 किनारा
 | ln                    प्राकृतिक_लघुगणक
 | load                  लोड
 | log10                 दशमलव_लघुगणक
@@ -344,6 +348,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | round                 निकटतम_पूर्णांक
 | set                   निर्धारित_करो
 | shape                 आकृति
+| shift                 खिसकाओ
 | shift_left            बाएँ_सरकाओ
 | shift_right           दाएँ_सरकाओ
 | shifted_left          बाएँ_सरकाया

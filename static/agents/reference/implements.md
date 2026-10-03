@@ -42,7 +42,7 @@ class Civis implements Nominatum {
     var string nomen
 
     fn plenum() → string {
-        # satisfies implendum requirement
+        # satisfies interface requirement
         return "§"(self.nomen)
     }
 }

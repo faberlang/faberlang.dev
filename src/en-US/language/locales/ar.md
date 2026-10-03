@@ -86,7 +86,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | for              كرر
 | format           حرر
 | fragment         جزء
-| free             حر
 | from             من
 | future           مستقبل
 | generator        مولد
@@ -190,7 +189,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 
 ```text locale=la
 | English      العربية
-| -----------  ---------
+| -----------  -------------
 | any          مهما
 | ascii        أسكي
 | atomic       ذري
@@ -200,6 +199,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | census       تعداد
 | channel      قناة
 | char         حرف
+| clamp        تثبيت_الحافة
 | filter       مرشح
 | float        كسر
 | frame        إطار
@@ -218,6 +218,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | queue        طابور
 | record       ratio
 | recv         استقبال
+| reflect      انعكاس_الحافة
 | regex        تعبير
 | saturating   مشبع
 | send         إرسال
@@ -232,6 +233,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | value        قيمة
 | vector       متجه
 | void         فراغ
+| wrap         التفاف_الحافة
 | wrapping_ty  نوع_حلقة
 ```
 
@@ -282,6 +284,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | escape                تهريب
 | exchange              بدل
 | exp                   الأسي
+| expanded              وسع
 | fill                  املأ
 | filter                رشح
 | find                  ابحث
@@ -310,6 +313,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | layer_norm            تطبيع_الطبقة
 | length                طول
 | less                  أصغر
+| limes                 حافة
 | ln                    اللوغاريتم_الطبيعي
 | load                  حمل
 | log10                 اللوغاريتم_العشري
@@ -344,6 +348,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | round                 قرب
 | set                   اضبط
 | shape                 الأبعاد
+| shift                 أزح
 | shift_left            أزح_يسارا
 | shift_right           أزح_يمينا
 | shifted_left          مزاح_يسارا
