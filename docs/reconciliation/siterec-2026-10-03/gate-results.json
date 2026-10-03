@@ -1,0 +1,137 @@
+[
+  {
+    "name": "project_reader_terms_test",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/faberlang.dev/generator/scripts/project_reader_terms_test.py"
+    ],
+    "exit": 0,
+    "seconds": 0.086,
+    "timeout": 60
+  },
+  {
+    "name": "agent_reference_test",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/faberlang.dev/generator/scripts/agent_reference_test.py"
+    ],
+    "exit": 0,
+    "seconds": 0.066,
+    "timeout": 60
+  },
+  {
+    "name": "agent_locales_test",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/faberlang.dev/generator/scripts/agent_locales_test.py"
+    ],
+    "exit": 0,
+    "seconds": 0.167,
+    "timeout": 60
+  },
+  {
+    "name": "corpus_locale_test",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/faberlang.dev/generator/scripts/corpus_locale_test.py"
+    ],
+    "exit": 0,
+    "seconds": 0.063,
+    "timeout": 60
+  },
+  {
+    "name": "html-literals",
+    "command": [
+      "bash",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/faberlang.dev/generator/scripts/validate-html-literals.sh",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/faberlang.dev/generator/src"
+    ],
+    "exit": 0,
+    "seconds": 0.35,
+    "timeout": 60
+  },
+  {
+    "name": "width-gate",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/faberlang.dev/generator/scripts/check-width-gate.py"
+    ],
+    "exit": 0,
+    "seconds": 0.029,
+    "timeout": 60
+  },
+  {
+    "name": "internal-links",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/faberlang.dev/generator/scripts/check-internal-links.py",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/faberlang.dev/dist"
+    ],
+    "exit": 0,
+    "seconds": 0.199,
+    "timeout": 60
+  },
+  {
+    "name": "leakage-gate",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/faberlang.dev/generator/scripts/check-leakage-gate.py",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/faberlang.dev/dist"
+    ],
+    "exit": 0,
+    "seconds": 0.465,
+    "timeout": 60
+  },
+  {
+    "name": "frontmatter-leak",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/faberlang.dev/generator/scripts/check-frontmatter-leak.py",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/faberlang.dev/dist"
+    ],
+    "exit": 0,
+    "seconds": 0.36,
+    "timeout": 60
+  },
+  {
+    "name": "grammar-tree-regeneration",
+    "command": [
+      "/opt/homebrew/opt/python@3.14/bin/python3.14",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/faberlang.dev/generator/scripts/generate-grammar-tree.py",
+      "--ebnf",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/faber/docs/EBNF.md",
+      "--jsonl",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/faber/docs/grammar/grammar.jsonl",
+      "--pack",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/radix/locale/en/pack.toml",
+      "--corpus",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/faberlang.dev/dist/en-US/corpus",
+      "--index",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/scratch/reconciliation/regenerated/src/en-US/reference/grammar.md",
+      "--family-dir",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/scratch/reconciliation/regenerated/src/en-US/reference/grammar",
+      "--agent-page",
+      "/Users/ianzepp/work/faberlang/worktrees/siterec/scratch/reconciliation/regenerated/static/agents/grammar/productions.md"
+    ],
+    "exit": 1,
+    "seconds": 0.064,
+    "timeout": 60
+  },
+  {
+    "name": "matrix-regeneration",
+    "command": [
+      "live generate-target-matrix.py build_page/load_pack, seven locales; scratch destinations"
+    ],
+    "exit": 0,
+    "seconds": 0.086,
+    "written": [
+      "src/ar/toolchain/target-matrix.md",
+      "src/en-US/toolchain/target-matrix.md",
+      "src/hi/toolchain/target-matrix.md",
+      "src/th-TH/toolchain/target-matrix.md",
+      "src/vi/toolchain/target-matrix.md",
+      "src/zh-Hans/toolchain/target-matrix.md",
+      "src/zh-Hant/toolchain/target-matrix.md"
+    ]
+  }
+]
