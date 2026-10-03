@@ -105,13 +105,13 @@ typus UserId = numerus
 Functions, type aliases, `genus`, and `implendum` accept type parameters with
 `<T>` syntax:
 
-```faber
-functio identitas<T>(T valor) → T {
-    redde valor
+```faber locale=en
+fn identitas<T>(T valor) → T {
+    return valor
 }
 
-functio primum<T>(lista<T> res) → T ∪ nihil {
-    redde res.primus()
+fn primum<T>(list<T> res) → T ∪ none {
+    return res.first()
 }
 ```
 
@@ -170,15 +170,15 @@ incipit {
 These are recognised by the systems lane for GPU and register work.
 Package targets that lack hardware support reject them:
 
-```faber
-functio half(f16 x) → f16 { redde x }
+```faber locale=en
+fn half(f16 x) → f16 { return x }
 
-functio add(matrix<f32, [2, 2]> a, matrix<f32, [2, 2]> b) → matrix<f32, [2, 2]> {
-    redde a.addita(b)
+fn add(matrix<f32, [2, 2]> a, matrix<f32, [2, 2]> b) → matrix<f32, [2, 2]> {
+    return a.added(b)
 }
 
-functio swap(atomic<i32> cell, i32 value) → i32 {
-    redde cell.exchange(value)
+fn swap(mut atomic<i32> cell, i32 value) → i32 {
+    return cell.exchange(value)
 }
 ```
 
@@ -363,7 +363,7 @@ incipit {
 }
 ```
 
-Key methods: `longitudo`, `accipe`, `appende`, `summa`, `primus`, `novissimus`.
+Key methods: `length`, `get`, `append`, `sum`, `first`, `last`.
 
 ### Tabula — key-value map {#tabula}
 
@@ -385,12 +385,12 @@ writing one is a parse error, not a second spelling of the line above.
 For a map you build up rather than declare whole, start from `vacua` and
 assign by key:
 
-```faber
-incipit {
-    varia tabula<textus, numerus> puncta ← vacua
+```faber locale=en
+main {
+    var map<string, int> puncta ← empty
     puncta["alpha"] ← 1
     puncta["beta"] ← 2
-    nota puncta.longitudo()
+    print puncta.length()
 }
 ```
 
@@ -406,29 +406,30 @@ incipit {
 
 Tensor sugar (numeric-heavy code):
 
-```faber
-incipit {
-    fixum tf32[] seed ← vacua
-    fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
+```faber locale=en
+main {
+    const tf32[] seed ← empty
+    const tf32[4] lanes ← seed.from_flat([1.0, 2.0, 3.0, 4.0], [4])
 }
 ```
 
-Key methods: `forma`, `accipe`, `ponde`, `crea`, `structa`, `strue`, plus
-elementwise arithmetic, matrix multiplication (`multiplicatio`), and
-reductions (`summa`, `productum`).
+Key methods: `reshape`, `get`, `set`, `create`, `tensor.structa` (Latin
+namespace lookup, not a receiver method), `from_flat`, plus elementwise
+`added`/`subtract`/`multiply`/`divide`/`negate`, matrix multiplication
+(`matmul`), and reductions (`sum`, `mean`).
 
 ### Sparsa — sparse fixed-shape buffer {#sparsa}
 
-```faber
-incipit {
-    fixum sparsa<f32, [2, 3]> sparse ← vacua
-    sparse.ponde([0, 1], 4.0)
-    sparse.ponde([1, 2], 9.0)
+```faber locale=en
+main {
+    var sparsa<f32, [2, 3]> sparse ← empty
+    sparse.set([0, 1], 4.0)
+    sparse.set([1, 2], 9.0)
 
-    # accipe returns the stored value, here 4.0
-    nota sparse.accipe([0, 1])
+    # get returns the stored value, here 4.0
+    print sparse.get([0, 1])
     # count of stored entries
-    nota sparse.nonnihil()
+    print sparse.nonzero_count()
 }
 ```
 
