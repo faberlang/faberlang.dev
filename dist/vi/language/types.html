@@ -89,16 +89,16 @@ Các đích gói không hỗ trợ phần cứng sẽ từ chối chúng:</p><pr
 <span class="tok-co">    # Structural: = defines field values inside a type literal</span>
     <span class="tok-kw">hằng</span> _ p <span class="tok-op">←</span> Point { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
 }</code></pre><h3 id="ex-field-extraction">Trích xuất trường bằng từ<a class="anchor" href="#ex-field-extraction">#</a></h3><p><code>từ</code> trích xuất các trường từ một giá trị vào các liên kết cục bộ:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">kiểu</span> Persona {
-    <span class="tok-kw">hằng</span> <span class="tok-kw">văn_bản</span> <span class="tok-kw">tên</span>
+    <span class="tok-kw">hằng</span> <span class="tok-kw">văn_bản</span> nomen
     <span class="tok-kw">hằng</span> <span class="tok-kw">số</span> aetas
 }
 
 <span class="tok-kw">bắt_đầu</span> {
-    <span class="tok-kw">hằng</span> _ p <span class="tok-op">←</span> Persona { <span class="tok-kw">tên</span> <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
-    <span class="tok-kw">hằng</span> <span class="tok-kw">văn_bản</span> <span class="tok-kw">tên</span> <span class="tok-op">←</span> p.nomen
+    <span class="tok-kw">hằng</span> _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    <span class="tok-kw">hằng</span> <span class="tok-kw">văn_bản</span> nomen <span class="tok-op">←</span> p.nomen
     <span class="tok-kw">hằng</span> <span class="tok-kw">số</span> aetas <span class="tok-op">←</span> p.aetas
 <span class="tok-co">    # prints "Marcus"</span>
-    <span class="tok-kw">ghi_chú</span> <span class="tok-kw">tên</span>
+    <span class="tok-kw">ghi_chú</span> nomen
 }</code></pre><h3 id="postfix-increment-and-decrement">Cập nhật số khả biến<a class="anchor" href="#postfix-increment-and-decrement">#</a></h3><p>Dùng các toán tử nhị phân <code class="glyph">+</code> và <code class="glyph">-</code> cùng phép gán thời gian chạy <code class="glyph">←</code> để cập nhật các vị trí <code>số</code> khả biến. Cả hai toán tử đều nhận hai toán hạng; chúng không phải câu lệnh hậu tố:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">bắt_đầu</span> {
     <span class="tok-kw">biến</span> <span class="tok-kw">số</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
 <span class="tok-co">    # i becomes 1</span>

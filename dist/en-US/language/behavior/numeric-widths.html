@@ -26,7 +26,7 @@ unbounded <code>int</code> keeps it. The limits appear only where the value beco
 <code>u8</code>: the sum saturates to 255 in a <code>saturating</code> cell, and reduces to 44 in a
 <code>wrapping</code> cell.</p><p>A <code>trapping</code> cell turns the same overflow into an error at the store:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
     <span class="tok-kw">const</span> <span class="tok-kw">int</span> big <span class="tok-op">←</span> <span class="tok-nu">300</span>
-    <span class="tok-kw">const</span> trapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> cell <span class="tok-op">←</span> big ↦ u8
+    <span class="tok-kw">const</span> trapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> cell <span class="tok-op">←</span> big ↦ <span class="tok-kw">int</span><span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
     print cell
 }</code></pre><pre class="faber-code"><code class="lang-text">$ faber run
 error: int to int conversion out of range</code></pre><h2 id="why">Why it works this way<a class="anchor" href="#why">#</a></h2><p>The rule buys predictability. A reader can look at an expression and reason

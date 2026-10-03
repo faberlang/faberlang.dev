@@ -86,7 +86,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | for              遍歷
 | format           格式文字
 | fragment         片段
-| free             自由
 | from             取自
 | future           未來
 | generator        流
@@ -200,6 +199,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | census       普查
 | channel      通道
 | char         字元
+| clamp        鉗制
 | filter       篩選器
 | float        小數
 | frame        幀
@@ -218,6 +218,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | queue        佇列
 | record       ratio
 | recv         接收
+| reflect      反射
 | regex        正規表示式
 | saturating   飽和
 | send         發送
@@ -232,6 +233,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | value        值
 | vector       向量
 | void         空值
+| wrap         環繞
 | wrapping_ty  模數类型
 ```
 
@@ -282,6 +284,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | escape                跳脫
 | exchange              交換
 | exp                   指數
+| expanded              擴展
 | fill                  填充
 | filter                過濾
 | find                  尋找
@@ -310,6 +313,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | layer_norm            層正規化
 | length                長度
 | less                  小於
+| limes                 邊界
 | ln                    自然對數
 | load                  載入
 | log10                 常用對數
@@ -344,6 +348,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | round                 四捨五入
 | set                   設定
 | shape                 形狀
+| shift                 平移
 | shift_left            左移
 | shift_right           右移
 | shifted_left          已左移

@@ -85,16 +85,16 @@
 <span class="tok-co">    # Structural: = defines field values inside a type literal</span>
     <span class="tok-kw">स्थिर</span> _ p <span class="tok-op">←</span> Point { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
 }</code></pre><h3 id="ex-field-extraction">सेवन से field extraction<a class="anchor" href="#ex-field-extraction">#</a></h3><p><code class="glyph">सेवन</code> किसी value से fields निकालकर local bindings में रखता है:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">वर्ग</span> Persona {
-    <span class="tok-kw">स्थिर</span> <span class="tok-kw">पाठ</span> <span class="tok-kw">नाम</span>
+    <span class="tok-kw">स्थिर</span> <span class="tok-kw">पाठ</span> nomen
     <span class="tok-kw">स्थिर</span> <span class="tok-kw">संख्या</span> aetas
 }
 
 <span class="tok-kw">आरंभ</span> {
-    <span class="tok-kw">स्थिर</span> _ p <span class="tok-op">←</span> Persona { <span class="tok-kw">नाम</span> <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
-    <span class="tok-kw">स्थिर</span> <span class="tok-kw">पाठ</span> <span class="tok-kw">नाम</span> <span class="tok-op">←</span> p.nomen
+    <span class="tok-kw">स्थिर</span> _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    <span class="tok-kw">स्थिर</span> <span class="tok-kw">पाठ</span> nomen <span class="tok-op">←</span> p.nomen
     <span class="tok-kw">स्थिर</span> <span class="tok-kw">संख्या</span> aetas <span class="tok-op">←</span> p.aetas
 <span class="tok-co">    # prints "Marcus"</span>
-    <span class="tok-kw">दिखाओ</span> <span class="tok-kw">नाम</span>
+    <span class="tok-kw">दिखाओ</span> nomen
 }</code></pre><h3 id="postfix-increment-and-decrement">परिवर्तनशील संख्यात्मक अपडेट<a class="anchor" href="#postfix-increment-and-decrement">#</a></h3><p>परिवर्तनशील <code>संख्या</code> places को अपडेट करने के लिए binary <code class="glyph">+</code> और <code class="glyph">-</code> को runtime assignment <code class="glyph">←</code> के साथ उपयोग करें। दोनों operators दो operands लेते हैं; ये postfix statements नहीं हैं:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">आरंभ</span> {
     <span class="tok-kw">चर</span> <span class="tok-kw">संख्या</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
 <span class="tok-co">    # i becomes 1</span>

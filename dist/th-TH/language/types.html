@@ -84,16 +84,16 @@
 <span class="tok-co">    # Structural: = defines field values inside a type literal</span>
     <span class="tok-kw">คงที่</span> _ p <span class="tok-op">←</span> Point { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
 }</code></pre><h3 id="ex-field-extraction">การดึงฟิลด์ด้วย ออก<a class="anchor" href="#ex-field-extraction">#</a></h3><p><code class="glyph">ออก</code> ใช้ดึงฟิลด์จากค่าออกมาเป็นการผูกค่าในขอบเขตภายใน:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">ชนิด</span> Persona {
-    <span class="tok-kw">คงที่</span> <span class="tok-kw">ข้อความ</span> <span class="tok-kw">ชื่อ</span>
+    <span class="tok-kw">คงที่</span> <span class="tok-kw">ข้อความ</span> nomen
     <span class="tok-kw">คงที่</span> <span class="tok-kw">จํานวน</span> aetas
 }
 
 <span class="tok-kw">เริ่ม</span> {
-    <span class="tok-kw">คงที่</span> _ p <span class="tok-op">←</span> Persona { <span class="tok-kw">ชื่อ</span> <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
-    <span class="tok-kw">คงที่</span> <span class="tok-kw">ข้อความ</span> <span class="tok-kw">ชื่อ</span> <span class="tok-op">←</span> p.nomen
+    <span class="tok-kw">คงที่</span> _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    <span class="tok-kw">คงที่</span> <span class="tok-kw">ข้อความ</span> nomen <span class="tok-op">←</span> p.nomen
     <span class="tok-kw">คงที่</span> <span class="tok-kw">จํานวน</span> aetas <span class="tok-op">←</span> p.aetas
 <span class="tok-co">    # prints "Marcus"</span>
-    <span class="tok-kw">บันทึก</span> <span class="tok-kw">ชื่อ</span>
+    <span class="tok-kw">บันทึก</span> nomen
 }</code></pre><h3 id="postfix-increment-and-decrement">การอัปเดตค่าตัวเลขที่เปลี่ยนแปลงได้<a class="anchor" href="#postfix-increment-and-decrement">#</a></h3><p>ใช้ตัวดำเนินการแบบไบนารี <code class="glyph">+</code> และ <code class="glyph">-</code> ร่วมกับการกำหนดค่าเวลารันไทม์ <code class="glyph">←</code> เพื่ออัปเดตตำแหน่ง <code>จํานวน</code> ที่เปลี่ยนแปลงได้ ตัวดำเนินการทั้งสองต้องมีตัวถูกดำเนินการสองตัว และไม่ใช่คำสั่งแบบต่อท้าย:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">เริ่ม</span> {
     <span class="tok-kw">แปร</span> <span class="tok-kw">จํานวน</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
 <span class="tok-co">    # i becomes 1</span>

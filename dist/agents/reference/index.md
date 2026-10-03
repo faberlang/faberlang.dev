@@ -161,7 +161,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [↓](↓.md) — Postfix increment statement for a mutable numerus place.
 - [↤](↤.md) — Conversion-directed assignment: evaluate the right side, convert it to the statically known type of the left place through the ↦ route, then assign.
 - [↦](↦.md) — Converts a value with explicit runtime parsing or coercion semantics.
-- [⇇](⇇.md) — Exact-output transfer: sink ⇇ payload invokes a callable sink value once per payload — no formatting, no separators, no channel selection, no conversions.
+- [⇇](⇇.md) — Copy-into: target ⇇ value writes every value of a tensor into the existing storage of another tensor; storage identity is preserved and ← only ever rebinds a name.
 - [⇐](⇐.md) — Bitwise and, or, xor, not, and shifts on numerus operands.
 - [⇒](⇒.md) — Bitwise and, or, xor, not, and shifts on numerus operands.
 - [⇥](⇥.md) — Success return type and recoverable alternate-exit type in function signatures.

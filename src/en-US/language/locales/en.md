@@ -88,7 +88,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | for              for
 | format           format
 | fragment         fragment
-| free             free
 | from             from
 | future           future
 | generator        generator
@@ -202,6 +201,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | census       census
 | channel      channel
 | char         char
+| clamp        clamp
 | filter       filter
 | float        float
 | frame        frame
@@ -220,6 +220,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | queue        queue
 | record       record
 | recv         recv
+| reflect      reflect
 | regex        regex
 | saturating   saturating
 | send         send
@@ -234,6 +235,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | value        value
 | vector       vector
 | void         void
+| wrap         wrap
 | wrapping_ty  wrapping_ty
 ```
 
@@ -284,6 +286,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | escape                escape
 | exchange              exchange
 | exp                   exp
+| expanded              expanded
 | fill                  fill
 | filter                filter
 | find                  find
@@ -312,6 +315,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | layer_norm            layer_norm
 | length                length
 | less                  less
+| limes                 limes
 | ln                    ln
 | load                  load
 | log10                 log10
@@ -346,6 +350,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | round                 round
 | set                   set
 | shape                 shape
+| shift                 shift
 | shift_left            shift_left
 | shift_right           shift_right
 | shifted_left          shifted_left

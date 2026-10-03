@@ -101,16 +101,16 @@ reading. A second assignment is rejected.</p><pre class="faber-code"><code class
 <span class="tok-co">    # Structural: = defines field values inside a type literal</span>
     <span class="tok-kw">const</span> _ p <span class="tok-op">←</span> Point { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
 }</code></pre><h3 id="ex-field-extraction">Field extraction (<code>from</code>)<a class="anchor" href="#ex-field-extraction">#</a></h3><p><code>from</code> extracts fields from a value into local bindings:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Persona {
-    <span class="tok-kw">const</span> string name
+    <span class="tok-kw">const</span> string nomen
     <span class="tok-kw">const</span> <span class="tok-kw">int</span> aetas
 }
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ p <span class="tok-op">←</span> Persona { name <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
-    <span class="tok-kw">const</span> string name <span class="tok-op">←</span> p.nomen
+    <span class="tok-kw">const</span> _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    <span class="tok-kw">const</span> string nomen <span class="tok-op">←</span> p.nomen
     <span class="tok-kw">const</span> <span class="tok-kw">int</span> aetas <span class="tok-op">←</span> p.aetas
 <span class="tok-co">    # prints "Marcus"</span>
-    print name
+    print nomen
 }</code></pre><h3 id="postfix-increment-and-decrement">Mutable numeric updates<a class="anchor" href="#postfix-increment-and-decrement">#</a></h3><p>Use binary <code class="glyph">+</code> and <code class="glyph">-</code> with runtime assignment <code class="glyph">←</code> to update mutable
 <code>int</code> places. Both operators take two operands; they are not postfix
 statements:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {

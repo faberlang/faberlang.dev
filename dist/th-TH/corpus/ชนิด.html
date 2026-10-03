@@ -33,7 +33,7 @@ class Punctum {
 }
 
 class Persona {
-    var string <span class="tok-kw">ชื่อ</span>
+    var string nomen
 <span class="tok-co">    # default when omitted at instantiation</span>
     var int aetas <span class="tok-op">=</span> <span class="tok-nu">0</span>
     var bool activus <span class="tok-op">=</span> true
@@ -46,7 +46,7 @@ main {
     print p.y
 
 <span class="tok-co">    # Instantiate with required + optional defaults</span>
-    const Persona marcus <span class="tok-op">←</span> Persona { <span class="tok-kw">ชื่อ</span> <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span> }
+    const Persona marcus <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span> }
     print marcus.nomen
 <span class="tok-co">    # 0 from default</span>
     print marcus.aetas
@@ -54,7 +54,7 @@ main {
     print marcus.activus
 
 <span class="tok-co">    # Override defaults explicitly</span>
-    const Persona julia <span class="tok-op">←</span> Persona { <span class="tok-kw">ชื่อ</span> <span class="tok-op">=</span> <span class="tok-st">"Julia"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">25</span>, activus <span class="tok-op">=</span> false }
+    const Persona julia <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Julia"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">25</span>, activus <span class="tok-op">=</span> false }
     print julia.nomen
     print julia.aetas
     print julia.activus

@@ -146,7 +146,7 @@ generically.</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span
     <span class="tok-kw">स्थिर</span> <span class="tok-kw">तालिका</span><span class="tok-op">&lt;</span><span class="tok-kw">पाठ</span>, <span class="tok-kw">संख्या</span><span class="tok-op">&gt;</span> aetates <span class="tok-op">←</span> { <span class="tok-st">"Marcus"</span><span class="tok-op">:</span> <span class="tok-nu">30</span> }
     <span class="tok-kw">दिखाओ</span> nomina, aetates
 }</code></pre></div></div><h2 id="genus">Records<a class="anchor" href="#genus">#</a></h2><p><code>class</code> declares a record type with type-first fields.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Persona {
-    <span class="tok-kw">const</span> string name
+    <span class="tok-kw">const</span> string nomen
     <span class="tok-kw">const</span> <span class="tok-kw">int</span> aetas
 }
 
@@ -155,7 +155,7 @@ generically.</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span
 }
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ p <span class="tok-op">←</span> Persona { name <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    <span class="tok-kw">const</span> _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
     print <span class="tok-kw">description</span>(p)
 }</code></pre><h2 id="methods">Functions on a record<a class="anchor" href="#methods">#</a></h2><p>A <code>class</code> can carry functions alongside its fields.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Punctum {
     <span class="tok-kw">const</span> <span class="tok-kw">int</span> x

@@ -44,6 +44,8 @@ main {
     print puncta["alpha"]
     print puncta["beta"]
     print puncta["gamma"]
+    const int ∪ none absens ← puncta.get("missing")
+    print absens
 }
 ```
 

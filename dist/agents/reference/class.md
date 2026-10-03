@@ -58,7 +58,7 @@ main {
     print marcus.nomen
     # 0 from default
     print marcus.aetas
-    # verum from default
+    # true from default
     print marcus.activus
 
     # Override defaults explicitly

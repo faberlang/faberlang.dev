@@ -63,9 +63,9 @@ main {
 
 <span class="tok-co"># bảng&lt;K,V&gt; declaration, tập_rỗng, and keyed lookup</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># biến bảng&lt;K,V&gt; tên ← tập_rỗng   -- typed empty map (forma innata)</span>
-<span class="tok-co"># tên[key] ← value                -- index assignment</span>
-<span class="tok-co"># tên[key]                        -- keyed accipe</span>
+<span class="tok-co"># biến bảng&lt;K,V&gt; nomen ← tập_rỗng   -- typed empty map (forma innata)</span>
+<span class="tok-co"># nomen[key] ← value                -- index assignment</span>
+<span class="tok-co"># nomen[key]                        -- keyed accipe</span>
 <span class="tok-co"># nomen.length()                 -- entry count</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
@@ -84,10 +84,13 @@ main {
     print puncta[<span class="tok-st">"alpha"</span>]
     print puncta[<span class="tok-st">"beta"</span>]
     print puncta[<span class="tok-st">"gamma"</span>]
+    const int <span class="tok-op">∪</span> none absens <span class="tok-op">←</span> puncta.get(<span class="tok-st">"missing"</span>)
+    print absens
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>3
 1
 2
-3</code></pre><h3 id="radixcorpustabulakey-not-hashablefab-supporting-reject">radix/corpus/tabula/key-not-hashable.fab (supporting · reject)<a class="anchor" href="#radixcorpustabulakey-not-hashablefab-supporting-reject">#</a></h3><p>Map keys and set elements must be hashable: floats and mutable collections are rejected.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
+3
+nihil</code></pre><h3 id="radixcorpustabulakey-not-hashablefab-supporting-reject">radix/corpus/tabula/key-not-hashable.fab (supporting · reject)<a class="anchor" href="#radixcorpustabulakey-not-hashablefab-supporting-reject">#</a></h3><p>Map keys and set elements must be hashable: floats and mutable collections are rejected.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># key-not-hashable — map keys and set elements must be hashable.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>

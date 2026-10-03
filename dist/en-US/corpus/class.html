@@ -33,7 +33,7 @@
 }
 
 <span class="tok-kw">class</span> Persona {
-    <span class="tok-kw">var</span> string name
+    <span class="tok-kw">var</span> string nomen
 <span class="tok-co">    # default when omitted at instantiation</span>
     <span class="tok-kw">var</span> <span class="tok-kw">int</span> aetas <span class="tok-op">=</span> <span class="tok-nu">0</span>
     <span class="tok-kw">var</span> <span class="tok-kw">bool</span> activus <span class="tok-op">=</span> <span class="tok-kw">true</span>
@@ -46,7 +46,7 @@
     print p.y
 
 <span class="tok-co">    # Instantiate with required + optional defaults</span>
-    <span class="tok-kw">const</span> Persona marcus <span class="tok-op">←</span> Persona { name <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span> }
+    <span class="tok-kw">const</span> Persona marcus <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span> }
     print marcus.nomen
 <span class="tok-co">    # 0 from default</span>
     print marcus.aetas
@@ -54,7 +54,7 @@
     print marcus.activus
 
 <span class="tok-co">    # Override defaults explicitly</span>
-    <span class="tok-kw">const</span> Persona julia <span class="tok-op">←</span> Persona { name <span class="tok-op">=</span> <span class="tok-st">"Julia"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">25</span>, activus <span class="tok-op">=</span> <span class="tok-kw">false</span> }
+    <span class="tok-kw">const</span> Persona julia <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Julia"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">25</span>, activus <span class="tok-op">=</span> <span class="tok-kw">false</span> }
     print julia.nomen
     print julia.aetas
     print julia.activus

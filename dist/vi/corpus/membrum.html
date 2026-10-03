@@ -34,7 +34,7 @@ class Punctum {
 
 class Figura {
     var string <span class="tok-kw">tên</span>
-    var int <span class="tok-kw">giá_trị</span>
+    var int valor
 }
 
 class Imum {
@@ -54,7 +54,7 @@ class Datum {
 }
 
 class Adest {
-    var int <span class="tok-kw">giá_trị</span>
+    var int valor
 }
 
 class Forsitan {
@@ -93,7 +93,7 @@ main {
 
 <span class="tok-co">    # --- Accessus optionalis ---</span>
 
-    const Forsitan forsitan <span class="tok-op">←</span> Forsitan { adest <span class="tok-op">=</span> Adest { <span class="tok-kw">giá_trị</span> <span class="tok-op">=</span> <span class="tok-nu">100</span> } }
+    const Forsitan forsitan <span class="tok-op">←</span> Forsitan { adest <span class="tok-op">=</span> Adest { valor <span class="tok-op">=</span> <span class="tok-nu">100</span> } }
     print forsitan<span class="tok-op">?.</span>adest<span class="tok-op">?.</span>valor
 
 <span class="tok-co">    # Accessus optionalis on rỗng_ty binding</span>

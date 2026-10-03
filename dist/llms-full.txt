@@ -26,8 +26,8 @@ This file is the generated keyword catalog, not the writing guide.
 
 ## Generated corpus frontmatter reference
 
-- Distinct frontmatter terms: 292
-- Canonical term pages: 213
+- Distinct frontmatter terms: 300
+- Canonical term pages: 212
 - Alias spellings: 139
 - Categories: 47
 - Source: radix/corpus/**/*.fab TOML frontmatter
@@ -60,7 +60,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - errors (6) — https://faberlang.dev/en-US/corpus/category/errors.html
 - expression (2) — https://faberlang.dev/en-US/corpus/category/expression.html
 - format (4) — https://faberlang.dev/en-US/corpus/category/format.html
-- function (13) — https://faberlang.dev/en-US/corpus/category/function.html
+- function (12) — https://faberlang.dev/en-US/corpus/category/function.html
 - identifier (3) — https://faberlang.dev/en-US/corpus/category/identifier.html
 - integration (1) — https://faberlang.dev/en-US/corpus/category/integration.html
 - io (2) — https://faberlang.dev/en-US/corpus/category/io.html
@@ -91,7 +91,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - conversio: 7
 - existing-home: 6
 - feature: 3
-- keyword: 117
+- keyword: 116
 - literal: 2
 - method: 2
 - modifier: 1
@@ -1181,18 +1181,6 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `lineam`, `scribe`
 - Page: https://faberlang.dev/en-US/corpus/read.html
 - Source: radix/corpus/lege/lege.fab
-
-#### `libera`
-
-- Canonical: `libera`
-- Kind: keyword
-- Category: function
-- Summary: Marks a closure as capture-free; the closure may not reference any enclosing local or parameter.
-- Syntax: `<type> <name> ← (params) free [→ <type>] ∴ <expression>`
-- Aliases: `libera`
-- Related: `clausura`, `∴`, `functio`
-- Page: https://faberlang.dev/en-US/corpus/free.html
-- Source: radix/corpus/libera/libera.fab
 
 #### `lineam`
 
@@ -2699,10 +2687,12 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `conversion-directed-assignment` → `↤`
 - `convert` → `↦`
 - `convert hint` → `via`
+- `copy-into` → `⇇`
 - `default` → `ceterum`
 - `describe` → `probandum`
 - `dictionary` → `tabula`
 - `do` → `fac`
+- `do all` → `fac`
 - `else` → `secus`
 - `else if` → `sin`
 - `embed field default` → `insere =`
@@ -2732,9 +2722,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `json` → `valor`
 - `lambda` → `clausa`
 - `legacy clausura head` → `clausura`
-- `legacy libera` → `libera`
 - `let` → `varia`
-- `libera` → `libera`
 - `list` → `lista`
 - `local comptime` → `praefixum =`
 - `local constant` → `fixum =`

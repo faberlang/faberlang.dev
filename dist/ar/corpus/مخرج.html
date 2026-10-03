@@ -19,10 +19,7 @@
 <span class="tok-co">#   entryModifier :← 'مخرج' integer</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
-<span class="tok-co">#   No بداية — declaration or test-runner surface only.</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># BACKEND:</span>
-<span class="tok-co">#   declaration-only entry modifier (whitelist: مخرج/exitus.fab).</span>
+<span class="tok-co">#   The entry terminates with exit code 1, as selected by `exit 1` below.</span>
 <span class="tok-co">#</span>
 
 @ <span class="tok-kw">cli</span> { name <span class="tok-op">=</span> <span class="tok-st">"exitus-smoke"</span> }

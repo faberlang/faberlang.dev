@@ -86,7 +86,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | for              วน
 | format           จารึก
 | fragment         ส่วนย่อย
-| free             อิสระ
 | from             ออก
 | future           อนาคต
 | generator        สตรีม
@@ -200,6 +199,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | census       สำมะโน
 | channel      ช่องทาง
 | char         อักขระ
+| clamp        ตรึงขอบ
 | filter       ตัวกรอง
 | float        เศษ
 | frame        เฟรม
@@ -218,6 +218,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | queue        คิว
 | record       ratio
 | recv         รับ
+| reflect      สะท้อนขอบ
 | regex        regex
 | saturating   อิ่มตัว
 | send         ส่ง
@@ -232,6 +233,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | value        ค่า
 | vector       เวกเตอร์
 | void         เปล่า
+| wrap         วนขอบ
 | wrapping_ty  ค่ามอดุลัส
 ```
 
@@ -282,6 +284,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | escape                เอสเคป
 | exchange              สลับ
 | exp                   เอกซ์โพเนนเชียล
+| expanded              ขยายมุมมอง
 | fill                  เติม
 | filter                กรอง
 | find                  ค้นหา
@@ -310,6 +313,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | layer_norm            เลเยอร์นอร์ม
 | length                ความยาว
 | less                  น้อยกว่า
+| limes                 ขอบ
 | ln                    ลอการิทึมธรรมชาติ
 | load                  โหลด
 | log10                 ลอการิทึมฐานสิบ
@@ -344,6 +348,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | round                 ปัดเศษ
 | set                   กําหนด
 | shape                 รูปร่าง
+| shift                 เลื่อน
 | shift_left            เลื่อนซ้าย
 | shift_right           เลื่อนขวา
 | shifted_left          เลื่อนซ้ายแล้ว

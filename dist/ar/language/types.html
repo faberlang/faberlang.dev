@@ -89,16 +89,16 @@
 <span class="tok-co">    # Structural: = defines field values inside a type literal</span>
     <span class="tok-kw">ثابت</span> _ p <span class="tok-op">←</span> Point { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
 }</code></pre><h3 id="ex-field-extraction">استخراج الحقول باستخدام من<a class="anchor" href="#ex-field-extraction">#</a></h3><p><code class="glyph">من</code> يستخرج الحقول من قيمة إلى روابط محلية:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">صنف</span> Persona {
-    <span class="tok-kw">ثابت</span> <span class="tok-kw">نص</span> <span class="tok-kw">اسم</span>
+    <span class="tok-kw">ثابت</span> <span class="tok-kw">نص</span> nomen
     <span class="tok-kw">ثابت</span> <span class="tok-kw">عدد</span> aetas
 }
 
 <span class="tok-kw">بداية</span> {
-    <span class="tok-kw">ثابت</span> _ p <span class="tok-op">←</span> Persona { <span class="tok-kw">اسم</span> <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
-    <span class="tok-kw">ثابت</span> <span class="tok-kw">نص</span> <span class="tok-kw">اسم</span> <span class="tok-op">←</span> p.nomen
+    <span class="tok-kw">ثابت</span> _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    <span class="tok-kw">ثابت</span> <span class="tok-kw">نص</span> nomen <span class="tok-op">←</span> p.nomen
     <span class="tok-kw">ثابت</span> <span class="tok-kw">عدد</span> aetas <span class="tok-op">←</span> p.aetas
 <span class="tok-co">    # prints "Marcus"</span>
-    <span class="tok-kw">اعرض</span> <span class="tok-kw">اسم</span>
+    <span class="tok-kw">اعرض</span> nomen
 }</code></pre><h3 id="postfix-increment-and-decrement">الزيادة والنقصان اللاحقة<a class="anchor" href="#postfix-increment-and-decrement">#</a></h3><p><code class="glyph">⊕</code> و <code class="glyph">⊖</code> هما عبارتا زيادة ونقصان لاحقة للأماكن <code class="glyph">عدد</code> القابلة
 للتغيير. هما عبارات فقط — لا قيمة تعبيرية، ولا أشكال بادئة:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">بداية</span> {
     <span class="tok-kw">متغير</span> <span class="tok-kw">عدد</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>

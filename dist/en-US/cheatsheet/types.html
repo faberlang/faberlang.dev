@@ -342,14 +342,70 @@ by converting a literal — the conversion is what fixes the width.</p><div clas
     <span class="tok-kw">स्थिर</span> Nomen n <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
     <span class="tok-kw">स्थिर</span> Puncta p <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     <span class="tok-kw">दिखाओ</span> n, p
-}</code></pre></div></div><h2 id="genus">Records<a class="anchor" href="#genus">#</a></h2><p><code>class</code> declares a record. Fields are type-first, like everything else.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Persona {
-    <span class="tok-kw">const</span> string name
+}</code></pre></div></div><h2 id="genus">Records<a class="anchor" href="#genus">#</a></h2><p><code>class</code> declares a record. Fields are type-first, like everything else.</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-2bf06b54e23a48e6-7-t-en" data-panel="lt-2bf06b54e23a48e6-7-p-en" data-name="English" aria-controls="lt-2bf06b54e23a48e6-7-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-2bf06b54e23a48e6-7-t-la" data-panel="lt-2bf06b54e23a48e6-7-p-la" data-name="Latin" aria-controls="lt-2bf06b54e23a48e6-7-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-2bf06b54e23a48e6-7-t-th-TH" data-panel="lt-2bf06b54e23a48e6-7-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-2bf06b54e23a48e6-7-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-2bf06b54e23a48e6-7-t-zh-Hans" data-panel="lt-2bf06b54e23a48e6-7-p-zh-Hans" data-name="简体中文" aria-controls="lt-2bf06b54e23a48e6-7-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-2bf06b54e23a48e6-7-t-zh-Hant" data-panel="lt-2bf06b54e23a48e6-7-p-zh-Hant" data-name="繁體中文" aria-controls="lt-2bf06b54e23a48e6-7-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-2bf06b54e23a48e6-7-t-vi" data-panel="lt-2bf06b54e23a48e6-7-p-vi" data-name="Tiếng Việt" aria-controls="lt-2bf06b54e23a48e6-7-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-2bf06b54e23a48e6-7-t-ar" data-panel="lt-2bf06b54e23a48e6-7-p-ar" data-name="العربية" aria-controls="lt-2bf06b54e23a48e6-7-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-2bf06b54e23a48e6-7-t-hi" data-panel="lt-2bf06b54e23a48e6-7-p-hi" data-name="हिन्दी" aria-controls="lt-2bf06b54e23a48e6-7-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-2bf06b54e23a48e6-7-p-en" role="tabpanel" aria-labelledby="lt-2bf06b54e23a48e6-7-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">class</span> Persona {
+    <span class="tok-kw">const</span> <span class="tok-kw">string</span> nomen
     <span class="tok-kw">const</span> <span class="tok-kw">int</span> aetas
 }
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ p <span class="tok-op">←</span> Persona { name <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
-    print p.nomen, p.aetas
-}</code></pre><p>Related: <a href="/en-US/cheatsheet/bindings.html">Bindings</a> ·
+    <span class="tok-kw">const</span> _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    <span class="tok-kw">print</span> p.nomen, p.aetas
+}</code></pre></div><div class="fdt-panel" id="lt-2bf06b54e23a48e6-7-p-la" role="tabpanel" aria-labelledby="lt-2bf06b54e23a48e6-7-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">genus</span> Persona {
+    <span class="tok-kw">fixum</span> <span class="tok-kw">textus</span> <span class="tok-kw">nomen</span>
+    <span class="tok-kw">fixum</span> <span class="tok-kw">numerus</span> aetas
+}
+
+<span class="tok-kw">incipit</span> {
+    <span class="tok-kw">fixum</span> _ p <span class="tok-op">←</span> Persona { <span class="tok-kw">nomen</span> <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    <span class="tok-kw">nota</span> p.<span class="tok-kw">nomen</span>, p.aetas
+}</code></pre></div><div class="fdt-panel" id="lt-2bf06b54e23a48e6-7-p-th-TH" role="tabpanel" aria-labelledby="lt-2bf06b54e23a48e6-7-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ชนิด</span> Persona {
+    <span class="tok-kw">คงที่</span> <span class="tok-kw">ข้อความ</span> nomen
+    <span class="tok-kw">คงที่</span> <span class="tok-kw">จํานวน</span> aetas
+}
+
+<span class="tok-kw">เริ่ม</span> {
+    <span class="tok-kw">คงที่</span> _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    <span class="tok-kw">บันทึก</span> p.nomen, p.aetas
+}</code></pre></div><div class="fdt-panel" id="lt-2bf06b54e23a48e6-7-p-zh-Hans" role="tabpanel" aria-labelledby="lt-2bf06b54e23a48e6-7-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">类</span> Persona {
+    <span class="tok-kw">常量</span> <span class="tok-kw">文本</span> nomen
+    <span class="tok-kw">常量</span> <span class="tok-kw">整数</span> aetas
+}
+
+<span class="tok-kw">入口</span> {
+    <span class="tok-kw">常量</span> _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    <span class="tok-kw">显示</span> p.nomen, p.aetas
+}</code></pre></div><div class="fdt-panel" id="lt-2bf06b54e23a48e6-7-p-zh-Hant" role="tabpanel" aria-labelledby="lt-2bf06b54e23a48e6-7-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">類型</span> Persona {
+    <span class="tok-kw">定值</span> <span class="tok-kw">文字</span> nomen
+    <span class="tok-kw">定值</span> <span class="tok-kw">整數</span> aetas
+}
+
+<span class="tok-kw">入口</span> {
+    <span class="tok-kw">定值</span> _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    <span class="tok-kw">註記</span> p.nomen, p.aetas
+}</code></pre></div><div class="fdt-panel" id="lt-2bf06b54e23a48e6-7-p-vi" role="tabpanel" aria-labelledby="lt-2bf06b54e23a48e6-7-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">kiểu</span> Persona {
+    <span class="tok-kw">hằng</span> <span class="tok-kw">văn_bản</span> nomen
+    <span class="tok-kw">hằng</span> <span class="tok-kw">số</span> aetas
+}
+
+<span class="tok-kw">bắt_đầu</span> {
+    <span class="tok-kw">hằng</span> _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    <span class="tok-kw">ghi_chú</span> p.nomen, p.aetas
+}</code></pre></div><div class="fdt-panel" id="lt-2bf06b54e23a48e6-7-p-ar" role="tabpanel" aria-labelledby="lt-2bf06b54e23a48e6-7-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">صنف</span> Persona {
+    <span class="tok-kw">ثابت</span> <span class="tok-kw">نص</span> nomen
+    <span class="tok-kw">ثابت</span> <span class="tok-kw">عدد</span> aetas
+}
+
+<span class="tok-kw">بداية</span> {
+    <span class="tok-kw">ثابت</span> _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    <span class="tok-kw">اعرض</span> p.nomen, p.aetas
+}</code></pre></div><div class="fdt-panel" id="lt-2bf06b54e23a48e6-7-p-hi" role="tabpanel" aria-labelledby="lt-2bf06b54e23a48e6-7-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">वर्ग</span> Persona {
+    <span class="tok-kw">स्थिर</span> <span class="tok-kw">पाठ</span> nomen
+    <span class="tok-kw">स्थिर</span> <span class="tok-kw">संख्या</span> aetas
+}
+
+<span class="tok-kw">आरंभ</span> {
+    <span class="tok-kw">स्थिर</span> _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    <span class="tok-kw">दिखाओ</span> p.nomen, p.aetas
+}</code></pre></div></div><p>Related: <a href="/en-US/cheatsheet/bindings.html">Bindings</a> ·
 <a href="/en-US/cheatsheet/conversions.html">Conversions</a> ·
 <a href="/en-US/language/types.html">Types and values</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#everyday">Everyday types</a></li><li class="toc-2"><a href="#widths">Numeric widths</a></li><li class="toc-2"><a href="#collections">Lists and tables</a></li><li class="toc-2"><a href="#tensors">Tensors</a></li><li class="toc-3"><a href="#tensor-sugar">Shape sugar</a></li><li class="toc-2"><a href="#vectors">Vectors</a></li><li class="toc-2"><a href="#typus">Naming a type</a></li><li class="toc-2"><a href="#genus">Records</a></li></ul></div></nav><footer><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

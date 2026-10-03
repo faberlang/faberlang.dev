@@ -84,16 +84,16 @@
 <span class="tok-co">    # Structural: = defines field values inside a type literal</span>
     <span class="tok-kw">常量</span> _ p <span class="tok-op">←</span> Point { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
 }</code></pre><h3 id="ex-field-extraction">取自 字段提取<a class="anchor" href="#ex-field-extraction">#</a></h3><p><code class="glyph">取自</code> 将值的字段提取为局部绑定：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">类</span> Persona {
-    <span class="tok-kw">常量</span> <span class="tok-kw">文本</span> <span class="tok-kw">名称</span>
+    <span class="tok-kw">常量</span> <span class="tok-kw">文本</span> nomen
     <span class="tok-kw">常量</span> <span class="tok-kw">整数</span> aetas
 }
 
 <span class="tok-kw">入口</span> {
-    <span class="tok-kw">常量</span> _ p <span class="tok-op">←</span> Persona { <span class="tok-kw">名称</span> <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
-    <span class="tok-kw">常量</span> <span class="tok-kw">文本</span> <span class="tok-kw">名称</span> <span class="tok-op">←</span> p.nomen
+    <span class="tok-kw">常量</span> _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    <span class="tok-kw">常量</span> <span class="tok-kw">文本</span> nomen <span class="tok-op">←</span> p.nomen
     <span class="tok-kw">常量</span> <span class="tok-kw">整数</span> aetas <span class="tok-op">←</span> p.aetas
 <span class="tok-co">    # prints "Marcus"</span>
-    <span class="tok-kw">显示</span> <span class="tok-kw">名称</span>
+    <span class="tok-kw">显示</span> nomen
 }</code></pre><h3 id="postfix-increment-and-decrement">更新可变数值<a class="anchor" href="#postfix-increment-and-decrement">#</a></h3><p>使用二元运算符 <code class="glyph">+</code> 和 <code class="glyph">-</code> 配合运行时赋值 <code class="glyph">←</code>，更新可变的 <code class="glyph">整数</code> 位置。两个运算符都需要两个操作数；它们不是后缀语句：</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">入口</span> {
     <span class="tok-kw">变量</span> <span class="tok-kw">整数</span> i <span class="tok-op">←</span> <span class="tok-nu">0</span>
 <span class="tok-co">    # i becomes 1</span>
