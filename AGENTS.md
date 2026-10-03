@@ -164,6 +164,23 @@ generator/scripts/validate-fences.sh src/en-US
 Speculum reads and writes site files through `norma:solum`; `faber:*` remains
 script-only rather than an application file-I/O path.
 
+**Fence compiler provenance.** Build the sibling compiler before treating a
+fence count as evidence, and select that binary explicitly:
+
+```bash
+(cd ../radix && cargo build --locked -p radix-cli --bin radix)
+RADIX="$(cd ../radix && pwd)/target/debug/radix" bash generator/scripts/validate-fences.sh src/en-US
+```
+
+In a packet, these are the packet's own sibling checkout and target. Record
+source revisions, executable path/hash, resolved pack root, and invocation;
+`radix --version` does not identify an unreleased development build. A stale
+binary can reject current reader packs before parsing otherwise valid fences.
+Measured 2026-10-03: cold compiler build 20.79s; completed English fence sweep
+9.90s (a later sweep timed out at 40s, reported as a speed defect).
+[The seven-locale diagnosis and 9/16/7 count reconciliation](docs/validation/english-fences-2026-10-03.md)
+records the evidence without changing any check or acceptance threshold.
+
 ### Generated source pages
 
 Some pages under `src/` are **not authored** — they are assembled from sibling
