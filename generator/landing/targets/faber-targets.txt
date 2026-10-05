@@ -6,8 +6,8 @@ python available=yes check=yes build=yes run=no package=no note=file emission su
 haskell available=yes check=yes build=yes run=no package=no note=file emission supported; package compilation not yet supported
 wasm-text available=yes check=yes build=yes run=no package=no note=supported MIR-backed WAT emit (fail-closed subset); binary conversion via external wat2wasm/wasm-tools; external host + faber_* imports; not faber run/package
 wasm available=yes check=yes build=yes run=no package=no note=supported MIR-backed WAT emit (fail-closed subset); binary conversion via external wat2wasm/wasm-tools; external host + faber_* imports; not faber run/package
-llvm-text available=yes check=yes build=yes run=yes package=yes note=CUDA device execution via `faber run --backend cuda` or a compiled FMIR image runner; `-t llvm-text` remains emit-only
-metal-text available=yes check=yes build=yes run=yes package=yes note=Metal device execution via `faber run --backend metal` or a compiled FMIR image runner; `-t metal-text` remains emit-only
+llvm-text available=yes check=yes build=yes run=yes package=yes note=CUDA device execution via `faber run --device cuda` or a compiled FMIR image runner; `-t llvm-text` remains emit-only
+metal-text available=yes check=yes build=yes run=yes package=yes note=Metal device execution via `faber run --device metal` or a compiled FMIR image runner; `-t metal-text` remains emit-only
 wgsl-text available=yes check=yes build=yes run=no package=no note=supported MIR-backed WGSL compute shader source (fail-closed device-safe subset); external naga validate; not GPU launch or package runtime
 sexp available=yes check=yes build=yes run=no package=no note=supported MIR-backed Racket validation target (fail-closed subset); run via external racket; not a package runtime
 swift available=yes check=yes build=yes run=no package=no note=file emission supported; package compilation not yet supported

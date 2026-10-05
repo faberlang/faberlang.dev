@@ -46,8 +46,8 @@ supports, erases, warns on, or rejects.
 | `wgsl-text` | MIR | yes | no | no | **Limited** |
 | `sexp` | MIR | yes | no | no | **Limited** |
 
-*`run` via device execution: `faber run --backend cuda` (llvm-text) /
-`--backend metal` (metal-text) launches `@ nucleum` kernels on a real GPU;
+*`run` via device execution: `faber run --device cuda` (llvm-text) /
+`--device metal` (metal-text) launches `@ nucleum` kernels on a real GPU;
 `-t llvm-text` / `-t metal-text` themselves remain emit-only. Only *public*
 `@ nucleum` functions are launchable entries — a private `@ nucleum`
 function stays a module-internal helper with no entry row. Kernel closures
@@ -84,15 +84,15 @@ Source → Lex → Parse → Collect → Resolve → Lower → Typecheck → Ana
 |--------|------|
 | fmir* | Package MIR images; runner proves source independence. |
 | wasm / wasm-text | Full-language MIR → Wasm surfaces (limited host imports). |
-| llvm-text | Full-language MIR staging IR. **Also** the NVVM→PTX staging chain used by **CUDA device execution** (`faber run --backend cuda`). There is no separate `cuda` emit target. |
-| metal-text | **Device-kernel subset** shader text (MSL). Real device runs use `faber run --backend metal`, not “% of whole-language corpus.” |
+| llvm-text | Full-language MIR staging IR. **Also** the NVVM→PTX staging chain used by **CUDA device execution** (`faber run --device cuda`). There is no separate `cuda` emit target. |
+| metal-text | **Device-kernel subset** shader text (MSL). Real device runs use `faber run --device metal`, not “% of whole-language corpus.” |
 | wgsl-text | **Device-kernel subset** shader text (WGSL) for WebGPU hosts. |
 | sexp | Validation / Racket-oriented dump. |
 
 **Do not read Metal/WGSL “2% capable” rows on the [target matrix](/toolchain/target-matrix.html) as product completeness.** Those
 rows score *full-language corpus terms* against a *kernel-only* emitter. The
 accepted dual-backend training path is proven on **Metal and CUDA** through
-`faber run --backend metal|cuda` (see [device execution](#device-execution)).
+`faber run --device metal|cuda` (see [device execution](#device-execution)).
 
 For a **device-kernel product summary** (backends, workload families, expanding
 CUDA hardware matrix) see
@@ -298,7 +298,7 @@ undetected during its pause (see
 `radix/docs/factory/phase-metal-campaign-pause-state.md`); the emitter now
 covers a training surface (Transpose+, elementwise `train_step` / companion
 VJP, Tanh, fused matmul+elementwise). Metal and CUDA are the product **device execution** paths for the accepted
-bounded training proof (`faber run --backend metal|cuda`). Metal is the
+bounded training proof (`faber run --device metal|cuda`). Metal is the
 Apple Silicon local-dev and API-parity host; CUDA is the NVIDIA deployment
 host. WebGPU remains a browser graphics / headless proof lane (Triga +
 `hosts/webgpu-browser`), not the product training or inference path.
@@ -308,7 +308,7 @@ host. WebGPU remains a browser graphics / headless proof lane (Triga +
 A package carries a device program when its source declares an `@ nucleum`
 compute kernel and its manifest declares a `[device]` section. The FMIR
 image's `device` section embeds the canonical device program plus Metal MSL
-and CUDA PTX artifacts, each with a provenance hash. `faber run --backend
+and CUDA PTX artifacts, each with a provenance hash. `faber run --device
 metal|cuda|auto` runs it through a real device session (load → allocate →
 copy-in → launch → sync → readback → release) and fails closed with stable
 codes (`E_BACKEND_UNAVAILABLE`, `E_DEVICE_*`, `E_NO_DEVICE_PROGRAM`) instead
@@ -348,7 +348,7 @@ backend.
 | `WGSL` | MIR | GPU | no | no | no |
 | `Metal` | MIR | GPU | no | yes* | no |
 
-*`run` via device execution (`faber run --backend cuda` / `--backend metal`).
+*`run` via device execution (`faber run --device cuda` / `--device metal`).
 
 *`build`, `run`, and `package` describe Faber workflows. External toolchains (rustc, wasm-tools, naga) handle final compilation for text-emission targets.*
 

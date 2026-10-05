@@ -96,10 +96,10 @@ It is **not** a product completion score for Metal, CUDA, or GPU training.
   general-language terms answers a question that does not apply to them, so
   this matrix does not ask it. Their real support is the
   [device kernel support](#device-kernel-support) summary below, and real
-  device execution runs through `faber run --backend metal`.
+  device execution runs through `faber run --device metal`.
 - **There is no `cuda` column.** CUDA is not a text emit target. CUDA device
   programs are produced on the **NVVM → PTX** path (staged with **llvm-text** /
-  MIR device emission) and run with `faber run --backend cuda`. Product GPU
+  MIR device emission) and run with `faber run --device cuda`. Product GPU
   backends are **Metal** and **CUDA**; matrix columns track **emit surfaces**,
   not every host session.
 
@@ -127,8 +127,8 @@ RunPod lanes and Faber package fixtures close. Numbers here are **evidence snaps
 
 | Backend | How you run it | Emit / artifact chain | Accepted product proof (current) | Not claimed |
 |---|---|---|---|---|
-| **Metal** | `faber run --backend metal` | MIR → Metal MSL in the package device image | Dual-backend **MLP training** (100 deterministic steps, gradient mapping, numeric oracle) on Apple Silicon (burgus M-class). Starter fixtures under [`examples/training/`](https://github.com/faberlang/examples/tree/main/training). | General training framework; all SM/GPU models; multi-device |
-| **CUDA** | `faber run --backend cuda` | MIR → NVVM → PTX in the package device image (llvm device chain) | Same dual-backend **MLP training** proof on NVIDIA (pharos RTX 5070 class). Same fixture family. | General GGUF inference product; multi-GPU product |
+| **Metal** | `faber run --device metal` | MIR → Metal MSL in the package device image | Dual-backend **MLP training** (100 deterministic steps, gradient mapping, numeric oracle) on Apple Silicon (burgus M-class). Starter fixtures under [`examples/training/`](https://github.com/faberlang/examples/tree/main/training). | General training framework; all SM/GPU models; multi-device |
+| **CUDA** | `faber run --device cuda` | MIR → NVVM → PTX in the package device image (llvm device chain) | Same dual-backend **MLP training** proof on NVIDIA (pharos RTX 5070 class). Same fixture family. | General GGUF inference product; multi-GPU product |
 | **WebGPU** | browser / headless host path | MIR → WGSL text | Workload-shaped chain proofs on the WebGPU route (e.g. tiny linear + ReLU device fragments) | Dual-backend training product claim; Metal/CUDA parity |
 
 ### Workload / kernel families (measured so far)
@@ -143,7 +143,7 @@ Statuses use three labels only:
 
 | Family / fixture | Metal | CUDA | WebGPU | Notes |
 |---|---|---|---|---|
-| Forward kernels + `device-summa` class | **Proven** (local) | **Proven** (local pharos; cloud matrix expanding) | — | Ordinary `faber run --backend …` package path |
+| Forward kernels + `device-summa` class | **Proven** (local) | **Proven** (local pharos; cloud matrix expanding) | — | Ordinary `faber run --device …` package path |
 | Dual-backend MLP train (Gradus surface, 100 steps) | **Proven** | **Proven** | — | Oracle authority: `examples/training/mlp` (`device_image.metal` / `.cuda` PASS) |
 | Elementwise / fused matmul+elementwise / train_step · VJP surface | **Proven** (training path) | **Proven** (training path; residual Stage-6 rows may still be in repair) | Emit / staging | Product claim is the **accepted training path**, not every Stage-6 capstone |
 | GPU workload rungs 0–4 (`examples/gpu-workload`) | Emit / staging | Emit / staging | Partial **Proven** chain (rungs 1–2 style device fragments) | Systems-track oracles; CUDA-route output-checked floors still low — see package README honesty |
@@ -180,7 +180,7 @@ not own. This is **verification infrastructure**, not a new product backend.
 | Artifact | What it proves |
 |---|---|
 | [`examples/training/mlp`](https://github.com/faberlang/examples/tree/main/training/mlp) | Dual-backend training oracle + `device_image` Metal/CUDA PASS notes |
-| [`examples/training/device-summa`](https://github.com/faberlang/examples/tree/main/training/device-summa) | Starter device package for ordinary `faber run --backend` |
+| [`examples/training/device-summa`](https://github.com/faberlang/examples/tree/main/training/device-summa) | Starter device package for ordinary `faber run --device` |
 | [`examples/gpu-workload`](https://github.com/faberlang/examples/tree/main/gpu-workload) | Workload rung oracles (matmul, softmax, MLP forward, …) |
 | [Device execution CLI](/toolchain/cli.html#device-execution) | Product command contract |
 | [Compiling · device execution](/toolchain/compiling.html#device-execution) | Emit vs run boundary |

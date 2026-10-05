@@ -76,13 +76,13 @@ canonical form.
 
 ## Device execution {#device}
 
-Packages carrying an `@ nucleum` compute kernel run on a GPU. Backend selection
-is explicit and fail-closed — a named backend never silently falls back to CPU.
+Packages carrying an `@ nucleum` compute kernel run on a GPU. Device selection
+is explicit and fail-closed — a named device never silently falls back to CPU.
 
 ```bash
-faber run --backend metal <package>
-faber run --backend cuda <package>
-faber run --backend auto <package>
+faber run --device metal <package>
+faber run --device cuda <package>
+faber run --device auto <package>
 ```
 
 See [device execution](/toolchain/cli.html#device-execution) for the contract.

@@ -112,13 +112,13 @@ Faber now runs device programs on real GPUs. A package carries a device
 program when its source declares a compute kernel with `@ kernel` and its
 manifest declares a `[device]` section; the packaged image embeds Metal MSL
 and CUDA PTX artifacts, each with a provenance hash. `faber run` selects the
-backend explicitly and fails closed with a stable code rather than silently
+device explicitly and fails closed with a stable code rather than silently
 falling back to CPU:
 
 ```bash
-faber run --backend metal <package>   # Apple Metal (e.g. Apple M5 Max)
-faber run --backend cuda  <package>   # NVIDIA CUDA (e.g. RTX 5070)
-faber run --backend auto  <package>   # resolve: exactly one admitted backend
+faber run --device metal <package>   # Apple Metal (e.g. Apple M5 Max)
+faber run --device cuda  <package>   # NVIDIA CUDA (e.g. RTX 5070)
+faber run --device auto  <package>   # resolve: exactly one admitted device
 ```
 
 The accepted device proof covers forward kernels and a bounded training path —

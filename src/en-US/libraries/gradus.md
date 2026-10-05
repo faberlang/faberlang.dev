@@ -115,7 +115,7 @@ behind everything above.
 CPU training is correct and slow. Fast training is a device-execution
 question, and that path is owned elsewhere: see
 [device execution](/toolchain/cli.html#device-execution) for the `faber run
---backend` surface and the
+--device` surface and the
 [device kernel support summary](/toolchain/target-matrix.html#device-kernel-support)
 for what the accepted proof actually covers.
 

@@ -57,16 +57,17 @@ catalog code, repeatable).
 
 `faber run` can execute a package's device program on a real GPU. A package
 carries a device program when its source declares an `@ nucleum` compute
-kernel and its manifest declares a `[device]` section (`backend`, and
+kernel and its manifest declares a `[device]` section (`device`, and
 `inputs` for the kernel's input buffers):
 
 ```bash
-faber run --backend metal <package>   # Apple Metal (e.g. Apple M5 Max)
-faber run --backend cuda  <package>   # NVIDIA CUDA (e.g. RTX 5070)
-faber run --backend auto  <package>   # resolve: exactly one admitted backend
+faber run --device metal <package>   # Apple Metal (e.g. Apple M5 Max)
+faber run --device cuda  <package>   # NVIDIA CUDA (e.g. RTX 5070)
+faber run --device auto  <package>   # resolve: exactly one admitted device
+faber run --device cpu   <package>   # fails closed: the CPU device is not available yet
 ```
 
-Backend selection precedence: CLI `--backend` > manifest `[device] backend` >
+Device selection precedence: CLI `--device` > manifest `[device] device` >
 `auto`. The packaged FMIR image's `device` section carries the canonical device
 program plus Metal MSL and CUDA PTX artifacts (each with a provenance hash);
 `faber run` drives a real Metal/CUDA session (load → allocate → copy-in →

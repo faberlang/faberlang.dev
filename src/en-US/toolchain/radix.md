@@ -32,7 +32,7 @@ Radix lowers Faber source through three intermediate representations:
 |---|---|---|---|
 | CPU runtime | MIR | FMIR (Rust runtime) | Shipping |
 | LLVM | MIR | LLVM text | Experimental |
-| Device execution | MIR | Metal MSL + CUDA PTX via `faber run --backend` | Active (reopened 2026-08-02) |
+| Device execution | MIR | Metal MSL + CUDA PTX via `faber run --device` | Active (reopened 2026-08-02) |
 | WASM | MIR | WebAssembly text | Experimental |
 | TypeScript | HIR | TypeScript source | Experimental |
 | Go | HIR | Go source | Experimental |
@@ -845,7 +845,7 @@ Source entry points:
 The current implementation does not link a local LLVM installation, produce
 native object code, or own a package runtime. External LLVM tooling can verify
 or link emitted text. The same NVVM/PTX staging chain is now live as the CUDA
-device-execution lane: `faber run --backend cuda` emits NVVM/PTX device
+device-execution lane: `faber run --device cuda` emits NVVM/PTX device
 artifacts and launches real CUDA kernels (e.g. RTX 5070) through the sibling
 `faber` package pipeline.
 
@@ -895,7 +895,7 @@ MIR-side concepts.
 functions. It derives a storage-buffer kernel signature, emits source, and
 returns reflection describing the kernel resources. It is not a metallib
 builder or a standalone launch runtime — device execution runs through the
-sibling `faber` pipeline (`faber run --backend metal`, real MSL on Apple
+sibling `faber` pipeline (`faber run --device metal`, real MSL on Apple
 Silicon, campaign reopened 2026-08-02).
 
 Source: `crates/radix-mir-metal/src/lib.rs`.
@@ -958,8 +958,8 @@ mean that the artifact has a complete external runtime.
 | `swift` | HIR-direct | check/build | no package/run | Apple-oriented source emission; no package runtime. |
 | `wasm-text` | MIR-backed | check/build | no package/run | Fail-closed WAT probe with external host imports. |
 | `wasm` | MIR-backed | check/build | no package/run | Fail-closed binary probe; external host/instantiation required. |
-| `llvm-text` | MIR-backed | check/build | device run via `faber run --backend cuda` | LLVM IR staging; NVVM/PTX CUDA device execution through `faber`. |
-| `metal-text` | MIR-backed | check/build | device run via `faber run --backend metal` | Device-safe Metal compute source; MSL device execution through `faber`. |
+| `llvm-text` | MIR-backed | check/build | device run via `faber run --device cuda` | LLVM IR staging; NVVM/PTX CUDA device execution through `faber`. |
+| `metal-text` | MIR-backed | check/build | device run via `faber run --device metal` | Device-safe Metal compute source; MSL device execution through `faber`. |
 | `amd` | MIR-backed | check/build | no package/run | Additive AMDGPU surface (0.81.0); `amd` selection is fail-closed until the ROCm clang path is provisioned. |
 | `wgsl-text` | MIR-backed | check/build | no package/run | Device-safe WGSL compute or source-owned graphics text plus reflection. |
 | `sexp` | MIR-backed | check/build | no package/run | Bounded Racket validation/emission target. |
