@@ -112,6 +112,10 @@ label = "शुरू करें"
 label = "यहाँ से शुरू करें"
 href = "/start/"
 section = "start"
+[[nav.group.item]]
+label = "रिलीज़"
+href = "/en-US/releases/"
+section = "releases"
 [[nav.group]]
 id = "language"
 label = "भाषा"

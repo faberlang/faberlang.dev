@@ -45,8 +45,8 @@ Faber có hệ thống kiểu tĩnh, ưu tiên kiểu. Mọi khai báo đều đ
 |------|---------|---------------|
 | `textus` | Chuỗi Unicode | `"Salve, munde"` |
 | `ascii` | Token máy có độ dài cố định | `'solum:lege'` |
-| `numerus` | Số nguyên có dấu (mặc định i64) | `42` |
-| `fractus` | Số dấu phẩy động (mặc định f64) | `3.14` |
+| `i32` | Số nguyên có dấu | `42` |
+| `f64` | Số dấu phẩy động | `3.14` |
 | `bivalens` | Boolean | `verum`, `falsum` |
 | `vacuum` | Đơn vị / không có giá trị | — |
 | `nihil` | Null / vắng mặt | `nihil` |
@@ -56,8 +56,16 @@ Faber có hệ thống kiểu tĩnh, ưu tiên kiểu. Mọi khai báo đều đ
 
 ### Các kiểu số có kích thước {#sized-numeric-types}
 
-`numerus` và `fractus` có độ rộng mặc định (i64 và f64) cùng các dạng chỉ rõ
-độ rộng:
+Viết độ rộng ở vị trí kiểu. Đây là các kiểu số — cùng danh sách với
+[Math in the ether](/language/behavior/numeric-widths.html):
+
+| Họ | Độ rộng |
+|---|---|
+| Có dấu | `i8` `i16` `i32` `i64` |
+| Không dấu | `u8` `u16` `u32` `u64` |
+| Thập phân | `d64` |
+| Số nguyên không giới hạn | `inf` |
+| Dấu phẩy động | `f16` `bf16` `f32` `f64` |
 
 ```faber
 incipit {
@@ -67,8 +75,7 @@ incipit {
 }
 ```
 
-Có thể dùng cú pháp rút gọn độ rộng ở vị trí kiểu: `i8` … `u64`, `f16`, `f32`,
-`f64` tương đương với `numerus<W>` / `fractus<W>`.
+Độ rộng trần là kiểu.
 
 ### Các kiểu nullable {#nullable-types}
 

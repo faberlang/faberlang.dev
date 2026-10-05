@@ -36,7 +36,7 @@ faber --version
 
 ## Release notes {#notes}
 
-> **Status**: draft (release candidate; `final` at the operator's release commit)
+> **Status**: final
 
 Faber 1.11 is a large language step. Since 1.10.0 (2 September 2026) the
 language-decisions work landed: numbers now state their overflow

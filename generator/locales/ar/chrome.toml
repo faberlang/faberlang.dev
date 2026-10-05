@@ -112,6 +112,10 @@ label = "ابدأ"
 label = "ابدأ هنا"
 href = "/start/"
 section = "start"
+[[nav.group.item]]
+label = "الإصدارات"
+href = "/en-US/releases/"
+section = "releases"
 [[nav.group]]
 id = "language"
 label = "اللغة"

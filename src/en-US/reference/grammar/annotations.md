@@ -10,7 +10,36 @@ sources = [
 ]
 +++
 
-The `@` annotation family: the generic shape, the kernel (`@ kernel`), compiler-lane (`@ radix`), and capability (`@ call`) directives.
+An annotation is a `@` line that attaches to the declaration below it. It
+does not run. It tells the compiler a fact about that declaration: that it
+is exported, that it is a command-line program, that a kernel, compiler
+lane, or capability applies.
+
+The generic shape is `@` plus a name, optionally with fields in braces.
+`@ public` marks a function an importer can see. `@ cli` names the binary
+a package produces. The same family covers `@ kernel`, `@ radix`, and
+`@ call` — specialized directives most source meets later. The table
+below lists the words those directives use.
+
+```faber locale=en
+@ public
+fn saluta(string nomen) → string {
+    return "Salve, §!"(nomen)
+}
+```
+
+A command-line entry uses the same `@` shape above `main args`:
+
+```faber locale=en
+@ cli { name = "echo" }
+@ description "Prints text"
+@ operand { rest = true, type = string, binding = words }
+main args argv {
+    for from argv.words const word {
+        print word
+    }
+}
+```
 
 Return to the [grammar overview](/en-US/reference/grammar.html).
 

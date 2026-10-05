@@ -376,7 +376,7 @@ def main() -> None:
         )
 
     portal_desc = (
-        "Faber programming language portal — one semantic core, many renderings. "
+        "Faber Romanus programming language portal — one semantic core, many renderings. "
         "Choose your documentation locale."
     )
 
@@ -455,7 +455,7 @@ def main() -> None:
 {node_html}    </div>
 
     <p class="porta-question">
-      Faber is one semantic core with many renderings. Latin is the canonical
+      Faber Romanus is one semantic core with many renderings. Latin is the canonical
       interchange for code, not a privileged human language.
       <span class="porta-alt">Pick the documentation language you read;
       the glyphs are the same in all of them.</span>

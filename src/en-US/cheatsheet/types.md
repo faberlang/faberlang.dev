@@ -16,7 +16,7 @@ functio nihil_agit() → vacuum {
 
 incipit {
     fixum textus nomen ← "Marcus"
-    fixum numerus aetas ← 30
+    fixum i32 aetas ← 30
     fixum bivalens ready ← verum
     fixum lista<numerus> empty ← vacua
     fixum numerus ∪ nihil missing ← nulla
@@ -28,7 +28,7 @@ incipit {
 | Type | Is |
 |---|---|
 | `textus` | text |
-| `numerus` | a number, default width |
+| `i32` | a signed integer |
 | `bivalens` | true / false — `verum` / `falsum` |
 | `vacuum` | the return type of a function that yields no value |
 | `nihil` | absence — the other half of an optional |
@@ -40,8 +40,8 @@ is a compile error.
 
 ## Numeric widths {#widths}
 
-`numerus` is the general number. When the width matters, name it directly —
-these are the same family, spelled precisely.
+Name the width in type position. These are the numeric types — the same
+list as [Math in the ether](/language/behavior/numeric-widths.html).
 
 ```faber
 incipit {
@@ -56,7 +56,9 @@ incipit {
 |---|---|
 | Signed | `i8` `i16` `i32` `i64` |
 | Unsigned | `u8` `u16` `u32` `u64` |
-| Floating | `f16` `f32` `f64` |
+| Decimal | `d64` |
+| Unbounded integer | `inf` |
+| Floating | `f16` `bf16` `f32` `f64` |
 
 ## Lists and tables {#collections}
 

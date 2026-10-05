@@ -15,9 +15,9 @@ function is `fn`. Rule names (`itera_stmt`, `genus_decl`) are stable grammar
 identifiers. Latin stays the compiler's canonical form; `faber explain <term>`
 prints a mapping from the compiler itself.
 
-This page is the authority on whether something is valid syntax. The
-[target matrix](/toolchain/target-matrix.html) is the authority on whether
-a given target supports it.
+The 258 rules are grouped into the families below. Each family page
+explains that part of the language, then lists the words you write there
+and links each one to its [term page](/en-US/corpus/).
 
 Uppercase names in the productions are lexical terminals. Grammar examples
 are fragments shown to illustrate a production — they are not standalone

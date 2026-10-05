@@ -5,12 +5,12 @@ A value that may be missing has the type `T ∪ none`. The missing value is
 
 ```faber locale=en
 main {
-    const int ∪ none missing ← null
+    const i32 ∪ none missing ← null
     print missing
 }
 ```
 
-Do not write `int?`.
+Do not write `i32?`.
 
 Parent: https://faberlang.dev/agents/types.md
 Next: https://faberlang.dev/agents/types/collections.md

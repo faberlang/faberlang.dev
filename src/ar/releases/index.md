@@ -23,23 +23,23 @@ source_locale = "en-US"
 
 تعليمات البناء من المصدر غير مرتبطة هنا **عمدًا**. استخدم الأرشيفات مُسبقة البناء إلّا إذا كنت تعمل على شجرة المُصرّف الخاصّة.
 
-## آخر إصدار — Faber 1.6.0 {#latest}
+## آخر إصدار — Faber 1.12.0 {#latest}
 
 | الحقل | القيمة |
 |---|---|
 | **المنتج** | Faber CLI |
-| **الإصدار** | 1.6.0 |
-| **الوسم** | `faber-v1.6.0` |
-| **تاريخ النشر** | 2026-08-10 |
-| **GitHub** | [faber-v1.6.0](https://github.com/faberlang/releases/releases/tag/faber-v1.6.0) |
+| **الإصدار** | 1.12.0 |
+| **الوسم** | `faber-v1.12.0` |
+| **تاريخ النشر** | 2026-10-02 |
+| **GitHub** | [faber-v1.12.0](https://github.com/faberlang/releases/releases/tag/faber-v1.12.0) |
 | **الترخيص** | MIT |
 
 ### الملفّات الثنائية {#latest-binaries}
 
 | المنصّة | الأرشيف | الحجم | SHA-256 |
 |---|---|---|---|
-| **macOS arm64** | [faber-v1.6.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz) | 10.5 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-aarch64-apple-darwin.tar.gz.sha256) |
-| **Linux x64** | [faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz) | 11.9 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.6.0/faber-v1.6.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
+| **macOS arm64** | [faber-v1.12.0-aarch64-apple-darwin.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.12.0/faber-v1.12.0-aarch64-apple-darwin.tar.gz) | 12.8 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.12.0/faber-v1.12.0-aarch64-apple-darwin.tar.gz.sha256) |
+| **Linux x64** | [faber-v1.12.0-x86_64-unknown-linux-gnu.tar.gz](https://github.com/faberlang/releases/releases/download/faber-v1.12.0/faber-v1.12.0-x86_64-unknown-linux-gnu.tar.gz) | 14.4 MB | [checksum](https://github.com/faberlang/releases/releases/download/faber-v1.12.0/faber-v1.12.0-x86_64-unknown-linux-gnu.tar.gz.sha256) |
 
 يحوي كل أرشيف شجرتي `bin/` و`share/` — ضع `bin/faber` في `PATH` لديك مع إبقاء `share/faber` بجوار الثنائي. خطوة بخطوة: [التثبيت والتنزيل](/start/).
 

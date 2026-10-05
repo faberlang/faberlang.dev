@@ -45,8 +45,8 @@ Faber 拥有静态、类型优先的类型系统。每个声明都把类型放�
 |------|------|-----------------|
 | `textus` | Unicode 字符串 | `"Salve, munde"` |
 | `ascii` | 固定机器令牌 | `'solum:lege'` |
-| `numerus` | 有符号整数（默认 i64） | `42` |
-| `fractus` | 浮点数（默认 f64） | `3.14` |
+| `i32` | 有符号整数 | `42` |
+| `f64` | 浮点数 | `3.14` |
 | `bivalens` | 布尔值 | `verum`, `falsum` |
 | `vacuum` | 单元类型 / 无值 | — |
 | `nihil` | 空值 / 缺失 | `nihil` |
@@ -56,7 +56,16 @@ Faber 拥有静态、类型优先的类型系统。每个声明都把类型放�
 
 ### 定宽数值类型 {#sized-numeric-types}
 
-`numerus` 和 `fractus` 拥有默认位宽（i64 和 f64）以及显式位宽形式：
+在类型位置写位宽。这些就是数值类型 — 与
+[Math in the ether](/language/behavior/numeric-widths.html) 相同的列表：
+
+| 族 | 位宽 |
+|---|---|
+| 有符号 | `i8` `i16` `i32` `i64` |
+| 无符号 | `u8` `u16` `u32` `u64` |
+| 十进制 | `d64` |
+| 无界整数 | `inf` |
+| 浮点 | `f16` `bf16` `f32` `f64` |
 
 ```faber
 incipit {
@@ -66,7 +75,7 @@ incipit {
 }
 ```
 
-类型位置支持位宽简写：`i8` … `u64`、`f16`、`f32`、`f64` 等价于 `numerus<W>` / `fractus<W>`。
+位宽标记本身就是类型。
 
 ### 可空类型 {#nullable-types}
 

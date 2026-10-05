@@ -12,7 +12,7 @@ code_hash = "sha256:4e3dec0ba47836476297e320d6822e4528d0f7edb88f02133372d6375d79
 source_commit = "6658dc687c30abd27b12dc4307f8ffef48170d46"
 source_locale = "en-US"
 +++
-Faber do các mô hình viết, nên bạn cài đặt nó bằng cách đưa cho mô hình của bạn một liên kết.
+Faber Romanus do các mô hình viết, nên bạn cài đặt nó bằng cách đưa cho mô hình của bạn một liên kết.
 
 ::agent-pass::
 
