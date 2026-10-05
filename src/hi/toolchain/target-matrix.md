@@ -5,9 +5,9 @@ order = 2
 sources = "faber/docs/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:fd08fcf7091c9bae51ac87473c7ee9714f61184ed7868ce71bcf36478b6ba90a"
+prose_hash = "sha256:e1d9ff6ac98fd912d1b76ba10a9aaa0ea4f80ae80a798787471e4dab2adebe5e"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "6658dc687c30abd27b12dc4307f8ffef48170d46"
+source_commit = "366e6b884f798e2670db95d7961693e5185d9ecf"
 source_locale = "en-US"
 +++
 
@@ -55,21 +55,21 @@ verbs), per-target contracts और pipeline routing
 
 | लक्ष्य | सक्षम | विश्लेषण योग्य | % |
 |---|---|---|---|
-| rust | 373 | 378 | 99% |
-| go | 347 | 378 | 92% |
-| ts | 378 | 378 | 100% |
-| faber | 378 | 378 | 100% |
+| rust | 377 | 382 | 99% |
+| go | 351 | 382 | 92% |
+| ts | 382 | 382 | 100% |
+| faber | 382 | 382 | 100% |
 
 **सिस्टम लेन (MIR → डिवाइस/IR आर्टिफैक्ट)**
 
 | लक्ष्य | सक्षम | विश्लेषण योग्य | % |
 |---|---|---|---|
-| llvm-text | 334 | 373 | 90% |
-| wasm-text | 263 | 373 | 71% |
-| wasm | 263 | 373 | 71% |
-| sexp-struct | 300 | 373 | 80% |
-| sexp | 299 | 373 | 80% |
-| runner | 317 | 373 | 85% |
+| llvm-text | 351 | 378 | 93% |
+| wasm-text | 298 | 378 | 79% |
+| wasm | 298 | 378 | 79% |
+| sexp-struct | 302 | 378 | 80% |
+| sexp | 301 | 378 | 80% |
+| runner | 322 | 378 | 85% |
 
 ## कीवर्ड — एप्लिकेशन लेन
 
@@ -289,7 +289,7 @@ verbs), per-target contracts और pipeline routing
 | <a id="elige"></a>`elige` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="errata"></a>`errata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="est"></a>`est` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id="ex"></a>`ex` | ◐ | ◐ | ◐ | ◐ | ◐ | ✓ |
+| <a id="ex"></a>`ex` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
 | <a id="exitus"></a>`exitus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="fac"></a>`fac` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="falsum"></a>`falsum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -404,10 +404,10 @@ verbs), per-target contracts और pipeline routing
 | <a id=""></a>`↤` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id=""></a>`⊥` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="aut"></a>`aut` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`![` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id=""></a>`!.` | ◐ | ◐ | ◐ | ✓ | ✓ | ✓ |
+| <a id=""></a>`![` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`!.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≠` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`!(` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| <a id=""></a>`!(` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⊻` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`↦` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ |
 | <a id=""></a>`⇒` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -417,7 +417,7 @@ verbs), per-target contracts और pipeline routing
 | <a id=""></a>`=` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="et"></a>`et` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≥` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∈` | ✓ | ◐ | ◐ | ✓ | ✓ | ✓ |
+| <a id=""></a>`∈` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≤` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`↓` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="modulus-u16"></a>`modulus<u16>` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -429,9 +429,9 @@ verbs), per-target contracts और pipeline routing
 | <a id=""></a>`∨` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`∪` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
 | <a id=""></a>`↑` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?[` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?.` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?(` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?[` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?(` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`§` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`✓` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⇐` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |

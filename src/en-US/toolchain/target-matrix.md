@@ -69,10 +69,10 @@ It is **not** a product completion score for Metal, CUDA, or GPU training.
   general-language terms answers a question that does not apply to them, so
   this matrix does not ask it. Their real support is the
   [device kernel support](#device-kernel-support) summary below, and real
-  device execution runs through `faber run --backend metal`.
+  device execution runs through `faber run --device metal`.
 - **There is no `cuda` column.** CUDA is not a text emit target. CUDA device
   programs are produced on the **NVVM → PTX** path (staged with **llvm-text** /
-  MIR device emission) and run with `faber run --backend cuda`. Product GPU
+  MIR device emission) and run with `faber run --device cuda`. Product GPU
   backends are **Metal** and **CUDA**; matrix columns track **emit surfaces**,
   not every host session.
 
@@ -84,21 +84,21 @@ these corpus rows as a quality score.
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| rust | 373 | 378 | 99% |
-| go | 347 | 378 | 92% |
-| ts | 378 | 378 | 100% |
-| faber | 378 | 378 | 100% |
+| rust | 377 | 382 | 99% |
+| go | 351 | 382 | 92% |
+| ts | 382 | 382 | 100% |
+| faber | 382 | 382 | 100% |
 
 **Systems lane (MIR → device/IR artifacts)**
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| llvm-text | 334 | 373 | 90% |
-| wasm-text | 263 | 373 | 71% |
-| wasm | 263 | 373 | 71% |
-| sexp-struct | 300 | 373 | 80% |
-| sexp | 299 | 373 | 80% |
-| runner | 317 | 373 | 85% |
+| llvm-text | 351 | 378 | 93% |
+| wasm-text | 298 | 378 | 79% |
+| wasm | 298 | 378 | 79% |
+| sexp-struct | 302 | 378 | 80% |
+| sexp | 301 | 378 | 80% |
+| runner | 322 | 378 | 85% |
 
 ## Device kernel support (product summary) {#device-kernel-support}
 
@@ -114,8 +114,8 @@ RunPod lanes and Faber package fixtures close. Numbers here are **evidence snaps
 
 | Backend | How you run it | Emit / artifact chain | Accepted product proof (current) | Not claimed |
 |---|---|---|---|---|
-| **Metal** | `faber run --backend metal` | MIR → Metal MSL in the package device image | Dual-backend **MLP training** (100 deterministic steps, gradient mapping, numeric oracle) on Apple Silicon (burgus M-class). Starter fixtures under [`examples/training/`](https://github.com/faberlang/examples/tree/main/training). | General training framework; all SM/GPU models; multi-device |
-| **CUDA** | `faber run --backend cuda` | MIR → NVVM → PTX in the package device image (llvm device chain) | Same dual-backend **MLP training** proof on NVIDIA (pharos RTX 5070 class). Same fixture family. | General GGUF inference product; multi-GPU product |
+| **Metal** | `faber run --device metal` | MIR → Metal MSL in the package device image | Dual-backend **MLP training** (100 deterministic steps, gradient mapping, numeric oracle) on Apple Silicon (burgus M-class). Starter fixtures under [`examples/training/`](https://github.com/faberlang/examples/tree/main/training). | General training framework; all SM/GPU models; multi-device |
+| **CUDA** | `faber run --device cuda` | MIR → NVVM → PTX in the package device image (llvm device chain) | Same dual-backend **MLP training** proof on NVIDIA (pharos RTX 5070 class). Same fixture family. | General GGUF inference product; multi-GPU product |
 | **WebGPU** | browser / headless host path | MIR → WGSL text | Workload-shaped chain proofs on the WebGPU route (e.g. tiny linear + ReLU device fragments) | Dual-backend training product claim; Metal/CUDA parity |
 
 ### Workload / kernel families (measured so far)
@@ -130,7 +130,7 @@ Statuses use three labels only:
 
 | Family / fixture | Metal | CUDA | WebGPU | Notes |
 |---|---|---|---|---|
-| Forward kernels + `device-summa` class | **Proven** (local) | **Proven** (local pharos; cloud matrix expanding) | — | Ordinary `faber run --backend …` package path |
+| Forward kernels + `device-summa` class | **Proven** (local) | **Proven** (local pharos; cloud matrix expanding) | — | Ordinary `faber run --device …` package path |
 | Dual-backend MLP train (Gradus surface, 100 steps) | **Proven** | **Proven** | — | Oracle authority: `examples/training/mlp` (`device_image.metal` / `.cuda` PASS) |
 | Elementwise / fused matmul+elementwise / train_step · VJP surface | **Proven** (training path) | **Proven** (training path; residual Stage-6 rows may still be in repair) | Emit / staging | Product claim is the **accepted training path**, not every Stage-6 capstone |
 | GPU workload rungs 0–4 (`examples/gpu-workload`) | Emit / staging | Emit / staging | Partial **Proven** chain (rungs 1–2 style device fragments) | Systems-track oracles; CUDA-route output-checked floors still low — see package README honesty |
@@ -167,7 +167,7 @@ not own. This is **verification infrastructure**, not a new product backend.
 | Artifact | What it proves |
 |---|---|
 | [`examples/training/mlp`](https://github.com/faberlang/examples/tree/main/training/mlp) | Dual-backend training oracle + `device_image` Metal/CUDA PASS notes |
-| [`examples/training/device-summa`](https://github.com/faberlang/examples/tree/main/training/device-summa) | Starter device package for ordinary `faber run --backend` |
+| [`examples/training/device-summa`](https://github.com/faberlang/examples/tree/main/training/device-summa) | Starter device package for ordinary `faber run --device` |
 | [`examples/gpu-workload`](https://github.com/faberlang/examples/tree/main/gpu-workload) | Workload rung oracles (matmul, softmax, MLP forward, …) |
 | [Device execution CLI](/toolchain/cli.html#device-execution) | Product command contract |
 | [Compiling · device execution](/toolchain/compiling.html#device-execution) | Emit vs run boundary |
@@ -394,7 +394,7 @@ registry and matrix receipts under the radix factory tree
 | <a id="elige"></a>`elige` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="errata"></a>`errata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="est"></a>`est` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id="ex"></a>`ex` | ◐ | ◐ | ◐ | ◐ | ◐ | ✓ |
+| <a id="ex"></a>`ex` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
 | <a id="exitus"></a>`exitus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="fac"></a>`fac` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="falsum"></a>`falsum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -509,10 +509,10 @@ registry and matrix receipts under the radix factory tree
 | <a id=""></a>`↤` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id=""></a>`⊥` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="aut"></a>`aut` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`![` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id=""></a>`!.` | ◐ | ◐ | ◐ | ✓ | ✓ | ✓ |
+| <a id=""></a>`![` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`!.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≠` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`!(` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| <a id=""></a>`!(` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⊻` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`↦` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ |
 | <a id=""></a>`⇒` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -522,7 +522,7 @@ registry and matrix receipts under the radix factory tree
 | <a id=""></a>`=` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="et"></a>`et` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≥` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∈` | ✓ | ◐ | ◐ | ✓ | ✓ | ✓ |
+| <a id=""></a>`∈` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≤` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`↓` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="modulus-u16"></a>`modulus<u16>` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -534,9 +534,9 @@ registry and matrix receipts under the radix factory tree
 | <a id=""></a>`∨` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`∪` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
 | <a id=""></a>`↑` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?[` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?.` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?(` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?[` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?(` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`§` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`✓` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⇐` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |

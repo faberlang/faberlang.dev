@@ -5,9 +5,9 @@ order = 2
 sources = "faber/docs/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:7ebdce7fefd6b8bab4d72994258414cabb186e22e726d7de0ffd6e36be6e51a1"
+prose_hash = "sha256:46081619167177795bc669a9f00e72f72d0afd5458e05e3d0f98e6d30d7e594f"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "6658dc687c30abd27b12dc4307f8ffef48170d46"
+source_commit = "366e6b884f798e2670db95d7961693e5185d9ecf"
 source_locale = "en-US"
 +++
 
@@ -55,21 +55,21 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 
 | đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
-| rust | 373 | 378 | 99% |
-| go | 347 | 378 | 92% |
-| ts | 378 | 378 | 100% |
-| faber | 378 | 378 | 100% |
+| rust | 377 | 382 | 99% |
+| go | 351 | 382 | 92% |
+| ts | 382 | 382 | 100% |
+| faber | 382 | 382 | 100% |
 
 **Tuyến hệ thống (MIR → tạo phẩm thiết bị/IR)**
 
 | đích | có khả năng | có thể phân tích | % |
 |---|---|---|---|
-| llvm-text | 334 | 373 | 90% |
-| wasm-text | 263 | 373 | 71% |
-| wasm | 263 | 373 | 71% |
-| sexp-struct | 300 | 373 | 80% |
-| sexp | 299 | 373 | 80% |
-| runner | 317 | 373 | 85% |
+| llvm-text | 351 | 378 | 93% |
+| wasm-text | 298 | 378 | 79% |
+| wasm | 298 | 378 | 79% |
+| sexp-struct | 302 | 378 | 80% |
+| sexp | 301 | 378 | 80% |
+| runner | 322 | 378 | 85% |
 
 ## Từ khóa — tuyến ứng dụng
 
@@ -289,7 +289,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | <a id="elige"></a>`elige` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="errata"></a>`errata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="est"></a>`est` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id="ex"></a>`ex` | ◐ | ◐ | ◐ | ◐ | ◐ | ✓ |
+| <a id="ex"></a>`ex` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
 | <a id="exitus"></a>`exitus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="fac"></a>`fac` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="falsum"></a>`falsum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -404,10 +404,10 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | <a id=""></a>`↤` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id=""></a>`⊥` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="aut"></a>`aut` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`![` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id=""></a>`!.` | ◐ | ◐ | ◐ | ✓ | ✓ | ✓ |
+| <a id=""></a>`![` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`!.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≠` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`!(` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| <a id=""></a>`!(` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⊻` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`↦` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ |
 | <a id=""></a>`⇒` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -417,7 +417,7 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | <a id=""></a>`=` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="et"></a>`et` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≥` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∈` | ✓ | ◐ | ◐ | ✓ | ✓ | ✓ |
+| <a id=""></a>`∈` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≤` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`↓` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="modulus-u16"></a>`modulus<u16>` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -429,9 +429,9 @@ sách erase/warn/defer), hợp đồng theo từng đích và định tuyến pi
 | <a id=""></a>`∨` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`∪` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
 | <a id=""></a>`↑` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?[` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?.` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?(` | ✕ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?[` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?(` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`§` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`✓` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⇐` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
