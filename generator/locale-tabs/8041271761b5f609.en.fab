@@ -1,4 +1,4 @@
-fn summa(list≺int≻ numeri) → int {
+fn summa(list<int> numeri) → int {
     var int total ← 0
     for from numeri const n {
         total ← total + n
@@ -7,6 +7,6 @@ fn summa(list≺int≻ numeri) → int {
 }
 
 main {
-    const list≺int≻ valores ← [1, 2, 3, 4, 5]
+    const list<int> valores ← [1, 2, 3, 4, 5]
     print summa(valores)
 }

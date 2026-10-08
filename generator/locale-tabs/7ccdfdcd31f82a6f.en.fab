@@ -1,5 +1,5 @@
 main {
-    const list≺int≻ numeri ← [10, 20, 30]
+    const list<int> numeri ← [10, 20, 30]
     for ref numeri const index {
         print index, numeri[index]
     }

@@ -1,6 +1,6 @@
 入口 {
-    常量 列表≺文本≻ nomina ← ["Alia", "Brunus"]
-    常量 列表≺整数≻ aetates ← [34, 27]
+    常量 列表<文本> nomina ← ["Alia", "Brunus"]
+    常量 列表<整数> aetates ← [34, 27]
     遍历 取自 nomina, aetates 在 [i] 常量 nomen, aetas {
         显示 i, nomen, aetas
     }

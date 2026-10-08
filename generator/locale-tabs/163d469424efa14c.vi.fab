@@ -1,6 +1,6 @@
 bắt_đầu {
-    hằng danh_sách≺văn_bản≻ nomina ← ["Alia", "Brunus"]
-    hằng danh_sách≺số≻ aetates ← [34, 27]
+    hằng danh_sách<văn_bản> nomina ← ["Alia", "Brunus"]
+    hằng danh_sách<số> aetates ← [34, 27]
     lặp từ nomina, aetates tại [i] hằng nomen, aetas {
         ghi_chú i, nomen, aetas
     }

@@ -6,7 +6,7 @@
     ثابت نص nomen ← "Marcus"
     ثابت عدد aetas ← 30
     ثابت منطقي ready ← صواب
-    ثابت قائمة≺عدد≻ empty ← فارغ
+    ثابت قائمة<عدد> empty ← فارغ
     ثابت عدد ∪ نوع_لاشيء missing ← خال
     اعرض nomen, aetas, ready, empty, missing
     nihil_agit()

@@ -1,5 +1,5 @@
 main {
-    const list≺string≻ raw ← ["1", "two", "3"]
+    const list<string> raw ← ["1", "two", "3"]
     for from raw const item {
         const int n ← item ↦ int
         print n

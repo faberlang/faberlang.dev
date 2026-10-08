@@ -1,4 +1,4 @@
-函式 primum<T>(列表≺T≻ res) → T ∪ 無 {
+函式 primum<T>(列表<T> res) → T ∪ 無 {
     若 res.長度() ≡ 0 則 傳回 可空
     傳回 res[0]
 }

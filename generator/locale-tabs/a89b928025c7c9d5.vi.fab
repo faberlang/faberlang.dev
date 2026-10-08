@@ -6,7 +6,7 @@ bắt_đầu {
     hằng văn_bản nomen ← "Marcus"
     hằng số aetas ← 30
     hằng logic ready ← đúng
-    hằng danh_sách≺số≻ empty ← tập_rỗng
+    hằng danh_sách<số> empty ← tập_rỗng
     hằng số ∪ rỗng_ty missing ← không_gì
     ghi_chú nomen, aetas, ready, empty, missing
     nihil_agit()
