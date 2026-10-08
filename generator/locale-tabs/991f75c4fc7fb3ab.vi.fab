@@ -1,5 +1,5 @@
 bắt_đầu {
-    hằng danh_sách<số> numeri ← [1, 2, 3]
+    hằng danh_sách≺số≻ numeri ← [1, 2, 3]
     lặp từ numeri hằng n {
         ghi_chú n
     }

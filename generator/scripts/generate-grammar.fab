@@ -61,7 +61,7 @@ fn ch(string s, int i) → string {
 
 fn has_prefix(string s, int i, string needle) → bool {
     const int m ← needle.length()
-    if i + m > s.length() {
+    if i + m ≻ s.length() {
         return false
     }
     return s.slice(i, i + m) ≡ needle
@@ -83,7 +83,7 @@ fn is_hole_label(string label) → bool {
         return false
     }
     var int i ← 1
-    while i < label.length() {
+    while i ≺ label.length() {
         if not is_ident_continue(ch(label, i)) {
             return false
         }
@@ -103,7 +103,7 @@ fn has_flag(map<string, bool> flags, string key) → bool {
 fn index_of(string hay, string needle, int begin) → int {
     const int n ← hay.length()
     const int m ← needle.length()
-    if m ≡ 0 or begin < 0 {
+    if m ≡ 0 or begin ≺ 0 {
         return -1
     }
     var int i ← begin
@@ -128,7 +128,7 @@ fn strip_leading_rule(string s) → string {
     if s.starts_with("---\n") {
         var int i ← 3
         const int n ← s.length()
-        while i < n and ch(s, i) ≡ "\n" {
+        while i ≺ n and ch(s, i) ≡ "\n" {
             i ← i + 1
         }
         return s.slice(i, n)
@@ -157,7 +157,7 @@ fn transform(list<string> lines, bool drop_lead) → string {
                 state ← 3
             }
         } elif state ≡ 3 {
-            if s.length() > 0 {
+            if s.length() ≻ 0 {
                 state ← 2
             }
         }
@@ -245,14 +245,14 @@ fn substitute_holes(string text, map<string, string> glossary, map<string, bool>
     const int n ← text.length()
     var string out ← ""
     var int idx ← 0
-    while idx < n {
+    while idx ≺ n {
         const int pos ← index_of(text, hole_open, idx)
-        if pos < 0 {
+        if pos ≺ 0 {
             return out + text.slice(idx, n)
         }
         out ← out + text.slice(idx, pos)
         const int stop ← index_of(text, brace_close, pos + 2)
-        if stop < 0 {
+        if stop ≺ 0 {
             return out + text.slice(pos, n)
         }
         const string label ← text.slice(pos + 2, stop)
@@ -281,7 +281,7 @@ fn mark_ebnf_keywords(string text, map<string, string> glossary, map<string, boo
     }
     var string out ← ""
     var int i ← 0
-    while i < n {
+    while i ≺ n {
         if (i - (i / 2) * 2) ≡ 0 {
             out ← out + parts[i]
         } else {
@@ -304,10 +304,10 @@ fn mark_ident_keywords(string text, map<string, string> glossary, map<string, bo
     var string out ← ""
     var int i ← 0
     const int n ← text.length()
-    while i < n {
+    while i ≺ n {
         if is_ident_start(ch(text, i)) {
             var int j ← i + 1
-            while j < n {
+            while j ≺ n {
                 if is_ident_continue(ch(text, j)) ≡ false {
                     break
                 }
@@ -355,7 +355,7 @@ fn process_inlines(string text, map<string, string> glossary, map<string, bool> 
         const int n ← parts.length()
         var string out ← ""
         var int i ← 0
-        while i < n {
+        while i ≺ n {
             if is_even(i) {
                 out ← out + parts[i]
             } else {
@@ -368,22 +368,22 @@ fn process_inlines(string text, map<string, string> glossary, map<string, bool> 
     var string out ← ""
     var int i ← 0
     const int n ← text.length()
-    while i < n {
+    while i ≺ n {
         const int tick_at ← index_of(text, tick, i)
-        if tick_at < 0 {
+        if tick_at ≺ 0 {
             out ← out + text.slice(i, n)
             return out
         }
-        if tick_at > i {
+        if tick_at ≻ i {
             out ← out + text.slice(i, tick_at)
         }
         var int ticks ← 1
-        while tick_at + ticks < n and ch(text, tick_at + ticks) ≡ tick {
+        while tick_at + ticks ≺ n and ch(text, tick_at + ticks) ≡ tick {
             ticks ← ticks + 1
         }
         const string closer ← text.slice(tick_at, tick_at + ticks)
         const int close ← index_of(text, closer, tick_at + ticks)
-        if close < 0 {
+        if close ≺ 0 {
             out ← out + text.slice(tick_at, n)
             return out
         }
@@ -403,7 +403,7 @@ fn apply_glossary(string text, map<string, string> glossary, map<string, bool> p
     }
     var string out ← ""
     var int i ← 0
-    while i < n {
+    while i ≺ n {
         if is_even(i) {
             out ← out + process_inlines(chunks[i], glossary, present, path, project_english)
         } else {
@@ -411,7 +411,7 @@ fn apply_glossary(string text, map<string, string> glossary, map<string, bool> p
             const int nl ← index_of(chunk, "\n", 0)
             var string info ← chunk
             var string inner ← ""
-            if nl < 0 {
+            if nl ≺ 0 {
                 info ← chunk.trim()
             } else {
                 info ← chunk.slice(0, nl).trim()
@@ -431,7 +431,7 @@ fn apply_glossary(string text, map<string, string> glossary, map<string, bool> p
                 inner ← mark_ident_keywords(inner, glossary, present)
             }
             out ← out + delim + info + "\n" + inner
-            if i + 1 < n {
+            if i + 1 ≺ n {
                 out ← out + delim
             }
         }
@@ -466,7 +466,7 @@ fn load_spine(string jsonl_path) → map<string, bool> {
         spine.put(id, true)
         const list<value> kws ← rec["keywords"] ↦ list<value> ⊥ empty
         var int i ← 0
-        while i < kws.length() {
+        while i ≺ kws.length() {
             const string kw ← kws[i] ↦ string ⊥ ""
             if kw.length() ≡ 0 {
                 die(jsonl_path + ": keyword that is not a string in record " + id)
@@ -518,7 +518,7 @@ fn english_projection(string pack_path) → map<string, string> {
         out.put(k, keywords[k] ↦ string)
     }
     const string null_type ← types["nihil"] ↦ string ⊥ ""
-    if null_type.length() > 0 {
+    if null_type.length() ≻ 0 {
         out.put("nihil", null_type)
     }
     return out
@@ -547,7 +547,7 @@ fn load_glossary(string path, map<string, bool> spine) → map<string, string> {
         }
         mapping.put(k, translated)
     }
-    if extras.length() > 0 {
+    if extras.length() ≻ 0 {
         consolum.warn_line(path + ": glossary key(s) not in jsonl production/keyword spine: " + extras)
         processus.exit_process(1)
     }
@@ -580,7 +580,7 @@ main {
     var string identity_path ← "../faber/docs/EBNF.md"
     var string glossary_dir ← "../faber/docs/grammar"
     var int ai ← 0
-    while ai < argv.length() {
+    while ai ≺ argv.length() {
         const string a ← argv[ai]
         if pending_locale {
             locales.append(a)

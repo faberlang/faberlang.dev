@@ -40,7 +40,7 @@ functio append_nodes(lista<doc_mod.Node> base, lista<doc_mod.Node> extra) → li
 
 functio append_text_range(lista<doc_mod.Node> base, textus source, numerus start, numerus end) → lista<doc_mod.Node> {
     varia lista<doc_mod.Node> result ← base
-    si end > start {
+    si end ≻ start {
         result.appende(doc_mod.text(source.sectio(start, end)))
     }
     redde result
@@ -63,13 +63,13 @@ functio genera_inline(textus text, textus site_locale) → lista<doc_mod.Node> {
     varia numerus i ← 0
     varia numerus plain_start ← 0
 
-    dum i < len {
+    dum i ≺ len {
         # Backtick code span.
         si su.littera_ad(text, i) ≡ "`" {
             varia numerus j ← i + 1
             varia bivalens found ← falsum
 
-            dum j < len {
+            dum j ≺ len {
                 si su.littera_ad(text, j) ≡ "`" {
                     found ← verum
                     rumpe
@@ -91,7 +91,7 @@ functio genera_inline(textus text, textus site_locale) → lista<doc_mod.Node> {
             varia numerus j ← i + 1
             varia bivalens found_label ← falsum
 
-            dum j < len {
+            dum j ≺ len {
                 si su.littera_ad(text, j) ≡ "]" {
                     found_label ← verum
                     rumpe
@@ -102,11 +102,11 @@ functio genera_inline(textus text, textus site_locale) → lista<doc_mod.Node> {
                 j ← j + 1
             }
 
-            si found_label et (j + 1 < len) et su.littera_ad(text, j + 1) ≡ "(" {
+            si found_label et (j + 1 ≺ len) et su.littera_ad(text, j + 1) ≡ "(" {
                 varia numerus k ← j + 2
                 varia bivalens found_href ← falsum
 
-                dum k < len {
+                dum k ≺ len {
                     si su.littera_ad(text, k) ≡ ")" {
                         found_href ← verum
                         rumpe
@@ -130,11 +130,11 @@ functio genera_inline(textus text, textus site_locale) → lista<doc_mod.Node> {
         }
 
         # Bold span: **text**.
-        si i + 1 < len et su.littera_ad(text, i) ≡ "*" et su.littera_ad(text, i + 1) ≡ "*" {
+        si i + 1 ≺ len et su.littera_ad(text, i) ≡ "*" et su.littera_ad(text, i + 1) ≡ "*" {
             varia numerus j ← i + 2
             varia bivalens found ← falsum
 
-            dum j + 1 < len {
+            dum j + 1 ≺ len {
                 si su.littera_ad(text, j) ≡ "*" et su.littera_ad(text, j + 1) ≡ "*" {
                     found ← verum
                     rumpe
@@ -153,7 +153,7 @@ functio genera_inline(textus text, textus site_locale) → lista<doc_mod.Node> {
 
         # Italic span: *text*.
         si su.littera_ad(text, i) ≡ "*" {
-            si i + 1 < len et su.littera_ad(text, i + 1) ≡ "*" {
+            si i + 1 ≺ len et su.littera_ad(text, i + 1) ≡ "*" {
                 i ← i + 2
                 perge
             }
@@ -161,7 +161,7 @@ functio genera_inline(textus text, textus site_locale) → lista<doc_mod.Node> {
             varia numerus j ← i + 1
             varia bivalens found ← falsum
 
-            dum j < len {
+            dum j ≺ len {
                 si su.littera_ad(text, j) ≡ "*" {
                     found ← verum
                     rumpe
@@ -169,7 +169,7 @@ functio genera_inline(textus text, textus site_locale) → lista<doc_mod.Node> {
                 j ← j + 1
             }
 
-            si found et j > i + 1 {
+            si found et j ≻ i + 1 {
                 nodes ← append_text_range(nodes, text, plain_start, i)
                 nodes.appende(inline_leaf("em", text.sectio(i + 1, j)))
                 i ← j + 1
@@ -195,13 +195,13 @@ functio genera_inline_html(textus text) → textus {
 functio extract_anchor(textus heading) → AnchoredHeading {
     fixum numerus brace ← su.initium_index(heading, " {#")
 
-    si brace < 0 {
+    si brace ≺ 0 {
         redde AnchoredHeading { title = heading, anchor = "" }
     }
 
     fixum numerus close ← su.initium_index_post(heading, "}", brace + 3)
 
-    si close < 0 {
+    si close ≺ 0 {
         redde AnchoredHeading { title = heading, anchor = "" }
     }
 
@@ -215,7 +215,7 @@ functio genera_heading_node(textus tag, textus heading, textus site_locale) → 
     fixum AnchoredHeading ah ← extract_anchor(heading)
     fixum lista<doc_mod.Node> children ← genera_inline(ah.title, site_locale)
 
-    si ah.anchor.longitudo() > 0 {
+    si ah.anchor.longitudo() ≻ 0 {
         redde doc_mod.element(tag, [doc_mod.attr("id", ah.anchor)], children)
     }
 
@@ -252,11 +252,11 @@ functio split_table_row(textus row) → lista<textus> {
         i ← 1
     }
 
-    dum i < len {
-        si su.littera_ad(trimmed, i) ≡ "|" et non (i > 0 et su.littera_ad(trimmed, i - 1) ≡ "\\") {
+    dum i ≺ len {
+        si su.littera_ad(trimmed, i) ≡ "|" et non (i ≻ 0 et su.littera_ad(trimmed, i - 1) ≡ "\\") {
             fixum textus cell ← su.recide(trimmed.sectio(start, i))
 
-            si cell.longitudo() > 0 {
+            si cell.longitudo() ≻ 0 {
                 cells.appende(cell)
             }
 
@@ -265,10 +265,10 @@ functio split_table_row(textus row) → lista<textus> {
         i ← i + 1
     }
 
-    si start < len {
+    si start ≺ len {
         fixum textus cell ← su.recide(trimmed.sectio(start, len))
 
-        si cell.longitudo() > 0 {
+        si cell.longitudo() ≻ 0 {
             cells.appende(cell)
         }
     }
@@ -303,7 +303,7 @@ functio table_node(lista<textus> headers, lista<doc_mod.Node> rows, textus site_
 
 # True when the line opens an unordered list item ("- ").
 functio est_ordo_libera(textus linea) → bivalens {
-    si linea.longitudo() < 2 ergo redde falsum
+    si linea.longitudo() ≺ 2 ergo redde falsum
     si non (su.littera_ad(linea, 0) ≡ "-") ergo redde falsum
     redde su.littera_ad(linea, 1) ≡ " "
 }
@@ -313,7 +313,7 @@ functio longitudo_ordinis(textus linea) → numerus {
     fixum numerus len ← linea.longitudo()
     varia numerus i ← 0
 
-    dum i < len {
+    dum i ≺ len {
         fixum textus ch ← linea.sectio(i, i + 1)
         si non su.est_digitus(ch) {
             rumpe
@@ -330,7 +330,7 @@ functio longitudo_ordinis(textus linea) → numerus {
 
 # True when the line opens a blockquote ("> ").
 functio est_citatio(textus linea) → bivalens {
-    si linea.longitudo() < 2 ergo redde falsum
+    si linea.longitudo() ≺ 2 ergo redde falsum
     si non (su.littera_ad(linea, 0) ≡ ">") ergo redde falsum
     redde su.littera_ad(linea, 1) ≡ " "
 }
@@ -342,7 +342,7 @@ functio est_initium_blocki(textus linea) → bivalens {
     si su.initium_cum(linea, "#") ergo redde verum
     si su.initium_cum(linea, "```") ergo redde verum
     si est_ordo_libera(linea) ergo redde verum
-    si longitudo_ordinis(linea) > 0 ergo redde verum
+    si longitudo_ordinis(linea) ≻ 0 ergo redde verum
     si est_citatio(linea) ergo redde verum
     si su.littera_ad(linea, 0) ≡ "|" ergo redde verum
     redde falsum
@@ -362,7 +362,7 @@ functio converte_nodes(textus source, textus site_locale) → lista<doc_mod.Node
     varia lista<doc_mod.Node> result ← vacua
     varia numerus i ← 0
 
-    dum i < n {
+    dum i ≺ n {
         fixum textus linea ← su.recide(lines[i])
 
         # ── Skip blank lines ──
@@ -378,7 +378,7 @@ functio converte_nodes(textus source, textus site_locale) → lista<doc_mod.Node
 
             i ← i + 1
 
-            dum i < n {
+            dum i ≺ n {
                 fixum textus fence_check ← su.recide(lines[i])
 
                 si su.initium_cum(fence_check, "```") {
@@ -386,7 +386,7 @@ functio converte_nodes(textus source, textus site_locale) → lista<doc_mod.Node
                     rumpe
                 }
 
-                si code.longitudo() > 0 {
+                si code.longitudo() ≻ 0 {
                     code ← code + nl
                 }
                 code ← code + lines[i]
@@ -394,7 +394,7 @@ functio converte_nodes(textus source, textus site_locale) → lista<doc_mod.Node
             }
 
             varia lista<doc_mod.Attr> code_attrs ← vacua
-            si info.longitudo() > 0 {
+            si info.longitudo() ≻ 0 {
                 code_attrs ← [doc_mod.attr("class", "lang-" + info)]
             }
 
@@ -440,13 +440,13 @@ functio converte_nodes(textus source, textus site_locale) → lista<doc_mod.Node
 
         # ── Pipe table ──
         si su.littera_ad(linea, 0) ≡ "|" {
-            si i + 1 < n et est_separator(su.recide(lines[i + 1])) {
+            si i + 1 ≺ n et est_separator(su.recide(lines[i + 1])) {
                 fixum lista<textus> headers ← split_table_row(linea)
                 varia lista<doc_mod.Node> rows ← vacua
 
                 i ← i + 2
 
-                dum i < n {
+                dum i ≺ n {
                     fixum textus l ← su.recide(lines[i])
 
                     si l.longitudo() ≡ 0 {
@@ -469,7 +469,7 @@ functio converte_nodes(textus source, textus site_locale) → lista<doc_mod.Node
         si est_ordo_libera(linea) {
             varia lista<doc_mod.Node> items ← vacua
 
-            dum i < n {
+            dum i ≺ n {
                 fixum textus l ← su.recide(lines[i])
 
                 si non est_ordo_libera(l) {
@@ -479,7 +479,7 @@ functio converte_nodes(textus source, textus site_locale) → lista<doc_mod.Node
                 varia textus item ← l.sectio(2, l.longitudo())
                 i ← i + 1
 
-                dum i < n {
+                dum i ≺ n {
                     fixum textus cont ← su.recide(lines[i])
                     si est_initium_blocki(cont) {
                         rumpe
@@ -496,10 +496,10 @@ functio converte_nodes(textus source, textus site_locale) → lista<doc_mod.Node
         }
 
         # ── Ordered list ──
-        si longitudo_ordinis(linea) > 0 {
+        si longitudo_ordinis(linea) ≻ 0 {
             varia lista<doc_mod.Node> items ← vacua
 
-            dum i < n {
+            dum i ≺ n {
                 fixum textus l ← su.recide(lines[i])
                 fixum numerus marker ← longitudo_ordinis(l)
 
@@ -510,7 +510,7 @@ functio converte_nodes(textus source, textus site_locale) → lista<doc_mod.Node
                 varia textus item ← l.sectio(marker, l.longitudo())
                 i ← i + 1
 
-                dum i < n {
+                dum i ≺ n {
                     fixum textus cont ← su.recide(lines[i])
                     si est_initium_blocki(cont) {
                         rumpe
@@ -530,11 +530,11 @@ functio converte_nodes(textus source, textus site_locale) → lista<doc_mod.Node
         si est_citatio(linea) {
             varia textus quote ← ""
 
-            dum i < n {
+            dum i ≺ n {
                 fixum textus l ← su.recide(lines[i])
 
                 si est_citatio(l) {
-                    si quote.longitudo() > 0 {
+                    si quote.longitudo() ≻ 0 {
                         quote ← quote + nl
                     }
                     quote ← quote + l.sectio(2, l.longitudo())
@@ -561,7 +561,7 @@ functio converte_nodes(textus source, textus site_locale) → lista<doc_mod.Node
         varia lista<doc_mod.Node> para ← genera_inline(linea, site_locale)
         i ← i + 1
 
-        dum i < n {
+        dum i ≺ n {
             fixum textus l ← su.recide(lines[i])
 
             si est_initium_blocki(l) {
@@ -629,7 +629,7 @@ probandum "markdown converter" tag "core" {
 
     proba "heading without anchor renders bare" {
         fixum textus html ← converte("## Plain")
-        adfirma su.initium_index(html, "id=") < 0
+        adfirma su.initium_index(html, "id=") ≺ 0
     }
 
     proba "paragraph wrapping" {
@@ -658,7 +658,7 @@ probandum "markdown converter" tag "core" {
         # paragraph, which is what hard-wrapped source prose needs.
         adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("li", vacua, "Item one\nwrapped tail"))) ≥ 0
         adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("li", vacua, "Item two"))) ≥ 0
-        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("p", vacua, "wrapped tail"))) < 0
+        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("p", vacua, "wrapped tail"))) ≺ 0
     }
 
     proba "ordered list" {
@@ -672,7 +672,7 @@ probandum "markdown converter" tag "core" {
         fixum textus input ← "1. First thing\n   wrapped tail\n2. Second thing"
         fixum textus html ← converte(input)
         adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("li", vacua, "First thing\nwrapped tail"))) ≥ 0
-        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("p", vacua, "wrapped tail"))) < 0
+        adfirma su.initium_index(html, doc_mod.node_html(doc_mod.leaf("p", vacua, "wrapped tail"))) ≺ 0
     }
 
     proba "decimal at line start is not a list" {

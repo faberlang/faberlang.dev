@@ -128,7 +128,7 @@ functio nav_tree() → lista<NavGroup> {
 
 # True when the item or any descendant names the page's section.
 functio subtree_habet_sectionem(NavItem it, textus active_section) → bivalens {
-    si it.section ≡ active_section et active_section.longitudo() > 0 ergo redde verum
+    si it.section ≡ active_section et active_section.longitudo() ≻ 0 ergo redde verum
     varia bivalens found ← falsum
     itera ex it.children fixum child {
         si subtree_habet_sectionem(child, active_section) {
@@ -224,7 +224,7 @@ functio nav_branch_node(NavItem it, textus active_section, textus pagina_href, t
 }
 
 functio nav_item_node(NavItem it, textus active_section, textus pagina_href, textus site_locale, numerus section_n) → doc_mod.Node {
-    si it.children.longitudo() > 0 {
+    si it.children.longitudo() ≻ 0 {
         redde doc_mod.element("li", vacua, [nav_branch_node(it, active_section, pagina_href, site_locale, section_n)])
     }
     redde doc_mod.element("li", vacua, [nav_link_node(it, active_section, pagina_href, site_locale, section_n)])

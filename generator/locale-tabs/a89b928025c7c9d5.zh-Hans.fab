@@ -6,7 +6,7 @@
     常量 文本 nomen ← "Marcus"
     常量 整数 aetas ← 30
     常量 布尔 ready ← 真
-    常量 列表<整数> empty ← 空集
+    常量 列表≺整数≻ empty ← 空集
     常量 整数 ∪ 空类型 missing ← 皆无
     显示 nomen, aetas, ready, empty, missing
     nihil_agit()

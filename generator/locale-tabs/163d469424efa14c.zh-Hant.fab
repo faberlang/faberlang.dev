@@ -1,6 +1,6 @@
 入口 {
-    定值 列表<文字> nomina ← ["Alia", "Brunus"]
-    定值 列表<整數> aetates ← [34, 27]
+    定值 列表≺文字≻ nomina ← ["Alia", "Brunus"]
+    定值 列表≺整數≻ aetates ← [34, 27]
     遍歷 取自 nomina, aetates 在 [i] 定值 nomen, aetas {
         註記 i, nomen, aetas
     }

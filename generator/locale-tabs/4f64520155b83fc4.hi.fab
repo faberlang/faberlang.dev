@@ -1,5 +1,5 @@
 आरंभ {
-    स्थिर तालिका<पाठ, पाठ> persona ← { "nomen": "Marcus", "urbs": "Roma" }
+    स्थिर तालिका≺पाठ, पाठ> persona ← { "nomen": "Marcus", "urbs": "Roma" }
     दोहराओ से persona स्थिर clavis {
         दिखाओ clavis, persona[clavis]
     }

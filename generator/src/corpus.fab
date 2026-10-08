@@ -26,7 +26,7 @@ genus CorpusExample {
 
 functio lista_vale(textus raw) → lista<textus> {
     fixum numerus len ← raw.longitudo()
-    si len < 2 ergo redde vacua
+    si len ≺ 2 ergo redde vacua
 
     fixum textus inner ← raw.sectio(1, len - 1)
     fixum lista<textus> pieces ← su.divide(inner, ",")
@@ -34,7 +34,7 @@ functio lista_vale(textus raw) → lista<textus> {
 
     itera ex pieces fixum piece {
         fixum textus value ← fm.strip_quotes(su.recide(piece))
-        si value.longitudo() > 0 {
+        si value.longitudo() ≻ 0 {
             values.appende(value)
         }
     }
@@ -91,7 +91,7 @@ functio example_block(CorpusExample example) → textus {
     si example.kind ≡ "reject" {
         redde block + "\n**Expected:** compilation rejects this example.\n"
     }
-    si example.expected.longitudo() > 0 {
+    si example.expected.longitudo() ≻ 0 {
         redde block + "\n**Expected output:**\n\n```\n" + example.expected + "\n```\n"
     }
     redde block
@@ -125,7 +125,7 @@ functio aliases_line(textus raw) → textus {
 }
 
 functio visum_titulus(textus term, textus display) → textus {
-    si display.longitudo() > 0 ergo redde display
+    si display.longitudo() ≻ 0 ergo redde display
     redde term
 }
 
@@ -162,10 +162,10 @@ functio genera_corpus_markdown(textus term, textus bundle, textus display) → t
     fixum CorpusExample primary ← examples[0]
     varia textus page_summary ← primary.summary
     varia textus page_syntax ← primary.syntax
-    si summary.longitudo() > 0 {
+    si summary.longitudo() ≻ 0 {
         page_summary ← summary
     }
-    si syntax.longitudo() > 0 {
+    si syntax.longitudo() ≻ 0 {
         page_syntax ← syntax
     }
     fixum CorpusExample page_primary ← CorpusExample {

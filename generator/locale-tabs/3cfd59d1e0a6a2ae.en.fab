@@ -1,4 +1,4 @@
-fn primum(list<int> res) → int ∪ none {
+fn primum(list≺int≻ res) → int ∪ none {
     if res.length() ≡ 0 then return null
     return res[0]
 }

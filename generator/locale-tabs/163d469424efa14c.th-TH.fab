@@ -1,6 +1,6 @@
 เริ่ม {
-    คงที่ รายการ<ข้อความ> nomina ← ["Alia", "Brunus"]
-    คงที่ รายการ<จํานวน> aetates ← [34, 27]
+    คงที่ รายการ≺ข้อความ≻ nomina ← ["Alia", "Brunus"]
+    คงที่ รายการ≺จํานวน≻ aetates ← [34, 27]
     วน ออก nomina, aetates ที่ [i] คงที่ nomen, aetas {
         บันทึก i, nomen, aetas
     }

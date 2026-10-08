@@ -15,10 +15,10 @@ functio divide(textus source) → Split {
     fixum textus plus3 ← "+++"
     fixum numerus primus ← su.initium_index(source, plus3)
 
-    si primus < 0 ergo redde Split { fields = {}, body = source }
+    si primus ≺ 0 ergo redde Split { fields = {}, body = source }
 
     fixum numerus secundus ← su.initium_index_post(source, plus3, primus + 3)
-    si secundus < 0 ergo redde Split { fields = {}, body = source }
+    si secundus ≺ 0 ergo redde Split { fields = {}, body = source }
 
     fixum textus fm_text ← source.sectio(primus + 3, secundus)
     fixum textus post_fm ← source.sectio(secundus + 3, source.longitudo())
@@ -42,7 +42,7 @@ functio parse_toml_lines(textus toml_text, textus nl_char) → tabula<textus, te
         si su.initium_cum(trimmed, "[") ergo perge
 
         fixum numerus eq_pos ← su.initium_index(trimmed, "=")
-        si eq_pos < 0 ergo perge
+        si eq_pos ≺ 0 ergo perge
 
         fixum textus key ← su.recide(trimmed.sectio(0, eq_pos))
         fixum textus value_raw ← su.recide(trimmed.sectio(eq_pos + 1, trimmed.longitudo()))
@@ -58,7 +58,7 @@ functio parse_toml_lines(textus toml_text, textus nl_char) → tabula<textus, te
 @ publica
 functio strip_quotes(textus value) → textus {
     fixum numerus len ← value.longitudo()
-    si len < 2 ergo redde value
+    si len ≺ 2 ergo redde value
 
     fixum textus primus_char ← value.sectio(0, 1)
     fixum textus ultimus_char ← value.sectio(len - 1, len)

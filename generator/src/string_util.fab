@@ -13,7 +13,7 @@ functio nl() → textus {
 @ publica
 functio initium_index(textus haystack, textus needle) → numerus {
     si needle.longitudo() ≡ 0 ergo redde 0
-    si haystack.longitudo() < needle.longitudo() ergo redde -1
+    si haystack.longitudo() ≺ needle.longitudo() ergo redde -1
 
     fixum numerus hlen ← haystack.longitudo()
     fixum numerus nlen ← needle.longitudo()
@@ -38,19 +38,19 @@ functio initium_index_post(textus haystack, textus needle, numerus start) → nu
 
     fixum numerus hlen ← haystack.longitudo()
     si start ≥ hlen ergo redde -1
-    si hlen - start < needle.longitudo() ergo redde -1
+    si hlen - start ≺ needle.longitudo() ergo redde -1
 
     fixum textus post ← haystack.sectio(start, hlen)
     fixum numerus relative ← initium_index(post, needle)
 
-    si relative < 0 ergo redde -1
+    si relative ≺ 0 ergo redde -1
     redde start + relative
 }
 
 # Check if text starts with prefix.
 @ publica
 functio initium_cum(textus text, textus prefix) → bivalens {
-    si text.longitudo() < prefix.longitudo() ergo redde falsum
+    si text.longitudo() ≺ prefix.longitudo() ergo redde falsum
     redde text.sectio(0, prefix.longitudo()) ≡ prefix
 }
 
@@ -67,7 +67,7 @@ functio divide(textus text, textus delim) → lista<textus> {
     dum start ≤ text.longitudo() {
         fixum numerus pos ← initium_index_post(text, delim, start)
 
-        si pos < 0 {
+        si pos ≺ 0 {
             parts.appende(text.sectio(start, text.longitudo()))
             redde parts
         }

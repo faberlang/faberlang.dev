@@ -6,7 +6,7 @@
     คงที่ ข้อความ nomen ← "Marcus"
     คงที่ จํานวน aetas ← 30
     คงที่ ตรรกะ ready ← จริง
-    คงที่ รายการ<จํานวน> empty ← เซตว่าง
+    คงที่ รายการ≺จํานวน≻ empty ← เซตว่าง
     คงที่ จํานวน ∪ นัล missing ← ว่างเปล่า
     บันทึก nomen, aetas, ready, empty, missing
     nihil_agit()

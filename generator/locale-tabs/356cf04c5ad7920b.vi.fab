@@ -1,4 +1,4 @@
-hàm primum<T>(danh_sách<T> res) → T ∪ rỗng_ty {
+hàm primum<T>(danh_sách≺T≻ res) → T ∪ rỗng_ty {
     nếu res.độ_dài() ≡ 0 do_đó trả không_gì
     trả res[0]
 }

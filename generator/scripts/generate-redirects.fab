@@ -65,7 +65,7 @@ main {
     const list<string> lines ← found.split("\n") ↦ list<string>
     var list<string> paths ← []
     for from lines const p {
-        if p.length() > 0 {
+        if p.length() ≻ 0 {
             paths.append(p)
         }
     }

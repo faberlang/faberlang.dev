@@ -6,7 +6,7 @@
     स्थिर पाठ nomen ← "Marcus"
     स्थिर संख्या aetas ← 30
     स्थिर तार्किक ready ← सत्य
-    स्थिर सूची<संख्या> empty ← खाली
+    स्थिर सूची≺संख्या≻ empty ← खाली
     स्थिर संख्या ∪ शून्य_मान missing ← शून्यवत्
     दिखाओ nomen, aetas, ready, empty, missing
     nihil_agit()

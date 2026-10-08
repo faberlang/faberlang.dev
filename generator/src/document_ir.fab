@@ -72,12 +72,12 @@ functio html_escape(textus value) → textus {
     varia numerus plain_start ← 0
     varia numerus i ← 0
 
-    dum i < len {
+    dum i ≺ len {
         fixum textus ch ← value.sectio(i, i + 1)
 
         # & " < >
         si ((ch ≡ "&" aut ch ≡ "\"") aut ch ≡ "<") aut ch ≡ ">" {
-            si i > plain_start {
+            si i ≻ plain_start {
                 result ← result + value.sectio(plain_start, i)
             }
 
@@ -100,7 +100,7 @@ functio html_escape(textus value) → textus {
         i ← i + 1
     }
 
-    si len > plain_start {
+    si len ≻ plain_start {
         result ← result + value.sectio(plain_start, len)
     }
 

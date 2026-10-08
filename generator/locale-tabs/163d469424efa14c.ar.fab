@@ -1,6 +1,6 @@
 بداية {
-    ثابت قائمة<نص> nomina ← ["Alia", "Brunus"]
-    ثابت قائمة<عدد> aetates ← [34, 27]
+    ثابت قائمة≺نص≻ nomina ← ["Alia", "Brunus"]
+    ثابت قائمة≺عدد≻ aetates ← [34, 27]
     كرر من nomina, aetates عند [i] ثابت nomen, aetas {
         اعرض i, nomen, aetas
     }

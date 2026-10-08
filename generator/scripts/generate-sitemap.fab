@@ -100,7 +100,7 @@ main {
                 continue
             }
             const string loc ← loc_for(p, locale_root, locale, base)
-            if loc.length() > 0 {
+            if loc.length() ≻ 0 {
                 urls.append(loc)
             }
         }

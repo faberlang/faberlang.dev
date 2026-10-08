@@ -55,7 +55,7 @@ functio parse_heading(numerus level, textus rest, numerus line_num) → Heading 
 
     si brace_start ≥ 0 {
         fixum numerus brace_end ← su.initium_index_post(trimmed, "}", brace_start)
-        si brace_end > brace_start {
+        si brace_end ≻ brace_start {
             fixum textus anchor ← trimmed.sectio(brace_start + 2, brace_end)
             fixum textus text ← su.recide(trimmed.sectio(0, brace_start))
 

@@ -65,26 +65,26 @@ functio lege_paginam(textus source_path, textus iter, textus site_locale, textus
 }
 
 functio ex_operands(lista<textus> operands) → textus {
-    si operands.longitudo() < 1 ergo redde usus()
+    si operands.longitudo() ≺ 1 ergo redde usus()
     fixum textus mode ← operands[0]
     si mode ≡ "--page" {
-        si operands.longitudo() < 3 ergo redde "missing page iter or source"
+        si operands.longitudo() ≺ 3 ergo redde "missing page iter or source"
         fixum textus site_locale ← operandum(operands, 3, "en-US")
         fixum textus reader_locale ← operandum(operands, 4, site_locale)
         redde lege_paginam(operands[2], operands[1], site_locale, reader_locale, operandum(operands, 5, "/speculum.css"))
     }
     si mode ≡ "--corpus-markdown" {
-        si operands.longitudo() < 3 ergo redde "missing corpus term or bundle"
+        si operands.longitudo() ≺ 3 ergo redde "missing corpus term or bundle"
         redde genera_corpus_markdown(operands[1], fs.read_file<textus>(operands[2]), operandum(operands, 3, ""))
     }
     si mode ≡ "--corpus" {
-        si operands.longitudo() < 3 ergo redde "missing corpus term or bundle"
+        si operands.longitudo() ≺ 3 ergo redde "missing corpus term or bundle"
         fixum textus site_locale ← operandum(operands, 3, "en-US")
         fixum textus reader_locale ← operandum(operands, 4, site_locale)
         redde genera_corpus(operands[1], fs.read_file<textus>(operands[2]), site_locale, reader_locale, operandum(operands, 5, "/speculum.css"), operandum(operands, 6, ""))
     }
     si mode ≡ "--alias" {
-        si operands.longitudo() < 3 ergo redde "missing alias or canonical term"
+        si operands.longitudo() ≺ 3 ergo redde "missing alias or canonical term"
         fixum textus site_locale ← operandum(operands, 3, "en-US")
         redde genera_alias_redirect(operands[1], operands[2], site_locale, operandum(operands, 4, "/speculum.css"))
     }

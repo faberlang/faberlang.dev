@@ -1,5 +1,5 @@
 بداية {
-    ثابت قائمة<عدد> numeri ← [10, 20, 30]
+    ثابت قائمة≺عدد≻ numeri ← [10, 20, 30]
     كرر عن numeri ثابت index {
         اعرض index, numeri[index]
     }
