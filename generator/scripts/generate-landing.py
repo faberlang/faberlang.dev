@@ -148,12 +148,8 @@ def esc(s: str) -> str:
 
 
 def favicon_href(gen: Path) -> str:
-    """The site favicon data URI, read from its one definition in html.fab."""
-    src = (gen / "src" / "html.fab").read_text(encoding="utf-8")
-    m = re.search(r'favicon_href\(\)[^{]*\{\s*redde "(data:image/svg\+xml,[^"]+)"', src)
-    if not m:
-        raise SystemExit("could not read the favicon from generator/src/html.fab")
-    return m.group(1)
+    from site_assets import FAVICON_HREF
+    return FAVICON_HREF
 
 
 def ticker(items: list[str]) -> str:

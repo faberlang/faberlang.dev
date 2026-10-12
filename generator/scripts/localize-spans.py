@@ -11,7 +11,7 @@ code block calling it `int`, or Chinese prose reading
 No new markup is needed to fix that, and CONTENT-PLAN.md § Machine contracts
 §4 explains why: the translatable vocabulary is closed, and everything outside
 it — glyphs, CLI verbs, compounds, paths — is invariant by design. The
-generator already resolves that closed set. `generator/src/span.fab` matches
+generator already resolves that closed set. the renderer matches
 each inline span against 37 keywords + 13 types and emits `class="kw"` or
 `class="typ"`; anything else falls through to a plain `<code>`. The
 classification is therefore already sitting in the rendered HTML, in every

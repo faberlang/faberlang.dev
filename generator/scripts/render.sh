@@ -36,8 +36,8 @@ echo "Rendering $SOURCE (Python renderer)..." >&2
 echo "  Site locale: $SITE_LOCALE" >&2
 echo "  Reader locale: $READER_LOCALE" >&2
 
-# The page iter is derived by the renderer with the same rule the Faber
-# entry uses (deriva_iter in generator/src/main.fab).
+# The renderer derives the page iter from the source path using the established
+# site URL rule.
 if [ -n "$OUTPUT" ]; then
     "$PYTHON" "${SCRIPT_DIR}/speculum_py.py" "$SOURCE" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET" > "$OUTPUT"
     echo "Wrote: $OUTPUT" >&2

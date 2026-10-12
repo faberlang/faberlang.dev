@@ -8,7 +8,7 @@ asked. Container law: [`../AGENTS.md`](../AGENTS.md).
 ## What this repo is
 
 The faberlang.dev documentation site. Contains Markdown source pages, the
-Speculum site generator (written in Faber), and the deployment pipeline for
+Speculum site generator (written in Python), and the deployment pipeline for
 the live website at https://faberlang.dev.
 
 ## Repository layout
@@ -35,24 +35,20 @@ faberlang.dev/
                            cards
     faber-search.js        Progressive enhancer for the renderbar keyword box
     faber-instrument.js    Every-page enhancer (docs pages load it from the
-                           head, `html.fab`): live UTC readout, the
+                           head, the Python renderer): live UTC readout, the
                            `[data-copy]` copy buttons, and a COPY button added
                            to every fenced code block. These three files are
                            the site's only JavaScript;
                            no-JS pages remain fully readable. Fonts are system
                            fonts only: the docs head loads no web fonts.
-  generator/               Speculum site generator (Faber → Rust binary)
+  generator/               Speculum site generator (single Python renderer)
     locales.toml           Locale registry (reader_locale, native names)
-    src/                   Faber modules
-    src/tela_island.fab    Latin island: imports tela:tela; not used by main.fab
-    src/html.fab           Live page emitter (document_ir)
     www/speculum.css       Shared stylesheet (single source of truth)
     diagrams/              Committed SVG cache, one file per ```mermaid block
+    scripts/speculum_py.py Renderer core and CLI modes (--page, corpus, alias)
     scripts/build-site.sh  Full site render + redirects + gates
     scripts/render.sh      Single-page render wrapper
     scripts/validate-fences.sh  CI fence validator
-    scripts/check-tela-island.sh  Island gate: radix check + Tela/document_ir bytes
-    faber.toml             Package config
   dist/                    Committed static site (GitHub Pages artifact root)
     en-US/…                Maintained English content
     {ar,hi,th-TH,vi,zh-Hans,zh-Hant}/…  Retired URL meta-refresh aliases
@@ -94,8 +90,8 @@ The deploy pipeline is:
 1. **Local render:** `generator/scripts/build-site.sh` renders only
    `src/en-US/` to `dist/en-US/`, writes root IA redirects and retired-locale
    meta-refresh aliases, and runs gates
-2. **Commit:** `dist/` is committed to the repo (the generator requires
-   the Faber compiler, which is not available in CI)
+2. **Commit:** `dist/` is committed to the repo. The renderer is Python;
+   source generation may call the Faber CLI locally.
 3. **Deploy:** Push to `main` triggers `.github/workflows/deploy-pages.yml`,
    which uploads `dist/` as a GitHub Pages artifact and deploys it
 
@@ -109,9 +105,9 @@ the cross-compile proof (real `radix emit` output plus a capability table parsed
 from `faber targets`), the libraries, and the grammar size (read from the
 EBNF). The hero has no canvas or ambient animation; `faber-instrument.js` is
 its only script (clock + copy buttons), and the page works without it. The
-favicon is defined once, `favicon_href()` in `generator/src/html.fab`, which the
-landing and portal generators read from there. Its code panels are compiler
-output captured by `generator/scripts/capture-landing-panels.sh` into `generator/landing/` — run
+favicon data URI is defined once in `generator/scripts/site_assets.py`
+and shared by the renderer, landing, and portal generators. Its code panels
+are compiler output captured by `generator/scripts/capture-landing-panels.sh` into `generator/landing/` — run
 that, never hand-edit a panel. The full language chooser lives at `/porta/`
 (`generate-portal.py`; panels from `generator/portal/exemplars/`). Retired
 English-at-root content paths still redirect via `<meta http-equiv="refresh">`
@@ -138,8 +134,10 @@ leakage, missing discovery surfaces).
 
 ### How it works
 
-The generator currently has Faber and Python components under `generator/`.
-U4 builds only the English source tree. It converts
+The renderer is one Python module, `generator/scripts/speculum_py.py`, shared
+by the authored-page, corpus, and alias modes. There is no Faber generator
+package or compiled generator binary. U4 builds only the English source tree.
+It converts
 Markdown → HTML with:
 
 - Block-level parsing (headings, paragraphs, tables, lists, code blocks)
@@ -253,7 +251,7 @@ surfaces include the locale chooser, captured panels, and mapping pages.
 | Cheat sheet / targets fences | `locale-tabs.py`, current captured 8-locale cards defaulting to `en` |
 | Remaining single-token `` `term` `` spans in prose | `localize-spans.py`, after the render |
 
-`span.fab` resolves each inline span against a closed set — 37 keywords + 13
+`speculum_py.py` resolves each inline span against a closed set — 37 keywords + 13
 types — and emits `class="kw"` or `class="typ"`; `localize-spans.py` swaps the
 spelling. Compounds are projected by token rules that refuse paths
 (`norma:textus`, `solum:lege`), anchors, production ids (`itera_stmt`),
@@ -341,21 +339,12 @@ the English tree; `/llms-full.txt` is a locale-neutral corpus reference.
 
 - `faber` 1.12.0 (docs site documents this release; `static/install.md`, the install skill, and the skill catalog pin it)
 - `radix` 0.84.0
-- **Generator runs interpreted (2026-10-11):** `faber build -t rust` fails
-  at plan time on current radix because the generator's file I/O routes
-  through `norma:fs` (`call 'solum:lege'` frames) and no host provider
-  serves those routes since the native host was dropped with `hosts`
-  (native I/O returns with core-norma N2). The MIR runner serves solum
-  in-process, so `build-site.sh` and `render.sh` invoke the package through
-  `generator/scripts/speculum-run.sh` (`faber run generator -- …`). The
-  wrapper re-analyzes the package per invocation (~10 s), so renders
-  parallelize (`RENDER_JOBS`, default 6; `CORPUS_JOBS`, default 8). A full
-  build is ~1 h wall. When core-norma N2 restores a host route, revisit:
-  a generator-side `--batch` mode would amortize analysis even interpreted,
-  and a compiled binary removes the per-page cost entirely.
-  The 2026-10-02 toolchain pin (`/tmp/radix-sep30` + support-path override)
-  is obsolete — current radix parses the generator, and the pin's checkout
-  no longer exists.
+- **Renderer:** `generator/scripts/speculum_py.py` is the single Python
+  implementation for page, corpus, and alias rendering. It uses only the
+  standard library and runs on Python 3.9+. `render.sh`, `build-site.sh`,
+  `render-corpus-batch.sh`, and `render-failed-pages.sh` call it directly.
+  `build-site.sh` uses sequential page rendering and preserves per-page status
+  lines; corpus record projection may still spend time in `faber convert`.
 
 ## Campaign stages
 

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Render all canonical corpus term pages, aliases, category indexes, and the corpus hub.
 #
-# The shell/Python wrapper owns filesystem traversal and batch orchestration. The
-# Faber generator owns term-page Markdown/HTML rendering and alias bridge HTML.
+# The shell/Python wrapper owns filesystem traversal and batch orchestration.
+# speculum_py.py renders term-page Markdown/HTML and alias bridge HTML.
 #
 # Usage:
 #   render-corpus-batch.sh <output-dir> <site_locale> <reader_locale> [stylesheet]
@@ -20,14 +20,13 @@ if [ ! -d "$CORPUS_DIR" ] && [ -d "${WORKSPACE_DIR}/../radix/corpus" ]; then
     WORKSPACE_DIR="$(cd "$WORKSPACE_DIR/.." && pwd)"
     CORPUS_DIR="${WORKSPACE_DIR}/radix/corpus"
 fi
-BUILD_DIR="${GENERATOR_DIR}/target/faber"
-FABER="${FABER:-faber}"
 
 OUTPUT_DIR="${1:-${REPO_DIR}/dist}"
 SITE_LOCALE="${2:-en-US}"
 READER_LOCALE="${3:-la}"
 STYLESHEET="${4:-/speculum.css}"
 PROOF_DIR="${PROOF_DIR:-}"
+BUILD_DIR="${GENERATOR_DIR}/target/faber"
 
 if [ ! -d "$CORPUS_DIR" ]; then
     echo "ERROR: corpus directory not found: $CORPUS_DIR" >&2
@@ -40,11 +39,7 @@ if [ -n "$PROOF_DIR" ]; then
     mkdir -p "$PROOF_DIR"
 fi
 
-# The generator runs interpreted (speculum-run.sh): no host provider serves
-# the norma:fs routes a compiled binary would need, and the MIR runner serves
-# solum in-process. The wrapper re-analyzes per invocation, so the driver
-# parallelizes term and alias renders.
-BINARY="${GENERATOR_DIR}/scripts/speculum-run.sh"
+RENDERER="${GENERATOR_DIR}/scripts/speculum_py.py"
 
 # Prefer 3.11+ for tomllib (batch orchestration); fall back to python3.
 PYTHON="${PYTHON:-}"
@@ -58,12 +53,12 @@ if [ -z "$PYTHON" ]; then
     fi
 fi
 
-echo "Corpus batch renders through the interpreted runner..." >&2
+echo "Corpus batch renders through the Python renderer..." >&2
 
 CORPUS_DIR="$CORPUS_DIR" BUILD_DIR="$BUILD_DIR" OUTPUT_DIR="$OUTPUT_DIR" \
 SITE_LOCALE="$SITE_LOCALE" READER_LOCALE="$READER_LOCALE" \
 STYLESHEET="$STYLESHEET" PROOF_DIR="$PROOF_DIR" \
-GENERATOR_DIR="$GENERATOR_DIR" BINARY="$BINARY" \
+GENERATOR_DIR="$GENERATOR_DIR" RENDERER="$RENDERER" PYTHON="$PYTHON" \
 READER_ROOT="${WORKSPACE_DIR}/radix/locale" \
 "$PYTHON" << 'PYEOF'
 import html as html_lib
@@ -85,7 +80,6 @@ from corpus_locale import assign_slugs, load_pack
 from project_reader_terms import load_mapping, project_corpus_source, project_prose
 
 corpus = Path(os.environ["CORPUS_DIR"])
-build = Path(os.environ["BUILD_DIR"])
 output = Path(os.environ["OUTPUT_DIR"])
 site_locale = os.environ["SITE_LOCALE"]
 reader_locale = os.environ["READER_LOCALE"]
@@ -93,7 +87,9 @@ stylesheet = os.environ["STYLESHEET"]
 proof_dir = os.environ.get("PROOF_DIR")
 generator_dir = Path(os.environ["GENERATOR_DIR"])
 reader_root = Path(os.environ["READER_ROOT"])
-binary = Path(os.environ.get("BINARY", str(build / "target/release/speculum-gen")))
+build = Path(os.environ["BUILD_DIR"])
+renderer = Path(os.environ["RENDERER"])
+python = os.environ.get("PYTHON", "python3")
 
 marker = "\n§§CORPUS_RECORD§§\n"
 source_marker = "\n§§CORPUS_SOURCE§§\n"
@@ -175,24 +171,15 @@ corpus_out.mkdir(parents=True, exist_ok=True)
 anatomy_payloads = {}
 semantics_added = semantics_duplicate = semantics_missing = 0
 
-# Every generator invocation is bounded: a stuck compiler process must fail
-# its term loudly instead of leaving the build waiting forever.
-RENDER_TIMEOUT = int(os.environ.get("RENDER_TIMEOUT", "300"))
-
-def run_bounded(cmd: list[str], timeout: int = RENDER_TIMEOUT) -> str:
-    try:
-        return subprocess.check_output(cmd, text=True, timeout=timeout)
-    except subprocess.TimeoutExpired as exc:
-        raise RuntimeError(f"render timed out after {timeout}s: {' '.join(cmd[:4])} …") from exc
+def render(cmd: list[str]) -> str:
+    return subprocess.check_output(cmd, text=True)
 
 def render_term(term):
     """One corpus term: bundle, page, optional proof; returns anatomy payload
     and the semantics verdict so the caller can keep honest counters.
 
-    Bundle filenames and every operand the generator receives are ASCII: the
-    faber entry marshalling transliterates non-ASCII argv (a glyph term such
-    as U+2025 arrives as '..'), so the term travels inside the bundle file
-    and the generator recovers it with termen_ex_canonica."""
+    The term travels inside the bundle file and the renderer recovers it with
+    termen_ex_canonica, keeping Unicode corpus identities out of path names."""
     from urllib.parse import quote
     term_slug = slugs[term]
     selected = sorted(records_by_term[term], key=lambda item: (item[0], item[1]))
@@ -205,8 +192,8 @@ def render_term(term):
     bundle.write_text(marker.join(bundle_records))
     display = term_slug if term_slug.isascii() else ""
     html_path = corpus_out / f"{term_slug}.html"
-    html = run_bounded(
-        [str(binary), "--corpus-bundle", str(bundle), site_locale, reader_locale, stylesheet, display],
+    html = render(
+        [python, str(renderer), "--corpus-bundle", str(bundle), site_locale, reader_locale, stylesheet, display],
     )
     if term_slug != term:
         html = html.replace(f"<title>{term} — Faber</title>", f"<title>{term_slug} — Faber</title>")
@@ -217,8 +204,8 @@ def render_term(term):
     if proof_dir:
         proof_path = Path(proof_dir) / f"{term_slug}.md"
         proof_path.parent.mkdir(parents=True, exist_ok=True)
-        markdown = run_bounded(
-            [str(binary), "--corpus-markdown-bundle", str(bundle), display],
+        markdown = render(
+            [python, str(renderer), "--corpus-markdown-bundle", str(bundle), display],
         )
         proof_path.write_text(markdown)
     bucket = term_bucket[term]
@@ -243,10 +230,8 @@ def render_term(term):
             verdict = "added"
     return term_slug, crumb, sem, verdict
 
-# The interpreted runner re-analyzes the generator per invocation; render
-# terms concurrently to keep the batch's wall time bounded. A term that times
-# out or errors is recorded and reported; the batch still finishes, then
-# exits nonzero so the failure cannot pass silently.
+# Render terms concurrently. Failures are recorded and reported after the
+# batch so one bad record does not hide the remaining diagnostics.
 from concurrent.futures import ThreadPoolExecutor
 CORPUS_JOBS = int(os.environ.get("CORPUS_JOBS", "8"))
 term_failures = []
@@ -297,16 +282,13 @@ def render_alias(pair):
     alias, target = pair
     alias_path = corpus_out / f"{alias}.html"
     if alias.isascii() and target.isascii():
-        alias_html = run_bounded(
-            [str(binary), "--alias", alias, target, site_locale, stylesheet],
+        alias_html = render(
+            [python, str(renderer), "--alias", alias, target, site_locale, stylesheet],
         )
     else:
-        # The entry marshalling transliterates non-ASCII argv, so render with
-        # ASCII placeholders and substitute the real glyph strings in-place.
-        alias_html = run_bounded(
-            [str(binary), "--alias", "ZUNIALIAS", "ZUNICANON", site_locale, stylesheet],
+        alias_html = render(
+            [python, str(renderer), "--alias", alias, target, site_locale, stylesheet],
         )
-        alias_html = alias_html.replace("ZUNIALIAS", alias).replace("ZUNICANON", target)
     alias_path.write_text(clean_generated(alias_html))
     return alias
 
@@ -369,7 +351,7 @@ for category in sorted(category_terms):
     source.write_text("\n".join(md) + "\n")
     out = corpus_out / "category" / f"{category_slug}.html"
     out.parent.mkdir(parents=True, exist_ok=True)
-    html = run_bounded([str(binary), "--page", f"corpus/category/{category_slug}", str(source), site_locale, reader_locale, stylesheet])
+    html = render([python, str(renderer), "--page", f"corpus/category/{category_slug}", str(source), site_locale, reader_locale, stylesheet])
     out.write_text(clean_generated(html))
     category_index.append((category, category_slug, len(terms_in_category)))
 
@@ -382,7 +364,7 @@ for term in terms:
 # per-tag categories (those pages keep rendering; they just leave the hub).
 hub_source = generated_dir / "corpus-index.md"
 hub_source.write_text(corpus_ia.hub_markdown(buckets, bucket_counts, len(terms)))
-hub_html = run_bounded([str(binary), "--page", "corpus/index", str(hub_source), site_locale, reader_locale, stylesheet])
+hub_html = render([python, str(renderer), "--page", "corpus/index", str(hub_source), site_locale, reader_locale, stylesheet])
 (corpus_out / "index.html").write_text(clean_generated(hub_html))
 
 # Curated bucket pages: the hub's concept path.
@@ -397,8 +379,8 @@ for bucket in buckets:
     source = generated_dir / f"bucket-{bucket.key}.md"
     source.write_text(corpus_ia.bucket_markdown(bucket, [slugs[t] for t in members]))
     out = bucket_dir / f"{bucket.key}.html"
-    bucket_html = run_bounded(
-        [str(binary), "--page", f"corpus/bucket/{bucket.key}", str(source), site_locale, reader_locale, stylesheet],
+    bucket_html = render(
+        [python, str(renderer), "--page", f"corpus/bucket/{bucket.key}", str(source), site_locale, reader_locale, stylesheet],
     )
     out.write_text(clean_generated(bucket_html))
     extra_crumbs.append((
@@ -410,7 +392,7 @@ for bucket in buckets:
 az_slugs = sorted(set(slugs.values()), key=lambda s: (s.casefold(), s))
 az_source = generated_dir / "corpus-az.md"
 az_source.write_text(corpus_ia.az_markdown(az_slugs))
-az_html = run_bounded([str(binary), "--page", "corpus/az", str(az_source), site_locale, reader_locale, stylesheet])
+az_html = render([python, str(renderer), "--page", "corpus/az", str(az_source), site_locale, reader_locale, stylesheet])
 az_path = corpus_out / "az.html"
 az_path.write_text(clean_generated(az_html))
 extra_crumbs.append((
@@ -418,8 +400,8 @@ extra_crumbs.append((
     corpus_ia.breadcrumb_html([("Corpus", f"/{site_locale}/corpus/index.html"), ("A–Z", None)]),
 ))
 
-# Remap leftover Latin identity hrefs (related links from the Faber
-# generator still emit `term`) onto this locale's pack slugs, then drop
+# Remap leftover Latin identity hrefs (related links may still emit `term`)
+# onto this locale's pack slugs, then drop
 # any remaining href whose file was never written.
 existing_corpus = set()
 for p in corpus_out.rglob("*.html"):

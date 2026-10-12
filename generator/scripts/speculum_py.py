@@ -2,15 +2,14 @@
 # -*- coding: utf-8 -*-
 """Speculum site generator — Python port of the Faber generator.
 
-Byte-equivalent port of generator/src/*.fab: main.fab (CLI dispatch +
-deriva_iter), types.fab, frontmatter.fab, string_util.fab, span.fab,
-anchor.fab, fence.fab, link_prefix.fab, document_ir.fab, markdown.fab,
-html.fab, nav.fab, corpus.fab. The Faber sources are the oracle until
-unit U3 deletes them; faithful replication includes their quirks (the
+Python implementation of the retired Faber renderer, covering its CLI
+dispatch, page assembly, corpus, and alias modes. The committed Faber-era
+output is the equivalence oracle; faithful behavior includes renderer quirks
+(the
 one-element `field_lista` sources list, the fence extractor's close_idx
 jump, unknown-locale og:locale passthrough, ...).
 
-CLI contract (identical to speculum-run.sh forwarding to main.fab):
+CLI contract (matching the former Faber renderer):
 
     --page <iter> <source.md> <site_locale> [reader_locale] [stylesheet]
     --corpus-markdown <term> <bundle> [display]
@@ -1170,12 +1169,8 @@ def pagina_description(pag):
 
 
 def favicon_href():
-    return ("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'"
-            "%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='6"
-            "4'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%"
-            "2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stro"
-            "ke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'"
-            "/%3E%3C/svg%3E")
+    from site_assets import FAVICON_HREF
+    return FAVICON_HREF
 
 
 def genera_head(pag, stylesheet_link):
@@ -1494,17 +1489,16 @@ def visum_titulus(term, display):
 
 def corpus_markdown(term, primary, examples):
     aliases = aliases_line(primary.aliases)
-    # The Faber template at corpus.fab:134 is an interpolated raw string:
-    # its backslash sequences stay literal (\n and \" are two characters
-    # each), so the generated frontmatter never parses as structured
-    # fields — title/section/sources fall back to their defaults.
-    markdown = ("+++\\ntitle = \\\"" + term + "\\\"\\nsection = \\\"corpus\\\"\\n"
-                "sources = [\\\"" + primary.path + "\\\"]\\n+++\\n\\n"
-                + primary.summary + "\\n\\n"
-                + aliases + "**Syntax:** `" + primary.syntax + "`\\n\\n"
-                "## Category\\n\\n`" + primary.category + "`\\n\\n"
-                "## Related\\n\\n" + related_links(primary.related) + "\\n\\n"
-                "## Examples\\n\\n")
+    # This frontmatter is the compiled-era corpus contract. Keep it distinct
+    # from the Faber interpreter's regressed interpolated-template behavior:
+    # real newlines let fm_divide parse title, section, and sources.
+    markdown = ("+++\ntitle = \"" + term + "\"\nsection = \"corpus\"\n"
+                "sources = [\"" + primary.path + "\"]\n+++\n\n"
+                + primary.summary + "\n\n"
+                + aliases + "**Syntax:** `" + primary.syntax + "`\n\n"
+                "## Category\n\n`" + primary.category + "`\n\n"
+                "## Related\n\n" + related_links(primary.related) + "\n\n"
+                "## Examples\n\n")
     for example in examples:
         markdown = markdown + example_label(example)
         markdown = markdown + example_block(example) + "\n"

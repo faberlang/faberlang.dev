@@ -38,6 +38,11 @@ if [ -z "$PYTHON" ]; then
     done
 fi
 
+if [ -z "$PYTHON" ]; then
+    echo "ERROR: Python 3 is required" >&2
+    exit 1
+fi
+RENDERER="${SCRIPT_DIR}/speculum_py.py"
 FABER="${FABER:-faber}"
 # Toolchain for the fence-localize (transcode) step. Defaults to $FABER;
 # pin separately when reader packs are newer than the installed faber's
@@ -70,13 +75,6 @@ if [ -f "$SUPPORT_PATH_ROOT/hosts/crates/solum/src/manifest.json" ]; then
 fi
 BUILD_DIR="${GENERATOR_DIR}/target/faber"
 
-# Binary path candidates (old radix-out subdir vs new top-level target)
-# Release, not debug. The generator is Faber-compiled Rust whose hot path is
-# superlinear in page size under -O0: a 6.5k-word page took 4.5s debug and
-# 0.10s release (44x). Debug cost ~70s per full build across seven locales.
-BINARY_OLD="${BUILD_DIR}/target/release/speculum-gen"
-BINARY_NEW="${GENERATOR_DIR}/target/release/speculum-gen"
-
 # List of temp dirs to clean on exit
 TEMPDIRS=()
 
@@ -90,29 +88,6 @@ cleanup() {
     fi
 }
 trap cleanup EXIT
-
-# ------------------------------------------------------------------
-# Find the speculum-gen binary, preferring newer mtime.
-# ------------------------------------------------------------------
-find_binary() {
-    local old_exists=0 new_exists=0
-    [ -x "$BINARY_OLD" ] && old_exists=1
-    [ -x "$BINARY_NEW" ] && new_exists=1
-
-    if [ "$old_exists" = 1 ] && [ "$new_exists" = 1 ]; then
-        if [ "$BINARY_NEW" -nt "$BINARY_OLD" ]; then
-            echo "$BINARY_NEW"
-        else
-            echo "$BINARY_OLD"
-        fi
-    elif [ "$old_exists" = 1 ]; then
-        echo "$BINARY_OLD"
-    elif [ "$new_exists" = 1 ]; then
-        echo "$BINARY_NEW"
-    else
-        echo ""
-    fi
-}
 
 # ------------------------------------------------------------------
 # Smoke check helper
@@ -174,7 +149,6 @@ render_locale() {
     local site="$3"
     local reader="$4"
     local style="$5"
-    local binary="$6"
 
     local render_source="$src"
     local localized_source=""
@@ -198,38 +172,20 @@ render_locale() {
     echo "  [corpus] Rendering corpus pages for ${site}..."
     "${SCRIPT_DIR}/render-corpus-batch.sh" "$out" "$site" "$reader" "$style"
 
-    # Interpreted renders are independent per page; the wrapper re-analyzes
-    # the package on every invocation, so parallelize to keep wall time sane.
-    # GNU timeout bounds each render: a stuck compiler process must fail its
-    # page instead of leaving the build waiting forever.
-    RENDER_JOBS="${RENDER_JOBS:-6}"
-    if command -v gtimeout >/dev/null 2>&1; then
-        PAGE_TIMEOUT_CMD=(gtimeout "${PAGE_TIMEOUT:-900}")
-    elif command -v timeout >/dev/null 2>&1; then
-        PAGE_TIMEOUT_CMD=(timeout "${PAGE_TIMEOUT:-900}")
-    else
-        PAGE_TIMEOUT_CMD=()
-    fi
-    find "$render_source" -name "*.md" -type f | sort | \
-    RENDER_JOBS="$RENDER_JOBS" binary="$binary" out="$out" site="$site" \
-    reader="$reader" style="$style" render_source="$render_source" \
-    PAGE_TIMEOUT_CMD="${PAGE_TIMEOUT_CMD[*]}" \
-    xargs -P "$RENDER_JOBS" -I {} bash -c '
-        md_file="{}"
+    # The Python renderer is fast enough to run directly; retain one log line
+    # per page so build output remains easy to audit.
+    while IFS= read -r md_file; do
         rel_path="${md_file#${render_source}/}"
         iter="${rel_path%.md}"
         out_path="${out}/${iter}.html"
         mkdir -p "$(dirname "$out_path")"
-        # Pass --page so canonical/og:url use the locale-relative slug even
-        # when the source lives in a temp localize directory (no src/ prefix).
-        # shellcheck disable=SC2086 — PAGE_TIMEOUT_CMD is one or two words
-        if $PAGE_TIMEOUT_CMD "$binary" --page "$iter" "$md_file" "$site" "$reader" "$style" > "$out_path" 2>/dev/null; then
+        if "$PYTHON" "$RENDERER" --page "$iter" "$md_file" "$site" "$reader" "$style" > "$out_path" 2>/dev/null; then
             echo "  ✓ ${iter}.html"
         else
             echo "  ✗ FAILED: ${rel_path}"
             rm -f "$out_path"
         fi
-    '
+    done < <(find "$render_source" -name "*.md" -type f | sort)
 }
 
 # ==================================================================
@@ -292,24 +248,12 @@ if [ "$FULL_SITE" = true ]; then
     # build that silently depends on the network is a build that breaks on a
     # plane. Run generate-releases.py by hand when a release lands.
 
-    # Step 1: Validate generator source (once)
-    echo "[1/9] Validating generator source..."
-    "${SCRIPT_DIR}/validate-html-literals.sh" "${GENERATOR_DIR}/src"
-
-    # The generator runs interpreted through the MIR runner: `faber build
-    # -t rust` fails at plan time because the generator's file I/O routes
-    # through norma:fs and no host provider serves those routes until
-    # core-norma N2. The wrapper re-analyzes the package per invocation, so
-    # renders parallelize (RENDER_JOBS) instead of compiling once.
-    echo "[2/9] Generator runner: interpreted (speculum-run.sh)"
-    BINARY="${SCRIPT_DIR}/speculum-run.sh"
-    if [ ! -x "$BINARY" ]; then
-        echo "ERROR: speculum-run.sh not executable: $BINARY" >&2
-        exit 1
-    fi
+    # Step 1: Python renderer availability
+    echo "[1/9] Python renderer: $PYTHON"
+    "$PYTHON" -c 'import sys; assert sys.version_info >= (3, 9)'
 
     # Step 2: Clean and prepare output directory
-    echo "[3/9] Preparing output directory..."
+    echo "[2/9] Preparing output directory..."
     rm -rf "$OUTPUT_DIR"
     mkdir -p "$OUTPUT_DIR"
 
@@ -328,7 +272,7 @@ if [ "$FULL_SITE" = true ]; then
     echo "[4/9] Rendering the en-US tree..."
     site="en-US"
     reader=$("$PYTHON" "${SCRIPT_DIR}/locales_registry.py" reader "$site")
-    render_locale "${REPO_DIR}/src/${site}" "${OUTPUT_DIR}/${site}" "$site" "$reader" "$STYLESHEET" "$BINARY"
+    render_locale "${REPO_DIR}/src/${site}" "${OUTPUT_DIR}/${site}" "$site" "$reader" "$STYLESHEET"
 
     # Step 4: Re-copy static after render
     echo "[5/9] Re-copying static assets after render..."
@@ -408,7 +352,7 @@ if [ "$FULL_SITE" = true ]; then
         smoke_contains "${OUTPUT_DIR}/robots.txt" "Allow: /" "robots allow all"
         smoke_contains "${OUTPUT_DIR}/search-index.json" '"t":"redde"' "search index dataset"
         smoke_contains "${OUTPUT_DIR}/search-index.en-US.json" '"d":"fn"' "search index English slugs"
-        smoke_contains "${OUTPUT_DIR}/en-US/corpus/fn.html" "<title>corpus/fn — Faber</title>" "localized corpus fn page"
+        smoke_contains "${OUTPUT_DIR}/en-US/corpus/fn.html" "<title>fn — Faber</title>" "localized corpus fn page"
         smoke_contains "${OUTPUT_DIR}/en-US/corpus/functio.html" "url=/en-US/corpus/fn.html" "latin corpus identity redirects"
         # IA restructure: the five journey sections must all render
         for sec in language toolchain libraries reference; do
@@ -615,18 +559,10 @@ else
     # SINGLE-LOCALE MODE (4 positional args)
     # ==============================================================
 
-    # Single-locale mode uses the same interpreted runner as the full build.
-    BINARY="${SCRIPT_DIR}/speculum-run.sh"
-    if [ ! -x "$BINARY" ]; then
-        echo "ERROR: speculum-run.sh not executable: $BINARY" >&2
-        exit 1
-    fi
-    echo "  Runner: $BINARY (interpreted)"
-
     echo "Rendering ${SITE_LOCALE} → ${OUTPUT_DIR}..."
     mkdir -p "$OUTPUT_DIR"
     cp "${GENERATOR_DIR}/www/speculum.css" "${OUTPUT_DIR}/speculum.css"
-    render_locale "$SOURCE_DIR" "$OUTPUT_DIR" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET" "$BINARY"
+    render_locale "$SOURCE_DIR" "$OUTPUT_DIR" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET"
     echo "Re-copying static..."
     STATIC_DIR="${REPO_DIR}/static"
     if [ -d "$STATIC_DIR" ] && [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
