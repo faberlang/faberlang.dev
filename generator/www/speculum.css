@@ -2417,3 +2417,5 @@ a.fl-door:hover::after { color: var(--accent); transform: translateX(3px); }
     pre.faber-code, .content .table-scroll { break-inside: avoid; }
     .content a { text-decoration: none; }
 }
+
+main:has(#grammar-locale-la:checked) .grammar-spelling[data-locale="la"],main:has(#grammar-locale-ar:checked) .grammar-spelling[data-locale="ar"],main:has(#grammar-locale-hi:checked) .grammar-spelling[data-locale="hi"],main:has(#grammar-locale-th-TH:checked) .grammar-spelling[data-locale="th-TH"],main:has(#grammar-locale-vi:checked) .grammar-spelling[data-locale="vi"],main:has(#grammar-locale-zh-Hans:checked) .grammar-spelling[data-locale="zh-Hans"],main:has(#grammar-locale-zh-Hant:checked) .grammar-spelling[data-locale="zh-Hant"]{display:inline}

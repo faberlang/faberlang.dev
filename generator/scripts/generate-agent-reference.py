@@ -151,9 +151,9 @@ def main() -> int:
     if not args.check:
         for directory in args.out or DEFAULT_OUTPUTS:
             directory.mkdir(parents=True, exist_ok=True)
-            for name in [path.stem for path in directory.glob("*.md")]:
-                if name not in pages and name != "index":
-                    (directory / f"{name}.md").unlink()
+            for path in directory.glob("*.md"):
+                if path.stem not in pages and path.stem != "index":
+                    path.unlink()
             (directory / "index.md").write_text(index, encoding="utf-8")
             for slug, text in pages.items():
                 (directory / f"{slug}.md").write_text(text, encoding="utf-8")

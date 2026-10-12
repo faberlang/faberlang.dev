@@ -565,6 +565,7 @@ if [ "$FULL_SITE" = true ]; then
         "$PYTHON" "${SCRIPT_DIR}/inject-toc.py" "$authored_stage"
         "$PYTHON" "${SCRIPT_DIR}/tag-glyph-chips.py" "$authored_stage"
         "$PYTHON" "${SCRIPT_DIR}/inject-pass.py" "$authored_stage"
+        "$PYTHON" "${SCRIPT_DIR}/grammar-toggle.py" "$authored_stage/en-US/reference"
         while IFS= read -r rendered; do
             rel="${rendered#${authored_stage}/}"
             mkdir -p "$(dirname "${OUTPUT_DIR}/${rel}")"

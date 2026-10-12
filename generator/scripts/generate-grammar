@@ -1,32 +1,18 @@
 #!/usr/bin/env bash
 set -euo pipefail
-# GSD-8: native-Faber gate launcher. The gate logic lives entirely in
-# generate-grammar.fab; this entrypoint only runs it on the faber binary.
-# FABER_BIN overrides the binary. The PATH `faber` is never a valid
-# execution surface.
-#
-# `faber run` interprets a single source only when the path is not covered
-# by a faber.toml (package routing rejects kernel imports with PKG001), so the
-# gate source is staged outside the faberlang.dev package before
-# interpretation. Staging happens in a per-run mktemp dir under
-# ${TMPDIR:-/tmp}.
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 cd "$ROOT"
-FABER_WORKSPACE="${FABER_LIBRARY_HOME:-$(cd "$ROOT/.." && pwd)}"
-if [[ ! -x "$FABER_WORKSPACE/radix/target/debug/faber" && -x "$ROOT/../../radix/target/debug/faber" ]]; then
-    FABER_WORKSPACE="$(cd "$ROOT/../.." && pwd)"
+PYTHON="${PYTHON:-}"
+if [ -z "$PYTHON" ]; then
+    for candidate in python3.13 python3.12 python3.11 python3; do
+        if command -v "$candidate" >/dev/null 2>&1 && "$candidate" -c 'import tomllib' >/dev/null 2>&1; then
+            PYTHON="$(command -v "$candidate")"
+            break
+        fi
+    done
 fi
-FABER_BIN="${FABER_BIN:-$FABER_WORKSPACE/radix/target/debug/faber}"
-export FABER_BIN
-if [[ ! -x "$FABER_BIN" ]]; then
-    echo "generate-grammar: released faber binary not found: $FABER_BIN (set FABER_BIN)" >&2
+if [ -z "$PYTHON" ]; then
+    echo "generate-grammar: Python 3.11+ with tomllib is required" >&2
     exit 1
 fi
-TMP="$(mktemp -d "${TMPDIR:-/tmp}/generate-grammar.XXXXXX")"
-trap 'rm -rf "$TMP"' EXIT
-cp "$ROOT/generator/scripts/generate-grammar.fab" "$TMP/generate-grammar.fab"
-if "$FABER_BIN" run "$TMP/generate-grammar.fab" -- "$@"; then
-    exit 0
-else
-    exit $?
-fi
+exec "$PYTHON" "$ROOT/generator/scripts/generate-grammar.py" "$@"
