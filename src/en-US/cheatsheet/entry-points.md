@@ -11,7 +11,7 @@ Where a Faber program starts.
 
 `incipit` — "it begins". No parameters, no return type.
 
-```faber
+```faber locale-tabs
 incipit {
     nota "Salve, munde!"
 }
@@ -21,7 +21,7 @@ incipit {
 
 `incipiet` — "it will begin". Use it when the program awaits anything.
 
-```faber
+```faber locale-tabs
 incipiet {
     nota "async ready"
 }
@@ -33,7 +33,7 @@ The two are alternatives, not a pair: a program declares one or the other.
 
 `argumenta` binds the parsed argument object.
 
-```faber
+```faber locale-tabs
 incipit argumenta args {
     nota "started"
 }
@@ -43,7 +43,7 @@ incipit argumenta args {
 
 The `@ cli` annotation names the binary the package produces.
 
-```faber
+```faber locale-tabs
 @ cli "salve"
 incipit argumenta args {
     nota "started"
@@ -55,7 +55,7 @@ incipit argumenta args {
 `@ optio` declares one command-line option. Repeat it for each. The binding
 name comes first, then keyword-introduced fields — no braces, no commas.
 
-```faber
+```faber locale-tabs
 @ cli "salve"
 @ optio nomen brevis "n" longum "nomen" typus textus descriptio "who to greet"
 @ optio quotiens longum "quotiens" typus numerus descriptio "how many times"

@@ -16,7 +16,7 @@ this is — and it is required, so a loop always says what it walks.
 
 ## Over values {#values}
 
-```faber
+```faber locale-tabs
 incipit {
     fixum lista<numerus> numeri ← [1, 2, 3]
     itera ex numeri fixum n {
@@ -31,7 +31,7 @@ incipit {
 and the loop walks them all in lockstep — one shared index, one value from
 each list per turn:
 
-```faber
+```faber locale-tabs
 incipit {
     fixum lista<textus> nomina ← ["Alia", "Brunus"]
     fixum lista<numerus> aetates ← [34, 27]
@@ -49,7 +49,7 @@ truncating to the minimum.
 
 ## Over keys {#keys}
 
-```faber
+```faber locale-tabs
 incipit {
     fixum tabula<textus, textus> persona ← { "nomen": "Marcus", "urbs": "Roma" }
     itera de persona fixum clavis {
@@ -61,7 +61,7 @@ incipit {
 The same mode gives you list indices, which is what you want when the position
 matters as much as the value:
 
-```faber
+```faber locale-tabs
 incipit {
     fixum lista<numerus> numeri ← [10, 20, 30]
     itera de numeri fixum index {
@@ -74,7 +74,7 @@ incipit {
 
 `‥` builds a range. The lower bound is included, the upper bound is not.
 
-```faber
+```faber locale-tabs
 incipit {
     itera ab 0‥3 fixum i {
         nota i
@@ -84,7 +84,7 @@ incipit {
 
 `per` sets the step:
 
-```faber
+```faber locale-tabs
 incipit {
     itera ab 0‥10 per 2 fixum i {
         nota i
@@ -96,7 +96,7 @@ incipit {
 
 `dum` loops while a condition holds.
 
-```faber
+```faber locale-tabs
 incipit {
     varia numerus i ← 0
     dum i ≺ 3 {
@@ -110,7 +110,7 @@ incipit {
 
 `rumpe` breaks out; `perge` skips to the next iteration.
 
-```faber
+```faber locale-tabs
 incipit {
     fixum lista<numerus> numeri ← [1, 2, 3, 4, 5]
     itera ex numeri fixum n {

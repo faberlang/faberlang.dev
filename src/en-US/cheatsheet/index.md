@@ -19,7 +19,7 @@ people really write something.
 Three signals do most of the work. Types come before names, behaviour words are
 Latin, and structure is carried by glyphs rather than punctuation soup.
 
-```faber
+```faber locale-tabs
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
     si b ≡ 0 ergo redde nulla
     redde a / b
@@ -32,7 +32,7 @@ equality. `redde` returns.
 
 A whole program, doing real work:
 
-```faber
+```faber locale-tabs
 incipit {
     fixum lista<f32> valores ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
     fixum tensor<f32, [2, 3]> matrix ← valores ↦ tensor<f32, [2, 3]>

@@ -1,0 +1,5 @@
+bắt_đầu {
+    hằng i32 narrow ← 7 ∷ i32
+    hằng u64 wide ← 255 ∷ u64
+    hằng f32 single ← 1.5 ∷ f32
+}

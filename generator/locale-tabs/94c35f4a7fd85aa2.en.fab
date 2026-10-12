@@ -1,0 +1,11 @@
+main {
+    # a declaration
+    const int count ← 0
+    # another
+    const string name ← "Marcus"
+    # a generic
+    const list<int> scores ← [1, 2, 3]
+    # a nullable
+    const int ∪ none maybe ← null
+    print count, name, scores, maybe
+}

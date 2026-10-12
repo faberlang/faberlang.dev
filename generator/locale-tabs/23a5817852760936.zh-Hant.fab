@@ -1,0 +1,7 @@
+函式 identitas<T>(T datum) → T {
+    傳回 datum
+}
+
+入口 {
+    定值 整數 seven ← identitas<整數>(7)
+}

@@ -10,7 +10,7 @@ fail — which is exactly what distinguishes it from casting.
 
 ## Converting {#converting}
 
-```faber
+```faber locale-tabs
 incipit {
     fixum numerus n ← "42" ↦ numerus
     fixum textus s ← 42 ↦ textus
@@ -24,7 +24,7 @@ incipit {
 `⊥` after a conversion supplies the value to use when it fails. Without it, a
 failed conversion travels down the [error channel](/cheatsheet/errors.html).
 
-```faber
+```faber locale-tabs
 incipit {
     fixum numerus good ← "42" ↦ numerus ⊥ 0
     fixum numerus bad ← "not a number" ↦ numerus ⊥ 0
@@ -39,7 +39,7 @@ fail with; `⊥` only ever holds a value. Read `⊥ 0` as *on failure, 0*.
 
 Conversions apply left to right.
 
-```faber
+```faber locale-tabs
 incipit {
     fixum textus roundtrip ← "42" ↦ numerus ↦ textus
     nota roundtrip
@@ -50,7 +50,7 @@ incipit {
 
 The target can name a precise width, not just a family.
 
-```faber
+```faber locale-tabs
 incipit {
     fixum i32 narrow ← "255" ↦ i32
     fixum f32 single ← "1.5" ↦ f32

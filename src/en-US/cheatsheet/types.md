@@ -9,7 +9,7 @@ Types come before names. `textus nomen`, never `nomen: textus`.
 
 ## Everyday types {#everyday}
 
-```faber
+```faber locale-tabs
 functio nihil_agit() → vacuum {
     nota "done"
 }
@@ -43,7 +43,7 @@ is a compile error.
 Name the width in type position. These are the numeric types — the same
 list as [Math in the ether](/language/behavior/numeric-widths.html).
 
-```faber
+```faber locale-tabs
 incipit {
     fixum i32 signed ← -7
     fixum u8 byte ← 255
@@ -62,7 +62,7 @@ incipit {
 
 ## Lists and tables {#collections}
 
-```faber
+```faber locale-tabs
 incipit {
     fixum lista<numerus> numeri ← [1, 2, 3]
     fixum tabula<textus, numerus> aetates ← { "Marcus": 30, "Julia": 28 }
@@ -79,7 +79,7 @@ ascribed to a map type, not a separate map literal, which is why it uses `:`
 where Faber's typed construction uses `=`. Both take
 [type holes](/cheatsheet/bindings.html#holes) and unions as their parameters:
 
-```faber
+```faber locale-tabs
 incipit {
     fixum lista<numerus ∪ textus> mixed ← [1, "two", 3]
     fixum _ inferred ← [1, 2, 3]
@@ -92,7 +92,7 @@ incipit {
 A tensor carries an element type and a shape. A flat list converts to a
 shaped tensor with `↦` (`flat ↦ tf32[2, 3]`); `vacua` is the empty collection.
 
-```faber
+```faber locale-tabs
 incipit {
     fixum lista<f32> flat ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
     fixum tensor<f32, [2, 3]> m ← flat ↦ tensor<f32, [2, 3]>
@@ -105,7 +105,7 @@ incipit {
 `tf32[2, 3]` is sugar for `tensor<f32, [2, 3]>` — same type, shorter to read in
 a signature.
 
-```faber
+```faber locale-tabs
 functio medium(tf32[2, 3] m) → f32 {
     redde m.media()
 }
@@ -122,7 +122,7 @@ incipit {
 `vector<T, N>` is a fixed-width vector, with `vf32[N]` as its sugar. Build one
 by converting a literal — the conversion is what fixes the width.
 
-```faber
+```faber locale-tabs
 incipit {
     fixum vf32[4] v ← [1.0, 2.0, 3.0, 4.0] ↦ vf32[4]
     nota v
@@ -133,7 +133,7 @@ incipit {
 
 `typus` gives a type another name.
 
-```faber
+```faber locale-tabs
 typus Nomen = textus
 typus Puncta = lista<numerus>
 
@@ -148,7 +148,7 @@ incipit {
 
 `genus` declares a record. Fields are type-first, like everything else.
 
-```faber
+```faber locale-tabs
 genus Persona {
     fixum textus nomen
     fixum numerus aetas

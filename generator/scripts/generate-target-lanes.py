@@ -517,7 +517,7 @@ def render_target_page(target: str, order: int) -> str | None:
         lines += [
             "**Faber source**",
             "",
-            "```faber",
+            "```faber locale-tabs",
             source,
             "```",
             "",

@@ -9,7 +9,7 @@ sources = []
 
 Type parameters go in angle brackets after the name.
 
-```faber
+```faber locale-tabs
 functio identitas<T>(T datum) → T {
     redde datum
 }
@@ -28,7 +28,7 @@ a dynamic value.
 Type parameters compose with unions, which is how "maybe nothing" is expressed
 generically.
 
-```faber
+```faber locale-tabs
 functio primum<T>(lista<T> res) → T ∪ nihil {
     si res.longitudo() ≡ 0 ergo redde nulla
     redde res[0]
@@ -43,7 +43,7 @@ incipit {
 
 The built-in collections are generic already.
 
-```faber
+```faber locale-tabs
 incipit {
     fixum lista<textus> nomina ← ["Marcus", "Julia"]
     fixum tabula<textus, numerus> aetates ← { "Marcus": 30 }
@@ -55,7 +55,7 @@ incipit {
 
 `genus` declares a record type with type-first fields.
 
-```faber
+```faber locale-tabs
 genus Persona {
     fixum textus nomen
     fixum numerus aetas
@@ -75,7 +75,7 @@ incipit {
 
 A `genus` can carry functions alongside its fields.
 
-```faber
+```faber locale-tabs
 genus Punctum {
     fixum numerus x
     fixum numerus y

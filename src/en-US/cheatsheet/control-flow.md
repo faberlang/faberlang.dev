@@ -9,7 +9,7 @@ sources = []
 
 `si` / `sin` / `secus` — if, else-if, else.
 
-```faber
+```faber locale-tabs
 incipit {
     fixum numerus n ← 2
 
@@ -27,7 +27,7 @@ incipit {
 
 `ergo` takes a single statement instead of a block. Useful for guards.
 
-```faber
+```faber locale-tabs
 functio abs(numerus n) → numerus {
     si n ≺ 0 ergo redde 0 - n
     redde n
@@ -42,7 +42,7 @@ incipit {
 
 `elige` picks an arm by value. `ceterum` is the fallback.
 
-```faber
+```faber locale-tabs
 incipit {
     fixum numerus n ← 2
 
@@ -59,7 +59,7 @@ incipit {
 `discerne` matches over a union-typed value. This is how a
 [union hole](/cheatsheet/bindings.html#union-holes) gets read back out.
 
-```faber
+```faber locale-tabs
 incipit {
     fixum numerus ∪ textus signum ← 7
 
@@ -78,7 +78,7 @@ type, `discerne` discriminates among the members of a union.
 `redde` returns a value. A function with no `→` returns nothing and needs no
 `redde`.
 
-```faber
+```faber locale-tabs
 functio duplica(numerus n) → numerus {
     redde n * 2
 }

@@ -1,12 +1,21 @@
 #!/usr/bin/env python3
 """
-locale-tabs.py — turn cheat sheet Faber examples into reader-locale tab cards.
+locale-tabs.py — turn marked Faber examples into reader-locale tab cards.
 
-The cheat sheet teaches the language. The single most distinctive thing about
-the language is that the same program can be read in eight human languages, and
-showing that once on the landing page while every teaching example stays Latin
-undersells it. So each example becomes the same tabbed card the landing hero
-uses, carrying all eight reader surfaces.
+The single most distinctive thing about the language is that the same program
+can be read in eight human languages, and showing that only on the landing
+page while every teaching example stays in one surface undersells it. So a
+fence can opt in to the tabbed card the landing hero uses, carrying all eight
+reader surfaces:
+
+    ```faber locale-tabs
+
+Selection is marker-driven and repo-wide: every ```` ```faber ```` fence that
+names the `locale-tabs` token becomes a card, on any authored page. Fences
+that name a locale (`locale=…`) or carry `mode=package` are never carded even
+when marked — they are pinned surfaces or fragments of a multi-file package,
+so there is nothing honest to transcode. A marked fence whose panels are
+missing degrades back to the plain block it started as.
 
 One base source, eight renderings. The Latin fence in the Markdown is the
 authority; every other panel is `faber convert --to <X>` output. Nobody
@@ -14,16 +23,18 @@ hand-writes Thai or Arabic Faber, and a reader-pack change re-renders them all.
 
 Two subcommands, mirroring diagrams.py:
 
-    render   transcode every cheat sheet fence into the committed cache
+    render   transcode every marked fence into the committed cache
     inject   build the tab cards in dist/ from that cache
 
 `render` is an authoring step and needs the toolchain. `inject` only ever reads
 the cache, so a build without `faber` still produces a complete site — panels
 simply stay as the plain Latin block they started as.
 
-A fence marked `mode=package` is left alone: it is one file of a multi-file
-package, so `faber convert` cannot resolve its siblings and there is nothing
-honest to render. Those blocks stay as the plain source they were.
+The cache keys each example on the digest of the SHOWN (`en`) panel — the text
+the en-US page actually carries. The mapping from the Latin fence body to that
+key is persisted in `keys.json`, so a re-run over unchanged fences performs
+zero `faber convert` invocations: the Latin digest alone resolves the key, and
+the panels are already on disk.
 
 Usage:
     locale-tabs.py render [src/en-US]
@@ -74,24 +85,29 @@ BASE = "la"
 # reader sees before touching anything.
 SHOWN = "en"
 
-# Sections whose Faber blocks become locale cards. Both teach by showing code:
-# the cheat sheet with short examples and Target lanes with the source beside
-# what it lowers to.
-#
-# On Target lanes only the Faber side becomes a card. The generated panels are
-# Rust, Go, LLVM and friends, and BLOCK_RE matches `lang-faber` exactly, so the
-# comparison the page exists for stays intact — one switchable source column
-# against one fixed output column.
-SECTIONS = ("cheatsheet", "targets")
+# The fence-info token that opts a fence into a tab card, and the persisted
+# mapping latin-body-digest → shown-digest. Keys are what make an immediate
+# re-run of `render` free: without them every fence would pay one `en`
+# transcode just to recompute the cache key it already has.
+MARKER = "locale-tabs"
+KEYS = CACHE / "keys.json"
 
 # locales.md is already a side-by-side of every reader surface; wrapping its
 # panels in another locale switcher would nest the same idea inside itself.
 SKIP_FILES = {"locales.md"}
 
 FENCE_RE = re.compile(r"^```faber([^\n]*)\n(.*?)^```", re.S | re.M)
+# The renderer copies a fence's info tokens into the code class, so a marked
+# fence arrives here as `lang-faber locale-tabs`. Matching the marker keeps
+# `inject` from ever swapping an unmarked block on a digest coincidence.
 BLOCK_RE = re.compile(
-    r'<pre class="faber-code"><code class="lang-faber">(.*?)</code></pre>', re.S
+    r'<pre class="faber-code">'
+    r'<code class="lang-faber locale-tabs">(.*?)</code></pre>', re.S
 )
+
+# Every `faber convert` this process issues, reported in the render summary so
+# a cache-hit re-run can prove it performed zero.
+CONVERTS = 0
 
 
 def digest(source: str) -> str:
@@ -136,6 +152,8 @@ def stage_packs(faber: str) -> bool:
 
 
 def transcode(faber: str, source: str, locale: str) -> str | None:
+    global CONVERTS
+    CONVERTS += 1
     tmp = CACHE / f".transcode-{locale}.fab"
     tmp.write_text(source, encoding="utf-8")
     try:
@@ -195,6 +213,7 @@ def cache_vocabularies() -> int:
 
 
 def cmd_render(src_root: Path) -> int:
+    global CONVERTS
     faber = find_faber()
     if faber is None:
         print("ERROR: no faber binary found; cannot transcode", file=sys.stderr)
@@ -204,33 +223,48 @@ def cmd_render(src_root: Path) -> int:
     if not stage_packs(faber):
         return 1
 
+    keys: dict[str, str] = {}
+    if KEYS.is_file():
+        keys = json.loads(KEYS.read_text(encoding="utf-8"))
+
     wanted: set[str] = set()
+    seen_latin: set[str] = set()
     rendered = failed = 0
 
-    sources = [md for section in SECTIONS
-               for md in sorted((src_root / section).glob("*.md"))]
-    for md in sources:
+    for md in sorted(src_root.rglob("*.md")):
         if md.name in SKIP_FILES:
             continue
         text = md.read_text(encoding="utf-8")
         for match in FENCE_RE.finditer(text):
             info, body = match.group(1), match.group(2).rstrip()
-            # A fence that already names a locale, or is package-scoped, is not
-            # a plain Latin teaching example.
-            if "locale=" in info or "mode=package" in info:
+            # Only a fence that asks for a card gets one, and a fence that
+            # already names a locale, or is package-scoped, is not a plain
+            # Latin teaching example even when it asks.
+            if MARKER not in info or "locale=" in info or "mode=package" in info:
                 continue
+            latin = digest(body)
+            seen_latin.add(latin)
             # Key on the panel the page will actually carry, not on the Latin
             # source. The en-US build now transcodes its fences to `en` before
             # rendering, so `inject` reads English out of the HTML and digests
             # that; keying on Latin here would miss every lookup and silently
-            # drop the cards back to plain blocks.
-            shown = transcode(faber, body, SHOWN)
-            if shown is None:
-                print(f"  {md.name} {digest(body)} {SHOWN}: no rendering",
-                      file=sys.stderr)
-                failed += 1
-                continue
-            key = digest(shown)
+            # drop the cards back to plain blocks. A known Latin digest with
+            # its en panel on disk resolves without a transcode; a new or
+            # panel-less digest pays one `en` convert to (re)establish the
+            # key.
+            key = keys.get(latin)
+            en_panel = CACHE / f"{key}.{SHOWN}.fab" if key else None
+            if key and en_panel is not None and en_panel.is_file():
+                shown = en_panel.read_text(encoding="utf-8").rstrip()
+            else:
+                shown = transcode(faber, body, SHOWN)
+                if shown is None:
+                    print(f"  {md.name} {latin} {SHOWN}: no rendering",
+                          file=sys.stderr)
+                    failed += 1
+                    continue
+                key = digest(shown)
+                keys[latin] = key
             wanted.add(key)
             for loc in LOCALES:
                 out = CACHE / f"{key}.{loc['id']}.fab"
@@ -253,8 +287,18 @@ def cmd_render(src_root: Path) -> int:
             cached.unlink()
             stale += 1
 
+    # The mapping survives only for fences still present: a removed or
+    # unmarked fence drops its entry, so the file never grows monotonically.
+    dropped = len(keys) - len(seen_latin)
+    keys = {k: v for k, v in keys.items() if k in seen_latin}
+    KEYS.write_text(
+        json.dumps(keys, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
+
     print(f"  locale-tabs: {len(wanted)} examples, {rendered} panels rendered, "
-          f"{failed} unavailable, {stale} stale removed, {vocabs} vocabularies")
+          f"{failed} unavailable, {stale} stale removed, {vocabs} vocabularies, "
+          f"{len(keys)} keys mapped ({dropped} dropped), converts: {CONVERTS}")
     return 0
 
 
@@ -316,13 +360,18 @@ def cmd_inject(dist: Path) -> int:
         print("  locale-tabs: no cache, panels left as plain blocks")
         return 0
 
-    targets = [d for d in ((dist / "en-US" / s) for s in SECTIONS) if d.is_dir()]
-    if not targets:
-        print("  locale-tabs: no target sections, nothing to inject")
+    # Any authored page can carry a marked fence now, so scan the whole en-US
+    # tree (or whatever stage tree the caller passes). A block swaps only when
+    # its digest has a cache entry, so unmarked pages are untouched: missing
+    # panels degrade to the plain block.
+    root = dist / "en-US"
+    if not root.is_dir():
+        print("  locale-tabs: no en-US tree, nothing to inject")
         return 0
+    pages_iter = sorted(root.rglob("*.html"))
 
     pages = swapped = 0
-    for page in sorted(p for d in targets for p in d.glob("*.html")):
+    for page in pages_iter:
         if page.stem + ".md" in SKIP_FILES:
             continue
         text = page.read_text(encoding="utf-8")

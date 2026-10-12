@@ -19,7 +19,7 @@ The retired `privata` import marker is not valid.
 
 Norma modules are named `norma:<module>`.
 
-```faber
+```faber locale-tabs
 importa ex "norma:consolum" consolum
 
 incipit {
@@ -31,7 +31,7 @@ incipit {
 
 A relative path imports a sibling module. No extension.
 
-```faber
+```faber locale-tabs
 importa ex "./auxilium" saluta
 
 incipit {
@@ -44,7 +44,7 @@ incipit {
 The name after the source is the item, not the module — so you import exactly
 what you use.
 
-```faber
+```faber locale-tabs
 importa ex "norma:textus" textus
 
 incipit {
@@ -56,7 +56,7 @@ incipit {
 
 `ut` renames on the way in.
 
-```faber
+```faber locale-tabs
 importa ex "./auxilium" saluta ut greet
 
 incipit {
@@ -72,7 +72,7 @@ badly at the call site.
 `publica` imports *and* re-exports, so consumers of your module see the name
 too. Imports without it remain private to the current module.
 
-```faber
+```faber locale-tabs
 importa ex "norma:textus" publica textus
 
 incipit {

@@ -13,7 +13,7 @@ from the return value. That one decision shapes everything on this page.
 
 `→` declares what a function returns. `⇥` declares what it may fail with.
 
-```faber
+```faber locale-tabs
 functio divide(numerus a, numerus b) → numerus ⇥ textus {
     si b ≡ 0 ergo iace "division by zero"
     redde a / b
@@ -34,7 +34,7 @@ A guard pairs the condition and the throw in one statement. `requirit`
 (English `require`) throws when the condition fails; `reice` (English
 `reject`) throws when the condition holds:
 
-```faber
+```faber locale-tabs
 functio divide(numerus a, numerus b) → numerus ⇥ textus {
     requirit b ≢ 0 iace "division by zero"
     redde a / b
@@ -52,7 +52,7 @@ Like `iace` itself, guards need the function to declare a `⇥` channel.
 
 `cape` binds whatever came down the error channel.
 
-```faber
+```faber locale-tabs
 functio divide(numerus a, numerus b) → numerus ⇥ textus {
     si b ≡ 0 ergo iace "division by zero"
     redde a / b
@@ -82,7 +82,7 @@ failure, so it cannot itself fail. The channel stops here.
 This is the part that surprises people arriving from other languages. `cape` is
 not the tail of a try statement — it attaches to **structured statements generally**. A loop can carry its own handler:
 
-```faber
+```faber locale-tabs
 incipit {
     fixum lista<textus> raw ← ["1", "two", "3"]
     itera ex raw fixum item {
@@ -97,7 +97,7 @@ incipit {
 
 And so can a `dum` loop:
 
-```faber
+```faber locale-tabs
 incipit {
     varia numerus i ← 0
     dum i ≺ 3 {
@@ -119,7 +119,7 @@ want a handler and have no other statement to hang it on.
 A function that declares `⇥` and does not catch propagates automatically —
 callers must deal with it or declare their own channel.
 
-```faber
+```faber locale-tabs
 functio parse(textus raw) → numerus ⇥ textus {
     si raw ≡ "" ergo iace "empty input"
     redde raw ↦ numerus ⊥ 0
@@ -148,7 +148,7 @@ A caught error is an ordinary value, so a function can receive one like any
 other parameter. Declare the parameter with the error's type and pass the
 `cape` binding straight in.
 
-```faber
+```faber locale-tabs
 functio divide(numerus a, numerus b) → numerus ⇥ textus {
     si b ≡ 0 ergo iace "division by zero"
     redde a / b

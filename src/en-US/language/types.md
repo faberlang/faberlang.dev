@@ -68,7 +68,7 @@ list as [Math in the ether](/language/behavior/numeric-widths.html):
 | Unbounded integer | `inf` |
 | Floating | `f16` `bf16` `f32` `f64` |
 
-```faber
+```faber locale-tabs
 incipit {
     fixum i32 narrow ← 7 ∷ i32
     fixum u64 wide ← 255 ∷ u64
@@ -117,7 +117,7 @@ fn primum<T>(list<T> res) → T ∪ none {
 
 Explicit call-site type arguments are supported:
 
-```faber
+```faber locale-tabs
 functio identitas<T>(T datum) → T { redde datum }
 
 incipit {

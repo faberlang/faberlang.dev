@@ -11,7 +11,7 @@ and stop, you can read a Faber program.
 
 ## A whole program {#whole-program}
 
-```faber
+```faber locale-tabs
 functio saturate(numerus x) → numerus {
     si x ≺ 0 ergo redde 0
     si x ≻ 255 ergo redde 255
@@ -42,7 +42,7 @@ That is a complete, compilable package entry point. Reading it left to right:
 
 This is the single rule that makes the rest of the grammar small:
 
-```faber
+```faber locale-tabs
 incipit {
     # a declaration
     fixum numerus count ← 0

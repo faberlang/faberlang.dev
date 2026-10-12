@@ -36,7 +36,7 @@ Builds two shaped matrices, multiplies them, and reduces the product to a scalar
 
 **Faber source**
 
-```faber
+```faber locale-tabs
 incipit {
     fixum lista<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
     fixum lista<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
@@ -200,7 +200,7 @@ A function that may fail, and a caller that catches. Shows how the `⇥` channel
 
 **Faber source**
 
-```faber
+```faber locale-tabs
 functio divide(numerus a, numerus b) → numerus ⇥ textus {
     si b ≡ 0 ergo iace "division by zero"
     redde a / b
@@ -698,7 +698,7 @@ A list folded to a total with `itera ex`. The plainest possible read on how loop
 
 **Faber source**
 
-```faber
+```faber locale-tabs
 functio summa(lista<numerus> numeri) → numerus {
     varia numerus total ← 0
     itera ex numeri fixum n {

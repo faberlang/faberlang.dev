@@ -12,7 +12,7 @@ into the name on the left.
 
 `fixum` binds once. `varia` binds a name you intend to change.
 
-```faber
+```faber locale-tabs
 incipit {
     fixum numerus limit ← 10
     varia numerus count ← 0
@@ -29,7 +29,7 @@ first and widen to `varia` only where the value genuinely moves.
 
 `_` is a type hole: the compiler infers one concrete type for the binding.
 
-```faber
+```faber locale-tabs
 incipit {
     fixum _ nomen ← "Marcus"
     fixum _ numeri ← [1, 2, 3]
@@ -46,7 +46,7 @@ An inline `A ∪ B` in type position names its union members explicitly. A
 standalone `∪` is a *union* hole: the compiler infers a finite set of member
 types rather than one.
 
-```faber
+```faber locale-tabs
 incipit {
     fixum numerus ∪ textus mixed ← 7
     fixum lista<numerus ∪ textus> both ← [1, "two", 3]
@@ -62,7 +62,7 @@ which forces every arm to be handled.
 `T ∪ nihil` is the optional shape. It is an ordinary union whose other member
 is nothing — Faber has no separate nullable syntax.
 
-```faber
+```faber locale-tabs
 functio primum(lista<numerus> res) → numerus ∪ nihil {
     si res.longitudo() ≡ 0 ergo redde nulla
     redde res[0]
@@ -77,7 +77,7 @@ incipit {
 
 `ex` pulls named fields out of a record in one statement.
 
-```faber
+```faber locale-tabs
 genus Punctum {
     fixum numerus x
     fixum numerus y
