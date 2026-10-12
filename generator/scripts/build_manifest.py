@@ -55,19 +55,29 @@ def current(data, output, inputs):
     rel = Path(output).as_posix()
     full = ROOT / "dist" / rel
     entry = data.get(rel)
-    return bool(full.is_file() and entry and entry.get("inputs") == inputs and entry.get("output") == sha(full))
+    recorded = entry.get("inputs", {}) if entry else {}
+    return bool(full.is_file() and entry and all(recorded.get(k) == v for k, v in inputs.items()) and entry.get("output") == sha(full))
+
+
+def inputs_current(data, output, inputs):
+    rel = Path(output).as_posix()
+    entry = data.get(rel, {})
+    recorded = entry.get("inputs", {})
+    return bool((ROOT / "dist" / rel).is_file() and entry and all(recorded.get(k) == v for k, v in inputs.items()))
 
 
 def record(data, output, inputs):
     rel = Path(output).as_posix()
     full = ROOT / "dist" / rel
     if full.is_file():
-        data[rel] = {"inputs": inputs, "output": sha(full)}
+        previous = data.get(rel, {}).get("inputs", {})
+        previous.update(inputs)
+        data[rel] = {"inputs": previous, "output": sha(full)}
 
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument("command", choices=["hash", "current", "record", "prune", "save"])
+    p.add_argument("command", choices=["hash", "current", "inputs-current", "record", "refresh", "prune", "save"])
     p.add_argument("key", nargs="?")
     p.add_argument("paths", nargs="*")
     a = p.parse_args()
@@ -78,8 +88,17 @@ def main():
     elif a.command == "current":
         inputs = hash_inputs(a.paths)
         print("yes" if current(data, a.key, inputs) else "no")
+    elif a.command == "inputs-current":
+        inputs = hash_inputs(a.paths)
+        print("yes" if inputs_current(data, a.key, inputs) else "no")
     elif a.command == "record":
         record(data, a.key, hash_inputs(a.paths)); save(data)
+    elif a.command == "refresh":
+        for rel in (a.paths or list(data)):
+            full = ROOT / "dist" / rel
+            if rel in data and full.is_file():
+                data[rel]["output"] = sha(full)
+        save(data)
     elif a.command == "prune":
         for rel in list(data):
             if not (ROOT / "dist" / rel).is_file():

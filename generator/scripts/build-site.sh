@@ -199,7 +199,7 @@ render_locale() {
           "${SCRIPT_DIR}/highlight-code.py" "${GENERATOR_DIR}/locale-tabs/vocab.en.json" \
           "${SCRIPT_DIR}/inject-toc.py" "${SCRIPT_DIR}/tag-glyph-chips.py" \
           "${SCRIPT_DIR}/matrix-cells.py" "${SCRIPT_DIR}/diagrams.py" \
-          "${SCRIPT_DIR}/locale-tabs.py" "${SCRIPT_DIR}/inject-pass.py" \
+          "${SCRIPT_DIR}/locale-tabs.py" "${SCRIPT_DIR}/inject-pass.py" "${SCRIPT_DIR}/grammar-toggle.py" \
           "${GENERATOR_DIR}/www/speculum.css")
         if [ "$reader" != "la" ]; then
             local_inputs+=("$localized_file" "${WORKSPACE_DIR}/radix/locale/${reader}/pack.toml" "${SCRIPT_DIR}/localize-markdown.py" "${SCRIPT_DIR}/project-reader-terms.py")
@@ -240,50 +240,64 @@ render_locale() {
     echo "  [incremental] ${changed} authored pages rendered"
 }
 
+# Run a deterministic generator only when its declared inputs changed. The
+# output key is a representative dist artifact; refresh hashes after rendering.
+run_cached_step() {
+    local started=$SECONDS
+    local output="$1"; shift
+    local -a inputs=()
+    while [ "$#" -gt 0 ] && [ "$1" != "--" ]; do inputs+=("$1"); shift; done
+    shift
+    if [ "$FORCE_FULL" = true ] || [ "$("$PYTHON" "${SCRIPT_DIR}/build_manifest.py" inputs-current "$output" "${inputs[@]}")" != yes ]; then
+        "$@"
+        "$PYTHON" "${SCRIPT_DIR}/build_manifest.py" record "$output" "${inputs[@]}"
+        echo "  [manifest] refreshed $output ($((SECONDS - started))s)"
+    else
+        echo "  [manifest] unchanged $output; skipped ($((SECONDS - started))s)"
+    fi
+}
+
 # ==================================================================
 # FULL SITE BUILD
 # ==================================================================
 if [ "$FULL_SITE" = true ]; then
     if [ "$FORCE_FULL" = true ]; then rm -f "${GENERATOR_DIR}/target/build-manifest.json"; fi
 
-    # Step 0: Refresh generated matrix pages when the radix grammar is present
+    # Step 0 generators are keyed by their actual inputs. Each writes a
+    # representative dist artifact to the manifest; inputs are refreshed after
+    # the render so its output hash describes the final page.
+    echo "[0/10] Checking generated source inputs..."
     if [ -f "${WORKSPACE_DIR}/radix/grammar/EBNF_MATRIX.md" ]; then
-        echo "[0/10] Generating target compatibility matrix pages..."
-        "$PYTHON" "${SCRIPT_DIR}/generate-target-matrix.py" --locale en-US
-    else
-        echo "[0/10] Skipping target matrix generate (no ${WORKSPACE_DIR}/radix/grammar/EBNF_MATRIX.md)"
+        run_cached_step "en-US/toolchain/target-matrix.html" \
+          "${SCRIPT_DIR}/generate-target-matrix.py" "${WORKSPACE_DIR}/radix/grammar/EBNF_MATRIX.md" "${GENERATOR_DIR}/locales/en-US/targets.toml" -- \
+          "$PYTHON" "${SCRIPT_DIR}/generate-target-matrix.py" --locale en-US
     fi
-
-    # Step 0b: Regenerate the sections assembled from captured panels and
-    # sibling checkouts. All of these write src/ and so must run before the
-    # render. Each degrades to leaving its committed output alone when its
-    # inputs are absent, so a checkout without siblings still builds.
-    echo "[0/10] Generating target lanes, grammar, and localization..."
-    "$PYTHON" "${SCRIPT_DIR}/generate-target-lanes.py" --output-dir "${REPO_DIR}/src/en-US/targets"
-    "$PYTHON" "${SCRIPT_DIR}/generate-localization.py" --output "${REPO_DIR}/src/en-US/localization.md"
-    "$PYTHON" "${SCRIPT_DIR}/generate-overview.py" --output "${REPO_DIR}/src/en-US/language/overview.md"
+    run_cached_step "en-US/targets/index.html" \
+      "${SCRIPT_DIR}/generate-target-lanes.py" "${GENERATOR_DIR}/target-panels" "${GENERATOR_DIR}/lanes" "${WORKSPACE_DIR}/radix/grammar/EBNF_MATRIX.md" -- \
+      "$PYTHON" "${SCRIPT_DIR}/generate-target-lanes.py" --output-dir "${REPO_DIR}/src/en-US/targets"
+    run_cached_step "en-US/localization.html" \
+      "${SCRIPT_DIR}/generate-localization.py" "${GENERATOR_DIR}/locales.toml" "${GENERATOR_DIR}/landing/locales" -- \
+      "$PYTHON" "${SCRIPT_DIR}/generate-localization.py" --output "${REPO_DIR}/src/en-US/localization.md"
+    run_cached_step "en-US/language/overview.html" \
+      "${SCRIPT_DIR}/generate-overview.py" "${GENERATOR_DIR}/landing" "${REPO_DIR}/../faber/docs/EBNF.md" -- \
+      "$PYTHON" "${SCRIPT_DIR}/generate-overview.py" --output "${REPO_DIR}/src/en-US/language/overview.md"
     if [ -f "${WORKSPACE_DIR}/radix/grammar/EBNF.md" ]; then
-        "${SCRIPT_DIR}/generate-grammar" --locale en-US
-    else
-        echo "  Skipping grammar generate (no ${WORKSPACE_DIR}/radix/grammar/EBNF.md)"
+        run_cached_step "en-US/reference/grammar.html" \
+          "${SCRIPT_DIR}/generate-grammar.py" "${WORKSPACE_DIR}/radix/grammar" "${WORKSPACE_DIR}/radix/locale/en/pack.toml" -- \
+          "$PYTHON" "${SCRIPT_DIR}/generate-grammar.py" --locale en-US
     fi
-    "$PYTHON" "${SCRIPT_DIR}/generate-grammar-tree.py"
+    run_cached_step "en-US/reference/grammar/program.html" \
+      "${SCRIPT_DIR}/generate-grammar-tree.py" "${WORKSPACE_DIR}/radix/grammar" "${WORKSPACE_DIR}/radix/locale/en/pack.toml" "${OUTPUT_DIR}/en-US/corpus" -- \
+      "$PYTHON" "${SCRIPT_DIR}/generate-grammar-tree.py"
 
-    # The agent locales table joins the eight reader packs in radix/locale. It
-    # writes static/ and dist/ rather than src/, so it must run before the
-    # static copy. --strict fails on drift that is neither a designed shape nor
-    # the expected list in agent_locales.py.
-    echo "[0/10] Generating the agent locales table..."
-    "$PYTHON" "${SCRIPT_DIR}/generate-agent-locales.py" --strict
-
-    # The reader-locale reference joins the same packs. Diagnostics captures
-    # are a committed cache refreshed by hand (capture-locale-diagnostics.sh),
-    # so the build never depends on a faber run here. --check is Gate E: the
-    # mapping pages must match the pack join with zero dead and zero missing
-    # rows.
+    # The agent-locale and human locale-reference passes are also pack keyed.
+    run_cached_step "agents/locales.md" \
+      "${SCRIPT_DIR}/generate-agent-locales.py" "${SCRIPT_DIR}/agent_locales.py" "${WORKSPACE_DIR}/radix/locale" -- \
+      "$PYTHON" "${SCRIPT_DIR}/generate-agent-locales.py" --strict
     if [ -d "${WORKSPACE_DIR}/radix/locale" ]; then
-        echo "[0/10] Generating the reader-locale reference..."
-        "$PYTHON" "${SCRIPT_DIR}/generate-locale-reference.py" \
+        run_cached_step "en-US/language/locales/keywords.html" \
+          "${SCRIPT_DIR}/generate-locale-reference.py" "${WORKSPACE_DIR}/radix/locale" "${GENERATOR_DIR}/locale-captures" "${GENERATOR_DIR}/locale-tabs" "${REPO_DIR}/src/en-US/language/locales" -- \
+          "$PYTHON" "${SCRIPT_DIR}/generate-locale-reference.py" \
             --packs "${WORKSPACE_DIR}/radix/locale" --check
     fi
 
@@ -293,7 +307,7 @@ if [ "$FULL_SITE" = true ]; then
     # rather than emptying the tree.
     agent_reference_inputs=("${SCRIPT_DIR}/generate-agent-reference.py" "${WORKSPACE_DIR}/radix/locale" "${WORKSPACE_DIR}/radix/target/debug/faber")
     agent_reference_output="agents/reference/index.md"
-    if [ "$FORCE_FULL" = true ] || [ "$("$PYTHON" "${SCRIPT_DIR}/build_manifest.py" current "$agent_reference_output" "${agent_reference_inputs[@]}")" != yes ]; then
+    if [ "$FORCE_FULL" = true ] || [ "$("$PYTHON" "${SCRIPT_DIR}/build_manifest.py" inputs-current "$agent_reference_output" "${agent_reference_inputs[@]}")" != yes ]; then
         echo "[0/10] Generating the agent reference tree..."
         if "$PYTHON" "${SCRIPT_DIR}/generate-agent-reference.py" --strict; then
             "$PYTHON" "${SCRIPT_DIR}/build_manifest.py" record "$agent_reference_output" "${agent_reference_inputs[@]}"
@@ -319,6 +333,7 @@ if [ "$FULL_SITE" = true ]; then
     mkdir -p "$OUTPUT_DIR"
 
     # Copy stylesheet
+    static_copy_started=$SECONDS
     cp "${GENERATOR_DIR}/www/speculum.css" "${OUTPUT_DIR}/speculum.css"
 
     # Copy static agent surfaces
@@ -327,6 +342,7 @@ if [ "$FULL_SITE" = true ]; then
         echo "  copying static/ → dist/"
         cp -R "${STATIC_DIR}/." "${OUTPUT_DIR}/"
     fi
+    echo "  [timing] stylesheet + static copy: $((SECONDS - static_copy_started))s"
 
     # Corpus is a single deterministic batch. Its fingerprint covers source
     # exempla, pack projection, renderer/driver, and corpus post-processors.
@@ -366,7 +382,9 @@ if [ "$FULL_SITE" = true ]; then
     echo "[4/9] Rendering the en-US tree..."
     site="en-US"
     reader=$("$PYTHON" "${SCRIPT_DIR}/locales_registry.py" reader "$site")
+    pages_started=$SECONDS
     render_locale "${REPO_DIR}/src/${site}" "${OUTPUT_DIR}/${site}" "$site" "$reader" "$STYLESHEET"
+    echo "  [timing] authored render + localization: $((SECONDS - pages_started))s"
 
     # Step 4: Re-copy static after render
     echo "[5/9] Re-copying static assets after render..."
@@ -374,36 +392,36 @@ if [ "$FULL_SITE" = true ]; then
         cp -R "${STATIC_DIR}/." "${OUTPUT_DIR}/"
     fi
 
-    # Step 5: Generate llms-full.txt (keyword catalog)
-    echo "[6/9] Generating llms-full.txt..."
+    # Keyword surfaces depend on the corpus, not on authored prose pages.
+    echo "[6/9] Checking corpus-derived indexes..."
     if [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
-        "$PYTHON" "${SCRIPT_DIR}/render-llms.py" \
-            --corpus "${WORKSPACE_DIR}/radix/corpus" \
-            --output "${OUTPUT_DIR}/llms-full.txt"
-        "$PYTHON" "${SCRIPT_DIR}/generate-search-index.py" \
-            --corpus "${WORKSPACE_DIR}/radix/corpus" \
-            --output-dir "${OUTPUT_DIR}" --locale en-US
+        run_cached_step "llms-full.txt" "${SCRIPT_DIR}/render-llms.py" "${SCRIPT_DIR}/corpus_locale.py" "${WORKSPACE_DIR}/radix/corpus" "${WORKSPACE_DIR}/radix/locale/en/pack.toml" -- \
+          "$PYTHON" "${SCRIPT_DIR}/render-llms.py" --corpus "${WORKSPACE_DIR}/radix/corpus" --output "${OUTPUT_DIR}/llms-full.txt"
+        run_cached_step "search-index.json" "${SCRIPT_DIR}/generate-search-index.py" "${SCRIPT_DIR}/corpus_locale.py" "${WORKSPACE_DIR}/radix/corpus" "${WORKSPACE_DIR}/radix/locale/en/pack.toml" -- \
+          "$PYTHON" "${SCRIPT_DIR}/generate-search-index.py" --corpus "${WORKSPACE_DIR}/radix/corpus" --output-dir "${OUTPUT_DIR}" --locale en-US
     fi
 
-    # Step 5b: Retired-path stubs from the 2026-08 IA restructure
-    "$PYTHON" "${SCRIPT_DIR}/ia-redirects.py" stubs
-    # Retired translated URLs remain addressable as English aliases.
-    "$PYTHON" "${SCRIPT_DIR}/retired-locales.py" stubs --dist "$OUTPUT_DIR"
+    # Retired-path and root redirects are pure functions of committed maps and
+    # the built English tree. Avoid rewriting thousands of identical stubs.
+    run_cached_step "en-US/start/install.html" "${SCRIPT_DIR}/ia-redirects.py" -- \
+      "$PYTHON" "${SCRIPT_DIR}/ia-redirects.py" stubs
+    run_cached_step "ar/404.html" "${SCRIPT_DIR}/retired-locales.py" "${REPO_DIR}/generator/redirects/retired-locales.toml" -- \
+      "$PYTHON" "${SCRIPT_DIR}/retired-locales.py" stubs --dist "$OUTPUT_DIR"
+    echo "[7/10] Checking English root redirect stubs..."
+    run_cached_step "start/install.html" "${SCRIPT_DIR}/generate-redirects" "${SCRIPT_DIR}/generate-redirects.py" "${OUTPUT_DIR}/en-US" "${SCRIPT_DIR}/ia-redirects.py" -- \
+      "${SCRIPT_DIR}/generate-redirects" "$OUTPUT_DIR" "en-US"
 
-    # Step 6: Generate redirect stubs (en-US → bare path)
-    echo "[7/10] Generating en-US redirect stubs..."
-    "${SCRIPT_DIR}/generate-redirects" "$OUTPUT_DIR" "en-US"
-
-    # Step 7: Generate the landing page (/) and the language portal (/porta/).
-    # The landing page states the claim and proves it; the portal is the
-    # locale chooser it links to, no longer the site's front door.
-    echo "[8/10] Generating landing page and language portal..."
-    "$PYTHON" "${SCRIPT_DIR}/generate-landing.py" "${OUTPUT_DIR}/index.html"
+    # Landing and language portal are deterministic captured-input surfaces.
+    echo "[8/10] Checking landing page and language portal..."
+    run_cached_step "index.html" "${SCRIPT_DIR}/generate-landing.py" "${GENERATOR_DIR}/landing" "${REPO_DIR}/../faber/docs/EBNF.md" "${SCRIPT_DIR}/site_assets.py" "${SCRIPT_DIR}/agent_pass.py" "${GENERATOR_DIR}/locales/en-US/chrome.toml" -- \
+      "$PYTHON" "${SCRIPT_DIR}/generate-landing.py" "${OUTPUT_DIR}/index.html"
     mkdir -p "${OUTPUT_DIR}/porta"
-    "$PYTHON" "${SCRIPT_DIR}/generate-portal.py" "${OUTPUT_DIR}/porta/index.html"
+    run_cached_step "porta/index.html" "${SCRIPT_DIR}/generate-portal.py" "${GENERATOR_DIR}/portal" "${GENERATOR_DIR}/locales.toml" -- \
+      "$PYTHON" "${SCRIPT_DIR}/generate-portal.py" "${OUTPUT_DIR}/porta/index.html"
 
     # Step 8: Smoke checks against en-US paths
     echo "[9/10] Smoke checks..."
+    gates_started=$SECONDS
     # The current release is stated once, in the agent lobby static/install.md
     # ("Current release: Faber X.Y.Z."). Reading it back from there keeps a
     # version bump a content edit rather than a build-script edit, and still
@@ -565,14 +583,16 @@ if [ "$FULL_SITE" = true ]; then
         "$PYTHON" "${SCRIPT_DIR}/inject-toc.py" "$authored_stage"
         "$PYTHON" "${SCRIPT_DIR}/tag-glyph-chips.py" "$authored_stage"
         "$PYTHON" "${SCRIPT_DIR}/inject-pass.py" "$authored_stage"
-        "$PYTHON" "${SCRIPT_DIR}/grammar-toggle.py" "$authored_stage/en-US/reference"
+        if [ -f "$authored_stage/en-US/reference/grammar.html" ]; then
+            "$PYTHON" "${SCRIPT_DIR}/grammar-toggle.py" "$authored_stage/en-US/reference"
+        fi
         while IFS= read -r rendered; do
             rel="${rendered#${authored_stage}/}"
             mkdir -p "$(dirname "${OUTPUT_DIR}/${rel}")"
             cp "$rendered" "${OUTPUT_DIR}/${rel}"
             source_file="${REPO_DIR}/src/${rel%.html}.md"
             localized_file="${GENERATOR_DIR}/target/localized-en-US/${rel#en-US/}"; localized_file="${localized_file%.html}.md"
-            manifest_inputs=("$source_file" "${SCRIPT_DIR}/speculum_py.py" "${SCRIPT_DIR}/inject-chrome.py" "${GENERATOR_DIR}/locales/en-US/chrome.toml" "${SCRIPT_DIR}/inject-skip-link.py" "${SCRIPT_DIR}/strip-empty-sources.py" "${SCRIPT_DIR}/localize-spans.py" "${WORKSPACE_DIR}/radix/locale/en/pack.toml" "${SCRIPT_DIR}/highlight-code.py" "${GENERATOR_DIR}/locale-tabs/vocab.en.json" "${SCRIPT_DIR}/inject-toc.py" "${SCRIPT_DIR}/tag-glyph-chips.py" "${SCRIPT_DIR}/matrix-cells.py" "${SCRIPT_DIR}/diagrams.py" "${SCRIPT_DIR}/locale-tabs.py" "${SCRIPT_DIR}/inject-pass.py" "${GENERATOR_DIR}/www/speculum.css" "$localized_file" "${WORKSPACE_DIR}/radix/locale/en/pack.toml" "${SCRIPT_DIR}/localize-markdown.py" "${SCRIPT_DIR}/project-reader-terms.py")
+            manifest_inputs=("$source_file" "${SCRIPT_DIR}/speculum_py.py" "${SCRIPT_DIR}/inject-chrome.py" "${GENERATOR_DIR}/locales/en-US/chrome.toml" "${SCRIPT_DIR}/inject-skip-link.py" "${SCRIPT_DIR}/strip-empty-sources.py" "${SCRIPT_DIR}/localize-spans.py" "${WORKSPACE_DIR}/radix/locale/en/pack.toml" "${SCRIPT_DIR}/highlight-code.py" "${GENERATOR_DIR}/locale-tabs/vocab.en.json" "${SCRIPT_DIR}/inject-toc.py" "${SCRIPT_DIR}/tag-glyph-chips.py" "${SCRIPT_DIR}/matrix-cells.py" "${SCRIPT_DIR}/diagrams.py" "${SCRIPT_DIR}/locale-tabs.py" "${SCRIPT_DIR}/inject-pass.py" "${SCRIPT_DIR}/grammar-toggle.py" "${GENERATOR_DIR}/www/speculum.css" "$localized_file" "${WORKSPACE_DIR}/radix/locale/en/pack.toml" "${SCRIPT_DIR}/localize-markdown.py" "${SCRIPT_DIR}/project-reader-terms.py")
             "$PYTHON" "${SCRIPT_DIR}/build_manifest.py" record "$rel" "${manifest_inputs[@]}"
         done < <(find "$authored_stage/en-US" -name '*.html' -type f)
         rm -rf "$authored_stage"
@@ -617,12 +637,14 @@ if [ "$FULL_SITE" = true ]; then
     }
 
     # Sitemap and canonical
-    echo "  [sitemap] Generating sitemap.xml..."
-    "${SCRIPT_DIR}/generate-sitemap" "$OUTPUT_DIR" "https://faberlang.dev"
+    echo "  [sitemap] Checking sitemap inputs..."
+    run_cached_step "sitemap.xml" "${SCRIPT_DIR}/generate-sitemap" "${OUTPUT_DIR}/en-US" -- \
+        "${SCRIPT_DIR}/generate-sitemap" "$OUTPUT_DIR" "https://faberlang.dev"
     smoke_contains "${OUTPUT_DIR}/sitemap.xml" "<urlset" "sitemap"
 
     echo "  [canonical] Injecting canonical URL tags..."
     "$PYTHON" "${SCRIPT_DIR}/inject-canonical.py" "$OUTPUT_DIR" "https://faberlang.dev"
+    echo "  [timing] smoke, post-process, gates, sitemap, canonical: $((SECONDS - gates_started))s"
 
 else
     # ==============================================================
@@ -647,5 +669,8 @@ PAGE_COUNT=$(find "$OUTPUT_DIR" -name "*.html" -type f | wc -l | tr -d ' ')
 STATIC_COUNT=$(find "$OUTPUT_DIR" \( -name "*.txt" -o -name "*.md" -o -name "*.json" \) -type f | wc -l | tr -d ' ')
 
 echo ""
-if [ "$FULL_SITE" = true ]; then "$PYTHON" "${SCRIPT_DIR}/build_manifest.py" prune; fi
+if [ "$FULL_SITE" = true ]; then
+    "$PYTHON" "${SCRIPT_DIR}/build_manifest.py" refresh
+    "$PYTHON" "${SCRIPT_DIR}/build_manifest.py" prune
+fi
 echo "=== Build complete: ${PAGE_COUNT} HTML pages, ${STATIC_COUNT} static machine files → ${OUTPUT_DIR} ==="
