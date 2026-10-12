@@ -2,8 +2,8 @@
 # ==========================================================================
 # render.sh — Shell wrapper for the Speculum site generator
 # ==========================================================================
-# Wrapper builds the generator to Rust, compiles it, and invokes the
-# generator CLI with separate site and reader locale parameters.
+# Invokes the Python renderer (speculum_py.py — the byte-equivalent port of
+# the Faber generator) with separate site and reader locale parameters.
 #
 # Usage:
 #   render.sh <source.md> [site_locale] [reader_locale] [stylesheet] [output]
@@ -13,10 +13,8 @@
 
 set -euo pipefail
 
-GENERATOR_DIR="$(cd "$(dirname "$0")/.." && pwd)"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-BUILD_DIR="${GENERATOR_DIR}/target/faber"
-FABER="${FABER:-faber}"
+PYTHON="${PYTHON:-python3}"
 
 SOURCE="${1:-}"
 SITE_LOCALE="${2:-en-US}"
@@ -34,13 +32,15 @@ if [ ! -f "$SOURCE" ]; then
     exit 1
 fi
 
-echo "Rendering $SOURCE (interpreted runner)..." >&2
+echo "Rendering $SOURCE (Python renderer)..." >&2
 echo "  Site locale: $SITE_LOCALE" >&2
 echo "  Reader locale: $READER_LOCALE" >&2
 
+# The page iter is derived by the renderer with the same rule the Faber
+# entry uses (deriva_iter in generator/src/main.fab).
 if [ -n "$OUTPUT" ]; then
-    "${SCRIPT_DIR}/speculum-run.sh" "$SOURCE" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET" > "$OUTPUT"
+    "$PYTHON" "${SCRIPT_DIR}/speculum_py.py" "$SOURCE" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET" > "$OUTPUT"
     echo "Wrote: $OUTPUT" >&2
 else
-    "${SCRIPT_DIR}/speculum-run.sh" "$SOURCE" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET"
+    exec "$PYTHON" "${SCRIPT_DIR}/speculum_py.py" "$SOURCE" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET"
 fi
