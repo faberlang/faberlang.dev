@@ -5,9 +5,13 @@ This is the human counterpart of `generate-agent-locales.py`: the same join on
 the canonical (Latin) key, rendered as a reference a person browses rather than
 a table a model fetches. Pages written under `src/en-US/language/locales/`:
 
-  keywords.md      one full mapping page — canonical key across all eight packs
-  <locale>.md      one page per locale: English beside that locale, native name,
-                   script, and a direction note where it matters
+  keywords.md      index of the mapping pages plus the pack legend — the full
+                   eight-pack join stays machine-facing at /agents/locales.md
+  <locale>.md      one mapping page per reader language (la, ar, hi, th-TH, vi,
+                   zh-Hans, zh-Hant): English | Latin | target, except the
+                   Latin page, which stays two-column (Latin | English).
+                   English has no page: it is the page language itself and a
+                   base surface, so its spelling leads every table instead
   diagnostics.md   one compiler failure (`faber check --diagnostics`) captured
                    in every installed locale by capture-locale-diagnostics.sh
   examples.md      one program shown across all eight surfaces, read from the
@@ -28,6 +32,13 @@ per-locale tables need it as much as the full one: an English value can itself
 be another row's canonical key (`nihil`, `per`), and projection would rewrite
 the cell it is printed in.
 
+Gate E (`--check`): the mapping rows are extracted back out of every mapping
+page's frozen tables and diffed against an independent join from the packs
+(`agent_locales.rows`). The run must report zero missing rows (pack rows
+absent from the page) and zero dead rows (page rows with no pack backing),
+and the current-epoch rows (sort/ordinata, bytes/octeti, at/apud) must appear
+on every mapping page.
+
 Usage:
     generate-locale-reference.py [--packs PATH] [--output-dir DIR] [--check]
 """
@@ -36,11 +47,13 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import sys
 import unicodedata
+from collections import Counter
 from pathlib import Path
 
-from agent_locales import PACK_COLUMNS, SECTIONS, incomplete, read_packs, rows
+from agent_locales import PACK_COLUMNS, SECTIONS, read_packs, rows
 from corpus_locale import default_reader_root
 
 REPO = Path(__file__).resolve().parents[2]
@@ -152,9 +165,13 @@ LOCALES: dict[str, dict[str, str]] = {
     },
 }
 
-# Table headers. Short locale codes keep the full mapping narrow; the legend
-# above it carries the native names.
-COLUMN_HEADERS = ("en", "la", "ar", "hi", "th-TH", "vi", "zh-Hans", "zh-Hant")
+# The mapping pages: every reader pack except English. English is the page
+# language itself and a base surface, so its spelling leads every table instead
+# of carrying its own page; Latin stays two-column as the canonical identity.
+MAPPING_PAGES: tuple[str, ...] = tuple(loc for loc in PACK_COLUMNS if loc != "en")
+
+# Placeholder for a pack that declares no spelling for a term.
+EMPTY_CELL = "—"
 
 
 def width(text: str) -> int:
@@ -210,7 +227,7 @@ def frozen_table(header: tuple[str, ...], records: list[tuple[str, ...]]) -> lis
 
 def legend() -> list[str]:
     lines = [
-        "The eight installed packs, in the column order used below:",
+        "The eight installed packs:",
         "",
         "| Code | Native name | Script | Direction |",
         "|---|---|---|---|",
@@ -224,70 +241,80 @@ def legend() -> list[str]:
     return lines
 
 
-def render_keywords(packs: dict) -> str:
+def render_index(packs: dict) -> str:
     lines = frontmatter(
         "Keyword reference", 1, ["radix/locale/<locale>/pack.toml"]
     )
     lines += [
         "Every Faber keyword, primitive type, and intrinsic has one canonical "
-        "(Latin) name and one spelling per reader pack. This page is the full "
-        "join across all eight packs, so a term can be translated by reading "
-        "across a row.",
+        "(Latin) name and one spelling per reader pack. This page indexes the "
+        "mapping pages generated from those packs; read any row across to "
+        "translate one term.",
         "",
-        "The tables are generated from the packs themselves and cannot drift "
-        "from the compiler by hand. A blank cell is a pack that declares no "
-        "spelling for that term — the contested rows are listed at the end "
-        "rather than filled in.",
+        "English is the page language and a base surface: English keywords map "
+        "to the English word, so its reader spelling is also what an English "
+        "reader writes. Every mapping page therefore leads with the English "
+        "column, and English carries no separate page. The Latin column is the "
+        "canonical name — the compiler's internal identity, one locale among "
+        "eight rather than a privileged one: rendering to English and "
+        "rendering to Thai are the same operation.",
         "",
-        "## How to read a table {#reading}",
+        "The full eight-pack join stays machine-facing at "
+        "[/agents/locales.md](/agents/locales.md); rows the packs do not all "
+        "declare are listed there, not on the human pages.",
         "",
-        "- **Across a row** translates one term into any of the eight surfaces.",
-        "- **Down a column** is the vocabulary one locale writes Faber in.",
-        "- The `la` column is the canonical name, which is also the compiler's "
-        "internal identity. It is one locale among eight, not a privileged one: "
-        "rendering to English and rendering to Thai are the same operation.",
+        "## Mapping pages {#pages}",
         "",
-        "Arabic is right-to-left; its column runs in logical order inside this "
-        "left-to-right block, so the characters read correctly even though the "
-        "row places them among Latin script.",
+        "| Page | Locale | Columns |",
+        "|---|---|---|",
+    ]
+    for loc in MAPPING_PAGES:
+        meta = LOCALES[loc]
+        if loc == "la":
+            columns = "Latin · English"
+        else:
+            columns = f"English · Latin · {meta['native']}"
+        lines.append(
+            f"| [{meta['native']} ({meta['name']})](/language/locales/{loc}.html)"
+            f" | `{loc}` | {columns} |"
+        )
+    lines += [
+        "| [Diagnostics by locale](/language/locales/diagnostics.html) | — | "
+        "one failure, every pack |",
+        "| [Locale examples](/language/locales/examples.html) | — | "
+        "one program, eight surfaces |",
+        "",
+        "The tables on those pages are generated from the packs themselves and "
+        "cannot drift from the compiler by hand. A blank cell is a pack that "
+        "declares no spelling for that term.",
         "",
     ]
     lines += legend()
+    lines += [
+        "---",
+        "",
+        "[All reader locales](/language/reader-locales.html)",
+        "",
+    ]
+    return "\n".join(lines)
 
-    for section in SECTIONS:
-        lines += [f"## {SECTION_TITLES[section]} {{#{section}}}", ""]
-        records = [
-            tuple(cells.get(loc, "") or "—" for loc in COLUMN_HEADERS)
-            for _canonical, cells in rows(packs, section)
-        ]
-        lines += ["```text locale=la"]
-        lines += frozen_table(COLUMN_HEADERS, records)
-        lines += ["```", ""]
 
-    found = incomplete(packs)
-    lines += ["## Rows the packs do not all declare {#contested}", ""]
-    if not found:
-        lines += [
-            "Every pack declares every key. Latin is identity-by-absence for "
-            "intrinsics, which the table shows by carrying the canonical name.",
-            "",
-        ]
-    else:
-        lines += [
-            f"{len(found)} rows are not declared by every pack. Each is owned by "
-            "a compiler-side pack fix; the table above shows them as they are. "
-            "The canonical names stay in the frozen block for the same reason "
-            "the mapping does.",
-            "",
-        ]
-        records = [
-            (section, canonical, ", ".join(missing))
-            for section, canonical, missing in found
-        ]
-        lines += ["```text locale=la"]
-        lines += frozen_table(("section", "canonical key", "not declared by"), records)
-        lines += ["```", ""]
-    return "\n".join(lines) + "\n"
+def page_header(loc: str) -> tuple[str, ...]:
+    """The frozen-table column header for one mapping page."""
+    if loc == "la":
+        return ("Latin", "English")
+    return ("English", "Latin", LOCALES[loc]["native"])
+
+
+def page_row(cells: dict, loc: str) -> tuple[str, ...]:
+    """One mapping row as the page renders it, from one joined pack row."""
+    if loc == "la":
+        return (cells["la"], cells.get("en", "") or EMPTY_CELL)
+    return (
+        cells.get("en", "") or EMPTY_CELL,
+        cells["la"],
+        cells.get(loc, "") or EMPTY_CELL,
+    )
 
 
 def render_locale_page(packs: dict, loc: str) -> str:
@@ -308,34 +335,38 @@ def render_locale_page(packs: dict, loc: str) -> str:
         meta["note"],
         "",
     ]
-    if loc == "en":
+    if loc == "la":
         lines += [
-            "Because English is a base surface, this page's two columns carry "
-            "the same spelling: the English reader word is the canonical pack "
-            "value for English.",
+            "## Latin ↔ English {#mapping}",
+            "",
+            "Generated from the packs. The Latin column is the canonical name "
+            "— the pack key and the compiler's internal identity; the English "
+            "column is the base-surface spelling. The other reader languages "
+            "lead with English on [their mapping pages]"
+            "(/language/locales/keywords.html).",
             "",
         ]
-    lines += [
-        f"## English ↔ {meta['name']} {{#mapping}}",
-        "",
-        "Generated from the packs; the canonical (Latin) name keys the full "
-        "[keyword reference](/language/locales/keywords.html).",
-        "",
-    ]
+    else:
+        lines += [
+            f"## English ↔ {meta['name']} {{#mapping}}",
+            "",
+            "Generated from the packs; read a row across to translate one "
+            "term. The Latin column is the canonical name, which keys the "
+            "[keyword reference](/language/locales/keywords.html).",
+            "",
+        ]
+    header = page_header(loc)
     for section in SECTIONS:
         lines += [f"### {SECTION_TITLES[section]} {{#{section.lower()}}}", ""]
-        records = [
-            (cells.get("en", "") or "—", cells.get(loc, "") or "—")
-            for _canonical, cells in rows(packs, section)
-        ]
+        records = [page_row(cells, loc) for _canonical, cells in rows(packs, section)]
         lines += ["```text locale=la"]
-        lines += frozen_table(("English", meta["native"]), records)
+        lines += frozen_table(header, records)
         lines += ["```", ""]
     lines += [
         "---",
         "",
         "[All reader locales](/language/reader-locales.html) · "
-        "[Full keyword mapping](/language/locales/keywords.html) · "
+        "[Keyword reference](/language/locales/keywords.html) · "
         "[Diagnostics in this locale](/language/locales/diagnostics.html)",
         "",
     ]
@@ -437,6 +468,122 @@ def render_examples(tabs: Path, key: str) -> str | None:
     return "\n".join(lines)
 
 
+# Gate E epoch rows: the (English, Latin) spelling pairs that prove the tables
+# carry the current epoch of the packs, not a stale snapshot. Resolved against
+# the pack join at check time, so the pack keys are discovered, not hardcoded.
+EPOCH_PAIRS: tuple[tuple[str, str], ...] = (
+    ("sort", "ordinata"),
+    ("bytes", "octeti"),
+    ("at", "apud"),
+)
+
+
+def split_frozen_line(line: str) -> list[str]:
+    """One frozen-table line as cells; columns are 2+ spaces apart."""
+    return re.split(r"\s{2,}", line.strip().lstrip("|").strip())
+
+
+def extract_frozen_tables(text: str) -> list[list[tuple[str, ...]]]:
+    """Every `locale=la` text fence as a row grid (header, rule, data...).
+
+    The extraction reads only the rendered page — the same bytes a reader or
+    the renderer sees — so drift is measured in the artifact, not in memory.
+    """
+    tables: list[list[tuple[str, ...]]] = []
+    block: list[str] = []
+    inside = False
+    for line in text.splitlines():
+        if not inside and line.startswith("```text locale=la"):
+            inside, block = True, []
+        elif inside and line.startswith("```"):
+            inside = False
+            if len(block) >= 3:
+                tables.append([tuple(split_frozen_line(row)) for row in block])
+        elif inside:
+            block.append(line)
+    return tables
+
+
+def expected_section_rows(packs: dict, section: str, loc: str) -> list[tuple[str, ...]]:
+    """The rows one mapping page must carry for a section, from the pack join."""
+    return [page_row(cells, loc) for _canonical, cells in rows(packs, section)]
+
+
+def epoch_join(packs: dict) -> list[tuple[str, str, dict]]:
+    """`(section, canonical, cells)` for every pack row matching an epoch pair."""
+    found: list[tuple[str, str, dict]] = []
+    for section in SECTIONS:
+        for canonical, cells in rows(packs, section):
+            if (cells.get("en", ""), cells["la"]) in EPOCH_PAIRS:
+                found.append((section, canonical, cells))
+    return found
+
+
+def check_mapping_pages(packs: dict, pages: dict[str, str]) -> bool:
+    """Gate E: frozen tables vs the pack join. Prints the report; True = green."""
+    problems: list[str] = []
+    missing_total = dead_total = 0
+    extracted: dict[str, list[list[tuple[str, ...]]]] = {}
+    checked = 0
+    for loc in MAPPING_PAGES:
+        name = f"{loc}.md"
+        if name not in pages:
+            problems.append(f"{name}: not generated")
+            continue
+        checked += 1
+        tables = extract_frozen_tables(pages[name])
+        extracted[loc] = tables
+        if len(tables) != len(SECTIONS):
+            problems.append(
+                f"{name}: found {len(tables)} frozen tables, expected {len(SECTIONS)}"
+            )
+            continue
+        header = page_header(loc)
+        for section, table in zip(SECTIONS, tables):
+            if tuple(table[0]) != header:
+                problems.append(f"{name} {section}: header {list(table[0])} != {list(header)}")
+                continue
+            expected = Counter(expected_section_rows(packs, section, loc))
+            actual = Counter(table[2:])
+            missing = expected - actual
+            dead = actual - expected
+            missing_total += sum(missing.values())
+            dead_total += sum(dead.values())
+            if missing:
+                problems.append(f"{name} {section}: missing {sorted(missing)}")
+            if dead:
+                problems.append(f"{name} {section}: dead {sorted(dead)}")
+
+    print(
+        f"Gate E: {checked} mapping pages checked — "
+        f"{missing_total} missing, {dead_total} dead rows"
+    )
+    for problem in problems:
+        print(f"  DRIFT {problem}")
+
+    epoch_failures = 0
+    for section, canonical, cells in epoch_join(packs):
+        present = 0
+        for loc in MAPPING_PAGES:
+            tables = extracted.get(loc, [])
+            on_page = (
+                len(tables) == len(SECTIONS)
+                and page_row(cells, loc) in {tuple(r) for r in tables[SECTIONS.index(section)][2:]}
+            )
+            present += on_page
+        spell = f"{cells.get('en', EMPTY_CELL)} ↔ {cells['la']}"
+        print(f"  epoch {spell} ({section}/{canonical}): on {present}/{len(MAPPING_PAGES)} pages")
+        if present != len(MAPPING_PAGES):
+            epoch_failures += 1
+            problems.append(f"epoch row {spell} absent from some pages")
+
+    if problems:
+        print(f"Gate E: FAIL ({len(problems)} findings)")
+        return False
+    print("Gate E: green — zero dead, zero missing, all epoch rows present")
+    return True
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--packs", type=Path, default=default_packs(),
@@ -445,7 +592,8 @@ def main() -> int:
     parser.add_argument("--captures", type=Path, default=DEFAULT_CAPTURES)
     parser.add_argument("--tabs", type=Path, default=DEFAULT_TABS)
     parser.add_argument("--example-key", default=DEFAULT_EXAMPLE_KEY)
-    parser.add_argument("--check", action="store_true", help="report without writing")
+    parser.add_argument("--check", action="store_true",
+                        help="Gate E: write, then verify the written mapping pages against the pack join")
     args = parser.parse_args()
 
     if not args.packs.is_dir():
@@ -457,8 +605,8 @@ def main() -> int:
     for loc in missing:
         print(f"WARNING: no pack installed for {loc} under {args.packs}", file=sys.stderr)
 
-    pages: dict[str, str] = {"keywords.md": render_keywords(packs)}
-    for loc in PACK_COLUMNS:
+    pages: dict[str, str] = {"keywords.md": render_index(packs)}
+    for loc in MAPPING_PAGES:
         if loc in packs:
             pages[f"{loc}.md"] = render_locale_page(packs, loc)
 
@@ -475,12 +623,10 @@ def main() -> int:
         print("  no locale-tabs panels for that key; leaving examples.md alone",
               file=sys.stderr)
 
-    if args.check:
-        for name in pages:
-            print(f"would write {args.output_dir / name}")
-        return 0
-
     args.output_dir.mkdir(parents=True, exist_ok=True)
+    # `en.md` is retired (English is the page language; its base-surface
+    # sentence lives on the hub index) but stays in the cleanup set so a
+    # checkout that still carries it is regenerated away.
     known = set(pages) | {f"{loc}.md" for loc in PACK_COLUMNS}
     for existing in args.output_dir.glob("*.md"):
         if existing.name not in pages and existing.name in known:
@@ -489,6 +635,16 @@ def main() -> int:
         path = args.output_dir / name
         path.write_text(text, encoding="utf-8")
         print(f"wrote {path.relative_to(REPO)}")
+
+    # Gate E verifies the written state, not the in-memory pages dict: read
+    # the mapping pages back from disk and diff them against the pack join.
+    if args.check:
+        written = {
+            f"{loc}.md": (args.output_dir / f"{loc}.md").read_text(encoding="utf-8")
+            for loc in MAPPING_PAGES
+            if (args.output_dir / f"{loc}.md").is_file()
+        }
+        return 0 if check_mapping_pages(packs, written) else 1
     return 0
 
 

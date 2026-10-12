@@ -23,370 +23,370 @@ Latin script, but not English — the control case. Heavy diacritics stress NFKC
 
 ## English ↔ Vietnamese {#mapping}
 
-Generated from the packs; the canonical (Latin) name keys the full [keyword reference](/language/locales/keywords.html).
+Generated from the packs; read a row across to translate one term. The Latin column is the canonical name, which keys the [keyword reference](/language/locales/keywords.html).
 
 ### Keywords {#keywords}
 
 ```text locale=la
-| English          Tiếng Việt
-| ---------------  -------------------
-| all              tất_cả
-| and              và
-| any              bất_kỳ
-| argmax           argmax
-| argmin           argmin
-| args             đối_số
-| as               như
-| asc              tăng_dần
-| assert           khẳng_định
-| async            async
-| async_generator  async_sinh
-| async_main       bắt_đầu_bất_đồng_bộ
-| async_setup      sẽ_chuẩn_bị
-| async_teardown   sẽ_sau_chuẩn_bị
-| at               tại
-| await            đợi_bỏ
-| await_const      đợi_hằng
-| await_var        đợi_biến
-| axis             trục
-| before           trước
-| bench            đo_lường
-| between          giữa
-| break            dừng
-| call             gọi
-| case             trường_hợp
-| catch            bắt
-| class            kiểu
-| cli              cli
-| coalesce         hoặc_nếu_rỗng
-| column           cột
-| command          lệnh
-| comptime         tiền_tố
-| const            hằng
-| continue         tiếp
-| conversion       chuyển_đổi
-| —                chuyển
-| copy             sao_chép
-| count            đếm
-| cursor           con_trỏ
-| debug            xem
-| default          mặc_định
-| desc             giảm_dần
-| describe         đối_tượng_kiểm_thử
-| description      mô_tả
-| do               làm
-| elif             nếukhôngthì
-| else             khác
-| embed            nhúng
-| empty            tập_rỗng
-| enum             liệt_kê
-| errors           lỗi
-| exit             thoát
-| expect_failure   mong_đợi_thất_bại
-| false            sai
-| flaky            mong_manh
-| fn               hàm
-| for              lặp
-| format           văn_bản_hóa
-| fragment         mảnh
-| from             từ
-| future           tương_lai
-| generator        sinh
-| global           toàn_cục
-| guard            canh_gác
-| if               nếu
-| implements       thực_thi
-| import           nhập
-| interface        giao_ước
-| internal         nội_bộ
-| is               là
-| kernel           hạt_nhân
-| lambda           đóng
-| lane             làn
-| let              đặt
-| line             dòng
-| long             dài
-| main             bắt_đầu
-| match            phân_tích
-| max              lớn_nhất
-| min              nhỏ_nhất
-| module           vùng
-| mut              vào
-| name             tên
-| nan              nan
-| not              không
-| null             không_gì
-| only             chỉ
-| only_in          chỉ_trong
-| operand          toán_hạng
-| option           tùy_chọn
-| optional         tự_nguyện
-| options          lựa_chọn
-| or               hoặc
-| own              sở_hữu
-| panic            chết
-| pass             im_lặng
-| per              theo
-| primus_quem      primus_quem
-| print            ghi_chú
-| private          riêng_tư
-| product          tích
-| protected        bảo_vệ
-| public           công_khai
-| radix            radix
-| range            khoảng
-| read             đọc
-| readonly         bất_biến
-| reduce           rút_gọn
-| ref              ra
-| reject           từ_chối
-| rename           đổi_tên
-| repeat           lặp_lại
-| require          yêu_cầu
-| rest             còn_lại
-| return           trả
-| return_await     đợi_trả
-| schema           lược_đồ
-| self             tôi
-| setup            chuẩn_bị
-| shared           commune
-| short            ngắn
-| size             kích_thước
-| skip             bỏ_qua
-| sort             sắp_xếp
-| spread           rải
-| static           tĩnh
-| step             qua
-| sum              tổng
-| switch           chọn
-| tag              nhãn
-| teardown         sau_chuẩn_bị
-| test             kiểm_thử
-| then             do_đó
-| thread           sợi
-| throw            ném
-| throws           ném_lỗi
-| timeout          thời_gian
-| todo             việc_cần_làm
-| trap             bẫy
-| true             đúng
-| tuple            bộ
-| type             kiểu_tên
-| ubi              ubi
-| union            hợp_nhất
-| unstable         không_ổn_định
-| until            tới
-| var              biến
-| variant          tạo
-| vertex           đỉnh
-| via              thông_qua
-| warn             cảnh_báo
-| while            trong_khi
-| within           trong
-| wrapping         môđun
-| write            viết
-| yield            nhường
+| English          Latin        Tiếng Việt
+| ---------------  -----------  -------------------
+| all              omnia        tất_cả
+| and              et           và
+| any              quilibet     bất_kỳ
+| argmax           argmaxima    argmax
+| argmin           argminima    argmin
+| args             argumenta    đối_số
+| as               ut           như
+| asc              ascendens    tăng_dần
+| assert           adfirma      khẳng_định
+| async            fiet         async
+| async_generator  fient        async_sinh
+| async_main       incipiet     bắt_đầu_bất_đồng_bộ
+| async_setup      praeparabit  sẽ_chuẩn_bị
+| async_teardown   postparabit  sẽ_sau_chuẩn_bị
+| at               apud         tại
+| await            tacebit      đợi_bỏ
+| await_const      figendum     đợi_hằng
+| await_var        variandum    đợi_biến
+| axis             axis         trục
+| before           ante         trước
+| bench            metior       đo_lường
+| between          inter        giữa
+| break            rumpe        dừng
+| call             ad           gọi
+| case             casu         trường_hợp
+| catch            cape         bắt
+| class            genus        kiểu
+| cli              cli          cli
+| coalesce         vel          hoặc_nếu_rỗng
+| column           columna      cột
+| command          imperium     lệnh
+| comptime         praefixum    tiền_tố
+| const            fixum        hằng
+| continue         perge        tiếp
+| conversion       conversio    chuyển_đổi
+| —                conversion   chuyển
+| copy             exemplum     sao_chép
+| count            numeratio    đếm
+| cursor           cursor       con_trỏ
+| debug            vide         xem
+| default          ceterum      mặc_định
+| desc             descendens   giảm_dần
+| describe         probandum    đối_tượng_kiểm_thử
+| description      descriptio   mô_tả
+| do               fac          làm
+| elif             sin          nếukhôngthì
+| else             secus        khác
+| embed            insere       nhúng
+| empty            vacua        tập_rỗng
+| enum             ordo         liệt_kê
+| errors           errata       lỗi
+| exit             exitus       thoát
+| expect_failure   erratur      mong_đợi_thất_bại
+| false            falsum       sai
+| flaky            fragilis     mong_manh
+| fn               functio      hàm
+| for              itera        lặp
+| format           scriptum     văn_bản_hóa
+| fragment         fragment     mảnh
+| from             ex           từ
+| future           futura       tương_lai
+| generator        fiunt        sinh
+| global           ubique       toàn_cục
+| guard            custodi      canh_gác
+| if               si           nếu
+| implements       implet       thực_thi
+| import           importa      nhập
+| interface        implendum    giao_ước
+| internal         interna      nội_bộ
+| is               est          là
+| kernel           nucleum      hạt_nhân
+| lambda           clausura     đóng
+| lane             lane         làn
+| let              sit          đặt
+| line             lineam       dòng
+| long             longum       dài
+| main             incipit      bắt_đầu
+| match            discerne     phân_tích
+| max              maxima       lớn_nhất
+| min              minima       nhỏ_nhất
+| module           regio        vùng
+| mut              in           vào
+| name             nomen        tên
+| nan              nonnumerus   nan
+| not              non          không
+| null             nulla        không_gì
+| only             solum        chỉ
+| only_in          solum_in     chỉ_trong
+| operand          operandus    toán_hạng
+| option           optio        tùy_chọn
+| optional         sponte       tự_nguyện
+| options          optiones     lựa_chọn
+| or               aut          hoặc
+| own              penes        sở_hữu
+| panic            mori         chết
+| pass             tacet        im_lặng
+| per              pro          theo
+| primus_quem      primus_quem  primus_quem
+| print            nota         ghi_chú
+| private          privata      riêng_tư
+| product          factum       tích
+| protected        protecta     bảo_vệ
+| public           publica      công_khai
+| radix            radix        radix
+| range            ab           khoảng
+| read             lege         đọc
+| readonly         immutata     bất_biến
+| reduce           reducta      rút_gọn
+| ref              de           ra
+| reject           reice        từ_chối
+| rename           verte        đổi_tên
+| repeat           repete       lặp_lại
+| require          requirit     yêu_cầu
+| rest             ceteri       còn_lại
+| return           redde        trả
+| return_await     reddet       đợi_trả
+| schema           schema       lược_đồ
+| self             ego          tôi
+| setup            praepara     chuẩn_bị
+| shared           commune      commune
+| short            brevis       ngắn
+| size             magnitudo    kích_thước
+| skip             omitte       bỏ_qua
+| sort             ordinata     sắp_xếp
+| spread           sparge       rải
+| static           generis      tĩnh
+| step             per          qua
+| sum              summa        tổng
+| switch           elige        chọn
+| tag              tag          nhãn
+| teardown         postpara     sau_chuẩn_bị
+| test             proba        kiểm_thử
+| then             ergo         do_đó
+| thread           filum        sợi
+| throw            iace         ném
+| throws           iacit        ném_lỗi
+| timeout          temporis     thời_gian
+| todo             futurum      việc_cần_làm
+| trap             capta        bẫy
+| true             verum        đúng
+| tuple            iuncta       bộ
+| type             typus        kiểu_tên
+| ubi              ubi          ubi
+| union            discretio    hợp_nhất
+| unstable         nondum       không_ổn_định
+| until            usque        tới
+| var              varia        biến
+| variant          finge        tạo
+| vertex           vertex       đỉnh
+| via              via          thông_qua
+| warn             mone         cảnh_báo
+| while            dum          trong_khi
+| within           intra        trong
+| wrapping         modulus      môđun
+| write            scribe       viết
+| yield            cede         nhường
 ```
 
 ### Types {#types}
 
 ```text locale=la
-| English      Tiếng Việt
-| -----------  -------------
-| any          bất_kỳ
-| ascii        ascii
-| atomic       nguyên_tử
-| bool         logic
-| byte         byte_đơn
-| bytes        byte
-| census       điều_tra
-| channel      kênh
-| char         ký_tự
-| clamp        kẹp_biên
-| filter       bộ_lọc
-| float        thập_phân
-| frame        khung
-| instant      thời_điểm
-| int          số
-| intervallum  miền
-| iterator     bộ_lặp
-| json         json
-| ledger       sổ_cái
-| list         danh_sách
-| map          bảng
-| matrix       ma_trận
-| never        không_bao_giờ
-| none         rỗng_ty
-| object       đối_tượng
-| promise      lời_hứa
-| queue        hàng_đợi
-| record       ratio
-| recv         nhận
-| reflect      phản_xạ_biên
-| regex        chính_quy
-| saturating   bão_hòa
-| send         gửi
-| series       chuỗi
-| set          tập_hợp
-| sparsa       thưa
-| stack        ngăn_xếp
-| string       văn_bản
-| tensor       ten_xo
-| trapping     chính_xác
-| unknown      chưa_biết
-| value        giá_trị
-| vector       vectơ
-| void         trống
-| wrap         vòng_biên
-| wrapping_ty  môđun_kiểu
+| English      Latin        Tiếng Việt
+| -----------  -----------  -------------
+| any          quidlibet    bất_kỳ
+| ascii        ascii        ascii
+| atomic       atomic       nguyên_tử
+| bool         bivalens     logic
+| byte         octetus      byte_đơn
+| bytes        octeti       byte
+| census       census       điều_tra
+| channel      sermo        kênh
+| char         littera      ký_tự
+| clamp        clampa       kẹp_biên
+| filter       filtrum      bộ_lọc
+| float        fractus      thập_phân
+| frame        scrinium     khung
+| instant      instans      thời_điểm
+| int          numerus      số
+| intervallum  intervallum  miền
+| iterator     cursor_t     bộ_lặp
+| json         json         json
+| ledger       tabulae      sổ_cái
+| list         lista        danh_sách
+| map          tabula       bảng
+| matrix       matrix       ma_trận
+| never        numquam      không_bao_giờ
+| none         nihil        rỗng_ty
+| object       objectum     đối_tượng
+| promise      promissum    lời_hứa
+| queue        queue        hàng_đợi
+| record       ratio        ratio
+| recv         tuus         nhận
+| reflect      reflexa      phản_xạ_biên
+| regex        regex        chính_quy
+| saturating   saturatus    bão_hòa
+| send         meus         gửi
+| series       series       chuỗi
+| set          copia        tập_hợp
+| sparsa       sparsa       thưa
+| stack        stack        ngăn_xếp
+| string       textus       văn_bản
+| tensor       tensor       ten_xo
+| trapping     exactus      chính_xác
+| unknown      ignotum      chưa_biết
+| value        valor        giá_trị
+| vector       vector       vectơ
+| void         vacuum       trống
+| wrap         involuta     vòng_biên
+| wrapping_ty  modulus_t    môđun_kiểu
 ```
 
 ### Intrinsics {#intrinsics}
 
 ```text locale=la
-| English               Tiếng Việt
-| --------------------  -----------------
-| abs                   giá_trị_tuyệt_đối
-| add                   thêm
-| added                 đã_thêm
-| added_bias            đã_thêm_độ_lệch
-| all                   tất_cả
-| any                   bất_kỳ
-| append                nối_đuôi
-| apply                 áp_dụng
-| approx                xấp_xỉ
-| argmax                argmax
-| argmin                argmin
-| at                    tại
-| at_least              ít_nhất
-| at_most               nhiều_nhất
-| bit_and               và_bit
-| bit_and_assign        và_bit_gán
-| bit_or                hoặc_bit
-| bit_or_assign         hoặc_bit_gán
-| ceiling               làm_tròn_lên
-| clamp                 giới_hạn
-| compare_exchange      so_sánh_và_đổi
-| complement            bù
-| complemented          đã_bù
-| contains              chứa
-| cos                   cos
-| create                tạo
-| cross                 tích_có_hướng
-| cross_entropy         entropy_chéo
-| cumulate              tích_lũy
-| cursor                bộ_lặp
-| delete                xóa
-| densify               làm_đặc
-| difference            hiệu
-| divide                chia
-| divide                phép_chia
-| divided               đã_chia
-| dot                   tích_vô_hướng
-| drop                  bỏ_qua
-| end                   kết_thúc
-| ends_with             kết_thúc_bằng
-| escape                thoát_ký_tự
-| exchange              đổi
-| exp                   hàm_mũ
-| expanded              mở_rộng
-| fill                  điền
-| filter                lọc
-| find                  tìm
-| find_all              tìm_tất_cả
-| first                 đầu_tiên
-| flatten               làm_phẳng
-| flip                  lật
-| flipped               đã_lật
-| floor                 làm_tròn_xuống
-| formata               formata
-| gather                thu_thập
-| gelu                  gelu
-| get                   lấy
-| greater               lớn_hơn
-| group                 nhóm
-| has                   có
-| intersect             giao_với
-| intersection          giao
-| invert                nghịch_đảo
-| is_empty              rỗng
-| is_subset             là_tập_con
-| is_superset           là_tập_cha
-| keys                  khóa
-| last                  cuối_cùng
-| layer_norm            chuẩn_hóa_lớp
-| length                độ_dài
-| less                  nhỏ_hơn
-| limes                 biên
-| ln                    lôgarit_tự_nhiên
-| load                  nạp
-| log10                 lôgarit_thập_phân
-| lowercase             chữ_thường
-| map                   ánh_xạ
-| matches               khớp
-| materialize           hiện_thực_hóa
-| matmul                nhân_ma_trận
-| maximum               lớn_nhất
-| mean                  trung_bình
-| minimum               nhỏ_nhất
-| modulo                chia_lấy_dư
-| modulo_assign         chia_lấy_dư_gán
-| multiplied            đã_nhân
-| multiply              nhân
-| named                 đặt_tên
-| negate                đổi_dấu
-| negated               đã_đổi_dấu
-| nonzero_count         đếm_khác_không
-| normalize             chuẩn_hóa
-| power                 lũy_thừa
-| put                   đặt
-| reduce                rút_gọn
-| relu                  kích_hoạt_relu
-| remove_first          bỏ_đầu
-| remove_last           bỏ_cuối
-| replace               thay
-| reshape               định_hình_lại
-| reverse               đảo
-| rms_norm              rms_norm
-| rope_norm             rope_norm
-| round                 làm_tròn
-| set                   thiết_lập
-| shape                 hình_dạng
-| shift                 dịch
-| shift_left            dịch_trái
-| shift_right           dịch_phải
-| shifted_left          đã_dịch_trái
-| shifted_right         đã_dịch_phải
-| sign                  dấu
-| silu                  silu
-| sin                   sin
-| slice                 cắt
-| softmax               kích_hoạt_softmax
-| sort                  sắp_xếp
-| sorted                đã_sắp_xếp
-| split                 tách
-| sqrt                  căn_bậc_hai
-| start                 bắt_đầu
-| starts_with           bắt_đầu_bằng
-| store                 lưu
-| subtract              trừ
-| subtracted            đã_trừ
-| sum                   tổng
-| swizzle               swizzle
-| symmetric_difference  hiệu_đối_xứng
-| take                  lấy_đầu
-| take_last             lấy_cuối
-| tan                   tan
-| text                  văn_bản
-| transpose             chuyển_vị
-| trim                  cắt_khoảng_trắng
-| truncate              cắt_bỏ
-| union                 hợp
-| union                 hợp
-| uppercase             chữ_hoa
-| values                giá_trị
+| English               Latin                  Tiếng Việt
+| --------------------  ---------------------  -----------------
+| abs                   absolutum              giá_trị_tuyệt_đối
+| add                   adde                   thêm
+| added                 addita                 đã_thêm
+| added_bias            addita_bias            đã_thêm_độ_lệch
+| all                   omnia                  tất_cả
+| any                   quilibet               bất_kỳ
+| append                appende                nối_đuôi
+| apply                 applica                áp_dụng
+| approx                approximata            xấp_xỉ
+| argmax                argmaxima              argmax
+| argmin                argminima              argmin
+| at                    apud                   tại
+| at_least              maxime                 ít_nhất
+| at_most               minime                 nhiều_nhất
+| bit_and               coniuncta              và_bit
+| bit_and_assign        coniunge               và_bit_gán
+| bit_or                disiuncta              hoặc_bit
+| bit_or_assign         disiunge               hoặc_bit_gán
+| ceiling               tectum                 làm_tròn_lên
+| clamp                 coercere               giới_hạn
+| compare_exchange      compare_exchange       so_sánh_và_đổi
+| complement            complementa            bù
+| complemented          complementata          đã_bù
+| contains              continet               chứa
+| cos                   cosinus                cos
+| create                crea                   tạo
+| cross                 transversum            tích_có_hướng
+| cross_entropy         crux_entropia          entropy_chéo
+| cumulate              cumulata               tích_lũy
+| cursor                cursor                 bộ_lặp
+| delete                dele                   xóa
+| densify               densata                làm_đặc
+| difference            differentia            hiệu
+| divide                divida                 chia
+| divide                divisio                phép_chia
+| divided               divisa                 đã_chia
+| dot                   productum              tích_vô_hướng
+| drop                  omissa                 bỏ_qua
+| end                   terminus               kết_thúc
+| ends_with             finis                  kết_thúc_bằng
+| escape                munita                 thoát_ký_tự
+| exchange              exchange               đổi
+| exp                   exponentia             hàm_mũ
+| expanded              expande                mở_rộng
+| fill                  reple                  điền
+| filter                filtrata               lọc
+| find                  inventa                tìm
+| find_all              collecta               tìm_tất_cả
+| first                 primus                 đầu_tiên
+| flatten               planata                làm_phẳng
+| flip                  alterna                lật
+| flipped               alternata              đã_lật
+| floor                 pavimentum             làm_tròn_xuống
+| formata               formata                formata
+| gather                gather                 thu_thập
+| gelu                  gelu                   gelu
+| get                   accipe                 lấy
+| greater               maior                  lớn_hơn
+| group                 coetus                 nhóm
+| has                   habet                  có
+| intersect             inter                  giao_với
+| intersection          intersectio            giao
+| invert                inversa                nghịch_đảo
+| is_empty              vacua                  rỗng
+| is_subset             subcopia               là_tập_con
+| is_superset           supercopia             là_tập_cha
+| keys                  claves                 khóa
+| last                  ultimus                cuối_cùng
+| layer_norm            laminatio              chuẩn_hóa_lớp
+| length                longitudo              độ_dài
+| less                  minor                  nhỏ_hơn
+| limes                 limes                  biên
+| ln                    logarithmus            lôgarit_tự_nhiên
+| load                  load                   nạp
+| log10                 logarithmus_decimalis  lôgarit_thập_phân
+| lowercase             minuscula              chữ_thường
+| map                   mappata                ánh_xạ
+| matches               consentit              khớp
+| materialize           materialize            hiện_thực_hóa
+| matmul                matmul                 nhân_ma_trận
+| maximum               maximus                lớn_nhất
+| mean                  media                  trung_bình
+| minimum               minimus                nhỏ_nhất
+| modulo                modulata               chia_lấy_dư
+| modulo_assign         modula                 chia_lấy_dư_gán
+| multiplied            multiplicata           đã_nhân
+| multiply              multiplica             nhân
+| named                 nominatus              đặt_tên
+| negate                nega                   đổi_dấu
+| negated               negativa               đã_đổi_dấu
+| nonzero_count         nonnihil               đếm_khác_không
+| normalize             normalizata            chuẩn_hóa
+| power                 potentia               lũy_thừa
+| put                   pone                   đặt
+| reduce                reducta                rút_gọn
+| relu                  activatio_relu         kích_hoạt_relu
+| remove_first          decapita               bỏ_đầu
+| remove_last           detrahe                bỏ_cuối
+| replace               muta                   thay
+| reshape               forma                  định_hình_lại
+| reverse               inverte                đảo
+| rms_norm              rms_norm               rms_norm
+| rope_norm             rope_norm              rope_norm
+| round                 rotunda                làm_tròn
+| set                   ponde                  thiết_lập
+| shape                 magnitudines           hình_dạng
+| shift                 disloco                dịch
+| shift_left            sinistra               dịch_trái
+| shift_right           dextra                 dịch_phải
+| shifted_left          sinistrata             đã_dịch_trái
+| shifted_right         dextrata               đã_dịch_phải
+| sign                  signum                 dấu
+| silu                  silu                   silu
+| sin                   sinus                  sin
+| slice                 sectio                 cắt
+| softmax               activatio_softmax      kích_hoạt_softmax
+| sort                  ordina                 sắp_xếp
+| sorted                ordinata               đã_sắp_xếp
+| split                 divide                 tách
+| sqrt                  radix                  căn_bậc_hai
+| start                 principium             bắt_đầu
+| starts_with           initium                bắt_đầu_bằng
+| store                 store                  lưu
+| subtract              subtrahe               trừ
+| subtracted            subtracta              đã_trừ
+| sum                   summa                  tổng
+| swizzle               swizzle                swizzle
+| symmetric_difference  symmetrica             hiệu_đối_xứng
+| take                  prima                  lấy_đầu
+| take_last             ultima                 lấy_cuối
+| tan                   tangens                tan
+| text                  inventum               văn_bản
+| transpose             transpone              chuyển_vị
+| trim                  recide                 cắt_khoảng_trắng
+| truncate              trunca                 cắt_bỏ
+| union                 unio                   hợp
+| union                 union                  hợp
+| uppercase             maiuscula              chữ_hoa
+| values                valores                giá_trị
 ```
 
 ---
 
-[All reader locales](/language/reader-locales.html) · [Full keyword mapping](/language/locales/keywords.html) · [Diagnostics in this locale](/language/locales/diagnostics.html)
+[All reader locales](/language/reader-locales.html) · [Keyword reference](/language/locales/keywords.html) · [Diagnostics in this locale](/language/locales/diagnostics.html)

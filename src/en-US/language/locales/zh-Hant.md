@@ -23,370 +23,370 @@ A sibling pack, not a variant spelling: it carries different vocabulary (定值 
 
 ## English ↔ Traditional Chinese {#mapping}
 
-Generated from the packs; the canonical (Latin) name keys the full [keyword reference](/language/locales/keywords.html).
+Generated from the packs; read a row across to translate one term. The Latin column is the canonical name, which keys the [keyword reference](/language/locales/keywords.html).
 
 ### Keywords {#keywords}
 
 ```text locale=la
-| English          繁體中文
-| ---------------  --------------
-| all              全部
-| and              且
-| any              任一
-| argmax           最大值索引
-| argmin           最小值索引
-| args             引數
-| as               作為
-| asc              升序
-| assert           斷言
-| async            異步
-| async_generator  異流
-| async_main       非同步入口
-| async_setup      準備非同步
-| async_teardown   後置準備非同步
-| at               在
-| await            等棄
-| await_const      等定
-| await_var        等變
-| axis             軸
-| before           之前
-| bench            測量
-| between          之間
-| break            中斷
-| call             端點
-| case             分支
-| catch            捕捉
-| class            類型
-| cli              命令行
-| coalesce         或取
-| column           欄位
-| command          命令
-| comptime         前綴
-| const            定值
-| continue         繼續
-| conversion       轉換
-| —                變換
-| copy             拷貝
-| count            計數
-| cursor           迭代器
-| debug            檢視
-| default          預設
-| desc             降序
-| describe         測試規格
-| description      描述
-| do               執行
-| elif             否則若
-| else             否則
-| embed            嵌入
-| empty            空集
-| enum             列舉
-| errors           錯誤
-| exit             出口
-| expect_failure   預期失敗
-| false            假
-| flaky            脆弱
-| fn               函式
-| for              遍歷
-| format           格式文字
-| fragment         片段
-| from             取自
-| future           未來
-| generator        流
-| global           全局
-| guard            守衛
-| if               若
-| implements       實作
-| import           匯入
-| interface        待實作介面
-| internal         內部
-| is               是
-| kernel           內核
-| lambda           閉包
-| lane             車道
-| let              設為
-| line             行
-| long             詳
-| main             入口
-| match            比對
-| max              最大
-| min              最小
-| module           模組
-| mut              傳入
-| name             名稱
-| nan              nan
-| not              非
-| null             可空
-| only             僅限
-| only_in          僅限於
-| operand          操作數
-| option           選項
-| optional         可選
-| options          可選項
-| or               或
-| own              擁有
-| panic            崩潰
-| pass             靜默
-| per              按
-| primus_quem      primus_quem
-| print            註記
-| private          私有
-| product          求積
-| protected        保護
-| public           公開
-| radix            radix
-| range            範圍
-| read             讀取
-| readonly         不變
-| reduce           歸約
-| ref              從
-| reject           拒絕
-| rename           改名
-| repeat           重複
-| require          需要
-| rest             其餘
-| return           傳回
-| return_await     等返
-| schema           結構
-| self             自身
-| setup            準備
-| shared           commune
-| short            簡
-| size             尺寸
-| skip             略過
-| sort             排序
-| spread           展開
-| static           靜態
-| step             每
-| sum              求和
-| switch           選擇
-| tag              標籤
-| teardown         後置準備
-| test             測試
-| then             則
-| thread           執行緒
-| throw            拋出
-| throws           可拋
-| timeout          時限
-| todo             預期
-| trap             陷阱
-| true             真
-| tuple            元組
-| type             型別
-| ubi              ubi
-| union            分支聯集
-| unstable         不穩定
-| until            直到
-| var              變值
-| variant          虛構
-| vertex           頂點
-| via              經由
-| warn             警告
-| while            當
-| within           內含
-| wrapping         模數
-| write            寫出
-| yield            讓出
+| English          Latin        繁體中文
+| ---------------  -----------  --------------
+| all              omnia        全部
+| and              et           且
+| any              quilibet     任一
+| argmax           argmaxima    最大值索引
+| argmin           argminima    最小值索引
+| args             argumenta    引數
+| as               ut           作為
+| asc              ascendens    升序
+| assert           adfirma      斷言
+| async            fiet         異步
+| async_generator  fient        異流
+| async_main       incipiet     非同步入口
+| async_setup      praeparabit  準備非同步
+| async_teardown   postparabit  後置準備非同步
+| at               apud         在
+| await            tacebit      等棄
+| await_const      figendum     等定
+| await_var        variandum    等變
+| axis             axis         軸
+| before           ante         之前
+| bench            metior       測量
+| between          inter        之間
+| break            rumpe        中斷
+| call             ad           端點
+| case             casu         分支
+| catch            cape         捕捉
+| class            genus        類型
+| cli              cli          命令行
+| coalesce         vel          或取
+| column           columna      欄位
+| command          imperium     命令
+| comptime         praefixum    前綴
+| const            fixum        定值
+| continue         perge        繼續
+| conversion       conversio    轉換
+| —                conversion   變換
+| copy             exemplum     拷貝
+| count            numeratio    計數
+| cursor           cursor       迭代器
+| debug            vide         檢視
+| default          ceterum      預設
+| desc             descendens   降序
+| describe         probandum    測試規格
+| description      descriptio   描述
+| do               fac          執行
+| elif             sin          否則若
+| else             secus        否則
+| embed            insere       嵌入
+| empty            vacua        空集
+| enum             ordo         列舉
+| errors           errata       錯誤
+| exit             exitus       出口
+| expect_failure   erratur      預期失敗
+| false            falsum       假
+| flaky            fragilis     脆弱
+| fn               functio      函式
+| for              itera        遍歷
+| format           scriptum     格式文字
+| fragment         fragment     片段
+| from             ex           取自
+| future           futura       未來
+| generator        fiunt        流
+| global           ubique       全局
+| guard            custodi      守衛
+| if               si           若
+| implements       implet       實作
+| import           importa      匯入
+| interface        implendum    待實作介面
+| internal         interna      內部
+| is               est          是
+| kernel           nucleum      內核
+| lambda           clausura     閉包
+| lane             lane         車道
+| let              sit          設為
+| line             lineam       行
+| long             longum       詳
+| main             incipit      入口
+| match            discerne     比對
+| max              maxima       最大
+| min              minima       最小
+| module           regio        模組
+| mut              in           傳入
+| name             nomen        名稱
+| nan              nonnumerus   nan
+| not              non          非
+| null             nulla        可空
+| only             solum        僅限
+| only_in          solum_in     僅限於
+| operand          operandus    操作數
+| option           optio        選項
+| optional         sponte       可選
+| options          optiones     可選項
+| or               aut          或
+| own              penes        擁有
+| panic            mori         崩潰
+| pass             tacet        靜默
+| per              pro          按
+| primus_quem      primus_quem  primus_quem
+| print            nota         註記
+| private          privata      私有
+| product          factum       求積
+| protected        protecta     保護
+| public           publica      公開
+| radix            radix        radix
+| range            ab           範圍
+| read             lege         讀取
+| readonly         immutata     不變
+| reduce           reducta      歸約
+| ref              de           從
+| reject           reice        拒絕
+| rename           verte        改名
+| repeat           repete       重複
+| require          requirit     需要
+| rest             ceteri       其餘
+| return           redde        傳回
+| return_await     reddet       等返
+| schema           schema       結構
+| self             ego          自身
+| setup            praepara     準備
+| shared           commune      commune
+| short            brevis       簡
+| size             magnitudo    尺寸
+| skip             omitte       略過
+| sort             ordinata     排序
+| spread           sparge       展開
+| static           generis      靜態
+| step             per          每
+| sum              summa        求和
+| switch           elige        選擇
+| tag              tag          標籤
+| teardown         postpara     後置準備
+| test             proba        測試
+| then             ergo         則
+| thread           filum        執行緒
+| throw            iace         拋出
+| throws           iacit        可拋
+| timeout          temporis     時限
+| todo             futurum      預期
+| trap             capta        陷阱
+| true             verum        真
+| tuple            iuncta       元組
+| type             typus        型別
+| ubi              ubi          ubi
+| union            discretio    分支聯集
+| unstable         nondum       不穩定
+| until            usque        直到
+| var              varia        變值
+| variant          finge        虛構
+| vertex           vertex       頂點
+| via              via          經由
+| warn             mone         警告
+| while            dum          當
+| within           intra        內含
+| wrapping         modulus      模數
+| write            scribe       寫出
+| yield            cede         讓出
 ```
 
 ### Types {#types}
 
 ```text locale=la
-| English      繁體中文
-| -----------  ----------
-| any          任意值
-| ascii        ascii
-| atomic       原子
-| bool         布林
-| byte         單位元組
-| bytes        位元組
-| census       普查
-| channel      通道
-| char         字元
-| clamp        鉗制
-| filter       篩選器
-| float        小數
-| frame        幀
-| instant      執行個體
-| int          整數
-| intervallum  區間
-| iterator     游標
-| json         JSON
-| ledger       帳本
-| list         列表
-| map          表格
-| matrix       矩陣
-| never        永不
-| none         無
-| object       物件
-| promise      承諾
-| queue        佇列
-| record       ratio
-| recv         接收
-| reflect      反射
-| regex        正規表示式
-| saturating   飽和
-| send         發送
-| series       序列
-| set          副本
-| sparsa       稀疏
-| stack        堆疊
-| string       文字
-| tensor       張量
-| trapping     精確
-| unknown      未知
-| value        值
-| vector       向量
-| void         空值
-| wrap         環繞
-| wrapping_ty  模數类型
+| English      Latin        繁體中文
+| -----------  -----------  ----------
+| any          quidlibet    任意值
+| ascii        ascii        ascii
+| atomic       atomic       原子
+| bool         bivalens     布林
+| byte         octetus      單位元組
+| bytes        octeti       位元組
+| census       census       普查
+| channel      sermo        通道
+| char         littera      字元
+| clamp        clampa       鉗制
+| filter       filtrum      篩選器
+| float        fractus      小數
+| frame        scrinium     幀
+| instant      instans      執行個體
+| int          numerus      整數
+| intervallum  intervallum  區間
+| iterator     cursor_t     游標
+| json         json         JSON
+| ledger       tabulae      帳本
+| list         lista        列表
+| map          tabula       表格
+| matrix       matrix       矩陣
+| never        numquam      永不
+| none         nihil        無
+| object       objectum     物件
+| promise      promissum    承諾
+| queue        queue        佇列
+| record       ratio        ratio
+| recv         tuus         接收
+| reflect      reflexa      反射
+| regex        regex        正規表示式
+| saturating   saturatus    飽和
+| send         meus         發送
+| series       series       序列
+| set          copia        副本
+| sparsa       sparsa       稀疏
+| stack        stack        堆疊
+| string       textus       文字
+| tensor       tensor       張量
+| trapping     exactus      精確
+| unknown      ignotum      未知
+| value        valor        值
+| vector       vector       向量
+| void         vacuum       空值
+| wrap         involuta     環繞
+| wrapping_ty  modulus_t    模數类型
 ```
 
 ### Intrinsics {#intrinsics}
 
 ```text locale=la
-| English               繁體中文
-| --------------------  ----------
-| abs                   絕對值
-| add                   新增
-| added                 已新增
-| added_bias            加偏置
-| all                   全部
-| any                   任一
-| append                附加
-| apply                 套用
-| approx                近似
-| argmax                最大值索引
-| argmin                最小值索引
-| at                    在
-| at_least              至少
-| at_most               至多
-| bit_and               位元與
-| bit_and_assign        位元與指派
-| bit_or                位元或
-| bit_or_assign         位元或指派
-| ceiling               向上取整
-| clamp                 限幅
-| compare_exchange      比較並交換
-| complement            取補
-| complemented          已取補
-| contains              包含
-| cos                   餘弦
-| create                建立
-| cross                 叉積
-| cross_entropy         交叉熵
-| cumulate              累積
-| cursor                游標
-| delete                刪除
-| densify               稠密化
-| difference            差集
-| divide                除以
-| divide                除法
-| divided               已除以
-| dot                   點積
-| drop                  捨棄
-| end                   結束
-| ends_with             結尾是
-| escape                跳脫
-| exchange              交換
-| exp                   指數
-| expanded              擴展
-| fill                  填充
-| filter                過濾
-| find                  尋找
-| find_all              尋找全部
-| first                 第一個
-| flatten               展平
-| flip                  翻轉
-| flipped               已翻轉
-| floor                 向下取整
-| formata               formata
-| gather                收集
-| gelu                  gelu
-| get                   取得
-| greater               大於
-| group                 分組
-| has                   含有
-| intersect             相交
-| intersection          交集
-| invert                求逆
-| is_empty              為空
-| is_subset             是子集
-| is_superset           是超集
-| keys                  鍵列表
-| last                  最後一個
-| layer_norm            層正規化
-| length                長度
-| less                  小於
-| limes                 邊界
-| ln                    自然對數
-| load                  載入
-| log10                 常用對數
-| lowercase             小寫
-| map                   變換
-| matches               比對
-| materialize           物化
-| matmul                矩陣乘法
-| maximum               最大值
-| mean                  平均值
-| minimum               最小值
-| modulo                取餘
-| modulo_assign         取餘指派
-| multiplied            已乘以
-| multiply              乘以
-| named                 命名分組
-| negate                取負
-| negated               已取負
-| nonzero_count         非零個數
-| normalize             正規化
-| power                 乘冪
-| put                   放入
-| reduce                歸約
-| relu                  ReLU
-| remove_first          移除首項
-| remove_last           移除末項
-| replace               替換
-| reshape               重塑
-| reverse               反轉
-| rms_norm              rms_norm
-| rope_norm             rope_norm
-| round                 四捨五入
-| set                   設定
-| shape                 形狀
-| shift                 平移
-| shift_left            左移
-| shift_right           右移
-| shifted_left          已左移
-| shifted_right         已右移
-| sign                  符號
-| silu                  silu
-| sin                   正弦
-| slice                 切片
-| softmax               Softmax
-| sort                  排序
-| sorted                已排序
-| split                 分割
-| sqrt                  平方根
-| start                 起始
-| starts_with           開頭是
-| store                 儲存
-| subtract              減去
-| subtracted            已減去
-| sum                   求和
-| swizzle               swizzle
-| symmetric_difference  對稱差集
-| take                  取前
-| take_last             取後
-| tan                   正切
-| text                  文字
-| transpose             轉置
-| trim                  修剪空白
-| truncate              截斷
-| union                 聯集
-| union                 聯集
-| uppercase             大寫
-| values                值列表
+| English               Latin                  繁體中文
+| --------------------  ---------------------  ----------
+| abs                   absolutum              絕對值
+| add                   adde                   新增
+| added                 addita                 已新增
+| added_bias            addita_bias            加偏置
+| all                   omnia                  全部
+| any                   quilibet               任一
+| append                appende                附加
+| apply                 applica                套用
+| approx                approximata            近似
+| argmax                argmaxima              最大值索引
+| argmin                argminima              最小值索引
+| at                    apud                   在
+| at_least              maxime                 至少
+| at_most               minime                 至多
+| bit_and               coniuncta              位元與
+| bit_and_assign        coniunge               位元與指派
+| bit_or                disiuncta              位元或
+| bit_or_assign         disiunge               位元或指派
+| ceiling               tectum                 向上取整
+| clamp                 coercere               限幅
+| compare_exchange      compare_exchange       比較並交換
+| complement            complementa            取補
+| complemented          complementata          已取補
+| contains              continet               包含
+| cos                   cosinus                餘弦
+| create                crea                   建立
+| cross                 transversum            叉積
+| cross_entropy         crux_entropia          交叉熵
+| cumulate              cumulata               累積
+| cursor                cursor                 游標
+| delete                dele                   刪除
+| densify               densata                稠密化
+| difference            differentia            差集
+| divide                divida                 除以
+| divide                divisio                除法
+| divided               divisa                 已除以
+| dot                   productum              點積
+| drop                  omissa                 捨棄
+| end                   terminus               結束
+| ends_with             finis                  結尾是
+| escape                munita                 跳脫
+| exchange              exchange               交換
+| exp                   exponentia             指數
+| expanded              expande                擴展
+| fill                  reple                  填充
+| filter                filtrata               過濾
+| find                  inventa                尋找
+| find_all              collecta               尋找全部
+| first                 primus                 第一個
+| flatten               planata                展平
+| flip                  alterna                翻轉
+| flipped               alternata              已翻轉
+| floor                 pavimentum             向下取整
+| formata               formata                formata
+| gather                gather                 收集
+| gelu                  gelu                   gelu
+| get                   accipe                 取得
+| greater               maior                  大於
+| group                 coetus                 分組
+| has                   habet                  含有
+| intersect             inter                  相交
+| intersection          intersectio            交集
+| invert                inversa                求逆
+| is_empty              vacua                  為空
+| is_subset             subcopia               是子集
+| is_superset           supercopia             是超集
+| keys                  claves                 鍵列表
+| last                  ultimus                最後一個
+| layer_norm            laminatio              層正規化
+| length                longitudo              長度
+| less                  minor                  小於
+| limes                 limes                  邊界
+| ln                    logarithmus            自然對數
+| load                  load                   載入
+| log10                 logarithmus_decimalis  常用對數
+| lowercase             minuscula              小寫
+| map                   mappata                變換
+| matches               consentit              比對
+| materialize           materialize            物化
+| matmul                matmul                 矩陣乘法
+| maximum               maximus                最大值
+| mean                  media                  平均值
+| minimum               minimus                最小值
+| modulo                modulata               取餘
+| modulo_assign         modula                 取餘指派
+| multiplied            multiplicata           已乘以
+| multiply              multiplica             乘以
+| named                 nominatus              命名分組
+| negate                nega                   取負
+| negated               negativa               已取負
+| nonzero_count         nonnihil               非零個數
+| normalize             normalizata            正規化
+| power                 potentia               乘冪
+| put                   pone                   放入
+| reduce                reducta                歸約
+| relu                  activatio_relu         ReLU
+| remove_first          decapita               移除首項
+| remove_last           detrahe                移除末項
+| replace               muta                   替換
+| reshape               forma                  重塑
+| reverse               inverte                反轉
+| rms_norm              rms_norm               rms_norm
+| rope_norm             rope_norm              rope_norm
+| round                 rotunda                四捨五入
+| set                   ponde                  設定
+| shape                 magnitudines           形狀
+| shift                 disloco                平移
+| shift_left            sinistra               左移
+| shift_right           dextra                 右移
+| shifted_left          sinistrata             已左移
+| shifted_right         dextrata               已右移
+| sign                  signum                 符號
+| silu                  silu                   silu
+| sin                   sinus                  正弦
+| slice                 sectio                 切片
+| softmax               activatio_softmax      Softmax
+| sort                  ordina                 排序
+| sorted                ordinata               已排序
+| split                 divide                 分割
+| sqrt                  radix                  平方根
+| start                 principium             起始
+| starts_with           initium                開頭是
+| store                 store                  儲存
+| subtract              subtrahe               減去
+| subtracted            subtracta              已減去
+| sum                   summa                  求和
+| swizzle               swizzle                swizzle
+| symmetric_difference  symmetrica             對稱差集
+| take                  prima                  取前
+| take_last             ultima                 取後
+| tan                   tangens                正切
+| text                  inventum               文字
+| transpose             transpone              轉置
+| trim                  recide                 修剪空白
+| truncate              trunca                 截斷
+| union                 unio                   聯集
+| union                 union                  聯集
+| uppercase             maiuscula              大寫
+| values                valores                值列表
 ```
 
 ---
 
-[All reader locales](/language/reader-locales.html) · [Full keyword mapping](/language/locales/keywords.html) · [Diagnostics in this locale](/language/locales/diagnostics.html)
+[All reader locales](/language/reader-locales.html) · [Keyword reference](/language/locales/keywords.html) · [Diagnostics in this locale](/language/locales/diagnostics.html)

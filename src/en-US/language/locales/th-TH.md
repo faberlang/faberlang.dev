@@ -23,370 +23,370 @@ A spaceless script: there are no inter-word boundaries, so the lexer resolves ev
 
 ## English ↔ Thai {#mapping}
 
-Generated from the packs; the canonical (Latin) name keys the full [keyword reference](/language/locales/keywords.html).
+Generated from the packs; read a row across to translate one term. The Latin column is the canonical name, which keys the [keyword reference](/language/locales/keywords.html).
 
 ### Keywords {#keywords}
 
 ```text locale=la
-| English          ไทย
-| ---------------  --------------
-| all              ทั้งหมด
-| and              และ
-| any              ใดก็ได้
-| argmax           ดัชนีค่าสูงสุด
-| argmin           ดัชนีค่าต่ําสุด
-| args             อาร์กิวเมนต์
-| as               ในชื่อ
-| asc              น้อยไปมาก
-| assert           ยืนยัน
-| async            อะซิงก์
-| async_generator  สตรีมอะซิงก์
-| async_main       เริ่มอะซิงก์
-| async_setup      จะเตรียม
-| async_teardown   จะหลังเตรียม
-| at               ที่
-| await            รอทิ้ง
-| await_const      รอคง
-| await_var        รอแปร
-| axis             แกน
-| before           ก่อน
-| bench            วัด
-| between          ระหว่าง
-| break            หยุด
-| call             ถึง
-| case             กรณี
-| catch            จับ
-| class            ชนิด
-| cli              cli
-| coalesce         หรือว่าง
-| column           คอลัมน์
-| command          คำสั่ง
-| comptime         นำหน้า
-| const            คงที่
-| continue         ไปต่อ
-| conversion       การแปลง
-| —                แปลง
-| copy             สำเนา
-| count            นับ
-| cursor           เคอร์เซอร์
-| debug            ดู
-| default          อื่น
-| desc             มากไปน้อย
-| describe         ทดสอบชุด
-| description      คำอธิบาย
-| do               ทำ
-| elif             ถ้าไม่ก็
-| else             มิฉะนั้น
-| embed            ฝัง
-| empty            เซตว่าง
-| enum             ลำดับ
-| errors           ข้อผิดพลาด
-| exit             ทางออก
-| expect_failure   คาดหวัง_ล้มเหลว
-| false            เท็จ
-| flaky            เปราะบาง
-| fn               ฟังก์ชัน
-| for              วน
-| format           จารึก
-| fragment         ส่วนย่อย
-| from             ออก
-| future           อนาคต
-| generator        สตรีม
-| global           โกลบอล
-| guard            คุ้มครอง
-| if               ถ้า
-| implements       เติมเต็ม
-| import           นำเข้า
-| interface        สัญญา
-| internal         ภายในองค์กร
-| is               เป็น
-| kernel           เคอร์เนล
-| lambda           ปิดล้อม
-| lane             เลน
-| let              อนุมานคงที่
-| line             บรรทัด
-| long             ยาว
-| main             เริ่ม
-| match            แยก
-| max              สูงสุด
-| min              ต่ำสุด
-| module           โมดูล
-| mut              ใน
-| name             ชื่อ
-| nan              nan
-| not              ไม่
-| null             ว่างเปล่า
-| only             เฉพาะ
-| only_in          เฉพาะใน
-| operand          ตัวถูกดำเนินการ
-| option           ตัวเลือก
-| optional         สมัครใจ
-| options          ทางเลือก
-| or               หรือ
-| own              เป็นเจ้าของ
-| panic            ตาย
-| pass             เงียบ
-| per              ตาม
-| primus_quem      primus_quem
-| print            บันทึก
-| private          ส่วนตัว
-| product          ผลคูณ
-| protected        ป้องกัน
-| public           สาธารณะ
-| radix            radix
-| range            ช่วง
-| read             อ่าน
-| readonly         ไม่เปลี่ยนแปลง
-| reduce           ลดรูป
-| ref              จาก
-| reject           ปฏิเสธ
-| rename           เปลี่ยนชื่อ
-| repeat           ทำซ้ำ
-| require          ต้องการ
-| rest             ที่เหลือ
-| return           คืน
-| return_await     รอคืน
-| schema           สคีมา
-| self             ตัวฉัน
-| setup            เตรียม
-| shared           commune
-| short            สั้น
-| size             ขนาด
-| skip             ละเว้น
-| sort             เรียง
-| spread           กระจาย
-| static           ของชนิด
-| step             ต่อ
-| sum              ผลรวม
-| switch           เลือก
-| tag              แท็ก
-| teardown         หลังเตรียม
-| test             ทดสอบ
-| then             ดังนั้น
-| thread           เส้นใย
-| throw            โยน
-| throws           โยนผล
-| timeout          เวลา
-| todo             ค้าง
-| trap             ดัก
-| true             จริง
-| tuple            ทูเพิล
-| type             ชนิดนามแฝง
-| ubi              ubi
-| union            สหภาพแยก
-| unstable         ไม่เสถียร
-| until            จนถึง
-| var              แปร
-| variant          สร้าง
-| vertex           จุดยอด
-| via              ผ่านทาง
-| warn             เตือน
-| while            ขณะ
-| within           ภายใน
-| wrapping         โมดูลัส
-| write            เขียน
-| yield            ให้
+| English          Latin        ไทย
+| ---------------  -----------  --------------
+| all              omnia        ทั้งหมด
+| and              et           และ
+| any              quilibet     ใดก็ได้
+| argmax           argmaxima    ดัชนีค่าสูงสุด
+| argmin           argminima    ดัชนีค่าต่ําสุด
+| args             argumenta    อาร์กิวเมนต์
+| as               ut           ในชื่อ
+| asc              ascendens    น้อยไปมาก
+| assert           adfirma      ยืนยัน
+| async            fiet         อะซิงก์
+| async_generator  fient        สตรีมอะซิงก์
+| async_main       incipiet     เริ่มอะซิงก์
+| async_setup      praeparabit  จะเตรียม
+| async_teardown   postparabit  จะหลังเตรียม
+| at               apud         ที่
+| await            tacebit      รอทิ้ง
+| await_const      figendum     รอคง
+| await_var        variandum    รอแปร
+| axis             axis         แกน
+| before           ante         ก่อน
+| bench            metior       วัด
+| between          inter        ระหว่าง
+| break            rumpe        หยุด
+| call             ad           ถึง
+| case             casu         กรณี
+| catch            cape         จับ
+| class            genus        ชนิด
+| cli              cli          cli
+| coalesce         vel          หรือว่าง
+| column           columna      คอลัมน์
+| command          imperium     คำสั่ง
+| comptime         praefixum    นำหน้า
+| const            fixum        คงที่
+| continue         perge        ไปต่อ
+| conversion       conversio    การแปลง
+| —                conversion   แปลง
+| copy             exemplum     สำเนา
+| count            numeratio    นับ
+| cursor           cursor       เคอร์เซอร์
+| debug            vide         ดู
+| default          ceterum      อื่น
+| desc             descendens   มากไปน้อย
+| describe         probandum    ทดสอบชุด
+| description      descriptio   คำอธิบาย
+| do               fac          ทำ
+| elif             sin          ถ้าไม่ก็
+| else             secus        มิฉะนั้น
+| embed            insere       ฝัง
+| empty            vacua        เซตว่าง
+| enum             ordo         ลำดับ
+| errors           errata       ข้อผิดพลาด
+| exit             exitus       ทางออก
+| expect_failure   erratur      คาดหวัง_ล้มเหลว
+| false            falsum       เท็จ
+| flaky            fragilis     เปราะบาง
+| fn               functio      ฟังก์ชัน
+| for              itera        วน
+| format           scriptum     จารึก
+| fragment         fragment     ส่วนย่อย
+| from             ex           ออก
+| future           futura       อนาคต
+| generator        fiunt        สตรีม
+| global           ubique       โกลบอล
+| guard            custodi      คุ้มครอง
+| if               si           ถ้า
+| implements       implet       เติมเต็ม
+| import           importa      นำเข้า
+| interface        implendum    สัญญา
+| internal         interna      ภายในองค์กร
+| is               est          เป็น
+| kernel           nucleum      เคอร์เนล
+| lambda           clausura     ปิดล้อม
+| lane             lane         เลน
+| let              sit          อนุมานคงที่
+| line             lineam       บรรทัด
+| long             longum       ยาว
+| main             incipit      เริ่ม
+| match            discerne     แยก
+| max              maxima       สูงสุด
+| min              minima       ต่ำสุด
+| module           regio        โมดูล
+| mut              in           ใน
+| name             nomen        ชื่อ
+| nan              nonnumerus   nan
+| not              non          ไม่
+| null             nulla        ว่างเปล่า
+| only             solum        เฉพาะ
+| only_in          solum_in     เฉพาะใน
+| operand          operandus    ตัวถูกดำเนินการ
+| option           optio        ตัวเลือก
+| optional         sponte       สมัครใจ
+| options          optiones     ทางเลือก
+| or               aut          หรือ
+| own              penes        เป็นเจ้าของ
+| panic            mori         ตาย
+| pass             tacet        เงียบ
+| per              pro          ตาม
+| primus_quem      primus_quem  primus_quem
+| print            nota         บันทึก
+| private          privata      ส่วนตัว
+| product          factum       ผลคูณ
+| protected        protecta     ป้องกัน
+| public           publica      สาธารณะ
+| radix            radix        radix
+| range            ab           ช่วง
+| read             lege         อ่าน
+| readonly         immutata     ไม่เปลี่ยนแปลง
+| reduce           reducta      ลดรูป
+| ref              de           จาก
+| reject           reice        ปฏิเสธ
+| rename           verte        เปลี่ยนชื่อ
+| repeat           repete       ทำซ้ำ
+| require          requirit     ต้องการ
+| rest             ceteri       ที่เหลือ
+| return           redde        คืน
+| return_await     reddet       รอคืน
+| schema           schema       สคีมา
+| self             ego          ตัวฉัน
+| setup            praepara     เตรียม
+| shared           commune      commune
+| short            brevis       สั้น
+| size             magnitudo    ขนาด
+| skip             omitte       ละเว้น
+| sort             ordinata     เรียง
+| spread           sparge       กระจาย
+| static           generis      ของชนิด
+| step             per          ต่อ
+| sum              summa        ผลรวม
+| switch           elige        เลือก
+| tag              tag          แท็ก
+| teardown         postpara     หลังเตรียม
+| test             proba        ทดสอบ
+| then             ergo         ดังนั้น
+| thread           filum        เส้นใย
+| throw            iace         โยน
+| throws           iacit        โยนผล
+| timeout          temporis     เวลา
+| todo             futurum      ค้าง
+| trap             capta        ดัก
+| true             verum        จริง
+| tuple            iuncta       ทูเพิล
+| type             typus        ชนิดนามแฝง
+| ubi              ubi          ubi
+| union            discretio    สหภาพแยก
+| unstable         nondum       ไม่เสถียร
+| until            usque        จนถึง
+| var              varia        แปร
+| variant          finge        สร้าง
+| vertex           vertex       จุดยอด
+| via              via          ผ่านทาง
+| warn             mone         เตือน
+| while            dum          ขณะ
+| within           intra        ภายใน
+| wrapping         modulus      โมดูลัส
+| write            scribe       เขียน
+| yield            cede         ให้
 ```
 
 ### Types {#types}
 
 ```text locale=la
-| English      ไทย
-| -----------  ------------
-| any          อะไรก็ได้
-| ascii        ascii
-| atomic       อะตอมิก
-| bool         ตรรกะ
-| byte         ไบต์เดี่ยว
-| bytes        ไบต์
-| census       สำมะโน
-| channel      ช่องทาง
-| char         อักขระ
-| clamp        ตรึงขอบ
-| filter       ตัวกรอง
-| float        เศษ
-| frame        เฟรม
-| instant      อินสแตนซ์
-| int          จํานวน
-| intervallum  อันตรภาค
-| iterator     ตัวชี้
-| json         json
-| ledger       สมุดบัญชี
-| list         รายการ
-| map          ตาราง
-| matrix       เมทริกซ์
-| never        ไม่เคย
-| none         นัล
-| object       ออบเจ็กต์
-| promise      คำมั่น
-| queue        คิว
-| record       ratio
-| recv         รับ
-| reflect      สะท้อนขอบ
-| regex        regex
-| saturating   อิ่มตัว
-| send         ส่ง
-| series       ซีรีส์
-| set          ชุด
-| sparsa       กระจัดกระจาย
-| stack        สแตก
-| string       ข้อความ
-| tensor       เทนเซอร์
-| trapping     แม่นยำ
-| unknown      ไม่รู้
-| value        ค่า
-| vector       เวกเตอร์
-| void         เปล่า
-| wrap         วนขอบ
-| wrapping_ty  ค่ามอดุลัส
+| English      Latin        ไทย
+| -----------  -----------  ------------
+| any          quidlibet    อะไรก็ได้
+| ascii        ascii        ascii
+| atomic       atomic       อะตอมิก
+| bool         bivalens     ตรรกะ
+| byte         octetus      ไบต์เดี่ยว
+| bytes        octeti       ไบต์
+| census       census       สำมะโน
+| channel      sermo        ช่องทาง
+| char         littera      อักขระ
+| clamp        clampa       ตรึงขอบ
+| filter       filtrum      ตัวกรอง
+| float        fractus      เศษ
+| frame        scrinium     เฟรม
+| instant      instans      อินสแตนซ์
+| int          numerus      จํานวน
+| intervallum  intervallum  อันตรภาค
+| iterator     cursor_t     ตัวชี้
+| json         json         json
+| ledger       tabulae      สมุดบัญชี
+| list         lista        รายการ
+| map          tabula       ตาราง
+| matrix       matrix       เมทริกซ์
+| never        numquam      ไม่เคย
+| none         nihil        นัล
+| object       objectum     ออบเจ็กต์
+| promise      promissum    คำมั่น
+| queue        queue        คิว
+| record       ratio        ratio
+| recv         tuus         รับ
+| reflect      reflexa      สะท้อนขอบ
+| regex        regex        regex
+| saturating   saturatus    อิ่มตัว
+| send         meus         ส่ง
+| series       series       ซีรีส์
+| set          copia        ชุด
+| sparsa       sparsa       กระจัดกระจาย
+| stack        stack        สแตก
+| string       textus       ข้อความ
+| tensor       tensor       เทนเซอร์
+| trapping     exactus      แม่นยำ
+| unknown      ignotum      ไม่รู้
+| value        valor        ค่า
+| vector       vector       เวกเตอร์
+| void         vacuum       เปล่า
+| wrap         involuta     วนขอบ
+| wrapping_ty  modulus_t    ค่ามอดุลัส
 ```
 
 ### Intrinsics {#intrinsics}
 
 ```text locale=la
-| English               ไทย
-| --------------------  ------------------
-| abs                   ค่าสัมบูรณ์
-| add                   เพิ่ม
-| added                 เพิ่มแล้ว
-| added_bias            เพิ่มไบแอส
-| all                   ทั้งหมด
-| any                   ใดก็ได้
-| append                ต่อท้าย
-| apply                 ประยุกต์
-| approx                ประมาณ
-| argmax                ดัชนีค่าสูงสุด
-| argmin                ดัชนีค่าต่ําสุด
-| at                    ที่
-| at_least              อย่างน้อย
-| at_most               อย่างมาก
-| bit_and               และบิต
-| bit_and_assign        และบิตกําหนด
-| bit_or                หรือบิต
-| bit_or_assign         หรือบิตกําหนด
-| ceiling               ปัดขึ้น
-| clamp                 จํากัดค่า
-| compare_exchange      เทียบแล้วสลับ
-| complement            กลับบิต
-| complemented          กลับบิตแล้ว
-| contains              ประกอบด้วย
-| cos                   โคไซน์
-| create                สร้าง
-| cross                 ครอสโปรดักต์
-| cross_entropy         ครอสเอนโทรปี
-| cumulate              สะสม
-| cursor                ตัวชี้
-| delete                ลบ
-| densify               ทําให้หนาแน่น
-| difference            ผลต่าง
-| divide                หาร
-| divide                การหาร
-| divided               หารแล้ว
-| dot                   ดอตโปรดักต์
-| drop                  ข้าม
-| end                   สิ้นสุด
-| ends_with             ลงท้ายด้วย
-| escape                เอสเคป
-| exchange              สลับ
-| exp                   เอกซ์โพเนนเชียล
-| expanded              ขยายมุมมอง
-| fill                  เติม
-| filter                กรอง
-| find                  ค้นหา
-| find_all              ค้นหาทั้งหมด
-| first                 ตัวแรก
-| flatten               ทําให้แบน
-| flip                  พลิกค่า
-| flipped               พลิกแล้ว
-| floor                 ปัดลง
-| formata               formata
-| gather                รวบรวม
-| gelu                  gelu
-| get                   ดึง
-| greater               มากกว่า
-| group                 กลุ่ม
-| has                   มีอยู่
-| intersect             ตัดกัน
-| intersection          ส่วนตัด
-| invert                ผกผัน
-| is_empty              ว่าง
-| is_subset             เป็นชุดย่อย
-| is_superset           เป็นชุดครอบ
-| keys                  คีย์
-| last                  ตัวสุดท้าย
-| layer_norm            เลเยอร์นอร์ม
-| length                ความยาว
-| less                  น้อยกว่า
-| limes                 ขอบ
-| ln                    ลอการิทึมธรรมชาติ
-| load                  โหลด
-| log10                 ลอการิทึมฐานสิบ
-| lowercase             ตัวพิมพ์เล็ก
-| map                   แปลง
-| matches               ตรงกับ
-| materialize           ทําให้เป็นรูปธรรม
-| matmul                คูณเมทริกซ์
-| maximum               สูงสุด
-| mean                  ค่าเฉลี่ย
-| minimum               ต่ําสุด
-| modulo                มอดูโล
-| modulo_assign         มอดูโลกําหนด
-| multiplied            คูณแล้ว
-| multiply              คูณ
-| named                 กลุ่มชื่อ
-| negate                กลับเครื่องหมาย
-| negated               กลับเครื่องหมายแล้ว
-| nonzero_count         นับไม่ศูนย์
-| normalize             ทําให้เป็นบรรทัดฐาน
-| power                 ยกกําลัง
-| put                   ใส่
-| reduce                ลดรูป
-| relu                  เรลูแอกทิเวชัน
-| remove_first          ลบตัวแรก
-| remove_last           ลบตัวท้าย
-| replace               แทนที่
-| reshape               เปลี่ยนรูปร่าง
-| reverse               กลับลําดับ
-| rms_norm              rms_norm
-| rope_norm             rope_norm
-| round                 ปัดเศษ
-| set                   กําหนด
-| shape                 รูปร่าง
-| shift                 เลื่อน
-| shift_left            เลื่อนซ้าย
-| shift_right           เลื่อนขวา
-| shifted_left          เลื่อนซ้ายแล้ว
-| shifted_right         เลื่อนขวาแล้ว
-| sign                  เครื่องหมาย
-| silu                  silu
-| sin                   ไซน์
-| slice                 ตัดช่วง
-| softmax               ซอฟต์แมกซ์
-| sort                  เรียง
-| sorted                เรียงแล้ว
-| split                 แยก
-| sqrt                  รากที่สอง
-| start                 เริ่มต้น
-| starts_with           ขึ้นต้นด้วย
-| store                 เก็บ
-| subtract              ลบออก
-| subtracted            ลบออกแล้ว
-| sum                   ผลรวม
-| swizzle               swizzle
-| symmetric_difference  ผลต่างสมมาตร
-| take                  ส่วนต้น
-| take_last             เอาท้าย
-| tan                   แทนเจนต์
-| text                  ข้อความ
-| transpose             ทรานสโพส
-| trim                  ตัดช่องว่าง
-| truncate              ตัดทิ้ง
-| union                 ส่วนรวม
-| union                 ส่วนรวม
-| uppercase             ตัวพิมพ์ใหญ่
-| values                ค่าทั้งหมด
+| English               Latin                  ไทย
+| --------------------  ---------------------  ------------------
+| abs                   absolutum              ค่าสัมบูรณ์
+| add                   adde                   เพิ่ม
+| added                 addita                 เพิ่มแล้ว
+| added_bias            addita_bias            เพิ่มไบแอส
+| all                   omnia                  ทั้งหมด
+| any                   quilibet               ใดก็ได้
+| append                appende                ต่อท้าย
+| apply                 applica                ประยุกต์
+| approx                approximata            ประมาณ
+| argmax                argmaxima              ดัชนีค่าสูงสุด
+| argmin                argminima              ดัชนีค่าต่ําสุด
+| at                    apud                   ที่
+| at_least              maxime                 อย่างน้อย
+| at_most               minime                 อย่างมาก
+| bit_and               coniuncta              และบิต
+| bit_and_assign        coniunge               และบิตกําหนด
+| bit_or                disiuncta              หรือบิต
+| bit_or_assign         disiunge               หรือบิตกําหนด
+| ceiling               tectum                 ปัดขึ้น
+| clamp                 coercere               จํากัดค่า
+| compare_exchange      compare_exchange       เทียบแล้วสลับ
+| complement            complementa            กลับบิต
+| complemented          complementata          กลับบิตแล้ว
+| contains              continet               ประกอบด้วย
+| cos                   cosinus                โคไซน์
+| create                crea                   สร้าง
+| cross                 transversum            ครอสโปรดักต์
+| cross_entropy         crux_entropia          ครอสเอนโทรปี
+| cumulate              cumulata               สะสม
+| cursor                cursor                 ตัวชี้
+| delete                dele                   ลบ
+| densify               densata                ทําให้หนาแน่น
+| difference            differentia            ผลต่าง
+| divide                divida                 หาร
+| divide                divisio                การหาร
+| divided               divisa                 หารแล้ว
+| dot                   productum              ดอตโปรดักต์
+| drop                  omissa                 ข้าม
+| end                   terminus               สิ้นสุด
+| ends_with             finis                  ลงท้ายด้วย
+| escape                munita                 เอสเคป
+| exchange              exchange               สลับ
+| exp                   exponentia             เอกซ์โพเนนเชียล
+| expanded              expande                ขยายมุมมอง
+| fill                  reple                  เติม
+| filter                filtrata               กรอง
+| find                  inventa                ค้นหา
+| find_all              collecta               ค้นหาทั้งหมด
+| first                 primus                 ตัวแรก
+| flatten               planata                ทําให้แบน
+| flip                  alterna                พลิกค่า
+| flipped               alternata              พลิกแล้ว
+| floor                 pavimentum             ปัดลง
+| formata               formata                formata
+| gather                gather                 รวบรวม
+| gelu                  gelu                   gelu
+| get                   accipe                 ดึง
+| greater               maior                  มากกว่า
+| group                 coetus                 กลุ่ม
+| has                   habet                  มีอยู่
+| intersect             inter                  ตัดกัน
+| intersection          intersectio            ส่วนตัด
+| invert                inversa                ผกผัน
+| is_empty              vacua                  ว่าง
+| is_subset             subcopia               เป็นชุดย่อย
+| is_superset           supercopia             เป็นชุดครอบ
+| keys                  claves                 คีย์
+| last                  ultimus                ตัวสุดท้าย
+| layer_norm            laminatio              เลเยอร์นอร์ม
+| length                longitudo              ความยาว
+| less                  minor                  น้อยกว่า
+| limes                 limes                  ขอบ
+| ln                    logarithmus            ลอการิทึมธรรมชาติ
+| load                  load                   โหลด
+| log10                 logarithmus_decimalis  ลอการิทึมฐานสิบ
+| lowercase             minuscula              ตัวพิมพ์เล็ก
+| map                   mappata                แปลง
+| matches               consentit              ตรงกับ
+| materialize           materialize            ทําให้เป็นรูปธรรม
+| matmul                matmul                 คูณเมทริกซ์
+| maximum               maximus                สูงสุด
+| mean                  media                  ค่าเฉลี่ย
+| minimum               minimus                ต่ําสุด
+| modulo                modulata               มอดูโล
+| modulo_assign         modula                 มอดูโลกําหนด
+| multiplied            multiplicata           คูณแล้ว
+| multiply              multiplica             คูณ
+| named                 nominatus              กลุ่มชื่อ
+| negate                nega                   กลับเครื่องหมาย
+| negated               negativa               กลับเครื่องหมายแล้ว
+| nonzero_count         nonnihil               นับไม่ศูนย์
+| normalize             normalizata            ทําให้เป็นบรรทัดฐาน
+| power                 potentia               ยกกําลัง
+| put                   pone                   ใส่
+| reduce                reducta                ลดรูป
+| relu                  activatio_relu         เรลูแอกทิเวชัน
+| remove_first          decapita               ลบตัวแรก
+| remove_last           detrahe                ลบตัวท้าย
+| replace               muta                   แทนที่
+| reshape               forma                  เปลี่ยนรูปร่าง
+| reverse               inverte                กลับลําดับ
+| rms_norm              rms_norm               rms_norm
+| rope_norm             rope_norm              rope_norm
+| round                 rotunda                ปัดเศษ
+| set                   ponde                  กําหนด
+| shape                 magnitudines           รูปร่าง
+| shift                 disloco                เลื่อน
+| shift_left            sinistra               เลื่อนซ้าย
+| shift_right           dextra                 เลื่อนขวา
+| shifted_left          sinistrata             เลื่อนซ้ายแล้ว
+| shifted_right         dextrata               เลื่อนขวาแล้ว
+| sign                  signum                 เครื่องหมาย
+| silu                  silu                   silu
+| sin                   sinus                  ไซน์
+| slice                 sectio                 ตัดช่วง
+| softmax               activatio_softmax      ซอฟต์แมกซ์
+| sort                  ordina                 เรียง
+| sorted                ordinata               เรียงแล้ว
+| split                 divide                 แยก
+| sqrt                  radix                  รากที่สอง
+| start                 principium             เริ่มต้น
+| starts_with           initium                ขึ้นต้นด้วย
+| store                 store                  เก็บ
+| subtract              subtrahe               ลบออก
+| subtracted            subtracta              ลบออกแล้ว
+| sum                   summa                  ผลรวม
+| swizzle               swizzle                swizzle
+| symmetric_difference  symmetrica             ผลต่างสมมาตร
+| take                  prima                  ส่วนต้น
+| take_last             ultima                 เอาท้าย
+| tan                   tangens                แทนเจนต์
+| text                  inventum               ข้อความ
+| transpose             transpone              ทรานสโพส
+| trim                  recide                 ตัดช่องว่าง
+| truncate              trunca                 ตัดทิ้ง
+| union                 unio                   ส่วนรวม
+| union                 union                  ส่วนรวม
+| uppercase             maiuscula              ตัวพิมพ์ใหญ่
+| values                valores                ค่าทั้งหมด
 ```
 
 ---
 
-[All reader locales](/language/reader-locales.html) · [Full keyword mapping](/language/locales/keywords.html) · [Diagnostics in this locale](/language/locales/diagnostics.html)
+[All reader locales](/language/reader-locales.html) · [Keyword reference](/language/locales/keywords.html) · [Diagnostics in this locale](/language/locales/diagnostics.html)

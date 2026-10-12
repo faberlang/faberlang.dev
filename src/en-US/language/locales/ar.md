@@ -23,370 +23,370 @@ Right-to-left script written in logical order inside a left-to-right code block.
 
 ## English ↔ Arabic {#mapping}
 
-Generated from the packs; the canonical (Latin) name keys the full [keyword reference](/language/locales/keywords.html).
+Generated from the packs; read a row across to translate one term. The Latin column is the canonical name, which keys the [keyword reference](/language/locales/keywords.html).
 
 ### Keywords {#keywords}
 
 ```text locale=la
-| English          العربية
-| ---------------  --------------
-| all              الكل
-| and              و
-| any              أي
-| argmax           فهرس_الأكبر
-| argmin           فهرس_الأصغر
-| args             وسائط
-| as               كـ
-| asc              تصاعدي
-| assert           أكد
-| async            غيرمتزامن
-| async_generator  مولد_غيرمتزامن
-| async_main       استهلال
-| async_setup      سيهيئ
-| async_teardown   سيلحق
-| at               عند
-| await            انتظر
-| await_const      انتظر_ثابت
-| await_var        انتظر_متغير
-| axis             محور
-| before           قبل
-| bench            قس
-| between          بين
-| break            اكسر
-| call             اتصل
-| case             حالة
-| catch            التقط
-| class            صنف
-| cli              cli
-| coalesce         عوض
-| column           عمود
-| command          أمر
-| comptime         بادئة
-| const            ثابت
-| continue         تابع
-| conversion       تحويل
-| —                حوّل
-| copy             نسخة
-| count            العدّ
-| cursor           cursor
-| debug            شاهد
-| default          افتراضي
-| desc             تنازلي
-| describe         مختبر
-| description      وصف
-| do               افعل
-| elif             وإلاإذا
-| else             وإلا
-| embed            تضمين
-| empty            فارغ
-| enum             ترتيب
-| errors           مخطئ
-| exit             مخرج
-| expect_failure   توقع_الفشل
-| false            خطأ
-| flaky            هش
-| fn               دالة
-| for              كرر
-| format           حرر
-| fragment         جزء
-| from             من
-| future           مستقبل
-| generator        مولد
-| global           عمومي
-| guard            احرس
-| if               إذا
-| implements       حقق
-| import           استورد
-| interface        عقد
-| internal         داخلي
-| is               هو
-| kernel           نواة
-| lambda           إغلاق
-| lane             مسار
-| let              ليكن
-| line             سطرا
-| long             مفصل
-| main             بداية
-| match            طابق
-| max              الأقصى
-| min              الأدنى
-| module           وحدة
-| mut              في
-| name             اسم
-| nan              nan
-| not              ليس
-| null             خال
-| only             فقط
-| only_in          حصري
-| operand          معامل
-| option           خيار
-| optional         اختياري
-| options          خيارات
-| or               أو
-| own              ملك
-| panic            انهر
-| pass             صمت
-| per              حسب
-| primus_quem      primus_quem
-| print            اعرض
-| private          خاص
-| product          حاصل_الضرب
-| protected        محمي
-| public           عام
-| radix            radix
-| range            نطاق
-| read             اقرأ
-| readonly         ثابتة
-| reduce           اختزل
-| ref              عن
-| reject           يرفض
-| rename           إعادة_تسمية
-| repeat           معاد
-| require          يتطلب
-| rest             باقي
-| return           أعد
-| return_await     أعد_منتظرا
-| schema           مخطط
-| self             ذات
-| setup            جهز
-| shared           commune
-| short            مختصر
-| size             حجم
-| skip             أهمل
-| sort             رتب
-| spread           انشر
-| static           سكوني
-| step             كل
-| sum              المجموع
-| switch           اختر
-| tag              وسم
-| teardown         لاحق
-| test             اختبر
-| then             إذن
-| thread           خيط
-| throw            ارم
-| throws           يرمي
-| timeout          زمني
-| todo             مستقبلي
-| trap             فخ
-| true             صواب
-| tuple            توبل
-| type             نمط
-| ubi              ubi
-| union            تمايز
-| unstable         غير_مستقر
-| until            حتى
-| var              متغير
-| variant          أنشئ
-| vertex           رأس
-| via              عبر
-| warn             نبه
-| while            طالما
-| within           ضمن
-| wrapping         حلقة
-| write            اكتب
-| yield            سلم
+| English          Latin        العربية
+| ---------------  -----------  --------------
+| all              omnia        الكل
+| and              et           و
+| any              quilibet     أي
+| argmax           argmaxima    فهرس_الأكبر
+| argmin           argminima    فهرس_الأصغر
+| args             argumenta    وسائط
+| as               ut           كـ
+| asc              ascendens    تصاعدي
+| assert           adfirma      أكد
+| async            fiet         غيرمتزامن
+| async_generator  fient        مولد_غيرمتزامن
+| async_main       incipiet     استهلال
+| async_setup      praeparabit  سيهيئ
+| async_teardown   postparabit  سيلحق
+| at               apud         عند
+| await            tacebit      انتظر
+| await_const      figendum     انتظر_ثابت
+| await_var        variandum    انتظر_متغير
+| axis             axis         محور
+| before           ante         قبل
+| bench            metior       قس
+| between          inter        بين
+| break            rumpe        اكسر
+| call             ad           اتصل
+| case             casu         حالة
+| catch            cape         التقط
+| class            genus        صنف
+| cli              cli          cli
+| coalesce         vel          عوض
+| column           columna      عمود
+| command          imperium     أمر
+| comptime         praefixum    بادئة
+| const            fixum        ثابت
+| continue         perge        تابع
+| conversion       conversio    تحويل
+| —                conversion   حوّل
+| copy             exemplum     نسخة
+| count            numeratio    العدّ
+| cursor           cursor       cursor
+| debug            vide         شاهد
+| default          ceterum      افتراضي
+| desc             descendens   تنازلي
+| describe         probandum    مختبر
+| description      descriptio   وصف
+| do               fac          افعل
+| elif             sin          وإلاإذا
+| else             secus        وإلا
+| embed            insere       تضمين
+| empty            vacua        فارغ
+| enum             ordo         ترتيب
+| errors           errata       مخطئ
+| exit             exitus       مخرج
+| expect_failure   erratur      توقع_الفشل
+| false            falsum       خطأ
+| flaky            fragilis     هش
+| fn               functio      دالة
+| for              itera        كرر
+| format           scriptum     حرر
+| fragment         fragment     جزء
+| from             ex           من
+| future           futura       مستقبل
+| generator        fiunt        مولد
+| global           ubique       عمومي
+| guard            custodi      احرس
+| if               si           إذا
+| implements       implet       حقق
+| import           importa      استورد
+| interface        implendum    عقد
+| internal         interna      داخلي
+| is               est          هو
+| kernel           nucleum      نواة
+| lambda           clausura     إغلاق
+| lane             lane         مسار
+| let              sit          ليكن
+| line             lineam       سطرا
+| long             longum       مفصل
+| main             incipit      بداية
+| match            discerne     طابق
+| max              maxima       الأقصى
+| min              minima       الأدنى
+| module           regio        وحدة
+| mut              in           في
+| name             nomen        اسم
+| nan              nonnumerus   nan
+| not              non          ليس
+| null             nulla        خال
+| only             solum        فقط
+| only_in          solum_in     حصري
+| operand          operandus    معامل
+| option           optio        خيار
+| optional         sponte       اختياري
+| options          optiones     خيارات
+| or               aut          أو
+| own              penes        ملك
+| panic            mori         انهر
+| pass             tacet        صمت
+| per              pro          حسب
+| primus_quem      primus_quem  primus_quem
+| print            nota         اعرض
+| private          privata      خاص
+| product          factum       حاصل_الضرب
+| protected        protecta     محمي
+| public           publica      عام
+| radix            radix        radix
+| range            ab           نطاق
+| read             lege         اقرأ
+| readonly         immutata     ثابتة
+| reduce           reducta      اختزل
+| ref              de           عن
+| reject           reice        يرفض
+| rename           verte        إعادة_تسمية
+| repeat           repete       معاد
+| require          requirit     يتطلب
+| rest             ceteri       باقي
+| return           redde        أعد
+| return_await     reddet       أعد_منتظرا
+| schema           schema       مخطط
+| self             ego          ذات
+| setup            praepara     جهز
+| shared           commune      commune
+| short            brevis       مختصر
+| size             magnitudo    حجم
+| skip             omitte       أهمل
+| sort             ordinata     رتب
+| spread           sparge       انشر
+| static           generis      سكوني
+| step             per          كل
+| sum              summa        المجموع
+| switch           elige        اختر
+| tag              tag          وسم
+| teardown         postpara     لاحق
+| test             proba        اختبر
+| then             ergo         إذن
+| thread           filum        خيط
+| throw            iace         ارم
+| throws           iacit        يرمي
+| timeout          temporis     زمني
+| todo             futurum      مستقبلي
+| trap             capta        فخ
+| true             verum        صواب
+| tuple            iuncta       توبل
+| type             typus        نمط
+| ubi              ubi          ubi
+| union            discretio    تمايز
+| unstable         nondum       غير_مستقر
+| until            usque        حتى
+| var              varia        متغير
+| variant          finge        أنشئ
+| vertex           vertex       رأس
+| via              via          عبر
+| warn             mone         نبه
+| while            dum          طالما
+| within           intra        ضمن
+| wrapping         modulus      حلقة
+| write            scribe       اكتب
+| yield            cede         سلم
 ```
 
 ### Types {#types}
 
 ```text locale=la
-| English      العربية
-| -----------  -------------
-| any          مهما
-| ascii        أسكي
-| atomic       ذري
-| bool         منطقي
-| byte         بايت
-| bytes        بايتات
-| census       تعداد
-| channel      قناة
-| char         حرف
-| clamp        تثبيت_الحافة
-| filter       مرشح
-| float        كسر
-| frame        إطار
-| instant      لحظة
-| int          عدد
-| intervallum  فترة
-| iterator     مؤشر
-| json         جسون
-| ledger       دفتر
-| list         قائمة
-| map          جدول
-| matrix       مصفوفة
-| never        أبدا
-| none         نوع_لاشيء
-| object       كائن
-| promise      وعد
-| queue        طابور
-| record       ratio
-| recv         استقبال
-| reflect      انعكاس_الحافة
-| regex        تعبير
-| saturating   مشبع
-| send         إرسال
-| series       سلسلة
-| set          مجموعة
-| sparsa       متفرقة
-| stack        مكدس
-| string       نص
-| tensor       موتر
-| trapping     دقيق
-| unknown      مجهول
-| value        قيمة
-| vector       متجه
-| void         فراغ
-| wrap         التفاف_الحافة
-| wrapping_ty  نوع_حلقة
+| English      Latin        العربية
+| -----------  -----------  -------------
+| any          quidlibet    مهما
+| ascii        ascii        أسكي
+| atomic       atomic       ذري
+| bool         bivalens     منطقي
+| byte         octetus      بايت
+| bytes        octeti       بايتات
+| census       census       تعداد
+| channel      sermo        قناة
+| char         littera      حرف
+| clamp        clampa       تثبيت_الحافة
+| filter       filtrum      مرشح
+| float        fractus      كسر
+| frame        scrinium     إطار
+| instant      instans      لحظة
+| int          numerus      عدد
+| intervallum  intervallum  فترة
+| iterator     cursor_t     مؤشر
+| json         json         جسون
+| ledger       tabulae      دفتر
+| list         lista        قائمة
+| map          tabula       جدول
+| matrix       matrix       مصفوفة
+| never        numquam      أبدا
+| none         nihil        نوع_لاشيء
+| object       objectum     كائن
+| promise      promissum    وعد
+| queue        queue        طابور
+| record       ratio        ratio
+| recv         tuus         استقبال
+| reflect      reflexa      انعكاس_الحافة
+| regex        regex        تعبير
+| saturating   saturatus    مشبع
+| send         meus         إرسال
+| series       series       سلسلة
+| set          copia        مجموعة
+| sparsa       sparsa       متفرقة
+| stack        stack        مكدس
+| string       textus       نص
+| tensor       tensor       موتر
+| trapping     exactus      دقيق
+| unknown      ignotum      مجهول
+| value        valor        قيمة
+| vector       vector       متجه
+| void         vacuum       فراغ
+| wrap         involuta     التفاف_الحافة
+| wrapping_ty  modulus_t    نوع_حلقة
 ```
 
 ### Intrinsics {#intrinsics}
 
 ```text locale=la
-| English               العربية
-| --------------------  ------------------
-| abs                   القيمة_المطلقة
-| add                   أضف
-| added                 مضاف
-| added_bias            مضاف_الانحياز
-| all                   الكل
-| any                   أي
-| append                ألحق
-| apply                 طبق
-| approx                مقارب
-| argmax                فهرس_الأكبر
-| argmin                فهرس_الأصغر
-| at                    عند
-| at_least              على_الأقل
-| at_most               على_الأكثر
-| bit_and               و_بت
-| bit_and_assign        و_بت_إسناد
-| bit_or                أو_بت
-| bit_or_assign         أو_بت_إسناد
-| ceiling               تقريب_لأعلى
-| clamp                 قيد
-| compare_exchange      قارن_وبدل
-| complement            كمل
-| complemented          مكمل
-| contains              يحتوي
-| cos                   جيب_التمام
-| create                أنشئ
-| cross                 الجداء_الاتجاهي
-| cross_entropy         إنتروبيا_متقاطعة
-| cumulate              تراكمي
-| cursor                مؤشر
-| delete                امسح
-| densify               كثف
-| difference            الفرق
-| divide                اقسم
-| divide                قسمة
-| divided               مقسوم
-| dot                   الجداء_النقطي
-| drop                  أسقط
-| end                   النهاية
-| ends_with             ينتهي_ب
-| escape                تهريب
-| exchange              بدل
-| exp                   الأسي
-| expanded              وسع
-| fill                  املأ
-| filter                رشح
-| find                  ابحث
-| find_all              ابحث_عن_الكل
-| first                 الأول
-| flatten               سطح
-| flip                  اقلب
-| flipped               مقلوب
-| floor                 تقريب_لأسفل
-| formata               formata
-| gather                اجمع_بالفهرس
-| gelu                  gelu
-| get                   اجلب
-| greater               أكبر
-| group                 مجموعة
-| has                   يملك
-| intersect             تقاطع
-| intersection          التقاطع
-| invert                معكوس
-| is_empty              فارغ
-| is_subset             مجموعة_جزئية
-| is_superset           مجموعة_شاملة
-| keys                  المفاتيح
-| last                  الأخير
-| layer_norm            تطبيع_الطبقة
-| length                طول
-| less                  أصغر
-| limes                 حافة
-| ln                    اللوغاريتم_الطبيعي
-| load                  حمل
-| log10                 اللوغاريتم_العشري
-| lowercase             أحرف_صغيرة
-| map                   حول
-| matches               يطابق
-| materialize           جسد
-| matmul                ضرب_المصفوفات
-| maximum               الأقصى
-| mean                  المتوسط
-| minimum               الأدنى
-| modulo                الباقي
-| modulo_assign         أسند_الباقي
-| multiplied            مضروب
-| multiply              اضرب
-| named                 مسماة
-| negate                اعكس_الإشارة
-| negated               معكوس_الإشارة
-| nonzero_count         عدّ_اللاصفريّات
-| normalize             طبّع
-| power                 قوة
-| put                   ضع
-| reduce                اختزل
-| relu                  تنشيط_ريلو
-| remove_first          احذف_الأول
-| remove_last           احذف_الأخير
-| replace               استبدل
-| reshape               أعد_التشكيل
-| reverse               اعكس
-| rms_norm              rms_norm
-| rope_norm             rope_norm
-| round                 قرب
-| set                   اضبط
-| shape                 الأبعاد
-| shift                 أزح
-| shift_left            أزح_يسارا
-| shift_right           أزح_يمينا
-| shifted_left          مزاح_يسارا
-| shifted_right         مزاح_يمينا
-| sign                  إشارة
-| silu                  silu
-| sin                   جيب
-| slice                 شريحة
-| softmax               تنشيط_سوفتماكس
-| sort                  رتب
-| sorted                مرتب
-| split                 افصل
-| sqrt                  الجذر_التربيعي
-| start                 البداية
-| starts_with           يبدأ_ب
-| store                 خزن
-| subtract              اطرح
-| subtracted            مطروح
-| sum                   المجموع
-| swizzle               swizzle
-| symmetric_difference  الفرق_المتماثل
-| take                  خذ_الأولى
-| take_last             خذ_الأخيرة
-| tan                   الظل
-| text                  النص
-| transpose             منقول
-| trim                  شذب
-| truncate              اقتطع
-| union                 الاتحاد
-| union                 اتحاد
-| uppercase             أحرف_كبيرة
-| values                القيم
+| English               Latin                  العربية
+| --------------------  ---------------------  ------------------
+| abs                   absolutum              القيمة_المطلقة
+| add                   adde                   أضف
+| added                 addita                 مضاف
+| added_bias            addita_bias            مضاف_الانحياز
+| all                   omnia                  الكل
+| any                   quilibet               أي
+| append                appende                ألحق
+| apply                 applica                طبق
+| approx                approximata            مقارب
+| argmax                argmaxima              فهرس_الأكبر
+| argmin                argminima              فهرس_الأصغر
+| at                    apud                   عند
+| at_least              maxime                 على_الأقل
+| at_most               minime                 على_الأكثر
+| bit_and               coniuncta              و_بت
+| bit_and_assign        coniunge               و_بت_إسناد
+| bit_or                disiuncta              أو_بت
+| bit_or_assign         disiunge               أو_بت_إسناد
+| ceiling               tectum                 تقريب_لأعلى
+| clamp                 coercere               قيد
+| compare_exchange      compare_exchange       قارن_وبدل
+| complement            complementa            كمل
+| complemented          complementata          مكمل
+| contains              continet               يحتوي
+| cos                   cosinus                جيب_التمام
+| create                crea                   أنشئ
+| cross                 transversum            الجداء_الاتجاهي
+| cross_entropy         crux_entropia          إنتروبيا_متقاطعة
+| cumulate              cumulata               تراكمي
+| cursor                cursor                 مؤشر
+| delete                dele                   امسح
+| densify               densata                كثف
+| difference            differentia            الفرق
+| divide                divida                 اقسم
+| divide                divisio                قسمة
+| divided               divisa                 مقسوم
+| dot                   productum              الجداء_النقطي
+| drop                  omissa                 أسقط
+| end                   terminus               النهاية
+| ends_with             finis                  ينتهي_ب
+| escape                munita                 تهريب
+| exchange              exchange               بدل
+| exp                   exponentia             الأسي
+| expanded              expande                وسع
+| fill                  reple                  املأ
+| filter                filtrata               رشح
+| find                  inventa                ابحث
+| find_all              collecta               ابحث_عن_الكل
+| first                 primus                 الأول
+| flatten               planata                سطح
+| flip                  alterna                اقلب
+| flipped               alternata              مقلوب
+| floor                 pavimentum             تقريب_لأسفل
+| formata               formata                formata
+| gather                gather                 اجمع_بالفهرس
+| gelu                  gelu                   gelu
+| get                   accipe                 اجلب
+| greater               maior                  أكبر
+| group                 coetus                 مجموعة
+| has                   habet                  يملك
+| intersect             inter                  تقاطع
+| intersection          intersectio            التقاطع
+| invert                inversa                معكوس
+| is_empty              vacua                  فارغ
+| is_subset             subcopia               مجموعة_جزئية
+| is_superset           supercopia             مجموعة_شاملة
+| keys                  claves                 المفاتيح
+| last                  ultimus                الأخير
+| layer_norm            laminatio              تطبيع_الطبقة
+| length                longitudo              طول
+| less                  minor                  أصغر
+| limes                 limes                  حافة
+| ln                    logarithmus            اللوغاريتم_الطبيعي
+| load                  load                   حمل
+| log10                 logarithmus_decimalis  اللوغاريتم_العشري
+| lowercase             minuscula              أحرف_صغيرة
+| map                   mappata                حول
+| matches               consentit              يطابق
+| materialize           materialize            جسد
+| matmul                matmul                 ضرب_المصفوفات
+| maximum               maximus                الأقصى
+| mean                  media                  المتوسط
+| minimum               minimus                الأدنى
+| modulo                modulata               الباقي
+| modulo_assign         modula                 أسند_الباقي
+| multiplied            multiplicata           مضروب
+| multiply              multiplica             اضرب
+| named                 nominatus              مسماة
+| negate                nega                   اعكس_الإشارة
+| negated               negativa               معكوس_الإشارة
+| nonzero_count         nonnihil               عدّ_اللاصفريّات
+| normalize             normalizata            طبّع
+| power                 potentia               قوة
+| put                   pone                   ضع
+| reduce                reducta                اختزل
+| relu                  activatio_relu         تنشيط_ريلو
+| remove_first          decapita               احذف_الأول
+| remove_last           detrahe                احذف_الأخير
+| replace               muta                   استبدل
+| reshape               forma                  أعد_التشكيل
+| reverse               inverte                اعكس
+| rms_norm              rms_norm               rms_norm
+| rope_norm             rope_norm              rope_norm
+| round                 rotunda                قرب
+| set                   ponde                  اضبط
+| shape                 magnitudines           الأبعاد
+| shift                 disloco                أزح
+| shift_left            sinistra               أزح_يسارا
+| shift_right           dextra                 أزح_يمينا
+| shifted_left          sinistrata             مزاح_يسارا
+| shifted_right         dextrata               مزاح_يمينا
+| sign                  signum                 إشارة
+| silu                  silu                   silu
+| sin                   sinus                  جيب
+| slice                 sectio                 شريحة
+| softmax               activatio_softmax      تنشيط_سوفتماكس
+| sort                  ordina                 رتب
+| sorted                ordinata               مرتب
+| split                 divide                 افصل
+| sqrt                  radix                  الجذر_التربيعي
+| start                 principium             البداية
+| starts_with           initium                يبدأ_ب
+| store                 store                  خزن
+| subtract              subtrahe               اطرح
+| subtracted            subtracta              مطروح
+| sum                   summa                  المجموع
+| swizzle               swizzle                swizzle
+| symmetric_difference  symmetrica             الفرق_المتماثل
+| take                  prima                  خذ_الأولى
+| take_last             ultima                 خذ_الأخيرة
+| tan                   tangens                الظل
+| text                  inventum               النص
+| transpose             transpone              منقول
+| trim                  recide                 شذب
+| truncate              trunca                 اقتطع
+| union                 unio                   الاتحاد
+| union                 union                  اتحاد
+| uppercase             maiuscula              أحرف_كبيرة
+| values                valores                القيم
 ```
 
 ---
 
-[All reader locales](/language/reader-locales.html) · [Full keyword mapping](/language/locales/keywords.html) · [Diagnostics in this locale](/language/locales/diagnostics.html)
+[All reader locales](/language/reader-locales.html) · [Keyword reference](/language/locales/keywords.html) · [Diagnostics in this locale](/language/locales/diagnostics.html)

@@ -225,11 +225,13 @@ if [ "$FULL_SITE" = true ]; then
 
     # The reader-locale reference joins the same packs. Diagnostics captures
     # are a committed cache refreshed by hand (capture-locale-diagnostics.sh),
-    # so the build never depends on a faber run here.
+    # so the build never depends on a faber run here. --check is Gate E: the
+    # mapping pages must match the pack join with zero dead and zero missing
+    # rows.
     if [ -d "${WORKSPACE_DIR}/radix/locale" ]; then
         echo "[0/10] Generating the reader-locale reference..."
         "$PYTHON" "${SCRIPT_DIR}/generate-locale-reference.py" \
-            --packs "${WORKSPACE_DIR}/radix/locale"
+            --packs "${WORKSPACE_DIR}/radix/locale" --check
     fi
 
     # The agent reference mirrors the compiler's explain registry, so it needs
