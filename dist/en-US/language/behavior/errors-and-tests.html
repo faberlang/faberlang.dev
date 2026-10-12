@@ -6,22 +6,22 @@ and throws by <code class="glyph">⇥</code>. <code>throw</code> sends a value o
 <code>require</code> / <code>reject</code> are the one-line forms: <code>require cond throw err</code> throws
 when the condition fails, and <code>reject</code> is its boolean opposite. Callers recover
 locally with a <code>do</code> / <code>catch</code> pair, so a failure stays visible at the call site
-rather than travelling up an invisible stack.</p><h2 id="shape">What it looks like<a class="anchor" href="#shape">#</a></h2><p>A fallible division, and two callers — one that succeeds, one that catches:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ string {
-    <span class="tok-kw">require</span> b <span class="tok-op">≢</span> <span class="tok-nu">0</span> <span class="tok-kw">throw</span> <span class="tok-st">"division by zero"</span>
-    <span class="tok-kw">return</span> a <span class="tok-op">/</span> b
+rather than travelling up an invisible stack.</p><h2 id="shape">What it looks like<a class="anchor" href="#shape">#</a></h2><p>A fallible division, and two callers — one that succeeds, one that catches:</p><pre class="faber-code"><code class="lang-faber">fn divide(int a, int b) <span class="tok-op">→</span> int ⇥ string {
+    require b <span class="tok-op">≢</span> <span class="tok-nu">0</span> throw <span class="tok-st">"division by zero"</span>
+    return a <span class="tok-op">/</span> b
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">do</span> {
+main {
+    do {
         print divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
     }
-    <span class="tok-kw">catch</span> err {
+    catch err {
         print err
     }
-    <span class="tok-kw">do</span> {
+    do {
         print divide(<span class="tok-nu">1</span>, <span class="tok-nu">0</span>)
     }
-    <span class="tok-kw">catch</span> err {
+    catch err {
         print err
     }
 }</code></pre><pre class="faber-code"><code class="lang-text">$ faber run
@@ -31,19 +31,19 @@ keeps going. The compiler knows which call sites can fail, because the <code cla
 channel is part of the function's type.</p><h2 id="testing">Tests are declarations<a class="anchor" href="#testing">#</a></h2><p>The same &quot;make it explicit&quot; stance applies to tests. There is no separate test
 binary and no test module tree. Three keywords declare tests in the same file
 as the code — or in colocated <code>*.proba</code> sources — and <code>faber test</code> runs them on
-the MIR stepper, with no Cargo or rustc involved:</p><div class="table-scroll"><table><thead><tr><th>Keyword</th><th>Role</th></tr></thead><tbody><tr><td><code>describe</code></td><td>a named test suite, nestable</td></tr><tr><td><code>test</code></td><td>one test case</td></tr><tr><td><code>assert</code></td><td>an assertion that must hold</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> saturate(<span class="tok-kw">int</span> x) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">if</span> x ≺ <span class="tok-nu">0</span> then <span class="tok-kw">return</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">if</span> x ≻ <span class="tok-nu">255</span> then <span class="tok-kw">return</span> <span class="tok-nu">255</span>
-    <span class="tok-kw">return</span> x
+the MIR stepper, with no Cargo or rustc involved:</p><div class="table-scroll"><table><thead><tr><th>Keyword</th><th>Role</th></tr></thead><tbody><tr><td><code>describe</code></td><td>a named test suite, nestable</td></tr><tr><td><code>test</code></td><td>one test case</td></tr><tr><td><code>assert</code></td><td>an assertion that must hold</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber">fn saturate(int x) <span class="tok-op">→</span> int {
+    if x ≺ <span class="tok-nu">0</span> then return <span class="tok-nu">0</span>
+    if x ≻ <span class="tok-nu">255</span> then return <span class="tok-nu">255</span>
+    return x
 }
 
-<span class="tok-kw">describe</span> <span class="tok-st">"saturate"</span> {
-    <span class="tok-kw">test</span> <span class="tok-st">"clamps low"</span> {
-        <span class="tok-kw">assert</span> saturate(<span class="tok-op">-</span><span class="tok-nu">1</span>) <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+describe <span class="tok-st">"saturate"</span> {
+    test <span class="tok-st">"clamps low"</span> {
+        assert saturate(<span class="tok-op">-</span><span class="tok-nu">1</span>) <span class="tok-op">≡</span> <span class="tok-nu">0</span>
     }
 
-    <span class="tok-kw">test</span> <span class="tok-st">"clamps high"</span> {
-        <span class="tok-kw">assert</span> saturate(<span class="tok-nu">300</span>) <span class="tok-op">≡</span> <span class="tok-nu">255</span>
+    test <span class="tok-st">"clamps high"</span> {
+        assert saturate(<span class="tok-nu">300</span>) <span class="tok-op">≡</span> <span class="tok-nu">255</span>
     }
 }</code></pre><pre class="faber-code"><code class="lang-text">$ faber test .
 ok   src/main.fab::saturate/clamps low (0 ms)

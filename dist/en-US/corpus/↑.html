@@ -21,16 +21,16 @@
 <span class="tok-co"># Postfix forms are statements, not expressions. They cannot appear inside</span>
 <span class="tok-co"># larger expressions. Operand must be a mutable int place.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
+main {
+    var int count <span class="tok-op">←</span> <span class="tok-nu">0</span>
     count ↑
 <span class="tok-co">    # 1</span>
     print count
     count ↓
 <span class="tok-co">    # 0</span>
     print count
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> exclusivus <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥<span class="tok-nu">3</span> <span class="tok-kw">const</span> _ {
+    var int exclusivus <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">3</span> const _ {
         exclusivus ↑
     }
 <span class="tok-co">    # 3</span>

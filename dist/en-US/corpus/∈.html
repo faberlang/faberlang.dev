@@ -23,17 +23,17 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   none — stdout not pinned for this exemplum.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> string condicio <span class="tok-op">←</span> <span class="tok-st">"agens"</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> aetas <span class="tok-op">←</span> <span class="tok-nu">21</span>
+main {
+    const string condicio <span class="tok-op">←</span> <span class="tok-st">"agens"</span>
+    const int aetas <span class="tok-op">←</span> <span class="tok-nu">21</span>
 
 <span class="tok-co">    # Basic ∈ with string list</span>
-    <span class="tok-kw">if</span> condicio <span class="tok-op">∈</span> [<span class="tok-st">"pendens"</span>, <span class="tok-st">"agens"</span>, <span class="tok-st">"pausa"</span>] {
+    if condicio <span class="tok-op">∈</span> [<span class="tok-st">"pendens"</span>, <span class="tok-st">"agens"</span>, <span class="tok-st">"pausa"</span>] {
         print <span class="tok-st">"condicio valida"</span>
     }
 
 <span class="tok-co">    # ∈ with numeric list</span>
-    <span class="tok-kw">if</span> aetas <span class="tok-op">∈</span> [<span class="tok-nu">18</span>, <span class="tok-nu">21</span>, <span class="tok-nu">65</span>] {
+    if aetas <span class="tok-op">∈</span> [<span class="tok-nu">18</span>, <span class="tok-nu">21</span>, <span class="tok-nu">65</span>] {
         print <span class="tok-st">"aetas insignis"</span>
     }
     print <span class="tok-st">"exempla ∈"</span>
@@ -66,23 +66,23 @@ exempla ∈
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   membership-range.expected — one result per print.</span>
 
-<span class="tok-kw">const</span> <span class="tok-kw">int</span> aetas <span class="tok-op">=</span> <span class="tok-nu">25</span>
+const int aetas <span class="tok-op">=</span> <span class="tok-nu">25</span>
 
-<span class="tok-kw">main</span> {
+main {
     print <span class="tok-st">"exempla ∈"</span>
 
 <span class="tok-co">    # Basic ∈ with ‥ operator (exclusive end)</span>
-    <span class="tok-kw">if</span> aetas <span class="tok-op">∈</span> <span class="tok-nu">0</span>‥<span class="tok-nu">100</span> {
+    if aetas <span class="tok-op">∈</span> <span class="tok-nu">0</span>‥<span class="tok-nu">100</span> {
         print <span class="tok-st">"aetas intra fines est"</span>
     }
 
 <span class="tok-co">    # ∈ with … (inclusive end)</span>
-    <span class="tok-kw">if</span> aetas <span class="tok-op">∈</span> <span class="tok-nu">18</span><span class="tok-op">…</span><span class="tok-nu">65</span> {
+    if aetas <span class="tok-op">∈</span> <span class="tok-nu">18</span><span class="tok-op">…</span><span class="tok-nu">65</span> {
         print <span class="tok-st">"aetas laboris"</span>
     }
 
 <span class="tok-co">    # ∈ with before (explicit exclusive)</span>
-    <span class="tok-kw">if</span> aetas <span class="tok-op">∈</span> <span class="tok-nu">0</span> <span class="tok-kw">before</span> <span class="tok-nu">18</span> {
+    if aetas <span class="tok-op">∈</span> <span class="tok-nu">0</span> before <span class="tok-nu">18</span> {
         print <span class="tok-st">"minor"</span>
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>exempla ∈
@@ -122,52 +122,52 @@ aetas laboris
 <span class="tok-co">#   enum in</span>
 <span class="tok-co">#   enum out</span>
 
-<span class="tok-kw">enum</span> Color {
+enum Color {
     rubrum,
     viridis,
     caeruleum
 }
 
-<span class="tok-kw">fn</span> classify(Color c) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">if</span> c <span class="tok-op">∈</span> [Color.rubrum, Color.viridis] {
+fn classify(Color c) <span class="tok-op">→</span> void {
+    if c <span class="tok-op">∈</span> [Color.rubrum, Color.viridis] {
         print <span class="tok-st">"enum in"</span>
     }
-    <span class="tok-kw">if</span> c <span class="tok-op">∉</span> [Color.rubrum, Color.caeruleum] {
+    if c <span class="tok-op">∉</span> [Color.rubrum, Color.caeruleum] {
         print <span class="tok-st">"enum out"</span>
     }
 }
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # list</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> primi <span class="tok-op">←</span> [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">5</span>, <span class="tok-nu">7</span>]
-    <span class="tok-kw">if</span> <span class="tok-nu">5</span> <span class="tok-op">∈</span> primi {
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> primi <span class="tok-op">←</span> [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">5</span>, <span class="tok-nu">7</span>]
+    if <span class="tok-nu">5</span> <span class="tok-op">∈</span> primi {
         print <span class="tok-st">"list in"</span>
     }
-    <span class="tok-kw">if</span> <span class="tok-nu">4</span> <span class="tok-op">∉</span> primi {
+    if <span class="tok-nu">4</span> <span class="tok-op">∉</span> primi {
         print <span class="tok-st">"list out"</span>
     }
 
 <span class="tok-co">    # set</span>
-    <span class="tok-kw">var</span> <span class="tok-kw">set</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> visi <span class="tok-op">←</span> empty
+    var set<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> visi <span class="tok-op">←</span> empty
     visi.add(<span class="tok-st">"alpha"</span>)
     visi.add(<span class="tok-st">"beta"</span>)
-    <span class="tok-kw">if</span> <span class="tok-st">"alpha"</span> <span class="tok-op">∈</span> visi {
+    if <span class="tok-st">"alpha"</span> <span class="tok-op">∈</span> visi {
         print <span class="tok-st">"set in"</span>
     }
-    <span class="tok-kw">if</span> <span class="tok-st">"gamma"</span> <span class="tok-op">∉</span> visi {
+    if <span class="tok-st">"gamma"</span> <span class="tok-op">∉</span> visi {
         print <span class="tok-st">"set out"</span>
     }
 
 <span class="tok-co">    # map: the test is on the keys</span>
-    <span class="tok-kw">var</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> empty
+    var map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> empty
     puncta[<span class="tok-st">"alpha"</span>] <span class="tok-op">←</span> <span class="tok-nu">1</span>
     puncta[<span class="tok-st">"beta"</span>] <span class="tok-op">←</span> <span class="tok-nu">2</span>
-    <span class="tok-kw">const</span> string present <span class="tok-op">←</span> <span class="tok-st">"beta"</span>
-    <span class="tok-kw">const</span> string absent <span class="tok-op">←</span> <span class="tok-st">"gamma"</span>
-    <span class="tok-kw">if</span> present <span class="tok-op">∈</span> puncta {
+    const string present <span class="tok-op">←</span> <span class="tok-st">"beta"</span>
+    const string absent <span class="tok-op">←</span> <span class="tok-st">"gamma"</span>
+    if present <span class="tok-op">∈</span> puncta {
         print <span class="tok-st">"map key in"</span>
     }
-    <span class="tok-kw">if</span> absent <span class="tok-op">∉</span> puncta {
+    if absent <span class="tok-op">∉</span> puncta {
         print <span class="tok-st">"map key out"</span>
     }
 
@@ -195,41 +195,41 @@ enum out
 <span class="tok-co">#   • text right operand              "a" ∈ "abc" (membership never applies to</span>
 <span class="tok-co">#                                     text; use contains)</span>
 
-<span class="tok-kw">enum</span> Color {
+enum Color {
     rubrum,
     viridis
 }
 
-<span class="tok-kw">fn</span> scalar() <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">if</span> <span class="tok-nu">1</span> <span class="tok-op">∈</span> <span class="tok-nu">5</span> {
+fn scalar() <span class="tok-op">→</span> void {
+    if <span class="tok-nu">1</span> <span class="tok-op">∈</span> <span class="tok-nu">5</span> {
         print <span class="tok-st">"scalar"</span>
     }
 }
 
-<span class="tok-kw">fn</span> nullable(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> maybe) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">if</span> <span class="tok-nu">1</span> <span class="tok-op">∈</span> maybe {
+fn nullable(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> none maybe) <span class="tok-op">→</span> void {
+    if <span class="tok-nu">1</span> <span class="tok-op">∈</span> maybe {
         print <span class="tok-st">"nullable"</span>
     }
 }
 
-<span class="tok-kw">fn</span> unresolved() <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">if</span> <span class="tok-nu">1</span> <span class="tok-op">∈</span> [] {
+fn unresolved() <span class="tok-op">→</span> void {
+    if <span class="tok-nu">1</span> <span class="tok-op">∈</span> [] {
         print <span class="tok-st">"unresolved"</span>
     }
 }
 
-<span class="tok-kw">fn</span> mixed(Color c) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">if</span> c <span class="tok-op">∈</span> [Color.rubrum, <span class="tok-nu">3</span>] {
+fn mixed(Color c) <span class="tok-op">→</span> void {
+    if c <span class="tok-op">∈</span> [Color.rubrum, <span class="tok-nu">3</span>] {
         print <span class="tok-st">"mixed"</span>
     }
 }
 
-<span class="tok-kw">fn</span> text() <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">if</span> <span class="tok-st">"a"</span> <span class="tok-op">∈</span> <span class="tok-st">"abc"</span> {
+fn text() <span class="tok-op">→</span> void {
+    if <span class="tok-st">"a"</span> <span class="tok-op">∈</span> <span class="tok-st">"abc"</span> {
         print <span class="tok-st">"text"</span>
     }
 }
 
-<span class="tok-kw">main</span> {
+main {
     scalar()
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusoperatoresmembership-collectionfab-canonical-operator-group">radix/corpus/operatores/membership-collection.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusoperatoresmembership-rangefab-canonical-operator-group">radix/corpus/operatores/membership-range.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusoperatoresmembership-valuesfab-canonical-operator-group">radix/corpus/operatores/membership-values.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusoperatoresmembership-declinefab-supporting-reject">radix/corpus/operatores/membership-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/operatores/membership-collection.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

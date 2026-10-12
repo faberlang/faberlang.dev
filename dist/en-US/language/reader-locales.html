@@ -41,13 +41,13 @@ substrate because they are the base surfaces:</p><div class="table-scroll"><tabl
 <code>examples/reader-locale/</code> with localised source, diagnostic test
 cases, and a <code>faber.toml</code> manifest. The same program rendered in the two
 base surfaces — English (this page's reader locale) and canonical Latin —
-then the six packaged locale surfaces below:</p><p><strong>English</strong> <code>en</code> — <em>base surface</em></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> salve(string name) <span class="tok-op">→</span> string {
-    <span class="tok-kw">const</span> string msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(name)
-    <span class="tok-kw">return</span> msg
+then the six packaged locale surfaces below:</p><p><strong>English</strong> <code>en</code> — <em>base surface</em></p><pre class="faber-code"><code class="lang-faber">fn salve(string name) <span class="tok-op">→</span> string {
+    const string msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(name)
+    return msg
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> string m <span class="tok-op">←</span> salve(<span class="tok-st">"munde"</span>)
+main {
+    const string m <span class="tok-op">←</span> salve(<span class="tok-st">"munde"</span>)
     print m
 }</code></pre><p>The surface an English reader writes: <code>fn</code>, <code>const</code>, <code>string</code>, <code>return</code>,
 <code>main</code>, <code>print</code> — the spellings every page on this site teaches.</p><p><strong>Latin</strong> <code>la</code> — <em>canonical</em></p><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-kw">functio</span> salve(<span class="tok-kw">textus</span> <span class="tok-kw">nomen</span>) <span class="tok-op">→</span> <span class="tok-kw">textus</span> {

@@ -21,21 +21,21 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   none — stdout not pinned for this exemplum.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> intervallum<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> morning <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">6</span>
-    <span class="tok-kw">const</span> intervallum<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> afternoon <span class="tok-op">←</span> <span class="tok-nu">4</span>‥<span class="tok-nu">10</span>
-    <span class="tok-kw">const</span> intervallum<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> overlap <span class="tok-op">←</span> morning.intersect(afternoon) coalesce <span class="tok-nu">0</span>‥<span class="tok-nu">0</span>
-    <span class="tok-kw">const</span> intervallum<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> early <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">5</span>
-    <span class="tok-kw">const</span> intervallum<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> late <span class="tok-op">←</span> <span class="tok-nu">5</span>‥<span class="tok-nu">10</span>
-    <span class="tok-kw">const</span> intervallum<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> workday <span class="tok-op">←</span> early.<span class="tok-kw">union</span>(late) coalesce <span class="tok-nu">0</span>‥<span class="tok-nu">0</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> overlap_span <span class="tok-op">←</span> overlap.length()
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> workday_span <span class="tok-op">←</span> workday.length()
-    <span class="tok-kw">assert</span> overlap_span <span class="tok-op">≡</span> <span class="tok-nu">2</span>
-    <span class="tok-kw">assert</span> workday_span <span class="tok-op">≡</span> <span class="tok-nu">10</span>
-    <span class="tok-kw">const</span> intervallum<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> gap_left <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">3</span>
-    <span class="tok-kw">const</span> intervallum<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> gap_right <span class="tok-op">←</span> <span class="tok-nu">6</span>‥<span class="tok-nu">9</span>
-    <span class="tok-kw">const</span> intervallum<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> no_union <span class="tok-op">←</span> gap_left.<span class="tok-kw">union</span>(gap_right)
-    <span class="tok-kw">assert</span> no_union <span class="tok-kw">is</span> <span class="tok-kw">none</span>
+main {
+    const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> morning <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">6</span>
+    const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> afternoon <span class="tok-op">←</span> <span class="tok-nu">4</span>‥<span class="tok-nu">10</span>
+    const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> overlap <span class="tok-op">←</span> morning.intersect(afternoon) coalesce <span class="tok-nu">0</span>‥<span class="tok-nu">0</span>
+    const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> early <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">5</span>
+    const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> late <span class="tok-op">←</span> <span class="tok-nu">5</span>‥<span class="tok-nu">10</span>
+    const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> workday <span class="tok-op">←</span> early.union(late) coalesce <span class="tok-nu">0</span>‥<span class="tok-nu">0</span>
+    const int overlap_span <span class="tok-op">←</span> overlap.length()
+    const int workday_span <span class="tok-op">←</span> workday.length()
+    assert overlap_span <span class="tok-op">≡</span> <span class="tok-nu">2</span>
+    assert workday_span <span class="tok-op">≡</span> <span class="tok-nu">10</span>
+    const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> gap_left <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">3</span>
+    const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> gap_right <span class="tok-op">←</span> <span class="tok-nu">6</span>‥<span class="tok-nu">9</span>
+    const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> none no_union <span class="tok-op">←</span> gap_left.union(gap_right)
+    assert no_union is none
 }</code></pre><h3 id="radixcorpusintervallumconversiofab-canonical-type">radix/corpus/intervallum/conversio.fab (canonical · type)<a class="anchor" href="#radixcorpusintervallumconversiofab-canonical-type">#</a></h3><p>Clamp, materialize, and contain via conversion and continet.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># intervallum — Clamp, materialize, and contain via conversion and continet</span>
 <span class="tok-co"># =============================================================================</span>
@@ -58,32 +58,32 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   none — stdout not pinned for this exemplum.</span>
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # --- value clamp (half-open interior vs inclusive endpoint) ---</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> half <span class="tok-op">←</span> <span class="tok-nu">15</span> ↦ <span class="tok-nu">0</span>‥<span class="tok-nu">10</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> closed <span class="tok-op">←</span> <span class="tok-nu">15</span> ↦ <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">10</span>
-    <span class="tok-kw">assert</span> half <span class="tok-op">≡</span> <span class="tok-nu">9</span>
-    <span class="tok-kw">assert</span> closed <span class="tok-op">≡</span> <span class="tok-nu">10</span>
+    const int half <span class="tok-op">←</span> <span class="tok-nu">15</span> ↦ <span class="tok-nu">0</span>‥<span class="tok-nu">10</span>
+    const int closed <span class="tok-op">←</span> <span class="tok-nu">15</span> ↦ <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">10</span>
+    assert half <span class="tok-op">≡</span> <span class="tok-nu">9</span>
+    assert closed <span class="tok-op">≡</span> <span class="tok-nu">10</span>
 
 <span class="tok-co">    # --- materialize to list or 1-d tensor ---</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> half_list <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> closed_list <span class="tok-op">←</span> <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">3</span> ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
-    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">10</span>]<span class="tok-op">&gt;</span> half_grid <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> ↦ tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">10</span>]<span class="tok-op">&gt;</span>
-    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> closed_grid <span class="tok-op">←</span> <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">3</span> ↦ tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> half_flat <span class="tok-op">←</span> half_grid.flatten()
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> closed_flat <span class="tok-op">←</span> closed_grid.flatten()
-    <span class="tok-kw">assert</span> half_list.length() <span class="tok-op">≡</span> <span class="tok-nu">10</span>
-    <span class="tok-kw">assert</span> closed_list.length() <span class="tok-op">≡</span> <span class="tok-nu">4</span>
-    <span class="tok-kw">assert</span> half_flat.length() <span class="tok-op">≡</span> <span class="tok-nu">10</span>
-    <span class="tok-kw">assert</span> closed_flat.length() <span class="tok-op">≡</span> <span class="tok-nu">4</span>
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> half_list <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> ↦ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> closed_list <span class="tok-op">←</span> <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">3</span> ↦ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
+    const tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">10</span>]<span class="tok-op">&gt;</span> half_grid <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">10</span>]<span class="tok-op">&gt;</span>
+    const tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> closed_grid <span class="tok-op">←</span> <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">3</span> ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> half_flat <span class="tok-op">←</span> half_grid.flatten()
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> closed_flat <span class="tok-op">←</span> closed_grid.flatten()
+    assert half_list.length() <span class="tok-op">≡</span> <span class="tok-nu">10</span>
+    assert closed_list.length() <span class="tok-op">≡</span> <span class="tok-nu">4</span>
+    assert half_flat.length() <span class="tok-op">≡</span> <span class="tok-nu">10</span>
+    assert closed_flat.length() <span class="tok-op">≡</span> <span class="tok-nu">4</span>
 
 <span class="tok-co">    # --- range-to-range clamp inherits target inclusivity ---</span>
-    <span class="tok-kw">const</span> intervallum<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> wide <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">100</span>
-    <span class="tok-kw">const</span> intervallum<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> narrow <span class="tok-op">←</span> wide ↦ <span class="tok-nu">10</span><span class="tok-op">…</span><span class="tok-nu">50</span>
-    <span class="tok-kw">assert</span> narrow.length() <span class="tok-op">≡</span> <span class="tok-nu">41</span>
+    const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> wide <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">100</span>
+    const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> narrow <span class="tok-op">←</span> wide ↦ <span class="tok-nu">10</span><span class="tok-op">…</span><span class="tok-nu">50</span>
+    assert narrow.length() <span class="tok-op">≡</span> <span class="tok-nu">41</span>
 
 <span class="tok-co">    # --- stored containment via continet (`∈` over a range tests the same containment) ---</span>
-    <span class="tok-kw">const</span> intervallum<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> fines <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">10</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> inside <span class="tok-op">←</span> fines.contains(<span class="tok-nu">5</span>)
-    <span class="tok-kw">assert</span> inside
+    const intervallum<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> fines <span class="tok-op">←</span> <span class="tok-nu">0</span>‥<span class="tok-nu">10</span>
+    const bool inside <span class="tok-op">←</span> fines.contains(<span class="tok-nu">5</span>)
+    assert inside
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusintervallumalgebrafab-canonical-type">radix/corpus/intervallum/algebra.fab (canonical · type)</a></li><li class="toc-3"><a href="#radixcorpusintervallumconversiofab-canonical-type">radix/corpus/intervallum/conversio.fab (canonical · type)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/intervallum/algebra.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

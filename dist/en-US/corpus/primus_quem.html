@@ -29,43 +29,43 @@
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># Route T — array literal source: first live lane over `&gt; 0.0` is 1.0.</span>
-<span class="tok-kw">fn</span> elige_litteram() <span class="tok-op">→</span> <span class="tok-kw">float</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> {
-    <span class="tok-kw">return</span> primus_quem([<span class="tok-nu">1.0</span>, <span class="tok-op">-</span><span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>], ubi x {
+fn elige_litteram() <span class="tok-op">→</span> float <span class="tok-op">∪</span> none {
+    return primus_quem([<span class="tok-nu">1.0</span>, <span class="tok-op">-</span><span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>], ubi x {
         x ≻ <span class="tok-nu">0.0</span>
     })
 }
 
 <span class="tok-co"># No-match — no live lane yields none, never an error.</span>
-<span class="tok-kw">fn</span> elige_nullum() <span class="tok-op">→</span> <span class="tok-kw">float</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> {
-    <span class="tok-kw">return</span> primus_quem([<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>], ubi x {
+fn elige_nullum() <span class="tok-op">→</span> float <span class="tok-op">∪</span> none {
+    return primus_quem([<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>], ubi x {
         x ≻ <span class="tok-nu">9.0</span>
     })
 }
 
 <span class="tok-co"># Empty source — a statically zero-length array yields none.</span>
-<span class="tok-kw">fn</span> elige_vacuum(<span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">float</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> {
-    <span class="tok-kw">return</span> primus_quem(xs, ubi x {
+fn elige_vacuum(list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> float <span class="tok-op">∪</span> none {
+    return primus_quem(xs, ubi x {
         x ≻ <span class="tok-nu">0.0</span>
     })
 }
 
 <span class="tok-co"># First-live — with matches at 5.0 and 3.0, the FIRST live lane wins.</span>
-<span class="tok-kw">fn</span> elige_primum_viventem(<span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">float</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> {
-    <span class="tok-kw">return</span> primus_quem(xs, ubi x {
+fn elige_primum_viventem(list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> float <span class="tok-op">∪</span> none {
+    return primus_quem(xs, ubi x {
         x ≻ <span class="tok-nu">2.0</span>
     })
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">float</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> litteram <span class="tok-op">←</span> elige_litteram()
-    <span class="tok-kw">const</span> <span class="tok-kw">float</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> nullum <span class="tok-op">←</span> elige_nullum()
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> vacua_lista <span class="tok-op">←</span> []
-    <span class="tok-kw">const</span> <span class="tok-kw">float</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> <span class="tok-kw">void</span> <span class="tok-op">←</span> elige_vacuum(vacua_lista)
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">3.0</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">float</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> primum <span class="tok-op">←</span> elige_primum_viventem(xs)
+main {
+    const float <span class="tok-op">∪</span> none litteram <span class="tok-op">←</span> elige_litteram()
+    const float <span class="tok-op">∪</span> none nullum <span class="tok-op">←</span> elige_nullum()
+    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> vacua_lista <span class="tok-op">←</span> []
+    const float <span class="tok-op">∪</span> none void <span class="tok-op">←</span> elige_vacuum(vacua_lista)
+    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">3.0</span>]
+    const float <span class="tok-op">∪</span> none primum <span class="tok-op">←</span> elige_primum_viventem(xs)
     print litteram
     print nullum
-    print <span class="tok-kw">void</span>
+    print void
     print primum
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1.0
 nihil
@@ -94,12 +94,12 @@ nihil
 
 <span class="tok-co"># 1. unbounded — list parameter has no static extent, declines not_bounded</span>
 @ radix lane <span class="tok-st">"air"</span>
-<span class="tok-kw">fn</span> elige_infinita(<span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">float</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> {
-    <span class="tok-kw">return</span> primus_quem(xs, ubi v { v ≻ <span class="tok-nu">0.0</span> })
+fn elige_infinita(list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> float <span class="tok-op">∪</span> none {
+    return primus_quem(xs, ubi v { v ≻ <span class="tok-nu">0.0</span> })
 }
 
 <span class="tok-co"># 2. at coordinates — multi-axis first-match stays unsupported in v1</span>
 @ radix lane <span class="tok-st">"air"</span>
-<span class="tok-kw">fn</span> elige_apud(tf32[<span class="tok-nu">4</span>] a) <span class="tok-op">→</span> <span class="tok-kw">float</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> {
-    <span class="tok-kw">return</span> primus_quem(a <span class="tok-kw">at</span> [i], ubi v { v ≻ <span class="tok-nu">0.0</span> })
+fn elige_apud(tf32[<span class="tok-nu">4</span>] a) <span class="tok-op">→</span> float <span class="tok-op">∪</span> none {
+    return primus_quem(a at [i], ubi v { v ≻ <span class="tok-nu">0.0</span> })
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusprimus-quemprimus-quemfab-canonical-concept">radix/corpus/primus-quem/primus-quem.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpusprimus-quemprimus-quem-declinefab-supporting-reject">radix/corpus/primus-quem/primus-quem-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/primus-quem/primus-quem.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

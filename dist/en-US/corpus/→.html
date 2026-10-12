@@ -24,26 +24,26 @@
 <span class="tok-co"># BACKEND:</span>
 <span class="tok-co">#   Cross-ref fn/functio.fab and throw/functio-fallibilis.fab.</span>
 
-<span class="tok-kw">fn</span> saluta() <span class="tok-op">→</span> string {
-    <span class="tok-kw">return</span> <span class="tok-st">"salve"</span>
+fn saluta() <span class="tok-op">→</span> string {
+    return <span class="tok-st">"salve"</span>
 }
 
-<span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ string {
-    <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> then <span class="tok-kw">throw</span> <span class="tok-st">"division by zero"</span>
-    <span class="tok-kw">return</span> a <span class="tok-op">/</span> b
+fn divide(int a, int b) <span class="tok-op">→</span> int ⇥ string {
+    if b <span class="tok-op">≡</span> <span class="tok-nu">0</span> then throw <span class="tok-st">"division by zero"</span>
+    return a <span class="tok-op">/</span> b
 }
 
-<span class="tok-kw">fn</span> tutum(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">do</span> {
-        <span class="tok-kw">return</span> divide(a, b)
+fn tutum(int a, int b) <span class="tok-op">→</span> int {
+    do {
+        return divide(a, b)
     }
-    <span class="tok-kw">catch</span> err {
-        <span class="tok-kw">warn</span> err
-        <span class="tok-kw">return</span> <span class="tok-nu">0</span>
+    catch err {
+        warn err
+        return <span class="tok-nu">0</span>
     }
 }
 
-<span class="tok-kw">main</span> {
+main {
     print saluta()
     print tutum(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
     print tutum(<span class="tok-nu">10</span>, <span class="tok-nu">0</span>)

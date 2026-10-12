@@ -28,22 +28,22 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Afternoon (hour=14 matches first elif branch).</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> hour <span class="tok-op">←</span> <span class="tok-nu">14</span>
-    <span class="tok-kw">if</span> hour ≺ <span class="tok-nu">6</span> {
+main {
+    const int hour <span class="tok-op">←</span> <span class="tok-nu">14</span>
+    if hour ≺ <span class="tok-nu">6</span> {
         print <span class="tok-st">"Late night"</span>
     }
-    <span class="tok-kw">elif</span> hour ≺ <span class="tok-nu">12</span> {
+    elif hour ≺ <span class="tok-nu">12</span> {
         print <span class="tok-st">"Morning"</span>
     }
-    <span class="tok-kw">elif</span> hour ≺ <span class="tok-nu">18</span> {
+    elif hour ≺ <span class="tok-nu">18</span> {
 <span class="tok-co">        # 14 ≥ 12 and 14 &lt; 18</span>
         print <span class="tok-st">"Afternoon"</span>
     }
-    <span class="tok-kw">elif</span> hour ≺ <span class="tok-nu">22</span> {
+    elif hour ≺ <span class="tok-nu">22</span> {
         print <span class="tok-st">"Evening"</span>
     }
-    <span class="tok-kw">else</span> {
+    else {
         print <span class="tok-st">"Night"</span>
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Afternoon
@@ -74,15 +74,15 @@
 <span class="tok-co">#   Cross-ref: if/sin.fab.</span>
 <span class="tok-co">#</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> score <span class="tok-op">←</span> <span class="tok-nu">85</span>
-    <span class="tok-kw">if</span> score <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
+main {
+    const int score <span class="tok-op">←</span> <span class="tok-nu">85</span>
+    if score <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
         print <span class="tok-st">"excellent"</span>
     }
-    <span class="tok-kw">elif</span> score <span class="tok-op">≥</span> <span class="tok-nu">80</span> {
+    elif score <span class="tok-op">≥</span> <span class="tok-nu">80</span> {
         print <span class="tok-st">"good"</span>
     }
-    <span class="tok-kw">else</span> {
+    else {
         print <span class="tok-st">"needs work"</span>
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>good

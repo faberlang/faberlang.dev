@@ -330,15 +330,15 @@
     }
 }</code></pre></div></div><p>The difference from <code>switch</code> is intent: <code>switch</code> chooses among values of one
 type, <code>match</code> discriminates among the members of a union.</p><h2 id="redde">Returning<a class="anchor" href="#redde">#</a></h2><p><code>return</code> returns a value. A function with no <code class="glyph">→</code> returns nothing and needs no
-<code>return</code>.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> duplica(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
+<code>return</code>.</p><pre class="faber-code"><code class="lang-faber locale-tabs">fn duplica(int n) <span class="tok-op">→</span> int {
+    return n <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }
 
-<span class="tok-kw">fn</span> saluta(string name) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn saluta(string name) <span class="tok-op">→</span> void {
     print name
 }
 
-<span class="tok-kw">main</span> {
+main {
     print duplica(<span class="tok-nu">21</span>)
     saluta(<span class="tok-st">"Marcus"</span>)
 }</code></pre><p>To exit by the <em>error</em> channel instead, see

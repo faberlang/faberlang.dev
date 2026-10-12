@@ -1,5 +1,7 @@
 # Goal: Presentable code-sample tabs — animated locale/example blocks
 
+**Status**: done — closed 2026-10-12 by the english-first restructure; the `.faber-demo-tabs` component shipped (landing hero, cheat sheet, target lanes, and now any fence marked `locale-tabs`); the per-language landing-tabs phase (S3/Phase B) is superseded by the one-tree English-only cut; the portal-hero typing animation remains an untracked polish idea outside any goal
+
 ## Summary
 
 Add one shared, progressively-enhanced code-block component to faberlang.dev —

@@ -24,15 +24,15 @@
 <span class="tok-co"># BACKEND:</span>
 <span class="tok-co">#   Cross-ref for/intervallum.fab and operatores/membership-range.fab.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> exclusivus <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥<span class="tok-nu">5</span> <span class="tok-kw">const</span> _ {
+main {
+    var int exclusivus <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">5</span> const _ {
         exclusivus ↑
     }
 <span class="tok-co">    # 5 iterations</span>
     print exclusivus
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> inclusivus <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">5</span> <span class="tok-kw">const</span> _ {
+    var int inclusivus <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    for range <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">5</span> const _ {
         inclusivus ↑
     }
 <span class="tok-co">    # 6 iterations</span>

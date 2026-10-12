@@ -22,11 +22,11 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Salve, Salve, Mundus!</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> string greeting <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
+main {
+    const string greeting <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
     print greeting
-    <span class="tok-kw">const</span> string name <span class="tok-op">←</span> <span class="tok-st">"Mundus"</span>
-    <span class="tok-kw">const</span> string message <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(name)
+    const string name <span class="tok-op">←</span> <span class="tok-st">"Mundus"</span>
+    const string message <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(name)
     print message
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve
 Salve, Mundus!

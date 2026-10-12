@@ -25,10 +25,10 @@
 <span class="tok-co"># the param/grad pair shares `Figura`, so every elementwise step proves the</span>
 <span class="tok-co"># same-shape result.</span>
 
-<span class="tok-kw">fn</span> sgd_step<span class="tok-op">&lt;</span>size Figura<span class="tok-op">&gt;</span>(tensor<span class="tok-op">&lt;</span>f32, Figura<span class="tok-op">&gt;</span> param, tensor<span class="tok-op">&lt;</span>f32, Figura<span class="tok-op">&gt;</span> grad, f32 lr) <span class="tok-op">→</span> tensor<span class="tok-op">&lt;</span>f32, Figura<span class="tok-op">&gt;</span> {
-    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, Figura<span class="tok-op">&gt;</span> lr_fill <span class="tok-op">←</span> param.fill(lr)
-    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span>f32, Figura<span class="tok-op">&gt;</span> scaled <span class="tok-op">←</span> grad ⊙ lr_fill
-    <span class="tok-kw">return</span> param <span class="tok-op">-</span> scaled
+fn sgd_step<span class="tok-op">&lt;</span>size Figura<span class="tok-op">&gt;</span>(tensor<span class="tok-op">&lt;</span>f32, Figura<span class="tok-op">&gt;</span> param, tensor<span class="tok-op">&lt;</span>f32, Figura<span class="tok-op">&gt;</span> grad, f32 lr) <span class="tok-op">→</span> tensor<span class="tok-op">&lt;</span>f32, Figura<span class="tok-op">&gt;</span> {
+    const tensor<span class="tok-op">&lt;</span>f32, Figura<span class="tok-op">&gt;</span> lr_fill <span class="tok-op">←</span> param.fill(lr)
+    const tensor<span class="tok-op">&lt;</span>f32, Figura<span class="tok-op">&gt;</span> scaled <span class="tok-op">←</span> grad ⊙ lr_fill
+    return param <span class="tok-op">-</span> scaled
 }
 
 print <span class="tok-st">"shape-generic sgd_step parata"</span></code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>shape-generic sgd_step parata

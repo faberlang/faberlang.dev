@@ -20,13 +20,13 @@
 <span class="tok-co"># BACKEND:</span>
 <span class="tok-co">#   Product path is Rust async-cursor; other backends may fail closed.</span>
 
-<span class="tok-kw">fn</span> stream() <span class="tok-kw">async_generator</span> <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">yield</span> <span class="tok-nu">1</span>
-    <span class="tok-kw">yield</span> <span class="tok-nu">2</span>
+fn stream() async_generator <span class="tok-op">→</span> int {
+    yield <span class="tok-nu">1</span>
+    yield <span class="tok-nu">2</span>
 }
 
-<span class="tok-kw">async_main</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> stream() <span class="tok-kw">const</span> n {
+async_main {
+    for from stream() const n {
         print n
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1

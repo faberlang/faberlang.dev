@@ -26,45 +26,45 @@
 <span class="tok-co">#   rubrum</span>
 <span class="tok-co">#   actum</span>
 
-<span class="tok-kw">enum</span> Color {
+enum Color {
     rubrum,
     viridis,
     caeruleum
 }
 
-<span class="tok-kw">enum</span> Condicio {
+enum Condicio {
     pendens <span class="tok-op">=</span> <span class="tok-nu">0</span>,
     actum <span class="tok-op">=</span> <span class="tok-nu">1</span>,
     finitum <span class="tok-op">=</span> <span class="tok-nu">2</span>
 }
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # Using enum values: members are qualified by their enum name</span>
-    <span class="tok-kw">const</span> Color color <span class="tok-op">←</span> Color.rubrum
-    <span class="tok-kw">const</span> Condicio condicio <span class="tok-op">←</span> Condicio.actum
+    const Color color <span class="tok-op">←</span> Color.rubrum
+    const Condicio condicio <span class="tok-op">←</span> Condicio.actum
 
 <span class="tok-co">    # Select by enum</span>
-    <span class="tok-kw">switch</span> color {
-        <span class="tok-kw">case</span> Color.rubrum {
+    switch color {
+        case Color.rubrum {
             print <span class="tok-st">"rubrum"</span>
         }
-        <span class="tok-kw">case</span> Color.viridis {
+        case Color.viridis {
             print <span class="tok-st">"viridis"</span>
         }
-        <span class="tok-kw">case</span> Color.caeruleum {
+        case Color.caeruleum {
             print <span class="tok-st">"caeruleum"</span>
         }
     }
 
 <span class="tok-co">    # Select by enum with numeric values</span>
-    <span class="tok-kw">switch</span> condicio {
-        <span class="tok-kw">case</span> Condicio.pendens {
+    switch condicio {
+        case Condicio.pendens {
             print <span class="tok-st">"pendens"</span>
         }
-        <span class="tok-kw">case</span> Condicio.actum {
+        case Condicio.actum {
             print <span class="tok-st">"actum"</span>
         }
-        <span class="tok-kw">case</span> Condicio.finitum {
+        case Condicio.finitum {
             print <span class="tok-st">"finitum"</span>
         }
     }

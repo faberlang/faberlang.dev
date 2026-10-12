@@ -5,27 +5,27 @@ math-oriented operators — and the same program can be written and read in
 eight language surfaces. This page is the claim plus the shape of everything;
 the pages below it go one level deeper.</p><h2 id="program">One program<a class="anchor" href="#program">#</a></h2><p>This is the whole program the landing page opens with: a small type, a generic
 helper, and an entry point. Every panel on this page is compiler output, so the
-page cannot claim something the toolchain does not produce.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Span {
-    <span class="tok-kw">const</span> f64 low
-    <span class="tok-kw">const</span> f64 high
+page cannot claim something the toolchain does not produce.</p><pre class="faber-code"><code class="lang-faber">class Span {
+    const f64 low
+    const f64 high
 
-    <span class="tok-kw">fn</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">bool</span> {
-        <span class="tok-kw">return</span> <span class="tok-kw">self</span>.low <span class="tok-op">≤</span> x and x <span class="tok-op">≤</span> <span class="tok-kw">self</span>.high
+    fn contains(f64 x) <span class="tok-op">→</span> bool {
+        return self.low <span class="tok-op">≤</span> x and x <span class="tok-op">≤</span> self.high
     }
 
-    <span class="tok-kw">fn</span> center() <span class="tok-op">→</span> f64 {
-        <span class="tok-kw">return</span> (<span class="tok-kw">self</span>.low <span class="tok-op">+</span> <span class="tok-kw">self</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    fn center() <span class="tok-op">→</span> f64 {
+        return (self.low <span class="tok-op">+</span> self.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
     }
 }
 
-<span class="tok-kw">fn</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">bool</span> first, T a, T b) <span class="tok-op">→</span> T {
-    <span class="tok-kw">return</span> first ✓ a ✗ b
+fn choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(bool first, T a, T b) <span class="tok-op">→</span> T {
+    return first ✓ a ✗ b
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> Span <span class="tok-kw">bytes</span> <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
-    print <span class="tok-kw">bytes</span>.center()
-    print choose(<span class="tok-kw">bytes</span>.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
+main {
+    const Span bytes <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
+    print bytes.center()
+    print choose(bytes.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
     print <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
 }</code></pre><p>Its real output:</p><pre class="faber-code"><code class="lang-text">$ faber run
 127.5

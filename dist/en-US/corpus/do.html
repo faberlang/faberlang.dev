@@ -27,24 +27,24 @@
 <span class="tok-co"># BACKEND:</span>
 <span class="tok-co">#   Rust/Go: do/cape not yet emitted — compile-only smoke.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">do</span> {
+main {
+    do {
         print <span class="tok-st">"Block executed successfully"</span>
     }
-    <span class="tok-kw">catch</span> err {
+    catch err {
         print <span class="tok-st">"Caught error: §"</span>(err.nuntius)
     }
 
 <span class="tok-co">    # throw on second attempt; catch recovers and prints err.nuntius</span>
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> attempts <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">do</span> {
+    var int attempts <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    do {
         attempts <span class="tok-op">←</span> attempts <span class="tok-op">+</span> <span class="tok-nu">1</span>
         print <span class="tok-st">"Attempt §"</span>(attempts)
-        <span class="tok-kw">if</span> attempts <span class="tok-op">≡</span> <span class="tok-nu">2</span> {
-            <span class="tok-kw">throw</span> <span class="tok-st">"Simulated failure"</span>
+        if attempts <span class="tok-op">≡</span> <span class="tok-nu">2</span> {
+            throw <span class="tok-st">"Simulated failure"</span>
         }
     }
-    <span class="tok-kw">catch</span> err {
+    catch err {
         print <span class="tok-st">"Failed on attempt §: §"</span>(attempts, err.nuntius)
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Block executed successfully

@@ -24,42 +24,42 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Division, clamping, and range-validation scalar results.</span>
 
-<span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">guard</span> {
-        <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
-            <span class="tok-kw">return</span> <span class="tok-nu">0</span>
+fn divide(int a, int b) <span class="tok-op">→</span> int {
+    guard {
+        if b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+            return <span class="tok-nu">0</span>
         }
     }
-    <span class="tok-kw">return</span> a <span class="tok-op">/</span> b
+    return a <span class="tok-op">/</span> b
 }
 
-<span class="tok-kw">fn</span> tracta(<span class="tok-kw">int</span> x) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">guard</span> {
-        <span class="tok-kw">if</span> x ≺ <span class="tok-nu">0</span> {
-            <span class="tok-kw">return</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
+fn tracta(int x) <span class="tok-op">→</span> int {
+    guard {
+        if x ≺ <span class="tok-nu">0</span> {
+            return <span class="tok-op">-</span><span class="tok-nu">1</span>
         }
-        <span class="tok-kw">if</span> x ≻ <span class="tok-nu">100</span> {
-            <span class="tok-kw">return</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
+        if x ≻ <span class="tok-nu">100</span> {
+            return <span class="tok-op">-</span><span class="tok-nu">1</span>
         }
     }
 
 <span class="tok-co">    # Main logic, clearly separated from guard</span>
-    <span class="tok-kw">return</span> x <span class="tok-op">*</span> <span class="tok-nu">2</span>
+    return x <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }
 
-<span class="tok-kw">fn</span> stringe(<span class="tok-kw">int</span> value, <span class="tok-kw">int</span> minimum, <span class="tok-kw">int</span> maximum) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">guard</span> {
-        <span class="tok-kw">if</span> minimum ≻ value {
-            <span class="tok-kw">return</span> minimum
+fn stringe(int value, int minimum, int maximum) <span class="tok-op">→</span> int {
+    guard {
+        if minimum ≻ value {
+            return minimum
         }
-        <span class="tok-kw">if</span> maximum ≺ value {
-            <span class="tok-kw">return</span> maximum
+        if maximum ≺ value {
+            return maximum
         }
     }
-    <span class="tok-kw">return</span> value
+    return value
 }
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # Guard returns 0 instead of dividing by zero</span>
     print divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
     print divide(<span class="tok-nu">10</span>, <span class="tok-nu">0</span>)

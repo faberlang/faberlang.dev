@@ -25,17 +25,17 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   none</span>
 
-<span class="tok-kw">fn</span> sum(<span class="tok-kw">rest</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">var</span> _ total <span class="tok-op">←</span> <span class="tok-nu">0</span>
+fn sum(rest list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> int {
+    var _ total <span class="tok-op">←</span> <span class="tok-nu">0</span>
 
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> numeri <span class="tok-kw">const</span> n {
+    for from numeri const n {
         total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
     }
 
-    <span class="tok-kw">return</span> total
+    return total
 }
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # rest receives the whole list</span>
     print sum([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>])
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>10

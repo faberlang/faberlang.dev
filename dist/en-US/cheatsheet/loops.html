@@ -42,10 +42,10 @@ this is — and it is required, so a loop always says what it walks.</p><div cla
     }
 }</code></pre></div></div><h3 id="lockstep">In lockstep<a class="anchor" href="#lockstep">#</a></h3><p><code>from</code> also accepts a comma series: give it N collections and N name binders,
 and the loop walks them all in lockstep — one shared index, one value from
-each list per turn:</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> nomina <span class="tok-op">←</span> [<span class="tok-st">"Alia"</span>, <span class="tok-st">"Brunus"</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> aetates <span class="tok-op">←</span> [<span class="tok-nu">34</span>, <span class="tok-nu">27</span>]
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> nomina, aetates <span class="tok-kw">at</span> [i] <span class="tok-kw">const</span> name, aetas {
+each list per turn:</p><pre class="faber-code"><code class="lang-faber locale-tabs">main {
+    const list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> nomina <span class="tok-op">←</span> [<span class="tok-st">"Alia"</span>, <span class="tok-st">"Brunus"</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> aetates <span class="tok-op">←</span> [<span class="tok-nu">34</span>, <span class="tok-nu">27</span>]
+    for from nomina, aetates at [i] const name, aetas {
         print i, name, aetas
     }
 }</code></pre><p><code>at</code> (English <code>at</code>) names the shared index. The sources are listas, the

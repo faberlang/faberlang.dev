@@ -20,19 +20,19 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED stdout: see bits-bulk-la.expected</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> plain <span class="tok-op">←</span> raw ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> back <span class="tok-op">←</span> plain ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span>
+main {
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>]
+    const list<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> plain <span class="tok-op">←</span> raw ↦ list<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> back <span class="tok-op">←</span> plain ↦ list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span>
     print plain
     print back
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> le <span class="tok-op">←</span> raw ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> via Le
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> be <span class="tok-op">←</span> raw ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> via Be
+    const list<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> le <span class="tok-op">←</span> raw ↦ list<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> via Le
+    const list<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> be <span class="tok-op">←</span> raw ↦ list<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> via Be
     print le
     print be
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> encoded <span class="tok-op">←</span> le ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> via Le
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> encoded <span class="tok-op">←</span> le ↦ list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> via Le
     print encoded
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b16<span class="tok-op">&gt;</span> wide <span class="tok-op">←</span> raw ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b16<span class="tok-op">&gt;</span> via Be
+    const list<span class="tok-op">&lt;</span>b16<span class="tok-op">&gt;</span> wide <span class="tok-op">←</span> raw ↦ list<span class="tok-op">&lt;</span>b16<span class="tok-op">&gt;</span> via Be
     print wide
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[1, 2, 3, 4]
 [0x01, 0x02, 0x03, 0x04]
@@ -61,19 +61,19 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED stdout: see bits-bulk.expected</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-nu">0</span>x01, <span class="tok-nu">0</span>x02, <span class="tok-nu">0</span>x03, <span class="tok-nu">0</span>x04]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> plain <span class="tok-op">←</span> raw ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> back <span class="tok-op">←</span> plain ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span>
+main {
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-nu">0</span>x01, <span class="tok-nu">0</span>x02, <span class="tok-nu">0</span>x03, <span class="tok-nu">0</span>x04]
+    const list<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> plain <span class="tok-op">←</span> raw ↦ list<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> back <span class="tok-op">←</span> plain ↦ list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span>
     print plain
     print back
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> le <span class="tok-op">←</span> raw ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> via Le
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> be <span class="tok-op">←</span> raw ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> via Be
+    const list<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> le <span class="tok-op">←</span> raw ↦ list<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> via Le
+    const list<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> be <span class="tok-op">←</span> raw ↦ list<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> via Be
     print le
     print be
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> encoded <span class="tok-op">←</span> le ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> via Le
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> encoded <span class="tok-op">←</span> le ↦ list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> via Le
     print encoded
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b16<span class="tok-op">&gt;</span> wide <span class="tok-op">←</span> raw ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b16<span class="tok-op">&gt;</span> via Be
+    const list<span class="tok-op">&lt;</span>b16<span class="tok-op">&gt;</span> wide <span class="tok-op">←</span> raw ↦ list<span class="tok-op">&lt;</span>b16<span class="tok-op">&gt;</span> via Be
     print wide
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[1, 2, 3, 4]
 [0x01, 0x02, 0x03, 0x04]
@@ -100,17 +100,17 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED stdout: see bits-display-la.expected</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> b8 one8 <span class="tok-op">←</span> <span class="tok-nu">1</span>
-    <span class="tok-kw">const</span> b16 one16 <span class="tok-op">←</span> <span class="tok-nu">1</span>
-    <span class="tok-kw">const</span> b32 one32 <span class="tok-op">←</span> <span class="tok-nu">1</span>
-    <span class="tok-kw">const</span> b64 one64 <span class="tok-op">←</span> <span class="tok-nu">1</span>
+main {
+    const b8 one8 <span class="tok-op">←</span> <span class="tok-nu">1</span>
+    const b16 one16 <span class="tok-op">←</span> <span class="tok-nu">1</span>
+    const b32 one32 <span class="tok-op">←</span> <span class="tok-nu">1</span>
+    const b64 one64 <span class="tok-op">←</span> <span class="tok-nu">1</span>
     print one8
     print one16
     print one32
     print one64
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> <span class="tok-kw">bytes</span> <span class="tok-op">←</span> [<span class="tok-nu">0</span>, <span class="tok-nu">15</span>, <span class="tok-nu">165</span>, <span class="tok-nu">255</span>]
-    print <span class="tok-kw">bytes</span>
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> bytes <span class="tok-op">←</span> [<span class="tok-nu">0</span>, <span class="tok-nu">15</span>, <span class="tok-nu">165</span>, <span class="tok-nu">255</span>]
+    print bytes
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0x01
 0x0001
 0x00000001
@@ -135,18 +135,18 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED stdout: see bits-display.expected</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> b8 one8 <span class="tok-op">←</span> <span class="tok-nu">0</span>x01
-    <span class="tok-kw">const</span> b16 one16 <span class="tok-op">←</span> <span class="tok-nu">0</span>x0001
-    <span class="tok-kw">const</span> b32 one32 <span class="tok-op">←</span> <span class="tok-nu">0</span>x00000001
-    <span class="tok-kw">const</span> b64 one64 <span class="tok-op">←</span> <span class="tok-nu">0</span>x0000000000000001
+main {
+    const b8 one8 <span class="tok-op">←</span> <span class="tok-nu">0</span>x01
+    const b16 one16 <span class="tok-op">←</span> <span class="tok-nu">0</span>x0001
+    const b32 one32 <span class="tok-op">←</span> <span class="tok-nu">0</span>x00000001
+    const b64 one64 <span class="tok-op">←</span> <span class="tok-nu">0</span>x0000000000000001
     print one8
     print one16
     print one32
     print one64
 
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> <span class="tok-kw">bytes</span> <span class="tok-op">←</span> [<span class="tok-nu">0</span>x00, <span class="tok-nu">0</span>x0f, <span class="tok-nu">0</span>xa5, <span class="tok-nu">0</span>xff]
-    print <span class="tok-kw">bytes</span>
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> bytes <span class="tok-op">←</span> [<span class="tok-nu">0</span>x00, <span class="tok-nu">0</span>x0f, <span class="tok-nu">0</span>xa5, <span class="tok-nu">0</span>xff]
+    print bytes
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0x01
 0x0001
 0x00000001
@@ -171,19 +171,19 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED stdout: see bits-literals-la.expected</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> b8 hex8 <span class="tok-op">←</span> <span class="tok-nu">255</span>
-    <span class="tok-kw">const</span> b8 bin8 <span class="tok-op">←</span> <span class="tok-nu">165</span>
-    <span class="tok-kw">const</span> b8 dec8 <span class="tok-op">←</span> <span class="tok-nu">255</span>
-    <span class="tok-kw">const</span> b16 hex16 <span class="tok-op">←</span> <span class="tok-nu">65535</span>
-    <span class="tok-kw">const</span> b16 bin16 <span class="tok-op">←</span> <span class="tok-nu">10</span>
-    <span class="tok-kw">const</span> b16 dec16 <span class="tok-op">←</span> <span class="tok-nu">65535</span>
-    <span class="tok-kw">const</span> b32 hex32 <span class="tok-op">←</span> <span class="tok-nu">4294967295</span>
-    <span class="tok-kw">const</span> b32 bin32 <span class="tok-op">←</span> <span class="tok-nu">1</span>
-    <span class="tok-kw">const</span> b32 dec32 <span class="tok-op">←</span> <span class="tok-nu">4294967295</span>
-    <span class="tok-kw">const</span> b64 hex64 <span class="tok-op">←</span> <span class="tok-nu">18446744073709551615</span>
-    <span class="tok-kw">const</span> b64 bin64 <span class="tok-op">←</span> <span class="tok-nu">8</span>
-    <span class="tok-kw">const</span> b64 dec64 <span class="tok-op">←</span> <span class="tok-nu">255</span>
+main {
+    const b8 hex8 <span class="tok-op">←</span> <span class="tok-nu">255</span>
+    const b8 bin8 <span class="tok-op">←</span> <span class="tok-nu">165</span>
+    const b8 dec8 <span class="tok-op">←</span> <span class="tok-nu">255</span>
+    const b16 hex16 <span class="tok-op">←</span> <span class="tok-nu">65535</span>
+    const b16 bin16 <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    const b16 dec16 <span class="tok-op">←</span> <span class="tok-nu">65535</span>
+    const b32 hex32 <span class="tok-op">←</span> <span class="tok-nu">4294967295</span>
+    const b32 bin32 <span class="tok-op">←</span> <span class="tok-nu">1</span>
+    const b32 dec32 <span class="tok-op">←</span> <span class="tok-nu">4294967295</span>
+    const b64 hex64 <span class="tok-op">←</span> <span class="tok-nu">18446744073709551615</span>
+    const b64 bin64 <span class="tok-op">←</span> <span class="tok-nu">8</span>
+    const b64 dec64 <span class="tok-op">←</span> <span class="tok-nu">255</span>
     print hex8
     print bin8
     print dec8
@@ -227,19 +227,19 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED stdout: see bits-literals.expected</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> b8 hex8 <span class="tok-op">←</span> <span class="tok-nu">0</span>xff
-    <span class="tok-kw">const</span> b8 bin8 <span class="tok-op">←</span> <span class="tok-nu">0</span>b10100101
-    <span class="tok-kw">const</span> b8 dec8 <span class="tok-op">←</span> <span class="tok-nu">255</span>
-    <span class="tok-kw">const</span> b16 hex16 <span class="tok-op">←</span> <span class="tok-nu">0</span>xffff
-    <span class="tok-kw">const</span> b16 bin16 <span class="tok-op">←</span> <span class="tok-nu">0</span>b1010
-    <span class="tok-kw">const</span> b16 dec16 <span class="tok-op">←</span> <span class="tok-nu">65535</span>
-    <span class="tok-kw">const</span> b32 hex32 <span class="tok-op">←</span> <span class="tok-nu">0</span>xffffffff
-    <span class="tok-kw">const</span> b32 bin32 <span class="tok-op">←</span> <span class="tok-nu">0</span>b1
-    <span class="tok-kw">const</span> b32 dec32 <span class="tok-op">←</span> <span class="tok-nu">4294967295</span>
-    <span class="tok-kw">const</span> b64 hex64 <span class="tok-op">←</span> <span class="tok-nu">0</span>xffffffffffffffff
-    <span class="tok-kw">const</span> b64 bin64 <span class="tok-op">←</span> <span class="tok-nu">0</span>b1000
-    <span class="tok-kw">const</span> b64 dec64 <span class="tok-op">←</span> <span class="tok-nu">255</span>
+main {
+    const b8 hex8 <span class="tok-op">←</span> <span class="tok-nu">0</span>xff
+    const b8 bin8 <span class="tok-op">←</span> <span class="tok-nu">0</span>b10100101
+    const b8 dec8 <span class="tok-op">←</span> <span class="tok-nu">255</span>
+    const b16 hex16 <span class="tok-op">←</span> <span class="tok-nu">0</span>xffff
+    const b16 bin16 <span class="tok-op">←</span> <span class="tok-nu">0</span>b1010
+    const b16 dec16 <span class="tok-op">←</span> <span class="tok-nu">65535</span>
+    const b32 hex32 <span class="tok-op">←</span> <span class="tok-nu">0</span>xffffffff
+    const b32 bin32 <span class="tok-op">←</span> <span class="tok-nu">0</span>b1
+    const b32 dec32 <span class="tok-op">←</span> <span class="tok-nu">4294967295</span>
+    const b64 hex64 <span class="tok-op">←</span> <span class="tok-nu">0</span>xffffffffffffffff
+    const b64 bin64 <span class="tok-op">←</span> <span class="tok-nu">0</span>b1000
+    const b64 dec64 <span class="tok-op">←</span> <span class="tok-nu">255</span>
     print hex8
     print bin8
     print dec8
@@ -289,21 +289,21 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED stdout: see bits-operations-la.expected</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> b8 a <span class="tok-op">←</span> <span class="tok-nu">243</span>
-    <span class="tok-kw">const</span> b8 mask <span class="tok-op">←</span> <span class="tok-nu">15</span>
+main {
+    const b8 a <span class="tok-op">←</span> <span class="tok-nu">243</span>
+    const b8 mask <span class="tok-op">←</span> <span class="tok-nu">15</span>
     print a ∧ mask
     print a ∨ mask
     print a ⊻ mask
     print <span class="tok-op">¬</span>a
     print a ⇐ <span class="tok-nu">4</span>
     print a ⇒ <span class="tok-nu">4</span>
-    <span class="tok-kw">const</span> b8 cleared <span class="tok-op">←</span> a ⇐ <span class="tok-nu">4</span> ⇒ <span class="tok-nu">4</span>
+    const b8 cleared <span class="tok-op">←</span> a ⇐ <span class="tok-nu">4</span> ⇒ <span class="tok-nu">4</span>
     print cleared
     print a ⇐ <span class="tok-nu">8</span>
     print a ⇒ <span class="tok-nu">8</span>
-    <span class="tok-kw">const</span> b64 wide <span class="tok-op">←</span> <span class="tok-nu">17361641481138401520</span>
-    <span class="tok-kw">const</span> b64 low <span class="tok-op">←</span> <span class="tok-nu">4294967295</span>
+    const b64 wide <span class="tok-op">←</span> <span class="tok-nu">17361641481138401520</span>
+    const b64 low <span class="tok-op">←</span> <span class="tok-nu">4294967295</span>
     print wide ∧ low
     print wide ∨ low
     print wide ⊻ low
@@ -354,22 +354,22 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED stdout: see bits-operations.expected</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> b8 a <span class="tok-op">←</span> <span class="tok-nu">0</span>xf3
-    <span class="tok-kw">const</span> b8 mask <span class="tok-op">←</span> <span class="tok-nu">0</span>x0f
+main {
+    const b8 a <span class="tok-op">←</span> <span class="tok-nu">0</span>xf3
+    const b8 mask <span class="tok-op">←</span> <span class="tok-nu">0</span>x0f
     print a ∧ mask
     print a ∨ mask
     print a ⊻ mask
     print <span class="tok-op">¬</span> a
     print a ⇐ <span class="tok-nu">4</span>
     print a ⇒ <span class="tok-nu">4</span>
-    <span class="tok-kw">const</span> b8 cleared <span class="tok-op">←</span> (a ⇐ <span class="tok-nu">4</span>) ⇒ <span class="tok-nu">4</span>
+    const b8 cleared <span class="tok-op">←</span> (a ⇐ <span class="tok-nu">4</span>) ⇒ <span class="tok-nu">4</span>
     print cleared
     print a ⇐ <span class="tok-nu">8</span>
     print a ⇒ <span class="tok-nu">8</span>
 
-    <span class="tok-kw">const</span> b64 wide <span class="tok-op">←</span> <span class="tok-nu">0</span>xf0f0f0f0f0f0f0f0
-    <span class="tok-kw">const</span> b64 low <span class="tok-op">←</span> <span class="tok-nu">0</span>x00000000ffffffff
+    const b64 wide <span class="tok-op">←</span> <span class="tok-nu">0</span>xf0f0f0f0f0f0f0f0
+    const b64 low <span class="tok-op">←</span> <span class="tok-nu">0</span>x00000000ffffffff
     print wide ∧ low
     print wide ∨ low
     print wide ⊻ low
@@ -415,10 +415,10 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED stdout: see bits-order-la.expected</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> b8 high <span class="tok-op">←</span> <span class="tok-nu">128</span>
-    <span class="tok-kw">const</span> b8 low <span class="tok-op">←</span> <span class="tok-nu">127</span>
-    <span class="tok-kw">const</span> b8 same <span class="tok-op">←</span> <span class="tok-nu">128</span>
+main {
+    const b8 high <span class="tok-op">←</span> <span class="tok-nu">128</span>
+    const b8 low <span class="tok-op">←</span> <span class="tok-nu">127</span>
+    const b8 same <span class="tok-op">←</span> <span class="tok-nu">128</span>
     print high ≻ low
     print high ≺ low
     print high <span class="tok-op">≥</span> same
@@ -427,8 +427,8 @@
     print high <span class="tok-op">≢</span> low
     print high <span class="tok-op">≡</span> <span class="tok-nu">128</span>
     print <span class="tok-nu">127</span> ≺ high
-    <span class="tok-kw">const</span> b64 big <span class="tok-op">←</span> <span class="tok-nu">9223372036854775808</span>
-    <span class="tok-kw">const</span> b64 small <span class="tok-op">←</span> <span class="tok-nu">9223372036854775807</span>
+    const b64 big <span class="tok-op">←</span> <span class="tok-nu">9223372036854775808</span>
+    const b64 small <span class="tok-op">←</span> <span class="tok-nu">9223372036854775807</span>
     print big ≻ small
     print big <span class="tok-op">≡</span> small
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>verum
@@ -461,10 +461,10 @@ falsum
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED stdout: see bits-order.expected</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> b8 high <span class="tok-op">←</span> <span class="tok-nu">0</span>x80
-    <span class="tok-kw">const</span> b8 low <span class="tok-op">←</span> <span class="tok-nu">0</span>x7f
-    <span class="tok-kw">const</span> b8 same <span class="tok-op">←</span> <span class="tok-nu">0</span>x80
+main {
+    const b8 high <span class="tok-op">←</span> <span class="tok-nu">0</span>x80
+    const b8 low <span class="tok-op">←</span> <span class="tok-nu">0</span>x7f
+    const b8 same <span class="tok-op">←</span> <span class="tok-nu">0</span>x80
     print high ≻ low
     print high ≺ low
     print high <span class="tok-op">≥</span> same
@@ -474,8 +474,8 @@ falsum
     print high <span class="tok-op">≡</span> <span class="tok-nu">0</span>x80
     print <span class="tok-nu">0</span>x7f ≺ high
 
-    <span class="tok-kw">const</span> b64 big <span class="tok-op">←</span> <span class="tok-nu">0</span>x8000000000000000
-    <span class="tok-kw">const</span> b64 small <span class="tok-op">←</span> <span class="tok-nu">0</span>x7fffffffffffffff
+    const b64 big <span class="tok-op">←</span> <span class="tok-nu">0</span>x8000000000000000
+    const b64 small <span class="tok-op">←</span> <span class="tok-nu">0</span>x7fffffffffffffff
     print big ≻ small
     print big <span class="tok-op">≡</span> small
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>true
@@ -509,26 +509,26 @@ false
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED stdout: see bits-text-la.expected</span>
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # UTF-8: "é" is two bytes</span>
-    <span class="tok-kw">const</span> string word <span class="tok-op">←</span> <span class="tok-st">"héllo"</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> utf8 <span class="tok-op">←</span> word ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span>
+    const string word <span class="tok-op">←</span> <span class="tok-st">"héllo"</span>
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> utf8 <span class="tok-op">←</span> word ↦ list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span>
     print utf8
     print utf8 ↦ string ⊥ <span class="tok-st">"?"</span>
 
 <span class="tok-co">    # UTF-16: a character outside the basic plane is a surrogate pair</span>
-    <span class="tok-kw">const</span> string face <span class="tok-op">←</span> <span class="tok-st">"a😀"</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b16<span class="tok-op">&gt;</span> utf16 <span class="tok-op">←</span> face ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b16<span class="tok-op">&gt;</span>
+    const string face <span class="tok-op">←</span> <span class="tok-st">"a😀"</span>
+    const list<span class="tok-op">&lt;</span>b16<span class="tok-op">&gt;</span> utf16 <span class="tok-op">←</span> face ↦ list<span class="tok-op">&lt;</span>b16<span class="tok-op">&gt;</span>
     print utf16
     print utf16 ↦ string ⊥ <span class="tok-st">"?"</span>
 
 <span class="tok-co">    # UTF-32: one unit per character</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b32<span class="tok-op">&gt;</span> utf32 <span class="tok-op">←</span> face ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b32<span class="tok-op">&gt;</span>
+    const list<span class="tok-op">&lt;</span>b32<span class="tok-op">&gt;</span> utf32 <span class="tok-op">←</span> face ↦ list<span class="tok-op">&lt;</span>b32<span class="tok-op">&gt;</span>
     print utf32
     print utf32 ↦ string ⊥ <span class="tok-st">"?"</span>
 
 <span class="tok-co">    # a failing decode: 0xff is never valid in UTF-8</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> bad <span class="tok-op">←</span> [<span class="tok-nu">104</span>, <span class="tok-nu">255</span>]
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> bad <span class="tok-op">←</span> [<span class="tok-nu">104</span>, <span class="tok-nu">255</span>]
     print bad ↦ string ⊥ <span class="tok-st">"?"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[0x68, 0xc3, 0xa9, 0x6c, 0x6c, 0x6f]
 héllo
@@ -558,26 +558,26 @@ a😀
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED stdout: see bits-text.expected</span>
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # UTF-8: "é" is two bytes</span>
-    <span class="tok-kw">const</span> string word <span class="tok-op">←</span> <span class="tok-st">"héllo"</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> utf8 <span class="tok-op">←</span> word ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span>
+    const string word <span class="tok-op">←</span> <span class="tok-st">"héllo"</span>
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> utf8 <span class="tok-op">←</span> word ↦ list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span>
     print utf8
     print utf8 ↦ string ⊥ <span class="tok-st">"?"</span>
 
 <span class="tok-co">    # UTF-16: a character outside the basic plane is a surrogate pair</span>
-    <span class="tok-kw">const</span> string face <span class="tok-op">←</span> <span class="tok-st">"a😀"</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b16<span class="tok-op">&gt;</span> utf16 <span class="tok-op">←</span> face ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b16<span class="tok-op">&gt;</span>
+    const string face <span class="tok-op">←</span> <span class="tok-st">"a😀"</span>
+    const list<span class="tok-op">&lt;</span>b16<span class="tok-op">&gt;</span> utf16 <span class="tok-op">←</span> face ↦ list<span class="tok-op">&lt;</span>b16<span class="tok-op">&gt;</span>
     print utf16
     print utf16 ↦ string ⊥ <span class="tok-st">"?"</span>
 
 <span class="tok-co">    # UTF-32: one unit per character</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b32<span class="tok-op">&gt;</span> utf32 <span class="tok-op">←</span> face ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b32<span class="tok-op">&gt;</span>
+    const list<span class="tok-op">&lt;</span>b32<span class="tok-op">&gt;</span> utf32 <span class="tok-op">←</span> face ↦ list<span class="tok-op">&lt;</span>b32<span class="tok-op">&gt;</span>
     print utf32
     print utf32 ↦ string ⊥ <span class="tok-st">"?"</span>
 
 <span class="tok-co">    # a failing decode: 0xff is never valid in UTF-8</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> bad <span class="tok-op">←</span> [<span class="tok-nu">0</span>x68, <span class="tok-nu">0</span>xff]
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> bad <span class="tok-op">←</span> [<span class="tok-nu">0</span>x68, <span class="tok-nu">0</span>xff]
     print bad ↦ string ⊥ <span class="tok-st">"?"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[0x68, 0xc3, 0xa9, 0x6c, 0x6c, 0x6f]
 héllo
@@ -603,9 +603,9 @@ a😀
 <span class="tok-co">#</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> b8 a <span class="tok-op">←</span> <span class="tok-nu">0</span>x01
-    <span class="tok-kw">const</span> b8 b <span class="tok-op">←</span> <span class="tok-nu">0</span>x02
+main {
+    const b8 a <span class="tok-op">←</span> <span class="tok-nu">0</span>x01
+    const b8 b <span class="tok-op">←</span> <span class="tok-nu">0</span>x02
     print a <span class="tok-op">+</span> b
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusbitsbits-arithmetic-rejectfab-supporting-reject">radix/corpus/bits/bits-arithmetic-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusbitsbits-arithmetic-rejectfab-supporting-reject">#</a></h3><p>Arithmetic on bits is refused; use the bit operations or convert with ↦ first.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># bits — Arithmetic on bits is refused; use the bit operations or convert with ↦ first.</span>
@@ -624,9 +624,9 @@ a😀
 <span class="tok-co">#</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> b8 a <span class="tok-op">←</span> <span class="tok-nu">0</span>x01
-    <span class="tok-kw">const</span> b8 b <span class="tok-op">←</span> <span class="tok-nu">0</span>x02
+main {
+    const b8 a <span class="tok-op">←</span> <span class="tok-nu">0</span>x01
+    const b8 b <span class="tok-op">←</span> <span class="tok-nu">0</span>x02
     print a <span class="tok-op">+</span> b
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusbitsbits-bulk-hint-reject-lafab-supporting-reject">radix/corpus/bits/bits-bulk-hint-reject-la.fab (supporting · reject)<a class="anchor" href="#radixcorpusbitsbits-bulk-hint-reject-lafab-supporting-reject">#</a></h3><p>A via clause on an 8-bit element is refused.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># bits — A via clause on an 8-bit element is refused.</span>
@@ -645,9 +645,9 @@ a😀
 <span class="tok-co">#</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-nu">0</span>x01, <span class="tok-nu">0</span>x02]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> plain <span class="tok-op">←</span> raw ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> via Le
+main {
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-nu">0</span>x01, <span class="tok-nu">0</span>x02]
+    const list<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> plain <span class="tok-op">←</span> raw ↦ list<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> via Le
     print plain
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusbitsbits-bulk-hint-rejectfab-supporting-reject">radix/corpus/bits/bits-bulk-hint-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusbitsbits-bulk-hint-rejectfab-supporting-reject">#</a></h3><p>A via clause on an 8-bit element is refused.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># bits — A via clause on an 8-bit element is refused.</span>
@@ -666,9 +666,9 @@ a😀
 <span class="tok-co">#</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-nu">0</span>x01, <span class="tok-nu">0</span>x02]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> plain <span class="tok-op">←</span> raw ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> via Le
+main {
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-nu">0</span>x01, <span class="tok-nu">0</span>x02]
+    const list<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> plain <span class="tok-op">←</span> raw ↦ list<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> via Le
     print plain
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusbitsbits-literal-range-reject-lafab-supporting-reject">radix/corpus/bits/bits-literal-range-reject-la.fab (supporting · reject)<a class="anchor" href="#radixcorpusbitsbits-literal-range-reject-lafab-supporting-reject">#</a></h3><p>A literal too wide for a bits cell is refused.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># bits — A literal too wide for a bits cell is refused.</span>
@@ -687,8 +687,8 @@ a😀
 <span class="tok-co">#</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> b8 x <span class="tok-op">←</span> <span class="tok-nu">0</span>x1ff
+main {
+    const b8 x <span class="tok-op">←</span> <span class="tok-nu">0</span>x1ff
     print x
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusbitsbits-literal-range-rejectfab-supporting-reject">radix/corpus/bits/bits-literal-range-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusbitsbits-literal-range-rejectfab-supporting-reject">#</a></h3><p>A literal too wide for a bits cell is refused.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># bits — A literal too wide for a bits cell is refused.</span>
@@ -707,8 +707,8 @@ a😀
 <span class="tok-co">#</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> b8 x <span class="tok-op">←</span> <span class="tok-nu">0</span>x1ff
+main {
+    const b8 x <span class="tok-op">←</span> <span class="tok-nu">0</span>x1ff
     print x
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusbitsbits-mixing-reject-lafab-supporting-reject">radix/corpus/bits/bits-mixing-reject-la.fab (supporting · reject)<a class="anchor" href="#radixcorpusbitsbits-mixing-reject-lafab-supporting-reject">#</a></h3><p>A bits value does not mix with a number or another width.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># bits — A bits value does not mix with a number or another width.</span>
@@ -727,9 +727,9 @@ a😀
 <span class="tok-co">#</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> b8 a <span class="tok-op">←</span> <span class="tok-nu">0</span>x0f
-    <span class="tok-kw">const</span> u8 n <span class="tok-op">←</span> <span class="tok-nu">3</span>
+main {
+    const b8 a <span class="tok-op">←</span> <span class="tok-nu">0</span>x0f
+    const u8 n <span class="tok-op">←</span> <span class="tok-nu">3</span>
     print a ∧ n
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusbitsbits-mixing-rejectfab-supporting-reject">radix/corpus/bits/bits-mixing-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusbitsbits-mixing-rejectfab-supporting-reject">#</a></h3><p>A bits value does not mix with a number or another width.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># bits — A bits value does not mix with a number or another width.</span>
@@ -748,8 +748,8 @@ a😀
 <span class="tok-co">#</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> b8 a <span class="tok-op">←</span> <span class="tok-nu">0</span>x0f
-    <span class="tok-kw">const</span> u8 n <span class="tok-op">←</span> <span class="tok-nu">3</span>
+main {
+    const b8 a <span class="tok-op">←</span> <span class="tok-nu">0</span>x0f
+    const u8 n <span class="tok-op">←</span> <span class="tok-nu">3</span>
     print a ∧ n
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulk-lafab-canonical-conversio">radix/corpus/bits/bits-bulk-la.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulkfab-canonical-conversio">radix/corpus/bits/bits-bulk.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-display-lafab-canonical-display">radix/corpus/bits/bits-display-la.fab (canonical · display)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-displayfab-canonical-display">radix/corpus/bits/bits-display.fab (canonical · display)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literals-lafab-canonical-literal">radix/corpus/bits/bits-literals-la.fab (canonical · literal)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literalsfab-canonical-literal">radix/corpus/bits/bits-literals.fab (canonical · literal)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-operations-lafab-canonical-operator-group">radix/corpus/bits/bits-operations-la.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-operationsfab-canonical-operator-group">radix/corpus/bits/bits-operations.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-order-lafab-canonical-operator-group">radix/corpus/bits/bits-order-la.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-orderfab-canonical-operator-group">radix/corpus/bits/bits-order.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-text-lafab-canonical-conversio">radix/corpus/bits/bits-text-la.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-textfab-canonical-conversio">radix/corpus/bits/bits-text.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-arithmetic-reject-lafab-supporting-reject">radix/corpus/bits/bits-arithmetic-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-arithmetic-rejectfab-supporting-reject">radix/corpus/bits/bits-arithmetic-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulk-hint-reject-lafab-supporting-reject">radix/corpus/bits/bits-bulk-hint-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulk-hint-rejectfab-supporting-reject">radix/corpus/bits/bits-bulk-hint-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literal-range-reject-lafab-supporting-reject">radix/corpus/bits/bits-literal-range-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literal-range-rejectfab-supporting-reject">radix/corpus/bits/bits-literal-range-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-mixing-reject-lafab-supporting-reject">radix/corpus/bits/bits-mixing-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-mixing-rejectfab-supporting-reject">radix/corpus/bits/bits-mixing-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/bits/bits-bulk-la.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

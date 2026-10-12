@@ -30,16 +30,16 @@
 <span class="tok-co">#   match exempla parata</span>
 
 <span class="tok-co"># union — tagged union / enum declaration</span>
-<span class="tok-kw">union</span> Condicio {
+union Condicio {
     Agens,
     Iners,
     Pendens
 }
 
-<span class="tok-kw">union</span> Nuntius {
+union Nuntius {
     Pulsus {
-        <span class="tok-kw">int</span> x
-        <span class="tok-kw">int</span> y
+        int x
+        int y
     },
     Clavis {
         string clavis
@@ -48,36 +48,36 @@
 }
 
 <span class="tok-co"># Simple case matching on unit variants (no payload)</span>
-<span class="tok-kw">fn</span> nomina(Condicio s) <span class="tok-op">→</span> string {
-    <span class="tok-kw">match</span> s {
-        <span class="tok-kw">case</span> Agens {
-            <span class="tok-kw">return</span> <span class="tok-st">"agens"</span>
+fn nomina(Condicio s) <span class="tok-op">→</span> string {
+    match s {
+        case Agens {
+            return <span class="tok-st">"agens"</span>
         }
-        <span class="tok-kw">case</span> Iners {
-            <span class="tok-kw">return</span> <span class="tok-st">"iners"</span>
+        case Iners {
+            return <span class="tok-st">"iners"</span>
         }
-        <span class="tok-kw">case</span> Pendens {
-            <span class="tok-kw">return</span> <span class="tok-st">"pendens"</span>
+        case Pendens {
+            return <span class="tok-st">"pendens"</span>
         }
     }
 }
 
 <span class="tok-co"># case with const bindings destructures variant fields</span>
-<span class="tok-kw">fn</span> tracta(Nuntius e) <span class="tok-op">→</span> <span class="tok-kw">none</span> {
-    <span class="tok-kw">match</span> e {
-        <span class="tok-kw">case</span> Pulsus <span class="tok-kw">const</span> x, y {
+fn tracta(Nuntius e) <span class="tok-op">→</span> none {
+    match e {
+        case Pulsus const x, y {
             print <span class="tok-st">"pulsus: § §"</span>(x, y)
         }
-        <span class="tok-kw">case</span> Clavis <span class="tok-kw">const</span> clavis {
+        case Clavis const clavis {
             print <span class="tok-st">"clavis: §"</span>(clavis)
         }
-        <span class="tok-kw">case</span> Finis {
+        case Finis {
             print <span class="tok-st">"finis"</span>
         }
     }
 }
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # nomina/tracta are defined for downstream exempla; smoke check only</span>
     print <span class="tok-st">"discerne exempla parata"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>discerne exempla parata

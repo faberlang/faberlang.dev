@@ -27,43 +27,43 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   elige.expected</span>
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # Text matching</span>
-    <span class="tok-kw">const</span> string condicio <span class="tok-op">←</span> <span class="tok-st">"agens"</span>
-    <span class="tok-kw">switch</span> condicio {
-        <span class="tok-kw">case</span> <span class="tok-st">"pendens"</span> {
+    const string condicio <span class="tok-op">←</span> <span class="tok-st">"agens"</span>
+    switch condicio {
+        case <span class="tok-st">"pendens"</span> {
             print <span class="tok-st">"exspectat..."</span>
         }
-        <span class="tok-kw">case</span> <span class="tok-st">"agens"</span> {
+        case <span class="tok-st">"agens"</span> {
             print <span class="tok-st">"currit"</span>
         }
-        <span class="tok-kw">case</span> <span class="tok-st">"perfectum"</span> {
+        case <span class="tok-st">"perfectum"</span> {
             print <span class="tok-st">"perfectum"</span>
         }
     }
 
 <span class="tok-co">    # Numerus matching</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> codex <span class="tok-op">←</span> <span class="tok-nu">200</span>
-    <span class="tok-kw">switch</span> codex {
-        <span class="tok-kw">case</span> <span class="tok-nu">200</span> {
+    const int codex <span class="tok-op">←</span> <span class="tok-nu">200</span>
+    switch codex {
+        case <span class="tok-nu">200</span> {
             print <span class="tok-st">"Recte"</span>
         }
-        <span class="tok-kw">case</span> <span class="tok-nu">404</span> {
+        case <span class="tok-nu">404</span> {
             print <span class="tok-st">"non inventum"</span>
         }
-        <span class="tok-kw">case</span> <span class="tok-nu">500</span> {
+        case <span class="tok-nu">500</span> {
             print <span class="tok-st">"error ministri"</span>
         }
     }
 
 <span class="tok-co">    # Multiple statements per case</span>
-    <span class="tok-kw">const</span> string modus <span class="tok-op">←</span> <span class="tok-st">"opera"</span>
-    <span class="tok-kw">switch</span> modus {
-        <span class="tok-kw">case</span> <span class="tok-st">"labor"</span> {
+    const string modus <span class="tok-op">←</span> <span class="tok-st">"opera"</span>
+    switch modus {
+        case <span class="tok-st">"labor"</span> {
             print <span class="tok-st">"modus laboris"</span>
             print <span class="tok-st">"verba multa"</span>
         }
-        <span class="tok-kw">case</span> <span class="tok-st">"opera"</span> {
+        case <span class="tok-st">"opera"</span> {
             print <span class="tok-st">"modus operis"</span>
             print <span class="tok-st">"opera parata"</span>
         }

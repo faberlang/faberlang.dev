@@ -3,8 +3,8 @@
 <span class="tok-co"># mutabilitas — in-place list mutation needs var (D-1 shallow law, tcs1)</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> []
+main {
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> []
     xs.append(<span class="tok-nu">4</span>)
     print xs.length()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1
@@ -13,46 +13,46 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">fn</span> bump(<span class="tok-kw">mut</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn bump(mut list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> void {
     xs.append(<span class="tok-nu">1</span>)
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+main {
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     bump(own a)
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitascall-marker-missingfab-supporting-reject">radix/corpus/mutabilitas/call-marker-missing.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitascall-marker-missingfab-supporting-reject">#</a></h3><p>A mut parameter called without the mut marker is call_marker_missing.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — call marker missing (SEM057)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">fn</span> bump(<span class="tok-kw">mut</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn bump(mut list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> void {
     xs.append(<span class="tok-nu">1</span>)
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+main {
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     bump(a)
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitascall-marker-on-read-onlyfab-supporting-reject">radix/corpus/mutabilitas/call-marker-on-read-only.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitascall-marker-on-read-onlyfab-supporting-reject">#</a></h3><p>A write or ownership marker on a read-only parameter is call_marker_on_read_only.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — call marker on read only (SEM057)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">fn</span> peek(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn peek(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> void {
     print xs.length()
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    peek(<span class="tok-kw">mut</span> a)
+main {
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    peek(mut a)
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasconst-share-into-var-rejectfab-supporting-reject">radix/corpus/mutabilitas/const-share-into-var-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasconst-share-into-var-rejectfab-supporting-reject">#</a></h3><p>const is deep: a const list cannot be shared into a var name (SEM065).</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — const shared into var (need 38a83ac8, rule 2)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># `var list&lt;int&gt; ys ← xs` with `xs` const would let `ys.append(2)` change `xs`.</span>
 <span class="tok-co"># Write `← copy xs` for an independent value or `← own xs` to take it over.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>]
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> ys <span class="tok-op">←</span> xs
+main {
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>]
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> ys <span class="tok-op">←</span> xs
     ys.append(<span class="tok-nu">2</span>)
     print xs
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasgrammar-rejectfab-supporting-reject">radix/corpus/mutabilitas/grammar-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasgrammar-rejectfab-supporting-reject">#</a></h3><p>GSD-9 reject harness: use after own transfer is rejected.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
@@ -61,19 +61,19 @@
 <span class="tok-co"># This exemplum intentionally fails to compile. The sibling .expected file</span>
 <span class="tok-co"># pins only the stable diagnostic identity, not paths or rendered prose.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> own [<span class="tok-nu">1</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> ys <span class="tok-op">←</span> own xs
+main {
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> own [<span class="tok-nu">1</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> ys <span class="tok-op">←</span> own xs
     print xs.length()
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasmut-alias-conflictfab-supporting-reject">radix/corpus/mutabilitas/mut-alias-conflict.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasmut-alias-conflictfab-supporting-reject">#</a></h3><p>MU-4 red: two mut locals from one source conflict (SEM052).</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — overlapping mut locals (MU-4)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">var</span> <span class="tok-kw">mut</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> b <span class="tok-op">←</span> a
-    <span class="tok-kw">var</span> <span class="tok-kw">mut</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> c <span class="tok-op">←</span> a
+main {
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    var mut list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> a
+    var mut list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> c <span class="tok-op">←</span> a
     print b.length()
     print c.length()
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasmut-overlap-argsfab-supporting-reject">radix/corpus/mutabilitas/mut-overlap-args.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasmut-overlap-argsfab-supporting-reject">#</a></h3><p>MU-4 red: the same value passed to two mut parameters conflicts.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
@@ -81,23 +81,23 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">fn</span> swap(<span class="tok-kw">mut</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a, <span class="tok-kw">mut</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> b) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn swap(mut list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a, mut list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> b) <span class="tok-op">→</span> void {
     a.append(<span class="tok-nu">1</span>)
     b.append(<span class="tok-nu">2</span>)
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    swap(<span class="tok-kw">mut</span> xs, <span class="tok-kw">mut</span> xs)
+main {
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    swap(mut xs, mut xs)
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasmut-shared-conflictfab-supporting-reject">radix/corpus/mutabilitas/mut-shared-conflict.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasmut-shared-conflictfab-supporting-reject">#</a></h3><p>MU-4 red: mut local after a live ref local of the same source is SEM052.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — mut vs live ref (MU-4)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">ref</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> r <span class="tok-op">←</span> a
-    <span class="tok-kw">var</span> <span class="tok-kw">mut</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> b <span class="tok-op">←</span> a
+main {
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    const ref list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> r <span class="tok-op">←</span> a
+    var mut list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> a
     print r.length()
     print b.length()
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasmut-use-while-borrowedfab-supporting-reject">radix/corpus/mutabilitas/mut-use-while-borrowed.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasmut-use-while-borrowedfab-supporting-reject">#</a></h3><p>MU-4 red: use of a source while a mut local borrows it is SEM052.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
@@ -105,9 +105,9 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">var</span> <span class="tok-kw">mut</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> b <span class="tok-op">←</span> a
+main {
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    var mut list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> a
     print a.length()
     print b.length()
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasmut-write-while-borrowedfab-supporting-reject">radix/corpus/mutabilitas/mut-write-while-borrowed.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasmut-write-while-borrowedfab-supporting-reject">#</a></h3><p>MU-4 red: write of a source while a mut local borrows it is SEM052.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
@@ -115,9 +115,9 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">var</span> <span class="tok-kw">mut</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> b <span class="tok-op">←</span> a
+main {
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    var mut list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> a
     a.append(<span class="tok-nu">4</span>)
     print b.length()
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasown-arg-captured-closurefab-supporting-reject">radix/corpus/mutabilitas/own-arg-captured-closure.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasown-arg-captured-closurefab-supporting-reject">#</a></h3><p>A closure that captured a name before it was given away reads a dead value when called after: moved_name_captured_by_closure.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
@@ -125,13 +125,13 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">fn</span> eat(own <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn eat(own list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> void {
     print xs.length()
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">const</span> () <span class="tok-op">→</span> <span class="tok-kw">int</span> size <span class="tok-op">←</span> () <span class="tok-op">→</span> <span class="tok-kw">int</span> ∴ a.length()
+main {
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    const () <span class="tok-op">→</span> int size <span class="tok-op">←</span> () <span class="tok-op">→</span> int ∴ a.length()
     eat(own a)
     print size()
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasown-arg-elementfab-supporting-reject">radix/corpus/mutabilitas/own-arg-element.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasown-arg-elementfab-supporting-reject">#</a></h3><p>An own argument must be a whole local binding: an element is own_argument_not_local_binding.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
@@ -139,41 +139,41 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">fn</span> eat(own <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn eat(own list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> void {
     print xs.length()
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> rows <span class="tok-op">←</span> [[<span class="tok-nu">1</span>], [<span class="tok-nu">2</span>]]
+main {
+    var list<span class="tok-op">&lt;</span>list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> rows <span class="tok-op">←</span> [[<span class="tok-nu">1</span>], [<span class="tok-nu">2</span>]]
     eat(own rows[<span class="tok-nu">0</span>])
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasown-arg-fieldfab-supporting-reject">radix/corpus/mutabilitas/own-arg-field.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasown-arg-fieldfab-supporting-reject">#</a></h3><p>An own argument must be a whole local binding: a field is own_argument_not_local_binding.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — own argument: field (own_argument_not_local_binding)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">class</span> Box {
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs
+class Box {
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs
 }
 
-<span class="tok-kw">fn</span> eat(own <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn eat(own list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> void {
     print xs.length()
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> Box b <span class="tok-op">←</span> Box { xs <span class="tok-op">=</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>] }
+main {
+    const Box b <span class="tok-op">←</span> Box { xs <span class="tok-op">=</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>] }
     eat(own b.xs)
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasown-arg-loop-binderfab-supporting-reject">radix/corpus/mutabilitas/own-arg-loop-binder.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasown-arg-loop-binderfab-supporting-reject">#</a></h3><p>An for binder aliases a live element and cannot be given away as own: own_argument_loop_binder.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — own argument: loop binder (own_argument_loop_binder)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">fn</span> eat(own <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn eat(own list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> void {
     print xs.length()
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> rows <span class="tok-op">←</span> [[<span class="tok-nu">1</span>], [<span class="tok-nu">2</span>]]
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> rows <span class="tok-kw">const</span> row {
+main {
+    const list<span class="tok-op">&lt;</span>list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> rows <span class="tok-op">←</span> [[<span class="tok-nu">1</span>], [<span class="tok-nu">2</span>]]
+    for from rows const row {
         eat(own row)
     }
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasown-arg-module-constantfab-supporting-reject">radix/corpus/mutabilitas/own-arg-module-constant.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasown-arg-module-constantfab-supporting-reject">#</a></h3><p>A module constant cannot be given away as own: own_argument_module_constant.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
@@ -181,56 +181,56 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">fn</span> eat(own <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn eat(own list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> void {
     print xs.length()
 }
 
-<span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> K <span class="tok-op">=</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
+const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> K <span class="tok-op">=</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
 
-<span class="tok-kw">main</span> {
+main {
     eat(own K)
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasown-arg-moved-in-loopfab-supporting-reject">radix/corpus/mutabilitas/own-arg-moved-in-loop.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasown-arg-moved-in-loopfab-supporting-reject">#</a></h3><p>A name declared outside a loop and given away inside its body moves on every iteration: moved_in_loop.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — own argument: moved in loop (moved_in_loop)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">fn</span> eat(own <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn eat(own list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> void {
     print xs.length()
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">var</span> <span class="tok-kw">bool</span> again <span class="tok-op">←</span> <span class="tok-kw">true</span>
-    <span class="tok-kw">while</span> again {
+main {
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    var bool again <span class="tok-op">←</span> true
+    while again {
         eat(own a)
-        again <span class="tok-op">←</span> <span class="tok-kw">false</span>
+        again <span class="tok-op">←</span> false
     }
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasown-arg-unmarked-paramfab-supporting-reject">radix/corpus/mutabilitas/own-arg-unmarked-param.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasown-arg-unmarked-paramfab-supporting-reject">#</a></h3><p>An unmarked parameter is shared read-only and cannot be given away: own_argument_unmarked_parameter.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — own argument: unmarked parameter (own_argument_unmarked_parameter)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">fn</span> eat(own <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn eat(own list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> void {
     print xs.length()
 }
 
-<span class="tok-kw">fn</span> relay(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> p) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn relay(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> p) <span class="tok-op">→</span> void {
     eat(own p)
 }
 
-<span class="tok-kw">main</span> {
+main {
     relay([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>])
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasown-arg-use-afterfab-supporting-reject">radix/corpus/mutabilitas/own-arg-use-after.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasown-arg-use-afterfab-supporting-reject">#</a></h3><p>After eat(own a) the name a is dead: a later use is use_after_own, blamed on the call.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — own argument: use after own (use_after_own)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">fn</span> eat(own <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn eat(own list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> void {
     print xs.length()
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+main {
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     eat(own a)
     print a.length()
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasown-from-fieldfab-supporting-reject">radix/corpus/mutabilitas/own-from-field.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasown-from-fieldfab-supporting-reject">#</a></h3><p>MU-3 red: field projection into own rejects with copy suggestion.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
@@ -238,54 +238,54 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">class</span> Person {
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> friends
+class Person {
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> friends
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> Person p <span class="tok-op">←</span> Person { friends <span class="tok-op">=</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>] }
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> b <span class="tok-op">←</span> own p.friends
+main {
+    const Person p <span class="tok-op">←</span> Person { friends <span class="tok-op">=</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>] }
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> own p.friends
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasown-from-indexfab-supporting-reject">radix/corpus/mutabilitas/own-from-index.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasown-from-indexfab-supporting-reject">#</a></h3><p>MU-3 red: index projection into own rejects with copy suggestion.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — index into own bind (MU-3)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [[<span class="tok-nu">1</span>], [<span class="tok-nu">2</span>]]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> b <span class="tok-op">←</span> own xs[<span class="tok-nu">0</span>]
+main {
+    const list<span class="tok-op">&lt;</span>list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [[<span class="tok-nu">1</span>], [<span class="tok-nu">2</span>]]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> own xs[<span class="tok-nu">0</span>]
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasown-from-mutfab-supporting-reject">radix/corpus/mutabilitas/own-from-mut.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasown-from-mutfab-supporting-reject">#</a></h3><p>MU-3 red: mut source into own rejects with copy suggestion.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — mut into own bind (MU-3)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">mut</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> b <span class="tok-op">←</span> own a
+main {
+    var mut list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> own a
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasown-from-reffab-supporting-reject">radix/corpus/mutabilitas/own-from-ref.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasown-from-reffab-supporting-reject">#</a></h3><p>MU-3 red: ref source into own rejects with copy suggestion.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — ref into own bind (MU-3)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">ref</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> b <span class="tok-op">←</span> own a
+main {
+    const ref list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> own a
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasown-from-sharedfab-supporting-reject">radix/corpus/mutabilitas/own-from-shared.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasown-from-sharedfab-supporting-reject">#</a></h3><p>MU-3 red: branched shared RHS into own rejects with copy suggestion.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — shared branch into own bind (MU-3)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> b <span class="tok-op">←</span> [<span class="tok-nu">2</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> c <span class="tok-op">←</span> own <span class="tok-kw">true</span> ✓ a ✗ b
+main {
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> [<span class="tok-nu">2</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> c <span class="tok-op">←</span> own true ✓ a ✗ b
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasown-from-unmarkedfab-supporting-reject">radix/corpus/mutabilitas/own-from-unmarked.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasown-from-unmarkedfab-supporting-reject">#</a></h3><p>MU-3 red: live unmarked source into own rejects with copy suggestion.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — unmarked live into own (MU-3)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> b <span class="tok-op">←</span> own a
+main {
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> own a
     print a.length()
     print b.length()
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasown-use-after-movefab-supporting-reject">radix/corpus/mutabilitas/own-use-after-move.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasown-use-after-movefab-supporting-reject">#</a></h3><p>MU-3 red: use of an own source after bind-site transfer is SEM050.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
@@ -293,9 +293,9 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> own [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> b <span class="tok-op">←</span> own a
+main {
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> own [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> own a
     print a.length()
     print b.length()
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasref-assign-projectionfab-supporting-reject">radix/corpus/mutabilitas/ref-assign-projection.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasref-assign-projectionfab-supporting-reject">#</a></h3><p>MU-2 red: projection assignment through a ref root is rejected.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
@@ -303,51 +303,51 @@
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">ref</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+main {
+    const ref list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     xs[<span class="tok-nu">0</span>] <span class="tok-op">←</span> <span class="tok-nu">9</span>
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasref-genus-fieldfab-supporting-reject">radix/corpus/mutabilitas/ref-genus-field.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasref-genus-fieldfab-supporting-reject">#</a></h3><p>MU-2 red: mutating a referential field of a ref class is rejected.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — ref class field transitivity (MU-2)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">class</span> Person {
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> friends
+class Person {
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> friends
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">ref</span> Person p <span class="tok-op">←</span> Person { friends <span class="tok-op">=</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>] }
+main {
+    const ref Person p <span class="tok-op">←</span> Person { friends <span class="tok-op">=</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>] }
     p.friends.append(<span class="tok-nu">3</span>)
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasref-mutating-receiverfab-supporting-reject">radix/corpus/mutabilitas/ref-mutating-receiver.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasref-mutating-receiverfab-supporting-reject">#</a></h3><p>MU-2 red: mutating receiver intrinsic through a ref root is rejected.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — ref mutating receiver (MU-2)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">ref</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+main {
+    const ref list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     xs.append(<span class="tok-nu">4</span>)
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasref-to-mutfab-supporting-reject">radix/corpus/mutabilitas/ref-to-mut.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasref-to-mutfab-supporting-reject">#</a></h3><p>MU-2 red: passing a ref value into a mut position is rejected.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — ref into mut (MU-2)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">fn</span> poke(<span class="tok-kw">mut</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn poke(mut list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> void {
     xs.append(<span class="tok-nu">4</span>)
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">ref</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    poke(<span class="tok-kw">mut</span> a)
+main {
+    var ref list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    poke(mut a)
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusmutabilitasref-to-ownfab-supporting-reject">radix/corpus/mutabilitas/ref-to-own.fab (supporting · reject)<a class="anchor" href="#radixcorpusmutabilitasref-to-ownfab-supporting-reject">#</a></h3><p>MU-2 red: passing a ref value into an own position is rejected.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># mutabilitas — ref into own (MU-2)</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">fn</span> take(own <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn take(own list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> void {
     print xs.length()
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">ref</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+main {
+    const ref list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     take(own a)
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasshallow-constfab-canonical-concept">radix/corpus/mutabilitas/shallow-const.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitascall-marker-mismatchfab-supporting-reject">radix/corpus/mutabilitas/call-marker-mismatch.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitascall-marker-missingfab-supporting-reject">radix/corpus/mutabilitas/call-marker-missing.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitascall-marker-on-read-onlyfab-supporting-reject">radix/corpus/mutabilitas/call-marker-on-read-only.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasconst-share-into-var-rejectfab-supporting-reject">radix/corpus/mutabilitas/const-share-into-var-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasgrammar-rejectfab-supporting-reject">radix/corpus/mutabilitas/grammar-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasmut-alias-conflictfab-supporting-reject">radix/corpus/mutabilitas/mut-alias-conflict.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasmut-overlap-argsfab-supporting-reject">radix/corpus/mutabilitas/mut-overlap-args.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasmut-shared-conflictfab-supporting-reject">radix/corpus/mutabilitas/mut-shared-conflict.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasmut-use-while-borrowedfab-supporting-reject">radix/corpus/mutabilitas/mut-use-while-borrowed.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasmut-write-while-borrowedfab-supporting-reject">radix/corpus/mutabilitas/mut-write-while-borrowed.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasown-arg-captured-closurefab-supporting-reject">radix/corpus/mutabilitas/own-arg-captured-closure.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasown-arg-elementfab-supporting-reject">radix/corpus/mutabilitas/own-arg-element.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasown-arg-fieldfab-supporting-reject">radix/corpus/mutabilitas/own-arg-field.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasown-arg-loop-binderfab-supporting-reject">radix/corpus/mutabilitas/own-arg-loop-binder.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasown-arg-module-constantfab-supporting-reject">radix/corpus/mutabilitas/own-arg-module-constant.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasown-arg-moved-in-loopfab-supporting-reject">radix/corpus/mutabilitas/own-arg-moved-in-loop.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasown-arg-unmarked-paramfab-supporting-reject">radix/corpus/mutabilitas/own-arg-unmarked-param.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasown-arg-use-afterfab-supporting-reject">radix/corpus/mutabilitas/own-arg-use-after.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasown-from-fieldfab-supporting-reject">radix/corpus/mutabilitas/own-from-field.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasown-from-indexfab-supporting-reject">radix/corpus/mutabilitas/own-from-index.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasown-from-mutfab-supporting-reject">radix/corpus/mutabilitas/own-from-mut.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasown-from-reffab-supporting-reject">radix/corpus/mutabilitas/own-from-ref.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasown-from-sharedfab-supporting-reject">radix/corpus/mutabilitas/own-from-shared.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasown-from-unmarkedfab-supporting-reject">radix/corpus/mutabilitas/own-from-unmarked.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasown-use-after-movefab-supporting-reject">radix/corpus/mutabilitas/own-use-after-move.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasref-assign-projectionfab-supporting-reject">radix/corpus/mutabilitas/ref-assign-projection.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasref-genus-fieldfab-supporting-reject">radix/corpus/mutabilitas/ref-genus-field.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasref-mutating-receiverfab-supporting-reject">radix/corpus/mutabilitas/ref-mutating-receiver.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasref-to-mutfab-supporting-reject">radix/corpus/mutabilitas/ref-to-mut.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusmutabilitasref-to-ownfab-supporting-reject">radix/corpus/mutabilitas/ref-to-own.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/mutabilitas/shallow-const.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

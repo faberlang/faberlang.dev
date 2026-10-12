@@ -26,13 +26,13 @@
 <span class="tok-co">#   Cross-ref: for/de.fab.</span>
 <span class="tok-co">#</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> persona <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"aetas"</span><span class="tok-op">:</span> <span class="tok-nu">30</span> }
-    <span class="tok-kw">for</span> <span class="tok-kw">ref</span> persona <span class="tok-kw">const</span> clavis {
+main {
+    const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> persona <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"aetas"</span><span class="tok-op">:</span> <span class="tok-nu">30</span> }
+    for ref persona const clavis {
         print clavis
     }
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
-    <span class="tok-kw">for</span> <span class="tok-kw">ref</span> numeri <span class="tok-kw">const</span> index {
+    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
+    for ref numeri const index {
         print index
     }
 }</code></pre><h3 id="radixcorpusiteradefab-canonical-keyword">radix/corpus/itera/de.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteradefab-canonical-keyword">#</a></h3><p>Introduces borrowed iteration or borrowed parameters.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
@@ -60,27 +60,27 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   none — stdout not pinned for this exemplum.</span>
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # Iterate over map keys</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, string<span class="tok-op">&gt;</span> persona <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Marcus"</span>, <span class="tok-st">"urbs"</span><span class="tok-op">:</span> <span class="tok-st">"Roma"</span> }
-    <span class="tok-kw">for</span> <span class="tok-kw">ref</span> persona <span class="tok-kw">const</span> clavis {
+    const map<span class="tok-op">&lt;</span>string, string<span class="tok-op">&gt;</span> persona <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Marcus"</span>, <span class="tok-st">"urbs"</span><span class="tok-op">:</span> <span class="tok-st">"Roma"</span> }
+    for ref persona const clavis {
         print clavis
     }
 
 <span class="tok-co">    # Access values using the key</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">ref</span> persona <span class="tok-kw">const</span> clavis {
+    for ref persona const clavis {
         print clavis, persona[clavis]
     }
 
 <span class="tok-co">    # Iterate over list indices</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
-    <span class="tok-kw">for</span> <span class="tok-kw">ref</span> numeri <span class="tok-kw">const</span> index {
+    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
+    for ref numeri const index {
         print <span class="tok-st">"index: § valor: §"</span>(index, numeri[index])
     }
 
 <span class="tok-co">    # With numerus-valued map</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> forma <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"beta"</span><span class="tok-op">:</span> <span class="tok-nu">2</span> }
-    <span class="tok-kw">for</span> <span class="tok-kw">ref</span> forma <span class="tok-kw">const</span> k {
+    const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> forma <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">1</span>, <span class="tok-st">"beta"</span><span class="tok-op">:</span> <span class="tok-nu">2</span> }
+    for ref forma const k {
         print k
     }
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusdedefab-canonical-keyword">radix/corpus/de/de.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteradefab-canonical-keyword">radix/corpus/itera/de.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/de/de.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

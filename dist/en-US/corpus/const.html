@@ -34,44 +34,44 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   fixum.expected (Salve, Marcus! / 7 / 30 / 300)</span>
 
-<span class="tok-kw">fn</span> scale(<span class="tok-kw">bool</span> compact, <span class="tok-kw">int</span> base) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> factor
-    <span class="tok-kw">if</span> compact {
+fn scale(bool compact, int base) <span class="tok-op">→</span> int {
+    const int factor
+    if compact {
         factor <span class="tok-op">←</span> <span class="tok-nu">10</span>
     }
-    <span class="tok-kw">else</span> {
+    else {
         factor <span class="tok-op">←</span> <span class="tok-nu">100</span>
     }
-    <span class="tok-kw">return</span> base <span class="tok-op">*</span> factor
+    return base <span class="tok-op">*</span> factor
 }
 
-<span class="tok-kw">test</span> <span class="tok-st">"fixum immediate init"</span> {
-    <span class="tok-kw">const</span> string name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">const</span> string salve <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(name)
-    <span class="tok-kw">assert</span> name <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">assert</span> salve <span class="tok-op">≡</span> <span class="tok-st">"Salve, Marcus!"</span>
+test <span class="tok-st">"fixum immediate init"</span> {
+    const string name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    const string salve <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(name)
+    assert name <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
+    assert salve <span class="tok-op">≡</span> <span class="tok-st">"Salve, Marcus!"</span>
 }
 
-<span class="tok-kw">test</span> <span class="tok-st">"fixum deferred init writes once"</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> pending
+test <span class="tok-st">"fixum deferred init writes once"</span> {
+    const int pending
     pending <span class="tok-op">←</span> <span class="tok-nu">7</span>
-    <span class="tok-kw">assert</span> pending <span class="tok-op">≡</span> <span class="tok-nu">7</span>
+    assert pending <span class="tok-op">≡</span> <span class="tok-nu">7</span>
 }
 
-<span class="tok-kw">test</span> <span class="tok-st">"fixum factor selected per branch"</span> {
-    <span class="tok-kw">assert</span> scale(<span class="tok-kw">true</span>, <span class="tok-nu">3</span>) <span class="tok-op">≡</span> <span class="tok-nu">30</span>
-    <span class="tok-kw">assert</span> scale(<span class="tok-kw">false</span>, <span class="tok-nu">3</span>) <span class="tok-op">≡</span> <span class="tok-nu">300</span>
+test <span class="tok-st">"fixum factor selected per branch"</span> {
+    assert scale(true, <span class="tok-nu">3</span>) <span class="tok-op">≡</span> <span class="tok-nu">30</span>
+    assert scale(false, <span class="tok-nu">3</span>) <span class="tok-op">≡</span> <span class="tok-nu">300</span>
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> string name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">const</span> string salve <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(name)
+main {
+    const string name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    const string salve <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(name)
     print salve
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> pending
+    const int pending
     pending <span class="tok-op">←</span> <span class="tok-nu">7</span>
     print pending
-    print scale(<span class="tok-kw">true</span>, <span class="tok-nu">3</span>)
-    print scale(<span class="tok-kw">false</span>, <span class="tok-nu">3</span>)
+    print scale(true, <span class="tok-nu">3</span>)
+    print scale(false, <span class="tok-nu">3</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Marcus!
 7
 30

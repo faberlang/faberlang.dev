@@ -25,24 +25,24 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   cond true, finis (tacet.expected).</span>
 
-<span class="tok-kw">fn</span> maybeNota(<span class="tok-kw">bool</span> cond) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">if</span> cond {
+fn maybeNota(bool cond) <span class="tok-op">→</span> void {
+    if cond {
         print <span class="tok-st">"cond verum"</span>
     }
-    <span class="tok-kw">else</span> {
+    else {
 <span class="tok-co">        # deliberate no-op in else branch</span>
-        <span class="tok-kw">pass</span>
+        pass
     }
 }
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # prints</span>
-    maybeNota(<span class="tok-kw">true</span>)
+    maybeNota(true)
 <span class="tok-co">    # pass — no output</span>
-    maybeNota(<span class="tok-kw">false</span>)
+    maybeNota(false)
 
 <span class="tok-co">    # condition false, so pass never runs</span>
-    <span class="tok-kw">if</span> <span class="tok-kw">false</span> then <span class="tok-kw">pass</span>
+    if false then pass
 
     print <span class="tok-st">"finis"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>cond verum

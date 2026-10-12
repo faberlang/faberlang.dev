@@ -32,18 +32,18 @@
 <span class="tok-co">#   ternarius.expected — one-level conditionals and the function alternative.</span>
 
 <span class="tok-co"># More than two outcomes: a function that returns each case, not a chain.</span>
-<span class="tok-kw">fn</span> gradus(<span class="tok-kw">int</span> puncta) <span class="tok-op">→</span> string {
-    <span class="tok-kw">if</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> { <span class="tok-kw">return</span> <span class="tok-st">"A"</span> }
-    <span class="tok-kw">if</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">80</span> { <span class="tok-kw">return</span> <span class="tok-st">"B"</span> }
-    <span class="tok-kw">if</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">70</span> { <span class="tok-kw">return</span> <span class="tok-st">"C"</span> }
-    <span class="tok-kw">return</span> <span class="tok-st">"F"</span>
+fn gradus(int puncta) <span class="tok-op">→</span> string {
+    if puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> { return <span class="tok-st">"A"</span> }
+    if puncta <span class="tok-op">≥</span> <span class="tok-nu">80</span> { return <span class="tok-st">"B"</span> }
+    if puncta <span class="tok-op">≥</span> <span class="tok-nu">70</span> { return <span class="tok-st">"C"</span> }
+    return <span class="tok-st">"F"</span>
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
+main {
+    const int aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
 
 <span class="tok-co">    # One level: two outcomes</span>
-    <span class="tok-kw">const</span> string gradusaetatis <span class="tok-op">←</span> aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> ✓ <span class="tok-st">"adultus"</span> ✗ <span class="tok-st">"minor"</span>
+    const string gradusaetatis <span class="tok-op">←</span> aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> ✓ <span class="tok-st">"adultus"</span> ✗ <span class="tok-st">"minor"</span>
 <span class="tok-co">    # "adultus"</span>
     print gradusaetatis
 
@@ -52,16 +52,16 @@
     print gradus(<span class="tok-nu">85</span>)
 
 <span class="tok-co">    # In expressions</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> maximum <span class="tok-op">←</span> aetas ≻ <span class="tok-nu">30</span> ✓ aetas ✗ <span class="tok-nu">30</span>
+    const int maximum <span class="tok-op">←</span> aetas ≻ <span class="tok-nu">30</span> ✓ aetas ✗ <span class="tok-nu">30</span>
     print <span class="tok-st">"maximum: §"</span>(maximum)
 
 <span class="tok-co">    # Narrowing: the ✓ branch sees a non-null string</span>
-    <span class="tok-kw">var</span> string <span class="tok-op">∪</span> <span class="tok-kw">none</span> forsitan <span class="tok-op">←</span> null ∷ string <span class="tok-op">∪</span> <span class="tok-kw">none</span>
-    <span class="tok-kw">const</span> string solutum <span class="tok-op">←</span> forsitan <span class="tok-kw">not</span> <span class="tok-kw">is</span> <span class="tok-kw">none</span> ✓ forsitan ✗ <span class="tok-st">"defectum"</span>
+    var string <span class="tok-op">∪</span> none forsitan <span class="tok-op">←</span> null ∷ string <span class="tok-op">∪</span> none
+    const string solutum <span class="tok-op">←</span> forsitan not is none ✓ forsitan ✗ <span class="tok-st">"defectum"</span>
 <span class="tok-co">    # "defectum"</span>
     print solutum
 
-    <span class="tok-kw">const</span> string licentia <span class="tok-op">←</span> aetas <span class="tok-op">≥</span> <span class="tok-nu">21</span> ✓ <span class="tok-st">"licet bibere"</span> ✗ <span class="tok-st">"bibere non licet"</span>
+    const string licentia <span class="tok-op">←</span> aetas <span class="tok-op">≥</span> <span class="tok-nu">21</span> ✓ <span class="tok-st">"licet bibere"</span> ✗ <span class="tok-st">"bibere non licet"</span>
     print licentia
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>adultus
 B

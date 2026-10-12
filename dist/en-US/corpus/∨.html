@@ -25,18 +25,18 @@
 <span class="tok-co">#   Cross-ref boolean short-circuit: et/et.fab, or/binarius.fab, vel/binarius.fab.</span>
 <span class="tok-co">#   Negated est parses as `expr is not target`.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ vexilla <span class="tok-op">←</span> <span class="tok-nu">0</span>b1010
-    <span class="tok-kw">const</span> _ persona <span class="tok-op">←</span> <span class="tok-nu">0</span>b1100
-    <span class="tok-kw">const</span> _ velata <span class="tok-op">←</span> vexilla ∨ persona
+main {
+    const _ vexilla <span class="tok-op">←</span> <span class="tok-nu">0</span>b1010
+    const _ persona <span class="tok-op">←</span> <span class="tok-nu">0</span>b1100
+    const _ velata <span class="tok-op">←</span> vexilla ∨ persona
 <span class="tok-co">    # 14 (0b1110)</span>
     print velata
-    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> <span class="tok-kw">none</span> praesens <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
-    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> <span class="tok-kw">none</span> absens <span class="tok-op">←</span> null
-    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> habetValorem <span class="tok-op">←</span> praesens <span class="tok-kw">not</span> <span class="tok-kw">is</span> <span class="tok-kw">none</span>
+    const string <span class="tok-op">∪</span> none praesens <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
+    const string <span class="tok-op">∪</span> none absens <span class="tok-op">←</span> null
+    const bool habetValorem <span class="tok-op">←</span> praesens not is none
 <span class="tok-co">    # true</span>
     print habetValorem
-    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> caretValorem <span class="tok-op">←</span> absens <span class="tok-kw">not</span> <span class="tok-kw">is</span> <span class="tok-kw">none</span>
+    const bool caretValorem <span class="tok-op">←</span> absens not is none
 <span class="tok-co">    # false</span>
     print caretValorem
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>14

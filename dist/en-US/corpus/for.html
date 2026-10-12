@@ -31,35 +31,35 @@
 <span class="tok-co">#   `generator` half and reports `async_generator` as an explicit target gap.</span>
 
 <span class="tok-co"># Multi-value sync stream function that yields values via yield</span>
-<span class="tok-kw">fn</span> grena(<span class="tok-kw">int</span> n) <span class="tok-kw">generator</span> <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span> ‥ n <span class="tok-kw">const</span> i {
-        <span class="tok-kw">yield</span> i
+fn grena(int n) generator <span class="tok-op">→</span> int {
+    for range <span class="tok-nu">0</span> ‥ n const i {
+        yield i
     }
 }
 
 <span class="tok-co"># Multi-value async stream function that yields values via yield</span>
-<span class="tok-kw">fn</span> grena_futurum(<span class="tok-kw">int</span> n) <span class="tok-kw">async_generator</span> <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span> ‥ n <span class="tok-kw">const</span> i {
-        <span class="tok-kw">yield</span> i
+fn grena_futurum(int n) async_generator <span class="tok-op">→</span> int {
+    for range <span class="tok-nu">0</span> ‥ n const i {
+        yield i
     }
 }
 
-<span class="tok-kw">async_main</span> {
+async_main {
 <span class="tok-co">    # Direct consumption of cursor yield stream</span>
     print <span class="tok-st">"Sync cursor iteration:"</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> grena(<span class="tok-nu">3</span>) <span class="tok-kw">const</span> n {
+    for from grena(<span class="tok-nu">3</span>) const n {
         print <span class="tok-st">"  numerus: §"</span>(n)
     }
 
 <span class="tok-co">    # Collect all results from cursor function</span>
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> effecta <span class="tok-op">←</span> []
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> grena(<span class="tok-nu">5</span>) <span class="tok-kw">const</span> n {
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> effecta <span class="tok-op">←</span> []
+    for from grena(<span class="tok-nu">5</span>) const n {
         effecta.append(n <span class="tok-op">*</span> <span class="tok-nu">2</span>)
     }
     print <span class="tok-st">"Sync collected:"</span>
     print effecta
     print <span class="tok-st">"Async cursor iteration:"</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> grena_futurum(<span class="tok-nu">3</span>) <span class="tok-kw">const</span> n {
+    for from grena_futurum(<span class="tok-nu">3</span>) const n {
         print <span class="tok-st">"  async numerus: §"</span>(n)
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Sync cursor iteration:
@@ -96,43 +96,43 @@ Async cursor iteration:
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Sums, max, and counts above a threshold for sample listas.</span>
 
-<span class="tok-kw">fn</span> sum(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
+fn sum(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> int {
+    var int total <span class="tok-op">←</span> <span class="tok-nu">0</span>
 
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> numeri <span class="tok-kw">const</span> n {
+    for from numeri const n {
         total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
     }
 
-    <span class="tok-kw">return</span> total
+    return total
 }
 
 <span class="tok-co"># Assumes non-empty list (seed from first element)</span>
-<span class="tok-kw">fn</span> maximum(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> max <span class="tok-op">←</span> numeri[<span class="tok-nu">0</span>]
+fn maximum(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> int {
+    var int max <span class="tok-op">←</span> numeri[<span class="tok-nu">0</span>]
 
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> numeri <span class="tok-kw">const</span> n {
-        <span class="tok-kw">if</span> n ≻ max {
+    for from numeri const n {
+        if n ≻ max {
             max <span class="tok-op">←</span> n
         }
     }
 
-    <span class="tok-kw">return</span> max
+    return max
 }
 
-<span class="tok-kw">fn</span> supra(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> numeri, <span class="tok-kw">int</span> limen) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> <span class="tok-kw">int</span> <span class="tok-op">←</span> <span class="tok-nu">0</span>
+fn supra(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri, int limen) <span class="tok-op">→</span> int {
+    var int int <span class="tok-op">←</span> <span class="tok-nu">0</span>
 
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> numeri <span class="tok-kw">const</span> n {
-        <span class="tok-kw">if</span> n ≻ limen {
-            <span class="tok-kw">int</span> <span class="tok-op">←</span> <span class="tok-kw">int</span> <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    for from numeri const n {
+        if n ≻ limen {
+            int <span class="tok-op">←</span> int <span class="tok-op">+</span> <span class="tok-nu">1</span>
         }
     }
 
-    <span class="tok-kw">return</span> <span class="tok-kw">int</span>
+    return int
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+main {
+    const _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
 
     print sum(numeri)
     print maximum(numeri)
@@ -172,29 +172,29 @@ Async cursor iteration:
 <span class="tok-co">#   intervallum-gradus.expected — positive-step, inclusive, and descending</span>
 <span class="tok-co">#   range values pinned from runner stdout.</span>
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # Step by 2 (exclusive: 0, 2, 4, 6, 8)</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> <span class="tok-kw">step</span> <span class="tok-nu">2</span> <span class="tok-kw">const</span> i {
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> step <span class="tok-nu">2</span> const i {
         print i
     }
 
 <span class="tok-co">    # Step by 2 (inclusive: 0, 2, 4, 6, 8, 10)</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">10</span> <span class="tok-kw">step</span> <span class="tok-nu">2</span> <span class="tok-kw">const</span> i {
+    for range <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">10</span> step <span class="tok-nu">2</span> const i {
         print i
     }
 
 <span class="tok-co">    # Step by 3</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥<span class="tok-nu">15</span> <span class="tok-kw">step</span> <span class="tok-nu">3</span> <span class="tok-kw">const</span> i {
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">15</span> step <span class="tok-nu">3</span> const i {
         print i
     }
 
 <span class="tok-co">    # Descending: the bounds pick the direction, the step stays positive</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">10</span>‥<span class="tok-nu">0</span> <span class="tok-kw">step</span> <span class="tok-nu">1</span> <span class="tok-kw">const</span> i {
+    for range <span class="tok-nu">10</span>‥<span class="tok-nu">0</span> step <span class="tok-nu">1</span> const i {
         print i
     }
 
 <span class="tok-co">    # Descending by 2</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">10</span>‥<span class="tok-nu">0</span> <span class="tok-kw">step</span> <span class="tok-nu">2</span> <span class="tok-kw">const</span> i {
+    for range <span class="tok-nu">10</span>‥<span class="tok-nu">0</span> step <span class="tok-nu">2</span> const i {
         print i
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
@@ -256,29 +256,29 @@ Async cursor iteration:
 <span class="tok-co">#   intervallum.expected — exclusive, ante-exclusive, inclusive, non-zero,</span>
 <span class="tok-co">#   and descending range values pinned from runner stdout.</span>
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # Basic range (exclusive: 0, 1, 2, 3, 4)</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥<span class="tok-nu">5</span> <span class="tok-kw">const</span> i {
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">5</span> const i {
         print i
     }
 
 <span class="tok-co">    # Explicit exclusive with before (same as ‥)</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span> <span class="tok-kw">before</span> <span class="tok-nu">5</span> <span class="tok-kw">const</span> i {
+    for range <span class="tok-nu">0</span> before <span class="tok-nu">5</span> const i {
         print i
     }
 
 <span class="tok-co">    # Inclusive range with … (0, 1, 2, 3, 4, 5)</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">5</span> <span class="tok-kw">const</span> i {
+    for range <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">5</span> const i {
         print i
     }
 
 <span class="tok-co">    # Range starting from non-zero</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">5</span>‥<span class="tok-nu">10</span> <span class="tok-kw">const</span> i {
+    for range <span class="tok-nu">5</span>‥<span class="tok-nu">10</span> const i {
         print i
     }
 
 <span class="tok-co">    # Descending direction</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">5</span>‥<span class="tok-nu">0</span> <span class="tok-kw">const</span> i {
+    for range <span class="tok-nu">5</span>‥<span class="tok-nu">0</span> const i {
         print i
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
@@ -327,16 +327,16 @@ Async cursor iteration:
 <span class="tok-co"># See also: from, at</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> labels <span class="tok-op">←</span> [<span class="tok-st">"one"</span>, <span class="tok-st">"two"</span>, <span class="tok-st">"three"</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> values <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> labels, values <span class="tok-kw">const</span> label, value {
+main {
+    const list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> labels <span class="tok-op">←</span> [<span class="tok-st">"one"</span>, <span class="tok-st">"two"</span>, <span class="tok-st">"three"</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> values <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    for from labels, values const label, value {
         print label
         print value
     }
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> left <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> right <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> left, right <span class="tok-kw">const</span> a, b {
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> left <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> right <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    for from left, right const a, b {
         print a <span class="tok-op">-</span> b
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>one
@@ -364,19 +364,19 @@ three
 <span class="tok-co"># See also: from, at</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> bases <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">200</span>, <span class="tok-nu">300</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> keys <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> payloads <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> bases, keys, payloads <span class="tok-kw">const</span> base, key, payload {
-        <span class="tok-kw">const</span> <span class="tok-kw">int</span> total <span class="tok-op">←</span> base <span class="tok-op">+</span> key <span class="tok-op">+</span> payload
+main {
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> bases <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">200</span>, <span class="tok-nu">300</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> keys <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> payloads <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
+    for from bases, keys, payloads const base, key, payload {
+        const int total <span class="tok-op">←</span> base <span class="tok-op">+</span> key <span class="tok-op">+</span> payload
         print total
     }
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> rows <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> cols <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> cells <span class="tok-op">←</span> [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>]
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> rows, cols, cells <span class="tok-kw">const</span> row, col, cell {
-        <span class="tok-kw">const</span> <span class="tok-kw">int</span> grid <span class="tok-op">←</span> row <span class="tok-op">*</span> col <span class="tok-op">+</span> cell
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> rows <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> cols <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> cells <span class="tok-op">←</span> [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>]
+    for from rows, cols, cells const row, col, cell {
+        const int grid <span class="tok-op">←</span> row <span class="tok-op">*</span> col <span class="tok-op">+</span> cell
         print grid
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>111
@@ -413,26 +413,26 @@ three
 <span class="tok-co"># BACKEND:</span>
 <span class="tok-co">#   Go backend does not emit nested for yet — compile-only smoke.</span>
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # Nested list iteration — 3 × 3 combinations</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> rows <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> cols <span class="tok-op">←</span> [<span class="tok-st">"A"</span>, <span class="tok-st">"B"</span>, <span class="tok-st">"C"</span>]
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> rows <span class="tok-kw">const</span> row {
-        <span class="tok-kw">for</span> <span class="tok-kw">from</span> cols <span class="tok-kw">const</span> col {
+    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> rows <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    const list<span class="tok-op">&lt;</span>string, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> cols <span class="tok-op">←</span> [<span class="tok-st">"A"</span>, <span class="tok-st">"B"</span>, <span class="tok-st">"C"</span>]
+    for from rows const row {
+        for from cols const col {
             print row, col
         }
     }
 
 <span class="tok-co">    # Multiplication table over exclusive ranges 1‥4 (i, j ∈ {1,2,3})</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">1</span>‥<span class="tok-nu">4</span> <span class="tok-kw">const</span> i {
-        <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">1</span>‥<span class="tok-nu">4</span> <span class="tok-kw">const</span> j {
+    for range <span class="tok-nu">1</span>‥<span class="tok-nu">4</span> const i {
+        for range <span class="tok-nu">1</span>‥<span class="tok-nu">4</span> const j {
             print i, <span class="tok-st">"*"</span>, j, <span class="tok-st">"←"</span>, i <span class="tok-op">*</span> j
         }
     }
 
 <span class="tok-co">    # Nested ranges: 4 × 4 grid of (x, y) with x, y ∈ {0,1,2,3}</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥<span class="tok-nu">3</span> <span class="tok-kw">const</span> x {
-        <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥<span class="tok-nu">3</span> <span class="tok-kw">const</span> y {
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">3</span> const x {
+        for range <span class="tok-nu">0</span>‥<span class="tok-nu">3</span> const y {
             print x, y
         }
     }
@@ -483,12 +483,12 @@ three
 <span class="tok-co"># See also: from, at</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥<span class="tok-nu">2</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">2</span> <span class="tok-kw">const</span> i, j {
+main {
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">2</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">2</span> const i, j {
         print i
         print j
     }
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">3</span>‥<span class="tok-nu">5</span>, <span class="tok-nu">1</span>‥<span class="tok-nu">3</span> <span class="tok-kw">const</span> first, second {
+    for range <span class="tok-nu">3</span>‥<span class="tok-nu">5</span>, <span class="tok-nu">1</span>‥<span class="tok-nu">3</span> const first, second {
         print first
         print second
     }
@@ -527,11 +527,11 @@ three
 <span class="tok-co"># See also: from, at</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">1</span>‥<span class="tok-nu">3</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">2</span> <span class="tok-kw">const</span> i, j, k {
+main {
+    for range <span class="tok-nu">1</span>‥<span class="tok-nu">3</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">2</span> const i, j, k {
         print i <span class="tok-op">*</span> <span class="tok-nu">100</span> <span class="tok-op">+</span> j <span class="tok-op">*</span> <span class="tok-nu">10</span> <span class="tok-op">+</span> k
     }
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">5</span>‥<span class="tok-nu">7</span>, <span class="tok-nu">1</span>‥<span class="tok-nu">3</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">2</span> <span class="tok-kw">const</span> first, second, third {
+    for range <span class="tok-nu">5</span>‥<span class="tok-nu">7</span>, <span class="tok-nu">1</span>‥<span class="tok-nu">3</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">2</span> const first, second, third {
         print first <span class="tok-op">*</span> <span class="tok-nu">100</span> <span class="tok-op">+</span> second <span class="tok-op">*</span> <span class="tok-nu">10</span> <span class="tok-op">+</span> third
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>120
@@ -579,97 +579,97 @@ three
 <span class="tok-co"># See also: from, at</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # crossing sign class, no step / stepped, exclusive + inclusive twins</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-op">-</span><span class="tok-nu">5</span>‥<span class="tok-nu">5</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-op">-</span><span class="tok-nu">5</span>‥<span class="tok-nu">5</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> const i, j {
         print i
         print j
     }
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-op">-</span><span class="tok-nu">5</span><span class="tok-op">…</span><span class="tok-nu">5</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-op">-</span><span class="tok-nu">5</span><span class="tok-op">…</span><span class="tok-nu">5</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> const i, j {
         print i
         print j
     }
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-op">-</span><span class="tok-nu">5</span>‥<span class="tok-nu">5</span> <span class="tok-kw">step</span> <span class="tok-nu">2</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-op">-</span><span class="tok-nu">5</span>‥<span class="tok-nu">5</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> const i, j {
         print i
         print j
     }
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-op">-</span><span class="tok-nu">5</span><span class="tok-op">…</span><span class="tok-nu">5</span> <span class="tok-kw">step</span> <span class="tok-nu">2</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-op">-</span><span class="tok-nu">5</span><span class="tok-op">…</span><span class="tok-nu">5</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> const i, j {
         print i
         print j
     }
 
 <span class="tok-co">    # negative-to-negative sign class, no step / stepped, twins</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-op">-</span><span class="tok-nu">8</span>‥<span class="tok-op">-</span><span class="tok-nu">3</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-op">-</span><span class="tok-nu">8</span>‥<span class="tok-op">-</span><span class="tok-nu">3</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> const i, j {
         print i
         print j
     }
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-op">-</span><span class="tok-nu">8</span><span class="tok-op">…</span><span class="tok-op">-</span><span class="tok-nu">3</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-op">-</span><span class="tok-nu">8</span><span class="tok-op">…</span><span class="tok-op">-</span><span class="tok-nu">3</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> const i, j {
         print i
         print j
     }
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-op">-</span><span class="tok-nu">8</span>‥<span class="tok-op">-</span><span class="tok-nu">3</span> <span class="tok-kw">step</span> <span class="tok-nu">2</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-op">-</span><span class="tok-nu">8</span>‥<span class="tok-op">-</span><span class="tok-nu">3</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> const i, j {
         print i
         print j
     }
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-op">-</span><span class="tok-nu">8</span><span class="tok-op">…</span><span class="tok-op">-</span><span class="tok-nu">3</span> <span class="tok-kw">step</span> <span class="tok-nu">2</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-op">-</span><span class="tok-nu">8</span><span class="tok-op">…</span><span class="tok-op">-</span><span class="tok-nu">3</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> const i, j {
         print i
         print j
     }
 
 <span class="tok-co">    # positive-to-positive sign class, no step / stepped, twins</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">2</span>‥<span class="tok-nu">7</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-nu">2</span>‥<span class="tok-nu">7</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> const i, j {
         print i
         print j
     }
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">7</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">7</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> const i, j {
         print i
         print j
     }
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">2</span>‥<span class="tok-nu">7</span> <span class="tok-kw">step</span> <span class="tok-nu">2</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-nu">2</span>‥<span class="tok-nu">7</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> const i, j {
         print i
         print j
     }
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">7</span> <span class="tok-kw">step</span> <span class="tok-nu">2</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">7</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> const i, j {
         print i
         print j
     }
 
 <span class="tok-co">    # offset row — both axes off zero, twins</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">3</span>‥<span class="tok-nu">12</span>, <span class="tok-op">-</span><span class="tok-nu">2</span>‥<span class="tok-nu">4</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-nu">3</span>‥<span class="tok-nu">12</span>, <span class="tok-op">-</span><span class="tok-nu">2</span>‥<span class="tok-nu">4</span> const i, j {
         print i
         print j
     }
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">3</span><span class="tok-op">…</span><span class="tok-nu">12</span>, <span class="tok-op">-</span><span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-nu">3</span><span class="tok-op">…</span><span class="tok-nu">12</span>, <span class="tok-op">-</span><span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> const i, j {
         print i
         print j
     }
 
 <span class="tok-co">    # stepped offset row — the stepped outer axis stays outer, twins</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">1</span>‥<span class="tok-nu">9</span> <span class="tok-kw">step</span> <span class="tok-nu">3</span>, <span class="tok-op">-</span><span class="tok-nu">2</span>‥<span class="tok-nu">4</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-nu">1</span>‥<span class="tok-nu">9</span> step <span class="tok-nu">3</span>, <span class="tok-op">-</span><span class="tok-nu">2</span>‥<span class="tok-nu">4</span> const i, j {
         print i
         print j
     }
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">1</span><span class="tok-op">…</span><span class="tok-nu">9</span> <span class="tok-kw">step</span> <span class="tok-nu">3</span>, <span class="tok-op">-</span><span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-nu">1</span><span class="tok-op">…</span><span class="tok-nu">9</span> step <span class="tok-nu">3</span>, <span class="tok-op">-</span><span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> const i, j {
         print i
         print j
     }
 
 <span class="tok-co">    # zero-start step on the inner axis (product form of 0‥10 step 2), twins</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">3</span>‥<span class="tok-nu">5</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> <span class="tok-kw">step</span> <span class="tok-nu">2</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-nu">3</span>‥<span class="tok-nu">5</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> step <span class="tok-nu">2</span> const i, j {
         print i
         print j
     }
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">3</span><span class="tok-op">…</span><span class="tok-nu">5</span>, <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">10</span> <span class="tok-kw">step</span> <span class="tok-nu">2</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-nu">3</span><span class="tok-op">…</span><span class="tok-nu">5</span>, <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">10</span> step <span class="tok-nu">2</span> const i, j {
         print i
         print j
     }
 
 <span class="tok-co">    # descending outer axis with a positive stride, twins</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">10</span>‥<span class="tok-nu">0</span> <span class="tok-kw">step</span> <span class="tok-nu">2</span>, <span class="tok-nu">1</span>‥<span class="tok-nu">3</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-nu">10</span>‥<span class="tok-nu">0</span> step <span class="tok-nu">2</span>, <span class="tok-nu">1</span>‥<span class="tok-nu">3</span> const i, j {
         print i
         print j
     }
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">10</span><span class="tok-op">…</span><span class="tok-nu">0</span> <span class="tok-kw">step</span> <span class="tok-nu">2</span>, <span class="tok-nu">1</span><span class="tok-op">…</span><span class="tok-nu">3</span> <span class="tok-kw">const</span> i, j {
+    for range <span class="tok-nu">10</span><span class="tok-op">…</span><span class="tok-nu">0</span> step <span class="tok-nu">2</span>, <span class="tok-nu">1</span><span class="tok-op">…</span><span class="tok-nu">3</span> const i, j {
         print i
         print j
     }
@@ -1477,26 +1477,26 @@ three
 <span class="tok-co"># iteration. Cases 1–3 must reject under `faber check` with the tokens</span>
 <span class="tok-co"># pinned in apud-decline.expected; case 4 is an admit row kept here beside them.</span>
 
-<span class="tok-kw">fn</span> arity(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> grid) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> grid <span class="tok-kw">at</span> [i] <span class="tok-kw">const</span> cell {
+fn arity(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> grid) <span class="tok-op">→</span> void {
+    for from grid at [i] const cell {
         print cell
     }
 }
 
-<span class="tok-kw">fn</span> ragged(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> rows) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> rows <span class="tok-kw">at</span> [r, c] <span class="tok-kw">const</span> cell {
+fn ragged(list<span class="tok-op">&lt;</span>list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> rows) <span class="tok-op">→</span> void {
+    for from rows at [r, c] const cell {
         print cell
     }
 }
 
-<span class="tok-kw">fn</span> members(<span class="tok-kw">set</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> s) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> s <span class="tok-kw">at</span> [i] <span class="tok-kw">const</span> member {
+fn members(set<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> s) <span class="tok-op">→</span> void {
+    for from s at [i] const member {
         print member
     }
 }
 
-<span class="tok-kw">fn</span> generic<span class="tok-op">&lt;</span>size R, size C<span class="tok-op">&gt;</span>(tensor<span class="tok-op">&lt;</span>f32, [R, C]<span class="tok-op">&gt;</span> grid) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> grid <span class="tok-kw">at</span> [r, c] <span class="tok-kw">const</span> cell {
+fn generic<span class="tok-op">&lt;</span>size R, size C<span class="tok-op">&gt;</span>(tensor<span class="tok-op">&lt;</span>f32, [R, C]<span class="tok-op">&gt;</span> grid) <span class="tok-op">→</span> void {
+    for from grid at [r, c] const cell {
         print cell
     }
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusiteralockstep-declinefab-supporting-reject">radix/corpus/itera/lockstep-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusiteralockstep-declinefab-supporting-reject">#</a></h3><p>Lockstep declines: source/binder arity, at-coordinate cardinality, and statically known unequal lengths fail closed.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
@@ -1528,20 +1528,20 @@ three
 <span class="tok-co"># WHY: documents the source/binder arity law, the one-shared-coordinate law,</span>
 <span class="tok-co"># and the fail-closed equal-length admission for the lockstep series.</span>
 
-<span class="tok-kw">fn</span> arity(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> ks, <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> vs) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> ks, vs <span class="tok-kw">const</span> k {
+fn arity(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> ks, list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> vs) <span class="tok-op">→</span> void {
+    for from ks, vs const k {
         print k
     }
 }
 
-<span class="tok-kw">fn</span> cardinality(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> ks, <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> vs) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> ks, vs <span class="tok-kw">at</span> [i, j] <span class="tok-kw">const</span> k, v {
+fn cardinality(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> ks, list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> vs) <span class="tok-op">→</span> void {
+    for from ks, vs at [i, j] const k, v {
         print k
     }
 }
 
-<span class="tok-kw">fn</span> lengths() <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>], [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>] <span class="tok-kw">const</span> k, v {
+fn lengths() <span class="tok-op">→</span> void {
+    for from [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>], [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>] const k, v {
         print k
     }
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusiterarange-product-declinefab-supporting-reject">radix/corpus/itera/range-product-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusiterarange-product-declinefab-supporting-reject">#</a></h3><p>Range product declines: source/binder arity, extent/binder shadowing, and a mixed range/plain series fail closed.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
@@ -1573,20 +1573,20 @@ three
 <span class="tok-co"># WHY: documents the source/binder arity law, the extent/binder shadowing</span>
 <span class="tok-co"># law, and the every-member-is-a-range law for the Cartesian series.</span>
 
-<span class="tok-kw">fn</span> counts(<span class="tok-kw">int</span> m, <span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥m, <span class="tok-nu">0</span>‥n <span class="tok-kw">const</span> i {
+fn counts(int m, int n) <span class="tok-op">→</span> void {
+    for range <span class="tok-nu">0</span>‥m, <span class="tok-nu">0</span>‥n const i {
         print i
     }
 }
 
-<span class="tok-kw">fn</span> shadows(<span class="tok-kw">int</span> k) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥k, <span class="tok-nu">1</span>‥<span class="tok-nu">2</span> <span class="tok-kw">const</span> k, j {
+fn shadows(int k) <span class="tok-op">→</span> void {
+    for range <span class="tok-nu">0</span>‥k, <span class="tok-nu">1</span>‥<span class="tok-nu">2</span> const k, j {
         print k
     }
 }
 
-<span class="tok-kw">fn</span> mixes(<span class="tok-kw">int</span> m, <span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥m, n <span class="tok-kw">const</span> i, j {
+fn mixes(int m, int n) <span class="tok-op">→</span> void {
+    for range <span class="tok-nu">0</span>‥m, n const i, j {
         print i
     }
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusiteracursor-iteratiofab-canonical-keyword">radix/corpus/itera/cursor-iteratio.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterain-functionefab-canonical-keyword">radix/corpus/itera/in-functione.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraintervallum-gradusfab-canonical-keyword">radix/corpus/itera/intervallum-gradus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraintervallumfab-canonical-keyword">radix/corpus/itera/intervallum.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteralockstep-n2fab-canonical-keyword">radix/corpus/itera/lockstep-n2.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteralockstep-n3fab-canonical-keyword">radix/corpus/itera/lockstep-n3.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteranidificatusfab-canonical-keyword">radix/corpus/itera/nidificatus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-n2fab-canonical-keyword">radix/corpus/itera/range-product-n2.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-n3fab-canonical-keyword">radix/corpus/itera/range-product-n3.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-semanticsfab-canonical-keyword">radix/corpus/itera/range-product-semantics.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraapud-declinefab-supporting-reject">radix/corpus/itera/apud-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusiteralockstep-declinefab-supporting-reject">radix/corpus/itera/lockstep-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-declinefab-supporting-reject">radix/corpus/itera/range-product-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/itera/cursor-iteratio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

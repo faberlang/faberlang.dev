@@ -23,33 +23,33 @@
 <span class="tok-co"># See also: int, wrapping, ¬, ⇒</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">fn</span> javaHash(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> codes) <span class="tok-op">→</span> wrapping<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> {
-    <span class="tok-kw">var</span> wrapping<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> h <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> codes <span class="tok-kw">const</span> c {
-        <span class="tok-kw">const</span> wrapping<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> code <span class="tok-op">←</span> c ↦ wrapping<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span>
+fn javaHash(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> codes) <span class="tok-op">→</span> wrapping<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> {
+    var wrapping<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> h <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    for from codes const c {
+        const wrapping<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span> code <span class="tok-op">←</span> c ↦ wrapping<span class="tok-op">&lt;</span>i32<span class="tok-op">&gt;</span>
         h <span class="tok-op">←</span> <span class="tok-nu">31</span> <span class="tok-op">*</span> h <span class="tok-op">+</span> code
     }
-    <span class="tok-kw">return</span> h
+    return h
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-nu">127</span>
+main {
+    var wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-nu">127</span>
     a <span class="tok-op">←</span> a <span class="tok-op">+</span> <span class="tok-nu">1</span>
     print a
-    <span class="tok-kw">const</span> wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> m <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">128</span>
-    <span class="tok-kw">const</span> wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> quotient <span class="tok-op">←</span> m <span class="tok-op">/</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
+    const wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> m <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">128</span>
+    const wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> quotient <span class="tok-op">←</span> m <span class="tok-op">/</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
     print quotient
-    <span class="tok-kw">const</span> wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> n <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">7</span>
+    const wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> n <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">7</span>
     print n <span class="tok-op">/</span> <span class="tok-nu">2</span>
     print n <span class="tok-op">%</span> <span class="tok-nu">2</span>
-    <span class="tok-kw">const</span> wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> s <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">8</span>
+    const wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> s <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">8</span>
     print s ⇒ <span class="tok-nu">1</span>
     print <span class="tok-op">¬</span>s
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> wide <span class="tok-op">←</span> <span class="tok-nu">300</span>
+    const int wide <span class="tok-op">←</span> <span class="tok-nu">300</span>
     print wide ↦ wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> over <span class="tok-op">←</span> <span class="tok-nu">200</span>
+    const int over <span class="tok-op">←</span> <span class="tok-nu">200</span>
     print over ↦ wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span>
-    <span class="tok-kw">const</span> wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> c <span class="tok-op">←</span> <span class="tok-nu">200</span>
+    const wrapping<span class="tok-op">&lt;</span>i8<span class="tok-op">&gt;</span> c <span class="tok-op">←</span> <span class="tok-nu">200</span>
     print c
     print javaHash([<span class="tok-nu">104</span>, <span class="tok-nu">101</span>, <span class="tok-nu">108</span>, <span class="tok-nu">108</span>, <span class="tok-nu">111</span>])
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>-128

@@ -28,13 +28,13 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   minimum-smoke.expected — par 42 when n is even.</span>
 
-<span class="tok-kw">fn</span> par(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">bool</span> {
-    <span class="tok-kw">return</span> n <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+fn par(int n) <span class="tok-op">→</span> bool {
+    return n <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≡</span> <span class="tok-nu">0</span>
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> n <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    <span class="tok-kw">if</span> par(n) {
+main {
+    const int n <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    if par(n) {
         print <span class="tok-st">"par §"</span>(n)
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>par 42

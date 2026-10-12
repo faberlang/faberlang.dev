@@ -29,9 +29,9 @@
 <span class="tok-co">#   2</span>
 <span class="tok-co">#   15</span>
 
-<span class="tok-kw">union</span> Expr {
+union Expr {
     Numerus {
-        <span class="tok-kw">int</span> valor
+        int valor
     },
     Nega {
         Expr interior
@@ -46,68 +46,68 @@
     }
 }
 
-<span class="tok-kw">fn</span> evalua(Expr e) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">match</span> e {
-        <span class="tok-kw">case</span> Numerus <span class="tok-kw">const</span> valor {
-            <span class="tok-kw">return</span> valor
+fn evalua(Expr e) <span class="tok-op">→</span> int {
+    match e {
+        case Numerus const valor {
+            return valor
         }
-        <span class="tok-kw">case</span> Nega <span class="tok-kw">const</span> interior {
-            <span class="tok-kw">return</span> <span class="tok-nu">0</span> <span class="tok-op">-</span> evalua(interior)
+        case Nega const interior {
+            return <span class="tok-nu">0</span> <span class="tok-op">-</span> evalua(interior)
         }
-        <span class="tok-kw">case</span> Adde <span class="tok-kw">const</span> sinister, dexter {
-            <span class="tok-kw">return</span> evalua(sinister) <span class="tok-op">+</span> evalua(dexter)
+        case Adde const sinister, dexter {
+            return evalua(sinister) <span class="tok-op">+</span> evalua(dexter)
         }
-        <span class="tok-kw">case</span> Multiplica <span class="tok-kw">const</span> sinister, dexter {
-            <span class="tok-kw">return</span> evalua(sinister) <span class="tok-op">*</span> evalua(dexter)
-        }
-    }
-}
-
-<span class="tok-kw">fn</span> depinge(Expr e) <span class="tok-op">→</span> string {
-    <span class="tok-kw">match</span> e {
-        <span class="tok-kw">case</span> Numerus <span class="tok-kw">const</span> valor {
-            <span class="tok-kw">return</span> <span class="tok-st">"§"</span>(valor)
-        }
-        <span class="tok-kw">case</span> Nega <span class="tok-kw">const</span> interior {
-            <span class="tok-kw">return</span> <span class="tok-st">"-§"</span>(depinge(interior))
-        }
-        <span class="tok-kw">case</span> Adde <span class="tok-kw">const</span> sinister, dexter {
-            <span class="tok-kw">return</span> <span class="tok-st">"(§ + §)"</span>(depinge(sinister), depinge(dexter))
-        }
-        <span class="tok-kw">case</span> Multiplica <span class="tok-kw">const</span> sinister, dexter {
-            <span class="tok-kw">return</span> <span class="tok-st">"(§ * §)"</span>(depinge(sinister), depinge(dexter))
+        case Multiplica const sinister, dexter {
+            return evalua(sinister) <span class="tok-op">*</span> evalua(dexter)
         }
     }
 }
 
-<span class="tok-kw">class</span> Nodus {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> valor
-    <span class="tok-kw">var</span> Nodus <span class="tok-op">∪</span> <span class="tok-kw">none</span> sequens
-}
-
-<span class="tok-kw">fn</span> sum(Nodus <span class="tok-op">∪</span> <span class="tok-kw">none</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">if</span> n <span class="tok-kw">is</span> <span class="tok-kw">none</span> {
-        <span class="tok-kw">return</span> <span class="tok-nu">0</span>
+fn depinge(Expr e) <span class="tok-op">→</span> string {
+    match e {
+        case Numerus const valor {
+            return <span class="tok-st">"§"</span>(valor)
+        }
+        case Nega const interior {
+            return <span class="tok-st">"-§"</span>(depinge(interior))
+        }
+        case Adde const sinister, dexter {
+            return <span class="tok-st">"(§ + §)"</span>(depinge(sinister), depinge(dexter))
+        }
+        case Multiplica const sinister, dexter {
+            return <span class="tok-st">"(§ * §)"</span>(depinge(sinister), depinge(dexter))
+        }
     }
-    <span class="tok-kw">return</span> n.valor <span class="tok-op">+</span> sum(n.sequens)
 }
 
-<span class="tok-kw">fn</span> longitudo(Nodus <span class="tok-op">∪</span> <span class="tok-kw">none</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">if</span> n <span class="tok-kw">is</span> <span class="tok-kw">none</span> {
-        <span class="tok-kw">return</span> <span class="tok-nu">0</span>
+class Nodus {
+    var int valor
+    var Nodus <span class="tok-op">∪</span> none sequens
+}
+
+fn sum(Nodus <span class="tok-op">∪</span> none n) <span class="tok-op">→</span> int {
+    if n is none {
+        return <span class="tok-nu">0</span>
     }
-    <span class="tok-kw">return</span> <span class="tok-nu">1</span> <span class="tok-op">+</span> longitudo(n.sequens)
+    return n.valor <span class="tok-op">+</span> sum(n.sequens)
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> Expr tres <span class="tok-op">←</span> <span class="tok-kw">variant</span> Numerus { valor <span class="tok-op">=</span> <span class="tok-nu">3</span> }
-    <span class="tok-kw">const</span> Expr productum <span class="tok-op">←</span> <span class="tok-kw">variant</span> Multiplica { sinister <span class="tok-op">=</span> tres, dexter <span class="tok-op">=</span> <span class="tok-kw">variant</span> Numerus { valor <span class="tok-op">=</span> <span class="tok-nu">4</span> } }
-    <span class="tok-kw">const</span> Expr arbor <span class="tok-op">←</span> <span class="tok-kw">variant</span> Adde { sinister <span class="tok-op">=</span> <span class="tok-kw">variant</span> Numerus { valor <span class="tok-op">=</span> <span class="tok-nu">2</span> }, dexter <span class="tok-op">=</span> productum }
+fn longitudo(Nodus <span class="tok-op">∪</span> none n) <span class="tok-op">→</span> int {
+    if n is none {
+        return <span class="tok-nu">0</span>
+    }
+    return <span class="tok-nu">1</span> <span class="tok-op">+</span> longitudo(n.sequens)
+}
+
+main {
+    const Expr tres <span class="tok-op">←</span> variant Numerus { valor <span class="tok-op">=</span> <span class="tok-nu">3</span> }
+    const Expr productum <span class="tok-op">←</span> variant Multiplica { sinister <span class="tok-op">=</span> tres, dexter <span class="tok-op">=</span> variant Numerus { valor <span class="tok-op">=</span> <span class="tok-nu">4</span> } }
+    const Expr arbor <span class="tok-op">←</span> variant Adde { sinister <span class="tok-op">=</span> variant Numerus { valor <span class="tok-op">=</span> <span class="tok-nu">2</span> }, dexter <span class="tok-op">=</span> productum }
     print evalua(arbor)
     print depinge(arbor)
-    print evalua(<span class="tok-kw">variant</span> Nega { interior <span class="tok-op">=</span> <span class="tok-kw">variant</span> Adde { sinister <span class="tok-op">=</span> tres, dexter <span class="tok-op">=</span> <span class="tok-kw">variant</span> Numerus { valor <span class="tok-op">=</span> <span class="tok-nu">6</span> } } })
+    print evalua(variant Nega { interior <span class="tok-op">=</span> variant Adde { sinister <span class="tok-op">=</span> tres, dexter <span class="tok-op">=</span> variant Numerus { valor <span class="tok-op">=</span> <span class="tok-nu">6</span> } } })
 
-    <span class="tok-kw">var</span> Nodus caput <span class="tok-op">←</span> Nodus { valor <span class="tok-op">=</span> <span class="tok-nu">1</span>, sequens <span class="tok-op">=</span> Nodus { valor <span class="tok-op">=</span> <span class="tok-nu">2</span>, sequens <span class="tok-op">=</span> Nodus { valor <span class="tok-op">=</span> <span class="tok-nu">3</span>, sequens <span class="tok-op">=</span> null } } }
+    var Nodus caput <span class="tok-op">←</span> Nodus { valor <span class="tok-op">=</span> <span class="tok-nu">1</span>, sequens <span class="tok-op">=</span> Nodus { valor <span class="tok-op">=</span> <span class="tok-nu">2</span>, sequens <span class="tok-op">=</span> Nodus { valor <span class="tok-op">=</span> <span class="tok-nu">3</span>, sequens <span class="tok-op">=</span> null } } }
     print sum(caput)
     print longitudo(caput)
     print caput<span class="tok-op">?.</span>sequens<span class="tok-op">?.</span>valor

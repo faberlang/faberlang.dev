@@ -23,78 +23,78 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   ts-reserved-field-names.expected — the computed values, then the displayed class.</span>
 
-<span class="tok-kw">class</span> Pouch {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> <span class="tok-kw">yield</span>
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> delete
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> <span class="tok-kw">default</span>
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> <span class="tok-kw">static</span>
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> <span class="tok-kw">enum</span>
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> <span class="tok-kw">implements</span>
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> <span class="tok-kw">interface</span>
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> package
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> <span class="tok-kw">private</span>
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> <span class="tok-kw">protected</span>
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> <span class="tok-kw">public</span>
+class Pouch {
+    var int yield
+    var int delete
+    var int default
+    var int static
+    var int enum
+    var int implements
+    var int interface
+    var int package
+    var int private
+    var int protected
+    var int public
 
-    <span class="tok-kw">fn</span> new(<span class="tok-kw">int</span> <span class="tok-kw">await</span>) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-        <span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-kw">let</span> <span class="tok-op">←</span> <span class="tok-kw">await</span> <span class="tok-op">+</span> <span class="tok-kw">self</span>.<span class="tok-kw">yield</span>
-        <span class="tok-kw">return</span> <span class="tok-kw">let</span> <span class="tok-op">+</span> <span class="tok-kw">self</span>.delete <span class="tok-op">+</span> <span class="tok-kw">self</span>.<span class="tok-kw">default</span>
+    fn new(int await) <span class="tok-op">→</span> int {
+        const int let <span class="tok-op">←</span> await <span class="tok-op">+</span> self.yield
+        return let <span class="tok-op">+</span> self.delete <span class="tok-op">+</span> self.default
     }
 
-    <span class="tok-kw">fn</span> function() <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-        <span class="tok-kw">return</span> <span class="tok-kw">self</span>.<span class="tok-kw">static</span> <span class="tok-op">+</span> <span class="tok-kw">self</span>.<span class="tok-kw">enum</span> <span class="tok-op">+</span> <span class="tok-kw">self</span>.<span class="tok-kw">implements</span> <span class="tok-op">+</span> <span class="tok-kw">self</span>.<span class="tok-kw">interface</span>
+    fn function() <span class="tok-op">→</span> int {
+        return self.static <span class="tok-op">+</span> self.enum <span class="tok-op">+</span> self.implements <span class="tok-op">+</span> self.interface
     }
 
-    <span class="tok-kw">fn</span> visibility() <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-        <span class="tok-kw">return</span> <span class="tok-kw">self</span>.package <span class="tok-op">+</span> <span class="tok-kw">self</span>.<span class="tok-kw">private</span> <span class="tok-op">+</span> <span class="tok-kw">self</span>.<span class="tok-kw">protected</span> <span class="tok-op">+</span> <span class="tok-kw">self</span>.<span class="tok-kw">public</span>
+    fn visibility() <span class="tok-op">→</span> int {
+        return self.package <span class="tok-op">+</span> self.private <span class="tok-op">+</span> self.protected <span class="tok-op">+</span> self.public
     }
 }
 
-<span class="tok-kw">union</span> Shift {
+union Shift {
     Move {
-        <span class="tok-kw">int</span> <span class="tok-kw">yield</span>
-        <span class="tok-kw">int</span> delete
+        int yield
+        int delete
     },
     Stay
 }
 
-<span class="tok-kw">fn</span> pack(<span class="tok-kw">int</span> <span class="tok-kw">yield</span>, <span class="tok-kw">int</span> <span class="tok-kw">default</span>) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> <span class="tok-kw">yield</span> <span class="tok-op">+</span> <span class="tok-kw">default</span>
+fn pack(int yield, int default) <span class="tok-op">→</span> int {
+    return yield <span class="tok-op">+</span> default
 }
 
-<span class="tok-kw">fn</span> weigh(Shift s) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">match</span> s {
-        <span class="tok-kw">case</span> Move <span class="tok-kw">const</span> <span class="tok-kw">yield</span>, delete {
-            <span class="tok-kw">return</span> <span class="tok-kw">yield</span> <span class="tok-op">*</span> <span class="tok-nu">10</span> <span class="tok-op">+</span> delete
+fn weigh(Shift s) <span class="tok-op">→</span> int {
+    match s {
+        case Move const yield, delete {
+            return yield <span class="tok-op">*</span> <span class="tok-nu">10</span> <span class="tok-op">+</span> delete
         }
-        <span class="tok-kw">case</span> Stay {
-            <span class="tok-kw">return</span> <span class="tok-nu">0</span>
+        case Stay {
+            return <span class="tok-nu">0</span>
         }
     }
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> Pouch b <span class="tok-op">←</span> Pouch { <span class="tok-kw">yield</span> <span class="tok-op">=</span> <span class="tok-nu">1</span>, delete <span class="tok-op">=</span> <span class="tok-nu">2</span>, <span class="tok-kw">default</span> <span class="tok-op">=</span> <span class="tok-nu">3</span>, <span class="tok-kw">static</span> <span class="tok-op">=</span> <span class="tok-nu">4</span>, <span class="tok-kw">enum</span> <span class="tok-op">=</span> <span class="tok-nu">5</span>, <span class="tok-kw">implements</span> <span class="tok-op">=</span> <span class="tok-nu">6</span>, <span class="tok-kw">interface</span> <span class="tok-op">=</span> <span class="tok-nu">7</span>, package <span class="tok-op">=</span> <span class="tok-nu">8</span>, <span class="tok-kw">private</span> <span class="tok-op">=</span> <span class="tok-nu">9</span>, <span class="tok-kw">protected</span> <span class="tok-op">=</span> <span class="tok-nu">10</span>, <span class="tok-kw">public</span> <span class="tok-op">=</span> <span class="tok-nu">11</span> }
-    print b.<span class="tok-kw">yield</span>
+main {
+    const Pouch b <span class="tok-op">←</span> Pouch { yield <span class="tok-op">=</span> <span class="tok-nu">1</span>, delete <span class="tok-op">=</span> <span class="tok-nu">2</span>, default <span class="tok-op">=</span> <span class="tok-nu">3</span>, static <span class="tok-op">=</span> <span class="tok-nu">4</span>, enum <span class="tok-op">=</span> <span class="tok-nu">5</span>, implements <span class="tok-op">=</span> <span class="tok-nu">6</span>, interface <span class="tok-op">=</span> <span class="tok-nu">7</span>, package <span class="tok-op">=</span> <span class="tok-nu">8</span>, private <span class="tok-op">=</span> <span class="tok-nu">9</span>, protected <span class="tok-op">=</span> <span class="tok-nu">10</span>, public <span class="tok-op">=</span> <span class="tok-nu">11</span> }
+    print b.yield
     print b.delete
-    print b.<span class="tok-kw">default</span>
+    print b.default
     print b.new(<span class="tok-nu">10</span>)
     print b.function()
     print b.visibility()
     print pack(<span class="tok-nu">1</span>, <span class="tok-nu">2</span>)
 
-    <span class="tok-kw">var</span> Pouch c <span class="tok-op">←</span> Pouch { <span class="tok-kw">yield</span> <span class="tok-op">=</span> <span class="tok-nu">4</span>, delete <span class="tok-op">=</span> <span class="tok-nu">5</span>, <span class="tok-kw">default</span> <span class="tok-op">=</span> <span class="tok-nu">6</span>, <span class="tok-kw">static</span> <span class="tok-op">=</span> <span class="tok-nu">0</span>, <span class="tok-kw">enum</span> <span class="tok-op">=</span> <span class="tok-nu">0</span>, <span class="tok-kw">implements</span> <span class="tok-op">=</span> <span class="tok-nu">0</span>, <span class="tok-kw">interface</span> <span class="tok-op">=</span> <span class="tok-nu">0</span>, package <span class="tok-op">=</span> <span class="tok-nu">0</span>, <span class="tok-kw">private</span> <span class="tok-op">=</span> <span class="tok-nu">0</span>, <span class="tok-kw">protected</span> <span class="tok-op">=</span> <span class="tok-nu">0</span>, <span class="tok-kw">public</span> <span class="tok-op">=</span> <span class="tok-nu">0</span> }
-    c.<span class="tok-kw">yield</span> <span class="tok-op">←</span> <span class="tok-nu">9</span>
+    var Pouch c <span class="tok-op">←</span> Pouch { yield <span class="tok-op">=</span> <span class="tok-nu">4</span>, delete <span class="tok-op">=</span> <span class="tok-nu">5</span>, default <span class="tok-op">=</span> <span class="tok-nu">6</span>, static <span class="tok-op">=</span> <span class="tok-nu">0</span>, enum <span class="tok-op">=</span> <span class="tok-nu">0</span>, implements <span class="tok-op">=</span> <span class="tok-nu">0</span>, interface <span class="tok-op">=</span> <span class="tok-nu">0</span>, package <span class="tok-op">=</span> <span class="tok-nu">0</span>, private <span class="tok-op">=</span> <span class="tok-nu">0</span>, protected <span class="tok-op">=</span> <span class="tok-nu">0</span>, public <span class="tok-op">=</span> <span class="tok-nu">0</span> }
+    c.yield <span class="tok-op">←</span> <span class="tok-nu">9</span>
     c.delete <span class="tok-op">←</span> c.delete <span class="tok-op">+</span> <span class="tok-nu">1</span>
-    print c.<span class="tok-kw">yield</span> <span class="tok-op">+</span> c.delete
+    print c.yield <span class="tok-op">+</span> c.delete
 
-    <span class="tok-kw">const</span> Shift moved <span class="tok-op">←</span> <span class="tok-kw">variant</span> Move { <span class="tok-kw">yield</span> <span class="tok-op">=</span> <span class="tok-nu">3</span>, delete <span class="tok-op">=</span> <span class="tok-nu">4</span> } ∷ Shift
+    const Shift moved <span class="tok-op">←</span> variant Move { yield <span class="tok-op">=</span> <span class="tok-nu">3</span>, delete <span class="tok-op">=</span> <span class="tok-nu">4</span> } ∷ Shift
     print weigh(moved)
-    print weigh(<span class="tok-kw">variant</span> Stay ∷ Shift)
+    print weigh(variant Stay ∷ Shift)
 
 <span class="tok-co">    # Destructuring reads the properties and binds escaped local names.</span>
-    <span class="tok-kw">from</span> b <span class="tok-kw">const</span> <span class="tok-kw">yield</span>, delete <span class="tok-kw">as</span> new
-    print <span class="tok-kw">yield</span>
+    from b const yield, delete as new
+    print yield
     print new
 
     print b

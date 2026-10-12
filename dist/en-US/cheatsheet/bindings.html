@@ -41,9 +41,9 @@ into the name on the left.</p><h2 id="fixum-varia">Constant or variable<a class=
     count <span class="tok-op">←</span> count <span class="tok-op">+</span> <span class="tok-nu">1</span>
     <span class="tok-kw">दिखाओ</span> limit, count
 }</code></pre></div></div><p>Reassigning a <code>const</code> is a compile error, not a convention. Reach for <code>const</code>
-first and widen to <code>var</code> only where the value genuinely moves.</p><h2 id="holes">Type holes<a class="anchor" href="#holes">#</a></h2><p><code class="glyph">_</code> is a type hole: the compiler infers one concrete type for the binding.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">const</span> _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+first and widen to <code>var</code> only where the value genuinely moves.</p><h2 id="holes">Type holes<a class="anchor" href="#holes">#</a></h2><p><code class="glyph">_</code> is a type hole: the compiler infers one concrete type for the binding.</p><pre class="faber-code"><code class="lang-faber locale-tabs">main {
+    const _ name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    const _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
     print name, numeri
 }</code></pre><p>The hole infers a type; it does not make the binding dynamic. <code>name</code> is
 <code>string</code> from this point on.</p><h2 id="union-holes">Union types and holes<a class="anchor" href="#union-holes">#</a></h2><p>An inline <code>A ∪ B</code> in type position names its union members explicitly. A

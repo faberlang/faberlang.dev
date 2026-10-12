@@ -32,12 +32,12 @@
 <span class="tok-co"># BACKEND: Go e2e whitelist — list intrinsic methods not yet lowered for Go</span>
 <span class="tok-co"># (whitelist: list/methodi-functionales.fab).</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> pares <span class="tok-op">←</span> res.filter(<span class="tok-kw">int</span> x ∴ x <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≡</span> <span class="tok-nu">0</span>)
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> duplicata <span class="tok-op">←</span> res.<span class="tok-kw">map</span>(<span class="tok-kw">int</span> x ∴ x <span class="tok-op">*</span> <span class="tok-nu">2</span>)
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> sum <span class="tok-op">←</span> res.reduce((<span class="tok-kw">int</span> collectus, <span class="tok-kw">int</span> x) ∴ collectus <span class="tok-op">+</span> x, <span class="tok-nu">0</span>)
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> cumulata <span class="tok-op">←</span> res.cumulate((<span class="tok-kw">int</span> collectus, <span class="tok-kw">int</span> x) ∴ collectus <span class="tok-op">+</span> x, <span class="tok-nu">0</span>)
+main {
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> pares <span class="tok-op">←</span> res.filter(int x ∴ x <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≡</span> <span class="tok-nu">0</span>)
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> duplicata <span class="tok-op">←</span> res.map(int x ∴ x <span class="tok-op">*</span> <span class="tok-nu">2</span>)
+    const int sum <span class="tok-op">←</span> res.reduce((int collectus, int x) ∴ collectus <span class="tok-op">+</span> x, <span class="tok-nu">0</span>)
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> cumulata <span class="tok-op">←</span> res.cumulate((int collectus, int x) ∴ collectus <span class="tok-op">+</span> x, <span class="tok-nu">0</span>)
     print pares
     print duplicata
     print sum
@@ -67,26 +67,26 @@
 <span class="tok-co"># See also: tensor, at, thread</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">fn</span> identity(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> f32 {
-    <span class="tok-kw">return</span> reduce via sum <span class="tok-kw">from</span> a <span class="tok-kw">at</span> [i] <span class="tok-kw">const</span> s {
-        <span class="tok-kw">return</span> s
+fn identity(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> f32 {
+    return reduce via sum from a at [i] const s {
+        return s
     }
 }
 
-<span class="tok-kw">fn</span> shifted(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> f32 {
-    <span class="tok-kw">return</span> reduce via sum <span class="tok-kw">from</span> a <span class="tok-kw">at</span> [i] <span class="tok-kw">const</span> s {
-        <span class="tok-kw">var</span> f32 t <span class="tok-op">←</span> s
+fn shifted(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> f32 {
+    return reduce via sum from a at [i] const s {
+        var f32 t <span class="tok-op">←</span> s
         t <span class="tok-op">←</span> t <span class="tok-op">+</span> <span class="tok-nu">1.0</span>
-        <span class="tok-kw">return</span> t
+        return t
     }
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>]
-    <span class="tok-kw">const</span> tf32[<span class="tok-nu">8</span>] a <span class="tok-op">←</span> flat ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span>
-    <span class="tok-kw">const</span> f32 per_summam <span class="tok-op">←</span> a.sum()
-    <span class="tok-kw">const</span> f32 plicatum <span class="tok-op">←</span> identity(a)
-    <span class="tok-kw">const</span> f32 summam_totam <span class="tok-op">←</span> shifted(a)
+main {
+    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> flat <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>]
+    const tf32[<span class="tok-nu">8</span>] a <span class="tok-op">←</span> flat ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span>
+    const f32 per_summam <span class="tok-op">←</span> a.sum()
+    const f32 plicatum <span class="tok-op">←</span> identity(a)
+    const f32 summam_totam <span class="tok-op">←</span> shifted(a)
     print per_summam
     print plicatum
     print summam_totam
@@ -117,21 +117,21 @@
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># 1. placement — thread outside @ kernel declines</span>
-<span class="tok-kw">fn</span> placement(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">32</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> f32 {
-    <span class="tok-kw">return</span> reduce via sum <span class="tok-kw">from</span> a <span class="tok-kw">at</span> [i] thread f <span class="tok-kw">const</span> s { <span class="tok-kw">return</span> s }
+fn placement(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">32</span>]<span class="tok-op">&gt;</span> a) <span class="tok-op">→</span> f32 {
+    return reduce via sum from a at [i] thread f const s { return s }
 }
 
 <span class="tok-co"># 2. tail — K = 8 not aligned to the 32-lane width declines</span>
 @ kernel
-@ <span class="tok-kw">public</span>
-<span class="tok-kw">fn</span> tail(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> a, <span class="tok-kw">mut</span> tf32[<span class="tok-nu">1</span>] out) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">const</span> f32 total <span class="tok-op">←</span> reduce via sum <span class="tok-kw">from</span> a <span class="tok-kw">at</span> [i] thread f <span class="tok-kw">const</span> s { <span class="tok-kw">return</span> s }
+@ public
+fn tail(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> a, mut tf32[<span class="tok-nu">1</span>] out) <span class="tok-op">→</span> void {
+    const f32 total <span class="tok-op">←</span> reduce via sum from a at [i] thread f const s { return s }
     out[<span class="tok-nu">0</span>] <span class="tok-op">←</span> total
 }
 
 <span class="tok-co"># 3. non-scalar term — a string element is not a numeric scalar</span>
-<span class="tok-kw">fn</span> non_scalar(tensor<span class="tok-op">&lt;</span>string, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> t) <span class="tok-op">→</span> string {
-    <span class="tok-kw">return</span> reduce via sum <span class="tok-kw">from</span> t <span class="tok-kw">at</span> [i] <span class="tok-kw">const</span> s { <span class="tok-kw">return</span> s }
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpussummasumma-ex-retiredfab-supporting-reject">radix/corpus/summa/summa-ex-retired.fab (supporting · reject)<a class="anchor" href="#radixcorpussummasumma-ex-retiredfab-supporting-reject">#</a></h3><p>The retired <code>sum from</code> form gives a named migration diagnostic.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-kw">fn</span> total(tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> values) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> sum <span class="tok-kw">from</span> values
+fn non_scalar(tensor<span class="tok-op">&lt;</span>string, [<span class="tok-nu">8</span>]<span class="tok-op">&gt;</span> t) <span class="tok-op">→</span> string {
+    return reduce via sum from t at [i] const s { return s }
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpussummasumma-ex-retiredfab-supporting-reject">radix/corpus/summa/summa-ex-retired.fab (supporting · reject)<a class="anchor" href="#radixcorpussummasumma-ex-retiredfab-supporting-reject">#</a></h3><p>The retired <code>sum from</code> form gives a named migration diagnostic.</p><pre class="faber-code"><code class="lang-faber outcome=rejects">fn total(tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> values) <span class="tok-op">→</span> int {
+    return sum from values
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuslistamethodi-functionalesfab-canonical-existing-home">radix/corpus/lista/methodi-functionales.fab (canonical · existing-home)</a></li><li class="toc-3"><a href="#radixcorpussummasummafab-canonical-concept">radix/corpus/summa/summa.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpussummasumma-declinefab-supporting-reject">radix/corpus/summa/summa-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpussummasumma-ex-retiredfab-supporting-reject">radix/corpus/summa/summa-ex-retired.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/lista/methodi-functionales.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

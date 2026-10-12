@@ -25,47 +25,47 @@
 
 <span class="tok-co"># Why: this function is itself the `⊥` default below, so it cannot default</span>
 <span class="tok-co"># itself; epoch seconds 0 cannot fail to convert, so it needs no handler.</span>
-<span class="tok-kw">fn</span> epochZero() <span class="tok-op">→</span> instant {
-    <span class="tok-kw">return</span> <span class="tok-nu">0</span> ↦ instant
+fn epochZero() <span class="tok-op">→</span> instant {
+    return <span class="tok-nu">0</span> ↦ instant
 }
 
-<span class="tok-kw">fn</span> parseInstans(value v) <span class="tok-op">→</span> instant ⇥ string {
-    <span class="tok-kw">return</span> v ↦ instant
+fn parseInstans(value v) <span class="tok-op">→</span> instant ⇥ string {
+    return v ↦ instant
 }
 
-<span class="tok-kw">fn</span> inlineRecovery(value v) <span class="tok-op">→</span> instant {
-    <span class="tok-kw">return</span> v ↦ instant ⊥ epochZero()
+fn inlineRecovery(value v) <span class="tok-op">→</span> instant {
+    return v ↦ instant ⊥ epochZero()
 }
 
-<span class="tok-kw">fn</span> tutum(value v) <span class="tok-op">→</span> instant {
-    <span class="tok-kw">do</span> {
-        <span class="tok-kw">return</span> parseInstans(v)
+fn tutum(value v) <span class="tok-op">→</span> instant {
+    do {
+        return parseInstans(v)
     }
-    <span class="tok-kw">catch</span> err {
-        <span class="tok-kw">warn</span> err
-        <span class="tok-kw">return</span> epochZero()
-    }
-}
-
-<span class="tok-kw">fn</span> tutumDirect(value v) <span class="tok-op">→</span> instant {
-    <span class="tok-kw">do</span> {
-        <span class="tok-kw">return</span> v ↦ instant
-    }
-    <span class="tok-kw">catch</span> err {
-        <span class="tok-kw">warn</span> err
-        <span class="tok-kw">return</span> epochZero()
+    catch err {
+        warn err
+        return epochZero()
     }
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> value good <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
-    <span class="tok-kw">const</span> value bad <span class="tok-op">←</span> <span class="tok-st">"not-a-datetime"</span>
-    <span class="tok-kw">assert</span> inlineRecovery(good) <span class="tok-op">≡</span> (good ↦ instant)
-    <span class="tok-kw">assert</span> inlineRecovery(bad) <span class="tok-op">≡</span> epochZero()
-    <span class="tok-kw">assert</span> tutum(good) <span class="tok-op">≡</span> (good ↦ instant)
-    <span class="tok-kw">assert</span> tutum(bad) <span class="tok-op">≡</span> epochZero()
-    <span class="tok-kw">assert</span> tutumDirect(good) <span class="tok-op">≡</span> (good ↦ instant)
-    <span class="tok-kw">assert</span> tutumDirect(bad) <span class="tok-op">≡</span> epochZero()
+fn tutumDirect(value v) <span class="tok-op">→</span> instant {
+    do {
+        return v ↦ instant
+    }
+    catch err {
+        warn err
+        return epochZero()
+    }
+}
+
+main {
+    const value good <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
+    const value bad <span class="tok-op">←</span> <span class="tok-st">"not-a-datetime"</span>
+    assert inlineRecovery(good) <span class="tok-op">≡</span> (good ↦ instant)
+    assert inlineRecovery(bad) <span class="tok-op">≡</span> epochZero()
+    assert tutum(good) <span class="tok-op">≡</span> (good ↦ instant)
+    assert tutum(bad) <span class="tok-op">≡</span> epochZero()
+    assert tutumDirect(good) <span class="tok-op">≡</span> (good ↦ instant)
+    assert tutumDirect(bad) <span class="tok-op">≡</span> epochZero()
     print inlineRecovery(good) ↦ string
     print tutum(good) ↦ string
     print tutumDirect(good) ↦ string

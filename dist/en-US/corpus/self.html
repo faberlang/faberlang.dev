@@ -23,17 +23,17 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   capsa: prima</span>
 
-<span class="tok-kw">class</span> Capsa {
-    <span class="tok-kw">var</span> string titulus
+class Capsa {
+    var string titulus
 
-    <span class="tok-kw">fn</span> narra() <span class="tok-op">→</span> string {
+    fn narra() <span class="tok-op">→</span> string {
 <span class="tok-co">        # ego = the receiver instance</span>
-        <span class="tok-kw">return</span> <span class="tok-st">"capsa: "</span> <span class="tok-op">+</span> <span class="tok-kw">self</span>.titulus
+        return <span class="tok-st">"capsa: "</span> <span class="tok-op">+</span> self.titulus
     }
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> Capsa capsa <span class="tok-op">←</span> Capsa { titulus <span class="tok-op">=</span> <span class="tok-st">"prima"</span> }
+main {
+    const Capsa capsa <span class="tok-op">←</span> Capsa { titulus <span class="tok-op">=</span> <span class="tok-st">"prima"</span> }
     print capsa.narra()
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>capsa: prima
 </code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusegoegofab-canonical-keyword">radix/corpus/ego/ego.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/ego/ego.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

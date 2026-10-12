@@ -29,23 +29,23 @@
 <span class="tok-co">#   (synchronous entry).</span>
 
 <span class="tok-co"># Helper async finite function</span>
-<span class="tok-kw">fn</span> accipe() <span class="tok-kw">async</span> <span class="tok-op">→</span> string {
+fn accipe() async <span class="tok-op">→</span> string {
 <span class="tok-co">    # Simulates async finite operation</span>
-    <span class="tok-kw">return</span> <span class="tok-st">"datum paratum"</span>
+    return <span class="tok-st">"datum paratum"</span>
 }
 
-<span class="tok-kw">fn</span> metire(string datum) <span class="tok-kw">async</span> <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> datum.length()
+fn metire(string datum) async <span class="tok-op">→</span> int {
+    return datum.length()
 }
 
 <span class="tok-co"># Futura entry point</span>
-<span class="tok-kw">async_main</span> {
+async_main {
     print <span class="tok-st">"incipiet initium"</span>
 
 <span class="tok-co">    # Await async functions with await_const</span>
-    <span class="tok-kw">await_const</span> string datum <span class="tok-op">←</span> accipe()
+    await_const string datum <span class="tok-op">←</span> accipe()
     print <span class="tok-st">"acceptum: §"</span>(datum)
-    <span class="tok-kw">await_const</span> <span class="tok-kw">int</span> longitudo <span class="tok-op">←</span> metire(datum)
+    await_const int longitudo <span class="tok-op">←</span> metire(datum)
     print <span class="tok-st">"longitudo: §"</span>(longitudo)
     print <span class="tok-st">"opus perfectum"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>incipiet initium

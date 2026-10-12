@@ -27,16 +27,16 @@
 <span class="tok-co">#   Rust/Go: do/cape emit gap (whitelist: catch/cape.fab).</span>
 <span class="tok-co">#</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> attempt <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">do</span> {
+main {
+    var int attempt <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    do {
         attempt <span class="tok-op">←</span> attempt <span class="tok-op">+</span> <span class="tok-nu">1</span>
-        <span class="tok-kw">if</span> attempt ≻ <span class="tok-nu">1</span> {
-            <span class="tok-kw">throw</span> <span class="tok-st">"simulated failure"</span>
+        if attempt ≻ <span class="tok-nu">1</span> {
+            throw <span class="tok-st">"simulated failure"</span>
         }
         print <span class="tok-st">"attempt §"</span>(attempt)
     }
-    <span class="tok-kw">catch</span> err {
+    catch err {
         print <span class="tok-st">"caught"</span>
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>attempt 1
@@ -69,28 +69,28 @@
 
 <span class="tok-co"># 1. whole-loop catch on while — loop-spectrum keep-out</span>
 @ radix lane <span class="tok-st">"air"</span>
-<span class="tok-kw">fn</span> custos_dum(<span class="tok-kw">bool</span> pergo) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">while</span> pergo {
-        <span class="tok-kw">throw</span> <span class="tok-st">"x"</span>
-    } <span class="tok-kw">catch</span> err { }
+fn custos_dum(bool pergo) <span class="tok-op">→</span> void {
+    while pergo {
+        throw <span class="tok-st">"x"</span>
+    } catch err { }
 }
 
 <span class="tok-co"># 2. whole-loop catch on for — loop-spectrum keep-out</span>
 @ radix lane <span class="tok-st">"air"</span>
-<span class="tok-kw">fn</span> custos_itera() <span class="tok-op">→</span> <span class="tok-kw">void</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥<span class="tok-nu">4</span> <span class="tok-kw">const</span> i {
-        <span class="tok-kw">throw</span> <span class="tok-st">"x"</span>
-    } <span class="tok-kw">catch</span> err { }
+fn custos_itera() <span class="tok-op">→</span> void {
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">4</span> const i {
+        throw <span class="tok-st">"x"</span>
+    } catch err { }
 }
 
 <span class="tok-co"># 3. rethrow — a throw inside the catch arm declines to Tier 2</span>
 @ radix lane <span class="tok-st">"air"</span>
-<span class="tok-kw">fn</span> reicit(<span class="tok-kw">bool</span> malum) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ string {
-    <span class="tok-kw">do</span> {
-        <span class="tok-kw">if</span> malum { <span class="tok-kw">throw</span> <span class="tok-st">"x"</span> }
-        <span class="tok-kw">return</span> <span class="tok-nu">1</span>
-    } <span class="tok-kw">catch</span> err {
-        <span class="tok-kw">throw</span> <span class="tok-st">"reicitur"</span>
+fn reicit(bool malum) <span class="tok-op">→</span> int ⇥ string {
+    do {
+        if malum { throw <span class="tok-st">"x"</span> }
+        return <span class="tok-nu">1</span>
+    } catch err {
+        throw <span class="tok-st">"reicitur"</span>
     }
-    <span class="tok-kw">return</span> <span class="tok-nu">2</span>
+    return <span class="tok-nu">2</span>
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuscapecapefab-canonical-keyword">radix/corpus/cape/cape.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpuscapereceptio-declinefab-supporting-reject">radix/corpus/cape/receptio-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/cape/cape.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

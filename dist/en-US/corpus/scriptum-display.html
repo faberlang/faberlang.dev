@@ -22,17 +22,17 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   scriptum-display.expected — each template line, then the same values printed alone.</span>
 
-<span class="tok-kw">fn</span> half(<span class="tok-kw">float</span> x) <span class="tok-op">→</span> <span class="tok-kw">float</span> {
-    <span class="tok-kw">return</span> x <span class="tok-op">/</span> <span class="tok-nu">2.0</span>
+fn half(float x) <span class="tok-op">→</span> float {
+    return x <span class="tok-op">/</span> <span class="tok-nu">2.0</span>
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> yes <span class="tok-op">←</span> <span class="tok-kw">true</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> no <span class="tok-op">←</span> <span class="tok-kw">false</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">float</span> whole <span class="tok-op">←</span> <span class="tok-nu">2.0</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">float</span> frac <span class="tok-op">←</span> <span class="tok-nu">2.5</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> <span class="tok-nu">7</span>
-    <span class="tok-kw">const</span> string word <span class="tok-op">←</span> <span class="tok-st">"hi"</span>
+main {
+    const bool yes <span class="tok-op">←</span> true
+    const bool no <span class="tok-op">←</span> false
+    const float whole <span class="tok-op">←</span> <span class="tok-nu">2.0</span>
+    const float frac <span class="tok-op">←</span> <span class="tok-nu">2.5</span>
+    const int count <span class="tok-op">←</span> <span class="tok-nu">7</span>
+    const string word <span class="tok-op">←</span> <span class="tok-st">"hi"</span>
 
     print <span class="tok-st">"yes=§"</span>(yes)
     print <span class="tok-st">"no=§"</span>(no)

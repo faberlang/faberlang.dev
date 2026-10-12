@@ -27,12 +27,12 @@
 <span class="tok-co">#   Cross-ref: if/secus.fab.</span>
 <span class="tok-co">#</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> hour <span class="tok-op">←</span> <span class="tok-nu">23</span>
-    <span class="tok-kw">if</span> hour ≺ <span class="tok-nu">12</span> {
+main {
+    const int hour <span class="tok-op">←</span> <span class="tok-nu">23</span>
+    if hour ≺ <span class="tok-nu">12</span> {
         print <span class="tok-st">"morning"</span>
     }
-    <span class="tok-kw">else</span> {
+    else {
         print <span class="tok-st">"afternoon-or-later"</span>
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>afternoon-or-later
@@ -68,44 +68,44 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Grade and weather messages for sample scores and temperatures.</span>
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # Two-way branch: exactly one arm runs</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
-    <span class="tok-kw">if</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
+    const int puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
+    if puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
         print <span class="tok-st">"gradus: A"</span>
     }
-    <span class="tok-kw">else</span> {
+    else {
 <span class="tok-co">        # 85 &lt; 90 → this arm</span>
         print <span class="tok-st">"gradus: B aut minor"</span>
     }
 
 <span class="tok-co">    # Each branch may contain several statements</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> calor <span class="tok-op">←</span> <span class="tok-nu">22</span>
-    <span class="tok-kw">if</span> calor ≻ <span class="tok-nu">30</span> {
+    const int calor <span class="tok-op">←</span> <span class="tok-nu">22</span>
+    if calor ≻ <span class="tok-nu">30</span> {
         print <span class="tok-st">"calidum"</span>
         print <span class="tok-st">"aquam bibe"</span>
     }
-    <span class="tok-kw">else</span> {
+    else {
 <span class="tok-co">        # 22 ≤ 30</span>
         print <span class="tok-st">"commodum"</span>
         print <span class="tok-st">"caelum mite"</span>
     }
 
 <span class="tok-co">    # elif chains additional tests; first match wins (75 → C)</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> gradus <span class="tok-op">←</span> <span class="tok-nu">75</span>
-    <span class="tok-kw">if</span> gradus <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
+    const int gradus <span class="tok-op">←</span> <span class="tok-nu">75</span>
+    if gradus <span class="tok-op">≥</span> <span class="tok-nu">90</span> {
         print <span class="tok-st">"A - optimum"</span>
     }
-    <span class="tok-kw">elif</span> gradus <span class="tok-op">≥</span> <span class="tok-nu">80</span> {
+    elif gradus <span class="tok-op">≥</span> <span class="tok-nu">80</span> {
         print <span class="tok-st">"B - bonum"</span>
     }
-    <span class="tok-kw">elif</span> gradus <span class="tok-op">≥</span> <span class="tok-nu">70</span> {
+    elif gradus <span class="tok-op">≥</span> <span class="tok-nu">70</span> {
         print <span class="tok-st">"C - satis"</span>
     }
-    <span class="tok-kw">elif</span> gradus <span class="tok-op">≥</span> <span class="tok-nu">60</span> {
+    elif gradus <span class="tok-op">≥</span> <span class="tok-nu">60</span> {
         print <span class="tok-st">"D - transit"</span>
     }
-    <span class="tok-kw">else</span> {
+    else {
         print <span class="tok-st">"F - deficit"</span>
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>gradus: B aut minor

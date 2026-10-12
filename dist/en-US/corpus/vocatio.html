@@ -30,65 +30,65 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Salve, arithmetic results, chained builder output, spread-arg sum.</span>
 
-<span class="tok-kw">fn</span> saluta() <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn saluta() <span class="tok-op">→</span> void {
     print <span class="tok-st">"Salve!"</span>
 }
 
-<span class="tok-kw">fn</span> adde(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> a <span class="tok-op">+</span> b
+fn adde(int a, int b) <span class="tok-op">→</span> int {
+    return a <span class="tok-op">+</span> b
 }
 
-<span class="tok-kw">fn</span> multiplica(<span class="tok-kw">int</span> x, <span class="tok-kw">int</span> y) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> x <span class="tok-op">*</span> y
+fn multiplica(int x, int y) <span class="tok-op">→</span> int {
+    return x <span class="tok-op">*</span> y
 }
 
-<span class="tok-kw">class</span> Computator {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> valor <span class="tok-op">=</span> <span class="tok-nu">0</span>
+class Computator {
+    var int valor <span class="tok-op">=</span> <span class="tok-nu">0</span>
 
-    <span class="tok-kw">fn</span> pone(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> Computator {
-        <span class="tok-kw">self</span>.valor <span class="tok-op">←</span> n
-        <span class="tok-kw">return</span> <span class="tok-kw">self</span>
+    fn pone(int n) <span class="tok-op">→</span> Computator {
+        self.valor <span class="tok-op">←</span> n
+        return self
     }
 
-    <span class="tok-kw">fn</span> duplica() <span class="tok-op">→</span> Computator {
-        <span class="tok-kw">self</span>.valor <span class="tok-op">←</span> <span class="tok-kw">self</span>.valor <span class="tok-op">*</span> <span class="tok-nu">2</span>
-        <span class="tok-kw">return</span> <span class="tok-kw">self</span>
+    fn duplica() <span class="tok-op">→</span> Computator {
+        self.valor <span class="tok-op">←</span> self.valor <span class="tok-op">*</span> <span class="tok-nu">2</span>
+        return self
     }
 
-    <span class="tok-kw">fn</span> accipe() <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-        <span class="tok-kw">return</span> <span class="tok-kw">self</span>.valor
+    fn accipe() <span class="tok-op">→</span> int {
+        return self.valor
     }
 }
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # Simple call (no arguments)</span>
     saluta()
 
 <span class="tok-co">    # Call with arguments</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> sum <span class="tok-op">←</span> adde(<span class="tok-nu">10</span>, <span class="tok-nu">20</span>)
+    const int sum <span class="tok-op">←</span> adde(<span class="tok-nu">10</span>, <span class="tok-nu">20</span>)
 <span class="tok-co">    # 30</span>
     print sum
 
 <span class="tok-co">    # Multiple arguments</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> productum <span class="tok-op">←</span> multiplica(<span class="tok-nu">5</span>, <span class="tok-nu">6</span>)
+    const int productum <span class="tok-op">←</span> multiplica(<span class="tok-nu">5</span>, <span class="tok-nu">6</span>)
 <span class="tok-co">    # 30</span>
     print productum
 
 <span class="tok-co">    # Method call on object</span>
-    <span class="tok-kw">var</span> Computator computator <span class="tok-op">←</span> Computator {}
+    var Computator computator <span class="tok-op">←</span> Computator {}
     computator.pone(<span class="tok-nu">10</span>)
 <span class="tok-co">    # 10</span>
     print computator.accipe()
 
 <span class="tok-co">    # Chained method calls</span>
-    <span class="tok-kw">var</span> Computator alter <span class="tok-op">←</span> Computator {}
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> value <span class="tok-op">←</span> alter.pone(<span class="tok-nu">5</span>).duplica().duplica().accipe()
+    var Computator alter <span class="tok-op">←</span> Computator {}
+    const int value <span class="tok-op">←</span> alter.pone(<span class="tok-nu">5</span>).duplica().duplica().accipe()
 <span class="tok-co">    # 20</span>
     print value
 
 <span class="tok-co">    # Call with spread</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">7</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> sparsa <span class="tok-op">←</span> adde(<span class="tok-kw">spread</span> numeri)
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">7</span>]
+    const int sparsa <span class="tok-op">←</span> adde(spread numeri)
 <span class="tok-co">    # 10</span>
     print sparsa
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve!

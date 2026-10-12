@@ -32,58 +32,58 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   praefixum.expected — the values computed at build time.</span>
 
-<span class="tok-kw">class</span> Punctum {
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> x
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> y
+class Punctum {
+    const int x
+    const int y
 }
 
-<span class="tok-kw">fn</span> quadratum(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> n <span class="tok-op">*</span> n
+fn quadratum(int n) <span class="tok-op">→</span> int {
+    return n <span class="tok-op">*</span> n
 }
 
 <span class="tok-co"># A loop that calls a pure function.</span>
-<span class="tok-kw">const</span> <span class="tok-kw">int</span> SUMMA_QUADRATORUM <span class="tok-op">=</span> <span class="tok-kw">comptime</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">1</span>‥<span class="tok-nu">11</span> <span class="tok-kw">const</span> i {
+const int SUMMA_QUADRATORUM <span class="tok-op">=</span> comptime {
+    var int total <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    for range <span class="tok-nu">1</span>‥<span class="tok-nu">11</span> const i {
         total <span class="tok-op">←</span> total <span class="tok-op">+</span> quadratum(i)
     }
-    <span class="tok-kw">return</span> total
+    return total
 }
 
 <span class="tok-co"># A collection built at build time.</span>
-<span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> PRIMI <span class="tok-op">=</span> <span class="tok-kw">comptime</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> found <span class="tok-op">←</span> empty
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">2</span>‥<span class="tok-nu">30</span> <span class="tok-kw">const</span> n {
-        <span class="tok-kw">var</span> <span class="tok-kw">bool</span> isPrime <span class="tok-op">←</span> <span class="tok-kw">true</span>
-        <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">2</span> ‥ n <span class="tok-kw">const</span> d {
-            <span class="tok-kw">if</span> n <span class="tok-op">%</span> d <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
-                isPrime <span class="tok-op">←</span> <span class="tok-kw">false</span>
+const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> PRIMI <span class="tok-op">=</span> comptime {
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> found <span class="tok-op">←</span> empty
+    for range <span class="tok-nu">2</span>‥<span class="tok-nu">30</span> const n {
+        var bool isPrime <span class="tok-op">←</span> true
+        for range <span class="tok-nu">2</span> ‥ n const d {
+            if n <span class="tok-op">%</span> d <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+                isPrime <span class="tok-op">←</span> false
             }
         }
-        <span class="tok-kw">if</span> isPrime {
+        if isPrime {
             found.append(n)
         }
     }
-    <span class="tok-kw">return</span> found
+    return found
 }
 
 <span class="tok-co"># Text and a class value.</span>
-<span class="tok-kw">const</span> string LINEA <span class="tok-op">=</span> <span class="tok-kw">comptime</span> {
-    <span class="tok-kw">var</span> string stripe <span class="tok-op">←</span> <span class="tok-st">""</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥<span class="tok-nu">8</span> <span class="tok-kw">const</span> i {
+const string LINEA <span class="tok-op">=</span> comptime {
+    var string stripe <span class="tok-op">←</span> <span class="tok-st">""</span>
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">8</span> const i {
         stripe <span class="tok-op">←</span> stripe <span class="tok-op">+</span> <span class="tok-st">"="</span>
     }
-    <span class="tok-kw">return</span> stripe
+    return stripe
 }
 
-<span class="tok-kw">const</span> Punctum ORIGO <span class="tok-op">=</span> <span class="tok-kw">comptime</span> {
-    <span class="tok-kw">return</span> Punctum { x <span class="tok-op">=</span> SUMMA_QUADRATORUM <span class="tok-op">%</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-op">-</span><span class="tok-nu">3</span> }
+const Punctum ORIGO <span class="tok-op">=</span> comptime {
+    return Punctum { x <span class="tok-op">=</span> SUMMA_QUADRATORUM <span class="tok-op">%</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-op">-</span><span class="tok-nu">3</span> }
 }
 
 <span class="tok-co"># A plain module constant reading a build-time one folds after it.</span>
-<span class="tok-kw">const</span> <span class="tok-kw">int</span> DUPLEX <span class="tok-op">=</span> SUMMA_QUADRATORUM <span class="tok-op">*</span> <span class="tok-nu">2</span>
+const int DUPLEX <span class="tok-op">=</span> SUMMA_QUADRATORUM <span class="tok-op">*</span> <span class="tok-nu">2</span>
 
-<span class="tok-kw">main</span> {
+main {
     print SUMMA_QUADRATORUM
     print PRIMI
     print LINEA

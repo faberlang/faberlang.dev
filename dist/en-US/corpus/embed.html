@@ -28,25 +28,25 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   insere.expected — the embedded text, its length, and the byte count.</span>
 
-<span class="tok-kw">const</span> string NUNTIUS <span class="tok-op">=</span> <span class="tok-kw">embed</span> <span class="tok-st">"nuntius.txt"</span>
+const string NUNTIUS <span class="tok-op">=</span> embed <span class="tok-st">"nuntius.txt"</span>
 
-<span class="tok-kw">const</span> <span class="tok-kw">bytes</span> SIGNUM <span class="tok-op">=</span> <span class="tok-kw">embed</span> <span class="tok-st">"signum.bin"</span>
+const bytes SIGNUM <span class="tok-op">=</span> embed <span class="tok-st">"signum.bin"</span>
 
-<span class="tok-kw">class</span> Tabula {
-    <span class="tok-kw">static</span> string TITULUS <span class="tok-op">=</span> <span class="tok-kw">embed</span> <span class="tok-st">"nuntius.txt"</span>
+class Tabula {
+    static string TITULUS <span class="tok-op">=</span> embed <span class="tok-st">"nuntius.txt"</span>
 }
 
 <span class="tok-co"># `embed` is contextual: directly before a string literal it is the embed; any</span>
 <span class="tok-co"># other use of the name, like this call, is an ordinary identifier.</span>
-<span class="tok-kw">fn</span> <span class="tok-kw">embed</span>(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
+fn embed(int n) <span class="tok-op">→</span> int {
+    return n <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }
 
-<span class="tok-kw">main</span> {
+main {
     print NUNTIUS
     print NUNTIUS.length()
     print SIGNUM.length()
-    print <span class="tok-kw">embed</span>(<span class="tok-nu">21</span>)
+    print embed(<span class="tok-nu">21</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>salve ex tabula
 15
 6

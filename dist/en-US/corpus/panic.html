@@ -31,36 +31,36 @@
 <span class="tok-co">#   "positive"</span>
 <span class="tok-co">#   "not empty"</span>
 
-<span class="tok-kw">fn</span> clamp(<span class="tok-kw">int</span> x, <span class="tok-kw">int</span> min, <span class="tok-kw">int</span> max) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+fn clamp(int x, int min, int max) <span class="tok-op">→</span> int {
 <span class="tok-co">    # Guard: abort if min &gt; max — invariant violation</span>
-    <span class="tok-kw">panic</span> <span class="tok-st">"range inverted"</span> <span class="tok-kw">if</span> min ≻ max
+    panic <span class="tok-st">"range inverted"</span> if min ≻ max
 
 <span class="tok-co">    # Guard: abort if value out of range</span>
-    <span class="tok-kw">panic</span> <span class="tok-st">"value out of range"</span> <span class="tok-kw">if</span> x ≺ min or x ≻ max
+    panic <span class="tok-st">"value out of range"</span> if x ≺ min or x ≻ max
 
-    <span class="tok-kw">return</span> x
+    return x
 }
 
-<span class="tok-kw">fn</span> accessus(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> res, <span class="tok-kw">int</span> index) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+fn accessus(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res, int index) <span class="tok-op">→</span> int {
 <span class="tok-co">    # Unconditional panic — unchanged form</span>
-    <span class="tok-kw">if</span> index ≺ <span class="tok-nu">0</span> or index <span class="tok-op">≥</span> res.length() {
-        <span class="tok-kw">panic</span> <span class="tok-st">"index out of bounds"</span>
+    if index ≺ <span class="tok-nu">0</span> or index <span class="tok-op">≥</span> res.length() {
+        panic <span class="tok-st">"index out of bounds"</span>
     }
-    <span class="tok-kw">return</span> res[index]
+    return res[index]
 }
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # Happy path — guards not triggered</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> n <span class="tok-op">←</span> clamp(<span class="tok-nu">5</span>, <span class="tok-nu">0</span>, <span class="tok-nu">10</span>)
+    const int n <span class="tok-op">←</span> clamp(<span class="tok-nu">5</span>, <span class="tok-nu">0</span>, <span class="tok-nu">10</span>)
     print <span class="tok-st">"within range"</span>
 
 <span class="tok-co">    # Happy path — empty list guard not triggered</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> y <span class="tok-op">←</span> accessus(xs, <span class="tok-nu">1</span>)
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    const int y <span class="tok-op">←</span> accessus(xs, <span class="tok-nu">1</span>)
     print <span class="tok-st">"positive"</span>
 
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> ys <span class="tok-op">←</span> [<span class="tok-nu">42</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> z <span class="tok-op">←</span> accessus(ys, <span class="tok-nu">0</span>)
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> ys <span class="tok-op">←</span> [<span class="tok-nu">42</span>]
+    const int z <span class="tok-op">←</span> accessus(ys, <span class="tok-nu">0</span>)
     print <span class="tok-st">"not empty"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>within range
 positive
@@ -89,25 +89,25 @@ not empty
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Happy-path division and list access; panic paths are commented out.</span>
 
-<span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">float</span> {
+fn divide(int a, int b) <span class="tok-op">→</span> float {
 <span class="tok-co">    # Use panic for invariant violations</span>
-    <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
-        <span class="tok-kw">panic</span> <span class="tok-st">"divisio per nihilum"</span>
+    if b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+        panic <span class="tok-st">"divisio per nihilum"</span>
     }
-    <span class="tok-kw">return</span> (a ↦ <span class="tok-kw">float</span>) <span class="tok-op">/</span> (b ↦ <span class="tok-kw">float</span>)
+    return (a ↦ float) <span class="tok-op">/</span> (b ↦ float)
 }
 
-<span class="tok-kw">fn</span> accipe(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> numeri, <span class="tok-kw">int</span> index) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+fn accipe(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri, int index) <span class="tok-op">→</span> int {
 <span class="tok-co">    # Bounds check with panic</span>
-    <span class="tok-kw">if</span> index ≺ <span class="tok-nu">0</span> or index <span class="tok-op">≥</span> numeri.length() {
-        <span class="tok-kw">panic</span> <span class="tok-st">"index extra fines"</span>
+    if index ≺ <span class="tok-nu">0</span> or index <span class="tok-op">≥</span> numeri.length() {
+        panic <span class="tok-st">"index extra fines"</span>
     }
-    <span class="tok-kw">return</span> numeri[index]
+    return numeri[index]
 }
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # Happy path — panic branches not taken</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">float</span> value <span class="tok-op">←</span> divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
+    const float value <span class="tok-op">←</span> divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
 <span class="tok-co">    # 5.0</span>
     print <span class="tok-st">"valor: §"</span>(value)
 
@@ -115,8 +115,8 @@ not empty
 <span class="tok-co">    # const _ malum ← divide(10, 0)</span>
 
 <span class="tok-co">    # Lista accessus</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> nums <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> lectum <span class="tok-op">←</span> accipe(nums, <span class="tok-nu">1</span>)
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> nums <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    const int lectum <span class="tok-op">←</span> accipe(nums, <span class="tok-nu">1</span>)
 <span class="tok-co">    # 2</span>
     print <span class="tok-st">"valor: §"</span>(lectum)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>valor: 5.0

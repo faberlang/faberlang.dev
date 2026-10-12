@@ -19,35 +19,35 @@
 <span class="tok-co"># See also: enum, ↦, ⊥</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">enum</span> Color {
+enum Color {
     red,
     green,
     blue
 }
 
-<span class="tok-kw">enum</span> Status {
+enum Status {
     pending <span class="tok-op">=</span> <span class="tok-nu">10</span>,
     active,
     done <span class="tok-op">=</span> <span class="tok-op">-</span><span class="tok-nu">3</span>,
     archived
 }
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # enum ↦ int: declared or implicit numbers</span>
-    print Color.green ↦ <span class="tok-kw">int</span>
-    print Status.active ↦ <span class="tok-kw">int</span>
-    print Status.archived ↦ <span class="tok-kw">int</span>
+    print Color.green ↦ int
+    print Status.active ↦ int
+    print Status.archived ↦ int
 
 <span class="tok-co">    # enum ↦ string: the member name</span>
     print Color.blue ↦ string
     print Status.done ↦ string
 
 <span class="tok-co">    # int ↦ enum: the matching member, or the ⊥ default</span>
-    <span class="tok-kw">const</span> Color found <span class="tok-op">←</span> <span class="tok-nu">2</span> ↦ Color ⊥ Color.red
+    const Color found <span class="tok-op">←</span> <span class="tok-nu">2</span> ↦ Color ⊥ Color.red
     print found ↦ string
-    <span class="tok-kw">const</span> Color missing <span class="tok-op">←</span> <span class="tok-nu">9</span> ↦ Color ⊥ Color.red
+    const Color missing <span class="tok-op">←</span> <span class="tok-nu">9</span> ↦ Color ⊥ Color.red
     print missing ↦ string
-    <span class="tok-kw">const</span> Status negative <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">2</span> ↦ Status ⊥ Status.pending
+    const Status negative <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">2</span> ↦ Status ⊥ Status.pending
     print negative ↦ string
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1
 11

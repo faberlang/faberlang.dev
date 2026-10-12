@@ -27,15 +27,15 @@
 <span class="tok-co">#   Cross-ref read/lege.fab for regex beside stdin reads.</span>
 <span class="tok-co">#   Cross-ref format/scriptum.fab for § template application.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> regex digits <span class="tok-op">←</span> <span class="tok-st">"\d+"</span> ↦ regex
+main {
+    const regex digits <span class="tok-op">←</span> <span class="tok-st">"\d+"</span> ↦ regex
     print digits
-    <span class="tok-kw">const</span> regex word <span class="tok-op">←</span> <span class="tok-st">"(?i)\w+"</span> ↦ regex
+    const regex word <span class="tok-op">←</span> <span class="tok-st">"(?i)\w+"</span> ↦ regex
     print word
 
 <span class="tok-co">    # Template application → string, then conversion to regex (dynamic path segments)</span>
-    <span class="tok-kw">const</span> string tenant <span class="tok-op">←</span> <span class="tok-st">"acme"</span>
-    <span class="tok-kw">const</span> regex homePath <span class="tok-op">←</span> <span class="tok-st">"/home/§/.*"</span>(tenant) ↦ regex
+    const string tenant <span class="tok-op">←</span> <span class="tok-st">"acme"</span>
+    const regex homePath <span class="tok-op">←</span> <span class="tok-st">"/home/§/.*"</span>(tenant) ↦ regex
     print homePath
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>\d+
 (?i)\w+

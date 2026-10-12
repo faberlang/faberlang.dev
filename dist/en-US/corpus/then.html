@@ -24,20 +24,20 @@
 <span class="tok-co"># BACKEND:</span>
 <span class="tok-co">#   Cross-ref if/ergo-redde.fab for ergo-redde guard-return spelling.</span>
 
-<span class="tok-kw">fn</span> clamp(<span class="tok-kw">int</span> x) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">if</span> x ≺ <span class="tok-nu">0</span> then <span class="tok-kw">return</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">if</span> x ≻ <span class="tok-nu">100</span> then <span class="tok-kw">return</span> <span class="tok-nu">100</span>
-    <span class="tok-kw">return</span> x
+fn clamp(int x) <span class="tok-op">→</span> int {
+    if x ≺ <span class="tok-nu">0</span> then return <span class="tok-nu">0</span>
+    if x ≻ <span class="tok-nu">100</span> then return <span class="tok-nu">100</span>
+    return x
 }
 
-<span class="tok-kw">fn</span> inveni(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> res, <span class="tok-kw">int</span> quaesitum) <span class="tok-op">→</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> res <span class="tok-kw">const</span> item {
-        <span class="tok-kw">if</span> item <span class="tok-op">≡</span> quaesitum then <span class="tok-kw">return</span> item
+fn inveni(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res, int quaesitum) <span class="tok-op">→</span> int <span class="tok-op">∪</span> none {
+    for from res const item {
+        if item <span class="tok-op">≡</span> quaesitum then return item
     }
-    <span class="tok-kw">return</span> null
+    return null
 }
 
-<span class="tok-kw">main</span> {
+main {
     print clamp(<span class="tok-op">-</span><span class="tok-nu">5</span>)
     print clamp(<span class="tok-nu">150</span>)
     print inveni([<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">42</span>], <span class="tok-nu">42</span>)
@@ -72,43 +72,43 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Sign classes, division results, grades, and search hits.</span>
 
-<span class="tok-kw">fn</span> classis(<span class="tok-kw">int</span> x) <span class="tok-op">→</span> string {
-    <span class="tok-kw">if</span> x ≺ <span class="tok-nu">0</span> then <span class="tok-kw">return</span> <span class="tok-st">"negativus"</span>
-    <span class="tok-kw">if</span> x <span class="tok-op">≡</span> <span class="tok-nu">0</span> then <span class="tok-kw">return</span> <span class="tok-st">"nihil"</span>
-    <span class="tok-kw">return</span> <span class="tok-st">"positivus"</span>
+fn classis(int x) <span class="tok-op">→</span> string {
+    if x ≺ <span class="tok-nu">0</span> then return <span class="tok-st">"negativus"</span>
+    if x <span class="tok-op">≡</span> <span class="tok-nu">0</span> then return <span class="tok-st">"nihil"</span>
+    return <span class="tok-st">"positivus"</span>
 }
 
 <span class="tok-co"># Optional return: none when divisor is zero</span>
-<span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> {
-    <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> then <span class="tok-kw">return</span> null
-    <span class="tok-kw">return</span> a <span class="tok-op">/</span> b
+fn divide(int a, int b) <span class="tok-op">→</span> int <span class="tok-op">∪</span> none {
+    if b <span class="tok-op">≡</span> <span class="tok-nu">0</span> then return null
+    return a <span class="tok-op">/</span> b
 }
 
 <span class="tok-co"># elif chain with else then return fallback</span>
-<span class="tok-kw">fn</span> gradus(<span class="tok-kw">int</span> puncta) <span class="tok-op">→</span> string {
-    <span class="tok-kw">if</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> then <span class="tok-kw">return</span> <span class="tok-st">"A"</span>
-    <span class="tok-kw">elif</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">80</span> then <span class="tok-kw">return</span> <span class="tok-st">"B"</span>
-    <span class="tok-kw">elif</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">70</span> then <span class="tok-kw">return</span> <span class="tok-st">"C"</span>
-    <span class="tok-kw">elif</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">60</span> then <span class="tok-kw">return</span> <span class="tok-st">"D"</span>
-    <span class="tok-kw">else</span> then <span class="tok-kw">return</span> <span class="tok-st">"F"</span>
+fn gradus(int puncta) <span class="tok-op">→</span> string {
+    if puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> then return <span class="tok-st">"A"</span>
+    elif puncta <span class="tok-op">≥</span> <span class="tok-nu">80</span> then return <span class="tok-st">"B"</span>
+    elif puncta <span class="tok-op">≥</span> <span class="tok-nu">70</span> then return <span class="tok-st">"C"</span>
+    elif puncta <span class="tok-op">≥</span> <span class="tok-nu">60</span> then return <span class="tok-st">"D"</span>
+    else then return <span class="tok-st">"F"</span>
 }
 
 <span class="tok-co"># Early return inside for from loop</span>
-<span class="tok-kw">fn</span> inveni(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> res, <span class="tok-kw">int</span> quaesitum) <span class="tok-op">→</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> res <span class="tok-kw">const</span> item {
-        <span class="tok-kw">if</span> item <span class="tok-op">≡</span> quaesitum then <span class="tok-kw">return</span> item
+fn inveni(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res, int quaesitum) <span class="tok-op">→</span> int <span class="tok-op">∪</span> none {
+    for from res const item {
+        if item <span class="tok-op">≡</span> quaesitum then return item
     }
-    <span class="tok-kw">return</span> null
+    return null
 }
 
-<span class="tok-kw">fn</span> habet(<span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> <span class="tok-kw">map</span>, string clavis) <span class="tok-op">→</span> <span class="tok-kw">bool</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">ref</span> <span class="tok-kw">map</span> <span class="tok-kw">const</span> k {
-        <span class="tok-kw">if</span> k <span class="tok-op">≡</span> clavis then <span class="tok-kw">return</span> <span class="tok-kw">true</span>
+fn habet(map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> map, string clavis) <span class="tok-op">→</span> bool {
+    for ref map const k {
+        if k <span class="tok-op">≡</span> clavis then return true
     }
-    <span class="tok-kw">return</span> <span class="tok-kw">false</span>
+    return false
 }
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # Sign classification</span>
     print classis(<span class="tok-op">-</span><span class="tok-nu">5</span>)
     print classis(<span class="tok-nu">0</span>)
@@ -126,7 +126,7 @@
     print gradus(<span class="tok-nu">55</span>)
 
 <span class="tok-co">    # Linear search with early return</span>
-    <span class="tok-kw">const</span> _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    const _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
     print inveni(numeri, <span class="tok-nu">3</span>)
     print inveni(numeri, <span class="tok-nu">9</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>negativus
@@ -167,25 +167,25 @@ none
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Validation and grading lines for sample x, aetas, and puncta values.</span>
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # then replaces a one-statement block body</span>
-    <span class="tok-kw">const</span> _ x <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    const _ x <span class="tok-op">←</span> <span class="tok-nu">10</span>
 
-    <span class="tok-kw">if</span> x ≻ <span class="tok-nu">5</span> then print <span class="tok-st">"x magnum est"</span>
+    if x ≻ <span class="tok-nu">5</span> then print <span class="tok-st">"x magnum est"</span>
 
 <span class="tok-co">    # else then pairs else with a single consequent</span>
-    <span class="tok-kw">const</span> _ aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
-    <span class="tok-kw">if</span> aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> then print <span class="tok-st">"adultus"</span>
-    <span class="tok-kw">else</span> then print <span class="tok-st">"minor"</span>
+    const _ aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
+    if aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> then print <span class="tok-st">"adultus"</span>
+    else then print <span class="tok-st">"minor"</span>
 
 <span class="tok-co">    # Two-way one-liner (85 &lt; 90 → "not A")</span>
-    <span class="tok-kw">const</span> _ puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
-    <span class="tok-kw">if</span> puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> then print <span class="tok-st">"A"</span>
-    <span class="tok-kw">else</span> then print <span class="tok-st">"non A"</span>
+    const _ puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
+    if puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> then print <span class="tok-st">"A"</span>
+    else then print <span class="tok-st">"non A"</span>
 
 <span class="tok-co">    # bool condition used directly</span>
-    <span class="tok-kw">const</span> _ valet <span class="tok-op">←</span> <span class="tok-kw">true</span>
-    <span class="tok-kw">if</span> valet then print <span class="tok-st">"Recte"</span>
+    const _ valet <span class="tok-op">←</span> true
+    if valet then print <span class="tok-st">"Recte"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>x magnum est
 adultus
 non A

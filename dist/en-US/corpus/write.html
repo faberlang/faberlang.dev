@@ -26,22 +26,22 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   nota.expected — greeting, variable, formatted strings, sum, coordinates.</span>
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # Simple string output</span>
     print <span class="tok-st">"Salve, Munde!"</span>
 
 <span class="tok-co">    # Variable output</span>
-    <span class="tok-kw">const</span> string name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    const string name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
     print name
 
 <span class="tok-co">    # Multiple arguments</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> aetas <span class="tok-op">←</span> <span class="tok-nu">30</span>
+    const int aetas <span class="tok-op">←</span> <span class="tok-nu">30</span>
     print <span class="tok-st">"nomen: §"</span>(name)
     print <span class="tok-st">"aetas: §"</span>(aetas)
 
 <span class="tok-co">    # Expressions</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> x <span class="tok-op">←</span> <span class="tok-nu">10</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> y <span class="tok-op">←</span> <span class="tok-nu">20</span>
+    const int x <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    const int y <span class="tok-op">←</span> <span class="tok-nu">20</span>
     print <span class="tok-st">"summa: §"</span>(x <span class="tok-op">+</span> y)
 
 <span class="tok-co">    # Multiple values in one statement</span>

@@ -28,84 +28,84 @@
 <span class="tok-co"># =============================================================================</span>
 
 <span class="tok-co"># `_` infers exactly one inhabitant type from the initializer: `n` is `int`.</span>
-<span class="tok-kw">fn</span> member_count(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span> <span class="tok-op">∪</span> string<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">const</span> _ n <span class="tok-op">←</span> xs.length()
-    <span class="tok-kw">if</span> n ≻ <span class="tok-nu">0</span> then <span class="tok-kw">return</span> <span class="tok-nu">1</span>
-    <span class="tok-kw">return</span> <span class="tok-nu">0</span>
+fn member_count(list<span class="tok-op">&lt;</span>int <span class="tok-op">∪</span> string<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> int {
+    const _ n <span class="tok-op">←</span> xs.length()
+    if n ≻ <span class="tok-nu">0</span> then return <span class="tok-nu">1</span>
+    return <span class="tok-nu">0</span>
 }
 
 <span class="tok-co"># `∪` accumulates a member per direct flow; `match` type arms name the</span>
 <span class="tok-co"># members, and an `if` inside an arm tests the value.</span>
-<span class="tok-kw">fn</span> consume(<span class="tok-kw">int</span> <span class="tok-op">∪</span> string value) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">match</span> value {
-        <span class="tok-kw">case</span> <span class="tok-kw">int</span> <span class="tok-kw">const</span> n {
-            <span class="tok-kw">if</span> n <span class="tok-op">≡</span> <span class="tok-nu">7</span> then <span class="tok-kw">return</span> <span class="tok-nu">1</span>
+fn consume(int <span class="tok-op">∪</span> string value) <span class="tok-op">→</span> int {
+    match value {
+        case int const n {
+            if n <span class="tok-op">≡</span> <span class="tok-nu">7</span> then return <span class="tok-nu">1</span>
         }
-        <span class="tok-kw">case</span> string <span class="tok-kw">const</span> s {
-            <span class="tok-kw">if</span> s <span class="tok-op">≡</span> <span class="tok-st">"x"</span> then <span class="tok-kw">return</span> <span class="tok-nu">2</span>
+        case string const s {
+            if s <span class="tok-op">≡</span> <span class="tok-st">"x"</span> then return <span class="tok-nu">2</span>
         }
     }
-    <span class="tok-kw">return</span> <span class="tok-nu">0</span>
+    return <span class="tok-nu">0</span>
 }
 
 <span class="tok-co"># `T ∪ null` is one optional inhabitant, so a `null` arm is the null case.</span>
-<span class="tok-kw">fn</span> maybe_len(string <span class="tok-op">∪</span> <span class="tok-kw">none</span> value) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">match</span> value {
-        <span class="tok-kw">case</span> <span class="tok-kw">none</span> { <span class="tok-kw">return</span> <span class="tok-nu">0</span> }
-        <span class="tok-kw">default</span> { <span class="tok-kw">return</span> <span class="tok-nu">1</span> }
+fn maybe_len(string <span class="tok-op">∪</span> none value) <span class="tok-op">→</span> int {
+    match value {
+        case none { return <span class="tok-nu">0</span> }
+        default { return <span class="tok-nu">1</span> }
     }
 }
 
-<span class="tok-kw">test</span> <span class="tok-st">"the two hole kinds infer cleanly without shape warnings"</span> {
+test <span class="tok-st">"the two hole kinds infer cleanly without shape warnings"</span> {
 <span class="tok-co">    # `_`: exactly one inhabitant type.</span>
-    <span class="tok-kw">const</span> _ count <span class="tok-op">←</span> <span class="tok-nu">3</span>
+    const _ count <span class="tok-op">←</span> <span class="tok-nu">3</span>
 
 <span class="tok-co">    # `∪`: every direct flow adds a member — solves to `int ∪ string`.</span>
-    <span class="tok-kw">var</span> <span class="tok-op">∪</span> mixed <span class="tok-op">←</span> <span class="tok-nu">1</span>
+    var <span class="tok-op">∪</span> mixed <span class="tok-op">←</span> <span class="tok-nu">1</span>
     mixed <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
 
 <span class="tok-co">    # `list&lt;∪&gt;`: heterogeneous elements solve to `list&lt;int ∪ string&gt;`.</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-op">∪</span><span class="tok-op">&gt;</span> nodes <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-st">"two"</span>, <span class="tok-nu">3</span>]
+    const list<span class="tok-op">&lt;</span><span class="tok-op">∪</span><span class="tok-op">&gt;</span> nodes <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-st">"two"</span>, <span class="tok-nu">3</span>]
 
 <span class="tok-co">    # `T ∪ null`: one optional inhabitant — `_` over it stays quiet.</span>
-    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> <span class="tok-kw">none</span> opt <span class="tok-op">←</span> <span class="tok-st">"text"</span>
-    <span class="tok-kw">const</span> _ maybe <span class="tok-op">←</span> opt
+    const string <span class="tok-op">∪</span> none opt <span class="tok-op">←</span> <span class="tok-st">"text"</span>
+    const _ maybe <span class="tok-op">←</span> opt
 
-    <span class="tok-kw">const</span> _ m <span class="tok-op">←</span> member_count(nodes)
-    <span class="tok-kw">const</span> _ n <span class="tok-op">←</span> consume(mixed)
-    <span class="tok-kw">const</span> _ o <span class="tok-op">←</span> maybe_len(maybe)
+    const _ m <span class="tok-op">←</span> member_count(nodes)
+    const _ n <span class="tok-op">←</span> consume(mixed)
+    const _ o <span class="tok-op">←</span> maybe_len(maybe)
 
-    <span class="tok-kw">assert</span> count <span class="tok-op">≡</span> <span class="tok-nu">3</span>
-    <span class="tok-kw">assert</span> m <span class="tok-op">≡</span> <span class="tok-nu">1</span>
-    <span class="tok-kw">assert</span> n <span class="tok-op">≡</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">assert</span> o <span class="tok-op">≡</span> <span class="tok-nu">1</span>
+    assert count <span class="tok-op">≡</span> <span class="tok-nu">3</span>
+    assert m <span class="tok-op">≡</span> <span class="tok-nu">1</span>
+    assert n <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+    assert o <span class="tok-op">≡</span> <span class="tok-nu">1</span>
 }
 
 <span class="tok-co"># Runnable path for the MIR stepper (S5-U4): same union surface, printed</span>
 <span class="tok-co"># so the script harness has an exact stdout oracle (`type-hole-union.expected`).</span>
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # `_`: exactly one inhabitant type.</span>
-    <span class="tok-kw">const</span> _ count <span class="tok-op">←</span> <span class="tok-nu">3</span>
+    const _ count <span class="tok-op">←</span> <span class="tok-nu">3</span>
 
 <span class="tok-co">    # `∪`: every direct flow adds a member — solves to `int ∪ string`.</span>
-    <span class="tok-kw">var</span> <span class="tok-op">∪</span> mixed <span class="tok-op">←</span> <span class="tok-nu">1</span>
+    var <span class="tok-op">∪</span> mixed <span class="tok-op">←</span> <span class="tok-nu">1</span>
     mixed <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
 
 <span class="tok-co">    # `list&lt;∪&gt;`: heterogeneous elements solve to `list&lt;int ∪ string&gt;`.</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-op">∪</span><span class="tok-op">&gt;</span> nodes <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-st">"two"</span>, <span class="tok-nu">3</span>]
+    const list<span class="tok-op">&lt;</span><span class="tok-op">∪</span><span class="tok-op">&gt;</span> nodes <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-st">"two"</span>, <span class="tok-nu">3</span>]
 
 <span class="tok-co">    # `T ∪ null`: one optional inhabitant — `_` over it stays quiet.</span>
-    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> <span class="tok-kw">none</span> opt <span class="tok-op">←</span> <span class="tok-st">"text"</span>
-    <span class="tok-kw">const</span> _ maybe <span class="tok-op">←</span> opt
+    const string <span class="tok-op">∪</span> none opt <span class="tok-op">←</span> <span class="tok-st">"text"</span>
+    const _ maybe <span class="tok-op">←</span> opt
 
-    <span class="tok-kw">const</span> _ m <span class="tok-op">←</span> member_count(nodes)
-    <span class="tok-kw">const</span> _ n <span class="tok-op">←</span> consume(mixed)
-    <span class="tok-kw">const</span> _ o <span class="tok-op">←</span> maybe_len(maybe)
+    const _ m <span class="tok-op">←</span> member_count(nodes)
+    const _ n <span class="tok-op">←</span> consume(mixed)
+    const _ o <span class="tok-op">←</span> maybe_len(maybe)
 
-    <span class="tok-kw">assert</span> count <span class="tok-op">≡</span> <span class="tok-nu">3</span>
-    <span class="tok-kw">assert</span> m <span class="tok-op">≡</span> <span class="tok-nu">1</span>
-    <span class="tok-kw">assert</span> n <span class="tok-op">≡</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">assert</span> o <span class="tok-op">≡</span> <span class="tok-nu">1</span>
+    assert count <span class="tok-op">≡</span> <span class="tok-nu">3</span>
+    assert m <span class="tok-op">≡</span> <span class="tok-nu">1</span>
+    assert n <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+    assert o <span class="tok-op">≡</span> <span class="tok-nu">1</span>
 
     print count
     print m

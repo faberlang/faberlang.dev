@@ -1,6 +1,6 @@
 # GOAL: English-first docs site — one maintained language, machine-generated locale surfaces
 
-**Status**: planned — lowered to dispatchable units (awaiting a Hand)
+**Status**: done — all units landed on main 2026-10-12 (U1 f6682d4d9, U2 folded into U1, U4 2c03dd0d6, U3 391003350, U5 60807b946, U6 85701ddca, U8 6c815a75d + b9aca7d1c, U7 b77842c1c); Gates A–E green; switchover commit carries the full-build log; deploy push remains operator-gated
 **Created**: 2026-10-12
 **Campaign:** `—` (standalone; operator design session 2026-10-11/12)
 **Source:** operator ruling in session: translated prose is structurally unregenerable and confirmed stale; interpreted render pipeline is hours; rework the generation model.
@@ -146,6 +146,16 @@ sanity: hash one input, rebuild, count rendered outputs
 
 - Gates A–E above, in dependency order; the switchover commit carries a full `--full` build log.
 - Deploy remains push-gated by the operator; nothing in this goal pushes.
+
+## Completion record (2026-10-12)
+
+- **Gate A (engine equivalence):** 185/185 byte-identical comparisons (26 authored pages across three locales, 60 corpus terms × bundle/markdown modes incl. all non-ASCII glyph terms, 14 CLI-default cases, 10 aliases, 5 edge inputs, 10 error-contract cases); contract list empty. The interpreted oracle's own corpus-frontmatter regression (raw `("…")(args)` escapes) was identified and the Python engine restores the compiled-era contract, verified against pre-U4 committed dist.
+- **Gate B (fences):** `validate-fences.sh src/en-US` 220/220 (one pre-existing failure — retired ASCII comparison signs in the grammar program example — fixed in ee4ee347f).
+- **Gate C (links/redirects):** internal links 25,926 + 693 agent surfaces, 0 broken; retired-URL walker 3,581/3,581; curl spot-checks of retired URLs across six locales resolve 200 + meta-refresh to the English counterpart.
+- **Gate D (build time):** `--full` 36 s (4,978 pages) against a <10 min target; routine no-op build 6.0 s ×3; one-page edit → exactly one dist file in 7 s; incremental output byte-identical to `--full`.
+- **Gate E (mapping freshness):** wired into the build (`--check`); 7 mapping pages, 0 missing, 0 dead rows; epoch pairs (sort/ordinata, bytes/octeti, at/apud ×2) on 7/7 pages.
+- **Beyond the spec:** radix core-norma N2 retired the `faber:*` I/O kernel modules mid-goal, breaking the three remaining native-Faber gates (SEM006); all three were restored as Python gates byte-stable with committed dist (2219ef278, b77842c1c). The site pipeline now contains no Faber-executed gates.
+- **Open questions resolved:** Q1 — chooser links the per-language mapping pages (no per-locale landing shells kept); Q2 — the Faber generator is deleted at U3 (clean break; evidence recorded here); Q3 — verified, no change needed to `/agents/locales.md`.
 
 ## Companion Skill Plan
 

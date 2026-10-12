@@ -18,7 +18,7 @@
 <span class="tok-co"># The canonical record spells the source field and lets visibility/name defaults</span>
 <span class="tok-co"># materialize the same ImportDecl as `import from "norma:text"`.</span>
 
-<span class="tok-kw">import</span> { <span class="tok-kw">from</span> <span class="tok-op">=</span> <span class="tok-st">"norma:text"</span> }
+import { from <span class="tok-op">=</span> <span class="tok-st">"norma:text"</span> }
 
 print <span class="tok-st">"importa-braced"</span></code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>importa-braced
 </code></pre><h3 id="radixcorpusimportaimportafab-canonical-keyword">radix/corpus/importa/importa.fab (canonical · keyword)<a class="anchor" href="#radixcorpusimportaimportafab-canonical-keyword">#</a></h3><p>Imports names from another module or package source.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
@@ -52,9 +52,9 @@ print <span class="tok-st">"importa-braced"</span></code></pre><p><strong>Expect
 <span class="tok-co">#</span>
 <span class="tok-co"># BACKEND: Rust/Go e2e whitelist — single-file compile cannot resolve sibling.</span>
 
-<span class="tok-kw">import</span> <span class="tok-kw">from</span> <span class="tok-st">"./auxilium"</span> auxilium
+import from <span class="tok-st">"./auxilium"</span> auxilium
 
-<span class="tok-kw">main</span> {
+main {
     print auxilium.saluta(<span class="tok-st">"Marcus"</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Marcus!
 </code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusimportadefault-bracedfab-canonical-keyword">radix/corpus/importa/default-braced.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusimportaimportafab-canonical-keyword">radix/corpus/importa/importa.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/importa/default-braced.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

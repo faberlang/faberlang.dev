@@ -15,12 +15,12 @@
 <span class="tok-co"># See also: unstable, annotation-sugar</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">interface</span> tempus {
-    @ unstable { target <span class="tok-op">=</span> rs, <span class="tok-kw">record</span> <span class="tok-op">=</span> <span class="tok-st">"timer handles are not implemented"</span> }
-    <span class="tok-kw">fn</span> siste(<span class="tok-kw">int</span> handle) <span class="tok-op">→</span> <span class="tok-kw">void</span>
+interface tempus {
+    @ unstable { target <span class="tok-op">=</span> rs, record <span class="tok-op">=</span> <span class="tok-st">"timer handles are not implemented"</span> }
+    fn siste(int handle) <span class="tok-op">→</span> void
 }
 
-<span class="tok-kw">main</span> {
+main {
     print <span class="tok-st">"nondum-braced"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>nondum-braced
 </code></pre><h3 id="radixcorpusmetanondumfab-canonical-annotation">radix/corpus/meta/nondum.fab (canonical · annotation)<a class="anchor" href="#radixcorpusmetanondumfab-canonical-annotation">#</a></h3><p>Marks an interface method as planned but unavailable for a target.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
@@ -48,12 +48,12 @@
 <span class="tok-co"># BACKEND:</span>
 <span class="tok-co">#   Calls to @ unstable methods fail semantic check (SEM017); do not invoke here.</span>
 
-<span class="tok-kw">interface</span> tempus {
-    @ unstable { target <span class="tok-op">=</span> rs, <span class="tok-kw">record</span> <span class="tok-op">=</span> <span class="tok-st">"timer handles are not implemented yet"</span> }
-    <span class="tok-kw">fn</span> siste(<span class="tok-kw">int</span> handle) <span class="tok-op">→</span> <span class="tok-kw">void</span>
+interface tempus {
+    @ unstable { target <span class="tok-op">=</span> rs, record <span class="tok-op">=</span> <span class="tok-st">"timer handles are not implemented yet"</span> }
+    fn siste(int handle) <span class="tok-op">→</span> void
 }
 
-<span class="tok-kw">main</span> {
+main {
     print <span class="tok-st">"nondum implendum declared"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>nondum implendum declared
 </code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusannotation-sugarnondum-bracedfab-canonical-annotation">radix/corpus/annotation-sugar/nondum-braced.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpusmetanondumfab-canonical-annotation">radix/corpus/meta/nondum.fab (canonical · annotation)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/annotation-sugar/nondum-braced.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

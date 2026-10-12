@@ -21,11 +21,11 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   he said "salve", line one</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> string quote <span class="tok-op">←</span> <span class="tok-st">«he said "salve"»</span>
+main {
+    const string quote <span class="tok-op">←</span> <span class="tok-st">«he said "salve"»</span>
     print quote
-    <span class="tok-kw">const</span> string multiline <span class="tok-op">←</span> «<span class="tok-kw">line</span> one
-still <span class="tok-kw">line</span> one»
+    const string multiline <span class="tok-op">←</span> «line one
+still line one»
     print multiline.slice(<span class="tok-nu">0</span>, <span class="tok-nu">8</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>he said &quot;salve&quot;
 line one

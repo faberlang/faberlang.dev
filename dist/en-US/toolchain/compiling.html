@@ -66,8 +66,8 @@ safety). This prevents the compiler from duplicating work that target
 compilers already do correctly.</p></blockquote><h3 id="air">AIR detour<a class="anchor" href="#air">#</a></h3><p>AIR (Autograd / AI Representation) is a pure-functional transform detour off
 the HIR → MIR path. It is entered by explicit annotation on individual
 functions:</p><pre class="faber-code"><code class="lang-faber">@ radix { lane <span class="tok-op">=</span> <span class="tok-st">"air"</span> }
-<span class="tok-kw">fn</span> identity(<span class="tok-kw">bool</span> value) <span class="tok-op">→</span> <span class="tok-kw">bool</span> {
-    <span class="tok-kw">return</span> value
+fn identity(bool value) <span class="tok-op">→</span> bool {
+    return value
 }</code></pre><p>AIR-lane functions must satisfy a purity policy — no mutation, no effects,
 no loops. Functions that violate this are rejected with a diagnostic before
 AIR lowering begins. The rest of the program continues to use ordinary Faber

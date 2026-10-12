@@ -9,12 +9,12 @@
 <span class="tok-co"># See also: await_const, await, async, promise</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">fn</span> responde() <span class="tok-kw">async</span> <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> <span class="tok-nu">3</span>
+fn responde() async <span class="tok-op">→</span> int {
+    return <span class="tok-nu">3</span>
 }
 
-<span class="tok-kw">async_main</span> {
-    <span class="tok-kw">await_var</span> <span class="tok-kw">int</span> responsum <span class="tok-op">←</span> responde()
+async_main {
+    await_var int responsum <span class="tok-op">←</span> responde()
     responsum <span class="tok-op">←</span> responsum <span class="tok-op">+</span> <span class="tok-nu">1</span>
     print responsum
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>4

@@ -27,31 +27,31 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   empty — success-path main only (requirit.expected)</span>
 
-<span class="tok-kw">union</span> GuardError {
+union GuardError {
     Invalid { string causa }
 }
 
-<span class="tok-kw">fn</span> guarded(<span class="tok-kw">int</span> value) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ GuardError {
-    <span class="tok-kw">require</span> value ≻ <span class="tok-nu">0</span> <span class="tok-kw">throw</span> <span class="tok-kw">variant</span> Invalid { causa <span class="tok-op">=</span> <span class="tok-st">"value must be positive"</span> }
-    <span class="tok-kw">return</span> value
+fn guarded(int value) <span class="tok-op">→</span> int ⇥ GuardError {
+    require value ≻ <span class="tok-nu">0</span> throw variant Invalid { causa <span class="tok-op">=</span> <span class="tok-st">"value must be positive"</span> }
+    return value
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">do</span> {
-        <span class="tok-kw">const</span> <span class="tok-kw">int</span> ok <span class="tok-op">←</span> guarded(<span class="tok-nu">1</span>)
-        <span class="tok-kw">assert</span> ok <span class="tok-op">≡</span> <span class="tok-nu">1</span>
+main {
+    do {
+        const int ok <span class="tok-op">←</span> guarded(<span class="tok-nu">1</span>)
+        assert ok <span class="tok-op">≡</span> <span class="tok-nu">1</span>
     }
-    <span class="tok-kw">catch</span> err {
-        <span class="tok-kw">assert</span> <span class="tok-kw">false</span> <span class="tok-kw">panic</span> <span class="tok-st">"success path must not throw"</span>
+    catch err {
+        assert false panic <span class="tok-st">"success path must not throw"</span>
     }
 }
 
-<span class="tok-kw">test</span> <span class="tok-st">"false path is recoverable"</span> {
-    <span class="tok-kw">do</span> {
-        <span class="tok-kw">const</span> <span class="tok-kw">int</span> dropped <span class="tok-op">←</span> guarded(<span class="tok-nu">0</span>)
-        <span class="tok-kw">assert</span> <span class="tok-kw">false</span> <span class="tok-kw">panic</span> <span class="tok-st">"false path must throw"</span>
+test <span class="tok-st">"false path is recoverable"</span> {
+    do {
+        const int dropped <span class="tok-op">←</span> guarded(<span class="tok-nu">0</span>)
+        assert false panic <span class="tok-st">"false path must throw"</span>
     }
-    <span class="tok-kw">catch</span> err {
+    catch err {
 <span class="tok-co">        # recovered — require entered ⇥ and catch intercepted it</span>
     }
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusmetarequiritfab-canonical-keyword">radix/corpus/meta/requirit.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/meta/requirit.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

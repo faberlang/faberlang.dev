@@ -11,15 +11,15 @@
 <span class="tok-co"># See also: await_const, await_var, async, promise</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">fn</span> responde(<span class="tok-kw">int</span> value) <span class="tok-kw">async</span> <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> value
+fn responde(int value) async <span class="tok-op">→</span> int {
+    return value
 }
 
-<span class="tok-kw">async_main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">promise</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> <span class="tok-kw">todo</span> <span class="tok-op">←</span> responde(<span class="tok-nu">7</span>)
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> immotum ↢ <span class="tok-kw">todo</span>
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> mutabile ↢ responde(<span class="tok-nu">8</span>)
-    <span class="tok-kw">const</span> _ illatum ↢ responde(<span class="tok-nu">9</span>)
+async_main {
+    const promise<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> todo <span class="tok-op">←</span> responde(<span class="tok-nu">7</span>)
+    const int immotum ↢ todo
+    var int mutabile ↢ responde(<span class="tok-nu">8</span>)
+    const _ illatum ↢ responde(<span class="tok-nu">9</span>)
     mutabile <span class="tok-op">←</span> mutabile <span class="tok-op">+</span> <span class="tok-nu">1</span>
     print immotum
     print mutabile

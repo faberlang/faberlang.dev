@@ -21,33 +21,33 @@
 <span class="tok-co">#   TEU3: shared fields emit on the primary lanes (Rust enum payloads, TS</span>
 <span class="tok-co">#   tagged unions) and MIR lowering/stepper. Tail backends are TEU4.</span>
 
-<span class="tok-kw">union</span> ShapeError {
+union ShapeError {
     @ shared
     string message
 
     Incompatible,
     ElementMismatch {
-        <span class="tok-kw">int</span> expected
-        <span class="tok-kw">int</span> actual
+        int expected
+        int actual
     }
 }
 
-<span class="tok-kw">fn</span> <span class="tok-kw">describe</span>(ShapeError e) <span class="tok-op">→</span> string {
-    <span class="tok-kw">match</span> e {
-        <span class="tok-kw">case</span> Incompatible <span class="tok-kw">const</span> message { <span class="tok-kw">return</span> message }
-        <span class="tok-kw">case</span> ElementMismatch <span class="tok-kw">const</span> message, expected, actual { <span class="tok-kw">return</span> message }
+fn describe(ShapeError e) <span class="tok-op">→</span> string {
+    match e {
+        case Incompatible const message { return message }
+        case ElementMismatch const message, expected, actual { return message }
     }
 }
 
-<span class="tok-kw">fn</span> render(ShapeError e) <span class="tok-op">→</span> string {
-    <span class="tok-kw">return</span> e.message
+fn render(ShapeError e) <span class="tok-op">→</span> string {
+    return e.message
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> ShapeError a <span class="tok-op">←</span> <span class="tok-kw">variant</span> Incompatible { message <span class="tok-op">=</span> <span class="tok-st">"incompatible"</span> }
-    <span class="tok-kw">const</span> ShapeError b <span class="tok-op">←</span> <span class="tok-kw">variant</span> ElementMismatch { message <span class="tok-op">=</span> <span class="tok-st">"mismatch"</span>, expected <span class="tok-op">=</span> <span class="tok-nu">1</span>, actual <span class="tok-op">=</span> <span class="tok-nu">2</span> }
-    print <span class="tok-kw">describe</span>(a)
-    print <span class="tok-kw">describe</span>(b)
+main {
+    const ShapeError a <span class="tok-op">←</span> variant Incompatible { message <span class="tok-op">=</span> <span class="tok-st">"incompatible"</span> }
+    const ShapeError b <span class="tok-op">←</span> variant ElementMismatch { message <span class="tok-op">=</span> <span class="tok-st">"mismatch"</span>, expected <span class="tok-op">=</span> <span class="tok-nu">1</span>, actual <span class="tok-op">=</span> <span class="tok-nu">2</span> }
+    print describe(a)
+    print describe(b)
     print render(a)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>incompatible
 mismatch

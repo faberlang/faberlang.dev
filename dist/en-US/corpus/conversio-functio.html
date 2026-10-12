@@ -17,45 +17,45 @@
 <span class="tok-co"># See also: ↦, ⊥, ⇥</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">class</span> Celsius {
-    <span class="tok-kw">var</span> <span class="tok-kw">float</span> degrees
+class Celsius {
+    var float degrees
 }
 
-<span class="tok-kw">class</span> Fahrenheit {
-    <span class="tok-kw">var</span> <span class="tok-kw">float</span> degrees
+class Fahrenheit {
+    var float degrees
 }
 
-<span class="tok-kw">class</span> Reading {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> value
+class Reading {
+    var int value
 }
 
-<span class="tok-kw">class</span> Gauged {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> value
+class Gauged {
+    var int value
 }
 
 @ conversion
-<span class="tok-kw">fn</span> toFahrenheit(Celsius c) <span class="tok-op">→</span> Fahrenheit {
-    <span class="tok-kw">return</span> Fahrenheit { degrees <span class="tok-op">=</span> c.degrees <span class="tok-op">*</span> <span class="tok-nu">9.0</span> <span class="tok-op">/</span> <span class="tok-nu">5.0</span> <span class="tok-op">+</span> <span class="tok-nu">32.0</span> }
+fn toFahrenheit(Celsius c) <span class="tok-op">→</span> Fahrenheit {
+    return Fahrenheit { degrees <span class="tok-op">=</span> c.degrees <span class="tok-op">*</span> <span class="tok-nu">9.0</span> <span class="tok-op">/</span> <span class="tok-nu">5.0</span> <span class="tok-op">+</span> <span class="tok-nu">32.0</span> }
 }
 
 <span class="tok-co"># A failable conversion: a negative reading has no gauge value.</span>
 @ conversion
-<span class="tok-kw">fn</span> toGauged(Reading r) <span class="tok-op">→</span> Gauged ⇥ string {
-    <span class="tok-kw">if</span> r.value ≺ <span class="tok-nu">0</span> {
-        <span class="tok-kw">throw</span> <span class="tok-st">"negative reading"</span>
+fn toGauged(Reading r) <span class="tok-op">→</span> Gauged ⇥ string {
+    if r.value ≺ <span class="tok-nu">0</span> {
+        throw <span class="tok-st">"negative reading"</span>
     }
-    <span class="tok-kw">return</span> Gauged { value <span class="tok-op">=</span> r.value }
+    return Gauged { value <span class="tok-op">=</span> r.value }
 }
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # infallible: ↦ calls toFahrenheit</span>
-    <span class="tok-kw">const</span> Fahrenheit boiling <span class="tok-op">←</span> Celsius { degrees <span class="tok-op">=</span> <span class="tok-nu">100.0</span> } ↦ Fahrenheit
+    const Fahrenheit boiling <span class="tok-op">←</span> Celsius { degrees <span class="tok-op">=</span> <span class="tok-nu">100.0</span> } ↦ Fahrenheit
     print boiling.degrees
 
 <span class="tok-co">    # failable: the ⊥ default applies only when toGauged fails</span>
-    <span class="tok-kw">const</span> Gauged kept <span class="tok-op">←</span> Reading { value <span class="tok-op">=</span> <span class="tok-nu">7</span> } ↦ Gauged ⊥ Gauged { value <span class="tok-op">=</span> <span class="tok-nu">0</span> }
+    const Gauged kept <span class="tok-op">←</span> Reading { value <span class="tok-op">=</span> <span class="tok-nu">7</span> } ↦ Gauged ⊥ Gauged { value <span class="tok-op">=</span> <span class="tok-nu">0</span> }
     print kept.value
-    <span class="tok-kw">const</span> Gauged fallback <span class="tok-op">←</span> Reading { value <span class="tok-op">=</span> <span class="tok-op">-</span><span class="tok-nu">4</span> } ↦ Gauged ⊥ Gauged { value <span class="tok-op">=</span> <span class="tok-nu">0</span> }
+    const Gauged fallback <span class="tok-op">←</span> Reading { value <span class="tok-op">=</span> <span class="tok-op">-</span><span class="tok-nu">4</span> } ↦ Gauged ⊥ Gauged { value <span class="tok-op">=</span> <span class="tok-nu">0</span> }
     print fallback.value
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>212.0
 7

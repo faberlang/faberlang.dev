@@ -9,14 +9,14 @@ describe flow, and both are written where the flow is declared.</li><li><code cl
 at compile time.</li></ul><p>The rule behind the split is <em>one sign, one job</em>. A glyph may have exact
 aliases, but it should not carry unrelated meanings. That is why a reader can
 scan a Faber function and see every data-flow operation at once: every <code class="glyph">←</code> is
-live, and every <code class="glyph">=</code> is settled before the program starts.</p><h2 id="shape">What it looks like<a class="anchor" href="#shape">#</a></h2><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Punctum {
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> x
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> y
+live, and every <code class="glyph">=</code> is settled before the program starts.</p><h2 id="shape">What it looks like<a class="anchor" href="#shape">#</a></h2><pre class="faber-code"><code class="lang-faber">class Punctum {
+    const int x
+    const int y
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
+main {
+    const _ p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
+    var int count <span class="tok-op">←</span> <span class="tok-nu">0</span>
     count <span class="tok-op">←</span> count <span class="tok-op">+</span> <span class="tok-nu">1</span>
     print p.x, count
 }</code></pre><pre class="faber-code"><code class="lang-text">$ faber run

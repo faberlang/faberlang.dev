@@ -32,45 +32,45 @@
 <span class="tok-co">#   Desugars through the `trap` trap machinery; Go and TypeScript fail</span>
 <span class="tok-co">#   closed until they emit `trap`.</span>
 
-<span class="tok-kw">fn</span> half(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ string {
-    <span class="tok-kw">if</span> n <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≢</span> <span class="tok-nu">0</span> {
-        <span class="tok-kw">throw</span> <span class="tok-st">"odd"</span>
+fn half(int n) <span class="tok-op">→</span> int ⇥ string {
+    if n <span class="tok-op">%</span> <span class="tok-nu">2</span> <span class="tok-op">≢</span> <span class="tok-nu">0</span> {
+        throw <span class="tok-st">"odd"</span>
     }
-    <span class="tok-kw">return</span> n <span class="tok-op">/</span> <span class="tok-nu">2</span>
+    return n <span class="tok-op">/</span> <span class="tok-nu">2</span>
 }
 
-<span class="tok-kw">fn</span> fallback() <span class="tok-op">→</span> <span class="tok-kw">int</span> {
+fn fallback() <span class="tok-op">→</span> int {
     print <span class="tok-st">"fallback"</span>
-    <span class="tok-kw">return</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
+    return <span class="tok-op">-</span><span class="tok-nu">1</span>
 }
 
 <span class="tok-co"># Propagation: a bare failable call inside a `⇥` function sends the failure</span>
 <span class="tok-co"># on to this function's caller.</span>
-<span class="tok-kw">fn</span> quarter(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ string {
-    <span class="tok-kw">return</span> half(half(n))
+fn quarter(int n) <span class="tok-op">→</span> int ⇥ string {
+    return half(half(n))
 }
 
 <span class="tok-co"># `⊥` also handles a propagated failure at the outer call site.</span>
-<span class="tok-kw">fn</span> safeQuarter(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> quarter(n) ⊥ <span class="tok-op">-</span><span class="tok-nu">1</span>
+fn safeQuarter(int n) <span class="tok-op">→</span> int {
+    return quarter(n) ⊥ <span class="tok-op">-</span><span class="tok-nu">1</span>
 }
 
-<span class="tok-kw">fn</span> fatal(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ string {
-    <span class="tok-kw">if</span> n <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
-        <span class="tok-kw">panic</span> <span class="tok-st">"fatal"</span>
+fn fatal(int n) <span class="tok-op">→</span> int ⇥ string {
+    if n <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
+        panic <span class="tok-st">"fatal"</span>
     }
-    <span class="tok-kw">return</span> n
+    return n
 }
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # The call's value on success, the default on failure.</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> a <span class="tok-op">←</span> half(<span class="tok-nu">8</span>) ⊥ <span class="tok-nu">0</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> b <span class="tok-op">←</span> half(<span class="tok-nu">7</span>) ⊥ <span class="tok-op">-</span><span class="tok-nu">1</span>
+    const int a <span class="tok-op">←</span> half(<span class="tok-nu">8</span>) ⊥ <span class="tok-nu">0</span>
+    const int b <span class="tok-op">←</span> half(<span class="tok-nu">7</span>) ⊥ <span class="tok-op">-</span><span class="tok-nu">1</span>
     print a, b
 
 <span class="tok-co">    # The default runs only when the call fails: `fallback` prints once.</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> c <span class="tok-op">←</span> half(<span class="tok-nu">4</span>) ⊥ fallback()
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> d <span class="tok-op">←</span> half(<span class="tok-nu">5</span>) ⊥ fallback()
+    const int c <span class="tok-op">←</span> half(<span class="tok-nu">4</span>) ⊥ fallback()
+    const int d <span class="tok-op">←</span> half(<span class="tok-nu">5</span>) ⊥ fallback()
     print c, d
 
     print safeQuarter(<span class="tok-nu">8</span>), safeQuarter(<span class="tok-nu">6</span>)

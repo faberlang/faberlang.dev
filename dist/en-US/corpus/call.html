@@ -22,9 +22,9 @@
 <span class="tok-co"># The runtime:echo backend echoes the opener back as a single string frame;</span>
 <span class="tok-co"># `↦ string` materializes it. The exemplar asserts equality.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> string t <span class="tok-op">←</span> <span class="tok-kw">call</span> <span class="tok-st">'runtime:echo'</span> (<span class="tok-st">"salve, munde"</span>) ↦ string
-    <span class="tok-kw">assert</span> t <span class="tok-op">≡</span> <span class="tok-st">"salve, munde"</span>
+main {
+    const string t <span class="tok-op">←</span> call <span class="tok-st">'runtime:echo'</span> (<span class="tok-st">"salve, munde"</span>) ↦ string
+    assert t <span class="tok-op">≡</span> <span class="tok-st">"salve, munde"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code></code></pre><h3 id="radixcorpusadserve-plainfab-canonical-annotation">radix/corpus/ad/serve-plain.fab (canonical · annotation)<a class="anchor" href="#radixcorpusadserve-plainfab-canonical-annotation">#</a></h3><p>@ call serves a route from a Faber function; a caller ads the route and materializes the one reply frame.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># call — `@ call '&lt;route&gt;'` serves a route from a Faber function.</span>
 <span class="tok-co"># =============================================================================</span>
@@ -44,13 +44,13 @@
 <span class="tok-co"># See also: call, channel, conversion</span>
 <span class="tok-co"># =============================================================================</span>
 
-@ <span class="tok-kw">call</span> <span class="tok-st">'salutatio:saluta'</span>
-<span class="tok-kw">fn</span> saluta(string name) <span class="tok-op">→</span> string {
-    <span class="tok-kw">return</span> <span class="tok-st">"salve, "</span> <span class="tok-op">+</span> name
+@ call <span class="tok-st">'salutatio:saluta'</span>
+fn saluta(string name) <span class="tok-op">→</span> string {
+    return <span class="tok-st">"salve, "</span> <span class="tok-op">+</span> name
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> string responsum <span class="tok-op">←</span> <span class="tok-kw">call</span> <span class="tok-st">'salutatio:saluta'</span> (<span class="tok-st">"munde"</span>) ↦ string
+main {
+    const string responsum <span class="tok-op">←</span> call <span class="tok-st">'salutatio:saluta'</span> (<span class="tok-st">"munde"</span>) ↦ string
     print responsum
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>salve, munde
 </code></pre><h3 id="radixcorpusadserve-typedfab-canonical-annotation">radix/corpus/ad/serve-typed.fab (canonical · annotation)<a class="anchor" href="#radixcorpusadserve-typedfab-canonical-annotation">#</a></h3><p>A call to a Faber-served route is a typed conversation channel&lt;O, R&gt;: the opener and every reply are checked against the handler.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
@@ -74,27 +74,27 @@
 <span class="tok-co"># See also: call, channel, recv, conversion</span>
 <span class="tok-co"># =============================================================================</span>
 
-@ <span class="tok-kw">call</span> <span class="tok-st">'numeri:twice'</span>
-<span class="tok-kw">fn</span> twice(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
+@ call <span class="tok-st">'numeri:twice'</span>
+fn twice(int n) <span class="tok-op">→</span> int {
+    return n <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }
 
-@ <span class="tok-kw">call</span> <span class="tok-st">'salutatio:greeting'</span>
-<span class="tok-kw">fn</span> greeting() <span class="tok-op">→</span> string {
-    <span class="tok-kw">return</span> <span class="tok-st">"salve"</span>
+@ call <span class="tok-st">'salutatio:greeting'</span>
+fn greeting() <span class="tok-op">→</span> string {
+    return <span class="tok-st">"salve"</span>
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ s <span class="tok-op">←</span> <span class="tok-kw">call</span> <span class="tok-st">'numeri:twice'</span> (<span class="tok-nu">21</span>)
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> doubled <span class="tok-op">←</span> s ↦ <span class="tok-kw">int</span>
+main {
+    const _ s <span class="tok-op">←</span> call <span class="tok-st">'numeri:twice'</span> (<span class="tok-nu">21</span>)
+    const int doubled <span class="tok-op">←</span> s ↦ int
     print doubled
 
-    <span class="tok-kw">const</span> channel<span class="tok-op">&lt;</span><span class="tok-kw">none</span>, string<span class="tok-op">&gt;</span> g <span class="tok-op">←</span> <span class="tok-kw">call</span> <span class="tok-st">'salutatio:greeting'</span>
+    const channel<span class="tok-op">&lt;</span>none, string<span class="tok-op">&gt;</span> g <span class="tok-op">←</span> call <span class="tok-st">'salutatio:greeting'</span>
     print g ↦ string
 
-    <span class="tok-kw">const</span> channel<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> t <span class="tok-op">←</span> <span class="tok-kw">call</span> <span class="tok-st">'numeri:twice'</span> (<span class="tok-nu">5</span>)
-    <span class="tok-kw">const</span> channel loose <span class="tok-op">←</span> t
-    print loose ↦ <span class="tok-kw">int</span>
+    const channel<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span> t <span class="tok-op">←</span> call <span class="tok-st">'numeri:twice'</span> (<span class="tok-nu">5</span>)
+    const channel loose <span class="tok-op">←</span> t
+    print loose ↦ int
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>42
 salve
 10

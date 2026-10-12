@@ -27,10 +27,10 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   0, 1, 11, "Salve, Mundus!", 30, "Vale"</span>
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # --- Mutable bindings with var ---</span>
 
-    <span class="tok-kw">var</span> _ computus <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    var _ computus <span class="tok-op">←</span> <span class="tok-nu">0</span>
     print computus
 
     computus <span class="tok-op">←</span> <span class="tok-nu">1</span>
@@ -41,18 +41,18 @@
 
 <span class="tok-co">    # --- Immutable bindings: const _ and let ---</span>
 
-    <span class="tok-kw">const</span> _ salutatio <span class="tok-op">←</span> <span class="tok-st">"Salve, Mundus!"</span>
+    const _ salutatio <span class="tok-op">←</span> <span class="tok-st">"Salve, Mundus!"</span>
     print salutatio
 
 <span class="tok-co">    # let compresses repeated const _ when chaining inferred locals</span>
-    <span class="tok-kw">let</span> x <span class="tok-op">←</span> <span class="tok-nu">10</span>
-    <span class="tok-kw">let</span> y <span class="tok-op">←</span> <span class="tok-nu">20</span>
-    <span class="tok-kw">let</span> sum <span class="tok-op">←</span> x <span class="tok-op">+</span> y
+    let x <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    let y <span class="tok-op">←</span> <span class="tok-nu">20</span>
+    let sum <span class="tok-op">←</span> x <span class="tok-op">+</span> y
     print sum
 
 <span class="tok-co">    # --- Reassign only var bindings ---</span>
 
-    <span class="tok-kw">var</span> _ nuntius <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
+    var _ nuntius <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
     nuntius <span class="tok-op">←</span> <span class="tok-st">"Vale"</span>
     print nuntius
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0

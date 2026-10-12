@@ -25,32 +25,32 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   30, Salve, Munde, 42, 0, 20</span>
 
-<span class="tok-kw">fn</span> adde(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> a <span class="tok-op">+</span> b
+fn adde(int a, int b) <span class="tok-op">→</span> int {
+    return a <span class="tok-op">+</span> b
 }
 
-<span class="tok-kw">fn</span> saluta(string name) <span class="tok-op">→</span> string {
-    <span class="tok-kw">return</span> <span class="tok-st">"Salve, "</span> <span class="tok-op">+</span> name
+fn saluta(string name) <span class="tok-op">→</span> string {
+    return <span class="tok-st">"Salve, "</span> <span class="tok-op">+</span> name
 }
 
-<span class="tok-kw">fn</span> duoetquadraginta() <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> <span class="tok-nu">42</span>
+fn duoetquadraginta() <span class="tok-op">→</span> int {
+    return <span class="tok-nu">42</span>
 }
 
-<span class="tok-kw">fn</span> tace() <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn tace() <span class="tok-op">→</span> void {
 <span class="tok-co">    # bare return for void return type</span>
-    <span class="tok-kw">return</span>
+    return
 }
 
-<span class="tok-kw">fn</span> porta(<span class="tok-kw">int</span> x) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">if</span> x ≺ <span class="tok-nu">0</span> {
+fn porta(int x) <span class="tok-op">→</span> int {
+    if x ≺ <span class="tok-nu">0</span> {
 <span class="tok-co">        # early return on negative input</span>
-        <span class="tok-kw">return</span> <span class="tok-nu">0</span>
+        return <span class="tok-nu">0</span>
     }
-    <span class="tok-kw">return</span> x <span class="tok-op">*</span> <span class="tok-nu">2</span>
+    return x <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }
 
-<span class="tok-kw">main</span> {
+main {
     print adde(<span class="tok-nu">10</span>, <span class="tok-nu">20</span>)
     print saluta(<span class="tok-st">"Munde"</span>)
     print duoetquadraginta()
@@ -86,12 +86,12 @@ Salve, Munde
 <span class="tok-co"># Verifies that the Swift backend emits functions returning</span>
 <span class="tok-co"># boolean literals (SC-001: primitives, functions, return).</span>
 
-<span class="tok-kw">fn</span> da_verum() <span class="tok-op">→</span> <span class="tok-kw">bool</span> {
-    <span class="tok-kw">return</span> <span class="tok-kw">true</span>
+fn da_verum() <span class="tok-op">→</span> bool {
+    return true
 }
 
-<span class="tok-kw">fn</span> da_falsum() <span class="tok-op">→</span> <span class="tok-kw">bool</span> {
-    <span class="tok-kw">return</span> <span class="tok-kw">false</span>
+fn da_falsum() <span class="tok-op">→</span> bool {
+    return false
 }</code></pre><h3 id="radixcorpusscalarreturn-integerfab-canonical-keyword">radix/corpus/scalar/return-integer.fab (canonical · keyword)<a class="anchor" href="#radixcorpusscalarreturn-integerfab-canonical-keyword">#</a></h3><p>Function returning an integer literal via return 42.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># return — Function returning an integer literal via return 42.</span>
 <span class="tok-co"># =============================================================================</span>
@@ -115,8 +115,8 @@ Salve, Munde
 <span class="tok-co"># Verifies that the Swift backend emits a function returning an</span>
 <span class="tok-co"># integer literal (SC-001: primitives, functions, return).</span>
 
-<span class="tok-kw">fn</span> da_numerum() <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> <span class="tok-nu">42</span>
+fn da_numerum() <span class="tok-op">→</span> int {
+    return <span class="tok-nu">42</span>
 }</code></pre><h3 id="radixcorpusscalarreturn-stringfab-canonical-keyword">radix/corpus/scalar/return-string.fab (canonical · keyword)<a class="anchor" href="#radixcorpusscalarreturn-stringfab-canonical-keyword">#</a></h3><p>Function returning a string literal via return \&quot;string\&quot;.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># return — Function returning a string literal via return "string".</span>
 <span class="tok-co"># =============================================================================</span>
@@ -140,6 +140,6 @@ Salve, Munde
 <span class="tok-co"># Verifies that the Swift backend emits a function returning a</span>
 <span class="tok-co"># string literal (SC-001: primitives, functions, return).</span>
 
-<span class="tok-kw">fn</span> da_textum() <span class="tok-op">→</span> string {
-    <span class="tok-kw">return</span> <span class="tok-st">"textus"</span>
+fn da_textum() <span class="tok-op">→</span> string {
+    return <span class="tok-st">"textus"</span>
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusreddereddefab-canonical-keyword">radix/corpus/redde/redde.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusscalarreturn-boolfab-canonical-keyword">radix/corpus/scalar/return-bool.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusscalarreturn-integerfab-canonical-keyword">radix/corpus/scalar/return-integer.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusscalarreturn-stringfab-canonical-keyword">radix/corpus/scalar/return-string.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/redde/redde.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

@@ -22,31 +22,31 @@
 <span class="tok-co"># A value object has no defined key order (DECISIONS D2.9), so the class case</span>
 <span class="tok-co"># reads its fields back instead of printing the object text.</span>
 
-<span class="tok-kw">class</span> Punctum {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> x
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> y
+class Punctum {
+    var int x
+    var int y
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> n <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    <span class="tok-kw">const</span> value scalar <span class="tok-op">←</span> n ↦ value
+main {
+    const int n <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    const value scalar <span class="tok-op">←</span> n ↦ value
     print scalar
-    <span class="tok-kw">const</span> <span class="tok-kw">bytes</span> <span class="tok-kw">bytes</span> <span class="tok-op">←</span> <span class="tok-op">|</span><span class="tok-kw">ref</span> <span class="tok-kw">call</span><span class="tok-op">|</span>
-    <span class="tok-kw">const</span> value boxedBytes <span class="tok-op">←</span> <span class="tok-kw">bytes</span> ↦ value
+    const bytes bytes <span class="tok-op">←</span> <span class="tok-op">|</span>ref call<span class="tok-op">|</span>
+    const value boxedBytes <span class="tok-op">←</span> bytes ↦ value
     print boxedBytes
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
-    <span class="tok-kw">const</span> value boxedList <span class="tok-op">←</span> numeri ↦ value
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
+    const value boxedList <span class="tok-op">←</span> numeri ↦ value
     print boxedList
-    <span class="tok-kw">const</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">10</span> }
-    <span class="tok-kw">const</span> value boxedMap <span class="tok-op">←</span> scores ↦ value
+    const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">10</span> }
+    const value boxedMap <span class="tok-op">←</span> scores ↦ value
     print boxedMap
-    <span class="tok-kw">const</span> Punctum punctum <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">3</span>, y <span class="tok-op">=</span> <span class="tok-nu">4</span> }
-    <span class="tok-kw">const</span> value boxedGenus <span class="tok-op">←</span> punctum ↦ value
-    <span class="tok-kw">const</span> Punctum unboxed <span class="tok-op">←</span> boxedGenus ↦ Punctum
+    const Punctum punctum <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">3</span>, y <span class="tok-op">=</span> <span class="tok-nu">4</span> }
+    const value boxedGenus <span class="tok-op">←</span> punctum ↦ value
+    const Punctum unboxed <span class="tok-op">←</span> boxedGenus ↦ Punctum
     print unboxed.x
     print unboxed.y
-    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>] ↦ tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
-    <span class="tok-kw">const</span> value boxedTensor <span class="tok-op">←</span> grid ↦ value
+    const tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>] ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
+    const value boxedTensor <span class="tok-op">←</span> grid ↦ value
     print boxedTensor
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>42
 [222, 173]
@@ -79,42 +79,42 @@
 <span class="tok-co"># (valor-scalaria), the byte row (valor-boxing) and the deeper rows — nested</span>
 <span class="tok-co"># class, widening, recovery and tag tests (valor-composita-deep).</span>
 
-<span class="tok-kw">class</span> Punctum {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> x
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> y
+class Punctum {
+    var int x
+    var int y
 }
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # 1. A class: the object prints in field order and comes back with its fields.</span>
-    <span class="tok-kw">const</span> Punctum punctum <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">3</span>, y <span class="tok-op">=</span> <span class="tok-nu">4</span> }
-    <span class="tok-kw">const</span> value boxedGenus <span class="tok-op">←</span> punctum ↦ value
+    const Punctum punctum <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">3</span>, y <span class="tok-op">=</span> <span class="tok-nu">4</span> }
+    const value boxedGenus <span class="tok-op">←</span> punctum ↦ value
     print boxedGenus
-    <span class="tok-kw">const</span> Punctum unboxed <span class="tok-op">←</span> boxedGenus ↦ Punctum
+    const Punctum unboxed <span class="tok-op">←</span> boxedGenus ↦ Punctum
     print unboxed.x
     print unboxed.y
 
 <span class="tok-co">    # 2. A list: elements keep their type, so text is unquoted behind the value and quoted again after.</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
-    <span class="tok-kw">const</span> value boxedNumeri <span class="tok-op">←</span> numeri ↦ value
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
+    const value boxedNumeri <span class="tok-op">←</span> numeri ↦ value
     print boxedNumeri
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> backNumeri <span class="tok-op">←</span> boxedNumeri ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> backNumeri <span class="tok-op">←</span> boxedNumeri ↦ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
     print backNumeri
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> verba <span class="tok-op">←</span> [<span class="tok-st">"a"</span>, <span class="tok-st">"b"</span>]
-    <span class="tok-kw">const</span> value boxedVerba <span class="tok-op">←</span> verba ↦ value
+    const list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> verba <span class="tok-op">←</span> [<span class="tok-st">"a"</span>, <span class="tok-st">"b"</span>]
+    const value boxedVerba <span class="tok-op">←</span> verba ↦ value
     print boxedVerba
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> backVerba <span class="tok-op">←</span> boxedVerba ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>
+    const list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> backVerba <span class="tok-op">←</span> boxedVerba ↦ list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>
     print backVerba
 
 <span class="tok-co">    # 3. A map: keys print quoted, and the map comes back key for key.</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">10</span> }
-    <span class="tok-kw">const</span> value boxedScores <span class="tok-op">←</span> scores ↦ value
+    const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">10</span> }
+    const value boxedScores <span class="tok-op">←</span> scores ↦ value
     print boxedScores
-    <span class="tok-kw">const</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> backScores <span class="tok-op">←</span> boxedScores ↦ <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span>
+    const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> backScores <span class="tok-op">←</span> boxedScores ↦ map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span>
     print backScores.get(<span class="tok-st">"alpha"</span>) coalesce <span class="tok-nu">0</span>
 
 <span class="tok-co">    # 4. A tensor: it prints flat.</span>
-    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>] ↦ tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
-    <span class="tok-kw">const</span> value boxedGrid <span class="tok-op">←</span> grid ↦ value
+    const tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>] ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
+    const value boxedGrid <span class="tok-op">←</span> grid ↦ value
     print boxedGrid
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>{&quot;x&quot;: 3, &quot;y&quot;: 4}
 3
@@ -146,26 +146,26 @@
 <span class="tok-co"># defaultable fields zero-initialize; missing mandatory fields fail at runtime</span>
 <span class="tok-co"># (recoverable via a `⊥` default). Extra JSON keys are ignored.</span>
 
-<span class="tok-kw">class</span> Persona {
-    <span class="tok-kw">var</span> string name
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> aetas <span class="tok-kw">optional</span>
-    <span class="tok-kw">var</span> string regio <span class="tok-op">=</span> <span class="tok-st">"Roma"</span>
-    <span class="tok-kw">var</span> instant born
+class Persona {
+    var string name
+    var int aetas optional
+    var string regio <span class="tok-op">=</span> <span class="tok-st">"Roma"</span>
+    var instant born
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> value payload <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Marcus"</span>, <span class="tok-st">"born"</span><span class="tok-op">:</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>, <span class="tok-st">"extra"</span><span class="tok-op">:</span> <span class="tok-st">"ignored"</span> } ↦ value
-    <span class="tok-kw">const</span> Persona good <span class="tok-op">←</span> payload ↦ Persona
-    <span class="tok-kw">assert</span> good.nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">assert</span> good.aetas <span class="tok-op">≡</span> null
-    <span class="tok-kw">assert</span> good.regio <span class="tok-op">≡</span> <span class="tok-st">"Roma"</span>
-    <span class="tok-kw">const</span> value stale <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Livia"</span> } ↦ value
-    <span class="tok-kw">const</span> Persona recovered <span class="tok-op">←</span> stale ↦ Persona ⊥ good
-    <span class="tok-kw">assert</span> recovered.nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">const</span> value boxed <span class="tok-op">←</span> recovered ↦ value
-    <span class="tok-kw">const</span> Persona roundtrip <span class="tok-op">←</span> boxed ↦ Persona
-    <span class="tok-kw">assert</span> roundtrip.nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">assert</span> roundtrip.regio <span class="tok-op">≡</span> <span class="tok-st">"Roma"</span>
+main {
+    const value payload <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Marcus"</span>, <span class="tok-st">"born"</span><span class="tok-op">:</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>, <span class="tok-st">"extra"</span><span class="tok-op">:</span> <span class="tok-st">"ignored"</span> } ↦ value
+    const Persona good <span class="tok-op">←</span> payload ↦ Persona
+    assert good.nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
+    assert good.aetas <span class="tok-op">≡</span> null
+    assert good.regio <span class="tok-op">≡</span> <span class="tok-st">"Roma"</span>
+    const value stale <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Livia"</span> } ↦ value
+    const Persona recovered <span class="tok-op">←</span> stale ↦ Persona ⊥ good
+    assert recovered.nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
+    const value boxed <span class="tok-op">←</span> recovered ↦ value
+    const Persona roundtrip <span class="tok-op">←</span> boxed ↦ Persona
+    assert roundtrip.nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
+    assert roundtrip.regio <span class="tok-op">≡</span> <span class="tok-st">"Roma"</span>
     print roundtrip.nomen
     print roundtrip.regio
     print roundtrip.born ↦ string
@@ -196,33 +196,33 @@ Roma
 <span class="tok-co"># provenance stays on `value ↦ instant` (see conversion/instans.fab). `⊥`</span>
 <span class="tok-co"># recovers on variant mismatch.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> value asInt <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> asInt ↦ <span class="tok-kw">int</span>
-    <span class="tok-kw">assert</span> count <span class="tok-op">≡</span> <span class="tok-nu">42</span>
-    <span class="tok-kw">const</span> value asFloat <span class="tok-op">←</span> <span class="tok-nu">3.5</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">float</span> <span class="tok-kw">record</span> <span class="tok-op">←</span> asFloat ↦ <span class="tok-kw">float</span>
-    <span class="tok-kw">assert</span> <span class="tok-kw">record</span> <span class="tok-op">≡</span> <span class="tok-nu">3.5</span>
-    <span class="tok-kw">const</span> value intForFloat <span class="tok-op">←</span> <span class="tok-nu">7</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">float</span> widened <span class="tok-op">←</span> intForFloat ↦ <span class="tok-kw">float</span>
-    <span class="tok-kw">assert</span> widened <span class="tok-op">≡</span> <span class="tok-nu">7.0</span>
-    <span class="tok-kw">const</span> value asBool <span class="tok-op">←</span> <span class="tok-kw">true</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> flag <span class="tok-op">←</span> asBool ↦ <span class="tok-kw">bool</span>
-    <span class="tok-kw">assert</span> flag <span class="tok-op">≡</span> <span class="tok-kw">true</span>
-    <span class="tok-kw">const</span> value asText <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
-    <span class="tok-kw">const</span> string greeting <span class="tok-op">←</span> asText ↦ string
-    <span class="tok-kw">assert</span> greeting <span class="tok-op">≡</span> <span class="tok-st">"salve"</span>
-    <span class="tok-kw">const</span> value asWire <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
-    <span class="tok-kw">const</span> string wire <span class="tok-op">←</span> asWire ↦ string
-    <span class="tok-kw">assert</span> wire <span class="tok-op">≡</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
-    <span class="tok-kw">const</span> value asAscii <span class="tok-op">←</span> <span class="tok-st">'yes'</span>
-    <span class="tok-kw">const</span> ascii token <span class="tok-op">←</span> asAscii ↦ ascii
-    <span class="tok-kw">assert</span> token <span class="tok-op">≡</span> <span class="tok-st">'yes'</span>
-    <span class="tok-kw">const</span> value bad <span class="tok-op">←</span> <span class="tok-st">"not-a-number"</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> recovered <span class="tok-op">←</span> bad ↦ <span class="tok-kw">int</span> ⊥ <span class="tok-nu">0</span>
-    <span class="tok-kw">assert</span> recovered <span class="tok-op">≡</span> <span class="tok-nu">0</span>
+main {
+    const value asInt <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    const int count <span class="tok-op">←</span> asInt ↦ int
+    assert count <span class="tok-op">≡</span> <span class="tok-nu">42</span>
+    const value asFloat <span class="tok-op">←</span> <span class="tok-nu">3.5</span>
+    const float record <span class="tok-op">←</span> asFloat ↦ float
+    assert record <span class="tok-op">≡</span> <span class="tok-nu">3.5</span>
+    const value intForFloat <span class="tok-op">←</span> <span class="tok-nu">7</span>
+    const float widened <span class="tok-op">←</span> intForFloat ↦ float
+    assert widened <span class="tok-op">≡</span> <span class="tok-nu">7.0</span>
+    const value asBool <span class="tok-op">←</span> true
+    const bool flag <span class="tok-op">←</span> asBool ↦ bool
+    assert flag <span class="tok-op">≡</span> true
+    const value asText <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
+    const string greeting <span class="tok-op">←</span> asText ↦ string
+    assert greeting <span class="tok-op">≡</span> <span class="tok-st">"salve"</span>
+    const value asWire <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
+    const string wire <span class="tok-op">←</span> asWire ↦ string
+    assert wire <span class="tok-op">≡</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
+    const value asAscii <span class="tok-op">←</span> <span class="tok-st">'yes'</span>
+    const ascii token <span class="tok-op">←</span> asAscii ↦ ascii
+    assert token <span class="tok-op">≡</span> <span class="tok-st">'yes'</span>
+    const value bad <span class="tok-op">←</span> <span class="tok-st">"not-a-number"</span>
+    const int recovered <span class="tok-op">←</span> bad ↦ int ⊥ <span class="tok-nu">0</span>
+    assert recovered <span class="tok-op">≡</span> <span class="tok-nu">0</span>
     print count
-    print <span class="tok-kw">record</span>
+    print record
     print widened
     print flag
     print greeting
@@ -257,17 +257,17 @@ yes
 <span class="tok-co"># `list&lt;T&gt;` first; construction uses shipped `list ↦ tensor` (`structa`) and</span>
 <span class="tok-co"># flatten via `tensor ↦ list` (`.flatten()`), then `list ↦ value` boxing.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> value arr <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> arr ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
-    <span class="tok-kw">assert</span> xs.length() <span class="tok-op">≡</span> <span class="tok-nu">4</span>
-    <span class="tok-kw">const</span> tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> xs ↦ tensor<span class="tok-op">&lt;</span><span class="tok-kw">int</span>, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> flat <span class="tok-op">←</span> grid ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
-    <span class="tok-kw">assert</span> flat.length() <span class="tok-op">≡</span> <span class="tok-nu">4</span>
-    <span class="tok-kw">const</span> value roundtrip <span class="tok-op">←</span> flat ↦ value
+main {
+    const value arr <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> arr ↦ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
+    assert xs.length() <span class="tok-op">≡</span> <span class="tok-nu">4</span>
+    const tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> xs ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> flat <span class="tok-op">←</span> grid ↦ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
+    assert flat.length() <span class="tok-op">≡</span> <span class="tok-nu">4</span>
+    const value roundtrip <span class="tok-op">←</span> flat ↦ value
     print roundtrip
-    <span class="tok-kw">const</span> value obj <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"beta"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> } ↦ value
-    <span class="tok-kw">const</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> obj ↦ <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span>
+    const value obj <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"beta"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> } ↦ value
+    const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> obj ↦ map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span>
     print scores.get(<span class="tok-st">"alpha"</span>) coalesce <span class="tok-nu">0</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[1, 2, 3, 4]
 10
@@ -306,16 +306,16 @@ yes
 <span class="tok-co"># BACKEND: Go emitter does not lower object `spread` into maps (whitelist:</span>
 <span class="tok-co"># destructura/literal.fab).</span>
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # --- Empty and simple records ---</span>
 
-    <span class="tok-kw">const</span> json <span class="tok-kw">void</span> <span class="tok-op">←</span> {}
-    print <span class="tok-kw">void</span>
-    <span class="tok-kw">const</span> json punctum <span class="tok-op">←</span> { <span class="tok-st">"x"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"y"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> }
+    const json void <span class="tok-op">←</span> {}
+    print void
+    const json punctum <span class="tok-op">←</span> { <span class="tok-st">"x"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"y"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> }
     print punctum
 
 <span class="tok-co">    # Text keys and constant values</span>
-    <span class="tok-kw">const</span> json forma <span class="tok-op">←</span> { <span class="tok-st">"clavis"</span><span class="tok-op">:</span> <span class="tok-nu">42</span> }
+    const json forma <span class="tok-op">←</span> { <span class="tok-st">"clavis"</span><span class="tok-op">:</span> <span class="tok-nu">42</span> }
     print forma
 
 <span class="tok-co">    # NOTE: JSON value literals accept only constant values (strings, numbers,</span>
@@ -324,7 +324,7 @@ yes
 
 <span class="tok-co">    # --- Nested value ---</span>
 
-    <span class="tok-kw">const</span> json nidum <span class="tok-op">←</span> { <span class="tok-st">"extra"</span><span class="tok-op">:</span> { <span class="tok-st">"medium"</span><span class="tok-op">:</span> <span class="tok-nu">1</span> } }
+    const json nidum <span class="tok-op">←</span> { <span class="tok-st">"extra"</span><span class="tok-op">:</span> { <span class="tok-st">"medium"</span><span class="tok-op">:</span> <span class="tok-nu">1</span> } }
     print nidum
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>{}
 {&quot;x&quot;: 10, &quot;y&quot;: 20}

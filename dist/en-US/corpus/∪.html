@@ -30,32 +30,32 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># BACKEND: Inline-union `match` enum lowering gap on Rust (whitelist: unio/unio.fab).</span>
 
-<span class="tok-kw">type</span> Valor <span class="tok-op">=</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> string
+type Valor <span class="tok-op">=</span> int <span class="tok-op">∪</span> string
 
-<span class="tok-kw">union</span> Forma {
-    Numerus { <span class="tok-kw">int</span> v },
+union Forma {
+    Numerus { int v },
     Textus { string v }
 }
 
-<span class="tok-kw">fn</span> <span class="tok-kw">describe</span>(Forma f) <span class="tok-op">→</span> string {
-    <span class="tok-kw">match</span> f {
-        <span class="tok-kw">case</span> Numerus <span class="tok-kw">const</span> v { <span class="tok-kw">return</span> <span class="tok-st">"n: §"</span>(v) }
-        <span class="tok-kw">case</span> Textus <span class="tok-kw">const</span> v { <span class="tok-kw">return</span> <span class="tok-st">"t: §"</span>(v) }
+fn describe(Forma f) <span class="tok-op">→</span> string {
+    match f {
+        case Numerus const v { return <span class="tok-st">"n: §"</span>(v) }
+        case Textus const v { return <span class="tok-st">"t: §"</span>(v) }
     }
 }
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # --- Ad-hoc inline union values ---</span>
 
-    <span class="tok-kw">const</span> Valor a <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    <span class="tok-kw">const</span> Valor b <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
+    const Valor a <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    const Valor b <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
     print a
     print b
 
 <span class="tok-co">    # --- Tagged union variants via variant ---</span>
 
-    print <span class="tok-kw">describe</span>(<span class="tok-kw">variant</span> Numerus { v <span class="tok-op">=</span> <span class="tok-nu">7</span> } ∷ Forma)
-    print <span class="tok-kw">describe</span>(<span class="tok-kw">variant</span> Textus { v <span class="tok-op">=</span> <span class="tok-st">"faber"</span> } ∷ Forma)
+    print describe(variant Numerus { v <span class="tok-op">=</span> <span class="tok-nu">7</span> } ∷ Forma)
+    print describe(variant Textus { v <span class="tok-op">=</span> <span class="tok-st">"faber"</span> } ∷ Forma)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>42
 salve
 n: 7

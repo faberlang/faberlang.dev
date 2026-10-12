@@ -28,14 +28,14 @@ package target many backends.</p><pre class="faber-code"><code class="lang-toml"
 <span class="tok-an">target</span> = <span class="tok-st">"rust"</span>
 
 <span class="tok-kw">[locale]</span>
-<span class="tok-an">locale</span> = <span class="tok-st">"en"</span></code></pre><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> duplica(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
+<span class="tok-an">locale</span> = <span class="tok-st">"en"</span></code></pre><pre class="faber-code"><code class="lang-faber">fn duplica(int n) <span class="tok-op">→</span> int {
+    return n <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }
 
-<span class="tok-kw">main</span> {
+main {
     print duplica(<span class="tok-nu">21</span>)
 }</code></pre><pre class="faber-code"><code class="lang-text">$ faber run
 42</code></pre><p>A mutable binding at module scope is rejected, because there is no run time for
-it to belong to:</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-kw">var</span> <span class="tok-kw">int</span> counter <span class="tok-op">←</span> <span class="tok-nu">0</span></code></pre><p>See <a href="/en-US/toolchain/packages.html">Packages with Cista</a> for resolution and the
+it to belong to:</p><pre class="faber-code"><code class="lang-faber outcome=rejects">var int counter <span class="tok-op">←</span> <span class="tok-nu">0</span></code></pre><p>See <a href="/en-US/toolchain/packages.html">Packages with Cista</a> for resolution and the
 <a href="/en-US/toolchain/cli.html">command line</a> for <code>faber check</code>, <code>faber run</code> and
 <code>faber test</code>.</p></div></main><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

@@ -28,34 +28,34 @@
 
 <span class="tok-co"># --- Primitive type aliases ---</span>
 
-<span class="tok-kw">type</span> Signum <span class="tok-op">=</span> <span class="tok-kw">int</span>
-<span class="tok-kw">type</span> Cognomen <span class="tok-op">=</span> string
-<span class="tok-kw">type</span> Viget <span class="tok-op">=</span> <span class="tok-kw">bool</span>
+type Signum <span class="tok-op">=</span> int
+type Cognomen <span class="tok-op">=</span> string
+type Viget <span class="tok-op">=</span> bool
 
 <span class="tok-co"># --- Generic type aliases ---</span>
 
-<span class="tok-kw">type</span> Nomina <span class="tok-op">=</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>
-<span class="tok-kw">type</span> Puncta <span class="tok-op">=</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
-<span class="tok-kw">type</span> Index <span class="tok-op">=</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span>string, <span class="tok-kw">int</span><span class="tok-op">&gt;</span>
+type Nomina <span class="tok-op">=</span> list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>
+type Puncta <span class="tok-op">=</span> list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
+type Index <span class="tok-op">=</span> map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span>
 
 <span class="tok-co"># Nullable type alias (canonical T ∪ none form)</span>
-<span class="tok-kw">type</span> NomenOptivum <span class="tok-op">=</span> string <span class="tok-op">∪</span> <span class="tok-kw">none</span>
+type NomenOptivum <span class="tok-op">=</span> string <span class="tok-op">∪</span> none
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # Using primitive aliases</span>
-    <span class="tok-kw">const</span> Signum signum <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    <span class="tok-kw">const</span> Cognomen cognomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    <span class="tok-kw">const</span> Viget viget <span class="tok-op">←</span> <span class="tok-kw">true</span>
+    const Signum signum <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    const Cognomen cognomen <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    const Viget viget <span class="tok-op">←</span> true
 
     print signum
     print cognomen
     print viget
 
 <span class="tok-co">    # Using generic aliases</span>
-    <span class="tok-kw">const</span> Nomina sodales <span class="tok-op">←</span> [<span class="tok-st">"Gaius"</span>, <span class="tok-st">"Lucius"</span>, <span class="tok-st">"Titus"</span>]
+    const Nomina sodales <span class="tok-op">←</span> [<span class="tok-st">"Gaius"</span>, <span class="tok-st">"Lucius"</span>, <span class="tok-st">"Titus"</span>]
     print sodales
 
-    <span class="tok-kw">const</span> Puncta puncta <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">95</span>, <span class="tok-nu">87</span>]
+    const Puncta puncta <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">95</span>, <span class="tok-nu">87</span>]
     print puncta
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>42
 Marcus

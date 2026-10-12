@@ -145,29 +145,29 @@ generically.</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span
     <span class="tok-kw">स्थिर</span> <span class="tok-kw">सूची</span><span class="tok-op">&lt;</span><span class="tok-kw">पाठ</span><span class="tok-op">&gt;</span> nomina <span class="tok-op">←</span> [<span class="tok-st">"Marcus"</span>, <span class="tok-st">"Julia"</span>]
     <span class="tok-kw">स्थिर</span> <span class="tok-kw">तालिका</span><span class="tok-op">&lt;</span><span class="tok-kw">पाठ</span>, <span class="tok-kw">संख्या</span><span class="tok-op">&gt;</span> aetates <span class="tok-op">←</span> { <span class="tok-st">"Marcus"</span><span class="tok-op">:</span> <span class="tok-nu">30</span> }
     <span class="tok-kw">दिखाओ</span> nomina, aetates
-}</code></pre></div></div><h2 id="genus">Records<a class="anchor" href="#genus">#</a></h2><p><code>class</code> declares a record type with type-first fields.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Persona {
-    <span class="tok-kw">const</span> string nomen
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> aetas
+}</code></pre></div></div><h2 id="genus">Records<a class="anchor" href="#genus">#</a></h2><p><code>class</code> declares a record type with type-first fields.</p><pre class="faber-code"><code class="lang-faber locale-tabs">class Persona {
+    const string nomen
+    const int aetas
 }
 
-<span class="tok-kw">fn</span> <span class="tok-kw">description</span>(Persona p) <span class="tok-op">→</span> string {
-    <span class="tok-kw">return</span> p.nomen
+fn description(Persona p) <span class="tok-op">→</span> string {
+    return p.nomen
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
-    print <span class="tok-kw">description</span>(p)
-}</code></pre><h2 id="methods">Functions on a record<a class="anchor" href="#methods">#</a></h2><p>A <code>class</code> can carry functions alongside its fields.</p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">class</span> Punctum {
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> x
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> y
+main {
+    const _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    print description(p)
+}</code></pre><h2 id="methods">Functions on a record<a class="anchor" href="#methods">#</a></h2><p>A <code>class</code> can carry functions alongside its fields.</p><pre class="faber-code"><code class="lang-faber locale-tabs">class Punctum {
+    const int x
+    const int y
 
-    <span class="tok-kw">fn</span> sum() <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-        <span class="tok-kw">return</span> <span class="tok-kw">self</span>.x <span class="tok-op">+</span> <span class="tok-kw">self</span>.y
+    fn sum() <span class="tok-op">→</span> int {
+        return self.x <span class="tok-op">+</span> self.y
     }
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
+main {
+    const _ p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }
     print p.summa()
 }</code></pre><p><code>self</code> — &quot;I&quot; — is the receiver, what other languages spell <code>this</code> or <code>self</code>.</p><p>Related: <a href="/en-US/cheatsheet/types.html">Types and widths</a> ·
 <a href="/en-US/language/functions.html">Functions and flow</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#functions">Generic functions</a></li><li class="toc-2"><a href="#union-return">Generic with a union return</a></li><li class="toc-2"><a href="#containers">Generic containers</a></li><li class="toc-2"><a href="#genus">Records</a></li><li class="toc-2"><a href="#methods">Functions on a record</a></li></ul></div></nav><footer><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

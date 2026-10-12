@@ -112,189 +112,189 @@
     <button class="fdt-tab" role="tab" id="fl-loc-t-ar" data-panel="fl-loc-p-ar" data-name="العربية" aria-controls="fl-loc-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button>
     <button class="fdt-tab" role="tab" id="fl-loc-t-hi" data-panel="fl-loc-p-hi" data-name="हिन्दी" aria-controls="fl-loc-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button>
     </div>
-    <div class="fdt-panel active" id="fl-loc-p-en" role="tabpanel" aria-labelledby="fl-loc-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface — the base spelling for everyday source</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">class</span> Span {
-    <span class="tok-kw">const</span> f64 low
-    <span class="tok-kw">const</span> f64 high
+    <div class="fdt-panel active" id="fl-loc-p-en" role="tabpanel" aria-labelledby="fl-loc-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface — the base spelling for everyday source</span></div><pre><code class="lang-faber locale=en">class Span {
+    const f64 low
+    const f64 high
 
-    <span class="tok-kw">fn</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">bool</span> {
-        <span class="tok-kw">return</span> <span class="tok-kw">self</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">and</span> x <span class="tok-op">≤</span> <span class="tok-kw">self</span>.high
+    fn contains(f64 x) → bool {
+        return self.low ≤ x and x ≤ self.high
     }
 
-    <span class="tok-kw">fn</span> center() <span class="tok-op">→</span> f64 {
-        <span class="tok-kw">return</span> (<span class="tok-kw">self</span>.low <span class="tok-op">+</span> <span class="tok-kw">self</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    fn center() → f64 {
+        return (self.low + self.high) ÷ 2.0
     }
 }
 
-<span class="tok-kw">fn</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">bool</span> first, T a, T b) <span class="tok-op">→</span> T {
-    <span class="tok-kw">return</span> first ✓ a ✗ b
+fn choose&lt;T&gt;(bool first, T a, T b) → T {
+    return first ✓ a ✗ b
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> Span <span class="tok-kw">bytes</span> <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
-    <span class="tok-kw">print</span> <span class="tok-kw">bytes</span>.center()
-    <span class="tok-kw">print</span> choose(<span class="tok-kw">bytes</span>.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
-    <span class="tok-kw">print</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
+main {
+    const Span bytes ← Span { low = 0.0, high = 255.0 }
+    print bytes.center()
+    print choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
+    print -7 / 2
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-loc-p-la" role="tabpanel" aria-labelledby="fl-loc-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber — the classical surface the language is named for</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">genus</span> Span {
-    <span class="tok-kw">fixum</span> f64 low
-    <span class="tok-kw">fixum</span> f64 high
+    <div class="fdt-panel" id="fl-loc-p-la" role="tabpanel" aria-labelledby="fl-loc-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber — the classical surface the language is named for</span></div><pre><code class="lang-faber locale=la">genus Span {
+    fixum f64 low
+    fixum f64 high
 
-    <span class="tok-kw">functio</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">bivalens</span> {
-        <span class="tok-kw">redde</span> <span class="tok-kw">ego</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">et</span> x <span class="tok-op">≤</span> <span class="tok-kw">ego</span>.high
+    functio contains(f64 x) → bivalens {
+        redde ego.low ≤ x et x ≤ ego.high
     }
 
-    <span class="tok-kw">functio</span> center() <span class="tok-op">→</span> f64 {
-        <span class="tok-kw">redde</span> (<span class="tok-kw">ego</span>.low <span class="tok-op">+</span> <span class="tok-kw">ego</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    functio center() → f64 {
+        redde (ego.low + ego.high) ÷ 2.0
     }
 }
 
-<span class="tok-kw">functio</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">bivalens</span> first, T a, T b) <span class="tok-op">→</span> T {
-    <span class="tok-kw">redde</span> first ✓ a ✗ b
+functio choose&lt;T&gt;(bivalens first, T a, T b) → T {
+    redde first ✓ a ✗ b
 }
 
-<span class="tok-kw">incipit</span> {
-    <span class="tok-kw">fixum</span> Span bytes <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
-    <span class="tok-kw">nota</span> bytes.center()
-    <span class="tok-kw">nota</span> choose(bytes.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
-    <span class="tok-kw">nota</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
+incipit {
+    fixum Span bytes ← Span { low = 0.0, high = 255.0 }
+    nota bytes.center()
+    nota choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
+    nota -7 / 2
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-loc-p-th-TH" role="tabpanel" aria-labelledby="fl-loc-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai — spaceless script</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ชนิด</span> Span {
-    <span class="tok-kw">คงที่</span> f64 low
-    <span class="tok-kw">คงที่</span> f64 high
+    <div class="fdt-panel" id="fl-loc-p-th-TH" role="tabpanel" aria-labelledby="fl-loc-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai — spaceless script</span></div><pre class="th"><code class="lang-faber locale=th-TH">ชนิด Span {
+    คงที่ f64 low
+    คงที่ f64 high
 
-    <span class="tok-kw">ฟังก์ชัน</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">ตรรกะ</span> {
-        <span class="tok-kw">คืน</span> <span class="tok-kw">ตัวฉัน</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">และ</span> x <span class="tok-op">≤</span> <span class="tok-kw">ตัวฉัน</span>.high
+    ฟังก์ชัน contains(f64 x) → ตรรกะ {
+        คืน ตัวฉัน.low ≤ x และ x ≤ ตัวฉัน.high
     }
 
-    <span class="tok-kw">ฟังก์ชัน</span> center() <span class="tok-op">→</span> f64 {
-        <span class="tok-kw">คืน</span> (<span class="tok-kw">ตัวฉัน</span>.low <span class="tok-op">+</span> <span class="tok-kw">ตัวฉัน</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    ฟังก์ชัน center() → f64 {
+        คืน (ตัวฉัน.low + ตัวฉัน.high) ÷ 2.0
     }
 }
 
-<span class="tok-kw">ฟังก์ชัน</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">ตรรกะ</span> first, T a, T b) <span class="tok-op">→</span> T {
-    <span class="tok-kw">คืน</span> first ✓ a ✗ b
+ฟังก์ชัน choose&lt;T&gt;(ตรรกะ first, T a, T b) → T {
+    คืน first ✓ a ✗ b
 }
 
-<span class="tok-kw">เริ่ม</span> {
-    <span class="tok-kw">คงที่</span> Span bytes <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
-    <span class="tok-kw">บันทึก</span> bytes.center()
-    <span class="tok-kw">บันทึก</span> choose(bytes.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
-    <span class="tok-kw">บันทึก</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
+เริ่ม {
+    คงที่ Span bytes ← Span { low = 0.0, high = 255.0 }
+    บันทึก bytes.center()
+    บันทึก choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
+    บันทึก -7 / 2
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-loc-p-zh-Hans" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">类</span> Span {
-    <span class="tok-kw">常量</span> f64 low
-    <span class="tok-kw">常量</span> f64 high
+    <div class="fdt-panel" id="fl-loc-p-zh-Hans" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans">类 Span {
+    常量 f64 low
+    常量 f64 high
 
-    <span class="tok-kw">函数</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">布尔</span> {
-        <span class="tok-kw">返回</span> <span class="tok-kw">自身</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">且</span> x <span class="tok-op">≤</span> <span class="tok-kw">自身</span>.high
+    函数 contains(f64 x) → 布尔 {
+        返回 自身.low ≤ x 且 x ≤ 自身.high
     }
 
-    <span class="tok-kw">函数</span> center() <span class="tok-op">→</span> f64 {
-        <span class="tok-kw">返回</span> (<span class="tok-kw">自身</span>.low <span class="tok-op">+</span> <span class="tok-kw">自身</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    函数 center() → f64 {
+        返回 (自身.low + 自身.high) ÷ 2.0
     }
 }
 
-<span class="tok-kw">函数</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">布尔</span> first, T a, T b) <span class="tok-op">→</span> T {
-    <span class="tok-kw">返回</span> first ✓ a ✗ b
+函数 choose&lt;T&gt;(布尔 first, T a, T b) → T {
+    返回 first ✓ a ✗ b
 }
 
-<span class="tok-kw">入口</span> {
-    <span class="tok-kw">常量</span> Span bytes <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
-    <span class="tok-kw">显示</span> bytes.center()
-    <span class="tok-kw">显示</span> choose(bytes.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
-    <span class="tok-kw">显示</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
+入口 {
+    常量 Span bytes ← Span { low = 0.0, high = 255.0 }
+    显示 bytes.center()
+    显示 choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
+    显示 -7 / 2
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-loc-p-zh-Hant" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">類型</span> Span {
-    <span class="tok-kw">定值</span> f64 low
-    <span class="tok-kw">定值</span> f64 high
+    <div class="fdt-panel" id="fl-loc-p-zh-Hant" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant">類型 Span {
+    定值 f64 low
+    定值 f64 high
 
-    <span class="tok-kw">函式</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">布林</span> {
-        <span class="tok-kw">傳回</span> <span class="tok-kw">自身</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">且</span> x <span class="tok-op">≤</span> <span class="tok-kw">自身</span>.high
+    函式 contains(f64 x) → 布林 {
+        傳回 自身.low ≤ x 且 x ≤ 自身.high
     }
 
-    <span class="tok-kw">函式</span> center() <span class="tok-op">→</span> f64 {
-        <span class="tok-kw">傳回</span> (<span class="tok-kw">自身</span>.low <span class="tok-op">+</span> <span class="tok-kw">自身</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    函式 center() → f64 {
+        傳回 (自身.low + 自身.high) ÷ 2.0
     }
 }
 
-<span class="tok-kw">函式</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">布林</span> first, T a, T b) <span class="tok-op">→</span> T {
-    <span class="tok-kw">傳回</span> first ✓ a ✗ b
+函式 choose&lt;T&gt;(布林 first, T a, T b) → T {
+    傳回 first ✓ a ✗ b
 }
 
-<span class="tok-kw">入口</span> {
-    <span class="tok-kw">定值</span> Span bytes <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
-    <span class="tok-kw">註記</span> bytes.center()
-    <span class="tok-kw">註記</span> choose(bytes.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
-    <span class="tok-kw">註記</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
+入口 {
+    定值 Span bytes ← Span { low = 0.0, high = 255.0 }
+    註記 bytes.center()
+    註記 choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
+    註記 -7 / 2
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-loc-p-vi" role="tabpanel" aria-labelledby="fl-loc-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">kiểu</span> Span {
-    <span class="tok-kw">hằng</span> f64 low
-    <span class="tok-kw">hằng</span> f64 high
+    <div class="fdt-panel" id="fl-loc-p-vi" role="tabpanel" aria-labelledby="fl-loc-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi">kiểu Span {
+    hằng f64 low
+    hằng f64 high
 
-    <span class="tok-kw">hàm</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">logic</span> {
-        <span class="tok-kw">trả</span> <span class="tok-kw">tôi</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">và</span> x <span class="tok-op">≤</span> <span class="tok-kw">tôi</span>.high
+    hàm contains(f64 x) → logic {
+        trả tôi.low ≤ x và x ≤ tôi.high
     }
 
-    <span class="tok-kw">hàm</span> center() <span class="tok-op">→</span> f64 {
-        <span class="tok-kw">trả</span> (<span class="tok-kw">tôi</span>.low <span class="tok-op">+</span> <span class="tok-kw">tôi</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    hàm center() → f64 {
+        trả (tôi.low + tôi.high) ÷ 2.0
     }
 }
 
-<span class="tok-kw">hàm</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">logic</span> first, T a, T b) <span class="tok-op">→</span> T {
-    <span class="tok-kw">trả</span> first ✓ a ✗ b
+hàm choose&lt;T&gt;(logic first, T a, T b) → T {
+    trả first ✓ a ✗ b
 }
 
-<span class="tok-kw">bắt_đầu</span> {
-    <span class="tok-kw">hằng</span> Span bytes <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
-    <span class="tok-kw">ghi_chú</span> bytes.center()
-    <span class="tok-kw">ghi_chú</span> choose(bytes.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
-    <span class="tok-kw">ghi_chú</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
+bắt_đầu {
+    hằng Span bytes ← Span { low = 0.0, high = 255.0 }
+    ghi_chú bytes.center()
+    ghi_chú choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
+    ghi_chú -7 / 2
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-loc-p-ar" role="tabpanel" aria-labelledby="fl-loc-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic — right-to-left, bidi isolated</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">صنف</span> Span {
-    <span class="tok-kw">ثابت</span> f64 low
-    <span class="tok-kw">ثابت</span> f64 high
+    <div class="fdt-panel" id="fl-loc-p-ar" role="tabpanel" aria-labelledby="fl-loc-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic — right-to-left, bidi isolated</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar">صنف Span {
+    ثابت f64 low
+    ثابت f64 high
 
-    <span class="tok-kw">دالة</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">منطقي</span> {
-        <span class="tok-kw">أعد</span> <span class="tok-kw">ذات</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">و</span> x <span class="tok-op">≤</span> <span class="tok-kw">ذات</span>.high
+    دالة contains(f64 x) → منطقي {
+        أعد ذات.low ≤ x و x ≤ ذات.high
     }
 
-    <span class="tok-kw">دالة</span> center() <span class="tok-op">→</span> f64 {
-        <span class="tok-kw">أعد</span> (<span class="tok-kw">ذات</span>.low <span class="tok-op">+</span> <span class="tok-kw">ذات</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    دالة center() → f64 {
+        أعد (ذات.low + ذات.high) ÷ 2.0
     }
 }
 
-<span class="tok-kw">دالة</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">منطقي</span> first, T a, T b) <span class="tok-op">→</span> T {
-    <span class="tok-kw">أعد</span> first ✓ a ✗ b
+دالة choose&lt;T&gt;(منطقي first, T a, T b) → T {
+    أعد first ✓ a ✗ b
 }
 
-<span class="tok-kw">بداية</span> {
-    <span class="tok-kw">ثابت</span> Span bytes <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
-    <span class="tok-kw">اعرض</span> bytes.center()
-    <span class="tok-kw">اعرض</span> choose(bytes.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
-    <span class="tok-kw">اعرض</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
+بداية {
+    ثابت Span bytes ← Span { low = 0.0, high = 255.0 }
+    اعرض bytes.center()
+    اعرض choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
+    اعرض -7 / 2
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-loc-p-hi" role="tabpanel" aria-labelledby="fl-loc-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi — Devanagari</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">वर्ग</span> Span {
-    <span class="tok-kw">स्थिर</span> f64 low
-    <span class="tok-kw">स्थिर</span> f64 high
+    <div class="fdt-panel" id="fl-loc-p-hi" role="tabpanel" aria-labelledby="fl-loc-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi — Devanagari</span></div><pre class="hi"><code class="lang-faber locale=hi">वर्ग Span {
+    स्थिर f64 low
+    स्थिर f64 high
 
-    <span class="tok-kw">फलन</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">तार्किक</span> {
-        <span class="tok-kw">लौटाओ</span> <span class="tok-kw">मैं</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">और</span> x <span class="tok-op">≤</span> <span class="tok-kw">मैं</span>.high
+    फलन contains(f64 x) → तार्किक {
+        लौटाओ मैं.low ≤ x और x ≤ मैं.high
     }
 
-    <span class="tok-kw">फलन</span> center() <span class="tok-op">→</span> f64 {
-        <span class="tok-kw">लौटाओ</span> (<span class="tok-kw">मैं</span>.low <span class="tok-op">+</span> <span class="tok-kw">मैं</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    फलन center() → f64 {
+        लौटाओ (मैं.low + मैं.high) ÷ 2.0
     }
 }
 
-<span class="tok-kw">फलन</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">तार्किक</span> first, T a, T b) <span class="tok-op">→</span> T {
-    <span class="tok-kw">लौटाओ</span> first ✓ a ✗ b
+फलन choose&lt;T&gt;(तार्किक first, T a, T b) → T {
+    लौटाओ first ✓ a ✗ b
 }
 
-<span class="tok-kw">आरंभ</span> {
-    <span class="tok-kw">स्थिर</span> Span bytes <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
-    <span class="tok-kw">दिखाओ</span> bytes.center()
-    <span class="tok-kw">दिखाओ</span> choose(bytes.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
-    <span class="tok-kw">दिखाओ</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
+आरंभ {
+    स्थिर Span bytes ← Span { low = 0.0, high = 255.0 }
+    दिखाओ bytes.center()
+    दिखाओ choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
+    दिखाओ -7 / 2
 }</code></pre></div>
   </div>
     <div class="term fl-out brackets" role="group" aria-label="Output">
@@ -356,8 +356,8 @@ outside
         <p>
           267 grammar productions, generated and checked as the parser’s
           authority. One construct has one spelling. Arrows mean runtime effects
-          (<code class="glyph">←</code> assign, <code class="glyph">→</code> return, <code class="glyph">⇥</code> error channel);
-          <code class="glyph">=</code> and <code class="glyph">:</code> only state compile-time facts.
+          (<code>←</code> assign, <code>→</code> return, <code>⇥</code> error channel);
+          <code>=</code> and <code>:</code> only state compile-time facts.
           <a href="/en-US/reference/grammar.html">Read the grammar</a>
         </p>
       </li>
@@ -367,17 +367,17 @@ outside
           Declarations are type-first: <code>f64 low</code>, never <code>low: f64</code>.
           Nullability is written <code>T ∪ none</code>. Generics are written out
           (<code>fn choose&lt;T&gt;</code>), and crossing between integer and float is
-          an explicit <code class="glyph">↦</code>, not an accident.
+          an explicit <code>↦</code>, not an accident.
           <a href="/en-US/language/types.html">Types and values</a>
         </p>
       </li>
       <li>
         <h3>Math-oriented operators</h3>
         <p>
-          Integer <code class="glyph">/</code> floors, so <code>-7 / 2</code> is <code>-4</code>; true
-          division is <code class="glyph">÷</code>. Comparisons read as math (<code class="glyph">≤ ≥ ≠ ≈</code>),
-          and tensor work has its own operators (<code class="glyph">·</code> matmul,
-          <code class="glyph">⊙</code> elementwise). When math and hardware convention disagree,
+          Integer <code>/</code> floors, so <code>-7 / 2</code> is <code>-4</code>; true
+          division is <code>÷</code>. Comparisons read as math (<code>≤ ≥ ≠ ≈</code>),
+          and tensor work has its own operators (<code>·</code> matmul,
+          <code>⊙</code> elementwise). When math and hardware convention disagree,
           Faber follows the math.
           <a href="/en-US/language/glyphs.html">Glyphs and Latin</a>
         </p>
@@ -409,17 +409,17 @@ outside
     </div>
     <div class="term fl-source brackets">
       <div class="term-bar">span.fab · source</div>
-<pre class="fl-src"><code class="lang-faber locale=en">@ <span class="tok-kw">public</span>
-<span class="tok-kw">class</span> Span {
-    <span class="tok-kw">const</span> f64 low
-    <span class="tok-kw">const</span> f64 high
+<pre class="fl-src"><code class="lang-faber locale=en">@ public
+class Span {
+    const f64 low
+    const f64 high
 
-    <span class="tok-kw">fn</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">bool</span> {
-        <span class="tok-kw">return</span> <span class="tok-kw">self</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">and</span> x <span class="tok-op">≤</span> <span class="tok-kw">self</span>.high
+    fn contains(f64 x) → bool {
+        return self.low ≤ x and x ≤ self.high
     }
 
-    <span class="tok-kw">fn</span> center() <span class="tok-op">→</span> f64 {
-        <span class="tok-kw">return</span> (<span class="tok-kw">self</span>.low <span class="tok-op">+</span> <span class="tok-kw">self</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    fn center() → f64 {
+        return (self.low + self.high) ÷ 2.0
     }
 }</code></pre>
     </div>
@@ -436,58 +436,58 @@ outside
     <button class="fdt-tab" role="tab" id="fl-tgt-t-go" data-panel="fl-tgt-p-go" data-name="Go" aria-controls="fl-tgt-p-go" title="go" aria-selected="false" tabindex="-1">Go</button>
     <button class="fdt-tab" role="tab" id="fl-tgt-t-swift" data-panel="fl-tgt-p-swift" data-name="Swift" aria-controls="fl-tgt-p-swift" title="swift" aria-selected="false" tabindex="-1">Swift</button>
     </div>
-    <div class="fdt-panel active" id="fl-tgt-p-rust" role="tabpanel" aria-labelledby="fl-tgt-t-rust"><div class="fdt-panel-label"><code>radix emit --target rust span.fab</code> <span class="fdt-note">— builds as a Cargo package with faber build; uses the small faber runtime crate</span></div><pre><code class="lang-rust"><span class="tok-co">// … 9 lines of generated header and runtime shim elided …</span>
+    <div class="fdt-panel active" id="fl-tgt-p-rust" role="tabpanel" aria-labelledby="fl-tgt-t-rust"><div class="fdt-panel-label"><code>radix emit --target rust span.fab</code> <span class="fdt-note">— builds as a Cargo package with faber build; uses the small faber runtime crate</span></div><pre><code class="lang-rust">// … 9 lines of generated header and runtime shim elided …
 
-<span class="tok-an">#[derive(Clone, PartialEq)]</span>
-<span class="tok-kw">pub</span> <span class="tok-kw">struct</span> Span {
-    <span class="tok-kw">pub</span> low: <span class="tok-ty">f64</span>,
-    <span class="tok-kw">pub</span> high: <span class="tok-ty">f64</span>,
+#[derive(Clone, PartialEq)]
+pub struct Span {
+    pub low: f64,
+    pub high: f64,
 }
 
-<span class="tok-kw">impl</span> ::core::fmt::Debug <span class="tok-kw">for</span> Span {
-    <span class="tok-kw">fn</span> fmt(&amp;<span class="tok-kw">self</span>, f: &amp;<span class="tok-kw">mut</span> ::core::fmt::Formatter&lt;'_&gt;) -&gt; ::core::fmt::Result {
-        write!(f, <span class="tok-st">"Span {{ low = {}, high = {} }}"</span>, faber::display::fractus(*&amp;<span class="tok-kw">self</span>.low), faber::display::fractus(*&amp;<span class="tok-kw">self</span>.high))
+impl ::core::fmt::Debug for Span {
+    fn fmt(&amp;self, f: &amp;mut ::core::fmt::Formatter&lt;&#x27;_&gt;) -&gt; ::core::fmt::Result {
+        write!(f, &quot;Span {{ low = {}, high = {} }}&quot;, faber::display::fractus(*&amp;self.low), faber::display::fractus(*&amp;self.high))
     }
 }
 
-<span class="tok-kw">impl</span> Span {
-    <span class="tok-kw">pub</span> <span class="tok-kw">fn</span> contains(&amp;<span class="tok-kw">self</span>, x: <span class="tok-ty">f64</span>) -&gt; <span class="tok-ty">bool</span> {
-        <span class="tok-kw">self</span>.low &lt;= x &amp;&amp; x &lt;= <span class="tok-kw">self</span>.high
+impl Span {
+    pub fn contains(&amp;self, x: f64) -&gt; bool {
+        self.low &lt;= x &amp;&amp; x &lt;= self.high
     }
-    <span class="tok-kw">pub</span> <span class="tok-kw">fn</span> center(&amp;<span class="tok-kw">self</span>) -&gt; <span class="tok-ty">f64</span> {
-        (<span class="tok-kw">self</span>.low + <span class="tok-kw">self</span>.high) / <span class="tok-nu">2.0</span>
-    }
-}</code></pre></div>
-    <div class="fdt-panel" id="fl-tgt-p-ts" role="tabpanel" aria-labelledby="fl-tgt-t-ts"><div class="fdt-panel-label"><code>radix emit --target ts span.fab</code> <span class="fdt-note">— a source file you add to your project; imports @faber/runtime</span></div><pre><code class="lang-ts"><span class="tok-co">// … 5 lines of generated header and runtime shim elided …</span>
-
-<span class="tok-kw">class</span> Span {
-    low!: <span class="tok-ty">number</span>;
-    high!: <span class="tok-ty">number</span>;
-    toString(): <span class="tok-ty">string</span> {
-        <span class="tok-kw">return</span> <span class="tok-st">"Span { low = "</span> + display.value(<span class="tok-kw">this</span>.low, <span class="tok-st">"fractus"</span>, { true_: <span class="tok-st">"true"</span>, false_: <span class="tok-st">"false"</span>, none: <span class="tok-st">"none"</span> }) + <span class="tok-st">", high = "</span> + display.value(<span class="tok-kw">this</span>.high, <span class="tok-st">"fractus"</span>, { true_: <span class="tok-st">"true"</span>, false_: <span class="tok-st">"false"</span>, none: <span class="tok-st">"none"</span> }) + <span class="tok-st">" }"</span>;
-    }
-    contains(x: <span class="tok-ty">number</span>): <span class="tok-ty">boolean</span> {
-        <span class="tok-kw">return</span> (<span class="tok-kw">this</span>.low &lt;= x) &amp;&amp; (x &lt;= <span class="tok-kw">this</span>.high);
-    }
-    center(): <span class="tok-ty">number</span> {
-        <span class="tok-kw">return</span> ((<span class="tok-kw">this</span>.low + <span class="tok-kw">this</span>.high) / <span class="tok-nu">2</span>);
+    pub fn center(&amp;self) -&gt; f64 {
+        (self.low + self.high) / 2.0
     }
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-tgt-p-go" role="tabpanel" aria-labelledby="fl-tgt-t-go"><div class="fdt-panel-label"><code>radix emit --target go span.fab</code> <span class="fdt-note">— a source file in package main</span></div><pre><code class="lang-go"><span class="tok-co">// Code generated by faber. DO NOT EDIT.</span>
+    <div class="fdt-panel" id="fl-tgt-p-ts" role="tabpanel" aria-labelledby="fl-tgt-t-ts"><div class="fdt-panel-label"><code>radix emit --target ts span.fab</code> <span class="fdt-note">— a source file you add to your project; imports @faber/runtime</span></div><pre><code class="lang-ts">// … 5 lines of generated header and runtime shim elided …
 
-<span class="tok-kw">package</span> main
+class Span {
+    low!: number;
+    high!: number;
+    toString(): string {
+        return &quot;Span { low = &quot; + display.value(this.low, &quot;fractus&quot;, { true_: &quot;true&quot;, false_: &quot;false&quot;, none: &quot;none&quot; }) + &quot;, high = &quot; + display.value(this.high, &quot;fractus&quot;, { true_: &quot;true&quot;, false_: &quot;false&quot;, none: &quot;none&quot; }) + &quot; }&quot;;
+    }
+    contains(x: number): boolean {
+        return (this.low &lt;= x) &amp;&amp; (x &lt;= this.high);
+    }
+    center(): number {
+        return ((this.low + this.high) / 2);
+    }
+}</code></pre></div>
+    <div class="fdt-panel" id="fl-tgt-p-go" role="tabpanel" aria-labelledby="fl-tgt-t-go"><div class="fdt-panel-label"><code>radix emit --target go span.fab</code> <span class="fdt-note">— a source file in package main</span></div><pre><code class="lang-go">// Code generated by faber. DO NOT EDIT.
 
-<span class="tok-kw">type</span> Span <span class="tok-kw">struct</span> {
+package main
+
+type Span struct {
     Low float64
     High float64
 }
 
-<span class="tok-kw">func</span> (<span class="tok-kw">self</span> *Span) Contains(x float64) <span class="tok-ty">bool</span> {
-    <span class="tok-kw">return</span> ((float64(<span class="tok-kw">self</span>.Low) &lt;= float64(x)) &amp;&amp; (float64(x) &lt;= float64(<span class="tok-kw">self</span>.High)))
+func (self *Span) Contains(x float64) bool {
+    return ((float64(self.Low) &lt;= float64(x)) &amp;&amp; (float64(x) &lt;= float64(self.High)))
 }
 
-<span class="tok-kw">func</span> (<span class="tok-kw">self</span> *Span) Center() float64 {
-    <span class="tok-kw">return</span> float64(((<span class="tok-kw">self</span>.Low + <span class="tok-kw">self</span>.High) / <span class="tok-nu">2.0</span>))
+func (self *Span) Center() float64 {
+    return float64(((self.Low + self.High) / 2.0))
 }</code></pre></div>
     <div class="fdt-panel" id="fl-tgt-p-swift" role="tabpanel" aria-labelledby="fl-tgt-t-swift"><div class="fdt-panel-label"><code>radix emit --target swift span.fab</code> <span class="fdt-note">— a source file; no runtime dependency</span></div><pre><code class="lang-swift">// Generated by radix - do not edit
 

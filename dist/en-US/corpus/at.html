@@ -16,18 +16,18 @@
 <span class="tok-co"># See also: at, for</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> labels <span class="tok-op">←</span> [<span class="tok-st">"a"</span>, <span class="tok-st">"b"</span>, <span class="tok-st">"c"</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> values <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> labels, values <span class="tok-kw">at</span> [i] <span class="tok-kw">const</span> label, value {
+main {
+    const list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> labels <span class="tok-op">←</span> [<span class="tok-st">"a"</span>, <span class="tok-st">"b"</span>, <span class="tok-st">"c"</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> values <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    for from labels, values at [i] const label, value {
         print i
         print label
     }
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> bases <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">200</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> keys <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> payloads <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>]
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> bases, keys, payloads <span class="tok-kw">at</span> [slot] <span class="tok-kw">const</span> base, key, payload {
-        <span class="tok-kw">const</span> <span class="tok-kw">int</span> total <span class="tok-op">←</span> slot <span class="tok-op">+</span> base <span class="tok-op">+</span> key <span class="tok-op">+</span> payload
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> bases <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">200</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> keys <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> payloads <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>]
+    for from bases, keys, payloads at [slot] const base, key, payload {
+        const int total <span class="tok-op">←</span> slot <span class="tok-op">+</span> base <span class="tok-op">+</span> key <span class="tok-op">+</span> payload
         print total
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0

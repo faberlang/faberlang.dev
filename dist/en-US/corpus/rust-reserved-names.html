@@ -22,23 +22,23 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   rust-reserved-names.expected — the computed values.</span>
 
-<span class="tok-kw">class</span> Cista {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> box
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> final
+class Cista {
+    var int box
+    var int final
 
-    <span class="tok-kw">fn</span> move(<span class="tok-kw">int</span> <span class="tok-kw">yield</span>, <span class="tok-kw">int</span> <span class="tok-kw">type</span>) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-        <span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-kw">match</span> <span class="tok-op">←</span> <span class="tok-kw">yield</span> <span class="tok-op">+</span> <span class="tok-kw">type</span>
-        <span class="tok-kw">const</span> <span class="tok-kw">int</span> box <span class="tok-op">←</span> <span class="tok-kw">match</span> <span class="tok-op">+</span> <span class="tok-kw">self</span>.box
-        <span class="tok-kw">return</span> box <span class="tok-op">+</span> <span class="tok-kw">self</span>.final
+    fn move(int yield, int type) <span class="tok-op">→</span> int {
+        const int match <span class="tok-op">←</span> yield <span class="tok-op">+</span> type
+        const int box <span class="tok-op">←</span> match <span class="tok-op">+</span> self.box
+        return box <span class="tok-op">+</span> self.final
     }
 }
 
-<span class="tok-kw">fn</span> pack(<span class="tok-kw">int</span> box) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> box <span class="tok-op">+</span> <span class="tok-nu">1</span>
+fn pack(int box) <span class="tok-op">→</span> int {
+    return box <span class="tok-op">+</span> <span class="tok-nu">1</span>
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> Cista c <span class="tok-op">←</span> Cista { box <span class="tok-op">=</span> <span class="tok-nu">2</span>, final <span class="tok-op">=</span> <span class="tok-nu">3</span> }
+main {
+    const Cista c <span class="tok-op">←</span> Cista { box <span class="tok-op">=</span> <span class="tok-nu">2</span>, final <span class="tok-op">=</span> <span class="tok-nu">3</span> }
     print c.move(<span class="tok-nu">10</span>, <span class="tok-nu">20</span>)
     print pack(<span class="tok-nu">4</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>35

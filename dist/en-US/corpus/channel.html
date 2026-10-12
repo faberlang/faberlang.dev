@@ -16,24 +16,24 @@
 <span class="tok-co"># See also: call, channel, frame, send, recv, cursor</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">fn</span> count_items(channel s) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> n <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> s.recv<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>().<span class="tok-kw">cursor</span>() <span class="tok-kw">const</span> item {
+fn count_items(channel s) <span class="tok-op">→</span> int {
+    var int n <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    for from s.recv<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>().cursor() const item {
         print item.data
         n <span class="tok-op">←</span> n <span class="tok-op">+</span> <span class="tok-nu">1</span>
     }
-    <span class="tok-kw">return</span> n
+    return n
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> channel s <span class="tok-op">←</span> <span class="tok-kw">call</span> <span class="tok-st">'runtime:echo'</span> (<span class="tok-st">"salve"</span>)
-    <span class="tok-kw">const</span> send<span class="tok-op">&lt;</span>value<span class="tok-op">&gt;</span> outbound <span class="tok-op">←</span> s.send<span class="tok-op">&lt;</span>value<span class="tok-op">&gt;</span>()
+main {
+    const channel s <span class="tok-op">←</span> call <span class="tok-st">'runtime:echo'</span> (<span class="tok-st">"salve"</span>)
+    const send<span class="tok-op">&lt;</span>value<span class="tok-op">&gt;</span> outbound <span class="tok-op">←</span> s.send<span class="tok-op">&lt;</span>value<span class="tok-op">&gt;</span>()
     outbound.da(<span class="tok-st">"ping"</span>)
     outbound.fini()
     print count_items(s)
 
-    <span class="tok-kw">const</span> channel second <span class="tok-op">←</span> <span class="tok-kw">call</span> <span class="tok-st">'runtime:echo'</span> (<span class="tok-st">"vale"</span>)
-    <span class="tok-kw">const</span> frame<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> first <span class="tok-op">←</span> second.recv<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>().accipe()
+    const channel second <span class="tok-op">←</span> call <span class="tok-st">'runtime:echo'</span> (<span class="tok-st">"vale"</span>)
+    const frame<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> none first <span class="tok-op">←</span> second.recv<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>().accipe()
     print first<span class="tok-op">?.</span>data
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>salve
 1
@@ -66,62 +66,62 @@ vale
 <span class="tok-co"># See also: call, channel, recv, do, catch</span>
 <span class="tok-co"># =============================================================================</span>
 
-@ <span class="tok-kw">call</span> <span class="tok-st">'numeri:bis'</span>
-<span class="tok-kw">fn</span> bis(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
+@ call <span class="tok-st">'numeri:bis'</span>
+fn bis(int n) <span class="tok-op">→</span> int {
+    return n <span class="tok-op">*</span> <span class="tok-nu">2</span>
 }
 
-@ <span class="tok-kw">call</span> <span class="tok-st">'numeri:numera'</span>
-<span class="tok-kw">fn</span> numera(<span class="tok-kw">int</span> n) <span class="tok-kw">generator</span> <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥n <span class="tok-kw">const</span> i {
-        <span class="tok-kw">yield</span> i
+@ call <span class="tok-st">'numeri:numera'</span>
+fn numera(int n) generator <span class="tok-op">→</span> int {
+    for range <span class="tok-nu">0</span>‥n const i {
+        yield i
     }
 }
 
-@ <span class="tok-kw">call</span> <span class="tok-st">'numeri:defice'</span>
-<span class="tok-kw">fn</span> defice(<span class="tok-kw">int</span> n) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ string {
-    <span class="tok-kw">throw</span> <span class="tok-st">"defecit §"</span>(n)
+@ call <span class="tok-st">'numeri:defice'</span>
+fn defice(int n) <span class="tok-op">→</span> int ⇥ string {
+    throw <span class="tok-st">"defecit §"</span>(n)
 }
 
-<span class="tok-kw">fn</span> sum(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> partes) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> totum <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> partes <span class="tok-kw">const</span> pars {
+fn sum(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> partes) <span class="tok-op">→</span> int {
+    var int totum <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    for from partes const pars {
         totum <span class="tok-op">←</span> totum <span class="tok-op">+</span> pars
     }
-    <span class="tok-kw">return</span> totum
+    return totum
 }
 
-<span class="tok-kw">main</span> {
+main {
 <span class="tok-co">    # Four conversations finish at once; their handles wait in the pool.</span>
-    <span class="tok-kw">var</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span>, channel<span class="tok-op">&gt;</span> piscina <span class="tok-op">←</span> empty
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥<span class="tok-nu">4</span> <span class="tok-kw">const</span> i {
-        piscina[i] <span class="tok-op">←</span> <span class="tok-kw">call</span> <span class="tok-st">'numeri:bis'</span> (i)
+    var map<span class="tok-op">&lt;</span>int, channel<span class="tok-op">&gt;</span> piscina <span class="tok-op">←</span> empty
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">4</span> const i {
+        piscina[i] <span class="tok-op">←</span> call <span class="tok-st">'numeri:bis'</span> (i)
     }
 
 <span class="tok-co">    # A longer conversation streams while the finished ones hold nothing.</span>
-    <span class="tok-kw">const</span> channel longus <span class="tok-op">←</span> <span class="tok-kw">call</span> <span class="tok-st">'numeri:numera'</span> (<span class="tok-nu">5</span>)
-    <span class="tok-kw">for</span> <span class="tok-kw">range</span> <span class="tok-nu">0</span>‥<span class="tok-nu">4</span> <span class="tok-kw">const</span> i {
-        print piscina[i] ↦ <span class="tok-kw">int</span>
+    const channel longus <span class="tok-op">←</span> call <span class="tok-st">'numeri:numera'</span> (<span class="tok-nu">5</span>)
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">4</span> const i {
+        print piscina[i] ↦ int
     }
-    print sum(longus ↦ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>)
+    print sum(longus ↦ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>)
 
 <span class="tok-co">    # Reading waits for the handler (a failed read defaults to 0); close()</span>
 <span class="tok-co">    # then reports the error the conversation ended with.</span>
-    <span class="tok-kw">const</span> channel <span class="tok-kw">fractus</span> <span class="tok-op">←</span> <span class="tok-kw">call</span> <span class="tok-st">'numeri:defice'</span> (<span class="tok-nu">7</span>)
-    print <span class="tok-kw">fractus</span> ↦ <span class="tok-kw">int</span> ⊥ <span class="tok-nu">0</span>
-    <span class="tok-kw">do</span> {
-        <span class="tok-kw">const</span> <span class="tok-kw">bool</span> <span class="tok-kw">clausa</span> <span class="tok-op">←</span> <span class="tok-kw">fractus</span>.close()
-        print <span class="tok-kw">clausa</span>
-    } <span class="tok-kw">catch</span> err {
+    const channel fractus <span class="tok-op">←</span> call <span class="tok-st">'numeri:defice'</span> (<span class="tok-nu">7</span>)
+    print fractus ↦ int ⊥ <span class="tok-nu">0</span>
+    do {
+        const bool clausa <span class="tok-op">←</span> fractus.close()
+        print clausa
+    } catch err {
         print err
     }
 
 <span class="tok-co">    # Closing early drops the unread reply; a live handler is cancelled.</span>
-    <span class="tok-kw">do</span> {
-        <span class="tok-kw">const</span> channel ultimus <span class="tok-op">←</span> <span class="tok-kw">call</span> <span class="tok-st">'numeri:bis'</span> (<span class="tok-nu">21</span>)
-        <span class="tok-kw">const</span> <span class="tok-kw">bool</span> <span class="tok-kw">clausa</span> <span class="tok-op">←</span> ultimus.close()
-        print <span class="tok-kw">clausa</span>
-    } <span class="tok-kw">catch</span> err {
+    do {
+        const channel ultimus <span class="tok-op">←</span> call <span class="tok-st">'numeri:bis'</span> (<span class="tok-nu">21</span>)
+        const bool clausa <span class="tok-op">←</span> ultimus.close()
+        print clausa
+    } catch err {
         print err
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0

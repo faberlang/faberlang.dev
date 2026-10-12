@@ -17,8 +17,8 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   pg:query</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> ascii route <span class="tok-op">←</span> <span class="tok-st">'pg:query'</span>
+main {
+    const ascii route <span class="tok-op">←</span> <span class="tok-st">'pg:query'</span>
     print route
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>pg:query
 </code></pre><h3 id="radixcorpusboundedconversio-ascii-overflow-declinefab-supporting-reject">radix/corpus/bounded/conversio-ascii-overflow-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusboundedconversio-ascii-overflow-declinefab-supporting-reject">#</a></h3><p>Decline: an ascii literal longer than the target capacity rejects with ascii_literal_too_long.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
@@ -40,7 +40,7 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># WHY: pins the fail-closed overflow token in conversio-ascii-overflow-decline.expected.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> ascii<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-st">'alpha'</span> ↦ ascii<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span>
+main {
+    const ascii<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span> a <span class="tok-op">←</span> <span class="tok-st">'alpha'</span> ↦ ascii<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span>
     print a
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusliteraliaasciifab-canonical-existing-home">radix/corpus/literalia/ascii.fab (canonical · existing-home)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-ascii-overflow-declinefab-supporting-reject">radix/corpus/bounded/conversio-ascii-overflow-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/literalia/ascii.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

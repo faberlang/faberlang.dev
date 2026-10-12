@@ -195,16 +195,16 @@
     <span class="tok-kw">cape</span> err {
         <span class="tok-kw">mone</span> err
     }
-}</code></pre><h2 id="collectiones">Collections and iteration<a class="anchor" href="#collectiones">#</a></h2><p>A list folded to a total with <code>for from</code>. The plainest possible read on how loops lower.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber"><span class="tok-kw">fn</span> sum(<span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">int</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    <span class="tok-kw">for</span> <span class="tok-kw">from</span> numeri <span class="tok-kw">const</span> n {
+}</code></pre><h2 id="collectiones">Collections and iteration<a class="anchor" href="#collectiones">#</a></h2><p>A list folded to a total with <code>for from</code>. The plainest possible read on how loops lower.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber locale-tabs">fn sum(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> int {
+    var int total <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    for from numeri const n {
         total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
     }
-    <span class="tok-kw">return</span> total
+    return total
 }
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+main {
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
     print sum(valores)
 }</code></pre><p><strong>Faber</strong> — 12 lines in, 12 out (1.0×)</p><pre class="faber-code"><code class="lang-faber locale=la"><span class="tok-kw">functio</span> <span class="tok-kw">summa</span>(<span class="tok-kw">lista</span><span class="tok-op">&lt;</span><span class="tok-kw">numerus</span><span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> <span class="tok-kw">numerus</span> {
     <span class="tok-kw">varia</span> <span class="tok-kw">numerus</span> total <span class="tok-op">←</span> <span class="tok-nu">0</span>

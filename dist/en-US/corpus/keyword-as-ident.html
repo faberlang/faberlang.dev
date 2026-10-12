@@ -25,8 +25,8 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   print-binding.expected — print</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> string print <span class="tok-op">←</span> <span class="tok-st">"print"</span>
+main {
+    const string print <span class="tok-op">←</span> <span class="tok-st">"print"</span>
     print print
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>print
 </code></pre><h3 id="radixcorpuskeyword-as-identprint-callfab-canonical-concept">radix/corpus/keyword-as-ident/print-call.fab (canonical · concept)<a class="anchor" href="#radixcorpuskeyword-as-identprint-callfab-canonical-concept">#</a></h3><p>Statement-initial print(...) is a user function call, not the output intrinsic.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
@@ -59,11 +59,11 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   print-call.expected — print</span>
 
-<span class="tok-kw">fn</span> print(string print) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn print(string print) <span class="tok-op">→</span> void {
     print print
 }
 
-<span class="tok-kw">main</span> {
+main {
     print(<span class="tok-st">"print"</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>print
 </code></pre><h3 id="radixcorpuskeyword-as-identprint-fnfab-canonical-concept">radix/corpus/keyword-as-ident/print-fn.fab (canonical · concept)<a class="anchor" href="#radixcorpuskeyword-as-identprint-fnfab-canonical-concept">#</a></h3><p>A user function named print, with a print parameter, whose body uses the output intrinsic.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
@@ -96,11 +96,11 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   print-fn.expected — hello</span>
 
-<span class="tok-kw">fn</span> print(string print) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+fn print(string print) <span class="tok-op">→</span> void {
     print print
 }
 
-<span class="tok-kw">main</span> {
+main {
     print(<span class="tok-st">"hello"</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>hello
 </code></pre><h3 id="radixcorpuskeyword-as-identread-shadowedfab-canonical-concept">radix/corpus/keyword-as-ident/read-shadowed.fab (canonical · concept)<a class="anchor" href="#radixcorpuskeyword-as-identread-shadowedfab-canonical-concept">#</a></h3><p>A binding named read wins over the read builtin.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
@@ -130,9 +130,9 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   read-shadowed.expected — data</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> string <span class="tok-kw">read</span> <span class="tok-op">←</span> <span class="tok-st">"data"</span>
-    print <span class="tok-kw">read</span>
+main {
+    const string read <span class="tok-op">←</span> <span class="tok-st">"data"</span>
+    print read
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>data
 </code></pre><h3 id="radixcorpuskeyword-as-identread-unshadowedfab-canonical-concept">radix/corpus/keyword-as-ident/read-unshadowed.fab (canonical · concept)<a class="anchor" href="#radixcorpuskeyword-as-identread-unshadowedfab-canonical-concept">#</a></h3><p>Unshadowed read stays the read builtin.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># keyword-as-ident — unshadowed `read` builtin</span>
@@ -163,7 +163,7 @@
 <span class="tok-co"># BACKEND:</span>
 <span class="tok-co">#   Rust/Go/roundtrip e2e follow the read/lege.fab stdin-read class.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> string <span class="tok-op">∪</span> <span class="tok-kw">none</span> input <span class="tok-op">←</span> <span class="tok-kw">read</span>
+main {
+    const string <span class="tok-op">∪</span> none input <span class="tok-op">←</span> read
     print input
 }</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identprint-bindingfab-canonical-concept">radix/corpus/keyword-as-ident/print-binding.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identprint-callfab-canonical-concept">radix/corpus/keyword-as-ident/print-call.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identprint-fnfab-canonical-concept">radix/corpus/keyword-as-ident/print-fn.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identread-shadowedfab-canonical-concept">radix/corpus/keyword-as-ident/read-shadowed.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpuskeyword-as-identread-unshadowedfab-canonical-concept">radix/corpus/keyword-as-ident/read-unshadowed.fab (canonical · concept)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/keyword-as-ident/print-binding.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

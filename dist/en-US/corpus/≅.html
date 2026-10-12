@@ -20,39 +20,39 @@
 <span class="tok-co"># WHY: ≡ requires identical types; ≅ compares the true values of any two numerics.</span>
 <span class="tok-co"># 42.145 ≅ 42 must stay false (no hidden tolerance).</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> u8 port <span class="tok-op">←</span> <span class="tok-nu">42</span> ∷ u8
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> count <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    <span class="tok-kw">const</span> _ same_width <span class="tok-op">←</span> port <span class="tok-op">≅</span> count
+main {
+    const u8 port <span class="tok-op">←</span> <span class="tok-nu">42</span> ∷ u8
+    const int count <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    const _ same_width <span class="tok-op">←</span> port <span class="tok-op">≅</span> count
     print same_width
 
-    <span class="tok-kw">const</span> _ int_float <span class="tok-op">←</span> <span class="tok-nu">1</span> <span class="tok-op">≅</span> <span class="tok-nu">1.0</span>
+    const _ int_float <span class="tok-op">←</span> <span class="tok-nu">1</span> <span class="tok-op">≅</span> <span class="tok-nu">1.0</span>
     print int_float
 
-    <span class="tok-kw">const</span> _ not_fuzzy <span class="tok-op">←</span> <span class="tok-nu">42.145</span> ∷ f64 <span class="tok-op">≅</span> <span class="tok-nu">42.0</span> ∷ f64
+    const _ not_fuzzy <span class="tok-op">←</span> <span class="tok-nu">42.145</span> ∷ f64 <span class="tok-op">≅</span> <span class="tok-nu">42.0</span> ∷ f64
     print not_fuzzy
 
-    <span class="tok-kw">const</span> _ differs <span class="tok-op">←</span> <span class="tok-nu">1</span> <span class="tok-op">≇</span> <span class="tok-nu">2</span>
+    const _ differs <span class="tok-op">←</span> <span class="tok-nu">1</span> <span class="tok-op">≇</span> <span class="tok-nu">2</span>
     print differs
 
 <span class="tok-co">    # Sign-boundary pin: a negative signed value never wraps to u64::MAX.</span>
-    <span class="tok-kw">const</span> i64 signed_negative <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
-    <span class="tok-kw">const</span> u64 unsigned_max <span class="tok-op">←</span> <span class="tok-nu">18446744073709551615</span>
-    <span class="tok-kw">const</span> _ sign_equal <span class="tok-op">←</span> signed_negative <span class="tok-op">≅</span> unsigned_max
-    <span class="tok-kw">const</span> _ sign_different <span class="tok-op">←</span> signed_negative <span class="tok-op">≇</span> unsigned_max
+    const i64 signed_negative <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
+    const u64 unsigned_max <span class="tok-op">←</span> <span class="tok-nu">18446744073709551615</span>
+    const _ sign_equal <span class="tok-op">←</span> signed_negative <span class="tok-op">≅</span> unsigned_max
+    const _ sign_different <span class="tok-op">←</span> signed_negative <span class="tok-op">≇</span> unsigned_max
     print sign_equal
     print sign_different
 
 <span class="tok-co">    # Cross-width pin: the 2^53+1 integer remains distinct from 2^53.</span>
-    <span class="tok-kw">const</span> i64 above_precision <span class="tok-op">←</span> <span class="tok-nu">9007199254740993</span>
-    <span class="tok-kw">const</span> u64 below_precision <span class="tok-op">←</span> <span class="tok-nu">9007199254740992</span>
-    <span class="tok-kw">const</span> _ cross_width <span class="tok-op">←</span> above_precision <span class="tok-op">≅</span> below_precision
+    const i64 above_precision <span class="tok-op">←</span> <span class="tok-nu">9007199254740993</span>
+    const u64 below_precision <span class="tok-op">←</span> <span class="tok-nu">9007199254740992</span>
+    const _ cross_width <span class="tok-op">←</span> above_precision <span class="tok-op">≅</span> below_precision
     print cross_width
 
 <span class="tok-co">    # Exactness pin: 2^53+1 is not representable as f64, so it is not equal to</span>
 <span class="tok-co">    # the float 2^53 (comparison never rounds the integer side).</span>
-    <span class="tok-kw">const</span> f64 float_boundary <span class="tok-op">←</span> <span class="tok-nu">9007199254740992.0</span>
-    <span class="tok-kw">const</span> <span class="tok-kw">bool</span> int_float_honesty <span class="tok-op">←</span> above_precision <span class="tok-op">≅</span> float_boundary
+    const f64 float_boundary <span class="tok-op">←</span> <span class="tok-nu">9007199254740992.0</span>
+    const bool int_float_honesty <span class="tok-op">←</span> above_precision <span class="tok-op">≅</span> float_boundary
     print int_float_honesty
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>true
 true

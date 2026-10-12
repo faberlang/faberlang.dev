@@ -22,15 +22,15 @@
 <span class="tok-co"># See also: kernel, annotation-sugar</span>
 <span class="tok-co"># =============================================================================</span>
 
-@ kernel { fragment <span class="tok-op">=</span> <span class="tok-kw">true</span> }
-<span class="tok-kw">fn</span> umbra() <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+@ kernel { fragment <span class="tok-op">=</span> true }
+fn umbra() <span class="tok-op">→</span> void {
 }
 
-<span class="tok-kw">fn</span> identitas(<span class="tok-kw">int</span> x) <span class="tok-op">→</span> <span class="tok-kw">int</span> {
-    <span class="tok-kw">return</span> x
+fn identitas(int x) <span class="tok-op">→</span> int {
+    return x
 }
 
-<span class="tok-kw">main</span> {
+main {
     print identitas(<span class="tok-nu">5</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>5
 </code></pre><h3 id="radixcorpuskernellegality-rejectfab-supporting-reject">radix/corpus/kernel/legality-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpuskernellegality-rejectfab-supporting-reject">#</a></h3><p>Kernel legality at check time: host output, host-only types, calls to non-kernels, host calls to private kernels, and raw thread-id calls are named diagnostics.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
@@ -60,45 +60,45 @@
 <span class="tok-co"># See also: kernel, public</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">fn</span> host_double(f32 x) <span class="tok-op">→</span> f32 {
-    <span class="tok-kw">return</span> x <span class="tok-op">*</span> <span class="tok-nu">2.0</span>
+fn host_double(f32 x) <span class="tok-op">→</span> f32 {
+    return x <span class="tok-op">*</span> <span class="tok-nu">2.0</span>
 }
 
 <span class="tok-co"># 1. host output</span>
 @ kernel
-@ <span class="tok-kw">public</span>
-<span class="tok-kw">fn</span> noisy(f32 x) <span class="tok-op">→</span> f32 {
+@ public
+fn noisy(f32 x) <span class="tok-op">→</span> f32 {
     print x
-    <span class="tok-kw">return</span> x
+    return x
 }
 
 <span class="tok-co"># 2. call to an ordinary function</span>
 @ kernel
-@ <span class="tok-kw">public</span>
-<span class="tok-kw">fn</span> calls_host(f32 x) <span class="tok-op">→</span> f32 {
-    <span class="tok-kw">return</span> host_double(x)
+@ public
+fn calls_host(f32 x) <span class="tok-op">→</span> f32 {
+    return host_double(x)
 }
 
 <span class="tok-co"># 3. host-only parameter type</span>
 @ kernel
-@ <span class="tok-kw">public</span>
-<span class="tok-kw">fn</span> takes_list(<span class="tok-kw">list</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">void</span> {
+@ public
+fn takes_list(list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> void {
 }
 
 <span class="tok-co"># 4. host call to a private kernel</span>
 @ kernel
-<span class="tok-kw">fn</span> helper(f32 x) <span class="tok-op">→</span> f32 {
-    <span class="tok-kw">return</span> x <span class="tok-op">+</span> <span class="tok-nu">1.0</span>
+fn helper(f32 x) <span class="tok-op">→</span> f32 {
+    return x <span class="tok-op">+</span> <span class="tok-nu">1.0</span>
 }
 
-<span class="tok-kw">fn</span> launches_private() <span class="tok-op">→</span> f32 {
-    <span class="tok-kw">return</span> helper(<span class="tok-nu">1.0</span>)
+fn launches_private() <span class="tok-op">→</span> f32 {
+    return helper(<span class="tok-nu">1.0</span>)
 }
 
 <span class="tok-co"># 5. raw lane id</span>
 @ kernel
-@ <span class="tok-kw">public</span>
-<span class="tok-kw">fn</span> names_its_lane(f32 x) <span class="tok-op">→</span> f32 {
-    <span class="tok-kw">const</span> vector<span class="tok-op">&lt;</span>u32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> gid <span class="tok-op">←</span> global_invocation_id()
-    <span class="tok-kw">return</span> x
+@ public
+fn names_its_lane(f32 x) <span class="tok-op">→</span> f32 {
+    const vector<span class="tok-op">&lt;</span>u32, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> gid <span class="tok-op">←</span> global_invocation_id()
+    return x
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusannotation-sugarnucleum-fragmentfab-canonical-annotation">radix/corpus/annotation-sugar/nucleum-fragment.fab (canonical · annotation)</a></li><li class="toc-3"><a href="#radixcorpuskernellegality-rejectfab-supporting-reject">radix/corpus/kernel/legality-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/annotation-sugar/nucleum-fragment.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

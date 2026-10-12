@@ -29,7 +29,7 @@
 <span class="tok-co">#   discretiones paratae</span>
 
 <span class="tok-co"># Discretio with payload variants</span>
-<span class="tok-kw">union</span> Exitus {
+union Exitus {
     Bonum {
         string nuntius
     },
@@ -40,10 +40,10 @@
 
 <span class="tok-co"># Discretio with mixed unit and payload variants</span>
 <span class="tok-co"># (Finis is a unit variant — no payload fields)</span>
-<span class="tok-kw">union</span> Actum {
+union Actum {
     Pulsus {
-        <span class="tok-kw">int</span> x
-        <span class="tok-kw">int</span> y
+        int x
+        int y
     },
     Clavis {
         string clavis
@@ -52,25 +52,25 @@
 }
 
 <span class="tok-co"># Discretio with many fields per variant</span>
-<span class="tok-kw">union</span> Figura {
+union Figura {
     Rectum {
-        <span class="tok-kw">int</span> x
-        <span class="tok-kw">int</span> y
-        <span class="tok-kw">int</span> latitudo
-        <span class="tok-kw">int</span> altitudo
+        int x
+        int y
+        int latitudo
+        int altitudo
     },
     Circulus {
-        <span class="tok-kw">int</span> cx
-        <span class="tok-kw">int</span> cy
-        <span class="tok-kw">int</span> radius
+        int cx
+        int cy
+        int radius
     },
     Punctum {
-        <span class="tok-kw">int</span> x
-        <span class="tok-kw">int</span> y
+        int x
+        int y
     }
 }
 
-<span class="tok-kw">main</span> {
+main {
     print <span class="tok-st">"discretiones paratae"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>discretiones paratae
 </code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusdiscretiodiscretiofab-canonical-keyword">radix/corpus/discretio/discretio.fab (canonical · keyword)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/discretio/discretio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

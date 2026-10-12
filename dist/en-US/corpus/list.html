@@ -28,16 +28,16 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Scalar longitudo() and indexed accipe only (lista.expected).</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> vacuares <span class="tok-op">←</span> empty
-    <span class="tok-kw">const</span> _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
-    <span class="tok-kw">const</span> _ nomina <span class="tok-op">←</span> [<span class="tok-st">"Marcus"</span>, <span class="tok-st">"Julia"</span>, <span class="tok-st">"Gaius"</span>]
-    <span class="tok-kw">const</span> _ vexilla <span class="tok-op">←</span> [<span class="tok-kw">true</span>, <span class="tok-kw">false</span>, <span class="tok-kw">true</span>]
-    <span class="tok-kw">const</span> _ matrix <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>], [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>]]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> primum <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> secundum <span class="tok-op">←</span> [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]
-    <span class="tok-kw">const</span> _ coniuncta <span class="tok-op">←</span> [<span class="tok-kw">spread</span> primum, <span class="tok-kw">spread</span> secundum]
-    <span class="tok-kw">const</span> _ aucta <span class="tok-op">←</span> [<span class="tok-nu">0</span>, <span class="tok-kw">spread</span> primum, <span class="tok-nu">99</span>]
+main {
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> vacuares <span class="tok-op">←</span> empty
+    const _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    const _ nomina <span class="tok-op">←</span> [<span class="tok-st">"Marcus"</span>, <span class="tok-st">"Julia"</span>, <span class="tok-st">"Gaius"</span>]
+    const _ vexilla <span class="tok-op">←</span> [true, false, true]
+    const _ matrix <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>], [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>]]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> primum <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> secundum <span class="tok-op">←</span> [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]
+    const _ coniuncta <span class="tok-op">←</span> [spread primum, spread secundum]
+    const _ aucta <span class="tok-op">←</span> [<span class="tok-nu">0</span>, spread primum, <span class="tok-nu">99</span>]
     print vacuares.length()
     print numeri.length()
     print numeri[<span class="tok-nu">0</span>]
@@ -101,15 +101,15 @@ true
 <span class="tok-co"># BACKEND: Go e2e whitelist — list intrinsic methods not yet lowered for Go</span>
 <span class="tok-co"># (whitelist: list/methodi-copiae.fab).</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> _ res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
-    <span class="tok-kw">const</span> _ addita <span class="tok-op">←</span> res.added(<span class="tok-nu">6</span>)
-    <span class="tok-kw">const</span> _ sectio <span class="tok-op">←</span> res.slice(<span class="tok-nu">1</span>, <span class="tok-nu">4</span>)
-    <span class="tok-kw">const</span> _ primaduo <span class="tok-op">←</span> res.take(<span class="tok-nu">2</span>)
-    <span class="tok-kw">const</span> _ ultimaduo <span class="tok-op">←</span> res.take_last(<span class="tok-nu">2</span>)
-    <span class="tok-kw">const</span> _ omissaduo <span class="tok-op">←</span> res.drop(<span class="tok-nu">2</span>)
-    <span class="tok-kw">const</span> _ inversa <span class="tok-op">←</span> res.invert()
-    <span class="tok-kw">const</span> _ sort <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">1</span>, <span class="tok-nu">2</span>].sorted()
+main {
+    const _ res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>] ∷ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
+    const _ addita <span class="tok-op">←</span> res.added(<span class="tok-nu">6</span>)
+    const _ sectio <span class="tok-op">←</span> res.slice(<span class="tok-nu">1</span>, <span class="tok-nu">4</span>)
+    const _ primaduo <span class="tok-op">←</span> res.take(<span class="tok-nu">2</span>)
+    const _ ultimaduo <span class="tok-op">←</span> res.take_last(<span class="tok-nu">2</span>)
+    const _ omissaduo <span class="tok-op">←</span> res.drop(<span class="tok-nu">2</span>)
+    const _ inversa <span class="tok-op">←</span> res.invert()
+    const _ sort <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">1</span>, <span class="tok-nu">2</span>].sorted()
     print addita
     print sectio
     print primaduo
@@ -153,11 +153,11 @@ true
 <span class="tok-co"># BACKEND: Go e2e whitelist — list intrinsic methods not yet lowered for Go</span>
 <span class="tok-co"># (whitelist: list/methodi-mutatio.fab).</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> res <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">1</span>, <span class="tok-nu">2</span>] ∷ <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>
+main {
+    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">1</span>, <span class="tok-nu">2</span>] ∷ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
     res.append(<span class="tok-nu">4</span>)
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> primusremotus <span class="tok-op">←</span> res.remove_first()
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> <span class="tok-op">∪</span> <span class="tok-kw">none</span> ultimusremotus <span class="tok-op">←</span> res.remove_last()
+    const int <span class="tok-op">∪</span> none primusremotus <span class="tok-op">←</span> res.remove_first()
+    const int <span class="tok-op">∪</span> none ultimusremotus <span class="tok-op">←</span> res.remove_last()
     res.reverse()
     res.sort()
     print res
@@ -178,8 +178,8 @@ true
 <span class="tok-co"># EXPECTED DECLINE: SEM011:lista_capacity_mismatch</span>
 <span class="tok-co"># =============================================================================</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span> rejected <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>] <span class="tok-op">+</span> [<span class="tok-nu">3</span>]
+main {
+    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> rejected <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>] <span class="tok-op">+</span> [<span class="tok-nu">3</span>]
     print rejected
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpuslistaelementwise-comparison-bits-rejectfab-supporting-reject">radix/corpus/lista/elementwise-comparison-bits-reject.fab (supporting · reject)<a class="anchor" href="#radixcorpuslistaelementwise-comparison-bits-rejectfab-supporting-reject">#</a></h3><p>Ordering a list of bits is refused: a bits list has whole-value equality only.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># list — A list of bits has whole-value equality only.</span>
@@ -199,8 +199,8 @@ true
 <span class="tok-co">#</span>
 <span class="tok-co"># This exemplum intentionally fails to compile.</span>
 
-<span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">0</span>x01, <span class="tok-nu">0</span>x02]
-    <span class="tok-kw">const</span> <span class="tok-kw">list</span><span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> ys <span class="tok-op">←</span> [<span class="tok-nu">0</span>x01, <span class="tok-nu">0</span>x03]
+main {
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">0</span>x01, <span class="tok-nu">0</span>x02]
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> ys <span class="tok-op">←</span> [<span class="tok-nu">0</span>x01, <span class="tok-nu">0</span>x03]
     print xs ≺ ys
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuslistalistafab-canonical-keyword">radix/corpus/lista/lista.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpuslistamethodi-copiaefab-canonical-keyword">radix/corpus/lista/methodi-copiae.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpuslistamethodi-mutatiofab-canonical-keyword">radix/corpus/lista/methodi-mutatio.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusboundedexact-bound-lattice-declinefab-supporting-reject">radix/corpus/bounded/exact-bound-lattice-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpuslistaelementwise-comparison-bits-rejectfab-supporting-reject">radix/corpus/lista/elementwise-comparison-bits-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/lista/lista.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
