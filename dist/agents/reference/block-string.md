@@ -29,19 +29,18 @@ blockStringLit :← '«' ... '»'
 
 ```
 he said "salve", line one
-main {
-    const string quote ← «he said "salve"»
-    output ⇇ "§\n"(quote)
-    const string multiline ← «line one
-still line one»
-    output ⇇ "§\n"(multiline.slice(0, 8))
-}
 ```
 
 ## Example
 
 ```fab
-import from "norma:console" const write_partial as output
+main {
+    const string quote ← «he said "salve"»
+    print quote
+    const string multiline ← «line one
+still line one»
+    print multiline.slice(0, 8)
+}
 ```
 
 See also: [`string`](string.md), [`string`](textus.md).

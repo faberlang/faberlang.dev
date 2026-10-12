@@ -1,13 +1,15 @@
 # Content Plan — faberlang.dev
 
-Status: **framework built; English site generated; multilingual generation is partial.**
+Status: **U4 English-only prose cut implemented; later mapping/tab/grammar units remain pending.**
 
-Current implementation state (2026-07-17): authored Markdown, corpus pages,
-portal/start pages, and generated `/llms.txt` render through Speculum. Stage 7
-is not complete: `th-TH`, `zh-Hans`, `zh-Hant`, `vi`, `ar`, and `hi` have
-portal/start fallback-proof slices plus generated corpus build artifacts, while full
-localized authored docs and prose translation remain open for all non-English
-locales.
+Current implementation state (2026-10-12): `src/en-US/` is the sole maintained
+human-language prose tree. The six translated prose trees are retired, and their
+committed public URL inventory is served through meta-refresh aliases recorded in
+`generator/redirects/retired-locales.toml`. The portal and landing language doors
+point to reader-locale mapping pages while preserving captured code panels.
+Mapping-page redesign (U5), general fence tabs (U6), and the grammar toggle (U7)
+are not complete yet. The older decision record below describes the former
+multilingual-prose plan; where it conflicts with this current state, U4 supersedes it.
 
 The site is Wikipedia-shaped: random-access reference pages, each with one job and a
 self-contained lead, linking out rather than teaching in sequence. This document records
@@ -43,8 +45,9 @@ Everything decorative rots. The generator emits content plus a closed set of nam
 and has no styling capability at all.
 
 The Markdown rescue preserved the prose but silently dropped two machine contracts that
-existed in the HTML — `data-locale` on code blocks, and explicit heading `id`s. Both are
-load-bearing for the translation pipeline. See *Machine contracts* below.
+existed in the HTML — `data-locale` on code blocks, and explicit heading `id`s. Both remain relevant to reader-pack rendering. The former prose-translation
+pipeline described below is historical; U4's current tree and URL behavior are
+summarized at the top of this document.
 
 ---
 
@@ -1003,3 +1006,16 @@ it.
    with a TOML parse error. → exactly the class of lie the getting-started container check
    is for. Note for anyone testing compiler behaviour: **use the repo build, not `which
    faber`.**
+
+
+## English-only prose tree (U4)
+
+`src/en-US/` is the only maintained human-language prose tree. The former
+`src/ar`, `src/hi`, `src/th-TH`, `src/vi`, `src/zh-Hans`, and `src/zh-Hant`
+trees are retired; their previously served paths resolve through the manifest
+at `generator/redirects/retired-locales.toml`. English is the site content;
+reader locales remain visible through locale-mapping pages and captured code
+panels. General fence tabs (U6) and the grammar spelling toggle (U7) are
+planned, not yet implemented. Search and sitemap outputs represent the
+maintained English tree, while `/llms-full.txt` is a locale-neutral corpus
+reference.

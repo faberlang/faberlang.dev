@@ -54,6 +54,6 @@ class User {
 }
 ```
 
-See also: [`vel`](coalesce.md), [`none`](nihil.md), [`∪`](∪.md), [`fn`](fn.md), [`class`](class.md).
+See also: [`vel`](coalesce.md), [`none`](none.md), [`∪`](∪.md), [`fn`](fn.md), [`class`](class.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

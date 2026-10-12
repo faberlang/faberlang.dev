@@ -45,8 +45,8 @@ fn sum(mut list<int> values) → int {
 }
 
 main {
-    const _ xs ← [1, 2, 3]
-    print sum(xs)
+    var list<int> xs ← [1, 2, 3]
+    print sum(mut xs)
 }
 ```
 

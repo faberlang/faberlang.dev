@@ -1,101 +1,11 @@
 <!DOCTYPE html>
-<html lang="th-TH"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="กฎเก้าข้อที่ทำให้ Faber ให้ความรู้สึกเป็น Faber"><meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Design notes — Faber"><meta property="og:description" content="กฎเก้าข้อที่ทำให้ Faber ให้ความรู้สึกเป็น Faber"><meta property="og:url" content="https://faberlang.dev/th-TH/reference/design.html"><meta property="og:locale" content="th_TH"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/th-TH/reference/design.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Design notes — Faber</title><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-instrument.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">←</span></a><span class="lbl">การเรนเดอร์</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">th-TH</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/install.md">ติดตั้ง</a></nav></div></div><div class="page"><aside><a class="brand" href="/th-TH/"><span class="brand-mark" aria-hidden="true">←</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">เอกสารภาษา</span></span></a><div class="side-h">เริ่มต้น</div><ul class="nav"><li><a href="/th-TH/start/">เริ่มต้นที่นี่</a></li><li><a href="/en-US/releases/">รุ่นเผยแพร่</a></li></ul><div class="side-h">ภาษา</div><ul class="nav"><li><a href="/en-US/language/overview.html">ภาพรวม</a></li><li><details class="nav-branch"><summary>พฤติกรรม</summary><ul><li><a href="/en-US/language/behavior/type-first.html">ชนิดก่อนชื่อ</a></li><li><a href="/en-US/language/behavior/glyph-law.html">กฎสัญลักษณ์</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">ความกว้างตัวเลข</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">ภาษาผู้อ่านแบบปิดผนึก</a></li><li><a href="/en-US/language/behavior/packages.html">โปรแกรมคือแพ็กเกจ</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">ข้อผิดพลาดเป็นค่า การทดสอบเป็นการประกาศ</a></li></ul></details></li><li><details class="nav-branch"><summary>ไวยากรณ์</summary><ul><li><a href="/th-TH/reference/grammar.html">ภาพรวมไวยากรณ์</a></li><li><a href="/en-US/reference/grammar/program.html">โปรแกรม ภูมิภาค และการนำเข้า</a></li><li><a href="/en-US/reference/grammar/declarations.html">การประกาศและการผูกค่า</a></li><li><a href="/en-US/reference/grammar/annotations.html">คำอธิบายประกอบและคำสั่ง</a></li><li><a href="/en-US/reference/grammar/types.html">ชนิดและสัญญา</a></li><li><a href="/en-US/reference/grammar/statements.html">คำสั่งและการควบคุมลำดับ</a></li><li><a href="/en-US/reference/grammar/expressions.html">นิพจน์และตัวดำเนินการ</a></li><li><a href="/en-US/reference/grammar/patterns.html">รูปแบบและการแยกโครงสร้าง</a></li><li><a href="/en-US/reference/grammar/errors.html">ช่องทางข้อผิดพลาด</a></li><li><a href="/en-US/reference/grammar/lexical.html">โครงสร้างคำและสัญลักษณ์</a></li></ul></details></li><li><a href="/th-TH/corpus/az.html">ศัพท์ ก–ฮ</a></li><li><a href="/th-TH/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">เป้าหมาย</div><ul class="nav"><li><a href="/en-US/targets/">เป้าหมายทั้งหมด</a></li><li><details class="nav-branch"><summary>แอปพลิเคชัน · HIR</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>ระบบ · MIR</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">ข้อความ WebAssembly</a></li></ul></details></li><li><details class="nav-branch"><summary>อุปกรณ์ · GPU</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/th-TH/toolchain/target-matrix.html">ตารางเป้าหมาย</a></li></ul><div class="side-h">ภาษาผู้อ่าน</div><ul class="nav"><li><a href="/th-TH/language/reader-locales.html">ภาษาผู้อ่าน</a></li><li><a href="/en-US/language/locales/keywords.html">เอกสารอ้างอิงคีย์เวิร์ด</a></li><li><a href="/en-US/language/locales/examples.html">ตัวอย่างตามภาษา</a></li><li><a href="/en-US/language/locales/diagnostics.html">การวินิจฉัยตามภาษา</a></li></ul><div class="side-h">ไลบรารี</div><ul class="nav"><li><a href="/th-TH/libraries/norma.html">Norma — ไลบรารีมาตรฐาน</a></li><li><a href="/th-TH/libraries/triga.html">Triga — กราฟิกส์</a></li><li><a href="/th-TH/libraries/gradus.html">Gradus — ออโตเกรด</a></li><li><a href="/th-TH/libraries/tela.html">Tela — วิว</a></li><li><a href="/th-TH/libraries/inferentia.html">Inferentia — อนุมาน</a></li><li><a href="/th-TH/libraries/corpus.html">คลังภาษา</a></li></ul></aside><main id="main-content"><h1>Design notes</h1><div class="content"><h2 id="commandments">Commandments<a class="anchor" href="#commandments">#</a></h2><p><em>กฎเก้าข้อที่ทำให้ Faber ให้ความรู้สึกเป็น Faber</em></p><p>กฎเหล่านี้คือหลักการออกแบบที่กำหนดลักษณะเฉพาะของ Faber ไวยากรณ์อาจพัฒนาได้
-และสามารถเพิ่มฟีเจอร์ใหม่ได้ แต่การเปลี่ยนแปลงควรรักษาหลักการเหล่านี้ไว้
-โปรแกรมที่ละเมิดหลักการเหล่านี้อาจยังเป็น Faber ที่ถูกต้อง แต่จะไม่ให้ความรู้สึก
-เป็น Faber</p><p>บัญญัติเหล่านี้ใช้ได้กับทุกระดับ — ตั้งแต่ตัวไวยากรณ์เองไปจนถึงวิธีตั้งชื่อ API
-ในไลบรารีมาตรฐาน นี่คือเหตุผลที่ผู้อ่านสามารถระบุซอร์สโค้ด Faber ได้ทันที
-ไม่ว่าจะเรนเดอร์คีย์เวิร์ดด้วยภาษามนุษย์ใด หรือโค้ดจะคอมไพล์ไปยังแบ็กเอนด์เป้าหมายใด</p><h3 id="i-types-before-names">I. ประเภทมาก่อนชื่อ<a class="anchor" href="#i-types-before-names">#</a></h3><p>การประกาศอ่านจากรูปร่างไปสู่การผูกชื่อ ประเภทมาก่อนเพราะผู้อ่านจำเป็นต้องรู้
-<em>สิ่งนี้เป็นสิ่งประเภทใด</em> ก่อนที่ชื่อจะบอกว่า <em>เป็นสิ่งใด</em> ลำดับนี้สอดคล้องกับ
-ภาษาที่มีโครงสร้างทางไวยากรณ์จากหมวดหมู่ไปยังสิ่งเฉพาะ — เช่น ภาษาจีน ภาษาฮินดี
-และภาษาอาหรับ — และทำให้การประกาศกวาดสายตาได้อย่างสม่ำเสมอ</p><pre class="faber-code"><code class="lang-text"># Type before name in every declaration
-ข้อความ ชื่อ
-จํานวน aetas
-ฟังก์ชัน salve(ข้อความ name) → ข้อความ</code></pre><h3 id="ii-mechanical-over-magical">II. ใช้กลไกที่ชัดเจน ไม่พึ่งเวทมนตร์<a class="anchor" href="#ii-mechanical-over-magical">#</a></h3><p>โครงสร้างเดียวกันควรมีความหมายเหมือนกันในทุกที่ หากผู้อ่านต้องอาศัยบริบทที่อยู่
-ห่างไกลเพื่อรู้ว่าสัญลักษณ์หนึ่งทำอะไร ไวยากรณ์นั้นก็น่าสงสัย Faber ให้ความสำคัญ
-กับการให้เหตุผลอย่างชัดเจนและอยู่ในบริเวณใกล้เคียง — จุดประกาศควรมีข้อมูลเพียงพอ
-ให้เข้าใจได้ว่าจะเกิดอะไรขึ้นที่จุดใช้งาน</p><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># The meaning of a call is determined by the function's signature,</span>
-<span class="tok-co"># not by invisible trait resolution or implicit conversions.</span>
-<span class="tok-kw">ฟังก์ชัน</span> duplica(<span class="tok-kw">จํานวน</span> n) <span class="tok-op">→</span> <span class="tok-kw">จํานวน</span> {
-    <span class="tok-kw">คืน</span> n <span class="tok-op">*</span> <span class="tok-nu">2</span>
-}</code></pre><h3 id="iii-glyphs-carry-structure">III. อักขระภาพทำหน้าที่บอกโครงสร้าง<a class="anchor" href="#iii-glyphs-carry-structure">#</a></h3><p>ความหมายเชิงโครงสร้างและตัวดำเนินการใช้สัญลักษณ์ภาพ ไม่ใช้คำ: <code class="glyph">←</code>
-สำหรับการผูกค่า, <code class="glyph">→</code> สำหรับประเภทผลลัพธ์, <code class="glyph">⇥</code>
-สำหรับการออกเมื่อเกิดข้อผิดพลาด, <code>ดังนั้น</code> สำหรับบอดีของแขนงแบบกระชับ,
-<code class="glyph">≡</code> สำหรับความเท่ากัน และ <code class="glyph">∪</code> สำหรับประเภท
-ยูเนียน สัญลักษณ์ภาพเป็นสากล — ไม่แปลตามภาษาและไม่เปลี่ยนความหมาย
-ระหว่างการเรนเดอร์ ภาษาไทยและภาษาฝรั่งเศสจึงเห็นสัญลักษณ์ภาพเดียวกัน
-แม้คีย์เวิร์ดที่อยู่รอบข้างจะแตกต่างกัน</p><h3 id="iv-latin-carries-behaviour">IV. อักษรละตินทำหน้าที่บอกพฤติกรรม<a class="anchor" href="#iv-latin-carries-behaviour">#</a></h3><p>คำต่าง ๆ ใช้สำหรับการประกาศ คำสั่ง วงจรชีวิต และเจตนาเชิงพฤติกรรม:
-<code>ฟังก์ชัน</code>, <code class="glyph">ชนิด</code>, <code>คงที่</code>,
-<code class="glyph">แปร</code>, <code class="glyph">คืน</code>, <code class="glyph">จับ</code>
-คำเหล่านี้สามารถผูกเข้ากับแพ็กภาษาของผู้อ่านได้ — คำเหล่านี้คือคลังคำศัพท์
-ไม่ใช่ไวยากรณ์ การเลือกใช้ภาษาละตินไม่ได้หมายถึงความเหนือกว่าของภาษาละติน
-แต่หมายถึงการเลือกแหล่งภาษาคลาสสิก <em>เพียงแหล่งเดียว</em> ที่สอดคล้องกัน
-เพื่อให้คีย์เวิร์ดทั้งหมดอยู่ในระดับภาษาเดียวกัน และไม่มีคีย์เวิร์ดใดได้รับสิทธิพิเศษ
-เพียงเพราะเป็นภาษาที่ใช้เขียนตัวระบบ</p><h3 id="v-conjugation-carries-time-and-flow">V. การผันคำกริยาทำหน้าที่บอกเวลาและการไหลของการทำงาน<a class="anchor" href="#v-conjugation-carries-time-and-flow">#</a></h3><p>เมื่อสามารถเรียกใช้ตรรกะรากเดียวกันแบบซิงโครนัส แบบอะซิงโครนัส
-หรือในฐานะเจเนอเรเตอร์ได้ รูปผันของคำกริยาควรเป็นตัวบอกโหมดการทำงานนั้น
-คู่คำที่เกี่ยวกับ ownership — กลายค่าเทียบกับคัดลอกผลลัพธ์ออก —
-ควรใช้รูปที่สัมพันธ์กันของรากคำเดียวกัน นี่คือหลักการ morphologia
-ไลบรารีมาตรฐาน (Norma) ใช้แบบแผนนี้กับชื่อเมธอดทั้งหมด:
-<code class="glyph">อ่าน</code> (อ่านแบบซิงโครนัส) เทียบกับ
-<code>leget</code> (อ่านแบบอะซิงโครนัส), <code>adde</code> (กลายค่าในที่เดิม) เทียบกับ
-<code>addita</code> (คืนสำเนาใหม่) คอมไพเลอร์ไม่ได้บังคับหรือสร้างรูปผันเหล่านี้
-เพราะนี่เป็นนโยบายการตั้งชื่อ ไม่ใช่ฟีเจอร์ของภาษา</p><h3 id="vi-one-sign-one-job">VI. หนึ่งสัญลักษณ์ หนึ่งหน้าที่<a class="anchor" href="#vi-one-sign-one-job">#</a></h3><p>สัญลักษณ์ภาพหรือคีย์เวิร์ดอาจมีนามแฝงที่มีความหมายตรงกันได้
-แต่ไม่ควรมีความหมายที่ไม่เกี่ยวข้องกัน นามแฝงต้องชี้กลับไปยังแนวคิดหลักเพียงหนึ่งเดียว
-นี่คือหลักการที่ขับเคลื่อนการแยกระหว่าง <code class="glyph">←</code>
-(การผูกค่าในขณะทำงาน) และ <code class="glyph">=</code> (รูปร่างฟิลด์เชิงโครงสร้าง) —
-ภาษาส่วนใหญ่รวมทั้งสองอย่างไว้เป็น <code class="glyph">=</code>
-แต่การใช้ซ้ำเช่นนั้นบดบังว่าบรรทัดหนึ่งเป็นการดำเนินการไหลของข้อมูล
-หรือเป็นการกำหนดในระดับประเภท</p><pre class="faber-code"><code class="lang-text"># ← is always runtime flow
-คงที่ จํานวน count ← 0
-count ← count + 1
-
-# = is always structural shape inside Type { }
-คงที่ _ p ← Point {
-    x = 10,
-    y = 20
-}</code></pre><h3 id="vii-runtime-flow-is-explicit">VII. การไหลของการทำงานขณะรันไทม์ต้องชัดเจน<a class="anchor" href="#vii-runtime-flow-is-explicit">#</a></h3><p>การผูกค่าในขณะทำงาน การกำหนดค่าใหม่ และการกลายค่าใช้ <code class="glyph">←</code>;
-การกำหนดเชิงโครงสร้างใช้ <code class="glyph">=</code> ผู้อ่านที่กวาดสายตาผ่านซอร์สโค้ดจะเห็น
-การดำเนินการไหลของข้อมูลทุกจุดได้ทันที: ทุก <code class="glyph">←</code> คือเหตุการณ์ขณะรันไทม์
-จึงไม่มีความกำกวมทางไวยากรณ์ว่า <code class="glyph">=</code> ในบรรทัดหนึ่งหมายถึง
-“เก็บค่าลงในตัวแปรนี้” หรือ “กำหนดฟิลด์นี้”</p><h3 id="viii-absence-is-typed">VIII. การไม่มีค่าต้องมีประเภท<a class="anchor" href="#viii-absence-is-typed">#</a></h3><p>ประเภทค่าที่อาจเป็นค่าว่างเขียนเป็นยูเนียน: <code>T ∪ นัล</code>
-ช่องการประกาศที่เลือกละเว้นได้ใช้เครื่องหมายหลังชื่อ: <code>สมัครใจ</code>
-สองอย่างนี้เป็นแนวคิดที่แตกต่างกัน — <em>ค่าที่อาจไม่มีอยู่</em> เทียบกับ
-<em>ช่องที่ผู้เรียกอาจไม่ระบุ</em> — และ Faber แยกสองแนวคิดนี้ทางไวยากรณ์
-แทนที่จะรวมทั้งคู่ไว้เป็น <code>T?</code> หรือ <code>Option&lt;T&gt;</code></p><pre class="faber-code"><code class="lang-text"># Absence in a value: T ∪ นัล
-ฟังก์ชัน find(ข้อความ key) → จํานวน ∪ นัล
-
-# Omission at declaration: สมัครใจ
-ฟังก์ชัน connect(ข้อความ host, จํานวน port สมัครใจ) → เปล่า</code></pre><h3 id="ix-compiler-does-not-guess">IX. คอมไพเลอร์จะไม่เดาเพื่อปกปิดข้อมูลที่ขาดหาย<a class="anchor" href="#ix-compiler-does-not-guess">#</a></h3><p>ข้อมูลประเภทที่ขาดหายเป็นปัญหาด้านการวิเคราะห์ที่ต้องแก้จากต้นทาง
-ไม่ใช่รายละเอียดของการสร้างโค้ดที่ควรปกปิด คอมไพเลอร์จะไม่อนุมานประเภท
-ที่โปรแกรมเมอร์ไม่ได้ระบุอย่างเงียบ ๆ เมื่อข้อมูลนั้นขาดหายไปจริง —
-คอมไพเลอร์จะแจ้งช่องว่างดังกล่าวแล้วหยุดทำงาน กฎนี้ทำให้ Faber ซื่อตรง:
-หากผู้อ่านไม่สามารถระบุความหมายของสัญลักษณ์จากซอร์สโค้ดบริเวณใกล้เคียงได้
-คอมไพเลอร์ก็ไม่ควรแสร้งทำเป็นว่าระบุได้</p><h3 id="purpose">จุดประสงค์<a class="anchor" href="#purpose">#</a></h3><p>บัญญัติเหล่านี้มีขึ้นเพื่อตอบคำถามที่เกิดขึ้นในการอภิปรายการออกแบบภาษา
-ทุกครั้งว่า “การเปลี่ยนแปลงนี้ยังเป็น Faber อยู่หรือไม่” บัญญัติเหล่านี้คือ
-เกณฑ์ตรวจสอบความคงเส้นคงวา — ไม่ใช่การตรวจเทียบกับรายการฟีเจอร์
-แต่เป็นการตรวจเทียบกับลักษณะเฉพาะ การเปลี่ยนแปลงที่ละเมิดบัญญัติอาจยังเป็น
-แนวคิดที่ดี แต่ควรยอมรับอย่างชัดเจนว่าเป็นการออกนอกลักษณะการออกแบบของ Faber
-ไม่ใช่การเพิ่มฟีเจอร์ตามปกติ</p><p>ในทางปฏิบัติ บัญญัติเหล่านี้มักใช้เป็นเกณฑ์ทบทวนข้อเสนอไวยากรณ์ใหม่
-ข้อเสนอที่ทำให้หลัก “ประเภทมาก่อนชื่อ” อ่อนลงด้วยการเพิ่มทางเลือกแบบชื่อมาก่อน
-หรือทำให้หลัก “หนึ่งสัญลักษณ์ หนึ่งหน้าที่” พร่ามัวด้วยการใช้สัญลักษณ์ภาพ
-หลายความหมาย ต้องอธิบายให้ได้ว่าเหตุใด Faber จึงควรยืดหยุ่นลักษณะเฉพาะของตน
-เพื่อรองรับฟีเจอร์นั้น</p><h2 id="design-documents">Design documents<a class="anchor" href="#design-documents">#</a></h2><p>คลัง Radix มีเอกสารการออกแบบที่เป็นแหล่งอ้างอิงหลักเกี่ยวกับการทำงานของ Faber ในฐานะภาษาและคอมไพเลอร์ เอกสารเหล่านี้อยู่ภายใต้ <code>radix/docs/design/</code></p><h3 id="index">ดัชนี<a class="anchor" href="#index">#</a></h3><div class="table-scroll"><table><thead><tr><th>ด้าน</th><th>ไฟล์</th></tr></thead><tbody><tr><td>เป้าหมายและการลดรูป</td><td><code>target-capability-matrix.md</code>, <code>lowering-routes.md</code>, <code>semantic-ownership.md</code></td></tr><tr><td>ชนิดข้อมูลและไวยากรณ์ย่อ</td><td><code>numeric-type-sugar.md</code>, <code>comparison-operators.md</code>, <code>annotation-sugar.md</code></td></tr><tr><td>อินทรินสิกของคอลเลกชัน</td><td><code>lista-intrinsics.md</code>, <code>tabula-intrinsics.md</code>, <code>tensor-intrinsics.md</code>, <code>numerus-intrinsics.md</code>, <code>fractus-intrinsics.md</code>, <code>textus-intrinsics.md</code>, <code>intervallum-intrinsics.md</code>, <code>instans-intrinsics.md</code>, <code>copia-intrinsics.md</code></td></tr><tr><td>การแปลงค่า</td><td><code>conversio-valor.md</code>, <code>failable-conversio.md</code></td></tr><tr><td>เฟรมและเอฟเฟกต์</td><td><code>frame-stream-types.md</code>, <code>host-provider-gateway.md</code></td></tr><tr><td>รีดเดอร์และรูปแบบ</td><td><code>reader-locale.md</code>, <code>faber-canonical-surface.md</code></td></tr><tr><td>ระบบ / AIR</td><td><code>air-dialect.md</code>, <code>aiml-foundation.md</code>, <code>systems-shaped-values.md</code></td></tr><tr><td>พื้นผิวเครื่องมือ</td><td><code>faber-scripting.md</code></td></tr><tr><td>หนี้ค้างด้านการตั้งชื่อ</td><td><code>mixed-case-naming-debt.md</code></td></tr></tbody></table></div><h3 id="stdlib-design-docs">เอกสารการออกแบบไลบรารีมาตรฐาน<a class="anchor" href="#stdlib-design-docs">#</a></h3><p>ไดเรกทอรี <code>radix/docs/stdlib/</code> ประกอบด้วย:</p><div class="table-scroll"><table><thead><tr><th>เอกสาร</th><th>บทบาท</th></tr></thead><tbody><tr><td><code>morphologia.md</code></td><td>นโยบายการผันรูปสำหรับชื่อเมธอดทั้งหมดในไลบรารีมาตรฐาน</td></tr><tr><td><code>tensor-methods.md</code></td><td>เอกสารอ้างอิงเมธอดของตัวรับ Tensor</td></tr><tr><td><code>chorda-methods.md</code></td><td>เอกสารอ้างอิงเมธอดของ Chorda (ข้อความ)</td></tr><tr><td><code>mathesis-methods.md</code></td><td>เอกสารอ้างอิงเมธอดทางคณิตศาสตร์</td></tr><tr><td><code>tempus-methods.md</code></td><td>เอกสารอ้างอิงเมธอดด้านเวลา</td></tr><tr><td><code>stdlib-mechanical-verbs.md</code></td><td>นโยบายสามคำกริยา <code>pange</code>/<code>solve</code>/<code class="kw">tempta</code></td></tr></tbody></table></div><h2 id="history">History<a class="anchor" href="#history">#</a></h2><h3 id="origins">จุดกำเนิด<a class="anchor" href="#origins">#</a></h3><p>คอมมิตแรกของคอมไพเลอร์ Radix เกิดขึ้นเมื่อ <strong>20 ธันวาคม 2025</strong>
-ในรูปแบบโปรเจกต์ Bun + TypeScript ที่มีไฟล์ <code>docs/decisions.md</code> เพียงไฟล์เดียว
-คอมมิตที่สองได้กำหนดบันทึกการตัดสินใจด้านสถาปัตยกรรม (Architecture Decision Records)
-ไว้ห้ารายการ ซึ่งยังคงกำหนดทิศทางของภาษาในปัจจุบัน</p><p><strong>ADR-003</strong> ซึ่งมีชื่อว่า &quot;การลงท้ายของคำบ่งบอกความหมายเชิงอรรถศาสตร์&quot;
-ได้วางหลักไว้ตั้งแต่เริ่มต้นว่า สัณฐานวิทยาของภาษาละตินจะมีบทบาทมากกว่า
-การเป็นเพียงผิวหน้าของคีย์เวิร์ด — คอมไพเลอร์จะเข้าใจการผันคำนามและการผันกริยา
-เพื่ออนุมานเจตนาของโปรแกรม การจับคู่รูปแบบกรณีดั้งเดิมมีดังนี้:</p><pre class="faber-code"><code class="lang-text">Nominative  (subject)       →  return value, caller
-Accusative  (direct object)  →  primary argument
-Dative      (indirect obj.)  →  recipient, callback, destination
-Genitive    (possession)     →  property access, &quot;of&quot; relationships
-Ablative    (instrument)     →  dependencies, context, &quot;using X&quot;</code></pre><p>เอกสารฉบับเดียวกันยังระบุว่า: *&quot;คำถามถัดไปตามธรรมชาติคือการผันกริยา
-(อนาคตกาล → async?)&quot;* เมล็ดพันธุ์นี้เติบโตเป็นหลักการตั้งชื่อ
-<code>morphologia</code> ในปัจจุบัน โดยไลบรารีมาตรฐานใช้รูปกริยาภาษาละตินที่ผันแล้ว
-เพื่อสื่อว่าเป็นการทำงานแบบ sync หรือ async และเป็นการกลายค่าเดิมหรือ
-การคัดลอกผลลัพธ์ออกมา — โดยไม่กำหนดให้คอมไพเลอร์ต้องเข้าใจไวยากรณ์ภาษาละตินเอง</p><p>โครงการเริ่มต้นด้วย TypeScript จากนั้นจึงเขียนใหม่ด้วย Rust และตรึงไวยากรณ์ไว้
-สำหรับสายรุ่น 1.x โดยใช้เอดิชัน 2026 ADR ดั้งเดิมทั้งห้ารายการ
-(นามสกุลไฟล์ <code>.fab</code>, คำแนะนำข้อผิดพลาด, การลงท้ายของคำตามกรณี,
-ตัวแยกวิเคราะห์แบบ recursive descent และ AST แบบกำหนดเอง)
-ยังคงมองเห็นได้ในประวัติ git</p><h3 id="releases">รุ่นเผยแพร่<a class="anchor" href="#releases">#</a></h3><p>ไฟล์ CLI ที่สร้างไว้ล่วงหน้า — รุ่น Faber ปัจจุบันอยู่ด้านบน
-ตามด้วยแท็กและไบนารีที่เผยแพร่แล้วทั้งหมดจาก
-<a href="https://github.com/faberlang/releases">faberlang/releases</a>:</p><ul><li><strong>[รุ่นเผยแพร่](/releases/)</strong> — ลิงก์ดาวน์โหลดและรายการประวัติ</li><li><strong>[ติดตั้งและดาวน์โหลด](/start/)</strong> — การตั้งค่า PATH และการรัน <code>faber check</code> ครั้งแรก</li></ul></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#commandments">Commandments</a></li><li class="toc-3"><a href="#i-types-before-names">I. ประเภทมาก่อนชื่อ</a></li><li class="toc-3"><a href="#ii-mechanical-over-magical">II. ใช้กลไกที่ชัดเจน ไม่พึ่งเวทมนตร์</a></li><li class="toc-3"><a href="#iii-glyphs-carry-structure">III. อักขระภาพทำหน้าที่บอกโครงสร้าง</a></li><li class="toc-3"><a href="#iv-latin-carries-behaviour">IV. อักษรละตินทำหน้าที่บอกพฤติกรรม</a></li><li class="toc-3"><a href="#v-conjugation-carries-time-and-flow">V. การผันคำกริยาทำหน้าที่บอกเวลาและการไหลของการทำงาน</a></li><li class="toc-3"><a href="#vi-one-sign-one-job">VI. หนึ่งสัญลักษณ์ หนึ่งหน้าที่</a></li><li class="toc-3"><a href="#vii-runtime-flow-is-explicit">VII. การไหลของการทำงานขณะรันไทม์ต้องชัดเจน</a></li><li class="toc-3"><a href="#viii-absence-is-typed">VIII. การไม่มีค่าต้องมีประเภท</a></li><li class="toc-3"><a href="#ix-compiler-does-not-guess">IX. คอมไพเลอร์จะไม่เดาเพื่อปกปิดข้อมูลที่ขาดหาย</a></li><li class="toc-3"><a href="#purpose">จุดประสงค์</a></li><li class="toc-2"><a href="#design-documents">Design documents</a></li><li class="toc-3"><a href="#index">ดัชนี</a></li><li class="toc-3"><a href="#stdlib-design-docs">เอกสารการออกแบบไลบรารีมาตรฐาน</a></li><li class="toc-2"><a href="#history">History</a></li><li class="toc-3"><a href="#origins">จุดกำเนิด</a></li><li class="toc-3"><a href="#releases">รุ่นเผยแพร่</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">แหล่งที่มา</span><ul><li>[</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/th-TH/releases/">ทุกรุ่นที่เผยแพร่</a></nav></footer></div></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url=/en-US/reference/design.html">
+<link rel="canonical" href="https://faberlang.dev/en-US/reference/design.html">
+<meta name="robots" content="noindex">
+<title>Moved</title>
+</head>
+<body><p>This page moved to <a href="/en-US/reference/design.html">/en-US/reference/design.html</a>.</p></body>
+</html>

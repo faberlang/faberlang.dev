@@ -26,10 +26,10 @@ This file is the generated keyword catalog, not the writing guide.
 
 ## Generated corpus frontmatter reference
 
-- Distinct frontmatter terms: 292
-- Canonical term pages: 213
+- Distinct frontmatter terms: 345
+- Canonical term pages: 233
 - Alias spellings: 139
-- Categories: 47
+- Categories: 48
 - Source: radix/corpus/**/*.fab TOML frontmatter
 
 Each canonical record has: term, kind, category, summary, syntax signature, aliases, relations, and page URL.
@@ -39,7 +39,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - ad (3) — https://faberlang.dev/en-US/corpus/category/ad.html
 - aliasing (1) — https://faberlang.dev/en-US/corpus/category/aliasing.html
 - application (1) — https://faberlang.dev/en-US/corpus/category/application.html
-- arithmetic (12) — https://faberlang.dev/en-US/corpus/category/arithmetic.html
+- arithmetic (13) — https://faberlang.dev/en-US/corpus/category/arithmetic.html
 - assignment (2) — https://faberlang.dev/en-US/corpus/category/assignment.html
 - async (12) — https://faberlang.dev/en-US/corpus/category/async.html
 - availability (1) — https://faberlang.dev/en-US/corpus/category/availability.html
@@ -48,10 +48,11 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - boolean (1) — https://faberlang.dev/en-US/corpus/category/boolean.html
 - cli (6) — https://faberlang.dev/en-US/corpus/category/cli.html
 - codegen (1) — https://faberlang.dev/en-US/corpus/category/codegen.html
-- collection (10) — https://faberlang.dev/en-US/corpus/category/collection.html
+- collection (29) — https://faberlang.dev/en-US/corpus/category/collection.html
 - comparison (2) — https://faberlang.dev/en-US/corpus/category/comparison.html
 - comptime (2) — https://faberlang.dev/en-US/corpus/category/comptime.html
 - control-flow (16) — https://faberlang.dev/en-US/corpus/category/control-flow.html
+- conversio (1) — https://faberlang.dev/en-US/corpus/category/conversio.html
 - conversion (7) — https://faberlang.dev/en-US/corpus/category/conversion.html
 - declaration (3) — https://faberlang.dev/en-US/corpus/category/declaration.html
 - destructuring (1) — https://faberlang.dev/en-US/corpus/category/destructuring.html
@@ -60,7 +61,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - errors (6) — https://faberlang.dev/en-US/corpus/category/errors.html
 - expression (2) — https://faberlang.dev/en-US/corpus/category/expression.html
 - format (4) — https://faberlang.dev/en-US/corpus/category/format.html
-- function (13) — https://faberlang.dev/en-US/corpus/category/function.html
+- function (12) — https://faberlang.dev/en-US/corpus/category/function.html
 - identifier (3) — https://faberlang.dev/en-US/corpus/category/identifier.html
 - integration (1) — https://faberlang.dev/en-US/corpus/category/integration.html
 - io (2) — https://faberlang.dev/en-US/corpus/category/io.html
@@ -87,16 +88,16 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 ### Kinds
 
 - annotation: 10
-- concept: 23
-- conversio: 7
+- concept: 42
+- conversio: 8
 - existing-home: 6
 - feature: 3
-- keyword: 117
+- keyword: 116
 - literal: 2
 - method: 2
 - modifier: 1
 - operator: 4
-- operator-group: 31
+- operator-group: 32
 - pointer: 1
 - type: 6
 
@@ -269,6 +270,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `et`, `vel`, `⊻`
 - Page: https://faberlang.dev/en-US/corpus/or.html
 - Source: radix/corpus/binarius/binarius.fab
+
+#### `bits`
+
+- Canonical: `bits`
+- Kind: conversio
+- Category: conversio
+- Summary: A bits list converts to a wider list with a via Le or via Be clause, and a same-width list takes none.
+- Syntax: `list<b8> ↦ list<u16> via Le | list<b8> ↦ list<u8>`
+- Aliases: none
+- Related: `bits`, `↦`
+- Page: https://faberlang.dev/en-US/corpus/bits.html
+- Source: radix/corpus/bits/bits-bulk-la.fab
 
 #### `bivalens`
 
@@ -767,8 +780,8 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `finite`
 - Kind: conversio
 - Category: conversion
-- Summary: finite()-style NaN detection on float payloads via the Bits field-read gate (exponent 0xFF, fraction ≠ 0), never via x ≠ x.
-- Syntax: `x ↦ u32 via Bits field reads: (bits ⇒ 23) ∧ 255 and bits ∧ 8388607`
+- Summary: finite()-style NaN detection on float payloads via the bN field-read gate (exponent 0xFF, fraction ≠ 0), never via x ≢ x.
+- Syntax: `x ↦ b32 ↦ u32 field reads: (bits ⇒ 23) ∧ 255 and bits ∧ 8388607`
 - Aliases: none
 - Related: `↦`, `fractus`, `functio`
 - Page: https://faberlang.dev/en-US/corpus/finite.html
@@ -1182,18 +1195,6 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/read.html
 - Source: radix/corpus/lege/lege.fab
 
-#### `libera`
-
-- Canonical: `libera`
-- Kind: keyword
-- Category: function
-- Summary: Marks a closure as capture-free; the closure may not reference any enclosing local or parameter.
-- Syntax: `<type> <name> ← (params) free [→ <type>] ∴ <expression>`
-- Aliases: `libera`
-- Related: `clausura`, `∴`, `functio`
-- Page: https://faberlang.dev/en-US/corpus/free.html
-- Source: radix/corpus/libera/libera.fab
-
 #### `lineam`
 
 - Canonical: `lineam`
@@ -1229,6 +1230,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `targets`, `cli`, `incipit`, `proba`
 - Page: https://faberlang.dev/en-US/corpus/manifest.html
 - Source: radix/corpus/meta/manifest.fab
+
+#### `mean-sugar`
+
+- Canonical: `mean-sugar`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/mean-sugar.html
+- Source: radix/corpus/summa/mean-sugar.fab
 
 #### `membrum`
 
@@ -1395,7 +1408,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Syntax: `nihil`
 - Aliases: none
 - Related: `∪`, `sponte`, `nihil`
-- Page: https://faberlang.dev/en-US/corpus/null.html
+- Page: https://faberlang.dev/en-US/corpus/none.html
 - Source: radix/corpus/literalia/nihil.fab
 
 #### `non`
@@ -1782,6 +1795,54 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Page: https://faberlang.dev/en-US/corpus/return_await.html
 - Source: radix/corpus/reddet/reddet.fab
 
+#### `reducta-arg`
+
+- Canonical: `reducta-arg`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/reducta-arg.html
+- Source: radix/corpus/summa/reducta-arg.fab
+
+#### `reducta-ops`
+
+- Canonical: `reducta-ops`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/reducta-ops.html
+- Source: radix/corpus/summa/reducta-ops.fab
+
+#### `reducta-ops-en`
+
+- Canonical: `reducta-ops-en`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/reducta-ops-en.html
+- Source: radix/corpus/summa/reducta-ops-en.fab
+
+#### `reducta-pro`
+
+- Canonical: `reducta-pro`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/reducta-pro.html
+- Source: radix/corpus/summa/reducta-pro.fab
+
 #### `regex`
 
 - Canonical: `regex`
@@ -2021,6 +2082,174 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: none
 - Page: https://faberlang.dev/en-US/corpus/only_in.html
 - Source: radix/corpus/solum-in/solum-in.fab
+
+#### `sort-body-stable`
+
+- Canonical: `sort-body-stable`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/sort-body-stable.html
+- Source: radix/corpus/sort/body-stable.fab
+
+#### `sort-body-stable-en`
+
+- Canonical: `sort-body-stable-en`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/sort-body-stable-en.html
+- Source: radix/corpus/sort/body-stable-en.fab
+
+#### `sort-empty`
+
+- Canonical: `sort-empty`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/sort-empty.html
+- Source: radix/corpus/sort/list-empty.fab
+
+#### `sort-empty-en`
+
+- Canonical: `sort-empty-en`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/sort-empty-en.html
+- Source: radix/corpus/sort/list-empty-en.fab
+
+#### `sort-float`
+
+- Canonical: `sort-float`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/sort-float.html
+- Source: radix/corpus/sort/list-float.fab
+
+#### `sort-float-en`
+
+- Canonical: `sort-float-en`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/sort-float-en.html
+- Source: radix/corpus/sort/list-float-en.fab
+
+#### `sort-list`
+
+- Canonical: `sort-list`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/sort-list.html
+- Source: radix/corpus/sort/list-asc-desc.fab
+
+#### `sort-list-en`
+
+- Canonical: `sort-list-en`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/sort-list-en.html
+- Source: radix/corpus/sort/list-asc-desc-en.fab
+
+#### `sort-map`
+
+- Canonical: `sort-map`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/sort-map.html
+- Source: radix/corpus/sort/map-from-ref.fab
+
+#### `sort-map-en`
+
+- Canonical: `sort-map-en`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/sort-map-en.html
+- Source: radix/corpus/sort/map-from-ref-en.fab
+
+#### `sort-set`
+
+- Canonical: `sort-set`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/sort-set.html
+- Source: radix/corpus/sort/set-asc-desc.fab
+
+#### `sort-set-en`
+
+- Canonical: `sort-set-en`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/sort-set-en.html
+- Source: radix/corpus/sort/set-asc-desc-en.fab
+
+#### `sort-text`
+
+- Canonical: `sort-text`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/sort-text.html
+- Source: radix/corpus/sort/list-text.fab
+
+#### `sort-text-en`
+
+- Canonical: `sort-text-en`
+- Kind: concept
+- Category: collection
+- Summary: n/a
+- Syntax: `n/a`
+- Aliases: none
+- Related: none
+- Page: https://faberlang.dev/en-US/corpus/sort-text-en.html
+- Source: radix/corpus/sort/list-text-en.fab
 
 #### `sparge`
 
@@ -2387,7 +2616,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Canonical: `vide`
 - Kind: keyword
 - Category: output
-- Summary: Writes a debug value to standard output.
+- Summary: Writes a debug value to standard error.
 - Syntax: `vide <expression>`
 - Aliases: none
 - Related: `scribe`, `mone`
@@ -2582,7 +2811,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Summary: Numeric value equality (≅) after promotion join — exact, not fuzzy float.
 - Syntax: `<expression> ≅ <expression> | <expression> ≇ <expression>`
 - Aliases: none
-- Related: `≡`, `≠`, `↦`, `adfirma`
+- Related: `≡`, `≢`, `↦`, `adfirma`
 - Page: https://faberlang.dev/en-US/corpus/%E2%89%85.html
 - Source: radix/corpus/operatores/numeric-value-eq.fab
 
@@ -2592,9 +2821,9 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Kind: operator-group
 - Category: comparison
 - Summary: Equality and ordering comparisons returning bivalens.
-- Syntax: `<expression> ≡ <expression> | <expression> ≠ <expression> | <expression> ≤ <expression> | <expression> ≥ <expression>`
+- Syntax: `<expression> ≡ <expression> | <expression> ≢ <expression> | <expression> ≤ <expression> | <expression> ≥ <expression>`
 - Aliases: none
-- Related: `≠`, `≤`, `≥`, `est`, `adfirma`
+- Related: `≢`, `≤`, `≥`, `est`, `adfirma`
 - Page: https://faberlang.dev/en-US/corpus/%E2%89%A1.html
 - Source: radix/corpus/operatores/comparatio.fab
 
@@ -2633,6 +2862,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `tensor`, `vector`, `matrix`
 - Page: https://faberlang.dev/en-US/corpus/%E2%8A%99.html
 - Source: radix/corpus/tensor/glyph-elementwise.fab
+
+#### `⌊x⌉`
+
+- Canonical: `⌊x⌉`
+- Kind: operator-group
+- Category: arithmetic
+- Summary: Signa rotundandi: pavimentum, tectum, proximum cum paribus ad parem.
+- Syntax: `⌊x⌋ pavimentum | ⌈x⌉ tectum | ⌊x⌉ proximum (paria ad parem)`
+- Aliases: none
+- Related: `⌊x⌋`, `⌈x⌉`, `⌊x⌉`
+- Page: https://faberlang.dev/en-US/corpus/%E2%8C%8Ax%E2%8C%89.html
+- Source: radix/corpus/operatores/rounding-glyphs-la.fab
 
 #### `✓`
 
@@ -2699,10 +2940,12 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `conversion-directed-assignment` → `↤`
 - `convert` → `↦`
 - `convert hint` → `via`
+- `copy-into` → `⇇`
 - `default` → `ceterum`
 - `describe` → `probandum`
 - `dictionary` → `tabula`
 - `do` → `fac`
+- `do all` → `fac`
 - `else` → `secus`
 - `else if` → `sin`
 - `embed field default` → `insere =`
@@ -2732,9 +2975,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - `json` → `valor`
 - `lambda` → `clausa`
 - `legacy clausura head` → `clausura`
-- `legacy libera` → `libera`
 - `let` → `varia`
-- `libera` → `libera`
 - `list` → `lista`
 - `local comptime` → `praefixum =`
 - `local constant` → `fixum =`

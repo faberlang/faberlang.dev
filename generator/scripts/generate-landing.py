@@ -7,7 +7,7 @@ The page answers "what is this?" before anything else, in this order:
     1. claim + the agent pass: the one install call to action is a link a
        human hands to a model (/install.md), with copy buttons
     2. the one program, in every reader locale, with its real output
-    3. locale strip: a door into each language's own docs home
+    3. locale strip: English docs and per-language reader-pack mappings
     4. why it suits models: mechanical grammar, explicit types, math operators
     5. cross-compilation: one library emitted for each target, plus a
        capability table parsed from `faber targets`
@@ -48,11 +48,11 @@ from agent_pass import load_pass_strings, read_release, render_pass
 
 # Reader-pack axis. Order is the argument: English reader surface, canonical
 # Latin, then the human packs. `site` is the docs home the locale strip links
-# to; Latin is canonical Faber and has no docs site of its own.
+# to; language doors lead to mapping pages, with English leading to the docs.
 LOCALES: list[dict[str, str]] = [
     {"id": "en", "name": "English", "code": "en", "script": "", "site": "en-US",
      "note": "English reader surface — the base spelling for everyday source"},
-    {"id": "la", "name": "Latin", "code": "la", "script": "", "site": "",
+    {"id": "la", "name": "Latin", "code": "la", "script": "", "site": "la",
      "note": "canonical Faber — the classical surface the language is named for"},
     {"id": "th-TH", "name": "ภาษาไทย", "code": "th-TH", "script": "th", "site": "th-TH",
      "note": "Thai — spaceless script"},
@@ -327,8 +327,10 @@ def locale_strip() -> str:
             continue
         script = f' class="{loc["script"]}"' if loc["script"] else ""
         rtl = ' dir="rtl"' if loc.get("rtl") else ""
+        href = ("/en-US/" if loc["id"] == "en" else
+                f'/en-US/language/locales/{loc["id"]}.html')
         tiles += (
-            f'      <a class="fl-loc" href="/{loc["site"]}/" hreflang="{esc(loc["code"])}" '
+            f'      <a class="fl-loc" href="{href}" hreflang="{esc(loc["code"])}" '
             f'lang="{esc(loc["code"])}">'
             f'<span class="fl-loc-name"><span{script}{rtl}>{esc(loc["name"])}</span></span>'
             f'<span class="fl-loc-code">{esc(loc["code"])}</span></a>\n'
@@ -400,7 +402,7 @@ def main() -> None:
     title = "Faber Romanus — a programming language models write well, in the language you read"
     desc = ("Faber Romanus is a statically typed programming language for coding agents and human "
             "authors: a mechanical grammar, explicit generic types and math-oriented "
-            "operators, written in eight language surfaces and compiled to Rust, "
+            "operators, rendered in eight reader-pack surfaces and compiled to Rust, "
             "TypeScript, Go, Swift and more.")
 
     pass_html = render_pass(
@@ -460,8 +462,8 @@ def main() -> None:
       <div class="rule" aria-hidden="true"></div>
       <p class="subhook">
         Faber Romanus has a clear mechanical grammar, explicit static and generic types,
-        and math-oriented operators. The same program is written and read in
-        eight language surfaces, and compiles to Rust, TypeScript, Go, Swift and
+        and math-oriented operators. The same program renders in eight reader
+        pack surfaces, and compiles to Rust, TypeScript, Go, Swift and
         more — so a library you write once can go into the project you already
         have.
       </p>
@@ -495,8 +497,8 @@ def main() -> None:
       <h2>Start in your own language</h2>
       <p>
         People should not need English to use a model for code, or to read what
-        the model wrote. Each language has its own documentation home, written
-        in that language. Source is written the same way: one reader locale per
+        the model wrote. English is the maintained documentation tree; each reader locale has a
+        mapping page, and source is written the same way: one reader locale per
         file, sealed against the others, so a Thai file contains Thai keywords
         and nothing else.
       </p>

@@ -1,18 +1,18 @@
 # sum
 
-Sequential sum-reduce expression: sum from <tensor> at [i] const s { return <term> }.
+Sequential sum-reduce expression: reduce via sum from <tensor> at [i] const s.
 
 **Term** `summa` · **Section** CONCEPTS
 
 ## Syntax
 
 ```
-sum from <source> at [coords] const <binder> { return <term> }
+reduce via sum from <source> at [coords] const <binder> { return <term> }
 ```
 
 ## What this teaches
 
-- Sequential fold — `sum from` lowers to a MIR fold over the tensor's at iteration arm: a `+` accumulator seeded at zero, one term per element, `return` inside the body yields the term value.
+- Sequential fold — `reduce via sum from` lowers to a MIR fold over the tensor's at iteration arm: a `+` accumulator seeded at zero, one term per element, `return` inside the body yields the term value.
 - Identity term — `return s` is the sequential spelling of `a.summa()`; the printed pair matches under the numeric tolerance contract.
 - Transformed term — the body may compute any numeric scalar term from the bound element (here `s + 1.0` per lane).
 
@@ -25,11 +25,11 @@ sum from <source> at [coords] const <binder> { return <term> }
 
 ```fab
 fn identity(tensor<f32, [8]> a) → f32 {
-    return sum from a at [i] const s { return s }
+    return reduce via sum from a at [i] const s { return s }
 }
 
 fn shifted(tensor<f32, [8]> a) → f32 {
-    return sum from a at [i] const s {
+    return reduce via sum from a at [i] const s {
         var f32 t ← s
         t ← t + 1.0
         return t
@@ -38,8 +38,7 @@ fn shifted(tensor<f32, [8]> a) → f32 {
 
 main {
     const list<f32> flat ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0]
-    const tf32[] seed ← empty
-    const tf32[8] a ← seed.strue(flat, [8])
+        const tf32[8] a ← flat ↦ tf32[8]
 
     const f32 per_summam ← a.summa()
     const f32 plicatum ← identity(a)

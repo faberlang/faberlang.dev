@@ -12,7 +12,7 @@ Combines boolean expressions with logical or.
 
 ## What this teaches
 
-- Complete binary operator tour — arithmetic (`+ − * / %`), comparison (`≡ ≠ < >`), logic (`and or`), nullish coalescing (`coalesce`), ternary (`sic/secus`), and bitwise (`∧ ∨ ⊻ ⇐ ⇒`)
+- Complete binary operator tour — arithmetic (`+ − * / %`), comparison (`≡ ≢ < >`), logic (`and or`), nullish coalescing (`coalesce`), ternary (`sic/secus`), and bitwise (`∧ ∨ ⊻ ⇐ ⇒`)
 - Assignment patterns — explicit assignment (`←`) and postfix increment (`↑ ↓` statements)
 - `let` sugar — compact inference syntax alongside explicit `const _` type inference
 
@@ -54,7 +54,7 @@ Assignatio explicita (compound glyphs removed)
 Comparationes
     let aequalis ← 10 ≡ 10
     print aequalis
-    let diversus ← 10 ≠ 5
+    let diversus ← 10 ≢ 5
     print diversus
     let minor ← 5 ≺ 10
     print minor

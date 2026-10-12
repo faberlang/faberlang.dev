@@ -19,7 +19,7 @@ Tests whether a value's runtime type is a given type.
 
 ## Common mistakes
 
-- Using `is` to compare values — its right-hand side is always a type; use `≡` (or `≠`) for value comparison: `<expr> ≡ true`, `<expr> ≡ false`.
+- Using `is` to compare values — its right-hand side is always a type; use `≡` (or `≢`) for value comparison: `<expr> ≡ true`, `<expr> ≡ false`.
 
 ## Grammar
 

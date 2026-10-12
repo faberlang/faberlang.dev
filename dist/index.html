@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Faber Romanus — a programming language models write well, in the language you read</title>
-<meta name="description" content="Faber Romanus is a statically typed programming language for coding agents and human authors: a mechanical grammar, explicit generic types and math-oriented operators, written in eight language surfaces and compiled to Rust, TypeScript, Go, Swift and more.">
+<meta name="description" content="Faber Romanus is a statically typed programming language for coding agents and human authors: a mechanical grammar, explicit generic types and math-oriented operators, rendered in eight reader-pack surfaces and compiled to Rust, TypeScript, Go, Swift and more.">
 <meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E">
@@ -12,7 +12,7 @@
 <link rel="alternate" hreflang="x-default" href="https://faberlang.dev/">
 <link rel="stylesheet" href="/speculum.css">
 <meta property="og:title" content="Faber Romanus — a programming language models write well, in the language you read">
-<meta property="og:description" content="Faber Romanus is a statically typed programming language for coding agents and human authors: a mechanical grammar, explicit generic types and math-oriented operators, written in eight language surfaces and compiled to Rust, TypeScript, Go, Swift and more.">
+<meta property="og:description" content="Faber Romanus is a statically typed programming language for coding agents and human authors: a mechanical grammar, explicit generic types and math-oriented operators, rendered in eight reader-pack surfaces and compiled to Rust, TypeScript, Go, Swift and more.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://faberlang.dev/">
 <meta property="og:image" content="https://faberlang.dev/images/triga-budapest.png">
@@ -25,7 +25,7 @@
   <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
   <span class="lbl l1">Faber · 1.12.0</span><span class="lbl l2" id="hud-clock">UTC --:--:--</span>
   <i class="ruler"></i>
-  <div class="ticker"><div class="ticker-track"><div class="ticker-group"><span>Faber 1.12.0</span><i></i><span>MIT</span><i></i><span>8 reader locales</span><i></i><span>18 targets</span><i></i><span>258 grammar productions</span><i></i><span>No accounts</span><i></i><span>Experimental through version 1</span><i></i><span>System fonts · zero external requests</span><i></i></div><div class="ticker-group"><span>Faber 1.12.0</span><i></i><span>MIT</span><i></i><span>8 reader locales</span><i></i><span>18 targets</span><i></i><span>258 grammar productions</span><i></i><span>No accounts</span><i></i><span>Experimental through version 1</span><i></i><span>System fonts · zero external requests</span><i></i></div></div></div>
+  <div class="ticker"><div class="ticker-track"><div class="ticker-group"><span>Faber 1.12.0</span><i></i><span>MIT</span><i></i><span>8 reader locales</span><i></i><span>19 targets</span><i></i><span>267 grammar productions</span><i></i><span>No accounts</span><i></i><span>Experimental through version 1</span><i></i><span>System fonts · zero external requests</span><i></i></div><div class="ticker-group"><span>Faber 1.12.0</span><i></i><span>MIT</span><i></i><span>8 reader locales</span><i></i><span>19 targets</span><i></i><span>267 grammar productions</span><i></i><span>No accounts</span><i></i><span>Experimental through version 1</span><i></i><span>System fonts · zero external requests</span><i></i></div></div></div>
 </div>
 
 <header class="site-top">
@@ -55,8 +55,8 @@
       <div class="rule" aria-hidden="true"></div>
       <p class="subhook">
         Faber Romanus has a clear mechanical grammar, explicit static and generic types,
-        and math-oriented operators. The same program is written and read in
-        eight language surfaces, and compiles to Rust, TypeScript, Go, Swift and
+        and math-oriented operators. The same program renders in eight reader
+        pack surfaces, and compiles to Rust, TypeScript, Go, Swift and
         more — so a library you write once can go into the project you already
         have.
       </p>
@@ -317,20 +317,21 @@ outside
       <h2>Start in your own language</h2>
       <p>
         People should not need English to use a model for code, or to read what
-        the model wrote. Each language has its own documentation home, written
-        in that language. Source is written the same way: one reader locale per
+        the model wrote. English is the maintained documentation tree; each reader locale has a
+        mapping page, and source is written the same way: one reader locale per
         file, sealed against the others, so a Thai file contains Thai keywords
         and nothing else.
       </p>
     </div>
     <div class="fl-locs" role="list" aria-label="Documentation by language">
       <a class="fl-loc" href="/en-US/" hreflang="en" lang="en"><span class="fl-loc-name"><span>English</span></span><span class="fl-loc-code">en</span></a>
-      <a class="fl-loc" href="/th-TH/" hreflang="th-TH" lang="th-TH"><span class="fl-loc-name"><span class="th">ภาษาไทย</span></span><span class="fl-loc-code">th-TH</span></a>
-      <a class="fl-loc" href="/zh-Hans/" hreflang="zh-Hans" lang="zh-Hans"><span class="fl-loc-name"><span class="zh">简体中文</span></span><span class="fl-loc-code">zh-Hans</span></a>
-      <a class="fl-loc" href="/zh-Hant/" hreflang="zh-Hant" lang="zh-Hant"><span class="fl-loc-name"><span class="zh">繁體中文</span></span><span class="fl-loc-code">zh-Hant</span></a>
-      <a class="fl-loc" href="/vi/" hreflang="vi" lang="vi"><span class="fl-loc-name"><span>Tiếng Việt</span></span><span class="fl-loc-code">vi</span></a>
-      <a class="fl-loc" href="/ar/" hreflang="ar" lang="ar"><span class="fl-loc-name"><span class="ar" dir="rtl">العربية</span></span><span class="fl-loc-code">ar</span></a>
-      <a class="fl-loc" href="/hi/" hreflang="hi" lang="hi"><span class="fl-loc-name"><span class="hi">हिन्दी</span></span><span class="fl-loc-code">hi</span></a>
+      <a class="fl-loc" href="/en-US/language/locales/la.html" hreflang="la" lang="la"><span class="fl-loc-name"><span>Latin</span></span><span class="fl-loc-code">la</span></a>
+      <a class="fl-loc" href="/en-US/language/locales/th-TH.html" hreflang="th-TH" lang="th-TH"><span class="fl-loc-name"><span class="th">ภาษาไทย</span></span><span class="fl-loc-code">th-TH</span></a>
+      <a class="fl-loc" href="/en-US/language/locales/zh-Hans.html" hreflang="zh-Hans" lang="zh-Hans"><span class="fl-loc-name"><span class="zh">简体中文</span></span><span class="fl-loc-code">zh-Hans</span></a>
+      <a class="fl-loc" href="/en-US/language/locales/zh-Hant.html" hreflang="zh-Hant" lang="zh-Hant"><span class="fl-loc-name"><span class="zh">繁體中文</span></span><span class="fl-loc-code">zh-Hant</span></a>
+      <a class="fl-loc" href="/en-US/language/locales/vi.html" hreflang="vi" lang="vi"><span class="fl-loc-name"><span>Tiếng Việt</span></span><span class="fl-loc-code">vi</span></a>
+      <a class="fl-loc" href="/en-US/language/locales/ar.html" hreflang="ar" lang="ar"><span class="fl-loc-name"><span class="ar" dir="rtl">العربية</span></span><span class="fl-loc-code">ar</span></a>
+      <a class="fl-loc" href="/en-US/language/locales/hi.html" hreflang="hi" lang="hi"><span class="fl-loc-name"><span class="hi">हिन्दी</span></span><span class="fl-loc-code">hi</span></a>
     </div>
     <p class="fl-note">
       Latin is the canonical interchange form the language is named for. Reader
@@ -353,7 +354,7 @@ outside
       <li>
         <h3>A mechanical grammar</h3>
         <p>
-          258 grammar productions, generated and checked as the parser’s
+          267 grammar productions, generated and checked as the parser’s
           authority. One construct has one spelling. Arrows mean runtime effects
           (<code class="glyph">←</code> assign, <code class="glyph">→</code> return, <code class="glyph">⇥</code> error channel);
           <code class="glyph">=</code> and <code class="glyph">:</code> only state compile-time facts.
@@ -445,7 +446,7 @@ outside
 
 <span class="tok-kw">impl</span> ::core::fmt::Debug <span class="tok-kw">for</span> Span {
     <span class="tok-kw">fn</span> fmt(&amp;<span class="tok-kw">self</span>, f: &amp;<span class="tok-kw">mut</span> ::core::fmt::Formatter&lt;'_&gt;) -&gt; ::core::fmt::Result {
-        write!(f, <span class="tok-st">"Span {{ low = {}, high = {} }}"</span>, faber::display_fractus(*&amp;<span class="tok-kw">self</span>.low), faber::display_fractus(*&amp;<span class="tok-kw">self</span>.high))
+        write!(f, <span class="tok-st">"Span {{ low = {}, high = {} }}"</span>, faber::display::fractus(*&amp;<span class="tok-kw">self</span>.low), faber::display::fractus(*&amp;<span class="tok-kw">self</span>.high))
     }
 }
 
@@ -457,22 +458,22 @@ outside
         (<span class="tok-kw">self</span>.low + <span class="tok-kw">self</span>.high) / <span class="tok-nu">2.0</span>
     }
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-tgt-p-ts" role="tabpanel" aria-labelledby="fl-tgt-t-ts"><div class="fdt-panel-label"><code>radix emit --target ts span.fab</code> <span class="fdt-note">— a source file you add to your project; imports @faber/runtime</span></div><pre><code class="lang-ts"><span class="tok-co">// … 14 lines of generated header and runtime shim elided …</span>
+    <div class="fdt-panel" id="fl-tgt-p-ts" role="tabpanel" aria-labelledby="fl-tgt-t-ts"><div class="fdt-panel-label"><code>radix emit --target ts span.fab</code> <span class="fdt-note">— a source file you add to your project; imports @faber/runtime</span></div><pre><code class="lang-ts"><span class="tok-co">// … 5 lines of generated header and runtime shim elided …</span>
 
 <span class="tok-kw">class</span> Span {
     low!: <span class="tok-ty">number</span>;
     high!: <span class="tok-ty">number</span>;
     toString(): <span class="tok-ty">string</span> {
-        <span class="tok-kw">return</span> <span class="tok-st">"Span { low = "</span> + __faberDisplay(<span class="tok-kw">this</span>.low, <span class="tok-st">"fractus"</span>) + <span class="tok-st">", high = "</span> + __faberDisplay(<span class="tok-kw">this</span>.high, <span class="tok-st">"fractus"</span>) + <span class="tok-st">" }"</span>;
+        <span class="tok-kw">return</span> <span class="tok-st">"Span { low = "</span> + display.value(<span class="tok-kw">this</span>.low, <span class="tok-st">"fractus"</span>, { true_: <span class="tok-st">"true"</span>, false_: <span class="tok-st">"false"</span>, none: <span class="tok-st">"none"</span> }) + <span class="tok-st">", high = "</span> + display.value(<span class="tok-kw">this</span>.high, <span class="tok-st">"fractus"</span>, { true_: <span class="tok-st">"true"</span>, false_: <span class="tok-st">"false"</span>, none: <span class="tok-st">"none"</span> }) + <span class="tok-st">" }"</span>;
     }
     contains(x: <span class="tok-ty">number</span>): <span class="tok-ty">boolean</span> {
-        <span class="tok-kw">return</span> ((<span class="tok-kw">this</span>.low &lt;= x) &amp;&amp; (x &lt;= <span class="tok-kw">this</span>.high));
+        <span class="tok-kw">return</span> (<span class="tok-kw">this</span>.low &lt;= x) &amp;&amp; (x &lt;= <span class="tok-kw">this</span>.high);
     }
     center(): <span class="tok-ty">number</span> {
         <span class="tok-kw">return</span> ((<span class="tok-kw">this</span>.low + <span class="tok-kw">this</span>.high) / <span class="tok-nu">2</span>);
     }
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-tgt-p-go" role="tabpanel" aria-labelledby="fl-tgt-t-go"><div class="fdt-panel-label"><code>radix emit --target go span.fab</code> <span class="fdt-note">— a source file in package main</span></div><pre><code class="lang-go"><span class="tok-co">// Generated by radix - do not edit</span>
+    <div class="fdt-panel" id="fl-tgt-p-go" role="tabpanel" aria-labelledby="fl-tgt-t-go"><div class="fdt-panel-label"><code>radix emit --target go span.fab</code> <span class="fdt-note">— a source file in package main</span></div><pre><code class="lang-go"><span class="tok-co">// Code generated by faber. DO NOT EDIT.</span>
 
 <span class="tok-kw">package</span> main
 
@@ -482,15 +483,72 @@ outside
 }
 
 <span class="tok-kw">func</span> (<span class="tok-kw">self</span> *Span) Contains(x float64) <span class="tok-ty">bool</span> {
-    _ = <span class="tok-kw">self</span>
     <span class="tok-kw">return</span> ((float64(<span class="tok-kw">self</span>.Low) &lt;= float64(x)) &amp;&amp; (float64(x) &lt;= float64(<span class="tok-kw">self</span>.High)))
 }
 
 <span class="tok-kw">func</span> (<span class="tok-kw">self</span> *Span) Center() float64 {
-    _ = <span class="tok-kw">self</span>
     <span class="tok-kw">return</span> float64(((<span class="tok-kw">self</span>.Low + <span class="tok-kw">self</span>.High) / <span class="tok-nu">2.0</span>))
 }</code></pre></div>
     <div class="fdt-panel" id="fl-tgt-p-swift" role="tabpanel" aria-labelledby="fl-tgt-t-swift"><div class="fdt-panel-label"><code>radix emit --target swift span.fab</code> <span class="fdt-note">— a source file; no runtime dependency</span></div><pre><code class="lang-swift">// Generated by radix - do not edit
+
+func faberFractusPlain(_ description: String) -&gt; String {
+    var text = Substring(description)
+    var sign = &quot;&quot;
+    if text.hasPrefix(&quot;-&quot;) {
+        sign = &quot;-&quot;
+        text = text.dropFirst()
+    }
+    var exponent = 0
+    if let marker = text.firstIndex(where: { $0 == &quot;e&quot; || $0 == &quot;E&quot; }) {
+        exponent = Int(text[text.index(after: marker)...]) ?? 0
+        text = text[..&lt;marker]
+    }
+    var whole = Substring(text)
+    var fraction = Substring(&quot;&quot;)
+    if let dot = text.firstIndex(of: &quot;.&quot;) {
+        whole = text[..&lt;dot]
+        fraction = text[text.index(after: dot)...]
+    }
+    let digits = Array(String(whole) + String(fraction))
+    let point = whole.count + exponent
+    var shown: String
+    if point &lt;= 0 {
+        shown = &quot;0.&quot; + String(repeating: &quot;0&quot;, count: -point) + String(digits)
+    } else if point &gt;= digits.count {
+        shown = String(digits) + String(repeating: &quot;0&quot;, count: point - digits.count) + &quot;.0&quot;
+    } else {
+        shown = String(digits[..&lt;point]) + &quot;.&quot; + String(digits[point...])
+    }
+    return sign + shown
+}
+
+func faberFractus64(_ value: Double) -&gt; String {
+    if value.isNaN { return &quot;NaN&quot; }
+    if value.isInfinite { return value &lt; 0 ? &quot;-inf&quot; : &quot;inf&quot; }
+    if value.rounded(.towardZero) == value {
+        let sign = value.sign == .minus ? &quot;-&quot; : &quot;&quot;
+        let magnitude = value.magnitude
+        if magnitude &lt; 9.0e18 { return sign + String(UInt64(magnitude)) + &quot;.0&quot; }
+        var digits = Array(String(magnitude.significandBitPattern | (UInt64(1) &lt;&lt; 52)).utf8.reversed().map { $0 - 48 })
+        for _ in 0..&lt;(Int(magnitude.exponent) - 52) {
+            var carry: UInt8 = 0
+            for index in 0..&lt;digits.count {
+                let doubled = digits[index] * 2 + carry
+                digits[index] = doubled % 10
+                carry = doubled / 10
+            }
+            if carry &gt; 0 { digits.append(carry) }
+        }
+        return sign + String(decoding: digits.reversed().map { $0 + 48 }, as: UTF8.self) + &quot;.0&quot;
+    }
+    return faberFractusPlain(value.description)
+}
+
+func faberFractus32(_ value: Float) -&gt; String {
+    if value.isNaN { return &quot;NaN&quot; }
+    if value.isInfinite { return value &lt; 0 ? &quot;-inf&quot; : &quot;inf&quot; }
+    return faberFractusPlain(value.description)
+}
 
 class Span {
     var low: Double
@@ -511,7 +569,7 @@ class Span {
 }
 
 extension Span: CustomStringConvertible {
-    var description: String { return &quot;Span { low = \(String(describing: self.low)), high = \(String(describing: self.high)) }&quot; }
+    var description: String { return &quot;Span { low = \(faberFractus64(self.low)), high = \(faberFractus64(self.high)) }&quot; }
 }</code></pre></div>
   </div>
     </div>
@@ -614,7 +672,7 @@ extension Span: CustomStringConvertible {
       <p class="kicker"><i class="sq" aria-hidden="true"></i>Grammar</p>
       <h2>A grammar you can read in one sitting</h2>
       <p>
-        The language is specified as 258 productions in a single
+        The language is specified as 267 productions in a single
         EBNF, generated from one source and published in full. It is large
         enough to be expressive and regular enough to hold in your head or a
         model’s context. The reference pages are generated from the same source,
@@ -672,7 +730,7 @@ extension Span: CustomStringConvertible {
       </a>
       <a class="fl-door" href="/en-US/reference/grammar.html">
         <strong>Grammar</strong>
-        <span>All 258 productions, generated from one EBNF.</span>
+        <span>All 267 productions, generated from one EBNF.</span>
       </a>
       <a class="fl-door" href="/en-US/start/">
         <strong>Start</strong>

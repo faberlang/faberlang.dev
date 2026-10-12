@@ -60,6 +60,8 @@ def main() -> None:
     parser.add_argument("--output-dir", required=True, type=Path)
     parser.add_argument("--locales", type=Path, default=None)
     parser.add_argument("--reader-root", type=Path, default=None)
+    parser.add_argument("--locale", action="append", default=None,
+                        help="Generate only these site locale indexes (repeatable)")
     args = parser.parse_args()
 
     script_dir = Path(__file__).resolve().parent
@@ -106,6 +108,11 @@ def main() -> None:
 
     # Per-site-locale indexes with pack slugs (same rule as the corpus renderer).
     registry = load_toml(args.locales).get("locales", {})
+    if args.locale is not None:
+        unknown = sorted(set(args.locale) - set(registry))
+        if unknown:
+            parser.error("unknown locale(s): " + ", ".join(unknown))
+        registry = {site: registry[site] for site in args.locale}
     kinds = [(term, str(canonical[term]["k"])) for term in terms]
     for site, entry in sorted(registry.items()):
         reader_loc = entry.get("reader_locale", site)

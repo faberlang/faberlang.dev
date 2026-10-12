@@ -104,6 +104,6 @@ test "vel chains to the first non-nihil value" {
 }
 ```
 
-See also: [`none`](nihil.md).
+See also: [`none`](none.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

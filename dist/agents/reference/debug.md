@@ -1,6 +1,6 @@
 # debug
 
-Writes a debug value to standard output.
+Writes a debug value to standard error.
 
 **Term** `vide` · **Section** KEYWORDS
 

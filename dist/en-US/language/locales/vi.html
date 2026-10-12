@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Tiếng Việt — the vi reader pack. Script: Latin (Vietnamese); direction: left-to-right."><meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Vietnamese reader locale — Faber"><meta property="og:description" content="Tiếng Việt — the vi reader pack. Script: Latin (Vietnamese); direction: left-to-right."><meta property="og:url" content="https://faberlang.dev/en-US/language/locales/vi.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/language/locales/vi.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Vietnamese reader locale — Faber</title><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-instrument.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">←</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/install.md">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">←</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/en-US/start/">Start here</a></li><li><a href="/en-US/releases/">Releases</a></li></ul><div class="side-h">The Language</div><ul class="nav"><li><a href="/en-US/language/overview.html">Overview</a></li><li><details class="nav-branch"><summary>Behavior</summary><ul><li><a href="/en-US/language/behavior/type-first.html">Types before names</a></li><li><a href="/en-US/language/behavior/glyph-law.html">The glyph law</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">Sealed reader locales</a></li><li><a href="/en-US/language/behavior/packages.html">A program is a package</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">Errors as values, tests as declarations</a></li></ul></details></li><li><details class="nav-branch"><summary>Grammar</summary><ul><li><a href="/en-US/reference/grammar.html">Grammar overview</a></li><li><a href="/en-US/reference/grammar/program.html">Programs, regions &amp; imports</a></li><li><a href="/en-US/reference/grammar/declarations.html">Declarations &amp; bindings</a></li><li><a href="/en-US/reference/grammar/annotations.html">Annotations &amp; directives</a></li><li><a href="/en-US/reference/grammar/types.html">Types &amp; contracts</a></li><li><a href="/en-US/reference/grammar/statements.html">Statements &amp; control flow</a></li><li><a href="/en-US/reference/grammar/expressions.html">Expressions &amp; operators</a></li><li><a href="/en-US/reference/grammar/patterns.html">Patterns &amp; destructuring</a></li><li><a href="/en-US/reference/grammar/errors.html">Error channel</a></li><li><a href="/en-US/reference/grammar/lexical.html">Lexical structure &amp; glyphs</a></li></ul></details></li><li><a href="/en-US/corpus/az.html">Terms A–Z</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">Targets</div><ul class="nav"><li><a href="/en-US/targets/">All targets</a></li><li><details class="nav-branch"><summary>Application · HIR</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>Systems · MIR</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly text</a></li></ul></details></li><li><details class="nav-branch"><summary>Device · GPU</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li></ul><div class="side-h">Reader locales</div><ul class="nav"><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/locales/keywords.html">Keyword reference</a></li><li><a href="/en-US/language/locales/examples.html">Locale examples</a></li><li><a href="/en-US/language/locales/diagnostics.html">Diagnostics by locale</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul></aside><main id="main-content"><h1>Vietnamese reader locale</h1><div class="content"><p><strong>Tiếng Việt</strong> — the <code>vi</code> reader pack. Script: Latin (Vietnamese); direction: left-to-right.</p><div class="table-scroll"><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td><strong>Locale code</strong></td><td><code>vi</code></td></tr><tr><td><strong>Native name</strong></td><td>Tiếng Việt</td></tr><tr><td><strong>Script</strong></td><td>Latin (Vietnamese)</td></tr><tr><td><strong>Direction</strong></td><td>left-to-right</td></tr></tbody></table></div><p>Latin script, but not English — the control case. Heavy diacritics stress NFKC equivalence, and multi-word keywords join with underscores (<code>bắt_đầu</code>).</p><h2 id="mapping">English ↔ Vietnamese<a class="anchor" href="#mapping">#</a></h2><p>Generated from the packs; the canonical (Latin) name keys the full <a href="/en-US/language/locales/keywords.html">keyword reference</a>.</p><h3 id="keywords">Keywords<a class="anchor" href="#keywords">#</a></h3><pre class="faber-code"><code class="lang-text locale=la">| English          Tiếng Việt
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Tiếng Việt — the vi reader pack. Script: Latin (Vietnamese); direction: left-to-right."><meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="Vietnamese reader locale — Faber"><meta property="og:description" content="Tiếng Việt — the vi reader pack. Script: Latin (Vietnamese); direction: left-to-right."><meta property="og:url" content="https://faberlang.dev/en-US/language/locales/vi.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/language/locales/vi.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>Vietnamese reader locale — Faber</title><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-instrument.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">←</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword..." aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/install.md">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">←</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/en-US/start/">Start here</a></li><li><a href="/en-US/releases/">Releases</a></li></ul><div class="side-h">The Language</div><ul class="nav"><li><a href="/en-US/language/overview.html">Overview</a></li><li><details class="nav-branch"><summary>Behavior</summary><ul><li><a href="/en-US/language/behavior/type-first.html">Types before names</a></li><li><a href="/en-US/language/behavior/glyph-law.html">The glyph law</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">Sealed reader locales</a></li><li><a href="/en-US/language/behavior/packages.html">A program is a package</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">Errors as values, tests as declarations</a></li></ul></details></li><li><details class="nav-branch"><summary>Grammar</summary><ul><li><a href="/en-US/reference/grammar.html">Grammar overview</a></li><li><a href="/en-US/reference/grammar/program.html">Programs, regions &amp; imports</a></li><li><a href="/en-US/reference/grammar/declarations.html">Declarations &amp; bindings</a></li><li><a href="/en-US/reference/grammar/annotations.html">Annotations &amp; directives</a></li><li><a href="/en-US/reference/grammar/types.html">Types &amp; contracts</a></li><li><a href="/en-US/reference/grammar/statements.html">Statements &amp; control flow</a></li><li><a href="/en-US/reference/grammar/expressions.html">Expressions &amp; operators</a></li><li><a href="/en-US/reference/grammar/patterns.html">Patterns &amp; destructuring</a></li><li><a href="/en-US/reference/grammar/errors.html">Error channel</a></li><li><a href="/en-US/reference/grammar/lexical.html">Lexical structure &amp; glyphs</a></li></ul></details></li><li><a href="/en-US/corpus/az.html">Terms A–Z</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">Targets</div><ul class="nav"><li><a href="/en-US/targets/">All targets</a></li><li><details class="nav-branch"><summary>Application · HIR</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>Systems · MIR</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly text</a></li></ul></details></li><li><details class="nav-branch"><summary>Device · GPU</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li></ul><div class="side-h">Reader locales</div><ul class="nav"><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/locales/keywords.html">Keyword reference</a></li><li><a href="/en-US/language/locales/examples.html">Locale examples</a></li><li><a href="/en-US/language/locales/diagnostics.html">Diagnostics by locale</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul></aside><main id="main-content"><h1>Vietnamese reader locale</h1><div class="content"><p><strong>Tiếng Việt</strong> — the <code>vi</code> reader pack. Script: Latin (Vietnamese); direction: left-to-right.</p><div class="table-scroll"><table><thead><tr><th>Field</th><th>Value</th></tr></thead><tbody><tr><td><strong>Locale code</strong></td><td><code>vi</code></td></tr><tr><td><strong>Native name</strong></td><td>Tiếng Việt</td></tr><tr><td><strong>Script</strong></td><td>Latin (Vietnamese)</td></tr><tr><td><strong>Direction</strong></td><td>left-to-right</td></tr></tbody></table></div><p>Latin script, but not English — the control case. Heavy diacritics stress NFKC equivalence, and multi-word keywords join with underscores (<code>bắt_đầu</code>).</p><h2 id="mapping">English ↔ Vietnamese<a class="anchor" href="#mapping">#</a></h2><p>Generated from the packs; the canonical (Latin) name keys the full <a href="/en-US/language/locales/keywords.html">keyword reference</a>.</p><h3 id="keywords">Keywords<a class="anchor" href="#keywords">#</a></h3><pre class="faber-code"><code class="lang-text locale=la">| English          Tiếng Việt
 | ---------------  -------------------
 | all              tất_cả
 | and              và
@@ -8,6 +8,7 @@
 | argmin           argmin
 | args             đối_số
 | as               như
+| asc              tăng_dần
 | assert           khẳng_định
 | async            async
 | async_generator  async_sinh
@@ -18,6 +19,7 @@
 | await            đợi_bỏ
 | await_const      đợi_hằng
 | await_var        đợi_biến
+| axis             trục
 | before           trước
 | bench            đo_lường
 | between          giữa
@@ -40,6 +42,7 @@
 | cursor           con_trỏ
 | debug            xem
 | default          mặc_định
+| desc             giảm_dần
 | describe         đối_tượng_kiểm_thử
 | description      mô_tả
 | do               làm
@@ -57,7 +60,6 @@
 | for              lặp
 | format           văn_bản_hóa
 | fragment         mảnh
-| free             tự_do
 | from             từ
 | future           tương_lai
 | generator        sinh
@@ -83,7 +85,6 @@
 | mut              vào
 | name             tên
 | nan              nan
-| nihil            rỗng
 | not              không
 | null             không_gì
 | only             chỉ
@@ -123,6 +124,7 @@
 | short            ngắn
 | size             kích_thước
 | skip             bỏ_qua
+| sort             sắp_xếp
 | spread           rải
 | static           tĩnh
 | step             qua
@@ -165,6 +167,7 @@
 | census       điều_tra
 | channel      kênh
 | char         ký_tự
+| clamp        kẹp_biên
 | filter       bộ_lọc
 | float        thập_phân
 | frame        khung
@@ -173,6 +176,7 @@
 | intervallum  miền
 | iterator     bộ_lặp
 | json         json
+| ledger       sổ_cái
 | list         danh_sách
 | map          bảng
 | matrix       ma_trận
@@ -183,6 +187,7 @@
 | queue        hàng_đợi
 | record       ratio
 | recv         nhận
+| reflect      phản_xạ_biên
 | regex        chính_quy
 | saturating   bão_hòa
 | send         gửi
@@ -197,6 +202,7 @@
 | value        giá_trị
 | vector       vectơ
 | void         trống
+| wrap         vòng_biên
 | wrapping_ty  môđun_kiểu</code></pre><h3 id="intrinsics">Intrinsics<a class="anchor" href="#intrinsics">#</a></h3><pre class="faber-code"><code class="lang-text locale=la">| English               Tiếng Việt
 | --------------------  -----------------
 | abs                   giá_trị_tuyệt_đối
@@ -210,6 +216,7 @@
 | approx                xấp_xỉ
 | argmax                argmax
 | argmin                argmin
+| at                    tại
 | at_least              ít_nhất
 | at_most               nhiều_nhất
 | bit_and               và_bit
@@ -241,6 +248,7 @@
 | escape                thoát_ký_tự
 | exchange              đổi
 | exp                   hàm_mũ
+| expanded              mở_rộng
 | fill                  điền
 | filter                lọc
 | find                  tìm
@@ -251,7 +259,6 @@
 | flipped               đã_lật
 | floor                 làm_tròn_xuống
 | formata               formata
-| from_flat             dựng_từ_phẳng
 | gather                thu_thập
 | gelu                  gelu
 | get                   lấy
@@ -269,6 +276,7 @@
 | layer_norm            chuẩn_hóa_lớp
 | length                độ_dài
 | less                  nhỏ_hơn
+| limes                 biên
 | ln                    lôgarit_tự_nhiên
 | load                  nạp
 | log10                 lôgarit_thập_phân
@@ -303,6 +311,7 @@
 | round                 làm_tròn
 | set                   thiết_lập
 | shape                 hình_dạng
+| shift                 dịch
 | shift_left            dịch_trái
 | shift_right           dịch_phải
 | shifted_left          đã_dịch_trái

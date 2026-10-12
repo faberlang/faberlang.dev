@@ -39,7 +39,7 @@ Assertion with custom message
 Multiple assertions
     const string nomen ← "Marcus"
     assert nomen ≡ "Marcus"
-    assert nomen ≠ "" panic "nomen vacuum non sit"
+    assert nomen ≢ "" panic "nomen vacuum non sit"
 Boolean assertions
     const bool viget ← true
     assert viget
@@ -56,7 +56,7 @@ test "assertions validate invariants" {
     assert x ≡ 10 panic "x decem esse debet"
     const string name ← "Marcus"
     assert name ≡ "Marcus"
-    assert name ≠ "" panic "name void not let"
+    assert name ≢ "" panic "name void not let"
     const bool viget ← true
     assert viget
     assert viget ≡ true panic "vigere debet"

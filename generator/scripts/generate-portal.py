@@ -56,14 +56,14 @@ RING_SIZES = range(5, 11)
 
 # Short status line under each ring node (honest, not mockup "proposed")
 STATUS_LINE: dict[str, str] = {
-    "complete": "complete · full docs",
-    "partial": "partial · English prose fallback",
+    "complete": "complete · English docs + reader mapping",
+    "partial": "reader mapping · English prose",
 }
 
 # One-line architectural stress for the index (design pack, updated for site)
 STRESS: dict[str, str] = {
-    "en-US": "full documentation; code via Latin pack (la)",
-    "th-TH": "spaceless script; full docs + chrome",
+    "en-US": "maintained English documentation",
+    "th-TH": "spaceless script; Thai reader mapping",
     "zh-Hans": "paired keywords; NFKC width collapse",
     "zh-Hant": "sibling of zh-Hans; traditional forms",
     "vi": "Latin-but-not-English; NFKC diacritics",
@@ -259,7 +259,8 @@ def main() -> None:
             "script_cls": script_cls,
             "tag": tag_html(site, native_script or site),
             "stress": html_mod.escape(STRESS.get(site, "")),
-            "href": f"/{html_mod.escape(site)}/",
+            "href": ("/en-US/" if site == "en-US" else
+                     f"/en-US/language/locales/{reader_loc}.html"),
             "code_dir": ' dir="rtl"' if is_rtl else "",
             "sample": html_mod.escape(sample),
         })
@@ -348,14 +349,14 @@ def main() -> None:
 """
 
     index_body = ""
-    index_body += index_group("Complete — full documentation", "shipped", "support", complete)
+    index_body += index_group("English documentation", "maintained", "support", complete)
     index_body += index_group(
         "Partial — packs + corpus; English prose fallback", "partial", "defer", partial
     )
 
     css_href = html_mod.escape(args.css)
 
-    # hreflang alternates for each site locale home + x-default → portal
+    # hreflang alternates point to the English docs or each reader mapping page.
     hreflang_links = (
         '  <link rel="alternate" hreflang="x-default" href="https://faberlang.dev/">\n'
     )
@@ -370,9 +371,11 @@ def main() -> None:
     }
     for site in sorted_keys:
         hl = hreflang_map.get(site, site)
+        target = ("/en-US/" if site == "en-US" else
+                  f"/en-US/language/locales/{registry[site].get('reader_locale', site)}.html")
         hreflang_links += (
             f'  <link rel="alternate" hreflang="{html_mod.escape(hl)}" '
-            f'href="https://faberlang.dev/{html_mod.escape(site)}/">\n'
+            f'href="https://faberlang.dev{target}">\n'
         )
 
     portal_desc = (
@@ -484,8 +487,8 @@ def main() -> None:
     <p class="kicker"><i class="sq" aria-hidden="true"></i>Index</p>
     <h2>All site locales</h2>
     <p class="porta-lede">
-      Every listed locale ships a full documentation tree. Stress notes call out
-      script and packing concerns, not translation gaps.
+      English is the maintained prose tree. Each reader locale stays visible
+      through its mapping page and real reader-pack code examples.
     </p>
 {index_body}  </section>
 

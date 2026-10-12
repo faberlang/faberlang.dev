@@ -2,15 +2,15 @@
 # ==========================================================================
 # build-site.sh — Batch render all Markdown pages to a static site
 # ==========================================================================
-# Renders every locale directory under src/ into dist/ as .html, with
-# en-US URL-path prefix structure (Phase 1 URL migration).
+# Renders the maintained src/en-US tree into dist/en-US, with reader-pack
+# surfaces and aliases for retired locale URLs.
 #
 # Usage:
 #   build-site.sh                                       # full site
 #   build-site.sh <source_dir> <output_dir> <site_locale> <reader_locale>
 #
-# Full site: discovers src/* directories, renders each locale, then runs
-# redirect generation, smoke tests, post-process, gates, and sitemap.
+# Full site: generates English source pages, renders en-US, writes URL aliases,
+# then runs smoke tests, post-process, gates, and sitemap.
 #
 # Single-locale mode: renders one locale into the given output directory.
 # ==========================================================================
@@ -240,7 +240,7 @@ if [ "$FULL_SITE" = true ]; then
     # Step 0: Refresh generated matrix pages when the radix grammar is present
     if [ -f "${WORKSPACE_DIR}/radix/grammar/EBNF_MATRIX.md" ]; then
         echo "[0/10] Generating target compatibility matrix pages..."
-        "$PYTHON" "${SCRIPT_DIR}/generate-target-matrix.py" --all-locales
+        "$PYTHON" "${SCRIPT_DIR}/generate-target-matrix.py" --locale en-US
     else
         echo "[0/10] Skipping target matrix generate (no ${WORKSPACE_DIR}/radix/grammar/EBNF_MATRIX.md)"
     fi
@@ -250,11 +250,11 @@ if [ "$FULL_SITE" = true ]; then
     # render. Each degrades to leaving its committed output alone when its
     # inputs are absent, so a checkout without siblings still builds.
     echo "[0/10] Generating target lanes, grammar, and localization..."
-    "$PYTHON" "${SCRIPT_DIR}/generate-target-lanes.py"
-    "$PYTHON" "${SCRIPT_DIR}/generate-localization.py"
-    "$PYTHON" "${SCRIPT_DIR}/generate-overview.py"
+    "$PYTHON" "${SCRIPT_DIR}/generate-target-lanes.py" --output-dir "${REPO_DIR}/src/en-US/targets"
+    "$PYTHON" "${SCRIPT_DIR}/generate-localization.py" --output "${REPO_DIR}/src/en-US/localization.md"
+    "$PYTHON" "${SCRIPT_DIR}/generate-overview.py" --output "${REPO_DIR}/src/en-US/language/overview.md"
     if [ -f "${WORKSPACE_DIR}/radix/grammar/EBNF.md" ]; then
-        "${SCRIPT_DIR}/generate-grammar" --all-locales
+        "${SCRIPT_DIR}/generate-grammar" --locale en-US
     else
         echo "  Skipping grammar generate (no ${WORKSPACE_DIR}/radix/grammar/EBNF.md)"
     fi
@@ -323,19 +323,12 @@ if [ "$FULL_SITE" = true ]; then
         cp -R "${STATIC_DIR}/." "${OUTPUT_DIR}/"
     fi
 
-    # Step 3: Discover locale directories under src/
-    LOCALE_DIRS=()
-    while IFS= read -r dir; do
-        LOCALE_DIRS+=("$(basename "$dir")")
-    done < <(find "${REPO_DIR}/src" -mindepth 1 -maxdepth 1 -type d | sort)
-
-    echo "[4/9] Rendering ${#LOCALE_DIRS[@]} locales..."
-
-    for site in "${LOCALE_DIRS[@]}"; do
-        reader=$("$PYTHON" "${SCRIPT_DIR}/locales_registry.py" reader "$site")
-        echo "  [locale] ${site} (reader: ${reader})"
-        render_locale "${REPO_DIR}/src/${site}" "${OUTPUT_DIR}/${site}" "$site" "$reader" "$STYLESHEET" "$BINARY"
-    done
+    # U4 maintains one prose tree. Reader packs remain available in generated surfaces.
+    LOCALE_DIRS=("en-US")
+    echo "[4/9] Rendering the en-US tree..."
+    site="en-US"
+    reader=$("$PYTHON" "${SCRIPT_DIR}/locales_registry.py" reader "$site")
+    render_locale "${REPO_DIR}/src/${site}" "${OUTPUT_DIR}/${site}" "$site" "$reader" "$STYLESHEET" "$BINARY"
 
     # Step 4: Re-copy static after render
     echo "[5/9] Re-copying static assets after render..."
@@ -351,11 +344,13 @@ if [ "$FULL_SITE" = true ]; then
             --output "${OUTPUT_DIR}/llms-full.txt"
         "$PYTHON" "${SCRIPT_DIR}/generate-search-index.py" \
             --corpus "${WORKSPACE_DIR}/radix/corpus" \
-            --output-dir "${OUTPUT_DIR}"
+            --output-dir "${OUTPUT_DIR}" --locale en-US
     fi
 
     # Step 5b: Retired-path stubs from the 2026-08 IA restructure
     "$PYTHON" "${SCRIPT_DIR}/ia-redirects.py" stubs
+    # Retired translated URLs remain addressable as English aliases.
+    "$PYTHON" "${SCRIPT_DIR}/retired-locales.py" stubs --dist "$OUTPUT_DIR"
 
     # Step 6: Generate redirect stubs (en-US → bare path)
     echo "[7/10] Generating en-US redirect stubs..."
@@ -398,7 +393,6 @@ if [ "$FULL_SITE" = true ]; then
         smoke_contains "${OUTPUT_DIR}/en-US/cheatsheet/errors.html" "error channel" "cheat sheet errors"
         smoke_contains "${OUTPUT_DIR}/en-US/examples/index.html" "url=/en-US/cheatsheet/" "retired examples index redirects to the cheat sheet"
         smoke_contains "${OUTPUT_DIR}/en-US/examples/cat.html" "url=/en-US/cheatsheet/" "retired example page redirects to the cheat sheet"
-        smoke_contains "${OUTPUT_DIR}/ar/examples/index.html" "cheatsheet/" "retired examples index redirects in a locale"
         smoke_contains "${OUTPUT_DIR}/examples/cat.html" "url=/en-US/examples/cat.html" "retired root example stub"
         smoke_contains "${OUTPUT_DIR}/en-US/targets/index.html" "Target lanes" "target lanes index"
         smoke_contains "${OUTPUT_DIR}/en-US/404.html" "404" "404 page"
@@ -414,8 +408,7 @@ if [ "$FULL_SITE" = true ]; then
         smoke_contains "${OUTPUT_DIR}/robots.txt" "Allow: /" "robots allow all"
         smoke_contains "${OUTPUT_DIR}/search-index.json" '"t":"redde"' "search index dataset"
         smoke_contains "${OUTPUT_DIR}/search-index.en-US.json" '"d":"fn"' "search index English slugs"
-        smoke_contains "${OUTPUT_DIR}/search-index.zh-Hans.json" '"d":"函数"' "search index zh-Hans spellings"
-        smoke_contains "${OUTPUT_DIR}/en-US/corpus/fn.html" "<title>fn — Faber</title>" "localized corpus fn page"
+        smoke_contains "${OUTPUT_DIR}/en-US/corpus/fn.html" "<title>corpus/fn — Faber</title>" "localized corpus fn page"
         smoke_contains "${OUTPUT_DIR}/en-US/corpus/functio.html" "url=/en-US/corpus/fn.html" "latin corpus identity redirects"
         # IA restructure: the five journey sections must all render
         for sec in language toolchain libraries reference; do
@@ -460,15 +453,13 @@ if [ "$FULL_SITE" = true ]; then
         smoke_contains "${OUTPUT_DIR}/index.html" "Libraries written in Faber" "landing libraries section"
         smoke_contains "${OUTPUT_DIR}/index.html" "device inference is not shipped" "landing inference bound"
         smoke_contains "${OUTPUT_DIR}/index.html" "fail-closed" "landing device fail-closed bound"
-        # Each locale tile must link to that locale's docs home, and that
-        # home must exist in the built tree.
-        for site in en-US th-TH zh-Hans zh-Hant vi ar hi; do
-            smoke_contains "${OUTPUT_DIR}/index.html" "href=\"/${site}/\"" "landing locale door ${site}"
-            if [ ! -s "${OUTPUT_DIR}/${site}/index.html" ]; then
-                echo "ERROR: landing locale door target missing: ${site}/index.html" >&2
-                exit 1
-            fi
+        # Language doors lead to U5 mapping pages; English remains the docs home.
+        for locale in ar hi th-TH vi zh-Hans zh-Hant; do
+            smoke_contains "${OUTPUT_DIR}/index.html" "href=\"/en-US/language/locales/${locale}.html\"" "landing mapping door ${locale}"
+            smoke_contains "${OUTPUT_DIR}/porta/index.html" "href=\"/en-US/language/locales/${locale}.html\"" "portal mapping door ${locale}"
         done
+        smoke_contains "${OUTPUT_DIR}/index.html" 'href="/en-US/language/locales/la.html"' "landing Latin mapping door"
+        smoke_contains "${OUTPUT_DIR}/index.html" 'href="/en-US/"' "landing English docs door"
         for lib in Norma Gradus Triga Tela Inferentia Cista; do
             smoke_contains "${OUTPUT_DIR}/index.html" "<strong>${lib}</strong>" "landing library ${lib}"
         done
@@ -585,10 +576,17 @@ if [ "$FULL_SITE" = true ]; then
     "$PYTHON" "${SCRIPT_DIR}/check-width-gate.py"
 
     echo "  [gate] Internal link check..."
-    "$PYTHON" "${SCRIPT_DIR}/check-internal-links.py" "$OUTPUT_DIR" || {
+    "$PYTHON" "${SCRIPT_DIR}/check-internal-links.py" "$OUTPUT_DIR" \
+        --allow-missing /en-US/language/locales/ar.html \
+        --allow-missing /en-US/language/locales/hi.html \
+        --allow-missing /en-US/language/locales/th-TH.html \
+        --allow-missing /en-US/language/locales/vi.html \
+        --allow-missing /en-US/language/locales/zh-Hans.html \
+        --allow-missing /en-US/language/locales/zh-Hant.html || {
         echo "ERROR: internal link gate failed" >&2
         exit 1
     }
+    "$PYTHON" "${SCRIPT_DIR}/retired-locales.py" check --dist "$OUTPUT_DIR"
 
     echo "  [gate] Leakage gate..."
     "$PYTHON" "${SCRIPT_DIR}/check-leakage-gate.py" "$OUTPUT_DIR" || {

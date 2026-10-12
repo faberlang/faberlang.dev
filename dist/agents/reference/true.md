@@ -49,6 +49,6 @@ test "true stands alone as a truthy condition" {
 }
 ```
 
-See also: [`false`](false.md), [`none`](nihil.md).
+See also: [`false`](false.md), [`none`](none.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

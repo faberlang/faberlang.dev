@@ -16,7 +16,7 @@ not <expression>
 
 ## Common mistakes
 
-- Confusing not (logical negation) with ≠ (inequality comparison) — not negates a boolean, ≠ compares two values.
+- Confusing not (logical negation) with ≢ (inequality comparison) — not negates a boolean, ≢ compares two values.
 
 ## Grammar
 

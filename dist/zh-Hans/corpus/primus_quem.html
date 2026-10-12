@@ -1,98 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Dedicated total first-match expression: first live element of a source satisfying the owned ubi predicate, 空类型 for no-match and empty sources."><meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="primus_quem — Faber"><meta property="og:description" content="Dedicated total first-match expression: first live element of a source satisfying the owned ubi predicate, 空类型 for no-match and empty sources."><meta property="og:url" content="https://faberlang.dev/zh-Hans/corpus/primus_quem.html"><meta property="og:locale" content="zh_CN"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/zh-Hans/corpus/primus_quem.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>primus_quem — Faber</title><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-instrument.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">←</span></a><span class="lbl">渲染</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">zh-Hans</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/install.md">安装</a></nav></div></div><div class="page"><aside><a class="brand" href="/zh-Hans/"><span class="brand-mark" aria-hidden="true">←</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">语言文档</span></span></a><div class="side-h">开始</div><ul class="nav"><li><a href="/zh-Hans/start/">从这里开始</a></li><li><a href="/en-US/releases/">发行版</a></li></ul><div class="side-h">语言</div><ul class="nav"><li><a href="/en-US/language/overview.html">概览</a></li><li><details class="nav-branch"><summary>行为</summary><ul><li><a href="/en-US/language/behavior/type-first.html">类型先于名称</a></li><li><a href="/en-US/language/behavior/glyph-law.html">符号法则</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">数值宽度</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">封闭的读者语言</a></li><li><a href="/en-US/language/behavior/packages.html">程序即包</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">错误即值，测试即声明</a></li></ul></details></li><li><details class="nav-branch"><summary>语法</summary><ul><li><a href="/zh-Hans/reference/grammar.html">语法概览</a></li><li><a href="/en-US/reference/grammar/program.html">程序、区域与导入</a></li><li><a href="/en-US/reference/grammar/declarations.html">声明与绑定</a></li><li><a href="/en-US/reference/grammar/annotations.html">注解与指令</a></li><li><a href="/en-US/reference/grammar/types.html">类型与契约</a></li><li><a href="/en-US/reference/grammar/statements.html">语句与控制流</a></li><li><a href="/en-US/reference/grammar/expressions.html">表达式与运算符</a></li><li><a href="/en-US/reference/grammar/patterns.html">模式与解构</a></li><li><a href="/en-US/reference/grammar/errors.html">错误通道</a></li><li><a href="/en-US/reference/grammar/lexical.html">词法结构与字形</a></li></ul></details></li><li><a href="/zh-Hans/corpus/az.html" class="active">术语 A–Z</a></li><li><a href="/zh-Hans/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">目标</div><ul class="nav"><li><a href="/en-US/targets/">全部目标</a></li><li><details class="nav-branch"><summary>应用 · HIR</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>系统 · MIR</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly 文本</a></li></ul></details></li><li><details class="nav-branch"><summary>设备 · GPU</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/zh-Hans/toolchain/target-matrix.html">目标矩阵</a></li></ul><div class="side-h">读者语言</div><ul class="nav"><li><a href="/zh-Hans/language/reader-locales.html">读者语言</a></li><li><a href="/en-US/language/locales/keywords.html">关键字参考</a></li><li><a href="/en-US/language/locales/examples.html">语言示例</a></li><li><a href="/en-US/language/locales/diagnostics.html">按语言诊断</a></li></ul><div class="side-h">库</div><ul class="nav"><li><a href="/zh-Hans/libraries/norma.html">Norma — 标准库</a></li><li><a href="/zh-Hans/libraries/triga.html">Triga — 图形</a></li><li><a href="/zh-Hans/libraries/gradus.html">Gradus — 自动微分</a></li><li><a href="/zh-Hans/libraries/tela.html">Tela — 视图</a></li><li><a href="/zh-Hans/libraries/inferentia.html">Inferentia — 推理</a></li><li><a href="/zh-Hans/libraries/corpus.html">语料库</a></li></ul></aside><main id="main-content"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/zh-Hans/corpus/index.html">Corpus</a> &rsaquo; <a href="/zh-Hans/corpus/bucket/types.html">Types &amp; collections</a> &rsaquo; primus_quem</nav><h1>primus_quem</h1><p><strong>Translation status:</strong> 简体中文 reader-locale proof. Term names and code fences follow the <code>zh-Hans</code> pack; supporting prose may still be English.</p><div class="content"><p>Dedicated total first-match expression: first live element of a source satisfying the owned ubi predicate, 空类型 for no-match and empty sources.</p><p><strong>Aliases:</strong> <code>primus quem</code></p><p><strong>Syntax:</strong> <code>primus_quem(&lt;source&gt;, ubi &lt;binder&gt; { &lt;predicate&gt; })</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>collection</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/zh-Hans/corpus/空.html">空</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusprimus-quemprimus-quemfab-canonical-concept">radix/corpus/primus-quem/primus-quem.fab (canonical · concept)<a class="anchor" href="#radixcorpusprimus-quemprimus-quemfab-canonical-concept">#</a></h3><p>Dedicated total first-match expression: first live element of a source satisfying the owned ubi predicate, 空类型 for no-match and empty sources.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
-<span class="tok-co"># primus_quem — dedicated total first-match selection over a bounded source.</span>
-<span class="tok-co"># =============================================================================</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • dedicated head — `primus_quem(source, ubi x { predicate })` is its own</span>
-<span class="tok-co">#     expression (not a `中断`/`如果` reuse and not a method call); the `ubi`</span>
-<span class="tok-co">#     tail is owned by this head</span>
-<span class="tok-co">#   • total evaluation — the predicate is evaluated for EVERY candidate 车道</span>
-<span class="tok-co">#     (post-match lanes included); selection is dataflow first-live, never an</span>
-<span class="tok-co">#     early exit</span>
-<span class="tok-co">#   • `T ∪ 空类型` — no-match and empty sources return `空类型`, never an error;</span>
-<span class="tok-co">#     a predicate ERROR rides the error channel and is never converted to</span>
-<span class="tok-co">#     `空类型`</span>
-<span class="tok-co">#   • first-live — later live lanes never overwrite the first stored match</span>
-<span class="tok-co">#     ([1.0, 5.0, 3.0] over `&gt; 2.0` picks 5.0, not 3.0)</span>
-<span class="tok-co">#   • declines — unbounded sources fail closed (SEM059</span>
-<span class="tok-co">#     first_match_unbounded_source, causa not_bounded) and multi-axis `在`</span>
-<span class="tok-co">#     coordinates stay unsupported in v1 (SEM059</span>
-<span class="tok-co">#     first_match_expression_unsupported); see primus-quem-decline.fab</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • expecting an index/value pair — v1 returns only `T ∪ 空类型`; construct</span>
-<span class="tok-co">#     the explicit pair yourself if you need the index</span>
-<span class="tok-co">#   • expecting early exit — the predicate still runs after the first match</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># See also: ubi, 空类型, filtrata, primus</span>
-<span class="tok-co"># =============================================================================</span>
-
-<span class="tok-co"># Route T — array literal source: first live 车道 over `&gt; 0.0` is 1.0.</span>
-<span class="tok-kw">函数</span> elige_litteram() <span class="tok-op">→</span> <span class="tok-kw">小数</span> <span class="tok-op">∪</span> <span class="tok-kw">空类型</span> {
-    <span class="tok-kw">返回</span> <span class="tok-kw">primus_quem</span>([<span class="tok-nu">1.0</span>, <span class="tok-op">-</span><span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>], <span class="tok-kw">ubi</span> x { x <span class="tok-op">&gt;</span> <span class="tok-nu">0.0</span> })
-}
-
-<span class="tok-co"># No-match — no live 车道 yields 空类型, never an error.</span>
-<span class="tok-kw">函数</span> elige_nullum() <span class="tok-op">→</span> <span class="tok-kw">小数</span> <span class="tok-op">∪</span> <span class="tok-kw">空类型</span> {
-    <span class="tok-kw">返回</span> <span class="tok-kw">primus_quem</span>([<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>], <span class="tok-kw">ubi</span> x { x <span class="tok-op">&gt;</span> <span class="tok-nu">9.0</span> })
-}
-
-<span class="tok-co"># Empty source — a statically zero-length array yields 空类型.</span>
-<span class="tok-kw">函数</span> elige_vacuum(<span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">小数</span> <span class="tok-op">∪</span> <span class="tok-kw">空类型</span> {
-    <span class="tok-kw">返回</span> <span class="tok-kw">primus_quem</span>(xs, <span class="tok-kw">ubi</span> x { x <span class="tok-op">&gt;</span> <span class="tok-nu">0.0</span> })
-}
-
-<span class="tok-co"># First-live — with matches at 5.0 and 3.0, the FIRST live 车道 wins.</span>
-<span class="tok-kw">函数</span> elige_primum_viventem(<span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">小数</span> <span class="tok-op">∪</span> <span class="tok-kw">空类型</span> {
-    <span class="tok-kw">返回</span> <span class="tok-kw">primus_quem</span>(xs, <span class="tok-kw">ubi</span> x { x <span class="tok-op">&gt;</span> <span class="tok-nu">2.0</span> })
-}
-
-<span class="tok-kw">入口</span> {
-    <span class="tok-kw">常量</span> <span class="tok-kw">小数</span> <span class="tok-op">∪</span> <span class="tok-kw">空类型</span> litteram <span class="tok-op">←</span> elige_litteram()
-    <span class="tok-kw">常量</span> <span class="tok-kw">小数</span> <span class="tok-op">∪</span> <span class="tok-kw">空类型</span> nullum <span class="tok-op">←</span> elige_nullum()
-    <span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> vacua_lista <span class="tok-op">←</span> []
-    <span class="tok-kw">常量</span> <span class="tok-kw">小数</span> <span class="tok-op">∪</span> <span class="tok-kw">空类型</span> <span class="tok-kw">无值</span> <span class="tok-op">←</span> elige_vacuum(vacua_lista)
-    <span class="tok-kw">常量</span> <span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">3.0</span>]
-    <span class="tok-kw">常量</span> <span class="tok-kw">小数</span> <span class="tok-op">∪</span> <span class="tok-kw">空类型</span> primum <span class="tok-op">←</span> elige_primum_viventem(xs)
-
-    <span class="tok-kw">显示</span> litteram
-    <span class="tok-kw">显示</span> nullum
-    <span class="tok-kw">显示</span> <span class="tok-kw">无值</span>
-    <span class="tok-kw">显示</span> primum
-}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1.0
-nihil
-nihil
-5.0
-</code></pre><h3 id="radixcorpusprimus-quemprimus-quem-declinefab-supporting-reject">radix/corpus/primus-quem/primus-quem-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusprimus-quemprimus-quem-declinefab-supporting-reject">#</a></h3><p>primus_quem AIR decline rows: unbounded sources fail closed (not_bounded) and 在 coordinates on first-match stay unsupported in v1.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
-<span class="tok-co"># primus_quem decline — bounded sources only on the AIR 车道.</span>
-<span class="tok-co"># =============================================================================</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># Decline rows (reject reason in each comment):</span>
-<span class="tok-co">#   1. unbounded source — an unbounded `列表` parameter has no static</span>
-<span class="tok-co">#      extent; the AIR gate fails closed:</span>
-<span class="tok-co">#      SEM059 first_match_unbounded_source (causa not_bounded)</span>
-<span class="tok-co">#   2. 在 coordinates — the multi-axis `在 [i]` form on the first-match</span>
-<span class="tok-co">#      head stays unsupported in v1 (honest decline, not a silent pass):</span>
-<span class="tok-co">#      SEM059 first_match_expression_unsupported</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • expecting an unbounded `列表` local to admit because its initializer</span>
-<span class="tok-co">#      is a literal — the route classifier sees the unbounded path type</span>
-<span class="tok-co">#   • expecting early-exit semantics to excuse the bound — admission needs</span>
-<span class="tok-co">#      the static extent for the first-live mask, not an unroll</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># See also: primus_quem, ubi, 列表, 在</span>
-<span class="tok-co"># =============================================================================</span>
-
-<span class="tok-co"># 1. unbounded — 列表 parameter has no static extent, declines not_bounded</span>
-@ <span class="tok-kw">radix</span> <span class="tok-kw">车道</span> <span class="tok-st">"air"</span>
-<span class="tok-kw">函数</span> elige_infinita(<span class="tok-kw">列表</span><span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> xs) <span class="tok-op">→</span> <span class="tok-kw">小数</span> <span class="tok-op">∪</span> <span class="tok-kw">空类型</span> {
-    <span class="tok-kw">返回</span> <span class="tok-kw">primus_quem</span>(xs, <span class="tok-kw">ubi</span> v { v <span class="tok-op">&gt;</span> <span class="tok-nu">0.0</span> })
-}
-
-<span class="tok-co"># 2. 在 coordinates — multi-axis first-match stays unsupported in v1</span>
-@ <span class="tok-kw">radix</span> <span class="tok-kw">车道</span> <span class="tok-st">"air"</span>
-<span class="tok-kw">函数</span> elige_apud(tf32[<span class="tok-nu">4</span>] a) <span class="tok-op">→</span> <span class="tok-kw">小数</span> <span class="tok-op">∪</span> <span class="tok-kw">空类型</span> {
-    <span class="tok-kw">返回</span> <span class="tok-kw">primus_quem</span>(a <span class="tok-kw">在</span> [i], <span class="tok-kw">ubi</span> v { v <span class="tok-op">&gt;</span> <span class="tok-nu">0.0</span> })
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusprimus-quemprimus-quemfab-canonical-concept">radix/corpus/primus-quem/primus-quem.fab (canonical · concept)</a></li><li class="toc-3"><a href="#radixcorpusprimus-quemprimus-quem-declinefab-supporting-reject">radix/corpus/primus-quem/primus-quem-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">来源</span><ul><li>[&quot;radix/corpus/primus-quem/primus-quem.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/zh-Hans/releases/">全部发行版</a></nav></footer></div></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url=/en-US/corpus/primus_quem.html">
+<link rel="canonical" href="https://faberlang.dev/en-US/corpus/primus_quem.html">
+<meta name="robots" content="noindex">
+<title>Moved</title>
+</head>
+<body><p>This page moved to <a href="/en-US/corpus/primus_quem.html">/en-US/corpus/primus_quem.html</a>.</p></body>
+</html>

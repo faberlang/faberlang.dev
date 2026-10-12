@@ -1,96 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Starts a catch block."><meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="捕获 — Faber"><meta property="og:description" content="Starts a catch block."><meta property="og:url" content="https://faberlang.dev/zh-Hans/corpus/捕获.html"><meta property="og:locale" content="zh_CN"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/zh-Hans/corpus/捕获.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>捕获 — Faber</title><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-instrument.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">←</span></a><span class="lbl">渲染</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">zh-Hans</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/install.md">安装</a></nav></div></div><div class="page"><aside><a class="brand" href="/zh-Hans/"><span class="brand-mark" aria-hidden="true">←</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">语言文档</span></span></a><div class="side-h">开始</div><ul class="nav"><li><a href="/zh-Hans/start/">从这里开始</a></li><li><a href="/en-US/releases/">发行版</a></li></ul><div class="side-h">语言</div><ul class="nav"><li><a href="/en-US/language/overview.html">概览</a></li><li><details class="nav-branch"><summary>行为</summary><ul><li><a href="/en-US/language/behavior/type-first.html">类型先于名称</a></li><li><a href="/en-US/language/behavior/glyph-law.html">符号法则</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">数值宽度</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">封闭的读者语言</a></li><li><a href="/en-US/language/behavior/packages.html">程序即包</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">错误即值，测试即声明</a></li></ul></details></li><li><details class="nav-branch"><summary>语法</summary><ul><li><a href="/zh-Hans/reference/grammar.html">语法概览</a></li><li><a href="/en-US/reference/grammar/program.html">程序、区域与导入</a></li><li><a href="/en-US/reference/grammar/declarations.html">声明与绑定</a></li><li><a href="/en-US/reference/grammar/annotations.html">注解与指令</a></li><li><a href="/en-US/reference/grammar/types.html">类型与契约</a></li><li><a href="/en-US/reference/grammar/statements.html">语句与控制流</a></li><li><a href="/en-US/reference/grammar/expressions.html">表达式与运算符</a></li><li><a href="/en-US/reference/grammar/patterns.html">模式与解构</a></li><li><a href="/en-US/reference/grammar/errors.html">错误通道</a></li><li><a href="/en-US/reference/grammar/lexical.html">词法结构与字形</a></li></ul></details></li><li><a href="/zh-Hans/corpus/az.html" class="active">术语 A–Z</a></li><li><a href="/zh-Hans/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">目标</div><ul class="nav"><li><a href="/en-US/targets/">全部目标</a></li><li><details class="nav-branch"><summary>应用 · HIR</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>系统 · MIR</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly 文本</a></li></ul></details></li><li><details class="nav-branch"><summary>设备 · GPU</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/zh-Hans/toolchain/target-matrix.html">目标矩阵</a></li></ul><div class="side-h">读者语言</div><ul class="nav"><li><a href="/zh-Hans/language/reader-locales.html">读者语言</a></li><li><a href="/en-US/language/locales/keywords.html">关键字参考</a></li><li><a href="/en-US/language/locales/examples.html">语言示例</a></li><li><a href="/en-US/language/locales/diagnostics.html">按语言诊断</a></li></ul><div class="side-h">库</div><ul class="nav"><li><a href="/zh-Hans/libraries/norma.html">Norma — 标准库</a></li><li><a href="/zh-Hans/libraries/triga.html">Triga — 图形</a></li><li><a href="/zh-Hans/libraries/gradus.html">Gradus — 自动微分</a></li><li><a href="/zh-Hans/libraries/tela.html">Tela — 视图</a></li><li><a href="/zh-Hans/libraries/inferentia.html">Inferentia — 推理</a></li><li><a href="/zh-Hans/libraries/corpus.html">语料库</a></li></ul></aside><main id="main-content"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/zh-Hans/corpus/index.html">Corpus</a> &rsaquo; <a href="/zh-Hans/corpus/bucket/errors.html">Errors</a> &rsaquo; 捕获</nav><h1>捕获</h1><p><strong>Translation status:</strong> 简体中文 reader-locale proof. Term names and code fences follow the <code>zh-Hans</code> pack; supporting prose may still be English.</p><div class="content"><p>Starts a catch block.</p><p><strong>Aliases:</strong> <code>catch</code></p><p><strong>Syntax:</strong> <code>&lt;structured-statement&gt; 捕获 &lt;name&gt; &lt;block&gt;</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>errors</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/zh-Hans/corpus/执行.html">执行</a></li><li><a href="/zh-Hans/corpus/抛错.html">抛错</a></li><li>⇥</li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpuscapecapefab-canonical-keyword">radix/corpus/cape/cape.fab (canonical · keyword)<a class="anchor" href="#radixcorpuscapecapefab-canonical-keyword">#</a></h3><p>Starts a catch block.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
-<span class="tok-co"># 捕获 — Starts a catch block.</span>
-<span class="tok-co"># =============================================================================</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Error recovery — `执行 { … } 捕获 err { … }` attempts a block and catches</span>
-<span class="tok-co">#     errors with a named handler</span>
-<span class="tok-co">#   • Guarded execution — code inside the `执行` block can `抛错` errors that</span>
-<span class="tok-co">#     are intercepted by the `捕获` handler</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • attaching `捕获` to a bare `{ }` block — `捕获` only attaches to `执行` blocks and structured statements; use `执行 { ... } 捕获 err { ... }`</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># See also: 执行, 抛错, ⇥</span>
-<span class="tok-co"># =============================================================================</span>
-
-<span class="tok-co"># 捕获 — catch handler on 执行</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   facStmt :← '执行' block '捕获' ident block</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># EXPECTED OUTPUT:</span>
-<span class="tok-co">#   Scalar stdout smoke (see body).</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># BACKEND:</span>
-<span class="tok-co">#   Rust/Go: 执行/cape emit gap (whitelist: 捕获/cape.fab).</span>
-<span class="tok-co">#</span>
-
-main {
-    var int attempt <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    do {
-        attempt <span class="tok-op">←</span> attempt <span class="tok-op">+</span> <span class="tok-nu">1</span>
-        if attempt ≻ <span class="tok-nu">1</span> {
-            throw <span class="tok-st">"simulated failure"</span>
-        }
-        print <span class="tok-st">"attempt §"</span>(attempt)
-    }
-    catch err {
-        print <span class="tok-st">"caught"</span>
-    }
-}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>attempt 1
-</code></pre><h3 id="radixcorpuscapereceptio-declinefab-supporting-reject">radix/corpus/cape/receptio-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpuscapereceptio-declinefab-supporting-reject">#</a></h3><p>捕获 AIR decline rows: whole-loop 当/itera 捕获 stays out under the loop-spectrum causes, a rethrow from a recovery arm declines (rethrow_in_recovery).</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
-<span class="tok-co"># receptio decline — the Tier 0.5 keep-outs stay fail-closed.</span>
-<span class="tok-co"># =============================================================================</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># Decline rows (reject reason in each comment):</span>
-<span class="tok-co">#   1. whole-loop 捕获 on `当` — one trailing 捕获 wraps the whole loop</span>
-<span class="tok-co">#      (never re-armed per iteration), and the loop spectrum stays an AIR</span>
-<span class="tok-co">#      keep-out: SEM059 dum_loop. A loop statement has no normal-exit</span>
-<span class="tok-co">#      value, so the recovery arm also fails the outer-type rule:</span>
-<span class="tok-co">#      SEM059 recovery_type_mismatch</span>
-<span class="tok-co">#   2. whole-loop 捕获 on `遍历` — same per-loop attachment, same</span>
-<span class="tok-co">#      keep-out: SEM059 itera_loop plus recovery_type_mismatch</span>
-<span class="tok-co">#   3. rethrow — a throw from inside the catch arm is a rethrow; it</span>
-<span class="tok-co">#      declines to Tier 2 fail-closed and is never silently treated as a</span>
-<span class="tok-co">#      recovered value: SEM059 rethrow_in_recovery</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • expecting the trailing loop `捕获` to recover per iteration — the</span>
-<span class="tok-co">#      handler is per-loop by the grammar; per-iteration recovery would</span>
-<span class="tok-co">#      need new syntax and its own goal</span>
-<span class="tok-co">#   • expecting a rethrow to admit because the region admitted — the</span>
-<span class="tok-co">#      recovery arm is checked as a catch region; throwing from it is the</span>
-<span class="tok-co">#      named Tier 2 decline</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># See also: 捕获, 当, 遍历, 抛错, receptio-air</span>
-<span class="tok-co"># =============================================================================</span>
-
-<span class="tok-co"># 1. whole-loop 捕获 on 当 — loop-spectrum keep-out</span>
-@ <span class="tok-kw">radix</span> <span class="tok-kw">车道</span> <span class="tok-st">"air"</span>
-<span class="tok-kw">函数</span> custos_dum(<span class="tok-kw">布尔</span> pergo) <span class="tok-op">→</span> <span class="tok-kw">无值</span> {
-    <span class="tok-kw">当</span> pergo {
-        <span class="tok-kw">抛错</span> <span class="tok-st">"x"</span>
-    } <span class="tok-kw">捕获</span> err { }
-}
-
-<span class="tok-co"># 2. whole-loop 捕获 on 遍历 — loop-spectrum keep-out</span>
-@ <span class="tok-kw">radix</span> <span class="tok-kw">车道</span> <span class="tok-st">"air"</span>
-<span class="tok-kw">函数</span> custos_itera() <span class="tok-op">→</span> <span class="tok-kw">无值</span> {
-    <span class="tok-kw">遍历</span> <span class="tok-kw">范围</span> <span class="tok-nu">0</span>‥<span class="tok-nu">4</span> <span class="tok-kw">常量</span> i {
-        <span class="tok-kw">抛错</span> <span class="tok-st">"x"</span>
-    } <span class="tok-kw">捕获</span> err { }
-}
-
-<span class="tok-co"># 3. rethrow — a throw inside the catch arm declines to Tier 2</span>
-@ <span class="tok-kw">radix</span> <span class="tok-kw">车道</span> <span class="tok-st">"air"</span>
-<span class="tok-kw">函数</span> reicit(<span class="tok-kw">布尔</span> malum) <span class="tok-op">→</span> <span class="tok-kw">整数</span> ⇥ <span class="tok-kw">文本</span> {
-    <span class="tok-kw">执行</span> {
-        <span class="tok-kw">如果</span> malum { <span class="tok-kw">抛错</span> <span class="tok-st">"x"</span> }
-        <span class="tok-kw">返回</span> <span class="tok-nu">1</span>
-    } <span class="tok-kw">捕获</span> err {
-        <span class="tok-kw">抛错</span> <span class="tok-st">"reicitur"</span>
-    }
-    <span class="tok-kw">返回</span> <span class="tok-nu">2</span>
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpuscapecapefab-canonical-keyword">radix/corpus/cape/cape.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpuscapereceptio-declinefab-supporting-reject">radix/corpus/cape/receptio-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">来源</span><ul><li>[&quot;radix/corpus/cape/cape.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/zh-Hans/releases/">全部发行版</a></nav></footer></div></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url=/en-US/corpus/catch.html">
+<link rel="canonical" href="https://faberlang.dev/en-US/corpus/catch.html">
+<meta name="robots" content="noindex">
+<title>Moved</title>
+</head>
+<body><p>This page moved to <a href="/en-US/corpus/catch.html">/en-US/corpus/catch.html</a>.</p></body>
+</html>

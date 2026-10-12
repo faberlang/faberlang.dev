@@ -1,103 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh-Hans"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Saturating integers: a store clamps at both ends of the width."><meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="饱和 — Faber"><meta property="og:description" content="Saturating integers: a store clamps at both ends of the width."><meta property="og:url" content="https://faberlang.dev/zh-Hans/corpus/饱和.html"><meta property="og:locale" content="zh_CN"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/zh-Hans/corpus/饱和.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>饱和 — Faber</title><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-instrument.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">←</span></a><span class="lbl">渲染</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">zh-Hans</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword…" aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/install.md">安装</a></nav></div></div><div class="page"><aside><a class="brand" href="/zh-Hans/"><span class="brand-mark" aria-hidden="true">←</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">语言文档</span></span></a><div class="side-h">开始</div><ul class="nav"><li><a href="/zh-Hans/start/">从这里开始</a></li><li><a href="/en-US/releases/">发行版</a></li></ul><div class="side-h">语言</div><ul class="nav"><li><a href="/en-US/language/overview.html">概览</a></li><li><details class="nav-branch"><summary>行为</summary><ul><li><a href="/en-US/language/behavior/type-first.html">类型先于名称</a></li><li><a href="/en-US/language/behavior/glyph-law.html">符号法则</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">数值宽度</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">封闭的读者语言</a></li><li><a href="/en-US/language/behavior/packages.html">程序即包</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">错误即值，测试即声明</a></li></ul></details></li><li><details class="nav-branch"><summary>语法</summary><ul><li><a href="/zh-Hans/reference/grammar.html">语法概览</a></li><li><a href="/en-US/reference/grammar/program.html">程序、区域与导入</a></li><li><a href="/en-US/reference/grammar/declarations.html">声明与绑定</a></li><li><a href="/en-US/reference/grammar/annotations.html">注解与指令</a></li><li><a href="/en-US/reference/grammar/types.html">类型与契约</a></li><li><a href="/en-US/reference/grammar/statements.html">语句与控制流</a></li><li><a href="/en-US/reference/grammar/expressions.html">表达式与运算符</a></li><li><a href="/en-US/reference/grammar/patterns.html">模式与解构</a></li><li><a href="/en-US/reference/grammar/errors.html">错误通道</a></li><li><a href="/en-US/reference/grammar/lexical.html">词法结构与字形</a></li></ul></details></li><li><a href="/zh-Hans/corpus/az.html" class="active">术语 A–Z</a></li><li><a href="/zh-Hans/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">目标</div><ul class="nav"><li><a href="/en-US/targets/">全部目标</a></li><li><details class="nav-branch"><summary>应用 · HIR</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>系统 · MIR</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly 文本</a></li></ul></details></li><li><details class="nav-branch"><summary>设备 · GPU</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/zh-Hans/toolchain/target-matrix.html">目标矩阵</a></li></ul><div class="side-h">读者语言</div><ul class="nav"><li><a href="/zh-Hans/language/reader-locales.html">读者语言</a></li><li><a href="/en-US/language/locales/keywords.html">关键字参考</a></li><li><a href="/en-US/language/locales/examples.html">语言示例</a></li><li><a href="/en-US/language/locales/diagnostics.html">按语言诊断</a></li></ul><div class="side-h">库</div><ul class="nav"><li><a href="/zh-Hans/libraries/norma.html">Norma — 标准库</a></li><li><a href="/zh-Hans/libraries/triga.html">Triga — 图形</a></li><li><a href="/zh-Hans/libraries/gradus.html">Gradus — 自动微分</a></li><li><a href="/zh-Hans/libraries/tela.html">Tela — 视图</a></li><li><a href="/zh-Hans/libraries/inferentia.html">Inferentia — 推理</a></li><li><a href="/zh-Hans/libraries/corpus.html">语料库</a></li></ul></aside><main id="main-content"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/zh-Hans/corpus/index.html">Corpus</a> &rsaquo; <a href="/zh-Hans/corpus/bucket/operators.html">Operators &amp; expressions</a> &rsaquo; 饱和</nav><h1>饱和</h1><p><strong>Translation status:</strong> 简体中文 reader-locale proof. Term names and code fences follow the <code>zh-Hans</code> pack; supporting prose may still be English.</p><div class="content"><p>Saturating integers: a store clamps at both ends of the width.</p><p><strong>Syntax:</strong> <code>saturating&lt;W&gt;</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>arithmetic</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/zh-Hans/corpus/整数.html">整数</a></li><li><a href="/zh-Hans/corpus/modulus&lt;u32&gt;.html">modulus&lt;u32&gt;</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusoperatoressaturating-wordfab-canonical-operator-group">radix/corpus/operatores/saturating-word.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusoperatoressaturating-wordfab-canonical-operator-group">#</a></h3><p>Saturating integers: a store clamps at both ends of the width.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
-<span class="tok-co"># 饱和 — Saturating integers: a store clamps at both ends of the width.</span>
-<span class="tok-co"># =============================================================================</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Clamp contract — `saturating&lt;W&gt;` never traps or wraps on a store; a value</span>
-<span class="tok-co">#     past either end of `W` lands at that end (pixels, audio, levels).</span>
-<span class="tok-co">#   • Signed or unsigned — `saturating&lt;i16&gt;` clamps at −32768 and 32767.</span>
-<span class="tok-co">#   • Exact arithmetic — `+ - * / %` on `saturating` operands is exact, like every</span>
-<span class="tok-co">#     integer expression: `high + 10` is 260, `high * 2` is 500, `low - 10` is -5.</span>
-<span class="tok-co">#     Nothing clamps until the value is stored into a `saturating` slot</span>
-<span class="tok-co">#     (declaration, assignment, argument, return, `↑`/`↓`, …).</span>
-<span class="tok-co">#   • Clamp once, at the store — a chain clamps where the value lands:</span>
-<span class="tok-co">#     `high + 200 - 100` is 255 (exact 350), not 155, and `low - 300 + 100` is 0</span>
-<span class="tok-co">#     (exact −190). An inferred slot (`_`) keeps the word and clamps the same way.</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># Common mistakes:</span>
-<span class="tok-co">#   • Mixing families — `saturating&lt;u8&gt; + u8` is an error; convert with `↦`.</span>
-<span class="tok-co">#   • Expecting `↦` to fail — a 变换 into `saturating&lt;W&gt;` clamps and cannot</span>
-<span class="tok-co">#     fail, so it takes no `⊥` recovery (`wrapping&lt;W&gt;` reduces mod 2^W the same way).</span>
-<span class="tok-co">#</span>
-<span class="tok-co"># See also: 整数, 模数</span>
-<span class="tok-co"># =============================================================================</span>
-
-main {
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> high <span class="tok-op">←</span> <span class="tok-nu">250</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> low <span class="tok-op">←</span> <span class="tok-nu">5</span>
-<span class="tok-co">    # Arithmetic is exact: nothing here is stored into a saturating slot.</span>
-    print high <span class="tok-op">+</span> <span class="tok-nu">10</span>
-    print low <span class="tok-op">-</span> <span class="tok-nu">10</span>
-    print high <span class="tok-op">*</span> <span class="tok-nu">2</span>
-    print high <span class="tok-op">/</span> <span class="tok-nu">2</span>
-    print high <span class="tok-op">%</span> <span class="tok-nu">7</span>
-    const saturating<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> big <span class="tok-op">←</span> <span class="tok-nu">30000</span>
-    const saturating<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> neg <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">30000</span>
-    const saturating<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> floor <span class="tok-op">←</span> neg <span class="tok-op">-</span> <span class="tok-nu">10000</span>
-    print big <span class="tok-op">+</span> <span class="tok-nu">10000</span>
-    print floor
-    print big <span class="tok-op">*</span> <span class="tok-op">-</span><span class="tok-nu">2</span>
-    print <span class="tok-op">-</span>floor
-    print floor <span class="tok-op">/</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
-    var saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> level <span class="tok-op">←</span> <span class="tok-nu">200</span>
-<span class="tok-co">    # Each assignment is a store into a saturating slot: it clamps.</span>
-    level <span class="tok-op">←</span> level <span class="tok-op">+</span> <span class="tok-nu">100</span>
-    print level
-    level <span class="tok-op">←</span> level <span class="tok-op">-</span> <span class="tok-nu">255</span>
-    print level
-    const int n <span class="tok-op">←</span> <span class="tok-nu">200</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> fromInt <span class="tok-op">←</span> n ↦ saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
-    const int back <span class="tok-op">←</span> high ↦ int
-    print fromInt
-    print back
-    print high ≻ low
-<span class="tok-co">    # Chains clamp once, at the store.</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> chainUp <span class="tok-op">←</span> high <span class="tok-op">+</span> <span class="tok-nu">200</span> <span class="tok-op">-</span> <span class="tok-nu">100</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> chainDown <span class="tok-op">←</span> low <span class="tok-op">-</span> <span class="tok-nu">300</span> <span class="tok-op">+</span> <span class="tok-nu">100</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> chainExact <span class="tok-op">←</span> high <span class="tok-op">*</span> <span class="tok-nu">2</span> <span class="tok-op">/</span> <span class="tok-nu">4</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> wide <span class="tok-op">←</span> <span class="tok-nu">200</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> chainFits <span class="tok-op">←</span> wide <span class="tok-op">*</span> <span class="tok-nu">2</span> <span class="tok-op">/</span> <span class="tok-nu">4</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> chainRound <span class="tok-op">←</span> low <span class="tok-op">-</span> wide <span class="tok-op">-</span> wide <span class="tok-op">+</span> wide <span class="tok-op">+</span> wide
-    print chainUp
-    print chainDown
-    print chainExact
-    print chainFits
-    print chainRound
-    var saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> acc <span class="tok-op">←</span> <span class="tok-nu">200</span>
-    acc <span class="tok-op">←</span> acc <span class="tok-op">+</span> <span class="tok-nu">100</span> <span class="tok-op">-</span> <span class="tok-nu">50</span>
-    print acc
-<span class="tok-co">    # `↦` into saturating clamps the exact value; into wrapping it reduces mod 2^W.</span>
-    const int over <span class="tok-op">←</span> <span class="tok-nu">300</span>
-    const int under <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">5</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> clampedHigh <span class="tok-op">←</span> over ↦ saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> clampedLow <span class="tok-op">←</span> under ↦ saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
-    const wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> wrapped <span class="tok-op">←</span> over ↦ wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
-    print clampedHigh
-    print clampedLow
-    print wrapped
-}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>260
--5
-500
-125
-5
-40000
--32768
--60000
-32768
-32768
-255
-0
-200
-250
-verum
-255
-0
-125
-100
-5
-250
-255
-0
-44
-</code></pre></div></main><nav class="toc"><div class="toc-h" aria-hidden="true"></div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusoperatoressaturating-wordfab-canonical-operator-group">radix/corpus/operatores/saturating-word.fab (canonical · operator-group)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">来源</span><ul><li>[&quot;radix/corpus/operatores/saturating-word.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/zh-Hans/releases/">全部发行版</a></nav></footer></div></body></html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="refresh" content="0; url=/en-US/corpus/saturating.html">
+<link rel="canonical" href="https://faberlang.dev/en-US/corpus/saturating.html">
+<meta name="robots" content="noindex">
+<title>Moved</title>
+</head>
+<body><p>This page moved to <a href="/en-US/corpus/saturating.html">/en-US/corpus/saturating.html</a>.</p></body>
+</html>

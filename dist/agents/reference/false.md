@@ -45,11 +45,11 @@ test "false is the false literal" {
 }
 
 test "false contrasts with true" {
-    assert false ≠ true
+    assert false ≢ true
     assert false ≡ false
 }
 ```
 
-See also: [`true`](true.md), [`none`](nihil.md).
+See also: [`true`](true.md), [`none`](none.md).
 
 Fetch list: https://faberlang.dev/agents/index.md
