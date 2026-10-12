@@ -149,8 +149,11 @@ Markdown → HTML with:
 ### Render pipeline
 
 ```bash
-# Full site build (renders en-US pages + corpus + locale aliases + gates)
+# Incremental full-site build (default; only stale authored pages/corpus rerender)
 bash generator/scripts/build-site.sh
+
+# Clean full-site rebuild (wipes dist and rebuilds the manifest from scratch)
+bash generator/scripts/build-site.sh --full
 
 # Render a single page (site_locale, reader_locale)
 generator/scripts/render.sh src/en-US/syntax/types.md en-US la /speculum.css output.html
@@ -159,7 +162,10 @@ generator/scripts/render.sh src/en-US/syntax/types.md en-US la /speculum.css out
 generator/scripts/validate-fences.sh src/en-US
 ```
 
-`render.sh` is the single-page wrapper. Reader locales remain visible through
+`render.sh` is the single-page wrapper. Full-site builds are incremental by
+default; `--full` forces the clean rebuild. The input/output SHA-256 manifest
+lives at `generator/target/build-manifest.json` and is a disposable build
+artifact (ignored by Git), not source. Reader locales remain visible through
 mapping pages and captured code panels; U6 tabs and U7 grammar switching are
 future work, not shipped surfaces.
 

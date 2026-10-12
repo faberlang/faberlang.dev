@@ -102,7 +102,8 @@ smoke_contains() {
         exit 1
     fi
 
-    if ! grep -Fq "$needle" "$file"; then
+    if ! grep -Fq "$needle" "$file" \
+       && ! sed 's/<[^>]*>//g' "$file" | grep -Fq "$needle"; then
         echo "ERROR: smoke failed ${label}: missing ${needle} in ${file}" >&2
         exit 1
     fi
@@ -112,6 +113,8 @@ smoke_contains() {
 # Parse invocation mode
 # ------------------------------------------------------------------
 FULL_SITE=false
+FORCE_FULL=false
+if [ "${1:-}" = "--full" ]; then FORCE_FULL=true; shift; fi
 
 if [ $# -eq 0 ]; then
     FULL_SITE=true
@@ -127,7 +130,7 @@ elif [ $# -eq 4 ]; then
     READER_LOCALE="$4"
 else
     echo "Usage:"
-    echo "  build-site.sh                                       # full site"
+    echo "  build-site.sh [--full]                              # incremental; --full forces clean rebuild"
     echo "  build-site.sh <source_dir> <output_dir> <site_locale> <reader_locale>"
     exit 1
 fi
@@ -159,39 +162,89 @@ render_locale() {
     # the English site did not choose to decode Latin keywords: `la` is a
     # reference surface here, not the one the page presents.
     if [ "$reader" != "la" ]; then
-        localized_source="$(mktemp -d)"
-        TEMPDIRS+=("$localized_source")
-        "${SCRIPT_DIR}/localize-markdown.py" "$src" "$localized_source" --locale "$reader" --faber "$FABER_LOCALIZE"
-        python3 "${SCRIPT_DIR}/project-reader-terms.py" "$localized_source" --locale "$reader"
-        render_source="$localized_source"
+        localized_source="${GENERATOR_DIR}/target/localized-${site}"
+        mkdir -p "${GENERATOR_DIR}/target"
+        if [ "$FORCE_FULL" = true ] || [ ! -f "${GENERATOR_DIR}/target/build-manifest.json" ]; then
+            loc_fingerprint=$("$PYTHON" "${SCRIPT_DIR}/build_manifest.py" hash "$src" "${SCRIPT_DIR}/localize-markdown.py" "${SCRIPT_DIR}/project-reader-terms.py" "${WORKSPACE_DIR}/radix/locale/${reader}/pack.toml")
+            if [ ! -f "${localized_source}/.fingerprint" ] || [ "$(cat "${localized_source}/.fingerprint")" != "$loc_fingerprint" ]; then
+                rm -rf "$localized_source"; mkdir -p "$localized_source"
+                "${SCRIPT_DIR}/localize-markdown.py" "$src" "$localized_source" --locale "$reader" --faber "$FABER_LOCALIZE"
+                "$PYTHON" "${SCRIPT_DIR}/project-reader-terms.py" "$localized_source" --locale "$reader"
+                printf '%s' "$loc_fingerprint" > "${localized_source}/.fingerprint"
+            fi
+            render_source="$localized_source"
+        else
+            # Incremental mode reads authored Markdown first. A stale page is
+            # localized alone below, avoiding whole-tree conversions on edits.
+            render_source="$src"
+        fi
     fi
 
-    # Corpus pages for this locale render BEFORE the regular pages so the
-    # page renderer sees their targets and keeps cross-reference links
-    # (the renderer suppresses links to pages that do not exist yet).
-    echo "  [corpus] Rendering corpus pages for ${site}..."
-    "${SCRIPT_DIR}/render-corpus-batch.sh" "$out" "$site" "$reader" "$style"
-
-    # The Python renderer is fast enough to run directly; retain one log line
-    # per page so build output remains easy to audit.
+    # Render only stale pages into an isolated tree. Post-process that tree,
+    # then replace only those outputs so unchanged dist pages are untouched.
+    local stage="${GENERATOR_DIR}/target/page-stage"
+    rm -rf "$stage"
+    mkdir -p "$stage"
+    local changed=0
     while IFS= read -r md_file; do
         rel_path="${md_file#${render_source}/}"
         iter="${rel_path%.md}"
         out_path="${out}/${iter}.html"
-        mkdir -p "$(dirname "$out_path")"
-        if "$PYTHON" "$RENDERER" --page "$iter" "$md_file" "$site" "$reader" "$style" > "$out_path" 2>/dev/null; then
-            echo "  ✓ ${iter}.html"
+        rel_output="${site}/${iter}.html"
+        localized_file="${localized_source}/${rel_path}"
+        local_inputs=("${src}/${rel_path}" "${SCRIPT_DIR}/speculum_py.py" \
+          "${SCRIPT_DIR}/inject-chrome.py" "${GENERATOR_DIR}/locales/${site}/chrome.toml" \
+          "${SCRIPT_DIR}/inject-skip-link.py" "${SCRIPT_DIR}/strip-empty-sources.py" \
+          "${SCRIPT_DIR}/localize-spans.py" "${WORKSPACE_DIR}/radix/locale/en/pack.toml" \
+          "${SCRIPT_DIR}/highlight-code.py" "${GENERATOR_DIR}/locale-tabs/vocab.en.json" \
+          "${SCRIPT_DIR}/inject-toc.py" "${SCRIPT_DIR}/tag-glyph-chips.py" \
+          "${SCRIPT_DIR}/matrix-cells.py" "${SCRIPT_DIR}/diagrams.py" \
+          "${SCRIPT_DIR}/locale-tabs.py" "${SCRIPT_DIR}/inject-pass.py" \
+          "${GENERATOR_DIR}/www/speculum.css")
+        if [ "$reader" != "la" ]; then
+            local_inputs+=("$localized_file" "${WORKSPACE_DIR}/radix/locale/${reader}/pack.toml" "${SCRIPT_DIR}/localize-markdown.py" "${SCRIPT_DIR}/project-reader-terms.py")
+        fi
+        cached=$("$PYTHON" "${SCRIPT_DIR}/build_manifest.py" current "$rel_output" "${local_inputs[@]}")
+        if [ "$cached" = yes ] && [ -f "$out_path" ]; then
+            continue
+        fi
+        if [ "$reader" != la ] && [ "$render_source" = "$src" ]; then
+            one_source="${GENERATOR_DIR}/target/page-localize-input"
+            one_output="${GENERATOR_DIR}/target/page-localize-output"
+            rm -rf "$one_source" "$one_output"
+            mkdir -p "$(dirname "${one_source}/${rel_path}")"
+            cp "${src}/${rel_path}" "${one_source}/${rel_path}"
+            "$PYTHON" "${SCRIPT_DIR}/localize-markdown.py" "$one_source" "$one_output" --locale "$reader" --faber "$FABER_LOCALIZE"
+            "$PYTHON" "${SCRIPT_DIR}/project-reader-terms.py" "${one_output}/${rel_path}" --locale "$reader"
+            mkdir -p "$(dirname "$localized_file")"
+            cp "${one_output}/${rel_path}" "$localized_file"
+            md_file="$localized_file"
+        fi
+        stage_page="${stage}/${site}/${iter}.html"
+        mkdir -p "$(dirname "$stage_page")"
+        if "$PYTHON" "$RENDERER" --page "$iter" "$md_file" "$site" "$reader" "$style" > "$stage_page" 2>/dev/null; then
+            echo "  ↻ ${iter}.html"
+            changed=$((changed + 1))
         else
             echo "  ✗ FAILED: ${rel_path}"
-            rm -f "$out_path"
+            rm -f "$stage_page"
         fi
     done < <(find "$render_source" -name "*.md" -type f | sort)
+    if [ "$changed" -gt 0 ]; then
+        while IFS= read -r rendered; do
+            rel="${rendered#${stage}/}"
+            mkdir -p "$(dirname "${OUTPUT_DIR}/${rel}")"
+            cp "$rendered" "${OUTPUT_DIR}/${rel}"
+        done < <(find "$stage/${site}" -name '*.html' -type f)
+    fi
+    echo "  [incremental] ${changed} authored pages rendered"
 }
 
 # ==================================================================
 # FULL SITE BUILD
 # ==================================================================
 if [ "$FULL_SITE" = true ]; then
+    if [ "$FORCE_FULL" = true ]; then rm -f "${GENERATOR_DIR}/target/build-manifest.json"; fi
 
     # Step 0: Refresh generated matrix pages when the radix grammar is present
     if [ -f "${WORKSPACE_DIR}/radix/grammar/EBNF_MATRIX.md" ]; then
@@ -238,12 +291,18 @@ if [ "$FULL_SITE" = true ]; then
     # a faber binary that can resolve its reference pack. The workspace
     # development build is preferred; the generator reports when none is found
     # rather than emptying the tree.
-    echo "[0/10] Generating the agent reference tree..."
-    if "$PYTHON" "${SCRIPT_DIR}/generate-agent-reference.py" --strict; then
-        :
+    agent_reference_inputs=("${SCRIPT_DIR}/generate-agent-reference.py" "${WORKSPACE_DIR}/radix/locale" "${WORKSPACE_DIR}/radix/target/debug/faber")
+    agent_reference_output="agents/reference/index.md"
+    if [ "$FORCE_FULL" = true ] || [ "$("$PYTHON" "${SCRIPT_DIR}/build_manifest.py" current "$agent_reference_output" "${agent_reference_inputs[@]}")" != yes ]; then
+        echo "[0/10] Generating the agent reference tree..."
+        if "$PYTHON" "${SCRIPT_DIR}/generate-agent-reference.py" --strict; then
+            "$PYTHON" "${SCRIPT_DIR}/build_manifest.py" record "$agent_reference_output" "${agent_reference_inputs[@]}"
+        else
+            echo "ERROR: agent reference generate failed" >&2
+            exit 1
+        fi
     else
-        echo "ERROR: agent reference generate failed" >&2
-        exit 1
+        echo "[0/10] Agent reference unchanged; skipped (~197 explain calls)"
     fi
 
     # Releases is NOT regenerated here: it needs `gh` and network access, and a
@@ -254,9 +313,9 @@ if [ "$FULL_SITE" = true ]; then
     echo "[1/9] Python renderer: $PYTHON"
     "$PYTHON" -c 'import sys; assert sys.version_info >= (3, 9)'
 
-    # Step 2: Clean and prepare output directory
+    # Step 2: Prepare output directory. Only --full discards the old tree.
     echo "[2/9] Preparing output directory..."
-    rm -rf "$OUTPUT_DIR"
+    if [ "$FORCE_FULL" = true ]; then rm -rf "$OUTPUT_DIR"; fi
     mkdir -p "$OUTPUT_DIR"
 
     # Copy stylesheet
@@ -267,6 +326,39 @@ if [ "$FULL_SITE" = true ]; then
     if [ -d "$STATIC_DIR" ] && [ "${SPECULUM_SKIP_STATIC:-0}" != "1" ]; then
         echo "  copying static/ → dist/"
         cp -R "${STATIC_DIR}/." "${OUTPUT_DIR}/"
+    fi
+
+    # Corpus is a single deterministic batch. Its fingerprint covers source
+    # exempla, pack projection, renderer/driver, and corpus post-processors.
+    corpus_inputs=("${WORKSPACE_DIR}/radix/corpus" "${WORKSPACE_DIR}/radix/locale/en/pack.toml"
+      "${SCRIPT_DIR}/corpus_ia.py" "${SCRIPT_DIR}/corpus_locale.py" "${SCRIPT_DIR}/project_reader_terms.py"
+      "${SCRIPT_DIR}/render-corpus-batch.sh" "${RENDERER}" "${SCRIPT_DIR}/diagrams.py"
+      "${SCRIPT_DIR}/highlight-code.py" "${SCRIPT_DIR}/inject-toc.py" "${SCRIPT_DIR}/tag-glyph-chips.py"
+      "${SCRIPT_DIR}/localize-spans.py" "${SCRIPT_DIR}/inject-chrome.py" "${SCRIPT_DIR}/strip-empty-sources.py"
+      "${SCRIPT_DIR}/inject-skip-link.py" "${GENERATOR_DIR}/locales/en-US/chrome.toml")
+    corpus_changed=false
+    if [ "$FORCE_FULL" = true ] || [ "$("$PYTHON" "${SCRIPT_DIR}/build_manifest.py" current "en-US/corpus/index.html" "${corpus_inputs[@]}")" != yes ]; then
+        corpus_changed=true
+        echo "[corpus] Inputs changed; rebuilding corpus batch..."
+        rm -rf "${OUTPUT_DIR}/en-US/corpus"
+        "${SCRIPT_DIR}/render-corpus-batch.sh" "${OUTPUT_DIR}/en-US" en-US en "$STYLESHEET"
+        corpus_stage="${GENERATOR_DIR}/target/corpus-stage"
+        rm -rf "$corpus_stage"; mkdir -p "$corpus_stage/en-US"
+        cp -R "${OUTPUT_DIR}/en-US/corpus" "$corpus_stage/en-US/"
+        "$PYTHON" "${SCRIPT_DIR}/strip-empty-sources.py" "$corpus_stage"
+        "$PYTHON" "${SCRIPT_DIR}/inject-skip-link.py" "$corpus_stage"
+        "$PYTHON" "${SCRIPT_DIR}/inject-chrome.py" "$corpus_stage" en-US
+        "$PYTHON" "${SCRIPT_DIR}/diagrams.py" inject "$corpus_stage"
+        "$PYTHON" "${SCRIPT_DIR}/locale-tabs.py" inject "$corpus_stage"
+        "$PYTHON" "${SCRIPT_DIR}/localize-spans.py" "$corpus_stage"
+        "$PYTHON" "${SCRIPT_DIR}/highlight-code.py" "$corpus_stage"
+        "$PYTHON" "${SCRIPT_DIR}/matrix-cells.py" "$corpus_stage"
+        "$PYTHON" "${SCRIPT_DIR}/inject-toc.py" "$corpus_stage"
+        "$PYTHON" "${SCRIPT_DIR}/tag-glyph-chips.py" "$corpus_stage"
+        cp -R "$corpus_stage/en-US/corpus/." "${OUTPUT_DIR}/en-US/corpus/"
+        "$PYTHON" "${SCRIPT_DIR}/build_manifest.py" record "en-US/corpus/index.html" "${corpus_inputs[@]}"
+    else
+        echo "[corpus] Inputs unchanged; skipped"
     fi
 
     # U4 maintains one prose tree. Reader packs remain available in generated surfaces.
@@ -458,63 +550,38 @@ if [ "$FULL_SITE" = true ]; then
         smoke_contains "${OUTPUT_DIR}/start/install.html" "/en-US/start/install.html" "redirect install target"
     fi
 
-    # Step 9: Post-process
-    echo "[9/10] Post-processing..."
-    "$PYTHON" "${SCRIPT_DIR}/strip-empty-sources.py" "$OUTPUT_DIR"
-    "$PYTHON" "${SCRIPT_DIR}/inject-skip-link.py" "$OUTPUT_DIR"
+    # Presentation passes operate only on freshly rendered authored pages.
+    # Smoke checks above intentionally see raw renderer output, as before.
+    authored_stage="${GENERATOR_DIR}/target/page-stage"
+    if [ -d "$authored_stage/en-US" ] && [ -n "$(find "$authored_stage/en-US" -name '*.html' -type f -print -quit)" ]; then
+        "$PYTHON" "${SCRIPT_DIR}/strip-empty-sources.py" "$authored_stage"
+        "$PYTHON" "${SCRIPT_DIR}/inject-skip-link.py" "$authored_stage"
+        "$PYTHON" "${SCRIPT_DIR}/inject-chrome.py" "$authored_stage" en-US
+        "$PYTHON" "${SCRIPT_DIR}/diagrams.py" inject "$authored_stage"
+        "$PYTHON" "${SCRIPT_DIR}/locale-tabs.py" inject "$authored_stage"
+        "$PYTHON" "${SCRIPT_DIR}/localize-spans.py" "$authored_stage"
+        "$PYTHON" "${SCRIPT_DIR}/highlight-code.py" "$authored_stage"
+        "$PYTHON" "${SCRIPT_DIR}/matrix-cells.py" "$authored_stage"
+        "$PYTHON" "${SCRIPT_DIR}/inject-toc.py" "$authored_stage"
+        "$PYTHON" "${SCRIPT_DIR}/tag-glyph-chips.py" "$authored_stage"
+        "$PYTHON" "${SCRIPT_DIR}/inject-pass.py" "$authored_stage"
+        while IFS= read -r rendered; do
+            rel="${rendered#${authored_stage}/}"
+            mkdir -p "$(dirname "${OUTPUT_DIR}/${rel}")"
+            cp "$rendered" "${OUTPUT_DIR}/${rel}"
+            source_file="${REPO_DIR}/src/${rel%.html}.md"
+            localized_file="${GENERATOR_DIR}/target/localized-en-US/${rel#en-US/}"; localized_file="${localized_file%.html}.md"
+            manifest_inputs=("$source_file" "${SCRIPT_DIR}/speculum_py.py" "${SCRIPT_DIR}/inject-chrome.py" "${GENERATOR_DIR}/locales/en-US/chrome.toml" "${SCRIPT_DIR}/inject-skip-link.py" "${SCRIPT_DIR}/strip-empty-sources.py" "${SCRIPT_DIR}/localize-spans.py" "${WORKSPACE_DIR}/radix/locale/en/pack.toml" "${SCRIPT_DIR}/highlight-code.py" "${GENERATOR_DIR}/locale-tabs/vocab.en.json" "${SCRIPT_DIR}/inject-toc.py" "${SCRIPT_DIR}/tag-glyph-chips.py" "${SCRIPT_DIR}/matrix-cells.py" "${SCRIPT_DIR}/diagrams.py" "${SCRIPT_DIR}/locale-tabs.py" "${SCRIPT_DIR}/inject-pass.py" "${GENERATOR_DIR}/www/speculum.css" "$localized_file" "${WORKSPACE_DIR}/radix/locale/en/pack.toml" "${SCRIPT_DIR}/localize-markdown.py" "${SCRIPT_DIR}/project-reader-terms.py")
+            "$PYTHON" "${SCRIPT_DIR}/build_manifest.py" record "$rel" "${manifest_inputs[@]}"
+        done < <(find "$authored_stage/en-US" -name '*.html' -type f)
+        rm -rf "$authored_stage"
+    fi
 
-    echo "[9/10] Chrome injection..."
-    for site in "${LOCALE_DIRS[@]}"; do
-        if [ -f "${SCRIPT_DIR}/../locales/${site}/chrome.toml" ]; then
-            "$PYTHON" "${SCRIPT_DIR}/inject-chrome.py" "$OUTPUT_DIR" "$site"
-        fi
-    done
-
-    # Presentation post-process. Diagram rendering needs Node and a headless
-    # browser, so it is best-effort: a machine without them keeps the cached
-    # SVGs it already has, and any diagram with no cache entry stays a
-    # readable code block rather than failing the build.
-    echo "[9/10] Diagrams..."
+    # Source diagrams may refresh their committed cache; page/corpus injection
+    # is scoped to only outputs rebuilt above.
+    echo "[9/10] Refreshing diagram cache..."
     "$PYTHON" "${SCRIPT_DIR}/diagrams.py" render "${REPO_DIR}/src" || \
         echo "  WARNING: diagram render skipped; using cached SVGs only" >&2
-    "$PYTHON" "${SCRIPT_DIR}/diagrams.py" inject "$OUTPUT_DIR"
-
-    # Before highlighting: the tab cards carry per-locale panels, and each
-    # panel names its own reader locale so the highlighter paints it in that
-    # locale's spellings. Injecting after highlighting would leave them plain.
-    echo "[9/10] Reader-locale tab cards (cheat sheet, target lanes)..."
-    "$PYTHON" "${SCRIPT_DIR}/locale-tabs.py" inject "$OUTPUT_DIR"
-
-    # Inline language terms follow the reader locale, same as the fences.
-    # Runs before highlighting so the highlighter paints the local spelling
-    # rather than a Latin one that is no longer on the page.
-    echo "[9/10] Reader-locale inline terms..."
-    "$PYTHON" "${SCRIPT_DIR}/localize-spans.py" "$OUTPUT_DIR"
-
-    echo "[9/10] Code highlighting..."
-    "$PYTHON" "${SCRIPT_DIR}/highlight-code.py" "$OUTPUT_DIR"
-
-    # Target matrix: real term anchors and status classes on glyph cells.
-    echo "[9/10] Target matrix cells..."
-    "$PYTHON" "${SCRIPT_DIR}/matrix-cells.py" "$OUTPUT_DIR"
-
-    echo "[9/10] Contents rails..."
-    "$PYTHON" "${SCRIPT_DIR}/inject-toc.py" "$OUTPUT_DIR"
-
-    # Glyph-only inline code gets a size class (CSS cannot select it).
-    echo "[9/10] Glyph chips..."
-    "$PYTHON" "${SCRIPT_DIR}/tag-glyph-chips.py" "$OUTPUT_DIR"
-
-    # The Start page asks for the agent pass with a marker. After the contents
-    # rails, so the pass's card labels never reach a rail.
-    echo "[9/10] Agent pass..."
-    "$PYTHON" "${SCRIPT_DIR}/inject-pass.py" "$OUTPUT_DIR"
-    grep -q 'class="pass-wrap"' "${OUTPUT_DIR}/en-US/start/index.html" || {
-        echo "ERROR: Start page has no agent pass" >&2
-        exit 1
-    }
-    # The install link lives on the pass, so it can only be asserted here.
-    smoke_contains "${OUTPUT_DIR}/en-US/start/index.html" 'href="/install.md"' "start page install link"
 
     # Step 10: Gates (link check, leakage) — only for full site
     echo "[10/10] Gates..."
@@ -579,4 +646,5 @@ PAGE_COUNT=$(find "$OUTPUT_DIR" -name "*.html" -type f | wc -l | tr -d ' ')
 STATIC_COUNT=$(find "$OUTPUT_DIR" \( -name "*.txt" -o -name "*.md" -o -name "*.json" \) -type f | wc -l | tr -d ' ')
 
 echo ""
+if [ "$FULL_SITE" = true ]; then "$PYTHON" "${SCRIPT_DIR}/build_manifest.py" prune; fi
 echo "=== Build complete: ${PAGE_COUNT} HTML pages, ${STATIC_COUNT} static machine files → ${OUTPUT_DIR} ==="
