@@ -42,8 +42,8 @@ Tests sit beside the code they exercise:
 
 ```faber locale=en
 fn saturate(i32 x) → i32 {
-    if x < 0 then return 0
-    if x > 255 then return 255
+    if x ≺ 0 then return 0
+    if x ≻ 255 then return 255
     return x
 }
 

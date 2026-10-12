@@ -141,7 +141,7 @@ FAMILIES: list[dict] = [
             failable_promissum_type ratio_type hole_type qualified_type type_head
             type_arguments type_argument labeled_type_argument width_type_sugar
             shape_suffix figura figura_product figura_primary figura_list
-            function_type type_list
+            function_type type_list spelled_lift lift_extent
         """.split(),
     },
     {
@@ -263,8 +263,8 @@ Tests sit beside the code they exercise:
 
 ```faber locale=en
 fn saturate(i32 x) → i32 {
-    if x < 0 then return 0
-    if x > 255 then return 255
+    if x ≺ 0 then return 0
+    if x ≻ 255 then return 255
     return x
 }
 
