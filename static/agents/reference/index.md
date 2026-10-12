@@ -37,7 +37,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [const](const.md) (`fixum`) — Declares an immutable binding.
 - [continue](continue.md) (`perge`) — Continues with the next loop iteration.
 - [cursor](cursor.md) — Compatibility annotation for stream/generator posture.
-- [debug](debug.md) (`vide`) — Writes a debug value to standard output.
+- [debug](debug.md) (`vide`) — Writes a debug value to standard error.
 - [default](default.md) (`ceterum`) — Starts the default branch of an elige or discerne statement.
 - [describe](describe.md) (`probandum`) — Groups related test cases into a named suite.
 - [description](description.md) (`descriptio`) — Attaches a description string to CLI metadata.
@@ -74,7 +74,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [match](match.md) (`discerne`) — Starts an exhaustive pattern match over a value or values.
 - [mut](mut.md) (`in`) — Marks a mutable borrowed parameter.
 - [never](never.md) (`numquam`) — Primitive never type for code paths that do not return normally.
-- [nihil](nihil.md) — Represents the null value and can prefix a null check.
+- [none](none.md) (`nihil`) — Represents the null value and can prefix a null check.
 - [not](not.md) (`non`) — Negates a boolean expression.
 - [object](object.md) (`objectum`) — Declares a type alias.
 - [only](only.md) (`solum`) — Marks a test as the only test to run.
@@ -161,7 +161,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [↓](↓.md) — Postfix increment statement for a mutable numerus place.
 - [↤](↤.md) — Conversion-directed assignment: evaluate the right side, convert it to the statically known type of the left place through the ↦ route, then assign.
 - [↦](↦.md) — Converts a value with explicit runtime parsing or coercion semantics.
-- [⇇](⇇.md) — Exact-output transfer: sink ⇇ payload invokes a callable sink value once per payload — no formatting, no separators, no channel selection, no conversions.
+- [⇇](⇇.md) — Copy-into: target ⇇ value writes every value of a tensor into the existing storage of another tensor; storage identity is preserved and ← only ever rebinds a name.
 - [⇐](⇐.md) — Bitwise and, or, xor, not, and shifts on numerus operands.
 - [⇒](⇒.md) — Bitwise and, or, xor, not, and shifts on numerus operands.
 - [⇥](⇥.md) — Success return type and recoverable alternate-exit type in function signatures.
@@ -170,8 +170,8 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [∨](∨.md) — Bitwise or and est-negation operators.
 - [∴](∴.md) — Compact consequent after si/dum heads via ergo, with ∴ reserved for closure bodies.
 - [∷](∷.md) — Converts a value with explicit runtime parsing or coercion semantics.
-- [≠](≠.md) — Equality and ordering comparisons returning bivalens.
 - [≡](≡.md) — Equality and ordering comparisons returning bivalens.
+- [≢](≢.md) — Equality and ordering comparisons returning bivalens.
 - [≤](≤.md) — Equality and ordering comparisons returning bivalens.
 - [≥](≥.md) — Equality and ordering comparisons returning bivalens.
 - [⊗](⊗.md) — Glyph outer product: vector ⊗ vector yields the rank-summed matrix of pairwise products.
@@ -222,13 +222,13 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [manifest](manifest.md) — faber.toml package metadata for build, run, and test.
 - [prae](prae.md) — Angle-bracket generic parameters on functions and declarations.
 - [primus_quem](primus_quem.md) — Dedicated total first-match expression: first live element of a source satisfying the owned ubi predicate, nihil for no-match and empty sources.
-- [sum](sum.md) (`summa`) — Sequential sum-reduce expression: summa ex <tensor> apud [i] fixum s { redde <term> }.
+- [sum](sum.md) (`summa`) — Sequential sum-reduce expression: reducta via summa ex <tensor> apud [i] fixum s.
 - [targets](targets.md) — Compilation backends listed by faber targets or radix targets.
-- [thread](thread.md) (`filum`) — Distributed sum-reduce kernel admit: summa ex … apud [i] filum f fixum s { redde <term> } inside @ nucleum.
+- [thread](thread.md) (`filum`) — Distributed reducta via summa ex … filum kernel inside @ nucleum.
 
 ## Conversions
 
-- [Bits](Bits.md) — The Bits conversio hint is an exact-width IEEE bitcast — u16↔f16, u16↔bf16, u32↔f32, u64↔f64 only — never a value conversion.
-- [finite](finite.md) — finite()-style NaN detection on float payloads via the Bits field-read gate (exponent 0xFF, fraction ≠ 0), never via x ≠ x.
+- [Bits](Bits.md) — The Bits conversio hint is retired: a bit pattern is a b16, b32 or b64 value, and ↦ bN reads or writes it — u16↔f16, u16↔bf16, u32↔f32, u64↔f64 only.
+- [finite](finite.md) — finite()-style NaN detection on float payloads via the bN field-read gate (exponent 0xFF, fraction ≠ 0), never via x ≢ x.
 
 Fetch list: https://faberlang.dev/agents/index.md

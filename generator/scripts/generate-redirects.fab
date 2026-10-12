@@ -40,7 +40,7 @@ fn stub(string target_url, string canonical_url) → string {
 
 main {
     const list<string> argv ← processus.argv() ↦ list<string>
-    if argv.length() ≠ 2 {
+    if argv.length() ≢ 2 {
         consolum.warn_line("usage: generate-redirects <dist_dir> <source_site_locale>")
         processus.exit_process(2)
     }

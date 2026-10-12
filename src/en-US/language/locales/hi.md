@@ -37,6 +37,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | argmin           argmin
 | args             तर्क
 | as               रूपमें
+| asc              आरोही
 | assert           पुष्टि
 | async            async
 | async_generator  async_जनक
@@ -47,6 +48,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | await            रुको
 | await_const      रुको_स्थिर
 | await_var        रुको_चर
+| axis             अक्ष
 | before           पहले
 | bench            मापो
 | between          बीच
@@ -69,6 +71,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | cursor           संकेतक
 | debug            देखो
 | default          अन्यतम
+| desc             अवरोही
 | describe         परीक्षणसमूह
 | description      विवरण
 | do               करो
@@ -86,7 +89,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | for              दोहराओ
 | format           लिखित
 | fragment         खंड
-| free             मुक्त
 | from             सेवन
 | future           भविष्य
 | generator        जनक
@@ -112,7 +114,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | mut              में
 | name             नाम
 | nan              nan
-| nihil            शून्य
 | not              नहीं
 | null             शून्यवत्
 | only             केवल
@@ -152,6 +153,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | short            संक्षिप्त
 | size             आकार
 | skip             छोड़ो
+| sort             क्रमबद्ध_करो
 | spread           फैलाओ
 | static           स्थैतिक
 | step             प्रति
@@ -190,7 +192,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 
 ```text locale=la
 | English      हिन्दी
-| -----------  -----------
+| -----------  --------------
 | any          कुछभी
 | ascii        ascii
 | atomic       परमाणु
@@ -200,6 +202,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | census       गणना
 | channel      चैनल
 | char         अक्षर
+| clamp        किनारा_स्थिर
 | filter       फ़िल्टर
 | float        भिन्न
 | frame        फ़्रेम
@@ -208,6 +211,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | intervallum  अंतराल
 | iterator     कर्सर
 | json         json
+| ledger       बही
 | list         सूची
 | map          तालिका
 | matrix       आव्यूह
@@ -218,6 +222,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | queue        कतार
 | record       ratio
 | recv         पाना
+| reflect      किनारा_परावर्तन
 | regex        regex
 | saturating   संतृप्त
 | send         भेजना
@@ -232,6 +237,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | value        मान
 | vector       सदिश
 | void         रिक्त
+| wrap         किनारा_लपेट
 | wrapping_ty  मॉड्यूल_टाइप
 ```
 
@@ -251,6 +257,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | approx                सन्निकट
 | argmax                argmax
 | argmin                argmin
+| at                    पर
 | at_least              कम_से_कम
 | at_most               अधिक_से_अधिक
 | bit_and               बिट_और
@@ -282,6 +289,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | escape                एस्केप
 | exchange              अदलाबदली
 | exp                   चरघातांकी
+| expanded              फैलाओ
 | fill                  भरो
 | filter                छानो
 | find                  खोज
@@ -292,7 +300,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | flipped               पलटा
 | floor                 नीचे_पूर्णांक
 | formata               formata
-| from_flat             समतल_से_बनाओ
 | gather                एकत्र_करो
 | gelu                  gelu
 | get                   पाओ
@@ -310,6 +317,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | layer_norm            परत_सामान्यीकरण
 | length                लंबाई
 | less                  छोटा
+| limes                 किनारा
 | ln                    प्राकृतिक_लघुगणक
 | load                  लोड
 | log10                 दशमलव_लघुगणक
@@ -344,6 +352,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | round                 निकटतम_पूर्णांक
 | set                   निर्धारित_करो
 | shape                 आकृति
+| shift                 खिसकाओ
 | shift_left            बाएँ_सरकाओ
 | shift_right           दाएँ_सरकाओ
 | shifted_left          बाएँ_सरकाया

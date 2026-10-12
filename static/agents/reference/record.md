@@ -13,7 +13,7 @@ record<label: type, …> { label = value }
 ## What this teaches
 
 - labeled type args: record<g: f32, w: int>
-- construction: record<g: f32, w: int> { g = 1.0, w = 2 } (both spellings construct: en `record` and canonical `record`; the constructor head canonicalizes to `record` at parse — unit 047eef65)
+- construction: record<g: f32, w: int> { g = 1.0, w = 2 } (the constructor head is the file's own locale spelling: `record` in this English file; the canonical Latin `record` head is accepted only in a Latin file — unit 047eef65)
 - .name access: point.g (labels only — no bracket form)
 - objectPattern destructuring: const {g, w} ← point
 - partial + rest: const {loss, rest leftover} ← metrics
@@ -30,19 +30,19 @@ record<label: type, …> { label = value }
 main {
     # Construction and .name access.
     # Same-locale surface: the en type-head `record` claims the constructor
-    # slot too (map-in-both, unit 047eef65); the canonical `record` spelling
-    # still constructs (hole site below).
+    # slot too (map-in-both, unit 047eef65); the canonical Latin `record`
+    # head is rejected in an English file.
     const record<g: f32, w: int> point ← record<g: f32, w: int> { g = 1.0, w = 2 }
     print point.g
     print point.w
 
     # Element hole solved from the construction witness.
-    const record<g: _, w: int> hole ← ratio<g: f32, w: int> { g = 1.0, w = 2 }
+    const record<g: _, w: int> hole ← record<g: f32, w: int> { g = 1.0, w = 2 }
     print hole.g + 0.0
     print hole.w
 
     # A wanted union element is a binary cup, not ∪ in the slot.
-    const ratio<g: string ∪ none> cup ← ratio<g: string ∪ none> { g = "x" }
+    const record<g: string ∪ none> cup ← record<g: string ∪ none> { g = "x" }
     print cup.g
 
     # objectPattern binds by label.
@@ -51,7 +51,7 @@ main {
     print w
 
     # Partial by-label binding; rest is the unbound sub-record.
-    const record<loss: f32, steps: int> metrics ← ratio<loss: f32, steps: int> { loss = 3.0, steps = 4 }
+    const record<loss: f32, steps: int> metrics ← record<loss: f32, steps: int> { loss = 3.0, steps = 4 }
     const {loss, rest leftover} ← metrics
     print loss
     print leftover.steps

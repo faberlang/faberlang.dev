@@ -10,8 +10,8 @@ keeps its URL (`/reference/grammar.html`).
 Inputs (resolved from a sibling workspace checkout, same convention as
 `generate-grammar`):
 
-  faber/docs/EBNF.md                    the production list (canonical Latin)
-  faber/docs/grammar/grammar.jsonl      the id spine, anchors, and keywords
+  radix/grammar/EBNF.md                    the production list (canonical Latin)
+  radix/grammar/sources/grammar.jsonl      the id spine, anchors, and keywords
   radix/locale/en/pack.toml             the English reader projection
 
 Outputs:
@@ -82,6 +82,7 @@ FAMILIES: list[dict] = [
         ),
         "ids": """
             fab_file frontmatter program regio_decl statement ad_handler_decl
+            nondum_functio_decl
             statement_core importa_decl importa_record import_field_list
             import_field ex_field visibilitas_field nomen_field ut_field
             omnia_field importa_sugar publica named_import wildcard_import
@@ -105,9 +106,9 @@ FAMILIES: list[dict] = [
             generic_type_default generic_size_default call_type_args parameter
             func_modifier callable_posture return_clause alternate_exit_clause
             ergo_joint clausura_joint clausura_expr compact_clausura_expr
-            clausura_signature closure_modifier fac_block clausura_legacy_expr
+            clausura_signature fac_block clausura_legacy_expr
             clausura_params clausura_param genus_decl genus_member
-            genus_field_decl field_decl functio_method_decl
+            nondum_method_decl genus_field_decl field_decl functio_method_decl
         """.split(),
     },
     {
@@ -122,7 +123,7 @@ FAMILIES: list[dict] = [
             annotation annotation_name braced_annotation annotation_field_list
             annotation_field annotation_sugar nucleum_annotation nucleum_sugar
             nucleum_braced nucleum_modifier nucleum_field_list nucleum_field
-            radix_annotation radix_directive ad_annotation
+            radix_annotation radix_directive ad_annotation nondum_annotation
         """.split(),
     },
     {
@@ -139,7 +140,8 @@ FAMILIES: list[dict] = [
             concrete_type union_hole_type intersection_type owned_type base_type
             failable_promissum_type ratio_type hole_type qualified_type type_head
             type_arguments type_argument labeled_type_argument width_type_sugar
-            shape_suffix figura figura_list function_type type_list
+            shape_suffix figura figura_product figura_primary figura_list
+            function_type type_list
         """.split(),
     },
     {
@@ -169,20 +171,21 @@ FAMILIES: list[dict] = [
             "collection and JSON forms."
         ),
         "ids": """
-            expression transfer assignment place ternary aut_expr et_expr
+            expression transfer value_marker assignment place ternary aut_expr et_expr
             equality equality_tail comparison format_expr bitwise_or_expr
             bitwise_xor_expr bitwise_and_expr shift_expr range_expr range_tail
             additive_expr multiplicative_expr vel_expr vel_rhs vel_range_tail
-            unary_expr gradient_expr gradient_selection gradient_place cast_expr
+            unary_expr rounding_expr gradient_expr gradient_selection gradient_place cast_expr
             conversio_expr interval_target via_clause inline_default call_expr
             call_suffix member_suffix transpose_suffix optional_suffix
-            non_null_suffix argument_list argument template_argument literal
-            primary ad_expr ad_opener array_literal iuncta_expr json_literal
-            json_member typed_constructor field_list field_init field_key
+            non_null_suffix argument_list argument call_marker template_argument literal
+            primary ad_expr ad_opener array_literal array_element_list
+            array_element iuncta_expr json_literal json_member typed_constructor field_list field_init field_key
             construction_source json_value json_object json_array json_string
             json_number finge_expr qualified_ident praefixum_expr scriptum_expr
-            lege_expr first_match_expr summa_expr filum_clause extrema_expr
-            extrema_identity capta_expr
+            lege_expr first_match_expr reducta_expr reducta_op reducta_group
+            reducta_body reducta_identity sort_expr sort_direction sort_body
+            filum_clause capta_expr
         """.split(),
     },
     {
@@ -473,7 +476,7 @@ main {
     const i32 a ← 7
     const i32 b ← 2
     print a / b
-    print a ≥ b and b ≠ 0
+    print a ≥ b and b ≢ 0
     print greet("munde")
 }
 ```
@@ -576,8 +579,8 @@ title = "Grammar"
 section = "reference"
 order = 1
 sources = [
-  "faber/docs/EBNF.md",
-  "faber/docs/grammar/grammar.jsonl",
+  "radix/grammar/EBNF.md",
+  "radix/grammar/sources/grammar.jsonl",
   "radix/locale/en/pack.toml",
 ]
 +++
@@ -618,8 +621,8 @@ section = "grammar-{slug}"
 order = {order}
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [
-  "faber/docs/EBNF.md",
-  "faber/docs/grammar/grammar.jsonl",
+  "radix/grammar/EBNF.md",
+  "radix/grammar/sources/grammar.jsonl",
   "radix/locale/en/pack.toml",
 ]
 +++
@@ -720,7 +723,7 @@ def apply_committed_prose(family_dir: Path) -> int:
 
 def parse_args(argv: list[str]) -> argparse.Namespace:
     ap = argparse.ArgumentParser(description=__doc__)
-    ap.add_argument("--ebnf", default=None, help="path to faber/docs/EBNF.md")
+    ap.add_argument("--ebnf", default=None, help="path to radix/grammar/EBNF.md")
     ap.add_argument("--jsonl", default=None, help="path to grammar.jsonl")
     ap.add_argument("--pack", default=None, help="path to the en reader pack")
     ap.add_argument("--corpus", default=None, help="path to dist/en-US/corpus")
@@ -1017,15 +1020,15 @@ def main(argv: list[str]) -> int:
     check_prose()
     roots = workspace_roots()
 
-    ebnf_path = pick(args.ebnf, roots, "faber/docs/EBNF.md")
-    jsonl_path = pick(args.jsonl, roots, "faber/docs/grammar/grammar.jsonl")
+    ebnf_path = pick(args.ebnf, roots, "radix/grammar/EBNF.md")
+    jsonl_path = pick(args.jsonl, roots, "radix/grammar/sources/grammar.jsonl")
     pack_path = pick(args.pack, roots, "radix/locale/en/pack.toml")
 
     missing = [
         name
         for name, path in (
-            ("faber/docs/EBNF.md", ebnf_path),
-            ("faber/docs/grammar/grammar.jsonl", jsonl_path),
+            ("radix/grammar/EBNF.md", ebnf_path),
+            ("radix/grammar/sources/grammar.jsonl", jsonl_path),
             ("radix/locale/en/pack.toml", pack_path),
         )
         if path is None

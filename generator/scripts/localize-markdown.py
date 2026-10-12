@@ -95,6 +95,7 @@ def transcode_faber(source: str, locale: str, faber: str, label: str) -> str | N
             text=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
+            timeout=300,
         )
 
     if proc.returncode != 0:

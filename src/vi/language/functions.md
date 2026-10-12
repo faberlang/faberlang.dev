@@ -74,7 +74,7 @@ Sử dụng `redde` để trả về thông thường:
 
 ```faber
 functio porta(numerus x) → numerus {
-    si x < 0 ergo redde 0
+    si x ≺ 0 ergo redde 0
     redde x * 2
 }
 ```
@@ -368,7 +368,7 @@ genus Par<T> {
 `magnitudo` khai báo một tham số kích thước/chỉ mục trong các danh sách tham số tổng quát:
 
 ```faber
-functio crea<T, magnitudo N>() → tensor<T, [N]> {
-    redde vacua
+functio longitudo<T, magnitudo N>(lista<T, N> xs) → numerus {
+    redde xs.longitudo()
 }
 ```

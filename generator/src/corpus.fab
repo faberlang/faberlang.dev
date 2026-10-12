@@ -141,6 +141,17 @@ functio corpus_markdown(textus term, CorpusExample primary, lista<CorpusExample>
 }
 
 @ publica
+functio termen_ex_canonica(textus bundle) → textus {
+    fixum lista<textus> records ← su.divide(bundle, "\n§§CORPUS_RECORD§§\n")
+    itera ex records fixum record {
+        si su.recide(record).longitudo() ≡ 0 ergo perge
+        fixum CorpusExample example ← parse_example(record)
+        si example.canonical ergo redde example.term
+    }
+    redde ""
+}
+
+@ publica
 functio genera_corpus_markdown(textus term, textus bundle, textus display) → textus {
     fixum lista<textus> records ← su.divide(bundle, "\n§§CORPUS_RECORD§§\n")
     varia lista<CorpusExample> examples ← vacua

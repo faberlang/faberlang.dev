@@ -74,7 +74,7 @@ functio adde(numerus a, numerus b) → numerus {
 
 ```faber
 functio porta(numerus x) → numerus {
-    si x < 0 ergo redde 0
+    si x ≺ 0 ergo redde 0
     redde x * 2
 }
 ```
@@ -368,7 +368,7 @@ genus Par<T> {
 `magnitudo` ใช้ประกาศพารามิเตอร์ขนาด/ดัชนีในรายการพารามิเตอร์เจเนอริก:
 
 ```faber
-functio crea<T, magnitudo N>() → tensor<T, [N]> {
-    redde vacua
+functio longitudo<T, magnitudo N>(lista<T, N> xs) → numerus {
+    redde xs.longitudo()
 }
 ```

@@ -173,7 +173,7 @@ functio add(matrix<f32, [2, 2]> a, matrix<f32, [2, 2]> b) → matrix<f32, [2, 2]
     redde a.addita(b)
 }
 
-functio swap(atomic<i32> cell, i32 value) → i32 {
+functio swap(in atomic<i32> cell, i32 value) → i32 {
     redde cell.exchange(value)
 }
 ```
@@ -199,7 +199,7 @@ functio consume(own textus buffer) → textus {
 
 | 运算符 | 家族 | 行为 |
 |----------|--------|-----------|
-| `≡`, `≠`, `≢` | 精确相等 | 要求类型完全相同；`nihil` 旁路 |
+| `≡`, `≢` | 精确相等 | 要求类型完全相同；`nihil` 旁路 |
 | `≅`, `≇` | 提升后精确相等 | 数值宽度合并后精确比较 |
 | `≈`, `≉` | 模糊相等 | 容差匹配——`isclose` 默认（rel_tol 1e-09）；仅数值操作数 |
 | `<`, `≤`, `>`, `≥` | 排序 | 数值、时间点、标量文本 |
@@ -375,8 +375,7 @@ Tensor 语法糖（用于数值密集型代码）：
 
 ```faber
 incipit {
-    fixum tf32[] seed ← vacua
-    fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
+    fixum tf32[4] lanes ← [1.0, 2.0, 3.0, 4.0] ↦ tf32[4]
 }
 ```
 
@@ -386,7 +385,7 @@ incipit {
 
 ```faber
 incipit {
-    fixum sparsa<f32, [2, 3]> sparse ← vacua
+    varia sparsa<f32, [2, 3]> sparse ← vacua
     sparse.ponde([0, 1], 4.0)
     sparse.ponde([1, 2], 9.0)
 

@@ -37,6 +37,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | argmin           argminima
 | args             argumenta
 | as               ut
+| asc              ascendens
 | assert           adfirma
 | async            fiet
 | async_generator  fient
@@ -47,6 +48,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | await            tacebit
 | await_const      figendum
 | await_var        variandum
+| axis             axis
 | before           ante
 | bench            metior
 | between          inter
@@ -69,6 +71,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | cursor           cursor
 | debug            vide
 | default          ceterum
+| desc             descendens
 | describe         probandum
 | description      descriptio
 | do               fac
@@ -86,7 +89,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | for              itera
 | format           scriptum
 | fragment         fragment
-| free             libera
 | from             ex
 | future           futura
 | generator        fiunt
@@ -112,7 +114,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | mut              in
 | name             nomen
 | nan              nonnumerus
-| nihil            nihil
 | not              non
 | null             nulla
 | only             solum
@@ -152,6 +153,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | short            brevis
 | size             magnitudo
 | skip             omitte
+| sort             ordinata
 | spread           sparge
 | static           generis
 | step             per
@@ -200,6 +202,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | census       census
 | channel      sermo
 | char         littera
+| clamp        clampa
 | filter       filtrum
 | float        fractus
 | frame        scrinium
@@ -208,6 +211,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | intervallum  intervallum
 | iterator     cursor_t
 | json         json
+| ledger       tabulae
 | list         lista
 | map          tabula
 | matrix       matrix
@@ -218,6 +222,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | queue        queue
 | record       ratio
 | recv         tuus
+| reflect      reflexa
 | regex        regex
 | saturating   saturatus
 | send         meus
@@ -232,6 +237,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | value        valor
 | vector       vector
 | void         vacuum
+| wrap         involuta
 | wrapping_ty  modulus_t
 ```
 
@@ -251,6 +257,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | approx                approximata
 | argmax                argmaxima
 | argmin                argminima
+| at                    apud
 | at_least              maxime
 | at_most               minime
 | bit_and               coniuncta
@@ -282,6 +289,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | escape                munita
 | exchange              exchange
 | exp                   exponentia
+| expanded              expande
 | fill                  reple
 | filter                filtrata
 | find                  inventa
@@ -292,7 +300,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | flipped               alternata
 | floor                 pavimentum
 | formata               formata
-| from_flat             strue
 | gather                gather
 | gelu                  gelu
 | get                   accipe
@@ -310,6 +317,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | layer_norm            laminatio
 | length                longitudo
 | less                  minor
+| limes                 limes
 | ln                    logarithmus
 | load                  load
 | log10                 logarithmus_decimalis
@@ -344,6 +352,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | round                 rotunda
 | set                   ponde
 | shape                 magnitudines
+| shift                 disloco
 | shift_left            sinistra
 | shift_right           dextra
 | shifted_left          sinistrata

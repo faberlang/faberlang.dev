@@ -27,22 +27,22 @@ primus_quem(<source>, ubi <binder> { <predicate> })
 
 ```fab
 fn elige_litteram() → float ∪ none {
-    return primus_quem([1.0, -2.0, 3.0], ubi x { x > 0.0 })
+    return primus_quem([1.0, -2.0, 3.0], ubi x { x ≻ 0.0 })
 }
 
 # No-match — no live lane yields none, never an error.
 fn elige_nullum() → float ∪ none {
-    return primus_quem([1.0, 2.0], ubi x { x > 9.0 })
+    return primus_quem([1.0, 2.0], ubi x { x ≻ 9.0 })
 }
 
 # Empty source — a statically zero-length array yields none.
 fn elige_vacuum(list<f32> xs) → float ∪ none {
-    return primus_quem(xs, ubi x { x > 0.0 })
+    return primus_quem(xs, ubi x { x ≻ 0.0 })
 }
 
 # First-live — with matches at 5.0 and 3.0, the FIRST live lane wins.
 fn elige_primum_viventem(list<f32> xs) → float ∪ none {
-    return primus_quem(xs, ubi x { x > 2.0 })
+    return primus_quem(xs, ubi x { x ≻ 2.0 })
 }
 
 main {
@@ -60,6 +60,6 @@ main {
 }
 ```
 
-See also: [`none`](nihil.md).
+See also: [`none`](none.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

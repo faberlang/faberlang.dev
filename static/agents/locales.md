@@ -36,6 +36,7 @@ listed at the end.
 | `argmin` | `argminima` | `فهرس_الأصغر` | `argmin` | `ดัชนีค่าต่ําสุด` | `argmin` | `最小值索引` | `最小值索引` |
 | `args` | `argumenta` | `وسائط` | `तर्क` | `อาร์กิวเมนต์` | `đối_số` | `参数` | `引數` |
 | `as` | `ut` | `كـ` | `रूपमें` | `ในชื่อ` | `như` | `作为` | `作為` |
+| `asc` | `ascendens` | `تصاعدي` | `आरोही` | `น้อยไปมาก` | `tăng_dần` | `升序` | `升序` |
 | `assert` | `adfirma` | `أكد` | `पुष्टि` | `ยืนยัน` | `khẳng_định` | `断言` | `斷言` |
 | `async` | `fiet` | `غيرمتزامن` | `async` | `อะซิงก์` | `async` | `异步` | `異步` |
 | `async_generator` | `fient` | `مولد_غيرمتزامن` | `async_जनक` | `สตรีมอะซิงก์` | `async_sinh` | `异流` | `異流` |
@@ -46,6 +47,7 @@ listed at the end.
 | `await` | `tacebit` | `انتظر` | `रुको` | `รอทิ้ง` | `đợi_bỏ` | `等弃` | `等棄` |
 | `await_const` | `figendum` | `انتظر_ثابت` | `रुको_स्थिर` | `รอคง` | `đợi_hằng` | `等定` | `等定` |
 | `await_var` | `variandum` | `انتظر_متغير` | `रुको_चर` | `รอแปร` | `đợi_biến` | `等变` | `等變` |
+| `axis` | `axis` | `محور` | `अक्ष` | `แกน` | `trục` | `轴` | `軸` |
 | `before` | `ante` | `قبل` | `पहले` | `ก่อน` | `trước` | `迄` | `之前` |
 | `bench` | `metior` | `قس` | `मापो` | `วัด` | `đo_lường` | `计量` | `測量` |
 | `between` | `inter` | `بين` | `बीच` | `ระหว่าง` | `giữa` | `间` | `之間` |
@@ -68,6 +70,7 @@ listed at the end.
 | `cursor` | `cursor` | `cursor` | `संकेतक` | `เคอร์เซอร์` | `con_trỏ` | `迭代器` | `迭代器` |
 | `debug` | `vide` | `شاهد` | `देखो` | `ดู` | `xem` | `查看` | `檢視` |
 | `default` | `ceterum` | `افتراضي` | `अन्यतम` | `อื่น` | `mặc_định` | `默认` | `預設` |
+| `desc` | `descendens` | `تنازلي` | `अवरोही` | `มากไปน้อย` | `giảm_dần` | `降序` | `降序` |
 | `describe` | `probandum` | `مختبر` | `परीक्षणसमूह` | `ทดสอบชุด` | `đối_tượng_kiểm_thử` | `验题` | `測試規格` |
 | `description` | `descriptio` | `وصف` | `विवरण` | `คำอธิบาย` | `mô_tả` | `描述` | `描述` |
 | `do` | `fac` | `افعل` | `करो` | `ทำ` | `làm` | `执行` | `執行` |
@@ -85,7 +88,6 @@ listed at the end.
 | `for` | `itera` | `كرر` | `दोहराओ` | `วน` | `lặp` | `遍历` | `遍歷` |
 | `format` | `scriptum` | `حرر` | `लिखित` | `จารึก` | `văn_bản_hóa` | `格式化` | `格式文字` |
 | `fragment` | `fragment` | `جزء` | `खंड` | `ส่วนย่อย` | `mảnh` | `片段` | `片段` |
-| `free` | `libera` | `حر` | `मुक्त` | `อิสระ` | `tự_do` | `自由` | `自由` |
 | `from` | `ex` | `من` | `सेवन` | `ออก` | `từ` | `取自` | `取自` |
 | `future` | `futura` | `مستقبل` | `भविष्य` | `อนาคต` | `tương_lai` | `未来` | `未來` |
 | `generator` | `fiunt` | `مولد` | `जनक` | `สตรีม` | `sinh` | `流` | `流` |
@@ -111,7 +113,6 @@ listed at the end.
 | `mut` | `in` | `في` | `में` | `ใน` | `vào` | `传入` | `傳入` |
 | `name` | `nomen` | `اسم` | `नाम` | `ชื่อ` | `tên` | `名称` | `名稱` |
 | `nan` | `nonnumerus` | `nan` | `nan` | `nan` | `nan` | `nan` | `nan` |
-| `nihil` | `nihil` | `لاشيء` | `शून्य` | `ว่าง` | `rỗng` | `空` | `空` |
 | `not` | `non` | `ليس` | `नहीं` | `ไม่` | `không` | `非` | `非` |
 | `null` | `nulla` | `خال` | `शून्यवत्` | `ว่างเปล่า` | `không_gì` | `皆无` | `可空` |
 | `only` | `solum` | `فقط` | `केवल` | `เฉพาะ` | `chỉ` | `仅` | `僅限` |
@@ -151,6 +152,7 @@ listed at the end.
 | `short` | `brevis` | `مختصر` | `संक्षिप्त` | `สั้น` | `ngắn` | `简` | `簡` |
 | `size` | `magnitudo` | `حجم` | `आकार` | `ขนาด` | `kích_thước` | `维度` | `尺寸` |
 | `skip` | `omitte` | `أهمل` | `छोड़ो` | `ละเว้น` | `bỏ_qua` | `跳过` | `略過` |
+| `sort` | `ordinata` | `رتب` | `क्रमबद्ध_करो` | `เรียง` | `sắp_xếp` | `排序` | `排序` |
 | `spread` | `sparge` | `انشر` | `फैलाओ` | `กระจาย` | `rải` | `展开` | `展開` |
 | `static` | `generis` | `سكوني` | `स्थैतिक` | `ของชนิด` | `tĩnh` | `静态` | `靜態` |
 | `step` | `per` | `كل` | `प्रति` | `ต่อ` | `qua` | `步` | `每` |
@@ -197,6 +199,7 @@ listed at the end.
 | `census` | `census` | `تعداد` | `गणना` | `สำมะโน` | `điều_tra` | `普查` | `普查` |
 | `channel` | `sermo` | `قناة` | `चैनल` | `ช่องทาง` | `kênh` | `通道` | `通道` |
 | `char` | `littera` | `حرف` | `अक्षर` | `อักขระ` | `ký_tự` | `字符` | `字元` |
+| `clamp` | `clampa` | `تثبيت_الحافة` | `किनारा_स्थिर` | `ตรึงขอบ` | `kẹp_biên` | `钳制` | `鉗制` |
 | `filter` | `filtrum` | `مرشح` | `फ़िल्टर` | `ตัวกรอง` | `bộ_lọc` | `过滤器` | `篩選器` |
 | `float` | `fractus` | `كسر` | `भिन्न` | `เศษ` | `thập_phân` | `小数` | `小數` |
 | `frame` | `scrinium` | `إطار` | `फ़्रेम` | `เฟรม` | `khung` | `帧` | `幀` |
@@ -205,6 +208,7 @@ listed at the end.
 | `intervallum` | `intervallum` | `فترة` | `अंतराल` | `อันตรภาค` | `miền` | `区间` | `區間` |
 | `iterator` | `cursor_t` | `مؤشر` | `कर्सर` | `ตัวชี้` | `bộ_lặp` | `游标` | `游標` |
 | `json` | `json` | `جسون` | `json` | `json` | `json` | `json` | `JSON` |
+| `ledger` | `tabulae` | `دفتر` | `बही` | `สมุดบัญชี` | `sổ_cái` | `账本` | `帳本` |
 | `list` | `lista` | `قائمة` | `सूची` | `รายการ` | `danh_sách` | `列表` | `列表` |
 | `map` | `tabula` | `جدول` | `तालिका` | `ตาราง` | `bảng` | `映射` | `表格` |
 | `matrix` | `matrix` | `مصفوفة` | `आव्यूह` | `เมทริกซ์` | `ma_trận` | `矩阵` | `矩陣` |
@@ -215,6 +219,7 @@ listed at the end.
 | `queue` | `queue` | `طابور` | `कतार` | `คิว` | `hàng_đợi` | `队列` | `佇列` |
 | `record` | `ratio` | `ratio` | `ratio` | `ratio` | `ratio` | `ratio` | `ratio` |
 | `recv` | `tuus` | `استقبال` | `पाना` | `รับ` | `nhận` | `接收` | `接收` |
+| `reflect` | `reflexa` | `انعكاس_الحافة` | `किनारा_परावर्तन` | `สะท้อนขอบ` | `phản_xạ_biên` | `反射` | `反射` |
 | `regex` | `regex` | `تعبير` | `regex` | `regex` | `chính_quy` | `regex` | `正規表示式` |
 | `saturating` | `saturatus` | `مشبع` | `संतृप्त` | `อิ่มตัว` | `bão_hòa` | `饱和` | `飽和` |
 | `send` | `meus` | `إرسال` | `भेजना` | `ส่ง` | `gửi` | `发送` | `發送` |
@@ -229,6 +234,7 @@ listed at the end.
 | `value` | `valor` | `قيمة` | `मान` | `ค่า` | `giá_trị` | `动态值` | `值` |
 | `vector` | `vector` | `متجه` | `सदिश` | `เวกเตอร์` | `vectơ` | `向量` | `向量` |
 | `void` | `vacuum` | `فراغ` | `रिक्त` | `เปล่า` | `trống` | `无值` | `空值` |
+| `wrap` | `involuta` | `التفاف_الحافة` | `किनारा_लपेट` | `วนขอบ` | `vòng_biên` | `环绕` | `環繞` |
 | `wrapping_ty` | `modulus_t` | `نوع_حلقة` | `मॉड्यूल_टाइप` | `ค่ามอดุลัส` | `môđun_kiểu` | `模数类型` | `模數类型` |
 
 ## Intrinsics
@@ -248,6 +254,7 @@ Latin has no `[intrinsics]` section, so the Latin column carries each intrinsic'
 | `approx` | `approximata` | `مقارب` | `सन्निकट` | `ประมาณ` | `xấp_xỉ` | `近似` | `近似` |
 | `argmax` | `argmaxima` | `فهرس_الأكبر` | `argmax` | `ดัชนีค่าสูงสุด` | `argmax` | `最大值索引` | `最大值索引` |
 | `argmin` | `argminima` | `فهرس_الأصغر` | `argmin` | `ดัชนีค่าต่ําสุด` | `argmin` | `最小值索引` | `最小值索引` |
+| `at` | `apud` | `عند` | `पर` | `ที่` | `tại` | `在` | `在` |
 | `at_least` | `maxime` | `على_الأقل` | `कम_से_कम` | `อย่างน้อย` | `ít_nhất` | `至少` | `至少` |
 | `at_most` | `minime` | `على_الأكثر` | `अधिक_से_अधिक` | `อย่างมาก` | `nhiều_nhất` | `至多` | `至多` |
 | `bit_and` | `coniuncta` | `و_بت` | `बिट_और` | `และบิต` | `và_bit` | `按位与` | `位元與` |
@@ -279,6 +286,7 @@ Latin has no `[intrinsics]` section, so the Latin column carries each intrinsic'
 | `escape` | `munita` | `تهريب` | `एस्केप` | `เอสเคป` | `thoát_ký_tự` | `转义` | `跳脫` |
 | `exchange` | `exchange` | `بدل` | `अदलाबदली` | `สลับ` | `đổi` | `交换` | `交換` |
 | `exp` | `exponentia` | `الأسي` | `चरघातांकी` | `เอกซ์โพเนนเชียล` | `hàm_mũ` | `指数` | `指數` |
+| `expanded` | `expande` | `وسع` | `फैलाओ` | `ขยายมุมมอง` | `mở_rộng` | `扩展` | `擴展` |
 | `fill` | `reple` | `املأ` | `भरो` | `เติม` | `điền` | `填充` | `填充` |
 | `filter` | `filtrata` | `رشح` | `छानो` | `กรอง` | `lọc` | `过滤` | `過濾` |
 | `find` | `inventa` | `ابحث` | `खोज` | `ค้นหา` | `tìm` | `查找` | `尋找` |
@@ -289,7 +297,6 @@ Latin has no `[intrinsics]` section, so the Latin column carries each intrinsic'
 | `flipped` | `alternata` | `مقلوب` | `पलटा` | `พลิกแล้ว` | `đã_lật` | `已翻转` | `已翻轉` |
 | `floor` | `pavimentum` | `تقريب_لأسفل` | `नीचे_पूर्णांक` | `ปัดลง` | `làm_tròn_xuống` | `向下取整` | `向下取整` |
 | `formata` | `formata` | `formata` | `formata` | `formata` | `formata` | `formata` | `formata` |
-| `from_flat` | `strue` | `ابن_من_مسطح` | `समतल_से_बनाओ` | `สร้างจากข้อมูลแบน` | `dựng_từ_phẳng` | `由扁平构造` | `由扁平建構` |
 | `gather` | `gather` | `اجمع_بالفهرس` | `एकत्र_करो` | `รวบรวม` | `thu_thập` | `收集` | `收集` |
 | `gelu` | `gelu` | `gelu` | `gelu` | `gelu` | `gelu` | `gelu` | `gelu` |
 | `get` | `accipe` | `اجلب` | `पाओ` | `ดึง` | `lấy` | `获取` | `取得` |
@@ -307,6 +314,7 @@ Latin has no `[intrinsics]` section, so the Latin column carries each intrinsic'
 | `layer_norm` | `laminatio` | `تطبيع_الطبقة` | `परत_सामान्यीकरण` | `เลเยอร์นอร์ม` | `chuẩn_hóa_lớp` | `层归一化` | `層正規化` |
 | `length` | `longitudo` | `طول` | `लंबाई` | `ความยาว` | `độ_dài` | `长度` | `長度` |
 | `less` | `minor` | `أصغر` | `छोटा` | `น้อยกว่า` | `nhỏ_hơn` | `小于` | `小於` |
+| `limes` | `limes` | `حافة` | `किनारा` | `ขอบ` | `biên` | `边界` | `邊界` |
 | `ln` | `logarithmus` | `اللوغاريتم_الطبيعي` | `प्राकृतिक_लघुगणक` | `ลอการิทึมธรรมชาติ` | `lôgarit_tự_nhiên` | `自然对数` | `自然對數` |
 | `load` | `load` | `حمل` | `लोड` | `โหลด` | `nạp` | `加载` | `載入` |
 | `log10` | `logarithmus_decimalis` | `اللوغاريتم_العشري` | `दशमलव_लघुगणक` | `ลอการิทึมฐานสิบ` | `lôgarit_thập_phân` | `常用对数` | `常用對數` |
@@ -341,6 +349,7 @@ Latin has no `[intrinsics]` section, so the Latin column carries each intrinsic'
 | `round` | `rotunda` | `قرب` | `निकटतम_पूर्णांक` | `ปัดเศษ` | `làm_tròn` | `四舍五入` | `四捨五入` |
 | `set` | `ponde` | `اضبط` | `निर्धारित_करो` | `กําหนด` | `thiết_lập` | `设置` | `設定` |
 | `shape` | `magnitudines` | `الأبعاد` | `आकृति` | `รูปร่าง` | `hình_dạng` | `形状` | `形狀` |
+| `shift` | `disloco` | `أزح` | `खिसकाओ` | `เลื่อน` | `dịch` | `平移` | `平移` |
 | `shift_left` | `sinistra` | `أزح_يسارا` | `बाएँ_सरकाओ` | `เลื่อนซ้าย` | `dịch_trái` | `左移` | `左移` |
 | `shift_right` | `dextra` | `أزح_يمينا` | `दाएँ_सरकाओ` | `เลื่อนขวา` | `dịch_phải` | `右移` | `右移` |
 | `shifted_left` | `sinistrata` | `مزاح_يسارا` | `बाएँ_सरकाया` | `เลื่อนซ้ายแล้ว` | `đã_dịch_trái` | `已左移` | `已左移` |
@@ -382,9 +391,8 @@ These rows name an accepted alternate spelling. Both spellings are legal.
 
 ## Contested rows
 
-2 rows are not declared by every pack. Each is owned by the compiler-side pack fix rather than by this table, which shows them as they are.
+1 rows are not declared by every pack. Each is owned by the compiler-side pack fix rather than by this table, which shows them as they are.
 
 - `conversion` in `keywords`: missing from `en`, `la`.
-- `nihil` in `keywords`: missing from `la`.
 
 Fetch list: https://faberlang.dev/agents/index.md

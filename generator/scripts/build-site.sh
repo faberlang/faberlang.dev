@@ -198,21 +198,38 @@ render_locale() {
     echo "  [corpus] Rendering corpus pages for ${site}..."
     "${SCRIPT_DIR}/render-corpus-batch.sh" "$out" "$site" "$reader" "$style"
 
-    find "$render_source" -name "*.md" -type f | sort | while read -r md_file; do
+    # Interpreted renders are independent per page; the wrapper re-analyzes
+    # the package on every invocation, so parallelize to keep wall time sane.
+    # GNU timeout bounds each render: a stuck compiler process must fail its
+    # page instead of leaving the build waiting forever.
+    RENDER_JOBS="${RENDER_JOBS:-6}"
+    if command -v gtimeout >/dev/null 2>&1; then
+        PAGE_TIMEOUT_CMD=(gtimeout "${PAGE_TIMEOUT:-900}")
+    elif command -v timeout >/dev/null 2>&1; then
+        PAGE_TIMEOUT_CMD=(timeout "${PAGE_TIMEOUT:-900}")
+    else
+        PAGE_TIMEOUT_CMD=()
+    fi
+    find "$render_source" -name "*.md" -type f | sort | \
+    RENDER_JOBS="$RENDER_JOBS" binary="$binary" out="$out" site="$site" \
+    reader="$reader" style="$style" render_source="$render_source" \
+    PAGE_TIMEOUT_CMD="${PAGE_TIMEOUT_CMD[*]}" \
+    xargs -P "$RENDER_JOBS" -I {} bash -c '
+        md_file="{}"
         rel_path="${md_file#${render_source}/}"
         iter="${rel_path%.md}"
         out_path="${out}/${iter}.html"
         mkdir -p "$(dirname "$out_path")"
-
         # Pass --page so canonical/og:url use the locale-relative slug even
         # when the source lives in a temp localize directory (no src/ prefix).
-        if "$binary" -- --page "$iter" "$md_file" "$site" "$reader" "$style" > "$out_path" 2>/dev/null; then
+        # shellcheck disable=SC2086 — PAGE_TIMEOUT_CMD is one or two words
+        if $PAGE_TIMEOUT_CMD "$binary" --page "$iter" "$md_file" "$site" "$reader" "$style" > "$out_path" 2>/dev/null; then
             echo "  ✓ ${iter}.html"
         else
             echo "  ✗ FAILED: ${rel_path}"
             rm -f "$out_path"
         fi
-    done
+    '
 }
 
 # ==================================================================
@@ -220,12 +237,12 @@ render_locale() {
 # ==================================================================
 if [ "$FULL_SITE" = true ]; then
 
-    # Step 0: Refresh generated matrix pages when the public faber sibling is present
-    if [ -f "${WORKSPACE_DIR}/faber/docs/EBNF_MATRIX.md" ]; then
+    # Step 0: Refresh generated matrix pages when the radix grammar is present
+    if [ -f "${WORKSPACE_DIR}/radix/grammar/EBNF_MATRIX.md" ]; then
         echo "[0/10] Generating target compatibility matrix pages..."
         "$PYTHON" "${SCRIPT_DIR}/generate-target-matrix.py" --all-locales
     else
-        echo "[0/10] Skipping target matrix generate (no ${WORKSPACE_DIR}/faber/docs/EBNF_MATRIX.md)"
+        echo "[0/10] Skipping target matrix generate (no ${WORKSPACE_DIR}/radix/grammar/EBNF_MATRIX.md)"
     fi
 
     # Step 0b: Regenerate the sections assembled from captured panels and
@@ -236,10 +253,10 @@ if [ "$FULL_SITE" = true ]; then
     "$PYTHON" "${SCRIPT_DIR}/generate-target-lanes.py"
     "$PYTHON" "${SCRIPT_DIR}/generate-localization.py"
     "$PYTHON" "${SCRIPT_DIR}/generate-overview.py"
-    if [ -f "${WORKSPACE_DIR}/faber/docs/EBNF.md" ]; then
+    if [ -f "${WORKSPACE_DIR}/radix/grammar/EBNF.md" ]; then
         "${SCRIPT_DIR}/generate-grammar" --all-locales
     else
-        echo "  Skipping grammar generate (no ${WORKSPACE_DIR}/faber/docs/EBNF.md)"
+        echo "  Skipping grammar generate (no ${WORKSPACE_DIR}/radix/grammar/EBNF.md)"
     fi
     "$PYTHON" "${SCRIPT_DIR}/generate-grammar-tree.py"
 
@@ -275,25 +292,21 @@ if [ "$FULL_SITE" = true ]; then
     # build that silently depends on the network is a build that breaks on a
     # plane. Run generate-releases.py by hand when a release lands.
 
-    # Step 1: Validate and build generator (once)
+    # Step 1: Validate generator source (once)
     echo "[1/9] Validating generator source..."
     "${SCRIPT_DIR}/validate-html-literals.sh" "${GENERATOR_DIR}/src"
 
-    echo "[1/9] Building generator..."
-    "$FABER" build "$GENERATOR_DIR" -t rust 2>/dev/null
-
-    echo "[2/9] Compiling generator..."
-    (cd "$BUILD_DIR" && cargo build --release --quiet 2>/dev/null)
-
-    # Locate binary after build
-    BINARY="$(find_binary)"
-    if [ -z "$BINARY" ]; then
-        echo "ERROR: speculum-gen binary not found after build. Checked:" >&2
-        echo "  $BINARY_OLD" >&2
-        echo "  $BINARY_NEW" >&2
+    # The generator runs interpreted through the MIR runner: `faber build
+    # -t rust` fails at plan time because the generator's file I/O routes
+    # through norma:fs and no host provider serves those routes until
+    # core-norma N2. The wrapper re-analyzes the package per invocation, so
+    # renders parallelize (RENDER_JOBS) instead of compiling once.
+    echo "[2/9] Generator runner: interpreted (speculum-run.sh)"
+    BINARY="${SCRIPT_DIR}/speculum-run.sh"
+    if [ ! -x "$BINARY" ]; then
+        echo "ERROR: speculum-run.sh not executable: $BINARY" >&2
         exit 1
     fi
-    echo "  Binary: $BINARY"
 
     # Step 2: Clean and prepare output directory
     echo "[3/9] Preparing output directory..."
@@ -604,22 +617,13 @@ else
     # SINGLE-LOCALE MODE (4 positional args)
     # ==============================================================
 
-    # Build for single-locale mode only if binary not found
-    BINARY="$(find_binary)"
-    if [ -z "$BINARY" ]; then
-        echo "[1/2] Building generator..."
-        "$FABER" build "$GENERATOR_DIR" -t rust 2>/dev/null
-        echo "[2/2] Compiling generator..."
-        (cd "$BUILD_DIR" && cargo build --release --quiet 2>/dev/null)
-        BINARY="$(find_binary)"
-        if [ -z "$BINARY" ]; then
-            echo "ERROR: speculum-gen binary not found after build." >&2
-            exit 1
-        fi
-        echo "  Binary: $BINARY"
-    else
-        echo "  Binary: $BINARY (reusing existing build)"
+    # Single-locale mode uses the same interpreted runner as the full build.
+    BINARY="${SCRIPT_DIR}/speculum-run.sh"
+    if [ ! -x "$BINARY" ]; then
+        echo "ERROR: speculum-run.sh not executable: $BINARY" >&2
+        exit 1
     fi
+    echo "  Runner: $BINARY (interpreted)"
 
     echo "Rendering ${SITE_LOCALE} → ${OUTPUT_DIR}..."
     mkdir -p "$OUTPUT_DIR"

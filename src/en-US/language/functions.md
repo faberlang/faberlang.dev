@@ -78,7 +78,7 @@ Use `redde` for normal returns:
 
 ```faber
 functio porta(numerus x) → numerus {
-    si x < 0 ergo redde 0
+    si x ≺ 0 ergo redde 0
     redde x * 2
 }
 ```
@@ -160,7 +160,7 @@ happens inside a `fac` / `cape` boundary:
 
 ```faber
 functio computa(numerus densitas) fiet → numerus ⇥ textus {
-    si densitas < 0 ergo iace "invalid input"
+    si densitas ≺ 0 ergo iace "invalid input"
     redde 7
 }
 
@@ -503,10 +503,10 @@ genus Par<T> {
 
 ### Size parameters {#size-parameters}
 
-`magnitudo` declares a size/index parameter in generic parameter lists:
+`magnitudo` declares a size parameter in generic parameter lists, bound by the bounded collection it appears in:
 
 ```faber
-functio crea<T, magnitudo N>() → tensor<T, [N]> {
-    redde vacua
+functio longitudo<T, magnitudo N>(lista<T, N> xs) → numerus {
+    redde xs.longitudo()
 }
 ```

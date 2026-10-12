@@ -37,6 +37,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | argmin           ดัชนีค่าต่ําสุด
 | args             อาร์กิวเมนต์
 | as               ในชื่อ
+| asc              น้อยไปมาก
 | assert           ยืนยัน
 | async            อะซิงก์
 | async_generator  สตรีมอะซิงก์
@@ -47,6 +48,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | await            รอทิ้ง
 | await_const      รอคง
 | await_var        รอแปร
+| axis             แกน
 | before           ก่อน
 | bench            วัด
 | between          ระหว่าง
@@ -69,6 +71,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | cursor           เคอร์เซอร์
 | debug            ดู
 | default          อื่น
+| desc             มากไปน้อย
 | describe         ทดสอบชุด
 | description      คำอธิบาย
 | do               ทำ
@@ -86,7 +89,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | for              วน
 | format           จารึก
 | fragment         ส่วนย่อย
-| free             อิสระ
 | from             ออก
 | future           อนาคต
 | generator        สตรีม
@@ -112,7 +114,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | mut              ใน
 | name             ชื่อ
 | nan              nan
-| nihil            ว่าง
 | not              ไม่
 | null             ว่างเปล่า
 | only             เฉพาะ
@@ -152,6 +153,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | short            สั้น
 | size             ขนาด
 | skip             ละเว้น
+| sort             เรียง
 | spread           กระจาย
 | static           ของชนิด
 | step             ต่อ
@@ -200,6 +202,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | census       สำมะโน
 | channel      ช่องทาง
 | char         อักขระ
+| clamp        ตรึงขอบ
 | filter       ตัวกรอง
 | float        เศษ
 | frame        เฟรม
@@ -208,6 +211,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | intervallum  อันตรภาค
 | iterator     ตัวชี้
 | json         json
+| ledger       สมุดบัญชี
 | list         รายการ
 | map          ตาราง
 | matrix       เมทริกซ์
@@ -218,6 +222,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | queue        คิว
 | record       ratio
 | recv         รับ
+| reflect      สะท้อนขอบ
 | regex        regex
 | saturating   อิ่มตัว
 | send         ส่ง
@@ -232,6 +237,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | value        ค่า
 | vector       เวกเตอร์
 | void         เปล่า
+| wrap         วนขอบ
 | wrapping_ty  ค่ามอดุลัส
 ```
 
@@ -251,6 +257,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | approx                ประมาณ
 | argmax                ดัชนีค่าสูงสุด
 | argmin                ดัชนีค่าต่ําสุด
+| at                    ที่
 | at_least              อย่างน้อย
 | at_most               อย่างมาก
 | bit_and               และบิต
@@ -282,6 +289,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | escape                เอสเคป
 | exchange              สลับ
 | exp                   เอกซ์โพเนนเชียล
+| expanded              ขยายมุมมอง
 | fill                  เติม
 | filter                กรอง
 | find                  ค้นหา
@@ -292,7 +300,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | flipped               พลิกแล้ว
 | floor                 ปัดลง
 | formata               formata
-| from_flat             สร้างจากข้อมูลแบน
 | gather                รวบรวม
 | gelu                  gelu
 | get                   ดึง
@@ -310,6 +317,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | layer_norm            เลเยอร์นอร์ม
 | length                ความยาว
 | less                  น้อยกว่า
+| limes                 ขอบ
 | ln                    ลอการิทึมธรรมชาติ
 | load                  โหลด
 | log10                 ลอการิทึมฐานสิบ
@@ -344,6 +352,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | round                 ปัดเศษ
 | set                   กําหนด
 | shape                 รูปร่าง
+| shift                 เลื่อน
 | shift_left            เลื่อนซ้าย
 | shift_right           เลื่อนขวา
 | shifted_left          เลื่อนซ้ายแล้ว

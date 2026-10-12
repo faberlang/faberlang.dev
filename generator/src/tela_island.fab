@@ -39,9 +39,9 @@ functio tela_interruptio() → textus {
 }
 
 functio fragmenta_paria() → bivalens {
-    si speculum_paragraphus() ≠ tela_paragraphus() ergo redde falsum
-    si speculum_textus() ≠ tela_textus() ergo redde falsum
-    si speculum_interruptio() ≠ tela_interruptio() ergo redde falsum
+    si speculum_paragraphus() ≢ tela_paragraphus() ergo redde falsum
+    si speculum_textus() ≢ tela_textus() ergo redde falsum
+    si speculum_interruptio() ≢ tela_interruptio() ergo redde falsum
     redde verum
 }
 

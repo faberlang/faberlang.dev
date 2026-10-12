@@ -169,9 +169,8 @@ AIR (Autograd / AI Representation) HIR → MIR मार्ग से अलग 
 
 ```faber locale=la
 @ radix lane "air"
-functio loss(numerus predicted, numerus expected) → numerus {
-    fixum numerus delta ← predicted - expected
-    redde delta * delta
+functio identity(bivalens value) → bivalens {
+    redde value
 }
 ```
 

@@ -77,6 +77,20 @@ functio ex_operands(lista<textus> operands) → textus {
         si operands.longitudo() ≺ 3 ergo redde "missing corpus term or bundle"
         redde genera_corpus_markdown(operands[1], fs.read_file<textus>(operands[2]), operandum(operands, 3, ""))
     }
+    si mode ≡ "--corpus-bundle" {
+        si operands.longitudo() ≺ 2 ergo redde "missing corpus bundle"
+        fixum textus site_locale ← operandum(operands, 2, "en-US")
+        fixum textus reader_locale ← operandum(operands, 3, site_locale)
+        fixum textus corpus_content ← fs.read_file<textus>(operands[1])
+        fixum textus termen ← corpus_mod.termen_ex_canonica(corpus_content)
+        redde genera_corpus(termen, corpus_content, site_locale, reader_locale, operandum(operands, 4, "/speculum.css"), operandum(operands, 5, ""))
+    }
+    si mode ≡ "--corpus-markdown-bundle" {
+        si operands.longitudo() ≺ 2 ergo redde "missing corpus bundle"
+        fixum textus corpus_content ← fs.read_file<textus>(operands[1])
+        fixum textus termen ← corpus_mod.termen_ex_canonica(corpus_content)
+        redde genera_corpus_markdown(termen, corpus_content, operandum(operands, 2, ""))
+    }
     si mode ≡ "--corpus" {
         si operands.longitudo() ≺ 3 ergo redde "missing corpus term or bundle"
         fixum textus site_locale ← operandum(operands, 3, "en-US")

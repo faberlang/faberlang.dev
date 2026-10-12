@@ -28,7 +28,7 @@ functio extract(textus source) → lista<Fence> {
         fixum textus trimmed ← su.recide(linea)
 
         # Check for fence opening
-        si su.initium_cum(trimmed, "```faber") ≠ verum ergo {
+        si su.initium_cum(trimmed, "```faber") ≢ verum ergo {
             idx ← idx + 1
             perge
         }
@@ -46,10 +46,10 @@ functio extract(textus source) → lista<Fence> {
                 found_close ← (verum)
                 close_idx ← lines.longitudo()
             }
-            si found_close ≠ verum ergo close_idx ← close_idx + 1
+            si found_close ≢ verum ergo close_idx ← close_idx + 1
         }
 
-        si found_close ≠ verum ergo {
+        si found_close ≢ verum ergo {
             idx ← idx + 1
             perge
         }

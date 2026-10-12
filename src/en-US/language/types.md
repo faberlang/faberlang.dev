@@ -204,7 +204,7 @@ functio consume(own textus buffer) → textus {
 
 | Operator | Family | Behaviour |
 |----------|--------|-----------|
-| `≡`, `≠`, `≢` | Exact equality | Identical types required; `nulla` bypass |
+| `≡`, `≢` | Exact equality | Identical types required; `nulla` bypass |
 | `≅`, `≇` | Promoted exact equality | Numeric widths join, then exact compare |
 | `≈`, `≉` | Fuzzy equality | Tolerance match — `isclose` defaults (rel_tol 1e-09); numeric operands only |
 | `<`, `≤`, `>`, `≥` | Ordering | Numeric, instant, scalar text |
@@ -408,13 +408,12 @@ Tensor sugar (numeric-heavy code):
 
 ```faber locale=en
 main {
-    const tf32[] seed ← empty
-    const tf32[4] lanes ← seed.from_flat([1.0, 2.0, 3.0, 4.0], [4])
+    const tf32[4] lanes ← [1.0, 2.0, 3.0, 4.0] ↦ tf32[4]
 }
 ```
 
 Key methods: `reshape`, `get`, `set`, `create`, `tensor.structa` (Latin
-namespace lookup, not a receiver method), `from_flat`, plus elementwise
+namespace lookup, not a receiver method), plus elementwise
 `added`/`subtract`/`multiply`/`divide`/`negate`, matrix multiplication
 (`matmul`), and reductions (`sum`, `mean`).
 

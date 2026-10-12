@@ -169,7 +169,7 @@ parameters, glyph return type, nullable union, and control flow:
 
 ```faber
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nihil
+    si b ≡ 0 ergo redde nulla
     redde a / b
 }
 ```

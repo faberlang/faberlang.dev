@@ -148,9 +148,8 @@ AIR (تمثيل الاشتقاق التلقائي / الذكاء الاصطنا�
 
 ```faber locale=la
 @ radix lane "air"
-functio loss(numerus predicted, numerus expected) → numerus {
-    fixum numerus delta ← predicted - expected
-    redde delta * delta
+functio identity(bivalens value) → bivalens {
+    redde value
 }
 ```
 

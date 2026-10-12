@@ -53,6 +53,7 @@ functio field_vale(tabula<textus, textus> fields, textus key, textus fallback) �
 # Get a lista from a frontmatter array string.
 functio field_lista(tabula<textus, textus> fields, textus key) → lista<textus> {
     fac {
+        si fields.habet(key) ≡ falsum ergo iace "absent key: " + key
         fixum textus raw ← fields[key] ↦ textus
         redde [raw]
     }

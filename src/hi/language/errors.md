@@ -28,7 +28,7 @@ Faber तीन संबंधित विचारों को अलग र
 
 ```faber
 functio porta(numerus x) → numerus {
-    si x < 0 ergo redde 0
+    si x ≺ 0 ergo redde 0
     redde x * 2
 }
 ```
@@ -51,7 +51,7 @@ functio divide(numerus a, numerus b) → numerus ⇥ textus {
 
 ```faber
 functio exigePositivum(numerus value) ⇥ textus {
-    si value < 0 ergo iace "negative value"
+    si value ≺ 0 ergo iace "negative value"
 }
 ```
 
@@ -99,7 +99,7 @@ incipit {
 
 ```faber
 functio exigePositivum(numerus value) ⇥ textus {
-    si value < 0 ergo iace "negative value"
+    si value ≺ 0 ergo iace "negative value"
 }
 ```
 
@@ -164,7 +164,7 @@ incipit {
     fixum _ x ← 10
 
     # Simple assertion
-    adfirma x > 0
+    adfirma x ≻ 0
 
     # With custom message
     adfirma x ≡ 10 mori "x decem esse debet"
@@ -172,7 +172,7 @@ incipit {
     # Multiple assertions in sequence
     fixum _ nomen ← "Marcus"
     adfirma nomen ≡ "Marcus"
-    adfirma nomen ≠ "" mori "nomen vacuum non sit"
+    adfirma nomen ≢ "" mori "nomen vacuum non sit"
 }
 ```
 

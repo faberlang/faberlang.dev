@@ -22,7 +22,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
 WORKSPACE = REPO.parent
-DEFAULT_MATRIX = WORKSPACE / "faber" / "docs" / "EBNF_MATRIX.md"
+DEFAULT_MATRIX = WORKSPACE / "radix" / "grammar" / "EBNF_MATRIX.md"
 LOCALES_DIR = REPO / "generator" / "locales"
 DEFAULT_OUT = REPO / "src" / "en-US" / "toolchain" / "target-matrix.md"
 
@@ -246,7 +246,7 @@ def prose_hash(text: str) -> str:
 
 def frontmatter(pack: dict[str, str], *, locale: str, body_for_hash: str) -> str:
     # Single-line sources (Speculum line-oriented frontmatter).
-    sources = "faber/docs/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
+    sources = "radix/grammar/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
     lines = [
         "+++",
         f'title = "{pack["title"]}"',

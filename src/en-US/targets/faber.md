@@ -17,7 +17,7 @@ The round trip. Reader-locale spellings and formatting normalise to the canonica
 
 | Capable | Analyzable | Coverage |
 |---|---|---|
-| 378 | 378 | 100% |
+| 423 | 423 | 100% |
 
 From the [target matrix](/toolchain/target-matrix.html): how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.
 
@@ -33,24 +33,22 @@ Builds two shaped matrices, multiplies them, and reduces the product to a scalar
 incipit {
     fixum lista<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
     fixum lista<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    fixum tf32[] seed ← vacua
-    fixum tf32[2, 3] a ← seed.strue(flat_a, [2, 3])
-    fixum tf32[3, 4] b ← seed.strue(flat_b, [3, 4])
+    fixum tf32[2, 3] a ← flat_a ↦ tf32[2, 3]
+    fixum tf32[3, 4] b ← flat_b ↦ tf32[3, 4]
     fixum tf32[2, 4] product ← a.matmul(b)
     fixum f32 mean ← product.media()
     nota mean
 }
 ```
 
-**Faber** — 10 lines in, 10 out (1.0×)
+**Faber** — 9 lines in, 9 out (1.0×)
 
 ```faber locale=la
 incipit {
     fixum lista<f32> flat_a ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
     fixum lista<f32> flat_b ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0]
-    fixum tf32[] seed ← vacua
-    fixum tf32[2, 3] a ← seed.strue(flat_a, [2, 3])
-    fixum tf32[3, 4] b ← seed.strue(flat_b, [3, 4])
+    fixum tf32[2, 3] a ← flat_a ↦ tf32[2, 3]
+    fixum tf32[3, 4] b ← flat_b ↦ tf32[3, 4]
     fixum tf32[2, 4] product ← a.matmul(b)
     fixum f32 mean ← product.media()
     nota mean

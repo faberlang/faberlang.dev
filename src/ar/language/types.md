@@ -174,7 +174,7 @@ functio add(matrix<f32, [2, 2]> a, matrix<f32, [2, 2]> b) → matrix<f32, [2, 2]
     redde a.addita(b)
 }
 
-functio swap(atomic<i32> cell, i32 value) → i32 {
+functio swap(in atomic<i32> cell, i32 value) → i32 {
     redde cell.exchange(value)
 }
 ```
@@ -200,7 +200,7 @@ functio consume(own textus buffer) → textus {
 
 | المعامل | العائلة | السلوك |
 |----------|--------|-----------|
-| `≡`، `≠`، `≢` | مساواة تامة | تتطلب أنواعاً متطابقة؛ استثناء `nihil` |
+| `≡`، `≢` | مساواة تامة | تتطلب أنواعاً متطابقة؛ استثناء `nihil` |
 | `≅`، `≇` | مساواة تامة بعد الترقية | تُدمج العروض العددية ثم مقارنة تامة |
 | `≈`، `≉` | مساواة تقريبية | مطابقة ضمن سماحية — افتراضيات `isclose` (rel_tol 1e-09)؛ معاملات عددية فقط |
 | `<`، `≤`، `>`، `≥` | ترتيب | عددي، لحظي، نص قياسي |
@@ -382,8 +382,7 @@ incipit {
 
 ```faber
 incipit {
-    fixum tf32[] seed ← vacua
-    fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
+    fixum tf32[4] lanes ← [1.0, 2.0, 3.0, 4.0] ↦ tf32[4]
 }
 ```
 
@@ -395,7 +394,7 @@ incipit {
 
 ```faber
 incipit {
-    fixum sparsa<f32, [2, 3]> sparse ← vacua
+    varia sparsa<f32, [2, 3]> sparse ← vacua
     sparse.ponde([0, 1], 4.0)
     sparse.ponde([1, 2], 9.0)
 

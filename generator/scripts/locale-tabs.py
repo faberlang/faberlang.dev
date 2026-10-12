@@ -143,7 +143,7 @@ def transcode(faber: str, source: str, locale: str) -> str | None:
             # The fences are Latin source; the product default reader is `en`.
             [faber, "convert", "--from", "la", "--to", locale, "--stdout",
              str(tmp)],
-            text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+            text=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, timeout=300,
         )
     finally:
         tmp.unlink(missing_ok=True)

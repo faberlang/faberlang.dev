@@ -37,6 +37,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | argmin           فهرس_الأصغر
 | args             وسائط
 | as               كـ
+| asc              تصاعدي
 | assert           أكد
 | async            غيرمتزامن
 | async_generator  مولد_غيرمتزامن
@@ -47,6 +48,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | await            انتظر
 | await_const      انتظر_ثابت
 | await_var        انتظر_متغير
+| axis             محور
 | before           قبل
 | bench            قس
 | between          بين
@@ -69,6 +71,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | cursor           cursor
 | debug            شاهد
 | default          افتراضي
+| desc             تنازلي
 | describe         مختبر
 | description      وصف
 | do               افعل
@@ -86,7 +89,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | for              كرر
 | format           حرر
 | fragment         جزء
-| free             حر
 | from             من
 | future           مستقبل
 | generator        مولد
@@ -112,7 +114,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | mut              في
 | name             اسم
 | nan              nan
-| nihil            لاشيء
 | not              ليس
 | null             خال
 | only             فقط
@@ -152,6 +153,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | short            مختصر
 | size             حجم
 | skip             أهمل
+| sort             رتب
 | spread           انشر
 | static           سكوني
 | step             كل
@@ -190,7 +192,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 
 ```text locale=la
 | English      العربية
-| -----------  ---------
+| -----------  -------------
 | any          مهما
 | ascii        أسكي
 | atomic       ذري
@@ -200,6 +202,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | census       تعداد
 | channel      قناة
 | char         حرف
+| clamp        تثبيت_الحافة
 | filter       مرشح
 | float        كسر
 | frame        إطار
@@ -208,6 +211,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | intervallum  فترة
 | iterator     مؤشر
 | json         جسون
+| ledger       دفتر
 | list         قائمة
 | map          جدول
 | matrix       مصفوفة
@@ -218,6 +222,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | queue        طابور
 | record       ratio
 | recv         استقبال
+| reflect      انعكاس_الحافة
 | regex        تعبير
 | saturating   مشبع
 | send         إرسال
@@ -232,6 +237,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | value        قيمة
 | vector       متجه
 | void         فراغ
+| wrap         التفاف_الحافة
 | wrapping_ty  نوع_حلقة
 ```
 
@@ -251,6 +257,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | approx                مقارب
 | argmax                فهرس_الأكبر
 | argmin                فهرس_الأصغر
+| at                    عند
 | at_least              على_الأقل
 | at_most               على_الأكثر
 | bit_and               و_بت
@@ -282,6 +289,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | escape                تهريب
 | exchange              بدل
 | exp                   الأسي
+| expanded              وسع
 | fill                  املأ
 | filter                رشح
 | find                  ابحث
@@ -292,7 +300,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | flipped               مقلوب
 | floor                 تقريب_لأسفل
 | formata               formata
-| from_flat             ابن_من_مسطح
 | gather                اجمع_بالفهرس
 | gelu                  gelu
 | get                   اجلب
@@ -310,6 +317,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | layer_norm            تطبيع_الطبقة
 | length                طول
 | less                  أصغر
+| limes                 حافة
 | ln                    اللوغاريتم_الطبيعي
 | load                  حمل
 | log10                 اللوغاريتم_العشري
@@ -344,6 +352,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | round                 قرب
 | set                   اضبط
 | shape                 الأبعاد
+| shift                 أزح
 | shift_left            أزح_يسارا
 | shift_right           أزح_يمينا
 | shifted_left          مزاح_يسارا

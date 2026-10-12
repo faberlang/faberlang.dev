@@ -52,7 +52,7 @@ write Faber, because the cheat sheet and the language pages teach each form by
 example. The productions are here for tools, models, and anyone checking an
 edge case against the parser's own definition.»
 
-const string identity_banner = «This file is generated from `docs/grammar/source.fg`, its `sidecar.en.toml`
+const string identity_banner = «This file is generated from `grammar/sources/source.fg`, its `sidecar.en.toml`
 and its `prose.en.md`; hand edits fail the stage-1 normative-triple gate.»
 
 fn ch(string s, int i) → string {
@@ -93,11 +93,7 @@ fn is_hole_label(string label) → bool {
 }
 
 fn has_flag(map<string, bool> flags, string key) → bool {
-    const bool ∪ none flag ← flags[key]
-    if flag is none {
-        return false
-    }
-    return flag ↦ bool
+    return flags.has(key)
 }
 
 fn index_of(string hay, string needle, int begin) → int {
@@ -185,18 +181,18 @@ fn transform(list<string> lines, bool drop_lead) → string {
 
 fn render_page(string body, string locale) → string {
     var string page ← "+++\n"
-    if locale ≠ "en-US" {
+    if locale ≢ "en-US" {
         page ← page + "translation_kind = \"translated\"\n\n"
     }
     page ← page + "title = \"Grammar\"\n"
     page ← page + "section = \"reference\"\n"
     page ← page + "order = 1\n"
     page ← page + "sources = [\n"
-    page ← page + "  \"faber/docs/grammar/grammar.jsonl\",\n"
+    page ← page + "  \"radix/grammar/sources/grammar.jsonl\",\n"
     if locale ≡ "en-US" {
         page ← page + "  \"radix/locale/en/pack.toml\",\n"
     } else {
-        page ← page + "  \"faber/docs/grammar/glossary." + locale + ".toml\",\n"
+        page ← page + "  \"radix/grammar/sources/glossary." + locale + ".toml\",\n"
     }
     page ← page + "]\n"
     page ← page + "+++\n\n"
@@ -229,11 +225,7 @@ fn present_of(map<string, string> glossary) → map<string, bool> {
 }
 
 fn glossary_has(map<string, bool> present, string key) → bool {
-    const bool ∪ none flag ← present[key]
-    if flag is none {
-        return false
-    }
-    return flag ↦ bool
+    return present.has(key)
 }
 
 fn die(string msg) → void {
@@ -441,8 +433,8 @@ fn apply_glossary(string text, map<string, string> glossary, map<string, bool> p
 }
 
 fn stamp_locale_banner(string text, string locale) → string {
-    const string replacement ← «This file is generated from `docs/grammar/source.fg`, its `sidecar.en.toml` and its `prose.en.md`, and
-`docs/grammar/glossary.» + locale + «.toml`; hand edits fail the locale-render gate.»
+    const string replacement ← «This file is generated from `grammar/sources/source.fg`, its `sidecar.en.toml` and its `prose.en.md`, and
+`grammar/sources/glossary.» + locale + «.toml`; hand edits fail the locale-render gate.»
     if text.contains(identity_banner) ≡ false {
         consolum.warn_line("identity banner missing; cannot stamp locale render")
         processus.exit_process(1)
@@ -488,7 +480,10 @@ fn identity_map(map<string, bool> spine) → map<string, string> {
 }
 
 fn read_string_table(map<string, value> doc, string section) → map<string, string> {
-    const map<string, value> table ← doc[section] ↦ map<string, value> ⊥ empty
+    var map<string, value> table ← empty
+    if doc.has(section) {
+        table ← doc[section] ↦ map<string, value> ⊥ empty
+    }
     const list<string> keys ← table.keys()
     var map<string, string> out ← empty
     for from keys const k {
@@ -517,7 +512,10 @@ fn english_projection(string pack_path) → map<string, string> {
     for from keyword_keys const k {
         out.put(k, keywords[k] ↦ string)
     }
-    const string null_type ← types["nihil"] ↦ string ⊥ ""
+    var string null_type ← ""
+    if types.has("nihil") {
+        null_type ← types["nihil"] ↦ string
+    }
     if null_type.length() ≻ 0 {
         out.put("nihil", null_type)
     }
@@ -526,7 +524,10 @@ fn english_projection(string pack_path) → map<string, string> {
 
 fn load_glossary(string path, map<string, bool> spine) → map<string, string> {
     const map<string, value> doc ← toml.parse(solum.read_file(path) ↦ string) ↦ map<string, value>
-    const map<string, value> table ← doc["keywords"] ↦ map<string, value> ⊥ empty
+    var map<string, value> table ← empty
+    if doc.has("keywords") {
+        table ← doc["keywords"] ↦ map<string, value> ⊥ empty
+    }
     const list<string> keys ← table.keys()
     if keys.length() ≡ 0 {
         die(path + ": no [keywords] table")
@@ -576,9 +577,9 @@ main {
     var bool pending_identity ← false
     var bool pending_glossary_dir ← false
     var list<string> locales ← []
-    var string jsonl_path ← "../faber/docs/grammar/grammar.jsonl"
-    var string identity_path ← "../faber/docs/EBNF.md"
-    var string glossary_dir ← "../faber/docs/grammar"
+    var string jsonl_path ← "../radix/grammar/sources/grammar.jsonl"
+    var string identity_path ← "../radix/grammar/EBNF.md"
+    var string glossary_dir ← "../radix/grammar/sources"
     var int ai ← 0
     while ai ≺ argv.length() {
         const string a ← argv[ai]

@@ -31,7 +31,7 @@ MIR is where meaning takes execution-shaped form: lower-level targets, validatio
 | Target | Emits | Scenarios shown |
 |---|---|---|
 | [LLVM IR](/targets/llvm-text.html) | LLVM IR text | 3 of 3 |
-| [WebAssembly text](/targets/wasm-text.html) | WebAssembly text | 2 of 3 |
+| [WebAssembly text](/targets/wasm-text.html) | WebAssembly text | 3 of 3 |
 
 ## GPU — the device lane {#gpu}
 
@@ -41,8 +41,8 @@ A function marked `@ nucleum` is a compute kernel. The device lane links the com
 
 | Target | Emits | Scenarios shown |
 |---|---|---|
-| [WGSL](/targets/wgsl-text.html) | WGSL compute shader | 1 of 1 |
-| [Metal](/targets/metal-text.html) | Metal MSL | 1 of 1 |
+| [WGSL](/targets/wgsl-text.html) | WGSL compute shader | 0 of 1 |
+| [Metal](/targets/metal-text.html) | Metal MSL | 0 of 1 |
 
 ## Other lanes {#other-lanes}
 

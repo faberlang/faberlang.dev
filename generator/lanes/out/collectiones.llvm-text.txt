@@ -28,8 +28,9 @@ define i64 @summa(ptr %l0) {
       %l3.addr = alloca i64
       %t0.addr = alloca i64
       %t1.addr = alloca i1
-      %t2.addr = alloca i64
+      %t2.addr = alloca i128
       %t3.addr = alloca i64
+      %t4.addr = alloca i128
       store ptr %l0, ptr %l0.addr
       br label %b0
     b0:
@@ -68,38 +69,61 @@ define i64 @summa(ptr %l0) {
       store i32 %faber.latched.status7, ptr @__faber_rt_v1_status
       store i64 %faber.array.get.value7, ptr %l3.addr
       %load8 = load i64, ptr %l1.addr
-      %load9 = load i64, ptr %l3.addr
-      %overflow.result4 = call { i64, i1 } @llvm.sadd.with.overflow.i64(i64 %load8, i64 %load9)
-      %v4 = extractvalue { i64, i1 } %overflow.result4, 0
-      %overflow.flag4 = extractvalue { i64, i1 } %overflow.result4, 1
-      br i1 %overflow.flag4, label %overflow4, label %checked.ok4
-    overflow4:
-      %overflow.context4 = load ptr, ptr @__faber_rt_v1_context
-      call void @__faber_rt_v1_numerus_overflow(ptr %overflow.context4)
+      %ex.w9 = sext i64 %load8 to i128
+      %load10 = load i64, ptr %l3.addr
+      %ex.w11 = sext i64 %load10 to i128
+      %ex.add12 = add i128 %ex.w9, %ex.w11
+      %ex.cb13 = add i128 %ex.add12, 9223372036854775808
+      %ex.cbad14 = icmp ugt i128 %ex.cb13, 27670116110564327423
+      br i1 %ex.cbad14, label %ex.trap15, label %ex.ok15
+    ex.trap15:
+      %ex.ctx15 = load ptr, ptr @__faber_rt_v1_context
+      call void @__faber_rt_v1_numerus_overflow(ptr %ex.ctx15)
       unreachable
-    checked.ok4:
-      store i64 %v4, ptr %t2.addr
-      %load10 = load i64, ptr %t2.addr
-      store i64 %load10, ptr %l1.addr
+    ex.ok15:
+      store i128 %ex.add12, ptr %t2.addr
+      %ex.wl16 = load i128, ptr %t2.addr
+      %ex.store17 = trunc i128 %ex.wl16 to i64
+      %ex.back18 = sext i64 %ex.store17 to i128
+      %ex.bad19 = icmp ne i128 %ex.back18, %ex.wl16
+      br i1 %ex.bad19, label %ex.trap20, label %ex.ok20
+    ex.trap20:
+      call void @__faber_trap_store(i128 %ex.wl16, ptr getelementptr inbounds ([46 x i8], ptr @__faber_trap_msg_20646f6573206e6f742066697420696e206069363460202861737369676e6d656e7420746f2060746f74616c6029, i64 0, i64 0), i64 46)
+      unreachable
+    ex.ok20:
+      store i64 %ex.store17, ptr %t3.addr
+      %load21 = load i64, ptr %t3.addr
+      store i64 %load21, ptr %l1.addr
       br label %b3
     b3:
-      %load11 = load i64, ptr %l2.addr
-      %overflow.result6 = call { i64, i1 } @llvm.sadd.with.overflow.i64(i64 %load11, i64 1)
-      %v6 = extractvalue { i64, i1 } %overflow.result6, 0
-      %overflow.flag6 = extractvalue { i64, i1 } %overflow.result6, 1
-      br i1 %overflow.flag6, label %overflow6, label %checked.ok6
-    overflow6:
-      %overflow.context6 = load ptr, ptr @__faber_rt_v1_context
-      call void @__faber_rt_v1_numerus_overflow(ptr %overflow.context6)
+      %load22 = load i64, ptr %l2.addr
+      %ex.w23 = sext i64 %load22 to i128
+      %ex.w24 = sext i64 1 to i128
+      %ex.add25 = add i128 %ex.w23, %ex.w24
+      %ex.cb26 = add i128 %ex.add25, 9223372036854775808
+      %ex.cbad27 = icmp ugt i128 %ex.cb26, 27670116110564327423
+      br i1 %ex.cbad27, label %ex.trap28, label %ex.ok28
+    ex.trap28:
+      %ex.ctx28 = load ptr, ptr @__faber_rt_v1_context
+      call void @__faber_rt_v1_numerus_overflow(ptr %ex.ctx28)
       unreachable
-    checked.ok6:
-      store i64 %v6, ptr %t3.addr
-      %load12 = load i64, ptr %t3.addr
-      store i64 %load12, ptr %l2.addr
+    ex.ok28:
+      store i128 %ex.add25, ptr %t4.addr
+      %ex.wl29 = load i128, ptr %t4.addr
+      %ex.nr30 = trunc i128 %ex.wl29 to i64
+      %ex.back31 = sext i64 %ex.nr30 to i128
+      %ex.bad32 = icmp ne i128 %ex.back31, %ex.wl29
+      br i1 %ex.bad32, label %ex.trap33, label %ex.ok33
+    ex.trap33:
+      %ex.ctx33 = load ptr, ptr @__faber_rt_v1_context
+      call void @__faber_rt_v1_numerus_overflow(ptr %ex.ctx33)
+      unreachable
+    ex.ok33:
+      store i64 %ex.nr30, ptr %l2.addr
       br label %b1
     b4:
-      %load13 = load i64, ptr %l1.addr
-      ret i64 %load13
+      %load34 = load i64, ptr %l1.addr
+      ret i64 %load34
 }
 
 define void @incipit() {
@@ -177,4 +201,50 @@ define %FaberRtExitV1 @__faber_program_entry_v1(ptr %context) {
       %faber.entry.shifted = shl i64 %faber.entry.status.ext, 32
       %faber.entry.packed = or i64 0, %faber.entry.shifted
       ret %FaberRtExitV1 %faber.entry.packed
+}
+@__faber_trap_msg_20646f6573206e6f742066697420696e206069363460202861737369676e6d656e7420746f2060746f74616c6029 = linkonce_odr unnamed_addr constant [46 x i8] c" does not fit in \60i64\60 \28assignment to \60total\60\29", align 1
+
+declare void @llvm.memcpy.p0.p0.i64(ptr, ptr, i64, i1)
+define linkonce_odr void @__faber_trap_store(i128 %v, ptr %sfx, i64 %n) noreturn {
+entry:
+  %ctx = load ptr, ptr @__faber_rt_v1_context
+  %cap = add i64 %n, 24
+  %buf = alloca i8, i64 %cap
+  %digits = alloca [24 x i8]
+  %neg = icmp slt i128 %v, 0
+  %negv = sub i128 0, %v
+  %mag128 = select i1 %neg, i128 %negv, i128 %v
+  %mag = trunc i128 %mag128 to i64
+  br label %loop
+loop:
+  %i = phi i64 [ 24, %entry ], [ %i2, %loop ]
+  %m = phi i64 [ %mag, %entry ], [ %q, %loop ]
+  %r = urem i64 %m, 10
+  %q = udiv i64 %m, 10
+  %c = add i64 %r, 48
+  %c8 = trunc i64 %c to i8
+  %i2 = sub i64 %i, 1
+  %p = getelementptr i8, ptr %digits, i64 %i2
+  store i8 %c8, ptr %p
+  %done = icmp eq i64 %q, 0
+  br i1 %done, label %copy, label %loop
+copy:
+  %len = sub i64 24, %i2
+  %signlen = zext i1 %neg to i64
+  br i1 %neg, label %sign, label %body
+sign:
+  store i8 45, ptr %buf
+  br label %body
+body:
+  %dst = getelementptr i8, ptr %buf, i64 %signlen
+  %src = getelementptr i8, ptr %digits, i64 %i2
+  call void @llvm.memcpy.p0.p0.i64(ptr %dst, ptr %src, i64 %len, i1 false)
+  %off = add i64 %signlen, %len
+  %dst2 = getelementptr i8, ptr %buf, i64 %off
+  call void @llvm.memcpy.p0.p0.i64(ptr %dst2, ptr %sfx, i64 %n, i1 false)
+  %total = add i64 %off, %n
+  %s0 = insertvalue %FaberRtSliceV1 undef, ptr %buf, 0
+  %s1 = insertvalue %FaberRtSliceV1 %s0, i64 %total, 1
+  call void @__faber_rt_v1_fatal(ptr %ctx, %FaberRtSliceV1 %s1)
+  unreachable
 }

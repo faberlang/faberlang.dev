@@ -13,8 +13,8 @@ and stop, you can read a Faber program.
 
 ```faber
 functio saturate(numerus x) → numerus {
-    si x < 0 ergo redde 0
-    si x > 255 ergo redde 255
+    si x ≺ 0 ergo redde 0
+    si x ≻ 255 ergo redde 255
     redde x
 }
 

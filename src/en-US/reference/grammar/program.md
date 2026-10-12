@@ -4,8 +4,8 @@ section = "grammar-program"
 order = 2
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [
-  "faber/docs/EBNF.md",
-  "faber/docs/grammar/grammar.jsonl",
+  "radix/grammar/EBNF.md",
+  "radix/grammar/sources/grammar.jsonl",
   "radix/locale/en/pack.toml",
 ]
 +++
@@ -66,6 +66,7 @@ page. The second column names the grammar rule the word belongs to.
 
 | Term | Grammar rule |
 |---|---|
+| [`fn`](/en-US/corpus/fn.html) | `nondum_functio_decl` |
 | [`import`](/en-US/corpus/import.html) | `importa_record` |
 | [`from`](/en-US/corpus/from.html) | `ex_field` |
 | [`as`](/en-US/corpus/as.html) | `ut_field` |
@@ -83,7 +84,6 @@ page. The second column names the grammar rule the word belongs to.
 | [`test`](/en-US/corpus/test.html) | `proba_stmt` |
 | [`expect_failure`](/en-US/corpus/expect_failure.html), [`flaky`](/en-US/corpus/flaky.html), [`todo`](/en-US/corpus/todo.html), [`bench`](/en-US/corpus/bench.html), [`skip`](/en-US/corpus/skip.html), [`repeat`](/en-US/corpus/repeat.html), [`only`](/en-US/corpus/only.html), [`only_in`](/en-US/corpus/only_in.html), [`tag`](/en-US/corpus/tag.html), [`timeout`](/en-US/corpus/timeout.html) | `proba_modifier` |
 | [`all`](/en-US/corpus/all.html), [`teardown`](/en-US/corpus/teardown.html), [`async_teardown`](/en-US/corpus/async_teardown.html), [`setup`](/en-US/corpus/setup.html), [`async_setup`](/en-US/corpus/async_setup.html) | `praepara_block` |
-
 ## Formal grammar {#formal-grammar}
 
 The rules for this part of the language are the parser's own definition of it.

@@ -5,7 +5,7 @@ condition holds. Both need a `⇥` channel on the function.
 
 ```faber locale=en
 fn divide(int a, int b) → int ⇥ string {
-    require b ≠ 0 throw "division by zero"
+    require b ≢ 0 throw "division by zero"
     return a / b
 }
 

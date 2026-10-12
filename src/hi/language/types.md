@@ -174,7 +174,7 @@ functio add(matrix<f32, [2, 2]> a, matrix<f32, [2, 2]> b) → matrix<f32, [2, 2]
     redde a.addita(b)
 }
 
-functio swap(atomic<i32> cell, i32 value) → i32 {
+functio swap(in atomic<i32> cell, i32 value) → i32 {
     redde cell.exchange(value)
 }
 ```
@@ -200,7 +200,7 @@ functio consume(own textus buffer) → textus {
 
 | ऑपरेटर | परिवार | व्यवहार |
 |----------|--------|-----------|
-| `≡`, `≠`, `≢` | सटीक समानता | समान प्रकार आवश्यक; `nihil` को अपवाद |
+| `≡`, `≢` | सटीक समानता | समान प्रकार आवश्यक; `nihil` को अपवाद |
 | `≅`, `≇` | प्रमोटेड सटीक समानता | संख्यात्मक चौड़ाइयाँ जुड़ती हैं, फिर सटीक तुलना |
 | `≈`, `≉` | फ़ज़ी समानता | सहनशीलता मिलान — `isclose` डिफ़ॉल्ट (rel_tol 1e-09); केवल संख्यात्मक संकारक |
 | `<`, `≤`, `>`, `≥` | क्रम निर्धारण | संख्यात्मक, instant, स्केलर टेक्स्ट |
@@ -376,8 +376,7 @@ Tensor शुगर (संख्यात्मक कोड के लिए):
 
 ```faber
 incipit {
-    fixum tf32[] seed ← vacua
-    fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
+    fixum tf32[4] lanes ← [1.0, 2.0, 3.0, 4.0] ↦ tf32[4]
 }
 ```
 
@@ -389,7 +388,7 @@ incipit {
 
 ```faber
 incipit {
-    fixum sparsa<f32, [2, 3]> sparse ← vacua
+    varia sparsa<f32, [2, 3]> sparse ← vacua
     sparse.ponde([0, 1], 4.0)
     sparse.ponde([1, 2], 9.0)
 

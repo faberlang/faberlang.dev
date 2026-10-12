@@ -51,7 +51,7 @@ def find_faber(explicit: str | None) -> str:
 
 
 def explain(faber: str, *args: str) -> str:
-    result = subprocess.run([faber, "explain", *args], capture_output=True, text=True)
+    result = subprocess.run([faber, "explain", *args], capture_output=True, text=True, timeout=120)
     if result.returncode != 0:
         raise SystemExit(f"faber explain {' '.join(args)} failed: {result.stderr.strip()}")
     return result.stdout
@@ -98,7 +98,7 @@ def main() -> int:
         path = scratch_path / f"example_{next(counter)}.fab"
         path.write_text(code + "\n", encoding="utf-8")
         return subprocess.run(
-            [faber, "check", "--locale=en", str(path)], capture_output=True, text=True
+            [faber, "check", "--locale=en", str(path)], capture_output=True, text=True, timeout=120
         ).returncode == 0
 
     def example_for(original: str, name: str) -> str:

@@ -4,8 +4,8 @@ section = "grammar-statements"
 order = 6
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [
-  "faber/docs/EBNF.md",
-  "faber/docs/grammar/grammar.jsonl",
+  "radix/grammar/EBNF.md",
+  "radix/grammar/sources/grammar.jsonl",
   "radix/locale/en/pack.toml",
 ]
 +++
@@ -100,7 +100,6 @@ page. The second column names the grammar rule the word belongs to.
 | [`throw`](/en-US/corpus/throw.html), [`reject`](/en-US/corpus/reject.html) | `reice_stmt` |
 | [`warn`](/en-US/corpus/warn.html), [`write`](/en-US/corpus/write.html), [`debug`](/en-US/corpus/debug.html) | `nota_stmt` |
 | [`while`](/en-US/corpus/while.html), [`do`](/en-US/corpus/do.html) | `fac_stmt` |
-
 ## Formal grammar {#formal-grammar}
 
 The rules for this part of the language are the parser's own definition of it.

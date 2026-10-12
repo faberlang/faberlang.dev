@@ -14,6 +14,7 @@
 set -euo pipefail
 
 GENERATOR_DIR="$(cd "$(dirname "$0")/.." && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 BUILD_DIR="${GENERATOR_DIR}/target/faber"
 FABER="${FABER:-faber}"
 
@@ -33,19 +34,13 @@ if [ ! -f "$SOURCE" ]; then
     exit 1
 fi
 
-echo "Building generator..." >&2
-"$FABER" build "$GENERATOR_DIR" -t rust 2>/dev/null
-
-echo "Compiling..." >&2
-(cd "$BUILD_DIR" && cargo build --release --quiet 2>/dev/null)
-
-echo "Rendering $SOURCE..." >&2
+echo "Rendering $SOURCE (interpreted runner)..." >&2
 echo "  Site locale: $SITE_LOCALE" >&2
 echo "  Reader locale: $READER_LOCALE" >&2
 
 if [ -n "$OUTPUT" ]; then
-    "${BUILD_DIR}/target/release/speculum-gen" "$SOURCE" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET" > "$OUTPUT"
+    "${SCRIPT_DIR}/speculum-run.sh" "$SOURCE" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET" > "$OUTPUT"
     echo "Wrote: $OUTPUT" >&2
 else
-    "${BUILD_DIR}/target/release/speculum-gen" "$SOURCE" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET"
+    "${SCRIPT_DIR}/speculum-run.sh" "$SOURCE" "$SITE_LOCALE" "$READER_LOCALE" "$STYLESHEET"
 fi

@@ -40,10 +40,11 @@ if [ -n "$PROOF_DIR" ]; then
     mkdir -p "$PROOF_DIR"
 fi
 
-# Build the Faber generator once. Corpus mode and file reads live in the
-# generated CLI via norma:solum, so this wrapper only orchestrates traversal.
-echo "Building generator for corpus batch..." >&2
-"$FABER" build "$GENERATOR_DIR" -t rust 2>/dev/null
+# The generator runs interpreted (speculum-run.sh): no host provider serves
+# the norma:fs routes a compiled binary would need, and the MIR runner serves
+# solum in-process. The wrapper re-analyzes per invocation, so the driver
+# parallelizes term and alias renders.
+BINARY="${GENERATOR_DIR}/scripts/speculum-run.sh"
 
 # Prefer 3.11+ for tomllib (batch orchestration); fall back to python3.
 PYTHON="${PYTHON:-}"
@@ -57,13 +58,12 @@ if [ -z "$PYTHON" ]; then
     fi
 fi
 
-echo "Compiling corpus batch generator..." >&2
-(cd "$BUILD_DIR" && cargo build --release --quiet 2>/dev/null)
+echo "Corpus batch renders through the interpreted runner..." >&2
 
 CORPUS_DIR="$CORPUS_DIR" BUILD_DIR="$BUILD_DIR" OUTPUT_DIR="$OUTPUT_DIR" \
 SITE_LOCALE="$SITE_LOCALE" READER_LOCALE="$READER_LOCALE" \
 STYLESHEET="$STYLESHEET" PROOF_DIR="$PROOF_DIR" \
-GENERATOR_DIR="$GENERATOR_DIR" \
+GENERATOR_DIR="$GENERATOR_DIR" BINARY="$BINARY" \
 READER_ROOT="${WORKSPACE_DIR}/radix/locale" \
 "$PYTHON" << 'PYEOF'
 import html as html_lib
@@ -93,7 +93,7 @@ stylesheet = os.environ["STYLESHEET"]
 proof_dir = os.environ.get("PROOF_DIR")
 generator_dir = Path(os.environ["GENERATOR_DIR"])
 reader_root = Path(os.environ["READER_ROOT"])
-binary = build / "target/release/speculum-gen"
+binary = Path(os.environ.get("BINARY", str(build / "target/release/speculum-gen")))
 
 marker = "\n§§CORPUS_RECORD§§\n"
 source_marker = "\n§§CORPUS_SOURCE§§\n"
@@ -175,20 +175,38 @@ corpus_out.mkdir(parents=True, exist_ok=True)
 anatomy_payloads = {}
 semantics_added = semantics_duplicate = semantics_missing = 0
 
-for term in terms:
+# Every generator invocation is bounded: a stuck compiler process must fail
+# its term loudly instead of leaving the build waiting forever.
+RENDER_TIMEOUT = int(os.environ.get("RENDER_TIMEOUT", "300"))
+
+def run_bounded(cmd: list[str], timeout: int = RENDER_TIMEOUT) -> str:
+    try:
+        return subprocess.check_output(cmd, text=True, timeout=timeout)
+    except subprocess.TimeoutExpired as exc:
+        raise RuntimeError(f"render timed out after {timeout}s: {' '.join(cmd[:4])} …") from exc
+
+def render_term(term):
+    """One corpus term: bundle, page, optional proof; returns anatomy payload
+    and the semantics verdict so the caller can keep honest counters.
+
+    Bundle filenames and every operand the generator receives are ASCII: the
+    faber entry marshalling transliterates non-ASCII argv (a glyph term such
+    as U+2025 arrives as '..'), so the term travels inside the bundle file
+    and the generator recovers it with termen_ex_canonica."""
+    from urllib.parse import quote
     term_slug = slugs[term]
     selected = sorted(records_by_term[term], key=lambda item: (item[0], item[1]))
-    bundle = bundle_dir / f"{term}.bundle"
+    bundle = bundle_dir / (quote(term, safe="") + ".bundle")
     bundle_records = []
     for _, path, source, expected in selected:
         if reader_locale != "la":
             source = project_corpus_source(source, term_mapping, reader_locale, convert_faber)
         bundle_records.append(path + source_marker + source + expected_marker + expected)
     bundle.write_text(marker.join(bundle_records))
+    display = term_slug if term_slug.isascii() else ""
     html_path = corpus_out / f"{term_slug}.html"
-    html = subprocess.check_output(
-        [str(binary), "--", "--corpus", term, str(bundle), site_locale, reader_locale, stylesheet, term_slug],
-        text=True,
+    html = run_bounded(
+        [str(binary), "--corpus-bundle", str(bundle), site_locale, reader_locale, stylesheet, display],
     )
     if term_slug != term:
         html = html.replace(f"<title>{term} — Faber</title>", f"<title>{term_slug} — Faber</title>")
@@ -199,9 +217,8 @@ for term in terms:
     if proof_dir:
         proof_path = Path(proof_dir) / f"{term_slug}.md"
         proof_path.parent.mkdir(parents=True, exist_ok=True)
-        markdown = subprocess.check_output(
-            [str(binary), "--", "--corpus-markdown", term, str(bundle), term_slug],
-            text=True,
+        markdown = run_bounded(
+            [str(binary), "--corpus-markdown-bundle", str(bundle), display],
         )
         proof_path.write_text(markdown)
     bucket = term_bucket[term]
@@ -211,6 +228,7 @@ for term in terms:
         (term_slug, None),
     ])
     sem = ""
+    verdict = "missing"
     entry = explain_registry.get(term)
     if entry and entry.get("summary", "").strip():
         text = entry["summary"].strip()
@@ -219,13 +237,41 @@ for term in terms:
         if f"<p>{html_lib.escape(text)}</p>" in html:
             # The generated page already carries this sentence as its summary
             # paragraph (registry and corpus share one source); never repeat it.
-            semantics_duplicate += 1
+            verdict = "duplicate"
         else:
             sem = corpus_ia.semantics_html(text)
+            verdict = "added"
+    return term_slug, crumb, sem, verdict
+
+# The interpreted runner re-analyzes the generator per invocation; render
+# terms concurrently to keep the batch's wall time bounded. A term that times
+# out or errors is recorded and reported; the batch still finishes, then
+# exits nonzero so the failure cannot pass silently.
+from concurrent.futures import ThreadPoolExecutor
+CORPUS_JOBS = int(os.environ.get("CORPUS_JOBS", "8"))
+term_failures = []
+with ThreadPoolExecutor(max_workers=CORPUS_JOBS) as pool:
+    futures = {pool.submit(render_term, term): term for term in terms}
+    from concurrent.futures import as_completed
+    for future in as_completed(futures):
+        term = futures[future]
+        try:
+            term_slug, crumb, sem, verdict = future.result()
+        except Exception as exc:  # noqa: BLE001 — report and continue
+            term_failures.append((term, str(exc)))
+            continue
+        anatomy_payloads[term_slug] = (crumb, sem)
+        if verdict == "added":
             semantics_added += 1
-    else:
-        semantics_missing += 1
-    anatomy_payloads[term_slug] = (crumb, sem)
+        elif verdict == "duplicate":
+            semantics_duplicate += 1
+        else:
+            semantics_missing += 1
+if term_failures:
+    for term, why in sorted(term_failures):
+        print(f"ERROR: corpus term {term!r} failed: {why}", file=sys.stderr)
+    print(f"corpus batch: {len(term_failures)} term(s) failed", file=sys.stderr)
+    sys.exit(1)
 
 redirects = {}
 skipped_aliases = []
@@ -246,14 +292,39 @@ for term in terms:
             skipped_aliases.append((alias, [term], f"duplicate-alias-kept:{existing}"))
 
 written_aliases = set()
-for alias, target in sorted(redirects.items()):
+
+def render_alias(pair):
+    alias, target = pair
     alias_path = corpus_out / f"{alias}.html"
-    alias_html = subprocess.check_output(
-        [str(binary), "--", "--alias", alias, target, site_locale, stylesheet],
-        text=True,
-    )
+    if alias.isascii() and target.isascii():
+        alias_html = run_bounded(
+            [str(binary), "--alias", alias, target, site_locale, stylesheet],
+        )
+    else:
+        # The entry marshalling transliterates non-ASCII argv, so render with
+        # ASCII placeholders and substitute the real glyph strings in-place.
+        alias_html = run_bounded(
+            [str(binary), "--alias", "ZUNIALIAS", "ZUNICANON", site_locale, stylesheet],
+        )
+        alias_html = alias_html.replace("ZUNIALIAS", alias).replace("ZUNICANON", target)
     alias_path.write_text(clean_generated(alias_html))
-    written_aliases.add(alias)
+    return alias
+
+alias_failures = []
+with ThreadPoolExecutor(max_workers=CORPUS_JOBS) as pool:
+    futures = {pool.submit(render_alias, pair): pair for pair in sorted(redirects.items())}
+    for future in as_completed(futures):
+        alias = futures[future][0]
+        try:
+            written_aliases.add(future.result())
+        except Exception as exc:  # noqa: BLE001 — report and continue
+            alias_failures.append((alias, str(exc)))
+            continue
+if alias_failures:
+    for alias, why in sorted(alias_failures):
+        print(f"ERROR: alias {alias!r} failed: {why}", file=sys.stderr)
+    print(f"corpus batch: {len(alias_failures)} alias(es) failed", file=sys.stderr)
+    sys.exit(1)
 
 if skipped_aliases:
     (build / "corpus-alias-residuals.json").write_text(json.dumps(skipped_aliases, indent=2, sort_keys=True))
@@ -298,7 +369,7 @@ for category in sorted(category_terms):
     source.write_text("\n".join(md) + "\n")
     out = corpus_out / "category" / f"{category_slug}.html"
     out.parent.mkdir(parents=True, exist_ok=True)
-    html = subprocess.check_output([str(binary), "--", "--page", f"corpus/category/{category_slug}", str(source), site_locale, reader_locale, stylesheet], text=True)
+    html = run_bounded([str(binary), "--page", f"corpus/category/{category_slug}", str(source), site_locale, reader_locale, stylesheet])
     out.write_text(clean_generated(html))
     category_index.append((category, category_slug, len(terms_in_category)))
 
@@ -311,7 +382,7 @@ for term in terms:
 # per-tag categories (those pages keep rendering; they just leave the hub).
 hub_source = generated_dir / "corpus-index.md"
 hub_source.write_text(corpus_ia.hub_markdown(buckets, bucket_counts, len(terms)))
-hub_html = subprocess.check_output([str(binary), "--", "--page", "corpus/index", str(hub_source), site_locale, reader_locale, stylesheet], text=True)
+hub_html = run_bounded([str(binary), "--page", "corpus/index", str(hub_source), site_locale, reader_locale, stylesheet])
 (corpus_out / "index.html").write_text(clean_generated(hub_html))
 
 # Curated bucket pages: the hub's concept path.
@@ -326,8 +397,8 @@ for bucket in buckets:
     source = generated_dir / f"bucket-{bucket.key}.md"
     source.write_text(corpus_ia.bucket_markdown(bucket, [slugs[t] for t in members]))
     out = bucket_dir / f"{bucket.key}.html"
-    bucket_html = subprocess.check_output(
-        [str(binary), "--", "--page", f"corpus/bucket/{bucket.key}", str(source), site_locale, reader_locale, stylesheet], text=True,
+    bucket_html = run_bounded(
+        [str(binary), "--page", f"corpus/bucket/{bucket.key}", str(source), site_locale, reader_locale, stylesheet],
     )
     out.write_text(clean_generated(bucket_html))
     extra_crumbs.append((
@@ -339,7 +410,7 @@ for bucket in buckets:
 az_slugs = sorted(set(slugs.values()), key=lambda s: (s.casefold(), s))
 az_source = generated_dir / "corpus-az.md"
 az_source.write_text(corpus_ia.az_markdown(az_slugs))
-az_html = subprocess.check_output([str(binary), "--", "--page", "corpus/az", str(az_source), site_locale, reader_locale, stylesheet], text=True)
+az_html = run_bounded([str(binary), "--page", "corpus/az", str(az_source), site_locale, reader_locale, stylesheet])
 az_path = corpus_out / "az.html"
 az_path.write_text(clean_generated(az_html))
 extra_crumbs.append((

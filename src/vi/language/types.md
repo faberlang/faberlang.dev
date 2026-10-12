@@ -175,7 +175,7 @@ functio add(matrix<f32, [2, 2]> a, matrix<f32, [2, 2]> b) → matrix<f32, [2, 2]
     redde a.addita(b)
 }
 
-functio swap(atomic<i32> cell, i32 value) → i32 {
+functio swap(in atomic<i32> cell, i32 value) → i32 {
     redde cell.exchange(value)
 }
 ```
@@ -202,7 +202,7 @@ functio consume(own textus buffer) → textus {
 
 | Toán tử | Nhóm | Hành vi |
 |----------|------|---------|
-| `≡`, `≠`, `≢` | Bằng chính xác | Bắt buộc các kiểu giống hệt nhau; `nihil` được bỏ qua |
+| `≡`, `≢` | Bằng chính xác | Bắt buộc các kiểu giống hệt nhau; `nihil` được bỏ qua |
 | `≅`, `≇` | Bằng chính xác sau nâng cấp | Độ rộng số được nối rồi so sánh chính xác |
 | `≈`, `≉` | Bằng mờ | Khớp dung sai — mặc định `isclose` (rel_tol 1e-09); chỉ toán tử số |
 | `<`, `≤`, `>`, `≥` | Thứ tự | Số, thời điểm, văn bản vô hướng |
@@ -378,8 +378,7 @@ Cú pháp rút gọn cho Tensor (mã thiên về số):
 
 ```faber
 incipit {
-    fixum tf32[] seed ← vacua
-    fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
+    fixum tf32[4] lanes ← [1.0, 2.0, 3.0, 4.0] ↦ tf32[4]
 }
 ```
 
@@ -389,7 +388,7 @@ Các phương thức chính: `forma`, `accipe`, `ponde`, `crea`, `structa`, `str
 
 ```faber
 incipit {
-    fixum sparsa<f32, [2, 3]> sparse ← vacua
+    varia sparsa<f32, [2, 3]> sparse ← vacua
     sparse.ponde([0, 1], 4.0)
     sparse.ponde([1, 2], 9.0)
 

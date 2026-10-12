@@ -135,7 +135,7 @@ than collapsing both into `T?` or `Option<T>`.
 
 ```faber
 functio find(textus key) → numerus ∪ nihil {
-    redde nihil
+    redde nulla
 }
 
 functio connect(textus host, numerus port sponte) → vacuum {

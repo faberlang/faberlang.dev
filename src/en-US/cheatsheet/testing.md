@@ -84,7 +84,7 @@ probandum "modifiers" {
 probandum "assertiones" {
     proba "comparisons" {
         adfirma 1 + 1 ≡ 2
-        adfirma 3 > 2
+        adfirma 3 ≻ 2
         adfirma "abc".longitudo() ≡ 3
     }
 }

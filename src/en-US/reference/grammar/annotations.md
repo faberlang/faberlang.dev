@@ -4,8 +4,8 @@ section = "grammar-annotations"
 order = 4
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [
-  "faber/docs/EBNF.md",
-  "faber/docs/grammar/grammar.jsonl",
+  "radix/grammar/EBNF.md",
+  "radix/grammar/sources/grammar.jsonl",
   "radix/locale/en/pack.toml",
 ]
 +++
@@ -55,7 +55,7 @@ page. The second column names the grammar rule the word belongs to.
 | [`false`](/en-US/corpus/false.html), [`true`](/en-US/corpus/true.html) | `nucleum_field` |
 | [`mut`](/en-US/corpus/mut.html), [`type`](/en-US/corpus/type.html) | `radix_directive` |
 | [`call`](/en-US/corpus/call.html) | `ad_annotation` |
-
+| [`unstable`](/en-US/corpus/unstable.html), [`unstable`](/en-US/corpus/unstable.html) | `nondum_annotation` |
 ## Formal grammar {#formal-grammar}
 
 The rules for this part of the language are the parser's own definition of it.

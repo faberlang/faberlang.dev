@@ -11,8 +11,5 @@ entry = "main.fab"
 target = "rust"
 kind = "bin"
 
-[target.rust]
-host = "native"
-
 [reader]
 locale = "la"

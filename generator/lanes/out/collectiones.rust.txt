@@ -2,13 +2,17 @@
 // Requires the faber language-runtime crate (add to Cargo.toml):
 //   faber = { path = "../faber" }  # adjust path for your layout
 
+// Recorded suppressions: identifier/literal fidelity, plan-directed
+// casts and parameter passing, library-shaped artifact items.
+#![allow(non_camel_case_types, non_snake_case, dead_code, clippy::unreadable_literal, clippy::cast_lossless, clippy::cast_possible_truncation, clippy::cast_possible_wrap, clippy::cast_sign_loss, clippy::cast_precision_loss, clippy::needless_pass_by_value)]
+
 fn summa(numeri: Vec<i64>) -> i64 {
     let mut total: i64 = 0;
-    for i1000002 in &(numeri) {
-        let n = i1000002.clone();
-        total = i64::checked_add(total, n).expect("numerus overflow");
-    };
-    return total;
+    for i0 in &(numeri) {
+        let n = i0.clone();
+        total = faber::exact::store::<i64>(faber::exact::add(total as i128, n as i128), "assignment to `total`");
+    }
+    total
 }
 
 fn main() {

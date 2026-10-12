@@ -31,7 +31,7 @@ genus AnchoredHeading {
 
 
 functio append_nodes(lista<doc_mod.Node> base, lista<doc_mod.Node> extra) → lista<doc_mod.Node> {
-    varia lista<doc_mod.Node> result ← base
+    varia lista<doc_mod.Node> result ← copy base
     itera ex extra fixum item {
         result.appende(item)
     }
@@ -39,7 +39,7 @@ functio append_nodes(lista<doc_mod.Node> base, lista<doc_mod.Node> extra) → li
 }
 
 functio append_text_range(lista<doc_mod.Node> base, textus source, numerus start, numerus end) → lista<doc_mod.Node> {
-    varia lista<doc_mod.Node> result ← base
+    varia lista<doc_mod.Node> result ← copy base
     si end ≻ start {
         result.appende(doc_mod.text(source.sectio(start, end)))
     }

@@ -100,7 +100,7 @@ And so can a `dum` loop:
 ```faber
 incipit {
     varia numerus i ← 0
-    dum i < 3 {
+    dum i ≺ 3 {
         i ← i + 1
         si i ≡ 2 ergo iace "halfway"
     }

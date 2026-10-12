@@ -148,9 +148,8 @@ AIR（自動微分／AI 表示）是從 HIR → MIR 路徑分出的純函數式�
 
 ```faber locale=la
 @ radix lane "air"
-functio loss(numerus predicted, numerus expected) → numerus {
-    fixum numerus delta ← predicted - expected
-    redde delta * delta
+functio identity(bivalens value) → bivalens {
+    redde value
 }
 ```
 

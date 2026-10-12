@@ -148,9 +148,8 @@ AIR（Autograd / AI Representation，自动微分/AI 表示）是从 HIR → MIR
 
 ```faber locale=la
 @ radix lane "air"
-functio loss(numerus predicted, numerus expected) → numerus {
-    fixum numerus delta ← predicted - expected
-    redde delta * delta
+functio identity(bivalens value) → bivalens {
+    redde value
 }
 ```
 

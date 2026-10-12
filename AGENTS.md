@@ -138,8 +138,10 @@ leakage, missing discovery surfaces).
 
 ### How it works
 
-The generator is a Faber package at `generator/` that compiles to a Rust
-binary. It converts Markdown → HTML with:
+The generator is a Faber package at `generator/`. It runs interpreted
+through the MIR runner (`generator/scripts/speculum-run.sh`) because no host
+provider serves its `norma:fs` routes until core-norma N2. It converts
+Markdown → HTML with:
 
 - Block-level parsing (headings, paragraphs, tables, lists, code blocks)
 - Inline span rendering (backtick code, bold)
@@ -160,7 +162,7 @@ generator/scripts/render.sh src/en-US/syntax/types.md en-US la /speculum.css out
 generator/scripts/validate-fences.sh src/en-US
 ```
 
-`render.sh` builds the Speculum package to Rust, compiles it, and runs it.
+`render.sh` invokes the interpreted runner (`speculum-run.sh`) on one page.
 Speculum reads and writes site files through `norma:solum`; `faber:*` remains
 script-only rather than an application file-I/O path.
 
@@ -173,9 +175,9 @@ generator or the upstream source instead.
 
 | Script | Writes | Reads |
 |---|---|---|
-| `generate-target-matrix.py` | `src/{locale}/toolchain/target-matrix.md` | `faber/docs/EBNF_MATRIX.md` + `generator/locales/{locale}/targets.toml` |
-| `generate-grammar` (native Faber gate) | `src/{locale}/reference/grammar.md` (non-English locales keep the full EBNF behind a plain-language intro; en-US is then overwritten by `generate-grammar-tree.py`) | `faber/docs/EBNF.md`, `faber/docs/grammar/grammar.jsonl`, `glossary.<locale>.toml`; en-US reads `radix/locale/en/pack.toml` |
-| `generate-grammar-tree.py` | `src/en-US/reference/grammar.md` (family overview), `src/en-US/reference/grammar/*.md` (term tables, no EBNF), `static/agents/grammar/productions.md` (+ `dist/` copy; the full English-spelling EBNF) | same sibling inputs as `generate-grammar`, plus `dist/en-US/corpus/` for term links |
+| `generate-target-matrix.py` | `src/{locale}/toolchain/target-matrix.md` | `radix/grammar/EBNF_MATRIX.md` + `generator/locales/{locale}/targets.toml` |
+| `generate-grammar` (native Faber gate) | `src/{locale}/reference/grammar.md` (non-English locales keep the full EBNF behind a plain-language intro; en-US is then overwritten by `generate-grammar-tree.py`) | `radix/grammar/EBNF.md`, `radix/grammar/sources/grammar.jsonl`, `radix/grammar/sources/glossary.<locale>.toml`; en-US reads `radix/locale/en/pack.toml` |
+| `generate-grammar-tree.py` | `src/en-US/reference/grammar.md` (family overview), `src/en-US/reference/grammar/*.md` (term tables, no EBNF), `static/agents/grammar/productions.md` (+ `dist/` copy; the full English-spelling EBNF) | same radix grammar inputs as `generate-grammar`, plus `dist/en-US/corpus/` for term links |
 | `generate-target-lanes.py` | `src/{locale}/targets/*.md` | captured lane panels |
 | `generate-localization.py` | `src/{locale}/localization.md` | locale registry + captured panels |
 | `generate-releases.py` | `src/en-US/releases/*.md` | `gh` release tags + sibling `docs/release/v*.md` |
@@ -332,15 +334,21 @@ The corpus renderer (`render-corpus-batch.sh`) also post-processes its output:
 
 - `faber` 1.12.0 (docs site documents this release; `static/install.md`, the install skill, and the skill catalog pin it)
 - `radix` 0.84.0
-- **Generator build toolchain pin (2026-10-02):** current radix HEAD cannot
-  parse the generator source (grammar moved after Sep 30), and the 1.11.0
-  release binary's emit aliases mismatch the post-rename container runtime.
-  The proven pair: `FABER=/tmp/radix-sep30/target/release/faber` +
-  `FABER_SUPPORT_PATH_OVERRIDE=/tmp/container-sep30` +
-  `FABER_LIBRARY_HOME=<workspace>` and
-  `WORKSPACE_FABER=<workspace>/radix/target/debug/faber`. Unpin only after
-  the radix emit/runtime alias split is fixed. **Measured full build with
-  the pin: ~3:20 wall, all gates green** (generator alone 114.7s cold).
+- **Generator runs interpreted (2026-10-11):** `faber build -t rust` fails
+  at plan time on current radix because the generator's file I/O routes
+  through `norma:fs` (`call 'solum:lege'` frames) and no host provider
+  serves those routes since the native host was dropped with `hosts`
+  (native I/O returns with core-norma N2). The MIR runner serves solum
+  in-process, so `build-site.sh` and `render.sh` invoke the package through
+  `generator/scripts/speculum-run.sh` (`faber run generator -- …`). The
+  wrapper re-analyzes the package per invocation (~10 s), so renders
+  parallelize (`RENDER_JOBS`, default 6; `CORPUS_JOBS`, default 8). A full
+  build is ~1 h wall. When core-norma N2 restores a host route, revisit:
+  a generator-side `--batch` mode would amortize analysis even interpreted,
+  and a compiled binary removes the per-page cost entirely.
+  The 2026-10-02 toolchain pin (`/tmp/radix-sep30` + support-path override)
+  is obsolete — current radix parses the generator, and the pin's checkout
+  no longer exists.
 
 ## Campaign stages
 

@@ -94,7 +94,7 @@ below exactly as `radix emit --target rust` produces it:
 // Requires the faber language-runtime crate (add to Cargo.toml):
 //   faber = { path = "../faber" }  # adjust path for your layout
 
-// SCR-09 recorded suppressions: identifier/literal fidelity, plan-directed
+// Recorded suppressions: identifier/literal fidelity, plan-directed
 // casts and parameter passing, library-shaped artifact items.
 #![allow(non_camel_case_types, non_snake_case, dead_code, clippy::unreadable_literal, clippy::cast_lossless, clippy::cast_possible_truncation, clippy::cast_possible_wrap, clippy::cast_sign_loss, clippy::cast_precision_loss, clippy::needless_pass_by_value)]
 
@@ -106,7 +106,7 @@ pub struct Span {
 
 impl ::core::fmt::Debug for Span {
     fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-        write!(f, "Span {{ low = {}, high = {} }}", faber::display_fractus(*&self.low), faber::display_fractus(*&self.high))
+        write!(f, "Span {{ low = {}, high = {} }}", faber::display::fractus(*&self.low), faber::display::fractus(*&self.high))
     }
 }
 
@@ -144,6 +144,7 @@ through faber.
 | `fmir-text` | yes | yes | yes |
 | `fmir` | yes | yes | yes |
 | `fmir-bin` | yes | yes | yes |
+| `device-runtime` | — | — | — |
 
 Rust builds as a Cargo package today. Other targets give you source files to
 add to your existing project; assembling them into installable packages is

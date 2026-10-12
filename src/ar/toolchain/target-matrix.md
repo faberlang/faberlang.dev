@@ -2,12 +2,12 @@
 title = "توافق الأهداف"
 section = "targets"
 order = 2
-sources = "faber/docs/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
+sources = "radix/grammar/EBNF_MATRIX.md · target-capability-matrix.md · faber targets"
 
 translation_kind = "translated"
-prose_hash = "sha256:c968d1f6556f3d1e26f94a9edf2ea8ac82282e089358d4e6ec27280ed510de6c"
+prose_hash = "sha256:bcee8faa61668f5c4f051b7a8b5d59e68b78da57de68bdee8d1d0cf72acd2a52"
 code_hash = "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-source_commit = "366e6b884f798e2670db95d7961693e5185d9ecf"
+source_commit = "bb04e9d72b88b92e0b01cd6980f71b7b153bba0a"
 source_locale = "en-US"
 +++
 
@@ -53,21 +53,21 @@ Faber لغة واحدة لها عقود ترجمة متعددة. هذه الصف
 
 | الهدف | قادر | قابل للتحليل | % |
 |---|---|---|---|
-| rust | 377 | 382 | 99% |
-| go | 351 | 382 | 92% |
-| ts | 382 | 382 | 100% |
-| faber | 382 | 382 | 100% |
+| rust | 397 | 402 | 99% |
+| go | 365 | 402 | 91% |
+| ts | 402 | 402 | 100% |
+| faber | 402 | 402 | 100% |
 
 **مسار الأنظمة (MIR → مصنوعات الجهاز/IR)**
 
 | الهدف | قادر | قابل للتحليل | % |
 |---|---|---|---|
-| llvm-text | 351 | 378 | 93% |
-| wasm-text | 298 | 378 | 79% |
-| wasm | 298 | 378 | 79% |
-| sexp-struct | 302 | 378 | 80% |
-| sexp | 301 | 378 | 80% |
-| runner | 322 | 378 | 85% |
+| llvm-text | 371 | 401 | 93% |
+| wasm-text | 317 | 401 | 79% |
+| wasm | 317 | 401 | 79% |
+| sexp-struct | 321 | 401 | 80% |
+| sexp | 319 | 401 | 80% |
+| runner | 345 | 401 | 86% |
 
 ## الكلمات المفتاحية — مسار التطبيقات
 
@@ -79,7 +79,6 @@ Faber لغة واحدة لها عقود ترجمة متعددة. هذه الصف
 | <a id="ad"></a>`ad` | ✓ | ✕ | ✓ | ✓ |
 | <a id="adfirma"></a>`adfirma` | ✓ | ✓ | ✓ | ✓ |
 | <a id="ante"></a>`ante` | ✓ | ✓ | ✓ | ✓ |
-| <a id="atomic"></a>`atomic` | ✕ | ✓ | ✓ | ✓ |
 | <a id="argumenta"></a>`argumenta` | ✓ | ✓ | ✓ | ✓ |
 | <a id="bivalens"></a>`bivalens` | ✓ | ✓ | ✓ | ✓ |
 | <a id="cape"></a>`cape` | ✓ | ✓ | ✓ | ✓ |
@@ -88,7 +87,6 @@ Faber لغة واحدة لها عقود ترجمة متعددة. هذه الصف
 | <a id="ceteri"></a>`ceteri` | ✓ | ✓ | ✓ | ✓ |
 | <a id="ceterum"></a>`ceterum` | ✓ | ✓ | ✓ | ✓ |
 | <a id="clausura"></a>`clausura` | ✓ | ✓ | ✓ | ✓ |
-| <a id="cli"></a>`cli` | ✓ | ✓ | ✓ | ✓ |
 | <a id="copia"></a>`copia` | ✓ | ✓ | ✓ | ✓ |
 | <a id="cursor"></a>`cursor` | ✓ | ✓ | ✓ | ✓ |
 | <a id="custodi"></a>`custodi` | ✓ | ✓ | ✓ | ✓ |
@@ -111,92 +109,89 @@ Faber لغة واحدة لها عقود ترجمة متعددة. هذه الصف
 | <a id="finge"></a>`finge` | ✓ | ✓ | ✓ | ✓ |
 | <a id="fiunt"></a>`fiunt` | ✓ | ✓ | ✓ | ✓ |
 | <a id="fixum"></a>`fixum` | ✓ | ✓ | ✓ | ✓ |
-| <a id="fragilis"></a>`fragilis` | ✓ | ✓ | ✓ | ✓ |
 | <a id="fractus"></a>`fractus` | ✓ | ✓ | ✓ | ✓ |
+| <a id="fragilis"></a>`fragilis` | ✓ | ✓ | ✓ | ✓ |
 | <a id="functio"></a>`functio` | ✓ | ✓ | ✓ | ✓ |
-| <a id="futura"></a>`futura` | ✓ | ✓ | ✓ | ✓ |
 | <a id="futurum"></a>`futurum` | ✓ | ✓ | ✓ | ✓ |
 | <a id="generis"></a>`generis` | ✓ | ✓ | ✓ | ✓ |
 | <a id="genus"></a>`genus` | ✓ | ✓ | ✓ | ✓ |
 | <a id="iace"></a>`iace` | ✓ | ✓ | ✓ | ✓ |
-| <a id="iacit"></a>`iacit` | ✓ | ✓ | ✓ | ✓ |
 | <a id="ignotum"></a>`ignotum` | ✓ | ✓ | ✓ | ✓ |
 | <a id="immutata"></a>`immutata` | ✓ | ✓ | ✓ | ✓ |
+| <a id="implendum"></a>`implendum` | ✓ | ✓ | ✓ | ✓ |
 | <a id="implet"></a>`implet` | ✓ | ✓ | ✓ | ✓ |
 | <a id="importa"></a>`importa` | ✓ | ✓ | ✓ | ✓ |
-| <a id="in"></a>`in` | — | — | — | — |
-| <a id="insere"></a>`insere` | ✓ | ✓ | ✓ | ✓ |
+| <a id="in"></a>`in` | ✓ | ✓ | ✓ | ✓ |
 | <a id="incipiet"></a>`incipiet` | ✓ | ✓ | ✓ | ✓ |
 | <a id="incipit"></a>`incipit` | ✓ | ✓ | ✓ | ✓ |
+| <a id="insere"></a>`insere` | ✓ | ✓ | ✓ | ✓ |
 | <a id="instans"></a>`instans` | ✓ | ✓ | ✓ | ✓ |
 | <a id="itera"></a>`itera` | ✓ | ◐ | ✓ | ✓ |
+| <a id="iuncta"></a>`iuncta` | ✓ | ✓ | ✓ | ✓ |
 | <a id="lege"></a>`lege` | ✓ | ✓ | ✓ | ✓ |
 | <a id="lineam"></a>`lineam` | ✓ | ✓ | ✓ | ✓ |
 | <a id="lista"></a>`lista` | ✓ | ✓ | ✓ | ✓ |
-| <a id="matrix"></a>`matrix` | ✓ | ✕ | ✓ | ✓ |
 | <a id="mone"></a>`mone` | ✓ | ✓ | ✓ | ✓ |
 | <a id="mori"></a>`mori` | ✓ | ✓ | ✓ | ✓ |
 | <a id="nihil"></a>`nihil` | ✓ | ✓ | ✓ | ✓ |
-| <a id="numquam"></a>`numquam` | ✓ | ✓ | ✓ | ✓ |
-| <a id="numerus"></a>`numerus` | ✓ | ◐ | ✓ | ✓ |
 | <a id="non"></a>`non` | ✓ | ✓ | ✓ | ✓ |
+| <a id="numerus"></a>`numerus` | ✓ | ◐ | ✓ | ✓ |
+| <a id="numquam"></a>`numquam` | ✓ | ✓ | ✓ | ✓ |
+| <a id="objectum"></a>`objectum` | ✓ | ✓ | ✓ | ✓ |
+| <a id="octeti"></a>`octeti` | ✓ | ✓ | ✓ | ✓ |
 | <a id="omitte"></a>`omitte` | ✓ | ✓ | ✓ | ✓ |
 | <a id="omnia"></a>`omnia` | ✓ | ✓ | ✓ | ✓ |
 | <a id="operandus"></a>`operandus` | ✓ | ✓ | ✓ | ✓ |
 | <a id="optio"></a>`optio` | ✓ | ✓ | ✓ | ✓ |
 | <a id="optiones"></a>`optiones` | ✓ | ✓ | ✓ | ✓ |
 | <a id="ordo"></a>`ordo` | ✓ | ✓ | ✓ | ✓ |
-| <a id="octeti"></a>`octeti` | ✓ | ✓ | ✓ | ✓ |
-| <a id="implendum"></a>`implendum` | ✓ | ✓ | ✓ | ✓ |
 | <a id="per"></a>`per` | ✓ | ✓ | ✓ | ✓ |
 | <a id="perge"></a>`perge` | ✓ | ✓ | ✓ | ✓ |
 | <a id="postpara"></a>`postpara` | ✓ | ✓ | ✓ | ✓ |
 | <a id="postparabit"></a>`postparabit` | ✓ | ✓ | ✓ | ✓ |
-| <a id="prae"></a>`prae` | ✓ | ✓ | ✓ | ✓ |
 | <a id="praefixum"></a>`praefixum` | ✓ | ✓ | ✓ | ✓ |
 | <a id="praepara"></a>`praepara` | ✓ | ✓ | ✓ | ✓ |
 | <a id="praeparabit"></a>`praeparabit` | ✓ | ✓ | ✓ | ✓ |
-| <a id="promissum"></a>`promissum` | ✓ | ✓ | ✓ | ✓ |
 | <a id="privata"></a>`privata` | ✓ | ✓ | ✓ | ✓ |
 | <a id="proba"></a>`proba` | ✓ | ✓ | ✓ | ✓ |
 | <a id="probandum"></a>`probandum` | ✓ | ✓ | ✓ | ✓ |
+| <a id="promissum"></a>`promissum` | ✓ | ✓ | ✓ | ✓ |
 | <a id="protecta"></a>`protecta` | — | — | — | — |
 | <a id="publica"></a>`publica` | ✓ | ✓ | ✓ | ✓ |
 | <a id="ratio"></a>`ratio` | ✓ | ✓ | ✓ | ✓ |
 | <a id="redde"></a>`redde` | ✓ | ✓ | ✓ | ✓ |
 | <a id="reddet"></a>`reddet` | ✓ | ✓ | ✓ | ✓ |
+| <a id="reice"></a>`reice` | ✓ | ✓ | ✓ | ✓ |
 | <a id="repete"></a>`repete` | ✓ | ✓ | ✓ | ✓ |
 | <a id="requirit"></a>`requirit` | ✓ | ✓ | ✓ | ✓ |
-| <a id="reice"></a>`reice` | ✓ | ✓ | ✓ | ✓ |
 | <a id="rumpe"></a>`rumpe` | ✓ | ✓ | ✓ | ✓ |
 | <a id="scribe"></a>`scribe` | ✓ | ✓ | ✓ | ✓ |
 | <a id="scriptum"></a>`scriptum` | ✓ | ✓ | ✓ | ✓ |
 | <a id="secus"></a>`secus` | ✓ | ✓ | ✓ | ✓ |
+| <a id="selective-import"></a>`selective_import` | ✓ | ✓ | ✓ | ✓ |
 | <a id="si"></a>`si` | ✓ | ✓ | ✓ | ✓ |
 | <a id="sin"></a>`sin` | ✓ | ✓ | ✓ | ✓ |
 | <a id="sit"></a>`sit` | ✓ | ✓ | ✓ | ✓ |
-| <a id="solum-in"></a>`solum_in` | ✓ | ✓ | ✓ | ✓ |
 | <a id="solum"></a>`solum` | ✓ | ✓ | ✓ | ✓ |
+| <a id="solum-in"></a>`solum_in` | ✓ | ✓ | ✓ | ✓ |
 | <a id="sparge"></a>`sparge` | ✓ | ✓ | ✓ | ✓ |
 | <a id="sponte"></a>`sponte` | ✓ | ✓ | ✓ | ✓ |
-| <a id="selective-import"></a>`selective_import` | ✓ | ✓ | ✓ | ✓ |
-| <a id="tacet"></a>`tacet` | ✓ | ✓ | ✓ | ✓ |
-| <a id="tacebit"></a>`tacebit` | ✓ | ✓ | ✓ | ✓ |
 | <a id="tabula"></a>`tabula` | ✓ | ✓ | ✓ | ✓ |
+| <a id="tacebit"></a>`tacebit` | ✓ | ✓ | ✓ | ✓ |
+| <a id="tacet"></a>`tacet` | ✓ | ✓ | ✓ | ✓ |
 | <a id="tag"></a>`tag` | ✓ | ✓ | ✓ | ✓ |
 | <a id="temporis"></a>`temporis` | ✓ | ✓ | ✓ | ✓ |
-| <a id="tensor"></a>`tensor` | ✓ | ✓ | ✓ | ✓ |
 | <a id="textus"></a>`textus` | ✓ | ✓ | ✓ | ✓ |
 | <a id="typus"></a>`typus` | ✓ | ✓ | ✓ | ✓ |
 | <a id="ubique"></a>`ubique` | ✓ | ✓ | ✓ | ✓ |
 | <a id="usque"></a>`usque` | ✓ | ✓ | ✓ | ✓ |
 | <a id="ut"></a>`ut` | ✓ | ✓ | ✓ | ✓ |
+| <a id="vacuum"></a>`vacuum` | ✓ | ✓ | ✓ | ✓ |
 | <a id="varia"></a>`varia` | ✓ | ✓ | ✓ | ✓ |
 | <a id="variandum"></a>`variandum` | ✓ | ✓ | ✓ | ✓ |
-| <a id="vector"></a>`vector` | ✓ | ◐ | ✓ | ✓ |
-| <a id="vacuum"></a>`vacuum` | ✓ | ✓ | ✓ | ✓ |
 | <a id="verum"></a>`verum` | ✓ | ✓ | ✓ | ✓ |
 | <a id="vide"></a>`vide` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`∪` | ✓ | ✓ | ✓ | ✓ |
 
 ## العوامل — مسار التطبيقات
 
@@ -204,56 +199,53 @@ Faber لغة واحدة لها عقود ترجمة متعددة. هذه الصف
 
 | المصطلح | rust | go | ts | faber |
 |---|---|---|---|---|
-| <a id=""></a>`⊜` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∧` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`·` | ◐ | ◐ | ✓ | ✓ |
-| <a id=""></a>`×` | ✓ | ○ | ✓ | ✓ |
-| <a id=""></a>`⊗` | ✓ | ○ | ✓ | ✓ |
-| <a id=""></a>`⊙` | ✓ | ◐ | ✓ | ✓ |
-| <a id=""></a>`→` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⇥` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`←` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`↤` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⊥` | ✓ | ✓ | ✓ | ✓ |
-| <a id="aut"></a>`aut` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`![` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`!.` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`≠` | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`!(` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⊻` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`↦` | ◐ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⇒` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`‥` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`…` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`≡` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`!.` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`![` | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`=` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?(` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?.` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?[` | ✓ | ✓ | ✓ | ✓ |
+| <a id="aut"></a>`aut` | ✓ | ✓ | ✓ | ✓ |
+| <a id="ergo"></a>`ergo` | ✓ | ✓ | ✓ | ✓ |
 | <a id="et"></a>`et` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`≥` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∈` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`≤` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`↓` | ✓ | ✓ | ✓ | ✓ |
 | <a id="modulus-u16"></a>`modulus<u16>` | ✓ | ✕ | ✓ | ✓ |
 | <a id="modulus-u32"></a>`modulus<u32>` | ✓ | ✕ | ✓ | ✓ |
 | <a id="modulus-u64"></a>`modulus<u64>` | ✓ | ✕ | ✓ | ✓ |
 | <a id="modulus-u8"></a>`modulus<u8>` | ✓ | ✕ | ✓ | ✓ |
 | <a id="non-est"></a>`non est` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⊚` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∨` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∪` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`↑` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?[` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?.` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?(` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`§` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`✓` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⇐` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⊘` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⊛` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`¬` | ✓ | ✓ | ✓ | ✓ |
 | <a id="vel"></a>`vel` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∷` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`§` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`¬` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`·` | ◐ | ◐ | ✓ | ✓ |
+| <a id=""></a>`×` | ✓ | ○ | ✓ | ✓ |
+| <a id=""></a>`‥` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`…` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`←` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`→` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`↤` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`↦` | ◐ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⇐` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⇒` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⇥` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`∈` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`∧` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`∨` | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`∴` | ✓ | ✓ | ✓ | ✓ |
-| <a id="ergo"></a>`ergo` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`∷` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`≠` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`≡` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`≤` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`≥` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⊗` | ✓ | ○ | ✓ | ✓ |
+| <a id=""></a>`⊘` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⊙` | ✓ | ◐ | ✓ | ✓ |
+| <a id=""></a>`⊚` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⊛` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⊜` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⊥` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⊻` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`✓` | ✓ | ✓ | ✓ | ✓ |
 
 ## الكلمات المفتاحية — مسار الأنظمة
 
@@ -265,7 +257,6 @@ Faber لغة واحدة لها عقود ترجمة متعددة. هذه الصف
 | <a id="ad"></a>`ad` | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | <a id="adfirma"></a>`adfirma` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="ante"></a>`ante` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="atomic"></a>`atomic` | ✕ | ✕ | ✕ | ✕ | ✕ | ✕ |
 | <a id="argumenta"></a>`argumenta` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="bivalens"></a>`bivalens` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="cape"></a>`cape` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
@@ -274,7 +265,6 @@ Faber لغة واحدة لها عقود ترجمة متعددة. هذه الصف
 | <a id="ceteri"></a>`ceteri` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="ceterum"></a>`ceterum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="clausura"></a>`clausura` | ◐ | ◐ | ◐ | ◐ | ◐ | ✓ |
-| <a id="cli"></a>`cli` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="copia"></a>`copia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="cursor"></a>`cursor` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="custodi"></a>`custodi` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -297,92 +287,89 @@ Faber لغة واحدة لها عقود ترجمة متعددة. هذه الصف
 | <a id="finge"></a>`finge` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="fiunt"></a>`fiunt` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="fixum"></a>`fixum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="fragilis"></a>`fragilis` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="fractus"></a>`fractus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="functio"></a>`functio` | ✓ | ◐ | ◐ | ✓ | ✓ | ◐ |
-| <a id="futura"></a>`futura` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="fragilis"></a>`fragilis` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
+| <a id="functio"></a>`functio` | ✓ | ◐ | ◐ | ◐ | ◐ | ◐ |
 | <a id="futurum"></a>`futurum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="generis"></a>`generis` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="genus"></a>`genus` | ◐ | ◐ | ◐ | ◐ | ◐ | ✓ |
-| <a id="iace"></a>`iace` | ✓ | ◐ | ◐ | ✓ | ✓ | ✓ |
-| <a id="iacit"></a>`iacit` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="iace"></a>`iace` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="ignotum"></a>`ignotum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="immutata"></a>`immutata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
+| <a id="implendum"></a>`implendum` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
 | <a id="implet"></a>`implet` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
 | <a id="importa"></a>`importa` | ✓ | ◐ | ◐ | ◐ | ◐ | ◐ |
-| <a id="in"></a>`in` | — | — | — | — | — | — |
-| <a id="insere"></a>`insere` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="in"></a>`in` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="incipiet"></a>`incipiet` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="incipit"></a>`incipit` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="insere"></a>`insere` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="instans"></a>`instans` | ✓ | ✕ | ✕ | ✕ | ✕ | ◐ |
 | <a id="itera"></a>`itera` | ◐ | ◐ | ◐ | ◐ | ◐ | ✓ |
+| <a id="iuncta"></a>`iuncta` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
 | <a id="lege"></a>`lege` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="lineam"></a>`lineam` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="lista"></a>`lista` | ◐ | ◐ | ◐ | ◐ | ◐ | ✓ |
-| <a id="matrix"></a>`matrix` | ✕ | ✕ | ✕ | ✓ | ✓ | ✕ |
 | <a id="mone"></a>`mone` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="mori"></a>`mori` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="nihil"></a>`nihil` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="numquam"></a>`numquam` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| <a id="numerus"></a>`numerus` | ◐ | ◐ | ◐ | ✓ | ✓ | ◐ |
 | <a id="non"></a>`non` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="numerus"></a>`numerus` | ◐ | ◐ | ◐ | ✓ | ✓ | ◐ |
+| <a id="numquam"></a>`numquam` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
+| <a id="objectum"></a>`objectum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="octeti"></a>`octeti` | ✓ | ◐ | ◐ | ◐ | ◐ | ◐ |
 | <a id="omitte"></a>`omitte` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="omnia"></a>`omnia` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="operandus"></a>`operandus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="optio"></a>`optio` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="optiones"></a>`optiones` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="ordo"></a>`ordo` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="octeti"></a>`octeti` | ✓ | ◐ | ◐ | ◐ | ◐ | ◐ |
-| <a id="implendum"></a>`implendum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="per"></a>`per` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="perge"></a>`perge` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="postpara"></a>`postpara` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="postparabit"></a>`postparabit` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| <a id="prae"></a>`prae` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="praefixum"></a>`praefixum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="praepara"></a>`praepara` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="praeparabit"></a>`praeparabit` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| <a id="promissum"></a>`promissum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="privata"></a>`privata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="proba"></a>`proba` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="probandum"></a>`probandum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
+| <a id="promissum"></a>`promissum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="protecta"></a>`protecta` | — | — | — | — | — | — |
 | <a id="publica"></a>`publica` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="ratio"></a>`ratio` | — | — | — | — | — | — |
+| <a id="ratio"></a>`ratio` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="redde"></a>`redde` | ✓ | ✓ | ✓ | ✓ | ✓ | ◐ |
 | <a id="reddet"></a>`reddet` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="reice"></a>`reice` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="repete"></a>`repete` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| <a id="requirit"></a>`requirit` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id="reice"></a>`reice` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
+| <a id="requirit"></a>`requirit` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="rumpe"></a>`rumpe` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="scribe"></a>`scribe` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="scriptum"></a>`scriptum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="secus"></a>`secus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="selective-import"></a>`selective_import` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="si"></a>`si` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="sin"></a>`sin` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="sit"></a>`sit` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="solum-in"></a>`solum_in` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="solum"></a>`solum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
+| <a id="solum-in"></a>`solum_in` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="sparge"></a>`sparge` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="sponte"></a>`sponte` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| <a id="selective-import"></a>`selective_import` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="tacet"></a>`tacet` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="tacebit"></a>`tacebit` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="tabula"></a>`tabula` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
+| <a id="tacebit"></a>`tacebit` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="tacet"></a>`tacet` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="tag"></a>`tag` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="temporis"></a>`temporis` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| <a id="tensor"></a>`tensor` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ |
 | <a id="textus"></a>`textus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="typus"></a>`typus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="ubique"></a>`ubique` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="usque"></a>`usque` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="ut"></a>`ut` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="vacuum"></a>`vacuum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="varia"></a>`varia` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="variandum"></a>`variandum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="vector"></a>`vector` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ |
-| <a id="vacuum"></a>`vacuum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="verum"></a>`verum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="vide"></a>`vide` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`∪` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
 
 ## العوامل — مسار الأنظمة
 
@@ -390,56 +377,53 @@ Faber لغة واحدة لها عقود ترجمة متعددة. هذه الصف
 
 | المصطلح | llvm-text | wasm-text | wasm | sexp-struct | sexp | runner |
 | --- | --- | --- | --- | --- | --- | --- |
-| <a id=""></a>`⊜` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∧` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`·` | ◐ | ◐ | ◐ | ✓ | ✓ | ◐ |
-| <a id=""></a>`×` | ✓ | ○ | ○ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⊗` | ○ | ○ | ○ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⊙` | ◐ | ◐ | ◐ | ✓ | ✓ | ◐ |
-| <a id=""></a>`→` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⇥` | ✓ | ✕ | ✕ | ✓ | ✓ | ✓ |
-| <a id=""></a>`←` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`↤` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
-| <a id=""></a>`⊥` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
-| <a id="aut"></a>`aut` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`![` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`!.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`≠` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`!(` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⊻` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`↦` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ |
-| <a id=""></a>`⇒` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`‥` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`…` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`≡` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`!.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`![` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`=` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?(` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`?[` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="aut"></a>`aut` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="ergo"></a>`ergo` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="et"></a>`et` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`≥` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∈` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`≤` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`↓` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="modulus-u16"></a>`modulus<u16>` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="modulus-u32"></a>`modulus<u32>` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="modulus-u64"></a>`modulus<u64>` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="modulus-u8"></a>`modulus<u8>` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="non-est"></a>`non est` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⊚` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∨` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∪` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
-| <a id=""></a>`↑` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?[` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?.` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`?(` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`§` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`✓` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⇐` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⊘` | ✓ | ◐ | ◐ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⊛` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`¬` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="vel"></a>`vel` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∷` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
+| <a id=""></a>`§` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`¬` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`·` | ◐ | ◐ | ◐ | ✓ | ✓ | ◐ |
+| <a id=""></a>`×` | ✓ | ○ | ○ | ✓ | ✓ | ✓ |
+| <a id=""></a>`‥` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`…` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`←` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`→` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`↤` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
+| <a id=""></a>`↦` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ |
+| <a id=""></a>`⇐` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⇒` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⇥` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`∈` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`∧` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`∨` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`∴` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="ergo"></a>`ergo` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`∷` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
+| <a id=""></a>`≠` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`≡` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`≤` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`≥` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⊗` | ○ | ○ | ○ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⊘` | ✓ | ◐ | ◐ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⊙` | ◐ | ◐ | ◐ | ✓ | ✓ | ◐ |
+| <a id=""></a>`⊚` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⊛` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⊜` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`⊥` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
+| <a id=""></a>`⊻` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`✓` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 
 ## مصطلحات أخرى (`existing-home` / غير محدد)
 
@@ -447,21 +431,9 @@ Faber لغة واحدة لها عقود ترجمة متعددة. هذه الصف
 
 | المصطلح | rust | go | ts | faber |
 |---|---|---|---|---|
-| <a id="alias"></a>`alias` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`@` | ✓ | ✓ | ✓ | ✓ |
-| <a id="f16"></a>`f16` | ✕ | ✓ | ✓ | ✓ |
-| <a id="forma"></a>`forma` | ✓ | ✓ | ✓ | ✓ |
-| <a id="imperia"></a>`imperia` | ✓ | ✓ | ✓ | ✓ |
-| <a id="imperium"></a>`imperium` | ✓ | ✓ | ✓ | ✓ |
-| <a id="iuncta"></a>`iuncta` | ✓ | ✓ | ✓ | ✓ |
-| <a id="manifest"></a>`manifest` | ✓ | ✓ | ✓ | ✓ |
+| <a id="block-string"></a>`block-string` | ✓ | ✓ | ✓ | ✓ |
 | <a id="metior"></a>`metior` | ✓ | ✓ | ✓ | ✓ |
 | <a id="named-holes"></a>`named-holes` | ✓ | ✓ | ✓ | ✓ |
-| <a id="nondum"></a>`nondum` | ✓ | ✓ | ✓ | ✓ |
-| <a id="objectum"></a>`objectum` | ✓ | ✓ | ✓ | ✓ |
 | <a id="prima"></a>`prima` | ✓ | ✓ | ✓ | ✓ |
 | <a id="string"></a>`string` | ✓ | ✓ | ✓ | ✓ |
-| <a id="block-string"></a>`block-string` | ✓ | ✓ | ✓ | ✓ |
-| <a id="targets"></a>`targets` | ✓ | ✓ | ✓ | ✓ |
 | <a id="ultima"></a>`ultima` | ✓ | ✓ | ✓ | ✓ |
-| <a id="versio"></a>`versio` | ✓ | ✓ | ✓ | ✓ |

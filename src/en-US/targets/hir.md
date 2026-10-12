@@ -24,10 +24,10 @@ A target showing fewer scenarios than the others is not broken. It means the emi
 
 | Target | Capable | Analyzable | Coverage |
 |---|---|---|---|
-| [Rust](/targets/rust.html) | 373 | 378 | 99% |
-| [TypeScript](/targets/ts.html) | 378 | 378 | 100% |
-| [Go](/targets/go.html) | 347 | 378 | 92% |
-| [Faber](/targets/faber.html) | 378 | 378 | 100% |
+| [Rust](/targets/rust.html) | 418 | 423 | 99% |
+| [TypeScript](/targets/ts.html) | 423 | 423 | 100% |
+| [Go](/targets/go.html) | 386 | 423 | 91% |
+| [Faber](/targets/faber.html) | 423 | 423 | 100% |
 
 ---
 

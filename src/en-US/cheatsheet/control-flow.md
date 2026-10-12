@@ -29,7 +29,7 @@ incipit {
 
 ```faber
 functio abs(numerus n) → numerus {
-    si n < 0 ergo redde 0 - n
+    si n ≺ 0 ergo redde 0 - n
     redde n
 }
 

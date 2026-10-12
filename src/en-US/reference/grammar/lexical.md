@@ -4,8 +4,8 @@ section = "grammar-lexical"
 order = 10
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [
-  "faber/docs/EBNF.md",
-  "faber/docs/grammar/grammar.jsonl",
+  "radix/grammar/EBNF.md",
+  "radix/grammar/sources/grammar.jsonl",
   "radix/locale/en/pack.toml",
 ]
 +++

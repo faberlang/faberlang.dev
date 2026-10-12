@@ -37,6 +37,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | argmin           最小值索引
 | args             参数
 | as               作为
+| asc              升序
 | assert           断言
 | async            异步
 | async_generator  异流
@@ -47,6 +48,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | await            等弃
 | await_const      等定
 | await_var        等变
+| axis             轴
 | before           迄
 | bench            计量
 | between          间
@@ -69,6 +71,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | cursor           迭代器
 | debug            查看
 | default          默认
+| desc             降序
 | describe         验题
 | description      描述
 | do               执行
@@ -86,7 +89,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | for              遍历
 | format           格式化
 | fragment         片段
-| free             自由
 | from             取自
 | future           未来
 | generator        流
@@ -112,7 +114,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | mut              传入
 | name             名称
 | nan              nan
-| nihil            空
 | not              非
 | null             皆无
 | only             仅
@@ -152,6 +153,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | short            简
 | size             维度
 | skip             跳过
+| sort             排序
 | spread           展开
 | static           静态
 | step             步
@@ -200,6 +202,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | census       普查
 | channel      通道
 | char         字符
+| clamp        钳制
 | filter       过滤器
 | float        小数
 | frame        帧
@@ -208,6 +211,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | intervallum  区间
 | iterator     游标
 | json         json
+| ledger       账本
 | list         列表
 | map          映射
 | matrix       矩阵
@@ -218,6 +222,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | queue        队列
 | record       ratio
 | recv         接收
+| reflect      反射
 | regex        regex
 | saturating   饱和
 | send         发送
@@ -232,6 +237,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | value        动态值
 | vector       向量
 | void         无值
+| wrap         环绕
 | wrapping_ty  模数类型
 ```
 
@@ -251,6 +257,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | approx                近似
 | argmax                最大值索引
 | argmin                最小值索引
+| at                    在
 | at_least              至少
 | at_most               至多
 | bit_and               按位与
@@ -282,6 +289,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | escape                转义
 | exchange              交换
 | exp                   指数
+| expanded              扩展
 | fill                  填充
 | filter                过滤
 | find                  查找
@@ -292,7 +300,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | flipped               已翻转
 | floor                 向下取整
 | formata               formata
-| from_flat             由扁平构造
 | gather                收集
 | gelu                  gelu
 | get                   获取
@@ -310,6 +317,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | layer_norm            层归一化
 | length                长度
 | less                  小于
+| limes                 边界
 | ln                    自然对数
 | load                  加载
 | log10                 常用对数
@@ -344,6 +352,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | round                 四舍五入
 | set                   设置
 | shape                 形状
+| shift                 平移
 | shift_left            左移
 | shift_right           右移
 | shifted_left          已左移

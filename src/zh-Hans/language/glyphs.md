@@ -40,7 +40,7 @@ Faber 在符号具有结构意义时使用字形。以下是词法分析器识�
 
 | 字形 | 含义 |
 |-------|---------|
-| `≡` `≠` | 精确相等与不等 |
+| `≡` `≢` | 精确相等与不等 |
 | `≅` `≇` | 提升后精确相等——同值、兼容的数值类型 |
 | `<` `>` `≤` `≥` | 排序 |
 | `≈` `≉` | 模糊相等——按 `isclose` 默认容差匹配 |
@@ -199,7 +199,7 @@ Faber 为每个具有行为或语法形态的构造使用拉丁语词汇。该�
 
 | 字形 | 含义 |
 |-------|---------|
-| `≡` `≠` `≢` | 精确相等与不等——要求严格类型匹配 |
+| `≡` `≢` `≢` | 精确相等与不等——要求严格类型匹配 |
 | `≅` `≇` | 提升后精确相等——数值宽度合并后精确比较 |
 | `≈` `≉` | 模糊相等——按 `isclose` 默认容差匹配 |
 | `<` `>` `≤` `≥` | 排序比较 |
@@ -253,36 +253,64 @@ fixum _ p ← Point {
 
 ### 读者包片段
 
-```faber locale=la
-函数 问候(文本 姓名) → 文本 {
-    若 姓名 ≡ "" 则 返回 "你好，世界"
-    返回 "你好，" ⊕ 姓名
+```faber locale=zh-Hans
+函数 greet(文本 name) → 文本 {
+    如果 name ≡ "" 则 返回 "你好，世界"
+    返回 "你好，" + name
 }
+```
 
 类型-first 声明：
-数字 计数 ← 0
-文本 名字 ← "费伯"
 
-固定 圆周率 ← 3.14
-可变 计数器 ← 0
-当 计数器 < 10 {
-    计数器 ← 计数器 + 1
+```faber locale=zh-Hans
+入口 {
+    变量 整数 tally ← 0
+    变量 文本 name ← "费伯"
+    常量 f64 pi ← 3.14
 }
+```
 
-迭代 项 于 列表 {
-    若 项 > 100 则 返回 项
+```faber locale=zh-Hans
+入口 {
+    变量 整数 counter ← 0
+    当 counter ≺ 10 {
+        counter ← counter + 1
+    }
 }
+```
 
-枚举 颜色 {
-    红色
-    绿色
-    蓝色
+```faber locale=zh-Hans
+入口 {
+    常量 列表<整数> items ← [3, 105, 8]
+    遍历 取自 items 常量 item {
+        如果 item ≻ 100 {
+            显示 item
+        }
+    }
 }
+```
 
-否则 情况 {
-    红 ⇒ 返回 "停止"
-    绿 ⇒ 返回 "通行"
+```faber locale=zh-Hans
+枚举 Color {
+    Red,
+    Green,
+    Blue
 }
+```
+
+```faber locale=zh-Hans
+入口 {
+    常量 文本 light ← "red"
+    选择 light {
+        情况 "red" {
+            显示 "停止"
+        }
+        默认 {
+            显示 "通行"
+        }
+    }
+}
+```
 
 ## Canonical vs sugar surfaces
 
@@ -308,9 +336,11 @@ Faber 设计中的一个反复出现的模式：语言为每个构造定义**唯
 **通用 Faber（偏好长形式）：**
 
 ```faber
-fixum lista<f32> values ← vacua
-fixum tensor<f32, [2, 3]> grid ← vacua
-fixum i32 narrow ← 7
+incipit {
+    fixum lista<f32> values ← vacua
+    fixum tensor<f32, [2, 3]> grid ← vacua
+    fixum i32 narrow ← 7
+}
 ```
 
 **数值模块（偏好糖式）：**

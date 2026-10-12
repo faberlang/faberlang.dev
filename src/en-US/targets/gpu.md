@@ -13,8 +13,8 @@ The shader text below is the lowering surface. Real device execution — `faber 
 
 | Target | Emits | Scenarios shown |
 |---|---|---|
-| [WGSL](/targets/wgsl-text.html) | WGSL compute shader | 1 of 1 |
-| [Metal](/targets/metal-text.html) | Metal MSL | 1 of 1 |
+| [WGSL](/targets/wgsl-text.html) | WGSL compute shader | 0 of 1 |
+| [Metal](/targets/metal-text.html) | Metal MSL | 0 of 1 |
 
 A target showing fewer scenarios than the others is not broken. It means the emitter declines that shape, which the pages state directly rather than hiding.
 

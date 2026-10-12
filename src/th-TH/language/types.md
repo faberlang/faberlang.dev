@@ -173,7 +173,7 @@ functio add(matrix<f32, [2, 2]> a, matrix<f32, [2, 2]> b) → matrix<f32, [2, 2]
     redde a.addita(b)
 }
 
-functio swap(atomic<i32> cell, i32 value) → i32 {
+functio swap(in atomic<i32> cell, i32 value) → i32 {
     redde cell.exchange(value)
 }
 ```
@@ -199,7 +199,7 @@ functio consume(own textus buffer) → textus {
 
 | ตัวดำเนินการ | กลุ่ม | พฤติกรรม |
 |----------|--------|-----------|
-| `≡`, `≠`, `≢` | ความเท่ากันแบบตรงกันทุกประการ | ต้องใช้ชนิดข้อมูลเดียวกัน; `nihil` เป็นข้อยกเว้น |
+| `≡`, `≢` | ความเท่ากันแบบตรงกันทุกประการ | ต้องใช้ชนิดข้อมูลเดียวกัน; `nihil` เป็นข้อยกเว้น |
 | `≅`, `≇` | ความเท่ากันตรงทั้งหมดหลังเลื่อนประเภท | รวมความกว้างตัวเลขแล้วเทียบแบบตรงทั้งหมด |
 | `≈`, `≉` | ความเท่ากันแบบคลาดเคลื่อน | เข้าคู่ตามค่าคลาดเคลื่อน — ค่าเริ่มต้น `isclose` (rel_tol 1e-09); ตัวถูกดำเนินการตัวเลขเท่านั้น |
 | `<`, `≤`, `>`, `≥` | การเรียงลำดับ | ใช้กับตัวเลข จุดเวลา และข้อความสเกลาร์ |
@@ -375,8 +375,7 @@ incipit {
 
 ```faber
 incipit {
-    fixum tf32[] seed ← vacua
-    fixum tf32[4] lanes ← seed.strue([1.0, 2.0, 3.0, 4.0], [4])
+    fixum tf32[4] lanes ← [1.0, 2.0, 3.0, 4.0] ↦ tf32[4]
 }
 ```
 
@@ -388,7 +387,7 @@ incipit {
 
 ```faber
 incipit {
-    fixum sparsa<f32, [2, 3]> sparse ← vacua
+    varia sparsa<f32, [2, 3]> sparse ← vacua
     sparse.ponde([0, 1], 4.0)
     sparse.ponde([1, 2], 9.0)
 

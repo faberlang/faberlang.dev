@@ -39,6 +39,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | argmin           argmin
 | args             args
 | as               as
+| asc              asc
 | assert           assert
 | async            async
 | async_generator  async_generator
@@ -49,6 +50,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | await            await
 | await_const      await_const
 | await_var        await_var
+| axis             axis
 | before           before
 | bench            bench
 | between          between
@@ -71,6 +73,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | cursor           cursor
 | debug            debug
 | default          default
+| desc             desc
 | describe         describe
 | description      description
 | do               do
@@ -88,7 +91,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | for              for
 | format           format
 | fragment         fragment
-| free             free
 | from             from
 | future           future
 | generator        generator
@@ -114,7 +116,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | mut              mut
 | name             name
 | nan              nan
-| nihil            nihil
 | not              not
 | null             null
 | only             only
@@ -154,6 +155,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | short            short
 | size             size
 | skip             skip
+| sort             sort
 | spread           spread
 | static           static
 | step             step
@@ -202,6 +204,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | census       census
 | channel      channel
 | char         char
+| clamp        clamp
 | filter       filter
 | float        float
 | frame        frame
@@ -210,6 +213,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | intervallum  intervallum
 | iterator     iterator
 | json         json
+| ledger       ledger
 | list         list
 | map          map
 | matrix       matrix
@@ -220,6 +224,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | queue        queue
 | record       record
 | recv         recv
+| reflect      reflect
 | regex        regex
 | saturating   saturating
 | send         send
@@ -234,6 +239,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | value        value
 | vector       vector
 | void         void
+| wrap         wrap
 | wrapping_ty  wrapping_ty
 ```
 
@@ -253,6 +259,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | approx                approx
 | argmax                argmax
 | argmin                argmin
+| at                    at
 | at_least              at_least
 | at_most               at_most
 | bit_and               bit_and
@@ -284,6 +291,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | escape                escape
 | exchange              exchange
 | exp                   exp
+| expanded              expanded
 | fill                  fill
 | filter                filter
 | find                  find
@@ -294,7 +302,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | flipped               flipped
 | floor                 floor
 | formata               formata
-| from_flat             from_flat
 | gather                gather
 | gelu                  gelu
 | get                   get
@@ -312,6 +319,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | layer_norm            layer_norm
 | length                length
 | less                  less
+| limes                 limes
 | ln                    ln
 | load                  load
 | log10                 log10
@@ -346,6 +354,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | round                 round
 | set                   set
 | shape                 shape
+| shift                 shift
 | shift_left            shift_left
 | shift_right           shift_right
 | shifted_left          shifted_left

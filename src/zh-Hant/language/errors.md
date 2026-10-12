@@ -27,7 +27,7 @@ Faber 將三個相關概念分開處理，而許多語言會將它們折疊成�
 
 ```faber
 functio porta(numerus x) → numerus {
-    si x < 0 ergo redde 0
+    si x ≺ 0 ergo redde 0
     redde x * 2
 }
 ```
@@ -49,7 +49,7 @@ functio divide(numerus a, numerus b) → numerus ⇥ textus {
 
 ```faber
 functio exigePositivum(numerus value) ⇥ textus {
-    si value < 0 ergo iace "negative value"
+    si value ≺ 0 ergo iace "negative value"
 }
 ```
 
@@ -96,7 +96,7 @@ incipit {
 
 ```faber
 functio exigePositivum(numerus value) ⇥ textus {
-    si value < 0 ergo iace "negative value"
+    si value ≺ 0 ergo iace "negative value"
 }
 ```
 
@@ -161,7 +161,7 @@ incipit {
     fixum _ x ← 10
 
     # Simple assertion
-    adfirma x > 0
+    adfirma x ≻ 0
 
     # With custom message
     adfirma x ≡ 10 mori "x decem esse debet"
@@ -169,7 +169,7 @@ incipit {
     # Multiple assertions in sequence
     fixum _ nomen ← "Marcus"
     adfirma nomen ≡ "Marcus"
-    adfirma nomen ≠ "" mori "nomen vacuum non sit"
+    adfirma nomen ≢ "" mori "nomen vacuum non sit"
 }
 ```
 

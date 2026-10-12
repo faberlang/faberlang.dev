@@ -9,7 +9,6 @@ declare void @__faber_rt_v1_fatal(ptr, %FaberRtSliceV1) noreturn
 declare void @__faber_rt_v1_numerus_overflow(ptr) noreturn
 
 
-declare ptr @__faber_aggregate_array_2_i64_i64(i64, i64)
 ; @runtime __faber_rt_v1_array_new category=core-semantics
 declare %FaberRtPtrResultV1 @__faber_rt_v1_array_new(ptr, i32)
 ; @runtime __faber_rt_v1_array_push category=core-semantics
@@ -32,8 +31,7 @@ define void @incipit() {
       %l2.addr = alloca ptr
       %l3.addr = alloca ptr
       %l4.addr = alloca ptr
-      %l5.addr = alloca ptr
-      %l6.addr = alloca float
+      %l5.addr = alloca float
       %t0.addr = alloca float
       %t1.addr = alloca float
       %t2.addr = alloca float
@@ -60,7 +58,8 @@ define void @incipit() {
       %t23.addr = alloca ptr
       %t24.addr = alloca ptr
       %t25.addr = alloca ptr
-      %t26.addr = alloca float
+      %t26.addr = alloca ptr
+      %t27.addr = alloca float
       br label %b0
     b0:
       %cast0 = fptrunc double 1.0 to float
@@ -266,81 +265,130 @@ define void @incipit() {
       %load57 = load ptr, ptr %t19.addr
       store ptr %load57, ptr %l1.addr
       %faber.context58 = load ptr, ptr @__faber_rt_v1_context
-      %faber.tensor.result58 = call %FaberRtPtrResultV1 @__faber_rt_v1_tensor_new(ptr %faber.context58, i32 5)
-      %faber.tensor.status58 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result58, 0
-      %faber.tensor.value58 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result58, 1
+      %faber.array.result58 = call %FaberRtPtrResultV1 @__faber_rt_v1_array_new(ptr %faber.context58, i32 4)
+      %faber.array.status58 = extractvalue %FaberRtPtrResultV1 %faber.array.result58, 0
+      %faber.array.handle58 = extractvalue %FaberRtPtrResultV1 %faber.array.result58, 1
       %faber.old.status58 = load i32, ptr @__faber_rt_v1_status
       %faber.has.error58 = icmp ne i32 %faber.old.status58, 0
-      %faber.latched.status58 = select i1 %faber.has.error58, i32 %faber.old.status58, i32 %faber.tensor.status58
+      %faber.latched.status58 = select i1 %faber.has.error58, i32 %faber.old.status58, i32 %faber.array.status58
       store i32 %faber.latched.status58, ptr @__faber_rt_v1_status
-      store ptr %faber.tensor.value58, ptr %t20.addr
-      %load59 = load ptr, ptr %t20.addr
-      store ptr %load59, ptr %l2.addr
-      %agg60 = call ptr @__faber_aggregate_array_2_i64_i64(i64 2, i64 3)
-      store ptr %agg60, ptr %t21.addr
-      %load62 = load ptr, ptr %l2.addr
+      %faber.array.value59 = alloca i64
+      store i64 2, ptr %faber.array.value59
+      %faber.array.status59 = call i32 @__faber_rt_v1_array_push(ptr %faber.context58, ptr %faber.array.handle58, i32 4, ptr %faber.array.value59)
+      %faber.old.status59 = load i32, ptr @__faber_rt_v1_status
+      %faber.has.error59 = icmp ne i32 %faber.old.status59, 0
+      %faber.latched.status59 = select i1 %faber.has.error59, i32 %faber.old.status59, i32 %faber.array.status59
+      store i32 %faber.latched.status59, ptr @__faber_rt_v1_status
+      %faber.array.value60 = alloca i64
+      store i64 3, ptr %faber.array.value60
+      %faber.array.status60 = call i32 @__faber_rt_v1_array_push(ptr %faber.context58, ptr %faber.array.handle58, i32 4, ptr %faber.array.value60)
+      %faber.old.status60 = load i32, ptr @__faber_rt_v1_status
+      %faber.has.error60 = icmp ne i32 %faber.old.status60, 0
+      %faber.latched.status60 = select i1 %faber.has.error60, i32 %faber.old.status60, i32 %faber.array.status60
+      store i32 %faber.latched.status60, ptr @__faber_rt_v1_status
+      store ptr %faber.array.handle58, ptr %t20.addr
       %faber.context61 = load ptr, ptr @__faber_rt_v1_context
-      %load63 = load ptr, ptr %l0.addr
-      %load64 = load ptr, ptr %t21.addr
-      %faber.tensor.result61 = call %FaberRtPtrResultV1 @__faber_rt_v1_tensor_from_flat(ptr %faber.context61, i32 5, ptr %load63, ptr %load64)
+      %faber.tensor.result61 = call %FaberRtPtrResultV1 @__faber_rt_v1_tensor_new(ptr %faber.context61, i32 5)
       %faber.tensor.status61 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result61, 0
       %faber.tensor.value61 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result61, 1
       %faber.old.status61 = load i32, ptr @__faber_rt_v1_status
       %faber.has.error61 = icmp ne i32 %faber.old.status61, 0
       %faber.latched.status61 = select i1 %faber.has.error61, i32 %faber.old.status61, i32 %faber.tensor.status61
       store i32 %faber.latched.status61, ptr @__faber_rt_v1_status
-      store ptr %faber.tensor.value61, ptr %t22.addr
-      %load65 = load ptr, ptr %t22.addr
-      store ptr %load65, ptr %l3.addr
-      %agg66 = call ptr @__faber_aggregate_array_2_i64_i64(i64 3, i64 4)
-      store ptr %agg66, ptr %t23.addr
-      %load68 = load ptr, ptr %l2.addr
+      store ptr %faber.tensor.value61, ptr %t21.addr
+      %load63 = load ptr, ptr %t21.addr
+      %faber.context62 = load ptr, ptr @__faber_rt_v1_context
+      %load64 = load ptr, ptr %l0.addr
+      %load65 = load ptr, ptr %t20.addr
+      %faber.tensor.result62 = call %FaberRtPtrResultV1 @__faber_rt_v1_tensor_from_flat(ptr %faber.context62, i32 5, ptr %load64, ptr %load65)
+      %faber.tensor.status62 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result62, 0
+      %faber.tensor.value62 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result62, 1
+      %faber.old.status62 = load i32, ptr @__faber_rt_v1_status
+      %faber.has.error62 = icmp ne i32 %faber.old.status62, 0
+      %faber.latched.status62 = select i1 %faber.has.error62, i32 %faber.old.status62, i32 %faber.tensor.status62
+      store i32 %faber.latched.status62, ptr @__faber_rt_v1_status
+      store ptr %faber.tensor.value62, ptr %t22.addr
+      %load66 = load ptr, ptr %t22.addr
+      store ptr %load66, ptr %l2.addr
       %faber.context67 = load ptr, ptr @__faber_rt_v1_context
-      %load69 = load ptr, ptr %l1.addr
-      %load70 = load ptr, ptr %t23.addr
-      %faber.tensor.result67 = call %FaberRtPtrResultV1 @__faber_rt_v1_tensor_from_flat(ptr %faber.context67, i32 5, ptr %load69, ptr %load70)
-      %faber.tensor.status67 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result67, 0
-      %faber.tensor.value67 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result67, 1
+      %faber.array.result67 = call %FaberRtPtrResultV1 @__faber_rt_v1_array_new(ptr %faber.context67, i32 4)
+      %faber.array.status67 = extractvalue %FaberRtPtrResultV1 %faber.array.result67, 0
+      %faber.array.handle67 = extractvalue %FaberRtPtrResultV1 %faber.array.result67, 1
       %faber.old.status67 = load i32, ptr @__faber_rt_v1_status
       %faber.has.error67 = icmp ne i32 %faber.old.status67, 0
-      %faber.latched.status67 = select i1 %faber.has.error67, i32 %faber.old.status67, i32 %faber.tensor.status67
+      %faber.latched.status67 = select i1 %faber.has.error67, i32 %faber.old.status67, i32 %faber.array.status67
       store i32 %faber.latched.status67, ptr @__faber_rt_v1_status
-      store ptr %faber.tensor.value67, ptr %t24.addr
-      %load71 = load ptr, ptr %t24.addr
-      store ptr %load71, ptr %l4.addr
-      %load73 = load ptr, ptr %l3.addr
-      %faber.context72 = load ptr, ptr @__faber_rt_v1_context
-      %load74 = load ptr, ptr %l4.addr
-      %faber.tensor.result72 = call %FaberRtPtrResultV1 @__faber_rt_v1_tensor_matmul(ptr %faber.context72, ptr %load73, ptr %load74)
-      %faber.tensor.status72 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result72, 0
-      %faber.tensor.value72 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result72, 1
-      %faber.old.status72 = load i32, ptr @__faber_rt_v1_status
-      %faber.has.error72 = icmp ne i32 %faber.old.status72, 0
-      %faber.latched.status72 = select i1 %faber.has.error72, i32 %faber.old.status72, i32 %faber.tensor.status72
-      store i32 %faber.latched.status72, ptr @__faber_rt_v1_status
-      store ptr %faber.tensor.value72, ptr %t25.addr
+      %faber.array.value68 = alloca i64
+      store i64 3, ptr %faber.array.value68
+      %faber.array.status68 = call i32 @__faber_rt_v1_array_push(ptr %faber.context67, ptr %faber.array.handle67, i32 4, ptr %faber.array.value68)
+      %faber.old.status68 = load i32, ptr @__faber_rt_v1_status
+      %faber.has.error68 = icmp ne i32 %faber.old.status68, 0
+      %faber.latched.status68 = select i1 %faber.has.error68, i32 %faber.old.status68, i32 %faber.array.status68
+      store i32 %faber.latched.status68, ptr @__faber_rt_v1_status
+      %faber.array.value69 = alloca i64
+      store i64 4, ptr %faber.array.value69
+      %faber.array.status69 = call i32 @__faber_rt_v1_array_push(ptr %faber.context67, ptr %faber.array.handle67, i32 4, ptr %faber.array.value69)
+      %faber.old.status69 = load i32, ptr @__faber_rt_v1_status
+      %faber.has.error69 = icmp ne i32 %faber.old.status69, 0
+      %faber.latched.status69 = select i1 %faber.has.error69, i32 %faber.old.status69, i32 %faber.array.status69
+      store i32 %faber.latched.status69, ptr @__faber_rt_v1_status
+      store ptr %faber.array.handle67, ptr %t23.addr
+      %faber.context70 = load ptr, ptr @__faber_rt_v1_context
+      %faber.tensor.result70 = call %FaberRtPtrResultV1 @__faber_rt_v1_tensor_new(ptr %faber.context70, i32 5)
+      %faber.tensor.status70 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result70, 0
+      %faber.tensor.value70 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result70, 1
+      %faber.old.status70 = load i32, ptr @__faber_rt_v1_status
+      %faber.has.error70 = icmp ne i32 %faber.old.status70, 0
+      %faber.latched.status70 = select i1 %faber.has.error70, i32 %faber.old.status70, i32 %faber.tensor.status70
+      store i32 %faber.latched.status70, ptr @__faber_rt_v1_status
+      store ptr %faber.tensor.value70, ptr %t24.addr
+      %load72 = load ptr, ptr %t24.addr
+      %faber.context71 = load ptr, ptr @__faber_rt_v1_context
+      %load73 = load ptr, ptr %l1.addr
+      %load74 = load ptr, ptr %t23.addr
+      %faber.tensor.result71 = call %FaberRtPtrResultV1 @__faber_rt_v1_tensor_from_flat(ptr %faber.context71, i32 5, ptr %load73, ptr %load74)
+      %faber.tensor.status71 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result71, 0
+      %faber.tensor.value71 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result71, 1
+      %faber.old.status71 = load i32, ptr @__faber_rt_v1_status
+      %faber.has.error71 = icmp ne i32 %faber.old.status71, 0
+      %faber.latched.status71 = select i1 %faber.has.error71, i32 %faber.old.status71, i32 %faber.tensor.status71
+      store i32 %faber.latched.status71, ptr @__faber_rt_v1_status
+      store ptr %faber.tensor.value71, ptr %t25.addr
       %load75 = load ptr, ptr %t25.addr
-      store ptr %load75, ptr %l5.addr
-      %load77 = load ptr, ptr %l5.addr
+      store ptr %load75, ptr %l3.addr
+      %load77 = load ptr, ptr %l2.addr
       %faber.context76 = load ptr, ptr @__faber_rt_v1_context
-      %faber.tensor.reduce.out76 = alloca float
-      store float 0.0, ptr %faber.tensor.reduce.out76
-      %faber.tensor.status76 = call i32 @__faber_rt_v1_tensor_mean(ptr %faber.context76, ptr %load77, i32 5, ptr %faber.tensor.reduce.out76)
-      %faber.tensor.reduce76 = load float, ptr %faber.tensor.reduce.out76
+      %load78 = load ptr, ptr %l3.addr
+      %faber.tensor.result76 = call %FaberRtPtrResultV1 @__faber_rt_v1_tensor_matmul(ptr %faber.context76, ptr %load77, ptr %load78)
+      %faber.tensor.status76 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result76, 0
+      %faber.tensor.value76 = extractvalue %FaberRtPtrResultV1 %faber.tensor.result76, 1
       %faber.old.status76 = load i32, ptr @__faber_rt_v1_status
       %faber.has.error76 = icmp ne i32 %faber.old.status76, 0
       %faber.latched.status76 = select i1 %faber.has.error76, i32 %faber.old.status76, i32 %faber.tensor.status76
       store i32 %faber.latched.status76, ptr @__faber_rt_v1_status
-      store float %faber.tensor.reduce76, ptr %t26.addr
-      %load78 = load float, ptr %t26.addr
-      store float %load78, ptr %l6.addr
-      %load79 = load float, ptr %l6.addr
+      store ptr %faber.tensor.value76, ptr %t26.addr
+      %load79 = load ptr, ptr %t26.addr
+      store ptr %load79, ptr %l4.addr
+      %load81 = load ptr, ptr %l4.addr
       %faber.context80 = load ptr, ptr @__faber_rt_v1_context
-      %faber.diag.status80 = call i32 @__faber_rt_v1_diagnostic_nota_f32(ptr %faber.context80, float %load79)
+      %faber.tensor.reduce.out80 = alloca float
+      store float 0.0, ptr %faber.tensor.reduce.out80
+      %faber.tensor.status80 = call i32 @__faber_rt_v1_tensor_mean(ptr %faber.context80, ptr %load81, i32 5, ptr %faber.tensor.reduce.out80)
+      %faber.tensor.reduce80 = load float, ptr %faber.tensor.reduce.out80
       %faber.old.status80 = load i32, ptr @__faber_rt_v1_status
       %faber.has.error80 = icmp ne i32 %faber.old.status80, 0
-      %faber.latched.status80 = select i1 %faber.has.error80, i32 %faber.old.status80, i32 %faber.diag.status80
+      %faber.latched.status80 = select i1 %faber.has.error80, i32 %faber.old.status80, i32 %faber.tensor.status80
       store i32 %faber.latched.status80, ptr @__faber_rt_v1_status
+      store float %faber.tensor.reduce80, ptr %t27.addr
+      %load82 = load float, ptr %t27.addr
+      store float %load82, ptr %l5.addr
+      %load83 = load float, ptr %l5.addr
+      %faber.context84 = load ptr, ptr @__faber_rt_v1_context
+      %faber.diag.status84 = call i32 @__faber_rt_v1_diagnostic_nota_f32(ptr %faber.context84, float %load83)
+      %faber.old.status84 = load i32, ptr @__faber_rt_v1_status
+      %faber.has.error84 = icmp ne i32 %faber.old.status84, 0
+      %faber.latched.status84 = select i1 %faber.has.error84, i32 %faber.old.status84, i32 %faber.diag.status84
+      store i32 %faber.latched.status84, ptr @__faber_rt_v1_status
       ret void
 }
 

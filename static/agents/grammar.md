@@ -8,12 +8,12 @@ These are the forms the other pages check.
 - The entry is `main { }` or `main args argv { }`.
 - Branches are `if`, `elif`, and `else`.
 - A list walk is `for from nums const item { }`. A condition loop is `while n ≺ 2 { }`.
-- Comparisons in these programs are `≺`, `≥`, `≡`, and `≠`.
+- Comparisons in these programs are `≺`, `≥`, `≡`, and `≢`.
 - A missing `int` is `int ∪ none`. The missing value is `null`.
 - A list is `list<int>`. An empty list is `empty`.
 - A width is a bare marker, `i32` or `f32`, ascribed with `∷`.
 - A recoverable error is `→ int ⇥ string`, sent with `throw`, caught with `do` / `catch`.
-- `require b ≠ 0 throw "..."` throws when the condition fails. `reject value ≺ 0 throw "..."` throws when it holds.
+- `require b ≢ 0 throw "..."` throws when the condition fails. `reject value ≺ 0 throw "..."` throws when it holds.
 - `ref`, `mut`, and `own` sit before the parameter type.
 - An async function writes `async` before `→`. The caller is `async_main` and binds with `await_const`.
 - A module import is `import from "./greet" greet`. An exported function is marked `@ public`.

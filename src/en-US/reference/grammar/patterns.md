@@ -4,8 +4,8 @@ section = "grammar-patterns"
 order = 8
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [
-  "faber/docs/EBNF.md",
-  "faber/docs/grammar/grammar.jsonl",
+  "radix/grammar/EBNF.md",
+  "radix/grammar/sources/grammar.jsonl",
   "radix/locale/en/pack.toml",
 ]
 +++
@@ -46,7 +46,6 @@ page. The second column names the grammar rule the word belongs to.
 | [`as`](/en-US/corpus/as.html) | `pattern_binding` |
 | [`rest`](/en-US/corpus/rest.html), [`as`](/en-US/corpus/as.html) | `pattern_property` |
 | [`rest`](/en-US/corpus/rest.html) | `array_pattern_element` |
-
 ## Formal grammar {#formal-grammar}
 
 The rules for this part of the language are the parser's own definition of it.

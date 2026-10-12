@@ -37,6 +37,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | argmin           argmin
 | args             đối_số
 | as               như
+| asc              tăng_dần
 | assert           khẳng_định
 | async            async
 | async_generator  async_sinh
@@ -47,6 +48,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | await            đợi_bỏ
 | await_const      đợi_hằng
 | await_var        đợi_biến
+| axis             trục
 | before           trước
 | bench            đo_lường
 | between          giữa
@@ -69,6 +71,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | cursor           con_trỏ
 | debug            xem
 | default          mặc_định
+| desc             giảm_dần
 | describe         đối_tượng_kiểm_thử
 | description      mô_tả
 | do               làm
@@ -86,7 +89,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | for              lặp
 | format           văn_bản_hóa
 | fragment         mảnh
-| free             tự_do
 | from             từ
 | future           tương_lai
 | generator        sinh
@@ -112,7 +114,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | mut              vào
 | name             tên
 | nan              nan
-| nihil            rỗng
 | not              không
 | null             không_gì
 | only             chỉ
@@ -152,6 +153,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | short            ngắn
 | size             kích_thước
 | skip             bỏ_qua
+| sort             sắp_xếp
 | spread           rải
 | static           tĩnh
 | step             qua
@@ -200,6 +202,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | census       điều_tra
 | channel      kênh
 | char         ký_tự
+| clamp        kẹp_biên
 | filter       bộ_lọc
 | float        thập_phân
 | frame        khung
@@ -208,6 +211,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | intervallum  miền
 | iterator     bộ_lặp
 | json         json
+| ledger       sổ_cái
 | list         danh_sách
 | map          bảng
 | matrix       ma_trận
@@ -218,6 +222,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | queue        hàng_đợi
 | record       ratio
 | recv         nhận
+| reflect      phản_xạ_biên
 | regex        chính_quy
 | saturating   bão_hòa
 | send         gửi
@@ -232,6 +237,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | value        giá_trị
 | vector       vectơ
 | void         trống
+| wrap         vòng_biên
 | wrapping_ty  môđun_kiểu
 ```
 
@@ -251,6 +257,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | approx                xấp_xỉ
 | argmax                argmax
 | argmin                argmin
+| at                    tại
 | at_least              ít_nhất
 | at_most               nhiều_nhất
 | bit_and               và_bit
@@ -282,6 +289,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | escape                thoát_ký_tự
 | exchange              đổi
 | exp                   hàm_mũ
+| expanded              mở_rộng
 | fill                  điền
 | filter                lọc
 | find                  tìm
@@ -292,7 +300,6 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | flipped               đã_lật
 | floor                 làm_tròn_xuống
 | formata               formata
-| from_flat             dựng_từ_phẳng
 | gather                thu_thập
 | gelu                  gelu
 | get                   lấy
@@ -310,6 +317,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | layer_norm            chuẩn_hóa_lớp
 | length                độ_dài
 | less                  nhỏ_hơn
+| limes                 biên
 | ln                    lôgarit_tự_nhiên
 | load                  nạp
 | log10                 lôgarit_thập_phân
@@ -344,6 +352,7 @@ Generated from the packs; the canonical (Latin) name keys the full [keyword refe
 | round                 làm_tròn
 | set                   thiết_lập
 | shape                 hình_dạng
+| shift                 dịch
 | shift_left            dịch_trái
 | shift_right           dịch_phải
 | shifted_left          đã_dịch_trái

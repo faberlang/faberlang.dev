@@ -89,14 +89,13 @@ incipit {
 
 ## Tensors {#tensors}
 
-A tensor carries an element type and a shape. `vacua` seeds an empty one;
-`strue` builds a shaped tensor from flat values.
+A tensor carries an element type and a shape. A flat list converts to a
+shaped tensor with `↦` (`flat ↦ tf32[2, 3]`); `vacua` is the empty collection.
 
 ```faber
 incipit {
     fixum lista<f32> flat ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    fixum tensor<f32, []> seed ← vacua
-    fixum tensor<f32, [2, 3]> m ← seed.strue(flat, [2, 3])
+    fixum tensor<f32, [2, 3]> m ← flat ↦ tensor<f32, [2, 3]>
     nota m.media()
 }
 ```
@@ -113,8 +112,7 @@ functio medium(tf32[2, 3] m) → f32 {
 
 incipit {
     fixum lista<f32> flat ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    fixum tf32[] seed ← vacua
-    fixum tf32[2, 3] m ← seed.strue(flat, [2, 3])
+    fixum tf32[2, 3] m ← flat ↦ tf32[2, 3]
     nota medium(m)
 }
 ```

@@ -59,7 +59,6 @@ IDENTITY_BY_ABSENCE: frozenset[str] = frozenset({"intrinsics"})
 # Owner: Vivi need 8349003b (locale packs: key-set drift across the eight packs).
 EXPECTED_INCOMPLETE: dict[tuple[str, str], tuple[str, ...]] = {
     ("keywords", "conversion"): ("en", "la"),
-    ("keywords", "nihil"): ("la",),
 }
 
 Spelling = tuple[str, tuple[str, ...]]  # surface spelling, accepted aliases

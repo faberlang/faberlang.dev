@@ -99,7 +99,7 @@ incipit {
 ```faber
 incipit {
     varia numerus i ← 0
-    dum i < 3 {
+    dum i ≺ 3 {
         i ← i + 1
         nota i
     }
@@ -115,7 +115,7 @@ incipit {
     fixum lista<numerus> numeri ← [1, 2, 3, 4, 5]
     itera ex numeri fixum n {
         si n ≡ 2 ergo perge
-        si n > 3 ergo rumpe
+        si n ≻ 3 ergo rumpe
         nota n
     }
 }

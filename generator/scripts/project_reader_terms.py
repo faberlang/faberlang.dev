@@ -312,24 +312,42 @@ def project_markdown(text: str, mapping: dict[str, str], *, relative_path: str =
     return "".join(out)
 
 
+_CONVERT_MEMO: dict[tuple[str, str], str | None] = {}
+
+
 def project_corpus_source(source: str, mapping: dict[str, str], reader: str, faber: str) -> str:
-    """Convert/project one corpus record without changing identity or path fields."""
+    """Convert/project one corpus record without changing identity or path fields.
+
+    Each conversion is a full compiler process, so failed conversions are
+    memoized per (reader, body) and every invocation is bounded by a timeout —
+    an unbounded convert here is what left earlier builds waiting forever."""
     parts = source.split("+++", 2)
     if len(parts) != 3:
         return source
     front, body = parts[1], parts[2]
     if reader != "la":
-        try:
-            with tempfile.TemporaryDirectory(prefix="corpus-reader-") as tmp:
-                path = Path(tmp) / "example.fab"
-                path.write_text(body.lstrip("\n"), encoding="utf-8")
-                result = subprocess.run([faber, "convert", "--from", "la", "--to", reader, "--stdout", str(path)], text=True, capture_output=True)
-            if result.returncode == 0:
-                body = re.sub(r"\A\+\+\+\n.*?\n\+\+\+\n", "", result.stdout, count=1, flags=re.S)
-            else:
-                print(f"WARNING: corpus convert failed for {reader}; projecting source tokens", file=__import__("sys").stderr)
-        except OSError:
-            pass
+        cache_key = (reader, body)
+        if cache_key not in _CONVERT_MEMO:
+            converted = None
+            try:
+                with tempfile.TemporaryDirectory(prefix="corpus-reader-") as tmp:
+                    path = Path(tmp) / "example.fab"
+                    path.write_text(body.lstrip("\n"), encoding="utf-8")
+                    result = subprocess.run(
+                        [faber, "convert", "--from", "la", "--to", reader, "--stdout", str(path)],
+                        text=True, capture_output=True, timeout=90,
+                    )
+                if result.returncode == 0:
+                    converted = re.sub(r"\A\+\+\+\n.*?\n\+\+\+\n", "", result.stdout, count=1, flags=re.S)
+                else:
+                    print(f"WARNING: corpus convert failed for {reader}; projecting source tokens", file=__import__("sys").stderr)
+            except subprocess.TimeoutExpired:
+                print(f"WARNING: corpus convert timed out for {reader}; projecting source tokens", file=__import__("sys").stderr)
+            except OSError:
+                pass
+            _CONVERT_MEMO[cache_key] = converted
+        if _CONVERT_MEMO[cache_key] is not None:
+            body = _CONVERT_MEMO[cache_key]
     def value_replace(match: re.Match) -> str:
         key, quote, value = match.group(1), match.group(2), match.group(3)
         if key == "syntax":

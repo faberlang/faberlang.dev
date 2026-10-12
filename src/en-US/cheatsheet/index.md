@@ -35,8 +35,7 @@ A whole program, doing real work:
 ```faber
 incipit {
     fixum lista<f32> valores ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    fixum tensor<f32, []> seed ← vacua
-    fixum tensor<f32, [2, 3]> matrix ← seed.strue(valores, [2, 3])
+    fixum tensor<f32, [2, 3]> matrix ← valores ↦ tensor<f32, [2, 3]>
     fixum f32 medium ← matrix.media()
     nota medium
 }

@@ -4,8 +4,8 @@ section = "grammar-types"
 order = 5
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [
-  "faber/docs/EBNF.md",
-  "faber/docs/grammar/grammar.jsonl",
+  "radix/grammar/EBNF.md",
+  "radix/grammar/sources/grammar.jsonl",
   "radix/locale/en/pack.toml",
 ]
 +++
@@ -72,7 +72,6 @@ page. The second column names the grammar rule the word belongs to.
 | [`ref`](/en-US/corpus/ref.html), [`mut`](/en-US/corpus/mut.html) | `union_hole_type` |
 | [`ref`](/en-US/corpus/ref.html), [`mut`](/en-US/corpus/mut.html) | `owned_type` |
 | [`record`](/en-US/corpus/record.html) | `ratio_type` |
-
 ## Formal grammar {#formal-grammar}
 
 The rules for this part of the language are the parser's own definition of it.

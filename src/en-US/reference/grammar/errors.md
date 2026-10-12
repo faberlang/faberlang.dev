@@ -4,8 +4,8 @@ section = "grammar-errors"
 order = 9
 translate_spans = false  # rule names are the Latin identity, not a spelling
 sources = [
-  "faber/docs/EBNF.md",
-  "faber/docs/grammar/grammar.jsonl",
+  "radix/grammar/EBNF.md",
+  "radix/grammar/sources/grammar.jsonl",
   "radix/locale/en/pack.toml",
 ]
 +++
@@ -52,7 +52,6 @@ page. The second column names the grammar rule the word belongs to.
 | [`throw`](/en-US/corpus/throw.html), [`panic`](/en-US/corpus/panic.html) | `iace_expr` |
 | [`throw`](/en-US/corpus/throw.html), [`panic`](/en-US/corpus/panic.html), [`if`](/en-US/corpus/if.html) | `iace_guarded_expr` |
 | [`catch`](/en-US/corpus/catch.html) | `cape_clause` |
-
 ## Formal grammar {#formal-grammar}
 
 The rules for this part of the language are the parser's own definition of it.
