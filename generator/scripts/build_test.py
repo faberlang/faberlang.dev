@@ -14,6 +14,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
 import build  # noqa: E402
+import bump_release  # noqa: E402
 import corpus_build  # noqa: E402
 import receipt  # noqa: E402
 import upstream  # noqa: E402
@@ -173,6 +174,14 @@ class ConverterTests(unittest.TestCase):
         self.assertEqual(events[0]["kind"], "transcode")
         self.assertEqual(events[0]["detail"], "error[SEM001]: nope")
 
+    def test_cache_key_covers_the_compiler_build_not_only_its_version(self):
+        self.converter().convert("abc", "la", "p.md", "transcode")
+        # Same `--version` string, different bytes: a different build.
+        script = self.faber
+        script.write_text(script.read_text() + "\n# rebuilt\n")
+        self.converter().convert("abc", "la", "p.md", "transcode")
+        self.assertEqual(calls(self.dir), ["la", "la"])
+
     def test_cache_key_covers_locale_pack_and_compiler(self):
         self.converter().convert("abc", "la", "p.md", "transcode")
         Converter(str(self.faber), "en", "tree2", self.dir / "cache").convert("abc", "la", "p.md", "transcode")
@@ -209,6 +218,40 @@ class CorpusRecordTests(unittest.TestCase):
         self.project("reject", "la")
         self.assertEqual(calls(self.dir), [])
         self.assertEqual(receipt.drain(), [])
+
+
+class ReleaseFactTests(unittest.TestCase):
+    def copy_surface(self, tmp: Path) -> Path:
+        for rel in (bump_release.LOBBY, bump_release.SKILL, bump_release.CATALOG):
+            target = tmp / rel
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_text((bump_release.REPO / rel).read_text(encoding="utf-8"), encoding="utf-8")
+        return tmp
+
+    def test_checked_in_release_facts_agree(self):
+        self.assertEqual(bump_release.consistent(), [])
+
+    def test_bump_moves_every_fact_and_leaves_them_consistent(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = self.copy_surface(Path(tmp))
+            old = bump_release.current(root)["lobby"]
+            changed = bump_release.bump(root, "9.8.7", "2030-01-02", "0.99.0")
+            self.assertEqual(len(changed), 3)
+            self.assertEqual(bump_release.consistent(root), [])
+            skill = (root / bump_release.SKILL).read_text(encoding="utf-8")
+            self.assertNotIn(old, skill)
+            self.assertIn("faber-v9.8.7-aarch64-apple-darwin.tar.gz.sha256", skill)
+            self.assertIn("- **Published:** 2030-01-02", skill)
+            self.assertIn("- **Bundled compiler:** Radix 0.99.0", skill)
+            self.assertIn('"version": "9.8.7"', (root / bump_release.CATALOG).read_text(encoding="utf-8"))
+
+    def test_bump_refuses_when_the_files_already_disagree(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            root = self.copy_surface(Path(tmp))
+            lobby = root / bump_release.LOBBY
+            lobby.write_text(lobby.read_text(encoding="utf-8").replace("Faber 1.", "Faber 7."), encoding="utf-8")
+            with self.assertRaises(ValueError):
+                bump_release.bump(root, "9.8.7", "2030-01-02", "0.99.0")
 
 
 class PinTests(unittest.TestCase):

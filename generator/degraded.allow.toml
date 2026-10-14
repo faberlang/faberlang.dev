@@ -11,11 +11,6 @@ subject = "textus"
 why = "the pack gives `textus` and `string` the same English slug; the first term in sorted order keeps it and `textus` stays on its identity key, by design"
 
 [[allow]]
-kind = "corpus-convert"
-subject = "radix/corpus/ad/sermo-close.fab"
-why = "this canonical exemplar fails `faber convert` (unknown type name), so its source is projected token-wise; the defect is in the radix corpus record"
-
-[[allow]]
 kind = "transcode"
 subject = "cheatsheet/imports.md"
 why = "one fence is an import fragment with no inferable name; the page shows its source unchanged"

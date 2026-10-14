@@ -3,9 +3,10 @@
 `faber convert --to <reader>` is the only thing that renders source into a
 reader locale (`radix emit -t faber` is canonical re-emission and declares the
 input's locale, not the output's). `Converter` runs it with a content-addressed
-cache: the key is the compiler version, the reader pack tree, the source
-locale and the source text, so an unchanged fence is never converted twice and
-a failure is remembered and reported, not retried silently.
+cache: the key is the compiler binary (version and content hash), the reader
+pack tree, the source locale and the source text, so an unchanged fence is
+never converted twice and a failure is remembered and reported, not retried
+silently.
 
 `Localizer` is the page-level pass that used to be `localize-markdown.py`
 followed by `project-reader-terms.py`: convert fluid and eligible fences, then
@@ -15,6 +16,7 @@ from __future__ import annotations
 
 import hashlib
 import re
+import shutil
 import subprocess
 import tempfile
 from pathlib import Path
@@ -28,10 +30,24 @@ CONVERT_TIMEOUT = 90
 
 
 def faber_version(faber: str) -> str:
-    result = subprocess.run([faber, "--version"], capture_output=True, text=True, timeout=30)
+    result = subprocess.run([faber, "--version"], capture_output=True, text=True, timeout=120)
     if result.returncode != 0:
         raise RuntimeError(f"{faber} --version failed: {result.stderr.strip()}")
     return result.stdout.strip()
+
+
+def binary_digest(faber: str) -> str:
+    """Content hash of the compiler binary.
+
+    `--version` is not an identity: two builds of one release candidate print
+    the same string and convert differently, so a cache keyed on it alone
+    would serve one build's output as the other's."""
+    resolved = shutil.which(faber) or faber
+    digest = hashlib.sha256()
+    with open(resolved, "rb") as handle:
+        for block in iter(lambda: handle.read(1 << 20), b""):
+            digest.update(block)
+    return digest.hexdigest()[:16]
 
 
 class Converter:
@@ -41,7 +57,7 @@ class Converter:
         self.faber = faber
         self.reader = reader
         self.cache_dir = cache_dir
-        self.stamp = f"{faber_version(faber)}|{reader}|{pack_id}"
+        self.stamp = f"{faber_version(faber)}|{binary_digest(faber)}|{reader}|{pack_id}"
         cache_dir.mkdir(parents=True, exist_ok=True)
 
     def _key(self, source_locale: str, body: str) -> str:
