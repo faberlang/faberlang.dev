@@ -1,6 +1,6 @@
 ---
 name: "examples"
-description: "Open real application packages in faberlang/examples (AI Workbench, ViviLite, coreutils, GPU, corpus)."
+description: "Open real application packages in faberlang/examples (AI Workbench, ViviLite, coreutils, GPU)."
 ---
 
 # Real-world Faber examples
@@ -27,13 +27,12 @@ Writing Faber starts at https://faberlang.dev/agents/index.md. Follow only the l
 | 2 | `vivilite` | Local mailspace / agent coordination CLI |
 | 3 | `coreutils` | Larger application campaign + parity harnesses |
 | 4 | `gpu-workload` | Systems / GPU rungs |
-| 5 | `corpus/` | Construct-level programs |
 
 ## Public repositories
 
 | Repository | Start here | Why |
 |---|---|---|
-| https://github.com/faberlang/examples | `corpus/`, application packages, tracks | Public corpus and application examples |
+| https://github.com/faberlang/examples | application packages, tracks | Public application examples |
 | https://github.com/faberlang/norma | `norma:*` packages | Standard library source |
 | https://github.com/faberlang/faber | CLI wrapper | User-facing build tool |
 | https://github.com/faberlang/cista | package-store CLI and library | Package management surface |

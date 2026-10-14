@@ -29,7 +29,7 @@
     {
       "name": "examples",
       "type": "skill-md",
-      "description": "Open real application packages in faberlang/examples (AI Workbench, ViviLite, coreutils, GPU, corpus).",
+      "description": "Open real application packages in faberlang/examples (AI Workbench, ViviLite, coreutils, GPU).",
       "url": "/.well-known/agent-skills/examples/SKILL.md"
     },
     {

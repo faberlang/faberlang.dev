@@ -28,7 +28,7 @@ Writing Faber starts at https://faberlang.dev/agents/index.md. Follow only the l
 1. Read https://faberlang.dev/llms-full.txt.
 2. Use the English reader spelling the catalog entry names.
 3. Open the page URL in that entry.
-4. Source programs for the site live under https://github.com/faberlang/examples/tree/main/corpus.
+4. Each term page carries its source program. The exemplar files are not in the public `examples` repository; its `corpus/` directory is a redirect stub.
 
 The catalog record for `fn` names https://faberlang.dev/en-US/corpus/fn.html.
 

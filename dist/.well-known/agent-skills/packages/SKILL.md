@@ -88,7 +88,7 @@ local library-development override.
 | `faber run .` | Interpret. Prints `Salve, munde!` for that package. |
 | `faber build . -t rust` | Compile. Listed by `faber --help`. |
 | `faber test .` | Run proba suites. Listed by `faber --help`. |
-| `faber format .` | Format source. Listed by `faber --help`. |
+| `faber format .` | Report files that would change; `--write` applies. Listed by `faber --help`. |
 | `faber explain SEM010` | Explain a diagnostic. |
 
 ## Docs
