@@ -103,7 +103,8 @@ FAMILIES: list[dict] = [
             figendum_decl sit_decl array_destruct object_destruct functio_decl
             param_list generic_params type_param_list size_param_list
             generic_param size_param generic_bound contract_ref
-            generic_type_default generic_size_default call_type_args parameter
+            generic_type_default generic_size_default call_type_args
+            call_type_arg call_size_arg dimension_tail parameter
             func_modifier callable_posture return_clause alternate_exit_clause
             ergo_joint clausura_joint clausura_expr compact_clausura_expr
             clausura_signature fac_block clausura_legacy_expr
@@ -180,7 +181,7 @@ FAMILIES: list[dict] = [
             call_suffix member_suffix transpose_suffix optional_suffix
             non_null_suffix argument_list argument call_marker template_argument literal
             primary ad_expr ad_opener array_literal array_element_list
-            array_element iuncta_expr json_literal json_member typed_constructor field_list field_init field_key
+            array_element iuncta_expr json_literal regex_literal json_member typed_constructor field_list field_init field_key
             construction_source json_value json_object json_array json_string
             json_number finge_expr qualified_ident praefixum_expr scriptum_expr
             lege_expr first_match_expr reducta_expr reducta_op reducta_group
