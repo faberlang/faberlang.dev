@@ -8,8 +8,8 @@ class Span {
     toString(): string {
         return "Span { low = " + display.value(this.low, "fractus", { true_: "true", false_: "false", none: "none" }) + ", high = " + display.value(this.high, "fractus", { true_: "true", false_: "false", none: "none" }) + " }";
     }
-    contains(x: number): boolean {
-        return (this.low <= x) && (x <= this.high);
+    contains(p_x: number): boolean {
+        return (this.low <= p_x) && (p_x <= this.high);
     }
     center(): number {
         return ((this.low + this.high) / 2);

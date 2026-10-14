@@ -19,8 +19,8 @@ impl ::core::fmt::Debug for Span {
 }
 
 impl Span {
-    pub fn contains(&self, x: f64) -> bool {
-        self.low <= x && x <= self.high
+    pub fn contains(&self, p_x: f64) -> bool {
+        self.low <= p_x && p_x <= self.high
     }
     pub fn center(&self) -> f64 {
         (self.low + self.high) / 2.0

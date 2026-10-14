@@ -6,16 +6,16 @@
 // casts and parameter passing, library-shaped artifact items.
 #![allow(non_camel_case_types, non_snake_case, dead_code, clippy::unreadable_literal, clippy::cast_lossless, clippy::cast_possible_truncation, clippy::cast_possible_wrap, clippy::cast_sign_loss, clippy::cast_precision_loss, clippy::needless_pass_by_value)]
 
-fn summa(numeri: Vec<i64>) -> i64 {
-    let mut total: i64 = 0;
-    for i0 in &(numeri) {
-        let n = i0.clone();
-        total = faber::exact::store::<i64>(faber::exact::add(total as i128, n as i128), "assignment to `total`");
+fn summa(p_numeri: Vec<i64>) -> i64 {
+    let mut l_total: i64 = 0;
+    for i0 in &(p_numeri) {
+        let l_n = i0.clone();
+        l_total = faber::exact::store::<i64>(faber::exact::add(l_total as i128, l_n as i128), "assignment to `total`");
     }
-    total
+    l_total
 }
 
 fn main() {
-    let valores: Vec<i64> = vec![1, 2, 3, 4, 5];
-    println!("{}", summa(valores.clone()));
+    let l_valores: Vec<i64> = vec![1, 2, 3, 4, 5];
+    println!("{}", summa(l_valores.clone()));
 }

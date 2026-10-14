@@ -39,15 +39,18 @@ SRC="${OUT}/exemplars"
 # so the usual workspace root is searched too. A PATH copy is the last resort
 # and is reported.
 DEV_ROOT="${FABER_DEV_ROOT:-$HOME/work/faberlang}"
-for candidate in \
-    "${WORKSPACE}/radix/target/debug/faber" \
-    "${WORKSPACE}/radix/target/release/faber" \
-    "${WORKSPACE}/../radix/target/debug/faber" \
-    "${WORKSPACE}/../radix/target/release/faber" \
-    "${DEV_ROOT}/radix/target/debug/faber" \
-    "${DEV_ROOT}/radix/target/release/faber"; do
-    [ -x "$candidate" ] && FABER="$candidate" && break
-done
+# An explicit FABER wins (see capture-landing-panels.sh).
+if [ -z "${FABER:-}" ]; then
+    for candidate in \
+        "${WORKSPACE}/radix/target/debug/faber" \
+        "${WORKSPACE}/radix/target/release/faber" \
+        "${WORKSPACE}/../radix/target/debug/faber" \
+        "${WORKSPACE}/../radix/target/release/faber" \
+        "${DEV_ROOT}/radix/target/debug/faber" \
+        "${DEV_ROOT}/radix/target/release/faber"; do
+        [ -x "$candidate" ] && FABER="$candidate" && break
+    done
+fi
 FABER="${FABER:-faber}"
 echo "toolchain: $("$FABER" --version 2>/dev/null || echo unknown) at ${FABER}"
 

@@ -63,13 +63,13 @@ class Span {
     var low: Double
     var high: Double
 
-    init(low: Double, high: Double) {
-        self.low = low
-        self.high = high
+    init(low p_low: Double, high p_high: Double) {
+        self.low = p_low
+        self.high = p_high
     }
 
-    func contains(x: Double) -> Bool {
-        return ((self.low <= x) && (x <= self.high))
+    func contains(x p_x: Double) -> Bool {
+        return ((self.low <= p_x) && (p_x <= self.high))
     }
 
     func center() -> Double {

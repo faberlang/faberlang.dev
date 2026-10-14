@@ -25,10 +25,13 @@ WORKSPACE="$(cd "${GENERATOR_DIR}/../.." && pwd)"
 
 # Prefer the repo's own build over PATH; a stale copy silently captures panels
 # against a compiler that is not the one the site documents.
-for candidate in "${WORKSPACE}/radix/target/release/radix" \
-                 "${WORKSPACE}/radix/target/debug/radix"; do
-    [ -x "$candidate" ] && RADIX="$candidate" && break
-done
+# An explicit RADIX wins (see capture-landing-panels.sh).
+if [ -z "${RADIX:-}" ]; then
+    for candidate in "${WORKSPACE}/radix/target/release/radix" \
+                     "${WORKSPACE}/radix/target/debug/radix"; do
+        [ -x "$candidate" ] && RADIX="$candidate" && break
+    done
+fi
 RADIX="${RADIX:-radix}"
 echo "toolchain: $("$RADIX" --version) at ${RADIX}"
 

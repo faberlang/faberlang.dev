@@ -7,11 +7,11 @@
 #![allow(non_camel_case_types, non_snake_case, dead_code, clippy::unreadable_literal, clippy::cast_lossless, clippy::cast_possible_truncation, clippy::cast_possible_wrap, clippy::cast_sign_loss, clippy::cast_precision_loss, clippy::needless_pass_by_value)]
 
 fn main() {
-    let flat_a: Vec<f32> = vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0];
-    let flat_b: Vec<f32> = vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0];
-    let a: faber::Tensor<f32> /* tensor<f32, [2, 3]> */ = { let t0 = flat_a.clone(); faber::trap::ok(faber::Tensor::<f32>::structa(t0, &[2, 3]), faber::Trap::Other("tensor structa element count does not match shape")) };
-    let b: faber::Tensor<f32> /* tensor<f32, [3, 4]> */ = { let t1 = flat_b.clone(); faber::trap::ok(faber::Tensor::<f32>::structa(t1, &[3, 4]), faber::Trap::Other("tensor structa element count does not match shape")) };
-    let product: faber::Tensor<f32> /* tensor<f32, [2, 4]> */ = faber::trap::ok_static({ let t2 = &a; t2.matmul(&(b)) });
-    let mean: f32 = { let t3 = &product; let c0_flat = faber::trap::ok_static(t3.planata()); let c0: f32 = c0_flat.iter().map(|x| *x as f32).sum(); c0 / t3.element_count() as f32 };
-    println!("{}", faber::display::fractus(mean));
+    let l_flat_a: Vec<f32> = vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0];
+    let l_flat_b: Vec<f32> = vec![1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0, 10.0, 11.0, 12.0];
+    let l_a: faber::Tensor<f32> /* tensor<f32, [2, 3]> */ = { let t0 = l_flat_a.clone(); faber::trap::ok(faber::Tensor::<f32>::structa(t0, &[2, 3]), faber::Trap::Other("tensor structa element count does not match shape")) };
+    let l_b: faber::Tensor<f32> /* tensor<f32, [3, 4]> */ = { let t1 = l_flat_b.clone(); faber::trap::ok(faber::Tensor::<f32>::structa(t1, &[3, 4]), faber::Trap::Other("tensor structa element count does not match shape")) };
+    let l_product: faber::Tensor<f32> /* tensor<f32, [2, 4]> */ = faber::trap::ok_static({ let t2 = &l_a; t2.matmul(&(l_b)) });
+    let l_mean: f32 = { let t3 = &l_product; let c0_flat = faber::trap::ok_static(t3.planata()); let c0: f32 = c0_flat.iter().map(|x| *x as f32).sum(); c0 / t3.element_count() as f32 };
+    println!("{}", faber::display::fractus(l_mean));
 }

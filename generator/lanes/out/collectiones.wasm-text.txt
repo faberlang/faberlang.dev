@@ -409,6 +409,16 @@
       (local.set $r (call $faber_x_store (local.get $v) (local.get $vu) (local.get $rbits) (local.get $rsigned) (i32.const 0)))
       (global.set $faber_x_site (i32.const -1))
       (local.get $r))
+    (func $faber_x_conv_ok (param $v i64) (param $vu i32) (param $rbits i32) (param $rsigned i32) (result i32)
+      (local $c i64) (local $cu i32)
+      ;; Policy 2 clamps with the same limits `$faber_x_store` traps on and never
+      ;; traps itself, so the clamped value differs from the original exactly when
+      ;; the original does not fit the target range. `$faber_x_cmp` compares the
+      ;; two exact values; the clamped `u64` boundary above 2^63 reads unsigned.
+      (local.set $c (call $faber_x_store (local.get $v) (local.get $vu) (local.get $rbits) (local.get $rsigned) (i32.const 2)))
+      (local.set $cu (i32.and (i32.eq (local.get $rbits) (i32.const 64))
+        (i32.and (i32.eqz (local.get $rsigned)) (i64.lt_s (local.get $c) (i64.const 0)))))
+      (i32.eqz (call $faber_x_cmp (local.get $v) (local.get $vu) (local.get $c) (local.get $cu))))
     (func $faber_x_f2i (param $f f64) (param $rbits i32) (param $rsigned i32) (result i64)
       (local $t f64) (local $half f64)
       (if (f64.ne (local.get $f) (local.get $f))
@@ -424,6 +434,24 @@
       (if (i32.or (f64.lt (local.get $t) (f64.const 0)) (f64.ge (local.get $t) (f64.mul (local.get $half) (f64.const 2))))
         (then (call $faber_x_trap (i32.const 4)) (unreachable)))
       (i64.trunc_f64_u (local.get $t)))
+    (func $faber_x_f2i_ok (param $f f64) (param $rbits i32) (param $rsigned i32) (result i32)
+      (local $t f64) (local $half f64)
+      ;; The non-trapping twin of `$faber_x_f2i`: 0 exactly on its three trap
+      ;; conditions (NaN, below the signed/unsigned minimum, at or above the
+      ;; maximum), 1 otherwise. A guarded recovery probe must never trap.
+      (if (f64.ne (local.get $f) (local.get $f))
+        (then (return (i32.const 0))))
+      (local.set $t (f64.trunc (local.get $f)))
+      (local.set $half
+        (f64.convert_i64_u (i64.shl (i64.const 1) (i64.extend_i32_u (i32.sub (local.get $rbits) (i32.const 1))))))
+      (if (local.get $rsigned)
+        (then
+          (if (i32.or (f64.lt (local.get $t) (f64.neg (local.get $half))) (f64.ge (local.get $t) (local.get $half)))
+            (then (return (i32.const 0)))))
+        (else
+          (if (i32.or (f64.lt (local.get $t) (f64.const 0)) (f64.ge (local.get $t) (f64.mul (local.get $half) (f64.const 2))))
+            (then (return (i32.const 0))))))
+      (i32.const 1))
     (func $faber_x_trap (param $k i32)
       (if (i32.eq (local.get $k) (i32.const 0)) (then (call $__faber_rt_v1_assert_message (i32.const 0) (i32.const 24))))
       (if (i32.eq (local.get $k) (i32.const 1)) (then (call $__faber_rt_v1_assert_message (i32.const 0) (i32.const 23))))

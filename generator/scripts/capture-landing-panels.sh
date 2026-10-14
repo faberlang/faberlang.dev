@@ -38,17 +38,23 @@ WORKSPACE="$(cd "${GENERATOR_DIR}/../.." && pwd)"
 # copy silently produced wrong results once: panels were captured — and claims
 # written — against a compiler days behind the tree. Pin it, and print what
 # was used.
-for candidate in "${WORKSPACE}/radix/target/release/radix" \
-                 "${WORKSPACE}/radix/target/debug/radix"; do
-    [ -x "$candidate" ] && RADIX="$candidate" && break
-done
+# An explicit RADIX / FABER wins: capture against the binary built from the
+# commit the site is pinned to (generator/upstream.lock.toml), not whatever the
+# workspace happens to have built last.
+if [ -z "${RADIX:-}" ]; then
+    for candidate in "${WORKSPACE}/radix/target/release/radix" \
+                     "${WORKSPACE}/radix/target/debug/radix"; do
+        [ -x "$candidate" ] && RADIX="$candidate" && break
+    done
+fi
 RADIX="${RADIX:-radix}"
-for candidate in "${WORKSPACE}/radix/target/release/faber" \
-                 "${WORKSPACE}/radix/target/debug/faber"; do
-    [ -x "$candidate" ] && FABER="$candidate" && break
-done
+if [ -z "${FABER:-}" ]; then
+    for candidate in "${WORKSPACE}/radix/target/release/faber" \
+                     "${WORKSPACE}/radix/target/debug/faber"; do
+        [ -x "$candidate" ] && FABER="$candidate" && break
+    done
+fi
 FABER="${FABER:-faber}"
-export FABER_LIBRARY_HOME="${FABER_LIBRARY_HOME:-${WORKSPACE}}"
 
 echo "toolchain: $("$RADIX" --version) at ${RADIX}"
 echo "toolchain: $("$FABER" --version) at ${FABER}"

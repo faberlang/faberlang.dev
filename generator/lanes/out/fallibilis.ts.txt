@@ -2,11 +2,11 @@
 
 import { display, exact, result } from "@faber/runtime";
 
-function divide(a: number, b: number): result.Result<number, string> {
-    if ((b as number) === 0) {
+function divide(p_a: number, p_b: number): result.Result<number, string> {
+    if ((p_b as number) === 0) {
         return { ok: false as const, error: "division by zero" };
     }
-    return (() => { try { return { ok: true as const, value: exact.store(exact.div(a, b), -9007199254740991, 9007199254740991, "i64", "return", "") }; } catch (__e) { if (!(__e instanceof Error) || (__e as any).__faberAssertion === true) { throw __e; } return { ok: false as const, error: __e.message }; } })();
+    return (() => { try { return { ok: true as const, value: exact.store(exact.div(p_a, p_b), -9007199254740991, 9007199254740991, "i64", "return", "") }; } catch (__e) { if (!(__e instanceof Error) || (__e as any).__faberAssertion === true) { throw __e; } return { ok: false as const, error: __e.message }; } })();
 }
 (() => {
     const t0 = (() => { try { {
@@ -14,8 +14,8 @@ function divide(a: number, b: number): result.Result<number, string> {
          
     }return { ok: true as const, value: undefined }; } catch (__e: any) { if (__e !== null && typeof __e === "object" && __e.__faberFail === true) { return { ok: false as const, error: __e.error }; } throw __e; } })() as result.Result<any, string>;
     if (!t0.ok) {
-        const err = t0.error;
+        const l_err = t0.error;
         {
-            console.warn(err);
+            console.warn(l_err);
         }}
 })();

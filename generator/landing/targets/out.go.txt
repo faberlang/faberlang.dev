@@ -7,8 +7,8 @@ type Span struct {
     High float64
 }
 
-func (self *Span) Contains(x float64) bool {
-    return ((float64(self.Low) <= float64(x)) && (float64(x) <= float64(self.High)))
+func (self *Span) Contains(p_x float64) bool {
+    return ((float64(self.Low) <= float64(p_x)) && (float64(p_x) <= float64(self.High)))
 }
 
 func (self *Span) Center() float64 {

@@ -6,11 +6,11 @@
 // casts and parameter passing, library-shaped artifact items.
 #![allow(non_camel_case_types, non_snake_case, dead_code, clippy::unreadable_literal, clippy::cast_lossless, clippy::cast_possible_truncation, clippy::cast_possible_wrap, clippy::cast_sign_loss, clippy::cast_precision_loss, clippy::needless_pass_by_value)]
 
-fn divide(a: i64, b: i64) -> Result<i64, String> {
-    if b == 0 {
+fn divide(p_a: i64, p_b: i64) -> Result<i64, String> {
+    if p_b == 0 {
         return Err(String::from("division by zero"));
     }
-    Ok(faber::exact::store::<i64>(faber::exact::div(a as i128, b as i128), "return"))
+    Ok(faber::exact::store::<i64>(faber::exact::div(p_a as i128, p_b as i128), "return"))
 }
 
 fn main() {
@@ -18,6 +18,7 @@ fn main() {
         println!("{}", match divide(10, 2) { Ok(fac_value) => fac_value, Err(fac_err) => break 'fac_result Err(fac_err) });
         Ok::<(), String>(())
     } { Ok(()) => {}, Err(err) => {
-        eprintln!("{err}");
+        let l_err = err;
+        eprintln!("{l_err}");
     } }
 }

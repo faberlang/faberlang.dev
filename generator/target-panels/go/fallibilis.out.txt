@@ -9,11 +9,11 @@ import (
     "os"
 )
 
-func divide(a int, b int) (int, error) {
-    if (b == 0) {
+func divide(p_a int, p_b int) (int, error) {
+    if (p_b == 0) {
         return 0, errors.New("division by zero")
     }
-    return int(rt.ExactStore[int64](rt.ExactDiv(rt.ExactI(int64(a)), rt.ExactI(int64(b))), "return")), nil
+    return int(rt.ExactStore[int64](rt.ExactDiv(rt.ExactI(int64(p_a)), rt.ExactI(int64(p_b))), "return")), nil
 }
 
 func main() {
@@ -25,6 +25,6 @@ func main() {
         fmt.Println(v0)
         return nil
     }(); err != nil {
-        fmt.Fprintln(os.Stderr, err.Error())
+        fmt.Fprintln(os.Stderr, l_err.Error())
     }
 }

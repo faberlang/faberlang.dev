@@ -2,14 +2,14 @@
 
 import { display, exact } from "@faber/runtime";
 
-function summa(numeri: Array<number>): number {
-    let total: number = 0;
-    for (const n of numeri) {
-        total = exact.store(exact.add(total, n), -9007199254740991, 9007199254740991, "i64", "assignment to `total`", "");
+function summa(p_numeri: Array<number>): number {
+    let l_total: number = 0;
+    for (const l_n of p_numeri) {
+        l_total = exact.store(exact.add(l_total, l_n), -9007199254740991, 9007199254740991, "i64", "assignment to `total`", "");
     }
-    return total;
+    return l_total;
 }
 (() => {
-    const valores: Array<number> = [1, 2, 3, 4, 5];
-    console.log(display.value(summa(valores), "numerus"));
+    const l_valores: Array<number> = [1, 2, 3, 4, 5];
+    console.log(display.value(summa(l_valores), "numerus"));
 })();

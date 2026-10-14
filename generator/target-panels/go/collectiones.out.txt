@@ -7,15 +7,15 @@ import (
     "fmt"
 )
 
-func summa(numeri []int) int {
-    total := 0
-    for _, n := range numeri {
-        total = int(rt.ExactStore[int64](rt.ExactAdd(rt.ExactI(int64(total)), rt.ExactI(int64(n))), "assignment to `total`"))
+func summa(p_numeri []int) int {
+    l_total := 0
+    for _, l_n := range p_numeri {
+        l_total = int(rt.ExactStore[int64](rt.ExactAdd(rt.ExactI(int64(l_total)), rt.ExactI(int64(l_n))), "assignment to `total`"))
     }
-    return total
+    return l_total
 }
 
 func main() {
-    valores := []int{1, 2, 3, 4, 5}
-    fmt.Println(summa(valores))
+    l_valores := []int{1, 2, 3, 4, 5}
+    fmt.Println(summa(l_valores))
 }
