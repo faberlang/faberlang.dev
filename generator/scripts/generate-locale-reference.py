@@ -65,23 +65,9 @@ DEFAULT_EXAMPLE_KEY = "0aca787373d25281"
 
 
 def default_packs() -> Path:
-    """Locate the reader packs.
+    """The pinned reader packs (see upstream.py)."""
+    return default_reader_root()
 
-    A normal checkout finds them beside the repo (`corpus_locale`). A git
-    worktree does not, so the workspace path is next; `FABER_LOCALE_PACKS`
-    overrides both.
-    """
-    override = os.environ.get("FABER_LOCALE_PACKS")
-    if override:
-        return Path(override)
-    found = default_reader_root()
-    if found.is_dir():
-        return found
-    for candidate in (REPO.parent / "radix" / "locale",
-                      Path("/Users/ianzepp/work/faberlang/radix/locale")):
-        if candidate.is_dir():
-            return candidate
-    return found
 
 SECTION_TITLES = {
     "keywords": "Keywords",

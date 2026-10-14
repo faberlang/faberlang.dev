@@ -45,9 +45,10 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from locales_registry import load_registry  # noqa: E402
 
+import upstream  # noqa: E402
+
 REPO = Path(__file__).resolve().parents[2]
-WORKSPACE = REPO.parent
-PACKS = WORKSPACE / "radix" / "locale"
+PACKS = upstream.radix_root() / "locale"
 
 # Whole pages whose Latin is the subject rather than the spelling.
 SKIP_PAGES = {Path("reference/grammar.html")}

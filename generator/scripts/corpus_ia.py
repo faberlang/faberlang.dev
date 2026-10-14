@@ -17,10 +17,7 @@ rendered HTML or emits generated Markdown the generator renders as a page.
 from __future__ import annotations
 
 import html as html_lib
-import os
 import re
-import shutil
-import subprocess
 import tomllib
 from dataclasses import dataclass
 from pathlib import Path
@@ -79,75 +76,6 @@ def bucket_for(tag: str, buckets: list[Bucket]) -> Bucket:
         if tag in bucket.tags:
             return bucket
     return next(bucket for bucket in buckets if bucket.catchall)
-
-
-def resolve_faber(radix_dir: Path) -> str:
-    """A faber binary for convert/explain: radix workspace build, then PATH.
-
-    Debug first: it parses the current corpus and resolves the reference
-    pack, which the release build on this machine does not (stale parser).
-    An installed `faber` carries neither corpus reference nor reader packs,
-    so letting it win silently degrades the transcode to token projection
-    and empties the semantics source.
-    """
-    for build in ("debug", "release"):
-        candidate = radix_dir / "target" / build / "faber"
-        if candidate.is_file() and os.access(candidate, os.X_OK):
-            return str(candidate)
-    found = shutil.which("faber")
-    if not found:
-        raise CorpusTaxonomyError("no faber binary found for corpus IA passes")
-    return found
-
-
-def stage_reader_packs(faber: str, radix_dir: Path) -> tuple[bool, str]:
-    """Make reader packs resolvable beside the faber binary.
-
-    `faber convert` looks for share/faber/locale/<X>/pack.toml relative to
-    its own executable; a workspace build has no such directory. Symlink the
-    radix packs into place. Writes only inside radix/target/, which is build
-    output. Same staging locale-tabs.py performs for its own panels.
-    """
-    src = radix_dir / "locale"
-    if not src.is_dir():
-        return False, ""
-    dest = Path(faber).resolve().parent.parent / "share" / "faber" / "locale"
-    dest.mkdir(parents=True, exist_ok=True)
-    linked = 0
-    for pack in sorted(src.iterdir()):
-        if not (pack / "pack.toml").is_file():
-            continue
-        link = dest / pack.name
-        if not link.exists():
-            link.symlink_to(pack, target_is_directory=True)
-        linked += 1
-    return linked > 0, str(dest)
-
-
-def load_explain_semantics(faber: str) -> dict[str, dict[str, str]]:
-    """`term → {category, summary}` from one `faber explain --list` call.
-
-    The registry derives from the same corpus the batch renders but does not
-    cover every canonical term; callers omit the semantics line for absent
-    terms — never invent one. Same parsing as the agent reference tree.
-    """
-    try:
-        result = subprocess.run(
-            [faber, "explain", "--list"], capture_output=True, text=True, timeout=120
-        )
-    except (OSError, subprocess.TimeoutExpired):
-        return {}
-    if result.returncode != 0:
-        return {}
-    from agent_reference import parse_list
-
-    _, entries = parse_list(result.stdout)
-    registry: dict[str, dict[str, str]] = {}
-    for entry in entries:
-        registry.setdefault(
-            entry["term"], {"category": entry["category"], "summary": entry["summary"]}
-        )
-    return registry
 
 
 def breadcrumb_html(trail: list[tuple[str, str | None]]) -> str:

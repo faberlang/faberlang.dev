@@ -267,9 +267,12 @@ def main() -> None:
     parser = argparse.ArgumentParser(prog="generate-grammar", add_help=True)
     parser.add_argument("--all-locales", action="store_true")
     parser.add_argument("--locale", action="append", default=[])
-    parser.add_argument("--jsonl", default="../radix/grammar/sources/grammar.jsonl")
-    parser.add_argument("--identity", default="../radix/grammar/EBNF.md")
-    parser.add_argument("--glossary-dir", default="../radix/grammar/sources")
+    import upstream
+
+    grammar = upstream.radix_root() / "grammar"
+    parser.add_argument("--jsonl", default=str(grammar / "sources" / "grammar.jsonl"))
+    parser.add_argument("--identity", default=str(grammar / "EBNF.md"))
+    parser.add_argument("--glossary-dir", default=str(grammar / "sources"))
     args = parser.parse_args()
     jsonl_path, identity_path = Path(args.jsonl), Path(args.identity)
     glossary_dir = Path(args.glossary_dir)
@@ -287,7 +290,7 @@ def main() -> None:
         # found in a glossary; this preserves the historical non-English path.
         glossary = {key: key for key in spine}
         if locale == "en-US":
-            pack_path = Path("../radix/locale/en/pack.toml")
+            pack_path = upstream.radix_root() / "locale" / "en" / "pack.toml"
             if not pack_path.exists():
                 die(f"generate-grammar: missing English reader pack: {pack_path}")
             glossary, path_label, project_english = english_projection(pack_path), str(pack_path), True

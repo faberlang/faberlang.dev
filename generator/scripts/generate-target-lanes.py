@@ -36,6 +36,9 @@ import re
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import upstream  # noqa: E402
+
 REPO = Path(__file__).resolve().parents[2]
 PANELS_DIR = REPO / "generator" / "target-panels"
 EXEMPLARS_DIR = PANELS_DIR / "exemplars"
@@ -202,11 +205,7 @@ LANES = {
 # ---------------------------------------------------------------------------
 
 MATRIX_CANDIDATES = [
-    Path(os.environ["FABER_EBNF_MATRIX"]) if os.environ.get("FABER_EBNF_MATRIX") else None,
-    REPO.parent / "faber" / "docs" / "EBNF_MATRIX.md",
-    REPO.parent.parent / "faber" / "docs" / "EBNF_MATRIX.md",
-    Path.home() / "work" / "faberlang" / "faber" / "docs" / "EBNF_MATRIX.md",
-    REPO / "src" / "en-US" / "toolchain" / "target-matrix.md",
+    upstream.radix_root() / "grammar" / "EBNF_MATRIX.md",
 ]
 
 # Glyphs that mean "this term does not fully lower" (the matrix legend).

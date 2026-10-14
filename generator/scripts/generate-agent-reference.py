@@ -23,6 +23,9 @@ from agent_reference import (
     slug_for,
     split_body,
 )
+from concurrent.futures import ThreadPoolExecutor
+
+import receipt
 from corpus_locale import default_reader_root
 from project_reader_terms import load_mapping, project_markdown
 
@@ -72,10 +75,11 @@ def main() -> int:
 
     # Fetch every entry first: the slug depends on the entry's own kind.
     payloads: dict[str, dict] = {}
-    for entry in listing:
-        payload = json.loads(explain(faber, entry["term"], "--json"))
-        payloads[entry["term"]] = payload
-        entry["kind"] = payload.get("kind", "")
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        fetched = pool.map(lambda e: json.loads(explain(faber, e["term"], "--json")), listing)
+        for entry, payload in zip(listing, fetched):
+            payloads[entry["term"]] = payload
+            entry["kind"] = payload.get("kind", "")
 
     # slug_for wants one spelling per canonical; read_packs carries aliases too.
     pack = {
@@ -84,7 +88,8 @@ def main() -> int:
     }
     slugs, collisions = assign_slugs(listing, pack)
     for term, wanted, owner in collisions:
-        print(f"collision: '{term}' wanted '{wanted}' (held by '{owner}'), using '{slugs[term]}'", file=sys.stderr)
+        receipt.emit("agent-reference-slug-collision", term,
+                     f"wanted '{wanted}' (held by '{owner}'), using '{slugs[term]}'")
 
     mapping = load_mapping(args.packs / "en" / "pack.toml")
     scratch = tempfile.TemporaryDirectory()
@@ -107,7 +112,8 @@ def main() -> int:
         # one spelling across declaration, construction, and member access.
         text, fell_back = choose_example(original, project(original, name, example=True), checks)
         if fell_back:
-            print(f"WARNING: projection broke the '{name}' example; shipping the registry text", file=sys.stderr)
+            receipt.emit("agent-reference-projection", name,
+                         "projection broke the example; shipping the registry text")
         return text
 
     pages: dict[str, str] = {}

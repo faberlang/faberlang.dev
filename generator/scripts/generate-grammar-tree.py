@@ -749,19 +749,10 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
 
 
 def workspace_roots() -> list[Path]:
-    """Candidate sibling-workspace roots, nearest first."""
-    roots: list[Path] = []
-    for env in ("FABER_WORKSPACE", "FABER_LIBRARY_HOME"):
-        value = os.environ.get(env)
-        if value:
-            roots.append(Path(value).expanduser().resolve())
-    roots.append(REPO.parent)
-    roots.append(REPO.parent.parent)
-    unique: list[Path] = []
-    for root in roots:
-        if root not in unique:
-            unique.append(root)
-    return unique
+    """The pinned upstream root: `<root>/radix/{grammar,locale,corpus}`."""
+    import upstream
+
+    return [upstream.TARGET]
 
 
 def pick(explicit: str | None, roots: list[Path], rel: str) -> Path | None:

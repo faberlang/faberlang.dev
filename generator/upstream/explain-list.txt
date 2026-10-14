@@ -1,0 +1,211 @@
+KEYWORDS
+  ab                iteration       Selects numeric range iteration in an itera loop.
+  ad                endpoint        ad opens a sermo endpoint and materializes the stream with an explicit conversio target.
+  adfirma           testing         Asserts that a condition is true at runtime.
+  ante              range           Creates an exclusive range with a Latin keyword.
+  argumenta         entry           Binds command-line arguments for an entry point.
+  bivalens          type            Primitive types bivalens, vacuum, and ignotum.
+  cape              errors          Starts a catch block.
+  casu              control-flow    Introduces a branch inside an elige or discerne statement.
+  cede              async           Yields one value from a generator.
+  ceteri            function        Collects remaining parameters, operands, or extracted fields.
+  ceterum           control-flow    Starts the default branch of an elige or discerne statement.
+  clausura          function        Declares or explains an inline closure expression; compact ∴ syntax is preferred for new code.
+  copia             collection      Generic set collection type.
+  cursor            async           Compatibility annotation for stream/generator posture.
+  custodi           control-flow    Groups early-exit guard checks before the main body of a function.
+  de                iteration       Introduces borrowed iteration or borrowed parameters.
+  descriptio        cli             Attaches a description string to CLI metadata.
+  discerne          control-flow    Starts an exhaustive pattern match over a value or values.
+  discretio         type            Declares a tagged union with variant payloads.
+  dum               control-flow    Repeats a block while a condition remains true.
+  ego               object          Refers to the current instance inside a method.
+  elige             control-flow    Starts a value-based branch statement.
+  errata            function        Marks a function parameter or binding as carrying an error value.
+  est               logic           Tests whether a value's runtime type is a given type.
+  ex                destructuring   Extracts fields from a value into local bindings.
+  exitus            entry           Sets the exit code or exit expression for an entry point.
+  fac               control-flow    Starts a scoped do-while style loop.
+  falsum            boolean         Represents the false boolean value and can prefix a falsity check.
+  fient             async           Callable posture for asynchronous stream functions.
+  fiet              async           Callable posture for asynchronous finite functions.
+  figendum          async           Awaits a promissum and binds an immutable name.
+  finge             object          Constructs a tagged union variant.
+  fiunt             async           Callable posture for synchronous stream (generator) functions.
+  fixum             binding         Declares an immutable binding.
+  fractus           type            Primitive floating-point number type.
+  fragilis          testing         Marks a test as fragile.
+  functio           function        Declares a named function or method.
+  futurum           testing         Marks a test case as pending future work with a reason.
+  generis           type            Marks a class member as belonging to the type itself.
+  genus             type            Declares a concrete type with fields and methods.
+  iace              errors          Throws a recoverable error.
+  ignotum           type            Primitive types bivalens, vacuum, and ignotum.
+  immutata          function        Marks a function as non-mutating.
+  implendum         type            Declares a behavioral contract with method signatures.
+  implet            type            Declares that a type implements one or more implendum contracts.
+  importa           package         Imports names from another module or package source.
+  in                function        Marks a mutable borrowed parameter.
+  incipiet          entry           Declares the asynchronous program entry point.
+  incipit           function        Declares the synchronous program entry point.
+  insere            comptime        Embeds a package file into a module constant at build time.
+  instans           type            Absolute point-in-time primitive with precision contract.
+  itera             control-flow    Starts a for-each iteration statement.
+  iuncta            type            Labeled iuncta elements: type args, construction, member access, objectPattern, and holes.
+  lege              io              Reads input from the active input stream.
+  lineam            io              Reads one line of input.
+  lista             collection      Generic ordered collection type.
+  mone              output          Writes a warning message.
+  mori              errors          Raises a fatal error or panic.
+  nihil             boolean         Represents the null value and can prefix a null check.
+  non               logic           Negates a boolean expression.
+  numerus           type            Primitive integer number type.
+  numquam           type            Primitive never type for code paths that do not return normally.
+  objectum          type            Declares a type alias.
+  octeti            type            Primitive byte-buffer type.
+  omitte            testing         Marks a test case as skipped with a reason.
+  omnia             testing         Marks a test hook as applying to every case.
+  operandus         cli             Declares a CLI operand annotation.
+  optio             cli             Declares a CLI option annotation.
+  optiones          entry           Binds CLI options metadata to a function declaration.
+  ordo              type            Declares an enumeration.
+  per               range           Sets the step for a range.
+  perge             transfer        Continues with the next loop iteration.
+  postpara          testing         Registers an after-each test hook.
+  postparabit       testing         Registers an async after-each test hook.
+  praefixum         comptime        Computes a module constant's value at build time.
+  praepara          testing         Registers a before-each test hook.
+  praeparabit       testing         Registers an async before-each test hook.
+  privata           modifier        Marks a declaration as module-private (the default tier).
+  proba             testing         Defines a single test case.
+  probandum         testing         Groups related test cases into a named suite.
+  promissum         async           Promise-like result type associated with async finite functions.
+  protecta          modifier        Reserved visibility annotation rejected by semantic analysis.
+  publica           modifier        Marks an import as re-exported from the current module.
+  ratio             type            Labeled ad-hoc record type: construction, .name access, objectPattern, and holes.
+  redde             transfer        Returns a value from a function.
+  reddet            async           Awaits a promissum and returns its success value from a fiet body.
+  reice             errors          Reject a condition or throw a recoverable error.
+  repete            testing         Repeats a test a fixed number of times.
+  requirit          errors          Require a condition or throw a recoverable error.
+  rumpe             transfer        Breaks out of the innermost loop.
+  scribe            output          Writes a value to standard output.
+  scriptum          format          Creates a formatted string with `§` placeholders.
+  secus             control-flow    Runs the fallback branch when preceding conditional branches do not match.
+  selective_import  package         Selective imports bind exported members by name: one exported value or type per fixum local, with the imported file interface supplying the complete type.
+  si                control-flow    Starts a conditional branch that runs when its condition is true.
+  sin               control-flow    Adds an else-if branch after a previous si branch.
+  sit               binding         Declares an inferred immutable local.
+  solum             testing         Marks a test as the only test to run.
+  solum_in          testing         Restricts a test to a named environment or target.
+  sparge            collection      Spreads an array or collection literal into its surrounding expression.
+  sponte            declaration     Marks a named declaration slot (parameter or genus field) as voluntary — the caller or provider may omit the value.
+  tabula            collection      Generic key/value map type.
+  tacebit           async           Awaits a promissum and discards the success value.
+  tacet             transfer        Marks an explicit no-op statement.
+  tag               testing         Attaches a test tag string.
+  temporis          testing         Sets a wall-clock timeout in seconds for a test modifier.
+  textus            type            Primitive string/text type.
+  typus             type            Declares a type alias.
+  ubique            cli             Marks an option or operand as global.
+  usque             range           Creates an inclusive range with a Latin keyword.
+  ut                aliasing        Introduces an alias name.
+  vacuum            type            Primitive no-value return type.
+  varia             binding         Declares a mutable binding.
+  variandum         async           Awaits a promissum and binds a mutable name.
+  verum             boolean         Represents the true boolean value and can prefix a truthiness check.
+  vide              output          Writes a debug value to standard error.
+  ∪                 type            Declares a type alias.
+
+OPERATORS
+  !(                non-null-chain  Asserted member, index, and call access on known-present values.
+  !.                non-null-chain  Asserted member, index, and call access on known-present values.
+  ![                non-null-chain  Asserted member, index, and call access on known-present values.
+  =                 assignment      Assigns a value to a binding, field, or assignable expression.
+  ?(                optional-chain  Null-safe member, index, and call access.
+  ?.                optional-chain  Null-safe member, index, and call access.
+  ?[                optional-chain  Null-safe member, index, and call access.
+  aut               logic           Combines boolean expressions with logical or.
+  ergo              control-flow    Introduces a compact statement consequent.
+  et                logic           Combines boolean expressions with logical and.
+  modulus<u16>      arithmetic      Unsigned 16-bit modular-word arithmetic and bit-pattern edges.
+  modulus<u32>      arithmetic      Unsigned 32-bit modular-word arithmetic and bit-pattern edges.
+  modulus<u64>      arithmetic      Unsigned 64-bit modular-word arithmetic and bit-pattern edges.
+  modulus<u8>       arithmetic      Unsigned 8-bit modular-word arithmetic and bit-pattern edges.
+  non est           logic           Bitwise or and est-negation operators.
+  vel               logic           Provides a default when the left side is null.
+  §                 format          String-template substitution holes inside quoted literals.
+  ¬                 bitwise         Bitwise and, or, xor, not, and shifts on numerus operands.
+  ·                 arithmetic      Glyph inner product: vector · vector reduces to a scalar dot product.
+  ×                 arithmetic      Glyph cross product: width-3 vectors × multiply into the perpendicular vector.
+  ‥                 range           Half-open and inclusive range endpoints in itera ab and ∈.
+  …                 range           Half-open and inclusive range endpoints in itera ab and ∈.
+  ←                 assignment      Assigns a value to a binding, field, or assignable expression.
+  ↑                 mutation        Postfix increment statement for a mutable numerus place.
+  →                 function        Success return type and recoverable alternate-exit type in function signatures.
+  ↓                 mutation        Postfix increment statement for a mutable numerus place.
+  ↤                 assignment      Conversion-directed assignment: evaluate the right side, convert it to the statically known type of the left place through the ↦ route, then assign.
+  ↦                 conversion      Converts a value with explicit runtime parsing or coercion semantics.
+  ⇇                 collection      Copy-into: target ⇇ value writes every value of a tensor into the existing storage of another tensor; storage identity is preserved and ← only ever rebinds a name.
+  ⇐                 bitwise         Bitwise and, or, xor, not, and shifts on numerus operands.
+  ⇒                 bitwise         Bitwise and, or, xor, not, and shifts on numerus operands.
+  ⇥                 function        Success return type and recoverable alternate-exit type in function signatures.
+  ∈                 collection      Checks whether a value appears in a collection.
+  ∧                 bitwise         Bitwise and, or, xor, not, and shifts on numerus operands.
+  ∨                 logic           Bitwise or and est-negation operators.
+  ∴                 control-flow    Compact consequent after si/dum heads via ergo, with ∴ reserved for closure bodies.
+  ∷                 conversion      Converts a value with explicit runtime parsing or coercion semantics.
+  ≡                 comparison      Equality and ordering comparisons returning bivalens.
+  ≢                 comparison      Equality and ordering comparisons returning bivalens.
+  ≤                 comparison      Equality and ordering comparisons returning bivalens.
+  ≥                 comparison      Equality and ordering comparisons returning bivalens.
+  ⊗                 arithmetic      Glyph outer product: vector ⊗ vector yields the rank-summed matrix of pairwise products.
+  ⊘                 assignment      Assigns a value to a binding, field, or assignable expression.
+  ⊙                 arithmetic      Glyph Hadamard: identical-shape elementwise product on vectors, matrices, and tensors.
+  ⊚                 assignment      Assigns a value to a binding, field, or assignable expression.
+  ⊛                 assignment      Assigns a value to a binding, field, or assignable expression.
+  ⊜                 assignment      Assigns a value to a binding, field, or assignable expression.
+  ⊥                 conversion      Converts a value with explicit runtime parsing or coercion semantics.
+  ⊻                 bitwise         Bitwise and, or, xor, not, and shifts on numerus operands.
+  ✓                 control-flow    The value conditional: c ✓ a ✗ b, one level only.
+
+ANNOTATIONS
+  @                 metadata        Introduces an annotation for the following declaration or statement.
+  alias             cli             CLI root with options, operands, subcommands, and module mounts.
+  cli               cli             CLI root with options, operands, subcommands, and module mounts.
+  futura            async           Compatibility annotation for asynchronous posture.
+  imperia           cli             CLI root with options, operands, subcommands, and module mounts.
+  imperium          cli             CLI root with options, operands, subcommands, and module mounts.
+  nondum            availability    Marks an interface method as planned but unavailable for a target.
+  versio            cli             Attaches a version string to a CLI root.
+
+LITERALS
+  forma             template        Captured backtick templates for bound payloads.
+
+MODIFIERS
+  iacit             function        Marks a function as able to throw along a recoverable channel.
+
+TYPES
+  atomic            storage         atomic<i32> operations are storage-sensitive compiler-owned methods.
+  block-string      literal         Block textus literals with embedded quotes and newlines.
+  f16               numeric         the bare `f16` type-position width marker.
+  matrix            register        matrix<T, [R, C]> is a register-class type distinct from tensor.
+  metior            testing         Marks a test for metered or measured execution.
+  named-holes       template        Named template holes, positional rendering, and forma capture.
+  prima             testing         Marks a test for metered or measured execution.
+  string            literal         Short quoted textus string literals and template application.
+  tensor            collection      tensor<T, Figura> declaration shell with rank-0 vacua.
+  ultima            testing         Marks a test for metered or measured execution.
+  vector            register        vector type declarations: long form and vf32 sugar.
+
+CONCEPTS
+  filum             collection      Distributed reducta via summa ex … filum kernel inside @ nucleum.
+  manifest          package         faber.toml package metadata for build, run, and test.
+  prae              type            Angle-bracket generic parameters on functions and declarations.
+  primus_quem       collection      Dedicated total first-match expression: first live element of a source satisfying the owned ubi predicate, nihil for no-match and empty sources.
+  summa             collection      Sequential sum-reduce expression: reducta via summa ex <tensor> apud [i] fixum s.
+  targets           package         Compilation backends listed by faber targets or radix targets.
+
+CONVERSIONS
+  Bits              conversion      The Bits conversio hint is retired: a bit pattern is a b16, b32 or b64 value, and ↦ bN reads or writes it — u16↔f16, u16↔bf16, u32↔f32, u64↔f64 only.
+  finite            conversion      finite()-style NaN detection on float payloads via the bN field-read gate (exponent 0xFF, fraction ≠ 0), never via x ≢ x.

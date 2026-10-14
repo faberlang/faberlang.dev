@@ -8,9 +8,11 @@ import sys
 import tomllib
 from pathlib import Path
 
-WORKSPACE = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import upstream  # noqa: E402
+
 REPO = Path(__file__).resolve().parents[2]
-PACKS = WORKSPACE / "radix" / "locale"
+PACKS = upstream.radix_root() / "locale"
 LOCALES = [
     ("en-US", "English", "en"),
     ("la", "Latina", "la"),

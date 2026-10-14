@@ -45,10 +45,18 @@ faberlang.dev/
     locales.toml           Locale registry (reader_locale, native names)
     www/speculum.css       Shared stylesheet (single source of truth)
     diagrams/              Committed SVG cache, one file per ```mermaid block
+    scripts/build.py       THE build: staleness, rendering, generators, gates
+    scripts/build-site.sh  Launcher for build.py (finds Python 3.11+)
     scripts/speculum_py.py Renderer core and CLI modes (--page, corpus, alias)
-    scripts/build-site.sh  Full site render + redirects + gates
+    scripts/localize.py    Reader-locale conversion (cached `faber convert`)
+    scripts/corpus_build.py  Corpus term pages, aliases, indexes (in-process)
+    scripts/upstream.py    The radix pin (see "The radix pin")
+    scripts/receipt.py     Degradation receipt + allowlist
     scripts/render.sh      Single-page render wrapper
     scripts/validate-fences.sh  CI fence validator
+    upstream.lock.toml     Pinned radix tree ids (written by --refresh-upstream)
+    upstream/explain-list.txt  `faber explain --list` snapshot at the pin
+    degraded.allow.toml    Accepted fallbacks, each with its reason
   dist/                    Committed static site (GitHub Pages artifact root)
     en-US/…                Maintained English content
     {ar,hi,th-TH,vi,zh-Hans,zh-Hant}/…  Retired URL meta-refresh aliases
@@ -56,7 +64,6 @@ faberlang.dev/
     porta/index.html       Language chooser (generate-portal.py)
     start/… etc.           Meta-refresh stubs → /en-US/… for old root URLs
   docs/factory/
-    multilingual-site/     Stages 6–7 factory goal + delivery
     site-implementation/CAMPAIGN.md  Campaign stages and gate status
   CONTENT-PLAN.md          Architecture: generated vs authored content
   AGENTS.md                This file
@@ -87,9 +94,9 @@ The live site deploys from `origin/main` via GitHub Actions:
 The site is generated from Markdown sources through the Speculum generator.
 The deploy pipeline is:
 
-1. **Local render:** `generator/scripts/build-site.sh` renders only
-   `src/en-US/` to `dist/en-US/`, writes root IA redirects and retired-locale
-   meta-refresh aliases, and runs gates
+1. **Local render:** `generator/scripts/build-site.sh` (a launcher for
+   `build.py`) renders only `src/en-US/` to `dist/en-US/`, writes root IA
+   redirects and retired-locale meta-refresh aliases, and runs gates
 2. **Commit:** `dist/` is committed to the repo. The renderer is Python;
    source generation may call the Faber CLI locally.
 3. **Deploy:** Push to `main` triggers `.github/workflows/deploy-pages.yml`,
@@ -149,11 +156,14 @@ Markdown → HTML with:
 ### Render pipeline
 
 ```bash
-# Incremental full-site build (default; only stale authored pages/corpus rerender)
+# Incremental build against the pinned radix (default)
 bash generator/scripts/build-site.sh
 
-# Clean full-site rebuild (wipes dist and rebuilds the manifest from scratch)
+# Wipe dist and the manifest, rebuild everything
 bash generator/scripts/build-site.sh --full
+
+# Move the radix pin, then regenerate everything that derives from it
+bash generator/scripts/build-site.sh --refresh-upstream [REV]
 
 # Render a single page (site_locale, reader_locale)
 generator/scripts/render.sh src/en-US/syntax/types.md en-US la /speculum.css output.html
@@ -162,19 +172,72 @@ generator/scripts/render.sh src/en-US/syntax/types.md en-US la /speculum.css out
 generator/scripts/validate-fences.sh src/en-US
 ```
 
-`render.sh` is the single-page wrapper. Full-site builds are incremental by
-default; `--full` forces the clean rebuild. The input/output SHA-256 manifest
-lives at `generator/target/build-manifest.json` and is a disposable build
-artifact (ignored by Git), not source. Reader locales remain visible through
-mapping pages and captured code panels; U6 tabs and U7 grammar switching are
-future work, not shipped surfaces.
+`build.py` is one process. Per-page work (staleness, reader-locale conversion,
+rendering) runs in-process; only the whole-tree generators and presentation
+passes are spawned. Every output records the SHA-256 of its inputs in
+`generator/target/build-manifest.json` (disposable, ignored by Git), so a build
+with nothing changed renders nothing and an edit to one page renders that page.
+Incremental output is byte-identical to `--full` (checked 2026-10-14).
+
+**Measured times, 2026-10-14** (18-core laptop under load average ~6–9, pinned
+radix 20c62a89c7):
+
+| Run | Time |
+|---|---|
+| `--full` (corpus and convert cache cold) | ~6 s |
+| `--refresh-upstream --full` (adds 197 `faber explain` calls) | ~26 s |
+| no change | ~1.6 s |
+| one authored page edited | ~1.5 s |
+
+The previous driver measured 142 s for `--full`, 17 s no-op, 17 s one page on
+the same machine: about 8,000 subprocess spawns, 375 of them a manifest check.
+A build that exceeds these by 3x is a finding, not a fact of the environment.
+
+### The radix pin
+
+The build never reads the live radix checkout. It reads `grammar/`, `locale/`
+and `corpus/` as of the git tree ids in `generator/upstream.lock.toml`,
+extracted by `git archive` to `generator/target/upstream/radix/` and reached
+through `upstream.radix_root()`. Radix `main` moves many times a day, and a
+grammar addition used to fail the build at step 0; now it cannot touch the
+site until you move the pin.
+
+`build-site.sh --refresh-upstream [REV]` is the only thing that moves it. It
+re-pins (default `HEAD` of `../radix`), snapshots `faber explain --list` to
+`generator/upstream/explain-list.txt`, regenerates the agent reference
+(`generate-agent-reference.py`, the only step that needs a compiler with a
+reference pack: it prefers `../radix/target/debug/faber`, then `faber` on
+PATH), and re-runs every generator and the corpus. Commit the lock, the
+snapshot, and the regenerated `src/`, `static/` and `dist/` together.
+Tree ids are content addresses, so a radix history rewrite that only changes
+commits leaves the pin valid.
+
+`faber` on PATH (or `--faber`) is used for reader-locale conversion. Results
+are cached in `generator/target/convert-cache/` keyed by compiler version,
+reader pack tree, source locale and source text.
+
+### Degraded fallbacks
+
+A generator that cannot do its job exactly used to print a warning and carry
+on with a cruder result, and the build still exited 0. Every fallback is now a
+recorded event (`receipt.degraded`, or a `DEGRADED <kind> <subject>: <detail>`
+stderr line from a standalone script). Events are stored on the output they
+affected, so unchanged pages keep reporting them, and the build ends with a
+count and `generator/target/build-receipt.json`.
+
+The build fails on any event that `generator/degraded.allow.toml` does not
+list with a `why`, and under `--full` on any entry that matches nothing. Fix
+the cause or add a truthful entry; do not add an entry to make a build pass.
+A mermaid fence with no cached SVG is such an event: the build does not
+install node dependencies or download a browser. Run
+`python3 generator/scripts/diagrams.py render` and commit the SVG.
 
 ### Generated source pages
 
-Some pages under `src/` are **not authored** — they are assembled from sibling
-checkouts and captured panels before the render, in `build-site.sh` step 0.
-Editing them by hand works until the next build overwrites the edit; change the
-generator or the upstream source instead.
+Some pages under `src/` are **not authored** — they are assembled from the
+pinned radix trees and captured panels before the render (the `[generators]`
+phase of `build.py`). Editing them by hand works until the next build
+overwrites the edit; change the generator or the upstream source instead.
 
 | Script | Writes | Reads |
 |---|---|---|
@@ -208,10 +271,9 @@ neither a designed shape nor the expected list in
 `radix/crates/radix-module/src/intrinsic_pack_completeness_test.rs` asserts, and
 the expected list is the pack drift owned by a compiler-side fix.
 
-Each degrades to leaving its committed output alone when its inputs are
-absent, so a checkout without siblings still builds. **`generate-releases.py`
-is the exception to step 0**: it needs `gh` and network access, so it is not
-run by the build. Run it by hand when a release lands.
+A generator whose declared inputs are unchanged is skipped. **`generate-releases.py`
+is not part of the build**: it needs `gh` and network access. Run it by hand
+when a release lands.
 
 ### Post-build validation scripts
 
@@ -246,9 +308,10 @@ operate on rendered HTML, so none of them requires a generator rebuild.
 
 **Reader locale.** The maintained prose tree is English (`locales.toml` maps
 `en-US` → `en`). Latin remains the canonical source surface and compiler
-interchange dialect. Reader locale code panels remain proof that packs exist;
-U6 fence tabs and U7 grammar toggle are planned, not implemented. Current
-surfaces include the locale chooser, captured panels, and mapping pages.
+interchange dialect. Reader locales surface through the locale chooser, the
+per-language mapping pages, reader-locale tab cards on fences marked
+`locale-tabs` (U6), and the CSS-only keyword-spelling toggle on the grammar page
+(U7, `grammar-toggle.py`).
 
 | Layer | Handled by |
 |---|---|
@@ -287,10 +350,9 @@ python3 generator/scripts/diagrams.py render
 which installs its own Node dependencies under `generator/target/` on first
 use. Commit the new `generator/diagrams/*.svg` alongside the Markdown.
 
-**Reader-locale tabs.** Existing captured Faber blocks in the **cheat sheet** and **target lanes**
-sections render as tabbed cards carrying all eight reader surfaces. General
-fence-wide tabs remain U6 work. Like the
-diagram cache, the panels are committed so a build without the toolchain still
+**Reader-locale tabs.** A Faber fence marked `locale-tabs` renders as a tabbed
+card carrying all eight reader surfaces (the cheat sheet and target lanes use
+them). Like the diagram cache, the panels are committed so a build without the toolchain still
 produces a complete site — `inject` only ever reads the cache, and a missing
 panel set leaves the plain Latin block in place.
 
@@ -343,14 +405,13 @@ the English tree; `/llms-full.txt` is a locale-neutral corpus reference.
 
 ### Binary versions
 
-- `faber` 1.12.0 (docs site documents this release; `static/install.md`, the install skill, and the skill catalog pin it)
-- `radix` 0.84.0
+- `faber` 1.12.0 is the release the site documents (`static/install.md`, the
+  install skill and the skill catalog pin it); the build converts with whatever
+  `faber` is on PATH, currently 1.13.0 (recorded in `upstream.lock.toml`).
 - **Renderer:** `generator/scripts/speculum_py.py` is the single Python
-  implementation for page, corpus, and alias rendering. It uses only the
-  standard library and runs on Python 3.9+. `render.sh`, `build-site.sh`,
-  `render-corpus-batch.sh`, and `render-failed-pages.sh` call it directly.
-  `build-site.sh` uses sequential page rendering and preserves per-page status
-  lines; corpus record projection may still spend time in `faber convert`.
+  implementation for page, corpus, and alias rendering. `build.py` imports it;
+  `render.sh` calls it directly for a single page. The build driver needs
+  Python 3.11+ (`tomllib`).
 
 ## Campaign stages
 

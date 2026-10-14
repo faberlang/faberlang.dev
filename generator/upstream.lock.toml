@@ -1,0 +1,15 @@
+# Pinned radix inputs for the site build. Written by
+# `build-site.sh --refresh-upstream`; never edit by hand.
+# Tree ids are content addresses, so this survives a history rewrite
+# that only changes commits; `commit` is informational.
+
+[radix]
+commit = "20c62a89c75ebfc5656aa7009796900fde7c1837"
+
+[trees]
+grammar = "5b9cbac95c2b6742d8ab422acb802c48bf3a7b96"
+locale = "570a0b746a9a045a96d1fd3f309d4933686b68a0"
+corpus = "e43d784e4a5591ee495ae23fdeeff10f7fa1af04"
+
+[faber]
+version = "faber 1.13.0"

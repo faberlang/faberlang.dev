@@ -24,17 +24,10 @@ except ModuleNotFoundError:  # pragma: no cover - Python < 3.11 fallback
 
 
 def default_reader_root() -> Path:
-    """Locate the workspace `radix/locale` checkout."""
-    configured = os.environ.get("FABER_LIBRARY_HOME")
-    if configured:
-        candidate = Path(configured) / "radix" / "locale"
-        if candidate.is_dir():
-            return candidate
-    for parent in Path(__file__).resolve().parents:
-        candidate = parent / "radix" / "locale"
-        if candidate.is_dir():
-            return candidate
-    return Path(__file__).resolve().parents[3] / "radix" / "locale"
+    """The pinned `radix/locale` tree (see upstream.py)."""
+    import upstream
+
+    return upstream.radix_root() / "locale"
 
 
 def load_pack(reader_root: Path, reader_locale: str) -> dict[str, dict[str, str]]:

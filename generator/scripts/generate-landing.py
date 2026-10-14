@@ -344,7 +344,9 @@ def main() -> None:
 
     gen = Path(__file__).resolve().parent.parent
     args.landing = args.landing or gen / "landing"
-    args.ebnf = args.ebnf or gen.parent.parent / "faber" / "docs" / "EBNF.md"
+    import upstream
+
+    args.ebnf = args.ebnf or upstream.radix_root() / "grammar" / "EBNF.md"
 
     productions = ebnf_productions(args.ebnf)
     targets = read_targets(args.landing / "targets" / "faber-targets.txt")

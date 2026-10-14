@@ -216,9 +216,9 @@ def main() -> None:
     if args.exemplars is None:
         args.exemplars = generator_dir / "portal" / "exemplars"
     if args.reader_root is None:
-        repo_dir = generator_dir.parent
-        workspace_dir = repo_dir.parent
-        args.reader_root = workspace_dir / "radix" / "locale"
+        import upstream
+
+        args.reader_root = upstream.radix_root() / "locale"
 
     registry = load_locales(args.locales)
     sorted_keys = sort_locale_keys(list(registry.keys()))
