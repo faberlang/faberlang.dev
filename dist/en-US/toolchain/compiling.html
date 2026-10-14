@@ -17,13 +17,13 @@ toolchains; that is a measurement surface, not a <code>faber package</code> prod
                               HIR backends                        MIR backends
                                     │                                    │
             Rust · Faber · TS · Go            fmir · wasm · llvm · metal · wgsl · sexp</code></pre><h3 id="application-lane-hir">Application lane (HIR)<a class="anchor" href="#application-lane-hir">#</a></h3><div class="table-scroll"><table><thead><tr><th>Target</th><th>Measured floor (exempla e2e floors, 2026-08-07 HEAD)</th></tr></thead><tbody><tr><td>Rust</td><td>Widest package product surface today. Borrow modes, CLI generation, failable Result lowering.</td></tr><tr><td>Faber</td><td>Canonical source view / round-trip. Not an execution backend.</td></tr><tr><td>TypeScript</td><td>Floors: 288 analysed · 289 emitted · 285 typecheck-valid · 283 runnable. Modular-width words, Valor JSON-root, identifier sanitation, and host-backend hardening in recent work.</td></tr><tr><td>Go</td><td>Floors: 251 pass · 304 accepted outcomes. Type carriers (vector/intervallum/tensor-bracket), value/instans, reserved-word sanitation; borrow modes erased; <code>call</code> rejected.</td></tr></tbody></table></div><h3 id="systems-lane-mir">Systems lane (MIR)<a class="anchor" href="#systems-lane-mir">#</a></h3><div class="table-scroll"><table><thead><tr><th>Target</th><th>Role</th></tr></thead><tbody><tr><td>fmir*</td><td>Package MIR images; runner proves source independence.</td></tr><tr><td>wasm / wasm-text</td><td>Full-language MIR → Wasm surfaces (limited host imports).</td></tr><tr><td>llvm-text</td><td>Full-language MIR staging IR. <strong>Also</strong> the NVVM→PTX staging chain used by <strong>CUDA device execution</strong> (<code>faber run --device cuda</code>). There is no separate <code>cuda</code> emit target.</td></tr><tr><td>metal-text</td><td><strong>Device-kernel subset</strong> shader text (MSL). Real device runs use <code>faber run --device metal</code>, not “% of whole-language corpus.”</td></tr><tr><td>wgsl-text</td><td><strong>Device-kernel subset</strong> shader text (WGSL) for WebGPU hosts.</td></tr><tr><td>sexp</td><td>Validation / Racket-oriented dump.</td></tr></tbody></table></div><p><strong>Do not read Metal/WGSL “2% capable” rows on the [target matrix](/toolchain/target-matrix.html) as product completeness.</strong> Those
-rows score <em>full-language corpus terms</em> against a <em>kernel-only</em> emitter. The
-accepted dual-backend training path is proven on <strong>Metal and CUDA</strong> through
-<code>faber run --device metal|cuda</code> (see <a href="#device-execution">device execution</a>).</p><p>For a <strong>device-kernel product summary</strong> (backends, workload families, expanding
-CUDA hardware matrix) see
+rows score <em>full-language corpus terms</em> against a <em>kernel-only</em> emitter. Device
+runs go through <code>faber run --device metal|cuda</code> (see
+<a href="#device-execution">device execution</a>).</p><p>For the <strong>device-kernel summary</strong> (how a device program runs and what each
+device target emits) see
 <a href="/en-US/toolchain/target-matrix.html#device-kernel-support">Target matrix · Device kernel support</a>.</p><p>For live capability flags, run <code>faber targets</code>.</p><h3 id="full-matrix">Full lowerability matrix<a class="anchor" href="#full-matrix">#</a></h3><p>The large term × target tables (HIR application lane and MIR systems lane)
 live on the <a href="/en-US/toolchain/target-matrix.html">Target compatibility</a> page. That matrix
-is generated from <code>faber/docs/EBNF_MATRIX.md</code> and reports <strong>term lowerability only</strong> —
+is generated from <code>radix/grammar/EBNF_MATRIX.md</code> and reports <strong>term lowerability only</strong> —
 not erase/warn policy, and not GPU product health. GPU backends and the “why
 no CUDA column?” note are explained in that page’s summary.</p><h2 id="compilation-lanes">Compilation lanes<a class="anchor" href="#compilation-lanes">#</a></h2><p>Faber has a single shared frontend — lex, parse, typecheck — and then forks into
 multiple lowering routes depending on what the target needs. The intermediate
@@ -50,11 +50,11 @@ program, regardless of its original locale or target destination, passes
 through this representation.</p><h4 id="reader-locale-integration">Reader locale integration<a class="anchor" href="#reader-locale-integration">#</a></h4><p>Reader locale operates through the HIR. A Faber source file written in Thai
 keywords is parsed and lowered into the same HIR as the equivalent Latin
 source. The locale is a surface rendering of the HIR, not a fork in the
-semantic core.</p><ul><li><strong>Input:</strong> localised source (Thai, Chinese, Arabic, etc.) → normalised HIR — <strong>shipped</strong></li><li><strong>Output:</strong> HIR → localised source re-emission — <strong>shipped</strong> (<code>faber format --locale &lt;locale&gt;</code>)</li></ul><p><code>faber format --locale=th-TH</code> round-trips any Faber source through the HIR and
+semantic core.</p><ul><li><strong>Input:</strong> localised source (Thai, Chinese, Arabic, etc.) → normalised HIR — <strong>shipped</strong></li><li><strong>Output:</strong> HIR → localised source re-emission — <strong>shipped</strong> (<code>faber convert --to &lt;locale&gt;</code>)</li></ul><p><code>faber convert --to th-TH</code> round-trips any Faber source through the HIR and
 emits it with Thai keywords, completing the symmetry: the same HIR can produce
-any locale surface, just as it can produce any target backend. <code>--locale la</code>
-reproduces the former <code>--canonical</code> re-emit surface.</p><h4 id="hir-direct-backends">HIR-direct backends<a class="anchor" href="#hir-direct-backends">#</a></h4><p>These targets emit directly from the typed HIR without lowering to MIR. They
-preserve source-level structure longer and are suited for language-shaped output:</p><div class="table-scroll"><table><thead><tr><th>Target</th><th>Status</th><th>Role</th></tr></thead><tbody><tr><td><code>Rust</code></td><td><strong>Support</strong></td><td>Widest package product surface today (build/run/test via Cargo). One projection of HIR — not the semantic center.</td></tr><tr><td><code>Faber</code></td><td><strong>Support</strong></td><td>Canonical source view via <code>forma</code> formatter. Round-trip stability.</td></tr><tr><td><code>TypeScript</code></td><td>Probe</td><td>HIR-direct emission + rising exempla e2e floors. Not a <code>faber package</code> product path yet.</td></tr><tr><td><code>Go</code></td><td>Erase</td><td>HIR-direct emission + rising exempla e2e floors; borrow modes erased; <code>call</code> rejected.</td></tr></tbody></table></div><h3 id="mir">MIR — Mid-Level Intermediate Representation<a class="anchor" href="#mir">#</a></h3><p>MIR is the execution-shaped IR. It represents control flow, locals, runtime
+any locale surface, just as it can produce any target backend. <code>faber format</code>
+re-emits through the same HIR at the file's own locale and does not translate.</p><h4 id="hir-direct-backends">HIR-direct backends<a class="anchor" href="#hir-direct-backends">#</a></h4><p>These targets emit directly from the typed HIR without lowering to MIR. They
+preserve source-level structure longer and are suited for language-shaped output:</p><div class="table-scroll"><table><thead><tr><th>Target</th><th>Status</th><th>Role</th></tr></thead><tbody><tr><td><code>Rust</code></td><td><strong>Support</strong></td><td>Widest package product surface today (build/run/test via Cargo). One projection of HIR — not the semantic center.</td></tr><tr><td><code>Faber</code></td><td><strong>Support</strong></td><td>Canonical source view through the HIR-backed re-emitter (<code>faber format</code> / <code>faber convert</code>). Round-trip stability.</td></tr><tr><td><code>TypeScript</code></td><td>Probe</td><td>HIR-direct emission + rising exempla e2e floors. Not a <code>faber package</code> product path yet.</td></tr><tr><td><code>Go</code></td><td>Erase</td><td>HIR-direct emission + rising exempla e2e floors; borrow modes erased; <code>call</code> rejected.</td></tr></tbody></table></div><h3 id="mir">MIR — Mid-Level Intermediate Representation<a class="anchor" href="#mir">#</a></h3><p>MIR is the execution-shaped IR. It represents control flow, locals, runtime
 calls, places, branches, and error edges — the facts that low-level targets
 need. Where HIR preserves source structure, MIR flattens it into a
 control-flow graph.</p><p>HIR → MIR lowering translates language-shaped constructs into execution steps.
@@ -83,7 +83,7 @@ toolchains for the final compilation step — analogous to how a C compiler
 emits assembly for the assembler and linker.</p><h4 id="fmir">FMIR — Faber's own MIR runtime<a class="anchor" href="#fmir">#</a></h4><p>FMIR is the MIR-native package executor. The compiler extracts MIR into a
 binary payload and wraps it with a short Rust kernel loader. This produces
 a self-contained executable that runs the MIR through Faber's in-process
-stepper — no separate runtime installation required.</p><div class="table-scroll"><table><thead><tr><th>Format</th><th>Description</th></tr></thead><tbody><tr><td><code>fmir-text</code></td><td>Inspectable FMIR text image at <code>target/faber-mir/image.fmir.txt</code></td></tr><tr><td><code>fmir</code></td><td>Compact binary FMIR image at <code>target/faber-mir/image.fmir</code></td></tr><tr><td><code>fmir-bin</code></td><td>Self-contained runner at <code>target/faber-mir/exe/run</code> — embeds FMIR bytes</td></tr></tbody></table></div><h4 id="llvm">LLVM text<a class="anchor" href="#llvm">#</a></h4><p>Faber emits LLVM IR as text (<code>.ll</code>), not as integrated LLVM codegen.
+runner — no separate runtime installation required.</p><div class="table-scroll"><table><thead><tr><th>Format</th><th>Description</th></tr></thead><tbody><tr><td><code>fmir-text</code></td><td>Inspectable FMIR text image at <code>target/faber-mir/image.fmir.txt</code></td></tr><tr><td><code>fmir</code></td><td>Compact binary FMIR image at <code>target/faber-mir/image.fmir</code></td></tr><tr><td><code>fmir-bin</code></td><td>Self-contained runner at <code>target/faber-mir/exe/run</code> — embeds FMIR bytes</td></tr></tbody></table></div><h4 id="llvm">LLVM text<a class="anchor" href="#llvm">#</a></h4><p>Faber emits LLVM IR as text (<code>.ll</code>), not as integrated LLVM codegen.
 The emitted IR is intended for external toolchain steps — verification,
 optimisation, and native code generation are handled by downstream LLVM tools.
 This is a staging and validation target, not a native codegen path embedded in
@@ -103,27 +103,18 @@ rank-1 <code>f32</code> device views are supported; rank-2 views reject. WGSL
 is not a GPU launch runtime — Faber emits the shader source, but execution
 requires an external WebGPU runtime. The <a href="/en-US/libraries/triga.html">Triga</a>
 library supplies the typed geometry, scene, and resource contracts consumed
-by the sibling <code>hosts/webgpu-browser</code> host.</p><h4 id="metal">Metal<a class="anchor" href="#metal">#</a></h4><p>Metal compute shader text emission follows the same pattern as WGSL: Faber
-emits Metal Shading Language source for the device-safe kernel subset. The
-Metal campaign was reopened on 2026-08-02 after the frozen probe regressed
-undetected during its pause (see
-<code>radix/docs/factory/phase-metal-campaign-pause-state.md</code>); the emitter now
-covers a training surface (Transpose+, elementwise <code>train_step</code> / companion
-VJP, Tanh, fused matmul+elementwise). Metal and CUDA are the product <strong>device execution</strong> paths for the accepted
-bounded training proof (<code>faber run --device metal|cuda</code>). Metal is the
-Apple Silicon local-dev and API-parity host; CUDA is the NVIDIA deployment
-host. WebGPU remains a browser graphics / headless proof lane (Triga +
-<code>hosts/webgpu-browser</code>), not the product training or inference path.</p><h4 id="device-execution">Device execution (Metal / CUDA)<a class="anchor" href="#device-execution">#</a></h4><p>A package carries a device program when its source declares an <code>@ kernel</code>
-compute kernel and its manifest declares a <code>[device]</code> section. The FMIR
-image's <code>device</code> section embeds the canonical device program plus Metal MSL
-and CUDA PTX artifacts, each with a provenance hash. `faber run --device
-metal|cuda|auto` runs it through a real device session (load → allocate →
-copy-in → launch → sync → readback → release) and fails closed with stable
-codes (<code>E_BACKEND_UNAVAILABLE</code>, <code>E_DEVICE_*</code>, <code>E_NO_DEVICE_PROGRAM</code>) instead
-of silently falling back to CPU. The surface covers forward kernels and
-training loops — a library-backed <code>train_step</code> / companion VJP with per-step
-observation cadence, gradient-slot → buffer mapping, and end-of-run readback.
-Proof fixture: <code>examples/training/device-summa</code>.</p><h3 id="comparison">Architecture note<a class="anchor" href="#comparison">#</a></h3><p>Faber's compilation architecture is similar in spirit to how the Rust compiler
+by a WebGPU host.</p><h4 id="metal">Metal<a class="anchor" href="#metal">#</a></h4><p>Metal compute shader text emission follows the same pattern as WGSL: Faber
+emits Metal Shading Language source for the device-safe kernel subset. Metal
+and CUDA are the <strong>device execution</strong> paths (<code>faber run --device metal|cuda</code>).
+Metal is the Apple Silicon local-dev and API-parity host; CUDA is the NVIDIA
+deployment host. WebGPU remains a browser graphics and headless lane (Triga),
+not a package device-execution path.</p><h4 id="device-execution">Device execution (Metal / CUDA)<a class="anchor" href="#device-execution">#</a></h4><p>A package carries a device program when its source declares an <code>@ kernel</code>
+compute kernel and its manifest declares a <code>[device]</code> section. `faber run
+--device reference|cpu|metal|cuda|auto` runs it through the host driver and
+fails closed with stable codes (<code>E_BACKEND_UNAVAILABLE</code>, <code>E_DEVICE_*</code>,
+<code>E_NO_DEVICE_PROGRAM</code>) instead of silently falling back to the CPU. <code>reference</code>
+runs kernels as ordinary functions on the MIR runner and is the oracle device
+results are checked against.</p><h3 id="comparison">Architecture note<a class="anchor" href="#comparison">#</a></h3><p>Faber's compilation architecture is similar in spirit to how the Rust compiler
 works. Rust lowers through HIR → MIR → LLVM IR, embedding the LLVM toolchain
 directly for final native codegen. Faber takes a softer approach: it emits
 text for external toolchains (LLVM text, WGSL, Metal, WAT) rather than embedding

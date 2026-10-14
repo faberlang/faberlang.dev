@@ -73,7 +73,7 @@ fn bis(int n) <span class="tok-op">→</span> int {
 
 @ call <span class="tok-st">'numeri:numera'</span>
 fn numera(int n) generator <span class="tok-op">→</span> int {
-    for range <span class="tok-nu">0</span>‥n const i {
+    for range <span class="tok-nu">0</span> ‥ n const i {
         yield i
     }
 }
@@ -112,7 +112,8 @@ main {
     do {
         const bool clausa <span class="tok-op">←</span> fractus.close()
         print clausa
-    } catch err {
+    }
+    catch err {
         print err
     }
 
@@ -121,7 +122,8 @@ main {
         const channel ultimus <span class="tok-op">←</span> call <span class="tok-st">'numeri:bis'</span> (<span class="tok-nu">21</span>)
         const bool clausa <span class="tok-op">←</span> ultimus.close()
         print clausa
-    } catch err {
+    }
+    catch err {
         print err
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0

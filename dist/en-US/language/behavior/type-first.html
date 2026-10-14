@@ -14,8 +14,11 @@ be left out; the type itself is unchanged.</li></ul><p>Keeping them syntactic me
 from <em>an argument you need not pass</em> without reading the signature twice.</p><h2 id="conversion">Values do not convert by accident<a class="anchor" href="#conversion">#</a></h2><p>A value has a type, and moving between types is written down. <code class="glyph">∷</code> is a
 compile-time ascription; <code class="glyph">↦</code> is a runtime conversion that may fail. Numeric
 families do not mix silently — the unbounded integer and a bounded cell meet at
-an explicit <code class="glyph">↦</code>, not at a hidden promotion. When a value can be absent or a
-conversion can fail, the compiler makes you say so rather than guessing.</p><pre class="faber-code"><code class="lang-faber">fn saturate(int x) <span class="tok-op">→</span> int {
+an explicit <code class="glyph">↦</code>, not at a hidden promotion, and an integer meets a float the
+same way. A float converts to an integer only with a rounding word,
+<code>x ↦ int via floor</code>, because the compiler will not choose one for you. When a
+value can be absent or a conversion can fail, the compiler makes you say so
+rather than guessing.</p><pre class="faber-code"><code class="lang-faber">fn saturate(int x) <span class="tok-op">→</span> int {
     if x ≺ <span class="tok-nu">0</span> then return <span class="tok-nu">0</span>
     if x ≻ <span class="tok-nu">255</span> then return <span class="tok-nu">255</span>
     return x

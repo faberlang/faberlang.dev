@@ -76,9 +76,10 @@ kind = "bin"
 
 A second source file is imported by path. See the modules page.
 
-Libraries (`norma:*` and the others) resolve from the Cista package store
-recorded in `faber.lock`. Set `FABER_LIBRARY_HOME` only for an intentional
-local library-development override.
+`norma:*` resolves from the Norma library embedded in the binary. Other
+libraries resolve from the Cista package store recorded in `faber.lock`. Pass
+`--library-home <DIR>` (or set `[paths] library_home` in `faber.toml`) only for
+an intentional local library-development override.
 
 ## Commands
 

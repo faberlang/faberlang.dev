@@ -73,8 +73,8 @@ below exactly as <code>radix emit --target rust</code> produces it:</p><pre clas
 }
 
 <span class="tok-kw">impl</span> Span {
-    <span class="tok-kw">pub</span> <span class="tok-kw">fn</span> contains(&amp;<span class="tok-kw">self</span>, x: <span class="tok-ty">f64</span>) -&gt; <span class="tok-ty">bool</span> {
-        <span class="tok-kw">self</span>.low &lt;= x &amp;&amp; x &lt;= <span class="tok-kw">self</span>.high
+    <span class="tok-kw">pub</span> <span class="tok-kw">fn</span> contains(&amp;<span class="tok-kw">self</span>, p_x: <span class="tok-ty">f64</span>) -&gt; <span class="tok-ty">bool</span> {
+        <span class="tok-kw">self</span>.low &lt;= p_x &amp;&amp; p_x &lt;= <span class="tok-kw">self</span>.high
     }
     <span class="tok-kw">pub</span> <span class="tok-kw">fn</span> center(&amp;<span class="tok-kw">self</span>) -&gt; <span class="tok-ty">f64</span> {
         (<span class="tok-kw">self</span>.low + <span class="tok-kw">self</span>.high) / <span class="tok-nu">2.0</span>

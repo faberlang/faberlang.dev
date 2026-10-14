@@ -18,10 +18,10 @@ surface for the file.</p><h2 id="glyphs">The glyphs never move<a class="anchor" 
 type-first order are identical in every rendering, and identifiers are
 preserved byte-for-byte. A reader who knows Faber in one locale can read it in
 any locale, because the structure is the part that does not change. Numerals
-stay ASCII everywhere.</p><h2 id="lossless">It is never a one-way door<a class="anchor" href="#lossless">#</a></h2><p>Any surface can become any other, including canonical Latin, at any time.
-<code>faber format --locale la</code> re-emits the canonical surface, so a localised file
+stay ASCII everywhere.</p><h2 id="lossless">It is never a one-way door<a class="anchor" href="#lossless">#</a></h2><p>Any surface can become any other, including Latin, at any time.
+<code>faber convert --to la</code> re-emits the Latin surface, so a localised file
 is never trapped in one vocabulary. This is the same canonical-versus-sugar
-property as the glyph law: one defined form, many renderings of it.</p><h2 id="shape">What it looks like<a class="anchor" href="#shape">#</a></h2><p>The same source, in canonical Latin and rendered into Thai:</p><pre class="faber-code"><code class="lang-faber">fn salve(string name) <span class="tok-op">→</span> string {
+property as the glyph law: one defined form, many renderings of it.</p><h2 id="shape">What it looks like<a class="anchor" href="#shape">#</a></h2><p>The same source, in Latin and rendered into Thai:</p><pre class="faber-code"><code class="lang-faber">fn salve(string name) <span class="tok-op">→</span> string {
     const string msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(name)
     return msg
 }
@@ -38,8 +38,7 @@ main {
     บันทึก salve(&quot;munde&quot;)
 }</code></pre><p>The keywords and type names changed; the glyphs, the order, and the identifier
 <code>salve</code> did not. The program still runs:</p><pre class="faber-code"><code class="lang-text">$ faber run
-Salve, munde!</code></pre><p>Eight packs ship today: <code>en</code> (the base English surface), <code>la</code> (canonical
-Latin), and <code>th-TH</code>, <code>zh-Hans</code>, <code>zh-Hant</code>, <code>ar</code>, <code>hi</code>, <code>vi</code> as the reference
+Salve, munde!</code></pre><p>Eight packs ship today: <code>en</code> (the base English surface), <code>la</code> (Latin), and <code>th-TH</code>, <code>zh-Hans</code>, <code>zh-Hant</code>, <code>ar</code>, <code>hi</code>, <code>vi</code> as the reference
 set. The reference locales are chosen for architectural stress — a spaceless
 script, right-to-left runs, half/full-width pairs and NFKC width collapse —
 not for population.

@@ -41,7 +41,7 @@ insere.expected — the embedded text, its length, and the byte count.
 ```fab
 const string NUNTIUS = embed "nuntius.txt"
 
-const bytes SIGNUM = embed "signum.bin"
+const list<b8> SIGNUM = embed "signum.bin"
 
 class Tabula {
     static string TITULUS = embed "nuntius.txt"

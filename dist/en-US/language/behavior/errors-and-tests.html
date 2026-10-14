@@ -31,7 +31,7 @@ keeps going. The compiler knows which call sites can fail, because the <code cla
 channel is part of the function's type.</p><h2 id="testing">Tests are declarations<a class="anchor" href="#testing">#</a></h2><p>The same &quot;make it explicit&quot; stance applies to tests. There is no separate test
 binary and no test module tree. Three keywords declare tests in the same file
 as the code — or in colocated <code>*.proba</code> sources — and <code>faber test</code> runs them on
-the MIR stepper, with no Cargo or rustc involved:</p><div class="table-scroll"><table><thead><tr><th>Keyword</th><th>Role</th></tr></thead><tbody><tr><td><code>describe</code></td><td>a named test suite, nestable</td></tr><tr><td><code>test</code></td><td>one test case</td></tr><tr><td><code>assert</code></td><td>an assertion that must hold</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber">fn saturate(int x) <span class="tok-op">→</span> int {
+the MIR runner, with no Cargo or rustc involved:</p><div class="table-scroll"><table><thead><tr><th>Keyword</th><th>Role</th></tr></thead><tbody><tr><td><code>describe</code></td><td>a named test suite, nestable</td></tr><tr><td><code>test</code></td><td>one test case</td></tr><tr><td><code>assert</code></td><td>an assertion that must hold</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber">fn saturate(int x) <span class="tok-op">→</span> int {
     if x ≺ <span class="tok-nu">0</span> then return <span class="tok-nu">0</span>
     if x ≻ <span class="tok-nu">255</span> then return <span class="tok-nu">255</span>
     return x
@@ -49,7 +49,7 @@ describe <span class="tok-st">"saturate"</span> {
 ok   src/main.fab::saturate/clamps low (0 ms)
 ok   src/main.fab::saturate/clamps high (0 ms)
 test result: ok. 2 passed; 0 failed; 0 blocked; 0 skipped</code></pre><p><em>(The transcript shortens each case's path to the package root.)</em></p><p>Tests are type-checked and analysed by the same front end as production code,
-and the test blocks are filtered out of a production build. Because the runner
-is the stepper, a suite is target-neutral: the same tests run whatever backend
+and the test blocks are filtered out of a production build. Because tests
+run on the MIR runner, a suite is target-neutral: the same tests run whatever backend
 the package is emitted for.</p><p>The full treatment — async error channels, inline conversion defaults, the
 <code>faber test</code> flags — is in <a href="/en-US/language/errors.html">Errors and testing</a>.</p></div></main><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

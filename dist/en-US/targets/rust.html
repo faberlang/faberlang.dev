@@ -72,13 +72,13 @@
 #![allow(non_camel_case_types, non_snake_case, dead_code, clippy::unreadable_literal, clippy::cast_lossless, clippy::cast_possible_truncation, clippy::cast_possible_wrap, clippy::cast_sign_loss, clippy::cast_precision_loss, clippy::needless_pass_by_value)]
 
 <span class="tok-kw">fn</span> main() {
-    <span class="tok-kw">let</span> flat_a: <span class="tok-ty">Vec</span>&lt;<span class="tok-ty">f32</span>&gt; = vec![<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>];
-    <span class="tok-kw">let</span> flat_b: <span class="tok-ty">Vec</span>&lt;<span class="tok-ty">f32</span>&gt; = vec![<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>];
-    <span class="tok-kw">let</span> a: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;f32, [2, 3]&gt; */</span> = { <span class="tok-kw">let</span> t0 = flat_a.clone(); faber::trap::ok(faber::Tensor::&lt;<span class="tok-ty">f32</span>&gt;::structa(t0, &amp;[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]), faber::Trap::Other(<span class="tok-st">"tensor structa element count does not match shape"</span>)) };
-    <span class="tok-kw">let</span> b: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;f32, [3, 4]&gt; */</span> = { <span class="tok-kw">let</span> t1 = flat_b.clone(); faber::trap::ok(faber::Tensor::&lt;<span class="tok-ty">f32</span>&gt;::structa(t1, &amp;[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]), faber::Trap::Other(<span class="tok-st">"tensor structa element count does not match shape"</span>)) };
-    <span class="tok-kw">let</span> product: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;f32, [2, 4]&gt; */</span> = faber::trap::ok_static({ <span class="tok-kw">let</span> t2 = &amp;a; t2.matmul(&amp;(b)) });
-    <span class="tok-kw">let</span> mean: <span class="tok-ty">f32</span> = { <span class="tok-kw">let</span> t3 = &amp;product; <span class="tok-kw">let</span> c0_flat = faber::trap::ok_static(t3.planata()); <span class="tok-kw">let</span> c0: <span class="tok-ty">f32</span> = c0_flat.iter().map(|x| *x <span class="tok-kw">as</span> <span class="tok-ty">f32</span>).sum(); c0 / t3.element_count() <span class="tok-kw">as</span> <span class="tok-ty">f32</span> };
-    println!(<span class="tok-st">"{}"</span>, faber::display::fractus(mean));
+    <span class="tok-kw">let</span> l_flat_a: <span class="tok-ty">Vec</span>&lt;<span class="tok-ty">f32</span>&gt; = vec![<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>];
+    <span class="tok-kw">let</span> l_flat_b: <span class="tok-ty">Vec</span>&lt;<span class="tok-ty">f32</span>&gt; = vec![<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">6.0</span>, <span class="tok-nu">7.0</span>, <span class="tok-nu">8.0</span>, <span class="tok-nu">9.0</span>, <span class="tok-nu">10.0</span>, <span class="tok-nu">11.0</span>, <span class="tok-nu">12.0</span>];
+    <span class="tok-kw">let</span> l_a: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;f32, [2, 3]&gt; */</span> = { <span class="tok-kw">let</span> t0 = l_flat_a.clone(); faber::trap::ok(faber::Tensor::&lt;<span class="tok-ty">f32</span>&gt;::structa(t0, &amp;[<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]), faber::Trap::Other(<span class="tok-st">"tensor structa element count does not match shape"</span>)) };
+    <span class="tok-kw">let</span> l_b: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;f32, [3, 4]&gt; */</span> = { <span class="tok-kw">let</span> t1 = l_flat_b.clone(); faber::trap::ok(faber::Tensor::&lt;<span class="tok-ty">f32</span>&gt;::structa(t1, &amp;[<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]), faber::Trap::Other(<span class="tok-st">"tensor structa element count does not match shape"</span>)) };
+    <span class="tok-kw">let</span> l_product: faber::Tensor&lt;<span class="tok-ty">f32</span>&gt; <span class="tok-co">/* tensor&lt;f32, [2, 4]&gt; */</span> = faber::trap::ok_static({ <span class="tok-kw">let</span> t2 = &amp;l_a; t2.matmul(&amp;(l_b)) });
+    <span class="tok-kw">let</span> l_mean: <span class="tok-ty">f32</span> = { <span class="tok-kw">let</span> t3 = &amp;l_product; <span class="tok-kw">let</span> c0_flat = faber::trap::ok_static(t3.planata()); <span class="tok-kw">let</span> c0: <span class="tok-ty">f32</span> = c0_flat.iter().map(|x| *x <span class="tok-kw">as</span> <span class="tok-ty">f32</span>).sum(); c0 / t3.element_count() <span class="tok-kw">as</span> <span class="tok-ty">f32</span> };
+    println!(<span class="tok-st">"{}"</span>, faber::display::fractus(l_mean));
 }</code></pre><h2 id="fallibilis">The error channel<a class="anchor" href="#fallibilis">#</a></h2><p>A function that may fail, and a caller that catches. Shows how the <code class="glyph">⇥</code> channel becomes each target's own error idiom.</p><p><strong>Faber source</strong></p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-en" data-panel="lt-85ccdd726a36dc08-1-p-en" data-name="English" aria-controls="lt-85ccdd726a36dc08-1-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-la" data-panel="lt-85ccdd726a36dc08-1-p-la" data-name="Latin" aria-controls="lt-85ccdd726a36dc08-1-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-th-TH" data-panel="lt-85ccdd726a36dc08-1-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-85ccdd726a36dc08-1-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-zh-Hans" data-panel="lt-85ccdd726a36dc08-1-p-zh-Hans" data-name="简体中文" aria-controls="lt-85ccdd726a36dc08-1-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-zh-Hant" data-panel="lt-85ccdd726a36dc08-1-p-zh-Hant" data-name="繁體中文" aria-controls="lt-85ccdd726a36dc08-1-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-vi" data-panel="lt-85ccdd726a36dc08-1-p-vi" data-name="Tiếng Việt" aria-controls="lt-85ccdd726a36dc08-1-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-ar" data-panel="lt-85ccdd726a36dc08-1-p-ar" data-name="العربية" aria-controls="lt-85ccdd726a36dc08-1-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-hi" data-panel="lt-85ccdd726a36dc08-1-p-hi" data-name="हिन्दी" aria-controls="lt-85ccdd726a36dc08-1-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-85ccdd726a36dc08-1-p-en" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ <span class="tok-kw">string</span> {
     <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">throw</span> <span class="tok-st">"division by zero"</span>
@@ -191,7 +191,7 @@
     <span class="tok-kw">पकड़ो</span> err {
         <span class="tok-kw">चेताओ</span> err
     }
-}</code></pre></div></div><p><strong>Rust</strong> — 13 lines in, 23 out (1.8×)</p><pre class="faber-code"><code class="lang-rust"><span class="tok-co">// Generated by radix - do not edit</span>
+}</code></pre></div></div><p><strong>Rust</strong> — 13 lines in, 24 out (1.8×)</p><pre class="faber-code"><code class="lang-rust"><span class="tok-co">// Generated by radix - do not edit</span>
 <span class="tok-co">// Requires the faber language-runtime crate (add to Cargo.toml):</span>
 <span class="tok-co">//   faber = { path = "../faber" }  # adjust path for your layout</span>
 
@@ -199,11 +199,11 @@
 <span class="tok-co">// casts and parameter passing, library-shaped artifact items.</span>
 #![allow(non_camel_case_types, non_snake_case, dead_code, clippy::unreadable_literal, clippy::cast_lossless, clippy::cast_possible_truncation, clippy::cast_possible_wrap, clippy::cast_sign_loss, clippy::cast_precision_loss, clippy::needless_pass_by_value)]
 
-<span class="tok-kw">fn</span> divide(a: <span class="tok-ty">i64</span>, b: <span class="tok-ty">i64</span>) -&gt; Result&lt;<span class="tok-ty">i64</span>, <span class="tok-ty">String</span>&gt; {
-    <span class="tok-kw">if</span> b == <span class="tok-nu">0</span> {
+<span class="tok-kw">fn</span> divide(p_a: <span class="tok-ty">i64</span>, p_b: <span class="tok-ty">i64</span>) -&gt; Result&lt;<span class="tok-ty">i64</span>, <span class="tok-ty">String</span>&gt; {
+    <span class="tok-kw">if</span> p_b == <span class="tok-nu">0</span> {
         <span class="tok-kw">return</span> Err(<span class="tok-ty">String</span>::from(<span class="tok-st">"division by zero"</span>));
     }
-    Ok(faber::exact::store::&lt;<span class="tok-ty">i64</span>&gt;(faber::exact::div(a <span class="tok-kw">as</span> i128, b <span class="tok-kw">as</span> i128), <span class="tok-st">"return"</span>))
+    Ok(faber::exact::store::&lt;<span class="tok-ty">i64</span>&gt;(faber::exact::div(p_a <span class="tok-kw">as</span> i128, p_b <span class="tok-kw">as</span> i128), <span class="tok-st">"return"</span>))
 }
 
 <span class="tok-kw">fn</span> main() {
@@ -211,7 +211,8 @@
         println!(<span class="tok-st">"{}"</span>, <span class="tok-kw">match</span> divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>) { Ok(fac_value) =&gt; fac_value, Err(fac_err) =&gt; <span class="tok-kw">break</span> 'fac_result Err(fac_err) });
         Ok::&lt;(), <span class="tok-ty">String</span>&gt;(())
     } { Ok(()) =&gt; {}, Err(err) =&gt; {
-        eprintln!(<span class="tok-st">"{err}"</span>);
+        <span class="tok-kw">let</span> l_err = err;
+        eprintln!(<span class="tok-st">"{l_err}"</span>);
     } }
 }</code></pre><h2 id="collectiones">Collections and iteration<a class="anchor" href="#collectiones">#</a></h2><p>A list folded to a total with <code>for from</code>. The plainest possible read on how loops lower.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber locale-tabs">fn sum(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> int {
     var int total <span class="tok-op">←</span> <span class="tok-nu">0</span>
@@ -232,16 +233,16 @@ main {
 <span class="tok-co">// casts and parameter passing, library-shaped artifact items.</span>
 #![allow(non_camel_case_types, non_snake_case, dead_code, clippy::unreadable_literal, clippy::cast_lossless, clippy::cast_possible_truncation, clippy::cast_possible_wrap, clippy::cast_sign_loss, clippy::cast_precision_loss, clippy::needless_pass_by_value)]
 
-<span class="tok-kw">fn</span> sum(numeri: <span class="tok-ty">Vec</span>&lt;<span class="tok-ty">i64</span>&gt;) -&gt; <span class="tok-ty">i64</span> {
-    <span class="tok-kw">let</span> <span class="tok-kw">mut</span> total: <span class="tok-ty">i64</span> = <span class="tok-nu">0</span>;
-    <span class="tok-kw">for</span> i0 <span class="tok-kw">in</span> &amp;(numeri) {
-        <span class="tok-kw">let</span> n = i0.clone();
-        total = faber::exact::store::&lt;<span class="tok-ty">i64</span>&gt;(faber::exact::add(total <span class="tok-kw">as</span> i128, n <span class="tok-kw">as</span> i128), <span class="tok-st">"assignment to `total`"</span>);
+<span class="tok-kw">fn</span> sum(p_numeri: <span class="tok-ty">Vec</span>&lt;<span class="tok-ty">i64</span>&gt;) -&gt; <span class="tok-ty">i64</span> {
+    <span class="tok-kw">let</span> <span class="tok-kw">mut</span> l_total: <span class="tok-ty">i64</span> = <span class="tok-nu">0</span>;
+    <span class="tok-kw">for</span> i0 <span class="tok-kw">in</span> &amp;(p_numeri) {
+        <span class="tok-kw">let</span> l_n = i0.clone();
+        l_total = faber::exact::store::&lt;<span class="tok-ty">i64</span>&gt;(faber::exact::add(l_total <span class="tok-kw">as</span> i128, l_n <span class="tok-kw">as</span> i128), <span class="tok-st">"assignment to `total`"</span>);
     }
-    total
+    l_total
 }
 
 <span class="tok-kw">fn</span> main() {
-    <span class="tok-kw">let</span> valores: <span class="tok-ty">Vec</span>&lt;<span class="tok-ty">i64</span>&gt; = vec![<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>];
-    println!(<span class="tok-st">"{}"</span>, sum(valores.clone()));
+    <span class="tok-kw">let</span> l_valores: <span class="tok-ty">Vec</span>&lt;<span class="tok-ty">i64</span>&gt; = vec![<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>];
+    println!(<span class="tok-st">"{}"</span>, sum(l_valores.clone()));
 }</code></pre><p>---</p><p><a href="/en-US/targets/">All targets</a> · <a href="/en-US/toolchain/target-matrix.html">Measured support per term</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#reading">How to read it</a></li><li class="toc-2"><a href="#support">Measured support</a></li><li class="toc-3"><a href="#gaps">Not fully supported</a></li><li class="toc-2"><a href="#tensores">Typed tensors</a></li><li class="toc-2"><a href="#fallibilis">The error channel</a></li><li class="toc-2"><a href="#collectiones">Collections and iteration</a></li></ul></div></nav><footer><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

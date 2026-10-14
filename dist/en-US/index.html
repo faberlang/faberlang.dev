@@ -11,11 +11,9 @@ executable path; package workflows that use Rust today are one measured
 product surface among several, not the language’s semantic center.</p><p>The language, public libraries, examples, and user tooling ship under the
 <strong>MIT</strong> license. <strong>Radix</strong>, the compiler, is closed source for now and is
 planned for open release once the language has clearer market demand — not as
-a permanent fence around Faber. See <a href="/en-US/open-source.html">Open source</a>.</p><p>Faber's public capability ladder is intentionally explicit:</p><ul><li><strong>Shipped:</strong> reader-localized source, diagnostics, and formatting.</li><li><strong>Proven now:</strong> bounded dual-backend device training on Metal and CUDA
-(device-resident steps with gradient mapping and numeric comparison on an
-accepted MLP path).</li><li><strong>Building next:</strong> Faber-owned GPU inference behind a pinned model contract
-and correctness oracle (CPU oracle stack exists; end-to-end device inference
-is not shipped).</li><li><strong>Frontier:</strong> multi-device execution, virtual GPUs, sharding, and distributed
+a permanent fence around Faber. See <a href="/en-US/open-source.html">Open source</a>.</p><p>Faber's public capability ladder is intentionally explicit:</p><ul><li><strong>Shipped:</strong> reader-localized source, diagnostics, and formatting.</li><li><strong>In development:</strong> device execution. A package can carry a device program and
+run it with <code>faber run --device</code>; the route fails closed rather than falling
+back to the CPU.</li><li><strong>Frontier:</strong> multi-device execution, virtual GPUs, sharding, and distributed
 training or serving are future direction, not current runtime claims.</li></ul><p>The name derives from the Latin word for <em>maker</em> or <em>craftsman</em>. The
 compiler is named Radix, from the Latin <em>root</em>. Developed by Ian Zepp.
 Language and supporting libraries are MIT open source; Radix remains closed
@@ -39,29 +37,17 @@ the current support boundary.</p><p>The language makes three deliberate signal c
 not <code>name: string</code>.</li><li><strong>Behavioural words</strong> — declarations, statements, and lifecycle:
 <code>fn</code>, <code>class</code>, <code>const</code>, <code>return</code>, <code>if</code>.</li><li><strong>Structural glyphs</strong> — value flow and type joints: <code class="glyph">←</code> (bind), <code class="glyph">→</code>
 (return type), <code class="glyph">∴</code> (closure joint), <code class="glyph">≡</code> (equality), <code class="glyph">∪</code> (union).</li></ul><p>The result is source with stable grammatical shape that can be reviewed,
-transformed, and lowered without losing the reader's sense of intent.</p><h2 id="gpu-device-execution">GPU device execution<a class="anchor" href="#gpu-device-execution">#</a></h2><p>Faber now runs device programs on real GPUs. A package carries a device
-program when its source declares a compute kernel with <code>@ kernel</code> and its
-manifest declares a <code>[device]</code> section; the packaged image embeds Metal MSL
-and CUDA PTX artifacts, each with a provenance hash. <code>faber run</code> selects the
-device explicitly and fails closed with a stable code rather than silently
-falling back to CPU:</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run <span class="tok-op">--device</span> metal &lt;package&gt;   # Apple Metal (e.g. Apple M5 Max)
-<span class="tok-fn">faber</span> run <span class="tok-op">--device</span> cuda  &lt;package&gt;   # NVIDIA CUDA (e.g. RTX 5070)
-<span class="tok-fn">faber</span> run <span class="tok-op">--device</span> auto  &lt;package&gt;   # resolve: exactly one admitted device</code></pre><p>The accepted device proof covers forward kernels and a bounded training path —
-including a Gradus-backed dual-backend MLP path with device-resident state,
-per-step observation cadence, gradient-slot → buffer mapping, end-of-run
-readback, and numeric comparison against a pinned CPU oracle on both Metal and
-CUDA. It is a real-device proof, not a general training framework or a broad
-hardware-coverage claim. Starter fixture:
-<a href="https://github.com/faberlang/examples/tree/main/training/device-summa"><code>examples/training/device-summa</code></a>;
-MLP dual-backend oracle authority also lives under
-<a href="https://github.com/faberlang/examples/tree/main/training/mlp"><code>examples/training/mlp</code></a>.
-See <a href="/en-US/toolchain/cli.html#device-execution">device execution</a>,
+transformed, and lowered without losing the reader's sense of intent.</p><h2 id="gpu-device-execution">GPU device execution<a class="anchor" href="#gpu-device-execution">#</a></h2><p>A package carries a device program when its source declares a compute kernel
+with <code>@ kernel</code> and its manifest declares a <code>[device]</code> section. <code>faber run</code>
+selects the device explicitly and fails closed with a stable code rather than
+silently falling back to the CPU:</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run <span class="tok-op">--device</span> reference &lt;package&gt;  # plain sequential code on the MIR runner
+<span class="tok-fn">faber</span> run <span class="tok-op">--device</span> metal &lt;package&gt;      # Apple Metal
+<span class="tok-fn">faber</span> run <span class="tok-op">--device</span> cuda  &lt;package&gt;      # NVIDIA CUDA
+<span class="tok-fn">faber</span> run <span class="tok-op">--device</span> auto  &lt;package&gt;      # resolve: exactly one admitted device</code></pre><p><code>reference</code> is the oracle that device results are checked against. Device
+execution is under active development; end-to-end device inference is not
+shipped, and this page makes no claim about training on it. See <a href="/en-US/toolchain/cli.html#device-execution">device execution</a>,
 <a href="/en-US/toolchain/compiling.html">Compiling and targets</a>, and the
-<a href="/en-US/toolchain/target-matrix.html#device-kernel-support">device kernel support summary</a>
-(product GPU view — separate from the full-language corpus % tables).</p><h3 id="inference-and-multi-device">Inference and multi-device status<a class="anchor" href="#inference-and-multi-device">#</a></h3><p>Faber-owned GPU inference is in active development behind a pinned model
-contract (currently SmolLM2-class GGUF admission for the oracle track) and a
-correctness oracle. The <strong>CPU</strong> oracle path — admission, dequant, decoder ops,
-and greedy decode agreement on a pinned run — is engineering-real; <strong>end-to-end device inference is not shipped</strong>, and this is not a general GGUF product claim.</p><p>Multi-device execution is a frontier direction. Virtual GPUs, tensor/model or
+<a href="/en-US/toolchain/target-matrix.html#device-kernel-support">device kernel support summary</a>.</p><p>Multi-device execution is a frontier direction. Virtual GPUs, tensor/model or
 pipeline sharding, collectives, and distributed serving require their own
 accepted topology and runtime contracts. They are not current Faber runtime
 capabilities.</p><h2 id="documentation">Documentation<a class="anchor" href="#documentation">#</a></h2><p>Five sections, in the order most people need them.</p><div class="table-scroll"><table><thead><tr><th>Section</th><th>What is in it</th></tr></thead><tbody><tr><td><a href="/en-US/start/">Start</a></td><td>One link to hand your model; it installs Faber for you</td></tr><tr><td><a href="/en-US/language/">Language</a></td><td>The whole language: types, functions, errors, glyphs, reader locales, capabilities</td></tr><tr><td><a href="/en-US/toolchain/">Toolchain</a></td><td>The <code>faber</code> CLI, compilation lanes and targets, Cista packages, Radix internals</td></tr><tr><td><a href="/en-US/libraries/">Libraries</a></td><td>Norma (bundled), Triga (graphics), and the language corpus</td></tr><tr><td><a href="/en-US/reference/">Reference</a></td><td>Grammar, generated target matrix, releases, design notes, repositories</td></tr></tbody></table></div><p>If you only read one page, read <a href="/en-US/language/">The Faber language</a> — it contains a
@@ -78,4 +64,4 @@ render the same program in that language) while glyphs and identifiers
 remain unchanged. This is not a translation layer applied to the page; it is the
 same mechanism the compiler uses to produce localized source.</p><p>See the <a href="/en-US/language/reader-locales.html">reader locale</a> documentation for
 the full discussion.</p><h2 id="repositories">Repositories<a class="anchor" href="#repositories">#</a></h2><div class="table-scroll"><table><thead><tr><th>Repo</th><th>Role</th></tr></thead><tbody><tr><td><a href="https://github.com/faberlang/faber">faberlang/faber</a></td><td>Public target APIs and project home</td></tr><tr><td><a href="https://github.com/faberlang/releases">faberlang/releases</a></td><td>Tagged CLI release assets</td></tr><tr><td><a href="https://github.com/faberlang/norma">faberlang/norma</a></td><td>Standard library source</td></tr><tr><td><a href="https://github.com/faberlang/cista">faberlang/cista</a></td><td>Package-store CLI/lib</td></tr><tr><td><a href="https://github.com/faberlang/triga">faberlang/triga</a></td><td>Graphics / geometry library</td></tr><tr><td><a href="https://github.com/faberlang/examples">faberlang/examples</a></td><td>Corpus, tracks, application packages</td></tr><tr><td><a href="https://github.com/faberlang/faberlang.dev">faberlang/faberlang.dev</a></td><td>This documentation site</td></tr></tbody></table></div><p>The full list — including the private compiler and where to file issues — is
-on the <a href="/en-US/open-source.html">Repositories</a> page.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#start-here">Start here</a></li><li class="toc-2"><a href="#locale-coverage">Readable in your language</a></li><li class="toc-2"><a href="#overview">One semantic program across surfaces</a></li><li class="toc-2"><a href="#gpu-device-execution">GPU device execution</a></li><li class="toc-3"><a href="#inference-and-multi-device">Inference and multi-device status</a></li><li class="toc-2"><a href="#documentation">Documentation</a></li><li class="toc-2"><a href="#quick-example">Quick example</a></li><li class="toc-2"><a href="#live-rendering">Live rendering</a></li><li class="toc-2"><a href="#repositories">Repositories</a></li></ul></div></nav><footer><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+on the <a href="/en-US/open-source.html">Repositories</a> page.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#start-here">Start here</a></li><li class="toc-2"><a href="#locale-coverage">Readable in your language</a></li><li class="toc-2"><a href="#overview">One semantic program across surfaces</a></li><li class="toc-2"><a href="#gpu-device-execution">GPU device execution</a></li><li class="toc-2"><a href="#documentation">Documentation</a></li><li class="toc-2"><a href="#quick-example">Quick example</a></li><li class="toc-2"><a href="#live-rendering">Live rendering</a></li><li class="toc-2"><a href="#repositories">Repositories</a></li></ul></div></nav><footer><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

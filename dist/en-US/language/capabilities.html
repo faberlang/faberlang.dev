@@ -3,22 +3,21 @@
 between Faber code and the outside world. It opens a typed conversation
 (<code>channel</code>) with a host resource identified by a route string, then
 exchanges structured frames (<code>frame</code>) over directional half-streams.
-The host kernel dispatches each route to a pluggable provider crate, which
-implements the actual I/O — filesystem, networking, console, time, randomness,
-or anything else the OS can do.</p><h2 id="ad">The <code>call</code> primitive<a class="anchor" href="#ad">#</a></h2><p><code>call</code> is a keyword, not a function. It opens an opaque conversation
+The runtime dispatches each route to the native leaf that serves it, and that
+leaf implements the actual I/O — filesystem, networking, console, time,
+randomness, or anything else the OS can do.</p><h2 id="ad">The <code>call</code> primitive<a class="anchor" href="#ad">#</a></h2><p><code>call</code> is a keyword, not a function. It opens an opaque conversation
 with a route named by an <code>ascii</code> literal and optional opener data:</p><pre class="faber-code"><code class="lang-text"># Simple materialized call: open, send opener, drain response
 const string content ← call 'solum:lege' (&quot;config.toml&quot;) ↦ string
 
 # Typed conversation handle for streaming interaction
-const channel s ← call 'processus:curre' (&quot;ls&quot;, [&quot;-la&quot;])</code></pre><p>The route string follows a <code>prefix:verb</code> pattern. The host kernel
-matches on the <strong>prefix only</strong> — the provider owns all verbs under that
-prefix:</p><pre class="faber-code"><code class="lang-text">solum:lege   ─┐
-solum:modum  ─┼─►  prefix &quot;solum&quot;  ──►  only provider crate
+const channel s ← call 'processus:exsequi' (&quot;ls -la&quot;)</code></pre><p>The route string follows a <code>prefix:verb</code> pattern. Dispatch matches on the
+<strong>prefix</strong> — the leaf that owns a prefix handles all verbs under it:</p><pre class="faber-code"><code class="lang-text">solum:lege   ─┐
+solum:modum  ─┼─►  prefix &quot;solum&quot;  ──►  filesystem leaf
 solum:vincula─┘</code></pre><p><code>call</code> is not a foreign function interface. It does not call C
 functions, load dynamic libraries, or embed inline assembly. It is a
 structured message passing boundary: Faber sends typed frames and receives
-typed frames, without knowing whether the provider is implemented in Rust,
-runs in-process, delegates to a system call, or forwards to a remote host.</p><h2 id="types">Frame types<a class="anchor" href="#types">#</a></h2><p>Five compiler-owned types form the frame system:</p><div class="table-scroll"><table><thead><tr><th>Type</th><th>Role</th><th>Key surface</th></tr></thead><tbody><tr><td><code>channel</code></td><td>Conversation handle — an in-flight bidirectional exchange</td><td>Created by <code>call</code>; drained via <code>↦ T</code> or split into views</td></tr><tr><td><code>frame&lt;T&gt;</code></td><td>Frame envelope — one structured message in a conversation</td><td>Fields: <code>id</code>, <code>call</code>, <code>status</code>, <code>data</code>, <code>created_ms</code>, <code>from</code>, <code>trace</code></td></tr><tr><td><code>status</code></td><td>Lifecycle marker enum</td><td><code>request</code>, <code>item</code>, <code>byte</code>, <code>bulk</code>, <code>done</code>, <code>error</code>, <code>cancel</code></td></tr><tr><td><code>send&lt;T&gt;</code></td><td>Outbound half-stream — send frames to the provider</td><td><code>da(T)</code>, <code>fini() → status</code></td></tr><tr><td><code>recv&lt;T&gt;</code></td><td>Inbound half-stream — receive frames from the provider</td><td><code>accipe()</code>, <code>cursor()</code>, <code>exhauri()</code>, <code>fini()</code></td></tr></tbody></table></div><h3 id="using-directional-views">Using directional views<a class="anchor" href="#using-directional-views">#</a></h3><pre class="faber-code"><code class="lang-text"># Open a conversation, get directional views
+typed frames, without knowing whether the answering side runs in-process,
+delegates to a system call, or forwards to a remote host.</p><h2 id="types">Frame types<a class="anchor" href="#types">#</a></h2><p>Five compiler-owned types form the frame system:</p><div class="table-scroll"><table><thead><tr><th>Type</th><th>Role</th><th>Key surface</th></tr></thead><tbody><tr><td><code>channel</code></td><td>Conversation handle — an in-flight bidirectional exchange</td><td>Created by <code>call</code>; drained via <code>↦ T</code> or split into views</td></tr><tr><td><code>frame&lt;T&gt;</code></td><td>Frame envelope — one structured message in a conversation</td><td>Fields: <code>id</code>, <code>call</code>, <code>status</code>, <code>data</code>, <code>created_ms</code>, <code>from</code>, <code>trace</code></td></tr><tr><td><code>status</code></td><td>Lifecycle marker enum</td><td><code>request</code>, <code>item</code>, <code>byte</code>, <code>bulk</code>, <code>done</code>, <code>error</code>, <code>cancel</code></td></tr><tr><td><code>send&lt;T&gt;</code></td><td>Outbound half-stream — send frames to the provider</td><td><code>da(T)</code>, <code>fini() → status</code></td></tr><tr><td><code>recv&lt;T&gt;</code></td><td>Inbound half-stream — receive frames from the provider</td><td><code>accipe()</code>, <code>cursor()</code>, <code>exhauri()</code>, <code>fini()</code></td></tr></tbody></table></div><h3 id="using-directional-views">Using directional views<a class="anchor" href="#using-directional-views">#</a></h3><pre class="faber-code"><code class="lang-text"># Open a conversation, get directional views
 const channel s ← call 'solum:scribe' (&quot;output.txt&quot;)
 const send&lt;string&gt; out ← s.meus&lt;string&gt;()
 const recv&lt;string&gt; input ← s.tuus&lt;string&gt;()
@@ -36,41 +35,19 @@ const status inbound ← input.fini()</code></pre><h3 id="simple-materialization
 value — <code>channel ↦ T</code> collapses the conversation:</p><pre class="faber-code"><code class="lang-text"># Read a file: open + drain into string
 const string body ← call 'solum:lege' (&quot;config.toml&quot;) ↦ string
 
-# Parse JSON from an HTTP response
-const json data ← call 'http:peti' (&quot;https://api.example.com/data&quot;) ↦ json</code></pre><p>Materialization uses a type-directed collector: <code>↦ string</code>
+# Parse JSON from a file
+const json data ← call 'solum:lege' (&quot;data.json&quot;) ↦ json</code></pre><p>Materialization uses a type-directed collector: <code>↦ string</code>
 concatenates all inbound frames, <code>↦ json</code> parses the concatenated
-payload, <code>↦ list&lt;T&gt;</code> collects frames into a list.</p><h2 id="providers">Host providers<a class="anchor" href="#providers">#</a></h2><p>Effect families are implemented as separate provider crates under
-<code>faberlang/hosts/crates</code>. Each provider owns all verbs under
-its prefix:</p><div class="table-scroll"><table><thead><tr><th>Provider</th><th>Prefix</th><th>I/O domain</th></tr></thead><tbody><tr><td><code>only</code></td><td><code>only:*</code></td><td>Filesystem: read, write, metadata, directory operations</td></tr><tr><td><code>processus</code></td><td><code>processus:*</code></td><td>Process execution: spawn, pipe, exit codes</td></tr><tr><td><code>consolum</code></td><td><code>consolum:*</code></td><td>Console I/O: stdin, stdout, stderr</td></tr><tr><td><code>tempus</code></td><td><code>tempus:*</code></td><td>Time: now, sleep, timers</td></tr><tr><td><code>aleator</code></td><td><code>aleator:*</code></td><td>Randomness: entropy, distributions</td></tr><tr><td><code>http</code></td><td><code>http:*</code></td><td>HTTP client (Tier D, when landed)</td></tr></tbody></table></div><p>Providers are separate crates with their own dependencies — <code>only</code>
-does not pull in HTTP, <code>http</code> does not pull in filesystem code.
-Each provider exports a <code>register()</code> function that the generated
-host manifest calls at startup.</p><h2 id="layers">Layer stack<a class="anchor" href="#layers">#</a></h2><pre class="faber-code"><code class="lang-text">Faber source:     call 'solum:lege' (path) ↦ string
-Compiler:         channel open + generic attach (no provider crate names)
-Runtime:          HostDispatch + conversation protocol (faber-runtime)
-Kernel:           route(frame) → provider for prefix
-Provider:         only provider reads file, returns content</code></pre><p>The compiler emits generic dispatch — it never embeds provider crate names
-into generated code. The runtime provides <code>HostDispatch</code> and the
-conversation protocol. The kernel (from <code>hosts/crates/host-kernel</code>) routes
-frames to the correct provider based on prefix. The provider (from
-<code>hosts/crates/*</code> providers) performs the actual I/O.</p><p>This means generated Faber code is <strong>provider-neutral</strong>. The same compiled
-binary can be linked against different provider implementations — a real
-filesystem provider for production, a mock provider for testing — by changing
-the compile manifest.</p><h2 id="manifest">Compile manifest<a class="anchor" href="#manifest">#</a></h2><p>Which providers to link is controlled by the generated compile manifest and
-the <code>faber.toml</code> <code>[dispatch]</code> table:</p><pre class="faber-code"><code class="lang-text">[target.rust]
-host = &quot;native&quot;
-
-[dispatch]
-providers = [&quot;solum&quot;, &quot;processus&quot;, &quot;consolum&quot;, &quot;tempus&quot;, &quot;aleator&quot;]
-
-[dispatch.providers.http]
-enabled = true</code></pre><p>During authoring, missing providers produce a runtime <code>E_NO_ROUTE</code>
-error. In strict mode (future), every <code>call</code> prefix in the program
-must appear in the compile manifest, and the compiler validates that the
-provider's capability manifest covers the routes used.</p><h2 id="architecture">Architecture<a class="anchor" href="#architecture">#</a></h2><p>The host platform is split across three repositories in the
-<code>faberlang</code> organisation:</p><div class="table-scroll"><table><thead><tr><th>Repository</th><th>Role</th></tr></thead><tbody><tr><td><code>hosts/crates/host-kernel</code></td><td>Thin router — owns <code>Frame</code>, <code>Conversation</code>, terminal lifecycle, prefix dispatch, structured errors (<code>E_NO_ROUTE</code>), capability manifest aggregation</td></tr><tr><td><code>hosts/crates/host-native</code></td><td>Native attach — workers, <code>register_providers</code> startup hook, generated <code>host_register.rs</code> integration</td></tr><tr><td><code>hosts/crates/*</code> providers</td><td>Provider implementations — Cargo workspace with per-family crates (<code>only</code>, <code>processus</code>, etc.)</td></tr></tbody></table></div><p>Each provider crate owns its own native dependencies. The <code>http</code>
-provider pulls in <code>hyper</code> and <code>tokio</code> only when HTTP
-is enabled. The <code>only</code> provider uses standard file APIs with no
-additional network dependencies.</p><blockquote><p><strong>Same route, any host.</strong> Because <code>call</code> dispatches on route strings and providers are pluggable, the same Faber source can target a native binary (host-native-rs), a WASM runtime (host-kernel as a Frame/Wasm adapter), or a TypeScript Node.js process (host-providers-ts) without changing a single line of Faber code.</p></blockquote><h2 id="stdlib">Norma wrappers<a class="anchor" href="#stdlib">#</a></h2><p>Most Faber code does not call <code>call</code> directly. The Norma standard
+payload, <code>↦ list&lt;T&gt;</code> collects frames into a list.</p><h2 id="providers">Native leaves<a class="anchor" href="#providers">#</a></h2><p>Each effect family is served by a native leaf in the <code>faber-leaf</code> crate
+(<code>radix/crates/faber-leaf</code>). The interpreter (<code>faber run</code>) and generated Rust
+share it. Each leaf owns all verbs under its prefix:</p><div class="table-scroll"><table><thead><tr><th>Leaf</th><th>Prefix</th><th>I/O domain</th></tr></thead><tbody><tr><td>filesystem</td><td><code>only:*</code></td><td>Read, write, metadata, directory operations</td></tr><tr><td>stdio</td><td><code>consolum:*</code></td><td>Console I/O: stdin, stdout, stderr</td></tr><tr><td>process</td><td><code>processus:*</code></td><td>Process execution, environment, working directory</td></tr><tr><td>clock</td><td><code>tempus:*</code></td><td>Time: now, monotonic, sleep</td></tr><tr><td>entropy</td><td><code>aleator:*</code></td><td>Randomness: floats, integers, bytes, uuid</td></tr><tr><td>tcp</td><td><code>caelum:*</code></td><td>TCP listen, connect, accept, read, write</td></tr><tr><td>http</td><td><code>http:*</code></td><td>HTTP client calls</td></tr><tr><td>websocket</td><td><code>websocket:*</code></td><td>WebSocket connect, accept, send, receive</td></tr></tbody></table></div><p>A route that no leaf serves is refused at run time. Faber code can also
+answer a route itself with an <code>@ call 'prefix:name'</code> handler on a top-level
+function.</p><h2 id="layers">Layer stack<a class="anchor" href="#layers">#</a></h2><pre class="faber-code"><code class="lang-text">Faber source:     call 'solum:lege' (path) ↦ string
+Compiler:         channel open + generic attach (no leaf crate names)
+Runtime:          route lookup + conversation protocol
+Leaf:             the filesystem leaf reads the file, returns content</code></pre><p>The compiler emits generic dispatch — it never embeds leaf crate names into
+generated code. Source names a route; the runtime decides which leaf answers
+it.</p><h2 id="stdlib">Norma wrappers<a class="anchor" href="#stdlib">#</a></h2><p>Most Faber code does not call <code>call</code> directly. The Norma standard
 library wraps common <code>call</code> routes in typed functions:</p><pre class="faber-code"><code class="lang-text"># Norma wraps call in typed, reviewed functions
 fn read(string via) → string {
     return call 'solum:lege' (via) ↦ string
@@ -80,9 +57,8 @@ fn write(string via, string content) → void {
     const void _ ← call 'solum:scribe' (via, content) ↦ void
 }
 
-fn curre(string command, list&lt;string&gt; args) → string {
-    return call 'processus:curre' (command, args) ↦ string
+fn exsequi(string command) → string {
+    return call 'processus:exsequi' (command) ↦ string
 }</code></pre><p>These wrapper functions provide type safety, documentation, and error
 handling without hiding the fact that I/O crosses the <code>call</code>
-boundary. The Norma wrappers are open source and live under
-<code>norma/src/</code>.</p><h2 id="references">References<a class="anchor" href="#references">#</a></h2><ol><li><code>radix/docs/design/frame-stream-types.md</code> — full spec for channel, frame, status, send, recv</li><li><code>radix/docs/design/host-provider-gateway.md</code> — thin router architecture, provider contracts, compile manifest</li><li><code>faberlang/hosts/crates/host-kernel/</code> — kernel router implementation</li><li><code>faberlang/hosts/crates/host-native/</code> — native attach and registration</li><li><code>faberlang/hosts/crates/</code> — provider crates (only, processus, consolum, tempus, aleator, http)</li><li><code>radix/corpus/ad/</code> — channel exempla files</li></ol></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#ad">The call primitive</a></li><li class="toc-2"><a href="#types">Frame types</a></li><li class="toc-3"><a href="#using-directional-views">Using directional views</a></li><li class="toc-3"><a href="#simple-materialization">Simple materialization</a></li><li class="toc-2"><a href="#providers">Host providers</a></li><li class="toc-2"><a href="#layers">Layer stack</a></li><li class="toc-2"><a href="#manifest">Compile manifest</a></li><li class="toc-2"><a href="#architecture">Architecture</a></li><li class="toc-2"><a href="#stdlib">Norma wrappers</a></li><li class="toc-2"><a href="#references">References</a></li></ul></div></nav><footer><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+boundary. The Norma wrappers live under <code>radix/lib/norma/src/</code>.</p><h2 id="references">References<a class="anchor" href="#references">#</a></h2><ol><li><code>radix/docs/design/frame-stream-types.md</code> — full spec for channel, frame, status, send, recv</li><li><code>radix/grammar/EBNF.md</code> — the <code>call</code> expression and <code>@ call</code> handlers (Capability Calls)</li><li><code>radix/crates/faber-leaf/</code> — the native leaves</li><li><code>radix/lib/norma/src/</code> — Norma wrappers over the routes</li><li><code>radix/corpus/ad/</code> — channel exempla files</li></ol></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#ad">The call primitive</a></li><li class="toc-2"><a href="#types">Frame types</a></li><li class="toc-3"><a href="#using-directional-views">Using directional views</a></li><li class="toc-3"><a href="#simple-materialization">Simple materialization</a></li><li class="toc-2"><a href="#providers">Native leaves</a></li><li class="toc-2"><a href="#layers">Layer stack</a></li><li class="toc-2"><a href="#stdlib">Norma wrappers</a></li><li class="toc-2"><a href="#references">References</a></li></ul></div></nav><footer><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

@@ -56,14 +56,48 @@ an error type):</p><pre class="faber-code"><code class="lang-faber">main {
     if value ≺ <span class="tok-nu">0</span> {
         throw <span class="tok-st">"negative value"</span>
     }
-}</code></pre><h3 id="current-status">Current status<a class="anchor" href="#current-status">#</a></h3><p><code class="glyph">→</code>, <code>return</code>, <code class="glyph">⇥</code>, <code>throw</code>, and <code>do</code> / <code>catch</code> are live grammar and checker
-surfaces. Rust and Go lowering for full <code class="glyph">⇥</code> / <code>throw</code> / <code>catch</code> runtime
-behaviour is still a backend gap — these pass type-checking but do not
-yet emit failable runtime code to all targets.</p><h2 id="inline-testing">Inline testing<a class="anchor" href="#inline-testing">#</a></h2><p>Faber has a first-class testing framework built into the language with three
+}</code></pre><h3 id="fault-unions">Fault unions<a class="anchor" href="#fault-unions">#</a></h3><p>The type after <code class="glyph">⇥</code> is not limited to <code>string</code>. Norma's I/O functions fail with
+a union: <code>fs.read_file&lt;T&gt;(path)</code> is <code>→ T ⇥ fault.IoFault</code>, and <code>IoFault</code> has one
+variant per kind of failure (<code>NotFound</code>, <code>Permission</code>, <code>IsADirectory</code>, and so
+on), each carrying the path it failed on. A <code>catch</code> binding of that type is
+matched with <code>match</code>:</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">import</span> <span class="tok-kw">from</span> <span class="tok-st">"norma:fs"</span> fs
+
+<span class="tok-kw">fn</span> read_or_empty(<span class="tok-kw">string</span> path) <span class="tok-op">→</span> <span class="tok-kw">string</span> {
+    <span class="tok-kw">do</span> {
+        <span class="tok-kw">return</span> fs.read_file<span class="tok-op">&lt;</span><span class="tok-kw">string</span><span class="tok-op">&gt;</span>(path)
+    } <span class="tok-kw">catch</span> err {
+        <span class="tok-kw">match</span> err {
+            <span class="tok-kw">case</span> NotFound <span class="tok-kw">const</span> missing {
+                <span class="tok-kw">print</span> <span class="tok-st">"no such file: §"</span>(missing)
+                <span class="tok-kw">return</span> <span class="tok-st">""</span>
+            }
+            <span class="tok-kw">case</span> Permission <span class="tok-kw">const</span> denied {
+                <span class="tok-kw">print</span> <span class="tok-st">"not allowed: §"</span>(denied)
+                <span class="tok-kw">return</span> <span class="tok-st">""</span>
+            }
+            <span class="tok-kw">default</span> {
+                <span class="tok-kw">print</span> <span class="tok-st">"I/O failure"</span>
+                <span class="tok-kw">return</span> <span class="tok-st">""</span>
+            }
+        }
+    }
+}
+
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">print</span> <span class="tok-st">"read: [§]"</span>(read_or_empty(<span class="tok-st">"/no/such/file.txt"</span>))
+}</code></pre><pre class="faber-code"><code class="lang-text">$ faber run
+no such file: /no/such/file.txt
+read: []</code></pre><h3 id="current-status">Current status<a class="anchor" href="#current-status">#</a></h3><p><code class="glyph">→</code>, <code>return</code>, <code class="glyph">⇥</code>, <code>throw</code>, and <code>do</code> / <code>catch</code> are live grammar and checker
+surfaces, and <code>faber run</code> executes them. Rust lowers a failable function to a
+<code>Result&lt;T, E&gt;</code> and handles <code>do</code> / <code>catch</code> around it. Go and TypeScript lowering
+is partial: Go reports <code>CODEGEN001 go_structured_cape_handlers_unsupported</code> for
+some <code>catch</code> shapes, and the corpus suite pins the remaining failable-call gaps
+on those targets as known failures. Check a program with <code>faber emit -t &lt;target&gt;</code>
+before relying on a target other than Rust.</p><h2 id="inline-testing">Inline testing<a class="anchor" href="#inline-testing">#</a></h2><p>Faber has a first-class testing framework built into the language with three
 keywords: <code>describe</code> declares a test suite, <code>test</code> declares a single test
 case, and <code>assert</code> asserts a condition. Tests live alongside the code they
 test — either in the same <code>.fab</code> file or in colocated <code>*.proba</code> test-source
-files — run through <code>faber test</code> on the MIR stepper, and support the same
+files — run through <code>faber test</code> on the MIR runner, and support the same
 compiler pipeline as production code: locale-aware, type-checked, and
 target-neutral.</p><h3 id="keywords">The three keywords<a class="anchor" href="#keywords">#</a></h3><div class="table-scroll"><table><thead><tr><th>Keyword</th><th>Role</th><th>Approximate equivalent</th></tr></thead><tbody><tr><td><code>describe</code></td><td>Declares a named test suite</td><td><code>describe</code>, <code>#[cfg(test)] mod</code></td></tr><tr><td><code>test</code></td><td>Declares a single test case</td><td><code>it</code>, <code>#[test]</code></td></tr><tr><td><code>assert</code></td><td>Asserts a condition at runtime</td><td><code>assert!</code>, <code>assert_eq!</code></td></tr></tbody></table></div><h4 id="probandum-test-suite">describe — test suite<a class="anchor" href="#probandum-test-suite">#</a></h4><p>A <code>describe</code> block groups related test cases. Suites can be nested to
 organise tests hierarchically:</p><pre class="faber-code"><code class="lang-faber">describe <span class="tok-st">"arithmetica"</span> {
@@ -101,7 +135,7 @@ An optional message string provides context on failure:</p><pre class="faber-cod
     assert name <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
     assert name <span class="tok-op">≢</span> <span class="tok-st">""</span> panic <span class="tok-st">"nomen vacuum non sit"</span>
 }</code></pre><h3 id="workflow">Workflow<a class="anchor" href="#workflow">#</a></h3><p>Tests run through the <code>faber test</code> command, which executes test cases on
-the MIR stepper — no Cargo or rustc is invoked for the package:</p><pre class="faber-code"><code class="lang-text">faber test                        # run all tests in the current package
+the MIR runner — no Cargo or rustc is invoked for the package:</p><pre class="faber-code"><code class="lang-text">faber test                        # run all tests in the current package
 faber test examples/coreutils/packages/echo  # run tests for a specific package
 faber test . --filter smoke       # substring filter on case path or title
 faber test . --include math       # load only *.proba sources matching a path pattern
@@ -141,4 +175,4 @@ escape expansion, and edge cases:</p><pre class="faber-code"><code class="lang-t
         assert echo_textus([&quot;-e&quot;, &quot;a\\tb&quot;]) ≡ &quot;a\tb&quot;
     }
 }</code></pre><h3 id="design">Design notes<a class="anchor" href="#design">#</a></h3><p>Several design choices distinguish Faber's testing framework from
-conventional approaches:</p><ul><li><strong>No separate test binary.</strong> Tests are declarations in the same source file (or in <code>*.proba</code> test sources), not a separate compilation target. The compiler filters test blocks from production output.</li><li><strong>Tags, not directories.</strong> Tests are organised by <code>tag</code> markers rather than directory structure. A test can belong to multiple organisational axes without being moved.</li><li><strong>Full compiler pipeline.</strong> Tests are type-checked, analysed, and locale-aware — the same <code>--locale</code> flag applies to test output.</li><li><strong>Stepper-executed.</strong> <code>faber test</code> runs test cases on the MIR stepper; no generated test crate, Cargo, or Rust toolchain is required.</li><li><strong>Target-neutral.</strong> The stepper analysis is independent of any codegen target.</li><li><strong>Nested suites.</strong> <code>describe</code> blocks can nest, mirroring the structure of the code they test.</li></ul><h3 id="references">References<a class="anchor" href="#references">#</a></h3><ol><li><code>radix/corpus/probandum/</code> — describe exemplar files</li><li><code>radix/corpus/proba/</code> — test exemplar files</li><li><code>radix/corpus/adfirma/</code> — assert exemplar files</li><li><code>examples/coreutils/packages/echo/src/main.fab</code> — real-world usage with tags</li></ol></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#error-handling">Error handling</a></li><li class="toc-3"><a href="#normal-return">Normal return</a></li><li class="toc-3"><a href="#failable-functions">Failable functions</a></li><li class="toc-3"><a href="#throwing--iace">Throwing — throw</a></li><li class="toc-3"><a href="#guards--requirit--reice">Guards — require / reject</a></li><li class="toc-3"><a href="#recovery--fac--cape">Recovery — do / catch</a></li><li class="toc-3"><a href="#async-alternate">The alternate channel in async surfaces</a></li><li class="toc-3"><a href="#inline-conversion-recovery">Inline conversion recovery</a></li><li class="toc-3"><a href="#effectonly-failable">Effect-only failable</a></li><li class="toc-3"><a href="#current-status">Current status</a></li><li class="toc-2"><a href="#inline-testing">Inline testing</a></li><li class="toc-3"><a href="#keywords">The three keywords</a></li><li class="toc-3"><a href="#workflow">Workflow</a></li><li class="toc-3"><a href="#real-world">Real-world example</a></li><li class="toc-3"><a href="#design">Design notes</a></li><li class="toc-3"><a href="#references">References</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+conventional approaches:</p><ul><li><strong>No separate test binary.</strong> Tests are declarations in the same source file (or in <code>*.proba</code> test sources), not a separate compilation target. The compiler filters test blocks from production output.</li><li><strong>Tags, not directories.</strong> Tests are organised by <code>tag</code> markers rather than directory structure. A test can belong to multiple organisational axes without being moved.</li><li><strong>Full compiler pipeline.</strong> Tests are type-checked, analysed, and locale-aware — the same <code>--locale</code> code-locale flag applies.</li><li><strong>Runner-executed.</strong> <code>faber test</code> runs test cases on the MIR runner; no generated test crate, Cargo, or Rust toolchain is required.</li><li><strong>Target-neutral.</strong> The runner analysis is independent of any codegen target.</li><li><strong>Nested suites.</strong> <code>describe</code> blocks can nest, mirroring the structure of the code they test.</li></ul><h3 id="references">References<a class="anchor" href="#references">#</a></h3><ol><li><code>radix/corpus/probandum/</code> — describe exemplar files</li><li><code>radix/corpus/proba/</code> — test exemplar files</li><li><code>radix/corpus/adfirma/</code> — assert exemplar files</li><li><code>examples/coreutils/packages/echo/src/main.fab</code> — real-world usage with tags</li></ol></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#error-handling">Error handling</a></li><li class="toc-3"><a href="#normal-return">Normal return</a></li><li class="toc-3"><a href="#failable-functions">Failable functions</a></li><li class="toc-3"><a href="#throwing--iace">Throwing — throw</a></li><li class="toc-3"><a href="#guards--requirit--reice">Guards — require / reject</a></li><li class="toc-3"><a href="#recovery--fac--cape">Recovery — do / catch</a></li><li class="toc-3"><a href="#async-alternate">The alternate channel in async surfaces</a></li><li class="toc-3"><a href="#inline-conversion-recovery">Inline conversion recovery</a></li><li class="toc-3"><a href="#effectonly-failable">Effect-only failable</a></li><li class="toc-3"><a href="#fault-unions">Fault unions</a></li><li class="toc-3"><a href="#current-status">Current status</a></li><li class="toc-2"><a href="#inline-testing">Inline testing</a></li><li class="toc-3"><a href="#keywords">The three keywords</a></li><li class="toc-3"><a href="#workflow">Workflow</a></li><li class="toc-3"><a href="#real-world">Real-world example</a></li><li class="toc-3"><a href="#design">Design notes</a></li><li class="toc-3"><a href="#references">References</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

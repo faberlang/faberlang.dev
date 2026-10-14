@@ -101,7 +101,7 @@ main {
     catch err {
         print err
     }
-}</code></pre><h3 id="borrowing-and-mutability">Borrowing and mutability (ref, mut, from)<a class="anchor" href="#borrowing-and-mutability">#</a></h3><p>Faber marks how a value is passed with short prepositions on parameters:</p><div class="table-scroll"><table><thead><tr><th>Marker</th><th>Intent</th><th>Typical Rust lowering</th></tr></thead><tbody><tr><td><em>(none)</em></td><td>Owned value</td><td><code>T</code> by value</td></tr><tr><td><code>ref</code></td><td>Shared borrow (read-only)</td><td><code>&amp;T</code></td></tr><tr><td><code>mut</code></td><td>Mutable borrow</td><td><code>&amp;mut T</code></td></tr><tr><td><code>own</code></td><td>Consume (move into callee)</td><td><code>T</code> by move</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># Shared borrow</span>
+}</code></pre><h3 id="borrowing-and-mutability">Borrowing and mutability (ref, mut, from)<a class="anchor" href="#borrowing-and-mutability">#</a></h3><p>Faber marks how a value is passed with short prepositions on parameters:</p><div class="table-scroll"><table><thead><tr><th>Marker</th><th>Intent</th><th>Typical Rust lowering</th></tr></thead><tbody><tr><td><em>(none)</em></td><td>Read-only value (deep const)</td><td><code>T</code> by value</td></tr><tr><td><code>ref</code></td><td>Shared borrow (read-only)</td><td><code>&amp;T</code></td></tr><tr><td><code>mut</code></td><td>Mutable borrow</td><td><code>&amp;mut T</code></td></tr><tr><td><code>own</code></td><td>Consume (move into callee)</td><td><code>T</code> by move</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># Shared borrow</span>
 fn imprime(ref string label) <span class="tok-op">→</span> void {
     print label
 }
@@ -116,10 +116,23 @@ fn consume(own string buffer) <span class="tok-op">→</span> string {
     return buffer
 }
 
-<span class="tok-co"># Owned</span>
+<span class="tok-co"># Unmarked: read-only</span>
 fn salve(string name) <span class="tok-op">→</span> string {
     return <span class="tok-st">"Salve, §!"</span>(name)
-}</code></pre><p>The same words (<code>ref</code>, <code>from</code>) are reused in other constructs — do not read
+}
+
+main {
+    var int n <span class="tok-op">←</span> <span class="tok-nu">4</span>
+    const string t <span class="tok-op">←</span> <span class="tok-st">"abc"</span>
+    imprime(t)
+    duplica(mut n)
+    print consume(own t)
+    print salve(<span class="tok-st">"Marcus"</span>)
+}</code></pre><p>An unmarked parameter is read-only all the way down: it cannot be assigned to,
+and sharing a list parameter into a writable binding (<code>var ys ← xs</code>) is
+<code>SEM065 const_shared_into_var</code>. A writable copy is written <code>var ys ← copy xs</code>. <code>mut</code> and <code>own</code> are repeated at the call site,
+as in <code>duplica(in n)</code> and <code>consume(own t)</code>; leaving the marker off is `SEM057
+call_marker_missing<code>. A </code>ref` argument takes no call-site marker.</p><p>The same words (<code>ref</code>, <code>from</code>) are reused in other constructs — do not read
 every <code>from</code> as &quot;consume&quot;:</p><div class="table-scroll"><table><thead><tr><th>Surface</th><th>Role</th></tr></thead><tbody><tr><td><code>ref string name</code> on parameter</td><td>Shared borrow</td></tr><tr><td><code>mut int count</code> on parameter</td><td>Mutable borrow</td></tr><tr><td><code>own string buffer</code> on parameter</td><td>Move into callee</td></tr><tr><td><code>for from items const item</code></td><td>Iterate values</td></tr><tr><td><code>for ref map const key</code></td><td>Iterate keys</td></tr><tr><td><code>from source const x, rest rest</code></td><td>Destructure fields</td></tr><tr><td><code>import from &quot;path&quot;</code></td><td>Import from module</td></tr></tbody></table></div><h3 id="entry-point">Entry point<a class="anchor" href="#entry-point">#</a></h3><p>The program entry point is <code>main</code>:</p><pre class="faber-code"><code class="lang-faber">main {
     print <span class="tok-st">"ingressus"</span>
 }</code></pre><p><code>async_main</code> is the async entry point — the body may await (<code>await_const</code>,

@@ -75,13 +75,13 @@
 )
 
 <span class="tok-kw">func</span> main() {
-    flat_a := []float32{float32(<span class="tok-nu">1.0</span>), float32(<span class="tok-nu">2.0</span>), float32(<span class="tok-nu">3.0</span>), float32(<span class="tok-nu">4.0</span>), float32(<span class="tok-nu">5.0</span>), float32(<span class="tok-nu">6.0</span>)}
-    flat_b := []float32{float32(<span class="tok-nu">1.0</span>), float32(<span class="tok-nu">2.0</span>), float32(<span class="tok-nu">3.0</span>), float32(<span class="tok-nu">4.0</span>), float32(<span class="tok-nu">5.0</span>), float32(<span class="tok-nu">6.0</span>), float32(<span class="tok-nu">7.0</span>), float32(<span class="tok-nu">8.0</span>), float32(<span class="tok-nu">9.0</span>), float32(<span class="tok-nu">10.0</span>), float32(<span class="tok-nu">11.0</span>), float32(<span class="tok-nu">12.0</span>)}
-    a := rt.TensorTensor[float32]{}.Strue(<span class="tok-kw">func</span>() []float32 { src := flat_a; out := make([]float32, len(src)); <span class="tok-kw">for</span> i, value := <span class="tok-kw">range</span> src { out[i] = value }; <span class="tok-kw">return</span> out }(), []<span class="tok-ty">int</span>{<span class="tok-nu">2</span>, <span class="tok-nu">3</span>})
-    b := rt.TensorTensor[float32]{}.Strue(<span class="tok-kw">func</span>() []float32 { src := flat_b; out := make([]float32, len(src)); <span class="tok-kw">for</span> i, value := <span class="tok-kw">range</span> src { out[i] = value }; <span class="tok-kw">return</span> out }(), []<span class="tok-ty">int</span>{<span class="tok-nu">3</span>, <span class="tok-nu">4</span>})
-    product := a.Matmul(b)
-    mean := float32(product.Media())
-    fmt.Println(<span class="tok-kw">func</span>(v float32) <span class="tok-ty">string</span> { s := strconv.FormatFloat(float64(v), <span class="tok-st">'f'</span>, -<span class="tok-nu">1</span>, <span class="tok-nu">32</span>); <span class="tok-kw">if</span> s == <span class="tok-st">"NaN"</span> { <span class="tok-kw">return</span> s }; <span class="tok-kw">if</span> s == <span class="tok-st">"+Inf"</span> { <span class="tok-kw">return</span> <span class="tok-st">"inf"</span> }; <span class="tok-kw">if</span> s == <span class="tok-st">"-Inf"</span> { <span class="tok-kw">return</span> <span class="tok-st">"-inf"</span> }; <span class="tok-kw">if</span> !strings.Contains(s, <span class="tok-st">"."</span>) { <span class="tok-kw">return</span> s + <span class="tok-st">".0"</span> }; <span class="tok-kw">return</span> s }(float32(mean)))
+    l_flat_a := []float32{float32(<span class="tok-nu">1.0</span>), float32(<span class="tok-nu">2.0</span>), float32(<span class="tok-nu">3.0</span>), float32(<span class="tok-nu">4.0</span>), float32(<span class="tok-nu">5.0</span>), float32(<span class="tok-nu">6.0</span>)}
+    l_flat_b := []float32{float32(<span class="tok-nu">1.0</span>), float32(<span class="tok-nu">2.0</span>), float32(<span class="tok-nu">3.0</span>), float32(<span class="tok-nu">4.0</span>), float32(<span class="tok-nu">5.0</span>), float32(<span class="tok-nu">6.0</span>), float32(<span class="tok-nu">7.0</span>), float32(<span class="tok-nu">8.0</span>), float32(<span class="tok-nu">9.0</span>), float32(<span class="tok-nu">10.0</span>), float32(<span class="tok-nu">11.0</span>), float32(<span class="tok-nu">12.0</span>)}
+    l_a := rt.TensorTensor[float32]{}.Strue(<span class="tok-kw">func</span>() []float32 { src := l_flat_a; out := make([]float32, len(src)); <span class="tok-kw">for</span> i, value := <span class="tok-kw">range</span> src { out[i] = value }; <span class="tok-kw">return</span> out }(), []<span class="tok-ty">int</span>{<span class="tok-nu">2</span>, <span class="tok-nu">3</span>})
+    l_b := rt.TensorTensor[float32]{}.Strue(<span class="tok-kw">func</span>() []float32 { src := l_flat_b; out := make([]float32, len(src)); <span class="tok-kw">for</span> i, value := <span class="tok-kw">range</span> src { out[i] = value }; <span class="tok-kw">return</span> out }(), []<span class="tok-ty">int</span>{<span class="tok-nu">3</span>, <span class="tok-nu">4</span>})
+    l_product := l_a.Matmul(l_b)
+    l_mean := float32(l_product.Media())
+    fmt.Println(<span class="tok-kw">func</span>(v float32) <span class="tok-ty">string</span> { s := strconv.FormatFloat(float64(v), <span class="tok-st">'f'</span>, -<span class="tok-nu">1</span>, <span class="tok-nu">32</span>); <span class="tok-kw">if</span> s == <span class="tok-st">"NaN"</span> { <span class="tok-kw">return</span> s }; <span class="tok-kw">if</span> s == <span class="tok-st">"+Inf"</span> { <span class="tok-kw">return</span> <span class="tok-st">"inf"</span> }; <span class="tok-kw">if</span> s == <span class="tok-st">"-Inf"</span> { <span class="tok-kw">return</span> <span class="tok-st">"-inf"</span> }; <span class="tok-kw">if</span> !strings.Contains(s, <span class="tok-st">"."</span>) { <span class="tok-kw">return</span> s + <span class="tok-st">".0"</span> }; <span class="tok-kw">return</span> s }(float32(l_mean)))
 }</code></pre><h2 id="fallibilis">The error channel<a class="anchor" href="#fallibilis">#</a></h2><p>A function that may fail, and a caller that catches. Shows how the <code class="glyph">⇥</code> channel becomes each target's own error idiom.</p><p><strong>Faber source</strong></p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-en" data-panel="lt-85ccdd726a36dc08-1-p-en" data-name="English" aria-controls="lt-85ccdd726a36dc08-1-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-la" data-panel="lt-85ccdd726a36dc08-1-p-la" data-name="Latin" aria-controls="lt-85ccdd726a36dc08-1-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-th-TH" data-panel="lt-85ccdd726a36dc08-1-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-85ccdd726a36dc08-1-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-zh-Hans" data-panel="lt-85ccdd726a36dc08-1-p-zh-Hans" data-name="简体中文" aria-controls="lt-85ccdd726a36dc08-1-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-zh-Hant" data-panel="lt-85ccdd726a36dc08-1-p-zh-Hant" data-name="繁體中文" aria-controls="lt-85ccdd726a36dc08-1-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-vi" data-panel="lt-85ccdd726a36dc08-1-p-vi" data-name="Tiếng Việt" aria-controls="lt-85ccdd726a36dc08-1-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-ar" data-panel="lt-85ccdd726a36dc08-1-p-ar" data-name="العربية" aria-controls="lt-85ccdd726a36dc08-1-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-85ccdd726a36dc08-1-t-hi" data-panel="lt-85ccdd726a36dc08-1-p-hi" data-name="हिन्दी" aria-controls="lt-85ccdd726a36dc08-1-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-85ccdd726a36dc08-1-p-en" role="tabpanel" aria-labelledby="lt-85ccdd726a36dc08-1-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">fn</span> divide(<span class="tok-kw">int</span> a, <span class="tok-kw">int</span> b) <span class="tok-op">→</span> <span class="tok-kw">int</span> ⇥ <span class="tok-kw">string</span> {
     <span class="tok-kw">if</span> b <span class="tok-op">≡</span> <span class="tok-nu">0</span> {
         <span class="tok-kw">throw</span> <span class="tok-st">"division by zero"</span>
@@ -205,11 +205,11 @@
     <span class="tok-st">"os"</span>
 )
 
-<span class="tok-kw">func</span> divide(a <span class="tok-ty">int</span>, b <span class="tok-ty">int</span>) (<span class="tok-ty">int</span>, <span class="tok-ty">error</span>) {
-    <span class="tok-kw">if</span> (b == <span class="tok-nu">0</span>) {
+<span class="tok-kw">func</span> divide(p_a <span class="tok-ty">int</span>, p_b <span class="tok-ty">int</span>) (<span class="tok-ty">int</span>, <span class="tok-ty">error</span>) {
+    <span class="tok-kw">if</span> (p_b == <span class="tok-nu">0</span>) {
         <span class="tok-kw">return</span> <span class="tok-nu">0</span>, errors.New(<span class="tok-st">"division by zero"</span>)
     }
-    <span class="tok-kw">return</span> <span class="tok-ty">int</span>(rt.ExactStore[<span class="tok-ty">int64</span>](rt.ExactDiv(rt.ExactI(<span class="tok-ty">int64</span>(a)), rt.ExactI(<span class="tok-ty">int64</span>(b))), <span class="tok-st">"return"</span>)), <span class="tok-kw">nil</span>
+    <span class="tok-kw">return</span> <span class="tok-ty">int</span>(rt.ExactStore[<span class="tok-ty">int64</span>](rt.ExactDiv(rt.ExactI(<span class="tok-ty">int64</span>(p_a)), rt.ExactI(<span class="tok-ty">int64</span>(p_b))), <span class="tok-st">"return"</span>)), <span class="tok-kw">nil</span>
 }
 
 <span class="tok-kw">func</span> main() {
@@ -221,7 +221,7 @@
         fmt.Println(v0)
         <span class="tok-kw">return</span> <span class="tok-kw">nil</span>
     }(); err != <span class="tok-kw">nil</span> {
-        fmt.Fprintln(os.Stderr, err.Error())
+        fmt.Fprintln(os.Stderr, l_err.Error())
     }
 }</code></pre><h2 id="collectiones">Collections and iteration<a class="anchor" href="#collectiones">#</a></h2><p>A list folded to a total with <code>for from</code>. The plainest possible read on how loops lower.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber locale-tabs">fn sum(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> int {
     var int total <span class="tok-op">←</span> <span class="tok-nu">0</span>
@@ -243,15 +243,15 @@ main {
     <span class="tok-st">"fmt"</span>
 )
 
-<span class="tok-kw">func</span> sum(numeri []<span class="tok-ty">int</span>) <span class="tok-ty">int</span> {
-    total := <span class="tok-nu">0</span>
-    <span class="tok-kw">for</span> _, n := <span class="tok-kw">range</span> numeri {
-        total = <span class="tok-ty">int</span>(rt.ExactStore[<span class="tok-ty">int64</span>](rt.ExactAdd(rt.ExactI(<span class="tok-ty">int64</span>(total)), rt.ExactI(<span class="tok-ty">int64</span>(n))), <span class="tok-st">"assignment to `total`"</span>))
+<span class="tok-kw">func</span> sum(p_numeri []<span class="tok-ty">int</span>) <span class="tok-ty">int</span> {
+    l_total := <span class="tok-nu">0</span>
+    <span class="tok-kw">for</span> _, l_n := <span class="tok-kw">range</span> p_numeri {
+        l_total = <span class="tok-ty">int</span>(rt.ExactStore[<span class="tok-ty">int64</span>](rt.ExactAdd(rt.ExactI(<span class="tok-ty">int64</span>(l_total)), rt.ExactI(<span class="tok-ty">int64</span>(l_n))), <span class="tok-st">"assignment to `total`"</span>))
     }
-    <span class="tok-kw">return</span> total
+    <span class="tok-kw">return</span> l_total
 }
 
 <span class="tok-kw">func</span> main() {
-    valores := []<span class="tok-ty">int</span>{<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>}
-    fmt.Println(sum(valores))
+    l_valores := []<span class="tok-ty">int</span>{<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>}
+    fmt.Println(sum(l_valores))
 }</code></pre><p>---</p><p><a href="/en-US/targets/">All targets</a> · <a href="/en-US/toolchain/target-matrix.html">Measured support per term</a></p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#reading">How to read it</a></li><li class="toc-2"><a href="#support">Measured support</a></li><li class="toc-3"><a href="#gaps">Not fully supported</a></li><li class="toc-2"><a href="#tensores">Typed tensors</a></li><li class="toc-2"><a href="#fallibilis">The error channel</a></li><li class="toc-2"><a href="#collectiones">Collections and iteration</a></li></ul></div></nav><footer><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

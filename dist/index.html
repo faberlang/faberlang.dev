@@ -135,7 +135,7 @@ main {
     print choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
     print -7 / 2
 }</code></pre></div>
-    <div class="fdt-panel" id="fl-loc-p-la" role="tabpanel" aria-labelledby="fl-loc-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber — the classical surface the language is named for</span></div><pre><code class="lang-faber locale=la">genus Span {
+    <div class="fdt-panel" id="fl-loc-p-la" role="tabpanel" aria-labelledby="fl-loc-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— Latin — the classical surface the language is named for</span></div><pre><code class="lang-faber locale=la">genus Span {
     fixum f64 low
     fixum f64 high
 
@@ -334,7 +334,7 @@ outside
       <a class="fl-loc" href="/en-US/language/locales/hi.html" hreflang="hi" lang="hi"><span class="fl-loc-name"><span class="hi">हिन्दी</span></span><span class="fl-loc-code">hi</span></a>
     </div>
     <p class="fl-note">
-      Latin is the canonical interchange form the language is named for. Reader
+      Latin is the pack the language is named for. Reader
       locales also localize compiler diagnostics. <a href="/porta/">See all languages</a> ·
       <a href="/en-US/language/reader-locales.html">How reader locales work</a>
     </p>
@@ -451,8 +451,8 @@ impl ::core::fmt::Debug for Span {
 }
 
 impl Span {
-    pub fn contains(&amp;self, x: f64) -&gt; bool {
-        self.low &lt;= x &amp;&amp; x &lt;= self.high
+    pub fn contains(&amp;self, p_x: f64) -&gt; bool {
+        self.low &lt;= p_x &amp;&amp; p_x &lt;= self.high
     }
     pub fn center(&amp;self) -&gt; f64 {
         (self.low + self.high) / 2.0
@@ -466,8 +466,8 @@ class Span {
     toString(): string {
         return &quot;Span { low = &quot; + display.value(this.low, &quot;fractus&quot;, { true_: &quot;true&quot;, false_: &quot;false&quot;, none: &quot;none&quot; }) + &quot;, high = &quot; + display.value(this.high, &quot;fractus&quot;, { true_: &quot;true&quot;, false_: &quot;false&quot;, none: &quot;none&quot; }) + &quot; }&quot;;
     }
-    contains(x: number): boolean {
-        return (this.low &lt;= x) &amp;&amp; (x &lt;= this.high);
+    contains(p_x: number): boolean {
+        return (this.low &lt;= p_x) &amp;&amp; (p_x &lt;= this.high);
     }
     center(): number {
         return ((this.low + this.high) / 2);
@@ -482,8 +482,8 @@ type Span struct {
     High float64
 }
 
-func (self *Span) Contains(x float64) bool {
-    return ((float64(self.Low) &lt;= float64(x)) &amp;&amp; (float64(x) &lt;= float64(self.High)))
+func (self *Span) Contains(p_x float64) bool {
+    return ((float64(self.Low) &lt;= float64(p_x)) &amp;&amp; (float64(p_x) &lt;= float64(self.High)))
 }
 
 func (self *Span) Center() float64 {
@@ -554,13 +554,13 @@ class Span {
     var low: Double
     var high: Double
 
-    init(low: Double, high: Double) {
-        self.low = low
-        self.high = high
+    init(low p_low: Double, high p_high: Double) {
+        self.low = p_low
+        self.high = p_high
     }
 
-    func contains(x: Double) -&gt; Bool {
-        return ((self.low &lt;= x) &amp;&amp; (x &lt;= self.high))
+    func contains(x p_x: Double) -&gt; Bool {
+        return ((self.low &lt;= p_x) &amp;&amp; (p_x &lt;= self.high))
     }
 
     func center() -&gt; Double {
@@ -693,15 +693,15 @@ extension Span: CustomStringConvertible {
       <h2>Compute is one thing you can build</h2>
       <p>
         The same language carries numeric and device work. Tensor operators and
-        <code>@ nucleum</code> kernels lower to WGSL, Metal and CUDA routes, and
+        <code>@ kernel</code> kernels lower to WGSL, Metal and CUDA routes, and
         <a href="/en-US/libraries/gradus.html">Gradus</a> uses them for
         autograd. Device execution is explicit and fail-closed: a requested
-        backend never silently falls back to CPU. Bounded training runs on
-        accepted Metal and CUDA machines; device inference is not shipped.
+        backend never silently falls back to CPU. It is under active
+        development; device inference is not shipped.
       </p>
       <nav class="chips" aria-label="Device execution references">
         <a href="/en-US/toolchain/compiling.html#device-execution">Device execution contract</a>
-        <a href="https://github.com/faberlang/examples/tree/main/training/device-summa">Training proof ↗</a>
+        <a href="/en-US/toolchain/target-matrix.html#device-kernel-support">Device targets</a>
       </nav>
     </div>
   </section>

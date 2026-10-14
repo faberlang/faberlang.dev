@@ -3,9 +3,9 @@
 <strong>Gradus</strong>, and <strong>Tela</strong> are optional dependencies you declare when you need
 graphics work, automatic differentiation, or typed views. <strong>Inferentia</strong> is an
 application built on them, still in development.</p><h2 id="norma">Norma — bundled<a class="anchor" href="#norma">#</a></h2><p>The standard library. Imported as <code>norma:*</code>, no installation step, no entry in
-<code>faber.toml</code>:</p><pre class="faber-code"><code class="lang-faber">import from <span class="tok-st">"norma:solum"</span> only
+<code>faber.toml</code>:</p><pre class="faber-code"><code class="lang-faber">import from <span class="tok-st">"norma:fs"</span> fs
 
-import from <span class="tok-st">"norma:textus"</span> string
+import from <span class="tok-st">"norma:text"</span> text
 
 main {
     print <span class="tok-st">"ready"</span>
@@ -23,13 +23,12 @@ a function annotated <code>@ radix backward</code> gets a generated companion th
 computes its gradients — and Gradus is the library surface over that
 mechanism, so model code calls functions instead of hand-writing annotations.</p><p>It is JAX-shaped: models are pure <code>(params, x) → y</code> functions with explicit
 parameters, and there is no module class hierarchy or runtime tape. It is also
-pre-1.0 and narrower than its module list suggests — shapes are concrete
-overloads rather than generics, and training is CPU-correct rather than fast.
+pre-1.0 and narrower than its module list suggests — most of it is a
+structural contract surface, and training is CPU-correct rather than fast.
 <a href="/en-US/libraries/gradus.html">Gradus →</a></p><h2 id="tela">Tela — opt in<a class="anchor" href="#tela">#</a></h2><p>A view library: typed HTML and SVG values, a fail-closed serializer that turns
 a valid tree into markup, and the DOM and Canvas2D contracts for a browser
-host. Imported as <code>tela:*</code>. It is early (version 0.0.0): the view protocol and
-static renderer work, while its Rust output and parts of its own proof suite do
-not yet. <a href="/en-US/libraries/tela.html">Tela →</a></p><h2 id="inferentia">Inferentia — an application<a class="anchor" href="#inferentia">#</a></h2><p>A local-first inference server written in Faber: a command line and a small
+host. Imported as <code>tela:*</code>. It is early; read its status page before
+relying on it. <a href="/en-US/libraries/tela.html">Tela →</a></p><h2 id="inferentia">Inferentia — an application<a class="anchor" href="#inferentia">#</a></h2><p>A local-first inference server written in Faber: a command line and a small
 HTTP API over a GGUF model, built on Gradus and Norma. It is not a library and
 not a released product. The page states what exists and what does not.
 <a href="/en-US/libraries/inferentia.html">Inferentia →</a></p><h2 id="corpus">The corpus — not a library<a class="anchor" href="#corpus">#</a></h2><p>The <strong>corpus</strong> is the language's worked-example tree: one directory per
@@ -39,6 +38,6 @@ truth for what the compiler supports, it generates the
 <a href="/en-US/corpus/">/corpus/</a>.</p><p>You do not import it. You read it when you want to know how a construct
 actually behaves rather than how it is described.
 <a href="/en-US/libraries/corpus.html">About the corpus →</a></p><h2 id="your-own">Writing your own<a class="anchor" href="#your-own">#</a></h2><p>A library is a package with <code>kind = &quot;lib&quot;</code> in its <code>faber.toml</code> and a
-<code>[library] provider</code> name. <code>faber install</code> puts it in the Cista store; other
+<code>[library] provider</code> name. <code>cista install &lt;path&gt;</code> puts it in the Cista store; other
 packages resolve it through <code>faber.lock</code>. See
 <a href="/en-US/toolchain/packages.html">Packages with Cista</a>.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#norma">Norma — bundled</a></li><li class="toc-2"><a href="#triga">Triga — opt in</a></li><li class="toc-2"><a href="#gradus">Gradus — opt in</a></li><li class="toc-2"><a href="#tela">Tela — opt in</a></li><li class="toc-2"><a href="#inferentia">Inferentia — an application</a></li><li class="toc-2"><a href="#corpus">The corpus — not a library</a></li><li class="toc-2"><a href="#your-own">Writing your own</a></li></ul></div></nav><footer><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

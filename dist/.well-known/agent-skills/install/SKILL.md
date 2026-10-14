@@ -72,10 +72,11 @@ faber --version
 
 ## First package check
 
-With the CLI on `PATH`, type-check a real package. Product packages resolve
-their dependencies from the Cista package store through `faber.lock`. Set
-`FABER_LIBRARY_HOME` only for an intentional local library-development
-override.
+With the CLI on `PATH`, type-check a real package. `norma:*` resolves from
+the Norma library embedded in the binary. Other dependencies resolve from the
+Cista package store through `faber.lock`. Pass `--library-home <DIR>` (or set
+`[paths] library_home` in `faber.toml`) only for an intentional local
+library-development override.
 
 ```bash
 git clone https://github.com/faberlang/examples.git

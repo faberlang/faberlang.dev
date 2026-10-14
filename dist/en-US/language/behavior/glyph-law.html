@@ -26,11 +26,12 @@ known while compiling. <code>count ← 0</code> then <code>count ← count + 1</
 events in sequence. Nothing here is a matter of style; the glyph decides.</p><h2 id="canonical">One canonical spelling, many sugars<a class="anchor" href="#canonical">#</a></h2><p>The same separation runs one level up, between <em>what a construct means</em> and
 <em>how it is spelled</em>. Faber defines one canonical spelling for each construct
 and accepts sugar spellings that parse to exactly the same node. The parser
-does not prefer one over the other; <code>faber format --locale la</code> re-emits the
-canonical form, while author mode preserves what was written.</p><p>Numeric containers follow it (<code>tf32[4]</code> and <code>tensor&lt;f32, [4]&gt;</code> are the same
+does not prefer one over the other; both parse to the same node.
+<code>faber convert --to la</code> re-emits a file on the Latin surface, and
+<code>faber format</code> re-emits through the same HIR at the file's own locale.</p><p>Numeric containers follow it (<code>tf32[4]</code> and <code>tensor&lt;f32, [4]&gt;</code> are the same
 type), annotations follow it (<code>@ option verbose …</code> and the braced record are
-the same <code>HirAnnotation</code>), and reader locales follow it — Latin is the
-canonical surface, every pack is a rendering of it.</p><h2 id="why">Why it matters<a class="anchor" href="#why">#</a></h2><p>Two properties fall out of the split:</p><ul><li><strong>Local reasoning.</strong> Nothing about a line depends on distant context. A
+the same <code>HirAnnotation</code>), and reader locales follow it — every pack is a
+rendering of the same node.</p><h2 id="why">Why it matters<a class="anchor" href="#why">#</a></h2><p>Two properties fall out of the split:</p><ul><li><strong>Local reasoning.</strong> Nothing about a line depends on distant context. A
 reader sees the declared shape and the runtime step separately, without
 knowing a library's internals.</li><li><strong>Lossless round-trips.</strong> Because the canonical form is defined and the
 sugar is a rendition of it, a program can be reformatted, converted, or
