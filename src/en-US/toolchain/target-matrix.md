@@ -84,21 +84,21 @@ these corpus rows as a quality score.
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| rust | 397 | 402 | 99% |
-| go | 365 | 402 | 91% |
-| ts | 402 | 402 | 100% |
-| faber | 402 | 402 | 100% |
+| rust | 426 | 431 | 99% |
+| go | 394 | 431 | 91% |
+| ts | 431 | 431 | 100% |
+| faber | 431 | 431 | 100% |
 
 **Systems lane (MIR → device/IR artifacts)**
 
 | target | capable | analyzable | % |
 |---|---|---|---|
-| llvm-text | 371 | 401 | 93% |
-| wasm-text | 317 | 401 | 79% |
-| wasm | 317 | 401 | 79% |
-| sexp-struct | 321 | 401 | 80% |
-| sexp | 319 | 401 | 80% |
-| runner | 345 | 401 | 86% |
+| llvm-text | 392 | 432 | 91% |
+| wasm-text | 334 | 432 | 77% |
+| wasm | 334 | 432 | 77% |
+| sexp-struct | 361 | 432 | 84% |
+| sexp | 358 | 432 | 83% |
+| runner | 377 | 432 | 87% |
 
 ## Device kernel support (product summary) {#device-kernel-support}
 
@@ -340,8 +340,8 @@ registry and matrix receipts under the radix factory tree
 | <a id=""></a>`∨` | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`∴` | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`∷` | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`≠` | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≡` | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`≢` | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≤` | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≥` | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⊗` | ✓ | ○ | ✓ | ✓ |
@@ -364,15 +364,15 @@ registry and matrix receipts under the radix factory tree
 | <a id="ad"></a>`ad` | ✓ | ✕ | ✕ | ✕ | ✕ | ✓ |
 | <a id="adfirma"></a>`adfirma` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="ante"></a>`ante` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="argumenta"></a>`argumenta` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id="argumenta"></a>`argumenta` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
 | <a id="bivalens"></a>`bivalens` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="cape"></a>`cape` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
+| <a id="cape"></a>`cape` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="casu"></a>`casu` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="cede"></a>`cede` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="ceteri"></a>`ceteri` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="ceterum"></a>`ceterum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="clausura"></a>`clausura` | ◐ | ◐ | ◐ | ◐ | ◐ | ✓ |
-| <a id="copia"></a>`copia` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
+| <a id="clausura"></a>`clausura` | ◐ | ◐ | ◐ | ✓ | ✓ | ✓ |
+| <a id="copia"></a>`copia` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
 | <a id="cursor"></a>`cursor` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
 | <a id="custodi"></a>`custodi` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="de"></a>`de` | — | — | — | — | — | — |
@@ -396,15 +396,15 @@ registry and matrix receipts under the radix factory tree
 | <a id="fixum"></a>`fixum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="fractus"></a>`fractus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="fragilis"></a>`fragilis` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| <a id="functio"></a>`functio` | ✓ | ◐ | ◐ | ◐ | ◐ | ◐ |
+| <a id="functio"></a>`functio` | ✓ | ◐ | ◐ | ✓ | ✓ | ◐ |
 | <a id="futurum"></a>`futurum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="generis"></a>`generis` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id="genus"></a>`genus` | ◐ | ◐ | ◐ | ◐ | ◐ | ✓ |
+| <a id="genus"></a>`genus` | ◐ | ◐ | ◐ | ✓ | ◐ | ✓ |
 | <a id="iace"></a>`iace` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="ignotum"></a>`ignotum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="immutata"></a>`immutata` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| <a id="implendum"></a>`implendum` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
-| <a id="implet"></a>`implet` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
+| <a id="implendum"></a>`implendum` | ◐ | ◐ | ◐ | ◐ | ◐ | ✓ |
+| <a id="implet"></a>`implet` | ◐ | ◐ | ◐ | ◐ | ◐ | ✓ |
 | <a id="importa"></a>`importa` | ✓ | ◐ | ◐ | ◐ | ◐ | ◐ |
 | <a id="in"></a>`in` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="incipiet"></a>`incipiet` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -461,12 +461,12 @@ registry and matrix receipts under the radix factory tree
 | <a id="solum-in"></a>`solum_in` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="sparge"></a>`sparge` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="sponte"></a>`sponte` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| <a id="tabula"></a>`tabula` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
+| <a id="tabula"></a>`tabula` | ✓ | ◐ | ◐ | ◐ | ◐ | ◐ |
 | <a id="tacebit"></a>`tacebit` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="tacet"></a>`tacet` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="tag"></a>`tag` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
 | <a id="temporis"></a>`temporis` | ✓ | ✓ | ✓ | ✓ | ✓ | ✕ |
-| <a id="textus"></a>`textus` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
+| <a id="textus"></a>`textus` | ✓ | ◐ | ◐ | ◐ | ◐ | ✓ |
 | <a id="typus"></a>`typus` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="ubique"></a>`ubique` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="usque"></a>`usque` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -476,7 +476,7 @@ registry and matrix receipts under the radix factory tree
 | <a id="variandum"></a>`variandum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="verum"></a>`verum` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id="vide"></a>`vide` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∪` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
+| <a id=""></a>`∪` | ◐ | ✓ | ✓ | ◐ | ◐ | ✓ |
 
 ## Operators — systems lane
 
@@ -508,7 +508,7 @@ registry and matrix receipts under the radix factory tree
 | <a id=""></a>`…` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`←` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`→` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`↤` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
+| <a id=""></a>`↤` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`↦` | ◐ | ◐ | ◐ | ◐ | ◐ | ◐ |
 | <a id=""></a>`⇐` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⇒` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
@@ -517,9 +517,9 @@ registry and matrix receipts under the radix factory tree
 | <a id=""></a>`∧` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`∨` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`∴` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`∷` | ✓ | ✓ | ✓ | ◐ | ◐ | ✓ |
-| <a id=""></a>`≠` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`∷` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≡` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| <a id=""></a>`≢` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≤` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`≥` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⊗` | ○ | ○ | ○ | ✓ | ✓ | ✓ |
@@ -528,7 +528,7 @@ registry and matrix receipts under the radix factory tree
 | <a id=""></a>`⊚` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⊛` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⊜` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| <a id=""></a>`⊥` | ✓ | ✓ | ✓ | ✕ | ✕ | ✓ |
+| <a id=""></a>`⊥` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`⊻` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | <a id=""></a>`✓` | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 

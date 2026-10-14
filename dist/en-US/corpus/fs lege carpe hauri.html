@@ -41,7 +41,7 @@ main {
     assert body <span class="tok-op">≡</span> <span class="tok-st">"prima\nsecunda\n"</span>
     const list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> lineae <span class="tok-op">←</span> call <span class="tok-st">'solum:carpe'</span> (textPath) ↦ list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>
     assert lineae <span class="tok-op">≡</span> ([<span class="tok-st">"prima"</span>, <span class="tok-st">"secunda"</span>] ↦ list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>)
-    const bytes data <span class="tok-op">←</span> call <span class="tok-st">'solum:hauri'</span> (textPath) ↦ bytes
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> data <span class="tok-op">←</span> call <span class="tok-st">'solum:hauri'</span> (textPath) ↦ list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span>
     assert data <span class="tok-op">≡</span> <span class="tok-op">|</span><span class="tok-nu">70</span> <span class="tok-nu">72</span> <span class="tok-nu">69</span> <span class="tok-nu">6</span>d <span class="tok-nu">61</span> <span class="tok-nu">0</span>a <span class="tok-nu">73</span> <span class="tok-nu">65</span> <span class="tok-nu">63</span> <span class="tok-nu">75</span> <span class="tok-nu">6</span>e <span class="tok-nu">64</span> <span class="tok-nu">61</span> <span class="tok-nu">0</span>a<span class="tok-op">|</span>
     print body
     print lineae

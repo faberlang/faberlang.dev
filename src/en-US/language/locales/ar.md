@@ -139,7 +139,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | readonly         immutata     ثابتة
 | reduce           reducta      اختزل
 | ref              de           عن
-| reject           reice        يرفض
+| reject           reice        ارفض
 | rename           verte        إعادة_تسمية
 | repeat           repete       معاد
 | require          requirit     يتطلب
@@ -149,7 +149,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | schema           schema       مخطط
 | self             ego          ذات
 | setup            praepara     جهز
-| shared           commune      commune
+| shared           commune      مشترك
 | short            brevis       مختصر
 | size             magnitudo    حجم
 | skip             omitte       أهمل
@@ -245,7 +245,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 
 ```text locale=la
 | English               Latin                  العربية
-| --------------------  ---------------------  ------------------
+| --------------------  ---------------------  -------------------
 | abs                   absolutum              القيمة_المطلقة
 | add                   adde                   أضف
 | added                 addita                 مضاف
@@ -271,6 +271,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | complemented          complementata          مكمل
 | contains              continet               يحتوي
 | cos                   cosinus                جيب_التمام
+| count_nonzero         nonnihil               عدّ_اللاصفريّات
 | create                crea                   أنشئ
 | cross                 transversum            الجداء_الاتجاهي
 | cross_entropy         crux_entropia          إنتروبيا_متقاطعة
@@ -279,6 +280,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | delete                dele                   امسح
 | densify               densata                كثف
 | difference            differentia            الفرق
+| difference_symmetric  symmetrica             الفرق_المتماثل
 | divide                divida                 اقسم
 | divide                divisio                قسمة
 | divided               divisa                 مقسوم
@@ -314,7 +316,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | is_superset           supercopia             مجموعة_شاملة
 | keys                  claves                 المفاتيح
 | last                  ultimus                الأخير
-| layer_norm            laminatio              تطبيع_الطبقة
 | length                longitudo              طول
 | less                  minor                  أصغر
 | limes                 limes                  حافة
@@ -336,7 +337,9 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | named                 nominatus              مسماة
 | negate                nega                   اعكس_الإشارة
 | negated               negativa               معكوس_الإشارة
-| nonzero_count         nonnihil               عدّ_اللاصفريّات
+| norm_layer            laminatio              تطبيع_الطبقة
+| norm_rms              rms_norm               rms_norm
+| norm_rope             rope_norm              rope_norm
 | normalize             normalizata            طبّع
 | power                 potentia               قوة
 | put                   pone                   ضع
@@ -347,8 +350,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | replace               muta                   استبدل
 | reshape               forma                  أعد_التشكيل
 | reverse               inverte                اعكس
-| rms_norm              rms_norm               rms_norm
-| rope_norm             rope_norm              rope_norm
+| rope_half             rope_half              rope_half
 | round                 rotunda                قرب
 | set                   ponde                  اضبط
 | shape                 magnitudines           الأبعاد
@@ -362,6 +364,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | sin                   sinus                  جيب
 | slice                 sectio                 شريحة
 | softmax               activatio_softmax      تنشيط_سوفتماكس
+| softmax_causal        softmax_causal         تنشيط_سوفتماكس_سببي
 | sort                  ordina                 رتب
 | sorted                ordinata               مرتب
 | split                 divide                 افصل
@@ -373,7 +376,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | subtracted            subtracta              مطروح
 | sum                   summa                  المجموع
 | swizzle               swizzle                swizzle
-| symmetric_difference  symmetrica             الفرق_المتماثل
 | take                  prima                  خذ_الأولى
 | take_last             ultima                 خذ_الأخيرة
 | tan                   tangens                الظل

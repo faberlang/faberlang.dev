@@ -26,8 +26,8 @@ This file is the generated keyword catalog, not the writing guide.
 
 ## Generated corpus frontmatter reference
 
-- Distinct frontmatter terms: 345
-- Canonical term pages: 233
+- Distinct frontmatter terms: 353
+- Canonical term pages: 234
 - Alias spellings: 139
 - Categories: 48
 - Source: radix/corpus/**/*.fab TOML frontmatter
@@ -67,7 +67,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - io (2) — https://faberlang.dev/en-US/corpus/category/io.html
 - iteration (2) — https://faberlang.dev/en-US/corpus/category/iteration.html
 - lane (2) — https://faberlang.dev/en-US/corpus/category/lane.html
-- literal (7) — https://faberlang.dev/en-US/corpus/category/literal.html
+- literal (8) — https://faberlang.dev/en-US/corpus/category/literal.html
 - logic (6) — https://faberlang.dev/en-US/corpus/category/logic.html
 - metadata (1) — https://faberlang.dev/en-US/corpus/category/metadata.html
 - modifier (3) — https://faberlang.dev/en-US/corpus/category/modifier.html
@@ -90,7 +90,7 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - annotation: 10
 - concept: 42
 - conversio: 8
-- existing-home: 6
+- existing-home: 7
 - feature: 3
 - keyword: 116
 - literal: 2
@@ -966,6 +966,18 @@ Each canonical record has: term, kind, category, summary, syntax signature, alia
 - Related: `implendum`, `implet`
 - Page: https://faberlang.dev/en-US/corpus/class.html
 - Source: radix/corpus/genus/genus.fab
+
+#### `guillemet`
+
+- Canonical: `guillemet`
+- Kind: existing-home
+- Category: literal
+- Summary: Guillemet textus literals: quotes and apostrophes need no escape.
+- Syntax: `«<text>»`
+- Aliases: none
+- Related: `string`, `block-string`, `textus`
+- Page: https://faberlang.dev/en-US/corpus/guillemet.html
+- Source: radix/corpus/literalia/guillemet-quotes.fab
 
 #### `iace`
 

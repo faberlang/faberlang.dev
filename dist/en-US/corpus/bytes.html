@@ -23,12 +23,12 @@
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   octeti.expected — type-known diagnostic.</span>
 
-type Fascis <span class="tok-op">=</span> bytes
+type Fascis <span class="tok-op">=</span> list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span>
 
 main {
-    const bytes sig <span class="tok-op">←</span> <span class="tok-op">|</span>ref call be ef<span class="tok-op">|</span>
-    const bytes hello <span class="tok-op">←</span> <span class="tok-op">|</span><span class="tok-nu">48</span> <span class="tok-nu">65</span> <span class="tok-nu">6</span>c <span class="tok-nu">6</span>c <span class="tok-nu">6</span>f<span class="tok-op">|</span>
-    const bytes empty <span class="tok-op">←</span> <span class="tok-op">||</span>
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> sig <span class="tok-op">←</span> <span class="tok-op">|</span>ref call be ef<span class="tok-op">|</span>
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> hello <span class="tok-op">←</span> <span class="tok-op">|</span><span class="tok-nu">48</span> <span class="tok-nu">65</span> <span class="tok-nu">6</span>c <span class="tok-nu">6</span>c <span class="tok-nu">6</span>f<span class="tok-op">|</span>
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> empty <span class="tok-op">←</span> <span class="tok-op">||</span>
     print <span class="tok-st">"octeti typus notus"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>octeti typus notus
 </code></pre><h3 id="radixcorpusboundedconversio-octeti-to-octeti-declinefab-supporting-reject">radix/corpus/bounded/conversio-octeti-to-octeti-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusboundedconversio-octeti-to-octeti-declinefab-supporting-reject">#</a></h3><p>Decline: bounded bytes&lt;N&gt; cannot resize directly to bounded bytes&lt;M&gt;.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
@@ -43,8 +43,8 @@ main {
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • expecting a bounded byte conversion to truncate or pad silently.</span>
 
-fn resize(bytes<span class="tok-op">&lt;</span><span class="tok-nu">8</span><span class="tok-op">&gt;</span> raw) <span class="tok-op">→</span> bytes<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span> {
-    return raw ↦ bytes<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span>
+fn resize(list<span class="tok-op">&lt;</span>b8, <span class="tok-nu">8</span><span class="tok-op">&gt;</span> raw) <span class="tok-op">→</span> list<span class="tok-op">&lt;</span>b8, <span class="tok-nu">4</span><span class="tok-op">&gt;</span> {
+    return raw ↦ list<span class="tok-op">&lt;</span>b8, <span class="tok-nu">4</span><span class="tok-op">&gt;</span>
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusboundedconversio-octeti-to-textus-declinefab-supporting-reject">radix/corpus/bounded/conversio-octeti-to-textus-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusboundedconversio-octeti-to-textus-declinefab-supporting-reject">#</a></h3><p>Decline: bounded bytes&lt;N&gt; cannot convert directly to unbounded string.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># bounded bytes to string — unsupported conversion decline</span>
 <span class="tok-co"># =============================================================================</span>
@@ -57,6 +57,6 @@ fn resize(bytes<span class="tok-op">&lt;</span><span class="tok-nu">8</span><spa
 <span class="tok-co">#   • assuming byte decoding is the same as a bounded-width copy — decoding</span>
 <span class="tok-co">#     needs an explicit bytes/textus library route, not this conversion.</span>
 
-fn widen(bytes<span class="tok-op">&lt;</span><span class="tok-nu">8</span><span class="tok-op">&gt;</span> raw) <span class="tok-op">→</span> string {
+fn widen(list<span class="tok-op">&lt;</span>b8, <span class="tok-nu">8</span><span class="tok-op">&gt;</span> raw) <span class="tok-op">→</span> string {
     return raw ↦ string
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusoctetioctetifab-canonical-keyword">radix/corpus/octeti/octeti.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-octeti-to-octeti-declinefab-supporting-reject">radix/corpus/bounded/conversio-octeti-to-octeti-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusboundedconversio-octeti-to-textus-declinefab-supporting-reject">radix/corpus/bounded/conversio-octeti-to-textus-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/octeti/octeti.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

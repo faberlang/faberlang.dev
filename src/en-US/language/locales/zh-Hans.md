@@ -149,7 +149,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | schema           schema       架构
 | self             ego          自身
 | setup            praepara     备置
-| shared           commune      commune
+| shared           commune      共享
 | short            brevis       简
 | size             magnitudo    维度
 | skip             omitte       跳过
@@ -245,7 +245,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 
 ```text locale=la
 | English               Latin                  简体中文
-| --------------------  ---------------------  ----------
+| --------------------  ---------------------  ------------
 | abs                   absolutum              绝对值
 | add                   adde                   添加
 | added                 addita                 已添加
@@ -271,6 +271,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | complemented          complementata          已取补
 | contains              continet               包含
 | cos                   cosinus                余弦
+| count_nonzero         nonnihil               非零个数
 | create                crea                   创建
 | cross                 transversum            叉积
 | cross_entropy         crux_entropia          交叉熵
@@ -279,6 +280,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | delete                dele                   删除
 | densify               densata                稠密化
 | difference            differentia            差集
+| difference_symmetric  symmetrica             对称差集
 | divide                divida                 除以
 | divide                divisio                除法
 | divided               divisa                 已除以
@@ -314,7 +316,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | is_superset           supercopia             是超集
 | keys                  claves                 键列表
 | last                  ultimus                最后一个
-| layer_norm            laminatio              层归一化
 | length                longitudo              长度
 | less                  minor                  小于
 | limes                 limes                  边界
@@ -336,7 +337,9 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | named                 nominatus              命名分组
 | negate                nega                   取负
 | negated               negativa               已取负
-| nonzero_count         nonnihil               非零个数
+| norm_layer            laminatio              层归一化
+| norm_rms              rms_norm               rms_norm
+| norm_rope             rope_norm              rope_norm
 | normalize             normalizata            归一化
 | power                 potentia               乘方
 | put                   pone                   放入
@@ -347,8 +350,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | replace               muta                   替换
 | reshape               forma                  重塑
 | reverse               inverte                反转
-| rms_norm              rms_norm               rms_norm
-| rope_norm             rope_norm              rope_norm
+| rope_half             rope_half              rope_half
 | round                 rotunda                四舍五入
 | set                   ponde                  设置
 | shape                 magnitudines           形状
@@ -362,6 +364,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | sin                   sinus                  正弦
 | slice                 sectio                 切片
 | softmax               activatio_softmax      Softmax
+| softmax_causal        softmax_causal         Softmax_因果
 | sort                  ordina                 排序
 | sorted                ordinata               已排序
 | split                 divide                 分割
@@ -373,7 +376,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | subtracted            subtracta              已减去
 | sum                   summa                  求和
 | swizzle               swizzle                swizzle
-| symmetric_difference  symmetrica             对称差集
 | take                  prima                  取前
 | take_last             ultima                 取后
 | tan                   tangens                正切

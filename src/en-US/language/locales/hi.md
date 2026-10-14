@@ -149,7 +149,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | schema           schema       स्कीमा
 | self             ego          मैं
 | setup            praepara     पूर्वतैयार
-| shared           commune      commune
+| shared           commune      साझा
 | short            brevis       संक्षिप्त
 | size             magnitudo    आकार
 | skip             omitte       छोड़ो
@@ -245,7 +245,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 
 ```text locale=la
 | English               Latin                  हिन्दी
-| --------------------  ---------------------  ---------------
+| --------------------  ---------------------  -----------------
 | abs                   absolutum              निरपेक्ष
 | add                   adde                   जोड़ो
 | added                 addita                 जोड़ा
@@ -271,6 +271,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | complemented          complementata          पूरक
 | contains              continet               शामिल
 | cos                   cosinus                कोज्या
+| count_nonzero         nonnihil               अशून्य_गणना
 | create                crea                   बनाओ
 | cross                 transversum            सदिश_गुणनफल
 | cross_entropy         crux_entropia          क्रॉस_एंट्रॉपी
@@ -279,6 +280,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | delete                dele                   मिटाओ
 | densify               densata                घना_करो
 | difference            differentia            अंतर
+| difference_symmetric  symmetrica             सममित_अंतर
 | divide                divida                 भाग_दो
 | divide                divisio                विभाजन
 | divided               divisa                 विभाजित
@@ -314,7 +316,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | is_superset           supercopia             अधिसमुच्चय_है
 | keys                  claves                 कुंजियाँ
 | last                  ultimus                अंतिम
-| layer_norm            laminatio              परत_सामान्यीकरण
 | length                longitudo              लंबाई
 | less                  minor                  छोटा
 | limes                 limes                  किनारा
@@ -336,7 +337,9 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | named                 nominatus              नामित
 | negate                nega                   चिह्न_पलटो
 | negated               negativa               चिह्न_पलटा
-| nonzero_count         nonnihil               अशून्य_गणना
+| norm_layer            laminatio              परत_सामान्यीकरण
+| norm_rms              rms_norm               rms_norm
+| norm_rope             rope_norm              rope_norm
 | normalize             normalizata            सामान्यीकृत
 | power                 potentia               घात
 | put                   pone                   रखो
@@ -347,8 +350,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | replace               muta                   बदलो
 | reshape               forma                  आकार_बदलो
 | reverse               inverte                उलटो
-| rms_norm              rms_norm               rms_norm
-| rope_norm             rope_norm              rope_norm
+| rope_half             rope_half              rope_half
 | round                 rotunda                निकटतम_पूर्णांक
 | set                   ponde                  निर्धारित_करो
 | shape                 magnitudines           आकृति
@@ -362,6 +364,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | sin                   sinus                  ज्या
 | slice                 sectio                 टुकड़ा
 | softmax               activatio_softmax      सॉफ्टमैक्स
+| softmax_causal        softmax_causal         सॉफ्टमैक्स_कारणात्मक
 | sort                  ordina                 क्रमबद्ध_करो
 | sorted                ordinata               क्रमबद्ध
 | split                 divide                 बाँटो
@@ -373,7 +376,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | subtracted            subtracta              घटाया
 | sum                   summa                  योग
 | swizzle               swizzle                swizzle
-| symmetric_difference  symmetrica             सममित_अंतर
 | take                  prima                  पहले_लो
 | take_last             ultima                 अंतिम_लो
 | tan                   tangens                स्पर्शज्या

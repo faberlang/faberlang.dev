@@ -149,7 +149,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | schema           schema       lược_đồ
 | self             ego          tôi
 | setup            praepara     chuẩn_bị
-| shared           commune      commune
+| shared           commune      dùng_chung
 | short            brevis       ngắn
 | size             magnitudo    kích_thước
 | skip             omitte       bỏ_qua
@@ -245,7 +245,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 
 ```text locale=la
 | English               Latin                  Tiếng Việt
-| --------------------  ---------------------  -----------------
+| --------------------  ---------------------  --------------------------
 | abs                   absolutum              giá_trị_tuyệt_đối
 | add                   adde                   thêm
 | added                 addita                 đã_thêm
@@ -271,6 +271,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | complemented          complementata          đã_bù
 | contains              continet               chứa
 | cos                   cosinus                cos
+| count_nonzero         nonnihil               đếm_khác_không
 | create                crea                   tạo
 | cross                 transversum            tích_có_hướng
 | cross_entropy         crux_entropia          entropy_chéo
@@ -279,6 +280,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | delete                dele                   xóa
 | densify               densata                làm_đặc
 | difference            differentia            hiệu
+| difference_symmetric  symmetrica             hiệu_đối_xứng
 | divide                divida                 chia
 | divide                divisio                phép_chia
 | divided               divisa                 đã_chia
@@ -314,7 +316,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | is_superset           supercopia             là_tập_cha
 | keys                  claves                 khóa
 | last                  ultimus                cuối_cùng
-| layer_norm            laminatio              chuẩn_hóa_lớp
 | length                longitudo              độ_dài
 | less                  minor                  nhỏ_hơn
 | limes                 limes                  biên
@@ -336,7 +337,9 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | named                 nominatus              đặt_tên
 | negate                nega                   đổi_dấu
 | negated               negativa               đã_đổi_dấu
-| nonzero_count         nonnihil               đếm_khác_không
+| norm_layer            laminatio              chuẩn_hóa_lớp
+| norm_rms              rms_norm               rms_norm
+| norm_rope             rope_norm              rope_norm
 | normalize             normalizata            chuẩn_hóa
 | power                 potentia               lũy_thừa
 | put                   pone                   đặt
@@ -347,8 +350,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | replace               muta                   thay
 | reshape               forma                  định_hình_lại
 | reverse               inverte                đảo
-| rms_norm              rms_norm               rms_norm
-| rope_norm             rope_norm              rope_norm
+| rope_half             rope_half              rope_half
 | round                 rotunda                làm_tròn
 | set                   ponde                  thiết_lập
 | shape                 magnitudines           hình_dạng
@@ -362,6 +364,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | sin                   sinus                  sin
 | slice                 sectio                 cắt
 | softmax               activatio_softmax      kích_hoạt_softmax
+| softmax_causal        softmax_causal         kích_hoạt_softmax_nhân_quả
 | sort                  ordina                 sắp_xếp
 | sorted                ordinata               đã_sắp_xếp
 | split                 divide                 tách
@@ -373,7 +376,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | subtracted            subtracta              đã_trừ
 | sum                   summa                  tổng
 | swizzle               swizzle                swizzle
-| symmetric_difference  symmetrica             hiệu_đối_xứng
 | take                  prima                  lấy_đầu
 | take_last             ultima                 lấy_cuối
 | tan                   tangens                tan

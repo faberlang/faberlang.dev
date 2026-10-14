@@ -33,8 +33,17 @@ main {
 <span class="tok-co">    # Forma capture accepts labels but stores only erased template text.</span>
     const _ captured <span class="tok-op">←</span> <span class="tok-st">`where id = §{id}`</span>(id<span class="tok-op">:</span> <span class="tok-st">"42"</span>)
     print captured.template
+
+<span class="tok-co">    # An indexed hole selects its argument and may repeat; one value serves all</span>
+<span class="tok-co">    # occurrences of its number.</span>
+    print <span class="tok-st">"§0, §0, §0, and §1"</span>(<span class="tok-st">"her"</span>, <span class="tok-st">"me"</span>)
+
+<span class="tok-co">    # The selection follows the hole number, not left-to-right order.</span>
+    print <span class="tok-st">"§1 then §0"</span>(<span class="tok-st">"a"</span>, <span class="tok-st">"b"</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve world
 Salve Mundus
 Salve world
 where id = §
+her, her, her, and me
+b then a
 </code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusliteralianamed-holesfab-canonical-existing-home">radix/corpus/literalia/named-holes.fab (canonical · existing-home)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/literalia/named-holes.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

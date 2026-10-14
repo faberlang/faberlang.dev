@@ -149,7 +149,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | schema           schema       สคีมา
 | self             ego          ตัวฉัน
 | setup            praepara     เตรียม
-| shared           commune      commune
+| shared           commune      ใช้ร่วม
 | short            brevis       สั้น
 | size             magnitudo    ขนาด
 | skip             omitte       ละเว้น
@@ -245,7 +245,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 
 ```text locale=la
 | English               Latin                  ไทย
-| --------------------  ---------------------  ------------------
+| --------------------  ---------------------  --------------------
 | abs                   absolutum              ค่าสัมบูรณ์
 | add                   adde                   เพิ่ม
 | added                 addita                 เพิ่มแล้ว
@@ -271,6 +271,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | complemented          complementata          กลับบิตแล้ว
 | contains              continet               ประกอบด้วย
 | cos                   cosinus                โคไซน์
+| count_nonzero         nonnihil               นับไม่ศูนย์
 | create                crea                   สร้าง
 | cross                 transversum            ครอสโปรดักต์
 | cross_entropy         crux_entropia          ครอสเอนโทรปี
@@ -279,6 +280,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | delete                dele                   ลบ
 | densify               densata                ทําให้หนาแน่น
 | difference            differentia            ผลต่าง
+| difference_symmetric  symmetrica             ผลต่างสมมาตร
 | divide                divida                 หาร
 | divide                divisio                การหาร
 | divided               divisa                 หารแล้ว
@@ -314,7 +316,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | is_superset           supercopia             เป็นชุดครอบ
 | keys                  claves                 คีย์
 | last                  ultimus                ตัวสุดท้าย
-| layer_norm            laminatio              เลเยอร์นอร์ม
 | length                longitudo              ความยาว
 | less                  minor                  น้อยกว่า
 | limes                 limes                  ขอบ
@@ -336,7 +337,9 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | named                 nominatus              กลุ่มชื่อ
 | negate                nega                   กลับเครื่องหมาย
 | negated               negativa               กลับเครื่องหมายแล้ว
-| nonzero_count         nonnihil               นับไม่ศูนย์
+| norm_layer            laminatio              เลเยอร์นอร์ม
+| norm_rms              rms_norm               rms_norm
+| norm_rope             rope_norm              rope_norm
 | normalize             normalizata            ทําให้เป็นบรรทัดฐาน
 | power                 potentia               ยกกําลัง
 | put                   pone                   ใส่
@@ -347,8 +350,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | replace               muta                   แทนที่
 | reshape               forma                  เปลี่ยนรูปร่าง
 | reverse               inverte                กลับลําดับ
-| rms_norm              rms_norm               rms_norm
-| rope_norm             rope_norm              rope_norm
+| rope_half             rope_half              rope_half
 | round                 rotunda                ปัดเศษ
 | set                   ponde                  กําหนด
 | shape                 magnitudines           รูปร่าง
@@ -362,6 +364,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | sin                   sinus                  ไซน์
 | slice                 sectio                 ตัดช่วง
 | softmax               activatio_softmax      ซอฟต์แมกซ์
+| softmax_causal        softmax_causal         ซอฟต์แมกซ์_เชิงสาเหตุ
 | sort                  ordina                 เรียง
 | sorted                ordinata               เรียงแล้ว
 | split                 divide                 แยก
@@ -373,7 +376,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | subtracted            subtracta              ลบออกแล้ว
 | sum                   summa                  ผลรวม
 | swizzle               swizzle                swizzle
-| symmetric_difference  symmetrica             ผลต่างสมมาตร
 | take                  prima                  ส่วนต้น
 | take_last             ultima                 เอาท้าย
 | tan                   tangens                แทนเจนต์

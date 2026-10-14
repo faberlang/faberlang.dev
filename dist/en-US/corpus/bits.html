@@ -116,6 +116,104 @@ main {
 0x00000001
 0x0000000000000001
 [0x00, 0x0f, 0xa5, 0xff]
+</code></pre><h3 id="radixcorpusbitsbits-display-optional-lafab-canonical-display">radix/corpus/bits/bits-display-optional-la.fab (canonical · display)<a class="anchor" href="#radixcorpusbitsbits-display-optional-lafab-canonical-display">#</a></h3><p>A bN inside an optional still prints as hex at full width; an absent optional prints none, and a nested list keeps its brackets.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># bits — Display of optional and nested bits values</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • a present `b8 ∪ none` prints exactly as its b8: hex at full width</span>
+<span class="tok-co">#   • an absent `b8 ∪ none` prints `none`</span>
+<span class="tok-co">#   • a present `list&lt;b8&gt; ∪ none` prints in list shape, each element in hex</span>
+<span class="tok-co">#   • an absent `list&lt;b8&gt; ∪ none` prints `none`</span>
+<span class="tok-co">#   • a nested `list&lt;list&lt;b8&gt;&gt;` prints its inner lists in brackets</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • expecting an absent optional to print `0x00` or `[]` — absent is `none`</span>
+<span class="tok-co">#   • expecting a nested list to flatten into one bracket level</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: bits-display, bits-literals, optionalis</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># bits — optional and nested display</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED stdout: see bits-display-optional-la.expected</span>
+
+main {
+<span class="tok-co">    # a present optional scalar prints as the b8 it holds</span>
+    const b8 sample <span class="tok-op">←</span> <span class="tok-nu">255</span>
+    const b8 <span class="tok-op">∪</span> none present <span class="tok-op">←</span> sample
+    print present
+
+<span class="tok-co">    # an absent optional scalar prints none</span>
+    const b8 <span class="tok-op">∪</span> none absent <span class="tok-op">←</span> null
+    print absent
+
+<span class="tok-co">    # a present optional list prints each element in hex</span>
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-nu">222</span>, <span class="tok-nu">173</span>]
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> none bytes <span class="tok-op">←</span> raw
+    print bytes
+
+<span class="tok-co">    # an absent optional list prints none</span>
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> none missing <span class="tok-op">←</span> null
+    print missing
+
+<span class="tok-co">    # a nested list keeps its inner brackets</span>
+    const list<span class="tok-op">&lt;</span>list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> rows <span class="tok-op">←</span> [[<span class="tok-nu">1</span>], [<span class="tok-nu">2</span>, <span class="tok-nu">255</span>]]
+    print rows
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0xff
+nihil
+[0xde, 0xad]
+nihil
+[[0x01], [0x02, 0xff]]
+</code></pre><h3 id="radixcorpusbitsbits-display-optionalfab-canonical-display">radix/corpus/bits/bits-display-optional.fab (canonical · display)<a class="anchor" href="#radixcorpusbitsbits-display-optionalfab-canonical-display">#</a></h3><p>A bN inside an optional still prints as hex at full width; an absent optional prints none, and a nested list keeps its brackets.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<span class="tok-co"># bits — Display of optional and nested bits values</span>
+<span class="tok-co"># =============================================================================</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># What this teaches:</span>
+<span class="tok-co">#   • a present `b8 ∪ none` prints exactly as its b8: hex at full width</span>
+<span class="tok-co">#   • an absent `b8 ∪ none` prints `none`</span>
+<span class="tok-co">#   • a present `list&lt;b8&gt; ∪ none` prints in list shape, each element in hex</span>
+<span class="tok-co">#   • an absent `list&lt;b8&gt; ∪ none` prints `none`</span>
+<span class="tok-co">#   • a nested `list&lt;list&lt;b8&gt;&gt;` prints its inner lists in brackets</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># Common mistakes:</span>
+<span class="tok-co">#   • expecting an absent optional to print `0x00` or `[]` — absent is `none`</span>
+<span class="tok-co">#   • expecting a nested list to flatten into one bracket level</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># See also: bits-display, bits-literals, optionalis</span>
+<span class="tok-co"># =============================================================================</span>
+
+<span class="tok-co"># bits — optional and nested display</span>
+<span class="tok-co">#</span>
+<span class="tok-co"># EXPECTED stdout: see bits-display-optional.expected</span>
+
+main {
+<span class="tok-co">    # a present optional scalar prints as the b8 it holds</span>
+    const b8 sample <span class="tok-op">←</span> <span class="tok-nu">0</span>xff
+    const b8 <span class="tok-op">∪</span> none present <span class="tok-op">←</span> sample
+    print present
+
+<span class="tok-co">    # an absent optional scalar prints none</span>
+    const b8 <span class="tok-op">∪</span> none absent <span class="tok-op">←</span> null
+    print absent
+
+<span class="tok-co">    # a present optional list prints each element in hex</span>
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> raw <span class="tok-op">←</span> [<span class="tok-nu">0</span>xde, <span class="tok-nu">0</span>xad]
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> none bytes <span class="tok-op">←</span> raw
+    print bytes
+
+<span class="tok-co">    # an absent optional list prints none</span>
+    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> <span class="tok-op">∪</span> none missing <span class="tok-op">←</span> null
+    print missing
+
+<span class="tok-co">    # a nested list keeps its inner brackets</span>
+    const list<span class="tok-op">&lt;</span>list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> rows <span class="tok-op">←</span> [[<span class="tok-nu">0</span>x01], [<span class="tok-nu">0</span>x02, <span class="tok-nu">0</span>xff]]
+    print rows
+}</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0xff
+none
+[0xde, 0xad]
+none
+[[0x01], [0x02, 0xff]]
 </code></pre><h3 id="radixcorpusbitsbits-displayfab-canonical-display">radix/corpus/bits/bits-display.fab (canonical · display)<a class="anchor" href="#radixcorpusbitsbits-displayfab-canonical-display">#</a></h3><p>print shows a bits value as hex at its full width, alone or inside a list.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># bits — Display is hex at full width</span>
 <span class="tok-co"># =============================================================================</span>
@@ -752,4 +850,4 @@ main {
     const b8 a <span class="tok-op">←</span> <span class="tok-nu">0</span>x0f
     const u8 n <span class="tok-op">←</span> <span class="tok-nu">3</span>
     print a ∧ n
-}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulk-lafab-canonical-conversio">radix/corpus/bits/bits-bulk-la.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulkfab-canonical-conversio">radix/corpus/bits/bits-bulk.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-display-lafab-canonical-display">radix/corpus/bits/bits-display-la.fab (canonical · display)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-displayfab-canonical-display">radix/corpus/bits/bits-display.fab (canonical · display)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literals-lafab-canonical-literal">radix/corpus/bits/bits-literals-la.fab (canonical · literal)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literalsfab-canonical-literal">radix/corpus/bits/bits-literals.fab (canonical · literal)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-operations-lafab-canonical-operator-group">radix/corpus/bits/bits-operations-la.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-operationsfab-canonical-operator-group">radix/corpus/bits/bits-operations.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-order-lafab-canonical-operator-group">radix/corpus/bits/bits-order-la.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-orderfab-canonical-operator-group">radix/corpus/bits/bits-order.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-text-lafab-canonical-conversio">radix/corpus/bits/bits-text-la.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-textfab-canonical-conversio">radix/corpus/bits/bits-text.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-arithmetic-reject-lafab-supporting-reject">radix/corpus/bits/bits-arithmetic-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-arithmetic-rejectfab-supporting-reject">radix/corpus/bits/bits-arithmetic-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulk-hint-reject-lafab-supporting-reject">radix/corpus/bits/bits-bulk-hint-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulk-hint-rejectfab-supporting-reject">radix/corpus/bits/bits-bulk-hint-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literal-range-reject-lafab-supporting-reject">radix/corpus/bits/bits-literal-range-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literal-range-rejectfab-supporting-reject">radix/corpus/bits/bits-literal-range-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-mixing-reject-lafab-supporting-reject">radix/corpus/bits/bits-mixing-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-mixing-rejectfab-supporting-reject">radix/corpus/bits/bits-mixing-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/bits/bits-bulk-la.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+}</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulk-lafab-canonical-conversio">radix/corpus/bits/bits-bulk-la.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulkfab-canonical-conversio">radix/corpus/bits/bits-bulk.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-display-lafab-canonical-display">radix/corpus/bits/bits-display-la.fab (canonical · display)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-display-optional-lafab-canonical-display">radix/corpus/bits/bits-display-optional-la.fab (canonical · display)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-display-optionalfab-canonical-display">radix/corpus/bits/bits-display-optional.fab (canonical · display)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-displayfab-canonical-display">radix/corpus/bits/bits-display.fab (canonical · display)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literals-lafab-canonical-literal">radix/corpus/bits/bits-literals-la.fab (canonical · literal)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literalsfab-canonical-literal">radix/corpus/bits/bits-literals.fab (canonical · literal)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-operations-lafab-canonical-operator-group">radix/corpus/bits/bits-operations-la.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-operationsfab-canonical-operator-group">radix/corpus/bits/bits-operations.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-order-lafab-canonical-operator-group">radix/corpus/bits/bits-order-la.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-orderfab-canonical-operator-group">radix/corpus/bits/bits-order.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-text-lafab-canonical-conversio">radix/corpus/bits/bits-text-la.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-textfab-canonical-conversio">radix/corpus/bits/bits-text.fab (canonical · conversio)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-arithmetic-reject-lafab-supporting-reject">radix/corpus/bits/bits-arithmetic-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-arithmetic-rejectfab-supporting-reject">radix/corpus/bits/bits-arithmetic-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulk-hint-reject-lafab-supporting-reject">radix/corpus/bits/bits-bulk-hint-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-bulk-hint-rejectfab-supporting-reject">radix/corpus/bits/bits-bulk-hint-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literal-range-reject-lafab-supporting-reject">radix/corpus/bits/bits-literal-range-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-literal-range-rejectfab-supporting-reject">radix/corpus/bits/bits-literal-range-reject.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-mixing-reject-lafab-supporting-reject">radix/corpus/bits/bits-mixing-reject-la.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusbitsbits-mixing-rejectfab-supporting-reject">radix/corpus/bits/bits-mixing-reject.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/bits/bits-bulk-la.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

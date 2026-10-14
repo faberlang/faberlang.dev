@@ -138,7 +138,7 @@ listed at the end.
 | `readonly` | `immutata` | `ثابتة` | `अपरिवर्तित` | `ไม่เปลี่ยนแปลง` | `bất_biến` | `不变` | `不變` |
 | `reduce` | `reducta` | `اختزل` | `समेटो` | `ลดรูป` | `rút_gọn` | `归约` | `歸約` |
 | `ref` | `de` | `عن` | `से` | `จาก` | `ra` | `借自` | `從` |
-| `reject` | `reice` | `يرفض` | `अस्वीकार` | `ปฏิเสธ` | `từ_chối` | `拒绝` | `拒絕` |
+| `reject` | `reice` | `ارفض` | `अस्वीकार` | `ปฏิเสธ` | `từ_chối` | `拒绝` | `拒絕` |
 | `rename` | `verte` | `إعادة_تسمية` | `नाम_बदलें` | `เปลี่ยนชื่อ` | `đổi_tên` | `改名` | `改名` |
 | `repeat` | `repete` | `معاد` | `पुनरावृत्ति` | `ทำซ้ำ` | `lặp_lại` | `重复` | `重複` |
 | `require` | `requirit` | `يتطلب` | `आवश्यक` | `ต้องการ` | `yêu_cầu` | `需求` | `需要` |
@@ -148,7 +148,7 @@ listed at the end.
 | `schema` | `schema` | `مخطط` | `स्कीमा` | `สคีมา` | `lược_đồ` | `架构` | `結構` |
 | `self` | `ego` | `ذات` | `मैं` | `ตัวฉัน` | `tôi` | `自身` | `自身` |
 | `setup` | `praepara` | `جهز` | `पूर्वतैयार` | `เตรียม` | `chuẩn_bị` | `备置` | `準備` |
-| `shared` | `commune` | `commune` | `commune` | `commune` | `commune` | `commune` | `commune` |
+| `shared` | `commune` | `مشترك` | `साझा` | `ใช้ร่วม` | `dùng_chung` | `共享` | `共享` |
 | `short` | `brevis` | `مختصر` | `संक्षिप्त` | `สั้น` | `ngắn` | `简` | `簡` |
 | `size` | `magnitudo` | `حجم` | `आकार` | `ขนาด` | `kích_thước` | `维度` | `尺寸` |
 | `skip` | `omitte` | `أهمل` | `छोड़ो` | `ละเว้น` | `bỏ_qua` | `跳过` | `略過` |
@@ -268,6 +268,7 @@ Latin has no `[intrinsics]` section, so the Latin column carries each intrinsic'
 | `complemented` | `complementata` | `مكمل` | `पूरक` | `กลับบิตแล้ว` | `đã_bù` | `已取补` | `已取補` |
 | `contains` | `continet` | `يحتوي` | `शामिल` | `ประกอบด้วย` | `chứa` | `包含` | `包含` |
 | `cos` | `cosinus` | `جيب_التمام` | `कोज्या` | `โคไซน์` | `cos` | `余弦` | `餘弦` |
+| `count_nonzero` | `nonnihil` | `عدّ_اللاصفريّات` | `अशून्य_गणना` | `นับไม่ศูนย์` | `đếm_khác_không` | `非零个数` | `非零個數` |
 | `create` | `crea` | `أنشئ` | `बनाओ` | `สร้าง` | `tạo` | `创建` | `建立` |
 | `cross` | `transversum` | `الجداء_الاتجاهي` | `सदिश_गुणनफल` | `ครอสโปรดักต์` | `tích_có_hướng` | `叉积` | `叉積` |
 | `cross_entropy` | `crux_entropia` | `إنتروبيا_متقاطعة` | `क्रॉस_एंट्रॉपी` | `ครอสเอนโทรปี` | `entropy_chéo` | `交叉熵` | `交叉熵` |
@@ -276,6 +277,7 @@ Latin has no `[intrinsics]` section, so the Latin column carries each intrinsic'
 | `delete` | `dele` | `امسح` | `मिटाओ` | `ลบ` | `xóa` | `删除` | `刪除` |
 | `densify` | `densata` | `كثف` | `घना_करो` | `ทําให้หนาแน่น` | `làm_đặc` | `稠密化` | `稠密化` |
 | `difference` | `differentia` | `الفرق` | `अंतर` | `ผลต่าง` | `hiệu` | `差集` | `差集` |
+| `difference_symmetric` | `symmetrica` | `الفرق_المتماثل` | `सममित_अंतर` | `ผลต่างสมมาตร` | `hiệu_đối_xứng` | `对称差集` | `對稱差集` |
 | `divide` | `divida` | `اقسم` | `भाग_दो` | `หาร` | `chia` | `除以` | `除以` |
 | `divide` | `divisio` | `قسمة` | `विभाजन` | `การหาร` | `phép_chia` | `除法` | `除法` |
 | `divided` | `divisa` | `مقسوم` | `विभाजित` | `หารแล้ว` | `đã_chia` | `已除以` | `已除以` |
@@ -311,7 +313,6 @@ Latin has no `[intrinsics]` section, so the Latin column carries each intrinsic'
 | `is_superset` | `supercopia` | `مجموعة_شاملة` | `अधिसमुच्चय_है` | `เป็นชุดครอบ` | `là_tập_cha` | `是超集` | `是超集` |
 | `keys` | `claves` | `المفاتيح` | `कुंजियाँ` | `คีย์` | `khóa` | `键列表` | `鍵列表` |
 | `last` | `ultimus` | `الأخير` | `अंतिम` | `ตัวสุดท้าย` | `cuối_cùng` | `最后一个` | `最後一個` |
-| `layer_norm` | `laminatio` | `تطبيع_الطبقة` | `परत_सामान्यीकरण` | `เลเยอร์นอร์ม` | `chuẩn_hóa_lớp` | `层归一化` | `層正規化` |
 | `length` | `longitudo` | `طول` | `लंबाई` | `ความยาว` | `độ_dài` | `长度` | `長度` |
 | `less` | `minor` | `أصغر` | `छोटा` | `น้อยกว่า` | `nhỏ_hơn` | `小于` | `小於` |
 | `limes` | `limes` | `حافة` | `किनारा` | `ขอบ` | `biên` | `边界` | `邊界` |
@@ -333,7 +334,9 @@ Latin has no `[intrinsics]` section, so the Latin column carries each intrinsic'
 | `named` | `nominatus` | `مسماة` | `नामित` | `กลุ่มชื่อ` | `đặt_tên` | `命名分组` | `命名分組` |
 | `negate` | `nega` | `اعكس_الإشارة` | `चिह्न_पलटो` | `กลับเครื่องหมาย` | `đổi_dấu` | `取负` | `取負` |
 | `negated` | `negativa` | `معكوس_الإشارة` | `चिह्न_पलटा` | `กลับเครื่องหมายแล้ว` | `đã_đổi_dấu` | `已取负` | `已取負` |
-| `nonzero_count` | `nonnihil` | `عدّ_اللاصفريّات` | `अशून्य_गणना` | `นับไม่ศูนย์` | `đếm_khác_không` | `非零个数` | `非零個數` |
+| `norm_layer` | `laminatio` | `تطبيع_الطبقة` | `परत_सामान्यीकरण` | `เลเยอร์นอร์ม` | `chuẩn_hóa_lớp` | `层归一化` | `層正規化` |
+| `norm_rms` | `rms_norm` | `rms_norm` | `rms_norm` | `rms_norm` | `rms_norm` | `rms_norm` | `rms_norm` |
+| `norm_rope` | `rope_norm` | `rope_norm` | `rope_norm` | `rope_norm` | `rope_norm` | `rope_norm` | `rope_norm` |
 | `normalize` | `normalizata` | `طبّع` | `सामान्यीकृत` | `ทําให้เป็นบรรทัดฐาน` | `chuẩn_hóa` | `归一化` | `正規化` |
 | `power` | `potentia` | `قوة` | `घात` | `ยกกําลัง` | `lũy_thừa` | `乘方` | `乘冪` |
 | `put` | `pone` | `ضع` | `रखो` | `ใส่` | `đặt` | `放入` | `放入` |
@@ -344,8 +347,7 @@ Latin has no `[intrinsics]` section, so the Latin column carries each intrinsic'
 | `replace` | `muta` | `استبدل` | `बदलो` | `แทนที่` | `thay` | `替换` | `替換` |
 | `reshape` | `forma` | `أعد_التشكيل` | `आकार_बदलो` | `เปลี่ยนรูปร่าง` | `định_hình_lại` | `重塑` | `重塑` |
 | `reverse` | `inverte` | `اعكس` | `उलटो` | `กลับลําดับ` | `đảo` | `反转` | `反轉` |
-| `rms_norm` | `rms_norm` | `rms_norm` | `rms_norm` | `rms_norm` | `rms_norm` | `rms_norm` | `rms_norm` |
-| `rope_norm` | `rope_norm` | `rope_norm` | `rope_norm` | `rope_norm` | `rope_norm` | `rope_norm` | `rope_norm` |
+| `rope_half` | `rope_half` | `rope_half` | `rope_half` | `rope_half` | `rope_half` | `rope_half` | `rope_half` |
 | `round` | `rotunda` | `قرب` | `निकटतम_पूर्णांक` | `ปัดเศษ` | `làm_tròn` | `四舍五入` | `四捨五入` |
 | `set` | `ponde` | `اضبط` | `निर्धारित_करो` | `กําหนด` | `thiết_lập` | `设置` | `設定` |
 | `shape` | `magnitudines` | `الأبعاد` | `आकृति` | `รูปร่าง` | `hình_dạng` | `形状` | `形狀` |
@@ -359,6 +361,7 @@ Latin has no `[intrinsics]` section, so the Latin column carries each intrinsic'
 | `sin` | `sinus` | `جيب` | `ज्या` | `ไซน์` | `sin` | `正弦` | `正弦` |
 | `slice` | `sectio` | `شريحة` | `टुकड़ा` | `ตัดช่วง` | `cắt` | `切片` | `切片` |
 | `softmax` | `activatio_softmax` | `تنشيط_سوفتماكس` | `सॉफ्टमैक्स` | `ซอฟต์แมกซ์` | `kích_hoạt_softmax` | `Softmax` | `Softmax` |
+| `softmax_causal` | `softmax_causal` | `تنشيط_سوفتماكس_سببي` | `सॉफ्टमैक्स_कारणात्मक` | `ซอฟต์แมกซ์_เชิงสาเหตุ` | `kích_hoạt_softmax_nhân_quả` | `Softmax_因果` | `Softmax_因果` |
 | `sort` | `ordina` | `رتب` | `क्रमबद्ध_करो` | `เรียง` | `sắp_xếp` | `排序` | `排序` |
 | `sorted` | `ordinata` | `مرتب` | `क्रमबद्ध` | `เรียงแล้ว` | `đã_sắp_xếp` | `已排序` | `已排序` |
 | `split` | `divide` | `افصل` | `बाँटो` | `แยก` | `tách` | `分割` | `分割` |
@@ -370,7 +373,6 @@ Latin has no `[intrinsics]` section, so the Latin column carries each intrinsic'
 | `subtracted` | `subtracta` | `مطروح` | `घटाया` | `ลบออกแล้ว` | `đã_trừ` | `已减去` | `已減去` |
 | `sum` | `summa` | `المجموع` | `योग` | `ผลรวม` | `tổng` | `求和` | `求和` |
 | `swizzle` | `swizzle` | `swizzle` | `swizzle` | `swizzle` | `swizzle` | `swizzle` | `swizzle` |
-| `symmetric_difference` | `symmetrica` | `الفرق_المتماثل` | `सममित_अंतर` | `ผลต่างสมมาตร` | `hiệu_đối_xứng` | `对称差集` | `對稱差集` |
 | `take` | `prima` | `خذ_الأولى` | `पहले_लो` | `ส่วนต้น` | `lấy_đầu` | `取前` | `取前` |
 | `take_last` | `ultima` | `خذ_الأخيرة` | `अंतिम_लो` | `เอาท้าย` | `lấy_cuối` | `取后` | `取後` |
 | `tan` | `tangens` | `الظل` | `स्पर्शज्या` | `แทนเจนต์` | `tan` | `正切` | `正切` |

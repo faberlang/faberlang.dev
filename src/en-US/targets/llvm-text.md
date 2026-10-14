@@ -17,7 +17,7 @@ The widest ratio on the site, and the least surprising one: SSA form names every
 
 | Capable | Analyzable | Coverage |
 |---|---|---|
-| 386 | 424 | 91% |
+| 392 | 432 | 91% |
 
 From the [target matrix](/toolchain/target-matrix.html): how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.
 

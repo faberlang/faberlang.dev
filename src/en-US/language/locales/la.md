@@ -271,6 +271,7 @@ Generated from the packs. The Latin column is the canonical name — the pack ke
 | complementata          complemented
 | continet               contains
 | cosinus                cos
+| nonnihil               count_nonzero
 | crea                   create
 | transversum            cross
 | crux_entropia          cross_entropy
@@ -279,6 +280,7 @@ Generated from the packs. The Latin column is the canonical name — the pack ke
 | dele                   delete
 | densata                densify
 | differentia            difference
+| symmetrica             difference_symmetric
 | divida                 divide
 | divisio                divide
 | divisa                 divided
@@ -314,7 +316,6 @@ Generated from the packs. The Latin column is the canonical name — the pack ke
 | supercopia             is_superset
 | claves                 keys
 | ultimus                last
-| laminatio              layer_norm
 | longitudo              length
 | minor                  less
 | limes                  limes
@@ -336,7 +337,9 @@ Generated from the packs. The Latin column is the canonical name — the pack ke
 | nominatus              named
 | nega                   negate
 | negativa               negated
-| nonnihil               nonzero_count
+| laminatio              norm_layer
+| rms_norm               norm_rms
+| rope_norm              norm_rope
 | normalizata            normalize
 | potentia               power
 | pone                   put
@@ -347,8 +350,7 @@ Generated from the packs. The Latin column is the canonical name — the pack ke
 | muta                   replace
 | forma                  reshape
 | inverte                reverse
-| rms_norm               rms_norm
-| rope_norm              rope_norm
+| rope_half              rope_half
 | rotunda                round
 | ponde                  set
 | magnitudines           shape
@@ -362,6 +364,7 @@ Generated from the packs. The Latin column is the canonical name — the pack ke
 | sinus                  sin
 | sectio                 slice
 | activatio_softmax      softmax
+| softmax_causal         softmax_causal
 | ordina                 sort
 | ordinata               sorted
 | divide                 split
@@ -373,7 +376,6 @@ Generated from the packs. The Latin column is the canonical name — the pack ke
 | subtracta              subtracted
 | summa                  sum
 | swizzle                swizzle
-| symmetrica             symmetric_difference
 | prima                  take
 | ultima                 take_last
 | tangens                tan

@@ -5,7 +5,7 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • backtick template syntax `template`(args) — captures template text and parameters into the builtin `forma` class</span>
-<span class="tok-co">#   • indexed placeholders `§0` for repeated parameter references</span>
+<span class="tok-co">#   • indexed placeholders `§0` — an indexed hole selects its argument and may repeat with one value</span>
 <span class="tok-co">#   • templates without holes for static text</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
@@ -32,7 +32,7 @@ main {
           and plan <span class="tok-op">=</span> §
     `(tenantId, plan)
     print q.template
-    const forma indexed <span class="tok-op">←</span> <span class="tok-st">`where tenant_id = §0 or parent_tenant_id = §0`</span>(tenantId, tenantId)
+    const forma indexed <span class="tok-op">←</span> <span class="tok-st">`where tenant_id = §0 or parent_tenant_id = §0`</span>(tenantId)
     print indexed.template
     const forma bare <span class="tok-op">←</span> <span class="tok-st">`select 1`</span>
     print bare.template
