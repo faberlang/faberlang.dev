@@ -33,7 +33,7 @@ main {
 `faber check .` exits 0. `faber run .` prints `Salve, munde!`.
 
 `faber --help` also lists `faber build . -t rust`, `faber test .`,
-`faber format .`, and `faber explain SEM010`.
+`faber format .` (reports drift; `--write` applies), and `faber explain SEM010`.
 
 A second source file is https://faberlang.dev/agents/modules.md.
 

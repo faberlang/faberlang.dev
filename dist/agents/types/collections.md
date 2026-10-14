@@ -13,3 +13,4 @@ main {
 ```
 
 Parent: https://faberlang.dev/agents/types.md
+Next: https://faberlang.dev/agents/types/conversions.md

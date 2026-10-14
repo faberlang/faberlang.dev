@@ -11,10 +11,12 @@ These are the forms the other pages check.
 - Comparisons in these programs are `≺`, `≥`, `≡`, and `≢`.
 - A missing `int` is `int ∪ none`. The missing value is `null`.
 - A list is `list<int>`. An empty list is `empty`.
-- A width is a bare marker, `i32` or `f32`, ascribed with `∷`.
+- A width is a bare marker, `i32` or `f32`, ascribed with `∷`. `b8` to `b64` are raw bits.
+- A conversion is `↦`. A float to an integer names its rounding: `x ↦ int via Floor`.
 - A recoverable error is `→ int ⇥ string`, sent with `throw`, caught with `do` / `catch`.
 - `require b ≢ 0 throw "..."` throws when the condition fails. `reject value ≺ 0 throw "..."` throws when it holds.
-- `ref`, `mut`, and `own` sit before the parameter type.
+- `ref`, `mut`, and `own` sit before the parameter type. A call repeats `mut` and `own`: `duplica(mut n)`.
+- A `var` made from a read-only value is `var list<int> ys ← copy xs`.
 - An async function writes `async` before `→`. The caller is `async_main` and binds with `await_const`.
 - A module import is `import from "./greet" greet`. An exported function is marked `@ public`.
 - A library import is `import from "norma:text" text`.
