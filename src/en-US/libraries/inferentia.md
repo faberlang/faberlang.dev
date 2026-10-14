@@ -61,8 +61,14 @@ text, and exits.
 | `--seed <N>` | Deterministic seed; default `1` |
 | `--log-level <LEVEL>` | `info`, `warn`, or `error` on stderr |
 | `--expected-digest <SHA256>` | `serve`: require the admitted model's digest to match |
+| `--backend <NAME>` | Kernel route; `metal` is the only accepted value and it is the default. It names the route, not the device |
+| `--trace` | `live`: print one `trace` line per generated step on stderr |
 
 Usage errors are reported before the listener binds.
+
+Inferentia has no CPU backend of its own. The kernels run on whatever device
+the program is started on: `faber run --device metal`, `--device cpu`, or
+`--device reference`.
 
 ## The HTTP API {#api}
 
@@ -76,20 +82,18 @@ Usage errors are reported before the listener binds.
 
 The server binds first and admits the model afterward, so `/health` can report
 progress. `/generate` returns JSON by default. With `Accept: text/event-stream`
-or `?stream=1` it sends one server-sent event per token; generation itself is
-still a batch call, so this is a streaming format, not streaming compute.
+or `?stream=1` it sends one server-sent event per token, written to the open
+response as each token is generated.
 
 ## Status {#status}
 
-As of 2026-09-30:
-
 | Layer | State |
 |-------|-------|
-| Command line, configuration, and `/health`, `/model`, `/generate` | Written, in one source file of about 2,850 lines |
+| Command line, configuration, and `/health`, `/model`, `/generate` | Written, in `src/main.fab`, with the port weights and generation loop in two sibling source files |
 | Model admission, tokenizer, generation | Provided by Gradus |
-| Package check | Does not pass today: Inferentia imports Gradus, which currently fails `faber check` |
+| Package check | Not recorded here; `faber check` on the package is the authority |
 | End-to-end result | The one recorded live run did not match its expected output (see below) |
-| Hardware | The current work targets the CPU path. GPU execution is planned separately |
+| Hardware | Kernels run on the device the program is started on (`faber run --device …`) |
 | Speed and quality | No claims. No measurements are published |
 | Deployment and machine provisioning | A separate work stream |
 

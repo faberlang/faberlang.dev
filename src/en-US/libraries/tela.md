@@ -25,8 +25,7 @@ concatenated by hand, so the usual ways of producing broken or unsafe HTML are
 not available on the ordinary path.
 
 The current package version is 0.0.0. Read the [status](#status) section before
-planning work on it — it is early, and the protocol and the static renderer
-are the part that works today.
+planning work on it — it is early.
 
 ## A first view {#first}
 
@@ -89,18 +88,15 @@ listed but does not build yet.
 
 ## Status {#status}
 
-As of 2026-09-30:
+Tela is early. This page does not record whether the package currently
+checks; `faber check` on the package is the authority, and the repository's own
+proof scripts say what is covered.
 
 | Layer | State |
 |-------|-------|
-| Library source | `faber check` passes on the package |
-| View protocol and serializer | The example above runs and prints the expected markup |
-| Validation | Fail-closed checks run before any emission |
 | Reference components | A catalog exists; it is a reference set, not a finished design system |
-| TypeScript output | Emission exists, but the repository's own TypeScript type check of the emitted code currently reports errors |
-| Rust output | Not working: building the library for Rust currently fails to compile |
+| Validation | Fail-closed checks run before any emission |
 | Package assembly | Per-file emission only; assembling an installable package is not built yet |
-| Proof suite | The repository's proof scripts are not all green today: several proof packages no longer check, and the determinism check fails to compile |
 | Real browser | Mount and update behavior is exercised against a fake DOM written in Faber; there is no in-tree run in a real browser |
 | Async | Not supported yet in handlers |
 

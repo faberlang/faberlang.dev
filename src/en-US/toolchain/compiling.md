@@ -90,12 +90,12 @@ Source → Lex → Parse → Collect → Resolve → Lower → Typecheck → Ana
 | sexp | Validation / Racket-oriented dump. |
 
 **Do not read Metal/WGSL “2% capable” rows on the [target matrix](/toolchain/target-matrix.html) as product completeness.** Those
-rows score *full-language corpus terms* against a *kernel-only* emitter. The
-accepted dual-backend training path is proven on **Metal and CUDA** through
-`faber run --device metal|cuda` (see [device execution](#device-execution)).
+rows score *full-language corpus terms* against a *kernel-only* emitter. Device
+runs go through `faber run --device metal|cuda` (see
+[device execution](#device-execution)).
 
-For a **device-kernel product summary** (backends, workload families, expanding
-CUDA hardware matrix) see
+For the **device-kernel summary** (how a device program runs and what each
+device target emits) see
 [Target matrix · Device kernel support](/toolchain/target-matrix.html#device-kernel-support).
 
 For live capability flags, run `faber targets`.
@@ -104,7 +104,7 @@ For live capability flags, run `faber targets`.
 
 The large term × target tables (HIR application lane and MIR systems lane)
 live on the [Target compatibility](/toolchain/target-matrix.html) page. That matrix
-is generated from `faber/docs/EBNF_MATRIX.md` and reports **term lowerability only** —
+is generated from `radix/grammar/EBNF_MATRIX.md` and reports **term lowerability only** —
 not erase/warn policy, and not GPU product health. GPU backends and the “why
 no CUDA column?” note are explained in that page’s summary.
 
@@ -158,12 +158,12 @@ source. The locale is a surface rendering of the HIR, not a fork in the
 semantic core.
 
 - **Input:** localised source (Thai, Chinese, Arabic, etc.) → normalised HIR — **shipped**
-- **Output:** HIR → localised source re-emission — **shipped** (`faber format --locale <locale>`)
+- **Output:** HIR → localised source re-emission — **shipped** (`faber convert --to <locale>`)
 
-`faber format --locale=th-TH` round-trips any Faber source through the HIR and
+`faber convert --to th-TH` round-trips any Faber source through the HIR and
 emits it with Thai keywords, completing the symmetry: the same HIR can produce
-any locale surface, just as it can produce any target backend. `--locale la`
-reproduces the former `--canonical` re-emit surface.
+any locale surface, just as it can produce any target backend. `faber format`
+re-emits through the same HIR at the file's own locale and does not translate.
 
 #### HIR-direct backends {#hir-direct-backends}
 
@@ -173,7 +173,7 @@ preserve source-level structure longer and are suited for language-shaped output
 | Target | Status | Role |
 |---|---|---|
 | `Rust` | **Support** | Widest package product surface today (build/run/test via Cargo). One projection of HIR — not the semantic center. |
-| `Faber` | **Support** | Canonical source view via `forma` formatter. Round-trip stability. |
+| `Faber` | **Support** | Canonical source view through the HIR-backed re-emitter (`faber format` / `faber convert`). Round-trip stability. |
 | `TypeScript` | Probe | HIR-direct emission + rising exempla e2e floors. Not a `faber package` product path yet. |
 | `Go` | Erase | HIR-direct emission + rising exempla e2e floors; borrow modes erased; `ad` rejected. |
 
@@ -238,7 +238,7 @@ emits assembly for the assembler and linker.
 FMIR is the MIR-native package executor. The compiler extracts MIR into a
 binary payload and wraps it with a short Rust kernel loader. This produces
 a self-contained executable that runs the MIR through Faber's in-process
-stepper — no separate runtime installation required.
+runner — no separate runtime installation required.
 
 | Format | Description |
 |---|---|
@@ -287,35 +287,26 @@ rank-1 `f32` device views are supported; rank-2 views reject. WGSL
 is not a GPU launch runtime — Faber emits the shader source, but execution
 requires an external WebGPU runtime. The [Triga](/libraries/triga.html)
 library supplies the typed geometry, scene, and resource contracts consumed
-by the sibling `hosts/webgpu-browser` host.
+by a WebGPU host.
 
 #### Metal {#metal}
 
 Metal compute shader text emission follows the same pattern as WGSL: Faber
-emits Metal Shading Language source for the device-safe kernel subset. The
-Metal campaign was reopened on 2026-08-02 after the frozen probe regressed
-undetected during its pause (see
-`radix/docs/factory/phase-metal-campaign-pause-state.md`); the emitter now
-covers a training surface (Transpose+, elementwise `train_step` / companion
-VJP, Tanh, fused matmul+elementwise). Metal and CUDA are the product **device execution** paths for the accepted
-bounded training proof (`faber run --device metal|cuda`). Metal is the
-Apple Silicon local-dev and API-parity host; CUDA is the NVIDIA deployment
-host. WebGPU remains a browser graphics / headless proof lane (Triga +
-`hosts/webgpu-browser`), not the product training or inference path.
+emits Metal Shading Language source for the device-safe kernel subset. Metal
+and CUDA are the **device execution** paths (`faber run --device metal|cuda`).
+Metal is the Apple Silicon local-dev and API-parity host; CUDA is the NVIDIA
+deployment host. WebGPU remains a browser graphics and headless lane (Triga),
+not a package device-execution path.
 
 #### Device execution (Metal / CUDA) {#device-execution}
 
-A package carries a device program when its source declares an `@ nucleum`
-compute kernel and its manifest declares a `[device]` section. The FMIR
-image's `device` section embeds the canonical device program plus Metal MSL
-and CUDA PTX artifacts, each with a provenance hash. `faber run --device
-metal|cuda|auto` runs it through a real device session (load → allocate →
-copy-in → launch → sync → readback → release) and fails closed with stable
-codes (`E_BACKEND_UNAVAILABLE`, `E_DEVICE_*`, `E_NO_DEVICE_PROGRAM`) instead
-of silently falling back to CPU. The surface covers forward kernels and
-training loops — a library-backed `train_step` / companion VJP with per-step
-observation cadence, gradient-slot → buffer mapping, and end-of-run readback.
-Proof fixture: `examples/training/device-summa`.
+A package carries a device program when its source declares an `@ kernel`
+compute kernel and its manifest declares a `[device]` section. `faber run
+--device reference|cpu|metal|cuda|auto` runs it through the host driver and
+fails closed with stable codes (`E_BACKEND_UNAVAILABLE`, `E_DEVICE_*`,
+`E_NO_DEVICE_PROGRAM`) instead of silently falling back to the CPU. `reference`
+runs kernels as ordinary functions on the MIR runner and is the oracle device
+results are checked against.
 
 ### Architecture note {#comparison}
 

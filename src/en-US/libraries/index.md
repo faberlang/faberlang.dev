@@ -16,8 +16,8 @@ The standard library. Imported as `norma:*`, no installation step, no entry in
 `faber.toml`:
 
 ```faber
-importa ex "norma:solum" solum
-importa ex "norma:textus" textus
+importa ex "norma:fs" fs
+importa ex "norma:text" text
 
 incipit {
     nota "ready"
@@ -50,17 +50,16 @@ mechanism, so model code calls functions instead of hand-writing annotations.
 
 It is JAX-shaped: models are pure `(params, x) → y` functions with explicit
 parameters, and there is no module class hierarchy or runtime tape. It is also
-pre-1.0 and narrower than its module list suggests — shapes are concrete
-overloads rather than generics, and training is CPU-correct rather than fast.
+pre-1.0 and narrower than its module list suggests — most of it is a
+structural contract surface, and training is CPU-correct rather than fast.
 [Gradus →](/libraries/gradus.html)
 
 ## Tela — opt in {#tela}
 
 A view library: typed HTML and SVG values, a fail-closed serializer that turns
 a valid tree into markup, and the DOM and Canvas2D contracts for a browser
-host. Imported as `tela:*`. It is early (version 0.0.0): the view protocol and
-static renderer work, while its Rust output and parts of its own proof suite do
-not yet. [Tela →](/libraries/tela.html)
+host. Imported as `tela:*`. It is early; read its status page before
+relying on it. [Tela →](/libraries/tela.html)
 
 ## Inferentia — an application {#inferentia}
 
@@ -84,6 +83,6 @@ actually behaves rather than how it is described.
 ## Writing your own {#your-own}
 
 A library is a package with `kind = "lib"` in its `faber.toml` and a
-`[library] provider` name. `faber install` puts it in the Cista store; other
+`[library] provider` name. `cista install <path>` puts it in the Cista store; other
 packages resolve it through `faber.lock`. See
 [Packages with Cista](/toolchain/packages.html).

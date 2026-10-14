@@ -53,7 +53,7 @@ LOCALES: list[dict[str, str]] = [
     {"id": "en", "name": "English", "code": "en", "script": "", "site": "en-US",
      "note": "English reader surface — the base spelling for everyday source"},
     {"id": "la", "name": "Latin", "code": "la", "script": "", "site": "la",
-     "note": "canonical Faber — the classical surface the language is named for"},
+     "note": "Latin — the classical surface the language is named for"},
     {"id": "th-TH", "name": "ภาษาไทย", "code": "th-TH", "script": "th", "site": "th-TH",
      "note": "Thai — spaceless script"},
     {"id": "zh-Hans", "name": "简体中文", "code": "zh-Hans", "script": "zh", "site": "zh-Hans",
@@ -502,7 +502,7 @@ def main() -> None:
       </p>
     </div>
 {locale_strip()}    <p class="fl-note">
-      Latin is the canonical interchange form the language is named for. Reader
+      Latin is the pack the language is named for. Reader
       locales also localize compiler diagnostics. <a href="/porta/">See all languages</a> ·
       <a href="/en-US/language/reader-locales.html">How reader locales work</a>
     </p>
@@ -635,15 +635,15 @@ def main() -> None:
       <h2>Compute is one thing you can build</h2>
       <p>
         The same language carries numeric and device work. Tensor operators and
-        <code>@ nucleum</code> kernels lower to WGSL, Metal and CUDA routes, and
+        <code>@ kernel</code> kernels lower to WGSL, Metal and CUDA routes, and
         <a href="/en-US/libraries/gradus.html">Gradus</a> uses them for
         autograd. Device execution is explicit and fail-closed: a requested
-        backend never silently falls back to CPU. Bounded training runs on
-        accepted Metal and CUDA machines; device inference is not shipped.
+        backend never silently falls back to CPU. It is under active
+        development; device inference is not shipped.
       </p>
       <nav class="chips" aria-label="Device execution references">
         <a href="/en-US/toolchain/compiling.html#device-execution">Device execution contract</a>
-        <a href="https://github.com/faberlang/examples/tree/main/training/device-summa">Training proof ↗</a>
+        <a href="/en-US/toolchain/target-matrix.html#device-kernel-support">Device targets</a>
       </nav>
     </div>
   </section>

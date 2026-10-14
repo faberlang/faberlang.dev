@@ -23,7 +23,7 @@ Paired keywords (如果 / 否则) are single tokens needing pack keyword groups,
 
 ## English ↔ Simplified Chinese {#mapping}
 
-Generated from the packs; read a row across to translate one term. The Latin column is the canonical name, which keys the [keyword reference](/language/locales/keywords.html).
+Generated from the packs; read a row across to translate one term. The Latin column is the pack key, which keys the [keyword reference](/language/locales/keywords.html).
 
 ### Keywords {#keywords}
 

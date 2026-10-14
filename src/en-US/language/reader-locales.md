@@ -80,10 +80,8 @@ faber check --locale th-TH program.fab
 locale = "zh-Hans"
 ```
 
-The legacy `[reader]` table name and `--reader-locale` flag are still accepted
-as aliases during the rename sweep; `[locale]` / `--locale` are canonical. The
-message language for diagnostics is independent of the code locale and is
-selected with `--diagnostic-locale <locale>`.
+The message language for diagnostics is independent of the code locale and is
+selected with `--diagnostics-locale <locale>`.
 
 #### What localises and what does not {#what-localises}
 
@@ -99,8 +97,8 @@ selected with `--diagnostic-locale <locale>`.
 
 The critical architectural guarantee: any locale surface can become any other,
 including Latin, at any time. A localised Faber file is never a trap because
-it is never the only form the code can take. `faber format --locale la`
-reproduces the former `--canonical` re-emit surface.
+it is never the only form the code can take. `faber convert --to la`
+re-emits a file on the Latin surface.
 
 ### Shipped packs {#locales}
 
@@ -108,7 +106,7 @@ Eight packs ship with Radix today:
 
 | Code | Language | Script | Status |
 |---|---|---|---|
-| `la` | Latina (Latin) | Latin | **Canonical** |
+| `la` | Latina (Latin) | Latin | **Identity pack** |
 | `en` | English | Latin | **Base surface** |
 | `th-TH` | ไทย | Thai | **Reference proof** |
 | `zh-Hans` | 简体中文 | Simplified Chinese | Coverage proof |
@@ -135,10 +133,10 @@ substrate because they are the base surfaces:
 
 ### Localised source examples {#examples}
 
-Each of the six non-canonical locales has a complete Faber package under
+Each of the six reference locales has a complete Faber package under
 `examples/reader-locale/` with localised source, diagnostic test
 cases, and a `faber.toml` manifest. The same program rendered in the two
-base surfaces — English (this page's reader locale) and canonical Latin —
+base surfaces — English (this page's reader locale) and Latin —
 then the six packaged locale surfaces below:
 
 **English** `en` — *base surface*
@@ -158,7 +156,7 @@ incipit {
 The surface an English reader writes: `fn`, `const`, `string`, `return`,
 `main`, `print` — the spellings every page on this site teaches.
 
-**Latin** `la` — *canonical*
+**Latin** `la` — *identity pack*
 
 ```faber locale=la
 functio salve(textus nomen) → textus {
@@ -172,9 +170,8 @@ incipit {
 }
 ```
 
-The canonical rendering. `faber format --locale la` reproduces the former
-`--canonical` re-emit surface. Latin keywords map to themselves;
-type names are the canonical spellings.
+The identity pack: its words are the pack keys, so Latin keywords map to
+themselves. `faber convert --to la` re-emits a file on this surface.
 
 **ไทย** `th-TH` — *reference proof*
 
@@ -309,8 +306,8 @@ RFO (right-follows-left) distortion that would otherwise make RTL runs unreadabl
 | Pack schema, aliases, inheritance, validation, diagnostics, LLM artifacts | **Shipped** |
 | Pack-aware lexing, type resolution, manifest/CLI selection, visible fallback | **Shipped** |
 | Pack-owned diagnostic rendering, `faber explain`, bidi-isolated display | **Shipped** |
-| Canonical Faber formatting | **Shipped** |
-| Localised Faber re-emission (`format --locale <locale>`) | **Shipped** |
+| Faber formatting (`faber format`) | **Shipped** |
+| Localised Faber re-emission (`convert --to <locale>`) | **Shipped** |
 | Stdlib gloss overlays, measured LLM emission fidelity, complete locale coverage | Deferred |
 | Multilingual documentation generation | Proposed |
 
@@ -324,10 +321,10 @@ or deferred.
 
 1. `radix/docs/design/reader-locale.md` — full design document (69 KB)
 2. `examples/reader-locale/` — 6 locale packages with localised source
-3. `locale/*/pack.toml` — 8 installed pack definitions
-4. `radix/crates/radix/src/locale.rs` — runtime implementation
-5. `radix/docs/design/faber-canonical-surface.md` — canonical mode and `faber format`
-6. `radix/docs/factory/lex-nfkc-normalization/` — NFKC prerequisite delivery
+3. `radix/locale/*/pack.toml` — 8 installed pack definitions
+4. `radix/crates/radix-module/src/locale.rs` — runtime implementation
+5. `radix/docs/design/faber-canonical-surface.md` — the formatter and the re-emitter
+6. `radix/docs/archived/lex-nfkc-normalization/` — NFKC prerequisite delivery
 
 ## Reader-locale packages
 

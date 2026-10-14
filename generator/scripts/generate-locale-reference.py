@@ -91,9 +91,8 @@ LOCALES: dict[str, dict[str, str]] = {
         "native": "Latina",
         "script": "Latin",
         "direction": "left-to-right",
-        "note": "The canonical pack. Every other pack is a translation of this "
-                "one, and the pack key — the canonical name — *is* the Latin "
-                "spelling.",
+        "note": "The identity pack. Every other pack maps the same keys to its "
+                "own words, and the pack key *is* the Latin spelling.",
     },
     "ar": {
         "name": "Arabic",
@@ -232,8 +231,8 @@ def render_index(packs: dict) -> str:
         "Keyword reference", 1, ["radix/locale/<locale>/pack.toml"]
     )
     lines += [
-        "Every Faber keyword, primitive type, and intrinsic has one canonical "
-        "(Latin) name and one spelling per reader pack. This page indexes the "
+        "Every Faber keyword, primitive type, and intrinsic has one pack key "
+        "(a Latin spelling) and one spelling per reader pack. This page indexes the "
         "mapping pages generated from those packs; read any row across to "
         "translate one term.",
         "",
@@ -241,7 +240,7 @@ def render_index(packs: dict) -> str:
         "to the English word, so its reader spelling is also what an English "
         "reader writes. Every mapping page therefore leads with the English "
         "column, and English carries no separate page. The Latin column is the "
-        "canonical name — the compiler's internal identity, one locale among "
+        "pack key — the compiler's internal identity, one locale among "
         "eight rather than a privileged one: rendering to English and "
         "rendering to Thai are the same operation.",
         "",
@@ -325,8 +324,8 @@ def render_locale_page(packs: dict, loc: str) -> str:
         lines += [
             "## Latin ↔ English {#mapping}",
             "",
-            "Generated from the packs. The Latin column is the canonical name "
-            "— the pack key and the compiler's internal identity; the English "
+            "Generated from the packs. The Latin column is the pack key and "
+            "the compiler's internal identity; the English "
             "column is the base-surface spelling. The other reader languages "
             "lead with English on [their mapping pages]"
             "(/language/locales/keywords.html).",
@@ -337,7 +336,7 @@ def render_locale_page(packs: dict, loc: str) -> str:
             f"## English ↔ {meta['name']} {{#mapping}}",
             "",
             "Generated from the packs; read a row across to translate one "
-            "term. The Latin column is the canonical name, which keys the "
+            "term. The Latin column is the pack key, which keys the "
             "[keyword reference](/language/locales/keywords.html).",
             "",
         ]
@@ -383,7 +382,7 @@ def render_diagnostics(captures: Path) -> str | None:
     lines += [
         "The failure is lexical, so it is identical in every locale: a string "
         "literal with no closing quote, `LEX001`. Only the message text moves. "
-        "Run `faber check --diagnostics --locale <locale>` to reproduce it.",
+        "Run `faber check --diagnostics --diagnostics-locale <locale>` to reproduce it.",
         "",
     ]
     for loc in present:
@@ -425,7 +424,7 @@ def render_examples(tabs: Path, key: str) -> str | None:
         "",
         "The panels below are the committed `generator/locale-tabs/` cache — "
         "`faber convert` output, not hand-written Thai or Arabic. The Latin "
-        "panel is canonical Faber; the rest are that same program rendered "
+        "panel is the identity pack's rendering; the rest are that same program rendered "
         "into each locale.",
         "",
     ]
@@ -443,7 +442,7 @@ def render_examples(tabs: Path, key: str) -> str | None:
         else:
             lines += [f"```text locale={loc}", body, "```", ""]
         if loc == "la":
-            lines += ["The canonical surface every other panel is a re-rendering of.", ""]
+            lines += ["The same program on the identity pack, whose words are the pack keys.", ""]
     lines += [
         "---",
         "",

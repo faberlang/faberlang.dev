@@ -68,7 +68,7 @@ channel is part of the function's type.
 The same "make it explicit" stance applies to tests. There is no separate test
 binary and no test module tree. Three keywords declare tests in the same file
 as the code — or in colocated `*.proba` sources — and `faber test` runs them on
-the MIR stepper, with no Cargo or rustc involved:
+the MIR runner, with no Cargo or rustc involved:
 
 | Keyword | Role |
 |---|---|
@@ -103,8 +103,8 @@ test result: ok. 2 passed; 0 failed; 0 blocked; 0 skipped
 *(The transcript shortens each case's path to the package root.)*
 
 Tests are type-checked and analysed by the same front end as production code,
-and the test blocks are filtered out of a production build. Because the runner
-is the stepper, a suite is target-neutral: the same tests run whatever backend
+and the test blocks are filtered out of a production build. Because tests
+run on the MIR runner, a suite is target-neutral: the same tests run whatever backend
 the package is emitted for.
 
 The full treatment — async error channels, inline conversion defaults, the

@@ -61,14 +61,6 @@ organisation.
 | [tree-sitter-faber](https://github.com/faberlang/tree-sitter-faber) | Tree-sitter grammar and editor packaging for syntax highlighting |
 | [faberlang.dev](https://github.com/faberlang/faberlang.dev) | This website |
 
-### Host platform repositories {#host-platform-repositories}
-
-| Repository | Description |
-|---|---|
-| [host-kernel-rs](https://github.com/faberlang/host-kernel-rs) | Thin router: Frame, Conversation, prefix dispatch, structured errors |
-| [host-native-rs](https://github.com/faberlang/host-native-rs) | Native attach: workers and the `register_providers` hook |
-| [host-providers-rs](https://github.com/faberlang/host-providers-rs) | Provider implementations: solum, processus, consolum, tempus, aleator, http |
-
 ## Reporting issues {#reporting-issues}
 
 GitHub Issues is the fastest way to reach the project. File against the repo

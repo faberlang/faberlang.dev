@@ -9,7 +9,7 @@ sources = [
 
 Faber has no bare source file as its unit. A program is a **package**: a
 `faber.toml` manifest and a source tree, compiled as one analyzed whole. The
-manifest names the package, points at the entry module, and selects the target;
+manifest names the package, points at the entry module, and can select the target;
 the entry module declares `main`, and that is where the program starts.
 
 Making the package the unit has a consequence a reader can rely on: the
@@ -20,7 +20,7 @@ Names are brought in explicitly — `import from "./math" duplica` imports exact
 
 ## Module scope is compile-time {#module-scope}
 
-A top-level binding is a compile-time constant. `const LIMIT = 255` at module
+A top-level binding is a compile-time constant. `const int LIMIT = 255` at module
 scope is known while compiling; **module-level mutable state does not exist**.
 Runtime state starts at `main` and lives in functions. This is the glyph law
 extended to the module: `=` at the top level is a fact, not an initialization
@@ -29,8 +29,7 @@ checked, emitted, or tested without running any of it — which is what lets one
 package target many backends.
 
 ```toml
-faber.toml
-
+# faber.toml
 [package]
 name = "demo"
 version = "0.1.0"
@@ -47,6 +46,9 @@ target = "rust"
 [locale]
 locale = "en"
 ```
+
+`faber init` writes `[package]`, `[paths]` and `[build] kind`; the `target` key
+and the `[locale]` table are optional.
 
 ```faber
 functio duplica(numerus n) → numerus {

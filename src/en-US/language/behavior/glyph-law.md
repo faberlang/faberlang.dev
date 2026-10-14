@@ -59,13 +59,14 @@ events in sequence. Nothing here is a matter of style; the glyph decides.
 The same separation runs one level up, between *what a construct means* and
 *how it is spelled*. Faber defines one canonical spelling for each construct
 and accepts sugar spellings that parse to exactly the same node. The parser
-does not prefer one over the other; `faber format --locale la` re-emits the
-canonical form, while author mode preserves what was written.
+does not prefer one over the other; both parse to the same node.
+`faber convert --to la` re-emits a file on the Latin surface, and
+`faber format` re-emits through the same HIR at the file's own locale.
 
 Numeric containers follow it (`tf32[4]` and `tensor<f32, [4]>` are the same
 type), annotations follow it (`@ option verbose …` and the braced record are
-the same `HirAnnotation`), and reader locales follow it — Latin is the
-canonical surface, every pack is a rendering of it.
+the same `HirAnnotation`), and reader locales follow it — every pack is a
+rendering of the same node.
 
 ## Why it matters {#why}
 

@@ -19,11 +19,11 @@ translate_spans = false
 | **Script** | Latin |
 | **Direction** | left-to-right |
 
-The canonical pack. Every other pack is a translation of this one, and the pack key — the canonical name — *is* the Latin spelling.
+The identity pack. Every other pack maps the same keys to its own words, and the pack key *is* the Latin spelling.
 
 ## Latin ↔ English {#mapping}
 
-Generated from the packs. The Latin column is the canonical name — the pack key and the compiler's internal identity; the English column is the base-surface spelling. The other reader languages lead with English on [their mapping pages](/language/locales/keywords.html).
+Generated from the packs. The Latin column is the pack key and the compiler's internal identity; the English column is the base-surface spelling. The other reader languages lead with English on [their mapping pages](/language/locales/keywords.html).
 
 ### Keywords {#keywords}
 

@@ -395,7 +395,7 @@ def main() -> None:
         facts.append(f"{len(partial)} partial")
     facts += [
         f"{len(GLYPHS)} glyphs never localize",
-        "Latin · canonical interchange",
+        "Latin · pack keys",
         "No accounts",
         "System fonts · zero external requests",
     ]
@@ -454,8 +454,8 @@ def main() -> None:
 {node_html}    </div>
 
     <p class="porta-question">
-      Faber Romanus is one semantic core with many renderings. Latin is the canonical
-      interchange for code, not a privileged human language.
+      Faber Romanus is one semantic core with many renderings. The pack keys are Latin spellings,
+      which no living population claims; no human language is privileged.
       <span class="porta-alt">Pick the documentation language you read;
       the glyphs are the same in all of them.</span>
     </p>

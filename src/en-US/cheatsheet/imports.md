@@ -20,7 +20,7 @@ The retired `privata` import marker is not valid.
 Norma modules are named `norma:<module>`.
 
 ```faber locale-tabs
-importa ex "norma:consolum" consolum
+importa ex "norma:console" console
 
 incipit {
     nota "ready"
@@ -45,7 +45,7 @@ The name after the source is the item, not the module — so you import exactly
 what you use.
 
 ```faber locale-tabs
-importa ex "norma:textus" textus
+importa ex "norma:text" text
 
 incipit {
     nota "ready"
@@ -73,7 +73,7 @@ badly at the call site.
 too. Imports without it remain private to the current module.
 
 ```faber locale-tabs
-importa ex "norma:textus" publica textus
+importa ex "norma:text" publica text
 
 incipit {
     nota "ready"
@@ -86,10 +86,10 @@ Use `publica` only when you deliberately intend to widen your module's surface.
 
 | Form | Effect |
 |---|---|
-| `importa ex "norma:consolum" consolum` | Standard library module |
+| `importa ex "norma:console" console` | Standard library module |
 | `importa ex "./auxilium" saluta` | Item from a sibling file |
 | `importa ex "./auxilium" saluta ut greet` | …bound under a different name |
-| `importa ex "norma:textus" publica textus` | Imported and re-exported |
+| `importa ex "norma:text" publica text` | Imported and re-exported |
 
 Related: [A program is a package](/language/behavior/packages.html) for how modules sit inside
 a package · [Packages with Cista](/toolchain/packages.html) for dependency

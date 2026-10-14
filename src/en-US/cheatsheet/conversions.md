@@ -19,6 +19,51 @@ incipit {
 }
 ```
 
+## Float to integer {#rounding}
+
+An integer becomes a float with a plain `↦`. A float becomes an integer only
+with a rounding word, because the compiler will not pick one for you. A bare
+`x ↦ numerus` on a float is `SEM016 float_to_integer_requires_rounding`.
+
+The words follow `via`: `floor` rounds toward negative infinity, `ceil` toward
+positive infinity, `trunc` toward zero, and `half_even` to the nearest integer,
+with ties going to the even neighbour.
+
+```faber
+incipit {
+    fixum f64 x ← 2.5
+    fixum f64 y ← 3.5
+    fixum f64 z ← -2.5
+    nota x ↦ numerus via floor
+    nota x ↦ numerus via ceil
+    nota x ↦ numerus via half_even
+    nota y ↦ numerus via half_even
+    nota z ↦ numerus via trunc
+    nota z ↦ numerus via floor
+}
+```
+
+```text
+$ faber run
+2
+3
+2
+4
+-2
+-3
+```
+
+`⌊2.5⌉` is the same nearest-even rounding written as a bracket: it is 2, and
+`⌊3.5⌉` is 4. Leaving the word off is an error:
+
+```faber outcome=rejects
+incipit {
+    fixum f64 x ← 2.5
+    fixum numerus n ← x ↦ numerus
+    nota n
+}
+```
+
 ## Recovery on failure {#recovery}
 
 `⊥` after a conversion supplies the value to use when it fails. Without it, a

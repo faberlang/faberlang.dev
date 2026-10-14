@@ -53,7 +53,7 @@ register types.
 | `nihil` | Null / absent (the null value is `nulla`) | `nulla` |
 | `instans` | Duration / time instant | — |
 | `json` | Compile-time JSON value | `{ "key": "value" }` |
-| `octeti` | Hex byte sequence | \|00ff\| |
+| `octeti` (en `bytes`) | Byte string, exactly `lista<b8>` (en `list<b8>`) | \|00ff\| |
 
 ### Sized numeric types {#sized-numeric-types}
 
@@ -77,6 +77,29 @@ incipit {
 ```
 
 The bare width marker is the type.
+
+### Raw bits {#raw-bits}
+
+The markers `b8`, `b16`, `b32` and `b64` are raw bits, not numbers, so they
+are not in the table above. A `b8` is exactly eight bits, and a `b8` is also
+the element of a byte string: `|00ff|` is a `lista<b8>` (en `bytes`).
+
+Raw bits take the bit operators `∧ ∨ ⊻ ¬ ⇐ ⇒` and nothing else. Each operation
+acts at the type's own width: a left shift drops bits off the top, and a shift
+by the full width or more gives all zeros. There is no arithmetic
+(`SEM011 bits_arithmetic_refused`) and no mixing with numbers or with another
+width. To read the bits as a number, convert to the same-width numeric type
+with `↦`.
+
+```faber
+incipit {
+    fixum b8 flags ← 0xF0 ∷ b8
+    fixum b8 low ← flags ⇒ 4
+    fixum b8 both ← flags ∨ low
+    fixum u8 count ← both ↦ u8
+    nota both, count
+}
+```
 
 ### Nullable types {#nullable-types}
 
@@ -192,13 +215,26 @@ positions to indicate how a value is passed:
 functio imprime(de textus label) → vacuum { }
 
 # mutable borrow — caller lends mutable access
-functio duplica(in numerus value) → vacuum { }
+functio duplica(in numerus value) → vacuum { value ← value + 1 }
 
 # move — caller gives up ownership
 functio consume(own textus buffer) → textus {
     redde buffer
 }
+
+incipit {
+    varia numerus n ← 1
+    fixum textus s ← "salve"
+
+    imprime(s)
+    duplica(in n)
+    fixum _ t ← consume(own s)
+}
 ```
+
+The call site repeats the `in` and `own` markers (en `mut` and `own`):
+`duplica(in n)`, `consume(own s)`. Leaving one off is
+`SEM057 call_marker_missing`. A parameter with no marker is read-only.
 
 ### Comparison policy {#comparison-policy}
 
@@ -207,7 +243,7 @@ functio consume(own textus buffer) → textus {
 | `≡`, `≢` | Exact equality | Identical types required; `nulla` bypass |
 | `≅`, `≇` | Promoted exact equality | Numeric widths join, then exact compare |
 | `≈`, `≉` | Fuzzy equality | Tolerance match — `isclose` defaults (rel_tol 1e-09); numeric operands only |
-| `<`, `≤`, `>`, `≥` | Ordering | Numeric, instant, scalar text |
+| `≺`, `≤`, `≻`, `≥` | Ordering | Numeric, instant, scalar text; ASCII `<` and `>` are generic delimiters, not comparisons |
 | `intra` | Range containment | Numeric in range |
 | `inter` | Collection membership | Element in collection |
 
@@ -428,7 +464,7 @@ main {
     # get returns the stored value, here 4.0
     print sparse.get([0, 1])
     # count of stored entries
-    print sparse.nonzero_count()
+    print sparse.count_nonzero()
 }
 ```
 
@@ -489,7 +525,9 @@ shape. They are not interchangeable synonyms.
 | `«…»` | `textus` | Block/multiline Unicode; `(…)` renders |
 | `` `…` `` | `forma` | Captured templates; `(…)` captures |
 | `{ … }` | `json` | Compile-time JSON document |
-| `|…|` | `octeti` | Compile-time hex bytes |
+| `\|…\|` | `lista<b8>` (en `bytes`) | Compile-time hex bytes |
+| `regex /…/` | `regex` | Inline pattern literal; raw body, `\/` writes a slash |
+| `_ /…/` | `regex` | The same literal where the cell gives the type |
 | `[ … ]` | `lista<T>` | Faber list literal |
 
 ### String-template application {#string-template-application}
@@ -510,12 +548,16 @@ incipit {
 
     fixum _ msg ← "Page § of §"(pagina, totum)
     fixum _ block ← «status: § (§)»(code, label)
+    fixum _ again ← "§1 of §0, §1"(pagina, totum)
 }
 ```
 
 Key rules:
 - `§` (U+00A7) is the template hole
-- Positional holes: `§0`, `§1`, … for explicit ordering
+- Numbered holes: `§N` selects argument N, counting from 0, and may repeat.
+  `"§1 of §0, §1"(a, b)` reads `b`, then `a`, then `b` again
+- A numbered template needs max(N)+1 values, and every index below the highest
+  must be read by some hole; a gap is `SEM008 template_hole_index_gap`
 - Trailing `!` selects display formatting: `"Salve, §!"(nomen)`
 - The `(args)` suffix is template application, not a function call
 
@@ -557,7 +599,7 @@ widens it to the dynamic carrier instead:
 
 ```faber
 incipit {
-    fixum _ empty ← {}
+    fixum json blank ← {}
     fixum _ user ← { "name": "Marcus", "age": 30, "active": true }
     fixum _ nested ← { "meta": { "version": 1 }, "tags": ["alpha", "beta"] }
 }

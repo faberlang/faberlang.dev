@@ -12,7 +12,7 @@ translate_spans = false
 
 One program, eight reader surfaces. Faber source is written once and printed in whichever locale the reader asks for: keywords and type names change, while identifiers, strings, and the glyphs carrying structure stay put.
 
-The panels below are the committed `generator/locale-tabs/` cache — `faber convert` output, not hand-written Thai or Arabic. The Latin panel is canonical Faber; the rest are that same program rendered into each locale.
+The panels below are the committed `generator/locale-tabs/` cache — `faber convert` output, not hand-written Thai or Arabic. The Latin panel is the identity pack's rendering; the rest are that same program rendered into each locale.
 
 ## English (`en`) {#en}
 
@@ -30,7 +30,7 @@ incipit {
 }
 ```
 
-The canonical surface every other panel is a re-rendering of.
+The same program on the identity pack, whose words are the pack keys.
 
 ## Arabic (`ar`) {#ar}
 

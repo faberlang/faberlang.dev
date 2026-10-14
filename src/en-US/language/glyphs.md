@@ -40,7 +40,7 @@ of source glyphs recognised by the lexer.
 |-------|---------|
 | `≡` `≢` | Exact equality and inequality |
 | `≅` `≇` | Promoted exact equality — same value, compatible numeric types |
-| `<` `>` `≤` `≥` | Ordering |
+| `≺` `≻` `≤` `≥` | Ordering — ASCII `<` `>` are generic delimiters only |
 | `≈` `≉` | Fuzzy equality — tolerance match with `isclose` defaults |
 
 ### Logical and bitwise {#logical-and-bitwise}
@@ -56,7 +56,6 @@ of source glyphs recognised by the lexer.
 |-------|---------|
 | `←` | Runtime assignment — the only assignment operator in expressions |
 | `=` | Compile-time assignment — a value fixed and known while compiling |
-| `⊕` `⊖` | Postfix increment/decrement statements (mutable int only) |
 
 Both are assignment. They differ in **when** the value is decided.
 
@@ -108,7 +107,8 @@ Worked through in full under
 | `"` | `string` | Line string |
 | `«` `»` | `string` | Block string (guillemets) |
 | `` ` `` | `forma` | Captured template |
-| `|` | `bytes` | Hex literal |
+| `\|` | `list<b8>` (en `bytes`) | Hex byte literal, `\|00ff\|` |
+| `/…/` | `regex` | Inline pattern after `regex` or `_`: `regex /a+b/`; `\/` writes a slash |
 | `§` | template hole | Placeholder inside `"…"`, `«…»`, `` `…` `` |
 
 ### Punctuation {#punctuation}
@@ -172,8 +172,8 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 ### The behavioural vocabulary {#latin}
 
 Faber gives every construct that has behavioural or grammatical shape a word.
-The English reader surface is what the tables below show; the compiler's
-canonical corpus keeps the same vocabulary under Latin spellings, which
+The English reader surface is what the tables below show; the pack files are
+keyed by the same vocabulary under Latin spellings, which
 `faber convert --to la` prints — a small, regular set drawn from a single
 classical source rather than the mixed etymologies of most programming
 languages.
@@ -212,7 +212,7 @@ languages.
 | `do` | Try block with error recovery | `try`, `do` |
 | `catch` | Error handler for do | `catch` |
 
-> The vocabulary is **bindable** — it ships with the canonical pack but can be remapped through reader locale. A Thai programmer sees `ถ้า` for `if`; a Chinese programmer sees `函数` for `fn`. The vocabulary is not privileged; only the grammar is.
+> The vocabulary is **bindable** — it ships with the identity pack and is remapped through reader locale. A Thai programmer sees `ถ้า` for `if`; a Chinese programmer sees `函数` for `fn`. The vocabulary is not privileged; only the grammar is.
 
 Keywords are **contextual**: since Radix v0.79.0 there is no global reserved
 keyword table. The lexer emits identifiers for all words and the parser
@@ -252,10 +252,10 @@ which human language the keywords are rendered in.
 
 | Glyph | Meaning |
 |-------|---------|
-| `≡` `≢` `≢` | Exact equality and inequality — strict type match required |
+| `≡` `≢` | Exact equality and inequality — strict type match required |
 | `≅` `≇` | Promoted exact equality — numeric widths join, then exact compare |
 | `≈` `≉` | Fuzzy equality — tolerance match with `isclose` defaults |
-| `<` `>` `≤` `≥` | Ordering comparisons |
+| `≺` `≻` `≤` `≥` | Ordering comparisons — ASCII `<` `>` are generic delimiters only |
 | `∧` `∨` `⊻` `¬` | Logical and bitwise: and, or, xor, not |
 
 #### The binding convention matters {#the-binding-convention-matters}
@@ -313,9 +313,9 @@ each distinct semantic job — no overloading.
 ### References {#references}
 
 1. EBNF grammar — full glyph and keyword inventory
-2. radix/corpus/ — language corpus with 304 exemplar files across all keywords
+2. radix/corpus/ — the language corpus, exemplars across all keywords
 3. radix/corpus/operatores/ — operator and glyph exemplars
-4. Commandments — the nine design laws that preserve these signals
+4. Commandments — the design laws that preserve these signals
 
 ## Canonical vs sugar surfaces
 
@@ -323,13 +323,12 @@ each distinct semantic job — no overloading.
 
 A recurring pattern in Faber's design: the language defines **one canonical spelling** for each construct, but accepts multiple **sugar spellings**
 that are semantically identical. The compiler does not prefer one over the
-other — both parse to the same AST node. The formatter decides which spelling
-to emit based on context and mode.
+other — both parse to the same AST node. The formatter keeps the spelling the
+author wrote.
 
 > **The rule:** Sugar spellings are semantically identical to long form.
 > Multiple surfaces parse to the same `HirAnnotation` or type node.
-> `faber format --locale la` re-emits canonical spellings; author
-> mode preserves the sugar the author wrote.
+> `faber format` preserves the spelling the author wrote.
 
 ### Numeric type sugar {#numeric-type-sugar}
 
@@ -407,31 +406,25 @@ incipit {}
 Both forms produce the same `HirAnnotation` record. The canonical
 form is explicit and self-documenting; the sugar form is concise for
 frequently-used annotations where the field order is well-known.
-`faber format --locale la` re-emits canonical braced records; author mode
-preserves the author's chosen form.
+`faber format` preserves the author's chosen form.
 
-### Author vs canonical formatting {#author-vs-canonical-formatting}
+### Formatting {#author-vs-canonical-formatting}
 
-The `faber format` command operates in two modes that mirror the
-canonical-vs-sugar principle:
+`faber format` re-emits each file from analysed HIR, at the file's own reader
+locale. It keeps `#` comments and the sugar spellings the author wrote. It does
+not translate between reader locales: `faber convert --to <locale>` does that,
+and keeps comments and sugar the same way. Both run the compiler's front half,
+so invalid source produces diagnostics and is never silently formatted.
 
-| Mode | Command | Input | Output |
-|------|---------|-------|--------|
-| Author | `faber format` | Parsed AST + leading trivia | Faber source preserving `#` comments, blank lines, and sugar spellings |
-| Canonical | `faber format --locale la` | Analysed HIR + `TypeTable` | Normalised Faber — no comments, canonical spellings, no sugar |
+By default `faber format` reports each file that would change and exits 1 when
+any would; `--write` writes it back, and `--stdout` prints one file.
 
-Both modes run through the compiler's full front half (lex, parse, analyse
-for canonical). Invalid source produces compiler diagnostics — the formatter
-does not silently format broken input.
-
-Key rules for both modes:
+Key rules:
 
 - Four-space indentation
 - Stroustrup braces: opening `{` on the same line as the controlling header
-- Author mode preserves the *presence* of blank lines but collapses runs of more than one
-- Author mode does not insert blank lines the source did not contain
-- Canonical mode normalises container sugar to long form (`tf32[4]` → `tensor<f32, [4]>`) and annotations to braced records; width markers such as `i32` are already canonical
-- Canonical mode emits `T ∪ none` for nullable unions, `optional` for optional parameters
+- The presence of blank lines is preserved, and a run of more than one collapses to one
+- No blank lines are inserted that the source did not contain
 
 ### Design principle {#design-principle}
 
@@ -442,19 +435,17 @@ deliberate design principle, not a collection of one-off conveniences:
 |--------|-----------|-------|
 | Tensor types | `tensor<f32, [4]>` | `tf32[4]` |
 | Annotations | `@ option { binding = verbose }` | `@ option verbose ...` |
-| Formatting | `faber format --locale la` | `faber format` (author mode) |
-| Reader locale | Latin (`la`) | Any locale pack |
 
 The pattern serves two goals. First, it lowers the barrier to entry — new
 users can write `tf32[4]` without typing
 `tensor<f32, [4]>`. Second, it keeps the
 canonical language unambiguous — when precision matters, the long form says
-exactly what it means. The formatter bridges the two: authors write sugar,
-reviewers can request canonical, and CI can enforce either.
+exactly what it means. The formatter keeps whichever spelling the
+author wrote.
 
 ### References {#references}
 
 1. `radix/docs/design/numeric-type-sugar.md` — full sugar families, spelling preferences
 2. `radix/docs/design/annotation-sugar.md` — dual-surface annotation model
-3. `radix/docs/design/faber-canonical-surface.md` — author vs canonical format policy
-4. `faber/docs/EBNF.md` — grammar tables for sugar forms
+3. `radix/docs/design/faber-canonical-surface.md` — the formatter and the re-emitter
+4. `radix/grammar/EBNF.md` — grammar tables for sugar forms

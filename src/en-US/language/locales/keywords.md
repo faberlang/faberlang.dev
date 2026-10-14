@@ -10,9 +10,9 @@ sources = [
 translate_spans = false
 +++
 
-Every Faber keyword, primitive type, and intrinsic has one canonical (Latin) name and one spelling per reader pack. This page indexes the mapping pages generated from those packs; read any row across to translate one term.
+Every Faber keyword, primitive type, and intrinsic has one pack key (a Latin spelling) and one spelling per reader pack. This page indexes the mapping pages generated from those packs; read any row across to translate one term.
 
-English is the page language and a base surface: English keywords map to the English word, so its reader spelling is also what an English reader writes. Every mapping page therefore leads with the English column, and English carries no separate page. The Latin column is the canonical name — the compiler's internal identity, one locale among eight rather than a privileged one: rendering to English and rendering to Thai are the same operation.
+English is the page language and a base surface: English keywords map to the English word, so its reader spelling is also what an English reader writes. Every mapping page therefore leads with the English column, and English carries no separate page. The Latin column is the pack key — the compiler's internal identity, one locale among eight rather than a privileged one: rendering to English and rendering to Thai are the same operation.
 
 The full eight-pack join stays machine-facing at [/agents/locales.md](/agents/locales.md); rows the packs do not all declare are listed there, not on the human pages.
 

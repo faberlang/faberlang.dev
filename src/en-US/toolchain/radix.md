@@ -30,13 +30,13 @@ Radix lowers Faber source through three intermediate representations:
 
 | Lane | IR | Output | Status |
 |---|---|---|---|
-| CPU runtime | MIR | FMIR (Rust runtime) | Shipping |
+| CPU runtime | MIR | FMIR image, run on the MIR runner | Shipping |
 | LLVM | MIR | LLVM text | Experimental |
-| Device execution | MIR | Metal MSL + CUDA PTX via `faber run --device` | Active (reopened 2026-08-02) |
+| Device execution | MIR | Metal MSL + CUDA PTX via `faber run --device` | Active |
 | WASM | MIR | WebAssembly text | Experimental |
 | TypeScript | HIR | TypeScript source | Experimental |
 | Go | HIR | Go source | Experimental |
-| GPU/WGSL | AIR | WGSL via WGPU | Experimental |
+| WGSL | MIR | WGSL compute source and reflection (no launch path) | Experimental |
 
 ### Architecture {#architecture}
 
@@ -53,9 +53,8 @@ Radix emits structured diagnostic codes with stable identifiers:
 - `PARSE0xx` — parser errors
 - `SEM0xx` — semantic analysis errors
 - `LOCALE0xx` — reader-locale fallback notices
-- `DEFER0xx` — deferred features (valid syntax, not yet implemented)
 
-Every diagnostic can be explained via `faber explain <code>`.
+A diagnostic with a catalog entry can be explained via `faber explain <code>`.
 
 ## Radix compiler architecture
 
@@ -85,12 +84,12 @@ main emission families:
 
 - **HIR-direct / application lane:** preserve source-level structure and emit a
   language-shaped artifact. Rust currently offers the widest package
-  product surface (build/run/test); Faber, TypeScript, Go, and Swift are
-  HIR-facing emitters with narrower or rising measured surfaces. No target is
-  the semantic center — HIR is.
+  product surface (build/run/test); Faber, TypeScript, Go, Swift, Python, and
+  Haskell are HIR-facing emitters with narrower or rising measured surfaces.
+  No target is the semantic center — HIR is.
 - **MIR-backed / systems lane:** lower the same analyzed unit to an
-  execution-shaped control-flow graph, validate it, and feed a stepper,
-  package image, WebAssembly, LLVM text, Metal text, WGSL text, or a
+  execution-shaped control-flow graph, validate it, and feed the MIR runner,
+  a package image, WebAssembly, LLVM text, Metal text, WGSL text, or an
   S-expression validation emitter.
 
 AIR is not a third public backend. It is a pure-functional transform detour
@@ -103,15 +102,15 @@ backends remain the common downstream path.
 flowchart LR
     Source["Faber source + frontmatter"] --> Frontend["Lex → parse → AST"]
     Frontend --> Semantic["Collect → resolve → HIR lower → typecheck → analysis"]
-    Semantic --> Snapshot["AnalyzedUnit\nHIR + TypeTable + DefIds + side tables"]
+    Semantic --> Snapshot["AnalyzedModule\nHIR + TypeTable + DefIds + side tables"]
 
     Snapshot --> HIR["HIR-direct route"]
     HIR --> Rust["Rust\nwidest package product surface"]
-    HIR --> OtherHIR["Faber / TypeScript / Go / Swift"]
+    HIR --> OtherHIR["Faber / TypeScript / Go / Swift / Python / Haskell"]
 
     Snapshot --> MIRLower["HIR → MIR lowering"]
     MIRLower --> Validated["ValidatedMir\nproof-carrying MIR"]
-    Validated --> Stepper["MIR stepper"]
+    Validated --> Runner["MIR runner"]
     Validated --> FMIR["FMIR package image"]
     Validated --> Wasm["Wasm / WAT"]
     Validated --> LLVM["LLVM text staging"]
@@ -131,27 +130,23 @@ for an unsupported target shape.
 
 ### Repository and ownership
 
-The `radix` directory is the private compiler workspace. It is a workspace
-container rather than the product package boundary. The user-facing package
-tool is the sibling `faber` repository.
+The `radix` directory is the private compiler workspace. It holds the compiler
+crates, the `faber` product crate (`crates/faber`), the in-tree runtimes
+(`runtime/`), Norma (`lib/norma/`), and the grammar (`grammar/`). The
+user-facing package tool is `faber`.
 
 ```mermaid
 flowchart TB
     Radix["radix\nprivate compiler"]
     Faber["faber\npublic package CLI"]
     Runtime["faber-runtime\npublic generated-code carriers"]
-    Hosts["hosts\nABI consumers and platform/browser hosts"]
     Norma["norma\nstdlib source"]
-    Triga["triga\ngraphics/geometry"]
     Examples["examples\ncorpus and applications"]
 
     Faber --> Radix
     Faber --> Runtime
     Faber --> Norma
-    Faber --> Hosts
     Radix --> Runtime
-    Radix --> Triga
-    Radix --> Hosts
     Examples --> Faber
     Examples --> Radix
 ```
@@ -166,68 +161,85 @@ The package boundary is intentional:
   artifact workflows.
 - Generated Rust packages depend on the public `faber-runtime` crate, whose
   crate name is `faber`. They do not depend on the compiler itself.
-- `radix-host-abi` describes emitted host contracts. The sibling `hosts`
-  repository supplies native, provider, macOS, and browser products that load
-  artifacts and answer those contracts.
+- `radix-host-abi` is the compiler-owned table of the host ABI that emitted
+  artifacts target; `radix abi` prints it. The sibling `hosts` repository that
+  once held host products no longer exists. The in-tree host runtime for
+  native LLVM executables is `runtime/llvm`.
 
 Useful entry points:
 
 - `crates/radix/src/lib.rs` — public compiler façade;
-- `crates/radix/src/driver/mod.rs` — phase
+- `crates/radix-module/src/driver/mod.rs` — phase
   ordering and target dispatch;
-- `crates/radix/src/tool/mod.rs` — developer
-  CLI boundary;
-- `../faber/README.md` — public target API and project boundary;
-- `../faber/runtime/rust/README.md` — generated Rust runtime boundary;
-- `../hosts/README.md` — host products and libraries.
+- `crates/radix-cli/src/lib.rs` — developer
+  CLI boundary (the `radix` binary);
+- `crates/faber/src/` — the `faber` product and package workflow;
+- `runtime/rust/` — the generated Rust runtime;
+- `lib/norma/src/` — the standard library source.
 
 ### Crate topology
 
-The workspace is in the middle of a leaf-crate extraction. The package named
-`radix` remains the façade and still owns cross-phase lowering that needs the
-whole compiler context. The leaves own stable data models and target-specific
-logic.
+The workspace is split into leaf crates. The package named `radix` is a thin
+façade over `radix-module` (driver, target dispatch, HIR→AIR lowering) and
+`radix-program` (whole-program package compilation); the `radix` binary lives in
+`radix-cli`. The leaves own stable data models, semantic analysis, and
+target-specific logic.
 
 ```mermaid
 flowchart TB
-    Facade["radix\nfaçade, driver, CLI, lowering"]
+    Facade["radix\nthin façade"]
+    Module["radix-module\ndriver, target dispatch, HIR→AIR"]
+    Program["radix-program\npackage compilation"]
+    CLI["radix-cli\nradix binary"]
 
     Lexer["radix-lexer"]
     Syntax["radix-syntax"]
     Parser["radix-parser"]
     Types["radix-types"]
     HIR["radix-hir"]
-    AIR["radix-air"]
+    Semantic["radix-semantic\nanalysis, AST→HIR"]
+    AIR["radix-air + radix-air-nodes + radix-air-bridge"]
     MIR["radix-mir"]
+    MIRLower["radix-mir-lower"]
     Shared["radix-codegen-shared"]
     Diagnostics["radix-diagnostics"]
 
-    HIRBackends["radix-codegen-rust / faber / ts / go / swift"]
+    HIRBackends["radix-hir-rust / faber / ts / go / swift / python / haskell"]
     MIRBackends["radix-mir-wasm / llvm / metal / wgsl / sexp"]
-    Stepper["radix-mir-stepper"]
+    Runner["radix-mir-runner"]
     Coverage["radix-mir-coverage"]
     ABI["radix-host-abi + radix-runtime-contract"]
 
-    Facade --> Lexer
-    Facade --> Syntax
-    Facade --> Parser
-    Facade --> Types
-    Facade --> HIR
-    Facade --> AIR
-    Facade --> MIR
-    Facade --> Shared
-    Facade --> Diagnostics
+    CLI --> Facade
+    Facade --> Module
+    Facade --> Program
+    Program --> Module
+    Module --> Semantic
+    Module --> Lexer
+    Module --> Syntax
+    Module --> Parser
+    Module --> Types
+    Module --> HIR
+    Module --> AIR
+    Module --> MIR
+    Module --> MIRLower
+    Module --> Shared
+    Module --> Diagnostics
+    Semantic --> Parser
+    Semantic --> HIR
     Parser --> Lexer
     Parser --> Syntax
     HIR --> Types
     AIR --> HIR
     AIR --> MIR
     MIR --> Types
+    MIRLower --> MIR
+    MIRLower --> Semantic
     HIRBackends --> HIR
     HIRBackends --> Types
     MIRBackends --> MIR
     MIRBackends --> Types
-    Stepper --> MIR
+    Runner --> MIR
     Coverage --> MIR
     MIR --> ABI
 ```
@@ -241,13 +253,15 @@ Ownership is deliberately asymmetric:
 | Predictive parser and recovery | `radix-parser` | tokens to `Program` |
 | Semantic types, indices, widths, `DefId` | `radix-types` | type facts independent of HIR/codegen |
 | HIR nodes and visitors | `radix-hir` | source-shaped semantic IR |
-| AST→HIR lowering and semantic orchestration | `radix` | requires resolver, contracts, CLI, and full driver |
-| AIR model, AD, fusion, proof records | `radix-air` | pure value graph and transforms |
-| HIR→AIR and AIR→MIR bridges | `radix` plus the AIR bridge | requires the analyzed unit and MIR context |
+| Collection, resolution, AST→HIR lowering, typecheck, and analyses | `radix-semantic` | resolver, contracts, and semantic passes |
+| Driver, target dispatch, and HIR→AIR lowering | `radix-module` | analyzed module to target output |
+| HIR→MIR lowering | `radix-mir-lower` | analyzed application view to MIR |
+| AIR model, AD, fusion, proof records | `radix-air-nodes`, `radix-air` | pure value graph and transforms |
+| AIR→MIR bridge | `radix-air-bridge` | AIR value graph to MIR functions |
 | MIR nodes and validation | `radix-mir` | execution-shaped IR and proof wrapper |
-| HIR-language emitters | `radix-codegen-*` | typed HIR to source artifact |
+| HIR-language emitters | `radix-hir-*` | typed HIR to source artifact |
 | MIR text emitters | `radix-mir-*` | validated MIR to target text/bytes |
-| Package artifact assembly | sibling `faber` | package graph, FMIR image, Cargo layout |
+| Package artifact assembly | `faber`, `radix-program` | package graph, FMIR image, Cargo layout |
 
 The public `radix::*` modules re-export many leaves for path stability. A
 re-export does not mean that the façade owns the data model.
@@ -314,7 +328,7 @@ Sources:
 - `crates/radix-parser/src/lib.rs`;
 - `crates/radix-syntax/src/lib.rs`;
 - `crates/radix-syntax/src/ast.rs`; and
-- `EBNF.md`.
+- `grammar/EBNF.md`.
 
 ```mermaid
 sequenceDiagram
@@ -381,7 +395,7 @@ flowchart TD
     Exhaustive --> Returns["Return-path analysis"]
     Returns --> Cursor["Cursor escape analysis"]
     Cursor --> Lint["Visibility + lint"]
-    Lint --> Snapshot["AnalyzedUnit"]
+    Lint --> Snapshot["AnalyzedModule"]
 
     Collect -. "fatal" .-> Stop["Return diagnostics; no HIR"]
     Resolve -. "fatal" .-> Stop
@@ -416,8 +430,8 @@ Sources:
 #### HIR lowering
 
 HIR is source-shaped but semantic-identity aware. AST→HIR lowering lives in
-the façade because it needs the resolver, type table, reader pack, CLI mount,
-annotation contracts, and source-unit policies.
+`radix-semantic` because it needs the resolver, type table, reader pack, CLI
+mount, annotation contracts, and source-unit policies.
 
 The lowerer:
 
@@ -438,14 +452,14 @@ separate phase.
 
 Sources:
 
-- `crates/radix/src/hir/lower/mod.rs`;
-- `crates/radix/src/hir/lower/expr.rs`;
-- `crates/radix/src/hir/lower/stmt.rs`; and
+- `crates/radix-semantic/src/lower/mod.rs`;
+- `crates/radix-semantic/src/lower/expr.rs`;
+- `crates/radix-semantic/src/lower/stmt.rs`; and
 - `crates/radix-hir/src/lib.rs`.
 
-#### `AnalyzedUnit`
+#### `AnalyzedModule`
 
-The driver packages the semantic result into `AnalyzedUnit`. It is a coherence
+The driver packages the semantic result into `AnalyzedModule`. It is a coherence
 boundary, not just a convenience struct. Its fields come from one analysis
 stamp and include:
 
@@ -466,8 +480,8 @@ The HIR and MIR routes must consume these facts together. Mixing HIR from one
 analysis with a type table, interner, or resolver from another source unit is a
 compiler bug.
 
-Source: `crates/radix/src/driver/mod.rs`,
-the `AnalyzedUnit` definition and `analyzed_unit_from_semantic`.
+Source: `crates/radix-module/src/driver/mod.rs`,
+the `AnalyzedModule` definition and `analyzed_unit_from_semantic`.
 
 ### Lanes and route selection
 
@@ -498,17 +512,19 @@ MIR lowering.
 The HIR-direct route is:
 
 ```text
-AnalyzedUnit → reject HIR recovery nodes → target HIR emitter → source artifact
+AnalyzedModule → reject HIR recovery nodes → target HIR emitter → source artifact
 ```
 
 The shared codegen boundary refuses HIR that still contains recovery error
 expressions. It then dispatches explicitly:
 
-- Rust → `radix-codegen-rust`;
-- Faber → canonical Faber pretty-printer/roundtrip emitter;
-- TypeScript → `radix-codegen-ts`;
-- Go → `radix-codegen-go`; and
-- Swift → `radix-codegen-swift`.
+- Rust → `radix-hir-rust`;
+- Faber → `radix-hir-faber`, the canonical Faber pretty-printer/roundtrip emitter;
+- TypeScript → `radix-hir-ts`;
+- Go → `radix-hir-go`;
+- Swift → `radix-hir-swift`;
+- Python → `radix-hir-python`; and
+- Haskell → `radix-hir-haskell`.
 
 The per-language emitters own naming, carrier, failable-call, and runtime
 mapping policy. The shared layer does not impose one universal source-language
@@ -531,7 +547,7 @@ that a text emitter is a complete CLI runtime.
 The ordinary MIR route is:
 
 ```text
-AnalyzedUnit
+AnalyzedModule
   → HIR → MIR lowering
   → MIR validation
   → ValidatedMir
@@ -566,7 +582,7 @@ semantic analyzer, borrow checker, or repair pass.
 
 Sources:
 
-- `crates/radix/src/mir/lower.rs`;
+- `crates/radix-mir-lower/src/lower.rs`;
 - `crates/radix-mir/src/nodes.rs`; and
 - `crates/radix-mir/src/validate.rs`.
 
@@ -633,9 +649,9 @@ unsupported forms instead of inventing an AIR approximation.
 
 Sources:
 
-- `crates/radix/src/semantic/passes/air_purity.rs`;
-- `crates/radix/src/air/lower.rs`; and
-- `crates/radix-air/src/nodes.rs`.
+- `crates/radix-semantic/src/passes/air_purity.rs`;
+- `crates/radix-module/src/air/lower.rs`; and
+- `crates/radix-air-nodes/src/nodes.rs`.
 
 ##### Reverse-mode companions and cycles
 
@@ -713,7 +729,7 @@ flowchart LR
     Validate --> Runtime["intrinsics/runtime calls"]
     Validate --> Device["device-safe classifier"]
 
-    CFG --> Emit["MIR emitters and stepper"]
+    CFG --> Emit["MIR emitters and runner"]
     ABI --> Emit
     Runtime --> Emit
     Device --> Emit
@@ -765,27 +781,28 @@ This layering prevents a target from accidentally turning a semantic recovery
 node, unresolved type, missing ABI fact, host-only value, or unsupported runtime
 call into plausible-looking output.
 
-#### Stepper and FMIR
+#### Runner and FMIR
 
-The MIR stepper is a MIR-native reference/diagnostic executor. It interprets
-validated MIR in-process and dispatches the same MIR intrinsics directly,
-without emitting and instantiating a target module. `faber run` uses it for the
-single-file interpret path.
+The MIR runner (`radix-mir-runner`) is a MIR-native reference/diagnostic
+executor. It interprets validated MIR in-process and dispatches the same MIR
+intrinsics directly, without emitting and instantiating a target module.
+`faber run` uses it for a single file, a package, or an archive, and never
+compiles; `faber test` runs proba cases on it.
 
 FMIR is the source-independent package MIR image family. `fmir-text`, `fmir`,
 and `fmir-bin` share one internal package image model and execute through the
-FMIR loader/stepper in the `faber` package workflow. They are not emitted as
+FMIR loader and the runner in the `faber` package workflow. They are not emitted as
 package images by the developer `radix` command. `scena` is a hidden legacy
 source-backed package runtime surface.
 
-The stepper is the reference for MIR-native execution behavior in the systems
+The runner is the reference for MIR-native execution behavior in the systems
 lane. Rust remains the behavioral reference for the full application/runtime
 surface.
 
 Sources:
 
-- `crates/radix-mir-stepper/src/lib.rs`;
-- `crates/radix/src/mir/stepper/mod.rs`; and
+- `crates/radix-mir-runner/src/lib.rs`;
+- `crates/radix-module/src/mir/runner/mod.rs`; and
 - `docs/design/target-capability-matrix.md`.
 
 ### CPU, WebAssembly, LLVM, and GPU architectures
@@ -797,9 +814,9 @@ not `HIR → MIR → LLVM`. It is:
 Faber → typed HIR → Rust source → generated Cargo package → native Rust/CPU toolchain
 ```
 
-MIR has additional systems targets that can eventually support CPU or device
-execution, but the current LLVM target is textual staging rather than native
-object generation.
+MIR has additional systems targets. The `llvm-text` target is textual staging
+rather than native object generation; the separate `llvm-host` target is the
+native executable route (see below).
 
 #### Rust application/CPU route
 
@@ -814,22 +831,21 @@ rather than two competing production CPU paths.
 
 #### WebAssembly route
 
-`wasm-text` and `wasm` lower validated MIR to a deliberately small WAT/binary
-surface. The emitter declares imports for compiler-owned `faber_*` runtime and
-host contracts and fails closed on unsupported MIR shapes. The binary path
-uses the same MIR-oriented model rather than being a separate semantic
-compiler.
+`wasm-text` lowers validated MIR to a deliberately small WAT surface. `wasm`
+is a compatibility alias that also emits WAT text; conversion to a binary
+module is an external-tool step (`wat2wasm` or `wasm-tools`). The emitter
+declares imports for compiler-owned `faber_*` runtime and host contracts and
+fails closed on unsupported MIR shapes.
 
 Radix emits the artifact; it does not claim that `faber run` or package
 workflows execute it. A host/component runtime must supply the imports and
-perform any external validation or instantiation. The sibling `hosts` products
-are where those host responsibilities live.
+perform any external validation or instantiation. The sibling `hosts`
+repository that once held those products no longer exists.
 
 Source entry points:
 
 - `crates/radix-mir-wasm/src/lib.rs`;
-- `crates/radix/src/mir/wasm_text/mod.rs`;
-- `crates/radix/src/mir/wasm_binary.rs`; and
+- `crates/radix-module/src/mir/wasm_text/mod.rs`; and
 - `docs/wasm-execution-plan.md`.
 
 #### LLVM text route
@@ -846,10 +862,20 @@ The current implementation does not link a local LLVM installation, produce
 native object code, or own a package runtime. External LLVM tooling can verify
 or link emitted text. The same NVVM/PTX staging chain is now live as the CUDA
 device-execution lane: `faber run --device cuda` emits NVVM/PTX device
-artifacts and launches real CUDA kernels (e.g. RTX 5070) through the sibling
-`faber` package pipeline.
+artifacts and launches real CUDA kernels (e.g. RTX 5070) through the `faber`
+package pipeline.
 
 Source: `crates/radix-mir-llvm/src/lib.rs`.
+
+#### LLVM host route
+
+`llvm-host` is a distinct target name that builds a native host executable
+through `faber build --target llvm-host`. The build lowers the package to LLVM
+IR (one `.ll` per unit), verifies it with `llvm-as`, runs a pinned `opt -O2`
+in release builds, and links once with `clang` against the `faber-host-llvm`
+runtime archive (`runtime/llvm`). It never generates Rust for the program. It
+needs a coherent LLVM toolchain and fails with a structured diagnostic on an
+unsupported host triple. `-t llvm-text` stays emit-only.
 
 #### GPU route: one MIR, several device emitters
 
@@ -895,8 +921,8 @@ MIR-side concepts.
 functions. It derives a storage-buffer kernel signature, emits source, and
 returns reflection describing the kernel resources. It is not a metallib
 builder or a standalone launch runtime — device execution runs through the
-sibling `faber` pipeline (`faber run --device metal`, real MSL on Apple
-Silicon, campaign reopened 2026-08-02).
+`faber` pipeline (`faber run --device metal`, real MSL on Apple
+Silicon).
 
 Source: `crates/radix-mir-metal/src/lib.rs`.
 
@@ -929,7 +955,7 @@ while stage interface facts come from the graphics side tables. It is not the
 same path as a generic `@ nucleum` compute kernel.
 
 Relevant driver code is in
-`crates/radix/src/driver/mod.rs`, in
+`crates/radix-module/src/driver/mod.rs`, in
 `generate_wgsl_text_output` and the graphics output helpers.
 
 #### Racket S-expression route
@@ -956,29 +982,36 @@ mean that the artifact has a complete external runtime.
 | `ts` | HIR-direct | check/build | no package/run | Experimental language-shaped source emission; exempla e2e floors rising (2026-08). |
 | `go` | HIR-direct | check/build | no package/run | HIR emitter with explicit rejection gaps; exempla e2e floors rising (2026-08). |
 | `swift` | HIR-direct | check/build | no package/run | Apple-oriented source emission; no package runtime. |
+| `python` | HIR-direct | check/build | no package/run | File emission supported; package compilation not yet supported. |
+| `haskell` | HIR-direct | check/build | no package/run | File emission supported; package compilation not yet supported. |
 | `wasm-text` | MIR-backed | check/build | no package/run | Fail-closed WAT probe with external host imports. |
-| `wasm` | MIR-backed | check/build | no package/run | Fail-closed binary probe; external host/instantiation required. |
+| `wasm` | MIR-backed | check/build | no package/run | Compatibility alias of `wasm-text`; emits WAT text, binary conversion is external. |
 | `llvm-text` | MIR-backed | check/build | device run via `faber run --device cuda` | LLVM IR staging; NVVM/PTX CUDA device execution through `faber`. |
 | `metal-text` | MIR-backed | check/build | device run via `faber run --device metal` | Device-safe Metal compute source; MSL device execution through `faber`. |
-| `amd` | MIR-backed | check/build | no package/run | Additive AMDGPU surface (0.81.0); `amd` selection is fail-closed until the ROCm clang path is provisioned. |
+| `amd` | MIR-backed | check/build (`mir-amd` feature) | no package/run | AMDGPU LLVM IR for the gfx942 row; not discoverable: not listed by `radix targets` or `faber targets`. |
 | `wgsl-text` | MIR-backed | check/build | no package/run | Device-safe WGSL compute or source-owned graphics text plus reflection. |
 | `sexp` | MIR-backed | check/build | no package/run | Bounded Racket validation/emission target. |
-| `fmir-text` | package MIR | check only in `radix` | build/run/package | Source-independent text image through `faber`; shared FMIR loader/stepper. |
+| `llvm-host` | MIR-backed | check only in `radix` | `faber build --target llvm-host` | Native host executable: LLVM IR, `llvm-as`, `clang`, and the `faber-host-llvm` runtime archive. |
+| `fmir-text` | package MIR | check only in `radix` | build/run/package | Source-independent text image through `faber`; shared FMIR loader and runner. |
 | `fmir` | package MIR | check only in `radix` | build/run/package | Compact package MIR binary image through `faber`. |
 | `fmir-bin` | package MIR | check only in `radix` | build/run/package | Runner embedding FMIR bytes, built through `faber`. |
 | `scena` | legacy package MIR | hidden/delegated | hidden legacy build/run/package | Source-backed compatibility runtime; not the preferred package surface. |
 
+The `pascal`, `cobol`, `fortran`, `odin`, and `basic` targets are novelty
+emitters behind default-off features; they are not available in a default
+build and `faber targets` reports them as `available=no`.
+
 Lean is not a live `Target` enum member or discoverable backend. The
-`radix-codegen-lean` crate supports HIR aspect/checker experiments; it is not a
+`radix-hir-lean` crate supports HIR aspect/checker experiments; it is not a
 Lean code-generation target.
 
 The source of truth for the command rows is
-`crates/radix/src/tool/commands/targets.rs`
+`crates/radix-cli/src/commands/targets.rs`
 and the living design matrix is
 `docs/design/target-capability-matrix.md`.
 
 The matrix also records intentional semantic splits. Rust is the full behavior
-reference. The MIR stepper is the MIR-native diagnostic/reference executor.
+reference. The MIR runner is the MIR-native diagnostic/reference executor.
 Wasm, LLVM, Metal, and WGSL currently promise shape/import/layout honesty for
 their admitted subsets, not full application-runtime parity. S-expression
 output is a validation target, not collection/tensor authority.
@@ -997,12 +1030,10 @@ flowchart LR
 
     RustSrc --> Cargo["faber package + Cargo"]
     Cargo --> Runtime["faber-runtime carriers"]
-    Cargo --> HostProviders["host/provider crates"]
 
-    MIRImage --> Stepper["FMIR loader / MIR stepper"]
+    MIRImage --> Runner["FMIR loader / MIR runner"]
     DeviceText --> ExternalHost["external verifier / linker / browser / GPU host"]
     ExternalHost --> ABI["radix-host-abi contract"]
-    HostProviders --> ABI
 ```
 
 The target-specific responsibilities are:
@@ -1012,10 +1043,12 @@ The target-specific responsibilities are:
 - **Generated Rust package:** native application integration and Cargo build.
 - **`faber-runtime`:** public Rust carriers and runtime types used by generated
   code.
-- **MIR stepper/FMIR loader:** execution of the supported MIR package/runtime
+- **MIR runner/FMIR loader:** execution of the supported MIR package/runtime
   subset.
-- **Hosts:** external I/O, providers, WebAssembly/WebGPU loading, platform
-  dispatch, and ABI implementation.
+- **External hosts:** WebAssembly/WebGPU loading and any other consumer of the
+  `radix-host-abi` contract. The in-tree host runtime for native LLVM
+  executables is `runtime/llvm`; the sibling `hosts` repository no longer
+  exists.
 
 Keeping these boundaries explicit prevents an emitted `.ll`, `.wgsl`, `.metal`,
 `.wat`, or `.fmir` file from being mistaken for a complete product runtime.
@@ -1051,7 +1084,7 @@ the missing fact or unsupported representation.
 - target-neutral analysis followed by explicit Rust qualification;
 - HIR-direct Rust, Faber, TypeScript, Go, and Swift emitters;
 - whole-program HIR→MIR lowering and structural/typed MIR validation;
-- MIR stepper and FMIR package-image plumbing;
+- MIR runner and FMIR package-image plumbing;
 - fail-closed Wasm/WAT, LLVM text, Metal text, WGSL text, and S-expression
   surfaces;
 - HIR→AIR lowering for a typed pure subset;
@@ -1066,7 +1099,7 @@ the missing fact or unsupported representation.
   execution pipeline;
 - Wasm is not a `faber run` or package runtime in the Radix command;
 - Metal and WGSL text are not GPU launch products;
-- browser/WebGPU host loading remains a sibling host concern;
+- browser/WebGPU host loading is outside the compiler;
 - AIR does not own a backend, independent semantic typechecker, or full
   imperative CFG lowering;
 - AIR→MIR currently rejects some expression/control shapes that require a
@@ -1105,30 +1138,32 @@ Package workflows belong to `faber`:
 faber check <package>
 faber build <package>
 faber run <package>
-faber script <file>
+faber test <package>
 faber targets
 ```
 
+`faber run` interprets on the MIR runner and never compiles; `faber build -t
+<target>` builds.
+
 For implementation archaeology, start with the driver and move outward:
 
-1. `crates/radix/src/driver/mod.rs`
-2. `crates/radix/src/semantic/mod.rs`
-3. `crates/radix/src/hir/lower/mod.rs`
-4. `crates/radix/src/mir/lower.rs`
-5. `crates/radix/src/air/lower.rs`
+1. `crates/radix-module/src/driver/mod.rs`
+2. `crates/radix-semantic/src/lib.rs`
+3. `crates/radix-semantic/src/lower/mod.rs`
+4. `crates/radix-mir-lower/src/lower.rs`
+5. `crates/radix-module/src/air/lower.rs`
 6. `crates/radix-mir/src/validate.rs`
 7. target leaf crates under `crates/radix-mir-*` and
-   `crates/radix-codegen-*`.
+   `crates/radix-hir-*`.
 
 The corpus and focused tests are useful evidence for current support floors:
 
 - `../examples/air/`;
 - `../examples/gpu-workload/`;
-- `crates/radix/src/driver/backward_integration_test.rs`;
-- `crates/radix/src/mir/metal_text_test.rs`;
-- `crates/radix/src/mir/llvm_text_test.rs`;
-- `crates/radix/src/mir/wasm_binary_test.rs`; and
-- WGSL graphics coverage in `crates/radix/src/tool_test.rs`.
+- `crates/radix-module/src/driver/backward_integration_test.rs`;
+- `crates/mir-emit-harness/src/metal_text_test.rs`;
+- `crates/mir-emit-harness/src/llvm_text_test.rs`; and
+- WGSL graphics coverage in `crates/mir-emit-harness/src/wgsl_text_test.rs`.
 
 ### Terminology
 
@@ -1137,7 +1172,7 @@ The corpus and focused tests are useful evidence for current support floors:
 | AST / `Program` | Parsed source-shaped syntax tree. |
 | HIR | Source-preserving semantic IR with resolved identities and optional typed attachments. |
 | `TypeTable` / `TypeId` | Shared semantic type arena and handles valid within one analysis. |
-| `AnalyzedUnit` | Coherent driver snapshot containing HIR, types, resolver, side tables, and diagnostics. |
+| `AnalyzedModule` | Coherent driver snapshot containing HIR, types, resolver, side tables, and diagnostics. |
 | AIR | Pure-functional immutable value graph used for typed transforms such as reverse AD and fusion. |
 | MIR | Execution-shaped CFG IR with explicit places, calls, runtime operations, layouts, and error edges. |
 | `ValidatedMir` | Immutable proof wrapper produced by MIR validation. |

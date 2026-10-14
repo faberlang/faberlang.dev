@@ -71,10 +71,9 @@ Words are for declarations, statements, lifecycle, and behavioural intent:
 `fn`, `class`, `const`,
 `var`, `return`, `catch`.
 These are bindable through reader-locale packs — they are the vocabulary,
-not the grammar. Underneath the reader surfaces, Latin is the canonical
-corpus key: one classical spelling every program is stored and exchanged
-under. That choice is not about Latin superiority; it is about picking
-*one* consistent source so that all keywords
+not the grammar. Underneath the reader surfaces, the pack files are keyed by one classical
+spelling per word. That choice is not about Latin superiority; it is about
+picking *one* consistent source key so that all keywords
 belong to the same register and no keyword is privileged by being the
 language the implementation was written in.
 

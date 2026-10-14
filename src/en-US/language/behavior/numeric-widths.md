@@ -77,10 +77,8 @@ incipit {
 }
 ```
 
-```text
-$ faber run
-error: numerus to numerus conversion out of range
-```
+The run stops at the store with an out-of-range error and a non-zero exit
+status.
 
 ## Why it works this way {#why}
 
@@ -90,15 +88,16 @@ head or wondering where an implicit reduction happens. The one place a boundary
 can bite is the one place the source names it: the store, or the `↦`.
 
 It also composes with the rest of the language. Because numeric families do not
-mix silently, an operation between two different numeric types is an explicit
-conversion — which is exactly the point where a policy would be applied. A
+mix silently, an operation that crosses families (an integer and a float, say)
+is an explicit conversion — which is exactly the point where a policy would be
+applied. A
 `saturating` or `wrapping` cell cannot fail on conversion, so the conversion
 needs no default and no error channel; a `trapping` cell is where an
 out-of-range store is reported. See [Types and values](/language/types.html)
 for the cell types themselves.
 
-Every numeric width, the overflow policies it accepts, and the policy a bare
-marker uses:
+Every width, the overflow policies it accepts, and the policy a bare marker
+uses:
 
 | Width | Policies | Bare default |
 |---|---|---|
@@ -116,3 +115,12 @@ marker uses:
 | `bf16` | `trapping`, `saturating` | `saturating` |
 | `f32` | `trapping`, `saturating` | `saturating` |
 | `f64` | `trapping`, `saturating` | `saturating` |
+| `b8` `b16` `b32` `b64` | none — raw bits, not numbers | none |
+
+The last row is the other domain. A `b8`, `b16`, `b32` or `b64` is exactly that
+many bits and no wider value exists in the middle of an expression. It takes
+bit operators (`∧` `∨` `⊻` `¬` `⇐` `⇒`), each acting at the type's own width
+every time, and has no arithmetic: `x + x` on a `b8` is
+`SEM011 bits_arithmetic_refused`. Bits and numbers meet only at an explicit
+`↦` to the same-width type. This is not an exception to the store rule: an
+operation does what its own domain expects.

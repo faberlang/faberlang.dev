@@ -23,16 +23,15 @@ ergonomic developer tool.
 |---|---|
 | `faber build <path>` | Compile a package to a target backend (default: Rust) |
 | `faber check <path>` | Type-check without emitting code |
-| `faber run <path>` | Build (if needed) and run a compiled package |
-| `faber test <path>` | Run proba cases on the MIR stepper |
-| `faber format <path>` | Apply canonical formatting (author mode by default) |
+| `faber run <path>` | Interpret and run a source file, package, or archive on the MIR runner (never compiles) |
+| `faber test <path>` | Run proba cases on the MIR runner |
+| `faber format <path>` | Report files whose layout differs from canonical formatting; `--write` applies it |
+| `faber convert <path> --to <locale>` | Convert source between reader-locale surfaces (report-only unless `--write`) |
 | `faber explain <term>` | Explain a glyph, keyword, grammar term, or diagnostic code |
 | `faber emit <path>` | Compile to a target surface for stdout |
 | `faber targets` | Show supported targets and capability notes |
 | `faber init` | Create a new Faber package |
-| `faber install` | Install a library package into the Cista store |
-| `faber script <path>` | Run Faber source through the interpreter (never compiles to Rust) |
-| `faber repl` | Interactive MIR stepper REPL |
+| `faber repl` | Interactive MIR runner REPL |
 | `faber verify <file>` | Run aspect verification on a single file |
 | `faber verify-library <input>` | Verify a library package's target binding manifest |
 | `faber model inspect <path>` | Inspect model-file metadata (safetensors) |
@@ -45,13 +44,10 @@ ergonomic developer tool.
 faber build my-package/ -t rust
 ```
 
-The `-t` flag selects the codegen target: `rust` (default), `typescript`
-(`ts`), `go`, `swift`, `faber` (`fab`, canonical re-emission), `fhir`
-(portable FHIR package envelope), `wasm` /
-`wasm-text` (`wat`), `llvm-text` (`llvm`), `metal-text` (`metal`),
-`wgsl-text` (`wgsl`), and `sexp` (`racket`). Diagnostics can be promoted to
-errors with `--deny-warnings` (all warnings) or `--deny <CODE>` (a specific
-catalog code, repeatable).
+The `-t` flag selects the codegen target. `faber build --help` lists the
+accepted values and `faber targets` shows each target's current capability
+notes. Diagnostics can be promoted to errors with `--deny-warnings` (all
+warnings) or `--deny <CODE>` (a specific catalog code, repeatable).
 
 ### Device execution (Metal / CUDA) {#device-execution}
 
@@ -64,11 +60,14 @@ kernel and its manifest declares a `[device]` section (`device`, and
 faber run --device metal <package>   # Apple Metal (e.g. Apple M5 Max)
 faber run --device cuda  <package>   # NVIDIA CUDA (e.g. RTX 5070)
 faber run --device auto  <package>   # resolve: exactly one admitted device
-faber run --device cpu   <package>   # fails closed: the CPU device is not available yet
+faber run --device reference <package>  # plain sequential code on the MIR runner
+faber run --device cpu   <package>   # processor cores as a device
 ```
 
-Device selection precedence: CLI `--device` > manifest `[device] device` >
-`auto`. The packaged FMIR image's `device` section carries the canonical device
+`reference` is the oracle that device results are checked against. Today
+`cpu` takes the same route as `reference`: the kernels run as ordinary
+functions, single-threaded, on the MIR runner. Device selection precedence:
+CLI `--device` > manifest `[device] device` > `auto`. The packaged FMIR image's `device` section carries the canonical device
 program plus Metal MSL and CUDA PTX artifacts (each with a provenance hash);
 `faber run` drives a real Metal/CUDA session (load → allocate → copy-in →
 launch → sync → readback → release) and reports the selected device, the
@@ -98,7 +97,7 @@ faber test . --suite suite/path   # select by probandum suite path
 faber test . --tag slow           # select by tag modifier
 ```
 
-`faber test` runs proba cases on the MIR stepper — no Cargo or rustc is
+`faber test` runs proba cases on the MIR runner — no Cargo or rustc is
 invoked for the package, so no Rust toolchain is needed. Inline `probandum`
 and `proba` suites live alongside source code, and colocated `*.proba`
 files are discovered as test-only sources (never imported, excluded from
@@ -110,12 +109,12 @@ Cista snapshots). See [Inline testing](/language/errors.html).
 faber format my-package/
 ```
 
-Applies the canonical Faber formatter in author mode by default. The
-formatter enforces consistent layout: one declaration per line, canonical
-spacing, and standardized keyword surfaces. `--locale <locale>` re-emits in
-a reader-locale surface (`--locale la` reproduces the former `--canonical`
-path), `--check` verifies without writing, and `--stdout` writes to stdout
-instead of updating files.
+Runs the canonical Faber formatter, a HIR re-emit at the source file's own
+reader locale. By default it only reports each file that would change and
+exits 1 if any would. `--write` applies the change, `--check` is the explicit
+spelling of the default, and `--stdout` writes the result to stdout instead.
+Formatting never translates between reader locales; use
+`faber convert --to <locale>` for that.
 
 ### Explaining diagnostics {#explaining}
 
@@ -132,13 +131,13 @@ diagnostic codes as a subset. It reads from the language corpus
 
 ## In-process scripting
 
-Alongside the compiled Rust path, Faber supports in-process interpreted
-execution through the MIR stepper.
+Alongside the compiled `faber build` path, `faber run` executes Faber source
+in-process through the MIR runner. It never compiles.
 
 ### Usage {#usage}
 
 ```bash
-faber run --interpret script.fab
+faber run script.fab
 ```
 
 This runs Faber source in-process after the normal front half of the
@@ -148,7 +147,7 @@ compiler (parse through typecheck + MIR lowering), without invoking
 ### How it works {#how-it-works}
 
 The compiler produces analysed HIR, validated MIR, and a resolved
-runtime-intrinsic table. The MIR stepper dispatches MIR blocks straight
+runtime-intrinsic table. The MIR runner dispatches MIR blocks straight
 to a host, skipping the wasm emit/instantiate round-trip:
 
 ```
@@ -156,27 +155,27 @@ Source → Lex → Parse → Collect → Resolve → Lower → Typecheck
                                                       ↓
                                                  MIR lowering
                                                       ↓
-                                              MIR stepper + Host
+                                              MIR runner + Host
 ```
 
 ### Latency {#latency}
 
 The scripting path runs the same linear frontend as the compiled path,
-plus stepper time proportional to what the script actually executes:
+plus runner time proportional to what the script actually executes:
 
 | Phase | Cost |
 |-------|------|
 | Frontend (100-line script) | ~0.6 ms |
 | MIR stepping | Proportional to executed statements |
 
-The stepper never invokes `rustc` or spawns a process, so startup is
+The runner never invokes `rustc` or spawns a process, so startup is
 fast enough to feel like a shell script.
 
 ### Limitations {#limitations}
 
-- The MIR stepper does not support all host I/O routes that the compiled
+- The MIR runner does not support all host I/O routes that the compiled
   path does — some `norma:*` wrappers remain compiled-only
-- The stepper is a MIR-native diagnostic/reference executor, not a
+- The runner is a MIR-native diagnostic/reference executor, not a
   production runtime for deployed applications
 - Package compilation through Cargo remains the widest package product path
   today (Rust projection); other targets are measured separately

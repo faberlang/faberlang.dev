@@ -16,22 +16,23 @@ multi-target compile matrices.
 
 ## Location {#location}
 
-The corpus was split in Radix v0.79.0:
+Corpus content is divided by shape:
 
 | Content | Lives in |
 |---------|----------|
 | Single-file language exempla (keywords, operators, types, concepts) | `radix/corpus/` |
-| Package-shaped corpus fixtures | `faber/corpus/` |
+| Package-shaped corpus fixtures | `radix/corpus-product/` |
 | Application demos | `examples/` (sibling dirs) |
 
 The old `examples/corpus/` path is a redirect stub. The generated corpus
 pages on this site are built from `radix/corpus/`.
 
-## Stats {#stats}
+## Size {#stats}
 
-- 304 `.fab` exemplar files
-- 185 registry terms in `index.toml`
-- ~135 keyword and concept directories
+The corpus holds several hundred `.fab` exemplar files, one directory per
+keyword, operator group, or concept. Each term has one owning file, and the
+`faber` build embeds the corpus, so there is no separate index to maintain.
+`faber explain --list` prints the current term list.
 
 ## Layout {#layout}
 
@@ -46,7 +47,6 @@ corpus/
   ad/                # capability call exemplars
   operatores/        # glyph / operator groups
   ...
-  index.toml         # generated explain manifest
 ```
 
 ## File format {#file-format}
@@ -58,11 +58,11 @@ Each `.fab` file begins with TOML frontmatter describing the term:
 term = "functio"
 kind = "keyword"
 category = "function"
-canonical = true
+canonical = false
 summary = "Declares a named function or method."
 syntax = "functio <name>(<params>) [modifiers] [→ <type>] [⇥ <error-type>] <block>"
-aliases = ["function"]
 related = ["→", "⇥", "redde", "sponte"]
+locale = "en"
 +++
 
 functio saluta() {
@@ -81,6 +81,6 @@ faber explain --list         # list all terms
 
 ## Categories {#categories}
 
-Terms are organised by category: `function`, `control-flow`, `type`,
-`collection`, `transfer`, `annotation`, `iteration`, `destructuring`,
-`testing`, `cli`, `concept`, `operator-group`, `existing-home`.
+Terms are organised by category, for example `function`, `control-flow`,
+`type`, `collection`, `conversion` and `testing`. List one category with
+`faber explain --category <CATEGORY>`.

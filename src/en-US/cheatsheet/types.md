@@ -40,8 +40,9 @@ is a compile error.
 
 ## Numeric widths {#widths}
 
-Name the width in type position. These are the numeric types — the same
-list as [Math in the ether](/language/behavior/numeric-widths.html).
+Name the width in type position. These are the numeric types and the raw-bit
+types — the same list as
+[Math in the ether](/language/behavior/numeric-widths.html).
 
 ```faber locale-tabs
 incipit {
@@ -59,6 +60,11 @@ incipit {
 | Decimal | `d64` |
 | Unbounded integer | `inf` |
 | Floating | `f16` `bf16` `f32` `f64` |
+| Raw bits | `b8` `b16` `b32` `b64` |
+
+Raw bits are not numbers. A `b8` takes bit operators at its own width and has no
+arithmetic; `x + x` on a `b8` is rejected, and a number converts to it only with
+an explicit `↦` to the same width.
 
 ## Lists and tables {#collections}
 

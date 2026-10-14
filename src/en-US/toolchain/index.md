@@ -14,10 +14,10 @@ There is no separate build tool to install.
 ```bash
 faber init my-app          # create a package
 faber check my-app/        # typecheck, no output written
-faber run my-app/          # build if needed, then run
-faber run --interpret .    # run in-process, no rustc, ~4 ms
+faber run my-app/          # interpret in-process, never compiles
+faber build my-app/ -t rust  # compile to a target
 faber test my-app/         # run inline proba suites
-faber format my-app/       # format in place
+faber format my-app/       # report files that would change (--write applies)
 faber explain redde        # what does this keyword do?
 ```
 
@@ -31,29 +31,28 @@ resolve, typecheck) with nothing written to disk.
 | `init` | create a new package |
 | `check` | semantic analysis on a file or package |
 | `build` | compile and write output for a target |
-| `run` | build if needed, then execute |
-| `script` | run source through the interpreter — single file, package, or archive |
-| `repl` | interactive MIR stepper, re-lowering each line |
-| `test` | run `proba` cases on the stepper, no Cargo or rustc |
-| `format` | format source; `--locale` renders another reader surface |
+| `run` | interpret a single file, package, or archive; never compiles |
+| `repl` | interactive MIR runner, re-lowering each line |
+| `test` | run `proba` cases on the runner, no Cargo or rustc |
+| `format` | report (or `--write`) canonical formatting at the source's own locale |
+| `convert` | convert source between reader-locale surfaces (`--to <locale>`) |
 | `explain` | explain a glyph, keyword, or grammar term |
 | `targets` | list targets and their current capability notes |
-| `install` | install a library package into the Cista store |
 | `verify` | aspect verification on a single file |
 | `emit`, `lex`, `parse`, `hir`, `mir` | compiler-phase inspection (aliases for `radix`) |
 
 `faber` is for packages. `radix` is the developer tool for single files and
 compiler-phase inspection — see [Inside Radix](/toolchain/radix.html).
 
-## Two ways to run a program {#two-lanes}
+## Run, or build {#two-lanes}
 
-| Lane | Command | What happens | When |
-|---|---|---|---|
-| **Compiled** | `faber run` | lowers to Rust, invokes `rustc`, produces a native binary | shipping, benchmarking |
-| **Interpreted** | `faber run --interpret` | parse → typecheck → MIR, then steps MIR in-process | iterating, scripting, tests |
+| Command | What happens | When |
+|---|---|---|
+| `faber run` | parse → typecheck → MIR, then runs the MIR in-process; never compiles | iterating, scripting, tests |
+| `faber build -t <target>` | lowers to the chosen target and writes the output | shipping, benchmarking |
 
-Both run the same frontend, so the interpreted lane typechecks exactly as
-strictly as the compiled one. It just skips code generation and linking.
+Both run the same frontend, so `run` typechecks exactly as strictly as
+`build`. `run` just skips code generation and linking.
 
 ## Where the rest lives {#deeper}
 

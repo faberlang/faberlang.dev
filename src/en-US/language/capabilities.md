@@ -11,9 +11,9 @@ sources = []
 between Faber code and the outside world. It opens a typed conversation
 (`sermo`) with a host resource identified by a route string, then
 exchanges structured frames (`scrinium`) over directional half-streams.
-The host kernel dispatches each route to a pluggable provider crate, which
-implements the actual I/O — filesystem, networking, console, time, randomness,
-or anything else the OS can do.
+The runtime dispatches each route to the native leaf that serves it, and that
+leaf implements the actual I/O — filesystem, networking, console, time,
+randomness, or anything else the OS can do.
 
 ## The `ad` primitive {#ad}
 
@@ -25,24 +25,23 @@ with a route named by an `ascii` literal and optional opener data:
 fixum textus content ← ad 'solum:lege' ("config.toml") ↦ textus
 
 # Typed conversation handle for streaming interaction
-fixum sermo s ← ad 'processus:curre' ("ls", ["-la"])
+fixum sermo s ← ad 'processus:exsequi' ("ls -la")
 ```
 
-The route string follows a `prefix:verb` pattern. The host kernel
-matches on the **prefix only** — the provider owns all verbs under that
-prefix:
+The route string follows a `prefix:verb` pattern. Dispatch matches on the
+**prefix** — the leaf that owns a prefix handles all verbs under it:
 
 ```text
 solum:lege   ─┐
-solum:modum  ─┼─►  prefix "solum"  ──►  solum provider crate
+solum:modum  ─┼─►  prefix "solum"  ──►  filesystem leaf
 solum:vincula─┘
 ```
 
 `ad` is not a foreign function interface. It does not call C
 functions, load dynamic libraries, or embed inline assembly. It is a
 structured message passing boundary: Faber sends typed frames and receives
-typed frames, without knowing whether the provider is implemented in Rust,
-runs in-process, delegates to a system call, or forwards to a remote host.
+typed frames, without knowing whether the answering side runs in-process,
+delegates to a system call, or forwards to a remote host.
 
 ## Frame types {#types}
 
@@ -85,93 +84,47 @@ value — `sermo ↦ T` collapses the conversation:
 # Read a file: open + drain into textus
 fixum textus body ← ad 'solum:lege' ("config.toml") ↦ textus
 
-# Parse JSON from an HTTP response
-fixum json data ← ad 'http:peti' ("https://api.example.com/data") ↦ json
+# Parse JSON from a file
+fixum json data ← ad 'solum:lege' ("data.json") ↦ json
 ```
 
 Materialization uses a type-directed collector: `↦ textus`
 concatenates all inbound frames, `↦ json` parses the concatenated
 payload, `↦ lista<T>` collects frames into a list.
 
-## Host providers {#providers}
+## Native leaves {#providers}
 
-Effect families are implemented as separate provider crates under
-`faberlang/hosts/crates`. Each provider owns all verbs under
-its prefix:
+Each effect family is served by a native leaf in the `faber-leaf` crate
+(`radix/crates/faber-leaf`). The interpreter (`faber run`) and generated Rust
+share it. Each leaf owns all verbs under its prefix:
 
-| Provider | Prefix | I/O domain |
-|----------|--------|------------|
-| `solum` | `solum:*` | Filesystem: read, write, metadata, directory operations |
-| `processus` | `processus:*` | Process execution: spawn, pipe, exit codes |
-| `consolum` | `consolum:*` | Console I/O: stdin, stdout, stderr |
-| `tempus` | `tempus:*` | Time: now, sleep, timers |
-| `aleator` | `aleator:*` | Randomness: entropy, distributions |
-| `http` | `http:*` | HTTP client (Tier D, when landed) |
+| Leaf | Prefix | I/O domain |
+|------|--------|------------|
+| filesystem | `solum:*` | Read, write, metadata, directory operations |
+| stdio | `consolum:*` | Console I/O: stdin, stdout, stderr |
+| process | `processus:*` | Process execution, environment, working directory |
+| clock | `tempus:*` | Time: now, monotonic, sleep |
+| entropy | `aleator:*` | Randomness: floats, integers, bytes, uuid |
+| tcp | `caelum:*` | TCP listen, connect, accept, read, write |
+| http | `http:*` | HTTP client calls |
+| websocket | `websocket:*` | WebSocket connect, accept, send, receive |
 
-Providers are separate crates with their own dependencies — `solum`
-does not pull in HTTP, `http` does not pull in filesystem code.
-Each provider exports a `register()` function that the generated
-host manifest calls at startup.
+A route that no leaf serves is refused at run time. Faber code can also
+answer a route itself with an `@ ad 'prefix:name'` handler on a top-level
+function.
 
 ## Layer stack {#layers}
 
 ```text
 Faber source:     ad 'solum:lege' (path) ↦ textus
-Compiler:         sermo open + generic attach (no provider crate names)
-Runtime:          HostDispatch + conversation protocol (faber-runtime)
-Kernel:           route(frame) → provider for prefix
-Provider:         solum provider reads file, returns content
+Compiler:         sermo open + generic attach (no leaf crate names)
+Runtime:          route lookup + conversation protocol
+Leaf:             the filesystem leaf reads the file, returns content
 ```
 
-The compiler emits generic dispatch — it never embeds provider crate names
-into generated code. The runtime provides `HostDispatch` and the
-conversation protocol. The kernel (from `hosts/crates/host-kernel`) routes
-frames to the correct provider based on prefix. The provider (from
-`hosts/crates/*` providers) performs the actual I/O.
-
-This means generated Faber code is **provider-neutral**. The same compiled
-binary can be linked against different provider implementations — a real
-filesystem provider for production, a mock provider for testing — by changing
-the compile manifest.
-
-## Compile manifest {#manifest}
-
-Which providers to link is controlled by the generated compile manifest and
-the `faber.toml` `[dispatch]` table:
-
-```text
-[target.rust]
-host = "native"
-
-[dispatch]
-providers = ["solum", "processus", "consolum", "tempus", "aleator"]
-
-[dispatch.providers.http]
-enabled = true
-```
-
-During authoring, missing providers produce a runtime `E_NO_ROUTE`
-error. In strict mode (future), every `ad` prefix in the program
-must appear in the compile manifest, and the compiler validates that the
-provider's capability manifest covers the routes used.
-
-## Architecture {#architecture}
-
-The host platform is split across three repositories in the
-`faberlang` organisation:
-
-| Repository | Role |
-|------------|------|
-| `hosts/crates/host-kernel` | Thin router — owns `Frame`, `Conversation`, terminal lifecycle, prefix dispatch, structured errors (`E_NO_ROUTE`), capability manifest aggregation |
-| `hosts/crates/host-native` | Native attach — workers, `register_providers` startup hook, generated `host_register.rs` integration |
-| `hosts/crates/*` providers | Provider implementations — Cargo workspace with per-family crates (`solum`, `processus`, etc.) |
-
-Each provider crate owns its own native dependencies. The `http`
-provider pulls in `hyper` and `tokio` only when HTTP
-is enabled. The `solum` provider uses standard file APIs with no
-additional network dependencies.
-
-> **Same route, any host.** Because `ad` dispatches on route strings and providers are pluggable, the same Faber source can target a native binary (host-native-rs), a WASM runtime (host-kernel as a Frame/Wasm adapter), or a TypeScript Node.js process (host-providers-ts) without changing a single line of Faber code.
+The compiler emits generic dispatch — it never embeds leaf crate names into
+generated code. Source names a route; the runtime decides which leaf answers
+it.
 
 ## Norma wrappers {#stdlib}
 
@@ -188,21 +141,19 @@ functio scribe(textus via, textus content) → vacuum {
     fixum vacuum _ ← ad 'solum:scribe' (via, content) ↦ vacuum
 }
 
-functio curre(textus command, lista<textus> args) → textus {
-    redde ad 'processus:curre' (command, args) ↦ textus
+functio exsequi(textus command) → textus {
+    redde ad 'processus:exsequi' (command) ↦ textus
 }
 ```
 
 These wrapper functions provide type safety, documentation, and error
 handling without hiding the fact that I/O crosses the `ad`
-boundary. The Norma wrappers are open source and live under
-`norma/src/`.
+boundary. The Norma wrappers live under `radix/lib/norma/src/`.
 
 ## References {#references}
 
 1. `radix/docs/design/frame-stream-types.md` — full spec for sermo, scrinium, status, meus, tuus
-2. `radix/docs/design/host-provider-gateway.md` — thin router architecture, provider contracts, compile manifest
-3. `faberlang/hosts/crates/host-kernel/` — kernel router implementation
-4. `faberlang/hosts/crates/host-native/` — native attach and registration
-5. `faberlang/hosts/crates/` — provider crates (solum, processus, consolum, tempus, aleator, http)
-6. `radix/corpus/ad/` — sermo exempla files
+2. `radix/grammar/EBNF.md` — the `ad` expression and `@ ad` handlers (Capability Calls)
+3. `radix/crates/faber-leaf/` — the native leaves
+4. `radix/lib/norma/src/` — Norma wrappers over the routes
+5. `radix/corpus/ad/` — sermo exempla files

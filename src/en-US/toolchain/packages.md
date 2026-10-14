@@ -17,25 +17,29 @@ package declares its name, entry point, target backend, and dependencies.
 
 ## Package manifest {#manifest}
 
-```text
-faber.toml
+```toml
+# faber.toml, as `faber init` writes it
+[package]
+name = "demo"
+version = "0.1.0"
+edition = "2026"
 
-[nomen]
-speculum-gen
+[paths]
+source = "src"
+entry = "main.fab"
 
-[ingressus]
-main.fab
-
-[scopulus]
-rust
-
-[genus]
-bin
+[build]
+kind = "bin"
 ```
 
-The `[nomen]` field is the package name, `[ingressus]` is the entry
-point module, `[scopulus]` selects the codegen target, and `[genus]`
-declares the package kind (`bin` for executables, `lib` for libraries).
+`[package]` carries the package name, version, and Faber edition. `[paths]`
+names the source directory (`src` or `.`) and, for an executable, the entry
+module relative to it; `library_home` there overrides where provider
+libraries are found. `[build]` declares the package kind (`bin` for
+executables). A library package adds a `[library]` table with its `provider`
+prefix. Optional: a backend `target` key under `[build]`, and `[locale]`,
+`[device]`, and `[dependencies]` tables. Unknown keys are rejected, so a
+misspelled key is an error, not a silent no-op.
 
 ## Dependencies {#dependencies}
 

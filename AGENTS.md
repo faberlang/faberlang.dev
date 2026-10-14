@@ -405,25 +405,36 @@ the English tree; `/llms-full.txt` is a locale-neutral corpus reference.
 
 ### Binary versions
 
-- `faber` 1.12.0 is the release the install surface pins (`static/install.md`,
-  the install skill and the skill catalog); the build converts with whatever
-  `faber` is on PATH, currently 1.13.0 (recorded in `upstream.lock.toml`).
-- **The content is ahead of the install pin.** The language pages and the agent
-  canon are checked against the 1.13.0 candidate (radix `d6e32fc3ce`,
-  2026-10-12). The published 1.12.0 (radix `e8c7c2318b`, 2026-10-02) has none of
-  these diagnostics: `SEM057` call_marker_missing, `SEM065` const_shared_into_var,
-  `SEM016` float_to_integer_requires_rounding, `SEM011` bits_arithmetic_refused,
-  `PARSE030` neq_glyph_retired and comparison_ascii_retired. Deploy the site
-  with the 1.13.0 publish, and bump the version facts in the same commit
-  (`static/install.md`, `install/SKILL.md`, `index.json`, this section).
-- **Not in any release yet:** `--library-home` and `[paths] library_home`
-  (radix HEAD only). Until a release carries them the install and packages
-  skills keep `FABER_LIBRARY_HOME`. At the 1.13.0 publish, correct the sentence
-  that says `norma:*` resolves from the Cista store through `faber.lock`: 1.13.0
-  embeds Norma in the binary (`faber doctor` prints `library_home_source`), and
-  `faber.lock` interface roots take precedence only when the package has one.
-- Check content against the release the page targets, not radix HEAD. A radix
-  HEAD finding is a note for the next release, not a fix for today.
+- **Content targets radix HEAD, not a release.** The site is not published until
+  the next release, so every page is checked against the radix commit recorded in
+  `generator/upstream.lock.toml` and a `faber` built from that commit. Pass it
+  with `build-site.sh --faber <path>`: the convert cache is keyed on the binary's
+  content hash, so two builds that both print `faber 1.13.0` never share entries.
+  A claim that holds for the previous release but not for HEAD is a defect.
+- **The install surface pins the published release.** `static/install.md`, the
+  install skill and the skill catalog name one release. They are the only
+  hand-typed release facts. At a publish run
+  `generator/scripts/bump_release.py <version> --published <date> --radix <version>`
+  (it rewrites the version, tag, date, bundled compiler and the four archive
+  URLs together; `--check` verifies the three files agree and a test pins it),
+  update this note, build, commit. Nothing else on the site carries a version.
+- **Ruled but not built at HEAD.** These are not stated as fact anywhere; each
+  has a sentence that is true today and must be revisited when the item lands:
+  the anonymous `record` literal (`language/types.md` "no anonymous object"
+  sentences and `cheatsheet/types.md` on `:` versus `=`); `reduce via first`
+  replacing `primus_quem`/`ubi` (the generated locale rows); `trapped<R,T>`,
+  flat `ERRnnn` codes and no run-time message text (`language/errors.md`);
+  removal of `FABER_LIBRARY_HOME` (the pages already say `--library-home`).
+  `rg -n "primus_quem|no anonymous" src` finds the first two.
+- Check against the HEAD binary, not an older build or a release tag. Holding a
+  HEAD fact back "until the release" is a second content pass at publish.
+- The GPU pages state mechanism only: `@ kernel`, `[device]`, `faber run
+  --device`, fail-closed codes, and what `faber targets` says each device target
+  emits. The landing build gate requires "device inference is not shipped" and
+  "fail-closed". There are no measured "proven" claims: the device fixtures in
+  `examples/` did not check at HEAD (`SEM056`), the cited harness is retired,
+  and the gpu-reset campaign records no product path. Do not reintroduce a
+  status table without a run on the current tree.
 - **Renderer:** `generator/scripts/speculum_py.py` is the single Python
   implementation for page, corpus, and alias rendering. `build.py` imports it;
   `render.sh` calls it directly for a single page. The build driver needs

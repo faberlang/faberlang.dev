@@ -46,9 +46,9 @@ LOCALES: list[dict[str, str]] = [
     {
         "id": "la",
         "title": "Latin",
-        "role": "Canonical surface",
-        "why": "Latin is the interchange dialect because it is **neutral "
-               "relative to every modern national language**. No living "
+        "role": "Identity pack",
+        "why": "The pack files are keyed by Latin spellings because Latin is "
+               "**neutral relative to every modern national language**. No living "
                "population has a claim on it, so no reader pack has to be the "
                "one that everyone else is a translation of.",
         "stress": "None unique — by design. It is the complete template every "

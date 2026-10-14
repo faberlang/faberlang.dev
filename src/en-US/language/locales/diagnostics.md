@@ -20,7 +20,7 @@ One deliberately broken program, checked once per reader pack:
 fixum textus nuntius ← "Salve, munde!
 ```
 
-The failure is lexical, so it is identical in every locale: a string literal with no closing quote, `LEX001`. Only the message text moves. Run `faber check --diagnostics --locale <locale>` to reproduce it.
+The failure is lexical, so it is identical in every locale: a string literal with no closing quote, `LEX001`. Only the message text moves. Run `faber check --diagnostics --diagnostics-locale <locale>` to reproduce it.
 
 ## English (`en`) {#en}
 

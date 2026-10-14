@@ -11,47 +11,44 @@ sources = [
 ]
 +++
 
-Norma is Faber's standard library. It provides Latin-named modules accessed
+Norma is Faber's standard library. It provides English-named modules accessed
 through `norma:*` paths, with nested `norma:parent/child` submodule paths for
-shared types and facades. Stdlib declarations are Faber source under the
-sibling `norma` repository. Norma is a platform default — apps use it without
-declaring it in `faber.toml` `[dependencies]`.
+shared types and facades. Stdlib declarations are Faber source in the compiler
+repository (`lib/norma/src/`) and are embedded in the `faber` binary. Norma is
+a platform default — apps use it without declaring it in `faber.toml`
+`[dependencies]`.
 
-Modules marked **native** ship real Faber bodies today; **deferred** modules
-are declared with `panic` stubs pending implementation; **target** modules are
-committed in target form and do not compile yet.
+Module names are English: `norma:text`, `norma:fs`, `norma:console`. A Latin
+spelling such as `norma:textus` is not a module name; it is rejected as
+`PKG001 unknown_library_module`.
 
 ## Modules {#modules}
 
-| Module | Domain | Status |
-|--------|--------|--------|
-| `norma:aleator` | Entropy and randomness | native |
-| `norma:arca` | Database device (postgres/mysql/sqlite) | deferred |
-| `norma:caelum` | Network sockets (TCP/UDP) | deferred |
-| `norma:chorda` | Text and cord operations, UTF-8 mechanical trio | native |
-| `norma:codex` | Encoding and decoding (base64, hex, URL) | deferred |
-| `norma:consolum` | Console I/O (stdin, stdout, stderr) | native |
-| `norma:crypta` | Cryptography (hash, HMAC, cipher, sign) | partial |
-| `norma:csv` | CSV wire format | native |
-| `norma:fila` | Double-ended queue | target |
-| `norma:http` | HTTP client and server | deferred |
-| `norma:json` | JSON parsing and serialisation | native |
-| `norma:mathesis` | Scalar math catalog | native |
-| `norma:model` | Model metadata (safetensors/GGUF) | partial |
-| `norma:nuncius` | IPC (shared memory, ports, sync primitives) | deferred |
-| `norma:optimizer` | SGD optimizer steps | native |
-| `norma:ordinata` | Key-ordered map | target |
-| `norma:pressura` | Compression (gzip/deflate/brotli/zstd) | deferred |
-| `norma:processus` | Process execution and environment | native |
-| `norma:solum` | Filesystem operations | native |
-| `norma:solum/path` | Pure pathname operations | native |
-| `norma:tempus` | Time and duration | partial |
-| `norma:tensor` | Tensor bridge helpers | native |
-| `norma:thesaurus` | Cache and pub/sub | deferred |
-| `norma:toml` | TOML parsing and serialisation | deferred |
-| `norma:valor` | Codec-agnostic value-tree navigation | native |
-| `norma:vector` | Vector register intrinsics | native |
-| `norma:yaml` | YAML parsing and serialisation | deferred |
+| Module | Domain |
+|--------|--------|
+| `norma:console` | Console I/O (stdin, stdout, stderr) |
+| `norma:crypto` | Cryptography (hash, HMAC, cipher, sign) |
+| `norma:csv` | CSV wire format |
+| `norma:deque` | Double-ended queue |
+| `norma:encoding` | Encoding and decoding (base64, hex, URL) |
+| `norma:fault` | The I/O fault union (`IoFault`) |
+| `norma:fs` | Filesystem operations |
+| `norma:fs/path` | Pure pathname operations |
+| `norma:http` | HTTP client and server |
+| `norma:json` | JSON parsing and serialisation |
+| `norma:math` | Scalar math catalog |
+| `norma:net` | Network sockets (TCP) |
+| `norma:order` | The ordering contract (`Orderable<T>`) |
+| `norma:process` | Process execution and environment |
+| `norma:random` | Entropy and randomness |
+| `norma:sorted_map` | Key-ordered map |
+| `norma:tensor` | Tensor bridge helpers |
+| `norma:text` | Text and cord operations, UTF-8 `encode` / `decode` |
+| `norma:time` | Time and duration |
+| `norma:toml` | TOML parsing and serialisation |
+| `norma:value` | Codec-agnostic value-tree navigation |
+| `norma:vector` | Vector register intrinsics |
+| `norma:websocket` | WebSocket client and HTTP-upgrade accept |
 
 ### Nested submodules {#nested-submodules}
 
@@ -60,13 +57,20 @@ subdirectory is a separately importable module:
 
 | Import | Role |
 |--------|------|
-| `norma:caelum/terminus` | TCP endpoint type (`Terminus`) |
-| `norma:caelum/connexus` | Connected socket type (`Connexus`) |
-| `norma:caelum/auscultator` | TCP listener type (`Auscultator`) |
-| `norma:json/pange` | JSON serialize facade |
-| `norma:json/solve` | JSON parse facade |
-| `norma:json/cursor` | Parser cursor type (`Resultus`) |
-| `norma:json/lexica` | Shared lexical floor (internal) |
+| `norma:net/endpoint` | TCP endpoint type (`Endpoint`) |
+| `norma:net/connection` | Connected socket type (`Socket`) |
+| `norma:net/listener` | TCP listener type (`Listener`) |
+| `norma:json/serialize` | JSON serialize implementation |
+| `norma:json/solve` | JSON parse implementation |
+| `norma:json/cursor` | Parser cursor type (`ScanResult`) |
+| `norma:json/lexer` | Shared lexical floor (internal) |
+| `norma:http/headers` | HTTP header map |
+| `norma:http/request` | Received HTTP request |
+| `norma:http/response` | HTTP response |
+| `norma:http/client` | HTTP client verbs |
+| `norma:http/server` | HTTP/1.1 listener |
+| `norma:http/chunked` | Chunked transfer codec |
+| `norma:http/sse` | Server-sent events codec |
 
 ## Morphologia naming convention {#morphologia-naming-convention}
 
@@ -97,18 +101,23 @@ Ownership pairs (mutate vs copy-out):
 | `sort` | `sorted` | Sort |
 
 Async finite verbs return `promise<T>`; async streams yield values through
-`yield`. The `pange` / `solve` / `tempta` mechanical trio covers wire encode /
-decode across `json`, `toml`, `yaml`, `csv`, and `chorda`.
+`yield`. The mechanical trio covers wire encode / decode: `stringify` /
+`parse` in `json`, `toml`, and `csv` (plus `try_parse` in `json` and `toml`),
+and `encode` / `decode` / `try_decode` in `text`.
 
 ## Usage {#usage}
 
 ```faber
-importa ex "norma:solum" solum
+importa ex "norma:fs" fs
+importa ex "norma:fault" fault
 
-functio legeConfig() → textus {
-    redde solum.read_file("config.toml") ↦ textus
+functio legeConfig() → textus ⇥ fault.IoFault {
+    redde fs.read_file<textus>("config.toml")
 }
 ```
+
+`read_file` is failable: its error channel is `fault.IoFault`, the union
+of I/O fault kinds, so the caller handles it or passes it on.
 
 Test code can live beside product source in colocated `*.proba` files —
 discovered only by `faber test`, never importable, and excluded from Cista

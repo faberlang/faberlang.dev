@@ -50,8 +50,11 @@ from *an argument you need not pass* without reading the signature twice.
 A value has a type, and moving between types is written down. `∷` is a
 compile-time ascription; `↦` is a runtime conversion that may fail. Numeric
 families do not mix silently — the unbounded integer and a bounded cell meet at
-an explicit `↦`, not at a hidden promotion. When a value can be absent or a
-conversion can fail, the compiler makes you say so rather than guessing.
+an explicit `↦`, not at a hidden promotion, and an integer meets a float the
+same way. A float converts to an integer only with a rounding word,
+`x ↦ int via floor`, because the compiler will not choose one for you. When a
+value can be absent or a conversion can fail, the compiler makes you say so
+rather than guessing.
 
 ```faber
 functio saturate(numerus x) → numerus {

@@ -68,7 +68,7 @@ main {
 
 ## Latin {#la}
 
-**Canonical surface.** Latin is the interchange dialect because it is **neutral relative to every modern national language**. No living population has a claim on it, so no reader pack has to be the one that everyone else is a translation of.
+**Identity pack.** The pack files are keyed by Latin spellings because Latin is **neutral relative to every modern national language**. No living population has a claim on it, so no reader pack has to be the one that everyone else is a translation of.
 
 *Architectural stress:* None unique — by design. It is the complete template every translated pack is built from.
 

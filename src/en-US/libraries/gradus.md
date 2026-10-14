@@ -58,11 +58,18 @@ is no type re-export — import the leaf that owns what you use.
 | `gradus:gradient` | The `@ radix backward` wrapper: forward call plus its companion gradient call |
 | `gradus:loss` | Loss functions |
 | `gradus:optimize` | Optimizers and learning-rate schedules |
-| `gradus:nn` | Differentiable primitives: linear, activation, norm |
-| `gradus:attention` | Scaled dot-product attention |
-| `gradus:transformer` | Transformer block |
-| `gradus:train` | Training-step mechanics |
-| `gradus:data` | Batching, shuffling, tokenization |
+| `gradus:nn` | Differentiable primitives: linear, activation, norm, embedding, dropout |
+| `gradus:attention` | Facade; the leaves are `gradus:attention/rope` and `gradus:attention/gqa` |
+| `gradus:mlp` | Two-layer MLP forward and training-path companion |
+| `gradus:transformer` | Transformer blocks, positional encoding, heads |
+| `gradus:train` | Training loops, checkpointing |
+| `gradus:metrics` | Defined metrics over tensor values |
+| `gradus:data` | Batching, shuffling, tokenization helpers |
+| `gradus:storage` | Opaque encoded numeric storage |
+| `gradus:tokenizer` | Facade; the leaves are `tokenizer/identity`, `tokenizer/unicode`, `tokenizer/bpe` |
+| `gradus:sampling` | Token sampling policies |
+| `gradus:decode`, `gradus:generation`, `gradus:cache` | Decode loop, generation, and KV-cache contracts (`generation` and `cache` are facades over leaves) |
+| `gradus:model/*` | Model admission and architecture leaves: GGUF, Safetensors, capsules, dense and MoE graphs |
 | `gradus:gradus` | Package map facade only — holds no genera |
 
 ```faber mode=package
@@ -77,34 +84,35 @@ The `gradus:tensor` / `gradus:gradient` split is the one to internalise:
 tensor values are plain data, and differentiability is a property of the
 *function* you annotate, not of the values flowing through it.
 
-## Shapes are concrete, not generic {#static-shapes}
+## Shapes {#static-shapes}
 
-Faber does not have shape generics yet, so the shipped Gradus functions are
-concrete overloads named for the shapes they accept — `linear_2x2`,
-`linear_4x4`, `mse_2x8`. This follows the same concrete-overload precedent as
-`norma:optimizer`.
+Tensor functions are generic over their sizes. `loss.mse` takes
+`tensor<f32, [M, N]>` operands with `size M, size N` parameters, and
+`nn.linear` is generic over `M`, `K` and `N` the same way, so a model whose
+shapes are not already covered does not need a matching overload added to the
+library.
 
-This is the single biggest constraint on using Gradus today. A model whose
-shapes are not already covered needs the matching overload added to the
-library; you cannot instantiate one from the caller. The overloads that exist
-were added to serve specific proofs — a 2×2 linear regression, a 4×4 MLP, and
-a BERT-tiny fragment at B=2, D=8, H=1 — rather than to cover a shape space.
+Alongside the typed-tensor forms, several operations have a `_carrier`
+variant over `tensor.NumericBlock`, the decoded F32 host-list carrier that the
+CPU and reference tiers execute on. Those variants report failure through a
+typed error (`LossError`, `NnError`) instead of a shape type.
 
 ## Status {#status}
 
 Gradus is pre-1.0 and its API may change. What is proven is narrower than
-what the module list suggests: several modules are contract scaffolding with
-their production surface still landing.
+what the module list suggests: most of it is structural, with source contracts
+that check and are pinned by proba tests, and a narrow set of executed proofs.
 
 | Layer | State |
 |-------|-------|
-| Reverse-mode AD over AIR tensor ops | **Shipped** in Radix — 16 of 18 ops carry VJPs; broadcast and reduce are partial |
+| Reverse-mode AD over AIR tensor ops | **Shipped** in Radix; the admitted VJP family and its gaps live in the Radix autograd crate, not in Gradus |
 | Tensor, dtype, shape, parameter, serialize contracts | **Shipped** as versioned schemas |
 | Pure operation families (`gradus:math`) | **Shipped** — elementwise, reduce, matmul, cast, concat/slice |
-| Loss, optimizer, NN primitives | **Shipped** as static-shape overloads only |
-| BERT-tiny attention and transformer slice | **Shipped** at fixed shapes (B=2, D=8, H=1); a general surface is not built |
-| Training loop, metrics, checkpointing | **Planned** — no checkpointing, no safetensors, no model distribution |
-| GPU training | Owned by Radix and the hosts, not by Gradus |
+| Loss, optimizer, NN primitives | **Shipped** (structural), generic over tensor sizes |
+| Attention and transformer blocks | **Shipped** (structural) |
+| Training loop, metrics, checkpointing | **Shipped** (structural): SGD state and step, `Checkpoint`, `accuracy` / `Metric` |
+| Model admission | **Shipped**: GGUF and Safetensors admission into typed capsules |
+| GPU training | **Not claimed**; device execution and emission are Radix scope |
 
 The gradient seam — forward loss, generated companion backward across an
 `importa` boundary, and a per-element comparison against finite differences —

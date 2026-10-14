@@ -146,12 +146,58 @@ functio exigePositivum(numerus value) ⇥ textus {
 }
 ```
 
+### Fault unions {#fault-unions}
+
+The type after `⇥` is not limited to `textus`. Norma's I/O functions fail with
+a union: `fs.read_file<T>(path)` is `→ T ⇥ fault.IoFault`, and `IoFault` has one
+variant per kind of failure (`NotFound`, `Permission`, `IsADirectory`, and so
+on), each carrying the path it failed on. A `cape` binding of that type is
+matched with `discerne`:
+
+```faber locale=en
+import from "norma:fs" fs
+
+fn read_or_empty(string path) → string {
+    do {
+        return fs.read_file<string>(path)
+    } catch err {
+        match err {
+            case NotFound const missing {
+                print "no such file: §"(missing)
+                return ""
+            }
+            case Permission const denied {
+                print "not allowed: §"(denied)
+                return ""
+            }
+            default {
+                print "I/O failure"
+                return ""
+            }
+        }
+    }
+}
+
+main {
+    print "read: [§]"(read_or_empty("/no/such/file.txt"))
+}
+```
+
+```text
+$ faber run
+no such file: /no/such/file.txt
+read: []
+```
+
 ### Current status {#current-status}
 
 `→`, `redde`, `⇥`, `iace`, and `fac` / `cape` are live grammar and checker
-surfaces. Rust and Go lowering for full `⇥` / `iace` / `cape` runtime
-behaviour is still a backend gap — these pass type-checking but do not
-yet emit failable runtime code to all targets.
+surfaces, and `faber run` executes them. Rust lowers a failable function to a
+`Result<T, E>` and handles `fac` / `cape` around it. Go and TypeScript lowering
+is partial: Go reports `CODEGEN001 go_structured_cape_handlers_unsupported` for
+some `cape` shapes, and the corpus suite pins the remaining failable-call gaps
+on those targets as known failures. Check a program with `faber emit -t <target>`
+before relying on a target other than Rust.
 
 ## Inline testing
 
@@ -159,7 +205,7 @@ Faber has a first-class testing framework built into the language with three
 keywords: `probandum` declares a test suite, `proba` declares a single test
 case, and `adfirma` asserts a condition. Tests live alongside the code they
 test — either in the same `.fab` file or in colocated `*.proba` test-source
-files — run through `faber test` on the MIR stepper, and support the same
+files — run through `faber test` on the MIR runner, and support the same
 compiler pipeline as production code: locale-aware, type-checked, and
 target-neutral.
 
@@ -233,7 +279,7 @@ incipit {
 ### Workflow {#workflow}
 
 Tests run through the `faber test` command, which executes proba cases on
-the MIR stepper — no Cargo or rustc is invoked for the package:
+the MIR runner — no Cargo or rustc is invoked for the package:
 
 ```text
 faber test                        # run all tests in the current package
@@ -297,9 +343,9 @@ conventional approaches:
 
 - **No separate test binary.** Tests are declarations in the same source file (or in `*.proba` test sources), not a separate compilation target. The compiler filters test blocks from production output.
 - **Tags, not directories.** Tests are organised by `tag` markers rather than directory structure. A test can belong to multiple organisational axes without being moved.
-- **Full compiler pipeline.** Tests are type-checked, analysed, and locale-aware — the same `--locale` flag applies to test output.
-- **Stepper-executed.** `faber test` runs proba cases on the MIR stepper; no generated test crate, Cargo, or Rust toolchain is required.
-- **Target-neutral.** The stepper analysis is independent of any codegen target.
+- **Full compiler pipeline.** Tests are type-checked, analysed, and locale-aware — the same `--locale` code-locale flag applies.
+- **Runner-executed.** `faber test` runs proba cases on the MIR runner; no generated test crate, Cargo, or Rust toolchain is required.
+- **Target-neutral.** The runner analysis is independent of any codegen target.
 - **Nested suites.** `probandum` blocks can nest, mirroring the structure of the code they test.
 
 ### References {#references}

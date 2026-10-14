@@ -24,7 +24,7 @@ meta_join = "**Join**: `corpus/index.toml` terms → exempla."
 latin_note = """
 **About the term column.** The term column below is the English reader
 spelling — the same words you write in Faber source on this site. Each
-term's identity in the compiler's corpus directory keeps its canonical
+term's identity in the compiler's corpus directory keeps its
 Latin key: that key is what the measurement rows are indexed and joined
 under, so a row is the same row whichever language you read the site in.
 """
@@ -113,79 +113,48 @@ these corpus rows as a quality score.
 # deliberately do not score device emitters.
 
 device_support = """
-## Device kernel support (product summary) {#device-kernel-support}
+## Device kernel support {#device-kernel-support}
 
-This section is the **GPU product view**. It is intentionally separate from the
-corpus % tables below.
+This section is the **GPU product view**, kept apart from the corpus % tables
+below, which deliberately do not score device emitters. It states how the device
+route is defined and what each device target emits. It carries no measurement;
+`faber targets` reports what your binary supports.
 
-**Status of measurement (2026-08-07):** dual-backend training proofs and local
-device fixtures are accepted on named machines. A multi-card CUDA verification
-matrix (ephemeral cloud pods) is **active and expanding** — more rows land as
-RunPod lanes and Faber package fixtures close. Numbers here are **evidence snapshots**, not a permanent completion score.
+### How a device program runs
 
-### Product backends
+A kernel is a function marked `@ kernel`. A package carries a device program
+when its manifest has a `[device]` section. `faber run --device <device>`
+selects where it runs.
 
-| Backend | How you run it | Emit / artifact chain | Accepted product proof (current) | Not claimed |
-|---|---|---|---|---|
-| **Metal** | `faber run --device metal` | MIR → Metal MSL in the package device image | Dual-backend **MLP training** (100 deterministic steps, gradient mapping, numeric oracle) on Apple Silicon (burgus M-class). Starter fixtures under [`examples/training/`](https://github.com/faberlang/examples/tree/main/training). | General training framework; all SM/GPU models; multi-device |
-| **CUDA** | `faber run --device cuda` | MIR → NVVM → PTX in the package device image (llvm device chain) | Same dual-backend **MLP training** proof on NVIDIA (pharos RTX 5070 class). Same fixture family. | General GGUF inference product; multi-GPU product |
-| **WebGPU** | browser / headless host path | MIR → WGSL text | Workload-shaped chain proofs on the WebGPU route (e.g. tiny linear + ReLU device fragments) | Dual-backend training product claim; Metal/CUDA parity |
-
-### Workload / kernel families (measured so far)
-
-Statuses use three labels only:
-
-| Label | Meaning |
+| Device | What it is |
 |---|---|
-| **Proven** | Real-device evidence packet / oracle PASS on a named backend |
-| **Emit / staging** | Compiler or host can produce artifacts; full numeric device gate not claimed here |
-| **Building** | In active development; do not treat as shipped |
+| `reference` | Plain sequential code on the MIR runner; the oracle device results are checked against |
+| `cpu` | Processor cores as a device; until the worker device lands, the same route as `reference` |
+| `metal` | Apple Metal |
+| `cuda` | NVIDIA CUDA |
+| `auto` | Resolve against the machine's probes; fails closed when none, or more than one, is admitted |
 
-| Family / fixture | Metal | CUDA | WebGPU | Notes |
-|---|---|---|---|---|
-| Forward kernels + `device-summa` class | **Proven** (local) | **Proven** (local pharos; cloud matrix expanding) | — | Ordinary `faber run --device …` package path |
-| Dual-backend MLP train (Gradus surface, 100 steps) | **Proven** | **Proven** | — | Oracle authority: `examples/training/mlp` (`device_image.metal` / `.cuda` PASS) |
-| Elementwise / fused matmul+elementwise / train_step · VJP surface | **Proven** (training path) | **Proven** (training path; residual Stage-6 rows may still be in repair) | Emit / staging | Product claim is the **accepted training path**, not every Stage-6 capstone |
-| GPU workload rungs 0–4 (`examples/gpu-workload`) | Emit / staging | Emit / staging | Partial **Proven** chain (rungs 1–2 style device fragments) | Systems-track oracles; CUDA-route output-checked floors still low — see package README honesty |
-| Transformer / BERT-tiny training capstone | Building | Building | — | Metal has stronger local evidence than CUDA on some Stage-6 rows; CUDA numeric repair in flight — **not** a public PASS claim |
-| GPU inference (GGUF recipes, device prefill) | Building | Building | — | CPU oracle track real; end-to-end **device** inference not shipped |
+An explicit device request never silently falls back. It fails closed before
+launch (`E_BACKEND_UNAVAILABLE`) when the device is not admitted on the machine,
+and a package with no device program fails closed. Precedence is the command
+line, then the manifest `[device] device`, then `auto`.
 
-### CUDA hardware verification matrix (cloud, expanding)
+### Device targets
 
-Opt-in **RunPod** lanes exercise short CUDA proofs on cards the operator does
-not own. This is **verification infrastructure**, not a new product backend.
-
-| Card / class | Role | Latest public snapshot (2026-08-06 first matrix) | Notes |
-|---|---|---|---|
-| RTX 4090 (consumer Ada) | Bootstrap / harness | **PASS** (toolchain probe) | Optional consumer lane |
-| RTX 5090 (consumer Blackwell) | SM coverage | **PASS** (toolchain probe) | Driver/CC diversity |
-| RTX 3090 (consumer Ampere) | Older consumer | **PASS** (toolchain probe) | |
-| L40S (datacenter Ada) | Middle datacenter | **PASS** (toolchain probe) | Named lane `dc-l40s` |
-| H100 80GB (datacenter Hopper) | Newer datacenter | **PASS** (toolchain probe) | Named lane `dc-h100` |
-| A100 80GB (datacenter Ampere, **sm_80 PTX baseline**) | Baseline lane `dc-a100` | First-hour **AVAILABILITY** (out of stock); **rung-0 matmul closure later reported PASS** on `dc-a100` | Baseline PTX policy A; same-artifact Faber package matrix still expanding |
-
-**Honesty bounds on the cloud matrix:**
-
-1. The **first** multi-card receipt was largely a **per-pod compile+run viability** probe (same small CUDA program, pod-local toolchain), not a claim
-   that every card already ran the full dual-backend MLP oracle.
-2. **Same-artifact** Faber package portability (`device-summa` / training
-   fixtures on one PTX blob across cards) is the follow-on track — active now.
-3. Metal stays on **local** Apple Silicon acceptance hosts; RunPod lanes are
-   **CUDA only**.
-4. Expect this table to **grow** as more lanes, fixtures, and receipts land.
-   Prefer linking factory receipts over inventing percentages.
-
-### Where to look for live evidence
-
-| Artifact | What it proves |
+| Target | What it is |
 |---|---|
-| [`examples/training/mlp`](https://github.com/faberlang/examples/tree/main/training/mlp) | Dual-backend training oracle + `device_image` Metal/CUDA PASS notes |
-| [`examples/training/device-summa`](https://github.com/faberlang/examples/tree/main/training/device-summa) | Starter device package for ordinary `faber run --device` |
-| [`examples/gpu-workload`](https://github.com/faberlang/examples/tree/main/gpu-workload) | Workload rung oracles (matmul, softmax, MLP forward, …) |
-| [Device execution CLI](/toolchain/cli.html#device-execution) | Product command contract |
-| [Compiling · device execution](/toolchain/compiling.html#device-execution) | Emit vs run boundary |
+| `metal-text` | Metal Shading Language source for the device-safe kernel subset. Device execution is `faber run --device metal`; `-t metal-text` itself is emit-only |
+| `llvm-text` | LLVM text. Also the staging chain for CUDA device execution, `faber run --device cuda`; `-t llvm-text` itself is emit-only. There is no separate `cuda` target |
+| `wgsl-text` | WGSL compute-shader source for the device-safe subset, validated by an external `naga`. It is not a GPU launch or a package runtime |
 
-Internal factory control plane (not a public product surface): RunPod lane
-registry and matrix receipts under the radix factory tree
-(`docs/factory/runpod-gpu-verification/`).
+Device execution is under active development. The corpus % tables on this page
+score whole-language terms against kernel-only emitters, so a low percentage on
+a device row is not a statement about the device route.
+
+### Where to read more
+
+| Page | What it covers |
+|---|---|
+| [Device execution CLI](/toolchain/cli.html#device-execution) | The command contract |
+| [Compiling · device execution](/toolchain/compiling.html#device-execution) | Emit versus run |
 """

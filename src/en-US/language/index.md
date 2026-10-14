@@ -84,11 +84,11 @@ ascription and `↦` for a runtime conversion that can fail. Full table in
 
 The words in the program above — `fn`, `if`, `return`, `const`, `int` — are
 the spellings an English reader writes; every page on this site teaches the
-English reader surface. Latin is the compiler's canonical form: the identity
-key programs are stored and exchanged under. `faber convert --to la` prints
-any program in that canonical spelling, and
-[reader locales](/language/reader-locales.html) render the same program in
-seven other languages. The glyphs and the type-first shape survive every
+English reader surface. Latin is one reader locale like the rest; the pack
+files are keyed by Latin spellings, so the grammar document prints its Latin
+identity rendering beside the others. `faber convert --to la` prints any
+program in Latin, and [reader locales](/language/reader-locales.html) render
+the same program in seven other languages. The glyphs and the type-first shape survive every
 rendering untouched — and identifiers like `saturate` are never translated.
 
 ## Where the rest lives {#deeper}

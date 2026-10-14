@@ -226,7 +226,7 @@ Faber marks how a value is passed with short prepositions on parameters:
 
 | Marker | Intent | Typical Rust lowering |
 |--------|--------|----------------------|
-| *(none)* | Owned value | `T` by value |
+| *(none)* | Read-only value (deep const) | `T` by value |
 | `de` | Shared borrow (read-only) | `&T` |
 | `in` | Mutable borrow | `&mut T` |
 | `own` | Consume (move into callee) | `T` by move |
@@ -247,11 +247,26 @@ functio consume(own textus buffer) → textus {
     redde buffer
 }
 
-# Owned
+# Unmarked: read-only
 functio salve(textus nomen) → textus {
     redde "Salve, §!"(nomen)
 }
+
+incipit {
+    varia numerus n ← 4
+    fixum textus t ← "abc"
+    imprime(t)
+    duplica(in n)
+    nota consume(own t)
+    nota salve("Marcus")
+}
 ```
+
+An unmarked parameter is read-only all the way down: it cannot be assigned to,
+and sharing a list parameter into a writable binding (`varia ys ← xs`) is
+`SEM065 const_shared_into_var`. A writable copy is written `varia ys ← copy xs`. `in` and `own` are repeated at the call site,
+as in `duplica(in n)` and `consume(own t)`; leaving the marker off is `SEM057
+call_marker_missing`. A `de` argument takes no call-site marker.
 
 The same words (`de`, `ex`) are reused in other constructs — do not read
 every `ex` as "consume":

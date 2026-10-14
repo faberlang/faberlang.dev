@@ -28,12 +28,9 @@ a permanent fence around Faber. See [Open source](/open-source.html).
 Faber's public capability ladder is intentionally explicit:
 
 - **Shipped:** reader-localized source, diagnostics, and formatting.
-- **Proven now:** bounded dual-backend device training on Metal and CUDA
-  (device-resident steps with gradient mapping and numeric comparison on an
-  accepted MLP path).
-- **Building next:** Faber-owned GPU inference behind a pinned model contract
-  and correctness oracle (CPU oracle stack exists; end-to-end device inference
-  is not shipped).
+- **In development:** device execution. A package can carry a device program and
+  run it with `faber run --device`; the route fails closed rather than falling
+  back to the CPU.
 - **Frontier:** multi-device execution, virtual GPUs, sharding, and distributed
   training or serving are future direction, not current runtime claims.
 
@@ -108,39 +105,23 @@ transformed, and lowered without losing the reader's sense of intent.
 
 ## GPU device execution {#gpu-device-execution}
 
-Faber now runs device programs on real GPUs. A package carries a device
-program when its source declares a compute kernel with `@ kernel` and its
-manifest declares a `[device]` section; the packaged image embeds Metal MSL
-and CUDA PTX artifacts, each with a provenance hash. `faber run` selects the
-device explicitly and fails closed with a stable code rather than silently
-falling back to CPU:
+A package carries a device program when its source declares a compute kernel
+with `@ kernel` and its manifest declares a `[device]` section. `faber run`
+selects the device explicitly and fails closed with a stable code rather than
+silently falling back to the CPU:
 
 ```bash
-faber run --device metal <package>   # Apple Metal (e.g. Apple M5 Max)
-faber run --device cuda  <package>   # NVIDIA CUDA (e.g. RTX 5070)
-faber run --device auto  <package>   # resolve: exactly one admitted device
+faber run --device reference <package>  # plain sequential code on the MIR runner
+faber run --device metal <package>      # Apple Metal
+faber run --device cuda  <package>      # NVIDIA CUDA
+faber run --device auto  <package>      # resolve: exactly one admitted device
 ```
 
-The accepted device proof covers forward kernels and a bounded training path —
-including a Gradus-backed dual-backend MLP path with device-resident state,
-per-step observation cadence, gradient-slot → buffer mapping, end-of-run
-readback, and numeric comparison against a pinned CPU oracle on both Metal and
-CUDA. It is a real-device proof, not a general training framework or a broad
-hardware-coverage claim. Starter fixture:
-[`examples/training/device-summa`](https://github.com/faberlang/examples/tree/main/training/device-summa);
-MLP dual-backend oracle authority also lives under
-[`examples/training/mlp`](https://github.com/faberlang/examples/tree/main/training/mlp).
-See [device execution](/toolchain/cli.html#device-execution),
+`reference` is the oracle that device results are checked against. Device
+execution is under active development; end-to-end device inference is not
+shipped, and this page makes no claim about training on it. See [device execution](/toolchain/cli.html#device-execution),
 [Compiling and targets](/toolchain/compiling.html), and the
-[device kernel support summary](/toolchain/target-matrix.html#device-kernel-support)
-(product GPU view — separate from the full-language corpus % tables).
-
-### Inference and multi-device status {#inference-and-multi-device}
-
-Faber-owned GPU inference is in active development behind a pinned model
-contract (currently SmolLM2-class GGUF admission for the oracle track) and a
-correctness oracle. The **CPU** oracle path — admission, dequant, decoder ops,
-and greedy decode agreement on a pinned run — is engineering-real; **end-to-end device inference is not shipped**, and this is not a general GGUF product claim.
+[device kernel support summary](/toolchain/target-matrix.html#device-kernel-support).
 
 Multi-device execution is a frontier direction. Virtual GPUs, tensor/model or
 pipeline sharding, collectives, and distributed serving require their own

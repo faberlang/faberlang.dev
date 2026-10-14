@@ -47,14 +47,14 @@ stay ASCII everywhere.
 
 ## It is never a one-way door {#lossless}
 
-Any surface can become any other, including canonical Latin, at any time.
-`faber format --locale la` re-emits the canonical surface, so a localised file
+Any surface can become any other, including Latin, at any time.
+`faber convert --to la` re-emits the Latin surface, so a localised file
 is never trapped in one vocabulary. This is the same canonical-versus-sugar
 property as the glyph law: one defined form, many renderings of it.
 
 ## What it looks like {#shape}
 
-The same source, in canonical Latin and rendered into Thai:
+The same source, in Latin and rendered into Thai:
 
 ```faber
 functio salve(textus nomen) → textus {
@@ -87,8 +87,7 @@ $ faber run
 Salve, munde!
 ```
 
-Eight packs ship today: `en` (the base English surface), `la` (canonical
-Latin), and `th-TH`, `zh-Hans`, `zh-Hant`, `ar`, `hi`, `vi` as the reference
+Eight packs ship today: `en` (the base English surface), `la` (Latin), and `th-TH`, `zh-Hans`, `zh-Hant`, `ar`, `hi`, `vi` as the reference
 set. The reference locales are chosen for architectural stress — a spaceless
 script, right-to-left runs, half/full-width pairs and NFKC width collapse —
 not for population.
