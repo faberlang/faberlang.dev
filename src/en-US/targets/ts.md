@@ -49,13 +49,13 @@ incipit {
 import { display, tensor } from "@faber/runtime";
 
 (() => {
-    const flat_a: Array<number> = [1, 2, 3, 4, 5, 6];
-    const flat_b: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
-    const a: tensor.Tensor<number> = tensor.Tensor.fromArray<number>(flat_a, [2, 3], (value) => Number(value));
-    const b: tensor.Tensor<number> = tensor.Tensor.fromArray<number>(flat_b, [3, 4], (value) => Number(value));
-    const product: tensor.Tensor<number> = a.matmul(b);
-    const mean: number = product.media();
-    console.log(display.value(((x: number): string => { const v = Math.fround(x); if (!Number.isFinite(v)) { return display.value(v, "fractus"); } let e = v.toExponential(); for (let p = 0; p < 9; p++) { e = v.toExponential(p); if (Math.fround(Number(e)) === v) { break; } } const m = /^(-?)(\d)(?:\.(\d+))?e([+-]\d+)$/.exec(e) as RegExpExecArray; const sign = Object.is(v, -0) ? "-" : m[1]; const digits = m[2] + (m[3] ?? ""); const n = Number(m[4]); let body: string; if (n < 0) { body = "0." + "0".repeat(-n - 1) + digits; } else if (digits.length <= n + 1) { body = digits + "0".repeat(n + 1 - digits.length) + ".0"; } else { body = digits.slice(0, n + 1) + "." + digits.slice(n + 1); } return sign + body; })(mean), "textus"));
+    const l_flat_a: Array<number> = [1, 2, 3, 4, 5, 6];
+    const l_flat_b: Array<number> = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    const l_a: tensor.Tensor<number> = tensor.Tensor.fromArray<number>(l_flat_a, [2, 3], (value) => Number(value));
+    const l_b: tensor.Tensor<number> = tensor.Tensor.fromArray<number>(l_flat_b, [3, 4], (value) => Number(value));
+    const l_product: tensor.Tensor<number> = l_a.matmul(l_b);
+    const l_mean: number = l_product.media();
+    console.log(display.value(((x: number): string => { const v = Math.fround(x); if (!Number.isFinite(v)) { return display.value(v, "fractus"); } let e = v.toExponential(); for (let p = 0; p < 9; p++) { e = v.toExponential(p); if (Math.fround(Number(e)) === v) { break; } } const m = /^(-?)(\d)(?:\.(\d+))?e([+-]\d+)$/.exec(e) as RegExpExecArray; const sign = Object.is(v, -0) ? "-" : m[1]; const digits = m[2] + (m[3] ?? ""); const n = Number(m[4]); let body: string; if (n < 0) { body = "0." + "0".repeat(-n - 1) + digits; } else if (digits.length <= n + 1) { body = digits + "0".repeat(n + 1 - digits.length) + ".0"; } else { body = digits.slice(0, n + 1) + "." + digits.slice(n + 1); } return sign + body; })(l_mean), "textus"));
 })();
 ```
 
@@ -88,11 +88,11 @@ incipit {
 
 import { display, exact, result } from "@faber/runtime";
 
-function divide(a: number, b: number): result.Result<number, string> {
-    if ((b as number) === 0) {
+function divide(p_a: number, p_b: number): result.Result<number, string> {
+    if ((p_b as number) === 0) {
         return { ok: false as const, error: "division by zero" };
     }
-    return (() => { try { return { ok: true as const, value: exact.store(exact.div(a, b), -9007199254740991, 9007199254740991, "i64", "return", "") }; } catch (__e) { if (!(__e instanceof Error) || (__e as any).__faberAssertion === true) { throw __e; } return { ok: false as const, error: __e.message }; } })();
+    return (() => { try { return { ok: true as const, value: exact.store(exact.div(p_a, p_b), -9007199254740991, 9007199254740991, "i64", "return", "") }; } catch (__e) { if (!(__e instanceof Error) || (__e as any).__faberAssertion === true) { throw __e; } return { ok: false as const, error: __e.message }; } })();
 }
 (() => {
     const t0 = (() => { try { {
@@ -100,9 +100,9 @@ function divide(a: number, b: number): result.Result<number, string> {
          
     }return { ok: true as const, value: undefined }; } catch (__e: any) { if (__e !== null && typeof __e === "object" && __e.__faberFail === true) { return { ok: false as const, error: __e.error }; } throw __e; } })() as result.Result<any, string>;
     if (!t0.ok) {
-        const err = t0.error;
+        const l_err = t0.error;
         {
-            console.warn(err);
+            console.warn(l_err);
         }}
 })();
 ```
@@ -135,16 +135,16 @@ incipit {
 
 import { display, exact } from "@faber/runtime";
 
-function summa(numeri: Array<number>): number {
-    let total: number = 0;
-    for (const n of numeri) {
-        total = exact.store(exact.add(total, n), -9007199254740991, 9007199254740991, "i64", "assignment to `total`", "");
+function summa(p_numeri: Array<number>): number {
+    let l_total: number = 0;
+    for (const l_n of p_numeri) {
+        l_total = exact.store(exact.add(l_total, l_n), -9007199254740991, 9007199254740991, "i64", "assignment to `total`", "");
     }
-    return total;
+    return l_total;
 }
 (() => {
-    const valores: Array<number> = [1, 2, 3, 4, 5];
-    console.log(display.value(summa(valores), "numerus"));
+    const l_valores: Array<number> = [1, 2, 3, 4, 5];
+    console.log(display.value(summa(l_valores), "numerus"));
 })();
 ```
 

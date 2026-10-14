@@ -63,13 +63,13 @@ import (
 )
 
 func main() {
-    flat_a := []float32{float32(1.0), float32(2.0), float32(3.0), float32(4.0), float32(5.0), float32(6.0)}
-    flat_b := []float32{float32(1.0), float32(2.0), float32(3.0), float32(4.0), float32(5.0), float32(6.0), float32(7.0), float32(8.0), float32(9.0), float32(10.0), float32(11.0), float32(12.0)}
-    a := rt.TensorTensor[float32]{}.Strue(func() []float32 { src := flat_a; out := make([]float32, len(src)); for i, value := range src { out[i] = value }; return out }(), []int{2, 3})
-    b := rt.TensorTensor[float32]{}.Strue(func() []float32 { src := flat_b; out := make([]float32, len(src)); for i, value := range src { out[i] = value }; return out }(), []int{3, 4})
-    product := a.Matmul(b)
-    mean := float32(product.Media())
-    fmt.Println(func(v float32) string { s := strconv.FormatFloat(float64(v), 'f', -1, 32); if s == "NaN" { return s }; if s == "+Inf" { return "inf" }; if s == "-Inf" { return "-inf" }; if !strings.Contains(s, ".") { return s + ".0" }; return s }(float32(mean)))
+    l_flat_a := []float32{float32(1.0), float32(2.0), float32(3.0), float32(4.0), float32(5.0), float32(6.0)}
+    l_flat_b := []float32{float32(1.0), float32(2.0), float32(3.0), float32(4.0), float32(5.0), float32(6.0), float32(7.0), float32(8.0), float32(9.0), float32(10.0), float32(11.0), float32(12.0)}
+    l_a := rt.TensorTensor[float32]{}.Strue(func() []float32 { src := l_flat_a; out := make([]float32, len(src)); for i, value := range src { out[i] = value }; return out }(), []int{2, 3})
+    l_b := rt.TensorTensor[float32]{}.Strue(func() []float32 { src := l_flat_b; out := make([]float32, len(src)); for i, value := range src { out[i] = value }; return out }(), []int{3, 4})
+    l_product := l_a.Matmul(l_b)
+    l_mean := float32(l_product.Media())
+    fmt.Println(func(v float32) string { s := strconv.FormatFloat(float64(v), 'f', -1, 32); if s == "NaN" { return s }; if s == "+Inf" { return "inf" }; if s == "-Inf" { return "-inf" }; if !strings.Contains(s, ".") { return s + ".0" }; return s }(float32(l_mean)))
 }
 ```
 
@@ -109,11 +109,11 @@ import (
     "os"
 )
 
-func divide(a int, b int) (int, error) {
-    if (b == 0) {
+func divide(p_a int, p_b int) (int, error) {
+    if (p_b == 0) {
         return 0, errors.New("division by zero")
     }
-    return int(rt.ExactStore[int64](rt.ExactDiv(rt.ExactI(int64(a)), rt.ExactI(int64(b))), "return")), nil
+    return int(rt.ExactStore[int64](rt.ExactDiv(rt.ExactI(int64(p_a)), rt.ExactI(int64(p_b))), "return")), nil
 }
 
 func main() {
@@ -125,7 +125,7 @@ func main() {
         fmt.Println(v0)
         return nil
     }(); err != nil {
-        fmt.Fprintln(os.Stderr, err.Error())
+        fmt.Fprintln(os.Stderr, l_err.Error())
     }
 }
 ```
@@ -163,17 +163,17 @@ import (
     "fmt"
 )
 
-func summa(numeri []int) int {
-    total := 0
-    for _, n := range numeri {
-        total = int(rt.ExactStore[int64](rt.ExactAdd(rt.ExactI(int64(total)), rt.ExactI(int64(n))), "assignment to `total`"))
+func summa(p_numeri []int) int {
+    l_total := 0
+    for _, l_n := range p_numeri {
+        l_total = int(rt.ExactStore[int64](rt.ExactAdd(rt.ExactI(int64(l_total)), rt.ExactI(int64(l_n))), "assignment to `total`"))
     }
-    return total
+    return l_total
 }
 
 func main() {
-    valores := []int{1, 2, 3, 4, 5}
-    fmt.Println(summa(valores))
+    l_valores := []int{1, 2, 3, 4, 5}
+    fmt.Println(summa(l_valores))
 }
 ```
 

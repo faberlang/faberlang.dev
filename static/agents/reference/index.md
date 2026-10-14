@@ -209,6 +209,7 @@ Latin spellings are accepted lookups; the documented spelling is English.
 - [bench](bench.md) (`metior`) — Marks a test for metered or measured execution.
 - [block-string](block-string.md) — Block textus literals with embedded quotes and newlines.
 - [f16](f16.md) — the bare `f16` type-position width marker.
+- [guillemet](guillemet.md) — Guillemet textus literals: quotes and apostrophes need no escape.
 - [matrix](matrix.md) — matrix<T, [R, C]> is a register-class type distinct from tensor.
 - [named-holes](named-holes.md) — Named template holes, positional rendering, and forma capture.
 - [string](string.md) — Short quoted textus string literals and template application.

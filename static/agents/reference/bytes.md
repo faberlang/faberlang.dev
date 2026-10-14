@@ -34,12 +34,12 @@ octeti.expected — type-known diagnostic.
 ## Example
 
 ```fab
-type Fascis = bytes
+type Fascis = list<b8>
 
 main {
-    const bytes sig ← |de ad be ef|
-    const bytes hello ← |48 65 6c 6c 6f|
-    const bytes empty ← ||
+    const list<b8> sig ← |de ad be ef|
+    const list<b8> hello ← |48 65 6c 6c 6f|
+    const list<b8> empty ← ||
     print "octeti typus notus"
 }
 ```

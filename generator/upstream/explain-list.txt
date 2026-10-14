@@ -189,6 +189,7 @@ TYPES
   atomic            storage         atomic<i32> operations are storage-sensitive compiler-owned methods.
   block-string      literal         Block textus literals with embedded quotes and newlines.
   f16               numeric         the bare `f16` type-position width marker.
+  guillemet         literal         Guillemet textus literals: quotes and apostrophes need no escape.
   matrix            register        matrix<T, [R, C]> is a register-class type distinct from tensor.
   metior            testing         Marks a test for metered or measured execution.
   named-holes       template        Named template holes, positional rendering, and forma capture.

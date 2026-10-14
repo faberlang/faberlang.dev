@@ -13,7 +13,7 @@ Captured backtick templates for bound payloads.
 ## What this teaches
 
 - backtick template syntax `template`(args) — captures template text and parameters into the builtin `forma` class
-- indexed placeholders `§0` for repeated parameter references
+- indexed placeholders `§0` — an indexed hole selects its argument and may repeat with one value
 - templates without holes for static text
 
 ## Common mistakes
@@ -39,7 +39,7 @@ main {
           and plan = §
     `(tenantId, plan)
     print q.template
-    const forma indexed ← `where tenant_id = §0 or parent_tenant_id = §0`(tenantId, tenantId)
+    const forma indexed ← `where tenant_id = §0 or parent_tenant_id = §0`(tenantId)
     print indexed.template
     const forma bare ← `select 1`
     print bare.template
