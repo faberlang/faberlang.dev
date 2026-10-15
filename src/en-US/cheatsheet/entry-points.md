@@ -9,17 +9,17 @@ Where a Faber program starts.
 
 ## The ordinary entry point {#incipit}
 
-`incipit` — "it begins". No parameters, no return type.
+`main` is the ordinary entry point. It takes no parameters and has no return type.
 
 ```faber locale-tabs
 incipit {
-    nota "Salve, munde!"
+    nota "Hello, world!"
 }
 ```
 
 ## Async entry point {#async}
 
-`incipiet` — "it will begin". Use it when the program awaits anything.
+`async_main` is the async entry point. Use it when the program awaits anything.
 
 ```faber locale-tabs
 incipiet {
@@ -41,7 +41,7 @@ incipit argumenta args {
 
 ## Naming the command {#cli}
 
-The `@ cli` annotation names the binary the package produces.
+The `@ cli` annotation marks the entry as a command-line program and gives it a name.
 
 ```faber locale-tabs
 @ cli "salve"
@@ -72,6 +72,7 @@ incipit argumenta args {
 | `typus` | The option's type |
 | `descriptio` | Help text |
 | `ubique` | Accept the option on every subcommand |
+| `vel` | Default value when the option is not given |
 
 An option can declare `longum` without `brevis`, as `quotiens` does above.
 

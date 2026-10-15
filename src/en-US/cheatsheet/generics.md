@@ -91,7 +91,7 @@ incipit {
 }
 ```
 
-`ego` — "I" — is the receiver, what other languages spell `this` or `self`.
+`self` is the receiver, what other languages spell `this`.
 
 Related: [Types and widths](/cheatsheet/types.html) ·
 [Functions and flow](/language/functions.html)

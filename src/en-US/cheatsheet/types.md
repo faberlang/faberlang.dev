@@ -63,8 +63,9 @@ incipit {
 | Raw bits | `b8` `b16` `b32` `b64` |
 
 Raw bits are not numbers. A `b8` takes bit operators at its own width and has no
-arithmetic; `x + x` on a `b8` is rejected, and a number converts to it only with
-an explicit `↦` to the same width.
+arithmetic; `x + x` on a `b8` is rejected (`SEM011 bits_arithmetic_refused`), and
+a number converts to it only with an explicit `↦` from a number of the same
+width (`u8 ↦ b8`), never from a bare literal.
 
 ## Lists and tables {#collections}
 

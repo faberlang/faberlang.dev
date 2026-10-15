@@ -3,8 +3,8 @@ title = "The language corpus"
 section = "libraries"
 order = 3
 sources = [
-  "radix/corpus/ (304 .fab files, 185 registry terms, index.toml)",
-  "radix/corpus/README.md",
+  "corpus/ (single-file exempla, one directory per term)",
+  "corpus/README.md",
   "examples/corpus/README.md (relocation stub)",
 ]
 +++
@@ -20,33 +20,37 @@ Corpus content is divided by shape:
 
 | Content | Lives in |
 |---------|----------|
-| Single-file language exempla (keywords, operators, types, concepts) | `radix/corpus/` |
-| Package-shaped corpus fixtures | `radix/corpus-product/` |
+| Single-file language exempla (keywords, operators, types, concepts) | `corpus/` |
+| Package-shaped corpus fixtures | `corpus-product/` |
 | Application demos | `examples/` (sibling dirs) |
 
 The old `examples/corpus/` path is a redirect stub. The generated corpus
-pages on this site are built from `radix/corpus/`.
+pages on this site are built from `corpus/`.
 
 ## Size {#stats}
 
 The corpus holds several hundred `.fab` exemplar files, one directory per
-keyword, operator group, or concept. Each term has one owning file, and the
-`faber` build embeds the corpus, so there is no separate index to maintain.
-`faber explain --list` prints the current term list.
+keyword, operator group, or concept. Each term has one owning file (the one whose
+frontmatter lists it in `explains`), and a directory can hold further exempla
+for the same term. There is no separate index file to maintain: the `faber`
+build embeds every exemplum that declares `explains`, so `faber explain` always
+matches the commit the binary was built from, and `faber explain --list`
+prints the current term list. Directory names are the canonical term names,
+spelled in Latin whichever reader locale you read the pages in.
 
 ## Layout {#layout}
 
 ```
-corpus/
-  functio/           # function keyword exemplars
-  genus/             # record type exemplars
-  si/                # conditional branch exemplars
-  itera/             # iteration exemplars
-  lista/ tabula/     # collection type exemplars
-  tensor/ sparsa/    # tensor exemplars
-  ad/                # capability call exemplars
-  operatores/        # glyph / operator groups
-  ...
+corpus/functio/       function keyword exemplars
+corpus/genus/         record type exemplars
+corpus/si/            conditional branch exemplars
+corpus/itera/         iteration exemplars
+corpus/lista/         list type exemplars
+corpus/tabula/        table (map) type exemplars
+corpus/tensor/        tensor exemplars
+corpus/sparsa/        sparse tensor exemplars
+corpus/ad/            capability call exemplars
+corpus/operatores/    glyph / operator groups
 ```
 
 ## File format {#file-format}
@@ -56,17 +60,19 @@ Each `.fab` file begins with TOML frontmatter describing the term:
 ```toml
 +++
 term = "functio"
+explains = ["functio"]
 kind = "keyword"
 category = "function"
-canonical = false
+canonical = true
 summary = "Declares a named function or method."
 syntax = "functio <name>(<params>) [modifiers] [→ <type>] [⇥ <error-type>] <block>"
+aliases = ["function"]
 related = ["→", "⇥", "redde", "sponte"]
 locale = "en"
 +++
 
-functio saluta() {
-    nota "Salve, Mundus!"
+fn greet() → void {
+    print "Hello, world!"
 }
 ```
 

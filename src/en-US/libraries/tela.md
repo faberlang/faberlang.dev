@@ -90,7 +90,8 @@ listed but does not build yet.
 
 Tela is early. This page does not record whether the package currently
 checks; `faber check` on the package is the authority, and the repository's own
-proof scripts say what is covered.
+proof scripts say what is covered. TODO(cut): re-run `faber check` on the
+package with the release compiler and record the result here.
 
 | Layer | State |
 |-------|-------|

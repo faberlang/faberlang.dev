@@ -105,7 +105,7 @@ incipit {
 
 ## Conversion is not casting {#not-casting}
 
-| | Conversion `↦` | Casting |
+| | Conversion `↦` | Casting `∷` |
 |---|---|---|
 | When | Runtime | Compile time |
 | Can fail | Yes — that is why `⊥` and the error channel exist | No |

@@ -3,10 +3,10 @@ title = "Errors as values, tests as declarations"
 section = "language"
 order = 15
 sources = [
-  "radix/docs/design/failable-conversio.md",
-  "radix/corpus/iace/",
-  "radix/corpus/fac/",
-  "radix/corpus/proba/",
+  "docs/design/failable-conversio.md",
+  "corpus/iace/",
+  "corpus/fac/",
+  "corpus/proba/",
 ]
 +++
 

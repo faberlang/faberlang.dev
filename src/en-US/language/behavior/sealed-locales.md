@@ -3,7 +3,7 @@ title = "Sealed reader locales"
 section = "language"
 order = 13
 sources = [
-  "radix/docs/design/reader-locale.md",
+  "docs/design/reader-locale.md",
   "examples/reader-locale/",
 ]
 +++

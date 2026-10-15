@@ -18,7 +18,7 @@ The panels below are the committed `generator/locale-tabs/` cache — `faber con
 
 ```text locale=en
 main {
-    print "Salve, munde!"
+    print "Hello, world!"
 }
 ```
 
@@ -26,7 +26,7 @@ main {
 
 ```faber locale=la
 incipit {
-    nota "Salve, munde!"
+    nota "Hello, world!"
 }
 ```
 
@@ -36,7 +36,7 @@ The same program on the identity pack, whose words are the pack keys.
 
 ```text locale=ar
 بداية {
-    اعرض "Salve, munde!"
+    اعرض "Hello, world!"
 }
 ```
 
@@ -44,7 +44,7 @@ The same program on the identity pack, whose words are the pack keys.
 
 ```text locale=hi
 आरंभ {
-    दिखाओ "Salve, munde!"
+    दिखाओ "Hello, world!"
 }
 ```
 
@@ -52,7 +52,7 @@ The same program on the identity pack, whose words are the pack keys.
 
 ```text locale=th-TH
 เริ่ม {
-    บันทึก "Salve, munde!"
+    บันทึก "Hello, world!"
 }
 ```
 
@@ -60,7 +60,7 @@ The same program on the identity pack, whose words are the pack keys.
 
 ```text locale=vi
 bắt_đầu {
-    ghi_chú "Salve, munde!"
+    ghi_chú "Hello, world!"
 }
 ```
 
@@ -68,7 +68,7 @@ bắt_đầu {
 
 ```text locale=zh-Hans
 入口 {
-    显示 "Salve, munde!"
+    显示 "Hello, world!"
 }
 ```
 
@@ -76,7 +76,7 @@ bắt_đầu {
 
 ```text locale=zh-Hant
 入口 {
-    註記 "Salve, munde!"
+    註記 "Hello, world!"
 }
 ```
 

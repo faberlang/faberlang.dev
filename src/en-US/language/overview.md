@@ -17,29 +17,29 @@ This is the whole program the landing page opens with: a small type, a generic
 helper, and an entry point. Every panel on this page is compiler output, so the
 page cannot claim something the toolchain does not produce.
 
-```faber
-genus Span {
-    fixum f64 low
-    fixum f64 high
+```faber locale=en
+class Span {
+    const f64 low
+    const f64 high
 
-    functio contains(f64 x) → bivalens {
-        redde ego.low ≤ x et x ≤ ego.high
+    fn contains(f64 x) → bool {
+        return self.low ≤ x and x ≤ self.high
     }
 
-    functio center() → f64 {
-        redde (ego.low + ego.high) ÷ 2.0
+    fn center() → f64 {
+        return (self.low + self.high) ÷ 2.0
     }
 }
 
-functio choose<T>(bivalens first, T a, T b) → T {
-    redde first ✓ a ✗ b
+fn choose<T>(bool first, T a, T b) → T {
+    return first ✓ a ✗ b
 }
 
-incipit {
-    fixum Span bytes ← Span { low = 0.0, high = 255.0 }
-    nota bytes.center()
-    nota choose(bytes.contains(300.0), "inside", "outside")
-    nota -7 / 2
+main {
+    const Span bytes ← Span { low = 0.0, high = 255.0 }
+    print bytes.center()
+    print choose(bytes.contains(300.0), "inside", "outside")
+    print -7 / 2
 }
 ```
 
@@ -69,14 +69,14 @@ are rendered in another language — the glyphs and the order stay put.
   Nullability is `T ∪ none`, and crossing between integer and float is an
   explicit `↦`. [Types and values](/language/types.html).
 - **Math-oriented operators.** Integer `/` floors; true division is `÷`;
-  comparisons read as math (`≤`, `≥`, `≠`, `≈`). When math and hardware
+  comparisons read as math (`≤`, `≥`, `≢`, `≈`). When math and hardware
   convention disagree, Faber follows the math.
 - **Widths apply at the store.** Arithmetic runs unbounded; a width limit is
   applied once, where a value is stored into or converted to a bounded cell.
   [Math in the ether](/language/behavior/numeric-widths.html).
 - **Reader locales, sealed.** One reader locale per file, never mixed. The
-  same program renders in eight surfaces and converts losslessly back to
-  canonical Latin. [Reader locales](/language/reader-locales.html).
+  same program renders in eight surfaces, and `faber convert` translates a
+  file between any two of them. [Reader locales](/language/reader-locales.html).
 - **Errors as values, tests as declarations.** A fallible function declares
   its error channel with `⇥`; callers recover with `fac`/`cape`. Test suites
   live beside the code with `probandum`, `proba` and `adfirma`.
@@ -148,7 +148,8 @@ through faber.
 
 Rust builds as a Cargo package today. Other targets give you source files to
 add to your existing project; assembling them into installable packages is
-not built yet. Support is stated target by target — generics and some
+not built yet. C is a public preview that a source build enables with the
+`hir-c` feature. Support is stated target by target — generics and some
 operators do not lower to every target, and the matrix records where.
 [Read the target matrix](/toolchain/target-matrix.html).
 

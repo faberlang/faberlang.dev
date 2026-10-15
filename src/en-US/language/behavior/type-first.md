@@ -3,8 +3,8 @@ title = "Types before names"
 section = "language"
 order = 11
 sources = [
-  "radix/docs/design/conversio-valor.md",
-  "radix/corpus/conversio/",
+  "docs/design/conversio-valor.md",
+  "corpus/conversio/",
 ]
 +++
 

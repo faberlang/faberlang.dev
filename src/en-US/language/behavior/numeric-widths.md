@@ -3,7 +3,7 @@ title = "Math in the ether"
 section = "language"
 order = 12
 sources = [
-  "radix/docs/design/numeric-model.md",
+  "docs/design/numeric-model.md",
 ]
 +++
 
@@ -111,10 +111,10 @@ uses:
 | `u64` | `trapping`, `wrapping`, `saturating` | `trapping` |
 | `d64` | `trapping` | `trapping` |
 | `inf` | `trapping`, `wrapping`, `saturating` — one type | unbounded |
-| `f16` | `trapping`, `saturating` | `saturating` |
-| `bf16` | `trapping`, `saturating` | `saturating` |
-| `f32` | `trapping`, `saturating` | `saturating` |
-| `f64` | `trapping`, `saturating` | `saturating` |
+| `f16` | `trapping`, `saturating` | IEEE (no clamp; same as `saturating`) |
+| `bf16` | `trapping`, `saturating` | IEEE (no clamp; same as `saturating`) |
+| `f32` | `trapping`, `saturating` | IEEE (no clamp; same as `saturating`) |
+| `f64` | `trapping`, `saturating` | IEEE (no clamp; same as `saturating`) |
 | `b8` `b16` `b32` `b64` | none — raw bits, not numbers | none |
 
 The last row is the other domain. A `b8`, `b16`, `b32` or `b64` is exactly that

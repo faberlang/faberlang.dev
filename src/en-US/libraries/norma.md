@@ -4,10 +4,10 @@ section = "libraries"
 order = 1
 sources = [
   "radix/README.md (Standard Library section)",
-  "sibling norma/ repository",
-  "norma/exempla/",
-  "radix/docs/stdlib/morphologia.md",
-  "radix/docs/stdlib/caelum-module-structure.md",
+  "lib/norma/src/",
+  "lib/norma/exempla/",
+  "docs/stdlib/morphologia.md",
+  "docs/stdlib/caelum-module-structure.md",
 ]
 +++
 
@@ -64,6 +64,9 @@ subdirectory is a separately importable module:
 | `norma:json/solve` | JSON parse implementation |
 | `norma:json/cursor` | Parser cursor type (`ScanResult`) |
 | `norma:json/lexer` | Shared lexical floor (internal) |
+| `norma:toml/solve` | TOML parse implementation |
+| `norma:toml/serialize` | TOML serialize implementation |
+| `norma:toml/cursor` | Parser cursor type |
 | `norma:http/headers` | HTTP header map |
 | `norma:http/request` | Received HTTP request |
 | `norma:http/response` | HTTP response |

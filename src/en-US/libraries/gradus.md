@@ -13,7 +13,8 @@ sources = [
 Gradus is Faber's library for automatic differentiation, losses, optimizers,
 neural-network primitives, and training mechanics. The name is the Latin for
 *step, pace, degree* — the root of *gradient*. It is imported as `gradus:*`
-and declared as a Cista dependency, the same way as [Triga](/libraries/triga.html).
+and resolved from a library checkout (`--library-home <DIR>` or `[paths] library_home`
+in `faber.toml`), the same way as [Triga](/libraries/triga.html).
 
 Gradus does not implement autograd. Reverse-mode differentiation is a compiler
 transform inside Radix: a function annotated `@ radix backward` gets a
@@ -99,7 +100,8 @@ typed error (`LossError`, `NnError`) instead of a shape type.
 
 ## Status {#status}
 
-Gradus is pre-1.0 and its API may change. What is proven is narrower than
+Gradus is pre-1.0 and its API may change. TODO(cut): re-run `faber check` on
+the Gradus checkout with the release compiler and record the result here. What is proven is narrower than
 what the module list suggests: most of it is structural, with source contracts
 that check and are pinned by proba tests, and a narrow set of executed proofs.
 
@@ -114,11 +116,13 @@ that check and are pinned by proba tests, and a narrow set of executed proofs.
 | Model admission | **Shipped**: GGUF and Safetensors admission into typed capsules |
 | GPU training | **Not claimed**; device execution and emission are Radix scope |
 
-The gradient seam — forward loss, generated companion backward across an
-`importa` boundary, and a per-element comparison against finite differences —
-compiles and executes end to end, and the companion gradient matches finite
-differences to roughly 1e-11. That is the load-bearing correctness result
-behind everything above.
+The gradient seam — a forward loss, its generated companion backward, and a
+per-element comparison against central finite differences — runs end to end in
+the repository's self-contained `exempla/gradient-seam-nolib` package: the
+companion gradient comes out equal to the analytic values, and the
+single-precision finite differences agree with it to about 1e-2. That is the
+load-bearing correctness result behind everything above. The same seam written
+across a `gradus:*` import boundary lives in `exempla/gradient-seam`.
 
 CPU training is correct and slow. Fast training is a device-execution
 question, and that path is owned elsewhere: see
@@ -141,5 +145,5 @@ absence expensive enough to close.
 
 ## Source {#source}
 
-[github.com/faberlang/gradus](https://github.com/faberlang/gradus) — MIT,
-like every public Faber library. See [Open source](/open-source.html).
+[github.com/faberlang/gradus](https://github.com/faberlang/gradus) — MIT.
+See [Open source](/open-source.html).

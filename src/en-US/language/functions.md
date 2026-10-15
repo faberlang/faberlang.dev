@@ -4,26 +4,26 @@ section = "language"
 order = 3
 sources = [
   "radix/README.md (Language Orientation, Borrowing and Mutability, How Faber Feels)",
-  "radix/corpus/functio/",
-  "radix/corpus/de/",
-  "radix/corpus/in/",
-  "radix/corpus/ex/",
-  "radix/corpus/fiet/",
-  "radix/corpus/fiunt/",
-  "radix/corpus/fient/",
-  "radix/corpus/cede/",
-  "radix/corpus/promissum/",
-  "radix/docs/design/semantic-ownership.md",
+  "corpus/functio/",
+  "corpus/de/",
+  "corpus/in/",
+  "corpus/ex/",
+  "corpus/fiet/",
+  "corpus/fiunt/",
+  "corpus/fient/",
+  "corpus/cede/",
+  "corpus/promissum/",
+  "docs/design/semantic-ownership.md",
   "radix/README.md (Control Flow Shape, Canonical Surface)",
-  "radix/corpus/si/",
-  "radix/corpus/itera/",
-  "radix/corpus/dum/",
-  "radix/corpus/custodi/",
-  "radix/corpus/discerne/",
-  "radix/corpus/elige/",
+  "corpus/si/",
+  "corpus/itera/",
+  "corpus/dum/",
+  "corpus/custodi/",
+  "corpus/discerne/",
+  "corpus/elige/",
   "radix/README.md (Type and Size Generics)",
-  "radix/corpus/generic/",
-  "radix/corpus/functio/generic-call-type-args.fab",
+  "corpus/generic/",
+  "corpus/functio/generic-call-type-args.fab",
 ]
 +++
 
@@ -263,8 +263,8 @@ incipit {
 ```
 
 An unmarked parameter is read-only all the way down: it cannot be assigned to,
-and sharing a list parameter into a writable binding (`varia ys ← xs`) is
-`SEM065 const_shared_into_var`. A writable copy is written `varia ys ← copy xs`. `in` and `own` are repeated at the call site,
+and sharing a list parameter into a writable binding (`varia _ ys ← xs`) is
+`SEM065 const_shared_into_var`. A writable copy is written `varia _ ys ← copy xs`. `in` and `own` are repeated at the call site,
 as in `duplica(in n)` and `consume(own t)`; leaving the marker off is `SEM057
 call_marker_missing`. A `de` argument takes no call-site marker.
 

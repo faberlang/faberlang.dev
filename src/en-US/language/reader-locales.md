@@ -4,7 +4,7 @@ section = "locales"
 order = 6
 sources = [
   "examples/reader-locale/ (6 locale packages with localized Faber source)",
-  "radix/locale/ (8 installed reader packs)",
+  "locale/ (8 installed reader packs)",
 ]
 +++
 
@@ -56,8 +56,8 @@ that does not fork.
 ### How it works {#how}
 
 A reader-locale pack maps Faber keywords, primitive type spellings, and
-diagnostic templates into a target language. Packs are TOML files with three
-tables:
+diagnostic templates into a target language. Packs are TOML files; the tables
+that carry the vocabulary are:
 
 - `[keywords]` — maps keyword names to their localised spellings
 - `[types]` — maps primitive type names to localised spellings
@@ -102,12 +102,12 @@ re-emits a file on the Latin surface.
 
 ### Shipped packs {#locales}
 
-Eight packs ship with Radix today:
+Eight packs ship with the compiler today:
 
 | Code | Language | Script | Status |
 |---|---|---|---|
-| `la` | Latina (Latin) | Latin | **Identity pack** |
 | `en` | English | Latin | **Base surface** |
+| `la` | Latina (Latin) | Latin | **Identity pack** |
 | `th-TH` | ไทย | Thai | **Reference proof** |
 | `zh-Hans` | 简体中文 | Simplified Chinese | Coverage proof |
 | `zh-Hant` | 繁體中文 | Traditional Chinese | Coverage proof |
@@ -177,13 +177,13 @@ themselves. `faber convert --to la` re-emits a file on this surface.
 
 ```text
 ฟังก์ชัน salve(ข้อความ nomen) → ข้อความ {
-    ค่าคงที่ ข้อความ msg ← "Salve, §!"(nomen)
-    คืนค่า msg
+    คงที่ ข้อความ msg ← "Salve, §!"(nomen)
+    คืน msg
 }
 
-เริ่มต้น {
-    ค่าคงที่ ข้อความ m ← salve("มุนเด")
-    แจ้ง m
+เริ่ม {
+    คงที่ ข้อความ m ← salve("munde")
+    บันทึก m
 }
 ```
 
@@ -195,14 +195,14 @@ through keyword matching alone.
 **简体中文** `zh-Hans`
 
 ```text
-函数 问候(文本 名字) → 文本 {
-    常量 文本 问候语 ← "你好，§!"(名字)
-    返回 问候语
+函数 salve(文本 nomen) → 文本 {
+    常量 文本 msg ← "Salve, §!"(nomen)
+    返回 msg
 }
 
 入口 {
-    常量 文本 消息 ← 问候("世界")
-    显示 消息
+    常量 文本 m ← salve("munde")
+    显示 m
 }
 ```
 
@@ -215,12 +215,12 @@ Traditional Chinese (zh-Hant) inherits and overrides zh-Hans roots.
 
 ```text
 دالة salve(نص nomen) → نص {
-    ثابت نص msg ← "مرحبا، §!"(nomen)
+    ثابت نص msg ← "Salve, §!"(nomen)
     أعد msg
 }
 
 بداية {
-    ثابت نص m ← salve("عالم")
+    ثابت نص m ← salve("munde")
     اعرض m
 }
 ```
@@ -236,12 +236,12 @@ layer handles bidi presentation.
 ```text
 फलन salve(पाठ nomen) → पाठ {
     स्थिर पाठ msg ← "Salve, §!"(nomen)
-    लौटा msg
+    लौटाओ msg
 }
 
 आरंभ {
-    स्थिर पाठ m ← salve("जगत")
-    दिखा m
+    स्थिर पाठ m ← salve("munde")
+    दिखाओ m
 }
 ```
 
@@ -254,22 +254,21 @@ digits are preserved across all locales.
 **Tiếng Việt** `vi`
 
 ```text
-hàm chào(vănbản tên) → vănbản {
-    hằng vănbản lời_chào ← "Xin chào, §!"(tên)
-    trả lời_chào
+hàm salve(văn_bản nomen) → văn_bản {
+    hằng văn_bản msg ← "Salve, §!"(nomen)
+    trả msg
 }
 
-bắtđầu {
-    hằng vănbản thông_điệp ← chào("thế giới")
-    in thông_điệp
+bắt_đầu {
+    hằng văn_bản m ← salve("munde")
+    ghi_chú m
 }
 ```
 
 The control case: Latin-script but not English. Heavy diacritic load (ế, ệ, ả)
 stresses NFKC edge cases in the lexer. Prevents an architecture that works on
-exotic scripts but is unproven on Latin-with-diacritics. Identifiers use
-Vietnamese words (chào, tên, lời_chào, thông_điệp), preserved byte-for-byte
-by the compiler.
+exotic scripts but is unproven on Latin-with-diacritics. Identifiers, including
+ones written in Vietnamese, are preserved byte-for-byte by the compiler.
 
 > The glyphs (`← → ∴ ≡ ∪ ⇥`),
 > structural positions, and identifier names are **identical** across all six
@@ -289,11 +288,11 @@ changing the diagnostic infrastructure.
 The reader-locale example packages include diagnostic test cases — type mismatches,
 undefined variables, non-ASCII numbers — proving the full pipeline is locale-aware:
 
-- `examples/reader-locale/vi/src/type-mismatch.fab`
-- `examples/reader-locale/vi/src/undefined-variable.fab`
-- `examples/reader-locale/vi/src/non-ascii-number.fab`
-- `examples/reader-locale/vi/src/keyword-suggestion.fab`
-- `examples/reader-locale/vi/src/keyword-edit-distance.fab`
+- `examples/reader-locale/vi/faults/type-mismatch.fab`
+- `examples/reader-locale/vi/faults/undefined-variable.fab`
+- `examples/reader-locale/vi/faults/non-ascii-number.fab`
+- `examples/reader-locale/vi/faults/keyword-suggestion.fab`
+- `examples/reader-locale/vi/faults/keyword-edit-distance.fab`
 
 Bidi isolation is built in: Arabic keywords inside logical-order LTR code blocks
 are wrapped in `<bdi>` elements in HTML output, preventing the
@@ -319,11 +318,11 @@ or deferred.
 
 ### References {#references}
 
-1. `radix/docs/design/reader-locale.md` — full design document (69 KB)
+1. `docs/design/reader-locale.md` — full design document
 2. `examples/reader-locale/` — 6 locale packages with localised source
-3. `radix/locale/*/pack.toml` — 8 installed pack definitions
-4. `radix/crates/radix-module/src/locale.rs` — runtime implementation
-5. `radix/docs/design/faber-canonical-surface.md` — the formatter and the re-emitter
+3. `locale/*/pack.toml` — 8 installed pack definitions
+4. `crates/radix-module/src/locale.rs` — runtime implementation
+5. `docs/design/faber-canonical-surface.md` — the formatter and the re-emitter
 6. `radix/docs/archived/lex-nfkc-normalization/` — NFKC prerequisite delivery
 
 ## Reader-locale packages
@@ -337,11 +336,11 @@ and a `faber.toml` manifest.
 | Locale | Path | Source example |
 |--------|------|---------------|
 | th-TH | `examples/reader-locale/th-TH/` | `ฟังก์ชัน salve(ข้อความ nomen) → ข้อความ` |
-| zh-Hans | `examples/reader-locale/zh-Hans/` | `函数 问候(文本 名字) → 文本` |
-| zh-Hant | `examples/reader-locale/zh-Hant/` | `函式 問候(文字 名字) → 文字` |
-| ar | `examples/reader-locale/ar/` | `دالة تحية(نص اسم) → نص` |
-| hi | `examples/reader-locale/hi/` | `फलन नमस्कार(पाठ नाम) → पाठ` |
-| vi | `examples/reader-locale/vi/` | `hàm chào(vănbản tên) → vănbản` |
+| zh-Hans | `examples/reader-locale/zh-Hans/` | `函数 salve(文本 nomen) → 文本` |
+| zh-Hant | `examples/reader-locale/zh-Hant/` | `函式 salve(文字 nomen) → 文字` |
+| ar | `examples/reader-locale/ar/` | `دالة salve(نص nomen) → نص` |
+| hi | `examples/reader-locale/hi/` | `फलन salve(पाठ nomen) → पाठ` |
+| vi | `examples/reader-locale/vi/` | `hàm salve(văn_bản nomen) → văn_bản` |
 
 ### Diagnostic test cases {#diagnostic-test-cases}
 

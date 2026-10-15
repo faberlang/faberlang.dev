@@ -30,9 +30,8 @@ other route.
 
 ## Guards: requirit / reice {#guards}
 
-A guard pairs the condition and the throw in one statement. `requirit`
-(English `require`) throws when the condition fails; `reice` (English
-`reject`) throws when the condition holds:
+A guard pairs the condition and the throw in one statement. `require` throws
+when the condition fails; `reject` throws when the condition holds:
 
 ```faber locale-tabs
 functio divide(numerus a, numerus b) → numerus ⇥ textus {
@@ -46,7 +45,9 @@ functio exigePositivum(numerus value) → numerus ⇥ textus {
 }
 ```
 
-Like `iace` itself, guards need the function to declare a `⇥` channel.
+Like `throw` itself, guards need somewhere for the error to go: the function
+declares a `⇥` channel, or the guard sits inside a block that carries its own
+`catch` handler.
 
 ## Catching {#cape}
 

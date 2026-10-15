@@ -13,7 +13,7 @@ open [The faber CLI](/toolchain/cli.html).
 | Command | Use it for |
 |---|---|
 | `faber check <package>` | Fast front-end validation: lex, parse, type check, lower |
-| `faber build <package> -t rust` | Emit a Rust project for review or native compilation |
+| `faber build <package> -t rust` | Emit a Rust project for review or native compilation (with no `-t`, a package writes an FHIR package envelope) |
 | `faber run <package>` | Interpret and execute an application package (never compiles) |
 | `faber test <package>` | Run package tests when the package defines test surfaces |
 | `faber explain <code>` | Read a stable diagnostic explanation |
@@ -25,7 +25,7 @@ before proposing generated code as valid Faber.
 
 ```bash
 faber check .
-faber check examples/ai-workbench/packages/faber-ai
+faber check examples/coreutils/packages/wc
 ```
 
 A passing check means the package is syntactically and semantically acceptable
@@ -61,7 +61,9 @@ faber explain LEX006
 ```
 
 Diagnostic families are stable handles: `LEX` for lexical errors, `PARSE` for
-parser errors, `SEM` for semantic/type errors. In docs and agent reports, cite
+parser errors, `SEM` for semantic/type errors, `PKG` for package and library
+errors, and `WARN` for warnings. Each code carries an issue name too, as in
+`SEM010:initializer_annotation_mismatch`. In docs and agent reports, cite
 the diagnostic code instead of paraphrasing a compiler failure loosely.
 
 ## Reader-locale commands {#reader-locale}

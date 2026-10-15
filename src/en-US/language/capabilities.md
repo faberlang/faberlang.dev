@@ -20,12 +20,14 @@ randomness, or anything else the OS can do.
 `ad` is a keyword, not a function. It opens an opaque conversation
 with a route named by an `ascii` literal and optional opener data:
 
-```text
-# Simple materialized call: open, send opener, drain response
-fixum textus content ← ad 'solum:lege' ("config.toml") ↦ textus
+```faber
+incipit {
+    # Simple materialized call: open, send opener, drain response
+    fixum textus content ← ad 'solum:lege' ("config.toml") ↦ textus
 
-# Typed conversation handle for streaming interaction
-fixum sermo s ← ad 'processus:exsequi' ("ls -la")
+    # Typed conversation handle for streaming interaction
+    fixum sermo s ← ad 'processus:exsequi' ("ls -la")
+}
 ```
 
 The route string follows a `prefix:verb` pattern. Dispatch matches on the
@@ -33,8 +35,8 @@ The route string follows a `prefix:verb` pattern. Dispatch matches on the
 
 ```text
 solum:lege   ─┐
-solum:modum  ─┼─►  prefix "solum"  ──►  filesystem leaf
-solum:vincula─┘
+solum:scribe ─┼─►  prefix "solum"  ──►  filesystem leaf
+solum:crea   ─┘
 ```
 
 `ad` is not a foreign function interface. It does not call C
@@ -57,22 +59,24 @@ Five compiler-owned types form the frame system:
 
 ### Using directional views {#using-directional-views}
 
-```text
-# Open a conversation, get directional views
-fixum sermo s ← ad 'solum:scribe' ("output.txt")
-fixum meus<textus> out ← s.meus<textus>()
-fixum tuus<textus> input ← s.tuus<textus>()
+```faber
+incipit {
+    # Open a conversation, get directional views
+    fixum sermo s ← ad 'solum:scribe' ("output.txt")
+    fixum meus<textus> out ← s.meus<textus>()
+    fixum tuus<textus> input ← s.tuus<textus>()
 
-# Send content frames
-out.da("line one")
-out.da("line two")
-out.fini()
+    # Send content frames
+    out.da("line one")
+    out.da("line two")
+    out.fini()
 
-# Read response frames
-itera ex input.cursor() fixum frame {
-    nota frame.data
+    # Read response frames
+    itera ex input.cursor() fixum frame {
+        nota frame.data
+    }
+    fixum status inbound ← input.fini()
 }
-fixum status inbound ← input.fini()
 ```
 
 ### Simple materialization {#simple-materialization}
@@ -80,22 +84,23 @@ fixum status inbound ← input.fini()
 For the common case — open, send opener, drain all response frames into one
 value — `sermo ↦ T` collapses the conversation:
 
-```text
-# Read a file: open + drain into textus
-fixum textus body ← ad 'solum:lege' ("config.toml") ↦ textus
+```faber
+incipit {
+    # Read a file: open + drain into textus
+    fixum textus body ← ad 'solum:lege' ("config.toml") ↦ textus
 
-# Parse JSON from a file
-fixum json data ← ad 'solum:lege' ("data.json") ↦ json
+    # Collect the inbound frames into a list
+    fixum lista<textus> lines ← ad 'solum:lege' ("data.txt") ↦ lista<textus>
+}
 ```
 
 Materialization uses a type-directed collector: `↦ textus`
-concatenates all inbound frames, `↦ json` parses the concatenated
-payload, `↦ lista<T>` collects frames into a list.
+concatenates all inbound frames, and `↦ lista<T>` collects frames into a list.
 
 ## Native leaves {#providers}
 
 Each effect family is served by a native leaf in the `faber-leaf` crate
-(`radix/crates/faber-leaf`). The interpreter (`faber run`) and generated Rust
+(`crates/faber-leaf`). The interpreter (`faber run`) and generated Rust
 share it. Each leaf owns all verbs under its prefix:
 
 | Leaf | Prefix | I/O domain |
@@ -131,16 +136,9 @@ it.
 Most Faber code does not call `ad` directly. The Norma standard
 library wraps common `ad` routes in typed functions:
 
-```text
-# Norma wraps ad in typed, reviewed functions
-functio lege(textus via) → textus {
-    redde ad 'solum:lege' (via) ↦ textus
-}
-
-functio scribe(textus via, textus content) → vacuum {
-    fixum vacuum _ ← ad 'solum:scribe' (via, content) ↦ vacuum
-}
-
+```faber
+# A typed wrapper over an ad route (Norma's own wrappers also declare
+# a fault channel for I/O failures)
 functio exsequi(textus command) → textus {
     redde ad 'processus:exsequi' (command) ↦ textus
 }
@@ -148,12 +146,12 @@ functio exsequi(textus command) → textus {
 
 These wrapper functions provide type safety, documentation, and error
 handling without hiding the fact that I/O crosses the `ad`
-boundary. The Norma wrappers live under `radix/lib/norma/src/`.
+boundary. The Norma wrappers live under `lib/norma/src/`.
 
 ## References {#references}
 
-1. `radix/docs/design/frame-stream-types.md` — full spec for sermo, scrinium, status, meus, tuus
-2. `radix/grammar/EBNF.md` — the `ad` expression and `@ ad` handlers (Capability Calls)
-3. `radix/crates/faber-leaf/` — the native leaves
-4. `radix/lib/norma/src/` — Norma wrappers over the routes
-5. `radix/corpus/ad/` — sermo exempla files
+1. `docs/design/frame-stream-types.md` — full spec for sermo, scrinium, status, meus, tuus
+2. `grammar/EBNF.md` — the `ad` expression and `@ ad` handlers (Capability Calls)
+3. `crates/faber-leaf/` — the native leaves
+4. `lib/norma/src/` — Norma wrappers over the routes
+5. `corpus/ad/` — sermo exempla files

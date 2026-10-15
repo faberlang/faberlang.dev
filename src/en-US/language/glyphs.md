@@ -4,16 +4,18 @@ section = "language"
 order = 5
 sources = [
   "radix/README.md (Glyphs and Words)",
-  "radix/corpus/operatores/",
-  "radix/corpus/assignatio/",
+  "corpus/operatores/",
+  "corpus/assignatio/",
   "faber/docs/EBNF.md",
 ]
 +++
 
 ## Glyphs and operators
 
-Faber uses glyphs where the symbol is structural. Below is the full inventory
-of source glyphs recognised by the lexer.
+Faber uses glyphs where the symbol is structural. The tables below cover the
+glyphs a program uses; `faber explain <glyph>` prints the reference page for
+any one of them, and `faber explain --list` lists every glyph the compiler
+documents.
 
 ### Value flow {#value-flow}
 
@@ -84,6 +86,21 @@ settled before the program starts.
 
 Worked through in full under
 [The binding convention matters](#the-binding-convention-matters).
+
+### Membership, mutation, selection and tensors {#more-glyphs}
+
+| Glyph | Meaning |
+|-------|---------|
+| `∈` `∉` | Membership in a collection or range, and its negation; never over text (use `contains`) |
+| `↑` `↓` | Postfix increment and decrement statements on a mutable `numerus` place |
+| `↤` | Conversion-directed assignment: convert through `↦`, then assign |
+| `⇇` | Copy-into: write a tensor's values into existing tensor storage |
+| `✓` `✗` | Value conditional, `c ✓ a ✗ b`, one level only |
+| `¶` | Format operator: `value ¶ "spec"` renders a built-in value as text |
+| `÷` | True division, yielding a float (`/` floors on integers) |
+| `⤒` `⤓` | Maximum and minimum of two values |
+| `·` `×` `⊗` | Inner, cross and outer product on vectors and tensors |
+| `⊙` `⊘` | Elementwise multiply and divide on tensors |
 
 ### Optional chaining and non-null assertion {#optional-chaining-and-non-null-assertion}
 
@@ -197,7 +214,7 @@ languages.
 | `let` | Concise inferred immutable | `val`, `auto` |
 | `return` | Return a value from a function | `return` |
 | `throw` | Throw on the error channel | `throw`, `raise` |
-| `panic` | Deferred — behaviour not yet expressible | `unimplemented!`, `todo` |
+| `panic` | Abort the program with a fatal error | `panic!`, `abort` |
 
 #### Control flow {#control-flow}
 
@@ -214,14 +231,12 @@ languages.
 
 > The vocabulary is **bindable** — it ships with the identity pack and is remapped through reader locale. A Thai programmer sees `ถ้า` for `if`; a Chinese programmer sees `函数` for `fn`. The vocabulary is not privileged; only the grammar is.
 
-Keywords are **contextual**: since Radix v0.79.0 there is no global reserved
-keyword table. The lexer emits identifiers for all words and the parser
+Keywords are **contextual**: there are no globally reserved words. The parser
 recognizes a keyword by spelling in its grammar position. A word is only a
 keyword in the slot where it is expected; everywhere else it is an ordinary
-identifier — you can name a variable `if`, a function `fn`, or a
-parameter `coalesce`. A small residual set (`catch`, `guard`, `for`, `yields`,
-`throw`, `panic`, `assert`, `yield`, `main`, `async_main`, `import`, `from`)
-is still globally reserved.
+identifier — every name slot (declarations, parameters, members, bindings)
+accepts every keyword spelling, so you can name a variable `if`, a function
+`fn`, or a parameter `coalesce`.
 
 ### Structural glyphs {#glyphs}
 
@@ -313,8 +328,8 @@ each distinct semantic job — no overloading.
 ### References {#references}
 
 1. EBNF grammar — full glyph and keyword inventory
-2. radix/corpus/ — the language corpus, exemplars across all keywords
-3. radix/corpus/operatores/ — operator and glyph exemplars
+2. corpus/ — the language corpus, exemplars across all keywords
+3. corpus/operatores/ — operator and glyph exemplars
 4. Commandments — the design laws that preserve these signals
 
 ## Canonical vs sugar surfaces
@@ -445,7 +460,7 @@ author wrote.
 
 ### References {#references}
 
-1. `radix/docs/design/numeric-type-sugar.md` — full sugar families, spelling preferences
-2. `radix/docs/design/annotation-sugar.md` — dual-surface annotation model
-3. `radix/docs/design/faber-canonical-surface.md` — the formatter and the re-emitter
-4. `radix/grammar/EBNF.md` — grammar tables for sugar forms
+1. `docs/design/numeric-type-sugar.md` — full sugar families, spelling preferences
+2. `docs/design/annotation-sugar.md` — dual-surface annotation model
+3. `docs/design/faber-canonical-surface.md` — the formatter and the re-emitter
+4. `grammar/EBNF.md` — grammar tables for sugar forms

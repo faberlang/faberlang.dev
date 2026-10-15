@@ -3,9 +3,9 @@ title = "The glyph law"
 section = "language"
 order = 10
 sources = [
-  "radix/corpus/assignatio/",
-  "radix/corpus/operatores/",
-  "radix/docs/design/faber-canonical-surface.md",
+  "corpus/assignatio/",
+  "corpus/operatores/",
+  "docs/design/faber-canonical-surface.md",
 ]
 +++
 

@@ -4,31 +4,31 @@ section = "language"
 order = 2
 sources = [
   "radix/README.md (Core Type Surfaces, Numeric Widths, Tensors And Sparsa, GPU Core Types)",
-  "radix/docs/design/numeric-type-sugar.md",
-  "radix/docs/design/tensor-intrinsics.md",
-  "radix/docs/design/lista-intrinsics.md",
-  "radix/docs/design/comparison-operators.md",
+  "docs/design/numeric-type-sugar.md",
+  "docs/design/tensor-intrinsics.md",
+  "docs/design/lista-intrinsics.md",
+  "docs/design/comparison-operators.md",
   "faber/docs/EBNF.md",
-  "radix/corpus/typi/",
-  "radix/corpus/tensor/",
-  "radix/corpus/lista/",
+  "corpus/typi/",
+  "corpus/tensor/",
+  "corpus/lista/",
   "radix/README.md (Runtime binding vs structural definition, Language Orientation)",
-  "radix/corpus/fixum/",
-  "radix/corpus/sit/",
+  "corpus/fixum/",
+  "corpus/sit/",
   "radix/README.md (Tensors And Sparsa)",
-  "radix/docs/design/tabula-intrinsics.md",
-  "radix/corpus/tabula/",
-  "radix/corpus/sparsa/",
+  "docs/design/tabula-intrinsics.md",
+  "corpus/tabula/",
+  "corpus/sparsa/",
   "radix/README.md (String and Template Literals, String-template application, Inline JSON)",
-  "radix/corpus/literalia/",
-  "radix/corpus/scriptum/",
+  "corpus/literalia/",
+  "corpus/scriptum/",
   "radix/docs/factory/textus-literal-family/",
   "radix/README.md (Nullability and Optionality)",
-  "radix/corpus/nihil/",
-  "radix/corpus/sponte/",
+  "corpus/nihil/",
+  "corpus/sponte/",
   "radix/README.md (Conversion and Construction)",
-  "radix/docs/design/conversio-valor.md",
-  "radix/docs/design/failable-conversio.md",
+  "docs/design/conversio-valor.md",
+  "docs/design/failable-conversio.md",
 ]
 +++
 
@@ -244,8 +244,7 @@ The call site repeats the `in` and `own` markers (en `mut` and `own`):
 | `≅`, `≇` | Promoted exact equality | Numeric widths join, then exact compare |
 | `≈`, `≉` | Fuzzy equality | Tolerance match — `isclose` defaults (rel_tol 1e-09); numeric operands only |
 | `≺`, `≤`, `≻`, `≥` | Ordering | Numeric, instant, scalar text; ASCII `<` and `>` are generic delimiters, not comparisons |
-| `intra` | Range containment | Numeric in range |
-| `inter` | Collection membership | Element in collection |
+| `∈`, `∉` | Membership | Element of a collection or range; never over text (use `contains`) |
 
 ## Variables and binding
 
@@ -359,16 +358,20 @@ incipit {
 ### Mutable numeric updates {#postfix-increment-and-decrement}
 
 Use binary `+` and `-` with runtime assignment `←` to update mutable
-`numerus` places. Both operators take two operands; they are not postfix
-statements:
+`numerus` places, or the postfix statements `↑` and `↓`, which add or subtract
+one. Postfix `↑` and `↓` are statements, not expressions: they cannot appear
+inside a larger expression, and the operand must be a mutable `numerus` place:
 
 ```faber
 incipit {
     varia numerus i ← 0
     # i becomes 1
     i ← i + 1
-    # i becomes 0
-    i ← i - 1
+    # i becomes 2
+    i ↑
+    # i becomes 1
+    i ↓
+    nota i
 }
 ```
 
@@ -450,7 +453,7 @@ main {
 
 Key methods: `reshape`, `get`, `set`, `create`, `tensor.structa` (Latin
 namespace lookup, not a receiver method), plus elementwise
-`added`/`subtract`/`multiply`/`divide`/`negate`, matrix multiplication
+`added`/`subtracted`/`multiplied`/`divided`/`negate`, matrix multiplication
 (`matmul`), and reductions (`sum`, `mean`).
 
 ### Sparsa — sparse fixed-shape buffer {#sparsa}
@@ -481,7 +484,7 @@ incipit {
 ### Cursors — lazy streams {#cursors}
 
 `cursor<T>` is a lazy stream type. Created from collection iterators,
-tuus views, or generator functions. Consumed via `itera ex`:
+`tuus` views, or generator functions. Consumed via `itera ex`:
 
 ```faber
 incipit {
@@ -574,7 +577,7 @@ incipit {
 }
 ```
 
-Guillemets are the only block-string spelling since Radix v0.79.0 — the
+Guillemets are the only block-string spelling — the
 retired `"""` and `❝…❞` spellings fail as ordinary lex errors.
 
 ### Captured templates (forma) {#captured-templates}
@@ -731,16 +734,5 @@ incipit {
     fixum numerus count ← 7
     fixum _ x ← 7 ∷ i32
     fixum _ text ← count ∷ textus
-}
-```
-
-### Nullish coalescing — vel {#nullish-coalescing}
-
-Use `vel` for nullish coalescing when a value is `nulla`:
-
-```faber
-incipit {
-    fixum textus ∪ nihil provided_name ← nulla
-    fixum _ name ← provided_name vel "default"
 }
 ```

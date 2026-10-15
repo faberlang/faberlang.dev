@@ -13,7 +13,7 @@ importa ex "<source>" <name>
 
 *Import this name from this source.* Imports do not re-export by default; use
 `publica` when the imported name should be visible to consumers of your module.
-The retired `privata` import marker is not valid.
+The retired `privata` import marker is not valid (`PARSE050 import_privata_removed`).
 
 ## From the standard library {#stdlib}
 
@@ -41,8 +41,9 @@ incipit {
 
 ## Importing a specific item {#items}
 
-The name after the source is the item, not the module — so you import exactly
-what you use.
+The name after the source is what you bind, so you import exactly what you
+use: a Norma module such as `text`, or a single exported name from a local
+file or another module.
 
 ```faber locale-tabs
 importa ex "norma:text" text
@@ -92,5 +93,5 @@ Use `publica` only when you deliberately intend to widen your module's surface.
 | `importa ex "norma:text" publica text` | Imported and re-exported |
 
 Related: [A program is a package](/language/behavior/packages.html) for how modules sit inside
-a package · [Packages with Cista](/toolchain/packages.html) for dependency
+a package · [Packages](/toolchain/packages.html) for dependency
 resolution

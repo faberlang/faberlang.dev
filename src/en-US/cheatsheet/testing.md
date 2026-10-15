@@ -71,7 +71,7 @@ probandum "modifiers" {
 | `tag "<name>"` | Label for selection and filtering |
 | `repete <n>` | Run the test *n* times — catches flakiness |
 | `futurum "<reason>"` | Expected-pending; documents why it does not run yet |
-| `omitte` | Skip |
+| `omitte "<reason>"` | Skip; the reason is required |
 
 `repete` is a test modifier, not a loop. For loops see
 [Loops](/cheatsheet/loops.html).
@@ -97,6 +97,9 @@ Tests sit beside the code they exercise, inside the package. Run them with:
 ```bash
 faber test <package>
 ```
+
+`faber test` also takes a single `.fab` or `.proba` file, and an optional
+filter.
 
 Related: [Commands](/cheatsheet/commands.html) ·
 [Errors and testing](/language/errors.html)

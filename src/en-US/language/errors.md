@@ -4,10 +4,10 @@ section = "language"
 order = 4
 sources = [
   "radix/README.md (Return and Error Channels)",
-  "radix/corpus/iace/",
-  "radix/corpus/fac/",
-  "radix/corpus/cape/",
-  "radix/docs/design/failable-conversio.md",
+  "corpus/iace/",
+  "corpus/fac/",
+  "corpus/cape/",
+  "docs/design/failable-conversio.md",
 ]
 +++
 
@@ -350,7 +350,7 @@ conventional approaches:
 
 ### References {#references}
 
-1. `radix/corpus/probandum/` — probandum exemplar files
-2. `radix/corpus/proba/` — proba exemplar files
-3. `radix/corpus/adfirma/` — adfirma exemplar files
+1. `corpus/probandum/` — probandum exemplar files
+2. `corpus/proba/` — proba exemplar files
+3. `corpus/adfirma/` — adfirma exemplar files
 4. `examples/coreutils/packages/echo/src/main.fab` — real-world usage with tags

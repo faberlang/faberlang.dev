@@ -16,8 +16,9 @@ people really write something.
 
 ## The feel of the language {#feel}
 
-Three signals do most of the work. Types come before names, behaviour words are
-Latin, and structure is carried by glyphs rather than punctuation soup.
+Three signals do most of the work. Types come before names, keywords are plain
+words in the reader's own language (English here; Latin is one of eight reader
+locales), and structure is carried by glyphs rather than punctuation soup.
 
 ```faber locale-tabs
 functio divide(numerus a, numerus b) → numerus ∪ nihil {
@@ -26,9 +27,9 @@ functio divide(numerus a, numerus b) → numerus ∪ nihil {
 }
 ```
 
-`numerus a` — type first, then the name. `→` introduces the return type. `∪`
+`int a` — type first, then the name. `→` introduces the return type. `∪`
 joins types into a union, so this returns a number *or* nothing. `≡` is
-equality. `redde` returns.
+equality. `return` returns.
 
 A whole program, doing real work:
 
@@ -41,24 +42,24 @@ incipit {
 }
 ```
 
-`incipit` is the entry point. `fixum` binds a constant. `←` is the bind glyph —
-assignment reads right-to-left into the name. `nota` prints.
+`main` is the entry point. `const` binds a constant. `←` is the bind glyph —
+assignment reads right-to-left into the name. `print` prints.
 
 ## By topic {#topics}
 
 | Page | What it covers |
 |---|---|
-| [Entry points](/cheatsheet/entry-points.html) | `incipit`, async entry, CLI arguments and annotations |
-| [Bindings](/cheatsheet/bindings.html) | `fixum` vs `varia`, type holes, union holes |
+| [Entry points](/cheatsheet/entry-points.html) | `main`, async entry, CLI arguments and annotations |
+| [Bindings](/cheatsheet/bindings.html) | `const` vs `var`, type holes, union holes |
 | [Types and widths](/cheatsheet/types.html) | Numbers and their widths, lists, tables, tensors, vectors, and the sugar for each |
-| [Generics](/cheatsheet/generics.html) | Generic functions, generic containers, `genus` |
-| [Loops](/cheatsheet/loops.html) | `itera` over values, keys, and ranges; `dum` |
-| [Control flow](/cheatsheet/control-flow.html) | `si` / `sin` / `secus`, `elige`, `discerne` over unions |
-| [Errors and catching](/cheatsheet/errors.html) | The `⇥` error channel, `iace`, and `cape` on many block forms |
+| [Generics](/cheatsheet/generics.html) | Generic functions, generic containers, `class` |
+| [Loops](/cheatsheet/loops.html) | `for` over values, keys, and ranges; `while` |
+| [Control flow](/cheatsheet/control-flow.html) | `if` / `elif` / `else`, `switch`, `match` over unions |
+| [Errors and catching](/cheatsheet/errors.html) | The `⇥` error channel, `throw`, and `catch` on many block forms |
 | [Conversions](/cheatsheet/conversions.html) | `↦` conversion, recovery with `⊥`, conversion vs casting |
-| [Imports](/cheatsheet/imports.html) | Standard library, local files, aliasing, and `publica` re-exports |
+| [Imports](/cheatsheet/imports.html) | Standard library, local files, aliasing, and `public` re-exports |
 | [Reader locales](/localization.html) | The same program in eight human languages, side by side |
-| [Testing](/cheatsheet/testing.html) | `probandum`, `proba`, `adfirma`, tags, running tests |
+| [Testing](/cheatsheet/testing.html) | `describe`, `test`, `assert`, tags, running tests |
 | [Commands](/cheatsheet/commands.html) | The daily `faber` CLI loop |
 
 ## Keywords you will meet first {#keywords}
@@ -68,26 +69,26 @@ in use; the corpus has the exhaustive entry for every one.
 
 | Keyword | Means | Shown on |
 |---|---|---|
-| `incipit` | Program entry point | [Entry points](/cheatsheet/entry-points.html) |
-| `incipiet` | Async program entry point | [Entry points](/cheatsheet/entry-points.html) |
-| `functio` | Declare a function | [Generics](/cheatsheet/generics.html) |
-| `redde` | Return a value | [Control flow](/cheatsheet/control-flow.html) |
-| `fixum` | Bind a constant | [Bindings](/cheatsheet/bindings.html) |
-| `varia` | Bind a mutable variable | [Bindings](/cheatsheet/bindings.html) |
-| `genus` | Declare a record type | [Generics](/cheatsheet/generics.html) |
-| `typus` | Name an alias for a type | [Types and widths](/cheatsheet/types.html) |
-| `si` | If | [Control flow](/cheatsheet/control-flow.html) |
-| `sin` | Else-if | [Control flow](/cheatsheet/control-flow.html) |
-| `secus` | Else | [Control flow](/cheatsheet/control-flow.html) |
-| `elige` | Select over a value | [Control flow](/cheatsheet/control-flow.html) |
-| `discerne` | Match over a union | [Control flow](/cheatsheet/control-flow.html) |
-| `casu` | A case arm | [Control flow](/cheatsheet/control-flow.html) |
-| `itera` | Iterate | [Loops](/cheatsheet/loops.html) |
-| `dum` | While | [Loops](/cheatsheet/loops.html) |
-| `iace` | Send a value down the error channel | [Errors and catching](/cheatsheet/errors.html) |
-| `cape` | Catch from the error channel | [Errors and catching](/cheatsheet/errors.html) |
-| `importa` | Import a module or item | [Imports](/cheatsheet/imports.html) |
-| `proba` | Declare a test | [Testing](/cheatsheet/testing.html) |
+| `main` | Program entry point | [Entry points](/cheatsheet/entry-points.html) |
+| `async_main` | Async program entry point | [Entry points](/cheatsheet/entry-points.html) |
+| `fn` | Declare a function | [Generics](/cheatsheet/generics.html) |
+| `return` | Return a value | [Control flow](/cheatsheet/control-flow.html) |
+| `const` | Bind a constant | [Bindings](/cheatsheet/bindings.html) |
+| `var` | Bind a mutable variable | [Bindings](/cheatsheet/bindings.html) |
+| `class` | Declare a record type | [Generics](/cheatsheet/generics.html) |
+| `type` | Name an alias for a type | [Types and widths](/cheatsheet/types.html) |
+| `if` | If | [Control flow](/cheatsheet/control-flow.html) |
+| `elif` | Else-if | [Control flow](/cheatsheet/control-flow.html) |
+| `else` | Else | [Control flow](/cheatsheet/control-flow.html) |
+| `switch` | Select over a value | [Control flow](/cheatsheet/control-flow.html) |
+| `match` | Match over a union | [Control flow](/cheatsheet/control-flow.html) |
+| `case` | A case arm | [Control flow](/cheatsheet/control-flow.html) |
+| `for` | Iterate | [Loops](/cheatsheet/loops.html) |
+| `while` | While | [Loops](/cheatsheet/loops.html) |
+| `throw` | Send a value down the error channel | [Errors and catching](/cheatsheet/errors.html) |
+| `catch` | Catch from the error channel | [Errors and catching](/cheatsheet/errors.html) |
+| `import` | Import a module or item | [Imports](/cheatsheet/imports.html) |
+| `test` | Declare a test | [Testing](/cheatsheet/testing.html) |
 
 ## Glyphs {#glyphs}
 

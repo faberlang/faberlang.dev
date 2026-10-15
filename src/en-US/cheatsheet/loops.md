@@ -42,10 +42,10 @@ incipit {
 }
 ```
 
-`apud` (English `at`) names the shared index. The sources are listas, the
-binders are plain names, and the first source owns the length: if a later
-list is shorter, the loop stops with a runtime error rather than silently
-truncating to the minimum.
+`at` names the shared index. The sources are lists and the binders are plain
+names. The lists must all have the same length: if they differ, the loop stops
+with a runtime error (`itera lockstep sources must have equal length`) rather
+than silently truncating to the shortest.
 
 ## Over keys {#keys}
 

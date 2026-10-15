@@ -20,14 +20,14 @@ scene-graph, material, geometry, primitive, and resource types as public
 Shapes model the [three.js](https://threejs.org/) abstractions for LLM
 familiarity and migration ease, but Triga is **not** a binding to three.js —
 these are native Faber types that define the same structural domain. In normal
-projects, declare Triga as a Cista package dependency in `faber.toml`; Cista
-records the resolved source in `faber.lock` and the compiler resolves it from
-the package store. For local development, point the compiler at a checkout
-with `--library-home <DIR>` or `[paths] library_home` in `faber.toml`; without
-either, only the Norma library embedded in the binary is available.
+projects, point the compiler at a Triga checkout with `--library-home <DIR>`
+(a directory that holds `triga/`, beside any other library checkouts) or with
+`[paths] library_home` in `faber.toml`. `faber doctor` prints the resolved
+library home and whether `triga` was found. Without either, only the Norma
+library embedded in the `faber` binary is available.
 
-Triga is not part of Norma. It is an optional dependency that packages opt
-into when they need graphics or geometry work.
+Triga is not part of Norma. It is an optional library that packages opt into
+when they need graphics or geometry work.
 
 ## Modules {#modules}
 
@@ -54,6 +54,7 @@ facades that point at their leaves.
 | `triga:scene` | `SceneStore`, `SceneHandle`, node kinds, traversal, visibility queries |
 | `triga:resource` | `ResourceHandle` + lifecycle operations |
 | `triga:shader` | Opaque `Texture2D` and `Sampler` types and their bound functions |
+| `triga:shader_contract` | Triga's adapter onto the compiler-owned shader-contract surface |
 | `triga:triga` | Facade / module map only (no classes) |
 
 ```faber mode=package
@@ -152,6 +153,9 @@ metadata. The browser seam for the DOM and Canvas2D is [Tela](/libraries/tela.ht
 (`tela:dom`, `tela:canvas2d`).
 
 ## Status {#status}
+
+TODO(cut): re-run `faber check` on the Triga checkout with the release compiler
+and record the result here.
 
 | Layer | State |
 |-------|-------|
