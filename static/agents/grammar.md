@@ -24,6 +24,7 @@ These are the forms the other pages check.
 - A comment is a `#` line by itself.
 
 Do not write `name: T`. Do not write `int?`. Do not write `//`. Do not put `#` after code on the same line.
+Do not write `print(x)`: output is a statement, `print x`. Do not write `≠`: not-equal is `≢`. Do not write `x = 5` as a store: a runtime store is `←`. Do not write Latin type names such as `numerus` or `textus` in an English file: the locales never mix, and that is `PARSE040` `wrong_locale_type`.
 
 ```faber locale=en
 # English source.

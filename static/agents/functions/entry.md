@@ -14,4 +14,6 @@ main args argv {
 }
 ```
 
+In a package, `faber run . -- a b` prints `a` and then `b`.
+
 Parent: https://faberlang.dev/agents/functions.md

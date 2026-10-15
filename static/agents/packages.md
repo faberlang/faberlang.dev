@@ -33,7 +33,11 @@ main {
 `faber check .` exits 0. `faber run .` prints `Salve, munde!`.
 
 `faber --help` also lists `faber build . -t rust`, `faber test .`,
-`faber format .` (reports drift; `--write` applies), and `faber explain SEM010`.
+`faber format .` (reports drift; `--write` applies), and `faber explain` (for
+example `faber explain SEM010`). `faber build .` with no `-t` writes an FHIR
+package envelope, `target/faber-fhir/package.fhirpkg`, not Rust. `-t rust`
+builds a native binary through Cargo. `faber run .` interprets the package and
+compiles nothing.
 
 A second source file is https://faberlang.dev/agents/modules.md.
 
