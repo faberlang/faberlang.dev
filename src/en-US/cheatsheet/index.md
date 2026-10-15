@@ -103,4 +103,4 @@ in use; the corpus has the exhaustive entry for every one.
 | `∴` | closure joint |
 | `‥` | range, as in `0‥10` |
 
-Full discussion: [Glyphs and Latin](/language/glyphs.html).
+Full discussion: [Glyphs and keywords](/language/glyphs.html).

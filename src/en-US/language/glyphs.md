@@ -1,5 +1,5 @@
 +++
-title = "Glyphs and Latin"
+title = "Glyphs and keywords"
 section = "language"
 order = 5
 sources = [

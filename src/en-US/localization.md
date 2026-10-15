@@ -331,6 +331,6 @@ A reader locale is a rendering choice, not a fork. There is one grammar; only
 its surface spelling moves.
 
 Related: [Reader locales](/language/reader-locales.html) for the full
-mechanism · [Glyphs and Latin](/language/glyphs.html) for why the glyphs hold
+mechanism · [Glyphs and keywords](/language/glyphs.html) for why the glyphs hold
 still · [Cheat sheet](/cheatsheet/) where every example carries all eight
 surfaces

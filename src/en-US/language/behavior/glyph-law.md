@@ -81,5 +81,5 @@ Two properties fall out of the split:
   survive every rendering; only the words change.
 
 The full glyph inventory, including the comparison and logic operators, is in
-[Glyphs and Latin](/language/glyphs.html). The design laws that keep these
+[Glyphs and keywords](/language/glyphs.html). The design laws that keep these
 choices stable are in [Design notes](/reference/design.html).

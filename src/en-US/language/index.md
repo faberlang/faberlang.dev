@@ -78,7 +78,7 @@ recognizable across languages.
 
 Two more appear when you convert between types: `∷` for a compile-time
 ascription and `↦` for a runtime conversion that can fail. Full table in
-[Glyphs and Latin](/language/glyphs.html).
+[Glyphs and keywords](/language/glyphs.html).
 
 ## The words you write, and the compiler's Latin {#latin}
 
@@ -98,6 +98,6 @@ rendering untouched — and identifiers like `saturate` are never translated.
 | [Types and values](/language/types.html) | primitives, collections, strings, nullability, conversion, bindings |
 | [Functions and control flow](/language/functions.html) | parameters, returns, branching, loops, generics |
 | [Errors and testing](/language/errors.html) | the `⇥` error channel, and inline `describe`/`test`/`assert` suites |
-| [Glyphs and Latin](/language/glyphs.html) | the full glyph table, vocabulary rationale, canonical vs sugar |
+| [Glyphs and keywords](/language/glyphs.html) | the full glyph table, vocabulary rationale, canonical vs sugar |
 | [Reader locales](/language/reader-locales.html) | how one program renders in eight surfaces |
 | [Capabilities and frames](/language/capabilities.html) | `call` dispatch and the host I/O boundary |
