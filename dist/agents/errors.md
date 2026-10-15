@@ -1,7 +1,9 @@
 # Errors
 
 `→` is the success channel. `⇥` is the recoverable error channel. A call to
-a `⇥` function sits inside `do` / `catch`.
+a `⇥` function sits inside `do` / `catch`, or inside a function that has its
+own `⇥` channel. A function with neither is `SEM011`
+`failable_call_requires_handler`.
 
 ```faber locale=en
 fn divide(int a, int b) → int ⇥ string {

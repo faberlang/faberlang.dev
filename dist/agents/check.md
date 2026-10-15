@@ -14,10 +14,12 @@ main {
 faber check .
 ```
 
-A failing check prints one line per diagnostic, each carrying its code and slug:
+A failing check prints, for each diagnostic, a line carrying its code and slug
+and the source line (the path is printed as resolved, here shortened):
 
 ```text
 error[SEM010:expression_type_mismatch]: src/main.fab:2
+  |     const int x ← "no"
 ```
 
 `faber check --diagnostics` expands each one into a block with the phase, the
@@ -44,7 +46,8 @@ faber explain SEM010
 faber explain SEM010 --json
 ```
 
-`faber explain SEM010` says the expression type does not match the expected
-type. `--json` returns `{code, locale, message, help}`.
+`faber explain SEM010` says `type mismatch` and gives the help
+`make the expression type match the expected type`. `--json` returns
+`{query, code, locale, message, help}`.
 
 Fetch list: https://faberlang.dev/agents/index.md

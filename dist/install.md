@@ -7,6 +7,8 @@ packages.
 
 Current release: Faber 1.12.0.
 
+<!-- TODO(cut): name the first release published after the repository cut here (use generator/scripts/bump_release.py). -->
+
 Follow these steps in order. Each link is the file that owns that step. Fetch
 it when you reach it; do not copy commands or URLs from this page.
 

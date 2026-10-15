@@ -25,7 +25,7 @@
   <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
   <span class="lbl l1">Faber · 1.12.0</span><span class="lbl l2" id="hud-clock">UTC --:--:--</span>
   <i class="ruler"></i>
-  <div class="ticker"><div class="ticker-track"><div class="ticker-group"><span>Faber 1.12.0</span><i></i><span>MIT</span><i></i><span>8 reader locales</span><i></i><span>19 targets</span><i></i><span>280 grammar productions</span><i></i><span>No accounts</span><i></i><span>Experimental through version 1</span><i></i><span>System fonts · zero external requests</span><i></i></div><div class="ticker-group"><span>Faber 1.12.0</span><i></i><span>MIT</span><i></i><span>8 reader locales</span><i></i><span>19 targets</span><i></i><span>280 grammar productions</span><i></i><span>No accounts</span><i></i><span>Experimental through version 1</span><i></i><span>System fonts · zero external requests</span><i></i></div></div></div>
+  <div class="ticker"><div class="ticker-track"><div class="ticker-group"><span>Faber 1.12.0</span><i></i><span>MIT or Apache-2.0</span><i></i><span>8 reader locales</span><i></i><span>18 targets</span><i></i><span>280 grammar productions</span><i></i><span>No accounts</span><i></i><span>Under active development</span><i></i><span>System fonts · zero external requests</span><i></i></div><div class="ticker-group"><span>Faber 1.12.0</span><i></i><span>MIT or Apache-2.0</span><i></i><span>8 reader locales</span><i></i><span>18 targets</span><i></i><span>280 grammar productions</span><i></i><span>No accounts</span><i></i><span>Under active development</span><i></i><span>System fonts · zero external requests</span><i></i></div></div></div>
 </div>
 
 <header class="site-top">
@@ -41,16 +41,17 @@
 </header>
 
 <div class="fl-banner" role="status">
-  <p><strong>Experimental through version 1.</strong>
-  Version 0 was alpha. This is the first language release: the interface is
-  relatively stable, not frozen. Nothing is promised stable until version 2.</p>
+  <!-- TODO(cut): decide the banner wording once the version line of the first post-cut release is known. -->
+  <p><strong>Under active development.</strong>
+  Faber changes quickly and the 2.0 line is being prepared. Expect the
+  language and the commands to keep moving until then.</p>
 </div>
 
 <main class="fl-wrap" id="top">
 
   <section class="fl-hero" aria-label="Faber">
     <div class="fl-claim">
-      <p class="kicker live"><i class="sq" aria-hidden="true"></i>A statically typed language for coding agents and human authors · MIT</p>
+      <p class="kicker live"><i class="sq" aria-hidden="true"></i>A statically typed language for coding agents and human authors · MIT or Apache-2.0</p>
       <h1 class="hook">Written by models,<br>read in your language.</h1>
       <div class="rule" aria-hidden="true"></div>
       <p class="subhook">
@@ -71,7 +72,7 @@
           <dl class="fields">
             <div class="row"><dt>Version</dt><i class="ld"></i><dd>1.12.0</dd></div>
             <div class="row"><dt>Platforms</dt><i class="ld"></i><dd>macOS arm64 · Linux x64</dd></div>
-            <div class="row"><dt>License</dt><i class="ld"></i><dd>MIT</dd></div>
+            <div class="row"><dt>License</dt><i class="ld"></i><dd>MIT OR Apache-2.0</dd></div>
           </dl>
         </div>
         <div class="pass-stub">
@@ -89,9 +90,11 @@
 
     <p class="fl-open-source">
       The language, public libraries, examples, and tooling ship under the
-      <strong>MIT</strong> license. <strong>Radix</strong>, the compiler, is
-      closed only while it is under active development. That is temporary,
-      not a permanent fence.
+      <strong>MIT</strong> or <strong>Apache-2.0</strong> license. The compiler
+      front end, the MIR runner, Norma, the grammar and the corpus are in one
+      public repository, <a href="https://github.com/faberlang/faber">faberlang/faber</a>;
+      the other code generators ship in the official binary.
+      <a href="/en-US/open-source.html">What is open</a>.
     </p>
   </section>
 
@@ -375,11 +378,11 @@ outside
         <h3>Math-oriented operators</h3>
         <p>
           Integer <code>/</code> floors, so <code>-7 / 2</code> is <code>-4</code>; true
-          division is <code>÷</code>. Comparisons read as math (<code>≤ ≥ ≠ ≈</code>),
+          division is <code>÷</code>. Comparisons read as math (<code>≤ ≥ ≢ ≈</code>),
           and tensor work has its own operators (<code>·</code> matmul,
           <code>⊙</code> elementwise). When math and hardware convention disagree,
           Faber follows the math.
-          <a href="/en-US/language/glyphs.html">Glyphs and Latin</a>
+          <a href="/en-US/language/glyphs.html">Glyphs</a>
         </p>
       </li>
       <li>
@@ -576,7 +579,8 @@ extension Span: CustomStringConvertible {
     <p class="fl-note">
       Rust builds as a Cargo package today. TypeScript, Go and Swift give you
       source files to add to your project; assembling them into installable
-      packages is not built yet. Support is stated target by target: generics and
+      packages is not built yet. C is a public preview that you enable with
+      the <code>hir-c</code> feature in a source build. Support is stated target by target: generics and
       some operators do not lower to every target, and the target matrix records
       where. <a href="/en-US/toolchain/target-matrix.html">Read the target matrix</a>
     </p>
@@ -620,7 +624,7 @@ extension Span: CustomStringConvertible {
       <a class="fl-lib" href="/en-US/libraries/norma.html">
         <strong>Norma</strong>
         <em>the standard library</em>
-        <span>The default public library: text, JSON, TOML and YAML, files, HTTP, time, crypto, collections and math, imported as <code>norma:*</code>.</span>
+        <span>The default public library: text, JSON, TOML and CSV, files, HTTP, time, crypto, collections and math, imported as <code>norma:*</code>.</span>
       </a>
       <a class="fl-lib" href="/en-US/libraries/gradus.html">
         <strong>Gradus</strong>
@@ -644,8 +648,8 @@ extension Span: CustomStringConvertible {
       </a>
       <a class="fl-lib" href="/en-US/toolchain/packages.html">
         <strong>Cista</strong>
-        <em>package store</em>
-        <span>The package manager: install, resolve, inspect and cache Faber packages, independent of the compiler.</span>
+        <em>experimental package store</em>
+        <span>A separate, experimental package-store project. It is not part of the <code>faber</code> binary; packages and libraries are described on the Packages page.</span>
       </a>
     </div>
     <div class="fl-frames">
@@ -767,8 +771,8 @@ extension Span: CustomStringConvertible {
       </nav>
     </div>
     <div>
-      <p>Designed by Ian Zepp. The language and the public libraries ship under the MIT license.</p>
-      <p><a href="/en-US/toolchain/radix.html">Radix</a>, the compiler, is closed while it is under active development.</p>
+      <p>Designed by Ian Zepp. The language is available under the MIT or Apache-2.0 license.</p>
+      <p><a href="/en-US/toolchain/radix.html">Radix</a>, the compiler, is developed in the public <a href="https://github.com/faberlang/faber">faberlang/faber</a> repository.</p>
     </div>
   </div>
 </footer>

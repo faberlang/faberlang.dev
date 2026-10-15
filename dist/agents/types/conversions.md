@@ -2,7 +2,7 @@
 
 `↦` converts a value to another type. A float becomes an integer only when
 the conversion names how it rounds: `via floor`, `via ceil`, `via trunc`, or
-`via half_even`. `half_even` sends a tie to the even neighbour, so 2.5 is 2.
+`via half_even`. `half_even` sends a tie to the even neighbour, so 2.5 is 2 and 3.5 is 4.
 
 ```faber locale=en
 main {

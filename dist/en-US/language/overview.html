@@ -5,28 +5,28 @@ math-oriented operators — and the same program can be written and read in
 eight language surfaces. This page is the claim plus the shape of everything;
 the pages below it go one level deeper.</p><h2 id="program">One program<a class="anchor" href="#program">#</a></h2><p>This is the whole program the landing page opens with: a small type, a generic
 helper, and an entry point. Every panel on this page is compiler output, so the
-page cannot claim something the toolchain does not produce.</p><pre class="faber-code"><code class="lang-faber">class Span {
-    const f64 low
-    const f64 high
+page cannot claim something the toolchain does not produce.</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">class</span> Span {
+    <span class="tok-kw">const</span> f64 low
+    <span class="tok-kw">const</span> f64 high
 
-    fn contains(f64 x) <span class="tok-op">→</span> bool {
-        return self.low <span class="tok-op">≤</span> x and x <span class="tok-op">≤</span> self.high
+    <span class="tok-kw">fn</span> contains(f64 x) <span class="tok-op">→</span> <span class="tok-kw">bool</span> {
+        <span class="tok-kw">return</span> <span class="tok-kw">self</span>.low <span class="tok-op">≤</span> x <span class="tok-kw">and</span> x <span class="tok-op">≤</span> <span class="tok-kw">self</span>.high
     }
 
-    fn center() <span class="tok-op">→</span> f64 {
-        return (self.low <span class="tok-op">+</span> self.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
+    <span class="tok-kw">fn</span> center() <span class="tok-op">→</span> f64 {
+        <span class="tok-kw">return</span> (<span class="tok-kw">self</span>.low <span class="tok-op">+</span> <span class="tok-kw">self</span>.high) <span class="tok-op">÷</span> <span class="tok-nu">2.0</span>
     }
 }
 
-fn choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(bool first, T a, T b) <span class="tok-op">→</span> T {
-    return first ✓ a ✗ b
+<span class="tok-kw">fn</span> choose<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">bool</span> first, T a, T b) <span class="tok-op">→</span> T {
+    <span class="tok-kw">return</span> first ✓ a ✗ b
 }
 
-main {
-    const Span bytes <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
-    print bytes.center()
-    print choose(bytes.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
-    print <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
+<span class="tok-kw">main</span> {
+    <span class="tok-kw">const</span> Span <span class="tok-kw">bytes</span> <span class="tok-op">←</span> Span { low <span class="tok-op">=</span> <span class="tok-nu">0.0</span>, high <span class="tok-op">=</span> <span class="tok-nu">255.0</span> }
+    <span class="tok-kw">print</span> <span class="tok-kw">bytes</span>.center()
+    <span class="tok-kw">print</span> choose(<span class="tok-kw">bytes</span>.contains(<span class="tok-nu">300.0</span>), <span class="tok-st">"inside"</span>, <span class="tok-st">"outside"</span>)
+    <span class="tok-kw">print</span> <span class="tok-op">-</span><span class="tok-nu">7</span> <span class="tok-op">/</span> <span class="tok-nu">2</span>
 }</code></pre><p>Its real output:</p><pre class="faber-code"><code class="lang-text">$ faber run
 127.5
 outside
@@ -41,12 +41,12 @@ only state compile-time facts. <a href="/en-US/language/behavior/glyph-law.html"
 <code>f64 low</code>, never <code>low: f64</code> — for parameters, locals and fields alike.
 Nullability is <code>T ∪ none</code>, and crossing between integer and float is an
 explicit <code class="glyph">↦</code>. <a href="/en-US/language/types.html">Types and values</a>.</li><li><strong>Math-oriented operators.</strong> Integer <code class="glyph">/</code> floors; true division is <code class="glyph">÷</code>;
-comparisons read as math (<code class="glyph">≤</code>, <code class="glyph">≥</code>, <code class="glyph">≠</code>, <code class="glyph">≈</code>). When math and hardware
+comparisons read as math (<code class="glyph">≤</code>, <code class="glyph">≥</code>, <code class="glyph">≢</code>, <code class="glyph">≈</code>). When math and hardware
 convention disagree, Faber follows the math.</li><li><strong>Widths apply at the store.</strong> Arithmetic runs unbounded; a width limit is
 applied once, where a value is stored into or converted to a bounded cell.
 <a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a>.</li><li><strong>Reader locales, sealed.</strong> One reader locale per file, never mixed. The
-same program renders in eight surfaces and converts losslessly back to
-canonical Latin. <a href="/en-US/language/reader-locales.html">Reader locales</a>.</li><li><strong>Errors as values, tests as declarations.</strong> A fallible function declares
+same program renders in eight surfaces, and <code>faber convert</code> translates a
+file between any two of them. <a href="/en-US/language/reader-locales.html">Reader locales</a>.</li><li><strong>Errors as values, tests as declarations.</strong> A fallible function declares
 its error channel with <code class="glyph">⇥</code>; callers recover with <code>do</code>/<code>catch</code>. Test suites
 live beside the code with <code>describe</code>, <code>test</code> and <code>assert</code>.
 <a href="/en-US/language/behavior/errors-and-tests.html">Errors and testing</a>.</li></ul><h2 id="targets">Where it compiles<a class="anchor" href="#targets">#</a></h2><p>Faber compiles through one analyzed program to many targets. Write a library,
@@ -83,6 +83,7 @@ below exactly as <code>radix emit --target rust</code> produces it:</p><pre clas
 <code>Emits</code> is source emission, <code>Package</code> is package assembly, <code>Runs</code> is running
 through faber.</p><div class="table-scroll"><table><thead><tr><th>Target</th><th>Emits</th><th>Package</th><th>Runs</th></tr></thead><tbody><tr><td><code>rust</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>faber</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>ts</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>go</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>python</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>haskell</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>wasm-text</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>wasm</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>llvm-text</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>metal-text</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>wgsl-text</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>sexp</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>swift</code></td><td>yes</td><td>—</td><td>—</td></tr><tr><td><code>fhir</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>llvm-host</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>fmir-text</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>fmir</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>fmir-bin</code></td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td><code>device-runtime</code></td><td>—</td><td>—</td><td>—</td></tr></tbody></table></div><p>Rust builds as a Cargo package today. Other targets give you source files to
 add to your existing project; assembling them into installable packages is
-not built yet. Support is stated target by target — generics and some
+not built yet. C is a public preview that a source build enables with the
+<code>hir-c</code> feature. Support is stated target by target — generics and some
 operators do not lower to every target, and the matrix records where.
 <a href="/en-US/toolchain/target-matrix.html">Read the target matrix</a>.</p><h2 id="next">Where to go next<a class="anchor" href="#next">#</a></h2><div class="table-scroll"><table><thead><tr><th>If you want to</th><th>Read</th></tr></thead><tbody><tr><td>See the reasoning behind the language</td><td><a href="/en-US/language/behavior/glyph-law.html">Behavior</a></td></tr><tr><td>Start writing code</td><td><a href="/en-US/start/">Start</a></td></tr><tr><td>Look up a construct</td><td><a href="/en-US/cheatsheet/">Cheat sheet</a></td></tr><tr><td>Read the formal grammar</td><td><a href="/en-US/reference/grammar.html">Grammar</a></td></tr><tr><td>Use the compiler</td><td><a href="/en-US/toolchain/cli.html">Faber command line</a></td></tr><tr><td>Pick another reader language</td><td><a href="/en-US/language/reader-locales.html">Reader locales</a></td></tr></tbody></table></div></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#program">One program</a></li><li class="toc-2"><a href="#capabilities">What the language gives you</a></li><li class="toc-2"><a href="#targets">Where it compiles</a></li><li class="toc-2"><a href="#next">Where to go next</a></li></ul></div></nav><footer><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
