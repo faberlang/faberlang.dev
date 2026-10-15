@@ -232,6 +232,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | stack        stack        ngăn_xếp
 | string       textus       văn_bản
 | tensor       tensor       ten_xo
+| trapped      interceptum  mắc_bẫy
 | trapping     exactus      chính_xác
 | unknown      ignotum      chưa_biết
 | value        valor        giá_trị
@@ -282,7 +283,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | difference            differentia            hiệu
 | difference_symmetric  symmetrica             hiệu_đối_xứng
 | divide                divida                 chia
-| divide                divisio                phép_chia
 | divided               divisa                 đã_chia
 | dot                   productum              tích_vô_hướng
 | drop                  omissa                 bỏ_qua

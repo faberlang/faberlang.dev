@@ -17,14 +17,14 @@ func divide(p_a int, p_b int) (int, error) {
 }
 
 func main() {
-    if err := func() error {
+    if l_err := func() error {
         v0, r0 := divide(10, 2)
         if r0 != nil {
             return r0
         }
         fmt.Println(v0)
         return nil
-    }(); err != nil {
+    }(); l_err != nil {
         fmt.Fprintln(os.Stderr, l_err.Error())
     }
 }

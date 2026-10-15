@@ -232,6 +232,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | stack        stack        स्टैक
 | string       textus       पाठ
 | tensor       tensor       टेंसर
+| trapped      interceptum  फँसा
 | trapping     exactus      सटीक
 | unknown      ignotum      अज्ञात
 | value        valor        मान
@@ -282,7 +283,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | difference            differentia            अंतर
 | difference_symmetric  symmetrica             सममित_अंतर
 | divide                divida                 भाग_दो
-| divide                divisio                विभाजन
 | divided               divisa                 विभाजित
 | dot                   productum              बिंदु_गुणनफल
 | drop                  omissa                 आरंभ_छोड़ो

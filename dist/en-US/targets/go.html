@@ -213,14 +213,14 @@
 }
 
 <span class="tok-kw">func</span> main() {
-    <span class="tok-kw">if</span> err := <span class="tok-kw">func</span>() <span class="tok-ty">error</span> {
+    <span class="tok-kw">if</span> l_err := <span class="tok-kw">func</span>() <span class="tok-ty">error</span> {
         v0, r0 := divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
         <span class="tok-kw">if</span> r0 != <span class="tok-kw">nil</span> {
             <span class="tok-kw">return</span> r0
         }
         fmt.Println(v0)
         <span class="tok-kw">return</span> <span class="tok-kw">nil</span>
-    }(); err != <span class="tok-kw">nil</span> {
+    }(); l_err != <span class="tok-kw">nil</span> {
         fmt.Fprintln(os.Stderr, l_err.Error())
     }
 }</code></pre><h2 id="collectiones">Collections and iteration<a class="anchor" href="#collectiones">#</a></h2><p>A list folded to a total with <code>for from</code>. The plainest possible read on how loops lower.</p><p><strong>Faber source</strong></p><pre class="faber-code"><code class="lang-faber locale-tabs">fn sum(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> int {

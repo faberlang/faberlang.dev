@@ -232,6 +232,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | stack        stack        مكدس
 | string       textus       نص
 | tensor       tensor       موتر
+| trapped      interceptum  محتجز
 | trapping     exactus      دقيق
 | unknown      ignotum      مجهول
 | value        valor        قيمة
@@ -282,7 +283,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | difference            differentia            الفرق
 | difference_symmetric  symmetrica             الفرق_المتماثل
 | divide                divida                 اقسم
-| divide                divisio                قسمة
 | divided               divisa                 مقسوم
 | dot                   productum              الجداء_النقطي
 | drop                  omissa                 أسقط

@@ -232,6 +232,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | stack        stack        สแตก
 | string       textus       ข้อความ
 | tensor       tensor       เทนเซอร์
+| trapped      interceptum  ติดกับดัก
 | trapping     exactus      แม่นยำ
 | unknown      ignotum      ไม่รู้
 | value        valor        ค่า
@@ -282,7 +283,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | difference            differentia            ผลต่าง
 | difference_symmetric  symmetrica             ผลต่างสมมาตร
 | divide                divida                 หาร
-| divide                divisio                การหาร
 | divided               divisa                 หารแล้ว
 | dot                   productum              ดอตโปรดักต์
 | drop                  omissa                 ข้าม

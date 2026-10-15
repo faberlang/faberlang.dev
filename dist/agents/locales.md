@@ -229,6 +229,7 @@ listed at the end.
 | `stack` | `stack` | `مكدس` | `स्टैक` | `สแตก` | `ngăn_xếp` | `栈` | `堆疊` |
 | `string` | `textus` | `نص` | `पाठ` | `ข้อความ` | `văn_bản` | `文本` | `文字` |
 | `tensor` | `tensor` | `موتر` | `टेंसर` | `เทนเซอร์` | `ten_xo` | `张量` | `張量` |
+| `trapped` | `interceptum` | `محتجز` | `फँसा` | `ติดกับดัก` | `mắc_bẫy` | `被困` | `受困` |
 | `trapping` | `exactus` | `دقيق` | `सटीक` | `แม่นยำ` | `chính_xác` | `精确` | `精確` |
 | `unknown` | `ignotum` | `مجهول` | `अज्ञात` | `ไม่รู้` | `chưa_biết` | `未知` | `未知` |
 | `value` | `valor` | `قيمة` | `मान` | `ค่า` | `giá_trị` | `动态值` | `值` |
@@ -279,7 +280,6 @@ Latin has no `[intrinsics]` section, so the Latin column carries each intrinsic'
 | `difference` | `differentia` | `الفرق` | `अंतर` | `ผลต่าง` | `hiệu` | `差集` | `差集` |
 | `difference_symmetric` | `symmetrica` | `الفرق_المتماثل` | `सममित_अंतर` | `ผลต่างสมมาตร` | `hiệu_đối_xứng` | `对称差集` | `對稱差集` |
 | `divide` | `divida` | `اقسم` | `भाग_दो` | `หาร` | `chia` | `除以` | `除以` |
-| `divide` | `divisio` | `قسمة` | `विभाजन` | `การหาร` | `phép_chia` | `除法` | `除法` |
 | `divided` | `divisa` | `مقسوم` | `विभाजित` | `หารแล้ว` | `đã_chia` | `已除以` | `已除以` |
 | `dot` | `productum` | `الجداء_النقطي` | `बिंदु_गुणनफल` | `ดอตโปรดักต์` | `tích_vô_hướng` | `点积` | `點積` |
 | `drop` | `omissa` | `أسقط` | `आरंभ_छोड़ो` | `ข้าม` | `bỏ_qua` | `丢弃` | `捨棄` |

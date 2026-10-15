@@ -232,6 +232,7 @@ Generated from the packs. The Latin column is the pack key and the compiler's in
 | stack        stack
 | textus       string
 | tensor       tensor
+| interceptum  trapped
 | exactus      trapping
 | ignotum      unknown
 | valor        value
@@ -282,7 +283,6 @@ Generated from the packs. The Latin column is the pack key and the compiler's in
 | differentia            difference
 | symmetrica             difference_symmetric
 | divida                 divide
-| divisio                divide
 | divisa                 divided
 | productum              dot
 | omissa                 drop
