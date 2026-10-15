@@ -1,0 +1,5 @@
+import from "norma:console" console
+
+main {
+    print "ready"
+}

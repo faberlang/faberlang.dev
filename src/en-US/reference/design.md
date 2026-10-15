@@ -3,7 +3,7 @@ title = "Design notes"
 section = "reference"
 order = 3
 sources = [
-  "radix/docs/design/README.md",
+  "docs/design/README.md",
 ]
 +++
 

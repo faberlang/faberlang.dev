@@ -1,0 +1,5 @@
+import from "norma:text" public text
+
+main {
+    print "ready"
+}

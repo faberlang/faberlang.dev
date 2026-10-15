@@ -1,0 +1,5 @@
+นำเข้า ออก "norma:console" console
+
+เริ่ม {
+    บันทึก "ready"
+}

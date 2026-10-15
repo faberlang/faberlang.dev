@@ -180,7 +180,7 @@ with nothing changed renders nothing and an edit to one page renders that page.
 Incremental output is byte-identical to `--full` (checked 2026-10-14).
 
 **Measured times, 2026-10-14** (18-core laptop under load average ~6–9, pinned
-radix 20c62a89c7):
+radix 20c62a89c7; the 2026-10-15 pin is ae5b812704, `--refresh-upstream --full` took 30 s):
 
 | Run | Time |
 |---|---|
@@ -418,8 +418,15 @@ the English tree; `/llms-full.txt` is a locale-neutral corpus reference.
   (it rewrites the version, tag, date, bundled compiler and the four archive
   URLs together; `--check` verifies the three files agree and a test pins it),
   update this note, build, commit. Nothing else on the site carries a version.
+- **Authoring notes.** A line that is a one-line HTML comment in a Markdown
+  source passes through the renderer as an invisible comment. `TODO(cut)`
+  comments mark facts that are decided at the 2026-10-16 repository cut
+  (`rg "TODO\(cut\)" src static generator`); resolve each, then delete the
+  comment.
 - **Ruled but not built at HEAD.** These are not stated as fact anywhere; each
-  has a sentence that is true today and must be revisited when the item lands:
+  has a sentence that is true today and must be revisited when the item lands.
+  The binding-word change (`const`/`let`/`ref`/`mut`) is ruled but not landed;
+  the pages spell what the compiler accepts today:
   the anonymous `record` literal (`language/types.md` "no anonymous object"
   sentences and `cheatsheet/types.md` on `:` versus `=`); `reduce via first`
   replacing `primus_quem`/`ubi` (the generated locale rows); `trapped<R,T>`,

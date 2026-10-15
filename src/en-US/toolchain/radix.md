@@ -207,7 +207,7 @@ flowchart TB
     Shared["radix-codegen-shared"]
     Diagnostics["radix-diagnostics"]
 
-    HIRBackends["radix-hir-rust / faber / ts / go / swift / python / haskell"]
+    HIRBackends["radix-hir-rust / faber / ts / go / swift / python / haskell / c"]
     MIRBackends["radix-mir-wasm / llvm / metal / wgsl / sexp"]
     Runner["radix-mir-runner"]
     Coverage["radix-mir-coverage"]
@@ -274,8 +274,8 @@ re-export does not mean that the façade owns the data model.
 #### Source loading and frontmatter
 
 The driver starts by peeling raw source and frontmatter. A file frontmatter
-locale can select a reader pack; otherwise the session pack or the Latin default
-is used. The selected pack is threaded through lexing and semantic type
+locale can select a reader pack; otherwise the session pack or the product default
+(`en`) is used. The selected pack is threaded through lexing and semantic type
 spelling so that input language vocabulary and output language vocabulary are
 not accidentally mixed.
 
@@ -982,11 +982,12 @@ mean that the artifact has a complete external runtime.
 | `rust` | HIR-direct | check/build | check/build/run/package | Widest package product surface among HIR-direct emitters. |
 | `fhir` | HIR-direct | check/build | build/run/package | Portable FHIR package envelope; load + lower to FMIR for run. |
 | `faber` | HIR-direct | check/build | inspection-oriented | Canonical Faber re-emission; not an executable package artifact. |
-| `ts` | HIR-direct | check/build | no package/run | Experimental language-shaped source emission; exempla e2e floors rising (2026-08). |
-| `go` | HIR-direct | check/build | no package/run | HIR emitter with explicit rejection gaps; exempla e2e floors rising (2026-08). |
+| `ts` | HIR-direct | check/build | no package/run | Experimental language-shaped source emission; corpus suite 506 / 651. |
+| `go` | HIR-direct | check/build | no package/run | HIR emitter with explicit rejection gaps; corpus suite 538 / 651. |
 | `swift` | HIR-direct | check/build | no package/run | Apple-oriented source emission; no package runtime. |
 | `python` | HIR-direct | check/build | no package/run | File emission supported; package compilation not yet supported. |
 | `haskell` | HIR-direct | check/build | no package/run | File emission supported; package compilation not yet supported. |
+| `c` | HIR-direct | check/build (`hir-c` feature) | no package/run | Preview: readable C11 with a header-only runtime; 71 corpus programs emit and 65 of 66 comparable ones match the runner. |
 | `wasm-text` | MIR-backed | check/build | no package/run | Fail-closed WAT probe with external host imports. |
 | `wasm` | MIR-backed | check/build | no package/run | Compatibility alias of `wasm-text`; emits WAT text, binary conversion is external. |
 | `llvm-text` | MIR-backed | check/build | device run via `faber run --device cuda` | LLVM IR staging; NVVM/PTX CUDA device execution through `faber`. |

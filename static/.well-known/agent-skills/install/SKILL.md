@@ -20,7 +20,7 @@ description: "Download and verify the current Faber CLI release for macOS arm64 
 - **Release page:** https://github.com/faberlang/releases/releases/tag/faber-v1.12.0
 - **License:** MIT OR Apache-2.0
 
-<!-- TODO(cut): this block names the last published release (1.12.0 on faberlang/releases). When the first release after the repository cut is published, run generator/scripts/bump_release.py <version> --published <date> --radix <version>; the new release host, tag and archive URLs are decided at the cut. -->
+<!-- TODO(cut): this block names the last published release (on faberlang/releases). When the first release after the repository cut is published, run generator/scripts/bump_release.py <version> --published <date> --radix <version>; the new release host, tag and archive URLs are decided at the cut. -->
 
 ## Archives
 

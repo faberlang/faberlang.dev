@@ -1,5 +1,0 @@
-importa ex "norma:consolum" consolum
-
-incipit {
-    nota "ready"
-}

@@ -83,7 +83,7 @@ TARGETS: list[dict[str, str]] = [
 
 # Capability table rows: (target id in `faber targets`, display name, what it is).
 # The yes/no cells come from the toolchain; the sentence is editorial and kept
-# within what the cells and `radix/docs/design/target-capability-matrix.md`
+# within what the cells and `docs/design/target-capability-matrix.md`
 # actually say.
 CAPABILITY_GROUPS: list[tuple[str, list[tuple[str, str, str]]]] = [
     ("Source for your existing project", [
@@ -123,7 +123,7 @@ FRAMES: list[dict[str, str]] = [
 # AGENTS.md / source on 2026-09-30. Status wording is deliberately plain.
 LIBRARIES: list[dict[str, str]] = [
     {"name": "Norma", "href": "/en-US/libraries/norma.html", "status": "the standard library",
-     "desc": "The default public library: text, JSON, TOML and YAML, files, HTTP, time, "
+     "desc": "The default public library: text, JSON, TOML and CSV, files, HTTP, time, "
              "crypto, collections and math, imported as <code>norma:*</code>."},
     {"name": "Gradus", "href": "/en-US/libraries/gradus.html", "status": "autograd and ML",
      "desc": "Automatic differentiation, losses, optimizers and neural-network primitives. "
@@ -137,9 +137,9 @@ LIBRARIES: list[dict[str, str]] = [
     {"name": "Inferentia", "href": "/en-US/libraries/inferentia.html", "status": "in development",
      "desc": "A local-first GGUF inference server written in Faber. Today it is a command-line "
              "shell; model loading and HTTP serving are the next stages."},
-    {"name": "Cista", "href": "/en-US/toolchain/packages.html", "status": "package store",
-     "desc": "The package manager: install, resolve, inspect and cache Faber packages, "
-             "independent of the compiler."},
+    {"name": "Cista", "href": "/en-US/toolchain/packages.html", "status": "experimental package store",
+     "desc": "A separate, experimental package-store project. It is not part of the "
+             "<code>faber</code> binary; packages and libraries are described on the Packages page."},
 ]
 
 
@@ -546,11 +546,11 @@ def main() -> None:
         <h3>Math-oriented operators</h3>
         <p>
           Integer <code>/</code> floors, so <code>-7 / 2</code> is <code>-4</code>; true
-          division is <code>÷</code>. Comparisons read as math (<code>≤ ≥ ≠ ≈</code>),
+          division is <code>÷</code>. Comparisons read as math (<code>≤ ≥ ≢ ≈</code>),
           and tensor work has its own operators (<code>·</code> matmul,
           <code>⊙</code> elementwise). When math and hardware convention disagree,
           Faber follows the math.
-          <a href="/en-US/language/glyphs.html">Glyphs and Latin</a>
+          <a href="/en-US/language/glyphs.html">Glyphs</a>
         </p>
       </li>
       <li>

@@ -1,0 +1,5 @@
+استورد من "norma:console" console
+
+بداية {
+    اعرض "ready"
+}

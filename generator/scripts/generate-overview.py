@@ -9,10 +9,8 @@ Its code panels are the captured compiler output under `generator/landing/`
 drift.
 
 Only the committed cache is read; a checkout without sibling repositories
-still builds. The page is rendered by the site generator, so its Faber panel is
-authored in canonical Latin and transcoded to the page's reader locale
-(English) by the normal Markdown pipeline — the same convention every other
-source page follows.
+still builds. The Faber panel is captured in the English reader surface
+(`locales/en.fab`), so the page leads with English.
 
 CLI:
     generate-overview.py [--landing generator/landing]
@@ -27,10 +25,9 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent.parent
 
-# Reader-locale program panel. `locales/la.fab` is the canonical Latin surface
-# captured by capture-landing-panels.sh; the en-US build transcodes it to the
-# English reader surface at render time. The page never hand-writes code.
-PROGRAM_PANEL = "locales/la.fab"
+# Reader-locale program panel: the English reader surface captured by
+# capture-landing-panels.sh. The page never hand-writes code.
+PROGRAM_PANEL = "locales/en.fab"
 PROGRAM_OUTPUT = "program.out.txt"
 TARGET_PANEL = "targets/out.rust.txt"
 TARGETS_ROWS = "targets/faber-targets.txt"
@@ -94,7 +91,7 @@ This is the whole program the landing page opens with: a small type, a generic
 helper, and an entry point. Every panel on this page is compiler output, so the
 page cannot claim something the toolchain does not produce.
 
-```faber
+```faber locale=en
 {program}
 ```
 
@@ -122,14 +119,14 @@ are rendered in another language — the glyphs and the order stay put.
   Nullability is `T ∪ none`, and crossing between integer and float is an
   explicit `↦`. [Types and values](/language/types.html).
 - **Math-oriented operators.** Integer `/` floors; true division is `÷`;
-  comparisons read as math (`≤`, `≥`, `≠`, `≈`). When math and hardware
+  comparisons read as math (`≤`, `≥`, `≢`, `≈`). When math and hardware
   convention disagree, Faber follows the math.
 - **Widths apply at the store.** Arithmetic runs unbounded; a width limit is
   applied once, where a value is stored into or converted to a bounded cell.
   [Math in the ether](/language/behavior/numeric-widths.html).
 - **Reader locales, sealed.** One reader locale per file, never mixed. The
-  same program renders in eight surfaces and converts losslessly back to
-  canonical Latin. [Reader locales](/language/reader-locales.html).
+  same program renders in eight surfaces, and `faber convert` translates a
+  file between any two of them. [Reader locales](/language/reader-locales.html).
 - **Errors as values, tests as declarations.** A fallible function declares
   its error channel with `⇥`; callers recover with `fac`/`cape`. Test suites
   live beside the code with `probandum`, `proba` and `adfirma`.
@@ -153,7 +150,8 @@ through faber.
 {targets}
 Rust builds as a Cargo package today. Other targets give you source files to
 add to your existing project; assembling them into installable packages is
-not built yet. Support is stated target by target — generics and some
+not built yet. C is a public preview that a source build enables with the
+`hir-c` feature. Support is stated target by target — generics and some
 operators do not lower to every target, and the matrix records where.
 [Read the target matrix](/toolchain/target-matrix.html).
 

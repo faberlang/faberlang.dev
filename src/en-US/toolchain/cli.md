@@ -7,7 +7,7 @@ sources = [
   "faber/AGENTS.md",
   "faber/src/cli/mod.rs",
   "faber/docs/release/v1.6.0.md",
-  "radix/docs/design/faber-scripting.md",
+  "docs/design/faber-scripting.md",
 ]
 +++
 
@@ -133,7 +133,7 @@ faber explain --search query
 
 `faber explain` explains a Faber glyph, keyword, or grammar term, with
 diagnostic codes as a subset. It reads from the language corpus
-(`radix/corpus/`).
+(`corpus/`).
 
 ## In-process scripting
 

@@ -61,7 +61,7 @@ DEFAULT_OUT = REPO / "src" / "en-US" / "language" / "locales"
 DEFAULT_CAPTURES = REPO / "generator" / "locale-captures"
 DEFAULT_TABS = REPO / "generator" / "locale-tabs"
 # The committed hello-world panel set: `main { print "Salve, munde!" }`.
-DEFAULT_EXAMPLE_KEY = "0aca787373d25281"
+DEFAULT_EXAMPLE_KEY = "f482c214956d1fee"
 
 
 def default_packs() -> Path:

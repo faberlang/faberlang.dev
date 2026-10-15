@@ -1,0 +1,5 @@
+匯入 取自 "norma:text" 公開 text
+
+入口 {
+    註記 "ready"
+}

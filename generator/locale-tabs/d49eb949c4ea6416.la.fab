@@ -1,0 +1,5 @@
+importa ex "norma:console" console
+
+incipit {
+    nota "ready"
+}

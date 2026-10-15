@@ -1,0 +1,5 @@
+आयात सेवन "norma:console" console
+
+आरंभ {
+    दिखाओ "ready"
+}

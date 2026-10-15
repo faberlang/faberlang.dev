@@ -23,8 +23,8 @@ class PackSlugTests(unittest.TestCase):
         self.assertEqual(display_slug("si", "keyword", self.pack), "if")
         self.assertEqual(display_slug("redde", "keyword", self.pack), "return")
 
-    def test_nihil_keyword_is_null_and_type_uses_pack_spelling(self) -> None:
-        self.assertEqual(display_slug("nihil", "keyword", self.pack), "null")
+    def test_nulla_keyword_is_null_and_type_uses_pack_spelling(self) -> None:
+        self.assertEqual(display_slug("nulla", "keyword", self.pack), "null")
         self.assertEqual(display_slug("nihil", "type", self.pack), "none")
 
     def test_type_fallback_when_not_in_keywords(self) -> None:
@@ -42,7 +42,7 @@ class PackSlugTests(unittest.TestCase):
                 ("functio", "keyword"),
                 ("si", "keyword"),
                 ("incipit", "keyword"),
-                ("nihil", "keyword"),
+                ("nulla", "keyword"),
                 ("lista", "keyword"),
             ],
             self.pack,
@@ -50,7 +50,7 @@ class PackSlugTests(unittest.TestCase):
         self.assertEqual(slugs["functio"], "fn")
         self.assertEqual(slugs["si"], "if")
         self.assertEqual(slugs["incipit"], "main")
-        self.assertEqual(slugs["nihil"], "null")
+        self.assertEqual(slugs["nulla"], "null")
         self.assertEqual(slugs["lista"], "list")
         self.assertEqual(collisions, [])
 
