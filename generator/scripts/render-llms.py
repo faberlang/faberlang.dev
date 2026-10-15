@@ -186,7 +186,7 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
         "- https://faberlang.dev/en-US/libraries/ — Norma, Triga, the corpus",
         "- https://faberlang.dev/en-US/corpus/ — generated keyword / construct pages",
         "- https://faberlang.dev/en-US/releases/ — every version, pinned installs, release notes",
-        "- https://faberlang.dev/en-US/open-source.html — licensing, repositories, issue routing",
+        "- https://faberlang.dev/en-US/open-source.html — licensing, what is open, repositories, issue routing",
         "- https://faberlang.dev/en-US/reference/ — EBNF, design docs",
         "- Prefer /en-US/… over bare paths. /syntax/, /features/, /tooling/,",
         "  /ecosystem/, /history/ and /references/ are retired redirect stubs.",
@@ -194,11 +194,10 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
 
     write_section(lines, "Repositories")
     lines.extend([
-        "- https://github.com/faberlang/faber — public target APIs and project home",
+        "- https://github.com/faberlang/faber — the language: compiler front end, MIR runner, standard library (lib/norma), grammar, locale packs, corpus",
         "- https://github.com/faberlang/releases — tagged CLI release assets",
-        "- https://github.com/faberlang/norma — standard library",
-        "- https://github.com/faberlang/cista — package store",
         "- https://github.com/faberlang/triga — graphics / geometry",
+        "- https://github.com/faberlang/gradus — autograd / ML",
         "- https://github.com/faberlang/examples — corpus + application packages",
         "- https://github.com/faberlang/faberlang.dev — this site",
     ])

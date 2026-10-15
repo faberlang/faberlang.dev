@@ -22,7 +22,7 @@ with a specific question.
 The fastest of these is usually the CLI:
 
 ```bash
-faber explain redde
+faber explain return
 faber explain ⇥
 faber targets
 ```

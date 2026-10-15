@@ -11,9 +11,11 @@ sources = [
 
 ## Radix compiler
 
-Radix is the Faber compiler. It is a private crate (`radix/`) that
-implements the full compilation pipeline from source text to target
-backends.
+Radix is the Faber compiler: a workspace of Rust crates (`crates/radix-*`)
+that implements the compilation pipeline from source text to target
+backends. The front end, the MIR runner and the Faber and C emitters are in
+the public repository; the other code generators ship in the official `faber`
+binary.
 
 ### Pipeline {#pipeline}
 
@@ -36,6 +38,7 @@ Radix lowers Faber source through three intermediate representations:
 | WASM | MIR | WebAssembly text | Experimental |
 | TypeScript | HIR | TypeScript source | Experimental |
 | Go | HIR | Go source | Experimental |
+| C | HIR | C11 source with a header-only runtime | Preview |
 | WGSL | MIR | WGSL compute source and reflection (no launch path) | Experimental |
 
 ### Architecture {#architecture}
@@ -130,14 +133,14 @@ for an unsupported target shape.
 
 ### Repository and ownership
 
-The `radix` directory is the private compiler workspace. It holds the compiler
+The repository is the compiler workspace. It holds the compiler
 crates, the `faber` product crate (`crates/faber`), the in-tree runtimes
 (`runtime/`), Norma (`lib/norma/`), and the grammar (`grammar/`). The
 user-facing package tool is `faber`.
 
 ```mermaid
 flowchart TB
-    Radix["radix\nprivate compiler"]
+    Radix["radix\ncompiler"]
     Faber["faber\npublic package CLI"]
     Runtime["faber-runtime\npublic generated-code carriers"]
     Norma["norma\nstdlib source"]
@@ -161,7 +164,7 @@ The package boundary is intentional:
   artifact workflows.
 - Generated Rust packages depend on the public `faber-runtime` crate, whose
   crate name is `faber`. They do not depend on the compiler itself.
-- `radix-host-abi` is the compiler-owned table of the host ABI that emitted
+- `radix-abi` is the compiler-owned table of the host ABI that emitted
   artifacts target; `radix abi` prints it. The sibling `hosts` repository that
   once held host products no longer exists. The in-tree host runtime for
   native LLVM executables is `runtime/llvm`.
@@ -208,7 +211,7 @@ flowchart TB
     MIRBackends["radix-mir-wasm / llvm / metal / wgsl / sexp"]
     Runner["radix-mir-runner"]
     Coverage["radix-mir-coverage"]
-    ABI["radix-host-abi + radix-runtime-contract"]
+    ABI["radix-abi + radix-runtime-contract"]
 
     CLI --> Facade
     Facade --> Module
@@ -584,7 +587,7 @@ Sources:
 
 - `crates/radix-mir-lower/src/lower.rs`;
 - `crates/radix-mir/src/nodes.rs`; and
-- `crates/radix-mir/src/validate.rs`.
+- `crates/radix-mir/src/validate/`.
 
 #### AIR detour
 
@@ -1033,7 +1036,7 @@ flowchart LR
 
     MIRImage --> Runner["FMIR loader / MIR runner"]
     DeviceText --> ExternalHost["external verifier / linker / browser / GPU host"]
-    ExternalHost --> ABI["radix-host-abi contract"]
+    ExternalHost --> ABI["radix-abi contract"]
 ```
 
 The target-specific responsibilities are:
@@ -1046,7 +1049,7 @@ The target-specific responsibilities are:
 - **MIR runner/FMIR loader:** execution of the supported MIR package/runtime
   subset.
 - **External hosts:** WebAssembly/WebGPU loading and any other consumer of the
-  `radix-host-abi` contract. The in-tree host runtime for native LLVM
+  `radix-abi` contract. The in-tree host runtime for native LLVM
   executables is `runtime/llvm`; the sibling `hosts` repository no longer
   exists.
 
@@ -1117,7 +1120,7 @@ milestones in this architecture.
 
 ### Developer inspection surfaces
 
-The private `radix` binary is intentionally a phase-inspection tool:
+The `radix` binary is intentionally a phase-inspection tool:
 
 | Command | What it exposes |
 | --- | --- |
@@ -1152,7 +1155,7 @@ For implementation archaeology, start with the driver and move outward:
 3. `crates/radix-semantic/src/lower/mod.rs`
 4. `crates/radix-mir-lower/src/lower.rs`
 5. `crates/radix-module/src/air/lower.rs`
-6. `crates/radix-mir/src/validate.rs`
+6. `crates/radix-mir/src/validate/`
 7. target leaf crates under `crates/radix-mir-*` and
    `crates/radix-hir-*`.
 

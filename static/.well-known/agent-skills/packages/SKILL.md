@@ -77,9 +77,9 @@ kind = "bin"
 A second source file is imported by path. See the modules page.
 
 `norma:*` resolves from the Norma library embedded in the binary. Other
-libraries resolve from the Cista package store recorded in `faber.lock`. Pass
-`--library-home <DIR>` (or set `[paths] library_home` in `faber.toml`) only for
-an intentional local library-development override.
+libraries (`triga:*`, `gradus:*`, `tela:*`) are source checkouts: pass
+`--library-home <DIR>` (or set `[paths] library_home` in `faber.toml`) to a
+directory that holds them. `faber doctor` prints which libraries it can find.
 
 ## Commands
 
@@ -87,7 +87,7 @@ an intentional local library-development override.
 |---|---|
 | `faber check .` | Type-check. Exits 0 on the canon package. |
 | `faber run .` | Interpret. Prints `Salve, munde!` for that package. |
-| `faber build . -t rust` | Compile. Listed by `faber --help`. |
+| `faber build . -t rust` | Compile to a Cargo project (with no `-t`, a package writes an FHIR package envelope). Listed by `faber --help`. |
 | `faber test .` | Run proba suites. Listed by `faber --help`. |
 | `faber format .` | Report files that would change; `--write` applies. Listed by `faber --help`. |
 | `faber explain SEM010` | Explain a diagnostic. |

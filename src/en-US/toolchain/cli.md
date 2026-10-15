@@ -21,7 +21,7 @@ ergonomic developer tool.
 
 | Command | Purpose |
 |---|---|
-| `faber build <path>` | Compile a package to a target backend (default: Rust) |
+| `faber build <path>` | Compile a package to a target backend (with no `-t` a package writes an FHIR package envelope; `-t rust` writes a Cargo project) |
 | `faber check <path>` | Type-check without emitting code |
 | `faber run <path>` | Interpret and run a source file, package, or archive on the MIR runner (never compiles) |
 | `faber test <path>` | Run proba cases on the MIR runner |
@@ -30,6 +30,10 @@ ergonomic developer tool.
 | `faber explain <term>` | Explain a glyph, keyword, grammar term, or diagnostic code |
 | `faber emit <path>` | Compile to a target surface for stdout |
 | `faber targets` | Show supported targets and capability notes |
+| `faber corpus <suite> --target <t>` | Verify a corpus case or suite against its expected output on one target (`runner` by default) |
+| `faber doctor` | Show the resolved library home and which libraries are available |
+| `faber doc <path>` | Render exported declarations with their signatures and doc comments |
+| `faber self update` / `faber self uninstall` | Manage this `faber` installation |
 | `faber init` | Create a new Faber package |
 | `faber repl` | Interactive MIR runner REPL |
 | `faber verify <file>` | Run aspect verification on a single file |
@@ -46,7 +50,8 @@ faber build my-package/ -t rust
 
 The `-t` flag selects the codegen target. `faber build --help` lists the
 accepted values and `faber targets` shows each target's current capability
-notes. Diagnostics can be promoted to errors with `--deny-warnings` (all
+notes. A target whose generator is not in the binary you are running is
+rejected with `PKG001 target_not_in_this_build`. Diagnostics can be promoted to errors with `--deny-warnings` (all
 warnings) or `--deny <CODE>` (a specific catalog code, repeatable).
 
 ### Device execution (Metal / CUDA) {#device-execution}
@@ -97,11 +102,12 @@ faber test . --suite suite/path   # select by probandum suite path
 faber test . --tag slow           # select by tag modifier
 ```
 
-`faber test` runs proba cases on the MIR runner — no Cargo or rustc is
+`faber test` also takes `--list`, `--fail-fast`, `--skip`, `--format` and
+`--test-timeout`. It runs proba cases on the MIR runner — no Cargo or rustc is
 invoked for the package, so no Rust toolchain is needed. Inline `probandum`
 and `proba` suites live alongside source code, and colocated `*.proba`
 files are discovered as test-only sources (never imported, excluded from
-Cista snapshots). See [Inline testing](/language/errors.html).
+package snapshots). See [Inline testing](/language/errors.html).
 
 ### Formatting {#formatting}
 
@@ -119,7 +125,7 @@ Formatting never translates between reader locales; use
 ### Explaining diagnostics {#explaining}
 
 ```text
-faber explain functio     # keyword reference
+faber explain return      # keyword reference
 faber explain SEM001      # diagnostic explanation
 faber explain ≡           # glyph reference
 faber explain --search query
@@ -158,18 +164,13 @@ Source → Lex → Parse → Collect → Resolve → Lower → Typecheck
                                               MIR runner + Host
 ```
 
-### Latency {#latency}
+### Cost {#latency}
 
-The scripting path runs the same linear frontend as the compiled path,
-plus runner time proportional to what the script actually executes:
-
-| Phase | Cost |
-|-------|------|
-| Frontend (100-line script) | ~0.6 ms |
-| MIR stepping | Proportional to executed statements |
-
-The runner never invokes `rustc` or spawns a process, so startup is
-fast enough to feel like a shell script.
+The scripting path runs the same front end as the compiled path, plus runner
+time proportional to what the script actually executes. The runner never
+invokes `rustc` or spawns a build process, so startup is fast enough to feel
+like a shell script. `faber cost` reports static runtime-cost classes over the
+lowered MIR if you want the numbers for a package.
 
 ### Limitations {#limitations}
 

@@ -164,28 +164,52 @@ syntax proposals. A proposal that weakens "types before names" by adding a
 name-first alternative, or blurs "one sign one job" by overloading a glyph,
 must justify why Faber should bend its character for that feature.
 
+## More tenets {#more-tenets}
+
+The commandments above are the character of the syntax. Five further tenets
+describe how the language behaves.
+
+- **Math happens in the ether; width applies at the store.** Arithmetic is
+  exact (or plain IEEE for floats) for the whole expression, and a width limit
+  (`wrapping`, `saturating`, `trapping`) is applied once, where the value is
+  stored into a sized cell or converted to one. `(200 + 100) / 2` stored into a
+  `u8` is `150`, not an overflow. Nothing traps, wraps or saturates in the
+  middle of an expression.
+- **Mathematics over hardware tradition.** `/` and `%` floor, rounding to
+  nearest sends ties to the even neighbour everywhere, and floats follow IEEE
+  754. Raw bits (`b8` … `b64`) are a separate domain, not numbers: they have
+  their width always, shifts act at that width, and they convert to numbers
+  only by an explicit `↦`.
+- **Methods check; operators do what was written.** An operation that can fail
+  has two spellings. A method is the checked form: `m.get(k)` returns
+  `V ∪ none`. An index or operator is the direct form: `m[k]` on a missing key
+  stops the program, because that is the spelling that was chosen.
+- **Errors are data.** A run-time error a program can read carries a kind and
+  its data, never prose, so programs and tests match on identity and the same
+  program behaves the same in every locale. Compiler diagnostics work the same
+  way: a stable code and issue name, with the text supplied by the locale pack.
+- **The targets implement Faber; Faber does not bend to its targets.** A
+  target that cannot express a feature rejects it by name.
+
 ## Design documents
 
-The Radix repository contains authoritative design documents for how Faber
-works as a language and compiler. They live under `radix/docs/design/`.
+The compiler repository contains design documents for how Faber works as a
+language and compiler. They live under `docs/design/`.
 
 ### Index {#index}
 
 | Area | Files |
 |------|-------|
-| Targets and lowering | `target-capability-matrix.md`, `lowering-routes.md`, `semantic-ownership.md` |
-| Types and sugar | `numeric-type-sugar.md`, `comparison-operators.md`, `annotation-sugar.md` |
+| Numbers and conversion | `numeric-model.md`, `numeric-type-sugar.md`, `comparison-operators.md`, `conversio-valor.md`, `failable-conversio.md`, `fault-families.md` |
+| Reader and format | `reader-locale.md`, `faber-canonical-surface.md`, `keyword-as-identifier.md` |
+| Types and sugar | `annotation-sugar.md`, `type-hole-union.md`, `fixed-capacity-collections.md`, `systems-shaped-values.md`, `copy-into.md` |
 | Collection intrinsics | `lista-intrinsics.md`, `tabula-intrinsics.md`, `tensor-intrinsics.md`, `numerus-intrinsics.md`, `fractus-intrinsics.md`, `textus-intrinsics.md`, `intervallum-intrinsics.md`, `instans-intrinsics.md`, `copia-intrinsics.md` |
-| Conversion | `conversio-valor.md`, `failable-conversio.md` |
-| Frames and effects | `frame-stream-types.md`, `host-provider-gateway.md` |
-| Reader and format | `reader-locale.md`, `faber-canonical-surface.md` |
-| Systems / AIR | `air-dialect.md`, `aiml-foundation.md`, `systems-shaped-values.md` |
+| Semantics | `semantic-ownership.md`, `regex-dialect.md` |
 | Tooling surface | `faber-scripting.md` |
-| Naming debt | `mixed-case-naming-debt.md` |
 
 ### Stdlib design docs {#stdlib-design-docs}
 
-The `radix/docs/stdlib/` directory contains:
+The `docs/stdlib/` directory contains:
 
 | Doc | Role |
 |-----|------|

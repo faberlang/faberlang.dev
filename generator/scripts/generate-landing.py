@@ -382,18 +382,18 @@ def main() -> None:
     repo = gen.parent
     release = read_release(repo)
     icon = favicon_href(gen)
-    n_targets = sum(1 for t in targets.values() if t.get("available") == "yes")
+    n_targets = sum(1 for k, t in targets.items() if t.get("available") == "yes" and k != "device-runtime")
 
     # Ticker: every item is derived at generation time or a plain true
     # statement about this page. No invented numbers.
     facts = [
         f"Faber {release['version']}",
-        str(release["license"]),
+        "MIT or Apache-2.0",
         f"{len(LOCALES)} reader locales",
         f"{n_targets} targets",
         f"{productions} grammar productions",
         "No accounts",
-        "Experimental through version 1",
+        "Under active development",
         "System fonts · zero external requests",
     ]
 
@@ -446,16 +446,17 @@ def main() -> None:
 </header>
 
 <div class="fl-banner" role="status">
-  <p><strong>Experimental through version 1.</strong>
-  Version 0 was alpha. This is the first language release: the interface is
-  relatively stable, not frozen. Nothing is promised stable until version 2.</p>
+  <!-- TODO(cut): decide the banner wording once the version line of the first post-cut release is known. -->
+  <p><strong>Under active development.</strong>
+  Faber changes quickly and the 2.0 line is being prepared. Expect the
+  language and the commands to keep moving until then.</p>
 </div>
 
 <main class="fl-wrap" id="top">
 
   <section class="fl-hero" aria-label="Faber">
     <div class="fl-claim">
-      <p class="kicker live"><i class="sq" aria-hidden="true"></i>A statically typed language for coding agents and human authors · MIT</p>
+      <p class="kicker live"><i class="sq" aria-hidden="true"></i>A statically typed language for coding agents and human authors · MIT or Apache-2.0</p>
       <h1 class="hook">Written by models,<br>read in your language.</h1>
       <div class="rule" aria-hidden="true"></div>
       <p class="subhook">
@@ -470,9 +471,11 @@ def main() -> None:
 {pass_html}
     <p class="fl-open-source">
       The language, public libraries, examples, and tooling ship under the
-      <strong>MIT</strong> license. <strong>Radix</strong>, the compiler, is
-      closed only while it is under active development. That is temporary,
-      not a permanent fence.
+      <strong>MIT</strong> or <strong>Apache-2.0</strong> license. The compiler
+      front end, the MIR runner, Norma, the grammar and the corpus are in one
+      public repository, <a href="https://github.com/faberlang/faber">faberlang/faber</a>;
+      the other code generators ship in the official binary.
+      <a href="/en-US/open-source.html">What is open</a>.
     </p>
   </section>
 
@@ -584,7 +587,8 @@ def main() -> None:
     <p class="fl-note">
       Rust builds as a Cargo package today. TypeScript, Go and Swift give you
       source files to add to your project; assembling them into installable
-      packages is not built yet. Support is stated target by target: generics and
+      packages is not built yet. C is a public preview that you enable with
+      the <code>hir-c</code> feature in a source build. Support is stated target by target: generics and
       some operators do not lower to every target, and the target matrix records
       where. <a href="/en-US/toolchain/target-matrix.html">Read the target matrix</a>
     </p>
@@ -709,8 +713,8 @@ def main() -> None:
       </nav>
     </div>
     <div>
-      <p>Designed by Ian Zepp. The language and the public libraries ship under the MIT license.</p>
-      <p><a href="/en-US/toolchain/radix.html">Radix</a>, the compiler, is closed while it is under active development.</p>
+      <p>Designed by Ian Zepp. The language is available under the MIT or Apache-2.0 license.</p>
+      <p><a href="/en-US/toolchain/radix.html">Radix</a>, the compiler, is developed in the public <a href="https://github.com/faberlang/faber">faberlang/faber</a> repository.</p>
     </div>
   </div>
 </footer>

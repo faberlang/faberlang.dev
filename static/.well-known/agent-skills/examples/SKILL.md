@@ -28,22 +28,22 @@ Writing Faber starts at https://faberlang.dev/agents/index.md. Follow only the l
 | 3 | `coreutils` | Larger application campaign + parity harnesses |
 | 4 | `gpu-workload` | Systems / GPU rungs |
 
+The examples repository is checked against the compiler on its own schedule. Run `faber check` on a package before relying on it, and prefer a package that passes with the `faber` you have installed (for example `coreutils/packages/wc`).
+
 ## Public repositories
 
 | Repository | Start here | Why |
 |---|---|---|
 | https://github.com/faberlang/examples | application packages, tracks | Public application examples |
-| https://github.com/faberlang/norma | `norma:*` packages | Standard library source |
-| https://github.com/faberlang/faber | CLI wrapper | User-facing build tool |
-| https://github.com/faberlang/cista | package-store CLI and library | Package management surface |
+| https://github.com/faberlang/faber | compiler front end, runner, `faber` CLI, `lib/norma`, grammar, locale packs, `corpus/` | The language itself; Norma (`norma:*`) source is `lib/norma` |
 | https://github.com/faberlang/triga | `triga:*` source | Graphics and geometry library |
 
 ## How to exercise
 
 ```bash
 git clone https://github.com/faberlang/examples.git
-faber check examples/ai-workbench/packages/faber-ai
-faber test examples/ai-workbench/packages/faber-ai
+faber check examples/coreutils/packages/wc
+faber test examples/coreutils/packages/wc
 ```
 
 Read the package `README.md` for exact run arguments.

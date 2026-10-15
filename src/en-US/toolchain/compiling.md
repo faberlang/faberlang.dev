@@ -29,33 +29,84 @@ supports, erases, warns on, or rejects.
 
 ### Target table {#target-table}
 
-| Target | Lane | Build | Run | Package | Policy |
-|--------|------|-------|-----|---------|--------|
-| `rust` | HIR | yes | yes | yes | **Support** (widest package product surface today) |
-| `fhir` | HIR | yes | yes | yes | **Support** |
-| `fmir-text` | MIR | yes | yes | yes | **Support** |
-| `fmir` | MIR | yes | yes | yes | **Support** |
-| `fmir-bin` | MIR | yes | yes | yes | **Support** |
-| `faber` | HIR | yes | no | no | **Support** |
-| `ts` | HIR | yes | no* | no | **Probe** (measured e2e floors rising) |
-| `go` | HIR | yes | no* | no | **Erase** (borrow modes; measured e2e floors rising) |
-| `wasm` | MIR | yes | no | no | **Limited** |
-| `wasm-text` | MIR | yes | no | no | **Limited** |
-| `llvm-text` | MIR | yes | yes* | no | **Limited** |
-| `metal-text` | MIR | yes | yes* | no | **Limited** |
-| `wgsl-text` | MIR | yes | no | no | **Limited** |
-| `sexp` | MIR | yes | no | no | **Limited** |
+One front end and two intermediate representations (a typed HIR and a MIR) feed
+about two dozen code generators. HIR targets emit readable source in another
+language; MIR targets lower further, to IR, kernels or native code. Every
+target is held to the same reference: the MIR runner (`faber run`). A generated
+program is correct when its output and exit status match the runner's; a
+construct a target cannot express yet is rejected by name
+(`unsupported on target <t>: <construct>`), never approximated.
 
-*`run` via device execution: `faber run --device cuda` (llvm-text) /
-`--device metal` (metal-text) launches `@ nucleum` kernels on a real GPU;
-`-t llvm-text` / `-t metal-text` themselves remain emit-only. Only *public*
-`@ nucleum` functions are launchable entries — a private `@ nucleum`
-function stays a module-internal helper with no entry row. Kernel closures
-marked `nucleum` follow a device-safe contract: device-safe signature
-types, no error channel, no host effects, and no escapes out of the
-closure. TypeScript and
-Go also have exempla e2e harnesses that execute emitted code under host
-toolchains; that is a measurement surface, not a `faber package` product path.
+How mature each target is, measured on the corpus (651 positive cases, each
+with expected output). "Suite" counts are pinned outcomes in
+`corpus-suites/full`; "matches" counts were measured by building the emitted
+program with the real toolchain and comparing it with the runner.
+
+<!-- TODO(cut): these numbers are from radix packaging/public/README.md at ae5b812704; refresh them from the README at the cut commit. -->
+
+| Target | `-t` | Output | Evidence | Source |
+|---|---|---|---|---|
+| **Reference** | | | | |
+| MIR runner | (`faber run`) | executes the program; the oracle | suite 581 / 651 (most of the rest are fragments with no entry point) | public |
+| Faber | `faber` | canonical Faber in the source's locale (`format`, `convert`) | round-trip 633 / 651 | public |
+| FMIR / FHIR | `fmir`, `fhir` | serialized MIR and analyzed HIR artifacts | builds 616 and 590 of 638 files | public |
+| **Application languages** | | | | |
+| Rust | `rust` | Rust source, or a full Cargo project | suite 613 / 651 | official binary |
+| Go | `go` | Go source | suite 538 / 651 | official binary |
+| TypeScript | `ts` | TypeScript source | suite 506 / 651 | official binary |
+| Swift | `swift` | Swift source | suite 336 / 651 | official binary |
+| Python | `python` | self-contained Python | 240 of 257 comparable programs match | official binary |
+| Haskell | `haskell` | Haskell source | 30 of 76 comparable programs match | official binary |
+| **Systems and native** | | | | |
+| C | `c` | C11 with a header-only runtime | preview: 71 programs emit, 65 of 66 comparable match | public |
+| LLVM | `llvm-text`, `llvm-host` | LLVM IR, or a native executable via clang | suite 461 / 651 | official binary |
+| WebAssembly | `wasm`, `wasm-text` | WebAssembly text | suite 460 / 651 assemble (no host runtime yet) | official binary |
+| Cranelift | — | native objects with no external toolchain | in progress | public (planned) |
+| **GPU kernels** (kernel functions only) | | | | |
+| Metal | `metal-text` | Metal Shading Language | kernel programs only | official binary |
+| WGSL | `wgsl-text` | WebGPU compute shaders | kernel programs only | official binary |
+| CUDA | (`--device cuda`) | NVVM IR through the device runtime | kernel programs only | official binary |
+| **Historical and novelty** | | | | |
+| Fortran | `fortran` | Fortran 2008 | 40 of 40 comparable match | official binary |
+| COBOL | `cobol` | GnuCOBOL free format | 34 of 37 comparable match | official binary |
+| Pascal | `pascal` | Free Pascal | 36 of 37 comparable match | official binary |
+| BASIC | `basic` | C64 BASIC V2 listing | 63 programs emit | official binary |
+| Odin | `odin` | Odin | early: 6 of 6 match | official binary |
+| Racket | `sexp` | Racket s-expressions (a validation target) | suite 456 / 651 | official binary |
+
+Notes:
+
+- "Comparable" excludes programs with no entry point; "emit" alone means source
+  was produced, not that it built.
+- The historical targets cover a deliberate subset (scalars, text, simple
+  collections) and reject the rest by name. They exist partly as a test of the
+  rule that targets implement Faber and never the reverse.
+- Standard-library I/O (files, processes, clocks, network) is wired on the Rust
+  target today; most other targets reject programs that use it, which accounts
+  for much of the gap between their counts and Rust's.
+- "Public" means the generator's source is in the public repository. "Official
+  binary" means it ships in the released `faber` but its source does not.
+- The C target is a preview. A build from the public source needs the `hir-c`
+  feature to enable it; `faber targets` on the binary you are running is the
+  authority on what that binary can emit, and a target missing from the build
+  is rejected with `PKG001 target_not_in_this_build`.
+- The GPU rows are kernel functions only. `faber run --device metal` and
+  `--device cuda` launch `@ kernel` functions on a real GPU; `-t metal-text`,
+  `-t wgsl-text` and `-t llvm-text` themselves remain emit-only.
+
+### What the CLI does with each target {#cli-capabilities}
+
+`faber targets` prints the live capability flags. In the pinned build:
+
+| Target | Build | Run | Package |
+|--------|-------|-----|---------|
+| `rust` | yes | yes | yes (Cargo project) |
+| `fhir`, `fmir-text`, `fmir`, `fmir-bin` | yes | yes | yes |
+| `llvm-host` | yes | yes | yes (native executable via clang) |
+| `llvm-text`, `metal-text` | yes | device only | yes |
+| `faber`, `ts`, `go`, `python`, `haskell`, `swift` | yes | no | no |
+| `wasm`, `wasm-text`, `wgsl-text`, `sexp` | yes | no | no |
+| `pascal`, `cobol`, `fortran`, `odin`, `c`, `basic` | default-off features | — | — |
 
 ### Pipeline routing {#pipeline-routing}
 
@@ -66,33 +117,13 @@ Source → Lex → Parse → Collect → Resolve → Lower → Typecheck → Ana
                                     │                                    │
                               HIR backends                        MIR backends
                                     │                                    │
-            Rust · Faber · TS · Go            fmir · wasm · llvm · metal · wgsl · sexp
+   Rust · Faber · TS · Go · Swift · Python · Haskell · C       fmir · wasm · llvm · metal · wgsl · sexp · basic
 ```
 
-### Application lane (HIR) {#application-lane-hir}
-
-| Target | Measured floor (exempla e2e floors, 2026-08-07 HEAD) |
-|--------|---------------|
-| Rust | Widest package product surface today. Borrow modes, CLI generation, failable Result lowering. |
-| Faber | Canonical source view / round-trip. Not an execution backend. |
-| TypeScript | Floors: 288 analysed · 289 emitted · 285 typecheck-valid · 283 runnable. Modular-width words, Valor JSON-root, identifier sanitation, and host-backend hardening in recent work. |
-| Go | Floors: 251 pass · 304 accepted outcomes. Type carriers (vector/intervallum/tensor-bracket), valor/instans, reserved-word sanitation; borrow modes erased; `ad` rejected. |
-
-### Systems lane (MIR) {#systems-lane-mir}
-
-| Target | Role |
-|--------|------|
-| fmir* | Package MIR images; runner proves source independence. |
-| wasm / wasm-text | Full-language MIR → Wasm surfaces (limited host imports). |
-| llvm-text | Full-language MIR staging IR. **Also** the NVVM→PTX staging chain used by **CUDA device execution** (`faber run --device cuda`). There is no separate `cuda` emit target. |
-| metal-text | **Device-kernel subset** shader text (MSL). Real device runs use `faber run --device metal`, not “% of whole-language corpus.” |
-| wgsl-text | **Device-kernel subset** shader text (WGSL) for WebGPU hosts. |
-| sexp | Validation / Racket-oriented dump. |
-
-**Do not read Metal/WGSL “2% capable” rows on the [target matrix](/toolchain/target-matrix.html) as product completeness.** Those
+**Do not read Metal/WGSL percentages on the [target matrix](/toolchain/target-matrix.html) as product completeness.** Those
 rows score *full-language corpus terms* against a *kernel-only* emitter. Device
 runs go through `faber run --device metal|cuda` (see
-[device execution](#device-execution)).
+[device execution](/toolchain/cli.html#device-execution)).
 
 For the **device-kernel summary** (how a device program runs and what each
 device target emits) see
@@ -139,7 +170,7 @@ Source (.fab)  →  Lex  →  Parse  →  Collect  →  Resolve  →  Lower  →
 The same frontend serves every target. After semantic analysis produces the HIR,
 the compiler chooses a route based on the target:
 
-- **HIR-direct** — emit directly from typed HIR for language-shaped backends (Rust, Faber, TypeScript, Go)
+- **HIR-direct** — emit directly from typed HIR for language-shaped backends (Rust, Faber, TypeScript, Go, Swift, Python, Haskell, C)
 - **HIR → MIR** — lower to execution-shaped MIR, then emit for systems and low-level targets
 - **HIR → MIR → AIR → MIR** — detour through pure-functional AIR for autodiff and fusion transforms, then rejoin MIR
 
@@ -172,10 +203,12 @@ preserve source-level structure longer and are suited for language-shaped output
 
 | Target | Status | Role |
 |---|---|---|
-| `Rust` | **Support** | Widest package product surface today (build/run/test via Cargo). One projection of HIR — not the semantic center. |
+| `Rust` | **Support** | Widest package product surface today (a Cargo project; the best-covered standard-library I/O). One projection of HIR — not the semantic center. |
 | `Faber` | **Support** | Canonical source view through the HIR-backed re-emitter (`faber format` / `faber convert`). Round-trip stability. |
-| `TypeScript` | Probe | HIR-direct emission + rising exempla e2e floors. Not a `faber package` product path yet. |
-| `Go` | Erase | HIR-direct emission + rising exempla e2e floors; borrow modes erased; `ad` rejected. |
+| `TypeScript` | Probe | HIR-direct file emission; suite 506 / 651. Not a package product path yet. |
+| `Go` | Erase | HIR-direct file emission; suite 538 / 651; borrow modes erased. |
+| `Swift`, `Python`, `Haskell` | Probe | HIR-direct file emission; see the target table for measured counts. |
+| `C` | Preview | HIR-direct C11 with a header-only runtime; the one code generator in the public repository besides the Faber re-emitter. |
 
 ### MIR — Mid-Level Intermediate Representation {#mir}
 
@@ -200,12 +233,20 @@ AIR (Autograd / AI Representation) is a pure-functional transform detour off
 the HIR → MIR path. It is entered by explicit annotation on individual
 functions:
 
-```faber
+```faber locale=en mode=package
 @ radix lane "air"
-functio identity(bivalens value) → bivalens {
-    redde value
+fn identity(bool value) → bool {
+    return value
+}
+
+main {
+    print identity(true)
 }
 ```
+
+The annotation needs a package whose `[build] target` is a MIR target (here
+`target = "fmir"`); on a bare file the default Rust target reports
+`TARGETLANE001 lane_requires_mir_backed_target`.
 
 AIR-lane functions must satisfy a purity policy — no mutation, no effects,
 no loops. Functions that violate this are rejected with a diagnostic before
@@ -256,25 +297,21 @@ the compiler.
 
 #### WASM {#wasm}
 
-Faber emits WebAssembly text (`.wat`) and binary (`.wasm`)
-formats. The emitted Wasm uses external host imports (`faber_*`
-runtime symbols) and is validated through `wasm-tools validate`.
-Wasm is a supported-with-limitations target — it proves the MIR lowering
-pipeline for an open standard format, but is not a package delivery runtime.
+Faber emits WebAssembly text (`.wat`). `-t wasm-text` is the name; `-t wasm`
+is an alias kept for compatibility, and converting the text to a binary module
+is an external-tool step (`wat2wasm` or `wasm-tools`). The emitted module uses
+external host imports (`faber_*` runtime symbols). Wasm is a
+supported-with-limitations target: it proves the MIR lowering pipeline for an
+open standard format, but there is no host runtime yet and it is not a package
+delivery runtime.
 
-| Format | CLI target | Output |
-|---|---|---|
-| `wasm-text` | `-t wasm-text` (alias `wat`) | WAT text format |
-| `wasm` | `-t wasm` | Binary Wasm module |
+#### TypeScript, Go, Swift, Python and Haskell (HIR-direct) {#typescript-go}
 
-#### TypeScript and Go (HIR-direct) {#typescript-go}
-
-TypeScript and Go are HIR-direct proof targets: they validate that Faber's
-semantics translate into widely used type systems. Measured exempla e2e floors
-for both rose substantially in the 2026-08 HIR compatibility pass (Go pass
-floor 251; TypeScript runnable floor 283). Full package build/run/test product
-workflows still center on the Rust package path today — that is a packaging
-convenience, not a claim that HIR meaning lives in Rust.
+These are HIR-direct file-emission targets: they validate that Faber's
+semantics translate into widely used type systems. Measured counts are in the
+target table above. Full package build and run workflows center on the Rust
+package path today, and standard-library I/O is wired on the Rust target — that
+is a packaging convenience, not a claim that HIR meaning lives in Rust.
 
 ### GPU target lanes {#gpu}
 
@@ -326,64 +363,19 @@ backend.
 
 ### Target summary {#matrix}
 
-| Target | IR | Family | Build | Run | Package |
-|---|---|---|---|---|---|
-| `Rust` | HIR | CPU | yes | yes | yes |
-| `fhir` | HIR | — | yes | yes | yes |
-| `fmir` / `fmir-bin` | MIR | CPU | yes | yes | yes |
-| `Faber` (format) | HIR | — | no | no | no |
-| `TypeScript` | HIR | CPU | no | no | no |
-| `Go` | HIR | CPU | no | no | no |
-| `LLVM text` | MIR | CPU | no | yes* | no |
-| `WASM` / `WAT` | MIR | CPU | no | no | no |
-| `WGSL` | MIR | GPU | no | no | no |
-| `Metal` | MIR | GPU | no | yes* | no |
-
-*`run` via device execution (`faber run --device cuda` / `--device metal`).
-
-*`build`, `run`, and `package` describe Faber workflows. External toolchains (rustc, wasm-tools, naga) handle final compilation for text-emission targets.*
+The [target table](#target-table) above is the summary: what each target
+emits and how well it matches the runner. `build`, `run`, and `package`
+describe Faber workflows; external toolchains (rustc, wasm-tools, naga, clang)
+handle final compilation for text-emission targets.
 
 Full measured grammar × target lowerability (every corpus term, HIR and MIR
 columns): [Target compatibility](/toolchain/target-matrix.html).
 
 ## Compiler performance
 
-Radix's frontend scales roughly linearly with source size, in-process and
-single-threaded.
-
-### Frontend compile times {#frontend-compile-times}
-
-| Program size | Source | Median compile |
-|-------------|--------|---------------|
-| 100 functions / ~650 lines | ~10 KB | ~0.6 ms |
-| 500 functions / ~3.3K lines | ~52 KB | ~3 ms |
-| 1,000 functions / ~6.5K lines | ~105 KB | ~6 ms |
-| 5,000 functions / ~32K lines | ~530 KB | ~37 ms |
-
-The largest real example today is ~140 lines, well below the noise floor.
-
-### Backend costs (Rust target) {#backend-costs-rust-target}
-
-For `faber build`, the user-perceived time is dominated by Cargo/rustc,
-not by Faber's frontend:
-
-| Phase | Cost |
-|-------|------|
-| Cold `faber` dep compile (once per target dir) | ~2.8 s |
-| Cold `tokio` dep compile (only when needed) | ~2.3 s |
-| Warm per-program build (cached deps) | ~30–110 ms |
-| Per-program Cargo invocation overhead | ~400 ms |
-
-### Incremental compilation {#incremental-compilation}
-
-The `faber-runtime` crate compiles once per target directory and is cached
-as `.rlib` artifacts:
-
-| You change | faber-runtime crate | Your program |
-|-----------|-------------------|-------------|
-| Your program source | cached | recompiles |
-| `norma/src/*.fab` (Faber source) | cached | recompiles |
-| `faber/runtime/rust/src/*.rs` | recompiles once | recompiles |
-
-The trap to avoid is building each program into a fresh `target/`.
-Reuse a shared `--target-dir` to keep cached `.rlib`s warm.
+Radix's front end runs in-process and single-threaded, and `faber check` and
+`faber run` never invoke an external toolchain. For `faber build -t rust` the
+user-perceived time is dominated by Cargo and rustc, not by Faber's front end.
+Reuse one Cargo target directory across builds so the compiled runtime crate
+stays cached; building each program into a fresh `target/` pays the runtime
+crate's compile cost every time.

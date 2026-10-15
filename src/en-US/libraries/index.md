@@ -6,8 +6,8 @@ sources = []
 +++
 
 **Norma** ships with the compiler and you can use it immediately. **Triga**,
-**Gradus**, and **Tela** are optional dependencies you declare when you need
-graphics work, automatic differentiation, or typed views. **Inferentia** is an
+**Gradus**, and **Tela** are optional source libraries you point `faber` at
+when you need graphics work, automatic differentiation, or typed views. **Inferentia** is an
 application built on them, still in development.
 
 ## Norma — bundled {#norma}
@@ -31,9 +31,9 @@ provisional. [Norma →](/libraries/norma.html)
 ## Triga — opt in {#triga}
 
 A native graphics and geometry engine written in Faber: math, scene graph,
-materials, geometry, and resource types as `triga:*` modules. Declare it as a
-Cista dependency in `faber.toml` and the compiler resolves it from the package
-store.
+materials, geometry, and resource types as `triga:*` modules. Check out the
+`triga` repository and give `faber` its location with `--library-home` (or
+`[paths] library_home` in `faber.toml`); `faber doctor` confirms it is found.
 
 Its shapes model the three.js abstractions so that models and people already
 familiar with that vocabulary can move quickly — but Triga is **not** a binding
@@ -82,7 +82,7 @@ actually behaves rather than how it is described.
 
 ## Writing your own {#your-own}
 
-A library is a package with `kind = "lib"` in its `faber.toml` and a
-`[library] provider` name. `cista install <path>` puts it in the Cista store; other
-packages resolve it through `faber.lock`. See
-[Packages with Cista](/toolchain/packages.html).
+A library is a package with `kind = "lib"` in its `[build]` table in
+`faber.toml` and a `[library] provider` name. Other packages import it as
+`provider:module` once its parent directory is the library home. See
+[Packages](/toolchain/packages.html).

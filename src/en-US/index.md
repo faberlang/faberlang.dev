@@ -20,10 +20,15 @@ support is stated **target by target** (see the
 executable path; package workflows that use Rust today are one measured
 product surface among several, not the language’s semantic center.
 
-The language, public libraries, examples, and user tooling ship under the
-**MIT** license. **Radix**, the compiler, is closed source for now and is
-planned for open release once the language has clearer market demand — not as
-a permanent fence around Faber. See [Open source](/open-source.html).
+Faber is open source. The public repository holds the compiler front end, the
+MIR runner (`faber run`, the reference every other target is checked against),
+the Faber re-emitter behind `faber format` and `faber convert`, the C code
+generator (a public preview), the standard library (Norma), the grammar, the
+reader-locale packs and the corpus. It is available under either the MIT or the
+Apache-2.0 license. The other code generators ship in the official `faber`
+binary, and a native backend built on Cranelift is in progress so that a build
+from the public source alone produces executables. See
+[Open source](/open-source.html).
 
 Faber's public capability ladder is intentionally explicit:
 
@@ -35,10 +40,8 @@ Faber's public capability ladder is intentionally explicit:
   training or serving are future direction, not current runtime claims.
 
 The name derives from the Latin word for *maker* or *craftsman*. The
-compiler is named Radix, from the Latin *root*. Developed by Ian Zepp.
-Language and supporting libraries are MIT open source; Radix remains closed
-source until there is clearer demand for an open compiler (see the note
-above).
+compiler is named Radix, from the Latin *root*. Developed by Ian Zepp, and
+available under either the MIT or the Apache-2.0 license.
 
 **New here?** Go to [Start](/start/): give your model one link and it
 installs Faber for you. Then read the [Commands](/cheatsheet/commands.html).
@@ -54,10 +57,10 @@ and the [target matrix](/toolchain/target-matrix.html).
 | **First appeared** | 2025 |
 | **Compiler** | Radix (Rust) |
 | **Lanes** | Application (HIR) · Systems (MIR) · GPU device path |
-| **Targets** | Projections of HIR/MIR — measured per target (Rust, Faber, TS, Go, …) |
+| **Targets** | The MIR runner (reference), Faber, C (preview), Rust, Go, TypeScript, Swift, Python, Haskell, LLVM, WebAssembly, GPU kernels and more — measured per target |
 | **Reader locales** | 8 shipped (en, la, ar, hi, vi, th-TH, zh-Hans, zh-Hant) |
 | **Standard library** | Norma (`norma:*`) |
-| **License** | MIT |
+| **License** | MIT or Apache-2.0 |
 
 ## Start here {#start-here}
 
@@ -84,12 +87,15 @@ program written in one reader locale can be rendered into another locale, or
 lowered toward Rust, TypeScript, Go, LLVM, or a device program, because the HIR
 is the shared semantic authority.
 
-These paths are not equal promises. HIR is the semantic authority; each target
-emits, validates, runs, or remains limited on its own terms. TypeScript and Go
-are HIR-direct file-emission (and e2e) surfaces with rising measured floors.
-GPU support is split between shader lowering and the narrower real-device route
-documented below. The [target matrix](/toolchain/target-matrix.html) records
-the current support boundary.
+These paths are not equal promises. The MIR runner is the reference: a
+generated program is correct when its output and exit status match the
+runner's, and a construct a target cannot express yet is rejected by name
+rather than approximated. Each target emits, validates, runs, or remains
+limited on its own terms, and [Compiling and targets](/toolchain/compiling.html)
+gives measured numbers per target. GPU support is split between shader
+lowering and the narrower real-device route documented below. The
+[target matrix](/toolchain/target-matrix.html) records the support boundary
+construct by construct.
 
 The language makes three deliberate signal choices that work together:
 
@@ -136,7 +142,7 @@ Five sections, in the order most people need them.
 |---|---|
 | [Start](/start/) | One link to hand your model; it installs Faber for you |
 | [Language](/language/) | The whole language: types, functions, errors, glyphs, reader locales, capabilities |
-| [Toolchain](/toolchain/) | The `faber` CLI, compilation lanes and targets, Cista packages, Radix internals |
+| [Toolchain](/toolchain/) | The `faber` CLI, compilation lanes and targets, packages, Radix internals |
 | [Libraries](/libraries/) | Norma (bundled), Triga (graphics), and the language corpus |
 | [Reference](/reference/) | Grammar, generated target matrix, releases, design notes, repositories |
 
@@ -148,11 +154,21 @@ complete program and the meaning of every token in it.
 A simple function demonstrating key Faber patterns — type-first
 parameters, glyph return type, nullable union, and control flow:
 
-```faber
-functio divide(numerus a, numerus b) → numerus ∪ nihil {
-    si b ≡ 0 ergo redde nulla
-    redde a / b
+```faber locale=en
+fn divide(int a, int b) → int ∪ none {
+    if b ≡ 0 then return null
+    return a / b
 }
+
+main {
+    print divide(84, 2)
+    print divide(1, 0)
+}
+```
+
+```text
+42
+none
 ```
 
 ## Live rendering {#live-rendering}
@@ -161,9 +177,9 @@ The divide function above renders in your reader locale — the English
 reader spelling on this page. The compiler can render the same program in
 eight reader locales — English, Latin, Thai, Simplified Chinese,
 Traditional Chinese, Arabic, Hindi, and Vietnamese — each remapping
-keywords and types (Latin is the canonical compiler surface; the others
-render the same program in that language) while glyphs and identifiers
-remain unchanged. This is not a translation layer applied to the page; it is the
+keywords and types while glyphs and identifiers remain unchanged (Latin is
+one pack among the eight; its spellings are the keys the compiler uses
+internally). This is not a translation layer applied to the page; it is the
 same mechanism the compiler uses to produce localized source.
 
 See the [reader locale](/language/reader-locales.html) documentation for
@@ -171,15 +187,16 @@ the full discussion.
 
 ## Repositories {#repositories}
 
+<!-- TODO(cut): confirm the release host (faberlang/releases) after the cut -->
+
 | Repo | Role |
 |---|---|
-| [faberlang/faber](https://github.com/faberlang/faber) | Public target APIs and project home |
+| [faberlang/faber](https://github.com/faberlang/faber) | The language: compiler front end, MIR runner, Faber re-emitter, C target preview, Norma (`lib/norma`), grammar, locale packs and corpus |
 | [faberlang/releases](https://github.com/faberlang/releases) | Tagged CLI release assets |
-| [faberlang/norma](https://github.com/faberlang/norma) | Standard library source |
-| [faberlang/cista](https://github.com/faberlang/cista) | Package-store CLI/lib |
 | [faberlang/triga](https://github.com/faberlang/triga) | Graphics / geometry library |
+| [faberlang/gradus](https://github.com/faberlang/gradus) | Autograd / ML library |
 | [faberlang/examples](https://github.com/faberlang/examples) | Corpus, tracks, application packages |
 | [faberlang/faberlang.dev](https://github.com/faberlang/faberlang.dev) | This documentation site |
 
-The full list — including the private compiler and where to file issues — is
-on the [Repositories](/open-source.html) page.
+The full list, and where to file issues, is on the
+[Repositories](/open-source.html) page.

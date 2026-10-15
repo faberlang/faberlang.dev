@@ -18,7 +18,9 @@ description: "Download and verify the current Faber CLI release for macOS arm64 
 - **Published:** 2026-10-02
 - **Bundled compiler:** Radix 0.84.0
 - **Release page:** https://github.com/faberlang/releases/releases/tag/faber-v1.12.0
-- **License:** MIT
+- **License:** MIT OR Apache-2.0
+
+<!-- TODO(cut): this block names the last published release (1.12.0 on faberlang/releases). When the first release after the repository cut is published, run generator/scripts/bump_release.py <version> --published <date> --radix <version>; the new release host, tag and archive URLs are decided at the cut. -->
 
 ## Archives
 
@@ -73,14 +75,14 @@ faber --version
 ## First package check
 
 With the CLI on `PATH`, type-check a real package. `norma:*` resolves from
-the Norma library embedded in the binary. Other dependencies resolve from the
-Cista package store through `faber.lock`. Pass `--library-home <DIR>` (or set
-`[paths] library_home` in `faber.toml`) only for an intentional local
-library-development override.
+the Norma library embedded in the binary. The source libraries `triga:*`,
+`gradus:*` and `tela:*` are checkouts: pass `--library-home <DIR>` (or set
+`[paths] library_home` in `faber.toml`) to a directory that holds them, and run
+`faber doctor` to see which libraries `faber` can find.
 
 ```bash
 git clone https://github.com/faberlang/examples.git
-faber check examples/ai-workbench/packages/faber-ai
+faber check examples/coreutils/packages/wc
 ```
 
 Then write and check a hello program with the `packages` skill. The install is
@@ -88,7 +90,7 @@ done when `faber --version` prints and that program passes `faber check`.
 
 ## Notes
 
-- Prefer prebuilts. Building from source requires the private Radix tree.
+- Prefer prebuilts: the official binary carries every code generator. A build from the public source (https://github.com/faberlang/faber, `cargo build --release -p faber`) gives `check`, `run`, `test`, `format`, `convert` and the C emitter only.
 - Write the verify commands as shown. Do not run the archive's contents before the checksum passes.
 - After install, fetch https://faberlang.dev/agents/index.md and follow only the links that page names.
 

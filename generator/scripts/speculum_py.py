@@ -177,7 +177,7 @@ def aedifica_paginam(iter_, source, site_locale, reader_locale):
 # ==========================================================================
 
 # Node shapes: ("text", value), ("frag", [children]),
-# ("elem", tag, [(name, value), ...], [children]).
+# ("elem", tag, [(name, value), ...], [children]), ("raw", html).
 
 
 def attr(nomen, valor):
@@ -246,6 +246,8 @@ def node_html(node):
         return html_escape(node[1])
     if kind == "frag":
         return "".join(node_html(child) for child in node[1])
+    if kind == "raw":
+        return node[1]
     tag = node[1]
     attrs = node[2]
     children = node[3]
@@ -701,6 +703,13 @@ def converte_nodes(source, site_locale):
 
         # Blank lines.
         if len(linea) == 0:
+            i += 1
+            continue
+
+        # A one-line HTML comment (an authoring note such as TODO(cut)) passes
+        # through unescaped and invisible.
+        if initium_cum(linea, "<!--") and linea.endswith("-->"):
+            result.append(("raw", linea))
             i += 1
             continue
 

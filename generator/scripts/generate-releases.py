@@ -414,8 +414,9 @@ def render_index(grouped: dict[str, list[Version]]) -> str:
         "record. A dash under **Notes** means the version shipped but its notes "
         "have not been backfilled yet.",
         "",
-        "Radix source is closed for now; its published artifacts are the compiler "
-        "binary and checksums. See [Open source](/open-source.html).",
+        "These releases were built from a private source tree. The compiler source "
+        "is public in [faberlang/faber](https://github.com/faberlang/faber) from the "
+        "repository cut; see [Open source](/open-source.html).",
         "",
     ]
     return "\n".join(lines)
