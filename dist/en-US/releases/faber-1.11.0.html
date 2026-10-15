@@ -59,7 +59,7 @@ expression, one level deep, the same in every locale. <code>c ? a : b</code> and
 the null type is <code>none</code> (Latin <code>null</code> / <code>none</code>). <code>is</code> / <code>is not</code> (<code>is</code> /
 <code>is not</code>) is a type test only; a value on its right-hand side is
 <code>SEM011 est_value_rhs</code>. An imported type is a legal <code>is</code> target.</p><p><strong>Records.</strong> Every <code>class</code> (<code>class</code>) field declares exactly one of <code>const</code>, <code>var</code>,
-<code>static</code> (Latin <code>const</code>, <code>var</code>, <code>static</code>); an unmarked field is <code>PARSE010</code>.
+<code>static</code> (Latin <code>const</code>, <code>mut</code>, <code>static</code>); an unmarked field is <code>PARSE010</code>.
 <code>nexum</code> is removed. Copy-with-changes is <code>Genus { x = 1 } from p</code> (Latin <code>from</code>);
 <code>spread</code> is gone from construction literals. Members are public by default, and
 <code>@ private</code> is enforced. Class inheritance (<code>extends</code>, <code>abstract</code>; Latin <code>sub</code>,
@@ -81,7 +81,7 @@ types. <code>match</code> (<code>match</code>) matches closed sets only (enums, 
 length-shape type patterns are retired, and signed literal patterns work. NaN
 patterns are rejected. <code>enum</code> (<code>enum</code>) and <code>union</code> (<code>union</code>) are pure data:
 no methods, no <code>implements</code>.</p><p><strong>Iteration.</strong> <code>at</code> (<code>at</code>) iterates lists and maps as well as tensors:
-<code>for from xs at [i] const x</code>. Composite keys are tuple keys
+<code>for from xs at [i] let x</code>. Composite keys are tuple keys
 (a map keyed by <code>tuple&lt;K1, K2&gt;</code>), and map keys must be hashable (checked).
 Sets and maps iterate in unspecified order; sort when order matters.
 <code>for</code> binds real element types, and a non-iterable is rejected.</p><p><strong>Concurrency is conversations.</strong> <code>@ call</code> (<code>call</code>) serves a route from Faber code, with a
@@ -132,7 +132,7 @@ and <code>field-modifier-codemod</code> no longer write by default; add <code>--
 <code>int&lt;inf&gt;</code>) are rejected; write <code>u8</code>, <code>f32</code>, <code>inf</code>.</li><li><strong>`d32` is removed</strong>; use <code>d64</code>.</li><li><strong>Inline recovery is removed</strong>: <code>↦ T ⇥ value</code> and <code>↤ … ⇥ value</code> become
 <code>↦ T ⊥ value</code>. A failable conversion with no handler is a compile error.</li><li><strong>`c ? a : b` and `c sic a else b` are removed</strong>; write <code>c ✓ a ✗ b</code>.</li><li><strong>`static T X = e` is removed</strong>; write <code>const T X = e</code>. A top-level
 <code>const x ← e</code> (runtime binding) is <code>SEM062</code>.</li><li><strong>Every `class` field needs `const`, `var`, or `static`</strong> (<code>const</code>,
-<code>var</code>, <code>static</code>); <code>nexum</code> and <code>spread</code> in construction literals are
+<code>mut</code>, <code>static</code>); <code>nexum</code> and <code>spread</code> in construction literals are
 removed. <code>faber field-modifier-codemod --write</code> migrates source.</li><li><strong>Class inheritance is removed</strong> (<code>extends</code>, <code>abstract</code>, bodyless abstract
 methods). Use <code>interface</code> / <code>implements</code> and composition.</li><li><strong>`is` is a type test only.</strong> <code>x is null</code> and <code>x is CONST</code> are errors; the
 English null type is <code>none</code>, the null value is <code>null</code>.</li><li><strong>Executable top-level statements beside `main` / `main` are rejected</strong>

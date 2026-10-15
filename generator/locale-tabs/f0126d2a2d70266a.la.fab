@@ -1,0 +1,13 @@
+functio nihil_agit() → vacuum {
+    nota "done"
+}
+
+incipit {
+    sit textus nomen ← "Marcus"
+    sit i32 aetas ← 30
+    sit bivalens ready ← verum
+    sit lista<numerus> empty ← vacua
+    sit numerus ∪ nihil missing ← nulla
+    nota nomen, aetas, ready, empty, missing
+    nihil_agit()
+}

@@ -1,0 +1,11 @@
+incipit {
+    sit textus ∪ numerus signum ← 7
+    discerne signum {
+        casu numerus sit n {
+            nota "a number"
+        }
+        casu textus sit s {
+            nota "a text"
+        }
+    }
+}

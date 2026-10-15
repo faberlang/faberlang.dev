@@ -1,5 +1,0 @@
-เริ่ม {
-    คงที่ _ nomen ← "Marcus"
-    คงที่ _ numeri ← [1, 2, 3]
-    บันทึก nomen, numeri
-}

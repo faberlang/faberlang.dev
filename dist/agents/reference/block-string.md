@@ -35,9 +35,9 @@ he said "salve", line one
 
 ```fab
 main {
-    const string quote ← «he said "salve"»
+    let string quote ← «he said "salve"»
     print quote
-    const string multiline ← «line one
+    let string multiline ← «line one
 still line one»
     print multiline.slice(0, 8)
 }

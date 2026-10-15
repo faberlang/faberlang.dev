@@ -1,0 +1,5 @@
+main {
+    let int good ← "42" ↦ int ⊥ 0
+    let int bad ← "not a number" ↦ int ⊥ 0
+    print good, bad
+}

@@ -32,12 +32,12 @@ live, and every `=` is settled before the program starts.
 
 ```faber
 genus Punctum {
-    fixum numerus x
-    fixum numerus y
+    sit numerus x
+    sit numerus y
 }
 
 incipit {
-    fixum _ p ← Punctum { x = 10, y = 20 }
+    sit p ← Punctum { x = 10, y = 20 }
     varia numerus count ← 0
     count ← count + 1
     nota p.x, count

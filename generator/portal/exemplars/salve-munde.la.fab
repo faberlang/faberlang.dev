@@ -1,9 +1,9 @@
 functio salve(textus nomen) → textus {
-    fixum textus msg ← "Salve, §!"(nomen)
+    sit textus msg ← "Salve, §!"(nomen)
     redde msg
 }
 
 incipit {
-    fixum textus m ← salve("munde")
+    sit textus m ← salve("munde")
     nota m
 }

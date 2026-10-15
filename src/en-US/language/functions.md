@@ -193,7 +193,7 @@ functio poll() fient → numerus ⇥ textus {
 }
 
 incipiet {
-    itera ex poll() fixum lectio {
+    itera ex poll() sit lectio {
         nota lectio
     }
 }
@@ -210,7 +210,7 @@ functio stream() fiunt → numerus ⇥ textus {
 
 incipit {
     fac {
-        itera ex stream() fixum item {
+        itera ex stream() sit item {
             nota item
         }
     }
@@ -228,7 +228,7 @@ Faber marks how a value is passed with short prepositions on parameters:
 |--------|--------|----------------------|
 | *(none)* | Read-only value (deep const) | `T` by value |
 | `de` | Shared borrow (read-only) | `&T` |
-| `in` | Mutable borrow | `&mut T` |
+| `varia` | Mutable borrow | `&mut T` |
 | `own` | Consume (move into callee) | `T` by move |
 
 ```faber
@@ -238,7 +238,7 @@ functio imprime(de textus label) → vacuum {
 }
 
 # Mutable borrow
-functio duplica(in numerus value) → vacuum {
+functio duplica(varia numerus value) → vacuum {
     value ← value * 2
 }
 
@@ -254,18 +254,18 @@ functio salve(textus nomen) → textus {
 
 incipit {
     varia numerus n ← 4
-    fixum textus t ← "abc"
+    sit textus t ← "abc"
     imprime(t)
-    duplica(in n)
+    duplica(varia n)
     nota consume(own t)
     nota salve("Marcus")
 }
 ```
 
-An unmarked parameter is read-only all the way down: it cannot be assigned to,
+An unmarked parameter is read-only all the way down: it cannot be written through,
 and sharing a list parameter into a writable binding (`varia _ ys ← xs`) is
-`SEM065 const_shared_into_var`. A writable copy is written `varia _ ys ← copy xs`. `in` and `own` are repeated at the call site,
-as in `duplica(in n)` and `consume(own t)`; leaving the marker off is `SEM057
+`SEM065 const_shared_into_var`. A writable copy is written `varia _ ys ← copy xs`. `varia` and `own` are repeated at the call site,
+as in `duplica(varia n)` and `consume(own t)`; leaving the marker off is `SEM057
 call_marker_missing`. A `de` argument takes no call-site marker.
 
 The same words (`de`, `ex`) are reused in other constructs — do not read
@@ -274,11 +274,11 @@ every `ex` as "consume":
 | Surface | Role |
 |---------|------|
 | `de textus name` on parameter | Shared borrow |
-| `in numerus count` on parameter | Mutable borrow |
+| `varia numerus count` on parameter | Mutable borrow |
 | `own textus buffer` on parameter | Move into callee |
-| `itera ex items fixum item` | Iterate values |
-| `itera de tabula fixum key` | Iterate keys |
-| `ex source fixum x, ceteri rest` | Destructure fields |
+| `itera ex items sit item` | Iterate values |
+| `itera de tabula sit key` | Iterate keys |
+| `ex source sit x, ceteri rest` | Destructure fields |
 | `importa ex "path"` | Import from module |
 
 ### Entry point {#entry-point}
@@ -303,7 +303,7 @@ For CLI programs, `incipit argumenta` receives parsed command arguments:
 @ descriptio "Prints text"
 @ operandus ceteri textus words
 incipit argumenta args {
-    itera ex args.words fixum word {
+    itera ex args.words sit word {
         nota word
     }
 }
@@ -327,7 +327,7 @@ functio connect(textus host, numerus port sponte) → vacuum {
 
 ```faber
 incipit {
-    fixum _ condition ← verum
+    sit condition ← verum
     si condition {
         # truthy branch
         nota "matched"
@@ -339,7 +339,7 @@ With else-if and else:
 
 ```faber
 incipit {
-    fixum _ score ← 85
+    sit score ← 85
     si score ≥ 90 {
         nota "A"
     } sin score ≥ 80 {
@@ -368,7 +368,7 @@ functio classify(numerus b, bivalens ready, numerus value) → numerus ∪ nihil
 
 ```faber
 functio inveni(lista<numerus> items, numerus target) → numerus ∪ nihil {
-    itera ex items fixum item {
+    itera ex items sit item {
         si item ≡ target ergo redde item
     }
     redde nulla
@@ -379,8 +379,8 @@ functio inveni(lista<numerus> items, numerus target) → numerus ∪ nihil {
 
 ```faber
 incipit {
-    fixum tabula<textus, numerus> tabula ← { "unus": 1, "duo": 2 }
-    itera de tabula fixum key {
+    sit tabula<textus, numerus> tabula ← { "unus": 1, "duo": 2 }
+    itera de tabula sit key {
         nota key
     }
 }
@@ -389,7 +389,7 @@ incipit {
 #### Range — itera ab {#range-itera-ab}
 
 ```faber
-itera ab 0‥10 fixum i {
+itera ab 0‥10 sit i {
     nota i
 }
 ```
@@ -398,7 +398,7 @@ itera ab 0‥10 fixum i {
 
 ```faber
 incipit {
-    fixum _ condition ← verum
+    sit condition ← verum
     dum condition {
         # body
         tacet
@@ -450,8 +450,8 @@ discretio Exitus {
 
 functio refer(Exitus eventus) → textus {
     discerne eventus {
-        casu Bonum fixum nuntius { redde nuntius }
-        casu Malum fixum causa { redde "Error: §"(causa) }
+        casu Bonum sit nuntius { redde nuntius }
+        casu Malum sit causa { redde "Error: §"(causa) }
     }
 }
 ```
@@ -502,8 +502,8 @@ functio primum<T>(lista<T> res) → T ∪ nihil {
 }
 
 incipit {
-    fixum _ seven ← identitas<numerus>(7)
-    fixum _ maybe ← primum<numerus>([seven])
+    sit seven ← identitas<numerus>(7)
+    sit maybe ← primum<numerus>([seven])
 }
 ```
 
@@ -511,8 +511,8 @@ incipit {
 
 ```faber
 genus Par<T> {
-    fixum T primus
-    fixum T secundus
+    sit T primus
+    sit T secundus
 }
 ```
 

@@ -6,7 +6,7 @@ this line are `SEM010` `expression_type_mismatch` and
 
 ```faber locale=en outcome=rejects
 main {
-    const int x ← "no"
+    let int x ← "no"
 }
 ```
 
@@ -19,7 +19,7 @@ and the source line (the path is printed as resolved, here shortened):
 
 ```text
 error[SEM010:expression_type_mismatch]: src/main.fab:2
-  |     const int x ← "no"
+  |     let int x ← "no"
 ```
 
 `faber check --diagnostics` expands each one into a block with the phase, the
@@ -29,8 +29,8 @@ file, the span, the source line, and a `help` sentence:
 error[SEM010:expression_type_mismatch] analysis src/main.fab: expression type mismatch
 phase: analysis
 file: src/main.fab
-span: 27..31
-source:      const int x ← "no"
+span: 25..29
+source:      let int x ← "no"
 help: make the expression type match the expected type
 ```
 

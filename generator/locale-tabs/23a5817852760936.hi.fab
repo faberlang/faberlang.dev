@@ -1,7 +1,0 @@
-फलन identitas<T>(T datum) → T {
-    लौटाओ datum
-}
-
-आरंभ {
-    स्थिर संख्या seven ← identitas<संख्या>(7)
-}

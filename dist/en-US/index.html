@@ -41,7 +41,7 @@ lowering and the narrower real-device route documented below. The
 <a href="/en-US/toolchain/target-matrix.html">target matrix</a> records the support boundary
 construct by construct.</p><p>The language makes three deliberate signal choices that work together:</p><ul><li><strong>Type-first declarations</strong> — shape reads toward binding: <code>string name</code>,
 not <code>name: string</code>.</li><li><strong>Behavioural words</strong> — declarations, statements, and lifecycle:
-<code>fn</code>, <code>class</code>, <code>const</code>, <code>return</code>, <code>if</code>.</li><li><strong>Structural glyphs</strong> — value flow and type joints: <code class="glyph">←</code> (bind), <code class="glyph">→</code>
+<code>fn</code>, <code>class</code>, <code>let</code>, <code>return</code>, <code>if</code>.</li><li><strong>Structural glyphs</strong> — value flow and type joints: <code class="glyph">←</code> (bind), <code class="glyph">→</code>
 (return type), <code class="glyph">∴</code> (closure joint), <code class="glyph">≡</code> (equality), <code class="glyph">∪</code> (union).</li></ul><p>The result is source with stable grammatical shape that can be reviewed,
 transformed, and lowered without losing the reader's sense of intent.</p><h2 id="gpu-device-execution">GPU device execution<a class="anchor" href="#gpu-device-execution">#</a></h2><p>A package carries a device program when its source declares a compute kernel
 with <code>@ kernel</code> and its manifest declares a <code>[device]</code> section. <code>faber run</code>

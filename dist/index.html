@@ -25,7 +25,7 @@
   <i class="c tl"></i><i class="c tr"></i><i class="c bl"></i><i class="c br"></i>
   <span class="lbl l1">Faber · 1.12.0</span><span class="lbl l2" id="hud-clock">UTC --:--:--</span>
   <i class="ruler"></i>
-  <div class="ticker"><div class="ticker-track"><div class="ticker-group"><span>Faber 1.12.0</span><i></i><span>MIT or Apache-2.0</span><i></i><span>8 reader locales</span><i></i><span>18 targets</span><i></i><span>280 grammar productions</span><i></i><span>No accounts</span><i></i><span>Under active development</span><i></i><span>System fonts · zero external requests</span><i></i></div><div class="ticker-group"><span>Faber 1.12.0</span><i></i><span>MIT or Apache-2.0</span><i></i><span>8 reader locales</span><i></i><span>18 targets</span><i></i><span>280 grammar productions</span><i></i><span>No accounts</span><i></i><span>Under active development</span><i></i><span>System fonts · zero external requests</span><i></i></div></div></div>
+  <div class="ticker"><div class="ticker-track"><div class="ticker-group"><span>Faber 1.12.0</span><i></i><span>MIT or Apache-2.0</span><i></i><span>8 reader locales</span><i></i><span>20 targets</span><i></i><span>282 grammar productions</span><i></i><span>No accounts</span><i></i><span>Under active development</span><i></i><span>System fonts · zero external requests</span><i></i></div><div class="ticker-group"><span>Faber 1.12.0</span><i></i><span>MIT or Apache-2.0</span><i></i><span>8 reader locales</span><i></i><span>20 targets</span><i></i><span>282 grammar productions</span><i></i><span>No accounts</span><i></i><span>Under active development</span><i></i><span>System fonts · zero external requests</span><i></i></div></div></div>
 </div>
 
 <header class="site-top">
@@ -116,8 +116,8 @@
     <button class="fdt-tab" role="tab" id="fl-loc-t-hi" data-panel="fl-loc-p-hi" data-name="हिन्दी" aria-controls="fl-loc-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button>
     </div>
     <div class="fdt-panel active" id="fl-loc-p-en" role="tabpanel" aria-labelledby="fl-loc-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface — the base spelling for everyday source</span></div><pre><code class="lang-faber locale=en">class Span {
-    const f64 low
-    const f64 high
+    let f64 low
+    let f64 high
 
     fn contains(f64 x) → bool {
         return self.low ≤ x and x ≤ self.high
@@ -133,14 +133,14 @@ fn choose&lt;T&gt;(bool first, T a, T b) → T {
 }
 
 main {
-    const Span bytes ← Span { low = 0.0, high = 255.0 }
+    let Span bytes ← Span { low = 0.0, high = 255.0 }
     print bytes.center()
     print choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
     print -7 / 2
 }</code></pre></div>
     <div class="fdt-panel" id="fl-loc-p-la" role="tabpanel" aria-labelledby="fl-loc-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— Latin — the classical surface the language is named for</span></div><pre><code class="lang-faber locale=la">genus Span {
-    fixum f64 low
-    fixum f64 high
+    sit f64 low
+    sit f64 high
 
     functio contains(f64 x) → bivalens {
         redde ego.low ≤ x et x ≤ ego.high
@@ -156,14 +156,14 @@ functio choose&lt;T&gt;(bivalens first, T a, T b) → T {
 }
 
 incipit {
-    fixum Span bytes ← Span { low = 0.0, high = 255.0 }
+    sit Span bytes ← Span { low = 0.0, high = 255.0 }
     nota bytes.center()
     nota choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
     nota -7 / 2
 }</code></pre></div>
     <div class="fdt-panel" id="fl-loc-p-th-TH" role="tabpanel" aria-labelledby="fl-loc-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai — spaceless script</span></div><pre class="th"><code class="lang-faber locale=th-TH">ชนิด Span {
-    คงที่ f64 low
-    คงที่ f64 high
+    กำหนด f64 low
+    กำหนด f64 high
 
     ฟังก์ชัน contains(f64 x) → ตรรกะ {
         คืน ตัวฉัน.low ≤ x และ x ≤ ตัวฉัน.high
@@ -179,14 +179,14 @@ incipit {
 }
 
 เริ่ม {
-    คงที่ Span bytes ← Span { low = 0.0, high = 255.0 }
+    กำหนด Span bytes ← Span { low = 0.0, high = 255.0 }
     บันทึก bytes.center()
     บันทึก choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
     บันทึก -7 / 2
 }</code></pre></div>
     <div class="fdt-panel" id="fl-loc-p-zh-Hans" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans">类 Span {
-    常量 f64 low
-    常量 f64 high
+    设 f64 low
+    设 f64 high
 
     函数 contains(f64 x) → 布尔 {
         返回 自身.low ≤ x 且 x ≤ 自身.high
@@ -202,14 +202,14 @@ incipit {
 }
 
 入口 {
-    常量 Span bytes ← Span { low = 0.0, high = 255.0 }
+    设 Span bytes ← Span { low = 0.0, high = 255.0 }
     显示 bytes.center()
     显示 choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
     显示 -7 / 2
 }</code></pre></div>
     <div class="fdt-panel" id="fl-loc-p-zh-Hant" role="tabpanel" aria-labelledby="fl-loc-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant">類型 Span {
-    定值 f64 low
-    定值 f64 high
+    設為 f64 low
+    設為 f64 high
 
     函式 contains(f64 x) → 布林 {
         傳回 自身.low ≤ x 且 x ≤ 自身.high
@@ -225,14 +225,14 @@ incipit {
 }
 
 入口 {
-    定值 Span bytes ← Span { low = 0.0, high = 255.0 }
+    設為 Span bytes ← Span { low = 0.0, high = 255.0 }
     註記 bytes.center()
     註記 choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
     註記 -7 / 2
 }</code></pre></div>
     <div class="fdt-panel" id="fl-loc-p-vi" role="tabpanel" aria-labelledby="fl-loc-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi">kiểu Span {
-    hằng f64 low
-    hằng f64 high
+    đặt f64 low
+    đặt f64 high
 
     hàm contains(f64 x) → logic {
         trả tôi.low ≤ x và x ≤ tôi.high
@@ -248,14 +248,14 @@ hàm choose&lt;T&gt;(logic first, T a, T b) → T {
 }
 
 bắt_đầu {
-    hằng Span bytes ← Span { low = 0.0, high = 255.0 }
+    đặt Span bytes ← Span { low = 0.0, high = 255.0 }
     ghi_chú bytes.center()
     ghi_chú choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
     ghi_chú -7 / 2
 }</code></pre></div>
     <div class="fdt-panel" id="fl-loc-p-ar" role="tabpanel" aria-labelledby="fl-loc-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic — right-to-left, bidi isolated</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar">صنف Span {
-    ثابت f64 low
-    ثابت f64 high
+    ليكن f64 low
+    ليكن f64 high
 
     دالة contains(f64 x) → منطقي {
         أعد ذات.low ≤ x و x ≤ ذات.high
@@ -271,14 +271,14 @@ bắt_đầu {
 }
 
 بداية {
-    ثابت Span bytes ← Span { low = 0.0, high = 255.0 }
+    ليكن Span bytes ← Span { low = 0.0, high = 255.0 }
     اعرض bytes.center()
     اعرض choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
     اعرض -7 / 2
 }</code></pre></div>
     <div class="fdt-panel" id="fl-loc-p-hi" role="tabpanel" aria-labelledby="fl-loc-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi — Devanagari</span></div><pre class="hi"><code class="lang-faber locale=hi">वर्ग Span {
-    स्थिर f64 low
-    स्थिर f64 high
+    बैठा f64 low
+    बैठा f64 high
 
     फलन contains(f64 x) → तार्किक {
         लौटाओ मैं.low ≤ x और x ≤ मैं.high
@@ -294,7 +294,7 @@ bắt_đầu {
 }
 
 आरंभ {
-    स्थिर Span bytes ← Span { low = 0.0, high = 255.0 }
+    बैठा Span bytes ← Span { low = 0.0, high = 255.0 }
     दिखाओ bytes.center()
     दिखाओ choose(bytes.contains(300.0), &quot;inside&quot;, &quot;outside&quot;)
     दिखाओ -7 / 2
@@ -357,7 +357,7 @@ outside
       <li>
         <h3>A mechanical grammar</h3>
         <p>
-          280 grammar productions, generated and checked as the parser’s
+          282 grammar productions, generated and checked as the parser’s
           authority. One construct has one spelling. Arrows mean runtime effects
           (<code>←</code> assign, <code>→</code> return, <code>⇥</code> error channel);
           <code>=</code> and <code>:</code> only state compile-time facts.
@@ -414,8 +414,8 @@ outside
       <div class="term-bar">span.fab · source</div>
 <pre class="fl-src"><code class="lang-faber locale=en">@ public
 class Span {
-    const f64 low
-    const f64 high
+    let f64 low
+    let f64 high
 
     fn contains(f64 x) → bool {
         return self.low ≤ x and x ≤ self.high
@@ -676,7 +676,7 @@ extension Span: CustomStringConvertible {
       <p class="kicker"><i class="sq" aria-hidden="true"></i>Grammar</p>
       <h2>A grammar you can read in one sitting</h2>
       <p>
-        The language is specified as 280 productions in a single
+        The language is specified as 282 productions in a single
         EBNF, generated from one source and published in full. It is large
         enough to be expressive and regular enough to hold in your head or a
         model’s context. The reference pages are generated from the same source,
@@ -734,7 +734,7 @@ extension Span: CustomStringConvertible {
       </a>
       <a class="fl-door" href="/en-US/reference/grammar.html">
         <strong>Grammar</strong>
-        <span>All 280 productions, generated from one EBNF.</span>
+        <span>All 282 productions, generated from one EBNF.</span>
       </a>
       <a class="fl-door" href="/en-US/start/">
         <strong>Start</strong>

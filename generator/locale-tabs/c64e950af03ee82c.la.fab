@@ -1,0 +1,5 @@
+incipit {
+    sit i32 narrow ← 7 ∷ i32
+    sit u64 wide ← 255 ∷ u64
+    sit f32 single ← 1.5 ∷ f32
+}

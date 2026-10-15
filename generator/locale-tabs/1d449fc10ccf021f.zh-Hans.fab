@@ -1,0 +1,6 @@
+入口 {
+    设 映射<文本, 文本> persona ← { "nomen": "Marcus", "urbs": "Roma" }
+    遍历 借自 persona 设 clavis {
+        显示 clavis, persona[clavis]
+    }
+}

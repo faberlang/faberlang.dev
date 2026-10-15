@@ -57,12 +57,12 @@ fn elige_primum_viventem(list<span class="tok-op">&lt;</span>f32<span class="tok
 }
 
 main {
-    const float <span class="tok-op">∪</span> none litteram <span class="tok-op">←</span> elige_litteram()
-    const float <span class="tok-op">∪</span> none nullum <span class="tok-op">←</span> elige_nullum()
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> vacua_lista <span class="tok-op">←</span> []
-    const float <span class="tok-op">∪</span> none void <span class="tok-op">←</span> elige_vacuum(vacua_lista)
-    const list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">3.0</span>]
-    const float <span class="tok-op">∪</span> none primum <span class="tok-op">←</span> elige_primum_viventem(xs)
+    let float <span class="tok-op">∪</span> none litteram <span class="tok-op">←</span> elige_litteram()
+    let float <span class="tok-op">∪</span> none nullum <span class="tok-op">←</span> elige_nullum()
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> vacua_lista <span class="tok-op">←</span> []
+    let float <span class="tok-op">∪</span> none void <span class="tok-op">←</span> elige_vacuum(vacua_lista)
+    let list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">5.0</span>, <span class="tok-nu">3.0</span>]
+    let float <span class="tok-op">∪</span> none primum <span class="tok-op">←</span> elige_primum_viventem(xs)
     print litteram
     print nullum
     print void

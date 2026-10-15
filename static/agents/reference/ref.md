@@ -42,12 +42,12 @@ Cross-ref: itera/de.fab.
 
 ```fab
 main {
-    const map<string, int> persona ← { "name": 1, "aetas": 30 }
-    for ref persona const clavis {
+    let map<string, int> persona ← { "name": 1, "aetas": 30 }
+    for ref persona let clavis {
         print clavis
     }
-    const list<int, 3> numeri ← [10, 20, 30]
-    for ref numeri const index {
+    let list<int, 3> numeri ← [10, 20, 30]
+    for ref numeri let index {
         print index
     }
 }

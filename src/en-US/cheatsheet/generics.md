@@ -45,8 +45,8 @@ The built-in collections are generic already.
 
 ```faber locale-tabs
 incipit {
-    fixum lista<textus> nomina ← ["Marcus", "Julia"]
-    fixum tabula<textus, numerus> aetates ← { "Marcus": 30 }
+    sit lista<textus> nomina ← ["Marcus", "Julia"]
+    sit tabula<textus, numerus> aetates ← { "Marcus": 30 }
     nota nomina, aetates
 }
 ```
@@ -57,8 +57,8 @@ incipit {
 
 ```faber locale-tabs
 genus Persona {
-    fixum textus nomen
-    fixum numerus aetas
+    sit textus nomen
+    sit numerus aetas
 }
 
 functio descriptio(Persona p) → textus {
@@ -66,7 +66,7 @@ functio descriptio(Persona p) → textus {
 }
 
 incipit {
-    fixum _ p ← Persona { nomen = "Marcus", aetas = 30 }
+    sit p ← Persona { nomen = "Marcus", aetas = 30 }
     nota descriptio(p)
 }
 ```
@@ -77,8 +77,8 @@ A `genus` can carry functions alongside its fields.
 
 ```faber locale-tabs
 genus Punctum {
-    fixum numerus x
-    fixum numerus y
+    sit numerus x
+    sit numerus y
 
     functio summa() → numerus {
         redde ego.x + ego.y
@@ -86,7 +86,7 @@ genus Punctum {
 }
 
 incipit {
-    fixum _ p ← Punctum { x = 1, y = 2 }
+    sit p ← Punctum { x = 1, y = 2 }
     nota p.summa()
 }
 ```

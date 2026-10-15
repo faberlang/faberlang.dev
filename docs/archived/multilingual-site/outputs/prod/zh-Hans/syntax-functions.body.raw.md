@@ -42,9 +42,9 @@ Faber 通过参数上的短介词来标记值的传递方式：
 | 参数上的 `de textus name` | 共享借用 |
 | 参数上的 `in numerus count` | 可变借用 |
 | 参数上的 `ex textus buffer` | 移动到被调用方 |
-| `itera ex items fixum item` | 遍历值 |
-| `itera de tabula fixum key` | 遍历键 |
-| `ex source fixum x, ceteri rest` | 解构字段 |
+| `itera ex items sit item` | 遍历值 |
+| `itera de tabula sit key` | 遍历键 |
+| `ex source sit x, ceteri rest` | 解构字段 |
 | `importa ex "path"` | 从模块导入 |
 
 ## 入口点 {#entry-point}

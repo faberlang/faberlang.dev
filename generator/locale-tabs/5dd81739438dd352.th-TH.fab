@@ -1,0 +1,5 @@
+เริ่ม {
+    กำหนด nomen ← "Marcus"
+    กำหนด numeri ← [1, 2, 3]
+    บันทึก nomen, numeri
+}

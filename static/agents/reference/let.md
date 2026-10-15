@@ -17,7 +17,7 @@ let <name> [← <expression>]
 
 ## Common mistakes
 
-- Confusing `let` (sugar for `const _`) with `var` — `let` creates an immutable binding.
+- Confusing `let` (sugar for `const _`) with `mut` — `let` creates an immutable binding.
 
 ## Grammar
 
@@ -56,11 +56,11 @@ main {
     label ← "deferred"
     print label
 
-    const _ idem ← nuntius
+    let idem ← nuntius
     print idem
 }
 ```
 
-See also: [`const`](const.md), [`var`](var.md), [`←`](←.md).
+See also: [`const`](const.md), [`mut`](varia.md), [`←`](←.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

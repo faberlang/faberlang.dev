@@ -320,7 +320,7 @@ per-language mapping pages, reader-locale tab cards on fences marked
 | Cheat sheet / targets fences | `locale-tabs.py`, current captured 8-locale cards defaulting to `en` |
 | Remaining single-token `` `term` `` spans in prose | `localize-spans.py`, after the render |
 
-`speculum_py.py` resolves each inline span against a closed set — 37 keywords + 13
+`speculum_py.py` resolves each inline span against a closed set — 39 keywords + 13
 types — and emits `class="kw"` or `class="typ"`; `localize-spans.py` swaps the
 spelling. Compounds are projected by token rules that refuse paths
 (`norma:textus`, `solum:lege`), anchors, production ids (`itera_stmt`),

@@ -27,11 +27,11 @@
 <span class="tok-co">#   Smoke asserts exit 0 only.</span>
 
 main {
-    const int value <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">7</span>
-    const int absolutus <span class="tok-op">←</span> value.abs()
-    const int signum <span class="tok-op">←</span> value.sign()
-    const int minor <span class="tok-op">←</span> value.minimum(<span class="tok-nu">3</span>)
-    const int maior <span class="tok-op">←</span> value.maximum(<span class="tok-nu">3</span>)
+    let int value <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">7</span>
+    let int absolutus <span class="tok-op">←</span> value.abs()
+    let int signum <span class="tok-op">←</span> value.sign()
+    let int minor <span class="tok-op">←</span> value.minimum(<span class="tok-nu">3</span>)
+    let int maior <span class="tok-op">←</span> value.maximum(<span class="tok-nu">3</span>)
     print absolutus, signum, minor, maior
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>7 -1 -7 3
 </code></pre><h3 id="radixcorpusoperatoresnumerus-overflow-sizesfab-canonical-operator-group">radix/corpus/operatores/numerus-overflow-sizes.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusoperatoresnumerus-overflow-sizesfab-canonical-operator-group">#</a></h3><p>Sized int arithmetic is exact; storing a value past the declared width traps.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
@@ -41,7 +41,7 @@ main {
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • Exact intermediates — `i8` arithmetic does not overflow at 8 bits:</span>
 <span class="tok-co">#     `127 + 1` is 128 as a number, and it prints as 128.</span>
-<span class="tok-co">#   • Trap at the store — `var i8 total ← max + uno()` fails because 128</span>
+<span class="tok-co">#   • Trap at the store — `mut i8 total ← max + uno()` fails because 128</span>
 <span class="tok-co">#     does not fit `i8`; the program aborts with</span>
 <span class="tok-co">#     "128 does not fit in `i8`" and never wraps.</span>
 <span class="tok-co">#   • Policy distinction — every int width traps at its store; only</span>
@@ -68,9 +68,9 @@ fn uno() <span class="tok-op">→</span> i8 {
 }
 
 main {
-    var i8 max <span class="tok-op">←</span> <span class="tok-nu">127</span> ∷ i8
+    mut i8 max <span class="tok-op">←</span> <span class="tok-nu">127</span> ∷ i8
     print max <span class="tok-op">+</span> uno()
-    var i8 total <span class="tok-op">←</span> max <span class="tok-op">+</span> uno()
+    mut i8 total <span class="tok-op">←</span> max <span class="tok-op">+</span> uno()
     print total
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>128
 </code></pre><h3 id="radixcorpusoperatoresnumerus-overflowfab-canonical-operator-group">radix/corpus/operatores/numerus-overflow.fab (canonical · operator-group)<a class="anchor" href="#radixcorpusoperatoresnumerus-overflowfab-canonical-operator-group">#</a></h3><p>Numerus arithmetic is exact; a value that does not fit its slot traps at the store.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
@@ -81,7 +81,7 @@ main {
 <span class="tok-co">#   • Exact intermediates — `max + 1` is 9223372036854775808, one past the</span>
 <span class="tok-co">#     largest `int`; an expression is a number, not a 64-bit container, so it</span>
 <span class="tok-co">#     prints exactly and `max + 1 - 1` comes back to `max`.</span>
-<span class="tok-co">#   • Trap at the store — `var int stored ← max + 1` fails because the exact</span>
+<span class="tok-co">#   • Trap at the store — `mut int stored ← max + 1` fails because the exact</span>
 <span class="tok-co">#     value does not fit `int`; the program aborts with</span>
 <span class="tok-co">#     "9223372036854775808 does not fit in `i64`" and never wraps.</span>
 <span class="tok-co">#   • The exact range — intermediates may reach [−2⁶³, 2⁶⁴ − 1]; past it</span>
@@ -104,10 +104,10 @@ main {
 <span class="tok-co">#   aborts on a value that does not fit. No arithmetic wraps silently.</span>
 
 main {
-    const int max <span class="tok-op">←</span> <span class="tok-nu">9223372036854775807</span>
+    let int max <span class="tok-op">←</span> <span class="tok-nu">9223372036854775807</span>
     print max <span class="tok-op">+</span> <span class="tok-nu">1</span>
     print max <span class="tok-op">+</span> <span class="tok-nu">1</span> <span class="tok-op">-</span> <span class="tok-nu">1</span>
-    var int stored <span class="tok-op">←</span> max <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    mut int stored <span class="tok-op">←</span> max <span class="tok-op">+</span> <span class="tok-nu">1</span>
     print stored
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>9223372036854775808
 9223372036854775807
@@ -140,17 +140,17 @@ fn ducenti() <span class="tok-op">→</span> u8 {
 }
 
 main {
-    const u8 a <span class="tok-op">←</span> ducenti()
-    const u8 b <span class="tok-op">←</span> ducenti()
+    let u8 a <span class="tok-op">←</span> ducenti()
+    let u8 b <span class="tok-op">←</span> ducenti()
 
 <span class="tok-co">    # 1. Range rule: the sum is exact, and fits an i16 slot.</span>
     print a <span class="tok-op">+</span> b
-    const i16 wide <span class="tok-op">←</span> a <span class="tok-op">+</span> b
+    let i16 wide <span class="tok-op">←</span> a <span class="tok-op">+</span> b
     print wide
 
 <span class="tok-co">    # 2. Untyped constants take their range, so no operand needs a width.</span>
     print <span class="tok-op">-</span><span class="tok-nu">100</span> <span class="tok-op">-</span> <span class="tok-nu">100</span>
-    const i8 low <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">100</span>
+    let i8 low <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">100</span>
     print low <span class="tok-op">-</span> <span class="tok-nu">100</span>
 
 <span class="tok-co">    # 3. Floor division; the remainder takes the divisor's sign.</span>
@@ -163,22 +163,22 @@ main {
     print a <span class="tok-op">÷</span> <span class="tok-nu">3</span>
 
 <span class="tok-co">    # 5. Store policies for a value that does not fit u8.</span>
-    const wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> wrapped <span class="tok-op">←</span> (a <span class="tok-op">+</span> b) ↦ wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> clamped <span class="tok-op">←</span> (a <span class="tok-op">+</span> b) ↦ saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
+    let wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> wrapped <span class="tok-op">←</span> (a <span class="tok-op">+</span> b) ↦ wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
+    let saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> clamped <span class="tok-op">←</span> (a <span class="tok-op">+</span> b) ↦ saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
     print wrapped
     print clamped
 
 <span class="tok-co">    # 6. `_` takes the range type; an exact value needs no narrowing.</span>
-    const _ inferred <span class="tok-op">←</span> a <span class="tok-op">+</span> b
+    let inferred <span class="tok-op">←</span> a <span class="tok-op">+</span> b
     print inferred
 
 <span class="tok-co">    # 7. Comparisons are exact, including across signedness.</span>
     print a ≻ <span class="tok-op">-</span><span class="tok-nu">1</span>
 
 <span class="tok-co">    # A trapping slot aborts on a value it cannot hold; 400 does not fit in `u8`:</span>
-<span class="tok-co">    #   const u8 bad ← a + b</span>
+<span class="tok-co">    #   let u8 bad ← a + b</span>
 <span class="tok-co">    # u64 with a signed operand is a compile error; convert with `↦` first:</span>
-<span class="tok-co">    #   const u64 big ← 1</span>
+<span class="tok-co">    #   let u64 big ← 1</span>
 <span class="tok-co">    #   print big + low</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>400
 400
@@ -230,7 +230,7 @@ fn minus() <span class="tok-op">→</span> int {
 main {
     print <span class="tok-nu">2</span>.power(<span class="tok-nu">10</span>)
     print <span class="tok-nu">0</span>.power(<span class="tok-nu">0</span>)
-    const float half <span class="tok-op">←</span> <span class="tok-nu">2.0</span>
+    let float half <span class="tok-op">←</span> <span class="tok-nu">2.0</span>
     print half.power(<span class="tok-op">-</span><span class="tok-nu">1.0</span>)
     print <span class="tok-nu">2</span>.power(minus())
     print <span class="tok-nu">99</span>
@@ -260,6 +260,6 @@ main {
 <span class="tok-co"># pin the PARSE040 `numeric_wrapper_retired` diagnostic for the hole form (N7d).</span>
 
 main {
-    const int<span class="tok-op">&lt;</span>_<span class="tok-op">&gt;</span> width <span class="tok-op">←</span> <span class="tok-nu">1</span> ∷ i32
+    let int<span class="tok-op">&lt;</span>_<span class="tok-op">&gt;</span> width <span class="tok-op">←</span> <span class="tok-nu">1</span> ∷ i32
     print width
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusintrinsecanumerus-methodifab-canonical-keyword">radix/corpus/intrinseca/numerus-methodi.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusoperatoresnumerus-overflow-sizesfab-canonical-operator-group">radix/corpus/operatores/numerus-overflow-sizes.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusoperatoresnumerus-overflowfab-canonical-operator-group">radix/corpus/operatores/numerus-overflow.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusoperatoresnumerus-wideningfab-canonical-operator-group">radix/corpus/operatores/numerus-widening.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpusoperatorespotentia-negative-exponentfab-canonical-operator-group">radix/corpus/operatores/potentia-negative-exponent.fab (canonical · operator-group)</a></li><li class="toc-3"><a href="#radixcorpustypinumerus-hole-errorfab-supporting-reject">radix/corpus/typi/numerus-hole-error.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/intrinseca/numerus-methodi.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

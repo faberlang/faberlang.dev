@@ -1,0 +1,5 @@
+main {
+    let string ∪ int mixed ← 7
+    let list<string ∪ int> both ← [1, "two", 3]
+    print mixed, both
+}

@@ -1,0 +1,12 @@
+फलन summa(सूची<संख्या> numeri) → संख्या {
+    परिवर्तनीय संख्या total ← 0
+    दोहराओ सेवन numeri बैठा n {
+        total ← total + n
+    }
+    लौटाओ total
+}
+
+आरंभ {
+    बैठा सूची<संख्या> valores ← [1, 2, 3, 4, 5]
+    दिखाओ summa(valores)
+}

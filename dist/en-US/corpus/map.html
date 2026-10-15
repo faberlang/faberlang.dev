@@ -32,16 +32,16 @@
 <span class="tok-co"># whitelist: map/methodi-accessus.fab).</span>
 
 main {
-    var map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> empty
+    mut map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> empty
     puncta.put(<span class="tok-st">"aelia"</span>, <span class="tok-nu">95</span>)
     puncta.put(<span class="tok-st">"balbus"</span>, <span class="tok-nu">87</span>)
-    const int <span class="tok-op">∪</span> none aelia <span class="tok-op">←</span> puncta.get(<span class="tok-st">"aelia"</span>)
-    const int <span class="tok-op">∪</span> none absens <span class="tok-op">←</span> puncta.get(<span class="tok-st">"carus"</span>)
-    const int carus <span class="tok-op">←</span> puncta.get(<span class="tok-st">"carus"</span>) coalesce <span class="tok-nu">0</span>
-    const bool habetbalbum <span class="tok-op">←</span> puncta.has(<span class="tok-st">"balbus"</span>)
-    const bool remotus <span class="tok-op">←</span> puncta.delete(<span class="tok-st">"balbus"</span>)
-    const int longitudo <span class="tok-op">←</span> puncta.length()
-    const bool vacuaest <span class="tok-op">←</span> puncta.is_empty()
+    let int <span class="tok-op">∪</span> none aelia <span class="tok-op">←</span> puncta.get(<span class="tok-st">"aelia"</span>)
+    let int <span class="tok-op">∪</span> none absens <span class="tok-op">←</span> puncta.get(<span class="tok-st">"carus"</span>)
+    let int carus <span class="tok-op">←</span> puncta.get(<span class="tok-st">"carus"</span>) coalesce <span class="tok-nu">0</span>
+    let bool habetbalbum <span class="tok-op">←</span> puncta.has(<span class="tok-st">"balbus"</span>)
+    let bool remotus <span class="tok-op">←</span> puncta.delete(<span class="tok-st">"balbus"</span>)
+    let int longitudo <span class="tok-op">←</span> puncta.length()
+    let bool vacuaest <span class="tok-op">←</span> puncta.is_empty()
     print aelia, absens, carus, habetbalbum, remotus, longitudo, vacuaest
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>95 none 0 true true 1 false
 </code></pre><h3 id="radixcorpustabulatabulafab-canonical-keyword">radix/corpus/tabula/tabula.fab (canonical · keyword)<a class="anchor" href="#radixcorpustabulatabulafab-canonical-keyword">#</a></h3><p>Generic key/value map type.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
@@ -63,20 +63,20 @@ main {
 
 <span class="tok-co"># map&lt;K,V&gt; declaration, empty, and keyed lookup</span>
 <span class="tok-co">#</span>
-<span class="tok-co"># var map&lt;K,V&gt; nomen ← empty   -- typed empty map (forma innata)</span>
+<span class="tok-co"># mut map&lt;K,V&gt; nomen ← empty   -- typed empty map (forma innata)</span>
 <span class="tok-co"># nomen[key] ← value                -- index assignment</span>
 <span class="tok-co"># nomen[key]                        -- keyed accipe</span>
 <span class="tok-co"># nomen.length()                 -- entry count</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   mapDecl :← 'var' 'map&lt;' type ',' type '&gt;' ident '←' expr</span>
+<span class="tok-co">#   mapDecl :← 'mut' 'map&lt;' type ',' type '&gt;' ident '←' expr</span>
 <span class="tok-co">#   mapAcc  :← expr '[' expr ']'</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   longitudo() plus keyed lookups for alpha/beta/gamma (tabula.expected).</span>
 
 main {
-    var map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> empty
+    mut map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> empty
     puncta[<span class="tok-st">"alpha"</span>] <span class="tok-op">←</span> <span class="tok-nu">1</span>
     puncta[<span class="tok-st">"beta"</span>] <span class="tok-op">←</span> <span class="tok-nu">2</span>
     puncta[<span class="tok-st">"gamma"</span>] <span class="tok-op">←</span> <span class="tok-nu">3</span>
@@ -84,7 +84,7 @@ main {
     print puncta[<span class="tok-st">"alpha"</span>]
     print puncta[<span class="tok-st">"beta"</span>]
     print puncta[<span class="tok-st">"gamma"</span>]
-    const int <span class="tok-op">∪</span> none absens <span class="tok-op">←</span> puncta.get(<span class="tok-st">"missing"</span>)
+    let int <span class="tok-op">∪</span> none absens <span class="tok-op">←</span> puncta.get(<span class="tok-st">"missing"</span>)
     print absens
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>3
 1

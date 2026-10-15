@@ -71,10 +71,10 @@ fn nomina(Condicio s) → string {
 # case with const bindings destructures variant fields
 fn tracta(Nuntius e) → none {
     match e {
-        case Pulsus const x, y {
+        case Pulsus let x, y {
             print "pulsus: § §"(x, y)
         }
-        case Clavis const clavis {
+        case Clavis let clavis {
             print "clavis: §"(clavis)
         }
         case Finis {

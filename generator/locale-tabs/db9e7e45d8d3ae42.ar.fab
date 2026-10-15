@@ -1,0 +1,5 @@
+بداية {
+    ليكن قائمة<نص> nomina ← ["Marcus", "Julia"]
+    ليكن جدول<نص, عدد> aetates ← { "Marcus": 30 }
+    اعرض nomina, aetates
+}

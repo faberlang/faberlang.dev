@@ -42,9 +42,9 @@ Faber ระบุวิธีส่งค่าด้วยคำบุพบ�
 | `de textus name` บนพารามิเตอร์ | การยืมร่วม |
 | `in numerus count` บนพารามิเตอร์ | การยืมที่เปลี่ยนแปลงได้ |
 | `ex textus buffer` บนพารามิเตอร์ | การย้ายค่าเข้า callee |
-| `itera ex items fixum item` | วนซ้ำค่าต่าง ๆ |
-| `itera de tabula fixum key` | วนซ้ำคีย์ |
-| `ex source fixum x, ceteri rest` | แยกโครงสร้างฟิลด์ |
+| `itera ex items sit item` | วนซ้ำค่าต่าง ๆ |
+| `itera de tabula sit key` | วนซ้ำคีย์ |
+| `ex source sit x, ceteri rest` | แยกโครงสร้างฟิลด์ |
 | `importa ex "path"` | นำเข้าจากโมดูล |
 
 ## จุดเริ่มต้นโปรแกรม {#entry-point}

@@ -1,6 +1,6 @@
 ชนิด Span {
-    คงที่ f64 low
-    คงที่ f64 high
+    กำหนด f64 low
+    กำหนด f64 high
 
     ฟังก์ชัน contains(f64 x) → ตรรกะ {
         คืน ตัวฉัน.low ≤ x และ x ≤ ตัวฉัน.high
@@ -16,7 +16,7 @@
 }
 
 เริ่ม {
-    คงที่ Span bytes ← Span { low = 0.0, high = 255.0 }
+    กำหนด Span bytes ← Span { low = 0.0, high = 255.0 }
     บันทึก bytes.center()
     บันทึก choose(bytes.contains(300.0), "inside", "outside")
     บันทึก -7 / 2

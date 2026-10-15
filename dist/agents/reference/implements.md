@@ -39,7 +39,7 @@ interface Nominatum {
 }
 
 class Civis implements Nominatum {
-    var string nomen
+    mut string nomen
 
     fn plenum() → string {
         # satisfies interface requirement
@@ -48,7 +48,7 @@ class Civis implements Nominatum {
 }
 
 main {
-    const Civis civis ← Civis { nomen = "Aurelia" }
+    let Civis civis ← Civis { nomen = "Aurelia" }
     print civis.plenum()
 }
 ```

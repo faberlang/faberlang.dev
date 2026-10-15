@@ -41,7 +41,7 @@ Cross-ref: si/secus.fab.
 
 ```fab
 main {
-    const int hour ← 23
+    let int hour ← 23
     if hour ≺ 12 {
         print "morning"
     }

@@ -1,0 +1,5 @@
+आरंभ {
+    बैठा i32 narrow ← "255" ↦ i32
+    बैठा f32 single ← "1.5" ↦ f32
+    दिखाओ narrow, single
+}

@@ -1,0 +1,5 @@
+incipit {
+    sit textus ∪ numerus mixed ← 7
+    sit lista<textus ∪ numerus> both ← [1, "two", 3]
+    nota mixed, both
+}

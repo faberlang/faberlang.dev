@@ -34,7 +34,7 @@ Scalar stdout smoke (see body).
 
 ```fab
 main {
-    const none nothing ← null
+    let none nothing ← null
     print nothing
 }
 ```

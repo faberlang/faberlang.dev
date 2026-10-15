@@ -35,7 +35,7 @@ capsa: prima
 
 ```fab
 class Capsa {
-    var string titulus
+    mut string titulus
 
     fn narra() → string {
         # ego = the receiver instance
@@ -44,11 +44,11 @@ class Capsa {
 }
 
 main {
-    const Capsa capsa ← Capsa { titulus = "prima" }
+    let Capsa capsa ← Capsa { titulus = "prima" }
     print capsa.narra()
 }
 ```
 
-See also: [`static`](static.md), [`class`](class.md).
+See also: [`const`](const.md), [`class`](class.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

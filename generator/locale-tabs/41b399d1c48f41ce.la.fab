@@ -1,0 +1,13 @@
+genus Persona {
+    sit textus nomen
+    sit numerus aetas
+}
+
+functio descriptio(Persona p) → textus {
+    redde p.nomen
+}
+
+incipit {
+    sit p ← Persona { nomen = "Marcus", aetas = 30 }
+    nota descriptio(p)
+}

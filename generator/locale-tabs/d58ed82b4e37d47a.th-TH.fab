@@ -1,0 +1,11 @@
+เริ่ม {
+    # a declaration
+    กำหนด จํานวน count ← 0
+    # another
+    กำหนด ข้อความ name ← "Marcus"
+    # a generic
+    กำหนด รายการ<จํานวน> scores ← [1, 2, 3]
+    # a nullable
+    กำหนด จํานวน ∪ นัล maybe ← ว่างเปล่า
+    บันทึก count, name, scores, maybe
+}

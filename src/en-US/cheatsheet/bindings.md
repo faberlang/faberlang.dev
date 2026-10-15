@@ -8,13 +8,15 @@ sources = []
 Binding a name to a value. `←` is the bind glyph: the value on the right goes
 into the name on the left.
 
-## Constant or variable {#fixum-varia}
+## Fixed or writable {#sit-varia}
 
-`fixum` binds once. `varia` binds a name you intend to change.
+`sit` binds a name once. `varia` binds a name you intend to change. `de` binds a
+name that can be pointed elsewhere but never written through. `fixum` is
+reserved for compile-time facts, written with `=`.
 
 ```faber locale-tabs
 incipit {
-    fixum numerus limit ← 10
+    sit numerus limit ← 10
     varia numerus count ← 0
 
     count ← count + 1
@@ -22,7 +24,7 @@ incipit {
 }
 ```
 
-Reassigning a `fixum` is a compile error, not a convention. Reach for `fixum`
+Reassigning a `sit` is a compile error, not a convention. Reach for `sit`
 first and widen to `varia` only where the value genuinely moves.
 
 ## Type holes {#holes}
@@ -31,8 +33,8 @@ first and widen to `varia` only where the value genuinely moves.
 
 ```faber locale-tabs
 incipit {
-    fixum _ nomen ← "Marcus"
-    fixum _ numeri ← [1, 2, 3]
+    sit nomen ← "Marcus"
+    sit numeri ← [1, 2, 3]
     nota nomen, numeri
 }
 ```
@@ -48,8 +50,8 @@ types rather than one.
 
 ```faber locale-tabs
 incipit {
-    fixum numerus ∪ textus mixed ← 7
-    fixum lista<numerus ∪ textus> both ← [1, "two", 3]
+    sit numerus ∪ textus mixed ← 7
+    sit lista<numerus ∪ textus> both ← [1, "two", 3]
     nota mixed, both
 }
 ```
@@ -79,13 +81,13 @@ incipit {
 
 ```faber locale-tabs
 genus Punctum {
-    fixum numerus x
-    fixum numerus y
+    sit numerus x
+    sit numerus y
 }
 
 incipit {
-    fixum _ p ← Punctum { x = 1, y = 2 }
-    ex p fixum x, y
+    sit p ← Punctum { x = 1, y = 2 }
+    ex p sit x, y
     nota x, y
 }
 ```

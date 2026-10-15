@@ -40,12 +40,12 @@ fn supplementum(int valor) → int {
 }
 main {
 Basic nihil coalescing
-    const string ∪ none nomen ← null
+    let string ∪ none nomen ← null
     let ostensum ← nomen coalesce "ignotus"
 "ignotus"
     print ostensum
 With present value
-    const string ∪ none adest ← "Marcus"
+    let string ∪ none adest ← "Marcus"
     let ostensum2 ← adest coalesce "ignotus"
 "Marcus"
     print ostensum2
@@ -63,9 +63,9 @@ falsum
     let alter ← nomen coalesce "defectum"
     print alter
 Chaining
-    const string ∪ none a ← null
-    const string ∪ none b ← null
-    const string ∪ none c ← "inventum"
+    let string ∪ none a ← null
+    let string ∪ none b ← null
+    let string ∪ none c ← "inventum"
     let primum ← ((a coalesce b) coalesce c) coalesce "nihil"
 "inventum"
     print primum
@@ -81,7 +81,7 @@ Short-circuit: the fallback runs only when the left side is nihil
 
 ```fab
 test "vel supplies a fallback for none" {
-    const string ∪ none name ← null
+    let string ∪ none name ← null
     let ostensum ← name coalesce "ignotus"
     assert ostensum ≡ "ignotus"
 }
@@ -96,9 +96,9 @@ test "vel preserves non-nihil values" {
 }
 
 test "vel chains to the first non-nihil value" {
-    const string ∪ none a ← null
-    const string ∪ none b ← null
-    const string ∪ none c ← "inventum"
+    let string ∪ none a ← null
+    let string ∪ none b ← null
+    let string ∪ none c ← "inventum"
     let primum ← ((a coalesce b) coalesce c) coalesce "none"
     assert primum ≡ "inventum"
 }

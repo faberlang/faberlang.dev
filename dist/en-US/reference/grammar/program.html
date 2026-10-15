@@ -8,12 +8,12 @@ bring a name in from another file or a library (<code>import from</code>). <code
 the ordinary entry; <code>async_main</code> is the one that may await. Tests are
 ordinary declarations in the same file — <code>describe</code> names a suite, <code>test</code>
 names a case — not a second language and not a second compilation target.</p><p>A file that does one thing:</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">fn</span> salve(<span class="tok-kw">string</span> nomen) <span class="tok-op">→</span> <span class="tok-kw">string</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">string</span> msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
+    <span class="tok-kw">let</span> <span class="tok-kw">string</span> msg <span class="tok-op">←</span> <span class="tok-st">"Salve, §!"</span>(nomen)
     <span class="tok-kw">return</span> msg
 }
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">string</span> m <span class="tok-op">←</span> salve(<span class="tok-st">"munde"</span>)
+    <span class="tok-kw">let</span> <span class="tok-kw">string</span> m <span class="tok-op">←</span> salve(<span class="tok-st">"munde"</span>)
     <span class="tok-kw">print</span> m
 }</code></pre><p><code>faber check</code> accepts that file. <code>faber run</code> prints <code>Salve, munde!</code>.</p><p>Tests sit beside the code they exercise:</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">fn</span> saturate(i32 x) <span class="tok-op">→</span> i32 {
     <span class="tok-kw">if</span> x ≺ <span class="tok-nu">0</span> <span class="tok-kw">then</span> <span class="tok-kw">return</span> <span class="tok-nu">0</span>

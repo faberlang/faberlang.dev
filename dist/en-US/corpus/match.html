@@ -65,10 +65,10 @@ fn nomina(Condicio s) <span class="tok-op">→</span> string {
 <span class="tok-co"># case with const bindings destructures variant fields</span>
 fn tracta(Nuntius e) <span class="tok-op">→</span> none {
     match e {
-        case Pulsus const x, y {
+        case Pulsus let x, y {
             print <span class="tok-st">"pulsus: § §"</span>(x, y)
         }
-        case Clavis const clavis {
+        case Clavis let clavis {
             print <span class="tok-st">"clavis: §"</span>(clavis)
         }
         case Finis {

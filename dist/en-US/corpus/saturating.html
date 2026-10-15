@@ -24,55 +24,55 @@
 <span class="tok-co"># =============================================================================</span>
 
 main {
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> high <span class="tok-op">←</span> <span class="tok-nu">250</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> low <span class="tok-op">←</span> <span class="tok-nu">5</span>
+    let saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> high <span class="tok-op">←</span> <span class="tok-nu">250</span>
+    let saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> low <span class="tok-op">←</span> <span class="tok-nu">5</span>
 <span class="tok-co">    # Arithmetic is exact: nothing here is stored into a saturating slot.</span>
     print high <span class="tok-op">+</span> <span class="tok-nu">10</span>
     print low <span class="tok-op">-</span> <span class="tok-nu">10</span>
     print high <span class="tok-op">*</span> <span class="tok-nu">2</span>
     print high <span class="tok-op">/</span> <span class="tok-nu">2</span>
     print high <span class="tok-op">%</span> <span class="tok-nu">7</span>
-    const saturating<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> big <span class="tok-op">←</span> <span class="tok-nu">30000</span>
-    const saturating<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> neg <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">30000</span>
-    const saturating<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> floor <span class="tok-op">←</span> neg <span class="tok-op">-</span> <span class="tok-nu">10000</span>
+    let saturating<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> big <span class="tok-op">←</span> <span class="tok-nu">30000</span>
+    let saturating<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> neg <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">30000</span>
+    let saturating<span class="tok-op">&lt;</span>i16<span class="tok-op">&gt;</span> floor <span class="tok-op">←</span> neg <span class="tok-op">-</span> <span class="tok-nu">10000</span>
     print big <span class="tok-op">+</span> <span class="tok-nu">10000</span>
     print floor
     print big <span class="tok-op">*</span> <span class="tok-op">-</span><span class="tok-nu">2</span>
     print <span class="tok-op">-</span>floor
     print floor <span class="tok-op">/</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
-    var saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> level <span class="tok-op">←</span> <span class="tok-nu">200</span>
+    mut saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> level <span class="tok-op">←</span> <span class="tok-nu">200</span>
 <span class="tok-co">    # Each assignment is a store into a saturating slot: it clamps.</span>
     level <span class="tok-op">←</span> level <span class="tok-op">+</span> <span class="tok-nu">100</span>
     print level
     level <span class="tok-op">←</span> level <span class="tok-op">-</span> <span class="tok-nu">255</span>
     print level
-    const int n <span class="tok-op">←</span> <span class="tok-nu">200</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> fromInt <span class="tok-op">←</span> n ↦ saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
-    const int back <span class="tok-op">←</span> high ↦ int
+    let int n <span class="tok-op">←</span> <span class="tok-nu">200</span>
+    let saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> fromInt <span class="tok-op">←</span> n ↦ saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
+    let int back <span class="tok-op">←</span> high ↦ int
     print fromInt
     print back
     print high ≻ low
 <span class="tok-co">    # Chains clamp once, at the store.</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> chainUp <span class="tok-op">←</span> high <span class="tok-op">+</span> <span class="tok-nu">200</span> <span class="tok-op">-</span> <span class="tok-nu">100</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> chainDown <span class="tok-op">←</span> low <span class="tok-op">-</span> <span class="tok-nu">300</span> <span class="tok-op">+</span> <span class="tok-nu">100</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> chainExact <span class="tok-op">←</span> high <span class="tok-op">*</span> <span class="tok-nu">2</span> <span class="tok-op">/</span> <span class="tok-nu">4</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> wide <span class="tok-op">←</span> <span class="tok-nu">200</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> chainFits <span class="tok-op">←</span> wide <span class="tok-op">*</span> <span class="tok-nu">2</span> <span class="tok-op">/</span> <span class="tok-nu">4</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> chainRound <span class="tok-op">←</span> low <span class="tok-op">-</span> wide <span class="tok-op">-</span> wide <span class="tok-op">+</span> wide <span class="tok-op">+</span> wide
+    let saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> chainUp <span class="tok-op">←</span> high <span class="tok-op">+</span> <span class="tok-nu">200</span> <span class="tok-op">-</span> <span class="tok-nu">100</span>
+    let saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> chainDown <span class="tok-op">←</span> low <span class="tok-op">-</span> <span class="tok-nu">300</span> <span class="tok-op">+</span> <span class="tok-nu">100</span>
+    let saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> chainExact <span class="tok-op">←</span> high <span class="tok-op">*</span> <span class="tok-nu">2</span> <span class="tok-op">/</span> <span class="tok-nu">4</span>
+    let saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> wide <span class="tok-op">←</span> <span class="tok-nu">200</span>
+    let saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> chainFits <span class="tok-op">←</span> wide <span class="tok-op">*</span> <span class="tok-nu">2</span> <span class="tok-op">/</span> <span class="tok-nu">4</span>
+    let saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> chainRound <span class="tok-op">←</span> low <span class="tok-op">-</span> wide <span class="tok-op">-</span> wide <span class="tok-op">+</span> wide <span class="tok-op">+</span> wide
     print chainUp
     print chainDown
     print chainExact
     print chainFits
     print chainRound
-    var saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> acc <span class="tok-op">←</span> <span class="tok-nu">200</span>
+    mut saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> acc <span class="tok-op">←</span> <span class="tok-nu">200</span>
     acc <span class="tok-op">←</span> acc <span class="tok-op">+</span> <span class="tok-nu">100</span> <span class="tok-op">-</span> <span class="tok-nu">50</span>
     print acc
 <span class="tok-co">    # `↦` into saturating clamps the exact value; into wrapping it reduces mod 2^W.</span>
-    const int over <span class="tok-op">←</span> <span class="tok-nu">300</span>
-    const int under <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">5</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> clampedHigh <span class="tok-op">←</span> over ↦ saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> clampedLow <span class="tok-op">←</span> under ↦ saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
-    const wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> wrapped <span class="tok-op">←</span> over ↦ wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
+    let int over <span class="tok-op">←</span> <span class="tok-nu">300</span>
+    let int under <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">5</span>
+    let saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> clampedHigh <span class="tok-op">←</span> over ↦ saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
+    let saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> clampedLow <span class="tok-op">←</span> under ↦ saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
+    let wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> wrapped <span class="tok-op">←</span> over ↦ wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
     print clampedHigh
     print clampedLow
     print wrapped

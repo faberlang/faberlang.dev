@@ -47,7 +47,7 @@ fn duplica(int n) <span class="tok-op">→</span> int {
 main {
     saluta()
     dic(<span class="tok-st">"Bonum diem!"</span>)
-    const string rex <span class="tok-op">←</span> name()
+    let string rex <span class="tok-op">←</span> name()
     print rex
     print duplica(<span class="tok-nu">21</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve, Mundus!
@@ -108,7 +108,7 @@ fn consume(own string buffer) <span class="tok-op">→</span> string {
 
 main {
     imprime(<span class="tok-st">"mutabile"</span>)
-    var int value <span class="tok-op">←</span> <span class="tok-nu">3</span>
+    mut int value <span class="tok-op">←</span> <span class="tok-nu">3</span>
 <span class="tok-co">    # mut borrows the caller's scalar inside duplica</span>
     duplica(mut value)
 

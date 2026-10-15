@@ -12,9 +12,9 @@
 <span class="tok-co">#</span>
 <span class="tok-co"># The rejected forms are deliberately kept as teaching comments rather than</span>
 <span class="tok-co"># executable statements:</span>
-<span class="tok-co">#   const int not_an_integer ← ∞</span>
-<span class="tok-co">#   const int not_a_number ← nan</span>
-<span class="tok-co">#   const int non_numerus_is_not_an_integer ← nan (la spelling)</span>
+<span class="tok-co">#   let int not_an_integer ← ∞</span>
+<span class="tok-co">#   let int not_a_number ← nan</span>
+<span class="tok-co">#   let int non_numerus_is_not_an_integer ← nan (la spelling)</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   inf</span>
@@ -23,10 +23,10 @@
 <span class="tok-co">#   NaN</span>
 
 main {
-    const f64 positive <span class="tok-op">←</span> <span class="tok-op">∞</span>
-    const f32 narrow <span class="tok-op">←</span> <span class="tok-op">∞</span>
-    const f64 negative <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-op">∞</span>
-    const f32 quiet <span class="tok-op">←</span> nan
+    let f64 positive <span class="tok-op">←</span> <span class="tok-op">∞</span>
+    let f32 narrow <span class="tok-op">←</span> <span class="tok-op">∞</span>
+    let f64 negative <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-op">∞</span>
+    let f32 quiet <span class="tok-op">←</span> nan
     print positive
     print narrow
     print negative

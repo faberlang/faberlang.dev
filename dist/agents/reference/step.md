@@ -36,7 +36,7 @@ iterStmt :← 'itera' 'ab' expr '‥' expr 'per' expr binding block
 ```fab
 main {
     # i = 0, 2, 4, 6 (step by 2)
-    for range 0‥8 step 2 const i {
+    for range 0‥8 step 2 let i {
         print i
     }
 }

@@ -9,9 +9,9 @@ known to the parser; everything else that looks like a name is an
 identifier.</p><p>There is no keyword table here: these productions are the terminal
 shapes, not the vocabulary of the language. A short program that is
 mostly those tokens:</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
-    <span class="tok-kw">const</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
-    <span class="tok-kw">const</span> <span class="tok-kw">string</span> <span class="tok-kw">name</span> <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    <span class="tok-kw">let</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
+    <span class="tok-kw">let</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
+    <span class="tok-kw">let</span> <span class="tok-kw">string</span> <span class="tok-kw">name</span> <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
     <span class="tok-kw">print</span> <span class="tok-kw">name</span>
     <span class="tok-kw">print</span> narrow
     <span class="tok-kw">print</span> single

@@ -33,9 +33,9 @@ class ReaderTermProjectionTest(unittest.TestCase):
         self.assertIn("`T ∪ none`", result)
 
     def test_code_strings_and_comments(self) -> None:
-        result = self.project('```faber\n# itera — Starts\nfixum textus x ← "fixum"\n```\n')
+        result = self.project('```faber\n# itera — Starts\nsit textus x ← "fixum"\n```\n')
         self.assertIn("# for — Starts", result)
-        self.assertIn('const string x ← "fixum"', result)
+        self.assertIn('let string x ← "fixum"', result)
 
     def test_other_locale_fence_is_unchanged(self) -> None:
         source = "```faber locale=la\nfixum numerus x\n```\n"
@@ -47,9 +47,9 @@ class ReaderTermProjectionTest(unittest.TestCase):
         self.assertIn("{#fixum-decl}", result)
 
     def test_comment_does_not_swallow_the_next_line(self) -> None:
-        result = self.project('```faber\n# see radix/corpus/itera/foo.fab\nfixum textus x ← "fixum"\n```\n')
+        result = self.project('```faber\n# see radix/corpus/itera/foo.fab\nsit textus x ← "fixum"\n```\n')
         self.assertIn("radix/corpus/itera/foo.fab", result)
-        self.assertIn('const string x ← "fixum"', result)
+        self.assertIn('let string x ← "fixum"', result)
 
     def test_prose_keeps_hyphenated_compounds(self) -> None:
         result = self.project("A non-null value.\n")
@@ -61,7 +61,7 @@ class ReaderTermProjectionTest(unittest.TestCase):
             "`in the signature` `in numerus` `solum:lege` `solum.carpe`\n"
             '<a id="ab"></a>`ab`\n'
             "```faber\n"
-            "functio duplica(in numerus value) → vacuum {\n"
+            "functio duplica(varia numerus value) → vacuum {\n"
             '    si linea non est nihil { nota "non est" }\n'
             "}\n"
             "# the value in the list\n"
@@ -101,7 +101,7 @@ class ReaderTermProjectionTest(unittest.TestCase):
             "    var string nomen\n"
             "}\n"
             "main {\n"
-            '    const Persona marcus ← Persona { nomen = "Marcus" }\n'
+            '    let Persona marcus ← Persona { nomen = "Marcus" }\n'
             "    print marcus.nomen\n"
             "}\n"
             "```\n"
@@ -115,7 +115,7 @@ class ReaderTermProjectionTest(unittest.TestCase):
         source = (
             "```faber\n"
             "main {\n"
-            "    const Tabula copia ← Tabula { aetas = 1 }\n"
+            "    let Tabula copia ← Tabula { aetas = 1 }\n"
             "    print copia.totum()\n"
             "}\n"
             "```\n"
@@ -125,8 +125,8 @@ class ReaderTermProjectionTest(unittest.TestCase):
     def test_member_named_keyword_is_not_a_declared_identifier(self) -> None:
         # `meus` is the keyword `send` in a type slot; the method is spelled
         # `meus` in every locale. Only the type projects.
-        result = self.project("```faber\nconst meus<string> m ← s.meus<string>()\n```\n")
-        self.assertIn("const send<string> m", result)
+        result = self.project("```faber\nlet meus<string> m ← s.meus<string>()\n```\n")
+        self.assertIn("let send<string> m", result)
         self.assertIn("s.meus<string>()", result)
 
 

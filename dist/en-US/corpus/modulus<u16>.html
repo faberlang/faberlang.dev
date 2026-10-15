@@ -21,21 +21,21 @@
 <span class="tok-co">#   Division and remainder by zero fail.</span>
 
 main {
-    var wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> max <span class="tok-op">←</span> <span class="tok-nu">65535</span>
-    const wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> one <span class="tok-op">←</span> <span class="tok-nu">1</span>
-    var wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> zero <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    const u16 converted ↤ one
-    const wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> ring1 <span class="tok-op">←</span> max <span class="tok-op">+</span> one
+    mut wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> max <span class="tok-op">←</span> <span class="tok-nu">65535</span>
+    let wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> one <span class="tok-op">←</span> <span class="tok-nu">1</span>
+    mut wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> zero <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    let u16 converted ↤ one
+    let wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> ring1 <span class="tok-op">←</span> max <span class="tok-op">+</span> one
     print ring1
-    const wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> ring2 <span class="tok-op">←</span> zero <span class="tok-op">-</span> one
+    let wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> ring2 <span class="tok-op">←</span> zero <span class="tok-op">-</span> one
     print ring2
-    const wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> ring3 <span class="tok-op">←</span> max <span class="tok-op">*</span> <span class="tok-nu">2</span>
+    let wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> ring3 <span class="tok-op">←</span> max <span class="tok-op">*</span> <span class="tok-nu">2</span>
     print ring3
-    const wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> ring4 <span class="tok-op">←</span> <span class="tok-op">-</span>one
+    let wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> ring4 <span class="tok-op">←</span> <span class="tok-op">-</span>one
     print ring4
-    const wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> ring5 <span class="tok-op">←</span> <span class="tok-op">¬</span>zero
+    let wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> ring5 <span class="tok-op">←</span> <span class="tok-op">¬</span>zero
     print ring5
-    const wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> ring6 <span class="tok-op">←</span> one ⇐ <span class="tok-nu">16</span>
+    let wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> ring6 <span class="tok-op">←</span> one ⇐ <span class="tok-nu">16</span>
     print ring6
     print max ⇒ <span class="tok-nu">16</span>
     print max ≻ zero
@@ -43,16 +43,16 @@ main {
     zero ↓
     print max
     print zero
-    const wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> methodSum <span class="tok-op">←</span> max.added(one)
-    const wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> methodShift <span class="tok-op">←</span> max.shifted_left(<span class="tok-nu">16</span>)
-    var wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> methodAcc <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    let wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> methodSum <span class="tok-op">←</span> max.added(one)
+    let wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> methodShift <span class="tok-op">←</span> max.shifted_left(<span class="tok-nu">16</span>)
+    mut wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span> methodAcc <span class="tok-op">←</span> <span class="tok-nu">0</span>
     methodAcc.add(one)
     methodAcc.shift_left(<span class="tok-nu">16</span>)
     print converted
     print methodSum
     print methodShift
     print methodAcc
-    const list<span class="tok-op">&lt;</span>wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> words <span class="tok-op">←</span> [one, max]
+    let list<span class="tok-op">&lt;</span>wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> words <span class="tok-op">←</span> [one, max]
     print words.get(<span class="tok-nu">1</span>) coalesce <span class="tok-nu">0</span> ∷ wrapping<span class="tok-op">&lt;</span>u16<span class="tok-op">&gt;</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
 65535

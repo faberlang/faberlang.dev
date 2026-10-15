@@ -1,7 +1,0 @@
-دالة identitas<T>(T datum) → T {
-    أعد datum
-}
-
-بداية {
-    ثابت عدد seven ← identitas<عدد>(7)
-}

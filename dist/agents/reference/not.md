@@ -29,8 +29,8 @@ unaryExpr :← 'non' expr
 ```
 Scalar stdout smoke (see body).
 main {
-    const bool flag ← false
-    const bool negated ← not flag
+    let bool flag ← false
+    let bool negated ← not flag
     print negated
 }
 ```
@@ -39,21 +39,21 @@ main {
 
 ```fab
 test "not negates false" {
-    const bool flag ← false
-    const bool negated ← not flag
+    let bool flag ← false
+    let bool negated ← not flag
     assert negated
 }
 
 test "not negates true" {
-    const bool flag ← true
-    const bool negated ← not flag
+    let bool flag ← true
+    let bool negated ← not flag
     assert negated ≡ false
 }
 
 test "not applied twice returns the original" {
-    const bool flag ← false
-    const bool negated ← not flag
-    const bool bis ← not negated
+    let bool flag ← false
+    let bool negated ← not flag
+    let bool bis ← not negated
     assert bis ≡ false
 }
 ```

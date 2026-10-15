@@ -19,8 +19,8 @@ page cannot claim something the toolchain does not produce.
 
 ```faber locale=en
 class Span {
-    const f64 low
-    const f64 high
+    let f64 low
+    let f64 high
 
     fn contains(f64 x) → bool {
         return self.low ≤ x and x ≤ self.high
@@ -36,7 +36,7 @@ fn choose<T>(bool first, T a, T b) → T {
 }
 
 main {
-    const Span bytes ← Span { low = 0.0, high = 255.0 }
+    let Span bytes ← Span { low = 0.0, high = 255.0 }
     print bytes.center()
     print choose(bytes.contains(300.0), "inside", "outside")
     print -7 / 2
@@ -132,6 +132,7 @@ through faber.
 | `go` | yes | — | — |
 | `python` | yes | — | — |
 | `haskell` | yes | — | — |
+| `c` | yes | — | — |
 | `wasm-text` | yes | — | — |
 | `wasm` | yes | — | — |
 | `llvm-text` | yes | yes | yes |
@@ -141,6 +142,7 @@ through faber.
 | `swift` | yes | — | — |
 | `fhir` | yes | yes | yes |
 | `llvm-host` | yes | yes | yes |
+| `clif` | yes | — | — |
 | `fmir-text` | yes | yes | yes |
 | `fmir` | yes | yes | yes |
 | `fmir-bin` | yes | yes | yes |

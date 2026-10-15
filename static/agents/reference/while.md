@@ -13,7 +13,7 @@ while <condition> <block|ergo statement>
 ## What this teaches
 
 - While loop — `while <condition> { <body> }` repeats a block as long as the condition is true.
-- Loop variable mutation — mutable `var` bindings allow counter-based loop control.
+- Loop variable mutation — mutable `mut` bindings allow counter-based loop control.
 - Ascending and descending loops — counting up from 0 or down from N until the condition is false.
 
 ## Common mistakes
@@ -32,13 +32,13 @@ loopStmt :← 'dum' expr '{' stmt* '}'
 dum.expected
 main {
 Ascending counter: varia so the loop variable can mutate
-    var int computus ← 0
+    mut int computus ← 0
     while computus ≺ 5 {
         print computus
         computus ← computus + 1
     }
 Descending loop: condition becomes falsum at 0
-    var int reliquum ← 3
+    mut int reliquum ← 3
     while reliquum ≻ 0 {
         print "reliquum: §"(reliquum)
         reliquum ← reliquum - 1
@@ -51,7 +51,7 @@ Descending loop: condition becomes falsum at 0
 
 ```fab
 test "while counts up to its condition" {
-    var int computus ← 0
+    mut int computus ← 0
     while computus ≺ 5 {
         computus ← computus + 1
     }
@@ -59,7 +59,7 @@ test "while counts up to its condition" {
 }
 
 test "while counts down to zero" {
-    var int reliquum ← 3
+    mut int reliquum ← 3
     while reliquum ≻ 0 {
         reliquum ← reliquum - 1
     }

@@ -26,9 +26,9 @@
 <span class="tok-co">#   none</span>
 
 fn sum(rest list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> int {
-    var _ total <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    mut _ total <span class="tok-op">←</span> <span class="tok-nu">0</span>
 
-    for from numeri const n {
+    for from numeri let n {
         total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
     }
 

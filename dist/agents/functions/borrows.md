@@ -18,7 +18,7 @@ fn consume(own string buffer) → string {
 
 main {
     imprime("hi")
-    var int n ← 3
+    mut int n ← 3
     duplica(mut n)
     print n
     print consume(own "buf")
@@ -28,23 +28,23 @@ main {
 `duplica(mut n)` leaves `n` as 6. A call that leaves the marker off is
 `SEM057` `call_marker_missing`. Do not write the marker after the type.
 
-A parameter with no marker is read-only, all the way down. A `var` made from
+A parameter with no marker is read-only, all the way down. A `mut` made from
 it needs `copy`, and gets an independent value:
 
 ```faber locale=en
 fn dupla(list<int> xs) → list<int> {
-    var list<int> ys ← copy xs
+    mut list<int> ys ← copy xs
     ys ← [9]
     return ys
 }
 
 main {
-    const list<int> a ← [1, 2]
+    let list<int> a ← [1, 2]
     print dupla(a)
 }
 ```
 
-`var list<int> ys ← xs` is `SEM065` `const_shared_into_var`.
+`mut list<int> ys ← xs` is `SEM065` `const_shared_into_var`.
 
 Parent: https://faberlang.dev/agents/functions.md
 Next: https://faberlang.dev/agents/functions/async.md

@@ -331,8 +331,8 @@ fn fib(int n) → int {
 }
 
 main {
-    var int total ← 0
-    var int i ← 0
+    mut int total ← 0
+    mut int i ← 0
     while i ≺ 10 {
         total ← total + fib(i)
         i ← i + 1

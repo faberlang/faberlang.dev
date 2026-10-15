@@ -15,13 +15,13 @@ into it, and a store into an <code>inf</code> cell is never a size check.</p><p>
 give ±infinity on overflow, because there is no maximum finite value to clamp
 to; only a <code>trapping&lt;f64&gt;</code> cell errors, and only when a non-finite value is
 stored or converted into it.</p><h2 id="shape">What it looks like<a class="anchor" href="#shape">#</a></h2><p>The same unbounded sum is stored into cells with different policies:</p><pre class="faber-code"><code class="lang-faber">main {
-    const int a <span class="tok-op">←</span> <span class="tok-nu">200</span>
-    const int b <span class="tok-op">←</span> <span class="tok-nu">100</span>
-    const int exact <span class="tok-op">←</span> (a <span class="tok-op">+</span> b) <span class="tok-op">/</span> <span class="tok-nu">2</span>
+    let int a <span class="tok-op">←</span> <span class="tok-nu">200</span>
+    let int b <span class="tok-op">←</span> <span class="tok-nu">100</span>
+    let int exact <span class="tok-op">←</span> (a <span class="tok-op">+</span> b) <span class="tok-op">/</span> <span class="tok-nu">2</span>
     print exact
-    const saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> sat <span class="tok-op">←</span> (a <span class="tok-op">+</span> b) ↦ saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
+    let saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> sat <span class="tok-op">←</span> (a <span class="tok-op">+</span> b) ↦ saturating<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
     print sat
-    const wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> wrap <span class="tok-op">←</span> (a <span class="tok-op">+</span> b) ↦ wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
+    let wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> wrap <span class="tok-op">←</span> (a <span class="tok-op">+</span> b) ↦ wrapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span>
     print wrap
 }</code></pre><pre class="faber-code"><code class="lang-text">$ faber run
 150
@@ -30,8 +30,8 @@ stored or converted into it.</p><h2 id="shape">What it looks like<a class="ancho
 unbounded <code>int</code> keeps it. The limits appear only where the value becomes a
 <code>u8</code>: the sum saturates to 255 in a <code>saturating</code> cell, and reduces to 44 in a
 <code>wrapping</code> cell.</p><p>A <code>trapping</code> cell turns the same overflow into an error at the store:</p><pre class="faber-code"><code class="lang-faber">main {
-    const int big <span class="tok-op">←</span> <span class="tok-nu">300</span>
-    const trapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> cell <span class="tok-op">←</span> big ↦ u8
+    let int big <span class="tok-op">←</span> <span class="tok-nu">300</span>
+    let trapping<span class="tok-op">&lt;</span>u8<span class="tok-op">&gt;</span> cell <span class="tok-op">←</span> big ↦ u8
     print cell
 }</code></pre><p>The run stops at the store with an out-of-range error and a non-zero exit
 status.</p><h2 id="why">Why it works this way<a class="anchor" href="#why">#</a></h2><p>The rule buys predictability. A reader can look at an expression and reason

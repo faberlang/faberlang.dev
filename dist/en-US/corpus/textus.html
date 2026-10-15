@@ -63,7 +63,7 @@ Ave Roma [&quot;Ave&quot;, &quot;Roma&quot;] Ave Munde
 <span class="tok-co"># WHY: pins the fail-closed overflow token in conversio-textus-overflow-decline.expected.</span>
 
 main {
-    const string<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span> t <span class="tok-op">←</span> <span class="tok-st">"abcdef"</span> ↦ string<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span>
+    let string<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span> t <span class="tok-op">←</span> <span class="tok-st">"abcdef"</span> ↦ string<span class="tok-op">&lt;</span><span class="tok-nu">4</span><span class="tok-op">&gt;</span>
     print t
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusboundedconversio-textus-to-ascii-declinefab-supporting-reject">radix/corpus/bounded/conversio-textus-to-ascii-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusboundedconversio-textus-to-ascii-declinefab-supporting-reject">#</a></h3><p>Decline: bounded string&lt;N&gt; cannot convert directly to ascii&lt;M&gt;.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># bounded string to ascii — unsupported conversion decline</span>

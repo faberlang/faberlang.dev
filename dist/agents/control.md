@@ -5,7 +5,7 @@ repeats while the condition holds.
 
 ```faber locale=en
 main {
-    const int score ← 85
+    let int score ← 85
     if score ≥ 90 {
         print "A"
     }
@@ -15,11 +15,11 @@ main {
     else {
         print "C"
     }
-    const list<int> nums ← [1, 2, 3]
-    for from nums const item {
+    let list<int> nums ← [1, 2, 3]
+    for from nums let item {
         print item
     }
-    var int n ← 0
+    mut int n ← 0
     while n ≺ 2 {
         n ← n + 1
     }

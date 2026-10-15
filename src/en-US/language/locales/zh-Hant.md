@@ -111,7 +111,8 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | max              maxima       最大
 | min              minima       最小
 | module           regio        模組
-| mut              in           傳入
+| mut              varia        可變
+| mut              varia        可變
 | name             nomen        名稱
 | nan              nonnumerus   nan
 | not              non          非
@@ -176,7 +177,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | union            discretio    分支聯集
 | unstable         nondum       不穩定
 | until            usque        直到
-| var              varia        變值
 | variant          finge        虛構
 | vertex           vertex       頂點
 | via              via          經由

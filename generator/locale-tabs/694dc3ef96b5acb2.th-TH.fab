@@ -1,0 +1,7 @@
+เริ่ม {
+    กำหนด รายการ<ข้อความ> nomina ← ["Alia", "Brunus"]
+    กำหนด รายการ<จํานวน> aetates ← [34, 27]
+    วน ออก nomina, aetates ที่ [i] กำหนด nomen, aetas {
+        บันทึก i, nomen, aetas
+    }
+}

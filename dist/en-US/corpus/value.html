@@ -23,30 +23,30 @@
 <span class="tok-co"># reads its fields back instead of printing the object text.</span>
 
 class Punctum {
-    var int x
-    var int y
+    mut int x
+    mut int y
 }
 
 main {
-    const int n <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    const value scalar <span class="tok-op">←</span> n ↦ value
+    let int n <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    let value scalar <span class="tok-op">←</span> n ↦ value
     print scalar
-    const list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> bytes <span class="tok-op">←</span> <span class="tok-op">|</span>ref call<span class="tok-op">|</span>
-    const value boxedBytes <span class="tok-op">←</span> bytes ↦ value
+    let list<span class="tok-op">&lt;</span>b8<span class="tok-op">&gt;</span> bytes <span class="tok-op">←</span> <span class="tok-op">|</span>ref call<span class="tok-op">|</span>
+    let value boxedBytes <span class="tok-op">←</span> bytes ↦ value
     print boxedBytes
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
-    const value boxedList <span class="tok-op">←</span> numeri ↦ value
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
+    let value boxedList <span class="tok-op">←</span> numeri ↦ value
     print boxedList
-    const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">10</span> }
-    const value boxedMap <span class="tok-op">←</span> scores ↦ value
+    let map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">10</span> }
+    let value boxedMap <span class="tok-op">←</span> scores ↦ value
     print boxedMap
-    const Punctum punctum <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">3</span>, y <span class="tok-op">=</span> <span class="tok-nu">4</span> }
-    const value boxedGenus <span class="tok-op">←</span> punctum ↦ value
-    const Punctum unboxed <span class="tok-op">←</span> boxedGenus ↦ Punctum
+    let Punctum punctum <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">3</span>, y <span class="tok-op">=</span> <span class="tok-nu">4</span> }
+    let value boxedGenus <span class="tok-op">←</span> punctum ↦ value
+    let Punctum unboxed <span class="tok-op">←</span> boxedGenus ↦ Punctum
     print unboxed.x
     print unboxed.y
-    const tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>] ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
-    const value boxedTensor <span class="tok-op">←</span> grid ↦ value
+    let tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>] ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
+    let value boxedTensor <span class="tok-op">←</span> grid ↦ value
     print boxedTensor
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>42
 [222, 173]
@@ -80,41 +80,41 @@ main {
 <span class="tok-co"># class, widening, recovery and tag tests (valor-composita-deep).</span>
 
 class Punctum {
-    var int x
-    var int y
+    mut int x
+    mut int y
 }
 
 main {
 <span class="tok-co">    # 1. A class: the object prints in field order and comes back with its fields.</span>
-    const Punctum punctum <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">3</span>, y <span class="tok-op">=</span> <span class="tok-nu">4</span> }
-    const value boxedGenus <span class="tok-op">←</span> punctum ↦ value
+    let Punctum punctum <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">3</span>, y <span class="tok-op">=</span> <span class="tok-nu">4</span> }
+    let value boxedGenus <span class="tok-op">←</span> punctum ↦ value
     print boxedGenus
-    const Punctum unboxed <span class="tok-op">←</span> boxedGenus ↦ Punctum
+    let Punctum unboxed <span class="tok-op">←</span> boxedGenus ↦ Punctum
     print unboxed.x
     print unboxed.y
 
 <span class="tok-co">    # 2. A list: elements keep their type, so text is unquoted behind the value and quoted again after.</span>
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
-    const value boxedNumeri <span class="tok-op">←</span> numeri ↦ value
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
+    let value boxedNumeri <span class="tok-op">←</span> numeri ↦ value
     print boxedNumeri
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> backNumeri <span class="tok-op">←</span> boxedNumeri ↦ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> backNumeri <span class="tok-op">←</span> boxedNumeri ↦ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
     print backNumeri
-    const list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> verba <span class="tok-op">←</span> [<span class="tok-st">"a"</span>, <span class="tok-st">"b"</span>]
-    const value boxedVerba <span class="tok-op">←</span> verba ↦ value
+    let list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> verba <span class="tok-op">←</span> [<span class="tok-st">"a"</span>, <span class="tok-st">"b"</span>]
+    let value boxedVerba <span class="tok-op">←</span> verba ↦ value
     print boxedVerba
-    const list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> backVerba <span class="tok-op">←</span> boxedVerba ↦ list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>
+    let list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> backVerba <span class="tok-op">←</span> boxedVerba ↦ list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span>
     print backVerba
 
 <span class="tok-co">    # 3. A map: keys print quoted, and the map comes back key for key.</span>
-    const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">10</span> }
-    const value boxedScores <span class="tok-op">←</span> scores ↦ value
+    let map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">10</span> }
+    let value boxedScores <span class="tok-op">←</span> scores ↦ value
     print boxedScores
-    const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> backScores <span class="tok-op">←</span> boxedScores ↦ map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span>
+    let map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> backScores <span class="tok-op">←</span> boxedScores ↦ map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span>
     print backScores.get(<span class="tok-st">"alpha"</span>) coalesce <span class="tok-nu">0</span>
 
 <span class="tok-co">    # 4. A tensor: it prints flat.</span>
-    const tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>] ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
-    const value boxedGrid <span class="tok-op">←</span> grid ↦ value
+    let tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>] ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
+    let value boxedGrid <span class="tok-op">←</span> grid ↦ value
     print boxedGrid
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>{&quot;x&quot;: 3, &quot;y&quot;: 4}
 3
@@ -147,23 +147,23 @@ main {
 <span class="tok-co"># (recoverable via a `⊥` default). Extra JSON keys are ignored.</span>
 
 class Persona {
-    var string name
-    var int aetas optional
-    var string regio <span class="tok-op">=</span> <span class="tok-st">"Roma"</span>
-    var instant born
+    mut string name
+    mut int aetas optional
+    mut string regio <span class="tok-op">=</span> <span class="tok-st">"Roma"</span>
+    mut instant born
 }
 
 main {
-    const value payload <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Marcus"</span>, <span class="tok-st">"born"</span><span class="tok-op">:</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>, <span class="tok-st">"extra"</span><span class="tok-op">:</span> <span class="tok-st">"ignored"</span> } ↦ value
-    const Persona good <span class="tok-op">←</span> payload ↦ Persona
+    let value payload <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Marcus"</span>, <span class="tok-st">"born"</span><span class="tok-op">:</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>, <span class="tok-st">"extra"</span><span class="tok-op">:</span> <span class="tok-st">"ignored"</span> } ↦ value
+    let Persona good <span class="tok-op">←</span> payload ↦ Persona
     assert good.nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
     assert good.aetas <span class="tok-op">≡</span> null
     assert good.regio <span class="tok-op">≡</span> <span class="tok-st">"Roma"</span>
-    const value stale <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Livia"</span> } ↦ value
-    const Persona recovered <span class="tok-op">←</span> stale ↦ Persona ⊥ good
+    let value stale <span class="tok-op">←</span> { <span class="tok-st">"nomen"</span><span class="tok-op">:</span> <span class="tok-st">"Livia"</span> } ↦ value
+    let Persona recovered <span class="tok-op">←</span> stale ↦ Persona ⊥ good
     assert recovered.nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
-    const value boxed <span class="tok-op">←</span> recovered ↦ value
-    const Persona roundtrip <span class="tok-op">←</span> boxed ↦ Persona
+    let value boxed <span class="tok-op">←</span> recovered ↦ value
+    let Persona roundtrip <span class="tok-op">←</span> boxed ↦ Persona
     assert roundtrip.nomen <span class="tok-op">≡</span> <span class="tok-st">"Marcus"</span>
     assert roundtrip.regio <span class="tok-op">≡</span> <span class="tok-st">"Roma"</span>
     print roundtrip.nomen
@@ -197,29 +197,29 @@ Roma
 <span class="tok-co"># recovers on variant mismatch.</span>
 
 main {
-    const value asInt <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    const int count <span class="tok-op">←</span> asInt ↦ int
+    let value asInt <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    let int count <span class="tok-op">←</span> asInt ↦ int
     assert count <span class="tok-op">≡</span> <span class="tok-nu">42</span>
-    const value asFloat <span class="tok-op">←</span> <span class="tok-nu">3.5</span>
-    const float record <span class="tok-op">←</span> asFloat ↦ float
+    let value asFloat <span class="tok-op">←</span> <span class="tok-nu">3.5</span>
+    let float record <span class="tok-op">←</span> asFloat ↦ float
     assert record <span class="tok-op">≡</span> <span class="tok-nu">3.5</span>
-    const value intForFloat <span class="tok-op">←</span> <span class="tok-nu">7</span>
-    const float widened <span class="tok-op">←</span> intForFloat ↦ float
+    let value intForFloat <span class="tok-op">←</span> <span class="tok-nu">7</span>
+    let float widened <span class="tok-op">←</span> intForFloat ↦ float
     assert widened <span class="tok-op">≡</span> <span class="tok-nu">7.0</span>
-    const value asBool <span class="tok-op">←</span> true
-    const bool flag <span class="tok-op">←</span> asBool ↦ bool
+    let value asBool <span class="tok-op">←</span> true
+    let bool flag <span class="tok-op">←</span> asBool ↦ bool
     assert flag <span class="tok-op">≡</span> true
-    const value asText <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
-    const string greeting <span class="tok-op">←</span> asText ↦ string
+    let value asText <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
+    let string greeting <span class="tok-op">←</span> asText ↦ string
     assert greeting <span class="tok-op">≡</span> <span class="tok-st">"salve"</span>
-    const value asWire <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
-    const string wire <span class="tok-op">←</span> asWire ↦ string
+    let value asWire <span class="tok-op">←</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
+    let string wire <span class="tok-op">←</span> asWire ↦ string
     assert wire <span class="tok-op">≡</span> <span class="tok-st">"1979-05-27T07:32:00Z"</span>
-    const value asAscii <span class="tok-op">←</span> <span class="tok-st">'yes'</span>
-    const ascii token <span class="tok-op">←</span> asAscii ↦ ascii
+    let value asAscii <span class="tok-op">←</span> <span class="tok-st">'yes'</span>
+    let ascii token <span class="tok-op">←</span> asAscii ↦ ascii
     assert token <span class="tok-op">≡</span> <span class="tok-st">'yes'</span>
-    const value bad <span class="tok-op">←</span> <span class="tok-st">"not-a-number"</span>
-    const int recovered <span class="tok-op">←</span> bad ↦ int ⊥ <span class="tok-nu">0</span>
+    let value bad <span class="tok-op">←</span> <span class="tok-st">"not-a-number"</span>
+    let int recovered <span class="tok-op">←</span> bad ↦ int ⊥ <span class="tok-nu">0</span>
     assert recovered <span class="tok-op">≡</span> <span class="tok-nu">0</span>
     print count
     print record
@@ -258,16 +258,16 @@ yes
 <span class="tok-co"># flatten via `tensor ↦ list` (`.flatten()`), then `list ↦ value` boxing.</span>
 
 main {
-    const value arr <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>]
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> arr ↦ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
+    let value arr <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>]
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> arr ↦ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
     assert xs.length() <span class="tok-op">≡</span> <span class="tok-nu">4</span>
-    const tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> xs ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> flat <span class="tok-op">←</span> grid ↦ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
+    let tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> grid <span class="tok-op">←</span> xs ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> flat <span class="tok-op">←</span> grid ↦ list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
     assert flat.length() <span class="tok-op">≡</span> <span class="tok-nu">4</span>
-    const value roundtrip <span class="tok-op">←</span> flat ↦ value
+    let value roundtrip <span class="tok-op">←</span> flat ↦ value
     print roundtrip
-    const value obj <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"beta"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> } ↦ value
-    const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> obj ↦ map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span>
+    let value obj <span class="tok-op">←</span> { <span class="tok-st">"alpha"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"beta"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> } ↦ value
+    let map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> obj ↦ map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span>
     print scores.get(<span class="tok-st">"alpha"</span>) coalesce <span class="tok-nu">0</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>[1, 2, 3, 4]
 10
@@ -309,13 +309,13 @@ main {
 main {
 <span class="tok-co">    # --- Empty and simple records ---</span>
 
-    const json void <span class="tok-op">←</span> {}
+    let json void <span class="tok-op">←</span> {}
     print void
-    const json punctum <span class="tok-op">←</span> { <span class="tok-st">"x"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"y"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> }
+    let json punctum <span class="tok-op">←</span> { <span class="tok-st">"x"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"y"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> }
     print punctum
 
 <span class="tok-co">    # Text keys and constant values</span>
-    const json forma <span class="tok-op">←</span> { <span class="tok-st">"clavis"</span><span class="tok-op">:</span> <span class="tok-nu">42</span> }
+    let json forma <span class="tok-op">←</span> { <span class="tok-st">"clavis"</span><span class="tok-op">:</span> <span class="tok-nu">42</span> }
     print forma
 
 <span class="tok-co">    # NOTE: JSON value literals accept only constant values (strings, numbers,</span>
@@ -324,7 +324,7 @@ main {
 
 <span class="tok-co">    # --- Nested value ---</span>
 
-    const json nidum <span class="tok-op">←</span> { <span class="tok-st">"extra"</span><span class="tok-op">:</span> { <span class="tok-st">"medium"</span><span class="tok-op">:</span> <span class="tok-nu">1</span> } }
+    let json nidum <span class="tok-op">←</span> { <span class="tok-st">"extra"</span><span class="tok-op">:</span> { <span class="tok-st">"medium"</span><span class="tok-op">:</span> <span class="tok-nu">1</span> } }
     print nidum
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>{}
 {&quot;x&quot;: 10, &quot;y&quot;: 20}

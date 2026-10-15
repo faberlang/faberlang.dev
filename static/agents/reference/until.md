@@ -36,7 +36,7 @@ iterStmt :← 'itera' 'ab' expr 'usque' expr binding block
 ```fab
 main {
     # i = 0, 1, 2, 3 (includes 3)
-    for range 0 until 3 const i {
+    for range 0 until 3 let i {
         print i
     }
 }

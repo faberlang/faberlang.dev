@@ -1,0 +1,7 @@
+main {
+    let list<string> nomina ← ["Alia", "Brunus"]
+    let list<int> aetates ← [34, 27]
+    for from nomina, aetates at [i] let nomen, aetas {
+        print i, nomen, aetas
+    }
+}

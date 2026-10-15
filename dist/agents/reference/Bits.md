@@ -26,6 +26,9 @@ u16|u32|u64 ↦ b16|b32|b64 ↦ f16|bf16|f32|f64 and f16|bf16|f32|f64 ↦ b16|b3
 ## Example
 
 ```fab
++++
+locale = "la"
++++
 fn in_f16(u16 n) → f16 {
     return n ↦ b16 ↦ f16
 }
@@ -43,7 +46,7 @@ fn ex_f64(f64 x) → u64 {
 }
 
 main {
-    const u32 n ← 1065353216
+    let u32 n ← 1065353216
     print in_f32(n)
 }
 ```

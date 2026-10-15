@@ -28,25 +28,25 @@
 <span class="tok-co">#   Field values for Punctum and Persona instances (defaults and overrides).</span>
 
 class Punctum {
-    var int x
-    var int y
+    mut int x
+    mut int y
 }
 
 class Persona {
-    var string nomen
+    mut string nomen
 <span class="tok-co">    # default when omitted at instantiation</span>
-    var int aetas <span class="tok-op">=</span> <span class="tok-nu">0</span>
-    var bool activus <span class="tok-op">=</span> true
+    mut int aetas <span class="tok-op">=</span> <span class="tok-nu">0</span>
+    mut bool activus <span class="tok-op">=</span> true
 }
 
 main {
 <span class="tok-co">    # Instantiate with all required fields</span>
-    const Punctum p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
+    let Punctum p <span class="tok-op">←</span> Punctum { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
     print p.x
     print p.y
 
 <span class="tok-co">    # Instantiate with required + optional defaults</span>
-    const Persona marcus <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span> }
+    let Persona marcus <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span> }
     print marcus.nomen
 <span class="tok-co">    # 0 from default</span>
     print marcus.aetas
@@ -54,7 +54,7 @@ main {
     print marcus.activus
 
 <span class="tok-co">    # Override defaults explicitly</span>
-    const Persona julia <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Julia"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">25</span>, activus <span class="tok-op">=</span> false }
+    let Persona julia <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Julia"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">25</span>, activus <span class="tok-op">=</span> false }
     print julia.nomen
     print julia.aetas
     print julia.activus

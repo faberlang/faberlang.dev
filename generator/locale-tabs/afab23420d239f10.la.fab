@@ -1,0 +1,5 @@
+incipit {
+    sit i32 narrow ← "255" ↦ i32
+    sit f32 single ← "1.5" ↦ f32
+    nota narrow, single
+}

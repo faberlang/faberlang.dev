@@ -1,0 +1,6 @@
+main {
+    let int n ← "42" ↦ int
+    let string s ← 42 ↦ string
+    let f64 f ← "3.14159" ↦ f64
+    print n, s, f
+}

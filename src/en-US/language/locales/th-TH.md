@@ -103,7 +103,7 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | kernel           nucleum      เคอร์เนล
 | lambda           clausura     ปิดล้อม
 | lane             lane         เลน
-| let              sit          อนุมานคงที่
+| let              sit          กำหนด
 | line             lineam       บรรทัด
 | long             longum       ยาว
 | main             incipit      เริ่ม
@@ -111,7 +111,8 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | max              maxima       สูงสุด
 | min              minima       ต่ำสุด
 | module           regio        โมดูล
-| mut              in           ใน
+| mut              varia        แก้ไขได้
+| mut              varia        แก้ไขได้
 | name             nomen        ชื่อ
 | nan              nonnumerus   nan
 | not              non          ไม่
@@ -176,7 +177,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | union            discretio    สหภาพแยก
 | unstable         nondum       ไม่เสถียร
 | until            usque        จนถึง
-| var              varia        แปร
 | variant          finge        สร้าง
 | vertex           vertex       จุดยอด
 | via              via          ผ่านทาง

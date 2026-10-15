@@ -23,10 +23,10 @@ with a route named by an `ascii` literal and optional opener data:
 ```faber
 incipit {
     # Simple materialized call: open, send opener, drain response
-    fixum textus content ← ad 'solum:lege' ("config.toml") ↦ textus
+    sit textus content ← ad 'solum:lege' ("config.toml") ↦ textus
 
     # Typed conversation handle for streaming interaction
-    fixum sermo s ← ad 'processus:exsequi' ("ls -la")
+    sit sermo s ← ad 'processus:exsequi' ("ls -la")
 }
 ```
 
@@ -62,9 +62,9 @@ Five compiler-owned types form the frame system:
 ```faber
 incipit {
     # Open a conversation, get directional views
-    fixum sermo s ← ad 'solum:scribe' ("output.txt")
-    fixum meus<textus> out ← s.meus<textus>()
-    fixum tuus<textus> input ← s.tuus<textus>()
+    sit sermo s ← ad 'solum:scribe' ("output.txt")
+    sit meus<textus> out ← s.meus<textus>()
+    sit tuus<textus> input ← s.tuus<textus>()
 
     # Send content frames
     out.da("line one")
@@ -72,10 +72,10 @@ incipit {
     out.fini()
 
     # Read response frames
-    itera ex input.cursor() fixum frame {
+    itera ex input.cursor() sit frame {
         nota frame.data
     }
-    fixum status inbound ← input.fini()
+    sit status inbound ← input.fini()
 }
 ```
 
@@ -87,10 +87,10 @@ value — `sermo ↦ T` collapses the conversation:
 ```faber
 incipit {
     # Read a file: open + drain into textus
-    fixum textus body ← ad 'solum:lege' ("config.toml") ↦ textus
+    sit textus body ← ad 'solum:lege' ("config.toml") ↦ textus
 
     # Collect the inbound frames into a list
-    fixum lista<textus> lines ← ad 'solum:lege' ("data.txt") ↦ lista<textus>
+    sit lista<textus> lines ← ad 'solum:lege' ("data.txt") ↦ lista<textus>
 }
 ```
 

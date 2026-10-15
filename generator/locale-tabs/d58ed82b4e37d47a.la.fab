@@ -1,0 +1,11 @@
+incipit {
+    # a declaration
+    sit numerus count ← 0
+    # another
+    sit textus name ← "Marcus"
+    # a generic
+    sit lista<numerus> scores ← [1, 2, 3]
+    # a nullable
+    sit numerus ∪ nihil maybe ← nulla
+    nota count, name, scores, maybe
+}

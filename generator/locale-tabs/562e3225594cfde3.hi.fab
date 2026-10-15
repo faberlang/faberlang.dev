@@ -1,0 +1,6 @@
+आरंभ {
+    बैठा सूची<संख्या> numeri ← [10, 20, 30]
+    दोहराओ से numeri बैठा index {
+        दिखाओ index, numeri[index]
+    }
+}

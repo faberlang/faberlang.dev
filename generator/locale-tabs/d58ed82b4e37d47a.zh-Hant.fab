@@ -1,0 +1,11 @@
+入口 {
+    # a declaration
+    設為 整數 count ← 0
+    # another
+    設為 文字 name ← "Marcus"
+    # a generic
+    設為 列表<整數> scores ← [1, 2, 3]
+    # a nullable
+    設為 整數 ∪ 無 maybe ← 可空
+    註記 count, name, scores, maybe
+}

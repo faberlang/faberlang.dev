@@ -31,17 +31,17 @@ adfirmaStmt :← 'adfirma' expr ('mori' expr)?
 ```
 empty — adfirma only (adfirma.expected)
 main {
-    const int x ← 10
+    let int x ← 10
 Simple assertion without message
     assert x ≻ 0
 Assertion with custom message
     assert x ≡ 10 panic "x decem esse debet"
 Multiple assertions
-    const string nomen ← "Marcus"
+    let string nomen ← "Marcus"
     assert nomen ≡ "Marcus"
     assert nomen ≢ "" panic "nomen vacuum non sit"
 Boolean assertions
-    const bool viget ← true
+    let bool viget ← true
     assert viget
     assert viget ≡ true panic "vigere debet"
 }
@@ -51,13 +51,13 @@ Boolean assertions
 
 ```fab
 test "assertions validate invariants" {
-    const int x ← 10
+    let int x ← 10
     assert x ≻ 0
     assert x ≡ 10 panic "x decem esse debet"
-    const string name ← "Marcus"
+    let string name ← "Marcus"
     assert name ≡ "Marcus"
     assert name ≢ "" panic "name void not let"
-    const bool viget ← true
+    let bool viget ← true
     assert viget
     assert viget ≡ true panic "vigere debet"
 }

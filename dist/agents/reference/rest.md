@@ -35,9 +35,9 @@ none
 
 ```fab
 fn sum(rest list<int> numeri) → int {
-    var _ total ← 0
+    mut _ total ← 0
 
-    for from numeri const n {
+    for from numeri let n {
         total ← total + n
     }
 

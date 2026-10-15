@@ -1,0 +1,12 @@
+functio summa(lista<numerus> numeri) → numerus {
+    varia numerus total ← 0
+    itera ex numeri sit n {
+        total ← total + n
+    }
+    redde total
+}
+
+incipit {
+    sit lista<numerus> valores ← [1, 2, 3, 4, 5]
+    nota summa(valores)
+}

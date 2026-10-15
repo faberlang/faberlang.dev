@@ -1,0 +1,6 @@
+incipit {
+    sit lista<numerus> numeri ← [10, 20, 30]
+    itera de numeri sit index {
+        nota index, numeri[index]
+    }
+}

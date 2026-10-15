@@ -1,4 +1,0 @@
-入口 {
-    定值 文字 roundtrip ← ("42" ↦ 整數) ↦ 文字
-    註記 roundtrip
-}

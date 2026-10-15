@@ -1,6 +1,0 @@
-main {
-    const int limit ← 10
-    var int count ← 0
-    count ← count + 1
-    print limit, count
-}

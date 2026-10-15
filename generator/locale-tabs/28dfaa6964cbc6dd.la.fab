@@ -1,0 +1,11 @@
+genus Punctum {
+    sit numerus x
+    sit numerus y
+}
+
+incipit {
+    sit p ← Punctum { x = 1, y = 2 }
+    sit numerus x ← p.x
+    sit numerus y ← p.y
+    nota x, y
+}

@@ -19,7 +19,7 @@ functio saturate(numerus x) → numerus {
 }
 
 incipit {
-    fixum numerus v ← saturate(300)
+    sit numerus v ← saturate(300)
     nota v
 }
 ```
@@ -34,7 +34,7 @@ That is a complete, compilable package entry point. Reading it left to right:
 | `if … then` | a compact single-branch conditional |
 | `return` | return |
 | `main` | the program entry point |
-| `const` | an immutable binding (`var` is the mutable one) |
+| `let` | a fixed binding (`mut` is the writable one) |
 | `←` | bind this value to that name |
 | `print` | print |
 
@@ -45,21 +45,21 @@ This is the single rule that makes the rest of the grammar small:
 ```faber locale-tabs
 incipit {
     # a declaration
-    fixum numerus count ← 0
+    sit numerus count ← 0
     # another
-    fixum textus name ← "Marcus"
+    sit textus name ← "Marcus"
     # a generic
-    fixum lista<numerus> scores ← [1, 2, 3]
+    sit lista<numerus> scores ← [1, 2, 3]
     # a nullable
-    fixum numerus ∪ nihil maybe ← nulla
+    sit numerus ∪ nihil maybe ← nulla
     nota count, name, scores, maybe
 }
 ```
 
 There is no `name: type` form to learn. A declaration is a type followed by a
 name, whether it is a parameter, a local, or a field. Bindings come in three
-words: `const` is write-once, `var` is freely reassignable, and `let` is the
-concise inferred immutable. See [Types and values](/language/types.html).
+words: `let` is write-once, `mut` is freely reassignable, and `ref` is a
+read-only name that can be pointed elsewhere. See [Types and values](/language/types.html).
 
 ## Six glyphs, and what they mean {#glyphs}
 
@@ -82,7 +82,7 @@ ascription and `↦` for a runtime conversion that can fail. Full table in
 
 ## The words you write, and the compiler's Latin {#latin}
 
-The words in the program above — `fn`, `if`, `return`, `const`, `int` — are
+The words in the program above — `fn`, `if`, `return`, `let`, `int` — are
 the spellings an English reader writes; every page on this site teaches the
 English reader surface. Latin is one reader locale like the rest; the pack
 files are keyed by Latin spellings, so the grammar document prints its Latin

@@ -52,7 +52,7 @@ fn accipe(list<int> numeri, int index) → int {
 
 main {
     # Happy path — panic branches not taken
-    const float value ← divide(10, 2)
+    let float value ← divide(10, 2)
     # 5.0
     print "value: §"(value)
 
@@ -60,8 +60,8 @@ main {
     # const _ malum ← divide(10, 0)
 
     # Lista accessus
-    const list<int> nums ← [1, 2, 3]
-    const int lectum ← accipe(nums, 1)
+    let list<int> nums ← [1, 2, 3]
+    let int lectum ← accipe(nums, 1)
     # 2
     print "value: §"(lectum)
 }

@@ -11,6 +11,11 @@ subject = "textus"
 why = "the pack gives `textus` and `string` the same English slug; the first term in sorted order keeps it and `textus` stays on its identity key, by design"
 
 [[allow]]
+kind = "corpus-slug-collision"
+subject = "varia"
+why = "the pack gives the mut parameter marker `in` and the mut local `varia` one English word (`mut`); the first term in sorted order keeps the slug and `varia` stays on its identity key, by design"
+
+[[allow]]
 kind = "transcode"
 subject = "cheatsheet/imports.md"
 why = "one fence is an import fragment with no inferable name; the page shows its source unchanged"

@@ -1,0 +1,5 @@
+incipit {
+    sit lista<textus ∪ numerus> mixed ← [1, "two", 3]
+    sit inferred ← [1, 2, 3]
+    nota mixed, inferred
+}

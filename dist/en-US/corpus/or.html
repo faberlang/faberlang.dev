@@ -40,9 +40,9 @@
 
 main {
 <span class="tok-co">    # Arithmetica: + - * / %</span>
-    const int sum <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">+</span> <span class="tok-nu">5</span>
+    let int sum <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">+</span> <span class="tok-nu">5</span>
     print sum
-    const int differentia <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">-</span> <span class="tok-nu">5</span>
+    let int differentia <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">-</span> <span class="tok-nu">5</span>
     print differentia
     let productum <span class="tok-op">←</span> <span class="tok-nu">10</span> <span class="tok-op">*</span> <span class="tok-nu">5</span>
     print productum
@@ -52,7 +52,7 @@ main {
     print reliquum
 
 <span class="tok-co">    # Assignatio explicita (compound glyphs removed)</span>
-    var int index <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    mut int index <span class="tok-op">←</span> <span class="tok-nu">0</span>
     index <span class="tok-op">←</span> index <span class="tok-op">+</span> <span class="tok-nu">10</span>
     index ↑
     index ↓
@@ -82,12 +82,12 @@ main {
     print short
 
 <span class="tok-co">    # vel</span>
-    const string <span class="tok-op">∪</span> none name <span class="tok-op">←</span> null
+    let string <span class="tok-op">∪</span> none name <span class="tok-op">←</span> null
     let solutum <span class="tok-op">←</span> name coalesce <span class="tok-st">"defectum"</span>
     print solutum
-    const string <span class="tok-op">∪</span> none primum <span class="tok-op">←</span> null
-    const string <span class="tok-op">∪</span> none secundum <span class="tok-op">←</span> null
-    const string tertium <span class="tok-op">←</span> <span class="tok-st">"inventum"</span>
+    let string <span class="tok-op">∪</span> none primum <span class="tok-op">←</span> null
+    let string <span class="tok-op">∪</span> none secundum <span class="tok-op">←</span> null
+    let string tertium <span class="tok-op">←</span> <span class="tok-st">"inventum"</span>
     let inventum <span class="tok-op">←</span> (primum coalesce secundum) coalesce tertium
     print inventum
 

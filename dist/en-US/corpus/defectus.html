@@ -64,19 +64,19 @@ fn fatal(int n) <span class="tok-op">→</span> int ⇥ string {
 
 main {
 <span class="tok-co">    # The call's value on success, the default on failure.</span>
-    const int a <span class="tok-op">←</span> half(<span class="tok-nu">8</span>) ⊥ <span class="tok-nu">0</span>
-    const int b <span class="tok-op">←</span> half(<span class="tok-nu">7</span>) ⊥ <span class="tok-op">-</span><span class="tok-nu">1</span>
+    let int a <span class="tok-op">←</span> half(<span class="tok-nu">8</span>) ⊥ <span class="tok-nu">0</span>
+    let int b <span class="tok-op">←</span> half(<span class="tok-nu">7</span>) ⊥ <span class="tok-op">-</span><span class="tok-nu">1</span>
     print a, b
 
 <span class="tok-co">    # The default runs only when the call fails: `fallback` prints once.</span>
-    const int c <span class="tok-op">←</span> half(<span class="tok-nu">4</span>) ⊥ fallback()
-    const int d <span class="tok-op">←</span> half(<span class="tok-nu">5</span>) ⊥ fallback()
+    let int c <span class="tok-op">←</span> half(<span class="tok-nu">4</span>) ⊥ fallback()
+    let int d <span class="tok-op">←</span> half(<span class="tok-nu">5</span>) ⊥ fallback()
     print c, d
 
     print safeQuarter(<span class="tok-nu">8</span>), safeQuarter(<span class="tok-nu">6</span>)
 
 <span class="tok-co">    # `⊥` never catches `panic`; this would still abort:</span>
-<span class="tok-co">    # const int e ← fatal(0) ⊥ 1</span>
+<span class="tok-co">    # let int e ← fatal(0) ⊥ 1</span>
     print fatal(<span class="tok-nu">2</span>) ⊥ <span class="tok-nu">0</span>, half(<span class="tok-nu">1</span>) ⊥ <span class="tok-op">-</span><span class="tok-nu">1</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>4 -1
 fallback

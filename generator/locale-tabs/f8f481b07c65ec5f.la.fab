@@ -1,0 +1,6 @@
+incipit {
+    sit numerus n ← "42" ↦ numerus
+    sit textus s ← 42 ↦ textus
+    sit f64 f ← "3.14159" ↦ f64
+    nota n, s, f
+}

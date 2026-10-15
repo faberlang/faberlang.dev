@@ -40,8 +40,8 @@ praefixum.expected — the values computed at build time.
 
 ```fab
 class Punctum {
-    const int x
-    const int y
+    let int x
+    let int y
 }
 
 fn quadratum(int n) → int {
@@ -50,8 +50,8 @@ fn quadratum(int n) → int {
 
 # A loop that calls a pure function.
 const int SUMMA_QUADRATORUM = comptime {
-    var int total ← 0
-    for range 1‥11 const i {
+    mut int total ← 0
+    for range 1‥11 let i {
         total ← total + quadratum(i)
     }
     return total
@@ -59,10 +59,10 @@ const int SUMMA_QUADRATORUM = comptime {
 
 # A collection built at build time.
 const list<int> PRIMI = comptime {
-    var list<int> found ← empty
-    for range 2‥30 const n {
-        var bool isPrime ← true
-        for range 2 ‥ n const d {
+    mut list<int> found ← empty
+    for range 2‥30 let n {
+        mut bool isPrime ← true
+        for range 2 ‥ n let d {
             if n % d ≡ 0 {
                 isPrime ← false
             }
@@ -76,8 +76,8 @@ const list<int> PRIMI = comptime {
 
 # Text and a class value.
 const string LINEA = comptime {
-    var string stripe ← ""
-    for range 0‥8 const i {
+    mut string stripe ← ""
+    for range 0‥8 let i {
         stripe ← stripe + "="
     }
     return stripe
@@ -100,6 +100,6 @@ main {
 }
 ```
 
-See also: [`static`](static.md), [`embed`](embed.md), [`return`](return.md).
+See also: [`const`](const.md), [`embed`](embed.md), [`return`](return.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

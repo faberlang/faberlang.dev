@@ -13,11 +13,11 @@ const <type|_> <pattern> [← <expression>]
 ## What this teaches
 
 - Declares an immutable binding.
-- Related keywords: var, let, ←
+- Related keywords: mut, let, ←
 
 ## Common mistakes
 
-- Reassigning a `const` binding after initialization — `const` is immutable; use `var` for mutable bindings (SEM020) or defer init with a single later assignment.
+- Reassigning a `const` binding after initialization — `const` is immutable; use `mut` for mutable bindings (SEM020) or defer init with a single later assignment.
 
 ## Grammar
 
@@ -47,7 +47,7 @@ let/sit.fab for the compact inferred spelling.
 
 ```fab
 fn scale(bool compact, int base) → int {
-    const int factor
+    let int factor
     if compact {
         factor ← 10
     }
@@ -58,14 +58,14 @@ fn scale(bool compact, int base) → int {
 }
 
 test "const immediate init" {
-    const string name ← "Marcus"
-    const string salve ← "Salve, §!"(name)
+    let string name ← "Marcus"
+    let string salve ← "Salve, §!"(name)
     assert name ≡ "Marcus"
     assert salve ≡ "Salve, Marcus!"
 }
 
 test "const deferred init writes once" {
-    const int pending
+    let int pending
     pending ← 7
     assert pending ≡ 7
 }
@@ -76,10 +76,10 @@ test "const factor selected per branch" {
 }
 
 main {
-    const string name ← "Marcus"
-    const string salve ← "Salve, §!"(name)
+    let string name ← "Marcus"
+    let string salve ← "Salve, §!"(name)
     print salve
-    const int pending
+    let int pending
     pending ← 7
     print pending
     print scale(true, 3)
@@ -87,6 +87,6 @@ main {
 }
 ```
 
-See also: [`var`](var.md), [`let`](let.md), [`←`](←.md).
+See also: [`mut`](varia.md), [`let`](let.md), [`←`](←.md).
 
 Fetch list: https://faberlang.dev/agents/index.md

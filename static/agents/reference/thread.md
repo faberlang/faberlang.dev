@@ -7,7 +7,7 @@ Distributed reduce via sum from … thread kernel inside @ kernel.
 ## Syntax
 
 ```
-reduce via sum from <tf32[32]> at [i] thread f const s { return <term> }
+reduce via sum from <tf32[32]> at [i] thread f let s { return <term> }
 ```
 
 ## What this teaches
@@ -25,11 +25,14 @@ reduce via sum from <tf32[32]> at [i] thread f const s { return <term> }
 ## Example
 
 ```fab
++++
+locale = "la"
++++
 @ kernel
 @ public { }
-fn column_dot(tensor<f32, [32]> a, in tensor<f32, [1]> out) → void {
-    const f32 total ← reduce via sum from a at [i] thread f const s {
-        var f32 t ← s * 1.4140625
+fn column_dot(tensor<f32, [32]> a, mut tensor<f32, [1]> out) → void {
+    let f32 total ← reduce via sum from a at [i] thread f let s {
+        mut f32 t ← s * 1.4140625
         return t
     }
     out[0] ← total

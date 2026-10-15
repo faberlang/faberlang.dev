@@ -4,38 +4,38 @@ before the name — the <code>string</code> comes first, then the identifier it 
 the other way round. The type system covers
 scalar primitives, generic collections, sized numerics, tensors, and GPU-facing
 register types.</p><h3 id="primitive-types">Primitive types<a class="anchor" href="#primitive-types">#</a></h3><div class="table-scroll"><table><thead><tr><th>Type</th><th>Role</th><th>Example literal</th></tr></thead><tbody><tr><td><code>string</code></td><td>Unicode string</td><td><code>&quot;Salve, munde&quot;</code></td></tr><tr><td><code>ascii</code></td><td>Fixed machine token</td><td><code>'solum:lege'</code></td></tr><tr><td><code>i32</code></td><td>Signed integer</td><td><code>42</code></td></tr><tr><td><code>f64</code></td><td>Floating-point</td><td><code>3.14</code></td></tr><tr><td><code>bool</code></td><td>Boolean</td><td><code>true</code>, <code>false</code></td></tr><tr><td><code>void</code></td><td>Unit / no value</td><td>—</td></tr><tr><td><code>none</code></td><td>Null / absent (the null value is <code>null</code>)</td><td><code>null</code></td></tr><tr><td><code>instant</code></td><td>Duration / time instant</td><td>—</td></tr><tr><td><code class="typ">json</code></td><td>Compile-time JSON value</td><td><code>{ &quot;key&quot;: &quot;value&quot; }</code></td></tr><tr><td><code>bytes</code> (en <code>bytes</code>)</td><td>Byte string, exactly <code>list&lt;b8&gt;</code> (en <code>list&lt;b8&gt;</code>)</td><td>\|00ff\|</td></tr></tbody></table></div><h3 id="sized-numeric-types">Sized numeric types<a class="anchor" href="#sized-numeric-types">#</a></h3><p>Write the width in type position. These are the numeric types — the same
-list as <a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a>:</p><div class="table-scroll"><table><thead><tr><th>Family</th><th>Widths</th></tr></thead><tbody><tr><td>Signed</td><td><code>i8</code> <code>i16</code> <code>i32</code> <code>i64</code></td></tr><tr><td>Unsigned</td><td><code>u8</code> <code>u16</code> <code>u32</code> <code>u64</code></td></tr><tr><td>Decimal</td><td><code>d64</code></td></tr><tr><td>Unbounded integer</td><td><code>inf</code></td></tr><tr><td>Floating</td><td><code>f16</code> <code>bf16</code> <code>f32</code> <code>f64</code></td></tr></tbody></table></div><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-d4502292c6e439cc-0-t-en" data-panel="lt-d4502292c6e439cc-0-p-en" data-name="English" aria-controls="lt-d4502292c6e439cc-0-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-d4502292c6e439cc-0-t-la" data-panel="lt-d4502292c6e439cc-0-p-la" data-name="Latin" aria-controls="lt-d4502292c6e439cc-0-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-d4502292c6e439cc-0-t-th-TH" data-panel="lt-d4502292c6e439cc-0-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-d4502292c6e439cc-0-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-d4502292c6e439cc-0-t-zh-Hans" data-panel="lt-d4502292c6e439cc-0-p-zh-Hans" data-name="简体中文" aria-controls="lt-d4502292c6e439cc-0-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-d4502292c6e439cc-0-t-zh-Hant" data-panel="lt-d4502292c6e439cc-0-p-zh-Hant" data-name="繁體中文" aria-controls="lt-d4502292c6e439cc-0-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-d4502292c6e439cc-0-t-vi" data-panel="lt-d4502292c6e439cc-0-p-vi" data-name="Tiếng Việt" aria-controls="lt-d4502292c6e439cc-0-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-d4502292c6e439cc-0-t-ar" data-panel="lt-d4502292c6e439cc-0-p-ar" data-name="العربية" aria-controls="lt-d4502292c6e439cc-0-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-d4502292c6e439cc-0-t-hi" data-panel="lt-d4502292c6e439cc-0-p-hi" data-name="हिन्दी" aria-controls="lt-d4502292c6e439cc-0-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-d4502292c6e439cc-0-p-en" role="tabpanel" aria-labelledby="lt-d4502292c6e439cc-0-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
-    <span class="tok-kw">const</span> u64 wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ u64
-    <span class="tok-kw">const</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
-}</code></pre></div><div class="fdt-panel" id="lt-d4502292c6e439cc-0-p-la" role="tabpanel" aria-labelledby="lt-d4502292c6e439cc-0-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">incipit</span> {
-    <span class="tok-kw">fixum</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
-    <span class="tok-kw">fixum</span> u64 wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ u64
-    <span class="tok-kw">fixum</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
-}</code></pre></div><div class="fdt-panel" id="lt-d4502292c6e439cc-0-p-th-TH" role="tabpanel" aria-labelledby="lt-d4502292c6e439cc-0-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">เริ่ม</span> {
-    <span class="tok-kw">คงที่</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
-    <span class="tok-kw">คงที่</span> u64 wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ u64
-    <span class="tok-kw">คงที่</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
-}</code></pre></div><div class="fdt-panel" id="lt-d4502292c6e439cc-0-p-zh-Hans" role="tabpanel" aria-labelledby="lt-d4502292c6e439cc-0-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">入口</span> {
-    <span class="tok-kw">常量</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
-    <span class="tok-kw">常量</span> u64 wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ u64
-    <span class="tok-kw">常量</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
-}</code></pre></div><div class="fdt-panel" id="lt-d4502292c6e439cc-0-p-zh-Hant" role="tabpanel" aria-labelledby="lt-d4502292c6e439cc-0-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">入口</span> {
-    <span class="tok-kw">定值</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
-    <span class="tok-kw">定值</span> u64 wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ u64
-    <span class="tok-kw">定值</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
-}</code></pre></div><div class="fdt-panel" id="lt-d4502292c6e439cc-0-p-vi" role="tabpanel" aria-labelledby="lt-d4502292c6e439cc-0-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">bắt_đầu</span> {
-    <span class="tok-kw">hằng</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
-    <span class="tok-kw">hằng</span> u64 wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ u64
-    <span class="tok-kw">hằng</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
-}</code></pre></div><div class="fdt-panel" id="lt-d4502292c6e439cc-0-p-ar" role="tabpanel" aria-labelledby="lt-d4502292c6e439cc-0-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">بداية</span> {
-    <span class="tok-kw">ثابت</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
-    <span class="tok-kw">ثابت</span> u64 wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ u64
-    <span class="tok-kw">ثابت</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
-}</code></pre></div><div class="fdt-panel" id="lt-d4502292c6e439cc-0-p-hi" role="tabpanel" aria-labelledby="lt-d4502292c6e439cc-0-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">आरंभ</span> {
-    <span class="tok-kw">स्थिर</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
-    <span class="tok-kw">स्थिर</span> u64 wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ u64
-    <span class="tok-kw">स्थिर</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
+list as <a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a>:</p><div class="table-scroll"><table><thead><tr><th>Family</th><th>Widths</th></tr></thead><tbody><tr><td>Signed</td><td><code>i8</code> <code>i16</code> <code>i32</code> <code>i64</code></td></tr><tr><td>Unsigned</td><td><code>u8</code> <code>u16</code> <code>u32</code> <code>u64</code></td></tr><tr><td>Decimal</td><td><code>d64</code></td></tr><tr><td>Unbounded integer</td><td><code>inf</code></td></tr><tr><td>Floating</td><td><code>f16</code> <code>bf16</code> <code>f32</code> <code>f64</code></td></tr></tbody></table></div><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-c64e950af03ee82c-0-t-en" data-panel="lt-c64e950af03ee82c-0-p-en" data-name="English" aria-controls="lt-c64e950af03ee82c-0-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-c64e950af03ee82c-0-t-la" data-panel="lt-c64e950af03ee82c-0-p-la" data-name="Latin" aria-controls="lt-c64e950af03ee82c-0-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-c64e950af03ee82c-0-t-th-TH" data-panel="lt-c64e950af03ee82c-0-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-c64e950af03ee82c-0-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-c64e950af03ee82c-0-t-zh-Hans" data-panel="lt-c64e950af03ee82c-0-p-zh-Hans" data-name="简体中文" aria-controls="lt-c64e950af03ee82c-0-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-c64e950af03ee82c-0-t-zh-Hant" data-panel="lt-c64e950af03ee82c-0-p-zh-Hant" data-name="繁體中文" aria-controls="lt-c64e950af03ee82c-0-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-c64e950af03ee82c-0-t-vi" data-panel="lt-c64e950af03ee82c-0-p-vi" data-name="Tiếng Việt" aria-controls="lt-c64e950af03ee82c-0-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-c64e950af03ee82c-0-t-ar" data-panel="lt-c64e950af03ee82c-0-p-ar" data-name="العربية" aria-controls="lt-c64e950af03ee82c-0-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-c64e950af03ee82c-0-t-hi" data-panel="lt-c64e950af03ee82c-0-p-hi" data-name="हिन्दी" aria-controls="lt-c64e950af03ee82c-0-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-c64e950af03ee82c-0-p-en" role="tabpanel" aria-labelledby="lt-c64e950af03ee82c-0-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
+    <span class="tok-kw">let</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
+    <span class="tok-kw">let</span> u64 wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ u64
+    <span class="tok-kw">let</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
+}</code></pre></div><div class="fdt-panel" id="lt-c64e950af03ee82c-0-p-la" role="tabpanel" aria-labelledby="lt-c64e950af03ee82c-0-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">incipit</span> {
+    <span class="tok-kw">sit</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
+    <span class="tok-kw">sit</span> u64 wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ u64
+    <span class="tok-kw">sit</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
+}</code></pre></div><div class="fdt-panel" id="lt-c64e950af03ee82c-0-p-th-TH" role="tabpanel" aria-labelledby="lt-c64e950af03ee82c-0-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">เริ่ม</span> {
+    <span class="tok-kw">กำหนด</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
+    <span class="tok-kw">กำหนด</span> u64 wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ u64
+    <span class="tok-kw">กำหนด</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
+}</code></pre></div><div class="fdt-panel" id="lt-c64e950af03ee82c-0-p-zh-Hans" role="tabpanel" aria-labelledby="lt-c64e950af03ee82c-0-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">设</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
+    <span class="tok-kw">设</span> u64 wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ u64
+    <span class="tok-kw">设</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
+}</code></pre></div><div class="fdt-panel" id="lt-c64e950af03ee82c-0-p-zh-Hant" role="tabpanel" aria-labelledby="lt-c64e950af03ee82c-0-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">入口</span> {
+    <span class="tok-kw">設為</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
+    <span class="tok-kw">設為</span> u64 wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ u64
+    <span class="tok-kw">設為</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
+}</code></pre></div><div class="fdt-panel" id="lt-c64e950af03ee82c-0-p-vi" role="tabpanel" aria-labelledby="lt-c64e950af03ee82c-0-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">bắt_đầu</span> {
+    <span class="tok-kw">đặt</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
+    <span class="tok-kw">đặt</span> u64 wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ u64
+    <span class="tok-kw">đặt</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
+}</code></pre></div><div class="fdt-panel" id="lt-c64e950af03ee82c-0-p-ar" role="tabpanel" aria-labelledby="lt-c64e950af03ee82c-0-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">بداية</span> {
+    <span class="tok-kw">ليكن</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
+    <span class="tok-kw">ليكن</span> u64 wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ u64
+    <span class="tok-kw">ليكن</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
+}</code></pre></div><div class="fdt-panel" id="lt-c64e950af03ee82c-0-p-hi" role="tabpanel" aria-labelledby="lt-c64e950af03ee82c-0-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">आरंभ</span> {
+    <span class="tok-kw">बैठा</span> i32 narrow <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
+    <span class="tok-kw">बैठा</span> u64 wide <span class="tok-op">←</span> <span class="tok-nu">255</span> ∷ u64
+    <span class="tok-kw">बैठा</span> f32 single <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ∷ f32
 }</code></pre></div></div><p>The bare width marker is the type.</p><h3 id="raw-bits">Raw bits<a class="anchor" href="#raw-bits">#</a></h3><p>The markers <code>b8</code>, <code>b16</code>, <code>b32</code> and <code>b64</code> are raw bits, not numbers, so they
 are not in the table above. A <code>b8</code> is exactly eight bits, and a <code>b8</code> is also
 the element of a byte string: <code>|00ff|</code> is a <code>list&lt;b8&gt;</code> (en <code>bytes</code>).</p><p>Raw bits take the bit operators <code>∧ ∨ ⊻ ¬ ⇐ ⇒</code> and nothing else. Each operation
@@ -44,10 +44,10 @@ by the full width or more gives all zeros. There is no arithmetic
 (<code>SEM011 bits_arithmetic_refused</code>) and no mixing with numbers or with another
 width. To read the bits as a number, convert to the same-width numeric type
 with <code class="glyph">↦</code>.</p><pre class="faber-code"><code class="lang-faber">main {
-    const b8 flags <span class="tok-op">←</span> <span class="tok-nu">240</span> ∷ b8
-    const b8 low <span class="tok-op">←</span> flags ⇒ <span class="tok-nu">4</span>
-    const b8 both <span class="tok-op">←</span> flags ∨ low
-    const u8 count <span class="tok-op">←</span> both ↦ u8
+    let b8 flags <span class="tok-op">←</span> <span class="tok-nu">240</span> ∷ b8
+    let b8 low <span class="tok-op">←</span> flags ⇒ <span class="tok-nu">4</span>
+    let b8 both <span class="tok-op">←</span> flags ∨ low
+    let u8 count <span class="tok-op">←</span> both ↦ u8
     print both, count
 }</code></pre><h3 id="nullable-types">Nullable types<a class="anchor" href="#nullable-types">#</a></h3><p>Nullable values use the union syntax <code>T ∪ none</code>:</p><pre class="faber-code"><code class="lang-faber">fn find(string key) <span class="tok-op">→</span> int <span class="tok-op">∪</span> none {
     return null
@@ -62,61 +62,61 @@ fn maybe() <span class="tok-op">→</span> string <span class="tok-op">∪</span
 
 <span class="tok-kw">fn</span> primum<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(<span class="tok-kw">list</span><span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span> res) <span class="tok-op">→</span> T <span class="tok-op">∪</span> <span class="tok-kw">none</span> {
     <span class="tok-kw">return</span> res.first()
-}</code></pre><p>Explicit call-site type arguments are supported:</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-23a5817852760936-1-t-en" data-panel="lt-23a5817852760936-1-p-en" data-name="English" aria-controls="lt-23a5817852760936-1-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-23a5817852760936-1-t-la" data-panel="lt-23a5817852760936-1-p-la" data-name="Latin" aria-controls="lt-23a5817852760936-1-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-23a5817852760936-1-t-th-TH" data-panel="lt-23a5817852760936-1-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-23a5817852760936-1-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-23a5817852760936-1-t-zh-Hans" data-panel="lt-23a5817852760936-1-p-zh-Hans" data-name="简体中文" aria-controls="lt-23a5817852760936-1-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-23a5817852760936-1-t-zh-Hant" data-panel="lt-23a5817852760936-1-p-zh-Hant" data-name="繁體中文" aria-controls="lt-23a5817852760936-1-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-23a5817852760936-1-t-vi" data-panel="lt-23a5817852760936-1-p-vi" data-name="Tiếng Việt" aria-controls="lt-23a5817852760936-1-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-23a5817852760936-1-t-ar" data-panel="lt-23a5817852760936-1-p-ar" data-name="العربية" aria-controls="lt-23a5817852760936-1-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-23a5817852760936-1-t-hi" data-panel="lt-23a5817852760936-1-p-hi" data-name="हिन्दी" aria-controls="lt-23a5817852760936-1-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-23a5817852760936-1-p-en" role="tabpanel" aria-labelledby="lt-23a5817852760936-1-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">fn</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T datum) <span class="tok-op">→</span> T {
+}</code></pre><p>Explicit call-site type arguments are supported:</p><div class="faber-demo-tabs" data-fdt><div class="fdt-bar"><span class="fdt-mark" aria-hidden="true">f</span><span class="fdt-file">reader locale</span><button class="fdt-copy" type="button">Copy</button></div><div class="fdt-tabs" role="tablist" aria-label="Reader locale"><button class="fdt-tab" role="tab" id="lt-23d0eddf7694aa41-1-t-en" data-panel="lt-23d0eddf7694aa41-1-p-en" data-name="English" aria-controls="lt-23d0eddf7694aa41-1-p-en" title="en" aria-selected="true" tabindex="0">English</button><button class="fdt-tab" role="tab" id="lt-23d0eddf7694aa41-1-t-la" data-panel="lt-23d0eddf7694aa41-1-p-la" data-name="Latin" aria-controls="lt-23d0eddf7694aa41-1-p-la" title="la" aria-selected="false" tabindex="-1">Latin</button><button class="fdt-tab" role="tab" id="lt-23d0eddf7694aa41-1-t-th-TH" data-panel="lt-23d0eddf7694aa41-1-p-th-TH" data-name="ภาษาไทย" aria-controls="lt-23d0eddf7694aa41-1-p-th-TH" title="th-TH" aria-selected="false" tabindex="-1"><span class="th">ภาษาไทย</span></button><button class="fdt-tab" role="tab" id="lt-23d0eddf7694aa41-1-t-zh-Hans" data-panel="lt-23d0eddf7694aa41-1-p-zh-Hans" data-name="简体中文" aria-controls="lt-23d0eddf7694aa41-1-p-zh-Hans" title="zh-Hans" aria-selected="false" tabindex="-1"><span class="zh">简体中文</span></button><button class="fdt-tab" role="tab" id="lt-23d0eddf7694aa41-1-t-zh-Hant" data-panel="lt-23d0eddf7694aa41-1-p-zh-Hant" data-name="繁體中文" aria-controls="lt-23d0eddf7694aa41-1-p-zh-Hant" title="zh-Hant" aria-selected="false" tabindex="-1"><span class="zh">繁體中文</span></button><button class="fdt-tab" role="tab" id="lt-23d0eddf7694aa41-1-t-vi" data-panel="lt-23d0eddf7694aa41-1-p-vi" data-name="Tiếng Việt" aria-controls="lt-23d0eddf7694aa41-1-p-vi" title="vi" aria-selected="false" tabindex="-1">Tiếng Việt</button><button class="fdt-tab" role="tab" id="lt-23d0eddf7694aa41-1-t-ar" data-panel="lt-23d0eddf7694aa41-1-p-ar" data-name="العربية" aria-controls="lt-23d0eddf7694aa41-1-p-ar" title="ar" aria-selected="false" tabindex="-1"><span class="ar">العربية</span></button><button class="fdt-tab" role="tab" id="lt-23d0eddf7694aa41-1-t-hi" data-panel="lt-23d0eddf7694aa41-1-p-hi" data-name="हिन्दी" aria-controls="lt-23d0eddf7694aa41-1-p-hi" title="hi" aria-selected="false" tabindex="-1"><span class="hi">हिन्दी</span></button></div><div class="fdt-panel active" id="lt-23d0eddf7694aa41-1-p-en" role="tabpanel" aria-labelledby="lt-23d0eddf7694aa41-1-t-en"><div class="fdt-panel-label"><code>faber convert --to en</code> <span class="fdt-note">— English reader surface</span></div><pre><code class="lang-faber locale=en"><span class="tok-kw">fn</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T datum) <span class="tok-op">→</span> T {
     <span class="tok-kw">return</span> datum
 }
 
 <span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> <span class="tok-kw">int</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
-}</code></pre></div><div class="fdt-panel" id="lt-23a5817852760936-1-p-la" role="tabpanel" aria-labelledby="lt-23a5817852760936-1-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">functio</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T datum) <span class="tok-op">→</span> T {
+    <span class="tok-kw">let</span> <span class="tok-kw">int</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">int</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
+}</code></pre></div><div class="fdt-panel" id="lt-23d0eddf7694aa41-1-p-la" role="tabpanel" aria-labelledby="lt-23d0eddf7694aa41-1-t-la"><div class="fdt-panel-label"><code>faber convert --to la</code> <span class="fdt-note">— canonical Faber</span></div><pre><code class="lang-faber locale=la"><span class="tok-kw">functio</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T datum) <span class="tok-op">→</span> T {
     <span class="tok-kw">redde</span> datum
 }
 
 <span class="tok-kw">incipit</span> {
-    <span class="tok-kw">fixum</span> <span class="tok-kw">numerus</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">numerus</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
-}</code></pre></div><div class="fdt-panel" id="lt-23a5817852760936-1-p-th-TH" role="tabpanel" aria-labelledby="lt-23a5817852760936-1-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ฟังก์ชัน</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T datum) <span class="tok-op">→</span> T {
+    <span class="tok-kw">sit</span> <span class="tok-kw">numerus</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">numerus</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
+}</code></pre></div><div class="fdt-panel" id="lt-23d0eddf7694aa41-1-p-th-TH" role="tabpanel" aria-labelledby="lt-23d0eddf7694aa41-1-t-th-TH"><div class="fdt-panel-label"><code>faber convert --to th-TH</code> <span class="fdt-note">— Thai</span></div><pre class="th"><code class="lang-faber locale=th-TH"><span class="tok-kw">ฟังก์ชัน</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T datum) <span class="tok-op">→</span> T {
     <span class="tok-kw">คืน</span> datum
 }
 
 <span class="tok-kw">เริ่ม</span> {
-    <span class="tok-kw">คงที่</span> <span class="tok-kw">จํานวน</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">จํานวน</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
-}</code></pre></div><div class="fdt-panel" id="lt-23a5817852760936-1-p-zh-Hans" role="tabpanel" aria-labelledby="lt-23a5817852760936-1-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">函数</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T datum) <span class="tok-op">→</span> T {
+    <span class="tok-kw">กำหนด</span> <span class="tok-kw">จํานวน</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">จํานวน</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
+}</code></pre></div><div class="fdt-panel" id="lt-23d0eddf7694aa41-1-p-zh-Hans" role="tabpanel" aria-labelledby="lt-23d0eddf7694aa41-1-t-zh-Hans"><div class="fdt-panel-label"><code>faber convert --to zh-Hans</code> <span class="fdt-note">— Simplified Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hans"><span class="tok-kw">函数</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T datum) <span class="tok-op">→</span> T {
     <span class="tok-kw">返回</span> datum
 }
 
 <span class="tok-kw">入口</span> {
-    <span class="tok-kw">常量</span> <span class="tok-kw">整数</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
-}</code></pre></div><div class="fdt-panel" id="lt-23a5817852760936-1-p-zh-Hant" role="tabpanel" aria-labelledby="lt-23a5817852760936-1-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">函式</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T datum) <span class="tok-op">→</span> T {
+    <span class="tok-kw">设</span> <span class="tok-kw">整数</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">整数</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
+}</code></pre></div><div class="fdt-panel" id="lt-23d0eddf7694aa41-1-p-zh-Hant" role="tabpanel" aria-labelledby="lt-23d0eddf7694aa41-1-t-zh-Hant"><div class="fdt-panel-label"><code>faber convert --to zh-Hant</code> <span class="fdt-note">— Traditional Chinese</span></div><pre class="zh"><code class="lang-faber locale=zh-Hant"><span class="tok-kw">函式</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T datum) <span class="tok-op">→</span> T {
     <span class="tok-kw">傳回</span> datum
 }
 
 <span class="tok-kw">入口</span> {
-    <span class="tok-kw">定值</span> <span class="tok-kw">整數</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">整數</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
-}</code></pre></div><div class="fdt-panel" id="lt-23a5817852760936-1-p-vi" role="tabpanel" aria-labelledby="lt-23a5817852760936-1-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">hàm</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T datum) <span class="tok-op">→</span> T {
+    <span class="tok-kw">設為</span> <span class="tok-kw">整數</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">整數</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
+}</code></pre></div><div class="fdt-panel" id="lt-23d0eddf7694aa41-1-p-vi" role="tabpanel" aria-labelledby="lt-23d0eddf7694aa41-1-t-vi"><div class="fdt-panel-label"><code>faber convert --to vi</code> <span class="fdt-note">— Vietnamese</span></div><pre><code class="lang-faber locale=vi"><span class="tok-kw">hàm</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T datum) <span class="tok-op">→</span> T {
     <span class="tok-kw">trả</span> datum
 }
 
 <span class="tok-kw">bắt_đầu</span> {
-    <span class="tok-kw">hằng</span> <span class="tok-kw">số</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">số</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
-}</code></pre></div><div class="fdt-panel" id="lt-23a5817852760936-1-p-ar" role="tabpanel" aria-labelledby="lt-23a5817852760936-1-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">دالة</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T datum) <span class="tok-op">→</span> T {
+    <span class="tok-kw">đặt</span> <span class="tok-kw">số</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">số</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
+}</code></pre></div><div class="fdt-panel" id="lt-23d0eddf7694aa41-1-p-ar" role="tabpanel" aria-labelledby="lt-23d0eddf7694aa41-1-t-ar"><div class="fdt-panel-label"><code>faber convert --to ar</code> <span class="fdt-note">— Arabic</span></div><pre class="ar" dir="rtl"><code class="lang-faber locale=ar"><span class="tok-kw">دالة</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T datum) <span class="tok-op">→</span> T {
     <span class="tok-kw">أعد</span> datum
 }
 
 <span class="tok-kw">بداية</span> {
-    <span class="tok-kw">ثابت</span> <span class="tok-kw">عدد</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">عدد</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
-}</code></pre></div><div class="fdt-panel" id="lt-23a5817852760936-1-p-hi" role="tabpanel" aria-labelledby="lt-23a5817852760936-1-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">फलन</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T datum) <span class="tok-op">→</span> T {
+    <span class="tok-kw">ليكن</span> <span class="tok-kw">عدد</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">عدد</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
+}</code></pre></div><div class="fdt-panel" id="lt-23d0eddf7694aa41-1-p-hi" role="tabpanel" aria-labelledby="lt-23d0eddf7694aa41-1-t-hi"><div class="fdt-panel-label"><code>faber convert --to hi</code> <span class="fdt-note">— Hindi</span></div><pre class="hi"><code class="lang-faber locale=hi"><span class="tok-kw">फलन</span> identitas<span class="tok-op">&lt;</span>T<span class="tok-op">&gt;</span>(T datum) <span class="tok-op">→</span> T {
     <span class="tok-kw">लौटाओ</span> datum
 }
 
 <span class="tok-kw">आरंभ</span> {
-    <span class="tok-kw">स्थिर</span> <span class="tok-kw">संख्या</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">संख्या</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
+    <span class="tok-kw">बैठा</span> <span class="tok-kw">संख्या</span> seven <span class="tok-op">←</span> identitas<span class="tok-op">&lt;</span><span class="tok-kw">संख्या</span><span class="tok-op">&gt;</span>(<span class="tok-nu">7</span>)
 }</code></pre></div></div><h3 id="collections">Collections<a class="anchor" href="#collections">#</a></h3><div class="table-scroll"><table><thead><tr><th>Type</th><th>Role</th><th>Sugar</th></tr></thead><tbody><tr><td><code>list&lt;T&gt;</code></td><td>Ordered dynamic collection</td><td><code>lf32</code>, <code>lu32</code></td></tr><tr><td><code>map&lt;K, V&gt;</code></td><td>Key-value map</td><td>—</td></tr><tr><td><code>tensor&lt;T, Figura&gt;</code></td><td>Dense fixed-shape buffer</td><td><code>tf32[4]</code>, <code>ti64[2,3]</code></td></tr><tr><td><code>sparsa&lt;T, Figura&gt;</code></td><td>Sparse fixed-shape buffer</td><td><code>sf32[4]</code>, <code>si64[2,3]</code></td></tr><tr><td><code>intervallum</code></td><td>Range type</td><td>—</td></tr><tr><td><code>set&lt;T&gt;</code></td><td>Unordered set</td><td>—</td></tr><tr><td><code>cursor&lt;T&gt;</code></td><td>Lazy stream</td><td>—</td></tr><tr><td><code>promise&lt;T&gt;</code></td><td>Async finite result from <code>async</code> functions; <code>promise&lt;T ⇥ E&gt;</code> carries a delayed alternate channel</td><td>—</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber">main {
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> nums <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alice"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"bob"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> }
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> nums <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    let map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alice"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"bob"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> }
 }</code></pre><h3 id="tensor-types">Tensor types<a class="anchor" href="#tensor-types">#</a></h3><p><code>tensor&lt;T, Figura&gt;</code> is the dense fixed-shape container:</p><div class="table-scroll"><table><thead><tr><th>Form</th><th>Meaning</th></tr></thead><tbody><tr><td><code>tensor&lt;T, Figura&gt;</code></td><td>Canonical spelling</td></tr><tr><td><code>tensor&lt;T, []&gt;</code></td><td>Rank-0 (scalar container)</td></tr><tr><td><code>tensor&lt;T, _&gt;</code></td><td>Shape inference hole</td></tr><tr><td><code>tensor&lt;T, [N]&gt;</code></td><td>Rank-1 vector</td></tr><tr><td><code>tensor&lt;T, [N, M]&gt;</code></td><td>Rank-2 matrix</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber">main {
-    const tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> scalar <span class="tok-op">←</span> empty
-    const tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> row <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>] ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
-    const int <span class="tok-op">∪</span> none first <span class="tok-op">←</span> row[<span class="tok-nu">0</span>]
+    let tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> scalar <span class="tok-op">←</span> empty
+    let tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> row <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>] ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
+    let int <span class="tok-op">∪</span> none first <span class="tok-op">←</span> row[<span class="tok-nu">0</span>]
 }</code></pre><h3 id="gpu-core-types">GPU core types<a class="anchor" href="#gpu-core-types">#</a></h3><p>These are recognised by the systems lane for GPU and register work.
 Package targets that lack hardware support reject them:</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">fn</span> half(f16 x) <span class="tok-op">→</span> f16 { <span class="tok-kw">return</span> x }
 
@@ -142,23 +142,24 @@ fn consume(own string buffer) <span class="tok-op">→</span> string {
 }
 
 main {
-    var int n <span class="tok-op">←</span> <span class="tok-nu">1</span>
-    const string s <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
+    mut int n <span class="tok-op">←</span> <span class="tok-nu">1</span>
+    let string s <span class="tok-op">←</span> <span class="tok-st">"salve"</span>
     imprime(s)
     duplica(mut n)
-    const _ t <span class="tok-op">←</span> consume(own s)
+    let t <span class="tok-op">←</span> consume(own s)
 }</code></pre><p>The call site repeats the <code>mut</code> and <code>own</code> markers (en <code>mut</code> and <code>own</code>):
-<code>duplica(in n)</code>, <code>consume(own s)</code>. Leaving one off is
-<code>SEM057 call_marker_missing</code>. A parameter with no marker is read-only.</p><h3 id="comparison-policy">Comparison policy<a class="anchor" href="#comparison-policy">#</a></h3><div class="table-scroll"><table><thead><tr><th>Operator</th><th>Family</th><th>Behaviour</th></tr></thead><tbody><tr><td><code class="glyph">≡</code>, <code class="glyph">≢</code></td><td>Exact equality</td><td>Identical types required; <code>null</code> bypass</td></tr><tr><td><code class="glyph">≅</code>, <code class="glyph">≇</code></td><td>Promoted exact equality</td><td>Numeric widths join, then exact compare</td></tr><tr><td><code class="glyph">≈</code>, <code class="glyph">≉</code></td><td>Fuzzy equality</td><td>Tolerance match — <code>isclose</code> defaults (rel_tol 1e-09); numeric operands only</td></tr><tr><td><code class="glyph">≺</code>, <code class="glyph">≤</code>, <code class="glyph">≻</code>, <code class="glyph">≥</code></td><td>Ordering</td><td>Numeric, instant, scalar text; ASCII <code class="glyph">&lt;</code> and <code class="glyph">&gt;</code> are generic delimiters, not comparisons</td></tr><tr><td><code class="glyph">∈</code>, <code class="glyph">∉</code></td><td>Membership</td><td>Element of a collection or range; never over text (use <code>contains</code>)</td></tr></tbody></table></div><h2 id="variables-and-binding">Variables and binding<a class="anchor" href="#variables-and-binding">#</a></h2><p>Faber has three variable keywords and a dedicated assignment glyph. The key
-distinction is between <code>const</code> (write-once) and <code>var</code> (freely reassignable),
-and between <code class="glyph">←</code> (runtime flow) and <code class="glyph">=</code> (structural field shape).</p><h3 id="fixum-immutable-binding">const — immutable binding<a class="anchor" href="#fixum-immutable-binding">#</a></h3><p><code>const</code> bindings are write-once. They may be declared with or without an
+<code>duplica(mut n)</code>, <code>consume(own s)</code>. Leaving one off is
+<code>SEM057 call_marker_missing</code>. A parameter with no marker is read-only.</p><h3 id="comparison-policy">Comparison policy<a class="anchor" href="#comparison-policy">#</a></h3><div class="table-scroll"><table><thead><tr><th>Operator</th><th>Family</th><th>Behaviour</th></tr></thead><tbody><tr><td><code class="glyph">≡</code>, <code class="glyph">≢</code></td><td>Exact equality</td><td>Identical types required; <code>null</code> bypass</td></tr><tr><td><code class="glyph">≅</code>, <code class="glyph">≇</code></td><td>Promoted exact equality</td><td>Numeric widths join, then exact compare</td></tr><tr><td><code class="glyph">≈</code>, <code class="glyph">≉</code></td><td>Fuzzy equality</td><td>Tolerance match — <code>isclose</code> defaults (rel_tol 1e-09); numeric operands only</td></tr><tr><td><code class="glyph">≺</code>, <code class="glyph">≤</code>, <code class="glyph">≻</code>, <code class="glyph">≥</code></td><td>Ordering</td><td>Numeric, instant, scalar text; ASCII <code class="glyph">&lt;</code> and <code class="glyph">&gt;</code> are generic delimiters, not comparisons</td></tr><tr><td><code class="glyph">∈</code>, <code class="glyph">∉</code></td><td>Membership</td><td>Element of a collection or range; never over text (use <code>contains</code>)</td></tr></tbody></table></div><h2 id="variables-and-binding">Variables and binding<a class="anchor" href="#variables-and-binding">#</a></h2><p>Faber has three binding words and a dedicated assignment glyph. The key
+distinction is between <code>let</code> (write-once) and <code>mut</code> (freely reassignable),
+and between <code class="glyph">←</code> (runtime flow) and <code class="glyph">=</code> (compile-time fact). <code>const</code> states a
+compile-time fact only: <code>const int LIMITE = 255</code>.</p><h3 id="sit-fixed-binding">let — fixed binding<a class="anchor" href="#sit-fixed-binding">#</a></h3><p><code>let</code> bindings are write-once. They may be declared with or without an
 initializer; if declared without, they must be assigned exactly once before
 reading. A second assignment is rejected.</p><pre class="faber-code"><code class="lang-faber">main {
-    const int count <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    const string name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    const _ inferred <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    let int count <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    let string name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    let inferred <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
 }</code></pre><p>Deferred initialisation:</p><pre class="faber-code"><code class="lang-faber">main {
-    const int factor
+    let int factor
     if true {
         factor <span class="tok-op">←</span> <span class="tok-nu">10</span>
     }
@@ -166,47 +167,47 @@ reading. A second assignment is rejected.</p><pre class="faber-code"><code class
         factor <span class="tok-op">←</span> <span class="tok-nu">100</span>
     }
     print factor
-}</code></pre><h3 id="varia-mutable-binding">var — mutable binding<a class="anchor" href="#varia-mutable-binding">#</a></h3><p><code>var</code> bindings are freely reassignable:</p><pre class="faber-code"><code class="lang-faber">main {
-    var int count <span class="tok-op">←</span> <span class="tok-nu">0</span>
+}</code></pre><h3 id="varia-mutable-binding">mut — mutable binding<a class="anchor" href="#varia-mutable-binding">#</a></h3><p><code>mut</code> bindings are freely reassignable:</p><pre class="faber-code"><code class="lang-faber">main {
+    mut int count <span class="tok-op">←</span> <span class="tok-nu">0</span>
     count <span class="tok-op">←</span> count <span class="tok-op">+</span> <span class="tok-nu">1</span>
     count <span class="tok-op">←</span> count <span class="tok-op">*</span> <span class="tok-nu">2</span>
-}</code></pre><h3 id="sit-inferred-immutable-sugar">let — inferred immutable sugar<a class="anchor" href="#sit-inferred-immutable-sugar">#</a></h3><p><code>let</code> is sugar for <code>const _</code> — an immutable binding with inferred type:</p><pre class="faber-code"><code class="lang-faber">main {
-    const _ salve <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
-    const _ name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
-    const _ x <span class="tok-op">←</span> <span class="tok-nu">42</span>
+}</code></pre><h3 id="sit-inferred-type">Inferred type<a class="anchor" href="#sit-inferred-type">#</a></h3><p>Leave the type off and <code>let</code> infers it — a fixed binding with an inferred type:</p><pre class="faber-code"><code class="lang-faber">main {
+    let salve <span class="tok-op">←</span> <span class="tok-st">"Salve"</span>
+    let name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
+    let x <span class="tok-op">←</span> <span class="tok-nu">42</span>
 
 <span class="tok-co">    # Deferred form</span>
-    const _ label
+    let label
     label <span class="tok-op">←</span> <span class="tok-st">"deferred"</span>
 }</code></pre><h3 id="runtime-binding-vs-structural-definition">Runtime binding vs structural definition<a class="anchor" href="#runtime-binding-vs-structural-definition">#</a></h3><p>Faber splits what most languages collapse into <code class="glyph">=</code>:</p><div class="table-scroll"><table><thead><tr><th>Glyph</th><th>Role</th><th>Use for</th></tr></thead><tbody><tr><td><code class="glyph">←</code></td><td>Runtime flow</td><td>Initial binding, reassignment, mutation</td></tr><tr><td><code class="glyph">=</code></td><td>Structural shape</td><td>Field names inside literals and metadata</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-faber">class Point {
-    const int x
-    const int y
+    let int x
+    let int y
 }
 
 main {
 <span class="tok-co">    # Runtime: ← attaches a value to a name at execution time</span>
-    var int count <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    var string label <span class="tok-op">←</span> <span class="tok-st">"ready"</span>
+    mut int count <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    mut string label <span class="tok-op">←</span> <span class="tok-st">"ready"</span>
     count <span class="tok-op">←</span> count <span class="tok-op">+</span> <span class="tok-nu">1</span>
 
 <span class="tok-co">    # Structural: = defines field values inside a type literal</span>
-    const _ p <span class="tok-op">←</span> Point { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
+    let p <span class="tok-op">←</span> Point { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
 }</code></pre><h3 id="ex-field-extraction">Field extraction (<code>from</code>)<a class="anchor" href="#ex-field-extraction">#</a></h3><p><code>from</code> extracts fields from a value into local bindings:</p><pre class="faber-code"><code class="lang-faber">class Persona {
-    const string nomen
-    const int aetas
+    let string nomen
+    let int aetas
 }
 
 main {
-    const _ p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
-    const string nomen <span class="tok-op">←</span> p.nomen
-    const int aetas <span class="tok-op">←</span> p.aetas
+    let p <span class="tok-op">←</span> Persona { nomen <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    let string nomen <span class="tok-op">←</span> p.nomen
+    let int aetas <span class="tok-op">←</span> p.aetas
 <span class="tok-co">    # prints "Marcus"</span>
     print nomen
 }</code></pre><h3 id="postfix-increment-and-decrement">Mutable numeric updates<a class="anchor" href="#postfix-increment-and-decrement">#</a></h3><p>Use binary <code class="glyph">+</code> and <code class="glyph">-</code> with runtime assignment <code class="glyph">←</code> to update mutable
 <code>int</code> places, or the postfix statements <code class="glyph">↑</code> and <code class="glyph">↓</code>, which add or subtract
 one. Postfix <code class="glyph">↑</code> and <code class="glyph">↓</code> are statements, not expressions: they cannot appear
 inside a larger expression, and the operand must be a mutable <code>int</code> place:</p><pre class="faber-code"><code class="lang-faber">main {
-    var int i <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    mut int i <span class="tok-op">←</span> <span class="tok-nu">0</span>
 <span class="tok-co">    # i becomes 1</span>
     i <span class="tok-op">←</span> i <span class="tok-op">+</span> <span class="tok-nu">1</span>
 <span class="tok-co">    # i becomes 2</span>
@@ -216,17 +217,17 @@ inside a larger expression, and the operand must be a mutable <code>int</code> p
     print i
 }</code></pre><h2 id="collections-2">Collections<a class="anchor" href="#collections-2">#</a></h2><p>Faber has several compiler-owned collection types. Their canonical methods
 live in the compiler, not in the standard library.</p><h3 id="lista">Lista — ordered dynamic collection<a class="anchor" href="#lista">#</a></h3><pre class="faber-code"><code class="lang-faber">main {
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> empty <span class="tok-op">←</span> empty
-    const _ numbers <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
-    const _ names <span class="tok-op">←</span> [<span class="tok-st">"Marcus"</span>, <span class="tok-st">"Julia"</span>, <span class="tok-st">"Gaius"</span>]
-    const _ nested <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]]
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> empty <span class="tok-op">←</span> empty
+    let numbers <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    let names <span class="tok-op">←</span> [<span class="tok-st">"Marcus"</span>, <span class="tok-st">"Julia"</span>, <span class="tok-st">"Gaius"</span>]
+    let nested <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]]
 }</code></pre><p>Spread with <code>spread</code>:</p><pre class="faber-code"><code class="lang-faber">main {
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]
-    const _ combined <span class="tok-op">←</span> [spread a, spread b]
-    const _ headed <span class="tok-op">←</span> [<span class="tok-nu">0</span>, spread a, <span class="tok-nu">99</span>]
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> a <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> b <span class="tok-op">←</span> [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]
+    let combined <span class="tok-op">←</span> [spread a, spread b]
+    let headed <span class="tok-op">←</span> [<span class="tok-nu">0</span>, spread a, <span class="tok-nu">99</span>]
 }</code></pre><p>Key methods: <code>length</code>, <code>get</code>, <code>append</code>, <code>sum</code>, <code>first</code>, <code>last</code>.</p><h3 id="tabula">Tabula — key-value map<a class="anchor" href="#tabula">#</a></h3><pre class="faber-code"><code class="lang-faber">main {
-    const map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alice"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"bob"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> }
+    let map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> scores <span class="tok-op">←</span> { <span class="tok-st">"alice"</span><span class="tok-op">:</span> <span class="tok-nu">10</span>, <span class="tok-st">"bob"</span><span class="tok-op">:</span> <span class="tok-nu">20</span> }
 }</code></pre><p>The <code class="glyph">:</code> there is not map syntax. A bare <code class="glyph">{ … }</code> is always
 <a href="#inline-json">inline JSON</a> — a compile-time <code class="typ">json</code> document whose keys are
 quoted strings separated by <code class="glyph">:</code>. Declaring the binding as a <code>map</code> ascribes
@@ -234,21 +235,21 @@ that document to a map type, which lowers it to a real constant map.</p><p>Faber
 type: <code>Point { x = 10 }</code>. There is no anonymous <code>{ key = expr }</code> object —
 writing one is a parse error, not a second spelling of the line above.</p><p>For a map you build up rather than declare whole, start from <code>empty</code> and
 assign by key:</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span><span class="tok-kw">string</span>, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> <span class="tok-kw">empty</span>
+    <span class="tok-kw">mut</span> <span class="tok-kw">map</span><span class="tok-op">&lt;</span><span class="tok-kw">string</span>, <span class="tok-kw">int</span><span class="tok-op">&gt;</span> puncta <span class="tok-op">←</span> <span class="tok-kw">empty</span>
     puncta[<span class="tok-st">"alpha"</span>] <span class="tok-op">←</span> <span class="tok-nu">1</span>
     puncta[<span class="tok-st">"beta"</span>] <span class="tok-op">←</span> <span class="tok-nu">2</span>
     <span class="tok-kw">print</span> puncta.length()
 }</code></pre><h3 id="tensor">Tensor — dense fixed-shape buffer<a class="anchor" href="#tensor">#</a></h3><pre class="faber-code"><code class="lang-faber">main {
-    const tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> scalar <span class="tok-op">←</span> empty
-    const tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> row <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>] ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
-    const int <span class="tok-op">∪</span> none first <span class="tok-op">←</span> row[<span class="tok-nu">0</span>]
+    let tensor<span class="tok-op">&lt;</span>f32, []<span class="tok-op">&gt;</span> scalar <span class="tok-op">←</span> empty
+    let tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span> row <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>] ↦ tensor<span class="tok-op">&lt;</span>int, [<span class="tok-nu">4</span>]<span class="tok-op">&gt;</span>
+    let int <span class="tok-op">∪</span> none first <span class="tok-op">←</span> row[<span class="tok-nu">0</span>]
 }</code></pre><p>Tensor sugar (numeric-heavy code):</p><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
-    <span class="tok-kw">const</span> tf32[<span class="tok-nu">4</span>] lanes <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>] ↦ tf32[<span class="tok-nu">4</span>]
+    <span class="tok-kw">let</span> tf32[<span class="tok-nu">4</span>] lanes <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>] ↦ tf32[<span class="tok-nu">4</span>]
 }</code></pre><p>Key methods: <code>reshape</code>, <code>get</code>, <code>set</code>, <code>create</code>, <code>tensor.structa</code> (Latin
 namespace lookup, not a receiver method), plus elementwise
 <code>added</code>/<code>subtracted</code>/<code>multiplied</code>/<code>divided</code>/<code>negate</code>, matrix multiplication
 (<code>matmul</code>), and reductions (<code>sum</code>, <code>mean</code>).</p><h3 id="sparsa">Sparsa — sparse fixed-shape buffer<a class="anchor" href="#sparsa">#</a></h3><pre class="faber-code"><code class="lang-faber locale=en"><span class="tok-kw">main</span> {
-    <span class="tok-kw">var</span> <span class="tok-kw">sparsa</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> sparse <span class="tok-op">←</span> <span class="tok-kw">empty</span>
+    <span class="tok-kw">mut</span> <span class="tok-kw">sparsa</span><span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> sparse <span class="tok-op">←</span> <span class="tok-kw">empty</span>
     sparse.<span class="tok-kw">set</span>([<span class="tok-nu">0</span>, <span class="tok-nu">1</span>], <span class="tok-nu">4.0</span>)
     sparse.<span class="tok-kw">set</span>([<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], <span class="tok-nu">9.0</span>)
 
@@ -257,23 +258,23 @@ namespace lookup, not a receiver method), plus elementwise
 <span class="tok-co">    # count of stored entries</span>
     <span class="tok-kw">print</span> sparse.count_nonzero()
 }</code></pre><p>Conversion between dense and sparse:</p><pre class="faber-code"><code class="lang-faber">main {
-    const tf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] dense <span class="tok-op">←</span> [[<span class="tok-nu">1.0</span>, <span class="tok-nu">0.0</span>], [<span class="tok-nu">0.0</span>, <span class="tok-nu">2.0</span>]] ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
-    const sf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] sparse <span class="tok-op">←</span> dense ↦ sparsa<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
-    const tf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] roundtrip <span class="tok-op">←</span> sparse ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
+    let tf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] dense <span class="tok-op">←</span> [[<span class="tok-nu">1.0</span>, <span class="tok-nu">0.0</span>], [<span class="tok-nu">0.0</span>, <span class="tok-nu">2.0</span>]] ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
+    let sf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] sparse <span class="tok-op">←</span> dense ↦ sparsa<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
+    let tf32[<span class="tok-nu">2</span>, <span class="tok-nu">2</span>] roundtrip <span class="tok-op">←</span> sparse ↦ tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">2</span>]<span class="tok-op">&gt;</span>
 }</code></pre><h3 id="cursors">Cursors — lazy streams<a class="anchor" href="#cursors">#</a></h3><p><code>cursor&lt;T&gt;</code> is a lazy stream type. Created from collection iterators,
 <code>recv</code> views, or generator functions. Consumed via <code>for from</code>:</p><pre class="faber-code"><code class="lang-faber">main {
-    const _ items <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    for from items const item {
+    let items <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    for from items let item {
         print item
     }
 }</code></pre><p>Generator <em>functions</em> declare their stream posture in the signature slot:
 <code>generator</code> is a synchronous stream and <code>async_generator</code> an asynchronous stream; the body
 yields values with <code>yield</code> (see <a href="/en-US/language/functions.html#async-and-streams">Functions — async and streams</a>).</p><h3 id="intervallum">Intervallum — ranges<a class="anchor" href="#intervallum">#</a></h3><pre class="faber-code"><code class="lang-faber"><span class="tok-co"># exclusive range: 0, 1, 2, 3, 4</span>
-for range <span class="tok-nu">0</span>‥<span class="tok-nu">5</span> const i {
+for range <span class="tok-nu">0</span>‥<span class="tok-nu">5</span> let i {
     print i
 }
 <span class="tok-co"># inclusive range: 0, 1, 2, 3, 4, 5</span>
-for range <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">5</span> const i {
+for range <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">5</span> let i {
     print i
 }</code></pre><p><code class="glyph">‥</code> is exclusive range endpoint; <code class="glyph">…</code> is inclusive.</p><h2 id="string-and-template-literals">String and template literals<a class="anchor" href="#string-and-template-literals">#</a></h2><p>Faber uses delimiter semantics — each quote form means a different source
 shape. They are not interchangeable synonyms.</p><h3 id="literal-forms">Literal forms<a class="anchor" href="#literal-forms">#</a></h3><div class="table-scroll"><table><thead><tr><th>Form</th><th>Type</th><th>Role</th></tr></thead><tbody><tr><td><code class="glyph">'…'</code></td><td><code>ascii</code></td><td>Fixed machine tokens; no <code class="glyph">§</code>; no <code class="glyph">(…)</code></td></tr><tr><td><code class="glyph">&quot;…&quot;</code></td><td><code>string</code></td><td>Short Unicode line strings; <code class="glyph">(…)</code> renders</td></tr><tr><td><code class="glyph">«…»</code></td><td><code>string</code></td><td>Block/multiline Unicode; <code class="glyph">(…)</code> renders</td></tr><tr><td><code></code> <code class="glyph">…</code> <code></code></td><td><code>forma</code></td><td>Captured templates; <code class="glyph">(…)</code> captures</td></tr><tr><td><code class="glyph">{ … }</code></td><td><code class="typ">json</code></td><td>Compile-time JSON document</td></tr><tr><td><code>\|…\|</code></td><td><code>list&lt;b8&gt;</code> (en <code>bytes</code>)</td><td>Compile-time hex bytes</td></tr><tr><td><code>regex /…/</code></td><td><code class="typ">regex</code></td><td>Inline pattern literal; raw body, <code class="glyph">\/</code> writes a slash</td></tr><tr><td><code class="glyph">_ /…/</code></td><td><code class="typ">regex</code></td><td>The same literal where the cell gives the type</td></tr><tr><td><code class="glyph">[ … ]</code></td><td><code>list&lt;T&gt;</code></td><td>Faber list literal</td></tr></tbody></table></div><h3 id="string-template-application">String-template application<a class="anchor" href="#string-template-application">#</a></h3><p>Faber formats text with string-template application: a <code class="glyph">&quot;…&quot;</code> or <code class="glyph">«…»</code>
@@ -282,40 +283,40 @@ literal with <code class="glyph">§</code> holes, then parenthesised arguments:<
 }
 
 main {
-    const int pagina <span class="tok-op">←</span> <span class="tok-nu">3</span>
-    const int totum <span class="tok-op">←</span> <span class="tok-nu">10</span>
-    const string code <span class="tok-op">←</span> <span class="tok-st">"200"</span>
-    const string label <span class="tok-op">←</span> <span class="tok-st">"OK"</span>
-    const _ msg <span class="tok-op">←</span> <span class="tok-st">"Page § of §"</span>(pagina, totum)
-    const _ block <span class="tok-op">←</span> <span class="tok-st">"status: § (§)"</span>(code, label)
-    const _ again <span class="tok-op">←</span> <span class="tok-st">"§1 of §0, §1"</span>(pagina, totum)
+    let int pagina <span class="tok-op">←</span> <span class="tok-nu">3</span>
+    let int totum <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    let string code <span class="tok-op">←</span> <span class="tok-st">"200"</span>
+    let string label <span class="tok-op">←</span> <span class="tok-st">"OK"</span>
+    let msg <span class="tok-op">←</span> <span class="tok-st">"Page § of §"</span>(pagina, totum)
+    let block <span class="tok-op">←</span> <span class="tok-st">"status: § (§)"</span>(code, label)
+    let again <span class="tok-op">←</span> <span class="tok-st">"§1 of §0, §1"</span>(pagina, totum)
 }</code></pre><p>Key rules:</p><ul><li><code class="glyph">§</code> (U+00A7) is the template hole</li><li>Numbered holes: <code>§N</code> selects argument N, counting from 0, and may repeat.
 <code>&quot;§1 of §0, §1&quot;(a, b)</code> reads <code>b</code>, then <code>a</code>, then <code>b</code> again</li><li>A numbered template needs max(N)+1 values, and every index below the highest
 must be read by some hole; a gap is <code>SEM008 template_hole_index_gap</code></li><li>Trailing <code class="glyph">!</code> selects display formatting: <code>&quot;Salve, §!&quot;(name)</code></li><li>The <code>(args)</code> suffix is template application, not a function call</li></ul><h3 id="block-strings">Block strings<a class="anchor" href="#block-strings">#</a></h3><p>Multiline blocks use guillemets <code class="glyph">«…»</code>:</p><pre class="faber-code"><code class="lang-faber">main {
-    const _ sql <span class="tok-op">←</span> «
+    let sql <span class="tok-op">←</span> «
         select id, email
         from accounts
     »
 }</code></pre><p>Guillemets are the only block-string spelling — the
 retired <code class="glyph">&quot;&quot;&quot;</code> and <code class="glyph">❝…❞</code> spellings fail as ordinary lex errors.</p><h3 id="captured-templates">Captured templates (forma)<a class="anchor" href="#captured-templates">#</a></h3><p>Backtick templates capture text and parameters without rendering.
 Safe for bound SQL/URL payloads:</p><pre class="faber-code"><code class="lang-faber">main {
-    const int user_id <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    const _ query <span class="tok-op">←</span> <span class="tok-st">`select * from users where id = §`</span>(user_id)
+    let int user_id <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    let query <span class="tok-op">←</span> <span class="tok-st">`select * from users where id = §`</span>(user_id)
 }</code></pre><h3 id="inline-json">Inline JSON<a class="anchor" href="#inline-json">#</a></h3><p>A bare <code class="glyph">{ … }</code> is inline JSON: a compile-time <code class="typ">json</code> document, not an
 anonymous Faber object. Keys are quoted strings separated by <code class="glyph">:</code>. Values are
 JSON constants only — no variable references, no Faber expressions. Ascribing
 one to a <a href="#tabula"><code>map</code></a> lowers it to a real constant map; <code>↦ value</code>
 widens it to the dynamic carrier instead:</p><pre class="faber-code"><code class="lang-faber">main {
-    const json blank <span class="tok-op">←</span> {}
-    const _ user <span class="tok-op">←</span> { <span class="tok-st">"name"</span><span class="tok-op">:</span> <span class="tok-st">"Marcus"</span>, <span class="tok-st">"age"</span><span class="tok-op">:</span> <span class="tok-nu">30</span>, <span class="tok-st">"active"</span><span class="tok-op">:</span> true }
-    const _ nested <span class="tok-op">←</span> { <span class="tok-st">"meta"</span><span class="tok-op">:</span> { <span class="tok-st">"version"</span><span class="tok-op">:</span> <span class="tok-nu">1</span> }, <span class="tok-st">"tags"</span><span class="tok-op">:</span> [<span class="tok-st">"alpha"</span>, <span class="tok-st">"beta"</span>] }
+    let json blank <span class="tok-op">←</span> {}
+    let user <span class="tok-op">←</span> { <span class="tok-st">"name"</span><span class="tok-op">:</span> <span class="tok-st">"Marcus"</span>, <span class="tok-st">"age"</span><span class="tok-op">:</span> <span class="tok-nu">30</span>, <span class="tok-st">"active"</span><span class="tok-op">:</span> true }
+    let nested <span class="tok-op">←</span> { <span class="tok-st">"meta"</span><span class="tok-op">:</span> { <span class="tok-st">"version"</span><span class="tok-op">:</span> <span class="tok-nu">1</span> }, <span class="tok-st">"tags"</span><span class="tok-op">:</span> [<span class="tok-st">"alpha"</span>, <span class="tok-st">"beta"</span>] }
 }</code></pre><p>For typed class construction, use the type name and <code class="glyph">=</code> field shape:</p><pre class="faber-code"><code class="lang-faber">class Point {
-    const int x
-    const int y
+    let int x
+    let int y
 }
 
 main {
-    const _ p <span class="tok-op">←</span> Point { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
+    let p <span class="tok-op">←</span> Point { x <span class="tok-op">=</span> <span class="tok-nu">10</span>, y <span class="tok-op">=</span> <span class="tok-nu">20</span> }
 }</code></pre><h2 id="nullability-and-optionality">Nullability and optionality<a class="anchor" href="#nullability-and-optionality">#</a></h2><p>Faber distinguishes absence in a value from optional provision at a
 declaration site.</p><h3 id="nullable-values">Nullable values — T ∪ none<a class="anchor" href="#nullable-values">#</a></h3><p>Use <code>T ∪ none</code> when the value can be absent:</p><pre class="faber-code"><code class="lang-faber">fn find(string key) <span class="tok-op">→</span> int <span class="tok-op">∪</span> none {
     return null
@@ -329,37 +330,37 @@ by the caller or constructor:</p><pre class="faber-code"><code class="lang-faber
 }
 
 class User {
-    const string email optional
+    let string email optional
 }</code></pre><p>Borrow markers can combine with optional parameters:</p><pre class="faber-code"><code class="lang-faber">fn process(ref int depth optional) <span class="tok-op">→</span> void {
 }</code></pre><h3 id="non-null-assertion">Non-null assertion — !<a class="anchor" href="#non-null-assertion">#</a></h3><p>Use <code class="glyph">!.</code>, <code class="glyph">![</code>, <code class="glyph">!(</code> to assert a nullable value is not <code>null</code>:</p><pre class="faber-code"><code class="lang-faber">class Box {
-    const int <span class="tok-op">∪</span> none val
+    let int <span class="tok-op">∪</span> none val
 }
 
 main {
-    const Box <span class="tok-op">∪</span> none maybe_name <span class="tok-op">←</span> Box { val <span class="tok-op">=</span> <span class="tok-nu">7</span> }
-    const _ name <span class="tok-op">←</span> maybe_name<span class="tok-op">!.</span>val
+    let Box <span class="tok-op">∪</span> none maybe_name <span class="tok-op">←</span> Box { val <span class="tok-op">=</span> <span class="tok-nu">7</span> }
+    let name <span class="tok-op">←</span> maybe_name<span class="tok-op">!.</span>val
 }</code></pre><p>A non-null assertion on <code>null</code> aborts at runtime.</p><h3 id="nullish-coalescing">Nullish coalescing — vel<a class="anchor" href="#nullish-coalescing">#</a></h3><pre class="faber-code"><code class="lang-faber">main {
-    const string <span class="tok-op">∪</span> none provided <span class="tok-op">←</span> null
-    const _ name <span class="tok-op">←</span> provided coalesce <span class="tok-st">"default"</span>
+    let string <span class="tok-op">∪</span> none provided <span class="tok-op">←</span> null
+    let name <span class="tok-op">←</span> provided coalesce <span class="tok-st">"default"</span>
 }</code></pre><h3 id="ignotum">unknown<a class="anchor" href="#ignotum">#</a></h3><p><code>unknown</code> is the top-level unknown type for escape hatches and incomplete
 knowledge. It is not a nullability mechanism.</p><h2 id="conversion-and-construction">Conversion and construction<a class="anchor" href="#conversion-and-construction">#</a></h2><p>Two important conversion operators, one for runtime and one for compile-time:</p><pre class="faber-code"><code class="lang-faber">main {
 <span class="tok-co">    # runtime conversion</span>
-    const _ parsed <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ int ⊥ <span class="tok-nu">0</span>
+    let parsed <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ int ⊥ <span class="tok-nu">0</span>
 <span class="tok-co">    # static ascription</span>
-    const int count <span class="tok-op">←</span> <span class="tok-nu">7</span>
-    const _ text <span class="tok-op">←</span> count ∷ string
+    let int count <span class="tok-op">←</span> <span class="tok-nu">7</span>
+    let text <span class="tok-op">←</span> count ∷ string
 }</code></pre><h3 id="runtime-conversion">Runtime conversion — ↦<a class="anchor" href="#runtime-conversion">#</a></h3><p>Use <code class="glyph">↦</code> for runtime conversion, especially parsing or coercion that may
 fail. Supply an inline default with <code class="glyph">⊥</code>:</p><pre class="faber-code"><code class="lang-faber">main {
-    const string input <span class="tok-op">←</span> <span class="tok-st">"9"</span>
-    const _ n <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ int ⊥ <span class="tok-nu">0</span>
-    const _ safe <span class="tok-op">←</span> input ↦ int ⊥ <span class="tok-nu">0</span>
+    let string input <span class="tok-op">←</span> <span class="tok-st">"9"</span>
+    let n <span class="tok-op">←</span> <span class="tok-st">"42"</span> ↦ int ⊥ <span class="tok-nu">0</span>
+    let safe <span class="tok-op">←</span> input ↦ int ⊥ <span class="tok-nu">0</span>
 }</code></pre><p>Type-directed materialization:</p><pre class="faber-code"><code class="lang-faber">main {
-    const string path <span class="tok-op">←</span> <span class="tok-st">"/etc/hosts"</span>
-    const _ lanes <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>] ↦ vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">4</span><span class="tok-op">&gt;</span>
-    const _ body <span class="tok-op">←</span> call <span class="tok-st">'solum:lege'</span> (path) ↦ string
+    let string path <span class="tok-op">←</span> <span class="tok-st">"/etc/hosts"</span>
+    let lanes <span class="tok-op">←</span> [<span class="tok-nu">1.0</span>, <span class="tok-nu">2.0</span>, <span class="tok-nu">3.0</span>, <span class="tok-nu">4.0</span>] ↦ vector<span class="tok-op">&lt;</span>f32, <span class="tok-nu">4</span><span class="tok-op">&gt;</span>
+    let body <span class="tok-op">←</span> call <span class="tok-st">'solum:lege'</span> (path) ↦ string
 }</code></pre><h3 id="static-ascription">Static ascription — ∷<a class="anchor" href="#static-ascription">#</a></h3><p>Use <code class="glyph">∷</code> for explicit static type ascription. It is postfix and
 target-type driven:</p><pre class="faber-code"><code class="lang-faber">main {
-    const int count <span class="tok-op">←</span> <span class="tok-nu">7</span>
-    const _ x <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
-    const _ text <span class="tok-op">←</span> count ∷ string
-}</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#data-types">Data types</a></li><li class="toc-3"><a href="#primitive-types">Primitive types</a></li><li class="toc-3"><a href="#sized-numeric-types">Sized numeric types</a></li><li class="toc-3"><a href="#raw-bits">Raw bits</a></li><li class="toc-3"><a href="#nullable-types">Nullable types</a></li><li class="toc-3"><a href="#type-aliases">Type aliases</a></li><li class="toc-3"><a href="#generics">Generics</a></li><li class="toc-3"><a href="#collections">Collections</a></li><li class="toc-3"><a href="#tensor-types">Tensor types</a></li><li class="toc-3"><a href="#gpu-core-types">GPU core types</a></li><li class="toc-3"><a href="#borrow-markers">Borrow markers on types</a></li><li class="toc-3"><a href="#comparison-policy">Comparison policy</a></li><li class="toc-2"><a href="#variables-and-binding">Variables and binding</a></li><li class="toc-3"><a href="#fixum-immutable-binding">const — immutable binding</a></li><li class="toc-3"><a href="#varia-mutable-binding">var — mutable binding</a></li><li class="toc-3"><a href="#sit-inferred-immutable-sugar">let — inferred immutable sugar</a></li><li class="toc-3"><a href="#runtime-binding-vs-structural-definition">Runtime binding vs structural definition</a></li><li class="toc-3"><a href="#ex-field-extraction">Field extraction (from)</a></li><li class="toc-3"><a href="#postfix-increment-and-decrement">Mutable numeric updates</a></li><li class="toc-2"><a href="#collections-2">Collections</a></li><li class="toc-3"><a href="#lista">Lista — ordered dynamic collection</a></li><li class="toc-3"><a href="#tabula">Tabula — key-value map</a></li><li class="toc-3"><a href="#tensor">Tensor — dense fixed-shape buffer</a></li><li class="toc-3"><a href="#sparsa">Sparsa — sparse fixed-shape buffer</a></li><li class="toc-3"><a href="#cursors">Cursors — lazy streams</a></li><li class="toc-3"><a href="#intervallum">Intervallum — ranges</a></li><li class="toc-2"><a href="#string-and-template-literals">String and template literals</a></li><li class="toc-3"><a href="#literal-forms">Literal forms</a></li><li class="toc-3"><a href="#string-template-application">String-template application</a></li><li class="toc-3"><a href="#block-strings">Block strings</a></li><li class="toc-3"><a href="#captured-templates">Captured templates (forma)</a></li><li class="toc-3"><a href="#inline-json">Inline JSON</a></li><li class="toc-2"><a href="#nullability-and-optionality">Nullability and optionality</a></li><li class="toc-3"><a href="#nullable-values">Nullable values — T ∪ none</a></li><li class="toc-3"><a href="#optional-declaration-slots">Optional declaration slots — optional</a></li><li class="toc-3"><a href="#non-null-assertion">Non-null assertion — !</a></li><li class="toc-3"><a href="#nullish-coalescing">Nullish coalescing — vel</a></li><li class="toc-3"><a href="#ignotum">unknown</a></li><li class="toc-2"><a href="#conversion-and-construction">Conversion and construction</a></li><li class="toc-3"><a href="#runtime-conversion">Runtime conversion — ↦</a></li><li class="toc-3"><a href="#static-ascription">Static ascription — ∷</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+    let int count <span class="tok-op">←</span> <span class="tok-nu">7</span>
+    let x <span class="tok-op">←</span> <span class="tok-nu">7</span> ∷ i32
+    let text <span class="tok-op">←</span> count ∷ string
+}</code></pre></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#data-types">Data types</a></li><li class="toc-3"><a href="#primitive-types">Primitive types</a></li><li class="toc-3"><a href="#sized-numeric-types">Sized numeric types</a></li><li class="toc-3"><a href="#raw-bits">Raw bits</a></li><li class="toc-3"><a href="#nullable-types">Nullable types</a></li><li class="toc-3"><a href="#type-aliases">Type aliases</a></li><li class="toc-3"><a href="#generics">Generics</a></li><li class="toc-3"><a href="#collections">Collections</a></li><li class="toc-3"><a href="#tensor-types">Tensor types</a></li><li class="toc-3"><a href="#gpu-core-types">GPU core types</a></li><li class="toc-3"><a href="#borrow-markers">Borrow markers on types</a></li><li class="toc-3"><a href="#comparison-policy">Comparison policy</a></li><li class="toc-2"><a href="#variables-and-binding">Variables and binding</a></li><li class="toc-3"><a href="#sit-fixed-binding">let — fixed binding</a></li><li class="toc-3"><a href="#varia-mutable-binding">mut — mutable binding</a></li><li class="toc-3"><a href="#sit-inferred-type">Inferred type</a></li><li class="toc-3"><a href="#runtime-binding-vs-structural-definition">Runtime binding vs structural definition</a></li><li class="toc-3"><a href="#ex-field-extraction">Field extraction (from)</a></li><li class="toc-3"><a href="#postfix-increment-and-decrement">Mutable numeric updates</a></li><li class="toc-2"><a href="#collections-2">Collections</a></li><li class="toc-3"><a href="#lista">Lista — ordered dynamic collection</a></li><li class="toc-3"><a href="#tabula">Tabula — key-value map</a></li><li class="toc-3"><a href="#tensor">Tensor — dense fixed-shape buffer</a></li><li class="toc-3"><a href="#sparsa">Sparsa — sparse fixed-shape buffer</a></li><li class="toc-3"><a href="#cursors">Cursors — lazy streams</a></li><li class="toc-3"><a href="#intervallum">Intervallum — ranges</a></li><li class="toc-2"><a href="#string-and-template-literals">String and template literals</a></li><li class="toc-3"><a href="#literal-forms">Literal forms</a></li><li class="toc-3"><a href="#string-template-application">String-template application</a></li><li class="toc-3"><a href="#block-strings">Block strings</a></li><li class="toc-3"><a href="#captured-templates">Captured templates (forma)</a></li><li class="toc-3"><a href="#inline-json">Inline JSON</a></li><li class="toc-2"><a href="#nullability-and-optionality">Nullability and optionality</a></li><li class="toc-3"><a href="#nullable-values">Nullable values — T ∪ none</a></li><li class="toc-3"><a href="#optional-declaration-slots">Optional declaration slots — optional</a></li><li class="toc-3"><a href="#non-null-assertion">Non-null assertion — !</a></li><li class="toc-3"><a href="#nullish-coalescing">Nullish coalescing — vel</a></li><li class="toc-3"><a href="#ignotum">unknown</a></li><li class="toc-2"><a href="#conversion-and-construction">Conversion and construction</a></li><li class="toc-3"><a href="#runtime-conversion">Runtime conversion — ↦</a></li><li class="toc-3"><a href="#static-ascription">Static ascription — ∷</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

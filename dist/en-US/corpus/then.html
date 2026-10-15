@@ -31,7 +31,7 @@ fn clamp(int x) <span class="tok-op">→</span> int {
 }
 
 fn inveni(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res, int quaesitum) <span class="tok-op">→</span> int <span class="tok-op">∪</span> none {
-    for from res const item {
+    for from res let item {
         if item <span class="tok-op">≡</span> quaesitum then return item
     }
     return null
@@ -95,14 +95,14 @@ fn gradus(int puncta) <span class="tok-op">→</span> string {
 
 <span class="tok-co"># Early return inside for from loop</span>
 fn inveni(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> res, int quaesitum) <span class="tok-op">→</span> int <span class="tok-op">∪</span> none {
-    for from res const item {
+    for from res let item {
         if item <span class="tok-op">≡</span> quaesitum then return item
     }
     return null
 }
 
 fn habet(map<span class="tok-op">&lt;</span>string, int<span class="tok-op">&gt;</span> map, string clavis) <span class="tok-op">→</span> bool {
-    for ref map const k {
+    for ref map let k {
         if k <span class="tok-op">≡</span> clavis then return true
     }
     return false
@@ -126,7 +126,7 @@ main {
     print gradus(<span class="tok-nu">55</span>)
 
 <span class="tok-co">    # Linear search with early return</span>
-    const _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    let numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
     print inveni(numeri, <span class="tok-nu">3</span>)
     print inveni(numeri, <span class="tok-nu">9</span>)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>negativus
@@ -169,22 +169,22 @@ none
 
 main {
 <span class="tok-co">    # then replaces a one-statement block body</span>
-    const _ x <span class="tok-op">←</span> <span class="tok-nu">10</span>
+    let x <span class="tok-op">←</span> <span class="tok-nu">10</span>
 
     if x ≻ <span class="tok-nu">5</span> then print <span class="tok-st">"x magnum est"</span>
 
 <span class="tok-co">    # else then pairs else with a single consequent</span>
-    const _ aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
+    let aetas <span class="tok-op">←</span> <span class="tok-nu">25</span>
     if aetas <span class="tok-op">≥</span> <span class="tok-nu">18</span> then print <span class="tok-st">"adultus"</span>
     else then print <span class="tok-st">"minor"</span>
 
 <span class="tok-co">    # Two-way one-liner (85 &lt; 90 → "not A")</span>
-    const _ puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
+    let puncta <span class="tok-op">←</span> <span class="tok-nu">85</span>
     if puncta <span class="tok-op">≥</span> <span class="tok-nu">90</span> then print <span class="tok-st">"A"</span>
     else then print <span class="tok-st">"non A"</span>
 
 <span class="tok-co">    # bool condition used directly</span>
-    const _ valet <span class="tok-op">←</span> true
+    let valet <span class="tok-op">←</span> true
     if valet then print <span class="tok-st">"Recte"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>x magnum est
 adultus

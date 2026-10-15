@@ -1,0 +1,5 @@
+आरंभ {
+    बैठा सूची<पाठ> nomina ← ["Marcus", "Julia"]
+    बैठा तालिका<पाठ, संख्या> aetates ← { "Marcus": 30 }
+    दिखाओ nomina, aetates
+}

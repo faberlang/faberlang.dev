@@ -111,7 +111,8 @@ Generated from the packs. The Latin column is the pack key and the compiler's in
 | maxima       max
 | minima       min
 | regio        module
-| in           mut
+| varia        mut
+| varia        mut
 | nomen        name
 | nonnumerus   nan
 | non          not
@@ -176,7 +177,6 @@ Generated from the packs. The Latin column is the pack key and the compiler's in
 | discretio    union
 | nondum       unstable
 | usque        until
-| varia        var
 | finge        variant
 | vertex       vertex
 | via          via

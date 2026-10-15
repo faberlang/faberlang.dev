@@ -11,7 +11,7 @@ sources = []
 
 ```faber locale-tabs
 incipit {
-    fixum numerus n ← 2
+    sit numerus n ← 2
 
     si n ≡ 1 {
         nota "one"
@@ -44,7 +44,7 @@ incipit {
 
 ```faber locale-tabs
 incipit {
-    fixum numerus n ← 2
+    sit numerus n ← 2
 
     elige n {
         casu 1 { nota "one" }
@@ -61,11 +61,11 @@ incipit {
 
 ```faber locale-tabs
 incipit {
-    fixum numerus ∪ textus signum ← 7
+    sit numerus ∪ textus signum ← 7
 
     discerne signum {
-        casu numerus fixum n { nota "a number" }
-        casu textus fixum s { nota "a text" }
+        casu numerus sit n { nota "a number" }
+        casu textus sit s { nota "a text" }
     }
 }
 ```

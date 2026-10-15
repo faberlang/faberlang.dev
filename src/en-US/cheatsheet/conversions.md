@@ -12,9 +12,9 @@ fail — which is exactly what distinguishes it from casting.
 
 ```faber locale-tabs
 incipit {
-    fixum numerus n ← "42" ↦ numerus
-    fixum textus s ← 42 ↦ textus
-    fixum f64 f ← "3.14159" ↦ f64
+    sit numerus n ← "42" ↦ numerus
+    sit textus s ← 42 ↦ textus
+    sit f64 f ← "3.14159" ↦ f64
     nota n, s, f
 }
 ```
@@ -31,9 +31,9 @@ with ties going to the even neighbour.
 
 ```faber
 incipit {
-    fixum f64 x ← 2.5
-    fixum f64 y ← 3.5
-    fixum f64 z ← -2.5
+    sit f64 x ← 2.5
+    sit f64 y ← 3.5
+    sit f64 z ← -2.5
     nota x ↦ numerus via floor
     nota x ↦ numerus via ceil
     nota x ↦ numerus via half_even
@@ -58,8 +58,8 @@ $ faber run
 
 ```faber outcome=rejects
 incipit {
-    fixum f64 x ← 2.5
-    fixum numerus n ← x ↦ numerus
+    sit f64 x ← 2.5
+    sit numerus n ← x ↦ numerus
     nota n
 }
 ```
@@ -71,8 +71,8 @@ failed conversion travels down the [error channel](/cheatsheet/errors.html).
 
 ```faber locale-tabs
 incipit {
-    fixum numerus good ← "42" ↦ numerus ⊥ 0
-    fixum numerus bad ← "not a number" ↦ numerus ⊥ 0
+    sit numerus good ← "42" ↦ numerus ⊥ 0
+    sit numerus bad ← "not a number" ↦ numerus ⊥ 0
     nota good, bad
 }
 ```
@@ -86,7 +86,7 @@ Conversions apply left to right.
 
 ```faber locale-tabs
 incipit {
-    fixum textus roundtrip ← "42" ↦ numerus ↦ textus
+    sit textus roundtrip ← "42" ↦ numerus ↦ textus
     nota roundtrip
 }
 ```
@@ -97,8 +97,8 @@ The target can name a precise width, not just a family.
 
 ```faber locale-tabs
 incipit {
-    fixum i32 narrow ← "255" ↦ i32
-    fixum f32 single ← "1.5" ↦ f32
+    sit i32 narrow ← "255" ↦ i32
+    sit f32 single ← "1.5" ↦ f32
     nota narrow, single
 }
 ```

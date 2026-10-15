@@ -21,38 +21,38 @@
 <span class="tok-co"># 42.145 ≅ 42 must stay false (no hidden tolerance).</span>
 
 main {
-    const u8 port <span class="tok-op">←</span> <span class="tok-nu">42</span> ∷ u8
-    const int count <span class="tok-op">←</span> <span class="tok-nu">42</span>
-    const _ same_width <span class="tok-op">←</span> port <span class="tok-op">≅</span> count
+    let u8 port <span class="tok-op">←</span> <span class="tok-nu">42</span> ∷ u8
+    let int count <span class="tok-op">←</span> <span class="tok-nu">42</span>
+    let same_width <span class="tok-op">←</span> port <span class="tok-op">≅</span> count
     print same_width
 
-    const _ int_float <span class="tok-op">←</span> <span class="tok-nu">1</span> <span class="tok-op">≅</span> <span class="tok-nu">1.0</span>
+    let int_float <span class="tok-op">←</span> <span class="tok-nu">1</span> <span class="tok-op">≅</span> <span class="tok-nu">1.0</span>
     print int_float
 
-    const _ not_fuzzy <span class="tok-op">←</span> <span class="tok-nu">42.145</span> ∷ f64 <span class="tok-op">≅</span> <span class="tok-nu">42.0</span> ∷ f64
+    let not_fuzzy <span class="tok-op">←</span> <span class="tok-nu">42.145</span> ∷ f64 <span class="tok-op">≅</span> <span class="tok-nu">42.0</span> ∷ f64
     print not_fuzzy
 
-    const _ differs <span class="tok-op">←</span> <span class="tok-nu">1</span> <span class="tok-op">≇</span> <span class="tok-nu">2</span>
+    let differs <span class="tok-op">←</span> <span class="tok-nu">1</span> <span class="tok-op">≇</span> <span class="tok-nu">2</span>
     print differs
 
 <span class="tok-co">    # Sign-boundary pin: a negative signed value never wraps to u64::MAX.</span>
-    const i64 signed_negative <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
-    const u64 unsigned_max <span class="tok-op">←</span> <span class="tok-nu">18446744073709551615</span>
-    const _ sign_equal <span class="tok-op">←</span> signed_negative <span class="tok-op">≅</span> unsigned_max
-    const _ sign_different <span class="tok-op">←</span> signed_negative <span class="tok-op">≇</span> unsigned_max
+    let i64 signed_negative <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
+    let u64 unsigned_max <span class="tok-op">←</span> <span class="tok-nu">18446744073709551615</span>
+    let sign_equal <span class="tok-op">←</span> signed_negative <span class="tok-op">≅</span> unsigned_max
+    let sign_different <span class="tok-op">←</span> signed_negative <span class="tok-op">≇</span> unsigned_max
     print sign_equal
     print sign_different
 
 <span class="tok-co">    # Cross-width pin: the 2^53+1 integer remains distinct from 2^53.</span>
-    const i64 above_precision <span class="tok-op">←</span> <span class="tok-nu">9007199254740993</span>
-    const u64 below_precision <span class="tok-op">←</span> <span class="tok-nu">9007199254740992</span>
-    const _ cross_width <span class="tok-op">←</span> above_precision <span class="tok-op">≅</span> below_precision
+    let i64 above_precision <span class="tok-op">←</span> <span class="tok-nu">9007199254740993</span>
+    let u64 below_precision <span class="tok-op">←</span> <span class="tok-nu">9007199254740992</span>
+    let cross_width <span class="tok-op">←</span> above_precision <span class="tok-op">≅</span> below_precision
     print cross_width
 
 <span class="tok-co">    # Exactness pin: 2^53+1 is not representable as f64, so it is not equal to</span>
 <span class="tok-co">    # the float 2^53 (comparison never rounds the integer side).</span>
-    const f64 float_boundary <span class="tok-op">←</span> <span class="tok-nu">9007199254740992.0</span>
-    const bool int_float_honesty <span class="tok-op">←</span> above_precision <span class="tok-op">≅</span> float_boundary
+    let f64 float_boundary <span class="tok-op">←</span> <span class="tok-nu">9007199254740992.0</span>
+    let bool int_float_honesty <span class="tok-op">←</span> above_precision <span class="tok-op">≅</span> float_boundary
     print int_float_honesty
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>true
 true

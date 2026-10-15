@@ -268,7 +268,7 @@ def document_html(root):
 
 # Exact-match classification against the closed identifier set.
 SPAN_KEYWORDS = (
-    "functio", "fixum", "varia", "genus", "importa", "si", "sin", "secus",
+    "functio", "fixum", "sit", "varia", "genus", "importa", "si", "sin", "secus",
     "dum", "fac", "itera", "perge", "rumpe", "redde", "casu", "ceterum",
     "elige", "discerne", "tempta", "cape", "demum", "falsum", "verum",
     "nihil", "et", "aut", "non", "est", "nota", "mone", "scribe", "vide",

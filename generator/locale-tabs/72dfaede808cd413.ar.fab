@@ -1,0 +1,9 @@
+نمط Nomen = نص
+
+نمط Puncta = قائمة<عدد>
+
+بداية {
+    ليكن Nomen n ← "Marcus"
+    ليكن Puncta p ← [1, 2, 3]
+    اعرض n, p
+}

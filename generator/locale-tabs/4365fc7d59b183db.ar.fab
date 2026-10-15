@@ -1,6 +1,0 @@
-بداية {
-    ثابت عدد limit ← 10
-    متغير عدد count ← 0
-    count ← count + 1
-    اعرض limit, count
-}

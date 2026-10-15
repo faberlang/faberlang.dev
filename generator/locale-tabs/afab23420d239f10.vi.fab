@@ -1,0 +1,5 @@
+bắt_đầu {
+    đặt i32 narrow ← "255" ↦ i32
+    đặt f32 single ← "1.5" ↦ f32
+    ghi_chú narrow, single
+}

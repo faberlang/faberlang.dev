@@ -34,9 +34,9 @@ Inferred result locals below mix fixum _ (explicit infer marker) with sit
 binarius.expected
 main {
 Arithmetica: + - * / %
-    const int summa ← 10 + 5
+    let int summa ← 10 + 5
     print summa
-    const int differentia ← 10 - 5
+    let int differentia ← 10 - 5
     print differentia
     let productum ← 10 * 5
     print productum
@@ -45,7 +45,7 @@ Arithmetica: + - * / %
     let reliquum ← 10 % 3
     print reliquum
 Assignatio explicita (compound glyphs removed)
-    var int index ← 0
+    mut int index ← 0
     index ← index + 10
     index ↑
     index ↓
@@ -72,12 +72,12 @@ Logica
     let short ← false and carum()
     print short
 vel
-    const string ∪ none nomen ← null
+    let string ∪ none nomen ← null
     let solutum ← nomen coalesce "defectum"
     print solutum
-    const string ∪ none primum ← null
-    const string ∪ none secundum ← null
-    const string tertium ← "inventum"
+    let string ∪ none primum ← null
+    let string ∪ none secundum ← null
+    let string tertium ← "inventum"
     let inventum ← (primum coalesce secundum) coalesce tertium
     print inventum
 ✓ ✗ — value conditional, one level only

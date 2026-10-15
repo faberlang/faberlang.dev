@@ -42,9 +42,9 @@ Faber पैरामीटर पर छोटे पूर्वसर्ग�
 | पैरामीटर पर `de textus name` | साझा borrow |
 | पैरामीटर पर `in numerus count` | mutable borrow |
 | पैरामीटर पर `ex textus buffer` | callee में move करना |
-| `itera ex items fixum item` | मानों पर iterate करना |
-| `itera de tabula fixum key` | keys पर iterate करना |
-| `ex source fixum x, ceteri rest` | fields को destructure करना |
+| `itera ex items sit item` | मानों पर iterate करना |
+| `itera de tabula sit key` | keys पर iterate करना |
+| `ex source sit x, ceteri rest` | fields को destructure करना |
 | `importa ex "path"` | module से import करना |
 
 ## Entry point {#entry-point}

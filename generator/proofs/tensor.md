@@ -40,8 +40,8 @@ functio identity(tensor<f32, []> value) → tensor<f32, []> {
 }
 
 incipit {
-    fixum tensor<f32, []> empty ← vacua
-    fixum tensor<f32, []> roundtrip ← identity(empty)
+    sit tensor<f32, []> empty ← vacua
+    sit tensor<f32, []> roundtrip ← identity(empty)
 
     nota roundtrip.longitudo()
 }
@@ -69,14 +69,14 @@ Tensor arithmetic rejects non-numeric elements and mixed numeric widths.
 # per-backend EXPECTED_FAILURES lists.
 
 incipit {
-    fixum tensor<textus, [2]> words_a ← vacua
-    fixum tensor<textus, [2]> words_b ← vacua
-    fixum tensor<textus, [2]> words_sum ← words_a.addita(words_b)
+    sit tensor<textus, [2]> words_a ← vacua
+    sit tensor<textus, [2]> words_b ← vacua
+    sit tensor<textus, [2]> words_sum ← words_a.addita(words_b)
     nota words_sum.longitudo()
 
-    fixum tensor<i32, [2]> i32_a ← vacua
-    fixum tensor<i64, [2]> i64_b ← vacua
-    fixum tensor<i32, [2]> mixed ← i32_a.addita(i64_b)
+    sit tensor<i32, [2]> i32_a ← vacua
+    sit tensor<i64, [2]> i64_b ← vacua
+    sit tensor<i32, [2]> mixed ← i32_a.addita(i64_b)
     nota mixed.longitudo()
 }
 ```

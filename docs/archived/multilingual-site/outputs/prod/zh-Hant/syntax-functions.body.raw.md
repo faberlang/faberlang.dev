@@ -42,9 +42,9 @@ Faber 使用參數上的簡短介系詞標記值的傳遞方式：
 | 參數上的 `de textus name` | 共用借用 |
 | 參數上的 `in numerus count` | 可變借用 |
 | 參數上的 `ex textus buffer` | 移入被呼叫者 |
-| `itera ex items fixum item` | 迭代值 |
-| `itera de tabula fixum key` | 迭代鍵 |
-| `ex source fixum x, ceteri rest` | 解構欄位 |
+| `itera ex items sit item` | 迭代值 |
+| `itera de tabula sit key` | 迭代鍵 |
+| `ex source sit x, ceteri rest` | 解構欄位 |
 | `importa ex "path"` | 從模組匯入 |
 
 ## 進入點 {#entry-point}

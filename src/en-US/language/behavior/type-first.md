@@ -25,12 +25,13 @@ is the same shape whether it is a parameter, a local, a field, or a return.
 
 | Word | Meaning |
 |---|---|
-| `const` | immutable binding — written once |
-| `var` | mutable binding — reassignable |
-| `let` | concise inferred immutable |
+| `let` | fixed binding — written once |
+| `mut` | writable binding — reassignable |
+| `ref` | read-only binding that can be pointed elsewhere |
 
 All three introduce a name with `←`. The word fixes whether the name may be
-reassigned, not when the value exists.
+reassigned, not when the value exists. `const` is not a run-time binding: it
+states a compile-time fact and is written with `=`.
 
 ## Absence and omission are different {#absence}
 
@@ -64,8 +65,8 @@ functio saturate(numerus x) → numerus {
 }
 
 incipit {
-    fixum numerus v ← saturate(300)
-    fixum numerus ∪ nihil maybe ← nulla
+    sit numerus v ← saturate(300)
+    sit numerus ∪ nihil maybe ← nulla
     nota v
 }
 ```

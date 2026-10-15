@@ -1,0 +1,13 @@
+फलन nihil_agit() → रिक्त {
+    दिखाओ "done"
+}
+
+आरंभ {
+    बैठा पाठ nomen ← "Marcus"
+    बैठा i32 aetas ← 30
+    बैठा तार्किक ready ← सत्य
+    बैठा सूची<संख्या> empty ← खाली
+    बैठा संख्या ∪ शून्य_मान missing ← शून्यवत्
+    दिखाओ nomen, aetas, ready, empty, missing
+    nihil_agit()
+}

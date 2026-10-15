@@ -51,16 +51,16 @@ fn accessus(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</sp
 
 main {
 <span class="tok-co">    # Happy path — guards not triggered</span>
-    const int n <span class="tok-op">←</span> clamp(<span class="tok-nu">5</span>, <span class="tok-nu">0</span>, <span class="tok-nu">10</span>)
+    let int n <span class="tok-op">←</span> clamp(<span class="tok-nu">5</span>, <span class="tok-nu">0</span>, <span class="tok-nu">10</span>)
     print <span class="tok-st">"within range"</span>
 
 <span class="tok-co">    # Happy path — empty list guard not triggered</span>
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    const int y <span class="tok-op">←</span> accessus(xs, <span class="tok-nu">1</span>)
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> xs <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    let int y <span class="tok-op">←</span> accessus(xs, <span class="tok-nu">1</span>)
     print <span class="tok-st">"positive"</span>
 
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> ys <span class="tok-op">←</span> [<span class="tok-nu">42</span>]
-    const int z <span class="tok-op">←</span> accessus(ys, <span class="tok-nu">0</span>)
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> ys <span class="tok-op">←</span> [<span class="tok-nu">42</span>]
+    let int z <span class="tok-op">←</span> accessus(ys, <span class="tok-nu">0</span>)
     print <span class="tok-st">"not empty"</span>
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>within range
 positive
@@ -107,7 +107,7 @@ fn accipe(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span
 
 main {
 <span class="tok-co">    # Happy path — panic branches not taken</span>
-    const float value <span class="tok-op">←</span> divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
+    let float value <span class="tok-op">←</span> divide(<span class="tok-nu">10</span>, <span class="tok-nu">2</span>)
 <span class="tok-co">    # 5.0</span>
     print <span class="tok-st">"valor: §"</span>(value)
 
@@ -115,8 +115,8 @@ main {
 <span class="tok-co">    # const _ malum ← divide(10, 0)</span>
 
 <span class="tok-co">    # Lista accessus</span>
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> nums <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    const int lectum <span class="tok-op">←</span> accipe(nums, <span class="tok-nu">1</span>)
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> nums <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    let int lectum <span class="tok-op">←</span> accipe(nums, <span class="tok-nu">1</span>)
 <span class="tok-co">    # 2</span>
     print <span class="tok-st">"valor: §"</span>(lectum)
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>valor: 5.0

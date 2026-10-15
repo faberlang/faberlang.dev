@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Range product semantics: sign classes, offsets, and step directions with exclusive/inclusive boundary twins."><meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="for — Faber"><meta property="og:description" content="Range product semantics: sign classes, offsets, and step directions with exclusive/inclusive boundary twins."><meta property="og:url" content="https://faberlang.dev/en-US/corpus/for.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/corpus/for.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>for — Faber</title><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-instrument.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">←</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword..." aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/install.md">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">←</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/en-US/start/">Start here</a></li><li><a href="/en-US/releases/">Releases</a></li></ul><div class="side-h">The Language</div><ul class="nav"><li><a href="/en-US/language/overview.html">Overview</a></li><li><details class="nav-branch"><summary>Behavior</summary><ul><li><a href="/en-US/language/behavior/type-first.html">Types before names</a></li><li><a href="/en-US/language/behavior/glyph-law.html">The glyph law</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">Sealed reader locales</a></li><li><a href="/en-US/language/behavior/packages.html">A program is a package</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">Errors as values, tests as declarations</a></li></ul></details></li><li><details class="nav-branch"><summary>Grammar</summary><ul><li><a href="/en-US/reference/grammar.html">Grammar overview</a></li><li><a href="/en-US/reference/grammar/program.html">Programs, regions &amp; imports</a></li><li><a href="/en-US/reference/grammar/declarations.html">Declarations &amp; bindings</a></li><li><a href="/en-US/reference/grammar/annotations.html">Annotations &amp; directives</a></li><li><a href="/en-US/reference/grammar/types.html">Types &amp; contracts</a></li><li><a href="/en-US/reference/grammar/statements.html">Statements &amp; control flow</a></li><li><a href="/en-US/reference/grammar/expressions.html">Expressions &amp; operators</a></li><li><a href="/en-US/reference/grammar/patterns.html">Patterns &amp; destructuring</a></li><li><a href="/en-US/reference/grammar/errors.html">Error channel</a></li><li><a href="/en-US/reference/grammar/lexical.html">Lexical structure &amp; glyphs</a></li></ul></details></li><li><a href="/en-US/corpus/az.html" class="active">Terms A–Z</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">Targets</div><ul class="nav"><li><a href="/en-US/targets/">All targets</a></li><li><details class="nav-branch"><summary>Application · HIR</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>Systems · MIR</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly text</a></li></ul></details></li><li><details class="nav-branch"><summary>Device · GPU</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li></ul><div class="side-h">Reader locales</div><ul class="nav"><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/locales/keywords.html">Keyword reference</a></li><li><a href="/en-US/language/locales/examples.html">Locale examples</a></li><li><a href="/en-US/language/locales/diagnostics.html">Diagnostics by locale</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul></aside><main id="main-content"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/en-US/corpus/index.html">Corpus</a> &rsaquo; <a href="/en-US/corpus/bucket/control-flow.html">Control flow</a> &rsaquo; for</nav><h1>for</h1><p><strong>Translation status:</strong> English reader-locale proof. Term names and code fences follow the <code>en</code> pack; supporting prose may still be English.</p><div class="content"><p>Range product semantics: sign classes, offsets, and step directions with exclusive/inclusive boundary twins.</p><p><strong>Aliases:</strong> <code>iterate</code></p><p><strong>Syntax:</strong> <code>for range &lt;a&gt;‥&lt;b&gt; step &lt;s&gt;, &lt;c&gt;‥&lt;d&gt; const &lt;i&gt;, &lt;j&gt; { }</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>control-flow</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/en-US/corpus/from.html">from</a></li><li><a href="/en-US/corpus/ref.html">ref</a></li><li><a href="/en-US/corpus/range.html">range</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusiteracursor-iteratiofab-canonical-keyword">radix/corpus/itera/cursor-iteratio.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteracursor-iteratiofab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Range product semantics: sign classes, offsets, and step directions with exclusive/inclusive boundary twins."><meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="for — Faber"><meta property="og:description" content="Range product semantics: sign classes, offsets, and step directions with exclusive/inclusive boundary twins."><meta property="og:url" content="https://faberlang.dev/en-US/corpus/for.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/corpus/for.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>for — Faber</title><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-instrument.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">←</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword..." aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/install.md">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">←</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/en-US/start/">Start here</a></li><li><a href="/en-US/releases/">Releases</a></li></ul><div class="side-h">The Language</div><ul class="nav"><li><a href="/en-US/language/overview.html">Overview</a></li><li><details class="nav-branch"><summary>Behavior</summary><ul><li><a href="/en-US/language/behavior/type-first.html">Types before names</a></li><li><a href="/en-US/language/behavior/glyph-law.html">The glyph law</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">Sealed reader locales</a></li><li><a href="/en-US/language/behavior/packages.html">A program is a package</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">Errors as values, tests as declarations</a></li></ul></details></li><li><details class="nav-branch"><summary>Grammar</summary><ul><li><a href="/en-US/reference/grammar.html">Grammar overview</a></li><li><a href="/en-US/reference/grammar/program.html">Programs, regions &amp; imports</a></li><li><a href="/en-US/reference/grammar/declarations.html">Declarations &amp; bindings</a></li><li><a href="/en-US/reference/grammar/annotations.html">Annotations &amp; directives</a></li><li><a href="/en-US/reference/grammar/types.html">Types &amp; contracts</a></li><li><a href="/en-US/reference/grammar/statements.html">Statements &amp; control flow</a></li><li><a href="/en-US/reference/grammar/expressions.html">Expressions &amp; operators</a></li><li><a href="/en-US/reference/grammar/patterns.html">Patterns &amp; destructuring</a></li><li><a href="/en-US/reference/grammar/errors.html">Error channel</a></li><li><a href="/en-US/reference/grammar/lexical.html">Lexical structure &amp; glyphs</a></li></ul></details></li><li><a href="/en-US/corpus/az.html" class="active">Terms A–Z</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">Targets</div><ul class="nav"><li><a href="/en-US/targets/">All targets</a></li><li><details class="nav-branch"><summary>Application · HIR</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>Systems · MIR</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly text</a></li></ul></details></li><li><details class="nav-branch"><summary>Device · GPU</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li></ul><div class="side-h">Reader locales</div><ul class="nav"><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/locales/keywords.html">Keyword reference</a></li><li><a href="/en-US/language/locales/examples.html">Locale examples</a></li><li><a href="/en-US/language/locales/diagnostics.html">Diagnostics by locale</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul></aside><main id="main-content"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/en-US/corpus/index.html">Corpus</a> &rsaquo; <a href="/en-US/corpus/bucket/control-flow.html">Control flow</a> &rsaquo; for</nav><h1>for</h1><p><strong>Translation status:</strong> English reader-locale proof. Term names and code fences follow the <code>en</code> pack; supporting prose may still be English.</p><div class="content"><p>Range product semantics: sign classes, offsets, and step directions with exclusive/inclusive boundary twins.</p><p><strong>Aliases:</strong> <code>iterate</code></p><p><strong>Syntax:</strong> <code>for range &lt;a&gt;‥&lt;b&gt; step &lt;s&gt;, &lt;c&gt;‥&lt;d&gt; let &lt;i&gt;, &lt;j&gt; { }</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>control-flow</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/en-US/corpus/from.html">from</a></li><li><a href="/en-US/corpus/ref.html">ref</a></li><li><a href="/en-US/corpus/range.html">range</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusiteracursor-iteratiofab-canonical-keyword">radix/corpus/itera/cursor-iteratio.fab (canonical · keyword)<a class="anchor" href="#radixcorpusiteracursor-iteratiofab-canonical-keyword">#</a></h3><p>Starts a for-each iteration statement.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># for — Starts a for-each iteration statement.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
@@ -32,14 +32,14 @@
 
 <span class="tok-co"># Multi-value sync stream function that yields values via yield</span>
 fn grena(int n) generator <span class="tok-op">→</span> int {
-    for range <span class="tok-nu">0</span> ‥ n const i {
+    for range <span class="tok-nu">0</span> ‥ n let i {
         yield i
     }
 }
 
 <span class="tok-co"># Multi-value async stream function that yields values via yield</span>
 fn grena_futurum(int n) async_generator <span class="tok-op">→</span> int {
-    for range <span class="tok-nu">0</span> ‥ n const i {
+    for range <span class="tok-nu">0</span> ‥ n let i {
         yield i
     }
 }
@@ -47,19 +47,19 @@ fn grena_futurum(int n) async_generator <span class="tok-op">→</span> int {
 async_main {
 <span class="tok-co">    # Direct consumption of cursor yield stream</span>
     print <span class="tok-st">"Sync cursor iteration:"</span>
-    for from grena(<span class="tok-nu">3</span>) const n {
+    for from grena(<span class="tok-nu">3</span>) let n {
         print <span class="tok-st">"  numerus: §"</span>(n)
     }
 
 <span class="tok-co">    # Collect all results from cursor function</span>
-    var list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> effecta <span class="tok-op">←</span> []
-    for from grena(<span class="tok-nu">5</span>) const n {
+    mut list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> effecta <span class="tok-op">←</span> []
+    for from grena(<span class="tok-nu">5</span>) let n {
         effecta.append(n <span class="tok-op">*</span> <span class="tok-nu">2</span>)
     }
     print <span class="tok-st">"Sync collected:"</span>
     print effecta
     print <span class="tok-st">"Async cursor iteration:"</span>
-    for from grena_futurum(<span class="tok-nu">3</span>) const n {
+    for from grena_futurum(<span class="tok-nu">3</span>) let n {
         print <span class="tok-st">"  async numerus: §"</span>(n)
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Sync cursor iteration:
@@ -97,9 +97,9 @@ Async cursor iteration:
 <span class="tok-co">#   Sums, max, and counts above a threshold for sample listas.</span>
 
 fn sum(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> int {
-    var int total <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    mut int total <span class="tok-op">←</span> <span class="tok-nu">0</span>
 
-    for from numeri const n {
+    for from numeri let n {
         total <span class="tok-op">←</span> total <span class="tok-op">+</span> n
     }
 
@@ -108,9 +108,9 @@ fn sum(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> n
 
 <span class="tok-co"># Assumes non-empty list (seed from first element)</span>
 fn maximum(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri) <span class="tok-op">→</span> int {
-    var int max <span class="tok-op">←</span> numeri[<span class="tok-nu">0</span>]
+    mut int max <span class="tok-op">←</span> numeri[<span class="tok-nu">0</span>]
 
-    for from numeri const n {
+    for from numeri let n {
         if n ≻ max {
             max <span class="tok-op">←</span> n
         }
@@ -120,9 +120,9 @@ fn maximum(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</spa
 }
 
 fn supra(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri, int limen) <span class="tok-op">→</span> int {
-    var int int <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    mut int int <span class="tok-op">←</span> <span class="tok-nu">0</span>
 
-    for from numeri const n {
+    for from numeri let n {
         if n ≻ limen {
             int <span class="tok-op">←</span> int <span class="tok-op">+</span> <span class="tok-nu">1</span>
         }
@@ -132,7 +132,7 @@ fn supra(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span>
 }
 
 main {
-    const _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    let numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
 
     print sum(numeri)
     print maximum(numeri)
@@ -166,7 +166,7 @@ main {
 <span class="tok-co"># for range &lt;start&gt;…&lt;end&gt; per &lt;step&gt; const &lt;item&gt; { &lt;body&gt; }</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   forRangeStmt :← 'for' 'range' rangeExpr 'per' expr ('const' | 'var') ident block</span>
+<span class="tok-co">#   forRangeStmt :← 'for' 'range' rangeExpr 'per' expr ('const' | 'mut') ident block</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   intervallum-gradus.expected — positive-step, inclusive, and descending</span>
@@ -174,27 +174,27 @@ main {
 
 main {
 <span class="tok-co">    # Step by 2 (exclusive: 0, 2, 4, 6, 8)</span>
-    for range <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> step <span class="tok-nu">2</span> const i {
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> step <span class="tok-nu">2</span> let i {
         print i
     }
 
 <span class="tok-co">    # Step by 2 (inclusive: 0, 2, 4, 6, 8, 10)</span>
-    for range <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">10</span> step <span class="tok-nu">2</span> const i {
+    for range <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">10</span> step <span class="tok-nu">2</span> let i {
         print i
     }
 
 <span class="tok-co">    # Step by 3</span>
-    for range <span class="tok-nu">0</span>‥<span class="tok-nu">15</span> step <span class="tok-nu">3</span> const i {
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">15</span> step <span class="tok-nu">3</span> let i {
         print i
     }
 
 <span class="tok-co">    # Descending: the bounds pick the direction, the step stays positive</span>
-    for range <span class="tok-nu">10</span>‥<span class="tok-nu">0</span> step <span class="tok-nu">1</span> const i {
+    for range <span class="tok-nu">10</span>‥<span class="tok-nu">0</span> step <span class="tok-nu">1</span> let i {
         print i
     }
 
 <span class="tok-co">    # Descending by 2</span>
-    for range <span class="tok-nu">10</span>‥<span class="tok-nu">0</span> step <span class="tok-nu">2</span> const i {
+    for range <span class="tok-nu">10</span>‥<span class="tok-nu">0</span> step <span class="tok-nu">2</span> let i {
         print i
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
@@ -250,7 +250,7 @@ main {
 <span class="tok-co"># for range &lt;start&gt;…&lt;end&gt; const &lt;item&gt; { &lt;body&gt; }        — inclusive end</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   forRangeStmt :← 'for' 'range' rangeExpr ('const' | 'var') ident block</span>
+<span class="tok-co">#   forRangeStmt :← 'for' 'range' rangeExpr ('const' | 'mut') ident block</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   intervallum.expected — exclusive, ante-exclusive, inclusive, non-zero,</span>
@@ -258,27 +258,27 @@ main {
 
 main {
 <span class="tok-co">    # Basic range (exclusive: 0, 1, 2, 3, 4)</span>
-    for range <span class="tok-nu">0</span>‥<span class="tok-nu">5</span> const i {
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">5</span> let i {
         print i
     }
 
 <span class="tok-co">    # Explicit exclusive with before (same as ‥)</span>
-    for range <span class="tok-nu">0</span> before <span class="tok-nu">5</span> const i {
+    for range <span class="tok-nu">0</span> before <span class="tok-nu">5</span> let i {
         print i
     }
 
 <span class="tok-co">    # Inclusive range with … (0, 1, 2, 3, 4, 5)</span>
-    for range <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">5</span> const i {
+    for range <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">5</span> let i {
         print i
     }
 
 <span class="tok-co">    # Range starting from non-zero</span>
-    for range <span class="tok-nu">5</span>‥<span class="tok-nu">10</span> const i {
+    for range <span class="tok-nu">5</span>‥<span class="tok-nu">10</span> let i {
         print i
     }
 
 <span class="tok-co">    # Descending direction</span>
-    for range <span class="tok-nu">5</span>‥<span class="tok-nu">0</span> const i {
+    for range <span class="tok-nu">5</span>‥<span class="tok-nu">0</span> let i {
         print i
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>0
@@ -328,15 +328,15 @@ main {
 <span class="tok-co"># =============================================================================</span>
 
 main {
-    const list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> labels <span class="tok-op">←</span> [<span class="tok-st">"one"</span>, <span class="tok-st">"two"</span>, <span class="tok-st">"three"</span>]
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> values <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    for from labels, values const label, value {
+    let list<span class="tok-op">&lt;</span>string<span class="tok-op">&gt;</span> labels <span class="tok-op">←</span> [<span class="tok-st">"one"</span>, <span class="tok-st">"two"</span>, <span class="tok-st">"three"</span>]
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> values <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    for from labels, values let label, value {
         print label
         print value
     }
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> left <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> right <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    for from left, right const a, b {
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> left <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> right <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    for from left, right let a, b {
         print a <span class="tok-op">-</span> b
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>one
@@ -365,18 +365,18 @@ three
 <span class="tok-co"># =============================================================================</span>
 
 main {
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> bases <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">200</span>, <span class="tok-nu">300</span>]
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> keys <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> payloads <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
-    for from bases, keys, payloads const base, key, payload {
-        const int total <span class="tok-op">←</span> base <span class="tok-op">+</span> key <span class="tok-op">+</span> payload
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> bases <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">200</span>, <span class="tok-nu">300</span>]
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> keys <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> payloads <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
+    for from bases, keys, payloads let base, key, payload {
+        let int total <span class="tok-op">←</span> base <span class="tok-op">+</span> key <span class="tok-op">+</span> payload
         print total
     }
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> rows <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> cols <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> cells <span class="tok-op">←</span> [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>]
-    for from rows, cols, cells const row, col, cell {
-        const int grid <span class="tok-op">←</span> row <span class="tok-op">*</span> col <span class="tok-op">+</span> cell
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> rows <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>]
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> cols <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> cells <span class="tok-op">←</span> [<span class="tok-nu">5</span>, <span class="tok-nu">6</span>]
+    for from rows, cols, cells let row, col, cell {
+        let int grid <span class="tok-op">←</span> row <span class="tok-op">*</span> col <span class="tok-op">+</span> cell
         print grid
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>111
@@ -415,24 +415,24 @@ main {
 
 main {
 <span class="tok-co">    # Nested list iteration — 3 × 3 combinations</span>
-    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> rows <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    const list<span class="tok-op">&lt;</span>string, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> cols <span class="tok-op">←</span> [<span class="tok-st">"A"</span>, <span class="tok-st">"B"</span>, <span class="tok-st">"C"</span>]
-    for from rows const row {
-        for from cols const col {
+    let list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> rows <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    let list<span class="tok-op">&lt;</span>string, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> cols <span class="tok-op">←</span> [<span class="tok-st">"A"</span>, <span class="tok-st">"B"</span>, <span class="tok-st">"C"</span>]
+    for from rows let row {
+        for from cols let col {
             print row, col
         }
     }
 
 <span class="tok-co">    # Multiplication table over exclusive ranges 1‥4 (i, j ∈ {1,2,3})</span>
-    for range <span class="tok-nu">1</span>‥<span class="tok-nu">4</span> const i {
-        for range <span class="tok-nu">1</span>‥<span class="tok-nu">4</span> const j {
+    for range <span class="tok-nu">1</span>‥<span class="tok-nu">4</span> let i {
+        for range <span class="tok-nu">1</span>‥<span class="tok-nu">4</span> let j {
             print i, <span class="tok-st">"*"</span>, j, <span class="tok-st">"←"</span>, i <span class="tok-op">*</span> j
         }
     }
 
 <span class="tok-co">    # Nested ranges: 4 × 4 grid of (x, y) with x, y ∈ {0,1,2,3}</span>
-    for range <span class="tok-nu">0</span>‥<span class="tok-nu">3</span> const x {
-        for range <span class="tok-nu">0</span>‥<span class="tok-nu">3</span> const y {
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">3</span> let x {
+        for range <span class="tok-nu">0</span>‥<span class="tok-nu">3</span> let y {
             print x, y
         }
     }
@@ -484,11 +484,11 @@ main {
 <span class="tok-co"># =============================================================================</span>
 
 main {
-    for range <span class="tok-nu">0</span>‥<span class="tok-nu">2</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">2</span> const i, j {
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">2</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">2</span> let i, j {
         print i
         print j
     }
-    for range <span class="tok-nu">3</span>‥<span class="tok-nu">5</span>, <span class="tok-nu">1</span>‥<span class="tok-nu">3</span> const first, second {
+    for range <span class="tok-nu">3</span>‥<span class="tok-nu">5</span>, <span class="tok-nu">1</span>‥<span class="tok-nu">3</span> let first, second {
         print first
         print second
     }
@@ -528,10 +528,10 @@ main {
 <span class="tok-co"># =============================================================================</span>
 
 main {
-    for range <span class="tok-nu">1</span>‥<span class="tok-nu">3</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">2</span> const i, j, k {
+    for range <span class="tok-nu">1</span>‥<span class="tok-nu">3</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">2</span> let i, j, k {
         print i <span class="tok-op">*</span> <span class="tok-nu">100</span> <span class="tok-op">+</span> j <span class="tok-op">*</span> <span class="tok-nu">10</span> <span class="tok-op">+</span> k
     }
-    for range <span class="tok-nu">5</span>‥<span class="tok-nu">7</span>, <span class="tok-nu">1</span>‥<span class="tok-nu">3</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">2</span> const first, second, third {
+    for range <span class="tok-nu">5</span>‥<span class="tok-nu">7</span>, <span class="tok-nu">1</span>‥<span class="tok-nu">3</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">2</span> let first, second, third {
         print first <span class="tok-op">*</span> <span class="tok-nu">100</span> <span class="tok-op">+</span> second <span class="tok-op">*</span> <span class="tok-nu">10</span> <span class="tok-op">+</span> third
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>120
@@ -581,95 +581,95 @@ main {
 
 main {
 <span class="tok-co">    # crossing sign class, no step / stepped, exclusive + inclusive twins</span>
-    for range <span class="tok-op">-</span><span class="tok-nu">5</span>‥<span class="tok-nu">5</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> const i, j {
+    for range <span class="tok-op">-</span><span class="tok-nu">5</span>‥<span class="tok-nu">5</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> let i, j {
         print i
         print j
     }
-    for range <span class="tok-op">-</span><span class="tok-nu">5</span><span class="tok-op">…</span><span class="tok-nu">5</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> const i, j {
+    for range <span class="tok-op">-</span><span class="tok-nu">5</span><span class="tok-op">…</span><span class="tok-nu">5</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> let i, j {
         print i
         print j
     }
-    for range <span class="tok-op">-</span><span class="tok-nu">5</span>‥<span class="tok-nu">5</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> const i, j {
+    for range <span class="tok-op">-</span><span class="tok-nu">5</span>‥<span class="tok-nu">5</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> let i, j {
         print i
         print j
     }
-    for range <span class="tok-op">-</span><span class="tok-nu">5</span><span class="tok-op">…</span><span class="tok-nu">5</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> const i, j {
+    for range <span class="tok-op">-</span><span class="tok-nu">5</span><span class="tok-op">…</span><span class="tok-nu">5</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> let i, j {
         print i
         print j
     }
 
 <span class="tok-co">    # negative-to-negative sign class, no step / stepped, twins</span>
-    for range <span class="tok-op">-</span><span class="tok-nu">8</span>‥<span class="tok-op">-</span><span class="tok-nu">3</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> const i, j {
+    for range <span class="tok-op">-</span><span class="tok-nu">8</span>‥<span class="tok-op">-</span><span class="tok-nu">3</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> let i, j {
         print i
         print j
     }
-    for range <span class="tok-op">-</span><span class="tok-nu">8</span><span class="tok-op">…</span><span class="tok-op">-</span><span class="tok-nu">3</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> const i, j {
+    for range <span class="tok-op">-</span><span class="tok-nu">8</span><span class="tok-op">…</span><span class="tok-op">-</span><span class="tok-nu">3</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> let i, j {
         print i
         print j
     }
-    for range <span class="tok-op">-</span><span class="tok-nu">8</span>‥<span class="tok-op">-</span><span class="tok-nu">3</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> const i, j {
+    for range <span class="tok-op">-</span><span class="tok-nu">8</span>‥<span class="tok-op">-</span><span class="tok-nu">3</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> let i, j {
         print i
         print j
     }
-    for range <span class="tok-op">-</span><span class="tok-nu">8</span><span class="tok-op">…</span><span class="tok-op">-</span><span class="tok-nu">3</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> const i, j {
+    for range <span class="tok-op">-</span><span class="tok-nu">8</span><span class="tok-op">…</span><span class="tok-op">-</span><span class="tok-nu">3</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> let i, j {
         print i
         print j
     }
 
 <span class="tok-co">    # positive-to-positive sign class, no step / stepped, twins</span>
-    for range <span class="tok-nu">2</span>‥<span class="tok-nu">7</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> const i, j {
+    for range <span class="tok-nu">2</span>‥<span class="tok-nu">7</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> let i, j {
         print i
         print j
     }
-    for range <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">7</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> const i, j {
+    for range <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">7</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> let i, j {
         print i
         print j
     }
-    for range <span class="tok-nu">2</span>‥<span class="tok-nu">7</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> const i, j {
+    for range <span class="tok-nu">2</span>‥<span class="tok-nu">7</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span>‥<span class="tok-nu">4</span> let i, j {
         print i
         print j
     }
-    for range <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">7</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> const i, j {
+    for range <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">7</span> step <span class="tok-nu">2</span>, <span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> let i, j {
         print i
         print j
     }
 
 <span class="tok-co">    # offset row — both axes off zero, twins</span>
-    for range <span class="tok-nu">3</span>‥<span class="tok-nu">12</span>, <span class="tok-op">-</span><span class="tok-nu">2</span>‥<span class="tok-nu">4</span> const i, j {
+    for range <span class="tok-nu">3</span>‥<span class="tok-nu">12</span>, <span class="tok-op">-</span><span class="tok-nu">2</span>‥<span class="tok-nu">4</span> let i, j {
         print i
         print j
     }
-    for range <span class="tok-nu">3</span><span class="tok-op">…</span><span class="tok-nu">12</span>, <span class="tok-op">-</span><span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> const i, j {
+    for range <span class="tok-nu">3</span><span class="tok-op">…</span><span class="tok-nu">12</span>, <span class="tok-op">-</span><span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> let i, j {
         print i
         print j
     }
 
 <span class="tok-co">    # stepped offset row — the stepped outer axis stays outer, twins</span>
-    for range <span class="tok-nu">1</span>‥<span class="tok-nu">9</span> step <span class="tok-nu">3</span>, <span class="tok-op">-</span><span class="tok-nu">2</span>‥<span class="tok-nu">4</span> const i, j {
+    for range <span class="tok-nu">1</span>‥<span class="tok-nu">9</span> step <span class="tok-nu">3</span>, <span class="tok-op">-</span><span class="tok-nu">2</span>‥<span class="tok-nu">4</span> let i, j {
         print i
         print j
     }
-    for range <span class="tok-nu">1</span><span class="tok-op">…</span><span class="tok-nu">9</span> step <span class="tok-nu">3</span>, <span class="tok-op">-</span><span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> const i, j {
+    for range <span class="tok-nu">1</span><span class="tok-op">…</span><span class="tok-nu">9</span> step <span class="tok-nu">3</span>, <span class="tok-op">-</span><span class="tok-nu">2</span><span class="tok-op">…</span><span class="tok-nu">4</span> let i, j {
         print i
         print j
     }
 
 <span class="tok-co">    # zero-start step on the inner axis (product form of 0‥10 step 2), twins</span>
-    for range <span class="tok-nu">3</span>‥<span class="tok-nu">5</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> step <span class="tok-nu">2</span> const i, j {
+    for range <span class="tok-nu">3</span>‥<span class="tok-nu">5</span>, <span class="tok-nu">0</span>‥<span class="tok-nu">10</span> step <span class="tok-nu">2</span> let i, j {
         print i
         print j
     }
-    for range <span class="tok-nu">3</span><span class="tok-op">…</span><span class="tok-nu">5</span>, <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">10</span> step <span class="tok-nu">2</span> const i, j {
+    for range <span class="tok-nu">3</span><span class="tok-op">…</span><span class="tok-nu">5</span>, <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">10</span> step <span class="tok-nu">2</span> let i, j {
         print i
         print j
     }
 
 <span class="tok-co">    # descending outer axis with a positive stride, twins</span>
-    for range <span class="tok-nu">10</span>‥<span class="tok-nu">0</span> step <span class="tok-nu">2</span>, <span class="tok-nu">1</span>‥<span class="tok-nu">3</span> const i, j {
+    for range <span class="tok-nu">10</span>‥<span class="tok-nu">0</span> step <span class="tok-nu">2</span>, <span class="tok-nu">1</span>‥<span class="tok-nu">3</span> let i, j {
         print i
         print j
     }
-    for range <span class="tok-nu">10</span><span class="tok-op">…</span><span class="tok-nu">0</span> step <span class="tok-nu">2</span>, <span class="tok-nu">1</span><span class="tok-op">…</span><span class="tok-nu">3</span> const i, j {
+    for range <span class="tok-nu">10</span><span class="tok-op">…</span><span class="tok-nu">0</span> step <span class="tok-nu">2</span>, <span class="tok-nu">1</span><span class="tok-op">…</span><span class="tok-nu">3</span> let i, j {
         print i
         print j
     }
@@ -1478,25 +1478,25 @@ main {
 <span class="tok-co"># pinned in apud-decline.expected; case 4 is an admit row kept here beside them.</span>
 
 fn arity(tensor<span class="tok-op">&lt;</span>f32, [<span class="tok-nu">2</span>, <span class="tok-nu">3</span>]<span class="tok-op">&gt;</span> grid) <span class="tok-op">→</span> void {
-    for from grid at [i] const cell {
+    for from grid at [i] let cell {
         print cell
     }
 }
 
 fn ragged(list<span class="tok-op">&lt;</span>list<span class="tok-op">&lt;</span>f32<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> rows) <span class="tok-op">→</span> void {
-    for from rows at [r, c] const cell {
+    for from rows at [r, c] let cell {
         print cell
     }
 }
 
 fn members(set<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> s) <span class="tok-op">→</span> void {
-    for from s at [i] const member {
+    for from s at [i] let member {
         print member
     }
 }
 
 fn generic<span class="tok-op">&lt;</span>size R, size C<span class="tok-op">&gt;</span>(tensor<span class="tok-op">&lt;</span>f32, [R, C]<span class="tok-op">&gt;</span> grid) <span class="tok-op">→</span> void {
-    for from grid at [r, c] const cell {
+    for from grid at [r, c] let cell {
         print cell
     }
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusiteralockstep-declinefab-supporting-reject">radix/corpus/itera/lockstep-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusiteralockstep-declinefab-supporting-reject">#</a></h3><p>Lockstep declines: source/binder arity, at-coordinate cardinality, and statically known unequal lengths fail closed.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
@@ -1529,19 +1529,19 @@ fn generic<span class="tok-op">&lt;</span>size R, size C<span class="tok-op">&gt
 <span class="tok-co"># and the fail-closed equal-length admission for the lockstep series.</span>
 
 fn arity(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> ks, list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> vs) <span class="tok-op">→</span> void {
-    for from ks, vs const k {
+    for from ks, vs let k {
         print k
     }
 }
 
 fn cardinality(list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> ks, list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> vs) <span class="tok-op">→</span> void {
-    for from ks, vs at [i, j] const k, v {
+    for from ks, vs at [i, j] let k, v {
         print k
     }
 }
 
 fn lengths() <span class="tok-op">→</span> void {
-    for from [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>], [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>] const k, v {
+    for from [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>], [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>] let k, v {
         print k
     }
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p><h3 id="radixcorpusiterarange-product-declinefab-supporting-reject">radix/corpus/itera/range-product-decline.fab (supporting · reject)<a class="anchor" href="#radixcorpusiterarange-product-declinefab-supporting-reject">#</a></h3><p>Range product declines: source/binder arity, extent/binder shadowing, and a mixed range/plain series fail closed.</p><pre class="faber-code"><code class="lang-faber outcome=rejects"><span class="tok-co"># =============================================================================</span>
@@ -1574,19 +1574,19 @@ fn lengths() <span class="tok-op">→</span> void {
 <span class="tok-co"># law, and the every-member-is-a-range law for the Cartesian series.</span>
 
 fn counts(int m, int n) <span class="tok-op">→</span> void {
-    for range <span class="tok-nu">0</span>‥m, <span class="tok-nu">0</span>‥n const i {
+    for range <span class="tok-nu">0</span>‥m, <span class="tok-nu">0</span>‥n let i {
         print i
     }
 }
 
 fn shadows(int k) <span class="tok-op">→</span> void {
-    for range <span class="tok-nu">0</span>‥k, <span class="tok-nu">1</span>‥<span class="tok-nu">2</span> const k, j {
+    for range <span class="tok-nu">0</span>‥k, <span class="tok-nu">1</span>‥<span class="tok-nu">2</span> let k, j {
         print k
     }
 }
 
 fn mixes(int m, int n) <span class="tok-op">→</span> void {
-    for range <span class="tok-nu">0</span>‥m, n const i, j {
+    for range <span class="tok-nu">0</span>‥m, n let i, j {
         print i
     }
 }</code></pre><p><strong>Expected:</strong> compilation rejects this example.</p></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#category">Category</a></li><li class="toc-2"><a href="#related">Related</a></li><li class="toc-2"><a href="#examples">Examples</a></li><li class="toc-3"><a href="#radixcorpusiteracursor-iteratiofab-canonical-keyword">radix/corpus/itera/cursor-iteratio.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterain-functionefab-canonical-keyword">radix/corpus/itera/in-functione.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraintervallum-gradusfab-canonical-keyword">radix/corpus/itera/intervallum-gradus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraintervallumfab-canonical-keyword">radix/corpus/itera/intervallum.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteralockstep-n2fab-canonical-keyword">radix/corpus/itera/lockstep-n2.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteralockstep-n3fab-canonical-keyword">radix/corpus/itera/lockstep-n3.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteranidificatusfab-canonical-keyword">radix/corpus/itera/nidificatus.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-n2fab-canonical-keyword">radix/corpus/itera/range-product-n2.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-n3fab-canonical-keyword">radix/corpus/itera/range-product-n3.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-semanticsfab-canonical-keyword">radix/corpus/itera/range-product-semantics.fab (canonical · keyword)</a></li><li class="toc-3"><a href="#radixcorpusiteraapud-declinefab-supporting-reject">radix/corpus/itera/apud-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusiteralockstep-declinefab-supporting-reject">radix/corpus/itera/lockstep-decline.fab (supporting · reject)</a></li><li class="toc-3"><a href="#radixcorpusiterarange-product-declinefab-supporting-reject">radix/corpus/itera/range-product-decline.fab (supporting · reject)</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[&quot;radix/corpus/itera/cursor-iteratio.fab&quot;]</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

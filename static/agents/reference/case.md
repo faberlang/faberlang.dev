@@ -41,7 +41,7 @@ Cross-ref: elige/elige.fab, discerne/discerne.fab.
 
 ```fab
 main {
-    const _ code ← 200
+    let code ← 200
     switch code {
         case 200 {
             print "ok"

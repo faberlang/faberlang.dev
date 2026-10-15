@@ -77,7 +77,7 @@ mkdir -p "$OUT"
 cat > "$FIXTURE" <<'FAB'
 # The closing quote is missing, so the string literal runs to the end of the
 # line. Every reader pack renders the same LEX001 in its own language.
-fixum textus nuntius ← "Salve, munde!
+sit textus nuntius ← "Salve, munde!
 FAB
 
 echo "toolchain: $("$FABER" --version 2>/dev/null || echo unknown) at ${FABER}"

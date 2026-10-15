@@ -1,0 +1,5 @@
+bắt_đầu {
+    đặt i32 narrow ← 7 ∷ i32
+    đặt u64 wide ← 255 ∷ u64
+    đặt f32 single ← 1.5 ∷ f32
+}

@@ -8,7 +8,7 @@ package entry is https://faberlang.dev/agents/program.md.
 @ description "Prints text"
 @ operand { rest = true, type = string, binding = words }
 main args argv {
-    for from argv.words const word {
+    for from argv.words let word {
         print word
     }
 }

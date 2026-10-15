@@ -24,7 +24,7 @@ error channel, which lives on the [error channel](errors.html) page.
 
 ```faber locale=en
 main {
-    const i32 score ← 85
+    let i32 score ← 85
     if score ≥ 90 {
         print "A"
     }
@@ -34,11 +34,11 @@ main {
     else {
         print "C"
     }
-    const list<i32> nums ← [1, 2, 3]
-    for from nums const item {
+    let list<i32> nums ← [1, 2, 3]
+    for from nums let item {
         print item
     }
-    var i32 n ← 0
+    mut i32 n ← 0
     while n ≺ 2 {
         n ← n + 1
     }
@@ -75,7 +75,7 @@ page. The second column names the grammar rule the word belongs to.
 | [`elif`](/en-US/corpus/elif.html) | `si_tail` |
 | [`else`](/en-US/corpus/else.html) | `secus_clause` |
 | [`while`](/en-US/corpus/while.html) | `dum_stmt` |
-| [`range`](/en-US/corpus/range.html), [`ref`](/en-US/corpus/ref.html), [`from`](/en-US/corpus/from.html), [`const`](/en-US/corpus/const.html), [`for`](/en-US/corpus/for.html), [`var`](/en-US/corpus/var.html) | `itera_stmt` |
+| [`range`](/en-US/corpus/range.html), [`ref`](/en-US/corpus/ref.html), [`from`](/en-US/corpus/from.html), [`for`](/en-US/corpus/for.html), [`let`](/en-US/corpus/let.html), [`mut`](/en-US/corpus/mut.html) | `itera_stmt` |
 | [`at`](/en-US/corpus/at.html) | `apud_clause` |
 | [`switch`](/en-US/corpus/switch.html) | `elige_stmt` |
 | [`case`](/en-US/corpus/case.html) | `casu_elige_clause` |
@@ -85,7 +85,7 @@ page. The second column names the grammar rule the word belongs to.
 | [`case`](/en-US/corpus/case.html) | `casu_variant_clause` |
 | [`guard`](/en-US/corpus/guard.html) | `custodi_stmt` |
 | [`if`](/en-US/corpus/if.html) | `si_guard_clause` |
-| [`from`](/en-US/corpus/from.html), [`const`](/en-US/corpus/const.html), [`var`](/en-US/corpus/var.html) | `ex_stmt` |
+| [`from`](/en-US/corpus/from.html), [`let`](/en-US/corpus/let.html), [`mut`](/en-US/corpus/mut.html) | `ex_stmt` |
 | [`as`](/en-US/corpus/as.html) | `extract_field` |
 | [`rest`](/en-US/corpus/rest.html) | `ceteri_field` |
 | [`return`](/en-US/corpus/return.html) | `redde_stmt` |

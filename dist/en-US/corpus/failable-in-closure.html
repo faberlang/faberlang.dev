@@ -32,19 +32,19 @@ fn risky(int n) <span class="tok-op">→</span> int ⇥ string {
 
 <span class="tok-co"># Plain closures inside a failable function: their returns are plain values.</span>
 fn plain(int n) <span class="tok-op">→</span> int ⇥ string {
-    const (int) <span class="tok-op">→</span> int f <span class="tok-op">←</span> int x <span class="tok-op">→</span> int ∴ do {
-        const int y <span class="tok-op">←</span> x <span class="tok-op">+</span> <span class="tok-nu">1</span>
+    let (int) <span class="tok-op">→</span> int f <span class="tok-op">←</span> int x <span class="tok-op">→</span> int ∴ do {
+        let int y <span class="tok-op">←</span> x <span class="tok-op">+</span> <span class="tok-nu">1</span>
         return y <span class="tok-op">*</span> <span class="tok-nu">2</span>
     }
-    const (int) <span class="tok-op">→</span> int g <span class="tok-op">←</span> int x <span class="tok-op">→</span> int ∴ x <span class="tok-op">+</span> <span class="tok-nu">7</span>
-    const int z <span class="tok-op">←</span> risky(n)
+    let (int) <span class="tok-op">→</span> int g <span class="tok-op">←</span> int x <span class="tok-op">→</span> int ∴ x <span class="tok-op">+</span> <span class="tok-nu">7</span>
+    let int z <span class="tok-op">←</span> risky(n)
     return f(z) <span class="tok-op">+</span> g(z)
 }
 
 <span class="tok-co"># A failable call nested in an argument, handled inside the closure.</span>
 fn handled(int n) <span class="tok-op">→</span> int ⇥ string {
-    const (int) <span class="tok-op">→</span> int h <span class="tok-op">←</span> int x <span class="tok-op">→</span> int ∴ do {
-        var int verdict <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
+    let (int) <span class="tok-op">→</span> int h <span class="tok-op">←</span> int x <span class="tok-op">→</span> int ∴ do {
+        mut int verdict <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
         do {
             print <span class="tok-st">"in §"</span>(risky(x))
             verdict <span class="tok-op">←</span> <span class="tok-nu">1</span>
@@ -59,8 +59,8 @@ fn handled(int n) <span class="tok-op">→</span> int ⇥ string {
 
 <span class="tok-co"># The same closure in a function with no channel of its own.</span>
 fn handled_free(int n) <span class="tok-op">→</span> int {
-    const (int) <span class="tok-op">→</span> int h <span class="tok-op">←</span> int x <span class="tok-op">→</span> int ∴ do {
-        var int verdict <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
+    let (int) <span class="tok-op">→</span> int h <span class="tok-op">←</span> int x <span class="tok-op">→</span> int ∴ do {
+        mut int verdict <span class="tok-op">←</span> <span class="tok-op">-</span><span class="tok-nu">1</span>
         do {
             print <span class="tok-st">"in §"</span>(risky(x))
             verdict <span class="tok-op">←</span> <span class="tok-nu">1</span>

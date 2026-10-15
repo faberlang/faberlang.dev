@@ -6,8 +6,9 @@ of thing<em> this is; the name tells you </em>which one*. Reading shape before
 binding also matches languages whose grammar runs from category to instance,
 so a declaration scans the same way whether the keywords are English, Chinese
 or Arabic.</p><p>There is one form to learn. A declaration is a type followed by a name, and it
-is the same shape whether it is a parameter, a local, a field, or a return.</p><h2 id="bindings">Bindings are three words<a class="anchor" href="#bindings">#</a></h2><div class="table-scroll"><table><thead><tr><th>Word</th><th>Meaning</th></tr></thead><tbody><tr><td><code>const</code></td><td>immutable binding — written once</td></tr><tr><td><code>var</code></td><td>mutable binding — reassignable</td></tr><tr><td><code>let</code></td><td>concise inferred immutable</td></tr></tbody></table></div><p>All three introduce a name with <code class="glyph">←</code>. The word fixes whether the name may be
-reassigned, not when the value exists.</p><h2 id="absence">Absence and omission are different<a class="anchor" href="#absence">#</a></h2><p>Faber keeps two ideas separate that many languages collapse into <code>T?</code> or
+is the same shape whether it is a parameter, a local, a field, or a return.</p><h2 id="bindings">Bindings are three words<a class="anchor" href="#bindings">#</a></h2><div class="table-scroll"><table><thead><tr><th>Word</th><th>Meaning</th></tr></thead><tbody><tr><td><code>let</code></td><td>fixed binding — written once</td></tr><tr><td><code>mut</code></td><td>writable binding — reassignable</td></tr><tr><td><code>ref</code></td><td>read-only binding that can be pointed elsewhere</td></tr></tbody></table></div><p>All three introduce a name with <code class="glyph">←</code>. The word fixes whether the name may be
+reassigned, not when the value exists. <code>const</code> is not a run-time binding: it
+states a compile-time fact and is written with <code class="glyph">=</code>.</p><h2 id="absence">Absence and omission are different<a class="anchor" href="#absence">#</a></h2><p>Faber keeps two ideas separate that many languages collapse into <code>T?</code> or
 <code>Option&lt;T&gt;</code>:</p><ul><li><strong>Absence in a value</strong> is a union: <code>int ∪ none</code>. The value domain includes
 the absence, and a function can return it.</li><li><strong>Omission at a call site</strong> is a post-name marker: <code>optional</code>. The slot may
 be left out; the type itself is unchanged.</li></ul><p>Keeping them syntactic means a reader can tell <em>a value that may be missing</em>
@@ -25,8 +26,8 @@ rather than guessing.</p><pre class="faber-code"><code class="lang-faber">fn sat
 }
 
 main {
-    const int v <span class="tok-op">←</span> saturate(<span class="tok-nu">300</span>)
-    const int <span class="tok-op">∪</span> none maybe <span class="tok-op">←</span> null
+    let int v <span class="tok-op">←</span> saturate(<span class="tok-nu">300</span>)
+    let int <span class="tok-op">∪</span> none maybe <span class="tok-op">←</span> null
     print v
 }</code></pre><pre class="faber-code"><code class="lang-text">$ faber run
 255</code></pre><p><code>saturate</code> is declared before it is used, its parameter and return types are

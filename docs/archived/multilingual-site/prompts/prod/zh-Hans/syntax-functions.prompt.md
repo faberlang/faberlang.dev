@@ -63,9 +63,9 @@ every `ex` as "consume":
 | `de textus name` on parameter | Shared borrow |
 | `in numerus count` on parameter | Mutable borrow |
 | `ex textus buffer` on parameter | Move into callee |
-| `itera ex items fixum item` | Iterate values |
-| `itera de tabula fixum key` | Iterate keys |
-| `ex source fixum x, ceteri rest` | Destructure fields |
+| `itera ex items sit item` | Iterate values |
+| `itera de tabula sit key` | Iterate keys |
+| `ex source sit x, ceteri rest` | Destructure fields |
 | `importa ex "path"` | Import from module |
 
 ## Entry point {#entry-point}

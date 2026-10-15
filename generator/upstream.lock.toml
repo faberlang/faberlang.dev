@@ -4,12 +4,12 @@
 # that only changes commits; `commit` is informational.
 
 [radix]
-commit = "ae5b81270437c5a5f229d2efe5c207ba9293c774"
+commit = "872f56add00ce4e66bcc2fa80790d937427bf919"
 
 [trees]
-grammar = "f46400a73acc0411f51d7bc01be40ab250117806"
-locale = "02c4fdc652c6e005839f79825a477e2d2bd0adb6"
-corpus = "8ccec8cb41713372029939c7e4ca1b8df82bce4a"
+grammar = "05a3711768efe29eddb98fa3115ffbc39f6b9a7d"
+locale = "ab2ae0fb095a09cc6a2af317d4b6ac07c246f168"
+corpus = "93944923c06a6ef214d0d48b9aafd175f3b36ed9"
 
 [faber]
-version = "faber 1.13.0"
+version = "faber 1.14.0"

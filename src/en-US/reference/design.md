@@ -31,8 +31,8 @@ grammatical order reads from category to instance — Chinese, Hindi, Arabic
 ```faber
 # Type before name in every declaration
 incipit {
-    fixum textus nomen ← "Aelia"
-    fixum numerus aetas ← 30
+    sit textus nomen ← "Aelia"
+    sit numerus aetas ← 30
 }
 
 functio salve(textus name) → textus {
@@ -68,8 +68,8 @@ even if the keywords around them differ.
 ### IV. Words carry behaviour {#iv-latin-carries-behaviour}
 
 Words are for declarations, statements, lifecycle, and behavioural intent:
-`fn`, `class`, `const`,
-`var`, `return`, `catch`.
+`fn`, `class`, `let`,
+`mut`, `return`, `catch`.
 These are bindable through reader-locale packs — they are the vocabulary,
 not the grammar. Underneath the reader surfaces, the pack files are keyed by one classical
 spelling per word. That choice is not about Latin superiority; it is about
@@ -99,8 +99,8 @@ whether a line is a data-flow operation or a type-level definition.
 
 ```faber
 genus Point {
-    fixum numerus x
-    fixum numerus y
+    sit numerus x
+    sit numerus y
 }
 
 incipit {
@@ -109,7 +109,7 @@ incipit {
     count ← count + 1
 
     # = is always structural shape inside Type { }
-    fixum _ p ← Point {
+    sit p ← Point {
         x = 10,
         y = 20
     }

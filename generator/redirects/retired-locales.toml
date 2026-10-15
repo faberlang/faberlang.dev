@@ -873,7 +873,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/corpus/generis.html"
-to = "/en-US/corpus/static.html"
+to = "/en-US/corpus/const.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -1153,7 +1153,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/ar/corpus/mutable.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -1738,7 +1738,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/ar/corpus/varia.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -2143,7 +2143,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/ar/corpus/%D8%B3%D9%83%D9%88%D9%86%D9%8A.html"
-to = "/en-US/corpus/static.html"
+to = "/en-US/corpus/const.html"
 rule = "corpus-slug"
 
 [[redirects]]
@@ -2333,7 +2333,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/ar/corpus/%D9%85%D8%AA%D8%BA%D9%8A%D8%B1.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "corpus-slug"
 
 [[redirects]]
@@ -3868,7 +3868,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/corpus/generis.html"
-to = "/en-US/corpus/static.html"
+to = "/en-US/corpus/const.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -4148,7 +4148,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/hi/corpus/mutable.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -4733,7 +4733,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/hi/corpus/varia.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -4968,7 +4968,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/hi/corpus/%E0%A4%9A%E0%A4%B0.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "corpus-slug"
 
 [[redirects]]
@@ -5468,7 +5468,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/hi/corpus/%E0%A4%B8%E0%A5%8D%E0%A4%A5%E0%A5%88%E0%A4%A4%E0%A4%BF%E0%A4%95.html"
-to = "/en-US/corpus/static.html"
+to = "/en-US/corpus/const.html"
 rule = "corpus-slug"
 
 [[redirects]]
@@ -6838,7 +6838,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/corpus/generis.html"
-to = "/en-US/corpus/static.html"
+to = "/en-US/corpus/const.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -7118,7 +7118,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/th-TH/corpus/mutable.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -7703,7 +7703,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/th-TH/corpus/varia.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -7808,7 +7808,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/th-TH/corpus/%E0%B8%82%E0%B8%AD%E0%B8%87%E0%B8%8A%E0%B8%99%E0%B8%B4%E0%B8%94.html"
-to = "/en-US/corpus/static.html"
+to = "/en-US/corpus/const.html"
 rule = "corpus-slug"
 
 [[redirects]]
@@ -8388,7 +8388,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/th-TH/corpus/%E0%B9%81%E0%B8%9B%E0%B8%A3.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "corpus-slug"
 
 [[redirects]]
@@ -9133,7 +9133,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/vi/corpus/bi%E1%BA%BFn.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "corpus-slug"
 
 [[redirects]]
@@ -9958,7 +9958,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/corpus/generis.html"
-to = "/en-US/corpus/static.html"
+to = "/en-US/corpus/const.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -10408,7 +10408,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/vi/corpus/mutable.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -11163,7 +11163,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/vi/corpus/t%C4%A9nh.html"
-to = "/en-US/corpus/static.html"
+to = "/en-US/corpus/const.html"
 rule = "corpus-slug"
 
 [[redirects]]
@@ -11263,7 +11263,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/vi/corpus/varia.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -12798,7 +12798,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/corpus/generis.html"
-to = "/en-US/corpus/static.html"
+to = "/en-US/corpus/const.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -13078,7 +13078,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hans/corpus/mutable.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -13663,7 +13663,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hans/corpus/varia.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -14008,7 +14008,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/zh-Hans/corpus/%E5%8F%98%E9%87%8F.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "corpus-slug"
 
 [[redirects]]
@@ -14488,7 +14488,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/zh-Hans/corpus/%E9%9D%99%E6%80%81.html"
-to = "/en-US/corpus/static.html"
+to = "/en-US/corpus/const.html"
 rule = "corpus-slug"
 
 [[redirects]]
@@ -15788,7 +15788,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/corpus/generis.html"
-to = "/en-US/corpus/static.html"
+to = "/en-US/corpus/const.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -16068,7 +16068,7 @@ rule = "one-to-one"
 
 [[redirects]]
 from = "/zh-Hant/corpus/mutable.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -16653,7 +16653,7 @@ rule = "english-redirect"
 
 [[redirects]]
 from = "/zh-Hant/corpus/varia.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "english-redirect"
 
 [[redirects]]
@@ -17418,7 +17418,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/zh-Hant/corpus/%E8%AE%8A%E5%80%BC.html"
-to = "/en-US/corpus/var.html"
+to = "/en-US/corpus/mut.html"
 rule = "corpus-slug"
 
 [[redirects]]
@@ -17473,7 +17473,7 @@ rule = "corpus-slug"
 
 [[redirects]]
 from = "/zh-Hant/corpus/%E9%9D%9C%E6%85%8B.html"
-to = "/en-US/corpus/static.html"
+to = "/en-US/corpus/const.html"
 rule = "corpus-slug"
 
 [[redirects]]

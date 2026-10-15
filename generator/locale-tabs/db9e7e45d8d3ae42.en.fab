@@ -1,0 +1,5 @@
+main {
+    let list<string> nomina ← ["Marcus", "Julia"]
+    let map<string, int> aetates ← { "Marcus": 30 }
+    print nomina, aetates
+}

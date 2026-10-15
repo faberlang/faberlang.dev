@@ -34,13 +34,16 @@ Product path is Rust async-cursor; other backends may fail closed.
 ## Example
 
 ```fab
++++
+locale = "la"
++++
 fn stream() async_generator → int {
     yield 1
     yield 2
 }
 
 async_main {
-    for from stream() const n {
+    for from stream() let n {
         print n
     }
 }

@@ -1,0 +1,5 @@
+main {
+    let i32 narrow ← 7 ∷ i32
+    let u64 wide ← 255 ∷ u64
+    let f32 single ← 1.5 ∷ f32
+}

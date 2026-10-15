@@ -31,7 +31,7 @@ ifStmt :← 'si' expr block
 x maior quam 5, Adult, Can vote (si.expected).
 main {
 Simple truthy branch — only the first condition matches
-    const int x ← 10
+    let int x ← 10
     if x ≻ 5 {
         print "x maior quam 5"
     }
@@ -40,7 +40,7 @@ skipped: 10 ≯ 20
         print "x maior quam 20"
     }
 Block body: multiple statements run together when condition holds
-    const int aetas ← 25
+    let int aetas ← 25
     if aetas ≥ 18 {
         print "Adult"
         print "Can vote"
@@ -52,8 +52,8 @@ Block body: multiple statements run together when condition holds
 
 ```fab
 test "if runs its body on a true condition" {
-    const int x ← 10
-    var bool maior ← false
+    let int x ← 10
+    mut bool maior ← false
     if x ≻ 5 {
         maior ← true
     }
@@ -61,8 +61,8 @@ test "if runs its body on a true condition" {
 }
 
 test "if skips its body on a false condition" {
-    const int x ← 10
-    var bool maior ← false
+    let int x ← 10
+    mut bool maior ← false
     if x ≻ 20 {
         maior ← true
     }
@@ -70,8 +70,8 @@ test "if skips its body on a false condition" {
 }
 
 test "if block body runs every statement" {
-    const int aetas ← 25
-    var int gradus ← 0
+    let int aetas ← 25
+    mut int gradus ← 0
     if aetas ≥ 18 {
         gradus ← gradus + 1
         gradus ← gradus + 1

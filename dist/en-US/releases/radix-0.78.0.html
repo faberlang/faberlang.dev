@@ -8,7 +8,7 @@ replaced by distinct semantic identities.</p><p><strong>Preferred migrations</st
 @ cursor fn f() → T       -&gt; fn f() generator → T
 @ future @ cursor ...          -&gt; fn f() async_generator → T
 const T x ← yield future        -&gt; await_const T x ← future
-var T x ← yield future        -&gt; await_var T x ← future
+mut T x ← yield future        -&gt; await_var T x ← future
 return yield future              -&gt; return_await future
 yield future                    -&gt; await future   # await and discard any success T
 yield value mut a cursor         -&gt; yield value       # yield only</code></pre><div class="table-scroll"><table><thead><tr><th>Word / form</th><th>Posture / operation</th></tr></thead><tbody><tr><td>(bare)</td><td>synchronous finite</td></tr><tr><td><code>async</code></td><td>asynchronous finite → <code>promise&lt;T&gt;</code></td></tr><tr><td><code>generator</code></td><td>synchronous stream</td></tr><tr><td><code>async_generator</code></td><td>asynchronous stream</td></tr><tr><td><code>await_const</code> / <code>await_var</code></td><td>await-bind immutable / mutable</td></tr><tr><td><code>return_await</code></td><td>await-return (<code>async</code> only)</td></tr><tr><td><code>await</code></td><td>await-discard</td></tr><tr><td><code>yield value</code></td><td>yield (<code>generator</code> / <code>async_generator</code> only)</td></tr></tbody></table></div><p><strong>Two-channel promises:</strong> <code>promise&lt;T&gt;</code> is infallible shorthand for

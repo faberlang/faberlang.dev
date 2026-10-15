@@ -25,14 +25,14 @@
 <span class="tok-co">#   Cross-ref for/intervallum.fab and operatores/membership-range.fab.</span>
 
 main {
-    var int exclusivus <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    for range <span class="tok-nu">0</span>‥<span class="tok-nu">5</span> const _ {
+    mut int exclusivus <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    for range <span class="tok-nu">0</span>‥<span class="tok-nu">5</span> let _ {
         exclusivus ↑
     }
 <span class="tok-co">    # 5 iterations</span>
     print exclusivus
-    var int inclusivus <span class="tok-op">←</span> <span class="tok-nu">0</span>
-    for range <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">5</span> const _ {
+    mut int inclusivus <span class="tok-op">←</span> <span class="tok-nu">0</span>
+    for range <span class="tok-nu">0</span><span class="tok-op">…</span><span class="tok-nu">5</span> let _ {
         inclusivus ↑
     }
 <span class="tok-co">    # 6 iterations</span>

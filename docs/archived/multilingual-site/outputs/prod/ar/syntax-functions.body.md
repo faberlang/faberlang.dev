@@ -42,9 +42,9 @@
 | `de textus name` على معامل | استعارة مشتركة |
 | `in numerus count` على معامل | استعارة قابلة للتعديل |
 | `ex textus buffer` على معامل | نقل إلى الدالة المستدعاة |
-| `itera ex items fixum item` | تكرار على القيم |
-| `itera de tabula fixum key` | تكرار على المفاتيح |
-| `ex source fixum x, ceteri rest` | تفكيك الحقول |
+| `itera ex items sit item` | تكرار على القيم |
+| `itera de tabula sit key` | تكرار على المفاتيح |
+| `ex source sit x, ceteri rest` | تفكيك الحقول |
 | `importa ex "path"` | استيراد من وحدة |
 
 ## نقطة الدخول {#entry-point}

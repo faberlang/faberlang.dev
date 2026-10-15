@@ -5,8 +5,8 @@ is a float. `∷` ascribes that width to a literal.
 
 ```faber locale=en
 main {
-    const i32 narrow ← 7 ∷ i32
-    const f32 single ← 1.5 ∷ f32
+    let i32 narrow ← 7 ∷ i32
+    let f32 single ← 1.5 ∷ f32
     print narrow
     print single
 }
@@ -20,10 +20,10 @@ eight bits mid-expression, and the store of 150 into a `u8` is in range:
 
 ```faber locale=en
 main {
-    const u8 a ← 200
-    const u8 b ← 100
-    const u8 mid ← (a + b) / 2
-    const int down ← -7 / 2
+    let u8 a ← 200
+    let u8 b ← 100
+    let u8 mid ← (a + b) / 2
+    let int down ← -7 / 2
     print mid
     print down
 }
@@ -40,9 +40,9 @@ same-width type.
 
 ```faber locale=en
 main {
-    const b8 mask ← 15
-    const b8 high ← ¬mask
-    const u8 count ← mask ↦ u8
+    let b8 mask ← 15
+    let b8 high ← ¬mask
+    let u8 count ← mask ↦ u8
     print high
     print count
 }

@@ -111,7 +111,8 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | max              maxima       الأقصى
 | min              minima       الأدنى
 | module           regio        وحدة
-| mut              in           في
+| mut              varia        قابل_للتغيير
+| mut              varia        قابل_للتغيير
 | name             nomen        اسم
 | nan              nonnumerus   nan
 | not              non          ليس
@@ -176,7 +177,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | union            discretio    تمايز
 | unstable         nondum       غير_مستقر
 | until            usque        حتى
-| var              varia        متغير
 | variant          finge        أنشئ
 | vertex           vertex       رأس
 | via              via          عبر

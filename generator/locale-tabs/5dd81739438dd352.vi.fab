@@ -1,0 +1,5 @@
+bắt_đầu {
+    đặt nomen ← "Marcus"
+    đặt numeri ← [1, 2, 3]
+    ghi_chú nomen, numeri
+}

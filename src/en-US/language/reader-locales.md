@@ -143,29 +143,29 @@ then the six packaged locale surfaces below:
 
 ```faber
 functio salve(textus nomen) → textus {
-    fixum textus msg ← "Salve, §!"(nomen)
+    sit textus msg ← "Salve, §!"(nomen)
     redde msg
 }
 
 incipit {
-    fixum textus m ← salve("munde")
+    sit textus m ← salve("munde")
     nota m
 }
 ```
 
-The surface an English reader writes: `fn`, `const`, `string`, `return`,
+The surface an English reader writes: `fn`, `let`, `string`, `return`,
 `main`, `print` — the spellings every page on this site teaches.
 
 **Latin** `la` — *identity pack*
 
 ```faber locale=la
 functio salve(textus nomen) → textus {
-    fixum textus msg ← "Salve, §!"(nomen)
+    sit textus msg ← "Salve, §!"(nomen)
     redde msg
 }
 
 incipit {
-    fixum textus m ← salve("munde")
+    sit textus m ← salve("munde")
     nota m
 }
 ```

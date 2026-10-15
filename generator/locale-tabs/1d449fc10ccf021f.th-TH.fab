@@ -1,0 +1,6 @@
+เริ่ม {
+    กำหนด ตาราง<ข้อความ, ข้อความ> persona ← { "nomen": "Marcus", "urbs": "Roma" }
+    วน จาก persona กำหนด clavis {
+        บันทึก clavis, persona[clavis]
+    }
+}

@@ -42,9 +42,9 @@ Các từ tương tự (`de`, `ex`) cũng được dùng lại trong những c�
 | `de textus name` trên tham số | Mượn dùng chung |
 | `in numerus count` trên tham số | Mượn có thể thay đổi |
 | `ex textus buffer` trên tham số | Move vào hàm gọi |
-| `itera ex items fixum item` | Lặp qua các giá trị |
-| `itera de tabula fixum key` | Lặp qua các khóa |
-| `ex source fixum x, ceteri rest` | Phân rã các trường |
+| `itera ex items sit item` | Lặp qua các giá trị |
+| `itera de tabula sit key` | Lặp qua các khóa |
+| `ex source sit x, ceteri rest` | Phân rã các trường |
 | `importa ex "path"` | Nhập từ mô-đun |
 
 ## Điểm vào {#entry-point}

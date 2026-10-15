@@ -45,27 +45,27 @@ fn explora_bivalens(bool x) <span class="tok-op">→</span> string {
 
 main {
 <span class="tok-co">    # Null checking with est</span>
-    const int <span class="tok-op">∪</span> none forsitan <span class="tok-op">←</span> null
-    const _ nihil_est <span class="tok-op">←</span> forsitan is none
+    let int <span class="tok-op">∪</span> none forsitan <span class="tok-op">←</span> null
+    let nihil_est <span class="tok-op">←</span> forsitan is none
     print nihil_est
 
 <span class="tok-co">    # Boolean true comparison with ≡</span>
-    const _ enabled <span class="tok-op">←</span> true
-    const _ verum_est <span class="tok-op">←</span> enabled <span class="tok-op">≡</span> true
+    let enabled <span class="tok-op">←</span> true
+    let verum_est <span class="tok-op">←</span> enabled <span class="tok-op">≡</span> true
     print verum_est
 
 <span class="tok-co">    # Boolean false comparison with ≡</span>
-    const _ disabled <span class="tok-op">←</span> false
-    const _ falsum_est <span class="tok-op">←</span> disabled <span class="tok-op">≡</span> false
+    let disabled <span class="tok-op">←</span> false
+    let falsum_est <span class="tok-op">←</span> disabled <span class="tok-op">≡</span> false
     print falsum_est
 
 <span class="tok-co">    # Chained with logical operators</span>
-    const string <span class="tok-op">∪</span> none name <span class="tok-op">←</span> null
-    const _ defectum_debet <span class="tok-op">←</span> name is none and enabled <span class="tok-op">≡</span> true
+    let string <span class="tok-op">∪</span> none name <span class="tok-op">←</span> null
+    let defectum_debet <span class="tok-op">←</span> name is none and enabled <span class="tok-op">≡</span> true
     print defectum_debet
 
 <span class="tok-co">    # Parenthesized for clarity</span>
-    const _ utraque_nihil <span class="tok-op">←</span> forsitan is none and name is none
+    let utraque_nihil <span class="tok-op">←</span> forsitan is none and name is none
     print utraque_nihil
 
 <span class="tok-co">    # Dynamic unknown dispatch for none and exact boolean checks on bool</span>
@@ -80,11 +80,11 @@ main {
 <span class="tok-co">    # not checked (width and element types are erased at Valor boxing time</span>
 <span class="tok-co">    # by design — see docs/factory/est-variant-check/goal.md).</span>
 
-    const value name <span class="tok-op">←</span> <span class="tok-st">"faber"</span> ↦ value
-    const value quantitas <span class="tok-op">←</span> <span class="tok-nu">42</span> ↦ value
-    const value notae <span class="tok-op">←</span> [<span class="tok-st">"a"</span>, <span class="tok-st">"b"</span>] ↦ value
-    const value active <span class="tok-op">←</span> true ↦ value
-    const value proportio <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ↦ value
+    let value name <span class="tok-op">←</span> <span class="tok-st">"faber"</span> ↦ value
+    let value quantitas <span class="tok-op">←</span> <span class="tok-nu">42</span> ↦ value
+    let value notae <span class="tok-op">←</span> [<span class="tok-st">"a"</span>, <span class="tok-st">"b"</span>] ↦ value
+    let value active <span class="tok-op">←</span> true ↦ value
+    let value proportio <span class="tok-op">←</span> <span class="tok-nu">1.5</span> ↦ value
     assert name is string
     assert quantitas is int
     assert notae is list<span class="tok-op">&lt;</span>value<span class="tok-op">&gt;</span>

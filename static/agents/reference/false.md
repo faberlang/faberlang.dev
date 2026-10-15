@@ -30,7 +30,7 @@ literal :← 'falsum'
 ```
 Scalar stdout smoke (see body).
 main {
-    const bool inactive ← false
+    let bool inactive ← false
     print inactive
 }
 ```
@@ -39,7 +39,7 @@ main {
 
 ```fab
 test "false is the false literal" {
-    const bool inactive ← false
+    let bool inactive ← false
     assert inactive ≡ false
     assert not inactive
 }

@@ -41,9 +41,9 @@ Package and probe targets reject until atomic storage ABI lowering exists.
 
 ```fab
 fn atomic_ops(mut atomic<i32> cell, i32 value) → bool {
-    const i32 loaded ← cell.load()
+    let i32 loaded ← cell.load()
     cell.store(value)
-    const i32 old ← cell.exchange(loaded)
+    let i32 old ← cell.exchange(loaded)
     return cell.compare_exchange(old, value)
 }
 ```

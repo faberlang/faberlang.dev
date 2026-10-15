@@ -35,6 +35,9 @@ callablePosture :← 'fiet'
 ## Example
 
 ```fab
++++
+locale = "la"
++++
 fn responde() async → int {
     return 42
 }

@@ -36,22 +36,22 @@ Validation and grading lines for sample x, aetas, and puncta values.
 ```fab
 main {
     # then replaces a one-statement block body
-    const _ x ← 10
+    let x ← 10
 
     if x ≻ 5 then print "x magnum est"
 
     # else then pairs else with a single consequent
-    const _ aetas ← 25
+    let aetas ← 25
     if aetas ≥ 18 then print "adultus"
     else then print "minor"
 
     # Two-way one-liner (85 < 90 → "not A")
-    const _ puncta ← 85
+    let puncta ← 85
     if puncta ≥ 90 then print "A"
     else then print "not A"
 
     # bool condition used directly
-    const _ valet ← true
+    let valet ← true
     if valet then print "Recte"
 }
 ```

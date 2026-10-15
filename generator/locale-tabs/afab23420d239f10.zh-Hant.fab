@@ -1,0 +1,5 @@
+入口 {
+    設為 i32 narrow ← "255" ↦ i32
+    設為 f32 single ← "1.5" ↦ f32
+    註記 narrow, single
+}

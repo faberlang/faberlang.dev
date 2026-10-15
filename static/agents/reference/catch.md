@@ -41,7 +41,7 @@ Rust/Go: fac/cape emit gap (whitelist: cape/cape.fab).
 
 ```fab
 main {
-    var int attempt ← 0
+    mut int attempt ← 0
     do {
         attempt ← attempt + 1
         if attempt ≻ 1 {

@@ -35,14 +35,14 @@ A whole program, doing real work:
 
 ```faber locale-tabs
 incipit {
-    fixum lista<f32> valores ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-    fixum tensor<f32, [2, 3]> matrix ← valores ↦ tensor<f32, [2, 3]>
-    fixum f32 medium ← matrix.media()
+    sit lista<f32> valores ← [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
+    sit tensor<f32, [2, 3]> matrix ← valores ↦ tensor<f32, [2, 3]>
+    sit f32 medium ← matrix.media()
     nota medium
 }
 ```
 
-`main` is the entry point. `const` binds a constant. `←` is the bind glyph —
+`main` is the entry point. `let` binds a name once. `←` is the bind glyph —
 assignment reads right-to-left into the name. `print` prints.
 
 ## By topic {#topics}
@@ -50,7 +50,7 @@ assignment reads right-to-left into the name. `print` prints.
 | Page | What it covers |
 |---|---|
 | [Entry points](/cheatsheet/entry-points.html) | `main`, async entry, CLI arguments and annotations |
-| [Bindings](/cheatsheet/bindings.html) | `const` vs `var`, type holes, union holes |
+| [Bindings](/cheatsheet/bindings.html) | `let`, `mut` and `ref`, type holes, union holes |
 | [Types and widths](/cheatsheet/types.html) | Numbers and their widths, lists, tables, tensors, vectors, and the sugar for each |
 | [Generics](/cheatsheet/generics.html) | Generic functions, generic containers, `class` |
 | [Loops](/cheatsheet/loops.html) | `for` over values, keys, and ranges; `while` |
@@ -73,8 +73,8 @@ in use; the corpus has the exhaustive entry for every one.
 | `async_main` | Async program entry point | [Entry points](/cheatsheet/entry-points.html) |
 | `fn` | Declare a function | [Generics](/cheatsheet/generics.html) |
 | `return` | Return a value | [Control flow](/cheatsheet/control-flow.html) |
-| `const` | Bind a constant | [Bindings](/cheatsheet/bindings.html) |
-| `var` | Bind a mutable variable | [Bindings](/cheatsheet/bindings.html) |
+| `let` | Bind a name once | [Bindings](/cheatsheet/bindings.html) |
+| `mut` | Bind a writable name | [Bindings](/cheatsheet/bindings.html) |
 | `class` | Declare a record type | [Generics](/cheatsheet/generics.html) |
 | `type` | Name an alias for a type | [Types and widths](/cheatsheet/types.html) |
 | `if` | If | [Control flow](/cheatsheet/control-flow.html) |

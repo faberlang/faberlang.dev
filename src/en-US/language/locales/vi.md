@@ -111,7 +111,8 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | max              maxima       lớn_nhất
 | min              minima       nhỏ_nhất
 | module           regio        vùng
-| mut              in           vào
+| mut              varia        khả_biến
+| mut              varia        khả_biến
 | name             nomen        tên
 | nan              nonnumerus   nan
 | not              non          không
@@ -176,7 +177,6 @@ Generated from the packs; read a row across to translate one term. The Latin col
 | union            discretio    hợp_nhất
 | unstable         nondum       không_ổn_định
 | until            usque        tới
-| var              varia        biến
 | variant          finge        tạo
 | vertex           vertex       đỉnh
 | via              via          thông_qua

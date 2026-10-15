@@ -41,13 +41,13 @@ Cross-ref: destructura/objectum.fab, itera/ex.fab (itera ex mode).
 
 ```fab
 class Persona {
-    var string name
-    var int aetas
+    mut string name
+    mut int aetas
 }
 
 main {
-    const _ p ← Persona { name = "Marcus", aetas = 30 }
-    from p const name, aetas
+    let p ← Persona { name = "Marcus", aetas = 30 }
+    from p let name, aetas
     print name
     print aetas
 }

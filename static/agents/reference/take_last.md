@@ -38,13 +38,13 @@ BACKEND: Go e2e whitelist — lista intrinsic methods not yet lowered for Go
 
 ```fab
 main {
-    const list<int> res ← [1, 2, 3, 4, 5] ∷ list<int>
-    const int ∪ none primus ← res.first()
-    const int ∪ none ultimus ← res.last()
-    const int ∪ none tertius ← res.get(2)
-    const int longitudo ← res.length()
-    const bool vacuaest ← res.is_empty()
-    const bool habettres ← res.contains(3)
+    let list<int> res ← [1, 2, 3, 4, 5] ∷ list<int>
+    let int ∪ none primus ← res.first()
+    let int ∪ none ultimus ← res.last()
+    let int ∪ none tertius ← res.get(2)
+    let int longitudo ← res.length()
+    let bool vacuaest ← res.is_empty()
+    let bool habettres ← res.contains(3)
     print primus, ultimus, tertius
     print longitudo, vacuaest, habettres
 }

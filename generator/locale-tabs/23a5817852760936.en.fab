@@ -1,7 +1,0 @@
-fn identitas<T>(T datum) → T {
-    return datum
-}
-
-main {
-    const int seven ← identitas<int>(7)
-}

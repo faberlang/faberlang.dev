@@ -36,7 +36,7 @@ Odd integers 1–9, then nested pairs skipping interior == 3.
 ```fab
 main {
     # Skip even numbers
-    var int i ← 0
+    mut int i ← 0
     while i ≺ 10 {
         i ← i + 1
         if i % 2 ≡ 0 {
@@ -46,9 +46,9 @@ main {
     }
 
     # Continue in nested loop
-    var int exterior ← 0
+    mut int exterior ← 0
     while exterior ≺ 3 {
-        var int interior ← 0
+        mut int interior ← 0
         while interior ≺ 5 {
             interior ← interior + 1
             if interior ≡ 3 {

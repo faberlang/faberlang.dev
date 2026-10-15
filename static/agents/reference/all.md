@@ -52,7 +52,7 @@ fn narra(Condicio condicio) → string {
 }
 
 main {
-    const Condicio condicio ← variant Activa
+    let Condicio condicio ← variant Activa
     print narra(condicio)
 }
 ```

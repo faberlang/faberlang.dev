@@ -5,8 +5,8 @@ the elements in brackets.
 
 ```faber locale=en
 main {
-    const list<i32> nums ← [1, 2, 3]
-    const list<i32> blank ← empty
+    let list<i32> nums ← [1, 2, 3]
+    let list<i32> blank ← empty
     print nums
     print blank
 }

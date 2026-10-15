@@ -41,9 +41,9 @@ Cross-ref: clausa/clausa.fab.
 
 ```fab
 main {
-    const (int) → int dupla ← int x ∴ x * 2
+    let (int) → int dupla ← int x ∴ x * 2
     print dupla(5)
-    const (int, int) → int sum ← (int a, int b) → int ∴ a + b
+    let (int, int) → int sum ← (int a, int b) → int ∴ a + b
     print sum(2, 3)
 }
 ```

@@ -1,0 +1,6 @@
+เริ่ม {
+    กำหนด จํานวน limit ← 10
+    แก้ไขได้ จํานวน count ← 0
+    count ← count + 1
+    บันทึก limit, count
+}

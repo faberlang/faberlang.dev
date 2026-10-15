@@ -31,8 +31,8 @@ fn divide(i32 a, i32 b) → i32 ∪ none {
 }
 
 main {
-    const i32 seven ← 7
-    var i32 n ← 3
+    let i32 seven ← 7
+    mut i32 n ← 3
     n ← n + 1
     print divide(seven, n)
 }
@@ -43,8 +43,8 @@ A class names its fields the same way. Methods are functions on the class;
 
 ```faber locale=en
 class Span {
-    const f64 low
-    const f64 high
+    let f64 low
+    let f64 high
 
     fn contains(f64 x) → bool {
         return self.low ≤ x and x ≤ self.high
@@ -52,7 +52,7 @@ class Span {
 }
 
 main {
-    const Span bytes ← Span { low = 0.0, high = 255.0 }
+    let Span bytes ← Span { low = 0.0, high = 255.0 }
     print bytes.contains(128.0)
 }
 ```
@@ -67,11 +67,12 @@ page. The second column names the grammar rule the word belongs to.
 | Term | Grammar rule |
 |---|---|
 | [`embed`](/en-US/corpus/embed.html) | `insere_expr` |
-| [`const`](/en-US/corpus/const.html), [`var`](/en-US/corpus/var.html) | `fixum_decl` |
+| [`const`](/en-US/corpus/const.html), [`mut`](/en-US/corpus/mut.html) | `fixum_decl` |
 | [`await_const`](/en-US/corpus/await_const.html), [`await_var`](/en-US/corpus/await_var.html) | `figendum_decl` |
 | [`let`](/en-US/corpus/let.html) | `sit_decl` |
-| [`const`](/en-US/corpus/const.html), [`var`](/en-US/corpus/var.html) | `array_destruct` |
-| [`const`](/en-US/corpus/const.html), [`var`](/en-US/corpus/var.html) | `object_destruct` |
+| [`ref`](/en-US/corpus/ref.html) | `ref_decl` |
+| [`let`](/en-US/corpus/let.html), [`mut`](/en-US/corpus/mut.html) | `array_destruct` |
+| [`let`](/en-US/corpus/let.html), [`mut`](/en-US/corpus/mut.html) | `object_destruct` |
 | [`fn`](/en-US/corpus/fn.html) | `functio_decl` |
 | [`implements`](/en-US/corpus/implements.html) | `generic_bound` |
 | [`rest`](/en-US/corpus/rest.html), [`optional`](/en-US/corpus/optional.html), [`as`](/en-US/corpus/as.html), [`coalesce`](/en-US/corpus/coalesce.html) | `parameter` |
@@ -82,8 +83,9 @@ page. The second column names the grammar rule the word belongs to.
 | [`lambda`](/en-US/corpus/lambda.html) | `clausura_legacy_expr` |
 | [`class`](/en-US/corpus/class.html), [`implements`](/en-US/corpus/implements.html) | `genus_decl` |
 | [`fn`](/en-US/corpus/fn.html) | `nondum_method_decl` |
-| [`const`](/en-US/corpus/const.html), [`static`](/en-US/corpus/static.html), [`optional`](/en-US/corpus/optional.html), [`var`](/en-US/corpus/var.html) | `genus_field_decl` |
-| [`const`](/en-US/corpus/const.html), [`static`](/en-US/corpus/static.html), [`optional`](/en-US/corpus/optional.html), [`var`](/en-US/corpus/var.html) | `field_decl` |
+| [`let`](/en-US/corpus/let.html), [`optional`](/en-US/corpus/optional.html), [`mut`](/en-US/corpus/mut.html) | `genus_field_decl` |
+| [`const`](/en-US/corpus/const.html) | `genus_const_decl` |
+| [`let`](/en-US/corpus/let.html), [`optional`](/en-US/corpus/optional.html), [`mut`](/en-US/corpus/mut.html) | `field_decl` |
 | [`fn`](/en-US/corpus/fn.html) | `functio_method_decl` |
 ## Formal grammar {#formal-grammar}
 

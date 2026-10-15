@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Extracts fields from a value into local bindings."><meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="from — Faber"><meta property="og:description" content="Extracts fields from a value into local bindings."><meta property="og:url" content="https://faberlang.dev/en-US/corpus/from.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/corpus/from.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>from — Faber</title><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-instrument.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">←</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword..." aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/install.md">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">←</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/en-US/start/">Start here</a></li><li><a href="/en-US/releases/">Releases</a></li></ul><div class="side-h">The Language</div><ul class="nav"><li><a href="/en-US/language/overview.html">Overview</a></li><li><details class="nav-branch"><summary>Behavior</summary><ul><li><a href="/en-US/language/behavior/type-first.html">Types before names</a></li><li><a href="/en-US/language/behavior/glyph-law.html">The glyph law</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">Sealed reader locales</a></li><li><a href="/en-US/language/behavior/packages.html">A program is a package</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">Errors as values, tests as declarations</a></li></ul></details></li><li><details class="nav-branch"><summary>Grammar</summary><ul><li><a href="/en-US/reference/grammar.html">Grammar overview</a></li><li><a href="/en-US/reference/grammar/program.html">Programs, regions &amp; imports</a></li><li><a href="/en-US/reference/grammar/declarations.html">Declarations &amp; bindings</a></li><li><a href="/en-US/reference/grammar/annotations.html">Annotations &amp; directives</a></li><li><a href="/en-US/reference/grammar/types.html">Types &amp; contracts</a></li><li><a href="/en-US/reference/grammar/statements.html">Statements &amp; control flow</a></li><li><a href="/en-US/reference/grammar/expressions.html">Expressions &amp; operators</a></li><li><a href="/en-US/reference/grammar/patterns.html">Patterns &amp; destructuring</a></li><li><a href="/en-US/reference/grammar/errors.html">Error channel</a></li><li><a href="/en-US/reference/grammar/lexical.html">Lexical structure &amp; glyphs</a></li></ul></details></li><li><a href="/en-US/corpus/az.html" class="active">Terms A–Z</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">Targets</div><ul class="nav"><li><a href="/en-US/targets/">All targets</a></li><li><details class="nav-branch"><summary>Application · HIR</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>Systems · MIR</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly text</a></li></ul></details></li><li><details class="nav-branch"><summary>Device · GPU</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li></ul><div class="side-h">Reader locales</div><ul class="nav"><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/locales/keywords.html">Keyword reference</a></li><li><a href="/en-US/language/locales/examples.html">Locale examples</a></li><li><a href="/en-US/language/locales/diagnostics.html">Diagnostics by locale</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul></aside><main id="main-content"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/en-US/corpus/index.html">Corpus</a> &rsaquo; <a href="/en-US/corpus/bucket/control-flow.html">Control flow</a> &rsaquo; from</nav><h1>from</h1><p><strong>Translation status:</strong> English reader-locale proof. Term names and code fences follow the <code>en</code> pack; supporting prose may still be English.</p><div class="content"><p>Extracts fields from a value into local bindings.</p><p><strong>Syntax:</strong> <code>from &lt;expression&gt; &lt;const|var&gt; &lt;field&gt; [, ...] [rest &lt;ident&gt;]</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>destructuring</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/en-US/corpus/ref.html">ref</a></li><li><a href="/en-US/corpus/as.html">as</a></li><li><a href="/en-US/corpus/rest.html">rest</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusdestructuralistafab-canonical-keyword">radix/corpus/destructura/lista.fab (canonical · keyword)<a class="anchor" href="#radixcorpusdestructuralistafab-canonical-keyword">#</a></h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
+<html lang="en-US"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="description" content="Extracts fields from a value into local bindings."><meta name="theme-color" content="#e8e5db" media="(prefers-color-scheme: light)"><meta name="theme-color" content="#0a0c0f" media="(prefers-color-scheme: dark)"><meta property="og:site_name" content="Faber"><meta property="og:type" content="website"><meta property="og:title" content="from — Faber"><meta property="og:description" content="Extracts fields from a value into local bindings."><meta property="og:url" content="https://faberlang.dev/en-US/corpus/from.html"><meta property="og:locale" content="en_US"><link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='12'%20fill='%23ff5a2c'/%3E%3Cpath%20d='M46%2032H19M31%2019L18%2032L31%2045'%20fill='none'%20stroke='%230a0c0f'%20stroke-width='6'%20stroke-linecap='round'%20stroke-linejoin='round'/%3E%3C/svg%3E"><link rel="canonical" href="https://faberlang.dev/en-US/corpus/from.html"><link rel="alternate" type="text/plain" href="/llms.txt" title="Agent index"><link rel="alternate" type="text/markdown" href="/agents/index.md" title="Agent guide"><link rel="alternate" type="application/json" href="/.well-known/agent-skills/index.json" title="Agent skills"><title>from — Faber</title><link rel="stylesheet" href="/speculum.css"><script src="/faber-search.js" defer></script><script src="/faber-demo-tabs.js" defer></script><script src="/faber-instrument.js" defer></script></head><body class="docs has-toc"><a href="#main-content" class="skip-link">Skip to content</a><div class="renderbar"><div class="in"><a class="portal-home" href="/" title="porta · all languages" aria-label="porta · all languages"><span class="portal-mark" aria-hidden="true">←</span></a><span class="lbl">Rendering</span><a class="loclink" href="/" title="porta · change language" aria-label="porta · change language">en-US</a><span class="searchbox" data-search hidden><input type="search" placeholder="keyword..." aria-label="Search keywords" autocomplete="off" spellcheck="false"></span><nav class="machine-links" aria-label="Machine documentation"><a href="/llms.txt">/llms.txt</a><a href="/agents/index.md">/agents</a><a href="/.well-known/agent-skills/index.json">/skills</a><a href="/install.md">install</a></nav></div></div><div class="page"><aside><a class="brand" href="/en-US/"><span class="brand-mark" aria-hidden="true">←</span><span class="brand-text"><span class="brand-name">Faber</span><span class="brand-tag">language docs</span></span></a><div class="side-h">Start</div><ul class="nav"><li><a href="/en-US/start/">Start here</a></li><li><a href="/en-US/releases/">Releases</a></li></ul><div class="side-h">The Language</div><ul class="nav"><li><a href="/en-US/language/overview.html">Overview</a></li><li><details class="nav-branch"><summary>Behavior</summary><ul><li><a href="/en-US/language/behavior/type-first.html">Types before names</a></li><li><a href="/en-US/language/behavior/glyph-law.html">The glyph law</a></li><li><a href="/en-US/language/behavior/numeric-widths.html">Math in the ether</a></li><li><a href="/en-US/language/behavior/sealed-locales.html">Sealed reader locales</a></li><li><a href="/en-US/language/behavior/packages.html">A program is a package</a></li><li><a href="/en-US/language/behavior/errors-and-tests.html">Errors as values, tests as declarations</a></li></ul></details></li><li><details class="nav-branch"><summary>Grammar</summary><ul><li><a href="/en-US/reference/grammar.html">Grammar overview</a></li><li><a href="/en-US/reference/grammar/program.html">Programs, regions &amp; imports</a></li><li><a href="/en-US/reference/grammar/declarations.html">Declarations &amp; bindings</a></li><li><a href="/en-US/reference/grammar/annotations.html">Annotations &amp; directives</a></li><li><a href="/en-US/reference/grammar/types.html">Types &amp; contracts</a></li><li><a href="/en-US/reference/grammar/statements.html">Statements &amp; control flow</a></li><li><a href="/en-US/reference/grammar/expressions.html">Expressions &amp; operators</a></li><li><a href="/en-US/reference/grammar/patterns.html">Patterns &amp; destructuring</a></li><li><a href="/en-US/reference/grammar/errors.html">Error channel</a></li><li><a href="/en-US/reference/grammar/lexical.html">Lexical structure &amp; glyphs</a></li></ul></details></li><li><a href="/en-US/corpus/az.html" class="active">Terms A–Z</a></li><li><a href="/en-US/cheatsheet/">Cheat sheet</a></li></ul><div class="side-h">Targets</div><ul class="nav"><li><a href="/en-US/targets/">All targets</a></li><li><details class="nav-branch"><summary>Application · HIR</summary><ul><li><a href="/en-US/targets/rust.html">Rust</a></li><li><a href="/en-US/targets/ts.html">TypeScript</a></li><li><a href="/en-US/targets/go.html">Go</a></li><li><a href="/en-US/targets/faber.html">Faber</a></li></ul></details></li><li><details class="nav-branch"><summary>Systems · MIR</summary><ul><li><a href="/en-US/targets/llvm-text.html">LLVM IR</a></li><li><a href="/en-US/targets/wasm-text.html">WebAssembly text</a></li></ul></details></li><li><details class="nav-branch"><summary>Device · GPU</summary><ul><li><a href="/en-US/targets/metal-text.html">Metal</a></li><li><a href="/en-US/targets/wgsl-text.html">WGSL</a></li></ul></details></li><li><a href="/en-US/toolchain/target-matrix.html">Target matrix</a></li></ul><div class="side-h">Reader locales</div><ul class="nav"><li><a href="/en-US/language/reader-locales.html">Reader locales</a></li><li><a href="/en-US/language/locales/keywords.html">Keyword reference</a></li><li><a href="/en-US/language/locales/examples.html">Locale examples</a></li><li><a href="/en-US/language/locales/diagnostics.html">Diagnostics by locale</a></li></ul><div class="side-h">Libraries</div><ul class="nav"><li><a href="/en-US/libraries/norma.html">Norma — stdlib</a></li><li><a href="/en-US/libraries/triga.html">Triga — graphics</a></li><li><a href="/en-US/libraries/gradus.html">Gradus — autograd</a></li><li><a href="/en-US/libraries/tela.html">Tela — views</a></li><li><a href="/en-US/libraries/inferentia.html">Inferentia — inference</a></li><li><a href="/en-US/libraries/corpus.html">The corpus</a></li></ul></aside><main id="main-content"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/en-US/corpus/index.html">Corpus</a> &rsaquo; <a href="/en-US/corpus/bucket/control-flow.html">Control flow</a> &rsaquo; from</nav><h1>from</h1><p><strong>Translation status:</strong> English reader-locale proof. Term names and code fences follow the <code>en</code> pack; supporting prose may still be English.</p><div class="content"><p>Extracts fields from a value into local bindings.</p><p><strong>Syntax:</strong> <code>from &lt;expression&gt; &lt;const|mut&gt; &lt;field&gt; [, ...] [rest &lt;ident&gt;]</code></p><h2 id="category">Category<a class="anchor" href="#category">#</a></h2><p><code>destructuring</code></p><h2 id="related">Related<a class="anchor" href="#related">#</a></h2><ul><li><a href="/en-US/corpus/ref.html">ref</a></li><li><a href="/en-US/corpus/as.html">as</a></li><li><a href="/en-US/corpus/rest.html">rest</a></li></ul><h2 id="examples">Examples<a class="anchor" href="#examples">#</a></h2><h3 id="radixcorpusdestructuralistafab-canonical-keyword">radix/corpus/destructura/lista.fab (canonical · keyword)<a class="anchor" href="#radixcorpusdestructuralistafab-canonical-keyword">#</a></h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
 <span class="tok-co"># from — Extracts fields from a value into local bindings.</span>
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • Lista destructuring — `const [a, b, c] ← list` extracts elements from a list into individual bindings.</span>
 <span class="tok-co">#   • Rest patterns — `const [caput, rest cauda] ← list` captures remaining elements.</span>
-<span class="tok-co">#   • Mutable destructuring — `var [x, y] ← list` for mutable bindings.</span>
+<span class="tok-co">#   • Mutable destructuring — `mut [x, y] ← list` for mutable bindings.</span>
 <span class="tok-co">#   • Skip and nested patterns — underscore `_` skips elements; nested listas destructure recursively.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
@@ -19,12 +19,12 @@
 <span class="tok-co"># destructura — list destructuring patterns</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># const [a, b, c] ← list</span>
-<span class="tok-co"># var [x, y, z] ← list</span>
+<span class="tok-co"># mut [x, y, z] ← list</span>
 <span class="tok-co"># const [caput, rest cauda] ← list</span>
 <span class="tok-co"># const [_, medius, _] ← list</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   destructStmt :← ('const' | 'var') '[' patternList ']' '←' expr</span>
+<span class="tok-co">#   destructStmt :← ('const' | 'mut') '[' patternList ']' '←' expr</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   Element values from inline and bound listas, rest slices, nested rows.</span>
@@ -32,22 +32,22 @@
 main {
 <span class="tok-co">    # --- Basic list destructuring ---</span>
 
-    const _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
-    const [a, b, c] <span class="tok-op">←</span> numeri
+    let numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]
+    let [a, b, c] <span class="tok-op">←</span> numeri
     print a
     print b
     print c
 
 <span class="tok-co">    # Destructure inline list literal</span>
-    const [primus, secundus, tertius] <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
+    let [primus, secundus, tertius] <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
     print primus
     print secundus
     print tertius
 
-<span class="tok-co">    # --- Mutable destructuring with var ---</span>
+<span class="tok-co">    # --- Mutable destructuring with mut ---</span>
 
-    const _ coordinata <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">200</span>]
-    var [x, y] <span class="tok-op">←</span> coordinata
+    let coordinata <span class="tok-op">←</span> [<span class="tok-nu">100</span>, <span class="tok-nu">200</span>]
+    mut [x, y] <span class="tok-op">←</span> coordinata
     print x
     print y
     x <span class="tok-op">←</span> x <span class="tok-op">+</span> <span class="tok-nu">50</span>
@@ -57,28 +57,28 @@ main {
 
 <span class="tok-co">    # --- Partial destructuring (fewer variables than elements) ---</span>
 
-    const _ valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
-    const [unus, duo] <span class="tok-op">←</span> valores
+    let valores <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    let [unus, duo] <span class="tok-op">←</span> valores
     print unus
     print duo
 
 <span class="tok-co">    # --- Rest pattern with rest ---</span>
 
-    const _ res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
-    const [caput, rest cauda] <span class="tok-op">←</span> res
+    let res <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    let [caput, rest cauda] <span class="tok-op">←</span> res
     print caput
     print cauda
 
 <span class="tok-co">    # --- Skip elements with underscore ---</span>
 
-    const _ triplex <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
-    const [_, medius, _] <span class="tok-op">←</span> triplex
+    let triplex <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
+    let [_, medius, _] <span class="tok-op">←</span> triplex
     print medius
 
 <span class="tok-co">    # --- Nested listas ---</span>
 
-    const _ matrix <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]]
-    const [ordo1, ordo2] <span class="tok-op">←</span> matrix
+    let matrix <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>], [<span class="tok-nu">3</span>, <span class="tok-nu">4</span>]]
+    let [ordo1, ordo2] <span class="tok-op">←</span> matrix
     print ordo1
     print ordo2
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1
@@ -105,7 +105,7 @@ main {
 <span class="tok-co"># What this teaches:</span>
 <span class="tok-co">#   • Field destructuring — `from &lt;expr&gt; const &lt;field&gt;, ...` extracts named fields from class records into local bindings.</span>
 <span class="tok-co">#   • Aliasing — `from &lt;expr&gt; const &lt;field&gt; as &lt;alias&gt;` renames extracted fields.</span>
-<span class="tok-co">#   • Mutable extraction — `from &lt;expr&gt; var &lt;field&gt;, ...` for mutable field bindings.</span>
+<span class="tok-co">#   • Mutable extraction — `from &lt;expr&gt; mut &lt;field&gt;, ...` for mutable field bindings.</span>
 <span class="tok-co">#   • Rest pattern — `from &lt;expr&gt; const &lt;field&gt;, rest &lt;rest&gt;` captures remaining fields as a map.</span>
 <span class="tok-co">#   • Nested paths — `from &lt;expr&gt;.&lt;field&gt; const ...` destructures through nested paths.</span>
 <span class="tok-co">#</span>
@@ -119,7 +119,7 @@ main {
 <span class="tok-co"># destructura — field destructuring with `from`</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># from &lt;expr&gt; const &lt;field&gt;, ...</span>
-<span class="tok-co"># from &lt;expr&gt; var &lt;field&gt;, ...</span>
+<span class="tok-co"># from &lt;expr&gt; mut &lt;field&gt;, ...</span>
 <span class="tok-co"># from &lt;expr&gt; const &lt;field&gt; as &lt;alias&gt;</span>
 <span class="tok-co"># from &lt;expr&gt; const &lt;field&gt;, rest &lt;rest&gt;</span>
 <span class="tok-co">#</span>
@@ -128,79 +128,79 @@ main {
 <span class="tok-co"># known and codegen-complete.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   destructStmt :← 'from' expr ('const' | 'var') patternList</span>
+<span class="tok-co">#   destructStmt :← 'from' expr ('const' | 'mut') patternList</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
-<span class="tok-co">#   Extracted field values, aliased names, mutated var bindings, rest maps.</span>
+<span class="tok-co">#   Extracted field values, aliased names, mutated mut bindings, rest maps.</span>
 
 class Persona {
-    var string name
-    var int aetas
-    var string urbs
+    mut string name
+    mut int aetas
+    mut string urbs
 }
 
 class Civis {
-    var string name
-    var string epistula
+    mut string name
+    mut string epistula
 }
 
 class Datum {
-    var int int
-    var bool activus
+    mut int int
+    mut bool activus
 }
 
 class Forma {
-    var string hospes
-    var int portus
-    var bool tutus
+    mut string hospes
+    mut int portus
+    mut bool tutus
 }
 
 class Plenus {
-    var int signum
-    var string name
-    var string epistula
-    var string munus
+    mut int signum
+    mut string name
+    mut string epistula
+    mut string munus
 }
 
 class Sodalis {
-    var string name
-    var bool probatus
+    mut string name
+    mut bool probatus
 }
 
 class Relatus {
-    var Sodalis civis
+    mut Sodalis civis
 }
 
 class Responsum {
-    var Relatus datum
+    mut Relatus datum
 }
 
 class Vestis {
-    var string modus
-    var string lingua
+    mut string modus
+    mut string lingua
 }
 
 main {
 <span class="tok-co">    # --- Basic field extraction ---</span>
 
-    const _ persona <span class="tok-op">←</span> Persona { name <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span>, urbs <span class="tok-op">=</span> <span class="tok-st">"Roma"</span> }
-    from persona const name, aetas
+    let persona <span class="tok-op">←</span> Persona { name <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span>, urbs <span class="tok-op">=</span> <span class="tok-st">"Roma"</span> }
+    from persona let name, aetas
 
     print name
     print aetas
 
 <span class="tok-co">    # --- Extract with alias using 'as' ---</span>
 
-    const _ civis <span class="tok-op">←</span> Civis { name <span class="tok-op">=</span> <span class="tok-st">"Julia"</span>, epistula <span class="tok-op">=</span> <span class="tok-st">"julia@roma.com"</span> }
-    from civis const name as cognomen, epistula as epistula2
+    let civis <span class="tok-op">←</span> Civis { name <span class="tok-op">=</span> <span class="tok-st">"Julia"</span>, epistula <span class="tok-op">=</span> <span class="tok-st">"julia@roma.com"</span> }
+    from civis let name as cognomen, epistula as epistula2
 
     print cognomen
     print epistula2
 
-<span class="tok-co">    # --- Mutable destructuring with var ---</span>
+<span class="tok-co">    # --- Mutable destructuring with mut ---</span>
 
-    const _ datum <span class="tok-op">←</span> Datum { int <span class="tok-op">=</span> <span class="tok-nu">100</span>, activus <span class="tok-op">=</span> true }
-    from datum var int, activus
+    let datum <span class="tok-op">←</span> Datum { int <span class="tok-op">=</span> <span class="tok-nu">100</span>, activus <span class="tok-op">=</span> true }
+    from datum mut int, activus
 
     print int
     print activus
@@ -213,8 +213,8 @@ main {
 
 <span class="tok-co">    # --- Mixed alias and regular fields ---</span>
 
-    const _ forma <span class="tok-op">←</span> Forma { hospes <span class="tok-op">=</span> <span class="tok-st">"localis"</span>, portus <span class="tok-op">=</span> <span class="tok-nu">8080</span>, tutus <span class="tok-op">=</span> true }
-    from forma const hospes, portus as porta, tutus
+    let forma <span class="tok-op">←</span> Forma { hospes <span class="tok-op">=</span> <span class="tok-st">"localis"</span>, portus <span class="tok-op">=</span> <span class="tok-nu">8080</span>, tutus <span class="tok-op">=</span> true }
+    from forma let hospes, portus as porta, tutus
 
     print hospes
     print porta
@@ -222,24 +222,24 @@ main {
 
 <span class="tok-co">    # --- Rest pattern with rest ---</span>
 
-    const _ plenus <span class="tok-op">←</span> Plenus { signum <span class="tok-op">=</span> <span class="tok-nu">1</span>, name <span class="tok-op">=</span> <span class="tok-st">"Gaius"</span>, epistula <span class="tok-op">=</span> <span class="tok-st">"g@roma.com"</span>, munus <span class="tok-op">=</span> <span class="tok-st">"admin"</span> }
-    from plenus const signum, rest reliqua
+    let plenus <span class="tok-op">←</span> Plenus { signum <span class="tok-op">=</span> <span class="tok-nu">1</span>, name <span class="tok-op">=</span> <span class="tok-st">"Gaius"</span>, epistula <span class="tok-op">=</span> <span class="tok-st">"g@roma.com"</span>, munus <span class="tok-op">=</span> <span class="tok-st">"admin"</span> }
+    from plenus let signum, rest reliqua
 
     print signum
     print reliqua
 
 <span class="tok-co">    # --- Destructura from nested path ---</span>
 
-    const _ responsum <span class="tok-op">←</span> Responsum { datum <span class="tok-op">=</span> Relatus { civis <span class="tok-op">=</span> Sodalis { name <span class="tok-op">=</span> <span class="tok-st">"Claudia"</span>, probatus <span class="tok-op">=</span> true } } }
-    from responsum.datum.civis const name as internum, probatus
+    let responsum <span class="tok-op">←</span> Responsum { datum <span class="tok-op">=</span> Relatus { civis <span class="tok-op">=</span> Sodalis { name <span class="tok-op">=</span> <span class="tok-st">"Claudia"</span>, probatus <span class="tok-op">=</span> true } } }
+    from responsum.datum.civis let name as internum, probatus
 
     print internum
     print probatus
 
 <span class="tok-co">    # --- Single field extraction ---</span>
 
-    const _ vestis <span class="tok-op">←</span> Vestis { modus <span class="tok-op">=</span> <span class="tok-st">"nigrum"</span>, lingua <span class="tok-op">=</span> <span class="tok-st">"la"</span> }
-    from vestis const modus
+    let vestis <span class="tok-op">←</span> Vestis { modus <span class="tok-op">=</span> <span class="tok-st">"nigrum"</span>, lingua <span class="tok-op">=</span> <span class="tok-st">"la"</span> }
+    from vestis let modus
 
     print modus
 }</code></pre><h3 id="radixcorpusexexfab-canonical-keyword">radix/corpus/ex/ex.fab (canonical · keyword)<a class="anchor" href="#radixcorpusexexfab-canonical-keyword">#</a></h3><p>Extracts fields from a value into local bindings.</p><pre class="faber-code"><code class="lang-faber outcome=compiles"><span class="tok-co"># =============================================================================</span>
@@ -269,13 +269,13 @@ main {
 <span class="tok-co">#</span>
 
 class Persona {
-    var string name
-    var int aetas
+    mut string name
+    mut int aetas
 }
 
 main {
-    const _ p <span class="tok-op">←</span> Persona { name <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
-    from p const name, aetas
+    let p <span class="tok-op">←</span> Persona { name <span class="tok-op">=</span> <span class="tok-st">"Marcus"</span>, aetas <span class="tok-op">=</span> <span class="tok-nu">30</span> }
+    from p let name, aetas
     print name
     print aetas
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Marcus
@@ -285,15 +285,15 @@ main {
 <span class="tok-co"># =============================================================================</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># What this teaches:</span>
-<span class="tok-co">#   • Loop-binder destructuring — `for from xs const [a, b] { ... }` binds each</span>
+<span class="tok-co">#   • Loop-binder destructuring — `for from xs let [a, b] { ... }` binds each</span>
 <span class="tok-co">#     element through the same pattern grammar as binding-position forms.</span>
-<span class="tok-co">#   • Records (class) — `for from puncta const {x, y} { ... }` object_pattern</span>
+<span class="tok-co">#   • Records (class) — `for from puncta let {x, y} { ... }` object_pattern</span>
 <span class="tok-co">#     binds fields by name on each element.</span>
-<span class="tok-co">#   • Positional tuples — `for from ordines const [a, b] { ... }` binds tuple</span>
+<span class="tok-co">#   • Positional tuples — `for from ordines let [a, b] { ... }` binds tuple</span>
 <span class="tok-co">#     slots positionally.</span>
-<span class="tok-co">#   • Rest patterns — `for from matricula const [caput, rest cauda]` captures</span>
+<span class="tok-co">#   • Rest patterns — `for from matricula let [caput, rest cauda]` captures</span>
 <span class="tok-co">#     the remaining list.</span>
-<span class="tok-co">#   • Holes — `for from ordines const [_, secundus]` skips a slot with `_`.</span>
+<span class="tok-co">#   • Holes — `for from ordines let [_, secundus]` skips a slot with `_`.</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># Common mistakes:</span>
 <span class="tok-co">#   • Binding more pattern slots than the tuple element has — the loop binder</span>
@@ -316,49 +316,49 @@ main {
 <span class="tok-co">#   [_, x]              holes</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># GRAMMAR:</span>
-<span class="tok-co">#   forInStmt :← 'for' 'from' expr ('const' | 'var') pattern block</span>
+<span class="tok-co">#   forInStmt :← 'for' 'from' expr ('const' | 'mut') pattern block</span>
 <span class="tok-co">#</span>
 <span class="tok-co"># EXPECTED OUTPUT:</span>
 <span class="tok-co">#   destructuring.expected — sums and elements from every pattern form.</span>
 
 class Punctum {
-    var int x
-    var int y
+    mut int x
+    mut int y
 }
 
 main {
 <span class="tok-co">    # --- Records: object_pattern over list of class elements ---</span>
 
-    const _ puncta <span class="tok-op">←</span> [Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }, Punctum { x <span class="tok-op">=</span> <span class="tok-nu">3</span>, y <span class="tok-op">=</span> <span class="tok-nu">4</span> }]
-    for from puncta const {x, y} {
+    let puncta <span class="tok-op">←</span> [Punctum { x <span class="tok-op">=</span> <span class="tok-nu">1</span>, y <span class="tok-op">=</span> <span class="tok-nu">2</span> }, Punctum { x <span class="tok-op">=</span> <span class="tok-nu">3</span>, y <span class="tok-op">=</span> <span class="tok-nu">4</span> }]
+    for from puncta let {x, y} {
         print x <span class="tok-op">+</span> y
     }
 
 <span class="tok-co">    # --- Labeled tuples: object_pattern binds by label ---</span>
 
-    const list<span class="tok-op">&lt;</span>tuple<span class="tok-op">&lt;</span>gx<span class="tok-op">:</span> int, int<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> paria <span class="tok-op">←</span> [tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span> [<span class="tok-nu">50</span>, <span class="tok-nu">60</span>], tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span> [<span class="tok-nu">70</span>, <span class="tok-nu">80</span>]]
-    for from paria const {gx} {
+    let list<span class="tok-op">&lt;</span>tuple<span class="tok-op">&lt;</span>gx<span class="tok-op">:</span> int, int<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> paria <span class="tok-op">←</span> [tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span> [<span class="tok-nu">50</span>, <span class="tok-nu">60</span>], tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span> [<span class="tok-nu">70</span>, <span class="tok-nu">80</span>]]
+    for from paria let {gx} {
         print gx
     }
 
 <span class="tok-co">    # --- Positional tuples: array_pattern over fixed-width rows ---</span>
 
-    const list<span class="tok-op">&lt;</span>tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> ordines <span class="tok-op">←</span> [tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>], tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span> [<span class="tok-nu">30</span>, <span class="tok-nu">40</span>]]
-    for from ordines const [a, b] {
+    let list<span class="tok-op">&lt;</span>tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span><span class="tok-op">&gt;</span> ordines <span class="tok-op">←</span> [tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>], tuple<span class="tok-op">&lt;</span>int, int<span class="tok-op">&gt;</span> [<span class="tok-nu">30</span>, <span class="tok-nu">40</span>]]
+    for from ordines let [a, b] {
         print a <span class="tok-op">+</span> b
     }
 
 <span class="tok-co">    # --- Rest patterns: first element plus the remaining list ---</span>
 
-    const _ matricula <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>], [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]]
-    for from matricula const [caput, rest cauda] {
+    let matricula <span class="tok-op">←</span> [[<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>], [<span class="tok-nu">4</span>, <span class="tok-nu">5</span>, <span class="tok-nu">6</span>]]
+    for from matricula let [caput, rest cauda] {
         print caput
         print cauda[<span class="tok-nu">1</span>]
     }
 
 <span class="tok-co">    # --- Holes: `_` skips a slot ---</span>
 
-    for from ordines const [_, secundus] {
+    for from ordines let [_, secundus] {
         print secundus
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>3
@@ -399,21 +399,21 @@ main {
 
 main {
 <span class="tok-co">    # Iterate over number list</span>
-    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">5</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
-    for from numeri const n {
+    let list<span class="tok-op">&lt;</span>int, <span class="tok-nu">5</span><span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>, <span class="tok-nu">4</span>, <span class="tok-nu">5</span>]
+    for from numeri let n {
         print n
     }
 
 <span class="tok-co">    # Iterate over string list</span>
-    const list<span class="tok-op">&lt;</span>string, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> nomina <span class="tok-op">←</span> [<span class="tok-st">"Marcus"</span>, <span class="tok-st">"Julia"</span>, <span class="tok-st">"Claudia"</span>]
-    for from nomina const name {
+    let list<span class="tok-op">&lt;</span>string, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> nomina <span class="tok-op">←</span> [<span class="tok-st">"Marcus"</span>, <span class="tok-st">"Julia"</span>, <span class="tok-st">"Claudia"</span>]
+    for from nomina let name {
         print name
     }
 
 <span class="tok-co">    # Transform values</span>
-    const list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
-    for from valores const v {
-        const int duplex <span class="tok-op">←</span> v <span class="tok-op">*</span> <span class="tok-nu">2</span>
+    let list<span class="tok-op">&lt;</span>int, <span class="tok-nu">3</span><span class="tok-op">&gt;</span> valores <span class="tok-op">←</span> [<span class="tok-nu">10</span>, <span class="tok-nu">20</span>, <span class="tok-nu">30</span>]
+    for from valores let v {
+        let int duplex <span class="tok-op">←</span> v <span class="tok-op">*</span> <span class="tok-nu">2</span>
         print duplex
     }
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>1

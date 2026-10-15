@@ -250,7 +250,6 @@
   <url><loc>https://faberlang.dev/en-US/corpus/sort-text.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/sparsa.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/spread.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/static.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/step.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/string.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/sum.html</loc></url>
@@ -267,6 +266,7 @@
   <url><loc>https://faberlang.dev/en-US/corpus/throws.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/timeout.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/todo.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/trapped.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/true.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/ts-reserved-field-names.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/tuple.html</loc></url>
@@ -277,7 +277,7 @@
   <url><loc>https://faberlang.dev/en-US/corpus/unstable.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/until.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/value.html</loc></url>
-  <url><loc>https://faberlang.dev/en-US/corpus/var.html</loc></url>
+  <url><loc>https://faberlang.dev/en-US/corpus/varia.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/variant.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/versio.html</loc></url>
   <url><loc>https://faberlang.dev/en-US/corpus/vocatio.html</loc></url>

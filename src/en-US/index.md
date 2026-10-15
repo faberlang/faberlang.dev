@@ -102,7 +102,7 @@ The language makes three deliberate signal choices that work together:
 - **Type-first declarations** — shape reads toward binding: `string name`,
   not `name: string`.
 - **Behavioural words** — declarations, statements, and lifecycle:
-  `fn`, `class`, `const`, `return`, `if`.
+  `fn`, `class`, `let`, `return`, `if`.
 - **Structural glyphs** — value flow and type joints: `←` (bind), `→`
   (return type), `∴` (closure joint), `≡` (equality), `∪` (union).
 

@@ -1,0 +1,6 @@
+bắt_đầu {
+    đặt danh_sách<số> numeri ← [1, 2, 3]
+    lặp từ numeri đặt n {
+        ghi_chú n
+    }
+}

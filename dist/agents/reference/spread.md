@@ -35,10 +35,10 @@ spargeExpr :← 'sparge' expr
 
 ```fab
 main {
-    const list<int> media ← [2, 3]
+    let list<int> media ← [2, 3]
     # → [1, 2, 3, 4]
-    const list<int> numeri ← [1, spread media, 4]
-    for from numeri const n {
+    let list<int> numeri ← [1, spread media, 4]
+    for from numeri let n {
         print n
     }
 }

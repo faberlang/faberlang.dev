@@ -1,7 +1,0 @@
-functio identitas<T>(T datum) → T {
-    redde datum
-}
-
-incipit {
-    fixum numerus seven ← identitas<numerus>(7)
-}

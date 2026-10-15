@@ -1,0 +1,5 @@
+เริ่ม {
+    กำหนด i32 narrow ← "255" ↦ i32
+    กำหนด f32 single ← "1.5" ↦ f32
+    บันทึก narrow, single
+}

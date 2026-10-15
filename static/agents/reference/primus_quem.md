@@ -26,6 +26,9 @@ primus_quem(<source>, ubi <binder> { <predicate> })
 ## Example
 
 ```fab
++++
+locale = "la"
++++
 fn elige_litteram() → float ∪ none {
     return primus_quem([1.0, -2.0, 3.0], ubi x { x ≻ 0.0 })
 }
@@ -46,12 +49,12 @@ fn elige_primum_viventem(list<f32> xs) → float ∪ none {
 }
 
 main {
-    const float ∪ none litteram ← elige_litteram()
-    const float ∪ none nullum ← elige_nullum()
-    const list<f32> vacua_lista ← []
-    const float ∪ none void ← elige_vacuum(vacua_lista)
-    const list<f32> xs ← [1.0, 5.0, 3.0]
-    const float ∪ none primum ← elige_primum_viventem(xs)
+    let float ∪ none litteram ← elige_litteram()
+    let float ∪ none nullum ← elige_nullum()
+    let list<f32> vacua_lista ← []
+    let float ∪ none void ← elige_vacuum(vacua_lista)
+    let list<f32> xs ← [1.0, 5.0, 3.0]
+    let float ∪ none primum ← elige_primum_viventem(xs)
 
     print litteram
     print nullum

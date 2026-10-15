@@ -43,7 +43,7 @@ fn multiplica(int x, int y) <span class="tok-op">→</span> int {
 }
 
 class Computator {
-    var int valor <span class="tok-op">=</span> <span class="tok-nu">0</span>
+    mut int valor <span class="tok-op">=</span> <span class="tok-nu">0</span>
 
     fn pone(int n) <span class="tok-op">→</span> Computator {
         self.valor <span class="tok-op">←</span> n
@@ -65,30 +65,30 @@ main {
     saluta()
 
 <span class="tok-co">    # Call with arguments</span>
-    const int sum <span class="tok-op">←</span> adde(<span class="tok-nu">10</span>, <span class="tok-nu">20</span>)
+    let int sum <span class="tok-op">←</span> adde(<span class="tok-nu">10</span>, <span class="tok-nu">20</span>)
 <span class="tok-co">    # 30</span>
     print sum
 
 <span class="tok-co">    # Multiple arguments</span>
-    const int productum <span class="tok-op">←</span> multiplica(<span class="tok-nu">5</span>, <span class="tok-nu">6</span>)
+    let int productum <span class="tok-op">←</span> multiplica(<span class="tok-nu">5</span>, <span class="tok-nu">6</span>)
 <span class="tok-co">    # 30</span>
     print productum
 
 <span class="tok-co">    # Method call on object</span>
-    var Computator computator <span class="tok-op">←</span> Computator {}
+    mut Computator computator <span class="tok-op">←</span> Computator {}
     computator.pone(<span class="tok-nu">10</span>)
 <span class="tok-co">    # 10</span>
     print computator.accipe()
 
 <span class="tok-co">    # Chained method calls</span>
-    var Computator alter <span class="tok-op">←</span> Computator {}
-    const int value <span class="tok-op">←</span> alter.pone(<span class="tok-nu">5</span>).duplica().duplica().accipe()
+    mut Computator alter <span class="tok-op">←</span> Computator {}
+    let int value <span class="tok-op">←</span> alter.pone(<span class="tok-nu">5</span>).duplica().duplica().accipe()
 <span class="tok-co">    # 20</span>
     print value
 
 <span class="tok-co">    # Call with spread</span>
-    const list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">7</span>]
-    const int sparsa <span class="tok-op">←</span> adde(spread numeri)
+    let list<span class="tok-op">&lt;</span>int<span class="tok-op">&gt;</span> numeri <span class="tok-op">←</span> [<span class="tok-nu">3</span>, <span class="tok-nu">7</span>]
+    let int sparsa <span class="tok-op">←</span> adde(spread numeri)
 <span class="tok-co">    # 10</span>
     print sparsa
 }</code></pre><p><strong>Expected output:</strong></p><pre class="faber-code"><code>Salve!

@@ -24,6 +24,9 @@ awaitDiscard :← 'tacebit' expr
 ## Example
 
 ```fab
++++
+locale = "la"
++++
 fn responde() async → int {
     return 1
 }

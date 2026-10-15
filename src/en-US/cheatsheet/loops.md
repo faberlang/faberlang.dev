@@ -18,8 +18,8 @@ this is — and it is required, so a loop always says what it walks.
 
 ```faber locale-tabs
 incipit {
-    fixum lista<numerus> numeri ← [1, 2, 3]
-    itera ex numeri fixum n {
+    sit lista<numerus> numeri ← [1, 2, 3]
+    itera ex numeri sit n {
         nota n
     }
 }
@@ -33,10 +33,10 @@ each list per turn:
 
 ```faber locale-tabs
 incipit {
-    fixum lista<textus> nomina ← ["Alia", "Brunus"]
-    fixum lista<numerus> aetates ← [34, 27]
+    sit lista<textus> nomina ← ["Alia", "Brunus"]
+    sit lista<numerus> aetates ← [34, 27]
 
-    itera ex nomina, aetates apud [i] fixum nomen, aetas {
+    itera ex nomina, aetates apud [i] sit nomen, aetas {
         nota i, nomen, aetas
     }
 }
@@ -51,8 +51,8 @@ than silently truncating to the shortest.
 
 ```faber locale-tabs
 incipit {
-    fixum tabula<textus, textus> persona ← { "nomen": "Marcus", "urbs": "Roma" }
-    itera de persona fixum clavis {
+    sit tabula<textus, textus> persona ← { "nomen": "Marcus", "urbs": "Roma" }
+    itera de persona sit clavis {
         nota clavis, persona[clavis]
     }
 }
@@ -63,8 +63,8 @@ matters as much as the value:
 
 ```faber locale-tabs
 incipit {
-    fixum lista<numerus> numeri ← [10, 20, 30]
-    itera de numeri fixum index {
+    sit lista<numerus> numeri ← [10, 20, 30]
+    itera de numeri sit index {
         nota index, numeri[index]
     }
 }
@@ -76,7 +76,7 @@ incipit {
 
 ```faber locale-tabs
 incipit {
-    itera ab 0‥3 fixum i {
+    itera ab 0‥3 sit i {
         nota i
     }
 }
@@ -86,7 +86,7 @@ incipit {
 
 ```faber locale-tabs
 incipit {
-    itera ab 0‥10 per 2 fixum i {
+    itera ab 0‥10 per 2 sit i {
         nota i
     }
 }
@@ -112,8 +112,8 @@ incipit {
 
 ```faber locale-tabs
 incipit {
-    fixum lista<numerus> numeri ← [1, 2, 3, 4, 5]
-    itera ex numeri fixum n {
+    sit lista<numerus> numeri ← [1, 2, 3, 4, 5]
+    itera ex numeri sit n {
         si n ≡ 2 ergo perge
         si n ≻ 3 ergo rumpe
         nota n
