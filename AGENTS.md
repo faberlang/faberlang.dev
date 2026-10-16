@@ -195,6 +195,20 @@ A build that exceeds these by 3x is a finding, not a fact of the environment.
 
 ### The radix pin
 
+> **KNOWN DEFECT — this site is pinned to one Faber release.**
+> The generated pages, the agent reference, the captured panels and the grammar
+> tables describe the compiler named in `generator/upstream.lock.toml` and
+> nothing newer. Nothing in the build notices when radix moves past the pin,
+> and `generator/scripts/validate-fences.sh` is **not** a build gate: it is
+> run by hand, and neither `build.py` nor the deploy workflow calls it. That is
+> how Faber 1.14 shipped with a site that still taught `var`: the pin stayed on
+> the 1.13-era commit while the release pages said 1.14.0.
+> The operator wants the pin removed. Until then, after **any** compiler change
+> that touches syntax, diagnostics or the locale packs: run
+> `build-site.sh --refresh-upstream <rev> --faber <1.x binary>`, run
+> `validate-fences.sh` on `src/en-US` and `static/agents`, and treat a failing
+> fence as a blocker. The build prints a `PINNED to …` line every run.
+
 The build never reads the live radix checkout. It reads `grammar/`, `locale/`
 and `corpus/` as of the git tree ids in `generator/upstream.lock.toml`,
 extracted by `git archive` to `generator/target/upstream/radix/` and reached

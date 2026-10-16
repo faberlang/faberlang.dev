@@ -91,8 +91,16 @@ def resolve_rev(rev: str) -> tuple[str, dict[str, str]]:
 
 def write_lock(commit: str, trees: dict[str, str], faber_version: str) -> None:
     lines = [
-        "# Pinned radix inputs for the site build. Written by",
-        "# `build-site.sh --refresh-upstream`; never edit by hand.",
+        "# !! THIS SITE IS PINNED TO ONE FABER RELEASE. !!",
+        "# Everything generated from radix (grammar, locale tables, corpus, agent",
+        "# reference, target and locale panels) describes the compiler named below",
+        "# and nothing newer. Nothing in the build notices when radix moves past it,",
+        "# and the fence validator is not a build gate. This is a known defect: the",
+        "# operator wants the pin gone. Until it is, any compiler change after this",
+        "# pin must be followed by `build-site.sh --refresh-upstream` and a fence run",
+        "# (see AGENTS.md, \"The radix pin\").",
+        "#",
+        "# Written by `build-site.sh --refresh-upstream`; never edit by hand.",
         "# Tree ids are content addresses, so this survives a history rewrite",
         "# that only changes commits; `commit` is informational.",
         "",

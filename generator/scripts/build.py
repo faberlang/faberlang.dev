@@ -287,6 +287,9 @@ class Build:
         )
         print(f"faber {self.converter.stamp.split('|')[0]} · radix {read_pin_commit()[:10]} "
               f"· reader {self.reader}")
+        pinned = upstream.read_lock().get("faber", {}).get("version", "unknown")
+        print(f"  PINNED to {pinned} (radix {read_pin_commit()[:10]}): generated pages do not follow "
+              "compiler changes after the pin; see AGENTS.md, The radix pin")
 
     def refresh_upstream(self, rev: str) -> None:
         commit, trees = upstream.resolve_rev(rev)
@@ -660,8 +663,8 @@ def smoke(dist: Path, release: str) -> list[str]:
         ("fail-closed", "landing device fail-closed bound"),
         ('href="/en-US/language/locales/la.html"', "landing Latin mapping door"),
         ('href="/en-US/"', "landing English docs door"),
-        ("const Span bytes ← Span { low = 0.0, high = 255.0 }", "landing English reader panel"),
-        ("fixum Span bytes ← Span { low = 0.0, high = 255.0 }", "landing Latin reader panel"),
+        ("let Span bytes ← Span { low = 0.0, high = 255.0 }", "landing English reader panel"),
+        ("sit Span bytes ← Span { low = 0.0, high = 255.0 }", "landing Latin reader panel"),
         ("ภาษาไทย", "landing Thai reader panel"),
         ("÷ 2.0", "landing demo shows true division"),
         ("pub struct Span", "landing Rust target panel"),

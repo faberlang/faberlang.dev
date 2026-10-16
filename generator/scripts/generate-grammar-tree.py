@@ -100,7 +100,7 @@ FAMILIES: list[dict] = [
         ),
         "ids": """
             binding_decl expr_stmt block_stmt const_init insere_expr fixum_decl
-            figendum_decl sit_decl array_destruct object_destruct functio_decl
+            figendum_decl sit_decl ref_decl array_destruct object_destruct functio_decl
             param_list generic_params type_param_list size_param_list
             generic_param size_param generic_bound contract_ref
             generic_type_default generic_size_default call_type_args
@@ -109,7 +109,7 @@ FAMILIES: list[dict] = [
             ergo_joint clausura_joint clausura_expr compact_clausura_expr
             clausura_signature fac_block clausura_legacy_expr
             clausura_params clausura_param genus_decl genus_member
-            nondum_method_decl genus_field_decl field_decl functio_method_decl
+            nondum_method_decl genus_field_decl genus_const_decl field_decl functio_method_decl
         """.split(),
     },
     {
@@ -248,12 +248,12 @@ A file that does one thing:
 
 ```faber locale=en
 fn salve(string nomen) → string {
-    const string msg ← "Salve, §!"(nomen)
+    let string msg ← "Salve, §!"(nomen)
     return msg
 }
 
 main {
-    const string m ← salve("munde")
+    let string m ← salve("munde")
     print m
 }
 ```
@@ -280,9 +280,11 @@ describe "saturate" {
 ```
 """,
     "declarations": """\
-A declaration introduces a name the rest of the file can use. Bindings hold
-values: `const` is written once, `var` can be assigned again, and `let` is
-the short inferred form of an immutable binding. Functions, closures, and
+A declaration introduces a name the rest of the file can use. Four binding
+words say how a name is bound: `let` is a fixed name, `mut` is re-pointable
+and writable, `ref` is re-pointable and read-only, and `const T X = e` is a
+compile-time fact. Every one writes its type slot, and `_` asks for
+inference. Functions, closures, and
 classes are declarations too — they name a callable or a type, and the
 fields and methods it holds.
 
@@ -301,8 +303,8 @@ fn divide(i32 a, i32 b) → i32 ∪ none {
 }
 
 main {
-    const i32 seven ← 7
-    var i32 n ← 3
+    let i32 seven ← 7
+    mut i32 n ← 3
     n ← n + 1
     print divide(seven, n)
 }
@@ -313,8 +315,8 @@ A class names its fields the same way. Methods are functions on the class;
 
 ```faber locale=en
 class Span {
-    const f64 low
-    const f64 high
+    let f64 low
+    let f64 high
 
     fn contains(f64 x) → bool {
         return self.low ≤ x and x ≤ self.high
@@ -322,7 +324,7 @@ class Span {
 }
 
 main {
-    const Span bytes ← Span { low = 0.0, high = 255.0 }
+    let Span bytes ← Span { low = 0.0, high = 255.0 }
     print bytes.contains(128.0)
 }
 ```
@@ -353,7 +355,7 @@ A command-line entry uses the same `@` shape above `main args`:
 @ description "Prints text"
 @ operand { rest = true, type = string, binding = words }
 main args argv {
-    for from argv.words const word {
+    for from argv.words let word {
         print word
     }
 }
@@ -375,11 +377,11 @@ Everyday types, type first:
 
 ```faber locale=en
 main {
-    const string name ← "Marcus"
-    const i32 age ← 30
-    const bool flag ← true
-    const list<i32> nums ← [1, 2, 3]
-    const i32 ∪ none missing ← null
+    let string name ← "Marcus"
+    let i32 age ← 30
+    let bool flag ← true
+    let list<i32> nums ← [1, 2, 3]
+    let i32 ∪ none missing ← null
     print name
     print age
     print flag
@@ -396,8 +398,8 @@ type Signum = i32
 type Nomina = list<string>
 
 main {
-    const Signum signum ← 42
-    const Nomina sodales ← ["Gaius", "Lucius"]
+    let Signum signum ← 42
+    let Nomina sodales ← ["Gaius", "Lucius"]
     print signum
     print sodales
 }
@@ -418,7 +420,7 @@ error channel, which lives on the [error channel](errors.html) page.
 
 ```faber locale=en
 main {
-    const i32 score ← 85
+    let i32 score ← 85
     if score ≥ 90 {
         print "A"
     }
@@ -428,11 +430,11 @@ main {
     else {
         print "C"
     }
-    const list<i32> nums ← [1, 2, 3]
-    for from nums const item {
+    let list<i32> nums ← [1, 2, 3]
+    for from nums let item {
         print item
     }
-    var i32 n ← 0
+    mut i32 n ← 0
     while n ≺ 2 {
         n ← n + 1
     }
@@ -474,8 +476,8 @@ fn greet(string nomen) → string {
 }
 
 main {
-    const i32 a ← 7
-    const i32 b ← 2
+    let i32 a ← 7
+    let i32 b ← 2
     print a / b
     print a ≥ b and b ≢ 0
     print greet("munde")
@@ -486,8 +488,8 @@ main {
 
 ```faber locale=en
 main {
-    const i32 ∪ none missing ← null
-    const i32 n ← missing coalesce 0
+    let i32 ∪ none missing ← null
+    let i32 n ← missing coalesce 0
     print n
 }
 ```
@@ -499,17 +501,17 @@ on the left of each `case`: a literal, a type, a binding, or a
 destructured object or array.
 
 `and` joins patterns that must all hold; `or` offers alternatives.
-`const` / `var` / `as` bind a name to what matched. `rest` keeps the
+`let` / `mut` / `as` bind a name to what matched. `rest` keeps the
 leftover fields or elements. The same atoms appear when a union-typed
 value is read back out by member type.
 
 ```faber locale=en
 main {
-    const i32 ∪ string signum ← 7
+    let i32 ∪ string signum ← 7
 
     match signum {
-        case i32 const n { print "a number" }
-        case string const s { print "a text" }
+        case i32 let n { print "a number" }
+        case string let s { print "a text" }
     }
 }
 ```
@@ -563,9 +565,9 @@ mostly those tokens:
 
 ```faber locale=en
 main {
-    const i32 narrow ← 7 ∷ i32
-    const f32 single ← 1.5 ∷ f32
-    const string name ← "Marcus"
+    let i32 narrow ← 7 ∷ i32
+    let f32 single ← 1.5 ∷ f32
+    let string name ← "Marcus"
     print name
     print narrow
     print single

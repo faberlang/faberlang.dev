@@ -37,7 +37,6 @@ KEYWORDS
   fragilis          testing         Marks a test as fragile.
   functio           function        Declares a named function or method.
   futurum           testing         Marks a test case as pending future work with a reason.
-  generis           type            Marks a class member as belonging to the type itself.
   genus             type            Declares a concrete type with fields and methods.
   iace              errors          Throws a recoverable error.
   ignotum           type            Primitive types bivalens, vacuum, and ignotum.
@@ -196,6 +195,7 @@ TYPES
   prima             testing         Marks a test for metered or measured execution.
   string            literal         Short quoted textus string literals and template application.
   tensor            collection      tensor<T, Figura> declaration shell with rank-0 vacua.
+  trapped           errors          The result of a capture boundary: trap { ... } reifies the error channel into a value read by match.
   ultima            testing         Marks a test for metered or measured execution.
   vector            register        vector type declarations: long form and vf32 sugar.
 
@@ -204,7 +204,7 @@ CONCEPTS
   manifest          package         faber.toml package metadata for build, run, and test.
   prae              type            Angle-bracket generic parameters on functions and declarations.
   primus_quem       collection      Dedicated total first-match expression: first live element of a source satisfying the owned ubi predicate, nihil for no-match and empty sources.
-  summa             collection      Sequential sum-reduce expression: reducta via summa ex <tensor> apud [i] fixum s.
+  summa             collection      Sequential sum-reduce expression: reducta via summa ex <tensor> apud [i] sit s.
   targets           package         Compilation backends listed by faber targets or radix targets.
 
 CONVERSIONS

@@ -11,6 +11,11 @@ subject = "textus"
 why = "the pack gives `textus` and `string` the same English slug; the first term in sorted order keeps it and `textus` stays on its identity key, by design"
 
 [[allow]]
+kind = "corpus-slug-collision"
+subject = "varia"
+why = "the 1.14 English pack spells both the binding word `varia` and the parameter and call marker `in` as `mut`; the first term in sorted order (`in`) keeps the slug /corpus/mut.html and `varia` stays on its identity key /corpus/varia.html. A reader who searches for the binding `mut` lands on the marker page. Known wrinkle, not a design goal"
+
+[[allow]]
 kind = "transcode"
 subject = "cheatsheet/imports.md"
 why = "one fence is an import fragment with no inferable name; the page shows its source unchanged"

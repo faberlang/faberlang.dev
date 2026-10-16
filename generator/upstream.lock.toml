@@ -1,15 +1,23 @@
-# Pinned radix inputs for the site build. Written by
-# `build-site.sh --refresh-upstream`; never edit by hand.
+# !! THIS SITE IS PINNED TO ONE FABER RELEASE. !!
+# Everything generated from radix (grammar, locale tables, corpus, agent
+# reference, target and locale panels) describes the compiler named below
+# and nothing newer. Nothing in the build notices when radix moves past it,
+# and the fence validator is not a build gate. This is a known defect: the
+# operator wants the pin gone. Until it is, any compiler change after this
+# pin must be followed by `build-site.sh --refresh-upstream` and a fence run
+# (see AGENTS.md, "The radix pin").
+#
+# Written by `build-site.sh --refresh-upstream`; never edit by hand.
 # Tree ids are content addresses, so this survives a history rewrite
 # that only changes commits; `commit` is informational.
 
 [radix]
-commit = "20c62a89c75ebfc5656aa7009796900fde7c1837"
+commit = "53b30601e1a4df25b446d5eee4d000ebf8d8c645"
 
 [trees]
-grammar = "5b9cbac95c2b6742d8ab422acb802c48bf3a7b96"
-locale = "570a0b746a9a045a96d1fd3f309d4933686b68a0"
-corpus = "e43d784e4a5591ee495ae23fdeeff10f7fa1af04"
+grammar = "6de42c0cca629fde85c28bd2e90ed4fd821985ae"
+locale = "60f41a2a00944009308af4421f05a8570d3dd971"
+corpus = "36258fc0e8203754e2315c97cfed7de276c2409d"
 
 [faber]
-version = "faber 1.13.0"
+version = "faber 1.14.0"

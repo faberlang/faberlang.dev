@@ -117,7 +117,8 @@ class IncompleteTests(unittest.TestCase):
     def test_unexpected_and_stale_catch_both_directions(self) -> None:
         found = [("keywords", "conversion", ("en", "la")), ("keywords", "brand_new", ("vi",))]
         self.assertEqual(unexpected(found), [("keywords", "brand_new", ("vi",))])
-        self.assertEqual(stale_expectations(found), [("keywords", "nihil", ("la",))])
+        self.assertEqual(stale_expectations(found), [])
+        self.assertEqual(stale_expectations([]), [("keywords", "conversion", ("en", "la"))])
 
 
 class RenderTests(unittest.TestCase):
