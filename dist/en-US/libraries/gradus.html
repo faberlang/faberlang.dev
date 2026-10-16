@@ -32,10 +32,12 @@ shapes are not already covered does not need a matching overload added to the
 library.</p><p>Alongside the typed-tensor forms, several operations have a <code>_carrier</code>
 variant over <code>tensor.NumericBlock</code>, the decoded F32 host-list carrier that the
 CPU and reference tiers execute on. Those variants report failure through a
-typed error (<code>LossError</code>, <code>NnError</code>) instead of a shape type.</p><h2 id="status">Status<a class="anchor" href="#status">#</a></h2><p>Gradus is pre-1.0 and its API may change. <code>faber check-library gradus</code> with
-the Faber 1.14.0 release compiler does not pass yet: the sources still use the
-retired binding words (<code>var</code>, run-time <code>const</code>, <code>const</code> binders), which the
-compiler now rejects. What is proven is narrower than
+typed error (<code>LossError</code>, <code>NnError</code>) instead of a shape type.</p><h2 id="status">Status<a class="anchor" href="#status">#</a></h2><p>Gradus is pre-1.0 and its API may change. <code>faber check-library gradus</code> passes
+with the Faber 1.14.0 compiler: no errors, and warnings only (mostly unused
+function and complexity-budget notes). The sources use the <code>let</code> / <code>mut</code> /
+<code>ref</code> binding words and write the type slot (<code>let _ x ← e</code> to infer), and the
+repository's 28 example packages and <code>tests/admission_conformance.fab</code> all
+check clean. Checking is not running, though. What is proven is narrower than
 what the module list suggests: most of it is structural, with source contracts
 that check and are pinned by test tests, and a narrow set of executed proofs.</p><div class="table-scroll"><table><thead><tr><th>Layer</th><th>State</th></tr></thead><tbody><tr><td>Reverse-mode AD over AIR tensor ops</td><td><strong>Shipped</strong> in Radix; the admitted VJP family and its gaps live in the Radix autograd crate, not in Gradus</td></tr><tr><td>Tensor, dtype, shape, parameter, serialize contracts</td><td><strong>Shipped</strong> as versioned schemas</td></tr><tr><td>Pure operation families (<code>gradus:math</code>)</td><td><strong>Shipped</strong> — elementwise, reduce, matmul, cast, concat/slice</td></tr><tr><td>Loss, optimizer, NN primitives</td><td><strong>Shipped</strong> (structural), generic over tensor sizes</td></tr><tr><td>Attention and transformer blocks</td><td><strong>Shipped</strong> (structural)</td></tr><tr><td>Training loop, metrics, checkpointing</td><td><strong>Shipped</strong> (structural): SGD state and step, <code>Checkpoint</code>, <code>accuracy</code> / <code>Metric</code></td></tr><tr><td>Model admission</td><td><strong>Shipped</strong>: GGUF and Safetensors admission into typed capsules</td></tr><tr><td>GPU training</td><td><strong>Not claimed</strong>; device execution and emission are Radix scope</td></tr></tbody></table></div><p>The gradient seam — a forward loss, its generated companion backward, and a
 per-element comparison against central finite differences — runs end to end in
