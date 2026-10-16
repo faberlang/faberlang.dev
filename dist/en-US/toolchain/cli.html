@@ -5,23 +5,25 @@ ergonomic developer tool.</p><h3 id="core-commands">Core commands<a class="ancho
 accepted values and <code>faber targets</code> shows each target's current capability
 notes. A target whose generator is not in the binary you are running is
 rejected with <code>PKG001 target_not_in_this_build</code>. Diagnostics can be promoted to errors with <code>--deny-warnings</code> (all
-warnings) or <code>--deny &lt;CODE&gt;</code> (a specific catalog code, repeatable).</p><h3 id="device-execution">Device execution (Metal / CUDA)<a class="anchor" href="#device-execution">#</a></h3><p><code>faber run</code> can execute a package's device program on a real GPU. A package
+warnings) or <code>--deny &lt;CODE&gt;</code> (a specific catalog code, repeatable).</p><h3 id="device-execution">Device execution (Metal; CUDA is hardware-gated)<a class="anchor" href="#device-execution">#</a></h3><p><code>faber run</code> can execute a package's device program on a real GPU (Apple Metal in the released binary). A package
 carries a device program when its source declares an <code>@ kernel</code> compute
 kernel and its manifest declares a <code>[device]</code> section (<code>device</code>, and
 <code>inputs</code> for the kernel's input buffers):</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run <span class="tok-op">--device</span> metal &lt;package&gt;   # Apple Metal (e.g. Apple M5 Max)
-<span class="tok-fn">faber</span> run <span class="tok-op">--device</span> cuda  &lt;package&gt;   # NVIDIA CUDA (needs a CUDA host)
+<span class="tok-fn">faber</span> run <span class="tok-op">--device</span> cuda  &lt;package&gt;   # NVIDIA CUDA (hardware-gated; not enabled in the released binary, fails closed)
 <span class="tok-fn">faber</span> run <span class="tok-op">--device</span> auto  &lt;package&gt;   # resolve: exactly one admitted device
 <span class="tok-fn">faber</span> run <span class="tok-op">--device</span> reference &lt;package&gt;  # plain sequential code on the MIR runner
 <span class="tok-fn">faber</span> run <span class="tok-op">--device</span> cpu   &lt;package&gt;   # processor cores as a device</code></pre><p><code>reference</code> is the oracle that device results are checked against. Today
 <code>cpu</code> takes the same route as <code>reference</code>: the kernels run as ordinary
 functions, single-threaded, on the MIR runner. Device selection precedence:
 CLI <code>--device</code> &gt; manifest <code>[device] device</code> &gt; <code>auto</code>. The packaged FMIR image's <code>device</code> section carries the canonical device
-program plus Metal MSL and CUDA PTX artifacts (each with a provenance hash);
-<code>faber run</code> drives a real Metal/CUDA session (load → allocate → copy-in →
+program plus Metal MSL, and CUDA PTX when an NVPTX-capable <code>clang</code> is present at
+build time (each artifact with a provenance hash); <code>faber run</code> drives a real
+Metal session (load → allocate → copy-in →
 launch → sync → readback → release) and reports the selected device, the
 artifact/module hash, and the observed outputs. An explicit GPU request never
-silently falls back: a device whose runtime is not registered (the default
-macOS build admits Metal, and <code>--device cuda</code> answers <code>E_DEVICE_UNAVAILABLE</code>),
+silently falls back: a device whose runtime is not registered (the released
+binary registers Metal on macOS and no CUDA runtime on any platform, so
+<code>--device cuda</code> answers <code>E_DEVICE_UNAVAILABLE</code>),
 unavailable backends, bad descriptors, and
 entry/dtype/shape mismatches fail closed with a stable code
 (<code>E_BACKEND_UNAVAILABLE</code>, <code>E_DEVICE_*</code>, <code>E_NO_DEVICE_PROGRAM</code>).</p><h3 id="checking">Checking without emitting<a class="anchor" href="#checking">#</a></h3><pre class="faber-code"><code class="lang-text">faber check my-package/</code></pre><p>Runs the front end (lex → parse → typecheck) without producing output
@@ -65,4 +67,4 @@ like a shell script. <code>faber cost</code> reports static runtime-cost classes
 lowered MIR if you want the numbers for a package.</p><h3 id="limitations">Limitations<a class="anchor" href="#limitations">#</a></h3><ul><li>The MIR runner does not support all host I/O routes that the compiled
 path does — some <code>norma:*</code> wrappers remain compiled-only</li><li>The runner is a MIR-native diagnostic/reference executor, not a
 production runtime for deployed applications</li><li>Package compilation through Cargo remains the widest package product path
-today (Rust projection); other targets are measured separately</li></ul></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#faber-build-tool">Faber build tool</a></li><li class="toc-3"><a href="#core-commands">Core commands</a></li><li class="toc-3"><a href="#building">Building a package</a></li><li class="toc-3"><a href="#device-execution">Device execution (Metal / CUDA)</a></li><li class="toc-3"><a href="#checking">Checking without emitting</a></li><li class="toc-3"><a href="#testing-command">Running tests</a></li><li class="toc-3"><a href="#formatting">Formatting</a></li><li class="toc-3"><a href="#explaining">Explaining diagnostics</a></li><li class="toc-2"><a href="#in-process-scripting">In-process scripting</a></li><li class="toc-3"><a href="#usage">Usage</a></li><li class="toc-3"><a href="#how-it-works">How it works</a></li><li class="toc-3"><a href="#latency">Cost</a></li><li class="toc-3"><a href="#limitations">Limitations</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>
+today (Rust projection); other targets are measured separately</li></ul></div></main><nav class="toc" aria-labelledby="toc-label"><div class="toc-h" id="toc-label">On this page</div><div class="toc-body"><ul><li class="toc-2"><a href="#faber-build-tool">Faber build tool</a></li><li class="toc-3"><a href="#core-commands">Core commands</a></li><li class="toc-3"><a href="#building">Building a package</a></li><li class="toc-3"><a href="#device-execution">Device execution (Metal; CUDA is hardware-gated)</a></li><li class="toc-3"><a href="#checking">Checking without emitting</a></li><li class="toc-3"><a href="#testing-command">Running tests</a></li><li class="toc-3"><a href="#formatting">Formatting</a></li><li class="toc-3"><a href="#explaining">Explaining diagnostics</a></li><li class="toc-2"><a href="#in-process-scripting">In-process scripting</a></li><li class="toc-3"><a href="#usage">Usage</a></li><li class="toc-3"><a href="#how-it-works">How it works</a></li><li class="toc-3"><a href="#latency">Cost</a></li><li class="toc-3"><a href="#limitations">Limitations</a></li></ul></div></nav><footer><div class="source-list"><span class="side-h">Sources</span><ul><li>[</li></ul></div><nav class="foot-links" aria-label="Site"><a href="/en-US/releases/">All releases</a></nav></footer></div></body></html>

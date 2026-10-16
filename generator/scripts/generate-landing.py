@@ -97,7 +97,7 @@ CAPABILITY_GROUPS: list[tuple[str, list[tuple[str, str, str]]]] = [
     ("Systems, native and device", [
         ("llvm-host", "Native executable", "MIR lowered to LLVM, linked for the local host."),
         ("wasm-text", "WebAssembly", "WAT text; binary conversion uses external tools."),
-        ("llvm-text", "LLVM IR", "Text for LLVM tooling; also the CUDA device route."),
+        ("llvm-text", "LLVM IR", "Text for LLVM tooling; also stages the CUDA PTX artifact (no CUDA runtime in the released binary)."),
         ("metal-text", "Metal", "Shader source; device execution through the Metal route."),
         ("wgsl-text", "WGSL", "WebGPU compute shader source."),
     ]),
@@ -638,11 +638,14 @@ def main() -> None:
       <h2>Compute is one thing you can build</h2>
       <p>
         The same language carries numeric and device work. Tensor operators and
-        <code>@ kernel</code> kernels lower to WGSL, Metal and CUDA routes, and
+        <code>@ kernel</code> kernels lower to WGSL and Metal source and stage
+        a CUDA PTX artifact, and
         <a href="/en-US/libraries/gradus.html">Gradus</a> uses them for
-        autograd. Device execution is explicit and fail-closed: a requested
-        backend never silently falls back to CPU. It is under active
-        development; device inference is not shipped.
+        autograd. Metal is the device that runs today. CUDA is
+        hardware-gated and not enabled in the released binary. Device
+        execution is explicit and fail-closed: a requested backend never
+        silently falls back to CPU. It is under active development;
+        device inference is not shipped.
       </p>
       <nav class="chips" aria-label="Device execution references">
         <a href="/en-US/toolchain/compiling.html#device-execution">Device execution contract</a>

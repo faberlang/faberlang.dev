@@ -35,7 +35,7 @@ MIR is where meaning takes execution-shaped form: lower-level targets, validatio
 
 ## GPU — the device lane {#gpu}
 
-A function marked `@ nucleum` is a compute kernel. The device lane links the compiler to real Metal and CUDA execution.
+A function marked `@ nucleum` is a compute kernel. The device lane links the compiler to real Metal execution; CUDA is hardware-gated and not enabled in the released binary.
 
 [GPU lane overview](/targets/gpu.html)
 
@@ -48,7 +48,7 @@ A function marked `@ nucleum` is a compute kernel. The device lane links the com
 
 Three more compiler lanes carry no source-text target of their own and so have no page here: **Locale** renders reader spellings (see [reader locales](/cheatsheet/locales.html)), **AIR** is the autograd surface between typed HIR and MIR, and **Packaging** produces the FHIR and FMIR artifacts a package ships.
 
-This is the honest target list: a page exists only for a lane the compiler exposes as a text target. There is no CUDA page — CUDA device programs are produced on the NVVM → PTX path and run with `faber run --device cuda`, not emitted as source text. The [target matrix](/toolchain/target-matrix.html) measures a few more emit surfaces than the site gives pages to.
+This is the honest target list: a page exists only for a lane the compiler exposes as a text target. There is no CUDA page — CUDA is a hardware-gated NVVM → PTX artifact path, not a source-text target, and the released binary registers no CUDA runtime: `faber run --device cuda` fails closed. The [target matrix](/toolchain/target-matrix.html) measures a few more emit surfaces than the site gives pages to.
 
 ## The scenarios {#scenarios}
 

@@ -78,10 +78,11 @@ OPTIONAL_KEYS = (
 # corpus terms answers a question that does not apply to them, and the ~2% it
 # produced was read as "Metal is 2% done" no matter how much prose sat beside
 # it. A number travels; its caveat does not. Their real support lives in the
-# device-kernel product summary and in `faber run --device metal|cuda`.
+# device-kernel product summary and in `faber run --device metal`.
 #
-# CUDA has never had a column here — it is produced on the NVVM → PTX path, not
-# as a text emit target — and that stays true.
+# CUDA has never had a column here — it is an NVVM → PTX artifact path, not
+# a text emit target, and the released binary has no CUDA runtime — and that
+# stays true.
 EXCLUDED_TARGETS = frozenset({"metal-text", "wgsl-text"})
 
 

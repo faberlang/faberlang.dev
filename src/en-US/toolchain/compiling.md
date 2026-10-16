@@ -90,8 +90,8 @@ Notes:
   binary" means it ships in the released `faber` but its source does not.
 - The GPU rows are kernel functions only. `faber run --device metal` launches
   `@ kernel` functions on a real GPU (Apple silicon); `--device cuda` is
-  selectable but hardware-gated, and fails closed where no CUDA runtime is
-  registered, as in the default macOS build. `-t metal-text`, `-t wgsl-text`
+  selectable but hardware-gated and not enabled in the released binary: no CUDA
+  runtime is registered, so it fails closed. `-t metal-text`, `-t wgsl-text`
   and `-t llvm-text` themselves remain emit-only.
 - The table is generated from the corpus suite at release time, not edited by
   hand.
@@ -125,7 +125,7 @@ Source → Lex → Parse → Collect → Resolve → Lower → Typecheck → Ana
 
 **Do not read Metal/WGSL percentages on the [target matrix](/toolchain/target-matrix.html) as product completeness.** Those
 rows score *full-language corpus terms* against a *kernel-only* emitter. Device
-runs go through `faber run --device metal|cuda` (see
+runs go through `faber run --device metal` (CUDA is hardware-gated and fails closed in the released binary; see
 [device execution](/toolchain/cli.html#device-execution)).
 
 For the **device-kernel summary** (how a device program runs and what each
@@ -396,12 +396,13 @@ by a WebGPU host.
 
 Metal compute shader text emission follows the same pattern as WGSL: Faber
 emits Metal Shading Language source for the device-safe kernel subset. Metal
-and CUDA are the **device execution** paths (`faber run --device metal|cuda`).
-Metal is the Apple Silicon local-dev and API-parity host; CUDA is the NVIDIA
-deployment host. WebGPU remains a browser graphics and headless lane (Triga),
+is the **device execution** path that runs today (`faber run --device metal`).
+Metal is the Apple Silicon local-dev and API-parity host. CUDA (`--device
+cuda`) is the planned NVIDIA host: it is hardware-gated and not enabled in the
+released binary. WebGPU remains a browser graphics and headless lane (Triga),
 not a package device-execution path.
 
-#### Device execution (Metal / CUDA) {#device-execution}
+#### Device execution (Metal; CUDA is hardware-gated) {#device-execution}
 
 A package carries a device program when its source declares an `@ kernel`
 compute kernel and its manifest declares a `[device]` section. `faber run
@@ -409,7 +410,8 @@ compute kernel and its manifest declares a `[device]` section. `faber run
 fails closed with stable codes (`E_BACKEND_UNAVAILABLE`, `E_DEVICE_*`,
 `E_NO_DEVICE_PROGRAM`) instead of silently falling back to the CPU. `reference`
 runs kernels as ordinary functions on the MIR runner and is the oracle device
-results are checked against.
+results are checked against. `cuda` is selectable but no CUDA runtime is
+registered in the released binary, so it fails closed with `E_DEVICE_UNAVAILABLE`.
 
 ### Architecture note {#comparison}
 

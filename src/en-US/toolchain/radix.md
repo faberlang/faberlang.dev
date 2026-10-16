@@ -34,7 +34,7 @@ Radix lowers Faber source through three intermediate representations:
 |---|---|---|---|
 | CPU runtime | MIR | FMIR image, run on the MIR runner | Shipping |
 | LLVM | MIR | LLVM text | Experimental |
-| Device execution | MIR | Metal MSL + CUDA PTX via `faber run --device` | Active |
+| Device execution | MIR | Metal MSL via `faber run --device metal`; CUDA PTX staged, no CUDA runtime in the released binary | Active |
 | WASM | MIR | WebAssembly text | Experimental |
 | TypeScript | HIR | TypeScript source | Experimental |
 | Go | HIR | Go source | Experimental |
@@ -863,10 +863,10 @@ Source entry points:
 
 The current implementation does not link a local LLVM installation, produce
 native object code, or own a package runtime. External LLVM tooling can verify
-or link emitted text. The same NVVM/PTX staging chain is now live as the CUDA
-device-execution lane: `faber run --device cuda` selects it and is
-hardware-gated; where no CUDA runtime is registered (the default macOS build)
-the selection fails closed with `E_DEVICE_UNAVAILABLE`.
+or link emitted text. The same NVVM/PTX staging chain is the CUDA artifact
+lane: `faber run --device cuda` selects it but is hardware-gated and not
+enabled in the released binary, which registers no CUDA runtime on any
+platform, so the selection fails closed with `E_DEVICE_UNAVAILABLE`.
 
 Source: `crates/radix-mir-llvm/src/lib.rs`.
 
@@ -893,7 +893,7 @@ flowchart TD
     Roles --> DeviceContext["MirDeviceContext\nKernel / Device roles"]
     Validated --> DeviceContext
     DeviceContext --> Gate["device-safe + ABI/layout capability gate"]
-    Gate --> LLVM["LLVM text\nNVVM/PTX (CUDA device execution)"]
+    Gate --> LLVM["LLVM text\nNVVM/PTX (CUDA artifact; no runtime in the released binary)"]
     Gate --> Metal["Metal text\ncompute source + MSL device execution"]
     Gate --> WGSL["WGSL text\ncompute source + reflection"]
     Gate --> Graphics["WGSL graphics path\nvertex / fragment / pipeline"]
@@ -990,7 +990,7 @@ mean that the artifact has a complete external runtime.
 | `c` | HIR-direct | check/build | no package/run | Preview: readable C11 with a header-only runtime; 71 corpus programs emit and 65 of 66 comparable ones match the runner. |
 | `wasm-text` | MIR-backed | check/build | no package/run | Fail-closed WAT probe with external host imports. |
 | `wasm` | MIR-backed | check/build | no package/run | Compatibility alias of `wasm-text`; emits WAT text, binary conversion is external. |
-| `llvm-text` | MIR-backed | check/build | device run via `faber run --device cuda` | LLVM IR staging; NVVM/PTX CUDA device execution through `faber`. |
+| `llvm-text` | MIR-backed | check/build | `faber run --device cuda` fails closed (hardware-gated) | LLVM IR staging; NVVM/PTX CUDA artifact, no CUDA runtime in the released binary. |
 | `metal-text` | MIR-backed | check/build | device run via `faber run --device metal` | Device-safe Metal compute source; MSL device execution through `faber`. |
 | `amd` | MIR-backed | check/build (`mir-amd` feature) | no package/run | AMDGPU LLVM IR for the gfx942 row; not discoverable: not listed by `radix targets` or `faber targets`. |
 | `wgsl-text` | MIR-backed | check/build | no package/run | Device-safe WGSL compute or source-owned graphics text plus reflection. |

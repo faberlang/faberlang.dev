@@ -54,16 +54,16 @@ notes. A target whose generator is not in the binary you are running is
 rejected with `PKG001 target_not_in_this_build`. Diagnostics can be promoted to errors with `--deny-warnings` (all
 warnings) or `--deny <CODE>` (a specific catalog code, repeatable).
 
-### Device execution (Metal / CUDA) {#device-execution}
+### Device execution (Metal; CUDA is hardware-gated) {#device-execution}
 
-`faber run` can execute a package's device program on a real GPU. A package
+`faber run` can execute a package's device program on a real GPU (Apple Metal in the released binary). A package
 carries a device program when its source declares an `@ nucleum` compute
 kernel and its manifest declares a `[device]` section (`device`, and
 `inputs` for the kernel's input buffers):
 
 ```bash
 faber run --device metal <package>   # Apple Metal (e.g. Apple M5 Max)
-faber run --device cuda  <package>   # NVIDIA CUDA (needs a CUDA host)
+faber run --device cuda  <package>   # NVIDIA CUDA (hardware-gated; not enabled in the released binary, fails closed)
 faber run --device auto  <package>   # resolve: exactly one admitted device
 faber run --device reference <package>  # plain sequential code on the MIR runner
 faber run --device cpu   <package>   # processor cores as a device
@@ -73,12 +73,14 @@ faber run --device cpu   <package>   # processor cores as a device
 `cpu` takes the same route as `reference`: the kernels run as ordinary
 functions, single-threaded, on the MIR runner. Device selection precedence:
 CLI `--device` > manifest `[device] device` > `auto`. The packaged FMIR image's `device` section carries the canonical device
-program plus Metal MSL and CUDA PTX artifacts (each with a provenance hash);
-`faber run` drives a real Metal/CUDA session (load → allocate → copy-in →
+program plus Metal MSL, and CUDA PTX when an NVPTX-capable `clang` is present at
+build time (each artifact with a provenance hash); `faber run` drives a real
+Metal session (load → allocate → copy-in →
 launch → sync → readback → release) and reports the selected device, the
 artifact/module hash, and the observed outputs. An explicit GPU request never
-silently falls back: a device whose runtime is not registered (the default
-macOS build admits Metal, and `--device cuda` answers `E_DEVICE_UNAVAILABLE`),
+silently falls back: a device whose runtime is not registered (the released
+binary registers Metal on macOS and no CUDA runtime on any platform, so
+`--device cuda` answers `E_DEVICE_UNAVAILABLE`),
 unavailable backends, bad descriptors, and
 entry/dtype/shape mismatches fail closed with a stable code
 (`E_BACKEND_UNAVAILABLE`, `E_DEVICE_*`, `E_NO_DEVICE_PROGRAM`).

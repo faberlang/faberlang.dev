@@ -97,11 +97,12 @@ It is **not** a product completion score for Metal, CUDA, or GPU training.
   this matrix does not ask it. Their real support is the
   [device kernel support](#device-kernel-support) summary below, and real
   device execution runs through `faber run --device metal`.
-- **There is no `cuda` column.** CUDA is not a text emit target. CUDA device
-  programs are produced on the **NVVM → PTX** path (staged with **llvm-text** /
-  MIR device emission) and run with `faber run --device cuda`. Product GPU
-  backends are **Metal** and **CUDA**; matrix columns track **emit surfaces**,
-  not every host session.
+- **There is no `cuda` column.** CUDA is not a text emit target. The CUDA
+  lane is a **NVVM → PTX** artifact path (staged with **llvm-text** / MIR
+  device emission) and it is hardware-gated: the released `faber` binary
+  registers no CUDA runtime, so `faber run --device cuda` fails closed with
+  `E_DEVICE_UNAVAILABLE`. The one product GPU backend that runs today is
+  **Metal**; matrix columns track **emit surfaces**, not every host session.
 
 For product policy (build/run/package, erase/reject, device backends), use
 [Compiling and targets](/toolchain/compiling.html) and `faber targets` — not
@@ -131,7 +132,7 @@ selects where it runs.
 | `reference` | Plain sequential code on the MIR runner; the oracle device results are checked against |
 | `cpu` | Processor cores as a device; until the worker device lands, the same route as `reference` |
 | `metal` | Apple Metal |
-| `cuda` | NVIDIA CUDA |
+| `cuda` | NVIDIA CUDA. Selectable but hardware-gated: the released binary registers no CUDA runtime, so the selection fails closed with `E_DEVICE_UNAVAILABLE` |
 | `auto` | Resolve against the machine's probes; fails closed when none, or more than one, is admitted |
 
 An explicit device request never silently falls back. It fails closed before
@@ -144,7 +145,7 @@ line, then the manifest `[device] device`, then `auto`.
 | Target | What it is |
 |---|---|
 | `metal-text` | Metal Shading Language source for the device-safe kernel subset. Device execution is `faber run --device metal`; `-t metal-text` itself is emit-only |
-| `llvm-text` | LLVM text. Also the staging chain for CUDA device execution, `faber run --device cuda`; `-t llvm-text` itself is emit-only. There is no separate `cuda` target |
+| `llvm-text` | LLVM text. Also the staging chain for the CUDA PTX artifact; the released binary has no CUDA runtime, so `faber run --device cuda` fails closed. `-t llvm-text` itself is emit-only. There is no separate `cuda` target |
 | `wgsl-text` | WGSL compute-shader source for the device-safe subset, validated by an external `naga`. It is not a GPU launch or a package runtime |
 
 Device execution is under active development. The corpus % tables on this page

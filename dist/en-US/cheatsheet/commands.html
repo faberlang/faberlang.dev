@@ -24,7 +24,7 @@ canonical form. <code>faber format</code> does not translate; it reports (or wit
 <code>--write</code>, applies) canonical layout at the file's own locale. On `faber
 emit<code class="glyph">, </code>--locale` selects the input locale pack, not the output surface.</p><h2 id="device">Device execution<a class="anchor" href="#device">#</a></h2><p>Packages carrying an <code>@ kernel</code> compute kernel run on a GPU. Device selection
 is explicit and fail-closed — a named device never silently falls back to CPU.</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run <span class="tok-op">--device</span> metal &lt;package&gt;
-<span class="tok-fn">faber</span> run <span class="tok-op">--device</span> cuda &lt;package&gt;
+<span class="tok-fn">faber</span> run <span class="tok-op">--device</span> cuda &lt;package&gt;    # hardware-gated: fails closed in the released binary
 <span class="tok-fn">faber</span> run <span class="tok-op">--device</span> auto &lt;package&gt;
 <span class="tok-fn">faber</span> run <span class="tok-op">--device</span> reference &lt;package&gt;
 <span class="tok-fn">faber</span> run <span class="tok-op">--device</span> cpu &lt;package&gt;</code></pre><p><code>reference</code> and <code>cpu</code> run kernels as ordinary functions on the MIR runner;
