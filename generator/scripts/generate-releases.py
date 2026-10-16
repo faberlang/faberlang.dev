@@ -129,13 +129,21 @@ def platform_label(name: str) -> str:
     return name
 
 
+def _nums(version: str) -> tuple:
+    return tuple(int(p) if p.isdigit() else 0 for p in version.split(".")[:3])
+
+
 def is_dev_kit(product: str, version: str) -> bool:
-    """Faber archives ship the dev-kit layout (bin/ + share/) since 1.5.1;
-    earlier faber archives and radix archives are bare binaries."""
+    """Faber archives ship the dev-kit layout (bin/ + share/) from 1.5.1 up to
+    1.13; earlier faber archives and radix archives are bare binaries."""
     if product != "faber":
         return False
-    nums = tuple(int(p) if p.isdigit() else 0 for p in version.split(".")[:3])
-    return nums >= (1, 5, 1)
+    return (1, 5, 1) <= _nums(version) < (1, 14, 0)
+
+
+def is_single_binary_kit(product: str, version: str) -> bool:
+    """From 1.14.0 the archive holds only bin/faber (packs are built in)."""
+    return product == "faber" and _nums(version) >= (1, 14, 0)
 
 
 def faber_license(version: str) -> str:
@@ -319,6 +327,18 @@ def install_block(v: Version) -> list[str]:
                 "# reader packs resolve beside the binary.",
                 f"sudo mv bin/{v.product} /usr/local/bin/{v.product}",
                 "sudo mv share/faber /usr/local/share/faber",
+                f"{v.product} --version",
+                "```",
+            ]
+        elif is_single_binary_kit(v.product, v.version):
+            lines += [
+                "",
+                "```bash",
+                f"curl -fsSL -o {v.product}.tgz \\",
+                f"  {mac['url']}",
+                f"tar -xzf {v.product}.tgz",
+                "# The archive holds one file; the reader packs are built in.",
+                f"sudo mv bin/{v.product} /usr/local/bin/{v.product}",
                 f"{v.product} --version",
                 "```",
             ]

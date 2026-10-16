@@ -2019,6 +2019,12 @@ a.channel:focus-visible { outline-color: #d93a12; }
     text-transform: uppercase;
     color: var(--ink);
 }
+/* Docs pages (no landing frame tokens): same strip, on the docs rail. */
+.renderbar + .fl-banner {
+    width: min(var(--page-max-rail), 100%);
+    margin: 0.5rem auto 0;
+    padding: 0 32px;
+}
 
 .fl-wrap {
     position: relative;

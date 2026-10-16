@@ -35,6 +35,8 @@ import html as html_mod
 import tomllib
 from pathlib import Path
 
+from site_assets import experimental_banner_html
+
 # Native script → CSS class for font selection
 SCRIPT_CLASSES: dict[str, str] = {
     "English": "",
@@ -437,6 +439,7 @@ def main() -> None:
   </nav>
 </header>
 
+{experimental_banner_html()}
 <main class="porta-wrap" id="main">
   <h1 class="sr-only">Faber language portal</h1>
 

@@ -18,6 +18,7 @@ from __future__ import annotations
 import os
 import sys
 from pathlib import Path
+from urllib.parse import quote
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from locales_registry import load_registry, locale_dir_names
@@ -27,7 +28,7 @@ ALL_LOCALES = sorted(locale_dir_names(REG))
 
 
 def file_to_url(file: Path, locale_root: Path, locale: str, base_url: str) -> str:
-    rel = file.relative_to(locale_root).as_posix()
+    rel = quote(file.relative_to(locale_root).as_posix(), safe="/")
     if rel == "index.html":
         return f"{base_url}/{locale}/"
     if rel.endswith("/index.html"):

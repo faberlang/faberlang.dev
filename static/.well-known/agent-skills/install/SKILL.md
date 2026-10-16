@@ -27,16 +27,16 @@ description: "Download and verify the current Faber CLI release for macOS arm64 
 | macOS arm64 | https://github.com/faberlang/releases/releases/download/faber-v1.14.0/faber-v1.14.0-aarch64-apple-darwin.tar.gz | https://github.com/faberlang/releases/releases/download/faber-v1.14.0/faber-v1.14.0-aarch64-apple-darwin.tar.gz.sha256 |
 | Linux x64 | https://github.com/faberlang/releases/releases/download/faber-v1.14.0/faber-v1.14.0-x86_64-unknown-linux-gnu.tar.gz | https://github.com/faberlang/releases/releases/download/faber-v1.14.0/faber-v1.14.0-x86_64-unknown-linux-gnu.tar.gz.sha256 |
 
-The archive ships `bin/faber` and `share/faber`. Install both, so the reader packs resolve beside the binary. These are the only two archives published. On any other platform, stop and tell the human.
+The archive ships one file, `bin/faber`; the reader packs and Norma are built into the binary. These are the only two archives published. On any other platform, stop and tell the human.
 
 ## Procedure
 
 1. Detect platform (Darwin arm64 vs Linux x86_64).
 2. Download the matching `.tar.gz` and `.sha256`.
 3. Verify the checksum by comparing the first hash field from the `.sha256` file to the local archive hash. The published checksum line may name the original build path.
-4. Extract. Move `bin/faber` and `share/faber` into place together.
+4. Extract. Move `bin/faber` onto your `PATH`.
 5. Run `faber --version` and `faber explain SEM001`. The first prints the CLI version and the second prints a diagnostic explanation. If `faber` is not found, the directory holding the binary is not on `PATH`.
-6. Prove it with a first package check (below).
+6. Prove it with a first program check (below).
 
 ### macOS arm64
 
@@ -50,7 +50,6 @@ actual=$(shasum -a 256 faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
 sudo mv bin/faber /usr/local/bin/faber
-sudo mv share/faber /usr/local/share/faber
 faber --version
 ```
 
@@ -66,29 +65,29 @@ actual=$(sha256sum faber.tgz | awk '{print $1}')
 test "$actual" = "$expected"
 tar -xzf faber.tgz
 sudo mv bin/faber /usr/local/bin/faber
-sudo mv share/faber /usr/local/share/faber
 faber --version
 ```
 
-## First package check
+## First program check
 
-With the CLI on `PATH`, type-check a real package. `norma:*` resolves from
-the Norma library embedded in the binary. Other dependencies resolve from the
-Cista package store through `faber.lock`. Pass `--library-home <DIR>` (or set
-`[paths] library_home` in `faber.toml`) only for an intentional local
-library-development override.
+With the CLI on `PATH`, write a small program to a temporary file, type-check
+it, and run it. `norma:*` resolves from the Norma library embedded in the
+binary, so this needs no other download.
 
 ```bash
-git clone https://github.com/faberlang/examples.git
-faber check examples/ai-workbench/packages/faber-ai
+tmp=$(mktemp -d)
+printf 'main {\n    print "Hello, world!"\n}\n' > "$tmp/hello.fab"
+faber check "$tmp/hello.fab"
+faber run "$tmp/hello.fab"
 ```
 
-Then write and check a hello program with the `packages` skill. The install is
-done when `faber --version` prints and that program passes `faber check`.
+`faber run` prints `Hello, world!`. The install is done when `faber --version`
+prints and both commands pass. For a real package (manifest, dependencies,
+`--library-home`), use the `packages` skill.
 
 ## Notes
 
-- Prefer prebuilts. Building from source requires the private Radix tree.
+- Prefer prebuilts. Building from https://github.com/faberlang/faber (`cargo build --release -p faber`) gives the open-source compiler front end and MIR runner. The release binaries also include the target code generators, which are not in that repository.
 - Write the verify commands as shown. Do not run the archive's contents before the checksum passes.
 - After install, fetch https://faberlang.dev/agents/index.md and follow only the links that page names.
 

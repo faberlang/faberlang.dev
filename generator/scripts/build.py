@@ -68,7 +68,7 @@ PAGE_TOOLCHAIN = [
     "strip-empty-sources.py", "inject-skip-link.py", "inject-chrome.py",
     "localize-spans.py", "highlight-code.py", "matrix-cells.py", "inject-toc.py",
     "tag-glyph-chips.py", "inject-pass.py", "grammar-toggle.py", "diagrams.py",
-    "locale-tabs.py",
+    "locale-tabs.py", "encode-urls.py",
 ]
 PAGE_DATA = [
     GENERATOR / "www" / "speculum.css",
@@ -92,6 +92,7 @@ PAGE_PASSES = [
     ["matrix-cells.py", "{tree}"],
     ["inject-toc.py", "{tree}"],
     ["tag-glyph-chips.py", "{tree}"],
+    ["encode-urls.py", "{tree}"],
 ]
 AUTHORED_ONLY_PASSES = [["inject-pass.py", "{tree}"]]
 

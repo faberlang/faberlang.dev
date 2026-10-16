@@ -25,6 +25,7 @@ the Faber binary prints it (the rendered string plus a trailing newline).
 
 from __future__ import annotations
 
+import re
 import sys
 
 # ==========================================================================
@@ -1110,7 +1111,16 @@ def brevia_description(text, max_len):
     return t[0:max_len - 3] + "..."
 
 
+_MD_LINK = re.compile(r"!?\[([^\]]*)\]\([^)\s]*(?:\s+\"[^\"]*\")?\)")
+
+
+def strip_md_links(text):
+    """Markdown links and images to their visible text (meta tags are plain text)."""
+    return _MD_LINK.sub(lambda m: m.group(1), text)
+
+
 def meta_plain(text):
+    text = strip_md_links(text)
     out = []
     for ch in text:
         if ch == "*" or ch == "`":
@@ -1156,7 +1166,7 @@ def primus_paragraphus(body):
 def pagina_description(pag):
     from_fm = field_vale(pag.metadata, "description", "")
     if len(from_fm) > 0:
-        return brevia_description(from_fm, 160)
+        return brevia_description(strip_md_links(from_fm), 160)
     from_body = primus_paragraphus(pag.corpus)
     if len(from_body) > 0:
         return brevia_description(from_body, 160)
@@ -1272,6 +1282,16 @@ def genera_renderbar(site_locale):
     return ir_element("div", [attr("class", "renderbar")], [inner])
 
 
+def genera_experimental_banner():
+    from site_assets import EXPERIMENTAL_LEAD, EXPERIMENTAL_BODY
+    para = ir_element("p", [], [
+        ir_leaf("strong", [], EXPERIMENTAL_LEAD),
+        ir_text(" " + EXPERIMENTAL_BODY),
+    ])
+    return ir_element("div", [attr("class", "fl-banner"),
+                              attr("role", "status")], [para])
+
+
 def genera_brand(site_locale):
     mark = ir_leaf("span", [attr("class", "brand-mark"),
                             attr("aria-hidden", "true")], "←")
@@ -1358,7 +1378,8 @@ def genera_paginam(pag, stylesheet_link):
     if pag.section == "":
         body_class = "home"
 
-    body_children = [genera_renderbar(pag.site_locale)]
+    body_children = [genera_renderbar(pag.site_locale),
+                     genera_experimental_banner()]
     page_children = [
         genera_sidebar(pag),
         genera_main(pag),

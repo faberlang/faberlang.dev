@@ -45,6 +45,7 @@ from pathlib import Path
 
 # The agent pass is shared with the Start page (inject-pass.py).
 from agent_pass import load_pass_strings, read_release, render_pass
+from site_assets import experimental_banner_html
 
 # Reader-pack axis. Order is the argument: English reader surface, canonical
 # Latin, then the human packs. `site` is the docs home the locale strip links
@@ -445,12 +446,7 @@ def main() -> None:
   </nav>
 </header>
 
-<div class="fl-banner" role="status">
-  <p><strong>Experimental through version 1.</strong>
-  Version 0 was alpha. This is the first language release: the interface is
-  relatively stable, not frozen. Nothing is promised stable until version 2.</p>
-</div>
-
+{experimental_banner_html()}
 <main class="fl-wrap" id="top">
 
   <section class="fl-hero" aria-label="Faber">

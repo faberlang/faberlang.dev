@@ -24,6 +24,7 @@ from __future__ import annotations
 
 import sys
 from pathlib import Path
+from urllib.parse import quote
 from xml.sax.saxutils import escape as xml_escape_sax
 
 
@@ -31,7 +32,9 @@ def loc_for(file: Path, locale_root: Path, locale: str, base: str) -> str | None
     """Map a file under dist/{locale}/ to an absolute sitemap loc."""
     if file.name == "404.html":
         return None
-    rel = file.relative_to(locale_root).as_posix()
+    # Corpus terms put spaces and `<>` in file names; the URL carries them
+    # percent-encoded (`quote` leaves `/` and unreserved characters alone).
+    rel = quote(file.relative_to(locale_root).as_posix(), safe="/")
     if rel == "index.html":
         return f"{base}/{locale}/"
     if rel.endswith("/index.html"):
