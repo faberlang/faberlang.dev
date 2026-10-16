@@ -6,7 +6,7 @@
 <span class="tok-co"># reader packs resolve beside the binary.</span>
 <span class="tok-fn">sudo</span> mv bin/faber /usr/local/bin/faber
 <span class="tok-fn">sudo</span> mv share/faber /usr/local/share/faber
-<span class="tok-fn">faber</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><blockquote><p><strong>Status</strong>: draft (release candidate; <code>final</code> at the operator's release commit)</p></blockquote><p>Faber 1.11 is a large language step. Since 1.10.0 (2 September 2026) the
+<span class="tok-fn">faber</span> <span class="tok-op">--version</span></code></pre><h2 id="notes">Release notes<a class="anchor" href="#notes">#</a></h2><blockquote><p><strong>Status</strong>: final — published as <code>faber-v1.11.0</code> on 2026-10-02</p></blockquote><p>Faber 1.11 is a large language step. Since 1.10.0 (2 September 2026) the
 language-decisions work landed: numbers now state their overflow
 policy in the type, the unbounded integer <code>inf</code> exists, failure handling no
 longer hides defaults, records and sum types have settled rules, concurrency is
@@ -81,7 +81,7 @@ types. <code>match</code> (<code>match</code>) matches closed sets only (enums, 
 length-shape type patterns are retired, and signed literal patterns work. NaN
 patterns are rejected. <code>enum</code> (<code>enum</code>) and <code>union</code> (<code>union</code>) are pure data:
 no methods, no <code>implements</code>.</p><p><strong>Iteration.</strong> <code>at</code> (<code>at</code>) iterates lists and maps as well as tensors:
-<code>for from xs at [i] let x</code>. Composite keys are tuple keys
+<code>for from xs at [i] const x</code>. Composite keys are tuple keys
 (a map keyed by <code>tuple&lt;K1, K2&gt;</code>), and map keys must be hashable (checked).
 Sets and maps iterate in unspecified order; sort when order matters.
 <code>for</code> binds real element types, and a non-iterable is rejected.</p><p><strong>Concurrency is conversations.</strong> <code>@ call</code> (<code>call</code>) serves a route from Faber code, with a

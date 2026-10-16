@@ -189,6 +189,29 @@ def collect() -> dict[str, list[Version]]:
                 entry = Version(product=product, version=version)
                 found[(product, version)] = entry
             entry.notes = path.read_text(encoding="utf-8")
+            # A tagged release is final whatever its notes file still says:
+            # some notes were never flipped from "draft" after the tag shipped.
+            # The page states the fact the registry (or the repo tag) proves.
+            proof = ""
+            if entry.tag:
+                when = f" on {entry.published[:10]}" if entry.published else ""
+                proof = f"published as `{entry.tag}`{when}"
+            elif product == "faber":
+                repo_tag = f"faber/v{version}"
+                made = subprocess.run(
+                    ["git", "-C", str(notes_dir), "tag", "--list", repo_tag,
+                     "--format=%(creatordate:short)"],
+                    capture_output=True, text=True,
+                ).stdout.strip()
+                if made:
+                    proof = f"tagged `{repo_tag}` on {made}"
+            if proof:
+                entry.notes = re.sub(
+                    r"(?m)^> \*\*Status\*\*: draft.*$",
+                    f"> **Status**: final — {proof}",
+                    entry.notes,
+                    count=1,
+                )
 
     grouped: dict[str, list[Version]] = {p: [] for p in PRODUCTS}
     for (product, _), entry in found.items():

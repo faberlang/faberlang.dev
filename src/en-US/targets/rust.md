@@ -17,7 +17,7 @@ Close to one-for-one with the source. That is the point of this emitter: generat
 
 | Capable | Analyzable | Coverage |
 |---|---|---|
-| 426 | 431 | 99% |
+| 434 | 439 | 99% |
 
 From the [target matrix](/toolchain/target-matrix.html): how many corpus exempla lower to this target. Coverage is not a quality score — an emitter can lower a term and still erase a distinction.
 

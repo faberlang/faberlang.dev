@@ -45,7 +45,7 @@ correctly parsed as a function call rather than a keyword statement (fixes</li><
 CLI commands with <code>await_const</code> (<code>459acd751</code>).</li><li><strong>Rivus as primary compiler</strong>: documentation updated to present rivus as the
 primary compiler for new development, with faber reserved as a bootstrap
 compiler (<code>86cf46600</code>).</li></ul><h4 id="bug-fixes">Bug fixes<a class="anchor" href="#bug-fixes">#</a></h4><ul><li>Parameter alias (<code>as</code>) now correctly registers both names in scope (fixes</li></ul><p>#225) (<code>f385e0b29</code>).</p><ul><li><code>self</code> returns instance type instead of metatype inside <code>class</code> methods,
-fixing fluent/builder patterns (fixes #224) (<code>f12682d63</code>).</li><li>Destructuring patterns (<code>from obj let name, age</code>, <code>const [a, b, c] = arr</code>)
+fixing fluent/builder patterns (fixes #224) (<code>f12682d63</code>).</li><li>Destructuring patterns (<code>from obj const name, age</code>, <code>const [a, b, c] = arr</code>)
 now register all bound identifiers in scope, including aliases, rest
 patterns, and placeholders (fixes #221) (<code>79e3fc34f</code>).</li><li>Regex flag parsing uses inline syntax <code>sed &quot;(?i)pattern&quot;</code> instead of
 consuming the next token as a flag (fixes #223) (<code>216b6f665</code>).</li><li>Namespace kind preserved for HAL pactum imports in faber semantic/codegen

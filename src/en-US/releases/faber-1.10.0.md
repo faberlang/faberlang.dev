@@ -17,7 +17,7 @@ No prebuilt archives were published for this version. It is listed here because 
 
 ## Release notes {#notes}
 
-> **Status**: draft
+> **Status**: final — tagged `faber/v1.10.0` on 2026-09-02
 
 Faber 1.10 continues the 1.x development line. Since 1.9.0, the language
 adds type algebra and heritage, Cartesian range products, lockstep collection

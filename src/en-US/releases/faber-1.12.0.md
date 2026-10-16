@@ -36,7 +36,7 @@ faber --version
 
 ## Release notes {#notes}
 
-> **Status**: draft (release candidate; final at the operator's release commit)
+> **Status**: final — published as `faber-v1.12.0` on 2026-10-02
 
 Faber 1.12 adds text processing and a cleaner set of operators to the language,
 and it changes what generated code looks like. Since 1.11.0 (1 October 2026)
