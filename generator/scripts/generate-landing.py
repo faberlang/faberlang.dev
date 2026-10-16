@@ -455,7 +455,7 @@ def main() -> None:
 
   <section class="fl-hero" aria-label="Faber">
     <div class="fl-claim">
-      <p class="kicker live"><i class="sq" aria-hidden="true"></i>A statically typed language for coding agents and human authors · MIT</p>
+      <p class="kicker live"><i class="sq" aria-hidden="true"></i>A statically typed language for coding agents and human authors · MIT OR Apache-2.0</p>
       <h1 class="hook">Written by models,<br>read in your language.</h1>
       <div class="rule" aria-hidden="true"></div>
       <p class="subhook">
@@ -709,8 +709,8 @@ def main() -> None:
       </nav>
     </div>
     <div>
-      <p>Designed by Ian Zepp. The language and the public libraries ship under the MIT license.</p>
-      <p><a href="/en-US/toolchain/radix.html">Radix</a>, the compiler, is closed while it is under active development.</p>
+      <p>Designed by Ian Zepp. The core of Faber is open source under MIT OR Apache-2.0, and so are the public libraries.</p>
+      <p><a href="/en-US/open-source.html">Open source</a> lists what is in the public source and what the official release adds.</p>
     </div>
   </div>
 </footer>

@@ -37,9 +37,6 @@ Faber's public capability ladder is intentionally explicit:
 
 The name derives from the Latin word for *maker* or *craftsman*. The
 compiler is named Radix, from the Latin *root*. Developed by Ian Zepp.
-Language and supporting libraries are MIT open source; Radix remains closed
-source until there is clearer demand for an open compiler (see the note
-above).
 
 **New here?** Go to [Start](/start/): give your model one link and it
 installs Faber for you. Then read the [Commands](/cheatsheet/commands.html).
@@ -58,7 +55,7 @@ and the [target matrix](/toolchain/target-matrix.html).
 | **Targets** | Projections of HIR/MIR — measured per target (Rust, Faber, TS, Go, …) |
 | **Reader locales** | 8 shipped (en, la, ar, hi, vi, th-TH, zh-Hans, zh-Hant) |
 | **Standard library** | Norma (`norma:*`) |
-| **License** | MIT |
+| **License** | MIT OR Apache-2.0 |
 
 ## Start here {#start-here}
 
