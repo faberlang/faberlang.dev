@@ -48,7 +48,7 @@ with <code>@ kernel</code> and its manifest declares a <code>[device]</code> sec
 selects the device explicitly and fails closed with a stable code rather than
 silently falling back to the CPU:</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run <span class="tok-op">--device</span> reference &lt;package&gt;  # plain sequential code on the MIR runner
 <span class="tok-fn">faber</span> run <span class="tok-op">--device</span> metal &lt;package&gt;      # Apple Metal
-<span class="tok-fn">faber</span> run <span class="tok-op">--device</span> cuda  &lt;package&gt;      # NVIDIA CUDA (hardware-gated; the released binary registers no CUDA runtime, so this fails closed)
+<span class="tok-fn">faber</span> run <span class="tok-op">--device</span> cuda  &lt;package&gt;      # NVIDIA CUDA (fails closed without the NVIDIA driver)
 <span class="tok-fn">faber</span> run <span class="tok-op">--device</span> auto  &lt;package&gt;      # resolve: exactly one admitted device</code></pre><p><code>reference</code> is the oracle that device results are checked against. Device
 execution is under active development; end-to-end device inference is not
 shipped, and this page makes no claim about training on it. See <a href="/en-US/toolchain/cli.html#device-execution">device execution</a>,

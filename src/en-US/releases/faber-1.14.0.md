@@ -97,7 +97,7 @@ c 3
 
 ### GPU
 
-`faber run --device cpu` and `--device metal` run `@ kernel` functions; the Metal route works on Apple silicon (a two-element kernel gave the same result on both). In this release the device gate admits genus locals (constructed, read and written) inside lane-form kernels, Metal lowers elementwise add, subtract, multiply and negate in a kernel, a rank-1 right operand is admitted for matmul, and the max and min reductions on Metal and WGSL seed correctly. `--device reference` runs a kernel as plain sequential code on the runner, the oracle that device results are compared with. CPU, FMIR and runner timings are not GPU performance; no GPU throughput claim is made here.
+`faber run --device cpu`, `--device metal` and `--device cuda` run `@ kernel` functions; the Metal route works on Apple silicon (a two-element kernel gave the same result on both). The CUDA route is new: it launches kernels in process through the NVIDIA driver, with PTX that `clang` (NVPTX target) builds from the compiler's NVVM output at run time, and it needs no CUDA toolkit. On an RTX 5070 it ran the whole-tensor kernel programs (elementwise, matmul, scalar arguments and scalar returns) with output equal to `--device reference`. Lane-form kernels (control flow inside a lane, genus parameters, tensor extents, math calls inside a lane) are not lowered for CUDA yet; a call to one fails closed and names the kernel. Without the NVIDIA driver, `--device cuda` fails closed with `E_DEVICE_UNAVAILABLE`. In this release the device gate admits genus locals (constructed, read and written) inside lane-form kernels, Metal lowers elementwise add, subtract, multiply and negate in a kernel, a rank-1 right operand is admitted for matmul, and the max and min reductions on Metal and WGSL seed correctly. `--device reference` runs a kernel as plain sequential code on the runner, the oracle that device results are compared with. CPU, FMIR and runner timings are not GPU performance; no GPU throughput claim is made here.
 
 ### Breaking changes
 
@@ -184,7 +184,7 @@ Carried from 1.13 and re-checked against this build. Two 1.13 items are fixed (r
 - Ratio, plus-minus and superscript-power types and the set-algebra glyphs are designed but not built (`x²`, `±` and `∖` are lexical errors).
 - `trap { }` still returns a bare union of its result and error types. The built-in `trapped<R, T>` result type is registered in the compiler, but its name cannot be written in source yet.
 - The C and Cranelift targets are previews: they cover a subset of the language and refuse the rest by name. Neither runs under `faber run`.
-- The CUDA backend exists behind hardware-gated checks; no CUDA route is enabled for `faber run`.
+- CUDA lane-form kernels. The flood simulation and the lane-form acceptance packages run on Metal and `--device reference`, not on CUDA.
 - Radix stays at 0.84.0 (no separate Radix release).
 - Public publication of the Go runtime module and `@faber/runtime` is still pending; neither is on its package registry.
 

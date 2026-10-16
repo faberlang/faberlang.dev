@@ -38,7 +38,7 @@ construct a target cannot express yet is rejected by name
 (`unsupported on target <t>: <construct>`), never approximated.
 
 <!-- target-maturity:begin -->
-How mature each target is, measured on the corpus (662 programs the suite runs, each with expected output; 134 more are meant to be refused). "Suite" counts are cases that pass in `corpus-suites/full` (`faber corpus`) out of the cases the suite applies to; the rest are pinned expected failures. A library file with no entry function has nothing to run, so it counts on a compiled target when it emits and builds, and on the runner when it checks and lowers to valid MIR. C and Haskell have no corpus lane: each single-file program the runner executes and passes was emitted, built with the real toolchain, and its output and exit status compared with the runner's.
+How mature each target is, measured on the corpus (662 programs the suite runs, each with expected output; 134 more are meant to be refused). "Suite" counts are cases that pass in `corpus-suites/full` (`faber corpus`) out of the cases the suite applies to; the rest are pinned expected failures. C and Haskell have no corpus lane: each single-file program the runner passes was emitted, built with the real toolchain, and its output and exit status compared with the runner's.
 
 | Target | `-t` | Output | Evidence | Source |
 | --- | --- | --- | --- | --- |
@@ -61,7 +61,7 @@ How mature each target is, measured on the corpus (662 programs the suite runs, 
 | **GPU kernels** (kernel functions only) | | | | |
 | Metal | `metal-text` | Metal Shading Language | kernel programs only | official binary |
 | WGSL | `wgsl-text` | WebGPU compute shaders | kernel programs only | official binary |
-| CUDA | (`--device cuda`) | NVVM IR and a PTX artifact; no CUDA runtime is enabled | kernel programs only; hardware-gated and not enabled in the released binary: `faber run --device cuda` fails closed | official binary |
+| CUDA | (`--device cuda`) | PTX built at run time from NVVM IR (needs `clang` with the NVPTX target) | kernel programs only: `faber run --device cuda` runs whole-tensor kernels on NVIDIA GPUs; lane-form kernels are not lowered yet and fail closed | official binary |
 | **Validation** | | | | |
 | Racket | `sexp` | Racket s-expressions (a validation target) | suite 538 / 662 | official binary |
 | **Experimental** (not in the released `faber`) | | | | |
@@ -89,10 +89,11 @@ Notes:
 - "Public" means the generator's source is in the public repository. "Official
   binary" means it ships in the released `faber` but its source does not.
 - The GPU rows are kernel functions only. `faber run --device metal` launches
-  `@ kernel` functions on a real GPU (Apple silicon); `--device cuda` is
-  selectable but hardware-gated and not enabled in the released binary: no CUDA
-  runtime is registered, so it fails closed. `-t metal-text`, `-t wgsl-text`
-  and `-t llvm-text` themselves remain emit-only.
+  `@ kernel` functions on Apple GPUs; `faber run --device cuda` launches them
+  on NVIDIA GPUs through the NVIDIA driver, with PTX that `clang` (NVPTX
+  target) builds at run time. CUDA does not yet lower lane-form kernels, and
+  without the NVIDIA driver `--device cuda` fails closed. `-t metal-text`,
+  `-t wgsl-text` and `-t llvm-text` themselves remain emit-only.
 - The table is generated from the corpus suite at release time, not edited by
   hand.
 
@@ -125,7 +126,7 @@ Source → Lex → Parse → Collect → Resolve → Lower → Typecheck → Ana
 
 **Do not read Metal/WGSL percentages on the [target matrix](/toolchain/target-matrix.html) as product completeness.** Those
 rows score *full-language corpus terms* against a *kernel-only* emitter. Device
-runs go through `faber run --device metal` (CUDA is hardware-gated and fails closed in the released binary; see
+runs go through `faber run --device metal|cuda` (see
 [device execution](/toolchain/cli.html#device-execution)).
 
 For the **device-kernel summary** (how a device program runs and what each
@@ -396,22 +397,20 @@ by a WebGPU host.
 
 Metal compute shader text emission follows the same pattern as WGSL: Faber
 emits Metal Shading Language source for the device-safe kernel subset. Metal
-is the **device execution** path that runs today (`faber run --device metal`).
-Metal is the Apple Silicon local-dev and API-parity host. CUDA (`--device
-cuda`) is the planned NVIDIA host: it is hardware-gated and not enabled in the
-released binary. WebGPU remains a browser graphics and headless lane (Triga),
+and CUDA are the **device execution** paths (`faber run --device metal|cuda`).
+Metal is the Apple Silicon host; CUDA is the NVIDIA host (whole-tensor
+kernels today; lane-form kernels are Metal-only for now). WebGPU remains a browser graphics and headless lane (Triga),
 not a package device-execution path.
 
-#### Device execution (Metal; CUDA is hardware-gated) {#device-execution}
+#### Device execution (Metal / CUDA) {#device-execution}
 
 A package carries a device program when its source declares an `@ kernel`
-compute kernel and its manifest declares a `[device]` section. `faber run
---device reference|cpu|metal|cuda|auto` runs it through the host driver and
-fails closed with stable codes (`E_BACKEND_UNAVAILABLE`, `E_DEVICE_*`,
-`E_NO_DEVICE_PROGRAM`) instead of silently falling back to the CPU. `reference`
+function. `faber run --device metal|cuda|auto` launches its kernels in process
+on the GPU and fails closed with stable codes (`E_DEVICE_UNAVAILABLE`,
+`E_DEVICE_NONE_ADMITTED`, `E_NO_DEVICE_PROGRAM`) instead of silently falling
+back to the CPU. `reference`
 runs kernels as ordinary functions on the MIR runner and is the oracle device
-results are checked against. `cuda` is selectable but no CUDA runtime is
-registered in the released binary, so it fails closed with `E_DEVICE_UNAVAILABLE`.
+results are checked against.
 
 ### Architecture note {#comparison}
 

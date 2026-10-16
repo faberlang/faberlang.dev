@@ -54,16 +54,15 @@ notes. A target whose generator is not in the binary you are running is
 rejected with `PKG001 target_not_in_this_build`. Diagnostics can be promoted to errors with `--deny-warnings` (all
 warnings) or `--deny <CODE>` (a specific catalog code, repeatable).
 
-### Device execution (Metal; CUDA is hardware-gated) {#device-execution}
+### Device execution (Metal / CUDA) {#device-execution}
 
-`faber run` can execute a package's device program on a real GPU (Apple Metal in the released binary). A package
-carries a device program when its source declares an `@ nucleum` compute
-kernel and its manifest declares a `[device]` section (`device`, and
-`inputs` for the kernel's input buffers):
+`faber run` can launch a package's kernels on a real GPU. A package has a
+device program when its source declares an `@ kernel` function; a `[device]`
+manifest table is configuration, not a requirement:
 
 ```bash
 faber run --device metal <package>   # Apple Metal (e.g. Apple M5 Max)
-faber run --device cuda  <package>   # NVIDIA CUDA (hardware-gated; not enabled in the released binary, fails closed)
+faber run --device cuda  <package>   # NVIDIA CUDA (NVIDIA driver; clang with the NVPTX target)
 faber run --device auto  <package>   # resolve: exactly one admitted device
 faber run --device reference <package>  # plain sequential code on the MIR runner
 faber run --device cpu   <package>   # processor cores as a device
@@ -72,18 +71,21 @@ faber run --device cpu   <package>   # processor cores as a device
 `reference` is the oracle that device results are checked against. Today
 `cpu` takes the same route as `reference`: the kernels run as ordinary
 functions, single-threaded, on the MIR runner. Device selection precedence:
-CLI `--device` > manifest `[device] device` > `auto`. The packaged FMIR image's `device` section carries the canonical device
-program plus Metal MSL, and CUDA PTX when an NVPTX-capable `clang` is present at
-build time (each artifact with a provenance hash); `faber run` drives a real
-Metal session (load → allocate → copy-in →
-launch → sync → readback → release) and reports the selected device, the
-artifact/module hash, and the observed outputs. An explicit GPU request never
-silently falls back: a device whose runtime is not registered (the released
-binary registers Metal on macOS and no CUDA runtime on any platform, so
-`--device cuda` answers `E_DEVICE_UNAVAILABLE`),
-unavailable backends, bad descriptors, and
-entry/dtype/shape mismatches fail closed with a stable code
-(`E_BACKEND_UNAVAILABLE`, `E_DEVICE_*`, `E_NO_DEVICE_PROGRAM`).
+CLI `--device` > manifest `[device] device` > `auto`.
+
+`metal` and `cuda` run the program on the MIR runner and launch each kernel in
+process on the selected GPU. Metal compiles Metal source on Apple GPUs. CUDA
+loads the NVIDIA driver library at run time (no CUDA toolkit is needed) and
+JIT-loads PTX that `clang` (NVPTX target) builds from the compiler's NVVM
+output. The run prints the selected device first. CUDA lowers whole-tensor
+kernels (elementwise, matmul, scalar arguments and returns) and does not yet
+lower lane-form kernels (control flow inside a lane, genus parameters, tensor
+extents, math calls inside a lane); a call to a kernel the backend cannot
+lower fails closed and names the function. An explicit GPU request never
+silently falls back: with no runtime for that device on the machine (no
+NVIDIA driver, or Metal off macOS) it answers `E_DEVICE_UNAVAILABLE`; with no
+usable device, or no kernel that lowers, `E_DEVICE_NONE_ADMITTED`; a package
+without kernels, `E_NO_DEVICE_PROGRAM`.
 
 ### Checking without emitting {#checking}
 

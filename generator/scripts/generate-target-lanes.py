@@ -124,9 +124,8 @@ TARGETS = {
         "lane": "mir",
         "emits": "LLVM IR text",
         "fence": "llvm-text",
-        "note": "MIR staging text for external LLVM tools. Also the staging "
-                "chain for the CUDA PTX artifact (NVVM → PTX); the released "
-                "binary has no CUDA runtime to run it.",
+        "note": "MIR staging text for external LLVM tools. Also the route CUDA "
+                "device programs take, via NVVM → PTX.",
         "read": "The widest ratio on the site, and the least surprising one: SSA "
                 "form names every intermediate. Read it for what the compiler "
                 "knows about your program, not as something to maintain.",
@@ -192,10 +191,9 @@ LANES = {
         "kind": "the device lane",
         "order": 63,
         "blurb": "A function marked `@ nucleum` is a compute kernel. The device "
-                 "lane links the compiler to real Metal execution; CUDA is "
-                 "hardware-gated and not enabled in the released binary.",
+                 "lane links the compiler to real Metal and CUDA execution.",
         "detail": "The shader text below is the lowering surface. Real device "
-                  "execution — `faber run --device metal` — is the "
+                  "execution — `faber run --device metal|cuda` — is the "
                   "narrower product proof, recorded in the "
                   "[device kernel support summary]"
                   "(/toolchain/target-matrix.html#device-kernel-support).",
@@ -627,9 +625,8 @@ def render_index() -> str:
         "",
         "This is the honest target list: a page exists only for a lane the "
         "compiler exposes as a text target. There is no CUDA page — CUDA "
-        "is a hardware-gated NVVM → PTX artifact path, not a source-text "
-        "target, and the released binary registers no CUDA runtime: "
-        "`faber run --device cuda` fails closed. The "
+        "device programs are produced on the NVVM → PTX path and run with "
+        "`faber run --device cuda`, not emitted as source text. The "
         "[target matrix](/toolchain/target-matrix.html) measures a few more "
         "emit surfaces than the site gives pages to.",
         "",

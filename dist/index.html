@@ -598,7 +598,7 @@ extension Span: CustomStringConvertible {
         <tr class="fl-cap-group"><th colspan="5" scope="colgroup">Systems, native and device</th></tr>
         <tr><td><strong>Native executable</strong></td><td class="st-ok">yes</td><td class="st-ok">yes</td><td class="st-ok">yes</td><td>MIR lowered to LLVM, linked for the local host.</td></tr>
         <tr><td><strong>WebAssembly</strong></td><td class="st-ok">yes</td><td class="st-defer">—</td><td class="st-defer">—</td><td>WAT text; binary conversion uses external tools.</td></tr>
-        <tr><td><strong>LLVM IR</strong></td><td class="st-ok">yes</td><td class="st-ok">yes</td><td class="st-ok">yes</td><td>Text for LLVM tooling; also stages the CUDA PTX artifact (no CUDA runtime in the released binary).</td></tr>
+        <tr><td><strong>LLVM IR</strong></td><td class="st-ok">yes</td><td class="st-ok">yes</td><td class="st-ok">yes</td><td>Text for LLVM tooling; also the CUDA device route.</td></tr>
         <tr><td><strong>Metal</strong></td><td class="st-ok">yes</td><td class="st-ok">yes</td><td class="st-ok">yes</td><td>Shader source; device execution through the Metal route.</td></tr>
         <tr><td><strong>WGSL</strong></td><td class="st-ok">yes</td><td class="st-defer">—</td><td class="st-defer">—</td><td>WebGPU compute shader source.</td></tr>
         <tr class="fl-cap-group"><th colspan="5" scope="colgroup">Portable package images</th></tr>
@@ -696,14 +696,11 @@ extension Span: CustomStringConvertible {
       <h2>Compute is one thing you can build</h2>
       <p>
         The same language carries numeric and device work. Tensor operators and
-        <code>@ kernel</code> kernels lower to WGSL and Metal source and stage
-        a CUDA PTX artifact, and
+        <code>@ kernel</code> kernels lower to WGSL, Metal and CUDA routes, and
         <a href="/en-US/libraries/gradus.html">Gradus</a> uses them for
-        autograd. Metal is the device that runs today. CUDA is
-        hardware-gated and not enabled in the released binary. Device
-        execution is explicit and fail-closed: a requested backend never
-        silently falls back to CPU. It is under active development;
-        device inference is not shipped.
+        autograd. Device execution is explicit and fail-closed: a requested
+        backend never silently falls back to CPU. It is under active
+        development; device inference is not shipped.
       </p>
       <nav class="chips" aria-label="Device execution references">
         <a href="/en-US/toolchain/compiling.html#device-execution">Device execution contract</a>

@@ -5,7 +5,7 @@ order = 74
 sources = []
 +++
 
-MIR staging text for external LLVM tools. Also the staging chain for the CUDA PTX artifact (NVVM → PTX); the released binary has no CUDA runtime to run it.
+MIR staging text for external LLVM tools. Also the route CUDA device programs take, via NVVM → PTX.
 
 Part of the [MIR lane](/targets/mir.html). Every panel below is compiler output.
 

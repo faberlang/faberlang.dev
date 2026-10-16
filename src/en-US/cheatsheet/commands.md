@@ -89,7 +89,7 @@ is explicit and fail-closed — a named device never silently falls back to CPU.
 
 ```bash
 faber run --device metal <package>
-faber run --device cuda <package>    # hardware-gated: fails closed in the released binary
+faber run --device cuda <package>
 faber run --device auto <package>
 faber run --device reference <package>
 faber run --device cpu <package>

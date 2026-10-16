@@ -119,7 +119,7 @@ silently falling back to the CPU:
 ```bash
 faber run --device reference <package>  # plain sequential code on the MIR runner
 faber run --device metal <package>      # Apple Metal
-faber run --device cuda  <package>      # NVIDIA CUDA (hardware-gated; the released binary registers no CUDA runtime, so this fails closed)
+faber run --device cuda  <package>      # NVIDIA CUDA (fails closed without the NVIDIA driver)
 faber run --device auto  <package>      # resolve: exactly one admitted device
 ```
 
