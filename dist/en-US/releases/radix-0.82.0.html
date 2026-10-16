@@ -81,16 +81,11 @@ repo:</p><ul><li><strong>E2E lane builds + U8 remainder</strong> — lane-scoped
 <code>scripta/e2e</code> lane builds (<code>e094bcf06</code>), wrapper lane features for e2e
 harness invocations (<code>e2e0caead</code>), lane-gated tests behind enabling
 features with the core-only suite green (<code>34caab3e3</code>).</li><li><strong>Runner matrix display</strong> emits nested rows matching compiled-route goldens
-(<code>b4fb08d71</code>; closed need <code>9ca6437d</code>).</li><li><strong>Go/TS value-position reple</strong> fills a fresh copy (<code>b8f824790</code>; closed need
-<code>fb06c8c5</code>), with tensor-glyphs go tables re-landed (<code>3e4f82a28</code>, closed
-need <code>8e00f78b</code>) and <code>@faber/runtime</code> materialization re-landed
-(<code>6661a3ba0</code>, closed need <code>920c6334</code>).</li><li><strong>Emit-compat-json passes `--features mir-core`</strong> (<code>55198ca46</code>, closed need
-<code>e8822722</code>); compatibility measurement JSON refreshed — instant capable +1,
-incdec glyphs ↓/↑ (<code>487e1a556</code>, closed need <code>ec8bf5c6</code>).</li><li><strong>Exempla table repairs</strong> — 30 stale swift-emit fixtures as expected
-compile failures (<code>4ce9a318f</code>, closed need <code>23cb01b0</code>); cuda glyph-proof
-fixtures pinned at the fail-closed wasm tier floor (<code>4c2edbd92</code>, closed need
-<code>70728fa9</code>), ledgered as runner NoEntryReference failures (<code>6d359fc9f</code>).</li><li><strong>E2e sibling gate</strong> — canonical ancestor-walk fallback (<code>7c04532f2</code>,
-closed need <code>eee9f06d</code>); <strong>forma author emit</strong> renders the reader pack's
+(<code>b4fb08d71</code>).</li><li><strong>Go/TS value-position reple</strong> fills a fresh copy (<code>b8f824790</code>), with tensor-glyphs go tables re-landed (<code>3e4f82a28</code>) and <code>@faber/runtime</code> materialization re-landed
+(<code>6661a3ba0</code>).</li><li><strong>Emit-compat-json passes `--features mir-core`</strong> (<code>55198ca46</code>); compatibility measurement JSON refreshed — instant capable +1,
+incdec glyphs ↓/↑ (<code>487e1a556</code>).</li><li><strong>Exempla table repairs</strong> — 30 stale swift-emit fixtures as expected
+compile failures (<code>4ce9a318f</code>); cuda glyph-proof
+fixtures pinned at the fail-closed wasm tier floor (<code>4c2edbd92</code>), ledgered as runner NoEntryReference failures (<code>6d359fc9f</code>).</li><li><strong>E2e sibling gate</strong> — canonical ancestor-walk fallback (<code>7c04532f2</code>); <strong>forma author emit</strong> renders the reader pack's
 keyword surface (<code>767c9027a</code>); fhir run integration test aligned to the
 interpreted-execution contract (<code>417109683</code>).</li></ul><h3 id="known-issues-acknowledged-open-handles">Known-issues (acknowledged open handles)<a class="anchor" href="#known-issues-acknowledged-open-handles">#</a></h3><p>These ship as acknowledged known-reds in this release (operator
 <code>ship_with_known_red</code>, memo <code>f12335e2</code>):</p><ul><li><code>97a33001</code> — GPU workload rung-0 floor regression: indexed-view ABI gap.</li><li><code>f80df1a1</code> — swift emitter gap coverage: 96 fixtures classified, class
@@ -103,11 +98,7 @@ questions, hygiene x3.</li><li>Environmental — <code>RADIX_WASM_STUB_HOST</cod
 <code>environmental_skip</code> because the run tier requires the retired
 <code>radix-wasm-stub-host</code> binary; supply via env when a prebuilt stub-host or
 external runner is available.</li></ul><h3 id="verification">Verification<a class="anchor" href="#verification">#</a></h3><p>Every commit hash cited above was verified to resolve in the release base
-(<code>git cat-file -e &lt;hash&gt;</code> at <code>80dedd5f6</code>); every Vivi handle cited
-(<code>9ca6437d</code>, <code>fb06c8c5</code>, <code>e8822722</code>, <code>ec8bf5c6</code>, <code>23cb01b0</code>, <code>8e00f78b</code>,
-<code>70728fa9</code>, <code>eee9f06d</code>, <code>920c6334</code>, <code>97a33001</code>, <code>f80df1a1</code>, <code>a828a988</code>,
-<code>8036dd57</code>, <code>b1f8eeba</code>, <code>2624fea0</code>, <code>54a93c8b</code>, <code>f12335e2</code>) resolves via
-<code>vivi need show</code> / <code>vivi memo show</code> on the shared board. Scale table
+(<code>git cat-file -e &lt;hash&gt;</code> at <code>80dedd5f6</code>). Scale table
 regenerated with `git log a85d802d7..80dedd5f6 --oneline --no-merges |
 grep -c '&lt;prefix&gt;('` per row.</p><h3 id="breaking-author-visible">Breaking / author-visible<a class="anchor" href="#breaking-author-visible">#</a></h3><div class="table-scroll"><table><thead><tr><th>Change</th><th>Migration</th></tr></thead><tbody><tr><td>Export surface is now <code>@ public</code> / <code>@ internal</code> only (VM-U2)</td><td>Unmarked top-level declarations become module-private; mark exports <code>@ public</code> explicitly.</td></tr><tr><td><code>private</code> dropped on imports (VM-U3)</td><td>Use <code>public</code> re-export; module-private is the default.</td></tr><tr><td>Source-surface <code class="glyph">⊕</code>/<code class="glyph">⊖</code> → <code class="glyph">↑</code>/<code class="glyph">↓</code> (incdec Unit A)</td><td>Rewrite post-inc/dec source glyphs to the arrow spellings.</td></tr><tr><td><code>require</code> test modifier retired (U-A1)</td><td>Use the <code>require</code>/<code>require</code> recoverable guard statement (U-B1).</td></tr><tr><td><code>radix-mir-llvm</code> behind <code>mir-llvm</code> feature (EL-2b)</td><td>Enable <code>mir-llvm</code> in Cargo features when the LLVM lane is required.</td></tr></tbody></table></div><h3 id="what-is-not-included">What is NOT included<a class="anchor" href="#what-is-not-included">#</a></h3><ul><li>No tensor inference accuracy claims; no GPU performance claims.</li><li>The tensor-glyphs gradient surface is Phase-2 parse/selection; Phase-3
 lowering remains in flight beyond the glyph-product MIR/metal/wgsl paths.</li><li>The Haskell and Python targets are source-emit surfaces, not executable

@@ -98,7 +98,7 @@ Locale register for triga geometry layout helper. Library façade replaces
 the excluded stub. Canary smoke-test now proves codegen + `faber run`
 (not just packs) and the first-time-user journey.
 
-#### Pin-window residuals (hand-65)
+#### Pin-window residuals
 
 Landed on the pin: rustfmt of five stage-1 compiler files, HIR compat
 measurement JSON regen, module-boundary SG-4B MIR recovery classified as

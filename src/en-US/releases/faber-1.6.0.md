@@ -46,8 +46,7 @@ exempla parity profile, the `format` CLI steady-state flag surface
 (FORMAT-PRETTY S4), and the AMD device consume arms.
 
 The v1.6.0-rc.1 candidate is superseded by this release: the rc was a
-no-tag, no-push archive-gate lock (package/run proven at RC level on burgus
-Metal and pharos CUDA). This release takes the stable publication path on the
+no-tag, no-push archive-gate lock (package/run proven at RC level on Apple Metal and NVIDIA CUDA). This release takes the stable publication path on the
 same pinned tree plus the new release gate.
 
 ### Scale
@@ -132,7 +131,7 @@ build from these pins is the proof; `publication.releaseTag` is
   memories at the package-wasm boundary.
 - **Numeric inference accuracy is deferred.** Device execution remains a
   capability statement (`faber run --backend metal|cuda`, package/run proven
-  at RC level on burgus and pharos); no numeric parity band is claimed.
+  at RC level on Apple Metal and NVIDIA CUDA hosts); no numeric parity band is claimed.
 - The AMD device surface is emit/compile capability — `amd` selection stays
   fail-closed until the ROCm clang path is provisioned.
 - Doctests are excluded from the ladders by design (radix and faber); run

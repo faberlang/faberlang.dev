@@ -12,8 +12,7 @@ smoke-test gate, CI packaging rewrite) is rolled into main, and the release
 pins the tested <strong>radix 0.81.0</strong> companion. Also lands the module-boundary
 exempla parity profile, the <code>format</code> CLI steady-state flag surface
 (FORMAT-PRETTY S4), and the AMD device consume arms.</p><p>The v1.6.0-rc.1 candidate is superseded by this release: the rc was a
-no-tag, no-push archive-gate lock (package/run proven at RC level on burgus
-Metal and pharos CUDA). This release takes the stable publication path on the
+no-tag, no-push archive-gate lock (package/run proven at RC level on Apple Metal and NVIDIA CUDA). This release takes the stable publication path on the
 same pinned tree plus the new release gate.</p><h3 id="scale">Scale<a class="anchor" href="#scale">#</a></h3><div class="table-scroll"><table><thead><tr><th>Signal</th><th>Count</th></tr></thead><tbody><tr><td>Commits (no merges)</td><td>103</td></tr><tr><td><code>feat(...)</code> commits</td><td>11</td></tr><tr><td><code>fix(...)</code> commits</td><td>11</td></tr><tr><td><code>docs(...)</code> commits</td><td>26</td></tr><tr><td><code>test(...)</code> commits</td><td>10</td></tr></tbody></table></div><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">git</span> log v1.5.1..HEAD <span class="tok-op">--oneline</span> <span class="tok-op">--no-merges</span></code></pre><h3 id="major-tracks">Major tracks<a class="anchor" href="#major-tracks">#</a></h3><h4 id="151-dev-kit-roll-in-release-pipeline-rewrite">1.5.1 dev-kit roll-in (release pipeline rewrite)<a class="anchor" href="#151-dev-kit-roll-in-release-pipeline-rewrite">#</a></h4><p>The 1.5.1 patch-train tooling landed on main before this release; 1.6.0 is the
 first release built on it:</p><ul><li><strong>CI packaging rewrite</strong> with the dev-kit assembly layout (<code>2cac54b</code>).</li><li><strong>Consumer smoke-test gate</strong> — a scripted consumer path that installs the
 release archive and runs a real compile (<code>13116d9</code>), wired into CI with
@@ -41,7 +40,7 @@ build from these pins is the proof; <code>publication.releaseTag</code> is
 <code>faber-v1.6.0</code>.</p><h3 id="known-limitations">Known limitations<a class="anchor" href="#known-limitations">#</a></h3><ul><li><strong>Cross-module `string` handles</strong> remain limited by separate linear
 memories at the package-wasm boundary.</li><li><strong>Numeric inference accuracy is deferred.</strong> Device execution remains a
 capability statement (<code>faber run --backend metal|cuda</code>, package/run proven
-at RC level on burgus and pharos); no numeric parity band is claimed.</li><li>The AMD device surface is emit/compile capability — <code>amd</code> selection stays
+at RC level on Apple Metal and NVIDIA CUDA hosts); no numeric parity band is claimed.</li><li>The AMD device surface is emit/compile capability — <code>amd</code> selection stays
 fail-closed until the ROCm clang path is provisioned.</li><li>Doctests are excluded from the ladders by design (radix and faber); run
 <code>cargo test --doc</code> explicitly when doc-example coverage is wanted.</li></ul><h3 id="deferred">Deferred<a class="anchor" href="#deferred">#</a></h3><p>Onboarding Stages 4–8 (doctor, portable no-Rust hello, Norma/Triga
 acquisition, locale docs parity), the numeric inference accuracy claim, and

@@ -157,7 +157,7 @@ Two large refactoring waves consolidate the private compiler workspace:
 - **Morphologia docs:** link morphologia for conjugation and stdlib posture; revise
   conjugation policy for stems and dual axes. (`3b57b5b3e`, `eb7c935bc`)
 - **Async AD phase zero boundary locked** for the next lowering slice. (`b045c9db6`)
-- **Chore:** ignore project-local Vivi mailspace. (`5c55ae329`)
+- **Chore:** ignore a project-local tool directory. (`5c55ae329`)
 - **Exempla harness** discovers public sibling corpora. (`cb9862846`)
 - **AI workbench:** record stage5 systems discovery. (`62e5ed8e7`)
 

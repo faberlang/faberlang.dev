@@ -60,8 +60,7 @@ QuantizedGather; F16 admission; WGSL F16 elementwise IO.
 #### Shape-generics Phase 3+4
 
 Unroll pass (3E), guard-as-mask (3F), SG-4B corpus + hir-rust `⇥`
-recovery, SG-4C archive to `docs/archived/shape-generics/`. Pin-window
-hand-65: rustfmt five stage-1 files, compat JSON regen, module-boundary
+recovery, SG-4C archive to `docs/archived/shape-generics/`. Pin-window work: rustfmt five stage-1 files, compat JSON regen, module-boundary
 SG-4B MIR recovery classified as a capability-gap.
 
 ### Binary question (operator)

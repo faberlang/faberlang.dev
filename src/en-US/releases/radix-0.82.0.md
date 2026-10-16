@@ -199,20 +199,15 @@ repo:
   harness invocations (`e2e0caead`), lane-gated tests behind enabling
   features with the core-only suite green (`34caab3e3`).
 - **Runner matrix display** emits nested rows matching compiled-route goldens
-  (`b4fb08d71`; closed need `9ca6437d`).
-- **Go/TS value-position reple** fills a fresh copy (`b8f824790`; closed need
-  `fb06c8c5`), with tensor-glyphs go tables re-landed (`3e4f82a28`, closed
-  need `8e00f78b`) and `@faber/runtime` materialization re-landed
-  (`6661a3ba0`, closed need `920c6334`).
-- **Emit-compat-json passes `--features mir-core`** (`55198ca46`, closed need
-  `e8822722`); compatibility measurement JSON refreshed — instans capable +1,
-  incdec glyphs ↓/↑ (`487e1a556`, closed need `ec8bf5c6`).
+  (`b4fb08d71`).
+- **Go/TS value-position reple** fills a fresh copy (`b8f824790`), with tensor-glyphs go tables re-landed (`3e4f82a28`) and `@faber/runtime` materialization re-landed
+  (`6661a3ba0`).
+- **Emit-compat-json passes `--features mir-core`** (`55198ca46`); compatibility measurement JSON refreshed — instans capable +1,
+  incdec glyphs ↓/↑ (`487e1a556`).
 - **Exempla table repairs** — 30 stale swift-emit fixtures as expected
-  compile failures (`4ce9a318f`, closed need `23cb01b0`); cuda glyph-proof
-  fixtures pinned at the fail-closed wasm tier floor (`4c2edbd92`, closed need
-  `70728fa9`), ledgered as runner NoEntryReference failures (`6d359fc9f`).
-- **E2e sibling gate** — canonical ancestor-walk fallback (`7c04532f2`,
-  closed need `eee9f06d`); **forma author emit** renders the reader pack's
+  compile failures (`4ce9a318f`); cuda glyph-proof
+  fixtures pinned at the fail-closed wasm tier floor (`4c2edbd92`), ledgered as runner NoEntryReference failures (`6d359fc9f`).
+- **E2e sibling gate** — canonical ancestor-walk fallback (`7c04532f2`); **forma author emit** renders the reader pack's
   keyword surface (`767c9027a`); fhir run integration test aligned to the
   interpreted-execution contract (`417109683`).
 
@@ -242,11 +237,7 @@ These ship as acknowledged known-reds in this release (operator
 ### Verification
 
 Every commit hash cited above was verified to resolve in the release base
-(`git cat-file -e <hash>` at `80dedd5f6`); every Vivi handle cited
-(`9ca6437d`, `fb06c8c5`, `e8822722`, `ec8bf5c6`, `23cb01b0`, `8e00f78b`,
-`70728fa9`, `eee9f06d`, `920c6334`, `97a33001`, `f80df1a1`, `a828a988`,
-`8036dd57`, `b1f8eeba`, `2624fea0`, `54a93c8b`, `f12335e2`) resolves via
-`vivi need show` / `vivi memo show` on the shared board. Scale table
+(`git cat-file -e <hash>` at `80dedd5f6`). Scale table
 regenerated with `git log a85d802d7..80dedd5f6 --oneline --no-merges |
 grep -c '<prefix>('` per row.
 

@@ -65,8 +65,8 @@ collection kernel — a tree reduction, `summa` — on both named machines:
 
 | Row | before | after | why |
 | --- | --- | --- | --- |
-| `metal-text` run | no | **yes** | `faber run --backend metal` executes device programs on Apple M5 Max (burgus) |
-| `llvm-text` run | no | **yes** | `faber run --backend cuda` executes device programs on NVIDIA RTX 5070 (pharos), NVVM→PTX device artifacts |
+| `metal-text` run | no | **yes** | `faber run --backend metal` executes device programs on Apple M5 Max |
+| `llvm-text` run | no | **yes** | `faber run --backend cuda` executes device programs on NVIDIA RTX 5070, NVVM→PTX device artifacts |
 | `metal-text` / `llvm-text` package | no | no | `package=yes` waits for the Stage 7 archive gate (E6/E7) |
 
 The `-t metal-text` / `-t llvm-text` emit surfaces are unchanged; device

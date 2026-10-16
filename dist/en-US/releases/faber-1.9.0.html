@@ -92,8 +92,7 @@ green, <code>target/release/faber --version</code> → <code>faber 1.9.0</code>.
 <code>worktrees/release-190</code>, run log receipts retained by the release seat):</li><li>stage 1 gate + fmt: <strong>green</strong>; stage 2 clippy <code>-D warnings</code>:
 <strong>0 errors</strong> (inventory <code>target/stage-2-clippy.jsonl</code>).</li><li>stage 3 test canary: <strong>1 package ok</strong> (ratchet list clean).</li><li>stage 4a measurement freshness: initially <strong>red — committed compat JSON stale</strong>; regenerated per the protocol step
 (<code>./scripta/emit-compat-json.py</code>, 13 files) — gate <strong>green</strong> after
-regen. The regen is part of the release commit (1.8.0 hand-65
-precedent).</li><li>stage 4b per-crate <code>--no-fail-fast</code> (the branch-tip recipe
+regen. The regen is part of the release commit (1.8.0 precedent).</li><li>stage 4b per-crate <code>--no-fail-fast</code> (the branch-tip recipe
 <code>e3af59886</code>): <strong>genuine FAILs 63 across 6 crates; env-gated skips 7</strong>
 — faber 1 (the acked row #1), mir-emit-harness 24, radix-mir-metal 1,
 radix-module 34, radix-program 1, radix-semantic 2. This is the

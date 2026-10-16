@@ -215,8 +215,7 @@ version-bump/manifest/notes release commit, packet
   - stage 3 proba canary: **1 package ok** (ratchet list clean).
   - stage 4a measurement freshness: initially **red — committed compat JSON stale**; regenerated per the protocol step
     (`./scripta/emit-compat-json.py`, 13 files) — gate **green** after
-    regen. The regen is part of the release commit (1.8.0 hand-65
-    precedent).
+    regen. The regen is part of the release commit (1.8.0 precedent).
   - stage 4b per-crate `--no-fail-fast` (the branch-tip recipe
     `e3af59886`): **genuine FAILs 63 across 6 crates; env-gated skips 7**
     — faber 1 (the acked row #1), mir-emit-harness 24, radix-mir-metal 1,

@@ -8,8 +8,7 @@ graph, multi-unit analysis, artifact planning, and the package
 MIR/FHIR/FMIR compiler subset previously in faber.</p><h4 id="packed-quantized-kernels">Packed quantized kernels<a class="anchor" href="#packed-quantized-kernels">#</a></h4><p>EXEC-02 packed kernel plan/op ABI frozen; FMIR wire-mirror; Metal + NVVM
 QuantizedMatMul for Q8_0, Q4_K, Q5_K, Q5_0, Q6_K, BF16, F16;
 QuantizedGather; F16 admission; WGSL F16 elementwise IO.</p><h4 id="shape-generics-phase-34">Shape-generics Phase 3+4<a class="anchor" href="#shape-generics-phase-34">#</a></h4><p>Unroll pass (3E), guard-as-mask (3F), SG-4B corpus + hir-rust <code class="glyph">⇥</code>
-recovery, SG-4C archive to <code>docs/archived/shape-generics/</code>. Pin-window
-hand-65: rustfmt five stage-1 files, compat JSON regen, module-boundary
+recovery, SG-4C archive to <code>docs/archived/shape-generics/</code>. Pin-window work: rustfmt five stage-1 files, compat JSON regen, module-boundary
 SG-4B MIR recovery classified as a capability-gap.</p><h3 id="binary-question-operator">Binary question (operator)<a class="anchor" href="#binary-question-operator">#</a></h3><p><strong>2026-08-25 update:</strong> the Radix binary release workflow has been removed.
 Faber is the only active binary release surface; historical Radix CLI archives
 can be backfilled manually if needed.</p><p><strong>Radix is source+tag / library. No product radix binary exists.</strong></p><p>Evidence (live tree at pin <code>1eaf4ec68</code>):</p><ol><li><code>crates/radix/Cargo.toml</code> has no <code>[[bin]]</code>. <code>crates/radix/README.md</code>:

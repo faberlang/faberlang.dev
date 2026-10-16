@@ -105,7 +105,7 @@ The inference recipe surface amendments that unblocked the Q2 prefill top-1:
   head (q/o into the 15 query heads, k/v into the 5 KV heads) so per-head
   masked softmax is expressible; GGUF K-major weights are transposed to the
   device matmul row-major layout (faber prefill driver).
-- **Q2 top-1 PASS on Metal.** The burgus Metal run executed the full
+- **Q2 top-1 PASS on Metal.** The Apple Metal run executed the full
   5188-kernel prefill program (5188 launches, 2724 input-role slots, 6633
   buffer allocations) and matched the golden top-1 logit at position 0.
 - **Honest scoping: numeric parity NOT claimed.** The per-element
