@@ -63,7 +63,7 @@ kernel and its manifest declares a `[device]` section (`device`, and
 
 ```bash
 faber run --device metal <package>   # Apple Metal (e.g. Apple M5 Max)
-faber run --device cuda  <package>   # NVIDIA CUDA (e.g. RTX 5070)
+faber run --device cuda  <package>   # NVIDIA CUDA (needs a CUDA host)
 faber run --device auto  <package>   # resolve: exactly one admitted device
 faber run --device reference <package>  # plain sequential code on the MIR runner
 faber run --device cpu   <package>   # processor cores as a device
@@ -77,7 +77,9 @@ program plus Metal MSL and CUDA PTX artifacts (each with a provenance hash);
 `faber run` drives a real Metal/CUDA session (load → allocate → copy-in →
 launch → sync → readback → release) and reports the selected device, the
 artifact/module hash, and the observed outputs. An explicit GPU request never
-silently falls back: unavailable backends, bad descriptors, and
+silently falls back: a device whose runtime is not registered (the default
+macOS build admits Metal, and `--device cuda` answers `E_DEVICE_UNAVAILABLE`),
+unavailable backends, bad descriptors, and
 entry/dtype/shape mismatches fail closed with a stable code
 (`E_BACKEND_UNAVAILABLE`, `E_DEVICE_*`, `E_NO_DEVICE_PROGRAM`).
 
@@ -87,8 +89,11 @@ entry/dtype/shape mismatches fail closed with a stable code
 faber check my-package/
 ```
 
-Runs the full front end (lex → parse → typecheck → MIR lowering) without
-producing output artifacts. Use this in CI and editor integrations.
+Runs the front end (lex → parse → typecheck) without producing output
+artifacts. Use this in CI and editor integrations. Add `--lower` to also
+compile the program to Faber's reference form without running it
+(`faber check --lower my-package/`); that reports the errors semantic analysis
+cannot see, a program that checks but cannot run.
 
 ### Running tests {#testing-command}
 

@@ -9,7 +9,7 @@ warnings) or <code>--deny &lt;CODE&gt;</code> (a specific catalog code, repeatab
 carries a device program when its source declares an <code>@ kernel</code> compute
 kernel and its manifest declares a <code>[device]</code> section (<code>device</code>, and
 <code>inputs</code> for the kernel's input buffers):</p><pre class="faber-code"><code class="lang-bash"><span class="tok-fn">faber</span> run <span class="tok-op">--device</span> metal &lt;package&gt;   # Apple Metal (e.g. Apple M5 Max)
-<span class="tok-fn">faber</span> run <span class="tok-op">--device</span> cuda  &lt;package&gt;   # NVIDIA CUDA (e.g. RTX 5070)
+<span class="tok-fn">faber</span> run <span class="tok-op">--device</span> cuda  &lt;package&gt;   # NVIDIA CUDA (needs a CUDA host)
 <span class="tok-fn">faber</span> run <span class="tok-op">--device</span> auto  &lt;package&gt;   # resolve: exactly one admitted device
 <span class="tok-fn">faber</span> run <span class="tok-op">--device</span> reference &lt;package&gt;  # plain sequential code on the MIR runner
 <span class="tok-fn">faber</span> run <span class="tok-op">--device</span> cpu   &lt;package&gt;   # processor cores as a device</code></pre><p><code>reference</code> is the oracle that device results are checked against. Today
@@ -20,10 +20,15 @@ program plus Metal MSL and CUDA PTX artifacts (each with a provenance hash);
 <code>faber run</code> drives a real Metal/CUDA session (load → allocate → copy-in →
 launch → sync → readback → release) and reports the selected device, the
 artifact/module hash, and the observed outputs. An explicit GPU request never
-silently falls back: unavailable backends, bad descriptors, and
+silently falls back: a device whose runtime is not registered (the default
+macOS build admits Metal, and <code>--device cuda</code> answers <code>E_DEVICE_UNAVAILABLE</code>),
+unavailable backends, bad descriptors, and
 entry/dtype/shape mismatches fail closed with a stable code
-(<code>E_BACKEND_UNAVAILABLE</code>, <code>E_DEVICE_*</code>, <code>E_NO_DEVICE_PROGRAM</code>).</p><h3 id="checking">Checking without emitting<a class="anchor" href="#checking">#</a></h3><pre class="faber-code"><code class="lang-text">faber check my-package/</code></pre><p>Runs the full front end (lex → parse → typecheck → MIR lowering) without
-producing output artifacts. Use this in CI and editor integrations.</p><h3 id="testing-command">Running tests<a class="anchor" href="#testing-command">#</a></h3><pre class="faber-code"><code class="lang-text">faber test my-package/
+(<code>E_BACKEND_UNAVAILABLE</code>, <code>E_DEVICE_*</code>, <code>E_NO_DEVICE_PROGRAM</code>).</p><h3 id="checking">Checking without emitting<a class="anchor" href="#checking">#</a></h3><pre class="faber-code"><code class="lang-text">faber check my-package/</code></pre><p>Runs the front end (lex → parse → typecheck) without producing output
+artifacts. Use this in CI and editor integrations. Add <code>--lower</code> to also
+compile the program to Faber's reference form without running it
+(<code>faber check --lower my-package/</code>); that reports the errors semantic analysis
+cannot see, a program that checks but cannot run.</p><h3 id="testing-command">Running tests<a class="anchor" href="#testing-command">#</a></h3><pre class="faber-code"><code class="lang-text">faber test my-package/
 faber test . --filter smoke       # substring filter on case path or title
 faber test . --include math       # load only *.proba sources matching a path pattern
 faber test . --exclude 'nested/*' # skip *.proba sources matching a path pattern

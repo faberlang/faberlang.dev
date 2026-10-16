@@ -12,7 +12,7 @@ open [The faber CLI](/toolchain/cli.html).
 
 | Command | Use it for |
 |---|---|
-| `faber check <package>` | Fast front-end validation: lex, parse, type check, lower |
+| `faber check <package>` | Fast front-end validation: lex, parse, type check (`--lower` also compiles without running) |
 | `faber build <package> -t rust` | Emit a Rust project for review or native compilation (with no `-t`, a package writes an FHIR package envelope) |
 | `faber run <package>` | Interpret and execute an application package (never compiles) |
 | `faber test <package>` | Run package tests when the package defines test surfaces |
@@ -29,8 +29,9 @@ faber check examples/coreutils/packages/wc
 ```
 
 A passing check means the package is syntactically and semantically acceptable
-to the compiler front end. It does not mean the final native toolchain has been
-invoked.
+to the compiler front end. It does not mean the program can run or that the
+final native toolchain has been invoked; `faber check --lower` goes one step
+further and compiles the program without running it.
 
 ## Build {#build}
 

@@ -23,12 +23,11 @@ product surface among several, not the language’s semantic center.
 Faber is open source. The public repository holds the compiler front end, the
 MIR runner (`faber run`, the reference every other target is checked against),
 the Faber re-emitter behind `faber format` and `faber convert`, the C code
-generator (a public preview), the standard library (Norma), the grammar, the
-reader-locale packs and the corpus. It is available under either the MIT or the
-Apache-2.0 license. The other code generators ship in the official `faber`
-binary, and a native backend built on Cranelift is in progress so that a build
-from the public source alone produces executables. See
-[Open source](/open-source.html).
+generator and the Cranelift native backend (both public previews, so a build
+from the public source alone produces executables), the standard library
+(Norma), the grammar, the reader-locale packs and the corpus. It is available
+under either the MIT or the Apache-2.0 license. The other code generators ship
+in the official `faber` binary. See [Open source](/open-source.html).
 
 Faber's public capability ladder is intentionally explicit:
 
@@ -57,7 +56,7 @@ and the [target matrix](/toolchain/target-matrix.html).
 | **First appeared** | 2025 |
 | **Compiler** | Radix (Rust) |
 | **Lanes** | Application (HIR) · Systems (MIR) · GPU device path |
-| **Targets** | The MIR runner (reference), Faber, C (preview), Rust, Go, TypeScript, Swift, Python, Haskell, LLVM, WebAssembly, GPU kernels and more — measured per target |
+| **Targets** | The MIR runner (reference), Faber, C and Cranelift (previews), Rust, Go, TypeScript, Swift, Python, Haskell, LLVM, WebAssembly, GPU kernels and more — measured per target |
 | **Reader locales** | 8 shipped (en, la, ar, hi, vi, th-TH, zh-Hans, zh-Hant) |
 | **Standard library** | Norma (`norma:*`) |
 | **License** | MIT or Apache-2.0 |
@@ -99,8 +98,9 @@ construct by construct.
 
 The language makes three deliberate signal choices that work together:
 
-- **Type-first declarations** — shape reads toward binding: `string name`,
-  not `name: string`.
+- **Type-first declarations** — shape reads toward binding: `let string name`,
+  not `name: string`; every binding word writes its type slot, and `_` asks
+  for inference.
 - **Behavioural words** — declarations, statements, and lifecycle:
   `fn`, `class`, `let`, `return`, `if`.
 - **Structural glyphs** — value flow and type joints: `←` (bind), `→`
@@ -119,7 +119,7 @@ silently falling back to the CPU:
 ```bash
 faber run --device reference <package>  # plain sequential code on the MIR runner
 faber run --device metal <package>      # Apple Metal
-faber run --device cuda  <package>      # NVIDIA CUDA
+faber run --device cuda  <package>      # NVIDIA CUDA (fails closed where no CUDA runtime is registered)
 faber run --device auto  <package>      # resolve: exactly one admitted device
 ```
 
@@ -189,7 +189,7 @@ the full discussion.
 
 | Repo | Role |
 |---|---|
-| [faberlang/faber](https://github.com/faberlang/faber) | The language: compiler front end, MIR runner, Faber re-emitter, C target preview, Norma (`lib/norma`), grammar, locale packs and corpus |
+| [faberlang/faber](https://github.com/faberlang/faber) | The language: compiler front end, MIR runner, Faber re-emitter, C and Cranelift target previews, Norma (`lib/norma`), grammar, locale packs and corpus |
 | [faberlang/releases](https://github.com/faberlang/releases) | Tagged CLI release assets |
 | [faberlang/triga](https://github.com/faberlang/triga) | Graphics / geometry library |
 | [faberlang/gradus](https://github.com/faberlang/gradus) | Autograd / ML library |

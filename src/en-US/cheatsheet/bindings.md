@@ -24,7 +24,9 @@ incipit {
 }
 ```
 
-Reassigning a `sit` is a compile error, not a convention. Reach for `sit`
+Every binding word writes its type slot: `sit numerus limit ← 10`. There is no
+short form, and `_` in the slot asks for inference (next section). Reassigning
+a `sit` is a compile error, not a convention. Reach for `sit`
 first and widen to `varia` only where the value genuinely moves.
 
 ## Type holes {#holes}

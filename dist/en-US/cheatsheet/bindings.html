@@ -42,7 +42,9 @@ reserved for compile-time facts, written with <code class="glyph">=</code>.</p><
     <span class="tok-kw">परिवर्तनीय</span> <span class="tok-kw">संख्या</span> count <span class="tok-op">←</span> <span class="tok-nu">0</span>
     count <span class="tok-op">←</span> count <span class="tok-op">+</span> <span class="tok-nu">1</span>
     <span class="tok-kw">दिखाओ</span> limit, count
-}</code></pre></div></div><p>Reassigning a <code>let</code> is a compile error, not a convention. Reach for <code>let</code>
+}</code></pre></div></div><p>Every binding word writes its type slot: <code>let int limit ← 10</code>. There is no
+short form, and <code class="glyph">_</code> in the slot asks for inference (next section). Reassigning
+a <code>let</code> is a compile error, not a convention. Reach for <code>let</code>
 first and widen to <code>mut</code> only where the value genuinely moves.</p><h2 id="holes">Type holes<a class="anchor" href="#holes">#</a></h2><p><code class="glyph">_</code> is a type hole: the compiler infers one concrete type for the binding.</p><pre class="faber-code"><code class="lang-faber locale-tabs">main {
     let _ name <span class="tok-op">←</span> <span class="tok-st">"Marcus"</span>
     let _ numeri <span class="tok-op">←</span> [<span class="tok-nu">1</span>, <span class="tok-nu">2</span>, <span class="tok-nu">3</span>]

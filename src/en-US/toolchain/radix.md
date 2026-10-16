@@ -864,9 +864,9 @@ Source entry points:
 The current implementation does not link a local LLVM installation, produce
 native object code, or own a package runtime. External LLVM tooling can verify
 or link emitted text. The same NVVM/PTX staging chain is now live as the CUDA
-device-execution lane: `faber run --device cuda` emits NVVM/PTX device
-artifacts and launches real CUDA kernels (e.g. RTX 5070) through the `faber`
-package pipeline.
+device-execution lane: `faber run --device cuda` selects it and is
+hardware-gated; where no CUDA runtime is registered (the default macOS build)
+the selection fails closed with `E_DEVICE_UNAVAILABLE`.
 
 Source: `crates/radix-mir-llvm/src/lib.rs`.
 
@@ -982,8 +982,8 @@ mean that the artifact has a complete external runtime.
 | `rust` | HIR-direct | check/build | check/build/run/package | Widest package product surface among HIR-direct emitters. |
 | `fhir` | HIR-direct | check/build | build/run/package | Portable FHIR package envelope; load + lower to FMIR for run. |
 | `faber` | HIR-direct | check/build | inspection-oriented | Canonical Faber re-emission; not an executable package artifact. |
-| `ts` | HIR-direct | check/build | no package/run | Experimental language-shaped source emission; corpus suite 506 / 651. |
-| `go` | HIR-direct | check/build | no package/run | HIR emitter with explicit rejection gaps; corpus suite 538 / 651. |
+| `ts` | HIR-direct | check/build | no package/run | Experimental language-shaped source emission; measured counts are in the [target table](/toolchain/compiling.html#target-table). |
+| `go` | HIR-direct | check/build | no package/run | HIR emitter with explicit rejection gaps; measured counts are in the [target table](/toolchain/compiling.html#target-table). |
 | `swift` | HIR-direct | check/build | no package/run | Apple-oriented source emission; no package runtime. |
 | `python` | HIR-direct | check/build | no package/run | File emission supported; package compilation not yet supported. |
 | `haskell` | HIR-direct | check/build | no package/run | File emission supported; package compilation not yet supported. |

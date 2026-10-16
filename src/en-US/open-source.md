@@ -22,6 +22,8 @@ repository does not accept pull requests: file an issue instead.
 | **MIR runner** | Executes Faber programs directly (`faber run`); the reference every other target is checked against |
 | **Faber re-emitter** | The HIR-backed canonical emitter behind `faber format` and `faber convert` |
 | **C code generator** | Readable C11 whose output matches the runner; a public preview that covers a growing subset of the language |
+| **Cranelift native backend** | Native objects for the host with no external toolchain beyond a linker (`faber build --target clif`); a public preview, a fail-closed subset of the language |
+| **Artifact formats** | FHIR and FMIR, the serialized analyzed HIR and MIR images that `faber` can load and run |
 | **The `faber` command** | `check`, `run`, `test`, `format`, `convert`, `explain` and the rest |
 | **Norma** | The standard library (`lib/norma`): files, processes, time, text, JSON, TOML, HTTP and more |
 | **Grammar and locale packs** | The formal grammar and the eight reader-locale packs |
@@ -31,15 +33,13 @@ repository does not accept pull requests: file an issue instead.
 
 The official `faber` release also includes the code generators that are not in
 the public repository: Rust, Go, TypeScript, Swift, Python, Haskell, LLVM,
-WebAssembly, the GPU kernel targets and the historical and novelty targets. The
+WebAssembly and the GPU kernel targets. The
 [target table](/toolchain/compiling.html#target-table) says which is which and
 how mature each one is.
 
-The official `faber` already carries a preview native backend built on
-Cranelift (`-t clif`, a fail-closed subset). It is not in the public source yet,
-so the public source
-builds `faber check`, `faber run`, `faber test`, `faber format` and
-`faber convert`, and emits C.
+The public source builds `faber check`, `faber run`, `faber test`, `faber format`
+and `faber convert`, and emits C and, through Cranelift, native objects, so a
+build from the public source alone produces executables. Both are previews.
 
 ## Public repositories {#public-repositories}
 
@@ -50,7 +50,7 @@ organisation.
 
 | Repository | Description |
 |---|---|
-| [faber](https://github.com/faberlang/faber) | The language: compiler front end, MIR runner, Faber re-emitter, C target preview, Norma, grammar, locale packs, corpus |
+| [faber](https://github.com/faberlang/faber) | The language: compiler front end, MIR runner, Faber re-emitter, C and Cranelift target previews, Norma, grammar, locale packs, corpus |
 | [faber-1.x](https://github.com/faberlang/faber-1.x) | The archived 1.x line: runtime and grammar record, old release tags |
 | [releases](https://github.com/faberlang/releases) | Tagged CLI release assets and prebuilt archives |
 | [triga](https://github.com/faberlang/triga) | Graphics and geometry library |

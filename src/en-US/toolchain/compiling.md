@@ -37,60 +37,64 @@ program is correct when its output and exit status match the runner's; a
 construct a target cannot express yet is rejected by name
 (`unsupported on target <t>: <construct>`), never approximated.
 
-How mature each target is, measured on the corpus (651 positive cases, each
-with expected output). "Suite" counts are pinned outcomes in
-`corpus-suites/full`; "matches" counts were measured by building the emitted
-program with the real toolchain and comparing it with the runner.
+<!-- target-maturity:begin -->
+How mature each target is, measured on the corpus (662 programs the suite runs, each with expected output; 134 more are meant to be refused). "Suite" counts are cases that pass in `corpus-suites/full` (`faber corpus`) out of the cases the suite applies to; the rest are pinned expected failures. C and Haskell have no corpus lane: each single-file program the runner passes was emitted, built with the real toolchain, and its output and exit status compared with the runner's.
 
 | Target | `-t` | Output | Evidence | Source |
-|---|---|---|---|---|
+| --- | --- | --- | --- | --- |
 | **Reference** | | | | |
-| MIR runner | (`faber run`) | executes the program; the oracle | suite 581 / 651 (most of the rest are fragments with no entry point) | public |
-| Faber | `faber` | canonical Faber in the source's locale (`format`, `convert`) | round-trip 633 / 651 | public |
-| FMIR / FHIR | `fmir`, `fhir` | serialized MIR and analyzed HIR artifacts | builds 616 and 590 of 638 files | public |
+| MIR runner | (`faber run`) | executes the program; the oracle | suite 606 / 662 (the rest are pinned expected failures) | public |
+| Faber | `faber` | canonical Faber in the source's locale (`format`, `convert`) | round-trip 644 / 649 | public |
+| FMIR / FHIR | `fmir`, `fhir` | serialized MIR and analyzed HIR artifacts | no corpus lane (exercised by the package build and run tests) | public |
 | **Application languages** | | | | |
-| Rust | `rust` | Rust source, or a full Cargo project | suite 613 / 651 | official binary |
-| Go | `go` | Go source | suite 538 / 651 | official binary |
-| TypeScript | `ts` | TypeScript source | suite 506 / 651 | official binary |
-| Swift | `swift` | Swift source | suite 336 / 651 | official binary |
-| Python | `python` | self-contained Python | 240 of 257 comparable programs match | official binary |
-| Haskell | `haskell` | Haskell source | 30 of 76 comparable programs match | official binary |
+| Rust | `rust` | Rust source, or a full Cargo project | suite 645 / 654 | official binary |
+| Go | `go` | Go source | suite 568 / 662 | official binary |
+| TypeScript | `ts` | TypeScript source | suite 609 / 662 | official binary |
+| Swift | `swift` | Swift source | suite 347 / 662 | official binary |
+| Python | `python` | self-contained Python | suite 480 / 649 | official binary |
+| Haskell | `haskell` | Haskell source | 77 of 593 single-file programs emit; 30 of those match the runner | official binary |
 | **Systems and native** | | | | |
-| C | `c` | C11 with a header-only runtime | preview: 71 programs emit, 65 of 66 comparable match | public |
-| LLVM | `llvm-text`, `llvm-host` | LLVM IR, or a native executable via clang | suite 461 / 651 | official binary |
-| WebAssembly | `wasm`, `wasm-text` | WebAssembly text | suite 460 / 651 assemble (no host runtime yet) | official binary |
-| Cranelift | `clif` | native objects with no external toolchain | preview: fail-closed subset | official binary (public source planned) |
+| C | `c` | C11 with a header-only runtime | preview: 223 of 593 single-file programs emit; 222 of those match the runner | public |
+| LLVM | `llvm-text`, `llvm-host` | LLVM IR, or a native executable via clang | suite 535 / 662 | official binary |
+| WebAssembly | `wasm`, `wasm-text` | WebAssembly text | suite 470 / 662 assemble (no host runtime yet) | official binary |
+| Cranelift | `clif` | native objects with no external toolchain | preview: suite 509 / 649 | public |
 | **GPU kernels** (kernel functions only) | | | | |
 | Metal | `metal-text` | Metal Shading Language | kernel programs only | official binary |
 | WGSL | `wgsl-text` | WebGPU compute shaders | kernel programs only | official binary |
-| CUDA | (`--device cuda`) | NVVM IR through the device runtime | kernel programs only | official binary |
-| **Historical and novelty** | | | | |
-| Fortran | `fortran` | Fortran 2008 | 40 of 40 comparable match | official binary |
-| COBOL | `cobol` | GnuCOBOL free format | 34 of 37 comparable match | official binary |
-| Pascal | `pascal` | Free Pascal | 36 of 37 comparable match | official binary |
-| BASIC | `basic` | C64 BASIC V2 listing | 63 programs emit | official binary |
-| Odin | `odin` | Odin | early: 6 of 6 match | official binary |
-| Racket | `sexp` | Racket s-expressions (a validation target) | suite 456 / 651 | official binary |
+| CUDA | (`--device cuda`) | NVVM IR through the device runtime | kernel programs only; hardware-gated, and `faber run --device cuda` fails closed in the default build | official binary |
+| **Validation** | | | | |
+| Racket | `sexp` | Racket s-expressions (a validation target) | suite 538 / 662 | official binary |
+| **Experimental** (not in the released `faber`) | | | | |
+| Fortran, COBOL, Pascal, Odin, BASIC | `fortran`, `cobol`, `pascal`, `odin`, `basic` | historical languages, a deliberate subset | default-off features; no corpus lane | private source |
+<!-- target-maturity:end -->
 
 Notes:
 
-- "Comparable" excludes programs with no entry point; "emit" alone means source
-  was produced, not that it built.
-- The historical targets cover a deliberate subset (scalars, text, simple
-  collections) and reject the rest by name. They exist partly as a test of the
-  rule that targets implement Faber and never the reverse.
+- Emit and match counts compare the emitted program's output and exit status
+  with the runner's, for the single-file programs the runner passes; "emit"
+  alone means source was produced, not that it built.
+- The C and Cranelift targets are previews and are on by default in `faber`.
+  Neither runs under `faber run`, and a construct either cannot express yet is
+  rejected by name. `faber targets` on the binary you are running is the
+  authority on what that binary can emit, and a target missing from the build
+  is rejected with `PKG001 target_not_in_this_build`.
+- The experimental historical targets (Fortran, COBOL, Pascal, Odin, BASIC)
+  cover a deliberate subset (scalars, text, simple collections) and reject the
+  rest by name. They exist partly as a test of the rule that targets implement
+  Faber and never the reverse. They are default-off features and are not in the
+  released `faber`.
 - Standard-library I/O (files, processes, clocks, network) is wired on the Rust
   target today; most other targets reject programs that use it, which accounts
   for much of the gap between their counts and Rust's.
 - "Public" means the generator's source is in the public repository. "Official
   binary" means it ships in the released `faber` but its source does not.
-- The C and Cranelift targets are previews and are on by default in `faber`.
-  Neither runs under `faber run`; `faber targets` on the binary you are running is the
-  authority on what that binary can emit, and a target missing from the build
-  is rejected with `PKG001 target_not_in_this_build`.
-- The GPU rows are kernel functions only. `faber run --device metal` and
-  `--device cuda` launch `@ kernel` functions on a real GPU; `-t metal-text`,
-  `-t wgsl-text` and `-t llvm-text` themselves remain emit-only.
+- The GPU rows are kernel functions only. `faber run --device metal` launches
+  `@ kernel` functions on a real GPU (Apple silicon); `--device cuda` is
+  selectable but hardware-gated, and fails closed where no CUDA runtime is
+  registered, as in the default macOS build. `-t metal-text`, `-t wgsl-text`
+  and `-t llvm-text` themselves remain emit-only.
+- The table is generated from the corpus suite at release time, not edited by
+  hand.
 
 ### What the CLI does with each target {#cli-capabilities}
 
@@ -204,10 +208,10 @@ preserve source-level structure longer and are suited for language-shaped output
 |---|---|---|
 | `Rust` | **Support** | Widest package product surface today (a Cargo project; the best-covered standard-library I/O). One projection of HIR — not the semantic center. |
 | `Faber` | **Support** | Canonical source view through the HIR-backed re-emitter (`faber format` / `faber convert`). Round-trip stability. |
-| `TypeScript` | Probe | HIR-direct file emission; suite 506 / 651. Not a package product path yet. |
-| `Go` | Erase | HIR-direct file emission; suite 538 / 651; borrow modes erased. |
+| `TypeScript` | Probe | HIR-direct file emission; see the target table for measured counts. Not a package product path yet. |
+| `Go` | Erase | HIR-direct file emission; see the target table for measured counts; borrow modes erased. |
 | `Swift`, `Python`, `Haskell` | Probe | HIR-direct file emission; see the target table for measured counts. |
-| `C` | Preview | HIR-direct C11 with a header-only runtime; the one code generator in the public repository besides the Faber re-emitter. |
+| `C` | Preview | HIR-direct C11 with a header-only runtime; its source is in the public repository. |
 
 ### MIR — Mid-Level Intermediate Representation {#mir}
 
