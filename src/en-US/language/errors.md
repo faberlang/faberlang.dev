@@ -283,7 +283,7 @@ the MIR runner — no Cargo or rustc is invoked for the package:
 
 ```text
 faber test                        # run all tests in the current package
-faber test examples/coreutils/packages/echo  # run tests for a specific package
+faber test path/to/package        # run tests for a specific package
 faber test . --filter smoke       # substring filter on case path or title
 faber test . --include math       # load only *.proba sources matching a path pattern
 faber test . --exclude 'nested/*' # skip *.proba sources matching a path pattern
@@ -353,4 +353,3 @@ conventional approaches:
 1. `radix/corpus/probandum/` — probandum exemplar files
 2. `radix/corpus/proba/` — proba exemplar files
 3. `radix/corpus/adfirma/` — adfirma exemplar files
-4. `examples/coreutils/packages/echo/src/main.fab` — real-world usage with tags

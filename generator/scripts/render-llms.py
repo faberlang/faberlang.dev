@@ -194,12 +194,11 @@ def emit_llms_txt(terms: list[Term], aliases: dict[str, list[str]], distinct_ter
 
     write_section(lines, "Repositories")
     lines.extend([
-        "- https://github.com/faberlang/faber — public target APIs and project home",
+        "- https://github.com/faberlang/faber — the open-source core: compiler front end, runner, standard library, grammar",
         "- https://github.com/faberlang/releases — tagged CLI release assets",
-        "- https://github.com/faberlang/norma — standard library",
-        "- https://github.com/faberlang/cista — package store",
         "- https://github.com/faberlang/triga — graphics / geometry",
-        "- https://github.com/faberlang/examples — corpus + application packages",
+        "- https://github.com/faberlang/gradus — autograd and ML",
+        "- https://github.com/faberlang/tela — UI and views",
         "- https://github.com/faberlang/faberlang.dev — this site",
     ])
 

@@ -469,10 +469,10 @@ def main() -> None:
 
 {pass_html}
     <p class="fl-open-source">
-      The language, public libraries, examples, and tooling ship under the
-      <strong>MIT</strong> license. <strong>Radix</strong>, the compiler, is
-      closed only while it is under active development. That is temporary,
-      not a permanent fence.
+      The compiler front end, runner, standard library, and grammar are open
+      source under <strong>MIT OR Apache-2.0</strong>. The official release
+      also carries code generators that are not in the public source. Faber is
+      experimental through version 1.
     </p>
   </section>
 

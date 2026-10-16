@@ -7,75 +7,72 @@ sources = [
 ]
 +++
 
-Faber is open source, with one stated exception. The language, its standard
-library, its build and package tooling, every public library, all code
-examples, and this documentation site are **MIT licensed** and developed in
-public on GitHub. **Radix**, the compiler, is closed source for now.
+Faber's source is open. The compiler front end, the reference runner, the
+standard library (Norma), the grammar, the locale packs and the corpus are in
+[faberlang/faber](https://github.com/faberlang/faber) under
+`MIT OR Apache-2.0`. The repository builds a working `faber` that checks,
+formats and runs programs.
 
-That exception is meant to end. Radix is planned for open release once the
-language has clearer market demand — it is a timing decision, not a permanent
-fence around Faber.
+**Faber is experimental through version 1.** The language changes constantly,
+and breaking changes ship in minor releases. Pin an exact version and read the
+release notes before you upgrade.
 
 ## What is open {#what-is-open}
 
 | Component | What it is |
 |---|---|
-| **Public Faber target APIs** | Rust, TypeScript, Go, and Swift support packages for generated programs |
-| **Cista** | The package manager and package store |
-| **Norma** | The standard library (`norma:*` modules) |
-| **Triga** | The graphics and geometry library |
-| **Gradus** | The autograd and ML library |
-| **faber-runtime** | Runtime types backing generated Rust |
-| **Examples** | Every sample package, application campaign, and workload track |
-| **Documentation** | This site, its Markdown sources, and the Speculum generator that renders it |
+| **Compiler front end and middle** | Lexer, parser, semantic analysis, the typed intermediate representations (HIR and MIR) and the checks that run on them |
+| **The MIR runner** | Executes Faber programs directly; the reference every other target is checked against |
+| **C and Cranelift code generators** | Readable C and native objects through Cranelift. Both are previews that cover a growing subset of the language and reject the rest by name |
+| **Artifact formats** | FHIR and FMIR: serialized analyzed HIR and MIR images that `faber` can load and run |
+| **The `faber` command** | `check`, `run`, `test`, `build`, `format`, `convert`, `corpus` and `targets` |
+| **Norma** | The standard library: files, processes, time, text, JSON, TOML, HTTP and more |
+| **Grammar and locale packs** | The grammar and the reader-locale packs |
+| **Corpus** | Several hundred small programs with expected output, and the suites that run them |
+| **Agent skills** | Two guides for coding agents: writing Faber, and changing the repository |
+| **Documentation** | This site, its Markdown sources, and the generator that renders it |
 
-All of the above are MIT. You can read them, fork them, vendor them, and ship
-work built on them without asking.
+## What is not in the public source {#what-is-closed}
 
-## What is closed {#what-is-closed}
-
-| Component | Status |
-|---|---|
-| **Radix and the Faber product** | Compiler, package workflow, CLI, diagnostics, and code generation. Closed source; released as the `faber` binary. |
-
-Radix being closed does not make it opaque. Compiler bugs are reported
-publicly, release binaries are checksummed and tagged, and the grammar,
-[target matrix](/toolchain/target-matrix.html), and
-[design notes](/reference/design.html) are published from the compiler tree
-itself.
+The official `faber` release also carries code generators that are not part of
+the public source: Rust, Go, TypeScript, Swift, Python, Haskell, LLVM,
+WebAssembly and the GPU emitters. Installing a release, not building the public
+tree, is the way to get every target. See the
+[target matrix](/toolchain/target-matrix.html) for what each target covers.
 
 ## Public repositories {#public-repositories}
 
 Everything below lives under the [faberlang](https://github.com/faberlang)
-organisation.
+organisation. Each repository's README states its own status and licence.
 
 | Repository | Description |
 |---|---|
-| [faber](https://github.com/faberlang/faber) | Public Rust, TypeScript, Go, and Swift target APIs; project and issue routing |
+| [faber](https://github.com/faberlang/faber) | The open-source core: compiler front end, runner, standard library, grammar |
 | [releases](https://github.com/faberlang/releases) | Tagged CLI release assets and prebuilt archives |
-| [norma](https://github.com/faberlang/norma) | Standard library source (`norma:*` modules) |
 | [triga](https://github.com/faberlang/triga) | Graphics and geometry library |
 | [gradus](https://github.com/faberlang/gradus) | Autograd and ML library: gradients, loss, optimizers, NN primitives, training |
-| [cista](https://github.com/faberlang/cista) | Package manager and store (experimental) |
-| [examples](https://github.com/faberlang/examples) | Coreutils, AI Workbench, reader-locale packages, GPU workload and training tracks |
+| [tela](https://github.com/faberlang/tela) | UI and view library |
 | [tree-sitter-faber](https://github.com/faberlang/tree-sitter-faber) | Tree-sitter grammar and editor packaging for syntax highlighting |
 | [faberlang.dev](https://github.com/faberlang/faberlang.dev) | This website |
 
+Three archived repositories are kept for history: `faber-1.x` held Faber 1.0 to
+1.12 (its version tags were carried into `faber`, so a project pinned to a 1.x
+tag keeps resolving), and `norma` and `hosts` are superseded. The standard
+library now lives in `faber` under `lib/norma`.
+
 ## Reporting issues {#reporting-issues}
 
-GitHub Issues is the fastest way to reach the project. File against the repo
-that owns the problem:
+GitHub Issues is the fastest way to reach the project. The repositories do not
+take outside pull requests.
 
 | Problem | Where to report |
 |---|---|
 | Compiler or CLI behaviour (bugs, diagnostics, crashes) | [faberlang/faber · Issues](https://github.com/faberlang/faber/issues) |
+| Standard library | [faberlang/faber · Issues](https://github.com/faberlang/faber/issues) |
 | Documentation or website problems | [faberlang/faberlang.dev · Issues](https://github.com/faberlang/faberlang.dev/issues) |
-| Standard library | [faberlang/norma · Issues](https://github.com/faberlang/norma/issues) |
-| Anything else | The matching repository above |
+| A library or tool | The matching repository above |
 
-Radix is closed source, but compiler bugs are still reported publicly through
-[faberlang/faber · Issues](https://github.com/faberlang/faber/issues) — include
-the `faber` version and a minimal reproducing package.
+Include the `faber` version and a minimal reproducing package.
 
 ## Maintainer {#maintainer}
 

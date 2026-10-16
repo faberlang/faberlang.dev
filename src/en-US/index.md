@@ -20,10 +20,11 @@ support is stated **target by target** (see the
 executable path; package workflows that use Rust today are one measured
 product surface among several, not the language’s semantic center.
 
-The language, public libraries, examples, and user tooling ship under the
-**MIT** license. **Radix**, the compiler, is closed source for now and is
-planned for open release once the language has clearer market demand — not as
-a permanent fence around Faber. See [Open source](/open-source.html).
+The compiler front end, the reference runner, the standard library, the grammar
+and the locale packs are open source under `MIT OR Apache-2.0` in
+[faberlang/faber](https://github.com/faberlang/faber). The official `faber`
+release also carries code generators that are not in the public source. Faber
+is experimental through version 1. See [Open source](/open-source.html).
 
 Faber's public capability ladder is intentionally explicit:
 
@@ -67,7 +68,7 @@ and the [target matrix](/toolchain/target-matrix.html).
 | [Commands](/cheatsheet/commands.html) | Human + agent | Daily CLI loop: check, build, run, test, explain |
 | [`/install.md`](/install.md) | Agent | Install route — start here if you are a model |
 | [Agent guide](/agents/index.md) | Agent | How to learn Faber and ship a package |
-| [Agent skills](/.well-known/agent-skills/index.json) | Agent | Focused skill guides (install, language, examples, …) |
+| [Agent skills](/.well-known/agent-skills/index.json) | Agent | Focused skill guides (install, language, packages, corpus) |
 
 ## Readable in your language {#locale-coverage}
 
@@ -173,13 +174,12 @@ the full discussion.
 
 | Repo | Role |
 |---|---|
-| [faberlang/faber](https://github.com/faberlang/faber) | Public target APIs and project home |
+| [faberlang/faber](https://github.com/faberlang/faber) | The open-source core: compiler front end, runner, standard library, grammar |
 | [faberlang/releases](https://github.com/faberlang/releases) | Tagged CLI release assets |
-| [faberlang/norma](https://github.com/faberlang/norma) | Standard library source |
-| [faberlang/cista](https://github.com/faberlang/cista) | Package-store CLI/lib |
 | [faberlang/triga](https://github.com/faberlang/triga) | Graphics / geometry library |
-| [faberlang/examples](https://github.com/faberlang/examples) | Corpus, tracks, application packages |
+| [faberlang/gradus](https://github.com/faberlang/gradus) | Autograd and ML library |
+| [faberlang/tela](https://github.com/faberlang/tela) | UI and view library |
+| [faberlang/tree-sitter-faber](https://github.com/faberlang/tree-sitter-faber) | Editor syntax highlighting |
 | [faberlang/faberlang.dev](https://github.com/faberlang/faberlang.dev) | This documentation site |
 
-The full list — including the private compiler and where to file issues — is
-on the [Repositories](/open-source.html) page.
+The full list, and where to file issues, is on the [Open source](/open-source.html) page.

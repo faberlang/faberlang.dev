@@ -1,6 +1,6 @@
 {
   "name": "faberlang-agent-skills",
-  "description": "Focused agent guides for the Faber Romanus programming language: install, the English reader spelling, packages, real-world examples, and corpus lookup.",
+  "description": "Focused agent guides for the Faber Romanus programming language: install, the English reader spelling, packages, and corpus lookup.",
   "version": "1.12.0",
   "homepage": "https://faberlang.dev",
   "docs_home": "https://faberlang.dev/agents/index.md",
@@ -25,12 +25,6 @@
       "type": "skill-md",
       "description": "Scaffold and drive Faber packages with the faber init manifest and faber check, build, run, test, and format.",
       "url": "/.well-known/agent-skills/packages/SKILL.md"
-    },
-    {
-      "name": "examples",
-      "type": "skill-md",
-      "description": "Open real application packages in faberlang/examples (AI Workbench, ViviLite, coreutils, GPU).",
-      "url": "/.well-known/agent-skills/examples/SKILL.md"
     },
     {
       "name": "corpus",

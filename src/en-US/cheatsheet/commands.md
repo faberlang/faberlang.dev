@@ -25,7 +25,7 @@ before proposing generated code as valid Faber.
 
 ```bash
 faber check .
-faber check examples/ai-workbench/packages/faber-ai
+faber check path/to/package
 ```
 
 A passing check means the package is syntactically and semantically acceptable
