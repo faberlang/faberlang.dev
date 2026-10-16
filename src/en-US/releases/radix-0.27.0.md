@@ -1,7 +1,7 @@
 +++
 title = "Radix 0.27.0"
 section = "releases"
-order = 81
+order = 84
 sources = []
 +++
 
@@ -9,7 +9,7 @@ sources = []
 |---|---|
 | **Product** | Radix |
 | **Version** | 0.27.0 |
-| **Source** | Closed for now — see [Open source](/open-source.html) |
+| **Source** | The compiler front end is open source in [faberlang/faber](https://github.com/faberlang/faber) from Faber 1.14 — see [Open source](/open-source.html) |
 
 ## Install this version {#install}
 

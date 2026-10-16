@@ -9,7 +9,8 @@ binary — the current one — and nothing else.
 Two sources, joined on version:
 
     github faberlang/releases   published tags and downloadable assets
-    <sibling repo>/docs/release/v*.md   the release notes themselves
+    <radix>/packaging/release/notes/v*.md   the Faber release notes
+    <radix>/docs/release/v*.md              the Radix release notes
 
 Neither source is complete on its own. A version can have notes but no
 published tag (developed, documented, never shipped as an asset), or a tag but
@@ -47,7 +48,7 @@ PRODUCTS = {
     "faber": {
         "label": "Faber",
         "blurb": "The user-facing CLI: check, build, run, test, format, explain.",
-        "notes_dir": WORKSPACE / "radix" / "docs" / "release" / "faber",
+        "notes_dir": WORKSPACE / "radix" / "packaging" / "release" / "notes",
     },
     "radix": {
         "label": "Radix",
@@ -135,6 +136,13 @@ def is_dev_kit(product: str, version: str) -> bool:
         return False
     nums = tuple(int(p) if p.isdigit() else 0 for p in version.split(".")[:3])
     return nums >= (1, 5, 1)
+
+
+def faber_license(version: str) -> str:
+    """The licence a Faber release was published under: MIT until the source
+    went public in 1.14, `MIT OR Apache-2.0` since."""
+    nums = tuple(int(p) if p.isdigit() else 0 for p in version.split("-")[0].split(".")[:3])
+    return "MIT OR Apache-2.0" if nums >= (1, 14, 0) else "MIT"
 
 
 def collect() -> dict[str, list[Version]]:
@@ -254,6 +262,21 @@ def prepare_notes(raw: str) -> str:
     return "\n".join(out).strip()
 
 
+DRAFT_STATUS = re.compile(r"^> \*\*Status\*\*: draft.*$", re.M)
+
+
+def published_status(v: Version) -> str:
+    """The notes of a tagged release, with a leftover draft status made final.
+
+    Notes are written as drafts and their status line is flipped at the release
+    commit; some never were. A tag on faberlang/releases is the fact, so a page
+    for a published version never says draft.
+    """
+    if not (v.tag and v.published):
+        return v.notes
+    return DRAFT_STATUS.sub(f"> **Status**: final — published {v.published}", v.notes, count=1)
+
+
 def install_block(v: Version) -> list[str]:
     archives = [a for a in v.assets if a["name"].endswith(".tar.gz")]
     if not archives:
@@ -341,14 +364,18 @@ def render_version_page(v: Version, order: int) -> str:
         )
     if v.published:
         facts.append(f"| **Published** | {v.published} |")
-    facts.append("| **License** | MIT |" if v.product == "faber"
-                 else "| **Source** | Closed for now — see [Open source](/open-source.html) |")
+    if v.product == "faber":
+        facts.append(f"| **License** | {faber_license(v.version)} |")
+    else:
+        facts.append("| **Source** | The compiler front end is open source in "
+                     "[faberlang/faber](https://github.com/faberlang/faber) from "
+                     "Faber 1.14 — see [Open source](/open-source.html) |")
     facts.append("")
 
     body = head + facts + install_block(v)
 
     if v.notes:
-        body += ["## Release notes {#notes}", "", prepare_notes(v.notes), ""]
+        body += ["## Release notes {#notes}", "", prepare_notes(published_status(v)), ""]
     else:
         body += [
             "## Release notes {#notes}",
@@ -414,8 +441,10 @@ def render_index(grouped: dict[str, list[Version]]) -> str:
         "record. A dash under **Notes** means the version shipped but its notes "
         "have not been backfilled yet.",
         "",
-        "Radix source is closed for now; its published artifacts are the compiler "
-        "binary and checksums. See [Open source](/open-source.html).",
+        "Radix archives hold the compiler binary and checksums. From Faber 1.14 "
+        "the compiler front end is open source in "
+        "[faberlang/faber](https://github.com/faberlang/faber); see "
+        "[Open source](/open-source.html).",
         "",
     ]
     return "\n".join(lines)

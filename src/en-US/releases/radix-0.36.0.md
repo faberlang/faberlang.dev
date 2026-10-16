@@ -1,7 +1,7 @@
 +++
 title = "Radix 0.36.0"
 section = "releases"
-order = 72
+order = 75
 sources = []
 +++
 
@@ -12,7 +12,7 @@ sources = []
 | **Tag** | `radix-v0.36.0` |
 | **GitHub** | [radix-v0.36.0](https://github.com/faberlang/releases/releases/tag/radix-v0.36.0) |
 | **Published** | 2026-07-16 |
-| **Source** | Closed for now — see [Open source](/open-source.html) |
+| **Source** | The compiler front end is open source in [faberlang/faber](https://github.com/faberlang/faber) from Faber 1.14 — see [Open source](/open-source.html) |
 
 ## Install this version {#install}
 

@@ -246,7 +246,7 @@ overwrites the edit; change the generator or the upstream source instead.
 | `generate-grammar-tree.py` | `src/en-US/reference/grammar.md` (family overview), `src/en-US/reference/grammar/*.md` (term tables, no EBNF), `static/agents/grammar/productions.md` (+ `dist/` copy; the full English-spelling EBNF) | same radix grammar inputs as `generate-grammar`, plus `dist/en-US/corpus/` for term links |
 | `generate-target-lanes.py` | `src/en-US/targets/*.md` | captured lane panels |
 | `generate-localization.py` | `src/en-US/localization.md` | locale registry + captured panels |
-| `generate-releases.py` | `src/en-US/releases/*.md` | `gh` release tags + sibling `docs/release/v*.md` |
+| `generate-releases.py` | `src/en-US/releases/*.md` | `gh` release tags + `radix/packaging/release/notes/v*.md` (Faber) and `radix/docs/release/v*.md` (Radix) |
 | `generate-agent-locales.py` | `static/agents/locales.md`, `dist/agents/locales.md` | `radix/locale/*/pack.toml` |
 | `generate-agent-reference.py` | `static/agents/reference/`, `dist/agents/reference/` | `faber explain --list` and `faber explain <term> --json` |
 
@@ -405,9 +405,11 @@ the English tree; `/llms-full.txt` is a locale-neutral corpus reference.
 
 ### Binary versions
 
-- **Content targets radix HEAD, not a release.** The site is not published until
-  the next release, so every page is checked against the radix commit recorded in
-  `generator/upstream.lock.toml` and a `faber` built from that commit. Pass it
+- **Content targets radix HEAD, not a release.** The site is published from
+  `main` (Faber 1.14.0, the first release after the source went public, is the
+  install surface's release), so every page is checked against the radix commit
+  recorded in `generator/upstream.lock.toml` and a `faber` built from that
+  commit. Pass it
   with `build-site.sh --faber <path>`: the convert cache is keyed on the binary's
   content hash, so two builds that both print `faber 1.13.0` never share entries.
   A claim that holds for the previous release but not for HEAD is a defect.

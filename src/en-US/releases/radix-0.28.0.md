@@ -1,7 +1,7 @@
 +++
 title = "Radix 0.28.0"
 section = "releases"
-order = 80
+order = 83
 sources = []
 +++
 
@@ -9,7 +9,7 @@ sources = []
 |---|---|
 | **Product** | Radix |
 | **Version** | 0.28.0 |
-| **Source** | Closed for now — see [Open source](/open-source.html) |
+| **Source** | The compiler front end is open source in [faberlang/faber](https://github.com/faberlang/faber) from Faber 1.14 — see [Open source](/open-source.html) |
 
 ## Install this version {#install}
 
@@ -39,7 +39,7 @@ This release spans **39 non-merge commits** (`v0.27.0..v0.28.0`, 2026-01-21 → 
 #### Syntaxis aliena diagnostics (P400–P409)
 
 - P400: colon type annotations (`fixum x: textus` → `fixum textus x`) (`eac9b9d5e`)
-- P401: `pro...de` loops (`pro item de list` → `ex list fixum item`) (`eac9b9d5e`)
+- P401: `pro...de` loops (`pro item de list` → `ex list sit item`) (`eac9b9d5e`)
 - P402: arrow functions (`(x) => x + 1` → `clausura x: x + 1`) (`eac9b9d5e`)
 - P403: `Type?` nullable suffix → `si Type` prefix (`aad4f4bf7`)
 - P404: `aliter` / `aliter si` → `secus` / `sin` (`c1894fe08`)

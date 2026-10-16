@@ -15,6 +15,8 @@ The user-facing CLI: check, build, run, test, format, explain.
 
 | Version | Published | Downloads | Notes |
 |---|---|---|---|
+| [Faber 1.14.0](/releases/faber-1.14.0.html) | 2026-10-16 | 2 | yes |
+| [Faber 1.13.0](/releases/faber-1.13.0.html) | 2026-10-12 | 2 | yes |
 | [Faber 1.12.0](/releases/faber-1.12.0.html) | 2026-10-02 | 2 | yes |
 | [Faber 1.11.0](/releases/faber-1.11.0.html) | 2026-10-02 | 2 | yes |
 | [Faber 1.10.0](/releases/faber-1.10.0.html) | — | — | yes |
@@ -125,4 +127,4 @@ The compiler. Bundled inside the `faber` CLI; also published standalone for anyo
 
 A dash under **Downloads** means no prebuilt archive was published for that version — it is listed because its release notes are part of the record. A dash under **Notes** means the version shipped but its notes have not been backfilled yet.
 
-Radix source is closed for now; its published artifacts are the compiler binary and checksums. See [Open source](/open-source.html).
+Radix archives hold the compiler binary and checksums. From Faber 1.14 the compiler front end is open source in [faberlang/faber](https://github.com/faberlang/faber); see [Open source](/open-source.html).
